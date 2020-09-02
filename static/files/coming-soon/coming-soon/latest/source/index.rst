@@ -14,5 +14,5 @@ DATRO  Document - Coming Soon
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 =====================
- DATR&#x1f12f; CONSORTIUM
+ DATRO CONSORTIUM
 =====================
