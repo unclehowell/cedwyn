@@ -81,6 +81,7 @@ do
        ProgressBar ${number} ${_end}
 done
 
+sed -i 's/<\/head>/<style>html{overflow-y:scroll;} ::-webkit-scrollbar{width:0px;background:transparent;}<\/style><\/head>/g' build/html/*.html
 sed -i 's/ View page source/ /g' build/html/*.html
 sed -i 's/<div class="version">/<div class="version"> Document Version : /g' build/html/*.html
 # sed -i 's/<div role="contentinfo"/<div role="contentinfo" style="visibility:hidden!important;opacity:0!important;"/g' build/html/*.html
@@ -141,7 +142,7 @@ sed -i 's/a:visited{color:lightskyblue/a:visited{color:darkgrey/g' build/html/_s
 sed -i 's/background:hsla(0,0%,100%,.1)}.wy-side-nav-search/background:transparent}.wy-side-nav-search/g' build/html/_static/css/theme.css
 sed -i 's/)}.wy-nav-top/)}.wy-breadcrumbs{visibility:hidden!important;}.wy-nav-top/g' build/html/_static/css/theme.css
 sed -i 's/li{list-style:disc}.wy-breadcrumbs{/li{list-style:disc}.wy-breadcrumbs{position:fixed;width:81%;display:block;height:55px;margin-left:-55px;padding-left:50px;margin-top:-50px;padding-top:14px;background:-webkit-gradient(radial,56%10%,300,188%120%,132,from(#333664),to(transparent));visibility:visible;/g' build/html/_static/css/theme.css
-sed -i 's/.wy-nav-top{width:100vw/.wy-nav-top{width:105vw/g' build/html/_static/css/theme.css
+sed -i 's/.wy-nav-top{width:100vw/.wy-nav-top{width:105vw;border-top:2px solid #333666;top:-2px;/g' build/html/_static/css/theme.css
 sed -i 's/.wy-grid-for-nav{position:absolute;width:100%;height:100%}/.wy-grid-for-nav{position:absolute;min-width:100vw;width:100%;display:contents;height:100%;}/g' build/html/_static/css/theme.css
 sed -i 's/.wy-nav-top i{font-size:30px;/.wy-nav-top i{font-size:30px;margin-top: 5px!important; margin-left: 10px;/g' build/html/_static/css/theme.css
 sed -i 's/footer{color:grey}/footer{color:white;}/g' build/html/_static/css/theme.css
@@ -160,6 +161,7 @@ sed -i 's/role="contentinfo"/role="contentinfo" style="opacity:0.4;"/g' build/ht
 sed -i 's/placeholder="Search docs"/placeholder="Search"/g' build/html/*.html
 sed -i 's/Built with/<div style="opacity:0.3;font-size:76%;">Built with/g' build/html/*.html
 sed -i 's/Read the Docs<\/a>./Read the Docs<\/a><\/div>/g' build/html/*.html
+sed -i 's/.wy-nav-top a{color:#fff;font-weight:700/.wy-nav-top a{color:#fff;font-weight:700;font-size:75%;margin-left:-56px;/g' build/html/_static/css/theme.css
 
 printf "\e[2;3;33m Done! \n\e[0m"
 
