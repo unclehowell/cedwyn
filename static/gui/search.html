@@ -12,9 +12,22 @@
 	             if {{ host == window.location.host} && {window.location.protocol != "https:""}}
 	             window.location.protocol = "https";
 	</script>
+        <script type="text/javascript">
+$(document).ready(function(){    
+    //Check if the current URL contains '#'
+    if(document.URL.indexOf("#")==-1){
+        // Set the URL to whatever it was plus "#".
+        url = document.URL+"#";
+        location = "#";
+
+        //Reload the page
+        location.reload(true);
+    }
+});
+</script>
 	<meta content="HotspotBnB GUI" name="description">
 	<meta content="HotspotBnB GUI" name="author">
-	<title>HotspotBnB Search</title>
+	<title>Search Apps</title>
 	<link href="dashboard/img/favicons/apple-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">
 	<link href="dashboard/img/favicons/apple-icon-60x60.png" rel="apple-touch-icon" sizes="60x60">
 	<link href="dashboard/img/favicons/apple-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
@@ -43,6 +56,10 @@
 	<link href="dashboard/css/search/dropdownboxes.css" rel="stylesheet">
 	<link href="search-box/doc-library.css" rel="stylesheet">
 	<style>
+input:focus::placeholder {
+  color: transparent;
+}
+
  html {
 	overflow-y:   scroll;
 	overflow-x:   hidden;
@@ -71,7 +88,7 @@ body {
   background: url(dashboard/img/logo.svg);
   background-image: url(dashboard/img/image.svg), none;
 }	
-                .container {
+.container {
     perspective: 800px;
     max-width:250px;
     min-width:225px;
@@ -84,69 +101,70 @@ body {
     --font-size: 30px;
 }
 
-.toggle {
-    position: relative;
-    border: solid var(--border-width) #2c2c2c;
-    border-radius: var(--border-radius);
-    transition: transform cubic-bezier(0, 0, 0.30, 2) .4s;
-    transform-style: preserve-3d;
-    perspective: 800px;
+.tabcontainer {
+perspective: 800px;
+    max-width: 250px;
+    min-width: 225px;
+width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+display: inline-flex;
+}
+.docstab {
+    border-radius: 20px 2px 2px 20px;
+    border-top: 4px solid #303030;
+    border-left: 4px solid #303030;
+    border-bottom: 4px solid #303030;
+    padding: 30px 30px 30px 25px;
+    font-size: var(--font-size);
+    text-align: center;
+    color: rgba(0,0,0,0.3);
+    cursor: pointer;
+    max-width: 115px;
+    margin-left:1px;
 }
 
-.toggle>input[type="radio"] {
+.appstab {
+border-radius: 2px 20px 20px 2px;
+    border-top: 4px solid #303030;
+    border-right: 4px solid #303030;
+    border-bottom: 4px solid #303030;
+    padding: 30px 25px 30px 20px;
+    font-size: var(--font-size);
+    text-align: center;
+    color: #454545;
+    cursor: pointer;
+    max-width: 115px;
+    margin-left:-1px;
+    background: rgba(0,0,0,0.3);
+}
+
+
+.cursor {
+    position: relative;
+}
+.cursor i {
+    position: absolute;
+    width: 2px;
+    height: 38%;
+    background-color: lightgrey;
+    left: 41px;
+    top: 19%;
+    animation-name: blink;
+    animation-duration: 1300ms;
+    animation-iteration-count: infinite;
+    opacity: 1;
+}
+
+.cursor input:focus + i {
     display: none;
 }
 
-.toggle>#choice1:checked~#flap {
-    transform: rotateY(-180deg);
-}
-
-.toggle>#choice1:checked~#flap>.content {
-    transform: rotateY(-180deg);
-}
-
-.toggle>#choice2:checked~#flap {
-    transform: rotateY(0deg);
-}
-
-.toggle>label {
-    display: inline-block;
-    min-width: 170px;
-    padding: 30px;
-    font-size: var(--font-size);
-    text-align: center;
-    color: #2c2c2c;
-    cursor: pointer;
-}
-
-.toggle>label,
-.toggle>#flap {
-    font-weight: bold;
-    text-transform: capitalize;
-}
-
-.toggle>#flap {
-    position: absolute;
-    top: calc( 0px - var(--border-width));
-    left: 50%;
-    height: calc(100% + var(--border-width) * 2);
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: var(--font-size);
-    background-color: #2c2c2c;
-    border-top-right-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
-    transform-style: preserve-3d;
-    transform-origin: left;
-    transition: transform cubic-bezier(0.4, 0, 0.2, 1) .5s;
-}
-
-.toggle>#flap>.content {
-    color: #454545;
-    transition: transform 0s linear .25s;
-    transform-style: preserve-3d;
+@keyframes blink {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
 </style><!-- Java -->
 
@@ -172,24 +190,14 @@ body {
 			<div class="buttonsdiv" style="padding-bottom:4rem; text-align:center;">
 			  <div style="margin:auto;width:40%;text-align:center;">
 
- <div class="container">
-
-        <form class="toggle" style="zoom:0.5;">
-
-            <input type="radio" id="choice1" name="choice" value="creative">
-            <label for="choice1">Docs</label>
-
-            <input type="radio" id="choice2" name="choice" value="productive">
-            <label for="choice2">Apps</label>
-
-            <div id="flap"><span class="content">productive</span></div>
-
-        </form>
-
-    </div> <p></p>
-
-                                  <input autocomplete="off" autofocus="" class="validate" id="search-box" style="max-height:100px!important; border:0.5px dotted grey;" type="text">
-
+ <div class="tabcontainer">
+    <div class="docstab">Docs</div> 
+    <div class="appstab" onclick="window.location='search2.html';">Apps</div>
+ </div> <p></p>	
+<div class="cursor">
+                                  <input autocomplete="on" autofocus="" autofocus class="validate rq-form-element" id="search-box" style="max-height:100px!important; border:0.5px dotted grey;" type="text">
+<i></i>
+</div>
 </div>	                             <ul class="collection">
 					<li class="collection-item" style="opacity:0;">
 						<a data-featherlight="iframe" data-featherlight-iframe-allowfullscreen="true" href="../files/coming-soon/coming-soon/latest/build/html/index.html"><strong>Sample 3</strong>Three Three</a>
