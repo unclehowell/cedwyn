@@ -48,7 +48,8 @@
     height: 2rem;
     object-position: center!important;
 }
-media screen and (max-width: 900px) {
+
+@media screen and (max-width: 900px) {
 .square-001-001 {
     min-width: 25vw;
     min-height: 16vw;
