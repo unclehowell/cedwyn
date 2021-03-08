@@ -11,43 +11,34 @@
 # Short-Description: build HotspotBnB
 ### END INIT INFO
 
-echo "Setting up www-data user & permissions ..."
+sudo /usr/sbin/update-locale LC_ALL="en_US.UTF-8" &&
+sudo /usr/sbin/update-locale LANGUAGE="en_US:en" &&
 
-grep www-data /etc/passwd &&
-grep www-data /etc/group &&
-usermod -a -G www-data pi &&
-echo "www-data ALL = NOPASSWD: /sbin/reboot, /sbin/halt" >> /etc/sudoers &&
-systemctl reload apache2 &&
+sudo apt update -y &&
+sudo apt upgrade -y &&
+sudo apt autoremove -y &&
+sudo apt autoclean -y &&
 
-echo "Fetching the Hotspotβnβ Dashboard ..."
-sleep 2 &&
-printf "\n%s\n"  "Executing Main Method ..."
-mkdir -p /tmp/html/ && /usr/bin/svn co --depth infinity https://github.com/unclehowell/datro/trunk/static/gui/  \
-         /tmp/html/ && sleep 2 && sudo cp -r /tmp/html/* /var/www/html >&- 2>&- &&
-
-sleep 0.1 &&
-rm -r /tmp/html &&
-
-printf "\n%s\n"  "Executing Contingency (beta) ..."
-mkdir -p /tmp/html/ && svn co --depth infinity https://github.com/unclehowell/datro/trunk/static/gui/  \
-         /tmp/html/ && sleep 2 && sudo cp -r /tmp/html/* /var/www/html >&- 2>&- &&
-
-sleep 0.1 &&
-rm -r /tmp/html &&
-
-sudo chown www-data:www-data -R /var/www/html &&
-
-# work in progress to change php.ini, which has a variable filepath since php version may vary
-
-#sudo apt-get install mlocate -y &&
-#sudo updatedb &&
-#sudo mlocate apache2/php.ini > /tmp/phpurl &&
-#sed -i 's/disable_functions/#disable_functions/g' dirname /tmp/phpurl/php.ini &&
-
-sudo systemctl reload apache2
+sudo apt-get install -y git-svn subversion apache2 php php-cli libapache2-mod-php php-mcrypt &&
+sudo echo "Setting up www-data user & permissions ..."
+sudo grep www-data /etc/passwd &&
+sudo grep www-data /etc/group &&
+sudo usermod -a -G www-data pi &&
+sudo systemctl reload apache2 &&
+sudo echo "Fetching the Hotspotβnβ Dashboard ..."
+sudo sleep 2 &&
+sudo printf "\n%s\n"  "Executing Main Method ..."
+sudo mkdir -p /tmp/html/ && /usr/bin/svn co --depth infinity https://github.com/unclehowell/datro/trunk/static/gui/  \
+                        /tmp/html/ && sleep 2 && sudo cp -r /tmp/html/* /var/www/html >&- 2>&- &&
+sudo sleep 0.1 &&
+sudo rm -r /tmp/html &&
+sudo sudo chown www-data:www-data -R /var/www/html &&
+sudo sudo systemctl reload apache2
 
 if [ ! -d "/var/www/html/" ]; then
-    echo "Read the Docs - Visit https://datro.world"
+    echo "The Hotspotβnβ Dashboard failed to download - Rebooting and trying again"
+    sleep 2 &&
+    reboot
 else
     sed -i '114,$d' /home/pi/.bashrc >&- 2>&-
     echo "To proceed enter the following in your web-browser"
