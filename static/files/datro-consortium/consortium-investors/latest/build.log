@@ -1,55 +1,47 @@
-Running Sphinx v1.7.9
-making output directory...
+Running Sphinx v3.5.3
+making output directory... done
 loading pickled environment... done
 building [mo]: targets for 0 po files that are out of date
 building [latex]: all documents
 updating environment: 0 added, 0 changed, 0 removed
 looking for now-outdated files... none found
-processing wave-tokens-wrt.tex...index releasenotes introduction wrt-summary wrt-interest wrt-detail 
+processing datro_consortium-investors_detailed.tex... index releasenotes introduction summary-seed detailed-seed summary-startup detailed-startup 
 resolving references...
+done
 writing... done
-copying images... [100%] images/fianancials.png
-
-copying TeX support files...
+copying TeX support files... copying TeX support files...
 done
 build succeeded.
 
 The LaTeX files are in build/latex.
 Run 'make' in that directory to run these through (pdf)latex
 (use `make latexpdf' here to do that automatically).
-make[1]: Entering directory '/mnt/c/Users/loco/Documents/GitHub/gh-docs.hotspotbnb.com/docs/services/exchange-tokens-wrt/build/latex'
-latexmk -pdf -dvi- -ps-  'wave-tokens-wrt.tex'
-Latexmk: This is Latexmk, John Collins, 1 January 2015, version: 4.41.
-Rule 'pdflatex': Rules & subrules not known to be previously run:
-   pdflatex
+Rc files read:
+  /etc/LatexMk
+  latexmkrc
+Latexmk: This is Latexmk, John Collins, 17 Apr. 2020, version: 4.69a.
 Rule 'pdflatex': The following rules & subrules became out-of-date:
       'pdflatex'
 ------------
 Run number 1 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex   -recorder  "wave-tokens-wrt.tex"'
+Running 'pdflatex   -recorder  "datro_consortium-investors_detailed.tex"'
 ------------
 Latexmk: applying rule 'pdflatex'...
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
-(./wave-tokens-wrt.tex
-LaTeX2e <2017/01/01> patch level 3
-Babel <3.9r> and hyphenation patterns for 3 language(s) loaded.
-(./sphinxmanual.cls
-Document Class: sphinxmanual 2017/03/26 v1.6 Document class (Sphinx manual)
+(./datro_consortium-investors_detailed.tex
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-07-17> (./sphinxmanual.cls
+Document Class: sphinxmanual 2019/12/01 v2.3.0 Document class (Sphinx manual)
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo)))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def)<<t1.cmap>>)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty<<t1.cmap>>)
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -59,22 +51,20 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def)))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def))
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf))
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/fncychap/fncychap.sty) (./sphinx.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.dfu)))
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/tabulary/tabulary.sty
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
@@ -85,142 +75,89 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/framed/framed.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg))
-(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (./footnotehyper-sphinx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty)
+(./footnotehyper-sphinx.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
+(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip-2001-04-09.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/capt-of/capt-of.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/carlisle/remreset.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty)
 (./sphinxhighlight.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty)))))
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty))
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty))
-
-Package hyperref Message: Driver (autodetected): hpdftex.
-
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/atveryend/atveryend.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty)
-Writing index file wave-tokens-wrt.idx
-(./wave-tokens-wrt.aux) (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
-) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(./sphinxmessages.sty)
+Writing index file datro_consortium-investors_detailed.idx
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def)
+(./datro_consortium-investors_detailed.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty)
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)<<ot1.cmap>><<oml.cmap
 >><<oms.cmap>><<omx.cmap>>
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
-nts/map/pdftex/updmap/pdftex.map}]
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 68.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 68.
-
-[1]
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 68.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 68.
-
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 68.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1]
+nts/map/pdftex/updmap/pdftex.map}] [1] [1]
 Chapter 1.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [2]
+Underfull \hbox (badness 5077) in paragraph at lines 372--375
+\T1/ptm/m/it/10 and `NO-DATA' to ap-pear in-stead of
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--180
-[]|[][]\T1/ptm/m/n/10 2019-01-17_wave-organisation-
+Package textcomp Warning: Symbol \textasciigrave not provided by
+(textcomp)                font family ptm in TS1 encoding.
+(textcomp)                Default family used instead on input line 399.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--189
-[]|[][]\T1/ptm/m/n/10 2019-01-09_wave-organisation-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2--198
-[]|[][]\T1/ptm/m/n/10 2015-07-01_wave-organisation-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 232.
-
-[2] [3]
+[3] [4]
 Chapter 2.
-<fianancials.png, id=64, 793.95212pt x 355.24268pt>
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-<use fianancials.png>
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 349.
-
-[4 <./fianancials.png>] [5]
+[5]
 Chapter 3.
-
-Underfull \hbox (badness 10000) in paragraph at lines 921--922
-[]|\T1/ptm/m/n/10 Seed-Round-J-Choudhury-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 981.
-
 [6] [7]
 Chapter 4.
-
-Underfull \hbox (badness 10000) in paragraph at lines 998--1000
-[]|\T1/phv/m/n/10 Interest
-
-Underfull \hbox (badness 10000) in paragraph at lines 1015--1017
-[]|\T1/phv/m/n/10 Interest
-
-Underfull \hbox (badness 10000) in paragraph at lines 1548--1549
-[]|\T1/ptm/m/n/10 Seed-Round-J-Choudhury-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 1593.
-
-[8] [9]
+[8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19]
 Chapter 5.
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 1779.
-
-[10] [11] [12] [13] [14] [15] [16] [17] [18] [19]
+[20]
 Chapter 6.
-No file wave-tokens-wrt.ind.
+[21]
+Chapter 7.
+No file datro_consortium-investors_detailed.ind.
+[22] (./datro_consortium-investors_detailed.aux)
 
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 3987.
-
-[20] (./wave-tokens-wrt.aux)
-
-Package rerunfilecheck Warning: File `wave-tokens-wrt.out' has changed.
+Package rerunfilecheck Warning: File `datro_consortium-investors_detailed.out' 
+has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
@@ -229,64 +166,64 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (see the transcript file for additional information){/usr/share/texlive/texmf-d
-ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/
-helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
-bo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on wave-tokens-wrt.pdf (22 pages, 149806 bytes).
-Transcript written on wave-tokens-wrt.log.
-Latexmk: Index file 'wave-tokens-wrt.idx' was written
-Latexmk: Missing input file: 'wave-tokens-wrt.ind' from line
-  'No file wave-tokens-wrt.ind.'
+ist/fonts/enc/dvips/base/8r.enc} </root/.texlive2020/texmf-var/fonts/pk/ljfour/
+jknappen/ec/tcrb1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/urw/helve
+tic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/urw/times/utmri8a.pfb>
+Output written on datro_consortium-investors_detailed.pdf (24 pages, 118797 byt
+es).
+Transcript written on datro_consortium-investors_detailed.log.
+Latexmk: Index file 'datro_consortium-investors_detailed.idx' was written
+Latexmk: Missing input file: 'datro_consortium-investors_detailed.ind' from line
+  'No file datro_consortium-investors_detailed.ind.'
 Latexmk: References changed.
 Latexmk: References changed.
-Latexmk: Log file says output to 'wave-tokens-wrt.pdf'
-Rule 'makeindex wave-tokens-wrt.idx': File changes, etc:
-   Non-existent destination files:
-      'wave-tokens-wrt.ind'
+Latexmk: Log file says output to 'datro_consortium-investors_detailed.pdf'
+Latexmk: Log file says output to 'datro_consortium-investors_detailed.pdf'
+Rule 'makeindex datro_consortium-investors_detailed.idx': File changes, etc:
+   Changed files, or newly in use since previous run(s):
+      'datro_consortium-investors_detailed.idx'
 ------------
-Run number 1 of rule 'makeindex wave-tokens-wrt.idx'
+Run number 1 of rule 'makeindex datro_consortium-investors_detailed.idx'
 ------------
 ------------
-Running 'makeindex -s python.ist  -o "wave-tokens-wrt.ind" "wave-tokens-wrt.idx"'
+Running 'makeindex -s python.ist  -o "datro_consortium-investors_detailed.ind" "datro_consortium-investors_detailed.idx"'
 ------------
-Latexmk: applying rule 'makeindex wave-tokens-wrt.idx'...
-This is makeindex, version 2.15 [TeX Live 2016] (kpathsea + Thai support).
+=== TeX engine is 'pdfTeX'
+Latexmk: applying rule 'makeindex datro_consortium-investors_detailed.idx'...
+This is makeindex, version 2.15 [TeX Live 2020] (kpathsea + Thai support).
 Scanning style file ./python.ist.......done (7 attributes redefined, 0 ignored).
-Scanning input file wave-tokens-wrt.idx...done (0 entries accepted, 0 rejected).
-Nothing written in wave-tokens-wrt.ind.
-Transcript written in wave-tokens-wrt.ilg.
+Scanning input file datro_consortium-investors_detailed.idx...done (0 entries accepted, 0 rejected).
+Nothing written in datro_consortium-investors_detailed.ind.
+Transcript written in datro_consortium-investors_detailed.ilg.
 Rule 'pdflatex': File changes, etc:
    Changed files, or newly in use since previous run(s):
-      'wave-tokens-wrt.aux'
-      'wave-tokens-wrt.ind'
+      'datro_consortium-investors_detailed.aux'
+      'datro_consortium-investors_detailed.ind'
+      'datro_consortium-investors_detailed.out'
 ------------
 Run number 2 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex   -recorder  "wave-tokens-wrt.tex"'
+Running 'pdflatex   -recorder  "datro_consortium-investors_detailed.tex"'
 ------------
 Latexmk: applying rule 'pdflatex'...
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
-(./wave-tokens-wrt.tex
-LaTeX2e <2017/01/01> patch level 3
-Babel <3.9r> and hyphenation patterns for 3 language(s) loaded.
-(./sphinxmanual.cls
-Document Class: sphinxmanual 2017/03/26 v1.6 Document class (Sphinx manual)
+(./datro_consortium-investors_detailed.tex
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-07-17> (./sphinxmanual.cls
+Document Class: sphinxmanual 2019/12/01 v2.3.0 Document class (Sphinx manual)
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo)))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def)<<t1.cmap>>)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty<<t1.cmap>>)
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -296,22 +233,20 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def)))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def))
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf))
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/fncychap/fncychap.sty) (./sphinx.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.dfu)))
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/tabulary/tabulary.sty
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
@@ -322,182 +257,127 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/framed/framed.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg))
-(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (./footnotehyper-sphinx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty)
+(./footnotehyper-sphinx.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
+(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip-2001-04-09.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/capt-of/capt-of.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/carlisle/remreset.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty)
 (./sphinxhighlight.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty)))))
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty))
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty))
-
-Package hyperref Message: Driver (autodetected): hpdftex.
-
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/atveryend/atveryend.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty)
-Writing index file wave-tokens-wrt.idx
-(./wave-tokens-wrt.aux) (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
-) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(./sphinxmessages.sty)
+Writing index file datro_consortium-investors_detailed.idx
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def)
+(./datro_consortium-investors_detailed.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty)
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
-(./wave-tokens-wrt.out) (./wave-tokens-wrt.out)
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(./datro_consortium-investors_detailed.out)
+(./datro_consortium-investors_detailed.out)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)<<ot1.cmap>><<oml.cmap
 >><<oms.cmap>><<omx.cmap>>
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
-nts/map/pdftex/updmap/pdftex.map}]
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 68.
-
-(./wave-tokens-wrt.toc
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 45.
-
-[1]) [2]
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 68.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 68.
-
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 68.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1]
+nts/map/pdftex/updmap/pdftex.map}] (./datro_consortium-investors_detailed.toc
+[1]) [2] [1]
 Chapter 1.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [2]
+Underfull \hbox (badness 5077) in paragraph at lines 372--375
+\T1/ptm/m/it/10 and `NO-DATA' to ap-pear in-stead of
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--180
-[]|[][]\T1/ptm/m/n/10 2019-01-17_wave-organisation-
+Package textcomp Warning: Symbol \textasciigrave not provided by
+(textcomp)                font family ptm in TS1 encoding.
+(textcomp)                Default family used instead on input line 399.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--189
-[]|[][]\T1/ptm/m/n/10 2019-01-09_wave-organisation-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2--198
-[]|[][]\T1/ptm/m/n/10 2015-07-01_wave-organisation-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 232.
-
-[2] [3]
+[3] [4]
 Chapter 2.
-<fianancials.png, id=380, 793.95212pt x 355.24268pt>
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-<use fianancials.png>
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 349.
-
-[4 <./fianancials.png>] [5]
+[5]
 Chapter 3.
-
-Underfull \hbox (badness 10000) in paragraph at lines 921--922
-[]|\T1/ptm/m/n/10 Seed-Round-J-Choudhury-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 981.
-
 [6] [7]
 Chapter 4.
-
-Underfull \hbox (badness 10000) in paragraph at lines 998--1000
-[]|\T1/phv/m/n/10 Interest
-
-Underfull \hbox (badness 10000) in paragraph at lines 1015--1017
-[]|\T1/phv/m/n/10 Interest
-
-Underfull \hbox (badness 10000) in paragraph at lines 1548--1549
-[]|\T1/ptm/m/n/10 Seed-Round-J-Choudhury-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 1593.
-
-[8] [9]
+[8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19]
 Chapter 5.
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 1779.
-
-[10] [11] [12] [13] [14] [15] [16] [17] [18] [19]
+[20]
 Chapter 6.
-(./wave-tokens-wrt.ind)
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 3987.
-
-[20] (./wave-tokens-wrt.aux) )
+[21]
+Chapter 7.
+(./datro_consortium-investors_detailed.ind) [22]
+(./datro_consortium-investors_detailed.aux) )
 (see the transcript file for additional information){/usr/share/texlive/texmf-d
-ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/
-helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
-bo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on wave-tokens-wrt.pdf (23 pages, 163813 bytes).
-Transcript written on wave-tokens-wrt.log.
-Latexmk: Index file 'wave-tokens-wrt.idx' was written
-Latexmk: Log file says output to 'wave-tokens-wrt.pdf'
+ist/fonts/enc/dvips/base/8r.enc} </root/.texlive2020/texmf-var/fonts/pk/ljfour/
+jknappen/ec/tcrb1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/urw/helve
+tic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/urw/times/utmri8a.pfb>
+Output written on datro_consortium-investors_detailed.pdf (25 pages, 129330 byt
+es).
+Transcript written on datro_consortium-investors_detailed.log.
+Latexmk: Index file 'datro_consortium-investors_detailed.idx' was written
+Latexmk: Log file says output to 'datro_consortium-investors_detailed.pdf'
+Latexmk: Log file says output to 'datro_consortium-investors_detailed.pdf'
 Rule 'pdflatex': File changes, etc:
    Changed files, or newly in use since previous run(s):
-      'wave-tokens-wrt.out'
-      'wave-tokens-wrt.toc'
+      'datro_consortium-investors_detailed.toc'
 ------------
 Run number 3 of rule 'pdflatex'
 ------------
 ------------
-Running 'pdflatex   -recorder  "wave-tokens-wrt.tex"'
+Running 'pdflatex   -recorder  "datro_consortium-investors_detailed.tex"'
 ------------
+=== TeX engine is 'pdfTeX'
 Latexmk: applying rule 'pdflatex'...
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex)
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
-(./wave-tokens-wrt.tex
-LaTeX2e <2017/01/01> patch level 3
-Babel <3.9r> and hyphenation patterns for 3 language(s) loaded.
-(./sphinxmanual.cls
-Document Class: sphinxmanual 2017/03/26 v1.6 Document class (Sphinx manual)
+(./datro_consortium-investors_detailed.tex
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-07-17> (./sphinxmanual.cls
+Document Class: sphinxmanual 2019/12/01 v2.3.0 Document class (Sphinx manual)
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo)))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def)<<t1.cmap>>)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty<<t1.cmap>>)
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -507,22 +387,20 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def)))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def))
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf))
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/fncychap/fncychap.sty) (./sphinx.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.dfu)))
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/tabulary/tabulary.sty
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
@@ -533,151 +411,102 @@ For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/framed/framed.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg))
-(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)) (./footnotehyper-sphinx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty)
+(./footnotehyper-sphinx.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
+(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip-2001-04-09.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/capt-of/capt-of.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/needspace/needspace.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/carlisle/remreset.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty)
 (./sphinxhighlight.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty)))))
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
-(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty))
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty))
-
-Package hyperref Message: Driver (autodetected): hpdftex.
-
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/atveryend/atveryend.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty)
-Writing index file wave-tokens-wrt.idx
-(./wave-tokens-wrt.aux) (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
-) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(./sphinxmessages.sty)
+Writing index file datro_consortium-investors_detailed.idx
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def)
+(./datro_consortium-investors_detailed.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty)
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
-(./wave-tokens-wrt.out) (./wave-tokens-wrt.out)
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(./datro_consortium-investors_detailed.out)
+(./datro_consortium-investors_detailed.out)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)<<ot1.cmap>><<oml.cmap
 >><<oms.cmap>><<omx.cmap>>
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
-nts/map/pdftex/updmap/pdftex.map}]
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 68.
-
-(./wave-tokens-wrt.toc
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 45.
-
-[1]) [2]
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 68.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 68.
-
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 68.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1]
+nts/map/pdftex/updmap/pdftex.map}] (./datro_consortium-investors_detailed.toc
+[1]) [2] [1]
 Chapter 1.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [2]
+Underfull \hbox (badness 5077) in paragraph at lines 372--375
+\T1/ptm/m/it/10 and `NO-DATA' to ap-pear in-stead of
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--180
-[]|[][]\T1/ptm/m/n/10 2019-01-17_wave-organisation-
+Package textcomp Warning: Symbol \textasciigrave not provided by
+(textcomp)                font family ptm in TS1 encoding.
+(textcomp)                Default family used instead on input line 399.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2--189
-[]|[][]\T1/ptm/m/n/10 2019-01-09_wave-organisation-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2--198
-[]|[][]\T1/ptm/m/n/10 2015-07-01_wave-organisation-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 232.
-
-[2] [3]
+[3] [4]
 Chapter 2.
-<fianancials.png, id=380, 793.95212pt x 355.24268pt>
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-<use fianancials.png>
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 349.
-
-[4 <./fianancials.png>] [5]
+[5]
 Chapter 3.
-
-Underfull \hbox (badness 10000) in paragraph at lines 921--922
-[]|\T1/ptm/m/n/10 Seed-Round-J-Choudhury-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 981.
-
 [6] [7]
 Chapter 4.
-
-Underfull \hbox (badness 10000) in paragraph at lines 998--1000
-[]|\T1/phv/m/n/10 Interest
-
-Underfull \hbox (badness 10000) in paragraph at lines 1015--1017
-[]|\T1/phv/m/n/10 Interest
-
-Underfull \hbox (badness 10000) in paragraph at lines 1548--1549
-[]|\T1/ptm/m/n/10 Seed-Round-J-Choudhury-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 1593.
-
-[8] [9]
+[8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19]
 Chapter 5.
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 1779.
-
-[10] [11] [12] [13] [14] [15] [16] [17] [18] [19]
+[20]
 Chapter 6.
-(./wave-tokens-wrt.ind)
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 3987.
-
-[20] (./wave-tokens-wrt.aux) )
+[21]
+Chapter 7.
+(./datro_consortium-investors_detailed.ind) [22]
+(./datro_consortium-investors_detailed.aux) )
 (see the transcript file for additional information){/usr/share/texlive/texmf-d
-ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/
-helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
-bo8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on wave-tokens-wrt.pdf (23 pages, 163813 bytes).
-Transcript written on wave-tokens-wrt.log.
-Latexmk: Index file 'wave-tokens-wrt.idx' was written
-Latexmk: Log file says output to 'wave-tokens-wrt.pdf'
-Latexmk: All targets (wave-tokens-wrt.pdf) are up-to-date
-make[1]: Leaving directory '/mnt/c/Users/loco/Documents/GitHub/gh-docs.hotspotbnb.com/docs/services/exchange-tokens-wrt/build/latex'
+ist/fonts/enc/dvips/base/8r.enc} </root/.texlive2020/texmf-var/fonts/pk/ljfour/
+jknappen/ec/tcrb1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/urw/helve
+tic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/urw/times/utmri8a.pfb>
+Output written on datro_consortium-investors_detailed.pdf (25 pages, 129330 byt
+es).
+Transcript written on datro_consortium-investors_detailed.log.
+Latexmk: Index file 'datro_consortium-investors_detailed.idx' was written
+Latexmk: Log file says output to 'datro_consortium-investors_detailed.pdf'
+Latexmk: Log file says output to 'datro_consortium-investors_detailed.pdf'
+=== TeX engine is 'pdfTeX'
+Latexmk: All targets (datro_consortium-investors_detailed.pdf) are up-to-date

@@ -1,31 +1,17 @@
 Introduction
 ~~~~~~~~~~~~~~
 
-The DATRO Consortium features a portfolio of technologies, designed to free, decentralize and democratize our ability to communicate digitally.
-This document mainly relates to one of these technologies: a series of cryptocurrency smart contracts known as a Decentralised Autonomous Organisation (DAO).
-Since the number of stakeholders now exeed the minimum requirement, its nomenclature is actually that of a Decentralised Autonomous Society (DAS).
-This digital assets full title is the 'Scottish Bay DAS' - named after the Caribbean location where it was first developed in 2017.
+The DATRO Consortium (DATRO CONS.) features a growing portfolio of communications technologies, all designed to play a key role in freeing, decentralizing and democratizing access to the internet.
+At its core this organisation comprises of a myriad of cryptocurrency smart contracts, making the DATRO Consortium one of the worlds first Decentralised Autonomous Organisation(DAO)'s.
+The very solution DATRO is offering in order to free, democratise and decentralise access to internet is itself built and maintained in a free, democratic and decentralized way.  
 
-Definitions
-~~~~~~~~~~~~~~~
+This is achieved by grouping DATRO's beneficiaries e.g. recipients of revenues - into several cryptocurrency smart contracts e.g. developers, financeers (investors/ lenders), end-users etc. 
+This publication focuses specifically on reporting the most recent activity, data and status of the investors. The corresponding smart contract is then able to autonomously scrape this data in order to autonomously, annonomously, equitably and accurately (in real-time) distribute royalties to investors.
+Please note that all revenue pools together into a top level 'escrow' smart contract, which (after singalling fees) autonomously allocated 56% to an end-user smart contract before distributing the remaining 44%, evenly, to developer and financeer (investors and lenders) smart contracts. 
+In the case of the financeers smart contract, the interest is proportionately settled as a matter of priority. Any remaining balance is distributed equitably to the investors as royalties e.g. dividend of profits. The blockchain in consideration for this role is Polkadot (particularly for its ability to scrape data) and its versatile cryptocurrency: DOT      
 
-**“Hotspotβnβ”** 
+Cryptocurrency tokens are awarded to stakeholders in order to permit them eligability to receive these funds by signalling to the corresponding smart contract, the destination wallet address where the royalties are to be sent. Furthermore the tokens represent a fair vote in alterations to the groups corresponding smart contract.    
+In addition the total number of stakeholders in this entity exeed the minimum required for Royal Charter (5,000+ members). This warranted DATRO adopting the new allodial nomenclature: Decentralised Autonomous Society (DAS).
 
-1. Royalties generated from our network autonomously pool into the escrow wallet address of a top level smart contract.
-2. This top level smart contract autonomously divides funds between 3 second level smart contracts e.g. wave-users, financeers & developers.
-3. The cryptocurrency token representing eligability to royalties in the network, also permits the token holder to vote on changes to the smart contracts. 
-
-For example, John owns 10% of the network and he transfers half his holding to his ex-wife.
-Henceforth, 10% of the royalties generated from the DATRO Network, split evenly between John and his ex-wife.
-There's no paperwork, registration, photo ID identification, lawyers or banks etc. 
-
-Our DAS smart contracts lookup the wallet addresses where the ownership tokens are held before issuing the royalties. 
-   
-    
-
-Review & Purchase
-####################
-
-The Wave® DAO activity will appear on the Ethereum blockchain for `public record <https://ethereum.org>`__. 
-To purchase Wave® Tokens please visit the investment section of our website: wave.hotspotbnb.com
+For more information about DATRO please visit: https://datro.xyz
 
