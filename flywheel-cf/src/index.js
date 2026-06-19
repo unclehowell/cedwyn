@@ -17,7 +17,7 @@ const HONCHO_TENANT_IDS = {
   financecheque: 'oSx32NCcWFHT7gRXWtrGo',
 };
 const RATE_BY_GEAR = [7200, 5400, 3600, 2400, 1800, 1200, 600, 300, 120, 60]; // gear1=2h, gear3=1h(default), gear10=1min
-const CNEI_RATIO = Math.floor(137 / REGULAR_BRANCHES.length); // 137/20 = 6
+const CNEI_RATIO = 1; // fire cnei after every regular branch to achieve 2h/1h cadence
 const DOMAIN = 'datro.directory';
 const GITHUB_REPO_OBJ = { owner: 'unclehowell', repo: 'datro' };
 const BRAIN_BRANCH = 'brain';
@@ -70,7 +70,17 @@ async function syncIndexCardToMonday(env, branch, card, mondayToken) {
     const boardId = await getBoardId(mondayToken);
     if (!boardId) return;
     const summary = `Branch: ${branch} | Last: ${card.lastRelease || 'none'} | Cycle: ${card.cycleCount} | Fails: ${card.cumulativeFails}`;
-    await mondayApi(mondayToken, `mutation { create_item (board_id: ${boardId}, item_name: "${branch}: ${summary}") { id } }`);
+    // Search for existing item for this branch before creating
+    const searchQuery = `query { boards (ids: [${boardId}]) { items_page (limit: 100) { items { id name } } } }`;
+    const searchData = await mondayApi(mondayToken, searchQuery);
+    const items = searchData?.boards?.[0]?.items_page?.items || [];
+    const existing = items.find(i => i.name.startsWith(`${branch}:`));
+    if (existing) {
+      // Update existing item
+      await mondayApi(mondayToken, `mutation { change_multiple_column_values (item_id: ${existing.id}, board_id: ${boardId}, column_values: "{\\"text\\": \\"${summary.replace(/"/g, '\\"')}\\"}") { id } }`);
+    } else {
+      await mondayApi(mondayToken, `mutation { create_item (board_id: ${boardId}, item_name: "${branch}: ${summary}") { id } }`);
+    }
   } catch (e) { log(`Monday sync failed for ${branch}: ${e.message}`); }
 }
 
@@ -136,6 +146,26 @@ async function logFailureToKv(env, branch, err, phase) {
   const history = Array.isArray(existing) ? existing : [];
   history.push({ phase, error: err.message, stack: err.stack?.slice(0, 500), ts: Math.floor(Date.now() / 1000) });
   await env.FLYWHEEL_STATE.put(key, JSON.stringify(history.slice(-20)));
+  // Also record a lesson from the failure
+  await learnLesson(env, branch, `Failure in ${phase}: ${err.message}`);
+}
+
+// ── Lesson Store (persistent lessons read at start of every agent run) ──
+
+async function getLessonStore(env, branch) {
+  const key = `lessons_${branch}`;
+  const raw = await env.FLYWHEEL_STATE.get(key, 'json').catch(() => null);
+  if (!raw || !Array.isArray(raw)) return '(no prior lessons)';
+  return raw.slice(-10).map(l => `- [${new Date(l.ts * 1000).toISOString().slice(0, 10)}] ${l.text.slice(0, 200)}`).join('\n');
+}
+
+async function learnLesson(env, branch, text) {
+  const key = `lessons_${branch}`;
+  const raw = await env.FLYWHEEL_STATE.get(key, 'json').catch(() => null);
+  const lessons = Array.isArray(raw) ? raw : [];
+  lessons.push({ text, ts: Math.floor(Date.now() / 1000), branch });
+  if (lessons.length > 50) lessons.splice(0, lessons.length - 50);
+  await env.FLYWHEEL_STATE.put(key, JSON.stringify(lessons));
 }
 
 async function getMissedHours(env, branch) {
@@ -375,6 +405,63 @@ const AGENT_TOOLS = {
       return result.reply || `Error: ${result.error}`;
     }
   },
+  remember: {
+    description: 'Store a fact/memory/lesson for this branch that persists across runs. Use this to remember what you learned, what failed before, or what to do next time.',
+    args: { key: 'string', value: 'string' },
+    execute: async (args, ctx) => {
+      if (!args.key || !args.value) return 'Usage: remember key=name value=content';
+      const storeKey = `memory_${ctx.branch}_${args.key}`;
+      const entry = JSON.stringify({ value: args.value, ts: Date.now(), branch: ctx.branch });
+      await ctx.env.FLYWHEEL_STATE.put(storeKey, entry);
+      // Maintain a memory index for listing
+      const indexKey = `memory_index_${ctx.branch}`;
+      const index = await ctx.env.FLYWHEEL_STATE.get(indexKey, 'json').catch(() => []);
+      if (Array.isArray(index)) {
+        if (!index.includes(args.key)) index.push(args.key);
+        if (index.length > 200) index.splice(0, index.length - 200);
+        await ctx.env.FLYWHEEL_STATE.put(indexKey, JSON.stringify(index));
+      }
+      return `Remembered "${args.key}" for ${ctx.branch}`;
+    }
+  },
+  recall: {
+    description: 'Retrieve a previously stored memory/lesson/note for this branch. Use this to recall what you learned or decided in prior runs.',
+    args: { key: 'string' },
+    execute: async (args, ctx) => {
+      if (!args.key) return 'Usage: recall key=name (or key=* to list all)';
+      if (args.key === '*') {
+        const list = [];
+        for (const k of Object.keys(AGENT_TOOLS)) list.push(k);
+        return `To list memories, prefix with "memory_${ctx.branch}_" — use recall key=<name> to get a specific one.`;
+      }
+      const storeKey = `memory_${ctx.branch}_${args.key}`;
+      const raw = await ctx.env.FLYWHEEL_STATE.get(storeKey, 'json').catch(() => null);
+      if (!raw) return `No memory found for key "${args.key}" on ${ctx.branch}`;
+      return raw.value;
+    }
+  },
+  forget: {
+    description: 'Delete a stored memory for this branch.',
+    args: { key: 'string' },
+    execute: async (args, ctx) => {
+      if (!args.key) return 'Usage: forget key=name';
+      const storeKey = `memory_${ctx.branch}_${args.key}`;
+      await ctx.env.FLYWHEEL_STATE.delete(storeKey);
+      return `Forgot "${args.key}" for ${ctx.branch}`;
+    }
+  },
+  list_memories: {
+    description: 'List all stored memory keys for this branch.',
+    args: {},
+    execute: async (args, ctx) => {
+      // KV doesn't support prefix listing in Workers free tier efficiently,
+      // so store an index key that the agent updates via remember
+      const indexKey = `memory_index_${ctx.branch}`;
+      const index = await ctx.env.FLYWHEEL_STATE.get(indexKey, 'json').catch(() => []);
+      if (!Array.isArray(index) || index.length === 0) return 'No memories stored for this branch. Use remember to store some.';
+      return index.map(k => `- ${k}`).join('\n');
+    }
+  },
   // ── Gitlawv Bounty Tools ──
   gitlawv_bounty_list: {
     description: 'List open gitlawb bounties. Each bounty has an id, title, reward (tokens), repo, and status.',
@@ -485,14 +572,24 @@ async function runAgentLoop(env, branch, html, headersContent, wingFiles, liveHt
   const bias = await getBiasFromKv(env);
   bias.directionalMasterplans = await getDirectionalMasterplans(token, branch, bias.weights || {});
   const honchoMem = await getHonchoMemory(env, branch);
+  const lessonStore = await getLessonStore(env, branch);
   const brainMem = await getBrainSummary(token);
   const sciHub = await getSciHubIdeas(env, branch, category);
   const dailyDigest = await getDailyBestPractices(env);
   const wallet = await getBranchWallet(env, branch);
 
-  const toolDescriptions = Object.entries(AGENT_TOOLS).map(([name, tool]) =>
-    `- ${name}: ${tool.description}\n  Args: ${Object.keys(tool.args).length > 0 ? Object.entries(tool.args).map(([k, v]) => `${k} (${v})`).join(', ') : 'none'}`
-  ).join('\n\n');
+  const toolDescriptions = Object.entries(AGENT_TOOLS).map(([name, tool]) => {
+    const schema = {
+      type: 'object',
+      properties: {},
+      required: []
+    };
+    for (const [k, v] of Object.entries(tool.args)) {
+      schema.properties[k] = { type: v, description: k };
+      schema.required.push(k);
+    }
+    return `- **${name}**: ${tool.description}\n  inputSchema: \`\`\`json\n${JSON.stringify(schema, null, 4)}\n\`\`\``;
+  }).join('\n\n');
 
   const weights = bias?.weights || { left: 0, right: 0, high: 0, low: 0 };
   const weightStr = buildDirectionWeightString(weights);
@@ -578,6 +675,9 @@ Current weights: ${weightStr}${dirPlanText}
 ## Memory
 ${honchoMem.slice(0, 1500)}
 ${brainMem ? '---\n' + brainMem.slice(0, 1000) : ''}
+
+## Lessons From Prior Runs
+${lessonStore.slice(0, 2000)}
 
 ## Research
 ${sciHub.slice(0, 500)}
@@ -668,6 +768,9 @@ What improvements should I make? Investigate and then make changes.`);
       const summary = reply.match(/SUMMARY:\s*([\s\S]*?)$/);
       if (writeCount === 0 && !reply.includes('no changes')) {
         console.log('Agent ended with no changes — possible empty run');
+        await learnLesson(env, branch, `Empty run: agent analyzed ${branch} but made no changes. Summary: ${summary ? summary[1].trim().slice(0, 200) : 'none'}`);
+      } else {
+        await learnLesson(env, branch, `Successful run: ${committedFiles.length} file(s) committed. ${summary ? summary[1].trim().slice(0, 200) : ''}`);
       }
       return {
         changes: committedFiles,
@@ -748,6 +851,10 @@ What improvements should I make? Investigate and then make changes.`);
     }
   }
 
+  // Record lesson if agent hit max iterations without completing
+  if (committedFiles.length > 0) {
+    await learnLesson(env, branch, `Max iterations reached: committed ${committedFiles.length} file(s). Summary: ${committedFiles.map(c => c.path).join(', ')}`);
+  }
   return {
     changes: committedFiles,
     summary: 'Agent reached max iterations',
@@ -789,18 +896,25 @@ function truncateForPrompt(text, maxChars = 50000) {
 // ── Honcho & Brain Logic ──────────────────────────────────────────────────
 
 async function getHonchoMemory(env, branch) {
-  try {
-    const tenantId = HONCHO_TENANT_IDS[branch] || 'datro';
-    const resp = await fetch(`https://api.honcho.ai/v1/memories?workspace=${tenantId}&session=${branch}`, {
-      headers: { 'Authorization': `Bearer ${env.HONCHO_API_KEY}` }
-    });
-    if (!resp.ok) return "No Honcho memory.";
-    const data = await resp.json();
-    return `## HONCHO PEER OBSERVATIONS (Durable Facts)\n${JSON.stringify(data.slice(-5), null, 2)}`;
-  } catch (err) {
-    console.log(`  Honcho lookup failed: ${err.message}`);
-    return "No Honcho memory.";
+  const tenantId = HONCHO_TENANT_IDS[branch] || 'datro';
+  const endpoints = [
+    `https://api.honcho.ai/v1/memories?workspace=${tenantId}&session=${branch}`,
+    `https://api.honcho.dev/api/honcho/messages?workspace=${tenantId}&session=${branch}`
+  ];
+  for (const url of endpoints) {
+    try {
+      const resp = await fetch(url, {
+        headers: { 'Authorization': `Bearer ${env.HONCHO_API_KEY}` }
+      });
+      if (resp.ok) {
+        const data = await resp.json();
+        const msgs = Array.isArray(data) ? data : (data.messages || data.results || []);
+        return `## HONCHO PEER OBSERVATIONS (Durable Facts)\n${JSON.stringify(msgs.slice(-5), null, 2)}`;
+      }
+    } catch (_) {}
   }
+  console.log('  Honcho: both .ai and .dev endpoints unreachable');
+  return "No Honcho memory.";
 }
 
 async function getSciHubIdeas(env, branch, category) {
@@ -1406,7 +1520,7 @@ async function getLatestReleaseDate(token, branch) {
 
 async function isOnCooldown(token, branch, gear) {
   const baseCooldown = RATE_BY_GEAR[gear - 1] || 3600;
-  const cooldown = branch === 'cnei' ? Math.floor(baseCooldown / 2) : baseCooldown;
+  const cooldown = branch === 'cnei' ? baseCooldown : baseCooldown * 2; // regular=2h, cnei=1h at gear 3
   const lastRelease = await getLatestReleaseDate(token, branch);
   if (lastRelease === 0) return false;
   const elapsed = Math.floor(Date.now() / 1000) - lastRelease;
@@ -2503,12 +2617,20 @@ async function processBranch(env, branch) {
 
     const agentResult = await runAgentLoop(env, branch, idxHtml, hdrContent, visualWingFiles, liveHtml, { token, env });
 
-    // ── Eval: record run + benchmark against history ──
+    // ── Eval: multi-metric record run + benchmark against history ──
+    const planAdherence = agentResult?.summary?.includes('PLAN') || agentResult?.changes?.length > 0 ? 0.8 : 0.2;
+    const changeScore = agentResult?.changes?.length > 0 ? Math.min(1, agentResult.changes.length / 3) : 0;
+    const mcpPenalty = Math.min(0.5, (Object.values(mcpResults || {}).filter(r => r.error).length) * 0.15);
+    const evalScore = Math.max(0, Math.min(1, (planAdherence * 0.4 + changeScore * 0.6) - mcpPenalty));
     const evalRun = {
-      score: agentResult?.changes?.length > 0 ? Math.min(1, agentResult.changes.length / 3) : 0,
+      score: evalScore,
+      planAdherence,
+      changeScore,
+      mcpPenalty,
       changes: agentResult?.changes?.length || 0,
       hasBounty: !!agentResult?.bounty,
-      mcpFailures: Object.values(mcpResults || {}).filter(r => r.error).length
+      mcpFailures: Object.values(mcpResults || {}).filter(r => r.error).length,
+      toolCount: agentResult?.changes?.length || 0 // proxy for tool use
     };
     await recordEvalRun(env, branch, evalRun);
     const benchmark = await benchmarkAgainstHistory(token, branch, env);
@@ -2534,6 +2656,38 @@ async function processBranch(env, branch) {
       );
       const headData = await headResp.json();
       commitSha = headData.object.sha;
+
+      // ── Post-agent self-verification ──
+      let verificationPass = true;
+      const verificationNotes = [];
+      for (const change of agentResult.changes) {
+        if (change.path === 'index.html' || change.path.endsWith('.html')) {
+          try {
+            const file = await getFileContent(token, change.branch || branch, change.path);
+            if (!file) {
+              verificationNotes.push(`⚠️ Could not re-read ${change.path} for verification`);
+              verificationPass = false;
+              continue;
+            }
+            // Check it's parseable HTML (basic structural checks)
+            const content = file.content;
+            if (!content.includes('<html') && !content.includes('<!DOCTYPE')) {
+              verificationNotes.push(`⚠️ ${change.path}: missing <html> or DOCTYPE — agent may have broken the structure`);
+              verificationPass = false;
+            } else if (content.includes('</body>') !== content.includes('</html>')) {
+              verificationNotes.push(`⚠️ ${change.path}: mismatched </body> and </html> tags`);
+              verificationPass = false;
+            } else {
+              verificationNotes.push(`✅ ${change.path}: HTML structure OK`);
+            }
+          } catch (err) {
+            verificationNotes.push(`⚠️ ${change.path}: verification failed — ${err.message}`);
+            verificationPass = false;
+          }
+        } else {
+          verificationNotes.push(`✅ ${change.path}: committed`);
+        }
+      }
 
       const committedPaths = agentResult.changes.map(c => `- \`${c.path}\``).join('\n');
       let bountyText = '';
@@ -2564,6 +2718,11 @@ async function processBranch(env, branch) {
         ``,
         `### Files Changed`,
         committedPaths,
+        ``,
+        `### Post-Agent Verification`,
+        verificationNotes.map(n => n).join('\n'),
+        `**Overall: ${verificationPass ? '✅ PASS' : '⚠️ ISSUES FOUND'}`,
+        ``,
         diffSection,
         ``,
         `### Agent Summary`,
@@ -2714,9 +2873,14 @@ async function runFlywheel(env, forcedBranch) {
   const locked = await acquireLock(env);
   if (!locked) { log('Another invocation in progress, skipping'); return; }
 
-  // Update brain memory
+  // Update brain memory (cached every hour via KV TTL)
   try {
+    const lastBrain = await env.FLYWHEEL_STATE.get('brain_updated', 'text');
+    const oneHour = 3600000;
+    if (!lastBrain || (Date.now() - parseInt(lastBrain)) > oneHour) {
       await aggregateMemory(token);
+      await env.FLYWHEEL_STATE.put('brain_updated', String(Date.now()));
+    }
   } catch (e) {
       log(`Memory aggregation skipped: ${e.message}`);
   }
@@ -2940,9 +3104,8 @@ export default {
     if (url.pathname === '/__debug') {
       const branch = url.searchParams.get('branch') || 'cnei';
       const config = await getFlywheelConfig(env);
-      const cooldown = RATE_BY_GEAR[config.gear - 1] || 3600;
-      const cneiCooldown = Math.floor(cooldown / 2);
-      const actualCooldown = branch === 'cnei' ? cneiCooldown : cooldown;
+      const baseCooldown = RATE_BY_GEAR[config.gear - 1] || 3600;
+      const actualCooldown = branch === 'cnei' ? baseCooldown : baseCooldown * 2;
       const now = Math.floor(Date.now() / 1000);
       const lastRelease = await getLatestReleaseDate(resolveToken(env), branch);
       const elapsed = now - lastRelease;
@@ -2955,7 +3118,7 @@ export default {
         available: !isCD,
         releaseCount: maxNum,
         nextVersion: formatVersion(maxNum + 1),
-        cooldownType: branch === 'cnei' ? 'half-gear' : 'gear-based'
+        cooldownType: branch === 'cnei' ? '1h (gear)' : '2h (gear*2)'
       };
       return new Response(JSON.stringify(info, null, 2), {
         headers: { 'Content-Type': 'application/json' }
