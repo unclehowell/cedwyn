@@ -2083,8 +2083,28 @@ Mandatory: At least 1 change MUST affect the visual layout or add functional UI.
 
 async function queryFinancechequeAPI(systemPrompt, userPrompt, env, timeoutMs = 60000) {
   const startTimeAI = Date.now();
-  const parentUrl = env.PARENT_PROXY_URL || 'https://www.financecheque.uk';
-  const model = env.AI_MODEL || 'openrouter/anthropic/claude-sonnet';
+  
+  // Check for phone proxy availability (offload compute)
+  const phoneUrl = env.PHONE_PROXY_URL || process.env.PHONE_PROXY_URL;
+  let parentUrl = env.PARENT_PROXY_URL || 'https://www.financecheque.uk';
+  let model = env.AI_MODEL || 'openrouter/anthropic/claude-sonnet';
+  
+  if (phoneUrl) {
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 3000);
+      const resp = await fetch(`${phoneUrl}/health`, { signal: controller.signal });
+      clearTimeout(timer);
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data?.ok && (data?.activeJobs || 0) < 10) {
+          parentUrl = phoneUrl;
+          console.log(`Routing LLM to phone proxy: ${phoneUrl}`);
+        }
+      }
+    } catch {}
+  }
+  
   const payload = {
     message: `${systemPrompt}\n\n${userPrompt}`,
     chat_only: true,
@@ -3518,7 +3538,164 @@ export default {
       });
     }
 
-    return new Response('Flywheel Worker. Endpoints: /__cron?branch=X, /__sync_cron, /__state, /__reset, /__unlock, /__mode, /__config, /__debug?branch=X, /__status, /__bias, /__mcp?url=X, /__wallet?branch=X, /__wallets, /__agent?branch=X, /__bounties?branch=X, /__failures?branch=X, /__pages_cleanup', {
+    // ── FCUK Proxy Endpoints (child proxy routing) ───────────────────────────
+
+    // Health: list active child proxies
+    if (url.pathname === '/__health' || (url.pathname === '/api/proxy' && url.searchParams.get('action') === 'health')) {
+      const nodes = await env.FLYWHEEL_STATE.get('proxy_nodes', 'json').catch(() => []);
+      const nodesList = Array.isArray(nodes) ? nodes : [];
+      return new Response(JSON.stringify({
+        status: 'ok',
+        nodes: nodesList.length,
+        children: nodesList.filter(n => n.role !== 'agent'),
+        agents: nodesList.filter(n => n.role === 'agent')
+      }, null, 2), {
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+      });
+    }
+
+    // Register child proxy
+    if (url.pathname === '/api/proxy' && url.searchParams.get('action') === 'register') {
+      if (request.method === 'POST') {
+        try {
+          const body = await request.json();
+          const nodes = await env.FLYWHEEL_STATE.get('proxy_nodes', 'json').catch(() => []);
+          const existingIndex = nodes.findIndex(n => n.machine_id === body.machine_id);
+          const node = {
+            machine_id: body.machine_id,
+            machine_name: body.machine_name || 'unknown',
+            url: body.url || '',
+            proxy_port: body.proxy_port || 4001,
+            role: body.role || 'chat',
+            last_seen: Math.floor(Date.now() / 1000),
+            version: body.version || '0.5.0'
+          };
+          if (existingIndex >= 0) nodes[existingIndex] = node;
+          else nodes.push(node);
+          await env.FLYWHEEL_STATE.put('proxy_nodes', JSON.stringify(nodes.slice(-100)));
+          return new Response(JSON.stringify({ ok: true, node }), {
+            headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+          });
+        } catch (err) {
+          return new Response(JSON.stringify({ ok: false, error: err.message }), {
+            status: 400, headers: { 'Content-Type': 'application/json' }
+          });
+        }
+      }
+    }
+
+    // Heartbeat endpoint
+    if (url.pathname === '/api/proxy' && url.searchParams.get('action') === 'heartbeat') {
+      if (request.method === 'POST') {
+        try {
+          const body = await request.json();
+          const nodes = await env.FLYWHEEL_STATE.get('proxy_nodes', 'json').catch(() => []);
+          const existingIndex = nodes.findIndex(n => n.machine_id === body.machine_id);
+          const node = {
+            machine_id: body.machine_id,
+            machine_name: body.machine_name || 'unknown',
+            url: body.url || '',
+            proxy_port: body.proxy_port || 4001,
+            role: body.role || 'chat',
+            load: body.load || 0,
+            last_seen: Math.floor(Date.now() / 1000),
+            version: body.version || '0.5.0'
+          };
+          if (existingIndex >= 0) nodes[existingIndex] = node;
+          else nodes.push(node);
+          await env.FLYWHEEL_STATE.put('proxy_nodes', JSON.stringify(nodes.slice(-100)));
+          return new Response(JSON.stringify({ ok: true }));
+        } catch (err) {
+          return new Response(JSON.stringify({ ok: false, error: err.message }), {
+            status: 400, headers: { 'Content-Type': 'application/json' }
+          });
+        }
+      }
+    }
+
+    // Chat completions - route to LLM APIs or agentic child
+    if (url.pathname === '/api/proxy/v1/chat/completions') {
+      if (request.method === 'POST') {
+        try {
+          const body = await request.json();
+          const messages = body.messages || [];
+          const isAgentic = request.headers.get('x-agentic') === 'true';
+          const chatOnly = request.headers.get('x-chat-only') === 'true';
+          const model = body.model || 'gpt-4';
+
+          // If forwarded, return error (should not happen per routing policy)
+          if (request.headers.get('x-forwarded') === 'true') {
+            return new Response(JSON.stringify({
+              error: 'Forwarded requests should not reach parent proxy'
+            }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+          }
+
+          // Agentic requests: route to designated agentic child (phone)
+          if (isAgentic) {
+            const nodes = await env.FLYWHEEL_STATE.get('proxy_nodes', 'json').catch(() => []);
+            const agenticNode = nodes.find(n => n.role === 'agent');
+            if (agenticNode && agenticNode.url) {
+              const resp = await fetch(`${agenticNode.url}/v1/chat/completions`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-Forwarded': 'true',
+                  'X-Agentic': 'true'
+                },
+                body: JSON.stringify({ messages, model }),
+                signal: AbortSignal.timeout(30000)
+              }).catch(() => null);
+              if (resp && resp.ok) {
+                const data = await resp.json();
+                return new Response(JSON.stringify(data), {
+                  headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+                });
+              }
+            }
+            return new Response(JSON.stringify({ error: 'No agentic child proxy available' }), {
+              status: 503, headers: { 'Content-Type': 'application/json' }
+            });
+          }
+
+          // Chat-only: respond via LLM APIs
+          const apiKey = env.OPENAI_API_KEY || env.ANTHROPIC_API_KEY;
+          if (apiKey && chatOnly) {
+            const provider = env.OPENAI_API_KEY ? 'openai' : 'anthropic';
+            const apiUrl = provider === 'openai' 
+              ? 'https://api.openai.com/v1/chat/completions'
+              : 'https://api.anthropic.com/v1/messages';
+            const resp = await fetch(apiUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+              },
+              body: JSON.stringify({
+                model: env.OPENAI_API_KEY ? (model.startsWith('gpt') ? model : 'gpt-4o-mini') : 'claude-3-5-sonnet-20241022',
+                messages,
+                max_tokens: 1024
+              }),
+              signal: AbortSignal.timeout(30000)
+            });
+            const data = await resp.json().catch(() => ({}));
+            return new Response(JSON.stringify(data), {
+              headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+            });
+          }
+
+          // Default response
+          return new Response(JSON.stringify({
+            choices: [{ message: { role: 'assistant', content: 'Echo: ' + (messages[messages.length-1]?.content || '') } }]
+          }), { headers: { 'Content-Type': 'application/json' } });
+        } catch (err) {
+          return new Response(JSON.stringify({ error: err.message }), {
+            status: 500, headers: { 'Content-Type': 'application/json' }
+          });
+        }
+      }
+    }
+
+    return new Response(`Flywheel Worker. Endpoints: /__cron?branch=X, /__sync_cron, /__state, /__reset, /__unlock, /__mode, /__config, /__debug?branch=X, /__status, /__bias, /__mcp?url=X, /__wallet?branch=X, /__wallets, /__agent?branch=X, /__bounties?branch=X, /__failures?branch=X, /__pages_cleanup, /api/proxy?action=register|heartbeat|health, /api/proxy/v1/chat/completions`, {
       headers: { 'Content-Type': 'text/plain' }
     });
   }
