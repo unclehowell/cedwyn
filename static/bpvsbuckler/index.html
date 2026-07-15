@@ -9,7 +9,7 @@
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
     <script src="/db-data.js"></script>
     <style>
-        body{font-family:'Courier Prime',monospace;background-color:#000}
+        body{font-family:'Courier Prime',monospace;background-color:#000;height:100vh;height:100dvh;overflow:hidden}
         .font-special{font-family:'Special Elite',cursive}
         .no-scrollbar::-webkit-scrollbar{display:none}
         .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
@@ -21,9 +21,11 @@
         .animate-fade-in-up{animation:fadeInUp .3s ease-out forwards}
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
         .animate-pulse-slow{animation:pulse 2s ease-in-out infinite}
+        .app-height{height:100vh;height:100dvh}
+        .splash-height{min-height:100vh;min-height:100dvh}
     </style>
 </head>
-<body class="text-slate-200 antialiased overflow-hidden w-screen" style="height:100dvh;height:100vh">
+<body class="text-slate-200 antialiased overflow-hidden w-screen">
 <div id="root"></div>
 <script type="module" src="/src/main.tsx"></script>
 </body>
