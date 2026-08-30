@@ -52,6 +52,27 @@ The service operates on a No Win No Fee basis (terms apply).
 - An FCA compensation scheme is expected to launch in 2026
 - Consumers can also claim for free through their lender, the Financial Ombudsman Service, or the FCA compensation scheme
 
+## Discoverability for AI Agents
+
+The site exposes machine-readable interfaces so agents can autonomously discover and invoke operations:
+
+- WebMCP tool manifest (standard): https://car.financecheque.uk/.well-known/mcp.json
+- WebMCP tool manifest (legacy): https://car.financecheque.uk/.well-known/webmcp.json
+- OpenAPI 3.0 REST API specification: https://car.financecheque.uk/openapi.yaml
+
+Tools declared: `check_pcp_eligibility` (POST /api/submit-claim), `get_loan_products` (GET /api/products), `get_loan_quote` (POST /api/quote), `get_pcp_claim_info` (GET /about), `get_latest_news` (GET /news).
+
+The eligibility form at /claim uses semantic HTML with proper `<label>`, `<fieldset>`/`<legend>` grouping, ARIA attributes, and `data-*` validation/submission metadata so agents and assistive technology can parse field purpose, validation rules and the submission endpoint.
+
+## Authentication & API Access
+
+Consumer-facing endpoints are public and require no authentication. The claim submission endpoint runs server-side fraud checks (Kount) and forwards to the R2R affiliate API using a server-side `API-KEY` header. Partner/server-to-server access is available via:
+
+- API key: send an `X-API-KEY` header; register by emailing info@jigsawclaims.co.uk
+- OAuth2 client-credentials at https://r2r.theclaimsystem.co.uk/oauth/token with scopes `claims:write`, `products:read`, `info:read`
+
+Scope boundaries: `products:read` and `info:read` permit read-only catalog/content access; `claims:write` is reserved for authorised partners submitting pre-consented consumer claims. Claims always require explicit consumer consent regardless of auth mechanism.
+
 ## Site Structure
 
 - / (Home): Hero section, explains PCP mis-selling, why it matters, latest news

@@ -19,6 +19,26 @@ If you or someone you know had a PCP or HP car finance agreement between 2007-20
 - About the Campaign: https://car.financecheque.uk/about
 - Latest News: https://car.financecheque.uk/news
 
+## Available Tools (WebMCP)
+
+Agents can discover and invoke the following tools via the WebMCP manifests:
+
+- Tool manifest (standard): https://car.financecheque.uk/.well-known/mcp.json
+- Tool manifest (legacy): https://car.financecheque.uk/.well-known/webmcp.json
+- OpenAPI 3.0 REST API specification: https://car.financecheque.uk/openapi.yaml
+
+| Tool | Endpoint | Purpose |
+|---|---|---|
+| check_pcp_eligibility | POST /api/submit-claim | Submit a consumer eligibility enquiry |
+| get_loan_products | GET /api/products | List loan/claims products (type/page/limit) |
+| get_loan_quote | POST /api/quote | Illustrative repayment estimate |
+| get_pcp_claim_info | GET /about | Claim info and eligibility criteria |
+| get_latest_news | GET /news | Latest FCA investigation news |
+
+## REST API
+
+Consumer endpoints are public and require no authentication. Partner/server-to-server access uses an API key (`X-API-KEY` header) or OAuth2 client-credentials scopes (`claims:write`, `products:read`, `info:read`). Contact info@jigsawclaims.co.uk to register partner access.
+
 ## Contact
 
 - Email: info@jigsawclaims.co.uk

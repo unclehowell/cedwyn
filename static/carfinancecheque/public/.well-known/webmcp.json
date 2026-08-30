@@ -3,54 +3,68 @@
   "name": "PCP Refund - Car Finance Claims",
   "description": "Check eligibility and submit claims for mis-sold PCP car finance compensation in the UK. FCA regulated (FRN: 912323). Average refund GBP 1,100. No Win No Fee.",
   "origin": "https://car.financecheque.uk",
+  "authentication": {
+    "type": "public",
+    "description": "Consumer tools require no authentication. Application submissions are server-side verified (Kount) and forwarded to the R2R affiliate API with an X-API-KEY header held server-side.",
+    "partnerAccess": "API key (X-API-KEY header) or OAuth2 client-credentials (scopes: claims:write, products:read, info:read). Contact info@jigsawclaims.co.uk to register."
+  },
+  "openapi": "https://car.financecheque.uk/openapi.yaml",
   "tools": [
     {
       "name": "check_pcp_eligibility",
-      "description": "Check if a consumer is eligible for a PCP car finance mis-selling claim. Provide personal details to determine eligibility for compensation.",
+      "description": "Submit a consumer PCP/HP car finance mis-selling eligibility enquiry. Requires consumer consent to process the enquiry.",
       "inputSchema": {
         "type": "object",
         "properties": {
-          "first_name": {
-            "type": "string",
-            "description": "Consumer first name"
-          },
-          "last_name": {
-            "type": "string",
-            "description": "Consumer last name"
-          },
-          "date_of_birth": {
-            "type": "string",
-            "description": "Date of birth in DD/MM/YYYY format"
-          },
-          "phone": {
-            "type": "string",
-            "description": "Contact phone number"
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "Contact email address"
-          },
-          "building_number": {
-            "type": "string",
-            "description": "Building number or name"
-          },
-          "street": {
-            "type": "string",
-            "description": "Street name"
-          },
-          "city": {
-            "type": "string",
-            "description": "City or town"
-          },
-          "postcode": {
-            "type": "string",
-            "description": "UK postcode"
-          }
+          "title": { "type": "string", "enum": ["Mr", "Mrs", "Miss", "Ms", "Dr"] },
+          "first_name": { "type": "string", "description": "Consumer first name" },
+          "last_name": { "type": "string", "description": "Consumer last name" },
+          "date_of_birth": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "Date of birth YYYY-MM-DD" },
+          "phone": { "type": "string", "description": "Contact phone number" },
+          "email": { "type": "string", "format": "email", "description": "Contact email address" },
+          "buildingNumber": { "type": "string", "description": "Building number or name" },
+          "thoroughfare": { "type": "string", "description": "Street name" },
+          "townOrCity": { "type": "string", "description": "City or town" },
+          "postcode": { "type": "string", "description": "UK postcode" }
         },
-        "required": ["first_name", "last_name", "date_of_birth", "phone", "email", "building_number", "street", "city", "postcode"]
+        "required": ["title", "first_name", "last_name", "date_of_birth", "phone", "email", "buildingNumber", "thoroughfare", "townOrCity", "postcode"]
       },
-      "endpoint": "https://car.financecheque.uk/claim"
+      "endpoint": "https://car.financecheque.uk/api/submit-claim",
+      "method": "POST",
+      "authentication": "public"
+    },
+    {
+      "name": "get_loan_products",
+      "description": "List the loan/claims products offered, filterable by type (pcp, hp, loan) with pagination.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["pcp", "hp", "loan"], "description": "Filter by finance type" },
+          "page": { "type": "integer", "minimum": 1, "default": 1 },
+          "limit": { "type": "integer", "minimum": 1, "maximum": 100, "default": 10 }
+        },
+        "required": []
+      },
+      "endpoint": "https://car.financecheque.uk/api/products",
+      "method": "GET",
+      "authentication": "public"
+    },
+    {
+      "name": "get_loan_quote",
+      "description": "Illustrative repayment estimate for a car finance agreement (principal, term, annual rate). Estimate only.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "principal": { "type": "number", "minimum": 500, "maximum": 100000, "description": "Amount financed in GBP" },
+          "termMonths": { "type": "integer", "minimum": 12, "maximum": 84, "description": "Term in months" },
+          "annualRatePct": { "type": "number", "minimum": 0, "maximum": 50, "description": "Annual interest rate percentage (default 11.9)" },
+          "financeType": { "type": "string", "enum": ["pcp", "hp", "loan"] }
+        },
+        "required": ["principal", "termMonths"]
+      },
+      "endpoint": "https://car.financecheque.uk/api/quote",
+      "method": "POST",
+      "authentication": "public"
     },
     {
       "name": "get_pcp_claim_info",

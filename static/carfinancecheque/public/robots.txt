@@ -5,6 +5,9 @@ Disallow: /api/
 
 Sitemap: https://car.financecheque.uk/sitemap.xml
 
-# AI Agents - We support WebMCP and llms.txt
-# See /llms.txt for site description
-# See /.well-known/webmcp.json for available tools
+# AI Agents - Discoverable protocols
+# WebMCP tool manifest (standard): /.well-known/mcp.json
+# WebMCP tool manifest (legacy): /.well-known/webmcp.json
+# OpenAPI 3.0 REST API spec: /openapi.yaml
+# LLM-readable site description: /llms.txt
+# Full LLM-readable guide: /llms-full.txt
