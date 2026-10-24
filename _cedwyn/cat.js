@@ -7,7 +7,7 @@
   function db() {
     if (dbp) return dbp;
     dbp = Promise.all([fetch('/db/config.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }), window.createDbWorker ? 0 : load(V + 'sqlite-httpvfs.js')])
-      .then(function (a) { return window.createDbWorker([{ from: 'jsonconfig', configUrl: '/db/config.json' }], V + 'sqlite.worker.js?v=2', V + 'sql-wasm.wasm', 64 * 1024 * 1024); })
+      .then(function (a) { return window.createDbWorker([{ from: 'jsonconfig', configUrl: '/db/config.json' }], V + 'sqlite.worker.js', V + 'sql-wasm.wasm', 64 * 1024 * 1024); })
       .then(function (w) {
         return { worker: w, query: function (sql, params) { return w.db.query(sql, params || []); },
                  bytesRead: function () { return w.worker.bytesRead; } };
