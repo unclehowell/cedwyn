@@ -33,8 +33,8 @@ The old repo (`unclehowell/datro`) and the old subdomains are untouched: this re
    - `fts` — an FTS5 full-text index;
    - `nodes` and `edges` — a graph: page→embeds/links→artifact, artifact→mentions→year, artifact→cites→source host, artifact→in_theme→theme. This is a ready base for graph-RAG.
    - `captures` — original URL → archived copy.
-6. **The 25 MB limit**: the database is VACUUMed (page size 4096) and split into ≤20 MB chunk files (`/db/cedwyn.sqlite3.000`, `.001`, …).
-   The browser reads only the pages it needs, using HTTP range requests (sql.js-httpvfs, chunked mode). No server, no D1, no cron.
+6. **The 25 MB limit**: the database is VACUUMed (page size 4096) and split into 512 KB chunk files (`/db/cedwyn.sqlite3.0000`, `.0001`, …), far under GitHub's and Pages' per-file limits.
+   The browser fetches only the chunk files a query touches (sql.js-httpvfs, chunked mode). Each request is one whole chunk file, because Cloudflare Pages answers HTTP Range requests with the whole file. No server, no D1, no cron.
 7. **GraphQL** (`/graphql/`): one schema (`web/_cedwyn/cat.js`) resolved in the browser against the database.
    It covers themes, artifacts, locations, full-text search, graph edges, nodes and captures. The catalogue page `/catalogue/` uses the same layer.
 8. **Outbound-link test** (`tools/check_links.py`): the build fails if any external `<a>`/`<area>` href or form action survives,
@@ -55,7 +55,20 @@ The mirrored branches here have rewritten history; datro's history is unchanged.
 
 Because of the rewrite, commit IDs differ from datro's. Tags were mirrored too. `reports/mirror.json` lists what was pushed and what the scans found.
 
-## Build numbers
+## Build numbers (first build, 24 Oct 2026)
+
+- Database: 499.7 MB, in 954 chunk files of 512 KB each.
+  - 8,616 unique artifacts, seen at 12,843 locations across the themes.
+  - 2,182 evidence files stored as BLOBs (463 MB).
+  - 5,963 full-text rows.
+  - Graph: 933 nodes and 65,888 edges.
+  - 183 archived-page captures.
+- Site: about 13,600 files, about 2 GB.
+  - 2,338 duplicate evidence files across themes were folded into the content-addressed store (`/_blob/`).
+  - 2,143 copies stay in place, because page scripts name them directly.
+- Outbound-link test: 4,239 pages and 74,926 links checked. Outbound links left: 0. The guard pass rewrote 2 links that the parser had missed.
+- Mirror: all 70 datro branches and 2,184 tags.
+
 
 See `reports/` (written by every build): `db.json` (database size, chunk count, artifacts, edges), `size.json`, `_assemble_report.json`, `_rewrite_report.json`, `_outbound_test.json`.
 
