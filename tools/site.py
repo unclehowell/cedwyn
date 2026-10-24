@@ -15,7 +15,20 @@ for h, tid in CFG.get('extra_hosts', {}).items():
     if tid: hosts[h] = tid
 apex = sorted(CFG['apex']['paths'].items(), key=lambda kv: -len(kv[0]))
 rt = DIST / '_cedwyn' / 'runtime.js'
-rt.write_text(rt.read_text().replace('__HOSTMAP__', json.dumps(hosts)).replace('__APEX__', json.dumps(apex)).replace('__MEDIA__', json.dumps(CFG['media_hosts'])))
+tids = [t['id'] for t in CFG['themes']]
+collide = {}   # theme folders that carry a sub-folder named like another theme (e.g. /ebooks/projects/)
+for t in tids:
+    d = DIST / t
+    c = [x for x in tids if x != t and (d / x).is_dir()]
+    if c: collide[t] = c
+vhost = {}     # each theme's former address, for the shared header (basecamp.js reads <html data-ghf-host/-path>)
+apex_by_tid = {tid: pre for pre, tid in CFG['apex']['paths'].items()}
+for t in CFG['themes']:
+    lu = urllib.parse.urlsplit(t.get('live') or '')
+    if lu.netloc: vhost[t['id']] = [lu.netloc.lower(), lu.path or '/']
+    elif t['id'] in apex_by_tid: vhost[t['id']] = ['bucklerfamily.estate', apex_by_tid[t['id']]]
+rt.write_text(rt.read_text().replace('__HOSTMAP__', json.dumps(hosts)).replace('__APEX__', json.dumps(apex)).replace('__MEDIA__', json.dumps(CFG['media_hosts']))
+              .replace('__THEMES__', json.dumps(tids)).replace('__COLLIDE__', json.dumps(collide)).replace('__VHOST__', json.dumps(vhost)))
 # archive interface inside the wayback theme
 go = DIST / 'wayback' / 'go'; go.mkdir(parents=True, exist_ok=True)
 shutil.copyfile(DIST / '_cedwyn' / 'archive' / 'go.html', go / 'index.html')
@@ -47,7 +60,7 @@ def card(t):
     return (f'<a class="t{"" if ok else " off"}" href="/{t["id"]}/"><b>{html.escape(t["title"])}</b>'
             f'<span>/{t["id"]}/ · was {sub}</span></a>')
 body = ''.join(f'<details open><summary>{html.escape(g)} <i>{len(ids)}</i></summary><div class="g">' + ''.join(card(by[i]) for i in ids) + '</div></details>' for g, ids in secs)
-idx = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+idx = f'''<!doctype html><html lang="en" data-ghf-host="bucklerfamily.estate" data-ghf-path="/cedwyn/" data-ghf-native="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cedwyn · one archive, {len(CFG["themes"])} ways in</title><meta name="description" content="One catalogue of Great House Farm evidence, browsed through {len(CFG["themes"])} themes.">
 <style>*{{box-sizing:border-box}}body{{margin:0;font:16px/1.45 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#14141c;color:#e8e8f0}}
 header{{padding:18px 16px 12px;border-bottom:2px solid #fca}}h1{{margin:0;color:#fca;font-size:24px}}header p{{margin:4px 0 10px;color:#cfcfe0;font-size:14px}}

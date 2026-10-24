@@ -3,7 +3,11 @@
    outbound link to the archive interface (/wayback/go/). No tracking, no outbound requests. - Sion's Tab agent */
 (function () {
   var me = document.currentScript, T = (me && me.getAttribute('data-theme')) || location.pathname.split('/')[1] || '';
-  var P = '/' + T, HOSTS = __HOSTMAP__, APEX = __APEX__, MEDIA = __MEDIA__;
+  var P = '/' + T, HOSTS = __HOSTMAP__, APEX = __APEX__, MEDIA = __MEDIA__, THEMES = __THEMES__, COLLIDE = __COLLIDE__, VHOST = __VHOST__;
+  // the shared header (basecamp.js) reads the theme's former address from <html data-ghf-host / data-ghf-path>
+  (function () { var v = VHOST[T]; if (!v) return; var de = document.documentElement, rest = location.pathname.slice(P.length).replace(/^\/+/, '');
+    if (!de.getAttribute('data-ghf-host')) de.setAttribute('data-ghf-host', v[0]);
+    if (!de.getAttribute('data-ghf-path')) de.setAttribute('data-ghf-path', v[1] + rest); })();
   var RES = ['/_cedwyn/', '/_blob/', '/db/', '/graphql', '/catalogue', '/wayback/go/'];
   function starts(u, a) { for (var i = 0; i < a.length; i++) if (u.indexOf(a[i]) === 0) return true; return false; }
   function mapHost(host, path) {
@@ -19,6 +23,8 @@
     if (typeof u !== 'string' || !u) return u;
     if (u.charAt(0) === '/' && u.charAt(1) !== '/') {
       if (!T || u === P || u.indexOf(P + '/') === 0 || starts(u, RES)) return u;
+      var x = u.split(/[\/?#]/)[1];   // already a cedwyn theme path (/<theme>/...): leave it, unless this theme has its own folder of that name
+      if (x && THEMES.indexOf(x) >= 0 && (COLLIDE[T] || []).indexOf(x) < 0) return u;
       return P + u;
     }
     var m = u.match(/^(?:https?:)?\/\/([^\/?#:]+)(?::\d+)?([^?#]*)(.*)$/i);
@@ -54,7 +60,7 @@
     var a = e.target && e.target.closest ? e.target.closest('a[href],area[href]') : null; if (!a) return;
     var h = a.getAttribute('href'); if (!h) return;
     if (isOut(h)) { e.preventDefault(); e.stopPropagation(); location.href = archive(new URL(h, location.href).href); return; }
-    var f = fix(h); if (f !== h) a.setAttribute('href', f);
+    if (/^(?:https?:)?\/\//i.test(h)) { var f = fix(h); if (f !== h) a.setAttribute('href', f); }  // static paths are already resolved at build time
   }, true);
   document.addEventListener('submit', function (e) {
     var f = e.target, act = f && f.getAttribute && f.getAttribute('action');
@@ -62,10 +68,11 @@
   }, true);
   function sweep(root) {
     if (!root || !root.querySelectorAll) return;
-    var els = root.querySelectorAll('[src^="/"],[href^="/"],[poster^="/"]');
+    var els = [].slice.call(root.querySelectorAll('[src^="/"],[href^="/"],[poster^="/"]')); if (root.getAttribute) els.unshift(root);
     for (var i = 0; i < els.length; i++) ['src', 'href', 'poster'].forEach(function (n) { var v = els[i].getAttribute(n); if (v && v.charAt(0) === '/') { var f = fix(v); if (f !== v) sa.call(els[i], n, f); } });
   }
-  try { new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (n) { if (n.nodeType === 1) { sweep(n.parentNode || n); } }); }); }).observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {}
+  // only nodes that page scripts add after parsing are swept: the parsed page was resolved at build time
+  function watch() { try { new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (n) { if (n.nodeType === 1) { sweep(n); } }); }); }).observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {} }
   // small Cedwyn pill: back to the theme picker, search the shared catalogue
   function pill() {
     if (document.getElementById('cedwyn-pill') || !document.body) return;
@@ -75,5 +82,5 @@
     s.textContent = '#cedwyn-pill{position:fixed;left:8px;bottom:8px;z-index:2147483000;display:flex;gap:4px;opacity:.72;font:600 13px/1 -apple-system,Segoe UI,Roboto,sans-serif}#cedwyn-pill:hover{opacity:1}#cedwyn-pill a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:15px;background:#14141c;color:#fca;text-decoration:none;border:1px solid #fca;box-shadow:0 1px 4px rgba(0,0,0,.3)}@media print{#cedwyn-pill{display:none}}';
     document.head.appendChild(s); document.body.appendChild(d);
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { sweep(document); pill(); }); else { sweep(document); pill(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { watch(); pill(); }); else { watch(); pill(); }
 })();

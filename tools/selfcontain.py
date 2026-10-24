@@ -1,0 +1,339 @@
+#!/usr/bin/env python3
+"""selfcontain.py - make every theme page fully self-contained, then prove it. - Sion's Tab agent
+
+  python3 tools/selfcontain.py dist --fix   rewrite every remaining reference, vendor CDN files, add the shared header
+  python3 tools/selfcontain.py dist         strict test: exit 1 if ANY reference to a *.bucklerfamily.estate subdomain
+                                            or an external host survives
+
+A "reference" is a URL in: any HTML attribute (a/area/link href, script/img/iframe/source/video/audio/embed src,
+srcset, poster, object data, form action/formaction, meta content, data-* attributes, cite, xlink:href ...), inline
+<script> and <style> blocks (JSON-LD included), and every .js .mjs .css .json .webmanifest .svg .xml file (fetch/XHR
+URLs, nav JSON, data feeds). Visible text and HTML comments are not references and are left as written.
+Rewrites: a former subdomain (or apex path) -> /<theme>/...; a CDN script/style/font -> a vendored copy under
+/_ext/<host>/...; anything else -> the archive interface /wayback/go/?u=<address>. XML namespace URIs are names, not
+references. Map-tile URL templates listed in themes.json "allowed_tile_templates" are the only stated exception.
+The shared 3-row header (ghf-boot.js -> basecamp.js) is served from /_cedwyn/ghf/ and added to every theme page.
+"""
+import json, re, sys, os, pathlib, hashlib, html, urllib.parse, urllib.request, concurrent.futures as cf
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+CFG = json.load(open(ROOT / 'themes.json'))
+DIST = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith('-') else 'dist')
+FIX = '--fix' in sys.argv
+ONLY = [a.split('=', 1)[1] for a in sys.argv if a.startswith('--only=')]
+SELF = 'cedwyn.bucklerfamily.estate'
+ABS = 'https://' + SELF
+BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.4c'
+TIDS = [t['id'] for t in CFG['themes']]
+HOST = {}
+for t in CFG['themes']:
+    for h in t.get('hosts', []):
+        if h not in ('bucklerfamily.estate', 'www.bucklerfamily.estate'): HOST[h.lower()] = t['id']
+for h, tid in CFG.get('extra_hosts', {}).items():
+    if tid: HOST[h.lower()] = tid
+APEX = sorted(CFG['apex']['paths'].items(), key=lambda kv: -len(kv[0]))
+TILES = CFG.get('allowed_tile_templates', [])
+NS = {'www.w3.org', 'w3.org', 'schema.org', 'purl.org', 'ogp.me', 'xmlns.com', 'ns.adobe.com', 'www.inkscape.org',
+      'sodipodi.sourceforge.net', 'creativecommons.org', 'www.openarchives.org', 'www.sitemaps.org', 'docs.oasis-open.org',
+      'rdfs.org', 'web.resource.org', 'www.google.com/schemas', 'search.yahoo.com', 'ns.attribution.cloudflare.com'}
+CDN = {'cdn.jsdelivr.net', 'unpkg.com', 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com', 'ajax.googleapis.com'}
+UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
+# a URL: scheme-ful (also JSON-escaped https:\/\/), or protocol-relative right after a quote/paren/equals/space
+URL = re.compile(r'''(?:(?<![\w.+-])(https?:)(//|\\/\\/)|(?<=["'(=`])(//))([a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)+)(:\d+)?((?:/|\\/)[^\s"'<>`\\]*(?:\\/[^\s"'<>`\\]*)*)?''', re.I)
+stats = {'files': 0, 'changed': 0, 'sub': 0, 'ext': 0, 'cdn': 0, 'boot_added': 0, 'boot_moved': 0, 'tags_dropped': 0}
+left = {}; examples = {}; vendor = {}; tiles_seen = set()
+
+def theme_url(host, path):
+    if host in ('bucklerfamily.estate', 'www.bucklerfamily.estate'):
+        for pre, tid in APEX:
+            if path.startswith(pre) or path + '/' == pre:
+                return '/' + tid + '/' + path[len(pre):].lstrip('/')
+        return None
+    tid = HOST.get(host)
+    if tid: return '/' + tid + (path if path.startswith('/') else ('/' + path if path else ''))
+    return None
+
+def ext_local(host, path, query):
+    """vendored path for a CDN file (the query, e.g. Google Fonts families, is folded into the file name)"""
+    p = path or '/'
+    if query:
+        h = hashlib.sha1(query.encode()).hexdigest()[:10]
+        base, dot, ext = p.rpartition('.')
+        p = (p.rstrip('/') or '/index') + '.' + h + ('.css' if host == 'fonts.googleapis.com' else '')
+    if p.endswith('/'): return '/_ext/' + host + p          # a folder prefix that scripts add file names to
+    return '/_ext/' + host + p
+
+def classify(m):
+    host = m.group(4).lower(); path = (m.group(6) or '').replace('\\/', '/')
+    full = m.group(0).replace('\\/', '/')
+    if host == SELF: return 'self', None
+    hp = host + path
+    if host in NS or any(hp.startswith(n) for n in NS if '/' in n): return 'ns', None
+    if any(full.startswith(t) for t in TILES):
+        return 'tile', None
+    if host == 'bucklerfamily.estate' or host.endswith('.bucklerfamily.estate'):
+        return 'sub', None
+    if host in CDN: return 'cdn', None
+    return 'ext', None
+
+def replacement(m, absctx, css=False):
+    kind, _ = classify(m)
+    raw = m.group(0)
+    if kind in ('self', 'ns'): return raw, None
+    esc = '\\/' in raw
+    host = m.group(4).lower(); full = raw.replace('\\/', '/')
+    if not full.lower().startswith('http'): full = 'https:' + full
+    if kind == 'tile':
+        tiles_seen.add(full[:120]); return raw, None
+    pre = ABS if absctx else ''
+    path_q = (m.group(6) or '').replace('\\/', '/')
+    pm = re.match(r'([^?#]*)([?#].*)?$', path_q, re.S); path, rest = pm.group(1), pm.group(2) or ''
+    if kind == 'sub':
+        t = theme_url(host, path)
+        if t is not None:
+            if not path and t.endswith('/') and t.count('/') == 2 and not absctx: pass
+            if not path: t = t.rstrip('/') if t.count('/') > 1 else t
+            out = pre + t + rest
+            return (out.replace('/', '\\/') if esc else out), 'sub'
+    if kind == 'cdn':
+        q = rest[1:] if rest.startswith('?') else ''
+        q = html.unescape(q)
+        loc = ext_local(host, path, q)
+        vendor[loc] = full if not q else 'https://' + host + path + '?' + q
+        out = pre + loc if absctx else loc
+        return (out.replace('/', '\\/') if esc else out), 'cdn'
+    # external, or a former subdomain cedwyn has no theme for: the archive interface
+    target = html.unescape(full)
+    out = pre + '/wayback/go/?u=' + urllib.parse.quote(target, safe='')
+    if css: out = out.replace('(', '%28').replace(')', '%29')
+    return (out.replace('/', '\\/') if esc else out), ('sub' if kind == 'sub' else 'ext')
+
+TPL = re.compile(r'''(?:https?:)?//\{[a-z]\}\.([a-z0-9-]+(?:\.[a-z0-9-]+)+)[^\s"'<>`]*''', re.I)   # e.g. //{s}.tile.example.org/{z}/{x}/{y}.png
+def process_text(s, absctx, css=False, where=None):
+    for m in TPL.finditer(s):
+        full = m.group(0) if m.group(0).startswith('http') else 'https:' + m.group(0)
+        if any(full.startswith(t) for t in TILES): tiles_seen.add(full[:120])
+        elif not FIX and where:
+            key = (where[0], 'ext'); left[key] = left.get(key, 0) + 1; examples.setdefault(key, []).append(where[1] + ' :: ' + full[:100])
+    """rewrite (FIX) or count every URL in a JS/CSS/JSON/attribute string"""
+    if FIX:
+        def r(m):
+            out, k = replacement(m, absctx, css)
+            if k: stats['cdn' if k == 'cdn' else k] += 1
+            return out
+        return URL.sub(r, s)
+    for m in URL.finditer(s):
+        kind, _ = classify(m)
+        if kind in ('sub', 'ext', 'cdn'):
+            key = (where[0], kind); left[key] = left.get(key, 0) + 1
+            examples.setdefault(key, []).append(where[1] + ' :: ' + m.group(0)[:100]) if len(examples.get(key, [])) < 3 else None
+        elif kind == 'tile': tiles_seen.add(m.group(0)[:120])
+    return s
+
+TAG = re.compile(r'<(/?)([a-zA-Z][\w:-]*)(\s[^<>]*?)?(/?)>', re.S)
+ATTR = re.compile(r'''(\s)([^\s=/>"']+)(\s*=\s*)("[^"]*"|'[^']*'|[^\s>"']+)''', re.S)
+BLOCK = re.compile(r'(<(script|style)\b[^>]*>)(.*?)(</\2\s*>)', re.S | re.I)
+COMMENT = re.compile(r'<!--.*?-->', re.S)
+DROP_SCRIPT = re.compile(r'<script\b[^>]*\bsrc\s*=\s*["\'][^"\']*followers\.bucklerfamily\.estate/follow\.js[^"\']*["\'][^>]*>\s*</script>', re.I)
+GHF_SRC = re.compile(r'''(?<=["'=])((?:https?:)?//(?:www\.)?bucklerfamily\.estate|/dartboard)?/(?:ghf-lang/(ghf-boot|ghf-lang|basecamp)|(basecamp))\.js(\?[^"'\s>]*)?''', re.I)
+TOUR_SRC = re.compile(r'''(?:https?:)?//research\.bucklerfamily\.estate/estate-tour\.js(\?[^"'\s>]*)?''', re.I)
+
+def fix_attr(tag, name, val, tagtext, page):
+    lname = name.lower()
+    if lname.startswith('xmlns'): return val
+    absctx = lname == 'content' or (tag == 'link' and re.search(r'rel\s*=\s*["\']?[^"\'>]*(canonical|alternate|shortlink)', tagtext, re.I) is not None)
+    absctx = absctx or lname in ('itemid', 'itemtype')
+    return process_text(val, absctx, css=(lname == 'style'), where=page)
+
+def do_tag(m, page):
+    whole = m.group(0); tag = m.group(2).lower(); attrs = m.group(3)
+    if not attrs or m.group(1): return whole
+    if tag == 'link' and FIX and re.search(r'rel\s*=\s*["\']?\s*(preconnect|dns-prefetch)', attrs, re.I):
+        hm = URL.search(attrs)
+        if hm and classify(hm)[0] in ('ext', 'cdn', 'sub'): stats['tags_dropped'] += 1; return ''
+    def a(mm):
+        q = mm.group(4); quote = q[0] if q[0] in '"\'' else ''; inner = q[1:-1] if quote else q
+        new = fix_attr(tag, mm.group(2), inner, whole, page)
+        return mm.group(1) + mm.group(2) + mm.group(3) + quote + new + quote if new != inner else mm.group(0)
+    return '<' + m.group(1) + m.group(2) + ATTR.sub(a, attrs) + m.group(4) + '>'
+
+def do_html(s, page):
+    if FIX:
+        n0 = len(s)
+        s, k = DROP_SCRIPT.subn('', s); stats['tags_dropped'] += k
+        s = TOUR_SRC.sub('/_cedwyn/ghf/estate-tour.js', s)
+        s = GHF_SRC.sub(lambda m: m.group(0) if (m.group(3) and not m.group(1)) else '/_cedwyn/ghf/' + (m.group(2) or m.group(3)) + '.js?v=2.1.4c', s)
+    # split into comments / script+style blocks / markup, keep comments and text as written
+    out = []; pos = 0
+    tokens = sorted([(mm.start(), mm.end(), 'c', mm) for mm in COMMENT.finditer(s)] + [(mm.start(), mm.end(), 'b', mm) for mm in BLOCK.finditer(s)])
+    spans = []; last = -1
+    for st, en, k, mm in tokens:
+        if st < last: continue
+        spans.append((st, en, k, mm)); last = en
+    def markup(chunk): return TAG.sub(lambda m: do_tag(m, page), chunk)
+    for st, en, k, mm in spans:
+        out.append(markup(s[pos:st]))
+        if k == 'c': out.append(s[st:en])
+        else:
+            open_, kind, body, close = mm.group(1), mm.group(2).lower(), mm.group(3), mm.group(4)
+            open_ = markup(open_)
+            if kind == 'style': body = process_text(body, False, css=True, where=page)
+            else:
+                ty = re.search(r'type\s*=\s*["\']?([^"\'\s>]+)', open_, re.I); ty = ty.group(1).lower() if ty else ''
+                if ty in ('text/template', 'text/x-template', 'text/html'): body = do_html(body, page)
+                else: body = process_text(body, True, where=page)
+            out.append(open_ + body + close)
+        pos = en
+    out.append(markup(s[pos:]))
+    s = ''.join(out)
+    return s
+
+def add_boot(s, rel):
+    """the shared header: ghf-boot.js last in <head>, once"""
+    if not re.search(r'</head\s*>', s, re.I): return s
+    if rel.startswith(('db/', '_blob/', '_ext/', '_cedwyn/')): return s
+    s2, k = re.subn(r'<script\b[^>]*src\s*=\s*["\']/_cedwyn/ghf/ghf-boot\.js[^"\']*["\'][^>]*>\s*</script>\s*', '', s, flags=re.I)
+    tag = '<script src="' + BOOT + '"></script>'
+    s3 = re.sub(r'</head\s*>', lambda m: tag + m.group(0), s2, count=1, flags=re.I)
+    if k == 0: stats['boot_added'] += 1
+    elif s3 != s: stats['boot_moved'] += 1
+    return s3
+
+TEXT_EXT = {'.html', '.htm', '.js', '.mjs', '.cjs', '.css', '.json', '.webmanifest', '.svg', '.xml', '.map'}
+def files():
+    for p in DIST.rglob('*'):
+        if not p.is_file() or p.suffix.lower() not in TEXT_EXT: continue
+        rel = p.relative_to(DIST).as_posix()
+        if rel.startswith(('db/', '.git/', '_blob/')) or '/.git/' in rel: continue
+        if rel.startswith('_cedwyn/reports/') or rel.endswith('.map'): continue
+        if ONLY and rel.split('/')[0] not in ONLY: continue
+        yield p, rel
+
+def run():
+    for p, rel in files():
+        try: s = p.read_text('utf-8')
+        except Exception:
+            try: s = p.read_bytes().decode('latin-1')
+            except Exception: continue
+        stats['files'] += 1
+        ext = p.suffix.lower(); theme = rel.split('/')[0] if '/' in rel else '(root)'
+        page = (theme, rel)
+        if ext in ('.html', '.htm'):
+            n = do_html(s, page)
+            if FIX: n = add_boot(n, rel)
+        elif ext == '.css': n = process_text(s, False, css=True, where=page)
+        elif ext == '.svg' or ext == '.xml': n = do_html(s, page) if '<' in s[:2000] else process_text(s, True, where=page)
+        else: n = process_text(s, True, where=page)
+        if FIX and n != s:
+            p.write_text(n, 'utf-8'); stats['changed'] += 1
+
+def fetch_vendor():
+    """download each vendored CDN file once; CSS is scanned for its own url()s (fonts) recursively"""
+    done = set(); got = 0; failed = []
+    def get(loc, url):
+        dst = DIST / loc.lstrip('/')
+        if loc.endswith('/'): return loc, None, 'folder'
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': UA})
+            with urllib.request.urlopen(req, timeout=40) as r: b = r.read()
+            dst.parent.mkdir(parents=True, exist_ok=True); dst.write_bytes(b); return loc, b, None
+        except Exception as e: return loc, None, str(e)[:80]
+    queue = dict(vendor)
+    while queue:
+        batch = {k: v for k, v in queue.items() if k not in done}; queue = {}
+        with cf.ThreadPoolExecutor(12) as ex:
+            for loc, b, err in ex.map(lambda kv: get(*kv), batch.items()):
+                done.add(loc)
+                if err == 'folder': continue
+                if err: failed.append([loc, batch[loc], err]); continue
+                got += 1
+                if loc.endswith('.css') or 'fonts.googleapis.com' in loc:
+                    css = b.decode('utf-8', 'ignore'); base = batch[loc]
+                    def cu(mm):
+                        u = mm.group(2).strip('\'"')
+                        if u.startswith('data:'): return mm.group(0)
+                        absu = urllib.parse.urljoin(base, u); pu = urllib.parse.urlsplit(absu)
+                        if pu.netloc.lower() not in CDN: return mm.group(0)
+                        l2 = ext_local(pu.netloc.lower(), pu.path, pu.query); queue[l2] = absu
+                        return mm.group(1) + l2 + mm.group(3)
+                    css2 = re.sub(r'''(url\(\s*['"]?)([^'")]+)(['"]?\s*\))''', cu, css)
+                    (DIST / loc.lstrip('/')).write_text(css2, 'utf-8')
+    # folder prefixes (scripts add file names): fetch the files the pages name next to them
+    for loc, url in vendor.items():
+        if not loc.endswith('/'): continue
+        for name in ('pdf.min.js', 'pdf.worker.min.js', 'pdf.min.mjs', 'pdf.worker.min.mjs', 'pdf.js', 'pdf.worker.js', 'pdf.mjs', 'pdf.worker.mjs'):
+            if 'pdfjs-dist' not in loc: break
+            l, b, err = get(loc + name, url + name)
+            if not err: got += 1
+    return got, failed
+
+MEDIA_EXT = {'.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.avif', '.ico', '.bmp', '.pdf', '.mp3', '.m4a', '.ogg', '.wav', '.mp4', '.webm', '.mov',
+             '.woff', '.woff2', '.ttf', '.otf', '.js', '.mjs', '.css', '.json', '.vtt', '.txt', '.csv', '.wasm'}
+LOCALREF = re.compile(r'''(?<=["'(=\s,])/([a-z0-9][a-z0-9-]*)/([^\s"'<>`()\\?#]+\.([a-z0-9]{2,5}))(?=[\s"'<>`()\\?#,])''', re.I)
+def fill_missing(dry=False):
+    """files a theme page names under /<theme>/ that the theme's branch copy does not hold (the old site served them from
+    elsewhere): copied read-only from the theme's live address, so images, videos and scripts load from cedwyn itself"""
+    exists = None
+    if os.environ.get('CEDWYN_EXISTS_LIST'): exists = set(open(os.environ['CEDWYN_EXISTS_LIST']).read().split('\n'))
+    live = {}
+    for t in CFG['themes']:
+        if t.get('live'): live[t['id']] = t['live'].rstrip('/') + '/'
+    want = {}
+    for p, rel in files():
+        if p.suffix.lower() not in ('.html', '.htm', '.json', '.css', '.js'): continue
+        try: s = p.read_text('utf-8', 'ignore')
+        except Exception: continue
+        for m in LOCALREF.finditer(s):
+            tid, rest, ext = m.group(1), m.group(2), '.' + m.group(3).lower()
+            if tid not in live or ext not in MEDIA_EXT: continue
+            relp = urllib.parse.unquote(tid + '/' + rest)
+            ok = (relp in exists) if exists is not None else (DIST / relp).exists()
+            if not ok: want[relp] = live[tid] + urllib.parse.quote(urllib.parse.unquote(rest))
+    if dry: return want, []
+    LIMIT_FILE = 24 * 1024 * 1024; budget = [int(os.environ.get('CEDWYN_FILL_MB', '600')) * 1024 * 1024]; got = []; miss = []
+    def get(item):
+        relp, url = item
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': UA})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                ct = r.headers.get('Content-Type', ''); n = int(r.headers.get('Content-Length') or 0)
+                if 'text/html' in ct and not relp.endswith(('.html', '.htm')): return relp, None, 'html fallback (not on the live site either)'
+                if n > LIMIT_FILE: return relp, None, 'over 24 MB'
+                b = r.read(LIMIT_FILE + 1)
+            if len(b) > LIMIT_FILE: return relp, None, 'over 24 MB'
+            return relp, b, None
+        except Exception as e: return relp, None, str(e)[:60]
+    with cf.ThreadPoolExecutor(16) as ex:
+        for relp, b, err in ex.map(get, sorted(want.items())[:4000]):
+            if err or budget[0] - len(b) < 0: miss.append([relp, err or 'budget']); continue
+            budget[0] -= len(b); dst = DIST / relp; dst.parent.mkdir(parents=True, exist_ok=True); dst.write_bytes(b); got.append(relp)
+    return want, (got, miss)
+
+def main():
+    run()
+    rep = DIST / '_cedwyn' / 'reports'; rep.mkdir(parents=True, exist_ok=True)
+    if FIX:
+        got, failed = fetch_vendor()
+        global ONLY
+        for _ in range(3):   # vendored files may name further CDN files (and carry their own links): same rules, again
+            before = set(vendor); ONLY = ['_ext']; run()
+            if set(vendor) == before: break
+            g2, f2 = fetch_vendor(); got += g2; failed += f2
+        ONLY = ['_ext']; run(); ONLY = []
+        want, gm = fill_missing(dry='--no-fill' in sys.argv)
+        filled = {'wanted': len(want), 'copied': len(gm[0]) if gm else 0, 'not_found': (gm[1][:80] if gm else []), 'not_found_n': len(gm[1]) if gm else 0}
+        o = dict(stats, filled_missing=filled, vendored=got, vendor_failed=failed[:50], vendor_failed_n=len(failed), allowed_tile_templates=sorted(tiles_seen))
+        json.dump(o, open(rep / 'selfcontain_fix.json', 'w'), indent=1)
+        print(json.dumps({k: v for k, v in o.items() if k != 'vendor_failed'})[:900]); return 0
+    by_theme = {}
+    for (th, k), v in left.items(): by_theme.setdefault(th, {})[k] = v
+    tot = {'sub': sum(v for (t, k), v in left.items() if k == 'sub'), 'ext': sum(v for (t, k), v in left.items() if k in ('ext', 'cdn'))}
+    o = {'files_checked': stats['files'], 'subdomain_refs': tot['sub'], 'external_refs': tot['ext'], 'by_theme': by_theme,
+         'examples': {f'{t}:{k}': v for (t, k), v in examples.items()}, 'allowed_tile_templates': sorted(tiles_seen)}
+    json.dump(o, open(rep / 'selfcontain_test.json', 'w'), indent=1)
+    print(json.dumps({k: o[k] for k in ('files_checked', 'subdomain_refs', 'external_refs', 'allowed_tile_templates')}))
+    if tot['sub'] or tot['ext']:
+        for k, v in list(o['examples'].items())[:12]: print(k, v[:2])
+        print('SELF-CONTAINED TEST FAILED'); return 1
+    print('SELF-CONTAINED TEST PASSED: 0 subdomain references, 0 external references'); return 0
+
+if __name__ == '__main__': sys.exit(main())

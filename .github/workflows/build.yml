@@ -38,12 +38,16 @@ jobs:
         run: python3 tools/rewrite.py dist
       - name: Site root, runtime, archive interface
         run: python3 tools/site.py dist
+      - name: Self-contained pass (shared 3-row header from /_cedwyn/ghf/, subdomain refs to /<theme>/, external refs to the archive, CDN files vendored, missing media copied)
+        run: python3 tools/selfcontain.py dist --fix
       - name: Catalogue database (chunked)
         run: python3 tools/build_db.py dist
       - name: Outbound-link guard (rewrite any link the parser missed), then strict test
         run: |
           python3 tools/check_links.py dist --fix
           python3 tools/check_links.py dist
+      - name: Self-contained test (fails on ANY reference to a subdomain or an external host)
+        run: python3 tools/selfcontain.py dist
       - name: Measure
         if: always()
         run: |
