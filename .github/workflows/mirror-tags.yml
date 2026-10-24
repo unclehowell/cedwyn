@@ -1,0 +1,87 @@
+name: mirror-datro-tags
+# Mirrors every branch (and tag) of unclehowell/datro into this repo, read-only on datro.
+# History is rewritten ONLY here: .github/workflows/* dropped (the Actions token may not push workflow files,
+# and datro's deploy workflows must never run from cedwyn) and secret-looking strings replaced. — Sion's Tab agent
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/mirror-tags.yml']
+permissions:
+  contents: write
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - name: Clone datro (read-only mirror)
+        run: |
+          df -h .
+          git clone --mirror https://github.com/unclehowell/datro.git datro.git
+          du -sh datro.git
+          git -C datro.git for-each-ref --format='%(refname)' refs/heads | wc -l
+      - name: Scan tips before scrub
+        run: |
+          cd datro.git
+          : > ../scan_before.txt
+          for r in $(git for-each-ref --format='%(refname)' refs/heads); do
+            n=$(git grep -I -c -i -E 'machinekey|validationkey\s*=|decryptionkey\s*=' "$r" -- 2>/dev/null | wc -l)
+            [ "$n" != "0" ] && echo "$r $n" >> ../scan_before.txt
+          done
+          echo "tips with machineKey-like text:"; cat ../scan_before.txt || true
+      - name: Rewrite history (cedwyn only)
+        run: |
+          pip install -q git-filter-repo
+          cat > replace.txt <<'EOF'
+          regex:(?i)(validationKey\s*=\s*["'])[0-9A-Fa-f]{16,}(["'])==>\1REMOVED-IN-CEDWYN\2
+          regex:(?i)(decryptionKey\s*=\s*["'])[0-9A-Fa-f]{16,}(["'])==>\1REMOVED-IN-CEDWYN\2
+          regex:\bgh[pousr]_[A-Za-z0-9]{36,}\b==>REMOVED-IN-CEDWYN
+          regex:\bgithub_pat_[A-Za-z0-9_]{40,}\b==>REMOVED-IN-CEDWYN
+          regex:\bAKIA[0-9A-Z]{16}\b==>REMOVED-IN-CEDWYN
+          regex:\bxox[abprs]-[A-Za-z0-9-]{10,}\b==>REMOVED-IN-CEDWYN
+          regex:\bsk_live_[A-Za-z0-9]{16,}\b==>REMOVED-IN-CEDWYN
+          regex:\bsk-[A-Za-z0-9_-]{32,}\b==>REMOVED-IN-CEDWYN
+          regex:\bAIza[0-9A-Za-z_-]{35}\b==>REMOVED-IN-CEDWYN
+          regex:-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----==>-----REMOVED-IN-CEDWYN-----
+          EOF
+          cd datro.git
+          git filter-repo --force --replace-text ../replace.txt --path-glob '.github/workflows/*' --invert-paths
+          du -sh .
+      - name: Scan tips after scrub
+        run: |
+          cd datro.git
+          : > ../scan_after.txt
+          for r in $(git for-each-ref --format='%(refname)' refs/heads); do
+            n=$(git grep -I -c -E '(validation|decryption)Key\s*=\s*["'"'"'][0-9A-Fa-f]{16,}' "$r" -- 2>/dev/null | wc -l)
+            [ "$n" != "0" ] && echo "$r $n" >> ../scan_after.txt
+          done
+          cat ../scan_after.txt || true
+      - name: Push tags in batches (branches are already mirrored)
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          cd datro.git
+          git remote add cedwyn "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          : > ../pushed.txt; : > ../failed.txt
+          git for-each-ref --format='%(refname)' refs/tags > ../tags_all.txt
+          split -l 100 ../tags_all.txt ../tb_
+          for f in ../tb_*; do
+            if git push -q cedwyn $(sed 's#.*#&:&#' "$f") 2> ../err.txt; then cat "$f" >> ../pushed.txt; else echo "$(basename $f) :: $(tail -c 300 ../err.txt | tr '\n' ' ')" >> ../failed.txt; fi
+          done
+          echo "tags-pushed $(wc -l < ../pushed.txt) of $(wc -l < ../tags_all.txt)" > ../tags.txt; cat ../tags.txt
+      - name: Write report to main
+        if: always()
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          git clone -q --depth 1 -b main "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" rep
+          mkdir -p rep/reports
+          python3 - <<'PY'
+          import json,os
+          rd=lambda p: open(p).read().split('\n') if os.path.exists(p) else []
+          rep={'pushed_count':len([x for x in rd('pushed.txt') if x]),'failed':[x for x in rd('failed.txt') if x],'tags':''.join(rd('tags.txt')),
+               'scan_before':[x for x in rd('scan_before.txt') if x],'scan_after':[x for x in rd('scan_after.txt') if x]}
+          json.dump(rep,open('rep/reports/mirror-tags.json','w'),indent=1)
+          PY
+          cd rep && git config user.name "cedwyn-bot" && git config user.email "cedwyn-bot@users.noreply.github.com"
+          git add reports/mirror-tags.json && git commit -q -m "Mirror tags report — Sion's Tab agent" && git push -q origin main || echo "report push failed"
