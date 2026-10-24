@@ -1,8 +1,8 @@
-/* cat.js - the Cedwyn catalogue in the browser: one SQLite database read by HTTP range requests (no server),
+/* cat.js (one chunk file per request: Pages serves whole files) - the Cedwyn catalogue in the browser: one SQLite database read by HTTP range requests (no server),
    plus a GraphQL schema resolved against it. Images and documents come back as data: URIs (base64) on read.
    Usage: Cedwyn.db().then(db => db.query(sql, params)); Cedwyn.graphql(query, variables). - Sion's Tab agent */
 (function () {
-  var V = '/_cedwyn/vendor/', dbp = null, schema = null;
+  var V = '/_cedwyn/vendor/', dbp = null, schema = null, gqlp = null;
   function load(src) { return new Promise(function (ok, bad) { var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = bad; document.head.appendChild(s); }); }
   function db() {
     if (dbp) return dbp;
@@ -67,7 +67,8 @@
     capture: function (a) { return q1('SELECT * FROM captures WHERE key=?', [normkey(a.url)]); }
   };
   function graphql(query, variables) {
-    return (window.GraphQL ? Promise.resolve() : load(V + 'graphql.min.js')).then(function () {
+    gqlp = gqlp || (window.GraphQL ? Promise.resolve() : load(V + 'graphql.min.js'));
+    return gqlp.then(function () {
       if (!schema) schema = GraphQL.buildSchema(SDL);
       return GraphQL.graphql({ schema: schema, source: query, rootValue: root, variableValues: variables || {} });
     });
