@@ -1,0 +1,286 @@
+{
+ "records": {
+  "how": "branch",
+  "files": 11,
+  "bytes": 27448,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "nomenclature": {
+  "how": "branch",
+  "files": 32,
+  "bytes": 245159,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "infographic": {
+  "how": "branch",
+  "files": 26,
+  "bytes": 8467558,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "wiki": {
+  "how": "branch",
+  "files": 26,
+  "bytes": 1478136,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "maps": {
+  "how": "branch",
+  "files": 167,
+  "bytes": 38392878,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
+ },
+ "ebooks": {
+  "how": "branch",
+  "files": 253,
+  "bytes": 16119831,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "csscpsg": {
+  "how": "branch",
+  "files": 16,
+  "bytes": 475157,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "chess": {
+  "how": "branch",
+  "files": 55,
+  "bytes": 3468473,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "fb": {
+  "how": "branch",
+  "files": 576,
+  "bytes": 9343452,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "oldbill": {
+  "how": "branch",
+  "files": 6,
+  "bytes": 316368,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "accounts": {
+  "how": "branch",
+  "files": 4,
+  "bytes": 51033,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "authorities": {
+  "how": "branch",
+  "files": 10,
+  "bytes": 25602,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "wdtk": {
+  "how": "branch",
+  "files": 20,
+  "bytes": 142722,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "_build_logs": {
+  "story": "error Clean install a project\nnpm error\nnpm error Usage:\nnpm error npm ci\nnpm error\nnpm error Options:\nnpm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]\nnpm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]\nnpm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-10-24T22_51_06_441Z-debug-0.log\n",
+  "docs": "[docs] 1022 document(s) pass the rules\n[docs] ghf_evidence/ev_0001 [en] html\n[docs] ghf_evidence/ev_0004 [en] html\n[docs] ghf_evidence/ev_0003 [en] html\n[docs] ghf_evidence/ev_0002 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0005 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\nsphinx -b html failed for /home/runner/work/cedwyn/cedwyn/src_tmp_docs/ghf_evidence/ev_0001/latest/source\n"
+ },
+ "review": {
+  "how": "branch",
+  "files": 10,
+  "bytes": 27981,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "meeting": {
+  "how": "branch",
+  "files": 21,
+  "bytes": 1881628,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "qa": {
+  "how": "branch",
+  "files": 783,
+  "bytes": 68980045,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
+ },
+ "projects": {
+  "how": "branch",
+  "files": 177,
+  "bytes": 2529919,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "chat": {
+  "how": "crawl",
+  "files": 5,
+  "bytes": 28572,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "watchtower": {
+  "how": "branch",
+  "files": 7,
+  "bytes": 281044,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "fb2": {
+  "how": "branch",
+  "files": 234,
+  "bytes": 4720647,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "app": {
+  "how": "crawl",
+  "files": 19,
+  "bytes": 1134908,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
+ },
+ "emails": {
+  "how": "branch",
+  "files": 7,
+  "bytes": 715880,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "email": {
+  "how": "crawl",
+  "files": 10,
+  "bytes": 11345925,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 2
+ },
+ "dartboard": {
+  "how": "crawl",
+  "files": 1,
+  "bytes": 235890,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
+ },
+ "wayback": {
+  "how": "branch",
+  "files": 5560,
+  "bytes": 892373406,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 5
+ },
+ "directory": {
+  "how": "branch",
+  "files": 318,
+  "bytes": 1098315,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "estate": {
+  "how": "crawl",
+  "files": 1,
+  "bytes": 73813,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
+ },
+ "patagonia": {
+  "how": "crawl",
+  "files": 1,
+  "bytes": 25778,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 2
+ },
+ "wales": {
+  "how": "crawl",
+  "files": 2,
+  "bytes": 32130,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 2
+ },
+ "shop": {
+  "how": "branch",
+  "files": 49,
+  "bytes": 940379,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "terrain": {
+  "how": "crawl",
+  "files": 6,
+  "bytes": 318732,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
+ },
+ "cyberspace": {
+  "how": "crawl",
+  "files": 1,
+  "bytes": 53429,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
+ },
+ "fcg": {
+  "how": "crawl",
+  "files": 19,
+  "bytes": 584263,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 11
+ },
+ "story": {
+  "how": "crawl(fallback)",
+  "files": 197,
+  "bytes": 4553089,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 13
+ },
+ "docs": {
+  "how": "crawl(fallback)",
+  "files": 3090,
+  "bytes": 20807841,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 137
+ }
+}
