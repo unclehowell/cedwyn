@@ -40,12 +40,12 @@ for p in files:
     if p.suffix.lower() in TXT_DATA and p.stat().st_size < 30_000_000:
         try: s = p.read_text('utf-8', 'ignore')
         except Exception: continue
-        named_in_data.setdefault(p.parts[D], set()).update(x.lower() for x in NAMERX.findall(s))
+        named_in_data.setdefault('*', set()).update(x.lower() for x in NAMERX.findall(s))
     elif p.suffix.lower() in ('.html', '.htm'):
         try: s = p.read_text('utf-8', 'ignore')
         except Exception: continue
         for sc in re.findall(r'<script\b[^>]*>(.*?)</script>', s, re.S | re.I):
-            named_in_data.setdefault(p.parts[D], set()).update(x.lower() for x in NAMERX.findall(sc))
+            named_in_data.setdefault('*', set()).update(x.lower() for x in NAMERX.findall(sc))
 BLOB = DIST / '_blob'; BLOB.mkdir(exist_ok=True)
 moved = {}; saved = 0; kept_for_scripts = 0
 for h, ps in by_sha.items():
@@ -57,7 +57,7 @@ for h, ps in by_sha.items():
         tid = p.parts[D]
         rel = '/' + '/'.join(p.parts[D:])
         moved[rel] = '/_blob/' + name
-        nm = named_in_data.get(tid, set())
+        nm = named_in_data.get('*', set())   # any theme's scripts may load any theme's file (e.g. fb loads wayback images)
         if p.name.lower() in nm or urllib.parse.quote(p.name).lower() in nm:
             kept_for_scripts += 1; continue
         saved += p.stat().st_size; p.unlink()

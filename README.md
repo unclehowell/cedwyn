@@ -19,25 +19,26 @@ The old repo (`unclehowell/datro`) and the old subdomains are untouched: this re
 1. **Mirror** (`.github/workflows/mirror.yml`): `git clone --mirror` of datro, then every branch and tag is pushed here.
 2. **Assemble** (`tools/assemble.py`): each theme's site is copied out of its mirrored branch (the same folder its old Pages project served).
    Sites with no static branch output (Workers, the apex domain's own repo) are copied by a read-only crawl of the live site.
-3. **Rewrite** (`tools/rewrite.py`):
+3. **Shared assets** (`tools/fetch_missing.py`): scripts, styles and images that one site loads from another (for example the shared header scripts on the apex domain) are copied read-only from the live site into the theme they belong to.
+4. **Rewrite** (`tools/rewrite.py`):
    - cross-subdomain links `x.bucklerfamily.estate/...` become `/<theme>/...`;
    - root paths gain the theme prefix;
    - **no outbound links**: every external link goes to the archive interface at `/wayback/go/?u=…`, which opens our captured copy, or records the address as text when it has not been archived yet;
    - evidence files that appear in more than one theme are stored **once** in a content-addressed store `/_blob/<sha>.<ext>`.
-4. **Runtime** (`web/_cedwyn/runtime.js`): loaded first in every page (`ghf-boot.js` stays last in `<head>`).
+5. **Runtime** (`web/_cedwyn/runtime.js`): loaded first in every page (`ghf-boot.js` stays last in `<head>`).
    It applies the same mapping to paths that page scripts build at run time, and guards links, `window.open` and forms against leaving the archive.
-5. **Catalogue database** (`tools/build_db.py`): one SQLite file holding every artifact:
+6. **Catalogue database** (`tools/build_db.py`): one SQLite file holding every artifact:
    - `artifacts` — one row per unique file, by sha256;
    - `locations` — every place an artifact appears, in every theme;
    - `blobs` — the evidence bytes themselves;
    - `fts` — an FTS5 full-text index;
    - `nodes` and `edges` — a graph: page→embeds/links→artifact, artifact→mentions→year, artifact→cites→source host, artifact→in_theme→theme. This is a ready base for graph-RAG.
    - `captures` — original URL → archived copy.
-6. **The 25 MB limit**: the database is VACUUMed (page size 4096) and split into 512 KB chunk files (`/db/cedwyn.sqlite3.0000`, `.0001`, …), far under GitHub's and Pages' per-file limits.
+7. **The 25 MB limit**: the database is VACUUMed (page size 4096) and split into 512 KB chunk files (`/db/cedwyn.sqlite3.0000`, `.0001`, …), far under GitHub's and Pages' per-file limits.
    The browser fetches only the chunk files a query touches (sql.js-httpvfs, chunked mode). Each request is one whole chunk file, because Cloudflare Pages answers HTTP Range requests with the whole file. No server, no D1, no cron.
-7. **GraphQL** (`/graphql/`): one schema (`web/_cedwyn/cat.js`) resolved in the browser against the database.
+8. **GraphQL** (`/graphql/`): one schema (`web/_cedwyn/cat.js`) resolved in the browser against the database.
    It covers themes, artifacts, locations, full-text search, graph edges, nodes and captures. The catalogue page `/catalogue/` uses the same layer.
-8. **Outbound-link test** (`tools/check_links.py`): the build fails if any external `<a>`/`<area>` href or form action survives,
+9. **Outbound-link test** (`tools/check_links.py`): the build fails if any external `<a>`/`<area>` href or form action survives,
    or if the excluded YouTube channel appears anywhere.
 
 ### Why images are binary BLOBs, not base64 text
