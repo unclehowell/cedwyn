@@ -26,6 +26,7 @@ BIN = {'.jpg','.jpeg','.png','.gif','.webp','.svg','.avif','.ico','.bmp','.tif',
 TXT_DATA = {'.js','.mjs','.json','.xml','.txt','.csv','.md','.webmanifest'}
 stats = dict(pages=0, css=0, cross=0, prefixed=0, outbound=0, blobbed_refs=0, banned=0, injected=0)
 D = len(DIST.parts)
+import time as _tt; _T0 = _tt.time()
 
 # ---------- 1. dedupe plan
 files = [p for p in DIST.rglob('*') if p.is_file() and len(p.parts) > D + 1 and p.parts[D] in TIDS]
@@ -108,7 +109,7 @@ def rw(u, tid, link, page_rel):
         return resolve_blob('/' + tid + s, page_rel)
     return resolve_blob(s, page_rel)
 ATTR = re.compile(r"""(\s)(href|src|action|poster|data-src|data-href|data-original|srcset|style|content)(\s*=\s*)("[^"]*"|'[^']*'|[^\s"'>]+)""", re.I)
-TAG = re.compile(r'<([a-zA-Z][\w:-]*)(\s[^<>]*?)?(/?)>', re.S)
+TAG = re.compile(r'''<([a-zA-Z][\w:-]*)(\s(?:[^<>"']|"[^"]*"|'[^']*')*?)?(/?)>''', re.S)
 CSSURL = re.compile(r"""url\(\s*(['"]?)([^'")]+)\1\s*\)""", re.I)
 CSSIMP = re.compile(r"""@import\s+(['"])([^'"]+)\1""", re.I)
 def rw_css(text, tid, page_rel):
@@ -159,16 +160,30 @@ def rw_html(html, tid, page_rel):
         html = (html[:mh.end()] + inj + html[mh.end():]) if mh else inj + html
     stats['injected'] += 1
     return html
-for p in list(DIST.rglob('*')):
-    if not p.is_file() or len(p.parts) <= D + 1 or p.parts[D] not in TIDS: continue
+def do_file(p):
+    st0 = dict.fromkeys(stats, 0); stats.clear(); stats.update(st0)
     tid = p.parts[D]; rel = '/' + '/'.join(p.parts[D:]); ext = p.suffix.lower()
-    if ext in ('.html', '.htm'):
-        b = p.read_bytes()
-        try: s = b.decode('utf-8')
-        except UnicodeDecodeError: s = b.decode('latin-1')
-        p.write_text(rw_html(s, tid, rel), 'utf-8'); stats['pages'] += 1
-    elif ext == '.css':
-        s = p.read_text('utf-8', 'ignore'); p.write_text(rw_css(s, tid, rel), 'utf-8'); stats['css'] += 1
+    try:
+        if ext in ('.html', '.htm'):
+            b = p.read_bytes()
+            try: s = b.decode('utf-8')
+            except UnicodeDecodeError: s = b.decode('latin-1')
+            p.write_text(rw_html(s, tid, rel), 'utf-8'); stats['pages'] += 1
+        elif ext == '.css':
+            s = p.read_text('utf-8', 'ignore'); p.write_text(rw_css(s, tid, rel), 'utf-8'); stats['css'] += 1
+    except Exception as e:
+        stats['errors'] = stats.get('errors', 0) + 1
+    return dict(stats)
+import time as _t, multiprocessing as _mp
+_t0 = _t.time()
+todo = [p for p in DIST.rglob('*') if p.is_file() and len(p.parts) > D + 1 and p.parts[D] in TIDS and p.suffix.lower() in ('.html', '.htm', '.css')]
+print('rewrite: files', len(todo), 'dedupe done in', round(_t.time() - _T0), 's', flush=True)
+tot = dict.fromkeys(stats, 0); tot['errors'] = 0
+with _mp.Pool(4) as pool:
+    for d in pool.imap_unordered(do_file, todo, chunksize=64):
+        for k, v in d.items(): tot[k] = tot.get(k, 0) + v
+stats.clear(); stats.update(tot)
+print('rewrite: done in', round(_t.time() - _t0), 's', flush=True)
 red = []
 for tid in TIDS:
     f = DIST / tid / '_redirects'

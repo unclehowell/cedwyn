@@ -38,13 +38,15 @@ jobs:
         run: python3 tools/site.py dist
       - name: Catalogue database (chunked)
         run: python3 tools/build_db.py dist
-      - name: Outbound-link test
-        run: python3 tools/check_links.py dist
+      - name: Outbound-link guard (rewrite any link the parser missed), then strict test
+        run: |
+          python3 tools/check_links.py dist --fix
+          python3 tools/check_links.py dist
       - name: Measure
         if: always()
         run: |
           mkdir -p dist/_cedwyn/reports
-          for f in _assemble_report.json _rewrite_report.json _outbound_test.json; do [ -f dist/$f ] && mv dist/$f dist/_cedwyn/reports/; done
+          for f in _assemble_report.json _rewrite_report.json _outbound_test.json _outbound_fix.json; do if [ -f dist/$f ]; then mv dist/$f dist/_cedwyn/reports/; fi; done
           rm -f dist/_blob_map.json dist/_theme_redirects.txt
           python3 - <<'PY'
           import os,json
@@ -71,6 +73,9 @@ jobs:
           TOKEN: ${{ github.token }}
         run: |
           git clone -q --depth 1 -b main "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" rep
-          mkdir -p rep/reports && cp dist/_cedwyn/reports/*.json rep/reports/ 2>/dev/null; cp dist/db/stats.json rep/reports/db.json 2>/dev/null; cp dist/_outbound_test.json rep/reports/ 2>/dev/null
+          mkdir -p rep/reports
+          cp dist/_cedwyn/reports/*.json rep/reports/ 2>/dev/null || true
+          cp dist/db/stats.json rep/reports/db.json 2>/dev/null || true
+          for f in _assemble_report.json _rewrite_report.json _outbound_test.json _outbound_fix.json; do if [ -f dist/$f ]; then cp dist/$f rep/reports/; fi; done
           cd rep && git config user.name "cedwyn-bot" && git config user.email "cedwyn-bot@users.noreply.github.com"
-          git add reports && git commit -q -m "Build reports — Sion's Tab agent" && git push -q origin main || echo "no report change"
+          git add reports && git commit -q -m "Build reports — Sion's Tab agent" && git pull -q --rebase origin main || true; git push -q origin main || echo "no report change"
