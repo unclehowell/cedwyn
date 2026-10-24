@@ -1,0 +1,10 @@
+/_blob/*
+  Cache-Control: public, max-age=31536000, immutable
+/_cedwyn/vendor/*
+  Cache-Control: public, max-age=86400
+/db/*
+  Cache-Control: public, max-age=300
+  Access-Control-Allow-Origin: *
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
