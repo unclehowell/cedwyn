@@ -5,15 +5,16 @@ Walks dist/ (all themes + the /_blob/ store) and writes one SQLite file:
   blobs (the evidence bytes themselves as BLOBs: images, PDFs, small media), fts (FTS5 full-text index of every page
   and data file), nodes + edges (graph: page->embeds/links->artifact, artifact->mentions->year, artifact->cites->host),
   captures (original URL -> archived copy, from the Wayback Vault index).
-Then VACUUMs (page_size 4096) and splits the file into <=20 MB chunks under dist/db/ for HTTP range reads
-(sql.js-httpvfs, chunked mode) - no server, no D1. - Sion's Tab agent"""
+Then VACUUMs (page_size 4096) and splits the file into 512 KB chunk files under dist/db/ (far under the 25 MB limit).
+The browser fetches only the chunk files a query touches (sql.js-httpvfs, chunked mode; one file per request, because
+Cloudflare Pages answers Range requests with the whole file) - no server, no D1. - Sion's Tab agent"""
 import json, os, re, sys, sqlite3, hashlib, pathlib, posixpath, html as H, mimetypes, urllib.parse
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CFG = json.load(open(ROOT / 'themes.json'))
 DIST = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else 'dist')
 OUT = DIST / 'db'; OUT.mkdir(parents=True, exist_ok=True)
 DBF = pathlib.Path('cedwyn.sqlite3'); DBF.unlink(missing_ok=True)
-CHUNK = 20 * 1024 * 1024
+CHUNK = int(os.environ.get('DB_CHUNK', 512 * 1024))   # Pages serves whole files (no Range), so each chunk file = one request
 BLOB_MAX = int(os.environ.get('BLOB_MAX', 2_500_000)); BLOB_TOTAL = int(os.environ.get('BLOB_TOTAL', 700_000_000))
 TIDS = [t['id'] for t in CFG['themes']]; D = len(DIST.parts)
 KIND = {'.html':'page','.htm':'page','.json':'data','.csv':'data','.xml':'data','.txt':'text','.md':'text','.css':'style','.js':'script','.mjs':'script',
@@ -145,7 +146,7 @@ with open(DBF, 'rb') as f:
         b = f.read(CHUNK)
         if not b: break
         (OUT / ('cedwyn.sqlite3.%03d' % n)).write_bytes(b); n += 1
-config = {'serverMode': 'chunked', 'requestChunkSize': 4096, 'databaseLengthBytes': size, 'serverChunkSize': CHUNK,
+config = {'serverMode': 'chunked', 'requestChunkSize': CHUNK, 'databaseLengthBytes': size, 'serverChunkSize': CHUNK,
           'urlPrefix': '/db/cedwyn.sqlite3.', 'suffixLength': 3}
 json.dump(config, open(OUT / 'config.json', 'w'))
 stats.update(db_bytes=size, chunks=n, chunk_max_bytes=CHUNK)

@@ -1,0 +1,38 @@
+name: rechunk-db
+# Re-splits the catalogue database already on branch `site` into smaller chunk files (no full rebuild). — Sion's Tab agent
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/rechunk.yml']
+permissions:
+  contents: write
+concurrency:
+  group: build-cedwyn
+  cancel-in-progress: false
+jobs:
+  rechunk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Re-split db on site
+        env:
+          TOKEN: ${{ github.token }}
+          CH: 524288
+        run: |
+          git clone -q --depth 1 -b site "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" pub
+          cd pub/db
+          cat $(ls cedwyn.sqlite3.* | sort) > ../../whole.sqlite3
+          ls -la ../../whole.sqlite3
+          git rm -q cedwyn.sqlite3.*
+          split -b $CH -d -a 4 ../../whole.sqlite3 cedwyn.sqlite3.
+          python3 - <<'PY'
+          import json,os
+          c=json.load(open('config.json')); size=os.path.getsize('../../whole.sqlite3'); ch=int(os.environ['CH'])
+          c.update(requestChunkSize=ch, serverChunkSize=ch, databaseLengthBytes=size, suffixLength=4)
+          json.dump(c,open('config.json','w'))
+          s=json.load(open('stats.json')); s.update(chunks=len([f for f in os.listdir('.') if f.startswith('cedwyn.sqlite3.')]), chunk_max_bytes=ch); json.dump(s,open('stats.json','w'),indent=1)
+          print(c, s['chunks'])
+          PY
+          cd .. && git config user.name "cedwyn-bot" && git config user.email "cedwyn-bot@users.noreply.github.com"
+          git add -A db && git commit -q -m "Catalogue DB in 512 KB chunk files (Pages serves whole files) — Sion's Tab agent" && git push -q origin site
