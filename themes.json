@@ -1,0 +1,527 @@
+{
+ "version": "1.0.0",
+ "note": "Theme registry for cedwyn.bucklerfamily.estate: one entry per former datro subdomain site (source: datro site_chain.json, 35 sites). research.bucklerfamily.estate is excluded upstream while it is down. — Sion's Tab agent",
+ "apex": {
+  "host": "bucklerfamily.estate",
+  "paths": {
+   "/cedwyn/": "estate",
+   "/patagonia/": "patagonia",
+   "/wales/": "wales",
+   "/cyberspace/": "cyberspace",
+   "/": "dartboard"
+  }
+ },
+ "media_hosts": [
+  "wayback-video.bucklerfamily.estate",
+  "wayback-pdf.bucklerfamily.estate",
+  "wayback-img.bucklerfamily.estate",
+  "wayback-html.bucklerfamily.estate",
+  "wayback-text.bucklerfamily.estate",
+  "internetarchive.bucklerfamily.estate",
+  "archive.org",
+  "web.archive.org"
+ ],
+ "extra_hosts": {
+  "story.bucklerfamily.estate": "story",
+  "emails.bucklerfamily.estate": "emails",
+  "clerk.bucklerfamily.estate": "wiki",
+  "www.bucklerfamily.estate": null
+ },
+ "themes": [
+  {
+   "id": "records",
+   "title": "Primary Records",
+   "cy": "Cofnodion Sylfaenol",
+   "es": "Registros Primarios",
+   "live": "https://records.bucklerfamily.estate/",
+   "hosts": [
+    "records.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "Great House Farm — Primary Record Register",
+   "branch": "ghf-primary-records",
+   "dir": ""
+  },
+  {
+   "id": "docs",
+   "title": "Docs · The Evidence Catalogue",
+   "cy": "Dogfennau · Y Catalog Tystiolaeth",
+   "es": "Documentos · El Catálogo de Pruebas",
+   "live": "https://docs.bucklerfamily.estate/",
+   "hosts": [
+    "docs.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "docs",
+   "dir": "public",
+   "build": "python3 _theme-docs/build.py",
+   "crawl_fallback": true
+  },
+  {
+   "id": "wayback",
+   "title": "The Wayback Vault",
+   "cy": "Claddgell Wayback",
+   "es": "La Bóveda Wayback",
+   "live": "https://wayback.bucklerfamily.estate/",
+   "hosts": [
+    "wayback.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "wayback",
+   "dir": "wayback"
+  },
+  {
+   "id": "nomenclature",
+   "title": "Nomenclature",
+   "cy": "Enwau",
+   "es": "Nomenclatura",
+   "live": "https://nomenclature.bucklerfamily.estate/",
+   "hosts": [
+    "nomenclature.bucklerfamily.estate",
+    "nomlecture.bucklerfamily.estate",
+    "nolecture.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "nomenclature",
+   "dir": "public"
+  },
+  {
+   "id": "maps",
+   "title": "The Map Room",
+   "cy": "Ystafell y Mapiau",
+   "es": "La Sala de Mapas",
+   "live": "https://maps.bucklerfamily.estate/",
+   "hosts": [
+    "maps.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "maps",
+   "dir": "public"
+  },
+  {
+   "id": "infographic",
+   "title": "The Land Changing Hands",
+   "cy": "Y Tir yn Newid Dwylo",
+   "es": "La Tierra Cambia de Manos",
+   "live": "https://infographic.bucklerfamily.estate/",
+   "hosts": [
+    "infographic.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "Great House Farm · the land changing hands",
+   "branch": "infographic",
+   "dir": "public"
+  },
+  {
+   "id": "wiki",
+   "title": "The Legal Wiki",
+   "cy": "Y Wici Cyfreithiol",
+   "es": "La Wiki Legal",
+   "live": "https://greathousefarmwiki.wordpress.com/",
+   "hosts": [
+    "greathousefarmwiki.wordpress.com",
+    "wiki.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "wiki",
+   "dir": "site"
+  },
+  {
+   "id": "ebooks",
+   "title": "The E-book Shelf",
+   "cy": "Y Silff E-lyfrau",
+   "es": "La Estantería de Libros",
+   "live": "https://ebooks.bucklerfamily.estate/",
+   "hosts": [
+    "ebooks.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "E-books",
+   "branch": "ebooks",
+   "dir": "public"
+  },
+  {
+   "id": "story",
+   "title": "The Story",
+   "cy": "Y Stori",
+   "es": "La Historia",
+   "live": "https://bpvsbuckler.bucklerfamily.estate/",
+   "hosts": [
+    "bpvsbuckler.bucklerfamily.estate",
+    "story.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "bpvsbuckler",
+   "dir": "static/bpvsbuckler/dist",
+   "root": "static/bpvsbuckler",
+   "build": "npm ci --no-audit --no-fund && npm run build",
+   "crawl_fallback": true
+  },
+  {
+   "id": "fb",
+   "title": "The Farm Album",
+   "cy": "Albwm y Fferm",
+   "es": "El Álbum de la Granja",
+   "live": "https://fb.bucklerfamily.estate/",
+   "hosts": [
+    "fb.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "fb",
+   "dir": "site"
+  },
+  {
+   "id": "chess",
+   "title": "The Chessboard",
+   "cy": "Y Bwrdd Gwyddbwyll",
+   "es": "El Tablero",
+   "live": "https://chess.bucklerfamily.estate/",
+   "hosts": [
+    "chess.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "chess",
+   "dir": "public"
+  },
+  {
+   "id": "csscpsg",
+   "title": "The Grammar House (CSSCPSGP)",
+   "cy": "Tŷ’r Gramadeg (CSSCPSGP)",
+   "es": "La Casa de la Gramática (CSSCPSGP)",
+   "live": "https://csscpsg.bucklerfamily.estate/",
+   "hosts": [
+    "csscpsg.bucklerfamily.estate",
+    "csscpsgp.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "csscpsg",
+   "dir": "public"
+  },
+  {
+   "id": "fcg",
+   "title": "FCG · Security Clearance",
+   "cy": "FCG · Clirio Diogelwch",
+   "es": "FCG · Habilitación de Seguridad",
+   "live": "https://fcg.bucklerfamily.estate/",
+   "hosts": [
+    "fcg.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "Clearance",
+   "crawl": "https://fcg.bucklerfamily.estate/"
+  },
+  {
+   "id": "oldbill",
+   "title": "Old Bill · Who Gained, Who Lost",
+   "cy": "Hen Bil · Pwy Enillodd, Pwy Gollodd",
+   "es": "Old Bill · Quién Ganó, Quién Perdió",
+   "live": "https://oldbill.bucklerfamily.estate/",
+   "hosts": [
+    "oldbill.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "oldbill",
+   "dir": "public"
+  },
+  {
+   "id": "accounts",
+   "title": "The Counting House",
+   "cy": "Y Tŷ Cyfrif",
+   "es": "La Casa de Cuentas",
+   "live": "https://accounts.bucklerfamily.estate/",
+   "hosts": [
+    "accounts.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "accounts",
+   "dir": "public"
+  },
+  {
+   "id": "authorities",
+   "title": "Public Authorities",
+   "cy": "Awdurdodau Cyhoeddus",
+   "es": "Autoridades Públicas",
+   "live": "https://authorities.bucklerfamily.estate/",
+   "hosts": [
+    "authorities.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "Great House Farm — Public Authority Correspondence",
+   "branch": "ghf-public-authorities",
+   "dir": ""
+  },
+  {
+   "id": "wdtk",
+   "title": "FOI Requests (WhatDoTheyKnow)",
+   "cy": "Ceisiadau Rhyddid Gwybodaeth (WhatDoTheyKnow)",
+   "es": "Solicitudes de información (WhatDoTheyKnow)",
+   "live": "https://whatdotheyknow.bucklerfamily.estate/",
+   "hosts": [
+    "whatdotheyknow.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "whatdotheyknow",
+   "dir": "public"
+  },
+  {
+   "id": "review",
+   "title": "Independent Review",
+   "cy": "Adolygiad Annibynnol",
+   "es": "Revisión Independiente",
+   "live": "https://review.bucklerfamily.estate/",
+   "hosts": [
+    "review.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "Great House Farm — Independent Review Register",
+   "branch": "ghf-independent-review",
+   "dir": ""
+  },
+  {
+   "id": "qa",
+   "title": "The Q&A Hall",
+   "cy": "Neuadd Holi ac Ateb",
+   "es": "La Sala de Preguntas",
+   "live": "https://qa.bucklerfamily.estate/",
+   "hosts": [
+    "qa.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "Questions & answers",
+   "branch": "qa",
+   "dir": ""
+  },
+  {
+   "id": "meeting",
+   "title": "The Council Chamber",
+   "cy": "Siambr y Cyngor",
+   "es": "La Sala del Consejo",
+   "live": "https://2026-10-22.bucklerfamily.estate/",
+   "hosts": [
+    "2026-10-22.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "2026-10-22",
+   "dir": "static/2026-10-22"
+  },
+  {
+   "id": "projects",
+   "title": "The Project Office",
+   "cy": "Swyddfa’r Prosiect",
+   "es": "La Oficina de Proyectos",
+   "live": "https://projects.bucklerfamily.estate/",
+   "hosts": [
+    "projects.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "projects",
+   "dir": "projects/public"
+  },
+  {
+   "id": "app",
+   "title": "The Case Office",
+   "cy": "Swyddfa’r Achos",
+   "es": "La Oficina del Caso",
+   "live": "https://app.bucklerfamily.estate/",
+   "hosts": [
+    "app.bucklerfamily.estate",
+    "apps.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "crawl": "https://app.bucklerfamily.estate/"
+  },
+  {
+   "id": "chat",
+   "title": "Ask the Archive",
+   "cy": "Holi’r Archif",
+   "es": "Pregunte al Archivo",
+   "live": "https://chat.bucklerfamily.estate/",
+   "hosts": [
+    "chat.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "Agent",
+   "crawl": "https://chat.bucklerfamily.estate/"
+  },
+  {
+   "id": "watchtower",
+   "title": "Watchtower",
+   "cy": "Y Tŵr Gwylio",
+   "es": "La Atalaya",
+   "live": "https://watchtower.bucklerfamily.estate/",
+   "hosts": [
+    "watchtower.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "watchtower",
+   "dir": "public"
+  },
+  {
+   "id": "fb2",
+   "title": "farmbook 2 · Today",
+   "cy": "farmbook 2 · Heddiw",
+   "es": "farmbook 2 · Hoy",
+   "live": "https://fb2.bucklerfamily.estate/",
+   "hosts": [
+    "fb2.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "fb",
+   "dir": "site2"
+  },
+  {
+   "id": "email",
+   "title": "The Post Office",
+   "cy": "Swyddfa’r Post",
+   "es": "La Oficina de Correos",
+   "live": "https://email.bucklerfamily.estate/",
+   "hosts": [
+    "email.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "crawl": "https://email.bucklerfamily.estate/"
+  },
+  {
+   "id": "emails",
+   "title": "The Post Office · Calendar",
+   "cy": "Swyddfa’r Post · Calendr",
+   "es": "La Oficina de Correos · Calendario",
+   "live": "https://email.bucklerfamily.estate/calendar/",
+   "hosts": [
+    "emails.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "emails",
+   "dir": "public"
+  },
+  {
+   "id": "dartboard",
+   "title": "Home · The Disclosure Dartboard",
+   "cy": "Hafan · Bwrdd Dartiau Datgelu",
+   "es": "Inicio · La Diana de la Divulgación",
+   "live": "https://bucklerfamily.estate/",
+   "hosts": [
+    "dartboard.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "crawl": "https://dartboard.bucklerfamily.estate/"
+  },
+  {
+   "id": "estate",
+   "title": "Cedwyn Estate",
+   "cy": "Ystâd Cedwyn",
+   "es": "Finca Cedwyn",
+   "live": "https://bucklerfamily.estate/cedwyn/",
+   "hosts": [
+    "bucklerfamily.estate",
+    "www.bucklerfamily.estate"
+   ],
+   "paths": [
+    "/",
+    "/cedwyn/"
+   ],
+   "desc": "",
+   "crawl": "https://bucklerfamily.estate/cedwyn/"
+  },
+  {
+   "id": "directory",
+   "title": "Cedwyn Estate Directory",
+   "cy": "Cyfeiriadur Ystâd Cedwyn",
+   "es": "Directorio de Finca Cedwyn",
+   "live": "https://directory.bucklerfamily.estate/",
+   "hosts": [
+    "directory.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "directory",
+   "dir": "public"
+  },
+  {
+   "id": "patagonia",
+   "title": "Great House Farm II · Patagonia Museum",
+   "cy": "Great House Farm II · Amgueddfa Patagonia",
+   "es": "Great House Farm II · Museo de la Patagonia",
+   "live": "https://bucklerfamily.estate/patagonia/",
+   "hosts": [],
+   "paths": [
+    "/patagonia/"
+   ],
+   "desc": "",
+   "crawl": "https://bucklerfamily.estate/patagonia/"
+  },
+  {
+   "id": "wales",
+   "title": "Virtual Tour · Wales",
+   "cy": "Taith Rithwir · Cymru",
+   "es": "Visita Virtual · Gales",
+   "live": "https://bucklerfamily.estate/wales/",
+   "hosts": [],
+   "paths": [
+    "/wales/"
+   ],
+   "desc": "",
+   "crawl": "https://bucklerfamily.estate/wales/"
+  },
+  {
+   "id": "terrain",
+   "title": "Terrain · Cedwyn Estate in 3D",
+   "cy": "Tirwedd · Ystâd Cedwyn mewn 3D",
+   "es": "Terreno · Finca Cedwyn en 3D",
+   "live": "https://terrain.bucklerfamily.estate/",
+   "hosts": [
+    "terrain.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "crawl": "https://terrain.bucklerfamily.estate/"
+  },
+  {
+   "id": "cyberspace",
+   "title": "The Digital Estate",
+   "cy": "Yr Ystâd Ddigidol",
+   "es": "La Finca Digital",
+   "live": "https://bucklerfamily.estate/cyberspace/",
+   "hosts": [],
+   "paths": [
+    "/cyberspace/"
+   ],
+   "desc": "",
+   "crawl": "https://bucklerfamily.estate/cyberspace/"
+  },
+  {
+   "id": "shop",
+   "title": "Gift Shop & Marketplace",
+   "cy": "Siop Anrhegion a Marchnad",
+   "es": "Tienda y Mercado",
+   "live": "https://shop.bucklerfamily.estate/",
+   "hosts": [
+    "shop.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "merch",
+   "dir": "public"
+  }
+ ]
+}

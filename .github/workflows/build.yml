@@ -1,0 +1,76 @@
+name: build-cedwyn
+# Builds cedwyn.bucklerfamily.estate from the mirrored theme branches: assemble -> rewrite -> site -> catalogue DB -> outbound-link test,
+# then commits the result to branch `site` (served by the Cloudflare Pages project "cedwyn"). Never touches datro. — Sion's Tab agent
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['tools/**', 'web/**', 'themes.json', '.github/workflows/build.yml']
+permissions:
+  contents: write
+concurrency:
+  group: build-cedwyn
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main, fetch-depth: 1 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Free disk
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          df -h .
+      - name: Fetch theme branches (tips only)
+        run: |
+          git init -q --bare mirror.git
+          REFS=$(python3 -c "import json;print(' '.join(sorted({'+refs/heads/%s:refs/heads/%s'%(t['branch'],t['branch']) for t in json.load(open('themes.json'))['themes'] if t.get('branch')})))")
+          git -C mirror.git fetch -q --depth 1 "https://github.com/${GITHUB_REPOSITORY}.git" $REFS
+          git -C mirror.git for-each-ref --format='%(refname:short)' | wc -l
+      - name: Assemble themes
+        run: MIRROR=mirror.git python3 tools/assemble.py dist
+      - name: Rewrite links, content-addressed store
+        run: python3 tools/rewrite.py dist
+      - name: Site root, runtime, archive interface
+        run: python3 tools/site.py dist
+      - name: Catalogue database (chunked)
+        run: python3 tools/build_db.py dist
+      - name: Outbound-link test
+        run: python3 tools/check_links.py dist
+      - name: Measure
+        if: always()
+        run: |
+          mkdir -p dist/_cedwyn/reports
+          for f in _assemble_report.json _rewrite_report.json _outbound_test.json; do [ -f dist/$f ] && mv dist/$f dist/_cedwyn/reports/; done
+          rm -f dist/_blob_map.json dist/_theme_redirects.txt
+          python3 - <<'PY'
+          import os,json
+          n=0;b=0;big=0
+          for r,d,f in os.walk('dist'):
+              for x in f:
+                  s=os.path.getsize(os.path.join(r,x)); n+=1; b+=s; big=max(big,s)
+          o={'files':n,'bytes':b,'largest':big}
+          json.dump(o,open('dist/_cedwyn/reports/size.json','w')); print(o)
+          PY
+          df -h .
+      - name: Publish to branch site
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          U="https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads "$U" site >/dev/null; then git clone -q --depth 1 -b site "$U" pub; else mkdir pub && git -C pub init -q -b site && git -C pub remote add origin "$U"; fi
+          rsync -a --delete --exclude .git dist/ pub/
+          cd pub && git config user.name "cedwyn-bot" && git config user.email "cedwyn-bot@users.noreply.github.com"
+          git add -A && git commit -q -m "Build from main ${GITHUB_SHA::7} — Sion's Tab agent" && git push -q origin site || echo "nothing to publish"
+      - name: Reports to main
+        if: always()
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          git clone -q --depth 1 -b main "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" rep
+          mkdir -p rep/reports && cp dist/_cedwyn/reports/*.json rep/reports/ 2>/dev/null; cp dist/db/stats.json rep/reports/db.json 2>/dev/null; cp dist/_outbound_test.json rep/reports/ 2>/dev/null
+          cd rep && git config user.name "cedwyn-bot" && git config user.email "cedwyn-bot@users.noreply.github.com"
+          git add reports && git commit -q -m "Build reports — Sion's Tab agent" && git push -q origin main || echo "no report change"
