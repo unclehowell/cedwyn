@@ -37,20 +37,12 @@
   "bytes": 38392878,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 1
+  "secs": 0
  },
  "ebooks": {
   "how": "branch",
   "files": 253,
   "bytes": 16119831,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1
- },
- "csscpsg": {
-  "how": "branch",
-  "files": 16,
-  "bytes": 475157,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 0
@@ -63,18 +55,18 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
+ "csscpsg": {
+  "how": "branch",
+  "files": 16,
+  "bytes": 475157,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
  "fb": {
   "how": "branch",
   "files": 576,
   "bytes": 9343452,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1
- },
- "oldbill": {
-  "how": "branch",
-  "files": 6,
-  "bytes": 316368,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 0
@@ -83,6 +75,14 @@
   "how": "branch",
   "files": 4,
   "bytes": 51033,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "oldbill": {
+  "how": "branch",
+  "files": 6,
+  "bytes": 316368,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 0
@@ -112,8 +112,8 @@
   "secs": 0
  },
  "_build_logs": {
-  "story": "error Clean install a project\nnpm error\nnpm error Usage:\nnpm error npm ci\nnpm error\nnpm error Options:\nnpm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]\nnpm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]\nnpm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-10-24T23_24_12_924Z-debug-0.log\n",
-  "docs": "nce/ev_0001 [en] html\n[docs] ghf_evidence/ev_0002 [en] html\n[docs] ghf_evidence/ev_0003 [en] html\n[docs] ghf_evidence/ev_0004 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0005 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0006 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0007 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\nsphinx -b html failed for /home/runner/work/cedwyn/cedwyn/src_tmp_docs/ghf_evidence/ev_0001/latest/source\n"
+  "story": "error Clean install a project\nnpm error\nnpm error Usage:\nnpm error npm ci\nnpm error\nnpm error Options:\nnpm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]\nnpm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]\nnpm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-10-24T23_52_51_423Z-debug-0.log\n",
+  "docs": "[en] html\n[docs] ghf_evidence/ev_0003 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0005 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0006 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0007 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0008 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\nsphinx -b html failed for /home/runner/work/cedwyn/cedwyn/src_tmp_docs/ghf_evidence/ev_0001/latest/source\n"
  },
  "meeting": {
   "how": "branch",
@@ -121,7 +121,7 @@
   "bytes": 1881628,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 1
+  "secs": 0
  },
  "qa": {
   "how": "branch",
@@ -155,14 +155,6 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
- "app": {
-  "how": "crawl",
-  "files": 19,
-  "bytes": 1134908,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1
- },
  "fb2": {
   "how": "branch",
   "files": 234,
@@ -170,6 +162,14 @@
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 0
+ },
+ "app": {
+  "how": "crawl",
+  "files": 19,
+  "bytes": 1134908,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 2
  },
  "emails": {
   "how": "branch",
@@ -179,14 +179,6 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
- "story": {
-  "how": "crawl(fallback)",
-  "files": 49,
-  "bytes": 1763396,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 5
- },
  "dartboard": {
   "how": "crawl",
   "files": 1,
@@ -194,6 +186,14 @@
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1
+ },
+ "wayback": {
+  "how": "branch",
+  "files": 5560,
+  "bytes": 892373406,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 5
  },
  "directory": {
   "how": "branch",
@@ -209,7 +209,7 @@
   "bytes": 11345925,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 2
+  "secs": 3
  },
  "estate": {
   "how": "crawl",
@@ -218,14 +218,6 @@
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1
- },
- "wayback": {
-  "how": "branch",
-  "files": 5560,
-  "bytes": 892373406,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 7
  },
  "patagonia": {
   "how": "crawl",
@@ -265,7 +257,7 @@
   "bytes": 32130,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 2
+  "secs": 1
  },
  "fcg": {
   "how": "crawl",
@@ -273,7 +265,15 @@
   "bytes": 584263,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 14
+  "secs": 11
+ },
+ "story": {
+  "how": "crawl(fallback)",
+  "files": 197,
+  "bytes": 4552034,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 13
  },
  "docs": {
   "how": "crawl(fallback)",
@@ -281,6 +281,6 @@
   "bytes": 20807841,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 136
+  "secs": 146
  }
 }

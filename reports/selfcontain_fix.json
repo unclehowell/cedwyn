@@ -1,0 +1,344 @@
+{
+ "files": 6019,
+ "changed": 4714,
+ "sub": 14307,
+ "ext": 46329,
+ "cdn": 414,
+ "boot_added": 625,
+ "boot_moved": 3201,
+ "tags_dropped": 357,
+ "filled_missing": {
+  "wanted": 342,
+  "copied": 221,
+  "not_found": [
+   [
+    "cyberspace/apple-touch-icon.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/favicon-32.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/favicon.ico",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/fonts/barlow-latin-300-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/fonts/barlow-latin-400-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/fonts/barlow-latin-700-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/fonts/press-start-2p-latin-400-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/ghf-lang/ghf-theme.css",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "dartboard/__grok/icon-180.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "dartboard/assets/index-CdEIP694.js",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "dartboard/assets/routes-CuQlDVEe.js",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "dartboard/assets/styles-B_C0WIGr.css",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "dartboard/favicon.svg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-500-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "email/mail-index.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/text-corpus-1.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/text-corpus-2.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/text-corpus-3.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/text-corpus-4.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/text-corpus-5.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/text-corpus-6.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "estate/apple-touch-icon.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "estate/asset-register.json",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "estate/brand/cedwyn-tent-icon-128.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "estate/brand/cedwyn-tent-icon-256.webp",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "estate/favicon-32.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "estate/favicon.ico",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "estate/fonts/barlow-latin-300-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "estate/fonts/barlow-latin-400-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "estate/fonts/barlow-latin-700-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "estate/fonts/barlow-latin-ext-400-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "estate/fonts/barlow-latin-ext-700-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "estate/ghf-lang/ghf-theme.css",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "estate/ghf-lang/locations.js",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "patagonia/apple-touch-icon.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "patagonia/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "patagonia/favicon-32.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "patagonia/favicon.ico",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "patagonia/fonts/barlow-latin-300-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "patagonia/fonts/barlow-latin-400-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "patagonia/fonts/barlow-latin-700-normal.woff2",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "patagonia/ghf-lang/ghf-theme.css",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "patagonia/locations-img/album-096.webp",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "patagonia/locations-img/madryn-sunrise.webp",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "patagonia/locations-img/punta-cuevas.webp",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/agent-index.json",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/agent-tools.js",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/api/control.json",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/api/timeline.json",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/assets/index-89LfAgl1.js",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/1988-cadw-barn.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/1988-cadw-farmhouse.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/ghf-e090-n01-1891-farmyard-theft.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/ghf-e090-n02-1897-marconi-lavernock.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/ghf-e090-n03-1974-open-day-telegraph.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/ghf-e090-n07-1988-chainsaw-farmer.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/ghf-e090-n07-1988-police-wait-photo.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/ghf-e090-n08-1988-history-fight.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/ghf-e090-n10-1988-western-mail-final-hearing.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/ghf-e090-n11-1988-tears-flow-razed.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/ghf-e090-n13-1989-farm-to-bus.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/ghf-e090-n14-1988-echo-front-page.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/media/ghf-e090-n16-1980-hansard-rowlands.jpg",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/favicons/apple-icon-144x144.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/favicons/apple-icon-180x180.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/favicons/apple-icon-72x72.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/favicons/apple-icon-precomposed.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/favicons/apple-icon.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/favicons/apple-touch-icon.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/favicons/favicon-96x96.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/favicons/ms-icon-144x144.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/flag/bv.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/flag/fr.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/flag/mf.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/flag/no.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/flag/sj.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/flag/um.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/flag/us.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/icons/handshake.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "qa/static/bpvsbuckler/static/archives/_theme-explorer/icons/techhouse.png",
+    "html fallback (not on the live site either)"
+   ]
+  ],
+  "not_found_n": 121
+ },
+ "vendored": 303,
+ "vendor_failed": [],
+ "vendor_failed_n": 0,
+ "allowed_tile_templates": [
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+ ]
+}
