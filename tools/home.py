@@ -66,7 +66,7 @@ def render(cfg):
 <style>
 {CSS}
 </style>
-<script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.8"></script>
+<script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.9"></script>
 </head>
 <body>
 <article class="plaque" aria-label="{e(title)} directory board">

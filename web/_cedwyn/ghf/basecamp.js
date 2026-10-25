@@ -266,19 +266,22 @@
   var CEDWYN_CHAIN = /*CEDWYN_CHAIN*/null;
   // 25 Oct 2026: the theme groups (themes.json "groups", filled by tools/site.py) for the side menu's dropdowns - Sion's Tab agent
   var CEDWYN_GROUPS = /*CEDWYN_GROUPS*/null;
+  // 25 Oct 2026: inside a section (/wales/<theme>/, /argentina/<theme>/, or the two hubs) the ‹ › and menu links stay in that
+  // section; on the Argentina side the menu drops "Farm" from the estate's names (themes.json / sections.json) - Sion's Tab agent
+  var CSEC = document.documentElement.getAttribute("data-cedwyn-sec-url") || "", CSECP = CSEC ? "/" + CSEC : "", CAMAP = /*CEDWYN_AMAP*/null;
   if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) {
     var CBY = {}; CHAIN.forEach(function (c) { CBY[c.id] = c; });
     CHAIN = CEDWYN_CHAIN.map(function (t) { var o = CBY[t[0]] || {}, r = {}, k; for (k in o) r[k] = o[k];
-      r.id = t[0]; r.t = o.t || t[1]; r.g = t[2] || ""; r.u = "/" + t[0] + "/"; r.h = []; r.p = ["/" + t[0] + "/"]; return r; });
+      r.id = t[0]; r.t = o.t || t[1]; r.g = t[2] || ""; r.u = CSECP + "/" + t[0] + "/"; r.h = []; r.p = ["/" + t[0] + "/"]; return r; });
   }
   var TOKENS = ":root{\n --ghf-font:Barlow,'Helvetica Neue',Arial,system-ui,-apple-system,'Segoe UI',sans-serif;\n --ghf-font-serif:Georgia,'Times New Roman',serif;\n --ghf-font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;\n --ghf-fs-xs:12px;--ghf-fs-sm:14px;--ghf-fs-base:16px;--ghf-fs-md:17px;--ghf-fs-lg:20px;--ghf-fs-xl:22px;--ghf-fs-2xl:26px;\n --ghf-lh:1.55;--ghf-lh-tight:1.2;\n --ghf-space-1:4px;--ghf-space-2:8px;--ghf-space-3:12px;--ghf-space-4:16px;--ghf-space-5:24px;--ghf-space-6:32px;--ghf-space-7:48px;\n --ghf-radius:6px;\n --ghf-bg:#000;--ghf-fg:#fff;--ghf-muted:#bdbdbd;--ghf-line:rgba(255,255,255,.18);\n --ghf-day-bg:#fff;--ghf-day-fg:#111;--ghf-day-muted:#555;--ghf-day-line:rgba(0,0,0,.12);\n --ghf-gold:#f2c94c;\n --ghf-wpbar:45px;\n}\n@media (min-width:783px){:root{--ghf-wpbar:49px;--ghf-fs-md:18px;--ghf-fs-lg:22px;--ghf-fs-xl:28px;--ghf-fs-2xl:36px}}\n\nhtml.ghf-shell:not(.ghf-keep-type) body{font-size:var(--ghf-fs-base);line-height:var(--ghf-lh)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h1:not(.ghf-v2-dup){font-size:var(--ghf-fs-2xl);line-height:var(--ghf-lh-tight)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h2{font-size:var(--ghf-fs-xl);line-height:var(--ghf-lh-tight)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h3{font-size:var(--ghf-fs-lg);line-height:1.3}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(p,li,dd,td){font-size:var(--ghf-fs-base)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(small,figcaption,.caption){font-size:var(--ghf-fs-sm)}\n\n:root{--ghf-fs-text:clamp(1rem,calc(1rem + (1vw - .2rem) * .545),1.3rem);--ghf-lh-text:1.55;--ghf-para:1em;--ghf-measure:760px;--ghf-radius:0px}\nhtml.ghf-hy:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(p,li,dd,blockquote){font-size:var(--ghf-fs-text);line-height:var(--ghf-lh-text)}\nhtml.ghf-hy:not(.ghf-keep-type) body :where(main,article,.content,#content) p:not(:last-child){margin-bottom:var(--ghf-para)}\nhtml.ghf-hy :is(button,input,select,textarea,.btn,.button,.card,.cta):not(.ghf-round){border-radius:0}"; // copy of ghf-tokens.css, used only where that file cannot load (a strict same-origin CSP)
   var V2 = (function () {
     var de = document.documentElement, wrap = null, chainBar = null, locBar = null, drawer = null, scrim = null, fsx = null, bgx = null;
     var shift = null, fsApi = false, lastFocus = null;
     var L = {
-      en: { prev: "Previous site", next: "Next site", of: "of", fs: "Full screen", fsx: "Exit full screen", menu: "Menu", close: "Close menu", here: "On this site", all: "Every site, in order", home: "Cedwyn Estate · Base Camp", mode: "Day / Night", top: "Top of this page", loc: "Location", chat: "Agent chat", values: "Values and Standards", ohome: "Home · the oak board", groups: "Themes by group", all37: "All {n} themes" },
-      cy: { prev: "Safle blaenorol", next: "Safle nesaf", of: "o", fs: "Sgrin lawn", fsx: "Gadael y sgrin lawn", menu: "Dewislen", close: "Cau’r ddewislen", here: "Ar y safle hwn", all: "Pob safle, yn eu trefn", home: "Ystâd Cedwyn · Gwersyll Sylfaen", mode: "Dydd / Nos", top: "Brig y dudalen hon", loc: "Lleoliad", chat: "Sgwrs â’r asiant", values: "Gwerthoedd a Safonau", ohome: "Hafan · y bwrdd derw", groups: "Themâu fesul grŵp", all37: "Y {n} thema i gyd" },
-      es: { prev: "Sitio anterior", next: "Sitio siguiente", of: "de", fs: "Pantalla completa", fsx: "Salir de pantalla completa", menu: "Menú", close: "Cerrar el menú", here: "En este sitio", all: "Todos los sitios, en orden", home: "Finca Cedwyn · Campamento base", mode: "Día / Noche", top: "Inicio de esta página", loc: "Lugar", chat: "Chat con el agente", values: "Valores y normas", ohome: "Inicio · el tablero de roble", groups: "Temas por grupo", all37: "Los {n} temas" }
+      en: { prev: "Previous site", next: "Next site", of: "of", fs: "Full screen", fsx: "Exit full screen", menu: "Menu", close: "Close menu", here: "On this site", all: "Every site, in order", home: "Cedwyn Estate · Base Camp", mode: "Day / Night", top: "Top of this page", loc: "Location", chat: "Agent chat", values: "Values and Standards", ohome: "Home · Wales or Argentina", oak: "The oak board · every layer", swales: "Wales · the AR tour", sarg: "Argentina · Great House II", groups: "Themes by group", all37: "All {n} themes" },
+      cy: { prev: "Safle blaenorol", next: "Safle nesaf", of: "o", fs: "Sgrin lawn", fsx: "Gadael y sgrin lawn", menu: "Dewislen", close: "Cau’r ddewislen", here: "Ar y safle hwn", all: "Pob safle, yn eu trefn", home: "Ystâd Cedwyn · Gwersyll Sylfaen", mode: "Dydd / Nos", top: "Brig y dudalen hon", loc: "Lleoliad", chat: "Sgwrs â’r asiant", values: "Gwerthoedd a Safonau", ohome: "Hafan · Cymru neu’r Ariannin", oak: "Y bwrdd derw · pob haen", swales: "Cymru · y daith AR", sarg: "Yr Ariannin · Great House II", groups: "Themâu fesul grŵp", all37: "Y {n} thema i gyd" },
+      es: { prev: "Sitio anterior", next: "Sitio siguiente", of: "de", fs: "Pantalla completa", fsx: "Salir de pantalla completa", menu: "Menú", close: "Cerrar el menú", here: "En este sitio", all: "Todos los sitios, en orden", home: "Finca Cedwyn · Campamento base", mode: "Día / Noche", top: "Inicio de esta página", loc: "Lugar", chat: "Chat con el agente", values: "Valores y normas", ohome: "Inicio · Gales o Argentina", oak: "El tablero de roble · todas las capas", swales: "Gales · la visita RA", sarg: "Argentina · Great House II", groups: "Temas por grupo", all37: "Los {n} temas" }
     };
     var IC_FS = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
     var IC_FSX = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>';
@@ -286,10 +289,10 @@
     var IC_CHAT = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H9l-4.5 4v-4H5.5A1.5 1.5 0 0 1 4 14.5z"/><path d="M8 9h8M8 12.5h5"/></svg>';
     function lg() { var l = (de.getAttribute("lang") || "en").slice(0, 2).toLowerCase(); return L[l] ? l : "en"; }
     function mk(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
-    function nm(st) { var l = lg(); return (l !== "en" && st[l]) || st.t; }
+    function nm(st) { var l = lg(), n0 = (l !== "en" && st[l]) || st.t; return (CAMAP && document.documentElement.getAttribute("data-cedwyn-sec") === "argentina" && CAMAP[n0]) || n0; }
     function find() {
       var i, j, best = -1, bl = -1, c, ps;
-      if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) { c = "/" + (location.pathname.split("/")[1] || "") + "/"; for (i = 0; i < CHAIN.length; i++) if (CHAIN[i].u === c) return i; return -1; }
+      if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) { c = CSECP + "/" + ((window.__cedwynLP || location.pathname).split("/")[1] || "") + "/"; for (i = 0; i < CHAIN.length; i++) if (CHAIN[i].u === c) return i; return -1; }
       for (i = 0; i < CHAIN.length; i++) {
         c = CHAIN[i]; ps = c.p || [];
         if (!apex) { for (j = 0; j < c.h.length; j++) if (c.h[j] === host) return i; continue; }
@@ -387,6 +390,8 @@
       var top = mk("ul", "ghf-v2-dl ghf-v2-dtop");
       li = mk("li"); a = mk("a", null, s.ohome || s.home); rawHref(a, HOME === "/" ? location.origin + "/" : HOME);
       a.onclick = function () { rawHref(this, HOME === "/" ? location.origin + "/" : HOME); setTimeout(closeDrawer, 10); }; if (location.pathname === "/" || location.pathname === "/index.html") a.setAttribute("aria-current", "page"); li.appendChild(a); top.appendChild(li);
+      [["/wales/", s.swales || "Wales"], ["/argentina/", s.sarg || "Argentina"], ["/explore/", s.oak || "The oak board"]].forEach(function (x) {
+        li = mk("li"); a = mk("a", null, x[1]); a.href = x[0]; if (location.pathname === x[0]) a.setAttribute("aria-current", "page"); a.onclick = function () { setTimeout(closeDrawer, 10); }; li.appendChild(a); top.appendChild(li); });
       li = mk("li"); a = mk("a", null, s.values || "Values and Standards"); a.href = "/values/"; if (/^\/values\//.test(location.pathname)) a.setAttribute("aria-current", "page"); li.appendChild(a); top.appendChild(li);
       inn.appendChild(top);
       var dh = mk("div", "ghf-v2-dh", s.groups); dh.setAttribute("role", "heading"); dh.setAttribute("aria-level", "2"); inn.appendChild(dh);
@@ -544,7 +549,7 @@
       pins();
       watchTitles();
       var later = function () { fitBody(); pins(); hideSiteBurgers(); dedupe(); // after parsing, so a page's own ghf-lang.js tag (with its data-site) is seen first
-        if (!window.GHFLang && !document.querySelector('script[src*="ghf-lang.js"]')) { var gs = document.createElement("script"); gs.src = "/_cedwyn/ghf/ghf-lang.js?v=2.1.4c"; gs.async = true; (document.head || de).appendChild(gs); } };
+        if (!window.GHFLang && !document.querySelector('script[src*="ghf-lang.js"]')) { var gs = document.createElement("script"); gs.src = "/_cedwyn/ghf/ghf-lang.js?v=2.1.4d"; gs.async = true; (document.head || de).appendChild(gs); } };
       if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", later); else setTimeout(later, 0);
       window.addEventListener("load", function () { fitBody(); pins(); setTimeout(function () { fitBody(); pins(); }, 1200); }); // pages whose CSS arrives late (bundled apps)
       hideSiteBurgers(); setTimeout(hideSiteBurgers, 1200); dedupe(); setTimeout(dedupe, 1200); window.addEventListener("load", function () { setTimeout(dedupe, 300); });

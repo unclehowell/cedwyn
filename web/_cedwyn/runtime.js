@@ -3,9 +3,23 @@
    outbound link to the archive interface (/wayback/go/). No tracking, no outbound requests. - Sion's Tab agent */
 (function () {
   var me = document.currentScript, T = (me && me.getAttribute('data-theme')) || location.pathname.split('/')[1] || '';
-  var P = '/' + T, HOSTS = __HOSTMAP__, APEX = __APEX__, MEDIA = __MEDIA__, THEMES = __THEMES__, COLLIDE = __COLLIDE__, VHOST = __VHOST__;
+  var SECTION_SPA = __SECTION_SPA__, P = '/' + T, HOSTS = __HOSTMAP__, APEX = __APEX__, MEDIA = __MEDIA__, THEMES = __THEMES__, COLLIDE = __COLLIDE__, VHOST = __VHOST__;
+  // 25 Oct 2026 (Sion): two sections over one database. /wales/<theme>/... and /argentina/<theme>/... serve the same theme files
+  // (Pages rewrites in _redirects, tools/sections.py); LP is the theme path without the section prefix. section.js adds the
+  // section ribbon and keeps theme links inside the section; the section gives the default language (Wales cy, Argentina es).
+  var DE0 = document.documentElement, SECM = /^\/(wales|argentina)(\/[^\/]+)/.exec(location.pathname), SEC = '', SS = '', LP = location.pathname;
+  if (T && SECM && SECM[2] === P) { SEC = SECM[1]; LP = location.pathname.slice(SEC.length + 1); }
+  try { if (SEC) sessionStorage.setItem('cedwyn-sec', SEC); else SS = sessionStorage.getItem('cedwyn-sec') || ''; } catch (e) {}
+  if (SEC) DE0.setAttribute('data-cedwyn-sec-url', SEC);
+  if (SEC || /^(wales|argentina)$/.test(SS)) {
+    DE0.setAttribute('data-cedwyn-sec', SEC || SS);
+    if (!DE0.getAttribute('data-ghf-lang-default')) DE0.setAttribute('data-ghf-lang-default', (SEC || SS) === 'wales' ? 'cy' : 'es');
+    if (SEC && SECTION_SPA.indexOf(T) >= 0) try { history.replaceState(history.state, '', LP + location.search + location.hash); } catch (e) {}   // a client-side router reads the plain theme path
+    var SJ = document.createElement('script'); SJ.src = '/_cedwyn/section.js?v=1.0.0'; SJ.async = true; (document.head || DE0).appendChild(SJ);
+  }
+  window.__cedwynSec = SEC; window.__cedwynLP = LP;
   // the shared header (basecamp.js) reads the theme's former address from <html data-ghf-host / data-ghf-path>
-  (function () { var v = VHOST[T]; if (!v) return; var de = document.documentElement, rest = location.pathname.slice(P.length).replace(/^\/+/, '');
+  (function () { var v = VHOST[T]; if (!v) return; var de = document.documentElement, rest = LP.slice(P.length).replace(/^\/+/, '');
     if (!de.getAttribute('data-ghf-host')) de.setAttribute('data-ghf-host', v[0]);
     if (!de.getAttribute('data-ghf-path')) de.setAttribute('data-ghf-path', v[1] + rest); })();
   // Stage 3: every theme reads its data and evidence from the one catalogue database. The service worker (/cedwyn-sw.js)
@@ -34,8 +48,8 @@
     return DBP;
   }
   function dbPath(u) { try { var x = new URL(u, location.href); return x.origin === location.origin && DBX.test(x.pathname) && !/^\/(db|_cedwyn)\//.test(x.pathname) ? x.pathname : null; } catch (e) { return null; } }
-  function fromDB(path) { return dbfs().then(function (D) { return D.get(path); }); }
-  var RES = ['/_cedwyn/', '/_blob/', '/db/', '/graphql', '/catalogue', '/wayback/go/', '/values/'];
+  function fromDB(path) { return dbfs().then(function (D) { var p2 = path.replace(/^\/(wales|argentina)(\/[^\/]+\/)/, '$2'); return D.get(path).then(function (r) { return r || p2 === path ? r : D.get(p2); }); }); }
+  var RES = ['/_cedwyn/', '/_blob/', '/db/', '/graphql', '/catalogue', '/wayback/go/', '/values/', '/argentina/', '/explore/'];
   function starts(u, a) { for (var i = 0; i < a.length; i++) if (u.indexOf(a[i]) === 0) return true; return false; }
   function mapHost(host, path) {
     host = host.toLowerCase();
