@@ -26,7 +26,7 @@ def crawl(url, out, robots=False, quota='150m', t=420, sitemap=None):
             report.setdefault('_sitemap', {})[out.name] = len(locs)
         except Exception as e: report.setdefault('_sitemap', {})[out.name] = 'failed: ' + str(e)[:80]
     r = sh(f"wget -q {rob} {seeds} --mirror --level={level} --page-requisites --adjust-extension --convert-links=off --no-parent "
-           f"--restrict-file-names=windows --timeout=20 --tries=2 --quota={quota} -U 'Mozilla/5.0 cedwyn-archive' -P {tmp} '{url}'", t=t)
+           f"--restrict-file-names=windows --timeout=20 --tries=4 --waitretry=20 --retry-on-http-error=429,503 --quota={quota} -U 'Mozilla/5.0 cedwyn-archive' -P {tmp} '{url}'", t=t)
     host = url.split('/')[2]; base = tmp / host
     sub = url.split(host, 1)[1].strip('/')
     src = base / sub if sub else base
