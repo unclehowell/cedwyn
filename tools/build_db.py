@@ -21,7 +21,7 @@ KIND = {'.html':'page','.htm':'page','.json':'data','.csv':'data','.xml':'data',
         '.jpg':'image','.jpeg':'image','.png':'image','.gif':'image','.webp':'image','.svg':'image','.avif':'image','.ico':'image','.bmp':'image','.tif':'image','.tiff':'image',
         '.pdf':'document','.doc':'document','.docx':'document','.mp3':'audio','.m4a':'audio','.ogg':'audio','.wav':'audio','.mp4':'video','.webm':'video','.mov':'video',
         '.woff':'font','.woff2':'font','.ttf':'font','.otf':'font','.eot':'font'}
-BLOB_KINDS = {'image', 'document', 'audio'}
+BLOB_KINDS = {'image', 'document', 'audio', 'data'}   # 'data': every theme's own JSON/CSV/XML feeds live in the catalogue too (stage 2)
 YEAR = re.compile(r'\b(1[0-9]{3}|20[0-2][0-9])\b')
 con = sqlite3.connect(DBF); con.execute('PRAGMA page_size=4096'); con.execute('PRAGMA journal_mode=OFF'); con.execute('PRAGMA synchronous=OFF')
 con.executescript('''
