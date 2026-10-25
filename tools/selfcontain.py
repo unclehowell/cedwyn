@@ -135,6 +135,9 @@ BLOCK = re.compile(r'(<(script|style)\b[^>]*>)(.*?)(</\2\s*>)', re.S | re.I)
 COMMENT = re.compile(r'<!--.*?-->', re.S)
 DROP_SCRIPT = re.compile(r'<script\b[^>]*\bsrc\s*=\s*["\'][^"\']*followers\.bucklerfamily\.estate/follow\.js[^"\']*["\'][^>]*>\s*</script>', re.I)
 GHF_SRC = re.compile(r'''(?<=["'=])((?:https?:)?//(?:www\.)?bucklerfamily\.estate|/dartboard)?/(?:ghf-lang/(ghf-boot|ghf-lang|basecamp)|(basecamp))\.js(\?[^"'\s>]*)?''', re.I)
+TOUR_TAG = re.compile(r'<script\b[^>]*(?:estate-tour\.js|data-estate-tour-loader)[^>]*>\s*</script>\s*', re.I)
+TOUR_SHELL = re.compile(r'<header\b[^>]*data-estate-tour-shell[^>]*>.*?</header>\s*', re.I | re.S)
+TOUR_NAV = re.compile(r'<nav\b[^>]*data-estate-tour-nav[^>]*>.*?</nav>\s*', re.I | re.S)
 TOUR_SRC = re.compile(r'''(?:https?:)?//research\.bucklerfamily\.estate/estate-tour\.js(\?[^"'\s>]*)?''', re.I)
 
 def fix_attr(tag, name, val, tagtext, page):
@@ -160,7 +163,9 @@ def do_html(s, page):
     if FIX:
         n0 = len(s)
         s, k = DROP_SCRIPT.subn('', s); stats['tags_dropped'] += k
-        s = TOUR_SRC.sub('/_cedwyn/ghf/estate-tour.js', s)
+        # Sion 25 Oct 00:59: the second bar ("Estate website tour") is removed everywhere; only the 3-row header stays
+        s, k1 = TOUR_TAG.subn('', s); s, k2 = TOUR_SHELL.subn('', s); s, k3 = TOUR_NAV.subn('', s)
+        stats['tour_removed'] = stats.get('tour_removed', 0) + k1 + k2 + k3
         s = GHF_SRC.sub(lambda m: m.group(0) if (m.group(3) and not m.group(1)) else '/_cedwyn/ghf/' + (m.group(2) or m.group(3)) + '.js?v=2.1.4c', s)
     # split into comments / script+style blocks / markup, keep comments and text as written
     out = []; pos = 0
@@ -398,6 +403,7 @@ def main():
                 if set(vendor) != v0:
                     fetch_vendor(); ONLY = ['_ext']; run(); ONLY = []
         filled['not_found_n'] = len(filled['not_found']); filled['not_found'] = filled['not_found'][:80]
+        run()   # one last full pass: every file, including everything copied above, goes through the same rules
         o = dict(stats, filled_missing=filled, vendored=got, vendor_failed=failed[:50], vendor_failed_n=len(failed), allowed_tile_templates=sorted(tiles_seen))
         json.dump(o, open(rep / 'selfcontain_fix.json', 'w'), indent=1)
         print(json.dumps({k: v for k, v in o.items() if k != 'vendor_failed'})[:900]); return 0

@@ -53,7 +53,9 @@ jobs:
           python3 tools/check_links.py dist --fix
           python3 tools/check_links.py dist
       - name: Self-contained test (fails on ANY reference to a subdomain or an external host)
-        run: python3 tools/selfcontain.py dist
+        run: |
+          python3 tools/selfcontain.py dist --fix --no-fill
+          python3 tools/selfcontain.py dist
       - name: Measure
         if: always()
         run: |
