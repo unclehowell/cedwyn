@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>WordPress.com</ShortName>
+  <LongName>Search WordPress.com Blogs</LongName>
+  <Description>Search content from blog posts hosted at WordPress.com.</Description>
+  <Image type="image/vnd.microsoft.icon" height="16" width="16">http://s.wordpress.com/favicon.ico</Image>
+  <Developer>Automattic</Developer>
+  <Url type="application/opensearchdescription+xml" rel="self" template="/wayback/go/?u=http%3A%2F%2Fen.wordpress.com%2Fopensearch.xml" />
+  <Url type="text/html" rel="results" template="/wayback/go/?u=http%3A%2F%2Fen.search.wordpress.com%2F%3Fq%3D%7BsearchTerms%7D%26page%3D%7BstartPage%3F%7D" />
+  <Url type="application/rss+xml" rel="results" template="/wayback/go/?u=http%3A%2F%2Fen.search.wordpress.com%2F%3Fq%3D%7BsearchTerms%7D%26f%3Dfeed%26page%3D%7BstartPage%3F%7D" />
+  <Url type="application/json" rel="results" template="/wayback/go/?u=http%3A%2F%2Fen.search.wordpress.com%2F%3Fq%3D%7BsearchTerms%7D%26f%3Djson%26page%3D%7BstartPage%3F%7D" />
+  <Query role="example" searchTerms="BBQ" />
+</OpenSearchDescription>
