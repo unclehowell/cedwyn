@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "id": "INT-0001",
+      "subject_type": "source_record",
+      "subject_id": "SRC-BP-BUCKLER-1987-BAILII",
+      "status": "supported_by_cited_record",
+      "title": "The 1987 appeal's scope must not be enlarged beyond the farmhouse and garden",
+      "text": "The published judgment says the appeal was limited to the farmhouse and garden, and that the possession order concerning the rest of the farm was not challenged on appeal. The safe interpretation is that the appeal judgment cannot be cited as if every parcel, boundary, title event, planning decision, archaeological question, or institutional allegation was judicially determined in that appeal.",
+      "basis_source_ids": [
+        "SRC-BP-BUCKLER-1987-BAILII"
+      ],
+      "evidence_for": [
+        {
+          "source_id": "SRC-BP-BUCKLER-1987-BAILII",
+          "pinpoint": "paragraph 2",
+          "note": "The judgment expressly describes the appeal as limited to the farmhouse and garden and says the order for the rest of the farm was not challenged."
+        }
+      ],
+      "evidence_against_or_limits": [
+        {
+          "source_id": "SRC-BP-BUCKLER-1987-BAILII",
+          "pinpoint": "paragraphs 4–39",
+          "note": "The judgment recounts wider farm history and addresses several historical events; that narrative does not enlarge the formal scope of the appeal."
+        }
+      ],
+      "alternative_explanations": [
+        "Some broader factual history may be relevant context without being a matter decided on appeal.",
+        "Other parts of the dispute may have been determined in separate proceedings or records that must be assessed individually."
+      ],
+      "what_would_confirm": [
+        "A check of the complete judgment and pleadings confirms the appeal's stated limits.",
+        "Separate orders or judgments are located for any additional issue said to have been adjudicated."
+      ],
+      "what_would_refute_or_modify": [
+        "A separate final order or judgment is produced that expressly decides an issue beyond the farmhouse-and-garden appeal."
+      ],
+      "unresolved_questions": [
+        "Which issues were determined by separate orders, and which remained undecided?",
+        "Which exact parcels and plans were included in each proceeding?"
+      ],
+      "confidence": "Established as to the text of the published judgment; other proceedings remain unassessed",
+      "updated": "2026-10-25"
+    },
+    {
+      "id": "INT-0002",
+      "subject_type": "source_record",
+      "subject_id": "SRC-BP-BUCKLER-1987-BAILII",
+      "status": "working_interpretation",
+      "title": "The 1987 judgment is a source for the legal result, not independent proof of every antecedent document",
+      "text": "The judgment records the court's reasoning and outcome, including its treatment of adverse possession and the 1974 letters. For events that occurred decades earlier, it is also a later narrative source based on material before the court. The original letters, orders, conveyances, plans, registry applications, and archive files should be catalogued separately when located, linked to this judgment, and assessed for independence.",
+      "basis_source_ids": [
+        "SRC-BP-BUCKLER-1987-BAILII"
+      ],
+      "evidence_for": [
+        {
+          "source_id": "SRC-BP-BUCKLER-1987-BAILII",
+          "pinpoint": "paragraphs 11–18",
+          "note": "The judgment recounts the 1974 proceedings and letters and the first-registration position."
+        },
+        {
+          "source_id": "SRC-BP-BUCKLER-1987-BAILII",
+          "pinpoint": "paragraphs 21–39",
+          "note": "The judgment sets out the Court of Appeal's reasoning and disposition."
+        }
+      ],
+      "evidence_against_or_limits": [
+        {
+          "source_id": "SRC-BP-BUCKLER-1987-BAILII",
+          "pinpoint": "whole judgment",
+          "note": "The judgment may quote or summarize documents that are themselves significant sources; its value is not limited to being a secondary narrative, but the original artifacts still need separate provenance records where available."
+        }
+      ],
+      "alternative_explanations": [
+        "The original documents may survive in court, company, solicitor, Land Registry, archive, or private files.",
+        "Some quoted documents may be the best currently accessible version; a transcription can remain useful while its status is clearly stated."
+      ],
+      "what_would_confirm": [
+        "The original or best surviving copy of each key antecedent document is located, hashed, described, and cross-linked.",
+        "The judgment's citations and factual summaries are compared with those documents."
+      ],
+      "what_would_refute_or_modify": [
+        "An original document or a different authoritative court record materially contradicts a relevant summary in the published judgment."
+      ],
+      "unresolved_questions": [
+        "Which underlying exhibits and pleadings are available from the court or archive?",
+        "Which descriptions currently rely only on the judgment, later family testimony, or derivative copies?"
+      ],
+      "confidence": "Strongly supported as a provenance rule; document-by-document verification outstanding",
+      "updated": "2026-10-25"
+    }
+  ]
+}
