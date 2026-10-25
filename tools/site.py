@@ -31,9 +31,11 @@ rt.write_text(rt.read_text().replace('__HOSTMAP__', json.dumps(hosts)).replace('
               .replace('__THEMES__', json.dumps(tids)).replace('__COLLIDE__', json.dumps(collide)).replace('__VHOST__', json.dumps(vhost)))
 # 25 Oct 2026: the shared header's ‹ › and menu step through ONE ordered list of every theme (themes.json order), wrapping round
 bc = DIST / '_cedwyn' / 'ghf' / 'basecamp.js'
-chain = [[t['id'], t.get('title') or t['id']] for t in CFG['themes']]
+chain = [[t['id'], t.get('title') or t['id'], t.get('group') or CFG.get('default_group') or ''] for t in CFG['themes']]
+# 25 Oct 2026: the side menu's group dropdowns read the same groups as the oak board (themes.json "groups") - Sion's Tab agent
+menu_groups = [{'id': g['id'], 't': g.get('title') or g['id'], 'cy': g.get('cy', ''), 'es': g.get('es', '')} for g in CFG.get('groups', [])]
 assert len({c[0] for c in chain}) == len(chain), 'duplicate theme id in themes.json'
-bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False))
+bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False)).replace('/*CEDWYN_GROUPS*/null', json.dumps(menu_groups, ensure_ascii=False))
               .replace('HOME = "https://bucklerfamily.estate/cedwyn/"', 'HOME = "/"')
               # DARTBOARD_NAMES: the dartboard theme is the dartboard app now, not the home (header and menu names)
               .replace('"Home · The Disclosure Dartboard"', '"The Disclosure Dartboard"').replace('"Hafan · Bwrdd Dartiau Datgelu"', '"Bwrdd Dartiau Datgelu"')

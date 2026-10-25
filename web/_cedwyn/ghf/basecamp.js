@@ -264,19 +264,21 @@
   // A page's theme is the first segment of its address (/records/ … /research/), so every page of a theme knows its place,
   // ‹ from 1 goes to 36 and › from 36 goes to 1. Links are the internal /<theme>/ routes, never the old addresses.
   var CEDWYN_CHAIN = /*CEDWYN_CHAIN*/null;
+  // 25 Oct 2026: the theme groups (themes.json "groups", filled by tools/site.py) for the side menu's dropdowns - Sion's Tab agent
+  var CEDWYN_GROUPS = /*CEDWYN_GROUPS*/null;
   if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) {
     var CBY = {}; CHAIN.forEach(function (c) { CBY[c.id] = c; });
     CHAIN = CEDWYN_CHAIN.map(function (t) { var o = CBY[t[0]] || {}, r = {}, k; for (k in o) r[k] = o[k];
-      r.id = t[0]; r.t = o.t || t[1]; r.u = "/" + t[0] + "/"; r.h = []; r.p = ["/" + t[0] + "/"]; return r; });
+      r.id = t[0]; r.t = o.t || t[1]; r.g = t[2] || ""; r.u = "/" + t[0] + "/"; r.h = []; r.p = ["/" + t[0] + "/"]; return r; });
   }
   var TOKENS = ":root{\n --ghf-font:Barlow,'Helvetica Neue',Arial,system-ui,-apple-system,'Segoe UI',sans-serif;\n --ghf-font-serif:Georgia,'Times New Roman',serif;\n --ghf-font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;\n --ghf-fs-xs:12px;--ghf-fs-sm:14px;--ghf-fs-base:16px;--ghf-fs-md:17px;--ghf-fs-lg:20px;--ghf-fs-xl:22px;--ghf-fs-2xl:26px;\n --ghf-lh:1.55;--ghf-lh-tight:1.2;\n --ghf-space-1:4px;--ghf-space-2:8px;--ghf-space-3:12px;--ghf-space-4:16px;--ghf-space-5:24px;--ghf-space-6:32px;--ghf-space-7:48px;\n --ghf-radius:6px;\n --ghf-bg:#000;--ghf-fg:#fff;--ghf-muted:#bdbdbd;--ghf-line:rgba(255,255,255,.18);\n --ghf-day-bg:#fff;--ghf-day-fg:#111;--ghf-day-muted:#555;--ghf-day-line:rgba(0,0,0,.12);\n --ghf-gold:#f2c94c;\n --ghf-wpbar:45px;\n}\n@media (min-width:783px){:root{--ghf-wpbar:49px;--ghf-fs-md:18px;--ghf-fs-lg:22px;--ghf-fs-xl:28px;--ghf-fs-2xl:36px}}\n\nhtml.ghf-shell:not(.ghf-keep-type) body{font-size:var(--ghf-fs-base);line-height:var(--ghf-lh)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h1:not(.ghf-v2-dup){font-size:var(--ghf-fs-2xl);line-height:var(--ghf-lh-tight)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h2{font-size:var(--ghf-fs-xl);line-height:var(--ghf-lh-tight)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h3{font-size:var(--ghf-fs-lg);line-height:1.3}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(p,li,dd,td){font-size:var(--ghf-fs-base)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(small,figcaption,.caption){font-size:var(--ghf-fs-sm)}\n\n:root{--ghf-fs-text:clamp(1rem,calc(1rem + (1vw - .2rem) * .545),1.3rem);--ghf-lh-text:1.55;--ghf-para:1em;--ghf-measure:760px;--ghf-radius:0px}\nhtml.ghf-hy:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(p,li,dd,blockquote){font-size:var(--ghf-fs-text);line-height:var(--ghf-lh-text)}\nhtml.ghf-hy:not(.ghf-keep-type) body :where(main,article,.content,#content) p:not(:last-child){margin-bottom:var(--ghf-para)}\nhtml.ghf-hy :is(button,input,select,textarea,.btn,.button,.card,.cta):not(.ghf-round){border-radius:0}"; // copy of ghf-tokens.css, used only where that file cannot load (a strict same-origin CSP)
   var V2 = (function () {
     var de = document.documentElement, wrap = null, chainBar = null, locBar = null, drawer = null, scrim = null, fsx = null, bgx = null;
     var shift = null, fsApi = false, lastFocus = null;
     var L = {
-      en: { prev: "Previous site", next: "Next site", of: "of", fs: "Full screen", fsx: "Exit full screen", menu: "Menu", close: "Close menu", here: "On this site", all: "Every site, in order", home: "Cedwyn Estate · Base Camp", mode: "Day / Night", top: "Top of this page", loc: "Location", chat: "Agent chat", values: "Values and Standards" },
-      cy: { prev: "Safle blaenorol", next: "Safle nesaf", of: "o", fs: "Sgrin lawn", fsx: "Gadael y sgrin lawn", menu: "Dewislen", close: "Cau’r ddewislen", here: "Ar y safle hwn", all: "Pob safle, yn eu trefn", home: "Ystâd Cedwyn · Gwersyll Sylfaen", mode: "Dydd / Nos", top: "Brig y dudalen hon", loc: "Lleoliad", chat: "Sgwrs â’r asiant", values: "Gwerthoedd a Safonau" },
-      es: { prev: "Sitio anterior", next: "Sitio siguiente", of: "de", fs: "Pantalla completa", fsx: "Salir de pantalla completa", menu: "Menú", close: "Cerrar el menú", here: "En este sitio", all: "Todos los sitios, en orden", home: "Finca Cedwyn · Campamento base", mode: "Día / Noche", top: "Inicio de esta página", loc: "Lugar", chat: "Chat con el agente", values: "Valores y normas" }
+      en: { prev: "Previous site", next: "Next site", of: "of", fs: "Full screen", fsx: "Exit full screen", menu: "Menu", close: "Close menu", here: "On this site", all: "Every site, in order", home: "Cedwyn Estate · Base Camp", mode: "Day / Night", top: "Top of this page", loc: "Location", chat: "Agent chat", values: "Values and Standards", ohome: "Home · the oak board", groups: "Themes by group", all37: "All {n} themes" },
+      cy: { prev: "Safle blaenorol", next: "Safle nesaf", of: "o", fs: "Sgrin lawn", fsx: "Gadael y sgrin lawn", menu: "Dewislen", close: "Cau’r ddewislen", here: "Ar y safle hwn", all: "Pob safle, yn eu trefn", home: "Ystâd Cedwyn · Gwersyll Sylfaen", mode: "Dydd / Nos", top: "Brig y dudalen hon", loc: "Lleoliad", chat: "Sgwrs â’r asiant", values: "Gwerthoedd a Safonau", ohome: "Hafan · y bwrdd derw", groups: "Themâu fesul grŵp", all37: "Y {n} thema i gyd" },
+      es: { prev: "Sitio anterior", next: "Sitio siguiente", of: "de", fs: "Pantalla completa", fsx: "Salir de pantalla completa", menu: "Menú", close: "Cerrar el menú", here: "En este sitio", all: "Todos los sitios, en orden", home: "Finca Cedwyn · Campamento base", mode: "Día / Noche", top: "Inicio de esta página", loc: "Lugar", chat: "Chat con el agente", values: "Valores y normas", ohome: "Inicio · el tablero de roble", groups: "Temas por grupo", all37: "Los {n} temas" }
     };
     var IC_FS = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
     var IC_FSX = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>';
@@ -358,6 +360,55 @@
       }
       return out;
     }
+    // ---- Cedwyn side menu (25 Oct 2026, Sion: "dropdowns for the theme/layers pages and separate dropdown under it for the 37
+    // various themes/ layers"): Home + Values, one collapsible dropdown per group, then ONE separate dropdown of every theme in
+    // canonical order. Both come from the single theme list (themes.json via CEDWYN_CHAIN/CEDWYN_GROUPS). - Sion's Tab agent
+    var ddOpen = null;
+    function ddBlock(inn, id, label, count, open, list, extra) {
+      var b = mk("button", "ghf-v2-dd" + (extra ? " " + extra : "")); b.type = "button"; b.id = id + "-b";
+      b.setAttribute("aria-expanded", open ? "true" : "false"); b.setAttribute("aria-controls", id);
+      var lb = mk("span", "ghf-v2-ddt", label); if (count != null) lb.appendChild(mk("span", "ghf-v2-ddn", String(count))); b.appendChild(lb);
+      var ch = mk("span", "ghf-v2-ddc"); ch.setAttribute("aria-hidden", "true"); ch.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'; b.appendChild(ch);
+      list.id = id; list.className += " ghf-v2-ddl"; list.setAttribute("aria-labelledby", id + "-b");
+      b.onclick = function () { var o = b.getAttribute("aria-expanded") !== "true"; b.setAttribute("aria-expanded", o ? "true" : "false"); ddOpen[id] = o; };
+      inn.appendChild(b); inn.appendChild(list);
+    }
+    function themeLink(st, i, k) {
+      var li = mk("li"), a = mk("a"); a.href = st.u; a.appendChild(mk("span", "ghf-v2-ddi", (i + 1) + "")); a.appendChild(document.createTextNode(nm(st)));
+      if (i === k) a.setAttribute("aria-current", "page");
+      a.onclick = function () { setTimeout(closeDrawer, 10); }; li.appendChild(a); return li;
+    }
+    // the oak board link: the in-theme path prefixer (runtime.js) turns "/" into "/<theme>/", so the href is written as an
+    // absolute address through an attribute node (which the prefixer does not wrap) and written again on click
+    function rawHref(a, u) { try { var at = document.createAttribute("href"); at.value = u; a.setAttributeNode(at); } catch (e) { a.href = u; } }
+    function fillCedwyn(s, k, inn) {
+      var l = lg(), cur = k >= 0 ? CHAIN[k].g : "", li, a;
+      if (!ddOpen) { ddOpen = {}; if (cur) ddOpen["ghf-dd-" + cur] = true; }
+      var top = mk("ul", "ghf-v2-dl ghf-v2-dtop");
+      li = mk("li"); a = mk("a", null, s.ohome || s.home); rawHref(a, HOME === "/" ? location.origin + "/" : HOME);
+      a.onclick = function () { rawHref(this, HOME === "/" ? location.origin + "/" : HOME); setTimeout(closeDrawer, 10); }; if (location.pathname === "/" || location.pathname === "/index.html") a.setAttribute("aria-current", "page"); li.appendChild(a); top.appendChild(li);
+      li = mk("li"); a = mk("a", null, s.values || "Values and Standards"); a.href = "/values/"; if (/^\/values\//.test(location.pathname)) a.setAttribute("aria-current", "page"); li.appendChild(a); top.appendChild(li);
+      inn.appendChild(top);
+      var dh = mk("div", "ghf-v2-dh", s.groups); dh.setAttribute("role", "heading"); dh.setAttribute("aria-level", "2"); inn.appendChild(dh);
+      CEDWYN_GROUPS.forEach(function (g) {
+        var ul = mk("ul", "ghf-v2-dl"), n = 0;
+        CHAIN.forEach(function (st, i) { if (st.g === g.id) { ul.appendChild(themeLink(st, i, k)); n++; } });
+        if (!n) return;
+        var id = "ghf-dd-" + g.id;
+        ddBlock(inn, id, (l !== "en" && g[l]) || g.t, n, !!ddOpen[id], ul, g.id === cur ? "ghf-v2-ddcur" : "");
+      });
+      var ol = mk("ol", "ghf-v2-dl ghf-v2-dall");
+      CHAIN.forEach(function (st, i) { var li2 = mk("li"), a2 = mk("a", null, nm(st)); a2.href = st.u; if (i === k) a2.setAttribute("aria-current", "page"); a2.onclick = function () { setTimeout(closeDrawer, 10); }; li2.appendChild(a2); ol.appendChild(li2); });
+      ddBlock(inn, "ghf-dd-all", (s.all37 || "All {n} themes").replace("{n}", CHAIN.length), null, !!ddOpen["ghf-dd-all"], ol, "ghf-v2-dd37");
+      var links = harvest();
+      if (links.length) {
+        var dh1 = mk("div", "ghf-v2-dh", s.here); dh1.setAttribute("role", "heading"); dh1.setAttribute("aria-level", "2"); inn.appendChild(dh1);
+        var ul2 = mk("ul", "ghf-v2-dl");
+        li = mk("li"); a = mk("a", null, s.top); a.href = "#"; a.onclick = function (e) { e.preventDefault(); closeDrawer(); window.scrollTo(0, 0); }; li.appendChild(a); ul2.appendChild(li);
+        links.forEach(function (x) { li = mk("li"); a = mk("a", null, x[0]); a.href = x[1]; a.onclick = function () { setTimeout(closeDrawer, 10); }; li.appendChild(a); ul2.appendChild(li); });
+        inn.appendChild(ul2);
+      }
+    }
     function fillDrawer() {
       var s = L[lg()], k = find(), inn = drawer.querySelector(".ghf-v2-din"); inn.textContent = "";
       var hd = mk("div", "ghf-v2-dhd"); hd.appendChild(mk("b", null, k >= 0 ? nm(CHAIN[k]) : host));
@@ -368,6 +419,7 @@
         cb.innerHTML = IC_CHAT + '<span class="ghf-mode-txt">' + s.chat + "</span>"; cb.onclick = function () { closeDrawer(); if (window.GHFChatOpen) window.GHFChatOpen(); }; row.appendChild(cb); }
       inn.appendChild(row);
       try { GT.wire(mb); } catch (e) {}
+      if (CEDWYN_GROUPS && CEDWYN_GROUPS.length) { fillCedwyn(s, k, inn); return; }
       var links = harvest();
       var dh1 = mk("div", "ghf-v2-dh", s.here); dh1.setAttribute("role", "heading"); dh1.setAttribute("aria-level", "2"); inn.appendChild(dh1);
       var ul = mk("ul", "ghf-v2-dl"), li, a;
@@ -544,6 +596,11 @@
       "html[data-ghf-mode=day] .ghf-v2-dh{color:var(--ghf-p,#0a0a0a)!important}html[data-ghf-mode=day] .ghf-v2-mode,html[data-ghf-mode=day] .ghf-v2-dx{color:#111!important;border-color:rgba(0,0,0,.35)!important}" +
       "html[data-ghf-mode=day] .ghf-v2-fsx,html[data-ghf-mode=day] .ghf-v2-bgx{background:rgba(255,255,255,.85)!important;color:#000!important}" +
       "html.ghf-v2-on .ghf-top,html.ghf-v2-on .ghf-sub{display:none!important}html.ghf-v2-on{overflow-x:clip}" +
+      ".ghf-v2-dtop{margin-top:10px!important}.ghf-v2-dd{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px;width:100%!important;min-height:46px;margin:0!important;padding:10px 4px!important;background:transparent!important;color:#fff!important;border:0!important;border-bottom:1px solid rgba(255,255,255,.16)!important;border-radius:0!important;box-shadow:none!important;font:500 15px/1.25 var(--ghf-font,Barlow,Arial,sans-serif)!important;letter-spacing:normal!important;text-transform:none!important;text-align:left!important;cursor:pointer;-webkit-tap-highlight-color:transparent}" +
+      ".ghf-v2-ddt{flex:1 1 auto;min-width:0}.ghf-v2-ddn{display:inline-block;margin-left:8px;padding:1px 7px;border-radius:9px;background:rgba(255,255,255,.12);font-size:12px;font-weight:400;vertical-align:1px}.ghf-v2-ddc{flex:0 0 18px;display:flex;transition:transform .2s}.ghf-v2-dd[aria-expanded=true] .ghf-v2-ddc{transform:rotate(180deg)}.ghf-v2-dd[aria-expanded=true],.ghf-v2-ddcur{color:var(--ghf-s,#f2c94c)!important}.ghf-v2-dd:hover{color:var(--ghf-s,#f2c94c)!important}" +
+      ".ghf-v2-ddl{display:none!important;margin:0 0 4px 2px!important;padding:0 0 0 12px!important;border-left:2px solid var(--ghf-s,#f2c94c)!important}.ghf-v2-dd[aria-expanded=true]+.ghf-v2-ddl{display:block!important}.ghf-v2-ddl a{padding:11px 4px!important;min-height:44px;box-sizing:border-box}.ghf-v2-ddi{display:inline-block;min-width:1.9em;opacity:.55;font-size:.8em}" +
+      ".ghf-v2-dd37{margin-top:16px!important;padding:10px 12px!important;border:1px solid rgba(255,255,255,.3)!important;border-radius:4px!important;letter-spacing:.08em!important;text-transform:uppercase!important;font-size:13px!important}.ghf-v2-dd37[aria-expanded=true]{border-bottom-left-radius:0!important;border-bottom-right-radius:0!important}.ghf-v2-dd37+.ghf-v2-dall{counter-reset:ghfc}.ghf-v2-dd37+.ghf-v2-dall a::before{content:counter(ghfc) '. '!important;opacity:.55;font-size:.85em}" +
+      "html[data-ghf-mode=day] .ghf-v2-dd{color:#111!important;border-color:rgba(0,0,0,.14)!important}html[data-ghf-mode=day] .ghf-v2-dd[aria-expanded=true],html[data-ghf-mode=day] .ghf-v2-ddcur{color:var(--ghf-p,#0a0a0a)!important;font-weight:600!important}html[data-ghf-mode=day] .ghf-v2-ddn{background:rgba(0,0,0,.08)}html[data-ghf-mode=day] .ghf-v2-ddl{border-left-color:var(--ghf-p,#0a0a0a)!important}html[data-ghf-mode=day] .ghf-v2-dd37{border-color:rgba(0,0,0,.35)!important}" +
       "@media print{.ghf-v2,.ghf-v2-fsx,.ghf-v2-bgx,.ghf-v2-drawer,.ghf-v2-scrim{display:none!important}}";
     return { mount: mount, find: find, chain: CHAIN, wrap: function () { return wrap; }, fullscreen: toggleFs, menu: openDrawer };
   })();

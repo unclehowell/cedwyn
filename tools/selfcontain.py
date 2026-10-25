@@ -22,7 +22,7 @@ FIX = '--fix' in sys.argv
 ONLY = [a.split('=', 1)[1] for a in sys.argv if a.startswith('--only=')]
 SELF = 'cedwyn.bucklerfamily.estate'
 ABS = 'https://' + SELF
-BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.7'
+BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.8'
 TIDS = [t['id'] for t in CFG['themes']]
 HOST = {}
 for t in CFG['themes']:
