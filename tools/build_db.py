@@ -130,6 +130,35 @@ if wi.exists():
         for it in json.load(open(wi)).get('items', []):
             con.execute('INSERT OR IGNORE INTO captures VALUES(?,?,?,?,?)', (it.get('key'), it.get('url'), it.get('title'), '/wayback' + (it.get('latest') or ''), it.get('captured')))
     except Exception as e: print('captures: ', e)
+# Layers (25 Oct 2026): a layer is a reading over the same evidence, stored as rows that point at artifacts already in this
+# database (never copies). First layer: "1000 Cuts" (web/thousand-cuts/cuts.json) - the dated cuts to the Williams family's
+# standing in law, each with its evidence pages (artifact ids via locations) and its dependencies (graph edges cut->depends_on->cut). - Sion's Tab agent
+con.executescript('''
+CREATE TABLE IF NOT EXISTS layers(id TEXT PRIMARY KEY, title TEXT, subtitle TEXT, version TEXT, built TEXT, doc TEXT);
+CREATE TABLE IF NOT EXISTS layer_items(layer TEXT, id TEXT, kind TEXT, seq INTEGER, tier INTEGER, date TEXT, event TEXT, blow TEXT, label TEXT, context INTEGER, PRIMARY KEY(layer, id)) WITHOUT ROWID;
+CREATE TABLE IF NOT EXISTS layer_refs(layer TEXT, item TEXT, ev TEXT, path TEXT, aid INTEGER);
+CREATE TABLE IF NOT EXISTS layer_deps(layer TEXT, item TEXT, depends_on TEXT, PRIMARY KEY(layer, item, depends_on)) WITHOUT ROWID;
+''')
+n_layer_items = n_layer_refs = n_layer_deps = 0
+for lf in sorted(DIST.glob('*/layer.json')):
+    try: L = json.load(open(lf))
+    except Exception as e: print('layer', lf, e); continue
+    lid = L['slug']; slim = {k: v for k, v in L.items() if k not in ('peak', 'cuts')}
+    con.execute('INSERT OR REPLACE INTO layers VALUES(?,?,?,?,?,?)', (lid, L.get('title'), L.get('subtitle'), L.get('version'), L.get('built'), json.dumps(slim, ensure_ascii=False)))
+    node('layer:' + lid, 'layer', L.get('title') or lid)
+    items = [dict(x, kind='peak', layer_n=0) for x in L.get('peak', [])] + [dict(x, kind='cut', layer_n=x.get('layer', 0)) for x in L.get('cuts', [])]
+    for seq, x in enumerate(items):
+        con.execute('INSERT OR REPLACE INTO layer_items VALUES(?,?,?,?,?,?,?,?,?,?)', (lid, x['id'], x['kind'], seq, int(x['layer_n']), x.get('date'), x.get('event'),
+                    x.get('blow') or x.get('note'), x.get('label'), 1 if x.get('context') else 0)); n_layer_items += 1
+        nid = f'{lid}:{x["id"]}'; node(nid, 'layer_item', (x.get('date', '') + ' ' + x.get('event', ''))[:120]); edge(nid, 'in_layer', 'layer:' + lid)
+        for r in x.get('refs', []):
+            p = '/' + (L.get('ref_theme') or 'research') + r['path']; p2 = p + 'index.html' if p.endswith('/') else p
+            aid = path_aid.get(p2) or path_aid.get(p)
+            con.execute('INSERT INTO layer_refs VALUES(?,?,?,?,?)', (lid, x['id'], r.get('ev'), p, aid)); n_layer_refs += 1
+            if aid: edge(nid, 'cites', f'a:{aid}')
+        for d in x.get('depends_on', []):
+            con.execute('INSERT OR IGNORE INTO layer_deps VALUES(?,?,?)', (lid, x['id'], d)); n_layer_deps += 1
+            edge(nid, 'depends_on', f'{lid}:{d}')
 for t in CFG['themes']:
     nf = con.execute('SELECT count(*) FROM locations WHERE theme=?', (t['id'],)).fetchone()[0]
     npg = con.execute("SELECT count(*) FROM locations l JOIN artifacts a ON a.id=l.aid WHERE l.theme=? AND a.kind='page'", (t['id'],)).fetchone()[0]
@@ -138,7 +167,8 @@ for t in CFG['themes']:
 cnt = lambda q: con.execute(q).fetchone()[0]
 stats = dict(artifacts=cnt('SELECT count(*) FROM artifacts'), locations=cnt('SELECT count(*) FROM locations'), blobs=cnt('SELECT count(*) FROM blobs'),
              blob_bytes=blob_total, blob_skipped_over_cap=blob_skipped, edges=cnt('SELECT count(*) FROM edges'), nodes=cnt('SELECT count(*) FROM nodes'),
-             fts_rows=cnt('SELECT count(*) FROM fts'), captures=cnt('SELECT count(*) FROM captures'), cites=n_ext, themes=len(TIDS))
+             fts_rows=cnt('SELECT count(*) FROM fts'), captures=cnt('SELECT count(*) FROM captures'), cites=n_ext, themes=len(TIDS),
+             layer_items=n_layer_items, layer_refs=n_layer_refs, layer_deps=n_layer_deps)
 for k, v in stats.items(): con.execute('INSERT INTO meta VALUES(?,?)', (k, str(v)))
 con.commit()
 con.execute("INSERT INTO fts(fts) VALUES('optimize')"); con.commit()

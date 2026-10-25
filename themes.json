@@ -1,6 +1,6 @@
 {
  "version": "1.0.0",
- "note": "Theme registry for cedwyn.bucklerfamily.estate: one entry per former datro subdomain site (source: datro site_chain.json, 35 sites). research.bucklerfamily.estate was added as the 36th theme on 25 Oct 2026 (crawl of the live site). — Sion's Tab agent",
+ "note": "Theme registry for cedwyn.bucklerfamily.estate: one entry per former datro subdomain site (source: datro site_chain.json, 35 sites). research.bucklerfamily.estate was added as the 36th theme on 25 Oct 2026 (crawl of the live site). — Sion's Tab agent '1000 Cuts' (thousand-cuts) added as the 37th theme on 25 Oct 2026: a layer over the same evidence (web/thousand-cuts/, rows in the database's layer tables), not a former subdomain. — Sion's Tab agent",
  "apex": {
   "host": "bucklerfamily.estate",
   "paths": {
@@ -538,6 +538,17 @@
    "paths": [],
    "desc": "",
    "crawl": "https://research.bucklerfamily.estate/"
+  },
+  {
+   "id": "thousand-cuts",
+   "title": "1000 Cuts",
+   "cy": "Mil o Doriadau",
+   "es": "Mil Cortes",
+   "live": "https://research.bucklerfamily.estate/timeline/thousand-cuts/",
+   "hosts": [],
+   "paths": [],
+   "desc": "Every event that lowered the Williams family's standing in law, 1916–1988, with its evidence and dependencies (a layer over the catalogue; rows in the database's layer tables).",
+   "layer": true
   }
  ],
  "allowed_tile_templates": [
@@ -553,5 +564,7 @@
   "dartboard/campus/index.html": "https://bucklerfamily.estate/campus/",
   "dartboard/webapp/index.html": "https://bucklerfamily.estate/webapp/"
  },
- "ytimg_checked": {"vF25-sLZXaM": "Wales at Six — Archif Ddarlledu Cymru | Wales Broadcast Archive (@walesbroadcastdarlleducymru), oEmbed read 25 Oct 2026"}
+ "ytimg_checked": {
+  "vF25-sLZXaM": "Wales at Six — Archif Ddarlledu Cymru | Wales Broadcast Archive (@walesbroadcastdarlleducymru), oEmbed read 25 Oct 2026"
+ }
 }

@@ -34,6 +34,7 @@ The old repo (`unclehowell/datro`) and the old subdomains are untouched: this re
    - `fts` — an FTS5 full-text index;
    - `nodes` and `edges` — a graph: page→embeds/links→artifact, artifact→mentions→year, artifact→cites→source host, artifact→in_theme→theme. This is a ready base for graph-RAG.
    - `captures` — original URL → archived copy.
+   - `layers`, `layer_items`, `layer_refs`, `layer_deps` — readings over the same evidence (first: 1000 Cuts): each item points at catalogued pages (artifact ids), never copies; dependencies are also graph edges (`depends_on`).
 7. **The 25 MB limit**: the database is VACUUMed (page size 4096) and split into 512 KB chunk files (`/db/cedwyn.sqlite3.0000`, `.0001`, …), far under GitHub's and Pages' per-file limits.
    The browser fetches only the chunk files a query touches (sql.js-httpvfs, chunked mode). Each request is one whole chunk file, because Cloudflare Pages answers HTTP Range requests with the whole file. No server, no D1, no cron.
 8. **GraphQL** (`/graphql/`): one schema (`web/_cedwyn/cat.js`) resolved in the browser against the database.
@@ -112,6 +113,7 @@ See `reports/` (written by every build): `db.json` (database size, chunk count, 
 | Terrain · Cedwyn Estate in 3D | `/terrain/` | terrain.bucklerfamily.estate | crawl of live site |
 | The Digital Estate | `/cyberspace/` | bucklerfamily.estate/cyberspace | crawl of live site |
 | Gift Shop & Marketplace | `/shop/` | shop.bucklerfamily.estate | branch `merch` /public |
+| 1000 Cuts | `/thousand-cuts/` | (a layer, not a former subdomain; same page on research.bucklerfamily.estate/timeline/thousand-cuts/) | `web/thousand-cuts/` + `layer.json` → database tables `layers`, `layer_items`, `layer_refs`, `layer_deps` |
 
 ## What remains (stage 2)
 
