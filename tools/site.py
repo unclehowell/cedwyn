@@ -31,7 +31,7 @@ rt.write_text(rt.read_text().replace('__HOSTMAP__', json.dumps(hosts)).replace('
               .replace('__THEMES__', json.dumps(tids)).replace('__COLLIDE__', json.dumps(collide)).replace('__VHOST__', json.dumps(vhost)))
 # 25 Oct 2026: the shared header's ‹ › and menu step through ONE ordered list of every theme (themes.json order), wrapping round
 bc = DIST / '_cedwyn' / 'ghf' / 'basecamp.js'
-chain = [[t['id'], t.get('title') or t['id'], t.get('group') or CFG.get('default_group') or ''] for t in CFG['themes']]
+chain = [[t['id'], t.get('title') or t['id'], t.get('group') or CFG.get('default_group') or '', t.get('cy') or '', t.get('es') or ''] for t in CFG['themes']]   # cy/es: the menu names each theme in the visitor's language
 # 25 Oct 2026: the side menu's group dropdowns read the same groups as the oak board (themes.json "groups") - Sion's Tab agent
 menu_groups = [{'id': g['id'], 't': g.get('title') or g['id'], 'cy': g.get('cy', ''), 'es': g.get('es', '')} for g in CFG.get('groups', [])]
 assert len({c[0] for c in chain}) == len(chain), 'duplicate theme id in themes.json'
