@@ -1,0 +1,12 @@
+{
+ "rule": "Client-side routers of crawled single-page themes (25 Oct 2026): a crawled TanStack Start app was built to live at a site root, so under /<theme>/ (and /wales/<theme>/, /argentina/<theme>/) its router read the path as an unknown page and showed \"Not Found\". Each entry tells that theme's router its base path at run time (runtime.js sets window.__cedwynSec before the bundle runs). Same schema as ingredients.json; file may be a glob so a re-hashed crawl still matches; a find that is not present is reported, never fatal. — Sion's Tab agent",
+ "version": "1.0.0",
+ "rewords": [
+  {
+   "theme": "dartboard",
+   "file": "assets/index-*.js",
+   "find": "basepath:``,serializationAdapters",
+   "replace": "basepath:(window.__cedwynSec?\"/\"+window.__cedwynSec:\"\")+\"/dartboard\",serializationAdapters"
+  }
+ ]
+}

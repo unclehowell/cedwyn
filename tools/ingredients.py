@@ -2,12 +2,12 @@
 """Cedwyn editorial rule: ingredients, not conclusions (25 Oct 2026).
 Applies ingredients.json to the assembled site (dist/<theme>/<file>): exact find -> replace of sentences that hand the reader a
 conclusion, in the cedwyn copy only (datro and its subdomains are never touched). Missing finds are reported, never fatal.
-Also applies app-demo-factcheck.json (the app theme demo fact-check, same schema); an entry's file may be a glob
+Also applies app-demo-factcheck.json (the app theme demo fact-check, same schema) and spa-basepath.json (the base path of a crawled single-page theme's router, so it does not show "Not Found" under /<theme>/); an entry's file may be a glob
 (e.g. assets/webapp-*.js) so a re-hashed crawl still matches.
 Called from tools/site.py so it runs before the self-contained pass and the catalogue database (the FTS index carries the
 reworded text). Report: dist/_cedwyn/reports/ingredients.json. — Sion's Tab agent"""
 import json, pathlib, sys
-CONFIGS = ('ingredients.json', 'app-demo-factcheck.json')
+CONFIGS = ('ingredients.json', 'app-demo-factcheck.json', 'spa-basepath.json')   # spa-basepath.json: router base paths of crawled SPA themes
 def _files(dist, e):
     rel = e.get('file', 'index.html'); base = dist / e['theme']
     if any(ch in rel for ch in '*?['): return sorted(base.glob(rel))
