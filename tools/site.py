@@ -95,3 +95,6 @@ sta = [l for l in lines if l not in dyn]
   Cache-Control: no-transform
 ''')   # no-transform: the zone's automatic analytics snippet is not injected, so pages make no request to another host
 print('site ok', len(lines), 'redirects,', len(caps), 'captures')
+# Editorial rule (25 Oct 2026): ingredients, not conclusions - reword conclusion sentences in mirrored theme text (ingredients.json). - Sion's Tab agent
+import ingredients
+ingredients.apply(DIST)

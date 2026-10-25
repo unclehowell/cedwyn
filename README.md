@@ -303,3 +303,7 @@ Every theme now reads its data and evidence from the catalogue database. Before 
 - wiki: gaps → close. It has the same content and no failed loads. What still differs comes from the shared 3-row header, which the wiki never had: the header's theme sets one font (Barlow) and the page background. The live wiki also counts 9 more images (emoji, tracking pixels, the wordpress.com logo).
 - dartboard stays in gaps. It is measured against the apex home, while the cedwyn dartboard theme is the dartboard app that its branch builds.
 - Close, unchanged: fb, fb2, directory and terrain. Each calls a server API that a static site has none of.
+
+## Editorial rule: ingredients, not conclusions
+
+Since 25 Oct 2026 every page follows [EDITORIAL.md](EDITORIAL.md): the site presents cited ingredients (date, event, what changed, evidence link inside Cedwyn, label, open questions), never a finished conclusion. Conclusion sentences in mirrored theme text are reworded at build time from `ingredients.json` (`tools/ingredients.py`, run from `tools/site.py`); the datro sources are untouched. — Sion's Tab agent

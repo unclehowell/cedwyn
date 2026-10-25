@@ -1,8 +1,8 @@
 {
  "slug": "thousand-cuts",
  "title": "1000 Cuts",
- "subtitle": "How the Williams family's standing in law was cut down, from the peak to the fall",
- "version": "1.0.0",
+ "subtitle": "A dated chronology of the Williams family's position at Great House Farm in law and in fact, 1870s to 1988, each step linked to its evidence",
+ "version": "2.1.0",
  "built": "2026-10-25",
  "peak": [
   {
@@ -20,11 +20,11 @@
     }
    ],
    "label": "Record",
-   "note": "The family's long occupation is on record. The same records describe it as a tenancy from Bute, which is the frame the law later used.",
    "enabled": [
     "C01",
     "C06"
-   ]
+   ],
+   "changed": "On paper, the occupation is a tenancy from the Bute estate: the 1904 rent audit [EV-0227] and the Feb 1916 tenancy with plan [EV-0014] both name John Williams as tenant."
   },
   {
    "id": "P2",
@@ -45,8 +45,9 @@
     }
    ],
    "label": "Not yet confirmed",
-   "note": "The 1897 press and Kemp's diary extracts record the tests but do not name Great House Farm. The stay would be confirmed by the full Kemp diary (Bodleian MS. Marconi 89) or a letter placing the team at the farm.",
-   "enabled": []
+   "enabled": [],
+   "changed": "The 1897 press and the extracts of Kemp's diary record the tests at Lavernock and Flat Holm [EV-0011] [EV-0248] [EV-0256]; none of the extracts read so far names Great House Farm.",
+   "open": "Did the Marconi team stay at the farm? The full Kemp diary (Bodleian MS. Marconi 89) or a letter placing the team there would answer it."
   },
   {
    "id": "P3",
@@ -59,13 +60,14 @@
     }
    ],
    "label": "Not yet confirmed",
-   "note": "A secondary local-history summary places the fight in the barn; the year and the National Monuments Record citation have not yet been located.",
-   "enabled": []
+   "enabled": [],
+   "changed": "A local-history summary places the fight in the farm barn [EV-0009]; the year and the National Monuments Record citation have not been located.",
+   "open": "When was the fight, and what is the primary source? A dated report or the NMR entry would answer it."
   },
   {
    "id": "P4",
    "date": "1891 to 1955",
-   "event": "Tree planting on Parcel A, the house parcel, as an act of ownership, with the town as witness; the family's acts of occupation.",
+   "event": "Trees planted on Parcel A, the house parcel, in view of the town: one of the family's acts of occupation.",
    "refs": [
     {
      "ev": "EV-0009",
@@ -77,8 +79,9 @@
     }
    ],
    "label": "Family testimony",
-   "note": "Testimony and an undated photograph. Dated photographs, aerial images or survey sheets would confirm the planting and its extent.",
-   "enabled": []
+   "enabled": [],
+   "changed": "The family's account of tree planting on Parcel A, with an undated photograph [EV-0009] [EV-0199].",
+   "open": "What did the planting cover, and when? Dated photographs, aerial images or survey sheets would answer it."
   },
   {
    "id": "P5",
@@ -91,13 +94,14 @@
     }
    ],
    "label": "Family testimony",
-   "note": "Mary (Nancy) Williams's recollection; the receipt is not located. Cuts against: the Court of Appeal recorded rent arrears in the mid-1930s and late 1940s and a last payment, under a judgment for arrears, in 1953.",
-   "enabled": []
+   "enabled": [],
+   "changed": "The family's account [EV-0016]; no receipt for 1928 has been located. The Court of Appeal recorded rent arrears in the mid-1930s and late 1940s and a last payment, under a judgment for arrears, in 1953 [EV-0080].",
+   "open": "Which is right for the house parcel: rent ending in 1928, or arrears and a 1953 payment? A rent book or the 1953 judgment file would answer it."
   },
   {
    "id": "P6",
    "date": "1928 to 1949",
-   "event": "No one takes issue with the stopped rent for about twenty years, until the 1949 surrender and re-grant.",
+   "event": "No one takes issue with the stopped rent for about twenty years, until the 1949 surrender and re-grant (family account).",
    "refs": [
     {
      "ev": "EV-0016",
@@ -109,8 +113,8 @@
     }
    ],
    "label": "Family testimony",
-   "note": "Our reading of the family account. The judgment instead records arrears \"in the mid-1930s and in the late 1940s\" as the reason for the 1949 arrangement.",
-   "enabled": []
+   "enabled": [],
+   "changed": "The family's account [EV-0016]. The judgment gives arrears \"in the mid-1930s and in the late 1940s\" as the background to the 1949 arrangement [EV-0025] [EV-0080]."
   },
   {
    "id": "P7",
@@ -123,8 +127,9 @@
     }
    ],
    "label": "Record",
-   "note": "Supports the family's reading that the house parcel stood apart from the let fields. Page 1 of the agreement is not yet held.",
-   "enabled": []
+   "enabled": [],
+   "changed": "The plan to the 1939 Western Ground Rents agreement highlights the fields (Parcel B) and does not show the house parcel [EV-0023]. Page 1 of the agreement is not yet held.",
+   "open": "What does page 1 of the 1939 agreement describe as let?"
   }
  ],
  "cuts": [
@@ -144,7 +149,6 @@
      "path": "/evidence/ev-0080-bp-properties-v-buckler-judgment/"
     }
    ],
-   "blow": "The first paper that names the family as tenants. Every later court began from it: the Court of Appeal opens with Bute letting \"the whole of the farm\" to John Williams.",
    "label": "Record",
    "depends_on": [
     "P1"
@@ -153,7 +157,8 @@
    "enabled": [
     "C02",
     "C04"
-   ]
+   ],
+   "changed": "The family's occupation is put in writing as a yearly agricultural tenancy of \"the whole of the farm\" [EV-0014]. The Court of Appeal opens its account of the facts with this letting [EV-0080]."
   },
   {
    "id": "C02",
@@ -175,7 +180,6 @@
      "path": "/evidence/ev-0216-1965-contract-condition-f-conveyance-25-december-1938/"
     }
    ],
-   "blow": "The landlord the family knew is replaced by a company holding a paper title. From here a written chain runs to BP; the family hold no paper of their own in it.",
    "label": "Record",
    "depends_on": [
     "C01"
@@ -185,7 +189,9 @@
     "C04",
     "C10",
     "C15"
-   ]
+   ],
+   "changed": "The reversion passes from the Bute estate to Western Ground Rents Ltd [EV-0019] [EV-0022]; this conveyance later serves as the root of title in the chain that leads to BP [EV-0216].",
+   "open": "Was the farmhouse parcel inside the 1938 conveyance and plan? The conveyance and plan would answer it."
   },
   {
    "id": "C03",
@@ -199,8 +205,7 @@
      "path": "/evidence/ev-0080-bp-properties-v-buckler-judgment/"
     }
    ],
-   "blow": "It set the 12-year test the family would be judged by. Under it, a tenancy, a rent payment, a court action or a licence stops or restarts the clock, so each later step against the family was measured against this Act.",
-   "label": "Record (the Act, as applied in the 1987 judgment)",
+   "label": "Record",
    "depends_on": [],
    "context": false,
    "enabled": [
@@ -209,7 +214,8 @@
     "C13",
     "C18",
     "C19"
-   ]
+   ],
+   "changed": "From 1 July 1940, 12 years of adverse possession bars the owner's claim (s.10 requires the possession to be \"adverse\"; under s.13 a formal entry alone does not stop the clock). The 1987 judgment applies this Act to every later step [EV-0080]."
   },
   {
    "id": "C04",
@@ -227,7 +233,6 @@
      "path": "/evidence/ev-0016-1928-last-rent-receipt-quarrying/"
     }
    ],
-   "blow": "In the law's eyes the stopped rent became arrears owed by a tenant, not the end of a tenancy. This is the opposite of the family's 1928 account, and it is the version the court accepted.",
    "label": "Record",
    "depends_on": [
     "C01",
@@ -236,7 +241,8 @@
    "context": false,
    "enabled": [
     "C05"
-   ]
+   ],
+   "changed": "The courts treat the unpaid rent as arrears under a continuing tenancy, not as the end of the tenancy [EV-0080]. The family's account dates the end of rent to 1928 [EV-0016]."
   },
   {
    "id": "C05",
@@ -254,8 +260,7 @@
      "path": "/evidence/ev-0080-bp-properties-v-buckler-judgment/"
     }
    ],
-   "blow": "Occupation passed from the Williams line to a yearly tenant, so the family's presence was recast as permission. On our reading this is the first deliberate step to make the occupancy of Parcel A look permissive.",
-   "label": "Record (the grant); our reading (its purpose)",
+   "label": "Record",
    "depends_on": [
     "C04",
     "C03"
@@ -265,7 +270,9 @@
     "C07",
     "C08",
     "C09"
-   ]
+   ],
+   "changed": "The tenancy passes from John Williams to Frederick Buckler as a new yearly tenancy, never put in writing [EV-0025] [EV-0080]. The occupier is now a tenant of the 1949 grant.",
+   "open": "Why was the 1949 re-grant made, and on whose initiative? Estate correspondence from 1948–49 would answer it."
   },
   {
    "id": "C06",
@@ -279,13 +286,14 @@
      "path": "/evidence/ev-0026-family-title-papers-removed-blanket-box/"
     }
    ],
-   "blow": "The family lost the documents they would later need to prove a title of their own. No court ever saw them.",
    "label": "Family testimony",
    "depends_on": [
     "P1"
    ],
    "context": false,
-   "enabled": []
+   "enabled": [],
+   "changed": "The family's account: the title papers kept in the farmhouse blanket box were removed [EV-0026]. No court record mentions them.",
+   "open": "What were the papers, and where are they now?"
   },
   {
    "id": "C07",
@@ -303,7 +311,6 @@
      "path": "/evidence/ev-0030-cardiff-county-court-registers-aca/"
     }
    ],
-   "blow": "A payment under a judgment acknowledged the landlord's title, so no 12-year clock could run before it.",
    "label": "Record",
    "depends_on": [
     "C05",
@@ -312,7 +319,8 @@
    "context": false,
    "enabled": [
     "C09"
-   ]
+   ],
+   "changed": "A rent payment made under a county-court judgment for arrears [EV-0080] [EV-0030]. In law a payment of rent acknowledges the landlord's title, so no 12-year period runs before it."
   },
   {
    "id": "C08",
@@ -326,13 +334,14 @@
      "path": "/evidence/ev-0031-1954-buckler-tenancy-attempt/"
     }
    ],
-   "blow": "Another step putting the family's occupation on a tenancy footing.",
-   "label": "Not yet confirmed (source pending)",
+   "label": "Not yet confirmed",
    "depends_on": [
     "C05"
    ],
    "context": false,
-   "enabled": []
+   "enabled": [],
+   "changed": "A further step treating Frederick Buckler as a tenant is listed in the family record [EV-0031]; its source has not been located.",
+   "open": "What happened in 1954? The source document would answer it."
   },
   {
    "id": "C09",
@@ -346,7 +355,6 @@
      "path": "/evidence/ev-0080-bp-properties-v-buckler-judgment/"
     }
    ],
-   "blow": "The family were now occupiers with no tenancy. The Court of Appeal later held that Frederick and Mary were in adverse possession of the house and garden from this date, so the clock did start.",
    "label": "Record",
    "depends_on": [
     "C05",
@@ -356,7 +364,8 @@
    "enabled": [
     "C10",
     "C13"
-   ]
+   ],
+   "changed": "The tenancy ends; Frederick Buckler stays on without one. The Court of Appeal held that Frederick and Mary were in adverse possession of the house and garden from this date [EV-0080]."
   },
   {
    "id": "C10",
@@ -378,8 +387,7 @@
      "path": "/evidence/ev-0080-bp-properties-v-buckler-judgment/"
     }
    ],
-   "blow": "The fields were lost in one summary step. The house survived only because Mary had just had a leg amputated and refused to leave. From then on the family held the house alone, against a court order.",
-   "label": "Record (the judgment); the order itself is not yet located",
+   "label": "Record",
    "depends_on": [
     "C09",
     "C02"
@@ -389,7 +397,9 @@
     "C11",
     "C12",
     "C16"
-   ]
+   ],
+   "changed": "The High Court order is enforced on 4 July 1955 and every part of the farm except the farmhouse and garden is taken into possession [EV-0032] [EV-0034] [EV-0080]. The family records that Mary had just had a leg amputated and refused to leave [EV-0034]. The order itself is not yet located.",
+   "open": "What exactly did the 1955 order cover? The High Court order would answer it."
   },
   {
    "id": "C11",
@@ -415,13 +425,14 @@
      "path": "/evidence/ev-0038-hansard-1958-leckwith-common-no-petition/"
     }
    ],
-   "blow": "The land around the house passed into public schemes while her objection had no legal effect. Our reading: it showed the family's word carried no weight with public bodies.",
-   "label": "Record (press); our reading (its effect)",
+   "label": "Record (press)",
    "depends_on": [
     "C10"
    ],
    "context": false,
-   "enabled": []
+   "enabled": [],
+   "changed": "Land near the farm passes into public schemes after the Leckwith Common inquiry [EV-0035] [EV-0036]. Mary's \"Crichel Down\" objection is recorded [EV-0037]; no petition was presented in Parliament [EV-0038].",
+   "open": "What became of the 1958 objection? The inquiry file would answer it."
   },
   {
    "id": "C12",
@@ -439,7 +450,6 @@
      "path": "/evidence/ev-0080-bp-properties-v-buckler-judgment/"
     }
    ],
-   "blow": "The offers built a paper record of the family as would-be tenants. In 1986 the trial judge used the March 1965 offer to find that Frederick had no intention to possess as owner.",
    "label": "Record",
    "depends_on": [
     "C10"
@@ -448,7 +458,8 @@
    "enabled": [
     "C13",
     "C30"
-   ]
+   ],
+   "changed": "Tenancy and housing offers are made and refused [EV-0039]. In 1986 the trial judge relied on the March 1965 offer in finding that Frederick had no intention to possess as owner [EV-0080]."
   },
   {
    "id": "C13",
@@ -470,7 +481,6 @@
      "path": "/evidence/ev-0080-bp-properties-v-buckler-judgment/"
     }
    ],
-   "blow": "The decisive cut of the 1960s. Because it came before 12 years had run, the Court of Appeal held the owner's title was never extinguished. The order then lay unused for 12 years and was revived in 1974.",
    "label": "Record",
    "depends_on": [
     "C09",
@@ -484,7 +494,8 @@
     "C19",
     "C30",
     "C32"
-   ]
+   ],
+   "changed": "A court orders possession of the farmhouse and garden [EV-0041] [EV-0030]. The Court of Appeal held that this order stopped the 12-year period before it had run, so the owner's title was not extinguished [EV-0080]. The order was not enforced until leave was sought in 1974."
   },
   {
    "id": "C14",
@@ -498,7 +509,6 @@
      "path": "/evidence/ev-0080-bp-properties-v-buckler-judgment/"
     }
    ],
-   "blow": "The trial judge held that while he lived only his intention counted, so Mary's own clear intention to own was given no effect before his death.",
    "label": "Record",
    "depends_on": [
     "C13"
@@ -506,7 +516,8 @@
    "context": false,
    "enabled": [
     "C30"
-   ]
+   ],
+   "changed": "Mary remains the occupier. The trial judge held that, while Frederick lived, only his intention counted [EV-0080]."
   },
   {
    "id": "C15",
@@ -524,7 +535,6 @@
      "path": "/evidence/ev-0080-bp-properties-v-buckler-judgment/"
     }
    ],
-   "blow": "A national institution with full legal resources took over the paper title and, as successor, the benefit of the 1962 order.",
    "label": "Record",
    "depends_on": [
     "C02",
@@ -536,7 +546,8 @@
     "C18",
     "C19",
     "C22"
-   ]
+   ],
+   "changed": "The paper title, and as successor the benefit of the 1962 order, passes to BP Pension Trust [EV-0043] [EV-0080]."
   },
   {
    "id": "C16",
@@ -554,15 +565,16 @@
      "path": "/evidence/ev-0263-commons-registration-1965-publicity-glamorgan-notices-vg41/"
     }
    ],
-   "blow": "In the family's frame, one of three \"synthetic\" versions of Parcel A made without the occupier. Cuts against: the certified map shows a small roadside wedge, so this reading is weak on the map read so far.",
-   "label": "Record (registration); our reading (its effect) — weakened",
+   "label": "Record",
    "depends_on": [
     "C10"
    ],
    "context": false,
    "enabled": [
     "C28"
-   ]
+   ],
+   "changed": "A village green, VG41, is registered by the county council [EV-0044]. The certified map shows a small roadside wedge [EV-0263].",
+   "open": "Does VG41 overlap the house parcel? An overlay of the certified map on the 1916 plan would answer it."
   },
   {
    "id": "C17",
@@ -576,13 +588,14 @@
      "path": "/evidence/ev-0046-1972-outline-planning-permission-ownership-certificate/"
     }
    ],
-   "blow": "The owner certified ownership to the planning authority and planned houses on the site. On paper the land was already a development site with the family inside it.",
-   "label": "Record (planning register)",
+   "label": "Record",
    "depends_on": [
     "C15"
    ],
    "context": false,
-   "enabled": []
+   "enabled": [],
+   "changed": "Outline permission for about 13 houses is granted on an application carrying an ownership certificate [EV-0046]. The site is now on the planning register as a development site.",
+   "open": "Who signed the 1972 ownership certificate, and was the occupier notified? The planning file would answer it."
   },
   {
    "id": "C18",
@@ -600,7 +613,6 @@
      "path": "/evidence/ev-0080-bp-properties-v-buckler-judgment/"
     }
    ],
-   "blow": "Her plea of ownership was never decided. It still sits undecided on the court file, so it was never won and never lost.",
    "label": "Record",
    "depends_on": [
     "C15",
@@ -609,7 +621,9 @@
    "context": false,
    "enabled": [
     "C20"
-   ]
+   ],
+   "changed": "Mary pleads that BP's claim is barred by adverse possession under the 1939 Act. The action is adjourned part-heard and, in the Court of Appeal's words, \"has never been finally heard\" [EV-0049] [EV-0080]. No decision on that plea is on the record.",
+   "open": "What does the 1974 court file show was pleaded and left undecided? The HMCTS reply due 2 Nov 2026 would answer it."
   },
   {
    "id": "C19",
@@ -627,7 +641,6 @@
      "path": "/evidence/ev-0080-bp-properties-v-buckler-judgment/"
     }
    ],
-   "blow": "A 12-year-old order was revived about 12 weeks before the 12-year period from it ran out (11 Dec 1974), without her being heard.",
    "label": "Record",
    "depends_on": [
     "C13",
@@ -637,7 +650,8 @@
    "context": false,
    "enabled": [
     "C20"
-   ]
+   ],
+   "changed": "Leave is given to execute the 1962 order, enforceable from 31 Oct 1974 [EV-0041] [EV-0080]; the 12-year period from that order would have ended on 11 Dec 1974. Her appeal raised too little notice to be heard."
   },
   {
    "id": "C20",
@@ -659,7 +673,6 @@
      "path": "/evidence/ev-0048-telegraph-open-day-ancient-house/"
     }
    ],
-   "blow": "The cut the courts rested on. Written without her agreement, the letters made her possession \"by the licence of BP Properties\", so it was no longer adverse. Her occupation was turned into permission by letter.",
    "label": "Record",
    "depends_on": [
     "C19",
@@ -674,7 +687,8 @@
     "C29",
     "C30",
     "C32"
-   ]
+   ],
+   "changed": "The letters permit her to stay rent-free for life [EV-0050] [EV-0048]. The Court of Appeal held that from then on her possession was \"by the licence of BP Properties\" and no longer adverse [EV-0080]."
   },
   {
    "id": "C21",
@@ -692,7 +706,6 @@
      "path": "/evidence/ev-0050-1974-bp-licence-letters/"
     }
    ],
-   "blow": "The Court of Appeal held that \"she did not, however, do that\" (reject the letters). Her silence was read as accepting the permission rather than claiming ownership.",
    "label": "Record",
    "depends_on": [
     "C20"
@@ -701,7 +714,9 @@
    "enabled": [
     "C30",
     "C32"
-   ]
+   ],
+   "changed": "The Court of Appeal recorded that she did not reject the letters: \"she did not, however, do that\" [EV-0080] [EV-0050]. The court treated that as accepting the licence.",
+   "open": "Did Mary or her solicitors write after 31 Oct 1974 rejecting the licence? Such a letter would meet the point the Court of Appeal identified."
   },
   {
    "id": "C22",
@@ -715,7 +730,6 @@
      "path": "/evidence/ev-0052-bp-pension-trust-bp-properties-conveyance/"
     }
    ],
-   "blow": "The house passed to the company that wrote the licence letter, with development rights built into the deed.",
    "label": "Record",
    "depends_on": [
     "C20",
@@ -726,7 +740,8 @@
     "C24",
     "C25",
     "C29"
-   ]
+   ],
+   "changed": "The farmhouse plot passes from BP Pension Trust to BP Properties, with 80-year road and sewer rights reserved \"to serve any development\" [EV-0052]."
   },
   {
    "id": "C23",
@@ -740,14 +755,14 @@
      "path": "/evidence/ev-0265-hmlr-registration-background-compulsory-1975-r29-certificate/"
     }
    ],
-   "blow": "This brought in the machinery that would turn BP's paper title into a title guaranteed by the state.",
    "label": "Record",
    "depends_on": [],
    "context": false,
    "enabled": [
     "C24",
     "C25"
-   ]
+   ],
+   "changed": "First registration becomes compulsory on sale in the Vale of Glamorgan [EV-0265]."
   },
   {
    "id": "C24",
@@ -765,8 +780,7 @@
      "path": "/evidence/ev-0071-wa231076-1983-84-registration-activity/"
     }
    ],
-   "blow": "Background only. It left the farmhouse as the only unregistered piece of the BP farm.",
-   "label": "Record (context)",
+   "label": "Record",
    "depends_on": [
     "C22",
     "C23"
@@ -775,14 +789,15 @@
    "enabled": [
     "C25",
     "C31"
-   ]
+   ],
+   "changed": "The fields (Parcel B) pass between BP companies and are registered as WA231076 [EV-0059] [EV-0071]. After this the farmhouse is the only unregistered part of the BP holding at the farm."
   },
   {
    "id": "C25",
    "date": "23 Feb 1983",
    "sort": "1983-02",
    "layer": 7,
-   "event": "BP Properties applies to register the farmhouse (Form 1C, WA240304) while Mary is alive. A BP officer has to swear BP is in possession. This was BP's only voluntary filing.",
+   "event": "BP Properties applies to register the farmhouse (Form 1C, WA240304) while Mary is alive.",
    "refs": [
     {
      "ev": "EV-0066",
@@ -797,8 +812,7 @@
      "path": "/evidence/ev-0065-wa240304-farmhouse-first-registration-file/"
     }
    ],
-   "blow": "The family home was put on the state register in BP's name, dated as of a day she lived there. BP's \"possession\" could only be her occupation as its licensee under the 1974 letters.",
-   "label": "Record (application, date); our reading (what had to be sworn)",
+   "label": "Record",
    "depends_on": [
     "C20",
     "C22",
@@ -808,7 +822,9 @@
    "context": false,
    "enabled": [
     "C27"
-   ]
+   ],
+   "changed": "BP Properties applies to register the farmhouse, WA240304, on Form 1C, while Mary is alive and living there [EV-0066] [EV-0063]. The form requires the applicant to state that it is in possession [EV-0065].",
+   "open": "What did BP state about possession and the occupier? The application papers would answer it."
   },
   {
    "id": "C26",
@@ -826,8 +842,7 @@
      "path": "/evidence/ev-0088-south-wales-echo-buckler-dispute-1988/"
     }
    ],
-   "blow": "BP's own undertaking (\"until you personally no longer live there\") fell away. In BP's own words in 1988, her death was when \"it became clear her son was not going to leave\".",
-   "label": "Record (month); family record (day); testimony (illness)",
+   "label": "Record",
    "depends_on": [
     "C20"
    ],
@@ -835,7 +850,8 @@
    "enabled": [
     "C27",
     "C29"
-   ]
+   ],
+   "changed": "Mary Williams (Mrs Buckler) dies [EV-0067]; the family records an illness in the weeks before. BP's 1974 undertaking ran \"until you personally no longer live there\" [EV-0050]; in 1988 BP's spokesman gave her death as the point when \"it became clear her son was not going to leave\" [EV-0088]."
   },
   {
    "id": "C27",
@@ -857,8 +873,7 @@
      "path": "/evidence/ev-0071-wa231076-1983-84-registration-activity/"
     }
    ],
-   "blow": "The title was completed after she died, but it speaks from a date when she was alive. What the letters told the Registry about who lived there is not yet known; the Registry's copy file (due 28 Oct 2026) would confirm it.",
-   "label": "Record (letters exist); our reading (their effect)",
+   "label": "Record",
    "depends_on": [
     "C25",
     "C26"
@@ -866,7 +881,9 @@
    "context": false,
    "enabled": [
     "C31"
-   ]
+   ],
+   "changed": "The Registry examines the application after her death: Linklaters' letter of 8 Apr (form D23), correspondence of 12 Apr and letters of 12 May 1983 [EV-0069] [EV-0070] [EV-0071]. The title takes effect from the application date.",
+   "open": "What did the 1983 letters tell the Registry about who lived in the house? The Registry copy file, due 28 Oct 2026, would answer it."
   },
   {
    "id": "C28",
@@ -884,13 +901,14 @@
      "path": "/evidence/ev-0044-vg41-village-green-registration-1970/"
     }
    ],
-   "blow": "Parliament confirmed the registers made without the family. Cuts against: the Act covers common land only, not village greens, so on our reading it did not touch VG41 or the farmhouse directly.",
-   "label": "Record (the Act); our reading — no direct effect found",
+   "label": "Record",
    "depends_on": [
     "C16"
    ],
    "context": false,
-   "enabled": []
+   "enabled": [],
+   "changed": "Parliament validates the Glamorgan common-land registers [EV-0232]. The Act covers common land; VG41 is a village-green registration [EV-0044]. No direct effect on the farmhouse has been found.",
+   "open": "Which 1983 step is meant here? If it is the farmhouse registration, see C25 and C27."
   },
   {
    "id": "C29",
@@ -908,7 +926,6 @@
      "path": "/evidence/ev-0088-south-wales-echo-buckler-dispute-1988/"
     }
    ],
-   "blow": "The family were now defending, not claiming. The son was sued as an occupier with no licence, and his own 12-year period had barely begun.",
    "label": "Record",
    "depends_on": [
     "C26",
@@ -918,7 +935,8 @@
    "context": false,
    "enabled": [
     "C30"
-   ]
+   ],
+   "changed": "The son is sued as occupier [EV-0073] [EV-0088]. The family is now the defendant."
   },
   {
    "id": "C30",
@@ -936,7 +954,6 @@
      "path": "/evidence/ev-0075-south-wales-echo-1986-high-court-judgment/"
     }
    ],
-   "blow": "The first decision on the merits. It held Frederick's possession was not adverse and the letters made Mary a licensee, so the defence under the 1939 and 1980 Acts failed.",
    "label": "Record",
    "depends_on": [
     "C29",
@@ -950,7 +967,8 @@
    "enabled": [
     "C31",
     "C32"
-   ]
+   ],
+   "changed": "Judgment for BP: Frederick's possession held not adverse, and the 1974 letters held to make Mary a licensee, so the limitation defence under the 1939 and 1980 Acts failed [EV-0074] [EV-0075]."
   },
   {
    "id": "C31",
@@ -964,8 +982,7 @@
      "path": "/evidence/ev-0078-1987-title-amalgamation-application-plan/"
     }
    ],
-   "blow": "The house disappeared into BP's larger title before the appeal was heard. Our reading: if the 1983 title had been possessory, upgrading it while an adverse claim was open was barred from 1 Jan 1987. This is not yet confirmed.",
-   "label": "Record (application); our reading (class of title)",
+   "label": "Record",
    "depends_on": [
     "C27",
     "C24",
@@ -974,7 +991,9 @@
    "context": false,
    "enabled": [
     "C36"
-   ]
+   ],
+   "changed": "The farmhouse title is merged into the farm title, WA231076 item 14, while the appeal is pending [EV-0078].",
+   "open": "What class of title was granted in 1983? If possessory, the rules from 1 Jan 1987 on upgrading during an open adverse claim would apply. The register would answer it."
   },
   {
    "id": "C32",
@@ -988,7 +1007,6 @@
      "path": "/evidence/ev-0080-bp-properties-v-buckler-judgment/"
     }
    ],
-   "blow": "The licence-by-letter reasoning became binding law, and ownership itself was never decided. The court accepted that Frederick and Mary were in adverse possession from 1955, but held that the 1962 order and the 1974 letters defeated it.",
    "label": "Record",
    "depends_on": [
     "C30",
@@ -1004,7 +1022,8 @@
     "C36",
     "C38",
     "C39"
-   ]
+   ],
+   "changed": "The appeal is dismissed; possession in six weeks; leave to appeal to the House of Lords refused [EV-0080]. The court accepted adverse possession by Frederick and Mary from 1955 and held that the 1962 order and the 1974 letters defeated it."
   },
   {
    "id": "C33",
@@ -1018,8 +1037,7 @@
      "path": "/evidence/ev-0076-house-of-lords-petition-leave-papers/"
     }
    ],
-   "blow": "The last domestic route closed.",
-   "label": "Record (petition); outcome papers not yet held",
+   "label": "Record",
    "depends_on": [
     "C32"
    ],
@@ -1027,7 +1045,9 @@
    "enabled": [
     "C34",
     "C38"
-   ]
+   ],
+   "changed": "A petition for leave to appeal to the House of Lords is lodged [EV-0076]. The outcome papers are not yet held.",
+   "open": "What became of the petition? The House of Lords Journal would answer it."
   },
   {
    "id": "C34",
@@ -1041,21 +1061,21 @@
      "path": "/evidence/ev-0122-echr-application-14464-88-inadmissibility/"
     }
    ],
-   "blow": "The international route closed without a hearing on the merits.",
    "label": "Record",
    "depends_on": [
     "C32",
     "C33"
    ],
    "context": false,
-   "enabled": []
+   "enabled": [],
+   "changed": "Application 14464/88 to the European Commission of Human Rights is declared inadmissible, so there is no hearing on the merits [EV-0122]."
   },
   {
    "id": "C35",
    "date": "Apr–May 1988",
    "sort": "1988-04",
    "layer": 9,
-   "event": "First eviction attempt. BP's spokesman explains the case to the press; the family are publicly framed as people with no right to be there.",
+   "event": "First eviction attempt; BP's spokesman explains the case to the press.",
    "refs": [
     {
      "ev": "EV-0089",
@@ -1074,8 +1094,7 @@
      "path": "/evidence/ev-0092-echo-alun-michael-lord-chancellor/"
     }
    ],
-   "blow": "In public the family became occupiers resisting bailiffs, the \"squatters\" label others applied, rather than a family with an undecided ownership plea.",
-   "label": "Record (press); the label is others', not ours",
+   "label": "Record (press)",
    "depends_on": [
     "C32"
    ],
@@ -1083,7 +1102,8 @@
    "enabled": [
     "C37",
     "C38"
-   ]
+   ],
+   "changed": "The first eviction attempt is reported [EV-0089] [EV-0090] [EV-0092]; BP's spokesman sets out BP's account of the case [EV-0088]. The word \"squatters\" is a label others applied to the family."
   },
   {
    "id": "C36",
@@ -1097,8 +1117,7 @@
      "path": "/evidence/ev-0093-estates-gazette-1988-bp-welsh-sales/"
     }
    ],
-   "blow": "Our reading: the site was now an asset for sale, which gave a motive to clear it. Nothing yet ties the 1982–83 filings to this sale.",
-   "label": "Record (press); our reading (motive)",
+   "label": "Record (press)",
    "depends_on": [
     "C32",
     "C31"
@@ -1106,7 +1125,9 @@
    "context": false,
    "enabled": [
     "C40"
-   ]
+   ],
+   "changed": "The Estates Gazette reports BP planning sales in Wales [EV-0093]. No record yet ties the 1982–83 filings to a sale.",
+   "open": "Was the farm part of the 1988 sale? Sale particulars or the Land Registry history would answer it."
   },
   {
    "id": "C37",
@@ -1132,7 +1153,6 @@
      "path": "/evidence/ev-0103-echo-history-fight-save-farm/"
     }
    ],
-   "blow": "The heritage protection that might have saved the house came too late to stop the demolition.",
    "label": "Record",
    "depends_on": [
     "C35"
@@ -1140,7 +1160,9 @@
    "context": false,
    "enabled": [
     "C40"
-   ]
+   ],
+   "changed": "Cadw inspects and photographs the house in July 1988 [EV-0094] [EV-0095] [EV-0096]; the listing decision is dated December 1988 [EV-0103].",
+   "open": "When did Cadw's decision reach BP and the council? The listing file would answer it."
   },
   {
    "id": "C38",
@@ -1166,7 +1188,6 @@
      "path": "/evidence/ev-0102-billys-unhappy-family-echo-1988/"
     }
    ],
-   "blow": "The physical removal of the family. The charge put the son in the dock rather than BP.",
    "label": "Record (press)",
    "depends_on": [
     "C32",
@@ -1176,7 +1197,9 @@
    "context": false,
    "enabled": [
     "C39"
-   ]
+   ],
+   "changed": "Forced entry, the outbuilding roof removed and the residents evicted [EV-0098] [EV-0099] [EV-0101]; Mr Buckler is taken from a hospital bed to face an assault charge [EV-0102].",
+   "open": "What became of the assault charge? The magistrates' record would answer it."
   },
   {
    "id": "C39",
@@ -1194,7 +1217,6 @@
      "path": "/evidence/ev-0105-western-mail-final-eviction-hearing-1988/"
     }
    ],
-   "blow": "The last court door closed on the day before the demolition.",
    "label": "Record (press)",
    "depends_on": [
     "C38",
@@ -1203,7 +1225,8 @@
    "context": false,
    "enabled": [
     "C40"
-   ]
+   ],
+   "changed": "The application at the Cardiff High Court fails [EV-0104] [EV-0105]."
   },
   {
    "id": "C40",
@@ -1225,7 +1248,6 @@
      "path": "/evidence/ev-0108-south-wales-echo-bp-demolition-anger/"
     }
    ],
-   "blow": "The apex. With the house gone there was nothing left to occupy, list or restore. The Sites and Monuments Record later entered: \"building destroyed by owners\".",
    "label": "Record (press, SMR)",
    "depends_on": [
     "C39",
@@ -1233,7 +1255,8 @@
     "C36"
    ],
    "context": false,
-   "enabled": []
+   "enabled": [],
+   "changed": "The farmhouse is demolished [EV-0106] [EV-0107]. The Sites and Monuments Record later enters \"building destroyed by owners\" [EV-0108]."
   }
  ],
  "epilogue": [
@@ -1291,39 +1314,94 @@
   }
  ],
  "closing": {
-  "reading": [
-   "Our reading: across 39 cuts from 1916 to 1988 the family's standing was cut down piece by piece: first as tenants (1916, 1949), then as occupiers under a court order (1955, 1962), then as licensees by letter (1974), then as occupiers of land registered to someone else (1983), and finally as people removed by force (1988).",
-   "None of these steps decided who owned the house. The 1974 ownership plea was adjourned part-heard and \"has never been finally heard\". The 1986 and 1987 courts decided possession and limitation, not the family's ownership plea.",
-   "So, on our reading, the family's rights were diminished step by step, but their ownership claim was never tested on its merits and never extinguished by any decision on it.",
-   "The outcome was eviction, demolition, no compensation and no finding against anyone. Presenting that as settled and fair rests on these cuts, not on a decision about ownership. That is the moral point of this page, and we put it as our reading, not as a finding."
+  "decided": [
+   "Jul 1955: possession of the whole farm except the farmhouse and garden, under a High Court order [EV-0080] (the order itself is not yet located). See C10.",
+   "11 Dec 1962: possession of the farmhouse and garden, Cardiff County Court [EV-0041]. See C13.",
+   "Sep 1974: leave to execute the 1962 order [EV-0041]. See C19.",
+   "Jul 1986: judgment for BP; Frederick's possession not adverse; Mary a licensee from the 31 Oct 1974 letters [EV-0074] [EV-0075]. See C30.",
+   "31 Jul 1987: appeal dismissed; the 1962 order stopped the clock before 12 years; from the 1974 letters possession was no longer adverse; adverse possession from 1955 accepted; leave to appeal to the House of Lords refused [EV-0080]. See C32.",
+   "1988: the human-rights application declared inadmissible [EV-0122], and the final eviction hearing of 6 Dec 1988 failed [EV-0104]. See C34 and C39."
   ],
-  "confirm": [
-   "The 1974 Cardiff County Court file, including the part-heard action and the leave application (HMCTS reply due 2 Nov 2026), would show what was pleaded and what was never decided.",
-   "The Land Registry's 1983 application papers and the 8 Apr, 12 Apr and 12 May 1983 letters (subject access request due 28 Oct 2026) would show what BP told the Registry about who lived in the house.",
-   "A letter from Mary or her solicitors after 31 Oct 1974 rejecting the licence would meet the exact point the Court of Appeal said might have changed the result.",
-   "The 1938 Bute–Western Ground Rents conveyance and plan would show whether the farmhouse parcel was ever in the paper chain."
+  "undecided": [
+   "The 3 Jul 1974 plea that BP's claim was barred by adverse possession: adjourned part-heard and, in the Court of Appeal's words, \"has never been finally heard\" [EV-0049] [EV-0080]. See C18.",
+   "No court decision on the record determines who owned the farmhouse as a question of title; the 1986 and 1987 judgments decided possession and limitation [EV-0075] [EV-0080].",
+   "No record of compensation for the demolition, and no finding against any party for it, has been located. The outcome of the Vale councillors' 1989 decision to take legal action [EV-0117] is not yet located.",
+   "The House of Lords outcome papers are not yet held [EV-0076]. See C33."
   ],
   "against": [
-   "The courts found the opposite on the points they decided. The Court of Appeal held that the 1962 order stopped the clock before 12 years had run, and that from the 1974 letters her possession was no longer adverse. Both points bind unless a ground to reopen is made out.",
-   "The judgment records rent arrears in the 1930s and 1940s and a last payment in 1953. That is against the family's 1928 account.",
-   "The Court of Appeal did accept that Frederick and Mary were in adverse possession from 1955. The loss came from the order and the letters, not from any finding that the family never possessed as owners.",
-   "BP did not need the 1983 registration to sue. It sued in May 1984 and won on the 1974 letters.",
-   "No record yet shows BP knew of Mary's final illness, or that the 1983 filing was timed to it.",
-   "Several peak items (Marconi's stay, Driscoll's fight, the 1928 receipt) are family testimony or not yet confirmed."
+   "The Court of Appeal held that the 1962 order stopped the 12-year period before it ran, and that from the 1974 letters Mary's possession was no longer adverse [EV-0080]. These holdings stand unless set aside.",
+   "The judgment records rent arrears in the 1930s and 1940s and a last payment in 1953 [EV-0080], against the family's account of rent ending in 1928 [EV-0016].",
+   "The trial judge found that Frederick had no intention to possess as owner, relying on the March 1965 offer [EV-0080]. See C12.",
+   "BP did not depend on the 1983 registration to sue: the 1984 action succeeded on the 1974 letters [EV-0073] [EV-0080].",
+   "No record yet shows BP knew of Mary's final illness, or that the 1983 filing was timed to it."
+  ],
+  "open": [
+   "What does the 1974 Cardiff County Court file show was pleaded and left undecided? The HMCTS reply due 2 Nov 2026 would show it [EV-0049].",
+   "What did BP and its solicitors tell the Land Registry in 1983 about who lived in the house? The application papers and the 8 Apr, 12 Apr and 12 May 1983 letters (Registry reply due 28 Oct 2026) would show it [EV-0069] [EV-0070].",
+   "Did Mary or her solicitors reject the licence after 31 Oct 1974 in writing? A letter doing so would meet the point the Court of Appeal identified [EV-0080].",
+   "Was the farmhouse parcel inside the 1938 Bute–Western Ground Rents conveyance and plan [EV-0019] [EV-0023]?",
+   "Each \"Open question\" line in the entries above is a further ingredient still missing."
   ]
  },
- "act1983": "Which 1983 Act: the Commons Registration (Glamorgan) Act 1983 (c. ix; Royal Assent 26 Jul 1983, in force 1 Sep 1983), EV-0232. It is the only 1983 statute our research has read and catalogued for the farm. Our reading is that it did not reach the farmhouse or VG41 directly, so it is listed as a cut with that counter-note. If the 1983 step meant is BP's 1983 registration of the farmhouse, that is cuts C25 and C27.",
- "layers": {
-  "1": "The paper frame (1916–1940)",
-  "2": "Tenancy, arrears and lost papers (1945–1954)",
-  "3": "Orders and offers (1955–1965)",
-  "4": "A new owner (1966–1972)",
-  "5": "1974: the revival and the letters",
-  "6": "1975: the house moves within BP",
-  "7": "1982–83: registration and a death",
-  "8": "1984–87: the courts",
-  "9": "1988: the fall"
+ "labels_note": "Record = read in a court judgment, registry, archive, legislation or contemporaneous press. Family testimony = the family's own account. Not yet confirmed = no source located yet. Open question = what the record does not yet answer, and what would answer it.",
+ "lede": "Each entry gives a date, what happened, what it changed in law or in fact, and the evidence pages it rests on. \"Depends on\" and \"Enabled\" link each entry to the earlier entries it built on and the later ones that built on it. Open both ends of a link to check it.",
+ "periods": {
+  "0": "1870s–1939: the family at Great House Farm",
+  "1": "1916–1940",
+  "2": "1945–1954",
+  "3": "1955–1965",
+  "4": "1966–1972",
+  "5": "1974",
+  "6": "1975",
+  "7": "1982–1983",
+  "8": "1984–1987",
+  "9": "1988"
  },
- "labels_note": "Record = read in a court judgment, registry, archive, legislation or contemporaneous press. Family testimony = the family's own account. Our reading = interpretation. Not yet confirmed = no source located yet.",
+ "epilogue_title": "After 7 December 1988",
+ "theories": {
+  "intro": "Competing theories that could account for the entries above, ordered from most to least plausible given all the evidence held today: how much of the record each accounts for, and how much stands against it. Each is a theory, not a finding. The courts' view is included and ranked like the others.",
+  "items": [
+   {
+    "n": 1,
+    "title": "The courts' view: possession was lawfully recovered and the paper title was never extinguished",
+    "theory": "The family held as tenants until the 1955 notice to quit, then as adverse possessors; the 1962 order stopped the 12-year period before it ran, and the 31 Oct 1974 letters made Mary's later possession a licence, so the paper title running from Bute through the 1938 conveyance to BP was never extinguished and possession was recovered lawfully.",
+    "for": "The 1916 tenancy of \"the whole of the farm\" [EV-0014]; the 1953 rent payment under a judgment [EV-0080]; the 1962 possession order [EV-0041]; the 1974 letters [EV-0050]; the High Court judgment [EV-0075] and the Court of Appeal [EV-0080]. These holdings bind unless set aside.",
+    "against": "The 1974 adverse-possession plea \"has never been finally heard\" [EV-0049]; the family's account of rent ending in 1928 [EV-0016]; the 1939 plan shows only the fields [EV-0023]; whether the 1938 conveyance included the farmhouse parcel has not been read [EV-0019].",
+    "test": "Confirmed by a 1938 conveyance plan that includes the farmhouse parcel and by the absence of any written rejection of the 1974 licence. Refuted by a plan that leaves the farmhouse out, or a letter rejecting the licence after 31 Oct 1974."
+   },
+   {
+    "n": 2,
+    "title": "Lawful steps, sequenced against the limitation clock",
+    "theory": "Each step was lawful on its own, but together they kept the family's possession from ever running its 12 years, without the ownership plea being decided: the 1962 order, its revival about 12 weeks before the period from it ended, the licence letters, and the 1983 registration while Mary was alive.",
+    "for": "Leave to execute in Sep 1974 against an 11 Dec 1974 expiry [EV-0041] [EV-0080]; the letters of 31 Oct 1974 [EV-0050]; the undecided 1974 plea [EV-0049]; the 1983 application made in her lifetime [EV-0066]; BP's spokesman in 1988 on waiting until her death [EV-0088].",
+    "against": "Waiting for her death is also what the 1974 letters promised [EV-0050]; the 1982 field registration was compulsory [EV-0265]; BP's 1984 action succeeded on the 1974 letters, not on the 1983 registration [EV-0080]; no record yet shows BP knew of her final illness.",
+    "test": "Confirmed or refuted by the 1974 Cardiff County Court file (HMCTS reply due 2 Nov 2026) [EV-0049] and BP's own files on the 1974 and 1983 steps."
+   },
+   {
+    "n": 3,
+    "title": "The farmhouse parcel stood outside the paper chain",
+    "theory": "Parcel A, the house parcel, was never conveyed in the Bute → Western Ground Rents chain, so the possession cases started from a paper title that did not cover the house.",
+    "for": "The 1939 agreement plan highlights the fields only [EV-0023]; the family's account of the house standing apart [EV-0016]; the separate 1983 registration of the farmhouse [EV-0066].",
+    "against": "The 1916 tenancy covers \"the whole of the farm\" with plan [EV-0014]; the courts took the paper title to the farm as their starting point [EV-0080]; the 1938 conveyance and its plan have not yet been read [EV-0019].",
+    "test": "Settled either way by the 1938 Bute–Western Ground Rents conveyance and plan, and the 1905 Bute conveyance."
+   },
+   {
+    "n": 4,
+    "title": "The 1983 registration misdescribed the occupation",
+    "theory": "BP's 1983 application for the farmhouse, made while Mary lived there and examined after her death, did not tell the Registry the true position of the occupier.",
+    "for": "The application date and her death in the weeks after it [EV-0066] [EV-0067]; the 8 Apr, 12 Apr and 12 May 1983 letters exist [EV-0069] [EV-0070] [EV-0071]; the house title was merged into the farm title while the appeal was pending [EV-0078].",
+    "against": "What the letters say is not yet known; registration times in 1982–83 were ordinary; the 1984 action did not depend on the registration [EV-0080].",
+    "test": "Confirmed or refuted by the Land Registry's 1983 application papers and letters (reply due 28 Oct 2026)."
+   },
+   {
+    "n": 5,
+    "title": "A 1988 sale drove the clearance",
+    "theory": "The site had become an asset for sale in 1988, and the clearance served that sale.",
+    "for": "\"BP signal Welsh sales\", Estates Gazette, 9 Jul 1988 [EV-0093]; the 1975 deed reserved road and sewer rights \"to serve any development\" [EV-0052]; houses followed from 1990 [EV-0124].",
+    "against": "No record ties the farm to the 1988 sale; the land was still being sold off by BP Properties in 1989 and 1993; the 1986 charge to Intercontinental was over a London office, not Llandough.",
+    "test": "Sale particulars for 1988–93, or the Land Registry history of WA231076."
+   }
+  ]
+ },
  "ref_theme": "research"
 }

@@ -1,0 +1,125 @@
+{
+ "rule": "Cedwyn editorial rule (25 Oct 2026): ingredients, not conclusions. Build-time rewording of conclusion sentences in mirrored theme text; cedwyn copy only, the datro sources are untouched. Each entry: theme, file (relative to the theme root), find (exact), replace, why. A find that is not present is reported, never fatal. — Sion's Tab agent",
+ "version": "1.2.0",
+ "rewords": [
+  {
+   "theme": "maps",
+   "file": "index.html",
+   "find": "Our case, told forward: how Tŷ Mawr, the Great House of Llandough, an ancient Welsh home stewarded since 1667, became Church View Close.",
+   "replace": "Told forward in dated steps: Tŷ Mawr, the Great House of Llandough, a home the family dates to 1667, and the land that is now Church View Close.",
+   "why": "Stated the outcome as 'our case' in the page description; now states the start and end points and leaves the steps to the reader."
+  },
+  {
+   "theme": "maps",
+   "file": "index.html",
+   "find": "Our case: an ancient Welsh home, Tŷ Mawr, the Great House of Llandough, stewarded by one family since at least 1667, became Church View Close, an estate of twenty houses.",
+   "replace": "The steps: Tŷ Mawr, the Great House of Llandough, a home the family dates to at least 1667, and the land where Church View Close, an estate of twenty houses, now stands.",
+   "why": "Same conclusion in the About panel; reworded to the dated start and end points."
+  },
+  {
+   "theme": "infographic",
+   "file": "index.html",
+   "find": "out comes A + B again as synthetic A3 and B, plus synthetic A1 and A2.",
+   "replace": "out come the later titles, A3 and B, plus A1 and A2, which the family’s reading calls synthetic.",
+   "why": "'synthetic' was stated as fact in the description; now attributed to the family's reading."
+  },
+  {
+   "theme": "infographic",
+   "file": "index.html",
+   "find": "Out comes A + B again, but as synthetic A3 and B, plus two more simple lines, SA1 and SA2, each born from a permissive occupancy ploy 💩.",
+   "replace": "Out come the later titles, A3 and B, plus two more lines, SA1 and SA2. The family’s reading calls them synthetic and ties each to a step that treated the occupation as permissive; follow each line to its records.",
+   "why": "'synthetic' and 'permissive occupancy ploy' stated motive as fact; now attributed, with the reader sent to each line's records."
+  },
+  {
+   "theme": "infographic",
+   "file": "index.html",
+   "find": "occupancy ploy",
+   "replace": "occupancy step",
+   "why": "'ploy' imputes motive; neutral 'step' (applies to the plural too)."
+  },
+  {
+   "theme": "infographic",
+   "file": "index.html",
+   "find": "double ploy",
+   "replace": "double step",
+   "why": "Same, for 1955."
+  },
+  {
+   "theme": "infographic",
+   "file": "index.html",
+   "find": "More ploys",
+   "replace": "More steps",
+   "why": "Same."
+  },
+  {
+   "theme": "infographic",
+   "file": "index.html",
+   "find": "more ploys",
+   "replace": "more steps",
+   "why": "Same."
+  },
+  {
+   "theme": "infographic",
+   "file": "index.html",
+   "find": "then a ploy in",
+   "replace": "then a step in",
+   "why": "Same."
+  },
+  {
+   "theme": "infographic",
+   "file": "index.html",
+   "find": "💩",
+   "replace": "◆",
+   "why": "Mocking icon replaced by a neutral marker (every use in the page, so the key and the map still match)."
+  },
+  {
+   "theme": "oldbill",
+   "file": "index.html",
+   "find": "Team Regime",
+   "replace": "Team Institutions",
+   "why": "'Regime' is a pejorative label for named public bodies and companies; the display label is neutral (data keys unchanged)."
+  },
+  {
+   "theme": "meeting",
+   "file": "index.html",
+   "find": "C6  THE HERITAGE ERASED",
+   "replace": "C6  THE HERITAGE AND THE DEMOLITION",
+   "why": "Heading stated a verdict; now names the subject."
+  },
+  {
+   "theme": "app",
+   "file": "index.html",
+   "find": "seek evidence of how the land was lost",
+   "replace": "set out, with sources, how the land changed hands",
+   "why": "Stated the loss as the finding to be proved; now describes the work."
+  },
+  {
+   "theme": "wiki",
+   "file": "index.html",
+   "find": "REJECTED permissive occupancy ploy",
+   "replace": "permissive-occupancy step, rejected by the family",
+   "why": "'ploy' imputes motive; the label now states the step and the family's response."
+  },
+  {
+   "theme": "wiki",
+   "file": "index.html",
+   "find": "clandestine registration",
+   "replace": "registration (source pending)",
+   "why": "'clandestine' states a conclusion the record does not yet support; the label names the event."
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "REJECTED permissive occupancy ploy",
+   "replace": "permissive-occupancy step, rejected by the family",
+   "why": "'ploy' imputes motive; the label now states the step and the family's response."
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "clandestine registration",
+   "replace": "registration (source pending)",
+   "why": "'clandestine' states a conclusion the record does not yet support; the label names the event."
+  }
+ ]
+}
