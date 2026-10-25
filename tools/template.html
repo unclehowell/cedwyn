@@ -47,7 +47,7 @@ footer{max-width:1080px;margin:10px auto 40px;padding:0 14px;font-size:12px;colo
 <header><h1 style="position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0" data-ghf-title>Counting House</h1><p>Public accounts of the Great House Farm (Tŷ Mawr) project · read-only · no login</p>
 <nav role="tablist">
 <button role="tab" aria-selected="true" data-t="dash">Dashboard</button><button role="tab" data-t="tx">Transactions</button>
-<button role="tab" data-t="disc">Disclosure costs</button><button role="tab" data-t="costs">Costs</button><button role="tab" data-t="dl">Download</button></nav></header>
+<button role="tab" data-t="disc">Disclosure costs</button><button role="tab" data-t="costs">Costs</button><button role="tab" data-t="farm-money">Farm money 1877–1987</button><button role="tab" data-t="dl">Download</button></nav></header>
 <main>
 <section id="dash" class="on">
 <div class="grid" id="cards"></div>
@@ -70,6 +70,12 @@ footer{max-width:1080px;margin:10px auto 40px;padding:0 14px;font-size:12px;colo
 <h2>Proposed apportionment by body</h2>
 <table class="tx-d"><thead><tr><th>Body</th><th class="num">Share</th><th class="num">Low £</th><th class="num">Mid £</th><th class="num">High £</th></tr></thead><tbody id="claimb"></tbody></table><div class="tx-m" id="claimm"></div>
 <p class="note">Low and high apply each body's proposed share to the low and high totals.</p></div></section>
+<section id="farm-money"><h2>The farm’s money, 1877–1987: what the records show</h2>
+<p class="note">Money recorded between other parties about Great House Farm (Tŷ Mawr) and its land: rents, a rent-free licence, ground-rent and estate sales, a legal charge, a school-site price, a takeover bid and court orders. Each line carries its catalogue ID. Where the records give no figure, the line says GAP: that sum is not yet on file. This memo is kept apart from the cash accounts above and is never added to them.</p>
+<p class="note">The courts’ view comes first: the 1987 Court of Appeal judgment records rent arrears in the mid-1930s and late 1940s, the last rent paid in 1953 under a judgment for arrears, mesne profits ordered in 1962 and a rent-free licence in 1974; it gives no figures for any of them.</p>
+<div class="grid" id="fcards"></div>
+<table class="tx-d"><thead><tr><th>Date</th><th>What</th><th>Between</th><th class="num">Amount</th><th>Catalogue</th></tr></thead><tbody id="farmb"></tbody></table><div class="tx-m" id="farmm"></div>
+<p class="note">More: <a href="/research/new-in-the-catalogue/">new catalogue entries</a> · <a href="/infographic/title-chain/">the title chain, step by step</a> · <a href="/story/museum/">the museum tour</a>. Download: <a href="ledger/farm.beancount">farm memo (Beancount)</a>.</p></section>
 <section id="dl"><h2>Download</h2><p>The whole public ledger, free to check and reuse with attribution.</p>
 <a class="btn" href="ledger.csv" download>Ledger (CSV)</a><a class="btn" href="ledger/main.beancount">Ledger source (Beancount)</a><a class="btn" id="claimdl" hidden href="ledger/claimed.beancount">Costs claimed memo (Beancount)</a><a class="btn" href="data.json">Data (JSON)</a>
 <h2>How these accounts are kept</h2><ul class="note">
@@ -118,6 +124,14 @@ const groups=[...new Set(C.map(c=>c.set))].map(s=>[s,C.filter(c=>c.set==s)]);
 ccards.innerHTML=groups.map(([s,a])=>{const[l,m,h]=tot(a);return card(esc(SETS[s]||s),f0(m),"low "+f0(l)+" · high "+f0(h),1)}).join("");
 claimb.innerHTML=groups.map(([s,a])=>{const[l,m,h]=tot(a);return `<tr><td colspan="5"><b>${esc(SETS[s]||s)}</b></td></tr>`+a.map(c=>`<tr><td><b>${esc(c.body)}</b><br><span class="note">${esc(c.basis)}${c.route?". Route: "+esc(c.route)+".":""}</span></td><td class="num">${c.share}%</td><td class="num">${f0(c.low)}</td><td class="num">${f0(c.mid)}</td><td class="num">${f0(c.high)}</td></tr>`).join("")+`<tr><td><b>Total</b></td><td class="num"></td><td class="num"><b>${f0(l)}</b></td><td class="num"><b>${f0(m)}</b></td><td class="num"><b>${f0(h)}</b></td></tr>`}).join("");
 claimm.innerHTML=groups.map(([s,a])=>{const[l,m,h]=tot(a);return `<h2>${esc(SETS[s]||s)}</h2>`+a.map(c=>`<div class="txc"><span class="a">${f0(c.mid)}</span><b>${esc(c.body)}</b><div class="d">Share ${c.share}% · low ${f0(c.low)} · high ${f0(c.high)}</div><div class="note">${esc(c.basis)}</div></div>`).join("")+`<div class="txc"><span class="a">${f0(m)}</span><b>Total (mid)</b><div class="d">low ${f0(l)} · high ${f0(h)}</div></div>`}).join("")}
+const EVP={"EV-0007": "/evidence/ev-0007-bute-trustees-receipts-payments-1877/", "EV-0618": "/evidence/ev-0618-cardiff-western-sewer-bute-easements-1904-1905/", "EV-0014": "/evidence/ev-0014-bute-tenancy-john-williams-1916/", "EV-0016": "/evidence/ev-0016-1928-last-rent-receipt-quarrying/", "EV-0080": "/evidence/ev-0080-bp-properties-v-buckler-judgment/", "EV-0022": "/evidence/ev-0022-press-1938-bute-wgr-sale-completion/", "EV-0023": "/evidence/ev-0023-1939-wgr-john-williams-tenancy-plan/", "EV-0220": "/evidence/ev-0220-leckwith-woods-wgr-gift-1940-1942/", "EV-0042": "/evidence/ev-0042-llandough-school-conveyance-1965/", "EV-0025": "/evidence/ev-0025-frederick-buckler-unwritten-tenancy-1949/", "EV-0030": "/evidence/ev-0030-cardiff-county-court-registers-aca/", "EV-0035": "/evidence/ev-0035-western-mail-1958-leckwith-common-hearing/", "EV-0038": "/evidence/ev-0038-hansard-1958-leckwith-common-no-petition/", "EV-0041": "/evidence/ev-0041-cardiff-county-court-possession-order-1962/", "EV-0039": "/evidence/ev-0039-wgr-tenancy-offers-1959-1965/", "EV-0216": "/evidence/ev-0216-1965-contract-condition-f-conveyance-25-december-1938/", "EV-0288": "/evidence/ev-0288-snippets-only-press-on-the-1968-69-takeover-battle-for-western-ground-rents-ltd-en/", "EV-0043": "/evidence/ev-0043-wgr-bp-pension-trust-conveyance/", "EV-0050": "/evidence/ev-0050-1974-bp-licence-letters/", "EV-0620": "/evidence/ev-0620-bp-pension-trust-to-bp-properties-1975/", "EV-0147": "/evidence/ev-0147-hmlr-letter-ty-mawr-registration-history/"};
+(()=>{const F=D.farm||[];if(!F.length){document.querySelector('nav button[data-t="farm-money"]')?.remove();return}
+const rec=F.filter(r=>!r.gap),gaps=F.filter(r=>r.gap);
+const evl=a=>a.map(e=>EVP[e]?`<a href="/research${EVP[e]}">${esc(e)}</a>`:esc(e)).join(" ");
+const amt=r=>r.gap?`<b>GAP</b><br><span class="note">not on file</span>`:esc(r.amount_text);
+fcards.innerHTML=card("Lines in the record",F.length)+card("With a figure on file",rec.length)+card("Gaps (no figure yet)",gaps.length,"",1);
+farmb.innerHTML=F.map(r=>`<tr><td>${esc(r.date_text||r.date)}</td><td><b>${esc(r.item)}</b><br><span class="note">${esc(r.note)}</span></td><td>${esc(r.party)}</td><td class="num">${amt(r)}</td><td>${evl(r.evidence)}</td></tr>`).join("");
+farmm.innerHTML=F.map(r=>`<div class="txc"><span class="a">${r.gap?"GAP":esc(r.amount_text)}</span><b>${esc(r.item)}</b><div class="d">${esc(r.date_text||r.date)} · ${esc(r.party)}</div><div class="note">${esc(r.note)} · ${evl(r.evidence)}</div></div>`).join("")})();
 gen.textContent="Built "+D.generated+" from the plain-text ledger.";
 </script>
 </body></html>
