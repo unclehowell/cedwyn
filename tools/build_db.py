@@ -169,6 +169,112 @@ _eg = ROOT / 'data' / 'evidence-grades.json'
 if _eg.exists():
     for _x in json.load(open(_eg, encoding='utf-8')).get('evidence', []):
         con.execute('INSERT OR REPLACE INTO evidence_grades VALUES(?,?,?,?,?)', (_x.get('ev'), _x.get('evidence_grade'), _x.get('independent_origin_id'), _x.get('path'), _x.get('grade_note')))
+# Forensic provenance registers: metadata is not allowed to masquerade as the source bytes.
+con.executescript("""
+CREATE TABLE IF NOT EXISTS source_records(
+ id TEXT PRIMARY KEY, independent_origin_id TEXT, record_status TEXT, title TEXT, creator TEXT, custodian TEXT,
+ source_type TEXT, document_date TEXT, event_dates_json TEXT, description TEXT, public_url TEXT, public_archive_url TEXT,
+ wayback_calendar_url TEXT, local_path TEXT, email TEXT, disclosure_reference TEXT, attachment_name TEXT,
+ completeness TEXT, read_status TEXT, provenance_json TEXT, pinpoints_json TEXT, limitations_json TEXT,
+ supersedes_json TEXT, payload_json TEXT
+);
+CREATE INDEX IF NOT EXISTS source_status_idx ON source_records(record_status);
+CREATE INDEX IF NOT EXISTS source_origin_idx ON source_records(independent_origin_id);
+CREATE TABLE IF NOT EXISTS interpretations(
+ id TEXT PRIMARY KEY, subject_type TEXT, subject_id TEXT, status TEXT, title TEXT, text TEXT,
+ basis_source_ids_json TEXT, evidence_for_json TEXT, evidence_against_or_limits_json TEXT,
+ alternative_explanations_json TEXT, what_would_confirm_json TEXT, what_would_refute_or_modify_json TEXT,
+ unresolved_questions_json TEXT, confidence TEXT, updated TEXT, payload_json TEXT
+);
+CREATE INDEX IF NOT EXISTS interpretation_subject_idx ON interpretations(subject_type,subject_id);
+CREATE INDEX IF NOT EXISTS interpretation_status_idx ON interpretations(status);
+CREATE TABLE IF NOT EXISTS research_leads(
+ id TEXT PRIMARY KEY, title TEXT, priority INTEGER, date_start TEXT, date_end TEXT, record_status TEXT,
+ not_a_located_record INTEGER, search_status TEXT, search_scope TEXT, why_sought TEXT, working_description TEXT,
+ candidate_custodians_json TEXT, could_confirm_json TEXT, could_refute_json TEXT, payload_json TEXT
+);
+CREATE INDEX IF NOT EXISTS lead_status_idx ON research_leads(record_status,not_a_located_record);
+CREATE INDEX IF NOT EXISTS lead_priority_idx ON research_leads(priority);
+CREATE TABLE IF NOT EXISTS monitored_pages(
+ id TEXT PRIMARY KEY, url TEXT UNIQUE, title TEXT, source_id TEXT, custodian TEXT, topic TEXT,
+ enabled INTEGER, required_snapshot INTEGER, relevance_status TEXT, sha256 TEXT, http_status INTEGER,
+ last_checked TEXT, last_observed_change TEXT, snapshot_url TEXT, archive_status TEXT,
+ wayback_calendar_url TEXT, last_save_attempt_at TEXT, last_save_attempt_sha256 TEXT,
+ last_check_error TEXT, notes TEXT, payload_json TEXT
+);
+CREATE INDEX IF NOT EXISTS monitored_enabled_idx ON monitored_pages(enabled);
+""")
+def _read_json(path, default):
+    try:
+        with open(path, encoding='utf-8') as f: return json.load(f)
+    except FileNotFoundError: return default
+_src = _read_json(ROOT / 'catalogue' / 'sources.json', {}).get('records', [])
+for _x in _src:
+    con.execute("""INSERT OR REPLACE INTO source_records VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
+        _x.get('id'), _x.get('independent_origin_id'), _x.get('record_status'), _x.get('title'), _x.get('creator'),
+        _x.get('custodian'), _x.get('source_type'), _x.get('document_date'),
+        json.dumps(_x.get('event_dates', []), ensure_ascii=False), _x.get('description'), _x.get('public_url'),
+        _x.get('public_archive_url'), _x.get('wayback_calendar_url'), _x.get('local_path'), _x.get('email'),
+        _x.get('disclosure_reference'), _x.get('attachment_name'), _x.get('completeness'), _x.get('read_status'),
+        json.dumps(_x.get('acquisition', {}), ensure_ascii=False), json.dumps(_x.get('pinpoints', []), ensure_ascii=False),
+        json.dumps(_x.get('limitations', []), ensure_ascii=False), json.dumps(_x.get('supersedes', []), ensure_ascii=False),
+        json.dumps(_x, ensure_ascii=False)))
+    _sid = _x.get('id')
+    if _sid:
+        node('source:' + _sid, 'source_record', (_x.get('title') or _sid)[:160])
+        node('origin:' + str(_x.get('independent_origin_id') or _sid), 'independent_origin', str(_x.get('independent_origin_id') or _sid))
+        edge('source:' + _sid, 'has_independent_origin', 'origin:' + str(_x.get('independent_origin_id') or _sid))
+        _host = urllib.parse.urlsplit(_x.get('public_url') or '').hostname
+        if _host:
+            node('host:' + _host.lower(), 'host', _host.lower())
+            edge('source:' + _sid, 'published_by_host', 'host:' + _host.lower())
+_ints = _read_json(ROOT / 'catalogue' / 'interpretations.json', {}).get('records', [])
+for _x in _ints:
+    con.execute("""INSERT OR REPLACE INTO interpretations VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
+        _x.get('id'), _x.get('subject_type'), _x.get('subject_id'), _x.get('status'), _x.get('title'), _x.get('text'),
+        json.dumps(_x.get('basis_source_ids', []), ensure_ascii=False),
+        json.dumps(_x.get('evidence_for', []), ensure_ascii=False),
+        json.dumps(_x.get('evidence_against_or_limits', []), ensure_ascii=False),
+        json.dumps(_x.get('alternative_explanations', []), ensure_ascii=False),
+        json.dumps(_x.get('what_would_confirm', []), ensure_ascii=False),
+        json.dumps(_x.get('what_would_refute_or_modify', []), ensure_ascii=False),
+        json.dumps(_x.get('unresolved_questions', []), ensure_ascii=False), _x.get('confidence'), _x.get('updated'),
+        json.dumps(_x, ensure_ascii=False)))
+    _iid = _x.get('id')
+    if _iid:
+        node('interpretation:' + _iid, 'interpretation', (_x.get('title') or _iid)[:160])
+        if _x.get('subject_id'):
+            edge('interpretation:' + _iid, 'interprets', str(_x['subject_type']) + ':' + str(_x['subject_id']))
+        for _sid in _x.get('basis_source_ids', []):
+            edge('interpretation:' + _iid, 'uses_source', 'source:' + str(_sid))
+_leads = _read_json(ROOT / 'catalogue' / 'expected-records.json', {}).get('records', [])
+for _x in _leads:
+    con.execute("""INSERT OR REPLACE INTO research_leads VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
+        _x.get('id'), _x.get('title'), int(_x.get('priority') or 0), _x.get('date_start'), _x.get('date_end'),
+        _x.get('record_status'), 1 if _x.get('not_a_located_record') is True else 0, _x.get('search_status'),
+        _x.get('search_scope'), _x.get('why_sought'), _x.get('working_description'),
+        json.dumps(_x.get('candidate_custodians', []), ensure_ascii=False),
+        json.dumps(_x.get('could_confirm', []), ensure_ascii=False), json.dumps(_x.get('could_refute', []), ensure_ascii=False),
+        json.dumps(_x, ensure_ascii=False)))
+    if _x.get('id'):
+        node('lead:' + _x['id'], 'research_lead', (_x.get('title') or _x['id'])[:160])
+        edge('lead:' + _x['id'], 'not_a_located_artifact', 'status:expected_or_missing')
+_watch = _read_json(ROOT / 'catalogue' / 'monitored-pages.json', {}).get('pages', [])
+_state = _read_json(ROOT / 'catalogue' / 'monitoring' / 'state.json', {}).get('pages', [])
+_state_by_url = {p.get('url'): p for p in _state if p.get('url')}
+for _x in _watch:
+    _st = _state_by_url.get(_x.get('url'), {})
+    _merged = dict(_x); _merged.update({k:v for k,v in _st.items() if k not in ('id','title','source_id','url')})
+    con.execute("""INSERT OR REPLACE INTO monitored_pages VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
+        _merged.get('id'), _merged.get('url'), _merged.get('title'), _merged.get('source_id'), _merged.get('custodian'),
+        _merged.get('topic'), 1 if _merged.get('enabled') else 0, 1 if _merged.get('required_snapshot') else 0,
+        _merged.get('relevance_status'), _merged.get('sha256'), _merged.get('http_status'), _merged.get('last_checked'),
+        _merged.get('last_observed_change'), _merged.get('snapshot_url'), _merged.get('archive_status'),
+        _merged.get('wayback_calendar_url'), _merged.get('last_save_attempt_at'), _merged.get('last_save_attempt_sha256'),
+        _merged.get('last_check_error'), _merged.get('notes'), json.dumps(_merged, ensure_ascii=False)))
+    if _merged.get('id'):
+        node('monitor:' + _merged['id'], 'monitored_page', (_merged.get('title') or _merged['id'])[:160])
+        if _merged.get('source_id'): edge('monitor:' + _merged['id'], 'monitors_source', 'source:' + _merged['source_id'])
 for t in CFG['themes']:
     nf = con.execute('SELECT count(*) FROM locations WHERE theme=?', (t['id'],)).fetchone()[0]
     npg = con.execute("SELECT count(*) FROM locations l JOIN artifacts a ON a.id=l.aid WHERE l.theme=? AND a.kind='page'", (t['id'],)).fetchone()[0]
