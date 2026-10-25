@@ -56,11 +56,14 @@ jobs:
         run: |
           python3 tools/selfcontain.py dist --fix --no-fill
           python3 tools/selfcontain.py dist
+      - name: Internal-link and anchor audit
+        if: success()
+        run: python3 tools/check_internal_links.py dist
       - name: Measure
         if: always()
         run: |
           mkdir -p dist/_cedwyn/reports
-          for f in _assemble_report.json _rewrite_report.json _outbound_test.json _outbound_fix.json _fetch_missing.json _apex_source.json; do if [ -f dist/$f ]; then mv dist/$f dist/_cedwyn/reports/; fi; done
+          for f in _assemble_report.json _rewrite_report.json _outbound_test.json _outbound_fix.json _fetch_missing.json _apex_source.json _internal_links_report.json; do if [ -f dist/$f ]; then mv dist/$f dist/_cedwyn/reports/; fi; done
           rm -f dist/_blob_map.json dist/_theme_redirects.txt
           python3 - <<'PY'
           import os,json
