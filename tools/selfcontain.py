@@ -269,6 +269,8 @@ def fetch_vendor():
             with urllib.request.urlopen(req, timeout=40) as r: b = r.read()
             dst.parent.mkdir(parents=True, exist_ok=True); dst.write_bytes(b); return loc, b, None
         except Exception as e: return loc, None, str(e)[:80]
+    for u in CFG.get('vendor_extra', []):   # module files reached only through an import-map folder prefix (three.js add-ons)
+        su = urllib.parse.urlsplit(u); vendor.setdefault(ext_local(su.hostname, su.path, ''), u)
     queue = dict(vendor)
     while queue:
         batch = {k: v for k, v in queue.items() if k not in done and not (DIST / k.lstrip('/')).exists()}; queue = {}
@@ -340,7 +342,7 @@ def fill_missing(dry=False, scan=None):
                 if not relp.startswith(tid + '/'): continue
             ok = (relp in exists) if exists is not None else (DIST / relp).exists()
             if not ok and relp not in want: want[relp] = live[tid] + urllib.parse.quote(relp[len(tid) + 1:])
-    IMGNAME = re.compile(r'"([^"/\\<>]{3,200}\.(?:jpe?g|png|webp|gif))"', re.I)
+    IMGNAME = re.compile(r'"(?:\./)?(?:images/)?([^"/\\<>]{3,200}\.(?:jpe?g|png|webp|gif))"', re.I)
     for th in ('wayback',):
         d = DIST / th
         for p in list(d.glob('*.json')) + list(d.glob('*/*.json')) + list(d.glob('*.js')) + list(d.glob('*.html')):
@@ -428,6 +430,23 @@ def main():
                 if set(vendor) != v0:
                     fetch_vendor(); ONLY = ['_ext']; run(); ONLY = []
         filled['not_found_n'] = len(filled['not_found']); filled['not_found'] = filled['not_found'][:80]
+        # redirects that stage 1 sent to the archive but whose address is now a cedwyn theme (e.g. research) go to that theme
+        rp = DIST / '_redirects'
+        if rp.exists():
+            out, nmap = [], 0
+            for line in rp.read_text('utf-8').splitlines():
+                parts = line.split()
+                if len(parts) >= 2 and parts[1].startswith('/wayback/go/?u='):
+                    u = urllib.parse.unquote(parts[1][len('/wayback/go/?u='):]); su = urllib.parse.urlsplit(u)
+                    tu = theme_url((su.hostname or '').lower(), su.path or '/')
+                    if tu and (DIST / tu.strip('/').split('/')[0]).is_dir() and parts[0].strip('/').split('/')[0] != tu.strip('/').split('/')[0]:
+                        parts[1] = tu + ('?' + su.query if su.query else ''); line = ' '.join(parts); nmap += 1
+                out.append(line)
+            # apex-root files some pages still name from the root (fonts, the chooser image, the apex copy of the header files)
+            ROOT_RW = ['/assets/fonts/* /_cedwyn/ghf/fonts/:splat 200', '/locations-img/* /dartboard/locations-img/:splat 200',
+                       '/dartboard/ghf-lang/* /_cedwyn/ghf/:splat 200']
+            out = [l for l in ROOT_RW if l not in out] + out
+            rp.write_text('\n'.join(out) + '\n', 'utf-8'); stats['redirects_to_themes'] = nmap
         for t in CFG['themes']:
             if t.get('redirect_to'):
                 (DIST / t['id']).mkdir(parents=True, exist_ok=True)
