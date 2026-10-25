@@ -64,8 +64,7 @@ jobs:
             ];
             const changed = files.filter(f => central.some(x => x.endsWith('/') ? f.filename.startsWith(x) : f.filename === x)).map(f => f.filename);
             const labels = (p.labels || []).map(x => x.name);
-            const owner = p.user && p.user.login === 'unclehowell';
-            if (changed.length && !owner && !labels.includes('owner-approved-change')) {
+            if (changed.length && !labels.includes('owner-approved-change')) {
               core.setFailed('Central files changed without owner review. The repository owner must review the full diff and apply the owner-approved-change label. Paths: ' + changed.join(', '));
             } else {
               core.info(changed.length ? 'Central change reviewed by owner or marked owner-approved-change.' : 'No protected central paths changed.');
