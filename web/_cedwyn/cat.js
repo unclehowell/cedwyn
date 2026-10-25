@@ -65,7 +65,7 @@
   function MonitoredPage(r) { return r && { id:r.id, url:r.url, title:r.title, sourceId:r.source_id, custodian:r.custodian, topic:r.topic, enabled:!!r.enabled, requiredSnapshot:!!r.required_snapshot, relevanceStatus:r.relevance_status, sha256:r.sha256, httpStatus:r.http_status, lastChecked:r.last_checked, lastObservedChange:r.last_observed_change, snapshotUrl:r.snapshot_url, archiveStatus:r.archive_status, waybackCalendarUrl:r.wayback_calendar_url, lastSaveAttemptAt:r.last_save_attempt_at, lastSaveAttemptSha256:r.last_save_attempt_sha256, lastCheckError:r.last_check_error, notes:r.notes, payloadJson:r.payload_json }; }
   function normkey(u) { try { var p = new URL(u); var h = p.hostname.replace(/^www\./, ''); return h + (p.pathname.replace(/\/+$/, '') || '/') + (p.search ? p.search : ''); } catch (e) { return u; } }
   var root = {
-    stats: function () { return qa('SELECT k, v FROM meta').then(function (rs) { var o = {}; rs.forEach(function (r) { o[r.k] = +r.v; }); o.sourceRecords=o.source_records||0; o.researchLeads=o.research_leads||0; o.unlocatedLeads=o.unlocated_leads||0; return o; }); },
+    stats: function () { return qa('SELECT k, v FROM meta').then(function (rs) { var o = {}; rs.forEach(function (r) { o[r.k] = +r.v; }); o.sourceRecords=o.source_records||0; o.researchLeads=o.research_leads||0; o.monitoredPages=o.monitored_pages||0; o.unlocatedLeads=o.unlocated_leads||0; return o; }); },
     themes: function () { return qa('SELECT * FROM themes').then(function (rs) { return rs.map(Theme); }); },
     theme: function (a) { return q1('SELECT * FROM themes WHERE id=?', [a.id]).then(Theme); },
     artifact: artifact,
