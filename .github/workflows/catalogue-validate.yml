@@ -1,0 +1,76 @@
+name: Forensic catalogue validation
+on:
+  pull_request:
+    paths:
+      - 'catalogue/**'
+      - 'tools/validate_catalogue.py'
+      - 'tools/monitor_sources.py'
+      - 'tools/build_db.py'
+      - 'web/_cedwyn/cat.js'
+      - 'web/catalogue/**'
+      - 'EDITORIAL.md'
+      - 'sections.json'
+      - 'AGENT_CHANGE_POLICY.md'
+      - '.github/workflows/**'
+  push:
+    branches: [main]
+    paths:
+      - 'catalogue/**'
+      - 'tools/validate_catalogue.py'
+      - 'tools/monitor_sources.py'
+      - 'tools/build_db.py'
+      - 'web/_cedwyn/cat.js'
+      - 'web/catalogue/**'
+      - 'EDITORIAL.md'
+      - 'sections.json'
+      - 'AGENT_CHANGE_POLICY.md'
+      - '.github/workflows/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  validate:
+    name: Forensic catalogue validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate register cross-links and uncertainty fields
+        run: python tools/validate_catalogue.py
+      - name: Check Python syntax
+        run: python -m py_compile tools/validate_catalogue.py tools/monitor_sources.py tools/build_db.py
+      - name: Check browser catalogue client syntax
+        run: node --check web/_cedwyn/cat.js
+      - name: Check JSON registers
+        run: python -m json.tool catalogue/sources.json >/dev/null && python -m json.tool catalogue/interpretations.json >/dev/null && python -m json.tool catalogue/events.json >/dev/null && python -m json.tool catalogue/expected-records.json >/dev/null && python -m json.tool catalogue/monitored-pages.json >/dev/null && python -m json.tool catalogue/monitoring/state.json >/dev/null && python -m json.tool themes.json >/dev/null && python -m json.tool sections.json >/dev/null
+  owner_gate:
+    name: Central-change owner gate
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const p = context.payload.pull_request;
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner, repo: context.repo.repo, pull_number: p.number, per_page: 100
+            });
+            const central = [
+              '.github/workflows/', 'catalogue/', 'tools/build_db.py', 'tools/site.py',
+              'tools/selfcontain.py', 'tools/assemble.py', 'tools/monitor_sources.py',
+              'tools/validate_catalogue.py', 'web/_cedwyn/', 'web/catalogue/',
+              'themes.json', 'sections.json', 'EDITORIAL.md', 'AGENT_CHANGE_POLICY.md'
+            ];
+            const changed = files.filter(f => central.some(x => x.endsWith('/') ? f.filename.startsWith(x) : f.filename === x)).map(f => f.filename);
+            const labels = (p.labels || []).map(x => x.name);
+            if (changed.length && !labels.includes('owner-approved-change')) {
+              core.setFailed('Central files changed without owner review. The repository owner must review the full diff and apply the owner-approved-change label. Paths: ' + changed.join(', '));
+            } else {
+              core.info(changed.length ? 'Central change reviewed by owner or marked owner-approved-change.' : 'No protected central paths changed.');
+            }

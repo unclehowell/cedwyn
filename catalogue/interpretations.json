@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "id": "INT-0001",
+      "subject_type": "source_record",
+      "subject_id": "SRC-BP-BUCKLER-1987-BAILII",
+      "status": "supported_by_cited_record",
+      "title": "The 1987 appeal's scope must not be enlarged beyond the farmhouse and garden",
+      "text": "The published judgment says the appeal was limited to the farmhouse and garden, and that the possession order concerning the rest of the farm was not challenged on appeal. The safe interpretation is that the appeal judgment cannot be cited as if every parcel, boundary, title event, planning decision, archaeological question, or institutional allegation was judicially determined in that appeal.",
+      "basis_source_ids": [
+        "SRC-BP-BUCKLER-1987-BAILII"
+      ],
+      "evidence_for": [
+        {
+          "source_id": "SRC-BP-BUCKLER-1987-BAILII",
+          "pinpoint": "paragraph 2",
+          "note": "The judgment expressly describes the appeal as limited to the farmhouse and garden and says the order for the rest of the farm was not challenged."
+        }
+      ],
+      "evidence_against_or_limits": [
+        {
+          "source_id": "SRC-BP-BUCKLER-1987-BAILII",
+          "pinpoint": "paragraphs 4–39",
+          "note": "The judgment recounts wider farm history and addresses several historical events; that narrative does not enlarge the formal scope of the appeal."
+        }
+      ],
+      "alternative_explanations": [
+        "Some broader factual history may be relevant context without being a matter decided on appeal.",
+        "Other parts of the dispute may have been determined in separate proceedings or records that must be assessed individually."
+      ],
+      "what_would_confirm": [
+        "A check of the complete judgment and pleadings confirms the appeal's stated limits.",
+        "Separate orders or judgments are located for any additional issue said to have been adjudicated."
+      ],
+      "what_would_refute_or_modify": [
+        "A separate final order or judgment is produced that expressly decides an issue beyond the farmhouse-and-garden appeal."
+      ],
+      "unresolved_questions": [
+        "Which issues were determined by separate orders, and which remained undecided?",
+        "Which exact parcels and plans were included in each proceeding?"
+      ],
+      "confidence": "Established as to the text of the published judgment; other proceedings remain unassessed",
+      "updated": "2026-10-25"
+    },
+    {
+      "id": "INT-0002",
+      "subject_type": "source_record",
+      "subject_id": "SRC-BP-BUCKLER-1987-BAILII",
+      "status": "working_interpretation",
+      "title": "The 1987 judgment is a source for the legal result, not independent proof of every antecedent document",
+      "text": "The judgment records the court's reasoning and outcome, including its treatment of adverse possession and the 1974 letters. For events that occurred decades earlier, it is also a later narrative source based on material before the court. The original letters, orders, conveyances, plans, registry applications, and archive files should be catalogued separately when located, linked to this judgment, and assessed for independence.",
+      "basis_source_ids": [
+        "SRC-BP-BUCKLER-1987-BAILII"
+      ],
+      "evidence_for": [
+        {
+          "source_id": "SRC-BP-BUCKLER-1987-BAILII",
+          "pinpoint": "paragraphs 11–18",
+          "note": "The judgment recounts the 1974 proceedings and letters and the first-registration position."
+        },
+        {
+          "source_id": "SRC-BP-BUCKLER-1987-BAILII",
+          "pinpoint": "paragraphs 21–39",
+          "note": "The judgment sets out the Court of Appeal's reasoning and disposition."
+        }
+      ],
+      "evidence_against_or_limits": [
+        {
+          "source_id": "SRC-BP-BUCKLER-1987-BAILII",
+          "pinpoint": "whole judgment",
+          "note": "The judgment may quote or summarize documents that are themselves significant sources; its value is not limited to being a secondary narrative, but the original artifacts still need separate provenance records where available."
+        }
+      ],
+      "alternative_explanations": [
+        "The original documents may survive in court, company, solicitor, Land Registry, archive, or private files.",
+        "Some quoted documents may be the best currently accessible version; a transcription can remain useful while its status is clearly stated."
+      ],
+      "what_would_confirm": [
+        "The original or best surviving copy of each key antecedent document is located, hashed, described, and cross-linked.",
+        "The judgment's citations and factual summaries are compared with those documents."
+      ],
+      "what_would_refute_or_modify": [
+        "An original document or a different authoritative court record materially contradicts a relevant summary in the published judgment."
+      ],
+      "unresolved_questions": [
+        "Which underlying exhibits and pleadings are available from the court or archive?",
+        "Which descriptions currently rely only on the judgment, later family testimony, or derivative copies?"
+      ],
+      "confidence": "Strongly supported as a provenance rule; document-by-document verification outstanding",
+      "updated": "2026-10-25"
+    },
+    {
+      "id": "INT-0003",
+      "subject_type": "source_record",
+      "subject_id": "SRC-HENEB-GGAT02038S",
+      "status": "supported_by_public_record; historical propositions require underlying artifacts",
+      "title": "The HER entry proves what the record says; its historical statements require separate source checking",
+      "text": "The public page is a primary source for what Heneb/Archwilio currently publishes under GGAT02038s, including its compiled and last-updated dates and the summary it presents. It is not the original 1974 survey, the December 1988 Suggett note, the 1990 archaeological assessment, or the 1994 excavation archive. A citation to the page can establish that the HER records a particular statement; where the research asks whether the historical event itself occurred, the underlying artifact or independent contemporaneous source should be located and assessed.",
+      "basis_source_ids": [
+        "SRC-HENEB-GGAT02038S"
+      ],
+      "evidence_for": [
+        {
+          "source_id": "SRC-HENEB-GGAT02038S",
+          "pinpoint": "Page heading and Compiled date / Last updated fields",
+          "note": "The current official entry identifies its record and gives publication metadata."
+        },
+        {
+          "source_id": "SRC-HENEB-GGAT02038S",
+          "pinpoint": "Description and Sources sections",
+          "note": "The page attributes and summarizes historical information and identifies sources/linked records."
+        }
+      ],
+      "evidence_against_or_limits": [
+        {
+          "source_id": "SRC-HENEB-GGAT02038S",
+          "pinpoint": "Underlying source artifacts not reviewed as a complete set",
+          "note": "The web entry's narrative is not the same item as each cited or summarized historical document."
+        }
+      ],
+      "alternative_explanations": [
+        "The entry may accurately summarize an original source that is held elsewhere.",
+        "A later database entry can preserve earlier observations while also summarizing, condensing, or updating them; wording changes may reflect routine editorial maintenance rather than a deliberate change in historical position."
+      ],
+      "what_would_confirm": [
+        "Obtain and read the original 1974 survey, Suggett note, 1990 assessment and relevant 1994 site archive as separate artifacts.",
+        "Record the source list and revision metadata, and compare any prior dated versions with the current page."
+      ],
+      "what_would_refute_or_modify": [
+        "Original records materially contradict a date, attribution, location, quotation or summary in the HER entry.",
+        "A prior captured version shows the apparent statement was added or changed, requiring the chronology and interpretation to be revised."
+      ],
+      "unresolved_questions": [
+        "What versions of the HER page survive, with timestamps, as external Internet Archive captures?",
+        "Which underlying source files support each statement, and which were merely inherited from earlier database entries?",
+        "What does the full change history reveal, if any portion is disclosed?"
+      ],
+      "confidence": "Strongly supported as to source scope; the underlying historical propositions require source-by-source evaluation",
+      "updated": "2026-10-25"
+    },
+    {
+      "id": "INT-0004",
+      "subject_type": "source_record",
+      "subject_id": "SRC-HENEB-GGATE003872",
+      "status": "working_interpretation",
+      "title": "An archaeological recommendation is not, by itself, proof of a binding planning condition or its breach",
+      "text": "The GGATE003872 entry summarizes a 1990 evaluation and recommendations concerning archaeological deposits. That record is relevant to what the archaeological evaluation reported and recommended. It does not alone establish the exact planning permission or condition wording, whether the authority adopted the recommendations, whether any condition was discharged or enforced, or what a developer was legally required to do. Those questions require the original evaluation/report, planning decision notices, approved plans, condition discharge correspondence and any enforcement records.",
+      "basis_source_ids": [
+        "SRC-HENEB-GGATE003872"
+      ],
+      "evidence_for": [
+        {
+          "source_id": "SRC-HENEB-GGATE003872",
+          "pinpoint": "Summary and Description",
+          "note": "The page describes the evaluation and recommendations."
+        }
+      ],
+      "evidence_against_or_limits": [
+        {
+          "source_id": "SRC-HENEB-GGATE003872",
+          "pinpoint": "Page-level summary, not a complete planning file",
+          "note": "It does not supply the operative planning decision notice, complete condition text or discharge/enforcement record in this source entry."
+        }
+      ],
+      "alternative_explanations": [
+        "The planning authority may have adopted the recommendations in a condition.",
+        "The recommendations may have been modified, implemented through another mechanism, or not imposed as a condition; the file must decide."
+      ],
+      "what_would_confirm": [
+        "Obtain the 1990 assessment and the complete planning file, including decision notices, conditions, drawings, consultation responses, discharge and enforcement records."
+      ],
+      "what_would_refute_or_modify": [
+        "A relevant notice or plan shows a different site extent, recommendation, condition, or legal requirement than the current interpretation anticipates."
+      ],
+      "unresolved_questions": [
+        "Where are the original GGAT assessment, trench plans and supporting photographs held?",
+        "What precisely did the authority require and what work did it record as completed?",
+        "How do the excavation coordinates relate to cadastral parcels and later development boundaries?"
+      ],
+      "confidence": "Plausible and deliberately limited; the actual planning obligations have not been audited in this record",
+      "updated": "2026-10-25"
+    }
+  ]
+}

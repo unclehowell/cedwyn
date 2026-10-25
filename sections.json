@@ -1,6 +1,6 @@
 {
  "version": "1.0.0",
- "note": "Copy for the two sections of Cedwyn (Sion 12:06 GMT 25 Oct 2026): the landing tiles, the Wales hub (/wales/), the Argentina hub (/argentina/) and the section ribbon on every theme page. en/cy/es; Welsh and Spanish are first drafts for review. Wales copy follows EDITORIAL.md (ingredients + citations, no conclusions, banned-word list). Argentina copy may say 'suspected fraud' and 'concealment' and casts public bodies as antagonists; named private individuals appear only as the records show them and are never accused. tools/sections.py renders it. - Sion's Tab agent",
+ "note": "Wales and Argentina use different exhibits but share one source register, the same provenance rules, and the same uncertainty labels. Mentions of suspected wrongdoing must be attributed and explicitly labelled as unresolved hypotheses, never presented as established findings. — Forensic catalogue standards, 25 Oct 2026",
  "sections": {
   "wales": {
    "lang": "cy",
@@ -140,9 +140,9 @@
    "es": "Un archivo · dos naciones"
   },
   "land_lede": {
-   "en": "Choose a way in. In Wales the record is sought, disclosed and reconstructed. In Argentina it is retold.",
-   "cy": "Dewiswch eich ffordd i mewn. Yng Nghymru mae’r cofnod yn cael ei geisio, ei ddatgelu a’i ail-greu. Yn yr Ariannin mae’n cael ei ailadrodd.",
-   "es": "Elija una entrada. En Gales el registro se busca, se revela y se reconstruye. En Argentina se vuelve a contar."
+   "en": "Choose a way in. Wales gathers the records and compares explanations; Argentina retells the history using the same cited sources, open questions and uncertainty labels.",
+   "cy": "Dewiswch eich ffordd i mewn. Yng Nghymru cesglir y cofnodion a chymherir esboniadau; yn yr Ariannin adroddir yr hanes gan ddefnyddio’r un ffynonellau, cwestiynau agored a labeli ansicrwydd.",
+   "es": "Elija una entrada. En Gales se reúnen los registros y se comparan explicaciones; en Argentina se vuelve a contar la historia usando las mismas fuentes citadas, preguntas abiertas y etiquetas de incertidumbre."
   },
   "w_name": {
    "en": "Wales",
@@ -485,19 +485,19 @@
    "es": "El relato"
   },
   "re1": {
-   "en": "Wales gathers the records. Here they are told as a story: a family’s house and land at Llandough, a title the family held to be theirs, and a British state whose registry and courts took the other side. The family suspects fraud and concealment in how that title came to be recorded, and is working to have the case reopened.",
-   "cy": "Yng Nghymru caiff y cofnodion eu casglu. Yma cânt eu hadrodd fel stori: tŷ a thir teulu yn Llandochau, teitl yr oedd y teulu’n ei ddal yn eiddo iddynt, a gwladwriaeth Brydeinig y safodd ei chofrestrfa a’i llysoedd ar yr ochr arall. Mae’r teulu’n amau twyll a chuddio yn y ffordd y cofnodwyd y teitl hwnnw, ac yn gweithio i ailagor yr achos.",
-   "es": "En Gales se reúnen los registros. Aquí se cuentan como una historia: la casa y las tierras de una familia en Llandough, un título que la familia tenía por suyo, y un Estado británico cuyo registro y tribunales se pusieron del otro lado. La familia sospecha fraude y ocultación en la forma en que se inscribió ese título, y trabaja para que se reabra el caso."
+   "en": "Wales gathers records about the house, land, occupation, title, proceedings and later development. Family members have raised questions about possible fraud or concealment; these are unresolved hypotheses, not findings. Each interpretation should identify its sources, set out contrary material and ordinary alternatives, and state what would confirm or refute it.",
+   "cy": "Yng Nghymru cesglir cofnodion am y tŷ, y tir, y meddiannaeth, y teitl, yr achosion a’r datblygiad diweddarach. Mae aelodau’r teulu wedi codi cwestiynau am dwyll neu guddio posibl; damcaniaethau heb eu datrys yw’r rhain, nid canfyddiadau. Dylai pob dehongliad nodi ei ffynonellau, cyflwyno deunydd gwrthgyferbyniol ac esboniadau arferol eraill, a nodi beth fyddai’n ei gadarnhau neu’n ei wrthbrofi.",
+   "es": "En Gales se reúnen documentos sobre la casa, la tierra, la ocupación, el título, los procedimientos y el desarrollo posterior. Miembros de la familia han planteado preguntas sobre un posible fraude u ocultación; son hipótesis sin resolver, no conclusiones. Cada interpretación debe identificar sus fuentes, presentar material contrario y explicaciones ordinarias alternativas, e indicar qué la confirmaría o refutaría."
   },
   "re2": {
-   "en": "The peculiarities go on. On 22 October 2026 the community council moved its meeting online, citing the “tone” of the family’s emails, after close to a year without engaging with them; the minutes are awaited. Still unanswered: how the council came to hold the green, and the twenty new tax-paying households of Church View Close.",
-   "cy": "Mae’r rhyfeddodau’n parhau. Ar 22 Hydref 2026 symudodd y cyngor cymuned ei gyfarfod ar-lein, gan gyfeirio at “dôn” e-byst y teulu, ar ôl bron i flwyddyn heb ymgysylltu â nhw; disgwylir y cofnodion. Heb ateb o hyd: sut y daeth y cyngor i ddal y lawnt, a’r ugain aelwyd newydd sy’n talu treth yn Church View Close.",
-   "es": "Las rarezas continúan. El 22 de octubre de 2026 el consejo comunitario pasó su reunión a formato en línea, aduciendo el «tono» de los correos de la familia, tras casi un año sin dialogar con ella; se esperan las actas. Sigue sin respuesta cómo llegó el consejo a quedarse con el prado comunal, y los veinte nuevos hogares contribuyentes de Church View Close."
+   "en": "The research register records a community council meeting dated 22 October 2026 as a matter to verify against its official minutes and correspondence. The minutes and the reason for the meeting format must be checked before drawing conclusions. Questions concerning VG41 and Church View Close remain retrieval questions until supported by the relevant register, deed, plan or decision.",
+   "cy": "Mae’r gofrestr ymchwil yn cofnodi cyfarfod cyngor cymuned dyddiedig 22 Hydref 2026 fel mater i’w wirio yn erbyn y cofnodion swyddogol a’r ohebiaeth. Rhaid gwirio’r cofnodion a’r rheswm dros fformat y cyfarfod cyn dod i gasgliadau. Mae cwestiynau ynghylch VG41 a Church View Close yn gwestiynau ymchwil hyd nes y cânt eu cefnogi gan y gofrestr, y weithred, y cynllun neu’r penderfyniad perthnasol.",
+   "es": "El registro de investigación anota una reunión del consejo comunitario fechada el 22 de octubre de 2026 como asunto que debe verificarse con las actas oficiales y la correspondencia. Deben revisarse las actas y la razón del formato de la reunión antes de extraer conclusiones. Las preguntas sobre VG41 y Church View Close siguen siendo cuestiones de búsqueda hasta que las respalden el registro, la escritura, el plano o la decisión pertinente."
   },
   "re3": {
-   "en": "Public bodies, the council, HM Land Registry and the state, are the antagonists of this telling. Private individuals appear only as the records show them; no one is accused of a crime.",
-   "cy": "Cyrff cyhoeddus, y cyngor, Cofrestrfa Tir EF a’r wladwriaeth, yw gwrthwynebwyr yr adrodd hwn. Dim ond fel y mae’r cofnodion yn eu dangos y mae unigolion preifat yn ymddangos; ni chyhuddir neb o drosedd.",
-   "es": "Los organismos públicos, el consejo, el Registro de la Propiedad del Reino Unido y el Estado, son los antagonistas de este relato. Las personas particulares aparecen solo como las muestran los registros; no se acusa a nadie de ningún delito."
+   "en": "This exhibit does not assign antagonist roles. Public bodies and private parties are assessed through dated records, stated powers and duties, recorded actions, contrary material and uncertainty. No motive or wrongful act is a finding without supporting sources and a fair examination of alternatives.",
+   "cy": "Nid yw’r arddangosfa hon yn pennu rolau gwrthwynebwyr. Asesir cyrff cyhoeddus a phartïon preifat drwy gofnodion dyddiedig, pwerau a dyletswyddau datganedig, camau a gofnodwyd, deunydd gwrthgyferbyniol ac ansicrwydd. Nid yw cymhelliad na gweithred anghyfiawn yn ganfyddiad heb ffynonellau ategol ac archwiliad teg o ddewisiadau eraill.",
+   "es": "Esta exposición no asigna papeles de antagonistas. Los organismos públicos y las partes privadas se evalúan mediante registros fechados, competencias y deberes declarados, acciones documentadas, material contrario e incertidumbre. Ningún motivo ni acto indebido constituye una conclusión sin fuentes de apoyo y un examen justo de las alternativas."
   },
   "a_cross_h": {
    "en": "Where the story comes from: Wales",

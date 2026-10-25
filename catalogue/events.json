@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "notice": "Events are statements about dated occurrences as recorded by the cited source(s). A date in this register does not upgrade the event from a source-reported statement to an independently verified historical fact. Each event retains source provenance, pinpoints, what the source does and does not establish, contrary material, alternatives and next records.",
+  "records": [
+    {
+      "event_id": "EVT-1987-APPEAL-SCOPE",
+      "date": "1987-07-31",
+      "date_precision": "day (judgment metadata; verify against original judgment copy)",
+      "actor": "Court of Appeal (Civil Division)",
+      "action": "Issued judgment in BP Properties Ltd v Buckler; the published judgment describes the appeal as limited to the farmhouse and garden and notes that the possession order for the rest of the farm was not challenged on appeal.",
+      "object": "Appeal concerning possession of the farmhouse and garden",
+      "place": "Great House Farm, Llandough",
+      "property_parcel": "Farmhouse and garden as described in the judgment; do not map to later registry parcels without the relevant plans",
+      "polygon_id": null,
+      "event_type": "court_proceeding",
+      "statement_class": "court_record_statement",
+      "event_status": "established_as_statement_in_published_judgment",
+      "source_ids": [
+        "SRC-BP-BUCKLER-1987-BAILII"
+      ],
+      "pinpoints": [
+        {
+          "source_id": "SRC-BP-BUCKLER-1987-BAILII",
+          "pinpoint": "paragraph 2",
+          "note": "Scope of the appeal and status of the order for the rest of the farm."
+        }
+      ],
+      "confidence": "Established as the wording of the published judgment; the sealed original and wider court file have not been cross-checked in this entry.",
+      "what_it_supports": [
+        "The published judgment states the appeal concerned the farmhouse and garden, and that the order for the rest of the farm was not challenged on appeal."
+      ],
+      "what_it_does_not_establish": [
+        "That every land parcel, boundary, title event, registration matter, planning issue, archaeological issue or institutional allegation was decided in this appeal.",
+        "That a separate issue was never decided in a different proceeding."
+      ],
+      "hypothesis_relevance": [
+        "Limits the propositions that may fairly be attributed to this appeal."
+      ],
+      "contrary_material_or_limits": [
+        "Separate proceedings or orders may determine matters outside this appeal; those records must be located independently."
+      ],
+      "alternative_explanations": [
+        "The judgment may recount wider farm history as context without deciding each historical event as a separate issue."
+      ],
+      "next_records": [
+        "Sealed judgment and pleadings",
+        "Orders and filed plans from the 1955 and 1962 possession proceedings",
+        "Any separate final orders said to decide other parcels or issues"
+      ],
+      "independent_origin_ids": [
+        "judgment:EWCA:Civ:1987:2"
+      ]
+    },
+    {
+      "event_id": "EVT-1988-DEMOLITION-REPORTED-HER",
+      "date": "1988-12-06",
+      "date_precision": "day (as stated by the HER entry)",
+      "actor": "B.P. Properties Ltd (as named in the HER entry)",
+      "action": "The HER says the farmhouse and farm buildings were demolished",
+      "object": "Great House Farmhouse and farm buildings",
+      "place": "Great House Farm, Llandough; HER location NGR ST16707335",
+      "property_parcel": "Site described by HER entry GGAT02038s; exact parcel boundary not inferred",
+      "polygon_id": null,
+      "event_type": "demolition_reported_by_institutional_record",
+      "statement_class": "later_official_database_statement",
+      "event_status": "established_as_statement_in_public_HER_entry; independent demolition records not yet linked here",
+      "source_ids": [
+        "SRC-HENEB-GGAT02038S",
+        "SRC-RCAHMW-COFLEIN-20182"
+      ],
+      "pinpoints": [
+        {
+          "source_id": "SRC-HENEB-GGAT02038S",
+          "pinpoint": "Description; demolition sentence",
+          "note": "HER entry states the house and farm buildings were demolished by B.P. Properties Ltd on 6 December 1988."
+        },
+        {
+          "source_id": "SRC-RCAHMW-COFLEIN-20182",
+          "pinpoint": "Description item 1",
+          "note": "Coflein records demolition in December 1988."
+        }
+      ],
+      "confidence": "Strongly supported that the two institutional records report demolition in December 1988; the precise day and operative authority should be checked against contemporaneous records.",
+      "what_it_supports": [
+        "The current HER entry says demolition occurred on 6 December 1988 and attributes it to B.P. Properties Ltd.",
+        "Coflein separately records demolition in December 1988."
+      ],
+      "what_it_does_not_establish": [
+        "The full legal authority, notice, execution mechanism, planning/building-control basis, responsible decision-makers or exact sequence of actions.",
+        "That demolition was unlawful or that an authority intentionally concealed anything."
+      ],
+      "hypothesis_relevance": [
+        "Sets a date to compare with possession execution, listing decisions, planning permissions and demolition records."
+      ],
+      "contrary_material_or_limits": [
+        "The records cited here are institutional summaries rather than the full demolition, possession, planning or contractor files."
+      ],
+      "alternative_explanations": [
+        "Different records may refer separately to possession execution, preparatory work and physical demolition; these events must be temporally distinguished."
+      ],
+      "next_records": [
+        "Possession warrant and execution record",
+        "Planning permission and any demolition/building-control notices",
+        "Contractor, site diary, invoice, photograph and contemporaneous press records",
+        "Cadw spot-listing and inspection correspondence"
+      ],
+      "independent_origin_ids": [
+        "heneb-her:GGAT02038s",
+        "rcahmw-coflein:NPRN-20182"
+      ]
+    },
+    {
+      "event_id": "EVT-1990-GGAT-EVALUATION",
+      "date": "1990",
+      "date_precision": "year (the HER page does not provide a precise day in the cited summary)",
+      "actor": "Glamorgan-Gwent Archaeological Trust (GGAT), commissioned by BP Properties (as stated in the HER entry)",
+      "action": "Undertook archaeological evaluation/fieldwork in advance of redevelopment",
+      "object": "Land at Great House Farm, Llandough; site of evaluation as described by GGATE003872",
+      "place": "Great House Farm, Llandough; HER grid reference ST1679073310",
+      "property_parcel": "Evaluation site per HER record; parcel boundary and trench polygons await original plan",
+      "polygon_id": null,
+      "event_type": "archaeological_evaluation_reported_by_HER",
+      "statement_class": "later_official_database_statement",
+      "event_status": "established_as_statement_in_HER_event_record; original assessment and field archive require separate records",
+      "source_ids": [
+        "SRC-HENEB-GGATE003872"
+      ],
+      "pinpoints": [
+        {
+          "source_id": "SRC-HENEB-GGATE003872",
+          "pinpoint": "Summary and Description",
+          "note": "HER entry reports BP Properties commissioned GGAT fieldwork; notes human remains in trenches 3 and 4, house remains in trench 7, rubble/medieval material in trenches and recommendations."
+        }
+      ],
+      "confidence": "Strongly supported as the content of the official HER event entry; detailed archaeology and planning implications need the original report and archive.",
+      "what_it_supports": [
+        "The HER event record reports a 1990 evaluation and summarizes some observations and recommendations."
+      ],
+      "what_it_does_not_establish": [
+        "The exact location and stratigraphic context of each find without plans/context sheets.",
+        "The exact planning condition, whether recommendations became legally binding, or whether they were followed or breached.",
+        "That the record concerns every part of Parcel A, Parcel B or the wider Llandough archaeological landscape."
+      ],
+      "hypothesis_relevance": [
+        "Relevant to archaeological knowledge and development processes; does not by itself establish a planning-law breach."
+      ],
+      "contrary_material_or_limits": [
+        "The summary is not the original field report, trench plans, context sheets, photographs or planning authority decision."
+      ],
+      "alternative_explanations": [
+        "The authority may have imposed, modified, discharged or not imposed recommendations as conditions; the planning file determines which."
+      ],
+      "next_records": [
+        "GGAT 1990 assessment report",
+        "Trench/context plans, field notes, photographs and finds registers",
+        "Relevant planning application, decision notice, conditions, discharge and enforcement records"
+      ],
+      "independent_origin_ids": [
+        "heneb-her:GGATE003872"
+      ]
+    },
+    {
+      "event_id": "EVT-2026-HER-02038S-METADATA",
+      "date": "2026-09-29",
+      "date_precision": "day (page metadata; not independently an edit log)",
+      "actor": "Heneb Historic Environment Record (Archwilio)",
+      "action": "The current public record displays this as its last-updated date",
+      "object": "HER entry GGAT02038s",
+      "place": "Public record page",
+      "property_parcel": null,
+      "polygon_id": null,
+      "event_type": "public_record_metadata",
+      "statement_class": "institutional_page_metadata",
+      "event_status": "established_as_displayed_page_metadata; actual change contents and change authority unknown",
+      "source_ids": [
+        "SRC-HENEB-GGAT02038S"
+      ],
+      "pinpoints": [
+        {
+          "source_id": "SRC-HENEB-GGAT02038S",
+          "pinpoint": "Page field: Last updated",
+          "note": "The record displays 29-09-2026."
+        }
+      ],
+      "confidence": "Established as page text; it does not identify what changed or when each underlying field was edited.",
+      "what_it_supports": [
+        "The page displayed on 25 October 2026 states that the HER entry was last updated on 29 September 2026."
+      ],
+      "what_it_does_not_establish": [
+        "That the database was substantively changed on that exact day, what fields changed, who changed them or why.",
+        "Any deliberate amendment, suppression or nondisclosure."
+      ],
+      "hypothesis_relevance": [
+        "Justifies preserving dated snapshots and requesting any available version/change history."
+      ],
+      "contrary_material_or_limits": [
+        "Heneb is reported elsewhere in the project's Q&A register to have distinguished a change-log from snapshots of historical table contents; the underlying correspondence must be catalogued as a separate source before detailed conclusions."
+      ],
+      "alternative_explanations": [
+        "The displayed date may represent a routine update, a batch change, an entry-level metadata convention or a substantive edit."
+      ],
+      "next_records": [
+        "Confirmed Wayback captures across dates",
+        "Heneb response/correspondence concerning the HER change history",
+        "Any available field-level audit information and source-file versions"
+      ],
+      "independent_origin_ids": [
+        "heneb-her:GGAT02038s"
+      ]
+    }
+  ]
+}

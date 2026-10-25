@@ -1,0 +1,39 @@
+name: Monitor public source pages
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * 0'
+permissions:
+  contents: write
+concurrency:
+  group: cedwyn-public-source-monitor
+  cancel-in-progress: false
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate the watchlist and state
+        run: python tools/validate_catalogue.py
+      - name: Fetch watched public pages and try to archive new/changed pages
+        run: python tools/monitor_sources.py
+      - name: Commit only monitor state/history changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "cedwyn-source-monitor"
+          git config user.email "cedwyn-source-monitor[bot]@users.noreply.github.com"
+          git add catalogue/monitoring/
+          if git diff --cached --quiet; then
+            echo "No material monitor state or history changes."
+            exit 0
+          fi
+          git commit -m "Update public source monitoring state"
+          git push origin HEAD:main

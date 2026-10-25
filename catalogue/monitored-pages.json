@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "interval": "weekly",
+    "method": "Fetch public page bytes; hash exact response; when first seen, materially different bytes, HTTP status change, or missing snapshot, request a Wayback Save Page Now capture.",
+    "cautions": [
+      "A byte-level change is an alert, not proof of deliberate amendment: templates, analytics, timestamps, content delivery, and encoding may change.",
+      "A failed request is not a deletion; keep the last successful digest and report the failed check.",
+      "A Wayback calendar URL is not a confirmed snapshot. Only a recorded snapshot URL/Wayback timestamp counts as a confirmed capture.",
+      "The monitoring set is deliberately small at first. Add URLs only after linking them to a specific claim or source record and validating the exact page."
+    ]
+  },
+  "pages": [
+    {
+      "id": "WATCH-BP-COURT-1987",
+      "title": "BP Properties Ltd v Buckler [1987] EWCA Civ 2",
+      "url": "https://www.bailii.org/ew/cases/EWCA/Civ/1987/2.html",
+      "source_id": "SRC-BP-BUCKLER-1987-BAILII",
+      "custodian": "BAILII (published case-law transcription)",
+      "topic": "Court of Appeal judgment; scope of appeal and adverse-possession reasoning",
+      "required_snapshot": true,
+      "enabled": true,
+      "relevance_status": "directly_relevant_source",
+      "notes": "Monitor the public text; compare any detected change with the prior digest and archive snapshot before interpreting it.",
+      "wayback_calendar_url": "https://web.archive.org/web/*/https://www.bailii.org/ew/cases/EWCA/Civ/1987/2.html"
+    },
+    {
+      "id": "WATCH-HANSARD-1980-05-22",
+      "title": "House of Commons Hansard, 22 May 1980 (Volume 985)",
+      "url": "https://hansard.parliament.uk/Commons/1980-05-22",
+      "source_id": "SRC-HANSARD-1980-05-22",
+      "custodian": "UK Parliament / Hansard",
+      "topic": "Research lead identified in the supplied specification; target column not yet verified",
+      "required_snapshot": true,
+      "enabled": true,
+      "relevance_status": "unconfirmed_research_lead",
+      "notes": "The monitor preserves page-state changes, not the claim that the target column concerns Great House Farm.",
+      "wayback_calendar_url": "https://web.archive.org/web/*/https://hansard.parliament.uk/Commons/1980-05-22"
+    },
+    {
+      "id": "WATCH-HENEB-GGAT02038S",
+      "title": "Heneb HER GGAT02038s — Great House Farm",
+      "url": "https://archwilio.org.uk/her/chi3/report/page.php?watprn=GGAT02038s",
+      "source_id": "SRC-HENEB-GGAT02038S",
+      "custodian": "Heneb Historic Environment Record",
+      "topic": "Core official HER entry for Great House Farm, including summary, linked events and source citations",
+      "required_snapshot": true,
+      "enabled": true,
+      "relevance_status": "directly_relevant_institutional_record",
+      "wayback_calendar_url": "https://web.archive.org/web/*/https://archwilio.org.uk/her/chi3/report/page.php?watprn=GGAT02038s",
+      "notes": "A Cedwyn local versioned copy exists under wayback/websites/.../latest.html; that local version is not an external Wayback snapshot. Track response changes and seek a timestamped archive.org snapshot."
+    },
+    {
+      "id": "WATCH-HENEB-GGATE003872",
+      "title": "Heneb HER GGATE003872 — Land at Great House Farm archaeological evaluation",
+      "url": "https://archwilio.org.uk/her/chi3/report/page.php?watprn=GGATE003872",
+      "source_id": "SRC-HENEB-GGATE003872",
+      "custodian": "Heneb Historic Environment Record",
+      "topic": "Official event entry describing the 1990 archaeological evaluation and recommendations",
+      "required_snapshot": true,
+      "enabled": true,
+      "relevance_status": "directly_relevant_institutional_record",
+      "wayback_calendar_url": "https://web.archive.org/web/*/https://archwilio.org.uk/her/chi3/report/page.php?watprn=GGATE003872",
+      "notes": "Monitor only the published page representation; changes do not establish motive or legal significance."
+    },
+    {
+      "id": "WATCH-COFLEIN-20182",
+      "title": "Coflein NPRN 20182 — Great House Farm site",
+      "url": "https://coflein.gov.uk/en/sites/20182",
+      "source_id": "SRC-RCAHMW-COFLEIN-20182",
+      "custodian": "RCAHMW / Coflein",
+      "topic": "Official site record for the demolished farmhouse",
+      "required_snapshot": true,
+      "enabled": true,
+      "relevance_status": "directly_relevant_institutional_record",
+      "wayback_calendar_url": "https://web.archive.org/web/*/https://coflein.gov.uk/en/sites/20182",
+      "notes": "The matching current Coflein URL has not been confirmed as preserved locally. Keep the published record separate from underlying archive/site-file notes."
+    }
+  ]
+}
