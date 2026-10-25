@@ -86,7 +86,7 @@ for r in sr:
             ERRORS.append(f"sources[{r.get('id')}]: missing Wayback calendar URL or confirmed archive URL")
     if r.get("record_status","").startswith("located") and r.get("read_status") in ("not_read","target_passage_not_read"):
         WARNINGS.append(f"sources[{r.get('id')}]: located record not yet read; avoid substantive interpretation")
-    if r.get("public_archive_url") and not re.match(r"^https://web\\.archive\\.org/web/\\d{6,14}/", str(r["public_archive_url"])):
+    if r.get("public_archive_url") and not re.match(r"^https://web\.archive\.org/web/\d{6,14}/", str(r["public_archive_url"])):
         ERRORS.append(f"sources[{r.get('id')}]: public_archive_url must be a confirmed timestamped Wayback snapshot URL")
     comm=r.get("communication") or {}
     if comm:
