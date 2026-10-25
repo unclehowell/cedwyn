@@ -5,7 +5,7 @@ Walks dist/ (all themes + the /_blob/ store) and writes one SQLite file:
   blobs (the evidence bytes themselves as BLOBs: images, PDFs, small media), fts (FTS5 full-text index of every page
   and data file), nodes + edges (graph: page->embeds/links->artifact, artifact->mentions->year, artifact->cites->host),
   captures (original URL -> archived copy, from the Wayback Vault index).
-Then VACUUMs (page_size 4096), maps every blob's byte position (tools/dbmap.py -> db/blobmap.json, checked by sha256) and splits the file into 512 KB chunk files under dist/db/ (far under the 25 MB limit).
+Then VACUUMs (page_size 4096), maps every blob's byte position (tools/dbmap.py -> db/blobmap.json, checked by sha256) and splits the file into 256 KB chunk files under dist/db/ (far under the 25 MB limit).
 The browser fetches only the chunk files a query touches (sql.js-httpvfs, chunked mode; one file per request, because
 Cloudflare Pages answers Range requests with the whole file) - no server, no D1. - Sion's Tab agent"""
 import json, os, re, sys, sqlite3, hashlib, pathlib, posixpath, html as H, mimetypes, urllib.parse
@@ -14,10 +14,10 @@ CFG = json.load(open(ROOT / 'themes.json'))
 DIST = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else 'dist')
 OUT = DIST / 'db'; OUT.mkdir(parents=True, exist_ok=True)
 DBF = pathlib.Path('cedwyn.sqlite3'); DBF.unlink(missing_ok=True)
-CHUNK = int(os.environ.get('DB_CHUNK', 512 * 1024))   # Pages serves whole files (no Range), so each chunk file = one request
+CHUNK = int(os.environ.get('DB_CHUNK', 256 * 1024))   # Pages serves whole files (no Range), so each chunk file = one request; 256 KB since stage 3 (theme pages read single files from the DB)
 BLOB_MAX = int(os.environ.get('BLOB_MAX', 2_500_000)); BLOB_TOTAL = int(os.environ.get('BLOB_TOTAL', 700_000_000))
 TIDS = [t['id'] for t in CFG['themes']]; D = len(DIST.parts)
-KIND = {'.html':'page','.htm':'page','.json':'data','.csv':'data','.xml':'data','.txt':'text','.md':'text','.css':'style','.js':'script','.mjs':'script',
+KIND = {'.html':'page','.htm':'page','.json':'data','.geojson':'data','.csv':'data','.xml':'data','.txt':'text','.md':'text','.css':'style','.js':'script','.mjs':'script',
         '.jpg':'image','.jpeg':'image','.png':'image','.gif':'image','.webp':'image','.svg':'image','.avif':'image','.ico':'image','.bmp':'image','.tif':'image','.tiff':'image',
         '.pdf':'document','.doc':'document','.docx':'document','.mp3':'audio','.m4a':'audio','.ogg':'audio','.wav':'audio','.mp4':'video','.webm':'video','.mov':'video',
         '.woff':'font','.woff2':'font','.ttf':'font','.otf':'font','.eot':'font'}
