@@ -212,7 +212,7 @@ def add_boot(s, rel):
     return s3
 
 APEX_THEMES = ["estate", "patagonia", "wales", "cyberspace"]
-APEX_ROOT_DIRS = ["1d", "3d", "_headers", "_redirects", "accessibility", "ai-policy", "brand", "choose", "cookies", "disclaimer", "ebook", "enemy", "enquire", "evidence", "fonts", "ghf-lang", "legal", "licence", "locations-img", "press", "privacy", "terms", "cdn-cgi", "assets"]
+APEX_ROOT_DIRS = ["1d", "3d", "campus", "webapp", "_headers", "_redirects", "accessibility", "ai-policy", "brand", "choose", "cookies", "disclaimer", "ebook", "enemy", "enquire", "evidence", "fonts", "ghf-lang", "legal", "licence", "locations-img", "press", "privacy", "terms", "cdn-cgi", "assets"]
 APEXFIX = re.compile(r'(?<=["\'(=`])/(' + '|'.join(APEX_THEMES) + r')/(' + '|'.join(re.escape(d) for d in APEX_ROOT_DIRS) + r')/')
 def apex_root(s):
     """pages of the apex-path themes (/wales/, /patagonia/ ...) name the apex site's own root folders (/fonts/, /ghf-lang/,
@@ -420,6 +420,19 @@ def main():
         filled = {'wanted': 0, 'copied': 0, 'not_found': [], 'rounds': 0}
         if '--no-fill' not in sys.argv:
             scan = [p for p, rel in files() if rel.split('/')[0] in CRAWLED]
+            # whole pages a theme links to that its build or crawl does not produce (themes.json fetch_pages: path -> live address)
+            fetched_pages = []
+            for relp, url in CFG.get('fetch_pages', {}).items():
+                dst = DIST / relp
+                if dst.exists(): continue
+                try:
+                    with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=60) as r:
+                        if 'html' not in (r.headers.get('Content-Type') or '') and not relp.endswith('.txt'): continue
+                        b = r.read()
+                    dst.parent.mkdir(parents=True, exist_ok=True); dst.write_bytes(b); fetched_pages.append(relp); scan.append(dst)
+                except Exception as e: filled['not_found'].append([relp, str(e)[:80]])
+            if fetched_pages: run([DIST / r for r in fetched_pages])
+            filled['pages_fetched'] = fetched_pages
             for rnd in range(3):   # files that fetched scripts/styles name in turn
                 want, gm = fill_missing(scan=scan)
                 scan = [DIST / r for r in gm[0]]

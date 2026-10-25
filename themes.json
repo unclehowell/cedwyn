@@ -546,5 +546,10 @@
  "allowed_tile_note": "Map tiles are fetched by the map library per zoom level and position and cannot be stored as fixed files; these two tile templates (satellite layer on /maps/, street map on /app/) are the only external requests left. — Sion's Tab agent",
  "vendor_extra": [
   "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js"
- ]
+ ],
+ "fetch_pages": {
+  "story/story/index.html": "https://bpvsbuckler.bucklerfamily.estate/story/",
+  "dartboard/campus/index.html": "https://bucklerfamily.estate/campus/",
+  "dartboard/webapp/index.html": "https://bucklerfamily.estate/webapp/"
+ }
 }
