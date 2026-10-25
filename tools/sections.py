@@ -113,8 +113,9 @@ def head(title, desc, lang, bpath, sec, T, n):
 </head>"""
 
 def langbar(T, l):
-    b = ''.join(f'<button type="button" data-cedwyn-lang="{k}" aria-pressed="{"true" if k == l else "false"}" lang="{k}">{k.upper()}</button>' for k in ('cy', 'en', 'es'))
-    return (f'<div class="bar" data-no-translate><div class="langs" role="group" data-i18n-al="lang_label" aria-label="{E(tx(T,"lang_label",l))}">{b}</div>'
+    # Sion 25 Oct 14:07: one language selector only, the header's top-right one (cy/en/es, remembered; Wales cy / Argentina es
+    # defaults come from data-ghf-lang-default). The page's own CY/EN/ES row is gone; the day/night toggle stays.
+    return (f'<div class="bar" data-no-translate>'
             f'<button class="mode" data-ghf-mode-toggle type="button">{E(tx(T,"mode",l))}</button></div>')
 
 def notify(T, l, key, consent, n):
