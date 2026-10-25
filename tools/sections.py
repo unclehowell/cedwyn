@@ -136,11 +136,22 @@ def layers(cfg, T, l, sec, amap):
     out.append('</section>')
     return ''.join(out)
 
+def ebook_prices():
+    try:
+        D = json.load(open(ROOT / 'data' / 'ebooks.json', encoding='utf-8'))
+        p2 = next((b['price'] for b in D['books'] if b['edition'] == 'v0.02'), '£9.99'); pb = (D.get('bundles') or [{}])[0].get('price', '')
+        return p2, pb
+    except Exception:
+        return None, None
+
 def page_t(S, cfg, sec):
     T = {k: v for k, v in S['t'].items() if sec == 'argentina' or not re.match(r'^(re\d|mu\d|mu_h|c\d)', k)}; amap = S.get('argentina_title_map', {}) if sec == 'argentina' else {}
     for t in cfg['themes']:
         v = {'en': t.get('title') or t['id'], 'cy': t.get('cy') or t.get('title'), 'es': t.get('es') or t.get('title')}
         T['th_' + t['id']] = {k: amap.get(x, x) for k, x in v.items()}
+    p2, pb = ebook_prices()
+    if p2 and 'e_ed' in T: T['e_ed'] = {k: v.replace('{p2}', p2).replace('{pb}', pb) for k, v in T['e_ed'].items()}
+    elif 'e_ed' in T: del T['e_ed']
     for g in cfg.get('groups', []):
         T['g_' + g['id']] = {'en': g.get('title'), 'cy': g.get('cy') or g.get('title'), 'es': g.get('es') or g.get('title')}
     return T
@@ -194,7 +205,7 @@ def wales(S, cfg):
 <h3 data-i18n="w_stops_h">{E(tx(T,'w_stops_h',l))}</h3><p class="mut" data-i18n="w_stops_p">{E(tx(T,'w_stops_p',l))}</p><ol class="stops">{st}</ol></section>
 <section class="blk" id="shop"><h2>{i18n(T,'w_shop_h',l)}</h2><div class="cards">
 <div class="card"><span class="soon" data-i18n="soon">{E(tx(T,'soon',l))}</span><h3 data-i18n="v_h">{E(tx(T,'v_h',l))}</h3><p data-i18n="v_p">{E(tx(T,'v_p',l))}</p>{notify(T,l,'wales-vouchers','consent_vouchers',1)}</div>
-<div class="card"><h3 data-i18n="e_h">{E(tx(T,'e_h',l))}</h3><p data-i18n="e_p">{E(tx(T,'e_p',l))}</p><a class="btn" href="/ebooks/" data-i18n="e_cta">{E(tx(T,'e_cta',l))}</a></div>
+<div class="card"><h3 data-i18n="e_h">{E(tx(T,'e_h',l))}</h3><p data-i18n="e_p">{E(tx(T,'e_p',l))}</p>{('<p class="mut" data-i18n="e_ed">' + E(tx(T,'e_ed',l)) + '</p>') if 'e_ed' in T else ''}<a class="btn" href="/ebooks/" data-i18n="e_cta">{E(tx(T,'e_cta',l))}</a></div>
 <div class="card"><span class="soon" data-i18n="soon">{E(tx(T,'soon',l))}</span><h3 data-i18n="m_h">{E(tx(T,'m_h',l))}</h3><p data-i18n="m_p">{E(tx(T,'m_p',l))}</p>{notify(T,l,'wales-merch','consent_merch',2)}</div>
 </div></section>
 <section class="blk" id="story"><h2>{i18n(T,'w_story_h',l)}</h2><p>{i18n(T,'w_story_p',l)}</p><ul class="plain">{lk}</ul></section>
