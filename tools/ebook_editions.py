@@ -13,7 +13,7 @@ CSS = ('<style id="eb-editions-css">.eb-eds{margin:0 auto 18px;max-width:1100px;
        '.eb-eds th,.eb-eds td{text-align:left;padding:7px 8px;border-bottom:1px solid rgba(128,128,128,.35);vertical-align:top}.eb-eds th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.8}'
        '.eb-eds td.n{white-space:nowrap}.eb-eds small{opacity:.75;font-size:12px}.eb-eds a{color:inherit}</style>')
 def table(D):
-    rows = ''.join(f'<tr><td><a href="{E(b["page"] or "/ebooks/")}">{E(b["title"])}</a></td><td class="n">{E(b["edition"])}<br><small>version {E(b["semver"])}</small></td>'
+    rows = ''.join(f'<tr><td><a href="{E(b["page"] or "/ebooks/")}">{E(b["title"])}</a></td><td class="n">{E(b["edition"])}<br><small>version {E(b["semver"])}</small>' + (f'<br><small><a href="{E(b["supplement"])}">+ supplement, 25 Oct 2026 (free PDF)</a></small>' if b.get('supplement') else '') + '</td>'
                    f'<td class="n">{E(b["price"])}</td></tr>' for b in D['books'])
     rows += ''.join(f'<tr><td><a href="{E(x["page"] or "/ebooks/")}">{E(x["title"])}</a></td><td class="n">newest<br><small>editions</small></td><td class="n">{E(x["price"])}</td></tr>' for x in D.get('bundles', []))
     return (f'<section class="eb-eds" id="editions" aria-label="Editions and prices">{CSS}<h2>Editions and prices</h2>'
