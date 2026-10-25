@@ -206,6 +206,15 @@ CREATE TABLE IF NOT EXISTS monitored_pages(
  last_check_error TEXT, notes TEXT, payload_json TEXT
 );
 CREATE INDEX IF NOT EXISTS monitored_enabled_idx ON monitored_pages(enabled);
+CREATE TABLE IF NOT EXISTS event_records(
+ event_id TEXT PRIMARY KEY, date TEXT, date_precision TEXT, actor TEXT, action TEXT, object TEXT, place TEXT,
+ property_parcel TEXT, polygon_id TEXT, event_type TEXT, statement_class TEXT, event_status TEXT, confidence TEXT,
+ source_ids_json TEXT, pinpoints_json TEXT, what_it_supports_json TEXT, what_it_does_not_establish_json TEXT,
+ hypothesis_relevance_json TEXT, contrary_material_or_limits_json TEXT, alternative_explanations_json TEXT,
+ next_records_json TEXT, independent_origin_ids_json TEXT, payload_json TEXT
+);
+CREATE INDEX IF NOT EXISTS event_date_idx ON event_records(date,event_id);
+CREATE INDEX IF NOT EXISTS event_status_idx ON event_records(event_status);
 """)
 def _read_json(path, default):
     try:
@@ -284,6 +293,25 @@ for _x in _watch:
     if _merged.get('id'):
         node('monitor:' + _merged['id'], 'monitored_page', (_merged.get('title') or _merged['id'])[:160])
         if _merged.get('source_id'): edge('monitor:' + _merged['id'], 'monitors_source', 'source:' + _merged['source_id'])
+_events = _read_json(ROOT / 'catalogue' / 'events.json', {}).get('records', [])
+for _x in _events:
+    con.execute("""INSERT OR REPLACE INTO event_records VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
+        _x.get('event_id'), _x.get('date'), _x.get('date_precision'), _x.get('actor'), _x.get('action'),
+        _x.get('object'), _x.get('place'), _x.get('property_parcel'), _x.get('polygon_id'), _x.get('event_type'),
+        _x.get('statement_class'), _x.get('event_status'), _x.get('confidence'),
+        json.dumps(_x.get('source_ids', []), ensure_ascii=False), json.dumps(_x.get('pinpoints', []), ensure_ascii=False),
+        json.dumps(_x.get('what_it_supports', []), ensure_ascii=False),
+        json.dumps(_x.get('what_it_does_not_establish', []), ensure_ascii=False),
+        json.dumps(_x.get('hypothesis_relevance', []), ensure_ascii=False),
+        json.dumps(_x.get('contrary_material_or_limits', []), ensure_ascii=False),
+        json.dumps(_x.get('alternative_explanations', []), ensure_ascii=False),
+        json.dumps(_x.get('next_records', []), ensure_ascii=False),
+        json.dumps(_x.get('independent_origin_ids', []), ensure_ascii=False), json.dumps(_x, ensure_ascii=False)))
+    _eid = _x.get('event_id')
+    if _eid:
+        node('event:' + _eid, 'event_record', str(_x.get('date') or '') + ' — ' + str(_x.get('action') or _eid)[:140])
+        for _sid in _x.get('source_ids', []):
+            edge('event:' + _eid, 'recorded_in_source', 'source:' + str(_sid))
 for t in CFG['themes']:
     nf = con.execute('SELECT count(*) FROM locations WHERE theme=?', (t['id'],)).fetchone()[0]
     npg = con.execute("SELECT count(*) FROM locations l JOIN artifacts a ON a.id=l.aid WHERE l.theme=? AND a.kind='page'", (t['id'],)).fetchone()[0]
@@ -294,7 +322,7 @@ stats = dict(artifacts=cnt('SELECT count(*) FROM artifacts'), locations=cnt('SEL
              blob_bytes=blob_total, blob_skipped_over_cap=blob_skipped, edges=cnt('SELECT count(*) FROM edges'), nodes=cnt('SELECT count(*) FROM nodes'),
              fts_rows=cnt('SELECT count(*) FROM fts'), captures=cnt('SELECT count(*) FROM captures'), cites=n_ext, themes=len(TIDS),
              source_records=cnt('SELECT count(*) FROM source_records'), interpretations=cnt('SELECT count(*) FROM interpretations'),
-             research_leads=cnt('SELECT count(*) FROM research_leads'), monitored_pages=cnt('SELECT count(*) FROM monitored_pages'),
+             event_records=cnt('SELECT count(*) FROM event_records'), research_leads=cnt('SELECT count(*) FROM research_leads'), monitored_pages=cnt('SELECT count(*) FROM monitored_pages'),
              unlocated_leads=cnt('SELECT count(*) FROM research_leads WHERE not_a_located_record=1'),
              layer_items=n_layer_items, layer_refs=n_layer_refs, layer_deps=n_layer_deps)
 for k, v in stats.items(): con.execute('INSERT INTO meta VALUES(?,?)', (k, str(v)))
