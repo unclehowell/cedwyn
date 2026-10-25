@@ -1,0 +1,205 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow,noarchive">
+<title>Cedwyn editor</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;max-width:100%;overflow-x:hidden}
+body{font:16px/1.45 -apple-system,Segoe UI,Roboto,sans-serif;background:#f5f1e8;color:#222}
+header{position:sticky;top:0;z-index:5;background:#2f3b2a;color:#f5f1e8;display:flex;align-items:center;gap:8px;padding:10px 12px}
+header b{flex:1;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+header button{background:#55684c;color:#fff;border:0;border-radius:8px;padding:8px 10px;font-size:14px}
+main{padding:12px;max-width:820px;margin:0 auto}
+.card{background:#fff;border-radius:12px;padding:12px;margin:0 0 12px;box-shadow:0 1px 2px #0002}
+button,.btn{font:inherit;border:0;border-radius:10px;padding:11px 14px;background:#2f3b2a;color:#fff;cursor:pointer;min-height:44px}
+button.alt{background:#e6e0d2;color:#222}button.warn{background:#9b2c1f}button:disabled{opacity:.5}
+input,textarea,select{font:inherit;width:100%;padding:10px;border:1px solid #bbb;border-radius:10px;background:#fff;color:#222}
+textarea{font:13px/1.4 ui-monospace,Menlo,Consolas,monospace;min-height:55vh;white-space:pre;overflow:auto}
+textarea.prose{font:15px/1.4 inherit;min-height:3em;white-space:pre-wrap}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>*{flex:1 1 auto}
+.list a,.item{display:block;padding:12px 10px;border-bottom:1px solid #eee;color:#222;text-decoration:none;word-break:break-all}
+.list a:active{background:#eee}.muted{color:#777;font-size:13px}.pill{display:inline-block;background:#c9842b;color:#fff;border-radius:99px;padding:0 8px;font-size:12px;margin-left:6px}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:0 0 10px}.tabs button{flex:0 0 auto;background:#e6e0d2;color:#222;padding:8px 12px;min-height:38px}.tabs button.on{background:#2f3b2a;color:#fff}
+.diff{font:12px/1.35 ui-monospace,Menlo,monospace;white-space:pre-wrap;word-break:break-all;background:#fafafa;border-radius:8px;padding:6px;max-height:50vh;overflow:auto}
+.diff .a{background:#dcf5dc;display:block}.diff .d{background:#fbdcdc;display:block}.diff .h{color:#777;display:block}
+.err{background:#fde7e4;color:#7a1d12;padding:10px;border-radius:10px;margin:8px 0}.ok{background:#e4f4df;color:#1d4d12;padding:10px;border-radius:10px;margin:8px 0}
+iframe{width:100%;height:70vh;border:1px solid #ccc;border-radius:10px;background:#fff}
+label{display:block;font-size:13px;color:#555;margin:8px 0 4px}img.prev{max-width:100%;border-radius:8px}
+.field{margin-bottom:10px}
+</style></head><body>
+<header><b id="ttl">Cedwyn editor</b><button id="hChanges" hidden>Changes</button><button id="hHome" hidden>Home</button></header>
+<main id="app"></main>
+<script>
+"use strict";
+const $=s=>document.querySelector(s), app=$('#app');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let ME=null, COMPS=[], DRAFTS={};
+async function api(path,opt={}){
+  const r=await fetch('/admin/api/'+path,{method:opt.method||'GET',headers:opt.body?{'content-type':'application/json'}:{},body:opt.body?JSON.stringify(opt.body):undefined,credentials:'same-origin'});
+  let j={};try{j=await r.json()}catch(e){j={error:'bad answer ('+r.status+')'}}
+  if(r.status===401&&path!=='login'){ME=null;login();throw new Error('login')}
+  j._status=r.status;return j;
+}
+function title(t){$('#ttl').textContent=t;document.title=t+' · Cedwyn editor'}
+function nav(on){$('#hChanges').hidden=$('#hHome').hidden=!on}
+$('#hHome').onclick=()=>home();$('#hChanges').onclick=()=>changes();
+function login(msg){
+  nav(false);title('Cedwyn editor');
+  app.innerHTML=`<div class="card"><p>Private editor for cedwyn.bucklerfamily.estate.</p>${msg?`<div class="err">${esc(msg)}</div>`:''}
+  <form id="lf"><label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password" required>
+  <p><button>Sign in</button></p></form></div>`;
+  $('#lf').onsubmit=async e=>{e.preventDefault();const j=await api('login',{method:'POST',body:{password:$('#pw').value}});if(j.ok)start();else login(j.error)};
+}
+async function start(){
+  const m=await api('me');if(m.error)return login();ME=m;nav(true);
+  const c=await api('compartments');COMPS=c.compartments||[];await loadDrafts();home();
+}
+async function loadDrafts(){const d=await api('drafts');DRAFTS=d.drafts||{};const n=Object.values(DRAFTS).reduce((a,x)=>a+Object.keys(x).length,0);$('#hChanges').textContent=n?`Changes (${n})`:'Changes'}
+const comp=id=>COMPS.find(c=>c.id===id);
+async function home(){
+  title('Cedwyn editor');
+  app.innerHTML=`<div class="card"><div class="row"><input id="q" placeholder="Find a theme" aria-label="Find a theme"></div>
+  <p class="muted">Pick a theme, edit, and your changes wait as drafts until you publish. ${ME.direct?'Publishing commits straight away.':'Publishing queues the commit; it lands within about 5 minutes.'} The site then rebuilds itself.</p></div>
+  <div class="card list" id="cl"></div>
+  <div class="card"><div class="row"><button class="alt" id="hist">Recent publishes</button><button class="alt" id="out">Sign out</button></div></div>`;
+  const draw=()=>{const q=$('#q').value.toLowerCase();$('#cl').innerHTML=COMPS.filter(c=>!q||(c.title+c.id).toLowerCase().includes(q)).map(c=>{const n=Object.keys(DRAFTS[c.id]||{}).length;
+    return `<a href="#c=${esc(c.id)}" data-c="${esc(c.id)}">${esc(c.title)}${n?`<span class="pill">${n} draft${n>1?'s':''}</span>`:''}<br><span class="muted">${c.readonly?'read only · ':''}${esc(c.branch?c.branch+(c.prefix?' / '+c.prefix:''):'crawled')}</span></a>`}).join('')};
+  $('#q').oninput=draw;draw();
+  $('#cl').onclick=e=>{const a=e.target.closest('a');if(!a)return;e.preventDefault();openComp(a.dataset.c)};
+  $('#hist').onclick=history;$('#out').onclick=async()=>{await api('logout',{method:'POST'});login()};
+}
+async function openComp(id,folder){
+  const c=comp(id);title(c.title);
+  if(c.readonly){app.innerHTML=`<div class="card"><p>${esc(c.note)}</p><button class="alt" onclick="home()">Back</button></div>`;return}
+  app.innerHTML=`<div class="card">Loading files…</div>`;
+  let t=await api('tree?c='+encodeURIComponent(id));
+  if(t.rate_limited){   // GitHub's anonymous limit hit on the server: list from this phone instead (60 an hour per address)
+    const r=await fetch(`https://api.github.com/repos/unclehowell/cedwyn/git/trees/${t.head}?recursive=1`);const j=await r.json();
+    t.files=(j.tree||[]).filter(x=>x.type==='blob'&&x.path.startsWith(c.prefix)&&(!c.only||new RegExp(c.only).test(x.path))&&(c.branch!=='main'||c.only||x.path.startsWith('web/'))).map(x=>({path:x.path,sha:x.sha,size:x.size}));
+  }
+  if(t.error&&!t.files){app.innerHTML=`<div class="err">${esc(t.error)}</div>`;return}
+  const drafts=DRAFTS[id]||{};const news=Object.keys(drafts).filter(p=>!t.files.some(f=>f.path===p)).map(p=>({path:p,size:0,isnew:1}));
+  const files=t.files.concat(news);
+  app.innerHTML=`<div class="card">${c.note?`<p class="muted">${esc(c.note)}</p>`:''}<input id="fq" placeholder="Filter ${files.length} files (e.g. index.html, .json)">
+  <div class="row" style="margin-top:8px"><button class="alt" id="newf">New page/file</button><button class="alt" id="upl">Add image</button></div>
+  <input type="file" id="fileIn" accept="image/*" hidden></div><div class="card list" id="fl"></div>`;
+  const draw=()=>{const q=$('#fq').value.toLowerCase();const sel=files.filter(f=>!q||f.path.toLowerCase().includes(q));
+    const pri=f=>(drafts[f.path]?0:1)*10+(/\.html?$/.test(f.path)?0:/\.json$/.test(f.path)?1:/\.(md|txt|csv)$/.test(f.path)?2:/\.(png|jpe?g|webp|gif|svg)$/i.test(f.path)?3:5);
+    sel.sort((a,b)=>pri(a)-pri(b)||a.path.localeCompare(b.path));
+    $('#fl').innerHTML=sel.slice(0,300).map(f=>`<a href="#" data-p="${esc(f.path)}">${esc(f.path.slice(c.prefix.length))}${drafts[f.path]?`<span class="pill">${drafts[f.path].op==='delete'?'delete':'draft'}</span>`:''}<br><span class="muted">${f.isnew?'new':Math.round((f.size||0)/1024)+' KB'}</span></a>`).join('')+(sel.length>300?`<p class="muted">${sel.length-300} more — type to filter</p>`:'')};
+  $('#fq').oninput=draw;draw();
+  $('#fl').onclick=e=>{const a=e.target.closest('a');if(!a)return;e.preventDefault();openFile(id,a.dataset.p)};
+  $('#newf').onclick=()=>{const p=prompt('New file path inside '+(c.prefix||'the branch root')+' (e.g. notes/new-page.html)');if(p)openFile(id,c.prefix+p.replace(/^\/+/,''),true)};
+  $('#upl').onclick=()=>$('#fileIn').click();
+  $('#fileIn').onchange=async e=>{const f=e.target.files[0];if(!f)return;const dir=prompt('Folder inside '+(c.prefix||'the branch root')+' for the image','images/');if(dir===null)return;
+    const out=await shrink(f);const name=f.name.replace(/\.[^.]+$/,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+out.ext;
+    const path=c.prefix+(dir.replace(/^\/+|\/+$/g,'')?dir.replace(/^\/+|\/+$/g,'')+'/':'')+name;
+    const ex=files.find(x=>x.path===path);const j=await api('drafts',{method:'PUT',body:{c:id,path,op:'put',b64:out.b64,base_sha:ex?ex.sha:null}});
+    if(j.ok){await loadDrafts();alert('Image saved as a draft: '+path+' ('+Math.round(out.bytes/1024)+' KB). Use it in a page as '+path.slice(c.serve.length));openComp(id)}else alert(j.error)};
+}
+function shrink(file){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>{const M=1600;let w=img.naturalWidth,h=img.naturalHeight;const k=Math.min(1,M/Math.max(w,h));w=Math.round(w*k);h=Math.round(h*k);
+  const cv=document.createElement('canvas');cv.width=w;cv.height=h;cv.getContext('2d').drawImage(img,0,0,w,h);
+  const png=/png/.test(file.type)&&file.size<1.5e6&&k===1;const url=png?null:cv.toDataURL('image/jpeg',.85);
+  if(png){const fr=new FileReader();fr.onload=()=>{const b=fr.result.split(',')[1];res({b64:b,bytes:b.length*.75,ext:'.png'})};fr.readAsDataURL(file);return}
+  const b=url.split(',')[1];res({b64:b,bytes:b.length*.75,ext:'.jpg'})};img.onerror=()=>rej(new Error('not an image'));img.src=URL.createObjectURL(file)})}
+// ---------- the file editor ----------
+let ED=null;
+async function openFile(cid,path,isNew){
+  const c=comp(cid);title(path.split('/').pop());app.innerHTML='<div class="card">Loading…</div>';
+  const [f,d]=await Promise.all([api('file?c='+encodeURIComponent(cid)+'&path='+encodeURIComponent(path)),api('drafts?c='+encodeURIComponent(cid)+'&path='+encodeURIComponent(path))]);
+  if(f.error){app.innerHTML=`<div class="err">${esc(f.error)}</div>`;return}
+  const dr=d.file;ED={c,path,orig:f.text||'',base:dr?dr.base_sha:f.sha,cur:dr&&dr.text!=null?dr.text:(f.text||''),binary:f.binary,url:f.url,draft:dr,head:f.head,exists:f.exists,img:dr&&dr.b64};
+  if(dr&&dr.base_sha!==f.sha)ED.staleNote=`This file changed on the site after you started this draft. Publishing will be refused until you discard the draft and redo it.`;
+  const html=/\.html?$/i.test(path),js=/\.(json|geojson)$/i.test(path);
+  const tabs=ED.binary?['Image']:[...(html?['Text']:[]),...(js?['Records']:[]),'Source',...(html?['Preview']:[])];
+  app.innerHTML=`<div class="card"><div class="muted">${esc(c.title)} · ${esc(path)}</div>${ED.staleNote?`<div class="err">${ED.staleNote}</div>`:''}${dr?`<div class="ok">You have a draft of this file${dr.op==='delete'?' (delete)':''}.</div>`:''}
+  <div class="tabs" id="tb">${tabs.map((t,i)=>`<button data-t="${t}" class="${i?'':'on'}">${t}</button>`).join('')}</div><div id="pane"></div>
+  <div class="row" style="margin-top:10px"><button id="sv">Save draft</button>${dr?'<button class="alt" id="dc">Discard draft</button>':''}${f.exists&&!dr?'<button class="alt" id="del">Delete file</button>':''}</div>
+  <p><a class="muted" href="/${esc(c.id)}/${esc(path.slice(c.serve.length).replace(/index\.html?$/,''))}" target="_blank" rel="noopener">Open the live page</a></p></div>`;
+  $('#tb').onclick=e=>{const b=e.target.closest('button');if(!b)return;collect();[...$('#tb').children].forEach(x=>x.classList.toggle('on',x===b));show(b.dataset.t)};
+  $('#sv').onclick=save;if($('#dc'))$('#dc').onclick=async()=>{if(!confirm('Discard your draft of this file?'))return;await api('drafts?c='+encodeURIComponent(cid)+'&path='+encodeURIComponent(path),{method:'DELETE'});await loadDrafts();openFile(cid,path)};
+  if($('#del'))$('#del').onclick=async()=>{if(!confirm('Mark this file for deletion? Nothing happens until you publish.'))return;await api('drafts',{method:'PUT',body:{c:cid,path,op:'delete',base_sha:ED.base}});await loadDrafts();openComp(cid)};
+  show(tabs[0]);
+}
+let PANE=null;
+function collect(){if(PANE&&PANE.collect)PANE.collect();}
+function show(t){const p=$('#pane');PANE=null;
+  if(t==='Image'){p.innerHTML=ED.img?`<img class="prev" src="data:image/*;base64,${ED.img}">`:ED.url?`<img class="prev" src="${esc(ED.url)}">`:'<p>No preview.</p>';
+    p.innerHTML+=`<p><button class="alt" id="rep">Replace this image</button><input type="file" id="ri" accept="image/*" hidden></p>`;$('#rep').onclick=()=>$('#ri').click();
+    $('#ri').onchange=async e=>{const o=await shrink(e.target.files[0]);const j=await api('drafts',{method:'PUT',body:{c:ED.c.id,path:ED.path,op:'put',b64:o.b64,base_sha:ED.base}});if(j.ok){await loadDrafts();openFile(ED.c.id,ED.path)}else alert(j.error)};return}
+  if(t==='Source'){p.innerHTML=`<textarea id="src" spellcheck="false" aria-label="Source"></textarea>`;$('#src').value=ED.cur;PANE={collect(){ED.cur=$('#src').value}};return}
+  if(t==='Preview'){const dir=ED.path.slice(ED.c.serve.length).split('/').slice(0,-1).join('/');const base=`/${ED.c.id}/${dir?dir+'/':''}`;
+    const doc=ED.cur.replace(/<head([^>]*)>/i,`<head$1><base href="${base}">`);p.innerHTML=`<p class="muted">Preview of your draft (scripts off).</p><iframe sandbox="allow-same-origin" title="Preview"></iframe>`;p.querySelector('iframe').srcdoc=/<base /i.test(doc)?doc:`<base href="${base}">`+doc;return}
+  if(t==='Text'){textMode(p);return}
+  if(t==='Records'){recordMode(p);return}
+}
+function textMode(p){ // every visible text run of the page as its own box; saving changes only those characters
+  const s=ED.cur,runs=[];let skip=null;const re=/<(\/?)(script|style|textarea|noscript|template)\b[^>]*>|<!--[\s\S]*?-->|<[^>]+>|([^<]+)/gi;let m;
+  while((m=re.exec(s))){if(m[2]){skip=m[1]?null:m[2].toLowerCase();continue}if(m[3]&&!skip){const raw=m[3];if(raw.trim().length>1&&/[A-Za-z\u00c0-\u024f]/.test(raw))runs.push({at:m.index,raw})}}
+  const dec=x=>{const t=document.createElement('textarea');t.innerHTML=x;return t.value},encx=x=>x.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  p.innerHTML=`<p class="muted">${runs.length} text blocks. Change the words; the page's layout stays as it is.</p>`+runs.map((r,i)=>`<div class="field"><textarea class="prose" data-i="${i}" rows="${Math.min(8,Math.ceil(r.raw.trim().length/38))}">${esc(dec(r.raw.trim()))}</textarea></div>`).join('');
+  PANE={collect(){let out='',last=0;const tas=p.querySelectorAll('textarea');runs.forEach((r,i)=>{const ta=tas[i];let rep=r.raw;
+    if(ta&&ta.value!==dec(r.raw.trim())){rep=r.raw.match(/^\s*/)[0]+encx(ta.value)+r.raw.match(/\s*$/)[0]}out+=s.slice(last,r.at)+rep;last=r.at+r.raw.length});ED.cur=out+s.slice(last)}};
+}
+
+function recordMode(p){
+  let doc;try{doc=JSON.parse(ED.cur)}catch(e){p.innerHTML=`<div class="err">This file is not valid JSON right now: ${esc(e.message)}. Fix it in Source.</div>`;return}
+  const lists=[];if(Array.isArray(doc))lists.push(['(top level)',doc]);else if(doc&&typeof doc==='object')for(const[k,v]of Object.entries(doc)){if(Array.isArray(v)&&v.some(x=>x&&typeof x==='object'))lists.push([k,v]);else if(v&&typeof v==='object'&&!Array.isArray(v))for(const[k2,v2]of Object.entries(v))if(Array.isArray(v2)&&v2.some(x=>x&&typeof x==='object'))lists.push([k+'.'+k2,v2])}
+  const indent=(ED.cur.match(/\n( +|\t)"/)||[])[1]||(ED.cur.includes('\n')?2:0),asc=/\\u[0-9a-fA-F]{4}/.test(ED.cur);
+  const dump=()=>{let s=JSON.stringify(doc,null,indent);if(asc)s=s.replace(/[\u007f-\uffff]/g,c=>'\\u'+c.charCodeAt(0).toString(16).padStart(4,'0'));return s+(ED.orig.endsWith('\n')?'\n':'')};
+  const label=o=>{if(!o||typeof o!=='object')return String(o).slice(0,80);for(const k of['title','name','label','headline','event','id','ev','date','key'])if(o[k]!=null&&typeof o[k]!=='object')return String(o[k]).slice(0,90);return JSON.stringify(o).slice(0,80)};
+  if(!lists.length){p.innerHTML='<p class="muted">No list of records in this file; use Source.</p>';return}
+  let cur=0;
+  const drawList=()=>{const[name,arr]=lists[cur];p.innerHTML=`${lists.length>1?`<label>List</label><select id="ls">${lists.map((l,i)=>`<option value="${i}" ${i===cur?'selected':''}>${esc(l[0])} (${l[1].length})</option>`).join('')}</select>`:''}
+    <input id="rq" placeholder="Filter ${arr.length} records" style="margin-top:8px"><div class="list" id="rl"></div><p><button class="alt" id="addr">Add a record</button></p>`;
+    const dl=()=>{const q=$('#rq').value.toLowerCase();$('#rl').innerHTML=arr.map((o,i)=>[o,i]).filter(([o])=>!q||JSON.stringify(o).toLowerCase().includes(q)).slice(0,200).map(([o,i])=>`<a href="#" data-i="${i}">${i+1}. ${esc(label(o))}</a>`).join('')};
+    $('#rq').oninput=dl;dl();if($('#ls'))$('#ls').onchange=e=>{cur=+e.target.value;drawList()};
+    $('#rl').onclick=e=>{const a=e.target.closest('a');if(!a)return;e.preventDefault();drawRec(+a.dataset.i)};
+    $('#addr').onclick=()=>{const t=arr.find(x=>x&&typeof x==='object');const n={};if(t)for(const k of Object.keys(t))n[k]=typeof t[k]==='number'?0:typeof t[k]==='object'&&t[k]!==null?(Array.isArray(t[k])?[]:{}):'';arr.push(n);ED.cur=dump();drawRec(arr.length-1)}};
+  const drawRec=i=>{const arr=lists[cur][1],o=arr[i];
+    p.innerHTML=`<p><button class="alt" id="bk">‹ All records</button></p><p class="muted">Record ${i+1} of ${arr.length}</p>`+Object.entries(o).map(([k,v])=>{const big=typeof v==='object'&&v!==null;const sv=big?JSON.stringify(v,null,1):String(v??'');
+      return `<div class="field"><label>${esc(k)}${big?' (JSON)':typeof v==='number'?' (number)':typeof v==='boolean'?' (true/false)':''}</label><textarea class="prose" data-k="${esc(k)}" data-t="${big?'json':v===null?'null':typeof v}" rows="${Math.min(10,Math.max(1,Math.ceil(sv.length/38)))}">${esc(sv)}</textarea></div>`}).join('')+`<p><button class="warn" id="rmr">Remove this record</button></p>`;
+    const apply=()=>{let bad=null;p.querySelectorAll('textarea[data-k]').forEach(ta=>{const k=ta.dataset.k,t=ta.dataset.t,v=ta.value;try{o[k]=t==='json'?JSON.parse(v):t==='number'?(v.trim()===''?null:Number(v)):t==='boolean'?v.trim()==='true':t==='null'?(v===''?null:v):v}catch(e){bad=k}});if(bad){alert('Field "'+bad+'" is not valid JSON; not applied.');return false}ED.cur=dump();return true};
+    PANE={collect:apply};$('#bk').onclick=()=>{if(apply())drawList()};$('#rmr').onclick=()=>{if(confirm('Remove this record? (Only a draft until you publish.)')){arr.splice(i,1);ED.cur=dump();PANE=null;drawList()}}};
+  drawList();
+}
+async function save(){collect();
+  if(/\.(json|geojson)$/i.test(ED.path)){try{JSON.parse(ED.cur)}catch(e){alert('Not valid JSON, not saved: '+e.message);return}}
+  if(ED.cur===ED.orig&&ED.exists&&!ED.draft){alert('No changes.');return}
+  const j=await api('drafts',{method:'PUT',body:{c:ED.c.id,path:ED.path,op:'put',text:ED.cur,base_sha:ED.base}});
+  if(j.ok){await loadDrafts();const b=$('#sv');b.textContent='Saved ✓';setTimeout(()=>{if(b)b.textContent='Save draft'},1500)}else alert(j.error)}
+// ---------- changes, diff, publish, undo ----------
+function diff(a,b){const A=a.split('\n'),B=b.split('\n');let s=0;while(s<A.length&&s<B.length&&A[s]===B[s])s++;let e=0;while(e<A.length-s&&e<B.length-s&&A[A.length-1-e]===B[B.length-1-e])e++;
+  const a2=A.slice(s,A.length-e),b2=B.slice(s,B.length-e);let ops=[];
+  if(a2.length*b2.length<4e6){const n=a2.length,m=b2.length,L=Array.from({length:n+1},()=>new Uint32Array(m+1));for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)L[i][j]=a2[i]===b2[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);
+    let i=0,j=0;while(i<n&&j<m){if(a2[i]===b2[j]){ops.push([' ',a2[i]]);i++;j++}else if(L[i+1][j]>=L[i][j+1])ops.push(['-',a2[i++]]);else ops.push(['+',b2[j++]])}while(i<n)ops.push(['-',a2[i++]]);while(j<m)ops.push(['+',b2[j++]])}
+  else ops=a2.map(x=>['-',x]).concat(b2.map(x=>['+',x]));
+  const ctx=A.slice(Math.max(0,s-2),s).map(x=>[' ',x]);const out=[`<span class="h">@@ line ${s+1}</span>`].concat(ctx.concat(ops).map(([k,x])=>k===' '?esc(x.slice(0,300)):`<span class="${k==='+'?'a':'d'}">${k} ${esc(x.slice(0,300))}</span>`));
+  return out.slice(0,400).join('\n')+(out.length>400?'\n…':'')}
+async function changes(){title('Changes');await loadDrafts();
+  const ids=Object.keys(DRAFTS).filter(k=>Object.keys(DRAFTS[k]).length);
+  app.innerHTML=ids.length?'':'<div class="card">No drafts. Edit a page and save a draft first.</div>';
+  for(const id of ids){const c=comp(id)||{id,title:id};const box=document.createElement('div');box.className='card';app.appendChild(box);
+    box.innerHTML=`<b>${esc(c.title)}</b><div class="muted">${esc(c.branch||'')}${c.prefix?' / '+esc(c.prefix):''}</div><div class="dl">Loading the differences…</div>
+    <label>What changed (goes in the commit message)</label><input class="sum" maxlength="120" placeholder="e.g. fixed the 1897 caption">
+    <div class="gd"></div><div class="row" style="margin-top:8px"><button class="pub">Publish ${Object.keys(DRAFTS[id]).length} change(s)</button><button class="alt clr">Discard all</button></div><div class="res"></div>`;
+    let html='';for(const[p,f]of Object.entries(DRAFTS[id])){const fo=await api('file?c='+encodeURIComponent(id)+'&path='+encodeURIComponent(p));const dd=await api('drafts?c='+encodeURIComponent(id)+'&path='+encodeURIComponent(p));const df=dd.file||{};
+      html+=`<p><b>${esc(p.slice((c.prefix||'').length))}</b> <span class="muted">${f.op==='delete'?'delete':fo.exists?'edit':'new file'}${f.binary?' · image':''}${fo.sha&&f.base_sha!==fo.sha?' · <b style="color:#9b2c1f">changed on the site since your draft</b>':''}</span></p>`;
+      if(f.op==='delete')html+='<div class="diff"><span class="d">whole file removed</span></div>';else if(f.binary)html+=`<img class="prev" style="max-height:200px" src="data:image/*;base64,${df.b64||''}">`;else html+=`<div class="diff">${diff(fo.text||'',df.text||'')}</div>`}
+    box.querySelector('.dl').innerHTML=html;
+    box.querySelector('.clr').onclick=async()=>{if(!confirm('Discard every draft in '+c.title+'?'))return;await api('drafts?c='+encodeURIComponent(id),{method:'DELETE'});changes()};
+    box.querySelector('.pub').onclick=async()=>{const btn=box.querySelector('.pub');btn.disabled=true;const res=box.querySelector('.res');const sum=box.querySelector('.sum').value.trim();
+      if(!sum){alert('Write a few words about what changed.');btn.disabled=false;return}
+      const cf=box.querySelector('.cf');const j=await api('publish',{method:'POST',body:{c:id,summary:sum,confirm:cf?cf.value.trim():undefined}});btn.disabled=false;
+      if(j._status===412){box.querySelector('.gd').innerHTML=`<div class="err"><b>Big change.</b><br>${(j.guards||[]).map(g=>esc(g.path.split('/').pop()+': '+g.detail)).join('<br>')}<br>To publish anyway, type <b>${esc(ME.confirm)}</b> below.</div><input class="cf" autocomplete="off" placeholder="${esc(ME.confirm)}">`;return}
+      if(j.error){res.innerHTML=`<div class="err">${esc(j.error)}${(j.stale||[]).length?'<br>Changed on the site since your draft: '+j.stale.map(s=>esc(s.path.split('/').pop())).join(', ')+'. Discard those drafts and redo them on the new version.':''}${(j.guards||[]).filter(g=>g.hard).map(g=>'<br>'+esc(g.detail)).join('')}</div>`;return}
+      const st=j.job.status;res.innerHTML=st==='done'?`<div class="ok">Published (${esc((j.job.result.commit||'').slice(0,7))}). The site rebuilds in about half an hour.</div>`:st==='queued'?`<div class="ok">Queued. It is committed within about 5 minutes, then the site rebuilds (about half an hour). Check Recent publishes.</div>`:`<div class="err">${esc(st+': '+(j.job.result&&j.job.result.error||''))}</div>`;await loadDrafts()}}
+}
+async function history(){title('Recent publishes');const j=await api('jobs');
+  const q=(j.queued||[]).map(x=>`<div class="item">⏳ ${esc(x.summary||'')} <span class="muted">${esc(x.compartment.id)} · ${esc(x.author)} · queued ${esc(x.created.slice(0,16).replace('T',' '))}</span></div>`).join('');
+  const l=(j.log||[]).map((x,i)=>`<div class="item">${x.reverted_by?'↩︎ ':'✓ '}<b>${esc(x.summary||'')}</b> <span class="muted">${esc(x.cid)} · ${esc(x.author)} · ${esc((x.at||'').slice(0,16).replace('T',' '))} · ${esc(x.commit.slice(0,7))}${x.revert_of?' · undo of '+esc(x.revert_of.slice(0,7)):''}${x.reverted_by?' · undone':''}</span></div>`).join('');
+  const bad=(j.jobs||[]).filter(x=>!['done','nothing'].includes(x.status)).map(x=>`<div class="item">✗ ${esc(x.summary||'')} <span class="muted">${esc(x.status)}: ${esc(x.result&&x.result.error||'')}</span></div>`).join('');
+  const last=(j.log||[]).find(x=>!x.reverted_by&&!x.revert_of);
+  app.innerHTML=`<div class="card">${last?`<p>Last publish: <b>${esc(last.summary)}</b> (${esc(last.commit.slice(0,7))})</p><button class="warn" id="undo">Undo the last publish</button><p class="muted">Undo adds a new commit that puts those files back; nothing is erased from history.</p>`:'<p>No CMS publishes yet.</p>'}<div id="ur"></div></div>
+  <div class="card">${q||''}${l||'<p class="muted">Nothing published yet.</p>'}${bad}</div>`;
+  if(last)$('#undo').onclick=async()=>{if(!confirm('Undo "'+last.summary+'"?'))return;const r=await api('revert',{method:'POST',body:{commit:last.commit}});$('#ur').innerHTML=r.error?`<div class="err">${esc(r.error)}</div>`:`<div class="ok">Undo ${r.job.status==='done'?'committed':'queued'}.</div>`}}
+start();
+</script></body></html>
