@@ -1,4 +1,8 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not found · Cedwyn</title>
 <style>body{margin:0;font:16px/1.5 -apple-system,Segoe UI,Roboto,sans-serif;background:#14141c;color:#e8e8f0;padding:24px}a{color:#fca}</style><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.4c"></script></head><body>
 <h1>Not here</h1><p>This page is not in this theme. <a href="/">All themes</a> · <a id="s" href="/catalogue/">Search the catalogue</a></p>
+<script>/* a file the catalogue database holds, opened before the database reader started: start it and load once more */
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/cedwyn-sw.js',{scope:'/',updateViaCache:'none'}).catch(function(){});
+var k='cedwyn-404:'+location.pathname;try{if(!sessionStorage.getItem(k)&&!navigator.serviceWorker.controller&&/\.(json|csv|xml|geojson|png|jpe?g|gif|webp|svg|avif|ico|bmp|tiff?|pdf|docx?|mp3|m4a|ogg|wav)$/i.test(location.pathname)){sessionStorage.setItem(k,'1');
+navigator.serviceWorker.addEventListener('controllerchange',function(){location.reload()});}}catch(e){}}</script>
 <script>var p=location.pathname.split('/').filter(Boolean);document.getElementById('s').href='/catalogue/?q='+encodeURIComponent((p[p.length-1]||'').replace(/\.[a-z0-9]+$/i,'').replace(/[-_]+/g,' '))+(p[0]?'&theme='+p[0]:'');</script></body></html>

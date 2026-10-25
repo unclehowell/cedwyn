@@ -8,6 +8,33 @@
   (function () { var v = VHOST[T]; if (!v) return; var de = document.documentElement, rest = location.pathname.slice(P.length).replace(/^\/+/, '');
     if (!de.getAttribute('data-ghf-host')) de.setAttribute('data-ghf-host', v[0]);
     if (!de.getAttribute('data-ghf-path')) de.setAttribute('data-ghf-path', v[1] + rest); })();
+  // Stage 3: every theme reads its data and evidence from the one catalogue database. The service worker (/cedwyn-sw.js)
+  // answers those requests from the database chunks. On a first visit, before the worker controls this page, loading
+  // stops, the worker starts, and the page loads again under it (once per tab). Where no service worker can run, the
+  // fetch/XHR and media fallbacks below read the same database from the page itself.
+  var SWC = navigator.serviceWorker, SWOK = !!SWC && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1');
+  function ss(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } }
+  if (SWOK) {
+    if (!SWC.controller && !ss('cedwyn-sw')) {
+      ss('cedwyn-sw', '1');
+      try { window.stop(); } catch (e) {}
+      var went = false, go = function () { if (!went) { went = true; location.reload(); } };
+      SWC.addEventListener('controllerchange', go);
+      SWC.register('/cedwyn-sw.js', { scope: '/', updateViaCache: 'none' }).then(function (reg) {
+        if (reg.active && !SWC.controller) reg.active.postMessage('claim');
+      }).catch(go);
+      setTimeout(go, 6000);
+    } else SWC.register('/cedwyn-sw.js', { scope: '/', updateViaCache: 'none' }).catch(function () {});
+  }
+  var DBX = /\.(json|csv|xml|geojson|png|jpe?g|gif|webp|svg|avif|ico|bmp|tiff?|pdf|docx?|mp3|m4a|ogg|wav)$/i, DBP = null;
+  function noSW() { return !(SWC && SWC.controller); }
+  function dbfs() {
+    if (!DBP) DBP = new Promise(function (ok, no) { if (window.CedwynDB) return ok(window.CedwynDB); var s = document.createElement('script'); s.src = '/_cedwyn/dbfs.js?v=3';
+      s.onload = function () { ok(window.CedwynDB); }; s.onerror = no; (document.head || document.documentElement).appendChild(s); });
+    return DBP;
+  }
+  function dbPath(u) { try { var x = new URL(u, location.href); return x.origin === location.origin && DBX.test(x.pathname) && !/^\/(db|_cedwyn)\//.test(x.pathname) ? x.pathname : null; } catch (e) { return null; } }
+  function fromDB(path) { return dbfs().then(function (D) { return D.get(path); }); }
   var RES = ['/_cedwyn/', '/_blob/', '/db/', '/graphql', '/catalogue', '/wayback/go/'];
   function starts(u, a) { for (var i = 0; i < a.length; i++) if (u.indexOf(a[i]) === 0) return true; return false; }
   function mapHost(host, path) {
@@ -40,10 +67,26 @@
   var of = window.fetch;
   if (of) window.fetch = function (i, o) {
     try { if (typeof i === 'string') i = fix(i); else if (i && i.url && i.url.indexOf(location.origin + '/') === 0) { var f = fix(i.url.slice(location.origin.length)); if (f !== i.url.slice(location.origin.length)) i = new Request(f, i); } } catch (e) {}
+    var self_ = this, dp = noSW() && (!o || !o.method || /^get$/i.test(o.method)) && dbPath(typeof i === 'string' ? i : (i && i.url) || '');
+    if (dp) return fromDB(dp).then(function (r) { return r ? new Response(r.bytes, { status: 200, headers: { 'Content-Type': r.mime, 'X-Cedwyn-Source': 'db-page' } }) : of.call(self_, i, o); }, function () { return of.call(self_, i, o); });
     return of.call(this, i, o);
   };
   var xo = XMLHttpRequest.prototype.open;
-  XMLHttpRequest.prototype.open = function (m, u) { var a = [].slice.call(arguments); a[1] = fix(u); return xo.apply(this, a); };
+  XMLHttpRequest.prototype.open = function (m, u) { var a = [].slice.call(arguments); a[1] = fix(u);
+    this.__cdb = noSW() && /^get$/i.test(m) && a[2] !== false && dbPath(a[1]) ? [m, dbPath(a[1])] : null; return xo.apply(this, a); };
+  var xs = XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.send = function () {   // no service worker: the same database, read from this page
+    var x = this, d = x.__cdb, args = arguments; if (!d) return xs.apply(x, args);
+    x.__cdb = null;
+    fromDB(d[1]).then(function (r) { if (r) { xo.call(x, d[0], URL.createObjectURL(new Blob([r.bytes], { type: r.mime })), true); } xs.apply(x, args); }, function () { xs.apply(x, args); });
+  };
+  // media that failed to load before the worker took over (or with no worker at all): load it again from the database
+  document.addEventListener('error', function (e) {
+    var el = e.target, tag = el && el.tagName; if (!/^(IMG|SOURCE|VIDEO|AUDIO|EMBED|INPUT)$/.test(tag || '') || el.__cdbTried) return;
+    var src = el.currentSrc || el.getAttribute('src'), dp = src && dbPath(src); if (!dp) return; el.__cdbTried = 1;
+    if (!noSW()) { var u = new URL(src, location.href); u.searchParams.set('cdb', '1'); el.setAttribute('src', u.pathname + u.search); return; }
+    fromDB(dp).then(function (r) { if (r) el.setAttribute('src', URL.createObjectURL(new Blob([r.bytes], { type: r.mime }))); }, function () {});
+  }, true);
   var sa = Element.prototype.setAttribute, ATTRS = { src: 1, href: 1, action: 1, poster: 1, 'data-src': 1 };
   Element.prototype.setAttribute = function (n, v) {
     if (ATTRS[String(n).toLowerCase()] && typeof v === 'string') { v = fix(v); if (/^iframe$/i.test(this.tagName) && /UC2sN1VEs1WeLfBH8VmbvLWw|sionbuckler5713/i.test(v)) v = 'about:blank'; }
