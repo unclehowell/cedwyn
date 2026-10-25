@@ -74,12 +74,17 @@ footer{{max-width:64rem;margin:0 auto;padding:0 12px 30px;font-size:13px;color:#
 <header><h1>Cedwyn</h1><p>One catalogue of evidence. {len(CFG["themes"])} themes to browse it: a wiki, a museum tour, a media centre, games, a social feed, accounts and more.</p>
 <form action="/catalogue/"><input name="q" placeholder="Search everything" aria-label="Search everything"><button>Search</button></form></header>
 <main>{body}</main><footer><a href="/catalogue/">Catalogue</a> · <a href="/graphql/">GraphQL</a> · <a href="/wayback/">Archive</a> · <span id="st"></span></footer>
+<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('/cedwyn-sw.js',{{scope:'/',updateViaCache:'none'}}).catch(function(){{}});</script>
 <script>fetch('/db/stats.json').then(function(r){{return r.json()}}).then(function(s){{document.getElementById('st').textContent=s.artifacts.toLocaleString()+' artifacts · '+s.edges.toLocaleString()+' links in one database'}}).catch(function(){{}});</script>
 </body></html>'''
 (DIST / 'index.html').write_text(idx)
 (DIST / '404.html').write_text('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not found · Cedwyn</title>
 <style>body{margin:0;font:16px/1.5 -apple-system,Segoe UI,Roboto,sans-serif;background:#14141c;color:#e8e8f0;padding:24px}a{color:#fca}</style></head><body>
 <h1>Not here</h1><p>This page is not in this theme. <a href="/">All themes</a> · <a id="s" href="/catalogue/">Search the catalogue</a></p>
+<script>/* a file the catalogue database holds, opened before the database reader started: start it and load once more */
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/cedwyn-sw.js',{scope:'/',updateViaCache:'none'}).catch(function(){});
+var k='cedwyn-404:'+location.pathname;try{if(!sessionStorage.getItem(k)&&!navigator.serviceWorker.controller&&/\.(json|csv|xml|geojson|png|jpe?g|gif|webp|svg|avif|ico|bmp|tiff?|pdf|docx?|mp3|m4a|ogg|wav)$/i.test(location.pathname)){sessionStorage.setItem(k,'1');
+navigator.serviceWorker.addEventListener('controllerchange',function(){location.reload()});}}catch(e){}}</script>
 <script>var p=location.pathname.split('/').filter(Boolean);document.getElementById('s').href='/catalogue/?q='+encodeURIComponent((p[p.length-1]||'').replace(/\\.[a-z0-9]+$/i,'').replace(/[-_]+/g,' '))+(p[0]?'&theme='+p[0]:'');</script></body></html>''')
 alias = {'bpvsbuckler': 'story', 'whatdotheyknow': 'wdtk', 'ghf-primary-records': 'records', 'ghf-public-authorities': 'authorities',
          'ghf-independent-review': 'review', '2026-10-22': 'meeting', 'merch': 'shop', 'email-archive': 'email', 'cedwyn': 'estate', 'museum': 'story', 'farmbook': 'fb2', 'media': 'wayback'}
@@ -99,6 +104,10 @@ sta = [l for l in lines if l not in dyn]
   Cache-Control: public, max-age=31536000, immutable
 /_cedwyn/vendor/*
   Cache-Control: public, max-age=86400
+/cedwyn-sw.js
+  Cache-Control: no-cache
+/db/blobmap.json
+  Cache-Control: no-cache
 /db/*
   Cache-Control: public, max-age=300
   Access-Control-Allow-Origin: *

@@ -485,6 +485,9 @@ def main():
     if tot['sub'] or tot['ext']:
         for k, v in list(o['examples'].items())[:12]: print(k, v[:2])
         print('SELF-CONTAINED TEST FAILED'); return 1
-    print('SELF-CONTAINED TEST PASSED: 0 subdomain references, 0 external references'); return 0
+    print('SELF-CONTAINED TEST PASSED: 0 subdomain references, 0 external references')
+    if not ONLY and (DIST / 'db' / 'blobmap.json').exists():   # stage 3: the database becomes the one source of data and evidence files
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import dbserve; dbserve.DIST = DIST; return dbserve.main()
+    return 0
 
 if __name__ == '__main__': sys.exit(main())

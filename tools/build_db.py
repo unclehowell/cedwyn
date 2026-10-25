@@ -5,7 +5,7 @@ Walks dist/ (all themes + the /_blob/ store) and writes one SQLite file:
   blobs (the evidence bytes themselves as BLOBs: images, PDFs, small media), fts (FTS5 full-text index of every page
   and data file), nodes + edges (graph: page->embeds/links->artifact, artifact->mentions->year, artifact->cites->host),
   captures (original URL -> archived copy, from the Wayback Vault index).
-Then VACUUMs (page_size 4096) and splits the file into 512 KB chunk files under dist/db/ (far under the 25 MB limit).
+Then VACUUMs (page_size 4096), maps every blob's byte position (tools/dbmap.py -> db/blobmap.json, checked by sha256) and splits the file into 512 KB chunk files under dist/db/ (far under the 25 MB limit).
 The browser fetches only the chunk files a query touches (sql.js-httpvfs, chunked mode; one file per request, because
 Cloudflare Pages answers Range requests with the whole file) - no server, no D1. - Sion's Tab agent"""
 import json, os, re, sys, sqlite3, hashlib, pathlib, posixpath, html as H, mimetypes, urllib.parse
@@ -59,7 +59,7 @@ def node(nid, kind, label): con.execute('INSERT OR IGNORE INTO nodes VALUES(?,?,
 def edge(s, r, d): con.execute('INSERT OR IGNORE INTO edges VALUES(?,?,?)', (s, r, d))
 for t in CFG['themes']:
     node('theme:' + t['id'], 'theme', t['title'])
-sha_id = {}; blob_total = 0; blob_skipped = 0; path_aid = {}
+sha_id = {}; blob_total = 0; blob_skipped = 0; path_aid = {}; pending = []
 files = sorted(p for p in DIST.rglob('*') if p.is_file() and len(p.parts) > D + 1 and (p.parts[D] in TIDS or p.parts[D] == '_blob'))
 for p in files:
     rel = '/' + '/'.join(p.parts[D:]); theme = p.parts[D]; ext = p.suffix.lower(); kind = KIND.get(ext, 'other')
@@ -85,11 +85,16 @@ for p in files:
             node(f'year:{y}', 'year', str(y)); edge(f'a:{aid}', 'mentions', f'year:{y}')
         if kind in BLOB_KINDS:
             if len(data) <= BLOB_MAX and blob_total + len(data) <= BLOB_TOTAL:
-                con.execute('INSERT OR IGNORE INTO blobs VALUES(?,?)', (sha, data)); blob_total += len(data)
+                pending.append((0 if kind == 'data' else 1, theme, rel, sha, p)); blob_total += len(data)   # written below, clustered
                 con.execute('UPDATE artifacts SET has_blob=1 WHERE id=?', (aid,))
             else: blob_skipped += 1
     con.execute('INSERT OR IGNORE INTO locations VALUES(?,?,?,?)', (aid, theme, rel, rel)); path_aid[rel] = aid
     if theme != '_blob': edge(f'a:{aid}', 'in_theme', 'theme:' + theme)
+# blob rows are written clustered: every theme's JSON/CSV/XML first, then media, each grouped by theme and path, so the
+# few chunk files one theme page needs sit next to each other in the database file (stage 3: themes read from the DB)
+for _, _, _, sha, p in sorted(pending, key=lambda x: x[:3]):
+    con.execute('INSERT OR IGNORE INTO blobs VALUES(?,?)', (sha, p.read_bytes()))
+del pending
 # files the content-addressed store took out of a theme: record where they appeared, served from /_blob/
 _bm = json.load(open(DIST / '_blob_map.json')) if (DIST / '_blob_map.json').exists() else {}
 for orig, bl in _bm.items():
@@ -139,6 +144,10 @@ con.commit()
 con.execute("INSERT INTO fts(fts) VALUES('optimize')"); con.commit()
 con.execute('VACUUM'); con.close()
 size = DBF.stat().st_size
+import dbmap   # stage 3: where every blob's bytes sit in the file, so the service worker reads them straight from the chunks
+bm = dbmap.build(DBF, CHUNK, '/db/cedwyn.sqlite3.', 3)
+json.dump(bm, open(OUT / 'blobmap.json', 'w'), separators=(',', ':'))
+stats.update(blobmap_paths=len(bm['paths']), blobmap_blobs=len(bm['blobs']), db_version=bm['v'])
 for old in OUT.glob('cedwyn.sqlite3.*'): old.unlink()
 n = 0
 with open(DBF, 'rb') as f:
