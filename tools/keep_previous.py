@@ -69,6 +69,23 @@ def run(dist):
                     if dst.exists(): continue
                     dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(f, dst); n += 1
                 rep['restored'][t] = n
+            # kept copies may come from a build whose ingredients pass was older than this one's: apply this build's rewords and
+            # link repoints to the kept themes too, skipping any entry whose replacement is already in the file (so nothing is applied twice)
+            try:
+                import ingredients
+                hits = 0
+                for cp in ingredients.CONFIGS:
+                    cpp = root / cp
+                    if not cpp.exists(): continue
+                    for e in json.load(open(cpp, encoding='utf-8')).get('rewords', []):
+                        if e.get('theme') not in rep['restored']: continue
+                        for f in ingredients._files(dist, e):
+                            if not f.exists(): continue
+                            s = f.read_text(encoding='utf-8', errors='surrogateescape')
+                            if e['replace'] in s or e['find'] not in s: continue
+                            f.write_text(s.replace(e['find'], e['replace']), encoding='utf-8', errors='surrogateescape'); hits += 1
+                rep['rewords_on_kept'] = hits
+            except Exception as e: rep['rewords_error'] = str(e)[:200]
         except Exception as e: rep['error'] = str(e)[:300]
     shutil.rmtree(tmp, ignore_errors=True)
     out = dist / '_cedwyn' / 'reports'; out.mkdir(parents=True, exist_ok=True)

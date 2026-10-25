@@ -98,13 +98,12 @@ sta = [l for l in lines if l not in dyn]
 ''')   # no-transform: the zone's automatic analytics snippet is not injected, so pages make no request to another host
 print('site ok', len(lines), 'redirects,', len(caps), 'captures')
 sys.path.insert(0, str(ROOT / 'tools')); import agent_footer; agent_footer.run(DIST)   # THE TRIGGER EVENT section on /projects/ + agent footer on theme homes
-# A crawled theme whose live site refused this build's crawl (e.g. 429) keeps its previous build's files (25 Oct 2026); it runs
-# before the ingredients pass so that pass's rewords and link repoints reach the kept copies too (no find is inside its replace). - Sion's Tab agent
-import keep_previous
-keep_previous.run(DIST)
 # Editorial rule (25 Oct 2026): ingredients, not conclusions - reword conclusion sentences in mirrored theme text (ingredients.json). - Sion's Tab agent
 import ingredients
 ingredients.apply(DIST)
+# A crawled theme whose live site refused this build's crawl (e.g. 429) keeps its previous build's files (25 Oct 2026). - Sion's Tab agent
+import keep_previous
+keep_previous.run(DIST)
 # Per-compartment notice boxes (notices/<theme>.json; forensic audit intake 25 Oct 2026) - Sion's Tab agent
 import theme_notices
 theme_notices.run(DIST)
