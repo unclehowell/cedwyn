@@ -182,7 +182,7 @@ async function api(req, env, ctx, path) {
 export default {
   async fetch(req, env, ctx) {
     const url = new URL(req.url);
-    if (!url.pathname.startsWith('/admin')) return fetch(req);   // never answer for the public site
+    if (url.pathname !== '/admin' && !url.pathname.startsWith('/admin/')) return fetch(req);   // never answer for the public site (e.g. /administrator)
     if (url.pathname === '/admin') return Response.redirect(url.origin + '/admin/', 301);
     if (url.pathname.startsWith('/admin/api/')) {
       try { return await api(req, env, ctx, url.pathname.slice(11)); } catch (e) { return json({ error: 'server: ' + String(e && e.message || e).slice(0, 200) }, 500); }
