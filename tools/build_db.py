@@ -163,6 +163,12 @@ for lf in sorted(DIST.glob('*/layer.json')):
         for d in x.get('depends_on', []):
             con.execute('INSERT OR IGNORE INTO layer_deps VALUES(?,?,?)', (lid, x['id'], d)); n_layer_deps += 1
             edge(nid, 'depends_on', f'{lid}:{d}')
+# Evidence grades (shared, minimal; forensic audit intake 25 Oct 2026): two fields per evidence record, not yet shown on pages. - Sion's Tab agent
+con.execute('CREATE TABLE IF NOT EXISTS evidence_grades(ev TEXT PRIMARY KEY, grade INTEGER, origin TEXT, path TEXT, note TEXT) WITHOUT ROWID')
+_eg = ROOT / 'data' / 'evidence-grades.json'
+if _eg.exists():
+    for _x in json.load(open(_eg, encoding='utf-8')).get('evidence', []):
+        con.execute('INSERT OR REPLACE INTO evidence_grades VALUES(?,?,?,?,?)', (_x.get('ev'), _x.get('evidence_grade'), _x.get('independent_origin_id'), _x.get('path'), _x.get('grade_note')))
 for t in CFG['themes']:
     nf = con.execute('SELECT count(*) FROM locations WHERE theme=?', (t['id'],)).fetchone()[0]
     npg = con.execute("SELECT count(*) FROM locations l JOIN artifacts a ON a.id=l.aid WHERE l.theme=? AND a.kind='page'", (t['id'],)).fetchone()[0]
