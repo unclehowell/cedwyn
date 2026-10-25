@@ -159,7 +159,9 @@ def file_for_url(path):
 
 def url_target(raw, page_url):
     raw = html.unescape((raw or '').strip())
-    if not raw or raw == '#' or raw.startswith(('#','data:','javascript:','mailto:','tel:','sms:','blob:','about:')):
+    # A fragment-only link is a real intra-page navigation target; resolve it against the current page
+    # so missing IDs are reported instead of silently skipped.
+    if not raw or raw == '#' or raw.startswith(('data:','javascript:','mailto:','tel:','sms:','blob:','about:')):
         return None
     if any(x in raw for x in ('{{','}}','{path}','<escape>')) or ('$' + '{') in raw:
         return None
