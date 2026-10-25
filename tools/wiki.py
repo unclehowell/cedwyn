@@ -62,7 +62,7 @@ def local_for(path_q):
         return '/_static/c-' + hashlib.sha1(path_q.encode()).hexdigest()[:14] + ext, BASE + path_q
     return path_q.split('?', 1)[0].split('#', 1)[0], BASE + path_q
 
-REF = re.compile(r'(?:(?:https?:)?//' + re.escape(HOST) + r')?(/(?:_static/\?\?|wp-content/|wp-includes/|i/)[^"\'\s<>)\\*]*?)(?=&apos;|&quot;|&gt|&lt|["\'\s<>)\\*]|$)')
+REF = re.compile(r'(?:(?:https?:)?//(?:' + re.escape(HOST) + r'|s[0-2]\.wp\.com))?(/(?:_static/\?\?|wp-content/|wp-includes/|i/)[^"\'\s<>)\\*]*?)(?=&apos;|&quot;|&gt|&lt|["\'\s<>)\\*]|$)')
 def unesc(u): return u.replace('&#038;', '&').replace('&amp;', '&')
 def localise(text):
     def r(m):
@@ -72,7 +72,10 @@ def localise(text):
             if files and all(DROP_SRC.search(f) for f in files): return m.group(0)
         elif DROP_SRC.search(pq) or pq.split('?')[0].endswith('/') or m.end() < len(m.string) and m.string[m.end()] == '*': return m.group(0)
         loc, src = local_for(pq)
-        with lock: assets.setdefault(loc, src)
+        cdn = re.match(r'(?:https?:)?//(s[0-2]\.wp\.com)', m.group(0))
+        with lock:   # theme files named on the wp.com CDN are read from the wiki's own host first (the CDN refuses some fonts)
+            c = assets.setdefault(loc, [src])
+            if cdn and len(c) == 1: c.append('https://' + cdn.group(1) + pq)
         # an address written with the wiki's host keeps it (inline scripts and import maps are mapped by host later)
         return (BASE + loc) if len(m.group(0)) > len(m.group(1)) else loc
     return REF.sub(r, text)
@@ -122,8 +125,10 @@ def do_page(url):
     save((path if path.endswith('/') else path + '/') + 'index.html', page(b.decode('utf-8', 'ignore')).encode('utf-8'))
     with lock: rep['pages_ok'] += 1
 
-def do_asset(loc, src):
-    st, ct, b = get(src)
+def do_asset(loc, srcs):
+    for src in srcs:
+        st, ct, b = get(src)
+        if st == 200: break
     if st != 200:
         with lock: rep['assets_failed'].append([loc, st])
         return
