@@ -74,6 +74,8 @@ def classify(m):
     if host == 'bucklerfamily.estate' or host.endswith('.bucklerfamily.estate'):
         return 'sub', None
     if host in CDN: return 'cdn', None
+    # a YouTube thumbnail whose video was checked (oEmbed author) and is not from the excluded channel: copied as an image
+    if host == 'i.ytimg.com' and any('/vi/' + v + '/' in path for v in CFG.get('ytimg_checked', {})): return 'cdn', None
     return 'ext', None
 
 def replacement(m, absctx, css=False):
