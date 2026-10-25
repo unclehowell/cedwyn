@@ -70,7 +70,7 @@ def localise(text):
         if pq.startswith('/_static/??'):
             files = static_list(pq[len('/_static/??'):].split('?', 1)[0])
             if files and all(DROP_SRC.search(f) for f in files): return m.group(0)
-        elif DROP_SRC.search(pq) or pq.split('?')[0].endswith('/') or m.end() < len(m.string) and m.string[m.end()] == '*': return m.group(0)
+        elif (DROP_SRC.search(pq) and re.search(r'\.m?js$', pq.split('?')[0])) or pq.split('?')[0].endswith('/') or m.end() < len(m.string) and m.string[m.end()] == '*': return m.group(0)
         loc, src = local_for(pq)
         cdn = re.match(r'(?:https?:)?//(s[0-2]\.wp\.com)', m.group(0))
         with lock:   # theme files named on the wp.com CDN are read from the wiki's own host first (the CDN refuses some fonts)
@@ -96,6 +96,10 @@ def page(html):
                     return '<script' + attrs.replace(srcm.group(1), '/_static/??' + ','.join(keep) + tail) + '>' + body + '</script>\n'
             elif DROP_SRC.search(src): rep['scripts_dropped'] += 1; return ''
         elif DROP_INLINE_ID.search(attrs) or re.search(r'type\s*=\s*["\']?speculationrules', attrs, re.I): rep['scripts_dropped'] += 1; return ''
+        elif re.search(r'wp-emoji-settings', attrs) or re.search(r'wp-emoji|concatemoji|twemoji', body[:4000]) and 'importmap' not in attrs:
+            rep['scripts_dropped'] += 1; return ''   # emoji images from wordpress.com: the browser draws the same emoji itself
+        elif re.search(r'action-bar\.js|jetpack-newsletter', body) and len(body) < 6000:
+            rep['scripts_dropped'] += 1; return ''   # the wordpress.com subscribe bar
         elif re.search(r'_tkq|_stq|bilmur|wpcom_wpl|wpgroho', body) and len(body) < 4000 and 'importmap' not in attrs:
             rep['scripts_dropped'] += 1; return ''
         return m.group(0)
@@ -121,7 +125,7 @@ def do_page(url):
     if st != 200 or not b:
         with lock: rep['pages_failed'].append([url, st])
         return
-    path = urllib.parse.urlparse(url).path or '/'
+    path = urllib.parse.unquote(urllib.parse.urlparse(url).path or '/')   # the host decodes %e2%86%92 to '→' before it looks for the file
     save((path if path.endswith('/') else path + '/') + 'index.html', page(b.decode('utf-8', 'ignore')).encode('utf-8'))
     with lock: rep['pages_ok'] += 1
 
