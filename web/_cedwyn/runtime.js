@@ -74,15 +74,23 @@
   }
   function isOut(u) {
     var m = String(u).match(/^(?:https?:)?\/\/([^\/?#:]+)/i);
-    return !!(m && m[1].toLowerCase() !== location.hostname && mapHost(m[1], '/') === null);
+    return !!(m && m[1].toLowerCase() !== location.hostname && mapHost(m[1], '/') === null) && !pass(String(u));
   }
   function archive(u) { return '/wayback/go/?u=' + encodeURIComponent(u); }
   window.__cedwyn = { theme: T, fix: fix, archive: archive };
   // 25 Oct 2026: a link to the archive interface whose address is really a theme (a former *.bucklerfamily.estate site, the
   // Legal Wiki on wordpress.com) opens that theme: /wayback/go/ is only for outside addresses with no theme
   function untrap(h) { var m = /^(?:https?:\/\/[^\/]+)?\/wayback\/go\/\?u=([^&#]+)/.exec(h || ''), u, t; if (!m) return null;
-    try { u = decodeURIComponent(m[1]); } catch (e) { return null; } t = fix(u); return t !== u && t.charAt(0) === '/' ? t : null; }
+    try { u = decodeURIComponent(m[1]); } catch (e) { return null; } if (pass(u)) return u; t = fix(u); return t !== u && t.charAt(0) === '/' ? t : null; }
   window.__cedwyn.untrap = untrap;
+  // 25 Oct 2026 (sales fix): the shop's own checkout and sign-up hosts are the one exception to "no outbound links":
+  // a buy button opens Stripe/Gumroad checkout and the free-book form posts to the mailing list, instead of the archive page.
+  function pass(u) { var m = /^https:\/\/([^\/?#:]+)/i.exec(u || ''), h; if (!m) return false; h = m[1].toLowerCase();
+    return h === 'buy.stripe.com' || h === 'checkout.stripe.com' || h === 'gumroad.com' || /\.gumroad\.com$/.test(h) || /\.list-manage\.com$/.test(h); }
+  window.__cedwyn.pass = pass;
+  document.addEventListener('submit', function (e) { var f = e.target, a = f && f.getAttribute ? f.getAttribute('action') : '', m, u;
+    m = /^(?:https?:\/\/[^\/]+)?\/wayback\/go\/\?u=([^&#]+)/.exec(a || ''); if (!m) return;
+    try { u = decodeURIComponent(m[1]).replace(/&amp;/g, '&'); } catch (x) { return; } if (pass(u)) f.setAttribute('action', u); }, true);
   document.addEventListener('click', function (e) { var a = e.target && e.target.closest ? e.target.closest('a[href]') : null, t;
     if (a && (t = untrap(a.getAttribute('href')))) a.setAttribute('href', t); }, true);
   var of = window.fetch;
