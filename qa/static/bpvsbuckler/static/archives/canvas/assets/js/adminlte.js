@@ -1,7 +1,7 @@
 /*!
- * AdminLTE v4.0.0-rc6 (https://adminlte.io)
- * Copyright 2014-2025 Colorlib <https://colorlib.com>
- * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
+ * AdminLTE v4.0.0-rc6 (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fadminlte.io)
+ * Copyright 2014-2025 Colorlib <https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fcolorlib.com>
+ * Licensed under MIT (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2FColorlibHQ%2FAdminLTE%2Fblob%2Fmaster%2FLICENSE%29
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -1219,8 +1219,8 @@
     /**
      * AdminLTE v4.0.0-rc5
      * Author: Colorlib
-     * Website: AdminLTE.io <https://adminlte.io>
-     * License: Open source - MIT <https://opensource.org/licenses/MIT>
+     * Website: AdminLTE.io <https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fadminlte.io>
+     * License: Open source - MIT <https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fopensource.org%2Flicenses%2FMIT>
      */
     onDOMContentLoaded(() => {
         /**

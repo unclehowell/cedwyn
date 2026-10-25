@@ -177,7 +177,7 @@
         function defineKeyPropWarningGetter(props, displayName) {
           function warnAboutAccessingKey() {
             specialPropKeyWarningShown || (specialPropKeyWarningShown = true, console.error(
-              "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
+              "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fspecial-props%29",
               displayName
             ));
           }
@@ -422,7 +422,7 @@
         function resolveDispatcher() {
           var dispatcher = ReactSharedInternals.H;
           null === dispatcher && console.error(
-            "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem."
+            "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Finvalid-hook-call for tips about how to debug and fix this problem."
           );
           return dispatcher;
         }
@@ -440,7 +440,7 @@
             } catch (_err) {
               enqueueTaskImpl = function(callback) {
                 false === didWarnAboutMessageChannel && (didWarnAboutMessageChannel = true, "undefined" === typeof MessageChannel && console.error(
-                  "This browser does not have a MessageChannel implementation, so enqueuing tasks via await act(async () => ...) will fail. Please file an issue at https://github.com/facebook/react/issues if you encounter this warning."
+                  "This browser does not have a MessageChannel implementation, so enqueuing tasks via await act(async () => ...) will fail. Please file an issue at https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Ffacebook%2Freact%2Fissues if you encounter this warning."
                 ));
                 var channel = new MessageChannel();
                 channel.port1.onmessage = callback;
@@ -536,7 +536,7 @@
           ],
           replaceState: [
             "replaceState",
-            "Refactor your code to use setState instead (see https://github.com/facebook/react/issues/3236)."
+            "Refactor your code to use setState instead (see https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Ffacebook%2Freact%2Fissues%2F3236%29."
           ]
         };
         for (fnName in deprecatedAPIs)
@@ -797,7 +797,7 @@
           var key = null;
           if (null != config)
             for (propName in didWarnAboutOldJSXRuntime || !("__self" in config) || "key" in config || (didWarnAboutOldJSXRuntime = true, console.warn(
-              "Your app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform"
+              "Your app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fnew-jsx-transform"
             )), hasValidKey(config) && (checkKeyStringCoercion(config.key), key = "" + config.key), config)
               hasOwnProperty.call(config, propName) && "key" !== propName && "__self" !== propName && "__source" !== propName && (i2[propName] = config[propName]);
           var childrenLength = arguments.length - 2;
@@ -1333,7 +1333,7 @@
         function resolveDispatcher() {
           var dispatcher = ReactSharedInternals.H;
           null === dispatcher && console.error(
-            "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem."
+            "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Finvalid-hook-call for tips about how to debug and fix this problem."
           );
           return dispatcher;
         }
@@ -1358,7 +1358,7 @@
           findDOMNode: null
         }, REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), ReactSharedInternals = React4.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
         "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
-          "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills"
+          "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freactjs.org%2Flink%2Freact-polyfills"
         );
         exports.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = Internals;
         exports.createPortal = function(children, container) {
@@ -1453,7 +1453,7 @@
                 break;
               default:
                 encountered = getValueDescriptorExpectingEnumForWarning(encountered), console.error(
-                  'ReactDOM.preinitModule(): Currently the only supported "as" type for this function is "script" but received "%s" instead. This warning was generated for `href` "%s". In the future other module types will be supported, aligning with the import-attributes proposal. Learn more here: (https://github.com/tc39/proposal-import-attributes)',
+                  'ReactDOM.preinitModule(): Currently the only supported "as" type for this function is "script" but received "%s" instead. This warning was generated for `href` "%s". In the future other module types will be supported, aligning with the import-attributes proposal. Learn more here: (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Ftc39%2Fproposal-import-attributes%29',
                   encountered,
                   href
                 );
@@ -1601,7 +1601,7 @@
         }
         function warnInvalidHookAccess() {
           console.error(
-            "Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://react.dev/link/rules-of-hooks"
+            "Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Frules-of-hooks"
           );
         }
         function warnInvalidContextAccess() {
@@ -2318,7 +2318,7 @@
           if (hook.isDisabled) return true;
           if (!hook.supportsFiber)
             return console.error(
-              "The installed version of React DevTools is too old and will not work with the current version of React. Please update React DevTools. https://react.dev/link/react-devtools"
+              "The installed version of React DevTools is too old and will not work with the current version of React. Please update React DevTools. https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Freact-devtools"
             ), true;
           try {
             rendererID = hook.inject(internals), injectedHook = hook;
@@ -2842,12 +2842,12 @@
         }
         function validateInputProps(element, props) {
           void 0 === props.checked || void 0 === props.defaultChecked || didWarnCheckedDefaultChecked || (console.error(
-            "%s contains an input of type %s with both checked and defaultChecked props. Input elements must be either controlled or uncontrolled (specify either the checked prop, or the defaultChecked prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://react.dev/link/controlled-components",
+            "%s contains an input of type %s with both checked and defaultChecked props. Input elements must be either controlled or uncontrolled (specify either the checked prop, or the defaultChecked prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fcontrolled-components",
             getCurrentFiberOwnerNameInDevOrNull() || "A component",
             props.type
           ), didWarnCheckedDefaultChecked = true);
           void 0 === props.value || void 0 === props.defaultValue || didWarnValueDefaultValue$1 || (console.error(
-            "%s contains an input of type %s with both value and defaultValue props. Input elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://react.dev/link/controlled-components",
+            "%s contains an input of type %s with both value and defaultValue props. Input elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fcontrolled-components",
             getCurrentFiberOwnerNameInDevOrNull() || "A component",
             props.type
           ), didWarnValueDefaultValue$1 = true);
@@ -2945,12 +2945,12 @@
             }
           }
           void 0 === props.value || void 0 === props.defaultValue || didWarnValueDefaultValue || (console.error(
-            "Select elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled select element and remove one of these props. More info: https://react.dev/link/controlled-components"
+            "Select elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled select element and remove one of these props. More info: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fcontrolled-components"
           ), didWarnValueDefaultValue = true);
         }
         function validateTextareaProps(element, props) {
           void 0 === props.value || void 0 === props.defaultValue || didWarnValDefaultVal || (console.error(
-            "%s contains a textarea with both value and defaultValue props. Textarea elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled textarea and remove one of these props. More info: https://react.dev/link/controlled-components",
+            "%s contains a textarea with both value and defaultValue props. Textarea elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled textarea and remove one of these props. More info: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fcontrolled-components",
             getCurrentFiberOwnerNameInDevOrNull() || "A component"
           ), didWarnValDefaultVal = true);
           null != props.children && null == props.value && console.error(
@@ -3600,11 +3600,11 @@
             return "`" + prop + "`";
           }).join(", ");
           1 === invalidProps.length ? console.error(
-            "Invalid aria prop %s on <%s> tag. For details, see https://react.dev/link/invalid-aria-props",
+            "Invalid aria prop %s on <%s> tag. For details, see https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Finvalid-aria-props",
             props,
             type
           ) : 1 < invalidProps.length && console.error(
-            "Invalid aria props %s on <%s> tag. For details, see https://react.dev/link/invalid-aria-props",
+            "Invalid aria props %s on <%s> tag. For details, see https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Finvalid-aria-props",
             props,
             type
           );
@@ -3810,11 +3810,11 @@
             return "`" + prop + "`";
           }).join(", ");
           1 === unknownProps.length ? console.error(
-            "Invalid value for prop %s on <%s> tag. Either remove it from the element, or pass a string or number value to keep it in the DOM. For details, see https://react.dev/link/attribute-behavior ",
+            "Invalid value for prop %s on <%s> tag. Either remove it from the element, or pass a string or number value to keep it in the DOM. For details, see https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fattribute-behavior ",
             props,
             type
           ) : 1 < unknownProps.length && console.error(
-            "Invalid values for props %s on <%s> tag. Either remove them from the element, or pass a string or number value to keep them in the DOM. For details, see https://react.dev/link/attribute-behavior ",
+            "Invalid values for props %s on <%s> tag. Either remove them from the element, or pass a string or number value to keep them in the DOM. For details, see https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fattribute-behavior ",
             props,
             type
           );
@@ -5339,7 +5339,7 @@
             runWithFiberInDEV(diffRoot.fiber, function() {
               console.error(
                 "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s",
-                "https://react.dev/link/hydration-mismatch",
+                "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fhydration-mismatch",
                 diff
               );
             });
@@ -6859,7 +6859,7 @@
                 table += oldHookName;
               }
               console.error(
-                "React has detected a change in the order of Hooks called by %s. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://react.dev/link/rules-of-hooks\n\n   Previous render            Next render\n   ------------------------------------------------------\n%s   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+                "React has detected a change in the order of Hooks called by %s. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Frules-of-hooks\n\n   Previous render            Next render\n   ------------------------------------------------------\n%s   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
                 componentName2,
                 table
               );
@@ -6882,7 +6882,7 @@
         }
         function throwInvalidHookError() {
           throw Error(
-            "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem."
+            "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Finvalid-hook-call for tips about how to debug and fix this problem."
           );
         }
         function areHookInputsEqual(nextDeps, prevDeps) {
@@ -7157,7 +7157,7 @@
           var queue = hook.queue;
           if (null === queue)
             throw Error(
-              "Should have a queue. You are likely calling Hooks conditionally, which is not allowed. (https://react.dev/link/invalid-hook-call)"
+              "Should have a queue. You are likely calling Hooks conditionally, which is not allowed. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Finvalid-hook-call%29"
             );
           queue.lastRenderedReducer = reducer;
           var baseQueue = hook.baseQueue, pendingQueue = queue.pending;
@@ -7236,7 +7236,7 @@
           var hook = updateWorkInProgressHook(), queue = hook.queue;
           if (null === queue)
             throw Error(
-              "Should have a queue. You are likely calling Hooks conditionally, which is not allowed. (https://react.dev/link/invalid-hook-call)"
+              "Should have a queue. You are likely calling Hooks conditionally, which is not allowed. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Finvalid-hook-call%29"
             );
           queue.lastRenderedReducer = reducer;
           var dispatch = queue.dispatch, lastRenderPhaseUpdate = queue.pending, newState = hook.memoizedState;
@@ -8233,7 +8233,7 @@
           console.warn(
             "%s\n\n%s\n",
             componentName ? "An error occurred in the <" + componentName + "> component." : "An error occurred in one of your React components.",
-            "Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries."
+            "Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Ferror-boundaries to learn more about error boundaries."
           );
         }
         function defaultOnCaughtError(error) {
@@ -8735,7 +8735,7 @@
             null
           );
           null === current2 && (validateFunctionComponentInDev(workInProgress2, workInProgress2.type), Component.contextTypes && (componentName2 = getComponentNameFromType(Component) || "Unknown", didWarnAboutContextTypes[componentName2] || (didWarnAboutContextTypes[componentName2] = true, console.error(
-            "%s uses the legacy contextTypes API which was removed in React 19. Use React.createContext() with React.useContext() instead. (https://react.dev/link/legacy-context)",
+            "%s uses the legacy contextTypes API which was removed in React 19. Use React.createContext() with React.useContext() instead. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Flegacy-context%29",
             componentName2
           ))));
           prepareToReadContext(workInProgress2);
@@ -8874,11 +8874,11 @@
               state
             );
             Component.childContextTypes && !didWarnAboutChildContextTypes.has(Component) && (didWarnAboutChildContextTypes.add(Component), console.error(
-              "%s uses the legacy childContextTypes API which was removed in React 19. Use React.createContext() instead. (https://react.dev/link/legacy-context)",
+              "%s uses the legacy childContextTypes API which was removed in React 19. Use React.createContext() instead. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Flegacy-context%29",
               state
             ));
             Component.contextTypes && !didWarnAboutContextTypes$1.has(Component) && (didWarnAboutContextTypes$1.add(Component), console.error(
-              "%s uses the legacy contextTypes API which was removed in React 19. Use React.createContext() with static contextType instead. (https://react.dev/link/legacy-context)",
+              "%s uses the legacy contextTypes API which was removed in React 19. Use React.createContext() with static contextType instead. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Flegacy-context%29",
               state
             ));
             "function" === typeof _instance.componentShouldUpdate && console.error(
@@ -10683,7 +10683,7 @@
                   var hookName = void 0;
                   hookName = 0 !== (updateQueue.tag & Layout) ? "useLayoutEffect" : 0 !== (updateQueue.tag & Insertion) ? "useInsertionEffect" : "useEffect";
                   var addendum = void 0;
-                  addendum = null === lastEffect ? " You returned null. If your effect does not require clean up, return undefined (or nothing)." : "function" === typeof lastEffect.then ? "\n\nIt looks like you wrote " + hookName + "(async () => ...) or returned a Promise. Instead, write the async function inside your effect and call it immediately:\n\n" + hookName + "(() => {\n  async function fetchData() {\n    // You can await here\n    const response = await MyAPI.getData(someId);\n    // ...\n  }\n  fetchData();\n}, [someId]); // Or [] if effect doesn't need props or state\n\nLearn more about data fetching with Hooks: https://react.dev/link/hooks-data-fetching" : " You returned: " + lastEffect;
+                  addendum = null === lastEffect ? " You returned null. If your effect does not require clean up, return undefined (or nothing)." : "function" === typeof lastEffect.then ? "\n\nIt looks like you wrote " + hookName + "(async () => ...) or returned a Promise. Instead, write the async function inside your effect and call it immediately:\n\n" + hookName + "(() => {\n  async function fetchData() {\n    // You can await here\n    const response = await MyAPI.getData(someId);\n    // ...\n  }\n  fetchData();\n}, [someId]); // Or [] if effect doesn't need props or state\n\nLearn more about data fetching with Hooks: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fhooks-data-fetching" : " You returned: " + lastEffect;
                   runWithFiberInDEV(
                     finishedWork,
                     function(n3, a2) {
@@ -12951,7 +12951,7 @@
                 case 15:
                   root2 = workInProgress && getComponentNameFromFiber(workInProgress) || "Unknown";
                   didWarnAboutUpdateInRenderForAnotherComponent.has(root2) || (didWarnAboutUpdateInRenderForAnotherComponent.add(root2), fiber = getComponentNameFromFiber(fiber) || "Unknown", console.error(
-                    "Cannot update a component (`%s`) while rendering a different component (`%s`). To locate the bad setState() call inside `%s`, follow the stack trace as described in https://react.dev/link/setstate-in-render",
+                    "Cannot update a component (`%s`) while rendering a different component (`%s`). To locate the bad setState() call inside `%s`, follow the stack trace as described in https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fsetstate-in-render",
                     fiber,
                     root2,
                     root2
@@ -14533,7 +14533,7 @@
           root2.warmLanes &= ~pingedLanes;
           0 !== (pingedLanes & 127) ? 0 > blockingUpdateTime && (blockingClampTime = blockingUpdateTime = now(), blockingUpdateTask = createTask("Promise Resolved"), blockingUpdateType = PINGED_UPDATE) : 0 !== (pingedLanes & 4194048) && 0 > transitionUpdateTime && (transitionClampTime = transitionUpdateTime = now(), transitionUpdateTask = createTask("Promise Resolved"), transitionUpdateType = PINGED_UPDATE);
           isConcurrentActEnvironment() && null === ReactSharedInternals.actQueue && console.error(
-            "A suspended resource finished loading inside a test, but the event was not wrapped in act(...).\n\nWhen testing, code that resolves suspended data should be wrapped into act(...):\n\nact(() => {\n  /* finish loading suspended data */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act"
+            "A suspended resource finished loading inside a test, but the event was not wrapped in act(...).\n\nWhen testing, code that resolves suspended data should be wrapped into act(...):\n\nact(() => {\n  /* finish loading suspended data */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fwrap-tests-with-act"
           );
           workInProgressRoot === root2 && (workInProgressRootRenderLanes & pingedLanes) === pingedLanes && (workInProgressRootExitStatus === RootSuspendedWithDelay || workInProgressRootExitStatus === RootSuspended && (workInProgressRootRenderLanes & 62914560) === workInProgressRootRenderLanes && now$1() - globalMostRecentFallbackTime < FALLBACK_THROTTLE_MS ? (executionContext & RenderContext) === NoContext && prepareFreshStack(root2, 0) : workInProgressRootPingedLanes |= pingedLanes, workInProgressSuspendedRetryLanes === workInProgressRootRenderLanes && (workInProgressSuspendedRetryLanes = 0));
           ensureRootIsScheduled(root2);
@@ -14646,7 +14646,7 @@
         function warnIfUpdatesNotWrappedWithActDEV(fiber) {
           isConcurrentActEnvironment() && null === ReactSharedInternals.actQueue && runWithFiberInDEV(fiber, function() {
             console.error(
-              "An update to %s inside a test was not wrapped in act(...).\n\nWhen testing, code that causes React state updates should be wrapped into act(...):\n\nact(() => {\n  /* fire events that update state */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act",
+              "An update to %s inside a test was not wrapped in act(...).\n\nWhen testing, code that causes React state updates should be wrapped into act(...):\n\nact(() => {\n  /* fire events that update state */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fwrap-tests-with-act",
               getComponentNameFromFiber(fiber)
             );
           });
@@ -15578,7 +15578,7 @@
               if (null != value) {
                 if ("object" !== typeof value || !("__html" in value))
                   throw Error(
-                    "`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. Please visit https://react.dev/link/dangerously-set-inner-html for more information."
+                    "`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. Please visit https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fdangerously-set-inner-html for more information."
                   );
                 key = value.__html;
                 if (null != key) {
@@ -15771,7 +15771,7 @@
               if (null != value) {
                 if ("object" !== typeof value || !("__html" in value))
                   throw Error(
-                    "`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. Please visit https://react.dev/link/dangerously-set-inner-html for more information."
+                    "`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. Please visit https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fdangerously-set-inner-html for more information."
                   );
                 key = value.__html;
                 if (null != key) {
@@ -16129,10 +16129,10 @@
               tag = "checkbox" === lastProps.type || "radio" === lastProps.type ? null != lastProps.checked : null != lastProps.value;
               nextProps = "checkbox" === nextProps.type || "radio" === nextProps.type ? null != nextProps.checked : null != nextProps.value;
               tag || !nextProps || didWarnUncontrolledToControlled || (console.error(
-                "A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components"
+                "A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fcontrolled-components"
               ), didWarnUncontrolledToControlled = true);
               !tag || nextProps || didWarnControlledToUncontrolled || (console.error(
-                "A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components"
+                "A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fcontrolled-components"
               ), didWarnControlledToUncontrolled = true);
               updateInput(
                 domElement,
@@ -19701,34 +19701,34 @@
               UNSAFE_componentWillMountUniqueNames
             );
             console.error(
-              "Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://react.dev/link/unsafe-component-lifecycles for details.\n\n* Move code with side effects to componentDidMount, and set initial state in the constructor.\n\nPlease update the following components: %s",
+              "Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Funsafe-component-lifecycles for details.\n\n* Move code with side effects to componentDidMount, and set initial state in the constructor.\n\nPlease update the following components: %s",
               sortedNames
             );
           }
           0 < UNSAFE_componentWillReceivePropsUniqueNames.size && (sortedNames = setToSortedString(
             UNSAFE_componentWillReceivePropsUniqueNames
           ), console.error(
-            "Using UNSAFE_componentWillReceiveProps in strict mode is not recommended and may indicate bugs in your code. See https://react.dev/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://react.dev/link/derived-state\n\nPlease update the following components: %s",
+            "Using UNSAFE_componentWillReceiveProps in strict mode is not recommended and may indicate bugs in your code. See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Funsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fderived-state\n\nPlease update the following components: %s",
             sortedNames
           ));
           0 < UNSAFE_componentWillUpdateUniqueNames.size && (sortedNames = setToSortedString(
             UNSAFE_componentWillUpdateUniqueNames
           ), console.error(
-            "Using UNSAFE_componentWillUpdate in strict mode is not recommended and may indicate bugs in your code. See https://react.dev/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n\nPlease update the following components: %s",
+            "Using UNSAFE_componentWillUpdate in strict mode is not recommended and may indicate bugs in your code. See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Funsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n\nPlease update the following components: %s",
             sortedNames
           ));
           0 < componentWillMountUniqueNames.size && (sortedNames = setToSortedString(componentWillMountUniqueNames), console.warn(
-            "componentWillMount has been renamed, and is not recommended for use. See https://react.dev/link/unsafe-component-lifecycles for details.\n\n* Move code with side effects to componentDidMount, and set initial state in the constructor.\n* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s",
+            "componentWillMount has been renamed, and is not recommended for use. See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Funsafe-component-lifecycles for details.\n\n* Move code with side effects to componentDidMount, and set initial state in the constructor.\n* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s",
             sortedNames
           ));
           0 < componentWillReceivePropsUniqueNames.size && (sortedNames = setToSortedString(
             componentWillReceivePropsUniqueNames
           ), console.warn(
-            "componentWillReceiveProps has been renamed, and is not recommended for use. See https://react.dev/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://react.dev/link/derived-state\n* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s",
+            "componentWillReceiveProps has been renamed, and is not recommended for use. See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Funsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fderived-state\n* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s",
             sortedNames
           ));
           0 < componentWillUpdateUniqueNames.size && (sortedNames = setToSortedString(componentWillUpdateUniqueNames), console.warn(
-            "componentWillUpdate has been renamed, and is not recommended for use. See https://react.dev/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* Rename componentWillUpdate to UNSAFE_componentWillUpdate to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s",
+            "componentWillUpdate has been renamed, and is not recommended for use. See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Funsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* Rename componentWillUpdate to UNSAFE_componentWillUpdate to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s",
             sortedNames
           ));
         };
@@ -19752,7 +19752,7 @@
               var sortedNames = setToSortedString(uniqueNames);
               runWithFiberInDEV(firstFiber, function() {
                 console.error(
-                  "Legacy context API has been detected within a strict-mode tree.\n\nThe old API will be supported in all 16.x releases, but applications using it should migrate to the new version.\n\nPlease update the following components: %s\n\nLearn more about this warning here: https://react.dev/link/legacy-context",
+                  "Legacy context API has been detected within a strict-mode tree.\n\nThe old API will be supported in all 16.x releases, but applications using it should migrate to the new version.\n\nPlease update the following components: %s\n\nLearn more about this warning here: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Flegacy-context",
                   sortedNames
                 );
               });
@@ -19883,7 +19883,7 @@
               null != child && returnFiber !== child && (componentName2 = null, "number" === typeof child.tag ? componentName2 = getComponentNameFromFiber(child) : "string" === typeof child.name && (componentName2 = child.name), componentName2 && (childOwnerAppendix = " It was passed a child from " + componentName2 + "."));
               runWithFiberInDEV(workInProgress2, function() {
                 console.error(
-                  'Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information.',
+                  'Each child in a list should have a unique "key" prop.%s%s See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fwarning-keys for more information.',
                   currentComponentErrorInfo,
                   childOwnerAppendix
                 );
@@ -21321,11 +21321,11 @@
           var isomorphicReactPackageVersion = React4.version;
           if ("19.2.4" !== isomorphicReactPackageVersion)
             throw Error(
-              'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.2.4\nLearn more: https://react.dev/warnings/version-mismatch")
+              'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.2.4\nLearn more: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Fwarnings%2Fversion-mismatch")
             );
         })();
         "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
-          "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://react.dev/link/react-polyfills"
+          "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Freact-polyfills"
         );
         ReactDOMSharedInternals.findDOMNode = function(componentOrElement) {
           var fiber = componentOrElement._reactInternals;
@@ -21368,7 +21368,7 @@
         })() && canUseDOM3 && window.top === window.self && (-1 < navigator.userAgent.indexOf("Chrome") && -1 === navigator.userAgent.indexOf("Edge") || -1 < navigator.userAgent.indexOf("Firefox"))) {
           var protocol = window.location.protocol;
           /^(https?|file):$/.test(protocol) && console.info(
-            "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools" + ("file:" === protocol ? "\nYou might need to use a local HTTP server (instead of file://): https://react.dev/link/react-devtools-faq" : ""),
+            "%cDownload the React DevTools for a better development experience: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Freact-devtools" + ("file:" === protocol ? "\nYou might need to use a local HTTP server (instead of file://): https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Freact-devtools-faq" : ""),
             "font-weight:bold"
           );
         }
@@ -21706,7 +21706,7 @@
         function defineKeyPropWarningGetter(props, displayName) {
           function warnAboutAccessingKey() {
             specialPropKeyWarningShown || (specialPropKeyWarningShown = true, console.error(
-              "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
+              "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fspecial-props%29",
               displayName
             ));
           }
@@ -22544,7 +22544,7 @@
     if (!getRandomValues) {
       getRandomValues = typeof crypto !== "undefined" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto);
       if (!getRandomValues) {
-        throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
+        throw new Error("crypto.getRandomValues() not supported. See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Fuuidjs%2Fuuid%23getrandomvalues-not-supported");
       }
     }
     return getRandomValues(rnds8);
@@ -30248,7 +30248,7 @@
                 return u4("file:"), this.dispatch([e4.name, e4.size, e4.type, e4.lastModfied]);
               }, _blob: function() {
                 if (o3.ignoreUnknown) return u4("[blob]");
-                throw Error('Hashing Blob objects is currently not supported\n(see https://github.com/puleos/object-hash/issues/26)\nUse "options.replacer" or "options.ignoreUnknown"\n');
+                throw Error('Hashing Blob objects is currently not supported\n(see https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Fpuleos%2Fobject-hash%2Fissues%2F26%29\nUse "options.replacer" or "options.ignoreUnknown"\n');
               }, _domwindow: function() {
                 return u4("domwindow");
               }, _bigint: function(e4) {
@@ -30737,7 +30737,7 @@
             }
             function i2() {
               var e5 = [].slice.call(arguments).join(" ");
-              throw new Error([e5, "we accept pull requests", "http://github.com/dominictarr/crypto-browserify"].join("\n"));
+              throw new Error([e5, "we accept pull requests", "https://cedwyn.bucklerfamily.estate/wayback/go/?u=http%3A%2F%2Fgithub.com%2Fdominictarr%2Fcrypto-browserify"].join("\n"));
             }
             a2.fill(0), _2.createHash = function(e5) {
               return r3(e5);
@@ -37076,7 +37076,7 @@
             if (zoneType === "dropzone") {
               if (zoneCompound !== rootDroppableId) {
                 console.warn(
-                  "DropZones have been deprecated in favor of slot fields and will be removed in a future version of Puck. Please see the migration guide: https://www.puckeditor.com/docs/guides/migrations/dropzones-to-slots"
+                  "DropZones have been deprecated in favor of slot fields and will be removed in a future version of Puck. Please see the migration guide: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fwww.puckeditor.com%2Fdocs%2Fguides%2Fmigrations%2Fdropzones-to-slots"
                 );
               }
             }
@@ -39082,7 +39082,7 @@ react/cjs/react-jsx-runtime.development.js:
     (*!
     	Copyright (c) 2018 Jed Watson.
     	Licensed under the MIT License (MIT), see
-    	http://jedwatson.github.io/classnames
+    	https://cedwyn.bucklerfamily.estate/wayback/go/?u=http%3A%2F%2Fjedwatson.github.io%2Fclassnames
     *)
   
   lucide-react/dist/esm/shared/src/utils.js:

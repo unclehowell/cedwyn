@@ -59,7 +59,7 @@ console.log('api/timeline.json: ' + JSON.stringify(apiPayload).length + ' bytes'
 let llms = '# Great House Farm Story — LLMs.txt\n\n';
 llms += '> The complete chronological account of the Williams-Buckler family and Great House Farm, Llandough, Vale of Glamorgan, Wales.\n';
 llms += '> Includes the Glamorgan-Gwent Historic Environment Record PRN GGAT02038s\n';
-llms += '> Structured JSON API: https://bpvsbuckler.datro.xyz/api/timeline.json\n\n';
+llms += '> Structured JSON API: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbpvsbuckler.datro.xyz%2Fapi%2Ftimeline.json\n\n';
 llms += '## About\n\n';
 llms += '800-year history of Great House Farm (Ty Mawr), Llandough: ';
 llms += 'Williams family occupation (1667-1988), Vaughan family tenure (C16th-C18th), Bute Estate (C19th), ';
@@ -67,7 +67,7 @@ llms += 'disputed eviction and demolition by BP Properties Ltd on 6 December 198
 llms += 'archaeological discoveries (Roman villa, 800+ burials). ';
 llms += 'Reparations claim: ~101.2 million as of 2026.\n\n';
 llms += '## Sources\n\n';
-llms += '- GGAT HER PRN 02038s: https://archwilio.org.uk/her/chi3/report/page.php?watprn=GGAT02038s\n';
+llms += '- GGAT HER PRN 02038s: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Farchwilio.org.uk%2Fher%2Fchi3%2Freport%2Fpage.php%3Fwatprn%3DGGAT02038s\n';
 llms += '- RCAHMW Inventory Vol IV Part 2\n';
 llms += '- BP Properties Ltd v Buckler & Anor (court records)\n\n';
 llms += '## Full Timeline\n\n';
@@ -89,7 +89,7 @@ a1.forEach(e => {
   if (sources.length) llms += '\n';
 });
 
-llms += '---\nFull structured data at https://bpvsbuckler.datro.xyz/api/timeline.json\n';
+llms += '---\nFull structured data at https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbpvsbuckler.datro.xyz%2Fapi%2Ftimeline.json\n';
 fs.writeFileSync(path.join(SITE_DIR, 'llms.txt'), llms);
 console.log('llms.txt: ' + llms.length + ' bytes');
 
@@ -97,10 +97,10 @@ console.log('llms.txt: ' + llms.length + ' bytes');
 const robots = 'User-agent: *\n' +
   'Allow: /\n' +
   'Allow: /api/\n' +
-  'Sitemap: https://bpvsbuckler.datro.xyz/sitemap.xml\n' +
+  'Sitemap: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbpvsbuckler.datro.xyz%2Fsitemap.xml\n' +
   '\n' +
-  '# Full plain-text content for LLMs: https://bpvsbuckler.datro.xyz/llms.txt\n' +
-  '# JSON API: https://bpvsbuckler.datro.xyz/api/timeline.json\n';
+  '# Full plain-text content for LLMs: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbpvsbuckler.datro.xyz%2Fllms.txt\n' +
+  '# JSON API: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbpvsbuckler.datro.xyz%2Fapi%2Ftimeline.json\n';
 fs.writeFileSync(path.join(SITE_DIR, 'robots.txt'), robots);
 console.log('robots.txt written');
 
@@ -113,12 +113,12 @@ const uniqueYears = [...new Set(a1.map(e => e.year))].sort((a, b) => {
 
 let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
 sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-sitemap += '  <url><loc>https://bpvsbuckler.datro.xyz/</loc><lastmod>' + today + '</lastmod><priority>1.0</priority></url>\n';
-sitemap += '  <url><loc>https://bpvsbuckler.datro.xyz/api/timeline.json</loc><lastmod>' + today + '</lastmod><priority>0.9</priority></url>\n';
-sitemap += '  <url><loc>https://bpvsbuckler.datro.xyz/llms.txt</loc><lastmod>' + today + '</lastmod><priority>0.8</priority></url>\n';
+sitemap += '  <url><loc>https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbpvsbuckler.datro.xyz%2F</loc><lastmod>' + today + '</lastmod><priority>1.0</priority></url>\n';
+sitemap += '  <url><loc>https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbpvsbuckler.datro.xyz%2Fapi%2Ftimeline.json</loc><lastmod>' + today + '</lastmod><priority>0.9</priority></url>\n';
+sitemap += '  <url><loc>https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbpvsbuckler.datro.xyz%2Fllms.txt</loc><lastmod>' + today + '</lastmod><priority>0.8</priority></url>\n';
 uniqueYears.forEach(y => {
   const label = y === 'present_day' ? 'present-day' : y;
-  sitemap += '  <url><loc>https://bpvsbuckler.datro.xyz/?year=' + label + '</loc><lastmod>' + today + '</lastmod><priority>0.6</priority></url>\n';
+  sitemap += '  <url><loc>https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbpvsbuckler.datro.xyz%2F%3Fyear%3D' + label + '</loc><lastmod>' + today + '</lastmod><priority>0.6</priority></url>\n';
 });
 sitemap += '</urlset>';
 fs.writeFileSync(path.join(SITE_DIR, 'sitemap.xml'), sitemap);

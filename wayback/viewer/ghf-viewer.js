@@ -1,5 +1,5 @@
-/*! ghf-viewer.js v1.0.1 — Wayback artifact viewer (popup modal). Single source: https://wayback.bucklerfamily.estate/viewer/ghf-viewer.js
- * Any site loads it with <script src="https://wayback.bucklerfamily.estate/viewer/ghf-viewer.js" defer></script>.
+/*! ghf-viewer.js v1.0.1 — Wayback artifact viewer (popup modal). Single source: https://cedwyn.bucklerfamily.estate/wayback/viewer/ghf-viewer.js
+ * Any site loads it with <script src="https://cedwyn.bucklerfamily.estate/wayback/viewer/ghf-viewer.js" defer></script>.
  * A click on a link to wayback.bucklerfamily.estate (or any link with data-ghf-view) opens the artifact in a modal
  * instead of leaving the page. Ctrl/Cmd/Shift/middle-click, download links and data-ghf-noview keep normal behaviour.
  * Images show as <img>, audio/video in native players, Wayback PDFs page by page (pdf.js, same origin, works on phones), pages/text in a frame. "Open" and "Download" are always offered.

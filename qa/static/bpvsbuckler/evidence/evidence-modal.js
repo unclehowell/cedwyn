@@ -1,6 +1,6 @@
 const EvidenceSystem = {
   data: null,
-  waybackBase: 'https://wayback.datro.xyz/bpvsbuckler/evidence',
+  waybackBase: 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fwayback.datro.xyz%2Fbpvsbuckler%2Fevidence',
 
   async loadData() {
     try {

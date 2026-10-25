@@ -1,10 +1,10 @@
 /*! comments.js v2 — Social-style comments, likes and share under every post on fb.bucklerfamily.estate (Cedwyn Estate).
  * No sign-in, no email. Backend: comments.bucklerfamily.estate (Cloudflare Worker + R2, open JSON API for people and AI agents:
- * https://fb.bucklerfamily.estate/api/). Comments appear straight away unless the automatic filter holds them for review.
+ * https://cedwyn.bucklerfamily.estate/fb/api/). Comments appear straight away unless the automatic filter holds them for review.
  * Stored: display name (default "Guest"), comment, post id, time, likes. No email, no IP address. — Sion's Tab agent */
 (function () {
   "use strict";
-  var API = "https://comments.bucklerfamily.estate";
+  var API = "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fcomments.bucklerfamily.estate";
   var NOTE = "Comments appear straight away. Be respectful; no accusations about named people. Posts that break this are hidden.";
   var started = Date.now(), feed = {}, single = document.body.getAttribute("data-post");
   var LS = { get: function (k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }, set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
@@ -176,7 +176,7 @@
     }
     more.addEventListener("click", loadAll);
     box.appendChild(more); box.appendChild(list); box.appendChild(form);
-    var nt = el("p", "fbc-note"); nt.innerHTML = NOTE.replace(/&/g, "&amp;").replace(/</g, "&lt;") + ' No sign-in; we keep your display name, comment and time, no email or IP. <a class="ln" href="https://bucklerfamily.estate/privacy/#comments">Privacy</a> · <a class="ln" href="/api/">API for AI agents</a>';
+    var nt = el("p", "fbc-note"); nt.innerHTML = NOTE.replace(/&/g, "&amp;").replace(/</g, "&lt;") + ' No sign-in; we keep your display name, comment and time, no email or IP. <a class="ln" href="https://cedwyn.bucklerfamily.estate/dartboard/privacy/#comments">Privacy</a> · <a class="ln" href="/api/">API for AI agents</a>';
     box.appendChild(nt); if (!single && !o.full) { nt.hidden = true; form._ta.addEventListener("focus", function () { nt.hidden = false; }); }
     if (old) { old.parentNode.insertBefore(bar, old); old.parentNode.replaceChild(acts, old); } else { a.appendChild(bar); a.appendChild(acts); }
     acts.parentNode.insertBefore(box, acts.nextSibling);

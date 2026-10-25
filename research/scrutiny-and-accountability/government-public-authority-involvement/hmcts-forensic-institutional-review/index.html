@@ -1,0 +1,399 @@
+<!doctype html><html lang="en"><head><script src="/_cedwyn/runtime.js" data-theme="research"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow"><title>HM Courts &amp; Tribunals Service — Forensic Assessment — Great House Farm Wiki — Research Mirror</title>
+<style>
+:root {
+  color-scheme: light;
+  --wiki-bg: #f8f9fa;
+  --wiki-paper: #ffffff;
+  --wiki-text: #202122;
+  --wiki-muted: #54595d;
+  --wiki-border: #a2a9b1;
+  --wiki-soft-border: #c8ccd1;
+  --wiki-link: #0645ad;
+  --wiki-visited: #0b0080;
+  --wiki-control: #f8f9fa;
+  --wiki-control-border: #a2a9b1;
+  --wiki-table-head: #eaecf0;
+  --wiki-table-alt: #f8f9fa;
+  --assured: #f6fcf4;
+  --assured-mark: #c7e8bd;
+  --notassured: #fffaf1;
+  --notassured-mark: #f2d6aa;
+}
+html[data-theme="dark"], body[data-theme="dark"],
+html[data-color-theme="dark"], body[data-color-theme="dark"],
+html.dark, body.dark, html.dark-mode, body.dark-mode,
+html.theme-dark, body.theme-dark, body[data-mw-color-scheme="dark"] {
+  color-scheme: dark;
+  --wiki-bg: #101418;
+  --wiki-paper: #202122;
+  --wiki-text: #eaecf0;
+  --wiki-muted: #a7acb1;
+  --wiki-border: #54595d;
+  --wiki-soft-border: #72777d;
+  --wiki-link: #8ab4f8;
+  --wiki-visited: #c0a5e8;
+  --wiki-control: #27292d;
+  --wiki-control-border: #72777d;
+  --wiki-table-head: #303338;
+  --wiki-table-alt: #27292d;
+  --assured: #202d25;
+  --assured-mark: #344d39;
+  --notassured: #30291d;
+  --notassured-mark: #5c4829;
+}
+* { box-sizing: border-box; }
+html { background: var(--wiki-bg); }
+body {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  color: var(--wiki-text);
+  background: var(--wiki-bg);
+  font-family: Arial, "Liberation Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+a { color: var(--wiki-link); text-decoration: none; }
+a:visited { color: var(--wiki-visited); }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--wiki-link);
+  outline-offset: 2px;
+}
+img, video, iframe, svg { max-width: 100%; }
+img { height: auto; }
+body > header {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 1rem clamp(1rem, 3vw, 2.25rem) .75rem;
+  color: var(--wiki-text);
+  background: var(--wiki-bg);
+  border-bottom: 1px solid var(--wiki-border);
+}
+body > header a { color: var(--wiki-text); }
+body > header a:visited { color: var(--wiki-text); }
+body > header small { font-size: 1.05rem; font-weight: 600; }
+header, nav, [class*="header-row"], [class*="headerRow"], [data-header-row] {
+  color: var(--wiki-text);
+}
+main {
+  width: 100%;
+  max-width: 1320px;
+  min-height: 60vh;
+  margin: 0 auto;
+  padding: 1.5rem clamp(1rem, 3vw, 2.5rem) 3rem;
+  color: var(--wiki-text);
+  background: var(--wiki-paper);
+  border-left: 1px solid var(--wiki-soft-border);
+  border-right: 1px solid var(--wiki-soft-border);
+}
+.article { width: 100%; min-width: 0; }
+.article h1, .article h2, .article h3, .article h4 {
+  color: var(--wiki-text);
+  font-family: "Linux Libertine", "Georgia", "Times New Roman", serif;
+  font-weight: normal;
+  overflow-wrap: anywhere;
+}
+.article h1 {
+  margin: 0 0 .35rem;
+  padding: 0 0 .2em;
+  font-size: 1.9rem;
+  line-height: 1.25;
+  border-bottom: 1px solid var(--wiki-border);
+}
+.article .meta {
+  margin: .2rem 0 1.2rem;
+  padding: 0 0 .55rem;
+  color: var(--wiki-muted);
+  font-size: .82rem;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--wiki-soft-border);
+}
+.content {
+  min-width: 0;
+  color: var(--wiki-text);
+  font-size: .9rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.content p { margin: .5em 0; }
+.content h2 {
+  margin: 1.25em 0 .4em;
+  padding-bottom: .18em;
+  font-size: 1.55rem;
+  line-height: 1.35;
+  border-bottom: 1px solid var(--wiki-border);
+}
+.content h3 { margin: 1em 0 .35em; font-size: 1.25rem; line-height: 1.4; }
+.content h4 { margin: .8em 0 .3em; font-size: 1.08rem; font-weight: 600; }
+.content ul, .content ol { padding-left: 1.8em; }
+.content li { margin: .18em 0; }
+.content blockquote {
+  margin: .7em 1.5em;
+  padding: .2em .8em;
+  color: var(--wiki-muted);
+  border-left: 3px solid var(--wiki-soft-border);
+}
+.content hr { border: 0; border-top: 1px solid var(--wiki-soft-border); margin: 1.5em 0; }
+.content table {
+  border: 1px solid var(--wiki-border);
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  margin: 1em 0;
+  color: var(--wiki-text);
+  background: var(--wiki-paper);
+}
+.content th, .content td {
+  border: 1px solid var(--wiki-border);
+  padding: .35em .6em;
+  vertical-align: top;
+}
+.content th { font-weight: 600; background: var(--wiki-table-head); }
+.content tr:nth-child(even) td { background: var(--wiki-table-alt); }
+.content pre, .content code, code, pre {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+.content pre, pre {
+  max-width: 100%;
+  overflow: auto;
+  padding: .8em;
+  border: 1px solid var(--wiki-soft-border);
+  background: var(--wiki-table-alt);
+  color: var(--wiki-text);
+}
+.content code, code { overflow-wrap: anywhere; }
+.content figure { max-width: 100%; margin: 1em 0; }
+.content figcaption { color: var(--wiki-muted); font-size: .85rem; }
+.content img { max-width: 100%; }
+.content p[data-evidence-status="assured"],
+.content li[data-evidence-status="assured"],
+.content blockquote[data-evidence-status="assured"] {
+  background: var(--assured);
+  border-radius: 2px;
+}
+.content p[data-evidence-status="not-assured"],
+.content li[data-evidence-status="not-assured"],
+.content blockquote[data-evidence-status="not-assured"] {
+  background: var(--notassured);
+  border-radius: 2px;
+}
+.quality-marker {
+  display: inline-block;
+  font-weight: 700;
+  font-size: .86em;
+  margin-right: .42em;
+  padding: 0 .1em;
+  user-select: none;
+}
+.quality-marker.assured, .assured-inline, .quality-key.assured { background: var(--assured-mark); }
+.quality-marker.not-assured, .not-assured-inline, .quality-key.not-assured { background: var(--notassured-mark); }
+.content p[data-evidence-status="assured"] .quality-marker,
+.content p[data-evidence-status="not-assured"] .quality-marker { opacity: .9; }
+.quality-key { padding: .08rem .25rem; border-radius: 2px; }
+.quality-key.unassessed { border-bottom: 1px dotted var(--wiki-muted); }
+.quality-docs {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--wiki-border);
+}
+.site-footer {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 1rem clamp(1rem, 3vw, 2.25rem) 1.5rem;
+  color: var(--wiki-muted);
+  background: var(--wiki-bg);
+  border-top: 1px solid var(--wiki-border);
+  font-size: .8rem;
+}
+.site-footer p { margin: .4rem 0; }
+.quality-legend { color: var(--wiki-muted); }
+.browse-index {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--wiki-border);
+}
+.browse-index h2 {
+  font-family: "Linux Libertine", Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+  font-weight: normal;
+  border-bottom: 1px solid var(--wiki-border);
+}
+.browse-index form { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; margin: .75rem 0 1rem; }
+.browse-index li { margin: .75rem 0; }
+.index-excerpt { margin: .15rem 0; color: var(--wiki-muted); font-size: .88rem; overflow-wrap: anywhere; }
+.browse-index a { overflow-wrap: anywhere; }
+.back { margin-top: 2rem; padding-top: .75rem; border-top: 1px solid var(--wiki-soft-border); }
+input, select, textarea {
+  max-width: 100%;
+  padding: .45rem .6rem;
+  border: 1px solid var(--wiki-control-border);
+  border-radius: 2px;
+  background: var(--wiki-paper);
+  color: var(--wiki-text);
+  font: inherit;
+}
+button, input[type="submit"], input[type="button"], [role="button"] {
+  padding: .45rem .75rem;
+  border: 1px solid var(--wiki-control-border);
+  border-radius: 2px;
+  background: var(--wiki-control);
+  color: var(--wiki-text);
+  font: inherit;
+  cursor: pointer;
+}
+button:hover, input[type="submit"]:hover, input[type="button"]:hover, [role="button"]:hover {
+  background: var(--wiki-table-head);
+}
+.theme-toggle, #theme-toggle, [data-theme-toggle] { color: var(--wiki-text); background: var(--wiki-control); }
+.preview-modal {
+  position: fixed;
+  z-index: 10000;
+  right: 1rem;
+  bottom: 1rem;
+  width: min(27rem, calc(100vw - 2rem));
+  max-height: 65vh;
+  overflow: auto;
+  color: var(--wiki-text);
+  background: var(--wiki-paper);
+  border: 1px solid var(--wiki-border);
+  border-radius: 2px;
+  box-shadow: 0 8px 32px #0002;
+  padding: 1rem;
+}
+.preview-modal[hidden] { display: none; }
+.preview-modal h2 { font-size: 1rem; margin: .1rem 0 .5rem; }
+.preview-modal p { font-size: .9rem; margin: .4rem 0; }
+.preview-modal .preview-actions { display: flex; justify-content: space-between; align-items: center; gap: .5rem; margin-top: .6rem; }
+.preview-modal button { padding: .35rem .6rem; }
+@media (min-width: 1100px) {
+  .content { font-size: .92rem; }
+}
+@media (max-width: 700px) {
+  body { font-size: 14px; }
+  body > header { padding: .8rem 1rem .6rem; }
+  main { padding: 1rem .9rem 2rem; border-left: 0; border-right: 0; }
+  .article h1 { font-size: 1.65rem; }
+  .content h2 { font-size: 1.35rem; }
+  .content table { display: block; overflow-x: auto; }
+  .content blockquote { margin-left: .5rem; margin-right: .5rem; }
+  .site-footer { padding: .8rem 1rem 1.2rem; }
+}
+
+html[data-ghf-mode="night"]{
+  color-scheme: dark;
+  --wiki-bg: #101418;
+  --wiki-paper: #202122;
+  --wiki-text: #eaecf0;
+  --wiki-muted: #a7acb1;
+  --wiki-border: #54595d;
+  --wiki-soft-border: #72777d;
+  --wiki-link: #8ab4f8;
+  --wiki-visited: #c0a5e8;
+  --wiki-control: #27292d;
+  --wiki-control-border: #72777d;
+  --wiki-table-head: #303338;
+  --wiki-table-alt: #27292d;
+  --assured: #202d25;
+  --assured-mark: #344d39;
+  --notassured: #30291d;
+  --notassured-mark: #5c4829;
+}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+main.landing{max-width:60rem}
+main.landing details{border:1px solid var(--wiki-soft-border);border-radius:4px;background:var(--wiki-paper);margin:.5rem 0}
+main.landing details>summary{cursor:pointer;padding:.65rem .8rem;font-weight:600;list-style-position:inside;overflow-wrap:anywhere}
+main.landing details>summary:hover{background:var(--wiki-table-head)}
+main.landing details>*:not(summary){margin-left:.8rem;margin-right:.8rem}
+main.landing details details{border-color:var(--wiki-soft-border);margin:.4rem 0}
+main.landing .landing-block{border-left:4px solid #1F3D2B}
+html[data-ghf-mode="night"] main.landing .landing-block{border-left-color:#C9B6FF}
+.wiki-menu .menu-root{border-left:4px solid #C9B6FF}
+.wiki-menu a{display:block;padding:.45rem .2rem;border-bottom:1px solid var(--wiki-soft-border);overflow-wrap:anywhere}
+.wiki-menu details>div{padding-bottom:.4rem}
+.landing-search{display:flex;gap:.4rem;margin:.6rem 0 1rem}
+.landing-search input{flex:1;min-width:0;max-width:none;padding:.55rem;border:1px solid var(--wiki-control-border);border-radius:4px;background:var(--wiki-paper);color:var(--wiki-text)}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;margin:.2rem 0 .8rem}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+main.landing figure{margin:.4rem 0}
+main.landing video{width:100%;height:auto;background:#000}
+main.landing figcaption{font-size:.85rem;color:var(--wiki-muted)}
+#ghf-parcel-tube-map>div:first-child{font-size:.8rem;letter-spacing:.06em;color:var(--wiki-muted);margin:.4rem 0}
+main.landing p,main.landing li,main.landing div{overflow-wrap:anywhere}
+.ev-scroll{overflow-x:auto;max-width:100%}
+.ghf-ev-table{border-collapse:collapse;width:100%}
+.ghf-ev-table th,.ghf-ev-table td,.ghf-version-table th,.ghf-version-table td{border:1px solid var(--wiki-soft-border);padding:.4rem;vertical-align:top;text-align:left}
+.ghf-ev-table th{width:28%;background:var(--wiki-table-head)}
+.research-addendum{border-top:2px solid #1F3D2B;margin-top:1.5rem;padding-top:.5rem}
+.site-footer{font-size:.8rem}
+.yt-facade{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:#000;cursor:pointer}
+.yt-facade img{width:100%;height:100%;object-fit:cover;display:block}
+.yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:48px;border-radius:12px;background:#c4302b;color:#fff;font-size:22px;line-height:48px;text-align:center}
+.article>h1{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style><script src="/_cedwyn/ghf/ghf-lang.js?v=2.1.4c" defer></script>
+<script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.4c"></script></head><body><main><article class="article" data-source-type="page" data-source-id="1552"><h1>HM Courts &amp; Tribunals Service — Forensic Assessment</h1><p class="meta">page · Updated 2026-10-21T18:40:14 · <a href="/wiki/scrutiny-and-accountability/government-public-authority-involvement/hmcts-forensic-institutional-review/">Original source</a></p><div class="content">
+<p class="ghf-moved-note wp-block-paragraph"><strong>This material now lives at <a href="/fcg/case/hmcts-forensic-institutional-review">https://fcg.bucklerfamily.estate/case/hmcts-forensic-institutional-review</a>.</strong></p>
+
+
+<div class="ghf-page-header" style="font-size:0.85em;color:#444;border:1px solid #ddd;border-radius:4px;padding:6px 10px;margin-bottom:14px"><strong>Page ID:</strong> 1552 · <strong>Title:</strong> HM Courts &amp; Tribunals Service — Forensic Assessment · <strong>Evidence status:</strong> Not yet labelled — see the Editing Protocol · <strong>Version:</strong> 1.0.0 · <a href="/research/editing-protocol/">Editing Protocol</a></div>
+
+
+<p class="wp-block-paragraph"><strong>Chronology and catalogue links — assessed 10-10-2026:</strong> Use the <a href="/research/scrutiny-and-accountability/government-public-authority-involvement/institutional-involvement-roadmap-1877-2026/">Institutional Involvement Roadmap (1877–2026)</a> for the date-ordered institution/people/evidence sequence. The reported 1988 Cadw-to-Minister spot-listing letter has its own catalogue placeholder at <a href="/research/evidence-library/ghf-e152-cadw-letter-to-minister-1988-spot-listing/">GHF-E152</a>; the original has not been attached to that page as at 10-10-2026. A placeholder records an evidence gap; it does not establish the letter’s contents or misconduct.</p>
+
+<h2>Forensic Assessment — HM Courts &amp; Tribunals Service</h2>
+<p><strong>Scope:</strong> HMCTS as present court-records administrator/custodian, not as the historic merits decision-maker.</p>
+<h3>Role</h3>
+<p>The current HMCTS record-search programme is important because the relevant litigation predates current electronic case management. A search of a modern system cannot by itself establish that a historic paper file never existed.</p>
+<h3>Forensic control test</h3>
+<p>Obtain the search scope, central/national archive search, retention schedule, transfer/disposal history and any surviving index for the 1955, 1962, 1974 and 1984–87 proceedings. Record precisely what was searched.</p>
+<h3>Current finding</h3>
+<p><strong>As at 10-10-2026, the material reviewed does not establish misconduct by HMCTS. This is not proof that every historic file or records-search issue has been resolved.</strong> The active issue is records recovery and a defensible explanation where a file cannot be located.</p>
+<h3>Human action</h3>
+<p>Follow the outstanding HMCTS request, seek escalation to historic records/archive staff where necessary, and place every response into the evidence-access chronology. The existing 2 October 2026 extension should be tracked to substantive outcome.</p>
+<p><strong>Acceptance:</strong> a file-by-file search/retention outcome exists for every requested historical proceeding.</p>
+<h2 id="institution-appearance-timeline">Institutional appearance timeline — linked source index</h2>
+<p><strong>Coverage rule:</strong> this is a chronological navigation map of published Wiki source pages found by searching the current site index for “HM Courts &amp; Tribunals Service”. Every event label links directly to the page containing the source. It avoids duplicating source narratives. It records mention/appearance, not culpability. Dates are transcribed from page titles where available; “Date not explicit in title” means the linked source must be consulted. Search indexing is a discovery aid, not proof of exhaustive external coverage. <sup class="ghf-asat-marker" style="font-size:0.7em;vertical-align:super;cursor:help" title="As at 10-10-2026" aria-label="As at 10-10-2026">🕒<span style="font-size:0.7em">10-10-2026</span></sup></p>
+<figure class="wp-block-table">
+<table>
+<thead>
+<tr>
+<th>Date shown by source title</th>
+<th>Event / source — open evidence</th>
+<th>Record class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2 October 2026</td>
+<td><a href="/research/records-access-chronology/foi-reply-register/ghf-e106-r02-hmcts-extension-2-oct-2026/">GHF-E106-R02 — HMCTS National Support Unit, extension email for 260904007, 2 October 2026</a></td>
+<td>Records-access response</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<h3 id="register-appearance-cross-links">Records-access register appearances — direct row links</h3>
+<p>Rows below match the institution’s name or an alias in the reply register’s sender/reference or recorded description. A match shows an appearance in the records trail, not necessarily an act by this institution.</p>
+<figure class="wp-block-table">
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Correspondence / register item (click to open)</th>
+<th>Reading rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22 Jun – 9 Sep 2026</td>
+<td><a href="/research/records-access-chronology/foi-reply-register/#R26">R26 — Ministry of Justice (Disclosure Team and HMCTS National Support Unit). References 260607013, 260702090, 260803049, 260805002, 260813002 .</a></td>
+<td>Register row contains a name/alias match; inspect the linked row to distinguish sender, recipient and incidental mention.</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<p><strong>Related navigation:</strong> <a href="/research/records-access-chronology/foi-reply-register/">FOI &amp; Public-Authority Reply Register</a> · <a href="/research/records-access-chronology/">Records Access Chronology</a> · <a href="/research/evidence-library/">Evidence Library</a></p>
+
+<section class="ghf-version-log" id="page-version-log" style="margin-top:28px;padding-top:10px;border-top:2px solid #999;font-size:0.9em"><h2>Page version &amp; change log</h2><p><strong>Current version:</strong> 1.0.0</p><div class="ghf-table-scroll" style="overflow:auto;max-width:100%"><table class="ghf-version-table" style="width:100%;border-collapse:collapse"><thead><tr><th>Version</th><th>Date (UTC)</th><th>Editor (human or agent name)</th><th>Change</th><th>Source / evidence</th></tr></thead><tbody><tr><td>1.0.0</td><td>2026-10-18T15:29Z</td><td>Sion’s Tab agent</td><td>Footer standardised; earlier log rows carried into this table; no content change</td><td>Editing Protocol, 18 Oct 2026</td></tr><tr><td></td><td>2026-10-18 (rollout date; exact time not separately recorded)</td><td>OpenAI-assisted maintenance agent (GPT-6)</td><td>Installed this page-local append-only change log and agent instructions. Existing page content was not intentionally rewritten.</td><td>User-directed site-wide changelog standard. Saved via WordPress API; public rendering of this page not yet independently checked.</td></tr></tbody></table></div><p>Agents and editors: follow the <a href="/research/editing-protocol/">Editing Protocol</a>.</p></section>
+
+</div></article><p class="back"><a href="/research/">Browse mirror index</a></p></main><footer class="site-footer"><p>© 2026 the Williams–Buckler family of Tŷ Mawr (Great House Farm), Llandough. All rights reserved. <a href="/dartboard/licence/">Licence</a></p></footer><aside id="evidence-preview" class="preview-modal" role="dialog" aria-live="polite" aria-label="Linked evidence preview" hidden><div class="preview-actions"><strong>Linked evidence preview</strong><button type="button" id="preview-close" aria-label="Close preview">Close</button></div><h2 id="preview-title"></h2><p id="preview-body"></p><div class="preview-actions"><a id="preview-link" href="#">Open page / artifact</a></div></aside><script>(function(){var box=document.getElementById("evidence-preview"),title=document.getElementById("preview-title"),body=document.getElementById("preview-body"),link=document.getElementById("preview-link"),close=document.getElementById("preview-close"),active=null,timer=null;if(!box)return;function hide(){box.hidden=true;active=null;} close.addEventListener("click",hide);function mark(p){var s=p.getAttribute("data-evidence-status");if(!s){if(p.classList.contains("evidence-assured"))s="assured";else if(p.classList.contains("evidence-not-assured"))s="not-assured";}if(s!=="assured"&&s!=="not-assured")return;if(p.querySelector(".quality-marker"))return;var m=document.createElement("span");m.className="quality-marker "+(s==="assured"?"assured":"not-assured");m.textContent=s==="assured"?"□":"◇";m.setAttribute("aria-label",s==="assured"?"Assessed assured":"Assessed not assured");p.insertBefore(m,p.firstChild);}function localEvidenceHref(a){try{var u=new URL(a.href,location.href);if(u.origin===location.origin&&u.pathname!==location.pathname&&u.pathname!=="/api/preview")return u.pathname;if(u.pathname.startsWith("/asset"))return u.pathname+u.search;}catch(e){}return null;}async function preview(p){if(active===p)return;var a=p.querySelector("a[href]");if(!a)return;var target=localEvidenceHref(a);if(!target)return;active=p;try{var endpoint;if(target.startsWith("/asset")){var u=new URL(target,location.href).searchParams.get("url")||a.href;endpoint="/api/preview?url="+encodeURIComponent(u);}else{endpoint="/api/preview?path="+encodeURIComponent(target);}var r=await fetch(endpoint,{headers:{"Accept":"application/json"}});if(!r.ok)return;var d=await r.json();if(!d.found)return;title.textContent=d.title||"Linked page";body.textContent=d.excerpt||"Open the linked page to inspect its contents.";link.href=d.url||target;box.hidden=false;}catch(e){}}document.querySelectorAll(".content p,.content li,.content blockquote").forEach(function(p){mark(p);p.addEventListener("mouseenter",function(){clearTimeout(timer);timer=setTimeout(function(){preview(p);},320);});p.addEventListener("focusin",function(){preview(p);});p.addEventListener("mouseup",function(){var sel=String(window.getSelection?window.getSelection():"").trim();if(sel.length>8)preview(p);});});box.addEventListener("mouseenter",function(){clearTimeout(timer);});document.addEventListener("keydown",function(e){if(e.key==="Escape")hide();});})();</script></body></html>

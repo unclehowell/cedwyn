@@ -1,0 +1,23 @@
+# The Q&A Hall
+
+> A searchable knowledge base of every question put to public bodies about Great House Farm (Tŷ Mawr), Llandough, and the answer each body gave.
+
+The Q&A Hall lists every question put to a public body about Great House Farm (Tŷ Mawr), Llandough, with the body, the date, the answer, its status (answered, partly answered, refused, not held, no reply) and any exemption cited. Data: /kb.json; ask in plain words at /api/ask?q=….
+
+## Key pages
+- [Great House Farm Q&A — FOI questions and answers · Cedwyn Estate](https://qa.bucklerfamily.estate/): A searchable knowledge base of every question put to public bodies about Great House Farm (Tŷ Mawr), Llandough, and the answer each body gave.
+
+## For AI agents (machine-readable, read-only)
+- [Tools and data endpoints (MCP discovery)](https://qa.bucklerfamily.estate/.well-known/mcp.json): every tool below as JSON, callable with a plain GET.
+- [Page index](https://qa.bucklerfamily.estate/agent/pages.json): every page with its title and description.
+- [Search this site](https://qa.bucklerfamily.estate/agent/search?q=Great%20House%20Farm): GET /agent/search?q=… returns matching pages with snippets.
+- [Read one page as text](https://qa.bucklerfamily.estate/agent/page?slug=/): GET /agent/page?slug=<path>.
+- [search qa kb](https://qa.bucklerfamily.estate/kb.json): Every question put to public bodies and the answer, status and exemption.
+- [Existing WebMCP manifest](https://qa.bucklerfamily.estate/api/mcp): the Q&A site's own tool manifest.
+- Tool `search_qa_kb`: Every question put to public bodies and the answer, status and exemption. Filter with q. GET https://qa.bucklerfamily.estate/agent/tool/search_qa_kb
+- Tool `ask`: Ask the Q&A knowledge base a question in plain words. GET https://qa.bucklerfamily.estate/agent/tool/ask
+- In a browser that supports WebMCP (navigator.modelContext), the same tools are registered on the page.
+
+## The wider estate
+- [Home: the Disclosure Dartboard](https://bucklerfamily.estate/) · [all sites with their own llms.txt](https://bucklerfamily.estate/llms.txt)
+- [Great House Farm Legal Wiki](https://greathousefarmwiki.wordpress.com/): the evidence catalogue.

@@ -383,7 +383,7 @@ var Search = {
   },
 
   /**
-   * See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+   * See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FGuide%2FRegular_Expressions
    */
   escapeRegExp : function(string) {
     return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string

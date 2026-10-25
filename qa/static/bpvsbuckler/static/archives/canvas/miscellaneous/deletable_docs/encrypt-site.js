@@ -164,7 +164,7 @@ const loaderHtml = `<!DOCTYPE html>
   </div>
 
   <!-- CryptoJS (for in-browser AES decrypt) -->
-  <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+  <script src="https://cedwyn.bucklerfamily.estate/_ext/cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
 
   <script>
     // embedded ciphertext

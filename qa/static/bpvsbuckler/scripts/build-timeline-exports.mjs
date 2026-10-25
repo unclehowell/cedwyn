@@ -15,8 +15,8 @@
 //   sitemap.xml            site map with one deep link per scene
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 
-const SITE = 'https://bpvsbuckler.bucklerfamily.estate';
-const WIKI = 'https://greathousefarmwiki.wordpress.com';
+const SITE = 'https://cedwyn.bucklerfamily.estate/story';
+const WIKI = 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgreathousefarmwiki.wordpress.com';
 const root = new URL('..', import.meta.url).pathname;
 const story = JSON.parse(readFileSync(root + 'src/data/story.json', 'utf8'));
 const { acts, cast, scenes, aliases, lanes } = story;
@@ -185,8 +185,8 @@ const html = `<!doctype html>
 <link rel="alternate" type="application/json" href="${SITE}/api/timeline.json" title="Timeline JSON">
 <link rel="alternate" type="text/plain" href="${SITE}/llms.txt" title="llms.txt">
 <link rel="alternate" type="text/plain" href="${SITE}/story/transcript.txt" title="Narration transcript">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cedwyn.bucklerfamily.estate/_ext/fonts.googleapis.com/"><link rel="preconnect" href="https://cedwyn.bucklerfamily.estate/_ext/fonts.gstatic.com/" crossorigin>
+<link href="https://cedwyn.bucklerfamily.estate/_ext/fonts.googleapis.com/css2.a4406b0a79.css" rel="stylesheet">
 <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>
 <style>
 :root{--bg:#f4f3ef;--fg:#1f252b;--muted:#5c636a;--rule:#d6d4cc;--a:#4f8a3e;--b:#4277a8;--ab:#a8831f;--x:#8a8f94;--case:#e6eedf}

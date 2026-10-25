@@ -9,13 +9,13 @@
     // Configuration for different environments
     const ENVIRONMENTS = {
         production: {
-            apiBase: 'https://ai.carfinancecheque.uk',
-            corsOrigins: ['https://financecheque.uk', 'https://carfinancecheque.uk'],
+            apiBase: 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fai.carfinancecheque.uk',
+            corsOrigins: ['https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Ffinancecheque.uk', 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fcarfinancecheque.uk'],
             websocketBase: 'wss://ai.carfinancecheque.uk'
         },
         staging: {
-            apiBase: 'https://ai.financecheque.uk',
-            corsOrigins: ['https://financecheque.uk', 'https://carfinancecheque.uk'],
+            apiBase: 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fai.financecheque.uk',
+            corsOrigins: ['https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Ffinancecheque.uk', 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fcarfinancecheque.uk'],
             websocketBase: 'wss://ai.financecheque.uk'
         }
     };

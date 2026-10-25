@@ -5,7 +5,7 @@
 // project. Credentials are never stored, logged, or returned.
 const ACCOUNT_ID = '42a4a8d7bfb96321118ada213638d050';
 const PROJECT_NAME = 'bpvsbuckler';
-const SQL_URL = 'https://raw.githubusercontent.com/unclehowell/datro/bpvsbuckler/static/bpvsbuckler/api/graph.sql';
+const SQL_URL = 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fraw.githubusercontent.com%2Funclehowell%2Fdatro%2Fbpvsbuckler%2Fstatic%2Fbpvsbuckler%2Fapi%2Fgraph.sql';
 const META_TABLE = '_graph_sync_meta';
 const META_KEY = 'graph_sql_sha256';
 const MAX_BATCH_BYTES = 88000;
@@ -28,11 +28,11 @@ async function authorised(request) {
   const header = request.headers.get('authorization') || '';
   if (!/^Bearer\s+\S+/i.test(header)) return false;
   const headers = { authorization: header, accept: 'application/json' };
-  const verifyResponse = await fetch('https://api.cloudflare.com/client/v4/user/tokens/verify', { headers });
+  const verifyResponse = await fetch('https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fapi.cloudflare.com%2Fclient%2Fv4%2Fuser%2Ftokens%2Fverify', { headers });
   const verify = await bodyJson(verifyResponse);
   if (!verifyResponse.ok || verify?.success !== true || verify?.result?.status !== 'active') return false;
   const projectResponse = await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/pages/projects/${PROJECT_NAME}`,
+    `https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fapi.cloudflare.com%2Fclient%2Fv4%2Faccounts%2F%24%7BACCOUNT_ID%7D%2Fpages%2Fprojects%2F%24%7BPROJECT_NAME%7D`,
     { headers },
   );
   const project = await bodyJson(projectResponse);

@@ -61,7 +61,7 @@
 	}
 
 .leaflet-container img.leaflet-tile {
-	/* See: https://bugs.chromium.org/p/chromium/issues/detail?id=600120 */
+	/* See: /wayback/go/?u=https%3A%2F%2Fbugs.chromium.org%2Fp%2Fchromium%2Fissues%2Fdetail%3Fid%3D600120 */
 	mix-blend-mode: plus-lighter;
 }
 
@@ -99,7 +99,7 @@
 	     box-sizing: border-box;
 	z-index: 800;
 	}
-/* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
+/* workaround for /wayback/go/?u=https%3A%2F%2Fbugzilla.mozilla.org%2Fshow_bug.cgi%3Fid%3D888319 */
 .leaflet-overlay-pane svg {
 	-moz-user-select: none;
 	}

@@ -3,7 +3,7 @@
  *   (i)  more information — the Legal Wiki page (greyed out when there is none)
  *   文A  nomenclature — every wording the records use, on nomenclature.bucklerfamily.estate (lit when that page exists).
  * Include once, at the end of <body>:
- *   <script src="https://nomenclature.bucklerfamily.estate/term.js" defer></script>
+ *   <script src="https://cedwyn.bucklerfamily.estate/nomenclature/term.js" defer></script>
  * Options (attributes on that script tag):
  *   data-scope="main"        CSS selector of the region to scan (default: main, else body)
  *   data-lexicon="URL"        lexicon.json to use (default: lexicon.json beside this script)
@@ -14,7 +14,7 @@
 (function () {
   if (window.GHFTerm) return; window.GHFTerm = "1.0.0";
   var me = document.currentScript || document.querySelector('script[src*="term.js"]');
-  var base = me && me.src ? me.src.replace(/[^\/?#]*([?#].*)?$/, "") : "https://nomenclature.bucklerfamily.estate/";
+  var base = me && me.src ? me.src.replace(/[^\/?#]*([?#].*)?$/, "") : "https://cedwyn.bucklerfamily.estate/nomenclature/";
   var opt = function (k, d) { return (me && me.getAttribute("data-" + k)) || d; };
   var LEX = opt("lexicon", base + "lexicon.json"), AUTO = opt("auto", "on") !== "off", MAX = +opt("max", "3") || 3;
   var I_INFO = '<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/></svg>';

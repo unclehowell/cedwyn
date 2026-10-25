@@ -79,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
         : (USER_PWD_RAW || PUBLIC_USER_PWD);
     const HAS_REMOTE_LOGIN = true;
 
-    const REMOTE_HOST_PRIMARY = 'https://ai.financecheque.uk';
-    const REMOTE_HOST_FALLBACK = 'https://ai.financecheque.uk';
+    const REMOTE_HOST_PRIMARY = 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fai.financecheque.uk';
+    const REMOTE_HOST_FALLBACK = 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fai.financecheque.uk';
 
     const GATEWAY_BASE = REMOTE_HOST_PRIMARY;
     const GATEWAY_URL = `${GATEWAY_BASE}/command${USER_NUM}`;
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function startMusic() {
         if (radioStream && !isMuted) {
             if (!radioStream.src || radioStream.src === window.location.href) {
-                radioStream.src = 'https://stream.rcs.revma.com/fxp289cp81uvv';
+                radioStream.src = 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fstream.rcs.revma.com%2Ffxp289cp81uvv';
                 radioStream.load();
             }
             radioStream.volume = 0;

@@ -718,7 +718,7 @@ On 2 February 1955 a notice to quit served on Frederick Buckler expires. Western
 - Court record: The 1955 Possession Order — https://greathousefarmwiki.wordpress.com/1955-possession-order/#order
 - Court record: The 1955 Possession Order — enforcement — https://greathousefarmwiki.wordpress.com/1955-possession-order/#enforcement
 - Analysis: Case Analysis — Connections, Patterns and Questions — https://greathousefarmwiki.wordpress.com/scrutiny-and-accountability/case-analysis-connections-patterns-questions/
-- Archive catalogue: EV-0258 — Glamorgan Archives ACA/2, ACA/3 and ACA/6: Cardiff County Court ordinary actions, plaint and minute books and — https://greathousefarmwiki.wordpress.com/evidence/ev-0258-glamorgan-archives-aca-2-3-6-cardiff-county-court-survival-map/
+- Archive catalogue: EV-0258 — Glamorgan Archives ACA/2, ACA/3 and ACA/6: Cardiff County Court ordinary actions, plaint and minute books and  — https://greathousefarmwiki.wordpress.com/evidence/ev-0258-glamorgan-archives-aca-2-3-6-cardiff-county-court-survival-map/
 
 ### III.5 (54). 18 March 1955 — Leckwith Woods leased to the Forestry Commission
 
@@ -1662,7 +1662,7 @@ On 10 November 1994 Ideal Homes Wales transfers the woodland to the Forest of Ca
 - Wiki page: Woodland — https://greathousefarmwiki.wordpress.com/woodland/
 - Land Registry record: Land Registry Titles — later dealings — https://greathousefarmwiki.wordpress.com/land-registry-titles/#later-dealings
 - Planning file: Redevelopment and Church View Close — https://greathousefarmwiki.wordpress.com/redevelopment/
-- Newspaper: EV-0276 — Press set, 1994–1996: Ideal Homes (Wales) built “Churchview Close”, Llandough (first buyers by January 1995); — https://greathousefarmwiki.wordpress.com/evidence/ev-0276-churchview-close-llandough-ideal-homes-persimmon-1994-1996/
+- Newspaper: EV-0276 — Press set, 1994–1996: Ideal Homes (Wales) built “Churchview Close”, Llandough (first buyers by January 1995);  — https://greathousefarmwiki.wordpress.com/evidence/ev-0276-churchview-close-llandough-ideal-homes-persimmon-1994-1996/
 - Newspaper: EV-0270 — Press set, 1988–1995: BP Pension Fund sold about 1,300 acres of Welsh land to Intercontinental Land & Developm — https://greathousefarmwiki.wordpress.com/evidence/ev-0270-bp-pension-fund-1988-sale-intercontinental-law-llandough-press/
 
 ### VII.19 (130). 1995 – 1996 — Last dealings on the title
@@ -2118,14 +2118,3 @@ The family ask for: a ruling on the ownership of Parcel A; the return of the woo
 
 ---
 Structured data: https://bpvsbuckler.bucklerfamily.estate/api/timeline.json · Script: https://bpvsbuckler.bucklerfamily.estate/story/
-
-## For AI agents (machine-readable, read-only)
-- [Tools and data endpoints (MCP discovery)](https://bpvsbuckler.bucklerfamily.estate/.well-known/mcp.json): every tool below as JSON, callable with a plain GET.
-- [Page index](https://bpvsbuckler.bucklerfamily.estate/agent/pages.json): every page with its title and description.
-- [Search this site](https://bpvsbuckler.bucklerfamily.estate/agent/search?q=Great%20House%20Farm): GET /agent/search?q=… returns matching pages with snippets.
-- [Read one page as text](https://bpvsbuckler.bucklerfamily.estate/agent/page?slug=/): GET /agent/page?slug=<path>.
-- [Timeline (JSON)](https://bpvsbuckler.bucklerfamily.estate/api/timeline.json): every event in order.
-- [Readable story (no JavaScript)](https://bpvsbuckler.bucklerfamily.estate/story/): the whole story as one page.
-- [Agent catalogue](https://bpvsbuckler.bucklerfamily.estate/agent-index.json): machine-readable catalogue.
-- Tool `get_timeline`: Every event of the Great House Farm story in date order. Filter with q (a year, a name, a place). GET https://bpvsbuckler.bucklerfamily.estate/agent/tool/get_timeline
-- In a browser that supports WebMCP (navigator.modelContext), the same tools are registered on the page.

@@ -1,4 +1,4 @@
-// Generated from english.sbl by Snowball 3.0.1 - https://snowballstem.org/
+// Generated from english.sbl by Snowball 3.0.1 - https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fsnowballstem.org%2F
 
 /**@constructor*/
 var EnglishStemmer = function() {

@@ -3,13 +3,13 @@
  "generated": "2026-10-23T22:34:03Z",
  "name": "The Post Office",
  "description": "Mobile-first, read-only public correspondence and case-source archive for Great House Farm / Tŷ Mawr, Llandough, BP v Buckler, and the Williams/Buckler family. Original source texts are hosted by Wayback.",
- "url": "https://email.bucklerfamily.estate/",
+ "url": "https://cedwyn.bucklerfamily.estate/email/",
  "note": "Read-only. Every tool is a plain HTTPS GET that returns JSON; arguments go in the query string. The same tools are registered with navigator.modelContext (WebMCP) on the site's pages where the browser supports it.",
- "llms": "https://email.bucklerfamily.estate/llms.txt",
- "llms_full": "https://email.bucklerfamily.estate/llms-full.txt",
- "sitemap": "https://email.bucklerfamily.estate/sitemap.xml",
- "pages": "https://email.bucklerfamily.estate/agent/pages.json",
- "webmcp_script": "https://email.bucklerfamily.estate/agent/webmcp.js",
+ "llms": "https://cedwyn.bucklerfamily.estate/email/llms.txt",
+ "llms_full": "https://cedwyn.bucklerfamily.estate/email/llms-full.txt",
+ "sitemap": "https://cedwyn.bucklerfamily.estate/email/sitemap.xml",
+ "pages": "https://cedwyn.bucklerfamily.estate/email/agent/pages.json",
+ "webmcp_script": "https://cedwyn.bucklerfamily.estate/email/agent/webmcp.js",
  "tools": [
   {
    "name": "list_pages",
@@ -23,7 +23,7 @@
    },
    "http": {
     "method": "GET",
-    "url": "https://email.bucklerfamily.estate/agent/pages.json"
+    "url": "https://cedwyn.bucklerfamily.estate/email/agent/pages.json"
    }
   },
   {
@@ -50,7 +50,7 @@
    },
    "http": {
     "method": "GET",
-    "url": "https://email.bucklerfamily.estate/agent/search"
+    "url": "https://cedwyn.bucklerfamily.estate/email/agent/search"
    }
   },
   {
@@ -73,7 +73,7 @@
    },
    "http": {
     "method": "GET",
-    "url": "https://email.bucklerfamily.estate/agent/page"
+    "url": "https://cedwyn.bucklerfamily.estate/email/agent/page"
    }
   },
   {
@@ -100,7 +100,7 @@
    },
    "http": {
     "method": "GET",
-    "url": "https://email.bucklerfamily.estate/agent/tool/search_threads"
+    "url": "https://cedwyn.bucklerfamily.estate/email/agent/tool/search_threads"
    },
    "source": "/api/search"
   }
@@ -108,232 +108,232 @@
  "data": [
   {
    "name": "Archive API (OpenAPI)",
-   "url": "https://email.bucklerfamily.estate/api/openapi.json",
+   "url": "https://cedwyn.bucklerfamily.estate/email/api/openapi.json",
    "desc": "the read-only correspondence API."
   },
   {
    "name": "Search",
-   "url": "https://email.bucklerfamily.estate/api/search?q=HMLR",
+   "url": "https://cedwyn.bucklerfamily.estate/email/api/search?q=HMLR",
    "desc": "GET /api/search?q=… returns matching records."
   },
   {
    "name": "All records",
-   "url": "https://email.bucklerfamily.estate/api/records",
+   "url": "https://cedwyn.bucklerfamily.estate/email/api/records",
    "desc": "every record (large)."
   }
  ],
  "estate": {
-  "home": "https://bucklerfamily.estate/",
+  "home": "https://cedwyn.bucklerfamily.estate/dartboard/",
   "sites": [
    {
-    "url": "https://accounts.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/accounts/",
     "name": "The Counting House",
-    "llms": "https://accounts.bucklerfamily.estate/llms.txt",
-    "mcp": "https://accounts.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/accounts/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/accounts/.well-known/mcp.json"
    },
    {
-    "url": "https://app.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/app/",
     "name": "The Case Office",
-    "llms": "https://app.bucklerfamily.estate/llms.txt",
-    "mcp": "https://app.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/app/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/app/.well-known/mcp.json"
    },
    {
-    "url": "https://authorities.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/authorities/",
     "name": "Public Authorities",
-    "llms": "https://authorities.bucklerfamily.estate/llms.txt",
-    "mcp": "https://authorities.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/authorities/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/authorities/.well-known/mcp.json"
    },
    {
-    "url": "https://bpvsbuckler.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/story/",
     "name": "The Story",
-    "llms": "https://bpvsbuckler.bucklerfamily.estate/llms.txt",
-    "mcp": "https://bpvsbuckler.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/story/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/story/.well-known/mcp.json"
    },
    {
-    "url": "https://bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/dartboard/",
     "name": "Great House Farm (Tŷ Mawr) · Home: The Disclosure Dartboard",
-    "llms": "https://bucklerfamily.estate/llms.txt",
-    "mcp": "https://bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/dartboard/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/dartboard/.well-known/mcp.json"
    },
    {
-    "url": "https://bucklervsbp.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbucklervsbp.bucklerfamily.estate%2F",
     "name": "BP vs Buckler — Great House Farm Evidence Repository",
-    "llms": "https://bucklervsbp.bucklerfamily.estate/llms.txt",
-    "mcp": "https://bucklervsbp.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbucklervsbp.bucklerfamily.estate%2Fllms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbucklervsbp.bucklerfamily.estate%2F.well-known%2Fmcp.json"
    },
    {
-    "url": "https://chat.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/chat/",
     "name": "Ask the Archive",
-    "llms": "https://chat.bucklerfamily.estate/llms.txt",
-    "mcp": "https://chat.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/chat/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/chat/.well-known/mcp.json"
    },
    {
-    "url": "https://chess.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/chess/",
     "name": "The Chessboard",
-    "llms": "https://chess.bucklerfamily.estate/llms.txt",
-    "mcp": "https://chess.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/chess/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/chess/.well-known/mcp.json"
    },
    {
-    "url": "https://clerk.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/wiki/",
     "name": "Llandough Council records | Clerk",
-    "llms": "https://clerk.bucklerfamily.estate/llms.txt",
-    "mcp": "https://clerk.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/wiki/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/wiki/.well-known/mcp.json"
    },
    {
-    "url": "https://command.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fcommand.bucklerfamily.estate%2F",
     "name": "COMMAND Cockpit",
-    "llms": "https://command.bucklerfamily.estate/llms.txt",
-    "mcp": "https://command.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fcommand.bucklerfamily.estate%2Fllms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fcommand.bucklerfamily.estate%2F.well-known%2Fmcp.json"
    },
    {
-    "url": "https://csscpsg.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/csscpsg/",
     "name": "The Grammar House (CSSCPSGP)",
-    "llms": "https://csscpsg.bucklerfamily.estate/llms.txt",
-    "mcp": "https://csscpsg.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/csscpsg/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/csscpsg/.well-known/mcp.json"
    },
    {
-    "url": "https://dartboard.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/dartboard/",
     "name": "Home · The Disclosure Dartboard",
-    "llms": "https://dartboard.bucklerfamily.estate/llms.txt",
-    "mcp": "https://dartboard.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/dartboard/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/dartboard/.well-known/mcp.json"
    },
    {
-    "url": "https://directory.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/directory/",
     "name": "Cedwyn Estate Directory",
-    "llms": "https://directory.bucklerfamily.estate/llms.txt",
-    "mcp": "https://directory.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/directory/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/directory/.well-known/mcp.json"
    },
    {
-    "url": "https://docs.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/docs/",
     "name": "Docs · bucklerfamily.estate",
-    "llms": "https://docs.bucklerfamily.estate/llms.txt",
-    "mcp": "https://docs.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/docs/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/docs/.well-known/mcp.json"
    },
    {
-    "url": "https://ebooks.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/ebooks/",
     "name": "The E-book Shelf",
-    "llms": "https://ebooks.bucklerfamily.estate/llms.txt",
-    "mcp": "https://ebooks.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/ebooks/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/ebooks/.well-known/mcp.json"
    },
    {
-    "url": "https://email.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/email/",
     "name": "The Post Office",
-    "llms": "https://email.bucklerfamily.estate/llms.txt",
-    "mcp": "https://email.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/email/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/email/.well-known/mcp.json"
    },
    {
-    "url": "https://fb.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/fb/",
     "name": "The Farm Album",
-    "llms": "https://fb.bucklerfamily.estate/llms.txt",
-    "mcp": "https://fb.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/fb/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/fb/.well-known/mcp.json"
    },
    {
-    "url": "https://fb2.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/fb2/",
     "name": "farmbook 2 · Today at Tŷ Mawr",
-    "llms": "https://fb2.bucklerfamily.estate/llms.txt",
-    "mcp": "https://fb2.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/fb2/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/fb2/.well-known/mcp.json"
    },
    {
-    "url": "https://fcg.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/fcg/",
     "name": "FCG · Security Clearance",
-    "llms": "https://fcg.bucklerfamily.estate/llms.txt",
-    "mcp": "https://fcg.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/fcg/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/fcg/.well-known/mcp.json"
    },
    {
-    "url": "https://infographic.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/infographic/",
     "name": "The Land Changing Hands · Great House Farm",
-    "llms": "https://infographic.bucklerfamily.estate/llms.txt",
-    "mcp": "https://infographic.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/infographic/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/infographic/.well-known/mcp.json"
    },
    {
-    "url": "https://library.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Flibrary.bucklerfamily.estate%2F",
     "name": "DATRO Docs Library",
-    "llms": "https://library.bucklerfamily.estate/llms.txt",
-    "mcp": "https://library.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Flibrary.bucklerfamily.estate%2Fllms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Flibrary.bucklerfamily.estate%2F.well-known%2Fmcp.json"
    },
    {
-    "url": "https://maps.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/maps/",
     "name": "The Map Room",
-    "llms": "https://maps.bucklerfamily.estate/llms.txt",
-    "mcp": "https://maps.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/maps/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/maps/.well-known/mcp.json"
    },
    {
-    "url": "https://nomenclature.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/nomenclature/",
     "name": "Nomenclature",
-    "llms": "https://nomenclature.bucklerfamily.estate/llms.txt",
-    "mcp": "https://nomenclature.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/nomenclature/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/nomenclature/.well-known/mcp.json"
    },
    {
-    "url": "https://oldbill.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/oldbill/",
     "name": "Old Bill · Who Gained, Who Lost",
-    "llms": "https://oldbill.bucklerfamily.estate/llms.txt",
-    "mcp": "https://oldbill.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/oldbill/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/oldbill/.well-known/mcp.json"
    },
    {
-    "url": "https://projects.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/projects/",
     "name": "The Project Office",
-    "llms": "https://projects.bucklerfamily.estate/llms.txt",
-    "mcp": "https://projects.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/projects/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/projects/.well-known/mcp.json"
    },
    {
-    "url": "https://qa.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/qa/",
     "name": "The Q&A Hall",
-    "llms": "https://qa.bucklerfamily.estate/llms.txt",
-    "mcp": "https://qa.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/qa/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/qa/.well-known/mcp.json"
    },
    {
-    "url": "https://records.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/records/",
     "name": "Primary Records",
-    "llms": "https://records.bucklerfamily.estate/llms.txt",
-    "mcp": "https://records.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/records/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/records/.well-known/mcp.json"
    },
    {
-    "url": "https://research.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/research/",
     "name": "Great House Farm Wiki",
-    "llms": "https://research.bucklerfamily.estate/llms.txt",
-    "mcp": "https://research.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/research/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/research/.well-known/mcp.json"
    },
    {
-    "url": "https://review.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/review/",
     "name": "Independent Review",
-    "llms": "https://review.bucklerfamily.estate/llms.txt",
-    "mcp": "https://review.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/review/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/review/.well-known/mcp.json"
    },
    {
-    "url": "https://shop.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/shop/",
     "name": "Gift Shop & Marketplace",
-    "llms": "https://shop.bucklerfamily.estate/llms.txt",
-    "mcp": "https://shop.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/shop/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/shop/.well-known/mcp.json"
    },
    {
-    "url": "https://watchtower.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/watchtower/",
     "name": "Watchtower",
-    "llms": "https://watchtower.bucklerfamily.estate/llms.txt",
-    "mcp": "https://watchtower.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/watchtower/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/watchtower/.well-known/mcp.json"
    },
    {
-    "url": "https://wayback.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/wayback/",
     "name": "The Wayback Vault",
-    "llms": "https://wayback.bucklerfamily.estate/llms.txt",
-    "mcp": "https://wayback.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/wayback/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/wayback/.well-known/mcp.json"
    },
    {
-    "url": "https://webbrich.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fwebbrich.bucklerfamily.estate%2F",
     "name": "Webb–Rich Family Archive — Over Stowey",
-    "llms": "https://webbrich.bucklerfamily.estate/llms.txt",
-    "mcp": "https://webbrich.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fwebbrich.bucklerfamily.estate%2Fllms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fwebbrich.bucklerfamily.estate%2F.well-known%2Fmcp.json"
    },
    {
-    "url": "https://whatdotheyknow.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/wdtk/",
     "name": "FOI Requests (WhatDoTheyKnow)",
-    "llms": "https://whatdotheyknow.bucklerfamily.estate/llms.txt",
-    "mcp": "https://whatdotheyknow.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/wdtk/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/wdtk/.well-known/mcp.json"
    },
    {
-    "url": "https://wiki.bucklerfamily.estate/",
+    "url": "https://cedwyn.bucklerfamily.estate/wiki/",
     "name": "The Legal Wiki",
-    "llms": "https://wiki.bucklerfamily.estate/llms.txt",
-    "mcp": "https://wiki.bucklerfamily.estate/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/wiki/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/wiki/.well-known/mcp.json"
    }
   ]
  }

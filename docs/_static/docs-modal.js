@@ -5,7 +5,7 @@
    the backdrop closes it. DOCS-STANDARD.md §7.4. — Sion's Tab agent */
 (function () {
   if (window.__docsPdfModal) return; window.__docsPdfModal = true;
-  var CDN = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/';
+  var CDN = 'https://cedwyn.bucklerfamily.estate/_ext/cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/';
   var lib = null, box = null, lastFocus = null, observer = null;
   function loadLib() {
     if (!lib) lib = import(CDN + 'pdf.min.mjs').then(function (m) { m.GlobalWorkerOptions.workerSrc = CDN + 'pdf.worker.min.mjs'; return m; });

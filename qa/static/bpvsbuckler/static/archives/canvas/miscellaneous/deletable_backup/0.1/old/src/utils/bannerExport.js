@@ -49,7 +49,7 @@ export function loadJsPDF() {
       return
     }
     const s = document.createElement('script')
-    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'
+    s.src = 'https://cedwyn.bucklerfamily.estate/_ext/cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'
     s.onload = () => {
       if (window.jspdf && window.jspdf.jsPDF) resolve(window.jspdf)
       else reject(new Error('jsPDF not available after load'))

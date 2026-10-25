@@ -8,7 +8,7 @@
   }()));
 }(this, (function () {
   //     Underscore.js 1.13.1
-  //     https://underscorejs.org
+  //     https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Funderscorejs.org
   //     (c) 2009-2021 Jeremy Ashkenas, Julian Gonggrijp, and DocumentCloud and Investigative Reporters & Editors
   //     Underscore may be freely distributed under the MIT license.
 
@@ -355,7 +355,7 @@
   // Internal recursive comparison function for `_.isEqual`.
   function eq(a, b, aStack, bStack) {
     // Identical objects are equal. `0 === -0`, but they aren't identical.
-    // See the [Harmony `egal` proposal](https://wiki.ecmascript.org/doku.php?id=harmony:egal).
+    // See the [Harmony `egal` proposal](https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fwiki.ecmascript.org%2Fdoku.php%3Fid%3Dharmony%3Aegal%29.
     if (a === b) return a !== 0 || 1 / a === 1 / b;
     // `null` or `undefined` only equal to itself (strict comparison).
     if (a == null || b == null) return false;
@@ -595,7 +595,7 @@
 
   // Assigns a given object with all the own properties in the passed-in
   // object(s).
-  // (https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+  // (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fdeveloper.mozilla.org%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FObject%2Fassign%29
   var extendOwn = createAssigner(keys);
 
   // Fill in a given object with default properties.
@@ -1022,7 +1022,7 @@
 
   // Internal helper for collection methods to determine whether a collection
   // should be iterated as an array or as an object.
-  // Related: https://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength
+  // Related: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fpeople.mozilla.org%2F~jorendorff%2Fes6-draft.html%23sec-tolength
   // Avoids a very nasty iOS 8 JIT bug on ARM-64. #2094
   var isArrayLike = createSizePropertyCheck(getLength);
 
@@ -1514,7 +1514,7 @@
   }
 
   // Sample **n** random values from a collection using the modern version of the
-  // [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
+  // [Fisher-Yates shuffle](https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFisher%E2%80%93Yates_shuffle%29.
   // If **n** is not specified, returns a single random element.
   // The internal `guard` argument allows it to work with `_.map`.
   function sample(obj, n, guard) {
@@ -1802,7 +1802,7 @@
 
   // Generate an integer Array containing an arithmetic progression. A port of
   // the native Python `range()` function. See
-  // [the Python documentation](https://docs.python.org/library/functions.html#range).
+  // [the Python documentation](https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fdocs.python.org%2Flibrary%2Ffunctions.html%23range%29.
   function range(start, stop, step) {
     if (stop == null) {
       stop = start || 0;

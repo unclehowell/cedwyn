@@ -1,11 +1,11 @@
-/* Hive drafts pipeline widget v1.4.0 (each cell, chip and activity row shows the draft's % progress to the owner's Gmail drafts, from BOARD.json pct; full mode adds a collapsible "Hive drafts activity" list: latest rounds from hive.json versions, metadata only) — https://hive.bucklerfamily.estate/pipeline.js
+/* Hive drafts pipeline widget v1.4.0 (each cell, chip and activity row shows the draft's % progress to the owner's Gmail drafts, from BOARD.json pct; full mode adds a collapsible "Hive drafts activity" list: latest rounds from hive.json versions, metadata only) — https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fhive.bucklerfamily.estate%2Fpipeline.js
    Renders the promotion pyramid: four labelled rows of hex cells, bottom READY TO SEND, then DEFINITELY READY TO SEND,
    GMAIL DRAFT, apex WAYBACK; drafts IN REVIEW are counted beside it (waiting to climb in)
-   into every element with [data-hive-pipeline]. Data: data-src (default https://hive.bucklerfamily.estate/hive.json, CORS *).
+   into every element with [data-hive-pipeline]. Data: data-src (default https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fhive.bucklerfamily.estate%2Fhive.json%2C CORS *).
    Metadata only: draft ids, recipient bodies, tiers. No email text. Inherits the host page's font and colours.
    Options: data-hive-pipeline="full" (pyramid, default) | "strip" (one-line counts; tap opens the pyramid) | "bar" (4-step bar per draft); data-lane="<dartboard lane id>" filters. — the project's Tab agent */
 (function () {
-  var HIVE = "https://hive.bucklerfamily.estate";
+  var HIVE = "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fhive.bucklerfamily.estate";
   var ORDER = ["working", "ready", "definitely_ready", "gmail_draft", "sent_archived"];
   var LABEL = { working: "In review", ready: "READY TO SEND", definitely_ready: "DEFINITELY READY TO SEND",
     gmail_draft: "GMAIL DRAFT \u2014 owner review & send", sent_archived: "WAYBACK \u2014 sent & archived" };
@@ -118,4 +118,3 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run); else run();
 })();
-

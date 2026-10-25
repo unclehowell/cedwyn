@@ -3,9 +3,9 @@
 // continue through the ordinary Cloudflare Pages static-asset pipeline.
 const MEDIA_ROOTS = ["images/", "pdf/", "text/", "video/"];
 
-// Website snapshots moved to https://wayback-html.bucklerfamily.estate (design kept, readable names, 24 Oct 2026).
+// Website snapshots moved to https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fwayback-html.bucklerfamily.estate (design kept, readable names, 24 Oct 2026).
 // Every old /websites/<host>/<slug>/... address answers 301 with the readable address; the map is /websites/moved.json.
-const WS_HTML = "https://wayback-html.bucklerfamily.estate";
+const WS_HTML = "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fwayback-html.bucklerfamily.estate";
 let WS_MOVED = null;
 async function websitesMoved(context, url) {
   let p; try { p = decodeURIComponent(url.pathname); } catch { return null; }

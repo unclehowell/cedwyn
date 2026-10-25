@@ -30,7 +30,7 @@ if (!window.console || !console.firebug) {
 /**
  * small helper function to urldecode strings
  *
- * See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent#Decoding_query_parameters_from_a_URL
+ * See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FdecodeURIComponent%23Decoding_query_parameters_from_a_URL
  */
 jQuery.urldecode = function(x) {
   if (!x) {
@@ -209,7 +209,7 @@ var Documentation = {
 
   /**
    * workaround a firefox stupidity
-   * see: https://bugzilla.mozilla.org/show_bug.cgi?id=645075
+   * see: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fbugzilla.mozilla.org%2Fshow_bug.cgi%3Fid%3D645075
    */
   fixFirefoxAnchorBug : function() {
     if (document.location.hash && $.browser.mozilla)

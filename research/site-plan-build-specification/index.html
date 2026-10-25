@@ -1,0 +1,533 @@
+<!doctype html><html lang="en"><head><script src="/_cedwyn/runtime.js" data-theme="research"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow"><title>Site Plan — Build Specification for Great House Farm Wiki — Great House Farm Wiki — Research Mirror</title>
+<style>
+:root {
+  color-scheme: light;
+  --wiki-bg: #f8f9fa;
+  --wiki-paper: #ffffff;
+  --wiki-text: #202122;
+  --wiki-muted: #54595d;
+  --wiki-border: #a2a9b1;
+  --wiki-soft-border: #c8ccd1;
+  --wiki-link: #0645ad;
+  --wiki-visited: #0b0080;
+  --wiki-control: #f8f9fa;
+  --wiki-control-border: #a2a9b1;
+  --wiki-table-head: #eaecf0;
+  --wiki-table-alt: #f8f9fa;
+  --assured: #f6fcf4;
+  --assured-mark: #c7e8bd;
+  --notassured: #fffaf1;
+  --notassured-mark: #f2d6aa;
+}
+html[data-theme="dark"], body[data-theme="dark"],
+html[data-color-theme="dark"], body[data-color-theme="dark"],
+html.dark, body.dark, html.dark-mode, body.dark-mode,
+html.theme-dark, body.theme-dark, body[data-mw-color-scheme="dark"] {
+  color-scheme: dark;
+  --wiki-bg: #101418;
+  --wiki-paper: #202122;
+  --wiki-text: #eaecf0;
+  --wiki-muted: #a7acb1;
+  --wiki-border: #54595d;
+  --wiki-soft-border: #72777d;
+  --wiki-link: #8ab4f8;
+  --wiki-visited: #c0a5e8;
+  --wiki-control: #27292d;
+  --wiki-control-border: #72777d;
+  --wiki-table-head: #303338;
+  --wiki-table-alt: #27292d;
+  --assured: #202d25;
+  --assured-mark: #344d39;
+  --notassured: #30291d;
+  --notassured-mark: #5c4829;
+}
+* { box-sizing: border-box; }
+html { background: var(--wiki-bg); }
+body {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  color: var(--wiki-text);
+  background: var(--wiki-bg);
+  font-family: Arial, "Liberation Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+a { color: var(--wiki-link); text-decoration: none; }
+a:visited { color: var(--wiki-visited); }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--wiki-link);
+  outline-offset: 2px;
+}
+img, video, iframe, svg { max-width: 100%; }
+img { height: auto; }
+body > header {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 1rem clamp(1rem, 3vw, 2.25rem) .75rem;
+  color: var(--wiki-text);
+  background: var(--wiki-bg);
+  border-bottom: 1px solid var(--wiki-border);
+}
+body > header a { color: var(--wiki-text); }
+body > header a:visited { color: var(--wiki-text); }
+body > header small { font-size: 1.05rem; font-weight: 600; }
+header, nav, [class*="header-row"], [class*="headerRow"], [data-header-row] {
+  color: var(--wiki-text);
+}
+main {
+  width: 100%;
+  max-width: 1320px;
+  min-height: 60vh;
+  margin: 0 auto;
+  padding: 1.5rem clamp(1rem, 3vw, 2.5rem) 3rem;
+  color: var(--wiki-text);
+  background: var(--wiki-paper);
+  border-left: 1px solid var(--wiki-soft-border);
+  border-right: 1px solid var(--wiki-soft-border);
+}
+.article { width: 100%; min-width: 0; }
+.article h1, .article h2, .article h3, .article h4 {
+  color: var(--wiki-text);
+  font-family: "Linux Libertine", "Georgia", "Times New Roman", serif;
+  font-weight: normal;
+  overflow-wrap: anywhere;
+}
+.article h1 {
+  margin: 0 0 .35rem;
+  padding: 0 0 .2em;
+  font-size: 1.9rem;
+  line-height: 1.25;
+  border-bottom: 1px solid var(--wiki-border);
+}
+.article .meta {
+  margin: .2rem 0 1.2rem;
+  padding: 0 0 .55rem;
+  color: var(--wiki-muted);
+  font-size: .82rem;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--wiki-soft-border);
+}
+.content {
+  min-width: 0;
+  color: var(--wiki-text);
+  font-size: .9rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.content p { margin: .5em 0; }
+.content h2 {
+  margin: 1.25em 0 .4em;
+  padding-bottom: .18em;
+  font-size: 1.55rem;
+  line-height: 1.35;
+  border-bottom: 1px solid var(--wiki-border);
+}
+.content h3 { margin: 1em 0 .35em; font-size: 1.25rem; line-height: 1.4; }
+.content h4 { margin: .8em 0 .3em; font-size: 1.08rem; font-weight: 600; }
+.content ul, .content ol { padding-left: 1.8em; }
+.content li { margin: .18em 0; }
+.content blockquote {
+  margin: .7em 1.5em;
+  padding: .2em .8em;
+  color: var(--wiki-muted);
+  border-left: 3px solid var(--wiki-soft-border);
+}
+.content hr { border: 0; border-top: 1px solid var(--wiki-soft-border); margin: 1.5em 0; }
+.content table {
+  border: 1px solid var(--wiki-border);
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  margin: 1em 0;
+  color: var(--wiki-text);
+  background: var(--wiki-paper);
+}
+.content th, .content td {
+  border: 1px solid var(--wiki-border);
+  padding: .35em .6em;
+  vertical-align: top;
+}
+.content th { font-weight: 600; background: var(--wiki-table-head); }
+.content tr:nth-child(even) td { background: var(--wiki-table-alt); }
+.content pre, .content code, code, pre {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+.content pre, pre {
+  max-width: 100%;
+  overflow: auto;
+  padding: .8em;
+  border: 1px solid var(--wiki-soft-border);
+  background: var(--wiki-table-alt);
+  color: var(--wiki-text);
+}
+.content code, code { overflow-wrap: anywhere; }
+.content figure { max-width: 100%; margin: 1em 0; }
+.content figcaption { color: var(--wiki-muted); font-size: .85rem; }
+.content img { max-width: 100%; }
+.content p[data-evidence-status="assured"],
+.content li[data-evidence-status="assured"],
+.content blockquote[data-evidence-status="assured"] {
+  background: var(--assured);
+  border-radius: 2px;
+}
+.content p[data-evidence-status="not-assured"],
+.content li[data-evidence-status="not-assured"],
+.content blockquote[data-evidence-status="not-assured"] {
+  background: var(--notassured);
+  border-radius: 2px;
+}
+.quality-marker {
+  display: inline-block;
+  font-weight: 700;
+  font-size: .86em;
+  margin-right: .42em;
+  padding: 0 .1em;
+  user-select: none;
+}
+.quality-marker.assured, .assured-inline, .quality-key.assured { background: var(--assured-mark); }
+.quality-marker.not-assured, .not-assured-inline, .quality-key.not-assured { background: var(--notassured-mark); }
+.content p[data-evidence-status="assured"] .quality-marker,
+.content p[data-evidence-status="not-assured"] .quality-marker { opacity: .9; }
+.quality-key { padding: .08rem .25rem; border-radius: 2px; }
+.quality-key.unassessed { border-bottom: 1px dotted var(--wiki-muted); }
+.quality-docs {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--wiki-border);
+}
+.site-footer {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 1rem clamp(1rem, 3vw, 2.25rem) 1.5rem;
+  color: var(--wiki-muted);
+  background: var(--wiki-bg);
+  border-top: 1px solid var(--wiki-border);
+  font-size: .8rem;
+}
+.site-footer p { margin: .4rem 0; }
+.quality-legend { color: var(--wiki-muted); }
+.browse-index {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--wiki-border);
+}
+.browse-index h2 {
+  font-family: "Linux Libertine", Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+  font-weight: normal;
+  border-bottom: 1px solid var(--wiki-border);
+}
+.browse-index form { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; margin: .75rem 0 1rem; }
+.browse-index li { margin: .75rem 0; }
+.index-excerpt { margin: .15rem 0; color: var(--wiki-muted); font-size: .88rem; overflow-wrap: anywhere; }
+.browse-index a { overflow-wrap: anywhere; }
+.back { margin-top: 2rem; padding-top: .75rem; border-top: 1px solid var(--wiki-soft-border); }
+input, select, textarea {
+  max-width: 100%;
+  padding: .45rem .6rem;
+  border: 1px solid var(--wiki-control-border);
+  border-radius: 2px;
+  background: var(--wiki-paper);
+  color: var(--wiki-text);
+  font: inherit;
+}
+button, input[type="submit"], input[type="button"], [role="button"] {
+  padding: .45rem .75rem;
+  border: 1px solid var(--wiki-control-border);
+  border-radius: 2px;
+  background: var(--wiki-control);
+  color: var(--wiki-text);
+  font: inherit;
+  cursor: pointer;
+}
+button:hover, input[type="submit"]:hover, input[type="button"]:hover, [role="button"]:hover {
+  background: var(--wiki-table-head);
+}
+.theme-toggle, #theme-toggle, [data-theme-toggle] { color: var(--wiki-text); background: var(--wiki-control); }
+.preview-modal {
+  position: fixed;
+  z-index: 10000;
+  right: 1rem;
+  bottom: 1rem;
+  width: min(27rem, calc(100vw - 2rem));
+  max-height: 65vh;
+  overflow: auto;
+  color: var(--wiki-text);
+  background: var(--wiki-paper);
+  border: 1px solid var(--wiki-border);
+  border-radius: 2px;
+  box-shadow: 0 8px 32px #0002;
+  padding: 1rem;
+}
+.preview-modal[hidden] { display: none; }
+.preview-modal h2 { font-size: 1rem; margin: .1rem 0 .5rem; }
+.preview-modal p { font-size: .9rem; margin: .4rem 0; }
+.preview-modal .preview-actions { display: flex; justify-content: space-between; align-items: center; gap: .5rem; margin-top: .6rem; }
+.preview-modal button { padding: .35rem .6rem; }
+@media (min-width: 1100px) {
+  .content { font-size: .92rem; }
+}
+@media (max-width: 700px) {
+  body { font-size: 14px; }
+  body > header { padding: .8rem 1rem .6rem; }
+  main { padding: 1rem .9rem 2rem; border-left: 0; border-right: 0; }
+  .article h1 { font-size: 1.65rem; }
+  .content h2 { font-size: 1.35rem; }
+  .content table { display: block; overflow-x: auto; }
+  .content blockquote { margin-left: .5rem; margin-right: .5rem; }
+  .site-footer { padding: .8rem 1rem 1.2rem; }
+}
+
+html[data-ghf-mode="night"]{
+  color-scheme: dark;
+  --wiki-bg: #101418;
+  --wiki-paper: #202122;
+  --wiki-text: #eaecf0;
+  --wiki-muted: #a7acb1;
+  --wiki-border: #54595d;
+  --wiki-soft-border: #72777d;
+  --wiki-link: #8ab4f8;
+  --wiki-visited: #c0a5e8;
+  --wiki-control: #27292d;
+  --wiki-control-border: #72777d;
+  --wiki-table-head: #303338;
+  --wiki-table-alt: #27292d;
+  --assured: #202d25;
+  --assured-mark: #344d39;
+  --notassured: #30291d;
+  --notassured-mark: #5c4829;
+}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+main.landing{max-width:60rem}
+main.landing details{border:1px solid var(--wiki-soft-border);border-radius:4px;background:var(--wiki-paper);margin:.5rem 0}
+main.landing details>summary{cursor:pointer;padding:.65rem .8rem;font-weight:600;list-style-position:inside;overflow-wrap:anywhere}
+main.landing details>summary:hover{background:var(--wiki-table-head)}
+main.landing details>*:not(summary){margin-left:.8rem;margin-right:.8rem}
+main.landing details details{border-color:var(--wiki-soft-border);margin:.4rem 0}
+main.landing .landing-block{border-left:4px solid #1F3D2B}
+html[data-ghf-mode="night"] main.landing .landing-block{border-left-color:#C9B6FF}
+.wiki-menu .menu-root{border-left:4px solid #C9B6FF}
+.wiki-menu a{display:block;padding:.45rem .2rem;border-bottom:1px solid var(--wiki-soft-border);overflow-wrap:anywhere}
+.wiki-menu details>div{padding-bottom:.4rem}
+.landing-search{display:flex;gap:.4rem;margin:.6rem 0 1rem}
+.landing-search input{flex:1;min-width:0;max-width:none;padding:.55rem;border:1px solid var(--wiki-control-border);border-radius:4px;background:var(--wiki-paper);color:var(--wiki-text)}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;margin:.2rem 0 .8rem}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+main.landing figure{margin:.4rem 0}
+main.landing video{width:100%;height:auto;background:#000}
+main.landing figcaption{font-size:.85rem;color:var(--wiki-muted)}
+#ghf-parcel-tube-map>div:first-child{font-size:.8rem;letter-spacing:.06em;color:var(--wiki-muted);margin:.4rem 0}
+main.landing p,main.landing li,main.landing div{overflow-wrap:anywhere}
+.ev-scroll{overflow-x:auto;max-width:100%}
+.ghf-ev-table{border-collapse:collapse;width:100%}
+.ghf-ev-table th,.ghf-ev-table td,.ghf-version-table th,.ghf-version-table td{border:1px solid var(--wiki-soft-border);padding:.4rem;vertical-align:top;text-align:left}
+.ghf-ev-table th{width:28%;background:var(--wiki-table-head)}
+.research-addendum{border-top:2px solid #1F3D2B;margin-top:1.5rem;padding-top:.5rem}
+.site-footer{font-size:.8rem}
+.yt-facade{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:#000;cursor:pointer}
+.yt-facade img{width:100%;height:100%;object-fit:cover;display:block}
+.yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:48px;border-radius:12px;background:#c4302b;color:#fff;font-size:22px;line-height:48px;text-align:center}
+.article>h1{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style><script src="/_cedwyn/ghf/ghf-lang.js?v=2.1.4c" defer></script>
+<script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.4c"></script></head><body><main><article class="article" data-source-type="page" data-source-id="3290"><h1>Site Plan — Build Specification for Great House Farm Wiki</h1><p class="meta">page · Updated 2026-10-20T14:28:19 · <a href="/wiki/site-plan-build-specification/">Original source</a></p><div class="content">
+<div class="ghf-page-header" style="font-size:0.85em;color:#444;border:1px solid #ddd;border-radius:4px;padding:6px 10px;margin-bottom:14px"><strong>Page ID:</strong> 3290 · <strong>Title:</strong> Site Plan — Build Specification for Great House Farm Wiki · <strong>Evidence status:</strong> Not yet labelled — see the Editing Protocol · <strong>Version:</strong> 1.0.1 · <a href="/research/editing-protocol/">Editing Protocol</a></div>
+
+
+<p class="wp-block-paragraph">This document is the <strong>build plan</strong> for the Great House Farm Wiki. It describes the site as designed and constructed from this specification. Every page, hierarchy, and catalogue that exists on the site today is the realisation of this plan.</p>
+
+
+
+<h2 class="wp-block-heading">1. Purpose and Scope</h2>
+
+
+
+<p class="wp-block-paragraph">The wiki exists to document, preserve, and make publicly accessible the evidentiary record concerning Great House Farm (Tŷ Mawr), Llandough, Vale of Glamorgan — including title history, institutional correspondence, archival leads, and allegations of fraud and concealment. It serves three audiences: the Williams family and their representatives; public authorities and their FOI/EIR officers; and any future court, tribunal, or oversight body.</p>
+
+
+
+<h2 class="wp-block-heading">2. Site Structure (Hierarchy)</h2>
+
+
+
+<p class="wp-block-paragraph">The site is organised as a single hierarchical tree of pages. Parent pages define workstreams; child pages hold the granular record. The top-level structure is as follows:</p>
+
+
+
+<ul class="wp-block-list"><li><strong>Case Overview and Key Records</strong> (site-hierarchy-tree-view-expand-collapse) — the master index and navigation hub.</li><li><strong>Top-level Working Theory</strong> (top-level-understanding-williams-parcel-a-title-sabotaged-severed-and-buried-while-a-synthetic-mimic-estate-was-forged) — the governing narrative: Williams Parcel A title severed and obscured beneath a synthetic-mimic estate.</li><li><strong>Allegations</strong> — discrete, testable claims, each on its own page with a stable slug (e.g. allegation-land-registry-1983-registration-of-parcel-a-kept-from-the-williams-family-until-after-mary-williamss-death; allegation-sas-undercover-personnel-bp-bailiffs-1988-unverified; claim-parcel-a-parcel-b-distinct-histories-1987-amalgamation; claim-repeated-attempts-to-make-mary-williams-occupancy-of-parcel-a-appear-permissive).</li><li><strong>Evidence Acquisition &amp; Recovery</strong> (evidence-acquisition-recovery) — the methodology and live workstream for obtaining records.</li><li><strong>Negative Search Log</strong> (negative-search-log) — searches performed that returned nothing, recorded so absence of evidence is itself documented.</li><li><strong>Record Retention / Destruction / Transfer Matrix</strong> (record-retention-destruction-transfer-matrix) — what records existed, who held them, and what happened to them.</li><li><strong>Fraud / Concealment Evidence &amp; Referral</strong> (fraud-concealment-evidence-referral) — the compilation of indicators pointing to fraud or concealment.</li><li><strong>Public Authority Action &amp; Accountability</strong> (public-authority-action-accountability) — the conduct of public bodies in response to requests and complaints.</li><li><strong>Institutional Remedy &amp; Pre-Action</strong> (institutional-remedy-pre-action) — the route toward formal remedy.</li><li><strong>Counter-Evidence &amp; Disconfirmation</strong> (counter-evidence-disconfirmation) — material that tests or weakens the working theory, recorded in good faith.</li><li><strong>Who Knew What, When?</strong> (who-knew-what-when) — the chronology of knowledge across institutions and individuals.</li><li><strong>Institutional Reviews</strong> (parent: institutional-review-coverage-register) — one forensic review page per institution (e.g. bp-archive-forensic-institutional-review, parliamentary-archives-forensic-institutional-review, dcms-forensic-institutional-review, ico-forensic-institutional-review, hm-land-registry pages, south-wales-police pages, welsh-government-and-cadw pages, vale-of-glamorgan-council pages, llandough-community-council pages, and others), each child of the coverage register.</li><li><strong>Email Correspondence Catalogues</strong> (parent: a correspondence hub) — one catalogue per institution or correspondent, capturing metadata of every email exchanged.</li><li><strong>Evidence Items (GHF-E series)</strong> — individual evidence records numbered GHF-E001 onward, each on its own page with a stable slug, filed under the relevant parent workstream.</li><li><strong>Family Pages</strong> (family-pages) — with a copyable template (template-your-family-page-copy-this) for contributors.</li><li><strong>Friends of the Farm</strong> (friends-of-the-farm) — community and supporter presence.</li><li><strong>The Tightrope</strong> (the-tightrope) — reflective/narrative piece.</li><li><strong>Legal Notices, Copyright and Disclaimer</strong> (legal-notices) — the legal footer for the whole site.</li><li><strong>Highlight Reports</strong> (parent: a reports hub) — periodic summaries (e.g. October 2026 Highlight Report, weekly highlight reports), published and draft.</li></ul>
+
+
+
+<h2 class="wp-block-heading">3. Content Strategy</h2>
+
+
+
+<ul class="wp-block-list"><li><strong>Evidence-first, narrative-second.</strong> Every claim page is anchored to numbered evidence items (GHF-E series). Narrative pages cite evidence; evidence pages stand alone.</li><li><strong>Stable slugs.</strong> Every page has a permanent, descriptive slug. Slugs are never renamed after publication, because external citations and FOI references depend on them.</li><li><strong>Status discipline.</strong> Pages are published only when the underlying record is sourced or explicitly flagged as pending/unconfirmed. Draft status is used for work in progress (e.g. weekly highlight reports).</li><li><strong>Provenance on every record.</strong> Each evidence item records: source institution, date obtained, reference number, and any conditions of disclosure.</li><li><strong>Negative results are content.</strong> The Negative Search Log is a first-class section, not an afterthought.</li><li><strong>Updates are dated.</strong> Highlight reports and correspondence catalogues carry explicit dates so the record shows when each fact entered the site.</li><li><strong>No deletion of history.</strong> Corrections are made by adding a dated amendment note, never by silently rewriting.</li></ul>
+
+
+
+<h2 class="wp-block-heading">4. Evidence Catalogue Schema (Metadata Only)</h2>
+
+
+
+<p class="wp-block-paragraph">Every evidence item on the site conforms to the following metadata schema. Page bodies carry the substance; this schema defines the fields that must be present for the item to be a valid catalogue entry.</p>
+
+
+
+<pre class="wp-block-code"><code>EVIDENCE_ITEM_SCHEMA
+─────────────────
+item_id:        GHF-E{nnn}          — sequential, zero-padded, never reused
+slug:           ghf-e{nnn}-{short-description}
+title:          "GHF-E{nnn} — {one-line description}"
+parent:         {workstream page id}
+status:         publish | draft
+date_obtained:  YYYY-MM-DD
+source:         {institution or correspondent}
+reference:      {FOI/EIR/ATISN number or archive ref}
+description:    {what the item is}
+provenance:     {how and from whom obtained}
+verification:   sourced | pending | unverified
+related_items:  [GHF-E{nnn}, ...]
+related_pages:  [slug, ...]
+tags:           none used site-wide; categorisation is by parent hierarchy</code></pre>
+
+
+
+<p class="wp-block-paragraph">Institutional review pages follow a parallel schema:</p>
+
+
+
+<pre class="wp-block-code"><code>INSTITUTIONAL_REVIEW_SCHEMA
+─────────────────────────
+institution:    {name}
+slug:           {institution-slug}-forensic-institutional-review
+parent:         institutional-review-coverage-register
+coverage:       {what was requested / reviewed}
+responses:      [{date, reference, outcome}]
+outstanding:    {open requests or refusals}
+assessment:     {forensic summary}</code></pre>
+
+
+
+<p class="wp-block-paragraph">Email correspondence catalogues follow:</p>
+
+
+
+<pre class="wp-block-code"><code>CORRESPONDENCE_CATALOGUE_SCHEMA
+─────────────────────────────
+correspondent:  {institution}
+slug:           {institution-slug}-email-correspondence-catalogue
+parent:         {correspondence hub}
+entries:       [{date, direction (in/out), subject, reference, outcome}]</code></pre>
+
+
+
+<h2 class="wp-block-heading">5. Toolkit Websites (bucklerfamily.estate)</h2>
+
+
+
+<p class="wp-block-paragraph">Alongside this wiki, the project is supported by a small family of websites under the domain <strong>bucklerfamily.estate</strong>. Together they form the toolkit for navigating the project. The root domain presents as a visual campus map: each building on the map represents one of the subdomains below.</p>
+
+
+
+<h3 class="wp-block-heading">5.1 dartboard.bucklerfamily.estate</h3>
+
+
+
+<p class="wp-block-paragraph">A visual dartboard overview showing progress in obtaining evidence from the different institutions. Each institution occupies a slice of the dartboard; the rings represent phases of the evidence-acquisition pipeline — GDPR, FOI, SAR, complaints, and internal review.</p>
+
+
+
+<h3 class="wp-block-heading">5.2 bpvsbuckler.bucklerfamily.estate</h3>
+
+
+
+<p class="wp-block-paragraph">A museum-style presentation of the whole story as a cinematic, tour-like experience. Visitors move through the evidence as they would on a guided tour, with interactive stations covering the history and heritage of the site.</p>
+
+
+
+<h3 class="wp-block-heading">5.3 wayback.bucklerfamily.estate</h3>
+
+
+
+<p class="wp-block-paragraph">A catalogue of the evidence, hosted on the Wayback branch of the GitHub repository <strong>UncleHowell/datro</strong> (D-A-T-R-O). This is the durable, version-controlled copy of the evidence catalogue.</p>
+
+
+
+<h2 class="wp-block-heading">6. Archival Redundancy</h2>
+
+
+
+<p class="wp-block-paragraph">The WordPress wiki (bucklerfamilywiki.wordpress.com) is regularly archived to the public Wayback Machine (Internet Archive) as a safeguard in case the site goes down. In that event, the wiki remains viewable via the Internet Archive, and the evidence catalogue remains available in the GitHub repository&#8217;s Wayback branch. Evidence is therefore backed up in two independent places: the Internet Archive copy of the website, and the GitHub repo.</p>
+
+
+
+<h2 class="wp-block-heading">7. PRINCE2 Evidence Recovery Framework</h2>
+
+
+
+<p class="wp-block-paragraph">This section finalises the plan as a managed project using PRINCE2 principles, adapted to the goal of recovering the maximum possible information and evidence. The framework governs every acquisition activity and is the standard against which progress on dartboard.bucklerfamily.estate is measured.</p>
+
+
+
+<h3 class="wp-block-heading">7.1 Business Case and Objectives</h3>
+
+
+
+<ul class="wp-block-list"><li><strong>Objective:</strong> Identify, locate, obtain, and preserve every record relevant to Great House Farm and the Williams Parcel A title, regardless of holder or format.</li><li><strong>Success measure:</strong> The Negative Search Log and Record Retention Matrix together demonstrate that every plausible source has been approached by at least one route, and every obtained item is catalogued with full provenance.</li><li><strong>Tolerance:</strong> Cost and time overruns are acceptable where they demonstrably increase the volume or quality of recovered evidence; they are not acceptable where they merely repeat a completed search.</li></ul>
+
+
+
+<h3 class="wp-block-heading">7.2 Four Work Packages (Identify → Locate → Obtain → Preserve)</h3>
+
+
+
+<ul class="wp-block-list"><li><strong>WP1 — Identify.</strong> Build and maintain a master source register: every institution, archive, individual, and private holder with any plausible connection. Each entry carries a unique source ID cross-referenced to the Institutional Review Coverage Register.</li><li><strong>WP2 — Locate.</strong> For each source, determine what records exist, where they are held, in what format, and under what access regime. Output feeds the Record Retention / Destruction / Transfer Matrix.</li><li><strong>WP3 — Obtain.</strong> Acquire the record through the cheapest effective route first, escalating only when blocked. Routes, in order: (a) free online disclosure; (b) paid copy or reproduction fee; (c) physical inspection in a reading room or archive visit; (d) formal FOI/EIR/SAR/ATISN request; (e) complaint against refusal; (f) internal review; (g) referral to the Information Commissioner; (h) pre-action protocol letter; (i) court order compelling disclosure.</li><li><strong>WP4 — Preserve.</strong> Every obtained item is digitised where possible, assigned a GHF-E number, entered in the catalogue with provenance metadata, and backed up to both the Internet Archive and the GitHub Wayback branch before the working copy is relied upon.</li></ul>
+
+
+
+<h3 class="wp-block-heading">7.3 Stages and Gates</h3>
+
+
+
+<ul class="wp-block-list"><li><strong>Stage 1 — Foundation:</strong> source register complete, schemas agreed, toolkit sites live.</li><li><strong>Stage 2 — First-pass acquisition:</strong> all free and low-cost routes exhausted for every identified source.</li><li><strong>Stage 3 — Formal requests:</strong> FOI/EIR/SAR/complaint/internal-review pipeline running for every source that withheld or ignored Stage 2.</li><li><strong>Stage 4 — Enforcement:</strong> ICO referrals, pre-action correspondence, and preparation of court-order applications for persistently obstructive parties.</li><li><strong>Stage 5 — Consolidation:</strong> full catalogue, negative log, retention matrix, and forensic reviews signed off; residual gaps explicitly documented rather than ignored.</li></ul>
+
+<p>A stage gate review is held before advancing. The gate is passed only when the Negative Search Log shows a reasoned attempt at every route for that source, or a documented reason why a route does not apply.</p>
+<!-- /wp:post-content -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">7.4 Risk Register (Summary)</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><li><strong>Obstructive or non-responsive parties</strong> — mitigated by escalating through the full pipeline (7.2 WP3 d–i) and by recording every contact in the correspondence catalogues.</li><li><strong>Destruction or loss of records</strong> — mitigated by the Retention Matrix and by requesting preservation notices early.</li><li><strong>Cost escalation</strong> — mitigated by route ordering (free before paid) and by logging every fee in the catalogue metadata.</li><li><strong>Single point of failure (WordPress site)</strong> — mitigated by Section 6 redundancy.</li><li><strong>Bias or incomplete searching</strong> — mitigated by the Counter-Evidence section and by independent review of the Negative Search Log.</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">7.5 Court Orders and Compelled Disclosure</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Where a party refuses or ignores every administrative route, the project prepares an application for a court order compelling disclosure. This is treated as the final stage of WP3, not a separate project: the same evidence catalogue, provenance records, and correspondence history form the supporting bundle. Pre-action protocol letters are issued before any application is filed, and all related correspondence is catalogued under the Institutional Remedy &amp; Pre-Action workstream.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">8. Governance and Maintenance</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><li>This plan page is the single source of truth for site architecture. Structural changes are reflected here first.</li><li>New workstreams are added as top-level pages and listed in Section 2.</li><li>The schema in Section 4 is versioned implicitly by the date of this page; amendments are noted with a dated paragraph beneath the relevant section.</li><li>Legal Notices (legal-notices) governs copyright, disclaimer, and liability for all content.</li><li>Section 7 is reviewed at every stage gate; the risk register and route order are amended only with a dated note.</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><em>Plan drafted on 16 October 2026 to match the site as built. Forward amendments will be dated and appended.</em></p>
+<!-- /wp:paragraph -->
+<!-- wp:html -->
+<p class="ghf-central-change-log-link">Change history is maintained on the <a href="/research/master-change-log-october-2026/">Master Change Log</a>; no separate page-local version footer is maintained.</p>
+<!-- /wp:html -->
+<!-- wp:html -->
+<p class="ghf-central-change-log-link">Change history is maintained on the <a href="/research/master-change-log-october-2026/">Master Change Log</a>; no separate page-local version footer is maintained.</p>
+<!-- /wp:html -->
+</div></article><p class="back"><a href="/research/">Browse mirror index</a></p></main><footer class="site-footer"><p>© 2026 the Williams–Buckler family of Tŷ Mawr (Great House Farm), Llandough. All rights reserved. <a href="/dartboard/licence/">Licence</a></p></footer><aside id="evidence-preview" class="preview-modal" role="dialog" aria-live="polite" aria-label="Linked evidence preview" hidden><div class="preview-actions"><strong>Linked evidence preview</strong><button type="button" id="preview-close" aria-label="Close preview">Close</button></div><h2 id="preview-title"></h2><p id="preview-body"></p><div class="preview-actions"><a id="preview-link" href="#">Open page / artifact</a></div></aside><script>(function(){var box=document.getElementById("evidence-preview"),title=document.getElementById("preview-title"),body=document.getElementById("preview-body"),link=document.getElementById("preview-link"),close=document.getElementById("preview-close"),active=null,timer=null;if(!box)return;function hide(){box.hidden=true;active=null;} close.addEventListener("click",hide);function mark(p){var s=p.getAttribute("data-evidence-status");if(!s){if(p.classList.contains("evidence-assured"))s="assured";else if(p.classList.contains("evidence-not-assured"))s="not-assured";}if(s!=="assured"&&s!=="not-assured")return;if(p.querySelector(".quality-marker"))return;var m=document.createElement("span");m.className="quality-marker "+(s==="assured"?"assured":"not-assured");m.textContent=s==="assured"?"□":"◇";m.setAttribute("aria-label",s==="assured"?"Assessed assured":"Assessed not assured");p.insertBefore(m,p.firstChild);}function localEvidenceHref(a){try{var u=new URL(a.href,location.href);if(u.origin===location.origin&&u.pathname!==location.pathname&&u.pathname!=="/api/preview")return u.pathname;if(u.pathname.startsWith("/asset"))return u.pathname+u.search;}catch(e){}return null;}async function preview(p){if(active===p)return;var a=p.querySelector("a[href]");if(!a)return;var target=localEvidenceHref(a);if(!target)return;active=p;try{var endpoint;if(target.startsWith("/asset")){var u=new URL(target,location.href).searchParams.get("url")||a.href;endpoint="/api/preview?url="+encodeURIComponent(u);}else{endpoint="/api/preview?path="+encodeURIComponent(target);}var r=await fetch(endpoint,{headers:{"Accept":"application/json"}});if(!r.ok)return;var d=await r.json();if(!d.found)return;title.textContent=d.title||"Linked page";body.textContent=d.excerpt||"Open the linked page to inspect its contents.";link.href=d.url||target;box.hidden=false;}catch(e){}}document.querySelectorAll(".content p,.content li,.content blockquote").forEach(function(p){mark(p);p.addEventListener("mouseenter",function(){clearTimeout(timer);timer=setTimeout(function(){preview(p);},320);});p.addEventListener("focusin",function(){preview(p);});p.addEventListener("mouseup",function(){var sel=String(window.getSelection?window.getSelection():"").trim();if(sel.length>8)preview(p);});});box.addEventListener("mouseenter",function(){clearTimeout(timer);});document.addEventListener("keydown",function(e){if(e.key==="Escape")hide();});})();</script></body></html>

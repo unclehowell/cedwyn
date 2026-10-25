@@ -828,8 +828,3 @@ $("ptt").addEventListener("contextmenu", e => e.preventDefault());
 $("call").onclick = () => call ? endCall() : startCall();
 $("tx").onsubmit = e => { e.preventDefault(); const v = $("txi").value; $("txi").value = ""; utter(v); };
 window.terrain = { utter, tool, render: () => SCENE, flyTo, voice: () => ({ MIME, floor, inSpeech, sending, stream: !!stream, rec: !!rec, device: { stt: VW.stt, tts: VW.tts, llm: !!VW.llm, loadMs: VW.loadMs, warmMs: VW.warmMs, lastSttMs: VW.lastSttMs, bytes: Object.values(VW.total).reduce((x, y) => x + y, 0) }, bsr: !!BSR }), loadDeviceStt, loadDeviceTts, deviceStt };
-
-
-
-
-
