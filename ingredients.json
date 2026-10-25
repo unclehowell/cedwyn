@@ -1,6 +1,6 @@
 {
  "rule": "Cedwyn editorial rule (25 Oct 2026): ingredients, not conclusions. Build-time rewording of conclusion sentences in mirrored theme text; cedwyn copy only, the datro sources are untouched. Each entry: theme, file (relative to the theme root), find (exact), replace, why. A find that is not present is reported, never fatal. — Sion's Tab agent",
- "version": "1.2.1",
+ "version": "1.2.2",
  "rewords": [
   {
    "theme": "maps",
@@ -800,6 +800,342 @@
    "replace": "\">Text</a> · <a style=\"color:#ffd27a\" href=\"/wayback/people/\">Public faces</a></div>",
    "why": "Menu entry, not a reword: adds the Wayback Vault's new Public faces collection (/wayback/people/, read from the catalogue database) to the archive bar. Remove this entry to take the link away.",
    "audit_point": "public-faces"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/1962-possession-order/\"",
+   "replace": "href=\"/wiki/1962-possession-order/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/1974-licence-letters/\"",
+   "replace": "href=\"/wiki/1974-licence-letters/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/agent-roles/\"",
+   "replace": "href=\"/wiki/agent-roles/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/anomalies-register/\"",
+   "replace": "href=\"/wiki/anomalies-register/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/claim-parcel-a-parcel-b-distinct-histories-1987-amalgamation\"",
+   "replace": "href=\"/wiki/claim-parcel-a-parcel-b-distinct-histories-1987-amalgamation\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/constructive-criticism-counterarguments/\"",
+   "replace": "href=\"/wiki/constructive-criticism-counterarguments/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/evidence-library/ghf-e113-itv-wales-report-great-house-farm-1988/\"",
+   "replace": "href=\"/wiki/evidence-library/ghf-e113-itv-wales-report-great-house-farm-1988/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/evidence-library/ghf-e115-1877-bute-thomas-agreement/\"",
+   "replace": "href=\"/wiki/evidence-library/ghf-e115-1877-bute-thomas-agreement/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/evidence-library/ghf-e122-1949-surrender-and-re-grant-of-frederick-bucklers-tenancy/\"",
+   "replace": "href=\"/wiki/evidence-library/ghf-e122-1949-surrender-and-re-grant-of-frederick-bucklers-tenancy/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/evidence/ev-0252-tna-os-35-2503-object-name-book-glamorgan-47-nw/\"",
+   "replace": "href=\"/wiki/evidence/ev-0252-tna-os-35-2503-object-name-book-glamorgan-47-nw/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/land-registry-titles/\"",
+   "replace": "href=\"/wiki/land-registry-titles/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/mary-williams-statement/\"",
+   "replace": "href=\"/wiki/mary-williams-statement/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/master-change-log-october-2026/\"",
+   "replace": "href=\"/wiki/master-change-log-october-2026/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/missing-records-register/\"",
+   "replace": "href=\"/wiki/missing-records-register/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/project-management/damages/\"",
+   "replace": "href=\"/wiki/project-management/damages/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/project-management/damages/reparations-schedule/\"",
+   "replace": "href=\"/wiki/project-management/damages/reparations-schedule/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/project-management/foi-records-requests-status-forward-plan/\"",
+   "replace": "href=\"/wiki/project-management/foi-records-requests-status-forward-plan/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/project-management/foi-records-requests-status-forward-plan/1986-87-solicitors-files-preservation-disclosure-workstream/\"",
+   "replace": "href=\"/wiki/project-management/foi-records-requests-status-forward-plan/1986-87-solicitors-files-preservation-disclosure-workstream/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/project-management/llandough-community-council-22-october-2026/\"",
+   "replace": "href=\"/wiki/project-management/llandough-community-council-22-october-2026/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/qa/\"",
+   "replace": "href=\"/wiki/qa/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/qa/qa-demolition-redevelopment/\"",
+   "replace": "href=\"/wiki/qa/qa-demolition-redevelopment/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/qa/qa-evidence-records/\"",
+   "replace": "href=\"/wiki/qa/qa-evidence-records/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/qa/qa-family/\"",
+   "replace": "href=\"/wiki/qa/qa-family/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/qa/qa-heritage-archaeology/\"",
+   "replace": "href=\"/wiki/qa/qa-heritage-archaeology/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/qa/qa-history-parcels/\"",
+   "replace": "href=\"/wiki/qa/qa-history-parcels/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/qa/qa-human-rights/\"",
+   "replace": "href=\"/wiki/qa/qa-human-rights/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/qa/qa-legal-ownership/\"",
+   "replace": "href=\"/wiki/qa/qa-legal-ownership/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/qa/qa-open-questions/\"",
+   "replace": "href=\"/wiki/qa/qa-open-questions/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/qa/qa-reparations-remedy/\"",
+   "replace": "href=\"/wiki/qa/qa-reparations-remedy/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/records-access-chronology/foi-reply-register/vale-of-glamorgan-council-email-correspondence-catalogue/\"",
+   "replace": "href=\"/wiki/records-access-chronology/foi-reply-register/vale-of-glamorgan-council-email-correspondence-catalogue/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/restoration-campaign/\"",
+   "replace": "href=\"/wiki/restoration-campaign/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/scrutiny-and-accountability/court-judicial-issues/potential-miscarriage-of-justice-issue-register/\"",
+   "replace": "href=\"/wiki/scrutiny-and-accountability/court-judicial-issues/potential-miscarriage-of-justice-issue-register/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/scrutiny-and-accountability/government-public-authority-involvement/courts-archives-public-authorities/\"",
+   "replace": "href=\"/wiki/scrutiny-and-accountability/government-public-authority-involvement/courts-archives-public-authorities/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/scrutiny-and-accountability/government-public-authority-involvement/forest-of-cardiff-forensic-institutional-review/\"",
+   "replace": "href=\"/wiki/scrutiny-and-accountability/government-public-authority-involvement/forest-of-cardiff-forensic-institutional-review/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/scrutiny-and-accountability/government-public-authority-involvement/hm-land-registry-administrative-decisions/\"",
+   "replace": "href=\"/wiki/scrutiny-and-accountability/government-public-authority-involvement/hm-land-registry-administrative-decisions/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/scrutiny-and-accountability/master-scrutiny-issue-register/\"",
+   "replace": "href=\"/wiki/scrutiny-and-accountability/master-scrutiny-issue-register/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/scrutiny-and-accountability/procedural-fairness-notice/1982-83-registration-opportunity-to-object/\"",
+   "replace": "href=\"/wiki/scrutiny-and-accountability/procedural-fairness-notice/1982-83-registration-opportunity-to-object/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/scrutiny-and-accountability/procedural-fairness-notice/1987-hmlr-amalgamation-during-appeal/\"",
+   "replace": "href=\"/wiki/scrutiny-and-accountability/procedural-fairness-notice/1987-hmlr-amalgamation-during-appeal/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/scrutiny-and-accountability/suspected-fraud-concealment/concealment-missing-records-disclosure/\"",
+   "replace": "href=\"/wiki/scrutiny-and-accountability/suspected-fraud-concealment/concealment-missing-records-disclosure/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/testimony/\"",
+   "replace": "href=\"/wiki/testimony/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/testimony/mary-williams/\"",
+   "replace": "href=\"/wiki/testimony/mary-williams/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "href=\"/research/the-two-parcels/three-parts-of-parcel-a-divergent-chronologies/\"",
+   "replace": "href=\"/wiki/the-two-parcels/three-parts-of-parcel-a-divergent-chronologies/\"",
+   "why": "Link repoint, not a reword: this article is not in the Research Library copy, but the same article is in the wiki theme. The link opened 'Not here'.",
+   "audit_point": "not-here-links"
   }
  ]
 }
