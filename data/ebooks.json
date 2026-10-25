@@ -1,0 +1,129 @@
+{
+ "version": "1.0.0",
+ "source": "ebooks-patch 1.0.0 (25 Oct 2026 12:29Z), checked against the store data, the payment links and the shop the same morning",
+ "price_rule": "v0.01 £0.00; v0.02 £9.99; each later edition +£4.99 (v0.03 £14.98, v0.04 £19.97 …); bundle = newest editions of its books less 20%, rounded to .99 (archive_ladder.py)",
+ "books": [
+  {
+   "id": "great-house-farm-wiki",
+   "title": "Great House Farm (Tŷ Mawr), Llandough — The Wiki",
+   "edition": "v0.02",
+   "semver": "0.2.1",
+   "price": "£9.99",
+   "pages": 1987,
+   "date": "2026-10-20",
+   "free": "v0.01",
+   "next_price": "£14.98",
+   "page": "/ebooks/"
+  },
+  {
+   "id": "fcg-fraud-concealment-and-government-involvement",
+   "title": "Fraud, Concealment and Government Involvement",
+   "edition": "v0.02",
+   "semver": "1.0.0",
+   "price": "£9.99",
+   "pages": 221,
+   "date": "2026-10-20",
+   "free": "v0.01",
+   "next_price": "£14.98",
+   "page": "/ebooks/fcg/"
+  },
+  {
+   "id": "project-management",
+   "title": "Great House Farm Projects",
+   "edition": "v0.02",
+   "semver": "1.0.0",
+   "price": "£9.99",
+   "pages": 187,
+   "date": "2026-10-20",
+   "free": "v0.01",
+   "next_price": "£14.98",
+   "page": "/ebooks/projects/"
+  },
+  {
+   "id": "dartboard-disclosure",
+   "title": "The Disclosure Dartboard",
+   "edition": "v0.02",
+   "semver": "1.0.2",
+   "price": "£9.99",
+   "pages": 404,
+   "date": "2026-10-20",
+   "free": "v0.01",
+   "next_price": "£14.98",
+   "page": "/ebooks/dartboard/"
+  },
+  {
+   "id": "tymawr-deaths",
+   "title": "The Tŷ Mawr Deaths",
+   "edition": "v0.02",
+   "semver": "1.0.0",
+   "price": "£9.99",
+   "pages": 69,
+   "date": "2026-10-20",
+   "free": "v0.01",
+   "next_price": "£14.98",
+   "page": "/ebooks/tymawr-deaths/"
+  },
+  {
+   "id": "recorded-incidents",
+   "title": "Recorded Incidents",
+   "edition": "v0.02",
+   "semver": "0.2.0",
+   "price": "£9.99",
+   "pages": 44,
+   "date": "2026-10-20",
+   "free": "v0.01",
+   "next_price": "£14.98",
+   "page": "/ebooks/recorded-incidents/"
+  },
+  {
+   "id": "tymawr-heritage",
+   "title": "Tŷ Mawr",
+   "edition": "v0.02",
+   "semver": "0.2.0",
+   "price": "£9.99",
+   "pages": 43,
+   "date": "2026-10-20",
+   "free": "v0.01",
+   "next_price": "£14.98",
+   "page": "/ebooks/tymawr-heritage/"
+  },
+  {
+   "id": "williams-buckler-family",
+   "title": "The Williams–Buckler Family",
+   "edition": "v0.02",
+   "semver": "0.2.0",
+   "price": "£9.99",
+   "pages": 34,
+   "date": "2026-10-20",
+   "free": "v0.01",
+   "next_price": "£14.98",
+   "page": "/ebooks/williams-buckler-family/"
+  },
+  {
+   "id": "cedwyn",
+   "title": "Cedwyn: Names, Places, Legend and Title of Tŷ Mawr",
+   "edition": "v0.01",
+   "semver": "0.1.0",
+   "price": "£0.00",
+   "pages": 32,
+   "date": "2026-10-20",
+   "free": "v0.01",
+   "next_price": "£9.99",
+   "page": "/ebooks/cedwyn/"
+  }
+ ],
+ "bundles": [
+  {
+   "id": "all-four",
+   "title": "All four Great House Farm e-books",
+   "price": "£31.99",
+   "page": "/ebooks/all-four/",
+   "books": [
+    "great-house-farm-wiki",
+    "fcg-fraud-concealment-and-government-involvement",
+    "dartboard-disclosure",
+    "project-management"
+   ]
+  }
+ ]
+}
