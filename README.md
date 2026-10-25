@@ -231,3 +231,34 @@ Summary: 29 identical, 4 close, 3 with gaps; no theme scrolls sideways at 390 or
 - docs: the Sphinx build is not run in CI (sphinx missing), so the docs theme is a crawl of the live docs (identical in
   parity).
 - The two map-tile templates stay as the only stated outside requests.
+
+## Stage 3 (25 Oct 2026): the themes read from the one database
+
+Every theme now reads its data and evidence from the catalogue database. Before this, each theme read its own file copies.
+
+**How a theme reads from the database**
+- `tools/dbmap.py` runs at build time. For every row of the `blobs` table it records where the bytes sit inside the SQLite file: the part in the row's b-tree cell, and the overflow pages that hold the rest. It reads every entry back through that map and checks it against the row's sha256; if any entry fails, the build stops. The map is written to `/db/blobmap.json`, together with every theme path from the `locations` table.
+- `cedwyn-sw.js` is a service worker at the site root. It answers each theme request for JSON, CSV, XML, GeoJSON, images, PDFs or audio straight from the database chunk files, using `web/_cedwyn/dbfs.js`. Each answer carries the header `X-Cedwyn-Source: db`. Pages, scripts and styles still load as files.
+- Each read first asks for only the bytes it needs (an HTTP Range request). Cloudflare Pages answers that with the whole chunk file, so the worker keeps each chunk in the browser cache and re-checks the sha256 before using any bytes.
+- On a first visit, `runtime.js` pauses the page, starts the worker and reloads once (once per tab). Some browsers cannot run a service worker, such as Firefox private windows. There, the same reader runs inside the page: `fetch` and `XMLHttpRequest` data come from the database, and an image that fails to load is filled from the database too.
+- The blob rows are written in clusters: every theme's data first, then media, each grouped by theme and path. The few chunks one page needs therefore sit next to each other.
+
+**The database is the one source** (`tools/dbserve.py`, the last step after the self-contained test passes)
+- A file the database holds byte for byte is removed from the deploy. Build 7 removed 5,828 files (1.39 GB): 1,295 data files, 1,210 images, 3,239 PDF and document copies, and 84 audio files.
+- The deployed site went from 17,128 files (2.50 GB) to 11,304 files (1.10 GB). The database is unchanged: 3,958 blobs (571 MB) in one SQLite file.
+- 547 files are also kept as files, because browsers fetch them before or outside a service worker:
+  - 398 images named in page markup (the browser's preload scanner asks for these before any script runs);
+  - 105 icons and `<link>`/`<meta>` images;
+  - 25 images named in CSS;
+  - 15 favicons, manifests and feeds;
+  - 4 files named by pages that do not load the runtime.
+  The worker still serves all of these from the database.
+- In total, 6,395 theme paths are served from the database.
+
+**Measured on the live site (build 7, all 36 themes at 390 and 1280 px, fresh browser each time):** 247 data and media requests were answered by the database, and 4 came from files. The 4 were the maps theme's 2 GeoJSON layers at each width, which were not stored as data; build 9 adds them. No theme regressed on header, burger, sideways scroll, broken images, failed requests or text length. Pages fetched 234 chunk requests (90 MB) for those 247 files, so build 9 halves the chunk size to 256 KB.
+
+### Why images are binary BLOBs and base64 happens at display time
+- Live database: 1,435 images take 87.7 MB as raw bytes. As base64 text they would take 117.0 MB, which is 29.2 MB more and 56 more 512 KB chunk files to download.
+- Across all 3,958 blobs, base64 at rest would mean 760.8 MB instead of 570.6 MB.
+- Chunk files are served uncompressed, so none of that overhead would be won back in transit.
+- The catalogue and GraphQL `dataUri` field still give base64 `data:` URIs when asked, built when they are read.
