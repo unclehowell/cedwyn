@@ -265,7 +265,7 @@ _state_by_url = {p.get('url'): p for p in _state if p.get('url')}
 for _x in _watch:
     _st = _state_by_url.get(_x.get('url'), {})
     _merged = dict(_x); _merged.update({k:v for k,v in _st.items() if k not in ('id','title','source_id','url')})
-    con.execute("""INSERT OR REPLACE INTO monitored_pages VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
+    con.execute("""INSERT OR REPLACE INTO monitored_pages VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
         _merged.get('id'), _merged.get('url'), _merged.get('title'), _merged.get('source_id'), _merged.get('custodian'),
         _merged.get('topic'), 1 if _merged.get('enabled') else 0, 1 if _merged.get('required_snapshot') else 0,
         _merged.get('relevance_status'), _merged.get('sha256'), _merged.get('http_status'), _merged.get('last_checked'),
@@ -284,6 +284,9 @@ cnt = lambda q: con.execute(q).fetchone()[0]
 stats = dict(artifacts=cnt('SELECT count(*) FROM artifacts'), locations=cnt('SELECT count(*) FROM locations'), blobs=cnt('SELECT count(*) FROM blobs'),
              blob_bytes=blob_total, blob_skipped_over_cap=blob_skipped, edges=cnt('SELECT count(*) FROM edges'), nodes=cnt('SELECT count(*) FROM nodes'),
              fts_rows=cnt('SELECT count(*) FROM fts'), captures=cnt('SELECT count(*) FROM captures'), cites=n_ext, themes=len(TIDS),
+             source_records=cnt('SELECT count(*) FROM source_records'), interpretations=cnt('SELECT count(*) FROM interpretations'),
+             research_leads=cnt('SELECT count(*) FROM research_leads'), monitored_pages=cnt('SELECT count(*) FROM monitored_pages'),
+             unlocated_leads=cnt('SELECT count(*) FROM research_leads WHERE not_a_located_record=1'),
              layer_items=n_layer_items, layer_refs=n_layer_refs, layer_deps=n_layer_deps)
 for k, v in stats.items(): con.execute('INSERT INTO meta VALUES(?,?)', (k, str(v)))
 con.commit()
