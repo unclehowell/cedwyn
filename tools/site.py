@@ -34,7 +34,10 @@ bc = DIST / '_cedwyn' / 'ghf' / 'basecamp.js'
 chain = [[t['id'], t.get('title') or t['id']] for t in CFG['themes']]
 assert len({c[0] for c in chain}) == len(chain), 'duplicate theme id in themes.json'
 bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False))
-              .replace('HOME = "https://bucklerfamily.estate/cedwyn/"', 'HOME = "/"'))   # the menu's home link: the oak board
+              .replace('HOME = "https://bucklerfamily.estate/cedwyn/"', 'HOME = "/"')
+              # DARTBOARD_NAMES: the dartboard theme is the dartboard app now, not the home (header and menu names)
+              .replace('"Home · The Disclosure Dartboard"', '"The Disclosure Dartboard"').replace('"Hafan · Bwrdd Dartiau Datgelu"', '"Bwrdd Dartiau Datgelu"')
+              .replace('"Inicio · La Diana de la Divulgación"', '"La Diana de la Divulgación"'))   # the menu's home link: the oak board
 # archive interface inside the wayback theme
 go = DIST / 'wayback' / 'go'; go.mkdir(parents=True, exist_ok=True)
 shutil.copyfile(DIST / '_cedwyn' / 'archive' / 'go.html', go / 'index.html')
