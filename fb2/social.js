@@ -69,6 +69,3 @@
 
 /* Friends page filters — Sion's Tab agent */
 (function(){var b=document.querySelectorAll('.fr-filters button');if(!b.length)return;b.forEach(function(x){x.addEventListener('click',function(){b.forEach(function(y){y.setAttribute('aria-pressed',y===x?'true':'false')});document.querySelectorAll('.fr').forEach(function(f){f.hidden=!(x.dataset.f==='all'||f.dataset.tag===x.dataset.f)})})})})();
-
-/* Messages icon in the header (25 Oct 2026): opens the inbox at /inbox/ — Sion's Tab agent */
-(function(){function add(){var a=document.querySelector(".fb-top .fb-acts");if(!a||a.querySelector(".fb-msg-ic"))return;var c=window.__cedwyn,P=c&&c.theme?"/"+c.theme:"",l=document.createElement("a");l.className="fb-ic fb-msg-ic";l.href=P+"/inbox/";l.setAttribute("aria-label","Messages: the inbox");l.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" class="si"><path d="M4 4.5h16a1.5 1.5 0 0 1 1.5 1.5v10a1.5 1.5 0 0 1-1.5 1.5H9.5L5 21v-3.5H4A1.5 1.5 0 0 1 2.5 16V6A1.5 1.5 0 0 1 4 4.5z" fill="currentColor"/><path d="M6.5 9h11M6.5 12.5h7" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>';a.insertBefore(l,a.querySelector(".fb-ic-round"));}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",add);else add();})();
