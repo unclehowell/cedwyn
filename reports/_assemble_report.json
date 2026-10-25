@@ -37,20 +37,12 @@
   "bytes": 16119831,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 0
+  "secs": 1
  },
  "chess": {
   "how": "branch",
   "files": 55,
   "bytes": 3468473,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 0
- },
- "fb": {
-  "how": "branch",
-  "files": 576,
-  "bytes": 9343452,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 0
@@ -62,6 +54,14 @@
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 0
+ },
+ "fb": {
+  "how": "branch",
+  "files": 576,
+  "bytes": 9343452,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
  },
  "oldbill": {
   "how": "branch",
@@ -125,19 +125,27 @@
   "bytes": 2529919,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 0
+  "secs": 1
  },
  "_build_logs": {
-  "docs": "[docs] 1022 document(s) pass the rules\n[docs] ghf_evidence/ev_0001 [en] html\n[docs] ghf_evidence/ev_0003 [en] html\n[docs] ghf_evidence/ev_0002 [en] html\n[docs] ghf_evidence/ev_0004 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0005 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0006 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\nsphinx -b html failed for /home/runner/work/cedwyn/cedwyn/src_tmp_docs/ghf_evidence/ev_0001/latest/source\n",
-  "story": "vsbuckler@0.1.0 build\n> vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m\u2713\u001b[39m 34 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                \u001b[39m\u001b[1m\u001b[2m  3.61 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   1.46 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mmain-CJIfExBc.css  \u001b[39m\u001b[1m\u001b[2m 23.63 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   5.73 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-Dktr8I9D.js  \u001b[39m\u001b[1m\u001b[33m815.08 kB\u001b[39m\u001b[22m\u001b[2m \u2502 gzip: 187.02 kB\u001b[22m\n\u001b[32m\u2713 built in 996ms\u001b[39m\nCopied storyboard media into dist/media\noptional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-10-25T10_35_13_684Z-debug-0.log\n\u001b[33m\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
+  "docs": "nce/ev_0001 [en] html\n[docs] ghf_evidence/ev_0003 [en] html\n[docs] ghf_evidence/ev_0004 [en] html\n[docs] ghf_evidence/ev_0002 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0005 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0006 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0007 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\nsphinx -b html failed for /home/runner/work/cedwyn/cedwyn/src_tmp_docs/ghf_evidence/ev_0001/latest/source\n",
+  "story": "vsbuckler@0.1.0 build\n> vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m\u2713\u001b[39m 34 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                \u001b[39m\u001b[1m\u001b[2m  3.61 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   1.46 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mmain-CJIfExBc.css  \u001b[39m\u001b[1m\u001b[2m 23.63 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   5.73 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-Dktr8I9D.js  \u001b[39m\u001b[1m\u001b[33m815.08 kB\u001b[39m\u001b[22m\u001b[2m \u2502 gzip: 187.02 kB\u001b[22m\n\u001b[32m\u2713 built in 1.46s\u001b[39m\nCopied storyboard media into dist/media\noptional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-10-25T10_43_36_580Z-debug-0.log\n\u001b[33m\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
  },
  "app": {
   "how": "crawl",
   "files": 19,
-  "bytes": 1234500,
+  "bytes": 1250848,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 2
+ },
+ "chat": {
+  "how": "crawl",
+  "files": 5,
+  "bytes": 36989,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
  },
  "wayback": {
   "how": "branch",
@@ -145,7 +153,7 @@
   "bytes": 892373406,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 6
+  "secs": 8
  },
  "watchtower": {
   "how": "branch",
@@ -163,14 +171,6 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
- "chat": {
-  "how": "crawl",
-  "files": 5,
-  "bytes": 36475,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1
- },
  "emails": {
   "how": "branch",
   "files": 7,
@@ -182,7 +182,7 @@
  "dartboard": {
   "how": "crawl",
   "files": 6,
-  "bytes": 1878870,
+  "bytes": 1879384,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1
@@ -190,15 +190,15 @@
  "email": {
   "how": "crawl",
   "files": 10,
-  "bytes": 11353980,
+  "bytes": 11354494,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 2
+  "secs": 3
  },
  "estate": {
   "how": "crawl",
   "files": 1,
-  "bytes": 80742,
+  "bytes": 81960,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1
@@ -214,7 +214,15 @@
  "patagonia": {
   "how": "crawl",
   "files": 1,
-  "bytes": 32819,
+  "bytes": 34037,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
+ },
+ "terrain": {
+  "how": "crawl",
+  "files": 6,
+  "bytes": 326779,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1
@@ -222,18 +230,10 @@
  "wales": {
   "how": "crawl",
   "files": 2,
-  "bytes": 46040,
+  "bytes": 48476,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 1
- },
- "cyberspace": {
-  "how": "crawl",
-  "files": 1,
-  "bytes": 60470,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 0
+  "secs": 2
  },
  "shop": {
   "how": "branch",
@@ -243,10 +243,10 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
- "terrain": {
+ "cyberspace": {
   "how": "crawl",
-  "files": 6,
-  "bytes": 325561,
+  "files": 1,
+  "bytes": 61688,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1
@@ -265,41 +265,41 @@
   "bytes": 6695017,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 11
+  "secs": 14
  },
  "fcg": {
   "how": "crawl",
   "files": 153,
-  "bytes": 3655214,
+  "bytes": 3760530,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 12
+  "secs": 14
  },
  "_wiki_log": {
-  "wiki": "wiki: {'sitemap': 976, 'robots_blocked': 0, 'pages_ok': 976, 'pages_failed_n': 0, 'assets_ok': 149, 'assets_failed_n': 2, 'scripts_dropped': 16568, 'bytes': 133465098, 'secs': 22}\n"
+  "wiki": "wiki: {'sitemap': 976, 'robots_blocked': 0, 'pages_ok': 976, 'pages_failed_n': 0, 'assets_ok': 149, 'assets_failed_n': 2, 'scripts_dropped': 16568, 'bytes': 133463094, 'secs': 32}\n"
  },
  "wiki": {
   "how": "wiki.py(robots)",
   "files": 1125,
-  "bytes": 133226695,
+  "bytes": 133224614,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 22
+  "secs": 32
  },
  "docs": {
   "how": "crawl(fallback)",
   "files": 3090,
-  "bytes": 37158474,
+  "bytes": 39612369,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 133
+  "secs": 188
  },
  "research": {
   "how": "crawl",
   "files": 1170,
-  "bytes": 42454116,
+  "bytes": 43629097,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 157
+  "secs": 181
  }
 }
