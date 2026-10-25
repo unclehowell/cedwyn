@@ -27,6 +27,67 @@
   "clerk.bucklerfamily.estate": "wiki",
   "www.bucklerfamily.estate": null
  },
+ "home": {
+  "title": "Cedwyn Estate",
+  "family": "Williams-Buckler Family",
+  "est": "(Est. 1667)",
+  "kicker": "The family estate directory",
+  "eyebrow": "A family estate · Wales to Patagonia and beyond",
+  "monogram": "CE",
+  "description": "Cedwyn Estate, the Williams-Buckler family directory: one archive of Great House Farm, {n} layers to explore it, by way of Wales, Argentina or Cyberspace.",
+  "layers_note": "Whichever way you come in, the same {n} layers open here, in four groups.",
+  "realms": [
+   {
+    "id": "wales",
+    "kick": "Tours · Llandough",
+    "title": "Wales — Great House Farm",
+    "note": "The original farmhouse, its landscape and the family record."
+   },
+   {
+    "id": "argentina",
+    "kick": "Tours · Patagonia",
+    "title": "Argentina — Great House Farm II",
+    "note": "The southern counterpart, near Puerto Madryn."
+   },
+   {
+    "id": "cyberspace",
+    "kick": "Online",
+    "title": "Cyberspace — the digital estate",
+    "note": "Play, browse, read and build the estate from anywhere."
+   }
+  ]
+ },
+ "groups": [
+  {
+   "id": "interactive",
+   "title": "Interactive",
+   "cy": "Rhyngweithiol",
+   "es": "Interactivo",
+   "note": "Games, infographics, tours and tools to explore."
+  },
+  {
+   "id": "research",
+   "title": "Modern research and how it's going",
+   "cy": "Ymchwil heddiw a sut mae’n mynd",
+   "es": "La investigación de hoy y cómo avanza",
+   "note": "Research, projects, requests and their progress, as of today."
+  },
+  {
+   "id": "artifacts",
+   "title": "Historic artifacts",
+   "cy": "Arteffactau hanesyddol",
+   "es": "Artefactos históricos",
+   "note": "Records, documents, captured pages, maps and photographs."
+  },
+  {
+   "id": "story",
+   "title": "A story to be retold",
+   "cy": "Stori i’w hailadrodd",
+   "es": "Una historia para volver a contar",
+   "note": "The museum tour, the thousand cuts, the books and the questions."
+  }
+ ],
+ "default_group": "interactive",
  "themes": [
   {
    "id": "records",
@@ -40,7 +101,8 @@
    "paths": [],
    "desc": "Great House Farm — Primary Record Register",
    "branch": "ghf-primary-records",
-   "dir": ""
+   "dir": "",
+   "group": "artifacts"
   },
   {
    "id": "docs",
@@ -56,7 +118,8 @@
    "branch": "docs",
    "dir": "public",
    "build": "python3 _theme-docs/build.py",
-   "crawl_fallback": true
+   "crawl_fallback": true,
+   "group": "artifacts"
   },
   {
    "id": "wayback",
@@ -70,7 +133,8 @@
    "paths": [],
    "desc": "",
    "branch": "wayback",
-   "dir": "wayback"
+   "dir": "wayback",
+   "group": "artifacts"
   },
   {
    "id": "nomenclature",
@@ -86,7 +150,8 @@
    "paths": [],
    "desc": "",
    "branch": "nomenclature",
-   "dir": "public"
+   "dir": "public",
+   "group": "artifacts"
   },
   {
    "id": "maps",
@@ -100,7 +165,8 @@
    "paths": [],
    "desc": "",
    "branch": "maps",
-   "dir": "public"
+   "dir": "public",
+   "group": "artifacts"
   },
   {
    "id": "infographic",
@@ -114,7 +180,8 @@
    "paths": [],
    "desc": "Great House Farm · the land changing hands",
    "branch": "infographic",
-   "dir": "public"
+   "dir": "public",
+   "group": "interactive"
   },
   {
    "id": "wiki",
@@ -131,7 +198,8 @@
    "branch": "wiki",
    "dir": "site",
    "wp_copy": "tools/wiki.py",
-   "crawl_secs": 1500
+   "crawl_secs": 1500,
+   "group": "artifacts"
   },
   {
    "id": "ebooks",
@@ -145,7 +213,8 @@
    "paths": [],
    "desc": "E-books",
    "branch": "ebooks",
-   "dir": "public"
+   "dir": "public",
+   "group": "story"
   },
   {
    "id": "story",
@@ -163,7 +232,8 @@
    "dir": "static/bpvsbuckler/dist",
    "root": "static/bpvsbuckler",
    "build": "(npm ci --no-audit --no-fund || npm install --no-audit --no-fund) && npm run build",
-   "crawl_fallback": true
+   "crawl_fallback": true,
+   "group": "story"
   },
   {
    "id": "fb",
@@ -177,7 +247,8 @@
    "paths": [],
    "desc": "",
    "branch": "fb",
-   "dir": "site"
+   "dir": "site",
+   "group": "artifacts"
   },
   {
    "id": "chess",
@@ -191,7 +262,8 @@
    "paths": [],
    "desc": "",
    "branch": "chess",
-   "dir": "public"
+   "dir": "public",
+   "group": "interactive"
   },
   {
    "id": "csscpsg",
@@ -206,7 +278,8 @@
    "paths": [],
    "desc": "",
    "branch": "csscpsg",
-   "dir": "public"
+   "dir": "public",
+   "group": "interactive"
   },
   {
    "id": "fcg",
@@ -219,7 +292,8 @@
    ],
    "paths": [],
    "desc": "Clearance",
-   "crawl": "https://fcg.bucklerfamily.estate/"
+   "crawl": "https://fcg.bucklerfamily.estate/",
+   "group": "research"
   },
   {
    "id": "oldbill",
@@ -233,7 +307,8 @@
    "paths": [],
    "desc": "",
    "branch": "oldbill",
-   "dir": "public"
+   "dir": "public",
+   "group": "story"
   },
   {
    "id": "accounts",
@@ -247,7 +322,8 @@
    "paths": [],
    "desc": "",
    "branch": "accounts",
-   "dir": "public"
+   "dir": "public",
+   "group": "research"
   },
   {
    "id": "authorities",
@@ -261,7 +337,8 @@
    "paths": [],
    "desc": "Great House Farm — Public Authority Correspondence",
    "branch": "ghf-public-authorities",
-   "dir": ""
+   "dir": "",
+   "group": "research"
   },
   {
    "id": "wdtk",
@@ -275,7 +352,8 @@
    "paths": [],
    "desc": "",
    "branch": "whatdotheyknow",
-   "dir": "public"
+   "dir": "public",
+   "group": "research"
   },
   {
    "id": "review",
@@ -289,7 +367,8 @@
    "paths": [],
    "desc": "Great House Farm — Independent Review Register",
    "branch": "ghf-independent-review",
-   "dir": ""
+   "dir": "",
+   "group": "research"
   },
   {
    "id": "qa",
@@ -304,7 +383,8 @@
    "desc": "Questions & answers",
    "branch": "qa",
    "dir": "",
-   "overlay": "static/qa"
+   "overlay": "static/qa",
+   "group": "story"
   },
   {
    "id": "meeting",
@@ -318,7 +398,8 @@
    "paths": [],
    "desc": "",
    "branch": "2026-10-22",
-   "dir": "static/2026-10-22"
+   "dir": "static/2026-10-22",
+   "group": "research"
   },
   {
    "id": "projects",
@@ -332,7 +413,8 @@
    "paths": [],
    "desc": "",
    "branch": "projects",
-   "dir": "projects/public"
+   "dir": "projects/public",
+   "group": "research"
   },
   {
    "id": "app",
@@ -346,7 +428,8 @@
    ],
    "paths": [],
    "desc": "",
-   "crawl": "https://app.bucklerfamily.estate/"
+   "crawl": "https://app.bucklerfamily.estate/",
+   "group": "interactive"
   },
   {
    "id": "chat",
@@ -359,7 +442,8 @@
    ],
    "paths": [],
    "desc": "Agent",
-   "crawl": "https://chat.bucklerfamily.estate/"
+   "crawl": "https://chat.bucklerfamily.estate/",
+   "group": "interactive"
   },
   {
    "id": "watchtower",
@@ -373,7 +457,8 @@
    "paths": [],
    "desc": "",
    "branch": "watchtower",
-   "dir": "public"
+   "dir": "public",
+   "group": "research"
   },
   {
    "id": "fb2",
@@ -387,7 +472,8 @@
    "paths": [],
    "desc": "",
    "branch": "fb",
-   "dir": "site2"
+   "dir": "site2",
+   "group": "research"
   },
   {
    "id": "email",
@@ -400,7 +486,8 @@
    ],
    "paths": [],
    "desc": "",
-   "crawl": "https://email.bucklerfamily.estate/"
+   "crawl": "https://email.bucklerfamily.estate/",
+   "group": "research"
   },
   {
    "id": "emails",
@@ -414,11 +501,12 @@
    "paths": [],
    "desc": "",
    "branch": "emails",
-   "dir": "public"
+   "dir": "public",
+   "group": "research"
   },
   {
    "id": "dartboard",
-   "title": "Home · The Disclosure Dartboard",
+   "title": "The Disclosure Dartboard",
    "cy": "Hafan · Bwrdd Dartiau Datgelu",
    "es": "Inicio · La Diana de la Divulgación",
    "live": "https://bucklerfamily.estate/",
@@ -427,7 +515,8 @@
    ],
    "paths": [],
    "desc": "",
-   "crawl": "https://dartboard.bucklerfamily.estate/"
+   "crawl": "https://dartboard.bucklerfamily.estate/",
+   "group": "interactive"
   },
   {
    "id": "estate",
@@ -444,7 +533,8 @@
     "/cedwyn/"
    ],
    "desc": "",
-   "crawl": "https://bucklerfamily.estate/cedwyn/"
+   "crawl": "https://bucklerfamily.estate/cedwyn/",
+   "group": "interactive"
   },
   {
    "id": "directory",
@@ -458,7 +548,8 @@
    "paths": [],
    "desc": "",
    "branch": "directory",
-   "dir": "public"
+   "dir": "public",
+   "group": "interactive"
   },
   {
    "id": "patagonia",
@@ -471,7 +562,8 @@
     "/patagonia/"
    ],
    "desc": "",
-   "crawl": "https://bucklerfamily.estate/patagonia/"
+   "crawl": "https://bucklerfamily.estate/patagonia/",
+   "group": "artifacts"
   },
   {
    "id": "wales",
@@ -484,7 +576,8 @@
     "/wales/"
    ],
    "desc": "",
-   "crawl": "https://bucklerfamily.estate/wales/"
+   "crawl": "https://bucklerfamily.estate/wales/",
+   "group": "interactive"
   },
   {
    "id": "terrain",
@@ -497,7 +590,8 @@
    ],
    "paths": [],
    "desc": "",
-   "crawl": "https://terrain.bucklerfamily.estate/"
+   "crawl": "https://terrain.bucklerfamily.estate/",
+   "group": "interactive"
   },
   {
    "id": "cyberspace",
@@ -510,7 +604,8 @@
     "/cyberspace/"
    ],
    "desc": "",
-   "crawl": "https://bucklerfamily.estate/cyberspace/"
+   "crawl": "https://bucklerfamily.estate/cyberspace/",
+   "group": "interactive"
   },
   {
    "id": "shop",
@@ -524,7 +619,8 @@
    "paths": [],
    "desc": "",
    "branch": "merch",
-   "dir": "public"
+   "dir": "public",
+   "group": "story"
   },
   {
    "id": "research",
@@ -537,7 +633,8 @@
    ],
    "paths": [],
    "desc": "",
-   "crawl": "https://research.bucklerfamily.estate/"
+   "crawl": "https://research.bucklerfamily.estate/",
+   "group": "research"
   },
   {
    "id": "thousand-cuts",
@@ -548,7 +645,8 @@
    "hosts": [],
    "paths": [],
    "desc": "Every event that lowered the Williams family's standing in law, 1916–1988, with its evidence and dependencies (a layer over the catalogue; rows in the database's layer tables).",
-   "layer": true
+   "layer": true,
+   "group": "story"
   }
  ],
  "allowed_tile_templates": [

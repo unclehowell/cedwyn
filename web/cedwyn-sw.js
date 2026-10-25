@@ -3,7 +3,7 @@
    scripts and styles, and any file the database does not hold, go to the network as before. Responses served from the
    database carry the header X-Cedwyn-Source: db. - Sion's Tab agent */
 importScripts('/_cedwyn/dbfs.js?v=3');
-// sw build 2026-10-25c: 37th theme '1000 Cuts' (/thousand-cuts/) in the ‹ › loop; layer tables in the catalogue (new bytes, so phones update the worker)
+// sw build 2026-10-25d: oak-board home (three ways in, one grouped submenu of every theme), menu home link to / (new bytes, so phones update the worker)
 var EXT = /\.(json|csv|xml|geojson|png|jpe?g|gif|webp|svg|avif|ico|bmp|tiff?|pdf|docx?|mp3|m4a|ogg|wav)$/i;
 self.addEventListener('install', function (e) { self.skipWaiting(); e.waitUntil(CedwynDB.map().catch(function () {})); });
 self.addEventListener('activate', function (e) {

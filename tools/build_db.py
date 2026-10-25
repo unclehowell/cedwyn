@@ -59,6 +59,10 @@ def node(nid, kind, label): con.execute('INSERT OR IGNORE INTO nodes VALUES(?,?,
 def edge(s, r, d): con.execute('INSERT OR IGNORE INTO edges VALUES(?,?,?)', (s, r, d))
 for t in CFG['themes']:
     node('theme:' + t['id'], 'theme', t['title'])
+for g in CFG.get('groups', []):
+    node('group:' + g['id'], 'group', g['title'])
+for t in CFG['themes']:
+    if t.get('group'): edge('theme:' + t['id'], 'in_group', 'group:' + t['group'])
 sha_id = {}; blob_total = 0; blob_skipped = 0; path_aid = {}; pending = []
 files = sorted(p for p in DIST.rglob('*') if p.is_file() and len(p.parts) > D + 1 and (p.parts[D] in TIDS or p.parts[D] == '_blob'))
 for p in files:

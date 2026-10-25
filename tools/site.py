@@ -33,7 +33,8 @@ rt.write_text(rt.read_text().replace('__HOSTMAP__', json.dumps(hosts)).replace('
 bc = DIST / '_cedwyn' / 'ghf' / 'basecamp.js'
 chain = [[t['id'], t.get('title') or t['id']] for t in CFG['themes']]
 assert len({c[0] for c in chain}) == len(chain), 'duplicate theme id in themes.json'
-bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False)))
+bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False))
+              .replace('HOME = "https://bucklerfamily.estate/cedwyn/"', 'HOME = "/"'))   # the menu's home link: the oak board
 # archive interface inside the wayback theme
 go = DIST / 'wayback' / 'go'; go.mkdir(parents=True, exist_ok=True)
 shutil.copyfile(DIST / '_cedwyn' / 'archive' / 'go.html', go / 'index.html')
@@ -45,46 +46,13 @@ if wi.exists():
     for it in json.load(open(wi)).get('items', []):
         if it.get('key') and it.get('latest'): caps[it['key']] = {'l': '/wayback' + it['latest'], 't': it.get('title', ''), 'c': it.get('captured', '')}
 json.dump(caps, open(go / 'captures.json', 'w'), separators=(',', ':'))
-# landing page: theme picker
-rep = json.load(open(DIST / '_assemble_report.json')) if (DIST / '_assemble_report.json').exists() else {}
-GROUPS = [('Evidence and records', ['records', 'docs', 'wayback', 'authorities', 'wdtk', 'review', 'email', 'emails', 'watchtower', 'nomenclature']),
-          ('Read like a wiki or a book', ['wiki', 'research', 'story', 'ebooks', 'qa', 'chat', 'meeting', 'projects', 'app']),
-          ('Maps, tours and museums', ['maps', 'infographic', 'estate', 'directory', 'patagonia', 'wales', 'terrain', 'cyberspace']),
-          ('Games and puzzles', ['dartboard', 'chess', 'fcg', 'csscpsg']),
-          ('Social and media', ['fb', 'fb2']),
-          ('Accounts and shop', ['accounts', 'oldbill', 'shop'])]
-by = {t['id']: t for t in CFG['themes']}
-seen = set(); secs = []
-for g, ids in GROUPS:
-    ids = [i for i in ids if i in by]; seen.update(ids)
-    secs.append((g, ids))
-rest = [t['id'] for t in CFG['themes'] if t['id'] not in seen]
-if rest: secs.append(('More', rest))
-def card(t):
-    r = rep.get(t['id'], {})
-    ok = r.get('files', 1) > 0
-    sub = html.escape(t['live'].replace('https://', '').rstrip('/'))
-    return (f'<a class="t{"" if ok else " off"}" href="/{t["id"]}/"><b>{html.escape(t["title"])}</b>'
-            f'<span>/{t["id"]}/ · was {sub}</span></a>')
-body = ''.join(f'<details open><summary>{html.escape(g)} <i>{len(ids)}</i></summary><div class="g">' + ''.join(card(by[i]) for i in ids) + '</div></details>' for g, ids in secs)
-idx = f'''<!doctype html><html lang="en" data-ghf-host="bucklerfamily.estate" data-ghf-path="/cedwyn/themes/" data-ghf-native="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cedwyn · one archive, {len(CFG["themes"])} ways in</title><meta name="description" content="One catalogue of Great House Farm evidence, browsed through {len(CFG["themes"])} themes.">
-<style>*{{box-sizing:border-box}}body{{margin:0;font:16px/1.45 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#14141c;color:#e8e8f0}}
-header{{padding:18px 16px 12px;border-bottom:2px solid #fca}}h1{{margin:0;color:#fca;font-size:24px}}header p{{margin:4px 0 10px;color:#cfcfe0;font-size:14px}}
-form{{display:flex;gap:6px}}input{{flex:1;min-width:0;font:inherit;padding:9px 11px;border-radius:9px;border:1px solid #444;background:#1d1d28;color:#e8e8f0}}
-button{{font:inherit;font-weight:700;border:0;border-radius:9px;padding:9px 13px;background:#fca;color:#14141c}}
-main{{max-width:64rem;margin:0 auto;padding:8px 12px 40px}}details{{margin:10px 0}}summary{{cursor:pointer;font-weight:700;padding:8px 4px;color:#fca;list-style-position:inside}}
-summary i{{font-style:normal;color:#9a9ab0;font-weight:400;font-size:13px}}.g{{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}}
-a.t{{display:block;padding:10px 12px;border-radius:10px;background:#1d1d28;border:1px solid #2c2c3a;color:#e8e8f0;text-decoration:none}}a.t:hover{{border-color:#fca}}
-a.t b{{display:block;font-size:15px}}a.t span{{display:block;font-size:12px;color:#9a9ab0;margin-top:2px;word-break:break-all}}a.off{{opacity:.5}}
-footer{{max-width:64rem;margin:0 auto;padding:0 12px 30px;font-size:13px;color:#9a9ab0}}footer a{{color:#9cf}}</style></head><body>
-<header><h1>Cedwyn</h1><p>One catalogue of evidence. {len(CFG["themes"])} themes to browse it: a wiki, a museum tour, a media centre, games, a social feed, accounts and more.</p>
-<form action="/catalogue/"><input name="q" placeholder="Search everything" aria-label="Search everything"><button>Search</button></form></header>
-<main>{body}</main><footer><a href="/catalogue/">Catalogue</a> · <a href="/graphql/">GraphQL</a> · <a href="/wayback/">Archive</a> · <span id="st"></span></footer>
-<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('/cedwyn-sw.js',{{scope:'/',updateViaCache:'none'}}).catch(function(){{}});</script>
-<script>fetch('/db/stats.json').then(function(r){{return r.json()}}).then(function(s){{document.getElementById('st').textContent=s.artifacts.toLocaleString()+' artifacts · '+s.edges.toLocaleString()+' links in one database'}}).catch(function(){{}});</script>
-</body></html>'''
-(DIST / 'index.html').write_text(idx)
+# landing page (25 Oct 2026): the oak board - three ways in (Wales, Argentina, Cyberspace), each opening the same
+# submenu of every theme in its group; groups, order and titles come from themes.json alone (tools/home.py)
+sys.path.insert(0, str(ROOT / 'tools')); import home
+(DIST / 'index.html').write_text(home.render(CFG))
+_g, _stray = home.groups_of(CFG)
+assert sum(len(ts) for _, ts in _g) == len(CFG['themes']), 'home: a theme is missing from the groups'
+
 (DIST / '404.html').write_text('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Not found · Cedwyn</title>
 <style>body{margin:0;font:16px/1.5 -apple-system,Segoe UI,Roboto,sans-serif;background:#14141c;color:#e8e8f0;padding:24px}a{color:#fca}</style></head><body>
 <h1>Not here</h1><p>This page is not in this theme. <a href="/">All themes</a> · <a id="s" href="/catalogue/">Search the catalogue</a></p>
