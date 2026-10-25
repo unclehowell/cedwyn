@@ -181,7 +181,7 @@ def do_html(s, page):
             pre = m.group(1) or ''
             if pre.startswith('/_cedwyn/'): return m.group(0)
             if m.group(3) and not re.match(r'(?:https?:)?//(?:www\.)?bucklerfamily\.estate$|/dartboard$', pre): return m.group(0)
-            return '/_cedwyn/ghf/' + (m.group(2) or m.group(3)) + '.js?v=2.1.4c'
+            return '/_cedwyn/ghf/' + (m.group(2) or m.group(3)) + '.js?v=2.1.4d'
         s = GHF_SRC.sub(ghf, s)
     # split into comments / script+style blocks / markup, keep comments and text as written
     out = []; pos = 0
