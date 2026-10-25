@@ -1,0 +1,217 @@
+; Great House Farm / Tŷ Mawr — the farm’s money, 1877–1987: what the records show (memorandum ledger).
+; Kept apart from the cash accounts in main.beancount. Each entry is money recorded between other parties about the farm and its land,
+; with its catalogue ID. Where the records give no figure the entry is flagged ! with status "GAP" and carries 0.00 until a source is found.
+; Pre-decimal sums are shown as written (e.g. 8s) and converted at 20s = £1 for the amount column. Ingredients and citations, not conclusions.
+; Added 25 Oct 2026 from the research of that evening. — Sion's Tab agent
+option "title" "Great House Farm (Tŷ Mawr) — the farm’s money, 1877–1987"
+option "operating_currency" "GBP"
+option "name_assets" "Recorded"
+option "name_equity" "Memo"
+
+1877-01-01 open Memo:Historic GBP
+1877-01-01 open Recorded:Accounts GBP
+1877-01-01 open Recorded:Charge GBP
+1877-01-01 open Recorded:Court-Orders GBP
+1877-01-01 open Recorded:Easement GBP
+1877-01-01 open Recorded:Gift GBP
+1877-01-01 open Recorded:Offer GBP
+1877-01-01 open Recorded:Rent GBP
+1877-01-01 open Recorded:Sale GBP
+
+1877-01-01 ! "Bute trustees" "Bute trustees’ abstract of receipts and payments, 1877"
+  date_text: "1877"
+  amount_text: "not on file"
+  evidence: "EV-0007"
+  status: "GAP"
+  note: "Amount for this land not yet read"
+  Recorded:Accounts   0.00 GBP
+  Memo:Historic
+
+1904-06-11 * "Cardiff Corporation → Bute" "Bute easements for about 2½ miles of Cardiff’s western sewer"
+  date_text: "11 Jun 1904"
+  amount_text: "£5,362 7s"
+  evidence: "EV-0618"
+  status: "RECORDED"
+  note: "Press report; the share for Llandough land is not known"
+  Recorded:Easement   5362.35 GBP
+  Memo:Historic
+
+1916-02-01 ! "John Williams → Bute estate" "Yearly rent for 'the whole of the farm' (tenancy to John Williams, court record)"
+  date_text: "Feb 1916"
+  amount_text: "not on file"
+  evidence: "EV-0014"
+  status: "GAP"
+  note: "Rent not stated in records on file"
+  Recorded:Rent   0.00 GBP
+  Memo:Historic
+
+1928-06-01 ! "Williams family" "Last rent for the house parcel (Mary Williams's own account)"
+  date_text: "1928"
+  amount_text: "not on file"
+  evidence: "EV-0016"
+  status: "GAP"
+  note: "Rests on Mary Williams’s account; no receipt on file"
+  Recorded:Rent   0.00 GBP
+  Memo:Historic
+
+1935-06-01 ! "John Williams" "Rent arrears"
+  date_text: "mid-1930s"
+  amount_text: "not on file"
+  evidence: "EV-0080"
+  status: "GAP"
+  note: "The court mentions arrears; no figure"
+  Recorded:Rent   0.00 GBP
+  Memo:Historic
+
+1938-12-25 ! "WGR → Mountjoy Ltd" "Sale price, Mountjoy Ltd → Western Ground Rents (Cardiff ground-rent estate)"
+  date_text: "23–25 Dec 1938"
+  amount_text: "not on file"
+  evidence: "EV-0022"
+  status: "GAP"
+  note: "Price for the Llandough land not on file"
+  Recorded:Rent   0.00 GBP
+  Memo:Historic
+
+1939-05-18 * "John Williams → WGR" "Parcel B monthly rent, 5.30 acres"
+  date_text: "18 May 1939"
+  amount_text: "8s a month"
+  evidence: "EV-0023"
+  status: "RECORDED"
+  note: "Typed agreement; plan page held"
+  Recorded:Rent   0.40 GBP
+  Memo:Historic
+
+1941-01-01 * "WGR → Cardiff Corporation" "About 109 acres of Leckwith Woods given to Cardiff"
+  date_text: "1940–Apr 1942"
+  amount_text: "gift"
+  evidence: "EV-0220"
+  status: "RECORDED"
+  note: "Secondary source"
+  Recorded:Gift   0.00 GBP
+  Memo:Historic
+
+1948-10-21 * "Barry Borough → WGR" "Wayleave, WGR and the Borough of Barry"
+  date_text: "21 Oct 1948"
+  amount_text: "£1 a year"
+  evidence: "EV-0042"
+  status: "RECORDED"
+  note: "Recited in the 1965 school-site conveyance"
+  Recorded:Rent   1.00 GBP
+  Memo:Historic
+
+1949-02-02 ! "Frederick Buckler → WGR" "Yearly rent under the unwritten tenancy to Frederick Buckler"
+  date_text: "2 Feb 1949"
+  amount_text: "not on file"
+  evidence: "EV-0025"
+  status: "GAP"
+  note: "Not stated"
+  Recorded:Rent   0.00 GBP
+  Memo:Historic
+
+1953-06-01 ! "Frederick Buckler → WGR" "Last rent paid, under a judgment for arrears"
+  date_text: "1953"
+  amount_text: "not on file"
+  evidence: "EV-0080, EV-0030"
+  status: "GAP"
+  note: "County court registers (EV-0030) not yet read for the figure"
+  Recorded:Rent   0.00 GBP
+  Memo:Historic
+
+1958-09-08 ! "Cardiff City Council" "Leckwith Common compulsory purchase compensation"
+  date_text: "1957–58"
+  amount_text: "not on file"
+  evidence: "EV-0035, EV-0038"
+  status: "GAP"
+  note: "Compensation not on file"
+  Recorded:Sale   0.00 GBP
+  Memo:Historic
+
+1962-03-05 * "Lakeside → WGR" "Legal charge over Llandough land, Lakeside & Llandough Development Co → WGR"
+  date_text: "5 Mar 1962"
+  amount_text: "£75,000"
+  evidence: "EV-0042"
+  status: "RECORDED"
+  note: "Recited in the 1965 conveyance"
+  Recorded:Charge   75000.00 GBP
+  Memo:Historic
+
+1962-12-11 ! "Buckler family → WGR" "Mesne profits ordered with the possession order"
+  date_text: "11 Dec 1962"
+  amount_text: "not on file"
+  evidence: "EV-0041"
+  status: "GAP"
+  note: "Amount not on file; suspended committal order followed, Jun 1963"
+  Recorded:Court-Orders   0.00 GBP
+  Memo:Historic
+
+1965-03-01 ! "WGR’s agents" "Weekly tenancy offered for the farmhouse (refused)"
+  date_text: "Mar 1965"
+  amount_text: "£2 a week (secondary)"
+  evidence: "EV-0039"
+  status: "GAP"
+  note: "Figure is secondary wording"
+  Recorded:Offer   0.00 GBP
+  Memo:Historic
+
+1965-06-11 * "Glamorgan CC → Lakeside (WGR releasing as mortgagee)" "School site, 3.352 acres (part OS 106)"
+  date_text: "11 Jun 1965"
+  amount_text: "£16,800"
+  evidence: "EV-0042, EV-0216"
+  status: "RECORDED"
+  note: "Vale FOI 00211027"
+  Recorded:Sale   16800.00 GBP
+  Memo:Historic
+
+1969-02-15 ! "British Petroleum → WGR shareholders" "BP bid for Western Ground Rents Ltd, 17s a share"
+  date_text: "15 Feb 1969"
+  amount_text: "about £18–19 million"
+  evidence: "EV-0288"
+  status: "GAP"
+  note: "Whole company; press snippets"
+  Recorded:Offer   0.00 GBP
+  Memo:Historic
+
+1969-12-31 ! "BP Pension Trust → WGR" "Consideration, WGR → BP Pension Trust"
+  date_text: "31 Dec 1969"
+  amount_text: "not on file"
+  evidence: "EV-0043"
+  status: "GAP"
+  note: "Deed not held"
+  Recorded:Sale   0.00 GBP
+  Memo:Historic
+
+1974-10-31 * "BP Properties" "Licence to Mary Williams, rent-free"
+  date_text: "31 Oct 1974"
+  amount_text: "£0"
+  evidence: "EV-0050"
+  status: "RECORDED"
+  note: "Court record"
+  Recorded:Rent   0.00 GBP
+  Memo:Historic
+
+1975-05-23 ! "BP group" "Consideration, BP Pension Trust → BP Properties"
+  date_text: "23 May 1975"
+  amount_text: "not on file"
+  evidence: "EV-0620"
+  status: "GAP"
+  note: "Deed not read"
+  Recorded:Sale   0.00 GBP
+  Memo:Historic
+
+1982-11-19 ! "BP group" "Consideration, conveyance before first registration"
+  date_text: "19 Nov 1982"
+  amount_text: "not on file"
+  evidence: "EV-0147"
+  status: "GAP"
+  note: "On the HM Land Registry file"
+  Recorded:Sale   0.00 GBP
+  Memo:Historic
+
+1987-07-31 ! "—" "Costs orders in BP Properties Ltd v Buckler"
+  date_text: "1986–87"
+  amount_text: "not on file"
+  evidence: "EV-0080"
+  status: "GAP"
+  note: "Costs orders not on file"
+  Recorded:Court-Orders   0.00 GBP
+  Memo:Historic
