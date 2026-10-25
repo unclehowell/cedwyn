@@ -105,5 +105,6 @@ sta = [l for l in lines if l not in dyn]
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
-''')
+  Cache-Control: no-transform
+''')   # no-transform: the zone's automatic analytics snippet is not injected, so pages make no request to another host
 print('site ok', len(lines), 'redirects,', len(caps), 'captures')
