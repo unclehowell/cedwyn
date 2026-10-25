@@ -195,6 +195,8 @@
     if (q && LANGS.indexOf(q.toLowerCase()) >= 0) { q = q.toLowerCase(); save(q); return q; }
     var c = readCookie(); if (c) return c;
     try { var s = localStorage.getItem("ghf_lang"); if (LANGS.indexOf(s) >= 0) return s; } catch (e) {}
+    // Cedwyn sections (25 Oct 2026): with no saved choice, the section's language (Wales cy, Argentina es) - Sion's Tab agent
+    var dl = document.documentElement.getAttribute("data-ghf-lang-default"); if (LANGS.indexOf(dl) >= 0) return dl;
     return "en";
   }
 
