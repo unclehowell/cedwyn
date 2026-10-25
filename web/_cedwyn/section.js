@@ -1,0 +1,117 @@
+/*! section.js — Cedwyn's two sections, Wales and Argentina (Sion, 25 Oct 2026) · v1.0.0 · Sion's Tab agent
+ * One database, two framings. On a theme page opened under /wales/<theme>/ or /argentina/<theme>/ (runtime.js sets
+ * <html data-cedwyn-sec>), this adds the section ribbon (accent colours, the section's coming-soon focus and cross-sell,
+ * a switch to the same theme in the other nation) and keeps the visitor inside the section when they follow a theme link.
+ * It also renders [data-i18n] text in en/cy/es (landing and hub pages), runs the notify-me forms, and names the footer
+ * headings in the chosen language. The language and the day/night choice are the shared ones (ghf_lang, ghf-theme);
+ * a section only supplies the default language (Wales: cy, Argentina: es) until the visitor picks one. */
+(function () {
+  if (window.CedwynSection) return;
+  var de = document.documentElement;
+  var T = window.CEDWYN_T || /*SECTION_T*/{};
+  var THEMES = /*SECTION_THEMES*/[];
+  var MC = { u: "284f08fe7e1b8d39250808104", id: "6139ff4a0d", host: "estate.us3.list-manage.com" };
+  var SEC = de.getAttribute("data-cedwyn-sec") || "", SECURL = de.getAttribute("data-cedwyn-sec-url") || "";
+  var ACC = { wales: ["#00843D", "#C8102E"], argentina: ["#4E8CC8", "#F6B40E"] };
+  function cookie(n) { var m = new RegExp("(?:^|;\\s*)" + n + "=([a-z]+)").exec(document.cookie || ""); return m ? m[1] : null; }
+  function lang() {
+    var l = window.__cedwynLang || cookie("ghf_lang"); if (!l) { try { l = localStorage.getItem("ghf_lang"); } catch (e) {} }
+    if (!/^(en|cy|es)$/.test(l || "")) l = de.getAttribute("data-ghf-lang-default");
+    return /^(en|cy|es)$/.test(l || "") ? l : "en";
+  }
+  function tr(k, l) { var v = T[k]; if (!v) return null; return v[l || lang()] || v.en; }
+  function setLang(k) {
+    window.__cedwynLang = k;
+    if (window.GHFLang && window.GHFLang.set) { window.GHFLang.set(k); return; }
+    try { localStorage.setItem("ghf_lang", k); } catch (e) {}
+    try { document.cookie = "ghf_lang=" + k + "; path=/; max-age=31536000; SameSite=Lax" + (location.protocol === "https:" ? "; Secure" : ""); } catch (e) {}
+    paint();
+  }
+  function paint() {
+    var l = lang(), q = document.querySelectorAll("[data-i18n]"), i, el, v, n = de.getAttribute("data-cedwyn-n") || "37";
+    for (i = 0; i < q.length; i++) { el = q[i]; v = tr(el.getAttribute("data-i18n"), l); if (v != null) el.textContent = v.replace("{n}", n); }
+    q = document.querySelectorAll("[data-i18n-ph]"); for (i = 0; i < q.length; i++) { v = tr(q[i].getAttribute("data-i18n-ph"), l); if (v) q[i].setAttribute("placeholder", v); }
+    q = document.querySelectorAll("[data-i18n-al]"); for (i = 0; i < q.length; i++) { v = tr(q[i].getAttribute("data-i18n-al"), l); if (v) q[i].setAttribute("aria-label", v); }
+    q = document.querySelectorAll("[data-cedwyn-lang]"); for (i = 0; i < q.length; i++) q[i].setAttribute("aria-pressed", q[i].getAttribute("data-cedwyn-lang") === l ? "true" : "false");
+    if (document.body && document.body.hasAttribute("data-cedwyn-page")) de.setAttribute("lang", l === "en" ? "en-GB" : l);
+    var f = document.getElementById("ghf-agent-footer");
+    if (f && T.f_log) { var h = f.querySelector("h2"); if (h) h.textContent = tr("f_log", l); var st = f.querySelector(".gaf-log p strong"); if (st) st.textContent = tr("f_cur", l); }
+  }
+  function css() {
+    if (document.getElementById("cedwyn-sec-css")) return;
+    var s = document.createElement("style"); s.id = "cedwyn-sec-css";
+    s.textContent = ".cedwyn-rib{position:relative;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:0;padding:8px 40px 8px 12px;" +
+      "font:500 13px/1.35 Barlow,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;letter-spacing:.02em;color:#fff;background:#111;border-top:3px solid var(--cs-a);border-bottom:3px solid var(--cs-b);text-align:left}" +
+      ".cedwyn-rib *{box-sizing:border-box}.cedwyn-rib a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:4px 10px;white-space:nowrap;min-height:30px;display:inline-flex;align-items:center}" +
+      ".cedwyn-rib a:hover,.cedwyn-rib a:focus-visible{border-color:var(--cs-b);outline:none}.cedwyn-rib .cr-t{flex:1 1 100%;font-weight:600;text-decoration:none;border:0;padding:0;min-height:0;white-space:normal}" +
+      ".cedwyn-rib .cr-x{position:absolute;top:6px;right:6px;width:30px;height:30px;border:0;background:none;color:#fff;font:400 20px/1 system-ui;cursor:pointer;opacity:.8}" +
+      ".cedwyn-rib .cr-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--cs-a);box-shadow:0 0 0 2px var(--cs-b);margin-right:8px;vertical-align:1px}" +
+      "@media (min-width:783px){.cedwyn-rib .cr-t{flex:0 1 auto;margin-right:8px}}" +
+      "html[data-ghf-mode=day] .cedwyn-rib{background:#fff;color:#111}html[data-ghf-mode=day] .cedwyn-rib a,html[data-ghf-mode=day] .cedwyn-rib .cr-x{color:#111;border-color:rgba(0,0,0,.35)}";
+    (document.head || de).appendChild(s);
+  }
+  function lp() { return window.__cedwynLP || location.pathname; }
+  function ribbon(tries) {
+    if (!SEC || !document.body || document.querySelector(".cedwyn-rib") || document.body.hasAttribute("data-cedwyn-page")) return;
+    var hd = document.querySelector(".ghf-v2");   // the shared 3-row header: the ribbon sits directly under it
+    if (!hd && (tries || 0) < 20) { setTimeout(function () { ribbon((tries || 0) + 1); }, 150); return; }
+    try { if (sessionStorage.getItem("cedwyn-rib-hide") === SEC) return; } catch (e) {}
+    css();
+    var r = document.createElement("div"), a = ACC[SEC], other = SEC === "wales" ? "argentina" : "wales";
+    r.className = "cedwyn-rib ghf-ui"; r.setAttribute("data-no-translate", ""); r.setAttribute("role", "region");
+    r.style.setProperty("--cs-a", a[0]); r.style.setProperty("--cs-b", a[1]);
+    function link(href, key, cls) { var x = document.createElement("a"); x.setAttribute("href", href); x.setAttribute("data-i18n", key); if (cls) x.className = cls; r.appendChild(x); return x; }
+    var t = link("/" + SEC + "/", SEC === "wales" ? "rib_w" : "rib_a", "cr-t"); t.insertBefore(document.createElement("span"), t.firstChild);
+    if (SEC === "wales") { link("/wales/#shop", "rib_v"); link("/ebooks/", "rib_e"); }
+    else { link("/argentina/#museum", "rib_mu"); link("/argentina/#retelling", "rib_re"); }
+    var sw = document.createElement("a"), th = lp(); sw.setAttribute("href", "/" + other + (/^\/[^\/]+\//.test(th) ? th : "/") + location.search);
+    sw.setAttribute("data-i18n", other === "wales" ? "w_name" : "a_name"); sw.className = "cr-sw"; r.appendChild(sw);
+    var x = document.createElement("button"); x.type = "button"; x.className = "cr-x"; x.textContent = "\u00D7"; x.setAttribute("data-i18n-al", "rib_close");
+    x.onclick = function () { try { sessionStorage.setItem("cedwyn-rib-hide", SEC); } catch (e) {} r.parentNode.removeChild(r); };
+    r.appendChild(x); r.setAttribute("data-i18n-al", SEC === "wales" ? "w_name" : "a_name");
+    if (hd && hd.parentNode) hd.parentNode.insertBefore(r, hd.nextSibling); else document.body.insertBefore(r, document.body.firstChild);
+    paint();
+    var dot = r.querySelector(".cr-t span"); if (dot) { dot.className = "cr-dot"; dot.setAttribute("aria-hidden", "true"); }
+  }
+  // keep the visitor inside the section: a theme link (/<theme>/...) followed from a sectioned page gains the section prefix
+  function sectioned(h) { var m = /^\/(wales|argentina)\/([^\/?#]+)/.exec(h); return !!(m && THEMES.indexOf(m[2]) >= 0); }
+  if (SECURL) document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null; if (!a || a.target === "_blank" && false) return;
+    var h = a.getAttribute("href"); if (!h || h.charAt(0) !== "/" || h.charAt(1) === "/") return;
+    if (sectioned(h)) return;
+    var x = h.split(/[\/?#]/)[1]; if (x && THEMES.indexOf(x) >= 0) a.setAttribute("href", "/" + SECURL + h);
+  }, true);
+  // notify-me forms (the estate's Mailchimp audience, the same one the e-book signup uses), sent only when the visitor submits
+  function forms() {
+    var q = document.querySelectorAll("form[data-cedwyn-notify]");
+    [].forEach.call(q, function (f) {
+      if (f.__cn) return; f.__cn = 1;
+      f.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        var err = f.querySelector(".cn-err"), em = (f.EMAIL.value || "").trim(); err.hidden = true;
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { err.textContent = tr("err_email"); err.hidden = false; return; }
+        if (!f.querySelector(".cn-ok").checked) { err.textContent = tr("err_tick"); err.hidden = false; return; }
+        var cb = "cedwynMc" + Date.now(), done = false, s = document.createElement("script");
+        var p = { u: MC.u, id: MC.id, c: cb, EMAIL: em, UTMSRC: "cedwyn/" + (f.getAttribute("data-cedwyn-notify") || ""), UTMCMP: "notify-" + (f.getAttribute("data-cedwyn-notify") || ""),
+          CONSENT: (f.getAttribute("data-cedwyn-notify") || "") + " notify form " + new Date().toISOString() + " " + location.pathname };
+        p["b_" + MC.u + "_" + MC.id] = "";
+        var qs = []; for (var k in p) qs.push(encodeURIComponent(k) + "=" + encodeURIComponent(p[k]));
+        function fin(ok) { if (done) return; done = true; try { delete window[cb]; } catch (e) { window[cb] = undefined; } if (s.parentNode) s.parentNode.removeChild(s);
+          if (ok) { f.hidden = true; var d = f.parentNode.querySelector(".cn-done"); if (d) d.hidden = false; } else { err.textContent = tr("err_send"); err.hidden = false; } }
+        window[cb] = function (r) { fin(r && (r.result === "success" || /already subscribed/i.test(r.msg || ""))); };
+        s.onerror = function () { fin(false); }; setTimeout(function () { fin(false); }, 12000);
+        s.src = "https://" + MC.host + "/subscribe/post-json?" + qs.join("&");
+        (document.head || de).appendChild(s);
+      });
+    });
+  }
+  function wireLang() {
+    var q = document.querySelectorAll("[data-cedwyn-lang]");
+    [].forEach.call(q, function (b) { if (b.__cl) return; b.__cl = 1; b.addEventListener("click", function () { setLang(b.getAttribute("data-cedwyn-lang")); }); });
+  }
+  function go() { ribbon(0); wireLang(); forms(); paint(); }
+  document.addEventListener("ghf-lang-change", function (e) { if (e && e.detail && e.detail.lang) window.__cedwynLang = e.detail.lang; paint(); });
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
+  window.addEventListener("load", paint);
+  window.CedwynSection = { section: SEC, lang: lang, setLang: setLang, paint: paint, version: "1.0.0" };
+})();

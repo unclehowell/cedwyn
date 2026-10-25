@@ -101,3 +101,6 @@ sys.path.insert(0, str(ROOT / 'tools')); import agent_footer; agent_footer.run(D
 # Editorial rule (25 Oct 2026): ingredients, not conclusions - reword conclusion sentences in mirrored theme text (ingredients.json). - Sion's Tab agent
 import ingredients
 ingredients.apply(DIST)
+# Two sections over one database (Sion, 25 Oct 2026): landing tiles, /wales/ and /argentina/ hubs, section rewrites - Sion's Tab agent
+import sections
+sections.run(DIST, CFG)

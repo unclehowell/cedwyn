@@ -307,3 +307,22 @@ Every theme now reads its data and evidence from the catalogue database. Before 
 ## Editorial rule: ingredients, not conclusions
 
 Since 25 Oct 2026 every page follows [EDITORIAL.md](EDITORIAL.md): the site presents cited ingredients (date, event, what changed, evidence link inside Cedwyn, label, open questions), never a finished conclusion. Conclusion sentences in mirrored theme text are reworded at build time from `ingredients.json` (`tools/ingredients.py`, run from `tools/site.py`); the datro sources are untouched. — Sion's Tab agent
+
+## Two sections: Wales and Argentina (25 Oct 2026)
+
+One database, two framings (owner's order, 25 Oct 2026). `tools/sections.py` (called at the end of `tools/site.py`, copy in `sections.json`):
+
+| Address | What it is |
+|---|---|
+| `/` | Landing: two tiles, Wales (the Llandough augmented-reality tour, coming soon) and Argentina (Great House II, Puerto Madryn, coming soon) |
+| `/wales/` | Wales hub (default language Cymraeg): the tour and its stops, vouchers / e-books / merch, seek-disclose-research-reconstruct |
+| `/argentina/` | Argentina hub (default language Español): Great House II, the museum plans, the retelling |
+| `/explore/` | The oak board (the former home) |
+| `/wales/<theme>/…`, `/argentina/<theme>/…` | The same theme files, served through Pages rewrites (`_redirects`, status 200): nothing is copied |
+| `/<theme>/…` | Unchanged |
+
+The themes stay separate compartments (each from its own mirrored branch, assembled as before); the section layer is a thin
+shell on top: the rewrites, the two hubs, `web/_cedwyn/section.js` (ribbon, default language, links kept in the section) and a
+few lines in the shared runtime and header. The former "Virtual Tour · Wales" theme home moves to `/wales/tour/` and opens at `/wales/wales/`.
+Language (`ghf_lang`) and day/night (`ghf-theme`) are the shared choices, kept in the visitor's browser; a section only sets the
+default language until the visitor picks one.
