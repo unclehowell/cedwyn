@@ -262,3 +262,17 @@ Every theme now reads its data and evidence from the catalogue database. Before 
 - Across all 3,958 blobs, base64 at rest would mean 760.8 MB instead of 570.6 MB.
 - Chunk files are served uncompressed, so none of that overhead would be won back in transit.
 - The catalogue and GraphQL `dataUri` field still give base64 `data:` URIs when asked, built when they are read.
+
+**Build 9 (commit 972f0d7, live 04:18 UTC):**
+- Database chunks are now 256 KB: 2,412 files for a 632 MB database. The maps theme's GeoJSON layers are stored as data.
+- Across the 36 themes at both widths, 263 requests were served from the database and 0 from files. Pages read 62 MB of chunks in 295 requests; on build 7 it was 90 MB in 234 requests.
+- The deploy is 13,256 files (1.20 GB). The database serves 6,410 paths.
+- Self-contained test: 8,993 files, with 0 subdomain references and 0 external ones.
+- The header and burger are on all 36 themes at both widths.
+
+**/wiki/ is rebuilt from a crawl of greathousefarmwiki.wordpress.com.** The crawl used only GETs and followed robots.txt, starting from the wiki's own sitemap (976 pages).
+- The crawl stopped at its 12-minute limit with 741 files. In a sample of 60 sitemap pages, 49 are present.
+- The home page has the same amount of text as the live wiki.
+- The theme's visible text grew from 563 to 3,010 characters, with 7 images and none broken.
+- 9 WordPress.com scripts still fail to load: combined `_static` files, hovercards, likes, the marketing bar and Gutenberg helpers.
+- Next pass: a longer crawl, and copies of the WordPress `/wp-content/` scripts.
