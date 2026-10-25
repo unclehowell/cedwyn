@@ -1,50 +1,9 @@
 {
- "files_checked": 6057,
- "subdomain_refs": 108,
- "external_refs": 1097,
- "by_theme": {
-  "qa": {
-   "ext": 1093,
-   "sub": 46
-  },
-  "terrain": {
-   "ext": 2
-  },
-  "email": {
-   "sub": 62,
-   "ext": 1
-  },
-  "docs": {
-   "ext": 1
-  }
- },
- "examples": {
-  "qa:ext": [
-   "qa/kb.json :: https://greathousefarmwiki.wordpress.com/records-access-chronology/foi-reply-register/amgueddfa-cymr",
-   "qa/kb.json :: https://greathousefarmwiki.wordpress.com/records-access-chronology/foi-reply-register/amgueddfa-cymr",
-   "qa/kb.json :: https://greathousefarmwiki.wordpress.com/records-access-chronology/foi-reply-register/amgueddfa-cymr"
-  ],
-  "qa:sub": [
-   "qa/kb.json :: https://wayback.bucklerfamily.estate/pdf/foi/2026-10-19_cadw_atisn-27589_response-s14-2.pdf",
-   "qa/kb.json :: https://wayback.bucklerfamily.estate/pdf/foi/2026-10-19_welsh-government_atisn-26-0010_disclosure-re",
-   "qa/kb.json :: https://bpvsbuckler.bucklerfamily.estate/?event=ghf-16670101-1"
-  ],
-  "terrain:ext": [
-   "terrain/app.js :: https://api.github.com/repos/unclehowell/terrain/commits?path=data/scene.json&per_page=1",
-   "terrain/app.js :: https://esm.run/@mlc-ai/web-llm@0.2.86"
-  ],
-  "email:sub": [
-   "email/data/hive.json :: https://hive.bucklerfamily.estate/join.json",
-   "email/data/hive.json :: https://hive.bucklerfamily.estate/join",
-   "email/data/hive.json :: https://hive.bucklerfamily.estate"
-  ],
-  "email:ext": [
-   "email/ghf-lang/ghf-lang.js :: https://translate.google.com/translate?sl=en&tl="
-  ],
-  "docs:ext": [
-   "docs/_static/translations.js :: https://www.sphinx-doc.org/"
-  ]
- },
+ "files_checked": 8289,
+ "subdomain_refs": 0,
+ "external_refs": 0,
+ "by_theme": {},
+ "examples": {},
  "allowed_tile_templates": [
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
