@@ -36,7 +36,7 @@ NS = {'www.w3.org', 'w3.org', 'schema.org', 'purl.org', 'ogp.me', 'xmlns.com', '
       'sodipodi.sourceforge.net', 'creativecommons.org', 'www.openarchives.org', 'www.sitemaps.org', 'docs.oasis-open.org',
       'rdfs.org', 'web.resource.org', 'www.google.com/schemas', 'search.yahoo.com', 'ns.attribution.cloudflare.com'}
 CDN = {'cdn.jsdelivr.net', 'unpkg.com', 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com', 'ajax.googleapis.com',
-       's0.wp.com', 's1.wp.com', 's2.wp.com', 'i0.wp.com', 'i1.wp.com', 'i2.wp.com'}   # the WordPress wiki's theme styles, scripts and resized images
+       's0.wp.com', 's1.wp.com', 's2.wp.com', 'i0.wp.com', 'i1.wp.com', 'i2.wp.com', 's-ssl.wordpress.com'}   # the WordPress wiki's theme styles, scripts and resized images
 UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
 # a URL: scheme-ful (also JSON-escaped https:\/\/), or protocol-relative right after a quote/paren/equals/space
 URL = re.compile(r'''(?:(?<![\w.+-])(https?:)(//|\\/\\/)|(?<=["'(=`])(//))([a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)+)(:\d+)?((?:/|\\/)[^\s"'<>`\\]*(?:\\/[^\s"'<>`\\]*)*)?''', re.I)
@@ -148,6 +148,8 @@ def fix_attr(tag, name, val, tagtext, page):
     if lname.startswith('xmlns'): return val
     absctx = lname == 'content' or (tag == 'link' and re.search(r'rel\s*=\s*["\']?[^"\'>]*(canonical|alternate|shortlink)', tagtext, re.I) is not None)
     absctx = absctx or lname in ('itemid', 'itemtype')
+    if val.lstrip().startswith('//'):   # a protocol-relative value (src="//host/x.js") has no quote in front of it once unquoted
+        return process_text('=' + val, absctx, css=(lname == 'style'), where=page)[1:]
     return process_text(val, absctx, css=(lname == 'style'), where=page)
 
 def do_tag(m, page):
@@ -308,8 +310,20 @@ def fetch_vendor():
 MEDIA_EXT = {'.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.avif', '.ico', '.bmp', '.pdf', '.mp3', '.m4a', '.ogg', '.wav', '.mp4', '.webm', '.mov',
              '.woff', '.woff2', '.ttf', '.otf', '.js', '.mjs', '.css', '.json', '.vtt', '.txt', '.csv', '.wasm'}
 LOCALREF = re.compile(r'''(?<=["'(=\s,])/([a-z0-9][a-z0-9-]*)/([^\s"'<>`()\\?#]+\.([a-z0-9]{2,5}))(?=[\s"'<>`()\\?#,])''', re.I)
-CRAWLED = {t['id'] for t in CFG['themes'] if t.get('crawl') or t.get('crawl_fallback') or t.get('crawl_first')}
+CRAWLED = {t['id'] for t in CFG['themes'] if t.get('crawl') or t.get('crawl_fallback') or t.get('crawl_first') or t.get('wp_copy')}
 RELREF = re.compile(r'''["'`]((?:\.{1,2}/|/)?[\w@-][\w@.%-]*(?:/[\w@.%-]+)*\.(?:jpe?g|png|gif|webp|svg|avif|glb|gltf|bin|hdr|json|js|mjs|css|woff2?|mp4|webm|mp3|pdf|wasm|txt|csv))(?:\?[^"'`]*)?["'`]''', re.I)
+ROOTREF = re.compile(r'''(\s(?:href|src|action|poster|data-src|content)\s*=\s*["']?)(/(?!/)[^"'\s>]*)''', re.I)
+def prefix_root(s, url, tid):
+    """a page copied from a live site after rewrite.py ran: its root paths (/assets/x.js) name that site's root, so they
+    become the theme's (/story/assets/x.js), the same as rewrite.py does for every built page"""
+    host = url.split('/')[2].lower()
+    def r(m):
+        p = m.group(2)
+        if p.startswith(('/_cedwyn/', '/_ext/', '/_blob/', '/db/', '/wayback/', '/graphql', '/catalogue')): return m.group(0)
+        t = theme_url(host, p)
+        return m.group(1) + (t if t is not None else '/' + tid + p)
+    return ROOTREF.sub(r, s)
+
 def fill_missing(dry=False, scan=None):
     """files a theme page names under /<theme>/ that the theme's branch copy does not hold (the old site served them from
     elsewhere): copied read-only from the theme's live address, so images, videos and scripts load from cedwyn itself"""
@@ -434,6 +448,7 @@ def main():
                     with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=60) as r:
                         if 'html' not in (r.headers.get('Content-Type') or '') and not relp.endswith('.txt'): continue
                         b = r.read()
+                    if relp.endswith('.html'): b = prefix_root(b.decode('utf-8', 'ignore'), url, relp.split('/')[0]).encode('utf-8')
                     dst.parent.mkdir(parents=True, exist_ok=True); dst.write_bytes(b); fetched_pages.append(relp); scan.append(dst)
                 except Exception as e: filled['not_found'].append([relp, str(e)[:80]])
             if fetched_pages: run([DIST / r for r in fetched_pages])

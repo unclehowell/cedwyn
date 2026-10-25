@@ -37,7 +37,13 @@ def crawl(url, out, robots=False, quota='150m', t=420, sitemap=None):
 def one(t):
     tid = t['id']; out = DIST / tid; shutil.rmtree(out, ignore_errors=True); out.mkdir(parents=True)
     t0 = time.time(); how = None; n = 0
-    if t.get('crawl_first'):   # a live site crawled first (robots.txt obeyed); its branch copy is the fallback
+    if t.get('wp_copy'):   # the WordPress wiki: tools/wiki.py copies every sitemap page and its theme files (robots.txt obeyed)
+        r = sh(f"python3 {ROOT / 'tools' / 'wiki.py'} {out}", t=t.get('crawl_secs', 1500))
+        report.setdefault('_wiki_log', {})[tid] = r.stdout[-400:] + r.stderr[-600:]
+        n = sum(1 for _ in out.rglob('*') if _.is_file()); how = 'wiki.py(robots)'
+        if n < 200 or not (out / 'index.html').exists():
+            shutil.rmtree(out, ignore_errors=True); out.mkdir(parents=True); n = 0; how = None
+    elif t.get('crawl_first'):   # a live site crawled first (robots.txt obeyed); its branch copy is the fallback
         n = crawl(t['crawl_first'], out, robots=True, quota=t.get('crawl_quota', '150m'), t=t.get('crawl_secs', 420), sitemap=t.get('crawl_sitemap')); how = 'crawl(robots)'
         if n == 0 or not (out / 'index.html').exists():
             shutil.rmtree(out, ignore_errors=True); out.mkdir(parents=True); n = 0; how = None
