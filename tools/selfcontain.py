@@ -135,6 +135,7 @@ BLOCK = re.compile(r'(<(script|style)\b[^>]*>)(.*?)(</\2\s*>)', re.S | re.I)
 COMMENT = re.compile(r'<!--.*?-->', re.S)
 DROP_SCRIPT = re.compile(r'<script\b[^>]*\bsrc\s*=\s*["\'][^"\']*followers\.bucklerfamily\.estate/follow\.js[^"\']*["\'][^>]*>\s*</script>', re.I)
 GHF_SRC = re.compile(r'''(?<=["'=])((?:https?:)?//(?:www\.)?bucklerfamily\.estate|/dartboard|[^"'\s>=]*?)/?(?:ghf-lang/(ghf-boot|ghf-lang|basecamp)|(basecamp))\.js(\?[^"'\s>]*)?(?=["'\s>])''', re.I)
+YTBLOCK = re.compile(r'''(?:/wayback/go/\?u=|https?:(?:\\?/){2}|(?<=["'=(])//)[^"'\s<>()]*?(?:sionbuckler5713|UC2sN1VEs1WeLfBH8VmbvLWw|c0UvjM-lwA)[^"'\s<>()]*''')
 INLINE_BOOT = re.compile(r'<script\b[^>]*data-ghf-boot-inline[^>]*>.*?</script>\s*', re.I | re.S)
 TOUR_TAG = re.compile(r'<script\b[^>]*(?:estate-tour\.js|data-estate-tour-loader)[^>]*>\s*</script>\s*', re.I)
 TOUR_SHELL = re.compile(r'<header\b[^>]*data-estate-tour-shell[^>]*>.*?</header>\s*', re.I | re.S)
@@ -255,6 +256,9 @@ def run(only_paths=None):
         elif ext == '.css': n = process_text(s, False, css=True, where=page)
         elif ext == '.svg' or ext == '.xml': n = do_html(s, page) if '<' in s[:2000] else process_text(s, True, where=page)
         else: n = process_text(s, True, where=page)
+        if FIX and rel != '_cedwyn/runtime.js':   # standing rule: never link that YouTube channel or its videos
+            n, kb = YTBLOCK.subn('#', n)
+            if kb: stats['yt_links_removed'] = stats.get('yt_links_removed', 0) + kb
         if FIX and n != s0:
             p.write_text(n, 'utf-8'); stats['changed'] += 1
 
