@@ -82,11 +82,17 @@ def main():
         first=(prior.get("sha256") is None and digest is not None)
         status_changed=(prior.get("http_status") is not None and f["status"] is not None and prior.get("http_status")!=f["status"])
         fetch_failed=f["status"] is None or not (200 <= f["status"] < 300)
+        failure_alert=fetch_failed and (not prior.get("last_failure_alert_at") or prior.get("last_check_error")!=f["error"] or prior.get("http_status")!=f["status"])
+        if fetch_failed and not failure_alert and prior.get("last_failure_alert_at"):
+            try:
+                failure_alert=(dt.datetime.now(dt.timezone.utc)-dt.datetime.fromisoformat(prior["last_failure_alert_at"].replace("Z","+00:00"))).days>=30
+            except Exception:
+                failure_alert=True
         row=dict(prior)
         row.update({"id":p.get("id"),"title":p.get("title"),"url":url,"source_id":p.get("source_id"),
                     "sha256":digest or prior.get("sha256"),"http_status":f["status"] if f["status"] is not None else prior.get("http_status"),
                     "etag":f["headers"].get("ETag",prior.get("etag")),"last_modified":f["headers"].get("Last-Modified",prior.get("last_modified")),
-                    "last_checked":TS if (first or changed or status_changed or fetch_failed) else prior.get("last_checked"),
+                    "last_checked":TS if (first or changed or status_changed or failure_alert) else prior.get("last_checked"),
                     "last_check_error":f["error"],"last_response_url":f["url"],"wayback_calendar_url":p.get("wayback_calendar_url"),
                     "required_snapshot":bool(p.get("required_snapshot")),"relevance_status":p.get("relevance_status"),
                     "monitoring_note":"Response digest changes indicate a changed fetched representation only; they do not establish intentional alteration or concealment."})
@@ -94,7 +100,9 @@ def main():
         if first: reasons.append("first_successful_observation")
         if changed: reasons.append("response_sha256_changed")
         if status_changed: reasons.append("http_status_changed")
-        if fetch_failed: reasons.append("fetch_failed; last successful digest retained")
+        if failure_alert:
+            reasons.append("fetch_failed_or_non_2xx; last successful digest retained")
+            row["last_failure_alert_at"]=TS
         if f["status"] is not None and (first or changed or status_changed):
             row["last_observed_change"]=TS
         # Attempt a capture when first seen, when the representation changes, or where required and not yet captured.
