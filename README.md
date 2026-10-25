@@ -1,6 +1,6 @@
 # Cedwyn
 
-**cedwyn.bucklerfamily.estate** — one catalogue database of Great House Farm evidence, browsed through 35 themes.
+**cedwyn.bucklerfamily.estate** — one catalogue database for Great House Farm records, source descriptions, interpretations and explicitly marked retrieval leads, browsed through 36 former-site themes plus the separate “1000 Cuts” interpretation layer. The current registry has 37 rows because that layer is also represented as a route; do not describe the 37 rows as 37 former datro subdomains.
 Each theme is one of the former datro subdomain websites, kept with its own look and navigation, now living under one URL
 at `/<theme>/`. Moving between themes works like moving between the old subdomains did.
 
@@ -13,6 +13,16 @@ The old repo (`unclehowell/datro`) and the old subdomains are untouched: this re
 | `main` | The build: `themes.json`, `tools/`, `web/`, workflows, build reports |
 | `site` | The built site Cloudflare Pages serves (themes, `/_blob/` store, `/db/` chunks) |
 | every other branch | A mirror of the datro branch of the same name, with its history (see "History rewrite") |
+
+## Forensic provenance registers
+
+The byte-level catalogue is supplemented by version-controlled registers under `catalogue/`:
+- `sources.json` describes located sources and records their origin, provenance, dates, access URLs, Wayback calendar links, read/completeness status and limitations.
+- `interpretations.json` stores source-linked analyst interpretations separately from the sources, with contrary evidence, alternative explanations, and what would confirm or refute each reading.
+- `expected-records.json` stores missing/anticipated artifacts as **not located** research leads. These entries are not sources and must not be cited as if the anticipated records have been found.
+- `monitored-pages.json` and `monitoring/` record monitored public-source URLs, hashes and confirmed snapshot links. A Wayback calendar is not a confirmed snapshot; a hash change is an alert, not evidence of intent.
+
+The SQLite build imports these registers into searchable tables. Use `python3 tools/validate_catalogue.py` to check cross-references and required uncertainty fields. The public catalogue has separate views for artifacts, source descriptions, interpretations, missing-record leads and monitoring status.
 
 ## How it works
 
