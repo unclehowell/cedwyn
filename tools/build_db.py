@@ -175,6 +175,9 @@ CREATE TABLE IF NOT EXISTS source_records(
  id TEXT PRIMARY KEY, independent_origin_id TEXT, record_status TEXT, title TEXT, creator TEXT, custodian TEXT,
  source_type TEXT, document_date TEXT, event_dates_json TEXT, description TEXT, public_url TEXT, public_archive_url TEXT,
  wayback_calendar_url TEXT, local_path TEXT, email TEXT, disclosure_reference TEXT, attachment_name TEXT,
+ email_date TEXT, email_from TEXT, email_to TEXT, email_subject TEXT, message_id TEXT,
+ attachment_sha256 TEXT, attachment_bytes INTEGER, parent_source_id TEXT, publication_review TEXT,
+ communication_json TEXT, attachment_json TEXT,
  completeness TEXT, read_status TEXT, provenance_json TEXT, pinpoints_json TEXT, limitations_json TEXT,
  supersedes_json TEXT, payload_json TEXT
 );
@@ -210,12 +213,18 @@ def _read_json(path, default):
     except FileNotFoundError: return default
 _src = _read_json(ROOT / 'catalogue' / 'sources.json', {}).get('records', [])
 for _x in _src:
-    con.execute("""INSERT OR REPLACE INTO source_records VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
+    _comm = _x.get('communication') or {}
+    _att = _x.get('attachment') or {}
+    con.execute("""INSERT OR REPLACE INTO source_records VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
         _x.get('id'), _x.get('independent_origin_id'), _x.get('record_status'), _x.get('title'), _x.get('creator'),
         _x.get('custodian'), _x.get('source_type'), _x.get('document_date'),
         json.dumps(_x.get('event_dates', []), ensure_ascii=False), _x.get('description'), _x.get('public_url'),
         _x.get('public_archive_url'), _x.get('wayback_calendar_url'), _x.get('local_path'), _x.get('email'),
-        _x.get('disclosure_reference'), _x.get('attachment_name'), _x.get('completeness'), _x.get('read_status'),
+        _x.get('disclosure_reference'), _x.get('attachment_name'), _comm.get('message_date'),
+        _comm.get('sender'), _comm.get('recipient'), _comm.get('subject'), _comm.get('message_id'),
+        _att.get('sha256'), _att.get('bytes'), _att.get('parent_source_id') or _x.get('parent_source_id'),
+        _x.get('publication_review'), json.dumps(_comm, ensure_ascii=False),
+        json.dumps(_att, ensure_ascii=False), _x.get('completeness'), _x.get('read_status'),
         json.dumps(_x.get('acquisition', {}), ensure_ascii=False), json.dumps(_x.get('pinpoints', []), ensure_ascii=False),
         json.dumps(_x.get('limitations', []), ensure_ascii=False), json.dumps(_x.get('supersedes', []), ensure_ascii=False),
         json.dumps(_x, ensure_ascii=False)))
