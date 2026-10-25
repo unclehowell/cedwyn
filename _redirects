@@ -1,14 +1,3 @@
-/email/thread/* /email/view/ 200
-/email/reference/* /email/view/ 200
-/email/api /email/api/ 301
-/email/api/thread /email/view/ 302
-/email/api/search /email/view/ 302
-/email/api/message /email/view/ 302
-/email/api/export/ /email/api/ 302
-/email/api/export /email/api/ 302
-/email/api/openapi.json /email/api/ 302
-/email/api/records/ /email/view/ 302
-/email/api/records /email/view/ 302
 /assets/fonts/* /_cedwyn/ghf/fonts/:splat 200
 /locations-img/* /dartboard/locations-img/:splat 200
 /dartboard/ghf-lang/* /_cedwyn/ghf/:splat 200
