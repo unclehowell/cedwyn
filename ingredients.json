@@ -1,6 +1,6 @@
 {
  "rule": "Cedwyn editorial rule (25 Oct 2026): ingredients, not conclusions. Build-time rewording of conclusion sentences in mirrored theme text; cedwyn copy only, the datro sources are untouched. Each entry: theme, file (relative to the theme root), find (exact), replace, why. A find that is not present is reported, never fatal. — Sion's Tab agent",
- "version": "1.2.0",
+ "version": "1.2.1",
  "rewords": [
   {
    "theme": "maps",
@@ -792,6 +792,14 @@
    "replace": "[record pending:",
    "why": "Raw citation markup on public pages (site deficiency 9). Better fix: render it as the standard Not yet confirmed label.",
    "audit_point": "D9"
+  },
+  {
+   "theme": "wayback",
+   "file": "index.html",
+   "find": "\">Text</a></div>",
+   "replace": "\">Text</a> · <a style=\"color:#ffd27a\" href=\"/wayback/people/\">Public faces</a></div>",
+   "why": "Menu entry, not a reword: adds the Wayback Vault's new Public faces collection (/wayback/people/, read from the catalogue database) to the archive bar. Remove this entry to take the link away.",
+   "audit_point": "public-faces"
   }
  ]
 }
