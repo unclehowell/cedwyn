@@ -47,13 +47,13 @@
   "dropped_over_24MB": [],
   "secs": 1
  },
- "chess": {
+ "fb": {
   "how": "branch",
-  "files": 55,
-  "bytes": 3468473,
+  "files": 576,
+  "bytes": 9343452,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 0
+  "secs": 1
  },
  "csscpsg": {
   "how": "branch",
@@ -63,13 +63,13 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
- "fb": {
+ "chess": {
   "how": "branch",
-  "files": 576,
-  "bytes": 9343452,
+  "files": 55,
+  "bytes": 3468473,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 1
+  "secs": 0
  },
  "oldbill": {
   "how": "branch",
@@ -111,18 +111,18 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
- "meeting": {
-  "how": "branch",
-  "files": 21,
-  "bytes": 1881628,
+ "qa": {
+  "how": "branch+overlay",
+  "files": 789,
+  "bytes": 70267524,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1
  },
- "qa": {
+ "meeting": {
   "how": "branch",
-  "files": 783,
-  "bytes": 68980045,
+  "files": 21,
+  "bytes": 1881628,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1
@@ -159,17 +159,13 @@
   "dropped_over_24MB": [],
   "secs": 2
  },
- "_build_logs": {
-  "docs": "[docs] 1022 document(s) pass the rules\n[docs] ghf_evidence/ev_0001 [en] html\n[docs] ghf_evidence/ev_0002 [en] html\n[docs] ghf_evidence/ev_0003 [en] html\n[docs] ghf_evidence/ev_0004 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0005 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\nsphinx -b html failed for /home/runner/work/cedwyn/cedwyn/src_tmp_docs/ghf_evidence/ev_0001/latest/source\n",
-  "story": "vsbuckler@0.1.0 build\n> vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m\u2713\u001b[39m 34 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                \u001b[39m\u001b[1m\u001b[2m  3.61 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   1.46 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mmain-CJIfExBc.css  \u001b[39m\u001b[1m\u001b[2m 23.63 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   5.73 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-Dktr8I9D.js  \u001b[39m\u001b[1m\u001b[33m815.08 kB\u001b[39m\u001b[22m\u001b[2m \u2502 gzip: 187.02 kB\u001b[22m\n\u001b[32m\u2713 built in 1.20s\u001b[39m\nCopied storyboard media into dist/media\noptional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-10-25T00_28_06_632Z-debug-0.log\n\u001b[33m\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Frollupjs.org%2Fconfiguration-options%2F%23output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
- },
  "fb2": {
   "how": "branch",
   "files": 234,
   "bytes": 4720647,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 1
+  "secs": 0
  },
  "emails": {
   "how": "branch",
@@ -179,6 +175,10 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
+ "_build_logs": {
+  "docs": "[docs] 1022 document(s) pass the rules\n[docs] ghf_evidence/ev_0002 [en] html\n[docs] ghf_evidence/ev_0001 [en] html\n[docs] ghf_evidence/ev_0003 [en] html\n[docs] ghf_evidence/ev_0004 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs] ghf_evidence/ev_0005 [en] html\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\n[docs]  /usr/bin/python3: No module named sphinx\n\nsphinx -b html failed for /home/runner/work/cedwyn/cedwyn/src_tmp_docs/ghf_evidence/ev_0001/latest/source\n",
+  "story": "vsbuckler@0.1.0 build\n> vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m\u2713\u001b[39m 34 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                \u001b[39m\u001b[1m\u001b[2m  3.61 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   1.46 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mmain-CJIfExBc.css  \u001b[39m\u001b[1m\u001b[2m 23.63 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   5.73 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-Dktr8I9D.js  \u001b[39m\u001b[1m\u001b[33m815.08 kB\u001b[39m\u001b[22m\u001b[2m \u2502 gzip: 187.02 kB\u001b[22m\n\u001b[32m\u2713 built in 1.10s\u001b[39m\nCopied storyboard media into dist/media\noptional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-10-25T00_59_17_949Z-debug-0.log\n\u001b[33m\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
+ },
  "dartboard": {
   "how": "crawl",
   "files": 6,
@@ -187,21 +187,13 @@
   "dropped_over_24MB": [],
   "secs": 1
  },
- "wayback": {
-  "how": "branch",
-  "files": 5560,
-  "bytes": 892373406,
+ "email": {
+  "how": "crawl",
+  "files": 10,
+  "bytes": 11345014,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 8
- },
- "directory": {
-  "how": "branch",
-  "files": 318,
-  "bytes": 1098315,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 0
+  "secs": 3
  },
  "estate": {
   "how": "crawl",
@@ -211,21 +203,29 @@
   "dropped_over_24MB": [],
   "secs": 2
  },
- "email": {
-  "how": "crawl",
-  "files": 10,
-  "bytes": 11345014,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 4
- },
- "terrain": {
-  "how": "crawl",
-  "files": 6,
-  "bytes": 317615,
+ "directory": {
+  "how": "branch",
+  "files": 318,
+  "bytes": 1098315,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1
+ },
+ "fcg": {
+  "how": "crawl",
+  "files": 153,
+  "bytes": 2882555,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 7
+ },
+ "wayback": {
+  "how": "branch",
+  "files": 5560,
+  "bytes": 892373406,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 9
  },
  "patagonia": {
   "how": "crawl",
@@ -233,7 +233,7 @@
   "bytes": 24873,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 2
+  "secs": 1
  },
  "shop": {
   "how": "branch",
@@ -242,6 +242,14 @@
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 0
+ },
+ "terrain": {
+  "how": "crawl",
+  "files": 6,
+  "bytes": 317615,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
  },
  "cyberspace": {
   "how": "crawl",
@@ -257,15 +265,7 @@
   "bytes": 30148,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 3
- },
- "fcg": {
-  "how": "crawl",
-  "files": 153,
-  "bytes": 2882555,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 10
+  "secs": 2
  },
  "story": {
   "how": "branch+build",
@@ -278,10 +278,10 @@
  "research": {
   "how": "crawl",
   "files": 1166,
-  "bytes": 33673787,
+  "bytes": 33674012,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 145
+  "secs": 124
  },
  "docs": {
   "how": "crawl(fallback)",
@@ -289,6 +289,6 @@
   "bytes": 20807841,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 218
+  "secs": 243
  }
 }
