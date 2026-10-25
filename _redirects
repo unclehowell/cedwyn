@@ -1,6 +1,6 @@
-/ebooks/api/* https://ebooks.bucklerfamily.estate/api/:splat 302
-/wales/ebooks/api/* https://ebooks.bucklerfamily.estate/api/:splat 302
-/argentina/ebooks/api/* https://ebooks.bucklerfamily.estate/api/:splat 302
+/assets/fonts/* /_cedwyn/ghf/fonts/:splat 200
+/locations-img/* /dartboard/locations-img/:splat 200
+/dartboard/ghf-lang/* /_cedwyn/ghf/:splat 200
 /wales/wales/ /wales/tour/ 200
 /argentina/wales/ /wales/tour/ 200
 /wales/records/* /records/:splat 200
@@ -41,9 +41,6 @@
 /wales/research/* /research/:splat 200
 /wales/thousand-cuts/* /thousand-cuts/:splat 200
 /argentina/:theme/* /:theme/:splat 200
-/assets/fonts/* /_cedwyn/ghf/fonts/:splat 200
-/locations-img/* /dartboard/locations-img/:splat 200
-/dartboard/ghf-lang/* /_cedwyn/ghf/:splat 200
 /bpvsbuckler/* /story/:splat 301
 /whatdotheyknow/* /wdtk/:splat 301
 /ghf-primary-records/* /records/:splat 301
