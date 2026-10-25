@@ -77,11 +77,11 @@ def main():
             continue
         prior=previous.get(url,{})
         f=fetch(url,args.timeout)
-        digest=hashlib.sha256(f["body"]).hexdigest() if f["status"] is not None else None
+        digest=hashlib.sha256(f["body"]).hexdigest() if f["status"] is not None and 200 <= f["status"] < 300 else None
         changed=(prior.get("sha256") is not None and digest is not None and prior.get("sha256")!=digest)
         first=(prior.get("sha256") is None and digest is not None)
         status_changed=(prior.get("http_status") is not None and f["status"] is not None and prior.get("http_status")!=f["status"])
-        fetch_failed=f["status"] is None
+        fetch_failed=f["status"] is None or not (200 <= f["status"] < 300)
         row=dict(prior)
         row.update({"id":p.get("id"),"title":p.get("title"),"url":url,"source_id":p.get("source_id"),
                     "sha256":digest or prior.get("sha256"),"http_status":f["status"] if f["status"] is not None else prior.get("http_status"),
