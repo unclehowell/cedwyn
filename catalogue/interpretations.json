@@ -89,6 +89,97 @@
       ],
       "confidence": "Strongly supported as a provenance rule; document-by-document verification outstanding",
       "updated": "2026-10-25"
+    },
+    {
+      "id": "INT-0003",
+      "subject_type": "source_record",
+      "subject_id": "SRC-HENEB-GGAT02038S",
+      "status": "supported_by_public_record; historical propositions require underlying artifacts",
+      "title": "The HER entry proves what the record says; its historical statements require separate source checking",
+      "text": "The public page is a primary source for what Heneb/Archwilio currently publishes under GGAT02038s, including its compiled and last-updated dates and the summary it presents. It is not the original 1974 survey, the December 1988 Suggett note, the 1990 archaeological assessment, or the 1994 excavation archive. A citation to the page can establish that the HER records a particular statement; where the research asks whether the historical event itself occurred, the underlying artifact or independent contemporaneous source should be located and assessed.",
+      "basis_source_ids": [
+        "SRC-HENEB-GGAT02038S"
+      ],
+      "evidence_for": [
+        {
+          "source_id": "SRC-HENEB-GGAT02038S",
+          "pinpoint": "Page heading and Compiled date / Last updated fields",
+          "note": "The current official entry identifies its record and gives publication metadata."
+        },
+        {
+          "source_id": "SRC-HENEB-GGAT02038S",
+          "pinpoint": "Description and Sources sections",
+          "note": "The page attributes and summarizes historical information and identifies sources/linked records."
+        }
+      ],
+      "evidence_against_or_limits": [
+        {
+          "source_id": "SRC-HENEB-GGAT02038S",
+          "pinpoint": "Underlying source artifacts not reviewed as a complete set",
+          "note": "The web entry's narrative is not the same item as each cited or summarized historical document."
+        }
+      ],
+      "alternative_explanations": [
+        "The entry may accurately summarize an original source that is held elsewhere.",
+        "A later database entry can preserve earlier observations while also summarizing, condensing, or updating them; wording changes may reflect routine editorial maintenance rather than a deliberate change in historical position."
+      ],
+      "what_would_confirm": [
+        "Obtain and read the original 1974 survey, Suggett note, 1990 assessment and relevant 1994 site archive as separate artifacts.",
+        "Record the source list and revision metadata, and compare any prior dated versions with the current page."
+      ],
+      "what_would_refute_or_modify": [
+        "Original records materially contradict a date, attribution, location, quotation or summary in the HER entry.",
+        "A prior captured version shows the apparent statement was added or changed, requiring the chronology and interpretation to be revised."
+      ],
+      "unresolved_questions": [
+        "What versions of the HER page survive, with timestamps, as external Internet Archive captures?",
+        "Which underlying source files support each statement, and which were merely inherited from earlier database entries?",
+        "What does the full change history reveal, if any portion is disclosed?"
+      ],
+      "confidence": "Strongly supported as to source scope; the underlying historical propositions require source-by-source evaluation",
+      "updated": "2026-10-25"
+    },
+    {
+      "id": "INT-0004",
+      "subject_type": "source_record",
+      "subject_id": "SRC-HENEB-GGATE003872",
+      "status": "working_interpretation",
+      "title": "An archaeological recommendation is not, by itself, proof of a binding planning condition or its breach",
+      "text": "The GGATE003872 entry summarizes a 1990 evaluation and recommendations concerning archaeological deposits. That record is relevant to what the archaeological evaluation reported and recommended. It does not alone establish the exact planning permission or condition wording, whether the authority adopted the recommendations, whether any condition was discharged or enforced, or what a developer was legally required to do. Those questions require the original evaluation/report, planning decision notices, approved plans, condition discharge correspondence and any enforcement records.",
+      "basis_source_ids": [
+        "SRC-HENEB-GGATE003872"
+      ],
+      "evidence_for": [
+        {
+          "source_id": "SRC-HENEB-GGATE003872",
+          "pinpoint": "Summary and Description",
+          "note": "The page describes the evaluation and recommendations."
+        }
+      ],
+      "evidence_against_or_limits": [
+        {
+          "source_id": "SRC-HENEB-GGATE003872",
+          "pinpoint": "Page-level summary, not a complete planning file",
+          "note": "It does not supply the operative planning decision notice, complete condition text or discharge/enforcement record in this source entry."
+        }
+      ],
+      "alternative_explanations": [
+        "The planning authority may have adopted the recommendations in a condition.",
+        "The recommendations may have been modified, implemented through another mechanism, or not imposed as a condition; the file must decide."
+      ],
+      "what_would_confirm": [
+        "Obtain the 1990 assessment and the complete planning file, including decision notices, conditions, drawings, consultation responses, discharge and enforcement records."
+      ],
+      "what_would_refute_or_modify": [
+        "A relevant notice or plan shows a different site extent, recommendation, condition, or legal requirement than the current interpretation anticipates."
+      ],
+      "unresolved_questions": [
+        "Where are the original GGAT assessment, trench plans and supporting photographs held?",
+        "What precisely did the authority require and what work did it record as completed?",
+        "How do the excavation coordinates relate to cadastral parcels and later development boundaries?"
+      ],
+      "confidence": "Plausible and deliberately limited; the actual planning obligations have not been audited in this record",
+      "updated": "2026-10-25"
     }
   ]
 }
