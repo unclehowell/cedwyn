@@ -60,7 +60,7 @@ def card(t):
     return (f'<a class="t{"" if ok else " off"}" href="/{t["id"]}/"><b>{html.escape(t["title"])}</b>'
             f'<span>/{t["id"]}/ · was {sub}</span></a>')
 body = ''.join(f'<details open><summary>{html.escape(g)} <i>{len(ids)}</i></summary><div class="g">' + ''.join(card(by[i]) for i in ids) + '</div></details>' for g, ids in secs)
-idx = f'''<!doctype html><html lang="en" data-ghf-host="bucklerfamily.estate" data-ghf-path="/cedwyn/" data-ghf-native="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+idx = f'''<!doctype html><html lang="en" data-ghf-host="bucklerfamily.estate" data-ghf-path="/cedwyn/themes/" data-ghf-native="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cedwyn · one archive, {len(CFG["themes"])} ways in</title><meta name="description" content="One catalogue of Great House Farm evidence, browsed through {len(CFG["themes"])} themes.">
 <style>*{{box-sizing:border-box}}body{{margin:0;font:16px/1.45 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#14141c;color:#e8e8f0}}
 header{{padding:18px 16px 12px;border-bottom:2px solid #fca}}h1{{margin:0;color:#fca;font-size:24px}}header p{{margin:4px 0 10px;color:#cfcfe0;font-size:14px}}

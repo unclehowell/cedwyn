@@ -84,7 +84,7 @@
     if (!box) return;
     var s = T[lang()], l = lang(); box.querySelector(".ghf-cho-in").innerHTML = "";
     var inn = box.querySelector(".ghf-cho-in");
-    var top = el("div", "ghf-cho-top"), br = el("div", "ghf-cho-brand"); var im = document.createElement("img"); im.src = BASE + "/brand/cedwyn-tent-icon-64.png"; im.alt = ""; br.appendChild(im); br.appendChild(el("span", null, s.estate)); top.appendChild(br);
+    var top = el("div", "ghf-cho-top"), br = el("div", "ghf-cho-brand"); var im = document.createElement("img"); im.src = "/_cedwyn/ghf/brand/cedwyn-tent-icon-64.png"; im.alt = ""; br.appendChild(im); br.appendChild(el("span", null, s.estate)); top.appendChild(br);
     var lg = el("div", "ghf-cho-lang"); ["en", "cy", "es"].forEach(function (k) { var b = el("button", null, k.toUpperCase()); b.type = "button"; b.setAttribute("aria-pressed", k === l ? "true" : "false"); b.onclick = function () { if (window.GHFLang) window.GHFLang.set(k); else { document.documentElement.setAttribute("lang", k); } setTimeout(render, 60); }; lg.appendChild(b); }); top.appendChild(lg);
     inn.appendChild(top);
     inn.appendChild(el("h1", null, s.title));
