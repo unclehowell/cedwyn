@@ -121,3 +121,113 @@ See `reports/` (written by every build): `db.json` (database size, chunk count, 
 - Add people and places to the graph (it currently has years, themes, source hosts and links), then embeddings for graph-RAG.
 
 — Sion's Tab agent
+
+## Stage 2 (25 Oct 2026): shared header, fully self-contained, parity
+
+### The shared 3-row header with the burger menu
+- The header every datro subdomain draws is now **vendored into cedwyn** at `/_cedwyn/ghf/`: bar 1, then the Wales /
+  Patagonia / Cyberspace strip with the language switch, then the stop bar with the burger menu. The vendored files are
+  `ghf-boot.js`, `basecamp.js` (locations code inlined), `ghf-lang.js`, `ghf-theme.css`, the Barlow fonts, the site
+  dictionaries and the brand icon. They were copied read-only from the live apex site. `basecamp.js` reads each theme's
+  former address from `<html data-ghf-host / data-ghf-path>` (set by `/_cedwyn/runtime.js`), so every theme keeps its own
+  colours and stop number.
+- `tools/selfcontain.py --fix` places it last in `<head>` on the landing page and on every page of every theme. It also
+  removes older inlined copies of the header. Every menu entry points to `/<theme>/` on cedwyn, never to a subdomain.
+- The landing page shows the header as the Cedwyn Estate stop, without the first-visit chooser over the theme list.
+- The second bar (the "Estate website tour": `estate-tour.js`, `data-estate-tour-shell`, `data-estate-tour-nav`) is
+  **removed everywhere** in cedwyn. Only the 3-row header remains.
+
+### Self-contained: the build fails on any outside reference
+`tools/selfcontain.py` runs twice in the build.
+1. `--fix` rewrites every remaining URL. It covers HTML attributes (href, src, srcset, poster, data, action, meta
+   content, data-*, ...), inline `<script>`/`<style>` (JSON-LD too), and every `.js .mjs .css .json .webmanifest .svg .xml`
+   file. Each URL is handled like this:
+   - a former subdomain or apex path becomes `/<theme>/...`;
+   - a CDN script, style or font (Google Fonts, jsDelivr, cdnjs, unpkg, plus ES-module imports such as the three.js
+     add-ons) is downloaded once into `/_ext/<host>/...`;
+   - anything else goes to the archive interface `/wayback/go/?u=<address>`.
+
+   Files that a page names but its branch copy lacks are copied read-only from that theme's live address, in several
+   rounds. Images, videos, app bundles and scripts are covered, including the images the vault builds from names in its
+   JSON. A last full pass then runs over every file.
+2. The strict test **fails the build** on any reference to a `*.bucklerfamily.estate` subdomain or to any external host.
+   - Visible text, HTML comments and XML namespace names are not counted as references.
+   - Exception: two map-tile URL templates (`themes.json` `allowed_tile_templates`). Tiles are fetched per zoom level
+     and position, so they cannot be stored as fixed files.
+- Live crawl after deploy (`s2/crawl_check.py`, the same rules applied to the served pages and their scripts, styles and
+  JSON): **158 pages and 89 scripts, styles and data files across the landing page and all 36 themes: 0 subdomain references, 0 external references, 0 failed pages (25 Oct 02:40 UTC); the build's own test checked 8,314 files with the same result**.
+- `_headers` sets `Cache-Control: no-transform` on every response, so the zone's automatic analytics snippet stays out of
+  cedwyn pages.
+- Runtime fix: links between themes were being re-prefixed (for example `/maps/` on `/fb2/` became `/fb2/maps/`). Parsed
+  pages are now left as the build resolved them, and only links added by scripts are mapped.
+
+### Thin themes and sources
+- `tools/apex_source.py` fills the apex themes from the apex site's static files (repo `unclehowell/BucklerFamilyFarm`,
+  `public/`, read-only): `/wales/`, `/patagonia/`, `/cyberspace/`, and the apex root `/dartboard/` (legal pages, fonts,
+  location images, brand, evidence). Apex paths that stage 1 had prefixed twice are collapsed.
+- qa serves the folder its live site serves (`static/qa`, via the `overlay` key in `themes.json`).
+- records redirects to the research library's Sources and Archives page, as its live address does.
+- `research` (the research library) is the 36th theme. It is built from a crawl of the live site.
+
+### Single database
+- The catalogue database (`/db/`, SQLite in 512 KB chunks) now also stores every theme's own data files (JSON, CSV, XML)
+  as blobs, next to the images and documents (`tools/build_db.py`, kind `data`): 36 themes, 3,676 blobs (539 MB), 100,706 edges, 1,077 nodes, 7,289 full-text rows; 588 MB in 1,123 chunks of 512 KB.
+- The themes still read their own copies of those files. A service worker that serves them from the database is the
+  next step, so this clause is **partly** met.
+
+### Per-theme parity (live subdomain vs `cedwyn/<theme>/`, 390 px and 1280 px, measured 25 Oct 2026 02:40 UTC)
+Each pair was measured in a real browser for title, header height, burger, sideways scroll, font, background, text
+volume, images, broken images and failed requests (`s2/parity.js`; screenshots in the working copy).
+identical = same header, no sideways scroll, same font, text within 10 %, no failed loads;
+close = only minor differences; gaps = listed.
+
+| theme | score | what differs |
+|---|---|---|
+| docs | identical | — |
+| records | identical | — |
+| nomenclature | identical | — |
+| wayback | identical | — |
+| maps | identical | — |
+| infographic | identical | — |
+| ebooks | identical | — |
+| wiki | gaps | background colour differs; font Barlow vs Jackwrite; header added (old site had none); less content (18% of the old page's text); less content (19% of the old page's text). cedwyn /wiki/ opens the vault copy of the old WordPress wiki; the live wiki is WordPress (its own theme, no shared header). The research theme carries the same wiki content with the shared header |
+| story | identical | — |
+| fb | close | 1 failed loads. login/profile API (/m/api/me) has no server in cedwyn |
+| chess | identical | — |
+| csscpsg | identical | — |
+| fcg | identical | — |
+| oldbill | identical | — |
+| accounts | identical | — |
+| authorities | identical | — |
+| wdtk | identical | — |
+| review | identical | — |
+| qa | identical | — |
+| meeting | identical | — |
+| projects | identical | — |
+| app | identical | — |
+| chat | identical | — |
+| watchtower | identical | — |
+| fb2 | close | 1 failed loads. login/profile API (/m/api/me) has no server in cedwyn |
+| email | identical | — |
+| emails | identical | — |
+| dartboard | gaps | background colour differs; font Barlow vs Georgia; header added (old site had none); less content (23% of the old page's text). measured against the apex home (bucklerfamily.estate); the cedwyn dartboard theme is the dartboard subdomain app (Disclosure Rings), which is what its branch builds. The apex home is cedwyn's landing page |
+| estate | identical | — |
+| directory | close | 1 failed loads. members API (/api/members) has no server in cedwyn |
+| patagonia | identical | — |
+| wales | identical | — |
+| cyberspace | identical | — |
+| terrain | close | 2 failed loads. scene and session APIs (/terrain/api/*) have no server in cedwyn; the 3D scene loads from its static data |
+| shop | identical | — |
+| research | gaps | 1 broken images |
+
+Summary: 29 identical, 4 close, 3 with gaps; no theme scrolls sideways at 390 or 1280 px (fb and fb2 included); the shared header is on all 36 and the landing page.
+
+### What remains (stage 3)
+- Single database: themes still read their own JSON/CSV/XML copies. Those files are already stored as blobs in the
+  catalogue database; a service worker (or a build step) that serves every theme's data from `/db/` would close this.
+- Interactive features that need a server, which a static cedwyn has no backend for: fb/fb2 sign-in (`/m/api/me`),
+  directory members (`/api/members`), terrain scene/session APIs, and chat answers.
+- wiki: rebuild `/wiki/` from a crawl of the WordPress wiki (with its theme files vendored) instead of the vault copy.
+- docs: the Sphinx build is not run in CI (sphinx missing), so the docs theme is a crawl of the live docs (identical in
+  parity).
+- The two map-tile templates stay as the only stated outside requests.
