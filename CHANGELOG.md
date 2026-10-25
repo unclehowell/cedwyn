@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.4.0] - 2026-10-25
+
+### Added
+- `title-chain/`: an animated, step-by-step title chain (Bute → Mountjoy → Western Ground Rents 1938 → BP 1969 → first registration 1982/83) beside the Williams occupation line, the twelve-year pairs (stacked from a common start) and the parcels taken. It reads the “title-chain” layer from the Cedwyn catalogue database (fallback: /research/layer.json); every step links to its catalogue ID. The courts’ view is shown first.
+- A link to it above the circle diagram.
+
 ## [3.3.3] - 2026-10-24
 
 ### Fixed
