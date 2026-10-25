@@ -14,6 +14,12 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;
 if(u)fetch('/wayback/go/captures.json').then(function(r){return r.json();}).then(function(c){var k=Cedwyn.normkey(u),hit=c[k];
 if(hit){box.innerHTML='<h3>'+esc(hit.t||k)+'</h3><p class="muted">Captured '+esc((hit.c||'').slice(0,10))+'. Opening the archived copy…</p><p><a href="'+esc(hit.l)+'">Open the archived copy</a></p>';setTimeout(function(){location.replace(hit.l);},900);return;}
 var host='';try{host=new URL(u).hostname;}catch(e){}
+/* 25 Oct 2026: a Great House Farm address (*.bucklerfamily.estate) with no theme of its own and no capture never shows this page:
+   the media stores open the Wayback Vault theme, any other opens the catalogue search for it */
+var hl=host.toLowerCase();if(/(^|\.)bucklerfamily\.estate$/.test(hl)){var pth='';try{pth=new URL(u).pathname;}catch(e){}
+var tk=(pth.split('/').filter(Boolean).pop()||hl.split('.')[0]).replace(/\.[a-z0-9]*$/i,'').replace(/[-_]+/g,' ');
+var to=/^(wayback-(html|img|pdf|video|text)|internetarchive)\./.test(hl)&&(pth==='/'||!pth)?'/wayback/':'/catalogue/?q='+encodeURIComponent(tk);
+document.querySelector('h1').textContent='Opening';box.innerHTML='<p class="muted">Opening '+esc(to)+'</p>';location.replace(to);return;}
 box.innerHTML='<h3>Not yet archived</h3><p>The original address is recorded here as text:</p><pre>'+esc(u)+'</pre>'+(host?'<p><a href="/catalogue/?q='+encodeURIComponent('"'+host.replace(/^www\./,'').split('.')[0]+'"')+'">Search the catalogue for '+esc(host)+'</a> · <a href="/wayback/">Browse the Wayback Vault</a></p>':'');
 }).catch(function(){box.innerHTML='<h3>Not yet archived</h3><pre>'+esc(u)+'</pre>';});
 </script></body></html>
