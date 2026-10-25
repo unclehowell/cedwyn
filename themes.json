@@ -1,6 +1,6 @@
 {
- "version": "1.0.0",
- "note": "Theme registry for cedwyn.bucklerfamily.estate: one entry per former datro subdomain site (source: datro site_chain.json, 35 sites). research.bucklerfamily.estate was added as the 36th theme on 25 Oct 2026 (crawl of the live site). — Sion's Tab agent '1000 Cuts' (thousand-cuts) added as the 37th theme on 25 Oct 2026: a layer over the same evidence (web/thousand-cuts/, rows in the database's layer tables), not a former subdomain. — Sion's Tab agent",
+ "version": "1.1.0",
+ "note": "Cedwyn theme registry v1.1.0: 38 routes total. The original 36-theme site chain now includes Court Drills, restored Research Library, and 1000 Cuts as a catalogue layer. The theme registry maps every public route/host to its assembled content. — Sion's Tab agent, 25 Oct 2026",
  "apex": {
   "host": "bucklerfamily.estate",
   "paths": {
@@ -278,6 +278,21 @@
    "paths": [],
    "desc": "",
    "branch": "csscpsg",
+   "dir": "public",
+   "group": "interactive"
+  },
+  {
+   "id": "courtdrills",
+   "title": "Court Drills · Procedural Unfairness",
+   "cy": "Driliau’r Llys · Annhegwch Gweithdrefnol",
+   "es": "Simulacros Judiciales · Injusticia Procesal",
+   "live": "https://courtdrills.bucklerfamily.estate/",
+   "hosts": [
+    "courtdrills.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "Great House Farm proceedings, 1955–1988: procedural unfairness, court mistakes and other miscarriages of justice, each with its source.",
+   "branch": "courtdrills",
    "dir": "public",
    "group": "interactive"
   },
