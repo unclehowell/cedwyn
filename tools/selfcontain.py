@@ -35,7 +35,8 @@ TILES = CFG.get('allowed_tile_templates', [])
 NS = {'www.w3.org', 'w3.org', 'schema.org', 'purl.org', 'ogp.me', 'xmlns.com', 'ns.adobe.com', 'www.inkscape.org',
       'sodipodi.sourceforge.net', 'creativecommons.org', 'www.openarchives.org', 'www.sitemaps.org', 'docs.oasis-open.org',
       'rdfs.org', 'web.resource.org', 'www.google.com/schemas', 'search.yahoo.com', 'ns.attribution.cloudflare.com'}
-CDN = {'cdn.jsdelivr.net', 'unpkg.com', 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com', 'ajax.googleapis.com'}
+CDN = {'cdn.jsdelivr.net', 'unpkg.com', 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com', 'ajax.googleapis.com',
+       's0.wp.com', 's1.wp.com', 's2.wp.com', 'i0.wp.com', 'i1.wp.com', 'i2.wp.com'}   # the WordPress wiki's theme styles, scripts and resized images
 UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
 # a URL: scheme-ful (also JSON-escaped https:\/\/), or protocol-relative right after a quote/paren/equals/space
 URL = re.compile(r'''(?:(?<![\w.+-])(https?:)(//|\\/\\/)|(?<=["'(=`])(//))([a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)+)(:\d+)?((?:/|\\/)[^\s"'<>`\\]*(?:\\/[^\s"'<>`\\]*)*)?''', re.I)
@@ -307,7 +308,7 @@ def fetch_vendor():
 MEDIA_EXT = {'.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.avif', '.ico', '.bmp', '.pdf', '.mp3', '.m4a', '.ogg', '.wav', '.mp4', '.webm', '.mov',
              '.woff', '.woff2', '.ttf', '.otf', '.js', '.mjs', '.css', '.json', '.vtt', '.txt', '.csv', '.wasm'}
 LOCALREF = re.compile(r'''(?<=["'(=\s,])/([a-z0-9][a-z0-9-]*)/([^\s"'<>`()\\?#]+\.([a-z0-9]{2,5}))(?=[\s"'<>`()\\?#,])''', re.I)
-CRAWLED = {t['id'] for t in CFG['themes'] if t.get('crawl') or t.get('crawl_fallback')}
+CRAWLED = {t['id'] for t in CFG['themes'] if t.get('crawl') or t.get('crawl_fallback') or t.get('crawl_first')}
 RELREF = re.compile(r'''["'`]((?:\.{1,2}/|/)?[\w@-][\w@.%-]*(?:/[\w@.%-]+)*\.(?:jpe?g|png|gif|webp|svg|avif|glb|gltf|bin|hdr|json|js|mjs|css|woff2?|mp4|webm|mp3|pdf|wasm|txt|csv))(?:\?[^"'`]*)?["'`]''', re.I)
 def fill_missing(dry=False, scan=None):
     """files a theme page names under /<theme>/ that the theme's branch copy does not hold (the old site served them from

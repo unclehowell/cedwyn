@@ -11,10 +11,22 @@ report = {}
 def sh(cmd, cwd=None, t=900):
     try: return subprocess.run(['timeout', '-k', '5', str(t), 'bash', '-lc', cmd], cwd=cwd, capture_output=True, text=True)
     except Exception as e: return subprocess.CompletedProcess(cmd, 1, '', str(e))
-def crawl(url, out):
+def crawl(url, out, robots=False, quota='150m', t=420, sitemap=None):
+    """read-only GET crawl; robots=True obeys the site's robots.txt (used for the WordPress wiki); sitemap: every page the
+    site's own sitemap lists is a starting point too, so deep pages are not missed"""
     tmp = pathlib.Path('crawl_tmp_' + out.name); shutil.rmtree(tmp, ignore_errors=True); tmp.mkdir()
-    r = sh(f"wget -q -e robots=off --mirror --level=3 --page-requisites --adjust-extension --convert-links=off --no-parent "
-           f"--restrict-file-names=windows --timeout=20 --tries=2 --quota=150m -U 'Mozilla/5.0 cedwyn-archive' -P {tmp} '{url}'", t=420)
+    rob = ("--wait=0.1 --reject-regex '[?&](share|replytocom|like_comment|nb|_wpnonce|subscribe|shared)=|/feed/|/amp/|/embed/'"
+           if robots else '-e robots=off'); seeds = ''; level = 3
+    if sitemap:
+        try:
+            import urllib.request, re as _re
+            with urllib.request.urlopen(urllib.request.Request(sitemap, headers={'User-Agent': 'Mozilla/5.0 cedwyn-archive'}), timeout=60) as r0:
+                locs = _re.findall(r'<loc>([^<]+)</loc>', r0.read().decode('utf-8', 'ignore'))
+            lf = pathlib.Path('seeds_' + out.name + '.txt').resolve(); lf.write_text('\n'.join(locs) + '\n'); seeds = f'-i {lf}'; level = 1
+            report.setdefault('_sitemap', {})[out.name] = len(locs)
+        except Exception as e: report.setdefault('_sitemap', {})[out.name] = 'failed: ' + str(e)[:80]
+    r = sh(f"wget -q {rob} {seeds} --mirror --level={level} --page-requisites --adjust-extension --convert-links=off --no-parent "
+           f"--restrict-file-names=windows --timeout=20 --tries=2 --quota={quota} -U 'Mozilla/5.0 cedwyn-archive' -P {tmp} '{url}'", t=t)
     host = url.split('/')[2]; base = tmp / host
     sub = url.split(host, 1)[1].strip('/')
     src = base / sub if sub else base
@@ -25,7 +37,12 @@ def crawl(url, out):
 def one(t):
     tid = t['id']; out = DIST / tid; shutil.rmtree(out, ignore_errors=True); out.mkdir(parents=True)
     t0 = time.time(); how = None; n = 0
-    if t.get('branch'):
+    if t.get('crawl_first'):   # a live site crawled first (robots.txt obeyed); its branch copy is the fallback
+        n = crawl(t['crawl_first'], out, robots=True, quota=t.get('crawl_quota', '150m'), t=t.get('crawl_secs', 420), sitemap=t.get('crawl_sitemap')); how = 'crawl(robots)'
+        if n == 0 or not (out / 'index.html').exists():
+            shutil.rmtree(out, ignore_errors=True); out.mkdir(parents=True); n = 0; how = None
+    if how: pass
+    elif t.get('branch'):
         work = pathlib.Path('src_tmp_' + tid); shutil.rmtree(work, ignore_errors=True); work.mkdir()
         r = sh(f"git --git-dir={MIRROR} archive --format=tar refs/heads/{t['branch']} | tar -x -C {work}")
         if r.returncode == 0:

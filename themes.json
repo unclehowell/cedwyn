@@ -130,7 +130,11 @@
    "paths": [],
    "desc": "",
    "branch": "wiki",
-   "dir": "site"
+   "dir": "site",
+   "crawl_first": "https://greathousefarmwiki.wordpress.com/",
+   "crawl_quota": "400m",
+   "crawl_secs": 720,
+   "crawl_sitemap": "https://greathousefarmwiki.wordpress.com/sitemap.xml"
   },
   {
    "id": "ebooks",
