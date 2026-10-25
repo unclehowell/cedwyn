@@ -38,12 +38,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Validate register cross-links and uncertainty fields
         run: python tools/validate_catalogue.py
       - name: Check Python syntax
         run: python -m py_compile tools/validate_catalogue.py tools/monitor_sources.py tools/build_db.py
+      - name: Check browser catalogue client syntax
+        run: node --check web/_cedwyn/cat.js
       - name: Check JSON registers
-        run: python -m json.tool catalogue/sources.json >/dev/null && python -m json.tool catalogue/interpretations.json >/dev/null && python -m json.tool catalogue/expected-records.json >/dev/null && python -m json.tool catalogue/monitored-pages.json >/dev/null && python -m json.tool catalogue/monitoring/state.json >/dev/null && python -m json.tool themes.json >/dev/null && python -m json.tool sections.json >/dev/null
+        run: python -m json.tool catalogue/sources.json >/dev/null && python -m json.tool catalogue/interpretations.json >/dev/null && python -m json.tool catalogue/events.json >/dev/null && python -m json.tool catalogue/expected-records.json >/dev/null && python -m json.tool catalogue/monitored-pages.json >/dev/null && python -m json.tool catalogue/monitoring/state.json >/dev/null && python -m json.tool themes.json >/dev/null && python -m json.tool sections.json >/dev/null
   owner_gate:
     name: Central-change owner gate
     if: github.event_name == 'pull_request'
