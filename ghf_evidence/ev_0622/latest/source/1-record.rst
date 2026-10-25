@@ -24,4 +24,4 @@ Record
 
 **Shows:** The Crichel Down rules cover surplus land a public body bought under compulsion and offer it back to the former freeholder. MAF 11/1022 is dated two days after Mrs M. D. Buckler called the losses "a Welsh case of Crichel Down" (EV-0037).
 
-**Does not show:** No requisition of this farm, and no Air Ministry or airfield taking of it, has been found on file. Where public bodies took land nearby, the former owner of record was Bute, Mountjoy, WGR or a developer.
+**Does not show:** No requisition of this farm, and no Air Ministry or airfield taking of it, has been found on file. Where public bodies took land nearby, the party of record was Bute, Mountjoy, WGR or a developer.

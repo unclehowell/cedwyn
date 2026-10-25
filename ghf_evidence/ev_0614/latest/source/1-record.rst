@@ -22,6 +22,6 @@ Record
    * - Related entries
      - `EV-0022 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0022-press-1938-bute-wgr-sale-completion/>`__, `EV-0024 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0024-bute-mountjoy-estate-maps-d1777/>`__, `EV-0080 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0080-bp-properties-v-buckler-judgment/>`__, `EV-0012 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0012-bute-will-press-reports-1900/>`__, `EV-0624 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0624-mountjoy-ltd-formed-1922-bute-estate-company/>`__
 
-**Shows:** Names Mountjoy Ltd as the Bute family company from 1926 and records that in 1938 Mountjoy sold its leasehold interests. Mountjoy Ltd is the seller to Western Ground Rents in 1938 (EV-0022).
+**Shows:** Names Mountjoy Ltd as the Bute family company from 1926 and records that in 1938 Mountjoy sold its leasehold interests. Mountjoy Ltd is named as the seller to Western Ground Rents in 1938 in press reports (EV-0022); the 1938 deed has not been examined.
 
 **Does not show:** Press of May 1922 shows the company was formed in 1922 (EV-0624), so 1926 reads as the year further property was brought in. The 1987 judgment does not mention Mountjoy; it goes from "the Marquis" (1916) to WGR (1938). No Llandough-juxta-Penarth instrument in the DBDT catalogue names Mountjoy.

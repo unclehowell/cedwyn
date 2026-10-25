@@ -22,6 +22,6 @@ Record
    * - Related entries
      - `EV-0027 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0027-bute-manor-disposals-db-m-22/>`__, `EV-0146 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0146-tna-mdr-llandough-manor-return/>`__, `EV-0278 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0278-nlw-bute-estate-records-llandough-manor-rentals-1808-1881-r-6-27-45-and-presentmen/>`__, `EV-0616 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0616-law-of-property-act-1922-copyhold-1926/>`__
 
-**Shows:** Bute’s Glamorgan manors were being wound down after 1 Jan 1926, when the Law of Property Act 1922 turned copyhold into freehold (EV-0616); in 1938, the year of the sale to Western Ground Rents, Bute’s estate was corresponding with the Ministry about extinguishing manorial incidents.
+**Shows:** Bute’s manorial titles in Glamorgan were being wound down after 1 Jan 1926, when the Law of Property Act 1922 turned copyhold into freehold (EV-0616); in 1938, the year of the sale to Western Ground Rents (deed not examined), Bute’s estate was corresponding with the Ministry about extinguishing manorial incidents.
 
 **Does not show:** No record yet shows that any part of Great House Farm was copyhold of Llandough manor after 1900.

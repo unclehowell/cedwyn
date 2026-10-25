@@ -24,6 +24,6 @@ Record
    * - File
      - `title-root-audit.pdf <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0628-title-chain-authenticity-audit-2026/title-root-audit.pdf>`__
 
-**Shows:** Every link in the paper chain from 1922 to 1983 is known only from recitals, press or catalogues; no operative instrument from it is held. The family’s records on file (c.1841 tithe, 1872–76 rate books, 1824 survey, 1916 tenancy, 1939 letting) record occupation and tenancy and name Bute as landowner. The single most useful document is the 25 Dec 1938 conveyance with its plan.
+**Shows:** Every link in the paper chain from 1922 to 1983 is known only from recitals, press or catalogues; no operative instrument from it is held. The family’s records on file (c.1841 tithe, 1872–76 rate books, 1824 survey, 1916 tenancy, 1939 letting) are rent-book, rate-book and tenancy entries in the name of John Williams; the parcels they cover are not identified, and none names the Tŷ Mawr house parcel. The single most useful document is the 25 Dec 1938 conveyance with its plan. BP Properties became registered proprietor at first registration in 1982/83; whether Mary Williams’s claim was before HM Land Registry then is not shown in the records held.
 
 **Does not show:** Neither side’s root is proved from a document in hand; the family’s 1987 case was possessory, not documentary.

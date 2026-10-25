@@ -22,6 +22,6 @@ Record
    * - Related entries
      - `EV-0013 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0013-bute-conveyance-1905/>`__, `EV-0618 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0618-cardiff-western-sewer-bute-easements-1904-1905/>`__, `EV-0040 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0040-1961-wgr-brick-tile-deed/>`__, `EV-0124 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0124-outline-planning-permission-89-01396-out-residenti/>`__, `EV-0220 <https://cedwyn.bucklerfamily.estate/research/evidence/ev-0220-leckwith-woods-wgr-gift-1940-1942/>`__
 
-**Shows:** The County Borough of Cardiff that took rights in Feb 1905 became the City corporation in Oct 1905, so the 1905 and 1961 grantee is one body; it appears on the woodland register only as the holder of rights, never as owner (the proprietor from 25 Nov 1994 is Forest of Cardiff, a company). The 1989 outline permission was granted by the Vale of Glamorgan Borough Council.
+**Shows:** The County Borough of Cardiff that took rights in Feb 1905 became the City corporation in Oct 1905, so the 1905 and 1961 grantee is one body; it appears on the woodland register only as the holder of rights, never as registered proprietor (the registered proprietor of the woodland from 25 Nov 1994 is Forest of Cardiff, a company). The 1989 outline permission was granted by the Vale of Glamorgan Borough Council.
 
 **Does not show:** Nothing on file shows Cardiff granting, advising or being consulted on the 1989 application; the Vale’s consultation list would settle it.
