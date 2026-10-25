@@ -134,7 +134,8 @@ ATTR = re.compile(r'''(\s)([^\s=/>"']+)(\s*=\s*)("[^"]*"|'[^']*'|[^\s>"']+)''', 
 BLOCK = re.compile(r'(<(script|style)\b[^>]*>)(.*?)(</\2\s*>)', re.S | re.I)
 COMMENT = re.compile(r'<!--.*?-->', re.S)
 DROP_SCRIPT = re.compile(r'<script\b[^>]*\bsrc\s*=\s*["\'][^"\']*followers\.bucklerfamily\.estate/follow\.js[^"\']*["\'][^>]*>\s*</script>', re.I)
-GHF_SRC = re.compile(r'''(?<=["'=])((?:https?:)?//(?:www\.)?bucklerfamily\.estate|/dartboard)?/(?:ghf-lang/(ghf-boot|ghf-lang|basecamp)|(basecamp))\.js(\?[^"'\s>]*)?''', re.I)
+GHF_SRC = re.compile(r'''(?<=["'=])((?:https?:)?//(?:www\.)?bucklerfamily\.estate|/dartboard|[^"'\s>=]*?)/?(?:ghf-lang/(ghf-boot|ghf-lang|basecamp)|(basecamp))\.js(\?[^"'\s>]*)?(?=["'\s>])''', re.I)
+INLINE_BOOT = re.compile(r'<script\b[^>]*data-ghf-boot-inline[^>]*>.*?</script>\s*', re.I | re.S)
 TOUR_TAG = re.compile(r'<script\b[^>]*(?:estate-tour\.js|data-estate-tour-loader)[^>]*>\s*</script>\s*', re.I)
 TOUR_SHELL = re.compile(r'<header\b[^>]*data-estate-tour-shell[^>]*>.*?</header>\s*', re.I | re.S)
 TOUR_NAV = re.compile(r'<nav\b[^>]*data-estate-tour-nav[^>]*>.*?</nav>\s*', re.I | re.S)
@@ -165,8 +166,15 @@ def do_html(s, page):
         s, k = DROP_SCRIPT.subn('', s); stats['tags_dropped'] += k
         # Sion 25 Oct 00:59: the second bar ("Estate website tour") is removed everywhere; only the 3-row header stays
         s, k1 = TOUR_TAG.subn('', s); s, k2 = TOUR_SHELL.subn('', s); s, k3 = TOUR_NAV.subn('', s)
+        s, k4 = INLINE_BOOT.subn('', s)   # an inlined older ghf-boot (strict-CSP sites) would win over the vendored one and load the header from the old host
+        stats['inline_boot_removed'] = stats.get('inline_boot_removed', 0) + k4
         stats['tour_removed'] = stats.get('tour_removed', 0) + k1 + k2 + k3
-        s = GHF_SRC.sub(lambda m: m.group(0) if (m.group(3) and not m.group(1)) else '/_cedwyn/ghf/' + (m.group(2) or m.group(3)) + '.js?v=2.1.4c', s)
+        def ghf(m):
+            pre = m.group(1) or ''
+            if pre.startswith('/_cedwyn/'): return m.group(0)
+            if m.group(3) and not re.match(r'(?:https?:)?//(?:www\.)?bucklerfamily\.estate$|/dartboard$', pre): return m.group(0)
+            return '/_cedwyn/ghf/' + (m.group(2) or m.group(3)) + '.js?v=2.1.4c'
+        s = GHF_SRC.sub(ghf, s)
     # split into comments / script+style blocks / markup, keep comments and text as written
     out = []; pos = 0
     tokens = sorted([(mm.start(), mm.end(), 'c', mm) for mm in COMMENT.finditer(s)] + [(mm.start(), mm.end(), 'b', mm) for mm in BLOCK.finditer(s)])
@@ -298,7 +306,8 @@ def fill_missing(dry=False, scan=None):
     if os.environ.get('CEDWYN_EXISTS_LIST'): exists = set(open(os.environ['CEDWYN_EXISTS_LIST']).read().split('\n'))
     live = {}
     for t in CFG['themes']:
-        if t.get('live'): live[t['id']] = t['live'].rstrip('/') + '/'
+        base = t.get('crawl') or t.get('live')
+        if base: live[t['id']] = base.rstrip('/') + '/'
     want = {}
     for p, rel in files():
         if p.suffix.lower() not in ('.html', '.htm', '.json', '.css', '.js'): continue
@@ -327,6 +336,18 @@ def fill_missing(dry=False, scan=None):
                 if not relp.startswith(tid + '/'): continue
             ok = (relp in exists) if exists is not None else (DIST / relp).exists()
             if not ok and relp not in want: want[relp] = live[tid] + urllib.parse.quote(relp[len(tid) + 1:])
+    IMGNAME = re.compile(r'"([^"/\\<>]{3,200}\.(?:jpe?g|png|webp|gif))"', re.I)
+    for th in ('wayback',):
+        d = DIST / th
+        for p in list(d.glob('*.json')) + list(d.glob('*/*.json')) + list(d.glob('*.js')) + list(d.glob('*.html')):
+            try: s = p.read_text('utf-8', 'ignore')
+            except Exception: continue
+            for m in IMGNAME.finditer(s):
+                name = m.group(1)
+                if name.startswith(('http', '.')) or len(want) > 6000: continue
+                relp = th + '/images/' + name
+                ok = (relp in exists) if exists is not None else (DIST / relp).exists()
+                if not ok and relp not in want: want[relp] = live[th] + 'images/' + urllib.parse.quote(name)
     if dry: return want, []
     LIMIT_FILE = 24 * 1024 * 1024; budget = [int(os.environ.get('CEDWYN_FILL_MB', '600')) * 1024 * 1024]; got = []; miss = []
     def get(item):
