@@ -13,13 +13,13 @@ button,.btn{font:inherit;border:0;border-radius:10px;padding:11px 14px;backgroun
 button.alt{background:#e6e0d2;color:#222}button.warn{background:#9b2c1f}button:disabled{opacity:.5}
 input,textarea,select{font:inherit;width:100%;padding:10px;border:1px solid #bbb;border-radius:10px;background:#fff;color:#222}
 textarea{font:13px/1.4 ui-monospace,Menlo,Consolas,monospace;min-height:55vh;white-space:pre;overflow:auto}
-textarea.prose{font:15px/1.4 inherit;min-height:3em;white-space:pre-wrap}
+textarea.prose{font-family:inherit;font-size:15px;line-height:1.4;min-height:3em;white-space:pre-wrap}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>*{flex:1 1 auto}
 .list a,.item{display:block;padding:12px 10px;border-bottom:1px solid #eee;color:#222;text-decoration:none;word-break:break-all}
 .list a:active{background:#eee}.muted{color:#777;font-size:13px}.pill{display:inline-block;background:#c9842b;color:#fff;border-radius:99px;padding:0 8px;font-size:12px;margin-left:6px}
 .tabs{display:flex;gap:6px;overflow-x:auto;margin:0 0 10px}.tabs button{flex:0 0 auto;background:#e6e0d2;color:#222;padding:8px 12px;min-height:38px}.tabs button.on{background:#2f3b2a;color:#fff}
 .diff{font:12px/1.35 ui-monospace,Menlo,monospace;white-space:pre-wrap;word-break:break-all;background:#fafafa;border-radius:8px;padding:6px;max-height:50vh;overflow:auto}
-.diff .a{background:#dcf5dc;display:block}.diff .d{background:#fbdcdc;display:block}.diff .h{color:#777;display:block}
+.diff span{display:block;min-height:1.35em}.diff .a{background:#dcf5dc}.diff .d{background:#fbdcdc}.diff .h{color:#777}
 .err{background:#fde7e4;color:#7a1d12;padding:10px;border-radius:10px;margin:8px 0}.ok{background:#e4f4df;color:#1d4d12;padding:10px;border-radius:10px;margin:8px 0}
 iframe{width:100%;height:70vh;border:1px solid #ccc;border-radius:10px;background:#fff}
 label{display:block;font-size:13px;color:#555;margin:8px 0 4px}img.prev{max-width:100%;border-radius:8px}
@@ -49,7 +49,7 @@ function login(msg){
   $('#lf').onsubmit=async e=>{e.preventDefault();const j=await api('login',{method:'POST',body:{password:$('#pw').value}});if(j.ok)start();else login(j.error)};
 }
 async function start(){
-  const m=await api('me');if(m.error)return login();ME=m;nav(true);
+  let m;try{m=await api('me')}catch(e){return}if(m.error)return login();ME=m;nav(true);
   const c=await api('compartments');COMPS=c.compartments||[];await loadDrafts();home();
 }
 async function loadDrafts(){const d=await api('drafts');DRAFTS=d.drafts||{};const n=Object.values(DRAFTS).reduce((a,x)=>a+Object.keys(x).length,0);$('#hChanges').textContent=n?`Changes (${n})`:'Changes'}
@@ -172,8 +172,8 @@ function diff(a,b){const A=a.split('\n'),B=b.split('\n');let s=0;while(s<A.lengt
   if(a2.length*b2.length<4e6){const n=a2.length,m=b2.length,L=Array.from({length:n+1},()=>new Uint32Array(m+1));for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)L[i][j]=a2[i]===b2[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);
     let i=0,j=0;while(i<n&&j<m){if(a2[i]===b2[j]){ops.push([' ',a2[i]]);i++;j++}else if(L[i+1][j]>=L[i][j+1])ops.push(['-',a2[i++]]);else ops.push(['+',b2[j++]])}while(i<n)ops.push(['-',a2[i++]]);while(j<m)ops.push(['+',b2[j++]])}
   else ops=a2.map(x=>['-',x]).concat(b2.map(x=>['+',x]));
-  const ctx=A.slice(Math.max(0,s-2),s).map(x=>[' ',x]);const out=[`<span class="h">@@ line ${s+1}</span>`].concat(ctx.concat(ops).map(([k,x])=>k===' '?esc(x.slice(0,300)):`<span class="${k==='+'?'a':'d'}">${k} ${esc(x.slice(0,300))}</span>`));
-  return out.slice(0,400).join('\n')+(out.length>400?'\n…':'')}
+  const ctx=A.slice(Math.max(0,s-2),s).map(x=>[' ',x]);const out=[`<span class="h">@@ line ${s+1}</span>`].concat(ctx.concat(ops).map(([k,x])=>k===' '?`<span>  ${esc(x.slice(0,300))}</span>`:`<span class="${k==='+'?'a':'d'}">${k} ${esc(x.slice(0,300))}</span>`));
+  return out.slice(0,400).join('')+(out.length>400?'<span>…</span>':'')}
 async function changes(){title('Changes');await loadDrafts();
   const ids=Object.keys(DRAFTS).filter(k=>Object.keys(DRAFTS[k]).length);
   app.innerHTML=ids.length?'':'<div class="card">No drafts. Edit a page and save a draft first.</div>';

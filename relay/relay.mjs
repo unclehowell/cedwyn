@@ -40,9 +40,10 @@ async function compartment(id) {
 }
 async function dispatchBuild() { const r = await gh('POST', `/repos/${E.REPO}/actions/workflows/build.yml/dispatches`, { ref: 'main' }); console.log('build dispatch', r.status); }
 if (cmd === 'drain') {
-  const key = process.env.CMS_RELAY_KEY; if (!key) { console.log('CMS_RELAY_KEY not set'); process.exit(1); }
+  const key = process.env.CMS_RELAY_KEY; if (!key) { console.log('::warning::CMS_RELAY_KEY not set'); process.exit(0); }
   const r = await fetch(WORKER + '/admin/api/relay/jobs', { headers: { 'x-relay-key': key, 'user-agent': 'cedwyn-cms-relay' } });
-  if (!r.ok) { console.log('worker answered', r.status, (await r.text()).slice(0, 200)); process.exit(r.status === 403 ? 1 : 0); }
+  // never fail the scheduled run (a red run every 5 minutes mails the repo owner): warn and stop
+  if (!r.ok || !(r.headers.get('content-type') || '').includes('json')) { console.log(`::warning::editor not answering the relay yet (${r.status})`); process.exit(0); }
   const { jobs } = await r.json(); let built = false; console.log('queued jobs:', jobs.length);
   for (const job of jobs) {
     const res = await E.commit(gh, job); console.log(job.key, job.summary, '->', res.ok ? (res.commit || 'nothing') : res.error);
