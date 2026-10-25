@@ -41,7 +41,7 @@ json.dump(caps, open(go / 'captures.json', 'w'), separators=(',', ':'))
 # landing page: theme picker
 rep = json.load(open(DIST / '_assemble_report.json')) if (DIST / '_assemble_report.json').exists() else {}
 GROUPS = [('Evidence and records', ['records', 'docs', 'wayback', 'authorities', 'wdtk', 'review', 'email', 'emails', 'watchtower', 'nomenclature']),
-          ('Read like a wiki or a book', ['wiki', 'story', 'ebooks', 'qa', 'chat', 'meeting', 'projects', 'app']),
+          ('Read like a wiki or a book', ['wiki', 'research', 'story', 'ebooks', 'qa', 'chat', 'meeting', 'projects', 'app']),
           ('Maps, tours and museums', ['maps', 'infographic', 'estate', 'directory', 'patagonia', 'wales', 'terrain', 'cyberspace']),
           ('Games and puzzles', ['dartboard', 'chess', 'fcg', 'csscpsg']),
           ('Social and media', ['fb', 'fb2']),

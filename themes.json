@@ -1,6 +1,6 @@
 {
  "version": "1.0.0",
- "note": "Theme registry for cedwyn.bucklerfamily.estate: one entry per former datro subdomain site (source: datro site_chain.json, 35 sites). research.bucklerfamily.estate is excluded upstream while it is down. — Sion's Tab agent",
+ "note": "Theme registry for cedwyn.bucklerfamily.estate: one entry per former datro subdomain site (source: datro site_chain.json, 35 sites). research.bucklerfamily.estate was added as the 36th theme on 25 Oct 2026 (crawl of the live site). — Sion's Tab agent",
  "apex": {
   "host": "bucklerfamily.estate",
   "paths": {
@@ -160,7 +160,7 @@
    "branch": "bpvsbuckler",
    "dir": "static/bpvsbuckler/dist",
    "root": "static/bpvsbuckler",
-   "build": "npm ci --no-audit --no-fund && npm run build",
+   "build": "(npm ci --no-audit --no-fund || npm install --no-audit --no-fund) && npm run build",
    "crawl_fallback": true
   },
   {
@@ -522,6 +522,19 @@
    "desc": "",
    "branch": "merch",
    "dir": "public"
+  },
+  {
+   "id": "research",
+   "title": "The Research Library",
+   "cy": "Y Llyfrgell Ymchwil",
+   "es": "La Biblioteca de Investigación",
+   "live": "https://research.bucklerfamily.estate/",
+   "hosts": [
+    "research.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "crawl": "https://research.bucklerfamily.estate/"
   }
  ],
  "allowed_tile_templates": [

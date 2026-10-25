@@ -32,6 +32,12 @@ jobs:
           git -C mirror.git for-each-ref --format='%(refname:short)' | wc -l
       - name: Assemble themes
         run: MIRROR=mirror.git python3 tools/assemble.py dist
+      - name: Apex site source for the apex themes (BucklerFamilyFarm public/, read-only)
+        run: |
+          git clone -q --depth 1 --filter=blob:none --sparse https://github.com/unclehowell/BucklerFamilyFarm.git bff
+          git -C bff sparse-checkout set public
+          python3 tools/apex_source.py bff/public dist
+          rm -rf bff
       - name: Copy cross-site shared assets (read-only from the live sites)
         run: python3 tools/fetch_missing.py dist
       - name: Rewrite links, content-addressed store
@@ -52,7 +58,7 @@ jobs:
         if: always()
         run: |
           mkdir -p dist/_cedwyn/reports
-          for f in _assemble_report.json _rewrite_report.json _outbound_test.json _outbound_fix.json _fetch_missing.json; do if [ -f dist/$f ]; then mv dist/$f dist/_cedwyn/reports/; fi; done
+          for f in _assemble_report.json _rewrite_report.json _outbound_test.json _outbound_fix.json _fetch_missing.json _apex_source.json; do if [ -f dist/$f ]; then mv dist/$f dist/_cedwyn/reports/; fi; done
           rm -f dist/_blob_map.json dist/_theme_redirects.txt
           python3 - <<'PY'
           import os,json

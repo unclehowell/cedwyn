@@ -198,6 +198,18 @@ def add_boot(s, rel):
     elif s3 != s: stats['boot_moved'] += 1
     return s3
 
+APEX_THEMES = ["estate", "patagonia", "wales", "cyberspace"]
+APEX_ROOT_DIRS = ["1d", "3d", "_headers", "_redirects", "accessibility", "ai-policy", "brand", "choose", "cookies", "disclaimer", "ebook", "enemy", "enquire", "evidence", "fonts", "ghf-lang", "legal", "licence", "locations-img", "press", "privacy", "terms", "cdn-cgi", "assets"]
+APEXFIX = re.compile(r'(?<=["\'(=`])/(' + '|'.join(APEX_THEMES) + r')/(' + '|'.join(re.escape(d) for d in APEX_ROOT_DIRS) + r')/')
+def apex_root(s):
+    """pages of the apex-path themes (/wales/, /patagonia/ ...) name the apex site's own root folders (/fonts/, /ghf-lang/,
+    /locations-img/ ...): those live at the apex root, i.e. the dartboard theme, not inside the theme"""
+    def r(m):
+        d = m.group(2)
+        if d == 'ghf-lang': return '/_cedwyn/ghf/'
+        return '/dartboard/' + d + '/'
+    return APEXFIX.sub(r, s)
+
 TEXT_EXT = {'.html', '.htm', '.js', '.mjs', '.cjs', '.css', '.json', '.webmanifest', '.svg', '.xml', '.map'}
 def files():
     for p in DIST.rglob('*'):
@@ -208,8 +220,9 @@ def files():
         if ONLY and rel.split('/')[0] not in ONLY: continue
         yield p, rel
 
-def run():
-    for p, rel in files():
+def run(only_paths=None):
+    it = files() if only_paths is None else ((p, p.relative_to(DIST).as_posix()) for p in only_paths if p.suffix.lower() in TEXT_EXT)
+    for p, rel in it:
         try: s = p.read_text('utf-8')
         except Exception:
             try: s = p.read_bytes().decode('latin-1')
@@ -217,13 +230,15 @@ def run():
         stats['files'] += 1
         ext = p.suffix.lower(); theme = rel.split('/')[0] if '/' in rel else '(root)'
         page = (theme, rel)
+        if FIX and theme in APEX_THEMES: s0 = s; s = apex_root(s)
+        else: s0 = s
         if ext in ('.html', '.htm'):
             n = do_html(s, page)
             if FIX: n = add_boot(n, rel)
         elif ext == '.css': n = process_text(s, False, css=True, where=page)
         elif ext == '.svg' or ext == '.xml': n = do_html(s, page) if '<' in s[:2000] else process_text(s, True, where=page)
         else: n = process_text(s, True, where=page)
-        if FIX and n != s:
+        if FIX and n != s0:
             p.write_text(n, 'utf-8'); stats['changed'] += 1
 
 def fetch_vendor():
@@ -239,7 +254,7 @@ def fetch_vendor():
         except Exception as e: return loc, None, str(e)[:80]
     queue = dict(vendor)
     while queue:
-        batch = {k: v for k, v in queue.items() if k not in done}; queue = {}
+        batch = {k: v for k, v in queue.items() if k not in done and not (DIST / k.lstrip('/')).exists()}; queue = {}
         with cf.ThreadPoolExecutor(12) as ex:
             for loc, b, err in ex.map(lambda kv: get(*kv), batch.items()):
                 done.add(loc)
@@ -269,7 +284,9 @@ def fetch_vendor():
 MEDIA_EXT = {'.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.avif', '.ico', '.bmp', '.pdf', '.mp3', '.m4a', '.ogg', '.wav', '.mp4', '.webm', '.mov',
              '.woff', '.woff2', '.ttf', '.otf', '.js', '.mjs', '.css', '.json', '.vtt', '.txt', '.csv', '.wasm'}
 LOCALREF = re.compile(r'''(?<=["'(=\s,])/([a-z0-9][a-z0-9-]*)/([^\s"'<>`()\\?#]+\.([a-z0-9]{2,5}))(?=[\s"'<>`()\\?#,])''', re.I)
-def fill_missing(dry=False):
+CRAWLED = {t['id'] for t in CFG['themes'] if t.get('crawl') or t.get('crawl_fallback')}
+RELREF = re.compile(r'''["'`]((?:\.{1,2}/|/)?[\w@-][\w@.%-]*(?:/[\w@.%-]+)*\.(?:jpe?g|png|gif|webp|svg|avif|glb|gltf|bin|hdr|json|js|mjs|css|woff2?|mp4|webm|mp3|pdf|wasm|txt|csv))(?:\?[^"'`]*)?["'`]''', re.I)
+def fill_missing(dry=False, scan=None):
     """files a theme page names under /<theme>/ that the theme's branch copy does not hold (the old site served them from
     elsewhere): copied read-only from the theme's live address, so images, videos and scripts load from cedwyn itself"""
     exists = None
@@ -288,6 +305,23 @@ def fill_missing(dry=False):
             relp = urllib.parse.unquote(tid + '/' + rest)
             ok = (relp in exists) if exists is not None else (DIST / relp).exists()
             if not ok: want[relp] = live[tid] + urllib.parse.quote(urllib.parse.unquote(rest))
+    # crawled themes (apps the crawler could not follow): files their scripts name by relative or root path
+    for p in (scan or []):
+        rel = p.relative_to(DIST).as_posix(); tid = rel.split('/')[0]
+        if tid not in CRAWLED or tid not in live or p.suffix.lower() not in ('.js', '.mjs', '.json', '.css', '.html'): continue
+        try: s = p.read_text('utf-8', 'ignore')
+        except Exception: continue
+        for m in RELREF.finditer(s):
+            ref = m.group(1)
+            if ref.startswith('/'):
+                first = ref.split('/')[1]
+                if first in live or first.startswith('_'): continue
+                relp = tid + ref
+            else:
+                relp = os.path.normpath(os.path.join(os.path.dirname(rel), ref)).replace(os.sep, '/')
+                if not relp.startswith(tid + '/'): continue
+            ok = (relp in exists) if exists is not None else (DIST / relp).exists()
+            if not ok and relp not in want: want[relp] = live[tid] + urllib.parse.quote(relp[len(tid) + 1:])
     if dry: return want, []
     LIMIT_FILE = 24 * 1024 * 1024; budget = [int(os.environ.get('CEDWYN_FILL_MB', '600')) * 1024 * 1024]; got = []; miss = []
     def get(item):
@@ -308,19 +342,62 @@ def fill_missing(dry=False):
             budget[0] -= len(b); dst = DIST / relp; dst.parent.mkdir(parents=True, exist_ok=True); dst.write_bytes(b); got.append(relp)
     return want, (got, miss)
 
+IMPORT_REL = re.compile(r'''(?:\bfrom\s*|\bimport\s*\(?\s*)["'](\.{1,2}/[^"']+)["']''')
+def module_deps():
+    """ES modules: relative imports inside vendored files, and bare specifiers that an importmap sends to a vendored folder"""
+    new = {}
+    for loc, url in list(vendor.items()):
+        f = DIST / loc.lstrip('/')
+        if loc.endswith('/') or not f.is_file() or f.suffix not in ('.js', '.mjs'): continue
+        for m in IMPORT_REL.finditer(f.read_text('utf-8', 'ignore')):
+            u2 = urllib.parse.urljoin(url, m.group(1)); p2 = urllib.parse.urlsplit(u2)
+            l2 = ext_local(p2.netloc.lower(), p2.path, '')
+            if l2 not in vendor: new[l2] = u2
+    maps = {}
+    for p in DIST.rglob('*.htm*'):
+        try: s = p.read_text('utf-8', 'ignore')
+        except Exception: continue
+        for mm in re.finditer(r'<script[^>]*type=["\']?importmap["\']?[^>]*>(.*?)</script>', s, re.S | re.I):
+            try: im = json.loads(mm.group(1)).get('imports', {})
+            except Exception: continue
+            for k, v in im.items():
+                if k.endswith('/') and '/_ext/' in v:
+                    loc = v[v.index('/_ext/'):]; maps[k] = (loc, 'https://' + loc[len('/_ext/'):])
+    if maps:
+        rx = re.compile(r'''["'](' + '|'.join(re.escape(k) for k in maps) + r')([^"'\s]+)["']''')
+        for p in list(DIST.rglob('*.js')) + list(DIST.rglob('*.mjs')) + list(DIST.rglob('*.htm*')):
+            if '/db/' in p.as_posix(): continue
+            try: s = p.read_text('utf-8', 'ignore')
+            except Exception: continue
+            for m in rx.finditer(s):
+                loc, url = maps[m.group(1)]
+                if loc + m.group(2) not in vendor: new[loc + m.group(2)] = url + m.group(2)
+    vendor.update(new); return len(new)
+
 def main():
     run()
     rep = DIST / '_cedwyn' / 'reports'; rep.mkdir(parents=True, exist_ok=True)
     if FIX:
         got, failed = fetch_vendor()
         global ONLY
-        for _ in range(3):   # vendored files may name further CDN files (and carry their own links): same rules, again
-            before = set(vendor); ONLY = ['_ext']; run()
+        for _ in range(4):   # vendored files may name further CDN files / modules (and carry their own links): same rules, again
+            before = set(vendor); ONLY = ['_ext']; run(); module_deps()
             if set(vendor) == before: break
             g2, f2 = fetch_vendor(); got += g2; failed += f2
         ONLY = ['_ext']; run(); ONLY = []
-        want, gm = fill_missing(dry='--no-fill' in sys.argv)
-        filled = {'wanted': len(want), 'copied': len(gm[0]) if gm else 0, 'not_found': (gm[1][:80] if gm else []), 'not_found_n': len(gm[1]) if gm else 0}
+        filled = {'wanted': 0, 'copied': 0, 'not_found': [], 'rounds': 0}
+        if '--no-fill' not in sys.argv:
+            scan = [p for p, rel in files() if rel.split('/')[0] in CRAWLED]
+            for rnd in range(3):   # files that fetched scripts/styles name in turn
+                want, gm = fill_missing(scan=scan)
+                scan = [DIST / r for r in gm[0]]
+                filled['rounds'] += 1; filled['wanted'] += len(want); filled['copied'] += len(gm[0]); filled['not_found'] += gm[1]
+                if not gm[0]: break
+                run([DIST / r for r in gm[0]])
+                v0 = set(vendor); module_deps()
+                if set(vendor) != v0:
+                    fetch_vendor(); ONLY = ['_ext']; run(); ONLY = []
+        filled['not_found_n'] = len(filled['not_found']); filled['not_found'] = filled['not_found'][:80]
         o = dict(stats, filled_missing=filled, vendored=got, vendor_failed=failed[:50], vendor_failed_n=len(failed), allowed_tile_templates=sorted(tiles_seen))
         json.dump(o, open(rep / 'selfcontain_fix.json', 'w'), indent=1)
         print(json.dumps({k: v for k, v in o.items() if k != 'vendor_failed'})[:900]); return 0
