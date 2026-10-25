@@ -292,7 +292,15 @@
     function nm(st) { var l = lg(), n0 = (l !== "en" && st[l]) || st.t; return (CAMAP && document.documentElement.getAttribute("data-cedwyn-sec") === "argentina" && CAMAP[n0]) || n0; }
     function find() {
       var i, j, best = -1, bl = -1, c, ps;
-      if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) { c = CSECP + "/" + ((window.__cedwynLP || location.pathname).split("/")[1] || "") + "/"; for (i = 0; i < CHAIN.length; i++) if (CSECP + "/" + CHAIN[i].id + "/" === c) return i; return -1; }
+      if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) {
+        var seg = ((window.__cedwynLP || location.pathname).split("/")[1] || "").toLowerCase();
+        // The root of the Cedwyn subdomain is the estate directory; the apex root remains the Disclosure Dartboard.
+        if (!seg && location.hostname === "cedwyn.bucklerfamily.estate") seg = "estate";
+        else if (!seg && /^(?:www\\.)?bucklerfamily\\.estate$/.test(location.hostname)) seg = "dartboard";
+        c = CSECP + "/" + seg + "/";
+        for (i = 0; i < CHAIN.length; i++) if (CSECP + "/" + CHAIN[i].id + "/" === c) return i;
+        return -1;
+      }
       for (i = 0; i < CHAIN.length; i++) {
         c = CHAIN[i]; ps = c.p || [];
         if (!apex) { for (j = 0; j < c.h.length; j++) if (c.h[j] === host) return i; continue; }
