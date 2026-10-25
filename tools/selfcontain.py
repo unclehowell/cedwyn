@@ -221,7 +221,11 @@ def apex_root(s):
         d = m.group(2)
         if d == 'ghf-lang': return '/_cedwyn/ghf/'
         return '/dartboard/' + d + '/'
-    return APEXFIX.sub(r, s)
+    s = APEXFIX.sub(r, s)
+    # stage-1 prefixed the apex paths once more: /wales/wales/..., /cyberspace/cyberspace/, /estate/cedwyn/... -> that theme's root
+    return APEXDUP.sub(lambda m: '/' + APEX_KEY_THEME[m.group(1)] + '/', s)
+APEX_KEY_THEME = {'cedwyn': 'estate', 'patagonia': 'patagonia', 'wales': 'wales', 'cyberspace': 'cyberspace'}
+APEXDUP = re.compile(r'(?<=["\'(=`])/(?:' + '|'.join(APEX_THEMES) + r')/(cedwyn|patagonia|wales|cyberspace)/')
 
 TEXT_EXT = {'.html', '.htm', '.js', '.mjs', '.cjs', '.css', '.json', '.webmanifest', '.svg', '.xml', '.map'}
 def files():
@@ -424,6 +428,13 @@ def main():
                 if set(vendor) != v0:
                     fetch_vendor(); ONLY = ['_ext']; run(); ONLY = []
         filled['not_found_n'] = len(filled['not_found']); filled['not_found'] = filled['not_found'][:80]
+        for t in CFG['themes']:
+            if t.get('redirect_to'):
+                (DIST / t['id']).mkdir(parents=True, exist_ok=True)
+                (DIST / t['id'] / 'index.html').write_text('<!doctype html><meta charset="utf-8"><title>Moved</title>'
+                    '<meta http-equiv="refresh" content="0; url=%s"><link rel="canonical" href="%s">'
+                    '<script>location.replace(%s + location.hash)</script><a href="%s">Continue</a>\n'
+                    % (t['redirect_to'], t['redirect_to'], json.dumps(t['redirect_to']), t['redirect_to']))
         run()   # one last full pass: every file, including everything copied above, goes through the same rules
         o = dict(stats, filled_missing=filled, vendored=got, vendor_failed=failed[:50], vendor_failed_n=len(failed), allowed_tile_templates=sorted(tiles_seen))
         json.dump(o, open(rep / 'selfcontain_fix.json', 'w'), indent=1)
