@@ -379,6 +379,7 @@
       CHAIN.forEach(function (st, i) { li = mk("li"); a = mk("a", null, nm(st)); a.href = st.u; if (i === k) a.setAttribute("aria-current", "page"); li.appendChild(a); ol.appendChild(li); });
       inn.appendChild(ol);
       var hm = mk("a", "ghf-v2-dhome", s.home); hm.href = HOME; inn.appendChild(hm);
+      // Values and Standards (25 Oct 2026): the editorial standards page, in every menu. - Sion's Tab agent
       var vsl = mk("a", "ghf-v2-dhome", s.values || "Values and Standards"); vsl.href = "/values/"; inn.appendChild(vsl);
     }
     function openDrawer() {
@@ -880,7 +881,7 @@
     var p1 = el("p"); p1.appendChild(el("b", null, "\u00a9 Williams\u2013Buckler family. All rights reserved. Licence terms apply.")); f.appendChild(p1);
     var nv = el("p"); nv.setAttribute("role", "navigation"); nv.setAttribute("aria-label", "Legal");
     L.forEach(function (x) { var a = el("a", null, x[0]); a.href = B + x[1]; nv.appendChild(a); });
-    var va = el("a", null, "Values and Standards"); va.href = "/values/"; nv.insertBefore(va, nv.firstChild); f.appendChild(nv);
+    var va = el("a", null, "Values and Standards"); va.href = "/values/"; nv.insertBefore(va, nv.firstChild); f.appendChild(nv); // 25 Oct 2026: footer link to the standards page - Sion's Tab agent
     document.body.appendChild(f);
     // Keep the footer the last thing on the page: content a page adds to <body> after load goes above it, never below (21 Oct 2026).
     var keepLast = function () {
