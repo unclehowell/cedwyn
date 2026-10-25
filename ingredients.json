@@ -120,6 +120,342 @@
    "find": "clandestine registration",
    "replace": "registration (source pending)",
    "why": "'clandestine' states a conclusion the record does not yet support; the label names the event."
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": " · Root title splits: A / B</summary>",
+   "replace": " · Bute–Thomas arrangement (family account)</summary>",
+   "why": "Collapsed-row heading restated as actor–action–object–date (audit #18).",
+   "audit_point": "A1"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": " · WGR plan: Parcel B only</summary>",
+   "replace": " · WGR plan: eastern fields</summary>",
+   "why": "Collapsed-row heading restated as actor–action–object–date (audit #18).",
+   "audit_point": "A4"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": " · Occupancy attempt (family’s case)</summary>",
+   "replace": " · Tenancy surrendered and re-granted</summary>",
+   "why": "Collapsed-row heading restated as actor–action–object–date (audit #18).",
+   "audit_point": "A5"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": " · Parcel B repossessed</summary>",
+   "replace": " · Possession order enforced</summary>",
+   "why": "Collapsed-row heading restated as actor–action–object–date (audit #18).",
+   "audit_point": "A6"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": " · Green: occupancy attempt</summary>",
+   "replace": " · Tenancy offer refused</summary>",
+   "why": "Collapsed-row heading restated as actor–action–object–date (audit #18).",
+   "audit_point": "A5"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": " · Attempt to extinguish fails</summary>",
+   "replace": " · BP action unheard; letters follow</summary>",
+   "why": "Collapsed-row heading restated as actor–action–object–date (audit #18).",
+   "audit_point": "A9"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": " · WA240304 merged in</summary>",
+   "replace": " · WA240304 amalgamated</summary>",
+   "why": "Collapsed-row heading restated as actor–action–object–date (audit #18).",
+   "audit_point": "A12"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": " · Parcel A: Williams title</summary>",
+   "replace": " · Provisional Parcel A: status unresolved</summary>",
+   "why": "Collapsed-row heading restated as actor–action–object–date (audit #18).",
+   "audit_point": "A13"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "1877 · Root title splits: Parcel A / Parcel B</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E6EEFA;color:#0B3D7A;border:1px solid #9DB8E0;vertical-align:1px\"><a href=\"/research/testimony/mary-williams/\" style=\"color:inherit;text-decoration:underline\">TESTIMONY · later statement (c.1974)</a></span></div>",
+   "replace": "1877 · Bute–Daniel Thomas arrangement and a Williams quarry lease, as later described by Mary (Nancy) Williams (c.1974). Parcel A and Parcel B here are provisional analytical polygons until the 1876–78 instruments and plans are overlaid</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E6EEFA;color:#0B3D7A;border:1px solid #9DB8E0;vertical-align:1px\"><a href=\"/research/testimony/mary-williams/\" style=\"color:inherit;text-decoration:underline\">FAMILY TESTIMONY · later statement (c.1974) · grade 5</a></span></div>",
+   "why": "Parcel A/B is a working reconstruction resting on a c.1974 family statement; the 1877 instrument is not located [EV-0006].",
+   "audit_point": "A1"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "It covered Parcel A: the last tenancy of Parcel A, whose occupiers the Williams family had been since 1667.",
+   "replace": "How this “whole farm” letting maps onto the provisional Parcel A / Parcel B polygons awaits the tenancy and its plan (EV-0014). The family dates its occupation to 1667.",
+   "why": "The judgment recites a tenancy of the “whole farm”; assigning it to one provisional parcel is our geometry, not the record. EV-0014 is known only through the 1987 judgment recital.",
+   "audit_point": "A3"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "1916 · Bute → John Williams (the son): yearly tenancy of the “whole farm”</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · judgment</span></div>",
+   "replace": "1916 · Bute → John Williams (the son): yearly tenancy of the “whole farm”</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">RECORD · judgment recital · grade 2</span></div>",
+   "why": "Label: the 1916 tenancy is a judgment recital (grade 2), not a document read.",
+   "audit_point": "A3"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "1928 · Last rent paid: Parcel A becomes the Williams family’s</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E6EEFA;color:#0B3D7A;border:1px solid #9DB8E0;vertical-align:1px\"><a href=\"/research/testimony/mary-williams/\" style=\"color:inherit;text-decoration:underline\">TESTIMONY · Mary (Nancy) Williams</a></span></div>",
+   "replace": "1928 · Last rent recalled by Mary (Nancy) Williams; she records that her father then “regarded the farm as his own”. The 1987 judgment records rent arrears in the mid-1930s and late 1940s, and a 1953 payment under a county-court judgment (EV-0080, EV-0030). No conveyance to the Williams family is identified</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E6EEFA;color:#0B3D7A;border:1px solid #9DB8E0;vertical-align:1px\"><a href=\"/research/testimony/mary-williams/\" style=\"color:inherit;text-decoration:underline\">FAMILY TESTIMONY · grade 5 · set beside a judgment recital (grade 2)</a></span></div>",
+   "why": "Statement of belief, not a conveyance. Our own 1000 Cuts already sets the 1987 judgment beside it: arrears in the mid-1930s and late 1940s and a 1953 payment under a county-court judgment [EV-0080] [EV-0030].",
+   "audit_point": "A2"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "its plan shows the eastern fields (Parcel B) only.",
+   "replace": "its plan shows the eastern fields only (the provisional Parcel B). The plan fixes the extent of this 1939 letting; what WGR acquired in 1938 is a separate question that the 1938 conveyance and plan (EV-0019) would answer.",
+   "why": "Tenancy extent and root-title extent kept separate.",
+   "audit_point": "A4"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "1939 · WGR → John Williams agreement: plan shows Parcel B only</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · partly held</span></div>",
+   "replace": "1939 · WGR → John Williams agreement: monthly let of meadow or pasture; plan shows the eastern fields</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">RECORD · partly read · grade 2</span></div>",
+   "why": "Heading and grade.",
+   "audit_point": "A4"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "1949 · First attempt to make occupancy permissive (the family’s case)</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · judgment</span></div>",
+   "replace": "1949 · John Williams’s tenancy surrendered after rent arrears; new yearly tenancy intended for Frederick Buckler, never put in writing</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">RECORD · judgment recital · grade 2</span></div>",
+   "why": "The judgment describes a surrender and re-grant after arrears; it is not an offer made to Mary and is not forced into a repeated-attempt template.",
+   "audit_point": "A5"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "4 Jul 1955 · Possession of Parcel B, later misread and conflated with Parcel A; the woodland and the green were also seized, shortly after Mary returned from hospital with her leg amputated</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · judgment</span></div>",
+   "replace": "4 Jul 1955 · High Court possession order enforced: “possession was taken in respect of all parts of the farm except the farmhouse and garden”</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">RECORD · judgment recital · grade 2</span></div>",
+   "why": "Judgment wording first; the woodland/green identification is labelled a working hypothesis.",
+   "audit_point": "A6"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "What most likely happened:",
+   "replace": "Working hypothesis (not a record; the order, warrant, execution return and plan are not yet assembled):",
+   "why": "Interpretation moved into a labelled field.",
+   "audit_point": "A6"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "1958/9 · Green: attempt to make Mary (Nancy) Williams’s occupancy permissive, refused</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · judgment</span></div>",
+   "replace": "1958/9 · WGR offers Mary (Nancy) Williams a tenancy of the farmhouse and garden; she refuses it, and later alternative accommodation</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">RECORD · judgment recital · grade 2</span></div>",
+   "why": "Actor–action–object: an offer of a tenancy of the farmhouse and garden, refused (judgment); its tie to the green is the family reading.",
+   "audit_point": "A5"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "29 Mar 1961 · Woodland: deed between Western Ground Rents, South Western Brick &amp; Tile and Cardiff City Corporation, about 12 years after the 1949 attempt</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · register read</span></div>",
+   "replace": "29 Mar 1961 · Deed between Western Ground Rents, South Western Brick &amp; Tile and Cardiff City Corporation, recited on the woodland register</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">RECORD · register recital · grade 2 (deed not read)</span></div>",
+   "why": "The 1961 deed is a register recital; its terms and plan are unread, so no interval pattern is attached to it.",
+   "audit_point": "A7"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "16 Jun 1970 · South-east ground registered as village green VG41 · about 11–12 yrs after the 1958/9 attempt</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#ECEFF1;color:#37474F;border:1px solid #B0BEC5;vertical-align:1px\">REPORTED</span></div>",
+   "replace": "16 Jun 1970 · Village green VG41 registered by Glamorgan County Council</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#ECEFF1;color:#37474F;border:1px solid #B0BEC5;vertical-align:1px\">REPORTED · grade 3 · application, map and ownership section not yet read</span></div>",
+   "why": "A green registration rests on 20 years’ use as of right, not 12 years’ possession; on the certified VG41 map the green is a small roadside wedge [EV-0263]; our own interpretation layer already marks the 1970 reading as weakened (P-02).",
+   "audit_point": "A8"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "An alteration to the Ordnance Survey’s “Ty-mawr” name for the farm in 1971; source pending until the 1971 OS sheet and its revision record are seen.",
+   "replace": "On the Ordnance Survey 1:2500 sheet revised 1969 (published 1971) the name appears as “Ty Mawr Farm”, placed west of where earlier editions printed “Ty-mawr” (OS object name book, <a href=\"/research/evidence/ev-0252-tna-os-35-2503-object-name-book-glamorgan-47-nw/\" style=\"color:#0B57A4;text-decoration:underline\">EV-0252</a>). Why the name moved is an open question.",
+   "why": "The audit treats the 1971 Ordnance Survey name change as source-pending. We hold the OS object name book (EV-0252) and the 1:2500 sheet revised 1969 (published 1971), which prints “Ty Mawr Farm” west of the earlier “Ty-mawr”. The reason for the move stays an open question.",
+   "audit_point": "C-1971"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "1971 · BP house: Ordnance Survey alteration</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#FFF1CC;color:#6B4300;border:1px solid #E5C066;vertical-align:1px\">SOURCE PENDING</span></div>",
+   "replace": "1971 · Ordnance Survey sheet prints “Ty Mawr Farm” in a new position</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#FFF1CC;color:#6B4300;border:1px solid #E5C066;vertical-align:1px\">RECORD · map and name book · grade 1; reason: open question</span></div>",
+   "why": "Label follows the record.",
+   "audit_point": "C-1971"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "1974 · BP house: BP’s attempt to extinguish Mary (Nancy) Williams’s ownership claim fails</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · press</span><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#ECEFF1;color:#37474F;border:1px solid #B0BEC5;vertical-align:1px\">COURT PAPERS · not published here</span></div>",
+   "replace": "1974 · BP Pension Trust’s county-court possession action adjourned part heard and never listed again; leave to enforce the 1962 order obtained, warrant later withdrawn; the licence letters follow (31 Oct)</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">RECORD · press (grade 4) + judgment recital (grade 2)</span></div>",
+   "why": "The 1974 county-court action was never heard and the warrant was withdrawn (EV-0049, judgment recital); but the Court of Appeal held the 31 Oct 1974 letters made her possession a licence. Both stated, no “fails”.",
+   "audit_point": "A9"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "23 Feb 1983 · BP Properties Ltd applies to register WA240304 (farmhouse and garden) · 8 yrs 4 mths after the 1974 letters</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · HMLR</span></div>",
+   "replace": "23 Feb 1983 · BP Properties Ltd applies to register WA240304 (farmhouse and garden)</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">RECORD · HMLR schedule · grade 3</span></div>",
+   "why": "Interval labels removed from headings; the gap chart is renamed and carries every candidate interval with the caveat.",
+   "audit_point": "A10"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "Gap chart: the usual 12-year waiting period, line by line",
+   "replace": "Interval table: every candidate interval, line by line",
+   "why": "Gap chart reframed.",
+   "audit_point": "A10"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "Usual 12-year waiting period: each line’s gap, to scale",
+   "replace": "Each line’s interval, to scale. These compare different event types (a surrender and re-grant, a tenancy offer, licence letters; a deed, a green registration, a first registration) under different legal rules; they are not a measured pattern. A green registration rests on 20 years’ use as of right, not 12 years’ possession.",
+   "why": "Gap chart reframed.",
+   "audit_point": "A10"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "Coloured bar = permissive-occupancy step, rejected by the family → registration (source pending), on each line.",
+   "replace": "Coloured bar = the earlier event → the later registration, on each line.",
+   "why": "Gap chart reframed.",
+   "audit_point": "A10"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "2 Feb 1987 · WA240304 merged into WA231076: the house branch joins Parcel B</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · HMLR</span></div>",
+   "replace": "2 Feb 1987 · WA240304 amalgamated into WA231076 while the appeal is pending</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">RECORD · HMLR schedule · grade 3</span></div>",
+   "why": "Recorded neutrally, with the test that would show whether it mattered.",
+   "audit_point": "A12"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "Amalgamation recorded during the appeal;",
+   "replace": "Amalgamation recorded during the appeal. Whether it changed extent, class of title, parties’ rights or the issues on appeal awaits the application, plan and registrar’s notes;",
+   "why": "Recorded neutrally, with the test that would show whether it mattered.",
+   "audit_point": "A12"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "BP demolished the farmhouse in the early hours of 6 December 1988.",
+   "replace": "The farmhouse was demolished in early December 1988: 6 December in this entry’s sources (<a href=\"/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/\" style=\"color:#0B57A4;text-decoration:underline\">EV-0108</a>), reported on 7 December (<a href=\"/research/evidence/ev-0106-tears-flow-farmhouse-razed-1988/\" style=\"color:#0B57A4;text-decoration:underline\">EV-0106</a>). The exact day is an open question.",
+   "why": "Demolition day: 6 Dec in this entry’s sources (EV-0108); press reports of 7 Dec (EV-0106). Both shown until the record settles it.",
+   "audit_point": "C-1988"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "2026 · Parcel A: Williams title, not extinguished and not sold</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · judgment + registers</span></div>",
+   "replace": "2026 · Provisional Parcel A: no Williams conveyance identified in the reviewed public file; present legal status unresolved</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">OPEN QUESTION · registers + judgment</span></div>",
+   "why": "No sale deed on file does not prove a negative; the 1987 appeal concerned the farmhouse and garden.",
+   "audit_point": "A13"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "Since 1987 no register has shown the Williams Parcel A title, about 38 years, while the three branch titles have been treated as valid.",
+   "replace": "No register read so far shows a Williams title to the provisional Parcel A; a register cannot prove a negative.",
+   "why": "No sale deed on file does not prove a negative; the 1987 appeal concerned the farmhouse and garden.",
+   "audit_point": "A13"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "<strong>Parcel A:</strong> the Williams line runs on, unregistered.",
+   "replace": "<strong>Provisional Parcel A:</strong> no register shows a Williams title; present legal status unresolved.",
+   "why": "No sale deed on file does not prove a negative; the 1987 appeal concerned the farmhouse and garden.",
+   "audit_point": "A13"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "It never ends: still running past 2026.",
+   "replace": "Its present legal status is unresolved.",
+   "why": "Present-tense legal overreach in the map legend (site deficiency 7).",
+   "audit_point": "A13"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "The Parcel A line continues past 2026.",
+   "replace": "Provisional Parcel A: present legal status unresolved.",
+   "why": "Present-tense legal overreach in the map legend (site deficiency 7).",
+   "audit_point": "A13"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "In the family’s case, three attempts to make Mary (Nancy) Williams’s occupancy permissive each failed: 1949, 1958/9 and 1974. Each was followed by a registration of part of Parcel A in another name:",
+   "replace": "The family’s reading links three events (1949, 1958/9 and 1974) to three later registrations of ground it places within the provisional Parcel A:",
+   "why": "“Reading the map” reworded so the three-sequence pattern is the family reading, with no “failed” verdicts.",
+   "audit_point": "A10/A18"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "Those three titles have been treated as valid, while no register has shown the Williams Parcel A title since 1987.",
+   "replace": "No register read so far shows a Williams title to the provisional Parcel A.",
+   "why": "“Reading the map” reworded so the three-sequence pattern is the family reading, with no “failed” verdicts.",
+   "audit_point": "A10/A18"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "10 Nov 1994 · Woodland changes hands: transfer to Forest of Cardiff, title WA735527 · change of hands / new proprietor (or further synthetic-parcel creation), not the 1961 deed</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · register read</span></div>",
+   "replace": "10 Nov 1994 · Woodland transferred to Forest of Cardiff, title WA735527; a separate event from the 1961 deed</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">RECORD · register read · grade 2 (transfer not read)</span></div>",
+   "why": "“Synthetic-parcel creation” is a contested conclusion inside a heading.",
+   "audit_point": "A18"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "2005–06 · Part of WA735527 sold to Goldsworthy Homes: £20,000 · change of hands / new proprietor (or further synthetic-parcel creation)</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · Companies House</span></div>",
+   "replace": "2005–06 · Part of WA735527 sold to Goldsworthy Homes: £20,000</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">RECORD · accounts + register · grade 1</span></div>",
+   "why": "Same.",
+   "audit_point": "A18"
+  },
+  {
+   "theme": "research",
+   "file": "index.html",
+   "find": "2026 · Where each line stands today</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">VERIFIED · registers</span></div>",
+   "replace": "2026 · Where each title stands today</div><div style=\"margin:0 0 4px\"><span style=\"display:inline-block;white-space:nowrap;font:700 10px/1.2 Arial,sans-serif;letter-spacing:.04em;padding:2px 6px;margin:0 4px 4px 0;border-radius:9px;background:#E3F2E7;color:#0B5D2A;border:1px solid #9CCBAA;vertical-align:1px\">RECORD · registers read · grade 2</span></div>",
+   "why": "“VERIFIED” replaced by what was read (site deficiency 2).",
+   "audit_point": "A13"
+  },
+  {
+   "theme": "research",
+   "file": "scrutiny-and-accountability/procedural-fairness-notice/1983-first-registration-parcel-a-title-basis-alleged-hmlr-mistake/index.html",
+   "find": "Alleged HMLR",
+   "replace": "Open Question of an HMLR",
+   "why": "Banned word in a page title; audit #11: non-disclosure is an open question until both first-registration files are read. Keep the URL.",
+   "audit_point": "A11"
+  },
+  {
+   "theme": "research",
+   "file": "**/index.html",
+   "find": "[PENDING:",
+   "replace": "[record pending:",
+   "why": "Raw citation markup on public pages (site deficiency 9). Better fix: render it as the standard Not yet confirmed label.",
+   "audit_point": "D9"
   }
  ]
 }
