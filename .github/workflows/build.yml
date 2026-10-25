@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['tools/**', 'web/**', 'themes.json', '.github/workflows/build.yml']
+    paths: ['tools/**', 'web/**', 'catalogue/**', 'data/**', 'themes.json', 'sections.json', 'EDITORIAL.md', '.github/workflows/build.yml']
 permissions:
   contents: write
 concurrency:
