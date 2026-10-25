@@ -29,9 +29,16 @@ for t in CFG['themes']:
     elif t['id'] in apex_by_tid: vhost[t['id']] = ['bucklerfamily.estate', apex_by_tid[t['id']]]
 rt.write_text(rt.read_text().replace('__HOSTMAP__', json.dumps(hosts)).replace('__APEX__', json.dumps(apex)).replace('__MEDIA__', json.dumps(CFG['media_hosts']))
               .replace('__THEMES__', json.dumps(tids)).replace('__COLLIDE__', json.dumps(collide)).replace('__VHOST__', json.dumps(vhost)))
+# 25 Oct 2026: the shared header's ‹ › and menu step through ONE ordered list of every theme (themes.json order), wrapping round
+bc = DIST / '_cedwyn' / 'ghf' / 'basecamp.js'
+chain = [[t['id'], t.get('title') or t['id']] for t in CFG['themes']]
+assert len({c[0] for c in chain}) == len(chain), 'duplicate theme id in themes.json'
+bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False)))
 # archive interface inside the wayback theme
 go = DIST / 'wayback' / 'go'; go.mkdir(parents=True, exist_ok=True)
 shutil.copyfile(DIST / '_cedwyn' / 'archive' / 'go.html', go / 'index.html')
+gp = go / 'index.html'
+gp.write_text(gp.read_text().replace('/*GO_HOSTS*/{}', json.dumps(hosts)).replace('/*GO_APEX*/[]', json.dumps(apex)))
 caps = {}
 wi = DIST / 'wayback' / 'websites' / 'index.json'
 if wi.exists():

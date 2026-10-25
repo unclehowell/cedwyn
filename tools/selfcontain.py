@@ -22,7 +22,7 @@ FIX = '--fix' in sys.argv
 ONLY = [a.split('=', 1)[1] for a in sys.argv if a.startswith('--only=')]
 SELF = 'cedwyn.bucklerfamily.estate'
 ABS = 'https://' + SELF
-BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.4c'
+BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.5'
 TIDS = [t['id'] for t in CFG['themes']]
 HOST = {}
 for t in CFG['themes']:
@@ -71,7 +71,9 @@ def classify(m):
     if host in NS or any(hp.startswith(n) for n in NS if '/' in n): return 'ns', None
     if any(full.startswith(t) for t in TILES):
         return 'tile', None
-    if host == 'bucklerfamily.estate' or host.endswith('.bucklerfamily.estate'):
+    # 25 Oct 2026: any address a theme was served from (every *.bucklerfamily.estate site, and the Legal Wiki's own
+    # greathousefarmwiki.wordpress.com) is a theme link: it goes to the internal /<theme>/ route, never to /wayback/go/
+    if host in HOST or host == 'bucklerfamily.estate' or host.endswith('.bucklerfamily.estate'):
         return 'sub', None
     if host in CDN: return 'cdn', None
     # a YouTube thumbnail whose video was checked (oEmbed author) and is not from the excluded channel: copied as an image

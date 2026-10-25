@@ -152,7 +152,7 @@ def rw_html(html, tid, page_rel):
     html = STYLE.sub(lambda m: m.group(1) + rw_css(m.group(2), tid, page_rel) + m.group(3), html)
     html = TAG.sub(lambda m: rw_tag(m, tid, page_rel), html)
     html = re.sub('\x00(\\d+)\x00', lambda m: keep[int(m.group(1))], html)
-    inj = '<script src="/_cedwyn/runtime.js?v=3" data-theme="%s"></script>' % tid
+    inj = '<script src="/_cedwyn/runtime.js?v=4" data-theme="%s"></script>' % tid
     mh = re.search(r'<head\b[^>]*>', html, re.I)
     if mh: html = html[:mh.end()] + inj + html[mh.end():]
     else:
@@ -190,6 +190,7 @@ for tid in TIDS:
     if f.exists():
         for line in f.read_text('utf-8', 'ignore').splitlines():
             b = line.split()
+            if len(b) >= 2 and b[0] in ('/*', '/') and b[1].startswith('http'): continue   # 25 Oct 2026: a whole-theme redirect away would take the theme out of the ‹ › loop; its own pages stay
             if len(b) >= 2 and b[0].startswith('/'):
                 tgt = b[1] if b[1].startswith('http') else '/' + tid + b[1]
                 red.append(' '.join(['/' + tid + b[0], tgt] + b[2:]))

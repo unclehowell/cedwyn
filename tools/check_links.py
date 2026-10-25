@@ -10,6 +10,18 @@ BANNED = re.compile(r'UC2sN1VEs1WeLfBH8VmbvLWw|sionbuckler5713', re.I)
 SCRIPT = re.compile(r'<script\b.*?</script>', re.I | re.S)
 FIX = '--fix' in sys.argv
 import urllib.parse
+CFG = json.load(open(pathlib.Path(__file__).resolve().parent.parent / 'themes.json'))
+THOST = {h.lower(): t['id'] for t in CFG['themes'] for h in t.get('hosts', []) if h not in ('bucklerfamily.estate', 'www.bucklerfamily.estate')}
+THOST.update({h.lower(): v for h, v in CFG.get('extra_hosts', {}).items() if v})
+TAPEX = sorted(CFG['apex']['paths'].items(), key=lambda kv: -len(kv[0]))
+def theme_link(full):
+    sp = urllib.parse.urlsplit(full); h = (sp.hostname or '').lower(); p = sp.path or '/'
+    q = ('?' + sp.query if sp.query else '') + ('#' + sp.fragment if sp.fragment else '')
+    if h in ('bucklerfamily.estate', 'www.bucklerfamily.estate'):
+        for pre, tid in TAPEX:
+            if p.startswith(pre) or p + '/' == pre: return '/' + tid + '/' + p[len(pre):].lstrip('/') + q
+        return None
+    return ('/' + THOST[h] + p + q) if h in THOST else None
 bad = []; pages = 0; links = 0; fixed = 0
 for p in DIST.rglob('*.htm*'):
     if not p.is_file(): continue
@@ -22,6 +34,8 @@ for p in DIST.rglob('*.htm*'):
             if BANNED.search(u2): fixed += 1; return m.group(0)[:-len(v)] + '"#"'
             if re.match(r'(?i)^(https?:)?//', u2) and re.sub(r'(?i)^(https?:)?//', '', u2).split('/')[0].split(':')[0].lower() != 'cedwyn.bucklerfamily.estate':
                 fixed += 1; full = ('https:' + u2) if u2.startswith('//') else u2
+                t = theme_link(full)   # 25 Oct 2026: a theme's former address goes to the theme, not to /wayback/go/
+                if t: return m.group(0)[:-len(v)] + '"' + t + '"'
                 return m.group(0)[:-len(v)] + '"/wayback/go/?u=' + urllib.parse.quote(full, safe='') + '"'
             if BANNED.search(u2): fixed += 1; return m.group(0)[:-len(v)] + '"#"'
             return m.group(0)
