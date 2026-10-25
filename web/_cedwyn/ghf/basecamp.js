@@ -560,7 +560,7 @@
       ".ghf-v2 *{box-sizing:border-box}" +
       ".ghf-v2-sp{display:block;height:45px;background:#000;border:0;margin:0;padding:0}@media (min-width:783px){.ghf-v2-sp{height:49px}}" +
       ".ghf-v2-loc{display:flex!important;align-items:center;gap:4px;margin:0;padding:0 6px 0 2px!important;height:50px;min-height:50px;max-height:50px;box-sizing:border-box!important;overflow:hidden;background:#000;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14)}" +
-      ".ghf-v2-loc:has(.ghf-lang.ghf-open){overflow:visible!important}.ghf-v2-lang .ghf-lang.ghf-up .ghf-lang-menu{top:calc(100% + 6px)!important;bottom:auto!important}.ghf-v2-lang .ghf-lang.ghf-left .ghf-lang-menu{left:auto!important;right:0!important}" +  /* 25 Oct: the one language menu opens fully, below the top-right button */
+      ".ghf-v2-sp{display:none!important}.ghf-v2-loc:has(.ghf-lang.ghf-open){overflow:visible!important}.ghf-v2-lang .ghf-lang.ghf-up .ghf-lang-menu{top:calc(100% + 6px)!important;bottom:auto!important}.ghf-v2-lang .ghf-lang.ghf-left .ghf-lang-menu{left:auto!important;right:0!important}" +  /* 25 Oct (Sion): no empty top row; the one language menu opens fully, below the top-right button */
       ".ghf-v2-locs{flex:1 1 auto;min-width:0;display:flex}.ghf-v2 .ghf-loc{flex:1 1 auto;width:auto!important;background:transparent!important;border:0!important;padding:0!important;z-index:auto}" +
       ".ghf-v2 .ghf-loc a.ghf-loc-ch{display:none!important}.ghf-v2 .ghf-loc a{background:transparent!important;box-shadow:none!important;outline-offset:-2px}" +
       ".ghf-v2-lang{flex:0 0 auto;display:flex;align-items:center;justify-content:flex-end;min-width:58px}" +
