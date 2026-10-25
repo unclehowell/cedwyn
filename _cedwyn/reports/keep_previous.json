@@ -2,22 +2,22 @@
  "checked": {
   "fcg": {
    "files_now": 0,
-   "files_previous_build": 0,
+   "files_previous_build": 145,
    "home": false
   },
   "app": {
    "files_now": 0,
-   "files_previous_build": 0,
+   "files_previous_build": 19,
    "home": false
   },
   "chat": {
    "files_now": 0,
-   "files_previous_build": 0,
+   "files_previous_build": 5,
    "home": false
   },
   "email": {
-   "files_now": 0,
-   "files_previous_build": 1640,
+   "files_now": 1640,
+   "files_previous_build": 1639,
    "home": false
   },
   "dartboard": {
@@ -42,7 +42,7 @@
   },
   "terrain": {
    "files_now": 0,
-   "files_previous_build": 0,
+   "files_previous_build": 6,
    "home": false
   },
   "cyberspace": {
@@ -52,18 +52,28 @@
   },
   "research": {
    "files_now": 0,
-   "files_previous_build": 0,
+   "files_previous_build": 1168,
    "home": false
   }
  },
  "restored": {
-  "email": 1640,
+  "fcg": 145,
+  "app": 19,
+  "chat": 5,
+  "email": 0,
   "dartboard": 11,
-  "wales": 1
+  "wales": 1,
+  "terrain": 6,
+  "research": 1169
  },
  "refused": [
+  "fcg",
+  "app",
+  "chat",
   "email",
   "dartboard",
-  "wales"
+  "wales",
+  "terrain",
+  "research"
  ]
 }
