@@ -1,0 +1,255 @@
+{
+ "frame": 2,
+ "title": "Roundhouse on the hill",
+ "cast": {
+  "B_JOHN": "the Iron-Age elder",
+  "A_MARY": "the roundhouse mother",
+  "I_NIA": "Nia, the Archivist (archive bookend)",
+  "D_BILLY": "the Grandson (on screen in the archive bookend, no lines)"
+ },
+ "setting": "s10",
+ "target_seconds": 120,
+ "shots": [
+  {
+   "shot": 1,
+   "set": "s10",
+   "direction": "Slow wide push-in at dawn: a single thatched roundhouse on the hilltop, smoke rising straight up, the Ely valley and estuary silver below.",
+   "image_prompt": "Photoreal dawn landscape, late Iron Age south Wales, a single conical thatched roundhouse with wattle-and-daub walls on a grassy hilltop, thin column of hearth smoke rising straight up, river valley and distant estuary glinting below, misty wooded slopes, cattle grazing nearby, a Welsh woman in her 40s (dark brown hair, strong cheekbones, grey-green eyes, small mole on left cheek) in coarse undyed wool tunic and cloak at the doorway, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "A_MARY",
+     "en": "Smoke's going straight up this morning. The thatch held through the night, then.",
+     "cite": [
+      "PX-01"
+     ],
+     "cy": "Mae'r mwg yn mynd yn syth i fyny bore 'ma. Daliodd y gwellt trwy'r nos, 'te.",
+     "es": "El humo sube derecho esta mañana. El techo de paja aguantó la noche, entonces."
+    }
+   ]
+  },
+  {
+   "shot": 2,
+   "set": "s10",
+   "direction": "Talking close-up of the elder at the woodpile, wind in his beard, looking toward the water.",
+   "image_prompt": "Photoreal close-up, late Iron Age Welsh elder in his 60s, broad weathered face, grey-flecked beard, heavy hands resting on split logs, coarse brown wool cloak fastened with a plain bone pin, bare head, morning light, hillside and estuary blurred behind, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Held, aye. The wind off the estuary tried it. This hill takes everything the sea throws at it.",
+     "cite": [
+      "PX-01"
+     ],
+     "cy": "Daliodd, do. Trïodd y gwynt o'r aber ei lwc arno fe. Mae'r bryn 'ma'n cymryd popeth mae'r môr yn ei daflu.",
+     "es": "Aguantó, sí. El viento del estuario lo probó. Esta colina resiste todo lo que el mar le manda."
+    }
+   ]
+  },
+  {
+   "shot": 3,
+   "set": "s10",
+   "direction": "The mother steps out of the low doorway, a glimpse of the glowing hearth and sleeping children inside.",
+   "image_prompt": "Photoreal, late Iron Age roundhouse doorway, Welsh woman in her 40s with dark brown hair tied back, strong cheekbones, small mole left cheek, undyed wool tunic, stepping out into dawn light, inside a central hearth glowing and children asleep under furs, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "A_MARY",
+     "en": "And gives it back. The children slept warm round the fire. That's all I asked of the night.",
+     "cite": [
+      "PX-01"
+     ],
+     "cy": "A'i roi e'n ôl. Cysgodd y plant yn gynnes o gwmpas y tân. Dyna i gyd o'n i'n gofyn gan y nos.",
+     "es": "Y se lo devuelve. Los chicos durmieron calentitos junto al fuego. Eso es lo único que pedía."
+    }
+   ]
+  },
+  {
+   "shot": 4,
+   "set": "s10",
+   "direction": "Over-the-shoulder: the elder points down the slope to the north, toward empty open ground where the church will one day stand.",
+   "image_prompt": "Photoreal over-the-shoulder shot, late Iron Age Welsh elder with grey-flecked beard and wool cloak pointing down a grassy slope toward open flat ground, no buildings anywhere, scrub and woodland edges, soft morning haze, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Look there, down the slope to the north. Flat ground. Somebody will build on that one day, mark my words.",
+     "cite": [
+      "PX-01"
+     ],
+     "cy": "Edrych fan'na, i lawr y llethr i'r gogledd. Tir gwastad. Bydd rhywun yn adeiladu fan'na ryw ddiwrnod, cofia di.",
+     "es": "Mirá allá, bajando la ladera al norte. Terreno llano. Algún día alguien va a construir ahí, acordate."
+    }
+   ]
+  },
+  {
+   "shot": 5,
+   "set": "s10",
+   "direction": "Talking close-up of the mother, half amused, arms folded against the cold.",
+   "image_prompt": "Photoreal close-up, late Iron Age Welsh woman in her 40s, dark brown hair, grey-green eyes, small mole on left cheek, arms folded in coarse wool cloak, wry expression, hilltop and sky behind, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "A_MARY",
+     "en": "Build what? There's nothing up here but us, the cattle and the crows. No one has ever drawn a line round this hill.",
+     "cite": [
+      "PX-01"
+     ],
+     "cy": "Adeiladu beth? Does dim byd lan fan hyn ond ni, y gwartheg a'r brain. Does neb erioed wedi tynnu llinell o gwmpas y bryn hwn.",
+     "es": "¿Construir qué? Acá arriba no hay nada más que nosotros, el ganado y los cuervos. Nadie trazó nunca una línea alrededor de esta colina."
+    }
+   ]
+  },
+  {
+   "shot": 6,
+   "set": "s10",
+   "direction": "Two-shot walking the hill's edge, cattle moving aside, the roundhouse behind them.",
+   "image_prompt": "Photoreal two-shot, late Iron Age Welsh elder and woman walking along a grassy hill edge in wool cloaks, small cattle moving aside, single thatched roundhouse with smoke behind them, valley below, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "No line, no mark. We know where it ends by the walking of it. Ask anyone in the valley whose hill this is, they'll point at our smoke.",
+     "cite": [
+      "PX-01"
+     ],
+     "cy": "Dim llinell, dim marc. Rŷn ni'n gwybod lle mae'n gorffen wrth ei gerdded e. Gofynna i unrhyw un yn y cwm pwy piau'r bryn hwn, fe bwyntian nhw at ein mwg ni.",
+     "es": "Ni línea ni marca. Sabemos dónde termina de tanto recorrerla. Preguntale a cualquiera del valle de quién es esta colina, van a señalar nuestro humo."
+    },
+    {
+     "who": "A_MARY",
+     "en": "Then let them point. One house, one fire, one family. Anyone wants more of it can come and argue with me.",
+     "cite": [
+      "PX-01"
+     ],
+     "cy": "Wel, gad iddyn nhw bwyntio. Un tŷ, un tân, un teulu. Os oes unrhyw un eisiau mwy na hynny, gall e ddod i ddadlau â fi.",
+     "es": "Entonces que señalen. Una casa, un fuego, una familia. El que quiera más que venga a discutirlo conmigo."
+    }
+   ]
+  },
+  {
+   "shot": 7,
+   "set": "s10",
+   "direction": "Talking close-up of the elder, grinning, then glancing at rain clouds over the water.",
+   "image_prompt": "Photoreal close-up, late Iron Age Welsh elder in his 60s, broad face, grey-flecked beard, grinning, wool cloak, dark rain clouds gathering over a distant estuary behind him, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "They'd lose. Fetch the little ones. We'll walk the edge before the rain comes in over the water.",
+     "cite": [
+      "PX-01"
+     ],
+     "cy": "Fe golliff e. Nôl y rhai bach. Awn ni i gerdded yr ymyl cyn i'r glaw ddod i mewn dros y dŵr.",
+     "es": "Perdería. Andá a buscar a los chicos. Vamos a caminar el borde antes de que llegue la lluvia desde el agua."
+    }
+   ]
+  },
+  {
+   "shot": 8,
+   "set": "s08",
+   "direction": "Match-cut from the hilltop to the archive reading room: Nia lays a bound report on the table beside the Grandson's laptop.",
+   "image_prompt": "Photoreal modern records office reading room, Welsh woman in her 30s with black bob haircut, round tortoiseshell glasses, mustard cardigan, white cotton gloves, placing a bound archaeology report on a table, beside her a man in his 40s with dark curly hair, short beard, blue eyes, waxed jacket, open laptop and folders, soft daylight, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "Bore da. Yesterday we followed a name across the hill. Today, something older than any name.",
+     "cite": [
+      "PX-01"
+     ],
+     "cy": "Bore da. Ddoe, fe ddilynon ni enw ar draws y bryn. Heddiw, rhywbeth hŷn nag unrhyw enw.",
+     "es": "Bore da. Ayer seguimos un nombre por la colina. Hoy, algo más viejo que cualquier nombre."
+    }
+   ]
+  },
+  {
+   "shot": 9,
+   "set": "s08",
+   "direction": "Document insert: the gloved hand opens the excavation report to its site plan.",
+   "image_prompt": "Prop insert: GGAT excavation report, Llandough (published 1988), CH-0174, open to a hand-drawn site plan of trenches, white cotton-gloved hand turning the page, render from the evidence page",
+   "animate": "still",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "This is the Glamorgan-Gwent Archaeological Trust report. They dug south of St Dochdwy's church and found what they call a possible late Iron Age roundhouse, under a Roman villa of the second to fourth century. Published 1988.",
+     "cite": [
+      "PX-01",
+      "CH-0174"
+     ],
+     "cy": "Dyma adroddiad Ymddiriedolaeth Archaeolegol Morgannwg-Gwent. Fe gloddion nhw i'r de o eglwys Sant Dochdwy a dod o hyd i'r hyn maen nhw'n ei alw'n dŷ crwn posib o ddiwedd yr Oes Haearn, o dan filâ Rufeinig o'r ail i'r bedwaredd ganrif. Cyhoeddwyd 1988.",
+     "es": "Este es el informe del Glamorgan-Gwent Archaeological Trust. Excavaron al sur de la iglesia de St Dochdwy y encontraron lo que llaman una posible casa redonda de la Edad del Hierro tardía, debajo de una villa romana del siglo segundo al cuarto. Publicado en 1988."
+    }
+   ]
+  },
+  {
+   "shot": 10,
+   "set": "s08",
+   "direction": "Talking close-up of Nia, tapping the page, looking at the Grandson.",
+   "image_prompt": "Photoreal close-up, Welsh woman in her 30s, black bob haircut, round tortoiseshell glasses, mustard cardigan, white cotton glove resting on an open report, earnest expression, archive shelves blurred behind, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "Mark the word 'possible'. The trench shows the outline of a round building beneath the villa. It doesn't show who lived in it, what they were called, or how long they stayed.",
+     "cite": [
+      "PX-01",
+      "CH-0174"
+     ],
+     "cy": "Nodwch y gair 'posib'. Mae'r ffos yn dangos amlinell adeilad crwn o dan y filâ. Dyw e ddim yn dangos pwy oedd yn byw ynddo, beth oedd eu henw, na pha mor hir fuon nhw yno.",
+     "es": "Marcá la palabra 'posible'. La zanja muestra el contorno de una construcción redonda bajo la villa. No muestra quién vivía ahí, cómo se llamaban, ni cuánto tiempo se quedaron."
+    }
+   ]
+  },
+  {
+   "shot": 11,
+   "set": "s08",
+   "direction": "The Grandson listens and nods slowly, closing a folder of later deeds and pushing it aside.",
+   "image_prompt": "Photoreal, man in his 40s with dark curly hair, short beard, blue eyes, waxed jacket, at an archive desk nodding thoughtfully, closing a folder of old papers and setting it aside, laptop open, archivist in mustard cardigan beside him, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "And it doesn't tie anyone to the farm. No deed, no family line reaches back that far. The dig itself gets its own day, in 1988, where it belongs.",
+     "cite": [
+      "PX-01",
+      "CH-0174"
+     ],
+     "cy": "Ac dyw e ddim yn clymu neb wrth y fferm. Dim gweithred, dim llinach deuluol yn mynd mor bell yn ôl â hynny. Mae'r cloddio ei hun yn cael ei ddiwrnod ei hun, ym 1988, lle mae'n perthyn.",
+     "es": "Y no vincula a nadie con la granja. Ningún título, ninguna línea familiar llega tan atrás. La excavación misma tiene su propia fecha, en 1988, que es a la que pertenece."
+    }
+   ]
+  },
+  {
+   "shot": 12,
+   "set": "s10",
+   "direction": "Closing dissolve: the empty hilltop in rain, the roundhouse fading as faint stone foundations of the villa-to-come ghost over its footprint.",
+   "image_prompt": "Photoreal, rainy grassy hilltop in south Wales, a thatched roundhouse fading softly, faint outline of rectangular stone foundations overlaid on the same spot, valley and estuary in grey mist, no people, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "For now, just the ground. A round house, then stone laid over it. Tomorrow, the villa.",
+     "cite": [
+      "PX-01",
+      "CH-0174"
+     ],
+     "cy": "Am nawr, dim ond y ddaear. Tŷ crwn, wedyn carreg wedi'i gosod drosto. Yfory, y filâ.",
+     "es": "Por ahora, solo el terreno. Una casa redonda, y después piedra encima. Mañana, la villa."
+    }
+   ]
+  }
+ ],
+ "covers": [
+  "PX-01"
+ ],
+ "left_out": [],
+ "continuity": "Frame 003 opens on the same hilltop (s10, same estuary view) with B_JOHN as the villa steward walking stone foundations laid over the roundhouse's footprint; Nia's report (CH-0174) returns for the villa bookend.",
+ "translation": {
+  "cy": "machine translation (claude-sonnet-5), for native review",
+  "es": "machine translation (claude-sonnet-5), for review"
+ },
+ "status": "draft v0.1 for hive review",
+ "words_en": 289,
+ "estimated_seconds": 116
+}

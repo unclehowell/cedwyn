@@ -1,0 +1,272 @@
+{
+ "frame": 1,
+ "title": "Place-names before the deeds",
+ "cast": {
+  "I_NIA": "Nia, the archivist",
+  "D_BILLY": "the Grandson (2020s, 40s)"
+ },
+ "setting": "s08",
+ "target_seconds": 120,
+ "shots": [
+  {
+   "shot": 1,
+   "set": "s08",
+   "direction": "Title card held over a slow push-in on a closed archive box under a reading lamp; the title 'CEDWYN' and 'A tab.bot production' are added in post.",
+   "image_prompt": "Photoreal close-up of a plain grey archive box and a pair of white cotton gloves on a dark wooden reading-room table, single warm lamp, soft dust in the light, deep shadows, modern records office, shallow depth of field, no people, no text, no heraldry",
+   "animate": "still",
+   "lines": []
+  },
+  {
+   "shot": 2,
+   "set": "s08",
+   "direction": "Wide establishing shot of the archive reading room; Nia pulls on cotton gloves and slides a stack of folders across to the Grandson, who sits down with his laptop.",
+   "image_prompt": "Photoreal modern county records office reading room, long wooden tables, grey archive boxes on steel shelving, tall windows with soft overcast Welsh daylight; a Welsh woman in her 30s with a black bob haircut, round tortoiseshell glasses, mustard cardigan and white cotton gloves lays out folders; opposite her a man in his 40s with dark curly hair, blue eyes, short beard and a waxed jacket opens a laptop beside paper folders; no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "Bore da. Gloves on before you touch anything. Before a single deed, we've got names. Just names, written in your family's research notes.",
+     "cite": [
+      "EV-0195"
+     ],
+     "cy": "Bore da. Menig ymlaen cyn i chi gyffwrdd dim byd. Cyn unrhyw weithred, mae gyda ni enwau. Dim ond enwau, wedi'u hysgrifennu yn nodiadau ymchwil eich teulu.",
+     "es": "Bore da. Guantes puestos antes de tocar nada. Antes de cualquier escritura, tenemos nombres. Solo nombres, escritos en las notas de investigación de tu familia."
+    },
+    {
+     "who": "D_BILLY",
+     "en": "Cedwyn. That's the word I keep tripping over. Cedwyn, Cwm-Cedwyn, Nant-Cedwyn, Ynys-Cedwyn. Then Cedfin, Cydfin, Cydwin. And Tŷ Mawr, the Great House.",
+     "cite": [
+      "EV-0195"
+     ],
+     "cy": "Cedwyn. Dyna'r gair dwi'n baglu drosto o hyd. Cedwyn, Cwm-Cedwyn, Nant-Cedwyn, Ynys-Cedwyn. Wedyn Cedfin, Cydfin, Cydwin. A Tŷ Mawr, y 'Great House'.",
+     "es": "Cedwyn. Esa es la palabra con la que tropiezo. Cedwyn, Cwm-Cedwyn, Nant-Cedwyn, Ynys-Cedwyn. Luego Cedfin, Cydfin, Cydwin. Y Tŷ Mawr, la Casa Grande."
+    }
+   ]
+  },
+  {
+   "shot": 3,
+   "set": "s08",
+   "direction": "Overhead insert: Nia's gloved finger runs down a printed index sheet laid on the table.",
+   "image_prompt": "Photoreal overhead view of a printed research index sheet with typed columns and handwritten pencil ticks, a gloved hand pointing down the rows, wooden table, reading lamp light, text on the sheet blurred and illegible, no heraldry",
+   "animate": "still",
+   "document": "EV-0195 Cedwyn / Cwm-Cedwyn place-name notes: reference index and dependency register (GHF-E174 to GHF-E179)",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "This is the index. Six research leads, GHF-E174 to GHF-E179. It shows where each name turns up, and which notes lean on which. Pull one out, you see what wobbles.",
+     "cite": [
+      "EV-0195"
+     ],
+     "cy": "Dyma'r mynegai. Chwe trywydd ymchwil, GHF-E174 i GHF-E179. Mae'n dangos ble mae pob enw'n codi, a pha nodiadau sy'n dibynnu ar bwy. Tynnwch un allan, chi'n gweld beth sy'n simsanu.",
+     "es": "Este es el índice. Seis pistas de investigación, de GHF-E174 a GHF-E179. Muestra dónde aparece cada nombre, y qué notas se apoyan en cuáles. Si sacas una, ves qué se tambalea."
+    }
+   ]
+  },
+  {
+   "shot": 4,
+   "set": "s08",
+   "direction": "Close-up on the Grandson, leaning in, hopeful.",
+   "image_prompt": "Photoreal close-up portrait of a Welsh man in his 40s, dark curly hair, blue eyes, short beard, waxed jacket, lit by a warm reading lamp in an archive reading room, folders blurred in the background, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "D_BILLY",
+     "en": "So does it prove the farm was Cedwyn land? That we held it from some medieval manor?",
+     "cite": [
+      "EV-0195"
+     ],
+     "cy": "Felly ydy e'n profi mai tir Cedwyn oedd y fferm? Ein bod ni'n ei dal o ryw faenor ganoloesol?",
+     "es": "¿Entonces prueba que la granja era tierra Cedwyn? ¿Que la teníamos por algún señorío medieval?"
+    }
+   ]
+  },
+  {
+   "shot": 5,
+   "set": "s08",
+   "direction": "Close-up on Nia, gentle but firm, taking off her glasses.",
+   "image_prompt": "Photoreal close-up portrait of a Welsh woman in her 30s, black bob haircut, round tortoiseshell glasses held in a cotton-gloved hand, mustard cardigan, archive shelving softly blurred behind, warm lamp light, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "No. It proves we've catalogued the leads, nothing more. It doesn't show the variants are the same place, or that they mean Great House Farm, or that any old lease decides who owned what after 1877.",
+     "cite": [
+      "EV-0195"
+     ],
+     "cy": "Na. Mae'n profi ein bod ni wedi catalogio'r trywyddau, dim mwy na hynny. Dyw e ddim yn dangos bod yr amrywiadau yn yr un lle, na'u bod nhw'n golygu Great House Farm, na bod unrhyw hen brydles yn penderfynu pwy oedd piau beth ar ôl mil wyth gant saith deg saith.",
+     "es": "No. Prueba que catalogamos las pistas, nada más. No muestra que las variantes sean el mismo lugar, ni que signifiquen Great House Farm, ni que algún contrato antiguo decida quién era dueño después de 1877."
+    }
+   ]
+  },
+  {
+   "shot": 6,
+   "set": "s08",
+   "direction": "Insert: the Grandson lays a typed note card beside an unmarked sketch of a river bend.",
+   "image_prompt": "Photoreal close-up of a typed index card and a pencil sketch of a river bend among trees on tracing paper, on a wooden archive table, lettering blurred and illegible, reading lamp light, no heraldry",
+   "animate": "still",
+   "document": "EV-0200 Place-name note: Cwm-Cedwyn, wooded dell on the Ely between Leckwith and Llandough",
+   "lines": [
+    {
+     "who": "D_BILLY",
+     "en": "Cwm-Cedwyn. A wooded dell on the Ely, between Leckwith and Llandough. My notes use it all the time.",
+     "cite": [
+      "EV-0200"
+     ],
+     "cy": "Cwm-Cedwyn. Pant coediog ar lan afon Elái, rhwng Lecwydd a Llandochau. Mae fy nodiadau i'n ei ddefnyddio o hyd.",
+     "es": "Cwm-Cedwyn. Un valle boscoso sobre el Ely, entre Leckwith y Llandough. Mis notas lo usan todo el tiempo."
+    },
+    {
+     "who": "I_NIA",
+     "en": "They do. But there's no source attached yet. We don't know when the name was first written, where its edges ran, or whether it ever touched the farm. Checking is still to do.",
+     "cite": [
+      "EV-0200"
+     ],
+     "cy": "Ydyn, maen nhw. Ond does dim ffynhonnell ynghlwm eto. Dy'n ni ddim yn gwybod pryd gafodd yr enw ei ysgrifennu gyntaf, ble roedd ei ffiniau, na p'un a oedd e byth yn cyffwrdd y fferm. Mae gwirio eto i'w wneud.",
+     "es": "Así es. Pero todavía no tiene fuente. No sabemos cuándo se escribió el nombre por primera vez, dónde estaban sus límites, ni si alguna vez tocó la granja. Falta comprobarlo."
+    }
+   ]
+  },
+  {
+   "shot": 7,
+   "set": "s09",
+   "direction": "Slow drift through Leckwith woods down to the River Ely in morning mist, birdsong, no people.",
+   "image_prompt": "Photoreal wooded valley with steep oak and ash slopes falling to the River Ely below Llandough hill, early morning mist, autumn light, wet leaves, distant hint of Cardiff Bay haze, no people, no buildings in focus, no text, no heraldry",
+   "animate": "i2v",
+   "lines": []
+  },
+  {
+   "shot": 8,
+   "set": "s08",
+   "direction": "Insert: an empty labelled folder sleeve, nothing inside, held up to the lamp.",
+   "image_prompt": "Photoreal close-up of an empty clear archive folder sleeve held up in a cotton-gloved hand against warm lamp light, a placeholder slip inside with illegible typing, archive shelves blurred behind, no heraldry",
+   "animate": "still",
+   "document": "EV-0198 Nant-Cedwyn: place-name note for a brook near Leckwith/Llandough (primary document not yet held)",
+   "lines": [
+    {
+     "who": "D_BILLY",
+     "en": "And Nant-Cedwyn. A brook running into the Ely near Leckwith.",
+     "cite": [
+      "EV-0198"
+     ],
+     "cy": "A Nant-Cedwyn. Nant sy'n llifo i'r Elái ger Lecwydd.",
+     "es": "Y Nant-Cedwyn. Un arroyo que desemboca en el Ely cerca de Leckwith."
+    },
+    {
+     "who": "I_NIA",
+     "en": "That one points to a primary document, and we haven't got it. Not held. So for now it shows us nothing; only that the family noted the name. Name, place, date, link to Tŷ Mawr: all still to be checked.",
+     "cite": [
+      "EV-0198"
+     ],
+     "cy": "Mae hwnnw'n cyfeirio at ddogfen wreiddiol, a does dim gyda ni. Ddim yn ein meddiant. Felly am nawr dyw e'n dangos dim i ni; dim ond bod y teulu wedi nodi'r enw. Enw, lle, dyddiad, cyswllt â Tŷ Mawr: popeth eto i'w wirio.",
+     "es": "Ese apunta a un documento primario, y no lo tenemos. No está en nuestro poder. Por ahora no muestra nada; solo que la familia anotó el nombre. Nombre, lugar, fecha, vínculo con Tŷ Mawr: todo falta por comprobar."
+    }
+   ]
+  },
+  {
+   "shot": 9,
+   "set": "s08",
+   "direction": "Insert: a third note card set apart from the others, at the edge of the table.",
+   "image_prompt": "Photoreal close-up of a single typed index card set apart at the edge of a wooden archive table, the other cards out of focus, illegible lettering, lamp light, no heraldry",
+   "animate": "still",
+   "document": "EV-0210 Ynys-Cedwyn: place-name associated with Cedwyn Gawr (research note)",
+   "lines": [
+    {
+     "who": "D_BILLY",
+     "en": "Ynys-Cedwyn's the odd one out.",
+     "cite": [
+      "EV-0210"
+     ],
+     "cy": "Ynys-Cedwyn yw'r un od.",
+     "es": "Ynys-Cedwyn es la rara del grupo."
+    },
+    {
+     "who": "I_NIA",
+     "en": "Ynys-Cedwyn sits up where the Twrch meets the Tawe, a long way from here. The note ties it to Cedwyn Gawr, Cedwyn the Giant.",
+     "cite": [
+      "EV-0210"
+     ],
+     "cy": "Mae Ynys-Cedwyn i fyny lle mae'r Twrch yn cwrdd â'r Tawe, ymhell o fan hyn. Mae'r nodyn yn ei gysylltu â Cedwyn Gawr, Cedwyn y Cawr.",
+     "es": "Ynys-Cedwyn está donde el Twrch se une al Tawe, bien lejos de aquí. La nota lo liga a Cedwyn Gawr, Cedwyn el Gigante."
+    }
+   ]
+  },
+  {
+   "shot": 10,
+   "set": "s08",
+   "direction": "Close-up on the Grandson, amused, half a laugh.",
+   "image_prompt": "Photoreal close-up of a Welsh man in his 40s, dark curly hair, blue eyes, short beard, waxed jacket, wry smile, archive reading room behind him softly blurred, warm lamp light, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "D_BILLY",
+     "en": "A giant. Lovely. Is there anything linking him to Llandough?",
+     "cite": [
+      "EV-0210"
+     ],
+     "cy": "Cawr. Hyfryd. Oes unrhyw beth yn ei gysylltu e â Llandochau?",
+     "es": "Un gigante. Qué lindo. ¿Hay algo que lo conecte con Llandough?"
+    }
+   ]
+  },
+  {
+   "shot": 11,
+   "set": "s08",
+   "direction": "Close-up on Nia, tapping the card once.",
+   "image_prompt": "Photoreal close-up of a Welsh woman in her 30s, black bob haircut, round tortoiseshell glasses, mustard cardigan, cotton-gloved finger resting on an index card, archive reading room, warm lamp light, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "The note doesn't even try. No primary source, the place and the giant both waiting to be checked, and no connection to Great House Farm stated at all.",
+     "cite": [
+      "EV-0210"
+     ],
+     "cy": "Dyw'r nodyn ddim hyd yn oed yn trio. Dim ffynhonnell wreiddiol, y lle a'r cawr ill dau'n aros i'w gwirio, a dim cyswllt â Great House Farm wedi'i nodi o gwbl.",
+     "es": "La nota ni lo intenta. Sin fuente primaria, el lugar y el gigante por comprobar, y ninguna conexión con Great House Farm."
+    }
+   ]
+  },
+  {
+   "shot": 12,
+   "set": "s08",
+   "direction": "Two-shot: the Grandson closes his laptop, Nia gathers the cards into one pile; the window light shifts toward the hills outside.",
+   "image_prompt": "Photoreal two-shot in a modern archive reading room: a Welsh woman in her 30s with black bob, tortoiseshell glasses, mustard cardigan and cotton gloves stacking index cards; a man in his 40s with dark curly hair, short beard and waxed jacket closing a laptop; tall window behind showing green hills under grey sky, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "D_BILLY",
+     "en": "So the film starts with a name we can't pin down.",
+     "cite": [
+      "EV-0195"
+     ],
+     "cy": "Felly mae'r ffilm yn dechrau gydag enw dy'n ni ddim yn gallu ei bennu.",
+     "es": "Entonces la película empieza con un nombre que no podemos ubicar."
+    },
+    {
+     "who": "I_NIA",
+     "en": "It starts honest. A name, and a hill that came before it. Let's go and stand on the hill.",
+     "cite": [
+      "EV-0195"
+     ],
+     "cy": "Mae'n dechrau'n onest. Enw, a bryn oedd yno o'i flaen. Dewch i ni fynd i sefyll ar y bryn.",
+     "es": "Empieza con honestidad. Un nombre, y una colina que vino antes. Vamos a pararnos en la colina."
+    }
+   ]
+  }
+ ],
+ "covers": [
+  "EV-0195",
+  "EV-0198",
+  "EV-0200",
+  "EV-0210"
+ ],
+ "left_out": [],
+ "continuity": "Nia's last line hands over to the hill itself: next frame opens on Llandough hill south of the future church, where the Iron-Age elder (B_JOHN) and the roundhouse mother (A_MARY) stand on ground with no record yet.",
+ "translation": {
+  "cy": "machine translation (claude-sonnet-5), for native review",
+  "es": "machine translation (claude-sonnet-5), for review"
+ },
+ "status": "draft v0.1 for hive review",
+ "words_en": 326,
+ "estimated_seconds": 140
+}

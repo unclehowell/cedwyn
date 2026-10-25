@@ -1,0 +1,275 @@
+{
+ "frame": 3,
+ "title": "Villa on the same hill",
+ "cast": {
+  "B_JOHN": "the villa steward",
+  "A_MARY": "a villa woman",
+  "I_NIA": "Nia, the Archivist (archive bookend)",
+  "D_BILLY": "the Grandson (archive bookend, non-speaking)"
+ },
+ "setting": "s10",
+ "target_seconds": 120,
+ "shots": [
+  {
+   "shot": 1,
+   "set": "s10",
+   "direction": "Slow dawn push-in over the hill. Where the roundhouse stood in frame 002, low stone ranges with tiled roofs now sit above the river valley, with mist on the water below.",
+   "image_prompt": "Photoreal dawn landscape of a gentle green hill above a winding river valley in south Wales, 3rd century AD. A modest Romano-British villa of rendered stone walls and red tiled roofs, a walled yard and a thin plume of hearth smoke. Mist on the river, wet grass, soft overcast light. Same hill contours as the prehistoric roundhouse frame. No people in close view, no text, no heraldry.",
+   "animate": "i2v",
+   "lines": []
+  },
+  {
+   "shot": 2,
+   "set": "s10",
+   "direction": "Medium close-up of the steward at the yard wall, one heavy hand flat on the stonework as he looks out over the valley.",
+   "image_prompt": "Photoreal medium close-up of a weathered Welsh man in his 50s with a broad face, grey-flecked beard and heavy hands, the B_JOHN reference face. He wears a plain undyed wool tunic and a brown hooded cloak and rests his hand on a rendered stone wall of a Romano-British villa yard. Dawn light, misty river valley behind. No text, no heraldry.",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Look at it. Stone walls, a tiled roof, where my grandfather's grandfather talked of a round house of wattle and thatch. Same hill, same river below, and now a roof that won't lift off in a gale.",
+     "cite": [
+      "PX-02"
+     ],
+     "cy": "Edrych arno. Waliau cerrig, to teils, lle roedd hen daid fy nhaid yn sôn am dŷ crwn o blethwaith a gwellt. Yr un bryn, yr un afon islaw, a nawr to fydd ddim yn codi mewn storm.",
+     "es": "Mirala. Paredes de piedra, techo de tejas, donde el abuelo de mi abuelo hablaba de una casa redonda de barro y paja. La misma colina, el mismo río abajo, y ahora un techo que no vuela con el viento."
+    }
+   ]
+  },
+  {
+   "shot": 3,
+   "set": "s10",
+   "direction": "Tracking two-shot as the villa woman falls into step beside him along the wall top path, gathering her cloak against the wind.",
+   "image_prompt": "Photoreal two-shot walking along the outside of a Romano-British villa wall on a hilltop. The weathered bearded steward (B_JOHN reference) walks beside a Welsh woman in her 40s, the A_MARY reference face, with dark brown hair in a bun, strong cheekbones, grey-green eyes and a small mole on her left cheek. She wears a dyed wool tunic and a heavy cloak. Puddles, wet grass, river valley below. No text, no heraldry.",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "A_MARY",
+     "en": "Same mud, though. The lower rooms run wet every winter. And you walk these walls every morning as if they might wander off.",
+     "cite": [
+      "PX-02"
+     ],
+     "cy": "Yr un llaid, cofia. Mae'r stafelloedd isaf yn wlyb bob gaeaf. A ti'n cerdded y waliau 'ma bob bore fel tasen nhw am grwydro i ffwrdd.",
+     "es": "El mismo barro, igual. Los cuartos de abajo se mojan cada invierno. Y vos caminás estas paredes cada mañana como si se fueran a escapar."
+    },
+    {
+     "who": "B_JOHN",
+     "en": "Somebody has to. The masters count every tile when they ride out, and it's my back they look at when one is missing.",
+     "cite": [
+      "PX-02"
+     ],
+     "cy": "Rhaid i rywun. Mae'r meistri'n cyfri pob teilsen pan ddôn nhw draw, ac ar fy nghefn i maen nhw'n edrych pan fo un ar goll.",
+     "es": "Alguien tiene que hacerlo. Los amos cuentan cada teja cuando salen, y es mi espalda la que miran si falta una."
+    }
+   ]
+  },
+  {
+   "shot": 4,
+   "set": "s10",
+   "direction": "Close-up of the villa woman crouching by the yard wall and pointing down at the freshly cut ground.",
+   "image_prompt": "Photoreal close-up of the A_MARY reference woman (40s, dark brown hair in a bun, mole on her left cheek, grey-green eyes) crouching beside a new stone wall footing in a Romano-British villa yard, pointing at the earth. Wool cloak, muddy hands, soft overcast light. No text, no heraldry.",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "A_MARY",
+     "en": "Then come and count this. By the yard wall, where the men cut the new footings. A ring in the earth, dark soil, old post-holes. The old ones swear the round house stood just here.",
+     "cite": [
+      "PX-02"
+     ],
+     "cy": "Wel dere i gyfri hwn. Wrth wal yr iard, lle dorrodd y dynion y seiliau newydd. Cylch yn y ddaear, pridd tywyll, hen dyllau pyst. Mae'r hen bobl yn taeru bod y tŷ crwn wedi sefyll yn union fan hyn.",
+     "es": "Entonces vení a contar esto. Junto al muro del patio, donde cavaron los nuevos cimientos. Un círculo en la tierra, suelo oscuro, viejos agujeros de postes. Los mayores juran que la casa redonda estaba justo acá."
+    }
+   ]
+  },
+  {
+   "shot": 5,
+   "set": "s10",
+   "direction": "Low insert on a curving ring of dark soil and post-holes beside the stone footing as the two pairs of feet stand over it. Wind moves the grass.",
+   "image_prompt": "Photoreal low-angle insert of a curving ring of darker soil and small circular post-holes in brown earth, cut through by a fresh stone wall footing of a Romano-British building. Two pairs of leather-shod feet stand at the edge. Overcast light, wet grass at the margins. No text, no heraldry.",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "So we laid our floors on top of theirs. Makes you wonder who lays theirs on ours.",
+     "cite": [
+      "PX-02"
+     ],
+     "cy": "Felly fe osodon ni'n lloriau ni ar ben eu rhai nhw. Mae'n gwneud i ti feddwl pwy fydd yn gosod eu rhai nhw ar ein rhai ni.",
+     "es": "Entonces pusimos nuestros pisos sobre los de ellos. Te hace pensar quién pondrá los suyos sobre los nuestros."
+    },
+    {
+     "who": "A_MARY",
+     "en": "Nobody. It's stone. Stone lasts.",
+     "cite": [
+      "PX-02"
+     ],
+     "cy": "Neb. Carreg ydy hi. Mae carreg yn para.",
+     "es": "Nadie. Es piedra. La piedra dura."
+    }
+   ]
+  },
+  {
+   "shot": 6,
+   "set": "s10",
+   "direction": "Close-up of the steward straightening up and looking along the length of the villa range, half a smile.",
+   "image_prompt": "Photoreal close-up of the B_JOHN reference man (50s, broad weathered face, grey-flecked beard) in a wool tunic and hooded cloak, gazing along a Romano-British villa range with tiled roofs. Hill and river valley behind, late morning overcast light. No text, no heraldry.",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Stone lasts. Families don't always. Somebody's grandfather saw these walls go up, and somebody's grandchild will see them fall.",
+     "cite": [
+      "PX-02"
+     ],
+     "cy": "Mae carreg yn para. Dydy teuluoedd ddim wastad. Gwelodd taid rhywun y waliau 'ma'n codi, a bydd ŵyr rhywun yn eu gweld nhw'n cwympo.",
+     "es": "La piedra dura. Las familias no siempre. El abuelo de alguien vio levantarse estas paredes, y el nieto de alguien las verá caer."
+    }
+   ]
+  },
+  {
+   "shot": 7,
+   "set": "s10",
+   "direction": "Wide shot at dusk as she tugs his sleeve toward a lit doorway. Hearth smoke drifts from the roof, then match-cut on the dark ring of earth.",
+   "image_prompt": "Photoreal wide dusk shot of a Romano-British villa doorway glowing with firelight on a hill above a river. The A_MARY reference woman in a cloak leads the bearded B_JOHN reference steward toward the door. Smoke rises from the tiled roof, blue evening sky. No text, no heraldry.",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "A_MARY",
+     "en": "Then let the hill keep its own count. Come in, the fire's lit.",
+     "cite": [
+      "PX-02"
+     ],
+     "cy": "Wel, gad i'r bryn gadw'i gyfri ei hun. Dere i mewn, mae'r tân ynghynn.",
+     "es": "Que la colina lleve su propia cuenta, entonces. Entrá, el fuego está encendido."
+    }
+   ]
+  },
+  {
+   "shot": 8,
+   "set": "s08",
+   "direction": "Match-cut to a top-down document insert of an archive file on the reading-room table as gloved hands open it.",
+   "image_prompt": "Photoreal top-down view of a buff archive folder opened on a modern record office reading-room table, holding typed sheets and a faded site photograph of an excavation trench. Cotton-gloved hands at the edge of frame. All writing blurred and unreadable. No heraldry. Prop: Glamorgan Archives D1230/7, records of excavations of the Roman settlement at Llandough-juxta-Penarth, c.1968.",
+   "animate": "still",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "And here's that same hill on paper. Glamorgan Archives, D1230/7: excavations of the Roman settlement at Llandough-juxta-Penarth, recorded around 1968.",
+     "cite": [
+      "PX-02",
+      "CH-0143"
+     ],
+     "cy": "A dyma'r un bryn ar bapur. Archifau Morgannwg, D1230/7: cloddiadau anheddiad Rhufeinig Llandochau-juxta-Penarth, cofnodwyd tua 1968.",
+     "es": "Y acá está esa misma colina en papel. Glamorgan Archives, D1230/7: excavaciones del asentamiento romano en Llandough-juxta-Penarth, registradas alrededor de 1968."
+    }
+   ]
+  },
+  {
+   "shot": 9,
+   "set": "s08",
+   "direction": "Medium close-up of Nia across the desk, turning a site plan toward the Grandson.",
+   "image_prompt": "Photoreal medium close-up of a Welsh woman in her 30s, the I_NIA reference face, with a black bob haircut, round tortoiseshell glasses, a mustard cardigan and white cotton gloves, turning a large excavation site plan across a reading-room desk. Soft archive lighting, grey shelving behind. Writing on the plan unreadable. No text, no heraldry.",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "Then the big dig. A salvage excavation in 1978 and '79, catalogued as 'Llandough Farm', HER event GGATE001109. The Glamorgan-Gwent Archaeological Trust dug south of the church, extensively, before housing association flats went up.",
+     "cite": [
+      "PX-02",
+      "CH-0173",
+      "CH-0175",
+      "CH-0174"
+     ],
+     "cy": "Yna'r gloddfa fawr. Cloddiad achub ym 1978 a '79, wedi'i gatalogio fel 'Llandough Farm', digwyddiad HER GGATE001109. Fe gloddiodd Ymddiriedolaeth Archaeolegol Morgannwg-Gwent i'r de o'r eglwys, yn helaeth, cyn codi fflatiau cymdeithas tai.",
+     "es": "Después la gran excavación. Un rescate arqueológico en 1978 y '79, catalogado como 'Llandough Farm', evento HER GGATE001109. El Glamorgan-Gwent Archaeological Trust excavó al sur de la iglesia, extensamente, antes de que se construyeran los departamentos de la asociación de vivienda."
+    }
+   ]
+  },
+  {
+   "shot": 10,
+   "set": "s08",
+   "direction": "Document insert of the published report lying open at the site plan, with a gloved finger tracing a curved line beneath straight wall lines.",
+   "image_prompt": "Photoreal close insert of an open grey academic archaeology report on a reading-room desk, showing a black-and-white site plan with straight rectilinear walls overlying a faint curved gully. A gloved fingertip traces the curve. All lettering blurred and unreadable. No heraldry. Prop: BAR 188 (1988), report of the Llandough villa excavation.",
+   "animate": "still",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "Published in 1988, in BAR 188: a Roman villa, occupied from the second to the fourth century, and beneath it a possible late Iron Age roundhouse.",
+     "cite": [
+      "PX-02",
+      "CH-0174",
+      "CH-0173"
+     ],
+     "cy": "Cyhoeddwyd ym 1988, yn BAR 188: filâ Rufeinig, wedi'i meddiannu o'r ail i'r bedwaredd ganrif, a thanddi dŷ crwn posib o ddiwedd yr Oes Haearn.",
+     "es": "Publicado en 1988, en BAR 188: una villa romana, ocupada del siglo segundo al cuarto, y debajo, una posible casa redonda de la Edad del Hierro tardía."
+    }
+   ]
+  },
+  {
+   "shot": 11,
+   "set": "s08",
+   "direction": "Two-shot as Nia slides a yellowed press cutting into a separate folder while the Grandson watches and nods, saying nothing.",
+   "image_prompt": "Photoreal two-shot at a reading-room desk. The I_NIA reference woman (black bob, tortoiseshell glasses, mustard cardigan, cotton gloves) slides a yellowed 1980 newspaper cutting into a separate manila folder. Beside her sits the D_BILLY reference man in his 40s with dark curly hair, blue eyes, a short beard and a waxed jacket, with a laptop and folders, watching silently. Print unreadable. No text, no heraldry.",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "This press file from 1980, GGAT00768s, the Llandough Roman Villa excavation, is catalogued as a separate site. Keep it in its own folder.",
+     "cite": [
+      "PX-02",
+      "CH-0172"
+     ],
+     "cy": "Mae'r ffeil wasg hon o 1980, GGAT00768s, cloddiad Filâ Rufeinig Llandochau, wedi'i gatalogio fel safle ar wahân. Cadwer hi yn ei ffolder ei hun.",
+     "es": "Este archivo de prensa de 1980, GGAT00768s, la excavación de la villa romana de Llandough, está catalogado como sitio aparte. Mantenelo en su propia carpeta."
+    }
+   ]
+  },
+  {
+   "shot": 12,
+   "set": "s08",
+   "direction": "Close-up of Nia taking off her glasses and speaking straight to the Grandson. Hold, then she closes the report.",
+   "image_prompt": "Photoreal close-up of the I_NIA reference woman (30s, black bob, round tortoiseshell glasses in hand, mustard cardigan) speaking earnestly across a reading-room desk, a closed grey report under her gloved hand. Warm desk-lamp light, archive shelving softly out of focus. No text, no heraldry.",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "What these show: people living in stone on this hill for two centuries and more. What they don't show: a single name, who held the land, or any thread to the farmhouse deeds. And 'possible' roundhouse means possible.",
+     "cite": [
+      "PX-02",
+      "CH-0174",
+      "CH-0173",
+      "CH-0175",
+      "CH-0143",
+      "CH-0172"
+     ],
+     "cy": "Beth mae'r rhain yn ei ddangos: pobl yn byw mewn carreg ar y bryn 'ma am ddwy ganrif a mwy. Beth dydyn nhw ddim yn ei ddangos: un enw, pwy oedd piau'r tir, nac unrhyw gysylltiad â dogfennau'r ffermdy. Ac mae tŷ crwn 'posib' yn golygu dim ond posib.",
+     "es": "Lo que esto muestra: gente viviendo en piedra en esta colina por más de dos siglos. Lo que no muestra: ni un nombre, quién tenía la tierra, ni un hilo hacia las escrituras de la granja. Y 'posible' casa redonda significa posible."
+    },
+    {
+     "who": "I_NIA",
+     "en": "Each dig keeps its own date. We'll open these again in 1968, 1978, 1980 and 1988.",
+     "cite": [
+      "PX-02",
+      "CH-0143",
+      "CH-0173",
+      "CH-0172",
+      "CH-0174"
+     ],
+     "cy": "Mae gan bob cloddiad ei ddyddiad ei hun. Fe agorwn ni'r rhain eto ym 1968, 1978, 1980 a 1988.",
+     "es": "Cada excavación guarda su propia fecha. Vamos a revisar esto otra vez en 1968, 1978, 1980 y 1988."
+    }
+   ]
+  }
+ ],
+ "covers": [
+  "PX-02"
+ ],
+ "left_out": [],
+ "continuity": "Frame 004 opens on the same hill with the villa walls fallen low. A monk of Llandough (B_JOHN) and Nia read how a monastic cemetery grew beside the old villa and how St Dochdwy's is older than anyone can date.",
+ "translation": {
+  "cy": "machine translation (claude-sonnet-5), for native review",
+  "es": "machine translation (claude-sonnet-5), for review"
+ },
+ "status": "draft v0.1 for hive review",
+ "words_en": 329,
+ "estimated_seconds": 135
+}

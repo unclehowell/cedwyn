@@ -1,0 +1,280 @@
+{
+ "frame": 10,
+ "title": "A new church, a rate book",
+ "cast": {
+  "F_GWEN": "Gwen, postmistress and chapel neighbour who reads the papers aloud",
+  "B_JOHN": "John Williams of Great House Farm / Tŷ Mawr (the son who succeeded in 1855), 40s",
+  "E_AGENT": "the assistant overseer of the poor, Llandough parish (public office; swapped from Land Registry officer, which suits 1872 less well)"
+ },
+ "setting": "s03",
+ "target_seconds": 120,
+ "shots": [
+  {
+   "shot": 1,
+   "set": "s03",
+   "direction": "Wide on a frosty December churchyard beside the small plain c.1820 church. Gwen sits on a bench by a fresh grave with a folded newspaper, and John stands bareheaded beside her.",
+   "image_prompt": "Photoreal winter 1864 churchyard at Llandough, small plain whitewashed early-19th-century Welsh parish church, frost on grass, fresh grave mound. F_GWEN (60s, round face, rosy cheeks, silver curls under a dark wool shawl, reading glasses on a chain) holds a folded newspaper. B_JOHN (40s, weathered broad face, grey-flecked beard, dark mourning coat, felt hat in heavy hands) stands beside her. Overcast light, period-correct Victorian rural dress, no text in image, no heraldry.",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "F_GWEN",
+     "en": "Cardiff Times, thirtieth of December, eighteen sixty-four. Here she is, John bach: Amy, 'relict of the late Mr. John Williams, Great House farm.'",
+     "cite": [
+      "CH-0015"
+     ],
+     "cy": "Cardiff Times, y degfed ar hugain o Ragfyr, un wyth chwech pedwar. Dyma hi, John bach: Amy, 'gweddw'r diweddar Mr. John Williams, fferm Great House.'",
+     "es": "Cardiff Times, treinta de diciembre de mil ochocientos sesenta y cuatro. Aquí está, John bach: Amy, 'viuda del difunto señor John Williams, granja Great House.'"
+    }
+   ]
+  },
+  {
+   "shot": 2,
+   "set": "s03",
+   "direction": "Insert of the death notice column in Gwen's gloved hands.",
+   "image_prompt": "Close-up prop insert: Gwen's hands in fingerless wool mitts holding a folded 1864 Victorian broadsheet newspaper page, small death notices column, frost-grey light. Render as a prop from the evidence page. No legible text generated, no heraldry.",
+   "animate": "still",
+   "document": "Cardiff Times and Cardiff and Merthyr Guardian, 30 Dec 1864, death notice of Amy Williams (EV-0246)",
+   "lines": []
+  },
+  {
+   "shot": 3,
+   "set": "s03",
+   "direction": "Talking close-up of John, his breath visible, eyes on the grave, then turning to Gwen.",
+   "image_prompt": "Photoreal close-up of B_JOHN, Welsh farmer in his 40s, weathered broad face, grey-flecked beard, dark mourning coat, winter churchyard bokeh behind, 1864. Natural overcast light, no text, no heraldry.",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Great House farm. Tŷ Mawr, to us. Strange, seeing it in a Cardiff paper, in English, with her name beside it.",
+     "cite": [
+      "CH-0015"
+     ],
+     "cy": "Fferm Great House. Tŷ Mawr, i ni. Rhyfedd ei weld mewn papur Caerdydd, yn Saesneg, a'i henw hi wrth ei ymyl.",
+     "es": "La granja Great House. Tŷ Mawr, para nosotros. Qué raro verla en un diario de Cardiff, en inglés, con su nombre al lado."
+    },
+    {
+     "who": "F_GWEN",
+     "en": "Keep it. It shows she died a widow and the farm went by that name. It doesn't show who held the ground, or on what terms.",
+     "cite": [
+      "CH-0015"
+     ],
+     "cy": "Cadwa fe. Mae'n dangos iddi farw'n weddw a bod y fferm yn dwyn yr enw hwnnw. Dyw e ddim yn dangos pwy oedd yn dal y tir, na dan ba delerau.",
+     "es": "Guárdalo. Muestra que murió viuda y que la granja llevaba ese nombre. No muestra quién tenía la tierra, ni en qué condiciones."
+    }
+   ]
+  },
+  {
+   "shot": 4,
+   "set": "s03",
+   "direction": "Wide, spring 1866. A consecration procession of surpliced clergy and villagers files into the newly built St Dochdwy's while Gwen and John watch from the lychgate.",
+   "image_prompt": "Photoreal 1866 consecration day at the newly built Victorian Gothic St Dochdwy's Church, Llandough, fresh pale stone, spring sunshine. Procession of clergy in plain white surplices and villagers in Sunday best, with plain banners and no devices. F_GWEN in a bonnet and shawl and B_JOHN in a Sunday coat and felt hat at the lychgate. No text, no heraldry, no crests on vestments or banners.",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "F_GWEN",
+     "en": "Eighteen sixty-six now. The new St Dochdwy's, consecrated, and half the Vale in their Sunday best.",
+     "cite": [
+      "CH-0016"
+     ],
+     "cy": "Un wyth chwech chwech nawr. Eglwys newydd San Dochdwy, wedi'i chysegru, a hanner y Fro yn eu dillad gorau.",
+     "es": "Ahora mil ochocientos sesenta y seis. La nueva St Dochdwy's, consagrada, y medio Vale de punta en blanco."
+    },
+    {
+     "who": "B_JOHN",
+     "en": "And the old church, put up around eighteen-twenty, taken down and carried off to Leckwith to stand again. Forty-odd years, and off it goes on a cart.",
+     "cite": [
+      "CH-0016"
+     ],
+     "cy": "A'r hen eglwys, a gododd tua un wyth dau dim, wedi'i thynnu lawr a'i chario bant i Lecwydd i sefyll eto. Deugain mlynedd a mwy, ac i ffwrdd â hi ar gert.",
+     "es": "Y la iglesia vieja, hecha como en mil ochocientos veinte, desarmada y llevada a Leckwith para alzarse otra vez. Más de cuarenta años, y se va en un carro."
+    }
+   ]
+  },
+  {
+   "shot": 5,
+   "set": "s03",
+   "direction": "Talking close-up of Gwen, bells ringing faintly off, with a knowing look to camera-side at John.",
+   "image_prompt": "Photoreal close-up of F_GWEN, 60s, round face, rosy cheeks, silver curls under a black Victorian bonnet, reading glasses on a chain, new pale stone church wall behind, spring 1866 light. No text, no heraldry.",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "F_GWEN",
+     "en": "That's how a local-history blog tells it. None of us has held the consecration papers themselves.",
+     "cite": [
+      "CH-0016"
+     ],
+     "cy": "Dyna sut mae blog hanes lleol yn ei adrodd. Does dim un ohonon ni wedi dal papurau'r cysegru eu hunain.",
+     "es": "Eso es lo que registra un blog de historia local. Ninguno de nosotros tuvo en mano los papeles de consagración."
+    }
+   ]
+  },
+  {
+   "shot": 6,
+   "set": "s03",
+   "direction": "Insert of the monuments record entry for the church, shown as a prop.",
+   "image_prompt": "Prop insert: a modern printed heritage record sheet for St Dochdwy's Church, Llandough, lying on old churchyard stone, with a small photograph of the church. Render from the evidence page. No legible generated text, no heraldry.",
+   "animate": "still",
+   "document": "Coflein (RCAHMW) NPRN 227363, St Dochdwy's Church, Llandough, ST1680073270",
+   "lines": []
+  },
+  {
+   "shot": 7,
+   "set": "s04",
+   "direction": "Village street, January 1872. Gwen walks with John past the green, a paper in her hand, breath misting.",
+   "image_prompt": "Photoreal Llandough village street and green, January 1872, stone cottages, muddy lane, bare trees. F_GWEN in a floral apron under a heavy shawl holding a folded paper, and B_JOHN in a working coat, felt hat and gaiters, walking together. No text, no heraldry.",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "F_GWEN",
+     "en": "Eighteen seventy-two, first of January: glebe land in this parish handed over as a site for a school.",
+     "cite": [
+      "CH-0017"
+     ],
+     "cy": "Un wyth saith dau, y cyntaf o Ionawr: tir glebe yn y plwyf hwn wedi'i drosglwyddo'n safle ysgol.",
+     "es": "Mil ochocientos setenta y dos, primero de enero: tierra de gleba en esta parroquia cedida como terreno para una escuela."
+    },
+    {
+     "who": "B_JOHN",
+     "en": "Which glebe? The parson's fields run along half my hedges.",
+     "cite": [
+      "CH-0017"
+     ],
+     "cy": "Pa glebe? Mae caeau'r ficer yn rhedeg ar hyd hanner fy ngwrychoedd.",
+     "es": "¿Qué gleba? Los campos del párroco bordean la mitad de mis setos."
+    }
+   ]
+  },
+  {
+   "shot": 8,
+   "set": "s04",
+   "direction": "Insert of the archive catalogue entry for the school-site conveyance.",
+   "image_prompt": "Prop insert: an archive catalogue entry card beside a folded Victorian deed tied with faded tape, on a plain table. Render from the evidence page. No legible generated text, no heraldry, no seals with devices.",
+   "animate": "still",
+   "document": "Glamorgan Archives P35CW/9, conveyance of glebe land as school site, 1 Jan 1872 (catalogue entry)",
+   "lines": [
+    {
+     "who": "F_GWEN",
+     "en": "The deed's listed at Glamorgan Archives, P35CW/9. The catalogue line names glebe and a school site. It doesn't name the field, and we've not read the deed itself.",
+     "cite": [
+      "CH-0017"
+     ],
+     "cy": "Mae'r weithred wedi'i rhestru yn Archifau Morgannwg, P35CW/9. Mae llinell y catalog yn enwi glebe a safle ysgol. Dyw hi ddim yn enwi'r cae, a dyn ni heb ddarllen y weithred ei hun.",
+     "es": "La escritura está en Glamorgan Archives, P35CW/9. El catálogo menciona la gleba y un terreno escolar. No nombra el campo, y no leímos la escritura misma."
+    }
+   ]
+  },
+  {
+   "shot": 9,
+   "set": "s03",
+   "direction": "Churchyard gate, April 1872. The assistant overseer approaches up the path with a leather case and a ledger under his arm.",
+   "image_prompt": "Photoreal April 1872 churchyard gate of the Victorian St Dochdwy's Church, Llandough, daffodils in the grass. E_AGENT (50s, pale, clean-shaven, thin-rimmed spectacles, dark frock coat, leather document case, ledger under arm) walks toward B_JOHN and F_GWEN at the gate. No text, no heraldry.",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "E_AGENT",
+     "en": "Mr Williams? Assistant overseer, for the poor rate. Ninth of April. A moment of your time, please.",
+     "cite": [
+      "CH-0018"
+     ],
+     "cy": "Mr Williams? Is-arolygydd, ar gyfer y dreth dlodion. Y nawfed o Ebrill. Munud o'ch amser, os gwelwch yn dda.",
+     "es": "¿Señor Williams? Ayudante del recaudador, por el impuesto a los pobres. Nueve de abril. Un momento de su tiempo, por favor."
+    }
+   ]
+  },
+  {
+   "shot": 10,
+   "set": "s03",
+   "direction": "Talking close-up of the overseer opening the rate book on the gatepost and running a finger down the column.",
+   "image_prompt": "Photoreal close-up of E_AGENT, 50s, pale, clean-shaven, thin-rimmed spectacles, dark Victorian frock coat, an open ledger on a stone gatepost, churchyard softly behind, spring 1872 light. No text, no heraldry.",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "E_AGENT",
+     "en": "I have you entered as occupier of glebe land in Llandough. Owner: the Reverend H. H. Rickards. The rate falls on you as occupier.",
+     "cite": [
+      "CH-0018"
+     ],
+     "cy": "Rydych chi wedi'ch cofnodi fel deiliad tir glebe yn Llandochau. Perchennog: y Parchedig H. H. Rickards. Mae'r dreth yn disgyn arnoch chi fel deiliad.",
+     "es": "Lo tengo anotado como ocupante de tierra de gleba en Llandough. Dueño: el reverendo H. H. Rickards. El impuesto recae en usted como ocupante."
+    },
+    {
+     "who": "B_JOHN",
+     "en": "So I farm the church's field and pay the parish for the privilege.",
+     "cite": [
+      "CH-0018"
+     ],
+     "cy": "Felly dw i'n ffermio cae'r eglwys ac yn talu'r plwyf am y fraint.",
+     "es": "Así que trabajo el campo de la iglesia y le pago a la parroquia el privilegio."
+    },
+    {
+     "who": "E_AGENT",
+     "en": "The book records who occupies and who owns, Mr Williams. That is all it records.",
+     "cite": [
+      "CH-0018"
+     ],
+     "cy": "Mae'r llyfr yn cofnodi pwy sy'n meddiannu a phwy sy'n berchen, Mr Williams. Dyna'r cyfan mae'n ei gofnodi.",
+     "es": "El libro registra quién ocupa y quién es dueño, señor Williams. Eso es todo lo que registra."
+    }
+   ]
+  },
+  {
+   "shot": 11,
+   "set": "s03",
+   "direction": "Insert of the rate book entry, with columns for occupier, owner and description.",
+   "image_prompt": "Prop insert: an open Victorian parish poor rate book, ruled columns in iron-gall ink, a finger resting near one entry, on a stone gatepost. Render from the evidence page. No legible generated text, no heraldry.",
+   "animate": "still",
+   "document": "Llandough poor rate book, 9 Apr 1872: John Williams, glebe land, owner Rev. H.H. Rickards (EV-0212; archive reference pending)",
+   "lines": [
+    {
+     "who": "F_GWEN",
+     "en": "So it puts John on church glebe in eighteen seventy-two. Not which fields, nor that any Great House ground was his to own. And we've the entry, not yet the rate book's archive reference.",
+     "cite": [
+      "CH-0018"
+     ],
+     "cy": "Felly mae'n gosod John ar dir glebe'r eglwys yn un wyth saith dau. Nid pa gaeau, na bod unrhyw dir Great House yn eiddo iddo. A dyn ni â'r cofnod, nid cyfeirnod archif y llyfr trethi eto.",
+     "es": "Así ubica a John en gleba eclesiástica en mil ochocientos setenta y dos. No en qué campos, ni que algo de Great House fuera suyo. Tenemos la anotación, no la referencia de archivo del libro."
+    }
+   ]
+  },
+  {
+   "shot": 12,
+   "set": "s03",
+   "direction": "Talking close-up of John at the gate as the overseer walks away. The new church rises behind him and lime-kiln smoke drifts faintly in the far distance.",
+   "image_prompt": "Photoreal close-up of B_JOHN, 40s, weathered broad face, grey-flecked beard, felt hat and working coat, Victorian St Dochdwy's Church behind, faint smoke over the distant Ely valley, April 1872. No text, no heraldry.",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Glebe on one side, estate on the other, and Tŷ Mawr in the middle, paying both.",
+     "cite": [
+      "CH-0018"
+     ],
+     "cy": "Tir glebe ar un ochr, stad ar y llall, a Thŷ Mawr yn y canol, yn talu'r ddau.",
+     "es": "Gleba de un lado, finca del otro, y Tŷ Mawr en el medio, pagándoles a ambos."
+    },
+    {
+     "who": "F_GWEN",
+     "en": "And down by the river they're talking lime and kilns. Paper's only getting thicker, John.",
+     "cite": [],
+     "cy": "A lawr wrth yr afon maen nhw'n sôn am galch ac odynau. Mae'r papurau'n mynd yn drwchus, John.",
+     "es": "Y allá en el río hablan de cal y de hornos. El expediente solo se engrosa, John."
+    }
+   ]
+  }
+ ],
+ "covers": [
+  "CH-0015",
+  "CH-0016",
+  "CH-0017",
+  "CH-0018"
+ ],
+ "left_out": [],
+ "continuity": "Next frame picks up the lime-kiln talk: the Man from the Estate notes 33 acres 'formerly part of Great House Farm' taken for the Llandough Limeworks, while John Williams is rated for the remaining farm.",
+ "translation": {
+  "cy": "machine translation (claude-sonnet-5), for native review",
+  "es": "machine translation (claude-sonnet-5), for review"
+ },
+ "status": "draft v0.1 for hive review",
+ "words_en": 319,
+ "estimated_seconds": 136
+}

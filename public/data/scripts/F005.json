@@ -1,0 +1,258 @@
+{
+ "frame": 5,
+ "title": "The Irbic cross and grant",
+ "cast": {
+  "B_JOHN": "the monk of Llandough (10th–12th century churchyard)",
+  "I_NIA": "Nia, the Archivist (modern churchyard and the Grandson's desk; the Grandson is present only through his folders and desk)"
+ },
+ "setting": "s03",
+ "target_seconds": 120,
+ "shots": [
+  {
+   "shot": 1,
+   "set": "s03",
+   "direction": "Slow push-in through morning mist across the early-medieval churchyard of St Dochdwy's toward a newly set pale stone pillar-cross.",
+   "image_prompt": "Photoreal early-medieval Welsh churchyard at dawn, small rough stone church with thatched roof, wooden grave markers, a fresh pale Sutton-stone pillar-cross with carved interlace standing upright, low mist over the hill at Llandough, wet grass, soft grey light, no people, no text, no heraldry",
+   "animate": "i2v",
+   "lines": []
+  },
+  {
+   "shot": 2,
+   "set": "s03",
+   "direction": "Close-up of the monk beside the cross, mud on his sandals, speaking warmly to the viewer as if to a visitor.",
+   "image_prompt": "Photoreal close-up of a weathered Welsh man in his 50s with a broad face, grey-flecked beard and heavy hands, wearing an undyed brown wool monk's habit with rope belt, standing beside a pale pillar-cross in an early-medieval churchyard, misty morning light, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Bore da. Mind the mud by the cross. The masons cut it from pale stone fetched from Sutton on the coast, and set it here by Dochdwy's church, where every soul going in to pray must pass it.",
+     "cite": [
+      "PX-04"
+     ],
+     "cy": "Bore da. Gofalwch am y mwd wrth y groes. Torrodd y seiri hi o garreg olau a ddaeth o Sutton ar yr arfordir, a'i gosod yma wrth eglwys Dochdwy, lle mae'n rhaid i bob enaid sy'n mynd i mewn i weddïo fynd heibio iddi.",
+     "es": "Buenos días. Cuidado con el barro junto a la cruz. Los canteros la tallaron en piedra clara traída de Sutton, en la costa, y la plantaron aquí, junto a la iglesia de Dochdwy, donde toda alma que entra a rezar debe pasar por ella."
+    }
+   ]
+  },
+  {
+   "shot": 3,
+   "set": "s03",
+   "direction": "Match-cut to the same cross today, weathered and lichened; Nia stands beside it in the modern churchyard, hands in her cardigan pockets.",
+   "image_prompt": "Photoreal modern churchyard of St Dochdwy's, Llandough, a weathered lichen-covered pale stone pillar-cross among old gravestones, a Welsh woman in her 30s with a black bob haircut, round tortoiseshell glasses and a mustard cardigan standing beside it, overcast daylight, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "It still stands. A pillar-cross of Sutton stone, carved some time in the tenth or eleventh century. Nobody can pin the year.",
+     "cite": [
+      "PX-04"
+     ],
+     "cy": "Mae'n dal i sefyll. Croes-biler o garreg Sutton, wedi'i cherfio rywbryd yn y degfed neu'r unfed ganrif ar ddeg. Does neb yn gallu pennu'r flwyddyn.",
+     "es": "Todavía sigue en pie. Una cruz de piedra de Sutton, tallada en algún momento del siglo diez u once. Nadie puede precisar el año."
+    }
+   ]
+  },
+  {
+   "shot": 4,
+   "set": "s03",
+   "direction": "Prop insert: close detail of the inscribed panel on the cross shaft while the monk's voice continues over it.",
+   "image_prompt": "Photoreal macro detail of a carved pale sandstone cross shaft with worn interlace and an incised inscription panel, soft side light raking across the carving, render inscription from the evidence page as prop insert, no heraldry",
+   "animate": "still",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "The letters on the shaft read IRBICI. I trace them for the boys learning their letters. Whose name it keeps, the stone does not tell.",
+     "cite": [
+      "PX-04"
+     ],
+     "cy": "Mae'r llythrennau ar y siafft yn darllen IRBICI. Dwi'n eu holrhain i'r bechgyn sy'n dysgu eu llythrennau. Enw pwy mae'n ei gadw, dyw'r garreg ddim yn dweud.",
+     "es": "Las letras del fuste dicen IRBICI. Las repaso con los chicos que aprenden a leer. De quién es ese nombre, la piedra no lo dice."
+    }
+   ]
+  },
+  {
+   "shot": 5,
+   "set": "s03",
+   "direction": "The monk turns from the cross as a rider's horse is led past the churchyard wall; he lowers his voice to share the news.",
+   "image_prompt": "Photoreal early-12th-century Welsh churchyard, the broad-faced grey-bearded monk in a brown wool habit looking toward a low stone wall where a groom leads a saddled horse, the pale pillar-cross behind him, cool daylight, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Now word comes from Cardiff. The Norman lord Fitzhamon has given lands, this hill among them, to the abbey at Tewkesbury, and the prior of St Mary's in Cardiff is to be our lord of the manor.",
+     "cite": [
+      "CH-0002"
+     ],
+     "cy": "Daw gair o Gaerdydd nawr. Mae'r arglwydd Normanaidd Fitzhamon wedi rhoi tiroedd, y bryn hwn yn eu plith, i'r abaty yn Tewkesbury, a phrior Santes Fair yng Nghaerdydd fydd ein harglwydd maenor.",
+     "es": "Ahora llega noticia desde Cardiff. El señor normando Fitzhamon ha entregado tierras, esta colina entre ellas, a la abadía de Tewkesbury, y el prior de Santa María de Cardiff será nuestro señor de la hacienda."
+    }
+   ]
+  },
+  {
+   "shot": 6,
+   "set": "s08",
+   "direction": "Prop insert: a printout of a 2011 newspaper letters page lies on the Grandson's cluttered desk under a reading lamp.",
+   "image_prompt": "Photoreal modern desk with lever-arch folders, a closed laptop and a printed newspaper letters page under a warm reading lamp in an archive reading room, render Penarth Times 2011 letter 'History of St Mary's' from the evidence page as prop insert, no heraldry",
+   "animate": "still",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "That 1106 grant reaches us through one page: a letter printed in the Penarth Times in 2011, on the history of St Mary's.",
+     "cite": [
+      "CH-0002"
+     ],
+     "cy": "Daw'r rhodd honno o 1106 atom drwy un dudalen: llythyr a argraffwyd yn y Penarth Times yn 2011, ar hanes Santes Fair.",
+     "es": "Esa donación de 1106 nos llega por una sola página: una carta publicada en el Penarth Times en 2011, sobre la historia de Santa María."
+    }
+   ]
+  },
+  {
+   "shot": 7,
+   "set": "s08",
+   "direction": "Close-up of Nia at the Grandson's desk, tapping the printout with a gloved finger, candid and precise.",
+   "image_prompt": "Photoreal close-up of a Welsh woman in her 30s with a black bob, round tortoiseshell glasses, mustard cardigan and white cotton gloves, seated at a modern archive desk with folders and a newspaper printout, warm lamp light, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "A letter to a newspaper isn't the charter. It names Fitzhamon, Tewkesbury and the prior, but we haven't seen the grant itself, and it doesn't show which fields went with it.",
+     "cite": [
+      "CH-0002"
+     ],
+     "cy": "Dyw llythyr i bapur newydd ddim yn siarter. Mae'n enwi Fitzhamon, Tewkesbury a'r prior, ond dydyn ni ddim wedi gweld y rhodd ei hun, ac dyw e ddim yn dangos pa gaeau aeth gyda hi.",
+     "es": "Una carta a un diario no es el documento oficial. Nombra a Fitzhamon, a Tewkesbury y al prior, pero no hemos visto la donación en sí, y no muestra qué campos la acompañaban."
+    }
+   ]
+  },
+  {
+   "shot": 8,
+   "set": "s03",
+   "direction": "The monk shrugs and picks up a scythe leaning against the churchyard wall, half a smile.",
+   "image_prompt": "Photoreal early-medieval Welsh churchyard, the broad-faced grey-bearded monk in a brown wool habit lifting a wooden-handled scythe from a stone wall, long grass, the pale pillar-cross in soft focus behind, late-morning light, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Abbey or prior, the hay still wants cutting. Lords change; the hill stays.",
+     "cite": [
+      "CH-0002"
+     ],
+     "cy": "Abaty neu brior, mae'r gwair yn dal angen ei dorri. Mae arglwyddi'n newid; mae'r bryn yn aros.",
+     "es": "Sea abadía o prior, el heno igual hay que cortarlo. Los señores cambian; la colina queda."
+    }
+   ]
+  },
+  {
+   "shot": 9,
+   "set": "s09",
+   "direction": "Wide pan from the hilltop over wooded valleys and the Ely river toward the distant bay as the monk walks the field edge.",
+   "image_prompt": "Photoreal medieval landscape from Llandough hill, small hedged fields, wooded valleys and the Ely river winding to a marshy bay, a lone monk in a brown wool habit walking a field boundary of stones, overcast sky, no modern buildings, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Every spring we walk the bounds, stone to stone, cwm to cwm, and a clerk writes them down.",
+     "cite": [
+      "EV-0001"
+     ],
+     "cy": "Bob gwanwyn rydyn ni'n cerdded y ffiniau, carreg i garreg, cwm i gwm, ac mae clerc yn eu nodi.",
+     "es": "Cada primavera recorremos los límites, piedra a piedra, valle a valle, y un escribano los anota."
+    }
+   ]
+  },
+  {
+   "shot": 10,
+   "set": "s08",
+   "direction": "Prop insert: an evidence catalogue card for the 1392 boundary reference sits atop one of the Grandson's folders.",
+   "image_prompt": "Photoreal archive desk close-up, a typed catalogue card clipped to the front of a lever-arch folder beside a pencil and cotton gloves, warm lamp light, render evidence catalogue card EV-0001 'Cwm-Cedwyn, Llandough boundary 1392' from the evidence page as prop insert, no heraldry",
+   "animate": "still",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "And a clerk in 1392 may have done just that. The Grandson's folders hold a family research note pointing to Cwm-Cedwyn in the Llandough boundary records of that year.",
+     "cite": [
+      "EV-0001"
+     ],
+     "cy": "Ac efallai i glerc yn 1392 wneud yr union beth hwnnw. Mae ffolderi'r Ŵyr yn dal nodyn ymchwil teuluol sy'n cyfeirio at Gwm-Cedwyn yng nghofnodion ffin Llandochau'r flwyddyn honno.",
+     "es": "Y un escribano de 1392 pudo haber hecho justamente eso. Las carpetas del Nieto guardan una nota de investigación familiar que señala Cwm-Cedwyn en los registros de límites de Llandough de ese año."
+    }
+   ]
+  },
+  {
+   "shot": 11,
+   "set": "s08",
+   "direction": "Close-up of Nia, glasses off, looking straight at the viewer, firm but kind.",
+   "image_prompt": "Photoreal close-up of a Welsh woman in her 30s with a black bob, holding round tortoiseshell glasses in one gloved hand, mustard cardigan, seated in a quiet archive reading room with shelving of grey boxes behind, soft lamp light, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "But plainly: we don't hold that record. Nobody here has seen the original, so the note doesn't show the 1392 record exists or what it holds, and it isn't proof of a Cedwyn Estate. It's a name to chase.",
+     "cite": [
+      "EV-0001"
+     ],
+     "cy": "Ond yn blwmp ac yn blaen: does gyda ni mo'r cofnod hwnnw. Does neb yma wedi gweld y gwreiddiol, felly dyw'r nodyn ddim yn dangos bod cofnod 1392 yn bodoli na beth sydd ynddo, a dyw e ddim yn brawf o Ystad Cedwyn. Enw i'w ddilyn yw e.",
+     "es": "Pero seamos claros: no tenemos ese registro. Nadie aquí ha visto el original, así que la nota no muestra que el registro de 1392 exista ni qué contiene, y no es prueba de una Hacienda Cedwyn. Es un nombre para seguir."
+    }
+   ]
+  },
+  {
+   "shot": 12,
+   "set": "s08",
+   "direction": "Nia slides a printed blog page beside a photo of the cross, then makes a pencil note on a request slip.",
+   "image_prompt": "Photoreal archive desk with a printed web page and a photograph of a weathered pale stone pillar-cross, a gloved hand writing on a blank request slip with a pencil, mustard cardigan sleeve visible, warm light, render sconzani blog post 'Llandough: the Irbic cross' from the evidence page as prop insert, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "I_NIA",
+     "en": "The cross entry comes from a local-history blog, sconzani, on the Irbic cross. A good modern write-up; I'd still like the survey behind it.",
+     "cite": [
+      "PX-04",
+      "CH-0383"
+     ],
+     "cy": "Daw'r cofnod am y groes o flog hanes lleol, sconzani, ar groes Irbic. Ysgrif fodern dda; byddwn i'n dal i hoffi gweld yr arolwg y tu ôl iddi.",
+     "es": "La entrada sobre la cruz viene de un blog de historia local, sconzani, sobre la cruz de Irbic. Un buen trabajo moderno; aun así, quisiera ver el estudio original detrás."
+    }
+   ]
+  },
+  {
+   "shot": 13,
+   "set": "s03",
+   "direction": "Dusk: the monk rests a hand on the cross as the light fades, then a slow dissolve to the same cross in the present, Nia closing her folder beside it.",
+   "image_prompt": "Photoreal dusk in St Dochdwy's churchyard, the broad-faced grey-bearded monk in a brown wool habit resting a heavy hand on the pale pillar-cross, golden low light and long shadows, the hill beyond, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Write it down, whoever you are. Stone outlasts parchment.",
+     "cite": [
+      "PX-04"
+     ],
+     "cy": "Sgrifennwch e lawr, pwy bynnag ydych chi. Mae carreg yn para'n hirach na memrwn.",
+     "es": "Anótalo, seas quien seas. La piedra dura más que el pergamino."
+    },
+    {
+     "who": "I_NIA",
+     "en": "Next, the leases. Paper we can hold.",
+     "cite": [],
+     "cy": "Nesaf, y lesys. Papur y gallwn ni ei ddal.",
+     "es": "Ahora, los contratos. Papel que sí podemos sostener."
+    }
+   ]
+  }
+ ],
+ "covers": [
+  "PX-04",
+  "CH-0002",
+  "EV-0001"
+ ],
+ "left_out": [],
+ "continuity": "Nia's 'paper we can hold' hands over to the Man from the Estate laying the 1547 Vaughan lease on the table; the Irbic cross and churchyard stay unchanged for later frames, and the Cwm-Cedwyn 1392 reference stays an open request until the record is held.",
+ "translation": {
+  "cy": "machine translation (claude-sonnet-5), for native review",
+  "es": "machine translation (claude-sonnet-5), for review"
+ },
+ "status": "draft v0.1 for hive review",
+ "words_en": 315,
+ "estimated_seconds": 130
+}

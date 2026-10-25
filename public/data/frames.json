@@ -1,0 +1,6031 @@
+{
+ "name": "Cedwyn film - frame map",
+ "version": "1.0.0",
+ "built": "2026-10-25T17:12Z",
+ "chronology_version": "1.0.0",
+ "frames": 148,
+ "target_seconds_each": 120,
+ "estimated_runtime": "4 h 56 min",
+ "rule": "Every chronology event sits in exactly one frame. One frame = one ~2-minute scene (90-150 s). A frame may hold many events or one event may span several frames (part n/m).",
+ "sets": {
+  "s01": "Great House Farm / Tŷ Mawr farmhouse exterior and yard (c.1850–1974)",
+  "s02": "the farmhouse kitchen (inglenook, flagstones, dresser)",
+  "s03": "St Dochdwy's church and churchyard, Llandough",
+  "s04": "Llandough village street and green",
+  "s05": "the village inn (taproom)",
+  "s06": "a Cardiff office (Bute estate office / solicitors / company office, by era)",
+  "s07": "a courtroom (magistrates, county court, High Court, Court of Appeal, by era)",
+  "s08": "the archive reading room (modern records office) and the Grandson's desk",
+  "s09": "Llandough hill landscape over the Ely, Leckwith woods and Cardiff Bay",
+  "s10": "prologue: the hill in prehistory/Roman/early-medieval times (roundhouse, villa, monastery)",
+  "s11": "the farmhouse 1974–88: aged, threatened, development around",
+  "s12": "the site after demolition (1988–2026): housing estate, verge, green",
+  "s13": "Puerto Madryn coast, Patagonia (Argentina)"
+ },
+ "acts": [
+  {
+   "n": 1,
+   "en": "Before the deeds",
+   "cy": "Cyn y gweithredoedd",
+   "es": "Antes de las escrituras"
+  },
+  {
+   "n": 2,
+   "en": "Cedfin or Tŷ Mawr",
+   "cy": "Cedfin neu Dŷ Mawr",
+   "es": "Cedfin o Tŷ Mawr"
+  },
+  {
+   "n": 3,
+   "en": "The whole of the farm",
+   "cy": "Y fferm gyfan",
+   "es": "Toda la granja"
+  },
+  {
+   "n": 4,
+   "en": "Parcel A",
+   "cy": "Llain A",
+   "es": "La Parcela A"
+  },
+  {
+   "n": 5,
+   "en": "The pension fund",
+   "cy": "Y gronfa bensiwn",
+   "es": "El fondo de pensiones"
+  },
+  {
+   "n": 6,
+   "en": "Licence",
+   "cy": "Trwydded",
+   "es": "Licencia"
+  },
+  {
+   "n": 7,
+   "en": "Demolition",
+   "cy": "Dymchwel",
+   "es": "Demolición"
+  },
+  {
+   "n": 8,
+   "en": "Afterwards",
+   "cy": "Wedyn",
+   "es": "Después"
+  },
+  {
+   "n": 9,
+   "en": "Disclosure",
+   "cy": "Datgelu",
+   "es": "Divulgación"
+  },
+  {
+   "n": 10,
+   "en": "Cedwyn",
+   "cy": "Cedwyn",
+   "es": "Cedwyn"
+  }
+ ],
+ "items": [
+  {
+   "n": 1,
+   "id": "F001",
+   "act": {
+    "n": 1,
+    "en": "Before the deeds",
+    "cy": "Cyn y gweithredoedd",
+    "es": "Antes de las escrituras"
+   },
+   "date_from": "undated (placed before the records)",
+   "date_to": "undated (placed before the records)",
+   "sort_from": "-0300",
+   "sort_to": "-0300",
+   "date_range": "undated (placed before the records)",
+   "events": [
+    "EV-0195",
+    "EV-0198",
+    "EV-0200",
+    "EV-0210"
+   ],
+   "evidence": [
+    "EV-0195",
+    "EV-0198",
+    "EV-0200",
+    "EV-0210"
+   ],
+   "parts": [],
+   "title": "Place-names before the deeds",
+   "logline": "Nia and the Grandson lay out place-name notes for Cedwyn, Cwm-Cedwyn and Nant-Cedwyn, tracing a name across the hill before any deed exists.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia, the archivist",
+    "D_BILLY=the Grandson (2020s, 40s)"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": "scripts/F001.json",
+   "logline_status": "draft (machine-written, for hive review)",
+   "estimated_seconds": 140
+  },
+  {
+   "n": 2,
+   "id": "F002",
+   "act": {
+    "n": 1,
+    "en": "Before the deeds",
+    "cy": "Cyn y gweithredoedd",
+    "es": "Antes de las escrituras"
+   },
+   "date_from": "late Iron Age (c. 2,200 years ago)",
+   "date_to": "late Iron Age (c. 2,200 years ago)",
+   "sort_from": "-0200",
+   "sort_to": "-0200",
+   "date_range": "late Iron Age (c. 2,200 years ago)",
+   "events": [
+    "PX-01"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "Roundhouse on the hill",
+   "logline": "The Iron-Age elder and the roundhouse mother stand on the hill south of the future church, the ground not yet marked by any record.",
+   "setting": "s10",
+   "cast": [
+    "B_JOHN=the Iron-Age elder",
+    "A_MARY=the roundhouse mother",
+    "I_NIA=Nia, the Archivist (archive bookend)",
+    "D_BILLY=the Grandson (on screen in the archive bookend, no lines)"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": "scripts/F002.json",
+   "logline_status": "draft (machine-written, for hive review)",
+   "estimated_seconds": 116
+  },
+  {
+   "n": 3,
+   "id": "F003",
+   "act": {
+    "n": 1,
+    "en": "Before the deeds",
+    "cy": "Cyn y gweithredoedd",
+    "es": "Antes de las escrituras"
+   },
+   "date_from": "2nd–4th century AD",
+   "date_to": "2nd–4th century AD",
+   "sort_from": "0150",
+   "sort_to": "0150",
+   "date_range": "2nd–4th century AD",
+   "events": [
+    "PX-02"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "Villa on the same hill",
+   "logline": "The villa steward walks the hill at Llandough, the same ground the roundhouse once stood on, now built over in stone.",
+   "setting": "s10",
+   "cast": [
+    "B_JOHN=the villa steward",
+    "A_MARY=a villa woman",
+    "I_NIA=Nia, the Archivist (archive bookend)",
+    "D_BILLY=the Grandson (archive bookend, non-speaking)"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": "scripts/F003.json",
+   "logline_status": "draft (machine-written, for hive review)",
+   "estimated_seconds": 135
+  },
+  {
+   "n": 4,
+   "id": "F004",
+   "act": {
+    "n": 1,
+    "en": "Before the deeds",
+    "cy": "Cyn y gweithredoedd",
+    "es": "Antes de las escrituras"
+   },
+   "date_from": "early medieval (5th–11th century)",
+   "date_to": "c. 650",
+   "sort_from": "0450",
+   "sort_to": "0650-00-00",
+   "date_range": "early medieval (5th–11th century) – c. 650",
+   "events": [
+    "PX-03",
+    "CH-0001"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "From villa to monastery",
+   "logline": "A monk of Llandough and Nia read the archaeology together: a monastic cemetery grows beside the old villa, St Dochdwy's older than anyone can date.",
+   "setting": "s10",
+   "cast": [
+    "B_JOHN=a monk of Llandough (c. 650)",
+    "I_NIA=Nia, the archivist (2020s reading room)"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": "scripts/F004.json",
+   "logline_status": "draft (machine-written, for hive review)",
+   "estimated_seconds": 120
+  },
+  {
+   "n": 5,
+   "id": "F005",
+   "act": {
+    "n": 1,
+    "en": "Before the deeds",
+    "cy": "Cyn y gweithredoedd",
+    "es": "Antes de las escrituras"
+   },
+   "date_from": "10th–11th century",
+   "date_to": "1392",
+   "sort_from": "1000",
+   "sort_to": "1392-00-00",
+   "date_range": "10th–11th century – 1392",
+   "events": [
+    "PX-04",
+    "CH-0002",
+    "EV-0001"
+   ],
+   "evidence": [
+    "EV-0001"
+   ],
+   "parts": [],
+   "title": "The Irbic cross and grant",
+   "logline": "Nia reads a 2011 Penarth Times letter on Fitzhamon's grant to Tewkesbury Abbey, while the Irbic cross stands by St Dochdwy's and Cwm-Cedwyn appears in the 1392 boundary record.",
+   "setting": "s03",
+   "cast": [
+    "B_JOHN=the monk of Llandough (10th–12th century churchyard)",
+    "I_NIA=Nia, the Archivist (modern churchyard and the Grandson's desk; the Grandson is present only through his folders and desk)"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": "scripts/F005.json",
+   "logline_status": "draft (machine-written, for hive review)",
+   "estimated_seconds": 130
+  },
+  {
+   "n": 6,
+   "id": "F006",
+   "act": {
+    "n": 1,
+    "en": "Before the deeds",
+    "cy": "Cyn y gweithredoedd",
+    "es": "Antes de las escrituras"
+   },
+   "date_from": "1547",
+   "date_to": "1786-1832",
+   "sort_from": "1547-00-00",
+   "sort_to": "1786-18-00",
+   "date_range": "1547 – 1786-1832",
+   "events": [
+    "EV-0002",
+    "EV-0003",
+    "CH-0003",
+    "CH-0004"
+   ],
+   "evidence": [
+    "EV-0002",
+    "EV-0003"
+   ],
+   "parts": [],
+   "title": "A thousand-year lease",
+   "logline": "The Man from the Estate holds the 1547 lease to Vaughan, Mary (Nancy) Williams recounts 1667 Williams occupancy, and the estate plans of 1786–1832 are laid on the table.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=the Man from the Estate, here a Land Registry officer in a present-day Cardiff office (public office, unnamed)",
+    "I_NIA=Nia, the archivist (swapped in for A_MARY: Mary (Nancy) Williams's 1667 detail exists only in her later statement, so it appears as a document Nia reads, not as a period scene)"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": "scripts/F006.json",
+   "logline_status": "draft (machine-written, for hive review)",
+   "estimated_seconds": 137
+  },
+  {
+   "n": 7,
+   "id": "F007",
+   "act": {
+    "n": 1,
+    "en": "Before the deeds",
+    "cy": "Cyn y gweithredoedd",
+    "es": "Antes de las escrituras"
+   },
+   "date_from": "1790",
+   "date_to": "1821",
+   "sort_from": "1790-00-00",
+   "sort_to": "1821-00-00",
+   "date_range": "1790 – 1821",
+   "events": [
+    "CH-0005",
+    "CH-0006",
+    "CH-0007"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "Two plans of Tŷ Mawr",
+   "logline": "The Grandson and Nia compare the 1790 \"Gedrych property\" plan with the 1800 survey of Tŷ Mawr farm, as the new National School rises on Penlan Road.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson (2020s, 40s)",
+    "I_NIA=Nia, the archivist"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": "scripts/F007.json",
+   "logline_status": "draft (machine-written, for hive review)",
+   "estimated_seconds": 131
+  },
+  {
+   "n": 8,
+   "id": "F008",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "1824",
+   "date_to": "undated (media library label “1841-map”; survey/edition date not verified)",
+   "sort_from": "1824-00-00",
+   "sort_to": "1841-00-00",
+   "date_range": "1824 – undated (media library label “1841-map”; survey/edition date not verified)",
+   "events": [
+    "CH-0008",
+    "CH-0009",
+    "CH-0010",
+    "EV-0004",
+    "CH-0011",
+    "EV-0005"
+   ],
+   "evidence": [
+    "EV-0004",
+    "EV-0005",
+    "EV-0211"
+   ],
+   "parts": [],
+   "title": "Cedfin or Tŷ Mawr surveyed",
+   "logline": "The Man from the Estate presents David Stewart's 1824 survey of \"Cedfin or Ty Mawr Farm\", Nia flags an undated \"1841-map\" image whose source is not confirmed.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=the Bute estate agent, 1824",
+    "I_NIA=Nia, the archivist, in a 'paper' interlude stepping between the 1824 estate office and the modern reading room"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": "scripts/F008.json",
+   "logline_status": "draft (machine-written, for hive review)",
+   "estimated_seconds": 128
+  },
+  {
+   "n": 9,
+   "id": "F009",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "c.1841",
+   "date_to": "23 Dec 1864",
+   "sort_from": "1841",
+   "sort_to": "1864-12-23",
+   "date_range": "c.1841 – 23 Dec 1864",
+   "events": [
+    "EV-0215",
+    "CH-0012",
+    "CH-0013",
+    "CH-0014"
+   ],
+   "evidence": [
+    "EV-0215",
+    "EV-0224",
+    "EV-0246"
+   ],
+   "parts": [],
+   "title": "John Williams succeeds, Amy dies",
+   "logline": "Gwen reads the 1904 Cardiff Times report that John Williams succeeded his father in 1855, as Amy Williams, \"relict of the late Mr. John Williams, Great House farm\", dies in Llandough.",
+   "setting": "s02",
+   "cast": [
+    "A_MARY=Amy Williams (c.1841, about forty-two)",
+    "B_JOHN=John Williams: the c.1841 tithe occupier, and in 1864 the John Williams who farms after him (repertory face, younger costume)",
+    "F_GWEN=Gwen, neighbour in the 1864 kitchen and, in the 1904 coda, reading the Cardiff Times on the village street"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": "scripts/F009.json",
+   "logline_status": "draft (machine-written, for hive review)",
+   "estimated_seconds": 131
+  },
+  {
+   "n": 10,
+   "id": "F010",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "30 Dec 1864",
+   "date_to": "9 Apr 1872",
+   "sort_from": "1864-12-30",
+   "sort_to": "1872-04-09",
+   "date_range": "30 Dec 1864 – 9 Apr 1872",
+   "events": [
+    "CH-0015",
+    "CH-0016",
+    "CH-0017",
+    "CH-0018"
+   ],
+   "evidence": [
+    "EV-0212"
+   ],
+   "parts": [],
+   "title": "A new church, a rate book",
+   "logline": "Gwen reads the Cardiff Times notice of Amy's death as St Dochdwy's is consecrated, and the Man from the Estate enters John Williams in the poor rate for glebe land.",
+   "setting": "s03",
+   "cast": [
+    "F_GWEN=Gwen, postmistress and chapel neighbour who reads the papers aloud",
+    "B_JOHN=John Williams of Great House Farm / Tŷ Mawr (the son who succeeded in 1855), 40s",
+    "E_AGENT=the assistant overseer of the poor, Llandough parish (public office; swapped from Land Registry officer, which suits 1872 less well)"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": "scripts/F010.json",
+   "logline_status": "draft (machine-written, for hive review)",
+   "estimated_seconds": 136
+  },
+  {
+   "n": 11,
+   "id": "F011",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "1875",
+   "date_to": "Oct 1876",
+   "sort_from": "1875-00-00",
+   "sort_to": "1876-10-00",
+   "date_range": "1875 – Oct 1876",
+   "events": [
+    "CH-0019",
+    "CH-0020",
+    "CH-0021",
+    "CH-0022",
+    "CH-0023"
+   ],
+   "evidence": [
+    "EV-0212",
+    "EV-0225",
+    "EV-0291"
+   ],
+   "parts": [],
+   "title": "Limeworks land, unread deeds",
+   "logline": "The Man from the Estate notes 33 acres \"formerly part of Great House Farm\" taken for the Llandough Limeworks, deeds still unread, while John Williams is rated for the remaining farm.",
+   "setting": "s04",
+   "cast": [
+    "E_AGENT=the Bute estate agent",
+    "B_JOHN=John Williams",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 12,
+   "id": "F012",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "1877",
+   "date_to": "6 November 1877 (as reported in Mary Williams's later account; matching instrument not identified)",
+   "sort_from": "1877-00-00",
+   "sort_to": "1877-11-06",
+   "date_range": "1877 – 6 November 1877 (as reported in Mary Williams's later account; matching instrument not identified)",
+   "events": [
+    "CH-0024",
+    "CH-0025",
+    "EV-0006",
+    "EV-0007",
+    "CH-0026",
+    "EV-0008"
+   ],
+   "evidence": [
+    "EV-0006",
+    "EV-0007",
+    "EV-0008",
+    "EV-0213"
+   ],
+   "parts": [],
+   "title": "Notice to quit, a lease",
+   "logline": "The Man from the Estate serves notice to quit; Mary (Nancy) Williams recounts a sale to Daniel Thomas and a lease back to John Williams, the deed and lease unlocated.",
+   "setting": "s01",
+   "cast": [
+    "E_AGENT=the Bute estate agent",
+    "A_MARY=Mary (Nancy) Williams",
+    "B_JOHN=John Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 13,
+   "id": "F013",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "1878",
+   "date_to": "3 Apr 1881",
+   "sort_from": "1878-00-00",
+   "sort_to": "1881-04-03",
+   "date_range": "1878 – 3 Apr 1881",
+   "events": [
+    "CH-0027",
+    "CH-0028",
+    "CH-0029",
+    "CH-0030"
+   ],
+   "evidence": [
+    "EV-0224"
+   ],
+   "parts": [],
+   "title": "Armour under the floor",
+   "logline": "Workers lift ironwork from under Great House's rear wing as Ordnance Survey maps the parish; Nia flags the 1881 census entry for \"Llandough Home Farm\" as possibly confused with Great House.",
+   "setting": "s01",
+   "cast": [
+    "B_JOHN=John Williams",
+    "I_NIA=Nia"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 14,
+   "id": "F014",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "1883",
+   "date_to": "11 Aug 1889",
+   "sort_from": "1883-00-00",
+   "sort_to": "1889-08-11",
+   "date_range": "1883 – 11 Aug 1889",
+   "events": [
+    "CH-0031",
+    "CH-0032",
+    "CH-0033",
+    "CH-0034"
+   ],
+   "evidence": [
+    "EV-0279",
+    "EV-0280"
+   ],
+   "parts": [],
+   "title": "Apples over the hedge",
+   "logline": "John Williams junior gives evidence at Barry Dock News's report of apples taken \"over the hedge from the railway\" from Great House Farm's orchard, as Daniel Thomas's obituary recalls the limeworks.",
+   "setting": "s07",
+   "cast": [
+    "B_JOHN=John Williams junior",
+    "H_CLERK=the magistrate",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 15,
+   "id": "F015",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "16 Aug 1889",
+   "date_to": "November 1891 (publication date not printed; alleged theft 11 November 1891)",
+   "sort_from": "1889-08-16",
+   "sort_to": "1891-11-00",
+   "date_range": "16 Aug 1889 – November 1891 (publication date not printed; alleged theft 11 November 1891)",
+   "events": [
+    "CH-0035",
+    "CH-0036",
+    "CH-0037",
+    "EV-0009",
+    "EV-0010"
+   ],
+   "evidence": [
+    "EV-0009",
+    "EV-0010"
+   ],
+   "parts": [],
+   "title": "Geese, trees, and photographs",
+   "logline": "Gwen and Dai read of geese taken from Great House Farm, as the Williams family plants trees and St Dochdwy's is photographed with its school.",
+   "setting": "s04",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai",
+    "B_JOHN=John Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 16,
+   "id": "F016",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "11 Nov 1891",
+   "date_to": "8 Jun 1892",
+   "sort_from": "1891-11-11",
+   "sort_to": "1892-06-08",
+   "date_range": "11 Nov 1891 – 8 Jun 1892",
+   "events": [
+    "CH-0038",
+    "CH-0039",
+    "CH-0040",
+    "CH-0041"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "Geese Taken At Great House",
+   "logline": "Gwen reads the South Wales Echo aloud in the taproom: three geese taken from John Williams, Great House Farm, in November 1891; Dai weighs the police evidence.",
+   "setting": "s05",
+   "cast": [
+    "B_JOHN=John Williams",
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 17,
+   "id": "F017",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "10 Jun 1892",
+   "date_to": "Jul–Aug 1894",
+   "sort_from": "1892-06-10",
+   "sort_to": "1894-08-00",
+   "date_range": "10 Jun 1892 – Jul–Aug 1894",
+   "events": [
+    "CH-0042",
+    "CH-0043",
+    "CH-0044",
+    "CH-0045"
+   ],
+   "evidence": [
+    "EV-0224",
+    "EV-0247",
+    "EV-0281"
+   ],
+   "parts": [],
+   "title": "Pigs, Geese And A Rector",
+   "logline": "At the village green Gwen compares three newspaper cuttings on the geese case while Dai reads of swine fever striking five pigs at Great House, and a different Rev. Williams inducted nearby.",
+   "setting": "s04",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai",
+    "B_JOHN=John Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 18,
+   "id": "F018",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "3 Aug 1894",
+   "date_to": "15 May 1897",
+   "sort_from": "1894-08-03",
+   "sort_to": "1897-05-15",
+   "date_range": "3 Aug 1894 – 15 May 1897",
+   "events": [
+    "CH-0046",
+    "CH-0047",
+    "CH-0048",
+    "CH-0049",
+    "CH-0050"
+   ],
+   "evidence": [
+    "EV-0256",
+    "EV-0292"
+   ],
+   "parts": [],
+   "title": "Pigs Slaughtered, Marconi Tested",
+   "logline": "Gwen lays out the Barry Dock News on swine fever at Great House beside reports of Marconi's wireless trials at Lavernock, noting no mention of the farm in Kemp's diary.",
+   "setting": "s09",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 19,
+   "id": "F019",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "10–18 May 1897",
+   "date_to": "18–20 October 1900 (reports); will dated 30 July 1894",
+   "sort_from": "1897-05-18",
+   "sort_to": "1900-10-18",
+   "date_range": "10–18 May 1897 – 18–20 October 1900 (reports); will dated 30 July 1894",
+   "events": [
+    "CH-0051",
+    "CH-0052",
+    "CH-0053",
+    "EV-0012"
+   ],
+   "evidence": [
+    "EV-0011",
+    "EV-0012",
+    "EV-0248"
+   ],
+   "parts": [],
+   "title": "Williams Of The Engineering Department",
+   "logline": "In the reading room Nia shows the Grandson the 1897 Evening Express naming a \"Mr Williams\" at Lavernock, then the 1900 map marking Ty-mawr beside St Dochdwy's church.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 20,
+   "id": "F020",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "20 Oct 1900",
+   "date_to": "16 Jul 1904",
+   "sort_from": "1900-10-20",
+   "sort_to": "1904-07-16",
+   "date_range": "20 Oct 1900 – 16 Jul 1904",
+   "events": [
+    "CH-0054",
+    "CH-0055",
+    "CH-0056",
+    "CH-0057"
+   ],
+   "evidence": [
+    "EV-0219"
+   ],
+   "parts": [],
+   "title": "Occupier Since Eighteen Fifty-Five",
+   "logline": "At the Cardiff estate office, the Man from the Estate reads the rent audit naming John Williams \"of Llandough Farm\" as occupier since 1855, while coppice woods go to auction.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=the Man from the Estate",
+    "B_JOHN=John Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 21,
+   "id": "F021",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "Oct 1904",
+   "date_to": "23 February 1905",
+   "sort_from": "1904-10-00",
+   "sort_to": "1905-02-23",
+   "date_range": "Oct 1904 – 23 February 1905",
+   "events": [
+    "CH-0058",
+    "CH-0059",
+    "CH-0060",
+    "CH-0061",
+    "EV-0013"
+   ],
+   "evidence": [
+    "EV-0013"
+   ],
+   "parts": [],
+   "title": "Bute Conveys To The Corporation",
+   "logline": "In the office the Man from the Estate files the February 1905 conveyance from Bute to Cardiff Corporation, as Nia cross-checks it against the Court Leet's grand jury list naming John Williams.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=the Man from the Estate",
+    "I_NIA=Nia",
+    "B_JOHN=John Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 22,
+   "id": "F022",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "1 Apr 1907",
+   "date_to": "6 Jan 1908",
+   "sort_from": "1907-04-01",
+   "sort_to": "1908-01-06",
+   "date_range": "1 Apr 1907 – 6 Jan 1908",
+   "events": [
+    "CH-0062",
+    "CH-0063",
+    "CH-0064",
+    "CH-0065"
+   ],
+   "evidence": [
+    "EV-0282"
+   ],
+   "parts": [],
+   "title": "Rifles, Poachers And A Death",
+   "logline": "At the farmyard Gwen recounts the Easter air-rifle meeting at Great House and the poacher gaoled in January; John Williams takes on both occupancies after his father's death.",
+   "setting": "s01",
+   "cast": [
+    "B_JOHN=John Williams",
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 23,
+   "id": "F023",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "17 Jul 1908",
+   "date_to": "1910",
+   "sort_from": "1908-07-17",
+   "sort_to": "1910-00-00",
+   "date_range": "17 Jul 1908 – 1910",
+   "events": [
+    "CH-0066",
+    "CH-0067",
+    "CH-0068",
+    "CH-0069",
+    "CH-0070"
+   ],
+   "evidence": [
+    "EV-0243"
+   ],
+   "parts": [],
+   "title": "The Death Of John Williams",
+   "logline": "In the churchyard Gwen reads the Baptist Record's notice of John Williams's death at eighty-one, then the Court Leet's vote of sympathy for the Great House family.",
+   "setting": "s03",
+   "cast": [
+    "F_GWEN=Gwen",
+    "B_JOHN=John Williams",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 24,
+   "id": "F024",
+   "act": {
+    "n": 2,
+    "en": "Cedfin or Tŷ Mawr",
+    "cy": "Cedfin neu Dŷ Mawr",
+    "es": "Cedfin o Tŷ Mawr"
+   },
+   "date_from": "Oct 1910",
+   "date_to": "10 Aug 1913",
+   "sort_from": "1910-10-00",
+   "sort_to": "1913-08-10",
+   "date_range": "Oct 1910 – 10 Aug 1913",
+   "events": [
+    "CH-0071",
+    "CH-0072"
+   ],
+   "evidence": [
+    "EV-0283"
+   ],
+   "parts": [],
+   "title": "A Daughter Born At Great House",
+   "logline": "In the kitchen Gwen marks the grand jury's \"no presentments\" at the Court Leet and the birth of Mary (Nancy) Williams at Great House Farm this August.",
+   "setting": "s02",
+   "cast": [
+    "F_GWEN=Gwen",
+    "B_JOHN=John Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 25,
+   "id": "F025",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "Feb 1916",
+   "date_to": "1922",
+   "sort_from": "1916-02-00",
+   "sort_to": "1922-00-00",
+   "date_range": "Feb 1916 – 1922",
+   "events": [
+    "CH-0073",
+    "CH-0074",
+    "EV-0014",
+    "CH-0075",
+    "CH-0076"
+   ],
+   "evidence": [
+    "EV-0014"
+   ],
+   "parts": [],
+   "title": "The Whole Farm, Yearly",
+   "logline": "At the estate office the Man from the Estate signs John Williams to a yearly occupancy of the whole farm; at Penarth he gives evidence on a dog in his sheepfold.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=the Man from the Estate",
+    "B_JOHN=John Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 26,
+   "id": "F026",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "15 May 1924",
+   "date_to": "26 Mar 1925",
+   "sort_from": "1924-05-15",
+   "sort_to": "1925-03-26",
+   "date_range": "15 May 1924 – 26 Mar 1925",
+   "events": [
+    "CH-0077",
+    "CH-0078",
+    "EV-0015",
+    "CH-0079",
+    "CH-0080"
+   ],
+   "evidence": [
+    "EV-0015",
+    "EV-0285"
+   ],
+   "parts": [],
+   "title": "Drains, Sheep And Damages",
+   "logline": "At the estate office the Man from the Estate notes the 1924 drain agreement with Bute, while John Williams pursues damages for sheep worried by dogs, reported in the Western Mail.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=the Man from the Estate",
+    "B_JOHN=John Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 27,
+   "id": "F027",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "14 Dec 1927",
+   "date_to": "22 November 1931",
+   "sort_from": "1927-12-14",
+   "sort_to": "1931-11-22",
+   "date_range": "14 Dec 1927 – 22 November 1931",
+   "events": [
+    "CH-0081",
+    "CH-0082",
+    "EV-0017",
+    "EV-0018"
+   ],
+   "evidence": [
+    "EV-0016",
+    "EV-0017",
+    "EV-0018",
+    "EV-0284"
+   ],
+   "parts": [],
+   "title": "Quarry Machinery Leaves For Good",
+   "logline": "In the archive Nia and the Grandson weigh Alfred Thomas's will leaving his property to the corporation against Mary's statement that Parcel A then passed whole to the Williams family.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 28,
+   "id": "F028",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "1936",
+   "date_to": "c. 1937–40",
+   "sort_from": "1936-00-00",
+   "sort_to": "1937-00-00",
+   "date_range": "1936 – c. 1937–40",
+   "events": [
+    "CH-0083",
+    "CH-0084",
+    "CH-0085"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "A Llandough Bride, Nineteen Thirty-Six",
+   "logline": "In St Dochdwy's church Gwen watches Mary (Nancy) Williams marry Frederick Buckler, the Western Mail's \"Llandough Bride\" cutting passed hand to hand before the eldest son's birth.",
+   "setting": "s03",
+   "cast": [
+    "A_MARY=Mary (Nancy) Williams",
+    "C_FRED=Frederick Buckler",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 29,
+   "id": "F029",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "1938",
+   "date_to": "12 and 16 November 1938",
+   "sort_from": "1938-00-00",
+   "sort_to": "1938-11-12",
+   "date_range": "1938 – 12 and 16 November 1938",
+   "events": [
+    "CH-0086",
+    "CH-0087",
+    "EV-0020",
+    "EV-0021"
+   ],
+   "evidence": [
+    "EV-0019",
+    "EV-0020",
+    "EV-0021",
+    "EV-0249"
+   ],
+   "parts": [],
+   "title": "Western Ground Rents Takes Over",
+   "logline": "At the Cardiff office the Man from the Estate records Bute's reversion conveyed to Western Ground Rents; Nia flags a Western Mail notice for a different Great House Farm near Cowbridge.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=the Man from the Estate",
+    "I_NIA=Nia"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 30,
+   "id": "F030",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "24 Dec 1938",
+   "date_to": "1939",
+   "sort_from": "1938-12-24",
+   "sort_to": "1939-00-00",
+   "date_range": "24 Dec 1938 – 1939",
+   "events": [
+    "CH-0088",
+    "EV-0022",
+    "CH-0089",
+    "CH-0090",
+    "CH-0091"
+   ],
+   "evidence": [
+    "EV-0022",
+    "EV-0049",
+    "EV-0216"
+   ],
+   "parts": [],
+   "title": "The Bute Sale Completes",
+   "logline": "In the office the Man from the Estate completes the Bute conveyance to Western Ground Rents, as Nia notes the 1939 Limitation Act later pleaded in the family's 1974 defence.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=the Man from the Estate",
+    "I_NIA=Nia"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 31,
+   "id": "F031",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "6 Feb 1939",
+   "date_to": "c. 1940",
+   "sort_from": "1939-02-06",
+   "sort_to": "1940-00-00",
+   "date_range": "6 Feb 1939 – c. 1940",
+   "events": [
+    "CH-0092",
+    "CH-0093",
+    "CH-0094",
+    "CH-0095"
+   ],
+   "evidence": [
+    "EV-0023",
+    "EV-0285"
+   ],
+   "parts": [],
+   "title": "Lost Gun, Williams Name",
+   "logline": "In the farmhouse kitchen, John Williams and Mary (Nancy) Williams note the lost-gun notice still naming Williams, and her later statement recalling rent last paid in 1928.",
+   "setting": "s02",
+   "cast": [
+    "B_JOHN=John Williams",
+    "A_MARY=Mary (Nancy) Williams",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 32,
+   "id": "F032",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "1 Jul 1940",
+   "date_to": "c. 1938–1950s",
+   "sort_from": "1940-07",
+   "sort_to": "1942-00-00",
+   "date_range": "1 Jul 1940 – c. 1938–1950s",
+   "events": [
+    "TC-C03",
+    "CH-0096",
+    "CH-0565",
+    "EV-0024"
+   ],
+   "evidence": [
+    "EV-0024",
+    "EV-0080",
+    "EV-0241"
+   ],
+   "parts": [],
+   "title": "Limitation Act, Twelve Years",
+   "logline": "In the Cardiff estate office, the Bute estate agent weighs the new Limitation Act's twelve-year rule against the National Farm Survey's record of occupation at Great House Farm.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=Bute estate agent",
+    "B_JOHN=John Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 33,
+   "id": "F033",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "1940 – Apr 1942",
+   "date_to": "c. 1945–1955",
+   "sort_from": "1942-04-00",
+   "sort_to": "1945-00-00",
+   "date_range": "1940 – Apr 1942 – c. 1945–1955",
+   "events": [
+    "CH-0097",
+    "CH-0098",
+    "CH-0099",
+    "CH-0100"
+   ],
+   "evidence": [
+    "EV-0136",
+    "EV-0155",
+    "EV-0220",
+    "EV-0286"
+   ],
+   "parts": [],
+   "title": "Sale Notice, Frederick Manages",
+   "logline": "In the farmyard, Frederick Buckler takes over running the farm for John Williams after the War Agricultural Committee's dissatisfaction, as the Western Mail advertises a stock sale.",
+   "setting": "s01",
+   "cast": [
+    "C_FRED=Frederick Buckler",
+    "B_JOHN=John Williams",
+    "A_MARY=Mary (Nancy) Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 34,
+   "id": "F034",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "mid-1930s and late 1940s",
+   "date_to": "25 Aug 1948",
+   "sort_from": "1945",
+   "sort_to": "1948-08-25",
+   "date_range": "mid-1930s and late 1940s – 25 Aug 1948",
+   "events": [
+    "TC-C04",
+    "CH-0102",
+    "CH-0101"
+   ],
+   "evidence": [
+    "EV-0016",
+    "EV-0037",
+    "EV-0080"
+   ],
+   "parts": [],
+   "title": "Billy Born, Water Cut",
+   "logline": "In the farmhouse kitchen, Mary (Nancy) Williams recalls the arrears recorded by the courts and the water cut off for nearly ten years, as William (Billy) Buckler is born.",
+   "setting": "s02",
+   "cast": [
+    "A_MARY=Mary (Nancy) Williams",
+    "C_FRED=Frederick Buckler",
+    "D_BILLY=William (Billy) Buckler"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 35,
+   "id": "F035",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "2 Feb 1949",
+   "date_to": "1950–1957",
+   "sort_from": "1949-02-02",
+   "sort_to": "1950-00-00",
+   "date_range": "2 Feb 1949 – 1950–1957",
+   "events": [
+    "CH-0103",
+    "CH-0104",
+    "EV-0025",
+    "EV-0026",
+    "EV-0027"
+   ],
+   "evidence": [
+    "EV-0025",
+    "EV-0026",
+    "EV-0027"
+   ],
+   "parts": [],
+   "title": "New Yearly Occupancy Begins",
+   "logline": "At the farmyard, Western Ground Rents' agent arranges Frederick Buckler's unwritten yearly occupancy as John Williams's tenancy is surrendered, later recited by the Court of Appeal.",
+   "setting": "s01",
+   "cast": [
+    "E_AGENT=Western Ground Rents' agent",
+    "C_FRED=Frederick Buckler",
+    "B_JOHN=John Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 36,
+   "id": "F036",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "June 1950 – c. 1952",
+   "date_to": "1952–1990s",
+   "sort_from": "1950-06-00",
+   "sort_to": "1952-00-00",
+   "date_range": "June 1950 – c. 1952 – 1952–1990s",
+   "events": [
+    "CH-0105",
+    "EV-0028",
+    "TC-C06",
+    "EV-0029"
+   ],
+   "evidence": [
+    "EV-0026",
+    "EV-0028",
+    "EV-0029"
+   ],
+   "parts": [],
+   "title": "Papers Missing From Blanket Box",
+   "logline": "In the kitchen, Mary (Nancy) Williams tells Gwen that the family title papers vanished from the blanket box, and a lodger later spoke of taking them at Mr Knapp's request.",
+   "setting": "s02",
+   "cast": [
+    "A_MARY=Mary (Nancy) Williams",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 37,
+   "id": "F037",
+   "act": {
+    "n": 3,
+    "en": "The whole of the farm",
+    "cy": "Y fferm gyfan",
+    "es": "Toda la granja"
+   },
+   "date_from": "10 Oct 1952",
+   "date_to": "1954",
+   "sort_from": "1952-10-10",
+   "sort_to": "1954-00-00",
+   "date_range": "10 Oct 1952 – 1954",
+   "events": [
+    "CH-0106",
+    "CH-0107",
+    "EV-0030",
+    "EV-0031"
+   ],
+   "evidence": [
+    "EV-0030",
+    "EV-0031"
+   ],
+   "parts": [],
+   "title": "Letting Refused, Last Rent",
+   "logline": "In the Cardiff office, the landlords' agent decides against proceeding with Frederick Buckler's letting, as his last rent payment of 1953 closes the file.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=landlords' agent",
+    "C_FRED=Frederick Buckler"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 38,
+   "id": "F038",
+   "act": {
+    "n": 4,
+    "en": "Parcel A",
+    "cy": "Llain A",
+    "es": "La Parcela A"
+   },
+   "date_from": "1955 to 1962 (unknown)",
+   "date_to": "2 February 1955 to 4 July 1955",
+   "sort_from": "1955-00-00",
+   "sort_to": "1955-02-02",
+   "date_range": "1955 to 1962 (unknown) – 2 February 1955 to 4 July 1955",
+   "events": [
+    "EV-0033",
+    "TC-C09",
+    "CH-0108",
+    "CH-0109"
+   ],
+   "evidence": [
+    "EV-0032",
+    "EV-0033",
+    "EV-0080"
+   ],
+   "parts": [],
+   "title": "Possession Order Against Frederick Alone",
+   "logline": "In the High Court, Frederick Buckler faces an Order 14 possession judgment covering the whole farm, while Mary (Nancy) Williams is not named a party.",
+   "setting": "s07",
+   "cast": [
+    "H_CLERK=the Court",
+    "C_FRED=Frederick Buckler",
+    "A_MARY=Mary (Nancy) Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 39,
+   "id": "F039",
+   "act": {
+    "n": 4,
+    "en": "Parcel A",
+    "cy": "Llain A",
+    "es": "La Parcela A"
+   },
+   "date_from": "18 Mar 1955",
+   "date_to": "9 Oct 1957",
+   "sort_from": "1955-03-18",
+   "sort_to": "1957-10-09",
+   "date_range": "18 Mar 1955 – 9 Oct 1957",
+   "events": [
+    "CH-0110",
+    "CH-0111",
+    "CH-0112",
+    "CH-0113"
+   ],
+   "evidence": [
+    "EV-0034",
+    "EV-0242",
+    "EV-0259"
+   ],
+   "parts": [],
+   "title": "Possession Taken, Farmhouse Spared",
+   "logline": "At the farmyard, the estate's agent enforces the 1955 order, taking all but the farmhouse and garden, as Mary (Nancy) Williams returns from hospital after a leg amputation.",
+   "setting": "s01",
+   "cast": [
+    "E_AGENT=the Man from the Estate",
+    "A_MARY=Mary (Nancy) Williams",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 40,
+   "id": "F040",
+   "act": {
+    "n": 4,
+    "en": "Parcel A",
+    "cy": "Llain A",
+    "es": "La Parcela A"
+   },
+   "date_from": "6 May 1958",
+   "date_to": "24 September 1958",
+   "sort_from": "1958-05-06",
+   "sort_to": "1958-09-24",
+   "date_range": "6 May 1958 – 24 September 1958",
+   "events": [
+    "CH-0114",
+    "CH-0115",
+    "CH-0116",
+    "EV-0036"
+   ],
+   "evidence": [
+    "EV-0035",
+    "EV-0036",
+    "EV-0287"
+   ],
+   "parts": [],
+   "title": "A Slice of Land",
+   "logline": "At the Leckwith Common inquiry, Mary (Nancy) Williams does not oppose the playing-fields proposal and recalls Lord Bute once allowing her family a slice of land.",
+   "setting": "s06",
+   "cast": [
+    "A_MARY=Mary (Nancy) Williams",
+    "H_CLERK=the inquiry chair"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 41,
+   "id": "F041",
+   "act": {
+    "n": 4,
+    "en": "Parcel A",
+    "cy": "Llain A",
+    "es": "La Parcela A"
+   },
+   "date_from": "27 Oct 1958",
+   "date_to": "20 Nov 1958",
+   "sort_from": "1958-10-27",
+   "sort_to": "1958-11-20",
+   "date_range": "27 Oct 1958 – 20 Nov 1958",
+   "events": [
+    "CH-0117",
+    "CH-0118",
+    "CH-0119",
+    "CH-0120"
+   ],
+   "evidence": [
+    "EV-0037",
+    "EV-0287"
+   ],
+   "parts": [],
+   "title": "A Welsh Crichel Down",
+   "logline": "Before the planning committee, Mrs Buckler describes the water cut off from her house for nearly ten years by order of Western Ground Rents, naming it a Welsh Crichel Down.",
+   "setting": "s06",
+   "cast": [
+    "A_MARY=Mrs Buckler",
+    "E_AGENT=Western Ground Rents' agent",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 42,
+   "id": "F042",
+   "act": {
+    "n": 4,
+    "en": "Parcel A",
+    "cy": "Llain A",
+    "es": "La Parcela A"
+   },
+   "date_from": "25 Nov 1958",
+   "date_to": "19 Nov – 11 Dec 1958",
+   "sort_from": "1958-11-25",
+   "sort_to": "1958-12-11",
+   "date_range": "25 Nov 1958 – 19 Nov – 11 Dec 1958",
+   "events": [
+    "CH-0121",
+    "EV-0038",
+    "CH-0122"
+   ],
+   "evidence": [
+    "EV-0038",
+    "EV-0239",
+    "EV-0240"
+   ],
+   "parts": [],
+   "title": "No Petition Presented",
+   "logline": "In the Cardiff office, the record shows no petition presented against the Leckwith Common order, as the Ministry's inquiry into the Development Plan objections continues.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=the Man from the Estate",
+    "H_CLERK=the inquiry officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 43,
+   "id": "F043",
+   "act": {
+    "n": 4,
+    "en": "Parcel A",
+    "cy": "Llain A",
+    "es": "La Parcela A"
+   },
+   "date_from": "1959",
+   "date_to": "4 Mar 1960",
+   "sort_from": "1959-00-00",
+   "sort_to": "1960-03-04",
+   "date_range": "1959 – 4 Mar 1960",
+   "events": [
+    "CH-0123",
+    "CH-0124",
+    "EV-0039",
+    "CH-0125",
+    "CH-0126"
+   ],
+   "evidence": [
+    "EV-0039"
+   ],
+   "parts": [],
+   "title": "Mary Refuses, Asserts Ownership",
+   "logline": "In the farmhouse kitchen, Mary (Nancy) Williams turns down Western Ground Rents' occupancy offer for the house and garden, asserting ownership of the ground she still holds.",
+   "setting": "s02",
+   "cast": [
+    "A_MARY=Mary (Nancy) Williams",
+    "E_AGENT=Western Ground Rents' agent"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 44,
+   "id": "F044",
+   "act": {
+    "n": 4,
+    "en": "Parcel A",
+    "cy": "Llain A",
+    "es": "La Parcela A"
+   },
+   "date_from": "29 Mar 1961",
+   "date_to": "7 Dec 1962",
+   "sort_from": "1961-03-29",
+   "sort_to": "1962-12-07",
+   "date_range": "29 Mar 1961 – 7 Dec 1962",
+   "events": [
+    "CH-0127",
+    "CH-0128",
+    "CH-0129",
+    "CH-0130"
+   ],
+   "evidence": [
+    "EV-0040"
+   ],
+   "parts": [],
+   "title": "Deeds, Pottery and Parliament",
+   "logline": "Near the church, diggers lift medieval pottery sherds as Gwen reads of a Commons debate on ground rents across the Llandough Estate.",
+   "setting": "s09",
+   "cast": [
+    "F_GWEN=Gwen",
+    "B_JOHN=John Williams",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 45,
+   "id": "F045",
+   "act": {
+    "n": 4,
+    "en": "Parcel A",
+    "cy": "Llain A",
+    "es": "La Parcela A"
+   },
+   "date_from": "11 Dec 1962",
+   "date_to": "1963",
+   "sort_from": "1962-12-11",
+   "sort_to": "1963-00-00",
+   "date_range": "11 Dec 1962 – 1963",
+   "events": [
+    "CH-0131",
+    "CH-0132",
+    "CH-0133",
+    "CH-0134"
+   ],
+   "evidence": [
+    "EV-0041"
+   ],
+   "parts": [],
+   "title": "Unenforced Order, Ancient Skeletons",
+   "logline": "South of St Dochdwy's church, diggers uncover three skeletons and a medieval house corner, as the 1962 county court order against Frederick and Mary remains unenforced.",
+   "setting": "s03",
+   "cast": [
+    "C_FRED=Frederick Buckler",
+    "A_MARY=Mary (Nancy) Williams",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 46,
+   "id": "F046",
+   "act": {
+    "n": 4,
+    "en": "Parcel A",
+    "cy": "Llain A",
+    "es": "La Parcela A"
+   },
+   "date_from": "29 Jan – 5 Feb 1963",
+   "date_to": "1964–67",
+   "sort_from": "1963-02-05",
+   "sort_to": "1964-00-00",
+   "date_range": "29 Jan – 5 Feb 1963 – 1964–67",
+   "events": [
+    "CH-0135",
+    "CH-0136",
+    "CH-0137",
+    "CH-0138"
+   ],
+   "evidence": [
+    "EV-0261"
+   ],
+   "parts": [],
+   "title": "Committal and a Rumoured Sale",
+   "logline": "In the taproom, Gwen reads that mesne profits have been enforced against Frederick; Dai repeats a cousin's story that the eldest son sold the family's land parcel, no deed found.",
+   "setting": "s05",
+   "cast": [
+    "C_FRED=Frederick Buckler",
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 47,
+   "id": "F047",
+   "act": {
+    "n": 4,
+    "en": "Parcel A",
+    "cy": "Llain A",
+    "es": "La Parcela A"
+   },
+   "date_from": "1965",
+   "date_to": "1965–67",
+   "sort_from": "1965-00-00",
+   "sort_to": "1966",
+   "date_range": "1965 – 1965–67",
+   "events": [
+    "CH-0139",
+    "CH-0140",
+    "CH-0141",
+    "TC-C14"
+   ],
+   "evidence": [
+    "EV-0042",
+    "EV-0080",
+    "EV-0263"
+   ],
+   "parts": [],
+   "title": "The Unsigned Occupancy Offer",
+   "logline": "At the farmhouse kitchen table, the Estate's agent offers Mary (Nancy) Williams weekly occupancy, left unsigned; word comes soon after that Frederick has died, and she stays on.",
+   "setting": "s02",
+   "cast": [
+    "A_MARY=Mary (Nancy) Williams",
+    "E_AGENT=the Estate's agent"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 48,
+   "id": "F048",
+   "act": {
+    "n": 4,
+    "en": "Parcel A",
+    "cy": "Llain A",
+    "es": "La Parcela A"
+   },
+   "date_from": "1967",
+   "date_to": "19 Nov 1968",
+   "sort_from": "1967-00-00",
+   "sort_to": "1968-11-19",
+   "date_range": "1967 – 19 Nov 1968",
+   "events": [
+    "CH-0142",
+    "CH-0143",
+    "CH-0144",
+    "CH-0145"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "Takeover Battle Reaches Llandough",
+   "logline": "On the village green, Gwen reads aloud the Daily Express account of the takeover battle for Western Ground Rents, settled by British Petroleum's agreed bid; Dai recalls Frederick's death.",
+   "setting": "s04",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 49,
+   "id": "F049",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "15 Feb 1969",
+   "date_to": "31 December 1969",
+   "sort_from": "1969-02-15",
+   "sort_to": "1969-12-31",
+   "date_range": "15 Feb 1969 – 31 December 1969",
+   "events": [
+    "CH-0146",
+    "CH-0147",
+    "CH-0148",
+    "CH-0149",
+    "CH-0150",
+    "EV-0043"
+   ],
+   "evidence": [
+    "EV-0043",
+    "EV-0045",
+    "EV-0288"
+   ],
+   "parts": [],
+   "title": "A Deed Gone Missing",
+   "logline": "In the records office, Nia and the Grandson examine the 1969 conveyance from Western Ground Rents to BP Pension Trust; the original deed is missing from the Land Registry files.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 50,
+   "id": "F050",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "19 Nov 197? (year unclear)",
+   "date_to": "1971",
+   "sort_from": "1970-00-00",
+   "sort_to": "1971-00-00",
+   "date_range": "19 Nov 197? (year unclear) – 1971",
+   "events": [
+    "CH-0151",
+    "CH-0152",
+    "EV-0044",
+    "CH-0153",
+    "CH-0154"
+   ],
+   "evidence": [
+    "EV-0044",
+    "EV-0045"
+   ],
+   "parts": [],
+   "title": "Grievous Loss, Says the Mail",
+   "logline": "In the taproom, Gwen reads William Rees's Western Mail letter against demolition, while Dai notes the Leckwith Road land's new registration as a village green.",
+   "setting": "s05",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 51,
+   "id": "F051",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "1972",
+   "date_to": "1974",
+   "sort_from": "1972-00-00",
+   "sort_to": "1974-00-00",
+   "date_range": "1972 – 1974",
+   "events": [
+    "CH-0155",
+    "EV-0046",
+    "CH-0156",
+    "CH-0157",
+    "CH-0158",
+    "EV-0047"
+   ],
+   "evidence": [
+    "EV-0046",
+    "EV-0047",
+    "EV-0218",
+    "EV-0263"
+   ],
+   "parts": [],
+   "title": "Survey Day at the Farmhouse",
+   "logline": "At Great House Farm, the Estate's agent shows Mary (Nancy) Williams outline permission for thirteen houses; a surveyor measures the old farmhouse before any works proceed.",
+   "setting": "s01",
+   "cast": [
+    "A_MARY=Mary (Nancy) Williams",
+    "E_AGENT=the Estate's agent"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 52,
+   "id": "F052",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "15 Apr 1974",
+   "date_to": "26 Apr 1974",
+   "sort_from": "1974-04-15",
+   "sort_to": "1974-04-26",
+   "date_range": "15 Apr 1974 – 26 Apr 1974",
+   "events": [
+    "CH-0159",
+    "CH-0160",
+    "EV-0048",
+    "CH-0161"
+   ],
+   "evidence": [
+    "EV-0048"
+   ],
+   "parts": [],
+   "title": "Open Day To Save The House",
+   "logline": "At Great House Farm, Mary (Nancy) Williams opens her doors to show what the nation is losing; Gwen collects a thousand signatures as the Telegraph covers the campaign.",
+   "setting": "s01",
+   "cast": [
+    "A_MARY=Mary (Nancy) Williams",
+    "F_GWEN=Gwen",
+    "D_BILLY=William (Billy) Buckler"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 53,
+   "id": "F053",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "3 Jul 1974",
+   "date_to": "19 Sep 1974",
+   "sort_from": "1974-07-03",
+   "sort_to": "1974-09-19",
+   "date_range": "3 Jul 1974 – 19 Sep 1974",
+   "events": [
+    "CH-0162",
+    "CH-0163",
+    "TC-C19",
+    "CH-0164"
+   ],
+   "evidence": [
+    "EV-0041",
+    "EV-0049",
+    "EV-0080"
+   ],
+   "parts": [],
+   "title": "Mrs Buckler Pleads Limitation",
+   "logline": "In Cardiff County Court, Mary (Nancy) Williams's defence pleads ownership under the Limitation Act 1939; the court later grants BP Pension Trust leave to enforce the 1962 order.",
+   "setting": "s07",
+   "cast": [
+    "A_MARY=Mary (Nancy) Williams",
+    "H_CLERK=the Court",
+    "E_AGENT=BP's solicitor"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 54,
+   "id": "F054",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "31 Oct 1974",
+   "date_to": "19 Nov 1974 (or 1977)",
+   "sort_from": "1974-10-31",
+   "sort_to": "1974-11-19",
+   "date_range": "31 Oct 1974 – 19 Nov 1974 (or 1977)",
+   "events": [
+    "CH-0165",
+    "CH-0166",
+    "EV-0050",
+    "CH-0167",
+    "CH-0168"
+   ],
+   "evidence": [
+    "EV-0050",
+    "EV-0051"
+   ],
+   "parts": [],
+   "title": "The Warrant Is Withdrawn",
+   "logline": "In the farmhouse kitchen, Mary (Nancy) Williams reads BP Pension Trust's letter withdrawing the warrant; Gwen brings the Western Mail's renewed call against demolishing Great House Farm.",
+   "setting": "s02",
+   "cast": [
+    "A_MARY=Mary (Nancy) Williams",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 55,
+   "id": "F055",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "23 May 1975",
+   "date_to": "undated (uploaded as 1976.jpg; predates the 1988 events; exact date not established)",
+   "sort_from": "1975-05-23",
+   "sort_to": "1976-00-00",
+   "date_range": "23 May 1975 – undated (uploaded as 1976.jpg; predates the 1988 events; exact date not established)",
+   "events": [
+    "CH-0169",
+    "CH-0170",
+    "EV-0052",
+    "CH-0171",
+    "EV-0053"
+   ],
+   "evidence": [
+    "EV-0052",
+    "EV-0053",
+    "EV-0265"
+   ],
+   "parts": [],
+   "title": "A Photograph From The Kitchen",
+   "logline": "In the records office, Nia and the Grandson find a family photograph of Branwen Buckler, pregnant in the farmhouse kitchen, filed beside BP's 1975 conveyance of the land.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 56,
+   "id": "F056",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "1978–79",
+   "date_to": "18 Feb 1980",
+   "sort_from": "1978-00-00",
+   "sort_to": "1980-02-18",
+   "date_range": "1978–79 – 18 Feb 1980",
+   "events": [
+    "CH-0172",
+    "CH-0173",
+    "CH-0174",
+    "CH-0175",
+    "CH-0176"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "Digging Beside The Church",
+   "logline": "South of St Dochdwy's church, archaeologists uncover an Iron Age roundhouse and a Roman villa; Gwen tells Dai that Cadw has now listed Barons Court at Cogan Pill.",
+   "setting": "s03",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 57,
+   "id": "F057",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "April 1980",
+   "date_to": "22 May 1980",
+   "sort_from": "1980-04-00",
+   "sort_to": "1980-05-22",
+   "date_range": "April 1980 – 22 May 1980",
+   "events": [
+    "EV-0054",
+    "CH-0177",
+    "EV-0055",
+    "EV-0056",
+    "CH-0178",
+    "CH-0179"
+   ],
+   "evidence": [
+    "EV-0054",
+    "EV-0055",
+    "EV-0056",
+    "EV-0057"
+   ],
+   "parts": [],
+   "title": "Rowlands Criticises The Pension Fund",
+   "logline": "In the taproom, Gwen reads the Neath Guardian's report on the Roman villa dig; Dai repeats Hansard's account of Ted Rowlands MP's words against Western Ground Rents and BP.",
+   "setting": "s05",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 58,
+   "id": "F058",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "7 Feb 1981",
+   "date_to": "1 October 1982",
+   "sort_from": "1981-02-07",
+   "sort_to": "1982-10-01",
+   "date_range": "7 Feb 1981 – 1 October 1982",
+   "events": [
+    "CH-0180",
+    "CH-0181",
+    "CH-0182",
+    "CH-0183",
+    "EV-0058"
+   ],
+   "evidence": [
+    "EV-0058",
+    "EV-0289"
+   ],
+   "parts": [],
+   "title": "Cefn Estates Buys The Rents",
+   "logline": "In the village shop, Gwen reads the South Wales Echo's report that BP Pension Trust has sold its ground rents to Cefn Estates; GGAT warns of archaeology before building.",
+   "setting": "s04",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai",
+    "E_AGENT=BP's solicitor"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 59,
+   "id": "F059",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "19 November 1982",
+   "date_to": "1983",
+   "sort_from": "1982-11-19",
+   "sort_to": "1983-00-00",
+   "date_range": "19 November 1982 – 1983",
+   "events": [
+    "CH-0184",
+    "CH-0185",
+    "CH-0186",
+    "EV-0059",
+    "EV-0060",
+    "EV-0061",
+    "EV-0062"
+   ],
+   "evidence": [
+    "EV-0059",
+    "EV-0060",
+    "EV-0061",
+    "EV-0062",
+    "EV-0147"
+   ],
+   "parts": [],
+   "title": "A Diary After Her Death",
+   "logline": "In the archive, the Grandson and Nia compare William Buckler's 1983 diary notes with the Land Registry's first registration papers, received after Mary (Nancy) Williams's death.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 60,
+   "id": "F060",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "1983 (undated on the schedule)",
+   "date_to": "March 1983",
+   "sort_from": "1983-00-01",
+   "sort_to": "1983-03-00",
+   "date_range": "1983 (undated on the schedule) – March 1983",
+   "events": [
+    "EV-0063",
+    "EV-0064",
+    "CH-0187",
+    "CH-0188",
+    "EV-0065",
+    "EV-0066",
+    "EV-0067"
+   ],
+   "evidence": [
+    "EV-0063",
+    "EV-0064",
+    "EV-0065",
+    "EV-0066",
+    "EV-0067"
+   ],
+   "parts": [],
+   "title": "First Registration, Her Death Recorded",
+   "logline": "At the archive desk, Nia shows the Grandson February 1983's application to register the farmhouse, and the death index entry for Mary (Nancy) Williams that same spring.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 61,
+   "id": "F061",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "13 Mar 1983",
+   "date_to": "12 April 1983",
+   "sort_from": "1983-03-13",
+   "sort_to": "1983-04-12",
+   "date_range": "13 Mar 1983 – 12 April 1983",
+   "events": [
+    "CH-0189",
+    "CH-0190",
+    "EV-0068",
+    "CH-0191",
+    "EV-0069",
+    "EV-0070"
+   ],
+   "evidence": [
+    "EV-0068",
+    "EV-0069",
+    "EV-0070"
+   ],
+   "parts": [],
+   "title": "Fire, Death and Inheritance",
+   "logline": "Gwen reads of the Swansea warehouse fire as Mary (Nancy) Williams dies at the farmhouse; William inherits, and Land Registry's April letters arrive, in the kitchen.",
+   "setting": "s02",
+   "cast": [
+    "F_GWEN=Gwen",
+    "A_MARY=Mary (Nancy) Williams",
+    "D_BILLY=William (Billy) Buckler"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 62,
+   "id": "F062",
+   "act": {
+    "n": 5,
+    "en": "The pension fund",
+    "cy": "Y gronfa bensiwn",
+    "es": "El fondo de pensiones"
+   },
+   "date_from": "1983–84",
+   "date_to": "26 Oct 1983",
+   "sort_from": "1983-05-12",
+   "sort_to": "1983-10-26",
+   "date_range": "1983–84 – 26 Oct 1983",
+   "events": [
+    "EV-0071",
+    "TC-C28",
+    "CH-0192",
+    "CH-0193",
+    "CH-0194"
+   ],
+   "evidence": [
+    "EV-0044",
+    "EV-0071",
+    "EV-0072",
+    "EV-0232",
+    "EV-0289"
+   ],
+   "parts": [],
+   "title": "Pension Plans Noted in Reports",
+   "logline": "Gwen and Dai argue over Penlan Road's dangerous access as the estate's agent notes Great House Farm in the Vale's new conservation reports, in the taproom.",
+   "setting": "s05",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai",
+    "E_AGENT=the Man from the Estate"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 63,
+   "id": "F063",
+   "act": {
+    "n": 6,
+    "en": "Licence",
+    "cy": "Trwydded",
+    "es": "Licencia"
+   },
+   "date_from": "1984",
+   "date_to": "9 Dec 1985",
+   "sort_from": "1984-00-00",
+   "sort_to": "1985-12-09",
+   "date_range": "1984 – 9 Dec 1985",
+   "events": [
+    "CH-0195",
+    "EV-0073",
+    "CH-0196",
+    "CH-0197",
+    "CH-0198"
+   ],
+   "evidence": [
+    "EV-0073",
+    "EV-0218",
+    "EV-0221"
+   ],
+   "parts": [],
+   "title": "Missing Deed, Writ Served",
+   "logline": "William receives BP's writ for possession as the library's copy of the Bute–Thomas deed goes missing; Nia notes the SSSI's quiet re-notification, in a Cardiff office.",
+   "setting": "s06",
+   "cast": [
+    "D_BILLY=William (Billy) Buckler",
+    "E_AGENT=BP's solicitor",
+    "I_NIA=the Archivist"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 64,
+   "id": "F064",
+   "act": {
+    "n": 6,
+    "en": "Licence",
+    "cy": "Trwydded",
+    "es": "Licencia"
+   },
+   "date_from": "10 Jul 1986",
+   "date_to": "25 July 1986",
+   "sort_from": "1986-07-10",
+   "sort_to": "1986-07-25",
+   "date_range": "10 Jul 1986 – 25 July 1986",
+   "events": [
+    "CH-0199",
+    "CH-0200",
+    "CH-0201",
+    "EV-0075"
+   ],
+   "evidence": [
+    "EV-0074",
+    "EV-0075"
+   ],
+   "parts": [],
+   "title": "High Court Rules for BP",
+   "logline": "The High Court rules for BP, Hollis J suspending possession six months; Billy Buckler and BP's solicitor hear judgment given, as the Echo prepares its report.",
+   "setting": "s07",
+   "cast": [
+    "H_CLERK=the Court",
+    "D_BILLY=William (Billy) Buckler",
+    "E_AGENT=BP's solicitor"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 65,
+   "id": "F065",
+   "act": {
+    "n": 6,
+    "en": "Licence",
+    "cy": "Trwydded",
+    "es": "Licencia"
+   },
+   "date_from": "1987",
+   "date_to": "February 1987",
+   "sort_from": "1987-00-00",
+   "sort_to": "1987-02-00",
+   "date_range": "1987 – February 1987",
+   "events": [
+    "CH-0202",
+    "CH-0203",
+    "EV-0076",
+    "EV-0077"
+   ],
+   "evidence": [
+    "EV-0076",
+    "EV-0077",
+    "EV-0214"
+   ],
+   "parts": [],
+   "title": "Agents, Minutes and Local Plan",
+   "logline": "Gwen and Dai read the council's minutes naming Debenham Tewson as BP's agents, licence fees noted, as the Local Plan states farm buildings are to be retained.",
+   "setting": "s04",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai",
+    "E_AGENT=the Man from the Estate"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 66,
+   "id": "F066",
+   "act": {
+    "n": 6,
+    "en": "Licence",
+    "cy": "Trwydded",
+    "es": "Licencia"
+   },
+   "date_from": "2 Feb 1987",
+   "date_to": "6 May 1987",
+   "sort_from": "1987-02-02",
+   "sort_to": "1987-05-06",
+   "date_range": "2 Feb 1987 – 6 May 1987",
+   "events": [
+    "CH-0204",
+    "CH-0205",
+    "EV-0078",
+    "CH-0206",
+    "CH-0207"
+   ],
+   "evidence": [
+    "EV-0078",
+    "EV-0079"
+   ],
+   "parts": [],
+   "title": "Amalgamation During the Appeal",
+   "logline": "The Land Registry officer takes an application to amalgamate the two titles during the appeal; Nia and Billy Buckler read the plan, as the Echo reports the gap.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=a Land Registry officer",
+    "I_NIA=the Archivist",
+    "D_BILLY=William (Billy) Buckler"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 67,
+   "id": "F067",
+   "act": {
+    "n": 6,
+    "en": "Licence",
+    "cy": "Trwydded",
+    "es": "Licencia"
+   },
+   "date_from": "31 Jul 1987",
+   "date_to": "31 July 1987",
+   "sort_from": "1987-07-31",
+   "sort_to": "1987-07-31",
+   "date_range": "31 Jul 1987 – 31 July 1987",
+   "events": [
+    "CH-0208",
+    "CH-0209",
+    "CH-0210",
+    "CH-0211",
+    "CH-0212"
+   ],
+   "evidence": [],
+   "parts": [
+    [
+     1,
+     3
+    ]
+   ],
+   "title": "Court of Appeal Dismisses Appeal",
+   "logline": "The Court of Appeal dismisses the appeal, citing the Limitation Act's section 13, the enforcement point, and the 'wrong company' argument; Billy Buckler and BP's solicitor listen, in court.",
+   "setting": "s07",
+   "cast": [
+    "H_CLERK=the Court",
+    "D_BILLY=William (Billy) Buckler",
+    "E_AGENT=BP's solicitor"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 68,
+   "id": "F068",
+   "act": {
+    "n": 6,
+    "en": "Licence",
+    "cy": "Trwydded",
+    "es": "Licencia"
+   },
+   "date_from": "31 July 1987",
+   "date_to": "31 Jul 1987",
+   "sort_from": "1987-07-31",
+   "sort_to": "1987-07-31",
+   "date_range": "31 July 1987 – 31 Jul 1987",
+   "events": [
+    "CH-0213",
+    "CH-0214",
+    "CH-0215",
+    "CH-0216",
+    "CH-0217"
+   ],
+   "evidence": [],
+   "parts": [
+    [
+     2,
+     3
+    ]
+   ],
+   "title": "Appeal's Order and Judgment",
+   "logline": "The Court of Appeal addresses repudiation and the licence before giving its order; Billy Buckler and BP's solicitor hear the ruling, later read in BAILII's full text.",
+   "setting": "s07",
+   "cast": [
+    "H_CLERK=the Court",
+    "D_BILLY=William (Billy) Buckler",
+    "E_AGENT=BP's solicitor"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 69,
+   "id": "F069",
+   "act": {
+    "n": 6,
+    "en": "Licence",
+    "cy": "Trwydded",
+    "es": "Licencia"
+   },
+   "date_from": "31 Jul 1987",
+   "date_to": "31 July 1987",
+   "sort_from": "1987-07-31",
+   "sort_to": "1987-07-31",
+   "date_range": "31 Jul 1987 – 31 July 1987",
+   "events": [
+    "CH-0218",
+    "EV-0080"
+   ],
+   "evidence": [
+    "EV-0080"
+   ],
+   "parts": [
+    [
+     3,
+     3
+    ]
+   ],
+   "title": "Reading the Appeal Judgment",
+   "logline": "Nia reads the Court of Appeal's judgment text in the archive reading room, cross-referencing vLex's subscription entry for BP Properties Ltd v Buckler, with the Grandson.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=the Archivist",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 70,
+   "id": "F070",
+   "act": {
+    "n": 6,
+    "en": "Licence",
+    "cy": "Trwydded",
+    "es": "Licencia"
+   },
+   "date_from": "18 Nov 1987",
+   "date_to": "17 Dec 1987",
+   "sort_from": "1987-11-18",
+   "sort_to": "1987-12-17",
+   "date_range": "18 Nov 1987 – 17 Dec 1987",
+   "events": [
+    "CH-0219",
+    "CH-0220",
+    "CH-0221"
+   ],
+   "evidence": [
+    "EV-0214",
+    "EV-0267"
+   ],
+   "parts": [],
+   "title": "Licence Terminated, Minutes Recorded",
+   "logline": "Gwen and Dai read the December minutes: a resident's call to extend VG41 'to the farm wall', the farm road called unofficial, and Debenham Tewson's licence recorded terminated.",
+   "setting": "s04",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai",
+    "E_AGENT=the Man from the Estate"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 71,
+   "id": "F071",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "1988",
+   "date_to": "undated",
+   "sort_from": "1988-00-00",
+   "sort_to": "1988-00-00",
+   "date_range": "1988 – undated",
+   "events": [
+    "CH-0222",
+    "CH-0223",
+    "CH-0224",
+    "CH-0225",
+    "EV-0081",
+    "EV-0082",
+    "EV-0083",
+    "EV-0084",
+    "EV-0085"
+   ],
+   "evidence": [
+    "EV-0081",
+    "EV-0082",
+    "EV-0083",
+    "EV-0084",
+    "EV-0085"
+   ],
+   "parts": [],
+   "title": "Spot-Listing and Eviction News",
+   "logline": "Billy Buckler and Gwen watch HTV's eviction news as Cadw's letter proposes spot-listing the farm; the family recall bailiffs dressed as soldiers in the footage, at Tŷ Mawr.",
+   "setting": "s11",
+   "cast": [
+    "D_BILLY=William (Billy) Buckler",
+    "F_GWEN=Gwen",
+    "E_AGENT=the Man from the Estate"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 72,
+   "id": "F072",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "1987–88",
+   "date_to": "circa April 1988",
+   "sort_from": "1988-01",
+   "sort_to": "1988-04-00",
+   "date_range": "1987–88 – circa April 1988",
+   "events": [
+    "TC-C33",
+    "CH-0226",
+    "CH-0227",
+    "CH-0228",
+    "CH-0229",
+    "EV-0086"
+   ],
+   "evidence": [
+    "EV-0076",
+    "EV-0086"
+   ],
+   "parts": [],
+   "title": "Lords Refuse Leave to Appeal",
+   "logline": "The House of Lords refuses leave to appeal; police wait outside the farmhouse as Billy Buckler holds the yard, the Echo's photograph captures the stand-off in April.",
+   "setting": "s11",
+   "cast": [
+    "H_CLERK=the Court",
+    "D_BILLY=William (Billy) Buckler",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 73,
+   "id": "F073",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "29 Apr 1988",
+   "date_to": "Friday 29 April 1988",
+   "sort_from": "1988-04-29",
+   "sort_to": "1988-04-29",
+   "date_range": "29 Apr 1988 – Friday 29 April 1988",
+   "events": [
+    "CH-0230",
+    "CH-0231",
+    "EV-0087",
+    "EV-0088"
+   ],
+   "evidence": [
+    "EV-0087",
+    "EV-0088"
+   ],
+   "parts": [],
+   "title": "Chainsaw Standoff at the Farm",
+   "logline": "Billy Buckler blocks the drive with a tractor and holds bailiffs off with a chainsaw for four hours; the bailiffs withdraw as the Echo reports the family's background, in the yard.",
+   "setting": "s01",
+   "cast": [
+    "D_BILLY=William (Billy) Buckler",
+    "E_AGENT=the bailiffs' office",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 74,
+   "id": "F074",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "30 Apr 1988",
+   "date_to": "3 May 1988",
+   "sort_from": "1988-04-30",
+   "sort_to": "1988-05",
+   "date_range": "30 Apr 1988 – 3 May 1988",
+   "events": [
+    "CH-0232",
+    "CH-0233",
+    "EV-0089",
+    "EV-0090",
+    "EV-0091",
+    "TC-C34"
+   ],
+   "evidence": [
+    "EV-0089",
+    "EV-0090",
+    "EV-0091",
+    "EV-0122"
+   ],
+   "parts": [],
+   "title": "Farmer Vows to Fight On",
+   "logline": "Billy Buckler refuses medical attention for fear of bailiffs, vowing to fight on as the Echo's headline runs; the Vale's planning minutes and a Strasbourg application follow quietly.",
+   "setting": "s11",
+   "cast": [
+    "D_BILLY=William (Billy) Buckler",
+    "F_GWEN=Gwen",
+    "E_AGENT=the Man from the Estate"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 75,
+   "id": "F075",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "3 May 1988",
+   "date_to": "9 Jul 1988",
+   "sort_from": "1988-05-03",
+   "sort_to": "1988-07-09",
+   "date_range": "3 May 1988 – 9 Jul 1988",
+   "events": [
+    "CH-0234",
+    "CH-0235",
+    "CH-0236",
+    "EV-0092",
+    "CH-0237",
+    "CH-0238"
+   ],
+   "evidence": [
+    "EV-0092",
+    "EV-0093"
+   ],
+   "parts": [],
+   "title": "MP Asks, BP Sells Up",
+   "logline": "Billy Buckler's Strasbourg application proceeds as Alun Michael MP asks the Lord Chancellor to look at the case; the Estates Gazette reports BP's wider Welsh sales through Ropemaker and Debenham Tewson.",
+   "setting": "s06",
+   "cast": [
+    "D_BILLY=William (Billy) Buckler",
+    "F_GWEN=Gwen",
+    "E_AGENT=BP's agent"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 76,
+   "id": "F076",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "29 Jul 1988",
+   "date_to": "12 Oct 1988",
+   "sort_from": "1988-07-29",
+   "sort_to": "1988-10-12",
+   "date_range": "29 Jul 1988 – 12 Oct 1988",
+   "events": [
+    "CH-0239",
+    "CH-0240",
+    "EV-0096",
+    "CH-0241",
+    "CH-0242"
+   ],
+   "evidence": [
+    "EV-0094",
+    "EV-0096",
+    "EV-0268"
+   ],
+   "parts": [],
+   "title": "Cadw Inspects the Farmhouse",
+   "logline": "Cadw's inspector photographs Tŷ Mawr's exterior while Gwen reads aloud the Echo's report of BP's sale of Welsh land for £29 million, Mary (Nancy) Williams watching from the yard.",
+   "setting": "s01",
+   "cast": [
+    "E_AGENT=Cadw inspector",
+    "F_GWEN=Gwen",
+    "A_MARY=Mary (Nancy) Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 77,
+   "id": "F077",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "Oct–Nov 1988",
+   "date_to": "Wednesday 30 November 1988",
+   "sort_from": "1988-11-00",
+   "sort_to": "1988-11-30",
+   "date_range": "Oct–Nov 1988 – Wednesday 30 November 1988",
+   "events": [
+    "CH-0243",
+    "CH-0244",
+    "CH-0245",
+    "CH-0246",
+    "EV-0097",
+    "EV-0098"
+   ],
+   "evidence": [
+    "EV-0097",
+    "EV-0098",
+    "EV-0270"
+   ],
+   "parts": [],
+   "title": "Bailiffs Force Entry, Farmer Hospitalised",
+   "logline": "Bailiffs force entry at Great House Farm and strip the outbuilding roof; William Buckler is taken to Llandough Hospital as Gwen reads the Echo's account at the inn.",
+   "setting": "s01",
+   "cast": [
+    "D_BILLY=William (Billy) Buckler",
+    "E_AGENT=bailiffs",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 78,
+   "id": "F078",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "2 Dec 1988",
+   "date_to": "Friday 2 December 1988",
+   "sort_from": "1988-12-02",
+   "sort_to": "1988-12-02",
+   "date_range": "2 Dec 1988 – Friday 2 December 1988",
+   "events": [
+    "CH-0247",
+    "EV-0099"
+   ],
+   "evidence": [
+    "EV-0099"
+   ],
+   "parts": [],
+   "title": "Summons Over Access To Belongings",
+   "logline": "Gwen reads the Echo's report of a summons over BP's refusal to let Mary (Nancy) Williams collect her belongings, as Dai shakes his head behind the taproom bar.",
+   "setting": "s05",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai",
+    "A_MARY=Mary (Nancy) Williams"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 79,
+   "id": "F079",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "2–3 Dec 1988",
+   "date_to": "Saturday 3 December 1988",
+   "sort_from": "1988-12-03",
+   "sort_to": "1988-12-03",
+   "date_range": "2–3 Dec 1988 – Saturday 3 December 1988",
+   "events": [
+    "CH-0248",
+    "CH-0249",
+    "CH-0250",
+    "CH-0251",
+    "CH-0252",
+    "EV-0100",
+    "EV-0101"
+   ],
+   "evidence": [
+    "EV-0100",
+    "EV-0101"
+   ],
+   "parts": [
+    [
+     1,
+     2
+    ]
+   ],
+   "title": "Injunction Granted, Spot-Listing Considered",
+   "logline": "The High Court grants an interim injunction halting work at the farmhouse while Cadw weighs spot-listing; the Echo reports William Buckler taken from his hospital bed to face charges.",
+   "setting": "s07",
+   "cast": [
+    "H_CLERK=the Court",
+    "D_BILLY=William (Billy) Buckler",
+    "E_AGENT=BP's solicitor"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 80,
+   "id": "F080",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "3 December 1988",
+   "date_to": "3 December 1988",
+   "sort_from": "1988-12-03",
+   "sort_to": "1988-12-03",
+   "date_range": "3 December 1988",
+   "events": [
+    "EV-0102",
+    "EV-0103"
+   ],
+   "evidence": [
+    "EV-0102",
+    "EV-0103"
+   ],
+   "parts": [
+    [
+     2,
+     2
+    ]
+   ],
+   "title": "Comparing The December Cuttings",
+   "logline": "In the archive, Nia and the Grandson lay the Echo's eviction report and 'History fight to save farm' side by side, comparing what each cutting writes about Cadw's inspection.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 81,
+   "id": "F081",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "1988, date not established (before Cadw’s 5 Dec 1988 decision)",
+   "date_to": "5 Dec 1988",
+   "sort_from": "1988-12-05",
+   "sort_to": "1988-12-05",
+   "date_range": "1988, date not established (before Cadw’s 5 Dec 1988 decision) – 5 Dec 1988",
+   "events": [
+    "CH-0253",
+    "CH-0254",
+    "CH-0255"
+   ],
+   "evidence": [
+    "EV-0095",
+    "EV-0255"
+   ],
+   "parts": [],
+   "title": "Injunction Refused, Listing Declined",
+   "logline": "Judge Norman Francis refuses to continue the injunction pending the European Court application; Cadw's officer confirms in court that the farmhouse will not be listed.",
+   "setting": "s07",
+   "cast": [
+    "H_CLERK=Judge Norman Francis",
+    "E_AGENT=Cadw officer",
+    "D_BILLY=William (Billy) Buckler"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 82,
+   "id": "F082",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "30 Nov – 6 Dec 1988",
+   "date_to": "6 December 1988",
+   "sort_from": "1988-12-06",
+   "sort_to": "1988-12-06",
+   "date_range": "30 Nov – 6 Dec 1988 – 6 December 1988",
+   "events": [
+    "CH-0256",
+    "CH-0257",
+    "CH-0258",
+    "CH-0259",
+    "EV-0104",
+    "EV-0105"
+   ],
+   "evidence": [
+    "EV-0104",
+    "EV-0105"
+   ],
+   "parts": [],
+   "title": "Farmhouse Demolished Before Dawn",
+   "logline": "Bulldozers move onto Great House Farm just after 4am; Mary (Nancy) Williams and Billy watch the buildings fall as Gwen reads the Western Mail's 'Farmer fails in final eviction hearing.'",
+   "setting": "s11",
+   "cast": [
+    "D_BILLY=William (Billy) Buckler",
+    "A_MARY=Mary (Nancy) Williams",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 83,
+   "id": "F083",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "7 Dec 1988",
+   "date_to": "Friday 9 December 1988",
+   "sort_from": "1988-12-07",
+   "sort_to": "1988-12-09",
+   "date_range": "7 Dec 1988 – Friday 9 December 1988",
+   "events": [
+    "CH-0260",
+    "CH-0261",
+    "EV-0106",
+    "EV-0107",
+    "CH-0262",
+    "EV-0108"
+   ],
+   "evidence": [
+    "EV-0106",
+    "EV-0107",
+    "EV-0108"
+   ],
+   "parts": [],
+   "title": "Villagers' Anger, Councillor's Disgust",
+   "logline": "Gwen reads aloud the councillor's 'disgusting' verdict and villagers' anger over the farmhouse's demolition at Dai's bar, the cuttings calling it 'Tears flow as 800 year-old farm house razed.'",
+   "setting": "s05",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 84,
+   "id": "F084",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "10 Dec 1988",
+   "date_to": "17 Dec 1988",
+   "sort_from": "1988-12-10",
+   "sort_to": "1988-12-17",
+   "date_range": "10 Dec 1988 – 17 Dec 1988",
+   "events": [
+    "CH-0263",
+    "EV-0109",
+    "CH-0264",
+    "EV-0110",
+    "CH-0265"
+   ],
+   "evidence": [
+    "EV-0109",
+    "EV-0110"
+   ],
+   "parts": [],
+   "title": "Buckler Freed On Bail",
+   "logline": "William Buckler is freed on bail after the farm's demolition; Gwen later reads a reader's postbag letter thanking the Echo for its coverage of events at Llandough.",
+   "setting": "s07",
+   "cast": [
+    "H_CLERK=the Court",
+    "D_BILLY=William (Billy) Buckler",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 85,
+   "id": "F085",
+   "act": {
+    "n": 7,
+    "en": "Demolition",
+    "cy": "Dymchwel",
+    "es": "Demolición"
+   },
+   "date_from": "21 Dec 1988",
+   "date_to": "21 Dec 1988",
+   "sort_from": "1988-12-21",
+   "sort_to": "1988-12-21",
+   "date_range": "21 Dec 1988",
+   "events": [
+    "CH-0266",
+    "CH-0267"
+   ],
+   "evidence": [
+    "EV-0111"
+   ],
+   "parts": [],
+   "title": "Family Photographed Among The Ruins",
+   "logline": "A photograph shows a family member and her children by the farmhouse's remains as Gwen reads the Echo's 'Bulldozed Before Breakfast' and a reader's sympathy for the Buckler family.",
+   "setting": "s12",
+   "cast": [
+    "A_MARY=the Williams woman",
+    "D_BILLY=William (Billy) Buckler",
+    "F_GWEN=Gwen"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 86,
+   "id": "F086",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "1989",
+   "date_to": "January 1989 (newspaper and date not printed on the cutting; published early 1989, before 3 February)",
+   "sort_from": "1989-00-00",
+   "sort_to": "1989-01-00",
+   "date_range": "1989 – January 1989 (newspaper and date not printed on the cutting; published early 1989, before 3 February)",
+   "events": [
+    "CH-0268",
+    "CH-0269",
+    "EV-0201",
+    "CH-0270",
+    "CH-0271",
+    "CH-0272",
+    "EV-0115"
+   ],
+   "evidence": [
+    "EV-0112",
+    "EV-0115",
+    "EV-0201"
+   ],
+   "parts": [],
+   "title": "From Farm To A Bus",
+   "logline": "The Echo's 'From farm to a bus' finds Billy Buckler converting an old bus to live in, as Barry magistrates drop the threatening-behaviour summons from April's confrontation.",
+   "setting": "s12",
+   "cast": [
+    "D_BILLY=William (Billy) Buckler",
+    "F_GWEN=Gwen",
+    "H_CLERK=magistrates court"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 87,
+   "id": "F087",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "6 Jan 1989",
+   "date_to": "March 1989",
+   "sort_from": "1989-01-06",
+   "sort_to": "1989-03-00",
+   "date_range": "6 Jan 1989 – March 1989",
+   "events": [
+    "CH-0273",
+    "EV-0116",
+    "CH-0274",
+    "CH-0275",
+    "EV-0117",
+    "CH-0276"
+   ],
+   "evidence": [
+    "EV-0116",
+    "EV-0117",
+    "EV-0118"
+   ],
+   "parts": [],
+   "title": "Charges Dropped, Council Sues BP",
+   "logline": "Barry magistrates withdraw a public-order charge against William Buckler and alter his bail condition, as Vale councillors authorise legal action against BP Properties over the demolition.",
+   "setting": "s07",
+   "cast": [
+    "H_CLERK=the Court",
+    "D_BILLY=William (Billy) Buckler",
+    "E_AGENT=council's solicitor"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 88,
+   "id": "F088",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "4 Mar 1989",
+   "date_to": "Thursday 23 March 1989",
+   "sort_from": "1989-03-04",
+   "sort_to": "1989-03-23",
+   "date_range": "4 Mar 1989 – Thursday 23 March 1989",
+   "events": [
+    "CH-0277",
+    "CH-0278",
+    "CH-0279",
+    "EV-0119",
+    "CH-0280",
+    "CH-0281",
+    "EV-0120"
+   ],
+   "evidence": [
+    "EV-0119",
+    "EV-0120"
+   ],
+   "parts": [],
+   "title": "Trial, Guilty Plea, Freedom",
+   "logline": "William Buckler is committed for trial over events at the farm, then pleads guilty and is freed, as lorries begin clearing the demolished site at Llandough.",
+   "setting": "s07",
+   "cast": [
+    "H_CLERK=the Court",
+    "D_BILLY=William (Billy) Buckler",
+    "E_AGENT=BP's solicitor"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 89,
+   "id": "F089",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "24 Mar 1989",
+   "date_to": "6 Apr 1989",
+   "sort_from": "1989-03-24",
+   "sort_to": "1989-04-06",
+   "date_range": "24 Mar 1989 – 6 Apr 1989",
+   "events": [
+    "CH-0282",
+    "EV-0121",
+    "CH-0283",
+    "CH-0284",
+    "CH-0285"
+   ],
+   "evidence": [
+    "EV-0121",
+    "EV-0272"
+   ],
+   "parts": [],
+   "title": "Fight On, Village Buildings Listed",
+   "logline": "Freed, Billy Buckler vows to 'fight on to the death' as Cadw's officer lists the former National School and other Llandough buildings, four months after the farmhouse fell.",
+   "setting": "s04",
+   "cast": [
+    "D_BILLY=William (Billy) Buckler",
+    "F_GWEN=Gwen",
+    "E_AGENT=Cadw officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 90,
+   "id": "F090",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "14 Apr 1989",
+   "date_to": "10 October 1989",
+   "sort_from": "1989-04-14",
+   "sort_to": "1989-10-10",
+   "date_range": "14 Apr 1989 – 10 October 1989",
+   "events": [
+    "CH-0286",
+    "CH-0287",
+    "CH-0288",
+    "EV-0123",
+    "CH-0289",
+    "CH-0290"
+   ],
+   "evidence": [
+    "EV-0122",
+    "EV-0123"
+   ],
+   "parts": [],
+   "title": "Strasbourg Inadmissible, Site Sold On",
+   "logline": "The European Commission declares William Buckler's application inadmissible under Articles 8 and 1; BP's office files a planning application for Leckwith Road and sells Oakview on.",
+   "setting": "s06",
+   "cast": [
+    "H_CLERK=the Court",
+    "E_AGENT=BP's solicitor",
+    "D_BILLY=William (Billy) Buckler"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 91,
+   "id": "F091",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "Oct – 8 Nov 1989",
+   "date_to": "8 Nov 1989",
+   "sort_from": "1989-11-08",
+   "sort_to": "1989-11-08",
+   "date_range": "Oct – 8 Nov 1989 – 8 Nov 1989",
+   "events": [
+    "CH-0291",
+    "CH-0292",
+    "CH-0293"
+   ],
+   "evidence": [
+    "EV-0113",
+    "EV-0124"
+   ],
+   "parts": [],
+   "title": "Application Received, GGAT Comments",
+   "logline": "In the archive room, Nia shows the Grandson the October form stamped received 8 November 1989, and GGAT's first comments on the proposed houses at Great House Farm.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 92,
+   "id": "F092",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "1990",
+   "date_to": "undated (placed c. 1990)",
+   "sort_from": "1990-00-00",
+   "sort_to": "1990-00-00",
+   "date_range": "1990 – undated (placed c. 1990)",
+   "events": [
+    "CH-0294",
+    "CH-0295",
+    "EV-0125",
+    "EV-0194",
+    "EV-0196",
+    "EV-0197",
+    "EV-0199"
+   ],
+   "evidence": [
+    "EV-0125",
+    "EV-0194",
+    "EV-0196",
+    "EV-0197",
+    "EV-0199"
+   ],
+   "parts": [],
+   "title": "GGAT's Trenches, Dual Role",
+   "logline": "Nia hands the Grandson GGAT's 1990 trench report, noting its dual role for council and developer, and the human remains found in trenches three and four.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 93,
+   "id": "F093",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "8 Feb 1990",
+   "date_to": "23 Feb 1990",
+   "sort_from": "1990-02-08",
+   "sort_to": "1990-02-23",
+   "date_range": "8 Feb 1990 – 23 Feb 1990",
+   "events": [
+    "CH-0296",
+    "CH-0297",
+    "CH-0298",
+    "CH-0299"
+   ],
+   "evidence": [
+    "EV-0273"
+   ],
+   "parts": [],
+   "title": "Village Green Or Houses?",
+   "logline": "Gwen reads the Echo's front page aloud in the taproom: company chiefs bid for Great House Farm while GGAT's further comments go missing from the council file.",
+   "setting": "s05",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 94,
+   "id": "F094",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "13 Mar 1990",
+   "date_to": "2 Jun 1990",
+   "sort_from": "1990-03-13",
+   "sort_to": "1990-06-02",
+   "date_range": "13 Mar 1990 – 2 Jun 1990",
+   "events": [
+    "CH-0300",
+    "CH-0301",
+    "CH-0302",
+    "CH-0303",
+    "CH-0304",
+    "CH-0305"
+   ],
+   "evidence": [
+    "EV-0114",
+    "EV-0124",
+    "EV-0126",
+    "EV-0274",
+    "EV-0290"
+   ],
+   "parts": [],
+   "title": "Billy Dies, Permission Granted",
+   "logline": "Gwen reads that Billy Buckler has died, recalling his long detour round Llandough to avoid the farm site, as outline permission for the houses stands granted.",
+   "setting": "s05",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 95,
+   "id": "F095",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "Aug 1990",
+   "date_to": "18 Mar 1992",
+   "sort_from": "1990-08-00",
+   "sort_to": "1992-03-18",
+   "date_range": "Aug 1990 – 18 Mar 1992",
+   "events": [
+    "CH-0306",
+    "CH-0307",
+    "CH-0308",
+    "CH-0309",
+    "CH-0310",
+    "CH-0311"
+   ],
+   "evidence": [
+    "EV-0126",
+    "EV-0275",
+    "EV-0900"
+   ],
+   "parts": [],
+   "title": "Bones Found, Road Proposed",
+   "logline": "Nia reads GGAT's August 1990 report to the Grandson: disturbed bone in two trenches, legal advice urged, as the Welsh Office proposes stopping up Old Barry Road.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 96,
+   "id": "F096",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "Mar–May 1992",
+   "date_to": "3 Sep 1992",
+   "sort_from": "1992-05-00",
+   "sort_to": "1992-09-03",
+   "date_range": "Mar–May 1992 – 3 Sep 1992",
+   "events": [
+    "CH-0312",
+    "EV-0127",
+    "CH-0313",
+    "CH-0314",
+    "CH-0315",
+    "CH-0316"
+   ],
+   "evidence": [
+    "EV-0127",
+    "EV-0128",
+    "EV-0129"
+   ],
+   "parts": [],
+   "title": "Reserved Matters Approved Quietly",
+   "logline": "The Grandson reads the council's 1992 approval for twenty houses; Nia notes GGAT's plea to preserve the burials by record went unanswered in the final conditions.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 97,
+   "id": "F097",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "undated (placed c. 1993)",
+   "date_to": "Dec 1993",
+   "sort_from": "1993-00-00",
+   "sort_to": "1993-12-00",
+   "date_range": "undated (placed c. 1993) – Dec 1993",
+   "events": [
+    "EV-0202",
+    "EV-0203",
+    "EV-0204",
+    "EV-0205",
+    "EV-0206",
+    "CH-0317",
+    "EV-0130",
+    "CH-0318"
+   ],
+   "evidence": [
+    "EV-0130",
+    "EV-0202",
+    "EV-0203",
+    "EV-0204",
+    "EV-0205",
+    "EV-0206"
+   ],
+   "parts": [],
+   "title": "Groundworks Begin Too Soon",
+   "logline": "On the village green, Gwen turns the pages of the new Glamorgan Village Book while Dai notes the Echo's Roman villa feature and the diggers already moving earth.",
+   "setting": "s04",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 98,
+   "id": "F098",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "3 Dec 1993",
+   "date_to": "13 & 15 Dec 1993",
+   "sort_from": "1993-12-03",
+   "sort_to": "1993-12-15",
+   "date_range": "3 Dec 1993 – 13 & 15 Dec 1993",
+   "events": [
+    "CH-0319",
+    "CH-0320",
+    "CH-0321",
+    "CH-0322"
+   ],
+   "evidence": [
+    "EV-0131"
+   ],
+   "parts": [],
+   "title": "Condition Eighteen Not Discharged",
+   "logline": "Nia shows the Grandson GGAT's December letter: building has started, condition eighteen cannot be discharged, and a breach notice should be issued at once.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 99,
+   "id": "F099",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "1994",
+   "date_to": "12 January 1994",
+   "sort_from": "1994-00-00",
+   "sort_to": "1994-01-12",
+   "date_range": "1994 – 12 January 1994",
+   "events": [
+    "CH-0323",
+    "CH-0324",
+    "CH-0325",
+    "CH-0326",
+    "EV-0132",
+    "CH-0327"
+   ],
+   "evidence": [
+    "EV-0132",
+    "EV-0133",
+    "EV-0276",
+    "EV-0900"
+   ],
+   "parts": [],
+   "title": "Over A Thousand Burials",
+   "logline": "The Grandson reads the 1994 figures with Nia: a Home Office licence, Cotswold Archaeology's count of 1,026 burials, and building work disturbing at least thirty more.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 100,
+   "id": "F100",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "4 Feb 1994",
+   "date_to": "30 Apr 1994",
+   "sort_from": "1994-02-04",
+   "sort_to": "1994-04-30",
+   "date_range": "4 Feb 1994 – 30 Apr 1994",
+   "events": [
+    "CH-0328",
+    "CH-0329",
+    "CH-0330",
+    "CH-0331",
+    "CH-0332"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "Dark Ages Burial Sparks Headlines",
+   "logline": "Gwen reads wire reports to Dai in the taproom: thirty skeletons found on the luxury housing site at Llandough, some said to date from the Dark Ages.",
+   "setting": "s05",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 101,
+   "id": "F101",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "2 May 1994",
+   "date_to": "Drawn MAR 92; Rev. B 'Sub station shown' 9/4/94; Received stamp 23 JUN 1994 (Planning and Development); annotated 'With letter dated 22/6/94 from I.H.W.'",
+   "sort_from": "1994-05-02",
+   "sort_to": "1994-06-23",
+   "date_range": "2 May 1994 – Drawn MAR 92; Rev. B 'Sub station shown' 9/4/94; Received stamp 23 JUN 1994 (Planning and Development); annotated 'With letter dated 22/6/94 from I.H.W.'",
+   "events": [
+    "CH-0333",
+    "CH-0334",
+    "EV-0134",
+    "CH-0335",
+    "EV-0135"
+   ],
+   "evidence": [
+    "EV-0134",
+    "EV-0135"
+   ],
+   "parts": [],
+   "title": "Conditions Discharged, Work Continues",
+   "logline": "Nia reads the May 1994 meeting note to the Grandson: the council will not stop the work, with conditions seventeen and eighteen marked discharged despite GGAT's scheduling plea.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 102,
+   "id": "F102",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "28 Jul 1994",
+   "date_to": "12 Oct 1994",
+   "sort_from": "1994-07-28",
+   "sort_to": "1994-10-12",
+   "date_range": "28 Jul 1994 – 12 Oct 1994",
+   "events": [
+    "CH-0336",
+    "CH-0337",
+    "CH-0338",
+    "CH-0339",
+    "CH-0340",
+    "CH-0341"
+   ],
+   "evidence": [
+    "EV-0293"
+   ],
+   "parts": [],
+   "title": "Files Dumped, Remains Donated",
+   "logline": "Gwen reads two Echo stories aloud: old law firm files found dumped on Leckwith Road, and the farm's excavated remains donated to the National Museum as Ideal Homes's gift.",
+   "setting": "s05",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 103,
+   "id": "F103",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "27 Oct 1994",
+   "date_to": "1995",
+   "sort_from": "1994-10-27",
+   "sort_to": "1995-00-00",
+   "date_range": "27 Oct 1994 – 1995",
+   "events": [
+    "CH-0342",
+    "CH-0343",
+    "CH-0344",
+    "CH-0345",
+    "CH-0346",
+    "CH-0347"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "Woodland Transferred, Homes Advertised",
+   "logline": "Gwen reads the Cardiff Post's feature on Churchview Close while Dai notes the new register entry transferring the farm's woodland to the Forest of Cardiff.",
+   "setting": "s05",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 104,
+   "id": "F104",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "3 Feb 1995",
+   "date_to": "1996",
+   "sort_from": "1995-02-03",
+   "sort_to": "1996-00-00",
+   "date_range": "3 Feb 1995 – 1996",
+   "events": [
+    "CH-0348",
+    "CH-0349",
+    "CH-0350",
+    "CH-0351",
+    "CH-0352"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "A Child Names Church View",
+   "logline": "Gwen reads how a Sunday School child named Church View Close, while Dai follows the Echo's reports of houses selling fast on the old farm site.",
+   "setting": "s05",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 105,
+   "id": "F105",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "26 Jun 1996",
+   "date_to": "26 Sep 1996",
+   "sort_from": "1996-06-26",
+   "sort_to": "1996-09-26",
+   "date_range": "26 Jun 1996 – 26 Sep 1996",
+   "events": [
+    "CH-0353",
+    "CH-0354",
+    "CH-0355",
+    "CH-0356"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "Ground Rents Company Wound Up",
+   "logline": "Gwen reads the London Gazette notice winding up Western Ground Rents Ltd, as Dai notes the last house at Churchview Close finally sold that September.",
+   "setting": "s05",
+   "cast": [
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 106,
+   "id": "F106",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "16 May 1997",
+   "date_to": "2004",
+   "sort_from": "1997-05-16",
+   "sort_to": "2004-00-00",
+   "date_range": "16 May 1997 – 2004",
+   "events": [
+    "CH-0357",
+    "CH-0358",
+    "CH-0359",
+    "EV-0137",
+    "EV-0138",
+    "CH-0360"
+   ],
+   "evidence": [
+    "EV-0137",
+    "EV-0138",
+    "EV-0249",
+    "EV-0277"
+   ],
+   "parts": [],
+   "title": "Winding Up, Oaths And Spearheads",
+   "logline": "Nia reads the 1997 winding-up account for Western Ground Rents Ltd while the Grandson checks it against an oath record and a museum spearhead card.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 107,
+   "id": "F107",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "2005",
+   "date_to": "2005",
+   "sort_from": "2005-00-00",
+   "sort_to": "2005-00-00",
+   "date_range": "2005",
+   "events": [
+    "CH-0361",
+    "CH-0362",
+    "CH-0363",
+    "CH-0364",
+    "CH-0365",
+    "CH-0366",
+    "EV-0139"
+   ],
+   "evidence": [
+    "EV-0139"
+   ],
+   "parts": [],
+   "title": "814 Burials, One Transfer",
+   "logline": "Nia reads the 2005 excavation report counting 814 burials while the Grandson notes the same-year land transfer to Goldsworthy Homes on title WA735527.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 108,
+   "id": "F108",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "2–22 Dec 2005",
+   "date_to": "29 Aug 2012",
+   "sort_from": "2005-12-22",
+   "sort_to": "2012-08-29",
+   "date_range": "2–22 Dec 2005 – 29 Aug 2012",
+   "events": [
+    "CH-0367",
+    "CH-0368",
+    "CH-0369",
+    "CH-0370",
+    "CH-0371"
+   ],
+   "evidence": [
+    "EV-0217"
+   ],
+   "parts": [],
+   "title": "Sale Of Land, Leckwith Road",
+   "logline": "The Grandson reads aloud the 2006 accounts line 'Sale of Land — Leckwith Road, Llandough £20,000' while Nia checks it against the divided woodland title.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 109,
+   "id": "F109",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "9 Jun 2014",
+   "date_to": "17 Aug 2016",
+   "sort_from": "2014-06-09",
+   "sort_to": "2016-08-17",
+   "date_range": "9 Jun 2014 – 17 Aug 2016",
+   "events": [
+    "CH-0372",
+    "CH-0373",
+    "CH-0374",
+    "EV-0140",
+    "CH-0375",
+    "CH-0376"
+   ],
+   "evidence": [
+    "EV-0140"
+   ],
+   "parts": [],
+   "title": "The Cemetery Gets Its Number",
+   "logline": "Nia shows the Grandson Coflein's new 2014 record splitting the cemetery from the farm, then an automatic reply from solicitors marked 'BP vs Buckler'.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 110,
+   "id": "F110",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "2017",
+   "date_to": "20 Aug 2018",
+   "sort_from": "2017-00-00",
+   "sort_to": "2018-08-20",
+   "date_range": "2017 – 20 Aug 2018",
+   "events": [
+    "CH-0377",
+    "EV-0141",
+    "CH-0378",
+    "CH-0379",
+    "CH-0380",
+    "CH-0381"
+   ],
+   "evidence": [
+    "EV-0141"
+   ],
+   "parts": [],
+   "title": "Gate Photographs, Subject Access",
+   "logline": "The Grandson files People's Collection Wales photographs of the farm gate beside a 2018 subject-access reminder, Nia checking every date against the register.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 111,
+   "id": "F111",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "Mar 2019",
+   "date_to": "12 Nov 2020",
+   "sort_from": "2019-03-00",
+   "sort_to": "2020-11-12",
+   "date_range": "Mar 2019 – 12 Nov 2020",
+   "events": [
+    "CH-0382",
+    "CH-0383",
+    "CH-0384",
+    "CH-0385",
+    "CH-0386"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "A Cross, A Case, A Proposal",
+   "logline": "Nia reads a blog on the Irbic cross in St Dochdwy's churchyard while the Grandson watches a case-law video on 'factual possession' and a new housing proposal.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 112,
+   "id": "F112",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "2023",
+   "date_to": "7 Apr 2025",
+   "sort_from": "2023-00-00",
+   "sort_to": "2025-04-07",
+   "date_range": "2023 – 7 Apr 2025",
+   "events": [
+    "CH-0387",
+    "CH-0388",
+    "CH-0389",
+    "CH-0390",
+    "CH-0391"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "133 Homes, One Case Blog",
+   "logline": "The Grandson reads the Vale's 2023 outline permission for 133 homes beside a practitioner's blog on adverse possession, Nia compiling the records-request chronology.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 113,
+   "id": "F113",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "14 May 2025",
+   "date_to": "2025–2026",
+   "sort_from": "2025-05-14",
+   "sort_to": "2025-11-14",
+   "date_range": "14 May 2025 – 2025–2026",
+   "events": [
+    "CH-0392",
+    "CH-0393",
+    "CH-0394",
+    "CH-0395",
+    "CH-0396",
+    "EV-0142"
+   ],
+   "evidence": [
+    "EV-0142"
+   ],
+   "parts": [],
+   "title": "Silence From The Council",
+   "logline": "The Grandson sends the local MP a report copied to the Community Council clerk; a Vale councillor offers one reply, then stays silent through six more emails.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "E_AGENT=the Vale councillor"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 114,
+   "id": "F114",
+   "act": {
+    "n": 8,
+    "en": "Afterwards",
+    "cy": "Wedyn",
+    "es": "Después"
+   },
+   "date_from": "20 Nov 2025",
+   "date_to": "20 Nov 2025",
+   "sort_from": "2025-11-20",
+   "sort_to": "2025-11-20",
+   "date_range": "20 Nov 2025",
+   "events": [
+    "CH-0397",
+    "CH-0398"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "Unable To Assist",
+   "logline": "Llandough Community Council's clerk writes back to the Grandson that the council is 'unable to assist with the matter you raise,' closing the file for now.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "E_AGENT=the LCC Clerk"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 115,
+   "id": "F115",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "2026",
+   "date_to": "2026",
+   "sort_from": "2026-00-00",
+   "sort_to": "2026-00-00",
+   "date_range": "2026",
+   "events": [
+    "CH-0399",
+    "CH-0400",
+    "CH-0401",
+    "CH-0402",
+    "CH-0403",
+    "CH-0404",
+    "CH-0405"
+   ],
+   "evidence": [],
+   "parts": [
+    [
+     1,
+     2
+    ]
+   ],
+   "title": "The Wiki Goes Public",
+   "logline": "The Grandson posts the 1987 case and the 1988 dispossession papers online as a public wiki, inviting the Glamorgan History Group to share memories of the farm.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 116,
+   "id": "F116",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "2026",
+   "date_to": "2026",
+   "sort_from": "2026-00-00",
+   "sort_to": "2026-00-00",
+   "date_range": "2026",
+   "events": [
+    "CH-0406",
+    "CH-0407",
+    "EV-0143"
+   ],
+   "evidence": [
+    "EV-0143"
+   ],
+   "parts": [
+    [
+     2,
+     2
+    ]
+   ],
+   "title": "Facebook, Forums And Fees",
+   "logline": "The Grandson shares the farm's story on the Vale's community Facebook group while Nia reads out RCAHMW's price list for the cemetery records request.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 117,
+   "id": "F117",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "2 Feb 2026",
+   "date_to": "13 February 2026",
+   "sort_from": "2026-02-02",
+   "sort_to": "2026-02-13",
+   "date_range": "2 Feb 2026 – 13 February 2026",
+   "events": [
+    "CH-0413",
+    "CH-0414",
+    "CH-0415",
+    "CH-0416",
+    "CH-0417",
+    "EV-0144"
+   ],
+   "evidence": [
+    "EV-0144"
+   ],
+   "parts": [],
+   "title": "Title Number, Please",
+   "logline": "HM Land Registry's Customer Support asks the Grandson for the exact title number behind the 1982 irregularities; the Wales Office writes that paper files are being retrieved.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "E_AGENT=the HM Land Registry officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 118,
+   "id": "F118",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "26 February 2026",
+   "date_to": "5 Apr 2026",
+   "sort_from": "2026-02-26",
+   "sort_to": "2026-04-05",
+   "date_range": "26 February 2026 – 5 Apr 2026",
+   "events": [
+    "EV-0145",
+    "EV-0146",
+    "CH-0419",
+    "CH-0420",
+    "CH-0421",
+    "CH-0422"
+   ],
+   "evidence": [
+    "EV-0145",
+    "EV-0146",
+    "EV-0147"
+   ],
+   "parts": [],
+   "title": "No Evidence Of A Mistake",
+   "logline": "HM Land Registry writes that there is 'no evidence of a mistake in the register' after confirming WA231076 and WA240304 were amalgamated in 1983, Nia reading the letter aloud.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 119,
+   "id": "F119",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "13 Apr 2026",
+   "date_to": "19 April 2026",
+   "sort_from": "2026-04-13",
+   "sort_to": "2026-04-19",
+   "date_range": "13 Apr 2026 – 19 April 2026",
+   "events": [
+    "CH-0423",
+    "CH-0424",
+    "CH-0425",
+    "CH-0426",
+    "CH-0427",
+    "CH-0428",
+    "EV-0149"
+   ],
+   "evidence": [
+    "EV-0045",
+    "EV-0148",
+    "EV-0149",
+    "EV-0352"
+   ],
+   "parts": [],
+   "title": "Stage One, Stage Two",
+   "logline": "HM Land Registry's stage-one complaint decision arrives; the Grandson lodges a stage-two complaint the same day, alongside a fresh complaint to the Ministry of Defence.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "E_AGENT=the HM Land Registry officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 120,
+   "id": "F120",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "21 April 2026",
+   "date_to": "22 May 2026",
+   "sort_from": "2026-04-21",
+   "sort_to": "2026-05-22",
+   "date_range": "21 April 2026 – 22 May 2026",
+   "events": [
+    "EV-0150",
+    "EV-0151",
+    "CH-0429",
+    "CH-0430",
+    "CH-0431",
+    "EV-0152"
+   ],
+   "evidence": [
+    "EV-0150",
+    "EV-0151",
+    "EV-0152"
+   ],
+   "parts": [],
+   "title": "Not Subject To FOI",
+   "logline": "Heneb's reply states the company is 'not subject to FOI requests', while the Public Services Ombudsman for Wales opens its own service review into the regulator.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 121,
+   "id": "F121",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "25 May 2026",
+   "date_to": "7 Jun 2026",
+   "sort_from": "2026-05-25",
+   "sort_to": "2026-06-07",
+   "date_range": "25 May 2026 – 7 Jun 2026",
+   "events": [
+    "CH-0432",
+    "CH-0433",
+    "EV-0154",
+    "CH-0434",
+    "CH-0435",
+    "CH-0437",
+    "CH-0438"
+   ],
+   "evidence": [
+    "EV-0153",
+    "EV-0154",
+    "EV-0322",
+    "EV-0326",
+    "EV-0436"
+   ],
+   "parts": [],
+   "title": "Second and Final Response",
+   "logline": "Nia reads HM Land Registry's second and final response aloud to the Grandson; new FOI letters go out to police and Welsh Water, archive desk, Llandough.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "E_AGENT=Land Registry officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 122,
+   "id": "F122",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "11 Jun 2026",
+   "date_to": "20 Jun 2026",
+   "sort_from": "2026-06-11",
+   "sort_to": "2026-06-20",
+   "date_range": "11 Jun 2026 – 20 Jun 2026",
+   "events": [
+    "CH-0439",
+    "CH-0440",
+    "EV-0156",
+    "CH-0441",
+    "CH-0442",
+    "EV-0157",
+    "CH-0443"
+   ],
+   "evidence": [
+    "EV-0094",
+    "EV-0095",
+    "EV-0156",
+    "EV-0157"
+   ],
+   "parts": [],
+   "title": "Did Not Meet Listing Criteria",
+   "logline": "Cadw's letter states the farmhouse \"did not meet the listing criteria,\" with only two photographs from 29 July 1988 surviving in the file, archive desk.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "E_AGENT=Cadw officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 123,
+   "id": "F123",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "25 Jun 2026",
+   "date_to": "13 July 2026",
+   "sort_from": "2026-06-25",
+   "sort_to": "2026-07-13",
+   "date_range": "25 Jun 2026 – 13 July 2026",
+   "events": [
+    "CH-0444",
+    "CH-0445",
+    "CH-0446",
+    "CH-0449",
+    "CH-0450",
+    "EV-0158"
+   ],
+   "evidence": [
+    "EV-0158",
+    "EV-0322",
+    "EV-0326",
+    "EV-0424",
+    "EV-0426",
+    "EV-0436"
+   ],
+   "parts": [],
+   "title": "Statutory Deadlines Missed Again",
+   "logline": "The Grandson tallies missed reply dates—Glamorgan Archives, Ordnance Survey, South Wales Police—while Nia files a fresh Land Registry letter on title WA231076, archive desk.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "E_AGENT=Land Registry officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 124,
+   "id": "F124",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "16 Jul 2026",
+   "date_to": "27 Jul 2026",
+   "sort_from": "2026-07-16",
+   "sort_to": "2026-07-27",
+   "date_range": "16 Jul 2026 – 27 Jul 2026",
+   "events": [
+    "CH-0453",
+    "CH-0454",
+    "CH-0455",
+    "EV-0160",
+    "CH-0456",
+    "CH-0457"
+   ],
+   "evidence": [
+    "EV-0159",
+    "EV-0160",
+    "EV-0295",
+    "EV-0381",
+    "EV-0424"
+   ],
+   "parts": [],
+   "title": "Hold No Information",
+   "logline": "South Wales Police's reply states they \"hold no information\" on 1988 enforcement; the Grandson lodges an ICO service complaint, archive desk, Llandough.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "E_AGENT=police officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 125,
+   "id": "F125",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "2, 10, 29 Jul 2026",
+   "date_to": "4 Aug 2026",
+   "sort_from": "2026-07-29",
+   "sort_to": "2026-08-04",
+   "date_range": "2, 10, 29 Jul 2026 – 4 Aug 2026",
+   "events": [
+    "CH-0458",
+    "CH-0459",
+    "CH-0460",
+    "CH-0461",
+    "EV-0161",
+    "CH-0463"
+   ],
+   "evidence": [
+    "EV-0161"
+   ],
+   "parts": [],
+   "title": "Thirty Files, Eleven Pounds Each",
+   "logline": "Nia reads out HM Land Registry's schedule—thirty files for WA231076, thirteen for WA240304—each copy priced at eleven pounds on form OC2, archive desk.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 126,
+   "id": "F126",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "9/10 Aug 2026",
+   "date_to": "14 Aug 2026",
+   "sort_from": "2026-08-10",
+   "sort_to": "2026-08-14",
+   "date_range": "9/10 Aug 2026 – 14 Aug 2026",
+   "events": [
+    "CH-0464",
+    "EV-0162",
+    "EV-0163",
+    "CH-0465",
+    "CH-0466",
+    "CH-0467"
+   ],
+   "evidence": [
+    "EV-0162",
+    "EV-0163"
+   ],
+   "parts": [],
+   "title": "No Records Held",
+   "logline": "The Grandson receives Dŵr Cymru's reply of no records and the Ministry of Justice's internal review; Nia logs both at the archive desk, Llandough.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "E_AGENT=Ministry of Justice officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 127,
+   "id": "F127",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "19 August 2026",
+   "date_to": "26 Aug 2026",
+   "sort_from": "2026-08-19",
+   "sort_to": "2026-08-26",
+   "date_range": "19 August 2026 – 26 Aug 2026",
+   "events": [
+    "EV-0164",
+    "CH-0468",
+    "CH-0469",
+    "CH-0470",
+    "CH-0471",
+    "CH-0472",
+    "CH-0473"
+   ],
+   "evidence": [
+    "EV-0164",
+    "EV-0295",
+    "EV-0317",
+    "EV-0466"
+   ],
+   "parts": [],
+   "title": "Not In Scope",
+   "logline": "Museum Wales states other finds at Great House Farm and Church Farm sit \"not in scope\"; the BP Archive confirms no pre-1955 papers survive, archive desk.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "E_AGENT=Museum Wales officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 128,
+   "id": "F128",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "27 Aug 2026",
+   "date_to": "29 Aug 2026",
+   "sort_from": "2026-08-27",
+   "sort_to": "2026-08-29",
+   "date_range": "27 Aug 2026 – 29 Aug 2026",
+   "events": [
+    "CH-0474",
+    "CH-0475"
+   ],
+   "evidence": [
+    "EV-0484"
+   ],
+   "parts": [],
+   "title": "Chief Inspector Writes Again",
+   "logline": "Cadw's Chief Inspector sends a further letter while the Grandson posts a fresh request to the Wales Office, archive desk, Llandough.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "E_AGENT=Cadw Chief Inspector"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 129,
+   "id": "F129",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "Sep 2026",
+   "date_to": "2 Sep 2026",
+   "sort_from": "2026-09-00",
+   "sort_to": "2026-09-02",
+   "date_range": "Sep 2026 – 2 Sep 2026",
+   "events": [
+    "CH-0476",
+    "EV-0165",
+    "EV-0166",
+    "EV-0167",
+    "EV-0168",
+    "EV-0169",
+    "EV-0170",
+    "EV-0171",
+    "CH-0477",
+    "CH-0478"
+   ],
+   "evidence": [
+    "EV-0165",
+    "EV-0166",
+    "EV-0167",
+    "EV-0168",
+    "EV-0169",
+    "EV-0170",
+    "EV-0171"
+   ],
+   "parts": [],
+   "title": "The Wiki Goes Live",
+   "logline": "Branwen Buckler's family account of the 1988 removal joins new Land Registry title plans and registers as the research wiki launches, archive desk, Llandough.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 130,
+   "id": "F130",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "3 Sep 2026",
+   "date_to": "9 September 2026",
+   "sort_from": "2026-09-03",
+   "sort_to": "2026-09-09",
+   "date_range": "3 Sep 2026 – 9 September 2026",
+   "events": [
+    "CH-0479",
+    "CH-0480",
+    "CH-0481",
+    "EV-0172",
+    "CH-0482",
+    "CH-0483",
+    "CH-0484",
+    "EV-0173"
+   ],
+   "evidence": [
+    "EV-0172",
+    "EV-0173",
+    "EV-0372",
+    "EV-0432",
+    "EV-0503"
+   ],
+   "parts": [],
+   "title": "Enquiry, Not Complaint",
+   "logline": "At the archive desk the Grandson reads Dŵr Cymru's reply treating his request as an enquiry about the 1988 water supply, while Nia sends four requests to the Royal Commission (RCAHMW).",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 131,
+   "id": "F131",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "11 Sep 2026",
+   "date_to": "17 Sep 2026",
+   "sort_from": "2026-09-11",
+   "sort_to": "2026-09-17",
+   "date_range": "11 Sep 2026 – 17 Sep 2026",
+   "events": [
+    "CH-0485",
+    "CH-0486",
+    "CH-0487",
+    "EV-0174",
+    "CH-0488"
+   ],
+   "evidence": [
+    "EV-0042",
+    "EV-0174",
+    "EV-0216",
+    "EV-0492"
+   ],
+   "parts": [],
+   "title": "The 1965 Conveyance Surfaces",
+   "logline": "Vale of Glamorgan Council releases the 11 June 1965 school-site conveyance and contract; Nia and the Grandson compare it with earlier title papers, archive desk.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "E_AGENT=Vale of Glamorgan officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 132,
+   "id": "F132",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "18 Sep 2026",
+   "date_to": "20 September 2026",
+   "sort_from": "2026-09-18",
+   "sort_to": "2026-09-20",
+   "date_range": "18 Sep 2026 – 20 September 2026",
+   "events": [
+    "CH-0489",
+    "CH-0490",
+    "CH-0491",
+    "EV-0175",
+    "CH-0492",
+    "CH-0493",
+    "EV-0176"
+   ],
+   "evidence": [
+    "EV-0175",
+    "EV-0176",
+    "EV-0317",
+    "EV-0484"
+   ],
+   "parts": [],
+   "title": "We Have Nothing More",
+   "logline": "Llandough Community Council's Chair states, \"We have nothing more to add,\" as the MP's office forwards a Land Registry letter, archive desk, Llandough.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "F_GWEN=Gwen reading the reply"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 133,
+   "id": "F133",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "21 Sep 2026",
+   "date_to": "22 September 2026",
+   "sort_from": "2026-09-21",
+   "sort_to": "2026-09-22",
+   "date_range": "21 Sep 2026 – 22 September 2026",
+   "events": [
+    "CH-0494",
+    "CH-0495",
+    "EV-0177",
+    "CH-0496",
+    "CH-0497",
+    "EV-0178"
+   ],
+   "evidence": [
+    "EV-0177",
+    "EV-0178",
+    "EV-0390",
+    "EV-0472"
+   ],
+   "parts": [],
+   "title": "Section Twelve Refusal",
+   "logline": "Llandough Community Council and the Vale of Glamorgan each invoke cost limits and request reviews; Museum Wales discloses further material, archive desk, Llandough.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "E_AGENT=council officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 134,
+   "id": "F134",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "7 and 24 Sep 2026",
+   "date_to": "26 Sep 2026",
+   "sort_from": "2026-09-24",
+   "sort_to": "2026-09-26",
+   "date_range": "7 and 24 Sep 2026 – 26 Sep 2026",
+   "events": [
+    "CH-0498",
+    "CH-0499",
+    "CH-0500",
+    "EV-0179",
+    "CH-0501"
+   ],
+   "evidence": [
+    "EV-0179",
+    "EV-0295",
+    "EV-0370"
+   ],
+   "parts": [],
+   "title": "Sixty Pounds For Images",
+   "logline": "Glamorgan Archives quotes sixty pounds for fifty-three images and fifty pounds per search; the Grandson questions a reported 1983 Neath warehouse fire, archive desk.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "E_AGENT=Glamorgan Archives officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 135,
+   "id": "F135",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "27 Sep 2026",
+   "date_to": "27–30 September 2026",
+   "sort_from": "2026-09-27",
+   "sort_to": "2026-09-27",
+   "date_range": "27 Sep 2026 – 27–30 September 2026",
+   "events": [
+    "CH-0502",
+    "CH-0503",
+    "CH-0504",
+    "CH-0505",
+    "EV-0180"
+   ],
+   "evidence": [
+    "EV-0180",
+    "EV-0374",
+    "EV-0438",
+    "EV-0484"
+   ],
+   "parts": [],
+   "title": "Formal Complaints Pile Up",
+   "logline": "South Wales Police and Heneb face formal complaints and internal reviews; Nia logs each acknowledgement while the Grandson updates the schedule, archive desk, Llandough.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "E_AGENT=Heneb officer"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 136,
+   "id": "F136",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "28 Sep 2026",
+   "date_to": "28 September 2026",
+   "sort_from": "2026-09-28",
+   "sort_to": "2026-09-28",
+   "date_range": "28 Sep 2026 – 28 September 2026",
+   "events": [
+    "CH-0506",
+    "CH-0507",
+    "CH-0508",
+    "CH-0509",
+    "CH-0510",
+    "CH-0511",
+    "CH-0512",
+    "CH-0513",
+    "CH-0514",
+    "EV-0181",
+    "EV-0182"
+   ],
+   "evidence": [
+    "EV-0181",
+    "EV-0182",
+    "EV-0367",
+    "EV-0494"
+   ],
+   "parts": [],
+   "title": "Reviewer Allocated, Access Requests Sent",
+   "logline": "Nia logs HM Land Registry's complaints reviewer file while the Grandson sends subject access requests to the Council and the Registry, copying Cadw's heritage inboxes.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia the Archivist",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 137,
+   "id": "F137",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "29 Sep 2026",
+   "date_to": "30 September 2026",
+   "sort_from": "2026-09-29",
+   "sort_to": "2026-09-30",
+   "date_range": "29 Sep 2026 – 30 September 2026",
+   "events": [
+    "CH-0515",
+    "CH-0516",
+    "CH-0517",
+    "EV-0183",
+    "EV-0184",
+    "EV-0185",
+    "EV-0186",
+    "EV-0187",
+    "CH-0518",
+    "EV-0188"
+   ],
+   "evidence": [
+    "EV-0183",
+    "EV-0184",
+    "EV-0185",
+    "EV-0186",
+    "EV-0187",
+    "EV-0188"
+   ],
+   "parts": [],
+   "title": "Police Files, Archive Catalogue Entries",
+   "logline": "The Grandson reads South Wales Police's FOI response and NPCC's review decisions while Nia pulls RCAHMW's reply and the Glamorgan Archives catalogue entry for Bute 10.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia the Archivist",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 138,
+   "id": "F138",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "2 October 2026",
+   "date_to": "6 Oct 2026",
+   "sort_from": "2026-10-02",
+   "sort_to": "2026-10-06",
+   "date_range": "2 October 2026 – 6 Oct 2026",
+   "events": [
+    "EV-0189",
+    "CH-0519",
+    "CH-0520",
+    "CH-0521",
+    "EV-0190",
+    "CH-0522",
+    "CH-0523",
+    "CH-0524"
+   ],
+   "evidence": [
+    "EV-0189",
+    "EV-0190",
+    "EV-0372",
+    "EV-0432",
+    "EV-0503"
+   ],
+   "parts": [],
+   "title": "Deadlines Pass, Cuttings Transcribed",
+   "logline": "Gwen reads the family's newly transcribed press cuttings outside the shop while the Grandson notes Ministry of Justice and Museum Wales replies and Heneb's EIR note.",
+   "setting": "s04",
+   "cast": [
+    "F_GWEN=Gwen",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 139,
+   "id": "F139",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "7 Oct 2026",
+   "date_to": "9 October 2026",
+   "sort_from": "2026-10-07",
+   "sort_to": "2026-10-09",
+   "date_range": "7 Oct 2026 – 9 October 2026",
+   "events": [
+    "CH-0525",
+    "CH-0526",
+    "CH-0527",
+    "EV-0191"
+   ],
+   "evidence": [
+    "EV-0191",
+    "EV-0506"
+   ],
+   "parts": [],
+   "title": "Internal Reviews Requested Again",
+   "logline": "The Grandson asks the National Archives and the Ministry of Justice for internal reviews while Nia files NPCC's reply on search disclosure for Great House Farm.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia the Archivist",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 140,
+   "id": "F140",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "10 Oct 2026",
+   "date_to": "10 October 2026",
+   "sort_from": "2026-10-10",
+   "sort_to": "2026-10-10",
+   "date_range": "10 Oct 2026 – 10 October 2026",
+   "events": [
+    "CH-0528",
+    "CH-0529",
+    "CH-0530",
+    "CH-0531",
+    "CH-0532",
+    "CH-0533",
+    "CH-0534",
+    "CH-0535",
+    "EV-0192"
+   ],
+   "evidence": [
+    "EV-0192",
+    "EV-0408",
+    "EV-0446"
+   ],
+   "parts": [],
+   "title": "Land Registry Opens Correction File",
+   "logline": "The Man from the Estate confirms HM Land Registry's internal application to investigate the register entry, as the Grandson sends more FOI requests to Cadw and the Ministry of Defence.",
+   "setting": "s06",
+   "cast": [
+    "E_AGENT=HM Land Registry officer",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 141,
+   "id": "F141",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "11 Oct 2026",
+   "date_to": "11 October 2026",
+   "sort_from": "2026-10-11",
+   "sort_to": "2026-10-11",
+   "date_range": "11 Oct 2026 – 11 October 2026",
+   "events": [
+    "CH-0536",
+    "CH-0537",
+    "CH-0538",
+    "CH-0539",
+    "CH-0540",
+    "EV-0193"
+   ],
+   "evidence": [
+    "EV-0193"
+   ],
+   "parts": [],
+   "title": "Council Refuses The Fee",
+   "logline": "Llandough Community Council's clerk refuses the Grandson's request under the cost limit, while Gwen tells Dai the other matters wait for October's meeting.",
+   "setting": "s05",
+   "cast": [
+    "E_AGENT=the Clerk",
+    "F_GWEN=Gwen",
+    "G_DAI=Dai"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 142,
+   "id": "F142",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "7–12 Oct 2026",
+   "date_to": "14 Oct 2026",
+   "sort_from": "2026-10-12",
+   "sort_to": "2026-10-14",
+   "date_range": "7–12 Oct 2026 – 14 Oct 2026",
+   "events": [
+    "CH-0541",
+    "CH-0542",
+    "CH-0543",
+    "CH-0544",
+    "CH-0545"
+   ],
+   "evidence": [
+    "EV-0391"
+   ],
+   "parts": [],
+   "title": "No Search Log Found",
+   "logline": "Museum Wales confirms no search log survives for its decision, while the Grandson books time at the National Archives and Nia logs Heneb's digitised record.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia the Archivist",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 143,
+   "id": "F143",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "15 Oct 2026",
+   "date_to": "16 Oct 2026",
+   "sort_from": "2026-10-15",
+   "sort_to": "2026-10-16",
+   "date_range": "15 Oct 2026 – 16 Oct 2026",
+   "events": [
+    "CH-0546",
+    "CH-0547",
+    "CH-0548",
+    "CH-0549",
+    "CH-0550",
+    "CH-0551"
+   ],
+   "evidence": [
+    "EV-0302",
+    "EV-0423"
+   ],
+   "parts": [],
+   "title": "Family Applies To Alter Register",
+   "logline": "The Grandson lodges an application to alter HM Land Registry's register, as preservation notices go to BP and Heneb answers the family's schedule point by point.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 144,
+   "id": "F144",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "19 Oct 2026",
+   "date_to": "19 Oct 2026",
+   "sort_from": "2026-10-19",
+   "sort_to": "2026-10-19",
+   "date_range": "19 Oct 2026",
+   "events": [
+    "CH-0552",
+    "CH-0553",
+    "CH-0554",
+    "CH-0555",
+    "CH-0556",
+    "CH-0557",
+    "CH-0558"
+   ],
+   "evidence": [
+    "EV-0244",
+    "EV-0245",
+    "EV-0255"
+   ],
+   "parts": [
+    [
+     1,
+     2
+    ]
+   ],
+   "title": "Witness Recalls Cadw's 1988 Visit",
+   "logline": "A family member tells the Grandson that Cadw's officers once inspected the farmhouse roof beams, as Cadw and the Welsh Government answer the freedom-of-information requests about missing files.",
+   "setting": "s02",
+   "cast": [
+    "A_MARY=a family member",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 145,
+   "id": "F145",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "19 Oct 2026",
+   "date_to": "19 Oct 2026",
+   "sort_from": "2026-10-19",
+   "sort_to": "2026-10-19",
+   "date_range": "19 Oct 2026",
+   "events": [
+    "CH-0559",
+    "CH-0560",
+    "CH-0561",
+    "CH-0562",
+    "CH-0563",
+    "CH-0564"
+   ],
+   "evidence": [
+    "EV-0390",
+    "EV-0472"
+   ],
+   "parts": [
+    [
+     2,
+     2
+    ]
+   ],
+   "title": "NLW Enquiry, Video Post Shared",
+   "logline": "Nia follows up the National Archives and the National Library of Wales, while the Grandson's dartboard-timeline video, citing a 1958 Western Mail cutting, circulates on the Vale of Glamorgan page.",
+   "setting": "s08",
+   "cast": [
+    "I_NIA=Nia the Archivist",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 146,
+   "id": "F146",
+   "act": {
+    "n": 9,
+    "en": "Disclosure",
+    "cy": "Datgelu",
+    "es": "Divulgación"
+   },
+   "date_from": "19–20 Oct 2026",
+   "date_to": "21 Oct 2026",
+   "sort_from": "2026-10-20",
+   "sort_to": "2026-10-21",
+   "date_range": "19–20 Oct 2026 – 21 Oct 2026",
+   "events": [
+    "CH-0566",
+    "CH-0567",
+    "CH-0568",
+    "CH-0569",
+    "CH-0570",
+    "CH-0571",
+    "CH-0572",
+    "CH-0573",
+    "CH-0574",
+    "CH-0575"
+   ],
+   "evidence": [
+    "EV-0321",
+    "EV-0346",
+    "EV-0375",
+    "EV-0483",
+    "EV-0514"
+   ],
+   "parts": [],
+   "title": "More Requests, More Deadlines",
+   "logline": "The Grandson sends fresh FOI and EIR requests to Defra, Historic England and the Valuation Office, while the Council narrows its reply and the court service receives a preservation notice.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 147,
+   "id": "F147",
+   "act": {
+    "n": 10,
+    "en": "Cedwyn",
+    "cy": "Cedwyn",
+    "es": "Cedwyn"
+   },
+   "date_from": "22 Oct 2026",
+   "date_to": "24 Oct 2026",
+   "sort_from": "2026-10-22",
+   "sort_to": "2026-10-24",
+   "date_range": "22 Oct 2026 – 24 Oct 2026",
+   "events": [
+    "CH-0576",
+    "CH-0578",
+    "CH-0579",
+    "CH-0580",
+    "CH-0581",
+    "CX-01"
+   ],
+   "evidence": [
+    "EV-0317",
+    "EV-0472"
+   ],
+   "parts": [],
+   "title": "Cedwyn Opens As Deadlines Miss",
+   "logline": "The Council meets remotely as the Grandson chases Vale of Glamorgan's overdue answer and the Coroner's Service's silence, the day Cedwyn opens one website for the whole archive.",
+   "setting": "s08",
+   "cast": [
+    "D_BILLY=the Grandson",
+    "I_NIA=Nia the Archivist",
+    "E_AGENT=the Council"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  },
+  {
+   "n": 148,
+   "id": "F148",
+   "act": {
+    "n": 10,
+    "en": "Cedwyn",
+    "cy": "Cedwyn",
+    "es": "Cedwyn"
+   },
+   "date_from": "25 Oct 2026",
+   "date_to": "25 Oct 2026",
+   "sort_from": "2026-10-25",
+   "sort_to": "2026-10-25",
+   "date_range": "25 Oct 2026",
+   "events": [
+    "CX-02",
+    "CX-03"
+   ],
+   "evidence": [],
+   "parts": [],
+   "title": "Cedwyn Splits: Wales And Argentina",
+   "logline": "Elena walks the planned twin of Great House Farm at Puerto Madryn as Nia and the Grandson begin mapping every frame of the Cedwyn film in Llandough.",
+   "setting": "s13",
+   "cast": [
+    "J_ELENA=Elena",
+    "I_NIA=Nia the Archivist",
+    "D_BILLY=the Grandson"
+   ],
+   "target_seconds": 120,
+   "status": "empty",
+   "clip": null,
+   "script": null,
+   "logline_status": "draft (machine-written, for hive review)"
+  }
+ ]
+}

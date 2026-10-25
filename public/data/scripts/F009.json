@@ -1,0 +1,272 @@
+{
+ "frame": 9,
+ "title": "John Williams succeeds, Amy dies",
+ "cast": {
+  "A_MARY": "Amy Williams (c.1841, about forty-two)",
+  "B_JOHN": "John Williams: the c.1841 tithe occupier, and in 1864 the John Williams who farms after him (repertory face, younger costume)",
+  "F_GWEN": "Gwen, neighbour in the 1864 kitchen and, in the 1904 coda, reading the Cardiff Times on the village street"
+ },
+ "setting": "s02",
+ "target_seconds": 120,
+ "shots": [
+  {
+   "shot": 1,
+   "set": "s09",
+   "direction": "Slow drift across the Llandough hill above the Ely as two tithe surveyors run a measuring chain along a hedge line.",
+   "image_prompt": "Photoreal 1841 Welsh landscape, Llandough hill above the River Ely, patchwork of small hedged fields, Leckwith woods beyond, two surveyors in dark tailcoats and top hats stretching a Gunter's chain between ranging poles, soft overcast morning light, period-correct, no text, no heraldry",
+   "animate": "i2v",
+   "lines": []
+  },
+  {
+   "shot": 2,
+   "set": "s02",
+   "direction": "Close on Amy at the scrubbed kitchen table, a long paper schedule unrolled under her hands, looking up toward John at the inglenook.",
+   "image_prompt": "Photoreal 1841 Welsh farmhouse kitchen, inglenook fire, flagstone floor, oak dresser with blue-and-white plates, A_MARY as Amy Williams aged about forty-two, dark brown hair pinned under a white cap, strong cheekbones, grey-green eyes, small mole on left cheek, plain wool bodice and apron, hands resting on a long handwritten paper schedule, candle and window light, no readable text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "A_MARY",
+     "en": "Bore da, John. The tithe men left a copy of their schedule. Landough, Cogan and Leckwith, and your name down the occupier column, over and over.",
+     "cite": [
+      "EV-0215"
+     ],
+     "cy": "Bore da, John. Mae dynion y degwm wedi gadael copi o'u hamserlen. Llandochau, Cogan a Lecwydd, a dy enw di i lawr yn y golofn feddiannydd, drosodd a throsodd.",
+     "es": "Bore da, John. Los del diezmo dejaron copia de su planilla. Landough, Cogan y Leckwith, y tu nombre en la columna de ocupante, una y otra vez."
+    }
+   ]
+  },
+  {
+   "shot": 3,
+   "set": "s02",
+   "direction": "Insert of the tithe apportionment page as Amy's finger runs down the columns.",
+   "image_prompt": "Prop insert: Tithe apportionment, Landough, Cogan and Leckwith, the John Williams entries (render from evidence page EV-0215), lying on a scrubbed oak table beside a candle",
+   "animate": "still",
+   "lines": [
+    {
+     "who": "A_MARY",
+     "en": "Thirty-six parcels. Thirty-three are Bute land: a hundred and nineteen acres, nought roods, six perches. Three little ones are glebe, church land: two roods, twenty-four perches.",
+     "cite": [
+      "EV-0215"
+     ],
+     "cy": "Tri deg chwech parsel. Tri deg tri yn dir Bute: cant un deg naw erw, dim rwd, chwe pherc. Tri bach yn dir glebe, tir eglwys: dwy rwd, dau ddeg pedwar perc.",
+     "es": "Treinta y seis parcelas. Treinta y tres son tierra de Bute: ciento diecinueve acres, cero rodas, seis perchas. Tres chicas son glebe, tierra de iglesia: dos rodas, veinticuatro perchas."
+    }
+   ]
+  },
+  {
+   "shot": 4,
+   "set": "s02",
+   "direction": "Close on John by the inglenook, pipe in hand, totting the figures in his head.",
+   "image_prompt": "Photoreal 1841 Welsh farmhouse inglenook, B_JOHN as John Williams in his fifties, weathered broad face, grey-flecked beard, heavy hands, linen smock over a waistcoat, low-crowned felt hat on the settle beside him, firelight on his face, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Add them and you get a hundred and nineteen acres, two roods, thirty perches. Every field I walk, written down by a man with a chain.",
+     "cite": [
+      "EV-0215"
+     ],
+     "cy": "Ychwanega nhw a cei di gant un deg naw erw, dwy rwd, tri deg perc. Pob cae dwi'n cerdded, wedi'i ysgrifennu i lawr gan ddyn efo cadwyn.",
+     "es": "Sumalas y da ciento diecinueve acres, dos rodas, treinta perchas. Cada campo que camino, anotado por un hombre con cadena."
+    }
+   ]
+  },
+  {
+   "shot": 5,
+   "set": "s02",
+   "direction": "Two-shot across the table as Amy taps the margin where no rent column appears.",
+   "image_prompt": "Photoreal 1841 farmhouse kitchen two-shot, A_MARY as Amy Williams in her forties seated at the table with the paper schedule, B_JOHN as John Williams in his fifties leaning over her shoulder, dresser and flagstones behind, warm candlelight, no readable text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "A_MARY",
+     "en": "And not a word about a lease, or a term, or what rent we pay. It shows who farms which field. That's all it shows.",
+     "cite": [
+      "EV-0215"
+     ],
+     "cy": "A dim gair am brydles, na thymor, na faint o rent dalwn ni. Mae'n dangos pwy sy'n ffermio pa gae. Dyna i gyd mae'n dangos.",
+     "es": "Y ni una palabra de arriendo, ni de plazo, ni de cuánta renta pagamos. Muestra quién trabaja cada campo. Eso es todo lo que muestra."
+    }
+   ]
+  },
+  {
+   "shot": 6,
+   "set": "s02",
+   "direction": "Insert of the tithe plan with its numbered field parcels, John's hand smoothing the fold.",
+   "image_prompt": "Prop insert: Tithe plan for Llandough-juxta-Penarth parish, Glamorgan Archives P35 (render from catalogue entry CH-0012), spread on an oak table, a weathered farmer's hand at the edge",
+   "animate": "still",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "They'll finish the plan next year, 'forty-two, and it'll lie with the parish papers. Whether these fields are number nineteen on the 'twenty-four plan, it won't tell you.",
+     "cite": [
+      "CH-0012",
+      "EV-0215"
+     ],
+     "cy": "Fyddan nhw'n gorffen y cynllun flwyddyn nesa, pedwar deg dau, ac fe fydd o'n gorwedd efo papurau'r plwyf. P'un ai ydi'r caeau yma'n rhif un deg naw ar gynllun pedwar ar hugain, ddwedith o ddim wrthot ti.",
+     "es": "Terminarán el plano el año que viene, el cuarenta y dos, y quedará con los papeles de la parroquia. Si estos campos son el número diecinueve en el plano del veinticuatro, eso no lo dirá."
+    },
+    {
+     "who": "A_MARY",
+     "en": "Nor where the hedges will run in thirty years. Paper moves slower than hedges, John.",
+     "cite": [
+      "EV-0215"
+     ],
+     "cy": "Na lle redith y gwrychoedd mewn tri deg mlynedd. Mae papur yn symud yn arafach na gwrychoedd, John.",
+     "es": "Ni por dónde irán los setos dentro de treinta años. El papel se mueve más lento que los setos, John."
+    }
+   ]
+  },
+  {
+   "shot": 7,
+   "set": "s01",
+   "direction": "Time-lapse feel over the farmyard: seasons turn, carts come and go, the stone farmhouse unchanged.",
+   "image_prompt": "Photoreal mid-nineteenth-century Welsh farmyard, Great House Farm, whitewashed stone farmhouse with slate roof, stone barn, muddy yard, hay cart and two horses, autumn light shading into winter, no people in close view, no text, no heraldry",
+   "animate": "i2v",
+   "lines": []
+  },
+  {
+   "shot": 8,
+   "set": "s02",
+   "direction": "December 1864, the same kitchen by a low fire and holly on the dresser; Gwen sets down a cup beside John.",
+   "image_prompt": "Photoreal December 1864 Welsh farmhouse kitchen, same inglenook, flagstones and dresser, sprigs of holly on the dresser, low fire, F_GWEN as Gwen in her sixties, round face, rosy cheeks, silver curls under a black bonnet, dark wool shawl, reading glasses on a chain, and B_JOHN as John Williams in his forties with a darker, fuller beard and a black mourning armband, sombre candlelight, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "F_GWEN",
+     "en": "Twenty-third of December, and the house quiet as the churchyard. Sixty-five she was, John. Sixty-five, here in Llandough.",
+     "cite": [
+      "CH-0014"
+     ],
+     "cy": "Dau ddeg tri o Ragfyr, a'r tŷ mor dawel â'r fynwent. Chwe deg pump oedd hi, John. Chwe deg pump, yma yn Llandochau.",
+     "es": "Veintitrés de diciembre, y la casa callada como el cementerio. Sesenta y cinco tenía, John. Sesenta y cinco, aquí en Llandough."
+    }
+   ]
+  },
+  {
+   "shot": 9,
+   "set": "s02",
+   "direction": "Close on John staring into the fire, jaw set.",
+   "image_prompt": "Photoreal 1864 close-up, B_JOHN as John Williams in his forties, weathered broad face, dark beard, black armband on a tweed coat, firelight, Welsh farmhouse inglenook behind, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "She kept this kitchen through the tithe men and every winter since. I'll not have her written small.",
+     "cite": [
+      "CH-0014"
+     ],
+     "cy": "Cadwodd hi'r gegin yma trwy ddynion y degwm a phob gaeaf ers hynny. Wna i ddim gadael iddyn nhw ei gwneud hi'n fach ar bapur.",
+     "es": "Mantuvo esta cocina durante lo del diezmo y cada invierno desde entonces. No voy a dejar que la achiquen por escrito."
+    }
+   ]
+  },
+  {
+   "shot": 10,
+   "set": "s02",
+   "direction": "Close on Gwen, gentle but firm, hands folded over her shawl.",
+   "image_prompt": "Photoreal 1864 close-up, F_GWEN as Gwen in her sixties, round rosy face, silver curls under a black bonnet, dark shawl, reading glasses on a chain, candlelight in a farmhouse kitchen, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "F_GWEN",
+     "en": "The paper will print her the way it prints widows: 'relict of the late Mr. John Williams, Great House farm.' The farm's own name, in print.",
+     "cite": [
+      "CH-0014"
+     ],
+     "cy": "Bydd y papur yn ei hargraffu hi fel mae'n argraffu gweddwon: 'rhent y diweddar Mr John Williams, fferm Tŷ Mawr.' Enw'r fferm ei hun, mewn print.",
+     "es": "El diario la va a imprimir como imprime a las viudas: 'relicta del difunto señor John Williams, granja Great House'. El propio nombre de la granja, impreso."
+    }
+   ]
+  },
+  {
+   "shot": 11,
+   "set": "s02",
+   "direction": "John turns to the small window, the dark yard beyond, his reflection faint in the glass.",
+   "image_prompt": "Photoreal 1864 winter night, B_JOHN as John Williams in his forties at a small deep-set farmhouse window, yard and barn dark outside, candle behind him, no text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "B_JOHN",
+     "en": "Great House. Tŷ Mawr. Whatever the estate calls it in its books.",
+     "cite": [
+      "CH-0014"
+     ],
+     "cy": "Tŷ Mawr. Beth bynnag mae'r ystad yn ei alw yn ei llyfrau.",
+     "es": "Great House. Tŷ Mawr. Como sea que lo llame el registro de la finca."
+    }
+   ]
+  },
+  {
+   "shot": 12,
+   "set": "s04",
+   "direction": "Summer 1904: Gwen, in Edwardian dress, opens the Cardiff Times outside the post office on the village street.",
+   "image_prompt": "Photoreal July 1904 Llandough village street and green, stone cottages, a small post office window, F_GWEN as Gwen in her sixties, the same round rosy face and silver curls, Edwardian high-collared blouse and floral apron, reading glasses on a chain, holding an open broadsheet newspaper, bright summer light, no readable text, no heraldry",
+   "animate": "i2v",
+   "lines": [
+    {
+     "who": "F_GWEN",
+     "en": "Cardiff Times, sixteenth of July, nineteen-oh-four. John Williams, 'of Llandough Farm'. And here: 'He succeeded his father in the occupancy of the farm in 1855.'",
+     "cite": [
+      "CH-0013",
+      "EV-0224"
+     ],
+     "cy": "Cardiff Times, un deg chwech o Orffennaf, un naw dim pedwar. John Williams, 'o Fferm Llandochau'. A dyma: 'Fe ddilynodd ei dad ym meddiant y fferm yn un wyth pump pump.'",
+     "es": "Cardiff Times, dieciséis de julio de mil novecientos cuatro. John Williams, 'de la granja Llandough'. Y aquí: 'Sucedió a su padre en la ocupación de la granja en 1855'."
+    }
+   ]
+  },
+  {
+   "shot": 13,
+   "set": "s04",
+   "direction": "Insert of the newspaper column, Gwen's thumb under the line.",
+   "image_prompt": "Prop insert: Cardiff Times, 16 July 1904, the column on John Williams of Llandough Farm (render from evidence page EV-0224 corroboration), held in an older woman's hands in summer daylight",
+   "animate": "still",
+   "lines": [
+    {
+     "who": "F_GWEN",
+     "en": "Mind what it gives you and what it doesn't. Llandough Farm, it prints, not Great House. That he's the Great House John is our own reckoning, matched against the census, not the paper's words.",
+     "cite": [
+      "CH-0013",
+      "EV-0224"
+     ],
+     "cy": "Cofia be mae o'n ei roi i ti a be nad ydi o. Fferm Llandochau mae o'n ei argraffu, nid Tŷ Mawr. Mai fo ydi'r John o'r Tŷ Mawr, ein cyfrifiad ni ydi hynny, wedi'i baru efo'r cyfrifiad, nid geiriau'r papur.",
+     "es": "Fijate qué te da y qué no te da. Imprime granja Llandough, no Great House. Que es el John de Great House es cuenta nuestra, cruzada con el censo, no palabras del diario."
+    }
+   ]
+  },
+  {
+   "shot": 14,
+   "set": "s04",
+   "direction": "Close on Gwen folding the paper, looking up the street toward the hill.",
+   "image_prompt": "Photoreal July 1904 close-up, F_GWEN as Gwen in her sixties, round rosy face, silver curls, Edwardian blouse, glasses on a chain, folding a newspaper, Llandough village street softly out of focus behind, no text, no heraldry",
+   "animate": "omnihuman",
+   "lines": [
+    {
+     "who": "F_GWEN",
+     "en": "Father to son in one line of print. No word of when the father went, nor what he left. Only that in 'fifty-five the son took the farm on.",
+     "cite": [
+      "CH-0013"
+     ],
+     "cy": "Tad i fab mewn un llinell o brint. Dim gair am pryd aeth y tad, na beth adawodd o. Dim ond bod y mab wedi cymryd y fferm yn bump pump.",
+     "es": "De padre a hijo en una línea impresa. Ni una palabra de cuándo se fue el padre, ni qué dejó. Solo que en el cincuenta y cinco el hijo tomó la granja."
+    }
+   ]
+  }
+ ],
+ "covers": [
+  "EV-0215",
+  "CH-0012",
+  "CH-0013",
+  "CH-0014"
+ ],
+ "left_out": [],
+ "continuity": "Days after 23 Dec 1864: Gwen, in the same shawl and bonnet, holds the printed Cardiff Times notice of Amy's death as St Dochdwy's is consecrated, and the Man from the Estate enters John Williams (B_JOHN, forties, dark beard) in the poor rate for the glebe parcels first seen on the tithe schedule.",
+ "translation": {
+  "cy": "machine translation (claude-sonnet-5), for native review",
+  "es": "machine translation (claude-sonnet-5), for review"
+ },
+ "status": "draft v0.1 for hive review",
+ "words_en": 308,
+ "estimated_seconds": 131
+}
