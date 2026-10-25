@@ -1,6 +1,6 @@
 {
- "version": "1.1.0",
- "note": "Cedwyn theme registry v1.1.0: 38 routes total. The original 36-theme site chain now includes Court Drills, restored Research Library, and 1000 Cuts as a catalogue layer. The theme registry maps every public route/host to its assembled content. — Sion's Tab agent, 25 Oct 2026",
+ "version": "1.1.1",
+ "note": "Cedwyn theme registry v1.1.1: 38 routes, ordered to match the canonical 38-stop site chain (campus/site_chain.json v2.0.14). Court Drills is restored as a theme; Research Library and 1000 Cuts are back in the ordered tour. — Sion's Tab agent, 25 Oct 2026",
  "apex": {
   "host": "bucklerfamily.estate",
   "paths": {
@@ -236,6 +236,18 @@
    "group": "story"
   },
   {
+   "id": "thousand-cuts",
+   "title": "1000 Cuts",
+   "cy": "Mil o Doriadau",
+   "es": "Mil Cortes",
+   "live": "https://research.bucklerfamily.estate/timeline/thousand-cuts/",
+   "hosts": [],
+   "paths": [],
+   "desc": "Dated events at Great House Farm, 1870s–1988: what each changed in law or in fact, its evidence, and links to earlier and later events (a layer over the catalogue; rows in the database's layer tables).",
+   "layer": true,
+   "group": "story"
+  },
+  {
    "id": "fb",
    "title": "The Farm Album",
    "cy": "Albwm y Fferm",
@@ -383,6 +395,20 @@
    "desc": "Great House Farm — Independent Review Register",
    "branch": "ghf-independent-review",
    "dir": "",
+   "group": "research"
+  },
+  {
+   "id": "research",
+   "title": "The Research Library",
+   "cy": "Y Llyfrgell Ymchwil",
+   "es": "La Biblioteca de Investigación",
+   "live": "https://research.bucklerfamily.estate/",
+   "hosts": [
+    "research.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "crawl": "https://research.bucklerfamily.estate/",
    "group": "research"
   },
   {
@@ -635,32 +661,6 @@
    "desc": "",
    "branch": "merch",
    "dir": "public",
-   "group": "story"
-  },
-  {
-   "id": "research",
-   "title": "The Research Library",
-   "cy": "Y Llyfrgell Ymchwil",
-   "es": "La Biblioteca de Investigación",
-   "live": "https://research.bucklerfamily.estate/",
-   "hosts": [
-    "research.bucklerfamily.estate"
-   ],
-   "paths": [],
-   "desc": "",
-   "crawl": "https://research.bucklerfamily.estate/",
-   "group": "research"
-  },
-  {
-   "id": "thousand-cuts",
-   "title": "1000 Cuts",
-   "cy": "Mil o Doriadau",
-   "es": "Mil Cortes",
-   "live": "https://research.bucklerfamily.estate/timeline/thousand-cuts/",
-   "hosts": [],
-   "paths": [],
-   "desc": "Dated events at Great House Farm, 1870s–1988: what each changed in law or in fact, its evidence, and links to earlier and later events (a layer over the catalogue; rows in the database's layer tables).",
-   "layer": true,
    "group": "story"
   }
  ],
