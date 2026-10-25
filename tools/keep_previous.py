@@ -1,21 +1,42 @@
 #!/usr/bin/env python3
 """keep_previous.py — a crawled theme whose live site answered the build's crawl with an error (the dartboard's own server
 answered 429 "Too Many Requests" to the 7d0a5ef build on 25 Oct 2026, so the theme lost its home page and bundle and
-/dartboard/ answered 404) keeps the files of its previous published build that this build did not get. Only missing files are
+/dartboard/ answered 404) keeps the files of its previous published build that this build did not get. Refused = no home page, or under 80% of
+the previous build's file count (the old Worker origins answered 429 Error 1027 / 522 to whole crawls the same afternoon). Only missing files are
 copied, never over a fresh one; the previous copies are already processed (runtime, links, base path), so this runs at the end
 of tools/site.py, after the rewrite and ingredients passes. Report: dist/_cedwyn/reports/keep_previous.json. — Sion's Tab agent"""
 import json, os, pathlib, shutil, subprocess, sys
 def run(dist):
     dist = pathlib.Path(dist); root = pathlib.Path(__file__).resolve().parent.parent
     themes = json.load(open(root / 'themes.json', encoding='utf-8'))['themes']
-    need = [t['id'] for t in themes if (t.get('crawl') or t.get('crawl_first')) and not (dist / t['id'] / 'index.html').exists()]
-    rep = {'missing_home': need, 'restored': {}}
-    if need:
-        repo = os.environ.get('GITHUB_REPOSITORY', 'unclehowell/cedwyn'); tmp = pathlib.Path('prev_site')
-        shutil.rmtree(tmp, ignore_errors=True)
+    crawled = [t['id'] for t in themes if t.get('crawl') or t.get('crawl_first')]
+    def count(base):
+        return sum(1 for f in base.rglob('*') if f.is_file() and 'db' not in f.relative_to(base).parts[:1]) if base.exists() else 0
+    rep = {'checked': {}, 'restored': {}}
+    repo = os.environ.get('GITHUB_REPOSITORY', 'unclehowell/cedwyn'); tmp = pathlib.Path('prev_site')
+    shutil.rmtree(tmp, ignore_errors=True)
+    try:
+        # the previous published build, file names only (no file contents fetched until a theme needs them)
+        subprocess.run(['git', 'clone', '-q', '--depth', '1', '--filter=blob:none', '--no-checkout', '-b', 'site', f'https://github.com/{repo}.git', str(tmp)], check=True, timeout=600)
+        names = subprocess.run(['git', '-C', str(tmp), 'ls-tree', '-r', '--name-only', 'HEAD'], check=True, capture_output=True, text=True, timeout=300).stdout.split('\n')
+    except Exception as e:
+        names = []; rep['error'] = 'previous build not readable: ' + str(e)[:200]
+    prev = {}
+    for n in names:
+        p = n.split('/')
+        if len(p) > 1 and p[0] in crawled and p[1] != 'db': prev[p[0]] = prev.get(p[0], 0) + 1
+    # A crawl counts as refused when the theme has no home page, or holds under 80% of the files it had last time (the
+    # origin answered 429 / 1027 / 522 for part of it). Then the previous build's files fill the gaps (missing files only).
+    need = []
+    for t in crawled:
+        now = count(dist / t); was = prev.get(t, 0); home = (dist / t / 'index.html').exists()
+        rep['checked'][t] = {'files_now': now, 'files_previous_build': was, 'home': home}
+        if was and (not home or now < 0.8 * was): need.append(t)
+    rep['refused'] = need
+    if need and names:
         try:
-            subprocess.run(['git', 'clone', '-q', '--depth', '1', '--filter=blob:none', '--sparse', '-b', 'site', f'https://github.com/{repo}.git', str(tmp)], check=True, timeout=600)
             subprocess.run(['git', '-C', str(tmp), 'sparse-checkout', 'set', '--no-cone'] + [f'/{t}/' for t in need] + [f'!/{t}/db/' for t in need], check=True, timeout=900)
+            subprocess.run(['git', '-C', str(tmp), 'checkout', '-q'], check=True, timeout=1500)
             for t in need:
                 src = tmp / t; n = 0
                 if not src.exists(): continue
@@ -26,7 +47,7 @@ def run(dist):
                     dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(f, dst); n += 1
                 rep['restored'][t] = n
         except Exception as e: rep['error'] = str(e)[:300]
-        shutil.rmtree(tmp, ignore_errors=True)
+    shutil.rmtree(tmp, ignore_errors=True)
     out = dist / '_cedwyn' / 'reports'; out.mkdir(parents=True, exist_ok=True)
     json.dump(rep, open(out / 'keep_previous.json', 'w'), indent=1)
     print('keep_previous:', rep)
