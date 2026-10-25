@@ -1,6 +1,6 @@
 {
  "version": {
-  "ingredients.json": "1.2.0",
+  "ingredients.json": "1.2.1",
   "app-demo-factcheck.json": "1.0.0",
   "spa-basepath.json": "1.0.0"
  },
@@ -520,6 +520,12 @@
    "theme": "wiki",
    "file": "where-things-stand/index.html",
    "n": 3
+  },
+  {
+   "config": "ingredients.json",
+   "theme": "wayback",
+   "file": "index.html",
+   "n": 1
   }
  ],
  "missing": [
