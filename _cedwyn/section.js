@@ -51,8 +51,10 @@
     (document.head || de).appendChild(s);
   }
   function lp() { return window.__cedwynLP || location.pathname; }
-  function ribbon() {
+  function ribbon(tries) {
     if (!SEC || !document.body || document.querySelector(".cedwyn-rib") || document.body.hasAttribute("data-cedwyn-page")) return;
+    var hd = document.querySelector(".ghf-v2");   // the shared 3-row header: the ribbon sits directly under it
+    if (!hd && (tries || 0) < 20) { setTimeout(function () { ribbon((tries || 0) + 1); }, 150); return; }
     try { if (sessionStorage.getItem("cedwyn-rib-hide") === SEC) return; } catch (e) {}
     css();
     var r = document.createElement("div"), a = ACC[SEC], other = SEC === "wales" ? "argentina" : "wales";
@@ -67,7 +69,7 @@
     var x = document.createElement("button"); x.type = "button"; x.className = "cr-x"; x.textContent = "\u00D7"; x.setAttribute("data-i18n-al", "rib_close");
     x.onclick = function () { try { sessionStorage.setItem("cedwyn-rib-hide", SEC); } catch (e) {} r.parentNode.removeChild(r); };
     r.appendChild(x); r.setAttribute("data-i18n-al", SEC === "wales" ? "w_name" : "a_name");
-    document.body.insertBefore(r, document.body.firstChild);
+    if (hd && hd.parentNode) hd.parentNode.insertBefore(r, hd.nextSibling); else document.body.insertBefore(r, document.body.firstChild);
     paint();
     var dot = r.querySelector(".cr-t span"); if (dot) { dot.className = "cr-dot"; dot.setAttribute("aria-hidden", "true"); }
   }
@@ -107,7 +109,7 @@
     var q = document.querySelectorAll("[data-cedwyn-lang]");
     [].forEach.call(q, function (b) { if (b.__cl) return; b.__cl = 1; b.addEventListener("click", function () { setLang(b.getAttribute("data-cedwyn-lang")); }); });
   }
-  function go() { ribbon(); wireLang(); forms(); paint(); }
+  function go() { ribbon(0); wireLang(); forms(); paint(); }
   document.addEventListener("ghf-lang-change", function (e) { if (e && e.detail && e.detail.lang) window.__cedwynLang = e.detail.lang; paint(); });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
   window.addEventListener("load", paint);
