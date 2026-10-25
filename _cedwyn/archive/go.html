@@ -6,10 +6,20 @@ button{background:#fca;color:#14141c;border-color:#fca;font-weight:700;cursor:po
 .muted{color:#9a9ab0;font-size:14px}.card{background:#1d1d28;border:1px solid #2c2c3a;border-radius:10px;padding:10px 12px;margin:8px 0}
 .card h3{margin:0 0 4px;font-size:16px}.snip{font-size:14px;color:#cfcfe0}img.prev{max-width:100%;max-height:320px;border-radius:6px;display:block;margin:6px 0}</style></head><body><header class="cw"><a class="home" href="/">Cedwyn</a><nav><a href="/">Themes</a><a href="/catalogue/">Catalogue</a><a href="/graphql/">GraphQL</a><a href="/wayback/">Archive</a></nav></header><main><h1>Leaving the archive?</h1><div id="box" class="card"><p class="muted">Checking the archive…</p></div><p class="muted">Cedwyn keeps visitors inside the archive. Pages we have captured open here as dated copies; anything else is recorded below as text.</p></main><script src="/_cedwyn/cat.js"></script><script>
 var u=new URLSearchParams(location.search).get('u')||'',box=document.getElementById('box');
+/* 25 Oct 2026: an address that is one of Cedwyn's own themes (a former *.bucklerfamily.estate site or the Legal Wiki) opens the theme */
+(function(){var H=/*GO_HOSTS*/{},A=/*GO_APEX*/[],x;try{x=new URL(u);}catch(e){return;}var h=x.hostname.toLowerCase().replace(/^www\./,''),p=x.pathname||'/',t=null,i;
+if(h==='bucklerfamily.estate'){for(i=0;i<A.length;i++)if(p.indexOf(A[i][0])===0||p+'/'===A[i][0]){t='/'+A[i][1]+'/'+p.slice(A[i][0].length).replace(/^\/+/,'');break;}}
+else if(H[h])t='/'+H[h]+p;if(t){box.innerHTML='<p class="muted">Opening '+t+'</p>';location.replace(t+x.search+x.hash);u='';}})();
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-fetch('/wayback/go/captures.json').then(function(r){return r.json();}).then(function(c){var k=Cedwyn.normkey(u),hit=c[k];
+if(u)fetch('/wayback/go/captures.json').then(function(r){return r.json();}).then(function(c){var k=Cedwyn.normkey(u),hit=c[k];
 if(hit){box.innerHTML='<h3>'+esc(hit.t||k)+'</h3><p class="muted">Captured '+esc((hit.c||'').slice(0,10))+'. Opening the archived copy…</p><p><a href="'+esc(hit.l)+'">Open the archived copy</a></p>';setTimeout(function(){location.replace(hit.l);},900);return;}
 var host='';try{host=new URL(u).hostname;}catch(e){}
+/* 25 Oct 2026: a Great House Farm address (*.bucklerfamily.estate) with no theme of its own and no capture never shows this page:
+   the media stores open the Wayback Vault theme, any other opens the catalogue search for it */
+var hl=host.toLowerCase();if(/(^|\.)bucklerfamily\.estate$/.test(hl)){var pth='';try{pth=new URL(u).pathname;}catch(e){}
+var tk=(pth.split('/').filter(Boolean).pop()||hl.split('.')[0]).replace(/\.[a-z0-9]*$/i,'').replace(/[-_]+/g,' ');
+var to=/^(wayback-(html|img|pdf|video|text)|internetarchive)\./.test(hl)&&(pth==='/'||!pth)?'/wayback/':'/catalogue/?q='+encodeURIComponent(tk);
+document.querySelector('h1').textContent='Opening';box.innerHTML='<p class="muted">Opening '+esc(to)+'</p>';location.replace(to);return;}
 box.innerHTML='<h3>Not yet archived</h3><p>The original address is recorded here as text:</p><pre>'+esc(u)+'</pre>'+(host?'<p><a href="/catalogue/?q='+encodeURIComponent('"'+host.replace(/^www\./,'').split('.')[0]+'"')+'">Search the catalogue for '+esc(host)+'</a> · <a href="/wayback/">Browse the Wayback Vault</a></p>':'');
 }).catch(function(){box.innerHTML='<h3>Not yet archived</h3><pre>'+esc(u)+'</pre>';});
 </script></body></html>

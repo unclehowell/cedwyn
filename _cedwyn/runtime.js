@@ -64,6 +64,13 @@
   }
   function archive(u) { return '/wayback/go/?u=' + encodeURIComponent(u); }
   window.__cedwyn = { theme: T, fix: fix, archive: archive };
+  // 25 Oct 2026: a link to the archive interface whose address is really a theme (a former *.bucklerfamily.estate site, the
+  // Legal Wiki on wordpress.com) opens that theme: /wayback/go/ is only for outside addresses with no theme
+  function untrap(h) { var m = /^(?:https?:\/\/[^\/]+)?\/wayback\/go\/\?u=([^&#]+)/.exec(h || ''), u, t; if (!m) return null;
+    try { u = decodeURIComponent(m[1]); } catch (e) { return null; } t = fix(u); return t !== u && t.charAt(0) === '/' ? t : null; }
+  window.__cedwyn.untrap = untrap;
+  document.addEventListener('click', function (e) { var a = e.target && e.target.closest ? e.target.closest('a[href]') : null, t;
+    if (a && (t = untrap(a.getAttribute('href')))) a.setAttribute('href', t); }, true);
   var of = window.fetch;
   if (of) window.fetch = function (i, o) {
     try { if (typeof i === 'string') i = fix(i); else if (i && i.url && i.url.indexOf(location.origin + '/') === 0) { var f = fix(i.url.slice(location.origin.length)); if (f !== i.url.slice(location.origin.length)) i = new Request(f, i); } } catch (e) {}

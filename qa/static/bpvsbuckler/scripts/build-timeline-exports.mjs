@@ -16,7 +16,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 
 const SITE = 'https://cedwyn.bucklerfamily.estate/story';
-const WIKI = 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgreathousefarmwiki.wordpress.com';
+const WIKI = 'https://cedwyn.bucklerfamily.estate/wiki';
 const root = new URL('..', import.meta.url).pathname;
 const story = JSON.parse(readFileSync(root + 'src/data/story.json', 'utf8'));
 const { acts, cast, scenes, aliases, lanes } = story;

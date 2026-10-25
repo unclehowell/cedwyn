@@ -3,7 +3,7 @@
 // REST endpoint can be unavailable to server-to-server requests, so the static
 // index keeps existing Wiki evidence images available in every deployment.
 const WAYBACK = 'https://cedwyn.bucklerfamily.estate/wayback';
-const WIKI_MEDIA = 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgreathousefarmwiki.wordpress.com%2Fwp-json%2Fwp%2Fv2%2Fmedia';
+const WIKI_MEDIA = 'https://cedwyn.bucklerfamily.estate/wiki/wp-json/wp/v2/media';
 const WIKI_FIELDS = '_fields=slug,source_url,alt_text,caption,title,media_type,mime_type,date,link';
 
 async function rows(url) {

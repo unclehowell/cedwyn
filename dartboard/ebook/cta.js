@@ -17,7 +17,7 @@
     ["bpvsbuckler.bucklerfamily.estate", "https://cedwyn.bucklerfamily.estate/story/", { en: "Timeline", cy: "Llinell amser", es: "Cronolog\u00eda" }],
     ["wayback.bucklerfamily.estate", "https://cedwyn.bucklerfamily.estate/wayback/", { en: "Wayback archive", cy: "Archif Wayback", es: "Archivo Wayback" }],
     ["projects.bucklerfamily.estate", "https://cedwyn.bucklerfamily.estate/projects/", { en: "Projects", cy: "Prosiectau", es: "Proyectos" }],
-    ["greathousefarmwiki.wordpress.com", "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgreathousefarmwiki.wordpress.com%2F", { en: "Legal Wiki", cy: "Wici Cyfreithiol", es: "Wiki jur\u00eddica" }]
+    ["greathousefarmwiki.wordpress.com", "https://cedwyn.bucklerfamily.estate/wiki/", { en: "Legal Wiki", cy: "Wici Cyfreithiol", es: "Wiki jur\u00eddica" }]
   ];
   function lang() { var l = (document.documentElement.getAttribute("lang") || "en").slice(0, 2).toLowerCase(); return T[l] ? l : "en"; }
   var box;
