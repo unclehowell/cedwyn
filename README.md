@@ -276,3 +276,28 @@ Every theme now reads its data and evidence from the catalogue database. Before 
 - The theme's visible text grew from 563 to 3,010 characters, with 7 images and none broken.
 - 9 WordPress.com scripts still fail to load: combined `_static` files, hovercards, likes, the marketing bar and Gutenberg helpers.
 - Next pass: a longer crawl, and copies of the WordPress `/wp-content/` scripts.
+
+## Stage 4 (25 Oct 2026): the whole Legal Wiki, no failed loads
+
+**/wiki/ is a full copy of greathousefarmwiki.wordpress.com** (`tools/wiki.py`, run by the build in place of the wget crawl).
+- Every page the wiki's own sitemap lists is fetched with GETs only, robots.txt obeyed, 6 at a time: **976 of 976 pages** in about 45 seconds. Each is saved as `<path>/index.html`. Addresses with encoded characters (for example the → arrows) are saved under their decoded folder name, which is what the host looks up.
+- WordPress.com combines scripts and styles on the fly (`/_static/??...`). A static host cannot serve that address, so each combination is saved under a fixed name (`/_static/c-<hash>.css|js`) and the page points at it. Theme files, modules, fonts and uploads on the wiki's own host are saved at their own path. Fonts the wp.com CDN refuses (403) are read from the wiki's own host.
+- Left out, because they only work against wordpress.com: stats, Gravatar hovercards, likes, the marketing bar, ad consent and the cookie banner, the subscribe bar, emoji images (the browser draws the same emoji), feed links and the hidden post-embed frames. Images the wiki loads from the datro repo's wayback folder point at the wayback theme.
+- Live check (build 11, 06:05 UTC): all 976 sitemap addresses answer 200 on cedwyn. In a sample of 60 pages compared with the live wiki, all 60 have the same visible text length within 10 % (median ratio 1.00). On build 9 it was 741 files and 43 of the same 60 pages.
+
+**Fixes found on the way**
+- `selfcontain.py`: a protocol-relative attribute value (`src="//host/x.js"`) slipped past both the rewrite and the strict test. Both now catch it.
+- Pages copied from a live site after the rewrite step (`fetch_pages`, such as `/story/story/`) now get their root paths mapped to the theme, as built pages do. This removed 5 missing files (`/assets/…`, `/agent-index.json`, `/agent-tools.js`, `/api/timeline.json`).
+- research: the Wales at Six video thumbnail is copied into the archive. Its video was checked: it is from the Wales Broadcast Archive channel, not the excluded one. Only thumbnails listed in `themes.json` `ytimg_checked` are copied.
+
+**Measured after build 11**
+- Strict self-contained test: 9,320 files, 0 subdomain references, 0 external ones.
+- Live crawl: 178 pages and 103 scripts/styles, 0 subdomain or outside links, 0 missing files. Build 9 had 25 missing.
+- /wiki/ in a real browser: 0 failed requests at 390 and 1280 px (build 9: 9; build 10: 16), 0 broken images, visible text 2,963/2,986 characters against the live wiki's 2,960/2,983.
+- Header and burger on 72 of 72 measurements. No theme scrolls sideways. 265 data and media requests were served from the database. The 2 served as files are the research thumbnail, a vendored copy under `/_ext/`.
+
+**Parity now:** 30 identical, 5 close, 1 gap.
+- research: gaps → identical (the broken thumbnail was its only difference).
+- wiki: gaps → close. It has the same content and no failed loads. What still differs comes from the shared 3-row header, which the wiki never had: the header's theme sets one font (Barlow) and the page background. The live wiki also counts 9 more images (emoji, tracking pixels, the wordpress.com logo).
+- dartboard stays in gaps. It is measured against the apex home, while the cedwyn dartboard theme is the dartboard app that its branch builds.
+- Close, unchanged: fb, fb2, directory and terrain. Each calls a server API that a static site has none of.
