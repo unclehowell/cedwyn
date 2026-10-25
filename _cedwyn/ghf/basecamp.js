@@ -274,9 +274,9 @@
     var de = document.documentElement, wrap = null, chainBar = null, locBar = null, drawer = null, scrim = null, fsx = null, bgx = null;
     var shift = null, fsApi = false, lastFocus = null;
     var L = {
-      en: { prev: "Previous site", next: "Next site", of: "of", fs: "Full screen", fsx: "Exit full screen", menu: "Menu", close: "Close menu", here: "On this site", all: "Every site, in order", home: "Cedwyn Estate · Base Camp", mode: "Day / Night", top: "Top of this page", loc: "Location", chat: "Agent chat" },
-      cy: { prev: "Safle blaenorol", next: "Safle nesaf", of: "o", fs: "Sgrin lawn", fsx: "Gadael y sgrin lawn", menu: "Dewislen", close: "Cau’r ddewislen", here: "Ar y safle hwn", all: "Pob safle, yn eu trefn", home: "Ystâd Cedwyn · Gwersyll Sylfaen", mode: "Dydd / Nos", top: "Brig y dudalen hon", loc: "Lleoliad", chat: "Sgwrs â’r asiant" },
-      es: { prev: "Sitio anterior", next: "Sitio siguiente", of: "de", fs: "Pantalla completa", fsx: "Salir de pantalla completa", menu: "Menú", close: "Cerrar el menú", here: "En este sitio", all: "Todos los sitios, en orden", home: "Finca Cedwyn · Campamento base", mode: "Día / Noche", top: "Inicio de esta página", loc: "Lugar", chat: "Chat con el agente" }
+      en: { prev: "Previous site", next: "Next site", of: "of", fs: "Full screen", fsx: "Exit full screen", menu: "Menu", close: "Close menu", here: "On this site", all: "Every site, in order", home: "Cedwyn Estate · Base Camp", mode: "Day / Night", top: "Top of this page", loc: "Location", chat: "Agent chat", values: "Values and Standards" },
+      cy: { prev: "Safle blaenorol", next: "Safle nesaf", of: "o", fs: "Sgrin lawn", fsx: "Gadael y sgrin lawn", menu: "Dewislen", close: "Cau’r ddewislen", here: "Ar y safle hwn", all: "Pob safle, yn eu trefn", home: "Ystâd Cedwyn · Gwersyll Sylfaen", mode: "Dydd / Nos", top: "Brig y dudalen hon", loc: "Lleoliad", chat: "Sgwrs â’r asiant", values: "Gwerthoedd a Safonau" },
+      es: { prev: "Sitio anterior", next: "Sitio siguiente", of: "de", fs: "Pantalla completa", fsx: "Salir de pantalla completa", menu: "Menú", close: "Cerrar el menú", here: "En este sitio", all: "Todos los sitios, en orden", home: "Finca Cedwyn · Campamento base", mode: "Día / Noche", top: "Inicio de esta página", loc: "Lugar", chat: "Chat con el agente", values: "Valores y normas" }
     };
     var IC_FS = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
     var IC_FSX = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>';
@@ -379,6 +379,7 @@
       CHAIN.forEach(function (st, i) { li = mk("li"); a = mk("a", null, nm(st)); a.href = st.u; if (i === k) a.setAttribute("aria-current", "page"); li.appendChild(a); ol.appendChild(li); });
       inn.appendChild(ol);
       var hm = mk("a", "ghf-v2-dhome", s.home); hm.href = HOME; inn.appendChild(hm);
+      var vsl = mk("a", "ghf-v2-dhome", s.values || "Values and Standards"); vsl.href = "/values/"; inn.appendChild(vsl);
     }
     function openDrawer() {
       if (!drawer) {
@@ -878,7 +879,8 @@
     var f = el("footer", "ghf-lf ghf-ui"); f.setAttribute("data-ghf-legal-foot", "1");
     var p1 = el("p"); p1.appendChild(el("b", null, "\u00a9 Williams\u2013Buckler family. All rights reserved. Licence terms apply.")); f.appendChild(p1);
     var nv = el("p"); nv.setAttribute("role", "navigation"); nv.setAttribute("aria-label", "Legal");
-    L.forEach(function (x) { var a = el("a", null, x[0]); a.href = B + x[1]; nv.appendChild(a); }); f.appendChild(nv);
+    L.forEach(function (x) { var a = el("a", null, x[0]); a.href = B + x[1]; nv.appendChild(a); });
+    var va = el("a", null, "Values and Standards"); va.href = "/values/"; nv.insertBefore(va, nv.firstChild); f.appendChild(nv);
     document.body.appendChild(f);
     // Keep the footer the last thing on the page: content a page adds to <body> after load goes above it, never below (21 Oct 2026).
     var keepLast = function () {
