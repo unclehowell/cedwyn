@@ -9,16 +9,16 @@ import json, html, pathlib, sys, re
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
 CSS = ('<style id="eb-editions-css">.eb-eds{margin:0 auto 18px;max-width:1100px;padding:0 16px}.eb-eds h2{margin:6px 0 6px}.eb-eds p{margin:0 0 8px;opacity:.85;font-size:14px}'
-       '.eb-eds .sc{overflow-x:auto;-webkit-overflow-scrolling:touch}.eb-eds table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px}'
+       '.eb-eds .sc{overflow-x:auto;-webkit-overflow-scrolling:touch}.eb-eds table{border-collapse:collapse;width:100%;font-size:14px}'
        '.eb-eds th,.eb-eds td{text-align:left;padding:7px 8px;border-bottom:1px solid rgba(128,128,128,.35);vertical-align:top}.eb-eds th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.8}'
-       '.eb-eds td.n{white-space:nowrap}.eb-eds a{color:inherit}</style>')
+       '.eb-eds td.n{white-space:nowrap}.eb-eds small{opacity:.75;font-size:12px}.eb-eds a{color:inherit}</style>')
 def table(D):
-    rows = ''.join(f'<tr><td><a href="{E(b["page"] or "/ebooks/")}">{E(b["title"])}</a></td><td class="n">{E(b["edition"])}</td><td class="n">{E(b["semver"])}</td>'
-                   f'<td class="n">{E(b["price"])}</td><td class="n">{E(b["free"] + " · £0.00" if b.get("free") and b["free"] != b["edition"] else "—")}</td></tr>' for b in D['books'])
-    rows += ''.join(f'<tr><td><a href="{E(x["page"] or "/ebooks/")}">{E(x["title"])}</a></td><td class="n">newest</td><td class="n">—</td><td class="n">{E(x["price"])}</td><td class="n">—</td></tr>' for x in D.get('bundles', []))
+    rows = ''.join(f'<tr><td><a href="{E(b["page"] or "/ebooks/")}">{E(b["title"])}</a></td><td class="n">{E(b["edition"])}<br><small>version {E(b["semver"])}</small></td>'
+                   f'<td class="n">{E(b["price"])}</td></tr>' for b in D['books'])
+    rows += ''.join(f'<tr><td><a href="{E(x["page"] or "/ebooks/")}">{E(x["title"])}</a></td><td class="n">newest<br><small>editions</small></td><td class="n">{E(x["price"])}</td></tr>' for x in D.get('bundles', []))
     return (f'<section class="eb-eds" id="editions" aria-label="Editions and prices">{CSS}<h2>Editions and prices</h2>'
             f'<p>Each book’s current edition, its version number and its price. Every book’s first edition (v0.01) is free.</p>'
-            f'<div class="sc"><table><thead><tr><th>Book</th><th>Edition</th><th>Version</th><th>Price</th><th>Free edition</th></tr></thead><tbody>{rows}</tbody></table></div></section>')
+            f'<div class="sc"><table><thead><tr><th>Book</th><th>Edition</th><th>Price</th></tr></thead><tbody>{rows}</tbody></table></div></section>')
 def run(dist):
     dist = pathlib.Path(dist); D = json.load(open(ROOT / 'data' / 'ebooks.json', encoding='utf-8')); n = 0
     p = dist / 'ebooks' / 'index.html'
