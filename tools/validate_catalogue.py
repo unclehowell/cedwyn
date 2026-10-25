@@ -46,6 +46,7 @@ interpretations=load("interpretations.json", {})
 leads=load("expected-records.json", {})
 watch=load("monitored-pages.json", {})
 state=load("monitoring/state.json", {})
+events=load("events.json", {})
 if not isinstance(sources,dict) or not isinstance(sources.get("records"),list):
     ERRORS.append("sources.json must have a records array")
     sources={"records":[]}
@@ -61,11 +62,15 @@ if not isinstance(watch,dict) or not isinstance(watch.get("pages"),list):
 if not isinstance(state,dict) or not isinstance(state.get("pages"),list):
     ERRORS.append("monitoring/state.json must have a pages array")
     state={"pages":[]}
-sr=sources["records"]; ir=interpretations["records"]; lr=leads["records"]; wr=watch["pages"]; st=state["pages"]
+if not isinstance(events,dict) or not isinstance(events.get("records"),list):
+    ERRORS.append("events.json must have a records array")
+    events={"records":[]}
+sr=sources["records"]; ir=interpretations["records"]; lr=leads["records"]; wr=watch["pages"]; st=state["pages"]; er=events["records"]
 unique_rows(sr,"id","sources.records")
 unique_rows(ir,"id","interpretations.records")
 unique_rows(lr,"id","expected-records.records")
 unique_rows(wr,"id","monitored-pages.pages")
+unique_rows(er,"event_id","events.records")
 source_ids={r.get("id") for r in sr if isinstance(r,dict)}
 interpretation_ids={r.get("id") for r in ir if isinstance(r,dict)}
 lead_ids={r.get("id") for r in lr if isinstance(r,dict)}
@@ -81,6 +86,22 @@ for r in sr:
             ERRORS.append(f"sources[{r.get('id')}]: missing Wayback calendar URL or confirmed archive URL")
     if r.get("record_status","").startswith("located") and r.get("read_status") in ("not_read","target_passage_not_read"):
         WARNINGS.append(f"sources[{r.get('id')}]: located record not yet read; avoid substantive interpretation")
+    if r.get("public_archive_url") and not re.match(r"^https://web\\.archive\\.org/web/\\d{6,14}/", str(r["public_archive_url"])):
+        ERRORS.append(f"sources[{r.get('id')}]: public_archive_url must be a confirmed timestamped Wayback snapshot URL")
+    comm=r.get("communication") or {}
+    if comm:
+        for k in ("message_date","sender","recipient","subject"):
+            if not comm.get(k):
+                ERRORS.append(f"sources[{r.get('id')}]: communication missing {k!r}")
+    att=r.get("attachment") or {}
+    if r.get("source_type") in ("email_attachment","disclosed_file") or att:
+        for k in ("sha256","bytes","filename","parent_source_id"):
+            if att.get(k) in (None,""):
+                ERRORS.append(f"sources[{r.get('id')}]: attachment metadata missing {k!r}")
+        if att.get("parent_source_id") and att["parent_source_id"] not in source_ids:
+            ERRORS.append(f"sources[{r.get('id')}]: attachment parent_source_id is not in sources.json")
+        if r.get("publication_review") not in ("approved","redacted","restricted","pending"):
+            ERRORS.append(f"sources[{r.get('id')}]: publication_review must explicitly be approved/redacted/restricted/pending")
 required_interp=["id","subject_type","subject_id","status","title","text","basis_source_ids","evidence_for","evidence_against_or_limits","alternative_explanations","what_would_confirm","what_would_refute_or_modify","unresolved_questions","confidence"]
 for r in ir:
     require(r,required_interp,f"interpretations[{r.get('id','?')}]")
@@ -102,6 +123,30 @@ for r in ir:
     status=str(r.get("status","")).lower()
     if any(x in status for x in ("finding","proven","confirmed")) and not r.get("basis_source_ids"):
         ERRORS.append(f"interpretations[{r.get('id')}]: asserted finding has no cited source")
+for r in er:
+    require(r,["event_id","date","date_precision","actor","action","statement_class","event_status","source_ids","pinpoints","confidence","what_it_supports","what_it_does_not_establish","alternative_explanations","next_records","independent_origin_ids"],f"events[{r.get('event_id','?')}]")
+    if not isinstance(r.get("source_ids"),list) or not r.get("source_ids"):
+        ERRORS.append(f"events[{r.get('event_id')}]: source_ids must be a non-empty list")
+    else:
+        for sid in r["source_ids"]:
+            if sid not in source_ids:
+                ERRORS.append(f"events[{r.get('event_id')}]: unknown source_id {sid!r}")
+    if not isinstance(r.get("pinpoints"),list) or not r.get("pinpoints"):
+        ERRORS.append(f"events[{r.get('event_id')}]: record at least one source pinpoint")
+    else:
+        for pp in r["pinpoints"]:
+            if not isinstance(pp,dict) or pp.get("source_id") not in source_ids or not pp.get("pinpoint"):
+                ERRORS.append(f"events[{r.get('event_id')}]: each pinpoint requires a valid source_id and a pinpoint")
+            elif pp["source_id"] not in r.get("source_ids",[]):
+                ERRORS.append(f"events[{r.get('event_id')}]: pinpoint source {pp['source_id']!r} not listed in source_ids")
+    if not r.get("what_it_does_not_establish"):
+        ERRORS.append(f"events[{r.get('event_id')}]: state what the event source does NOT establish")
+    if not r.get("alternative_explanations"):
+        ERRORS.append(f"events[{r.get('event_id')}]: include alternative explanations or explicitly state none identified")
+    if not r.get("next_records"):
+        ERRORS.append(f"events[{r.get('event_id')}]: list next records or explicit follow-up action")
+    if not r.get("independent_origin_ids"):
+        ERRORS.append(f"events[{r.get('event_id')}]: independent_origin_ids must be recorded")
 for r in lr:
     require(r,["id","title","priority","candidate_custodians","why_sought","working_description","could_confirm","could_refute","search_status","not_a_located_record"],f"expected-records[{r.get('id','?')}]")
     if r.get("not_a_located_record") is not True:
@@ -132,6 +177,6 @@ for i,r in enumerate(st):
 for r in st:
     if r.get("snapshot_url") and not re.match(r"^https://web\.archive\.org/web/\d{6,14}/",r["snapshot_url"]):
         ERRORS.append(f"monitoring state {r.get('url')}: snapshot_url is not a timestamped Wayback capture URL")
-stats={"sources":len(sr),"interpretations":len(ir),"expected_records":len(lr),"monitored_pages":len(wr),"monitoring_state_pages":len(st),"errors":len(ERRORS),"warnings":len(WARNINGS)}
+stats={"sources":len(sr),"interpretations":len(ir),"events":len(er),"expected_records":len(lr),"monitored_pages":len(wr),"monitoring_state_pages":len(st),"errors":len(ERRORS),"warnings":len(WARNINGS)}
 print(json.dumps({"stats":stats,"warnings":WARNINGS,"errors":ERRORS},indent=2,ensure_ascii=False))
 sys.exit(1 if ERRORS else 0)
