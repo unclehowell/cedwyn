@@ -6,6 +6,7 @@ the previous build's file count (the old Worker origins answered 429 Error 1027 
 copied, never over a fresh one; the previous copies are already processed (runtime, links, base path), so this runs at the end
 of tools/site.py, after the rewrite and ingredients passes. Report: dist/_cedwyn/reports/keep_previous.json. — Sion's Tab agent"""
 import json, os, pathlib, shutil, subprocess, sys
+LOOKBACK = 100   # site-branch commits searched for a dropped theme's last good copy
 def run(dist):
     dist = pathlib.Path(dist); root = pathlib.Path(__file__).resolve().parent.parent
     themes = json.load(open(root / 'themes.json', encoding='utf-8'))['themes']
@@ -16,8 +17,9 @@ def run(dist):
     repo = os.environ.get('GITHUB_REPOSITORY', 'unclehowell/cedwyn'); tmp = pathlib.Path('prev_site')
     shutil.rmtree(tmp, ignore_errors=True)
     try:
-        # the previous published build, file names only (no file contents fetched until a theme needs them)
-        subprocess.run(['git', 'clone', '-q', '--depth', '1', '--filter=blob:none', '--no-checkout', '-b', 'site', f'https://github.com/{repo}.git', str(tmp)], check=True, timeout=600)
+        # the previous published builds, file names only (no file contents fetched until a theme needs them); the last
+        # LOOKBACK commits, so a theme an earlier refused build already dropped is found in the last build that had it
+        subprocess.run(['git', 'clone', '-q', '--depth', str(LOOKBACK), '--filter=blob:none', '--no-checkout', '-b', 'site', f'https://github.com/{repo}.git', str(tmp)], check=True, timeout=600)
         names = subprocess.run(['git', '-C', str(tmp), 'ls-tree', '-r', '--name-only', 'HEAD'], check=True, capture_output=True, text=True, timeout=300).stdout.split('\n')
     except Exception as e:
         names = []; rep['error'] = 'previous build not readable: ' + str(e)[:200]
@@ -27,16 +29,37 @@ def run(dist):
         if len(p) > 1 and p[0] in crawled and p[1] != 'db': prev[p[0]] = prev.get(p[0], 0) + 1
     # A crawl counts as refused when the theme has no home page, or holds under 80% of the files it had last time (the
     # origin answered 429 / 1027 / 522 for part of it). Then the previous build's files fill the gaps (missing files only).
-    need = []
+    # 25 Oct 2026 (task acf096da): the 7d0a5ef build (14:36 UTC) published before this guard existed, with fcg, research and
+    # terrain refused (Workers daily limit, 429/522), so every later build found 0 previous files and restored nothing.
+    # A refused theme that the previous build no longer holds is now taken from the newest earlier build that has its home page.
+    def last_good(t):
+        try:
+            revs = subprocess.run(['git', '-C', str(tmp), 'rev-list', 'HEAD'], check=True, capture_output=True, text=True, timeout=120).stdout.split()
+        except Exception: return None
+        for c in revs:
+            if subprocess.run(['git', '-C', str(tmp), 'cat-file', '-e', f'{c}:{t}/index.html'], capture_output=True, timeout=60).returncode == 0: return c
+        return None
+    need = []; src_of = {}
     for t in crawled:
         now = count(dist / t); was = prev.get(t, 0); home = (dist / t / 'index.html').exists()
         rep['checked'][t] = {'files_now': now, 'files_previous_build': was, 'home': home}
-        if was and (not home or now < 0.8 * was): need.append(t)
+        if was and (not home or now < 0.8 * was): need.append(t); src_of[t] = 'HEAD'
+        elif not was and not home and names:
+            c = last_good(t)
+            if c: need.append(t); src_of[t] = c; rep['checked'][t]['from_earlier_build'] = c[:9]
     rep['refused'] = need
     if need and names:
         try:
             subprocess.run(['git', '-C', str(tmp), 'sparse-checkout', 'set', '--no-cone'] + [f'/{t}/' for t in need] + [f'!/{t}/db/' for t in need], check=True, timeout=900)
             subprocess.run(['git', '-C', str(tmp), 'checkout', '-q'], check=True, timeout=1500)
+            for t in need:
+                if src_of.get(t, 'HEAD') != 'HEAD':
+                    # one batched fetch of that build's blobs for the theme (a plain checkout of an old commit fetches them one by one)
+                    ls = subprocess.run(['git', '-C', str(tmp), 'ls-tree', '-r', src_of[t], '--', t + '/'], check=True, capture_output=True, text=True, timeout=300).stdout
+                    oids = '\n'.join(l.split()[2] for l in ls.splitlines() if l.split()[1:2] == ['blob'] and '/db/' not in l) + '\n'
+                    subprocess.run(['git', '-C', str(tmp), '-c', 'fetch.negotiationAlgorithm=noop', 'fetch', '-q', 'origin', '--no-tags', '--no-write-fetch-head',
+                                    '--recurse-submodules=no', '--filter=blob:none', '--stdin'], input=oids, text=True, timeout=1500)
+                    subprocess.run(['git', '-C', str(tmp), 'checkout', '-q', src_of[t], '--', t], check=True, timeout=1500)
             for t in need:
                 src = tmp / t; n = 0
                 if not src.exists(): continue
