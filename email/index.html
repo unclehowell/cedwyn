@@ -96,41 +96,7 @@ body.reader-open .reader-panel{display:flex}
 
 .message-missing{font-style:italic;opacity:.85}.message-missing a{font-style:normal}
 .inst-wrap{display:block;margin-top:8px}.inst-wrap select{width:100%;max-width:100%;height:36px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;font:inherit;font-size:13px;padding:0 8px}.list-heading p.sync-line,.sync-line{margin:6px 0 0!important;font-size:12px!important;line-height:1.4!important;letter-spacing:0!important;text-transform:none!important;color:var(--muted)!important;font-weight:400!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.inst-tag{display:inline-block;font-size:10px;border:1px solid var(--line);border-radius:999px;padding:1px 7px;margin:3px 4px 0 0;color:var(--muted)}.fc-btn{display:inline-flex;align-items:center;gap:6px;margin-top:8px;height:34px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;font:inherit;font-size:13px;cursor:pointer}.fc-btn[aria-expanded=true]{border-color:var(--ghf-accent,#24DB5B)}.fc-btn[hidden],.fc-panel[hidden]{display:none}.fc-panel{margin-top:8px;border:1px solid var(--line);border-radius:12px;padding:8px;background:var(--surface);font-size:12px;line-height:1.4;max-width:100%;overflow:hidden}.fc-panel>svg{display:block;width:100%;height:auto}.fc-key svg{display:inline-block;width:10px;height:10px;flex:none}.fc-panel p,.fc-panel .fc-sel{font-size:12px!important;line-height:1.4!important;margin:4px 0 0!important}.fc-panel .fc-key li{font-size:11px!important;line-height:1.3!important;margin:0!important}.fc-panel ol li,.fc-panel ul li{font-size:12px!important;line-height:1.4!important}.fc-panel .fc-top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted)}.fc-panel .fc-top b{color:inherit;font-weight:600}.fc-panel .fc-seg button{font:inherit;font-size:12px;border:1px solid var(--line);background:transparent;color:inherit;padding:2px 8px;cursor:pointer}.fc-panel .fc-seg button[aria-pressed=true]{background:var(--line)}.fc-key{display:flex;flex-wrap:wrap;gap:4px 12px;margin:4px 0 0;padding:0;list-style:none;color:var(--muted);font-size:11px}.fc-key li{display:flex;align-items:center;gap:4px}.fc-sel{min-height:2.6em;margin:4px 0 0}.fc-panel details{margin-top:4px;color:var(--muted)}.fc-panel summary{cursor:pointer;color:inherit}.fc-panel ol{margin:4px 0 0;padding-left:18px}.fc-panel ol li{margin:2px 0;overflow-wrap:anywhere}.fc-panel a{color:inherit}</style>
-<script src="/email/ghf-lang/ghf-lang.js?v=2.1.0" data-site="email" defer></script>
-<script data-ghf-boot-inline>/*! ghf-boot.js v2.1.0 (2026-10-21), inlined same-origin for this strict-CSP site · Sion's Tab agent */
-(function () {
-  var d = document, de = d.documentElement, me = d.currentScript;
-  if (window.GHFBoot) return; window.GHFBoot = "2.1.0";
-  if (window.self !== window.top && !/[?&]ghfbars\b/.test(location.search)) return; // framed pages carry no bars
-  // v2.1.0: day or night before the first paint: a saved toggle choice wins; else the device's setting (prefers-color-scheme);
-  // else the local time (day 07:00-19:00). basecamp.js applies the same rule and keeps following the device while nothing is saved.
-  var M = null; try { M = localStorage.getItem("ghf-theme"); } catch (e) {}
-  if (M !== "day" && M !== "night") { var mc = /(?:^|; )ghf_theme=(day|night)/.exec(d.cookie || ""); M = mc ? mc[1] : null; }
-  if (!M) try { M = matchMedia("(prefers-color-scheme: dark)").matches ? "night" : matchMedia("(prefers-color-scheme: light)").matches ? "day" : null; } catch (e) {}
-  if (!M) { var hr = new Date().getHours(); M = hr >= 7 && hr < 19 ? "day" : "night"; }
-  de.setAttribute("data-ghf-mode", M);
-  var tc = d.querySelector('meta[name="theme-color"]'); if (!tc) { tc = d.createElement("meta"); tc.name = "theme-color"; (d.head || de).appendChild(tc); }
-  tc.removeAttribute("media"); tc.content = M === "day" ? "#ffffff" : "#000000";
-  var B = "/ghf-lang/"; // same-origin copy (strict CSP); inline ghf-boot.js v2.1.0
-  var V = "?v=2.1.0", sync = d.readyState === "loading" && me && !me.async && !me.defer;
-  de.className += (de.className ? " " : "") + "ghf-v2-pre";
-  var s = d.createElement("style"); s.setAttribute("data-ghf-boot", "");
-  s.textContent = "html.ghf-v2-pre body::before{content:'';display:block;height:148px;background:#000}@media (min-width:783px){html.ghf-v2-pre body::before{height:152px}}";
-  (d.head || de).appendChild(s);
-  setTimeout(function () { de.classList.remove("ghf-v2-pre"); }, 8000); // never leave an empty band if the bars cannot load
-  var F = B.replace(/ghf-lang\/$/, "") + "fonts/barlow-latin-", out = "";
-  if (!d.querySelector("link[data-ghf-theme]")) out += '<link rel="stylesheet" href="' + B + "ghf-theme.css" + V + '" data-ghf-theme>';
-  out += '<link rel="preload" as="font" type="font/woff2" crossorigin href="' + F + '400-normal.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="' + F + '700-normal.woff2">';
-  var needBc = !window.GHFBasecamp && !d.querySelector('script[src*="basecamp.js"]');
-  if (needBc) out += '<script src="' + B + "basecamp.js" + V + '"><\/script>';
-  if (sync) { d.write(out); return; }
-  var x, t = d.createElement("template"); t.innerHTML = out; // late or async load: same files, appended
-  [].slice.call(t.content.childNodes).forEach(function (n) {
-    if (n.tagName === "SCRIPT") { x = d.createElement("script"); x.src = n.src; x.async = false; n = x; }
-    (d.head || de).appendChild(n);
-  });
-})();
-</script>
+<script src="/_cedwyn/ghf/ghf-lang.js?v=2.1.4c" data-site="email" defer></script>
 <link rel="canonical" href="/email/">
 <link rel="alternate" type="text/plain" href="/email/llms.txt" title="Guide for language models" data-ghf-agent><link rel="alternate" type="application/json" href="/email/.well-known/mcp.json" title="Agent tools and data" data-ghf-agent><script type="application/ld+json" data-ghf-agent>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://cedwyn.bucklerfamily.estate/dartboard/#org","name":"Great House Farm (Tŷ Mawr) · Cedwyn Estate","alternateName":["Williams–Buckler family estate","Tŷ Mawr, Llandough-juxta-Penarth"],"url":"https://cedwyn.bucklerfamily.estate/dartboard/","email":"info@bucklerfamily.estate","sameAs":["https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgreathousefarmwiki.wordpress.com%2F","https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fwww.facebook.com%2F901925066346636"]},{"@type":"WebSite","@id":"https://cedwyn.bucklerfamily.estate/email/#website","url":"https://cedwyn.bucklerfamily.estate/email/","name":"The Post Office","description":"Mobile-first, read-only public correspondence and case-source archive for Great House Farm / Tŷ Mawr, Llandough, BP v Buckler, and the Williams/Buckler family. Original source texts are hosted by Wayback.","inLanguage":"en-GB","publisher":{"@id":"https://cedwyn.bucklerfamily.estate/dartboard/#org"},"isPartOf":{"@id":"https://cedwyn.bucklerfamily.estate/dartboard/#website"},"potentialAction":{"@type":"SearchAction","target":"https://cedwyn.bucklerfamily.estate/email/agent/search?q={search_term_string}","query-input":"required name=search_term_string"}}]}</script><script src="/email/agent/webmcp.js?v=1.0.202610232234" async data-ghf-webmcp></script><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.4c"></script></head>
 <body>

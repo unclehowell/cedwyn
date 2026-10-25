@@ -37,7 +37,7 @@
     "html[data-ghf-mode=day] .ghf-loc{background:#fff!important;border-bottom-color:#ddd!important}html[data-ghf-mode=day] .ghf-loc a{color:#555!important}html[data-ghf-mode=day] .ghf-loc a[aria-current=page]{color:#000!important;border-bottom-color:var(--ghf-p,#0a0a0a)}" +
     "@media (max-width:440px){.ghf-loc a:not(.ghf-loc-ch){letter-spacing:.08em;font-size:10px!important}}@media (max-width:380px){.ghf-loc a{letter-spacing:.05em;font-size:9.5px!important}}@media print{.ghf-loc{display:none!important}}" +
     ".ghf-cho{position:fixed;inset:0;z-index:2147483000;background:#000;color:#fff;overflow:auto;-webkit-overflow-scrolling:touch;font:300 16px/1.5 Barlow,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}" +
-    ".ghf-cho-bg{position:fixed;inset:0;background:#000 url(" + BASE + "/locations-img/album-098.webp) center/cover;opacity:.22;filter:grayscale(1)}" +
+    ".ghf-cho-bg{position:fixed;inset:0;background:#000 url(" + "/dartboard/locations-img/album-098.webp) center/cover;opacity:.22;filter:grayscale(1)}" +
     ".ghf-cho-in{position:relative;max-width:560px;margin:0 auto;padding:28px 20px 40px;min-height:100%;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box}" +
     ".ghf-cho-top{display:flex;align-items:center;justify-content:space-between;margin:0 0 30px}.ghf-cho-brand{display:flex;align-items:center;gap:10px;letter-spacing:.24em;text-transform:uppercase;font-size:12px;font-weight:500}" +
     ".ghf-cho-brand img{width:30px;height:30px}.ghf-cho-lang{display:flex;gap:4px}.ghf-cho-lang button{font:500 11px/1 Barlow,Arial,sans-serif;letter-spacing:.14em;color:#bbb;background:none;border:1px solid transparent;padding:7px 8px;cursor:pointer}" +
@@ -51,7 +51,7 @@
     ".ghf-cho-note{font-size:12.5px;color:#9a9a9a;margin:10px 0 0;letter-spacing:.04em}" +
     /* day mode (hybrid theme v2.1.1): same photo and layout, light scrim, dark text; night mode unchanged */
     "html[data-ghf-mode=day] .ghf-cho{background:#f4f3ef;color:#111}" +
-    "html[data-ghf-mode=day] .ghf-cho-bg{background:#f4f3ef url(" + BASE + "/locations-img/album-098.webp) center/cover;opacity:.3;filter:grayscale(.35)}" +
+    "html[data-ghf-mode=day] .ghf-cho-bg{background:#f4f3ef url(" + "/dartboard/locations-img/album-098.webp) center/cover;opacity:.3;filter:grayscale(.35)}" +
     "html[data-ghf-mode=day] .ghf-cho-bg:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(244,243,239,.55) 0,rgba(244,243,239,.25) 50%,rgba(244,243,239,.6) 100%)}" +
     "html[data-ghf-mode=day] .ghf-cho h1,html[data-ghf-mode=day] .ghf-cho-brand{color:#111}" +
     "html[data-ghf-mode=day] .ghf-cho-lang button{color:#555}html[data-ghf-mode=day] .ghf-cho-lang button[aria-pressed=true]{color:#000;border-color:#000}" +
