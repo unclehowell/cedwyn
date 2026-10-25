@@ -86,7 +86,7 @@ def main():
         row.update({"id":p.get("id"),"title":p.get("title"),"url":url,"source_id":p.get("source_id"),
                     "sha256":digest or prior.get("sha256"),"http_status":f["status"] if f["status"] is not None else prior.get("http_status"),
                     "etag":f["headers"].get("ETag",prior.get("etag")),"last_modified":f["headers"].get("Last-Modified",prior.get("last_modified")),
-                    "last_checked":TS if (first or changed or status_changed or fetch_failed or not args.dry_run) else prior.get("last_checked"),
+                    "last_checked":TS if (first or changed or status_changed or fetch_failed) else prior.get("last_checked"),
                     "last_check_error":f["error"],"last_response_url":f["url"],"wayback_calendar_url":p.get("wayback_calendar_url"),
                     "required_snapshot":bool(p.get("required_snapshot")),"relevance_status":p.get("relevance_status"),
                     "monitoring_note":"Response digest changes indicate a changed fetched representation only; they do not establish intentional alteration or concealment."})
