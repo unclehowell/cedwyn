@@ -39,36 +39,41 @@ def run(dist):
         for c in revs:
             if subprocess.run(['git', '-C', str(tmp), 'cat-file', '-e', f'{c}:{t}/index.html'], capture_output=True, timeout=60).returncode == 0: return c
         return None
-    need = []; src_of = {}
+    need = []; src_of = {}; nameset = set(names)
     for t in crawled:
         now = count(dist / t); was = prev.get(t, 0); home = (dist / t / 'index.html').exists()
         rep['checked'][t] = {'files_now': now, 'files_previous_build': was, 'home': home}
-        if was and (not home or now < 0.8 * was): need.append(t); src_of[t] = 'HEAD'
-        elif not was and not home and names:
-            c = last_good(t)
-            if c: need.append(t); src_of[t] = c; rep['checked'][t]['from_earlier_build'] = c[:9]
+        if (was and (not home or now < 0.8 * was)) or (not home and names):
+            # the previous build is the source; when it has no home page for the theme either (a refused build already lost it),
+            # the newest earlier build that has one fills what is still missing
+            c = last_good(t) if not home and f'{t}/index.html' not in nameset else None
+            if was or c:
+                need.append(t)
+                if c: src_of[t] = c; rep['checked'][t]['from_earlier_build'] = c[:9]
     rep['refused'] = need
     if need and names:
         try:
             subprocess.run(['git', '-C', str(tmp), 'sparse-checkout', 'set', '--no-cone'] + [f'/{t}/' for t in need] + [f'!/{t}/db/' for t in need], check=True, timeout=900)
             subprocess.run(['git', '-C', str(tmp), 'checkout', '-q'], check=True, timeout=1500)
+            def copy_missing(t):
+                src = tmp / t; n = 0
+                if not src.exists(): return 0
+                for f in src.rglob('*'):
+                    if not f.is_file() or 'db' in f.relative_to(src).parts[:1]: continue
+                    dst = dist / t / f.relative_to(src)
+                    if dst.exists(): continue
+                    dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(f, dst); n += 1
+                return n
+            for t in need: rep['restored'][t] = copy_missing(t)
             for t in need:
-                if src_of.get(t, 'HEAD') != 'HEAD':
+                if t in src_of:
                     # one batched fetch of that build's blobs for the theme (a plain checkout of an old commit fetches them one by one)
                     ls = subprocess.run(['git', '-C', str(tmp), 'ls-tree', '-r', src_of[t], '--', t + '/'], check=True, capture_output=True, text=True, timeout=300).stdout
                     oids = '\n'.join(l.split()[2] for l in ls.splitlines() if l.split()[1:2] == ['blob'] and '/db/' not in l) + '\n'
                     subprocess.run(['git', '-C', str(tmp), '-c', 'fetch.negotiationAlgorithm=noop', 'fetch', '-q', 'origin', '--no-tags', '--no-write-fetch-head',
                                     '--recurse-submodules=no', '--filter=blob:none', '--stdin'], input=oids, text=True, timeout=1500)
                     subprocess.run(['git', '-C', str(tmp), 'checkout', '-q', src_of[t], '--', t], check=True, timeout=1500)
-            for t in need:
-                src = tmp / t; n = 0
-                if not src.exists(): continue
-                for f in src.rglob('*'):
-                    if not f.is_file() or 'db' in f.relative_to(src).parts[:1]: continue
-                    dst = dist / t / f.relative_to(src)
-                    if dst.exists(): continue
-                    dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(f, dst); n += 1
-                rep['restored'][t] = n
+                    rep['restored'][t] += copy_missing(t)
             # kept copies may come from a build whose ingredients pass was older than this one's: apply this build's rewords and
             # link repoints to the kept themes too, skipping any entry whose replacement is already in the file (so nothing is applied twice)
             try:
