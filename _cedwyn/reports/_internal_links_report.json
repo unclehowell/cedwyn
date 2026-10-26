@@ -2,18 +2,18 @@
   "audit": "Cedwyn internal HTML/CSS links and fragments",
   "pages_scanned": 8088,
   "references_checked": {
-    "resource": 125303,
-    "nav": 210903
+    "resource": 125335,
+    "nav": 211775
   },
   "database_backed_paths": 6548,
-  "unique_missing_destinations": 4680,
-  "missing_references": 18056,
-  "missing_navigation_references": 15527,
-  "missing_resource_references": 2529,
+  "unique_missing_destinations": 4678,
+  "missing_references": 18046,
+  "missing_navigation_references": 15519,
+  "missing_resource_references": 2527,
   "unique_broken_fragments": 1740,
-  "broken_fragment_references": 2226,
+  "broken_fragment_references": 2228,
   "form_or_endpoint_actions_not_checked": {
-    "form[action]": 2529
+    "form[action]": 2528
   },
   "top_missing_destinations": [
     {
@@ -127,7 +127,7 @@
     {
       "kind": "nav",
       "path": "/catalogue/",
-      "references": 58,
+      "references": 53,
       "examples": [
         {
           "from": "/404.html",
@@ -135,19 +135,19 @@
           "url": "/catalogue/"
         },
         {
-          "from": "/wales/",
+          "from": "/graphql/",
           "attribute": "a[href]",
-          "url": "/catalogue/?q=roman%20villa"
+          "url": "/catalogue/"
         },
         {
-          "from": "/wales/",
+          "from": "/explore/",
           "attribute": "a[href]",
-          "url": "/catalogue/?q=roundhouse"
+          "url": "/catalogue/"
         },
         {
-          "from": "/wales/",
+          "from": "/values/",
           "attribute": "a[href]",
-          "url": "/catalogue/?q=monastery"
+          "url": "/catalogue/"
         }
       ]
     },
@@ -4146,6 +4146,25 @@
     },
     {
       "path": "/wayback/artifacts/",
+      "fragment": "EV-0045",
+      "references": 8,
+      "examples": [
+        {
+          "from": "/csscpsg/",
+          "url": "/wayback/artifacts/#EV-0045"
+        },
+        {
+          "from": "/csscpsg/",
+          "url": "/wayback/artifacts/#EV-0045"
+        },
+        {
+          "from": "/csscpsg/",
+          "url": "/wayback/artifacts/#EV-0045"
+        }
+      ]
+    },
+    {
+      "path": "/wayback/artifacts/",
       "fragment": "EV-0216",
       "references": 7,
       "examples": [
@@ -4160,25 +4179,6 @@
         {
           "from": "/fb/n/r-1938-12-25-wgr.html",
           "url": "/wayback/artifacts/#EV-0216"
-        }
-      ]
-    },
-    {
-      "path": "/wayback/artifacts/",
-      "fragment": "EV-0045",
-      "references": 7,
-      "examples": [
-        {
-          "from": "/csscpsg/",
-          "url": "/wayback/artifacts/#EV-0045"
-        },
-        {
-          "from": "/csscpsg/",
-          "url": "/wayback/artifacts/#EV-0045"
-        },
-        {
-          "from": "/csscpsg/",
-          "url": "/wayback/artifacts/#EV-0045"
         }
       ]
     },
@@ -4298,6 +4298,25 @@
     },
     {
       "path": "/wayback/artifacts/",
+      "fragment": "WB-0039",
+      "references": 5,
+      "examples": [
+        {
+          "from": "/chess/list/",
+          "url": "/wayback/artifacts/#WB-0039"
+        },
+        {
+          "from": "/story/story/",
+          "url": "/wayback/artifacts/#WB-0039"
+        },
+        {
+          "from": "/wiki/evidence/ev-0294-welsh-womens-peace-petition-1923-llandough-nlw-petition-1-92/",
+          "url": "/wayback/artifacts/#WB-0039"
+        }
+      ]
+    },
+    {
+      "path": "/wayback/artifacts/",
       "fragment": "EV-0042",
       "references": 4,
       "examples": [
@@ -4369,25 +4388,6 @@
         {
           "from": "/wiki/daniel-thomas/",
           "url": "/wiki/mary-williams-statement/#:~:text=1928%3A%20The%20last%20rent%20to%20Alfred%20Thomas"
-        }
-      ]
-    },
-    {
-      "path": "/wayback/artifacts/",
-      "fragment": "WB-0039",
-      "references": 4,
-      "examples": [
-        {
-          "from": "/chess/list/",
-          "url": "/wayback/artifacts/#WB-0039"
-        },
-        {
-          "from": "/wiki/evidence/ev-0294-welsh-womens-peace-petition-1923-llandough-nlw-petition-1-92/",
-          "url": "/wayback/artifacts/#WB-0039"
-        },
-        {
-          "from": "/research/story/",
-          "url": "/wayback/artifacts/#WB-0039"
         }
       ]
     },
