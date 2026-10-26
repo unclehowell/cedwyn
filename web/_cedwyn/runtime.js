@@ -15,7 +15,7 @@
     DE0.setAttribute('data-cedwyn-sec', SEC || SS);
     if (!DE0.getAttribute('data-ghf-lang-default')) DE0.setAttribute('data-ghf-lang-default', (SEC || SS) === 'wales' ? 'cy' : 'es');
     if (SEC && SECTION_SPA.indexOf(T) >= 0) try { history.replaceState(history.state, '', LP + location.search + location.hash); } catch (e) {}   // a client-side router reads the plain theme path
-    var SJ = document.createElement('script'); SJ.src = '/_cedwyn/section.js?v=1.0.0'; SJ.async = true; (document.head || DE0).appendChild(SJ);
+    var SJ = document.createElement('script'); SJ.src = '/_cedwyn/section.js?v=1.1.0'; SJ.async = true; (document.head || DE0).appendChild(SJ);
   }
   window.__cedwynSec = SEC; window.__cedwynLP = LP;
   // the shared header (basecamp.js) reads the theme's former address from <html data-ghf-host / data-ghf-path>

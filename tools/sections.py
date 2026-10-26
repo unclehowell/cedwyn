@@ -14,7 +14,7 @@ import json, html, re, shutil, pathlib, urllib.parse
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
 BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.10'
-SJS = '/_cedwyn/section.js?v=1.0.0'
+SJS = '/_cedwyn/section.js?v=1.1.0'
 ICON_AR = ('<svg class="ar-ic" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">'
            '<path d="M6 34c0-3 2-5 5-5h42c3 0 5 2 5 5v8c0 4-3 7-7 7H43l-5-6H26l-5 6H13c-4 0-7-3-7-7z"/>'
            '<path d="M20 22 32 12l12 10" stroke-dasharray="3 4"/><path d="M23 22v6M29 22v6M35 22v6M41 22v6" stroke-dasharray="2 3"/>'

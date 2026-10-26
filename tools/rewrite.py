@@ -152,7 +152,7 @@ def rw_html(html, tid, page_rel):
     html = STYLE.sub(lambda m: m.group(1) + rw_css(m.group(2), tid, page_rel) + m.group(3), html)
     html = TAG.sub(lambda m: rw_tag(m, tid, page_rel), html)
     html = re.sub('\x00(\\d+)\x00', lambda m: keep[int(m.group(1))], html)
-    inj = '<script src="/_cedwyn/runtime.js?v=8" data-theme="%s"></script>' % tid
+    inj = '<script src="/_cedwyn/runtime.js?v=9" data-theme="%s"></script>' % tid
     mh = re.search(r'<head\b[^>]*>', html, re.I)
     if mh: html = html[:mh.end()] + inj + html[mh.end():]
     else:
