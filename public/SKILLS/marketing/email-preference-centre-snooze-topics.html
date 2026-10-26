@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Email preference centre: &quot;fewer emails&quot; and topic choice instead of unsubscribe · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Email preference centre: &quot;fewer emails&quot; and topic choice instead of unsubscribe"><link rel="alternate" type="text/markdown" href="email-preference-centre-snooze-topics.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Email preference centre: "fewer emails" and topic choice instead of unsubscribe</h1>
+<p>Skill harvested 26 Oct 2026. Not covered by list cleaning, click-interest tags, send time/frequency or winback files: this is the subscriber-facing control that keeps people on the list on their own terms. Changing the email journey is a PROPOSAL.</p>
+<h2>What practitioners report</h2>
+<ul>
+<li>Unsubscribe rates more than doubled year on year from 2024 to 2025, largely because Gmail made unsubscribing easier (MailerLite research, as cited by Litmus/Validity, Jul 2026; MailerLite original not checked).</li>
+<li>Senders who added a "snooze" option to the preference centre saw unsubscribes drop by an average of 82% (Oracle, cited by Litmus; original not checked).</li>
+<li>An e-commerce client's tiered preference centre: +189% email engagement, -76% unsubscribes (Single Grain, cited by Litmus; original not checked).</li>
+<li>Litmus/Validity (Guy Hanson, 24 Jul 2026): promote the preference centre in its own email, not only the footer; set a benchmark - share of subscribers who used it in the last 12 months.</li>
+</ul>
+<h2>Mailchimp mechanics (Mailchimp help, read 26 Oct 2026)</h2>
+<ul>
+<li><em>|UPDATE_PROFILE|</em> merge tag = the "update your preferences" link; most templates already carry it in the footer. It is contact-specific and does not fill in test emails.</li>
+<li>Clicking it shows a pop-up with "Email me a link"; Mailchimp sends a separate email with the secure link (one extra step - expect some drop-off).</li>
+<li>Groups on the audience are what subscribers tick (topics, frequency). Audience &gt; Subscriber preferences builds a Preferences Center page; with one published, <em>|UPDATE_PROFILE|</em> goes there instead of the plain profile form.</li>
+<li>Preferences Centers are NOT available for audiences with GDPR-enabled signup forms (or the classic website builder). If GDPR fields are on, use groups on the standard update-profile form instead. A custom domain for it needs a paid plan.</li>
+<li>Snooze is not a native toggle: build it as a group ("Pause until January") and exclude that group from sends until the date, then clear it.</li>
+</ul>
+<h2>How to set it up</h2>
+<ol>
+<li>Groups, max 5 choices, plain words: topics + one frequency option ("Monthly digest only") + one pause option.</li>
+<li>Every campaign targets a segment that honours the groups (exclude "Pause", send digest-only people the monthly roundup only).</li>
+<li>Footer: put "Fewer emails or different topics? Choose here" (<em>|UPDATE_PROFILE|</em>) ABOVE the unsubscribe link (keep the one-click unsubscribe; never hide it).</li>
+<li>Once, send a short "choose what you get" email with the same link (Litmus's recommendation).</li>
+<li>Measure monthly: unsubscribe rate per campaign, number of preference updates, share of list that has set a preference (benchmark).</li>
+</ol>
+<h2>How we apply it to Cedwyn (PROPOSAL; no change made)</h2>
+<ul>
+<li>Proposed groups for the Cedwyn list: New e-books and offers; Research and new records; Guided tour news (Wales); Welsh-language editions; Spanish / Patagonia; plus "Monthly digest only" and "Pause until next month".</li>
+<li>First check (read-only) whether the audience has GDPR-enabled forms: if yes, use groups on the update-profile form, not a Preferences Center. Group availability on the current plan: not checked.</li>
+<li>These groups also feed segmentation for the welcome sequence and launches (welcome-sequence-first-sale-small-ebook-list.md) and fit mailchimp click-interest tags (behaviour) with stated interest (groups).</li>
+<li>Owner sign-off needed before groups go on the public signup/profile forms or any campaign is sent. No new list, no spend.</li>
+<li>KPI: unsubscribe rate per send below the current baseline after 3 sends; 10% of the list setting a preference within 90 days.</li>
+</ul>
+<h2>Sources (opened 26 Oct 2026)</h2>
+<ul>
+<li>Litmus / Validity, "We Want Your Email Preferences: The New Approach to Opting In" (24 Jul 2026): litmus.com</li>
+<li>Mailchimp Help, Create a Preferences Center: mailchimp.com</li>
+<li>Mailchimp Help, Add an Update Your Preferences Link: mailchimp.com</li>
+</ul><p class="raw">Raw Markdown: <a href="email-preference-centre-snooze-topics.md">email-preference-centre-snooze-topics.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
