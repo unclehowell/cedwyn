@@ -88,14 +88,16 @@
     for (var i = 0; i < as.length; i++) { var u; try { u = decodeURIComponent(as[i].getAttribute("href").slice(15)); } catch (e) { continue; }
       if (/^https:\/\/github\.com\/unclehowell\/cedwyn\/commit\/[0-9a-f]{7,40}$/i.test(u)) { as[i].setAttribute("href", u); as[i].setAttribute("target", "_blank"); as[i].setAttribute("rel", "noopener"); } }
   }
-  function absolutize() { var a = document.querySelectorAll('#cedwyn-guestbook a[href="/guestbook/"]'); for (var i = 0; i < a.length; i++) a[i].setAttribute("href", location.origin + "/guestbook/"); }
+  function absolutize() { var a = document.querySelectorAll('#cedwyn-guestbook a[data-gb-l="all"]'), u = location.origin + "/guestbook/"; for (var i = 0; i < a.length; i++) if (a[i].getAttribute("href") !== u) a[i].setAttribute("href", u); }
+  // a theme runtime may prefix root links (/ebooks/guestbook/): the full guest book always opens at the site root
+  document.addEventListener("click", function (e) { var a = e.target && e.target.closest && e.target.closest('#cedwyn-guestbook a[data-gb-l="all"]'); if (!a) return; if (e.button || e.metaKey || e.ctrlKey || e.shiftKey) { absolutize(); return; } e.preventDefault(); e.stopImmediatePropagation(); location.href = location.origin + "/guestbook/"; }, true);
   function init() {
     if (!TPL && sec()) TPL = sec().cloneNode(true);
     absolutize(); place(); label(); untrapAll(); wire(sec());
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
   addEventListener("load", function () { keep(); absolutize(); place(); label(); setTimeout(load, 800); });
-  [600, 1300, 2600, 6100, 12100].forEach(function (t) { setTimeout(function () { keep(); place(); }, t); });
+  [300, 600, 1300, 2600, 6100, 12100].forEach(function (t) { setTimeout(function () { keep(); place(); absolutize(); }, t); });
   if (window.MutationObserver) {
     var mo = new MutationObserver(function () { if (!sec()) { keep(); return; } var f = document.querySelector("[data-ghf-legal-foot]"); if (f && sec().parentNode !== f) place(); });
     mo.observe(document.documentElement, { childList: true, subtree: true }); setTimeout(function () { mo.disconnect(); }, 20000);
