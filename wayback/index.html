@@ -176,7 +176,7 @@
 
 
   <div id="websites-view">
-    <p class="ws-intro">Dated static copies of <b id="ws-count">…</b> web pages that concern Great House Farm (Tŷ Mawr), Llandough, grouped by site. Tap a card to preview the copy here; “Live website” opens the original. Links inside a copy stay in the Vault. The copies now live at <a href="/wayback/go/?u=https%3A%2F%2Fwayback-html.bucklerfamily.estate%2F">wayback-html.bucklerfamily.estate</a> with their original design and short readable addresses; old addresses here forward there. <a href="/projects/wayback-websites-archive/" target="_blank" rel="noopener">About this archive</a> · <a href="/wayback/websites/index.json">index.json</a></p>
+    <p class="ws-intro">Dated static copies of <b id="ws-count">…</b> web pages that concern Great House Farm (Tŷ Mawr), Llandough, grouped by site. Tap a card to open the archived copy, with back and next links; “Live website” opens the original. Links inside a copy stay in the Vault. The copies now live at <a href="/wayback/go/?u=https%3A%2F%2Fwayback-html.bucklerfamily.estate%2F">wayback-html.bucklerfamily.estate</a> with their original design and short readable addresses; old addresses here forward there. <a href="/projects/wayback-websites-archive/" target="_blank" rel="noopener">About this archive</a> · <a href="/wayback/websites/index.json">index.json</a></p>
     <input type="search" id="ws-search" placeholder="Search archived pages…" aria-label="Search archived pages">
     <div id="ws-list"></div>
   </div>
@@ -234,14 +234,14 @@
         items.forEach(i => (by[i.host] = by[i.host] || []).push(i));
         const hosts = Object.keys(by).sort((a, b) => by[b].length - by[a].length || a.localeCompare(b));
         wsList.innerHTML = hosts.length ? hosts.map(h => `<details class="ws-host"${q ? ' open' : ''}><summary><span class="h">${wsEsc(h)}</span><span class="n">${by[h].length} page${by[h].length !== 1 ? 's' : ''}</span></summary><div class="ws-grid">` +
-          by[h].map(i => `<div class="ws-card"><button class="ws-thumb" type="button" data-ws="${wsEsc(i.latest)}" aria-label="Preview ${wsEsc(i.title)}"><img loading="lazy" src="${wsEsc(i.thumb)}" alt=""></button>` +
+          by[h].map(i => `<div class="ws-card"><button class="ws-thumb" type="button" data-ws="${wsEsc(i.latest)}" aria-label="Open ${wsEsc(i.title)}"><img loading="lazy" src="${wsEsc(i.thumb)}" alt=""></button>` +
             `<a class="ws-live" href="${wsEsc(i.url)}" target="_blank" rel="noopener">Live website ↗</a>` +
             `<div class="ws-t" data-ws="${wsEsc(i.latest)}">${wsEsc(i.title)}</div>` +
             `<div class="ws-m">${wsDate(i.captured)} · ${wsEsc(i.version)}${i.n_versions > 1 ? ' (' + i.n_versions + ' versions)' : ''} · <a href="${wsEsc(i.latest)}" target="_blank" rel="noopener">latest</a></div></div>`).join('') +
           `</div></details>`).join('') : '<p style="text-align:center;color:#99a;padding:1.5rem">No archived pages match.</p>';
         wsList.querySelectorAll('[data-ws]').forEach(el => el.addEventListener('click', () => wsOpen(el.dataset.ws)));
       }
-      function wsOpen(latest) {
+      function wsOpen(latest) { if (latest) { location.href = '/wayback' + latest; return; }
         const i = (wsData.items || []).find(x => x.latest === latest); if (!i) return;
         document.getElementById('ws-mt').textContent = i.title + ' · ' + i.version;
         document.getElementById('ws-mopen').href = latest;
@@ -263,7 +263,7 @@
         wsView.style.display = 'block';
         await wsLoad(); wsRender('');
         const m = location.hash.match(/^#websites\/([^/]+)\/([^/]+)/);
-        if (m) { location.replace(`/websites/${m[1]}/${m[2]}/`); return; }
+        if (m) { location.replace(`/wayback/websites/${m[1]}/${m[2]}/latest.html`); return; }
         else if (location.hash !== '#websites') history.replaceState(null, '', '#websites');
       }
       function wsHide() {
