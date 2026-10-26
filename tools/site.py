@@ -102,7 +102,7 @@ a.card strong{display:block;color:#fff;margin-bottom:4px}a.card span{display:blo
 })();
 </script></main></body></html>''')
 alias = {'bpvsbuckler': 'story', 'whatdotheyknow': 'wdtk', 'ghf-primary-records': 'records', 'ghf-public-authorities': 'authorities',
-         'ghf-independent-review': 'review', '2026-10-22': 'meeting', 'merch': 'shop', 'email-archive': 'email', 'cedwyn': 'estate', 'museum': 'story', 'farmbook': 'fb2', 'media': 'wayback'}
+         'ghf-independent-review': 'review', '2026-10-22': 'meeting', 'merch': 'shop', 'email-archive': 'email', 'cedwyn': 'estate', 'museum': 'story', 'farmbook': 'fb2', 'media': 'wayback', 'agents': 'academy'}
 lines = [f'/{a}/* /{b}/:splat 301' for a, b in alias.items()] + [f'/{a} /{b}/ 301' for a, b in alias.items()]
 lines += ['/email/thread/* /email/view/ 200', '/email/reference/* /email/view/ 200']  # dynamic correspondence routes must load the viewer shell, not 404
 # Legacy mail API endpoints were advertised by the old interactive page, but the consolidated site is a static archive.
@@ -139,6 +139,7 @@ sta = [l for l in lines if l not in dyn]
 ''')   # no-transform: the zone's automatic analytics snippet is not injected, so pages make no request to another host
 print('site ok', len(lines), 'redirects,', len(caps), 'captures')
 sys.path.insert(0, str(ROOT / 'tools')); import agent_footer; agent_footer.run(DIST)   # THE TRIGGER EVENT section on /projects/ + agent footer on theme homes
+import academy_pointer; academy_pointer.run(DIST)   # /llms.txt, /agents.json, robots.txt (only if absent) + one ai-agents meta per page -> /academy/ (Sion's Tab agent, 26 Oct 2026)
 # Editorial rule (25 Oct 2026): ingredients, not conclusions - reword conclusion sentences in mirrored theme text (ingredients.json). - Sion's Tab agent
 import ingredients
 ingredients.apply(DIST)
