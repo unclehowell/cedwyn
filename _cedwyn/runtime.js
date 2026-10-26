@@ -15,7 +15,7 @@
     DE0.setAttribute('data-cedwyn-sec', SEC || SS);
     if (!DE0.getAttribute('data-ghf-lang-default')) DE0.setAttribute('data-ghf-lang-default', (SEC || SS) === 'wales' ? 'cy' : 'es');
     if (SEC && SECTION_SPA.indexOf(T) >= 0) try { history.replaceState(history.state, '', LP + location.search + location.hash); } catch (e) {}   // a client-side router reads the plain theme path
-    var SJ = document.createElement('script'); SJ.src = '/_cedwyn/section.js?v=1.0.0'; SJ.async = true; (document.head || DE0).appendChild(SJ);
+    var SJ = document.createElement('script'); SJ.src = '/_cedwyn/section.js?v=1.2.0'; SJ.async = true; (document.head || DE0).appendChild(SJ);
   }
   window.__cedwynSec = SEC; window.__cedwynLP = LP;
   // the shared header (basecamp.js) reads the theme's former address from <html data-ghf-host / data-ghf-path>
@@ -84,15 +84,46 @@
     try { u = decodeURIComponent(m[1]); } catch (e) { return null; } if (pass(u)) return u; t = fix(u); return t !== u && t.charAt(0) === '/' ? t : null; }
   window.__cedwyn.untrap = untrap;
   // 25 Oct 2026 (sales fix): the shop's own checkout and sign-up hosts are the one exception to "no outbound links":
-  // a buy button opens Stripe/Gumroad checkout and the free-book form posts to the mailing list, instead of the archive page.
+  // a buy button opens Stripe/Gumroad checkout instead of the archive page (26 Oct 2026: the mailing list is now Cedwyn's own, below).
   function pass(u) { var m = /^https:\/\/([^\/?#:]+)/i.exec(u || ''), h; if (!m) return false; h = m[1].toLowerCase();
-    return h === 'buy.stripe.com' || h === 'checkout.stripe.com' || h === 'gumroad.com' || /\.gumroad\.com$/.test(h) || /\.list-manage\.com$/.test(h)
+    return h === 'buy.stripe.com' || h === 'checkout.stripe.com' || h === 'gumroad.com' || /\.gumroad\.com$/.test(h)
       // 26 Oct 2026: the Agent guest book's version links (commits of this site's own repository) open GitHub directly; the owner allowed them out
       || (h === 'github.com' && /^\/unclehowell\/cedwyn\/commit\/[0-9a-f]{7,40}\/?$/i.test(u.replace(/^https:\/\/[^\/]+/i, '').split(/[?#]/)[0])); }
   window.__cedwyn.pass = pass;
   document.addEventListener('submit', function (e) { var f = e.target, a = f && f.getAttribute ? f.getAttribute('action') : '', m, u;
     m = /^(?:https?:\/\/[^\/]+)?\/wayback\/go\/\?u=([^&#]+)/.exec(a || ''); if (!m) return;
     try { u = decodeURIComponent(m[1]).replace(/&amp;/g, '&'); } catch (x) { return; } if (pass(u)) f.setAttribute('action', u); }, true);
+  // 26 Oct 2026: Cedwyn's own mailing list replaces Mailchimp. A sign-up form that still points at Mailchimp (list-manage.com, directly
+  // or through /wayback/go/), and the film page's form, post to /api/list/subscribe instead: the visitor gets a confirm email from
+  // cedwyn@bucklerfamily.estate and joins when they tap its link. The page's own checks (email, consent tick) run first.
+  var LW = { en: ['Nearly there: check your email and tap the link to confirm.', 'That did not go through. Please try again later.', 'Please enter a valid email address.'],
+    cy: ['Bron yno: edrychwch ar eich e-bost a thapio’r ddolen i gadarnhau.', 'Ni aeth hynny drwodd. Rhowch gynnig arall arni yn nes ymlaen.', 'Rhowch gyfeiriad e-bost dilys.'],
+    es: ['Casi listo: revise su correo y pulse el enlace para confirmar.', 'No se pudo enviar. Inténtelo más tarde.', 'Escriba una dirección de correo válida.'] };
+  function llang() { var l = window.__cedwynLang || ''; if (!l) { try { l = localStorage.getItem('ghf_lang') || ''; } catch (x) {} }
+    l = (l || DE0.getAttribute('data-ghf-lang-default') || DE0.getAttribute('lang') || 'en').slice(0, 2).toLowerCase(); return LW[l] ? l : 'en'; }
+  function mcForm(f) { var a = f.getAttribute('action') || ''; try { a = decodeURIComponent(a); } catch (x) {} return /list-manage\.com/i.test(a) || f.id === 'cm-sub'; }
+  function listSend(f) {
+    var em = f.querySelector('input[name=EMAIL],input[name=email],input[type=email]'), v = em ? String(em.value || '').trim() : '', l = llang(), W = LW[l];
+    var hp = f.querySelector('input[name^="b_"],input[name=website]'), nm = f.querySelector('input[name=FNAME],input[name=name]'), src = f.querySelector('input[name=UTMSRC]');
+    var done = f.parentNode && f.parentNode.querySelector('.ghf-done'), msg = f.querySelector('[role=status]') || f.querySelector('.ghf-err');
+    function say(t, ok) {
+      if (ok && done) { var p = done.querySelector('p'); if (p) p.textContent = t; done.hidden = false; f.hidden = true; return; }
+      if (!msg) { msg = document.createElement('p'); msg.setAttribute('role', 'status'); f.appendChild(msg); }
+      msg.textContent = t; msg.hidden = false; if (ok) [].forEach.call(f.querySelectorAll('input,button'), function (x) { x.disabled = true; });
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { say(W[2]); return; }
+    var topic = f.id === 'cm-sub' ? 'film' : /sample-chapter/.test(src ? src.value : '') ? 'sample-chapter' : 'news';
+    var b = f.querySelector('[type=submit]'); if (b) b.disabled = true;
+    (of || fetch).call(window, '/api/list/subscribe', { method: 'POST', credentials: 'omit', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ email: v, lang: l, topic: topic, source: location.pathname, name: nm ? nm.value : '', website: hp ? hp.value : '' }) })
+      .then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (j) { if (b) b.disabled = false; if (j && j.ok) say(W[0], true); else say((j && j.message) || W[1]); }, function () { if (b) b.disabled = false; say(W[1]); });
+  }
+  document.addEventListener('submit', function (e) { var f = e.target; if (!f || !f.getAttribute || f.id !== 'cm-sub' || !mcForm(f)) return;
+    e.preventDefault(); e.stopImmediatePropagation(); listSend(f); }, true);   // the film page's form: ours from the start
+  document.addEventListener('submit', function (e) { var f = e.target; if (!f || !f.getAttribute || f.id === 'cm-sub' || !mcForm(f)) return;
+    if (e.defaultPrevented) return;   // the page's own check stopped it (no email, no tick)
+    e.preventDefault(); setTimeout(function () { listSend(f); }, 0); }, false);
   document.addEventListener('click', function (e) { var a = e.target && e.target.closest ? e.target.closest('a[href]') : null, t;
     if (a && (t = untrap(a.getAttribute('href')))) a.setAttribute('href', t); }, true);
   var of = window.fetch;

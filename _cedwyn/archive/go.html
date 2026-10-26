@@ -8,7 +8,7 @@ button{background:#fca;color:#14141c;border-color:#fca;font-weight:700;cursor:po
 var u=new URLSearchParams(location.search).get('u')||'',box=document.getElementById('box');
 /* 25 Oct 2026 (sales fix): the shop's checkout hosts (Stripe, Gumroad) and the mailing list open directly: a buy button must reach checkout. Only these hosts. - Sion's Tab agent */
 (function(){var x;try{x=new URL(u);}catch(e){return;}var h=x.hostname.toLowerCase();if(x.protocol!=='https:')return;
-if(h==='buy.stripe.com'||h==='checkout.stripe.com'||h==='gumroad.com'||/\.gumroad\.com$/.test(h)||/\.list-manage\.com$/.test(h)){
+if(h==='buy.stripe.com'||h==='checkout.stripe.com'||h==='gumroad.com'||/\.gumroad\.com$/.test(h)){
 document.querySelector('h1').textContent='Secure checkout';box.innerHTML='<p class="muted">Opening secure checkout\u2026</p><p><a href="'+x.href.replace(/"/g,'%22')+'">Continue to checkout</a></p>';location.replace(x.href);u='';}})();
 /* 25 Oct 2026: an address that is one of Cedwyn's own themes (a former *.bucklerfamily.estate site or the Legal Wiki) opens the theme */
 (function(){var H=/*GO_HOSTS*/{},A=/*GO_APEX*/[],x;try{x=new URL(u);}catch(e){return;}var h=x.hostname.toLowerCase().replace(/^www\./,''),p=x.pathname||'/',t=null,i;

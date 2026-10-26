@@ -10,7 +10,6 @@
   var de = document.documentElement;
   var T = window.CEDWYN_T || {"rib_w": {"en": "Wales · AR tour of Llandough, coming soon", "cy": "Cymru · Taith AR Llandochau, yn dod yn fuan", "es": "Gales · Visita RA de Llandough, próximamente"}, "rib_a": {"en": "Argentina · Great House II, Puerto Madryn, coming soon", "cy": "Yr Ariannin · Great House II, Porth Madryn, yn dod yn fuan", "es": "Argentina · Great House II, Puerto Madryn, próximamente"}, "rib_v": {"en": "Vouchers", "cy": "Talebau", "es": "Vales"}, "rib_e": {"en": "E-books", "cy": "E-lyfrau", "es": "Libros"}, "rib_mu": {"en": "Museum", "cy": "Amgueddfa", "es": "Museo"}, "rib_re": {"en": "The retelling", "cy": "Yr ailadrodd", "es": "El relato"}, "rib_close": {"en": "Hide", "cy": "Cuddio", "es": "Ocultar"}, "w_name": {"en": "Wales", "cy": "Cymru", "es": "Gales"}, "a_name": {"en": "Argentina", "cy": "Yr Ariannin", "es": "Argentina"}, "f_log": {"en": "Page version & change log", "cy": "Fersiwn y dudalen a’r cofnod newidiadau", "es": "Versión de la página y registro de cambios"}, "f_cur": {"en": "Current version:", "cy": "Fersiwn gyfredol:", "es": "Versión actual:"}, "f_proto": {"en": "Agents and editors: follow the", "cy": "Asiantau a golygyddion: dilynwch y", "es": "Agentes y editores: sigan el"}};
   var THEMES = ["records", "docs", "wayback", "nomenclature", "maps", "infographic", "wiki", "ebooks", "story", "thousand-cuts", "fb", "chess", "csscpsg", "courtdrills", "fcg", "oldbill", "accounts", "authorities", "wdtk", "review", "research", "qa", "meeting", "projects", "app", "chat", "watchtower", "fb2", "email", "emails", "dartboard", "estate", "directory", "patagonia", "wales", "terrain", "cyberspace", "shop", "movie", "kissed-frogs"];
-  var MC = { u: "284f08fe7e1b8d39250808104", id: "6139ff4a0d", host: "estate.us3.list-manage.com" };
   var SEC = de.getAttribute("data-cedwyn-sec") || "", SECURL = de.getAttribute("data-cedwyn-sec-url") || "";
   var ACC = { wales: ["#00843D", "#C8102E"], argentina: ["#4E8CC8", "#F6B40E"] };
   function cookie(n) { var m = new RegExp("(?:^|;\\s*)" + n + "=([a-z]+)").exec(document.cookie || ""); return m ? m[1] : null; }
@@ -81,30 +80,29 @@
     if (sectioned(h)) return;
     var x = h.split(/[\/?#]/)[1]; if (x && THEMES.indexOf(x) >= 0) a.setAttribute("href", "/" + SECURL + h);
   }, true);
-  // notify-me forms (the estate's Mailchimp audience, the same one the e-book signup uses), sent only when the visitor submits
+  // notify-me forms: Cedwyn's own mailing list (26 Oct 2026, replaces Mailchimp). Sent only when the visitor submits; they get a
+  // confirm email from cedwyn@bucklerfamily.estate and are added when they tap its link.
   function forms() {
     var q = document.querySelectorAll("form[data-cedwyn-notify]");
     [].forEach.call(q, function (f) {
       if (f.__cn) return; f.__cn = 1;
       f.addEventListener("submit", function (ev) {
         ev.preventDefault();
-        var err = f.querySelector(".cn-err"), em = (f.EMAIL.value || "").trim(); err.hidden = true;
+        var err = f.querySelector(".cn-err"), em = (f.EMAIL.value || "").trim(), nt = f.getAttribute("data-cedwyn-notify") || ""; err.hidden = true;
         if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { err.textContent = tr("err_email"); err.hidden = false; return; }
         if (!f.querySelector(".cn-ok").checked) { err.textContent = tr("err_tick"); err.hidden = false; return; }
-        var cb = "cedwynMc" + Date.now(), done = false, s = document.createElement("script");
-        var p = { u: MC.u, id: MC.id, c: cb, EMAIL: em, UTMSRC: "cedwyn/" + (f.getAttribute("data-cedwyn-notify") || ""), UTMCMP: "notify-" + (f.getAttribute("data-cedwyn-notify") || ""),
-          CONSENT: (f.getAttribute("data-cedwyn-notify") || "") + " notify form " + new Date().toISOString() + " " + location.pathname };
-        p["b_" + MC.u + "_" + MC.id] = "";
-        var qs = []; for (var k in p) qs.push(encodeURIComponent(k) + "=" + encodeURIComponent(p[k]));
-        function fin(ok) { if (done) return; done = true; try { delete window[cb]; } catch (e) { window[cb] = undefined; } if (s.parentNode) s.parentNode.removeChild(s);
-          if (ok) { f.hidden = true; var d = f.parentNode.querySelector(".cn-done"); if (d) d.hidden = false; } else { err.textContent = tr("err_send"); err.hidden = false; } }
-        window[cb] = function (r) { fin(r && (r.result === "success" || /already subscribed/i.test(r.msg || ""))); };
-        s.onerror = function () { fin(false); }; setTimeout(function () { fin(false); }, 12000);
-        s.src = "https://" + MC.host + "/subscribe/post-json?" + qs.join("&");
-        (document.head || de).appendChild(s);
+        var b = f.querySelector("[type=submit]"), done = false, hp = f.querySelector("input[name=website]");
+        function fin(ok, m) { if (done) return; done = true; if (b) b.disabled = false;
+          if (ok) { f.hidden = true; var d = f.parentNode.querySelector(".cn-done"); if (d) d.hidden = false; } else { err.textContent = m || tr("err_send"); err.hidden = false; } }
+        if (b) b.disabled = true; setTimeout(function () { fin(false); }, 15000);
+        fetch("/api/list/subscribe", { method: "POST", credentials: "omit", headers: { "content-type": "application/json" },
+          body: JSON.stringify({ email: em, lang: lang(), topic: "notify-" + nt, source: location.pathname, website: hp ? hp.value : "" }) })
+          .then(function (r) { return r.json().catch(function () { return {}; }); })
+          .then(function (j) { fin(!!(j && j.ok), j && j.message); }, function () { fin(false); });
       });
     });
   }
+
   function wireLang() {
     var q = document.querySelectorAll("[data-cedwyn-lang]");
     [].forEach.call(q, function (b) { if (b.__cl) return; b.__cl = 1; b.addEventListener("click", function () { setLang(b.getAttribute("data-cedwyn-lang")); }); });
