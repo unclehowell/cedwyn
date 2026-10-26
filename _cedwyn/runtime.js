@@ -101,7 +101,7 @@
     es: ['Casi listo: revise su correo y pulse el enlace para confirmar.', 'No se pudo enviar. Inténtelo más tarde.', 'Escriba una dirección de correo válida.'] };
   function llang() { var l = window.__cedwynLang || ''; if (!l) { try { l = localStorage.getItem('ghf_lang') || ''; } catch (x) {} }
     l = (l || DE0.getAttribute('data-ghf-lang-default') || DE0.getAttribute('lang') || 'en').slice(0, 2).toLowerCase(); return LW[l] ? l : 'en'; }
-  function mcForm(f) { var a = f.getAttribute('action') || ''; try { a = decodeURIComponent(a); } catch (x) {} return /list-manage\.com/i.test(a) || f.id === 'cm-sub'; }
+  function mcForm(f) { var a = f.getAttribute('action') || ''; try { a = decodeURIComponent(a); } catch (x) {} return /list-manage\.com/i.test(a) || f.id === 'cm-sub' || f.hasAttribute('data-cedwyn-mc'); }   // data-cedwyn-mc: a Mailchimp form the build pointed at /api/list/subscribe (26 Oct 2026)
   function listSend(f) {
     var em = f.querySelector('input[name=EMAIL],input[name=email],input[type=email]'), v = em ? String(em.value || '').trim() : '', l = llang(), W = LW[l];
     var hp = f.querySelector('input[name^="b_"],input[name=website]'), nm = f.querySelector('input[name=FNAME],input[name=name]'), src = f.querySelector('input[name=UTMSRC]');
