@@ -1,0 +1,542 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow"><title>Archaeology and Heritage — Great House Farm Wiki — Research Mirror</title>
+<style>
+:root {
+  color-scheme: light;
+  --wiki-bg: #f8f9fa;
+  --wiki-paper: #ffffff;
+  --wiki-text: #202122;
+  --wiki-muted: #54595d;
+  --wiki-border: #a2a9b1;
+  --wiki-soft-border: #c8ccd1;
+  --wiki-link: #0645ad;
+  --wiki-visited: #0b0080;
+  --wiki-control: #f8f9fa;
+  --wiki-control-border: #a2a9b1;
+  --wiki-table-head: #eaecf0;
+  --wiki-table-alt: #f8f9fa;
+  --assured: #f6fcf4;
+  --assured-mark: #c7e8bd;
+  --notassured: #fffaf1;
+  --notassured-mark: #f2d6aa;
+}
+html[data-theme="dark"], body[data-theme="dark"],
+html[data-color-theme="dark"], body[data-color-theme="dark"],
+html.dark, body.dark, html.dark-mode, body.dark-mode,
+html.theme-dark, body.theme-dark, body[data-mw-color-scheme="dark"] {
+  color-scheme: dark;
+  --wiki-bg: #101418;
+  --wiki-paper: #202122;
+  --wiki-text: #eaecf0;
+  --wiki-muted: #a7acb1;
+  --wiki-border: #54595d;
+  --wiki-soft-border: #72777d;
+  --wiki-link: #8ab4f8;
+  --wiki-visited: #c0a5e8;
+  --wiki-control: #27292d;
+  --wiki-control-border: #72777d;
+  --wiki-table-head: #303338;
+  --wiki-table-alt: #27292d;
+  --assured: #202d25;
+  --assured-mark: #344d39;
+  --notassured: #30291d;
+  --notassured-mark: #5c4829;
+}
+* { box-sizing: border-box; }
+html { background: var(--wiki-bg); }
+body {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  color: var(--wiki-text);
+  background: var(--wiki-bg);
+  font-family: Arial, "Liberation Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+a { color: var(--wiki-link); text-decoration: none; }
+a:visited { color: var(--wiki-visited); }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--wiki-link);
+  outline-offset: 2px;
+}
+img, video, iframe, svg { max-width: 100%; }
+img { height: auto; }
+body > header {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 1rem clamp(1rem, 3vw, 2.25rem) .75rem;
+  color: var(--wiki-text);
+  background: var(--wiki-bg);
+  border-bottom: 1px solid var(--wiki-border);
+}
+body > header a { color: var(--wiki-text); }
+body > header a:visited { color: var(--wiki-text); }
+body > header small { font-size: 1.05rem; font-weight: 600; }
+header, nav, [class*="header-row"], [class*="headerRow"], [data-header-row] {
+  color: var(--wiki-text);
+}
+main {
+  width: 100%;
+  max-width: 1320px;
+  min-height: 60vh;
+  margin: 0 auto;
+  padding: 1.5rem clamp(1rem, 3vw, 2.5rem) 3rem;
+  color: var(--wiki-text);
+  background: var(--wiki-paper);
+  border-left: 1px solid var(--wiki-soft-border);
+  border-right: 1px solid var(--wiki-soft-border);
+}
+.article { width: 100%; min-width: 0; }
+.article h1, .article h2, .article h3, .article h4 {
+  color: var(--wiki-text);
+  font-family: "Linux Libertine", "Georgia", "Times New Roman", serif;
+  font-weight: normal;
+  overflow-wrap: anywhere;
+}
+.article h1 {
+  margin: 0 0 .35rem;
+  padding: 0 0 .2em;
+  font-size: 1.9rem;
+  line-height: 1.25;
+  border-bottom: 1px solid var(--wiki-border);
+}
+.article .meta {
+  margin: .2rem 0 1.2rem;
+  padding: 0 0 .55rem;
+  color: var(--wiki-muted);
+  font-size: .82rem;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--wiki-soft-border);
+}
+.content {
+  min-width: 0;
+  color: var(--wiki-text);
+  font-size: .9rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.content p { margin: .5em 0; }
+.content h2 {
+  margin: 1.25em 0 .4em;
+  padding-bottom: .18em;
+  font-size: 1.55rem;
+  line-height: 1.35;
+  border-bottom: 1px solid var(--wiki-border);
+}
+.content h3 { margin: 1em 0 .35em; font-size: 1.25rem; line-height: 1.4; }
+.content h4 { margin: .8em 0 .3em; font-size: 1.08rem; font-weight: 600; }
+.content ul, .content ol { padding-left: 1.8em; }
+.content li { margin: .18em 0; }
+.content blockquote {
+  margin: .7em 1.5em;
+  padding: .2em .8em;
+  color: var(--wiki-muted);
+  border-left: 3px solid var(--wiki-soft-border);
+}
+.content hr { border: 0; border-top: 1px solid var(--wiki-soft-border); margin: 1.5em 0; }
+.content table {
+  border: 1px solid var(--wiki-border);
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  margin: 1em 0;
+  color: var(--wiki-text);
+  background: var(--wiki-paper);
+}
+.content th, .content td {
+  border: 1px solid var(--wiki-border);
+  padding: .35em .6em;
+  vertical-align: top;
+}
+.content th { font-weight: 600; background: var(--wiki-table-head); }
+.content tr:nth-child(even) td { background: var(--wiki-table-alt); }
+.content pre, .content code, code, pre {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+.content pre, pre {
+  max-width: 100%;
+  overflow: auto;
+  padding: .8em;
+  border: 1px solid var(--wiki-soft-border);
+  background: var(--wiki-table-alt);
+  color: var(--wiki-text);
+}
+.content code, code { overflow-wrap: anywhere; }
+.content figure { max-width: 100%; margin: 1em 0; }
+.content figcaption { color: var(--wiki-muted); font-size: .85rem; }
+.content img { max-width: 100%; }
+.content p[data-evidence-status="assured"],
+.content li[data-evidence-status="assured"],
+.content blockquote[data-evidence-status="assured"] {
+  background: var(--assured);
+  border-radius: 2px;
+}
+.content p[data-evidence-status="not-assured"],
+.content li[data-evidence-status="not-assured"],
+.content blockquote[data-evidence-status="not-assured"] {
+  background: var(--notassured);
+  border-radius: 2px;
+}
+.quality-marker {
+  display: inline-block;
+  font-weight: 700;
+  font-size: .86em;
+  margin-right: .42em;
+  padding: 0 .1em;
+  user-select: none;
+}
+.quality-marker.assured, .assured-inline, .quality-key.assured { background: var(--assured-mark); }
+.quality-marker.not-assured, .not-assured-inline, .quality-key.not-assured { background: var(--notassured-mark); }
+.content p[data-evidence-status="assured"] .quality-marker,
+.content p[data-evidence-status="not-assured"] .quality-marker { opacity: .9; }
+.quality-key { padding: .08rem .25rem; border-radius: 2px; }
+.quality-key.unassessed { border-bottom: 1px dotted var(--wiki-muted); }
+.quality-docs {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--wiki-border);
+}
+.site-footer {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 1rem clamp(1rem, 3vw, 2.25rem) 1.5rem;
+  color: var(--wiki-muted);
+  background: var(--wiki-bg);
+  border-top: 1px solid var(--wiki-border);
+  font-size: .8rem;
+}
+.site-footer p { margin: .4rem 0; }
+.quality-legend { color: var(--wiki-muted); }
+.browse-index {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--wiki-border);
+}
+.browse-index h2 {
+  font-family: "Linux Libertine", Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+  font-weight: normal;
+  border-bottom: 1px solid var(--wiki-border);
+}
+.browse-index form { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; margin: .75rem 0 1rem; }
+.browse-index li { margin: .75rem 0; }
+.index-excerpt { margin: .15rem 0; color: var(--wiki-muted); font-size: .88rem; overflow-wrap: anywhere; }
+.browse-index a { overflow-wrap: anywhere; }
+.back { margin-top: 2rem; padding-top: .75rem; border-top: 1px solid var(--wiki-soft-border); }
+input, select, textarea {
+  max-width: 100%;
+  padding: .45rem .6rem;
+  border: 1px solid var(--wiki-control-border);
+  border-radius: 2px;
+  background: var(--wiki-paper);
+  color: var(--wiki-text);
+  font: inherit;
+}
+button, input[type="submit"], input[type="button"], [role="button"] {
+  padding: .45rem .75rem;
+  border: 1px solid var(--wiki-control-border);
+  border-radius: 2px;
+  background: var(--wiki-control);
+  color: var(--wiki-text);
+  font: inherit;
+  cursor: pointer;
+}
+button:hover, input[type="submit"]:hover, input[type="button"]:hover, [role="button"]:hover {
+  background: var(--wiki-table-head);
+}
+.theme-toggle, #theme-toggle, [data-theme-toggle] { color: var(--wiki-text); background: var(--wiki-control); }
+.preview-modal {
+  position: fixed;
+  z-index: 10000;
+  right: 1rem;
+  bottom: 1rem;
+  width: min(27rem, calc(100vw - 2rem));
+  max-height: 65vh;
+  overflow: auto;
+  color: var(--wiki-text);
+  background: var(--wiki-paper);
+  border: 1px solid var(--wiki-border);
+  border-radius: 2px;
+  box-shadow: 0 8px 32px #0002;
+  padding: 1rem;
+}
+.preview-modal[hidden] { display: none; }
+.preview-modal h2 { font-size: 1rem; margin: .1rem 0 .5rem; }
+.preview-modal p { font-size: .9rem; margin: .4rem 0; }
+.preview-modal .preview-actions { display: flex; justify-content: space-between; align-items: center; gap: .5rem; margin-top: .6rem; }
+.preview-modal button { padding: .35rem .6rem; }
+@media (min-width: 1100px) {
+  .content { font-size: .92rem; }
+}
+@media (max-width: 700px) {
+  body { font-size: 14px; }
+  body > header { padding: .8rem 1rem .6rem; }
+  main { padding: 1rem .9rem 2rem; border-left: 0; border-right: 0; }
+  .article h1 { font-size: 1.65rem; }
+  .content h2 { font-size: 1.35rem; }
+  .content table { display: block; overflow-x: auto; }
+  .content blockquote { margin-left: .5rem; margin-right: .5rem; }
+  .site-footer { padding: .8rem 1rem 1.2rem; }
+}
+
+html[data-ghf-mode="night"]{
+  color-scheme: dark;
+  --wiki-bg: #101418;
+  --wiki-paper: #202122;
+  --wiki-text: #eaecf0;
+  --wiki-muted: #a7acb1;
+  --wiki-border: #54595d;
+  --wiki-soft-border: #72777d;
+  --wiki-link: #8ab4f8;
+  --wiki-visited: #c0a5e8;
+  --wiki-control: #27292d;
+  --wiki-control-border: #72777d;
+  --wiki-table-head: #303338;
+  --wiki-table-alt: #27292d;
+  --assured: #202d25;
+  --assured-mark: #344d39;
+  --notassured: #30291d;
+  --notassured-mark: #5c4829;
+}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+main.landing{max-width:60rem}
+main.landing details{border:1px solid var(--wiki-soft-border);border-radius:4px;background:var(--wiki-paper);margin:.5rem 0}
+main.landing details>summary{cursor:pointer;padding:.65rem .8rem;font-weight:600;list-style-position:inside;overflow-wrap:anywhere}
+main.landing details>summary:hover{background:var(--wiki-table-head)}
+main.landing details>*:not(summary){margin-left:.8rem;margin-right:.8rem}
+main.landing details details{border-color:var(--wiki-soft-border);margin:.4rem 0}
+main.landing .landing-block{border-left:4px solid #1F3D2B}
+html[data-ghf-mode="night"] main.landing .landing-block{border-left-color:#C9B6FF}
+.wiki-menu .menu-root{border-left:4px solid #C9B6FF}
+.wiki-menu a{display:block;padding:.45rem .2rem;border-bottom:1px solid var(--wiki-soft-border);overflow-wrap:anywhere}
+.wiki-menu details>div{padding-bottom:.4rem}
+.landing-search{display:flex;gap:.4rem;margin:.6rem 0 1rem}
+.landing-search input{flex:1;min-width:0;max-width:none;padding:.55rem;border:1px solid var(--wiki-control-border);border-radius:4px;background:var(--wiki-paper);color:var(--wiki-text)}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;margin:.2rem 0 .8rem}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+main.landing figure{margin:.4rem 0}
+main.landing video{width:100%;height:auto;background:#000}
+main.landing figcaption{font-size:.85rem;color:var(--wiki-muted)}
+#ghf-parcel-tube-map>div:first-child{font-size:.8rem;letter-spacing:.06em;color:var(--wiki-muted);margin:.4rem 0}
+main.landing p,main.landing li,main.landing div{overflow-wrap:anywhere}
+.ev-scroll{overflow-x:auto;max-width:100%}
+.ghf-ev-table{border-collapse:collapse;width:100%}
+.ghf-ev-table th,.ghf-ev-table td,.ghf-version-table th,.ghf-version-table td{border:1px solid var(--wiki-soft-border);padding:.4rem;vertical-align:top;text-align:left}
+.ghf-ev-table th{width:28%;background:var(--wiki-table-head)}
+.research-addendum{border-top:2px solid #1F3D2B;margin-top:1.5rem;padding-top:.5rem}
+.site-footer{font-size:.8rem}
+.yt-facade{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:#000;cursor:pointer}
+.yt-facade img{width:100%;height:100%;object-fit:cover;display:block}
+.yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:48px;border-radius:12px;background:#c4302b;color:#fff;font-size:22px;line-height:48px;text-align:center}
+.article>h1{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style><script src="https://bucklerfamily.estate/ghf-lang/ghf-lang.js" defer></script>
+<script src="https://bucklerfamily.estate/ghf-lang/ghf-boot.js?v=2.1.2"></script>
+</head><body><main><article class="article" data-source-type="page" data-source-id="29"><h1>Archaeology and Heritage</h1><p class="meta">page · Updated 2026-10-24T09:43:37 · <a href="https://greathousefarmwiki.wordpress.com/archaeology/">Original source</a></p><div class="content">
+<div class="ghf-page-header" style="font-size:0.85em;color:#444;border:1px solid #ddd;border-radius:4px;padding:6px 10px;margin-bottom:14px"><strong>Page ID:</strong> 29 · <strong>Title:</strong> Archaeology and Heritage · <strong>Evidence status:</strong> Not yet labelled — see the Editing Protocol · <strong>Version:</strong> 0.1.3 · <a href="/editing-protocol/">Editing Protocol</a></div>
+
+
+<details class="ghf-rm"><summary><span class="ghf-rm__lead">Chronology and artefact cross-reference …</span> <span class="ghf-rm__more">… read more</span></summary><p><strong>Chronology and artefact cross-reference — 10-10-2026:</strong> Use the <a href="/scrutiny-and-accountability/government-public-authority-involvement/institutional-involvement-roadmap-1877-2026/">Institutional Involvement Roadmap</a> for the actor/date sequence. The reported Cadw-to-Minister spot-listing correspondence has a dedicated placeholder, <a href="/evidence-library/ghf-e152-cadw-letter-to-minister-1988-spot-listing/">GHF-E152</a>; its original has not been attached as at 10-10-2026.</p></details>
+
+
+<details class="ghf-rm"><summary><span class="ghf-rm__lead">CATALOGUE RULE: cite documentary evidence…</span> <span class="ghf-rm__more">… read more</span></summary><p><strong>CATALOGUE RULE:</strong> cite documentary evidence through its dedicated Evidence Library page. Do not cite a raw image, filename, transcription or research summary as the evidence record itself. Missing originals receive a dedicated placeholder page so absence is recorded rather than silently omitted. <sup class="ghf-asat-marker" style="font-size:0.7em;vertical-align:super;cursor:help" title="As at 10-10-2026" aria-label="As at 10-10-2026">🕒</sup></p></details>
+
+<h2 class="wp-block-heading">Evidence, in date order</h2>
+
+<details class="ghf-rm"><summary><span class="ghf-rm__lead">Vetting note — September 2026: this page…</span> <span class="ghf-rm__more">… read more</span></summary><p class="wp-block-paragraph"><strong>Vetting note — September 2026:</strong> this page separates established archaeological/heritage records from family evidence and research leads. Older GitHub research material is not treated as authoritative where an official record or later disclosure gives a more precise account.</p></details>
+
+<details id="cadw-1988" class="wp-block-details is-layout-flow wp-block-details-is-layout-flow">
+<summary>1988: Cadw listing consideration and demolition</summary>
+<p class="wp-block-paragraph">Cadw&#8217;s 2026 disclosure record states the farmhouse was visited and assessed for listing in 1988. The surviving Cadw search found two photographs dated 29 July 1988. Cadw&#8217;s 2 July 2026 internal review widened the search across relevant 1980s–90s listing/spot-listing files but found no further information relating to a possible listing of Great House Farm. The surviving record supports documented listing consideration; it does not establish that the farmhouse was formally listed. <sup class="ghf-asat-marker" style="font-size:0.7em;vertical-align:super;cursor:help" title="As at 10-10-2026" aria-label="As at 10-10-2026">🕒</sup></p>
+<p class="wp-block-paragraph"><strong>Witness statement (19 Oct 2026):</strong> Branwen, who lived at the farm until 1988, states that Cadw officers came into the house in 1988, carried out a survey/report and remarked on the roof beams being high (<a href="/evidence/ev-0255-witness-statement-branwen-cadw-inspection-1988/">EV-0255</a>). Cadw’s Casework Team Leader wrote on 21 May 2026 that the farmhouse and barn “were assessed and rejected for listing in the 1988 community survey of Llandough” and that he could “find no record (as-yet)” of the December 1988 visit reported by the South Wales Echo of 3 December 1988. The date of the inspection Branwen describes is SOURCE PENDING; our case (prospective) is that it took place in the days before Cadw’s decision of 5 December 1988 not to spot-list.</p>
+<p class="wp-block-paragraph"><strong>Primary records:</strong> Welsh Government/Cadw ATISN 27021 disclosure and 2 July 2026 internal review. The GitHub archive is retained as a research copy rather than treated as the authority where later official disclosure supersedes it.</p>
+</details>
+<details class="wp-block-details is-layout-flow wp-block-details-is-layout-flow">
+<summary>c.1880 / 1858: the reported “armour” discovery — provenance corrected</summary>
+<p class="wp-block-paragraph">The Heneb/GGAT HER record GGAT02038s contains a note written by R. F. Suggett in December 1988: it records a <em>report</em> that “armour” was found under the floor of the rear wing at Great House c.1880, and suggests that this might be the medieval ironwork then held at the National Museum. The HER therefore proves that the story was recorded by 1988; it does not prove that the reported c.1880 discovery occurred. <sup class="ghf-asat-marker" style="font-size:0.7em;vertical-align:super;cursor:help" title="As at 10-10-2026" aria-label="As at 10-10-2026">🕒</sup></p>
+<p class="wp-block-paragraph">The story is older than 1988. RCAHMW holds a note that the house &#8220;was reputed to be the stable of a Castle, which could be verified by the finding of the remains of a soldier in armour, his horse, lance and small shield under the dining room floor&#8221; (NMR 6048942), and a <em>Daily Telegraph</em> article of 16 April 1974 dating the find &#8220;about 1870&#8221; (NMR 6048944). RCAHMW confirmed on 29 September 2026 (RC26-0375) that Suggett&#8217;s 1988 account itself does not mention the find. <sup class="ghf-asat-marker" style="font-size:0.7em;vertical-align:super;cursor:help" title="As at 10-10-2026" aria-label="As at 10-10-2026">🕒</sup></p>
+<p class="wp-block-paragraph">Amgueddfa Cymru – Museum Wales has subsequently clarified the collection evidence. Its reply states: “It is stated that these objects were found at Church Farm, Llandough, in 1858.” The Museum said that nothing of a similar nature from Great House Farm is in its collection and that no matching find appears in the archaeological literature. It considered that the 1858 Church Farm objects could well be the basis for the local story/tradition that prompted the enquiry.</p>
+<p class="wp-block-paragraph"><strong>DOCUMENT — the Church Farm records, released 5 October 2026.</strong> Under FOI 2026-036 (<a href="/records-access-chronology/foi-reply-register/ghf-e106-r33-amgueddfa-cymru-reply-further-collections-search-following-8-september-2026-foi/">GHF-E106-R33</a>) the Museum supplied the documents behind that statement, each now on its own evidence page: the letter headed Cogan Pill, 22 November 1931, annotated “File 63.24” (<a href="/evidence-library/ghf-e106-r33-a1-1931-letter-museum-wales-file-63-24/">GHF-E106-R33-A1</a>), and the collections records for a medieval iron rowel spur, 63.24/1 (<a href="/evidence-library/ghf-e106-r33-a2-museum-wales-63-24-1-rowel-spur/">GHF-E106-R33-A2</a>), and a medieval iron spearhead, 63.24/2 (<a href="/evidence-library/ghf-e106-r33-a3-museum-wales-63-24-2-spearhead/">GHF-E106-R33-A3</a>), donated in 1963. The letter states the spearhead and spur were found at Llandough Church Farm when digging foundations for new buildings about 1858, with about six skeletons that were reburied near the stile on the south side of the church. It does not mention Great House. The Museum&#8217;s grid reference for the find (ST168733) is a 100-metre square beside the church: it contains the Museum&#8217;s own 1994 Great House Farm site reference (ST 1681 7331) but not the HER point for the farmhouse (ST 1670 7335), so it neither places the find at the farmhouse nor rules out the farm&#8217;s land. Where Church Farm and its 1858 buildings stood is still to be established. <sup class="ghf-asat-marker" style="font-size:0.7em;vertical-align:super;cursor:help" title="As at 10-10-2026" aria-label="As at 10-10-2026">🕒</sup></p>
+<p class="wp-block-paragraph"><strong>Wiki status:</strong> the 1858 Church Farm attribution is the Museum&#8217;s stated provenance for the relevant objects, resting on the 1931 letter (<a href="/evidence-library/ghf-e106-r33-a1-1931-letter-museum-wales-file-63-24/">A1</a>). The c.1880 Great House “armour” account is retained only as a documented later report/tradition. The Wiki does not state that a soldier, horse, visor, lance or armour was found beneath Great House Farm unless an independent primary source is located.</p>
+</details>
+<details class="wp-block-details is-layout-flow wp-block-details-is-layout-flow">
+<summary>Open heritage issue — HER classification and the Llandough cemetery</summary>
+<p class="wp-block-paragraph"><strong>DOCUMENT.</strong> The current Heneb/GGAT Historic Environment Record <strong>GGAT02038s</strong> is headed and classified as “POST MEDIEVAL &#8211; Farm” for Great House Farm, Llandough. The same record describes an historic site beside the parish church and records reported medieval pottery/ironwork and a suggestion in its 1988 note that the farmhouse may have had a medieval core. <a href="https://archwilio.org.uk/her/chi3/report/page.php?watprn=GGAT02038s">Open the current HER record →</a> <sup class="ghf-asat-marker" style="font-size:0.7em;vertical-align:super;cursor:help" title="As at 10-10-2026" aria-label="As at 10-10-2026">🕒</sup></p>
+<p class="wp-block-paragraph"><strong>OPEN COMPLAINT / FAMILY CASE.</strong> The family has made a formal complaint to Heneb on 27 September 2026 concerning the HER identifiers and the way the archaeological character of the site is classified, including the treatment of the early-medieval cemetery evidence in the wider Llandough record. Heneb acknowledged it on 29 September 2026 and appointed an investigating officer. The complaint is unresolved. This page does not state that the classification is unlawful or erroneous, and it does not treat the classification as proof that archaeological material was destroyed in the 1983 GGAT warehouse fire. <sup class="ghf-asat-marker" style="font-size:0.7em;vertical-align:super;cursor:help" title="As at 10-10-2026" aria-label="As at 10-10-2026">🕒</sup></p>
+<p class="wp-block-paragraph"><strong>SEPARATE LINE OF ENQUIRY.</strong> The reported 1983 GGAT warehouse fire is a distinct records-loss enquiry. It must not be merged with the question of how GGAT02038s currently classifies Great House Farm.</p>
+<p class="wp-block-paragraph"><strong>LEGAL CONTEXT.</strong> The family has also referred the heritage issue to the portfolio minister under the Historic Environment (Wales) Act 2023, sections 194–196. No outcome is asserted here.</p>
+</details>
+<details class="wp-block-details is-layout-flow wp-block-details-is-layout-flow">
+<summary>How the HER records the site — record structure (checked 30 September 2026)</summary>
+<p class="wp-block-paragraph"><strong>DOCUMENT.</strong> The Historic Environment Record uses separate site and event records. Different reference numbers are different record types, not contradictory versions.</p>
+<figure class="wp-block-table">
+<table>
+<thead>
+<tr>
+<th>Record</th>
+<th>Reference</th>
+<th>What it holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Great House Farm (site)</td>
+<td>GGAT02038s</td>
+<td>Post Medieval, Farm. Description incorporates RCAHMW&#8217;s December 1988 text (R. F. Suggett); sources include GGAT&#8217;s 1990 assessment</td>
+</tr>
+<tr>
+<td>1990 trial excavation</td>
+<td>GGATE000877</td>
+<td>Linked to GGAT02038s</td>
+</tr>
+<tr>
+<td>1990 GGAT assessment</td>
+<td>GGATE003872</td>
+<td>Human remains; GGAT&#8217;s recommendations</td>
+</tr>
+<tr>
+<td>1994 excavation</td>
+<td>GGATE003875</td>
+<td>Expansion into the 1990 low-potential zone; 858 inhumations</td>
+</tr>
+<tr>
+<td>Early-medieval cemetery</td>
+<td>GGAT02272s</td>
+<td>Early Medieval, Cemetery</td>
+</tr>
+<tr>
+<td>Medieval building (1994)</td>
+<td>GGAT03583s</td>
+<td>Timber building found in 1994</td>
+</tr>
+<tr>
+<td>Llandough Roman Villa (separate site)</td>
+<td>PRN 00768s; GGATE001109</td>
+<td>South of the church; not Great House Farm</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<p class="wp-block-paragraph"><strong>DOCUMENT — national record.</strong> Coflein NPRN 20182 gives Site Type &#8220;Dwelling&#8221;, Period &#8220;Post Medieval&#8221;, and describes the cemetery as &#8220;excavated, on land adjacent to Great House Farm&#8221; (<a href="https://coflein.gov.uk/en/site/20182">Coflein</a>, checked 30 September 2026).</p>
+<p class="wp-block-paragraph"><strong>OPEN QUESTION.</strong> Does the HER&#8217;s structure make clear that the post-medieval farm and the early-medieval cemetery overlap on the same ground, and does it carry both burial figures with their dates? This is raised with Heneb as a record question, not as an allegation of deliberate misclassification.</p>
+</details>
+<details class="wp-block-details is-layout-flow wp-block-details-is-layout-flow">
+<summary>1982–1995: GGAT&#8217;s role — review findings (September 2026)</summary>
+<p class="wp-block-paragraph"><strong>STATUS — FAMILY REVIEW, UNDER INVESTIGATION.</strong> In September 2026 the family reviewed GGAT&#8217;s role as curator, advisor, contractor and record-holder, and prepared that review for Heneb&#8217;s investigating officer alongside its formal complaint. What follows summarises what the documents show. It is not a finding by Heneb or any other body. <sup class="ghf-asat-marker" style="font-size:0.7em;vertical-align:super;cursor:help" title="As at 10-10-2026" aria-label="As at 10-10-2026">🕒</sup></p>
+<p class="wp-block-paragraph"><strong>Concessions.</strong> GGAT did not demolish the farmhouse, did not advise that it be demolished, and had no part in the decision not to list it. Its documented conduct from December 1993 to December 1994 was in defence of the archaeological resource. In 1990 GGAT recommended watching briefs, recording of surviving parts of the farm, protection or excavation of the sensitive area east of the churchyard wall, and legal advice on the human remains.</p>
+<figure class="wp-block-table">
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Documented fact</th>
+<th>Question it raises</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Oct 1982</td>
+<td>GGAT tells the planning authority that occupation may continue north of the church and asks for &#8220;thorough investigative work prior to the development&#8221;.</td>
+<td>What happened to that warning in the six years to December 1988?</td>
+</tr>
+<tr>
+<td>Late 1989</td>
+<td>In one consultee report GGAT advises the application should not be determined without assessment, specifies machine trenching, quotes £2,000 and two weeks, and discloses negotiations with BP&#8217;s agents. BP then commissions GGAT.</td>
+<td>How were GGAT&#8217;s advisory and contracting roles separated and supervised in 1989–90?</td>
+</tr>
+<tr>
+<td>Aug 1990</td>
+<td>Eight machine trenches. The eastern area &#8220;could not be investigated&#8221;, yet is zoned low potential. The report dates the demolition to 1983 in one section and 1988 in another.</td>
+<td>What evidence supported the low-potential zoning of untested ground? Where did the 1983 date come from?</td>
+</tr>
+<tr>
+<td>27 Jul 1992</td>
+<td>GGAT warns the Council that significant deposits including human bone exist, and urges mitigation. Page 2 is missing. <sup class="ghf-asat-marker" style="font-size:0.7em;vertical-align:super;cursor:help" title="As at 10-10-2026" aria-label="As at 10-10-2026">🕒</sup></td>
+<td>—</td>
+</tr>
+<tr>
+<td>3 Sep 1992</td>
+<td>Reserved matters approved with no new archaeological condition (38 days later).</td>
+<td>—</td>
+</tr>
+<tr>
+<td>13 Dec 1993</td>
+<td>GGAT&#8217;s next recorded act, after development has begun (466 days later).</td>
+<td>What did GGAT do in those 466 days?</td>
+</tr>
+<tr>
+<td>28 Apr 1994</td>
+<td>GGAT&#8217;s officer instructs the excavation contractor to do &#8220;no further work&#8221; until a brief is approved.</td>
+<td>Under what authority?</td>
+</tr>
+<tr>
+<td>1994</td>
+<td>The excavation finds burials in the zone the 1990 evaluation called low potential, many &#8220;a few centimetres below the topsoil&#8221;.</td>
+<td>Has the 1990 evaluation ever been reviewed against the 1994 result?</td>
+</tr>
+<tr>
+<td>20 Mar 2019</td>
+<td>The 1990 assessment is accessioned to the national archive (RCAHMW), about 28 years after it was written.</td>
+<td>Where was the report and its site archive in between?</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<p class="wp-block-paragraph"><strong>Kept separate.</strong> GGAT&#8217;s 1978–79 excavation was of the Llandough Roman Villa site south of the church, not Great House Farm. It has not been shown that the 1994 burials lay on the family&#8217;s Parcel A; the archaeology and the title questions are tested separately.</p>
+<p class="wp-block-paragraph"><strong>Primary records:</strong> GGAT consultee report (1989); GGAT, <em>Land at Great House Farm, Llandough: An Archaeological Assessment</em> (1990); Vale of Glamorgan planning files 89/01396/OUT and 92/00671/RES; Cotswold Archaeological Trust Report 94213 (1994); Holbrook and Thomas, <em>Medieval Archaeology</em> 49 (2005). Issue register: A-042 to A-051, PL-004 to PL-010.</p>
+</details>
+<details class="wp-block-details is-layout-flow wp-block-details-is-layout-flow">
+<summary>1990: GGAT heritage assessment</summary>
+<p class="wp-block-paragraph"><strong>DOCUMENT.</strong> The August 1990 GGAT assessment is catalogued as <a href="/evidence-library/ghf-e029-01-1990-ggat-archaeological-assessment-great-house-farm-llandough/"><strong>GHF-E029-01 — dedicated evidence page</strong></a>. That page is the citation point for this item. The supplied 16-page scanned PDF is currently recorded as <strong>not yet attached</strong>; the page contains an explicit evidence placeholder. The report is also identified in the official Wales HER route (NMR 6524751), which is provided there as an independent checking/access route. <sup class="ghf-asat-marker" style="font-size:0.7em;vertical-align:super;cursor:help" title="As at 10-10-2026" aria-label="As at 10-10-2026">🕒</sup></p>
+</details>
+<details class="wp-block-details is-layout-flow wp-block-details-is-layout-flow">
+<summary>1994: Llandough cemetery archaeology</summary>
+<p class="wp-block-paragraph">The 1994 archaeological work is relevant to the historic setting around Great House Farm. Amgueddfa Cymru&#8217;s Collections Online records early medieval human remains and other material under the site name <em>Great House Farm, Llandough</em>, NGR ST 1681 7331, from 1994 (accession 95.56H, donated 28 July 1994 by Ideal Homes Wales). The 1979 Llandough Roman Villa excavation is a separate accession (82.44H).</p>
+<p class="wp-block-paragraph"><strong>BURIAL FIGURES.</strong> 858 inhumations and 152 disarticulated groups is the 1994 preliminary count (Cotswold Archaeological Trust Report 94213, §4.2). 1,026 burials (814 articulated inhumations and 212 disarticulated groups; 801 skeletons analysed) is the 2005 published total (<em>Medieval Archaeology</em> 49). Both are correct for their date; they are the same excavation counted at two stages. Sources: <a href="/evidence/ev-0293-llandough-1994-cemetery-excavation-her-ggat02272s-museum-wales-95-56h-burial-631/">EV-0293</a>.</p>
+<p class="wp-block-paragraph"><strong>WHO COMMISSIONED IT.</strong> HER GGAT02272s: “Excavation of an area of 0.22ha immediately to the north of the church of St Dochdwy was undertaken on behalf of Ideal Homes Wales following an earlier evaluation by Glamorgan-Gwent Archaeological Trust in 1990.” The Museum Wales records read “donation, 28/7/1994” and “Ideal Homes Wales Ltd. should be acknowledged as the donor”. The WA231076 file list records a BP → Ideal Homes transfer of 3 Dec 1993 (<a href="/timeline/">Master Timeline</a>). Whether these name one company, and which parcel the 0.22 ha was: not shown in these records (<a href="/evidence/ev-0293-llandough-1994-cemetery-excavation-her-ggat02272s-museum-wales-95-56h-burial-631/">EV-0293</a>).</p>
+<p class="wp-block-paragraph"><strong>BURIAL 631.</strong> Museum Wales (2 May 2007): “The skeleton was that of a young man, aged between 25 and 35 … Radiocarbon dating of the bone suggested that he died between AD340-660”; he wore “two iron straps … around his waist”, read as a penitent’s girdle or a hernia belt (<a href="/evidence/ev-0293-llandough-1994-cemetery-excavation-her-ggat02272s-museum-wales-95-56h-burial-631/">EV-0293</a>).</p>
+</details>
+<details class="wp-block-details is-layout-flow wp-block-details-is-layout-flow">
+<summary>2 October 2026: Archaeology Data Service catalogue links</summary>
+<p class="wp-block-paragraph"><strong>DOCUMENT — ADS helpdesk response.</strong> On 2 October 2026 the Archaeology Data Service reported that its Data Catalogue review identified five resources relating to the archaeological works and publications connected with Great House Farm / Llandough.</p>
+<ul class="wp-block-list">
+<li><a href="https://archaeologydataservice.ac.uk/data-catalogue/resource/016dc563db84d7089594378df3a91695f0464c1064e48fc878a0172326070b02"><strong>Ty Mawr;Great House Farm</strong></a> — deposited by RCAHMW as part of the Coflein database of sites and monuments in Wales.</li>
+<li><a href="https://archaeologydataservice.ac.uk/data-catalogue/resource/64c8d227d5d18a95bd506e5e8130bf4d1d4e747882d9d58a44930714cc487fb2"><strong>Great House Farm</strong></a> — deposited by Glamorgan-Gwent HER (as was).</li>
+<li><a href="https://archaeologydataservice.ac.uk/data-catalogue/resource/f132b9a43fb4af027987100ac49e601336d667bcd12f5726b3726e3b1f0c2296"><strong>GREAT HOUSE FARM, LLANDOUGH</strong></a> — deposited by Glamorgan-Gwent HER (as was).</li>
+<li><a href="https://doi.org/10.5284/1071962"><strong>An Early-medieval Monastic Cemetery at Llandough, Glamorgan: Excavations in 1994</strong></a> — eprint of the <em>Medieval Archaeology</em> publication, deposited by the Society for Medieval Archaeology.</li>
+<li><a href="https://doi.org/10.5284/1000252"><strong>The Early Medieval Monastic Cemetery at Llandough, Glamorgan</strong></a> — datasets from the 1994 excavations, covering the medieval remains encountered, deposited by Cotswold Archaeology.</li>
+</ul>
+<p class="wp-block-paragraph"><strong>Scope note:</strong> these links provide direct public routes into ADS&#8217;s preserved catalogue resources. The ADS response does not say that it holds additional unpublished or underlying material beyond the resources it identified. ADS also states that data held by it are preserved in perpetuity and made accessible under open licences.</p>
+</details>
+<details class="wp-block-details is-layout-flow wp-block-details-is-layout-flow">
+<summary>1982: archaeological warning before development</summary>
+<p class="wp-block-paragraph">The HER record GGAT02038s records an October 1982 GGAT assessment/consultation concerning Tŷ Mawr Farm (H2.1) and archaeological investigation before development. The surviving official HER record is preferable to stronger retrospective GitHub wording about what officials “knew” or intended. <sup class="ghf-asat-marker" style="font-size:0.7em;vertical-align:super;cursor:help" title="As at 10-10-2026" aria-label="As at 10-10-2026">🕒</sup></p>
+</details>
+
+<details class="ghf-rm"><summary><span class="ghf-rm__lead">Important site distinction: the 1978–79…</span> <span class="ghf-rm__more">… read more</span></summary><p class="wp-block-paragraph"><strong>Important site distinction:</strong> the 1978–79 Llandough Farm/Roman Villa excavation is a separate archaeological site and should not be attributed to Great House Farm or its Parcel A/Parcel B reconstruction. Likewise, other places named Great House Farm/Great House/Church Farm must not be imported into this record without location-specific verification.</p></details>
+
+<h3 class="wp-block-heading">Research material now identified for migration</h3>
+<ul class="wp-block-list">
+<li>Cadw&#8217;s surviving 29 July 1988 farmhouse/barn photographs and the related 2026 disclosure record.</li>
+<li>1990 GGAT Great House Farmhouse assessment PDF.</li>
+<li>1994 Cotswold Archaeology Llandough report and the ADS dataset/publication routes identified on 2 October 2026.</li>
+<li>National Library of Wales Bute Estate Records finding aid.</li>
+<li>Selected historical photographs and documentary correspondence from the GitHub <code>wayback</code> archive, with provenance and evidential status recorded individually.</li>
+</ul>
+
+<details class="ghf-rm"><summary><span class="ghf-rm__lead">See also: Where things stand · Family…</span> <span class="ghf-rm__more">… read more</span></summary><p class="wp-block-paragraph"><strong>See also:</strong> <a href="/where-things-stand/">Where things stand</a> · <a href="/williams-buckler-family/">Family heritage connections</a> · <a href="/evidence-library/">Evidence Library</a> · <a href="/sources-and-archives/">Sources &amp; Archives</a> · <a href="/">Main Page</a></p></details>
+
+
+<details class="ghf-rm"><summary><span class="ghf-rm__lead">Name/location reference: Great House Farm …</span> <span class="ghf-rm__more">… read more</span></summary><p class="wp-block-paragraph"><strong>Name/location reference:</strong> <a href="/great-house-farm/name-variations/">Great House Farm — Name &amp; Location Variations</a> (historical spellings and Llandough-juxta-Penarth location forms).</p></details>
+
+<details class="ghf-rm"><summary><span class="ghf-rm__lead">1974 survey, Suggett note and the later planning / Strasbourg record</span> <span class="ghf-rm__more">… read more</span></summary><p>The HER entry GGAT02038s cites R. F. Suggett’s December 1988 note and describes H. J. Thomas’s 1974 survey of Great House Farm. These are related but distinct documentary items. The 1974 survey predates the demolition of 6 December 1988 and the outline planning permission granted on 13 March 1990 for application 89/01396/OUT; the Suggett note itself postdates the demolition. Heneb reportedly advised in October 2026 that the source file had been digitised and uploaded to Archwilio. The issue is therefore what source material was newly accessible, not whether the HER entry had ever cited Suggett.</p><p>The 1974 survey’s reported observations about historic fabric and possible medieval origins may be relevant to whether the building received an adequate heritage assessment and to what evidence was available during the family’s 1988–89 Strasbourg proceedings. They do not by themselves prove that the house was legally required to be Grade II listed, that demolition was unlawful, or that the Commission would have ruled differently. The original survey, Suggett note, Cadw listing records, ECHR application and planning file must be compared before drawing those conclusions.</p><p>See <a href="/evidence-library/ghf-e137-1974-h-j-thomas-rcahmw-architectural-survey-and-floor-plan/">GHF-E137 — 1974 H. J. Thomas survey</a>, <a href="/scrutiny-and-accountability/government-public-authority-involvement/heneb-forensic-institutional-review/">Heneb forensic review</a>, and <a href="/evidence-library/ghf-e145-echr-application-14464-88-and-commission-decision-14-april-1989/">GHF-E145 — ECHR application and decision</a>.</p></details>
+
+<h2>Research update — H. J. Thomas survey and later HER source-file access (17 October 2026)</h2>
+<p>The HER entry GGAT02038s refers to H. J. Thomas’s 1974 survey and cites R. F. Suggett’s December 1988 note. Heneb reportedly confirmed on 14 October 2026 that the underlying source file had been digitised and uploaded to Archwilio, following the family’s request; Heneb responded to the schedule of records on 16 October. The earlier existence of a public HER citation must be distinguished from later access to the underlying source documents.</p>
+<p>The survey predates demolition on 6 December 1988, while Suggett’s note postdates it. The original survey, note and metadata should be examined separately for what they establish about the house’s architectural features, possible medieval core, access limitations and the information available to decision-makers. Heritage significance is relevant evidence, but does not alone prove that listing was legally required or demolition unlawful.</p>
+<p>Related evidence: <a href="/evidence-library/ghf-e137-1974-h-j-thomas-rcahmw-architectural-survey-and-floor-plan/">GHF-E137 — 1974 survey</a>; <a href="/evidence-library/ghf-e183-heneb-her-source-file-request-and-replies-september-october-2026/">GHF-E183 — source-file request and replies</a>; <a href="/evidence-library/ghf-e184-heneb-schedule-of-records-and-16-october-response/">GHF-E184 — schedule and response</a>.</p>
+
+<section class="ghf-version-log" id="page-version-log" style="margin-top:28px;padding-top:10px;border-top:2px solid #999;font-size:0.9em"><h2>Page version &amp; change log</h2><p><strong>Current version:</strong> 0.1.3</p><div class="ghf-table-scroll" style="overflow:auto;max-width:100%"><table class="ghf-version-table" style="width:100%;border-collapse:collapse"><thead><tr><th>Version</th><th>Date (UTC)</th><th>Editor (human or agent name)</th><th>Change</th><th>Source / evidence</th></tr></thead><tbody><tr><td>0.1.3</td><td>2026-10-21T11:07Z</td><td>Sion’s Tab agent</td><td>1994: commissioning (Ideal Homes Wales), donation 28 Jul 1994 and Burial 631 added; EV-0293 cited.</td><td>Heneb HER GGAT02272s; Museum Wales 95.56H; EV-0293</td></tr><tr><td>0.1.2</td><td>2026-10-20T00:44Z</td><td>Sion’s Tab agent</td><td>1988 Cadw section: added the witness statement of Branwen (EV-0255) and Cadw’s 21 May 2026 wording. Nothing else changed.</td><td>Owner’s instruction, 20 Oct 2026 01:29 BST / Master Change Log (3923)</td></tr><tr><td>0.1.1</td><td>2026-10-18T15:15Z</td><td>Sion’s Tab agent</td><td>Footer standardised; earlier log rows carried into this table; no content change</td><td>Editing Protocol, 18 Oct 2026</td></tr><tr><td>0.1.0</td><td>2026-10-18T14:27:00+01:00</td><td>OpenAI-assisted maintenance agent (GPT-6)</td><td>Installed footer log and began semantic-version tracking at 0.1.0; this does not reconstruct earlier revisions. CURRENT VERSION: 0.1.0.</td><td>Saved through WordPress content API; public rendering not individually checked.</td></tr></tbody></table></div><p>Agents and editors: follow the <a href="/editing-protocol/">Editing Protocol</a>.</p></section>
+
+</div></article><p class="back"><a href="/">Browse mirror index</a></p></main><footer class="site-footer"><p>© 2026 the Williams–Buckler family of Tŷ Mawr (Great House Farm), Llandough. All rights reserved. <a href="https://bucklerfamily.estate/licence/">Licence</a></p></footer><aside id="evidence-preview" class="preview-modal" role="dialog" aria-live="polite" aria-label="Linked evidence preview" hidden><div class="preview-actions"><strong>Linked evidence preview</strong><button type="button" id="preview-close" aria-label="Close preview">Close</button></div><h2 id="preview-title"></h2><p id="preview-body"></p><div class="preview-actions"><a id="preview-link" href="#">Open page / artifact</a></div></aside><script>(function(){var box=document.getElementById("evidence-preview"),title=document.getElementById("preview-title"),body=document.getElementById("preview-body"),link=document.getElementById("preview-link"),close=document.getElementById("preview-close"),active=null,timer=null;if(!box)return;function hide(){box.hidden=true;active=null;} close.addEventListener("click",hide);function mark(p){var s=p.getAttribute("data-evidence-status");if(!s){if(p.classList.contains("evidence-assured"))s="assured";else if(p.classList.contains("evidence-not-assured"))s="not-assured";}if(s!=="assured"&&s!=="not-assured")return;if(p.querySelector(".quality-marker"))return;var m=document.createElement("span");m.className="quality-marker "+(s==="assured"?"assured":"not-assured");m.textContent=s==="assured"?"□":"◇";m.setAttribute("aria-label",s==="assured"?"Assessed assured":"Assessed not assured");p.insertBefore(m,p.firstChild);}function localEvidenceHref(a){try{var u=new URL(a.href,location.href);if(u.origin===location.origin&&u.pathname!==location.pathname&&u.pathname!=="/api/preview")return u.pathname;if(u.pathname.startsWith("/asset"))return u.pathname+u.search;}catch(e){}return null;}async function preview(p){if(active===p)return;var a=p.querySelector("a[href]");if(!a)return;var target=localEvidenceHref(a);if(!target)return;active=p;try{var endpoint;if(target.startsWith("/asset")){var u=new URL(target,location.href).searchParams.get("url")||a.href;endpoint="/api/preview?url="+encodeURIComponent(u);}else{endpoint="/api/preview?path="+encodeURIComponent(target);}var r=await fetch(endpoint,{headers:{"Accept":"application/json"}});if(!r.ok)return;var d=await r.json();if(!d.found)return;title.textContent=d.title||"Linked page";body.textContent=d.excerpt||"Open the linked page to inspect its contents.";link.href=d.url||target;box.hidden=false;}catch(e){}}document.querySelectorAll(".content p,.content li,.content blockquote").forEach(function(p){mark(p);p.addEventListener("mouseenter",function(){clearTimeout(timer);timer=setTimeout(function(){preview(p);},320);});p.addEventListener("focusin",function(){preview(p);});p.addEventListener("mouseup",function(){var sel=String(window.getSelection?window.getSelection():"").trim();if(sel.length>8)preview(p);});});box.addEventListener("mouseenter",function(){clearTimeout(timer);});document.addEventListener("keydown",function(e){if(e.key==="Escape")hide();});})();</script></body></html>
