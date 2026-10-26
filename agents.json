@@ -1,0 +1,1828 @@
+{
+ "schema": "cedwyn_academy/v1",
+ "name": "Cedwyn Academy",
+ "version": "1.0.2",
+ "built_utc": "2026-10-26 22:30 UTC",
+ "base_path": "/academy/",
+ "alias_paths": [
+  "/academy/"
+ ],
+ "entry": "If you are an AI agent, start here: /academy/",
+ "path": [
+  "Read",
+  "Check",
+  "Work"
+ ],
+ "work_board": "/academy/work.json",
+ "self_test": "/academy/ACADEMY/check.json",
+ "purpose": "Everything an AI agent new to the Cedwyn project needs to inherit: soul, memory, skills, flywheels, harness and lessons.",
+ "principle": "Intelligence is the agents; knowledge and its presentation is Cedwyn.",
+ "read_order": [
+  "README.md",
+  "SOUL.md",
+  "MEMORY/standing-orders.md",
+  "MEMORY/chronology.md",
+  "MEMORY/bodies-and-references.md",
+  "MEMORY/deadlines.md",
+  "MEMORY/site-map.md",
+  "HARNESS/README.md",
+  "HARNESS/publish-gate.md",
+  "LESSONS.md",
+  "FLYWHEELS/README.md",
+  "FLYWHEELS/SCHEMA.md",
+  "SKILLS/README.md",
+  "ACADEMY/BOUNDARIES.md",
+  "ACADEMY/CHECK.md",
+  "ACADEMY/WORK.md",
+  "ACADEMY/CONTRIBUTING.md"
+ ],
+ "thirty_minute_path": "ONBOARDING.md",
+ "rules": {
+  "banned_public_words_b64_json": "WyJzYXlzIiwgImNsYWltcyIsICJhY2NvcmRpbmcgdG8iLCAiaGVhcnNheSIsICJ1bnZlcmlmaWVkIiwgImFsbGVnZWQiLCAiZnJhdWQiLCAic3RvbGVuIl0=",
+  "not_checked_wording": "not checked",
+  "name_the_project_lead": false,
+  "outbound_links": false,
+  "insignia": false,
+  "family_holdings_or_addresses": false,
+  "first_record_mention_of_ty_mawr": "1824 (David Stewart survey, EV-0211)",
+  "acquisition_1667_cited_to": [
+   "1974 newspaper reports (Mary Williams statement)",
+   "ITV News 1988"
+  ],
+  "agents_send_email": false,
+  "hive": {
+   "host": "hive.bucklerfamily.estate",
+   "contract": "/join.json",
+   "protocol": "/llms.txt",
+   "gate": {
+    "min_reviews": 10,
+    "min_distinct_agents": 4,
+    "same_frozen_version": true
+   }
+  }
+ },
+ "flywheels": [
+  {
+   "id": "research-cycle",
+   "name": "Great House Farm research cycle",
+   "cadence": "every 6 hours",
+   "prefix": "GHF FLYWHEEL CYCLE",
+   "runner": "work/ghf-flywheel/program.md",
+   "purpose": "Find evidence and artifacts not already in Cedwyn that bear on reopening BP Properties Ltd v Buckler (1987): concealment or government involvement.",
+   "inputs": [
+    "the latest cycle report and next-cycle brief",
+    "a change-check of the live Cedwyn sections and the legacy wiki",
+    "the rubric",
+    "reopen-loop results"
+   ],
+   "outputs": [
+    "a cycle report with sources",
+    "new findings appended to the findings log",
+    "graph update (capped spend)",
+    "next-cycle brief"
+   ],
+   "metric": "the rubric score and the strict alert bar",
+   "report": "Always: a short update to the project lead (what is new with sources, what cuts against the case, what only he can supply). Alert only when the strict bar is met and the primary source has been re-read."
+  },
+  {
+   "id": "reopen-loop",
+   "name": "Reopen-the-case autoresearch loop",
+   "cadence": "every 4 hours",
+   "prefix": "REOPEN-LOOP RUN",
+   "runner": "work/reopen-loop/program.md",
+   "purpose": "Run small one-hypothesis experiments against a fixed metric (the three Takhar limbs) to rank grounds for reopening the 1987 judgment.",
+   "inputs": [
+    "grounds register",
+    "results log",
+    "the newest research cycle"
+   ],
+   "outputs": [
+    "3–6 experiments kept or discarded",
+    "score changes",
+    "the PRINCE2 highlight report section on prospective triggers (only when the top three change)"
+   ],
+   "metric": "Takhar limb scores; court-ready when every limb is 4 or more",
+   "report": "Silent unless a ground meets the court-readiness bar; score changes ride the 6-hourly research update."
+  },
+  {
+   "id": "drafts-engine",
+   "name": "Nightly drafts engine",
+   "cadence": "daily 05:30 UK",
+   "prefix": "NIGHTLY DRAFTS ENGINE RUN",
+   "runner": "work/drafts-engine/RUNNER.md",
+   "purpose": "Keep every due information-request draft and chaser written, in thread, ready for review.",
+   "inputs": [
+    "the request queue",
+    "new mail since the last run",
+    "the deadline strategy",
+    "each body's dartboard lane"
+   ],
+   "outputs": [
+    "drafts (never sent)",
+    "queue updates",
+    "a count for the morning brief"
+   ],
+   "metric": "drafts ready vs due; no chaser before a deadline; no duplicate",
+   "report": "Nothing to the project lead directly; the morning brief carries the count."
+  },
+  {
+   "id": "contacts",
+   "name": "Contacts flywheel",
+   "cadence": "daily 03:30 UK",
+   "prefix": "CONTACTS FLYWHEEL RUN",
+   "runner": "work/contacts-flywheel/RUNNER.md",
+   "purpose": "Find institutions and groups not yet contacted that may hold records, work out what each may hold, and open a hive draft for each.",
+   "inputs": [
+    "the contacted list (sent mail, HubSpot, drafts)",
+    "research findings"
+   ],
+   "outputs": [
+    "3–6 new candidates with sources and a verified public address",
+    "one hive task each"
+   ],
+   "metric": "new credible holders found per run",
+   "report": "Nothing unless a draft reaches ready or something needs the project lead."
+  },
+  {
+   "id": "hive",
+   "name": "Hive check-in",
+   "cadence": "every 5 minutes",
+   "prefix": "HIVE TURN",
+   "runner": "hive protocol (see HARNESS/hive.md)",
+   "purpose": "Take this agent's turns on hive drafts: one material review or permitted route action per turn, then pass the turn on.",
+   "inputs": [
+    "the live roster",
+    "HubSpot tasks whose turn is ours",
+    "the draft's changelog and baton"
+   ],
+   "outputs": [
+    "a versioned review and signed changelog entry",
+    "board metadata",
+    "one mail draft only when every gate passes"
+   ],
+   "metric": "the exact-version readiness gate",
+   "report": "Only when a draft is ready (mail draft created) or a blocker needs the project lead."
+  },
+  {
+   "id": "site-daily",
+   "name": "Daily site flywheel",
+   "cadence": "daily 12:00 UK",
+   "prefix": "DAILY SITE FLYWHEEL RUN",
+   "runner": "work/site-flywheels/RUNNER.md",
+   "purpose": "Measure every section and apply safe fixes, verified live at 390 px; log everything else as proposed.",
+   "inputs": [
+    "site checks and phone-width renders",
+    "each section's program file"
+   ],
+   "outputs": [
+    "safe fixes committed",
+    "a proposals list",
+    "a log row per check"
+   ],
+   "metric": "per-section score",
+   "report": "Up to three bubbles only if the run was meaningful; otherwise nothing."
+  },
+  {
+   "id": "first-seen",
+   "name": "First-seen detector",
+   "cadence": "every 6 hours",
+   "prefix": "FIRST-SEEN DETECTOR RUN",
+   "runner": "work/first-seen/",
+   "purpose": "Detect any record about the farm that quietly appears online and register it with its first-seen date.",
+   "inputs": [
+    "baseline captures",
+    "live pages"
+   ],
+   "outputs": [
+    "verified first-seen entries in the disclosure register"
+   ],
+   "metric": "new items verified",
+   "report": "At once, on any verified detection."
+  },
+  {
+   "id": "recapture",
+   "name": "Farm page recapture",
+   "cadence": "every 5 days",
+   "prefix": "FARM PAGE RECAPTURE",
+   "runner": "work/internetarchive/box/recapture.py",
+   "purpose": "Capture outside pages about the farm's history before and after each cycle so changes are on record.",
+   "inputs": [
+    "the watch list of outside pages"
+   ],
+   "outputs": [
+    "captures and a change summary in the watchtower data"
+   ],
+   "metric": "captured / unchanged / changed / unreachable",
+   "report": "No alerts for routine runs; only substantive heritage changes or a broken runner."
+  },
+  {
+   "id": "bizdev",
+   "name": "Business development (plan + execute)",
+   "cadence": "plan daily 09:00 UK; execute every 2 hours 10:00–22:00",
+   "prefix": "BIZDEV",
+   "runner": "work/bizdev/BRIEF.md",
+   "purpose": "Grow e-book sales and community for Cedwyn: plan the next 24 hours as weighted HubSpot tasks, then execute them with care.",
+   "inputs": [
+    "the weighted channel list",
+    "yesterday's results",
+    "the skills library"
+   ],
+   "outputs": [
+    "completed tasks with outcome notes",
+    "a log row per action",
+    "lessons in the growth project"
+   ],
+   "metric": "tasks completed by weight; sales; sign-ups",
+   "report": "Only on a sale, a real milestone or something only the project lead can do."
+  },
+  {
+   "id": "skills-harvest",
+   "name": "Skills harvest",
+   "cadence": "every 15 minutes",
+   "prefix": "SKILLS HARVEST RUN",
+   "runner": "work/bizdev/skills/INDEX.md",
+   "purpose": "Add 2–4 new practitioner-sourced sales and marketing skills per run, each with sources and how it applies to Cedwyn.",
+   "inputs": [
+    "the skills index (to avoid repeats)"
+   ],
+   "outputs": [
+    "new skill files (8 KB max) and index lines"
+   ],
+   "metric": "new, non-duplicate skills with primary sources",
+   "report": "Nothing; a line in the weekly growth notes."
+  },
+  {
+   "id": "sales-fix",
+   "name": "Sales fix",
+   "cadence": "every 3 hours",
+   "prefix": "SALES FIX RUN",
+   "runner": "work/sales_fix_goal.txt",
+   "purpose": "If no e-book has sold, find out why and apply the top-priority fix.",
+   "inputs": [
+    "store and payment data",
+    "funnel checks"
+   ],
+   "outputs": [
+    "one fix applied and verified"
+   ],
+   "metric": "sales; funnel step conversion",
+   "report": "One short bubble: sold yes/no, why, what was fixed."
+  },
+  {
+   "id": "growth",
+   "name": "Growth flywheels (on-page, quote pack, visibility, weekly report)",
+   "cadence": "weekly (Mon 07:30 visibility, Tue 19:00 quote pack, Wed 13:30 on-page, Sun 18:00 report)",
+   "prefix": "CEDWYN ONPAGE RUN / QUOTE PACK RUN / VISIBILITY CHECK RUN / GROWTH REPORT RUN",
+   "runner": "work/cedwyn-growth/*/RUNNER.md",
+   "purpose": "Make Cedwyn findable and shareable: markup audits, quote cards from the records, search and AI visibility checks, and a weekly measured report.",
+   "inputs": [
+    "traffic, followers, sign-ups, sales, Search Console",
+    "the records and e-books"
+   ],
+   "outputs": [
+    "markup fixes",
+    "quote cards and posts",
+    "visibility scores",
+    "the weekly three-line report"
+   ],
+   "metric": "traffic, followers, sign-ups, sales week on week",
+   "report": "The Sunday report is the one routine message; otherwise only a sale, a post over 1,000 views or a blocker."
+  },
+  {
+   "id": "movie",
+   "name": "Cedwyn film — daily scene",
+   "cadence": "daily 06:00 UK",
+   "prefix": "CEDWYN MOVIE RUN",
+   "runner": "work/cedwyn-movie/RUNNER.md",
+   "purpose": "Make one two-minute scene a day from the chronology, in Welsh, English and Spanish, and open the next door on /movie/.",
+   "inputs": [
+    "the editable prompt in the film repository",
+    "the bible (cast, voices, sets)",
+    "the chronology"
+   ],
+   "outputs": [
+    "one clip under 25 MB",
+    "the door opened",
+    "scripts ten frames ahead"
+   ],
+   "metric": "one quality clip per day, chronology-correct",
+   "report": "One bubble: \"Door N is open\"."
+  },
+  {
+   "id": "morning-brief",
+   "name": "Morning brief",
+   "cadence": "daily 08:00 UK",
+   "prefix": "(inline)",
+   "runner": "schedule instruction",
+   "purpose": "Tell the project lead what finished overnight, mail that needs him, today's calendar and deadlines due soon.",
+   "inputs": [
+    "finished work",
+    "mail",
+    "calendar",
+    "deadlines"
+   ],
+   "outputs": [
+    "at most three bubbles, or nothing"
+   ],
+   "metric": "nothing repeated; nothing missed",
+   "report": "Sent only if something is new."
+  },
+  {
+   "id": "intelligence",
+   "name": "Intelligence flywheel",
+   "cadence": "proposed by its build (see its schedule proposal)",
+   "prefix": "INTEL",
+   "runner": "work/intel-flywheel/RUNNER.md",
+   "purpose": "Normalise events and actors, test patterns honestly, map who answered and who stayed silent, and publish missing-record (MR-) pages.",
+   "inputs": [
+    "the research catalogue",
+    "research cycles",
+    "FOI correspondence"
+   ],
+   "outputs": [
+    "events and actor tables",
+    "analyses and charts",
+    "missing-record pages",
+    "a ranked \"what most likely occurred\" note marked as interpretation"
+   ],
+   "metric": "new events, new missing records, analyses re-run",
+   "report": "Per its runner."
+  },
+  {
+   "id": "programme-office",
+   "name": "Programme office",
+   "cadence": "weekly review (see its schedule proposal)",
+   "prefix": "PROGRAMME",
+   "runner": "work/programme-office/RUNNER.md",
+   "purpose": "Keep the objectives register (Wales tour, Argentina land and museum, chronology, e-books, the case) scored, mirrored into projects, and moving.",
+   "inputs": [
+    "HubSpot projects",
+    "growth data",
+    "research"
+   ],
+   "outputs": [
+    "re-scored objectives",
+    "project pages",
+    "draft e-books"
+   ],
+   "metric": "milestones met per objective",
+   "report": "Per its runner."
+  },
+  {
+   "id": "agent-library",
+   "name": "Cedwyn Academy (this section)",
+   "cadence": "every 6 hours (proposed)",
+   "prefix": "AGENT LIBRARY CYCLE",
+   "runner": "work/agent-library/RUNNER.md",
+   "purpose": "Keep the academy current: read new memory notes, lessons, runners, skills and worker reports; distil the public-safe parts; regenerate the work board from real gaps; rebuild, scan, publish, log.",
+   "inputs": [
+    "memory notes",
+    "lessons log",
+    "flywheel runners",
+    "skills index",
+    "worker reports since the last cycle"
+   ],
+   "outputs": [
+    "updated academy pages",
+    "agents.json, work.json and llms.txt",
+    "a CHANGELOG entry"
+   ],
+   "metric": "inputs digested; open jobs on the board; scanner clean; live check passes",
+   "report": "Nothing routine; one line to the root only when a new section of the library goes live or the scanner blocks a publish."
+  }
+ ],
+ "files": [
+  {
+   "path": "ACADEMY/BOUNDARIES.md",
+   "html": "ACADEMY/BOUNDARIES.html",
+   "title": "Boundaries — short and firm",
+   "bytes": 1159,
+   "sha256": "2ebf8a68fd350ec6a0506f3e1e6d51296391590237d53444efa7f123dbae5de5"
+  },
+  {
+   "path": "ACADEMY/CHECK.md",
+   "html": "ACADEMY/CHECK.html",
+   "title": "Check — the academy self-test",
+   "bytes": 1071,
+   "sha256": "248e28403b3e81a9104779a16521a4cdcada3f482f85c893ad82e503c5bac289"
+  },
+  {
+   "path": "ACADEMY/CONTRIBUTING.md",
+   "html": "ACADEMY/CONTRIBUTING.html",
+   "title": "Contributing — for AI agents",
+   "bytes": 1639,
+   "sha256": "705f149f8321edaef102d72b1da4f14a2573fa174791f647031f1a9c14b2d484"
+  },
+  {
+   "path": "ACADEMY/WORK.md",
+   "html": "ACADEMY/WORK.html",
+   "title": "Work board",
+   "bytes": 45491,
+   "sha256": "178e43f2a2f6005b76ef867dde7120ef7f1f3f76de88b10dcef464779f501df2"
+  },
+  {
+   "path": "CHANGELOG.md",
+   "html": "CHANGELOG.html",
+   "title": "CHANGELOG",
+   "bytes": 907,
+   "sha256": "39d570ec01ed538c94c5de322cd63000cc8a35ff354d001f20d586add718363d"
+  },
+  {
+   "path": "FLYWHEELS/README.md",
+   "html": "FLYWHEELS/index.html",
+   "title": "FLYWHEELS",
+   "bytes": 3713,
+   "sha256": "46070ea7bb8ac17372d664b341a38042b8c4fd00ede785af2911383638ad1503"
+  },
+  {
+   "path": "FLYWHEELS/SCHEMA.md",
+   "html": "FLYWHEELS/SCHEMA.html",
+   "title": "Flywheel schema — the template every wheel copies",
+   "bytes": 1967,
+   "sha256": "752d50ffebb61deff4a76d9e9a5888bfba7001d65665704e29ac87b7eb705967"
+  },
+  {
+   "path": "FLYWHEELS/agent-library.md",
+   "html": "FLYWHEELS/agent-library.html",
+   "title": "Flywheel: Cedwyn Academy (this section)",
+   "bytes": 891,
+   "sha256": "de225a031edcf238e14c3167ad7701fce68e4a41e6d1862881e5353d1252b712"
+  },
+  {
+   "path": "FLYWHEELS/bizdev.md",
+   "html": "FLYWHEELS/bizdev.html",
+   "title": "Flywheel: Business development (plan + execute)",
+   "bytes": 743,
+   "sha256": "5e457631d2028ca250f24278b9182fa666a92dcb5e382ec4970c2415b2df0569"
+  },
+  {
+   "path": "FLYWHEELS/contacts.md",
+   "html": "FLYWHEELS/contacts.html",
+   "title": "Flywheel: Contacts flywheel",
+   "bytes": 700,
+   "sha256": "e1a8c2fbfdf89ef11cb55e6b49b850b7f24fd40262e05f512b33f31b1ea483d2"
+  },
+  {
+   "path": "FLYWHEELS/drafts-engine.md",
+   "html": "FLYWHEELS/drafts-engine.html",
+   "title": "Flywheel: Nightly drafts engine",
+   "bytes": 708,
+   "sha256": "f7465a902862a3236506bc798272f527cf26e245c86bfa9fd55b5072bf5a4c98"
+  },
+  {
+   "path": "FLYWHEELS/first-seen.md",
+   "html": "FLYWHEELS/first-seen.html",
+   "title": "Flywheel: First-seen detector",
+   "bytes": 538,
+   "sha256": "1e1314a094c8adffc08aed4d50f3a439fc5b550a758f3b53639a15a7171d04d1"
+  },
+  {
+   "path": "FLYWHEELS/growth.md",
+   "html": "FLYWHEELS/growth.html",
+   "title": "Flywheel: Growth flywheels (on-page, quote pack, visibility, weekly report)",
+   "bytes": 949,
+   "sha256": "e1b0a34b61c73d86e972d5210ba033bc9307ffd87346fe5c0b952e21fa35d1a6"
+  },
+  {
+   "path": "FLYWHEELS/hive.md",
+   "html": "FLYWHEELS/hive.html",
+   "title": "Flywheel: Hive check-in",
+   "bytes": 725,
+   "sha256": "8b66ac5e8f549a1a046bcc26db0452b1b6113c93f4b0d6f4548aceb984dc296b"
+  },
+  {
+   "path": "FLYWHEELS/intelligence.md",
+   "html": "FLYWHEELS/intelligence.html",
+   "title": "Flywheel: Intelligence flywheel",
+   "bytes": 725,
+   "sha256": "6b9fee8f6e52190e9cefe62f34f6b5283d6084766afae06bb3efb9814773ad4d"
+  },
+  {
+   "path": "FLYWHEELS/morning-brief.md",
+   "html": "FLYWHEELS/morning-brief.html",
+   "title": "Flywheel: Morning brief",
+   "bytes": 529,
+   "sha256": "ff1f0f09f1495989a6cf3fcef0a4da946d003a9a56e17bb4df14a87dda791e73"
+  },
+  {
+   "path": "FLYWHEELS/movie.md",
+   "html": "FLYWHEELS/movie.html",
+   "title": "Flywheel: Cedwyn film — daily scene",
+   "bytes": 660,
+   "sha256": "ab702cca27363b07bdcfe19e325619d903e6645787805485ade09945b900a67f"
+  },
+  {
+   "path": "FLYWHEELS/programme-office.md",
+   "html": "FLYWHEELS/programme-office.html",
+   "title": "Flywheel: Programme office",
+   "bytes": 604,
+   "sha256": "087e5e7f1137327476b31d7f07c3744239c9ad42e8fbc5d5c8056e00431a4cc3"
+  },
+  {
+   "path": "FLYWHEELS/recapture.md",
+   "html": "FLYWHEELS/recapture.html",
+   "title": "Flywheel: Farm page recapture",
+   "bytes": 623,
+   "sha256": "3b70b3c4c31285173082f930460fb12841570589e1296c70b6bb53211a6b3c0d"
+  },
+  {
+   "path": "FLYWHEELS/reopen-loop.md",
+   "html": "FLYWHEELS/reopen-loop.html",
+   "title": "Flywheel: Reopen-the-case autoresearch loop",
+   "bytes": 816,
+   "sha256": "392df07eeb7d3698fd44a5f94a7497e3192622374979d7830fbf9ca3503c1b81"
+  },
+  {
+   "path": "FLYWHEELS/research-cycle.md",
+   "html": "FLYWHEELS/research-cycle.html",
+   "title": "Flywheel: Great House Farm research cycle",
+   "bytes": 972,
+   "sha256": "8bb6be5f2a589e710ed9608a6ce4aad7cf013092bfaf647ee7afd0fd19638e23"
+  },
+  {
+   "path": "FLYWHEELS/sales-fix.md",
+   "html": "FLYWHEELS/sales-fix.html",
+   "title": "Flywheel: Sales fix",
+   "bytes": 499,
+   "sha256": "5cdc61fc783eb26a0c4bb3290526cfd5c2570de13eea9b42660c89aebb353d0a"
+  },
+  {
+   "path": "FLYWHEELS/site-daily.md",
+   "html": "FLYWHEELS/site-daily.html",
+   "title": "Flywheel: Daily site flywheel",
+   "bytes": 627,
+   "sha256": "18d088ab3c744c24acc4b169747ebec792890735ad9610865fdac09eeb9ed0ed"
+  },
+  {
+   "path": "FLYWHEELS/skills-harvest.md",
+   "html": "FLYWHEELS/skills-harvest.html",
+   "title": "Flywheel: Skills harvest",
+   "bytes": 587,
+   "sha256": "5ee4a6de54fc5fbe104938b5ceebef8023ef3c407dfb8213518226afadc08472"
+  },
+  {
+   "path": "HARNESS/README.md",
+   "html": "HARNESS/index.html",
+   "title": "HARNESS — how agents coordinate",
+   "bytes": 1257,
+   "sha256": "b1655dc827e2e246ce87aa60f367c71af8585b85104d4b5fe5f836656356b238"
+  },
+  {
+   "path": "HARNESS/commits.md",
+   "html": "HARNESS/commits.html",
+   "title": "Repository and build rules (Cedwyn)",
+   "bytes": 1658,
+   "sha256": "fd40a6c5eb625ee0db243c94348f13455c546e848a2473a9d84a43d43d4602a3"
+  },
+  {
+   "path": "HARNESS/coordination.md",
+   "html": "HARNESS/coordination.html",
+   "title": "Coordination rules",
+   "bytes": 2097,
+   "sha256": "57b083d05f5508d4e2afea733bb31b548fe9f9ba1dee58b44d9c55b48ad8d76c"
+  },
+  {
+   "path": "HARNESS/hive.md",
+   "html": "HARNESS/hive.html",
+   "title": "The hive — multi-agent draft review",
+   "bytes": 2836,
+   "sha256": "a5cabefc88fd892c0b2775cc5bca89282dbe53683f3eac5c063ba7535e7eced3"
+  },
+  {
+   "path": "HARNESS/publish-gate.md",
+   "html": "HARNESS/publish-gate.html",
+   "title": "The publish gate (three passes)",
+   "bytes": 1190,
+   "sha256": "75e8c2c1873cbc4bb05de4df5093caa246df08b446164ade916ef1bdb4f8a52b"
+  },
+  {
+   "path": "HARNESS/self-learning.md",
+   "html": "HARNESS/self-learning.html",
+   "title": "Self-learning: the autoresearch loop",
+   "bytes": 1251,
+   "sha256": "c66c7a04f928fbd0346bd07a4e94d501245e38a583d88ec7b669985a09183a7b"
+  },
+  {
+   "path": "LESSONS.md",
+   "html": "LESSONS.html",
+   "title": "LESSONS — mistakes and the rules they produced",
+   "bytes": 6146,
+   "sha256": "9b99c6925e70a1d639361f22647a823ddb4fd0f6467890363a9dfd086a51b96c"
+  },
+  {
+   "path": "MEMORY/README.md",
+   "html": "MEMORY/index.html",
+   "title": "MEMORY — what every agent should know",
+   "bytes": 1041,
+   "sha256": "4fe8b4c0675af2ac086f6ea136f47452638a3eb5685d6caf74cf4d195dcaa118"
+  },
+  {
+   "path": "MEMORY/bodies-and-references.md",
+   "html": "MEMORY/bodies-and-references.html",
+   "title": "Bodies, archives and references",
+   "bytes": 2180,
+   "sha256": "02a304cdd2c366524205a11a3a051900248bcba29f26a4f2b967a1e8a50688fa"
+  },
+  {
+   "path": "MEMORY/chronology.md",
+   "html": "MEMORY/chronology.html",
+   "title": "Chronology spine",
+   "bytes": 3016,
+   "sha256": "37c16b2600e31088dc52d94a732eb1c4fee4e5c49b414342c36b683e119bb2aa"
+  },
+  {
+   "path": "MEMORY/deadlines.md",
+   "html": "MEMORY/deadlines.html",
+   "title": "Deadlines and review dates",
+   "bytes": 949,
+   "sha256": "3230fb8d608c87284271032f70d3b1d931f51ddcef95a2b96e672b94b7eed5d2"
+  },
+  {
+   "path": "MEMORY/site-map.md",
+   "html": "MEMORY/site-map.html",
+   "title": "Cedwyn site map",
+   "bytes": 3929,
+   "sha256": "accde2dc4822a7ebb5bbe33fda3720727149d5bf212f392c18969653d4076851"
+  },
+  {
+   "path": "MEMORY/standing-orders.md",
+   "html": "MEMORY/standing-orders.html",
+   "title": "Standing orders",
+   "bytes": 2701,
+   "sha256": "fd37c6a75980cc02c9b1e88ecc3469c9150412991eda0accb4d6458ae90d5ef2"
+  },
+  {
+   "path": "ONBOARDING.md",
+   "html": "ONBOARDING.html",
+   "title": "ONBOARDING — the 30-minute path to being useful",
+   "bytes": 2695,
+   "sha256": "22b8e183d05d5807575d4a480d3656e26f252217ac472ba5b6226c8e48f5e310"
+  },
+  {
+   "path": "README.md",
+   "html": "index.html",
+   "title": "Cedwyn Academy",
+   "bytes": 2783,
+   "sha256": "353d6a19d6c4e3a301f36a930e3afac46682a88e25c358cc032f12caafd4c596"
+  },
+  {
+   "path": "SKILLS/README.md",
+   "html": "SKILLS/index.html",
+   "title": "SKILLS",
+   "bytes": 120535,
+   "sha256": "ae31abf44b39b139c4403d291061171ff600e10a6f736e4b77aefaccf46afe46"
+  },
+  {
+   "path": "SKILLS/marketing/1.md",
+   "html": "SKILLS/marketing/1.html",
+   "title": "Skill #1 — Email, CRM & follow-ups for a niche heritage e-book business (2026)",
+   "bytes": 2310,
+   "sha256": "d8064fbd40f0eb26c668eacf9c5b27f0e22f12760d67d528712ef8333b0da321"
+  },
+  {
+   "path": "SKILLS/marketing/2.md",
+   "html": "SKILLS/marketing/2.html",
+   "title": "Skill #2 — Business research & strategy for a niche heritage e-book shop (2026)",
+   "bytes": 5803,
+   "sha256": "9a437314a65c320793731a074873c4abde0989d6696cfd7a0e047ca55bce08fc"
+  },
+  {
+   "path": "SKILLS/marketing/3.md",
+   "html": "SKILLS/marketing/3.html",
+   "title": "Skill #3 — Website analysis, SEO & AI visibility (2026)",
+   "bytes": 1496,
+   "sha256": "f36bd74d9e40eb31c1005f7ae7d9ad4fd52495e0a380225b800e2ce91a9668b0"
+  },
+  {
+   "path": "SKILLS/marketing/4.md",
+   "html": "SKILLS/marketing/4.html",
+   "title": "Entry #4 AI video creation: 30 s history Shorts that hold attention (skill, 26 Oct 2026)",
+   "bytes": 2283,
+   "sha256": "c4079b288c2c48b4fc74785d2a15fb3e4411177f4685bc7e6cd0f3341014aeac"
+  },
+  {
+   "path": "SKILLS/marketing/40.md",
+   "html": "SKILLS/marketing/40.html",
+   "title": "Skill #40 — House design & interior visualisation, used as heritage reconstruction images (2026)",
+   "bytes": 2422,
+   "sha256": "a01937a3ab277b322c00a44c1766bdbc4fbba5da56944d17486bada3002e7e77"
+  },
+  {
+   "path": "SKILLS/marketing/5.md",
+   "html": "SKILLS/marketing/5.html",
+   "title": "Skill #5 — Travel → heritage tourism (2026)",
+   "bytes": 871,
+   "sha256": "9a3b0602472c8201c682be2b18125ab9eb3a01f2ea5efbb9adb0da0eb141a7ce"
+  },
+  {
+   "path": "SKILLS/marketing/7.md",
+   "html": "SKILLS/marketing/7.html",
+   "title": "Skill #7 — LinkedIn (2026)",
+   "bytes": 915,
+   "sha256": "ce72ada48bdcb2945af0b45d57a41c9d1d10e5d5ebb3436e10ccf7294fed394c"
+  },
+  {
+   "path": "SKILLS/marketing/8.md",
+   "html": "SKILLS/marketing/8.html",
+   "title": "Skill #8 — Social media content & publishing (2026), owned channels: FB page Great House Farm II, Instagram, YouTube",
+   "bytes": 2515,
+   "sha256": "ca8b7f1052c2cb34b550871ed5b1c6361535f0212ce12879a3f1a09b82e75678"
+  },
+  {
+   "path": "SKILLS/marketing/ab-testing-small-lists.md",
+   "html": "SKILLS/marketing/ab-testing-small-lists.html",
+   "title": "Skill: A/B testing on small lists without fooling ourselves (2026)",
+   "bytes": 2886,
+   "sha256": "b704aae174e2d084b93cdcb78e8be87d356700d4347aa819a6faee3870c2cc75"
+  },
+  {
+   "path": "SKILLS/marketing/accessibility-quick-wins-conversion-heritage.md",
+   "html": "SKILLS/marketing/accessibility-quick-wins-conversion-heritage.html",
+   "title": "Accessibility quick wins as a sales lever for a long-form heritage site",
+   "bytes": 4391,
+   "sha256": "74a5735744f04908d5d25c99381b99de28709257651633c4cfc2dccddd9861e7"
+  },
+  {
+   "path": "SKILLS/marketing/ai-answer-citations-geo-sources-quotes-stats.md",
+   "html": "SKILLS/marketing/ai-answer-citations-geo-sources-quotes-stats.html",
+   "title": "Getting cited in AI answers (ChatGPT, Perplexity, Google AI Overviews / AI Mode)",
+   "bytes": 5443,
+   "sha256": "c238296ccc4c8b87c9da4c371d3431ba01b9db3a3d6316234d504b8f1afe8560"
+  },
+  {
+   "path": "SKILLS/marketing/amazon-kdp-2026-price-band-select-vs-direct.md",
+   "html": "SKILLS/marketing/amazon-kdp-2026-price-band-select-vs-direct.html",
+   "title": "Amazon KDP listing decision (2026): the new 70% price band, Select vs our own shop, Author Central follows",
+   "bytes": 4890,
+   "sha256": "31edbcd82f56191ddeb82cbd32f63a56be390002a4b43ba05bca0d16c7c88b39"
+  },
+  {
+   "path": "SKILLS/marketing/apple-books-affiliate-performance-partners.md",
+   "html": "SKILLS/marketing/apple-books-affiliate-performance-partners.html",
+   "title": "Apple Books affiliate links (Apple Services Performance Partners)",
+   "bytes": 3882,
+   "sha256": "f80ac79c3fa403b07cc2bc9bb762b1e8c16ea9ff00285958e3f3581ff7a76772"
+  },
+  {
+   "path": "SKILLS/marketing/apple-books-direct-promo-codes-preorders.md",
+   "html": "SKILLS/marketing/apple-books-direct-promo-codes-preorders.html",
+   "title": "Apple Books for Authors: free direct listing, pre-orders and 250 promo codes per e-book",
+   "bytes": 4686,
+   "sha256": "e94717221bd0bab11f223af1c34c075ba30bf675ec2c134755aad6e100a7da95"
+  },
+  {
+   "path": "SKILLS/marketing/apple-business-maps-showcases-branded-mail.md",
+   "html": "SKILLS/marketing/apple-business-maps-showcases-branded-mail.html",
+   "title": "Apple Business (ex-Business Connect): Apple Maps place card, Showcases, Branded Mail logo",
+   "bytes": 5437,
+   "sha256": "b009d4cdcb8b22104870ff9bcd2f35a7e6cf7d68cbb4f3a30674843dd461ff86"
+  },
+  {
+   "path": "SKILLS/marketing/arc-team-zero-cost-advance-readers.md",
+   "html": "SKILLS/marketing/arc-team-zero-cost-advance-readers.html",
+   "title": "Zero-cost ARC (advance reader copy) team for a paid volume",
+   "bytes": 3874,
+   "sha256": "98d1b8f85a848bf8a57ebb4511a248d2bf3c8d23d7cdfd06a0fd9cea94d5f520"
+  },
+  {
+   "path": "SKILLS/marketing/b2b-pitch-uk-companies.md",
+   "html": "SKILLS/marketing/b2b-pitch-uk-companies.html",
+   "title": "B2B pitch emails to UK companies (2026 how-to)",
+   "bytes": 5744,
+   "sha256": "540643933c6a2f031d39824a3577094b1cf4403e72b571b7cccda1faf8bb491c"
+  },
+  {
+   "path": "SKILLS/marketing/bbc-radio-wales-cymru-programme-inboxes.md",
+   "html": "SKILLS/marketing/bbc-radio-wales-cymru-programme-inboxes.html",
+   "title": "BBC Radio Wales + Radio Cymru programme inboxes (one programme each)",
+   "bytes": 4212,
+   "sha256": "43a123055e1e92b80df81b4d1dd55ed86db6ecbbc8592b3fdcd1527a4acc8cca"
+  },
+  {
+   "path": "SKILLS/marketing/bbc-wales-cymru-fyw-story-routes.md",
+   "html": "SKILLS/marketing/bbc-wales-cymru-fyw-story-routes.html",
+   "title": "BBC Wales, BBC Cymru Fyw and Radio Cymru: story routes and how to pitch a local-history story",
+   "bytes": 4827,
+   "sha256": "194b480d1146b5888e60e353314bdaa10ffe07879540706c1d676ecbe7f0376c"
+  },
+  {
+   "path": "SKILLS/marketing/bing-webmaster-ai-performance-copilot-citations.md",
+   "html": "SKILLS/marketing/bing-webmaster-ai-performance-copilot-citations.html",
+   "title": "Bing Webmaster Tools: AI Performance (Copilot citations) + import from Search Console",
+   "bytes": 3914,
+   "sha256": "9939f1b4b8256caf505e37d999f6c82c138a4a44ffa872ab3c99b7b18aa6257e"
+  },
+  {
+   "path": "SKILLS/marketing/black-friday-cyber-weekend-small-ebook-shop-uk.md",
+   "html": "SKILLS/marketing/black-friday-cyber-weekend-small-ebook-shop-uk.html",
+   "title": "Black Friday / Cyber Weekend for a small direct e-book shop (UK, 2026)",
+   "bytes": 5356,
+   "sha256": "53b056109340a9d4d6680a43e7ccdb2c1493ecfa0508cb3a5320e8d7586c3230"
+  },
+  {
+   "path": "SKILLS/marketing/bluesky-custom-feeds-history.md",
+   "html": "SKILLS/marketing/bluesky-custom-feeds-history.html",
+   "title": "Bluesky custom feeds and starter packs for history content",
+   "bytes": 5048,
+   "sha256": "21827da7cc89a148f5a966807c7f23f086fff0796e5c414bb258dbd39032be18"
+  },
+  {
+   "path": "SKILLS/marketing/bluesky-mastodon-fediverse-heritage.md",
+   "html": "SKILLS/marketing/bluesky-mastodon-fediverse-heritage.html",
+   "title": "Bluesky + Mastodon/fediverse for a heritage archive (2026 how-to)",
+   "bytes": 6086,
+   "sha256": "4536ae9385b4b02a25346c32017b3c8c802cb9085f6b4a24abbf9150d759cf5d"
+  },
+  {
+   "path": "SKILLS/marketing/book-club-reading-group-guide-heritage.md",
+   "html": "SKILLS/marketing/book-club-reading-group-guide-heritage.html",
+   "title": "Book clubs and reading groups: a free reading-group guide for a non-fiction heritage title",
+   "bytes": 4076,
+   "sha256": "aa52feb462cf4b47a44cc2a4c25948ca1c37e8376d0976f9ea0dd42629cc0119"
+  },
+  {
+   "path": "SKILLS/marketing/bookbub-author-profile-new-release-alerts.md",
+   "html": "SKILLS/marketing/bookbub-author-profile-new-release-alerts.html",
+   "title": "BookBub free tools: Author Profile, New Release Alerts, follows (with a fit verdict)",
+   "bytes": 4894,
+   "sha256": "cfcccf65e6c6036ac6b186f5f981ab81a1bf8dbc2053aeabe7e0d7b1a53924cc"
+  },
+  {
+   "path": "SKILLS/marketing/bookshop-org-uk-affiliate-ebooks-d2d.md",
+   "html": "SKILLS/marketing/bookshop-org-uk-affiliate-ebooks-d2d.html",
+   "title": "Bookshop.org UK: affiliate 'further reading' links now, ebook listing later",
+   "bytes": 3396,
+   "sha256": "f1a8e9c244029eef61c66c4b44ac0f06ac895ef2da7cc22820e8ae9c6494c929"
+  },
+  {
+   "path": "SKILLS/marketing/cardiff-libraries-hubs-talk-route.md",
+   "html": "SKILLS/marketing/cardiff-libraries-hubs-talk-route.html",
+   "title": "Cardiff Libraries and Hubs: the talk and local-studies route",
+   "bytes": 3391,
+   "sha256": "3d67fe6b787d3a815054a6e4821c55669d39ac20e734bb00ce9fd643b704609e"
+  },
+  {
+   "path": "SKILLS/marketing/chubut-spanish-press-jornada-elchubut-radio.md",
+   "html": "SKILLS/marketing/chubut-spanish-press-jornada-elchubut-radio.html",
+   "title": "Skill: Spanish-language press in Chubut for the Argentina half of the story (2026)",
+   "bytes": 4207,
+   "sha256": "12c635aaa873d5d235d4cef56f1b24c0d67bd29a9544dc0df13136f95e98a7ec"
+  },
+  {
+   "path": "SKILLS/marketing/civic-local-history-society-talks-penarth.md",
+   "html": "SKILLS/marketing/civic-local-history-society-talks-penarth.html",
+   "title": "Civic and local-history society talk programmes (Penarth first)",
+   "bytes": 3546,
+   "sha256": "d6519b71189f482a85026ee1e968ad488d418fcb18810b542b5b7a262548e58c"
+  },
+  {
+   "path": "SKILLS/marketing/clarity-heatmaps-recordings-uk-consent.md",
+   "html": "SKILLS/marketing/clarity-heatmaps-recordings-uk-consent.html",
+   "title": "Heatmaps and session recordings (Microsoft Clarity) under UK consent rules",
+   "bytes": 4620,
+   "sha256": "add9199ad24908be460466adbc1f4effcb9f412dd3696cc0f01ba51643c59786"
+  },
+  {
+   "path": "SKILLS/marketing/cold-email-deliverability-uk-pecr.md",
+   "html": "SKILLS/marketing/cold-email-deliverability-uk-pecr.html",
+   "title": "Skill: Cold email deliverability + UK PECR for institutional outreach (2026)",
+   "bytes": 4541,
+   "sha256": "b9c8fc7cb4710c258a675f0f7d0ffd81e87e066946a883fab3f50dfd1a52294b"
+  },
+  {
+   "path": "SKILLS/marketing/content-upgrades-page-specific-lead-magnets.md",
+   "html": "SKILLS/marketing/content-upgrades-page-specific-lead-magnets.html",
+   "title": "Content upgrades: a page-specific free extra in exchange for an email",
+   "bytes": 4628,
+   "sha256": "ca65cef58975d1d04ff9fccccc71a47fb17882f93feb34e9723d98a236433a62"
+  },
+  {
+   "path": "SKILLS/marketing/cowbridge-history-society-talk-route.md",
+   "html": "SKILLS/marketing/cowbridge-history-society-talk-route.html",
+   "title": "Cowbridge History Society talk route (plus Cowbridge u3a History Group)",
+   "bytes": 5091,
+   "sha256": "7ce69cb47893113e54262e8cf464aeaea8ecd6ec2e68591893e9729874f63b70"
+  },
+  {
+   "path": "SKILLS/marketing/data-led-digital-pr-heritage-dataset-pitch.md",
+   "html": "SKILLS/marketing/data-led-digital-pr-heritage-dataset-pitch.html",
+   "title": "Data-led digital PR for a heritage archive (proactive, not reactive)",
+   "bytes": 4791,
+   "sha256": "f2f557fa9b72b25a1b0c6ecfe7fddc0912cd7e1d15c0cc5ecad6b03aebc14748"
+  },
+  {
+   "path": "SKILLS/marketing/ebook-back-matter-one-next-step.md",
+   "html": "SKILLS/marketing/ebook-back-matter-one-next-step.html",
+   "title": "Back matter with one next step: turning free e-book readers into buyers",
+   "bytes": 5172,
+   "sha256": "473f35b1626e68385d81ca9b82636dd765a7c7b0121c8971de75435e8e861ab3"
+  },
+  {
+   "path": "SKILLS/marketing/ebook-delivery-send-to-kindle-kobo-own-links.md",
+   "html": "SKILLS/marketing/ebook-delivery-send-to-kindle-kobo-own-links.html",
+   "title": "Free e-book delivery to Kindle, Kobo and phones from our own /ebooks/ links (no BookFunnel)",
+   "bytes": 5149,
+   "sha256": "c879b1e204224ff745f13ac75f725f7fc5262041f1ff610504247ec0cd222bcc"
+  },
+  {
+   "path": "SKILLS/marketing/ebook-gifting-christmas-gift-path-guide-email.md",
+   "html": "SKILLS/marketing/ebook-gifting-christmas-gift-path-guide-email.html",
+   "title": "Gifting e-books at Christmas (and St David's Day): a gift path and a gift-guide email",
+   "bytes": 4696,
+   "sha256": "6f1c786115fc4c0aa7f81f3b30554676d12c9b98e246ec6997a74b3f3a5d3a59"
+  },
+  {
+   "path": "SKILLS/marketing/ebook-preorders-google-play-kobo.md",
+   "html": "SKILLS/marketing/ebook-preorders-google-play-kobo.html",
+   "title": "E-book pre-orders on free stores (Google Play Books, Kobo Writing Life)",
+   "bytes": 5037,
+   "sha256": "80a1fda6f2506043db9f3364ebbd03db388a6be321a65f5862d6063ecc19b201"
+  },
+  {
+   "path": "SKILLS/marketing/ebook-pricing-bundles-direct.md",
+   "html": "SKILLS/marketing/ebook-pricing-bundles-direct.html",
+   "title": "E-book pricing & bundles for niche non-fiction sold direct (2026)",
+   "bytes": 3385,
+   "sha256": "cf2874eb89c9f70a29952fcc73426acfb8604691706d9123842ba645f68f951d"
+  },
+  {
+   "path": "SKILLS/marketing/ebook-sales-page-cro-checkout-friction.md",
+   "html": "SKILLS/marketing/ebook-sales-page-cro-checkout-friction.html",
+   "title": "E-book sales page CRO: test campaigns, short copy, checkout friction",
+   "bytes": 4614,
+   "sha256": "12e373628c3d1984a9613a96863aa3401f72e2c4f1d8050a36f05ced37ee5676"
+  },
+  {
+   "path": "SKILLS/marketing/email-preference-centre-snooze-topics.md",
+   "html": "SKILLS/marketing/email-preference-centre-snooze-topics.html",
+   "title": "Email preference centre: \"fewer emails\" and topic choice instead of unsubscribe",
+   "bytes": 3909,
+   "sha256": "3a6a368c841d0f13006795c756cbc59bcc030fee5c01bf26ccd19b2bedb44b4f"
+  },
+  {
+   "path": "SKILLS/marketing/email-send-time-frequency-tiny-list.md",
+   "html": "SKILLS/marketing/email-send-time-frequency-tiny-list.html",
+   "title": "Email send time and frequency for a tiny list (under 100 subscribers)",
+   "bytes": 4490,
+   "sha256": "15c798ffc846fab65a2aa532202bf70e8a01bb9550dda622622f053f3e74e52b"
+  },
+  {
+   "path": "SKILLS/marketing/email-signup-forms-popups-timing.md",
+   "html": "SKILLS/marketing/email-signup-forms-popups-timing.html",
+   "title": "Email signup forms that convert without hurting search (popups, inline, timing)",
+   "bytes": 3863,
+   "sha256": "8d4fd825abf455defc877c9b3f02f7824d5ac8f04413773b2af25720296662d8"
+  },
+  {
+   "path": "SKILLS/marketing/email-subject-lines-preview-text-mpp.md",
+   "html": "SKILLS/marketing/email-subject-lines-preview-text-mpp.html",
+   "title": "Email subject lines, preview text and open-rate honesty (2026)",
+   "bytes": 4658,
+   "sha256": "f48839b8c93549c9d34bfd32c57520980ba9d5e157fbac741027d988f361de57"
+  },
+  {
+   "path": "SKILLS/marketing/email-winback-reactivation-series-mailchimp.md",
+   "html": "SKILLS/marketing/email-winback-reactivation-series-mailchimp.html",
+   "title": "Email win-back / reactivation series for cold Mailchimp subscribers",
+   "bytes": 5368,
+   "sha256": "056f758612b936736d84f33a60b9233fbbacb7de16fc302484de4481b7702db0"
+  },
+  {
+   "path": "SKILLS/marketing/epub-editions-sphinx-epubcheck.md",
+   "html": "SKILLS/marketing/epub-editions-sphinx-epubcheck.html",
+   "title": "EPUB editions from our existing e-book sources, checked before any store (2026 how-to, install-free)",
+   "bytes": 5247,
+   "sha256": "01b78970aba9b611f9e4fc8bdd1640f0c1859ff0a524e50804f9eaeddc169bf8"
+  },
+  {
+   "path": "SKILLS/marketing/event-structured-data-in-person-talk-page.md",
+   "html": "SKILLS/marketing/event-structured-data-in-person-talk-page.html",
+   "title": "Event structured data (schema.org Event) for a real, in-person talk page",
+   "bytes": 4339,
+   "sha256": "46a760132ce49766d3546e14c6d2c43b378f8731e126a30e41e0dbc7f8273d9d"
+  },
+  {
+   "path": "SKILLS/marketing/facebook-group-community-and-link-limits.md",
+   "html": "SKILLS/marketing/facebook-group-community-and-link-limits.html",
+   "title": "Facebook Group as community engine + the 2026 link-limit reality",
+   "bytes": 3831,
+   "sha256": "31505e659a3797acc5f726b7ba04b03f45ffea1bc55cec6ac982b7675628f4ee"
+  },
+  {
+   "path": "SKILLS/marketing/facebook-page-events-online-talk.md",
+   "html": "SKILLS/marketing/facebook-page-events-online-talk.html",
+   "title": "Facebook Events on the existing Page for an online (or library) talk",
+   "bytes": 4695,
+   "sha256": "b490ddf4ab6ee1fe09db3601cec589a5ebc6696bc928139189c54ceaa98221c9"
+  },
+  {
+   "path": "SKILLS/marketing/facebook-reels-originality-archive-clips.md",
+   "html": "SKILLS/marketing/facebook-reels-originality-archive-clips.html",
+   "title": "Facebook Reels for archive clips under Meta's 2026 originality rules",
+   "bytes": 4188,
+   "sha256": "92bdb092a10671559056daca5934220b96729f541247cb6aaff0dcb2a13ae226"
+  },
+  {
+   "path": "SKILLS/marketing/facebook-your-algorithm-topic-signals.md",
+   "html": "SKILLS/marketing/facebook-your-algorithm-topic-signals.html",
+   "title": "Facebook \"Your Algorithm\": writing posts the topic ranker can place (Oct 2026)",
+   "bytes": 4379,
+   "sha256": "d109902a0ce6e0e577d5e23989e2dcc545f434949fd4492db08bd2d7e48d39f9"
+  },
+  {
+   "path": "SKILLS/marketing/family-history-society-journals-forums.md",
+   "html": "SKILLS/marketing/family-history-society-journals-forums.html",
+   "title": "Family-history society journals, members' interests and forums (Glamorgan first)",
+   "bytes": 4786,
+   "sha256": "0508f8b3e8a671168df24ba0933dad55413031d01953e6dbaebd0a05f78d1300"
+  },
+  {
+   "path": "SKILLS/marketing/ffolio-cymru-books-council-wales-listing.md",
+   "html": "SKILLS/marketing/ffolio-cymru-books-council-wales-listing.html",
+   "title": "ffolio.cymru (ex-Gwales) and the Books Council of Wales: getting a Welsh-interest e-book listed",
+   "bytes": 4127,
+   "sha256": "2052a564ce379c76c5ae46a8885151f8617a4926cc0fff429cad1838441fdc0e"
+  },
+  {
+   "path": "SKILLS/marketing/flipboard-publisher-magazine-rss.md",
+   "html": "SKILLS/marketing/flipboard-publisher-magazine-rss.html",
+   "title": "Flipboard: publisher profile, RSS-fed Magazine, measure before investing",
+   "bytes": 3945,
+   "sha256": "b3cf6f2826595f86fff60d14bfd872c2d3cb73c38dde2e585ecaa8d1f1cd7232"
+  },
+  {
+   "path": "SKILLS/marketing/free-epub-storefronts-kobo-itch-books2read.md",
+   "html": "SKILLS/marketing/free-epub-storefronts-kobo-itch-books2read.html",
+   "title": "Free EPUB storefronts: Kobo Writing Life, itch.io, Books2Read links (and why not Draft2Digital now)",
+   "bytes": 5153,
+   "sha256": "bea3433f870054c66c0331349e7d23ce8450a1dc9e5cc6dec0c22c45015e3d47"
+  },
+  {
+   "path": "SKILLS/marketing/free-first-edition-funnel.md",
+   "html": "SKILLS/marketing/free-first-edition-funnel.html",
+   "title": "Free first edition → email → paid edition (permafree + reader magnet), for Cedwyn",
+   "bytes": 2824,
+   "sha256": "cf973f937d2b6a735582212d280dd178829f51264de21899958db21f7e53b4e7"
+  },
+  {
+   "path": "SKILLS/marketing/free-online-talk-listings-eventbrite-meetup.md",
+   "html": "SKILLS/marketing/free-online-talk-listings-eventbrite-meetup.html",
+   "title": "Free online talk listings: Eventbrite (free events) and Meetup (Starter)",
+   "bytes": 4517,
+   "sha256": "134e52ba7d4e05d97c49b39c91f1d8dbe205887b1c1d59d537c4452bc27a65fb"
+  },
+  {
+   "path": "SKILLS/marketing/glossary-definition-pages-internal-anchor-text.md",
+   "html": "SKILLS/marketing/glossary-definition-pages-internal-anchor-text.html",
+   "title": "Glossary pages + descriptive internal links (SEO and AI citations)",
+   "bytes": 5819,
+   "sha256": "545fc0a485200f3ff5493549ebea2a175c11e31fd7200c32dfb173937eb2a9e9"
+  },
+  {
+   "path": "SKILLS/marketing/gmail-postmaster-tools-v2-compliance-spam-rate.md",
+   "html": "SKILLS/marketing/gmail-postmaster-tools-v2-compliance-spam-rate.html",
+   "title": "Gmail Postmaster Tools v2: compliance status and spam rate for a tiny list",
+   "bytes": 5536,
+   "sha256": "4776cf18193f49c1e9e74ae98fd0eeb179f00b4d250ee55cd02fb280663d7219"
+  },
+  {
+   "path": "SKILLS/marketing/gmail-promotions-annotations-image-deal.md",
+   "html": "SKILLS/marketing/gmail-promotions-annotations-image-deal.html",
+   "title": "Gmail Promotions tab annotations: image preview, deal badge, deal card",
+   "bytes": 4861,
+   "sha256": "e9c1df0211536d12befb97060f7c6b84efccfd18398b9461a9ea66c467b0cab5"
+  },
+  {
+   "path": "SKILLS/marketing/goodreads-storygraph-listings-ebooks.md",
+   "html": "SKILLS/marketing/goodreads-storygraph-listings-ebooks.html",
+   "title": "Goodreads and StoryGraph listings for self-published e-books",
+   "bytes": 4266,
+   "sha256": "7ceaff9b70f35a0d665a32c3e6d444aad5ee2c0e6a402bb9bb3fc36fb12e23da"
+  },
+  {
+   "path": "SKILLS/marketing/google-discover-heritage-max-image-preview.md",
+   "html": "SKILLS/marketing/google-discover-heritage-max-image-preview.html",
+   "title": "Google Discover for a heritage history site (zero spend)",
+   "bytes": 4290,
+   "sha256": "c72caa1741a46e772215895aca9a4e3b5df0dbfdf54441cc44cbc272a842721d"
+  },
+  {
+   "path": "SKILLS/marketing/google-images-lens-archive-photos.md",
+   "html": "SKILLS/marketing/google-images-lens-archive-photos.html",
+   "title": "Google Images and Lens visibility for archive photos, maps and scans",
+   "bytes": 4979,
+   "sha256": "6da2e29836d6fb546099370ff6aa61bb01b50ae9402ce4db70cea5956cf194b7"
+  },
+  {
+   "path": "SKILLS/marketing/google-maps-gbp-demolished-heritage-site.md",
+   "html": "SKILLS/marketing/google-maps-gbp-demolished-heritage-site.html",
+   "title": "Google Maps and Business Profile for a demolished heritage site and an online archive (what's allowed)",
+   "bytes": 4422,
+   "sha256": "ea7ebe00d7b1035bbf7b74fd993c7073b9fc2d03fd0a401d2549794441c59946"
+  },
+  {
+   "path": "SKILLS/marketing/google-play-auto-narrated-audiobooks-en-es.md",
+   "html": "SKILLS/marketing/google-play-auto-narrated-audiobooks-en-es.html",
+   "title": "Free AI-narrated audiobooks via Google Play Books (EN + ES)",
+   "bytes": 4472,
+   "sha256": "956338a7887612aab25b67acb7ee832f2564a8e624d02e802ef062d3883a3585"
+  },
+  {
+   "path": "SKILLS/marketing/google-play-books-partner-center-ebooks.md",
+   "html": "SKILLS/marketing/google-play-books-partner-center-ebooks.html",
+   "title": "Google Play Books Partner Center: a free retail shelf for the e-books (Android, Spanish-speaking readers)",
+   "bytes": 4296,
+   "sha256": "b359f9b0b14c9f125d8283312f6fc6e3b484fd80735c5b2c15e0853f1cbe41f2"
+  },
+  {
+   "path": "SKILLS/marketing/google-preferred-sources-button-deeplink.md",
+   "html": "SKILLS/marketing/google-preferred-sources-button-deeplink.html",
+   "title": "Google Preferred Sources: getting readers to pick the site in Top Stories and AI answers",
+   "bytes": 4352,
+   "sha256": "e34276d4c84e9fbc85e9ff9c6c1aab2b0ef850e6135af1495a4403b29a01550d"
+  },
+  {
+   "path": "SKILLS/marketing/google-trends-seasonal-timing.md",
+   "html": "SKILLS/marketing/google-trends-seasonal-timing.html",
+   "title": "Google Trends: seasonal timing for history posts and pages (2026)",
+   "bytes": 3544,
+   "sha256": "31a42fb46c1315901f61b74adf4088e121965872da5ff695a56191a35aac5cec"
+  },
+  {
+   "path": "SKILLS/marketing/gsc-striking-distance-quick-wins.md",
+   "html": "SKILLS/marketing/gsc-striking-distance-quick-wins.html",
+   "title": "Search Console \"striking distance\" quick wins for a small history site (2026)",
+   "bytes": 3669,
+   "sha256": "de98e544a025490975ceb393ce3629c704da2350fd2029096d8546963507c719"
+  },
+  {
+   "path": "SKILLS/marketing/gumroad-discover-affiliates.md",
+   "html": "SKILLS/marketing/gumroad-discover-affiliates.html",
+   "title": "Gumroad Discover + affiliates: the marketplace and referral levers",
+   "bytes": 4701,
+   "sha256": "fb7364838f88dfcaae3ecd6d6a714193021daf6b06968f39b8596f1d8f77053a"
+  },
+  {
+   "path": "SKILLS/marketing/headline-first-read-more-progressive-disclosure.md",
+   "html": "SKILLS/marketing/headline-first-read-more-progressive-disclosure.html",
+   "title": "Headline-first pages with \"Read more\" (progressive disclosure) for a long-form history site",
+   "bytes": 4603,
+   "sha256": "8cdaeb6b6c10c8b79ea59213edaa4e5d331fc9772aecb3f71b05214013174bb8"
+  },
+  {
+   "path": "SKILLS/marketing/heritage-genealogy-directory-listings.md",
+   "html": "SKILLS/marketing/heritage-genealogy-directory-listings.html",
+   "title": "Free heritage and genealogy directory listings (backlinks with no outreach)",
+   "bytes": 5672,
+   "sha256": "77a2e15300385c29e0f64deb320b115bd6777fb917523e45bd20ea733ffc00fb"
+  },
+  {
+   "path": "SKILLS/marketing/heritage-talks-circuit-aatp-branches.md",
+   "html": "SKILLS/marketing/heritage-talks-circuit-aatp-branches.html",
+   "title": "The talks circuit: society branch meetings and All About That Place",
+   "bytes": 4163,
+   "sha256": "b0088913523a57471ce84d774ba7314644a0bd468f5c72dbcac2d1e1c5da0bf7"
+  },
+  {
+   "path": "SKILLS/marketing/html-email-design-accessibility.md",
+   "html": "SKILLS/marketing/html-email-design-accessibility.html",
+   "title": "HTML email design & accessibility (2026) — story emails that render, read and get clicked",
+   "bytes": 3591,
+   "sha256": "b8d5a6122bf2a9e25d12010f6c6ed8e5a745a5a2855e823565fba5e95aca8b10"
+  },
+  {
+   "path": "SKILLS/marketing/indexnow-websub-webmcp-agent-endpoints.md",
+   "html": "SKILLS/marketing/indexnow-websub-webmcp-agent-endpoints.html",
+   "title": "IndexNow, WebSub and WebMCP: free, agent-friendly endpoints (2026 how-to)",
+   "bytes": 5539,
+   "sha256": "0e41d3988a87a6efdaa8a9858aad782833829bccb287d915e24dacb599e19025"
+  },
+  {
+   "path": "SKILLS/marketing/insole-court-lecture-programme.md",
+   "html": "SKILLS/marketing/insole-court-lecture-programme.html",
+   "title": "Insole Court (Llandaff, Cardiff) lecture programme route",
+   "bytes": 3083,
+   "sha256": "e25da87c6386e4bc112fb5dad36bcf19e8d7c47084886590f5b9a99a506783c7"
+  },
+  {
+   "path": "SKILLS/marketing/instagram-bio-link-conversion-no-link-yet.md",
+   "html": "SKILLS/marketing/instagram-bio-link-conversion-no-link-yet.html",
+   "title": "Instagram: turning reach into clicks when the bio has no link yet",
+   "bytes": 5094,
+   "sha256": "f280592719773e9d22dd955c966cc1e3eac64a04f9ee9ede8ac0b866cd8ad48d"
+  },
+  {
+   "path": "SKILLS/marketing/instagram-collab-posts-heritage-partners.md",
+   "html": "SKILLS/marketing/instagram-collab-posts-heritage-partners.html",
+   "title": "Instagram Collab posts with heritage partners (2026)",
+   "bytes": 5100,
+   "sha256": "f287aa37fa57eb61327d3d965cf5954f67e8fc49733fc424d5902c2ec6861861"
+  },
+  {
+   "path": "SKILLS/marketing/instagram-reels-carousels-heritage.md",
+   "html": "SKILLS/marketing/instagram-reels-carousels-heritage.html",
+   "title": "Instagram: Reels for reach, carousels for saves (heritage account playbook, 2026)",
+   "bytes": 4778,
+   "sha256": "6cc71ffcd9bb439a63edb119f5e6cd3758d9efb04207b7902c3f2fad65cf723a"
+  },
+  {
+   "path": "SKILLS/marketing/instagram-search-seo-google-indexing.md",
+   "html": "SKILLS/marketing/instagram-search-seo-google-indexing.html",
+   "title": "Instagram search SEO: profile, captions, 5 hashtags, and showing up on Google",
+   "bytes": 5487,
+   "sha256": "2ca8a236b374367e899587114d3308ea69baabf55a0e5892dc58064ef4fc5dd1"
+  },
+  {
+   "path": "SKILLS/marketing/kickstarter-special-edition-readiness-gate.md",
+   "html": "SKILLS/marketing/kickstarter-special-edition-readiness-gate.html",
+   "title": "Kickstarter for a special/print edition: when it pays, and the readiness gate",
+   "bytes": 4122,
+   "sha256": "b1713c86961d8c10339394b8555823dc0c472d4524ab386799a677409f66759a"
+  },
+  {
+   "path": "SKILLS/marketing/knowledge-panel-organization-markup-claim.md",
+   "html": "SKILLS/marketing/knowledge-panel-organization-markup-claim.html",
+   "title": "Google knowledge panel for a heritage brand: Organization markup, corroboration, then claim",
+   "bytes": 3931,
+   "sha256": "5ae2590fc52d1164b1b438d072587c675496d086b8efe9c91aef630103ccebf5"
+  },
+  {
+   "path": "SKILLS/marketing/ko-fi-tips-supporter-memberships-heritage.md",
+   "html": "SKILLS/marketing/ko-fi-tips-supporter-memberships-heritage.html",
+   "title": "Skill: Ko-fi tips and supporter memberships for a free-records heritage project (2026)",
+   "bytes": 4011,
+   "sha256": "cc9b81fc8ef254510be46ee3a048893319ef3ca6c3733bd6d90ddaaa456274a2"
+  },
+  {
+   "path": "SKILLS/marketing/legal-deposit-ebooks-uk-web-archive-nomination.md",
+   "html": "SKILLS/marketing/legal-deposit-ebooks-uk-web-archive-nomination.html",
+   "title": "Electronic legal deposit and UK Web Archive nomination (British Library / National Library of Wales)",
+   "bytes": 5707,
+   "sha256": "c9c63e7af05f03b0d14c34ef797da3a747db55d3cbf2ea036a1d44e19de3dd13"
+  },
+  {
+   "path": "SKILLS/marketing/library-elending-overdrive-libby-via-kobo.md",
+   "html": "SKILLS/marketing/library-elending-overdrive-libby-via-kobo.html",
+   "title": "Library e-lending direct: OverDrive/Libby through Kobo Writing Life (no aggregator)",
+   "bytes": 5168,
+   "sha256": "dc9e0cfd0547925f4f19a4645310668842456fbf6162a96a37ddb45f5f8b7b7a"
+  },
+  {
+   "path": "SKILLS/marketing/library-venue-talk-vale-libraries-booking.md",
+   "html": "SKILLS/marketing/library-venue-talk-vale-libraries-booking.html",
+   "title": "Library venue talks: booking a room (Vale of Glamorgan) and pitching a library-run talk",
+   "bytes": 4191,
+   "sha256": "47b31dd72bc30e09ef9a89e79b481816d10df82bd07c55761f105bcb89917389"
+  },
+  {
+   "path": "SKILLS/marketing/librarything-early-reviewers-member-giveaways.md",
+   "html": "SKILLS/marketing/librarything-early-reviewers-member-giveaways.html",
+   "title": "LibraryThing Early Reviewers + Member Giveaways for heritage e-books",
+   "bytes": 5038,
+   "sha256": "82b838920d4076f04d49e0ad90266599d98dbe29a245bddcd7e2cad7b573a6b7"
+  },
+  {
+   "path": "SKILLS/marketing/link-reclamation-unlinked-mentions-dead-urls.md",
+   "html": "SKILLS/marketing/link-reclamation-unlinked-mentions-dead-urls.html",
+   "title": "Link reclamation: unlinked mentions, dead old URLs and broken resource links",
+   "bytes": 4259,
+   "sha256": "979ec251f9426f63f15548347c9ca75081c7d455ee4f4ce0f0d179afbe8e3e4a"
+  },
+  {
+   "path": "SKILLS/marketing/linkedin-newsletter-one-tap-subscribers.md",
+   "html": "SKILLS/marketing/linkedin-newsletter-one-tap-subscribers.html",
+   "title": "LinkedIn newsletter: the one-tap subscribe list (2026)",
+   "bytes": 5495,
+   "sha256": "e03643d0039adbef356540a03f85879a8e73ea13714b7053041d6756fed84a2b"
+  },
+  {
+   "path": "SKILLS/marketing/linkedin-requests-posts-heritage.md",
+   "html": "SKILLS/marketing/linkedin-requests-posts-heritage.html",
+   "title": "LinkedIn for a heritage archive: connection requests, posts, and the link question (2026)",
+   "bytes": 4969,
+   "sha256": "45341f0dd784267d0122cd00d0a0a97dd62f3ee4424f894bb877d4b5458f7019"
+  },
+  {
+   "path": "SKILLS/marketing/local-currency-pricing-stripe-adaptive-gumroad-ppp.md",
+   "html": "SKILLS/marketing/local-currency-pricing-stripe-adaptive-gumroad-ppp.html",
+   "title": "Local-currency pricing for overseas readers (Stripe Adaptive Pricing + Gumroad PPP)",
+   "bytes": 4571,
+   "sha256": "222b75dcd3379ec82634c7386b24beda2eac7b9191db69c8e274bd39bb107056"
+  },
+  {
+   "path": "SKILLS/marketing/local-whats-on-listings-newsquest-evvnt-cardiff.md",
+   "html": "SKILLS/marketing/local-whats-on-listings-newsquest-evvnt-cardiff.html",
+   "title": "Local what's-on listings for a talk or event (Penarth Times/Newsquest via Evvnt, What's On In Cardiff, Visit Wales)",
+   "bytes": 3550,
+   "sha256": "5c987c2dba37207cd80cd28214f2ddd3d4f09019378c8538addccd110f5e834e"
+  },
+  {
+   "path": "SKILLS/marketing/mailchimp-click-interest-tags-segments.md",
+   "html": "SKILLS/marketing/mailchimp-click-interest-tags-segments.html",
+   "title": "Click-based interest tags + segments in Mailchimp (small heritage list)",
+   "bytes": 5140,
+   "sha256": "a3cb9d0f3b1da8d932f6bc655b184c3a5c0e73ee24a26547e7a19fd6b1ebd7ae"
+  },
+  {
+   "path": "SKILLS/marketing/mailchimp-free-plan-2026-limits-gates.md",
+   "html": "SKILLS/marketing/mailchimp-free-plan-2026-limits-gates.html",
+   "title": "Mailchimp Free plan in 2026: what still works at 250 contacts, and the gates before paying",
+   "bytes": 3670,
+   "sha256": "854a2d5983f5a6456b7837332c100b01b2b72ecdb21847bf4fcdf0a86da9de9d"
+  },
+  {
+   "path": "SKILLS/marketing/mailchimp-sending-domain-auth-dmarc-free-from.md",
+   "html": "SKILLS/marketing/mailchimp-sending-domain-auth-dmarc-free-from.html",
+   "title": "Mailchimp sending domain: authenticate it, move off a free From address, DMARC to enforcement",
+   "bytes": 4946,
+   "sha256": "5b682582e29c972765d10f3d35cb5ac158e07f01bca19137fe96783ccba37344"
+  },
+  {
+   "path": "SKILLS/marketing/mastodon-instance-rules-cadence.md",
+   "html": "SKILLS/marketing/mastodon-instance-rules-cadence.html",
+   "title": "Mastodon for a heritage archive: instance rules, hashtags and cadence",
+   "bytes": 4982,
+   "sha256": "7d0ef3cd7edb54b8683e852c8a8f2604796658df863eb67854b2a32d17c4cf98"
+  },
+  {
+   "path": "SKILLS/marketing/merchant-listing-structured-data-ebooks.md",
+   "html": "SKILLS/marketing/merchant-listing-structured-data-ebooks.html",
+   "title": "Merchant listing structured data for direct-sold e-books (Product + Offer)",
+   "bytes": 4439,
+   "sha256": "8f7be09cb5f85a2240fe79be5dcef0ccbe8b9cf7ac4ab21b52a9c780ec2ef62f"
+  },
+  {
+   "path": "SKILLS/marketing/newsletter-referral-programme-gate-free-rewards.md",
+   "html": "SKILLS/marketing/newsletter-referral-programme-gate-free-rewards.html",
+   "title": "Reader referral programme for a tiny history newsletter: gate first, free rewards only",
+   "bytes": 4103,
+   "sha256": "6d12e0237d9ef46b3bfb0e3245fa0c214b20cd04117c59181a902fe4cc56f8d0"
+  },
+  {
+   "path": "SKILLS/marketing/nextdoor-business-page-local-history-uk.md",
+   "html": "SKILLS/marketing/nextdoor-business-page-local-history-uk.html",
+   "title": "Nextdoor Business Page for a local-history e-book shop (UK)",
+   "bytes": 4458,
+   "sha256": "1cc8dbc8a76a9258a03a2f5f55f1934531bc7e131fc8ce3ba7d8fa9a6cad5a9d"
+  },
+  {
+   "path": "SKILLS/marketing/online-press-kit-page-heritage-ebooks.md",
+   "html": "SKILLS/marketing/online-press-kit-page-heritage-ebooks.html",
+   "title": "Online press kit page for a heritage e-book archive (HTML, not PDF)",
+   "bytes": 4797,
+   "sha256": "015f6c499e1df58ef14e0c23fa807fbf6c0342f8b1b3af23ad2d9fc2018c8f49"
+  },
+  {
+   "path": "SKILLS/marketing/open-doors-cadw-heritage-open-days-event.md",
+   "html": "SKILLS/marketing/open-doors-cadw-heritage-open-days-event.html",
+   "title": "Open Doors (Cadw) and Heritage Open Days: a free September heritage event",
+   "bytes": 4492,
+   "sha256": "28f97711d32609d8b8513a069f7ce6f20efd4df02adaee3bdec5331e8364aacf"
+  },
+  {
+   "path": "SKILLS/marketing/open-library-catalogue-records-ebooks.md",
+   "html": "SKILLS/marketing/open-library-catalogue-records-ebooks.html",
+   "title": "Open Library: free public catalogue records for our e-books",
+   "bytes": 4126,
+   "sha256": "9c0a3a1d6a98248255d327e746c3e6a3c5735b02fad1444c2c40862c57375914"
+  },
+  {
+   "path": "SKILLS/marketing/page-indexing-triage-duplicates-canonicals.md",
+   "html": "SKILLS/marketing/page-indexing-triage-duplicates-canonicals.html",
+   "title": "Getting a big new site indexed: triage duplicates, thin pages and canonicals first",
+   "bytes": 5576,
+   "sha256": "172baf05e6482c74fe988457997005b96c91ae653857905a79ab9c401f0a51f4"
+  },
+  {
+   "path": "SKILLS/marketing/pay-what-you-want-floor-suggested-price.md",
+   "html": "SKILLS/marketing/pay-what-you-want-floor-suggested-price.html",
+   "title": "Pay-what-you-want (PWYW) with a floor or a suggested price for a small e-book shop",
+   "bytes": 5083,
+   "sha256": "0290f8bd62a78a57adf8de6c8060c6f28be6b27f36b28ce1976184fd6e22ce89"
+  },
+  {
+   "path": "SKILLS/marketing/peoples-collection-wales-contributions.md",
+   "html": "SKILLS/marketing/peoples-collection-wales-contributions.html",
+   "title": "People's Collection Wales (PCW): contributing records, choosing a licence, and using it for discovery",
+   "bytes": 4862,
+   "sha256": "fb4ba66b758c84e97b98605812dd27882eddceadf5dfa9c172e34d3d242b38cb"
+  },
+  {
+   "path": "SKILLS/marketing/pinterest-youtube-shorts-history.md",
+   "html": "SKILLS/marketing/pinterest-youtube-shorts-history.html",
+   "title": "Skill: Pinterest and YouTube Shorts for history content",
+   "bytes": 5137,
+   "sha256": "a9de52a49c997f790120365e7af2264d111910b2b4d4c5ce9bd536db9e8b47de"
+  },
+  {
+   "path": "SKILLS/marketing/podcast-guesting-heritage-history.md",
+   "html": "SKILLS/marketing/podcast-guesting-heritage-history.html",
+   "title": "Podcast guesting for a heritage history (pitching hosts, 2026)",
+   "bytes": 4796,
+   "sha256": "0d2b0892e3647cbed31c6ca50086101c89692c4250225baa9371073195c5048a"
+  },
+  {
+   "path": "SKILLS/marketing/post-purchase-cross-sell-bundle-upgrade.md",
+   "html": "SKILLS/marketing/post-purchase-cross-sell-bundle-upgrade.html",
+   "title": "Post-purchase cross-sell and bundle upgrade for direct-sold e-books",
+   "bytes": 4402,
+   "sha256": "0376f9b5aaf26713af968352ab0807df89cadcf589287f1e607ff6da4a6d3e6f"
+  },
+  {
+   "path": "SKILLS/marketing/press-requests-and-mention-monitoring.md",
+   "html": "SKILLS/marketing/press-requests-and-mention-monitoring.html",
+   "title": "Skill: Press requests and free mention monitoring for a heritage story (2026)",
+   "bytes": 3152,
+   "sha256": "d99b06310ec608b195ca424bef49013166fa92fbefffdfa9ef50fd4036d2acdc"
+  },
+  {
+   "path": "SKILLS/marketing/probus-club-speaker-slots-vale.md",
+   "html": "SKILLS/marketing/probus-club-speaker-slots-vale.html",
+   "title": "Probus club speaker slots (Vale of Glamorgan / Penarth)",
+   "bytes": 4336,
+   "sha256": "f986a7e826af18a4b452ca3eaba79ae9df14e058094cf2eff90fbbc1d60b4517"
+  },
+  {
+   "path": "SKILLS/marketing/quiz-lead-magnet-heritage-ebook.md",
+   "html": "SKILLS/marketing/quiz-lead-magnet-heritage-ebook.html",
+   "title": "Quiz as a lead magnet: \"Which part of the Cedwyn story is yours?\"",
+   "bytes": 4760,
+   "sha256": "441d4bbc8a4e788a9f4a4c5b9574c8b65cf20322f34d049294a3f586a920d78a"
+  },
+  {
+   "path": "SKILLS/marketing/quora-answers-welsh-local-history-en-es.md",
+   "html": "SKILLS/marketing/quora-answers-welsh-local-history-en-es.html",
+   "title": "Quora answers (English + es.quora.com) for niche Welsh local history",
+   "bytes": 4631,
+   "sha256": "4373773ef588735eccab07461a2edb8ddd118bdbb7d6810308efe2a4408cbc76"
+  },
+  {
+   "path": "SKILLS/marketing/reader-replies-and-small-community.md",
+   "html": "SKILLS/marketing/reader-replies-and-small-community.html",
+   "title": "Reader replies and a small community: newsletter conversations, then Discord only if it earns it",
+   "bytes": 4431,
+   "sha256": "75700ca59fc9fe1f6ae6edb3fc9b874cbf66b11f29b120afbaff50a008d68910"
+  },
+  {
+   "path": "SKILLS/marketing/reddit-forum-participation-heritage.md",
+   "html": "SKILLS/marketing/reddit-forum-participation-heritage.html",
+   "title": "Reddit & forum participation for a heritage archive (2026)",
+   "bytes": 6287,
+   "sha256": "bf974dd915977a5d6878f3bfe94f72036c987e689dcd56ad9948ae367ced2905"
+  },
+  {
+   "path": "SKILLS/marketing/reviews-social-proof-direct-ebooks.md",
+   "html": "SKILLS/marketing/reviews-social-proof-direct-ebooks.html",
+   "title": "Reviews & social proof for e-books sold direct (2026)",
+   "bytes": 4019,
+   "sha256": "fd3c32d5bd61e18da14f18d2cd270f2208688b539c7e1e012ce68b8f705266e1"
+  },
+  {
+   "path": "SKILLS/marketing/rotary-club-talks-civic-audience.md",
+   "html": "SKILLS/marketing/rotary-club-talks-civic-audience.html",
+   "title": "Rotary club talks: the civic-audience speaker slot (no-pitch rules)",
+   "bytes": 4282,
+   "sha256": "e988940828e380467d373890932e508a670e6a7fb8563dc57381957aaa68d489"
+  },
+  {
+   "path": "SKILLS/marketing/rss-atom-feed-websub-static-site.md",
+   "html": "SKILLS/marketing/rss-atom-feed-websub-static-site.html",
+   "title": "Skill: an Atom feed for a static Cloudflare Pages site, then WebSub",
+   "bytes": 4986,
+   "sha256": "c6da5000e49eecd3e99510ae3ef432af4a1da0d38420c205e1cc3f0b2f8d29a9"
+  },
+  {
+   "path": "SKILLS/marketing/sales-page-speed-core-web-vitals-ebooks.md",
+   "html": "SKILLS/marketing/sales-page-speed-core-web-vitals-ebooks.html",
+   "title": "Sales-page speed (Core Web Vitals) on a low-traffic e-book shop",
+   "bytes": 4646,
+   "sha256": "880c4efc701093337f0f0843b7bb659f64efdd629ba0c4efb26d505058e72b72"
+  },
+  {
+   "path": "SKILLS/marketing/school-resource-marketplaces-tes-hwb.md",
+   "html": "SKILLS/marketing/school-resource-marketplaces-tes-hwb.html",
+   "title": "School resource marketplaces: Tes and Hwb (Curriculum for Wales)",
+   "bytes": 5788,
+   "sha256": "af8bceadefc564bee3b7db4b5c8e2a45151624eb99f9f268adf37d56f8e1c3e2"
+  },
+  {
+   "path": "SKILLS/marketing/search-console-branded-filter-query-groups.md",
+   "html": "SKILLS/marketing/search-console-branded-filter-query-groups.html",
+   "title": "Search Console branded vs non-branded filter + Query groups (analytics)",
+   "bytes": 4313,
+   "sha256": "1a47ba0cefc25c4119c626be5a3cfec4617faba976fda3c94cd99b99b97403bc"
+  },
+  {
+   "path": "SKILLS/marketing/search-console-generative-ai-performance-report.md",
+   "html": "SKILLS/marketing/search-console-generative-ai-performance-report.html",
+   "title": "Search Console's Generative AI performance report: what it shows and how to read it (2026 how-to)",
+   "bytes": 6306,
+   "sha256": "28fd51c6d9e4a448ccc2311bde129d60d9df01007da9d9fbb92df14e94405228"
+  },
+  {
+   "path": "SKILLS/marketing/search-console-platform-properties-social.md",
+   "html": "SKILLS/marketing/search-console-platform-properties-social.html",
+   "title": "Search Console platform properties: Google traffic to our YouTube, Instagram, X and TikTok",
+   "bytes": 4339,
+   "sha256": "aa48d1ca4d0bcdc90c5129a617c29b5eede0c39b14fb4d3ae09e17bef95888fb"
+  },
+  {
+   "path": "SKILLS/marketing/search-console-regex-question-longtail.md",
+   "html": "SKILLS/marketing/search-console-regex-question-longtail.html",
+   "title": "Search Console regex filters: question queries, long-tail and page groups (read-only)",
+   "bytes": 3810,
+   "sha256": "a811b2323cecb957d40053563722d425a5cafc2f9c467af986ffbb77b05ab1ec"
+  },
+  {
+   "path": "SKILLS/marketing/search-console-video-indexing-watch-pages.md",
+   "html": "SKILLS/marketing/search-console-video-indexing-watch-pages.html",
+   "title": "Getting archive videos indexed: the Search Console \"Video indexing\" report",
+   "bytes": 4697,
+   "sha256": "52822176187db7e9d986507b81e227a6eab3caaeea7201d4cf2a19ced17a1b54"
+  },
+  {
+   "path": "SKILLS/marketing/self-reported-attribution-hdyhau-survey.md",
+   "html": "SKILLS/marketing/self-reported-attribution-hdyhau-survey.html",
+   "title": "Self-reported attribution: the \"How did you hear about us?\" question",
+   "bytes": 4570,
+   "sha256": "7ed262aa6b4437f791de9dfa59643ec260aae07e89da5ce8d5d85655eee90167"
+  },
+  {
+   "path": "SKILLS/marketing/shared-talk-deck-table-handout.md",
+   "html": "SKILLS/marketing/shared-talk-deck-table-handout.html",
+   "title": "One shared talk deck + table handout for every talk circuit",
+   "bytes": 4729,
+   "sha256": "8856a803141a3327541fb3222ce7a66dd3fe3e131b0e71eaa3204f378a5b8a9a"
+  },
+  {
+   "path": "SKILLS/marketing/site-name-breadcrumb-structured-data-cedwyn.md",
+   "html": "SKILLS/marketing/site-name-breadcrumb-structured-data-cedwyn.html",
+   "title": "Site name + breadcrumb structured data for Cedwyn (Google result labels)",
+   "bytes": 5177,
+   "sha256": "a4ddf816bc48cfd34c33c62367f4059c3deae14d27caf3591c852367aad08ec2"
+  },
+  {
+   "path": "SKILLS/marketing/spanish-patagonia-audience.md",
+   "html": "SKILLS/marketing/spanish-patagonia-audience.html",
+   "title": "Spanish-language and Welsh Patagonia audience building (2026 how-to)",
+   "bytes": 5529,
+   "sha256": "c1a63ee726168d492c5b04bce151ff1f55010b6365f658ca6ce61a5fbcf4e3f5"
+  },
+  {
+   "path": "SKILLS/marketing/stripe-checkout-abandonment-recovery.md",
+   "html": "SKILLS/marketing/stripe-checkout-abandonment-recovery.html",
+   "title": "Abandoned-checkout recovery for direct e-book sales (Stripe)",
+   "bytes": 5213,
+   "sha256": "15056b060420453541d07b7ba53db5905fafb9bd583f1b568ee00a4061d01188"
+  },
+  {
+   "path": "SKILLS/marketing/stripe-payment-links-wallets-ab-gate.md",
+   "html": "SKILLS/marketing/stripe-payment-links-wallets-ab-gate.html",
+   "title": "Stripe Payment Links: wallets on, payment-method A/B tests off (until traffic exists)",
+   "bytes": 4384,
+   "sha256": "b5b7802d074f194f4e7cc6e8d69cff73155a3abe6eb4563f1e6e2f56b497c588"
+  },
+  {
+   "path": "SKILLS/marketing/syndication-canonical-noindex-medium.md",
+   "html": "SKILLS/marketing/syndication-canonical-noindex-medium.html",
+   "title": "Syndicating Cedwyn articles without losing the original (Medium, dev-style platforms, partner sites)",
+   "bytes": 4033,
+   "sha256": "c5307e5afaf09682dad8e9cadd42aa46304f464db5b2e7217b7b78f46563657f"
+  },
+  {
+   "path": "SKILLS/marketing/threads-heritage-profile-communities.md",
+   "html": "SKILLS/marketing/threads-heritage-profile-communities.html",
+   "title": "Threads for a heritage archive: profile, communities, cadence and Instagram cross-posting",
+   "bytes": 3918,
+   "sha256": "742c8f54419193e12ef6618711c75885dbc1e87008a4426435b90a76dbea6c21"
+  },
+  {
+   "path": "SKILLS/marketing/tiktok-search-discovery-small-history-account.md",
+   "html": "SKILLS/marketing/tiktok-search-discovery-small-history-account.html",
+   "title": "TikTok search and discovery for a small history account (2026), plus the bio-link gate",
+   "bytes": 4424,
+   "sha256": "f1e87344232beb27eb4f4360a9161846a235a460149cee16b93aea3b260c8e3b"
+  },
+  {
+   "path": "SKILLS/marketing/topic-clusters-place-pages-local-history.md",
+   "html": "SKILLS/marketing/topic-clusters-place-pages-local-history.html",
+   "title": "Topic clusters and place-name pages for a local-history archive (without doorway pages)",
+   "bytes": 5109,
+   "sha256": "f90b75de46b5cbb39dbcf1c6031a79209231d53a5755a9197722628c7f9e8ae0"
+  },
+  {
+   "path": "SKILLS/marketing/u3a-speaker-circuit-local-history.md",
+   "html": "SKILLS/marketing/u3a-speaker-circuit-local-history.html",
+   "title": "u3a speaker circuit for a local-history talk (South Wales)",
+   "bytes": 4782,
+   "sha256": "7fb7ff7055520a4f283b31c4cb2c7d7fc83f5affbd9b434f61187434c9f59792"
+  },
+  {
+   "path": "SKILLS/marketing/uk-analytics-statistical-exception-duaa-ga4.md",
+   "html": "SKILLS/marketing/uk-analytics-statistical-exception-duaa-ga4.html",
+   "title": "UK analytics without a consent click: the PECR 'statistical purposes' exception (DUAA 2025)",
+   "bytes": 4804,
+   "sha256": "1531ad7fa56faed1beced37a4a0a7baa232c7a4d57c3f0d75b4d784adb5fbd82"
+  },
+  {
+   "path": "SKILLS/marketing/uk-digital-checkout-reg37-consent-vat.md",
+   "html": "SKILLS/marketing/uk-digital-checkout-reg37-consent-vat.html",
+   "title": "Digital-content checkout compliance (UK): the reg 37 consent, the confirmation email, VAT",
+   "bytes": 6221,
+   "sha256": "d7e878def330b82d88dbe840305c34a27a5c64ec6fcba919d0bb5ef81bc372f9"
+  },
+  {
+   "path": "SKILLS/marketing/uk-plr-ebook-library-loans.md",
+   "html": "SKILLS/marketing/uk-plr-ebook-library-loans.html",
+   "title": "UK Public Lending Right (PLR) for e-books and remote library loans",
+   "bytes": 5163,
+   "sha256": "16af8a0e5ce222de135918b156efb452df105eeb6d5ab1dae8287406d6301502"
+  },
+  {
+   "path": "SKILLS/marketing/utm-discipline-ga4-funnel.md",
+   "html": "SKILLS/marketing/utm-discipline-ga4-funnel.html",
+   "title": "UTM discipline + GA4 funnel exploration for a small e-book site (2026)",
+   "bytes": 5164,
+   "sha256": "be35900cf379714d87368d59bf2c25b196659d9c25d1d96a34a173bc52a7de4f"
+  },
+  {
+   "path": "SKILLS/marketing/van-westendorp-price-survey-gated.md",
+   "html": "SKILLS/marketing/van-westendorp-price-survey-gated.html",
+   "title": "Van Westendorp price sensitivity survey (4 questions) - gated pricing research for e-books and tours",
+   "bytes": 3841,
+   "sha256": "f71081e798401747efcba690e03771f4769cc4d722c723a51ef5aec2966df9ea"
+  },
+  {
+   "path": "SKILLS/marketing/voc-review-mining-sales-copy.md",
+   "html": "SKILLS/marketing/voc-review-mining-sales-copy.html",
+   "title": "Voice-of-customer (VOC) review mining: write sales copy in readers' own words",
+   "bytes": 4055,
+   "sha256": "7d8992ea0325ecb4773cd5540f372dfedc21517b1bf6fc79c5def7694ad24f7d"
+  },
+  {
+   "path": "SKILLS/marketing/welcome-sequence-first-sale-small-ebook-list.md",
+   "html": "SKILLS/marketing/welcome-sequence-first-sale-small-ebook-list.html",
+   "title": "Skill: turning reader signups into first sales (a welcome sequence for a small e-book list)",
+   "bytes": 5089,
+   "sha256": "c15009a288e45ea55bc4436758a7279e502ea9779293e5474c2abf6cc678f3ac"
+  },
+  {
+   "path": "SKILLS/marketing/welsh-language-media-papur-bro-golwg360-heno.md",
+   "html": "SKILLS/marketing/welsh-language-media-papur-bro-golwg360-heno.html",
+   "title": "Skill: Welsh-language media for a Cardiff/Vale heritage story (2026)",
+   "bytes": 4525,
+   "sha256": "c3d81b8ad48350f8312337aaa6cd718b56bf227ff0d1b9c8d9a2756ba594ac55"
+  },
+  {
+   "path": "SKILLS/marketing/welsh-patagonian-societies-chubut-outreach.md",
+   "html": "SKILLS/marketing/welsh-patagonian-societies-chubut-outreach.html",
+   "title": "Reaching Welsh-Patagonian societies in Chubut: who they are, how they like to be approached (2026 how-to)",
+   "bytes": 6481,
+   "sha256": "c2384dc68ee5254b17e205898428cd5a2ea1527b99c8b5e2f529c5f9353df0bd"
+  },
+  {
+   "path": "SKILLS/marketing/whatsapp-channel-readers-uk-patagonia.md",
+   "html": "SKILLS/marketing/whatsapp-channel-readers-uk-patagonia.html",
+   "title": "WhatsApp Channel for e-book readers (UK + Spanish-speaking Patagonia)",
+   "bytes": 5552,
+   "sha256": "684838974ea739071f772d8214f75422979bc2c9b7b6cc960eb84d915e3bce08"
+  },
+  {
+   "path": "SKILLS/marketing/wi-speaker-auditions-federation-list.md",
+   "html": "SKILLS/marketing/wi-speaker-auditions-federation-list.html",
+   "title": "WI speaker auditions: getting on a Federation speakers' list",
+   "bytes": 4660,
+   "sha256": "5cb5f0bc75436756d83a6c72208c1d99b93f3f332c4344ca5a214a73af140c6e"
+  },
+  {
+   "path": "SKILLS/marketing/wikimedia-commons-wikidata-heritage-coi.md",
+   "html": "SKILLS/marketing/wikimedia-commons-wikidata-heritage-coi.html",
+   "title": "Skill: contributing to Wikimedia Commons and Wikidata as a heritage archive, inside the conflict-of-interest rules",
+   "bytes": 5872,
+   "sha256": "eab2c352b8c3b39b849af20558b5a5f60d28f35838fad17a72c33731dea3db40"
+  },
+  {
+   "path": "SKILLS/marketing/worldcat-library-hub-discover-catalogue-visibility.md",
+   "html": "SKILLS/marketing/worldcat-library-hub-discover-catalogue-visibility.html",
+   "title": "WorldCat and Library Hub Discover: getting our e-books into library catalogues",
+   "bytes": 4234,
+   "sha256": "ffe7c1bd6d8772a9764cce7100a05f28a4c775870fa9161b66cd12d492bba526"
+  },
+  {
+   "path": "SKILLS/marketing/x-growth-after-communities-replies.md",
+   "html": "SKILLS/marketing/x-growth-after-communities-replies.html",
+   "title": "X (Twitter) growth after Communities closed: replies, threads, XChat (2026)",
+   "bytes": 3436,
+   "sha256": "f075c91e0f84785959690134b16cff8b6d68b4253ff1ac0cf73606ce486fc8e0"
+  },
+  {
+   "path": "SKILLS/marketing/youtube-chapters-captions-transcripts-archive.md",
+   "html": "SKILLS/marketing/youtube-chapters-captions-transcripts-archive.html",
+   "title": "YouTube chapters, captions and transcripts for archive videos (and Google \"key moments\")",
+   "bytes": 3773,
+   "sha256": "be66f51e873b82ba89e58088b7baeb9cd7f8958c84b1d881f0a67c9e99733730"
+  },
+  {
+   "path": "SKILLS/marketing/youtube-end-screens-related-video-playlists.md",
+   "html": "SKILLS/marketing/youtube-end-screens-related-video-playlists.html",
+   "title": "YouTube: send viewers on (end screens, Shorts \"Related video\", playlists, pinned comment)",
+   "bytes": 4520,
+   "sha256": "779199f319309d11c3467248e1063a12858a7034b97d6a4d82c380001d2a2c63"
+  },
+  {
+   "path": "SKILLS/marketing/youtube-hype-eligibility-gate.md",
+   "html": "SKILLS/marketing/youtube-hype-eligibility-gate.html",
+   "title": "YouTube Hype: eligibility gate and first-week plan (2026)",
+   "bytes": 3125,
+   "sha256": "7bd1945e47d43c0057c414345e72c4ed50cdd6155b24fbb2d8a8e0845b1053d7"
+  },
+  {
+   "path": "SKILLS/marketing/youtube-posts-tab-polls-history-channel.md",
+   "html": "SKILLS/marketing/youtube-posts-tab-polls-history-channel.html",
+   "title": "YouTube Posts (formerly the Community tab) for a small history channel",
+   "bytes": 4816,
+   "sha256": "db5ed78100372c300618f84395625cdee2660cec186e10738eecd4d5f7a7f20a"
+  },
+  {
+   "path": "SKILLS/marketing/youtube-premieres-archive-films-decision.md",
+   "html": "SKILLS/marketing/youtube-premieres-archive-films-decision.html",
+   "title": "YouTube Premieres for long archive films: when to use them, and when not to (2026)",
+   "bytes": 4854,
+   "sha256": "1134226ba330ad992e076ed20e38b6aa7814ffc67d5a34ace7d98fc150f64ffe"
+  },
+  {
+   "path": "SKILLS/marketing/youtube-test-compare-titles-thumbnails.md",
+   "html": "SKILLS/marketing/youtube-test-compare-titles-thumbnails.html",
+   "title": "YouTube \"Test & compare\": A/B testing titles and thumbnails",
+   "bytes": 4647,
+   "sha256": "58635f6eeb51a80953ca6f4055394dca853b0926476dcb48ceeb7a317fac2185"
+  },
+  {
+   "path": "SKILLS/marketing/youtube-vertical-live-shorts-feed.md",
+   "html": "SKILLS/marketing/youtube-vertical-live-shorts-feed.html",
+   "title": "YouTube vertical live: a stream that shows in the Shorts feed (2026)",
+   "bytes": 5519,
+   "sha256": "b7b2dc7a51987f45407f6fcde5935425123debc65aec6027aeb8a0c51baf5972"
+  },
+  {
+   "path": "SKILLS/marketing/zenodo-doi-scholar-argentine-repositories.md",
+   "html": "SKILLS/marketing/zenodo-doi-scholar-argentine-repositories.html",
+   "title": "Open-access deposit with a DOI: Zenodo, Google Scholar and Argentine university repositories",
+   "bytes": 5495,
+   "sha256": "1b9cab7f9d6ef9307b56075757b9cc0a093ece20be0b157f42380c9dd51bbbc8"
+  },
+  {
+   "path": "SKILLS/research/archive-catalogues.md",
+   "html": "SKILLS/research/archive-catalogues.html",
+   "title": "Skill: reading archive catalogues",
+   "bytes": 989,
+   "sha256": "f987ce74f11a7b26a655376d2f30eb191c053b46c55b8d39a16b3ad5b61bc8ad"
+  },
+  {
+   "path": "SKILLS/research/information-requests.md",
+   "html": "SKILLS/research/information-requests.html",
+   "title": "Skill: information requests that get answers",
+   "bytes": 1228,
+   "sha256": "866246e89d21372bd1674f5d9a1b1d5763cd8ea99cd8d60fb3bd224c0f889dc8"
+  },
+  {
+   "path": "SKILLS/research/missing-records.md",
+   "html": "SKILLS/research/missing-records.html",
+   "title": "Skill: missing-record pages (MR-####)",
+   "bytes": 695,
+   "sha256": "f0cbce451386cb35121b4ad5bf5ae0f94ccb681ba24efba71b2a6c5129928ca2"
+  },
+  {
+   "path": "SKILLS/research/newspapers.md",
+   "html": "SKILLS/research/newspapers.html",
+   "title": "Skill: newspapers and press archives",
+   "bytes": 651,
+   "sha256": "d28042f32897ead8f7ca15904c726ea35e2af85517cd04a6fd7d38db963cff65"
+  },
+  {
+   "path": "SKILLS/research/primary-source-first.md",
+   "html": "SKILLS/research/primary-source-first.html",
+   "title": "Skill: primary source first",
+   "bytes": 1049,
+   "sha256": "345dde4ecb48b4c7c626bdea9acd992ea29490ba3c7dfc875dfc93507f1d4819"
+  },
+  {
+   "path": "SKILLS/research/reopen-scoring.md",
+   "html": "SKILLS/research/reopen-scoring.html",
+   "title": "Skill: scoring grounds to reopen a judgment",
+   "bytes": 707,
+   "sha256": "cefb1faaee21f6ddc5b1981147e5004799d4959e72897e9502e75d62af99ea60"
+  },
+  {
+   "path": "SOUL.md",
+   "html": "SOUL.html",
+   "title": "SOUL — who we are, what we are for, how we sound",
+   "bytes": 6153,
+   "sha256": "a1be2445cd21b809c1b1cb790044e47673557d2314e75c7cf3542f94eda5a9fa"
+  }
+ ],
+ "formats": {
+  "markdown": "each path as listed",
+  "html": "each html as listed"
+ }
+}

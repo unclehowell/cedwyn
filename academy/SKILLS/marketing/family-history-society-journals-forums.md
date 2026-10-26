@@ -1,0 +1,28 @@
+# Family-history society journals, members' interests and forums (Glamorgan first)
+Harvested 26 Oct 2026 (skills harvest). Scope: getting Cedwyn's records in front of family historians through the societies' OWN channels (journal articles, members' interests, registered studies, forums), with their etiquette. Directory listings are in heritage-genealogy-directory-listings.md; talks are in heritage-talks-circuit-aatp-branches.md.
+
+## What the sources show (read 26 Oct 2026)
+- **Glamorgan Family History Society** (glamfhs.org.uk; registered charity 1059537; "tracing family history in Glamorgan since 1974"): monthly branch meetings, a QUARTERLY journal (paper + online, journal archive and a public Journal Index), free society record access, Members' Interests, Exchange Journals (members-only page, 403 to us), a Virtual Help Desk and a Facebook group (facebook.com). Many members live far outside Glamorgan, so the journal reaches the diaspora too.
+- **Journal submission windows** (their "Our Journals" page): material "should reach the Editor before": March issue 20 Jan; June issue 20 Apr; September issue 20 Jul; December issue 20 Oct. Contact [address kept in the project workspace] The December 2026 window closed on 20 Oct, so the next is **20 Jan 2027 for the March 2027 issue**. Whether non-members may submit is not stated: ask in the first email.
+- **Society for One-Place Studies** (one-place-studies.org): its 2022 guide PDF states annual membership is **£10** and registration of a one-place study is free for members, lapsing when membership ends. This resolves the "not checked" note in heritage-genealogy-directory-listings.md: registration = membership = a £10/yr spend, so it is the project lead's decision (zero-spend rule). The free alternatives the independent directory oneplacestudy.org lists (3,200+ study locations): #AllAboutThatPlace and OnePlaceStudiesChatroom Facebook groups, the WikiTree One Place Studies Project (personal account, the project lead only).
+- **RootsChat** (rootschat.com, "7.0 million posts", "303,010 members", the UK's largest free family-history forum): Terms of Use item 14 bars using "the site or content for any financial recompense, commercial use" (search snippet; the page itself returned 403 to the box). It has a pinned Guidelines/Netiquette thread and volunteer moderators. So: no shop links, no selling, ever.
+
+## The method (practitioner pattern, adapted)
+1. **Give a record, not a pitch.** A society journal article works when it hands readers something they can use: a transcribed source, a names list, a map reading, with full references. The shop is at most one line in the author bio.
+2. **One article per society per year**, 1,200-2,000 words, 2-3 images we hold the rights to, captions with archive references. Respect the deadline; send early.
+3. **Members' Interests**: list the surname + place + period the archive covers (e.g. WILLIAMS, Llandough juxta Penarth, 1667-present). Members' route only (needs membership = spend = the project lead's call).
+4. **Forums (RootsChat, society Facebook groups)**: answer other people's questions about the parish with sources; a link to a free record page on our site is acceptable only where the forum's rules allow links and it answers the question; never to /ebooks/. Disclose the connection in the profile. No DMs to strangers (the project lead's rule).
+5. **Log every contact** in HubSpot as a draft task (institutions only, never send without the project lead's sign-off).
+6. **30-day check**: did the journal accept; any referral visits from glamfhs.org.uk (utm_source=glamfhs_journal on the one bio link).
+
+## How we apply it to Cedwyn
+- Draft the editor enquiry as a HubSpot task (GlamFHS is a registered charity = institution): ask whether non-members may contribute and the preferred length/format. No send.
+- The bio line: "The Cedwyn archive publishes its records free at cedwyn.bucklerfamily.estate" (records page, not the shop). The e-books are found from there.
+- Facebook group glamorganfhs: answer-only participation from the Page, if group rules allow Pages; never post the shop.
+- For the project lead (spend decisions, not done): GlamFHS membership (Members' Interests, exchange journals) and SOPS membership (£10/yr) to register a "Llandough juxta Penarth / Tŷ Mawr" one-place study.
+
+## Sources
+- glamfhs.org.uk (home; /publications-heading/journals for submission dates and editor address; /home/where-we-meet)
+- one-place-studies.org (£10 membership; free registration lapses with membership); one-place-studies.org
+- oneplacestudy.org (independent directory, 3,200+ study locations; free groups list)
+- rootschat.com (7.0M posts, 303,010 members); rootschat.com item 14 (via search snippet; 403 to the box); rootschat.com (netiquette)

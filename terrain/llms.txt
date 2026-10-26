@@ -1,0 +1,19 @@
+# Terrain · Cedwyn Estate in 3D
+
+> A live 3D landscape of the Cedwyn Estate and Great House Farm (Tŷ Mawr), Llandough: every Great House Farm site is a building on the path, with the farmhouse, barn, fields, pond and St Dochdwy's churchyard to the south. The owner edits it by voice; visitors can look around, open the Roadmap layer and ask by voice what is due or where a trail stands.
+
+## Pages
+- [Terrain](https://terrain.bucklerfamily.estate/): the 3D scene (orbit, zoom, walk; tap a building to open its site).
+
+## Data (read-only JSON)
+- [Current scene](https://terrain.bucklerfamily.estate/agent/scene.json): every object (id, name, kind, position, colour, link) plus time of day and weather.
+- [Saved versions](https://terrain.bucklerfamily.estate/agent/versions.json): names and dates of saved versions.
+- [Roadmap](https://terrain.bucklerfamily.estate/agent/roadmap.json): one disclosure trail per institution, eleven steps each from request to court, with status and date.
+- [Trigger-event procedure](https://terrain.bucklerfamily.estate/agent/sop.json): the branching steps, gates, routes and outcomes.
+- [Due](https://terrain.bucklerfamily.estate/agent/due.json?days=7): steps falling due in the next N days.
+- [Published changes](https://github.com/unclehowell/terrain/commits/main/data/scene.json): each editing session committed to data/scene.json.
+- [Tools](https://terrain.bucklerfamily.estate/agent/tools.json): the read-only WebMCP tools this site registers.
+
+## Related
+- [Cedwyn Estate 3D walk](https://bucklerfamily.estate/3d/)
+- [Base camp](https://bucklerfamily.estate/cedwyn/)
