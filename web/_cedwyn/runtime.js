@@ -49,7 +49,7 @@
   }
   function dbPath(u) { try { var x = new URL(u, location.href); return x.origin === location.origin && DBX.test(x.pathname) && !/^\/(db|_cedwyn)\//.test(x.pathname) ? x.pathname : null; } catch (e) { return null; } }
   function fromDB(path) { return dbfs().then(function (D) { var p2 = path.replace(/^\/(wales|argentina)(\/[^\/]+\/)/, '$2'); return D.get(path).then(function (r) { return r || p2 === path ? r : D.get(p2); }); }); }
-  var RES = ['/_cedwyn/', '/_blob/', '/db/', '/graphql', '/catalogue', '/wayback/go/', '/values/', '/argentina/', '/explore/'];
+  var RES = ['/_cedwyn/', '/_blob/', '/db/', '/graphql', '/catalogue', '/wayback/go/', '/values/', '/argentina/', '/explore/', '/guestbook/'];   // 26 Oct 2026: + the Agent guest book
   function starts(u, a) { for (var i = 0; i < a.length; i++) if (u.indexOf(a[i]) === 0) return true; return false; }
   function mapHost(host, path) {
     host = host.toLowerCase();
@@ -86,7 +86,9 @@
   // 25 Oct 2026 (sales fix): the shop's own checkout and sign-up hosts are the one exception to "no outbound links":
   // a buy button opens Stripe/Gumroad checkout and the free-book form posts to the mailing list, instead of the archive page.
   function pass(u) { var m = /^https:\/\/([^\/?#:]+)/i.exec(u || ''), h; if (!m) return false; h = m[1].toLowerCase();
-    return h === 'buy.stripe.com' || h === 'checkout.stripe.com' || h === 'gumroad.com' || /\.gumroad\.com$/.test(h) || /\.list-manage\.com$/.test(h); }
+    return h === 'buy.stripe.com' || h === 'checkout.stripe.com' || h === 'gumroad.com' || /\.gumroad\.com$/.test(h) || /\.list-manage\.com$/.test(h)
+      // 26 Oct 2026: the Agent guest book's version links (commits of this site's own repository) open GitHub directly; the owner allowed them out
+      || (h === 'github.com' && /^\/unclehowell\/cedwyn\/commit\/[0-9a-f]{7,40}\/?$/i.test(u.replace(/^https:\/\/[^\/]+/i, '').split(/[?#]/)[0])); }
   window.__cedwyn.pass = pass;
   document.addEventListener('submit', function (e) { var f = e.target, a = f && f.getAttribute ? f.getAttribute('action') : '', m, u;
     m = /^(?:https?:\/\/[^\/]+)?\/wayback\/go\/\?u=([^&#]+)/.exec(a || ''); if (!m) return;
