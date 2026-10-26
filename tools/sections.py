@@ -221,6 +221,9 @@ def wales(S, cfg):
 
 def argentina(S, cfg):
     l = 'es'; n = len(cfg['themes']); T = page_t(S, cfg, 'argentina'); ph = S['photo']
+    # The family's case (Sion 23:07 GMT 25 Oct 2026): its own page at /argentina/caso/ (tools/family_case.py); the hub links to it
+    import family_case
+    T.update(family_case.strings()[0])
     cards = ''.join(f'<div class="card"><span class="soon" data-i18n="soon">{E(tx(T,"soon",l))}</span><h3 data-i18n="{a}">{E(tx(T,a,l))}</h3><p data-i18n="{b}">{E(tx(T,b,l))}</p></div>'
                     for a, b in (('c1', 'c1n'), ('c2', 'c2n'), ('c3', 'c3n'), ('c4', 'c4n')))
     links = [('l_story', '/argentina/story/'), ('l_cuts', '/argentina/thousand-cuts/'), ('l_timeline', '/argentina/research/timeline/'), ('l_meeting', '/argentina/meeting/'),
@@ -234,6 +237,7 @@ def argentina(S, cfg):
 <p class="cap" data-i18n="photo_cap">{E(tx(T,'photo_cap',l))}</p>
 <header><p class="eyebrow">{i18n(T,'a_kicker',l)}</p><h1>Great House II</h1><p class="lede" style="margin-top:6px"><b data-i18n="a_sub">{E(tx(T,'a_sub',l))}</b></p>
 <span class="soon" data-i18n="soon">{E(tx(T,'soon',l))}</span><p class="lede">{i18n(T,'a_lede',l)}</p></header>
+<a class="cross" href="/argentina/caso/" style="margin:4px 0 14px"><h2>{i18n(T,'fc_link_h',l)}</h2><p class="mut">{i18n(T,'fc_link_p',l)}</p></a>
 <div class="cards">{cards}</div>
 <div class="card" style="margin-top:10px"><h3 data-i18n="a_notify_h">{E(tx(T,'a_notify_h',l))}</h3>{notify(T,l,'argentina-opening','consent_arg',3)}</div>
 <section class="blk" id="museum"><h2>{i18n(T,'mu_h',l)}</h2><ul class="plain"><li data-i18n="mu1">{E(tx(T,'mu1',l))}</li><li data-i18n="mu2">{E(tx(T,'mu2',l))}</li><li data-i18n="mu3">{E(tx(T,'mu3',l))}</li></ul></section>
@@ -271,8 +275,9 @@ def run(dist, cfg):
     (dist / 'wales' / 'index.html').write_text(wales(S, cfg), encoding='utf-8')
     (dist / 'argentina').mkdir(exist_ok=True)
     (dist / 'argentina' / 'index.html').write_text(argentina(S, cfg), encoding='utf-8')
-    import agent_footer
-    for pth in (dist / 'index.html', dist / 'wales' / 'index.html', dist / 'argentina' / 'index.html'): agent_footer.inject(pth, False)
+    import agent_footer, sys as _sys, family_case
+    fc_page = family_case.write(_sys.modules[__name__], dist, S, cfg)   # /argentina/caso/ (via /argentina/:theme/* -> /caso/)
+    for pth in (dist / 'index.html', dist / 'wales' / 'index.html', dist / 'argentina' / 'index.html', fc_page): agent_footer.inject(pth, False)
     check_wales((dist / 'wales' / 'index.html').read_text(encoding='utf-8'))
     check_wales((dist / 'index.html').read_text(encoding='utf-8'))
     # 4. scripts: section.js gets the ribbon/footer strings and the theme ids; runtime.js the client-router list; basecamp.js the Argentina names
