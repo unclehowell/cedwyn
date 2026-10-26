@@ -167,6 +167,9 @@ ebook_editions.run(DIST)
 # Headline-first story pages (Sion, 12:01 GMT 26 Oct 2026): section detail behind a native 'Read more' in every theme - Sion's Tab agent
 import headlines
 headlines.run(DIST)
+# Wiki word links (Sion, 22:12 GMT 26 Oct 2026, m:611a2587): glossary links with one-line meanings, name-variant pop-ups, /glossary/ - Sion's Tab agent
+import wikilinks
+wikilinks.run(DIST)
 # Archived-websites viewer (Sion, 13:28 GMT 26 Oct 2026): one title bar with back / previous / next on every snapshot page,
 # a readable style-stripped copy, and #websites/<host>/<slug> links that open the copy under /wayback/ - Sion's Tab agent
 import wayback_viewer
