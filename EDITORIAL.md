@@ -55,7 +55,7 @@ The title chain itself is on /title-chain/ (data/title-chain.json).
   outside narratives (other websites, catalogue summaries, secondary books) are things we test, not sources we repeat.
 - Tŷ Mawr is first named in the record we have found in the 1824 David Stewart survey of the Bute Glamorgan estates
   (Glamorgan Archives DB/E/1–2, plan 19 "Cedfin or Ty Mawr Farm", EV-0211).
-- In the family's account, Tŷ Mawr was acquired in 1667. State it as the family's account; no document for it is invented.
+- The Williams family acquired Tŷ Mawr in 1667. State it plainly with its sources (Mary Williams' statement in the 1974 newspapers; ITV News, 1988); never as "the family's account" (Sion, 13:21 GMT 26 Oct 2026). No document for it is invented.
 - Bute estate and other third-party documents are never shown as records of Tŷ Mawr dated before 1824. Do not write "the 1547 lease"
   or "the 1552 Bute deed" as Tŷ Mawr records. Where such a document must be mentioned, it is a Bute (or third-party) document whose
   application to Tŷ Mawr is under forensic examination. Bute's freeholds are under forensic examination for validity.
@@ -71,7 +71,7 @@ The Williams family of Tŷ Mawr is presented as what the records show it to be: 
 Great House across generations (the c.1841 tithe: John Williams on 36 plots, the whole holding), the house the parish's
 chief freehold holding and the seat of the manor courts in Heneb's historic environment record, John Williams "for many
 years a juror of the court" (1908), Mary (Nancy) Williams refusing the tenancies offered in 1959 and 1965 and asserting
-title through her grandfather. The family's account dates its acquisition of Tŷ Mawr to 1667.
+title through her grandfather. The Williams family acquired Tŷ Mawr in 1667 (Mary Williams' statement, 1974 newspapers; ITV News, 1988).
 
 Outside parties' stature is tested against the record, never assumed:
 - Bute: lord of the manor. A Bute survey, rate book or tithe column is the estate's own description of itself or of whom it
@@ -83,7 +83,7 @@ Outside parties' stature is tested against the record, never assumed:
 - Published histories, outside websites and catalogues: tested, quoted as theirs, never repeated as fact.
 - The family is not reduced to "occupier" or "tenant" with nothing else: their standing and length of time travel with it.
   "Tenant" appears as the label Bute's own papers used.
-Where the evidence does not yet back a strong statement, it is shown in small italic (.unsub) as the family's account.
+Where the evidence does not yet back a strong statement, it is shown in small italic (.unsub), worded neutrally. No hedges on the family's evidence: not "the family's account", "family tradition", "the family dates" or "known only from"; state the fact and cite the record (Sion, 13:21 GMT 26 Oct 2026).
 Audit and rewrites: framing-26oct entries in ingredients.json; data edits D01–D11 (title chain, halves, family case).
 
 ## Headline-first pages (26 Oct 2026)

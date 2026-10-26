@@ -6,14 +6,14 @@
    "theme": "maps",
    "file": "index.html",
    "find": "Our case, told forward: how Tŷ Mawr, the Great House of Llandough, an ancient Welsh home stewarded since 1667, became Church View Close.",
-   "replace": "Told forward in dated steps: Tŷ Mawr, the Great House of Llandough, a home the family dates to 1667, and the land that is now Church View Close.",
+   "replace": "Told forward in dated steps: Tŷ Mawr, the Great House of Llandough, the Williams family’s home since 1667, and the land that is now Church View Close.",
    "why": "Stated the outcome as 'our case' in the page description; now states the start and end points and leaves the steps to the reader."
   },
   {
    "theme": "maps",
    "file": "index.html",
    "find": "Our case: an ancient Welsh home, Tŷ Mawr, the Great House of Llandough, stewarded by one family since at least 1667, became Church View Close, an estate of twenty houses.",
-   "replace": "The steps: Tŷ Mawr, the Great House of Llandough, a home the family dates to at least 1667, and the land where Church View Close, an estate of twenty houses, now stands.",
+   "replace": "The steps: Tŷ Mawr, the Great House of Llandough, the Williams family’s home since 1667, and the land where Church View Close, an estate of twenty houses, now stands.",
    "why": "Same conclusion in the About panel; reworded to the dated start and end points."
   },
   {
@@ -197,7 +197,7 @@
    "theme": "research",
    "file": "index.html",
    "find": "It covered Parcel A: the last tenancy of Parcel A, whose occupiers the Williams family had been since 1667.",
-   "replace": "How this “whole farm” letting maps onto the provisional Parcel A / Parcel B polygons awaits the tenancy and its plan (EV-0014). The family dates its occupation to 1667.",
+   "replace": "How this “whole farm” letting maps onto the provisional Parcel A / Parcel B polygons awaits the tenancy and its plan (EV-0014). The Williams family acquired Tŷ Mawr in 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988).",
    "why": "The judgment recites a tenancy of the “whole farm”; assigning it to one provisional parcel is our geometry, not the record. EV-0014 is known only through the 1987 judgment recital.",
    "audit_point": "A3"
   },
@@ -533,7 +533,7 @@
    "theme": "wiki",
    "file": "index.html",
    "find": "It covered Parcel A: the last tenancy of Parcel A, whose occupiers the Williams family had been since 1667.",
-   "replace": "How this “whole farm” letting maps onto the provisional Parcel A / Parcel B polygons awaits the tenancy and its plan (EV-0014). The family dates its occupation to 1667.",
+   "replace": "How this “whole farm” letting maps onto the provisional Parcel A / Parcel B polygons awaits the tenancy and its plan (EV-0014). The Williams family acquired Tŷ Mawr in 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988).",
    "why": "The judgment recites a tenancy of the “whole farm”; assigning it to one provisional parcel is our geometry, not the record. EV-0014 is known only through the 1987 judgment recital.",
    "audit_point": "A3"
   },
@@ -1520,7 +1520,7 @@
    "theme": "maps",
    "file": "index.html",
    "find": "a home the family dates to at least 1667,",
-   "replace": "<span class=\"unsub\">a home the family dates to at least 1667</span>,",
+   "replace": "the Williams family’s home since 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988),",
    "why": "Unsubstantiated: the 1667 date rests on family research; no record in this archive yet.",
    "class": "unsub",
    "audit_point": "forensic-wording-26oct"
@@ -1637,7 +1637,7 @@
    "theme": "qa",
    "file": "**/*.html",
    "find": "The ownership of the farm: a freehold within the manor, held by the Vaughans until the late 18th century and by Bute from the early 19th.",
-   "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; the family’s account dates its acquisition of Tŷ Mawr to 1667.",
+   "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; the Williams family acquired Tŷ Mawr in 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988).",
    "why": "Repeats an outside narrative of a Vaughan→Bute freehold as fact; Sion's 11:45 rule.",
    "class": "framing-overstated",
    "audit_point": "framing-26oct:M05"
@@ -1646,7 +1646,7 @@
    "theme": "qa",
    "file": "**/*.txt",
    "find": "The ownership of the farm: a freehold within the manor, held by the Vaughans until the late 18th century and by Bute from the early 19th.",
-   "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; the family’s account dates its acquisition of Tŷ Mawr to 1667.",
+   "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; the Williams family acquired Tŷ Mawr in 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988).",
    "why": "Repeats an outside narrative of a Vaughan→Bute freehold as fact; Sion's 11:45 rule.",
    "class": "framing-overstated",
    "audit_point": "framing-26oct:M05"
@@ -1655,7 +1655,7 @@
    "theme": "story",
    "file": "**/*.html",
    "find": "The ownership of the farm: a freehold within the manor, held by the Vaughans until the late 18th century and by Bute from the early 19th.",
-   "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; the family’s account dates its acquisition of Tŷ Mawr to 1667.",
+   "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; the Williams family acquired Tŷ Mawr in 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988).",
    "why": "Repeats an outside narrative of a Vaughan→Bute freehold as fact; Sion's 11:45 rule.",
    "class": "framing-overstated",
    "audit_point": "framing-26oct:M05"
@@ -1664,7 +1664,7 @@
    "theme": "story",
    "file": "**/*.txt",
    "find": "The ownership of the farm: a freehold within the manor, held by the Vaughans until the late 18th century and by Bute from the early 19th.",
-   "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; the family’s account dates its acquisition of Tŷ Mawr to 1667.",
+   "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; the Williams family acquired Tŷ Mawr in 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988).",
    "why": "Repeats an outside narrative of a Vaughan→Bute freehold as fact; Sion's 11:45 rule.",
    "class": "framing-overstated",
    "audit_point": "framing-26oct:M05"
@@ -1799,7 +1799,7 @@
    "theme": "qa",
    "file": "**/*.html",
    "find": "The freehold line of the house: the Vaughans, then Bute (by the early 19th century), then Daniel Thomas (1877), then the Williamses (1928).",
-   "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is known only from Mary Williams’s statement; the family’s account dates its acquisition of Tŷ Mawr to 1667 and its last rent to 1928.",
+   "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is recorded in Mary Williams’s statement; the Williams family acquired Tŷ Mawr in 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988) and paid the last rent on the house in 1928 [EV-0016].",
    "why": "Presented a Vaughan→Bute freehold line as fact and put the Williamses last.",
    "class": "framing-overstated",
    "audit_point": "framing-26oct:M10"
@@ -1808,7 +1808,7 @@
    "theme": "qa",
    "file": "**/*.txt",
    "find": "The freehold line of the house: the Vaughans, then Bute (by the early 19th century), then Daniel Thomas (1877), then the Williamses (1928).",
-   "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is known only from Mary Williams’s statement; the family’s account dates its acquisition of Tŷ Mawr to 1667 and its last rent to 1928.",
+   "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is recorded in Mary Williams’s statement; the Williams family acquired Tŷ Mawr in 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988) and paid the last rent on the house in 1928 [EV-0016].",
    "why": "Presented a Vaughan→Bute freehold line as fact and put the Williamses last.",
    "class": "framing-overstated",
    "audit_point": "framing-26oct:M10"
@@ -1817,7 +1817,7 @@
    "theme": "story",
    "file": "**/*.html",
    "find": "The freehold line of the house: the Vaughans, then Bute (by the early 19th century), then Daniel Thomas (1877), then the Williamses (1928).",
-   "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is known only from Mary Williams’s statement; the family’s account dates its acquisition of Tŷ Mawr to 1667 and its last rent to 1928.",
+   "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is recorded in Mary Williams’s statement; the Williams family acquired Tŷ Mawr in 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988) and paid the last rent on the house in 1928 [EV-0016].",
    "why": "Presented a Vaughan→Bute freehold line as fact and put the Williamses last.",
    "class": "framing-overstated",
    "audit_point": "framing-26oct:M10"
@@ -1826,7 +1826,7 @@
    "theme": "story",
    "file": "**/*.txt",
    "find": "The freehold line of the house: the Vaughans, then Bute (by the early 19th century), then Daniel Thomas (1877), then the Williamses (1928).",
-   "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is known only from Mary Williams’s statement; the family’s account dates its acquisition of Tŷ Mawr to 1667 and its last rent to 1928.",
+   "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is recorded in Mary Williams’s statement; the Williams family acquired Tŷ Mawr in 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988) and paid the last rent on the house in 1928 [EV-0016].",
    "why": "Presented a Vaughan→Bute freehold line as fact and put the Williamses last.",
    "class": "framing-overstated",
    "audit_point": "framing-26oct:M10"
@@ -2024,7 +2024,7 @@
    "theme": "chess",
    "file": "**/*.html",
    "find": "The record dates Williams occupation of the house to 1667 and shows the Williams as tenants of the Bute Estate by the nineteenth century.",
-   "replace": "The family dates its acquisition of Tŷ Mawr to 1667. By the nineteenth century the Bute Estate’s own books entered the Williamses as its tenants; no record read shows how the house came into Bute’s hands.",
+   "replace": "The Williams family acquired Tŷ Mawr in 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988). By the nineteenth century the Bute Estate’s own books entered the Williamses as its tenants; no record read shows how the house came into Bute’s hands.",
    "why": "Attributes 1667 to 'the record' and gives the Bute books' 'tenant' label as fact.",
    "class": "framing-both",
    "audit_point": "framing-26oct:M20"
@@ -2069,7 +2069,7 @@
    "theme": "research",
    "file": "**/*.html",
    "find": "the family dates its occupation of the house to <a href=\"/research/williams-buckler-family/\" style=\"text-decoration:underline\">1667</a>, and records the family as tenants of the <a href=\"/research/bute-estate/\">Bute Estate</a> by the 19th century.",
-   "replace": "the family dates its acquisition of the house to <a href=\"/research/williams-buckler-family/\" style=\"text-decoration:underline\">1667</a>. By the 19th century the <a href=\"/research/bute-estate/\">Bute Estate</a>’s own books entered the family as its tenants; no record read shows how the house came into Bute’s hands.",
+   "replace": "the Williams family acquired the house in <a href=\"/research/williams-buckler-family/\" style=\"text-decoration:underline\">1667</a> (Mary Williams’ statement, 1974 newspapers; ITV News, 1988). By the 19th century the <a href=\"/research/bute-estate/\">Bute Estate</a>’s own books entered the family as its tenants; no record read shows how the house came into Bute’s hands.",
    "why": "Gave the Bute books' 'tenant' label as the family's own record and 'occupation' for the family's acquisition.",
    "class": "framing-both",
    "audit_point": "framing-26oct:M21r"
@@ -2078,7 +2078,7 @@
    "theme": "research",
    "file": "**/*.html",
    "find": "lived at <a href=\"/research/great-house-farm/\">Great House Farm (Tŷ Mawr)</a> until after the death of <a href=\"/research/mary-williams/\">Mary (Nancy) Williams</a> in 1983; the house was",
-   "replace": "made their home at <a href=\"/research/great-house-farm/\">Great House Farm (Tŷ Mawr)</a>, the Great House of Llandough, <span class=\"unsub\">from 1667 in the family’s account</span> until 1988. On the record: John Williams on 36 plots, the whole holding, in the c.1841 tithe; John Williams “for many years a juror” of the manor court that met in the house (1908); and <a href=\"/research/mary-williams/\">Mary (Nancy) Williams</a>, who refused the tenancies offered to her in 1959 and 1965, asserted title through her grandfather, and died at the house in 1983. The house was",
+   "replace": "made their home at <a href=\"/research/great-house-farm/\">Great House Farm (Tŷ Mawr)</a>, the Great House of Llandough, from 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988) until 1988. On the record: John Williams on 36 plots, the whole holding, in the c.1841 tithe; John Williams “for many years a juror” of the manor court that met in the house (1908); and <a href=\"/research/mary-williams/\">Mary (Nancy) Williams</a>, who refused the tenancies offered to her in 1959 and 1965, asserted title through her grandfather, and died at the house in 1983. The house was",
    "why": "Opening line of the family page gave them only 'lived at … until 1983', with none of their standing.",
    "class": "framing-downplayed",
    "audit_point": "framing-26oct:M23r"
@@ -2096,7 +2096,7 @@
    "theme": "wiki",
    "file": "**/*.html",
    "find": "the family dates its occupation of the house to <a href=\"/wiki/williams-buckler-family/\" style=\"text-decoration:underline\">1667</a>, and records the family as tenants of the <a href=\"/wiki/bute-estate/\">Bute Estate</a> by the 19th century.",
-   "replace": "the family dates its acquisition of the house to <a href=\"/wiki/williams-buckler-family/\" style=\"text-decoration:underline\">1667</a>. By the 19th century the <a href=\"/wiki/bute-estate/\">Bute Estate</a>’s own books entered the family as its tenants; no record read shows how the house came into Bute’s hands.",
+   "replace": "the Williams family acquired the house in <a href=\"/wiki/williams-buckler-family/\" style=\"text-decoration:underline\">1667</a> (Mary Williams’ statement, 1974 newspapers; ITV News, 1988). By the 19th century the <a href=\"/wiki/bute-estate/\">Bute Estate</a>’s own books entered the family as its tenants; no record read shows how the house came into Bute’s hands.",
    "why": "Gave the Bute books' 'tenant' label as the family's own record and 'occupation' for the family's acquisition.",
    "class": "framing-both",
    "audit_point": "framing-26oct:M21w"
@@ -2105,7 +2105,7 @@
    "theme": "wiki",
    "file": "**/*.html",
    "find": "lived at <a href=\"/wiki/great-house-farm/\">Great House Farm (Tŷ Mawr)</a> until after the death of <a href=\"/wiki/mary-williams/\">Mary (Nancy) Williams</a> in 1983; the house was",
-   "replace": "made their home at <a href=\"/wiki/great-house-farm/\">Great House Farm (Tŷ Mawr)</a>, the Great House of Llandough, <span class=\"unsub\">from 1667 in the family’s account</span> until 1988. On the record: John Williams on 36 plots, the whole holding, in the c.1841 tithe; John Williams “for many years a juror” of the manor court that met in the house (1908); and <a href=\"/wiki/mary-williams/\">Mary (Nancy) Williams</a>, who refused the tenancies offered to her in 1959 and 1965, asserted title through her grandfather, and died at the house in 1983. The house was",
+   "replace": "made their home at <a href=\"/wiki/great-house-farm/\">Great House Farm (Tŷ Mawr)</a>, the Great House of Llandough, from 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988) until 1988. On the record: John Williams on 36 plots, the whole holding, in the c.1841 tithe; John Williams “for many years a juror” of the manor court that met in the house (1908); and <a href=\"/wiki/mary-williams/\">Mary (Nancy) Williams</a>, who refused the tenancies offered to her in 1959 and 1965, asserted title through her grandfather, and died at the house in 1983. The house was",
    "why": "Opening line of the family page gave them only 'lived at … until 1983', with none of their standing.",
    "class": "framing-downplayed",
    "audit_point": "framing-26oct:M23w"
@@ -2123,7 +2123,7 @@
    "theme": "story",
    "file": "**/*.html",
    "find": "Mary's father. Tenant of the house and fields from 1908; paid the last rent on the house in 1928.",
-   "replace": "Mary's father, of the Great House from 1908. Bute's papers entered him as tenant of the house and fields; in the family's account he paid the last rent on the house in 1928.",
+   "replace": "Mary's father, of the Great House from 1908. Bute's papers entered him as tenant of the house and fields; he paid the last rent on the house in 1928 [EV-0016].",
    "why": "Cast list reduced John Williams to 'Tenant of the house and fields'.",
    "class": "framing-downplayed",
    "audit_point": "framing-26oct:M25"
@@ -2132,7 +2132,7 @@
    "theme": "qa",
    "file": "**/*.html",
    "find": "Mary's father. Tenant of the house and fields from 1908; paid the last rent on the house in 1928.",
-   "replace": "Mary's father, of the Great House from 1908. Bute's papers entered him as tenant of the house and fields; in the family's account he paid the last rent on the house in 1928.",
+   "replace": "Mary's father, of the Great House from 1908. Bute's papers entered him as tenant of the house and fields; he paid the last rent on the house in 1928 [EV-0016].",
    "why": "Cast list reduced John Williams to 'Tenant of the house and fields'.",
    "class": "framing-downplayed",
    "audit_point": "framing-26oct:M25"
