@@ -211,6 +211,24 @@ def glossary_page(g, n):
             'and records word on Cedwyn, in one line each. Open “Learn more” to go deeper, all the way to the record itself.</p>'
             '<nav class="gl-az" aria-label="A to Z">' + az + '</nav>' + ''.join(body) + '</main></body></html>')
 
+
+# Agent text out of human view (Sion, 22:12 GMT 26 Oct 2026: "Don't make humans viewing the webpage see agent instructions").
+# The blocks stay in the page source for agents (hidden + data-for-agents) and the head points agents to /llms.txt.
+# THE TRIGGER EVENT text is held for the owner and is not touched here.
+AGENT_BLOCK = re.compile(r'<(section|div|details|aside|p)\b(?=[^>]*(?:\bid="cedwyn-guestbook"|\bclass="[^"]*\b(?:ghf-ai-agent-routing|gaf-ai)\b))([^>]*)>', re.I)
+AGENT_CSS = '<style id="cw-agents-css">[data-for-agents]{display:none!important}</style><link rel="alternate" type="text/plain" href="/llms.txt" title="For AI agents">'
+def hide_agent_text(t):
+    n = [0]
+    def rep(m):
+        if 'data-for-agents' in m.group(2) or 'trigger' in m.group(2).lower(): return m.group(0)
+        n[0] += 1
+        return '<%s%s hidden data-for-agents>' % (m.group(1), m.group(2).rstrip('/'))
+    t = AGENT_BLOCK.sub(rep, t)
+    if n[0] and 'id="cw-agents-css"' not in t:
+        i = t.lower().find('</head>')
+        t = (t[:i] + AGENT_CSS + t[i:]) if i >= 0 else AGENT_CSS + t
+    return t, n[0]
+
 def run(dist):
     dist = pathlib.Path(dist)
     g, n, rx, lookup = load()
@@ -233,16 +251,18 @@ def run(dist):
             if f.stat().st_size > 3_000_000: continue
             t = f.read_text(encoding='utf-8', errors='surrogateescape')
         except Exception: continue
-        if 'data-cw-wiki-off' in t or 'class="cw-g"' in t or 'class="cw-n"' in t: continue
-        if re.search(r'<div id="(root|app)">\s*</div>', t): continue
-        try: out, st = process(t, rx, lookup)
-        except Exception as ex:
-            print('wikilinks: skipped', rel, str(ex)[:80]); continue
+        t2, hid = hide_agent_text(t)
+        if hid: rep['agent_blocks_hidden'] = rep.get('agent_blocks_hidden', 0) + hid; rep['agent_pages'] = rep.get('agent_pages', 0) + 1
+        st = {'g': 0, 'n': 0}; out = t2
+        if not ('data-cw-wiki-off' in t or 'class="cw-g"' in t or 'class="cw-n"' in t or re.search(r'<div id="(root|app)">\s*</div>', t)):
+            try: out, st = process(t2, rx, lookup)
+            except Exception as ex:
+                print('wikilinks: skipped', rel, str(ex)[:80]); out = t2
         if st['g'] or st['n']:
             out = inject(out)
-            f.write_text(out, encoding='utf-8', errors='surrogateescape')
             rep['pages'] += 1; rep['glossary_links'] += st['g']; rep['name_links'] += st['n']
             th = rel.split('/')[0] if '/' in rel else '(root)'; rep['themes'][th] = rep['themes'].get(th, 0) + 1
+        if out != t: f.write_text(out, encoding='utf-8', errors='surrogateescape')
     out = dist / '_cedwyn' / 'reports'; out.mkdir(parents=True, exist_ok=True)
     json.dump(rep, open(out / 'wikilinks.json', 'w'), indent=1)
     print('wikilinks:', rep['pages'], 'pages,', rep['glossary_links'], 'glossary links,', rep['name_links'], 'name links;',
