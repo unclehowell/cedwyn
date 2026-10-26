@@ -6,7 +6,7 @@
                selector: the header's, top right.
 - /wales/      the augmented-reality guided tour of Cedwyn Estate, Wales: eight stops (map, AR view, narration, records with EV links,
                prev/next, read-aloud). Tŷ Mawr is the former manorial house (never "farm" on this half). No museum stop. Tickets are
-               not on sale: gift-voucher pre-order (/wales/tour/#vouchers, the existing Stripe voucher flow). Menu: every theme, grouped
+               not on sale: gift-voucher pre-order (#vouchers in #shop, the existing Stripe voucher flow). Menu: every theme, grouped
                Past / Present (data/halves.json "groups"; a new theme falls into "default"); the museum themes are left out on Wales.
 - /argentina/  Cedwyn Estate II / Great House II, Patagonia: the retreat (house, rooms, stables, barn, cottage, weddings, museum with
                wax Marconi and "Peerless" Jim), a BookMyTravel-style package builder (stay + flights + hire car -> summary ->
@@ -355,12 +355,20 @@ def landing(sections, S, cfg, H):
     out = page(sections, 'Cedwyn Estate · Wales and Patagonia', 'Cedwyn Estate: two ways in. Wales, an augmented-reality guided tour of Llandough; Patagonia, the Great House II retreat at Puerto Madryn.', l, '/cedwyn/home/', None, T, n, body)
     return out.replace('<head>\n', '<head>\n' + pre + '\n', 1)
 
+VOUCHERS = [  # the Stripe voucher links of the retired /wales/tour/ page (Sion 08:08 GMT 26 Oct 2026: purge /wales/tour/, keep /wales/#stop-1)
+    ('w_v1', 'https%3A%2F%2Fbuy.stripe.com%2FbJecN60ht4U74a88sD6Zy0j', {'en': 'Gift voucher · one guest £25', 'cy': 'Taleb rodd · un gwestai £25', 'es': 'Vale regalo · una persona £25'}),
+    ('w_v2', 'https%3A%2F%2Fbuy.stripe.com%2F6oUcN6aW786jfSQ7oz6Zy0k', {'en': 'Gift voucher · two guests £45', 'cy': 'Taleb rodd · dau westai £45', 'es': 'Vale regalo · dos personas £45'}),
+    ('w_v4', 'https%3A%2F%2Fbuy.stripe.com%2F7sY14o1lxeuH6ig38j6Zy0l', {'en': 'Gift voucher · group of four £90', 'cy': 'Taleb rodd · grŵp o bedwar £90', 'es': 'Vale regalo · grupo de cuatro £90'})]
+VOUCHER_TERMS = {'en': 'Voucher terms', 'cy': 'Telerau’r daleb', 'es': 'Condiciones del vale'}
+
 def wales(sections, S, cfg, H):
     l = 'cy'; n = len(cfg['themes']); T = base_T(sections, S, cfg, 'wales', H)
     st = H['stops']; ns = len(st)
     stops = ''.join(stop_html(H, T, l, i, s, ns) for i, s in enumerate(st))
     mp = tour_map(H, T, l)
     mn, gr = menu(H, T, cfg, l, 'wales')
+    # gift vouchers (moved here 26 Oct 2026 from the retired /wales/tour/ page, same Stripe links via the archive route) - Sion's Tab agent
+    vouchers = ''.join(f'<a class="hv-btn{" pri" if i == 0 else ""}" href="/wayback/go/?u={u}" rel="noopener">{lt(T, d, l, k)}</a>' for i, (k, u, d) in enumerate(VOUCHERS))
     body = f"""
 <body data-cedwyn-page="wales">
 <main class="wrap hv" data-no-translate>
@@ -376,7 +384,8 @@ def wales(sections, S, cfg, H):
 <button type="button" class="hv-btn" id="hv-say" data-i18n="w_listen">{E(tx(T,'w_listen',l))}</button><button type="button" class="hv-btn pri" id="hv-next" data-i18n="w_next">{E(tx(T,'w_next',l))}</button></div></section>
 <section class="hv-note" id="no-museum"><h3 data-i18n="w_nomuseum_h">{E(tx(T,'w_nomuseum_h',l))}</h3><p data-i18n="w_nomuseum_p">{E(tx(T,'w_nomuseum_p',l))}</p></section>
 <section id="shop"><h2 data-i18n="w_shop_h">{E(tx(T,'w_shop_h',l))}</h2><p data-i18n="w_shop_p">{E(tx(T,'w_shop_p',l))}</p>
-<div class="hv-btns"><a class="hv-btn pri" href="/wales/tour/#vouchers" data-i18n="w_shop_cta">{E(tx(T,'w_shop_cta',l))}</a><a class="hv-btn" href="/ebooks/" data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</a></div></section>
+<div class="hv-btns" id="vouchers">{vouchers}<a class="hv-btn" href="/ebooks/" data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</a></div>
+<p class="mut"><a href="/wales/vouchers/terms/">{lt(T, VOUCHER_TERMS, l, 'w_vterms')}</a></p></section>
 <section><a class="hv-btn" style="width:100%;justify-content:flex-start;min-height:64px;border-radius:12px" href="/argentina/?lang=es" hreflang="es"><span><b data-i18n="w_cross_h">{E(tx(T,'w_cross_h',l))}</b><br><span class="mut" data-i18n="w_cross_p">{E(tx(T,'w_cross_p',l))}</span></span></a></section>
 <p class="endnote"><a href="/" data-i18n="home">{E(tx(T,'home',l) or 'Home')}</a> · <a href="/explore/" data-i18n="land_more">{E(tx(T,'land_more',l))}</a></p>
 </main>

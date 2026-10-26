@@ -323,6 +323,6 @@ One database, two framings (owner's order, 25 Oct 2026). `tools/sections.py` (ca
 
 The themes stay separate compartments (each from its own mirrored branch, assembled as before); the section layer is a thin
 shell on top: the rewrites, the two hubs, `web/_cedwyn/section.js` (ribbon, default language, links kept in the section) and a
-few lines in the shared runtime and header. The former "Virtual Tour · Wales" theme home moves to `/wales/tour/` and opens at `/wales/wales/`.
+few lines in the shared runtime and header. The former "Virtual Tour · Wales" theme home was retired on 26 Oct 2026: `/wales/tour/`, `/wales/wales/` and `/argentina/wales/` 301 to `/wales/#stop-1`, and its gift vouchers moved to the hub's `#shop`.
 Language (`ghf_lang`) and day/night (`ghf-theme`) are the shared choices, kept in the visitor's browser; a section only sets the
 default language until the visitor picks one.

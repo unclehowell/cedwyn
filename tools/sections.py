@@ -3,7 +3,7 @@
 - /            the landing: two tiles, WALES (the Llandough augmented-reality tour) and ARGENTINA (Great House II).
 - /explore/    the oak board (the former home, tools/home.py), unchanged.
 - /wales/      the Wales hub: the AR guided tour (coming soon), vouchers / e-books / merch, seek-disclose-research-reconstruct.
-               The former "Virtual Tour · Wales" theme home moves to /wales/tour/ and opens at /wales/wales/.
+               The former "Virtual Tour · Wales" theme home is retired (26 Oct 2026); /wales/tour/ 301s to /wales/#stop-1.
 - /argentina/  the Argentina hub: Great House II, former courthouse / coach house, Puerto Madryn (coming soon), the museum
                plans and the retelling.
 - /wales/<theme>/... and /argentina/<theme>/... serve the SAME theme files through Pages rewrites (_redirects, status 200):
@@ -266,9 +266,11 @@ def run(dist, cfg):
     # 1. the oak board moves to /explore/ (same file)
     ex = dist / 'explore'; ex.mkdir(exist_ok=True)
     shutil.move(str(dist / 'index.html'), str(ex / 'index.html'))
-    # 2. the former Virtual Tour · Wales home moves to /wales/tour/ (its links are absolute: /wales/vouchers/..., /wales/favicon.ico)
-    wt = dist / 'wales' / 'tour'; wt.mkdir(parents=True, exist_ok=True)
-    if (dist / 'wales' / 'index.html').exists(): shutil.move(str(dist / 'wales' / 'index.html'), str(wt / 'index.html'))
+    # 2. the former Virtual Tour · Wales home is retired (Sion 08:08 GMT 26 Oct 2026: "Purge the former, keep the latter"):
+    #    the hub's tour (/wales/#stop-1) replaces it and old links 301 there (rules below). The theme's other files
+    #    (/wales/vouchers/terms/, favicons) stay; a copy kept from an earlier build (keep_previous) is removed too.
+    shutil.rmtree(dist / 'wales' / 'tour', ignore_errors=True)
+    if (dist / 'wales' / 'index.html').exists(): (dist / 'wales' / 'index.html').unlink()
     # 3. landing and hubs
     (dist / 'index.html').write_text(landing(S, cfg), encoding='utf-8')
     (dist / 'wales').mkdir(exist_ok=True)
@@ -291,7 +293,8 @@ def run(dist, cfg):
     bc.write_text(bc.read_text(encoding='utf-8').replace('/*CEDWYN_AMAP*/null', json.dumps(S.get('argentina_title_map', {}), ensure_ascii=False)), encoding='utf-8')
     # 5. _redirects: section rewrites first (first match wins). Wales lists each theme (the /wales/ folder also holds the
     #    former Wales theme's own files); Argentina has no folder of its own, so one placeholder rule covers every theme.
-    sec = ['/wales/wales/ /wales/tour/ 200', '/argentina/wales/ /wales/tour/ 200']
+    sec = ['/wales/tour /wales/#stop-1 301', '/wales/tour/ /wales/#stop-1 301', '/wales/tour/* /wales/#stop-1 301',
+           '/wales/wales/ /wales/#stop-1 301', '/argentina/wales/ /wales/#stop-1 301']
     sec += [f'/wales/{t}/* /{t}/:splat 200' for t in tids]
     sec += ['/argentina/:theme/* /:theme/:splat 200']
     rd = dist / '_redirects'
