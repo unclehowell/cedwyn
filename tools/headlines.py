@@ -160,7 +160,7 @@ def run(dist):
         if rel in SKIP_FILES or rel.startswith(SKIP_DIRS): continue
         try: t = f.read_text(encoding='utf-8', errors='surrogateescape')
         except Exception: continue
-        if len(t) > 2_500_000 or 'data-cw-headlines-off' in t: continue
+        if len(t) > 30_000_000 or 'data-cw-headlines-off' in t: continue   # story/story is >2.5 MB before selfcontain extracts its inline media
         if re.search(r'<div id="(root|app)">\s*</div>', t): rep['skipped_spa'] += 1; continue
         if 'class="cw-more"' in t: continue
         out, n = apply(t)
