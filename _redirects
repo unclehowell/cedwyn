@@ -4,8 +4,11 @@
 /ebooks/api/* https://ebooks.bucklerfamily.estate/api/:splat 302
 /wales/ebooks/api/* https://ebooks.bucklerfamily.estate/api/:splat 302
 /argentina/ebooks/api/* https://ebooks.bucklerfamily.estate/api/:splat 302
-/wales/wales/ /wales/tour/ 200
-/argentina/wales/ /wales/tour/ 200
+/wales/tour /wales/#stop-1 301
+/wales/tour/ /wales/#stop-1 301
+/wales/tour/* /wales/#stop-1 301
+/wales/wales/ /wales/#stop-1 301
+/argentina/wales/ /wales/#stop-1 301
 /wales/records/* /records/:splat 200
 /wales/docs/* /docs/:splat 200
 /wales/wayback/* /wayback/:splat 200
