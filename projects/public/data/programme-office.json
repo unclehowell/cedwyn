@@ -1,0 +1,674 @@
+{
+ "generated": "2026-10-26T22:14Z",
+ "review": {
+  "date": "2026-10-26",
+  "objectives": [
+   {
+    "id": "O1",
+    "title": "Launch the Llandough guided tour (Wales)",
+    "score": 10.4,
+    "rag": "RED",
+    "delta": null,
+    "milestones": 0.375,
+    "kpi": 0.0,
+    "momentum": 0.333,
+    "exec_blockers": 3,
+    "overdue": [],
+    "kpis": [
+     {
+      "id": "vouchers_sold",
+      "t": "Gift vouchers sold",
+      "target": 10,
+      "unit": "count",
+      "value": 0,
+      "progress": 0.0
+     },
+     {
+      "id": "tour_enquiries",
+      "t": "Tour enquiries in the CRM",
+      "target": 20,
+      "unit": "count",
+      "value": 0,
+      "progress": 0.0
+     },
+     {
+      "id": "audio_stops",
+      "t": "Stops with audio",
+      "target": 9,
+      "unit": "of 9",
+      "value": 0,
+      "progress": 0.0
+     },
+     {
+      "id": "partners_open",
+      "t": "Partner conversations open",
+      "target": 3,
+      "unit": "count",
+      "value": 0,
+      "progress": 0.0
+     },
+     {
+      "id": "pilot_guests",
+      "t": "Pilot guests walked",
+      "target": 10,
+      "unit": "count",
+      "value": 0,
+      "progress": 0.0
+     }
+    ]
+   },
+   {
+    "id": "O2",
+    "title": "Land and museum in southern Argentina (Cedwyn Estate II)",
+    "score": 39.6,
+    "rag": "AMBER",
+    "delta": null,
+    "milestones": 0.571,
+    "kpi": 0.479,
+    "momentum": 0.333,
+    "exec_blockers": 2,
+    "overdue": [],
+    "kpis": [
+     {
+      "id": "institutions_mapped",
+      "t": "Institutions mapped",
+      "target": 12,
+      "unit": "count",
+      "value": 11,
+      "progress": 0.917
+     },
+     {
+      "id": "routes_assessed",
+      "t": "Land routes assessed",
+      "target": 6,
+      "unit": "count",
+      "value": 6,
+      "progress": 1.0
+     },
+     {
+      "id": "relationships_open",
+      "t": "Relationships opened",
+      "target": 3,
+      "unit": "count",
+      "value": 0,
+      "progress": 0.0
+     },
+     {
+      "id": "patagonia_enquiries",
+      "t": "Patagonia enquiries",
+      "target": 10,
+      "unit": "count",
+      "value": 0,
+      "progress": 0.0
+     }
+    ]
+   },
+   {
+    "id": "O3",
+    "title": "The evidence chronology",
+    "score": 58.8,
+    "rag": "AMBER",
+    "delta": null,
+    "milestones": 0.7,
+    "kpi": 0.959,
+    "momentum": 0.0,
+    "exec_blockers": 1,
+    "overdue": [],
+    "kpis": [
+     {
+      "id": "artifacts",
+      "t": "Artifacts in the catalogue",
+      "target": 12500,
+      "unit": "count",
+      "value": 11767,
+      "progress": 0.941
+     },
+     {
+      "id": "cites",
+      "t": "Citations in the catalogue",
+      "target": 20000,
+      "unit": "count",
+      "value": 18720,
+      "progress": 0.936
+     },
+     {
+      "id": "missing_records",
+      "t": "Missing-record pages",
+      "target": 25,
+      "unit": "count",
+      "value": 46,
+      "progress": 1.0
+     }
+    ]
+   },
+   {
+    "id": "O4",
+    "title": "E-book sales and revenue",
+    "score": 24.1,
+    "rag": "RED",
+    "delta": null,
+    "milestones": 0.417,
+    "kpi": 0.052,
+    "momentum": 0.333,
+    "exec_blockers": 1,
+    "overdue": [],
+    "kpis": [
+     {
+      "id": "sales",
+      "t": "E-book sales (to date)",
+      "target": 10,
+      "unit": "count",
+      "value": 0,
+      "progress": 0.0
+     },
+     {
+      "id": "revenue_gbp",
+      "t": "Revenue (GBP, to date)",
+      "target": 100,
+      "unit": "GBP",
+      "value": 0.0,
+      "progress": 0.0
+     },
+     {
+      "id": "subscribers",
+      "t": "Confirmed subscribers",
+      "target": 100,
+      "unit": "count",
+      "value": 1,
+      "progress": 0.01
+     },
+     {
+      "id": "gb_views_day",
+      "t": "UK page views per day",
+      "target": 300,
+      "unit": "per day",
+      "value": 59,
+      "progress": 0.197
+     }
+    ]
+   },
+   {
+    "id": "O5",
+    "title": "Case reopening (conditional gate)",
+    "score": 13.8,
+    "rag": "RED",
+    "delta": null,
+    "milestones": 0.4,
+    "kpi": 0.125,
+    "momentum": 0.0,
+    "exec_blockers": 2,
+    "overdue": [],
+    "kpis": [
+     {
+      "id": "court_ready_limbs",
+      "t": "Limbs of the leading ground at 4+ (legal test has 4 limbs)",
+      "target": 4,
+      "unit": "of 4",
+      "value": 1,
+      "progress": 0.25
+     },
+     {
+      "id": "open_requests",
+      "t": "Open information requests with a deadline",
+      "target": 0,
+      "unit": "count",
+      "lower_is_better": true,
+      "value": 23,
+      "progress": 0.0
+     }
+    ]
+   }
+  ]
+ },
+ "objectives": {
+  "version": "1.0.0",
+  "updated_utc": "2026-10-26T22:14Z",
+  "scoring": {
+   "method": "score = 50 x share of milestones done (in-progress counts half) + 30 x mean KPI progress to target (capped at 1) + 20 x momentum (actions done since last review / actions planned, 0.5 when no prior review) - 5 per open blocker that only the Executive can clear (max -15). RAG: 60+ GREEN, 30-59 AMBER, under 30 RED.",
+   "review": "weekly"
+  },
+  "objectives": [
+   {
+    "id": "O1",
+    "code": "P3",
+    "title": "Launch the Llandough guided tour (Wales)",
+    "owner_role": "Programme Office (agent) delivers; Executive approves prices, dates and the guide",
+    "page": "/programme-office/wales-tour-launch/",
+    "summary": "Turn the nine-stop tour on /wales/ into tours people can book and walk: a walkable Llandough loop first, audio for every stop, a free booking path, partners and a pilot walk.",
+    "milestones": [
+     {
+      "id": "O1-M1",
+      "t": "Nine-stop route and stop texts published in three languages",
+      "due": "2026-10-25",
+      "status": "done",
+      "evidence": "/wales/"
+     },
+     {
+      "id": "O1-M2",
+      "t": "Gift-voucher pre-orders live (£25 / £45 / £90)",
+      "due": "2026-10-20",
+      "status": "done",
+      "evidence": "/wales/"
+     },
+     {
+      "id": "O1-M3",
+      "t": "Walkable Llandough loop (stops 1, 2, 3, 8, 9) timed, mapped and access-checked; drive/bus legs for stops 4-7",
+      "due": "2026-11-09",
+      "status": "in_progress"
+     },
+     {
+      "id": "O1-M4",
+      "t": "Audio guide for all nine stops (English and Welsh) on /wales/",
+      "due": "2026-11-30",
+      "status": "not_started"
+     },
+     {
+      "id": "O1-M5",
+      "t": "Free date-based booking path that also redeems vouchers",
+      "due": "2026-11-16",
+      "status": "not_started"
+     },
+     {
+      "id": "O1-M6",
+      "t": "Partner pitch pack and 3-5 company conversations opened",
+      "due": "2026-11-23",
+      "status": "in_progress"
+     },
+     {
+      "id": "O1-M7",
+      "t": "Pilot walk with 8-12 guests and the first 5 written reviews",
+      "due": "2026-12-12",
+      "status": "not_started"
+     },
+     {
+      "id": "O1-M8",
+      "t": "Public launch with dated tours and listings",
+      "due": "2027-03-27",
+      "status": "not_started"
+     }
+    ],
+    "next_actions": [
+     "Record the nine stop texts as audio (English first) and add a player to each stop",
+     "Prepare the partner pitch pack and drafts for the shortlisted companies (held for GO)",
+     "Write a one-line promise for the tour and two test versions for the Wales page (proposal to the Wales section)"
+    ],
+    "blockers": [
+     {
+      "t": "Who guides the pilot (a family guide or a qualified tour guide) and the insurance cover",
+      "exec": true
+     },
+     {
+      "t": "Voucher codes are issued by hand until a payment-check key and a transactional email key are set",
+      "exec": true
+     },
+     {
+      "t": "Tour prices and the first public dates",
+      "exec": true
+     }
+    ],
+    "kpis": [
+     {
+      "id": "vouchers_sold",
+      "t": "Gift vouchers sold",
+      "target": 10,
+      "unit": "count"
+     },
+     {
+      "id": "tour_enquiries",
+      "t": "Tour enquiries in the CRM",
+      "target": 20,
+      "unit": "count"
+     },
+     {
+      "id": "audio_stops",
+      "t": "Stops with audio",
+      "target": 9,
+      "unit": "of 9"
+     },
+     {
+      "id": "partners_open",
+      "t": "Partner conversations open",
+      "target": 3,
+      "unit": "count"
+     },
+     {
+      "id": "pilot_guests",
+      "t": "Pilot guests walked",
+      "target": 10,
+      "unit": "count"
+     }
+    ]
+   },
+   {
+    "id": "O2",
+    "code": "P1",
+    "title": "Land and museum in southern Argentina (Cedwyn Estate II)",
+    "owner_role": "Programme Office (agent) researches; Executive decides any land, money or legal step",
+    "page": "/programme-office/argentina-land-museum/",
+    "summary": "Find a lawful, affordable route to a site for the Great House II replica and museum in Chubut, build relationships with Welsh Patagonia institutions, and open the virtual museum first.",
+    "milestones": [
+     {
+      "id": "O2-M1",
+      "t": "Museum proposition and scope written",
+      "due": "2026-10-22",
+      "status": "done",
+      "evidence": "/p1-argentina-museum/"
+     },
+     {
+      "id": "O2-M2",
+      "t": "Patagonia half of Cedwyn live with enquiry form (coming soon)",
+      "due": "2026-10-26",
+      "status": "done",
+      "evidence": "/argentina/"
+     },
+     {
+      "id": "O2-M3",
+      "t": "Institution map of Welsh Patagonia and a listening-first contact plan",
+      "due": "2026-11-16",
+      "status": "done",
+      "evidence": "/programme-office/argentina-land-museum/"
+     },
+     {
+      "id": "O2-M4",
+      "t": "Land-route memo: buy, lease, partner, concession, foundation; foreign-ownership and coastal rules",
+      "due": "2026-11-23",
+      "status": "done",
+      "evidence": "/programme-office/argentina-land-museum/"
+     },
+     {
+      "id": "O2-M5",
+      "t": "Desk shortlist of three search areas with GIS screen",
+      "due": "2026-12-14",
+      "status": "not_started"
+     },
+     {
+      "id": "O2-M6",
+      "t": "Virtual museum room on Cedwyn (objects traced, artist's impressions tagged)",
+      "due": "2027-01-31",
+      "status": "not_started"
+     },
+     {
+      "id": "O2-M7",
+      "t": "Options paper for the Executive (viable, desirable, achievable)",
+      "due": "2027-02-28",
+      "status": "not_started"
+     }
+    ],
+    "next_actions": [
+     "Specify the virtual-museum 3D model of the house from the 1974 survey drawings",
+     "Draft listening-first introductions to two cultural bodies (held for GO)",
+     "Ask a Chubut lawyer for a scoped feasibility quote (held for GO; no spend)"
+    ],
+    "blockers": [
+     {
+      "t": "No local legal adviser yet; land rules need written local advice",
+      "exec": true
+     },
+     {
+      "t": "No budget approved for feasibility",
+      "exec": true
+     },
+     {
+      "t": "Spanish copy needs a native review",
+      "exec": false
+     }
+    ],
+    "kpis": [
+     {
+      "id": "institutions_mapped",
+      "t": "Institutions mapped",
+      "target": 12,
+      "unit": "count"
+     },
+     {
+      "id": "routes_assessed",
+      "t": "Land routes assessed",
+      "target": 6,
+      "unit": "count"
+     },
+     {
+      "id": "relationships_open",
+      "t": "Relationships opened",
+      "target": 3,
+      "unit": "count"
+     },
+     {
+      "id": "patagonia_enquiries",
+      "t": "Patagonia enquiries",
+      "target": 10,
+      "unit": "count"
+     }
+    ]
+   },
+   {
+    "id": "O3",
+    "code": "P2",
+    "title": "The evidence chronology",
+    "owner_role": "Intelligence and research flywheels deliver; Programme Office tracks",
+    "page": "/programme-office/objectives/#O3",
+    "summary": "One cited chronology from 1667 to today, every entry linked to a record, with a register of records that should exist but have not been produced.",
+    "milestones": [
+     {
+      "id": "O3-M1",
+      "t": "Chronology rule applied site-wide (1824 survey is the first record naming the house)",
+      "due": "2026-10-26",
+      "status": "done",
+      "evidence": "/values/#outside-records"
+     },
+     {
+      "id": "O3-M2",
+      "t": "Catalogue of artifacts and citations searchable in one database",
+      "due": "2026-10-26",
+      "status": "done",
+      "evidence": "/research/"
+     },
+     {
+      "id": "O3-M3",
+      "t": "Missing-records register with catalogue IDs (MR-####)",
+      "due": "2026-11-02",
+      "status": "in_progress"
+     },
+     {
+      "id": "O3-M4",
+      "t": "Pending subject-access and information replies received and catalogued",
+      "due": "2026-11-13",
+      "status": "in_progress"
+     },
+     {
+      "id": "O3-M5",
+      "t": "Normalised events table and repeatable analyses published",
+      "due": "2026-11-09",
+      "status": "in_progress"
+     }
+    ],
+    "next_actions": [
+     "Catalogue every reply that arrives before each deadline",
+     "Publish the missing-records index",
+     "Re-run the interval and sequence analyses on the new events table"
+    ],
+    "blockers": [
+     {
+      "t": "A password-protected police disclosure file cannot be opened",
+      "exec": true
+     }
+    ],
+    "kpis": [
+     {
+      "id": "artifacts",
+      "t": "Artifacts in the catalogue",
+      "target": 12500,
+      "unit": "count"
+     },
+     {
+      "id": "cites",
+      "t": "Citations in the catalogue",
+      "target": 20000,
+      "unit": "count"
+     },
+     {
+      "id": "missing_records",
+      "t": "Missing-record pages",
+      "target": 25,
+      "unit": "count"
+     }
+    ]
+   },
+   {
+    "id": "O4",
+    "code": "EBK",
+    "title": "E-book sales and revenue",
+    "owner_role": "Bizdev, sales-fix and growth flywheels deliver; Programme Office tracks",
+    "page": "/programme-office/objectives/#O4",
+    "summary": "Grow a mailing list and turn readers into buyers: a working signup, a free reader magnet, short books people finish, and one weekly email.",
+    "milestones": [
+     {
+      "id": "O4-M1",
+      "t": "Shelf of 10 books with free first editions",
+      "due": "2026-10-26",
+      "status": "done",
+      "evidence": "/ebooks/"
+     },
+     {
+      "id": "O4-M2",
+      "t": "Signup works without scripts on every page",
+      "due": "2026-10-27",
+      "status": "in_progress"
+     },
+     {
+      "id": "O4-M3",
+      "t": "First sale",
+      "due": "2026-11-09",
+      "status": "not_started"
+     },
+     {
+      "id": "O4-M4",
+      "t": "100 confirmed subscribers",
+      "due": "2026-12-31",
+      "status": "not_started"
+     },
+     {
+      "id": "O4-M5",
+      "t": "A short, finished e-book (tour companion) ready for publishing",
+      "due": "2026-11-02",
+      "status": "done",
+      "evidence": "/programme-office/ebook-pipeline/"
+     },
+     {
+      "id": "O4-M6",
+      "t": "10 sales in a calendar month",
+      "due": "2027-02-28",
+      "status": "not_started"
+     }
+    ],
+    "next_actions": [
+     "Verify the signup fix end to end",
+     "Build the Spanish edition of the Tour Companion from the tour page text",
+     "Pair each tour voucher with the free companion edition"
+    ],
+    "blockers": [
+     {
+      "t": "Prices and new paid titles need the Executive's GO",
+      "exec": true
+     }
+    ],
+    "kpis": [
+     {
+      "id": "sales",
+      "t": "E-book sales (to date)",
+      "target": 10,
+      "unit": "count"
+     },
+     {
+      "id": "revenue_gbp",
+      "t": "Revenue (GBP, to date)",
+      "target": 100,
+      "unit": "GBP"
+     },
+     {
+      "id": "subscribers",
+      "t": "Confirmed subscribers",
+      "target": 100,
+      "unit": "count"
+     },
+     {
+      "id": "gb_views_day",
+      "t": "UK page views per day",
+      "target": 300,
+      "unit": "per day"
+     }
+    ]
+   },
+   {
+    "id": "O5",
+    "code": "P4",
+    "title": "Case reopening (conditional gate)",
+    "owner_role": "Reopen-loop and research flywheels test the grounds; the Executive and independent counsel decide",
+    "page": "/p4-case-reopening-gate/",
+    "summary": "Keep testing grounds against the legal test and hold the gate closed until preserved records, material relevance, written independent legal advice and the Executive's written authority are all in place.",
+    "milestones": [
+     {
+      "id": "O5-M1",
+      "t": "Gate conditions published",
+      "due": "2026-10-22",
+      "status": "done",
+      "evidence": "/p4-case-reopening-gate/"
+     },
+     {
+      "id": "O5-M2",
+      "t": "Grounds scored each cycle against the fixed legal test",
+      "due": "2026-10-26",
+      "status": "done"
+     },
+     {
+      "id": "O5-M3",
+      "t": "Every limb of the leading ground at 4 or more (court-readiness bar)",
+      "due": "2027-01-31",
+      "status": "not_started"
+     },
+     {
+      "id": "O5-M4",
+      "t": "Independent written legal advice obtained",
+      "due": "2027-01-31",
+      "status": "not_started"
+     },
+     {
+      "id": "O5-M5",
+      "t": "Executive's written decision at the gate",
+      "due": "2027-02-28",
+      "status": "not_started"
+     }
+    ],
+    "next_actions": [
+     "Read the sworn statement filed with the 1974 leave application (next experiment)",
+     "Decide whether to take internal review IR/26/16 to the Information Commissioner",
+     "Look for the 1938 mortgage and its discharge in the title papers when they arrive"
+    ],
+    "blockers": [
+     {
+      "t": "Independent legal advice not yet instructed",
+      "exec": true
+     },
+     {
+      "t": "Regulator escalation decision on IR/26/16",
+      "exec": true
+     }
+    ],
+    "kpis": [
+     {
+      "id": "court_ready_limbs",
+      "t": "Limbs of the leading ground at 4+ (legal test has 4 limbs)",
+      "target": 4,
+      "unit": "of 4"
+     },
+     {
+      "id": "open_requests",
+      "t": "Open information requests with a deadline",
+      "target": 0,
+      "unit": "count",
+      "lower_is_better": true
+     }
+    ]
+   }
+  ]
+ }
+}
