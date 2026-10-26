@@ -2991,13 +2991,13 @@
    "theme": "app",
    "file": "assets/webapp-*.js",
    "find": "{id:\"w-37\",text:\"Great House Farm alias Cedfin in Bute survey\",side:\"williams\",color:\"green\",size:\"lg\",dateOrEra:\"18th/19th Century\",parcelOrSubject:\"Manorial Nomenclature\",source:\"1780 Bute Estate Manorial Survey of Llandough\",explanation:'Green (Documented Fact): Historic estate surveys record Great House Farm under its ancient Welsh alias \"Cedfin\" / \"Ty Mawr\".'}",
-   "replace": "{id:\"w-37\",text:\"Great House Farm alias Cedfin in Bute survey\",side:\"williams\",color:\"orange\",size:\"lg\",dateOrEra:\"1552–1824\",parcelOrSubject:\"Manorial Nomenclature\",source:\"Bute Estate records naming \\u201cCedfin/Cydfin/Ken fin Farm or Ty Mawr Farm\\u201d (references not stated) [EV-0003] [EV-0211]\",explanation:\"Not yet confirmed: the catalogue lists Bute estate records naming the holding Cedfin/Cydfin or Ty Mawr Farm, without repository references [EV-0003]. No 1780 survey is in the catalogue.\"}",
+   "replace": "{id:\"w-37\",text:\"Great House Farm alias Cedfin in Bute survey\",side:\"williams\",color:\"green\",size:\"lg\",dateOrEra:\"1824\",parcelOrSubject:\"Manorial Nomenclature\",source:\"Bute estate survey 1824, Glamorgan Archives DB/E/1, plan 19: \\u201cCedfin or Ty Mawr Farm\\u201d [EV-0211]\",explanation:\"Documented: the 1824 Bute estate survey names it plan 19, \\u201cCedfin or Ty Mawr Farm\\u201d [EV-0211], the earliest record read that names the holding. Leases dated 1552\\u20131824 are catalogued under the heading \\u201cCydfin Farm or Ty Mawr Farm\\u201d (NLW Bute D 219) but have not been read, so the name they use is not known [EV-0003]. No 1780 survey is in the catalogue.\"}",
    "class": "UNSUPPORTED",
    "ev": [
     "EV-0003",
     "EV-0211"
    ],
-   "why": "1780 survey not in the catalogue; nearest catalogued record cited.",
+   "why": "1780 survey not in the catalogue; corrected 26 Oct 2026: the name is first read in the 1824 survey (EV-0211); 1552–1824 is a catalogue span for unread leases (EV-0003).",
    "where": "rivalClaimsStatementsData.ts (#claims)"
   },
   {

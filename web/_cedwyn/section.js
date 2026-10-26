@@ -29,7 +29,7 @@
   }
   function paint() {
     var l = lang(), q = document.querySelectorAll("[data-i18n]"), i, el, v, n = de.getAttribute("data-cedwyn-n") || "37";
-    for (i = 0; i < q.length; i++) { el = q[i]; v = tr(el.getAttribute("data-i18n"), l); if (v != null) el.textContent = v.replace("{n}", n); }
+    for (i = 0; i < q.length; i++) { el = q[i]; v = tr(el.getAttribute("data-i18n"), l); if (v != null) { v = v.replace("{n}", n); if (v.indexOf("\u27E6") < 0) el.textContent = v; else el.innerHTML = v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\u27E6/g, '<span class="unsub">').replace(/\u27E7/g, "</span>"); } }
     q = document.querySelectorAll("[data-i18n-ph]"); for (i = 0; i < q.length; i++) { v = tr(q[i].getAttribute("data-i18n-ph"), l); if (v) q[i].setAttribute("placeholder", v); }
     q = document.querySelectorAll("[data-i18n-al]"); for (i = 0; i < q.length; i++) { v = tr(q[i].getAttribute("data-i18n-al"), l); if (v) q[i].setAttribute("aria-label", v); }
     q = document.querySelectorAll("[data-cedwyn-lang]"); for (i = 0; i < q.length; i++) q[i].setAttribute("aria-pressed", q[i].getAttribute("data-cedwyn-lang") === l ? "true" : "false");
@@ -114,4 +114,20 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
   window.addEventListener("load", paint);
   window.CedwynSection = { section: SEC, lang: lang, setLang: setLang, paint: paint, version: "1.0.0" };
+
+  // Unsubstantiated text (Sion, 03:07 GMT 26 Oct 2026): .unsub = smaller italic, one en/cy/es legend per page (tools/unsub.py) - Sion's Tab agent
+  (function () {
+    var LG = { en: "Small italic text = not yet backed by a record in this archive.", cy: "Testun italig bach = heb ei ategu eto gan gofnod yn yr archif hon.", es: "Texto pequeño en cursiva = aún sin respaldo de un documento en este archivo." };
+    function css() { if (document.getElementById("cedwyn-unsub-css")) return; var s = document.createElement("style"); s.id = "cedwyn-unsub-css";
+      s.textContent = ".unsub{font-size:.86em;font-style:italic}.unsub .unsub{font-size:1em}#cedwyn-unsub-legend{font-size:12px;line-height:1.35;font-style:italic;opacity:.85;margin:6px 0 8px}#cedwyn-unsub-legend .unsub-eg{font-size:.86em}";
+      (document.head || document.documentElement).appendChild(s); }
+    function lg() { var l = ""; try { if (window.CedwynSection) l = window.CedwynSection.lang(); } catch (e) {} if (!l) { try { l = localStorage.getItem("ghf_lang") || ""; } catch (e) {} }
+      l = (l || document.documentElement.getAttribute("lang") || "en").slice(0, 2); return LG[l] ? l : "en"; }
+    function go() { css(); if (!document.body) return; var u = document.querySelector(".unsub"), g = document.getElementById("cedwyn-unsub-legend"); if (!u) return;
+      if (!g) { g = document.createElement("p"); g.id = "cedwyn-unsub-legend"; g.setAttribute("data-no-translate", ""); var m = document.querySelector("main") || u.parentNode;
+        if (m === document.querySelector("main")) m.insertBefore(g, m.firstChild); else m.parentNode.insertBefore(g, m); }
+      var l = lg(); g.setAttribute("lang", l); g.textContent = LG[l]; }
+    css(); if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
+    window.addEventListener("load", go); document.addEventListener("ghf-lang-change", function () { setTimeout(go, 150); }); window.CedwynUnsub = go;
+  })();
 })();

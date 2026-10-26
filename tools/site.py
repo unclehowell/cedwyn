@@ -154,6 +154,9 @@ sections.run(DIST, CFG)
 # Two halves (Sion, 23:39 GMT 25 Oct 2026): landing = two tiles, /wales/ = AR guided tour, /argentina/ = Great House II retreat + package builder - Sion's Tab agent
 import halves
 halves.run(DIST, CFG)
+# Title chain (Sion, 03:07 GMT 26 Oct 2026): /title-chain/ and its /wales/ and /argentina/ copies, under Past in both halves - Sion's Tab agent
+import title_chain
+title_chain.run(DIST, CFG)
 # The e-book compartment: editions, versions and prices on /ebooks/ (data/ebooks.json) and the free-edition gate - Sion's Tab agent
 import ebook_editions
 ebook_editions.run(DIST)

@@ -161,6 +161,12 @@ def menu(H, T, cfg, l, sec, open_=False):
     cols = []
     for g in ('past', 'present'):
         li = ''.join(f'<li><a href="/{sec}/{E(t["id"])}/" data-i18n="th_{E(t["id"])}">{E(tx(T, "th_" + t["id"], l))}</a></li>' for t in gr[g])
+        if g == 'past':   # pages outside themes.json (data/halves.json groups.past_pages, e.g. the title chain), listed first under Past - Sion's Tab agent
+            pre = ''
+            for p in H['groups'].get('past_pages', []):
+                T['pg_' + p['id']] = p['title']
+                pre += f'<li><a href="/{sec}/{E(p["id"])}/" data-i18n="pg_{E(p["id"])}">{E(tx(T, "pg_" + p["id"], l))}</a></li>'
+            li = pre + li
         cols.append(f'<div><h3 data-i18n="g_{g}">{E(tx(T, "g_" + g, l))}</h3><p class="mut" data-i18n="g_{g}_p">{E(tx(T, "g_" + g + "_p", l))}</p><ul>{li}</ul></div>')
     T['menu_p_n'] = {k: v.replace('{n}', str(n)) for k, v in T['menu_p'].items()}
     return (f'<details class="hv-menu" id="menu"{" open" if open_ else ""}><summary><span data-i18n="w_menu">{E(tx(T, "w_menu", l))}</span></summary>'
@@ -484,14 +490,14 @@ def check_tour_citations(text, H):
 
 def run(dist, cfg):
     dist = pathlib.Path(dist)
-    import sections, agent_footer
+    import sections, agent_footer, unsub   # unsub: passages marked substantiated:false render small italic (tools/unsub.py)
     H = json.load(open(ROOT / 'data' / 'halves.json', encoding='utf-8'))
     S = json.load(open(ROOT / 'sections.json', encoding='utf-8'))
     pages = {dist / 'index.html': landing(sections, S, cfg, H),
              dist / 'wales' / 'index.html': wales(sections, S, cfg, H),
              dist / 'argentina' / 'index.html': argentina(sections, S, cfg, H)}
     for pth, txt in pages.items():
-        pth.parent.mkdir(parents=True, exist_ok=True); pth.write_text(txt, encoding='utf-8'); agent_footer.inject(pth, False)
+        pth.parent.mkdir(parents=True, exist_ok=True); pth.write_text(unsub.html(txt), encoding='utf-8'); agent_footer.inject(pth, False)
     w = (dist / 'wales' / 'index.html').read_text(encoding='utf-8')
     sections.check_wales(w); sections.check_wales((dist / 'index.html').read_text(encoding='utf-8')); check_wales_house(w); check_tour_citations(w, H)
     for pth in pages:
