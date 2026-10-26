@@ -12,10 +12,24 @@ Report: dist/_cedwyn/reports/chronology.json. site.py calls it after theme_notic
 Usage: python3 tools/chronology.py dist"""
 import json, re, html, pathlib, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-BOX = ('<aside class="cedwyn-notice" data-cedwyn-notice="{k}" role="note" style="border:1px solid #c8a03c;background:#fbf6e6;color:#1c1c22;text-align:left;'
-       'border-radius:8px;padding:10px 12px;margin:12px 0;font-size:14px;line-height:1.45"><strong>{h}</strong> {t} '
+# Small ⓘ icon + popup, not a big block (Sion, 13:15 GMT 26 Oct 2026). Native <details>: no JS, the text stays in the HTML - Sion's Tab agent
+BOX = ('<aside class="cedwyn-notice cw-ior" data-cedwyn-notice="{k}" role="note" style="position:relative;display:block;margin:6px 0;text-align:left;font-size:13px;line-height:1.45">'
+       '<style>.cw-ior summary{{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;color:inherit;font-weight:600;font-size:12px;padding:2px 0}}'
+       '.cw-ior summary::-webkit-details-marker{{display:none}}.cw-ior .cw-i{{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;border:1.5px solid currentColor;font:italic 700 12px/1 Georgia,serif}}'
+       '.cw-ior .cw-p{{position:absolute;z-index:60;left:0;top:26px;width:min(92vw,520px);max-height:70vh;overflow:auto;border:1px solid #c8a03c;background:#fbf6e6;color:#1c1c22;border-radius:8px;padding:10px 12px;box-shadow:0 6px 24px rgba(0,0,0,.25)}}'
+       '@media print,(max-width:640px){{.cw-ior .cw-p{{position:static;width:auto;max-width:100%;margin-top:4px;box-shadow:none}}}}</style>'
+       '<details><summary title="{h}"><span class="cw-i" aria-hidden="true">i</span><span>__CWL__</span></summary><div class="cw-p"><strong>{h}</strong> {t} '
        '<a href="{l}" style="color:#4A1942;text-decoration:underline">{lt}</a><span lang="cy" style="display:block;margin-top:4px;opacity:.85">{cy}</span>'
-       '<span lang="es" style="display:block;margin-top:2px;opacity:.85">{es}</span></aside>')
+       '<span lang="es" style="display:block;margin-top:2px;opacity:.85">{es}</span></div></details></aside>')
+CWL = {'cy': 'Cofnodion allanol', 'es': 'Registros externos'}
+def _bx(box, t):
+    m = re.search(r'<html[^>]*\blang=["\']?([a-z]{2})', t[:3000], re.I)
+    return box.replace('__CWL__', CWL.get(m.group(1).lower() if m else 'en', 'Outside records'))
+# Reference and utility pages (dictionary, guest book, e-book list, maps index, subscribe, landing) carry no notice (Sion, 13:27 GMT 26 Oct 2026) - Sion's Tab agent
+REF_PAGES = ('nomenclature/', 'guestbook/', 'subscribe/', 'glossary/')
+REF_EXACT = ('index.html', 'ebooks/index.html', 'maps/index.html', 'directory/index.html')
+def _ref_page(rel):
+    return rel.startswith(REF_PAGES) or rel in REF_EXACT
 def _visible(t):
     t = re.sub(r'(?is)<(script|style)\b.*?</\1>', ' ', t)
     return re.sub(r'<[^>]+>', ' ', t)
@@ -47,12 +61,12 @@ def run(dist, cfg_path=None):
                 if n: rep['rewrites'][i] = rep['rewrites'].get(i, 0) + n
         if f.name == 'llms.txt' and '## How we treat outside records' not in t:
             t = llms_insert(t)
-        if f.suffix.lower() in ('.html', '.htm') and 'data-cedwyn-notice="%s"' % N['id'] not in t and hit(_visible(t)):
+        if f.suffix.lower() in ('.html', '.htm') and not _ref_page(rel) and 'data-cedwyn-notice="%s"' % N['id'] not in t and hit(_visible(t)):
             j = t.find('</h1>')
-            if j >= 0: t = t[:j + 5] + box + t[j + 5:]
+            if j >= 0: t = t[:j + 5] + _bx(box, t) + t[j + 5:]
             else:
                 m = re.search(r'<body\b[^>]*>', t, re.I)
-                if m: t = t[:m.end()] + box + t[m.end():]
+                if m: t = t[:m.end()] + _bx(box, t) + t[m.end():]
             if t != o or 'data-cedwyn-notice' in t: rep['notices'] += 1; rep['notice_pages'].append(rel)
         if t != o: f.write_text(t, encoding='utf-8'); rep['files_changed'] += 1
     out = dist / '_cedwyn' / 'reports'; out.mkdir(parents=True, exist_ok=True)

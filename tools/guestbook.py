@@ -16,7 +16,7 @@ import json, re, sys, html, pathlib, subprocess, datetime, urllib.parse
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 REPO = 'unclehowell/cedwyn'
 SHOW = 20
-SHELL_VER = '1.0.1'
+SHELL_VER = '1.0.2'
 RULE = ('Versions are derived from main\'s commit history (the repo has no release tags on main): the first commit is '
         '1.0.0; each later commit bumps the minor number (1.N.0), except a fix (first word fix/typo/repair/correct/restore, '
         'or "typo" anywhere in the first line) and the automated build-log commits, which bump the patch number (1.N.P).')
