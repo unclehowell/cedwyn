@@ -10,14 +10,14 @@
                Past / Present (data/halves.json "groups"; a new theme falls into "default"); the museum themes are left out on Wales.
 - /argentina/  Cedwyn Estate II / Great House II, Patagonia: the retreat (house, rooms, stables, barn, cottage, weddings, museum with
                wax Marconi and "Peerless" Jim), a BookMyTravel-style package builder (stay + flights + hire car -> summary ->
-               pre-order request through the site's existing Mailchimp notify path; indicative prices; nothing charged), the family's
+               pre-order request posted to the site's Mailchimp audience in a new tab, where the visitor confirms; indicative prices; nothing charged), the family's
                case (tools/family_case.py, when present) and every theme grouped Past / Present.
 Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: web/_cedwyn/halves/img/ (AI renders marked
 "artist's impression"). Runs at the end of site.py, after sections.run(); it replaces the three pages sections.py wrote and nothing else."""
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.0.2'
+VERSION = '1.0.3'
 
 def tx(T, k, l):
     v = T.get(k) or {}
@@ -234,16 +234,13 @@ JS = r"""
       var c=render(),ref='GH2-'+Date.now().toString(36).toUpperCase().slice(-6);
       var sum=(/\btest\b/i.test(nm)?'TEST ':'')+'PREORDER '+ref+' | '+nm.slice(0,40)+' | '+(c.v?c.v.id:'-')+' '+d('bk-in').value+(c.v&&c.v.id!=='wed'?'..'+d('bk-out').value:'')+' g'+c.g+(c.v&&c.v.id==='room'?' r'+c.rm:'')+' | fly '+(c.ap||'-')+(c.ap&&c.ap!=='NONE'?' x'+c.fl:'')+' | car '+(c.car||'-')+'@'+c.pick+' | est GBP'+Math.round(c.tot)+(c.quote?'+':'')+' | '+L()+' | '+(d('bk-note').value||'').slice(0,60);
       sum=sum.slice(0,250);
-      var btn=d('bk-send'),lab=btn.textContent;btn.disabled=true;btn.textContent=tr('b_sending');
-      var M=B.mc,cb='cedwynGh2'+Date.now(),done=false,s=document.createElement('script');
-      var p={u:M.u,id:M.id,c:cb,EMAIL:em,UTMSRC:'cedwyn/argentina-preorder',UTMCMP:'preorder-'+ref,CONSENT:sum};p['b_'+M.u+'_'+M.id]='';
-      var qs=[];for(var k in p)qs.push(encodeURIComponent(k)+'='+encodeURIComponent(p[k]));
-      function fin(okk,msg){if(done)return;done=true;try{delete window[cb]}catch(x){window[cb]=undefined}if(s.parentNode)s.parentNode.removeChild(s);btn.disabled=false;btn.textContent=lab;
-        if(okk){try{var a=JSON.parse(localStorage.getItem('cedwyn-gh2-preorders')||'[]');a.push({ref:ref,at:new Date().toISOString(),sum:sum});localStorage.setItem('cedwyn-gh2-preorders',JSON.stringify(a.slice(-10)))}catch(x){}
-          d('bk-form').hidden=true;var dn=d('bk-done');dn.hidden=false;d('bk-ref').textContent=ref;dn.setAttribute('data-ref',ref);dn.scrollIntoView({block:'center',behavior:'smooth'})}
-        else{e.textContent=tr('b_err_send')+(msg?' ('+String(msg).replace(/<[^>]+>/g,'').slice(0,120)+')':'');e.hidden=false}}
-      window[cb]=function(r){fin(r&&(r.result==='success'||/already subscribed/i.test(r.msg||'')),r&&r.msg)};s.onerror=function(){fin(false)};setTimeout(function(){fin(false)},15000);
-      s.src='https://'+M.host+'/subscribe/post?'+qs.join('&');(document.head||de).appendChild(s)});
+      var M=B.mc,fm=document.createElement('form');fm.method='get';fm.target='_blank';fm.acceptCharset='UTF-8';
+      fm.action='https://'+M.host+'/subscribe/post';
+      var p={u:M.u,id:M.id,EMAIL:em,UTMSRC:'cedwyn/argentina-preorder',UTMCMP:'preorder-'+ref,CONSENT:sum};p['b_'+M.u+'_'+M.id]='';
+      for(var k in p){var i=document.createElement('input');i.type='hidden';i.name=k;i.value=p[k];fm.appendChild(i)}
+      fm.style.display='none';document.body.appendChild(fm);fm.submit();setTimeout(function(){if(fm.parentNode)fm.parentNode.removeChild(fm)},1000);
+      try{var a=JSON.parse(localStorage.getItem('cedwyn-gh2-preorders')||'[]');a.push({ref:ref,at:new Date().toISOString(),sum:sum});localStorage.setItem('cedwyn-gh2-preorders',JSON.stringify(a.slice(-10)))}catch(x){}
+      d('bk-form').hidden=true;var dn=d('bk-done');dn.hidden=false;d('bk-ref').textContent=ref;dn.setAttribute('data-ref',ref);dn.scrollIntoView({block:'center',behavior:'smooth'})});
     go(0);
   }
 })();
@@ -437,7 +434,7 @@ def argentina(sections, S, cfg, H):
 <label><span data-i18n="b_note">{E(tx(T,'b_note',l))}</span><textarea id="bk-note" name="note" rows="2" maxlength="300"></textarea></label>
 <label class="hv-ck"><input type="checkbox" id="bk-ok"><span><span data-i18n="b_ok">{E(tx(T,'b_ok',l))}</span> <a href="/dartboard/legal/" data-i18n="privacy">{E(tx(T,'privacy',l))}</a></span></label></div>
 <p class="hv-err" id="bk-err2" role="alert" hidden></p><button type="submit" class="hv-btn pri" id="bk-send" data-i18n="b_send">{E(tx(T,'b_send',l))}</button></div>
-<div class="hv-done" id="bk-done" role="status" hidden><p data-i18n="b_done">{E(tx(T,'b_done',l))}</p><b id="bk-ref"></b><p class="mut" data-i18n="b_done2">{E(tx(T,'b_done2',l))}</p></div></div>
+<div class="hv-done" id="bk-done" role="status" hidden><p data-i18n="b_done">{E(tx(T,'b_done',l))}</p><b id="bk-ref"></b><p data-i18n="b_mc">{E(tx(T,'b_mc',l))}</p><p class="mut" data-i18n="b_done2">{E(tx(T,'b_done2',l))}</p></div></div>
 <p class="hv-err" id="bk-err" role="alert" hidden></p>
 <div class="hv-btns" style="justify-content:space-between"><button type="button" class="hv-btn" id="bk-back" hidden data-i18n="b_back">{E(tx(T,'b_back',l))}</button><button type="button" class="hv-btn pri" id="bk-next" data-i18n="b_cont">{E(tx(T,'b_cont',l))}</button></div>
 </form></section>
