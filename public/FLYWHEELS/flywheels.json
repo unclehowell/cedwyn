@@ -1,0 +1,330 @@
+[
+ {
+  "id": "research-cycle",
+  "name": "Great House Farm research cycle",
+  "cadence": "every 6 hours",
+  "prefix": "GHF FLYWHEEL CYCLE",
+  "runner": "work/ghf-flywheel/program.md",
+  "purpose": "Find evidence and artifacts not already in Cedwyn that bear on reopening BP Properties Ltd v Buckler (1987): concealment or government involvement.",
+  "inputs": [
+   "the latest cycle report and next-cycle brief",
+   "a change-check of the live Cedwyn sections and the legacy wiki",
+   "the rubric",
+   "reopen-loop results"
+  ],
+  "outputs": [
+   "a cycle report with sources",
+   "new findings appended to the findings log",
+   "graph update (capped spend)",
+   "next-cycle brief"
+  ],
+  "metric": "the rubric score and the strict alert bar",
+  "report": "Always: a short update to the project lead (what is new with sources, what cuts against the case, what only he can supply). Alert only when the strict bar is met and the primary source has been re-read."
+ },
+ {
+  "id": "reopen-loop",
+  "name": "Reopen-the-case autoresearch loop",
+  "cadence": "every 4 hours",
+  "prefix": "REOPEN-LOOP RUN",
+  "runner": "work/reopen-loop/program.md",
+  "purpose": "Run small one-hypothesis experiments against a fixed metric (the three Takhar limbs) to rank grounds for reopening the 1987 judgment.",
+  "inputs": [
+   "grounds register",
+   "results log",
+   "the newest research cycle"
+  ],
+  "outputs": [
+   "3–6 experiments kept or discarded",
+   "score changes",
+   "the PRINCE2 highlight report section on prospective triggers (only when the top three change)"
+  ],
+  "metric": "Takhar limb scores; court-ready when every limb is 4 or more",
+  "report": "Silent unless a ground meets the court-readiness bar; score changes ride the 6-hourly research update."
+ },
+ {
+  "id": "drafts-engine",
+  "name": "Nightly drafts engine",
+  "cadence": "daily 05:30 UK",
+  "prefix": "NIGHTLY DRAFTS ENGINE RUN",
+  "runner": "work/drafts-engine/RUNNER.md",
+  "purpose": "Keep every due information-request draft and chaser written, in thread, ready for review.",
+  "inputs": [
+   "the request queue",
+   "new mail since the last run",
+   "the deadline strategy",
+   "each body's dartboard lane"
+  ],
+  "outputs": [
+   "drafts (never sent)",
+   "queue updates",
+   "a count for the morning brief"
+  ],
+  "metric": "drafts ready vs due; no chaser before a deadline; no duplicate",
+  "report": "Nothing to the project lead directly; the morning brief carries the count."
+ },
+ {
+  "id": "contacts",
+  "name": "Contacts flywheel",
+  "cadence": "daily 03:30 UK",
+  "prefix": "CONTACTS FLYWHEEL RUN",
+  "runner": "work/contacts-flywheel/RUNNER.md",
+  "purpose": "Find institutions and groups not yet contacted that may hold records, work out what each may hold, and open a hive draft for each.",
+  "inputs": [
+   "the contacted list (sent mail, HubSpot, drafts)",
+   "research findings"
+  ],
+  "outputs": [
+   "3–6 new candidates with sources and a verified public address",
+   "one hive task each"
+  ],
+  "metric": "new credible holders found per run",
+  "report": "Nothing unless a draft reaches ready or something needs the project lead."
+ },
+ {
+  "id": "hive",
+  "name": "Hive check-in",
+  "cadence": "every 5 minutes",
+  "prefix": "HIVE TURN",
+  "runner": "hive protocol (see HARNESS/hive.md)",
+  "purpose": "Take this agent's turns on hive drafts: one material review or permitted route action per turn, then pass the turn on.",
+  "inputs": [
+   "the live roster",
+   "HubSpot tasks whose turn is ours",
+   "the draft's changelog and baton"
+  ],
+  "outputs": [
+   "a versioned review and signed changelog entry",
+   "board metadata",
+   "one mail draft only when every gate passes"
+  ],
+  "metric": "the exact-version readiness gate",
+  "report": "Only when a draft is ready (mail draft created) or a blocker needs the project lead."
+ },
+ {
+  "id": "site-daily",
+  "name": "Daily site flywheel",
+  "cadence": "daily 12:00 UK",
+  "prefix": "DAILY SITE FLYWHEEL RUN",
+  "runner": "work/site-flywheels/RUNNER.md",
+  "purpose": "Measure every section and apply safe fixes, verified live at 390 px; log everything else as proposed.",
+  "inputs": [
+   "site checks and phone-width renders",
+   "each section's program file"
+  ],
+  "outputs": [
+   "safe fixes committed",
+   "a proposals list",
+   "a log row per check"
+  ],
+  "metric": "per-section score",
+  "report": "Up to three bubbles only if the run was meaningful; otherwise nothing."
+ },
+ {
+  "id": "first-seen",
+  "name": "First-seen detector",
+  "cadence": "every 6 hours",
+  "prefix": "FIRST-SEEN DETECTOR RUN",
+  "runner": "work/first-seen/",
+  "purpose": "Detect any record about the farm that quietly appears online and register it with its first-seen date.",
+  "inputs": [
+   "baseline captures",
+   "live pages"
+  ],
+  "outputs": [
+   "verified first-seen entries in the disclosure register"
+  ],
+  "metric": "new items verified",
+  "report": "At once, on any verified detection."
+ },
+ {
+  "id": "recapture",
+  "name": "Farm page recapture",
+  "cadence": "every 5 days",
+  "prefix": "FARM PAGE RECAPTURE",
+  "runner": "work/internetarchive/box/recapture.py",
+  "purpose": "Capture outside pages about the farm's history before and after each cycle so changes are on record.",
+  "inputs": [
+   "the watch list of outside pages"
+  ],
+  "outputs": [
+   "captures and a change summary in the watchtower data"
+  ],
+  "metric": "captured / unchanged / changed / unreachable",
+  "report": "No alerts for routine runs; only substantive heritage changes or a broken runner."
+ },
+ {
+  "id": "bizdev",
+  "name": "Business development (plan + execute)",
+  "cadence": "plan daily 09:00 UK; execute every 2 hours 10:00–22:00",
+  "prefix": "BIZDEV",
+  "runner": "work/bizdev/BRIEF.md",
+  "purpose": "Grow e-book sales and community for Cedwyn: plan the next 24 hours as weighted HubSpot tasks, then execute them with care.",
+  "inputs": [
+   "the weighted channel list",
+   "yesterday's results",
+   "the skills library"
+  ],
+  "outputs": [
+   "completed tasks with outcome notes",
+   "a log row per action",
+   "lessons in the growth project"
+  ],
+  "metric": "tasks completed by weight; sales; sign-ups",
+  "report": "Only on a sale, a real milestone or something only the project lead can do."
+ },
+ {
+  "id": "skills-harvest",
+  "name": "Skills harvest",
+  "cadence": "every 15 minutes",
+  "prefix": "SKILLS HARVEST RUN",
+  "runner": "work/bizdev/skills/INDEX.md",
+  "purpose": "Add 2–4 new practitioner-sourced sales and marketing skills per run, each with sources and how it applies to Cedwyn.",
+  "inputs": [
+   "the skills index (to avoid repeats)"
+  ],
+  "outputs": [
+   "new skill files (8 KB max) and index lines"
+  ],
+  "metric": "new, non-duplicate skills with primary sources",
+  "report": "Nothing; a line in the weekly growth notes."
+ },
+ {
+  "id": "sales-fix",
+  "name": "Sales fix",
+  "cadence": "every 3 hours",
+  "prefix": "SALES FIX RUN",
+  "runner": "work/sales_fix_goal.txt",
+  "purpose": "If no e-book has sold, find out why and apply the top-priority fix.",
+  "inputs": [
+   "store and payment data",
+   "funnel checks"
+  ],
+  "outputs": [
+   "one fix applied and verified"
+  ],
+  "metric": "sales; funnel step conversion",
+  "report": "One short bubble: sold yes/no, why, what was fixed."
+ },
+ {
+  "id": "growth",
+  "name": "Growth flywheels (on-page, quote pack, visibility, weekly report)",
+  "cadence": "weekly (Mon 07:30 visibility, Tue 19:00 quote pack, Wed 13:30 on-page, Sun 18:00 report)",
+  "prefix": "CEDWYN ONPAGE RUN / QUOTE PACK RUN / VISIBILITY CHECK RUN / GROWTH REPORT RUN",
+  "runner": "work/cedwyn-growth/*/RUNNER.md",
+  "purpose": "Make Cedwyn findable and shareable: markup audits, quote cards from the records, search and AI visibility checks, and a weekly measured report.",
+  "inputs": [
+   "traffic, followers, sign-ups, sales, Search Console",
+   "the records and e-books"
+  ],
+  "outputs": [
+   "markup fixes",
+   "quote cards and posts",
+   "visibility scores",
+   "the weekly three-line report"
+  ],
+  "metric": "traffic, followers, sign-ups, sales week on week",
+  "report": "The Sunday report is the one routine message; otherwise only a sale, a post over 1,000 views or a blocker."
+ },
+ {
+  "id": "movie",
+  "name": "Cedwyn film — daily scene",
+  "cadence": "daily 06:00 UK",
+  "prefix": "CEDWYN MOVIE RUN",
+  "runner": "work/cedwyn-movie/RUNNER.md",
+  "purpose": "Make one two-minute scene a day from the chronology, in Welsh, English and Spanish, and open the next door on /movie/.",
+  "inputs": [
+   "the editable prompt in the film repository",
+   "the bible (cast, voices, sets)",
+   "the chronology"
+  ],
+  "outputs": [
+   "one clip under 25 MB",
+   "the door opened",
+   "scripts ten frames ahead"
+  ],
+  "metric": "one quality clip per day, chronology-correct",
+  "report": "One bubble: \"Door N is open\"."
+ },
+ {
+  "id": "morning-brief",
+  "name": "Morning brief",
+  "cadence": "daily 08:00 UK",
+  "prefix": "(inline)",
+  "runner": "schedule instruction",
+  "purpose": "Tell the project lead what finished overnight, mail that needs him, today's calendar and deadlines due soon.",
+  "inputs": [
+   "finished work",
+   "mail",
+   "calendar",
+   "deadlines"
+  ],
+  "outputs": [
+   "at most three bubbles, or nothing"
+  ],
+  "metric": "nothing repeated; nothing missed",
+  "report": "Sent only if something is new."
+ },
+ {
+  "id": "intelligence",
+  "name": "Intelligence flywheel",
+  "cadence": "proposed by its build (see its schedule proposal)",
+  "prefix": "INTEL",
+  "runner": "work/intel-flywheel/RUNNER.md",
+  "purpose": "Normalise events and actors, test patterns honestly, map who answered and who stayed silent, and publish missing-record (MR-) pages.",
+  "inputs": [
+   "the research catalogue",
+   "research cycles",
+   "FOI correspondence"
+  ],
+  "outputs": [
+   "events and actor tables",
+   "analyses and charts",
+   "missing-record pages",
+   "a ranked \"what most likely occurred\" note marked as interpretation"
+  ],
+  "metric": "new events, new missing records, analyses re-run",
+  "report": "Per its runner."
+ },
+ {
+  "id": "programme-office",
+  "name": "Programme office",
+  "cadence": "weekly review (see its schedule proposal)",
+  "prefix": "PROGRAMME",
+  "runner": "work/programme-office/RUNNER.md",
+  "purpose": "Keep the objectives register (Wales tour, Argentina land and museum, chronology, e-books, the case) scored, mirrored into projects, and moving.",
+  "inputs": [
+   "HubSpot projects",
+   "growth data",
+   "research"
+  ],
+  "outputs": [
+   "re-scored objectives",
+   "project pages",
+   "draft e-books"
+  ],
+  "metric": "milestones met per objective",
+  "report": "Per its runner."
+ },
+ {
+  "id": "agent-library",
+  "name": "Agent library (this section)",
+  "cadence": "every 6 hours (proposed)",
+  "prefix": "AGENT LIBRARY CYCLE",
+  "runner": "work/agent-library/RUNNER.md",
+  "purpose": "Keep this library current: read new memory notes, lessons, runners, skills and worker reports; distil the public-safe parts; rebuild, scan, publish, log.",
+  "inputs": [
+   "memory notes",
+   "lessons log",
+   "flywheel runners",
+   "skills index",
+   "worker reports since the last cycle"
+  ],
+  "outputs": [
+   "updated library pages",
+   "agents.json and llms.txt",
+   "a CHANGELOG entry"
+  ],
+  "metric": "inputs digested; scanner clean; live check passes",
+  "report": "Nothing routine; one line to the root only when a new section of the library goes live or the scanner blocks a publish."
+ }
+]

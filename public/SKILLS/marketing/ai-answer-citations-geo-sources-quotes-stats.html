@@ -1,0 +1,50 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Getting cited in AI answers (ChatGPT, Perplexity, Google AI Overviews / AI Mode) · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Getting cited in AI answers (ChatGPT, Perplexity, Google AI Overviews / AI Mode)"><link rel="alternate" type="text/markdown" href="ai-answer-citations-geo-sources-quotes-stats.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Getting cited in AI answers (ChatGPT, Perplexity, Google AI Overviews / AI Mode)</h1>
+<p>Skill harvested 2026-10-26 (skills harvest 17:22). Scope: what to change on a page so generative engines quote it and link it. Measurement tools (Bing AI Performance, Search Console generative AI report) are separate skills already in the index; this one is the content-side playbook.</p>
+<h2>What the evidence shows</h2>
+<ol>
+<li><strong>Sources, quotations and statistics win; keyword stuffing does not.</strong> The Princeton/IIT Delhi GEO paper (Aggarwal et al., KDD 2024, arXiv 2311.09735, read in full on the HTML page) tested 9 page rewrites on 10,000 queries (GEO-bench). The top three methods, <em>Cite Sources</em>, <em>Quotation Addition</em> and <em>Statistics Addition</em>, gave a 30-40% relative gain in "position-adjusted word count" (how much of the answer comes from your page, weighted by position) and 15-30% on subjective impression. Keyword stuffing performed at or below baseline. The paper reports the gains were largest for sites that ranked lower in ordinary search, which suits a small site.</li>
+<li><strong>Ranking still helps but is no longer enough.</strong> Ahrefs (Louise Linehan, 2 Mar 2026; 863K SERPs, 4M AI Overview URLs, read in full): only 38% of AI Overview citations also rank in Google's top 10 for the same query, down from 76% a year earlier. Their explanation: Gemini 3 "fan-out" queries pull sources from related searches. So a page can be cited for a question it does not rank for, if it answers a sub-question cleanly.</li>
+<li><strong>YouTube is a citation source in its own right.</strong> Same Ahrefs study: 18.2% of AI Overview citations that did not rank in the top 100 were YouTube URLs (5.6% of all citations).</li>
+<li><strong>Schema markup alone does not move citations.</strong> Ahrefs (11 May 2026; 1,885 pages that added JSON-LD vs 4,000 matched controls, Aug 2025-Mar 2026, read in full): AI Overviews -4.6% (small, significant), AI Mode +2.4% and ChatGPT +2.2% (both indistinguishable from zero). Keep schema for rich results, not for AI citations.</li>
+</ol>
+<h2>How to do it (one page at a time)</h2>
+<ol>
+<li><strong>List the questions.</strong> Write 10 plain questions a reader would type into ChatGPT or Google about the subject ("When is a farm first mentioned in the records?", "What happened to the farmhouse?"). Add 2-3 fan-out sub-questions each.</li>
+<li><strong>Answer first, in one quotable paragraph.</strong> Under an H2 that repeats the question, put a 40-70 word answer that stands alone: who, what, when, with the year and the record named.</li>
+<li><strong>Add the three winning ingredients to that paragraph or the next one:</strong>
+   - <em>Cite Sources:</em> name the record and link it (archive reference, newspaper title and date, broadcaster and year).
+   - <em>Quotation Addition:</em> one short verbatim line from a period record, in quote marks, with its source line.
+   - <em>Statistics Addition:</em> a concrete number (acreage, year, count of records) instead of an adjective.</li>
+<li><strong>Keep each fact in one place.</strong> One canonical page per fact; other pages link to it. Engines cite the clearest single source.</li>
+<li><strong>Make it reachable.</strong> Plain HTML text (not inside images or PDFs only), allowed in robots.txt for the AI crawlers you want, listed in the sitemap. (Agent endpoints and IndexNow are covered in <code>indexnow-websub-webmcp-agent-endpoints.md</code>.)</li>
+<li><strong>Mirror the answer on YouTube.</strong> A short video with the same question as its title, the answer spoken in the first 15 seconds, and the source in the description and captions (see <code>youtube-chapters-captions-transcripts-archive.md</code>).</li>
+<li><strong>Measure monthly.</strong> Ask the same 10 questions in ChatGPT, Perplexity and Google AI Mode; log cited yes/no and which URL in a sheet. Compare with the Bing/Search Console AI reports.</li>
+</ol>
+<h2>Pitfalls</h2>
+<ul>
+<li>Do not invent statistics or quotes to fit the method; a wrong figure that gets cited spreads.</li>
+<li>Do not rewrite the whole site at once; change 3 pages, wait 3-4 weeks, compare.</li>
+<li>Third-party summaries of the GEO paper often round "30-40%" up to "40% for every tactic"; use the paper's own numbers.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Pages first:</strong> the farm's records timeline page, the /ebooks/ page, and the evidence page for each key year.</li>
+<li><strong>Example answer block (records timeline):</strong>
+  "When is the farm first recorded? The first record mention found is the 1824 David Stewart survey. The family acquired Tŷ Mawr in 1667 (1974 newspapers; ITV News 1988)." Then one verbatim line from the 1824 survey in quote marks with its archive reference, and a linked list of sources.</li>
+<li><strong>Example statistics swap:</strong> replace "a large farm" with the acreage as written in the named survey, with the survey linked.</li>
+<li><strong>Close each answer page with one next step:</strong> "Read the full records trail in the free edition" linking to /ebooks/ with utm_source=ai-answer-page, so AI-referred visitors land on the shop path.</li>
+<li><strong>Questions sheet:</strong> keep the 10 questions in the project workspace so the weekly visibility check (Grok 5 questions) can extend to ChatGPT/Perplexity by hand.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>Aggarwal, Murahari, Rajpurohit, Kalyan, Narasimhan, Deshpande, "GEO: Generative Engine Optimization", KDD 2024: arxiv.org (HTML: arxiv.org) - read in full.</li>
+<li>Ahrefs, "Update: 38% of AI Overview Citations Pull From The Top 10", 2 Mar 2026: ahrefs.com - read in full.</li>
+<li>Ahrefs, "We Tracked 1,885 Pages Adding Schema. AI Citations Barely Moved.", 11 May 2026: ahrefs.com - read in full.</li>
+<li>Not used: a Medium post putting Reddit at 24% of Perplexity citations in Jan 2026 (snippet only, not checked).</li>
+</ul><p class="raw">Raw Markdown: <a href="ai-answer-citations-geo-sources-quotes-stats.md">ai-answer-citations-geo-sources-quotes-stats.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

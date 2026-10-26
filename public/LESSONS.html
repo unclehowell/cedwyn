@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LESSONS — mistakes and the rules they produced · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: LESSONS — mistakes and the rules they produced"><link rel="alternate" type="text/markdown" href="LESSONS.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="index.html"><b>Agent library</b></a><a href="SOUL.html">Soul</a><a href="ONBOARDING.html">Onboarding</a><a href="MEMORY/index.html">Memory</a><a href="SKILLS/index.html">Skills</a><a href="FLYWHEELS/index.html">Flywheels</a><a href="HARNESS/index.html">Harness</a><a href="LESSONS.html">Lessons</a></nav><main><h1>LESSONS — mistakes and the rules they produced</h1>
+<p>Each lesson: what happened → why → the rule now. Newest lessons are appended by the library flywheel from the project's lessons log and worker reports.</p>
+<h2>Coordination</h2>
+<ul>
+<li><strong>Relay loop (26 Oct 2026).</strong> One worker's report was relayed to the project lead five times in three minutes, plus an apology. → Why: each new turn re-read the same report and nothing recorded that it was sent. → Rule: one relay per report; record "sent once" in memory before ending the turn; check the record before any relay.</li>
+<li><strong>Duplicate spawns.</strong> Schedules firing every few minutes started second workers for jobs already running. → Rule: every schedule checks running work by a fixed goal prefix and does nothing if one is running.</li>
+<li><strong>A held conversation (20 Oct 2026).</strong> The main conversation was held by a long job for over ten hours; scheduled runs queued and the project lead heard nothing. → Rule: long work always goes to a worker; any gap over two hours in an active programme gets a one-line status.</li>
+<li><strong>Wiki write races (20 Oct 2026).</strong> A bulk wording pass wrote pages from copies read before another worker's edits and silently undid them. → Rule: re-read the record's modified time immediately before writing; re-verify your change a few minutes later while other writers run.</li>
+<li><strong>Stale generated file (21 Oct 2026).</strong> A push overwrote a sibling's rebuilt script with an old local build. → Rule: after every fetch or rebase, re-run the generator on the fetched sources.</li>
+<li><strong>Superseded runner steps (26 Oct 2026).</strong> A runner still mandated steps that a newer order had replaced, and a refresh committed to a frozen target. → Rule: read the newest standing orders before step one of any runner; newer orders win.</li>
+</ul>
+<h2>Outward actions</h2>
+<ul>
+<li><strong>Quoted history in a reply (20 Oct 2026).</strong> An email re-quoted an earlier message the recipient had been asked to disregard. → Rule: send as a new message or strip quoted history; scan the full outgoing bytes, quoted parts included.</li>
+<li><strong>Fee wording.</strong> A request offered to pay copying charges. → Rule: scan drafts for pay, quotation and cost wording; no draft commits the project lead to anything.</li>
+<li><strong>Asking the same body twice.</strong> A ladder step suggested a question already asked months earlier. → Rule: search sent and draft mail for the body and its predecessors before drafting; re-check the premise.</li>
+<li><strong>Time zones (20 Oct 2026).</strong> A brief gave a UTC time as BST. → Rule: every time names its zone.</li>
+</ul>
+<h2>Publishing</h2>
+<ul>
+<li><strong>Price drift (20 Oct 2026).</strong> After a price change, old prices stayed on eight surfaces and in scheduled captions. → Rule: prices are read from the store data; any price or fact change triggers a sweep of everything scheduled or queued.</li>
+<li><strong>A banned phrase on a mirror (20 Oct 2026).</strong> → Rule: scan every publish, mirrors and copied pages included; builds fail on a hit.</li>
+<li><strong>A private surname in an e-book (19 Oct 2026).</strong> → Rule: privacy scan on the final bytes of every book or page.</li>
+<li><strong>A date inferred from a filename (20 Oct 2026).</strong> A plan was captioned with a date and origin taken from its media title. → Rule: captions state only what the record shows; never infer dates from filenames, titles or neighbours.</li>
+<li><strong>Archive photos nearly published (20 Oct 2026).</strong> Photos taken under a private-photography undertaking almost went public. → Rule: never publish them without the archivist's written authority.</li>
+<li><strong>Outside dates repeated (26 Oct 2026).</strong> Pages repeated pre-1824 outside catalogue dates as if they were records of the house. → Rule: outside records are tested, not repeated; see the chronology corrections.</li>
+<li><strong>Hedging family evidence (26 Oct 2026).</strong> Phrases framing the 1667 acquisition as an unsupported story. → Rule: cite the record; never hedge it.</li>
+</ul>
+<h2>Tools and platforms</h2>
+<ul>
+<li><strong>Connected-app retries.</strong> After one failure an identical retry can be refused, and a server error on a write does not prove nothing was written. → Rule: read the target state, then retry once with one harmless change.</li>
+<li><strong>Cache-busting parameters</strong> are rejected by some payment APIs as unknown parameters. → Rule: no cache-buster on those calls.</li>
+<li><strong>Wildcard edge workers (25 Oct 2026)</strong> ran on every asset request and exhausted the free daily quota by midday. → Rule: scope page-injecting workers to HTML or bake the change into the build.</li>
+<li><strong>Library catalogues behind bot protection</strong> refuse plain fetches. → Rule: use a real browser session, or the cycle's saved article text for re-reads.</li>
+<li><strong>Measuring build stamps, not data (24 Oct 2026).</strong> An adapter read dates from a homepage's HTML. → Rule: point adapters at the data endpoint the page itself fetches.</li>
+<li><strong>Broad sweeps vs named pointers (26 Oct 2026).</strong> A week of broad newspaper sweeps moved no score; named pointers (a register entry, a deed, a case citation) produced the finds. → Rule: prefer named-pointer routes.</li>
+<li><strong>Truncated attachment IDs (26 Oct 2026).</strong> Three mail-attachment downloads failed as "invalid token" because the long attachment ID had been cut short in a brief. → Rule: never slice an ID; pass it whole from a file.</li>
+<li><strong>Stale script after a build (26 Oct 2026).</strong> A site-wide form fix shipped, but the edge kept serving the old script because its version parameter did not change. → Rule: bump the asset version in the build whenever a script changes, then purge the cache for that file.</li>
+<li><strong>Rate-limited forms (26 Oct 2026).</strong> The sign-up list accepts six sign-ups per hour from one address; live tests used five. → Rule: test with one designated test address, sparingly, and note the window in the report.</li>
+<li><strong>Already-published media keeps old wording (26 Oct 2026).</strong> Reels aired before a wording change still carried an old price and outdated lines, and the platform refused edits. → Rule: when a standing order changes, list every published item it touches; replacements and deletions of live posts are proposals for the project lead.</li>
+<li><strong>Dark-mode inversion (22 Oct 2026)</strong> muddied data visualisations. → Rule: mark the figure to keep its own colours; never edit the shared theme for one page.</li>
+</ul><p class="raw">Raw Markdown: <a href="LESSONS.md">LESSONS.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="agents.json">agents.json</a></p></main></body></html>

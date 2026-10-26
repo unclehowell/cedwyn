@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bing Webmaster Tools: AI Performance (Copilot citations) + import from Search Console · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Bing Webmaster Tools: AI Performance (Copilot citations) + import from Search Console"><link rel="alternate" type="text/markdown" href="bing-webmaster-ai-performance-copilot-citations.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Bing Webmaster Tools: AI Performance (Copilot citations) + import from Search Console</h1>
+<p>Harvested 26 Oct 2026 (skills harvest). Free. Gives first-party data on when Microsoft Copilot and Bing's AI answers cite our pages, which Google does not give at page level.</p>
+<h2>What the primary sources establish</h2>
+<ul>
+<li>Microsoft, 10 Feb 2026 (blogs.bing.com): <strong>AI Performance</strong> (public preview) shows how often a site is cited in AI answers across Microsoft Copilot, AI summaries in Bing and select partner integrations. Metrics: <strong>Total citations</strong>, <strong>Average cited pages</strong> per day, <strong>Grounding queries</strong> (the phrases the AI used when retrieving our content; a sample), <strong>page-level citation counts</strong>, and a trend line. Bing respects robots.txt choices.</li>
+<li>Microsoft, Jun 2026 (blogs.bing.com): four more preview views: <strong>Intents</strong> (grounding queries classed as Informational, Research, Learn and Solve, Local, Commercial...), <strong>Topics</strong> (queries clustered into themes), <strong>Citation Share</strong> (our presence relative to other cited sources) and <strong>Compare</strong> (change between periods).</li>
+<li>Microsoft's own improvement advice for pages indexed but rarely cited: clear headings, tables and FAQ sections; examples, data and cited sources; regular updates.</li>
+<li>Bing help (Add and verify site): sites can be <strong>imported from Google Search Console</strong>, carrying verification and settings; the 2019 Bing post confirms multi-site import in one step.</li>
+<li>Practitioner test (CXL, 2026): "a citation isn't an impression, and neither is automatically a click"; grounding queries are sampled retrieval phrases, not what users typed. Same article: Ahrefs' March 2026 study of 4M Google AI Overview citation URLs found only 37.1% also ranked top-10 organically, i.e. AI citation is a separate visibility channel.</li>
+<li>Practitioner post (Chris Long, LinkedIn, Feb 2026, from its search preview only, not opened): one site with zero Google visibility but strong Bing performance had 90K+ citations. Treat as one anecdote.</li>
+</ul>
+<h2>The playbook</h2>
+<ol>
+<li>Sign in at bing.com with the Google account that owns Search Console; choose <strong>Import from Google Search Console</strong>; tick the Cedwyn property (and the other estate hosts if wanted). Verification carries over; the sitemap is read from GSC, or submit /sitemap.xml.</li>
+<li>Turn on IndexNow from the same dashboard if not already pinging (tools/index_ping.py already does it from the box).</li>
+<li>Weekly (5 min): AI Performance &gt; last 7 days: total citations, top 10 cited URLs, top grounding queries, Intents mix. Log to the visibility scores.csv.</li>
+<li>For each strong grounding query we are NOT cited for: check the page that should answer it: one dated, sourced statement at the top, a heading that matches the question, a short table (date / record / source) where it fits.</li>
+<li>Use Citation Share/Compare monthly to see whether the Cedwyn framing or outside narratives get cited for the core questions (Tŷ Mawr, Great House Farm Llandough, Buckler, Cedwyn).</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Fold the weekly numbers into the Monday visibility check (schedule 85e9deca) alongside the Grok questions; it replaces guesswork about whether AI assistants read our site.</li>
+<li>Grounding queries tell us the words people's AI questions use for the place. Feed variants into the names e-book work (/nomenclature/) and the headline-first pages: each headline should be the answer to a real grounding query.</li>
+<li>Page fixes follow the project lead's framing rules: the Williams family as the family of standing; 1824 David Stewart survey as the first record mention of Tŷ Mawr found; 1667 as the family's acquisition (1974 newspaper reports of Mary Williams' statement; ITV News 1988); Bute records never as Tŷ Mawr history before 1824.</li>
+<li>Bing's AI only cites indexed pages: the indexing triage (page-indexing-triage-duplicates-canonicals.md) comes first.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>blogs.bing.com</li>
+<li>blogs.bing.com</li>
+<li>bing.com</li>
+<li>bing.com</li>
+<li>blogs.bing.com</li>
+<li>cxl.com</li>
+</ul><p class="raw">Raw Markdown: <a href="bing-webmaster-ai-performance-copilot-citations.md">bing-webmaster-ai-performance-copilot-citations.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

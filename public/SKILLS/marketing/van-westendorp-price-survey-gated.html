@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Van Westendorp price sensitivity survey (4 questions) - gated pricing research for e-books and tours · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Van Westendorp price sensitivity survey (4 questions) - gated pricing research for e-books and tours"><link rel="alternate" type="text/markdown" href="van-westendorp-price-survey-gated.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Van Westendorp price sensitivity survey (4 questions) - gated pricing research for e-books and tours</h1>
+<p>Date: 2026-10-26. Topic: e-book / tour voucher pricing research without asking "what would you pay?". Complements ebook-pricing-bundles-direct.md, pay-what-you-want-floor-suggested-price.md and local-currency-pricing (which cover price structures, not measuring willingness to pay).</p>
+<h2>Evidence</h2>
+<ul>
+<li>OpinionX guide (21 Oct 2026, read): OpenAI ran a 4-question Van Westendorp Google Form in its Discord weeks before launching ChatGPT Plus in early 2023; the answers pointed at USD 20/month and Plus shipped at USD 20 (story told by OpenAI's Nick Turley on Lenny's Newsletter - that interview not checked by us).</li>
+<li>Same guide: direct "what would you pay" answers overstate real payment by about 20% for everyday consumer products (J. Academy of Marketing Science 2020) and about a third across 28 studies (cited by OpinionX; not checked).</li>
+<li>Same guide: plan on at least 100 completed responses, and 100 per segment if you compare groups.</li>
+</ul>
+<h2>The four questions (standard wording - keep it)</h2>
+<ol>
+<li>At what price would this be so cheap you'd question its quality? (Too cheap)</li>
+<li>At what price would this be a bargain - a great buy for the money? (Cheap)</li>
+<li>At what price does this start to feel expensive, but you'd still consider it? (Expensive)</li>
+<li>At what price would this be so expensive you wouldn't consider it? (Too expensive)
+Optional Newton-Miller-Smith add-on: "How likely are you to buy at <your cheap answer>?" and "...at <your expensive answer>?" on a 5-point scale - turns the ranges into a demand/revenue estimate.</li>
+</ol>
+<h2>Reading the result (four line intersections)</h2>
+<ul>
+<li>Optimal Price Point = Too cheap x Too expensive (fewest people rule it out).</li>
+<li>Floor (Point of Marginal Cheapness) = Too cheap x Expensive.</li>
+<li>Ceiling (Point of Marginal Expensiveness) = Cheap x Too expensive.</li>
+<li>Indifference Price Point = Cheap x Expensive.
+Price inside floor-ceiling; pick near OPP unless the NMS revenue curve points elsewhere.</li>
+</ul>
+<h2>How to run it with free tools</h2>
+<ol>
+<li>Google Forms (free): show a one-paragraph product description + cover image first, then the 4 questions as number fields (GBP), in that order; add NMS questions if wanted; one segment question (UK / Argentina / elsewhere; bought Welsh history before yes/no).</li>
+<li>Clean: drop rows where answers are not ascending (Q1 &lt; Q2 &lt; Q3 &lt; Q4).</li>
+<li>Analyse in a sheet or 20 lines of pandas: for each price from 0 to max, % of respondents at or below each answer (cumulative; invert Q1 and Q2), find the crossings.</li>
+<li>Treat as a range finder, not a forecast: stated-price surveys skew high (see 20-33% gap above).</li>
+</ol>
+<h2>Gate (do not run until)</h2>
+<ul>
+<li>At least 100 completed responses are realistically reachable (list + followers + one partner newsletter); below that the curves are noise. Under 100: run a simple live price test (stripe-payment-links-wallets-ab-gate.md) or pay-what-you-want with a floor instead.</li>
+</ul>
+<h2>How we apply it to Cedwyn (PROPOSAL - pricing is decided by the owner)</h2>
+<ul>
+<li>Current state: 8 e-books at GBP 9.99, bundle GBP 31.99, tour vouchers GBP 25/45/90, 0 sales; audience far below 100 - so this is HELD until the list/followers can deliver 100 answers.</li>
+<li>When gated in: one form covering (a) a single e-book, (b) the 8-title bundle, (c) a 2-hour guided tour; segment by UK vs Argentina (separate GBP/ARS pricing questions for Spanish readers); offer no incentive that is paid.</li>
+<li>Output: the four points per product into the project workspace<date>.md, plus a recommendation queued to the project workspace Never change a live price from this alone.</li>
+<li>Ethics: describe products accurately in the form; no fake scarcity; collect no names or emails in the form unless the respondent opts in separately.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>opinionx.co (read)</li>
+<li>sawtoothsoftware.com (snippet only, not checked)</li>
+</ul><p class="raw">Raw Markdown: <a href="van-westendorp-price-survey-gated.md">van-westendorp-price-survey-gated.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

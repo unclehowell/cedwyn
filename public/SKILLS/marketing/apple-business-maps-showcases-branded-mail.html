@@ -1,0 +1,58 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Apple Business (ex-Business Connect): Apple Maps place card, Showcases, Branded Mail logo · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Apple Business (ex-Business Connect): Apple Maps place card, Showcases, Branded Mail logo"><link rel="alternate" type="text/markdown" href="apple-business-maps-showcases-branded-mail.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Apple Business (ex-Business Connect): Apple Maps place card, Showcases, Branded Mail logo</h1>
+<p>Date: 2026-10-26. Topic: free local listing + inbox logo across Apple Maps, Siri, Spotlight, Safari and Apple Mail. Complements google-maps-gbp-demolished-heritage-site.md (Google side) and mailchimp-sending-domain-auth-dmarc-free-from.md (DMARC basics). Status for Cedwyn: PROPOSAL (new public listing + DNS change).</p>
+<h2>What changed in 2026 (primary)</h2>
+<ul>
+<li>Apple newsroom, 24 Mar 2026 (read): "Apple Business" replaced Apple Business Connect, Business Essentials and Business Manager from 14 Apr 2026; free in the US and 200+ countries; existing Business Connect data (place cards, photos) migrated automatically. Brand tools now live there: brand profiles (name/logo across Maps and Wallet), rich place cards (photos, hours, details shown in Maps, Safari, Spotlight), Showcases and custom actions ("order"/"reserve" button to a chosen website), location insights (searches, views, taps), and Branded Mail (logo in Apple Mail and iCloud Mail). Some features "may be available in select countries".</li>
+<li>Apple newsroom, 11 Jan 2023 (read): the original free tool for place-card customisation.</li>
+</ul>
+<h2>Numbers from practitioners</h2>
+<ul>
+<li>Uberall (listings agency blog, read): multi-location clients VIP Tires and SUNMED saw +27% year-on-year Apple Maps interactions, and up to +312% YoY interactions on some profiles after active place-card management (agency figures; method not checked).</li>
+<li>Iterable (ESP blog, read): BIMI's Verified Mark Certificate typically costs USD 1,000-1,500/yr plus trademark fees; Apple Branded Mail needs no certificate and is free.</li>
+</ul>
+<h2>Requirements (Apple support, read)</h2>
+<ul>
+<li>Location: Brands &gt; Locations &gt; Add. A first location needs the organisation verified by Apple; an existing Maps location can also be verified by an Apple phone call to the listed number. Set mail filters to allow all apple.com domains (review mail).</li>
+<li>Branded Mail (Apple support "Intro to Branded Mail" + "Verify your email domain", read): organisation verified; brand + logo approved by Apple; every email DKIM-authenticated (SPF-only not supported); DMARC with v=DMARC1, p=quarantine or reject (sp=quarantine/reject when the record sits on the parent and you register a subdomain), pct=100. Example: v=DMARC1;p=reject;pct=100;</li>
+<li>Service-area businesses without a storefront: Apple Community and local-SEO forum threads (2025-26, read as titles/snippets) show Apple often refuses listings with no public premises; one home-services vendor page states a service area can be listed without a home address (not checked against Apple's own docs).</li>
+</ul>
+<h2>How to do it (30-45 min once eligible)</h2>
+<ol>
+<li>Decide what the listing IS: a tour that starts at a public meeting point (church gate, village green) - never a private address. If Apple insists on premises, skip the place card and do Branded Mail only.</li>
+<li>Sign up at business.apple.com, verify the organisation (company or sole-trader documents; Apple review).</li>
+<li>Brand: upload the Cedwyn logo (square, plain background), short description, website link to the tour/booking page.</li>
+<li>Place card: category (tour operator / historical landmark tours), hours = tour times, 6-10 real photos (site, church, archive images with rights), custom action "Book" -&gt; the booking page with UTM (utm_source=apple_maps&amp;utm_medium=place_card).</li>
+<li>Showcase: one timed post per season (St David's Day, Open Doors September, Christmas gift vouchers). Body limits vary by source (agencies quote 58-100 characters; not checked) - keep to one sentence + one action.</li>
+<li>Branded Mail: only after DMARC is at quarantine/pct=100 with DKIM aligned (see DMARC skill rollout). Register the sending domain; test by sending to an iCloud address and checking the logo on iPhone Mail.</li>
+<li>Monthly: read location insights (searches, views, action taps) into the growth report.</li>
+</ol>
+<h2>Pitfalls</h2>
+<ul>
+<li>p=none blocks Branded Mail outright. Jumping to quarantine before every sender (Mailchimp, Stripe receipts, Gmail alias, HubSpot) passes DKIM risks losing real mail - roll out pct 25 -&gt; 100 with rua reports first.</li>
+<li>A listing at a former house site can pull visitors to a residential close; choose a public meeting point and say "site of" in text only.</li>
+<li>Apple review rejects places that look 24-hour/unstaffed; give real tour hours.</li>
+</ul>
+<h2>How we apply it to Cedwyn (PROPOSAL - new public listing and DNS change)</h2>
+<ul>
+<li>Checked today: _dmarc.bucklerfamily.estate TXT = "v=DMARC1; p=none;" (Cloudflare DNS read 26 Oct 2026) - so Branded Mail is NOT available yet. Prerequisite = finish the DMARC rollout in mailchimp-sending-domain-auth-dmarc-free-from.md (add rua, then quarantine pct=25 -&gt; 100).</li>
+<li>Place card: only when the guided tour has a launch date and a public meeting point (church gate or village green), booking page live, and a verifiable organisation. Hold until the Wales tour project names the operator entity.</li>
+<li>Showcase calendar ready to reuse: St David's Day (1 Mar), Open Doors (Sept), 28 July Glaniad, Christmas vouchers.</li>
+<li>KPI: place-card views and "Book" taps per month (insights) + utm_source=apple_maps sessions; Branded Mail = iCloud-reader open-rate change vs prior 4 sends (directional only on a small list).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>apple.com (read)</li>
+<li>apple.com (read)</li>
+<li>support.apple.com (read)</li>
+<li>support.apple.com (read)</li>
+<li>support.apple.com (read)</li>
+<li>uberall.com (read)</li>
+<li>iterable.com (read)</li>
+<li>discussions.apple.com (snippet only, not checked in full)</li>
+</ul><p class="raw">Raw Markdown: <a href="apple-business-maps-showcases-branded-mail.md">apple-business-maps-showcases-branded-mail.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,78 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Getting archive videos indexed: the Search Console &quot;Video indexing&quot; report · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Getting archive videos indexed: the Search Console &quot;Video indexing&quot; report"><link rel="alternate" type="text/markdown" href="search-console-video-indexing-watch-pages.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Getting archive videos indexed: the Search Console "Video indexing" report</h1>
+<p>Harvested 2026-10-26. For Cedwyn's own video pages (the movie doors, archive clips), not YouTube's copy (that is in youtube-chapters-captions-transcripts-archive.md).</p>
+<h2>What Google requires (Google Search Central, primary)</h2>
+<ul>
+<li><strong>The watch page must be indexed first</strong>, and "performing well in Search" before its video is considered. An indexed page does not mean an indexed video.</li>
+<li><strong>One video per page is indexed.</strong> The report shows one video per page even when several are found.</li>
+<li><strong>Watch page = the page's main purpose is one video.</strong> Google lists these as NOT watch pages: a blog post where the video complements the text, a product page with a side video, a category page listing several videos of equal prominence.</li>
+<li>The player must be <strong>in the rendered HTML at its real size on load</strong>. A poster image that must be clicked to load the player gives "Cannot determine video position and size".</li>
+<li>A <strong>valid thumbnail at a stable URL</strong> (not robots-blocked, not mostly transparent: at least 80% of pixels with alpha above 250). Same title, thumbnail and video URL in every source (JSON-LD, sitemap, og: tags), or Google may reject the thumbnail.</li>
+<li>Supported files include <strong>WebM, MP4, M3U8</strong>; data: URLs are not. Short-lived CDN URLs break indexing.</li>
+<li>VideoObject structured data needs <code>name</code>, <code>thumbnailUrl</code>, <code>uploadDate</code>; Google's structured-data page also sets a 30-second minimum duration for some video features.</li>
+</ul>
+<h2>The report's reasons and the fix for each</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Reason</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Video isn't on a watch page</td>
+<td>Give each clip its own page with the player first, above the text.</td>
+</tr>
+<tr>
+<td>Cannot determine video position and size</td>
+<td>Put a real <code>&lt;video&gt;</code>/<code>&lt;iframe&gt;</code> in the HTML on load; no click-to-load facade for the main clip.</td>
+</tr>
+<tr>
+<td>No thumbnail URL provided</td>
+<td><code>poster=</code> on <code>&lt;video&gt;</code> + <code>thumbnailUrl</code> in JSON-LD (same URL).</td>
+</tr>
+<tr>
+<td>Invalid / unsupported / blocked / unreachable thumbnail</td>
+<td>JPEG or PNG, at least 60x30 px, public URL, allowed in robots.txt.</td>
+</tr>
+<tr>
+<td>Video not found on host service</td>
+<td>Check the file/ID still resolves; fix the URL.</td>
+</tr>
+<tr>
+<td>Video not processed (yet)</td>
+<td>Stable URLs; wait a few days; re-inspect.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>How to work the report (weekly, 10 minutes)</h2>
+<ol>
+<li>Search Console &gt; Indexing &gt; Videos. "Video indexed" + "No video indexed" should roughly equal our number of video pages. A <strong>low total</strong> = the pages themselves aren't indexed (fix page indexing first). A <strong>high "No video indexed"</strong> = one of the reasons above.</li>
+<li>Click a reason, open an example URL, run <strong>URL Inspection &gt; Test live URL</strong>. No "Video indexing" section in the result = Google found no video in the rendered page.</li>
+<li>Fix, then "Validate fix" in the report (one click per reason, not per URL).</li>
+<li>Track the Performance report with the <strong>Search appearance: Videos</strong> filter.</li>
+</ol>
+<h2>Evidence it matters (numbers)</h2>
+<ul>
+<li>Google's December 2023 watch-page rule removed video results from pages where the video was secondary; video features across tracked results then fell (Vidico's 2026 roundup cites a drop from a 53.7% peak to 38.5% of tracked results showing video). Roundup figure, not checked against the tracker's own data.</li>
+<li>Pages whose video gets indexed can appear in the Videos tab, video carousels and Discover; the report's chart shows those impressions per page.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<p>Checked live 26 Oct 2026 (<code>tools/video_watch_check.py</code>):
+- <strong>/movie/</strong> has one <code>&lt;video id="cm-video"&gt;</code> with <strong>no <code>src</code> and no <code>poster</code> in the HTML</strong> (filled by script) and <strong>no VideoObject JSON-LD</strong>. It also carries acts, prompt and change log, so it reads as a hub, not a watch page. Expected result in the report: "Cannot determine video position and size" or "No thumbnail URL provided".
+- Proposal (for the sole Cedwyn committer, not done here): one watch page per door, e.g. <code>/movie/door-1/</code>: player first with <code>src</code> + <code>poster</code> in the static HTML, a one-line headline, then the script/transcript in <code>&lt;details&gt;</code> (headline-first skill), VideoObject with <code>name</code>, <code>description</code>, <code>thumbnailUrl</code>, <code>uploadDate</code>, <code>contentUrl</code>, <code>duration</code>, <code>inLanguage</code> (cy/en/es tracks). Keep /movie/ as the hub linking to each door.
+- Add each door page to the sitemap (and optionally a <code>&lt;video:video&gt;</code> entry with the same thumbnail URL), then ask Google to index once via URL Inspection.
+- Google has indexed only 2 Cedwyn pages so far, so step 1 (page indexing) comes before any video result.</p>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com (requirements, watch page, thumbnails, file types)</li>
+<li>support.google.com (Video indexing report: statuses, reasons, fixes)</li>
+<li>developers.google.com (VideoObject, 30 s minimum)</li>
+<li>vidico.com (2023 watch-page change, roundup numbers)</li>
+</ul><p class="raw">Raw Markdown: <a href="search-console-video-indexing-watch-pages.md">search-console-video-indexing-watch-pages.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

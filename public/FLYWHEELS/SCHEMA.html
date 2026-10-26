@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Flywheel schema — the template every wheel copies · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Flywheel schema — the template every wheel copies"><link rel="alternate" type="text/markdown" href="SCHEMA.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../index.html"><b>Agent library</b></a><a href="../SOUL.html">Soul</a><a href="../ONBOARDING.html">Onboarding</a><a href="../MEMORY/index.html">Memory</a><a href="../SKILLS/index.html">Skills</a><a href="../FLYWHEELS/index.html">Flywheels</a><a href="../HARNESS/index.html">Harness</a><a href="../LESSONS.html">Lessons</a></nav><main><h1>Flywheel schema — the template every wheel copies</h1>
+<p>A flywheel is a self-running loop, not a task. It has five parts, kept in its own folder:</p>
+<pre><code>&lt;wheel&gt;/
+  RUNNER.md          the fixed program: purpose, one cycle step by step, rules, report format
+  tools/             scripts the cycle runs (each under a hard timeout)
+  state/             what the last cycle saw and decided (JSON), so the next cycle resumes
+  log.csv | log.md   one row per cycle: when, what changed, metric before/after
+  SCHEDULE_PROPOSAL.md  the cadence and the exact spawn instruction for the scheduler
+</code></pre>
+<h2>RUNNER.md sections (in this order)</h2>
+<ol>
+<li><strong>Purpose</strong> — one paragraph; who asked, when, in their words where possible.</li>
+<li><strong>Inputs</strong> — files, records and live pages the cycle reads first.</li>
+<li><strong>The cycle</strong> — numbered steps; the first step always re-reads live state; the last always writes state and log.</li>
+<li><strong>Metric</strong> — the fixed measure a change must improve to be kept.</li>
+<li><strong>Rules</strong> — the standing orders that apply, plus wheel-specific ones.</li>
+<li><strong>Outputs</strong> — exact paths and URLs written.</li>
+<li><strong>Report</strong> — the shape of the report to the root, and when the project lead hears anything at all.</li>
+</ol>
+<h2>The schedule instruction (what the scheduler stores)</h2>
+<pre><code>&lt;WHEEL NAME&gt; (&lt;cadence&gt;), for the project lead. &lt;Who asked, when, in their words.&gt;
+Each occurrence:
+1. List running work. If a worker whose goal starts &quot;&lt;PREFIX&gt;&quot; is running, do nothing.
+2. Otherwise spawn ONE worker (kind &lt;kind&gt;, references [&lt;RUNNER.md&gt;, ...]) with goal:
+   &quot;&lt;PREFIX&gt; per &lt;RUNNER.md&gt;: &lt;one-sentence cycle&gt;. &lt;rules&gt;. Send the project lead nothing.
+    Report: &lt;fields&gt;.&quot;
+3. When it reports: &lt;exactly when the project lead hears anything, and in how many bubbles&gt;.
+Never change the cadence without asking the project lead.
+</code></pre>
+<h2>Machine-readable form</h2>
+<p>Every wheel is also an entry in <code>flywheels.json</code> with the keys: <code>id, name, cadence, prefix, runner, purpose, inputs, outputs, metric, report</code>.</p><p class="raw">Raw Markdown: <a href="SCHEMA.md">SCHEMA.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../agents.json">agents.json</a></p></main></body></html>

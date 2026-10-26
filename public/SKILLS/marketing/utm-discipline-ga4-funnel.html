@@ -1,0 +1,121 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UTM discipline + GA4 funnel exploration for a small e-book site (2026) · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: UTM discipline + GA4 funnel exploration for a small e-book site (2026)"><link rel="alternate" type="text/markdown" href="utm-discipline-ga4-funnel.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>UTM discipline + GA4 funnel exploration for a small e-book site (2026)</h1>
+<p>Harvested 2026-10-26. Goal: know which email variant, post or page produced a signup, a read or a sale, without corrupting the data.</p>
+<h2>Rules that matter (with sources)</h2>
+<ol>
+<li><strong>Never put UTMs on internal links.</strong> Analytics Mania (Julius Fedorovicius): "Internal links (e.g. on your menu links) should never be tagged with UTMs … it can mess up your attribution." Optimize Smart: they override the original source/medium. A visitor who came from our outreach email and then clicks a UTM-tagged header strip gets re-credited to the strip, which destroys the A/B read.
+   - For internal clicks, use a <strong>GA4 event</strong> instead: <code>gtag('event','upsell_click',{placement:'header_strip',book:'&lt;slug&gt;'})</code>.</li>
+<li><strong>Lowercase everything, with one fixed vocabulary.</strong> GA4 is case-sensitive: <code>Facebook</code> and <code>facebook</code> become two rows.</li>
+<li><strong>Medium decides the channel.</strong> From GA4's default channel group rules (support.google.com):
+   - <strong>Email:</strong> source OR medium = email|e-mail|e_mail|e mail. (Our outreach links use utm_source=email, so they land in Email even with medium=outreach. Good.)
+   - <strong>Organic Social:</strong> source in GA4's social-site list OR medium in social|social-network|social-media|sm|social network|social media.
+   - <strong>Referral:</strong> medium referral|app|link.
+   - Anything else becomes <strong>Unassigned</strong>. Example: utm_source=hubspot&amp;utm_medium=newsletter is Unassigned, because neither value matches.</li>
+<li><strong>Always send source + medium + campaign.</strong> Content = the variant (A/B), term = rarely.</li>
+<li><strong>Keep a master sheet</strong> of every tagged URL (Analytics Mania). Ours is the project workspace plus the sendlog.</li>
+</ol>
+<h2>Our vocabulary (use exactly these)</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>where</th>
+<th>utm_source</th>
+<th>utm_medium</th>
+<th>utm_campaign</th>
+<th>utm_content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>outreach email</td>
+<td>email</td>
+<td>outreach</td>
+<td>batch-YYYYMMDD</td>
+<td>variant id (A1, B2…)</td>
+</tr>
+<tr>
+<td>weekly subscriber email</td>
+<td>email</td>
+<td>newsletter</td>
+<td>promo-YYYYMMDD</td>
+<td>book slug</td>
+</tr>
+<tr>
+<td>Instagram bio/story</td>
+<td>instagram</td>
+<td>social</td>
+<td>post slug</td>
+<td>bio / story</td>
+</tr>
+<tr>
+<td>Facebook page post</td>
+<td>facebook</td>
+<td>social</td>
+<td>post slug</td>
+<td>post / comment</td>
+</tr>
+<tr>
+<td>YouTube description</td>
+<td>youtube</td>
+<td>social</td>
+<td>video slug</td>
+<td>desc / pinned</td>
+</tr>
+<tr>
+<td>LinkedIn DM/post</td>
+<td>linkedin</td>
+<td>social</td>
+<td>dm-YYYYWW / post slug</td>
+<td>page slug</td>
+</tr>
+<tr>
+<td>Reddit/forum</td>
+<td>reddit</td>
+<td>social</td>
+<td>thread slug</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Never: utm_* on cedwyn → cedwyn links (header strip, drawer, related links, e-book cross-sells).</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2>GA4 funnel exploration (once the property is live)</h2>
+<p>Explore → Funnel exploration. Up to 10 steps, built from events. Use an <strong>open</strong> funnel (people can enter at any step, since our emails deep-link mid-story). Breakdown: <em>Session source/medium</em>, then <em>Session manual ad content</em> (the variant).
+1. <code>page_view</code> on a story or evidence page (big net)
+2. <code>upsell_click</code> OR <code>page_view</code> where path contains /ebooks/
+3. <code>sign_up</code> (Mailchimp submit) / <code>generate_lead</code>
+4. <code>ebook_read</code> (reader opened, free chapter)
+5. <code>begin_checkout</code> (buy click → Stripe/Gumroad)
+6. <code>purchase</code> (from the Stripe/Gumroad thank-you, or logged server-side in the project workspace)
+Mark sign_up, ebook_read and purchase as <strong>key events</strong>. Use "elapsed time" to see how long people take from story to signup. With about 17 UK visits a day the funnel will be thin: read it weekly, not daily, and expect GA4 thresholding to hide small rows.</p>
+<h2>Tool</h2>
+<ul>
+<li><code>tools/utm.py</code> (standard library only, written 2026-10-26):</li>
+<li><code>build &lt;url&gt; source medium campaign [content]</code> lowercases the values, keeps existing query strings, and refuses internal-to-internal use when given <code>--from-site cedwyn.bucklerfamily.estate</code>.</li>
+<li><code>check &lt;url…&gt;</code> prints the GA4 default channel each URL will land in, and flags uppercase, spaces, missing campaign, and UTMs on internal links (anything in the header/drawer HTML pointing at cedwyn with utm_*).</li>
+<li><code>scan &lt;html files…&gt;</code> finds internal links carrying UTMs. Run it on <strong>built site pages only</strong>: email templates link in from outside and <em>should</em> carry UTMs (a test run over the outreach templates correctly lists their tracked links, which is expected).</li>
+<li>Note: the outreach engine writes <code>utm_content</code> in mixed case (e.g. T3b, as in ab.csv). Consistency is what matters for GA4, so keep the engine's case for that field. <code>build</code> lowercases values, so don't use it to rebuild engine links.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Live issue flagged 2026-10-26:</strong> the header-upsell worker (40c4be63) was briefed to put UTMs on the strip. Steer: strip links plain, plus the <code>upsell_click</code> event. Run <code>python3 tools/utm.py scan</code> over the built HTML before each commit.</li>
+<li>The outreach engine is already correct (source=email puts it in the Email channel). Keep <code>utm_content</code> = variant id so ab.csv joins with GA4.</li>
+<li>Cloudflare Web Analytics (cookieless) shows paths and referrers but not UTMs or events. GA4 is needed for the funnel, and it needs a cookie banner (PECR).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>analyticsmania.com (don't tag internal links; lowercase; master sheet; Unassigned)</li>
+<li>support.google.com (default channel group rules, quoted above)</li>
+<li>optimizesmart.com (internal UTMs override source/medium)</li>
+<li>bigdelta.com (funnel exploration: 10 steps, open vs closed, elapsed time)</li>
+</ul><p class="raw">Raw Markdown: <a href="utm-discipline-ga4-funnel.md">utm-discipline-ga4-funnel.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>YouTube chapters, captions and transcripts for archive videos (and Google &quot;key moments&quot;) · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: YouTube chapters, captions and transcripts for archive videos (and Google &quot;key moments&quot;)"><link rel="alternate" type="text/markdown" href="youtube-chapters-captions-transcripts-archive.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>YouTube chapters, captions and transcripts for archive videos (and Google "key moments")</h1>
+<p>Harvested 2026-10-26 (skills harvest). Topic: YouTube search/discovery and accessibility for long-form history videos; Welsh/Spanish subtitles.</p>
+<h2>What the evidence shows</h2>
+<ul>
+<li><strong>Chapters - YouTube Help (official).</strong> In the description: first timestamp <code>00:00</code>, at least <strong>three</strong> timestamps, ascending, each chapter at least <strong>10 seconds</strong>. Manual chapters override automatic ones; automatic chapters can be switched off in Studio. Chapters can appear in the transcript panel.</li>
+<li><strong>Google Search key moments (Google Search Central, video structured data doc).</strong> Google auto-detects segments, but "will prioritize key moments set by you, either through structured data or <strong>the YouTube description</strong>". So YouTube chapters double as Google Search key-moment links. For a video embedded on our own page: <code>Clip</code> markup (exact start/end + name per segment) or <code>SeekToAction</code> (tell Google the URL pattern for a timestamp; Google picks moments). Opt out with <code>nosnippet</code>.</li>
+<li><strong>Captions lift views - Discovery Digital Networks study (published by 3Play Media).</strong> Across their YouTube channels, captioned videos got <strong>7.32% more views overall</strong>, <strong>13.48% more in the first 14 days</strong> after captions were added; no significant change in shares/engagement. They also checked that caption files were indexed for search. Vendor-published, 2014-era and one network: treat as direction, not a promise.</li>
+<li><strong>Subtitle files (YouTube Help).</strong> Upload an .srt/.vtt (text + timings) per language in Studio &gt; Subtitles &gt; Add language; a plain transcript can be uploaded and YouTube auto-syncs timings. Auto-captions exist for some languages only - check in Studio whether Welsh is offered (not verified here); if not, our own Welsh file is the only route.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Pick 4-8 chapters per long video</strong>, each titled as a claim or place + date ("1824: David Stewart's survey", "Sheet Glamorgan 47 NW, 1950s"), not "Part 2". Searchers see these titles in Google results.</li>
+<li><strong>Transcript first</strong>: correct the auto-captions (names, Welsh place names: Llandochau, Tŷ Mawr, Penarth) - mis-heard proper nouns are the common failure. Export as .srt.</li>
+<li><strong>Add translations</strong> as separate caption tracks (cy, es) plus translated title/description (Studio &gt; Subtitles &gt; title &amp; description) - widens search for Welsh and Patagonian Spanish audiences.</li>
+<li><strong>Put the transcript on our site</strong> under the embedded video inside <code>&lt;details&gt;&lt;summary&gt;Transcript&lt;/summary&gt;</code> (crawlable, see headline-first skill) plus <code>VideoObject</code> JSON-LD with <code>Clip</code> entries matching the chapters.</li>
+<li><strong>Shorts</strong>: chapters don't apply; captions do (burned-in text + a caption track).</li>
+<li>Re-check 14 and 28 days later in YouTube Analytics (views, search traffic source, "Subtitles/CC" usage) vs the same window before.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Start with the 13-minute map film (channel trailer) and the other long-form Great House Farm videos in the playlists listed in the project workspace (which covers thumbnails/titles but not chapters or captions - this is new).</li>
+<li>Draft chapters + corrected .srt in en, cy, es; editing descriptions and uploading caption tracks on our own channel is in the YouTube errand's scope; nothing is published elsewhere.</li>
+<li>Transcription can run on this box with faster-whisper (already in the kernel venv) once disk allows the ~75 MB small model; skipped today (2.0 GB free).</li>
+<li>Pages that embed videos on cedwyn get <code>Clip</code> markup matching the YouTube chapters (onpage flywheel / sole cedwyn committer).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>support.google.com (video chapters)</li>
+<li>support.google.com (add subtitles and captions)</li>
+<li>developers.google.com (key moments, Clip, SeekToAction)</li>
+<li>developers.google.com</li>
+<li>3playmedia.com</li>
+</ul><p class="raw">Raw Markdown: <a href="youtube-chapters-captions-transcripts-archive.md">youtube-chapters-captions-transcripts-archive.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Merchant listing structured data for direct-sold e-books (Product + Offer) · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Merchant listing structured data for direct-sold e-books (Product + Offer)"><link rel="alternate" type="text/markdown" href="merchant-listing-structured-data-ebooks.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Merchant listing structured data for direct-sold e-books (Product + Offer)</h1>
+<p>Harvested 2026-10-26 (skills harvest). Internal how-to; not public text.</p>
+<h2>Why it matters</h2>
+<p>Google shows Product markup in merchant listing experiences (shopping knowledge panel, Google Images, popular products, product snippets with price). Only pages where a shopper can actually buy are eligible (Google's own rule: "not pages with links to other sites that sell the product"). For a tiny shop with no ad budget this is the free route to a price showing in Search and Images.</p>
+<h2>Google's rules that bite (developers.google.com merchant-listing doc, read 26 Oct 2026)</h2>
+<ul>
+<li>Required on Product: <code>name</code>, <code>image</code> (crawlable, indexable, represents the product), <code>offers</code>.</li>
+<li>Required on Offer: <code>price</code> (or <code>priceSpecification.price</code>) + <code>priceCurrency</code>. <strong>Merchant listings need price &gt; 0</strong>; product snippets accept 0. So free PDFs (GBP 0.00) can only ever get a snippet, never a merchant listing.</li>
+<li>One product focus per page. A list page (/ebooks/) is not the place for Product markup; each book page is.</li>
+<li>Return policy: recommended. Put one <code>MerchantReturnPolicy</code> under the <code>Organization</code> (Google's advice for a standard policy) and only override per product.</li>
+<li>Prohibited categories (weapons, drugs, gambling...) are excluded; books are fine.</li>
+<li>Merchant Center product-spec changes are enforced from 31 Jan 2027 (support.google.com) - only matters if we ever add a free Merchant Center feed.</li>
+</ul>
+<h2>How-to (30 minutes, markup only)</h2>
+<ol>
+<li>For each paid book page: confirm one JSON-LD node typed <code>["Book","Product"]</code> with <code>name</code>, <code>image</code> (the cover, absolute URL), <code>description</code>, <code>offers{price, priceCurrency:"GBP", availability:InStock, url:&lt;the page itself&gt;}</code>.</li>
+<li>Add <code>"itemCondition":"schema.org and</code>"bookFormat":"schema.org (Book vocabulary; harmless for Product).</li>
+<li>Bundle page: Product needs <code>image</code> too (a composite of the four covers).</li>
+<li>Organization node: add <code>hasMerchantReturnPolicy</code> matching the real checkout terms. Our checkout text has buyers agree to immediate supply of digital content (UK Consumer Contracts Regs reg.37 waiver), so the honest value is <code>returnPolicyCategory: MerchantReturnNotPermitted</code> with <code>applicableCountry: "GB"</code> - only if that matches the published terms page; otherwise mirror the terms page exactly.</li>
+<li>No <code>aggregateRating</code> or <code>review</code> until real reviews exist on the page (fake/self ratings breach Google's review snippet rules - see reviews-social-proof-direct-ebooks.md).</li>
+<li>Test each URL in the Rich Results Test (search.google.com) and Schema Markup Validator; fix critical errors; then Search Console &gt; URL Inspection &gt; Request indexing (one per page, not a flood).</li>
+<li>Watch Search Console "Merchant listings" and "Product snippets" enhancement reports weekly; expect days to weeks.</li>
+</ol>
+<h2>Live state found 26 Oct 2026 (cedwyn.bucklerfamily.estate, cache-busted fetch)</h2>
+<ul>
+<li>/ebooks/dartboard/: <code>["Book","Product"]</code>, image present, Offer GBP 9.99 InStock. Good base.</li>
+<li>/ebooks/all-four/: <code>Product</code>, Offer GBP 31.99, <strong>no image</strong> -&gt; fails the required <code>image</code>. Fix first.</li>
+<li>/ebooks/ list page: no JSON-LD (correct; leave it).</li>
+<li>The Organization node on the book pages carries <code>name: "DATRO CONSORTIUM LIMITED"</code> with <code>@id .../dartboard/#org</code> - check with the committer that this is the intended seller name for the shop (the older patch in bizdev/patches/jsonld-ebooks.json used "Cedwyn - Great House Farm archive"). Seller identity should match the checkout/receipt.</li>
+<li>Free editions (GBP 0.00) are snippet-only by Google's rule; do not inflate prices to qualify.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Patch (leave in the project workspace for the sole cedwyn committer, a worker today): add <code>image</code> to /ebooks/all-four/, add <code>itemCondition</code> + <code>bookFormat</code>, add one Organization-level return policy that mirrors the terms page.</li>
+<li>After commit + deploy: Rich Results Test on each paid page, then one Request-indexing each; log in bizdev/log.csv.</li>
+<li>Pairs with gsc-striking-distance-quick-wins.md (watch impressions for the book names) and ebook-sales-page-cro-checkout-friction.md.</li>
+<li>Zero spend; no Merchant Center account needed for this step.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com (required props, price &gt; 0, return policy under Organization)</li>
+<li>developers.google.com (Book actions need a data feed via Google's partner programme - not for us)</li>
+<li>support.google.com (Merchant Center spec, enforcement 31 Jan 2027)</li>
+<li>schema.org , schema.org</li>
+</ul><p class="raw">Raw Markdown: <a href="merchant-listing-structured-data-ebooks.md">merchant-listing-structured-data-ebooks.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

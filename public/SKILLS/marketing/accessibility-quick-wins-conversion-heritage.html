@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Accessibility quick wins as a sales lever for a long-form heritage site · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Accessibility quick wins as a sales lever for a long-form heritage site"><link rel="alternate" type="text/markdown" href="accessibility-quick-wins-conversion-heritage.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Accessibility quick wins as a sales lever for a long-form heritage site</h1>
+<p>Harvested 2026-10-26. Fixing the handful of errors that block disabled readers is cheap, helps every mobile reader, and removes a reason to leave the checkout.</p>
+<h2>The numbers (primary sources)</h2>
+<ul>
+<li><strong>WebAIM Million 2026</strong> (automated scan of the top 1,000,000 home pages): low-contrast text on <strong>83.9%</strong> of pages, missing image alt text <strong>53.1%</strong>, missing form labels <strong>51%</strong>, empty links <strong>46.3%</strong>, empty buttons <strong>30.6%</strong>, missing document language <strong>13.5%</strong>. <strong>96% of all detected errors fall in these six</strong>, and the list has not changed in 7 years. 30.4% of pages had 10 or fewer errors, so a clean page is reachable.</li>
+<li><strong>Click-Away Pound 2019</strong> (UK survey of disabled online shoppers, AbilityNet write-up): <strong>69%</strong> click away from sites that are hard to use; <strong>83%</strong> limit their shopping to sites they know are accessible; <strong>86%</strong> have paid more on an accessible site rather than buy the same thing cheaper on a harder one; only <strong>8%</strong> of those who hit barriers contact the business, so the owner never hears. Lost UK spend estimated at <strong>£17.1bn</strong> (up from £11.75bn in 2016). Survey is from 2019; treat the shares as direction, not a forecast for our list.</li>
+<li>Conversion-lift figures quoted in vendor roundups ("+35%" etc.) do not name a site or a test; not used here.</li>
+</ul>
+<h2>The 30-minute fix list (in this order)</h2>
+<ol>
+<li><strong><code>&lt;html lang&gt;</code> right on every page</strong>: <code>en-GB</code> for English, <code>cy</code> for Welsh, <code>es</code> for Spanish pages; wrap Welsh or Spanish phrases inside an English page in <code>&lt;span lang="cy"&gt;</code> (WCAG 3.1.2). Screen readers switch pronunciation on it; Welsh read with English rules is unintelligible.</li>
+<li><strong>Alt text</strong> on every content image: say what the record shows ("1824 survey sheet, Tŷ Mawr parcel outlined"), <code>alt=""</code> on decoration only.</li>
+<li><strong>A label on every form field</strong>, especially the email signup and checkout. Placeholder text is not a label.</li>
+<li><strong>No empty links/buttons</strong>: icon-only controls get <code>aria-label</code> ("Open menu", "Play film").</li>
+<li><strong>Exactly one <code>&lt;h1&gt;</code></strong>, no empty headings, no skipped levels; headline-first pages depend on headings for screen-reader navigation.</li>
+<li><strong>Contrast 4.5:1</strong> for body text, 3:1 for large text and the buy button's edge; check the e-book strip and the small-italic <code>.unsub</code> text, which is the most likely to fail.</li>
+<li><strong>Tap targets</strong> at least 24x24 CSS px (WCAG 2.2, 2.5.8) for "Read more", language switch and buy buttons at 390 px.</li>
+<li><strong>Focus visible</strong> (2.4.7) and <code>&lt;details&gt;/&lt;summary&gt;</code> for "Read more" (keyboard and screen-reader friendly without script).</li>
+<li><strong>Captions</strong> on every film (see the YouTube captions skill) and a transcript in <code>&lt;details&gt;</code>.</li>
+</ol>
+<h2>Measure</h2>
+<ul>
+<li><code>python3 tools/a11y_quick.py &lt;url&gt; ...</code> (free, no install) covers items 1-5. Contrast needs a browser (axe-core in the already-installed headless Chromium is the free route; not installed: disk under 2 GB).</li>
+<li>Before/after: buy-click rate and signup rate from the cookieless counter, per page, two weeks each side.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<p>Run 26 Oct 2026 on four live pages:
+- <strong>Home page has no <code>&lt;h1&gt;</code></strong> in the HTML (fix: the site title or first headline as h1).
+- <strong>/movie/ has one empty heading</strong> and its English pages declare <code>lang="en"</code> while the home page declares <code>en-GB</code> (make them consistent).
+- /ebooks/ and /ebooks/dartboard/: images all have alt, signup email has a label, consent checkbox is wrapped in its label - clean on items 1-5.
+- Not checked yet: contrast (needs a browser), the Welsh and Spanish themes' <code>lang</code> values (no /cy/ or /es/ path exists; the themes need listing first), tap-target sizes.
+- These are markup fixes for the sole Cedwyn committer (a worker is rebuilding the headline layout now; items 5 and 8 belong in that change). Logged as PROPOSED here; nothing committed by this run.
+- Alt text and captions follow the editorial rules: describe the record and its date from our catalogue (1824 David Stewart survey = first record mention found); never caption a Bute document as a Tŷ Mawr record before 1824; no banned words; never name the family member who runs the archive.</p>
+<h2>Sources</h2>
+<ul>
+<li>webaim.org (2026 report, six error types, 96%)</li>
+<li>abilitynet.org.uk (Click-Away Pound 2019 figures)</li>
+<li>clickawaypound.com and clickawaypound.com (survey home and report)</li>
+<li>w3.org (3.1.2 Language of Parts, 2.5.8 Target Size, 2.4.7 Focus Visible)</li>
+<li>w3.org (W3C business case)</li>
+</ul><p class="raw">Raw Markdown: <a href="accessibility-quick-wins-conversion-heritage.md">accessibility-quick-wins-conversion-heritage.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

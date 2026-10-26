@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Free e-book delivery to Kindle, Kobo and phones from our own /ebooks/ links (no BookFunnel) · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Free e-book delivery to Kindle, Kobo and phones from our own /ebooks/ links (no BookFunnel)"><link rel="alternate" type="text/markdown" href="ebook-delivery-send-to-kindle-kobo-own-links.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Free e-book delivery to Kindle, Kobo and phones from our own /ebooks/ links (no BookFunnel)</h1>
+<p>Date: 2026-10-26 (skills harvest). Free route only. Never Draft2Digital.</p>
+<h2>Why it matters</h2>
+<ul>
+<li>Delivery is one of the two most common failure points in direct sales. A buyer either never gets the file, or gets it and can't open it on a Kindle or Kobo (ScribeCount's BookFunnel guide). BookFunnel's paid fix is a download page that asks "which device?" and has a Send to Kindle button. We can build the same page for free.</li>
+<li>A reader who can't open the file doesn't read the back matter, so the one next step (see ebook-back-matter-one-next-step.md) never happens. Failed delivery means lost sell-through.</li>
+</ul>
+<h2>Facts from the platforms (Amazon and Kobo help pages, read via search snippets 26 Oct)</h2>
+<ul>
+<li><strong>Send to Kindle for Web</strong> (amazon.com, also .co.uk): the reader drags the file in. It accepts PDF, DOC/DOCX, TXT, RTF, HTM/HTML and EPUB, up to 200 MB. It needs an Amazon sign-in and "Add to your library" switched on.</li>
+<li><strong>Send to Kindle email</strong> (the reader's @kindle.com address): up to 50 MB total per email. The sender's address must be on the reader's Approved Personal Document Email List. That means <strong>we cannot email a book to a reader's Kindle</strong>, and we never send email anyway. The reader always sends it themselves.</li>
+<li><strong>MOBI/AZW are gone from Send to Kindle. Use EPUB.</strong> An EPUB with structural errors fails silently or bounces back. BookFunnel runs a "could not validate EPUB for Send to Kindle" check before delivery. Our free equivalent is <code>tools/epub_lint.py</code>, plus EPUBCheck once there's disk space.</li>
+<li><strong>Kobo:</strong> no email route. Readers use the Dropbox or Google Drive sync built into the e-reader (put the file in the Kobo folder, then Sync) or USB drag-and-drop (help.kobo.com).</li>
+<li><strong>Phones:</strong> Apple Books opens a tapped EPUB link directly. On Android, Google Play Books → Upload file.</li>
+</ul>
+<h2>How to do it (one page, no tools to buy)</h2>
+<ol>
+<li><strong>Offer both formats on each free edition: EPUB (for e-readers) and PDF (to print or view on screen).</strong> The PDF stays for people who want a fixed page.</li>
+<li><strong>Put device chooser text under each download.</strong> Use four short lines, each with one action:
+   - Kindle: "Download the EPUB, then drop it into Send to Kindle (amazon.co.uk)."
+   - Kobo: "Save to the Kobo folder in Dropbox/Google Drive, then tap Sync."
+   - iPhone/iPad: "Tap the EPUB link, then choose Books."
+   - Android: "Play Books → Upload file."</li>
+<li><strong>Serve files with the right headers:</strong> <code>application/epub+zip</code>, and <code>Content-Disposition: attachment</code> with a clean file name (e.g. <code>cedwyn-enwau-cy.epub</code>). Use <code>inline</code> for PDF.</li>
+<li><strong>Validate every EPUB before publishing</strong> with <code>python3 tools/epub_lint.py book.epub</code>, and fix the identifier, language and nav errors it lists. Kindle rejects broken EPUBs.</li>
+<li><strong>Measure downloads, not page views.</strong> Count EPUB/PDF downloads by file name in the Cloudflare analytics (see growth-report/cf_traffic.py). The per-edition UTM goes on the back-matter link <em>inside</em> the file, never on internal site links.</li>
+<li><strong>Help line:</strong> one sentence, "Stuck? Open the PDF instead; it works on every device." There is no support inbox to staff.</li>
+</ol>
+<h2>Testimony and numbers</h2>
+<ul>
+<li>ScribeCount (direct-sales guide, 2026): delivery and device problems are the "two most common points of failure". The Send to Kindle/Kobo buttons "eliminate most reader support questions before they become support tickets".</li>
+<li>Amazon help: web upload up to 200 MB with EPUB supported; the email route is 50 MB and needs the approved-sender list. That's why a "we'll send it to your Kindle" promise is not possible for us.</li>
+<li>BookFunnel author help: EPUBs that fail validation are "likely" to be rejected by Send to Kindle, so validation is the gate.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Checked live 26 Oct, cache-busted:</strong> /ebooks/ links only PDFs (9 links, all to <code>/ebooks/supplement/cedwyn-supplement-2026-10-25.pdf</code>, served inline). The page has no EPUB, no Kindle or Kobo instructions, and no file sizes.</li>
+<li><strong>PROPOSED for the next permitted committer</strong> (leave the patch in the project workspace and list it in the project workspace):</li>
+<li>Add an EPUB beside each free PDF, built with Sphinx, with <code>epub_identifier</code> set and checked with epub_lint.</li>
+<li>Add the four-line device chooser in cy/en/es. Suggested Welsh: "Kindle: lawrlwythwch yr EPUB a'i ollwng i Send to Kindle".</li>
+<li>Show the file size beside each download.</li>
+<li>Example blurb for the Enwau download (rules-compliant): "Every recorded form of the names of Tŷ Mawr, its parish and its estate, from the 1824 David Stewart survey (the first record mention found) to the 1974 newspapers and ITV News 1988, which give 1667 for the family's acquisition. EPUB for Kindle and Kobo; PDF for print."</li>
+<li>Never write "we'll send it to your Kindle" and never collect Kindle addresses. The reader sends the file. Nothing is emailed.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>amazon.com (supported types, 200 MB limit)</li>
+<li>amazon.com (sending documents, 200 MB web upload)</li>
+<li>amazon.com (email, 50 MB)</li>
+<li>amazon.com (approved email list)</li>
+<li>help.kobo.com (Google Drive) and kobo.com (Dropbox)</li>
+<li>scribecount.com</li>
+<li>authors.bookfunnel.com</li>
+</ul><p class="raw">Raw Markdown: <a href="ebook-delivery-send-to-kindle-kobo-own-links.md">ebook-delivery-send-to-kindle-kobo-own-links.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

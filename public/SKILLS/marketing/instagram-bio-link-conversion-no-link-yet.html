@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Instagram: turning reach into clicks when the bio has no link yet · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Instagram: turning reach into clicks when the bio has no link yet"><link rel="alternate" type="text/markdown" href="instagram-bio-link-conversion-no-link-yet.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Instagram: turning reach into clicks when the bio has no link yet</h1>
+<p>Harvested 26 Oct 2026 (skills harvest). For: the Cedwyn / Great House Farm Instagram account.</p>
+<h2>The problem in one line</h2>
+<p>Instagram reached about 1,000 people today, but every caption said "link in bio" and the bio has no link. Instagram does not make URLs in captions or comments tappable, so the only tappable routes are the profile links, a Story link sticker and DMs. With no profile link, a "link in bio" call to action loses every click.</p>
+<h2>What the sources show</h2>
+<ul>
+<li><strong>Five profile links, one tap.</strong> Instagram lets any account add up to 5 links: Edit profile &gt; Links &gt; Add external link, then drag to reorder. Not available on desktop. (help.instagram.com; TechCrunch 18 Apr 2023.) The first link is the one shown on the profile; the rest sit behind "and N more", so order matters.</li>
+<li><strong>Measure it.</strong> Insights report profile "external link taps" (Business/Creator accounts) and Story "link taps" under Interactions (help.instagram.com). These are the only first-party click counts we get; pair them with UTM tags so the site's analytics shows the same clicks.</li>
+<li><strong>Bio link click rate is low; plan for it.</strong> ManyChat's partner programme puts link-in-bio click-through at about 1% vs about 46% for a link sent in a DM (quoted by Brittany Miller Socials; a tool vendor's own figure, not independently checked). One practitioner test on Reddit (r/SocialMediaMarketing, 2026) reported 2% for "link in bio" vs 18% for "comment a word and get the link by DM" (single anonymous test, unchecked). Direction is consistent: every extra step (leave post, open profile, find link) loses most people.</li>
+<li><strong>Story link sticker</strong> replaced swipe-up and is open to every account regardless of followers; its CTR is the Stories conversion metric (Socialinsider, Instagram metrics 2026). Practitioner tip from the same piece: place it mid-frame with a one-line reason to tap.</li>
+<li><strong>Fewer, clearer links beat a long menu</strong> (growthforlocal.com bio-link guide 2026: clear CTA + fewer links + mobile-first page; its "350%" headline is a marketing claim, ignore the number, keep the method).</li>
+</ul>
+<h2>How to do it (30 minutes, owner step first)</h2>
+<ol>
+<li><strong>Owner step (the project lead only, needs the Instagram login):</strong> Edit profile &gt; Links &gt; Add external link. Link 1 = the e-books shelf with a UTM tag, e.g. `cedwyn.bucklerfamily.estate Title it "E-books (free + £9.99)". Optional links 2-3: the free Enwau names book, the story home page.</li>
+<li><strong>Bio text above the link:</strong> one line on what the account is, one line on what the tap gives ("Free names register + the full record, £9.99"). No "link in bio" sludge in the bio itself.</li>
+<li><strong>Captions:</strong> once the link is live, say what is behind the link ("full survey transcript in the e-book, link on our profile"). Until it is live, drop "link in bio" and write the address in plain text (people can copy it) plus the address in the first comment (already being done on the top 12 posts).</li>
+<li><strong>Stories:</strong> for each new post, one Story frame with a link sticker to the matching page (UTM <code>utm_campaign=story_&lt;slug&gt;</code>). Stories are the only tappable link that works without the bio.</li>
+<li><strong>Landing page:</strong> send the tap to one phone-first page whose first screen shows the free book and the £9.99 title with prices and buttons. A long table first loses phone visitors (the /ebooks/ table currently overflows at 390 px; fix queued).</li>
+<li><strong>Comment-to-DM (PROPOSED, needs the project lead's GO):</strong> "comment NAMES and we will send the link" sends a DM only to people who asked for it. the project lead's rule bans DMs to strangers; treat this as needing his explicit OK and a free tool before use.</li>
+<li><strong>Weekly read (5 min):</strong> Insights external link taps + Story link taps vs site visits with <code>utm_source=instagram</code>. Target: link taps per 1,000 reached. If taps are under 5 per 1,000 reached, change the bio's reason-to-tap line first, then the landing page.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Blocker: no bio link. Root already asked the project lead (26 Oct 13:17) to add <code>cedwyn.bucklerfamily.estate/ebooks</code>. When he does, swap in the UTM version above so clicks are counted.</li>
+<li>No /links/ page exists on Cedwyn (404 checked 26 Oct). If the project lead prefers one link that never changes, a small <code>/links/</code> page (free Enwau, £9.99 title, £31.99 bundle, story) is the PROPOSED target; queue it via the project workspace, do not commit while another worker holds the repo.</li>
+<li>Story frame copy example (fits the project lead's rules): "Tŷ Mawr, first record mention found: the 1824 David Stewart survey. The family's acquisition of Tŷ Mawr in 1667 was reported in the 1974 newspapers and on ITV News in 1988. Every name the house has carried is in our free register." Sticker: "Free names book".</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>help.instagram.com (add up to 5 links)</li>
+<li>techcrunch.com</li>
+<li>help.instagram.com (Story insights: link taps)</li>
+<li>socialinsider.io (link sticker CTR; link-in-bio CTR as lead-gen KPI)</li>
+<li>brittanymillersocials.ca (1% vs 46%, vendor figure)</li>
+<li>reddit.com (2% vs 18%, single test)</li>
+<li>growthforlocal.com (fewer links, clear CTA)</li>
+</ul><p class="raw">Raw Markdown: <a href="instagram-bio-link-conversion-no-link-yet.md">instagram-bio-link-conversion-no-link-yet.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

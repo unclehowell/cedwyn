@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mastodon for a heritage archive: instance rules, hashtags and cadence · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Mastodon for a heritage archive: instance rules, hashtags and cadence"><link rel="alternate" type="text/markdown" href="mastodon-instance-rules-cadence.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Mastodon for a heritage archive: instance rules, hashtags and cadence</h1>
+<p>Written 26 Oct 2026 for Cedwyn. This skill extends bluesky-mastodon-fediverse-heritage.md (API limits, CamelCase tags, alt text). It covers <strong>staying inside the rules of the instances we use</strong>, read from the instances themselves.</p>
+<h2>What the instances state (read 26 Oct 2026)</h2>
+<ul>
+<li><strong>mastodonapp.uk</strong> (where the Cedwyn account is waiting on its confirmation tick). Its /api/v1/instance/rules has 9 rules. The ones that touch us:</li>
+<li>"No spam, harrassment, dogpiling or doxxing."</li>
+<li>"No content illegal in The United Kingdom."</li>
+<li>"No intentionally false or misleading information ... do not pose as persons of interest."</li>
+<li>"Controversial ... content may be removed if not obviously Content Warned."</li>
+<li>"The sites staff team will ultimately have the final say."</li>
+<li>Nothing bans an organisation account or links.</li>
+<li><strong>toot.wales</strong> (Tŵt, the Welsh community instance), Spam and Inauthentic Activity policy:</li>
+<li>Bans spam "that typically aims to drive traffic ... to specific or third-party ... Web sites, products".</li>
+<li>Bans "Flooding a timeline – repeatedly posting in rapid succession with little to no engagement".</li>
+<li>Bans "Unsolicited direct messages or mentioned posts, accounts that follow large numbers of similar accounts".</li>
+<li>Notes that notable organisations can use its Verified Accounts page.</li>
+<li><strong>toot.wales News Publishing Policy:</strong></li>
+<li>News accounts must be approved and verified (form; an answer within 72 h or email [address kept in the project workspace]).</li>
+<li>"Accounts that use automated posting features and are not monitored by staff for replies must be marked as unmonitored" (in profile settings).</li>
+<li>It lists 6 verified news sources (e.g. Nation.Cymru, Golwg360).</li>
+<li>Its separate Automated/Bot Content policy page timed out from this box and is <strong>not read here</strong>. Read it before any scripted posting there.</li>
+<li><strong>Mastodon has no algorithm:</strong> reach comes from hashtags, boosts and the local timeline. Search matches hashtags and opted-in posts only (existing skill).</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li><strong>One home account, on mastodonapp.uk</strong> (already created). Do not open a second Cedwyn account on toot.wales to post the same things. Under its policy, multiple accounts used to amplify count as "coordinated activity". toot.wales readers see us through federation and hashtags anyway.</li>
+<li><strong>Profile:</strong> say it is an organisation account for the archive. Add <code>rel="me"</code> from the site to the profile for the verified link. Tick the "automated" (bot) flag if a script posts. If nobody reads replies, say so in the bio.</li>
+<li><strong>Cadence that cannot read as flooding:</strong> 2–3 original posts a day, at least 2 hours apart, plus replies when someone asks something. Never post several items in a row. A long story is <strong>one thread</strong> (one public opener, then the rest of the thread as replies or unlisted). Boost institutions' posts that fit (museums, record offices), at most 5 a day.</li>
+<li><strong>Link ratio:</strong> at most 1 in 3 posts links to Cedwyn. The others are the document image, its date and source, and a question, with no link. This answers the "drive traffic" spam test on toot.wales-style instances.</li>
+<li><strong>Hashtags:</strong> 2–4 per post, CamelCase, the place before the theme: #ValeOfGlamorgan #WelshHistory #LocalHistory #Archives. In Welsh: #HanesCymru #Cymraeg. In Spanish: #Patagonia #Chubut #YWladfa. Make one hashtag the post's own subject, not decoration.</li>
+<li><strong>Content warnings:</strong> put a CW on anything about disputes, courts or deaths ("CW: court records, 1700s"). The mastodonapp.uk rule 7 removes controversial content that isn't content-warned.</li>
+<li><strong>Following:</strong> follow topic hashtags (#WelshHistory, #Archives) rather than mass-following accounts. Follow at most 10 institution accounts a day. Toot.wales lists mass-following of similar accounts as spam.</li>
+<li><strong>No mentions or DMs</strong> to people who did not talk to us first. Answer only questions asked of us.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>When the mastodonapp.uk account is confirmed: set the bio with no banned words and no name of the project lead, plus the profile link, <code>rel="me"</code> on the Cedwyn footer link (a site patch, which goes through the sole cedwyn committer), and the bot flag if posts are scheduled.</li>
+<li>The weekly plan in the project workspace takes 14–21 Mastodon posts a week, no more than 7 with links. Each is a dated document image with alt text, its source line, 2–4 tags and a CW where needed.</li>
+<li>Before any scripted posting, read mastodonapp.uk's /about page again and the toot.wales Automated/Bot Content policy, and note the date read in the project workspace</li>
+<li>Track boosts and favourites per post monthly. Keep the tags that bring boosts and drop the rest.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>mastodonapp.uk (9 rules, verbatim above)</li>
+<li>croeso.toot.wales</li>
+<li>croeso.toot.wales (verification, the unmonitored flag)</li>
+<li>croeso.toot.wales (not read: timed out 26 Oct 2026)</li>
+<li>docs.joinmastodon.org and fedi.tips (via bluesky-mastodon-fediverse-heritage.md)</li>
+</ul><p class="raw">Raw Markdown: <a href="mastodon-instance-rules-cadence.md">mastodon-instance-rules-cadence.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

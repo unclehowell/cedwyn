@@ -1,0 +1,105 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FLYWHEELS · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: FLYWHEELS"><link rel="alternate" type="text/markdown" href="README.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../index.html"><b>Agent library</b></a><a href="../SOUL.html">Soul</a><a href="../ONBOARDING.html">Onboarding</a><a href="../MEMORY/index.html">Memory</a><a href="../SKILLS/index.html">Skills</a><a href="../FLYWHEELS/index.html">Flywheels</a><a href="../HARNESS/index.html">Harness</a><a href="../LESSONS.html">Lessons</a></nav><main><h1>FLYWHEELS</h1>
+<p>Every self-running loop on the project. Each has a runner, state, a log, a fixed metric and a cadence; each schedule spawns at most one worker at a time (it checks the goal prefix first). New wheels copy the <a href="SCHEMA.html">schema</a>.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Flywheel</th>
+<th>Cadence</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="research-cycle.html">Great House Farm research cycle</a></td>
+<td>every 6 hours</td>
+<td>Find evidence and artifacts not already in Cedwyn that bear on reopening BP Properties Ltd v Buckler (1987): concealment or government involvement.</td>
+</tr>
+<tr>
+<td><a href="reopen-loop.html">Reopen-the-case autoresearch loop</a></td>
+<td>every 4 hours</td>
+<td>Run small one-hypothesis experiments against a fixed metric (the three Takhar limbs) to rank grounds for reopening the 1987 judgment.</td>
+</tr>
+<tr>
+<td><a href="drafts-engine.html">Nightly drafts engine</a></td>
+<td>daily 05:30 UK</td>
+<td>Keep every due information-request draft and chaser written, in thread, ready for review.</td>
+</tr>
+<tr>
+<td><a href="contacts.html">Contacts flywheel</a></td>
+<td>daily 03:30 UK</td>
+<td>Find institutions and groups not yet contacted that may hold records, work out what each may hold, and open a hive draft for each.</td>
+</tr>
+<tr>
+<td><a href="hive.html">Hive check-in</a></td>
+<td>every 5 minutes</td>
+<td>Take this agent's turns on hive drafts: one material review or permitted route action per turn, then pass the turn on.</td>
+</tr>
+<tr>
+<td><a href="site-daily.html">Daily site flywheel</a></td>
+<td>daily 12:00 UK</td>
+<td>Measure every section and apply safe fixes, verified live at 390 px; log everything else as proposed.</td>
+</tr>
+<tr>
+<td><a href="first-seen.html">First-seen detector</a></td>
+<td>every 6 hours</td>
+<td>Detect any record about the farm that quietly appears online and register it with its first-seen date.</td>
+</tr>
+<tr>
+<td><a href="recapture.html">Farm page recapture</a></td>
+<td>every 5 days</td>
+<td>Capture outside pages about the farm's history before and after each cycle so changes are on record.</td>
+</tr>
+<tr>
+<td><a href="bizdev.html">Business development (plan + execute)</a></td>
+<td>plan daily 09:00 UK; execute every 2 hours 10:00–22:00</td>
+<td>Grow e-book sales and community for Cedwyn: plan the next 24 hours as weighted HubSpot tasks, then execute them with care.</td>
+</tr>
+<tr>
+<td><a href="skills-harvest.html">Skills harvest</a></td>
+<td>every 15 minutes</td>
+<td>Add 2–4 new practitioner-sourced sales and marketing skills per run, each with sources and how it applies to Cedwyn.</td>
+</tr>
+<tr>
+<td><a href="sales-fix.html">Sales fix</a></td>
+<td>every 3 hours</td>
+<td>If no e-book has sold, find out why and apply the top-priority fix.</td>
+</tr>
+<tr>
+<td><a href="growth.html">Growth flywheels (on-page, quote pack, visibility, weekly report)</a></td>
+<td>weekly (Mon 07:30 visibility, Tue 19:00 quote pack, Wed 13:30 on-page, Sun 18:00 report)</td>
+<td>Make Cedwyn findable and shareable: markup audits, quote cards from the records, search and AI visibility checks, and a weekly measured report.</td>
+</tr>
+<tr>
+<td><a href="movie.html">Cedwyn film — daily scene</a></td>
+<td>daily 06:00 UK</td>
+<td>Make one two-minute scene a day from the chronology, in Welsh, English and Spanish, and open the next door on /movie/.</td>
+</tr>
+<tr>
+<td><a href="morning-brief.html">Morning brief</a></td>
+<td>daily 08:00 UK</td>
+<td>Tell the project lead what finished overnight, mail that needs him, today's calendar and deadlines due soon.</td>
+</tr>
+<tr>
+<td><a href="intelligence.html">Intelligence flywheel</a></td>
+<td>proposed by its build (see its schedule proposal)</td>
+<td>Normalise events and actors, test patterns honestly, map who answered and who stayed silent, and publish missing-record (MR-) pages.</td>
+</tr>
+<tr>
+<td><a href="programme-office.html">Programme office</a></td>
+<td>weekly review (see its schedule proposal)</td>
+<td>Keep the objectives register (Wales tour, Argentina land and museum, chronology, e-books, the case) scored, mirrored into projects, and moving.</td>
+</tr>
+<tr>
+<td><a href="agent-library.html">Agent library (this section)</a></td>
+<td>every 6 hours (proposed)</td>
+<td>Keep this library current: read new memory notes, lessons, runners, skills and worker reports; distil the public-safe parts; rebuild, scan, publish, log.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Machine-readable: <a href="flywheels.json">flywheels.json</a>.</p><p class="raw">Raw Markdown: <a href="README.md">README.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../agents.json">agents.json</a></p></main></body></html>

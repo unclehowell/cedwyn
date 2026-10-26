@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Google Preferred Sources: getting readers to pick the site in Top Stories and AI answers · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Google Preferred Sources: getting readers to pick the site in Top Stories and AI answers"><link rel="alternate" type="text/markdown" href="google-preferred-sources-button-deeplink.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Google Preferred Sources: getting readers to pick the site in Top Stories and AI answers</h1>
+<p>Topic: SEO / AI visibility. Readers can mark a site as a "preferred source"; that site then shows more often in their Top Stories and carries a "preferred" badge in AI Overviews and AI Mode. Harvested 2026-10-26. Distinct from ai-answer-citations-geo (which is about being cited at all): this is about loyal readers choosing us.</p>
+<h2>Facts (read at source unless marked)</h2>
+<ul>
+<li>Google Search Central doc (updated 2026-09-18, read): available globally for Top Stories in all Search languages; preferred badge also in AI Mode and AI Overviews. Eligibility: the site must be included in Search generative AI features in Search Console, and only DOMAIN or SUBDOMAIN level sites are eligible (a subfolder like example.com is not). Check by typing the site into the source preferences tool.</li>
+<li>Three ways to prompt readers: (1) standard button: &lt;script async src="news.google.com</script> in the head plus <div google-add-preferred-source-btn></div> where the button goes (data-theme light/dark, data-lang override, e.g. "cy" if supported, list not checked); (2) advanced JS with own design; (3) deeplink, usable in emails and social posts: google.com. Official badge assets downloadable. Prompting is optional: sites can be picked without it.</li>
+<li>Google blog 12 Aug 2025 (read): launched US and India for Top Stories; readers see more of chosen sites "when those sources have published fresh and relevant content".</li>
+<li>SEO Kreativ (Christian Ott, updated 19 Oct 2026, read): timeline Dec 2025 English worldwide, 30 Apr 2026 all languages, 27 May 2026 AI Overviews/AI Mode; Google figures quoted there: readers click a preferred source about twice as often; 345,000+ selected sources (27 May 2026), 600,000+ (20 Aug 2026); official button since 20 Aug 2026. The Google statements behind those figures: not checked at Google's own pages.</li>
+<li>No small-publisher case study with before/after numbers found yet (searched 26 Oct): treat uplift as unproven for niche sites.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li>Confirm eligibility: Search Console property for the subdomain; not opted out of generative AI features; site appears in the source preferences tool.</li>
+<li>Ask once, at moments of loyalty: end of articles, the thank-you page after a free download, the welcome email, a pinned social post. One line: "Want our new finds in your Google results? Add us as a preferred source." + button/deeplink.</li>
+<li>Freshness matters: the benefit shows only when you publish new, relevant pages on searched topics (Top Stories), so pair it with a steady update rhythm (dated record pages, "new this week").</li>
+<li>Measure: Search Console Performance, filter Search appearance / News-like surfaces where shown, and the generative AI report (see search-console-generative-ai-performance-report.md); count deeplink clicks with UTM where the link is ours (utm_campaign=preferred-source; the Google URL itself should not get UTM added).</li>
+<li>Do not bribe or gate (no "add us to download"); keep it a genuine reader choice.</li>
+</ol>
+<h2>How we apply it to Cedwyn (PROPOSALS: page and email changes need the owner's GO; cedwyn repo is owned by the migration worker today)</h2>
+<ul>
+<li>Eligible shape: cedwyn.bucklerfamily.estate is a subdomain, so it qualifies; /ebooks/ alone would not. Step 0 (read-only, can do now): type the subdomain into the source preferences tool and check Search Console's generative AI inclusion; record the result in the project workspace</li>
+<li>Patch to prepare (not yet written; for the project workspace, never committed by this run): the two-line button in the shared footer beside the guestbook, light theme, English label; Welsh label only if Google lists "cy".</li>
+<li>Welcome email (proposal for the free-chapter sequence): one line with the deeplink google.com</li>
+<li>Content rhythm that makes the badge useful: a dated "new record" page when a find lands (e.g. the 1824 David Stewart estate survey, the first record mention found; the 1667 reference cited to the 1974 newspapers and ITV News 1988).</li>
+<li>Success bar after 60 days: any impressions from Top Stories/AI surfaces in Search Console for the subdomain; if zero, drop the footer button and keep only the email line.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com (read)</li>
+<li>blog.google (read)</li>
+<li>seo-kreativ.de (read; practitioner summary)</li>
+<li>digitalapplied.com (snippet, not checked)</li>
+</ul><p class="raw">Raw Markdown: <a href="google-preferred-sources-button-deeplink.md">google-preferred-sources-button-deeplink.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

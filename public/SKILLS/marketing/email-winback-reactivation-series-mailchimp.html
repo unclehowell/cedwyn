@@ -1,0 +1,50 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Email win-back / reactivation series for cold Mailchimp subscribers · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Email win-back / reactivation series for cold Mailchimp subscribers"><link rel="alternate" type="text/markdown" href="email-winback-reactivation-series-mailchimp.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Email win-back / reactivation series for cold Mailchimp subscribers</h1>
+<p>Skill harvested 26 Oct 2026. Topic: winning back (or cleanly removing) subscribers who stopped engaging, so the e-book list stays deliverable and honest. Not covered elsewhere: the welcome sequence file handles new sign-ups; subject lines/MPP and cold-email deliverability files handle other parts.</p>
+<h2>What the practitioner evidence shows</h2>
+<ul>
+<li><strong>Dan Oshinsky (Inbox Collective; ex-BuzzFeed newsletters), own list, Feb 2023, read in full:</strong> a 3-email series to <strong>1,977</strong> readers who signed up 6+ months earlier and had opened nothing in the previous 90 days won back <strong>361 (18.3%)</strong>. On the "Last Chance" email, <strong>64% of readers who opened it clicked</strong> the stay-subscribed button.</li>
+<li>Same source: a good reactivation campaign wins back roughly <strong>5-15%</strong> of the inactive segment, a great one up to <strong>25%</strong> (his consulting experience, not a controlled study).</li>
+<li>Litmus guidance (blog, read): give an opt-down or preference choice rather than "unsubscribe or bust".</li>
+<li>Mailchimp Help ("Re-engage inactive subscribed contacts", read): build a segment from email activity or contact rating, then use an automation with post-send actions that unsubscribe or re-tag people who do not respond.</li>
+<li>Secondary figures seen only in search snippets, <strong>not checked</strong>: "10-15% reactivation" (Deployteq), "12 to 35 percent" (a Facebook group post), "2 to 5% on a first campaign" (Inbox Collective snippet from another post).</li>
+</ul>
+<h2>Why it matters even for a small list</h2>
+<p>Mailbox providers place mail partly on how recipients engage. A list where many people never open drags the engaged readers toward the spam folder. Removing non-responders also keeps a free Mailchimp plan (contact cap) usable.</p>
+<h2>How to run it (Oshinsky's 11-step shape, adapted)</h2>
+<ol>
+<li><strong>Define inactive by cadence:</strong> weekly/monthly sender = no opens or clicks for 4-6 months; daily = 60-90 days; giveaway or event sign-ups = 21-30 days.</li>
+<li><strong>Because of Apple Mail Privacy Protection, judge by clicks where you can.</strong> Opens from Apple Mail are machine-made; treat "opened" as weak evidence and "clicked" as the real signal (see email-subject-lines-preview-text-mpp.md).</li>
+<li><strong>Never include anyone who joined in the last 30 days or has bought.</strong> Buyers get a different, gentler note.</li>
+<li><strong>Email 1 - Preferences / opt-down:</strong> "How often do you want to hear from us?" Offer a less frequent option (e.g. only new-edition news).</li>
+<li>Wait <strong>3-7 days</strong>. Anyone who clicks: tag <code>reactivated</code>, exit the journey.</li>
+<li><strong>Email 2 - Evergreen best-of:</strong> 3-4 of the most-read pieces, one line each. Refresh it a few times a year.</li>
+<li>Wait <strong>5-7 days</strong>; same exit rule.</li>
+<li><strong>Email 3 - Last Chance (opt-in, not opt-out):</strong> subject "Do you still want emails from us?"; ONE button ("Yes, keep me on the list"), no other links; plain sentence that nothing needs doing to leave.</li>
+<li>Wait <strong>4 days</strong>. Non-clickers are <strong>archived/unsubscribed</strong>, not just suppressed.</li>
+<li>Optional <strong>confirmation</strong> email: "You've been unsubscribed", with a one-click way back.</li>
+<li>Build a simple <strong>confirmation page</strong> for the Last Chance button (thank-you + one next step).</li>
+<li><strong>Measure:</strong> reactivation rate = re-engaged ÷ segment size; then watch whether <code>reactivated</code> people keep clicking over the next 2-3 months. Judge on clicks and sales, not opens.</li>
+</ol>
+<p>Mailchimp build: Customer Journey -&gt; starting point "contact enters segment" (or a one-off tag) -&gt; Send email -&gt; Delay -&gt; If/Else on clicked -&gt; tag + exit / continue -&gt; final step "Unsubscribe" or "Archive". Runs on free-plan journeys only if the account's plan allows multi-step journeys; check the plan page before building (not checked).</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Status today:</strong> the Cedwyn/Great House Farm audience is small and young, so there may be no 4-6-month-cold segment yet. Build the journey now as a <strong>draft</strong> in Mailchimp and switch it on only when a segment of 20+ inactive members exists and the owner gives the GO. Any sending is the owner's decision; this file proposes, it does not send.</li>
+<li><strong>Inactive rule:</strong> joined 120+ days ago, no clicks in 120 days, no purchase (match Stripe/Gumroad emails before building the segment).</li>
+<li><strong>Email 1 (preferences):</strong> "Only new editions and records finds, or the occasional history note too?" Two buttons -&gt; two Mailchimp tags.</li>
+<li><strong>Email 2 (evergreen):</strong> three pieces with one line each, e.g. "The 1824 David Stewart survey: the first record mention found of the farm", "The family acquired Tŷ Mawr in 1667 (1974 newspapers; ITV News 1988)", and the free first edition link on /ebooks/ with <code>utm_source=mailchimp&amp;utm_medium=email&amp;utm_campaign=winback</code>.</li>
+<li><strong>Email 3 (last chance):</strong> subject "Do you still want the Cedwyn letters?"; one button to a /thanks/ page that points to the £31.99 bundle on /ebooks/ as the single next step (proposal only; no price change).</li>
+<li><strong>Report:</strong> one line in the Sunday growth notes: segment size, reactivated count, archived count.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>Dan Oshinsky, "How to set up a reactivation campaign to win back inactive email subscribers", Inbox Collective, 5 Apr 2023 - inboxcollective.com (read in full)</li>
+<li>Mailchimp Help, "Re-engage inactive subscribed contacts" - mailchimp.com (read)</li>
+<li>Litmus, "5 tips for creating effective re-engagement emails" - litmus.com (read)</li>
+<li>Deployteq; mailpro.com; Facebook group post - snippets only, not checked</li>
+</ul><p class="raw">Raw Markdown: <a href="email-winback-reactivation-series-mailchimp.md">email-winback-reactivation-series-mailchimp.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

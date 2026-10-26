@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>E-book sales page CRO: test campaigns, short copy, checkout friction · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: E-book sales page CRO: test campaigns, short copy, checkout friction"><link rel="alternate" type="text/markdown" href="ebook-sales-page-cro-checkout-friction.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>E-book sales page CRO: test campaigns, short copy, checkout friction</h1>
+<p>Harvested 2026-10-26 (skills harvest). Topic: converting /ebooks/ visitors into buyers on a direct-sold e-book shop.</p>
+<h2>What the practitioner evidence shows</h2>
+<ul>
+<li><strong>Iterate in campaigns, not one-off tests (CXL / TruckersReport case study).</strong> Six sequential tests took a landing page to +79.3% over the original. Findings that transfer:</li>
+<li>Test 2: a headline and benefit bullets built from big promises left opt-ins flat but cut bottom-of-funnel conversions by 21.7%: "too many promises can look like hype or attract the wrong kind of people."</li>
+<li>Test 4: the plain original headline ("Get a truck driving job with better pay") beat a question, a three-benefit headline and an autonomy framing.</li>
+<li>Test 5: a shorter layout with less copy gave +21.5% opt-ins at 99.6% confidence.</li>
+<li>Test 1: fewer form fields lost by 13.56% here; field count is not a universal law, so test it.</li>
+<li>Note: the case study first appeared in 2013. The principles hold; treat the numbers as one site's.</li>
+<li><strong>Benchmarks (Unbounce Conversion Benchmark Report 2024, landing pages).</strong> Median conversion across all industries 6.6%; industry medians 3.8%-12.3%. Copy length, readability and word choice affect conversion; mobile is often the majority of visits (up to 7x desktop in some industries) yet converts lower. (Benchmarks are for landing pages with one goal, mostly lead forms, not paid checkouts. Use them as an upper reference for signup, not purchase.)</li>
+<li><strong>Why buyers drop at checkout (Baymard Institute, 50 studies).</strong> Average documented cart abandonment 70.22%. Excluding "just browsing", reasons include: extra costs too high 40%, didn't trust the site with card details 19%, forced account creation 18%, too long/complicated checkout 17%, site errors 17%, couldn't see the total up-front 12%, not enough payment methods 9%.</li>
+</ul>
+<h2>How-to</h2>
+<ol>
+<li><strong>Measure the funnel first.</strong> Steps: /ebooks/ view, then book card or sample opened, then buy-click, then checkout, then paid. Use the site's events (e-book page view, buy-click, read) plus Stripe/Gumroad sales. No test until each step has a count.</li>
+<li><strong>Fix the friction list before testing copy</strong> (Baymard is free money):
+   - total price shown on the card, in GBP, VAT included;
+   - guest checkout (no account);
+   - wallet payments (Apple/Google Pay) if the checkout offers them;
+   - trust line next to the button (secure checkout by the payment provider, instant PDF delivery, how refunds work);
+   - no errors at 390 px.</li>
+<li><strong>Above the fold on mobile:</strong> what the book is (one plain line), who it is for, the price, the free sample, one button. Plain headline over clever (CXL test 4).</li>
+<li><strong>Cut copy, not substance.</strong> A shorter page won in test 5. Move long "what's new in version x" notes behind a details toggle; keep page counts and contents samples visible (they answer "is it worth it").</li>
+<li><strong>No hype.</strong> Promise-heavy copy cost 21.7% downstream conversion in test 2. State what the records show, in neutral words.</li>
+<li><strong>Run tests as a campaign.</strong> One change at a time; stop sizes fixed in advance (ab-testing-small-lists.md, <code>python3 tools/ab_stats.py samplesize</code>). At low traffic, test only big differences (layout, offer, free-sample placement), not button colours.</li>
+<li><strong>Log each test</strong>: hypothesis, the change, dates, counts, result, insight. The insight feeds the next test (CXL's main lesson).</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>/ebooks/ (read 26 Oct) lists nine books at £9.99 each plus a £31.99 four-book bundle and a free first edition; each card carries version strings ("v0.02 version 1.1.0 + supplement"), page counts and long "what's new" notes. <strong>Test 1 candidate:</strong> a compact card (title, one-line description, pages, price, "Read a free sample", Buy) with version and change notes collapsed, against the current card. Primary metric: buy-clicks per /ebooks/ visitor; read sales from Stripe/Gumroad.</li>
+<li>Check the friction list on the live checkout (guest checkout, total shown, wallet pay) and record the result in the bizdev log. Changes go to the sole cedwyn committer as a patch.</li>
+<li>Keep the copy neutral and evidence-led (banned words apply; this also matches CXL's "no hype" result). No internal UTMs: use the existing events.</li>
+<li>Signup is the realistic first conversion at current traffic. Use Unbounce's 6.6% median as a stretch reference for the signup strip, not for paid sales.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>CXL, "Landing page case study: how we improved conversions by 79.3%": cxl.com</li>
+<li>Unbounce, Conversion Benchmark Report: unbounce.com</li>
+<li>Baymard Institute, Cart abandonment rate statistics: baymard.com</li>
+</ul><p class="raw">Raw Markdown: <a href="ebook-sales-page-cro-checkout-friction.md">ebook-sales-page-cro-checkout-friction.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

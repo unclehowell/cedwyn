@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WorldCat and Library Hub Discover: getting our e-books into library catalogues · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: WorldCat and Library Hub Discover: getting our e-books into library catalogues"><link rel="alternate" type="text/markdown" href="worldcat-library-hub-discover-catalogue-visibility.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>WorldCat and Library Hub Discover: getting our e-books into library catalogues</h1>
+<p>Harvested 26 Oct 2026 (skills harvest 15:52). Internal skill file.</p>
+<h2>The key fact: we cannot add records ourselves</h2>
+<ul>
+<li><strong>WorldCat</strong> (OCLC) shows only what member libraries catalogue. OCLC's author help: a library's holding may not show because the library is not an OCLC member, catalogued a different edition, or chose not to show its collection; "WorldCat.org only displays what is submitted from the member library". Corrections go first to the publisher or the cataloguing library.</li>
+<li><strong>Library Hub Discover</strong> (Jisc) is the UK and Irish equivalent: one search across 100+ academic, national and special libraries (Jisc's own description, search snippet; the Jisc pages refused our fetch). A US library guide quotes it as 45.5M records from 162 institutions [secondary, not checked at Jisc]. It runs on Jisc's National Bibliographic Knowledgebase.</li>
+<li>So the route is: get the book into a library that catalogues it, then it appears.</li>
+</ul>
+<h2>Routes that put a record there (free)</h2>
+<ol>
+<li><strong>Electronic legal deposit</strong> (see legal-deposit-ebooks-uk-web-archive-nomination.md). The six legal deposit libraries (British Library, National Library of Wales, National Library of Scotland, Bodleian, Cambridge, Trinity College Dublin) share one e-deposit system. Cambridge University Library (5 Mar 2025) reports access restored only for e-books collected before October 2023 after the British Library cyber-attack; newer deposits are stored but access was still being rebuilt. Expect a long delay before a catalogue record shows.</li>
+<li><strong>Library e-lending</strong> via Kobo Writing Life -&gt; OverDrive (see library-elending-overdrive-libby-via-kobo.md). When a library buys a licence it catalogues the title in its own system; whether that record reaches WorldCat depends on the library [not checked at source].</li>
+<li><strong>A local-studies purchase or donation</strong> by a library that is an OCLC member or contributes to Library Hub Discover.</li>
+<li><strong>Open Library</strong> (open-library-catalogue-records-ebooks.md) links to WorldCat once an edition has an ISBN or OCLC number.</li>
+</ol>
+<h2>How to check (monthly, 5 minutes)</h2>
+<ul>
+<li>search.worldcat.org: search each title and author; record the OCLC number (the "OCLC control number" assigned once a library catalogues the book, per Indies Unlimited [snippet only]).</li>
+<li>discover.libraryhub.jisc.ac.uk: search each title (the box is blocked; check from the browser or ask the owner).</li>
+<li>National Library of Wales catalogue: search the titles after any legal deposit.</li>
+<li>Log hits in the project workspace with date, catalogue and record URL.</li>
+</ul>
+<h2>Numbers (with how far each was checked)</h2>
+<ul>
+<li>WorldCat: 15,637 libraries in 207 countries, 512M+ bibliographic records (Book Launchers guide, read in full, but the figures are undated and secondary).</li>
+<li>Library Hub Discover: 45.5M records from 162 institutions [secondary libguide quote, not checked at Jisc].</li>
+<li>No practitioner case study ties WorldCat listing to sales; its value is authority (researchers, librarians and AI answers trust a catalogue record) and inter-library discovery.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Fit: medium, slow, zero spend.</strong> Nothing to submit to OCLC or Jisc directly. Our job is to feed the routes above and check monthly.</li>
+<li><strong>Order:</strong> (1) owner GO on electronic legal deposit (HubSpot draft to the deposit office only, never sent by us); (2) OverDrive opt-in for the paid £9.99 volumes once on Kobo; (3) Open Library records now; (4) ISBNs if the owner decides to buy them.</li>
+<li><strong>Record wording</strong> must match the title pages and the editorial rules: 1824 David Stewart survey = first record mention of Tŷ Mawr found; 1667 = the family's acquisition, cited to the 1974 newspapers and ITV News 1988; no Bute dates before 1824; none of the banned public words; never name the owner.</li>
+<li><strong>Once a record exists,</strong> cite its WorldCat or Library Hub link on the /ebooks/ page as "Held by ..." (library name), and add it to the JSON-LD sameAs list (merchant-listing-structured-data-ebooks.md).</li>
+<li>Never Draft2Digital.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>help.oclc.org</li>
+<li>help.oclc.org</li>
+<li>jisc.ac.uk (snippet; fetch refused)</li>
+<li>acrl.libguides.com (secondary quote)</li>
+<li>lib.cam.ac.uk</li>
+<li>booklaunchers.com</li>
+<li>indiesunlimited.com (snippet only)</li>
+</ul><p class="raw">Raw Markdown: <a href="worldcat-library-hub-discover-catalogue-visibility.md">worldcat-library-hub-discover-catalogue-visibility.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Email signup forms that convert without hurting search (popups, inline, timing) · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Email signup forms that convert without hurting search (popups, inline, timing)"><link rel="alternate" type="text/markdown" href="email-signup-forms-popups-timing.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Email signup forms that convert without hurting search (popups, inline, timing)</h1>
+<p>Harvested 26 Oct 2026 (skills harvest). The fastest free lever between "visitors" and "sales" is a list: readers who sign up can be told when a new e-book lands.</p>
+<h2>What the primary sources establish</h2>
+<ul>
+<li>Getsitecontrol's own conversion research (sample about 90% e-commerce, the rest blogs and media): email popups converted 6.57% on mobile and 3.77% on desktop. Delay mattered: shown after under 2 s 4.01%, 2-5 s 3.46%, over 5 s 5.26%; they advise picking a delay that lets the visitor understand the page, then testing.</li>
+<li>Crazy Egg's roundup of popup datasets (2026): click-triggered popups (the visitor taps a button, e.g. "Get the free chapter") converted 54.42%; exit-intent popups 3.94%; popups after 6-15 s beat immediate popups in every dataset that measured timing; mobile beat desktop in all five datasets that split by device; 1-3 form fields convert about the same (2.1-2.2%), 4+ fields drop conversion.</li>
+<li>Alia's 2026 benchmark: average popup 4.82%; second-page triggers (shown on a visitor's second pageview) 28.98%. Vendor data, treat as direction, not promise.</li>
+<li>Google's "Interstitials and dialogs" guidance: use banners that take a small fraction of the screen instead of full-page interstitials, so users and Google reach the content as soon as they land. A full-screen mobile popup on arrival from search is the pattern to avoid.</li>
+<li>UK law (PECR/UK GDPR, ICO guidance): marketing email to individuals needs clear opt-in consent; no pre-ticked boxes; say what they will get and how often.</li>
+</ul>
+<h2>The playbook</h2>
+<ol>
+<li>Lead with a click-triggered form: a visible button in the e-book strip and at the end of each story ("Email me the free first edition"), opening a small form. Highest-converting pattern and no search penalty.</li>
+<li>Inline form at the end of long story pages (where interest peaks), one field (email), optional first name.</li>
+<li>If any timed popup is used: mobile only as a bottom banner (under ~30% of the screen), never on first pageview from search, trigger on the second pageview or after 15 s / 50% scroll, dismiss remembered for 30 days.</li>
+<li>Offer something real and free: a free e-book or chapter beats "subscribe to updates".</li>
+<li>Double opt-in through Mailchimp, consent text: what they get, roughly how often, unsubscribe any time.</li>
+<li>Measure: form views vs signups per placement (UTM or Mailchimp form IDs), A/B one variable at a time (see ab-testing-small-lists.md). Expect 2-6% on inline/timed, far more on click-triggered.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Checked live today: <code>/ebooks/</code> has no signup form and no "mailchimp"/"signup" in its HTML; the bizdev run found the Facebook post scheduled for Tue 3 Nov links to <code>/ebooks/#signup</code>, which does not exist yet. Adding a <code>#signup</code> section with a click-triggered button + inline Mailchimp embedded form (free plan) fixes both. Queue as a patch for the committer; do not commit from this run.</li>
+<li>Offer: the free "Enwau: the names of Tŷ Mawr" e-book (already free) as the signup gift, delivered by the Mailchimp welcome email.</li>
+<li>Copy example: "Get Enwau free: 108 names of Tŷ Mawr, each with its date and source. From 1667, when the Williams family acquired the house (1974 newspaper reports; ITV News, 1988), to the 1824 David Stewart survey, the first record mention found." No Bute-held dates presented as Tŷ Mawr records, no hedges, none of the banned public words.</li>
+<li>Three languages: one form per language page (en/cy/es), tagged by language in Mailchimp so later emails go out in the reader's language.</li>
+<li>No full-screen popups anywhere (also keeps the site in line with the project lead's dislike of big notices).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>getsitecontrol.com (read 26 Oct 2026)</li>
+<li>crazyegg.com (read 26 Oct 2026)</li>
+<li>aliapopups.com (vendor benchmark, read 26 Oct 2026)</li>
+<li>developers.google.com (read 26 Oct 2026)</li>
+</ul><p class="raw">Raw Markdown: <a href="email-signup-forms-popups-timing.md">email-signup-forms-popups-timing.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Syndicating Cedwyn articles without losing the original (Medium, dev-style platforms, partner sites) · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Syndicating Cedwyn articles without losing the original (Medium, dev-style platforms, partner sites)"><link rel="alternate" type="text/markdown" href="syndication-canonical-noindex-medium.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Syndicating Cedwyn articles without losing the original (Medium, dev-style platforms, partner sites)</h1>
+<p>Harvested 26 Oct 2026 (skills harvest). Republishing a story elsewhere reaches new readers, but the copy can outrank the original.</p>
+<h2>What the primary sources establish</h2>
+<ul>
+<li>Google changed its canonicalization documentation in May 2023: for syndicated content it now recommends that the partner site <code>noindex</code> the copy if the original publisher does not want to compete with it. <code>rel=canonical</code> alone is not enough because the two pages often differ (layout, extra content) and canonical is a hint, not a directive (reported and quoted by Glenn Gabe, GSQi, 4 Aug 2023).</li>
+<li>Glenn Gabe's case study (a news publisher, 3,000 syndicated URLs, checked with the URL Inspection API and bulk Search Console exports): almost all originals were indexed and Google never picked the partner as canonical, yet syndication partners still outranked the original on several surfaces: Yahoo Finance in Top Stories above the original, Yahoo News twice in the News tab with the original absent (and the client's logo shown on the copy). Discover losses are hard to measure because the feed is personalised. He updated the post on 16 Sep 2025 with a follow-up study on AI search tools (ChatGPT, Perplexity, Claude, Gemini) and syndicated copies.</li>
+<li>Medium's Import tool republishes a post from your URL and sets the canonical link to the original automatically; a canonical cannot be set by hand except through import or the "Set a canonical link" setting (Medium help centre; dev.to commenter Laurie Barth confirming import assigns canonical_url). Medium itself was not readable from this box (403), so confirm in the UI before relying on it.</li>
+</ul>
+<h2>The playbook</h2>
+<ol>
+<li>Original first: publish on our own site, wait until Google has indexed it (Search Console URL Inspection shows "URL is on Google"), usually 3-7 days.</li>
+<li>Choose the copy's form:
+   - Platforms with an import or canonical field (Medium import, dev.to <code>canonical_url</code>, Hashnode, LinkedIn articles lack one): use import/canonical, and prefer an excerpt (first 40-60%) ending with "Read the full story with sources" linking back.
+   - Partner sites (local history societies, heritage blogs, newsletters): ask them to <code>noindex</code> the copy or to run a summary with a link; full-text copies only with noindex.</li>
+<li>Every copy carries a tracked link (UTM source = platform, medium = syndication, campaign = story slug) to the original page, plus one link to /ebooks/.</li>
+<li>Never syndicate the e-book text itself; syndicate stories that point to it.</li>
+<li>After 2 weeks, search the exact headline in Google and in an AI answer engine: if the copy shows instead of the original, convert the copy to an excerpt or ask for noindex.</li>
+<li>Log each copy (platform, URL, date, canonical/noindex state, clicks back) in the growth log.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Best candidates are the headline-first story pages (1000 Cuts timeline entries, the Enwau names e-book intro, Calan Gaeaf). Example excerpt line: "In 1667 the Williams family acquired Tŷ Mawr (1974 newspaper reports, Mary Williams' statement; ITV News, 1988). The first record mention found is the 1824 David Stewart survey." No Bute-held dates presented as Tŷ Mawr records, no hedging phrases, none of the banned public words.</li>
+<li>Medium: use the import tool only on the project lead's account and only after his go-ahead (publishing in his name is outward); nothing is posted by this skill.</li>
+<li>Partner republishing (e.g. a heritage society newsletter) is an outward ask: draft it as a HubSpot task for the project lead's sign-off, with the noindex/excerpt request written into the draft.</li>
+<li>Spanish (Patagonia) and Welsh versions count as translations, not duplicates; give each its own page with hreflang on our site before any syndication.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>gsqi.com (Glenn Gabe, 2023, updated 2025; read 26 Oct 2026)</li>
+<li>developers.google.com (Google canonical guide)</li>
+<li>help.medium.com (snippet; page blocked)</li>
+<li>dev.to (practitioner confirmation, snippet)</li>
+</ul><p class="raw">Raw Markdown: <a href="syndication-canonical-noindex-medium.md">syndication-canonical-noindex-medium.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

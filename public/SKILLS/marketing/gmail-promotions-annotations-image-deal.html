@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gmail Promotions tab annotations: image preview, deal badge, deal card · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Gmail Promotions tab annotations: image preview, deal badge, deal card"><link rel="alternate" type="text/markdown" href="gmail-promotions-annotations-image-deal.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Gmail Promotions tab annotations: image preview, deal badge, deal card</h1>
+<p>What it is: JSON-LD (or Microdata) in the email <code>&lt;head&gt;</code> that lets Gmail show a promotion before the email is opened: a single image preview, a product carousel (up to 10 images), a deal badge next to the subject line, or a deal card with code and end date. Gmail-only, Promotions tab only, free.</p>
+<h2>What the sources show (read 26 Oct 2026)</h2>
+<ul>
+<li><strong>Google Developers, "Annotate emails in the Promotions tab"</strong> (last updated 8 Sep 2026, read). Types: single image preview, product carousel (PromotionCard, max 10, each image unique, same aspect ratio), deal annotation (DiscountOffer: at least one of <code>description</code>, <code>discountCode</code>, <code>availabilityEnds</code>; <code>availabilityStarts</code> highly recommended; ISO 8601 dates), deal card. Image: PNG or JPEG; single preview aspect 1.91:1; carousel 4:5, 1:1 or 1.91:1. Google's own caveat: "quality filters and frequency limits" decide display, so not every recipient sees it. Support address on the page: [address kept in the project workspace] A Preview annotations page and Best Practices/FAQ sit beside it.</li>
+<li><strong>Validity, "Gmail Annotations in 2025"</strong> (read, deliverability vendor). Big brands (Sephora, Domino's, Ubisoft) use them; more ESPs support them in templates; display is inconsistent, so treat as "nice-to-have". Mentions an application step with Gmail and no display guarantee (whether registration is still required in 2026 is not checked against Google's current pages).</li>
+<li><strong>Stripo, "Outdated relic or untapped opportunity?"</strong> (read, ESP vendor). About 68% of Gmail users use the Promotions tab, about 45% check it daily, about 20% never do (source of the survey not checked). Their table puts annotation CTR lift at about +15-25% (2024) and +20% (2018) - vendor figures, not checked. Since 2024 Gmail also auto-extracts deals/images from email content without markup, and that can override manual markup.</li>
+<li>No small-sender case study with numbers was found. Treat any lift as something we measure, not something we expect.</li>
+</ul>
+<h2>How to do it (Mailchimp, zero cost)</h2>
+<ol>
+<li>Only for emails that really are promotional and already land in Promotions (a newsletter with a genuine offer). Don't add it to plain letters or reader replies: those should aim for Primary.</li>
+<li>Mailchimp: use a custom-code (HTML) template or the code block in the classic builder, and put the <code>&lt;script type="application/ld+json"&gt;</code> in <code>&lt;head&gt;</code>. Send a test to a Gmail address and check view-source in Gmail ("Show original") that the script survived. If Mailchimp strips it, use the Microdata form (meta tags) instead.</li>
+<li>Single image preview for an e-book: one 1.91:1 JPEG (e.g. 1200x628) of the cover on a plain background, <code>url</code> = the /ebooks/ book page with UTM (<code>utm_source=mailchimp&amp;utm_medium=email&amp;utm_campaign=&lt;name&gt;&amp;utm_content=gmail_annotation</code>), <code>headline</code> = book title.</li>
+<li>Deal badge only when a real offer exists: <code>description</code> = the true offer ("Free first edition", "Bundle £31.99"); <code>availabilityEnds</code> = the real end. Never invent a code, a "was" price or a deadline (UK DMCC Act, banned practice 7 - see welcome-sequence and black-friday skills).</li>
+<li>Preview with Google's preview tool (Preview annotations page) before sending. Keep the brand sender name and from-address constant: Gmail ties trust to the sender.</li>
+<li>Measure: in Mailchimp, clicks on the UTM-tagged annotation URL vs body links; in GA4/Cloudflare, sessions with <code>utm_content=gmail_annotation</code>. Judge after 3 sends, not 1. Gmail auto-extraction may show something anyway, so also look at the email in a Gmail Promotions tab yourself.</li>
+</ol>
+<h2>Example (single image preview)</h2>
+<pre><code class="language-html">&lt;script type=&quot;application/ld+json&quot;&gt;
+[{&quot;@context&quot;:&quot;schema.org
+  &quot;image&quot;:&quot;cedwyn.bucklerfamily.estate-1200x628.jpg&quot;,
+  &quot;url&quot;:&quot;cedwyn.bucklerfamily.estate&amp;utm_content=gmail_annotation&quot;,
+  &quot;headline&quot;:&quot;&lt;Book title&gt;&quot;}]
+&lt;/script&gt;
+</code></pre>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Today the list is small and sales are 0, so the value is one more visible, tappable cover for the Gmail share of subscribers - cheap to add, worth testing.</li>
+<li>PROPOSAL (needs the owner's GO, because it changes the email template used for campaigns): add a 1.91:1 cover image preview to the next Mailchimp campaign that already carries a real offer; deal badge only for the genuine free first edition or the listed bundle price. No new email journey, no price change.</li>
+<li>Prep that needs no GO: make 1200x628 cover JPEGs per book in work/ (do not commit to the cedwyn repo while the migration worker owns it), and note the annotation UTM in utm-discipline-ga4-funnel.md's naming list.</li>
+<li>Re-check Google's page for a registration requirement before the first send (not checked today).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com (read; updated 2026-09-08)</li>
+<li>developers.google.com (preview tool page)</li>
+<li>validity.com (read)</li>
+<li>stripo.email (read; vendor figures not checked)</li>
+</ul><p class="raw">Raw Markdown: <a href="gmail-promotions-annotations-image-deal.md">gmail-promotions-annotations-image-deal.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

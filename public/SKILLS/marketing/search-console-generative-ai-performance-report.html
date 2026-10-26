@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Search Console&#x27;s Generative AI performance report: what it shows and how to read it (2026 how-to) · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Search Console&#x27;s Generative AI performance report: what it shows and how to read it (2026 how-to)"><link rel="alternate" type="text/markdown" href="search-console-generative-ai-performance-report.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Search Console's Generative AI performance report: what it shows and how to read it (2026 how-to)</h1>
+<p>Goal: see, from Google's own data, whether Cedwyn pages are shown inside AI Overviews and AI Mode, and which ones, without paying for a third-party "AI visibility" tracker.</p>
+<h2>What exists (Google's documentation, read 26 Oct 2026)</h2>
+<ul>
+<li><strong>Launched 3 Jun 2026</strong> to a subset of sites; <strong>rolled out to all websites worldwide on 31 Aug 2026</strong> (Search Central blog + help page 16984139). Two reports: <em>Generative AI performance (Search)</em> and <em>(Discover)</em>.</li>
+<li><strong>Covers:</strong> AI Overviews and AI Mode. Not Search Labs experiments.</li>
+<li><strong>Metric: impressions only.</strong> An impression = a link to your site was shown in a generative AI feature. Two of your links in one AI answer count as <strong>one</strong> impression in the chart (property-level), but separately in the page table.</li>
+<li><strong>Dimensions:</strong> Pages (final URL after redirects, credited to the <strong>canonical</strong> URL), Countries, Devices, Dates (hourly/daily/weekly/monthly, Pacific Time).</li>
+<li><strong>Search type filter:</strong> <em>Web: text-based</em> and, since <strong>24 Sep 2026</strong>, <em>Web: multimodal</em> (Lens, Circle to Search, image uploads, Chrome "Search this image").</li>
+<li><strong>Not in it:</strong> clicks, CTR, queries, position. The same impressions are also still counted inside the normal Performance report (Web), so the AI report is a separate <em>view</em>, not extra traffic.</li>
+<li><strong>Export</strong> button downloads chart + table; "~" or "-" become 0 in the file.</li>
+<li><strong>"Not seeing the report?"</strong> Google: usually the site has not had enough generative AI impressions yet, or the site has been excluded from Search generative AI features (check that setting before anything else).</li>
+</ul>
+<h2>What practitioners found</h2>
+<ul>
+<li><strong>Drew Garrett (25 Jun 2026, updated 29 Sep):</strong> data for his clients backfilled to about <strong>18 May 2026</strong>, two weeks before the announcement, so there is history from day one. Across his accounts, <strong>listicles and comparison pages</strong> pulled the most AI Overview impressions, definitional pages close behind; he stresses it varies by account. Path: Performance &gt; Search results &gt; the box "Get more details on your site's performance on generative AI features" &gt; Open report.</li>
+<li><strong>Brodie Clark (experiment, updated 8 Jun 2026):</strong> had hundreds of SEOs run the same AI Mode query to confirm AI Mode is logged in Search Console (it is, grouped with Web). He found all links in the top-right AI Mode unit recorded as position 1 in the normal report, which inflates "average position" for pages cited there.</li>
+<li><strong>Agency Dashboard (30 Jun 2026):</strong> treat it as a visibility signal; with no clicks or queries, do not credit sales to it.</li>
+<li>Already in our index: Ahrefs (Mar 2026) found 37.1% of AI Overview cited URLs also rank top 10, and AWR's CTR study shows position-1 CTR falling from 20.0% to 9.7% when an AI Overview is present (gsc-striking-distance-quick-wins.md). Bing's equivalent is in bing-webmaster-ai-performance-copilot-citations.md.</li>
+</ul>
+<h2>The routine (10 min, weekly, Monday)</h2>
+<ol>
+<li>Open the report for the Domain property. If it is missing, write "no report (too few AI impressions)" in the log and stop; check again monthly. That line is itself a baseline.</li>
+<li>Set dates to last 28 days, compare with previous 28. Note total AI impressions and the <strong>share</strong>: AI impressions / Web impressions from the normal report (same dates, same country).</li>
+<li><strong>Pages tab, export.</strong> For each page with AI impressions: is it the canonical you want? If a /docs/ or /research/ copy is credited instead of the main record page, that is a canonical fault (see page-indexing-triage-duplicates-canonicals.md), not an AI fault.</li>
+<li><strong>Countries tab:</strong> UK vs Argentina vs US. This is the first place our Wales/Argentina split shows up in AI answers.</li>
+<li><strong>Pages with AI impressions but zero normal clicks:</strong> read the page's first 100 words. AI answers lift a short, dated, sourced statement; make the first paragraph that statement (the headline-first layout already does this).</li>
+<li>Switch the filter to <em>Web: multimodal</em> once a month: map and photo pages can be found by camera searches.</li>
+<li>Log one row: date, total AI impr, share of Web impr, top 3 pages, countries, action taken. Never report AI impressions as visits.</li>
+</ol>
+<h2>Reading rules</h2>
+<ul>
+<li>Impressions here are not reads or visits. A rise with flat clicks is normal.</li>
+<li>Because the report credits canonicals, fixing duplicates usually <em>moves</em> AI impressions onto the right page rather than adding new ones.</li>
+<li>Small numbers (under ~50 a month) swing week to week; judge on 28-day windows.</li>
+<li>Whether this report is available through the Search Console API was not checked this run; until it is, the weekly export is manual (or by the account owner's browser session).</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Today:</strong> Google has indexed only 2 Cedwyn pages, so expect "no report". Indexing (page-indexing-triage) comes first; this report is the measure afterwards, not a fix.</li>
+<li><strong>First check (owner or a browser session with the connected Search Console):</strong> confirm the property is not excluded from generative AI features, then record the baseline row in the project workspace beside the weekly visibility check (schedule 85e9deca reads it Mondays 07:30).</li>
+<li><strong>What to make citable:</strong> one record page per dated document, its first line a plain, sourced statement in our own voice, e.g. "1824: the David Stewart survey is the first record mention of Tŷ Mawr we have found." 1667 appears only as the family's acquisition (1974 newspaper reports of Mary Williams' statement; ITV News 1988). Bute estate documents are never presented as Tŷ Mawr records before 1824.</li>
+<li><strong>Comparison and list formats</strong> (the formats Garrett saw win): the new names register e-book (Enwau, /ebooks/enwau/) suits a public page "Every name of Tŷ Mawr, by date and source": a list of forms with dates and sources, the kind of page AI answers quote.</li>
+<li><strong>Spanish pages:</strong> watch the Argentina row; if AI impressions there stay at zero while UK grows, the es-AR pages need their own first-line statements in native Spanish.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com (3 Jun 2026; worldwide note 31 Aug 2026)</li>
+<li>support.google.com (Generative AI performance report (Search) help)</li>
+<li>developers.google.com (24 Sep 2026)</li>
+<li>drewgarrett.org (25 Jun 2026, upd. 29 Sep)</li>
+<li>brodieclark.com (experiment, upd. 8 Jun 2026)</li>
+<li>agencydashboard.io (30 Jun 2026)</li>
+</ul><p class="raw">Raw Markdown: <a href="search-console-generative-ai-performance-report.md">search-console-generative-ai-performance-report.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

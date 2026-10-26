@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Event structured data (schema.org Event) for a real, in-person talk page · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Event structured data (schema.org Event) for a real, in-person talk page"><link rel="alternate" type="text/markdown" href="event-structured-data-in-person-talk-page.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Event structured data (schema.org Event) for a real, in-person talk page</h1>
+<p>Skill harvested 2026-10-26. Primary source: Google Search Central event docs (page last updated 2026-09-08) and Google's documentation changelog (5 June 2025). No install needed: hand-written JSON-LD.</p>
+<h2>What changed (read this first)</h2>
+<ul>
+<li>On 5 June 2025 Google removed the online-event properties from its event docs. Its stated reason: "To be eligible for the event experience on Google, events must be bookable by the general public and held at a physical location." So an online-only talk (Zoom, YouTube live, Eventbrite online) gets NO Google event listing, whatever markup it carries. Markup is only worth adding for an in-person talk (e.g. a library room).</li>
+<li>The event experience runs in the United Kingdom (English), so a Penarth/Barry/Cowbridge talk is eligible.</li>
+<li>Google's own case-study line on the page: Eventbrite saw "a 100% increase in the typical year-over-year growth of traffic from Google Search". Vendor case study, not checked further. No small-publisher numbers were found; measure our own.</li>
+</ul>
+<h2>Rules that decide eligibility (Google's guidelines)</h2>
+<ol>
+<li>One event = one leaf page with its own URL and its own markup. A listing page of several talks is not the target; mark up each talk page.</li>
+<li>Accurate name, start date and location. Don't mark non-events: no "buy the e-book now", no discounts, no opening hours, no coupons. An e-book is never an Event.</li>
+<li>Must be bookable by the general public. Members-only or invitation-only events are ineligible.</li>
+<li>Required: name, startDate, location (Place with name + full PostalAddress). Recommended: description, endDate, eventStatus, image (1x1, 4x3, 16x9), offers (free = price 0), organizer, performer.</li>
+<li>Time zone: give the UTC offset. UK winter = +00:00, summer (BST) = +01:00. Without an offset Google uses the venue's time zone.</li>
+<li>If it moves or is cancelled, update eventStatus (EventRescheduled + previousStartDate, EventCancelled, EventPostponed); never delete the page.</li>
+<li>Page must be crawlable: not robots-blocked, no noindex, no login.</li>
+</ol>
+<h2>Steps</h2>
+<ol>
+<li>Publish the talk page (leaf URL, e.g. /talks/2027-03-llandough-records/) only once the venue booking is confirmed in writing.</li>
+<li>Add the JSON-LD block below to the head.</li>
+<li>Run Google's Rich Results Test on the live URL; fix critical errors.</li>
+<li>URL Inspection in Search Console, request indexing; make sure the page is in the sitemap.</li>
+<li>After the date: set the page to past tense, keep the markup's real dates (Google drops past events itself), link to the recording/notes and /ebooks/.</li>
+</ol>
+<h2>Template (fill only with confirmed facts)</h2>
+<pre><code class="language-json">{
+  &quot;@context&quot;: &quot;schema.org&quot;,
+  &quot;@type&quot;: &quot;Event&quot;,
+  &quot;name&quot;: &quot;Tŷ Mawr, Llandough: what the records show&quot;,
+  &quot;startDate&quot;: &quot;2027-03-11T18:30:00+00:00&quot;,
+  &quot;endDate&quot;: &quot;2027-03-11T19:30:00+00:00&quot;,
+  &quot;eventStatus&quot;: &quot;schema.org
+  &quot;location&quot;: {&quot;@type&quot;: &quot;Place&quot;, &quot;name&quot;: &quot;&lt;library name&gt;&quot;,
+    &quot;address&quot;: {&quot;@type&quot;: &quot;PostalAddress&quot;, &quot;streetAddress&quot;: &quot;&lt;street&gt;&quot;,
+      &quot;addressLocality&quot;: &quot;&lt;town&gt;&quot;, &quot;postalCode&quot;: &quot;&lt;postcode&gt;&quot;, &quot;addressCountry&quot;: &quot;GB&quot;}},
+  &quot;image&quot;: [&quot;&lt;1x1.jpg&gt;&quot;, &quot;&lt;4x3.jpg&gt;&quot;, &quot;&lt;16x9.jpg&gt;&quot;],
+  &quot;description&quot;: &quot;A free illustrated talk on the farm's records, from the first record mention found (the 1824 David Stewart survey) onwards.&quot;,
+  &quot;offers&quot;: {&quot;@type&quot;: &quot;Offer&quot;, &quot;price&quot;: 0, &quot;priceCurrency&quot;: &quot;GBP&quot;,
+    &quot;availability&quot;: &quot;schema.org &quot;url&quot;: &quot;&lt;booking or page URL&gt;&quot;},
+  &quot;organizer&quot;: {&quot;@type&quot;: &quot;Organization&quot;, &quot;name&quot;: &quot;Cedwyn&quot;, &quot;url&quot;: &quot;cedwyn.bucklerfamily.estate
+}
+</code></pre>
+<p>(Date and venue above are placeholders, not a booking.)</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Today Cedwyn has no confirmed in-person talk, so nothing is marked up yet. Do not mark up the online/Eventbrite talk idea (ineligible since June 2025).</li>
+<li>Performer: a role ("Cedwyn researcher"), never a personal name, unless the owner decides otherwise.</li>
+<li>Measure: Search Console performance filtered to the talk URL (impressions, clicks) plus utm_source=google-events is not possible (Google sets the link), so compare talk-page sessions before/after indexing and count bookings.</li>
+<li>The e-books are never marked as events; /ebooks/ is linked from the talk page body only.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com (read in full; last updated 2026-09-08)</li>
+<li>developers.google.com (5 June 2025 entry: "removed the online event properties"; read)</li>
+</ul><p class="raw">Raw Markdown: <a href="event-structured-data-in-person-talk-page.md">event-structured-data-in-person-talk-page.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

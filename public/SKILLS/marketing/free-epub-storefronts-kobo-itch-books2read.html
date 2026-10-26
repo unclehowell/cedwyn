@@ -1,0 +1,79 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Free EPUB storefronts: Kobo Writing Life, itch.io, Books2Read links (and why not Draft2Digital now) · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Free EPUB storefronts: Kobo Writing Life, itch.io, Books2Read links (and why not Draft2Digital now)"><link rel="alternate" type="text/markdown" href="free-epub-storefronts-kobo-itch-books2read.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Free EPUB storefronts: Kobo Writing Life, itch.io, Books2Read links (and why not Draft2Digital now)</h1>
+<p>Harvested 26 Oct 2026 (skills harvest). Google Play Books is already covered in google-play-books-partner-center-ebooks.md. EPUB builds: epub-editions-sphinx-epubcheck.md (+ tools/epub_lint.py).</p>
+<h2>Which shelves are still free to list on (checked 26 Oct 2026)</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Shelf</th>
+<th>Cost to list</th>
+<th>What we keep</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kobo Writing Life (KWL)</td>
+<td>Free</td>
+<td>70% of list price if at or above the regional floor (UK £1.99, US $2.99, EUR 1.99), else 45%; public-domain 20%</td>
+<td>Also feeds Kobo Plus (non-exclusive subscription) at 60% of value-per-minute; OverDrive libraries 50% of library price. 70% also needs the e-book priced at least 20% below any print edition. Reports on the 25th; payout after 45 days; $50 CAD minimum.</td>
+</tr>
+<tr>
+<td>itch.io</td>
+<td>Free</td>
+<td>Default 90% (Open Revenue Share slider, 0-100% to itch) minus PayPal/Stripe fee (about $0.30 + 2.9%)</td>
+<td>Any price is a minimum: buyers can pay more. itch.io's own figure: 30% of all money spent is above the minimum; average purchase about $1.50 over. PDF + EPUB files on one page.</td>
+</tr>
+<tr>
+<td>Books2Read Universal Book Link</td>
+<td>Free, no account needed</td>
+<td>n/a (a link, not a shop)</td>
+<td>One short link that sends each reader to their own store. Free account adds click counts and store preferences.</td>
+</tr>
+<tr>
+<td>Draft2Digital</td>
+<td><strong>No longer free</strong></td>
+<td>about 90% of retailer net (D2D keeps about 10% of retail price)</td>
+<td>From 15 Apr 2026: $20 one-time activation fee when distribution is switched on, plus $12/yr for accounts earning under $100 net in 12 months. Under the project lead's never-pay rule: skip unless he approves the fee.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Sources: KWL earnings + terms as re-read 12 Oct 2026 in publishing.co.uk's KWL guide (Kobo's own Zendesk pages block our fetcher); kobowritinglife.zendesk.com "How does Kobo Plus pay?" (60% of revenue/minutes-read); kobowritinglife.zendesk.com promotions article; itch.io and /payments; books2read.com; draft2digital.com and ALLi's 2026 fee explainer.</p>
+<h2>Practitioner evidence</h2>
+<ul>
+<li><strong>Kobo store share:</strong> KWL titles were 25% of Kobo's English-language e-book sales (Kobo's Tara Cremin, via ALLi, Feb 2022).</li>
+<li><strong>Kobo Promotions tab:</strong> submit titles to Kobo's merchandisers from the dashboard (ask KWL to enable it). Most promotions now carry a charge (flat fee or a share of margin), and Kobo asks you to confirm the work was not written by a language model. Free placements exist but are rare: treat any paid promotion as needing the project lead's GO.</li>
+<li><strong>Kobo Plus payout example (Kobo's own):</strong> a book that takes 3 hours to read earned about 0.29 in that month's example (180 min x 0.0027 x 60%). Low per read, but non-exclusive, so it costs nothing to opt in.</li>
+<li><strong>itch.io as a book shop:</strong> used by indie novelists for books and bonus material (Dax Murray, "Leaving KU part III"); Creator Day (e.g. 28 Nov 2025) waives itch's share and authors run sales that day.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li>Build one EPUB per title and language from the Sphinx sources; run tools/epub_lint.py, then (if Java is ever available) EPUBCheck. Never convert from PDF.</li>
+<li><strong>Kobo (free):</strong> create a KWL account (the project lead's identity, his bank details for payouts: owner step). Upload EPUB + cover, set the UK price to at least £1.99 (keeps 70%), opt in to Kobo Plus, set world rights, description, categories (History &gt; Europe &gt; Great Britain; Genealogy), keywords. Free titles: KWL allows £0.00.</li>
+<li><strong>itch.io (free):</strong> create a "book" project page; upload PDF + EPUB; price = minimum (e.g. £9.99 title, Enwau at £0 with "donate" prompt); write the page in the same headline-first style as Cedwyn; tags: history, wales, genealogy, non-fiction, ebook.</li>
+<li><strong>Books2Read (free):</strong> once Kobo, Google Play Books and our own /ebooks/ page exist, make one Universal Book Link per title and use it in posts where the reader's store matters.</li>
+<li>Keep our own /ebooks/ (Stripe) as the default link in Cedwyn pages and bio: we keep the most there. Stores add discovery, not margin.</li>
+<li>Log each listing (store, URL, price, date) in the project workspace and add the store links to the e-book's JSON-LD <code>sameAs</code>/offers later.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Order: Kobo first (free, 70%, Kobo Plus + libraries), then itch.io, then Books2Read links. Skip Draft2Digital (fee) unless the project lead approves.</li>
+<li>Owner steps only the project lead can do: open the KWL and itch.io accounts in his name with payout details. Everything else (EPUBs, descriptions, covers, keywords) Tab prepares in the project workspace</li>
+<li>First candidate: the free "Enwau: the names of Tŷ Mawr" (EPUB already test-built, 156 KB) as a £0 listing on Kobo and a pay-what-you-want page on itch.io, with a one-link end page pointing to the £9.99 title (see ebook-back-matter-one-next-step.md).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>publishing.co.uk (KWL royalty table, UK £1.99 floor, 20%-below-print rule, payout terms; re-read 12 Oct 2026)</li>
+<li>kobowritinglife.zendesk.com</li>
+<li>kobowritinglife.zendesk.com</li>
+<li>selfpublishingadvice.org (KWL = 25% of Kobo English e-book sales)</li>
+<li>itch.io ; itch.io</li>
+<li>books2read.com</li>
+<li>draft2digital.com ; selfpublishingadvice.org</li>
+<li>dreaming.daxmurray.com</li>
+</ul><p class="raw">Raw Markdown: <a href="free-epub-storefronts-kobo-itch-books2read.md">free-epub-storefronts-kobo-itch-books2read.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

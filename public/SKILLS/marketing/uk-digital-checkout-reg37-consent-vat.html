@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Digital-content checkout compliance (UK): the reg 37 consent, the confirmation email, VAT · Cedwyn agent library</title><meta name="description" content="Cedwyn agent library: Digital-content checkout compliance (UK): the reg 37 consent, the confirmation email, VAT"><link rel="alternate" type="text/markdown" href="uk-digital-checkout-reg37-consent-vat.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Digital-content checkout compliance (UK): the reg 37 consent, the confirmation email, VAT</h1>
+<p>Date: 26 Oct 2026 (skills harvest 20:22). Read on the primary pages below. Not legal or tax advice. Anything we did not read on a primary page is marked "not checked".</p>
+<h2>Why it is a sales skill</h2>
+<p>A UK buyer of a download has a 14-day right to cancel. You lose that right only if the checkout collected two things and the receipt confirmed them. Without them, a buyer can read the whole e-book and still cancel within 14 days. A clear line at checkout also answers the "can I get a refund?" doubt at the moment of paying. Stripe's docs put it this way: showing refund/support/legal info "can increase customer confidence and minimize cart abandonment" (Stripe's own wording; no figures given).</p>
+<h2>The rule, read on legislation.gov.uk</h2>
+<ul>
+<li><strong>Reg 37(1), Consumer Contracts Regulations 2013:</strong> for digital content "not on a tangible medium", the trader must not begin supply before the 14-day cancellation period ends unless (a) "the consumer has given express consent", and (b) "the consumer has acknowledged that the right to cancel ... will be lost".</li>
+<li><strong>Reg 37(2):</strong> once supply begins after that consent and acknowledgement, the right to cancel ends.</li>
+<li><strong>Reg 37(3)-(4):</strong> if supply began without them, a buyer who cancels "bears no cost" for what was supplied. In practice that means a full refund after the download.</li>
+<li><strong>Reg 16(3):</strong> the confirmation on a durable medium (the receipt email) "must include confirmation of the consent and acknowledgement". Under reg 16(4) it must arrive within a reasonable time, and before performance begins.</li>
+<li><strong>Separate from all this:</strong> a faulty or wrong file is still fixed or refunded under the Consumer Rights Act 2015 (our FAQ draft already states this; the 2015 Act itself not re-read today).</li>
+</ul>
+<h2>VAT, read on gov.uk</h2>
+<ul>
+<li>UK e-books have been <strong>zero-rated since 1 May 2020</strong> (gov.uk "Zero rate of VAT for electronic publications"). The list covers books, booklets, pamphlets, journals and periodicals.</li>
+<li><strong>What is not zero-rated:</strong> an e-publication more than half devoted to advertising, audio or video, and audiobooks ("remain taxable at the standard rate"). This matters for any audio edition or video-heavy bundle.</li>
+<li><strong>EU buyers</strong> (SendOwl tax guide, verified by them 14 Apr 2026): a UK seller is non-EU. The EUR 10,000 threshold does not apply, so B2C digital sales to EU consumers need Non-Union OSS from the first euro, unless a platform is the merchant of record.</li>
+<li><strong>Gumroad:</strong> a merchant of record that collects and remits UK/EU VAT itself. Its help page did not render on the box, so this is not checked.</li>
+<li><strong>Stripe Payment Links:</strong> we are the seller. "Collect tax automatically" uses Stripe Tax (Stripe docs). Whether Stripe Tax is on for our links is not checked.</li>
+</ul>
+<h2>How to do it (Stripe Payment Links / Checkout)</h2>
+<ol>
+<li><strong>Public details:</strong> set the Terms of service URL and the Privacy policy URL in the Stripe account's Public details (Payment Links docs). The terms page must contain the reg 37 sentence.</li>
+<li><strong>Each payment link:</strong> turn on "Require customers to accept your terms of service". Checkout then shows a checkbox and won't take payment until it's ticked (docs.stripe.com).</li>
+<li><strong>Checkbox wording</strong> (API <code>custom_text[terms_of_service_acceptance]</code>; Markdown links allowed; up to 1,200 characters): "I agree to the <a href="URL">terms</a> and want my download now. I understand I lose my 14-day right to cancel once the download starts." One tick covers both consent and acknowledgement. Keep it to one sentence. Stripe notes that extra text "might affect your conversion rate".</li>
+<li><strong>Text above the Pay button</strong> (<code>custom_text[submit]</code>), optional: "Instant download. Faulty file? We fix or refund it."</li>
+<li><strong>Receipt/confirmation email:</strong> add one line: "You asked for immediate access and agreed that your 14-day cancellation right ends once the download starts." This meets reg 16(3). Stripe's own receipt can't carry custom text (not checked), so put the line in the delivery email or the success page plus email.</li>
+<li><strong>Gumroad:</strong> check whether its checkout already carries an equivalent consent (not checked). If not, mirror the line in the product description and the receipt note.</li>
+<li><strong>Test:</strong> one test-mode walk at 390 px. Confirm the box is unticked by default (express consent means no pre-ticked box), payment is blocked until ticked, and the email carries the line.</li>
+</ol>
+<h2>Pitfalls</h2>
+<ul>
+<li>A pre-ticked box, or consent hidden in the T&amp;Cs only, is not "express".</li>
+<li>Don't promise "no refunds". A faulty file is still refundable.</li>
+<li>An audio edition changes VAT (standard rate). Price it VAT-inclusive if we're ever VAT-registered (registration status not checked).</li>
+<li>EU sales through Stripe without OSS or MoR coverage is a tax gap. Routing EU buyers to Gumroad is one option (PROPOSAL).</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Today:</strong> our draft support FAQ (the project workspace) relies on reg 37. It notes that <code>consent_collection</code> is OFF on the Stripe Payment Links. So until the steps above are done, a buyer can download and still cancel with a full refund.</li>
+<li><strong>PROPOSAL (needs the owner's GO; changes the checkout):</strong>
+  (1) terms page with the reg 37 sentence, left as a patch in the project workspace because the cedwyn repo is owned by the migration worker;
+  (2) ToS checkbox plus the one-line wording on the 3 Stripe links (v0.02 £9.99, bundle £31.99; the free v0.01 needs none);
+  (3) the confirmation line in the delivery email.</li>
+<li><strong>Without a GO, read-only:</strong> check whether Stripe Tax is on, whether Gumroad shows its own consent, and how many EU buyers have come through Stripe so far (0 sales so far, so the exposure today is nil).</li>
+<li><strong>Measure:</strong> checkout-session completion rate before and after, on the next 50 sessions. Treat a drop of more than 20 points as a reason to shorten the wording.</li>
+<li>Public wording follows house rules: never name the owner; none of the banned words.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>legislation.gov.uk (read 26 Oct 2026)</li>
+<li>legislation.gov.uk (read)</li>
+<li>gov.uk (read)</li>
+<li>docs.stripe.com (consent_collection, custom_text, 1,200 chars; read)</li>
+<li>docs.stripe.com (ToS checkbox, Stripe Tax; read)</li>
+<li>sendowl.com (Non-Union OSS; read)</li>
+<li>gumroad.com (did not render; not checked)</li>
+</ul><p class="raw">Raw Markdown: <a href="uk-digital-checkout-reg37-consent-vat.md">uk-digital-checkout-reg37-consent-vat.md</a> · library v1.0.0 · built 2026-10-26 21:57 UTC · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
