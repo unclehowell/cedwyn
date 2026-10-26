@@ -266,13 +266,13 @@ def headlines(H, T, l, sec):
         hrefs = x.get('href') or []
         links = ' · '.join(f'<a href="{E(u)}"><span data-i18n="hl_rec">{E(tx(T, "hl_rec", l))}</span>{(" " + str(n + 1)) if len(hrefs) > 1 else ""}</a>' for n, u in enumerate(hrefs))
         ev = f'<p class="hv-hl-ev">{links}</p>' if links else ''
-        items.append(f'<details class="hv-hl"><summary><b data-i18n="{kh}">{E(tx(T, kh, l))}</b><span class="hv-hl-m" data-i18n="hl_more">{E(tx(T, "hl_more", l))}</span></summary>'
-                     f'<p data-i18n="{kd}">{E(tx(T, kd, l))}</p>{ev}</details>')
+        # no heading-then-"Read more" fold (Sion, 23:32 GMT 26 Oct 2026): the point and its detail show; clamp.js crops the detail
+        # at three lines with "read more" / "less" - Sion's Tab agent
+        items.append(f'<div class="hv-hl"><b data-i18n="{kh}">{E(tx(T, kh, l))}</b>'
+                     f'<p data-i18n="{kd}">{E(tx(T, kd, l))}</p>{ev}</div>')
     css = ('<style>.hv-hls{margin:18px 0 22px}.hv-hls>h2{margin-bottom:6px}.hv-hl{border-top:1px solid rgba(127,127,127,.35);padding:12px 0}'
-           '.hv-hl:last-child{border-bottom:1px solid rgba(127,127,127,.35)}.hv-hl>summary{list-style:none;cursor:pointer;display:block;min-height:44px}'
-           '.hv-hl>summary::-webkit-details-marker{display:none}.hv-hl>summary b{display:block;font-size:1.25em;line-height:1.25;font-weight:800}'
-           '.hv-hl-m{display:inline-flex;align-items:center;min-height:34px;margin-top:8px;font-size:.88em;font-weight:600;border:1px solid currentColor;border-radius:999px;padding:0 14px;opacity:.85}'
-           '.hv-hl-m:after{content:" \\25BE"}.hv-hl[open] .hv-hl-m{display:none}.hv-hl>summary:focus-visible{outline:2px solid currentColor;outline-offset:3px}.hv-hl p{margin:.55em 0}.hv-hl-ev a{font-weight:600}</style>')
+           '.hv-hl:last-child{border-bottom:1px solid rgba(127,127,127,.35)}.hv-hl>b{display:block;font-size:1.25em;line-height:1.25;font-weight:800}'
+           '.hv-hl p{margin:.55em 0}.hv-hl-ev a{font-weight:600}</style>')
     return f'<section id="headlines" class="hv-hls">{css}<h2 data-i18n="hl_h">{E(tx(T, "hl_h", l))}</h2>{"".join(items)}</section>'
 
 def projection(stops):
