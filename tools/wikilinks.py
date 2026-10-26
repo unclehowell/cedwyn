@@ -154,6 +154,14 @@ def inject(t):
         t = (t[:i] + LEGEND + t[i:]) if i >= 0 else t + LEGEND
     return t
 
+def _clamp_head():
+    # three-line "read more" / "less" (Sion, 23:32 GMT 26 Oct 2026): the glossary is written after headlines.run - Sion's Tab agent
+    try:
+        import headlines
+        return headlines.CSS + headlines.JS
+    except Exception:
+        return '<script src="/_cedwyn/clamp.js?v=1" defer></script>'
+
 def glossary_page(g, n):
     ents = []
     for t in g['terms']:
@@ -171,20 +179,20 @@ def glossary_page(g, n):
             cur = L; letters.append(L); body.append('<h2 class="gl-l" id="l-%s">%s</h2>' % (L, L))
         s = ['<section class="gl-e" id="%s"><h3>%s</h3><p class="gl-d">%s</p>' % (slug, ESC(term), ESC(d))]
         if lm or grp:
-            s.append('<details class="cw-more"><summary data-cw-more><span class="cw-more-l">Learn more</span></summary><div class="cw-more-b">')
+            s.append('<div class="gl-more">')   # no "Learn more" fold (Sion, 23:32 GMT 26 Oct 2026): on show; clamp.js crops long text - Sion's Tab agent
             if lm:
                 s.append('<ul class="gl-lm">' + ''.join('<li><a href="%s">%s</a></li>' % (ESC(x['url']), ESC(x['label'])) for x in lm) + '</ul>')
             if grp:
                 gr, pv = grp
                 s.append('<p><a class="cw-n" href="%s" data-n="%s" data-tip="%s" aria-haspopup="dialog">Show every name in one list</a></p>' % (
                     ESC(gr['url']), gr['id'], ESC('%s: %d names in the records' % (gr['name'], len(pv)))))
-                s.append('<details class="cw-more cw-more-3"><summary data-cw-more><span class="cw-more-l">Learn more</span></summary><div class="cw-more-b"><ul class="gl-v">')
+                s.append('<ul class="gl-v">')
                 for v in pv:
                     meta = ' · '.join(x for x in (v.get('first_record'), v.get('source_id')) if x)
                     nm = ('<a href="%s" data-tip="%s">%s</a>' % (ESC(v['url']), ESC(v['variant'] + ' — ' + v['one_liner']), ESC(v['variant']))) if v.get('url') else ESC(v['variant'])
                     s.append('<li>%s%s<br><span class="gl-ol">%s</span></li>' % (nm, (' <span class="gl-m">%s</span>' % ESC(meta)) if meta else '', ESC(v['one_liner'])))
-                s.append('</ul><button type="button" class="cw-less" data-cw-less hidden>Show less</button></div></details>')
-            s.append('<button type="button" class="cw-less" data-cw-less hidden>Show less</button></div></details>')
+                s.append('</ul>')
+            s.append('</div>')
         s.append('</section>')
         body.append(''.join(s))
     az = ''.join('<a href="#l-%s">%s</a>' % (L, L) for L in letters)
@@ -206,9 +214,9 @@ def glossary_page(g, n):
             'content:"\\25BE"}.cw-more[open]>summary::after{content:"\\25B4"}.cw-less{min-height:40px;padding:0 14px;border-radius:999px;'
             'border:1px dashed currentColor;background:transparent;color:inherit;font:inherit;font-size:.88em;cursor:pointer;margin:4px 0}.cw-less[hidden]{display:none}'
             '</style><noscript><style>details.cw-more::details-content{content-visibility:visible;display:block}details.cw-more>summary'
-            '{display:none}</style></noscript><script src="/_cedwyn/runtime.js?v=10" defer></script></head><body><main class="gl">'
+            '{display:none}</style></noscript><script src="/_cedwyn/runtime.js?v=10" defer></script>' + _clamp_head() + '</head><body><main class="gl">'
             '<p class="gl-top"><a href="/">‹ Cedwyn</a></p><h1>The words of the story</h1><p class="gl-in">New here? Every legal, land '
-            'and records word on Cedwyn, in one line each. Open “Learn more” to go deeper, all the way to the record itself.</p>'
+            'and records word on Cedwyn, in one line each. Each one links on, all the way to the record itself.</p>'
             '<nav class="gl-az" aria-label="A to Z">' + az + '</nav>' + ''.join(body) + '</main></body></html>')
 
 
