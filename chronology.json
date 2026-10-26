@@ -1,6 +1,6 @@
 {
- "version": "1.0.1",
- "rule": "Chronology and outside records (Sion, 11:45 GMT 26 Oct 2026, m:1138070f). Tŷ Mawr is first named in the record we have found in the 1824 David Stewart survey (EV-0211); in the family’s account Tŷ Mawr was acquired in 1667. Bute estate and other third-party documents are never presented as records of Tŷ Mawr dated before 1824: where one is mentioned it is a Bute or third-party document whose application to Tŷ Mawr is under forensic examination. Outside online narratives are tested, not repeated. Build-time pass over the cedwyn copy only (datro and the WordPress wiki are untouched): regex rewrites, then the notice on every page that still shows such a document. — Sion's Tab agent 1.0.1 (12:02 GMT steer): the NLW Bute catalogue entry D 219 is never a dated Tŷ Mawr mention; where it appears it is a Bute estate catalogue entry whose application and dating are under forensic examination.",
+ "version": "1.0.2",
+ "rule": "Chronology and outside records (Sion, 11:45 GMT 26 Oct 2026, m:1138070f). Tŷ Mawr is first named in the record we have found in the 1824 David Stewart survey (EV-0211); in the family’s account Tŷ Mawr was acquired in 1667. Bute estate and other third-party documents are never presented as records of Tŷ Mawr dated before 1824: where one is mentioned it is a Bute or third-party document whose application to Tŷ Mawr is under forensic examination. Outside online narratives are tested, not repeated. Build-time pass over the cedwyn copy only (datro and the WordPress wiki are untouched): regex rewrites, then the notice on every page that still shows such a document. — Sion's Tab agent 1.0.1 (12:02 GMT steer): the NLW Bute catalogue entry D 219 is never a dated Tŷ Mawr mention; where it appears it is a Bute estate catalogue entry whose application and dating are under forensic examination. 1.0.2: D 219 date cells and the 1552–1824 range read as the Bute catalogue range, not a Tŷ Mawr date; the D 219 row in the Cedwyn e-book online names table is graded under forensic examination.",
  "skip_prefixes": [
   "wayback/mail/",
   "wayback/websites/",
@@ -217,6 +217,21 @@
    "id": "generic-1552-bute-deed",
    "re": "(?<![\\w/-])([Tt]he |[Aa] )?1552 Bute deed(?![\\w/-])",
    "replace": "\\1Bute catalogue heading (application and dating under forensic examination)"
+  },
+  {
+   "id": "d219-row-date",
+   "re": "<td><p>1552–1824</p></td>(\\s*<td><p><em>Cydfin Farm or Ty Mawr Farm</em>)",
+   "replace": "<td><p>No Tŷ Mawr date (Bute catalogue range 1552–1824)</p></td>\\1"
+  },
+  {
+   "id": "d219-row-grade",
+   "re": "(D219/1, 4–5, 8 et seq\\., “all in p\\. llandough”\\.</p></td>\\s*<td><p>)<span class=\\\"grade g-documented\\\">DOCUMENTED</span>",
+   "replace": "\\1<span class=\\\"grade g-documented\\\">UNDER FORENSIC EXAMINATION</span>"
+  },
+  {
+   "id": "d219-range-generic",
+   "re": "(?<![\\w/–-])1552 ?– ?1824(?![\\w/–-]| — Bute catalogue| · Bute catalogue|\\)| \\(Bute catalogue)",
+   "replace": "1552–1824 (Bute catalogue range; not a Tŷ Mawr date)"
   },
   {
    "id": "the-the",
