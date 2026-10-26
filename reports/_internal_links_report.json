@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8037,
+  "pages_scanned": 8088,
   "references_checked": {
-    "resource": 125099,
-    "nav": 210614
+    "resource": 125303,
+    "nav": 210903
   },
-  "database_backed_paths": 6534,
-  "unique_missing_destinations": 4653,
-  "missing_references": 17978,
-  "missing_navigation_references": 15447,
-  "missing_resource_references": 2531,
+  "database_backed_paths": 6548,
+  "unique_missing_destinations": 4680,
+  "missing_references": 18056,
+  "missing_navigation_references": 15527,
+  "missing_resource_references": 2529,
   "unique_broken_fragments": 1740,
   "broken_fragment_references": 2226,
   "form_or_endpoint_actions_not_checked": {
@@ -472,6 +472,33 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_UI/general.html",
           "attribute": "script[src]",
           "url": "../js/adminlte.js"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/kissed-frogs/wiki/anomalies-register/bpvsbuckler-archive-research-leads/",
+      "references": 25,
+      "examples": [
+        {
+          "from": "/kissed-frogs/",
+          "attribute": "a[href]",
+          "url": "/kissed-frogs/wiki/anomalies-register/bpvsbuckler-archive-research-leads/#kissed-frogs-register"
+        },
+        {
+          "from": "/kissed-frogs/kf-10-marconi-material-archaeology-heritage-photographs-and-general/",
+          "attribute": "a[href]",
+          "url": "/kissed-frogs/wiki/anomalies-register/bpvsbuckler-archive-research-leads/#kissed-frogs-register"
+        },
+        {
+          "from": "/kissed-frogs/kf-18-cardiff-urban-district-council-as-the-water/",
+          "attribute": "a[href]",
+          "url": "/kissed-frogs/wiki/anomalies-register/bpvsbuckler-archive-research-leads/#kissed-frogs-register"
+        },
+        {
+          "from": "/kissed-frogs/kf-09-farm-rents-versus-cottage-reserved-rents-headings/",
+          "attribute": "a[href]",
+          "url": "/kissed-frogs/wiki/anomalies-register/bpvsbuckler-archive-research-leads/#kissed-frogs-register"
         }
       ]
     },
@@ -2119,6 +2146,33 @@
           "from": "/docs/ghf_wiki/la_legalreviewaddendum6october2026freshreas/latest/html/en/",
           "attribute": "a[href]",
           "url": "1-record.html#limitation-do-not-use-one-rule-for-every-claim"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/kissed-frogs/wiki/evidence/excluded-not-our-farm/",
+      "references": 12,
+      "examples": [
+        {
+          "from": "/kissed-frogs/",
+          "attribute": "a[href]",
+          "url": "/kissed-frogs/wiki/evidence/excluded-not-our-farm/"
+        },
+        {
+          "from": "/kissed-frogs/kf-27-memoir-of-david-thomas/",
+          "attribute": "a[href]",
+          "url": "/kissed-frogs/wiki/evidence/excluded-not-our-farm/"
+        },
+        {
+          "from": "/kissed-frogs/kf-29-6-nov-1877-counterpart-lease-to-john/",
+          "attribute": "a[href]",
+          "url": "/kissed-frogs/wiki/evidence/excluded-not-our-farm/"
+        },
+        {
+          "from": "/kissed-frogs/kf-34-cowbridge-great-house-thomas-1871-1910/",
+          "attribute": "a[href]",
+          "url": "/kissed-frogs/wiki/evidence/excluded-not-our-farm/"
         }
       ]
     },
@@ -4009,60 +4063,6 @@
           "from": "/docs/ghf_wiki/rp_llandoughcommunitycouncil22october2026/latest/html/en/",
           "attribute": "a[href]",
           "url": "1-record.html#the-briefing-nine-compartments"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/docs/ghf_wiki/ot_starthere/latest/html/en/1-record.html",
-      "references": 7,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/ot_starthere/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ot_starthere/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ot_starthere/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#what-happened"
-        },
-        {
-          "from": "/docs/ghf_wiki/ot_starthere/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#what-did-the-1987-court-of-appeal-decide"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/1-record.html",
-      "references": 7,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#institutional-appearance-timeline-direct-evidence-links"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#forensic-control-points"
         }
       ]
     }
