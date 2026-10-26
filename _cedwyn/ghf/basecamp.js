@@ -357,7 +357,7 @@
       document.querySelectorAll(".ghf-v2-gone[aria-controls]").forEach(function (b) { sel = "#" + b.getAttribute("aria-controls") + " a[href], " + sel; });
       var out = [], seen = {}, q = document.querySelectorAll(sel), i, a, t, h;
       for (i = 0; i < q.length && out.length < 24; i++) {
-        a = q[i]; if (a.closest(".ghf-ui") || a.closest(".ghf-v2-drawer")) continue;
+        a = q[i]; if (a.closest(".ghf-ui") || a.closest(".ghf-v2-drawer") || a.closest(".ghf-v2-moved")) continue;
         t = (a.innerText || txt(a) || a.getAttribute("aria-label") || a.title || "").replace(/\s+/g, " ").trim();
         h = a.getAttribute("href"); if (!t || t.length > 70 || !h || /^javascript:/i.test(h) || h === "#") continue;
         h = a.href; if (seen[h]) continue; seen[h] = 1; out.push([t, h]);
@@ -402,6 +402,7 @@
         li = mk("li"); a = mk("a", null, x[1]); a.href = x[0]; if (location.pathname === x[0]) a.setAttribute("aria-current", "page"); a.onclick = function () { setTimeout(closeDrawer, 10); }; li.appendChild(a); top.appendChild(li); });
       li = mk("li"); a = mk("a", null, s.values || "Values and Standards"); a.href = "/values/"; if (/^\/values\//.test(location.pathname)) a.setAttribute("aria-current", "page"); li.appendChild(a); top.appendChild(li);
       inn.appendChild(top);
+      subSections(s, inn);
       var dh = mk("div", "ghf-v2-dh", s.groups); dh.setAttribute("role", "heading"); dh.setAttribute("aria-level", "2"); inn.appendChild(dh);
       CEDWYN_GROUPS.forEach(function (g) {
         var ul = mk("ul", "ghf-v2-dl"), n = 0;
@@ -433,6 +434,7 @@
       inn.appendChild(row);
       try { GT.wire(mb); } catch (e) {}
       if (CEDWYN_GROUPS && CEDWYN_GROUPS.length) { fillCedwyn(s, k, inn); return; }
+      subSections(s, inn);
       var links = harvest();
       var dh1 = mk("div", "ghf-v2-dh", s.here); dh1.setAttribute("role", "heading"); dh1.setAttribute("aria-level", "2"); inn.appendChild(dh1);
       var ul = mk("ul", "ghf-v2-dl"), li, a;
@@ -534,6 +536,205 @@
       var ls = document.createElement("script"); ls.src = "/_cedwyn/ghf/locations.js?v=2.1.4c"; ls.async = true; ls.onload = go;
       (document.head || de).appendChild(ls);
     }
+
+    // ---- 26 Oct 2026 (the owner, 09:18 GMT): "on every page the third row ... under the row with the burger menu isn't more submenues (page
+    // specific menus needs to all go in the menus sidebar). Instead the header 3rd row needs to be a ebook upsell/cross sell" — row 3 is a
+    // one-line e-book strip (the book that fits the page, free first edition or preview, /ebooks/ only, plain link + click event); a page's own menu
+    // row under the bars is moved into the side menu ("This page's menu"), links and all. Funnel events: see track(). - Tab agent
+    var UPL = {
+      en: { read: "Read free", prev: "Free preview", cta: "E-books", bundle: "All four e-books, one checkout · £31.99", pmenu: "This page’s menu",
+        share: "Share this page", sh_more: "Share", sh_email: "Email", sh_copy: "Copy link", sh_done: "Link copied",
+        c_txt: "May we use Google Analytics cookies to count which pages are read? Nothing is used for advertising.", c_yes: "Accept", c_no: "No thanks" },
+      cy: { read: "Am ddim", prev: "Rhagolwg", cta: "E-lyfrau", bundle: "Y pedwar e-lyfr, un taliad · £31.99", pmenu: "Dewislen y dudalen hon",
+        share: "Rhannwch y dudalen hon", sh_more: "Rhannu", sh_email: "E-bost", sh_copy: "Copïo’r ddolen", sh_done: "Dolen wedi’i chopïo",
+        c_txt: "Gawn ni ddefnyddio cwcis Google Analytics i gyfrif pa dudalennau sy’n cael eu darllen? Does dim yn cael ei ddefnyddio i hysbysebu.", c_yes: "Derbyn", c_no: "Dim diolch" },
+      es: { read: "Gratis", prev: "Avance gratis", cta: "E-libros", bundle: "Los cuatro e-libros, un solo pago · £31,99", pmenu: "Menú de esta página",
+        share: "Comparte esta página", sh_more: "Compartir", sh_email: "Correo", sh_copy: "Copiar enlace", sh_done: "Enlace copiado",
+        c_txt: "¿Podemos usar cookies de Google Analytics para contar qué páginas se leen? Nada se usa para publicidad.", c_yes: "Aceptar", c_no: "No, gracias" }
+    };
+    function ul_() { return UPL[lg()] || UPL.en; }
+    // e-books on /ebooks/: [anchor, title, 1 = the free first edition is the whole book, 0 = the free edition is a preview]
+    var UPB = {
+      cedwyn: ["cedwyn", "Cedwyn: names, legend, title", 1], wiki: ["great-house-farm-wiki", "The Great House Farm Wiki", 1],
+      fcg: ["fcg-fraud-concealment-and-government-involvement", "FCG · the book", 0], projects: ["project-management", "Great House Farm Projects", 0],
+      dartboard: ["dartboard-disclosure", "The Disclosure Dartboard", 0], deaths: ["tymawr-deaths", "The Tŷ Mawr Deaths", 0],
+      incidents: ["recorded-incidents", "Recorded Incidents", 1], heritage: ["tymawr-heritage", "Tŷ Mawr: history, heritage", 1],
+      family: ["williams-buckler-family", "The Williams–Buckler Family", 1]
+    };
+    var UPT = { "title-chain": "cedwyn", nomenclature: "cedwyn", estate: "cedwyn", wales: "cedwyn", patagonia: "cedwyn", argentina: "cedwyn", terrain: "cedwyn",
+      directory: "cedwyn", cyberspace: "cedwyn", explore: "cedwyn", maps: "heritage", story: "heritage", movie: "heritage", records: "wiki", docs: "wiki", wiki: "wiki",
+      research: "wiki", review: "wiki", qa: "wiki", wayback: "heritage", fb: "family", fb2: "family", fcg: "fcg", authorities: "fcg", accounts: "fcg", watchtower: "fcg",
+      "kissed-frogs": "fcg", wdtk: "fcg", meeting: "fcg", dartboard: "dartboard", infographic: "dartboard", chess: "dartboard", projects: "projects",
+      oldbill: "incidents", "thousand-cuts": "incidents", courtdrills: "incidents", csscpsg: "incidents", email: "deaths", emails: "deaths", app: "wiki", chat: "wiki" };
+    function pageKey() { // the theme (or Cedwyn page) this is, without the /wales/ or /argentina/ section
+      var p = location.pathname.split("/").filter(Boolean); if (p[0] === "wales" || p[0] === "argentina") p.shift();
+      if (p[0] && (UPT[p[0]] || SHARE_ON[p[0]])) return p[0];
+      var k = find(); if (k >= 0 && CHAIN[k].id) return CHAIN[k].id;
+      return p[0] || (location.pathname.length > 1 ? location.pathname.split("/")[1] : "home");
+    }
+    function inEbooks() { return /^\/(?:(?:wales|argentina)\/)?ebooks(?:\/|$)/.test(location.pathname); }
+    var upBar = null;
+    function fillUp() {
+      if (!upBar) return;
+      var s = ul_(), key = pageKey(), bk = UPT[key], a = mk("a", "ghf-v2-upa"), href, label, lead, book;
+      if (!bk) { var pool = ["wiki", "heritage", "family", "incidents", "cedwyn"], h = 0, i; for (i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) % 997; bk = pool[h % pool.length]; }
+      if (inEbooks() || key === "shop") { href = "#all-four"; label = s.bundle; lead = ""; book = "all-four"; }
+      else { var b = UPB[bk]; href = "#" + b[0]; lead = b[2] ? s.read : s.prev; label = b[1]; book = b[0]; }
+      var url = location.origin + "/ebooks/" + href;   // a plain internal link (no UTM: it would overwrite the visit's real source); the click is an event
+      rawHref(a, url); a.setAttribute("data-ghf-up", book);
+      a.innerHTML = '<svg class="ghf-v2-upi" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>';
+      var t = mk("span", "ghf-v2-upt"); if (lead) t.appendChild(mk("b", null, lead + ": ")); t.appendChild(document.createTextNode(label)); a.appendChild(t);
+      a.appendChild(mk("span", "ghf-v2-upc", s.cta + " \u203A"));
+      a.onclick = function () { rawHref(a, url); track("upsell_click", { book: book, from: key, placement: "header_strip" }); };
+      upBar.textContent = ""; upBar.appendChild(a);
+    }
+    // ---- a page's own menu row under the bars moves into the side menu ----
+    var MOVESEL = "header.sl-nav, nav.wiki-menu, header.wp-block-template-part, header.wp-block-template-part .wp-block-navigation, header.fb-top, div.rgs, nav.nav, header.top, div.top, [data-ghf-submenu]";
+    var movedSubs = [];
+    function linkRatio(e) { var t = (e.innerText || "").replace(/\s+/g, ""), l = 0; [].forEach.call(e.querySelectorAll("a[href]"), function (a) { l += (a.innerText || "").replace(/\s+/g, "").length; }); return t.length ? l / t.length : 0; }
+    function subOk(e, hb, y, strict) {
+      if (e.closest(".ghf-ui") || e.closest(".ghf-v2-drawer") || e.closest(".ghf-v2-moved") || e.classList.contains("ghf-v2-moved")) return false;
+      var r = e.getBoundingClientRect(), top = r.top + y, n = e.querySelectorAll("a[href]").length, ctl = e.querySelectorAll("input,select,textarea,canvas,video,iframe,h1").length;
+      if (!(r.height > 0) || n < (strict ? 2 : 1) || ctl) return false;
+      if (top < hb - 6 || top > hb + (strict ? 130 : 240) || r.height > (strict ? 130 : 420)) return false;
+      var btns = e.querySelectorAll("button").length; if (btns > Math.max(1, n / 2)) return false;   // an app's toolbar, not a menu
+      if (strict && linkRatio(e) < 0.6) return false;
+      return true;
+    }
+    function moveSubs() {
+      if (!wrap || isFs()) return;
+      var y = window.pageYOffset || 0, hb = wrap.getBoundingClientRect().bottom + y, found = [], i, e, q;
+      try { q = document.querySelectorAll(MOVESEL); } catch (x) { q = []; }
+      for (i = 0; i < q.length; i++) if (subOk(q[i], hb, y, false)) found.push(q[i]);
+      q = document.querySelectorAll("body > div, body > nav, body > header, body > main > div:first-child, body > main > nav, body > div > nav, body > div > header, [role=navigation]");
+      for (i = 0; i < q.length; i++) if (found.indexOf(q[i]) < 0 && subOk(q[i], hb, y, true)) found.push(q[i]);
+      found = found.filter(function (e) { return !found.some(function (o) { return o !== e && o.contains(e); }); });
+      found.forEach(function (e) {
+        var links = [], seen = {};
+        [].forEach.call(e.querySelectorAll("a[href]"), function (a) {
+          var t = (a.innerText || txt(a) || a.getAttribute("aria-label") || a.title || "").replace(/\s+/g, " ").trim(), h = a.getAttribute("href");
+          if (!t || t.length > 80 || !h || /^javascript:/i.test(h)) return; h = a.href; if (seen[h + t]) return; seen[h + t] = 1; links.push([t, h]);
+        });
+        if (!links.length) return;
+        // notes that live inside the menu (a provisional-model notice, a caution) stay on the page, just below where the menu was
+        [].slice.call(e.querySelectorAll("aside, .cedwyn-notice, [role=note], [role=status]")).forEach(function (n) { if (!n.querySelector("a[href]") || n.classList.contains("cedwyn-notice")) { if (e.parentNode) e.parentNode.insertBefore(n, e.nextSibling); } });
+        e.classList.add("ghf-v2-moved"); e.setAttribute("data-ghf-moved", "menu");
+        movedSubs.push({ label: (e.getAttribute("aria-label") || "").trim(), links: links });
+      });
+      if (found.length && shift) setTimeout(shift, 30);
+    }
+    function subSections(s, inn) {
+      if (!movedSubs.length) return;
+      var u = ul_();
+      movedSubs.forEach(function (m, ix) {
+        var ul = mk("ul", "ghf-v2-dl"), id = "ghf-dd-page" + ix;
+        m.links.forEach(function (x) { var li = mk("li"), a = mk("a", null, x[0]); a.href = x[1]; a.onclick = function () { setTimeout(closeDrawer, 10); }; li.appendChild(a); ul.appendChild(li); });
+        if (!ddOpen) ddOpen = {}; if (!(id in ddOpen)) ddOpen[id] = ix === 0;
+        ddBlock(inn, id, u.pmenu + (m.label && movedSubs.length > 1 ? " · " + m.label : (movedSubs.length > 1 && ix ? " " + (ix + 1) : "")), m.links.length, !!ddOpen[id], ul, "ghf-v2-ddcur");
+      });
+    }
+    // ---- the funnel (the owner: "cast a big net first ... Email sign up ... sharing on social media ... A read of the ebook is a conversion,
+    // but a sale of the ebook is a stronger conversion"). Every event is counted first-party, with no cookie: a request for
+    // /_cedwyn/ev/<event>/<book>/<page> that the zone's own request analytics count (work/outreach/FUNNEL.md). Google Analytics 4 gets the same
+    // events only when GA_ID is set AND the visitor accepts the cookie banner (UK PECR); with GA_ID empty, no banner and no cookie.
+    var GA_ID = "";   // GA4 measurement id ("G-XXXXXXXXXX"); empty = off
+    var CF_BEACON = "76ff325b224d472cbb5cfa94d145321f";   // Cloudflare Web Analytics (cookieless) for the bucklerfamily.estate zone
+    var gaOn = false, evSent = {};
+    function track(name, p) {   // one request per step: /_cedwyn/ev/<event>/<book or network>/<page>, counted by the zone's request analytics
+      p = p || {}; var cl = function (x) { return String(x || "-").toLowerCase().replace(/@.*$/, "").replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "-"; };
+      var u = location.origin + "/_cedwyn/ev/" + cl(name) + "/" + cl(p.book || p.net || p.via) + "/" + cl(p.from || pageKey()) + "?t=" + Date.now();
+      try { if (!(navigator.sendBeacon && navigator.sendBeacon(u, ""))) new Image().src = u; } catch (e) { try { new Image().src = u; } catch (x) {} }
+      if (gaOn && window.gtag) try { p.page_path = location.pathname; window.gtag("event", name, p); } catch (e) {}
+    }
+    function bookOf(a) {
+      var g = (a.closest("[data-ed-group]") || { getAttribute: function () { return ""; } }).getAttribute("data-ed-group") || a.getAttribute("data-gb");
+      if (!g) { var sct = a.closest("section[id],article[id]"); g = sct ? sct.id : ""; }
+      return (g || "").split("@")[0];
+    }
+    function funnel() {
+      if (window.__cedwynFunnel) return; window.__cedwynFunnel = 1;
+      // Cloudflare Web Analytics: page views, cookieless (the zone cannot add it itself: pages are sent "no-transform")
+      if (CF_BEACON && !document.querySelector('script[src*="cloudflareinsights"]')) {
+        var cb = document.createElement("script"); cb.defer = true; cb.src = xu("static.cloudflareinsights.com", "/beacon.min.js");
+        cb.setAttribute("data-cf-beacon", '{"token": "' + CF_BEACON + '", "spa": true}'); (document.head || de).appendChild(cb);
+      }
+      if (inEbooks()) track("ebook_view", { book: ((window.__cedwynLP || location.pathname).replace(/^\/(?:wales|argentina)\//, "/").split("/")[2] || "all") });
+      var pg = de.getAttribute("data-cedwyn-page");
+      if (pg === "subscribe") { if (document.querySelector('[data-l="thanks_h"]')) track("signup_confirm", {}); else if (document.querySelector('[data-l="check_h"]')) track("signup_submit", { via: "page" }); }
+      document.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("a[href],button") : null; if (!a || a.closest(".ghf-v2-up")) return;
+        var h = a.getAttribute("href") || "", d = h; try { d = decodeURIComponent(h); } catch (x) {}
+        if (a.matches(".edp-free") || /\/ebooks\/api\/free/.test(h) || a.hasAttribute("data-edp-pdf")) track("ebook_read", { book: bookOf(a) });
+        else if (/buy\.stripe\.com|checkout\.stripe\.com|gumroad\.com/i.test(d) || (a.matches(".edp-row") && !a.matches(".edp-free"))) track("buy_click", { book: bookOf(a), ed: a.getAttribute("data-ed") || ((a.querySelector(".edp-price") || {}).textContent || "") });
+      }, true);
+      document.addEventListener("submit", function (e) {
+        var f = e.target; if (!f || !f.querySelector || !f.querySelector('input[type=email],input[name=EMAIL],input[name=email]')) return;
+        if (f.closest(".ghf-ui")) return; track("signup_submit", { via: "form", form: f.id || "" });
+      }, true);
+      if (GA_ID) consent();
+    }
+    function gaLoad() {
+      if (gaOn || !GA_ID) return; gaOn = true;
+      window.dataLayer = window.dataLayer || []; window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag("consent", "default", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
+      window.gtag("js", new Date()); window.gtag("config", GA_ID, { anonymize_ip: true });
+      var s = document.createElement("script"); s.async = true; s.src = xu("www.googletagmanager.com", "/gtag/js?id=") + GA_ID; (document.head || de).appendChild(s);
+    }
+    function consent() {
+      var c = null; try { c = localStorage.getItem("cedwyn-consent"); } catch (e) {}
+      if (c === "yes") return gaLoad(); if (c === "no") return;
+      var s = ul_(), bx = mk("div", "ghf-cc ghf-ui"); bx.setAttribute("role", "dialog"); bx.setAttribute("aria-label", "Cookies"); bx.setAttribute("data-no-translate", "");
+      bx.appendChild(mk("p", null, s.c_txt));
+      var y = mk("button", "ghf-cc-y", s.c_yes), n = mk("button", "ghf-cc-n", s.c_no); y.type = n.type = "button";
+      y.onclick = function () { try { localStorage.setItem("cedwyn-consent", "yes"); } catch (e) {} bx.remove(); gaLoad(); };
+      n.onclick = function () { try { localStorage.setItem("cedwyn-consent", "no"); } catch (e) {} bx.remove(); };
+      var row = mk("div", "ghf-cc-r"); row.appendChild(n); row.appendChild(y); bx.appendChild(row); document.body.appendChild(bx);
+    }
+    // ---- share buttons on story pages: the phone's own share sheet first; else Facebook, X, WhatsApp, email, copy link. They are
+    // buttons (no outbound links on the page); the share address opens only when tapped ----
+    var SHARE_ON = { ebooks: 1, story: 1, "thousand-cuts": 1, oldbill: 1, qa: 1, shop: 1, movie: 1, "title-chain": 1, wales: 1, argentina: 1, explore: 1, home: 1, estate: 1, patagonia: 1, nomenclature: 1, wiki: 1 };
+    // addresses are joined at run time: the build sends every literal outside address in a script to the archive interface
+    function xu(h, p) { return "https:" + "/" + "/" + h + p; }
+    function openOut(u) { var a = document.createElement("a"); a.href = u; a.target = "_blank"; a.rel = "noopener noreferrer"; a.click(); }
+    function shareBar() {
+      var key = pageKey(); if (!SHARE_ON[key] || document.querySelector(".ghf-sh") || de.getAttribute("data-cedwyn-page") === "subscribe") return;
+      var s = ul_(), box = mk("section", "ghf-sh ghf-ui"); box.setAttribute("aria-label", s.share); box.setAttribute("data-no-translate", "");
+      box.appendChild(mk("b", null, s.share));
+      var u0 = location.origin + location.pathname, ttl = (document.title || "Cedwyn").split(/\s[·|—–]\s/)[0];
+      var link = function (src) { return u0 + "?utm_source=" + src + "&utm_medium=share&utm_campaign=sharebar&utm_content=" + encodeURIComponent(key); };
+      var list = [];
+      if (navigator.share) list.push([s.sh_more, "native"]);
+      list.push(["Facebook", "facebook"], ["X", "x"], ["WhatsApp", "whatsapp"], [s.sh_email, "email"], [s.sh_copy, "copy"]);
+      var row = mk("div", "ghf-sh-r");
+      list.forEach(function (x) {
+        var b = mk("button", "ghf-sh-b", x[0]); b.type = "button"; b.setAttribute("data-share", x[1]);
+        b.onclick = function () {
+          var net = x[1], L2 = link(net === "native" ? "native" : net), e = encodeURIComponent; track("share_click", { net: net, from: key });
+          if (net === "native") { navigator.share({ title: ttl, url: L2 }).catch(function () {}); }
+          else if (net === "facebook") openOut(xu("www.facebook.com", "/sharer/sharer.php?u=") + e(L2));
+          else if (net === "x") openOut(xu("twitter.com", "/intent/tweet?url=") + e(L2) + "&text=" + e(ttl));
+          else if (net === "whatsapp") openOut(xu("wa.me", "/?text=") + e(ttl + " " + L2));
+          else if (net === "email") location.href = "mailto:?subject=" + e(ttl) + "&body=" + e(L2);
+          else if (net === "copy") { var done = function () { b.textContent = s.sh_done; setTimeout(function () { b.textContent = x[0]; }, 1800); };
+            if (navigator.clipboard) navigator.clipboard.writeText(L2).then(done, function () {}); else { var ta = mk("textarea"); ta.value = L2; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); done(); } catch (z) {} ta.remove(); } }
+        };
+        row.appendChild(b);
+      });
+      box.appendChild(row);
+      var gb = document.getElementById("cedwyn-guestbook"), ft = gb && gb.closest("footer") || document.getElementById("ghf-agent-footer") || gb;
+      if (ft && ft.parentNode) ft.parentNode.insertBefore(box, ft); else document.body.appendChild(box);
+    }
+    var UPCSS =
+      ".ghf-v2-up{display:flex!important;align-items:center;margin:0;padding:0 10px!important;height:34px;min-height:34px;max-height:34px;overflow:hidden;background:#000;border-bottom:1px solid rgba(255,255,255,.14)}" +
+      ".ghf-v2 a.ghf-v2-upa{display:flex!important;align-items:center;gap:8px;width:100%;min-width:0;height:34px;color:#fff!important;text-decoration:none!important;font-size:13px;line-height:1;letter-spacing:.02em}" +
+      ".ghf-v2-upi{flex:0 0 auto;color:var(--ghf-s,#f2c94c)}.ghf-v2-upt{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ghf-v2-upt b{font-weight:700;color:var(--ghf-s,#f2c94c)}" +
+      ".ghf-v2-upc{flex:0 0 auto;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.8;white-space:nowrap}.ghf-v2 a.ghf-v2-upa:focus-visible{outline:2px solid var(--ghf-s,#f2c94c);outline-offset:-2px}" +
+      "html[data-ghf-mode=day] .ghf-v2-up{background:#fff;border-bottom-color:#ddd}html[data-ghf-mode=day] .ghf-v2 a.ghf-v2-upa{color:#000!important}html[data-ghf-mode=day] .ghf-v2-upi,html[data-ghf-mode=day] .ghf-v2-upt b{color:var(--ghf-p,#4a1942)}" +
+      ".ghf-v2-moved{display:none!important}" +
+      ".ghf-sh{display:block;clear:both;max-width:760px;margin:24px auto 8px;padding:0 12px;font:400 14px/1.3 var(--ghf-font,Barlow,system-ui,sans-serif);text-align:left}.ghf-sh b{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px}" +
+      ".ghf-sh-r{display:flex;flex-wrap:wrap;gap:8px}.ghf-sh-b{font:inherit;font-size:14px;min-height:40px;padding:8px 14px;border:1px solid currentColor;border-radius:20px;background:transparent;color:inherit;cursor:pointer}" +
+      ".ghf-cc{position:fixed;left:8px;right:8px;bottom:8px;z-index:2147481995;max-width:520px;margin:0 auto;padding:12px 14px;background:#111;color:#fff;border:1px solid var(--ghf-s,#f2c94c);border-radius:10px;font:400 14px/1.35 var(--ghf-font,Barlow,system-ui,sans-serif);box-shadow:0 6px 24px rgba(0,0,0,.4)}" +
+      ".ghf-cc p{margin:0 0 10px}.ghf-cc-r{display:flex;gap:8px;justify-content:flex-end}.ghf-cc button{font:inherit;min-height:40px;padding:8px 16px;border-radius:8px;border:1px solid #fff;background:transparent;color:#fff;cursor:pointer}.ghf-cc .ghf-cc-y{background:var(--ghf-s,#f2c94c);color:#000;border-color:var(--ghf-s,#f2c94c)}";
     function mount() {
       if (wrap) return wrap;
       if (!document.body || window.self !== window.top && !/[?&]ghfbars\b/.test(location.search)) return null;
@@ -545,25 +746,26 @@
       locBar = mk("nav", "ghf-v2-loc"); locBar.setAttribute("aria-label", L[lg()].loc);
       locBar.appendChild(mk("div", "ghf-v2-locs")); locBar.appendChild(mk("div", "ghf-v2-lang"));
       chainBar = mk("nav", "ghf-v2-chain");
-      wrap.appendChild(sp); wrap.appendChild(locBar); wrap.appendChild(chainBar);
+      upBar = mk("div", "ghf-v2-up"); upBar.setAttribute("aria-label", "E-books");
+      wrap.appendChild(sp); wrap.appendChild(locBar); wrap.appendChild(chainBar); wrap.appendChild(upBar);
       document.body.insertBefore(wrap, document.body.firstChild);
       fitBody();
       fsx = btn("ghf-v2-btn ghf-v2-fsx ghf-ui", IC_FSX, L[lg()].fsx, toggleFs); bgx = btn("ghf-v2-btn ghf-v2-bgx ghf-ui", IC_MENU, L[lg()].menu, openDrawer);
       document.body.appendChild(fsx); document.body.appendChild(bgx);
       de.classList.add("ghf-v2-on"); de.classList.remove("ghf-v2-pre"); if (/^(maps|chess)\./.test(host)) de.classList.add("ghf-keep-type");
-      fillChain(); locs(); moveLang();
+      fillChain(); fillUp(); locs(); moveLang(); try { funnel(); } catch (e) {}
       var mo = new MutationObserver(moveLang); mo.observe(document.body, { childList: true, subtree: true }); setTimeout(function () { mo.disconnect(); }, 15000);
-      document.addEventListener("ghf-lang-change", function () { fillChain(); if (de.classList.contains("ghf-v2-open")) fillDrawer(); });
+      document.addEventListener("ghf-lang-change", function () { fillChain(); fillUp(); if (de.classList.contains("ghf-v2-open")) fillDrawer(); });
       pins();
       watchTitles();
-      var later = function () { fitBody(); pins(); hideSiteBurgers(); dedupe(); // after parsing, so a page's own ghf-lang.js tag (with its data-site) is seen first
+      var later = function () { fitBody(); pins(); hideSiteBurgers(); dedupe(); moveSubs(); // after parsing, so a page's own ghf-lang.js tag (with its data-site) is seen first
         if (!window.GHFLang && !document.querySelector('script[src*="ghf-lang.js"]')) { var gs = document.createElement("script"); gs.src = "/_cedwyn/ghf/ghf-lang.js?v=2.1.4d"; gs.async = true; (document.head || de).appendChild(gs); } };
       if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", later); else setTimeout(later, 0);
       window.addEventListener("load", function () { fitBody(); pins(); setTimeout(function () { fitBody(); pins(); }, 1200); }); // pages whose CSS arrives late (bundled apps)
-      hideSiteBurgers(); setTimeout(hideSiteBurgers, 1200); dedupe(); setTimeout(dedupe, 1200); window.addEventListener("load", function () { setTimeout(dedupe, 300); });
+      hideSiteBurgers(); setTimeout(hideSiteBurgers, 1200); setTimeout(moveSubs, 1300); window.addEventListener("load", function () { setTimeout(moveSubs, 400); setTimeout(shareBar, 600); }); dedupe(); setTimeout(dedupe, 1200); window.addEventListener("load", function () { setTimeout(dedupe, 300); });
       return wrap;
     }
-    var V2CSS =
+    var V2CSS = UPCSS +
       ".ghf-v2{position:relative;z-index:2147481990;display:block!important;width:100%;margin:0!important;padding:0!important;background:#000;color:#fff;font:400 var(--ghf-fs-sm,14px)/1.2 var(--ghf-font,Barlow,'Helvetica Neue',Arial,system-ui,sans-serif)!important;-webkit-font-smoothing:antialiased;text-align:left;box-sizing:border-box}" +
       ".ghf-v2 *{box-sizing:border-box}" +
       ".ghf-v2-sp{display:block;height:45px;background:#000;border:0;margin:0;padding:0}@media (min-width:783px){.ghf-v2-sp{height:49px}}" +
