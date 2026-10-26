@@ -1,0 +1,78 @@
+name: snapshot-sections
+# Snapshots crawled sections ONCE into their own branches (section/<id>), so the site build reads a pinned branch instead of
+# crawling the live Worker sites on every build. Guard: a snapshot is committed only when it has a home page and at least 70% of
+# the files the section had in the last published build (a refused or partial crawl is never committed). - Sion's Tab agent
+on:
+  workflow_dispatch:
+    inputs:
+      sections:
+        description: 'space-separated theme ids'
+        required: true
+        default: 'fcg research dartboard email app chat terrain estate patagonia wales cyberspace'
+permissions:
+  contents: write
+concurrency:
+  group: snapshot-sections
+  cancel-in-progress: false
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main, fetch-depth: 1 }
+      - name: Crawl the named sections (same crawl as the build, read-only)
+        env:
+          SECTIONS: ${{ inputs.sections }}
+          FORCE_CRAWL: '1'
+        run: |
+          git init -q --bare mirror.git
+          MIRROR=mirror.git python3 tools/assemble.py snap
+          cat snap/_assemble_report.json | head -c 4000
+      - name: Commit each good snapshot to section/<id>
+        env:
+          TOKEN: ${{ github.token }}
+          SECTIONS: ${{ inputs.sections }}
+        run: |
+          U="https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git clone -q --depth 1 --filter=blob:none --no-checkout -b site "$U" prev
+          git -C prev ls-tree -r --name-only HEAD > prev_files.txt
+          echo '{}' > snapshot_report.json
+          for id in $SECTIONS; do
+            prevn=$(grep -c "^${id}/" prev_files.txt || true)
+            n=$(find "snap/$id" -type f 2>/dev/null | wc -l)
+            ok=0; [ -f "snap/$id/index.html" ] && [ "$n" -gt 0 ] && [ $((n*100)) -ge $((prevn*70)) ] && ok=1
+            echo "$id files=$n previous=$prevn ok=$ok"
+            if [ "$ok" != 1 ]; then python3 - "$id" "$n" "$prevn" <<'PY'
+          import json,sys; r=json.load(open('snapshot_report.json')); r[sys.argv[1]]={'committed':False,'files':int(sys.argv[2]),'previous':int(sys.argv[3])}; json.dump(r,open('snapshot_report.json','w'),indent=1)
+          PY
+              continue; fi
+            rm -rf wt; br="section/$id"
+            if git ls-remote --exit-code --heads "$U" "$br" >/dev/null; then git clone -q --depth 1 -b "$br" "$U" wt; else mkdir wt && git -C wt init -q -b "$br" && git -C wt remote add origin "$U"; fi
+            rsync -a --delete --exclude .git --exclude .github "snap/$id/" wt/
+            python3 - "$id" "$n" <<'PY'
+          import json,sys,datetime,pathlib
+          tid=sys.argv[1]; t=[x for x in json.load(open('themes.json'))['themes'] if x['id']==tid][0]
+          s={'id':tid,'title':t.get('title'),'group':t.get('group'),'source':'snapshot of '+(t.get('crawl') or t.get('live') or ''),
+             'snapshot_utc':datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),'files':int(sys.argv[2]),
+             'build':'none (static files; served at /'+tid+'/)','note':'Section branch: everything Cedwyn serves at /'+tid+'/ comes from this branch at the commit main/sections.lock pins. Change only this section here.'}
+          pathlib.Path('wt/section.json').write_text(json.dumps(s,indent=1,ensure_ascii=False)+'\n')
+          PY
+            cd wt && git config user.name "cedwyn-bot" && git config user.email "cedwyn-bot@users.noreply.github.com"
+            git add -A
+            if git commit -q -m "section/$id: snapshot of the live section ($n files) — Sion's Tab agent"; then git push -q origin "$br"; fi
+            sha=$(git rev-parse HEAD); cd ..
+            python3 - "$id" "$n" "$prevn" "$sha" <<'PY'
+          import json,sys; r=json.load(open('snapshot_report.json')); r[sys.argv[1]]={'committed':True,'files':int(sys.argv[2]),'previous':int(sys.argv[3]),'sha':sys.argv[4]}; json.dump(r,open('snapshot_report.json','w'),indent=1)
+          PY
+          done
+          cat snapshot_report.json
+      - name: Report to main
+        if: always()
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          git clone -q --depth 1 -b main "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" rep
+          mkdir -p rep/reports; cp snapshot_report.json rep/reports/snapshot.json 2>/dev/null || true
+          cd rep && git config user.name "cedwyn-bot" && git config user.email "cedwyn-bot@users.noreply.github.com"
+          git add reports && git commit -q -m "Snapshot report — Sion's Tab agent" && git pull -q --rebase origin main; git push -q origin main || echo "no report"
