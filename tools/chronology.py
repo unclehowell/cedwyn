@@ -12,9 +12,9 @@ Report: dist/_cedwyn/reports/chronology.json. site.py calls it after theme_notic
 Usage: python3 tools/chronology.py dist"""
 import json, re, html, pathlib, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-BOX = ('<aside class="cedwyn-notice" data-cedwyn-notice="{k}" role="note" style="border:1px solid rgba(200,160,60,.6);background:rgba(200,160,60,.10);'
+BOX = ('<aside class="cedwyn-notice" data-cedwyn-notice="{k}" role="note" style="border:1px solid #c8a03c;background:#fbf6e6;color:#1c1c22;text-align:left;'
        'border-radius:8px;padding:10px 12px;margin:12px 0;font-size:14px;line-height:1.45"><strong>{h}</strong> {t} '
-       '<a href="{l}">{lt}</a><span lang="cy" style="display:block;margin-top:4px;opacity:.85">{cy}</span>'
+       '<a href="{l}" style="color:#4A1942;text-decoration:underline">{lt}</a><span lang="cy" style="display:block;margin-top:4px;opacity:.85">{cy}</span>'
        '<span lang="es" style="display:block;margin-top:2px;opacity:.85">{es}</span></aside>')
 def _visible(t):
     t = re.sub(r'(?is)<(script|style)\b.*?</\1>', ' ', t)
