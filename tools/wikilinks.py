@@ -25,7 +25,7 @@ SKIP_DIRS = ('_blob/', '_ext/', 'db/', '_cedwyn/', 'wayback/', 'email/', 'emails
              'argentina/ebooks/', 'wales/ebooks/', 'argentina/nomenclature/', 'wales/nomenclature/', 'argentina/agents/',
              'wales/agents/', 'argentina/academy/', 'wales/academy/', 'argentina/email/', 'wales/email/', 'argentina/wayback/',
              'wales/wayback/', 'argentina/shop/', 'wales/shop/', 'argentina/chess/', 'wales/chess/', 'argentina/app/', 'wales/app/')
-SKIP_FILES = {'404.html'}
+SKIP_FILES = {'404.html', 'index.html'}   # the landing page (/) belongs to the landing-fix work (root steer 22:24 GMT 26 Oct 2026)
 SKIP_TAGS = {'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'button', 'summary', 'code', 'pre', 'kbd', 'samp', 'var', 'label', 'select',
              'option', 'nav', 'header', 'footer', 'title', 'textarea', 'noscript', 'svg', 'math', 'dialog', 'form', 'abbr', 'dfn',
              'script', 'style', 'template', 'iframe', 'object', 'canvas', 'figcaption', 'cite', 'time', 'head'}
