@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """headlines.py - headline-first story pages (Sion, 12:01 GMT 26 Oct 2026, m:2c8d96e9). - Sion's Tab agent
+Nested learn-more (Sion, 22:12 GMT 26 Oct 2026, m:611a2587): the control reads "Learn more"; a long fold keeps its first part at
+level 2 and puts the rest behind a second "Learn more" (level 3); each level ends with a "Show less" button (wiki.js) that closes
+it and returns to its control. Without JavaScript the folds show open where the browser supports ::details-content, and the
+native <details> control works everywhere.
 "ensure the website is more a series of headlines of the bold impactful attention grabbing parts of the story and everything
 after (the details) requires website visitors to select 'read more'".
 
@@ -18,7 +22,8 @@ Runs from tools/site.py after ebook_editions and before guestbook. Report: dist/
 import json, pathlib, re, sys
 from html.parser import HTMLParser
 
-LABEL = {'en': 'Read more', 'cy': 'Darllen mwy', 'es': 'Leer más'}
+LABEL = {'en': 'Learn more', 'cy': 'Dysgu mwy', 'es': 'Saber más'}   # Sion 22:12 GMT 26 Oct 2026 (m:611a2587): 'learn more', two levels deep
+LESS = {'en': 'Show less', 'cy': 'Dangos llai', 'es': 'Ver menos'}
 SKIP_DIRS = ('_blob/', '_ext/', 'db/', '_cedwyn/', 'wayback/websites/', 'email/', 'emails/view/', 'graphql/', 'catalogue/',
              'guestbook/', 'explore/', 'ebooks/', 'shop/', 'ebooks/cedwyn/online/', 'ebooks/tymawr-heritage/online/', 'app/', 'chess/', 'chat/')
 SKIP_FILES = {'index.html', 'wales/index.html', 'argentina/index.html', '404.html'}
@@ -33,7 +38,12 @@ CSS = ('<style id="cw-more-css">.cw-more{margin:.2em 0 1.1em}.cw-more>summary{cu
        'list-style:none;opacity:.88;-webkit-tap-highlight-color:transparent}.cw-more>summary::-webkit-details-marker{display:none}'
        '.cw-more>summary::after{content:"\\25BE";font-size:.9em}.cw-more[open]>summary::after{content:"\\25B4"}'
        '.cw-more>summary:focus-visible{outline:2px solid currentColor;outline-offset:2px;opacity:1}.cw-more[open]>summary{margin-bottom:.6em}'
-       '[data-cw-lead]{font-weight:600}@media print{.cw-more>summary{display:none}}</style>')
+       '[data-cw-lead]{font-weight:600}.cw-more-3{margin:.6em 0 .8em;padding-left:12px;border-left:3px solid currentColor}'
+       '.cw-less{display:inline-flex;align-items:center;min-height:40px;margin:.5em 0 .2em;padding:0 14px;border:1px dashed currentColor;'
+       'border-radius:999px;background:transparent;color:inherit;font:inherit;font-size:.86em;cursor:pointer;opacity:.85}'
+       '.cw-less[hidden]{display:none}.cw-less::before{content:"\\25B4\\00a0"}@media print{.cw-more>summary,.cw-less{display:none}}</style>'
+       '<noscript><style>details.cw-more::details-content{content-visibility:visible;display:block}'
+       'details.cw-more>summary{display:none}</style></noscript>')
 
 class P(HTMLParser):
     def __init__(self, text):
@@ -133,6 +143,14 @@ def plan(text):
             hidden = sum(els[k]['txt'] for k in run)
             if hidden < 250: continue
             if lead is not None: ins.append((els[lead]['se'] - 1, 'lead'))
+            # level 3: a long fold keeps its first part at level 2 and puts the rest behind a second 'Learn more'
+            if len(run) >= 3 and hidden >= 900:
+                acc, k = 0, 0
+                for j, kk in enumerate(run):
+                    acc += els[kk]['txt']
+                    if acc >= max(300, hidden * 0.35): k = j + 1; break
+                if 1 <= k < len(run) and sum(els[kk]['txt'] for kk in run[k:]) >= 300:
+                    ins.append((els[run[k]]['s'], 'open3')); ins.append((els[run[-1]]['e'], 'close3'))
             ins.append((els[run[0]]['s'], 'open')); ins.append((els[run[-1]]['e'], 'close'))
     return ins
 
@@ -141,16 +159,23 @@ def apply(text):
     if not ins: return text, 0
     l = lang_of(text); lab = LABEL[l]
     O = ('<details class="cw-more"><summary data-cw-more><span class="cw-more-l">%s</span></summary><div class="cw-more-b">' % lab)
-    C = '</div></details>'
+    O3 = O.replace('class="cw-more"', 'class="cw-more cw-more-3"')
+    C = '<button type="button" class="cw-less" data-cw-less hidden>%s</button></div></details>' % LESS[l]
     out = text; n = 0
-    for off, kind in sorted(set(ins), key=lambda x: (x[0], {'close': 0, 'lead': 1, 'open': 2}[x[1]]), reverse=True):
+    order = {'close3': 0, 'close': 1, 'lead': 2, 'open': 3, 'open3': 4}
+    for off, kind in sorted(set(ins), key=lambda x: (x[0], order[x[1]]), reverse=True):
         if kind == 'open': out = out[:off] + O + out[off:]; n += 1
-        elif kind == 'close': out = out[:off] + C + out[off:]
+        elif kind == 'open3': out = out[:off] + O3 + out[off:]
+        elif kind in ('close', 'close3'): out = out[:off] + C + out[off:]
         else:
             if out[off] == '>' and not out[off - 1] == '/': out = out[:off] + ' data-cw-lead' + out[off:]
     if n and 'id="cw-more-css"' not in out:
         i = out.lower().find('</head>')
         out = (out[:i] + CSS + out[i:]) if i >= 0 else CSS + out
+    if n and '/_cedwyn/wiki.js' not in out:
+        i = out.lower().find('</head>')
+        js = '<script src="/_cedwyn/wiki.js?v=1" defer></script>'
+        out = (out[:i] + js + out[i:]) if i >= 0 else js + out
     return out, n
 
 def run(dist):
