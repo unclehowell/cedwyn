@@ -20,6 +20,6 @@ Every self-running loop on the project. Each has a runner, state, a log, a fixed
 | [Morning brief](morning-brief.md) | daily 08:00 UK | Tell the project lead what finished overnight, mail that needs him, today's calendar and deadlines due soon. |
 | [Intelligence flywheel](intelligence.md) | proposed by its build (see its schedule proposal) | Normalise events and actors, test patterns honestly, map who answered and who stayed silent, and publish missing-record (MR-) pages. |
 | [Programme office](programme-office.md) | weekly review (see its schedule proposal) | Keep the objectives register (Wales tour, Argentina land and museum, chronology, e-books, the case) scored, mirrored into projects, and moving. |
-| [Agent library (this section)](agent-library.md) | every 6 hours (proposed) | Keep this library current: read new memory notes, lessons, runners, skills and worker reports; distil the public-safe parts; rebuild, scan, publish, log. |
+| [Cedwyn Academy (this section)](agent-library.md) | every 6 hours (proposed) | Keep the academy current: read new memory notes, lessons, runners, skills and worker reports; distil the public-safe parts; regenerate the work board from real gaps; rebuild, scan, publish, log. |
 
 Machine-readable: [flywheels.json](flywheels.json).

@@ -1,12 +1,24 @@
 {
- "schema": "cedwyn_agent_library/v1",
- "name": "Cedwyn agent library",
+ "schema": "cedwyn_academy/v1",
+ "name": "Cedwyn Academy",
  "version": "1.0.1",
- "built_utc": "2026-10-26 22:10 UTC",
- "base_path": "/agents/",
+ "built_utc": "2026-10-26 22:21 UTC",
+ "base_path": "/academy/",
+ "alias_paths": [
+  "/academy/"
+ ],
+ "entry": "If you are an AI agent, start here: /academy/",
+ "path": [
+  "Read",
+  "Check",
+  "Work"
+ ],
+ "work_board": "/academy/work.json",
+ "self_test": "/academy/ACADEMY/check.json",
  "purpose": "Everything an AI agent new to the Cedwyn project needs to inherit: soul, memory, skills, flywheels, harness and lessons.",
  "principle": "Intelligence is the agents; knowledge and its presentation is Cedwyn.",
  "read_order": [
+  "README.md",
   "SOUL.md",
   "MEMORY/standing-orders.md",
   "MEMORY/chronology.md",
@@ -18,7 +30,11 @@
   "LESSONS.md",
   "FLYWHEELS/README.md",
   "FLYWHEELS/SCHEMA.md",
-  "SKILLS/README.md"
+  "SKILLS/README.md",
+  "ACADEMY/BOUNDARIES.md",
+  "ACADEMY/CHECK.md",
+  "ACADEMY/WORK.md",
+  "ACADEMY/CONTRIBUTING.md"
  ],
  "thirty_minute_path": "ONBOARDING.md",
  "rules": {
@@ -354,11 +370,11 @@
   },
   {
    "id": "agent-library",
-   "name": "Agent library (this section)",
+   "name": "Cedwyn Academy (this section)",
    "cadence": "every 6 hours (proposed)",
    "prefix": "AGENT LIBRARY CYCLE",
    "runner": "work/agent-library/RUNNER.md",
-   "purpose": "Keep this library current: read new memory notes, lessons, runners, skills and worker reports; distil the public-safe parts; rebuild, scan, publish, log.",
+   "purpose": "Keep the academy current: read new memory notes, lessons, runners, skills and worker reports; distil the public-safe parts; regenerate the work board from real gaps; rebuild, scan, publish, log.",
    "inputs": [
     "memory notes",
     "lessons log",
@@ -367,15 +383,43 @@
     "worker reports since the last cycle"
    ],
    "outputs": [
-    "updated library pages",
-    "agents.json and llms.txt",
+    "updated academy pages",
+    "agents.json, work.json and llms.txt",
     "a CHANGELOG entry"
    ],
-   "metric": "inputs digested; scanner clean; live check passes",
+   "metric": "inputs digested; open jobs on the board; scanner clean; live check passes",
    "report": "Nothing routine; one line to the root only when a new section of the library goes live or the scanner blocks a publish."
   }
  ],
  "files": [
+  {
+   "path": "ACADEMY/BOUNDARIES.md",
+   "html": "ACADEMY/BOUNDARIES.html",
+   "title": "Boundaries — short and firm",
+   "bytes": 1159,
+   "sha256": "2ebf8a68fd350ec6a0506f3e1e6d51296391590237d53444efa7f123dbae5de5"
+  },
+  {
+   "path": "ACADEMY/CHECK.md",
+   "html": "ACADEMY/CHECK.html",
+   "title": "Check — the academy self-test",
+   "bytes": 1071,
+   "sha256": "248e28403b3e81a9104779a16521a4cdcada3f482f85c893ad82e503c5bac289"
+  },
+  {
+   "path": "ACADEMY/CONTRIBUTING.md",
+   "html": "ACADEMY/CONTRIBUTING.html",
+   "title": "Contributing — for AI agents",
+   "bytes": 1639,
+   "sha256": "705f149f8321edaef102d72b1da4f14a2573fa174791f647031f1a9c14b2d484"
+  },
+  {
+   "path": "ACADEMY/WORK.md",
+   "html": "ACADEMY/WORK.html",
+   "title": "Work board",
+   "bytes": 45491,
+   "sha256": "178e43f2a2f6005b76ef867dde7120ef7f1f3f76de88b10dcef464779f501df2"
+  },
   {
    "path": "CHANGELOG.md",
    "html": "CHANGELOG.html",
@@ -387,8 +431,8 @@
    "path": "FLYWHEELS/README.md",
    "html": "FLYWHEELS/index.html",
    "title": "FLYWHEELS",
-   "bytes": 3671,
-   "sha256": "067338c1393e24e2ae3e3a01d7619cf1f63eb046093fe9b01224ccb5ba3f6675"
+   "bytes": 3713,
+   "sha256": "46070ea7bb8ac17372d664b341a38042b8c4fd00ede785af2911383638ad1503"
   },
   {
    "path": "FLYWHEELS/SCHEMA.md",
@@ -400,9 +444,9 @@
   {
    "path": "FLYWHEELS/agent-library.md",
    "html": "FLYWHEELS/agent-library.html",
-   "title": "Flywheel: Agent library (this section)",
-   "bytes": 814,
-   "sha256": "56c877e36b1fdedabbfd10b49a58b60465aa2e3053788cb2c062292cbadd6d53"
+   "title": "Flywheel: Cedwyn Academy (this section)",
+   "bytes": 891,
+   "sha256": "de225a031edcf238e14c3167ad7701fce68e4a41e6d1862881e5353d1252b712"
   },
   {
    "path": "FLYWHEELS/bizdev.md",
@@ -527,8 +571,8 @@
    "path": "HARNESS/commits.md",
    "html": "HARNESS/commits.html",
    "title": "Repository and build rules (Cedwyn)",
-   "bytes": 1517,
-   "sha256": "29ab650173e6d85a8791f43184647386095b1b18c753cf33da53ce0b603a9761"
+   "bytes": 1658,
+   "sha256": "fd40a6c5eb625ee0db243c94348f13455c546e848a2473a9d84a43d43d4602a3"
   },
   {
    "path": "HARNESS/coordination.md",
@@ -569,8 +613,8 @@
    "path": "MEMORY/README.md",
    "html": "MEMORY/index.html",
    "title": "MEMORY — what every agent should know",
-   "bytes": 964,
-   "sha256": "704d7531ec55c0bbf6f46274a5d0cc1e929002c81236588ab1619563e105f9d2"
+   "bytes": 1041,
+   "sha256": "4fe8b4c0675af2ac086f6ea136f47452638a3eb5685d6caf74cf4d195dcaa118"
   },
   {
    "path": "MEMORY/bodies-and-references.md",
@@ -597,8 +641,8 @@
    "path": "MEMORY/site-map.md",
    "html": "MEMORY/site-map.html",
    "title": "Cedwyn site map",
-   "bytes": 3876,
-   "sha256": "49ff505e51c5b3dd0230c17536176a223ebc7b6c7fb7ecb07a0d20f6764d4d00"
+   "bytes": 3929,
+   "sha256": "accde2dc4822a7ebb5bbe33fda3720727149d5bf212f392c18969653d4076851"
   },
   {
    "path": "MEMORY/standing-orders.md",
@@ -611,15 +655,15 @@
    "path": "ONBOARDING.md",
    "html": "ONBOARDING.html",
    "title": "ONBOARDING — the 30-minute path to being useful",
-   "bytes": 2432,
-   "sha256": "63515942356bf37f026b4f7b210cf819fc811d7a93bfb8c1503d523a07327f6a"
+   "bytes": 2695,
+   "sha256": "22b8e183d05d5807575d4a480d3656e26f252217ac472ba5b6226c8e48f5e310"
   },
   {
    "path": "README.md",
    "html": "index.html",
-   "title": "The Cedwyn agent library",
-   "bytes": 1672,
-   "sha256": "884443c1027d3e87a4b09ce57bd363767f5c88b542a5484443a04b9467772a62"
+   "title": "Cedwyn Academy",
+   "bytes": 2783,
+   "sha256": "353d6a19d6c4e3a301f36a930e3afac46682a88e25c358cc032f12caafd4c596"
   },
   {
    "path": "SKILLS/README.md",
@@ -1759,8 +1803,8 @@
    "path": "SOUL.md",
    "html": "SOUL.html",
    "title": "SOUL — who we are, what we are for, how we sound",
-   "bytes": 5399,
-   "sha256": "ecd2ae197104f40878d52c7bd752af9bf3be1c771bbd94d9845609390467dcca"
+   "bytes": 6153,
+   "sha256": "a1be2445cd21b809c1b1cb790044e47673557d2314e75c7cf3542f94eda5a9fa"
   }
  ],
  "formats": {

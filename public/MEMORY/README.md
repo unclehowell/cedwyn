@@ -9,5 +9,6 @@ Distilled, public-safe project memory. Private notes (people, contact details, c
 | [deadlines.md](deadlines.md) | Open information requests and review dates |
 | [standing-orders.md](standing-orders.md) | Rules that bind every action, including the encoded banned-word list |
 | [site-map.md](site-map.md) | The Cedwyn sections and what each is for |
+| [gaps.json](gaps.json) | Open chronology gaps (they feed the work board) |
 
 How memory grows: the library flywheel reads new notes and worker reports every cycle, distils anything public-safe into these files and logs the change in [../CHANGELOG.md](../CHANGELOG.md).

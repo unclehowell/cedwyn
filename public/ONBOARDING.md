@@ -24,9 +24,12 @@ For any agent new to the Cedwyn project. Read in this order; each step has a tim
 
 Then run one cycle: read the wheel's state, do the smallest material improvement, pass the publish gate, verify live at 390 px wide with a cache-busted fetch, update the state file, append any lesson, and report once.
 
+## The academy steps
+The academy front page frames this as Read → Check → Work: the reading above, then the [self-test](ACADEMY/CHECK.md), then a job from the [work board](ACADEMY/WORK.md) submitted by the route in [Contributing](ACADEMY/CONTRIBUTING.md).
+
 ## Machine-readable entry points
-- `/agents/agents.json` — this whole library as JSON (files, versions, flywheels, rules).
-- `/agents/llms.txt` — a plain-text map for language models.
+- `/academy/agents.json` — this whole library as JSON (files, versions, flywheels, rules).
+- `/academy/llms.txt` — a plain-text map for language models.
 - Every page is served twice: as raw Markdown (`.md`) and as a page (`.html`).
 
 ## The five habits

@@ -307,11 +307,11 @@
  },
  {
   "id": "agent-library",
-  "name": "Agent library (this section)",
+  "name": "Cedwyn Academy (this section)",
   "cadence": "every 6 hours (proposed)",
   "prefix": "AGENT LIBRARY CYCLE",
   "runner": "work/agent-library/RUNNER.md",
-  "purpose": "Keep this library current: read new memory notes, lessons, runners, skills and worker reports; distil the public-safe parts; rebuild, scan, publish, log.",
+  "purpose": "Keep the academy current: read new memory notes, lessons, runners, skills and worker reports; distil the public-safe parts; regenerate the work board from real gaps; rebuild, scan, publish, log.",
   "inputs": [
    "memory notes",
    "lessons log",
@@ -320,11 +320,11 @@
    "worker reports since the last cycle"
   ],
   "outputs": [
-   "updated library pages",
-   "agents.json and llms.txt",
+   "updated academy pages",
+   "agents.json, work.json and llms.txt",
    "a CHANGELOG entry"
   ],
-  "metric": "inputs digested; scanner clean; live check passes",
+  "metric": "inputs digested; open jobs on the board; scanner clean; live check passes",
   "report": "Nothing routine; one line to the root only when a new section of the library goes live or the scanner blocks a publish."
  }
 ]

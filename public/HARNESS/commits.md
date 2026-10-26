@@ -5,7 +5,7 @@
   - **theme branches** — one section per branch (for example `wayback`, `maps`, `projects`, `kissed-frogs`, `cedwyn-movie`, and `agents` for this library). Each branch's `public/` (or its listed dir) is copied to `/<id>/` at build time.
   - **section/<id>** — snapshot branches for crawled sections, pinned by `sections.lock`.
   - **site** — the assembled output served to readers.
-- A new section is registered by one entry in `themes.json` on main (id, titles in en/cy/es, branch, dir, group). That is a site-wide change.
+- A new human section is registered by one entry in `themes.json` on main (id, titles in en/cy/es, branch, dir, group); themes appear in the human menu. The academy is deliberately NOT a theme: the build copies branch `agents` (public/) to /academy/ outside the theme list, noindex.
 - Commit messages end with the house sign-off. No force-push. Re-fetch the branch head before each commit.
 - After JS or CSS changes, bump the asset `?v=` and purge the edge cache.
 - Builds take about 30–35 minutes. Verify live with a cache-busted fetch (`?cb=<time>`) and a phone-width (390 px) render.
