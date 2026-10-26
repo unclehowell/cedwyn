@@ -148,6 +148,9 @@ keep_previous.run(DIST)
 # Per-compartment notice boxes (notices/<theme>.json; forensic audit intake 25 Oct 2026) - Sion's Tab agent
 import theme_notices
 theme_notices.run(DIST)
+# Chronology and outside records (Sion, 11:45 GMT 26 Oct 2026, m:1138070f): Tŷ Mawr first named 1824; Bute/third-party documents never shown as Tŷ Mawr records before 1824 - Sion's Tab agent
+import chronology
+chronology.run(DIST)
 # Two sections over one database (Sion, 25 Oct 2026): landing tiles, /wales/ and /argentina/ hubs, section rewrites - Sion's Tab agent
 import sections
 sections.run(DIST, CFG)

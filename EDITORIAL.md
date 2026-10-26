@@ -39,12 +39,28 @@ Text that no record in this archive backs yet is shown smaller and in italic, th
   into `<span class="unsub">` when a page is written; `section.js` does the same after a language change.
 - In mirrored theme text, an `ingredients.json` reword wraps the passage in `<span class="unsub">`.
 - `runtime.js` (theme pages) and `section.js` (hub pages) carry the one `.unsub` style and add the legend once on any page that has one.
-- Typical cases: family research notes whose documents are not held (1392 Cwm Cedwyn, 1547 Cydwin), traditions (Marconi, Driscoll),
+- Typical cases: family research notes whose documents are not held (1392 Cwm Cedwyn), traditions (Marconi, Driscoll),
   and gaps.
 
 Words for title (26 Oct 2026). Bute and Mountjoy: lord of the manor, or the tithe's landowner column, quoted as the column's wording.
 BP: registered proprietor from 1982/83. The 1938 and 1969 conveyances: recited only, not produced. A court's "owner" or "paper title"
 is that court's wording, given with its date. A rent book does not identify a parcel unless it names one. The c.1841 tithe lists
-John Williams as occupier of 36 numbered plots. The name of the holding is first read in a record in 1824 (Bute survey, plan 19,
-EV-0211); 1552–1824 is the National Library of Wales catalogue's span for a group of leases that have not been read (EV-0003).
+John Williams as occupier of 36 numbered plots. Tŷ Mawr is first named in a record we have found in 1824 (David Stewart's survey, plan 19, EV-0211). The National Library of
+Wales catalogue heading over a group of unread Bute leases (EV-0003) is the cataloguer's, not a record of Tŷ Mawr before 1824.
 The title chain itself is on /title-chain/ (data/title-chain.json).
+
+## Chronology and outside records (Sion, 11:45 GMT 26 Oct 2026, m:1138070f)
+
+- We are the chronology and the central record of this story. The site asserts and defends our evidence and our interpretation of it;
+  outside narratives (other websites, catalogue summaries, secondary books) are things we test, not sources we repeat.
+- Tŷ Mawr is first named in the record we have found in the 1824 David Stewart survey of the Bute Glamorgan estates
+  (Glamorgan Archives DB/E/1–2, plan 19 "Cedfin or Ty Mawr Farm", EV-0211).
+- In the family's account, Tŷ Mawr was acquired in 1667. State it as the family's account; no document for it is invented.
+- Bute estate and other third-party documents are never shown as records of Tŷ Mawr dated before 1824. Do not write "the 1547 lease"
+  or "the 1552 Bute deed" as Tŷ Mawr records. Where such a document must be mentioned, it is a Bute (or third-party) document whose
+  application to Tŷ Mawr is under forensic examination. Bute's freeholds are under forensic examination for validity.
+- Names and dates have been played on: Cydwin, Cydfin, Cedfin, Ked Fen, Tŷ Mawr, Great House, Great House Farm, and the two
+  Llandoughs (Llandough-juxta-Penarth, CF64, and Llandough near Cowbridge, CF71). The register is the e-book "Enwau" on /ebooks/.
+- Build: `chronology.json` + `tools/chronology.py` (after theme_notices in site.py) reword the old phrasings in mirrored theme text
+  and put the "How we treat outside records" notice (en/cy/es) on every page that still shows such a document; the method is on
+  /values/#outside-records. Archived correspondence (/wayback/mail/, /email/) and third-party captures (/wayback/websites/) stay verbatim.

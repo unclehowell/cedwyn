@@ -1,6 +1,6 @@
 {
- "version": "1.1.0",
- "source": "ebooks-patch 1.0.0 (25 Oct 2026 12:29Z), checked against the store data, the payment links and the shop the same morning; 1.1.0 (25 Oct 2026 23:10Z): every book +1 minor version for the 25 Oct supplement; editions and prices unchanged",
+ "version": "1.2.0",
+ "source": "ebooks-patch 1.0.0 (25 Oct 2026 12:29Z), checked against the store data, the payment links and the shop the same morning; 1.1.0 (25 Oct 2026 23:10Z): every book +1 minor version for the 25 Oct supplement; editions and prices unchanged; 1.2.0 (26 Oct 2026): adds Enwau v0.01 (free)",
  "price_rule": "v0.01 £0.00; v0.02 £9.99; each later edition +£4.99 (v0.03 £14.98, v0.04 £19.97 …); bundle = newest editions of its books less 20%, rounded to .99 (archive_ladder.py)",
  "books": [
   {
@@ -137,6 +137,20 @@
    "previous_semver": "0.1.0",
    "whats_new": "0.2.0 (minor, 25 Oct 2026): adds the supplement “The title chain and the twelve-year pairs” — the paper title from Bute to registration, the Williams occupation line, the dated pairs, the parcels taken, the money record and 22 new catalogue entries (EV-0607–EV-0628). The main text of 0.1.0 is unchanged; edition and price unchanged.",
    "supplement": "/ebooks/supplement/cedwyn-supplement-2026-10-25.pdf"
+  },
+  {
+   "id": "enwau",
+   "title": "Enwau: the names of Tŷ Mawr",
+   "edition": "v0.01",
+   "semver": "0.1.0",
+   "price": "£0.00",
+   "pages": 34,
+   "date": "2026-10-26",
+   "free": "v0.01",
+   "next_price": "£9.99",
+   "page": "/ebooks/enwau/",
+   "previous_semver": null,
+   "whats_new": "0.1.0 (26 Oct 2026): first edition. A forensic register of 108 names and identities of the house, the town and the estate, each with its form, date, source document, who wrote it and our note; a chapter on plays on names and dates."
   }
  ],
  "bundles": [

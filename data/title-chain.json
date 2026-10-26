@@ -1,6 +1,6 @@
 {
- "version": "1.0.0",
- "note": "Title chain (Sion, 03:07 GMT 26 Oct 2026, m:891a9b2b): two chains, each link = date, document, its own words, source, status. Statuses: ev, cat, sec, rec, court, fam, gap; fam and gap render as .unsub (small italic). Sources: evidence catalogue, title-root report 25 Oct 2026, flywheel cycles 38-39, reopen-loop run 31. Never the family member's memory. - Sion's Tab agent",
+ "version": "1.1.0",
+ "note": "Title chain (Sion, 03:07 GMT 26 Oct 2026, m:891a9b2b): two chains, each link = date, document, its own words, source, status. Statuses: ev, cat, sec, rec, court, fam, gap; fam and gap render as .unsub (small italic). Sources: evidence catalogue, title-root report 25 Oct 2026, flywheel cycles 38-39, reopen-loop run 31. Never the family member's memory. - Sion's Tab agent 1.1.0 (26 Oct 2026, Sion m:1138070f): the 1547 Cydwin row is removed from the occupiers chain and the D 219 rows are shown as a Bute catalogue heading under forensic examination, not records of Tŷ Mawr before 1824 (first named in the 1824 David Stewart survey, EV-0211).",
  "t": {
   "tc_kicker": {
    "en": "Past · the record, link by link",
@@ -272,17 +272,17 @@
    "st": "sec"
   },
   {
-   "date": "1552–1824",
+   "date": "Bute catalogue heading (D 219)",
    "doc": {
-    "en": "Who held the freehold of the holding, and who granted the leases catalogued under its name: not shown. The National Library of Wales catalogue lists the leases; the deeds have not been read.",
-    "cy": "Pwy oedd yn dal rhydd-ddaliad y daliad, a phwy roddodd y prydlesi: heb ei ddangos. Mae’r catalog yn rhestru’r prydlesi; nid yw’r gweithredoedd wedi’u darllen.",
-    "es": "Quién tenía el dominio pleno y quién otorgó los arrendamientos: no consta. El catálogo enumera los arrendamientos; las escrituras no se han leído."
+    "en": "A Bute estate catalogue heading at the National Library of Wales (D 219) files a group of leases under the name “Cydfin Farm or Ty Mawr Farm”. The heading is the cataloguer’s; the leases have not been read; whether any lease before 1824 concerns Tŷ Mawr is under forensic examination. Not a record of Tŷ Mawr before 1824: the first record we have found that names Tŷ Mawr is the 1824 David Stewart survey (EV-0211).",
+    "cy": "Mae pennawd yng nghatalog ystâd Bute yn Llyfrgell Genedlaethol Cymru (D 219) yn ffeilio grŵp o brydlesi dan yr enw “Cydfin Farm or Ty Mawr Farm”. Pennawd y catalogydd yw hwn; nid yw’r prydlesi wedi’u darllen; mae a yw unrhyw brydles cyn 1824 yn ymwneud â Thŷ Mawr dan archwiliad fforensig. Nid yw’n gofnod o Dŷ Mawr cyn 1824: arolwg David Stewart, 1824, yw’r cofnod cyntaf a gawsom sy’n enwi Tŷ Mawr (EV-0211).",
+    "es": "Un encabezamiento del catálogo de la finca Bute en la Biblioteca Nacional de Gales (D 219) agrupa unos arrendamientos bajo el nombre “Cydfin Farm or Ty Mawr Farm”. El encabezamiento es del catalogador; los arrendamientos no se han leído; si alguno anterior a 1824 se refiere a Tŷ Mawr está bajo examen forense. No es un registro de Tŷ Mawr anterior a 1824: el primer registro hallado que nombra Tŷ Mawr es el catastro de David Stewart de 1824 (EV-0211)."
    },
-   "q": "“The deeds include leases of the farm of Cydfin Farm or Ty Mawr Farm, (107 a.), 1552-1824 (D219/1, 4-5, 8 …)”",
+   "q": "“The deeds include leases of the farm of Cydfin Farm or Ty Mawr Farm, (107 a.) …”",
    "ev": [
     "EV-0003"
    ],
-   "src": "NLW Bute Estate Records D 219 (catalogue entry, quoted in the National Library of Wales reply of 19 Jun 2026)",
+   "src": "NLW Bute Estate Records D 219 (catalogue entry, quoted in the National Library of Wales reply of 19 Jun 2026); application to Tŷ Mawr under forensic examination",
    "st": "cat"
   },
   {
@@ -707,31 +707,17 @@
  ],
  "occupiers": [
   {
-   "date": "1547",
+   "date": "Bute catalogue heading (D 219)",
    "doc": {
-    "en": "A 1,000-year lease of “Cydwin” from Sir George Herbert to Vaughan, reported in a family research note. Document not held; whether it concerns this holding is not shown.",
-    "cy": "Prydles 1,000 mlynedd ar “Cydwin” gan Syr George Herbert i Vaughan, mewn nodyn ymchwil teuluol. Heb ei dal; ni ddangosir a yw’n ymwneud â’r daliad hwn.",
-    "es": "Arrendamiento de 1.000 años de “Cydwin” de Sir George Herbert a Vaughan, en una nota de investigación familiar. No se tiene; no consta que sea esta finca."
+    "en": "A Bute estate catalogue heading at the National Library of Wales (D 219) files a group of leases under the name “Cydfin Farm or Ty Mawr Farm”. The heading is the cataloguer’s; the leases have not been read; whether any lease before 1824 concerns Tŷ Mawr is under forensic examination. Not a record of Tŷ Mawr before 1824: the first record we have found that names Tŷ Mawr is the 1824 David Stewart survey (EV-0211).",
+    "cy": "Mae pennawd yng nghatalog ystâd Bute yn Llyfrgell Genedlaethol Cymru (D 219) yn ffeilio grŵp o brydlesi dan yr enw “Cydfin Farm or Ty Mawr Farm”. Pennawd y catalogydd yw hwn; nid yw’r prydlesi wedi’u darllen; mae a yw unrhyw brydles cyn 1824 yn ymwneud â Thŷ Mawr dan archwiliad fforensig. Nid yw’n gofnod o Dŷ Mawr cyn 1824: arolwg David Stewart, 1824, yw’r cofnod cyntaf a gawsom sy’n enwi Tŷ Mawr (EV-0211).",
+    "es": "Un encabezamiento del catálogo de la finca Bute en la Biblioteca Nacional de Gales (D 219) agrupa unos arrendamientos bajo el nombre “Cydfin Farm or Ty Mawr Farm”. El encabezamiento es del catalogador; los arrendamientos no se han leído; si alguno anterior a 1824 se refiere a Tŷ Mawr está bajo examen forense. No es un registro de Tŷ Mawr anterior a 1824: el primer registro hallado que nombra Tŷ Mawr es el catastro de David Stewart de 1824 (EV-0211)."
    },
-   "q": "",
-   "ev": [
-    "EV-0002"
-   ],
-   "src": "",
-   "st": "fam"
-  },
-  {
-   "date": "1552–1824",
-   "doc": {
-    "en": "Leases catalogued under the heading “Cydfin Farm or Ty Mawr Farm, (107 a.)”. Lessees, terms and the name each lease uses are not shown until the deeds are read.",
-    "cy": "Prydlesi wedi’u catalogio dan y pennawd “Cydfin Farm or Ty Mawr Farm, (107 a.)”. Ni ddangosir y deiliaid, y telerau na’r enw a ddefnyddir ym mhob prydles nes darllen y gweithredoedd.",
-    "es": "Arrendamientos catalogados bajo el título “Cydfin Farm or Ty Mawr Farm, (107 a.)”. Arrendatarios, condiciones y el nombre usado en cada uno no constan hasta leer las escrituras."
-   },
-   "q": "“leases of the farm of Cydfin Farm or Ty Mawr Farm, (107 a.), 1552-1824”",
+   "q": "“The deeds include leases of the farm of Cydfin Farm or Ty Mawr Farm, (107 a.) …”",
    "ev": [
     "EV-0003"
    ],
-   "src": "NLW Bute Estate Records D 219 (catalogue entry, quoted in the National Library of Wales reply of 19 Jun 2026)",
+   "src": "NLW Bute Estate Records D 219 (catalogue entry, quoted in the National Library of Wales reply of 19 Jun 2026); application to Tŷ Mawr under forensic examination",
    "st": "cat"
   },
   {
