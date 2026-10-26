@@ -639,11 +639,19 @@
     // events only when GA_ID is set AND the visitor accepts the cookie banner (UK PECR); with GA_ID empty, no banner and no cookie.
     var GA_ID = "";   // GA4 measurement id ("G-XXXXXXXXXX"); empty = off
     var CF_BEACON = "76ff325b224d472cbb5cfa94d145321f";   // Cloudflare Web Analytics (cookieless) for the bucklerfamily.estate zone
+    var GC_CODE = "cedwyn";   // GoatCounter (cookieless, no personal data, no banner needed): cedwyn.goatcounter.com; empty = off
+    var gcQ = [];
+    function gcEv(name, p) {   // the same funnel step as a GoatCounter event: ev-<event>-<book or network>, titled with the page
+      var cl = function (x) { return String(x || "-").toLowerCase().replace(/@.*$/, "").replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "-"; };
+      var e = { path: "ev-" + cl(name) + "-" + cl(p.book || p.net || p.via), title: cl(p.from || pageKey()), event: true };
+      if (window.goatcounter && window.goatcounter.count) { try { window.goatcounter.count(e); } catch (x) {} } else if (gcQ.length < 20) gcQ.push(e);
+    }
     var gaOn = false, evSent = {};
     function track(name, p) {   // one request per step: /_cedwyn/ev/<event>/<book or network>/<page>, counted by the zone's request analytics
       p = p || {}; var cl = function (x) { return String(x || "-").toLowerCase().replace(/@.*$/, "").replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "-"; };
       var u = location.origin + "/_cedwyn/ev/" + cl(name) + "/" + cl(p.book || p.net || p.via) + "/" + cl(p.from || pageKey()) + "?t=" + Date.now();
       try { if (!(navigator.sendBeacon && navigator.sendBeacon(u, ""))) new Image().src = u; } catch (e) { try { new Image().src = u; } catch (x) {} }
+      if (GC_CODE) gcEv(name, p);
       if (gaOn && window.gtag) try { p.page_path = location.pathname; window.gtag("event", name, p); } catch (e) {}
     }
     function bookOf(a) {
@@ -657,6 +665,14 @@
       if (CF_BEACON && !document.querySelector('script[src*="cloudflareinsights"]')) {
         var cb = document.createElement("script"); cb.defer = true; cb.src = xu("static.cloudflareinsights.com", "/beacon.min.js");
         cb.setAttribute("data-cf-beacon", '{"token": "' + CF_BEACON + '", "spa": true}'); (document.head || de).appendChild(cb);
+      }
+      // GoatCounter: page views + the funnel events, cookieless; the query string is dropped so ?fbclid etc. do not split a page
+      if (GC_CODE && !document.querySelector("script[data-goatcounter]")) {
+        window.goatcounter = window.goatcounter || {}; window.goatcounter.path = function (p) { return String(p || "/").split("?")[0] || "/"; };
+        var gc = document.createElement("script"); gc.async = true; gc.src = xu("gc.zgo.at", "/count.js");
+        gc.setAttribute("data-goatcounter", xu(GC_CODE + ".goatcounter.com", "/count"));
+        gc.onload = function () { var q = gcQ.splice(0); for (var i = 0; i < q.length; i++) try { window.goatcounter.count(q[i]); } catch (x) {} };
+        (document.head || de).appendChild(gc);
       }
       if (inEbooks()) track("ebook_view", { book: ((window.__cedwynLP || location.pathname).replace(/^\/(?:wales|argentina)\//, "/").split("/")[2] || "all") });
       var pg = de.getAttribute("data-cedwyn-page");
