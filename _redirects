@@ -89,8 +89,8 @@
 /farmbook /fb2/ 301
 /media /wayback/ 301
 /email/api /email/api/ 301
-/email/api/records /email/view/ 302
-/email/api/records/ /email/view/ 302
+/email/api/records /email/view/index.json 200
+/email/api/records/ /email/view/index.json 200
 /email/api/openapi.json /email/api/ 302
 /email/api/export /email/api/ 302
 /email/api/export/ /email/api/ 302
