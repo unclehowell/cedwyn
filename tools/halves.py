@@ -253,6 +253,28 @@ JS = r"""
 })();
 """
 
+def headlines(H, T, l, sec):
+    """The story in headlines (Sion, 12:01 GMT 26 Oct 2026, m:2c8d96e9): bold evidence-backed points first, the detail behind
+    a native <details> "Read more" (Darllen mwy / Leer más); folded text stays in the HTML for search and AI readers. - Sion's Tab agent"""
+    hs = (H.get('headlines') or {}).get(sec) or []
+    if not hs: return ''
+    for k, v in (H.get('headlines') or {}).get('t', {}).items(): T[k] = v
+    items = []
+    for j, x in enumerate(hs):
+        kh, kd = f'hl_{sec}_{j}_h', f'hl_{sec}_{j}_d'
+        T[kh] = x['h']; T[kd] = x['d']
+        hrefs = x.get('href') or []
+        links = ' · '.join(f'<a href="{E(u)}"><span data-i18n="hl_rec">{E(tx(T, "hl_rec", l))}</span>{(" " + str(n + 1)) if len(hrefs) > 1 else ""}</a>' for n, u in enumerate(hrefs))
+        ev = f'<p class="hv-hl-ev">{links}</p>' if links else ''
+        items.append(f'<details class="hv-hl"><summary><b data-i18n="{kh}">{E(tx(T, kh, l))}</b><span class="hv-hl-m" data-i18n="hl_more">{E(tx(T, "hl_more", l))}</span></summary>'
+                     f'<p data-i18n="{kd}">{E(tx(T, kd, l))}</p>{ev}</details>')
+    css = ('<style>.hv-hls{margin:18px 0 22px}.hv-hls>h2{margin-bottom:6px}.hv-hl{border-top:1px solid rgba(127,127,127,.35);padding:12px 0}'
+           '.hv-hl:last-child{border-bottom:1px solid rgba(127,127,127,.35)}.hv-hl>summary{list-style:none;cursor:pointer;display:block;min-height:44px}'
+           '.hv-hl>summary::-webkit-details-marker{display:none}.hv-hl>summary b{display:block;font-size:1.25em;line-height:1.25;font-weight:800}'
+           '.hv-hl-m{display:inline-flex;align-items:center;min-height:34px;margin-top:8px;font-size:.88em;font-weight:600;border:1px solid currentColor;border-radius:999px;padding:0 14px;opacity:.85}'
+           '.hv-hl-m:after{content:" \\25BE"}.hv-hl[open] .hv-hl-m{display:none}.hv-hl>summary:focus-visible{outline:2px solid currentColor;outline-offset:3px}.hv-hl p{margin:.55em 0}.hv-hl-ev a{font-weight:600}</style>')
+    return f'<section id="headlines" class="hv-hls">{css}<h2 data-i18n="hl_h">{E(tx(T, "hl_h", l))}</h2>{"".join(items)}</section>'
+
 def projection(stops):
     la = [s['lat'] for s in stops]; lo = [s['lon'] for s in stops]
     a0, a1, o0, o1 = min(la), max(la), min(lo), max(lo)
@@ -336,7 +358,7 @@ def landing(sections, S, cfg, H):
 <body data-cedwyn-page="landing">
 <main class="wrap hv" data-no-translate>
 <div class="hv-land">
-<p class="hv-intro" data-i18n="land_intro">{E(tx(T,'land_intro',l))}</p>
+<h1 class="hv-intro" data-i18n="land_intro">{E(tx(T,'land_intro',l))}</h1>
 <div class="hv-tiles">
 <a class="hv-tile hv-w" href="/wales/?lang=cy" hreflang="cy"><img src="{img(H,'tile-wales')}" width="960" height="544" alt="" fetchpriority="high"><img class="hv-flag" src="{img(H,'flag-wales')}" width="240" height="144" alt="{E(tx(T,'flag_wales',l))}" data-i18n-al="flag_wales">
 <span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
@@ -376,6 +398,7 @@ def wales(sections, S, cfg, H):
 <div class="hb"><p class="eyebrow" style="color:#ddd" data-i18n="w_kick">{E(tx(T,'w_kick',l))}</p><h1 data-i18n="w_h1">{E(tx(T,'w_h1',l))}</h1></div></header>
 <h2 data-i18n="w_h2">{E(tx(T,'w_h2',l))}</h2>
 <p class="lede" data-i18n="w_lede">{E(tx(T,'w_lede',l))}</p>
+{headlines(H, T, l, 'wales')}
 <div class="hv-btns"><a class="hv-btn pri" href="#tour" data-hv-go="0" data-i18n="w_start">{E(tx(T,'w_start',l))}</a><a class="hv-btn" href="#shop" data-i18n="w_tickets">{E(tx(T,'w_tickets',l))}</a><a class="hv-btn" href="#menu" data-i18n="w_menu">{E(tx(T,'w_menu',l))}</a></div>
 {mn}
 <section id="route"><h2 data-i18n="w_map_h">{E(tx(T,'w_map_h',l))}</h2><p class="mut" data-i18n="w_map_p">{E(tx(T,'w_map_p',l))}</p>{mp}</section>
@@ -428,6 +451,7 @@ def argentina(sections, S, cfg, H):
 <main class="wrap hv" data-no-translate style="--hv-a:#2f78b8;--hv-b:#F6B40E">
 <header class="hv-hero"><img src="{img(H,'ghf2-exterior')}" width="1280" height="853" alt="{E(tx(T,'cap_ext',l))}" data-i18n-al="cap_ext" fetchpriority="high"><span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
 <div class="hb"><p class="eyebrow" style="color:#ddd" data-i18n="a_kick">{E(tx(T,'a_kick',l))}</p><h1 data-i18n="a_h1">{E(tx(T,'a_h1',l))}</h1><p style="margin:0" data-i18n="a_h2">{E(tx(T,'a_h2',l))}</p></div></header>
+{headlines(H, T, l, 'argentina')}
 <span class="soon" data-i18n="a_soon">{E(tx(T,'a_soon',l))}</span>
 <p class="lede" data-i18n="a_lede">{E(tx(T,'a_lede',l))}</p>
 <div class="hv-btns"><a class="hv-btn pri" href="#book" data-i18n="a_build">{E(tx(T,'a_build',l))}</a><a class="hv-btn" href="#museum" data-i18n="mu_h">{E(tx(T,'mu_h',l))}</a><a class="hv-btn" href="/argentina/caso/" data-i18n="a_caso">{E(tx(T,'a_caso',l))}</a><a class="hv-btn" href="#menu" data-i18n="a_menu">{E(tx(T,'a_menu',l))}</a></div>

@@ -163,6 +163,9 @@ title_chain.run(DIST, CFG)
 # The e-book compartment: editions, versions and prices on /ebooks/ (data/ebooks.json) and the free-edition gate - Sion's Tab agent
 import ebook_editions
 ebook_editions.run(DIST)
+# Headline-first story pages (Sion, 12:01 GMT 26 Oct 2026): section detail behind a native 'Read more' in every theme - Sion's Tab agent
+import headlines
+headlines.run(DIST)
 # Agent guest book (Sion, 01:51 GMT 26 Oct 2026): one collapsed table in the shared footer of every page, from main's commit
 # history; /guestbook/ lists every commit. Runs last so every page the build made carries it - Sion's Tab agent
 import guestbook

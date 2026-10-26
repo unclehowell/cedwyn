@@ -64,3 +64,31 @@ The title chain itself is on /title-chain/ (data/title-chain.json).
 - Build: `chronology.json` + `tools/chronology.py` (after theme_notices in site.py) reword the old phrasings in mirrored theme text
   and put the "How we treat outside records" notice (en/cy/es) on every page that still shows such a document; the method is on
   /values/#outside-records. Archived correspondence (/wayback/mail/, /email/) and third-party captures (/wayback/websites/) stay verbatim.
+
+## Framing rule: the family's standing is the default; others' stature is tested (26 Oct 2026)
+
+The Williams family of Tŷ Mawr is presented as what the records show it to be: a family of standing in Llandough, at the
+Great House across generations (the c.1841 tithe: John Williams on 36 plots, the whole holding), the house the parish's
+chief freehold holding and the seat of the manor courts in Heneb's historic environment record, John Williams "for many
+years a juror of the court" (1908), Mary (Nancy) Williams refusing the tenancies offered in 1959 and 1965 and asserting
+title through her grandfather. The family's account dates its acquisition of Tŷ Mawr to 1667.
+
+Outside parties' stature is tested against the record, never assumed:
+- Bute: lord of the manor. A Bute survey, rate book or tithe column is the estate's own description of itself or of whom it
+  charged; it is not a conveyance. No instrument putting the house into Bute's hands has been found; the first record of the
+  holding is Bute's own 1824 survey. "Bute owned", "root freehold", "historic landowner" are not used of the house.
+- BP: registered proprietor from 1982/83, never "owner". The 1938 and 1969 instruments are recited only.
+- Courts: what each court decided (possession, limitation) and what none decided (ownership of the house) are set out
+  together; a court's view is not put "first" with the family's as a rejoinder.
+- Published histories, outside websites and catalogues: tested, quoted as theirs, never repeated as fact.
+- The family is not reduced to "occupier" or "tenant" with nothing else: their standing and length of time travel with it.
+  "Tenant" appears as the label Bute's own papers used.
+Where the evidence does not yet back a strong statement, it is shown in small italic (.unsub) as the family's account.
+Audit and rewrites: framing-26oct entries in ingredients.json; data edits D01–D11 (title chain, halves, family case).
+
+## Headline-first pages (26 Oct 2026)
+
+Story pages lead with their headings and each section's first short paragraph; the rest of each section sits behind a native
+<details>/<summary> "Read more" (Darllen mwy / Leer más), added at build time by tools/headlines.py in every theme. The text
+stays in the HTML (search, the catalogue index, AI readers). The Wales and Argentina hubs open with "The story in headlines"
+(data/halves.json → headlines). A page opts out with the attribute data-cw-headlines-off.

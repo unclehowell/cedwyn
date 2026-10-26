@@ -77,7 +77,7 @@ def page(sections, S, cfg, D, sec, l):
     key = ''.join(f'<dt><span class="chip st-{k}" data-i18n="tc_st_{k}">{E(tx("tc_st_" + k))}</span></dt><dd data-i18n="tc_sd_{k}">{E(tx("tc_sd_" + k))}</dd>' for k in D['status'])
     back = ('<a href="/wales/" lang="cy" data-i18n="tc_back_w">%s</a> · <a href="/argentina/" lang="es" data-i18n="tc_back_a">%s</a>'
             % (E(tx('tc_back_w')), E(tx('tc_back_a'))))
-    desc = 'Title chain of Tŷ Mawr, Llandough: the freehold and manorial chain and the chain of occupiers and leaseholders, link by link, each with its source; gaps shown as gaps.'
+    desc = 'Title chain of Tŷ Mawr, Llandough: the Williams family line at the house, then every title others assert over it, tested link by link against its source; gaps shown as gaps.'
     hd = sections.head('Title chain · Tŷ Mawr · Cedwyn', desc, l, bpath, sec, T, len(cfg['themes']))
     hd = hd.replace('</style>', CSS + '</style>', 1)
     body = f"""
@@ -89,10 +89,10 @@ def page(sections, S, cfg, D, sec, l):
 <p class="lede" data-i18n="tc_lede">{E(tx('tc_lede'))}</p>
 <p class="frame" data-i18n="tc_frame">{E(tx('tc_frame'))}</p>
 <details><summary data-i18n="tc_key_h">{E(tx('tc_key_h'))}</summary><dl class="key">{key}</dl></details>
-<h2 id="freehold" data-i18n="tc_f_h">{E(tx('tc_f_h'))}</h2>
-{table(D, T, l, 'freehold')}
 <h2 id="occupiers" data-i18n="tc_o_h">{E(tx('tc_o_h'))}</h2>
 {table(D, T, l, 'occupiers')}
+<h2 id="freehold" data-i18n="tc_f_h">{E(tx('tc_f_h'))}</h2>
+{table(D, T, l, 'freehold')}
 <p class="n" data-i18n="tc_n">{E(tx('tc_n'))}</p>
 <p class="endnote">{back} · <a href="/catalogue/" data-i18n="tc_cat">{E(tx('tc_cat'))}</a></p>
 </main>

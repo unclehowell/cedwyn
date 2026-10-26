@@ -1,6 +1,6 @@
 {
  "rule": "Cedwyn editorial rule (25 Oct 2026): ingredients, not conclusions. Build-time rewording of conclusion sentences in mirrored theme text; cedwyn copy only, the datro sources are untouched. Each entry: theme, file (relative to the theme root), find (exact), replace, why. A find that is not present is reported, never fatal. — Sion's Tab agent",
- "version": "1.4.0",
+ "version": "1.5.0",
  "rewords": [
   {
    "theme": "maps",
@@ -1569,6 +1569,591 @@
    "why": "1552–1824 is the National Library of Wales catalogue’s span for leases grouped under that name (D 219); the leases have not been read, and the name is first read in a record in 1824 (Bute survey, plan 19, EV-0211). | 1.4.0 (26 Oct 2026, Sion m:1138070f): Bute catalogue dates are not records of Tŷ Mawr before 1824; first named in the 1824 David Stewart survey; application under forensic examination.",
    "class": "1552",
    "audit_point": "forensic-wording-26oct"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "c.1841 · Tithe map: Bute owns; John Williams occupies the holding",
+   "replace": "c.1841 · Tithe: John Williams holds the Great House holding, 36 plots; Bute is named only in the tithe’s landowner column, which is not a deed",
+   "why": "Turned a tax column into ownership ('Bute owns') and reduced the family to 'occupies'.",
+   "class": "framing-both",
+   "audit_point": "framing-26oct:M01"
+  },
+  {
+   "theme": "wiki",
+   "file": "**/*.html",
+   "find": "c.1841 · Tithe map: Bute owns; John Williams occupies the holding",
+   "replace": "c.1841 · Tithe: John Williams holds the Great House holding, 36 plots; Bute is named only in the tithe’s landowner column, which is not a deed",
+   "why": "Turned a tax column into ownership ('Bute owns') and reduced the family to 'occupies'.",
+   "class": "framing-both",
+   "audit_point": "framing-26oct:M01"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "The tithe apportionment for Landough, Cogan and Leckwith lists the Bute estate as owner and John Williams as occupier of the Great House Farm holding.",
+   "replace": "The tithe apportionment for Landough, Cogan and Leckwith lists John Williams as occupier of the Great House Farm holding, 36 plots; its landowner column, the column that names who answered for the tithe, names the Marquess of Bute. A tithe column is not a deed and shows no conveyance to Bute.",
+   "why": "Presented Bute as 'owner' on the strength of a tithe column; the family appears only as 'occupier'.",
+   "class": "framing-both",
+   "audit_point": "framing-26oct:M02"
+  },
+  {
+   "theme": "wiki",
+   "file": "**/*.html",
+   "find": "The tithe apportionment for Landough, Cogan and Leckwith lists the Bute estate as owner and John Williams as occupier of the Great House Farm holding.",
+   "replace": "The tithe apportionment for Landough, Cogan and Leckwith lists John Williams as occupier of the Great House Farm holding, 36 plots; its landowner column, the column that names who answered for the tithe, names the Marquess of Bute. A tithe column is not a deed and shows no conveyance to Bute.",
+   "why": "Presented Bute as 'owner' on the strength of a tithe column; the family appears only as 'occupier'.",
+   "class": "framing-both",
+   "audit_point": "framing-26oct:M02"
+  },
+  {
+   "theme": "fcg",
+   "file": "**/*.html",
+   "find": "Scope: the Bute Estate of the Marquesses of Bute, historic landowner and landlord.",
+   "replace": "Scope: the Bute Estate of the Marquesses of Bute, lord of the manors of Llandough and Leckwith. Whether it ever held the Tŷ Mawr holding as freehold is what this review tests: no conveyance into Bute’s hands has been found, and the first record of the holding is Bute’s own 1824 survey.",
+   "why": "Unqualified title ('historic landowner and landlord') given before any test of the record.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M04"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "Scope: the Bute Estate of the Marquesses of Bute, historic landowner and landlord.",
+   "replace": "Scope: the Bute Estate of the Marquesses of Bute, lord of the manors of Llandough and Leckwith. Whether it ever held the Tŷ Mawr holding as freehold is what this review tests: no conveyance into Bute’s hands has been found, and the first record of the holding is Bute’s own 1824 survey.",
+   "why": "Unqualified title ('historic landowner and landlord') given before any test of the record.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M04"
+  },
+  {
+   "theme": "wiki",
+   "file": "**/*.html",
+   "find": "Scope: the Bute Estate of the Marquesses of Bute, historic landowner and landlord.",
+   "replace": "Scope: the Bute Estate of the Marquesses of Bute, lord of the manors of Llandough and Leckwith. Whether it ever held the Tŷ Mawr holding as freehold is what this review tests: no conveyance into Bute’s hands has been found, and the first record of the holding is Bute’s own 1824 survey.",
+   "why": "Unqualified title ('historic landowner and landlord') given before any test of the record.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M04"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.html",
+   "find": "The ownership of the farm: a freehold within the manor, held by the Vaughans until the late 18th century and by Bute from the early 19th.",
+   "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; the family’s account dates its acquisition of Tŷ Mawr to 1667.",
+   "why": "Repeats an outside narrative of a Vaughan→Bute freehold as fact; Sion's 11:45 rule.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M05"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.txt",
+   "find": "The ownership of the farm: a freehold within the manor, held by the Vaughans until the late 18th century and by Bute from the early 19th.",
+   "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; the family’s account dates its acquisition of Tŷ Mawr to 1667.",
+   "why": "Repeats an outside narrative of a Vaughan→Bute freehold as fact; Sion's 11:45 rule.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M05"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.html",
+   "find": "The ownership of the farm: a freehold within the manor, held by the Vaughans until the late 18th century and by Bute from the early 19th.",
+   "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; the family’s account dates its acquisition of Tŷ Mawr to 1667.",
+   "why": "Repeats an outside narrative of a Vaughan→Bute freehold as fact; Sion's 11:45 rule.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M05"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.txt",
+   "find": "The ownership of the farm: a freehold within the manor, held by the Vaughans until the late 18th century and by Bute from the early 19th.",
+   "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; the family’s account dates its acquisition of Tŷ Mawr to 1667.",
+   "why": "Repeats an outside narrative of a Vaughan→Bute freehold as fact; Sion's 11:45 rule.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M05"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.html",
+   "find": "How the farm passed from the Vaughans to Bute is not yet documented.",
+   "replace": "No document shows the house passing into Bute’s hands at all.",
+   "why": "Presumes the transfer happened and only its paperwork is missing.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M06"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.txt",
+   "find": "How the farm passed from the Vaughans to Bute is not yet documented.",
+   "replace": "No document shows the house passing into Bute’s hands at all.",
+   "why": "Presumes the transfer happened and only its paperwork is missing.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M06"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.html",
+   "find": "How the farm passed from the Vaughans to Bute is not yet documented.",
+   "replace": "No document shows the house passing into Bute’s hands at all.",
+   "why": "Presumes the transfer happened and only its paperwork is missing.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M06"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.txt",
+   "find": "How the farm passed from the Vaughans to Bute is not yet documented.",
+   "replace": "No document shows the house passing into Bute’s hands at all.",
+   "why": "Presumes the transfer happened and only its paperwork is missing.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M06"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.html",
+   "find": "The missing control point is the instrument that carried the farm freehold from the Vaughan line into Bute's estate.",
+   "replace": "The control point that has never been produced is any instrument putting the house into Bute’s estate; until one is, Bute’s title to the house is untested.",
+   "why": "Presumes a Bute freehold existed.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M07"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.txt",
+   "find": "The missing control point is the instrument that carried the farm freehold from the Vaughan line into Bute's estate.",
+   "replace": "The control point that has never been produced is any instrument putting the house into Bute’s estate; until one is, Bute’s title to the house is untested.",
+   "why": "Presumes a Bute freehold existed.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M07"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.html",
+   "find": "The missing control point is the instrument that carried the farm freehold from the Vaughan line into Bute's estate.",
+   "replace": "The control point that has never been produced is any instrument putting the house into Bute’s estate; until one is, Bute’s title to the house is untested.",
+   "why": "Presumes a Bute freehold existed.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M07"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.txt",
+   "find": "The missing control point is the instrument that carried the farm freehold from the Vaughan line into Bute's estate.",
+   "replace": "The control point that has never been produced is any instrument putting the house into Bute’s estate; until one is, Bute’s title to the house is untested.",
+   "why": "Presumes a Bute freehold existed.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M07"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.html",
+   "find": "The deed that moved the farm freehold from the Vaughan line is the key missing control point.",
+   "replace": "No deed has been produced that moved the house into Bute’s estate; that is the key control point.",
+   "why": "Presumes the deed exists.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M08"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.txt",
+   "find": "The deed that moved the farm freehold from the Vaughan line is the key missing control point.",
+   "replace": "No deed has been produced that moved the house into Bute’s estate; that is the key control point.",
+   "why": "Presumes the deed exists.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M08"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.html",
+   "find": "The deed that moved the farm freehold from the Vaughan line is the key missing control point.",
+   "replace": "No deed has been produced that moved the house into Bute’s estate; that is the key control point.",
+   "why": "Presumes the deed exists.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M08"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.txt",
+   "find": "The deed that moved the farm freehold from the Vaughan line is the key missing control point.",
+   "replace": "No deed has been produced that moved the house into Bute’s estate; that is the key control point.",
+   "why": "Presumes the deed exists.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M08"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.html",
+   "find": "The crucial missing control point is the instrument that transferred the Vaughan farm freehold into Bute's estate.",
+   "replace": "The crucial control point is the instrument that would have put the house into Bute’s estate: none has been produced.",
+   "why": "Presumes the transfer.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M09"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.html",
+   "find": "The crucial missing control point is the instrument that transferred the Vaughan farm freehold into Bute's estate.",
+   "replace": "The crucial control point is the instrument that would have put the house into Bute’s estate: none has been produced.",
+   "why": "Presumes the transfer.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M09"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.html",
+   "find": "The freehold line of the house: the Vaughans, then Bute (by the early 19th century), then Daniel Thomas (1877), then the Williamses (1928).",
+   "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is known only from Mary Williams’s statement; the family’s account dates its acquisition of Tŷ Mawr to 1667 and its last rent to 1928.",
+   "why": "Presented a Vaughan→Bute freehold line as fact and put the Williamses last.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M10"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.txt",
+   "find": "The freehold line of the house: the Vaughans, then Bute (by the early 19th century), then Daniel Thomas (1877), then the Williamses (1928).",
+   "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is known only from Mary Williams’s statement; the family’s account dates its acquisition of Tŷ Mawr to 1667 and its last rent to 1928.",
+   "why": "Presented a Vaughan→Bute freehold line as fact and put the Williamses last.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M10"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.html",
+   "find": "The freehold line of the house: the Vaughans, then Bute (by the early 19th century), then Daniel Thomas (1877), then the Williamses (1928).",
+   "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is known only from Mary Williams’s statement; the family’s account dates its acquisition of Tŷ Mawr to 1667 and its last rent to 1928.",
+   "why": "Presented a Vaughan→Bute freehold line as fact and put the Williamses last.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M10"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.txt",
+   "find": "The freehold line of the house: the Vaughans, then Bute (by the early 19th century), then Daniel Thomas (1877), then the Williamses (1928).",
+   "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is known only from Mary Williams’s statement; the family’s account dates its acquisition of Tŷ Mawr to 1667 and its last rent to 1928.",
+   "why": "Presented a Vaughan→Bute freehold line as fact and put the Williamses last.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M10"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.txt",
+   "find": "In the early C19th the freehold was acquired by the Bute Estate",
+   "replace": "Published histories place the house in the Bute Estate in the early 19th century; no conveyance to Bute has been found, and the first record of the holding is Bute’s own 1824 survey",
+   "why": "Outside narrative repeated as fact.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M11"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.txt",
+   "find": "In the early C19th the freehold was acquired by the Bute Estate",
+   "replace": "Published histories place the house in the Bute Estate in the early 19th century; no conveyance to Bute has been found, and the first record of the holding is Bute’s own 1824 survey",
+   "why": "Outside narrative repeated as fact.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M11"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "In the early C19 the freehold was acquired by the Bute Estate and the manorial courts for Llandough and Leckwith were held in Great House.",
+   "replace": "The manorial courts for Llandough and Leckwith were held in the Great House, the Williams family’s home. The same record places the house in the Bute Estate in the early 19th century; no conveyance to Bute has been found, and the first record of the holding is Bute’s own 1824 survey.",
+   "why": "Led with Bute's acquisition (unbacked) and buried that the manor courts sat in the family's house.",
+   "class": "framing-both",
+   "audit_point": "framing-26oct:M12"
+  },
+  {
+   "theme": "wiki",
+   "file": "**/*.html",
+   "find": "In the early C19 the freehold was acquired by the Bute Estate and the manorial courts for Llandough and Leckwith were held in Great House.",
+   "replace": "The manorial courts for Llandough and Leckwith were held in the Great House, the Williams family’s home. The same record places the house in the Bute Estate in the early 19th century; no conveyance to Bute has been found, and the first record of the holding is Bute’s own 1824 survey.",
+   "why": "Led with Bute's acquisition (unbacked) and buried that the manor courts sat in the family's house.",
+   "class": "framing-both",
+   "audit_point": "framing-26oct:M12"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.html",
+   "find": "On 30 November 1982 Linklaters & Paines apply to register BP Properties as owner of the land, title WA231076.",
+   "replace": "On 30 November 1982 Linklaters & Paines apply to have BP Properties registered as proprietor of the land, title WA231076.",
+   "why": "'Owner' for BP; Cedwyn rule: BP = registered proprietor.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M13"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.txt",
+   "find": "On 30 November 1982 Linklaters & Paines apply to register BP Properties as owner of the land, title WA231076.",
+   "replace": "On 30 November 1982 Linklaters & Paines apply to have BP Properties registered as proprietor of the land, title WA231076.",
+   "why": "'Owner' for BP; Cedwyn rule: BP = registered proprietor.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M13"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.html",
+   "find": "On 30 November 1982 Linklaters & Paines apply to register BP Properties as owner of the land, title WA231076.",
+   "replace": "On 30 November 1982 Linklaters & Paines apply to have BP Properties registered as proprietor of the land, title WA231076.",
+   "why": "'Owner' for BP; Cedwyn rule: BP = registered proprietor.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M13"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.txt",
+   "find": "On 30 November 1982 Linklaters & Paines apply to register BP Properties as owner of the land, title WA231076.",
+   "replace": "On 30 November 1982 Linklaters & Paines apply to have BP Properties registered as proprietor of the land, title WA231076.",
+   "why": "'Owner' for BP; Cedwyn rule: BP = registered proprietor.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M13"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.txt",
+   "find": "NARRATOR: On 30 November 1982 Linklaters & Paines apply to register BP Properties as owner of the land, title WA231076.",
+   "replace": "NARRATOR: On 30 November 1982 Linklaters & Paines apply to have BP Properties registered as proprietor of the land, title WA231076.",
+   "why": "Same as M13.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M14"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.txt",
+   "find": "NARRATOR: On 30 November 1982 Linklaters & Paines apply to register BP Properties as owner of the land, title WA231076.",
+   "replace": "NARRATOR: On 30 November 1982 Linklaters & Paines apply to have BP Properties registered as proprietor of the land, title WA231076.",
+   "why": "Same as M13.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M14"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.html",
+   "find": "The historical account places the manorial lordship in Bute's hands from 1793 and the Great House farm freehold in the early 19th century.",
+   "replace": "Published histories put the manorial lordship with Bute from 1793. No conveyance of the house to Bute has been found: the first record of the holding is Bute’s own survey of 1824.",
+   "why": "Outside narrative given as 'what we now know'.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M15"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.txt",
+   "find": "The historical account places the manorial lordship in Bute's hands from 1793 and the Great House farm freehold in the early 19th century.",
+   "replace": "Published histories put the manorial lordship with Bute from 1793. No conveyance of the house to Bute has been found: the first record of the holding is Bute’s own survey of 1824.",
+   "why": "Outside narrative given as 'what we now know'.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M15"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.html",
+   "find": "The historical account places the manorial lordship in Bute's hands from 1793 and the Great House farm freehold in the early 19th century.",
+   "replace": "Published histories put the manorial lordship with Bute from 1793. No conveyance of the house to Bute has been found: the first record of the holding is Bute’s own survey of 1824.",
+   "why": "Outside narrative given as 'what we now know'.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M15"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.txt",
+   "find": "The historical account places the manorial lordship in Bute's hands from 1793 and the Great House farm freehold in the early 19th century.",
+   "replace": "Published histories put the manorial lordship with Bute from 1793. No conveyance of the house to Bute has been found: the first record of the holding is Bute’s own survey of 1824.",
+   "why": "Outside narrative given as 'what we now know'.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M15"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.html",
+   "find": "In 1916 Bute owned only Parcel B.",
+   "replace": "In 1916 no record shows Bute holding the house parcel; at most its tenancy could reach Parcel B, and the tenancy’s own plan has never been produced.",
+   "why": "Asserts Bute ownership of Parcel B as known.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M16"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.txt",
+   "find": "In 1916 Bute owned only Parcel B.",
+   "replace": "In 1916 no record shows Bute holding the house parcel; at most its tenancy could reach Parcel B, and the tenancy’s own plan has never been produced.",
+   "why": "Asserts Bute ownership of Parcel B as known.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M16"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.html",
+   "find": "In 1916 Bute owned only Parcel B.",
+   "replace": "In 1916 no record shows Bute holding the house parcel; at most its tenancy could reach Parcel B, and the tenancy’s own plan has never been produced.",
+   "why": "Asserts Bute ownership of Parcel B as known.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M16"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.txt",
+   "find": "In 1916 Bute owned only Parcel B.",
+   "replace": "In 1916 no record shows Bute holding the house parcel; at most its tenancy could reach Parcel B, and the tenancy’s own plan has never been produced.",
+   "why": "Asserts Bute ownership of Parcel B as known.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M16"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.html",
+   "find": "John Williams succeeds his father as occupier of the farm under the Bute Estate.",
+   "replace": "John Williams succeeds his father at the Great House in 1855, the second generation of the Williamses there on the record; the Bute Estate entered him in its books as its tenant.",
+   "why": "Family framed only as occupiers 'under' Bute; continuity and standing omitted.",
+   "class": "framing-downplayed",
+   "audit_point": "framing-26oct:M17"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.txt",
+   "find": "John Williams succeeds his father as occupier of the farm under the Bute Estate.",
+   "replace": "John Williams succeeds his father at the Great House in 1855, the second generation of the Williamses there on the record; the Bute Estate entered him in its books as its tenant.",
+   "why": "Family framed only as occupiers 'under' Bute; continuity and standing omitted.",
+   "class": "framing-downplayed",
+   "audit_point": "framing-26oct:M17"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.txt",
+   "find": "NARRATOR: John Williams succeeds his father as occupier of the farm under the Bute Estate.",
+   "replace": "NARRATOR: John Williams succeeds his father at the Great House in 1855, the second generation of the Williamses there on the record; the Bute Estate entered him in its books as its tenant.",
+   "why": "Same as M17.",
+   "class": "framing-downplayed",
+   "audit_point": "framing-26oct:M18"
+  },
+  {
+   "theme": "chess",
+   "file": "**/*.html",
+   "find": "The record dates Williams occupation of the house to 1667 and shows the Williams as tenants of the Bute Estate by the nineteenth century.",
+   "replace": "The family dates its acquisition of Tŷ Mawr to 1667. By the nineteenth century the Bute Estate’s own books entered the Williamses as its tenants; no record read shows how the house came into Bute’s hands.",
+   "why": "Attributes 1667 to 'the record' and gives the Bute books' 'tenant' label as fact.",
+   "class": "framing-both",
+   "audit_point": "framing-26oct:M20"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "Root freehold → Parcel B</strong> (far left): Bute → Mountjoy → WGR (1938) → BP (1969);",
+   "replace": "Paper chain asserted for Parcel B</strong> (far left): Bute → Mountjoy → WGR (1938, deed recited only) → BP (1969, recited only);",
+   "why": "'Root freehold' asserts a Bute freehold no conveyance on file shows; the 1938 and 1969 instruments are recited, not produced.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M03"
+  },
+  {
+   "theme": "wiki",
+   "file": "**/*.html",
+   "find": "Root freehold → Parcel B</strong> (far left): Bute → Mountjoy → WGR (1938) → BP (1969);",
+   "replace": "Paper chain asserted for Parcel B</strong> (far left): Bute → Mountjoy → WGR (1938, deed recited only) → BP (1969, recited only);",
+   "why": "'Root freehold' asserts a Bute freehold no conveyance on file shows; the 1938 and 1969 instruments are recited, not produced.",
+   "class": "framing-overstated",
+   "audit_point": "framing-26oct:M03"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "26 March 1983: Mary Williams, the occupier of the farmhouse, died.",
+   "replace": "26 March 1983: Mary Williams died at the house, still in occupation; she had refused the tenancies offered to her in 1959 and 1965 and asserted title through her grandfather (1959, in the Court of Appeal’s account).",
+   "why": "Reduced Mary Williams to 'the occupier'.",
+   "class": "framing-downplayed",
+   "audit_point": "framing-26oct:M19"
+  },
+  {
+   "theme": "wiki",
+   "file": "**/*.html",
+   "find": "26 March 1983: Mary Williams, the occupier of the farmhouse, died.",
+   "replace": "26 March 1983: Mary Williams died at the house, still in occupation; she had refused the tenancies offered to her in 1959 and 1965 and asserted title through her grandfather (1959, in the Court of Appeal’s account).",
+   "why": "Reduced Mary Williams to 'the occupier'.",
+   "class": "framing-downplayed",
+   "audit_point": "framing-26oct:M19"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "the family dates its occupation of the house to <a href=\"/research/williams-buckler-family/\" style=\"text-decoration:underline\">1667</a>, and records the family as tenants of the <a href=\"/research/bute-estate/\">Bute Estate</a> by the 19th century.",
+   "replace": "the family dates its acquisition of the house to <a href=\"/research/williams-buckler-family/\" style=\"text-decoration:underline\">1667</a>. By the 19th century the <a href=\"/research/bute-estate/\">Bute Estate</a>’s own books entered the family as its tenants; no record read shows how the house came into Bute’s hands.",
+   "why": "Gave the Bute books' 'tenant' label as the family's own record and 'occupation' for the family's acquisition.",
+   "class": "framing-both",
+   "audit_point": "framing-26oct:M21r"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "lived at <a href=\"/research/great-house-farm/\">Great House Farm (Tŷ Mawr)</a> until after the death of <a href=\"/research/mary-williams/\">Mary (Nancy) Williams</a> in 1983; the house was",
+   "replace": "made their home at <a href=\"/research/great-house-farm/\">Great House Farm (Tŷ Mawr)</a>, the Great House of Llandough, <span class=\"unsub\">from 1667 in the family’s account</span> until 1988. On the record: John Williams on 36 plots, the whole holding, in the c.1841 tithe; John Williams “for many years a juror” of the manor court that met in the house (1908); and <a href=\"/research/mary-williams/\">Mary (Nancy) Williams</a>, who refused the tenancies offered to her in 1959 and 1965, asserted title through her grandfather, and died at the house in 1983. The house was",
+   "why": "Opening line of the family page gave them only 'lived at … until 1983', with none of their standing.",
+   "class": "framing-downplayed",
+   "audit_point": "framing-26oct:M23r"
+  },
+  {
+   "theme": "research",
+   "file": "**/*.html",
+   "find": "See <a href=\"/research/john-williams/\">John Williams</a>, tenant of the whole farm from 1916.",
+   "replace": "See <a href=\"/research/john-williams/\">John Williams</a> of the Great House, for many years a juror of the manor court; a 1916 Bute yearly tenancy of “the whole of the farm” is recited by the Court of Appeal, its deed and plan never produced.",
+   "why": "Reduced John Williams to 'tenant of the whole farm from 1916'.",
+   "class": "framing-downplayed",
+   "audit_point": "framing-26oct:M24r"
+  },
+  {
+   "theme": "wiki",
+   "file": "**/*.html",
+   "find": "the family dates its occupation of the house to <a href=\"/wiki/williams-buckler-family/\" style=\"text-decoration:underline\">1667</a>, and records the family as tenants of the <a href=\"/wiki/bute-estate/\">Bute Estate</a> by the 19th century.",
+   "replace": "the family dates its acquisition of the house to <a href=\"/wiki/williams-buckler-family/\" style=\"text-decoration:underline\">1667</a>. By the 19th century the <a href=\"/wiki/bute-estate/\">Bute Estate</a>’s own books entered the family as its tenants; no record read shows how the house came into Bute’s hands.",
+   "why": "Gave the Bute books' 'tenant' label as the family's own record and 'occupation' for the family's acquisition.",
+   "class": "framing-both",
+   "audit_point": "framing-26oct:M21w"
+  },
+  {
+   "theme": "wiki",
+   "file": "**/*.html",
+   "find": "lived at <a href=\"/wiki/great-house-farm/\">Great House Farm (Tŷ Mawr)</a> until after the death of <a href=\"/wiki/mary-williams/\">Mary (Nancy) Williams</a> in 1983; the house was",
+   "replace": "made their home at <a href=\"/wiki/great-house-farm/\">Great House Farm (Tŷ Mawr)</a>, the Great House of Llandough, <span class=\"unsub\">from 1667 in the family’s account</span> until 1988. On the record: John Williams on 36 plots, the whole holding, in the c.1841 tithe; John Williams “for many years a juror” of the manor court that met in the house (1908); and <a href=\"/wiki/mary-williams/\">Mary (Nancy) Williams</a>, who refused the tenancies offered to her in 1959 and 1965, asserted title through her grandfather, and died at the house in 1983. The house was",
+   "why": "Opening line of the family page gave them only 'lived at … until 1983', with none of their standing.",
+   "class": "framing-downplayed",
+   "audit_point": "framing-26oct:M23w"
+  },
+  {
+   "theme": "wiki",
+   "file": "**/*.html",
+   "find": "See <a href=\"/wiki/john-williams/\">John Williams</a>, tenant of the whole farm from 1916.",
+   "replace": "See <a href=\"/wiki/john-williams/\">John Williams</a> of the Great House, for many years a juror of the manor court; a 1916 Bute yearly tenancy of “the whole of the farm” is recited by the Court of Appeal, its deed and plan never produced.",
+   "why": "Reduced John Williams to 'tenant of the whole farm from 1916'.",
+   "class": "framing-downplayed",
+   "audit_point": "framing-26oct:M24w"
+  },
+  {
+   "theme": "story",
+   "file": "**/*.html",
+   "find": "Mary's father. Tenant of the house and fields from 1908; paid the last rent on the house in 1928.",
+   "replace": "Mary's father, of the Great House from 1908. Bute's papers entered him as tenant of the house and fields; in the family's account he paid the last rent on the house in 1928.",
+   "why": "Cast list reduced John Williams to 'Tenant of the house and fields'.",
+   "class": "framing-downplayed",
+   "audit_point": "framing-26oct:M25"
+  },
+  {
+   "theme": "qa",
+   "file": "**/*.html",
+   "find": "Mary's father. Tenant of the house and fields from 1908; paid the last rent on the house in 1928.",
+   "replace": "Mary's father, of the Great House from 1908. Bute's papers entered him as tenant of the house and fields; in the family's account he paid the last rent on the house in 1928.",
+   "why": "Cast list reduced John Williams to 'Tenant of the house and fields'.",
+   "class": "framing-downplayed",
+   "audit_point": "framing-26oct:M25"
+  },
+  {
+   "theme": "accounts",
+   "file": "**/*.html",
+   "find": "the line says GAP",
+   "replace": "the line reads GAP",
+   "why": "Banned word 'says' in Cedwyn's own note (root steer 12:29).",
+   "class": "banned-word",
+   "audit_point": "framing-26oct:A01"
+  },
+  {
+   "theme": "movie",
+   "file": "**/*.html",
+   "find": "<h2 id=\"cm-p-title\"></h2>",
+   "replace": "<h2 id=\"cm-p-title\">Cedwyn: the film</h2>",
+   "why": "Empty heading on /movie/ (accessibility; root steer 12:25); the player still sets its own title when a door plays.",
+   "class": "a11y",
+   "audit_point": "framing-26oct:A02"
   }
  ]
 }
