@@ -10,7 +10,7 @@
                Past / Present (data/halves.json "groups"; a new theme falls into "default"); the museum themes are left out on Wales.
 - /argentina/  Cedwyn Estate II / Great House II, Patagonia: the retreat (house, rooms, stables, barn, cottage, weddings, museum with
                wax Marconi and "Peerless" Jim), a BookMyTravel-style package builder (stay + flights + hire car -> summary ->
-               pre-order request posted to the site's Mailchimp audience in a new tab, where the visitor confirms; indicative prices; nothing charged), the family's
+               pre-order request sent to Cedwyn's own mailing list, where the visitor confirms by email; indicative prices; nothing charged), the family's
                case (tools/family_case.py, when present) and every theme grouped Past / Present.
 Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: web/_cedwyn/halves/img/ (AI renders marked
 "artist's impression"). Runs at the end of site.py, after sections.run(); it replaces the three pages sections.py wrote and nothing else."""
@@ -240,13 +240,14 @@ JS = r"""
       var c=render(),ref='GH2-'+Date.now().toString(36).toUpperCase().slice(-6);
       var sum=(/\btest\b/i.test(nm)?'TEST ':'')+'PREORDER '+ref+' | '+nm.slice(0,40)+' | '+(c.v?c.v.id:'-')+' '+d('bk-in').value+(c.v&&c.v.id!=='wed'?'..'+d('bk-out').value:'')+' g'+c.g+(c.v&&c.v.id==='room'?' r'+c.rm:'')+' | fly '+(c.ap||'-')+(c.ap&&c.ap!=='NONE'?' x'+c.fl:'')+' | car '+(c.car||'-')+'@'+c.pick+' | est GBP'+Math.round(c.tot)+(c.quote?'+':'')+' | '+L()+' | '+(d('bk-note').value||'').slice(0,60);
       sum=sum.slice(0,250);
-      var M=B.mc,fm=document.createElement('form');fm.method='get';fm.target='_blank';fm.acceptCharset='UTF-8';
-      fm.action='https://'+M.host+'/subscribe/post';
-      var p={u:M.u,id:M.id,EMAIL:em,UTMSRC:'cedwyn/argentina-preorder',UTMCMP:'preorder-'+ref,CONSENT:sum};p['b_'+M.u+'_'+M.id]='';
-      for(var k in p){var i=document.createElement('input');i.type='hidden';i.name=k;i.value=p[k];fm.appendChild(i)}
-      fm.style.display='none';document.body.appendChild(fm);fm.submit();setTimeout(function(){if(fm.parentNode)fm.parentNode.removeChild(fm)},1000);
+      var sb=f.querySelector('[type=submit]');if(sb)sb.disabled=true;
+      // 26 Oct 2026: the request goes to Cedwyn's own mailing list (replaces Mailchimp); the visitor confirms by the link in their email
+      fetch('/api/list/subscribe',{method:'POST',credentials:'omit',headers:{'content-type':'application/json'},body:JSON.stringify({email:em,name:nm.slice(0,80),lang:L(),topic:'argentina-preorder',source:location.pathname,note:sum})})
+      .then(function(r){return r.json().catch(function(){return {}})}).then(function(j){if(sb)sb.disabled=false;
+      if(!j||!j.ok){e.textContent=(j&&j.message)||tr('b_err_send');e.hidden=false;return}
       try{var a=JSON.parse(localStorage.getItem('cedwyn-gh2-preorders')||'[]');a.push({ref:ref,at:new Date().toISOString(),sum:sum});localStorage.setItem('cedwyn-gh2-preorders',JSON.stringify(a.slice(-10)))}catch(x){}
-      d('bk-form').hidden=true;var dn=d('bk-done');dn.hidden=false;d('bk-ref').textContent=ref;dn.setAttribute('data-ref',ref);dn.scrollIntoView({block:'center',behavior:'smooth'})});
+      d('bk-form').hidden=true;var dn=d('bk-done');dn.hidden=false;d('bk-ref').textContent=ref;dn.setAttribute('data-ref',ref);dn.scrollIntoView({block:'center',behavior:'smooth'})},
+      function(){if(sb)sb.disabled=false;e.textContent=tr('b_err_send');e.hidden=false})});
     go(0);
   }
 })();
@@ -411,7 +412,7 @@ def argentina(sections, S, cfg, H):
         f'<option value="{a}"{" selected" if a == "LHR" else ""}>{E(nm)} ({a})' + (f' · £{p:,}' if p else '') + '</option>' if a != 'OTHER' else f'<option value="OTHER">…</option>' for a, nm, p in H['airports'])
     cars = ('<label class="hv-opt ro"><input type="radio" name="car" value="none"><span><b data-i18n="b_nocar">' + E(tx(T, 'b_nocar', l)) + '</b></span></label>' +
             ''.join(f'<label class="hv-opt ro"><input type="radio" name="car" value="{c}"{" checked" if c == "4x4" else ""}><span><b data-i18n="c_{c}">{E(tx(T,"c_"+c,l))}</b><span class="pr">£{p} </span><small data-i18n="b_perday">{E(tx(T,"b_perday",l))}</small></span></label>' for c, p in H['cars']))
-    book = {'venues': H['venues'], 'airports': H['airports'], 'cars': H['cars'], 'mc': {'u': '284f08fe7e1b8d39250808104', 'id': '6139ff4a0d', 'host': 'estate.us3.list-manage.com'}}
+    book = {'venues': H['venues'], 'airports': H['airports'], 'cars': H['cars']}
     mn, gr = menu(H, T, cfg, l, 'argentina')
     body = f"""
 <body data-cedwyn-page="argentina">
