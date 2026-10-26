@@ -13,7 +13,7 @@ Copy: sections.json (en / cy / es). Called at the end of site.py."""
 import json, html, re, shutil, pathlib, urllib.parse
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.11'
+BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.12'
 SJS = '/_cedwyn/section.js?v=1.2.0'
 ICON_AR = ('<svg class="ar-ic" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">'
            '<path d="M6 34c0-3 2-5 5-5h42c3 0 5 2 5 5v8c0 4-3 7-7 7H43l-5-6H26l-5 6H13c-4 0-7-3-7-7z"/>'
