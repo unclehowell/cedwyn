@@ -7,13 +7,13 @@
   if (window.__cedwynGB) return; window.__cedwynGB = 1;
   var DATA = location.origin + "/guestbook/guestbook.json", data = null, loading = false;   // absolute: the theme runtime prefixes root paths
   var L = {
-    en: { title: "Agent guest book", v: "Version", d: "Date", n: "Change", w: "Who", all: "Full guest book: every change",
+    en: { title: "Agent guest book", v: "Version", d: "Date", n: "Change", w: "Who", all: "See all",
           rule: "versions 1.change.fix, from the commit history",
           intro: "Every change to this site, newest first. Each version opens the change on GitHub." },
-    cy: { title: "Llyfr ymwelwyr yr asiantau", v: "Fersiwn", d: "Dyddiad", n: "Newid", w: "Pwy", all: "Y llyfr ymwelwyr llawn: pob newid",
+    cy: { title: "Llyfr ymwelwyr yr asiantau", v: "Fersiwn", d: "Dyddiad", n: "Newid", w: "Pwy", all: "Gweld y cyfan",
           rule: "fersiynau 1.newid.trwsiad, o hanes y newidiadau",
           intro: "Pob newid i\u2019r wefan hon, y diweddaraf yn gyntaf. Mae pob fersiwn yn agor y newid ar GitHub." },
-    es: { title: "Libro de visitas de los agentes", v: "Versi\u00f3n", d: "Fecha", n: "Cambio", w: "Qui\u00e9n", all: "Libro de visitas completo: todos los cambios",
+    es: { title: "Libro de visitas de los agentes", v: "Versi\u00f3n", d: "Fecha", n: "Cambio", w: "Qui\u00e9n", all: "Ver todo",
           rule: "versiones 1.cambio.correcci\u00f3n, del historial de cambios",
           intro: "Todos los cambios de este sitio, del m\u00e1s reciente al m\u00e1s antiguo. Cada versi\u00f3n abre el cambio en GitHub." }
   };
@@ -71,7 +71,7 @@
     var s = sec(); if (!s || !data) return;
     var v = s.querySelector(".gb-v"); if (v) v.textContent = data.version ? "v" + data.version : "";
     var tb = s.querySelector(".gb-rows"); if (!tb || tb.getAttribute("data-filled")) return;
-    var rows = (data.rows || []).filter(function (r) { return r.kind !== "build"; }).slice(0, data.show || 20), h = "";
+    var rows = (data.rows || []).filter(function (r) { return r.kind !== "build"; }).slice(0, 3), h = "";
     rows.forEach(function (r) {
       h += '<tr><td><a href="' + esc(link(data.repo, r.sha)) + '" target="_blank" rel="noopener" title="' + esc(r.sha.slice(0, 7)) + '">' + esc(r.v) + "</a></td><td>" +
         esc(r.date) + "</td><td>" + esc(r.note) + "</td><td>" + esc(r.who) + "</td></tr>";

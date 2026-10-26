@@ -89,7 +89,7 @@ The immediate goal is to locate the instruments and plans that join—or fail to
 - [Mary Williams's statement](https://greathousefarmwiki.wordpress.com/mary-williams-statement/)
 - [Cedwyn / Cwm-Cedwyn index GHF-E173](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/)
 - [GHF-E178 — Cydwin lease (under forensic examination)](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/ghf-e178-1547-sir-george-herbert-grants-vaughan-a-1000-year-lease-of-cydwin/)
-- [GHF-E179 — 1552–1824 Cydfin/Tŷ Mawr names](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/ghf-e179-1552-1824-bute-records-call-it-cedfin-cydfin-ken-fin-farm-or-ty-mawr-farm/)
+- [GHF-E179 — 1552–1824 (Bute catalogue range; not a Tŷ Mawr date) Cydfin/Tŷ Mawr names](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/ghf-e179-1552-1824-bute-records-call-it-cedfin-cydfin-ken-fin-farm-or-ty-mawr-farm/)
 - [Llandough (Penarth) pre-1877 manorial evidence](https://greathousefarmwiki.wordpress.com/anomalies-register/llandough-penarth-cydfin-ty-mawr-manorial-evidence/)
 - [Llandough Limeworks](https://greathousefarmwiki.wordpress.com/llandough-limeworks/)
 - [The 1877 Agreement](https://greathousefarmwiki.wordpress.com/1877-agreement/)

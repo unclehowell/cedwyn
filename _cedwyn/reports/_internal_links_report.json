@@ -1,17 +1,17 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8102,
+  "pages_scanned": 8103,
   "references_checked": {
-    "resource": 133090,
-    "nav": 220335
+    "resource": 133102,
+    "nav": 220472
   },
   "database_backed_paths": 6554,
-  "unique_missing_destinations": 4681,
-  "missing_references": 18042,
+  "unique_missing_destinations": 4676,
+  "missing_references": 18037,
   "missing_navigation_references": 15520,
-  "missing_resource_references": 2522,
+  "missing_resource_references": 2517,
   "unique_broken_fragments": 1739,
-  "broken_fragment_references": 2224,
+  "broken_fragment_references": 2226,
   "form_or_endpoint_actions_not_checked": {
     "form[action]": 2528
   },
@@ -4146,6 +4146,25 @@
     },
     {
       "path": "/wayback/artifacts/",
+      "fragment": "EV-0045",
+      "references": 8,
+      "examples": [
+        {
+          "from": "/csscpsg/",
+          "url": "/wayback/artifacts/#EV-0045"
+        },
+        {
+          "from": "/csscpsg/",
+          "url": "/wayback/artifacts/#EV-0045"
+        },
+        {
+          "from": "/csscpsg/",
+          "url": "/wayback/artifacts/#EV-0045"
+        }
+      ]
+    },
+    {
+      "path": "/wayback/artifacts/",
       "fragment": "EV-0216",
       "references": 7,
       "examples": [
@@ -4160,25 +4179,6 @@
         {
           "from": "/fb/n/r-1938-12-25-wgr.html",
           "url": "/wayback/artifacts/#EV-0216"
-        }
-      ]
-    },
-    {
-      "path": "/wayback/artifacts/",
-      "fragment": "EV-0045",
-      "references": 7,
-      "examples": [
-        {
-          "from": "/csscpsg/",
-          "url": "/wayback/artifacts/#EV-0045"
-        },
-        {
-          "from": "/csscpsg/",
-          "url": "/wayback/artifacts/#EV-0045"
-        },
-        {
-          "from": "/csscpsg/",
-          "url": "/wayback/artifacts/#EV-0045"
         }
       ]
     },
@@ -4298,6 +4298,25 @@
     },
     {
       "path": "/wayback/artifacts/",
+      "fragment": "WB-0039",
+      "references": 5,
+      "examples": [
+        {
+          "from": "/chess/list/",
+          "url": "/wayback/artifacts/#WB-0039"
+        },
+        {
+          "from": "/story/story/",
+          "url": "/wayback/artifacts/#WB-0039"
+        },
+        {
+          "from": "/wiki/evidence/ev-0294-welsh-womens-peace-petition-1923-llandough-nlw-petition-1-92/",
+          "url": "/wayback/artifacts/#WB-0039"
+        }
+      ]
+    },
+    {
+      "path": "/wayback/artifacts/",
       "fragment": "EV-0042",
       "references": 4,
       "examples": [
@@ -4369,25 +4388,6 @@
         {
           "from": "/wiki/daniel-thomas/",
           "url": "/wiki/mary-williams-statement/#:~:text=1928%3A%20The%20last%20rent%20to%20Alfred%20Thomas"
-        }
-      ]
-    },
-    {
-      "path": "/wayback/artifacts/",
-      "fragment": "WB-0039",
-      "references": 4,
-      "examples": [
-        {
-          "from": "/chess/list/",
-          "url": "/wayback/artifacts/#WB-0039"
-        },
-        {
-          "from": "/wiki/evidence/ev-0294-welsh-womens-peace-petition-1923-llandough-nlw-petition-1-92/",
-          "url": "/wayback/artifacts/#WB-0039"
-        },
-        {
-          "from": "/research/story/",
-          "url": "/wayback/artifacts/#WB-0039"
         }
       ]
     },

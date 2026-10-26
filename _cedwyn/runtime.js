@@ -203,4 +203,18 @@
     css(); if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
     window.addEventListener("load", go); document.addEventListener("ghf-lang-change", function () { setTimeout(go, 150); }); window.CedwynUnsub = go;
   })();
+  // Headline-first pages (Sion, 12:01 GMT 26 Oct 2026, m:2c8d96e9): tools/headlines.py folds each section's detail into a native
+  // <details class="cw-more">; this relabels "Read more" in the chosen language and opens a fold that a link points into - Sion's Tab agent
+  (function () {
+    var LB = { en: "Read more", cy: "Darllen mwy", es: "Leer m\u00e1s" };
+    function lg() { var l = ""; try { if (window.CedwynSection) l = window.CedwynSection.lang(); } catch (e) {} if (!l) { try { l = localStorage.getItem("ghf_lang") || ""; } catch (e) {} }
+      l = (l || document.documentElement.getAttribute("data-ghf-lang-default") || document.documentElement.getAttribute("lang") || "en").slice(0, 2); return LB[l] ? l : "en"; }
+    function label() { var q = document.querySelectorAll("details.cw-more > summary .cw-more-l"), t = LB[lg()], i; for (i = 0; i < q.length; i++) if (q[i].textContent !== t) q[i].textContent = t; }
+    function reveal() { var h = location.hash ? decodeURIComponent(location.hash.slice(1)) : "", el, d; if (!h) return; try { el = document.getElementById(h); } catch (e) { el = null; }
+      d = el && el.closest ? el.closest("details.cw-more") : null; while (d) { d.open = true; d = d.parentElement && d.parentElement.closest ? d.parentElement.closest("details.cw-more") : null; }
+      if (el && el.scrollIntoView) setTimeout(function () { el.scrollIntoView(); }, 30); }
+    function go() { label(); reveal(); }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
+    window.addEventListener("hashchange", reveal); document.addEventListener("ghf-lang-change", function () { setTimeout(label, 150); }); window.CedwynMore = go;
+  })();
 })();
