@@ -5,15 +5,20 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cedwyn · the film</title>
 <meta name="description" content="Cedwyn, the film. A tab.bot production. One door a day: a two-minute scene from the whole chronology of Great House Farm / Tŷ Mawr, Llandough.">
-<link rel="stylesheet" href="movie.css?v=1.0.0">
+<link rel="stylesheet" href="movie.css?v=1.1.0">
 </head>
 <body class="cm">
 <main id="cm-main">
+  <form id="cm-sub" class="cm-sub-f" novalidate>
+    <label for="cm-sub-em" class="cm-sub-l" data-t="sub_l">A new scene every morning. Get it by email:</label>
+    <div class="cm-sub-row"><input id="cm-sub-em" type="email" name="EMAIL" autocomplete="email" inputmode="email" required data-tp="sub_ph" placeholder="Your email"><button id="cm-sub-b" type="submit" class="cm-btn cm-sub-b" data-t="sub_b">Subscribe</button></div>
+    <p id="cm-sub-msg" class="cm-sub-msg" role="status" aria-live="polite"></p>
+  </form>
   <section class="cm-hero">
     <p class="cm-kicker" data-t="kicker">A tab.bot production</p>
     <h1 class="cm-title">Cedwyn</h1>
     <p class="cm-sub" data-t="sub">One door a day. Behind each door, a scene of about two minutes: the people of Llandough talking over what is happening on paper and around the village, from before the deeds to today.</p>
-    <p class="cm-count"><span id="cm-open">0</span> <span data-t="of">of</span> <span id="cm-total">148</span> <span data-t="doors">doors open</span> · <span data-t="runtime">planned running time</span> <span id="cm-runtime">4 h 56 min</span></p>
+    <p class="cm-count"><span id="cm-open">0</span> <span data-t="of">of</span> <span id="cm-total">148</span> <span data-t="doors">scenes released</span> · <span data-t="runtime">planned running time</span> <span id="cm-runtime">4 h 56 min</span></p>
   </section>
   <nav class="cm-bar" aria-label="Film controls">
     <button type="button" id="cm-subs" class="cm-btn" aria-pressed="true"><span data-t="subs">Subtitles</span>: <b id="cm-subs-state" data-t="on">on</b></button>
@@ -49,6 +54,6 @@
     <p id="cm-p-meta" class="cm-note"></p>
   </div>
 </div>
-<script src="movie.js?v=1.0.0"></script>
+<script src="movie.js?v=1.1.0"></script>
 </body>
 </html>
