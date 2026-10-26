@@ -1,17 +1,17 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8103,
+  "pages_scanned": 8136,
   "references_checked": {
-    "resource": 133098,
-    "nav": 222366
+    "resource": 134037,
+    "nav": 222082
   },
-  "database_backed_paths": 6554,
-  "unique_missing_destinations": 4681,
-  "missing_references": 18042,
+  "database_backed_paths": 6578,
+  "unique_missing_destinations": 4678,
+  "missing_references": 18040,
   "missing_navigation_references": 15520,
-  "missing_resource_references": 2522,
+  "missing_resource_references": 2520,
   "unique_broken_fragments": 1739,
-  "broken_fragment_references": 3012,
+  "broken_fragment_references": 3070,
   "form_or_endpoint_actions_not_checked": {
     "form[action]": 2528
   },
@@ -4071,7 +4071,7 @@
     {
       "path": "/wayback/",
       "fragment": "websites",
-      "references": 790,
+      "references": 848,
       "examples": [
         {
           "from": "/wayback/websites/",
