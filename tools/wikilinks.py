@@ -214,16 +214,41 @@ def glossary_page(g, n):
 
 # Agent text out of human view (Sion, 22:12 GMT 26 Oct 2026: "Don't make humans viewing the webpage see agent instructions").
 # The blocks stay in the page source for agents (hidden + data-for-agents) and the head points agents to /llms.txt.
-# THE TRIGGER EVENT text is held for the owner and is not touched here.
+# Shared agent footer (root steer 22:33 GMT): its visible content (change log, agent rules, THE TRIGGER EVENT note) becomes one
+# small-print "For agents" link (/academy/ once that page exists in the build, else /llms.txt); the footer text stays in the source,
+# and pages without the build-time footer get the same footer here so the edge copy is not added on top. The head
+# <meta name="agent-instruction"> and its JSON-LD are kept exactly as the footer tool writes them (held for the owner).
 AGENT_BLOCK = re.compile(r'<(section|div|details|aside|p)\b(?=[^>]*(?:\bid="cedwyn-guestbook"|\bclass="[^"]*\b(?:ghf-ai-agent-routing|gaf-ai)\b))([^>]*)>', re.I)
 AGENT_CSS = '<style id="cw-agents-css">[data-for-agents]{display:none!important}</style><link rel="alternate" type="text/plain" href="/llms.txt" title="For AI agents">'
-def hide_agent_text(t):
+GAF_IN = '<div class="gaf-in">'
+_FOOT = {}
+def _footer_snips():
+    if not _FOOT:
+        d = ROOT / 'tools' / 'agent_footer'
+        try: _FOOT['footer'] = (d / 'footer.html').read_text(encoding='utf-8'); _FOOT['head'] = (d / 'head.html').read_text(encoding='utf-8')
+        except Exception: _FOOT['footer'] = _FOOT['head'] = ''
+    return _FOOT
+def _small_footer(t, href):
+    link = '<p class="gaf-agents"><a href="%s">For agents</a></p>' % href
+    return t.replace(GAF_IN, link + '<div class="gaf-in" hidden data-for-agents>', 1)
+def hide_agent_text(t, href='/llms.txt'):
     n = [0]
     def rep(m):
         if 'data-for-agents' in m.group(2) or 'trigger' in m.group(2).lower(): return m.group(0)
         n[0] += 1
         return '<%s%s hidden data-for-agents>' % (m.group(1), m.group(2).rstrip('/'))
     t = AGENT_BLOCK.sub(rep, t)
+    if 'id="ghf-agent-footer"' in t:
+        if GAF_IN in t and 'class="gaf-agents"' not in t: t = _small_footer(t, href); n[0] += 1
+    elif 'id="trigger-event"' not in t:
+        s = _footer_snips()
+        if s['footer'] and GAF_IN in s['footer']:
+            i = t.lower().rfind('</body>')
+            if i >= 0:
+                t = t[:i] + _small_footer(s['footer'], href) + t[i:]; n[0] += 1
+                if s['head'] and 'name="agent-instruction"' not in t:
+                    j = t.lower().find('</head>')
+                    if j >= 0: t = t[:j] + s['head'] + t[j:]
     if n[0] and 'id="cw-agents-css"' not in t:
         i = t.lower().find('</head>')
         t = (t[:i] + AGENT_CSS + t[i:]) if i >= 0 else AGENT_CSS + t
@@ -244,6 +269,8 @@ def run(dist):
         {k: t[k] for k in ('slug', 'term', 'definition', 'anchor', 'learn_more')} for t in g['terms']]}, ensure_ascii=False), encoding='utf-8')
     gp = dist / 'glossary' / 'index.html'; gp.parent.mkdir(parents=True, exist_ok=True)
     gp.write_text(glossary_page(g, n), encoding='utf-8')
+    agents_href = '/academy/' if (dist / 'academy' / 'index.html').exists() else '/llms.txt'
+    rep['agents_link'] = agents_href
     for f in sorted(dist.rglob('*.html')):
         rel = f.relative_to(dist).as_posix()
         if rel in SKIP_FILES or rel.startswith(SKIP_DIRS) or '/_cedwyn/' in rel: continue
@@ -251,7 +278,7 @@ def run(dist):
             if f.stat().st_size > 3_000_000: continue
             t = f.read_text(encoding='utf-8', errors='surrogateescape')
         except Exception: continue
-        t2, hid = hide_agent_text(t)
+        t2, hid = hide_agent_text(t, agents_href)
         if hid: rep['agent_blocks_hidden'] = rep.get('agent_blocks_hidden', 0) + hid; rep['agent_pages'] = rep.get('agent_pages', 0) + 1
         st = {'g': 0, 'n': 0}; out = t2
         if not ('data-cw-wiki-off' in t or 'class="cw-g"' in t or 'class="cw-n"' in t or re.search(r'<div id="(root|app)">\s*</div>', t)):
