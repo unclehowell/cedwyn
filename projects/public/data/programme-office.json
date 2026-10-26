@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-26T22:14Z",
+ "generated": "2026-10-26T22:20Z",
  "review": {
   "date": "2026-10-26",
   "objectives": [
@@ -144,12 +144,12 @@
    {
     "id": "O4",
     "title": "E-book sales and revenue",
-    "score": 24.1,
-    "rag": "RED",
+    "score": 30.7,
+    "rag": "AMBER",
     "delta": null,
     "milestones": 0.417,
     "kpi": 0.052,
-    "momentum": 0.333,
+    "momentum": 0.667,
     "exec_blockers": 1,
     "overdue": [],
     "kpis": [
@@ -562,7 +562,7 @@
     ],
     "next_actions": [
      "Verify the signup fix end to end",
-     "Build the Spanish edition of the Tour Companion from the tour page text",
+     "Number the shelf as one series and add the Tour Companion to the series list (proposal page)",
      "Pair each tour voucher with the free companion edition"
     ],
     "blockers": [
