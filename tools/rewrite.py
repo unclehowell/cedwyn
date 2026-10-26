@@ -22,9 +22,10 @@ APEX = sorted(CFG['apex']['paths'].items(), key=lambda kv: -len(kv[0]))
 MEDIA = set(CFG['media_hosts'])
 RESERVED = ('/_cedwyn/', '/_blob/', '/db/', '/graphql', '/catalogue')
 BANNED = re.compile(r'UC2sN1VEs1WeLfBH8VmbvLWw|sionbuckler5713', re.I)
+LISTFORM = re.compile(r'list-manage\.com/subscribe', re.I)   # 26 Oct 2026: a Mailchimp sign-up form posts to Cedwyn's own list, with or without JS
 BIN = {'.jpg','.jpeg','.png','.gif','.webp','.svg','.avif','.ico','.bmp','.tif','.tiff','.pdf','.mp3','.m4a','.ogg','.wav','.mp4','.webm','.mov','.woff','.woff2','.ttf','.otf','.eot'}
 TXT_DATA = {'.js','.mjs','.json','.xml','.txt','.csv','.md','.webmanifest'}
-stats = dict(pages=0, css=0, cross=0, prefixed=0, outbound=0, blobbed_refs=0, banned=0, injected=0)
+stats = dict(pages=0, css=0, cross=0, prefixed=0, outbound=0, blobbed_refs=0, banned=0, injected=0, listform=0)
 D = len(DIST.parts)
 import time as _tt; _T0 = _tt.time()
 
@@ -118,6 +119,7 @@ def rw_css(text, tid, page_rel):
 def rw_tag(m, tid, page_rel):
     name = m.group(1).lower(); body = m.group(2)
     if not body: return m.group(0)
+    mc = []
     def one(a):
         attr = a.group(2).lower(); raw = a.group(4); q = raw[0] if raw[0] in '"\'' else ''; v = raw[1:-1] if q else raw
         if attr == 'content':
@@ -133,6 +135,8 @@ def rw_tag(m, tid, page_rel):
                 if not c: continue
                 bits = c.split(None, 1); parts.append(rw(bits[0], tid, False, page_rel) + (' ' + bits[1] if len(bits) > 1 else ''))
             return a.group(1) + a.group(2) + a.group(3) + q + ', '.join(parts) + q
+        if name == 'form' and attr == 'action' and LISTFORM.search(v):
+            stats['listform'] += 1; mc.append(1); return a.group(1) + a.group(2) + a.group(3) + '"/api/list/subscribe"'
         link = (name in ('a', 'area') and attr == 'href') or (name == 'form' and attr == 'action')
         if name == 'iframe' and attr == 'src' and BANNED.search(v): stats['banned'] += 1; return a.group(1) + 'src' + a.group(3) + '"about:blank"'
         nv = rw(v, tid, link, page_rel)
@@ -142,6 +146,8 @@ def rw_tag(m, tid, page_rel):
     nb = ATTR.sub(one, body)
     if name in ('a', 'area') and '/wayback/go/' in nb:
         nb = re.sub(r"""(?i)\starget\s*=\s*("_blank"|'_blank'|_blank)""", '', nb)
+    if mc:   # the list form: same tab (the list answers with its own page when JS is off), marked for the runtime's in-page send
+        nb = re.sub(r"""(?i)\starget\s*=\s*("_blank"|'_blank'|_blank)""", '', nb) + ' data-cedwyn-mc="1"'
     return '<' + m.group(1) + nb + m.group(3) + '>'
 STYLE = re.compile(r'(<style[^>]*>)(.*?)(</style>)', re.S | re.I)
 SCRIPT = re.compile(r'(<script\b[^>]*>)(.*?)(</script>)', re.S | re.I)
