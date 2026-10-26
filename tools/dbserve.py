@@ -22,6 +22,7 @@ CSSURL = re.compile(r"""url\(\s*["']?([^"')]+)["']?\s*\)""", re.I)
 SCRIPTS = re.compile(r'<script\b.*?</script>', re.I | re.S)
 MARKUP = re.compile(r'<(?:img|source|video|audio|embed|object|iframe|input|image|use|track)\b[^>]*>', re.I | re.S)
 MATTR = re.compile(r"""\s(?:src|data|poster|srcset|href|xlink:href)\s*=\s*["']([^"']+)["']""", re.I)
+FETCHLIT = re.compile(r"""fetch\(\s*["']([^"'?#\s:]+\.(?:json|csv|xml|geojson))(?:\?[^"']*)?["']""")
 QSTR = re.compile(r"""["'`]([^"'`\s<>]{1,300})["'`]""")
 def resolve(base_rel, u):
     u = u.strip().split('#')[0].split('?')[0]
@@ -62,6 +63,9 @@ def main():
                     for part in v.split(','):
                         r = resolve(rel, part.strip().split(' ')[0])
                         if r: keep.setdefault(r, 'named in page markup')
+            for v in FETCHLIT.findall(s):   # data files the page's own scripts fetch (first visit: no service worker yet)
+                r = resolve(rel, v)
+                if r: keep.setdefault(r, 'fetched by script')
             if '/_cedwyn/runtime.js' not in s:   # a page that does not load the runtime: everything it names stays a file
                 for v in QSTR.findall(s):
                     if DBX.search(v.split('?')[0].split('#')[0]):
@@ -72,6 +76,14 @@ def main():
             for v in CSSURL.findall(s):
                 r = resolve(rel, v)
                 if r: keep.setdefault(r, 'css url()')
+        elif ext in ('.js', '.mjs'):
+            # 26 Oct 2026: a data file a script fetches by its absolute path (the Post Office viewer's
+            # fetch('/email/view/index.json')) must exist as a file: on a first visit no service worker is running yet,
+            # so a removed file answered 404 and the viewer could not open any mail. - Sion's Tab agent
+            s = p.read_text('utf-8', 'ignore')
+            for v in FETCHLIT.findall(s):
+                r = resolve(rel, v)
+                if r: keep.setdefault(r, 'fetched by script')
         elif ext == '.webmanifest' or p.name == 'manifest.json':
             try:
                 for ic in (json.load(open(p)).get('icons') or []):

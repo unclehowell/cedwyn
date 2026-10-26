@@ -29,13 +29,23 @@
     });
     var f = focus && d.getElementById(focus); if (f) setTimeout(function () { f.scrollIntoView({ block: 'start' }); }, 300);
   }
+  function hay(th) { return norm(th.map(function (r) { return [r.subject, r.from, (r.refs || []).join(' '), (r.institutions || []).map(function (i) { return i.name; }).join(' '), r.date, r.direction].join(' '); }).join(' ')); }
   function index(threads) {
     box.textContent = ''; box.appendChild(el('h1', null, 'The Post Office · all mail'));
-    box.appendChild(el('p', 'ev-mut', threads.length + ' threads, newest first. Contact details are redacted in every message.'));
-    var ul = el('ul', 'ev-list');
+    var cnt = el('p', 'ev-mut', threads.length + ' threads, newest first. Contact details are redacted in every message.'); box.appendChild(cnt);
+    /* search (26 Oct 2026): the old email site's search, here over the same records catalogue — subject, sender, institution, reference, date */
+    var f = el('form', 'ev-find'); f.setAttribute('role', 'search'); f.onsubmit = function (e) { e.preventDefault(); };
+    var q = el('input'); q.type = 'search'; q.name = 'q'; q.placeholder = 'Search the mail: institution, subject, reference, date'; q.setAttribute('aria-label', 'Search the mail');
+    f.appendChild(q); box.appendChild(f);
+    var ul = el('ul', 'ev-list'), rows = [];
     threads.forEach(function (th) { var r = th[th.length - 1], li = el('li'), a = el('a', null, th[0].subject || '(no subject)'); a.href = link(th);
-      li.appendChild(a); li.appendChild(el('span', 'ev-mut', ' · ' + day(r.date).slice(0, 10) + ' · ' + who(r).replace(/^(Sent to|Received from) /, '') + ' · ' + th.length)); ul.appendChild(li); });
+      li.appendChild(a); li.appendChild(el('span', 'ev-mut', ' · ' + day(r.date).slice(0, 10) + ' · ' + who(r).replace(/^(Sent to|Received from) /, '') + ' · ' + th.length)); ul.appendChild(li); rows.push([li, hay(th)]); });
     box.appendChild(ul);
+    function run() { var w = norm(q.value).split(' ').filter(Boolean), n = 0;
+      rows.forEach(function (x) { var on = w.every(function (t) { return x[1].indexOf(t) >= 0; }); x[0].style.display = on ? '' : 'none'; if (on) n++; });
+      cnt.textContent = w.length ? n + ' of ' + threads.length + ' threads match.' : threads.length + ' threads, newest first. Contact details are redacted in every message.';
+      try { history.replaceState(null, '', location.pathname + (w.length ? '?q=' + encodeURIComponent(q.value) : '')); } catch (e) {} }
+    q.oninput = run; var m0 = /[?&]q=([^&]*)/.exec(location.search); if (m0) { q.value = decodeURIComponent(m0[1].replace(/\+/g, ' ')); run(); }
   }
   function missing(extra) {
     box.textContent = ''; box.appendChild(back());

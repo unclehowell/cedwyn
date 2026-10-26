@@ -34,10 +34,41 @@ def crawl(url, out, robots=False, quota='150m', t=420, sitemap=None):
     shutil.copytree(src, out, dirs_exist_ok=True)
     shutil.rmtree(tmp, ignore_errors=True)
     return sum(1 for _ in out.rglob('*') if _.is_file())
+SECTIONS = set(os.environ.get('SECTIONS', '').split())      # assemble only these theme ids (snapshot runs, section checks)
+FORCE_CRAWL = os.environ.get('FORCE_CRAWL') == '1'           # snapshot runs: crawl the live site even when a snapshot branch exists
+LOCK = {}
+try: LOCK = json.load(open(ROOT / 'sections.lock')).get('sections', {})
+except Exception: pass
+def snapshot(t, out):
+    """26 Oct 2026: a crawled section is read from its own snapshot branch (section/<id>, made by snapshot-sections.yml)
+    at the commit sections.lock pins, so a build no longer crawls the live Worker sites. Falls back to the crawl when the
+    branch or the pinned commit cannot be read. - Sion's Tab agent"""
+    br = t['snapshot_branch']; pin = (LOCK.get(t['id']) or {}).get('sha') or ''
+    repo = os.environ.get('GITHUB_REPOSITORY', 'unclehowell/cedwyn')
+    ref = f'refs/heads/{br}'
+    if sh(f"git --git-dir={MIRROR} rev-parse --verify -q {ref}").returncode != 0:
+        sh(f"git --git-dir={MIRROR} fetch -q --depth 1 https://github.com/{repo}.git +{ref}:{ref}", t=600)
+    want = ref
+    if pin:
+        if sh(f"git --git-dir={MIRROR} cat-file -e {pin}^{{commit}}").returncode != 0:
+            sh(f"git --git-dir={MIRROR} fetch -q --depth 1 https://github.com/{repo}.git {pin}", t=600)
+        want = pin if sh(f"git --git-dir={MIRROR} cat-file -e {pin}^{{commit}}").returncode == 0 else ref
+    r = sh(f"git --git-dir={MIRROR} archive --format=tar {want} | tar -x -C {out}")
+    for x in ('section.json', '.github'):
+        p = out / x
+        if p.is_dir(): shutil.rmtree(p, ignore_errors=True)
+        elif p.exists(): p.unlink()
+    n = sum(1 for _ in out.rglob('*') if _.is_file())
+    report.setdefault('_snapshot', {})[t['id']] = {'ref': want, 'files': n, 'rc': r.returncode}
+    return n if r.returncode == 0 and (out / 'index.html').exists() else 0
 def one(t):
     tid = t['id']; out = DIST / tid; shutil.rmtree(out, ignore_errors=True); out.mkdir(parents=True)
     t0 = time.time(); how = None; n = 0
-    if t.get('wp_copy'):   # the WordPress wiki: tools/wiki.py copies every sitemap page and its theme files (robots.txt obeyed)
+    if t.get('snapshot_branch') and not FORCE_CRAWL:
+        n = snapshot(t, out); how = 'snapshot' if n else None
+        if not n: shutil.rmtree(out, ignore_errors=True); out.mkdir(parents=True)
+    if how: pass
+    elif t.get('wp_copy'):   # the WordPress wiki: tools/wiki.py copies every sitemap page and its theme files (robots.txt obeyed)
         r = sh(f"python3 {ROOT / 'tools' / 'wiki.py'} {out}", t=t.get('crawl_secs', 1500))
         report.setdefault('_wiki_log', {})[tid] = r.stdout[-400:] + r.stderr[-600:]
         n = sum(1 for _ in out.rglob('*') if _.is_file()); how = 'wiki.py(robots)'
@@ -80,5 +111,5 @@ def one(t):
     report[tid] = {'how': how, 'files': n, 'bytes': size, 'has_index': (out / 'index.html').exists(), 'dropped_over_24MB': big, 'secs': round(time.time() - t0)}
     print(tid, report[tid]['how'], n, round(size / 1e6, 1), 'MB', flush=True)
 from concurrent.futures import ThreadPoolExecutor
-with ThreadPoolExecutor(6) as ex: list(ex.map(one, CFG['themes']))
+with ThreadPoolExecutor(6) as ex: list(ex.map(one, [t for t in CFG['themes'] if not SECTIONS or t['id'] in SECTIONS]))
 json.dump(report, open(DIST / '_assemble_report.json', 'w'), indent=1)

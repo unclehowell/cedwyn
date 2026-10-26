@@ -107,7 +107,7 @@ lines = [f'/{a}/* /{b}/:splat 301' for a, b in alias.items()] + [f'/{a} /{b}/ 30
 lines += ['/email/thread/* /email/view/ 200', '/email/reference/* /email/view/ 200']  # dynamic correspondence routes must load the viewer shell, not 404
 # Legacy mail API endpoints were advertised by the old interactive page, but the consolidated site is a static archive.
 # Send those bookmarks to a useful page rather than a blank JSON file or a 404; do not pretend the old API is still live.
-lines += ['/email/api /email/api/ 301', '/email/api/records /email/view/ 302', '/email/api/records/ /email/view/ 302',
+lines += ['/email/api /email/api/ 301', '/email/api/records /email/view/index.json 200', '/email/api/records/ /email/view/index.json 200',
           '/email/api/openapi.json /email/api/ 302', '/email/api/export /email/api/ 302', '/email/api/export/ /email/api/ 302',
           '/email/api/message /email/view/ 302', '/email/api/search /email/view/ 302', '/email/api/thread /email/view/ 302']
 lines += ['/graphql /graphql/ 301', '/catalogue /catalogue/ 301']
