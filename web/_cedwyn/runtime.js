@@ -206,7 +206,7 @@
   // Headline-first pages (Sion, 12:01 GMT 26 Oct 2026, m:2c8d96e9): tools/headlines.py folds each section's detail into a native
   // <details class="cw-more">; this relabels "Read more" in the chosen language and opens a fold that a link points into - Sion's Tab agent
   (function () {
-    var LB = { en: "Read more", cy: "Darllen mwy", es: "Leer m\u00e1s" };
+    var LB = { en: "Learn more", cy: "Dysgu mwy", es: "Saber m\u00e1s" };   // Sion 22:12 GMT 26 Oct 2026 (m:611a2587): "learn more"
     function lg() { var l = ""; try { if (window.CedwynSection) l = window.CedwynSection.lang(); } catch (e) {} if (!l) { try { l = localStorage.getItem("ghf_lang") || ""; } catch (e) {} }
       l = (l || document.documentElement.getAttribute("data-ghf-lang-default") || document.documentElement.getAttribute("lang") || "en").slice(0, 2); return LB[l] ? l : "en"; }
     function label() { var q = document.querySelectorAll("details.cw-more > summary .cw-more-l"), t = LB[lg()], i; for (i = 0; i < q.length; i++) if (q[i].textContent !== t) q[i].textContent = t; }
