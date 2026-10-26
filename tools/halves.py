@@ -17,7 +17,7 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.0.3'
+VERSION = '1.1.0'
 
 def tx(T, k, l):
     v = T.get(k) or {}
@@ -278,33 +278,36 @@ def tour_map(H, T, l):
             f'<polyline class="rt" points="{route}"/>' + ''.join(dots) + '</svg>')
 
 def stop_html(H, T, l, i, s, n):
+    """One tour stop (Sion 02:12 GMT 26 Oct: a warm guided tour; every legal citation lives only in the "court" stop)."""
     sid = s['id']
     for k in ('name', 'place', 'overlay', 'now', 'open', 'story'):
-        T[f'stop_{sid}_{k}'] = s[k]
+        if k in s: T[f'stop_{sid}_{k}'] = s[k]
     T[f'stop_{sid}_short'] = s['place'] if sid in ('driscoll', 'bay', 'lavernock', 'brynwell') else s['name']
     T[f'stop_{sid}_short'] = {k: re.split(r'[,:·]', v)[0] for k, v in T[f'stop_{sid}_short'].items()}
     recs = []
-    for j, (txt, ids) in enumerate(s['recs']):
+    for j, (txt, ids) in enumerate(s.get('recs', [])):
         T[f'stop_{sid}_r{j}'] = txt
         recs.append(f'<li><span class="rt" data-i18n="stop_{sid}_r{j}">{E(tx(T, f"stop_{sid}_r{j}", l))}</span> {ev_links(H, ids)}</li>')
     alt = tx(T, f'stop_{sid}_overlay', l)
     extra = ''
-    if sid == 'retrace':
+    if s.get('timeline'):
         tl = []
-        for j, (yr, txt, ids) in enumerate(H['timeline']):
-            T[f'tl_{j}'] = txt
-            tl.append(f'<li><b>{E(yr)}</b><span><span data-i18n="tl_{j}">{E(tx(T, f"tl_{j}", l))}</span> {ev_links(H, ids)}</span></li>')
+        for j, (yr, txt) in enumerate(s['timeline']):
+            T[f'tl_{sid}_{j}'] = txt
+            tl.append(f'<li><b>{E(yr)}</b><span data-i18n="tl_{sid}_{j}">{E(tx(T, f"tl_{sid}_{j}", l))}</span></li>')
         extra = f'<ol class="hv-tl">{"".join(tl)}</ol>'
-    return (f'<article class="hv-stop{" on" if i == 0 else ""}" id="stop-{i+1}" aria-label="{E(str(i+1))}">'
+    if s.get('links'):
+        extra += '<div class="hv-btns">' + ''.join(f'<a class="hv-btn" href="{E(u)}" data-i18n="{E(k)}">{E(tx(T, k, l) or u)}</a>' for k, u in s['links']) + '</div>'
+    return (f'<article class="hv-stop{" on" if i == 0 else ""}" id="stop-{i+1}" data-stop="{E(sid)}" aria-label="{E(str(i+1))}">'
             f'<div class="hv-ar"><img src="{img(H, s["img"])}" width="1280" height="853" alt="{E(alt)}" data-i18n-al="stop_{sid}_overlay" loading="{"eager" if i == 0 else "lazy"}" decoding="async"><span class="scan"></span>'
             f'<span class="chip" data-i18n="ar_tag">{E(tx(T, "ar_tag", l))}</span></div>'
             f'<p class="hv-sn"><span data-i18n="w_stop">{E(tx(T, "w_stop", l))}</span> {i+1} / {n}</p>'
             f'{sp(T, f"stop_{sid}_name", l, "h3")}{sp(T, f"stop_{sid}_place", l, "p", "pl")}'
-            f'<p class="chap"><span data-i18n="stop_{sid}_story">{E(tx(T, f"stop_{sid}_story", l))}</span> {ev_links(H, s.get("story_ev", []))}</p>'
+            f'<p class="chap" data-i18n="stop_{sid}_story">{E(tx(T, f"stop_{sid}_story", l))}</p>'
             f'{sp(T, "w_overlay", l, "h4")}{sp(T, f"stop_{sid}_overlay", l, "p", "ov")}'
             + (f'{sp(T, "w_records", l, "h4")}<ul class="rec">{"".join(recs)}</ul>' if recs else '') + extra +
             f'{sp(T, "w_now", l, "h4")}{sp(T, f"stop_{sid}_now", l, "p", "nw")}'
-            f'{sp(T, "w_open", l, "h4")}{sp(T, f"stop_{sid}_open", l, "p", "op")}</article>')
+            + (f'{sp(T, "w_open", l, "h4")}{sp(T, f"stop_{sid}_open", l, "p", "op")}' if 'open' in s else '') + '</article>')
 
 def base_T(sections, S, cfg, sec, H):
     T = sections.page_t(S, cfg, sec)
@@ -364,7 +367,7 @@ def wales(sections, S, cfg, H):
 <section id="tour">{stops}
 <div class="hv-nav"><button type="button" class="hv-btn" id="hv-prev" data-i18n="w_prev">{E(tx(T,'w_prev',l))}</button><span id="hv-cnt" class="mut">1 / {ns}</span>
 <button type="button" class="hv-btn" id="hv-say" data-i18n="w_listen">{E(tx(T,'w_listen',l))}</button><button type="button" class="hv-btn pri" id="hv-next" data-i18n="w_next">{E(tx(T,'w_next',l))}</button></div></section>
-<section class="hv-note" id="no-museum"><h3 data-i18n="w_nomuseum_h">{E(tx(T,'w_nomuseum_h',l))}</h3><p><span data-i18n="w_nomuseum_p">{E(tx(T,'w_nomuseum_p',l))}</span> {ev_links(H,['EV-0296'])}</p></section>
+<section class="hv-note" id="no-museum"><h3 data-i18n="w_nomuseum_h">{E(tx(T,'w_nomuseum_h',l))}</h3><p data-i18n="w_nomuseum_p">{E(tx(T,'w_nomuseum_p',l))}</p></section>
 <section id="shop"><h2 data-i18n="w_shop_h">{E(tx(T,'w_shop_h',l))}</h2><p data-i18n="w_shop_p">{E(tx(T,'w_shop_p',l))}</p>
 <div class="hv-btns"><a class="hv-btn pri" href="/wales/tour/#vouchers" data-i18n="w_shop_cta">{E(tx(T,'w_shop_cta',l))}</a><a class="hv-btn" href="/ebooks/" data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</a></div></section>
 <section><a class="hv-btn" style="width:100%;justify-content:flex-start;min-height:64px;border-radius:12px" href="/argentina/?lang=es" hreflang="es"><span><b data-i18n="w_cross_h">{E(tx(T,'w_cross_h',l))}</b><br><span class="mut" data-i18n="w_cross_p">{E(tx(T,'w_cross_p',l))}</span></span></a></section>
@@ -464,6 +467,21 @@ def check_wales_house(text):
     hits = [x for x in WALES_NO_FARM.findall(body)]
     assert not hits, 'wales page calls the house a farm: %s' % hits[:5]
 
+LEGAL = re.compile(r'EWCA|\bs\.\s?\d|\bAct\b|\bLRA\b|\[19\d\d\]|\bEV-\d|High Court|Court of Appeal|registered proprietor|Order 14|possession order|14464|Uchel Lys|Llys Apêl|Tribunal Superior|Tribunal de Apelaci')
+
+def check_tour_citations(text, H):
+    """Sion 02:12 GMT 26 Oct: legal material only in the Court and lawfare stop; the rest of the tour is narration."""
+    m = re.search(r'<main\b.*?</main>', text, flags=re.S); body = m.group(0) if m else text
+    body = re.sub(r'<article class="hv-stop[^"]*"[^>]*data-stop="court".*?</article>', ' ', body, flags=re.S)
+    body = re.sub(r'<script\b.*?</script>', ' ', body, flags=re.S); body = re.sub(r'<[^>]+>', ' ', body)
+    bad = LEGAL.findall(body)
+    for s in H['stops']:
+        if s['id'] == 'court': continue
+        for k in ('name', 'place', 'overlay', 'story', 'now', 'open'):
+            for lang, v in (s.get(k) or {}).items(): bad += LEGAL.findall(v)
+        if s.get('recs'): bad.append('recs on ' + s['id'])
+    assert not bad, 'wales tour carries legal citations outside the court stop: %s' % bad[:6]
+
 def run(dist, cfg):
     dist = pathlib.Path(dist)
     import sections, agent_footer
@@ -475,7 +493,7 @@ def run(dist, cfg):
     for pth, txt in pages.items():
         pth.parent.mkdir(parents=True, exist_ok=True); pth.write_text(txt, encoding='utf-8'); agent_footer.inject(pth, False)
     w = (dist / 'wales' / 'index.html').read_text(encoding='utf-8')
-    sections.check_wales(w); sections.check_wales((dist / 'index.html').read_text(encoding='utf-8')); check_wales_house(w)
+    sections.check_wales(w); sections.check_wales((dist / 'index.html').read_text(encoding='utf-8')); check_wales_house(w); check_tour_citations(w, H)
     for pth in pages:
         t = pth.read_text(encoding='utf-8'); m = re.search(r'<main\b.*?</main>', t, flags=re.S)
         out = [h for h in re.findall(r'href="([^"]+)"', m.group(0)) if re.match(r'^(https?:)?//', h)]
