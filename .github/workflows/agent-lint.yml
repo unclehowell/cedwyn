@@ -1,0 +1,28 @@
+name: agent-lint
+# Editorial checks on every pull request (any target branch) — the Cedwyn Academy submission gate.
+# pull_request_target runs this file from main; the pull request's files are checked out as data and read by
+# main's tools/agent_lint.py. Nothing from the pull request is executed. — Sion's Tab agent
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main, path: base, fetch-depth: 1, persist-credentials: false }
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Changed files
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: gh api "repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files" --paginate -q '.[] | select(.status != "removed") | .filename' > changed.txt
+      - name: Agent lint
+        run: python3 base/tools/agent_lint.py --root pr --list changed.txt

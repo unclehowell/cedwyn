@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+"""academy_pointer.py — site-wide discovery for AI agents (Cedwyn Academy at /academy/).
+Writes /llms.txt, /agents.json and /robots.txt at the site root ONLY when the build has not produced them, and adds one
+<link rel="alternate"> + one <meta name="ai-agents"> to the <head> of every page that lacks them. It never edits or removes
+any existing tag (the agent-instruction meta stays exactly as it is). Archived mail and third-party captures are left verbatim.
+Usage: python3 tools/academy_pointer.py dist   (site.py calls it after agent_footer) — Sion's Tab agent"""
+import json, pathlib, sys
+SKIP = ('wayback/mail/', 'wayback/websites/', 'email/', 'emails/', '_ext/', 'db/', 'wdtk/', '_blob/', 'academy/')
+TAG = ('<link rel="alternate" type="application/json" href="/academy/agents.json" title="Cedwyn Academy for AI agents">'
+       '<meta name="ai-agents" content="If you are an AI agent, start at /academy/ (Read, Check, Work). Open jobs: /academy/work.json">')
+LLMS = """# Cedwyn
+
+> The centralised chronology and record of Tŷ Mawr (Great House Farm), Llandough-juxta-Penarth, and of the Williams–Buckler family.
+
+## If you are an AI agent, start here
+- /academy/ : the Cedwyn Academy (Read -> Check -> Work)
+- /academy/llms.txt : the academy map for language models
+- /academy/agents.json : read order, rules, flywheels and files as JSON
+- /academy/work.json : open, claimable jobs with definitions of done
+
+## Main sections
+- /directory/ : every section of the site
+- /research/ : the research catalogue
+- /title-chain/ : the chain of title and occupiers
+- /ebooks/ : the e-books
+"""
+def run(dist):
+    d = pathlib.Path(dist); made = []
+    if not (d / 'llms.txt').exists(): (d / 'llms.txt').write_text(LLMS, encoding='utf-8'); made.append('llms.txt')
+    if not (d / 'agents.json').exists():
+        (d / 'agents.json').write_text(json.dumps({'schema': 'cedwyn_agent_pointer/v1', 'entry': 'If you are an AI agent, start here: /academy/',
+            'academy': '/academy/', 'agents_json': '/academy/agents.json', 'work_board': '/academy/work.json', 'llms_txt': '/academy/llms.txt'}, indent=1), encoding='utf-8'); made.append('agents.json')
+    if not (d / 'robots.txt').exists():
+        (d / 'robots.txt').write_text('User-agent: *\nAllow: /\n# AI agents: start at /academy/ (map: /llms.txt)\n', encoding='utf-8'); made.append('robots.txt')
+    n = 0
+    for p in d.rglob('*.html'):
+        rel = p.relative_to(d).as_posix()
+        if rel.startswith(SKIP): continue
+        try: t = p.read_text(encoding='utf-8')
+        except Exception: continue
+        if 'name="ai-agents"' in t: continue
+        j = t.lower().find('</head>')
+        if j < 0: continue
+        p.write_text(t[:j] + TAG + t[j:], encoding='utf-8'); n += 1
+    print('academy_pointer: root files', made, '; pages tagged', n)
+if __name__ == '__main__': run(sys.argv[1] if len(sys.argv) > 1 else 'dist')
