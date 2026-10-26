@@ -21,7 +21,7 @@ Separately, the NLW's [Bute Estate Records D 219 catalogue](https://archives.lib
 
 The legal and geographic task is to inspect the individual lease instruments and plans, transcribe the named fields, and compare acreage, boundaries, roads, watercourses, tenants and adjoining holdings. The 1,000-year lease is a leasehold interest, not itself proof of a freehold; nor does a similar name alone prove that every historical use of Cydwin, Cydfin, Cedfin, Cedwyn or Tŷ Mawr describes precisely the same land. The records are a serious title lead because they permit a test of identity and succession.
 
-See also [GHF-E173 — Cedwyn / Cwm-Cedwyn name index](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/), [GHF-E178 — 1547 Cydwin lease lead](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/ghf-e178-1547-sir-george-herbert-grants-vaughan-a-1000-year-lease-of-cydwin/), [GHF-E179 — Cydfin / Tŷ Mawr in Bute records](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/ghf-e179-1552-1824-bute-records-call-it-cedfin-cydfin-ken-fin-farm-or-ty-mawr-farm/), and the [Llandough (Penarth) pre-1877 manorial evidence page](https://greathousefarmwiki.wordpress.com/anomalies-register/llandough-penarth-cydfin-ty-mawr-manorial-evidence/).
+See also [GHF-E173 — Cedwyn / Cwm-Cedwyn name index](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/), [GHF-E178 — Cydwin lease (under forensic examination) lead](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/ghf-e178-1547-sir-george-herbert-grants-vaughan-a-1000-year-lease-of-cydwin/), [GHF-E179 — Cydfin / Tŷ Mawr in Bute records](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/ghf-e179-1552-1824-bute-records-call-it-cedfin-cydfin-ken-fin-farm-or-ty-mawr-farm/), and the [Llandough (Penarth) pre-1877 manorial evidence page](https://greathousefarmwiki.wordpress.com/anomalies-register/llandough-penarth-cydfin-ty-mawr-manorial-evidence/).
 
 ## 2. The Williams family claim from 1667
 
@@ -88,7 +88,7 @@ The immediate goal is to locate the instruments and plans that join—or fail to
 ### Core links
 - [Mary Williams's statement](https://greathousefarmwiki.wordpress.com/mary-williams-statement/)
 - [Cedwyn / Cwm-Cedwyn index GHF-E173](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/)
-- [GHF-E178 — 1547 Cydwin lease](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/ghf-e178-1547-sir-george-herbert-grants-vaughan-a-1000-year-lease-of-cydwin/)
+- [GHF-E178 — Cydwin lease (under forensic examination)](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/ghf-e178-1547-sir-george-herbert-grants-vaughan-a-1000-year-lease-of-cydwin/)
 - [GHF-E179 — 1552–1824 Cydfin/Tŷ Mawr names](https://greathousefarmwiki.wordpress.com/ghf-e173-cedwyn-cwm-cedwyn-place-name-notes/ghf-e179-1552-1824-bute-records-call-it-cedfin-cydfin-ken-fin-farm-or-ty-mawr-farm/)
 - [Llandough (Penarth) pre-1877 manorial evidence](https://greathousefarmwiki.wordpress.com/anomalies-register/llandough-penarth-cydfin-ty-mawr-manorial-evidence/)
 - [Llandough Limeworks](https://greathousefarmwiki.wordpress.com/llandough-limeworks/)
