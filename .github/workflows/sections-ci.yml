@@ -1,0 +1,79 @@
+name: sections-ci
+# Section branches (section/<id>, plus the theme branches Cedwyn already builds from) are the unit of change.
+#  - push to section/<id>: scope check (the branch may hold only that section: section.json id must be <id>, no .github,
+#    no other section's section.json), then pin the new commit in main's sections.lock and start the site build.
+#    Only the changed section moves; every other section stays at its pinned commit.
+#  - pull request into main: must carry the label "site-wide" (main changes every section). - Sion's Tab agent
+on:
+  push:
+    branches: ['section/**']
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  workflow_dispatch:
+    inputs:
+      section: { description: 'section id whose branch tip to pin', required: true }
+permissions:
+  contents: write
+  actions: write
+  pull-requests: read
+concurrency:
+  group: sections-ci-lock
+  cancel-in-progress: false
+jobs:
+  scope-main:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: main needs the site-wide label
+        env:
+          LABELS: ${{ toJson(github.event.pull_request.labels.*.name) }}
+        run: |
+          echo "labels: $LABELS"
+          echo "$LABELS" | grep -q '"site-wide"' || { echo "::error::A change to main rebuilds every section. Add the label site-wide, or make the change on the section's own branch (section/<id>)."; exit 1; }
+  pin-section:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Which section
+        id: s
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then id="${GITHUB_REF_NAME#section/}"; else id="${{ inputs.section }}"; fi
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        with: { ref: 'section/${{ steps.s.outputs.id }}', fetch-depth: 1, path: sec }
+      - name: Scope check
+        env: { ID: '${{ steps.s.outputs.id }}' }
+        run: |
+          cd sec
+          test -f index.html || { echo "::error::section/$ID has no index.html"; exit 1; }
+          if [ -d .github ]; then echo "::error::section branches carry no workflows"; exit 1; fi
+          python3 - <<'PY'
+          import json, os, pathlib, sys
+          sid = os.environ['ID']
+          s = json.loads(pathlib.Path('section.json').read_text()) if pathlib.Path('section.json').exists() else {'id': sid}
+          if s.get('id') != sid: sys.exit(f"::error::section.json id {s.get('id')!r} on branch section/{sid}")
+          other = [str(p) for p in pathlib.Path('.').rglob('section.json') if str(p) != 'section.json']
+          if other: sys.exit('::error::another section is inside this branch: ' + ', '.join(other[:5]))
+          print('scope ok', sid)
+          PY
+          echo "SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+        with: { ref: main, fetch-depth: 1, path: main }
+      - name: Pin in sections.lock and start the build
+        env: { ID: '${{ steps.s.outputs.id }}', GH_TOKEN: '${{ github.token }}' }
+        run: |
+          cd main
+          python3 - <<'PY'
+          import json, os, pathlib, datetime
+          p = pathlib.Path('sections.lock'); d = json.loads(p.read_text()) if p.exists() else {'sections': {}}
+          sid, sha = os.environ['ID'], os.environ['SHA']
+          if (d['sections'].get(sid) or {}).get('sha') == sha: print('already pinned'); open('/tmp/nochange', 'w').close()
+          d['sections'][sid] = {'branch': 'section/' + sid, 'sha': sha, 'pinned_utc': datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')}
+          p.write_text(json.dumps(d, indent=1, sort_keys=True) + '\n')
+          PY
+          [ -f /tmp/nochange ] && exit 0
+          git config user.name cedwyn-bot; git config user.email cedwyn-bot@users.noreply.github.com
+          git add sections.lock && git commit -q -m "sections.lock: $ID -> ${SHA:0:7} — Sion's Tab agent"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 5; done
+          gh workflow run build.yml --ref main -R "$GITHUB_REPOSITORY"
