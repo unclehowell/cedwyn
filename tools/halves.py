@@ -51,7 +51,7 @@ body[data-cedwyn-page=landing] .wrap{padding-top:6px;padding-bottom:6px}
 .hv-tile:hover .tc,.hv-tile:focus-visible .tc{background:#fff;color:#000}
 .hv-tile .stripe{position:absolute;left:0;right:0;top:0;height:8px;z-index:2}
 .hv-tile img.hv-flag{position:absolute;inset:auto;left:12px;top:12px;width:56px;height:auto;aspect-ratio:5/3;object-fit:fill;z-index:3;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.45)}@media (min-width:783px){.hv-tile img.hv-flag{width:72px}}
-.hv-intro{margin:0;font:500 clamp(14px,3.7vw,17px)/1.38 Barlow,system-ui,sans-serif;color:var(--fg)}.hv-a .stripe{background:linear-gradient(180deg,#74ACDF 0 33%,#fff 33% 66%,#74ACDF 66%)}
+.hv-sr{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}.hv-a .stripe{background:linear-gradient(180deg,#74ACDF 0 33%,#fff 33% 66%,#74ACDF 66%)}
 .hv-tile .hv-tag{top:14px;bottom:auto}
 .hv-foot{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;font-size:12px;color:var(--mut)}.hv-foot a{color:var(--mut)}
 /* hub common */
@@ -358,9 +358,9 @@ def landing(sections, S, cfg, H):
 <body data-cedwyn-page="landing">
 <main class="wrap hv" data-no-translate>
 <div class="hv-land">
-<h1 class="hv-intro" data-i18n="land_intro">{E(tx(T,'land_intro',l))}</h1>
+<h1 class="hv-sr ghf-keep-case">{E(tx(T,'tw_name',l))} · {E(tx(T,'ta_name',l))}</h1>
 <div class="hv-tiles">
-<a class="hv-tile hv-w" href="/wales/?lang=cy" hreflang="cy"><img src="{img(H,'tile-wales')}" width="960" height="544" alt="" fetchpriority="high"><img class="hv-flag" src="{img(H,'flag-wales')}" width="240" height="144" alt="{E(tx(T,'flag_wales',l))}" data-i18n-al="flag_wales">
+<a class="hv-tile hv-w" href="/wales/?lang=cy" hreflang="cy"><img src="{img(H,'tile-wales')}" width="960" height="544" alt="" fetchpriority="high">
 <span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
 <span class="tb"><span class="tn" data-i18n="tw_name">{E(tx(T,'tw_name',l))}</span><span class="ts" data-i18n="tw_sub">{E(tx(T,'tw_sub',l))}</span><span class="tc" data-i18n="tw_cta">{E(tx(T,'tw_cta',l))}</span></span></a>
 <a class="hv-tile hv-a" href="/argentina/?lang=es" hreflang="es"><img src="{img(H,'tile-patagonia')}" width="960" height="640" alt="" fetchpriority="high"><span class="stripe"></span>
