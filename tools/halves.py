@@ -17,7 +17,7 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 def tx(T, k, l):
     v = T.get(k) or {}
@@ -242,7 +242,7 @@ JS = r"""
           d('bk-form').hidden=true;var dn=d('bk-done');dn.hidden=false;d('bk-ref').textContent=ref;dn.setAttribute('data-ref',ref);dn.scrollIntoView({block:'center',behavior:'smooth'})}
         else{e.textContent=tr('b_err_send')+(msg?' ('+String(msg).replace(/<[^>]+>/g,'').slice(0,120)+')':'');e.hidden=false}}
       window[cb]=function(r){fin(r&&(r.result==='success'||/already subscribed/i.test(r.msg||'')),r&&r.msg)};s.onerror=function(){fin(false)};setTimeout(function(){fin(false)},15000);
-      s.src='https://'+M.host+'/subscribe/post-json?'+qs.join('&');(document.head||de).appendChild(s)});
+      s.src='https://'+M.host+'/subscribe/post?'+qs.join('&');(document.head||de).appendChild(s)});
     go(0);
   }
 })();
