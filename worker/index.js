@@ -77,19 +77,19 @@ async function finishJob(env, job, res) {
   job.status = res.ok ? (res.nothing ? 'nothing' : 'done') : (res.stale ? 'stale' : res.guards ? 'guard' : 'failed');
   job.result = { commit: res.commit, parent: res.parent, error: res.error, stale: res.stale, guards: res.guards, outside: res.outside }; job.finished = new Date().toISOString();
   const big = job.files; job.files = Object.fromEntries(Object.entries(big).map(([p, f]) => [p, { op: f.op, base_sha: f.base_sha }]));
-  await env.CMS.put('job:' + job.key, JSON.stringify(job), { expirationTtl: 90 * 864e5 }); await env.CMS.delete('q:' + job.key);
+  await env.CMS.put('job:' + job.key, JSON.stringify(job), { expirationTtl: 90 * 86400 }); await env.CMS.delete('q:' + job.key);
   if (res.ok && res.commit) {
     const entry = { commit: res.commit, parent: res.parent, branch: job.compartment.branch, cid: job.compartment.id, files: res.files, author: job.author, summary: job.summary, at: job.finished, revert_of: job.revert_of || null };
     const key = 'log:' + inv(); entry.key = key;
-    await env.CMS.put(key, JSON.stringify(entry), { expirationTtl: 365 * 864e5 });
-    if (job.revert_key) { const v = JSON.parse(await env.CMS.get(job.revert_key) || 'null'); if (v) { v.reverted_by = res.commit; await env.CMS.put(job.revert_key, JSON.stringify(v), { expirationTtl: 365 * 864e5 }); } }
+    await env.CMS.put(key, JSON.stringify(entry), { expirationTtl: 365 * 86400 });
+    if (job.revert_key) { const v = JSON.parse(await env.CMS.get(job.revert_key) || 'null'); if (v) { v.reverted_by = res.commit; await env.CMS.put(job.revert_key, JSON.stringify(v), { expirationTtl: 365 * 86400 }); } }
     if (!job.revert_of) { const d = await getDraft(env, job.author, job.compartment.id); for (const p of Object.keys(big)) { const f = d.files[p]; if (f && f.updated <= job.created_ms) delete d.files[p]; } await putDraft(env, job.author, job.compartment.id, d); }
   }
   return job;
 }
 async function enqueue(env, job, ctx) {
   job.key = inv() + '-' + Math.random().toString(36).slice(2, 7); job.status = 'queued'; job.created = new Date().toISOString(); job.created_ms = Date.now();
-  await env.CMS.put('q:' + job.key, JSON.stringify(job), { expirationTtl: 30 * 864e5 });
+  await env.CMS.put('q:' + job.key, JSON.stringify(job), { expirationTtl: 30 * 86400 });
   const tok = await ghToken(env);
   if (tok) {   // direct path: commit now, then ask the site build to run (theme branches don't trigger it on their own)
     const res = await E.commit(E.tokenGh(tok), job); await finishJob(env, job, res);
@@ -98,6 +98,64 @@ async function enqueue(env, job, ctx) {
   }
   return job;   // relay path: the cedwyn-cms workflow (every 5 min, or run on demand) picks it up
 }
+// ---- Mailing list (cedwyn-list Worker owns signup/confirm/broadcast; this screen reads/edits the same D1 tables) ----
+const EMAIL_RE = /^[^\s@<>,;"]{1,64}@[^\s@<>,;"]{1,190}\.[a-z]{2,24}$/i;
+function csvCell(v) { v = v == null ? '' : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+async function listApi(req, env, path, url, m) {
+  const db = env.LISTDB; if (!db) return json({ error: 'The mailing list store is not connected.' }, 503);
+  const showTest = url.searchParams.get('test') === '1';
+  const tf = showTest ? '' : ' AND test = 0';
+  if (path === 'list' && m === 'GET') {
+    const st = url.searchParams.get('status') || ''; const q = (url.searchParams.get('q') || '').trim().toLowerCase();
+    const counts = {}; for (const r of (await db.prepare(`SELECT status, COUNT(*) n FROM cl_subscribers WHERE 1=1${tf} GROUP BY status`).all()).results) counts[r.status] = r.n;
+    let sql = `SELECT email, name, status, lang, topics, source, created_at, confirmed_at, unsubscribed_at, test FROM cl_subscribers WHERE 1=1${tf}`; const args = [];
+    if (['pending', 'confirmed', 'unsubscribed'].includes(st)) { sql += ' AND status = ?'; args.push(st); }
+    if (q) { sql += ' AND (email LIKE ? OR name LIKE ?)'; args.push('%' + q + '%', '%' + q + '%'); }
+    sql += ' ORDER BY COALESCE(confirmed_at, created_at) DESC LIMIT 1000';
+    const rows = (await db.prepare(sql).bind(...args).all()).results;
+    const bc = (await db.prepare(`SELECT id, subject, total, sent, failed, status, created_at FROM cl_broadcasts WHERE 1=1${tf} ORDER BY created_at DESC LIMIT 5`).all()).results;
+    const day = new Date().toISOString().slice(0, 10);
+    const sentToday = (await db.prepare(`SELECT COUNT(*) n FROM cl_mail_log WHERE ok = 1 AND substr(at, 1, 10) = ?`).bind(day).first()).n;
+    return json({ counts, rows, broadcasts: bc, sent_today: sentToday, daily_cap: 95, community: 'community@bucklerfamily.estate' });
+  }
+  if (path === 'list/export.csv' && m === 'GET') {
+    const rows = (await db.prepare(`SELECT email, name, status, lang, topics, source, created_at, confirmed_at, unsubscribed_at FROM cl_subscribers WHERE 1=1${tf} ORDER BY created_at`).all()).results;
+    const head = ['email', 'name', 'status', 'lang', 'topics', 'source', 'created_at', 'confirmed_at', 'unsubscribed_at'];
+    const body = [head.join(',')].concat(rows.map(r => head.map(h => csvCell(r[h])).join(','))).join('\r\n') + '\r\n';
+    return new Response(body, { headers: { 'content-type': 'text/csv; charset=utf-8', 'content-disposition': `attachment; filename="cedwyn-mailing-list-${new Date().toISOString().slice(0, 10)}.csv"`, 'cache-control': 'no-store', 'x-robots-tag': 'noindex' } });
+  }
+  if (m !== 'POST') return json({ error: 'not found' }, 404);
+  const b = await req.json().catch(() => ({})); const email = String(b.email || '').trim().toLowerCase();
+  if (path === 'list/drain') { if (!env.LIST || !env.DRAIN_KEY) return json({ error: 'not connected' }, 503);
+    const r = await env.LIST.fetch('https://cedwyn.bucklerfamily.estate/api/list/drain', { method: 'POST', headers: { 'x-drain-key': env.DRAIN_KEY } }); return json(await r.json().catch(() => ({ ok: false })), r.status); }
+  if (!EMAIL_RE.test(email)) return json({ error: 'That does not look like an email address.' }, 400);
+  const now = new Date().toISOString();
+  if (path === 'list/add') {
+    const lang = ['en', 'cy', 'es'].includes(b.lang) ? b.lang : 'en'; const name = String(b.name || '').slice(0, 120);
+    if (b.mode === 'invite') {   // sends the normal confirm email; the person joins only after they click it
+      if (!env.LIST) return json({ error: 'not connected' }, 503);
+      const r = await env.LIST.fetch('https://cedwyn.bucklerfamily.estate/api/list/subscribe', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email, lang, name, topic: 'news', source: 'cms-invite' }) });
+      const j = await r.json().catch(() => ({})); return json({ ok: !!j.ok, state: 'invited' }, r.ok ? 200 : 400);
+    }
+    const ex = await db.prepare('SELECT status FROM cl_subscribers WHERE email = ?').bind(email).first();
+    if (ex && ex.status === 'unsubscribed' && !b.force) return json({ error: 'This address unsubscribed. Tick “they asked to rejoin” to add it back.' }, 409);
+    await db.prepare(`INSERT INTO cl_subscribers (email, status, lang, topics, source, name, created_at, confirmed_at) VALUES (?, 'confirmed', ?, 'news', 'cms', ?, ?, ?)
+      ON CONFLICT(email) DO UPDATE SET status = 'confirmed', confirmed_at = excluded.confirmed_at, unsubscribed_at = NULL, name = CASE WHEN excluded.name <> '' THEN excluded.name ELSE cl_subscribers.name END`).bind(email, lang, name, now, now).run();
+    return json({ ok: true, state: 'confirmed' });
+  }
+  if (path === 'list/status') {
+    const to = b.status; if (!['confirmed', 'unsubscribed'].includes(to)) return json({ error: 'bad status' }, 400);
+    const r = await db.prepare(to === 'unsubscribed' ? `UPDATE cl_subscribers SET status = 'unsubscribed', unsubscribed_at = ? WHERE email = ?` : `UPDATE cl_subscribers SET status = 'confirmed', confirmed_at = COALESCE(confirmed_at, ?), unsubscribed_at = NULL WHERE email = ?`).bind(now, email).run();
+    if (to === 'unsubscribed') await db.prepare(`UPDATE cl_outbox SET status = 'skipped' WHERE email = ? AND status = 'queued'`).bind(email).run().catch(() => {});
+    return json({ ok: r.meta.changes > 0 });
+  }
+  if (path === 'list/remove') {
+    await db.prepare(`UPDATE cl_outbox SET status = 'skipped' WHERE email = ? AND status = 'queued'`).bind(email).run().catch(() => {});
+    const r = await db.prepare('DELETE FROM cl_subscribers WHERE email = ?').bind(email).run(); return json({ ok: r.meta.changes > 0 });
+  }
+  return json({ error: 'not found' }, 404);
+}
+
 async function api(req, env, ctx, path) {
   const url = new URL(req.url); const m = req.method;
   if (path === 'login' && m === 'POST') {
@@ -116,6 +174,7 @@ async function api(req, env, ctx, path) {
   const s = await readSession(env, req); if (!s) return json({ error: 'login' }, 401);
   if (m !== 'GET' && !s.agent) { const o = req.headers.get('origin'); if (o && o !== url.origin) return json({ error: 'origin' }, 403); }
   const who = s.who;
+  if (path === 'list' || path.startsWith('list/')) return listApi(req, env, path, url, m);
   if (path === 'me') return json({ who, direct: !!(await ghToken(env)), guard: E.GUARD, confirm: E.CONFIRM_WORDS });
   const cs = await comps(); const byId = id => cs.find(c => c.id === id);
   if (path === 'compartments') return json({ compartments: cs });

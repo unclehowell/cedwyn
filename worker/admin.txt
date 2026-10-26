@@ -25,7 +25,7 @@ iframe{width:100%;height:70vh;border:1px solid #ccc;border-radius:10px;backgroun
 label{display:block;font-size:13px;color:#555;margin:8px 0 4px}img.prev{max-width:100%;border-radius:8px}
 .field{margin-bottom:10px}
 </style></head><body>
-<header><b id="ttl">Cedwyn editor</b><button id="hChanges" hidden>Changes</button><button id="hHome" hidden>Home</button></header>
+<header><b id="ttl">Cedwyn editor</b><button id="hList" hidden>List</button><button id="hChanges" hidden>Changes</button><button id="hHome" hidden>Home</button></header>
 <main id="app"></main>
 <script>
 "use strict";
@@ -39,7 +39,8 @@ async function api(path,opt={}){
   j._status=r.status;return j;
 }
 function title(t){$('#ttl').textContent=t;document.title=t+' · Cedwyn editor'}
-function nav(on){$('#hChanges').hidden=$('#hHome').hidden=!on}
+function nav(on){$('#hChanges').hidden=$('#hHome').hidden=$('#hList').hidden=!on}
+$('#hList').onclick=()=>mlist();
 $('#hHome').onclick=()=>home();$('#hChanges').onclick=()=>changes();
 function login(msg){
   nav(false);title('Cedwyn editor');
@@ -54,16 +55,55 @@ async function start(){
 }
 async function loadDrafts(){const d=await api('drafts');DRAFTS=d.drafts||{};const n=Object.values(DRAFTS).reduce((a,x)=>a+Object.keys(x).length,0);$('#hChanges').textContent=n?`Changes (${n})`:'Changes'}
 const comp=id=>COMPS.find(c=>c.id===id);
+let ML={status:'confirmed',q:'',test:false};
+async function mlist(msg,ok){
+  title('Mailing list');
+  const qs=new URLSearchParams({status:ML.status,q:ML.q});if(ML.test)qs.set('test','1');
+  const j=await api('list?'+qs);
+  if(j.error){app.innerHTML=`<div class="card"><div class="err">${esc(j.error)}</div></div>`;return}
+  const c=j.counts||{},tot=(c.confirmed||0)+(c.pending||0)+(c.unsubscribed||0);
+  const tab=(k,l)=>`<button data-st="${k}" class="${ML.status===k?'on':''}">${l} (${k?c[k]||0:tot})</button>`;
+  app.innerHTML=`<div class="card"><p style="margin:0 0 6px"><b style="font-size:28px">${c.confirmed||0}</b> confirmed subscriber${(c.confirmed||0)===1?'':'s'}</p>
+   <p class="muted" style="margin:0">To email everyone, send from your Gmail or cedwyn@ to <b>${esc(j.community)}</b>. Each subscriber gets their own copy from Cedwyn, with an unsubscribe link. Sent today: ${j.sent_today} of ${j.daily_cap}.</p>
+   ${msg?`<div class="${ok?'ok':'err'}">${esc(msg)}</div>`:''}</div>
+  <div class="card"><div class="tabs">${tab('confirmed','Confirmed')}${tab('pending','Waiting')}${tab('unsubscribed','Unsubscribed')}${tab('','All')}</div>
+   <div class="row"><input id="mq" placeholder="Search email or name" aria-label="Search" value="${esc(ML.q)}"></div>
+   <div id="mrows" class="list">${(j.rows||[]).map(r=>`<div class="item" data-e="${esc(r.email)}"><b>${esc(r.email)}</b>${r.test?'<span class="pill">test</span>':''}<br>
+     <span class="muted">${esc(r.name?r.name+' · ':'')}${esc(r.status)} · ${esc(r.lang)} · ${esc((r.confirmed_at||r.created_at||'').slice(0,10))}${r.source?' · '+esc(r.source):''}</span>
+     <div class="row" style="margin-top:6px">${r.status==='unsubscribed'?'':`<button class="alt" data-a="unsub">Unsubscribe</button>`}<button class="alt" data-a="remove">Remove</button></div></div>`).join('')||'<p class="muted">Nobody here yet.</p>'}</div></div>
+  <div class="card"><b>Add someone</b>
+   <label for="ae">Email</label><input id="ae" type="email" autocomplete="off" inputmode="email">
+   <label for="an">Name (optional)</label><input id="an" autocomplete="off">
+   <label for="al">Language</label><select id="al"><option value="en">English</option><option value="cy">Cymraeg</option><option value="es">Español</option></select>
+   <label style="display:flex;gap:8px;align-items:center"><input id="ai" type="checkbox" checked style="width:auto"> Send them a confirm email (they join when they click it)</label>
+   <div class="row" style="margin-top:8px"><button id="aadd">Add</button></div></div>
+  <div class="card"><b>Recent sends to the list</b>${(j.broadcasts||[]).map(b=>`<div class="item">${esc(b.subject)}<br><span class="muted">${esc((b.created_at||'').slice(0,16).replace('T',' '))} · ${b.sent}/${b.total} sent${b.failed?' · '+b.failed+' failed':''} · ${esc(b.status)}</span></div>`).join('')||'<p class="muted">None yet.</p>'}
+   <div class="row" style="margin-top:8px"><a class="btn" href="/admin/api/list/export.csv${ML.test?'?test=1':''}" download>Export CSV</a><button class="alt" id="mdrain">Send queued now</button></div></div>`;
+  app.querySelectorAll('[data-st]').forEach(b=>b.onclick=()=>{ML.status=b.dataset.st;mlist()});
+  let t;$('#mq').oninput=e=>{clearTimeout(t);t=setTimeout(()=>{ML.q=e.target.value;mlist()},400)};
+  $('#mrows').onclick=async e=>{const b=e.target.closest('button[data-a]');if(!b)return;const em=b.closest('[data-e]').dataset.e;
+    if(b.dataset.a==='remove'&&!confirm('Remove '+em+' from the list completely?'))return;
+    const r=await api(b.dataset.a==='remove'?'list/remove':'list/status',{method:'POST',body:{email:em,status:'unsubscribed'}});
+    mlist(r.ok?(b.dataset.a==='remove'?'Removed ':'Unsubscribed ')+em:(r.error||'Nothing changed.'),r.ok)};
+  $('#aadd').onclick=async()=>{const body={email:$('#ae').value.trim(),name:$('#an').value.trim(),lang:$('#al').value,mode:$('#ai').checked?'invite':'confirmed'};
+    let r=await api('list/add',{method:'POST',body});
+    if(r._status===409&&confirm(r.error.replace(/Tick.*$/,'Add them back anyway?'))){body.force=true;r=await api('list/add',{method:'POST',body})}
+    mlist(r.ok?(r.state==='invited'?'Confirm email sent to ':'Added ')+body.email:(r.error||'Could not add.'),r.ok)};
+  $('#mdrain').onclick=async()=>{const r=await api('list/drain',{method:'POST'});mlist(r.ok?'Queue checked.':'Could not reach the sender.',r.ok)};
+}
 async function home(){
   title('Cedwyn editor');
   app.innerHTML=`<div class="card"><div class="row"><input id="q" placeholder="Find a theme" aria-label="Find a theme"></div>
   <p class="muted">Pick a theme, edit, and your changes wait as drafts until you publish. ${ME.direct?'Publishing commits straight away.':'Publishing queues the commit; it lands within about 5 minutes.'} The site then rebuilds itself.</p></div>
+  <div class="card list"><a href="#list" id="mlCard"><b>Mailing list</b><br><span class="muted" id="mlSum">Subscribers, add or remove, export</span></a></div>
   <div class="card list" id="cl"></div>
   <div class="card"><div class="row"><button class="alt" id="hist">Recent publishes</button><button class="alt" id="out">Sign out</button></div></div>`;
   const draw=()=>{const q=$('#q').value.toLowerCase();$('#cl').innerHTML=COMPS.filter(c=>!q||(c.title+c.id).toLowerCase().includes(q)).map(c=>{const n=Object.keys(DRAFTS[c.id]||{}).length;
     return `<a href="#c=${esc(c.id)}" data-c="${esc(c.id)}">${esc(c.title)}${n?`<span class="pill">${n} draft${n>1?'s':''}</span>`:''}<br><span class="muted">${c.readonly?'read only · ':''}${esc(c.branch?c.branch+(c.prefix?' / '+c.prefix:''):'crawled')}</span></a>`}).join('')};
   $('#q').oninput=draw;draw();
   $('#cl').onclick=e=>{const a=e.target.closest('a');if(!a)return;e.preventDefault();openComp(a.dataset.c)};
+  $('#mlCard').onclick=e=>{e.preventDefault();mlist()};
+  api('list').then(j=>{if(j.counts)$('#mlSum').textContent=`${j.counts.confirmed||0} confirmed · ${j.counts.pending||0} waiting to confirm`}).catch(()=>{});
   $('#hist').onclick=history;$('#out').onclick=async()=>{await api('logout',{method:'POST'});login()};
 }
 async function openComp(id,folder){
