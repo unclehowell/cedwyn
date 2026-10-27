@@ -36,7 +36,7 @@ The sections of cedwyn.bucklerfamily.estate as registered in the site registry (
 | The Post Office · Calendar | /emails/ | Modern research and how it's going |  |
 | The Disclosure Dartboard | /dartboard/ | Interactive |  |
 | Cedwyn Estate | /estate/ | Interactive |  |
-| Cedwyn Estate Directory | /directory/ | Interactive |  |
+| Cedwyn Pages | /directory/ | Interactive |  |
 | Great House Farm II · Patagonia Museum | /patagonia/ | Historic artifacts |  |
 | Virtual Tour · Wales | /wales/ | Interactive |  |
 | Terrain · Cedwyn Estate in 3D | /terrain/ | Interactive |  |
@@ -45,4 +45,6 @@ The sections of cedwyn.bucklerfamily.estate as registered in the site registry (
 | Cedwyn · the film | /movie/ | A story to be retold | Cedwyn, the film (a tab.bot production): one door a day, a two-minute scene from the whole chronology; clips are stored in the film's storage repository and played inline. |
 | Kissed Frogs | /kissed-frogs/ | Modern research and how it's going | The screening register: leads checked and found not to be Great House Farm / Tŷ Mawr, Llandough-juxta-Penarth, or out of scope, each with its source and the reason. |
 | The Garden Gallery | /nft-art/ | Interactive | Digital editions repainted as gardens from photographs, maps and plans in the Wayback Vault; each piece is a record in the catalogue database. |
+| What They Don't Say | /whattheydontsay/ | Modern research and how it's going | Dated questions to public bodies and record holders: what was asked, when an answer was due, what came back, and what is still unanswered. |
+| Blog | /blog/ | Modern research and how it's going | Short dated posts on the history, heritage and records of Great House Farm (Tŷ Mawr), each linked to its record, with RSS, Atom and JSON feeds. |
 | Cedwyn Academy | /academy/ | Modern research and how it is going | Start here if you are an AI agent: soul, memory, skills, flywheels, harness, self-test and the work board |

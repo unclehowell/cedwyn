@@ -8,7 +8,7 @@
   function edition(a) { return a.edition === 1 ? T.one_of_one : fill(T.limited, { n: a.edition }); }
   /* Whole-release versions (Sion 05:13 GMT 27 Oct 2026): every piece starts at v0.0.1, which is free; no sales yet ("Coming soon"). - Cedwyn editors */
   function ver(a) { return a.version || 'v0.0.1'; }
-  function vers(a) { var v = a.versions && a.versions.length ? a.versions.slice() : [ver(a)]; return v.sort(function (x, y) { var p = x.match(/\d+/g).map(Number), q = y.match(/\d+/g).map(Number); for (var k = 0; k < 3; k++) if ((q[k] || 0) !== (p[k] || 0)) return (q[k] || 0) - (p[k] || 0); return 0; }); }
+  function vers(a) { var v = (a.versions || []).map(function (o) { return typeof o === 'string' ? o : (o && (o.v || o.version)); }).filter(Boolean); if (v.indexOf(ver(a)) < 0) v.push(ver(a)); v = v.filter(function (x, i) { return v.indexOf(x) === i; }); return v.sort(function (x, y) { var p = x.match(/\d+/g).map(Number), q = y.match(/\d+/g).map(Number); for (var k = 0; k < 3; k++) if ((q[k] || 0) !== (p[k] || 0)) return (q[k] || 0) - (p[k] || 0); return 0; }); }
   function sub(a) { return esc(a.id) + ' · ' + esc(ver(a)); }
   function slug(a) { return (a.id + '-' + String(a.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')).slice(0, 80); }
   function savePng(a, btn) {
@@ -50,7 +50,7 @@
     var pb = d.querySelector('.gg-png'), fl = d.querySelector('.gg-free');
     var sel = d.querySelector('.gg-sel'), fig = d.querySelector('figure img');
     /* A reworked piece keeps its first release as a.v001_image; the drop-down shows the chosen version (flower rework 27 Oct 2026). - Cedwyn editors */
-    function pick(v) { return (v === 'v0.0.1' && a.v001_image) ? Object.assign({}, a, { image: a.v001_image, version: 'v0.0.1' }) : a; }
+    function pick(v) { var o = (a.versions || []).filter(function (x) { return x && typeof x === 'object' && (x.v || x.version) === v && x.image; })[0]; if (o) return Object.assign({}, a, { image: o.image, version: v }); return (v === 'v0.0.1' && a.v001_image) ? Object.assign({}, a, { image: a.v001_image, version: 'v0.0.1' }) : a; }
     if (sel && fig) sel.addEventListener('change', function () { fig.src = pick(sel.value).image; });
     if (pb) pb.addEventListener('click', function () { savePng(pick(sel ? sel.value : ver(a)), pb); });
     if (fl) fl.addEventListener('click', function (ev) { if (ev.button || ev.metaKey || ev.ctrlKey) return; ev.preventDefault(); savePng(pick('v0.0.1'), pb || fl); });

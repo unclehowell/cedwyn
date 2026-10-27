@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Skill: auto-posting from the blog feed to owned social channels (POSSE done right) · Cedwyn Academy</title><link rel="alternate" type="text/markdown" href="feed-to-social-auto-posting-posse.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style><!-- og:cedwyn --><meta property="og:title" content="Skill: auto-posting from the blog feed to owned social channels (POSSE done right) · Cedwyn Academy"><meta property="og:description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><meta property="og:type" content="website"><meta property="og:url" content="https://cedwyn.bucklerfamily.estate/academy/SKILLS/marketing/feed-to-social-auto-posting-posse.html"><meta property="og:site_name" content="Cedwyn Estate"><meta property="og:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta property="og:image:secure_url" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Open Cart Shed: a farm scene repainted in gouache with honeysuckle, roses and ivy in warm gold light (NFA-0042, Garden Gallery)"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Skill: auto-posting from the blog feed to owned social channels (POSSE done right) · Cedwyn Academy"><meta name="twitter:description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><meta name="twitter:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta name="description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><!-- /og:cedwyn --><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.14"></script></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Skill: auto-posting from the blog feed to owned social channels (POSSE done right)</h1>
+<p>Publish on Cedwyn first, then put a native-format copy on each owned channel that points home. Each platform handles links differently, so the auto-poster has to too.</p>
+<h2>Why it matters (numbers)</h2>
+<ul>
+<li><strong>Link posts under-perform native posts everywhere.</strong> Buffer's <em>State of Social Media Engagement 2026</em> (52M+ posts, 10 platforms; read 27 Oct 2026) gives these median engagement rates:</li>
+<li>Facebook: images 5.20%, video 4.84%, text 4.76%, link posts 4.43%. Facebook is the most format-neutral, so the cost of a link there is small.</li>
+<li>Threads: video 5.55%, images 4.55%, text 2.79%, link posts 2.34%.</li>
+<li>X: text 3.56%, images 3.40%, video 2.96%, link posts 2.25%.</li>
+<li>LinkedIn: carousels (PDF) 21.77%, video 7.35%, images 6.52%, link posts 3.81%.</li>
+<li>Buffer's own reading: platforms keep users on-platform.</li>
+<li><strong>A Bluesky link card is something the poster builds; it is not automatic.</strong> The atproto "Posting via the Bluesky API" guide (read) states each client fetches the page's og:title, og:description and og:image itself. It uploads the image with <code>com.atproto.repo.uploadBlob</code> and attaches it as <code>app.bsky.embed.external</code> with <code>uri</code>, <code>title</code>, <code>description</code> and <code>thumb</code>. Links in the text also need <code>facets</code>, or they show as plain text. An RSS-to-Bluesky bot that skips this posts a bare, unclickable URL.</li>
+<li><strong>Mastodon link previews arrive as a stampede.</strong> It's FOSS (read; 15k followers) reported 504s and minutes of downtime every time it shared its own link on mastodon.social, even behind Cloudflare. Google News and Reddit spikes did not cause this. NETSCOUT (Dec 2022, read) explains why: there is no shared preview cache, so every federated instance fetches the page for itself, almost at once. Mastodon issue #23662 describes hundreds to thousands of servers fetching each preview.</li>
+</ul>
+<h2>How to do it (steps)</h2>
+<ol>
+<li><strong>Source = the feed.</strong> Trigger on new feed item ids only. Keep a posted-log keyed by <code>item id + channel</code> and check it before every post, so a retry or a cron re-run can never post twice.</li>
+<li><strong>Gate on live.</strong> Post only after a cache-busted GET of the item URL returns 200 and its og:image returns 200. If the page isn't live yet, the card renders empty and most platforms never re-fetch.</li>
+<li><strong>Native first, link second.</strong> For each item, render a platform-native asset: an image (quote card or the item image) or a short clip, plus 1-2 lines of teaser.
+   - Facebook page: the image post's caption carries the link, or the link goes in the first comment. Per our existing <code>facebook-group-community-and-link-limits.md</code>, the first comment is the safer route.
+   - Instagram: an image or carousel with no clickable link. The caption states "full story on Cedwyn" and the bio or link page carries the URL.
+   - Telegram channel: a full link with its preview is fine there, since it is a channel the reader opted into.
+   - Bluesky: an image post, <em>or</em> a built external card (see the facts above). Count the text limit in graphemes and add link facets.
+   - Mastodon: post the link (it's an owned account), but see step 5.</li>
+<li><strong>Tag every outbound link per channel</strong>, e.g. <code>?utm_source=bluesky&amp;utm_medium=social&amp;utm_campaign=blog</code>. Dark social hides the referrer otherwise (see <code>share-links-dark-social-web-share-utm.md</code>). Use one scheme only; Stripe reference tags stay separate (see <code>stripe-ga4-...</code>).</li>
+<li><strong>Make the page stampede-proof before Mastodon.</strong> Serve blog pages static from the edge cache, with a long <code>Cache-Control</code> max-age, no per-request Worker work on HTML, and a small og:image (under 300 KB).</li>
+<li><strong>Pace it.</strong> Send at most 1 auto-post per channel per item, and space items at least 3-4 h apart per channel. Keep well under each API's daily cap; for the Instagram publishing limit, see <code>instagram-reels-carousels-heritage.md</code>.</li>
+<li><strong>Never auto-post to communities.</strong> Reddit, Facebook groups and other people's spaces get manual, human-written posts only. Never DM anyone.</li>
+<li><strong>Log</strong> <code>channel, item id, post URL, time</code> and read engagement weekly. Drop any channel whose posts get 0 clicks for 4 weeks.</li>
+</ol>
+<h2>Pitfalls</h2>
+<ul>
+<li>Title-only robot posts ("New post: X <link>") are the format that does worst, and they read as spam.</li>
+<li>Posting a URL before the page is live gives an empty card, and the empty card is cached by the platform.</li>
+<li>Re-running the cron without the posted-log makes double posts, and that gets accounts restricted.</li>
+<li>Auto-posting the same text everywhere: write 1 teaser per platform tone (Threads/Bluesky conversational; Facebook plain).</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Fit with the auto-blog worker</strong> (CEDWYN BLOG + FEEDS worker, started 27 Oct 03:20Z):</li>
+<li>The social step reads <code>/blog/feed.json</code>.</li>
+<li>It keys its posted-log on JSON Feed <code>id</code>, which must be the permanent page URL.</li>
+<li>It runs only after the live-check, and only on posts that passed the banned-word and privacy scan.</li>
+<li>Drafts held by that scan are never posted.</li>
+<li><strong>Connected owned channels:</strong></li>
+<li>Facebook page Great House Farm II: image + first-comment link.</li>
+<li>Instagram @cedwynestate: image or carousel, link in bio.</li>
+<li>Telegram: the link with its preview.</li>
+<li>Bluesky and Mastodon only if the project lead supplies the accounts (HubSpot task); then use built cards and the stampede-proof check.</li>
+<li><strong>Reddit:</strong> suggestions only, written to HubSpot for the project lead.</li>
+<li><strong>Live checks, 27 Oct 2026 03:24Z:</strong></li>
+<li><code>/feed.xml</code> is live: Atom, 14 entries, 13 thumbnails, hub link. It is the e-books feed.</li>
+<li><code>/blog/</code> and its feeds are 404 so far, because the worker is still building them.</li>
+<li>Its responses carry <code>Cache-Control: public, max-age=3600</code> but no ETag or Last-Modified (see the feed-hygiene skill).</li>
+<li><strong>Fixed rules:</strong> never name the project lead; no banned words in teasers; teaser text comes only from the page's own published summary.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>buffer.com (read 27 Oct 2026; Buffer data, 52M+ posts)</li>
+<li>buffer.com (read; 45M+ posts, 19 Mar 2026)</li>
+<li>atproto.com (read; Bluesky external embeds, blobs, facets)</li>
+<li>itsfoss.com (read; practitioner testimony, 15k followers, 504s)</li>
+<li>netscout.com (read, Dec 2022)</li>
+<li>github.com (snippet)</li>
+</ul><p class="raw">Raw Markdown: <a href="feed-to-social-auto-posting-posse.md">feed-to-social-auto-posting-posse.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main><section id="cedwyn-guestbook" class="ghf-ui" data-no-translate translate="no" aria-label="Agent guest book"><style>#cedwyn-guestbook{display:block!important;clear:both;position:static;box-sizing:border-box;width:auto;max-width:760px;margin:12px auto 4px!important;padding:0 8px!important;text-align:left!important;font:400 12px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!important;color:inherit;background:transparent;border:0}#cedwyn-guestbook *{box-sizing:border-box}#cedwyn-guestbook summary{cursor:pointer;padding:4px 0;font:inherit!important;color:inherit!important;text-align:left!important}#cedwyn-guestbook summary b{font-weight:700}#cedwyn-guestbook .gb-r{opacity:.7}#cedwyn-guestbook .gbw{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;margin:4px 0}#cedwyn-guestbook table{border-collapse:collapse;width:100%;min-width:0;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th,#cedwyn-guestbook td{display:table-cell!important;text-align:left!important;vertical-align:top;padding:4px 6px!important;border:0!important;border-bottom:1px solid rgba(128,128,128,.32)!important;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th{font-weight:700!important;white-space:nowrap}#cedwyn-guestbook td:nth-child(1),#cedwyn-guestbook td:nth-child(4){white-space:nowrap}#cedwyn-guestbook td:nth-child(2){min-width:6.6em;width:6.6em}#cedwyn-guestbook td:nth-child(3){min-width:13em}@media(min-width:700px){#cedwyn-guestbook td:nth-child(2){white-space:nowrap;width:auto}}#cedwyn-guestbook a{color:inherit!important;text-decoration:underline!important;margin:0!important;padding:0!important;display:inline!important;font:inherit!important}#cedwyn-guestbook p{margin:4px 0!important;max-width:none!important;font:inherit!important;color:inherit!important;text-align:left!important}</style><details><summary><b data-gb-l="title">Agent guest book</b> <span class="gb-v"></span> <span class="gb-r">· <span data-gb-l="rule">versions 1.change.fix, from the commit history</span></span></summary><div class="gbw"><table><thead><tr><th data-gb-l="v">Version</th><th data-gb-l="d">Date</th><th data-gb-l="n">Change</th><th data-gb-l="w">Who</th></tr></thead><tbody class="gb-rows"></tbody></table></div><p><a href="/guestbook/" data-gb-l="all">See all</a></p></details></section><script src="/_cedwyn/guestbook/gb.js?v=1.0.2" defer></script></body></html>

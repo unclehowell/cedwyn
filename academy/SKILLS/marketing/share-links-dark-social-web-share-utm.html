@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Share links that measure: native share sheet, WhatsApp/email links, copy-link UTMs, no counters · Cedwyn Academy</title><link rel="alternate" type="text/markdown" href="share-links-dark-social-web-share-utm.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style><!-- og:cedwyn --><meta property="og:title" content="Share links that measure: native share sheet, WhatsApp/email links, copy-link UTMs, no counters · Cedwyn Academy"><meta property="og:description" content="The copy-link button must copy the tagged URL. Copy-paste is the biggest channel, and untagged it lands in &quot;direct&quot;. 5."><meta property="og:type" content="website"><meta property="og:url" content="https://cedwyn.bucklerfamily.estate/academy/SKILLS/marketing/share-links-dark-social-web-share-utm.html"><meta property="og:site_name" content="Cedwyn Estate"><meta property="og:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta property="og:image:secure_url" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Open Cart Shed: a farm scene repainted in gouache with honeysuckle, roses and ivy in warm gold light (NFA-0042, Garden Gallery)"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Share links that measure: native share sheet, WhatsApp/email links, copy-link UTMs, no counters · Cedwyn Academy"><meta name="twitter:description" content="The copy-link button must copy the tagged URL. Copy-paste is the biggest channel, and untagged it lands in &quot;direct&quot;. 5."><meta name="twitter:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta name="description" content="The copy-link button must copy the tagged URL. Copy-paste is the biggest channel, and untagged it lands in &quot;direct&quot;. 5."><!-- /og:cedwyn --><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.14"></script></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Share links that measure: native share sheet, WhatsApp/email links, copy-link UTMs, no counters</h1>
+<p>Topic: getting readers to pass Cedwyn pages on, and seeing it happen. Most sharing is private (WhatsApp, email, text, DMs) and analytics records it as "direct". Skill written 27 Oct 2026 (harvest run).</p>
+<h2>What the evidence states</h2>
+<ul>
+<li><strong>Private shares are invisible.</strong> SparkToro + Steve Dodd, 27 Apr 2023, controlled test with ~100 recruited people clicking one tagged page per network: <strong>100% of visits from WhatsApp, TikTok, Slack, Discord and Mastodon arrived as "direct"</strong> with no referrer. Messenger was 75% direct. Instagram DMs lost 30% of referrers, public LinkedIn 14% and Pinterest 12%. SparkToro's own GA showed 95% "direct". Their advice: tag your own links (unique URLs). (read)</li>
+<li><strong>Most shares are copy-paste, not button clicks.</strong> ShareThis studied 113 million shares on its publisher network (2017 whitepaper; landing page read, the figures are behind a form). Warc's estimate, quoted on that page, is that private messaging is over 80% of social activity. A secondary summary (referralrock, snippet only, not checked) gives 29% via buttons and 71% copy-paste.</li>
+<li><strong>One native Share button beats a row of logos on phones.</strong> Google's Santa Tracker swapped several share targets for one Web Share API button and saw <strong>about 20% more shares</strong> (web.dev "Integrate with the OS sharing UI", read). Constraints: HTTPS only, must run on a click (never on load), feature-detect <code>navigator.share</code>/<code>navigator.canShare</code>, and keep a fallback for desktop browsers.</li>
+<li><strong>Share buttons near the buy button can cost sales.</strong> Taloon.com (Finnish hardware shop, VWO test via CXL, read): removing share buttons from product pages raised add-to-cart by <strong>11.9%</strong>. The owner put it down to share counts showing <strong>zero</strong> (negative social proof) and to distraction from the one goal of the page. Practical Ecommerce's advice is the same: save sharing for the confirmation page.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Where it goes:</strong> reading pages (research, evidence, the place pages, free-edition parts) and the <strong>thank-you/download page</strong>. <strong>Not</strong> above or next to the buy button on /ebooks/; at most a quiet link below the fold there.</li>
+<li><strong>Buttons (phone first):</strong>
+   - one <strong>Share</strong> button that calls <code>navigator.share({title, url})</code> where supported;
+   - otherwise the fallbacks <strong>WhatsApp</strong> (<code>wa.me + encoded "title url"), **Email** (</code>mailto:?subject=…&amp;body=…<code>), **Copy link**. Facebook/X only as extras.
+   - Use plain</code><a><code>/</code><button>` with no third-party share widget script. That means no tracking, no consent banner and no speed cost.</li>
+<li><strong>Never show share counts.</strong> Zero or low counts read as "nobody cares".</li>
+<li><strong>Tag every shared URL</strong> (see utm-discipline-ga4-funnel.md):
+   - <code>utm_source=whatsapp|email|native|copy|facebook|x</code>
+   - <code>utm_medium=share</code>
+   - <code>utm_campaign=sharebar</code>
+   - <code>utm_content=&lt;page-key&gt;</code></li>
+</ol>
+<p>The <strong>copy-link</strong> button must copy the <em>tagged</em> URL. Copy-paste is the biggest channel, and untagged it lands in "direct".
+5. <strong>Make the shared message worth sending:</strong>
+   - prefill a one-line hook from the page (title plus a short fact line), not "Check this out";
+   - set og:title, og:description and og:image (1200x630) per page so the WhatsApp/iMessage preview card shows the record image (see google-discover / site-name skills for image sizes).
+6. <strong>Language:</strong> label the button in the page's language (cy/en/es). The prefilled text stays in the page language. Spanish pages are where WhatsApp matters most (Argentina).
+7. <strong>Measure monthly:</strong>
+   - in GA4 (or Cloudflare when GA4 is absent), the sessions where <code>utm_medium=share</code>, by source and page;
+   - also log share-button clicks as an event <code>share_click</code> with params <code>method</code> and <code>page</code>.</p>
+<p><strong>Compare clicks against arrivals.</strong> A click with no arrival means the share was never opened.
+8. <strong>Thank-you page ask:</strong> after purchase or free download, give one line in the page language, e.g. "Know someone from Llandough or Chubut who would want this? Send it on", followed by the Share button. A buyer sharing to one relative is the warmest lead we can get.</p>
+<h2>Pitfalls</h2>
+<ul>
+<li><code>navigator.share</code> throws if it isn't called from a click. Wrap it in try/catch and swallow <code>AbortError</code> (the user cancelled).</li>
+<li>Desktop Firefox lacks <code>navigator.share</code>, so always render the fallbacks.</li>
+<li>Don't add UTMs to canonical tags or internal links, only to the URL being shared.</li>
+<li>WhatsApp strips nothing from the URL, so the UTMs survive. Keep them short: long query strings look spammy in a chat preview.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>A trilingual share bar already exists in our code: <code>the project workspace</code>, lines ~546-735. It has native Share, Facebook, X, WhatsApp via wa.me, email and copy, and tags <code>utm_medium=share&amp;utm_campaign=sharebar&amp;utm_content=&lt;key&gt;</code>.</li>
+<li><strong>I did not see it on the 7 live Cedwyn pages I checked on 27 Oct 2026</strong> (/, /wales/, /research/, /ebooks/, /dartboard/, /evidence/, /ghf/). /ebooks/ and /dartboard/ only mention basecamp.js in a CSS comment.</li>
+<li><strong>Proposal (for the onpage flywheel, PROPOSED not done):</strong><ul>
+<li>port that bar into the shared footer/reading template of the Cedwyn sections, data-driven labels from the DB i18n strings;</li>
+<li><strong>exclude</strong> it from /ebooks/ above the fold;</li>
+<li>add it to the download/thank-you page;</li>
+<li>keep Copy link copying the tagged URL (line ~720 already does: <code>utm_source=copy</code>) and keep its <code>share_click</code> event;</li>
+<li>drop any share counts.</li>
+</ul>
+</li>
+<li>No outbound links rule: the share targets are user actions (wa.me / mailto), not links to other sites in page content. Treat them like the existing contact links. If editorial disagrees, ship Share + Copy + Email only.</li>
+<li>Report <code>utm_medium=share</code> sessions in the Sunday growth report. Dark social is likely our biggest hidden channel, given that families pass archive finds around on WhatsApp.</li>
+<li>Never name the project lead in any prefilled text. Prefill uses page titles only, which are already editorially checked.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>SparkToro, "New Research: Dark Social Falsely Attributes Significant Percentages of Web Traffic as Direct", 27 Apr 2023: sparktoro.com (read)</li>
+<li>web.dev, "Integrate with the OS sharing UI with the Web Share API" (Santa Tracker ~20% more shares; constraints): web.dev (read)</li>
+<li>MDN, Navigator.share: developer.mozilla.org</li>
+<li>CXL, "6 Conversion Rate Optimization Case Studies" (Taloon.com, +11.9%): cxl.com (read)</li>
+<li>Practical Ecommerce, "Do Social Share Buttons Help Ecommerce Conversions?": practicalecommerce.com (snippet)</li>
+<li>ShareThis, private sharing and dark social whitepaper (113M shares): sharethis.com (landing page read; figures gated)</li>
+</ul><p class="raw">Raw Markdown: <a href="share-links-dark-social-web-share-utm.md">share-links-dark-social-web-share-utm.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main><section id="cedwyn-guestbook" class="ghf-ui" data-no-translate translate="no" aria-label="Agent guest book"><style>#cedwyn-guestbook{display:block!important;clear:both;position:static;box-sizing:border-box;width:auto;max-width:760px;margin:12px auto 4px!important;padding:0 8px!important;text-align:left!important;font:400 12px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!important;color:inherit;background:transparent;border:0}#cedwyn-guestbook *{box-sizing:border-box}#cedwyn-guestbook summary{cursor:pointer;padding:4px 0;font:inherit!important;color:inherit!important;text-align:left!important}#cedwyn-guestbook summary b{font-weight:700}#cedwyn-guestbook .gb-r{opacity:.7}#cedwyn-guestbook .gbw{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;margin:4px 0}#cedwyn-guestbook table{border-collapse:collapse;width:100%;min-width:0;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th,#cedwyn-guestbook td{display:table-cell!important;text-align:left!important;vertical-align:top;padding:4px 6px!important;border:0!important;border-bottom:1px solid rgba(128,128,128,.32)!important;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th{font-weight:700!important;white-space:nowrap}#cedwyn-guestbook td:nth-child(1),#cedwyn-guestbook td:nth-child(4){white-space:nowrap}#cedwyn-guestbook td:nth-child(2){min-width:6.6em;width:6.6em}#cedwyn-guestbook td:nth-child(3){min-width:13em}@media(min-width:700px){#cedwyn-guestbook td:nth-child(2){white-space:nowrap;width:auto}}#cedwyn-guestbook a{color:inherit!important;text-decoration:underline!important;margin:0!important;padding:0!important;display:inline!important;font:inherit!important}#cedwyn-guestbook p{margin:4px 0!important;max-width:none!important;font:inherit!important;color:inherit!important;text-align:left!important}</style><details><summary><b data-gb-l="title">Agent guest book</b> <span class="gb-v"></span> <span class="gb-r">· <span data-gb-l="rule">versions 1.change.fix, from the commit history</span></span></summary><div class="gbw"><table><thead><tr><th data-gb-l="v">Version</th><th data-gb-l="d">Date</th><th data-gb-l="n">Change</th><th data-gb-l="w">Who</th></tr></thead><tbody class="gb-rows"></tbody></table></div><p><a href="/guestbook/" data-gb-l="all">See all</a></p></details></section><script src="/_cedwyn/guestbook/gb.js?v=1.0.2" defer></script></body></html>

@@ -114,8 +114,8 @@ details.site .d{padding:0 0 16px 22px;color:#cfcfcf;font-size:15.5px}details.sit
 <script src="/_cedwyn/cat.js?v=2" defer></script>
 <script defer>
 /* Restored-house gallery (27 Oct 2026). Reads the Garden Gallery's own records at runtime, so every piece later marked
-   restored appears here with no edit to this page: an artwork row with "restored": true, or an id listed in
-   /nft-art/restored-index.json. Images are the gallery's own /nft-art/ files, never copies. - Cedwyn editors */
+   restored appears here with no edit to this page: an artwork row with "restored": true, a reworked piece (its first release kept as v001_image: the rework
+   is the restoration), or an id listed in /nft-art/restored-index.json. Images are the gallery's own /nft-art/ files, never copies. - Cedwyn editors */
 (function(){
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   function ids(){return fetch('/nft-art/restored-index.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;}).then(function(j){
@@ -125,7 +125,7 @@ details.site .d{padding:0 0 16px 22px;color:#cfcfcf;font-size:15.5px}details.sit
     Promise.all([ids(),Cedwyn.db().then(function(db){return db.query("SELECT id, data FROM section_records WHERE theme='nft-art' AND kind='artwork' ORDER BY seq");})])
     .then(function(r){
       var want={};r[0].forEach(function(i){if(i)want[i]=1;});
-      var A=[];r[1].forEach(function(row){var a={};try{a=JSON.parse(row.data);}catch(e){}a.id=row.id;if(a.restored===true||want[a.id])A.push(a);});
+      var A=[];r[1].forEach(function(row){var a={};try{a=JSON.parse(row.data);}catch(e){}a.id=row.id;if(a.restored===true||a.v001_image||want[a.id])A.push(a);});
       if(!A.length)return;
       document.getElementById('restored-gal').innerHTML=A.map(function(a){
         return '<a href="/nft-art/#/'+encodeURIComponent(a.id)+'"><img loading="lazy" src="'+esc(a.thumb||a.image)+'" alt="'+esc(a.alt||a.title)+'"><span>'+esc(a.title)+'</span></a>';}).join('');
