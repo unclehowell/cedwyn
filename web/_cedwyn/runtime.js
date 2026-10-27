@@ -88,7 +88,7 @@
   function pass(u) { var m = /^https:\/\/([^\/?#:]+)/i.exec(u || ''), h; if (!m) return false; h = m[1].toLowerCase();
     return h === 'buy.stripe.com' || h === 'checkout.stripe.com' || h === 'gumroad.com' || /\.gumroad\.com$/.test(h)
       // 26 Oct 2026: the Agent guest book's version links (commits of this site's own repository) open GitHub directly; the owner allowed them out
-      || (h === 'github.com' && /^\/unclehowell\/cedwyn\/commit\/[0-9a-f]{7,40}\/?$/i.test(u.replace(/^https:\/\/[^\/]+/i, '').split(/[?#]/)[0])); }
+      || (h === 'github.com' && /^\/unclehowell\/cedwyn\/commits?\/[^\s]+$/i.test(u.replace(/^https:\/\/[^\/]+/i, '').split(/[?#]/)[0])); }   // 27 Oct 2026: also a page's commit history (commits/<branch>/<path>), the version table's "See all"
   window.__cedwyn.pass = pass;
   document.addEventListener('submit', function (e) { var f = e.target, a = f && f.getAttribute ? f.getAttribute('action') : '', m, u;
     m = /^(?:https?:\/\/[^\/]+)?\/wayback\/go\/\?u=([^&#]+)/.exec(a || ''); if (!m) return;
