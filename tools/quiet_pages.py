@@ -20,6 +20,7 @@ WHOLE = [re.compile(p, re.I) for p in (
     r'^for ai agents\b', r'^agent roles\s*\u2014', r'^agent reading guide\b', r'^agent index\b',
     r'^[\u2014\u2013-]\s*sion' + AP + r's tab agent\.?$', r'^(template )?(prepared|built|made|compiled|maintained) by sion' + AP + r's tab agent\.?$',
     r'^new here\?\s', r'^this page sets out words, framing and timing\b',
+    r'^tap agent at the bottom right\b',   # chat UI help line (owner decision 27 Oct)
 )]
 # a leading self-description sentence inside a paragraph that continues with content
 LEAD = re.compile(r'^(\s*)((?:This page|These pages|This index|This section|This site|This theme|This register)\s(?:isolates|tracks|shows|lists|collects|gathers|'
@@ -29,11 +30,12 @@ PHRASES = [re.compile(p) for p in (
     r'\s*[\u2014\u2013]\s*Sion' + AP + r's Tab agent\b\.?',
     r'\s*(?:Template prepared|Built|Prepared|Made|Compiled|Maintained) by Sion' + AP + r's Tab agent\.?',
     r'Programme Office flywheel \u00b7 reviewed weekly \u00b7 last review [0-9-]+ \u00b7 maintained by an agent of the estate\.\s*',
+    r'Record each event as more evidence only for the specific proposition it actually supports;\s*',   # editor instruction (research timeline)
 )]
 LEAF = re.compile(r'<(p|small|em|span|li|div|figcaption|aside)(\s[^>]*)?>((?:(?!<(?:p|div|section|ul|ol|table|article|aside|figure|header|footer|main|nav)\b)(?!</\1>).){8,1600}?)</\1>', re.S | re.I)
 TAGS = re.compile(r'<[^>]+>'); WS = re.compile(r'\s+')
 SPLIT = re.compile(r'(<script\b.*?</script>|<style\b.*?</style>|<!--.*?-->|<[^>]+>)', re.S | re.I)
-CONT = re.compile(r'<(section|div|aside|details|p)\b((?=[^>]*\b(?:id="(?:agent-access|page-version-log|webmcp-status)"|class="[^"]*\b(?:ghf-version-log|ai-sign|agent-access)\b))[^>]*)>', re.I)
+CONT = re.compile(r'<(section|div|aside|details|p)\b((?=[^>]*\b(?:id="(?:agent-access|page-version-log|webmcp-status)"|class="[^"]*\b(?:ghf-version-log|ai-sign|agent-access|ghf-page-header)\b))[^>]*)>', re.I)
 def cont(m):
     if 'data-for-agents' in m.group(2): return m.group(0)
     return '<%s%s hidden data-for-agents>' % (m.group(1), m.group(2).rstrip('/'))
@@ -89,7 +91,10 @@ def run(dist):
         if not (rel.startswith(TEXT_SKIP) and rel != 'wayback/index.html'):
             t, n = process(t, rep, rel, not re.search(r'<div id="(root|app)">\s*</div>', t))
         if 'id="ghf-agent-footer"' in t and GAF_IN in t and 'class="gaf-agents"' not in t:
-            t = t.replace(GAF_IN, '<p class="gaf-agents"><a href="/academy/">For agents</a></p><div class="gaf-in" hidden data-for-agents>', 1); n += 1
+            # fold the footer's own block (on /projects/ the visible TRIGGER EVENT section has an earlier gaf-in that must stay visible)
+            gi = t.find(GAF_IN, max(0, t.find('<footer id="ghf-agent-footer"')))
+            if gi >= 0:
+                t = t[:gi] + '<p class="gaf-agents"><a href="/academy/">For agents</a></p><div class="gaf-in" hidden data-for-agents>' + t[gi + len(GAF_IN):]; n += 1
             rep['footers_folded'] = rep.get('footers_folded', 0) + 1
         if 'class="gaf-agents"' in t and '/library/' not in t:
             t = re.sub(r'(<p class="gaf-agents"><a href="[^"]*">For agents</a>)', lambda m: m.group(1) + DOCS, t, count=1); rep['docs_links'] += 1
