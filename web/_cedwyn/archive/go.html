@@ -52,8 +52,8 @@ if(u){var k1=fnv(u),k2=fnv(Cedwyn.normkey(u)),n1=parseInt(k1.slice(-2),16)%16,n2
    var tk=(pth.split('/').filter(Boolean).pop()||hl.split('.')[0]).replace(/\.[a-z0-9]*$/i,'').replace(/[-_]+/g,' ');
    location.replace(/^(wayback-(html|img|pdf|video|text)|internetarchive)\./.test(hl)&&(pth==='/'||!pth)?'/wayback/':'/catalogue/?q='+encodeURIComponent(tk));return;}
   document.getElementById('ttl').textContent=host(u)||'Snapshot';
-  box.innerHTML='<p class="mb-0">Cedwyn holds the address of this page. Its Internet Archive copy and the live website are linked below.</p>';
-  lines(u,'','Address recorded on Cedwyn.');
+  box.innerHTML='<p class="mb-0">Snapshot not yet captured. The Internet Archive copy and the live website are linked below.</p>';
+  lines(u,'','Address recorded on Cedwyn; a dated copy will appear here once captured.');
  });}
 else{document.getElementById('ttl').textContent='Wayback Vault';box.innerHTML='<p class="mb-0"><a href="/wayback/">Open the Wayback Vault</a></p>';}
 </script></body></html>
