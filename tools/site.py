@@ -191,3 +191,7 @@ quiet_pages.run(DIST)
 # Copied last so no page pass rewrites it - docs library build
 import library_pointer
 library_pointer.run(DIST)
+# Social share previews (Sion, WhatsApp 05:29 GMT 27 Oct 2026): og:/twitter: tags on every page, share cards from the
+# Garden Gallery pieces (tools/og_cards.json picks the piece per section). Head tags only; runs last - Sion's Tab agent
+import og_cards
+og_cards.run(DIST)
