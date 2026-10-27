@@ -200,13 +200,13 @@
       de.classList.toggle("ghf-inv", native !== "auto" && (m === "day") !== (native === "light")); // "auto": the page draws both schemes itself, never inverted
       if (!crit) { // critical rules inline, so there is no flash while the shared CSS file loads
         crit = document.createElement("style"); crit.setAttribute("data-ghf-theme-crit", "");
-        crit.textContent = "html.ghf-inv{filter:invert(1) hue-rotate(180deg)}" +
+        crit.textContent = "html.ghf-inv{filter:invert(1) hue-rotate(180deg)}" + ":where(html.ghf-inv[data-ghf-native=light]){background-color:#fff}:where(html.ghf-inv[data-ghf-native=dark]){background-color:#000}" + /* 27 Oct 2026: paint the root so the inverted canvas is dark, not white */
           "html.ghf-inv :is(img,video,canvas,iframe,embed,object,svg image,.ghf-ui,.ghf-bgimg,[data-ghf-keep]){filter:invert(1) hue-rotate(180deg)}" +
           "html.ghf-inv :is(.ghf-ui,.ghf-bgimg,[data-ghf-keep]) :is(img,video,canvas,iframe,embed,object,svg image,.ghf-ui,.ghf-bgimg,[data-ghf-keep]){filter:none}" +
           "html[data-ghf-native=dark]:not(.ghf-inv),html[data-ghf-native=dark]:not(.ghf-inv) body{background-color:#000!important}";
         (document.head || de).appendChild(crit);
         if (!document.querySelector("link[data-ghf-theme]")) {
-          var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "/_cedwyn/ghf/ghf-theme.css?v=2.1.4c"; l.setAttribute("data-ghf-theme", "");
+          var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "/_cedwyn/ghf/ghf-theme.css?v=2.1.16"; l.setAttribute("data-ghf-theme", "");
           (document.head || de).appendChild(l);
         }
       }
