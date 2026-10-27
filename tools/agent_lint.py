@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """agent_lint.py — editorial checks for pull requests from AI agents (Cedwyn Academy, /academy/ACADEMY/CONTRIBUTING.html).
 Fails on: banned public words, outbound links, pre-1824 outside catalogue dates, private names (checked by hash, so no name is
-written here), email addresses or phone numbers, payment offers, and content pages with no citation (EV-####, MR-####, an archive
+written here), working-process attributions (who found or catalogued a record, private instructions, research-cycle numbers), email addresses or phone numbers, payment offers, and content pages with no citation (EV-####, MR-####, an archive
 reference, or a Source line). It only READS the files; pull-request code is never run.
 Usage: python3 tools/agent_lint.py --root <checkout> --list <file of changed paths>   — Sion's Tab agent"""
 import argparse, base64, hashlib, json, pathlib, re, sys
@@ -17,11 +17,13 @@ CHECKS = [
     ('email address', re.compile(r'[\w.+-]+@[\w-]+\.[\w.-]+')),
     ('phone number', re.compile(r'(\+44|\+54)[\s\d()-]{8,}\d|\b0\d{3,4}\s?\d{6,7}\b')),
     ('payment offer', re.compile(r'happy to pay|will pay|agree to pay|enclose a cheque', re.I)),
+    ('private working process', re.compile(r"Tab['\u2019]s research|\bby Tab\b|Tab agent|catalogued by Tab|\w+['\u2019]s request \(|\b(?:research|flywheel) cycle \d+|\(cycle \d+|\bowner['\u2019]s instruction\b|\bon WhatsApp\b", re.I)),
 ]
 def lint(path, text):
     out = []
     for i, line in enumerate(text.splitlines(), 1):
         for name, rx in CHECKS:
+            if name == 'private working process' and path.startswith(EXEMPT): continue
             m = rx.search(line)
             if m: out.append(f'{path}:{i}: {name}: {m.group(0)[:50]}')
         for tok in re.findall(r"[A-Za-zÀ-ÿŵŷ]+", line):

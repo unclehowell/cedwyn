@@ -46,6 +46,8 @@ jobs:
         run: python3 tools/site.py dist
       - name: Self-contained pass (shared 3-row header from /_cedwyn/ghf/, subdomain refs to /<theme>/, external refs to the archive, CDN files vendored, missing media copied)
         run: python3 tools/selfcontain.py dist --fix
+      - name: Privacy scrub (sources only on public pages; fails on any surviving working-process attribution)
+        run: python3 tools/privacy_scrub.py dist
       - name: Catalogue database (chunked)
         run: python3 tools/build_db.py dist
       - name: Outbound-link guard (rewrite any link the parser missed), then strict test
