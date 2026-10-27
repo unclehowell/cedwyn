@@ -638,8 +638,8 @@ SITE2 = {
         ("How do I place the wider matters on a future agenda?",
          "Email of 20 Oct, part (c)."),
     ],
-    "wdtk_user": "https://www.whatdotheyknow.com/user/sion_buckler",
-    "wdtk_request": "https://www.whatdotheyknow.com/request/meeting_of_22_october_2026_remot",
+    "wdtk_user": "/wdtk/",
+    "wdtk_request": "/wdtk/r/meeting_of_22_october_2026_remot/",
     "email_site": "https://email.bucklerfamily.estate/",
     "dartboard": "https://dartboard.bucklerfamily.estate/",
     "council_site": "http://www.llandough-cc.co.uk/",
@@ -710,10 +710,32 @@ def site():
     # 4-6. links out
     def go(url, label, note):
         return f'<a class="go" href="{e(url)}" rel="noopener"><span>{e(label)}</span><small>{e(note)}</small></a>'
-    wdtk_body = (go(S["wdtk_request"], "The request about this meeting", "WhatDoTheyKnow")
-                 + go(S["wdtk_user"], "Every public request we have made", "WhatDoTheyKnow profile"))
-    email_body = (go(S["email_site"], "Read the correspondence", "email.bucklerfamily.estate · public, read-only archive")
+    # 4. the Council's own record (added 27 Oct 2026)
+    record_body = (f'<p class="lead">{e(RECORD_INTRO)}</p>'
+                   + "".join(sub_(h, "".join(f"<p>{e(x)}</p>" for x in ps) + f'<p class="src">Source: {e(src)}</p>')
+                             for h, ps, src in RECORD))
+
+    # 5. correspondence before and after (dated timeline)
+    def corr_item(d, dirn, who, summary, status):
+        arrow = "to" if dirn == "Sent" else "from"
+        return sub_(f"{d} · {dirn} · {arrow} {who}",
+                    f'<p>{e(summary)}</p><p class="st">Status: {e(status)}</p>', "tl")
+    corr_parts = [f'<p class="lead">{e(CORR_INTRO)}</p>']
+    for ph, label in CORR_PHASES.items():
+        corr_parts.append(f'<h3 class="ph">{e(label)}</h3>')
+        corr_parts += [corr_item(d, dirn, who, sm, st) for p_, d, dirn, who, sm, st in CORR if p_ == ph]
+    email_body = ("".join(corr_parts)
+                  + go(S["email_site"], "Read the correspondence", "email.bucklerfamily.estate · public, read-only archive")
                   + '<p class="src">The Clerk writes in an official capacity. Personal contact details are left out.</p>')
+
+    # 6. WhatDoTheyKnow (our backed-up copies only)
+    wdtk_items = "".join(
+        sub_(t, f'<p>To: {e(body)}<br>Sent: {e(sent)}<br>Status: {e(st)}</p><p>{e(ans)}</p>'
+                + go(copy, "Our copy of this request", "WhatDoTheyKnow · backed-up copy on Cedwyn"), "tl")
+        for t, body, sent, st, ans, copy in WDTK_REQS)
+    wdtk_body = (f'<p class="lead">{e(WDTK_INTRO)}</p>' + wdtk_items
+                 + "".join(f'<p class="src">{e(n)}</p>' for n in WDTK_NOTES)
+                 + go(S["wdtk_user"], "Every public request we have made", "WhatDoTheyKnow · backed-up copies on Cedwyn"))
     dart_body = (go(S["dartboard"], "Open the board", "dartboard.bucklerfamily.estate · opens on Llandough Community Council")
                  + '<p class="src">Every request, review and complaint it took to reach this meeting, body by body.</p>')
 
@@ -721,8 +743,9 @@ def site():
         ("agenda", "The two agenda points", "Item 10: the burials, and community outreach", agenda),
         ("statement", "My statement", "The read-aloud statement for the meeting", statement_body),
         ("questions", "Questions sent to the Council", "12 questions, sent to the Clerk on 21 October", questions_body),
-        ("records", "Records requests", "Public requests on WhatDoTheyKnow", wdtk_body),
-        ("clerk", "Correspondence with the Clerk", "The emails, open for all to read", email_body),
+        ("council-record", "The Council's record", "Agenda of 13 October, draft minutes of 25 October", record_body),
+        ("clerk", "Correspondence before and after", "Every email, dated, with its reply status", email_body),
+        ("records", "WhatDoTheyKnow", "Public requests, their status and our copies", wdtk_body),
         ("road", "The road to this meeting", "Every request it took to get here", dart_body),
     ]
     seg_html = "".join(seg(i, sid, h, t, b) for i, (sid, h, t, b) in enumerate(segs, 1))
@@ -853,6 +876,9 @@ details[open]>summary>.chev{transform:rotate(-135deg);margin-bottom:-4px}
 blockquote{margin:8px 0;padding:4px 0 4px 14px;border-left:4px solid var(--red);font-size:16.5px}
 .speech p{margin:.6em 0}
 .src{font-size:13.5px;color:var(--muted);margin:8px 0}
+.ph{font-family:var(--display);font-weight:800;font-size:17px;margin:18px 0 6px}
+.tl>summary{font-size:15px;font-weight:600;line-height:1.35}
+.st{font-size:14px;font-weight:700;margin:6px 0 4px}
 .qs{margin:0;padding-left:0;list-style:none;counter-reset:q}
 .qs li{counter-increment:q}
 .qs .sub>summary span:first-child::before{content:counter(q) ". ";color:var(--red)}
