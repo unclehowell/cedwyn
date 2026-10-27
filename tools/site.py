@@ -179,3 +179,11 @@ guestbook.run(DIST)
 # /glossary/; guest book and agent-routing blocks hidden on human pages (kept in source). Runs after the guest book - Sion's Tab agent
 import wikilinks
 wikilinks.run(DIST)
+# Pages never explain themselves: self-describing, data-source and agent notes move to agent small print
+# (hidden, kept in the source); the small-print footer gains a "Docs" link to /library/. Runs after the word links - docs library build
+import quiet_pages
+quiet_pages.run(DIST)
+# Developer library (/library/, branch `library`, not a theme): database, hosting, front ends, sections, export, API/WebMCP.
+# Copied last so no page pass rewrites it - docs library build
+import library_pointer
+library_pointer.run(DIST)
