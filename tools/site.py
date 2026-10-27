@@ -156,6 +156,9 @@ ingredients.apply(DIST)
 # A crawled theme whose live site refused this build's crawl (e.g. 429) keeps its previous build's files (25 Oct 2026). - Sion's Tab agent
 import keep_previous
 keep_previous.run(DIST)
+# Cross-institution route status map (snapshot dated from the dartboard source branch).
+import dartboard_options
+dartboard_options.run(DIST)
 # Per-compartment notice boxes (notices/<theme>.json; forensic audit intake 25 Oct 2026) - Sion's Tab agent
 import theme_notices
 theme_notices.run(DIST)
