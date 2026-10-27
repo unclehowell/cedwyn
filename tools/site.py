@@ -169,6 +169,9 @@ title_chain.run(DIST, CFG)
 # The e-book compartment: editions, versions and prices on /ebooks/ (data/ebooks.json) and the free-edition gate - Sion's Tab agent
 import ebook_editions
 ebook_editions.run(DIST)
+# /ebooks/ as a shelf of poster cards: cover opens the free v0.0.1, version drop-down drives Buy/Read (27 Oct 2026) - Sion's Tab agent
+import ebook_shelf
+ebook_shelf.run(DIST)
 # Headline-first story pages (Sion, 12:01 GMT 26 Oct 2026): section detail behind a native 'Read more' in every theme - Sion's Tab agent
 import headlines
 headlines.run(DIST)
