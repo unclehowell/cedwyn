@@ -328,8 +328,8 @@ h1{font-size:clamp(1.9rem,4vw,3.15rem);line-height:1.08;letter-spacing:-.035em;m
     matches.sort(function(a,b){
       if(mode==="name")return a.dataset.name.localeCompare(b.dataset.name);
       if(mode==="remaining"){
-        var ar=Number(a.dataset["open-count"]||0)+Number(a.dataset.queued||0)+Number(a.dataset.pending||0);
-        var br=Number(b.dataset["open-count"]||0)+Number(b.dataset.queued||0)+Number(b.dataset.pending||0);
+        var ar=Number(a.dataset.openCount||0)+Number(a.dataset.queued||0)+Number(a.dataset.pending||0);
+        var br=Number(b.dataset.openCount||0)+Number(b.dataset.queued||0)+Number(b.dataset.pending||0);
         if(ar!==br)return br-ar;
       }
       return cmpPriority(a,b);
