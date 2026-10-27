@@ -94,10 +94,18 @@ def run(dist):
             # fold the footer's own block (on /projects/ the visible TRIGGER EVENT section has an earlier gaf-in that must stay visible)
             gi = t.find(GAF_IN, max(0, t.find('<footer id="ghf-agent-footer"')))
             if gi >= 0:
-                t = t[:gi] + '<p class="gaf-agents"><a href="/academy/">For agents</a></p><div class="gaf-in" hidden data-for-agents>' + t[gi + len(GAF_IN):]; n += 1
+                t = t[:gi] + '<p class="gaf-agents"><a href="/library/">Docs</a></p><div class="gaf-in" hidden data-for-agents>' + t[gi + len(GAF_IN):]; n += 1
             rep['footers_folded'] = rep.get('footers_folded', 0) + 1
+        # no visible "For agents" link on human pages (27 Oct 2026): drop any baked-in one; agents use the hidden head tags below
+        t = re.sub(r'(<p class="gaf-agents">)<a href="[^"]*">For agents</a>(?:\s*\u00b7\s*)?', r'\1', t)
         if 'class="gaf-agents"' in t and '/library/' not in t:
-            t = re.sub(r'(<p class="gaf-agents"><a href="[^"]*">For agents</a>)', lambda m: m.group(1) + DOCS, t, count=1); rep['docs_links'] += 1
+            t = t.replace('<p class="gaf-agents">', '<p class="gaf-agents">' + DOCS.lstrip(' \u00b7'), 1); rep['docs_links'] += 1
+        if 'id="ghf-agent-footer"' in t and 'href="/agents.json"' not in t:   # hidden machine discovery in <head> (pages rebuilt after academy_pointer)
+            try:
+                from academy_pointer import TAG as AP_TAG
+                i = t.lower().find('</head>')
+                if i >= 0: t = t[:i] + AP_TAG + t[i:]
+            except Exception: pass
         if n:
             rep['pages'] += 1; rep['notes_hidden'] += n
             if 'id="cw-agents-css"' not in t:

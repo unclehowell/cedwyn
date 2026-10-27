@@ -237,7 +237,7 @@ def _footer_snips():
         except Exception: _FOOT['footer'] = _FOOT['head'] = ''
     return _FOOT
 def _small_footer(t, href):
-    link = '<p class="gaf-agents"><a href="%s">For agents</a></p>' % href
+    link = '<p class="gaf-agents"><a href="/library/">Docs</a></p>'   # no visible "For agents" link on human pages (27 Oct 2026); agents find /academy/ via head tags, robots.txt, /llms.txt, /agents.json
     # fold the footer's own block: on /projects/ the visible TRIGGER EVENT section has an earlier gaf-in that must stay visible
     gi = t.find(GAF_IN, max(0, t.find('<footer id="ghf-agent-footer"')))
     if gi < 0: return t
