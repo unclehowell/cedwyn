@@ -100,6 +100,9 @@ def rw(u, tid, link, page_rel):
         if tu is not None:
             stats['cross'] += 1; return resolve_blob(tu + rest, page_rel)
         if host in MEDIA and not link: return u
+        # 27 Oct 2026: e-book Buy buttons go straight to checkout, never via /wayback/go/ (Sion 13:01: never the interstitial)
+        if link and (host in ('buy.stripe.com', 'checkout.stripe.com', 'gumroad.com') or host.endswith('.gumroad.com')):
+            stats['checkout'] = stats.get('checkout', 0) + 1; return u
         if link:
             stats['outbound'] += 1; return '/wayback/go/?u=' + urllib.parse.quote(s, safe='')
         return u

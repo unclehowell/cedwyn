@@ -32,6 +32,7 @@ for h, tid in CFG.get('extra_hosts', {}).items():
     if tid: HOST[h.lower()] = tid
 APEX = sorted(CFG['apex']['paths'].items(), key=lambda kv: -len(kv[0]))
 TILES = CFG.get('allowed_tile_templates', [])
+CHECKOUT = ('buy.stripe.com', 'checkout.stripe.com', 'gumroad.com')   # checkout links stay direct (see classify)
 NS = {'www.w3.org', 'w3.org', 'schema.org', 'purl.org', 'ogp.me', 'xmlns.com', 'ns.adobe.com', 'www.inkscape.org',
       'sodipodi.sourceforge.net', 'creativecommons.org', 'www.openarchives.org', 'www.sitemaps.org', 'docs.oasis-open.org',
       'rdfs.org', 'web.resource.org', 'www.google.com/schemas', 'search.yahoo.com', 'ns.attribution.cloudflare.com'}
@@ -76,6 +77,8 @@ def classify(m):
     if host in HOST or host == 'bucklerfamily.estate' or host.endswith('.bucklerfamily.estate'):
         return 'sub', None
     if host in CDN: return 'cdn', None
+    # 27 Oct 2026: e-book Buy buttons go straight to checkout (Sion 13:01: never the interstitial; a payment step is not archived)
+    if host in CHECKOUT or host.endswith('.gumroad.com'): return 'ns', None
     # a YouTube thumbnail whose video was checked (oEmbed author) and is not from the excluded channel: copied as an image
     if host == 'i.ytimg.com' and any('/vi/' + v + '/' in path for v in CFG.get('ytimg_checked', {})): return 'cdn', None
     return 'ext', None

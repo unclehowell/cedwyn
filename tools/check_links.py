@@ -9,6 +9,7 @@ IF = re.compile(r'''<iframe\b(?:[^>"']|"[^"]*"|'[^']*')*?\ssrc\s*=\s*("[^"]*"|'[
 BANNED = re.compile(r'UC2sN1VEs1WeLfBH8VmbvLWw|sionbuckler5713', re.I)
 SCRIPT = re.compile(r'<script\b.*?</script>', re.I | re.S)
 FIX = '--fix' in sys.argv
+CHECKOUT = ('buy.stripe.com', 'checkout.stripe.com', 'gumroad.com')   # 27 Oct 2026: e-book Buy buttons go straight to checkout (Sion 13:01)
 import urllib.parse
 CFG = json.load(open(pathlib.Path(__file__).resolve().parent.parent / 'themes.json'))
 THOST = {h.lower(): t['id'] for t in CFG['themes'] for h in t.get('hosts', []) if h not in ('bucklerfamily.estate', 'www.bucklerfamily.estate')}
@@ -32,7 +33,7 @@ for p in DIST.rglob('*.htm*'):
             global fixed
             v = m.group(3); q = v[0] if v[0] in '"\'' else ''; u = v[1:-1] if q else v; u2 = u.strip()
             if BANNED.search(u2): fixed += 1; return m.group(0)[:-len(v)] + '"#"'
-            if re.match(r'(?i)^(https?:)?//', u2) and re.sub(r'(?i)^(https?:)?//', '', u2).split('/')[0].split(':')[0].lower() != 'cedwyn.bucklerfamily.estate':
+            if re.match(r'(?i)^(https?:)?//', u2) and re.sub(r'(?i)^(https?:)?//', '', u2).split('/')[0].split(':')[0].lower() not in ('cedwyn.bucklerfamily.estate',) + CHECKOUT and not re.sub(r'(?i)^(https?:)?//', '', u2).split('/')[0].split(':')[0].lower().endswith('.gumroad.com'):
                 fixed += 1; full = ('https:' + u2) if u2.startswith('//') else u2
                 t = theme_link(full)   # 25 Oct 2026: a theme's former address goes to the theme, not to /wayback/go/
                 if t: return m.group(0)[:-len(v)] + '"' + t + '"'
@@ -50,7 +51,7 @@ for p in DIST.rglob('*.htm*'):
         links += 1; v = v.strip('"\'').strip()
         if re.match(r'(?i)^(https?:)?//', v):
             host = re.sub(r'(?i)^(https?:)?//', '', v).split('/')[0].split('?')[0].split('#')[0].split(':')[0].lower()
-            if host != 'cedwyn.bucklerfamily.estate': bad.append((str(p.relative_to(DIST)), v[:120]))
+            if host != 'cedwyn.bucklerfamily.estate' and host not in CHECKOUT and not host.endswith('.gumroad.com'): bad.append((str(p.relative_to(DIST)), v[:120]))
         if BANNED.search(v): bad.append((str(p.relative_to(DIST)), 'BANNED ' + v[:80]))
     for v in IF.findall(s):
         if BANNED.search(v): bad.append((str(p.relative_to(DIST)), 'BANNED iframe ' + v[:80]))
