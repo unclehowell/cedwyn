@@ -1,8 +1,8 @@
 {
  "schema": "cedwyn_academy/v1",
  "name": "Cedwyn Academy",
- "version": "1.0.4",
- "built_utc": "2026-10-27 12:53 UTC",
+ "version": "1.0.5",
+ "built_utc": "2026-10-27 19:40 UTC",
  "base_path": "/academy/",
  "alias_paths": [
   "/academy/"
@@ -412,6 +412,25 @@
    ],
    "metric": "inputs digested; open jobs on the board; scanner clean; live check passes",
    "report": "Nothing routine; one line to the root only when a new section of the library goes live or the scanner blocks a publish."
+  },
+  {
+   "id": "problems-flywheel",
+   "name": "Problems flywheel",
+   "cadence": "every 30 minutes",
+   "prefix": "PROBLEMS FLYWHEEL RUN",
+   "runner": "work/problems/QUEUE.md",
+   "purpose": "Take every blocker, question or problem an agent would otherwise raise with the project lead and loop on it until it is solved.",
+   "inputs": [
+    "the problems queue (oldest open first, up to three per run)",
+    "the editorial standing orders"
+   ],
+   "outputs": [
+    "a hypothesis, action and result logged under each problem",
+    "fixes applied within the standing orders",
+    "problems marked solved with evidence, or unsolvable with a one-line reason"
+   ],
+   "metric": "open problems solved per run; time each problem stays open",
+   "report": "Nothing to the project lead unless a problem stays unsolved after six hours of looping; then one short line per problem: what it is and what was tried."
   }
  ],
  "files": [
@@ -440,22 +459,22 @@
    "path": "ACADEMY/WORK.md",
    "html": "ACADEMY/WORK.html",
    "title": "Work board",
-   "bytes": 47711,
-   "sha256": "9895189307a0d64b56f2300376af57d1c4a0e90c557110ee41038eeaf020c82d"
+   "bytes": 48046,
+   "sha256": "d93eb43c5bb163319a00a4dfb1897b03511ca5fdf50d7a4419a015d12c28f8ac"
   },
   {
    "path": "CHANGELOG.md",
    "html": "CHANGELOG.html",
    "title": "CHANGELOG",
-   "bytes": 1849,
-   "sha256": "5313fc506cc55a5bfdd6cc2bdbca20c2b6442a698d20d6af19df44ca7045cea8"
+   "bytes": 2405,
+   "sha256": "e766e008371b436c5c2763f981b14c3cb34742b4a38ef381d2c291c3f9bdf06e"
   },
   {
    "path": "FLYWHEELS/README.md",
    "html": "FLYWHEELS/index.html",
    "title": "FLYWHEELS",
-   "bytes": 3954,
-   "sha256": "c11e4b5025632cd45ec38e0a9b618e26a5fa66bb43b520f1aec0220bd7496ae1"
+   "bytes": 4149,
+   "sha256": "e671cfc8414db537080bc6762ce13b120d35e7b3ca779b8802705a1b9e59cb4a"
   },
   {
    "path": "FLYWHEELS/SCHEMA.md",
@@ -540,6 +559,13 @@
    "title": "Flywheel: Cedwyn film — daily scene",
    "bytes": 666,
    "sha256": "d01099727d0c15f871e918921f8e3fe0275a41813946020079ac8006f3261df5"
+  },
+  {
+   "path": "FLYWHEELS/problems-flywheel.md",
+   "html": "FLYWHEELS/problems-flywheel.html",
+   "title": "Flywheel: Problems flywheel",
+   "bytes": 908,
+   "sha256": "818f70e46fa052213b6514ab6dc98273d18eb8af76c167e0fcf64d139e1733ce"
   },
   {
    "path": "FLYWHEELS/programme-office.md",
@@ -636,8 +662,8 @@
    "path": "LESSONS.md",
    "html": "LESSONS.html",
    "title": "LESSONS — mistakes and the rules they produced",
-   "bytes": 9628,
-   "sha256": "ed647c371e908df580b413ba23aba133b0472250c4f65802faaa2f353091e10e"
+   "bytes": 11048,
+   "sha256": "644033d9709652b525f178990348bce007e3c8debd9dc2869f52e4f678bc9c74"
   },
   {
    "path": "MEMORY/README.md",
@@ -672,14 +698,14 @@
    "html": "MEMORY/site-map.html",
    "title": "Cedwyn site map",
    "bytes": 4829,
-   "sha256": "4bd994f272f20396b0168d4bae2f0d573abe64b1992ede1dee72f626dd2161ed"
+   "sha256": "b14b41ef8aab49ed768277173b07e47d5bce703e680ac9a8585898c65493e627"
   },
   {
    "path": "MEMORY/standing-orders.md",
    "html": "MEMORY/standing-orders.html",
    "title": "Standing orders",
-   "bytes": 5699,
-   "sha256": "d98cf9200fd911f68b0fc5c8994d72a64b3aa35fe7190f5c8aa5861632dcd7e4"
+   "bytes": 6345,
+   "sha256": "58d72a94e3218cc3910db692c16d28f101cf1fbba2d9f109660f6d6250df9003"
   },
   {
    "path": "ONBOARDING.md",
@@ -699,8 +725,8 @@
    "path": "SKILLS/README.md",
    "html": "SKILLS/index.html",
    "title": "SKILLS",
-   "bytes": 208337,
-   "sha256": "254c0bc587056bebd451ae565332e316e91b57912e560ae51b22ab7b2de9ca89"
+   "bytes": 218485,
+   "sha256": "286541a6f29ee038d22c8a81888326ad2a93b6174f15ac90588fc2cc7f78fe27"
   },
   {
    "path": "SKILLS/marketing/1.md",
@@ -713,8 +739,8 @@
    "path": "SKILLS/marketing/2.md",
    "html": "SKILLS/marketing/2.html",
    "title": "Skill #2 — Business research & strategy for a niche heritage e-book shop (2026)",
-   "bytes": 8258,
-   "sha256": "0af969d602e7311932017f2ac0c1053b50a11549bf2adf22f5e9984e4a52c318"
+   "bytes": 8568,
+   "sha256": "7c399921e308ddbbe525467b74192d258e4454259ead38e3f1c95cd33d5270aa"
   },
   {
    "path": "SKILLS/marketing/3.md",
@@ -727,8 +753,8 @@
    "path": "SKILLS/marketing/4.md",
    "html": "SKILLS/marketing/4.html",
    "title": "Entry #4 AI video creation: 30 s history Shorts that hold attention (skill, 26 Oct 2026)",
-   "bytes": 2251,
-   "sha256": "5fc8b7945640a81635695f3bf5e458e1029d20a6d2a50a599d6bf0350f1f9950"
+   "bytes": 4015,
+   "sha256": "2b652fcaf8a343f50e6fcef540574f67c43d1f270a72177f17ffa0b717e51998"
   },
   {
    "path": "SKILLS/marketing/40.md",
@@ -927,6 +953,13 @@
    "sha256": "f1a8e9c244029eef61c66c4b44ac0f06ac895ef2da7cc22820e8ae9c6494c929"
   },
   {
+   "path": "SKILLS/marketing/calan-gaeaf-seasonal-hook-welsh-halloween-folklore.md",
+   "html": "SKILLS/marketing/calan-gaeaf-seasonal-hook-welsh-halloween-folklore.html",
+   "title": "Calan Gaeaf (31 Oct / 1 Nov): a short-notice seasonal hook for a Welsh farm-history brand",
+   "bytes": 4869,
+   "sha256": "edf6ef4722481006ce526911fb2d7df62da74abff975992117a3f0bfa5df9bba"
+  },
+  {
    "path": "SKILLS/marketing/cardiff-libraries-hubs-talk-route.md",
    "html": "SKILLS/marketing/cardiff-libraries-hubs-talk-route.html",
    "title": "Cardiff Libraries and Hubs: the talk and local-studies route",
@@ -1072,6 +1105,13 @@
    "title": "CTA button copy: say what the reader gets, in their own voice",
    "bytes": 4965,
    "sha256": "e380ae7d15c04553f8ccfac0bcf512eb82a0470e2da52e14fc93268f2bc1c3db"
+  },
+  {
+   "path": "SKILLS/marketing/dark-mode-prefers-color-scheme-no-flash.md",
+   "html": "SKILLS/marketing/dark-mode-prefers-color-scheme-no-flash.html",
+   "title": "Dark mode for Cedwyn pages: follow the phone, no white flash (prefers-color-scheme + color-scheme)",
+   "bytes": 4883,
+   "sha256": "61c6e64491320863dd2a274678549d92e088b2b961ae48cd524af80cdfac0012"
   },
   {
    "path": "SKILLS/marketing/data-led-digital-pr-heritage-dataset-pitch.md",
@@ -1312,6 +1352,13 @@
    "sha256": "2052a564ce379c76c5ae46a8885151f8617a4926cc0fff429cad1838441fdc0e"
   },
   {
+   "path": "SKILLS/marketing/film-festival-zero-fee-premiere-status-gate.md",
+   "html": "SKILLS/marketing/film-festival-zero-fee-premiere-status-gate.html",
+   "title": "Film festival submissions at $0: premiere status gate + free entries (documentary scenes)",
+   "bytes": 4087,
+   "sha256": "f69d435a9d5529d7c87f0be73333e3b34e6b6864649a196c093a6f1b63b7d992"
+  },
+  {
    "path": "SKILLS/marketing/flipboard-publisher-magazine-rss.md",
    "html": "SKILLS/marketing/flipboard-publisher-magazine-rss.html",
    "title": "Flipboard: publisher profile, RSS-fed Magazine, measure before investing",
@@ -1347,11 +1394,25 @@
    "sha256": "0da3b41059a9a4c05c3d1439a8590fbdc57e342af5e4d7473a987b7cfc9585e1"
   },
   {
+   "path": "SKILLS/marketing/free-sample-chapter-read-before-buy.md",
+   "html": "SKILLS/marketing/free-sample-chapter-read-before-buy.html",
+   "title": "Free sample chapter: read-before-buy on a direct e-book page",
+   "bytes": 4720,
+   "sha256": "a9a77e074090c0692ae848ac6af41928e2bff143714adbfa30f3a453644c3f50"
+  },
+  {
    "path": "SKILLS/marketing/glossary-definition-pages-internal-anchor-text.md",
    "html": "SKILLS/marketing/glossary-definition-pages-internal-anchor-text.html",
    "title": "Glossary pages + descriptive internal links (SEO and AI citations)",
    "bytes": 5819,
    "sha256": "545fc0a485200f3ff5493549ebea2a175c11e31fd7200c32dfb173937eb2a9e9"
+  },
+  {
+   "path": "SKILLS/marketing/glossary-modal-link-first-dialog.md",
+   "html": "SKILLS/marketing/glossary-modal-link-first-dialog.html",
+   "title": "Glossary as a pop-up (modal) without losing the glossary's search value: link-first `<dialog>`",
+   "bytes": 4581,
+   "sha256": "7bdc2761307384e5bf3d372fd5a8055a56e78e63252f09ee0137900173806d08"
   },
   {
    "path": "SKILLS/marketing/gmail-manage-subscriptions-gemini-summaries-metrics.md",
@@ -1459,6 +1520,13 @@
    "sha256": "31a42fb46c1315901f61b74adf4088e121965872da5ff695a56191a35aac5cec"
   },
   {
+   "path": "SKILLS/marketing/growth-experiment-loop-autoresearch-keep-discard.md",
+   "html": "SKILLS/marketing/growth-experiment-loop-autoresearch-keep-discard.html",
+   "title": "Growth experiment loop, autoresearch style (one metric, one change, keep/discard log)",
+   "bytes": 4411,
+   "sha256": "9e7df8d0352fd280c56ac21361322e1aa032c93273ee00b415ca5a44c5ac8ddc"
+  },
+  {
    "path": "SKILLS/marketing/gsc-striking-distance-quick-wins.md",
    "html": "SKILLS/marketing/gsc-striking-distance-quick-wins.html",
    "title": "Search Console \"striking distance\" quick wins for a small history site (2026)",
@@ -1527,6 +1595,13 @@
    "title": "Hero / first-screen value proposition: the 10-second test",
    "bytes": 4504,
    "sha256": "1c9e7d4705b53712e6462bc6f43c7348a1cb05cd5d01d28dfd71eb8a1ecf70be"
+  },
+  {
+   "path": "SKILLS/marketing/history-magazine-journal-articles-historian-history-today.md",
+   "html": "SKILLS/marketing/history-magazine-journal-articles-historian-history-today.html",
+   "title": "History magazine and journal articles as a traffic and authority route",
+   "bytes": 3749,
+   "sha256": "0f3953a72c4c70c9bb9873dbd6ade5e3de525aacf1bb788b9ba9dcd57dd1bd22"
   },
   {
    "path": "SKILLS/marketing/historypin-tour-archive-pins.md",
@@ -1660,6 +1735,13 @@
    "title": "Komoot Highlights + a public route for a heritage walk (walker discovery, zero spend)",
    "bytes": 4515,
    "sha256": "c3d85a4677ecca512da95f58cab10b9968c49394c545025838adb8cc6f4558bf"
+  },
+  {
+   "path": "SKILLS/marketing/launch-week-email-sequence-deadline-last-day.md",
+   "html": "SKILLS/marketing/launch-week-email-sequence-deadline-last-day.html",
+   "title": "Launch-week email sequence: real deadline, 5-7 last-day emails, one row per send",
+   "bytes": 4987,
+   "sha256": "d2fc4fe75469f500aadc331125eeae7c981b3dcd1479961714f671ffdc16705c"
   },
   {
    "path": "SKILLS/marketing/legal-deposit-ebooks-uk-web-archive-nomination.md",
@@ -1814,6 +1896,13 @@
    "title": "A money-back guarantee line on the e-book sales page (risk reversal)",
    "bytes": 4994,
    "sha256": "4a2c1cfeded55d6424effa18998b92c0c6fc825f2afd802fda91733257101440"
+  },
+  {
+   "path": "SKILLS/marketing/muted-autoplay-youtube-embed-wcag-pause-no-views.md",
+   "html": "SKILLS/marketing/muted-autoplay-youtube-embed-wcag-pause-no-views.html",
+   "title": "Muted autoplay video at the top of a page (YouTube embed): policy, accessibility, views",
+   "bytes": 4475,
+   "sha256": "9369e093fb938c32244b285876169b1dacc7ce177cf58e81bd6799439b21e19d"
   },
   {
    "path": "SKILLS/marketing/new-release-launch-backlist-price-promo.md",
@@ -2187,6 +2276,13 @@
    "sha256": "b36bb2d4d193a351931f359c31593225e8afe8d9cbc9a137278f918da4c1ee77"
   },
   {
+   "path": "SKILLS/marketing/site-migration-redirect-map-internal-link-crawl.md",
+   "html": "SKILLS/marketing/site-migration-redirect-map-internal-link-crawl.html",
+   "title": "Site migration: redirect map + broken internal link crawl",
+   "bytes": 4931,
+   "sha256": "f0aa073d6029221956f5874ccb4a61fedb6c7fdc495caf4613ba48f17bd91d82"
+  },
+  {
    "path": "SKILLS/marketing/site-name-breadcrumb-structured-data-cedwyn.md",
    "html": "SKILLS/marketing/site-name-breadcrumb-structured-data-cedwyn.html",
    "title": "Site name + breadcrumb structured data for Cedwyn (Google result labels)",
@@ -2446,6 +2542,13 @@
    "sha256": "c1e47541e922d76f75f97f8f5c726c955cf50ed8482adaabc39a0b5c3ab9356e"
   },
   {
+   "path": "SKILLS/marketing/wayback-snapshot-pages-noindex-canonical-ogl-fair-dealing.md",
+   "html": "SKILLS/marketing/wayback-snapshot-pages-noindex-canonical-ogl-fair-dealing.html",
+   "title": "Archive snapshot pages (/wayback/) without SEO or copyright trouble",
+   "bytes": 3563,
+   "sha256": "2919e533179e502137e866699dc4723a1dd0b8f1871704137a4b57c65f7846f7"
+  },
+  {
    "path": "SKILLS/marketing/web-push-notifications-soft-ask-ios-home-screen.md",
    "html": "SKILLS/marketing/web-push-notifications-soft-ask-ios-home-screen.html",
    "title": "Web push notifications on a static heritage site: when it is worth it (2026)",
@@ -2472,6 +2575,13 @@
    "title": "Reaching Welsh-Patagonian societies in Chubut: who they are, how they like to be approached (2026 how-to)",
    "bytes": 6481,
    "sha256": "c2384dc68ee5254b17e205898428cd5a2ea1527b99c8b5e2f529c5f9353df0bd"
+  },
+  {
+   "path": "SKILLS/marketing/welsh-publisher-proposals-seren-graffeg-carreg-gwalch.md",
+   "html": "SKILLS/marketing/welsh-publisher-proposals-seren-graffeg-carreg-gwalch.html",
+   "title": "Pitching a heritage book to small Welsh publishers (Seren, Graffeg, Carreg Gwalch)",
+   "bytes": 4440,
+   "sha256": "b9560e9dd05101705bfd8f844cf7e8ba0aaf9d2b47b84809a03b4150192e0b05"
   },
   {
    "path": "SKILLS/marketing/whatsapp-channel-readers-uk-patagonia.md",
@@ -2572,6 +2682,13 @@
    "sha256": "58635f6eeb51a80953ca6f4055394dca853b0926476dcb48ceeb7a317fac2185"
   },
   {
+   "path": "SKILLS/marketing/youtube-upload-cadence-6-hourly-scenes-frequency-vs-quality.md",
+   "html": "SKILLS/marketing/youtube-upload-cadence-6-hourly-scenes-frequency-vs-quality.html",
+   "title": "Upload cadence for 6-hourly documentary scenes: frequency vs per-video quality",
+   "bytes": 3487,
+   "sha256": "909e43c6e1ef72d1e2baef83af17c452afbd82d222a39660474498b96bae8a39"
+  },
+  {
    "path": "SKILLS/marketing/youtube-vertical-live-shorts-feed.md",
    "html": "SKILLS/marketing/youtube-vertical-live-shorts-feed.html",
    "title": "YouTube vertical live: a stream that shows in the Shorts feed (2026)",
@@ -2584,6 +2701,13 @@
    "title": "Open-access deposit with a DOI: Zenodo, Google Scholar and Argentine university repositories",
    "bytes": 5495,
    "sha256": "1b9cab7f9d6ef9307b56075757b9cc0a093ece20be0b157f42380c9dd51bbbc8"
+  },
+  {
+   "path": "SKILLS/marketing/zero-sales-diagnosis-traffic-vs-conversion-binomial.md",
+   "html": "SKILLS/marketing/zero-sales-diagnosis-traffic-vs-conversion-binomial.html",
+   "title": "Zero-sales diagnosis: is it traffic or conversion? (binomial odds + first-zero step)",
+   "bytes": 3908,
+   "sha256": "01f778c9286e4c26971894d34ab822be47f427c7be1b25ad8b1bc7d1624b219f"
   },
   {
    "path": "SKILLS/research/archive-catalogues.md",

@@ -1,12 +1,18 @@
 {
  "name": "The Williams–Buckler family tree",
  "segment": "familytree",
- "version": "0.2.0",
- "synced_utc": "2026-10-27T14:39:58Z",
+ "version": "0.3.0",
+ "synced_utc": "2026-10-27T19:17:50Z",
  "source": "Cedwyn core catalogue (kind=person) + segment overlay",
  "api": "/api/catalogue?kind=person",
- "living_rule": "no death record and born within the last 110 years: relationship and birth year only, never a name",
+ "living_rule": "no death record and born within the last 110 years: relationship and birth year only; named only at the family’s explicit request",
  "versions": [
+  {
+   "v": "0.3.0",
+   "date": "27 October 2026",
+   "price": "Free",
+   "change": "Family corrections: the grandson’s parents named at the family’s request, William (Billy) and Branwen Buckler; his three siblings added with birth years; the son shown before as William Beverley (Billy) is Bucky, William’s brother; five sisters shown without names; the side heading removed."
+  },
   {
    "v": "0.2.0",
    "date": "27 October 2026",
@@ -469,13 +475,13 @@
   },
   {
    "id": "GAP-0003",
-   "name": "Seven children in all",
+   "name": "Five sisters",
    "gen": 5,
    "order": 1,
-   "gap": true,
-   "dates": "other names held back",
+   "col": 0,
+   "dates": "names held back",
    "side": "wales",
-   "summary": "Nancy and Fred raised seven children in the farmhouse. William (Billy) is shown here; the names of the others are held back until the family confirms them.",
+   "summary": "Nancy and Fred raised seven children in the farmhouse: William (Billy), Bucky and five daughters. The five sisters are listed below without names.",
    "parents": [
     {
      "id": "PE-0008",
@@ -491,20 +497,21 @@
    "sources": [
     {
      "ref": null,
-     "label": "E-book The Williams–Buckler Family, v0.1.0 (20 Oct 2026), chapter “Mary Doreen (Nancy) Williams”"
+     "label": "Family account, 27 Oct 2026; E-book The Williams–Buckler Family, v0.1.0 (20 Oct 2026): seven children"
     }
    ],
-   "col": 0
+   "living": true,
+   "born_year": null
   },
   {
    "id": "GAP-0004",
-   "name": "His father",
+   "name": "William (Billy) Buckler",
    "gen": 5,
    "order": 2,
-   "gap": true,
-   "dates": "not yet found",
+   "col": 2,
+   "dates": "dates not given",
    "side": "wales",
-   "summary": "One of the sons of Nancy and Fred, in the family account. Which son is not yet matched to a record in this edition.",
+   "summary": "Son of Nancy and Fred and brother of Bucky; husband of Branwen and father of the grandson and his three siblings, in the family account (27 Oct 2026). Records for him are being matched.",
    "parents": [
     {
      "id": "PE-0008",
@@ -517,28 +524,29 @@
      "basis": "As above."
     }
    ],
-   "sources": [
-    {
-     "ref": null,
-     "label": "Family account. Record not yet found."
-    }
-   ],
-   "col": 2,
    "spouse": {
     "id": "LV-0003",
     "link": "family",
     "basis": "Family account, 27 Oct 2026."
-   }
+   },
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026"
+    }
+   ],
+   "living": true,
+   "born_year": null
   },
   {
    "id": "LV-0003",
-   "name": "His mother",
+   "name": "Branwen Buckler",
    "gen": 5,
    "order": 2,
    "col": 1,
    "living": true,
    "side": "wales",
-   "summary": "The grandson’s mother, who married into the Buckler family. Living, so not named here.",
+   "summary": "Wife of William (Billy) Buckler and mother of the grandson and his three siblings. Named here at the family’s request (27 Oct 2026).",
    "parents": [],
    "spouse": {
     "id": "GAP-0004",
@@ -562,7 +570,7 @@
    "dates": "1948 – 1990",
    "place": "Great House Farm, Llandough, until 1988",
    "side": "wales",
-   "summary": "Son of Nancy and Fred, born on 25 August 1948. After his mother’s death in 1983 he took up the defence of the house, and he was the defendant in BP Properties Ltd v Buckler (Court of Appeal, 1987). A probate entry for a William Beverley Buckler who died on 29 April 1990 is probably his.",
+   "summary": "Son of Nancy and Fred, and brother of William (Billy), in the family account (27 Oct 2026). This tree earlier showed this son as William Beverley (Billy) Buckler. The 1987 judgment’s “Mr Buckler junior” (born 1948, defendant in BP Properties Ltd v Buckler) and the 1990 probate entry for a William Beverley Buckler are being matched between the two brothers.",
    "parents": [
     {
      "id": "PE-0008",
@@ -587,12 +595,188 @@
     }
    ],
    "gaps": [
+    "Which brother the 1987 judgment and the 1990 probate entry refer to: being matched (family account, 27 Oct 2026)",
     "Death date: 29 April 1990 in the probate calendar (a probable match); another family record gives 29 May 1990"
    ],
    "living": false,
    "col": 3,
    "id": "PE-0010",
-   "name": "William Beverley (Billy) Buckler"
+   "name": "Bucky Buckler"
+  },
+  {
+   "id": "SIS-0001",
+   "name": "Sister",
+   "gen": 5,
+   "order": 11,
+   "dates": "dates held back",
+   "side": "wales",
+   "summary": "A daughter of Nancy and Fred, sister of William (Billy) and Bucky. Not named here.",
+   "parents": [
+    {
+     "id": "PE-0008",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026: five daughters."
+    },
+    {
+     "id": "PE-0009",
+     "link": "family",
+     "basis": "As above."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026"
+    }
+   ],
+   "living": true,
+   "born_year": null
+  },
+  {
+   "id": "SIS-0002",
+   "name": "Sister",
+   "gen": 5,
+   "order": 12,
+   "dates": "dates held back",
+   "side": "wales",
+   "summary": "A daughter of Nancy and Fred, sister of William (Billy) and Bucky. Not named here.",
+   "parents": [
+    {
+     "id": "PE-0008",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026: five daughters."
+    },
+    {
+     "id": "PE-0009",
+     "link": "family",
+     "basis": "As above."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026"
+    }
+   ],
+   "living": true,
+   "born_year": null
+  },
+  {
+   "id": "SIS-0003",
+   "name": "Sister",
+   "gen": 5,
+   "order": 13,
+   "dates": "dates held back",
+   "side": "wales",
+   "summary": "A daughter of Nancy and Fred, sister of William (Billy) and Bucky. Not named here.",
+   "parents": [
+    {
+     "id": "PE-0008",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026: five daughters."
+    },
+    {
+     "id": "PE-0009",
+     "link": "family",
+     "basis": "As above."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026"
+    }
+   ],
+   "living": true,
+   "born_year": null
+  },
+  {
+   "id": "SIS-0004",
+   "name": "Sister",
+   "gen": 5,
+   "order": 14,
+   "dates": "dates held back",
+   "side": "wales",
+   "summary": "A daughter of Nancy and Fred, sister of William (Billy) and Bucky. Not named here.",
+   "parents": [
+    {
+     "id": "PE-0008",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026: five daughters."
+    },
+    {
+     "id": "PE-0009",
+     "link": "family",
+     "basis": "As above."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026"
+    }
+   ],
+   "living": true,
+   "born_year": null
+  },
+  {
+   "id": "SIS-0005",
+   "name": "Sister",
+   "gen": 5,
+   "order": 15,
+   "dates": "dates held back",
+   "side": "wales",
+   "summary": "A daughter of Nancy and Fred, sister of William (Billy) and Bucky. Not named here.",
+   "parents": [
+    {
+     "id": "PE-0008",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026: five daughters."
+    },
+    {
+     "id": "PE-0009",
+     "link": "family",
+     "basis": "As above."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026"
+    }
+   ],
+   "living": true,
+   "born_year": null
+  },
+  {
+   "id": "LV-0004",
+   "name": "Rhys",
+   "gen": 6,
+   "order": 0,
+   "col": 0,
+   "living": true,
+   "born_year": 1983,
+   "dates": "b. 1983",
+   "side": "wales",
+   "summary": "Child of William (Billy) and Branwen Buckler, born in 1983; a sibling of the grandson. Named here at the family’s request (27 Oct 2026).",
+   "parents": [
+    {
+     "id": "GAP-0004",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026."
+    },
+    {
+     "id": "LV-0003",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026"
+    }
+   ]
   },
   {
    "id": "LV-0001",
@@ -604,12 +788,72 @@
    "born_year": 1984,
    "dates": "b. 1984",
    "side": "wales",
-   "summary": "Grandson of Nancy and Fred, born in 1984. Living, so not named here.",
+   "summary": "Grandson of Nancy and Fred, son of William (Billy) and Branwen, born in 1984. Living, so not named here.",
    "parents": [
     {
      "id": "GAP-0004",
      "link": "family",
      "basis": "Family account. Record not yet found."
+    },
+    {
+     "id": "LV-0003",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026"
+    }
+   ]
+  },
+  {
+   "id": "LV-0005",
+   "name": "Mary",
+   "gen": 6,
+   "order": 2,
+   "col": 1,
+   "living": true,
+   "born_year": 1985,
+   "dates": "b. 1985",
+   "side": "wales",
+   "summary": "Child of William (Billy) and Branwen Buckler, born in 1985; a sibling of the grandson. Named here at the family’s request (27 Oct 2026).",
+   "parents": [
+    {
+     "id": "GAP-0004",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026."
+    },
+    {
+     "id": "LV-0003",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026"
+    }
+   ]
+  },
+  {
+   "id": "LV-0006",
+   "name": "Perdita",
+   "gen": 6,
+   "order": 3,
+   "col": 3,
+   "living": true,
+   "born_year": 1989,
+   "dates": "b. 1989",
+   "side": "wales",
+   "summary": "Child of William (Billy) and Branwen Buckler, born in 1989; a sibling of the grandson. Named here at the family’s request (27 Oct 2026).",
+   "parents": [
+    {
+     "id": "GAP-0004",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026."
     },
     {
      "id": "LV-0003",

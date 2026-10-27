@@ -34,7 +34,9 @@
     if (!a) { show(false); return; }
     var prev = A[(i + A.length - 1) % A.length], next = A[(i + 1) % A.length];
     d.innerHTML = '<a class="gg-back" href="#/">← ' + esc(T.back) + '</a>' +
-      '<figure><img src="' + esc(a.image) + '" alt="' + esc(a.alt) + '"></figure>' +
+      '<div class="gg-stage"><figure><img src="' + esc(a.image) + '" alt="' + esc(a.alt) + '"></figure>' +
+      '<a class="gg-arr gg-prev" href="#/' + esc(prev.id) + '" aria-label="Previous: ' + esc(prev.title) + '">&#8249;</a>' +
+      '<a class="gg-arr gg-next" href="#/' + esc(next.id) + '" aria-label="Next: ' + esc(next.title) + '">&#8250;</a></div>' +
       '<h2>' + esc(a.title) + '</h2><p class="gg-cap">' + esc(a.caption) + '</p>' +
       '<dl class="gg-meta"><dt>' + esc(T.catalogue_label) + '</dt><dd>' + esc(a.id) + '</dd>' +
       (a.edition ? '<dt>' + esc(T.edition_label) + '</dt><dd>' + esc(edition(a)) + '</dd>' : '') +
@@ -45,8 +47,7 @@
       '<select class="gg-sel" id="gg-sv" autocomplete="off">' + vers(a).map(function (v, k) { return '<option value="' + esc(v) + '"' + (k ? '' : ' selected') + '>' + esc(v) + (v === 'v0.0.1' ? ' · free' : '') + (k ? '' : ' · latest') + '</option>'; }).join('') + '</select>' +
       '<div class="gg-acts"><button type="button" class="gg-btn gg-soon" disabled aria-disabled="true">' + esc(T.coming_soon || 'Coming soon') + '</button>' +
       '<button type="button" class="gg-btn gg-png">' + esc(T.save_png || 'Save as PNG') + '</button></div>' +
-      '<a class="gg-free" href="' + esc(a.v001_image || a.image) + '" data-png="1">free version (v0.0.1 2026)</a></div>' +
-      '<nav class="gg-nav"><a href="#/' + esc(prev.id) + '">← ' + esc(prev.title) + '</a><a href="#/' + esc(next.id) + '">' + esc(next.title) + ' →</a></nav>';
+      '<a class="gg-free" href="' + esc(a.v001_image || a.image) + '" data-png="1">free version (v0.0.1 2026)</a></div>';
     var pb = d.querySelector('.gg-png'), fl = d.querySelector('.gg-free');
     var sel = d.querySelector('.gg-sel'), fig = d.querySelector('figure img');
     /* A reworked piece keeps its first release as a.v001_image; the drop-down shows the chosen version (flower rework 27 Oct 2026). - Cedwyn editors */

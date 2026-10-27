@@ -39,3 +39,9 @@
 
 /* versions, Coming soon, Save as PNG (27 Oct 2026) - Sion's Tab agent */
 .gg-sv{flex-direction:column;align-items:stretch;gap:10px}.gg-svl{font:600 12px/1 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#61685a}.gg-sel{font:16px -apple-system,Segoe UI,Roboto,sans-serif;padding:11px 12px;border-radius:10px;border:1px solid rgba(47,58,44,.35);background:#fff;color:#2f3a2c}.gg-acts{display:flex;flex-wrap:wrap;gap:10px}.gg-acts .gg-btn{border:0;cursor:pointer}.gg-soon,.gg-soon:hover{background:#9aa394;cursor:not-allowed;box-shadow:none}.gg-png{background:#fff;color:var(--moss)!important;border:1px solid var(--moss)!important}.gg-png:hover{background:#eef3e8}.gg-free{font:14px -apple-system,Segoe UI,Roboto,sans-serif;color:var(--moss);text-decoration:underline}
+/* Big arrow navigator beside the photo, 52px tap targets (27 Oct 2026) - Sion's Tab agent */
+.gg-stage{position:relative}.gg-stage figure{margin:0}
+.gg-arr{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(20,16,10,.55);color:#fff;font-size:38px;line-height:1;text-decoration:none;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.gg-arr:hover,.gg-arr:focus-visible{background:rgba(20,16,10,.8);outline:2px solid #fff;outline-offset:2px}
+.gg-prev{left:8px}.gg-next{right:8px}
+

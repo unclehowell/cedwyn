@@ -4,13 +4,13 @@ The sections of cedwyn.bucklerfamily.estate as registered in the site registry (
 
 | Section | Path | Group | What it is |
 |---|---|---|---|
+| The Legal Wiki | /wiki/ | Historic artifacts |  |
 | Primary Records | /records/ | Historic artifacts | Great House Farm — Primary Record Register |
 | Docs · The Evidence Catalogue | /docs/ | Historic artifacts |  |
 | The Wayback Vault | /wayback/ | Historic artifacts |  |
 | Nomenclature | /nomenclature/ | Historic artifacts |  |
 | The Map Room | /maps/ | Historic artifacts |  |
 | The Land Changing Hands | /infographic/ | Interactive | Great House Farm · the land changing hands |
-| The Legal Wiki | /wiki/ | Historic artifacts |  |
 | The E-book Shelf | /ebooks/ | A story to be retold | E-books |
 | The Story | /story/ | A story to be retold |  |
 | 1000 Cuts | /thousand-cuts/ | A story to be retold | Dated events at Great House Farm, 1870s–1988: what each changed in law or in fact, its evidence, and links to earlier and later events (a layer over the catalogue; rows in the database's layer tables). |
