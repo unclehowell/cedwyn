@@ -1,0 +1,49 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Dark mode for Cedwyn pages: follow the phone, no white flash (prefers-color-scheme + color-scheme) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Dark mode for Cedwyn pages: follow the phone, no white flash (prefers-color-scheme + color-scheme)"><link rel="alternate" type="text/markdown" href="dark-mode-prefers-color-scheme-no-flash.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Dark mode for Cedwyn pages: follow the phone, no white flash (prefers-color-scheme + color-scheme)</h1>
+<p>Harvested 2026-10-27 (SKILLS HARVEST). Trigger: the project lead, WhatsApp 14:19 GMT 27 Oct: /wales/blog/ "has a theme error its white when the phone and webpage is dark mode".</p>
+<h2>What the evidence states (sources read 27 Oct 2026)</h2>
+<ul>
+<li>Many readers run their phone dark. Android Authority reader poll: ~82% of ~2,500 Android respondents use dark mode (poll, self-selected tech readers; via forms.app, not re-read at the poll page). Treat as "most phone readers", not a measured share of Cedwyn traffic.</li>
+<li>Dark mode is a system-level choice. NN/g (Kohler &amp; Zhang, Aug 2023): users think about it at the system level, not per app, and behave about the same without it. What they notice is a page that ignores their setting: a white page after a dark one is the bug the project lead reported.</li>
+<li>Readability: NN/g (Budiu, 2020): with normal vision, light mode (dark text on light) reads better; some low-vision readers (cataract, cloudy ocular media) do better in dark. So: follow the system, never force dark on everyone.</li>
+<li>Battery: Purdue study cited by NN/g: dark mode cut OLED power 67% at 100% brightness but only 14% at 30%. Image-heavy pages save little.</li>
+<li>Contrast: highly saturated colours on dark grey fail WCAG 2 (4.5:1 body, 3:1 large text). Pick tuned dark colours, not the light palette inverted.</li>
+<li>Mechanism (web.dev, Thomas Steiner, "prefers-color-scheme" and "color-scheme" articles): <code>@media (prefers-color-scheme: dark)</code> sets your own colours; <code>&lt;meta name="color-scheme" content="light dark"&gt;</code> (or <code>:root{color-scheme:light dark}</code>) tells the browser before CSS loads, so form controls, scrollbars and the default canvas follow the theme and there is no white flash. CSS system colours <code>Canvas</code> / <code>CanvasText</code> must be used together.</li>
+<li>Chrome Auto Dark Theme (developer.chrome.com) can darken pages that declare nothing, which gives a light page partly darkened in one browser and white in another. Declaring <code>color-scheme</code> opts out of that guesswork.</li>
+</ul>
+<h2>How to do it (checklist)</h2>
+<ol>
+<li>In every theme's <code>&lt;head&gt;</code>, before any stylesheet: <code>&lt;meta name="color-scheme" content="light dark"&gt;</code>.</li>
+<li>One set of CSS variables, overridden once:
+   <code>css
+   :root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#5b5b57;--link:#1f4e79;--card:#fff;--line:#e3e0d8}
+   @media (prefers-color-scheme: dark){:root{--bg:#141412;--fg:#e9e6df;--muted:#a8a49b;--link:#8fb8e6;--card:#1d1d1a;--line:#33322e}}
+   body{background:var(--bg);color:var(--fg)}</code>
+   Every hard-coded <code>background:#fff</code>, <code>color:#000</code>, white card or white SVG fill gets swapped to a variable. Avoid pure #000 backgrounds and pure #fff text (halation); off-black and off-white.</li>
+<li>Images: logos/diagrams with transparent backgrounds need a light plate or a dark variant (<code>&lt;picture&gt;&lt;source srcset="x-dark.png" media="(prefers-color-scheme: dark)"&gt;</code>). Scanned cuttings and photos stay as they are.</li>
+<li>Iframes, embeds, maps and modals inherit nothing: give them the same variables (dialog <code>::backdrop</code> too).</li>
+<li>A manual toggle is optional. If added, store it (localStorage) and set <code>data-theme</code> on <code>&lt;html&gt;</code> from an inline script in <code>&lt;head&gt;</code> so there is no flash; default stays "follow system".</li>
+<li>Test: Chrome DevTools &gt; Rendering &gt; "Emulate CSS media feature prefers-color-scheme: dark", at 390 px; screenshot light and dark; check contrast of body text, links, muted text and buttons (4.5:1). Playwright: <code>page.emulate_media(color_scheme="dark")</code>.</li>
+<li>Grep gate per build: every theme HTML has the color-scheme meta; no theme CSS has <code>background:#fff</code>/<code>white</code> outside a variable definition.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Read 27 Oct 14:30Z: /wales/blog/ HTML has no <code>color-scheme</code> meta and no <code>prefers-color-scheme</code> rule; its <code>blog.css</code> (679 bytes) has none either; /wales/ loads <code>/_cedwyn/halves/lb.css</code> (no dark rule either). So the blog shows browser-default white whatever the phone states. Fix at the shared layer (theme head + one variables block), not page by page, so the 9 themes and /wayback/ snapshots (Bootstrap 5.3 has <code>data-bs-theme</code>; set it from the system preference) all follow the phone.</li>
+<li>Add the dark screenshot (390 px, emulated dark) to every theme's verify step and to the onpage audit list (meta present, contrast pass).</li>
+<li>The glossary modal (see glossary-modal-link-first-dialog.md) and the poster shop cards must use the same variables.</li>
+<li>Marketing angle: a page that flashes white at night on a phone reads as broken and costs trust on the /ebooks/ buy path; record the before/after as one growth-experiment row only if traffic allows (it will not be measurable at current volume; ship it as a quality fix).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>web.dev (read)</li>
+<li>web.dev (read)</li>
+<li>developer.chrome.com (read)</li>
+<li>nngroup.com (read)</li>
+<li>nngroup.com (read)</li>
+<li>forms.app (snippet: Android Authority poll 81.9% of 2,500; poll not re-read)</li>
+</ul><p class="raw">Raw Markdown: <a href="dark-mode-prefers-color-scheme-no-flash.md">dark-mode-prefers-color-scheme-no-flash.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

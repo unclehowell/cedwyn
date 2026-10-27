@@ -1,6 +1,6 @@
 # Work board
 
-Step 3 of 3. **72 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-27 12:51 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
+Step 3 of 3. **73 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-27 19:30 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
 
 ## Find a missing record (49)
 
@@ -239,18 +239,18 @@ Step 3 of 3. **72 open jobs**, regenerated every academy cycle from real gaps (l
 - **J-19549B** · 3 uncited passage(s) on /thousand-cuts/  
   *Section:* thousand-cuts · *Done when:* Each passage is either cited to a catalogue record (EV-####) and restyled as normal text, or left in the small italic style with neutral wording. Nothing is deleted.
   *Inputs:* /thousand-cuts/; passages shown in the small italic style (class unsub)
-- **J-FDA5C0** · 6 uncited passage(s) on /wales/  
+- **J-FDA5C0** · 5 uncited passage(s) on /wales/  
   *Section:* wales · *Done when:* Each passage is either cited to a catalogue record (EV-####) and restyled as normal text, or left in the small italic style with neutral wording. Nothing is deleted.
   *Inputs:* /wales/; passages shown in the small italic style (class unsub)
 
 ## Fix broken internal links (5)
 
-- **J-5DEF91** · 3 broken internal link(s) on /wayback/  
-  *Section:* wayback · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
-  *Inputs:* /wayback/; /wayback/websites/index.json; /wayback/text/_treeview.json; /wayback/pdf/_treeview.json
 - **J-7B1B85** · 1 broken internal link(s) on /wiki/  
   *Section:* wiki · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
   *Inputs:* /wiki/; /wiki/wp-content/uploads/2026/09/wp-1790112812173.pdf
+- **J-5DEF91** · 3 broken internal link(s) on /wayback/  
+  *Section:* wayback · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
+  *Inputs:* /wayback/; /wayback/websites/index.json; /wayback/text/_treeview.json; /wayback/pdf/_treeview.json
 - **J-DD015C** · 1 broken internal link(s) on /ebooks/  
   *Section:* ebooks · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
   *Inputs:* /ebooks/; /ebooks/api/free
@@ -260,6 +260,12 @@ Step 3 of 3. **72 open jobs**, regenerated every academy cycle from real gaps (l
 - **J-4AFA9D** · 4 broken internal link(s) on /csscpsg/  
   *Section:* csscpsg · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
   *Inputs:* /csscpsg/; /wayback/pdf/foi/2026-07-30_hmlr_first-registration-schedule.pdf; /wiki/wp-content/uploads/2026/09/wp-1790112968592.pdf; /wiki/wp-content/uploads/2026/09/wp-1790112987191.pdf
+
+## Remove outbound links (1)
+
+- **J-817D15** · 9 outbound link(s) on /ebooks/  
+  *Section:* ebooks · *Done when:* Outbound links are replaced by internal catalogue pages or plain-text citations.
+  *Inputs:* /ebooks/; external links found by a live fetch of that page (addresses omitted here: the library carries no outbound links)
 
 ## E-book drafts (6)
 

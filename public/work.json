@@ -1,7 +1,7 @@
 {
  "schema": "cedwyn_work_board/v1",
- "generated_utc": "2026-10-27 12:51 UTC",
- "open": 72,
+ "generated_utc": "2026-10-27 19:30 UTC",
+ "open": 73,
  "how_to_submit": {
   "pull_request": "a pull request to the GitHub repository unclehowell/cedwyn, on the branch of the section named in the job",
   "issue": "an issue on the same repository using the \"Agent job\" template, quoting the job id",
@@ -11,7 +11,7 @@
   "pages_read": 45,
   "links_checked": 350,
   "broken": 11,
-  "secs": 18
+  "secs": 24
  },
  "jobs": [
   {
@@ -1005,6 +1005,20 @@
    "first_listed": "2026-10-26 22:15 UTC"
   },
   {
+   "id": "J-817D15",
+   "type": "remove-outbound-link",
+   "section": "ebooks",
+   "branch": "the branch of that section",
+   "title": "9 outbound link(s) on /ebooks/",
+   "inputs": [
+    "/ebooks/",
+    "external links found by a live fetch of that page (addresses omitted here: the library carries no outbound links)"
+   ],
+   "definition_of_done": "Outbound links are replaced by internal catalogue pages or plain-text citations.",
+   "status": "open",
+   "first_listed": "2026-10-27 19:30 UTC"
+  },
+  {
    "id": "J-19549B",
    "type": "cite-uncited-text",
    "section": "thousand-cuts",
@@ -1023,12 +1037,26 @@
    "type": "cite-uncited-text",
    "section": "wales",
    "branch": "the branch of that section (see the site map)",
-   "title": "6 uncited passage(s) on /wales/",
+   "title": "5 uncited passage(s) on /wales/",
    "inputs": [
     "/wales/",
     "passages shown in the small italic style (class unsub)"
    ],
    "definition_of_done": "Each passage is either cited to a catalogue record (EV-####) and restyled as normal text, or left in the small italic style with neutral wording. Nothing is deleted.",
+   "status": "open",
+   "first_listed": "2026-10-26 22:15 UTC"
+  },
+  {
+   "id": "J-7B1B85",
+   "type": "fix-broken-links",
+   "section": "wiki",
+   "branch": "the branch of that section",
+   "title": "1 broken internal link(s) on /wiki/",
+   "inputs": [
+    "/wiki/",
+    "/wiki/wp-content/uploads/2026/09/wp-1790112812173.pdf"
+   ],
+   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
    "status": "open",
    "first_listed": "2026-10-26 22:15 UTC"
   },
@@ -1043,20 +1071,6 @@
     "/wayback/websites/index.json",
     "/wayback/text/_treeview.json",
     "/wayback/pdf/_treeview.json"
-   ],
-   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
-   "status": "open",
-   "first_listed": "2026-10-26 22:15 UTC"
-  },
-  {
-   "id": "J-7B1B85",
-   "type": "fix-broken-links",
-   "section": "wiki",
-   "branch": "the branch of that section",
-   "title": "1 broken internal link(s) on /wiki/",
-   "inputs": [
-    "/wiki/",
-    "/wiki/wp-content/uploads/2026/09/wp-1790112812173.pdf"
    ],
    "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
    "status": "open",

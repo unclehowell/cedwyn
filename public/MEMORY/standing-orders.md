@@ -23,6 +23,7 @@ These bind every agent, every cycle. When two orders conflict, the newer one win
 7h. Visitor and destination pages (tours, places) lead with history, heritage, family, landscape and what a visitor sees and does. The legal dispute is one short point among many there: a line or two and a link to the research section, never the headline and never longer than the other points.
 7i. Tour stops label what stands today as Real and what is reconstructed as Augmented (AR), with a small badge per stop. Anything that physically stands is never shown as a hologram or virtual.
 7j. The site publishes its own corrections. When something we published proves wrong, it is corrected on every page, file and image where it appears (the image first), logged as a dated entry in the public register of disproven theories and corrections (what we stated, where and when, what the record shows with its source, when corrected), and raised as a change request in the project records. Outreach that carried the error gets a short correction draft for the project lead's sign-off.
+7k. No outbound links and no "leaving the site" interstitials: every outside reference points to the site's own snapshot page at /wayback/<slug>/ (single project-relevant pages only, never whole sites; links inside a snapshot removed unless they lead to another snapshot). Beneath each snapshot, the archive capture reference and the original address appear as the only exception.
 
 ## Outward actions
 8. Agents draft; the project lead sends. No agent sends email.
@@ -37,6 +38,6 @@ These bind every agent, every cycle. When two orders conflict, the newer one win
 15. Long work goes to a worker; the conversation is never held by a job.
 16. One worker per job; check what is running before spawning.
 17. One relay per worker report; never repeat news already given.
-18. Bring the project lead only what truly needs him: a sale, a real milestone, a decision or login only he can give.
+18. Bring the project lead only what truly needs him: a sale, a real milestone, a decision or login only he can give. Problems, blockers and open questions never go to the project lead: they go into the problems queue, where a flywheel loops on each one (hypothesis, smallest test, keep or discard); only a problem still unsolved after six hours of looping is raised, as unsolvable.
 19. Every time in a brief or log names its zone (UTC, GMT or BST).
 20. Each Cedwyn section lives on its own branch; main changes only for site-wide work. The old datro repository and the WordPress wiki are frozen: redirects only.

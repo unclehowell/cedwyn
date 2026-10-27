@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Archive snapshot pages (/wayback/) without SEO or copyright trouble · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Archive snapshot pages (/wayback/) without SEO or copyright trouble"><link rel="alternate" type="text/markdown" href="wayback-snapshot-pages-noindex-canonical-ogl-fair-dealing.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Archive snapshot pages (/wayback/) without SEO or copyright trouble</h1>
+<p>Harvested 2026-10-27 13:40Z, tied to the project lead's 13:01 rule: every outside link opens our own snapshot, then the Internet Archive link, then the live site.</p>
+<h2>Facts read today</h2>
+<ul>
+<li><strong>Google, duplicate URLs</strong> (developers.google.com): rel="canonical" is the preferred signal for duplicates; Google does "not recommend using noindex to prevent selection of a canonical page within a single site" - but our snapshot copies duplicate <em>other people's</em> pages, so we don't want them competing at all. Cross-domain rel=canonical pointing at the original is supported as a hint.</li>
+<li><strong>Google, outbound links</strong> (developers.google.com): plain links need no rel; rel="nofollow" for links you don't want associated with your site; sponsored/ugc for paid/user links.</li>
+<li><strong>Crown copyright</strong> (nationalarchives.gov.uk ... /crown-copyright/): CDPA s.163; covers legislation, codes of practice, government reports, press releases; the <strong>default licence is the Open Government Licence</strong> (reuse allowed with attribution: "Contains public sector information licensed under the Open Government Licence v3.0"). Court rules on justice.gov.uk (e.g. CPR Part 31) are Crown copyright -&gt; OGL reuse is fine with attribution.</li>
+<li><strong>Non-Crown pages</strong> (newspapers, companies, societies): UK has no "fair use". CDPA s.30 allows fair dealing for criticism/review, quotation and news reporting, with sufficient acknowledgement, and only the extent required. Copying a whole third-party page is beyond "quotation" (publishing.co.uk). Not checked: any case law on archival snapshots by private sites.</li>
+</ul>
+<h2>Recipe per snapshot page</h2>
+<ol>
+<li><code>&lt;link rel="canonical" href="ORIGINAL_URL"&gt;</code> (cross-domain hint) <strong>and</strong> <code>&lt;meta name="robots" content="noindex, follow"&gt;</code> on every /wayback/<slug>/ page. Keeps copies out of search so they can't be flagged as scraped/duplicate and can't outrank the source; links inside stay crawlable.</li>
+<li>Exclude /wayback/ from sitemap.xml. Do <strong>not</strong> Disallow it in robots.txt (Google must crawl to see noindex).</li>
+<li>Header line on each snapshot: "Copy captured <date> from <domain> for reference. Original: <url>." Then the two links the project lead asked for: Internet Archive capture, then the live site, each <code>rel="nofollow noopener"</code>.</li>
+<li>OGL material (gov.uk, justice.gov.uk, legislation.gov.uk, nationalarchives.gov.uk): full page copy allowed; add the OGL v3.0 attribution line.</li>
+<li>Non-OGL material: keep the snapshot to the <strong>passage we cite</strong> (heading + relevant section + our citation), not the whole page; add "Quoted for review and reference (CDPA s.30)". Images: omit unless OGL/public domain.</li>
+<li>Takedown line in the footer of /wayback/: a contact for rights holders; remove on request within 7 days. Log requests.</li>
+<li>Size: strip scripts/trackers, Bootstrap fallback CSS vendored once and shared (not per page).</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Hand this file to the wayback worker (279a517c) / the next site flywheel: add canonical+noindex,follow to the snapshot template, drop /wayback/ from the sitemap, add attribution/takedown lines.</li>
+<li>Our own evidence pages keep indexing; only the copies are noindexed - so ranking signals stay on Cedwyn's own analysis pages (topic-clusters, cited-on back-links skills).</li>
+<li>Audit: <code>grep -L 'noindex' site/wayback/*/index.html</code> must print nothing; <code>grep -c '/wayback/' sitemap.xml</code> must be 0.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com (read 27 Oct 2026)</li>
+<li>developers.google.com (read)</li>
+<li>nationalarchives.gov.uk (read)</li>
+<li>legislation.gov.uk ; publishing.co.uk (snippets)</li>
+</ul><p class="raw">Raw Markdown: <a href="wayback-snapshot-pages-noindex-canonical-ogl-fair-dealing.md">wayback-snapshot-pages-noindex-canonical-ogl-fair-dealing.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

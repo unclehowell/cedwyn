@@ -1,0 +1,49 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Free sample chapter: read-before-buy on a direct e-book page · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Free sample chapter: read-before-buy on a direct e-book page"><link rel="alternate" type="text/markdown" href="free-sample-chapter-read-before-buy.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Free sample chapter: read-before-buy on a direct e-book page</h1>
+<p>Harvested 2026-10-27 (skills harvest). Topic: letting a stranger read part of the book before paying, and catching the ones who don't buy yet.</p>
+<h2>What the sources show (read unless marked)</h2>
+<ul>
+<li><strong>Stores sample by default.</strong> KDP help G200644250 (read 27 Oct): the "Read Sample" is a fixed percentage of the manuscript by format; the percentage <em>cannot be adjusted</em>, page samples can be trimmed for spoilers, and an author can ask Amazon to remove it. KDP community + Kill Zone Blog (1 Mar 2024, read): default is 10% for reflowable e-books (author reports 5-40% when changed via support). Smashwords podcast ep. 10 (Mark Coker, read): the author sets what % is the free sample; Coker calls sampling the way readers "try your book before they buy". Every big shelf assumes a sample is normal; a direct page with none asks more trust than Amazon does.</li>
+<li><strong>Sales-page anatomy.</strong> Tom Morkes, "High-Converting Book Sales Page" (read): order = CTA above fold -&gt; what you'll learn -&gt; who it's for -&gt; testimonials -&gt; <strong>free chapter download</strong> -&gt; peek inside -&gt; about author -&gt; final CTA + guarantee. He calls the free chapter "optional, but highly encouraged" because it builds the list, citing Nathan Barry's free-chapter opt-in feeding an autoresponder.</li>
+<li><strong>Testimony with numbers.</strong> Nathan Barry, App Design Handbook launch stats (read): the "Just 4 hours left" email went to <strong>6,702</strong> because he added <em>everyone who opted in to the sample chapter that day</em>; the "20 minutes left" email went to <strong>843</strong> people who had asked about that specific book, buyers excluded. Sample-chapter sign-ups were treated as warm buyers and got the deadline emails.</li>
+<li><strong>Rates (not checked).</strong> BookOrbits blog (snippet only): a free first chapter "converts at 2 to 5 percent" as an opt-in. No primary data behind it; do not quote as fact. No controlled public test found of sample vs no sample on a direct page — treat any change as our own experiment (growth-experiment-loop skill).</li>
+</ul>
+<h2>How to do it (steps)</h2>
+<ol>
+<li><strong>Pick the sample</strong>: the opening chapter or the strongest self-contained section, about 10% (match the store default). End on a real question the full book answers, not mid-sentence.</li>
+<li><strong>Two doors on the title page</strong>, under the buy button, never above it:
+   - "Read the first chapter" -&gt; plain HTML page on our own site (crawlable, fast at 390 px, one buy button at the end and one sticky at the bottom). No email needed. This is the Amazon "Look Inside" equivalent.
+   - "Send me the chapter as a PDF" -&gt; email opt-in tagged <code>sample-&lt;title&gt;</code>; delivery email in under a minute.</li>
+<li><strong>The end of the sample</strong> is the sales page: one line on what the rest covers, the price, buy button, and the free edition link if one exists. Message-match: same title, same price as the title page.</li>
+<li><strong>Follow-up for <code>sample-&lt;title&gt;</code></strong> (Barry pattern): include them in that title's launch/deadline emails; exclude buyers; one "what did you make of chapter 1?" reply-request email after 3 days (reader-replies skill).</li>
+<li><strong>Measure</strong> (UTM/GA4 event <code>sample_open</code>, <code>sample_end_buy_click</code>): sample opens, % reaching the end, buy clicks from the end. If people open but don't reach the end, the opening is the problem; if they reach the end but don't click, the offer is.</li>
+<li>Keep the store sample and our sample the same text so nobody sees two different "first chapters".</li>
+</ol>
+<h2>Pitfalls</h2>
+<ul>
+<li>A sample behind an email wall only = friction for the curious; keep the no-email door.</li>
+<li>Don't sample the index, preface or acknowledgements; readers judge the writing.</li>
+<li>PDF samples get forwarded — fine, that's distribution; put the title page URL in the footer of every page.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Each e-book on /ebooks/ gets a "Read the first chapter" link to <code>/ebooks/&lt;slug&gt;/sample/</code> (HTML, internal links only, no outbound) plus the PDF opt-in into Mailchimp tag <code>sample-&lt;slug&gt;</code> (drafts/sends follow the existing Mailchimp rules; nothing goes out without the project lead's GO where that rule applies).</li>
+<li>Sample text comes verbatim from the book; public-text rules apply (never name the project lead, banned words list, no insignia, nothing on family holdings).</li>
+<li>SALES FIX: add <code>sample_open</code> and <code>sample_end_buy_click</code> to the funnel steps for zero_sales_odds.py so a zero at "sample end -&gt; buy" is visible as its own step.</li>
+<li>Launch-week sequence: <code>sample-&lt;slug&gt;</code> subscribers join the "hours left" sends (launch-week-email-sequence skill), buyers excluded.</li>
+<li>Run as one experiment per title in results.tsv (keep/discard after the traffic floor).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>kdp.amazon.com</li>
+<li>killzoneblog.com</li>
+<li>smashwords.com</li>
+<li>tommorkes.com</li>
+<li>nathanbarry.com</li>
+<li>bookorbits.com (snippet, not checked)</li>
+</ul><p class="raw">Raw Markdown: <a href="free-sample-chapter-read-before-buy.md">free-sample-chapter-read-before-buy.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Site migration: redirect map + broken internal link crawl · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Site migration: redirect map + broken internal link crawl"><link rel="alternate" type="text/markdown" href="site-migration-redirect-map-internal-link-crawl.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Site migration: redirect map + broken internal link crawl</h1>
+<p>Trigger: the project lead, 27 Oct 2026 14:27 GMT: "Fix all these bugs <code>That page did not open...</code>" (Cedwyn's migration fallback page). Harvested 2026-10-27.</p>
+<h2>What the evidence states</h2>
+<ul>
+<li><strong>Google Search Central, site moves with URL changes (read 27 Oct 2026):</strong></li>
+<li>Use server-side permanent redirects (301 or 308).</li>
+<li>Redirect each old URL straight to its final URL. Google follows up to 10 hops, but it advises keeping chains short: ideally no more than 3, and fewer than 5.</li>
+<li>Do not send many old URLs to one irrelevant page such as the home page. That "might be treated as a soft 404".</li>
+<li>Content that is truly gone should return 404 or 410.</li>
+<li>Keep redirects "generally at least 1 year", and for users consider keeping them indefinitely. Redirects are slow, so update your own internal links to point at the new URLs rather than leaning on redirects.</li>
+<li>Each new page needs a self-referencing canonical. hreflang annotations and the sitemap must list only new URLs.</li>
+<li><strong>Practitioner testimony:</strong></li>
+<li><strong>Dana Hooshmand (hooshmand.net, read):</strong> a niche reference site doing about 3,000 page views a day moved from .net to .com. It lost about 90% of its Google traffic "despite doing everything right" and took about 1.5 years to recover. Lesson: every avoidable loss (a broken link, a chain, a redirect to the home page) comes on top of a drop you cannot control.</li>
+<li><strong>Reddit r/TechSEO (Oct 2025 B2B migration, snippet only):</strong> a 98% traffic drop. Not checked.</li>
+<li><strong>Industry figure (secondary, not checked):</strong> a study of 892 migrations with an average recovery of 523 days. It is quoted by agency blogs (whitehat-seo.co.uk, tabula.agency), and the original study was not read.</li>
+</ul>
+<h2>How to do it (smallest safe sequence)</h2>
+<ol>
+<li><strong>Inventory old URLs.</strong> Use the old sitemap(s), Search Console "Pages" plus the top linked pages, the Wayback CDX list for the old host, and every internal href in the current build.</li>
+<li><strong>Map old to new in one CSV</strong> (<code>old,new</code>), one row per URL.
+   - Moved: the exact new page.
+   - Merged: the consolidated page.
+   - Gone: a 404 or 410, plus remove every internal link to it. Never redirect it to the home page.</li>
+<li><strong>Implement as 301/308</strong> in the host's redirect table (Cloudflare <code>_redirects</code> or Bulk Redirects; one line per row). No JS redirects and no meta refresh.</li>
+<li><strong>Fix internal links at the source.</strong> Rewrite the hrefs to the new URL so visitors and crawlers take no hop at all. Redirects are for outside links and bookmarks.</li>
+<li><strong>Crawl and verify:</strong>
+   - <code>lychee</code> (installed, see below) over the sitemap or the built HTML for broken internal links.
+   - <code>tools/redirect_map_check.py map.csv --base site</code> for every map row. It flags CHAIN, TEMP, WRONG, HOME, SOFT404 and DEAD.
+   - Re-crawl until both report 0.</li>
+<li><strong>After launch:</strong>
+   - Submit the new sitemap.
+   - Watch Search Console "Not found (404)" and "Soft 404" weekly for 4 weeks.
+   - Add map rows for any old URL that still gets hits.
+   - Keep the table for at least a year.</li>
+</ol>
+<h2>Tools</h2>
+<ul>
+<li><strong>lychee 0.24.2</strong> (Rust, MIT/Apache, free). Installed at <code>~/.local/bin/lychee</code> (19 MB binary).</li>
+<li>Example: <code>timeout -k 5 110 ~/.local/bin/lychee --no-progress --max-concurrency 4 --include 'cedwyn\.bucklerfamily\.estate' --format compact &lt;url or files&gt;</code></li>
+<li>Box test 27 Oct: <code>/wales/docs/ghf_legalwiki/</code> gave 21 links, 21 OK, in 1.4 s.</li>
+<li>Caveat: lychee only reads status codes. A fallback served as <strong>200</strong> passes. Cedwyn's fallback returns a real <strong>404</strong> (checked 27 Oct with a random path), so lychee does catch it today. If the router ever serves it as 200, use redirect_map_check's SOFT404 text check.</li>
+<li><strong>tools/redirect_map_check.py</strong> (stdlib only, written this run). Box-tested against the live site.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>The broken-link worker (the project lead 14:27 ask) should build <code>the project workspace</code> from the old datro/theme paths and the crawl's 404 list, then:</li>
+<li>write the rows into the site's redirect table (no chains: point old URLs at the final page, never at another redirect);</li>
+<li>rewrite internal hrefs in the themes;</li>
+<li>re-run lychee plus redirect_map_check until both are 0, logging the before and after counts.</li>
+<li>Never point dead evidence or record URLs at the home page. If the record moved, send it to its new artifact page. If it is truly gone, return a 404 and drop the links. The 404 page already carries the sales path (see <code>404-page-near-miss-redirects-money-link.md</code>).</li>
+<li>Outside links that pointed at old URLs: see <code>link-reclamation-unlinked-mentions-dead-urls.md</code> (part A).</li>
+<li>Add a lychee run to the DAILY SITE FLYWHEEL measure step, so a new break shows up within a day instead of when the project lead finds it.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com (read 27 Oct 2026)</li>
+<li>hooshmand.net (read)</li>
+<li>reddit.com (snippet only)</li>
+<li>whitehat-seo.co.uk (892 migrations / 523 days; secondary, not checked)</li>
+<li>github.com (release v0.24.2)</li>
+</ul><p class="raw">Raw Markdown: <a href="site-migration-redirect-map-internal-link-crawl.md">site-migration-redirect-map-internal-link-crawl.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

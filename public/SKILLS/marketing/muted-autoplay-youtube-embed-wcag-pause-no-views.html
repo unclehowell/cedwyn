@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Muted autoplay video at the top of a page (YouTube embed): policy, accessibility, views · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Muted autoplay video at the top of a page (YouTube embed): policy, accessibility, views"><link rel="alternate" type="text/markdown" href="muted-autoplay-youtube-embed-wcag-pause-no-views.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Muted autoplay video at the top of a page (YouTube embed): policy, accessibility, views</h1>
+<p>Trigger: the project lead, 27 Oct 2026 14:26 GMT, on /wales/docs/ghf_legalwiki/: the 1987 video "needs to be the first thing ... (autoplay/ minimal controls)". Harvested 2026-10-27.</p>
+<h2>What the evidence states</h2>
+<ul>
+<li><strong>Chrome autoplay policy (developer.chrome.com, read):</strong></li>
+<li>"Muted autoplay is always allowed."</li>
+<li>Autoplay with sound is allowed only after the visitor has interacted with the site, has a high desktop Media Engagement Index, or has installed the site.</li>
+<li>Cross-origin iframes need <code>allow="autoplay"</code> delegated from the page.</li>
+<li>So the embed must start muted, with an unmute control.</li>
+<li><strong>YouTube player parameters (read):</strong></li>
+<li><code>modestbranding</code>, <code>showinfo</code> and <code>autohide</code> are <strong>deprecated and no longer functional</strong>. Drop them.</li>
+<li><code>playsinline=1</code> is needed for inline play on iOS; the default is fullscreen.</li>
+<li><code>rel=0</code> now only limits related videos to the same channel; it no longer hides them.</li>
+<li><strong>YouTube IFrame API reference (read):</strong> "A playback only counts toward a video's official view count if it is initiated via a native play button in the player." This means autoplayed embeds add <strong>no YouTube views</strong>. If views on the channel matter, measure on-page watch time instead. Separately, keep a "Watch on YouTube" path that leads to a counted play.</li>
+<li><strong>WCAG 2.2.2 Pause, Stop, Hide (Level A, W3C Understanding doc, read):</strong> moving content that starts automatically, lasts more than 5 seconds and sits beside other content must have a mechanism to pause, stop or hide it. <code>controls=0</code> with autoplay therefore <strong>fails</strong> unless we add our own pause button.</li>
+<li><strong>Sound-off viewing is the norm (Digiday 2016, read):</strong></li>
+<li>LittleThings: 85% of its Facebook views (150 M a month) without sound.</li>
+<li>Mic: 85% of its 30-second views without sound.</li>
+<li>PopSugar: 50-80% without sound.</li>
+<li>Lesson: a muted opener must make sense <strong>without audio</strong>, so turn captions on (<code>cc_load_policy=1</code>, <code>cc_lang_pref=en</code>) or use burned-in titles.</li>
+<li><strong>NN/g, Video Usability (read):</strong> unexpected autoplay "can surprise, if not annoy, users". It is acceptable when the video is the page's main, expected content and the page tells the visitor what it is.</li>
+</ul>
+<h2>Recipe</h2>
+<ol>
+<li>Use a responsive 16:9 wrapper: <code>aspect-ratio:16/9; width:100%</code>. Place it first in the content, after the H1, with a one-line caption under it (title, year, source) so the page reads correctly with the sound off.</li>
+<li>Use <code>&lt;iframe src="youtube-nocookie.com allow="autoplay; encrypted-media; picture-in-picture; fullscreen" title="..."&gt;</code> with a real <code>title</code>. Leave out modestbranding.</li>
+<li>Add two of our own buttons over or under the player, at least 44 px each: <strong>Unmute</strong> (<code>player.unMute()</code>) and <strong>Pause/Play</strong> (<code>pauseVideo</code>/<code>playVideo</code>). Load the IFrame API locally if site rules forbid CDNs. Otherwise use postMessage commands: <code>{"event":"command","func":"unMute","args":[]}</code>. Pause/Play is what satisfies WCAG 2.2.2.</li>
+<li>Respect <code>prefers-reduced-motion: reduce</code>. For those visitors, drop <code>autoplay=1</code> and show the poster with a play button. Also add a "Watch on YouTube" text link only if the outbound-link rules allow it (on Cedwyn they do not, so skip it).</li>
+<li>Performance: an autoplaying iframe is real weight, so put only one such iframe on a page. Anything further down uses the facade pattern (<code>video-landing-page-facade-poster-preload.md</code>).</li>
+<li>Check at 390 px in Safari or iOS emulation: it plays inline, muted, the buttons work, it works in dark mode, and the console shows no errors.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>On <code>/wales/docs/ghf_legalwiki/</code>, the worker's brief carries <code>modestbranding=1</code>. It is harmless but dead, so drop it on the next touch. Add the Pause/Play button next to the unmute button, because <code>controls=0</code> alone breaks WCAG 2.2.2.</li>
+<li>Add <code>cc_load_policy=1</code> if the 1987 clip has captions. If it has none, add a one-line text summary under the player (the sound-off majority).</li>
+<li>Do not report YouTube view counts as reach from this page, because autoplays are not counted. Log on-page plays through the page's own analytics event instead (<code>video_watch_check.py</code> exists).</li>
+<li>Use the same pattern for any future autoplay opener (the movie doors, the tour pages): one per page, muted, captioned, pausable.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developer.chrome.com (read 27 Oct 2026)</li>
+<li>developers.google.com (read)</li>
+<li>developers.google.com (read; view-count rule)</li>
+<li>w3.org (read)</li>
+<li>digiday.com (read)</li>
+<li>nngroup.com (snippet)</li>
+</ul><p class="raw">Raw Markdown: <a href="muted-autoplay-youtube-embed-wcag-pause-no-views.md">muted-autoplay-youtube-embed-wcag-pause-no-views.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
