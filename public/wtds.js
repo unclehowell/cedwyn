@@ -60,7 +60,7 @@
     h += '</div>';
     h += '<div class="wt-sec"><h3>' + esc(T.next) + '</h3><p class="wt-next">' + esc(r.next || '') +
       (r.next_from ? ' <small>' + esc(T.from) + ' ' + esc(fd(r.next_from)) + '</small>' : '') + (r.next_by ? ' <small>' + esc(T.by) + ' ' + esc(fd(r.next_by)) + '</small>' : '') + '</p></div>';
-    var L = { ask: T.open_msg, reply: T.open_msg, wdtk: T.wdtk_link, dartboard: T.dartboard_link, mr: T.mr_link };
+    var L = { ask: T.open_msg, reply: T.open_msg, wdtk: T.wdtk_link, dartboard: T.dartboard_link, mr: T.mr_link, ev: T.ev_link };
     h += '<div class="wt-links">' + (r.links || []).map(function (l) { return '<a href="' + esc(l.href) + '">' + esc(L[l.t] || '') + (l.d ? ' · ' + esc(fd(l.d)) : '') + '</a>'; }).join('') + '</div>';
     return h + '</article>';
   }
