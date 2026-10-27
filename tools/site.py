@@ -179,7 +179,7 @@ guestbook.run(DIST)
 # /glossary/; guest book and agent-routing blocks hidden on human pages (kept in source). Runs after the guest book - Sion's Tab agent
 import wikilinks
 wikilinks.run(DIST)
-# Pages never explain themselves (Sion, 23:53 GMT 26 Oct 2026): self-describing, data-source and agent notes move to agent small print
+# Pages never explain themselves: self-describing, data-source and agent notes move to agent small print
 # (hidden, kept in the source); the small-print footer gains a "Docs" link to /library/. Runs after the word links - docs library build
 import quiet_pages
 quiet_pages.run(DIST)

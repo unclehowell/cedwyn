@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""db_export.py - the whole catalogue database as portable files, independent of any front end (Sion, 23:53 GMT 26 Oct 2026:
-"The db should make the whole data easily exportable too. So its all transportable independent of the front ends").
+"""db_export.py - the whole catalogue database as portable files, independent of any front end.
 Called by build_db.py after the database is written and before the chunk source file is removed. Writes dist/db/export/:
   manifest.json                    one URL that lists everything below: tables, row counts, files, bytes, sha256, how to rebuild
   <table>.csv.gz                   every table except the raw blob bytes, as CSV (large tables roll over into -001, -002 parts)

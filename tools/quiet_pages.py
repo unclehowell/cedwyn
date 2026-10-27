@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""quiet_pages.py - human pages never explain themselves (Sion, 23:53 GMT 26 Oct 2026).
+"""quiet_pages.py - human pages never explain themselves.
 Notes that describe the page, the site, its data sources, its build or its agents ("This page shows ...", "Machine-readable
 index · Agent reading guide", "About this page type -> Read the Docs", "For AI agents ...", signatures of the agent that built a
 page) are moved out of human view: the element gets `hidden data-for-agents` (still in the page source for agents, as agent small
