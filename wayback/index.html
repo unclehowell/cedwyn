@@ -71,8 +71,6 @@
     }
     .hash-badge.bpvsbuckler { background: rgba(200,100,50,0.3); color: #fca; }
     .hash-badge.datro { background: rgba(50,150,200,0.3); color: #8cf; }
-    .hash-badge.kissed-frogs { background: rgba(90,170,90,0.3); color: #bfe8b0; }
-    .item .kf-note { font-size: 0.7rem; color: #bfe8b0; margin-top: 0.2rem; line-height: 1.25; }
 
     /* -- PAGINATION (bigger touch targets) -- */
     .pagination {
@@ -199,7 +197,6 @@
         { name: 'text', label: 'Text', icon: '📝' },
         { name: 'email', label: 'Case Emails', icon: '✉️' },
         { name: 'video', label: 'Video', icon: '🎬' },
-        { name: 'kissed-frogs', label: 'Kissed Frogs', icon: '🐸', separate: true },
         { name: 'websites', label: 'Websites', icon: '🌐', virtual: true }
       ];
       const PER_PAGE = 10;
@@ -385,7 +382,7 @@
             if (cat.name === 'all') {
               const allItems = [];
               for (const sub of CATEGORIES) {
-                if (sub.name === 'all' || sub.virtual || sub.separate) continue;
+                if (sub.name === 'all' || sub.virtual) continue;
                 allData[sub.name] = await loadCategory(sub.name);
                 allItems.push(...(allData[sub.name] || []));
               }
@@ -412,7 +409,6 @@
           window.activeTagFilters = new Set(['#email']);
           switchCategory('text');
         }
-        if ((params.get('cat') || '').toLowerCase() === 'kissed-frogs') switchCategory('kissed-frogs');
         if ((params.get('cat') || '').toLowerCase() === 'websites' || /^#websites/.test(location.hash)) switchCategory('websites');
         const slideParam = params.get('slide') || params.get('s');
         const yearParam = params.get('year') || params.get('y');
@@ -551,7 +547,7 @@
             media = `<a href="${safe}" target="_blank">${item.name}</a>`;
           }
           const nameClean = (item.name || '').replace(/\s*#\w+/g, '').trim();
-          return `<div class="item ${item._category}">${media}<div class="name">${nameClean}</div>${item.note ? `<div class="kf-note">${item.collection ? item.collection + ': ' : ''}${item.note}</div>` : ''}${hash ? `<span class="hash-badge ${hash}">#${hash}</span>` : ''}</div>`;
+          return `<div class="item ${item._category}">${media}<div class="name">${nameClean}</div>${hash ? `<span class="hash-badge ${hash}">#${hash}</span>` : ''}</div>`;
         }).join('');
 
         // Load media via XHR to bypass Cloudflare challenge
