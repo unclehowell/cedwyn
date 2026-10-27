@@ -98,6 +98,9 @@ body[data-cedwyn-page=landing] .wrap{padding-top:6px;padding-bottom:6px}
 .hv-ar .scan{position:absolute;left:0;right:0;height:2px;top:0;z-index:2;background:linear-gradient(90deg,transparent,rgba(120,230,255,.8),transparent);animation:hvscan 4.5s linear infinite}
 @keyframes hvscan{0%{top:0}100%{top:100%}}@media (prefers-reduced-motion:reduce){.hv-ar .scan{display:none}}
 .hv-ar .chip{position:absolute;left:10px;bottom:10px;z-index:3;padding:4px 9px;border-radius:6px;background:rgba(0,30,40,.72);color:#bff3ff;font:600 11px/1.3 Barlow,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.hv-ra{display:flex;flex-direction:column;gap:4px;margin:8px 0 0;font-size:13px;line-height:1.35}
+.hv-ra-b{display:inline-block;min-width:0;padding:1px 7px;border-radius:999px;font:700 11px/1.5 Barlow,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;vertical-align:1px}
+.hv-ra-b.r{background:#1f6f43;color:#fff}.hv-ra-b.a{background:transparent;color:var(--fg);border:1px dashed currentColor}
 .hv-sn{display:flex;align-items:baseline;gap:8px;margin:12px 0 2px;color:var(--mut);font:600 12px/1.2 Barlow,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase}
 .hv-stop h3{font-size:22px;margin:0}
 .hv-stop .pl{color:var(--mut);margin:0 0 8px}
@@ -329,6 +332,17 @@ def tour_map(H, T, l):
             f'<text class="sl" x="{W-12}" y="{Hh-10}" text-anchor="end">Môr Hafren · Bristol Channel</text>'
             f'<polyline class="rt" points="{route}"/>' + ''.join(dots) + '</svg>')
 
+def ra_html(T, l, key, s):
+    """Real vs augmented, per stop (Sion, WhatsApp 12:11 GMT 27 Oct 2026: the Celtic cross and St Dochdwy's church are physically
+    there, never holograms; what is lost is shown in AR). One small "Real" and one "Augmented (AR)" line. - Sion's Tab agent"""
+    out = ''
+    for kind, cls in (('real', 'r'), ('ar', 'a')):
+        if not s.get(kind): continue
+        T[f'{key}_{kind}'] = s[kind]
+        out += (f'<span class="hv-ra-i"><span class="hv-ra-b {cls}" data-i18n="ra_{kind}">{E(tx(T, "ra_" + kind, l))}</span> '
+                f'<span data-i18n="{key}_{kind}">{E(tx(T, f"{key}_{kind}", l))}</span></span>')
+    return f'<p class="hv-ra">{out}</p>' if out else ''
+
 def stop_html(H, T, l, i, s, n):
     """One tour stop (Sion 02:12 GMT 26 Oct: a warm guided tour; every legal citation lives only in the "court" stop)."""
     sid = s['id']
@@ -353,6 +367,7 @@ def stop_html(H, T, l, i, s, n):
     return (f'<article class="hv-stop{" on" if i == 0 else ""}" id="stop-{i+1}" data-stop="{E(sid)}" aria-label="{E(str(i+1))}">'
             f'<div class="hv-ar cwlb-th" data-lb=""><img src="{img(H, s["img"])}" width="1280" height="853" alt="{E(alt)}" data-i18n-al="stop_{sid}_overlay" loading="{"eager" if i == 0 else "lazy"}" decoding="async"><span class="scan"></span>'
             f'<span class="chip" data-i18n="ar_tag">{E(tx(T, "ar_tag", l))}</span></div>'
+            + ra_html(T, l, f'stop_{sid}', s) +
             f'<p class="hv-sn"><span data-i18n="w_stop">{E(tx(T, "w_stop", l))}</span> {i+1} / {n}</p>'
             f'{sp(T, f"stop_{sid}_name", l, "h3")}{sp(T, f"stop_{sid}_place", l, "p", "pl")}'
             f'<p class="chap" data-i18n="stop_{sid}_story">{E(tx(T, f"stop_{sid}_story", l))}</p>'
@@ -424,7 +439,7 @@ def wales(sections, S, cfg, H):
 <div class="hv-btns"><a class="hv-btn pri" href="#tour" data-hv-go="0" data-i18n="w_start">{E(tx(T,'w_start',l))}</a><a class="hv-btn" href="#shop" data-i18n="w_tickets">{E(tx(T,'w_tickets',l))}</a><a class="hv-btn" href="#menu" data-i18n="w_menu">{E(tx(T,'w_menu',l))}</a></div>
 {mn}
 <section id="route"><h2 data-i18n="w_map_h">{E(tx(T,'w_map_h',l))}</h2><p class="mut" data-i18n="w_map_p">{E(tx(T,'w_map_p',l))}</p>{mp}</section>
-<figure class="hv-holo cwlb-row" id="hologram" style="margin:0 0 14px"><img data-lb="" src="{img(H,'wales-hologram')}" width="1536" height="864" alt="{E(tx(T,'w_holo_alt',l))}" data-i18n-al="w_holo_alt" loading="lazy" decoding="async" style="width:100%;height:auto;aspect-ratio:16/9;object-fit:cover"><figcaption class="mut" style="padding:6px 2px 0;font-size:13px" data-i18n="w_holo_cap">{E(tx(T,'w_holo_cap',l))}</figcaption></figure>
+<figure class="hv-holo cwlb-row" id="hologram" style="margin:0 0 14px"><img data-lb="" src="{img(H,'wales-hologram')}" width="1536" height="864" alt="{E(tx(T,'w_holo_alt',l))}" data-i18n-al="w_holo_alt" loading="lazy" decoding="async" style="width:100%;height:auto;aspect-ratio:16/9;object-fit:cover"><figcaption class="mut" style="padding:6px 2px 0;font-size:13px" data-i18n="w_holo_cap">{E(tx(T,'w_holo_cap',l))}</figcaption>{ra_html(T, l, 'w_holo', {'real': T.get('w_holo_real'), 'ar': T.get('w_holo_ar')})}</figure>
 <section id="tour">{stops}
 <div class="hv-nav"><button type="button" class="hv-btn" id="hv-prev" data-i18n="w_prev">{E(tx(T,'w_prev',l))}</button><span id="hv-cnt" class="mut">1 / {ns}</span>
 <button type="button" class="hv-btn" id="hv-say" data-i18n="w_listen">{E(tx(T,'w_listen',l))}</button><button type="button" class="hv-btn pri" id="hv-next" data-i18n="w_next">{E(tx(T,'w_next',l))}</button></div></section>
@@ -599,7 +614,7 @@ def argentina(sections, S, cfg, H):
         import family_case
         T.update(family_case.strings()[0])
         if T.get('fc_link_h'):
-            fc_card = (f'<a class="hv-btn" style="width:100%;justify-content:flex-start;min-height:72px;border-radius:12px;border:2px solid var(--hv-b)" href="/argentina/caso/">'
+            fc_card = (f'<a class="hv-btn" style="width:100%;justify-content:flex-start;min-height:64px;border-radius:12px" href="/argentina/caso/">'
                        f'<span><b data-i18n="fc_link_h">{E(tx(T,"fc_link_h",l))}</b><br><span class="mut" data-i18n="fc_link_p">{E(tx(T,"fc_link_p",l))}</span></span></a>')
     except Exception as e:
         print('halves: family_case not available:', e)
@@ -607,7 +622,12 @@ def argentina(sections, S, cfg, H):
         fc_card = f'<a class="hv-btn" href="/argentina/caso/" data-i18n="a_caso">{E(tx(T,"a_caso",l))}</a>'
     NS = ARG_NFT_SLOTS; st = lambda k: nft_strip(NS.get(k, []), T, l)
     g = st('feats')
-    feats = ''.join(f'<li data-i18n="a_feat{i}">{E(tx(T,"a_feat"+str(i),l))}</li>' for i in range(1, 7))
+    # Real vs augmented (Sion, WhatsApp 12:11 GMT 27 Oct 2026): in Patagonia the house, stables and barn are real buildings;
+    # St Dochdwy's church and the Celtic cross appear in augmented reality. - Sion's Tab agent
+    FEAT_RA = {1: 'real', 2: 'real', 3: 'real', 4: 'real', 6: 'real', 7: 'ar'}
+    feats = ''.join(f'<li><span data-i18n="a_feat{i}">{E(tx(T,"a_feat"+str(i),l))}</span>'
+                    + (f' <span class="hv-ra-b {"r" if FEAT_RA[i] == "real" else "a"}" data-i18n="ra_{FEAT_RA[i]}">{E(tx(T,"ra_"+FEAT_RA[i],l))}</span>' if i in FEAT_RA else '')
+                    + '</li>' for i in range(1, 8) if tx(T, 'a_feat' + str(i), l))
     vimg = ARG_NFT_VENUE
     unit = {'room_night': '/', 'night': '/', 'day': '/'}
     vo = ''.join(f'<label class="hv-opt"><input type="radio" name="venue" value="{v["id"]}"{" checked" if v["id"] == "room" else ""}><img src="{ARG_NFT[vimg[v["id"]]][2]}" width="88" height="62" alt="" loading="lazy">'
@@ -623,11 +643,11 @@ def argentina(sections, S, cfg, H):
 <main class="wrap hv" data-no-translate style="--hv-a:#2f78b8;--hv-b:#F6B40E">
 {NFT_CSS}{LB_CSS}<header class="hv-hero">{nft_img(ARG_NFT_HERO, sizes='(min-width:783px) 900px, 100vw', eager=True)}<span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
 <div class="hb"><p class="eyebrow" style="color:#ddd" data-i18n="a_kick">{E(tx(T,'a_kick',l))}</p><h1 data-i18n="a_h1">{E(tx(T,'a_h1',l))}</h1><p style="margin:0" data-i18n="a_h2">{E(tx(T,'a_h2',l))}</p></div></header>
-{nft_between(headlines(H, T, l, 'argentina'), [st('hl%d' % j) for j in range(6)])}
+{nft_between(headlines(H, T, l, 'argentina'), [st('hl%d' % j) for j in range(len((H.get('headlines') or {}).get('argentina') or []))])}
 <span class="soon" data-i18n="a_soon">{E(tx(T,'a_soon',l))}</span>
 <p class="lede" data-i18n="a_lede">{E(tx(T,'a_lede',l))}</p>
 {st('lede')}
-<div class="hv-btns"><a class="hv-btn pri" href="#book" data-i18n="a_build">{E(tx(T,'a_build',l))}</a><a class="hv-btn" href="#museum" data-i18n="mu_h">{E(tx(T,'mu_h',l))}</a><a class="hv-btn" href="/argentina/caso/" data-i18n="a_caso">{E(tx(T,'a_caso',l))}</a><a class="hv-btn" href="#menu" data-i18n="a_menu">{E(tx(T,'a_menu',l))}</a></div>
+<div class="hv-btns"><a class="hv-btn pri" href="#book" data-i18n="a_build">{E(tx(T,'a_build',l))}</a><a class="hv-btn" href="#museum" data-i18n="mu_h">{E(tx(T,'mu_h',l))}</a><a class="hv-btn" href="#menu" data-i18n="a_menu">{E(tx(T,'a_menu',l))}</a></div>
 {mn}
 {st('menu')}
 <section id="house"><h2 data-i18n="a_house_h">{E(tx(T,'a_house_h',l))}</h2><p data-i18n="a_house_p">{E(tx(T,'a_house_p',l))}</p>
