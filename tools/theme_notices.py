@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """theme_notices.py - per-theme notice boxes (25 Oct 2026, forensic audit intake). - Sion's Tab agent
+Optional "link": {"href","label"} on a notice adds one internal link after its text (27 Oct 2026, correction notices -> /disproven/).
 Each compartment keeps its own notices in notices/<theme>.json; this step touches only dist/<theme>/ pages listed there.
 A notice goes directly after the page's first </h1>; on the theme home ("home_before_details") directly above the first <details>.
 Usage: python3 tools/theme_notices.py dist   (site.py calls it right after the ingredients pass)"""
@@ -17,7 +18,7 @@ def run(dist):
     for cf in sorted((ROOT / 'notices').glob('*.json')):
         N = json.load(open(cf, encoding='utf-8')); theme = N['theme']
         for n in N['notices']:
-            box = BOX.format(k=html.escape(n['id']), h=html.escape(n.get('heading', '')), t=html.escape(n['text']), lab=html.escape(n.get('label') or n.get('heading', '').rstrip('.') or 'Note'))
+            box = BOX.format(k=html.escape(n['id']), h=html.escape(n.get('heading', '')), t=html.escape(n['text']) + ((' <a href="%s">%s</a>' % (html.escape(n['link']['href']), html.escape(n['link']['label']))) if n.get('link') else ''), lab=html.escape(n.get('label') or n.get('heading', '').rstrip('.') or 'Note'))
             for pg in n.get('pages', []):
                 rel = pg.strip('/').split('/', 1)
                 if rel[0] != theme: miss.append(pg); continue   # a compartment's notices stay in that compartment
