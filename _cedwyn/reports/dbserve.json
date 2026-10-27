@@ -1,5 +1,5 @@
 {
- "db_version": "9bb59e27b2cf",
+ "db_version": "c36c8cde5f29",
  "paths_served_from_db": 7068,
  "blobs": 4522,
  "files_dropped": {
@@ -11,19 +11,19 @@
  "bytes_dropped": {
   "document": 1274806998,
   "image": 136845211,
-  "data": 35030136,
+  "data": 35030741,
   "audio": 14922925
  },
- "bytes_dropped_total": 1461605270,
+ "bytes_dropped_total": 1461605875,
  "files_kept_as_well": {
   "image": 788,
   "data": 43,
   "document": 12
  },
  "kept_why": {
-  "named in page markup": 671,
+  "named in page markup": 672,
   "link/meta tag": 46,
-  "css url()": 27,
+  "css url()": 26,
   "fetched by script": 11,
   "fetched by browsers outside a service worker": 15,
   "page without runtime": 73
