@@ -63,6 +63,7 @@ def render(cfg):
 <title>{e(title)} · {e(fam or 'Cedwyn')}</title>
 <meta name="description" content="{e(desc)}">
 <meta name="theme-color" content="#1b0d06">
+<link rel="alternate" type="application/rss+xml" title="Cedwyn blog (RSS)" href="/blog/rss.xml"><link rel="alternate" type="application/atom+xml" title="Cedwyn blog (Atom)" href="/blog/atom.xml"><link rel="alternate" type="application/feed+json" title="Cedwyn blog (JSON Feed)" href="/blog/feed.json">
 <style>
 {CSS}
 </style>
