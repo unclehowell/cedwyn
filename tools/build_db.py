@@ -200,5 +200,9 @@ config = {'serverMode': 'chunked', 'requestChunkSize': CHUNK, 'databaseLengthByt
 json.dump(config, open(OUT / 'config.json', 'w'))
 stats.update(db_bytes=size, chunks=n, chunk_max_bytes=CHUNK)
 json.dump(stats, open(OUT / 'stats.json', 'w'), indent=1)
+# Whole-database export (Sion, 23:53 GMT 26 Oct 2026: "the db should make the whole data easily exportable"): /db/export/manifest.json,
+# CSV + JSON + metadata SQLite + one slice per section + fetch-full.sh; never fails the build - docs library build
+import db_export
+db_export.run(DBF, OUT, stats)
 DBF.unlink()
 print(json.dumps(stats))
