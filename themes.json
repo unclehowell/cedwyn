@@ -90,6 +90,25 @@
  "default_group": "interactive",
  "themes": [
   {
+   "id": "wiki",
+   "title": "The Legal Wiki",
+   "cy": "Y Wici Cyfreithiol",
+   "es": "La Wiki Legal",
+   "live": "https://greathousefarmwiki.wordpress.com/",
+   "hosts": [
+    "greathousefarmwiki.wordpress.com",
+    "wiki.bucklerfamily.estate"
+   ],
+   "paths": [],
+   "desc": "",
+   "branch": "wiki",
+   "dir": "site",
+   "snapshot_branch": "section/wiki",
+   "wp_copy": "tools/wiki.py",
+   "crawl_secs": 1500,
+   "group": "artifacts"
+  },
+  {
    "id": "records",
    "title": "Primary Records",
    "cy": "Cofnodion Sylfaenol",
@@ -182,25 +201,6 @@
    "branch": "infographic",
    "dir": "public",
    "group": "interactive"
-  },
-  {
-   "id": "wiki",
-   "title": "The Legal Wiki",
-   "cy": "Y Wici Cyfreithiol",
-   "es": "La Wiki Legal",
-   "live": "https://greathousefarmwiki.wordpress.com/",
-   "hosts": [
-    "greathousefarmwiki.wordpress.com",
-    "wiki.bucklerfamily.estate"
-   ],
-   "paths": [],
-   "desc": "",
-   "branch": "wiki",
-   "dir": "site",
-   "snapshot_branch": "section/wiki",
-   "wp_copy": "tools/wiki.py",
-   "crawl_secs": 1500,
-   "group": "artifacts"
   },
   {
    "id": "ebooks",

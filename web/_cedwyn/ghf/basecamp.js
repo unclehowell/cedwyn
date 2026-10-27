@@ -292,6 +292,7 @@
     var p = window.__cedwynLP || location.pathname;
     if (CPM && !window.__cedwynLP) p = location.pathname.slice(CPM[1].length + 1) || "/";
     var seg = (p.split("/")[1] || "").toLowerCase();
+    if (seg === "docs" && /^\/docs\/ghf_legalwiki(\/|$)/i.test(p)) seg = "wiki";   // 27 Oct 2026: the Legal Wiki document collection opens with The Legal Wiki selected (1 of 42) - Sion's Tab agent
     if (CSEC && (!seg || CFULL.indexOf(seg) < 0)) return CSEC === "wales" ? "wales" : "patagonia";
     if (!seg && location.hostname === "cedwyn.bucklerfamily.estate") seg = "estate";
     else if (!seg && /^(?:www\.)?bucklerfamily\.estate$/.test(location.hostname)) seg = "dartboard";
