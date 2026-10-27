@@ -682,3 +682,139 @@ CYMRAEG = {
     ],
     "note": "Cyfieithiad drafft o'r crynodeb Saesneg. Croesawn gywiriadau gan siaradwyr Cymraeg.",
 }
+
+
+# =====================================================================
+# AFTER THE MEETING (added 27 October 2026): the Council's own record,
+# the correspondence before and after, and the WhatDoTheyKnow requests.
+# Plain text, dated, no outbound links. The requester is never named.
+# Red text in the requester's annotated copy of the draft minutes is the
+# requester's own proposed amendment, never Council wording.
+# =====================================================================
+RECORD_INTRO = ("What Llandough Community Council has published about the meeting, read on its own website on "
+                "27 October 2026 (Full Council page). The website's security certificate expired on 13 December 2025, "
+                "so browsers show a security warning when it is opened.")
+# (headline, [paragraphs], source line)
+RECORD = [
+    ("Notice and agenda · 13 October 2026",
+     ["The Clerk's notice called the meeting for Thursday 22 October 2026 at 7.00pm, held remotely only. "
+      "Any councillor, member of the press or member of the public could attend remotely, with joining details "
+      "from the Clerk.",
+      "Nineteen items. Item 4 was the public participation session; item 5 a meeting with Councillor G. Carroll "
+      "(Vale of Glamorgan Council). Item 10 was a request from the requester, shown on the agenda by initials: "
+      "(a) whether the Council would pass the requester's details to former members, former clerks or "
+      "long-standing residents who remember the village between the 1950s and the 1990s, leaving it to them "
+      "whether to make contact; and (b) whether an interpretation board or plaque near the green would be "
+      "appropriate, recording the 1,026 early medieval burials excavated beneath Church View Close, with an "
+      "offer of a free talk on the documentary record."],
+     "Council agenda, dated 13 October 2026 (file posted 15 October 2026)."),
+    ("Draft minutes · published 25 October 2026",
+     ["Present: the Chair (Councillor Dr M. Misra), the Vice Chair and seven other councillors; apologies from one "
+      "councillor. Three members of the public were recorded as attending; no police representative attended.",
+      "Councillor Carroll's written report covered the Brook Green water leak (chased with the Vale of Glamorgan "
+      "Council), a community drop-in, rail replacement buses, a bus stop consultation, fly-tipping, Royal Mail "
+      "delays and fireworks.",
+      "Item 10 is recorded as requests from the requester (by initials). Both questions are minuted word for word "
+      "and the requester was invited to speak. The minutes record the requester's view that the village's "
+      "historical matters were not being properly recognised.",
+      "Answers recorded: on (a), the requester would need to put out a request on social media for people to make "
+      "contact; on (b), there were no funds available.",
+      "The Chair explained that the meeting had been arranged remotely only because of the content and tone of the "
+      "requester's original email, noting a further email received later. The Clerk advised that the questions "
+      "the requester had submitted would be answered by email in due course, and that an internal review of the "
+      "requester's freedom of information request would be carried out by Councillors King and Dr Misra.",
+      "Other business: a £100 donation to Wales Air Ambulance; a soil assessment for the Lewis Road reserve "
+      "allotments; the project plan for the new Llandough and Cwrtyrala Community Council approved subject to "
+      "corrections; a reply to the Welsh Government on the tennis court; two planning applications."],
+     "Council draft minutes (Word file), created and last saved 25 October 2026; signature line dated 18 November 2026."),
+    ("What happens next",
+     ["The minutes stay in draft until the Council confirms them. The Council's 2026 timetable lists the next "
+      "Council meeting on 18 November 2026, the date on the draft's signature line.",
+      "The requester's proposed amendments of 27 October 2026 are listed under Correspondence. They are the "
+      "requester's proposals, not Council wording."],
+     "Council timetable of meetings 2026 (published November 2025); draft minutes of 22 October 2026."),
+]
+
+CORR_INTRO = ("Every email about this meeting between the requester and the Council, before and after, from the "
+              "requester's mailbox. Dates are UK dates. Bodies are named by role. Nothing counts as late before "
+              "its due date.")
+# (phase, date, direction, with, summary, status)
+CORR = [
+    ("before", "21 Sep 2026", "Sent", "the Chair (passed to the Clerk on 28 Sep)",
+     "Information request to the Council about its records on Great House Farm (Tŷ Mawr).",
+     "Replied 11 Oct 2026 (refused)."),
+    ("before", "11 Oct 2026", "Received", "the Clerk",
+     "Request refused on cost grounds (section 12, above the £450 limit); the other matters raised would be "
+     "considered at the October meeting.",
+     "Answered by the requester on 13 Oct 2026."),
+    ("before", "13 Oct 2026", "Sent", "the Clerk, copied to the Chair",
+     "Internal review of the refusal requested; asked for the date, time, venue and agenda of the October meeting. "
+     "An earlier version sent the same night was withdrawn by the requester.",
+     "Agenda sent 13 Oct 2026. Review outcome not received yet; due 10 Nov 2026 (20 working days)."),
+    ("before", "13 Oct 2026", "Received", "the Clerk",
+     "Acknowledged the email (a full response to follow in due course) and sent the agenda and remote joining details.",
+     "Full response not received yet; no date given."),
+    ("before", "14 Oct 2026", "Sent", "the Clerk",
+     "Thanks for the agenda; noted wider local history (Marconi, Peerless Jim) as part of Llandough's story.",
+     "No reply needed."),
+    ("before", "16 Oct 2026", "Sent", "the Clerk",
+     "Two points for the record: the review outcome or a firm date before or at the meeting, and confirmation that "
+     "any 1988–1992 planning files for two planning references are being kept.",
+     "No reply on these two points yet."),
+    ("before", "16 Oct 2026", "Sent", "the Clerk, copied to the Chair",
+     "Plain-language supplement to the 13 October email; all formal requests in it stand.",
+     "No reply yet."),
+    ("before", "16 Oct 2026", "Received", "the Clerk",
+     "The meeting would now be held remotely only, using the joining link already sent.",
+     "Answered by the requester the same day."),
+    ("before", "16 Oct 2026", "Sent", "the Clerk",
+     "Objection to the change to a remote-only meeting.",
+     "Replied 20 Oct 2026."),
+    ("before", "20 Oct 2026", "Sent", "the Clerk",
+     "New, narrower information request (Freedom of Information Act and Environmental Information Regulations) "
+     "about the Great House Farm records; a short correction followed the same day.",
+     "No reply yet; due 17 Nov 2026 (20 working days)."),
+    ("before", "20 Oct 2026", "Sent", "the Clerk, through WhatDoTheyKnow",
+     "Public request about the remote-only arrangements, outstanding questions and the Council's records on "
+     "Great House Farm (Tŷ Mawr).",
+     "Awaiting response; due 17 Nov 2026."),
+    ("before", "20 Oct 2026", "Received", "the Clerk",
+     "The published agenda specifies a remote meeting; the requester would have a reasonable opportunity to ask "
+     "questions and comment on agenda business.",
+     "Acknowledged by the requester the same evening."),
+    ("before", "21 Oct 2026", "Sent", "the Clerk",
+     "The 12 questions the requester would ask at the meeting, each based on earlier correspondence "
+     "(listed in section 3).",
+     "At the meeting the Clerk advised they would be answered by email in due course; no reply yet."),
+    ("after", "24 Oct 2026", "Sent", "the Chair, the Clerk and Councillor Carroll",
+     "A heads-up that the Council website's security certificate expired on 13 December 2025.",
+     "Replied 25 Oct 2026."),
+    ("after", "25 Oct 2026", "Received", "the Clerk",
+     "The Council pays for the certificate annually; the Clerk would take it up with the website host.",
+     "Answered by the requester the same day."),
+    ("after", "25 Oct 2026", "Sent", "the Clerk",
+     "Pointed to a free certificate service (Cloudflare) that renews automatically.",
+     "No reply needed."),
+    ("after", "27 Oct 2026", "Sent", "the Clerk, the Chair and Councillor Carroll",
+     "The requester's proposed amendments to the draft minutes, shown in red on an attached copy: attendance "
+     "(Councillor Carroll and the Clerk present; four members of the public, not three), a spelling, the "
+     "requester's full name, two local history points (Marconi; Peerless Jim's first fight in the barn), a fuller "
+     "note of the answer to question (a), and completion of an unfinished note on a QR code suggestion. "
+     "These are the requester's proposals, not Council wording.",
+     "No reply yet; the minutes are due for confirmation on 18 Nov 2026."),
+]
+CORR_PHASES = {"before": "Before the meeting", "after": "After the meeting (22 October 2026)"}
+
+WDTK_INTRO = ("Public requests made on WhatDoTheyKnow, with our own backed-up copy of each. "
+              "Status as at 27 October 2026.")
+# (title, body, sent, status, answered, our copy)
+WDTK_REQS = [
+    ("Meeting of 22 October 2026: remote-only arrangements, outstanding questions and the Great House Farm (Tŷ Mawr) records",
+     "Llandough Community Council", "20 Oct 2026", "Awaiting response; due 17 Nov 2026",
+     "Nothing answered yet.", "/wdtk/r/meeting_of_22_october_2026_remot/"),
+]
+WDTK_NOTES = [
+    "The first information request (21 September 2026) and the 20 October 2026 narrower request went to the Clerk by email, not through WhatDoTheyKnow; both are in the Correspondence section.",
+    "No WhatDoTheyKnow request to the Vale of Glamorgan Council about this meeting was found.",
+    "The 27 October 2026 email states that the proposed amendments to the minutes will also be added to WhatDoTheyKnow for the public record. As at 27 October 2026 that has not been done.",
+]
