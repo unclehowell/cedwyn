@@ -1,5 +1,5 @@
-/* watchtower.bucklerfamily.estate v3 — institution page changes about Great House Farm, from the Internet Archive — Sion's Tab agent */
-(function(){
+/* watchtower.bucklerfamily.estate v3 — institution page changes about Great House Farm, from the Internet Archive — Cedwyn editors */
+(function{
 var D=null,sel=document.getElementById('inst'),chart=document.getElementById('chart'),dlg=document.getElementById('dlg'),body=document.getElementById('dbody');
 var COL={appeared:'#f2c94c',added:'#30a46c',removed:'#e5484d',altered:'#3e7bfa',gone:'#e5484d'};
 var LAB={appeared:'Page appeared',added:'Text added',removed:'Text removed',altered:'Text changed',gone:'Page gone'};
@@ -8,16 +8,16 @@ function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttr
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function dt(s){return new Date(s.slice(0,10)+'T12:00:00Z')}
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-function fmt(s){if(!s)return'';var d=dt(s);return d.getUTCDate()+' '+MON[d.getUTCMonth()]+' '+d.getUTCFullYear()}
+function fmt(s){if(!s)return'';var d=dt(s);return d.getUTCDate+' '+MON[d.getUTCMonth]+' '+d.getUTCFullYear}
 /* year-weighted time scale: years with changes get more width, empty years stay visible */
 function scale(from,to,counts,x0,x1){
   var y0=+from.slice(0,4),y1=+to.slice(0,4),segs=[],tot=0;
   for(var y=y0;y<=y1;y++){var n=counts[y]||0,w=n?2+Math.log(1+n)/Math.LN2:0.6;segs.push({y:y,w:w});tot+=w}
   var acc=x0;segs.forEach(function(s){s.a=acc;s.b=acc+s.w/tot*(x1-x0);acc=s.b});
-  function X(s){var d=dt(s),y=d.getUTCFullYear(),g=null;for(var i=0;i<segs.length;i++)if(segs[i].y===y){g=segs[i];break}
+  function X(s){var d=dt(s),y=d.getUTCFullYear,g=null;for(var i=0;i<segs.length;i++)if(segs[i].y===y){g=segs[i];break}
     if(!g)return y<y0?x0:x1;var st=Date.UTC(y,0,1),en=Date.UTC(y+1,0,1);return g.a+Math.min(1,(d-st)/(en-st))*(g.b-g.a)}
   X.segs=segs;return X}
-function draw(){
+function draw{
   var f=sel.value,pts=D.changes.filter(function(c){return !f||c.inst===f});
   var cnt={};pts.forEach(function(c){cnt[c.inst]=(cnt[c.inst]||0)+1});
   var rows=D.institutions.filter(function(i){return cnt[i.id]}).map(function(i){return{id:i.id,label:i.short,title:i.name}});
@@ -36,7 +36,7 @@ function draw(){
       if(c.type==='gone')el('circle',{cx:cx,cy:cy,r:4.5,fill:'none',stroke:COL.gone,'stroke-width':2,'class':'dot'},g);
       else el('circle',{cx:cx,cy:cy,r:5.5,fill:COL[c.type],'class':'dot'},g);
       el('circle',{cx:cx,cy:cy,r:12,'class':'hit'},g);
-      g.addEventListener('click',function(){open(c)});g.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();open(c)}});
+      g.addEventListener('click',function{open(c)});g.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault;open(c)}});
     });
   });
   [].forEach.call(document.querySelectorAll('ol.list li'),function(li){li.hidden=!!f&&li.getAttribute('data-inst')!==f});
@@ -50,14 +50,14 @@ function open(c){
   h+='<p class="url">Archive captures of this page: '+(p.captures||0)+' ('+fmt(p.first)+' to '+fmt(p.last)+')</p>';
   h+='<div class="ba">'+(c.before_url?'<a href="'+esc(c.before_url)+'" rel="noopener" target="_blank">Before · '+fmt(c.d1)+'</a>':'')+'<a href="'+esc(c.after_url)+'" rel="noopener" target="_blank">'+(c.type==='gone'?'Gone · ':'After · ')+fmt(c.date)+'</a></div>';
   body.innerHTML=h;history.replaceState(null,'','#c='+c.id);
-  if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');
+  if(dlg.showModal)dlg.showModal;else dlg.setAttribute('open','');
 }
-dlg.addEventListener('close',function(){history.replaceState(null,'',location.pathname)});
-dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
-fetch('data/changes.json?n='+Date.now()).then(function(r){return r.json()}).then(function(d){
+dlg.addEventListener('close',function{history.replaceState(null,'',location.pathname)});
+dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close});
+fetch('data/changes.json?n='+Date.now).then(function(r){return r.json}).then(function(d){
   D=d;D.pmap={};D.pages.forEach(function(p){D.pmap[p.id]=p});D.imap={};D.institutions.forEach(function(i){D.imap[i.id]=i});
   D.institutions.forEach(function(i){var o=document.createElement('option');o.value=i.id;o.textContent=i.name+' ('+i.n_changes+')';sel.appendChild(o)});
-  sel.addEventListener('change',draw);var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(draw,150)});
-  draw();var m=/^#c=(\w+)/.exec(location.hash);if(m){var c=D.changes.filter(function(x){return x.id===m[1]})[0];if(c)open(c)}
-}).catch(function(){chart.textContent=''});
-})();
+  sel.addEventListener('change',draw);var rt;window.addEventListener('resize',function{clearTimeout(rt);rt=setTimeout(draw,150)});
+  draw;var m=/^#c=(\w+)/.exec(location.hash);if(m){var c=D.changes.filter(function(x){return x.id===m[1]})[0];if(c)open(c)}
+}).catch(function{chart.textContent=''});
+});
