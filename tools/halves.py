@@ -17,7 +17,9 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.2.0'
+VERSION = '1.2.1'
+# 1.2.1 (27 Oct 2026, Sion 11:34 GMT): /argentina/ pictures purged of four pieces that are not the farm (NFA-0139, NFA-0049,
+# NFA-0103, NFA-0081); NFA-0015 replaced by REC-0001, a line drawing from the 1974 measured survey (see ARG_REC). - Sion's Tab agent
 # 1.2.0 (27 Oct 2026, Sion 09:45 GMT): the in-content pictures of /wales/ and /argentina/ are thumbnails; a tap opens the shared
 # full-screen viewer (web/_cedwyn/halves/lb.js + lb.css): full width, the picture's own title as caption, swipe / arrows loop
 # round every picture on the page, Escape / X / swipe down / backdrop closes. The landing page is unchanged. - Sion's Tab agent
@@ -470,7 +472,6 @@ ARG_NFT = {
     'NFA-0090': ('Below the Chapel Windows', '/nft-art/art/nfa-0090-v0.0.2.webp', '/nft-art/art/nfa-0090-v0.0.2-t.webp', 1200, 1200),
     'NFA-0106': ('The Churchyard Meadow', '/nft-art/art/nfa-0106-v0.0.2.webp', '/nft-art/art/nfa-0106-v0.0.2-t.webp', 900, 1200),
     'NFA-0121': ('By the Churchyard Wall', '/nft-art/art/nfa-0121-v0.0.2.webp', '/nft-art/art/nfa-0121-v0.0.2-t.webp', 1200, 1200),
-    'NFA-0139': ('The Old Footings', '/nft-art/art/nfa-0139.webp', '/nft-art/art/nfa-0139-t.webp', 1200, 900),
     'NFA-0057': ('The Porch Door', '/nft-art/art/nfa-0057-v0.0.2.webp', '/nft-art/art/nfa-0057-v0.0.2-t.webp', 1200, 1200),
     'NFA-0122': ('The Gabled Porch', '/nft-art/art/nfa-0122-v0.0.2.webp', '/nft-art/art/nfa-0122-v0.0.2-t.webp', 1200, 1200),
     'NFA-0038': ('Parterre and Porch', '/nft-art/art/nfa-0038-v0.0.2.webp', '/nft-art/art/nfa-0038-v0.0.2-t.webp', 1200, 1200),
@@ -481,7 +482,6 @@ ARG_NFT = {
     'NFA-0126': ('The Cottage Gable', '/nft-art/art/nfa-0126-v0.0.2.webp', '/nft-art/art/nfa-0126-v0.0.2-t.webp', 1200, 1200),
     'NFA-0133': ('The Blossom Lawn', '/nft-art/art/nfa-0133-v0.0.2.webp', '/nft-art/art/nfa-0133-v0.0.2-t.webp', 1200, 1200),
     'NFA-0144': ('The Terrace Steps', '/nft-art/art/nfa-0144-v0.0.2.webp', '/nft-art/art/nfa-0144-v0.0.2-t.webp', 1200, 1200),
-    'NFA-0081': ('Hanging Basket Lane', '/nft-art/art/nfa-0081-v0.0.2.webp', '/nft-art/art/nfa-0081-v0.0.2-t.webp', 1200, 1200),
     'NFA-0123': ('The Narrow Garden Path', '/nft-art/art/nfa-0123-v0.0.2.webp', '/nft-art/art/nfa-0123-v0.0.2-t.webp', 1200, 1200),
     'NFA-0021': ('Field Road Home', '/nft-art/art/nfa-0021-v0.0.2.webp', '/nft-art/art/nfa-0021-v0.0.2-t.webp', 1200, 800),
     'NFA-0044': ("The Visitor's Car", '/nft-art/art/nfa-0044-v0.0.2.webp', '/nft-art/art/nfa-0044-v0.0.2-t.webp', 1200, 1200),
@@ -500,8 +500,6 @@ ARG_NFT = {
     'NFA-0029': ('The Barn Door, Evening', '/nft-art/art/nfa-0029-v0.0.2.webp', '/nft-art/art/nfa-0029-v0.0.2-t.webp', 1200, 1200),
     'NFA-0019': ('Long Barn, Long Grass', '/nft-art/art/nfa-0019-v0.0.2.webp', '/nft-art/art/nfa-0019-v0.0.2-t.webp', 1200, 900),
     'NFA-0055': ('Barn End and Meadow', '/nft-art/art/nfa-0055-v0.0.2.webp', '/nft-art/art/nfa-0055-v0.0.2-t.webp', 1200, 1200),
-    'NFA-0049': ('Hayloft Meadow', '/nft-art/art/nfa-0049-v0.0.2.webp', '/nft-art/art/nfa-0049-v0.0.2-t.webp', 1200, 900),
-    'NFA-0015': ('Woodpile by the Old Wall', '/nft-art/art/nfa-0015-v0.0.2.webp', '/nft-art/art/nfa-0015-v0.0.2-t.webp', 1200, 1200),
     'NFA-0020': ('Cart Track and Barrel', '/nft-art/art/nfa-0020-v0.0.2.webp', '/nft-art/art/nfa-0020-v0.0.2-t.webp', 1200, 900),
     'NFA-0067': ('Water Butt and Shed', '/nft-art/art/nfa-0067-v0.0.2.webp', '/nft-art/art/nfa-0067-v0.0.2-t.webp', 1200, 1200),
     'NFA-0089': ('The China Cabinets', '/nft-art/art/nfa-0089-v0.0.2.webp', '/nft-art/art/nfa-0089-v0.0.2-t.webp', 1200, 1200),
@@ -525,7 +523,16 @@ ARG_NFT = {
     'NFA-0147': ('The Cottage Window', '/nft-art/art/nfa-0147-v0.0.2.webp', '/nft-art/art/nfa-0147-v0.0.2-t.webp', 1200, 1200),
     'NFA-0148': ('The White Door', '/nft-art/art/nfa-0148-v0.0.2.webp', '/nft-art/art/nfa-0148-v0.0.2-t.webp', 1200, 1200),
     'NFA-0149': ('The Hall Door', '/nft-art/art/nfa-0149-v0.0.2.webp', '/nft-art/art/nfa-0149-v0.0.2-t.webp', 1200, 1200),
-    'NFA-0103': ('The Garden Room', '/nft-art/art/nfa-0103-v0.0.2.webp', '/nft-art/art/nfa-0103-v0.0.2-t.webp', 1200, 800),
+    'REC-0001': ('Tŷ Mawr, reconstruction from the 1974 measured survey', '/_cedwyn/halves/img/ty-mawr-1974-reconstruction.webp', '/_cedwyn/halves/img/ty-mawr-1974-reconstruction-t.webp', 1200, 1200),
+}
+# Survey drawings shown among the pieces (27 Oct 2026, Sion 11:34 GMT: four pieces that are not the farm came out, NFA-0139,
+# NFA-0049, NFA-0103, NFA-0081; NFA-0015 showed the right farm poorly and is replaced by REC-0001, a line drawing made from the
+# H.J. Thomas measured plan and sketch plan, RCAHMW NA/GL/89/208, visited 26 Apr 1974; massing from a 1988 press photograph;
+# roof height estimated. Source files: work/nft-art/reconstruction/). - Sion's Tab agent
+ARG_REC = {
+    'REC-0001': {'en': 'Tŷ Mawr: reconstruction from the 1974 measured survey; roof height estimated',
+                 'cy': 'Tŷ Mawr: ail-greu o arolwg mesuredig 1974; uchder y to wedi’i amcangyfrif',
+                 'es': 'Tŷ Mawr: reconstrucción a partir del levantamiento medido de 1974; altura del tejado estimada'},
 }
 ARG_NFT_HERO = 'NFA-0094'
 ARG_NFT_VENUE = {'room': 'NFA-0059', 'cottage': 'NFA-0141', 'villa': 'NFA-0107', 'wed': 'NFA-0100'}
@@ -533,17 +540,17 @@ ARG_NFT_SLOTS = {
     'hl0': ['NFA-0157', 'NFA-0035', 'NFA-0026', 'NFA-0076', 'NFA-0032'],
     'hl1': ['NFA-0011', 'NFA-0046', 'NFA-0111', 'NFA-0112', 'NFA-0137', 'NFA-0138'],
     'hl2': ['NFA-0047', 'NFA-0093', 'NFA-0115', 'NFA-0114', 'NFA-0043'],
-    'hl3': ['NFA-0050', 'NFA-0090', 'NFA-0106', 'NFA-0121', 'NFA-0139'],
+    'hl3': ['NFA-0050', 'NFA-0090', 'NFA-0106', 'NFA-0121'],
     'hl4': ['NFA-0057', 'NFA-0122', 'NFA-0038', 'NFA-0014', 'NFA-0048'],
     'hl5': ['NFA-0023', 'NFA-0092', 'NFA-0126', 'NFA-0133', 'NFA-0144', 'NFA-0123'],
     'lede': ['NFA-0021', 'NFA-0044', 'NFA-0150'],
     'menu': ['NFA-0113', 'NFA-0117', 'NFA-0052', 'NFA-0051'],
     'house': ['NFA-0128', 'NFA-0071', 'NFA-0072', 'NFA-0087', 'NFA-0088', 'NFA-0060'],
-    'feats': ['NFA-0016', 'NFA-0029', 'NFA-0019', 'NFA-0055', 'NFA-0049', 'NFA-0020', 'NFA-0067'],
+    'feats': ['NFA-0016', 'NFA-0029', 'NFA-0019', 'NFA-0055', 'NFA-0020', 'NFA-0067'],
     'museum': ['NFA-0089', 'NFA-0131', 'NFA-0130', 'NFA-0069', 'NFA-0058', 'NFA-0070', 'NFA-0145'],
     'book': ['NFA-0077', 'NFA-0082', 'NFA-0146', 'NFA-0083', 'NFA-0080'],
     'form': ['NFA-0078', 'NFA-0079', 'NFA-0129', 'NFA-0152', 'NFA-0084', 'NFA-0153', 'NFA-0147', 'NFA-0148', 'NFA-0149'],
-    'retell': ['NFA-0103', 'NFA-0081', 'NFA-0015'],
+    'retell': ['REC-0001'],
 }
 NFT_CSS = ('<style>.nf-s{display:flex;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:14px 0 18px;padding:0 0 6px}'
            '.nf-s>.nf-f{flex:0 0 86%;scroll-snap-align:start}.nf-s>.nf-f:only-child{flex-basis:100%}@media (min-width:783px){.nf-s>.nf-f{flex-basis:calc(50% - 5px)}}'
@@ -558,13 +565,19 @@ def nft_img(i, sizes='(min-width:783px) 560px, 86vw', eager=False, extra=''):
 
 def nft_strip(ids, T, l):
     """A row of small square thumbnails; each opens the full picture in the shared viewer (lb.js). The plain link to the
-    piece in /nft-art/ stays as the no-script fallback. One artist's-impression label per row. - Sion's Tab agent"""
+    piece in /nft-art/ stays as the no-script fallback. One artist's-impression label per row. A survey drawing (an id in
+    ARG_REC, not an /nft-art/ piece) links to its own file and carries its own caption instead of the label. - Sion's Tab agent"""
     ids = [i for i in ids if i in ARG_NFT]
     if not ids: return ''
-    return ('<div class="nf-s nf-th">' + ''.join(
-        f'<figure class="nf-f"><a href="/nft-art/#/{E(i)}" data-lb="{E(ARG_NFT[i][1])}">'
-        f'<img src="{ARG_NFT[i][2]}" width="{ARG_NFT[i][3]}" height="{ARG_NFT[i][4]}" alt="{E(ARG_NFT[i][0])}" loading="lazy" decoding="async"></a></figure>'
-        for i in ids) + f'<p class="nf-tg" data-i18n="ai_tag">{E(tx(T,"ai_tag",l))}</p></div>')
+    def fig(i):
+        t, im, tb, w, h = ARG_NFT[i]
+        href = im if i in ARG_REC else f'/nft-art/#/{E(i)}'
+        cap = lt(T, ARG_REC[i], l, 'rec_' + i.lower().replace('-', '_'), tag='figcaption') if i in ARG_REC else ''
+        return (f'<figure class="nf-f"><a href="{href}" data-lb="{E(im)}">'
+                f'<img src="{tb}" width="{w}" height="{h}" alt="{E(t)}" loading="lazy" decoding="async"></a>{cap}</figure>')
+    tag = f'<p class="nf-tg" data-i18n="ai_tag">{E(tx(T,"ai_tag",l))}</p>' if any(i not in ARG_REC for i in ids) else ''
+    return '<div class="nf-s nf-th">' + ''.join(fig(i) for i in ids) + tag + '</div>'
+
 
 def nft_between(html, strips):
     """Put one strip after each headline block (between clamp.js read-more blocks, never inside one)."""
