@@ -253,11 +253,11 @@ JS = r"""
 })();
 """
 
-def headlines(H, T, l, sec):
+def headlines(H, T, l, sec, lead='', tail=''):
     """The story in headlines (Sion, 12:01 GMT 26 Oct 2026, m:2c8d96e9): bold evidence-backed points first, the detail behind
     a native <details> "Read more" (Darllen mwy / Leer más); folded text stays in the HTML for search and AI readers. - Sion's Tab agent"""
     hs = (H.get('headlines') or {}).get(sec) or []
-    if not hs: return ''
+    if not hs: return (f'<section id="headlines" class="hv-seg" data-cw-seg>{lead}{tail}</section>' if lead else '')
     for k, v in (H.get('headlines') or {}).get('t', {}).items(): T[k] = v
     items = []
     for j, x in enumerate(hs):
@@ -273,6 +273,15 @@ def headlines(H, T, l, sec):
     css = ('<style>.hv-hls{margin:18px 0 22px}.hv-hls>h2{margin-bottom:6px}.hv-hl{border-top:1px solid rgba(127,127,127,.35);padding:12px 0}'
            '.hv-hl:last-child{border-bottom:1px solid rgba(127,127,127,.35)}.hv-hl>b{display:block;font-size:1.25em;line-height:1.25;font-weight:800}'
            '.hv-hl p{margin:.55em 0}.hv-hl-ev a{font-weight:600}</style>')
+    if lead:
+        # One text segment (Sion, WhatsApp 06:16 GMT 27 Oct 2026, m:12fcf64f: "One segment of text on this page ... only please"):
+        # the lede, every headline and any closing note sit in ONE block under the title; clamp.js shows its first three lines and
+        # "read more" opens it a paragraph at a time, "less" closes it. Same words, same order; the section label rides as the
+        # first point's kicker. Without JavaScript every word shows - Sion's Tab agent
+        if items:
+            items[0] = items[0].replace('<div class="hv-hl">', f'<div class="hv-hl"><span class="hv-hl-k" data-i18n="hl_h">{E(tx(T, "hl_h", l))}</span>', 1)
+        css = css.replace('</style>', '.hv-seg>.lede{margin-bottom:.4em}.hv-hl-k{display:block;font-size:.78em;letter-spacing:.06em;text-transform:uppercase;opacity:.75;margin-bottom:4px}</style>')
+        return f'{css}<section id="headlines" class="hv-hls hv-seg" data-cw-seg>{lead}{"".join(items)}{tail}</section>'
     return f'<section id="headlines" class="hv-hls">{css}<h2 data-i18n="hl_h">{E(tx(T, "hl_h", l))}</h2>{"".join(items)}</section>'
 
 def projection(stops):
@@ -397,8 +406,7 @@ def wales(sections, S, cfg, H):
 <header class="hv-hero"><img src="{img(H,'wales-ar-green')}" width="1280" height="725" alt="" fetchpriority="high"><span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
 <div class="hb"><p class="eyebrow" style="color:#ddd" data-i18n="w_kick">{E(tx(T,'w_kick',l))}</p><h1 data-i18n="w_h1">{E(tx(T,'w_h1',l))}</h1></div></header>
 <h2 data-i18n="w_h2">{E(tx(T,'w_h2',l))}</h2>
-<p class="lede" data-i18n="w_lede">{E(tx(T,'w_lede',l))}</p>
-{headlines(H, T, l, 'wales')}
+{headlines(H, T, l, 'wales', lead=f'<p class="lede" data-i18n="w_lede">{E(tx(T,"w_lede",l))}</p>', tail=f'<div class="hv-hl" id="no-museum"><b data-i18n="w_nomuseum_h">{E(tx(T,"w_nomuseum_h",l))}</b><p data-i18n="w_nomuseum_p">{E(tx(T,"w_nomuseum_p",l))}</p></div>')}
 <div class="hv-btns"><a class="hv-btn pri" href="#tour" data-hv-go="0" data-i18n="w_start">{E(tx(T,'w_start',l))}</a><a class="hv-btn" href="#shop" data-i18n="w_tickets">{E(tx(T,'w_tickets',l))}</a><a class="hv-btn" href="#menu" data-i18n="w_menu">{E(tx(T,'w_menu',l))}</a></div>
 {mn}
 <section id="route"><h2 data-i18n="w_map_h">{E(tx(T,'w_map_h',l))}</h2><p class="mut" data-i18n="w_map_p">{E(tx(T,'w_map_p',l))}</p>{mp}</section>
@@ -406,7 +414,6 @@ def wales(sections, S, cfg, H):
 <section id="tour">{stops}
 <div class="hv-nav"><button type="button" class="hv-btn" id="hv-prev" data-i18n="w_prev">{E(tx(T,'w_prev',l))}</button><span id="hv-cnt" class="mut">1 / {ns}</span>
 <button type="button" class="hv-btn" id="hv-say" data-i18n="w_listen">{E(tx(T,'w_listen',l))}</button><button type="button" class="hv-btn pri" id="hv-next" data-i18n="w_next">{E(tx(T,'w_next',l))}</button></div></section>
-<section class="hv-note" id="no-museum"><h3 data-i18n="w_nomuseum_h">{E(tx(T,'w_nomuseum_h',l))}</h3><p data-i18n="w_nomuseum_p">{E(tx(T,'w_nomuseum_p',l))}</p></section>
 <section id="shop"><h2 data-i18n="w_shop_h">{E(tx(T,'w_shop_h',l))}</h2><p data-i18n="w_shop_p">{E(tx(T,'w_shop_p',l))}</p>
 <div class="hv-btns" id="vouchers">{vouchers}<a class="hv-btn" href="/ebooks/" data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</a></div>
 <p class="mut"><a href="/wales/vouchers/terms/">{lt(T, VOUCHER_TERMS, l, 'w_vterms')}</a></p></section>

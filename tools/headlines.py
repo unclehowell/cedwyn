@@ -14,14 +14,19 @@ This replaces the heading-then-"Learn more" folds (PRs #7-#11). One pass over ev
 Never touched: the landing page (/), archived copies of outside websites (/wayback/websites/), letters (/email/), the e-book
 shop and readers, the database, /agents/, /academy/, single-page shells keep the script only (it clamps what they render).
 Runs from tools/site.py after ebook_editions and before guestbook. Report: dist/_cedwyn/reports/headlines.json.
+
+27 Oct 2026 (Sion, WhatsApp 06:16 GMT): clamp.js v2 reads a run of paragraphs as ONE segment: the first three lines show, then
+"read more" opens one paragraph at a time, a new "read more" at the end of each, and "less" closes it back to the opening lines.
+A page can mark its own segment with data-cw-seg (its children are the paragraphs); opt out with data-cw-noclamp, .cw-noclamp or
+.no-readmore. Every word stays in the HTML. - Sion's Tab agent
 """
 import json, pathlib, re, sys
 
 SKIP_DIRS = ('_blob/', '_ext/', 'db/', '_cedwyn/', 'wayback/websites/', 'email/', 'emails/view/', 'graphql/', 'catalogue/',
              'guestbook/', 'explore/', 'ebooks/', 'shop/', 'app/', 'chess/', 'chat/', 'agents/', 'academy/')
 SKIP_FILES = {'index.html', '404.html'}          # index.html = the landing page: two tiles, stays as it is
-JS = '<script src="/_cedwyn/clamp.js?v=1" defer></script>'
-CSS = '<style id="cw-clamp-css">.cw-c{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:3!important;line-clamp:3;overflow:hidden!important;position:relative}.cw-rm{all:unset;box-sizing:border-box;cursor:pointer;font:inherit;color:inherit;font-weight:700;white-space:nowrap;-webkit-tap-highlight-color:transparent}.cw-c>.cw-rm{position:absolute;right:0;bottom:0;padding-left:2.4em;background:linear-gradient(to right,rgba(0,0,0,0),var(--cw-bg,#fff) 2em)}.cw-rm .cw-rm-l{text-decoration:underline;text-underline-offset:2px}.cw-o>.cw-rm{margin-left:.35em}.cw-o>.cw-rm .cw-rm-e{display:none}.cw-rm:focus-visible{outline:2px solid currentColor;outline-offset:2px}@media print{.cw-c{display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important}.cw-rm{display:none!important}}</style>'
+JS = '<script src="/_cedwyn/clamp.js?v=2" defer></script>'   # v2: paragraph-at-a-time read more (27 Oct 2026)
+CSS = '<style id="cw-clamp-css">.cw-c{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:3!important;line-clamp:3;overflow:hidden!important;position:relative}.cw-h{display:none!important}@media print{.cw-c{display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important}.cw-h{display:revert!important}}</style>'   # the rest of the styling ships inside clamp.js v2
 
 OPEN = re.compile(r'<details class="cw-more(?: cw-more-3)?"><summary data-cw-more><span class="cw-more-l">[^<]*</span></summary><div class="cw-more-b">')
 CLOSE = re.compile(r'<button type="button" class="cw-less" data-cw-less(?: hidden)?>[^<]*</button></div></details>')
@@ -35,7 +40,8 @@ def unwrap(t):
     return t, a
 
 def inject(t):
-    if '/_cedwyn/clamp.js' in t: return t
+    if '/_cedwyn/clamp.js' in t:   # a snapshot that already carries the script: move it to the current version and CSS
+        return re.sub(r'<style id="cw-clamp-css">.*?</style>', lambda m: CSS, t.replace('/_cedwyn/clamp.js?v=1', '/_cedwyn/clamp.js?v=2'), count=1, flags=re.S)
     i = t.lower().find('</head>')
     add = CSS + JS
     return (t[:i] + add + t[i:]) if i >= 0 else add + t
