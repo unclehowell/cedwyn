@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Video on landing pages without the weight: facades, posters, preload (2026) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Video on landing pages without the weight: facades, posters, preload (2026)"><link rel="alternate" type="text/markdown" href="video-landing-page-facade-poster-preload.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Video on landing pages without the weight: facades, posters, preload (2026)</h1>
+<p>For pages whose job is "watch this short video, then read/buy" (e.g. /parcels/, /documentary/, e-book sales pages).</p>
+<h2>Evidence</h2>
+<ul>
+<li>Lighthouse audit "Lazy load third-party resources with facades" (Chrome docs): pages FAIL when they load deferrable third-party embeds such as the YouTube player on load; a facade (static look-alike, real player loaded on click) is the documented fix.</li>
+<li>Paul Irish's lite-youtube-embed (open source, Apache-2.0, npm "lite-youtube-embed", a few KB JS+CSS): renders "approximately 224x faster" than the normal embed; uses youtube-nocookie.com (privacy); supports a custom poster, <code>playlabel</code> for accessibility, progressive enhancement (plain link inside the element works with JS off), and <code>js-api</code> when you need the IFrame API.</li>
+<li>web.dev "Video performance": for videos that don't autoplay use the <code>poster</code> attribute (the poster image becomes the LCP candidate); per HTTP Archive ~20% of web videos autoplay — avoid unless it replaces a GIF (muted, playsinline).</li>
+<li>Practitioner write-ups (Debbie O'Brien, Nuxt; Mugo; corewebvitals.io) report large LCP/TBT gains from swapping iframes for facades — anecdotal, no shared numbers.</li>
+</ul>
+<h2>How to do it</h2>
+<p>YouTube video:</p>
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;/_assets/lite-yt-embed.css&quot;&gt;
+&lt;script src=&quot;/_assets/lite-yt-embed.js&quot; defer&gt;&lt;/script&gt;
+&lt;lite-youtube videoid=&quot;ID&quot; playlabel=&quot;Play: The 36 parcels, 30 seconds&quot;
+  style=&quot;background-image:url('/img/parcels-poster.webp')&quot;&gt;
+  &lt;a href=&quot;youtube.com class=&quot;lyt-playbtn&quot; title=&quot;Play video&quot;&gt;
+    &lt;span class=&quot;lyt-visually-hidden&quot;&gt;Play: The 36 parcels&lt;/span&gt;&lt;/a&gt;
+&lt;/lite-youtube&gt;
+</code></pre>
+<p>(If the site rule is "no outbound links", drop the fallback <code>&lt;a&gt;</code> and keep the button.)</p>
+<p>Self-hosted webm/mp4 (our Cedwyn clips):</p>
+<pre><code class="language-html">&lt;video controls playsinline preload=&quot;none&quot; poster=&quot;/img/parcels-poster.webp&quot;
+  width=&quot;720&quot; height=&quot;1280&quot; aria-describedby=&quot;parcels-text&quot;&gt;
+  &lt;source src=&quot;/clips/parcels.webm&quot; type=&quot;video/webm&quot;&gt;
+  &lt;track kind=&quot;captions&quot; srclang=&quot;en&quot; src=&quot;/clips/parcels.en.vtt&quot; label=&quot;English&quot; default&gt;
+&lt;/video&gt;
+</code></pre>
+<ul>
+<li><code>preload="none"</code> + <code>poster</code>: nothing downloads until play; width/height reserve space (no layout shift).</li>
+<li>Poster: a real frame, WebP, &lt; 60 KB, with the title burned in only if it is also in page text.</li>
+<li>Captions track always (most mobile viewers start muted); a one-paragraph text summary beside it for people who won't press play and for search/AI crawlers.</li>
+<li>Put the video directly under the H1 at 390 px, then 2–3 lines of text, then the one CTA.</li>
+</ul>
+<p>Measure: Lighthouse (mobile) before/after — check "third-party facades" passes and LCP; in our own analytics count play clicks / page views (add a <code>play</code> event to the beacon).</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>/parcels/ (v0.0.1): self-hosted clip with <code>preload="none"</code>, a poster frame, en captions (cy/es tracks if they exist), the neutral explanation under it, then the /ebooks/ link. If the clip is on YouTube instead, use lite-youtube with nocookie and no outbound fallback link.</li>
+<li>/documentary/: version selector should swap <code>src</code> only after a click; never preload paid versions.</li>
+<li>Sales pages with a short video (see sales-page-short-video-ebooks.md): facade/poster first, then measure play-rate vs checkout clicks.</li>
+<li>No install on this box needed: lite-youtube-embed is two small static files vendored into the site repo when a YouTube embed is actually used.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developer.chrome.com</li>
+<li>github.com (readme read 2026-10-27)</li>
+<li>web.dev</li>
+<li>web.dev</li>
+<li>debbie.codes (anecdotal)</li>
+<li>mugo.ca (anecdotal)</li>
+</ul><p class="raw">Raw Markdown: <a href="video-landing-page-facade-poster-preload.md">video-landing-page-facade-poster-preload.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

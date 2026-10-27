@@ -21,4 +21,12 @@ blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}<
 <li>Follow-ups: reply to every reply within a day; positive reply → thank, offer the free edition, ask them to share with their members/followers.</li>
 <li>Log every touch as a HubSpot note; opt-outs go on the do-not-contact list at once.</li>
 <li>Measure: signups/day, welcome open &amp; click, reads (soft conversion), sales (strong conversion), replies.</li>
-</ol><p class="raw">Raw Markdown: <a href="1.md">1.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
+</ol>
+<h2>Double opt-in leak: confirm mail and thank-you page for a lead magnet (added 27 Oct 2026, BIZDEV run 2)</h2>
+<p>Evidence (27 Oct): D1 cl_subscribers shows 2 of 2 /ebooks/ sample-chapter sign-ups on 26 Oct never confirmed (confirm mail accepted by Resend; 1 re-send). Practitioner/vendor figures: the confirm step typically loses 20-30% of sign-ups; a subject that names the thing asked for ("confirm to claim ...") lifts confirmation 10-15%; one reminder 24-48 h later recovers 10-15% of the unconfirmed (sequenzy.com double-opt-in templates, 2026 - a vendor blog, figures not independently checked). Marketers in r/marketing (EU, 2026) report the same leak on lead-magnet double opt-in.
+How-to:
+1. Subject and button name the lead magnet ("Your free Cedwyn chapter: one click to open it" / "Confirm and open my chapter"), not "confirm your subscription".
+2. First line restates what they asked for, not "someone, hopefully you".
+3. The thank-you page delivers the thing at once (button straight to the chapter), then ONE next step (the free first edition) and ONE record page. No shop pitch on that page.
+4. One reminder only, 24 h later, then stop (we already re-send once). Never add unconfirmed addresses to HubSpot or the list.
+Applied: patch the project workspace (cedwyn-mail Worker, topic-aware confirm mail en/cy/es + chapter thank-you). Measure: confirmed / sign-ups for sample-chapter topic, weekly.</p><p class="raw">Raw Markdown: <a href="1.md">1.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

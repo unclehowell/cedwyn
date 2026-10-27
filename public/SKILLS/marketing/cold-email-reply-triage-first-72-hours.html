@@ -1,0 +1,94 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Handling replies to a cold B2B email send (the first 72 hours) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Handling replies to a cold B2B email send (the first 72 hours)"><link rel="alternate" type="text/markdown" href="cold-email-reply-triage-first-72-hours.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Handling replies to a cold B2B email send (the first 72 hours)</h1>
+<p>Written 2026-10-27 for the parcels campaign (30 emails to Llandough/Leckwith companies from Gmail).
+Sources read today unless marked.</p>
+<h2>What the evidence states</h2>
+<ul>
+<li><strong>Most replies come fast and from email 1.</strong> Instantly Cold Email Benchmark Report 2026 (vendor, own platform data, read):
+  average reply rate 3.43%, top senders &gt;10%; <strong>58% of all replies come from step 1</strong>, follow-ups add the other 42%;
+  Tuesday-Wednesday best, Wednesday highest; best first emails &lt;80 words, one call to action;
+  each follow-up must add a new angle, never "just checking in"; bounce rate should stay under 2% (pause and clean above it).
+  For 30 sends: expect roughly 1 reply (3.4%), 3 if the copy lands well. A zero-reply day is normal, not a failure.</li>
+<li><strong>Speed of answer decides whether a reply becomes a conversation.</strong> HBR, Oldroyd/McElheran/Elkington, "The Short Life of
+  Online Sales Leads" (Mar 2011; 2,241 US firms audited; figures via snippets, HBR page paywalled, not read in full):
+  firms answering within 1 hour were ~7x more likely to qualify the lead than those answering after an hour;
+  average first response 42 hours; 37% answered within the hour. Old and US-centric, but the direction is consistent everywhere.</li>
+<li><strong>Opt-outs are law, not courtesy.</strong> ICO direct marketing guidance, "Respect people's preferences" (read):
+  stop marketing that a withdrawal covers "immediately or as soon as possible"; put the address on a <strong>suppression /
+  do-not-contact list instead of deleting it</strong> so it is never mailed again by mistake; after an objection you <strong>cannot contact them
+  later to ask if they've changed their mind</strong>; you must not swap lawful basis to keep marketing.</li>
+</ul>
+<h2>The triage (do it within 1 hour of a reply landing, 08:00-20:00)</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Signal words</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OPT_OUT</td>
+<td>"remove", "unsubscribe", "not interested", "don't email", "stop"</td>
+<td>Add to suppression.csv now; one short courteous ack only if they asked a question ("Done, you won't hear from us again"); mark HubSpot ticklist "opted out". Never mail again, never "one last thing".</td>
+</tr>
+<tr>
+<td>HOSTILE / LEGAL</td>
+<td>"solicitor", "harassment", "defamatory", "cease", "legal action"</td>
+<td>Suppress at once. Do <strong>not</strong> reply from the box. Flag to the project lead the same hour with the verbatim text; any answer is his.</td>
+</tr>
+<tr>
+<td>QUESTION / POSITIVE</td>
+<td>"tell me more", "which parcels", "how do I", a question mark</td>
+<td>Draft an answer under 120 words that answers only what was asked, links one page (/parcels/ or /ebooks/), and asks nothing back except an optional next step. the project lead's sign-off.</td>
+</tr>
+<tr>
+<td>REFERRAL</td>
+<td>"speak to", "forwarded to", "our landlord/agent"</td>
+<td>Thank them; do not cold-mail the referred person unless they are a company role address that passes the PECR check; log the referral.</td>
+</tr>
+<tr>
+<td>AUTO / OOO</td>
+<td>"out of office", "automatic reply", "on leave"</td>
+<td>No action; do not count as a reply; no follow-up before their return date.</td>
+</tr>
+<tr>
+<td>BOUNCE</td>
+<td>mailer-daemon, "address not found", 550</td>
+<td>Mark invalid; if bounces pass 2% of sends (1 of 30 already = 3.3%) pause the batch and re-verify the remaining addresses.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Rules of tone: thank, answer, stop. No argument, no pressure, no repeating the concern louder. A reply is a person
+giving you attention; the job is to make the next step easy, not to win.</p>
+<h2>Follow-ups (only for non-repliers, never for opt-outs)</h2>
+<ul>
+<li>At most 2 follow-ups to a company role address, 4-7 days apart, each with a <em>new</em> fact (e.g. a new record on /parcels/,
+  a free chapter) and the same opt-out line. Stop at the first reply of any kind.</li>
+<li>Same thread (reply on the original), plain text, &lt;60 words.</li>
+</ul>
+<h2>Measure</h2>
+<p>reply rate = human replies / delivered (exclude OOO and bounces); positive rate; opt-out rate; median minutes to our first answer.
+Log in the project workspace (class, received_at, answered_at).</p>
+<h2>How we apply it to Cedwyn</h2>
+<ol>
+<li>Run <code>python3 the project workspace &lt;file-or-stdin&gt;</code> on each reply body; it prints the class and,
+   for OPT_OUT/HOSTILE, appends the address to the project workspace (dedup). It is a first pass: read every reply.</li>
+<li>The email ingest run (every 2 h) and the morning brief should surface any parcels reply; a QUESTION/POSITIVE reply
+   is drafted as a HubSpot task the same hour, sent from the project lead's Gmail only within the parcels errand he approved.</li>
+<li>HOSTILE/LEGAL replies go to the project lead verbatim, never answered.</li>
+<li>Expect ~1 reply from 30; judge the campaign on /parcels/ visits with utm_campaign=parcels and e-book sales, not replies alone.</li>
+<li>Follow-up 1 earliest Mon 2 Nov, only with a genuinely new item on /parcels/.</li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li>instantly.ai (read 27 Oct 2026)</li>
+<li>hbr.org (snippets only)</li>
+<li>ico.org.uk (read)</li>
+</ul><p class="raw">Raw Markdown: <a href="cold-email-reply-triage-first-72-hours.md">cold-email-reply-triage-first-72-hours.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

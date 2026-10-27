@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Publishing a family tree page: living-people privacy, proof and search · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Publishing a family tree page: living-people privacy, proof and search"><link rel="alternate" type="text/markdown" href="family-tree-page-living-privacy-proof-standard.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Publishing a family tree page: living-people privacy, proof and search</h1>
+<p>Written 2026-10-27 for cedwyn.bucklerfamily.estate /familytree (family tree web app, the project lead asked 10:14-10:16 GMT).
+Sources read today unless marked.</p>
+<h2>The rules the big genealogy sites use (copy them)</h2>
+<ul>
+<li><strong>UK law draws the line at living people.</strong> ICO "What is personal data?" (read): "The UK GDPR only applies to information
+  which relates to an identifiable living individual. Information relating to a deceased person does not constitute personal data."
+  So the dead can be published in full; every living person is personal data and needs a reason (consent, or the family's own
+  legitimate interest kept minimal).</li>
+<li><strong>FamilySearch</strong> (help centre, snippet): a person is treated as <strong>living until a death record is found, unless born more than
+  110 years ago or married more than 95 years ago</strong>; living people are visible only to whoever entered them (private trees /
+  family group trees).</li>
+<li><strong>WikiTree</strong> Help:Privacy (snippet; page behind a bot check): profiles of people <strong>born over 150 years ago or who died over
+  100 years ago must be Open</strong>; recent people get privacy levels.</li>
+<li><strong>Ancestry</strong> privacy centre (read): living people in public trees show as "Private"; trees export as GEDCOM.</li>
+</ul>
+<p>=&gt; House rule for Cedwyn: anyone born within the last 110 years with no death record = LIVING: show given name + surname + birth
+<strong>year</strong> only, no exact date, place of residence, school, photo or relatives' contact details. Minors (Milo, b. 2013): the same,
+plus never name his town or school. A living person appears only if they or their parent (here: the project lead for Milo) asked.</p>
+<h2>Proof: what makes a tree trusted (and cited by others)</h2>
+<p>Genealogical Proof Standard, Board for Certification of Genealogists (FamilySearch wiki + BCG skillbuilding, snippets):
+five elements: (1) reasonably exhaustive research; (2) complete, accurate citation of the source of each fact;
+(3) analysis and correlation of the evidence; (4) resolution of conflicting evidence; (5) a soundly reasoned, written conclusion.
+Practical form for the web page:
+- Every person card lists its sources (catalogue ID or record name + date). A link with no source is shown dashed and labelled "not yet found".
+- Where records conflict (two Mary Williamses of Great House Farm), show both and say which record supports which person.
+- A short "How this tree was built" note: records searched, what is still missing. Missing records invite readers to help.</p>
+<h2>Search and discovery</h2>
+<ul>
+<li>Each deceased ancestor deserves a crawlable text entry (name, years, place, sources) in the HTML, not only in JS/SVG,
+  so "Frederick Buckler Yorkshire" style surname+place searches can find it. Keep living people out of crawlable text beyond
+  name + year.</li>
+<li>Do <strong>not</strong> use Google's ProfilePage markup: Google's doc (read) states it "is designed for any site where creators ...
+  share first-hand perspectives" (forums, social), not for historical people. Plain schema.org Person in JSON-LD with
+  birthDate/deathDate (years) is harmless but earns no rich result; the visible text matters more.</li>
+<li>Offer a GEDCOM download of deceased people only (the format every genealogy tool imports) - the thing family historians
+  actually reuse and link to.</li>
+<li>Free genealogy directories (GENUKI, Cyndi's List) are covered in heritage-genealogy-directory-listings.md; list /familytree there once live.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ol>
+<li>/familytree: deceased people in full with sources; living people (the project lead, Milo Stewart b. 2013) name + birth year only;
+   Milo's place never shown (the project lead said he is in Yorkshire: do not publish). Frederick Buckler "born Yorkshire" only once a
+   birth or census record backs it; until then show "birthplace: Yorkshire (family account; record not yet found)" so the
+   lead is visible but clearly unproven, and keep searching (FreeBMD, 1851-1911 census).</li>
+<li>Apply the 110-year rule automatically in the data file: <code>living = death is None and (birth_year is None or birth_year &gt; this_year-110)</code>.</li>
+<li>Version table + "How this tree was built" panel; each gap becomes a call for records (links to /ebooks/ and the contact path).</li>
+<li>Crawlable text list under the diagram; GEDCOM of deceased people later (v0.2.0).</li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li>ico.org.uk (read)</li>
+<li>familysearch.org (snippet)</li>
+<li>wikitree.com (snippet)</li>
+<li>ancestry.com (read)</li>
+<li>familysearch.org ; bcgcertification.org (snippets)</li>
+<li>developers.google.com (read)</li>
+</ul><p class="raw">Raw Markdown: <a href="family-tree-page-living-privacy-proof-standard.md">family-tree-page-living-privacy-proof-standard.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

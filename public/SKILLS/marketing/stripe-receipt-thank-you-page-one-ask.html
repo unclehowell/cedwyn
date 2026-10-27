@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Stripe receipt + thank-you page: the one ask after payment · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Stripe receipt + thank-you page: the one ask after payment"><link rel="alternate" type="text/markdown" href="stripe-receipt-thank-you-page-one-ask.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Stripe receipt + thank-you page: the one ask after payment</h1>
+<p>Harvested 2026-10-27 11:20Z by the skills harvest. Distinct from post-purchase-cross-sell-bundle-upgrade.md (which is about selling more): this is about the receipt email and the thank-you page doing their job (delivery, trust) plus ONE non-sales ask.</p>
+<h2>The evidence (read 27 Oct 2026)</h2>
+<ul>
+<li>Stripe docs (primary): automatic receipts are toggled in Settings &gt; Business &gt; Customer emails ("Successful payments"/"Refunds"); look is set in Settings &gt; Business &gt; Branding &gt; Email receipts (icon, logo, colours); public business details (support email, URL, statement descriptor) appear on the receipt; every receipt has a viewable URL and PDF. Payment Links: "After the payment" shows a localized thank-you message you can customise, or redirects to your URL (<code>after_completion</code>, with <code>{CHECKOUT_SESSION_ID}</code>). (docs.stripe.com; docs.stripe.com)</li>
+<li>Klaviyo 2026 benchmarks (183,000+ brands, vendor data): automated flows get ~3x the click rate and ~13x the placed-order rate of campaigns; flows average ~32% opens vs 31% campaigns (opens inflated by Apple MPP). (klaviyo.com)</li>
+<li>Mailer To Go transactional benchmarks 2025 (vendor): order confirmations open at roughly 60-70%. Not checked against a primary dataset. (resources.mailertogo.com)</li>
+<li>ReferralCandy (vendor, own merchant data): referral share rates rose from <strong>4% to 12%</strong> when brands used at least two post-purchase touchpoints (thank-you page + email). Shopify/DTC stores, not e-books. (referralcandy.com)</li>
+<li>Read honestly: all numbers are vendor numbers; the direction (the receipt and thank-you page are the most-seen messages a buyer gets) is consistent across them.</li>
+</ul>
+<h2>The how-to</h2>
+<ol>
+<li><strong>Delivery first</strong>: the thank-you page must deliver the file instantly, say how to save it on iPhone/Android, say "bookmark this page", name the statement descriptor and a support address. Receipt email must arrive (Stripe automatic receipts ON) and carry the brand + support email.</li>
+<li><strong>One ask only</strong>, chosen in this order: (a) "send this to one person who'd want it" (a share link with utm_source=thankyou, see share-links-dark-social-web-share-utm.md); (b) newsletter opt-in checkbox (UK PECR soft opt-in only covers similar products and needs an opt-out at collection; a tick-box is cleaner); (c) follow one channel. Never three asks; never a cross-sell AND a share ask stacked at the top.</li>
+<li><strong>Receipt text</strong>: Stripe receipts cannot hold arbitrary marketing blocks; put the download link reminder in the product description/thank-you redirect, not in a separate marketing email (that would need consent).</li>
+<li><strong>Measure</strong>: count share-link clicks with utm_source=thankyou; compare buyers vs shares monthly. Gate: with zero or one sale, just make sure delivery is flawless.</li>
+</ol>
+<h2>How we apply it to Cedwyn (checked live 27 Oct 2026 ~11:12Z)</h2>
+<ul>
+<li>Live: ebooks.bucklerfamily.estate already delivers well: instant download, iPhone/Android save steps, "Bookmark this page", statement name, a support address, a safety-net email route (the project workspace).</li>
+<li>Gap 1: the page currently stacks a <strong>store-credit token offer</strong> (100/250/600 tokens) right after delivery, plus a "While it downloads" shelf. That is a sales ask in the slot best used for one share ask. PROPOSED: move tokens below the shelf and put one line above it: "Know someone with a Llandough or Patagonia connection? Send them the free first edition" + Web Share button (utm_source=thankyou&amp;utm_medium=share). Needs the owner's OK (body change).</li>
+<li>Gap 2: confirm in the Stripe Dashboard that Successful-payment receipts are ON and Branding &gt; Email receipts has the Cedwyn icon/colour (read-only check via the connected Stripe; not done in this harvest).</li>
+<li>Gap 3: new paid links must keep <code>after_completion</code> = redirect to the signed return URL (ebook-store/README.md rule) - check on each ladder step.</li>
+<li>No sends, no emails to buyers without consent; editorial rules apply to any copy.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>docs.stripe.com</li>
+<li>docs.stripe.com</li>
+<li>klaviyo.com</li>
+<li>resources.mailertogo.com</li>
+<li>referralcandy.com</li>
+</ul><p class="raw">Raw Markdown: <a href="stripe-receipt-thank-you-page-one-ask.md">stripe-receipt-thank-you-page-one-ask.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Apple Mail categories and AI summaries: writing newsletters that survive the iPhone inbox · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Apple Mail categories and AI summaries: writing newsletters that survive the iPhone inbox"><link rel="alternate" type="text/markdown" href="apple-mail-categories-ai-summaries-newsletter.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Apple Mail categories and AI summaries: writing newsletters that survive the iPhone inbox</h1>
+<p>Written 27 Oct 2026 (skills harvest). Companion to <code>gmail-manage-subscriptions-gemini-summaries-metrics.md</code> (Gmail side) and <code>apple-business-maps-showcases-branded-mail.md</code> (logo). Scope: what Apple Mail does to a small newsletter in 2026, and what we control.</p>
+<h2>What the sources show (read 27 Oct 2026)</h2>
+<ul>
+<li><strong>Litmus email client market share, Sept 2026</strong> (search snippet of the Litmus page; 1.5 bn opens): <strong>Apple 76.56%</strong> of opens, Gmail 16.10%, Outlook 3.48%. This is inflated by Mail Privacy Protection auto-opens (Litmus itself calls those opens unreliable), but Apple is still where most newsletter readers are.</li>
+<li><strong>Knak, Nicole Merlin, Head of Email Strategy</strong> ("Apple Intelligence and email", updated 4 Aug 2026; hands-on tests on iOS 18.2, re-checked against iOS 26.6 docs; read):</li>
+<li><strong>Categories are on by default:</strong> Primary, Transactions, Updates, Promotions. Since the 26-series releases they're on Mac and iPad too.</li>
+<li>Users can switch to List View, or use "Categorize Sender" to move a sender.</li>
+<li>Apple's own marketing mail landed in Promotions in their tests, so <strong>Promotions isn't a deliverability penalty</strong>.</li>
+<li><strong>Summaries replace preview text.</strong> On Apple Intelligence devices, an on-device AI summary is shown instead of your preheader. Each reader may see a different summary. Since iOS 26.1 this is the default in most regions and 16 languages.</li>
+<li><strong>Only three things move the summary:</strong> the sender name, the subject line and the live text of the email. Robots meta, schema.org, heading structure and hidden "dear AI" instructions all failed. The preheader is read but <strong>never shown verbatim</strong>. <strong>ALT text and text inside images are not read.</strong></li>
+<li><strong>Two-part subject + preheader jokes are dead:</strong> the punchline never renders.</li>
+<li>Users can turn summaries off (Settings → Apps → Mail → Summarize Message Previews) or shorten them.</li>
+<li><strong>Branded Mail</strong> (sender logo) is separate from BIMI. It needs DKIM (SPF-only isn't enough), DMARC, and a non-gmail domain.</li>
+<li><strong>Validity</strong> ("Coming to terms with tabs", read): after Gmail introduced tabs, Return Path data showed users kept reading brands they already engaged with at the same rate. Their advice is to earn engagement, not game placement. (Old data, carried over by analogy.)</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Make the first live sentence the summary you want.</strong> Put the one news item and the one action first, in real text (not an image): "New free chapter: the 1824 estate map, read it here." The same line feeds Gmail's summary.</li>
+<li><strong>Make the subject complete on its own.</strong> It shouldn't depend on the preheader. Keep writing a preheader anyway: Gmail, Outlook and older iPhones still show it verbatim.</li>
+<li><strong>Put all key words in live text.</strong> Titles, prices and dates baked into images are invisible to the summary and to search in Mail.</li>
+<li><strong>Use a recognisable sender name</strong>, e.g. "Cedwyn" (plus "Archive" or "Estate" if needed), the same every time. Never a person's name.</li>
+<li><strong>Promotions is fine.</strong> Ask engaged readers once (welcome email P.S.) to reply or move us to Primary ("tap ⋯ › Categorize Sender › Primary"). Don't use spam-trigger tricks to fake "personal" mail.</li>
+<li><strong>Keep receipts plainly transactional.</strong> A Stripe purchase/download email with the order details in text lands in Transactions, where people look for it.</li>
+<li><strong>Measure clicks, replies and sales, not opens.</strong> MPP plus summaries mean opens tell us almost nothing on Apple.</li>
+<li><strong>Check the result:</strong> send a test to an iPhone with Apple Intelligence on, screenshot which tab it lands in and the summary, and compare that with what we meant.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Readers are UK and Patagonia, mostly on phones, so the iPhone inbox is likely the main surface (Litmus share; our own Mailchimp client mix not checked).</li>
+<li><strong>Proposed (not changed):</strong></li>
+<li>Rewrite the first line of the welcome 1–3, weekly and re-engage Mailchimp templates as a self-contained one-line summary plus the single link (same edit the Gmail skill proposes, so one change serves both).</li>
+<li>Move any text that's inside header images into live text.</li>
+<li>Make sure the From name reads "Cedwyn" on every send.</li>
+<li>Add the one-line "Categorize Sender › Primary" P.S. to welcome email 1 only, in cy/en/es.</li>
+<li>Branded Mail needs a verified sending domain with DKIM. Check the Mailchimp sending domain first (<code>mailchimp-sending-domain-auth-dmarc-free-from.md</code>); a gmail.com From isn't eligible.</li>
+<li><strong>Editorial:</strong> summaries are shown out of context, so the first lines never carry names or case wording (the project lead never named; banned-words list applies).</li>
+<li><strong>Owner step:</strong> one iPhone test with Apple Intelligence on, needed for step 8. We have no iPhone; the project lead would forward a screenshot if he wants this checked.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>knak.com (read; practitioner hands-on tests)</li>
+<li>support.apple.com (Apple: Categorize Sender, categories)</li>
+<li>validity.com (read)</li>
+<li>litmus.com (Sept 2026 figures via search snippet)</li>
+</ul><p class="raw">Raw Markdown: <a href="apple-mail-categories-ai-summaries-newsletter.md">apple-mail-categories-ai-summaries-newsletter.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

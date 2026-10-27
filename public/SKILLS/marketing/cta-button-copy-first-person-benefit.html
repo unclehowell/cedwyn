@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>CTA button copy: say what the reader gets, in their own voice · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: CTA button copy: say what the reader gets, in their own voice"><link rel="alternate" type="text/markdown" href="cta-button-copy-first-person-benefit.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>CTA button copy: say what the reader gets, in their own voice</h1>
+<p>Date: 2026-10-27 · Topic: CRO / sales-page copy · Status: playbook + Cedwyn audit (changes PROPOSED)</p>
+<h2>The evidence (with its limits)</h2>
+<ul>
+<li><strong>"Your" -&gt; "My", +90% clicks.</strong> Michael Aagaard (ContentVerve) and Oli Gardner ran an A/B test on an Unbounce PPC landing page selling a 30-day free trial. They changed one word on the button, "Start <strong>your</strong> free 30 day trial" to "Start <strong>my</strong> free 30 day trial". After three weeks the "my" version had a 90% higher click-through to the payment page. (Aagaard, Unbounce blog, 22 May 2013, read 27 Oct 2026. CXL's forms article repeats it.) Limits: one test, one page, 2013. The sample size isn't published. It measured clicks to the next step, not paid sign-ups.</li>
+<li><strong>Benefit beats a vague verb, +33.1%.</strong> Empire Flippers changed their blog-sidebar signup button from "Join us!" to "Make Money Flipping Websites" and got 33.10% more conversions. (Via CXL, read 27 Oct 2026. The original test write-up wasn't read: secondhand.)</li>
+<li><strong>Aagaard's rule</strong> (same Unbounce post): button copy should answer "what will I get?" and "why should I click?". Longer, specific copy beats short generic copy "as long as it's the version that gets the most conversions". Treat it as a hypothesis to test, not a law.</li>
+<li><strong>For a small site:</strong> with tens of buyers a month you can't A/B test a button (see ab-testing-small-lists.md). Use these patterns as sensible defaults, change one button at a time, and log the change date in the annotations log so a before/after can be read later. Expect noise.</li>
+</ul>
+<h2>How to write the button (checklist)</h2>
+<ol>
+<li><strong>Name the thing the reader gets</strong>, not the action they take for you: "Get my copy", "Send me chapter 1", "Read the free edition". Avoid "Submit", "Buy", "Join", "Click here".</li>
+<li><strong>First person ("my", "me")</strong> when the button finishes the sentence "I want to ...". Check it reads naturally ("Get my e-book · £4.99"). If "my" sounds forced, use the plain benefit with no pronoun.</li>
+<li><strong>Put the price or "free" on the button</strong> when the next step asks for money or an email. It removes a surprise and the click is a real yes. Keep it honest: no "was" prices (see uk-reference-pricing-was-now-emma-sleep-2026.md) and no false urgency (uk-dmcc-act-urgency-reviews-price-copy.md).</li>
+<li><strong>No internal jargon</strong> on buttons: version numbers, SKU names and file formats go in the line under the button, not on it.</li>
+<li><strong>One primary button per card</strong>, so the eye goes to it first. Secondary links ("Contents &amp; samples") look like links, not buttons.</li>
+<li><strong>A microcopy line under the button</strong> answers the main worry: "Instant download · EPUB + PDF · 14-day refund" (only state what is actually true).</li>
+<li><strong>Welsh and Spanish too:</strong> write each version natively (e.g. "Anfon y bennod ataf", "Quiero mi copia"). Don't translate word for word, and get a human to check (helo-blod-free-welsh-translation-trilingual-copy.md).</li>
+<li><strong>Accessibility:</strong> the visible text is the accessible name. If the price is shown as a separate element, make sure "Get my copy, £4.99" still reads as one phrase to screen readers, and keep tap targets at least 44 px.</li>
+</ol>
+<h2>Measuring it</h2>
+<ul>
+<li>Before the change: note the clicks on the button (Clarity or GA4 click event) and the purchases per 1,000 /ebooks/ views over 14 days.</li>
+<li>Change one button set only. Annotate the date (tools/annotations_log.py).</li>
+<li>After 14 days, compare the click rate. Report it as directional unless each side has at least ~100 clicks.</li>
+</ul>
+<h2>How we apply it to Cedwyn (audit 27 Oct 2026, 08:10Z, live /ebooks/)</h2>
+<p>Button texts on cedwyn.bucklerfamily.estate today:
+- "Buy v0.0.2 · £4.99" ×8: this leads with the version number and "Buy". <strong>PROPOSED:</strong> "Get my copy · £4.99", with "Edition v0.0.2 · instant download" in the line under the button.
+- "free version (v0.0.1 2026)" ×9: this is lower-case and a label rather than an action. <strong>PROPOSED:</strong> "Read my free edition", with "v0.0.1 · no sign-up" under it (only if that's true; check the flow).
+- "Buy all four — £19.96": <strong>PROPOSED:</strong> "Get all four books · £19.96". The four separate prices add up to £19.96, so there's no saving to claim. Don't say "save" unless a real discount exists.
+- "Send me the chapter" (sample form): already first person and specific. Keep it. Optional: "Send me chapter 1 (free)".
+- "Read v0.0.1 · free" / "Read the free first chapter": fine. Make sure they're consistent.
+- "+ supplement, 25 Oct 2026 (free PDF)": a link, not a button, which is fine.</p>
+<p>Rules: these are body-text changes, so they go to the onpage/bizdev worker as PROPOSED, with no wording change without the usual sign-off route. Public text must never name the owner and must avoid banned words (none of the proposed strings uses them). Make the change in the /ebooks/ template only, one set at a time, logged with annotations_log.py.</p>
+<h2>Sources</h2>
+<ul>
+<li>unbounce.com (Aagaard, 2013, read)</li>
+<li>cxl.com (Empire Flippers +33.10%, Unbounce +90% restated, read)</li>
+</ul><p class="raw">Raw Markdown: <a href="cta-button-copy-first-person-benefit.md">cta-button-copy-first-person-benefit.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

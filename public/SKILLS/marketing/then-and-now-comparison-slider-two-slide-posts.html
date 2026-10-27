@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Then-and-now comparisons: accessible slider on the page, two-slide posts off it · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Then-and-now comparisons: accessible slider on the page, two-slide posts off it"><link rel="alternate" type="text/markdown" href="then-and-now-comparison-slider-two-slide-posts.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Then-and-now comparisons: accessible slider on the page, two-slide posts off it</h1>
+<p>Harvested 2026-10-27 (skills harvest). Ties to today's /wales/ farmhouse wireframe work (a worker) and the gallery redo.</p>
+<h2>Evidence (read today; honest about its strength)</h2>
+<ul>
+<li><strong>Demand signal:</strong> r/OldPhotosInRealLife is a community built only on "old photos overlaid with their current location to show change". It has about 882k members. That's a third-party count (postpone.app, read 27 Oct); Reddit's own JSON was blocked from this box.</li>
+<li><strong>Press-hook precedent:</strong> Historic England's "Wartime Britain then and now" release of new aerial WWII images was syndicated by national news (Yahoo News copy found 27 Oct). Then-and-now is a format editors run.</li>
+<li><strong>What we did not find:</strong> a controlled study with numbers showing then-and-now posts beat other formats. The Facebook local-history group examples found are small (for example, a "Henfield Then And Now" post with 12 reactions and 3 shares). Treat the format as strong on shares and saves, but <strong>measure our own</strong>. Don't quote an uplift figure.</li>
+<li><strong>Implementation (primary, read):</strong> Cloud Four's <code>image-compare</code> web component.</li>
+<li>It uses a native <code>&lt;input type=range&gt;</code>, so keyboard and screen readers work. The visually hidden label is set with <code>label-text</code>.</li>
+<li>It's 1.5 kB min+gz with zero dependencies.</li>
+<li>If the JS fails, the two images show stacked, so the content survives.</li>
+<li>MIT/ISC licence. Installed today at tools/vendor/image-compare/ (41 KB).</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Match the viewpoint before you match the pixels.</strong> Same spot, same bearing, same lens height (about 1.6 m for a street photo). Crop both images to the same aspect ratio, 4:5 for social. With a wireframe or reconstruction instead of a modern photo, render it from the camera position recovered from the old photo.</li>
+<li><strong>Licence each side separately.</strong> Our own photos and renders are fine. NLS georeferenced OS maps carry a per-sheet licence line, so copy it exactly. OSM is ODbL ("© OpenStreetMap contributors"). Mapillary is CC-BY-SA. Google Street View can only be used to line things up; never publish its pixels.</li>
+<li><strong>On the page:</strong>
+   ```html
+   <image-compare label-text="Slide to compare the farmhouse in 1974 with the same view today">
+     <img slot="image-1" src="then.webp" alt="1974 measured-survey reconstruction of the farmhouse, viewed from the lane" width="800" height="1000">
+     <img slot="image-2" src="now.webp" alt="The same view today: modern houses where the farmhouse stood" width="800" height="1000">
+   </image-compare>
+ <br />
+<script type="module" src="/_cedwyn/vendor/image-compare.min.js"></script></li>
+</ol>
+<p><code>``
+   - Self-host the min.js. That avoids unpkg and keeps the zero-outbound-links rule.
+   - Set width and height on the images so the layout doesn't shift.
+   - Add a caption under the slider that gives the date of each side and the method ("reconstruction from the 1974 measured survey; roof height estimated").
+4. **Off the page,** sliders don't exist. Post a **two-slide carousel** (then, then now) or a 6-10 s Reel wipe (ffmpeg</code>xfade=transition=wipeleft<code>). Slide 1 is the old view with the year in large type. Slide 2 is the modern view with "same spot, today". First comment links to the page, per the platform link rules in existing skills. For a Reddit post, read the subreddit's rules and post the overlay, not a sales link.
+5. **Measure:** shares and saves per post against the account median, and page clicks tagged</code>utm_content=thennow-<stop>`. Keep it if shares beat the median on 2 of the first 3 posts.</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>When the /wales/ wireframe composites land, build each tour stop as a then/now pair. "Then" is the reconstruction from the 1974 survey. "Now" is the open-licence street view or OSM massing. Wrap each pair in <code>image-compare</code> instead of a single image. Copy dist/index.min.js from tools/vendor/image-compare/ into the site's static folder in the same PR. That's one file of 4.4 KB.</li>
+<li>Captions stay neutral and dated. Name no private people, give no house numbers, use none of the banned words. The modern side shows the street, not identifiable homes or people, so blur where needed.</li>
+<li>The quote-pack and auto-social runs can reuse the same pairs as carousels: one pair per post, never more than one a day.</li>
+<li>A press angle (only on the project lead's GO) is "the 17th-century farmhouse drawn back where it stood, from the 1974 survey". That's a dataset-style hook; see data-led-digital-pr-heritage-dataset-pitch.md.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>image-compare-component.netlify.app ; cloudfour.com ; npm @cloudfour/image-compare 1.0.5</li>
+<li>postpone.app (member count, third-party) ; reddit.com (rules, title seen in search; not opened)</li>
+<li>news.yahoo.com (title/snippet only)</li>
+</ul><p class="raw">Raw Markdown: <a href="then-and-now-comparison-slider-two-slide-posts.md">then-and-now-comparison-slider-two-slide-posts.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>GoHighLevel CRM architecture for a one-person creator business (pipelines, tags vs fields, Stripe, imports) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: GoHighLevel CRM architecture for a one-person creator business (pipelines, tags vs fields, Stripe, imports)"><link rel="alternate" type="text/markdown" href="gohighlevel-crm-architecture-solo-creator-stripe-imports.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>GoHighLevel CRM architecture for a one-person creator business (pipelines, tags vs fields, Stripe, imports)</h1>
+<p>Written 2026-10-27 by the skills harvest, the day the project lead asked for GHL for sales and marketing (HubSpot stays for FOI/projects). Sources are HighLevel's own help centre (primary docs, read today) plus practitioner threads; no controlled study of CRM structure exists, so the numbers here are prices and limits, not lift assertions.</p>
+<h2>The rules that matter</h2>
+<ol>
+<li><strong>One pipeline per offer journey, stages = buyer actions, not your tasks.</strong> HighLevel's Pipeline Stage Changed trigger fires when an opportunity "progresses, regresses, or is reassigned" (help article 155000002493, read). So each stage should be a state you want an automation for: <code>Signed up (free)</code> -&gt; <code>Bought v0.0.2</code> -&gt; <code>Bundle</code> -&gt; <code>Academy trial/member</code> -&gt; <code>Lapsed</code>. A stage nobody automates is clutter.</li>
+<li><strong>Tags for events and segments, custom fields for attributes, stages for state.</strong> Practitioner rule from a GHL builders' group (Facebook, 2026 snippet): "Using 300 GHL tags to represent every business state is not an automation architecture. Use custom fields for attributes, pipeline stages for..." Keep tags short and namespaced: <code>src:parcels</code>, <code>src:ebook-free</code>, <code>lang:cy</code>, <code>consent:marketing</code>, <code>buyer:documentary</code>. Put values (first purchase date, edition owned, Stripe customer id, language) in custom fields.</li>
+<li><strong>Order Submitted is not Order Form Submission.</strong> HighLevel (article 155000004303, modified 3 Dec 2024, read): Order Submitted fires on an actual payment; Order Form Submission fires on a form with order fields "but may not necessarily indicate a completed transaction". Thank-you mail hangs off payment triggers only.</li>
+<li><strong>Payment Received only sees payments made through HighLevel.</strong> Article 155000003534 (modified 15 Apr 2026, read): it fires on payments "through your HighLevel account" (funnels, invoices, calendars, memberships, forms, manual entries). Our sales run on <strong>Stripe Payment Links outside GHL</strong>, so they will NOT trigger it. Two honest routes:
+   - Inbound Webhook trigger (a <em>premium</em> trigger): 100 free executions per sub-account once premium actions are enabled (article 48001237383, read); beyond that practitioners report $0.01 per execution or the Workflow Pro add-on, 10,000 executions for $10/month (r/gohighlevel 2024 thread, not checked against the current price page). A Stripe webhook -&gt; small relay -&gt; GHL inbound webhook costs real money past 100/month. <strong>Zero-spend rule: needs the project lead's OK before switching on.</strong>
+   - Free route: our existing scheduled sync reads Stripe and upserts contacts/opportunities through the GHL API or a CSV import; latency of minutes, cost nil.</li>
+<li><strong>Duplicate opportunities are one switch for the whole sub-account.</strong> "Allow duplicate opportunities" lives in Business Profile settings and applies to every pipeline (ideas.gohighlevel.com thread; FAQ 155000002000, read: without it one contact cannot sit on two opportunities). A buyer who is both an e-book buyer and an academy member needs it ON, or use one "Customer journey" pipeline.</li>
+<li><strong>Workflow settings before first publish:</strong> Allow Re-entry (off for welcome/thank-you, on for repeat purchases), Stop on Response (on for anything human-sounding), Time Window and contact timezone (article 48001239875, read).</li>
+<li><strong>CSV import gotchas (articles 155000003905 and 48001223155, read):</strong> admin only; under 30 MB; one sheet; header row first; every row needs Name, Email or Phone; no duplicates inside the file; phones without spaces/dashes; dropdown values must match exactly; Owner must be a real user email; one note per contact, 5,000 characters. <strong>A <code>DND</code> column sets Do Not Disturb on ALL channels</strong> (SMS, email, calls, voicemail). That is exactly right for suppressed / opted-out parcels contacts; for channel-specific DND use tags + a workflow instead.</li>
+</ol>
+<h2>Setup order (one afternoon once the account exists)</h2>
+<ol>
+<li>Sub-account "Cedwyn"; timezone Europe/London; sending domain authenticated (reuse our SPF/DKIM/DMARC skill).</li>
+<li>Settings -&gt; custom fields (contact): <code>edition_owned</code>, <code>first_purchase_at</code>, <code>stripe_customer_id</code>, <code>language</code>, <code>consent_basis</code> (consent / soft opt-in / corporate B2B), <code>source_campaign</code>. Opportunity: <code>offer</code>, <code>price_gbp</code>.</li>
+<li>Pipelines with stages as in rule 1; decide the duplicate-opportunity switch first.</li>
+<li>Tags list written down before any import (namespaced, ~20 max).</li>
+<li>Run <code>tools/ghl_csv_check.py</code> on every CSV; import contacts first, then opportunities.</li>
+<li>Workflows: new buyer -&gt; thank-you (immediate) -&gt; academy upsell (+3 days, stop if tag <code>academy:member</code>). Every marketing mail carries the opt-out line; suppression list imported with <code>DND=true</code>.</li>
+<li>Test with one internal contact through every trigger before any real contact enters.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Pipelines: E-book (free v0.0.1 -&gt; £4.99 v0.0.2 -&gt; £19.96 bundle), Academy (£49.99/month), Documentary (£4.99), Parcels campaign (Emailed -&gt; Replied -&gt; Interested -&gt; Not interested/Opted out), Bizdev partners.</li>
+<li>Parcels contacts already opted out or suppressed go in with <code>DND=true</code>; companies only, never sole traders (PECR), as the parcels send already enforces.</li>
+<li>Stripe sales: keep the free scheduled sync; the inbound-webhook route is a PROPOSAL for the project lead because it can bill past 100 executions.</li>
+<li>HubSpot is untouched: FOI, case and research correspondents never enter GHL (check <code>src:</code> tags on every import).</li>
+<li>Check: after import, smart-list count per tag equals the CSV counts; 0 contacts in GHL whose email is in the HubSpot-only exclusion list.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>help.gohighlevel.com (read 2026-10-27)</li>
+<li>help.gohighlevel.com (read)</li>
+<li>help.gohighlevel.com (read)</li>
+<li>help.gohighlevel.com (read)</li>
+<li>help.gohighlevel.com (read)</li>
+<li>help.gohighlevel.com (read)</li>
+<li>help.gohighlevel.com (read)</li>
+<li>help.gohighlevel.com (read)</li>
+<li>reddit.com (snippet: Workflow Pro $10/month, 10,000 premium executions, then $0.01; not checked)</li>
+<li>facebook.com (snippet: tags vs fields vs stages; not opened)</li>
+</ul><p class="raw">Raw Markdown: <a href="gohighlevel-crm-architecture-solo-creator-stripe-imports.md">gohighlevel-crm-architecture-solo-creator-stripe-imports.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

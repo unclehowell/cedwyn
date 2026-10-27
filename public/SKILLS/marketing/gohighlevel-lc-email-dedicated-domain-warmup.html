@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>GoHighLevel email: dedicated sending subdomain, DNS, warm-up, list hygiene (LC Email) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: GoHighLevel email: dedicated sending subdomain, DNS, warm-up, list hygiene (LC Email)"><link rel="alternate" type="text/markdown" href="gohighlevel-lc-email-dedicated-domain-warmup.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>GoHighLevel email: dedicated sending subdomain, DNS, warm-up, list hygiene (LC Email)</h1>
+<p>Harvested 2026-10-27 (skills harvest). Companion to gohighlevel-crm-architecture-solo-creator-stripe-imports.md. Use it the day the project lead's GHL sub-account "Cedwyn" exists.</p>
+<h2>What HighLevel's own help centre states (read 27 Oct 2026)</h2>
+<ul>
+<li><strong>Shared vs dedicated.</strong> By default GHL mail shows "sent via" HighLevel's servers. HighLevel: "Not having a dedicated email sending domain often results in emails going to spam despite good practices." A dedicated sending domain is a subdomain you add under Settings &gt; Email Services &gt; Dedicated Domain and IP. It's free on LC Email. Different subdomains can be assigned to 1-to-1, workflow, marketing and invoice mail. DNS can take up to 24 h. <strong>"Multiple DKIM records for the same domain are not supported."</strong></li>
+<li><strong>Warm-up (fixed-stage model).</strong> It starts automatically when a new dedicated domain is verified. 15 stages: 1,000 / 2,500 / 5,000 / 6,500 / 8,000 / 10,000 / 14,000 / 20,000 / ... / 250,000 a day. You move up only by <strong>hitting the full daily limit</strong> of a stage. Missed days pause progress but don't reset it. Stage-1 guidance is at most 100/hour and 1,000/day. The guide adds: "Only send to opted-in contacts... <strong>cold emailing during warm-up tends to harm deliverability</strong>". It also states don't use public link shorteners.</li>
+<li><strong>Hygiene rules in the same guide:</strong></li>
+<li>DMARC is required (they show <code>p=reject</code>).</li>
+<li>The From address must be on the same organisational domain as the sending subdomain. <code>mail.x.com</code> can send as <code>[address kept in the project workspace]</code>, but never as a different brand.</li>
+<li>Use a footer unsubscribe link and double opt-in.</li>
+<li>Cadence: new opt-ins daily for a short window. No engagement after 1-2 weeks, drop to weekly. No engagement after 2+ months of weekly sends, stop. "It is always better to undersend than to oversend."</li>
+<li>Check new templates with mail-tester.com and MX Toolbox first.</li>
+<li>A domain already damaged: "better to set up a new sub-domain than to try to repair a damaged one."</li>
+<li><strong>Paid add-ons (don't use; zero-spend rule):</strong></li>
+<li>Dedicated IP is $59/month. HighLevel recommends it only around 200,000+ emails a week.</li>
+<li>Email validation is $2.50 per 1,000.</li>
+</ul>
+<h2>The arithmetic for a small sender</h2>
+<p>Our list is in the hundreds, so the domain will <strong>sit at stage 1 for good</strong>, because progression needs 1,000 sends in a day. That's fine. Stage 1 doesn't block sending. Nothing about warm-up changes how a 300-person newsletter is delivered. What matters is steady, wanted mail: same weekday, low complaints, prompt removal of non-engagers.</p>
+<h2>How to do it (once the sub-account exists)</h2>
+<ol>
+<li><strong>Pick a subdomain nobody else signs.</strong> Mailchimp already authenticates its own DKIM on bucklerfamily.estate. A separate subdomain avoids the one-DKIM-per-domain clash and keeps reputations apart. Suggested: <code>news.bucklerfamily.estate</code> for marketing and workflows. Nothing for 1:1 mail: replies keep coming from the project lead's Gmail.</li>
+<li><strong>Add DNS in the connected Cloudflare.</strong> Use the exact records GHL shows (SPF include, DKIM, MX/return-path, tracking CNAME). Keep the tracking CNAME <strong>DNS-only (grey cloud)</strong>, because proxied CNAMEs break verification. Verify in GHL.</li>
+<li><strong>DMARC: tighten the policy in stages, don't jump to p=reject.</strong> The live record (read 27 Oct 11:40Z via DNS-over-HTTPS) is <code>_dmarc.bucklerfamily.estate TXT "v=DMARC1; p=none;"</code>, with no <code>rua</code> reporting address.
+   - Add a <code>rua</code> to Tab's mailbox or a free DMARC report inbox.
+   - Read two weeks of reports.
+   - Move to <code>p=quarantine; pct=25</code>, then raise pct to 100.
+   - Go to <code>p=reject</code> only when Mailchimp, GHL and any website forms all pass alignment.
+   - GHL's own example shows <code>p=reject</code> from day one. That's safe for a fresh brand, risky on a domain that already sends from several services.</li>
+<li><strong>From address:</strong> <code>[address kept in the project workspace]</code> or <code>[address kept in the project workspace]</code>. It must be a real inbox, routed through Cloudflare Email Routing to a monitored address. Never a gmail.com From through GHL: that breaks DMARC alignment.</li>
+<li><strong>Footer:</strong> the GHL default unsubscribe link, plus the PECR line and the business postal identity. Import the suppression list as <code>DND</code> (tools/ghl_csv_check.py checks the column).</li>
+<li><strong>First sends go to the warmest people only.</strong> That means e-book buyers, academy members and confirmed Mailchimp subscribers, in small daily batches using drip mode. Test each template with mail-tester.com first and aim for 9/10 or better.</li>
+<li><strong>Connect Google Postmaster Tools</strong> for the subdomain (TXT verify). See gmail-postmaster-tools-v2-compliance-spam-rate.md: keep the spam rate under 0.1% and never reach 0.3%.</li>
+<li><strong>Prune non-engagers</strong> on the GHL cadence above. Hold out a small segment before calling any workflow a win (email-holdout-incrementality-test-small-list-gate.md).</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Tie this to the GHL HANDOFF (the project workspace). After the project lead creates the account, step 1 of "what we run" is the <code>news.</code> subdomain plus DNS. Only then come workflow emails (thank-you, then the academy upsell after 3 days).</li>
+<li><strong>No cold or B2B mail through GHL.</strong> The parcels companies stay on 1:1 Gmail follow-ups (cold-email-follow-up-cadence-small-uk-b2b-list.md). GHL's own guide states cold mail during warm-up hurts the domain, and that would hurt buyer receipts and academy mail too.</li>
+<li>Keep Mailchimp as the newsletter until GHL proves deliverability over 2-4 weeks. Don't run two newsletters to the same people.</li>
+<li>Zero spend: no dedicated IP and no paid validation. The list is small and already syntax-checked.</li>
+<li>The DMARC change touches the apex domain's mail. Propose it to the root before editing DNS, since it affects other senders on bucklerfamily.estate.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>help.gohighlevel.com</li>
+<li>help.gohighlevel.com</li>
+<li>help.gohighlevel.com</li>
+<li>Live DNS read: cloudflare-dns.com (27 Oct 2026 11:40Z)</li>
+</ul><p class="raw">Raw Markdown: <a href="gohighlevel-lc-email-dedicated-domain-warmup.md">gohighlevel-lc-email-dedicated-domain-warmup.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

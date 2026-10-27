@@ -1,0 +1,104 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Title links and meta descriptions that Google keeps (and the ones it rewrites) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Title links and meta descriptions that Google keeps (and the ones it rewrites)"><link rel="alternate" type="text/markdown" href="serp-title-links-meta-descriptions-rewrite-triggers.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Title links and meta descriptions that Google keeps (and the ones it rewrites)</h1>
+<p>Read 27 Oct 2026. Google writes the blue "title link" and the snippet itself. Our <code>&lt;title&gt;</code> and meta description are only inputs, so the job is to give it inputs it has no reason to replace.</p>
+<h2>The evidence (numbers)</h2>
+<ul>
+<li><strong>Zyppy / Cyrus Shepard</strong> studied 80,959 titles on 2,370 sites (Q1 2022, desktop, page updated 6 Oct 2026). Google rewrote <strong>61.6%</strong>.</li>
+<li>Length: titles of 1–5 chars were rewritten 96.6% of the time. Titles of 20 chars or fewer had a &gt;50% chance. Over 60 chars, &gt;76%. Over 70 chars, <strong>99.9%</strong>. The sweet spot was <strong>51–60 chars</strong>, at 39–42% rewritten.</li>
+<li>[Brackets]: 77.6% rewritten, and the bracketed text was dropped 32.9% of the time. (Parentheses): 61.9%, dropped 19.7%. Use parentheses.</li>
+<li>Separators: pipes "|" were removed or replaced 41.0% of the time, dashes 19.7%. Use " - ".</li>
+<li><strong>H1 match</strong>: when the title had a number but the H1 didn't, the number was dropped 25.8% of the time. When both had it, Google kept it 97.3% of the time. Matching the H1 to the title is the strongest lever.</li>
+<li>Other triggers: the same keyword used twice, boilerplate repeated across pages, a missing or superfluous brand.</li>
+<li><strong>Google, "Influencing your title links"</strong> (developers.google.com). Google's sources, in order: <code>&lt;title&gt;</code>, the main visual title, <code>&lt;h1&gt;</code>, og:title, large styled text, anchor text and inbound link text, WebSite structured data. Named problems:</li>
+<li>half-empty titles;</li>
+<li>obsolete dates;</li>
+<li>inaccurate titles;</li>
+<li>micro-boilerplate (the same title on a series of pages);</li>
+<li>no clear main title (several equal headings, where Google may take the first);</li>
+<li><strong>a title in a different language or writing system from the page text</strong>.
+  Changes show after a recrawl, which takes "a few days to a few weeks".</li>
+<li><strong>Ahrefs / Michal Pecánek</strong> compared 20,000 keywords (2020). Google rewrote meta descriptions <strong>62.78%</strong> of the time: 59.65% for head terms, 65.62% for long-tail. 25.02% of top-ranking pages had no description at all. A too-long description barely changed the odds (61.46% vs 63.69%). The written description shows only about <strong>37%</strong> of the time. Still write it for pages that already get traffic, pages built to rank, and pages likely to be shared (it is the social fallback when og:description is missing).</li>
+<li><strong>Google, snippet docs</strong> (developers.google.com). There is no length limit; text is truncated to the device width. Descriptions should be <strong>unique per page</strong>. Snippets are built mainly from page content, so the first visible paragraph matters as much as the meta tag. <code>data-nosnippet</code> keeps a block (e.g. a cookie or translation notice) out of snippets.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li>Write each title as <code>Specific page topic - Cedwyn Estate</code>, aiming for <strong>51–60 chars</strong>. Use a dash, no pipe, no brackets, and the brand once.</li>
+<li>Give each page exactly one H1 that repeats the title's core words (the title can add the brand).</li>
+<li>Keep the title, H1 and body in the same language. A Welsh H1 goes with a Welsh <code>&lt;title&gt;</code> on the cy version, and an English title goes with an English H1. With per-language URLs, each version gets its own title.</li>
+<li>Make every title and description unique. For a series (scenes, e-book volumes, artifact pages), put the distinguishing part (scene number, volume, catalogue ID) <strong>first</strong>.</li>
+<li>Meta description: write 120–155 chars, unique, with the page's answer plus one reason to click. Make the first paragraph do the same job, since Google often uses it instead.</li>
+<li>Check with <code>tools/serp_title_audit.py URL ...</code> (flags LEN, BRK, PIPE, H1, LANG, REP, DUP, DESC). After a change, request a recrawl, wait 2–4 weeks, and compare CTR in Search Console against a dated annotation (search-console-ga4-change-annotations-log.md).</li>
+<li>Don't chase 100%. Google may still rewrite for long-tail queries, and that's fine. The goal is to remove the triggers.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<p><code>serp_title_audit.py</code> was run on 27 Oct 2026, 07:09Z, live and cache-busted. <strong>7 of 8 pages were flagged.</strong> All fixes below are PROPOSED markup only, for the CEDWYN ONPAGE run (Wednesday). There are no wording changes to body text, and nothing should be committed while the header/translator and player workers hold the repo.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Page</th>
+<th>Now</th>
+<th>Issue</th>
+<th>Proposed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/wales/</td>
+<td>title "Cedwyn Estate, Wales · augmented-reality guided tour" / H1 "Ystâd Cedwyn, Cymru"</td>
+<td>language mismatch (English title, Welsh H1); description 161 chars</td>
+<td>English title and H1 in the en view; keep the Welsh H1 only where the cy <code>&lt;title&gt;</code> is Welsh too, e.g. "Ystâd Cedwyn, Cymru - taith dywys realiti estynedig"</td>
+</tr>
+<tr>
+<td>/ebooks/</td>
+<td>71-char title / H1 "E-books"</td>
+<td>&gt;70 chars is rewritten 99.9% of the time; description 195 chars</td>
+<td>"Great House Farm (Tŷ Mawr) e-books - Welsh history" (50) + H1 "Great House Farm e-books"; description ≤155 with "v0.0.1 free"</td>
+</tr>
+<tr>
+<td>/research/</td>
+<td>"Great House Farm Wiki"</td>
+<td>no H1</td>
+<td>add one H1 "Great House Farm research" (the title can stay)</td>
+</tr>
+<tr>
+<td>/movie/</td>
+<td>"Cedwyn · the film" (17)</td>
+<td>too short</td>
+<td>"Cedwyn - the film, scene by scene" + H1 to match; scene pages lead with "Scene 2: Roundhouse on the hill - Cedwyn"</td>
+</tr>
+<tr>
+<td>/patagonia/</td>
+<td>62 chars</td>
+<td>just over 60; description 172</td>
+<td>"Great House Farm II, Puerto Madryn - Cedwyn Estate" (50)</td>
+</tr>
+<tr>
+<td>/research/timeline/</td>
+<td>brand twice ("Great House Farm Wiki — Research Mirror")</td>
+<td>description 176</td>
+<td>"Master timeline - Great House Farm research"</td>
+</tr>
+<tr>
+<td>/academy/</td>
+<td>"Cedwyn Academy · Cedwyn Academy"</td>
+<td>repeated phrase</td>
+<td>"Cedwyn Academy - agent library" (machine-facing; keep noindex if set)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Also swap the site-wide "·" separator for " - " (the dash form was rewritten least).</p>
+<p>Per-scene, per-volume and per-artifact templates should put the ID first ("MR-0042: ...", "Scene 3: ...") to avoid the micro-boilerplate trigger.</p>
+<p>Wrap the translation notice in <code>data-nosnippet</code> if it ever comes back (it is being removed today).</p>
+<h2>Sources</h2>
+<ul>
+<li>zyppy.com (Cyrus Shepard; 80,959 titles; read 27 Oct 2026)</li>
+<li>developers.google.com (read 27 Oct 2026)</li>
+<li>ahrefs.com (20,000 keywords; read 27 Oct 2026)</li>
+<li>developers.google.com (read 27 Oct 2026)</li>
+<li>Our audit: tools/serp_title_audit.py on 8 live Cedwyn URLs, 27 Oct 2026 07:09Z</li>
+</ul><p class="raw">Raw Markdown: <a href="serp-title-links-meta-descriptions-rewrite-triggers.md">serp-title-links-meta-descriptions-rewrite-triggers.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
