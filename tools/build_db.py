@@ -163,6 +163,28 @@ for lf in sorted(DIST.glob('*/layer.json')):
         for d in x.get('depends_on', []):
             con.execute('INSERT OR IGNORE INTO layer_deps VALUES(?,?,?)', (lid, x['id'], d)); n_layer_deps += 1
             edge(nid, 'depends_on', f'{lid}:{d}')
+# Section databases (27 Oct 2026): a section branch may ship its own SQLite database at <section>/_db/section.sqlite, table
+# records(kind TEXT, id TEXT, seq INTEGER, data TEXT) with one JSON object per row ("src" = the artifact path a record derives from,
+# "image" = the artifact path it shows). Every section database is merged here into section_records, with graph edges
+# record -> derived_from / shows -> artifact, so a section's words and data are read from this one catalogue and export with it.
+con.execute('CREATE TABLE IF NOT EXISTS section_records(theme TEXT, kind TEXT, id TEXT, seq INTEGER, data TEXT, PRIMARY KEY(theme, kind, id)) WITHOUT ROWID')
+n_section_records = 0
+for _sf in sorted(DIST.glob('*/_db/section.sqlite')):
+    _th = _sf.parts[D]
+    if _th not in TIDS: continue
+    try:
+        _sc = sqlite3.connect(f'file:{_sf}?mode=ro', uri=True)
+        _rows = _sc.execute('SELECT kind, id, seq, data FROM records ORDER BY seq').fetchall(); _sc.close()
+    except Exception as e: print('section db', _sf, e); continue
+    for _kind, _rid, _seq, _data in _rows:
+        con.execute('INSERT OR REPLACE INTO section_records VALUES(?,?,?,?,?)', (_th, _kind, _rid, _seq, _data)); n_section_records += 1
+        _nid = f'{_th}:{_rid}'; node(_nid, 'record', f'{_th} {_kind} {_rid}'[:120]); edge(_nid, 'in_theme', 'theme:' + _th)
+        try: _x = json.loads(_data)
+        except Exception: _x = {}
+        for _key, _rel in (('src', 'derived_from'), ('image', 'shows')):
+            _p = _x.get(_key) if isinstance(_x, dict) else None
+            if isinstance(_p, str) and path_aid.get(_p): edge(_nid, _rel, f'a:{path_aid[_p]}')
+print('section records:', n_section_records)
 # Evidence grades (shared, minimal; forensic audit intake 25 Oct 2026): two fields per evidence record, not yet shown on pages. - Sion's Tab agent
 con.execute('CREATE TABLE IF NOT EXISTS evidence_grades(ev TEXT PRIMARY KEY, grade INTEGER, origin TEXT, path TEXT, note TEXT) WITHOUT ROWID')
 _eg = ROOT / 'data' / 'evidence-grades.json'
