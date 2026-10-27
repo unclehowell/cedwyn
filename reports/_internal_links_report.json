@@ -1,14 +1,14 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8627,
+  "pages_scanned": 8643,
   "references_checked": {
-    "resource": 182215,
-    "nav": 329604
+    "resource": 182267,
+    "nav": 329718
   },
   "database_backed_paths": 7086,
-  "unique_missing_destinations": 4759,
-  "missing_references": 31517,
-  "missing_navigation_references": 15820,
+  "unique_missing_destinations": 4758,
+  "missing_references": 31515,
+  "missing_navigation_references": 15818,
   "missing_resource_references": 15697,
   "unique_broken_fragments": 1810,
   "broken_fragment_references": 3141,
@@ -532,7 +532,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 36,
+      "references": 35,
       "examples": [
         {
           "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
