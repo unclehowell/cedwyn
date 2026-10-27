@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8561,
+  "pages_scanned": 8563,
   "references_checked": {
-    "resource": 177211,
-    "nav": 326173
+    "resource": 177221,
+    "nav": 325514
   },
   "database_backed_paths": 7038,
-  "unique_missing_destinations": 4786,
-  "missing_references": 31511,
-  "missing_navigation_references": 15855,
-  "missing_resource_references": 15656,
+  "unique_missing_destinations": 4785,
+  "missing_references": 31514,
+  "missing_navigation_references": 15860,
+  "missing_resource_references": 15654,
   "unique_broken_fragments": 1815,
   "broken_fragment_references": 3146,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6561,
+      "references": 6562,
       "examples": [
         {
           "from": "/qa/",
@@ -46,7 +46,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6561,
+      "references": 6562,
       "examples": [
         {
           "from": "/qa/",
@@ -235,10 +235,15 @@
     {
       "kind": "nav",
       "path": "/catalogue/",
-      "references": 56,
+      "references": 57,
       "examples": [
         {
           "from": "/404.html",
+          "attribute": "a[href]",
+          "url": "/catalogue/"
+        },
+        {
+          "from": "/parcels/",
           "attribute": "a[href]",
           "url": "/catalogue/"
         },
@@ -249,11 +254,6 @@
         },
         {
           "from": "/explore/",
-          "attribute": "a[href]",
-          "url": "/catalogue/"
-        },
-        {
-          "from": "/values/",
           "attribute": "a[href]",
           "url": "/catalogue/"
         }
