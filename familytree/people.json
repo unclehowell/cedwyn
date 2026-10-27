@@ -1,12 +1,18 @@
 {
  "name": "The Williams–Buckler family tree",
  "segment": "familytree",
- "version": "0.1.0",
- "synced_utc": "2026-10-27T11:27:58Z",
+ "version": "0.2.0",
+ "synced_utc": "2026-10-27T14:39:58Z",
  "source": "Cedwyn core catalogue (kind=person) + segment overlay",
  "api": "/api/catalogue?kind=person",
- "living_rule": "no death record and born within the last 110 years: name and birth year only",
+ "living_rule": "no death record and born within the last 110 years: relationship and birth year only, never a name",
  "versions": [
+  {
+   "v": "0.2.0",
+   "date": "27 October 2026",
+   "price": "Free",
+   "change": "Corrections: the grandson’s birth year is 1984; his mother added; Esther Williams added as Nancy’s mother; living people shown without names; the Argentina side removed."
+  },
   {
    "v": "0.1.0",
    "date": "27 October 2026",
@@ -159,7 +165,7 @@
    "dates": "c.1830 – 1915",
    "place": "Born at Cogan; died at Great House Farm, Llandough",
    "side": "wales",
-   "summary": "Wife of John Williams of Great House; born at Cogan, aged 51 in the 1881 census. As his widow she was “of Great House Farm” when she died on 23 December 1915. She is a different person from Mary Doreen (Nancy) Williams, her granddaughter on this tree, who was born in 1913.",
+   "summary": "Wife of John Williams of Great House; born at Cogan, aged 51 in the 1881 census. As his widow she was “of Great House Farm” when she died on 23 December 1915. She is a different person from Mary Doreen (Nancy) Williams, shown on this tree as her probable granddaughter, who was born in 1913.",
    "spouse": {
     "id": "PE-0003",
     "link": "solid",
@@ -203,9 +209,9 @@
     }
    ],
    "spouse": {
-    "id": "GAP-0001",
-    "link": "dashed",
-    "basis": "Nancy’s mother is not yet found in the records."
+    "id": "PE-0012",
+    "link": "family",
+    "basis": "Family account, 27 Oct 2026: Nancy’s mother was Esther Williams. Marriage record not yet found."
    },
    "sources": [
     {
@@ -238,22 +244,30 @@
    "name": "John Williams"
   },
   {
-   "id": "GAP-0001",
-   "name": "Nancy’s mother",
+   "dates": "dates not yet found",
    "gen": 3,
    "order": 2,
-   "gap": true,
-   "dates": "not yet found",
+   "col": 3,
    "side": "wales",
-   "summary": "The wife of John Williams and mother of Nancy is not yet found in the records used here.",
+   "historical": true,
+   "summary": "Nancy Williams’s mother and the wife of John Williams, in the family account. Her birth, marriage and death records are not yet found in the records used here.",
    "parents": [],
    "spouse": {
     "id": "PE-0006",
-    "link": "dashed",
-    "basis": "Not yet found."
+    "link": "family",
+    "basis": "Family account, 27 Oct 2026."
    },
-   "sources": [],
-   "col": 3
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026. Record not yet found."
+    }
+   ],
+   "gaps": [
+    "Esther Williams’s birth, marriage and death records are not yet found."
+   ],
+   "id": "PE-0012",
+   "name": "Esther Williams"
   },
   {
    "gen": 3,
@@ -364,9 +378,9 @@
      "basis": "The 1987 judgment: “Mrs Mary Buckler (daughter of Mr Williams, wife of Mr Frederick Buckler and mother of Mr Buckler junior)” (EV-0080)."
     },
     {
-     "id": "GAP-0001",
-     "link": "dashed",
-     "basis": "Her mother is not yet found."
+     "id": "PE-0012",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026: her mother was Esther Williams. Birth record not yet matched."
     }
    ],
    "spouse": {
@@ -480,22 +494,22 @@
      "label": "E-book The Williams–Buckler Family, v0.1.0 (20 Oct 2026), chapter “Mary Doreen (Nancy) Williams”"
     }
    ],
-   "col": 1
+   "col": 0
   },
   {
    "id": "GAP-0004",
-   "name": "Sion’s parent",
+   "name": "His father",
    "gen": 5,
    "order": 2,
    "gap": true,
    "dates": "not yet found",
    "side": "wales",
-   "summary": "One of the children of Nancy and Fred. Which one is not yet matched to a record.",
+   "summary": "One of the sons of Nancy and Fred, in the family account. Which son is not yet matched to a record in this edition.",
    "parents": [
     {
      "id": "PE-0008",
      "link": "family",
-     "basis": "Family account: Nancy is Sion’s grandmother. Record not yet found."
+     "basis": "Family account: Nancy is the grandson’s grandmother. Record not yet found."
     },
     {
      "id": "PE-0009",
@@ -509,7 +523,36 @@
      "label": "Family account. Record not yet found."
     }
    ],
-   "col": 2
+   "col": 2,
+   "spouse": {
+    "id": "LV-0003",
+    "link": "family",
+    "basis": "Family account, 27 Oct 2026."
+   }
+  },
+  {
+   "id": "LV-0003",
+   "name": "His mother",
+   "gen": 5,
+   "order": 2,
+   "col": 1,
+   "living": true,
+   "side": "wales",
+   "summary": "The grandson’s mother, who married into the Buckler family. Living, so not named here.",
+   "parents": [],
+   "spouse": {
+    "id": "GAP-0004",
+    "link": "family",
+    "basis": "Family account, 27 Oct 2026."
+   },
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026"
+    }
+   ],
+   "born_year": null,
+   "dates": "living"
   },
   {
    "gen": 5,
@@ -553,20 +596,25 @@
   },
   {
    "id": "LV-0001",
-   "name": "Sion Buckler",
+   "name": "A grandson",
    "gen": 6,
    "order": 1,
    "col": 2,
    "living": true,
-   "born_year": 1983,
-   "dates": "b. 1983",
+   "born_year": 1984,
+   "dates": "b. 1984",
    "side": "wales",
-   "summary": "Grandson of Nancy and Fred.",
+   "summary": "Grandson of Nancy and Fred, born in 1984. Living, so not named here.",
    "parents": [
     {
      "id": "GAP-0004",
      "link": "family",
      "basis": "Family account. Record not yet found."
+    },
+    {
+     "id": "LV-0003",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026."
     }
    ],
    "sources": [
@@ -578,7 +626,7 @@
   },
   {
    "id": "LV-0002",
-   "name": "Milo Stewart",
+   "name": "His son",
    "gen": 7,
    "order": 1,
    "col": 2,
@@ -586,7 +634,7 @@
    "born_year": 2013,
    "dates": "b. 2013",
    "side": "wales",
-   "summary": "Son of Sion Buckler.",
+   "summary": "Son of the grandson above, born in 2013. Living, so not named here.",
    "parents": [
     {
      "id": "LV-0001",
