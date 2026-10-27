@@ -22,6 +22,7 @@ APEX = sorted(CFG['apex']['paths'].items(), key=lambda kv: -len(kv[0]))
 MEDIA = set(CFG['media_hosts'])
 RESERVED = ('/_cedwyn/', '/_blob/', '/db/', '/graphql', '/catalogue')
 BANNED = re.compile(r'UC2sN1VEs1WeLfBH8VmbvLWw|sionbuckler5713', re.I)
+BLOG_FEEDS = '<link rel="alternate" type="application/rss+xml" title="Cedwyn blog (RSS)" href="/blog/rss.xml"><link rel="alternate" type="application/atom+xml" title="Cedwyn blog (Atom)" href="/blog/atom.xml"><link rel="alternate" type="application/feed+json" title="Cedwyn blog (JSON Feed)" href="/blog/feed.json">'
 LISTFORM = re.compile(r'list-manage\.com/subscribe', re.I)   # 26 Oct 2026: a Mailchimp sign-up form posts to Cedwyn's own list, with or without JS
 BIN = {'.jpg','.jpeg','.png','.gif','.webp','.svg','.avif','.ico','.bmp','.tif','.tiff','.pdf','.mp3','.m4a','.ogg','.wav','.mp4','.webm','.mov','.woff','.woff2','.ttf','.otf','.eot'}
 TXT_DATA = {'.js','.mjs','.json','.xml','.txt','.csv','.md','.webmanifest'}
@@ -159,6 +160,7 @@ def rw_html(html, tid, page_rel):
     html = TAG.sub(lambda m: rw_tag(m, tid, page_rel), html)
     html = re.sub('\x00(\\d+)\x00', lambda m: keep[int(m.group(1))], html)
     inj = '<script src="/_cedwyn/runtime.js?v=11" data-theme="%s"></script>' % tid
+    if 'href="/blog/rss.xml"' not in html: inj += BLOG_FEEDS   # 27 Oct 2026: blog feed autodiscovery on every page
     mh = re.search(r'<head\b[^>]*>', html, re.I)
     if mh: html = html[:mh.end()] + inj + html[mh.end():]
     else:
