@@ -1,0 +1,579 @@
+{
+ "name": "The Williams–Buckler family tree",
+ "segment": "familytree",
+ "version": "0.1.0",
+ "synced_utc": "2026-10-27T10:42:45Z",
+ "source": "Cedwyn core catalogue (kind=person) + segment overlay",
+ "api": "/api/catalogue?kind=person",
+ "living_rule": "no death record and born within the last 110 years: name and birth year only",
+ "versions": [
+  {
+   "v": "0.1.0",
+   "date": "27 October 2026",
+   "price": "Free",
+   "change": "First edition: 12 people and 4 marked gaps over seven generations, each link with its record."
+  }
+ ],
+ "people": [
+  {
+   "gen": 1,
+   "order": 1,
+   "born": null,
+   "died": "before Dec 1864",
+   "dates": "d. before 1864",
+   "place": "Great House farm, Llandough",
+   "side": "wales",
+   "summary": "Named in his widow Amy’s death notice of 1864 as the late Mr John Williams of Great House farm. A John Williams occupied the farm’s 36 parcels in the tithe apportionment of about 1841; whether that is this John or his son, then about 13, the record does not show.",
+   "spouse": {
+    "id": "PE-0002",
+    "link": "solid",
+    "basis": "Amy is called his widow (“relict”) in her death notice, 30 Dec 1864 (EV-0246)."
+   },
+   "parents": [],
+   "sources": [
+    {
+     "ref": "EV-0246",
+     "label": "Cardiff and Merthyr Guardian, 30 Dec 1864, p.5: death notice of Amy, “relict of the late Mr. John Williams, Great House farm”"
+    },
+    {
+     "ref": "EV-0215",
+     "label": "Tithe apportionment, Landough, Cogan and Leckwith, c.1841: John Williams, occupier of 36 parcels",
+     "page": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/"
+    }
+   ],
+   "living": false,
+   "col": 1,
+   "id": "PE-0001",
+   "name": "John Williams (the elder)"
+  },
+  {
+   "gen": 1,
+   "order": 2,
+   "born": "c.1799",
+   "died": "23 Dec 1864",
+   "dates": "c.1799 – 1864",
+   "place": "Llandough",
+   "side": "wales",
+   "summary": "Died at Llandough on 23 December 1864, aged 65, the widow of John Williams of Great House farm.",
+   "spouse": {
+    "id": "PE-0001",
+    "link": "solid",
+    "basis": "Her death notice, 30 Dec 1864 (EV-0246)."
+   },
+   "parents": [],
+   "sources": [
+    {
+     "ref": "EV-0246",
+     "label": "Cardiff and Merthyr Guardian, 30 Dec 1864, p.5: “Dec. 23, at Llandough, near Cardiff, Amy, relict of the late Mr. John Williams, Great House farm, aged 65”"
+    }
+   ],
+   "living": false,
+   "col": 2,
+   "id": "PE-0002",
+   "name": "Amy Williams"
+  },
+  {
+   "gen": 2,
+   "order": 1,
+   "born": "c.1828",
+   "died": "17 Jul 1908",
+   "dates": "c.1828 – 1908",
+   "place": "Born at Leckwith; farmer at Great House, Llandough",
+   "side": "wales",
+   "summary": "Farmer at Great House. The 1881 census gives his age as 53 and his birthplace as Leckwith; the trade directories place him at Great House from 1868 to 1901. A 1904 report records that he succeeded his father in the tenancy in 1855. He died on 17 July 1908 and left a will, proved at Llandaff to his widow Mary.",
+   "parents": [
+    {
+     "id": "PE-0001",
+     "link": "dashed",
+     "basis": "The Cardiff Times of 16 July 1904 reports that he succeeded his father in the tenancy in 1855 (EV-0227). The father is not named there; Amy’s 1864 notice places a John Williams of Great House farm before then (EV-0246). Supported, not proved."
+    },
+    {
+     "id": "PE-0002",
+     "link": "dashed",
+     "basis": "Amy was the widow of John Williams of Great House farm (EV-0246). No record yet found names her as this John’s mother."
+    }
+   ],
+   "spouse": {
+    "id": "PE-0004",
+    "link": "solid",
+    "basis": "1881 census, “his wife Mary” (EV-0224); probate of his will to “Mary Williams widow”, 1908."
+   },
+   "sources": [
+    {
+     "ref": "EV-0224",
+     "label": "1881 census, Llandough, RG11/5288 p.2: John Williams, 53, farmer, born Leckwith"
+    },
+    {
+     "ref": "EV-0225",
+     "label": "Trade directories 1868–1901: “Williams John, Great House farm, Llandough”"
+    },
+    {
+     "ref": "EV-0227",
+     "label": "Cardiff Times, 16 July 1904: succeeded his father in the tenancy of the farm in 1855"
+    },
+    {
+     "ref": "EV-0243",
+     "label": "Barry Dock News, 23 Oct 1908, p.3: sympathy with “the family of the late Mr. John Williams, Great House, Llandough”"
+    },
+    {
+     "ref": null,
+     "label": "Probate calendar 1908, p.241: John Williams of Great House Farm, died 17 July 1908, probate Llandaff 22 August 1908 to Mary Williams, widow"
+    }
+   ],
+   "living": false,
+   "col": 1,
+   "id": "PE-0003",
+   "name": "John Williams of Great House"
+  },
+  {
+   "gen": 2,
+   "order": 2,
+   "born": "c.1830",
+   "died": "23 Dec 1915",
+   "dates": "c.1830 – 1915",
+   "place": "Born at Cogan; died at Great House Farm, Llandough",
+   "side": "wales",
+   "summary": "Wife of John Williams of Great House; born at Cogan, aged 51 in the 1881 census. As his widow she was “of Great House Farm” when she died on 23 December 1915. She is a different person from Mary Doreen (Nancy) Williams, her granddaughter on this tree, who was born in 1913.",
+   "spouse": {
+    "id": "PE-0003",
+    "link": "solid",
+    "basis": "1881 census (EV-0224); probate calendar 1908."
+   },
+   "parents": [],
+   "sources": [
+    {
+     "ref": "EV-0224",
+     "label": "1881 census, Llandough, RG11/5288 p.2: Mary, wife, 51, born Cogan"
+    },
+    {
+     "ref": null,
+     "label": "Probate calendar 1916, p.301: Mary Williams of Great House Farm, Llandough juxta Penarth, widow, died 23 December 1915, probate Llandaff 3 February 1916 to Ellen Williams (wife of Jenkin Williams)"
+    }
+   ],
+   "living": false,
+   "col": 2,
+   "id": "PE-0004",
+   "name": "Mary Williams"
+  },
+  {
+   "gen": 3,
+   "order": 1,
+   "born": "c.1868",
+   "died": "1950s",
+   "dates": "c.1868 – 1950s",
+   "place": "Great House Farm, Llandough",
+   "side": "wales",
+   "summary": "Nancy Williams’s father. He held the farm from 1908; in February 1916 the Marquis of Bute granted him a yearly tenancy of “the whole of the farm”, and in May 1939 he made an agreement with Western Ground Rents. His tenancy of the fields was surrendered in 1949. The Court of Appeal in 1987 called him Mr Buckler junior’s maternal grandfather.",
+   "parents": [
+    {
+     "id": "PE-0003",
+     "link": "dashed",
+     "basis": "The 1881 census lists a son John, 13 (EV-0224). That he is the John Williams of the 1916 tenancy and Nancy’s father fits the dates and the succession to the farm in 1908, and Nancy’s own statement (c.1974) has her grandfather dying in 1908. No single record yet ties them."
+    },
+    {
+     "id": "PE-0004",
+     "link": "dashed",
+     "basis": "As for his father: the 1881 census son John, 13 (EV-0224)."
+    }
+   ],
+   "spouse": {
+    "id": "GAP-0001",
+    "link": "dashed",
+    "basis": "Nancy’s mother is not yet found in the records."
+   },
+   "sources": [
+    {
+     "ref": "EV-0224",
+     "label": "1881 census, Llandough, RG11/5288 p.2: John, son, 13"
+    },
+    {
+     "ref": "EV-0014",
+     "label": "Bute yearly agricultural tenancy to John Williams, February 1916, as recited in the 1987 judgment",
+     "page": "/research/evidence/ev-0014-bute-tenancy-john-williams-1916/"
+    },
+    {
+     "ref": "EV-0023",
+     "label": "DBDT123/7: agreement, Western Ground Rents to John Williams, May 1939",
+     "page": "/research/evidence/ev-0023-1939-wgr-john-williams-tenancy-plan/"
+    },
+    {
+     "ref": "EV-0080",
+     "label": "BP Properties Ltd v Buckler [1987] EWCA Civ 2: “a Mr John Williams, who was Mr Buckler junior’s maternal grandfather”",
+     "page": "/research/evidence/ev-0080-bp-properties-v-buckler-judgment/"
+    }
+   ],
+   "gaps": [
+    "Exact birth: not yet found",
+    "Death date: not yet found (1950s)"
+   ],
+   "living": false,
+   "col": 2,
+   "id": "PE-0006",
+   "name": "John Williams"
+  },
+  {
+   "id": "GAP-0001",
+   "name": "Nancy’s mother",
+   "gen": 3,
+   "order": 2,
+   "gap": true,
+   "dates": "not yet found",
+   "side": "wales",
+   "summary": "The wife of John Williams and mother of Nancy is not yet found in the records used here.",
+   "parents": [],
+   "spouse": {
+    "id": "PE-0006",
+    "link": "dashed",
+    "basis": "Not yet found."
+   },
+   "sources": [],
+   "col": 3
+  },
+  {
+   "gen": 3,
+   "order": 3,
+   "born": "c.1867",
+   "died": null,
+   "dates": "b. c.1867",
+   "place": "Llandough",
+   "side": "wales",
+   "summary": "Daughter of John and Mary Williams, aged 14 in the 1881 census. An Ellen Williams, wife of Jenkin Williams, received probate of the widow Mary’s estate in 1916; whether she is this Ellen is not yet found.",
+   "parents": [
+    {
+     "id": "PE-0003",
+     "link": "solid",
+     "basis": "1881 census household (EV-0224)."
+    },
+    {
+     "id": "PE-0004",
+     "link": "solid",
+     "basis": "1881 census household (EV-0224)."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "EV-0224",
+     "label": "1881 census, Llandough, RG11/5288 p.2: Ellen, daughter, 14"
+    },
+    {
+     "ref": null,
+     "label": "Probate calendar 1916, p.301: probate to Ellen Williams (wife of Jenkin Williams)"
+    }
+   ],
+   "gaps": [
+    "Death: not yet found",
+    "Marriage: not yet found"
+   ],
+   "living": false,
+   "col": 0,
+   "id": "PE-0005",
+   "name": "Ellen Williams"
+  },
+  {
+   "gen": 3,
+   "order": 4,
+   "born": "c.1872",
+   "died": null,
+   "dates": "b. c.1872",
+   "place": "Llandough",
+   "side": "wales",
+   "summary": "Son of John and Mary Williams, aged 9 in the 1881 census.",
+   "parents": [
+    {
+     "id": "PE-0003",
+     "link": "solid",
+     "basis": "1881 census household (EV-0224)."
+    },
+    {
+     "id": "PE-0004",
+     "link": "solid",
+     "basis": "1881 census household (EV-0224)."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "EV-0224",
+     "label": "1881 census, Llandough, RG11/5288 p.2: David, son, 9"
+    }
+   ],
+   "gaps": [
+    "Later life: not yet found"
+   ],
+   "living": false,
+   "col": 1,
+   "id": "PE-0007",
+   "name": "David Williams"
+  },
+  {
+   "id": "GAP-0002",
+   "name": "Fred’s parents",
+   "gen": 3,
+   "order": 5,
+   "gap": true,
+   "dates": "not yet found · Yorkshire",
+   "side": "wales",
+   "summary": "Frederick Buckler’s parents are not yet found. The family records that the Buckler line came from Yorkshire.",
+   "parents": [],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026. Record not yet found."
+    }
+   ],
+   "diagram": false
+  },
+  {
+   "gen": 4,
+   "order": 1,
+   "born": "10 Aug 1913",
+   "died": "26 Mar 1983",
+   "dates": "1913 – 1983",
+   "place": "Born and died at the farmhouse, Tŷ Mawr (Great House Farm), Llandough",
+   "side": "wales",
+   "summary": "Born at Great House Farm on 10 August 1913 and lived there all her life. She married Fred Buckler of Barry in 1936 and they raised seven children in the farmhouse. After Fred’s death in 1967 she went back to her maiden name. She died at the farmhouse on 26 March 1983.",
+   "parents": [
+    {
+     "id": "PE-0006",
+     "link": "solid",
+     "basis": "The 1987 judgment: “Mrs Mary Buckler (daughter of Mr Williams, wife of Mr Frederick Buckler and mother of Mr Buckler junior)” (EV-0080)."
+    },
+    {
+     "id": "GAP-0001",
+     "link": "dashed",
+     "basis": "Her mother is not yet found."
+    }
+   ],
+   "spouse": {
+    "id": "PE-0009",
+    "link": "solid",
+    "basis": "Western Mail, 5 August 1936, “Llandough Bride” (EV-0230); GRO marriage index, Sep quarter 1936, Buckler and Williams, East Glamorgan 11a 1989."
+   },
+   "sources": [
+    {
+     "ref": "EV-0067",
+     "label": "Death index: Mary Doreen Williams, born 10 August 1913, registered March quarter 1983, South Glamorgan, vol. 28 p. 3029",
+     "page": "/research/evidence/ev-0067-mary-doreen-williams-death-index/"
+    },
+    {
+     "ref": "EV-0230",
+     "label": "Western Mail, 5 August 1936, p.10: “Llandough Bride”"
+    },
+    {
+     "ref": "EV-0080",
+     "label": "BP Properties Ltd v Buckler [1987] EWCA Civ 2 (31 July 1987)",
+     "page": "/research/evidence/ev-0080-bp-properties-v-buckler-judgment/"
+    },
+    {
+     "ref": null,
+     "label": "FreeBMD transcription of the GRO index: marriage, Sep quarter 1936, Frederick Buckler and Williams, East Glamorgan 11a 1989"
+    }
+   ],
+   "living": false,
+   "col": 2,
+   "id": "PE-0008",
+   "name": "Mary Doreen (Nancy) Williams"
+  },
+  {
+   "gen": 4,
+   "order": 2,
+   "born": "c.1908",
+   "died": "1967",
+   "dates": "c.1908 – 1967",
+   "place": "Birthplace: Yorkshire (family account; record not yet found). Of Barry; at Great House Farm from 1936",
+   "side": "wales",
+   "summary": "Fred Buckler came from Barry and married Nancy Williams in 1936. From 1944 he ran the farm for his father-in-law, and from 1949 he held the fields as a yearly tenant. He died in 1967. The family account is that he was born in Yorkshire and that the Buckler line has Yorkshire roots; a birth record is not yet found.",
+   "spouse": {
+    "id": "PE-0008",
+    "link": "solid",
+    "basis": "EV-0230; GRO marriage index, Sep quarter 1936."
+   },
+   "parents": [
+    {
+     "id": "GAP-0002",
+     "link": "dashed",
+     "basis": "His parents are not yet found."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026: born in Yorkshire; the Buckler line came from Yorkshire. Record not yet found."
+    },
+    {
+     "ref": null,
+     "label": "FreeBMD transcription of the GRO index: birth, Dec quarter 1908, Fred Buckler, Keighley (West Riding of Yorkshire) 9a 174b. A possible match, not yet confirmed."
+    },
+    {
+     "ref": null,
+     "label": "FreeBMD transcription of the GRO index: death, March quarter 1967, Frederick Buckler, aged 58, East Glamorgan 8b 364. A probable match."
+    },
+    {
+     "ref": "EV-0230",
+     "label": "Western Mail, 5 August 1936: Fred Buckler, of Barry, married Mary Doreen (Nancy) Williams"
+    },
+    {
+     "ref": "EV-0025",
+     "label": "Yearly agricultural tenancy from 2 February 1949, as later recited",
+     "page": "/research/evidence/ev-0025-frederick-buckler-unwritten-tenancy-1949/"
+    }
+   ],
+   "gaps": [
+    "Parents: not yet found",
+    "Birth record: not yet found (a Fred Buckler, Keighley, 1908, is a possible match, not yet confirmed)",
+    "Age at death: 58 in the death index; the e-book gives 56"
+   ],
+   "living": false,
+   "col": 3,
+   "id": "PE-0009",
+   "name": "Frederick (Fred) Buckler"
+  },
+  {
+   "id": "GAP-0003",
+   "name": "Seven children in all",
+   "gen": 5,
+   "order": 1,
+   "gap": true,
+   "dates": "other names held back",
+   "side": "wales",
+   "summary": "Nancy and Fred raised seven children in the farmhouse. William (Billy) is shown here; the names of the others are held back until the family confirms them.",
+   "parents": [
+    {
+     "id": "PE-0008",
+     "link": "solid",
+     "basis": "E-book The Williams–Buckler Family v0.1.0, “The family tree”."
+    },
+    {
+     "id": "PE-0009",
+     "link": "solid",
+     "basis": "As above."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "E-book The Williams–Buckler Family, v0.1.0 (20 Oct 2026), chapter “Mary Doreen (Nancy) Williams”"
+    }
+   ],
+   "col": 1
+  },
+  {
+   "id": "GAP-0004",
+   "name": "Sion’s parent",
+   "gen": 5,
+   "order": 2,
+   "gap": true,
+   "dates": "not yet found",
+   "side": "wales",
+   "summary": "One of the children of Nancy and Fred. Which one is not yet matched to a record.",
+   "parents": [
+    {
+     "id": "PE-0008",
+     "link": "family",
+     "basis": "Family account: Nancy is Sion’s grandmother. Record not yet found."
+    },
+    {
+     "id": "PE-0009",
+     "link": "family",
+     "basis": "As above."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account. Record not yet found."
+    }
+   ],
+   "col": 2
+  },
+  {
+   "gen": 5,
+   "order": 3,
+   "born": "25 Aug 1948",
+   "died": "1990",
+   "dates": "1948 – 1990",
+   "place": "Great House Farm, Llandough, until 1988",
+   "side": "wales",
+   "summary": "Son of Nancy and Fred, born on 25 August 1948. After his mother’s death in 1983 he took up the defence of the house, and he was the defendant in BP Properties Ltd v Buckler (Court of Appeal, 1987). A probate entry for a William Beverley Buckler who died on 29 April 1990 is probably his.",
+   "parents": [
+    {
+     "id": "PE-0008",
+     "link": "solid",
+     "basis": "The 1987 judgment: Mrs Mary Buckler, “mother of Mr Buckler junior”, born 25 August 1948 (EV-0080)."
+    },
+    {
+     "id": "PE-0009",
+     "link": "solid",
+     "basis": "The 1987 judgment names Mrs Buckler as wife of Mr Frederick Buckler and mother of Mr Buckler junior (EV-0080)."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "EV-0080",
+     "label": "BP Properties Ltd v Buckler [1987] EWCA Civ 2: “having been born on August 25 1948”",
+     "page": "/research/evidence/ev-0080-bp-properties-v-buckler-judgment/"
+    },
+    {
+     "ref": "EV-0274",
+     "label": "Probate calendar 1991: William Beverley Buckler, died 29 April 1990, administration Llandaff 11 July 1991"
+    }
+   ],
+   "gaps": [
+    "Death date: 29 April 1990 in the probate calendar (a probable match); another family record gives 29 May 1990"
+   ],
+   "living": false,
+   "col": 3,
+   "id": "PE-0010",
+   "name": "William Beverley (Billy) Buckler"
+  },
+  {
+   "id": "LV-0001",
+   "name": "Sion Buckler",
+   "gen": 6,
+   "order": 1,
+   "col": 2,
+   "living": true,
+   "born_year": 1983,
+   "dates": "b. 1983",
+   "side": "wales",
+   "summary": "Grandson of Nancy and Fred.",
+   "parents": [
+    {
+     "id": "GAP-0004",
+     "link": "family",
+     "basis": "Family account. Record not yet found."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026"
+    }
+   ]
+  },
+  {
+   "id": "LV-0002",
+   "name": "Milo Stewart",
+   "gen": 7,
+   "order": 1,
+   "col": 2,
+   "living": true,
+   "born_year": 2013,
+   "dates": "b. 2013",
+   "side": "wales",
+   "summary": "Son of Sion Buckler.",
+   "parents": [
+    {
+     "id": "LV-0001",
+     "link": "family",
+     "basis": "Family account, 27 Oct 2026."
+    }
+   ],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Family account, 27 Oct 2026"
+    }
+   ]
+  }
+ ]
+}
