@@ -2,33 +2,16 @@
  "name": "The Williams–Buckler family tree",
  "segment": "familytree",
  "version": "0.1.0",
- "synced_utc": "2026-10-27T10:35:01Z",
+ "synced_utc": "2026-10-27T10:42:45Z",
  "source": "Cedwyn core catalogue (kind=person) + segment overlay",
  "api": "/api/catalogue?kind=person",
+ "living_rule": "no death record and born within the last 110 years: name and birth year only",
  "versions": [
   {
    "v": "0.1.0",
    "date": "27 October 2026",
    "price": "Free",
    "change": "First edition: 12 people and 4 marked gaps over seven generations, each link with its record."
-  }
- ],
- "sides": [
-  {
-   "id": "wales",
-   "title": {
-    "en": "Wales side",
-    "cy": "Ochr Cymru",
-    "es": "Lado de Gales"
-   }
-  },
-  {
-   "id": "argentina",
-   "title": {
-    "en": "Argentina side",
-    "cy": "Ochr yr Ariannin",
-    "es": "Lado de Argentina"
-   }
   }
  ],
  "people": [
@@ -61,8 +44,7 @@
    "living": false,
    "col": 1,
    "id": "PE-0001",
-   "name": "John Williams (the elder)",
-   "core_rev": 1
+   "name": "John Williams (the elder)"
   },
   {
    "gen": 1,
@@ -88,8 +70,7 @@
    "living": false,
    "col": 2,
    "id": "PE-0002",
-   "name": "Amy Williams",
-   "core_rev": 1
+   "name": "Amy Williams"
   },
   {
    "gen": 2,
@@ -142,8 +123,7 @@
    "living": false,
    "col": 1,
    "id": "PE-0003",
-   "name": "John Williams of Great House",
-   "core_rev": 1
+   "name": "John Williams of Great House"
   },
   {
    "gen": 2,
@@ -173,8 +153,7 @@
    "living": false,
    "col": 2,
    "id": "PE-0004",
-   "name": "Mary Williams",
-   "core_rev": 1
+   "name": "Mary Williams"
   },
   {
    "gen": 3,
@@ -230,8 +209,7 @@
    "living": false,
    "col": 2,
    "id": "PE-0006",
-   "name": "John Williams",
-   "core_rev": 1
+   "name": "John Williams"
   },
   {
    "id": "GAP-0001",
@@ -289,8 +267,7 @@
    "living": false,
    "col": 0,
    "id": "PE-0005",
-   "name": "Ellen Williams",
-   "core_rev": 1
+   "name": "Ellen Williams"
   },
   {
    "gen": 3,
@@ -325,8 +302,7 @@
    "living": false,
    "col": 1,
    "id": "PE-0007",
-   "name": "David Williams",
-   "core_rev": 1
+   "name": "David Williams"
   },
   {
    "id": "GAP-0002",
@@ -341,7 +317,7 @@
    "sources": [
     {
      "ref": null,
-     "label": "Family information, 27 Oct 2026. Not yet matched to a record."
+     "label": "Family account, 27 Oct 2026. Record not yet found."
     }
    ],
    "diagram": false
@@ -395,8 +371,7 @@
    "living": false,
    "col": 2,
    "id": "PE-0008",
-   "name": "Mary Doreen (Nancy) Williams",
-   "core_rev": 1
+   "name": "Mary Doreen (Nancy) Williams"
   },
   {
    "gen": 4,
@@ -404,9 +379,9 @@
    "born": "c.1908",
    "died": "1967",
    "dates": "c.1908 – 1967",
-   "place": "Born in Yorkshire (family information); of Barry; Great House Farm from 1936",
+   "place": "Birthplace: Yorkshire (family account; record not yet found). Of Barry; at Great House Farm from 1936",
    "side": "wales",
-   "summary": "Fred Buckler came from Barry and married Nancy Williams in 1936. From 1944 he ran the farm for his father-in-law, and from 1949 he held the fields as a yearly tenant. He died in 1967. The family records that he was born in Yorkshire and that the Buckler line has Yorkshire roots.",
+   "summary": "Fred Buckler came from Barry and married Nancy Williams in 1936. From 1944 he ran the farm for his father-in-law, and from 1949 he held the fields as a yearly tenant. He died in 1967. The family account is that he was born in Yorkshire and that the Buckler line has Yorkshire roots; a birth record is not yet found.",
    "spouse": {
     "id": "PE-0008",
     "link": "solid",
@@ -422,7 +397,7 @@
    "sources": [
     {
      "ref": null,
-     "label": "Family information, 27 Oct 2026: born in Yorkshire; the Buckler line came from Yorkshire. Not yet matched to a record."
+     "label": "Family account, 27 Oct 2026: born in Yorkshire; the Buckler line came from Yorkshire. Record not yet found."
     },
     {
      "ref": null,
@@ -444,14 +419,13 @@
    ],
    "gaps": [
     "Parents: not yet found",
-    "Birth record: Keighley 1908 is a possible match, not yet confirmed",
+    "Birth record: not yet found (a Fred Buckler, Keighley, 1908, is a possible match, not yet confirmed)",
     "Age at death: 58 in the death index; the e-book gives 56"
    ],
    "living": false,
    "col": 3,
    "id": "PE-0009",
-   "name": "Frederick (Fred) Buckler",
-   "core_rev": 1
+   "name": "Frederick (Fred) Buckler"
   },
   {
    "id": "GAP-0003",
@@ -495,7 +469,7 @@
     {
      "id": "PE-0008",
      "link": "family",
-     "basis": "Family information: Nancy is Sion’s grandmother. Not yet matched to a record."
+     "basis": "Family account: Nancy is Sion’s grandmother. Record not yet found."
     },
     {
      "id": "PE-0009",
@@ -506,7 +480,7 @@
    "sources": [
     {
      "ref": null,
-     "label": "Family information. Not yet matched to a record."
+     "label": "Family account. Record not yet found."
     }
    ],
    "col": 2
@@ -549,8 +523,7 @@
    "living": false,
    "col": 3,
    "id": "PE-0010",
-   "name": "William Beverley (Billy) Buckler",
-   "core_rev": 1
+   "name": "William Beverley (Billy) Buckler"
   },
   {
    "id": "LV-0001",
@@ -567,13 +540,13 @@
     {
      "id": "GAP-0004",
      "link": "family",
-     "basis": "Family information. Not yet matched to a record."
+     "basis": "Family account. Record not yet found."
     }
    ],
    "sources": [
     {
      "ref": null,
-     "label": "Family information, 27 Oct 2026"
+     "label": "Family account, 27 Oct 2026"
     }
    ]
   },
@@ -592,13 +565,13 @@
     {
      "id": "LV-0001",
      "link": "family",
-     "basis": "Family information, 27 Oct 2026."
+     "basis": "Family account, 27 Oct 2026."
     }
    ],
    "sources": [
     {
      "ref": null,
-     "label": "Family information, 27 Oct 2026"
+     "label": "Family account, 27 Oct 2026"
     }
    ]
   }
