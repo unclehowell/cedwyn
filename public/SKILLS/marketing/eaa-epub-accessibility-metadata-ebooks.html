@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>EU Accessibility Act (EAA) + EPUB accessibility metadata for our e-books · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: EU Accessibility Act (EAA) + EPUB accessibility metadata for our e-books"><link rel="alternate" type="text/markdown" href="eaa-epub-accessibility-metadata-ebooks.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>EU Accessibility Act (EAA) + EPUB accessibility metadata for our e-books</h1>
+<p>Topic: making our EPUBs and the /ebooks/ shop accessible and <em>saying so in the file</em>, so EU/Spanish-language buyers, libraries and assistive-tech readers can see it before they buy. Written 26 Oct 2026, skills harvest.</p>
+<h2>What the sources show (read 26 Oct 2026)</h2>
+<ul>
+<li>EAA (Directive (EU) 2019/882) was enacted 27 June 2019 and applies from 28 June 2025 to e-books, e-reading software and e-commerce sold to EU consumers. W3C's mapping note shows the EPUB standard (EPUB Accessibility 1.1) meets the EAA's e-book requirements. (w3.org, read)</li>
+<li>ALLi (Alliance of Independent Authors) guidance (read): titles published by <strong>microenterprises</strong> (fewer than 10 staff or annual turnover under EUR 2 million) are exempt, which covers most indie authors. Print is out of scope. Backlist already on sale has until <strong>28 June 2030</strong>. Fixed-layout e-books risk falling foul of the Act, so "don't issue an e-book as fixed format unless there is a compelling reason". Ready-made shops (Shopify example) follow WCAG 2.1. Free check: <strong>Ace by DAISY</strong>. Metadata should state the book's accessibility features; whether stores add it automatically is still unclear (ALLi's words: "This is not yet clear").</li>
+<li>W3C Accessibility Metadata Display Guide 2.1, EPUB techniques (read): stores and reading apps read these OPF keys and show them to buyers: <code>schema:accessMode</code>, <code>schema:accessModeSufficient</code>, <code>schema:accessibilityFeature</code>, <code>schema:accessibilitySummary</code>, <code>dcterms:conformsTo</code>, <code>a11y:certifiedBy</code>.</li>
+<li>Our own files (checked on the box 26 Oct): <code>enwau-sample-en-20261026.epub</code> and <code>llandough-tour-companion_v0.1.0.epub</code> carry <strong>no accessibility metadata at all</strong>. Each holds 4 images.</li>
+<li>Which stores display it today (Kobo, Apple Books, Google Play): not checked store by store.</li>
+</ul>
+<p><strong>Why this sells and isn't just compliance:</strong> we are probably exempt as a microenterprise, but the metadata costs about 15 lines per book. It makes "screen-reader friendly / no hazards" visible on store and library listings, and libraries and schools increasingly filter for it (not checked with a number). It also fits the Click-Away Pound data already in <code>accessibility-quick-wins-conversion-heritage.md</code>.</p>
+<h2>How to do it (per EPUB, about 20 minutes)</h2>
+<ol>
+<li><strong>Reflowable only.</strong> Keep every title reflowable EPUB 3 (no fixed layout). Put maps and charts in as images with real alt text, and add a text caption giving the key fact (date, place, catalogue ID).</li>
+<li><strong>Structure:</strong> real <code>&lt;h1&gt;</code>–<code>&lt;h3&gt;</code> order, a complete nav TOC, <code>lang="en"</code>/<code>cy</code>/<code>es</code> on <code>&lt;html&gt;</code> and on any Welsh phrases inside English text (<code>&lt;span lang="cy"&gt;Tŷ Mawr&lt;/span&gt;</code>), and page-list optional.</li>
+<li><strong>Alt text</strong> on every image, written for meaning: "1824 survey extract naming Cedfin; ref [catalogue ID]", not "image1". Use <code>alt=""</code> for decorative rules and ornaments.</li>
+<li><strong>Add to the OPF <code>&lt;metadata&gt;</code>:</strong></li>
+</ol>
+<pre><code class="language-xml">&lt;meta property=&quot;schema:accessMode&quot;&gt;textual&lt;/meta&gt;
+&lt;meta property=&quot;schema:accessMode&quot;&gt;visual&lt;/meta&gt;
+&lt;meta property=&quot;schema:accessModeSufficient&quot;&gt;textual&lt;/meta&gt;
+&lt;meta property=&quot;schema:accessibilityFeature&quot;&gt;structuralNavigation&lt;/meta&gt;
+&lt;meta property=&quot;schema:accessibilityFeature&quot;&gt;tableOfContents&lt;/meta&gt;
+&lt;meta property=&quot;schema:accessibilityFeature&quot;&gt;alternativeText&lt;/meta&gt;
+&lt;meta property=&quot;schema:accessibilityFeature&quot;&gt;readingOrder&lt;/meta&gt;
+&lt;meta property=&quot;schema:accessibilityFeature&quot;&gt;displayTransformability&lt;/meta&gt;
+&lt;meta property=&quot;schema:accessibilityHazard&quot;&gt;none&lt;/meta&gt;
+&lt;meta property=&quot;schema:accessibilitySummary&quot;&gt;Reflowable text with headings, full table of contents and described images; readable with screen readers and text-to-speech.&lt;/meta&gt;
+&lt;link rel=&quot;dcterms:conformsTo&quot; href=&quot;idpf.org
+</code></pre>
+<p>Only claim <code>conformsTo</code> WCAG AA after the check in step 5 passes. Otherwise leave that line out (an honest summary beats a false claim). <code>accessModeSufficient textual</code> is only true if every image has alt text.
+5. <strong>Check:</strong> run <code>epubcheck</code> (see <code>epub-editions-sphinx-epubcheck.md</code>). Ace by DAISY is an npm tool; <strong>do not install it on the box while disk is under 2 GB</strong>. Note it as a later check or run it elsewhere.
+6. <strong>Shop page:</strong> one plain line under each book on /ebooks/ ("Accessible EPUB: headings, contents, described images, works with screen readers"), plus the same keys in Book JSON-LD (<code>accessibilityFeature</code>, <code>accessMode</code>, <code>accessibilitySummary</code>, as in <code>merchant-listing-structured-data-ebooks.md</code>).</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Do now (no public change):</strong> add the metadata block and alt text to the programme-office EPUB drafts (<code>the project workspace</code>) and to the next build of each v0.02 title in the build script, then re-run epubcheck. These are internal files, so no approval is needed.</li>
+<li><strong>PROPOSAL (public page change, needs approval):</strong> the one-line accessibility note under each book on /ebooks/ and the JSON-LD keys. Leave it as a patch in <code>the project workspace</code> while the repair freeze is on.</li>
+<li><strong>Spanish edition (La visita de Llandough):</strong> EU Spanish-language buyers are the audience the EAA was written for. Set <code>lang="es"</code> correctly and write a Spanish <code>accessibilitySummary</code>.</li>
+<li><strong>Library route:</strong> accessibility metadata travels with the file into library and e-lending catalogues (see <code>library-elending-overdrive-libby-via-kobo.md</code>, <code>legal-deposit-ebooks-uk-web-archive-nomination.md</code>).</li>
+<li>Measure: store and library listings that show the accessibility block (store display not checked yet), and any reader replies that mention screen readers.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>w3.org (W3C, EAA to EPUB mapping; read)</li>
+<li>selfpublishingadvice.org (ALLi; read)</li>
+<li>w3.org (W3C display techniques; read for key names)</li>
+<li>w3c.github.io (EPUB Accessibility Techniques 1.1; not read in full)</li>
+<li>daisy.org (Ace by DAISY; not opened this run)</li>
+</ul><p class="raw">Raw Markdown: <a href="eaa-epub-accessibility-metadata-ebooks.md">eaa-epub-accessibility-metadata-ebooks.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

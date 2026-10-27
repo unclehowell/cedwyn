@@ -1,5 +1,5 @@
 # Skill: Press requests and free mention monitoring for a heritage story (2026)
-Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Topic: earning coverage by answering journalists, and catching every mention / share (the project lead's "press monitor").
+Written 26 Oct 2026 (skills harvest). Topic: earning coverage by answering journalists, and catching every mention / share (the project lead's "press monitor").
 
 ## What the evidence shows
 - Steve Blears, Marvellous Media Training (UK), "How to use #JournoRequest to get media attention" (21 Nov 2023): search X for **#JournoRequest** and **#PRrequest**; most requests are B2C case-study asks and seasonal; only answer when the request matches your real expertise - irrelevant replies waste time and burn goodwill. Reply fast, short, on-brief.

@@ -38,7 +38,7 @@ In practice:
 
 ## 4. Editorial rules (the core of the voice)
 1. **Ingredients, not conclusions.** Pages are a series of citations into the research catalogue. The reader builds the picture. Competing theories, when given, are ranked from most to least plausible.
-2. **Headlines first, detail behind "Read more".** Bold, short, attention-catching lines; the depth one tap away.
+2. **Short headlines, three lines of text, then "read more".** No text block shows more than three lines on load; the third line ends in "read more", which opens the block in place and becomes "less". Headings, images, tables, buttons and forms are never cropped, and a heading is never followed by a "Read more" fold.
 3. **The Williams framing.** The Williams family is the default frame: a family of standing with the strongest roots in the land. The stature and authenticity of non-family parties is tested, never assumed.
 4. **Exact title words.** A lord of the manor is a lord of the manor, not a freeholder. BP is the *registered proprietor* (from 1982/83), never the "owner". Where a court used "owner", show it as the court's view.
 5. **Outside records are tested, not repeated.** Online narratives and third-party catalogues are leads to check, not sources to copy. No outside record is presented as a Tŷ Mawr record dated earlier than the first record mention (the 1824 David Stewart survey).
@@ -48,7 +48,9 @@ In practice:
 9. **No family insignia or emblem designs.** Nothing about the family's present holdings or addresses.
 10. **Cedwyn is self-contained.** Internal links only; every purchase goes through /ebooks/ or /shop/.
 11. **Banned public words** — see MEMORY/standing-orders.md (the list is encoded there so this page stays clean).
-12. **Never name the project lead in public text.** Commits and colophons carry the house sign-off (agents on the project box find it in the private companion notes).
+12. **Pages never explain themselves.** No human page describes how it was built, where its data comes from or what agents do; that belongs in the docs library and in machine-facing files. Front ends are layout; words and data come from the database.
+13. **Provenance is the source only.** Holder or archive, reference, date. Never who found, read or catalogued a record, and no internal cycle or finding numbers.
+14. **Never name the project lead in public text.** Commits and colophons carry the house sign-off (agents on the project box find it in the private companion notes).
 
 ## 5. Voice
 - British English, plain, calm, confident. Short sentences.

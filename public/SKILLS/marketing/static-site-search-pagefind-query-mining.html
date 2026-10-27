@@ -1,0 +1,50 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Static site search (Pagefind) + search-term mining for Cedwyn · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Static site search (Pagefind) + search-term mining for Cedwyn"><link rel="alternate" type="text/markdown" href="static-site-search-pagefind-query-mining.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Static site search (Pagefind) + search-term mining for Cedwyn</h1>
+<p>Harvested 27 Oct 2026. Free, open source (MIT per a lobste.rs user report; licence not checked on the repo), no server, no install needed on this box (runs in the site build via npx or pip).</p>
+<h2>Why it matters (numbers, with sources)</h2>
+<ul>
+<li>Site searchers convert at 4.63% vs 2.77% for non-searchers (Econsultancy figure, quoted by Hello Retail, 24 Feb 2026; Econsultancy original not checked). Algolia (a search vendor, so biased) quotes "up to 50% higher". Treat as direction, not a forecast for a heritage archive.</li>
+<li>Searches are free voice-of-customer data: every query a visitor types is a page or record they expected to find. A query with zero results is a content gap or a missing glossary/alias entry.</li>
+<li>Pagefind (CloudCannon, Liam Bigelow, 15 Jul 2022, read): full-text search of all of MDN in under 300 KB transferred including the library; "for most sites closer to 100 KB". Index is built from the finished HTML after the site generator runs, so it needs no database or API.</li>
+<li>Pagefind docs v1.5.2 (read 27 Oct 2026) example run: 2,496 pages / 22,852 words indexed in 2.357 s.</li>
+</ul>
+<h2>How to do it (step by step)</h2>
+<ol>
+<li>Add the UI to one page (a /search/ page plus a header icon that opens the modal):
+   <code>&lt;link href="/pagefind/pagefind-component-ui.css" rel="stylesheet"&gt;</code>
+   <code>&lt;script src="/pagefind/pagefind-component-ui.js" type="module"&gt;&lt;/script&gt;</code>
+   <code>&lt;pagefind-modal-trigger&gt;&lt;/pagefind-modal-trigger&gt;&lt;pagefind-modal&gt;&lt;/pagefind-modal&gt;</code></li>
+<li>In the build (GitHub Actions, after the static build, before deploy): <code>npx -y pagefind --site &lt;output_dir&gt;</code> (or <code>python3 -m pip install 'pagefind[extended]' &amp;&amp; python3 -m pagefind --site &lt;output_dir&gt;</code>). It writes <code>/pagefind/</code> into the output. Nothing to host.</li>
+<li>Scope the index: add <code>data-pagefind-body</code> to the main content element on each template so headers, footers, nav and the agent smallprint are not indexed; <code>data-pagefind-ignore</code> on boilerplate blocks.</li>
+<li>Multilingual: Pagefind makes one index per <code>&lt;html lang&gt;</code> automatically. Spanish (es) and English (en) get stemming + translated UI. Welsh (cy) is NOT in the supported table (read 27 Oct): search still works, but with no stemming (treigladau/mutations will not match, e.g. "Tŷ" vs "Dŷ") and the UI shows in English. Fix: add mutated forms and English equivalents as hidden <code>data-pagefind-meta</code>/keywords on Welsh pages, or the glossary aliases.</li>
+<li>Filters: <code>data-pagefind-filter="section"</code> on each theme (research, wayback, ebooks, glossary...) so results can be narrowed by section.</li>
+<li>Make results deep-linkable: the search page reads <code>?q=</code> from the URL and runs it. That gives shareable search links AND lets analytics capture queries.</li>
+<li>Capture the queries:
+   - GA4 enhanced measurement fires <code>view_search_results</code> automatically when the URL carries q, s, search, query or keyword (Google Analytics help 9216061, read 27 Oct). Search term dimension = the query. Only if GA4 is on the page (not found on the home page 27 Oct; see the UK analytics exception skill before adding).
+   - No GA4: log <code>?q=</code> requests from Cloudflare (the request path/query in Cloudflare analytics; whether the query string is exposed in the dataset we use is not checked) or a tiny privacy-safe beacon to a Worker that stores the term only (no IP, no ID).</li>
+<li>Monthly review (15 min): top 20 queries, zero-result queries, queries that end in an exit. Each zero-result query becomes one of: a glossary alias, a redirect, a new record page, or a missing-record (MR) candidate.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Checked 27 Oct 2026: no Pagefind on cedwyn.bucklerfamily.estate/ (cache-busted fetch); whether any other search exists on section pages was not checked. 37+ themes on separate branches make navigation hard; one search box across the deployed output is the cheapest way to let a visitor find "Parcel A", "1824 survey" or a catalogue ID.</li>
+<li>Fits the architecture the project lead asked for (front ends layout-only, data from the DB): Pagefind indexes whatever the DB-fed pages render, so nothing is duplicated. Run it in the main deploy job over the merged output so all branches are searchable together. Put the how-it-works text in /docs/, not on the human page.</li>
+<li>Index only human content: <code>data-pagefind-body</code> on the article element; exclude the agent smallprint, footer and nav. Never index private or unpublished pages.</li>
+<li>Add <code>data-pagefind-filter="section"</code> per theme, and a "Books" filter so a search for a topic surfaces the matching e-book (e.g. a query for "concealment" shows the fcg title and its free preview). That is the sales link: search -&gt; record -&gt; related e-book -&gt; /ebooks/.</li>
+<li>Welsh: add mutated and English forms of key names (Tŷ Mawr / Dŷ Mawr / Great House Farm; Llandough / Llandochau) as hidden keywords so cy queries match.</li>
+<li>Ownership: this is a site-wide change (one PR on main labelled site-wide per SCOPE.md). PROPOSED for the next permitted main committer; queue it, do not commit while the docs-library/nft-art/privacy workers are on main.</li>
+<li>Measure: queries per week, zero-result rate (target under 20%; our own target, not a benchmark), searches that lead to an /ebooks/ click.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>pagefind.app (Getting started, v1.5.2, read 27 Oct 2026)</li>
+<li>pagefind.app (language table; Welsh absent, read 27 Oct 2026)</li>
+<li>cloudcannon.com (Liam Bigelow, 15 Jul 2022, updated 6 Dec 2024; MDN under 300 KB)</li>
+<li>support.google.com (GA4 enhanced measurement, site search parameters, read 27 Oct 2026)</li>
+<li>helloretail.com (Econsultancy 4.63% vs 2.77%, original not checked)</li>
+<li>lobste.rs (small-site practitioner choice, MIT, client-side only)</li>
+</ul><p class="raw">Raw Markdown: <a href="static-site-search-pagefind-query-mining.md">static-site-search-pagefind-query-mining.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -267,7 +267,7 @@
  {
   "id": "intelligence",
   "name": "Intelligence flywheel",
-  "cadence": "proposed by its build (see its schedule proposal)",
+  "cadence": "daily 04:15 Europe/London",
   "prefix": "INTEL",
   "runner": "work/intel-flywheel/RUNNER.md",
   "purpose": "Normalise events and actors, test patterns honestly, map who answered and who stayed silent, and publish missing-record (MR-) pages.",
@@ -286,9 +286,29 @@
   "report": "Per its runner."
  },
  {
+  "id": "email-ingest",
+  "name": "Email ingest",
+  "cadence": "every 2 hours, 07:00-23:00 Europe/London",
+  "prefix": "EMAIL INGEST",
+  "runner": "work/email-ingest/RUNNER.md",
+  "purpose": "Turn inbound project correspondence into site updates: the dartboard lanes, missing-record and catalogue candidates for the research cycles, and dated notes on the matching case tasks.",
+  "inputs": [
+   "project mail (read-only)",
+   "attachments (locked files recorded as locked, never opened by force)"
+  ],
+  "outputs": [
+   "dartboard updates",
+   "missing-record candidates",
+   "catalogue candidates",
+   "case-task notes"
+  ],
+  "metric": "messages processed, site areas updated",
+  "report": "Per its runner; stops with 'no new mail' when nothing arrived."
+ },
+ {
   "id": "programme-office",
   "name": "Programme office",
-  "cadence": "weekly review (see its schedule proposal)",
+  "cadence": "weekly, Monday 06:00 Europe/London",
   "prefix": "PROGRAMME",
   "runner": "work/programme-office/RUNNER.md",
   "purpose": "Keep the objectives register (Wales tour, Argentina land and museum, chronology, e-books, the case) scored, mirrored into projects, and moving.",

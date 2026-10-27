@@ -1,5 +1,5 @@
 # Skill: Spanish-language press in Chubut for the Argentina half of the story (2026)
-Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Topic: how to put a dated Welsh-heritage record in front of Chubut's regional newspapers and radio. Builds on spanish-patagonia-audience.md (audience facts) and welsh-patagonian-societies-chubut-outreach.md (societies). Press contact is on the project lead's GO only; runs draft, never send.
+Written 26 Oct 2026 (skills harvest). Topic: how to put a dated Welsh-heritage record in front of Chubut's regional newspapers and radio. Builds on spanish-patagonia-audience.md (audience facts) and welsh-patagonian-societies-chubut-outreach.md (societies). Press contact is on the project lead's GO only; runs draft, never send.
 
 ## What the evidence shows
 - **Pitching (Muck Rack, State of Journalism 2026, 1,000+ journalists):** 62% prefer a 1:1 email; 69% want under 200 words; 78% before noon; the most-valued items are relevance to the beat (70%), access to a source (58%), original data or research (40%), high-resolution images (37%). 43% say relevant pitches are rare, so a tight, local, image-led pitch stands out.

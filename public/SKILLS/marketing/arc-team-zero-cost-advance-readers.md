@@ -1,6 +1,6 @@
 # Zero-cost ARC (advance reader copy) team for a paid volume
 
-Written 26 Oct 2026 (skills harvest 16:07) by the Cedwyn editors for the Cedwyn e-book work. Zero spend. UK DMCC rules apply (see reviews-social-proof-direct-ebooks.md).
+Written 26 Oct 2026 for the Cedwyn e-book work. Zero spend. UK DMCC rules apply (see reviews-social-proof-direct-ebooks.md).
 
 ## What it is
 A small list of readers who opted in to get a paid volume free before (or at) release and post an honest review where they choose (Goodreads/StoryGraph, Google Play, Kobo, Apple, or our own site's review form). Reviews on the sales page lift conversion; the reviews skill already holds that data. This skill is the mechanics of getting the first 5-15 reviews at zero cost.

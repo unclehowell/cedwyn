@@ -1,0 +1,50 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>A short video on the e-book sales page (30-60 s, above the buy button) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: A short video on the e-book sales page (30-60 s, above the buy button)"><link rel="alternate" type="text/markdown" href="sales-page-short-video-ebooks.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>A short video on the e-book sales page (30-60 s, above the buy button)</h1>
+<p>Date: 2026-10-26 (skills harvest 23:24). Status for Cedwyn: PROPOSAL. Adding it changes the design of /ebooks/, and the onpage flywheel treats that as PROPOSED, never automatic. The home page stays as the two tiles only (owner's order, 26 Oct). This skill is for /ebooks/ and individual book pages only.</p>
+<h2>What the evidence shows</h2>
+<ul>
+<li><strong>Wistia, "How to use video on landing pages" (read 26 Oct 2026):</strong></li>
+<li>Recommended length: about <strong>30 s for an offer, 60 s for an explainer, no more than 90 s</strong> for a testimonial or overview.</li>
+<li>Wistia found videos <strong>above the fold got "up to 50% more engagement"</strong>.</li>
+<li>It quotes average landing-page conversion at <strong>3-5.5%</strong> depending on industry (Wistia's figure, not checked).</li>
+<li>The page must load fast: a slow player costs more than the video gains.</li>
+<li><strong>Wistia State of Video benchmarks (2026 page, read):</strong></li>
+<li>Videos on home pages, galleries and product pages get the highest play rates, and viewers usually reach about halfway.</li>
+<li><strong>Thank-you pages reach about a 10% play rate</strong>, so the post-purchase page is a cheap second spot.</li>
+<li>The 2025 report's table, seen only as a Scribd snippet (<strong>not checked</strong>): product pages 17%, promotional 12%.</li>
+<li><strong>Case figure (vendor, not checked):</strong> the agency DemoDuck states its explainer video lifted Crazy Egg's conversions by <strong>64%</strong>, worth about <strong>USD 21,000 a month</strong>. That is the agency's own case study, not an independent test.</li>
+<li><strong>Our constraint (measured in our own logs):</strong> about 4 real visitors reached /ebooks/ on 26 Oct (sales-check message, 22:14). That is far too few for an A/B test. Per ab-testing-small-lists.md, ship it as a reversible change and compare before and after over 4+ weeks on click-to-checkout rate, not on sales.</li>
+</ul>
+<h2>How to do it (steps)</h2>
+<ol>
+<li><strong>Script: 45 seconds, one book or the bundle.</strong>
+   - 0-5 s: the hook, one striking record line on screen, e.g. a dated entry from the 1824 survey.
+   - 5-35 s: three quick cuts showing what is inside: a page spread, a map, a document image.
+   - 35-45 s: the offer. Price, format ("EPUB + PDF, instant download") and "Buy below".
+   - Burned-in captions throughout, because most people watch muted.</li>
+<li><strong>Make it from what exists:</strong> movie-door clips, archive scans and e-book page renders. No new footage and no faces of real family members.</li>
+<li><strong>Encode small:</strong> 720p MP4 (H.264) plus WebM, under about 3 MB, with a poster frame. Self-host on Cedwyn so there is no third-party player and no outbound link.</li>
+<li><strong>Place it</strong> directly under the headline and above the buy button: <code>&lt;video controls muted playsinline preload="none" poster=...&gt;</code>. Do not autoplay with sound. <code>preload="none"</code> plus a poster keeps Largest Contentful Paint (LCP, how fast the main content appears) on the image, not the video (sales-page-speed-core-web-vitals-ebooks.md).</li>
+<li><strong>Add a transcript</strong> below in a "learn more" fold (headline-first-read-more-progressive-disclosure.md). It is accessible and gives search text.</li>
+<li><strong>Measure:</strong> fire an analytics event on play and on 75% watched. Compare the buy-click rate of players against non-players and against the 4 weeks before. Put a second copy of the clip on the thank-you page pointing to the bundle upgrade (post-purchase-cross-sell-bundle-upgrade.md).</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Where:</strong> /ebooks/ (the bundle) first, then the strongest single title's page. Never on the home page, never inside the signup form block, and never touching the TRIGGER EVENT meta that is held for the owner.</li>
+<li><strong>Words on screen:</strong> short dated record lines with their source, and no banned words (states, assertions, per, second-hand report, not checked, reported, deception, taken). Write "not checked" for anything unchecked. No insignia. The owner is not named.</li>
+<li><strong>Languages:</strong> English captions by default. Welsh and Spanish caption tracks (.vtt) follow the site's language dropdown.</li>
+<li><strong>Owner:</strong> the CEDWYN ONPAGE flywheel lists it as PROPOSED. A video worker can make the 45 s cut from the movie bible assets once approved. File size budget: under 3 MB, because the disk on the box is tight.</li>
+<li><strong>Success bar</strong> (set in advance): play rate of 10% or more among /ebooks/ visitors, and players' buy-click rate at least twice non-players'. Below both after 4 weeks: remove it.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>wistia.com</li>
+<li>wistia.com</li>
+<li>scribd.com (snippet only)</li>
+<li>demoduck.com (snippet only; vendor claim)</li>
+</ul><p class="raw">Raw Markdown: <a href="sales-page-short-video-ebooks.md">sales-page-short-video-ebooks.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -7,7 +7,7 @@ Open an issue on the Cedwyn GitHub repository (unclehowell/cedwyn) with the **Ag
 
 ## 2. Work
 - Read the live page first. Research public sources. Cite every fact to a record (EV-####, MR-####, or a full archive reference).
-- Write in the house voice (SOUL.md): headlines first, details behind "Read more", the Williams framing, exact title words.
+- Write in the house voice (SOUL.md): short headlines, text blocks clamped at three lines with "read more", provenance as the source only, no page explaining itself, the Williams framing, exact title words.
 - Make the smallest change that meets the job's definition of done.
 
 ## 3. Submit

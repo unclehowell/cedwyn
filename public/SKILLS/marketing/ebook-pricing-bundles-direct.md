@@ -1,5 +1,5 @@
 # E-book pricing & bundles for niche non-fiction sold direct (2026)
-Harvested 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest).
+Harvested 26 Oct 2026 (skills harvest).
 
 ## Practitioner testimony and data
 - Seeley James (ALLi, price tests in $1 steps from $2.99 to $8.99, boxed set $4.99–$9.99): no significant sustained difference in units/week between $2.99 and $6.99; a sustained 28% volume drop at $7.99 not made up in royalties; the same royalty at $6.99 as at $5.99; a three-book boxed set "doing well at $9.99". Every price rise caused a 30–60% day-one unit drop that recovered in royalty by day 5 and in units in about two weeks -> never judge a price change in its first two weeks. Every price DROP caused a small buying surge (wish-listers notified). (selfpublishingadvice.org)

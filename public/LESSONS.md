@@ -23,6 +23,8 @@ Each lesson: what happened → why → the rule now. Newest lessons are appended
 - **A date inferred from a filename (20 Oct 2026).** A plan was captioned with a date and origin taken from its media title. → Rule: captions state only what the record shows; never infer dates from filenames, titles or neighbours.
 - **Archive photos nearly published (20 Oct 2026).** Photos taken under a private-photography undertaking almost went public. → Rule: never publish them without the archivist's written authority.
 - **Outside dates repeated (26 Oct 2026).** Pages repeated pre-1824 outside catalogue dates as if they were records of the house. → Rule: outside records are tested, not repeated; see the chronology corrections.
+- **Process notes in provenance (26 Oct 2026).** Some catalogue provenance fields described how a record was gathered rather than where it is held. → Rule: provenance is the source only (holder, reference, date); the site build fails on finder or cycle wording.
+- **Two kinds of "read more" (26 Oct 2026).** A site-wide three-line clamp met older section-level teasers, giving two styles on one page. → Rule: when a site-wide pattern lands, unwrap the older section versions at build time and check every section at 390 px.
 - **Hedging family evidence (26 Oct 2026).** Phrases framing the 1667 acquisition as an unsupported story. → Rule: cite the record; never hedge it.
 
 ## Tools and platforms

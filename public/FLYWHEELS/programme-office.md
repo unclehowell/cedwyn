@@ -1,6 +1,6 @@
 # Flywheel: Programme office
 
-**Cadence:** weekly review (see its schedule proposal)  
+**Cadence:** weekly, Monday 06:00 Europe/London  
 **Goal prefix (duplicate check):** `PROGRAMME`  
 **Runner:** `work/programme-office/RUNNER.md` (on the project workspace)
 

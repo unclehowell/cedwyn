@@ -1,5 +1,5 @@
 # Skill: A/B testing on small lists without fooling ourselves (2026)
-Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Topic: subject-line / landing-page tests at 20-50 sends a day.
+Written 26 Oct 2026 (skills harvest). Topic: subject-line / landing-page tests at 20-50 sends a day.
 
 ## What the evidence shows
 - Evan Miller, "How Not To Run an A/B Test" (evanmiller.org): significance figures assume the **sample size was fixed in advance**. "Run it until it looks significant" (peeking) makes reported significance meaningless and inflates false winners. Fix the stop size first, or use a method built for sequential looks.
