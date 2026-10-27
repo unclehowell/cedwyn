@@ -40,7 +40,7 @@
   }
   function card(r) {
     var h = '<article class="wt-c ' + r.tone + (r.status === 'no_response' ? ' solid' : '') + '" id="' + esc(r.id) + '">';
-    h += '<div class="wt-top"><div><div class="wt-in">' + esc(r.inst) + '</div><div class="wt-ref">' + esc(r.regime) + (r.their_ref ? ' · ' + esc(r.their_ref) : '') + '</div></div>';
+    h += '<div class="wt-top"><div><div class="wt-in">' + esc(r.inst) + '</div><div class="wt-ref">' + esc(r.regime) + (r.their_ref ? ' · ' + esc(r.their_ref) : '') + (r.ev ? ' · ' + esc(r.ev) : '') + '</div></div>';
     h += '<span class="wt-pill ' + r.tone + '">' + (r.tone === 'red' || r.tone === 'amber' ? '<i class="wt-flag"></i>' : '') + esc(T['st_' + r.status]) + '</span></div>';
     h += timeline(r);
     h += '<div class="wt-dates"><span>' + esc(T.asked) + ' <b>' + esc(fd(r.asked)) + '</b></span>';
@@ -71,7 +71,7 @@
       if (st.status && r.status !== st.status) return false;
       if (st.inst && r.inst !== st.inst) return false;
       if (st.red && !(r.tone === 'red' || r.tone === 'amber')) return false;
-      if (q && (r.inst + ' ' + r.their_ref + ' ' + r.regime + ' ' + r.asks.map(function (a) { return a.text; }).join(' ')).toLowerCase().indexOf(q) < 0) return false;
+      if (q && (r.inst + ' ' + r.their_ref + ' ' + (r.ev || '') + ' ' + r.regime + ' ' + r.asks.map(function (a) { return a.text; }).join(' ')).toLowerCase().indexOf(q) < 0) return false;
       return true;
     });
     var rank = { red: 1, amber: 2, grey: 3, green: 4 }; function rk(r) { return r.status === 'no_response' ? 0 : rank[r.tone]; }
