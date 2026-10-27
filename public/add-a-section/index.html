@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Add a section · Cedwyn developer library</title><meta name="description" content="A new web app on its own branch, with its own data, reachable from the header selector.">
+<link rel="stylesheet" href="/library/library.css"></head>
+<body data-cw-wiki-off data-page="add-a-section"><a class="skip" href="#main">Skip to content</a>
+<header class="top"><button class="menu" aria-controls="side" aria-expanded="false" aria-label="Menu">☰</button><a class="brand" href="/library/">Cedwyn <span>library</span></a>
+<form class="sf" role="search" onsubmit="return false"><input id="q" type="search" placeholder="Search the docs" aria-label="Search the docs" autocomplete="off"></form></header>
+<div class="wrap"><aside id="side"><nav aria-label="Library"><ul class="nav"><li><a href="/library/" data-s="index">Overview</a></li><li><a href="/library/architecture/" data-s="architecture">Architecture</a></li><li><a href="/library/hosting/" data-s="hosting">Hosting</a></li><li><a href="/library/front-ends/" data-s="front-ends">Front ends</a></li><li><a href="/library/sections/" data-s="sections">Sections</a></li><li><a href="/library/add-a-section/" data-s="add-a-section">Add a section</a></li><li><a href="/library/export/" data-s="export">Data export</a></li><li><a href="/library/api/" data-s="api">API and WebMCP</a></li><li><a href="/library/status/" data-s="status">Status</a></li></ul></nav><p class="back"><a href="/">‹ cedwyn.bucklerfamily.estate</a></p></aside>
+<main id="main"><div id="results" hidden></div><article id="doc"><h1>Add a section</h1><p class="lede">A new web app on its own branch, with its own data, reachable from the header selector.</p><nav class="toc" aria-label="On this page"><ul><li><a href="#steps">Steps</a></li><li><a href="#after">After that</a></li></ul></nav><p>A section is added without touching any other section. Worked example: <b>nft-art</b>, a gallery of digital editions made from non-human images in the Wayback Vault records.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li><b>Pick an id.</b> Lower-case, unique in <code>themes.json</code>, used as the path: <code>nft-art</code> → <code>/nft-art/</code>.</li>
+<li><b>Create the branch.</b> A new branch holding the web app: <code>public/index.html</code>, styles and scripts. Layout only: no record text in the templates.</li>
+<li><b>Add the section's data.</b> Records go in <code>data/</code> on the branch as JSON (for nft-art: one record per artwork with id, title, caption, source record id, edition, price, image path). The page renders from this data in the browser, or a <code>build</code> command renders it at build time.</li>
+<li><b>Point at core records, do not copy them.</b> Each artwork carries the id or sha256 of the core artifact it was made from; the page reads that artifact from the core catalogue (<code>Cedwyn.db()</code>, <code>/_blob/&lt;sha&gt;</code>) instead of keeping its own copy.</li>
+<li><b>Register it.</b> One entry in <code>themes.json</code> on <code>main</code>, through a pull request labelled <code>site-wide</code>:
+<pre><code>{
+  "id": "nft-art",
+  "title": "The Garden Gallery",
+  "cy": "…", "es": "…",
+  "live": "https://cedwyn.bucklerfamily.estate/nft-art/",
+  "hosts": [], "paths": [],
+  "branch": "nft-art", "dir": "public",
+  "group": "interactive"
+}</code></pre>
+The position of the entry in the <code>themes</code> list is its position in the header selector.</li>
+<li><b>Build.</b> Merging the pull request starts <code>build-cedwyn</code>. The section is copied to <code>/nft-art/</code>, its files enter the core catalogue under <code>theme = 'nft-art'</code>, the header selector gains the new stop, and the export writes <code>/db/export/sections/nft-art.json.gz</code>.</li>
+<li><b>Check.</b> Open <code>/nft-art/</code> at phone width, step through the selector to reach it, and query it: <code>SELECT count(*) FROM locations WHERE theme = 'nft-art'</code>.</li>
+</ol>
+<h2 id="after">After that</h2>
+<ul>
+<li>Changes to the section are pushes to its own branch; each push is picked up by the next build. Nothing on <code>main</code> changes.</li>
+<li>To take the section out, remove its entry from <code>themes.json</code>; the branch stays.</li>
+<li>To make it a standalone site later, point a separate Pages project at the same branch and folder.</li>
+<li>A section with live writes (orders, comments) keeps a small store of its own and publishes a JSON file the build reads; see <a href="/library/architecture/#federation">Federation</a>.</li>
+</ul>
+<nav class="pager"><a class="pv" href="/library/sections/">‹ Sections</a><a class="nx" href="/library/export/">Data export ›</a></nav></article></main></div>
+<script src="/library/search-index.js" defer></script><script src="/library/library.js" defer></script></body></html>

@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overview · Cedwyn developer library</title><meta name="description" content="What Cedwyn is as software, and where to start.">
+<link rel="stylesheet" href="/library/library.css"></head>
+<body data-cw-wiki-off data-page="index"><a class="skip" href="#main">Skip to content</a>
+<header class="top"><button class="menu" aria-controls="side" aria-expanded="false" aria-label="Menu">☰</button><a class="brand" href="/library/">Cedwyn <span>library</span></a>
+<form class="sf" role="search" onsubmit="return false"><input id="q" type="search" placeholder="Search the docs" aria-label="Search the docs" autocomplete="off"></form></header>
+<div class="wrap"><aside id="side"><nav aria-label="Library"><ul class="nav"><li><a href="/library/" data-s="index">Overview</a></li><li><a href="/library/architecture/" data-s="architecture">Architecture</a></li><li><a href="/library/hosting/" data-s="hosting">Hosting</a></li><li><a href="/library/front-ends/" data-s="front-ends">Front ends</a></li><li><a href="/library/sections/" data-s="sections">Sections</a></li><li><a href="/library/add-a-section/" data-s="add-a-section">Add a section</a></li><li><a href="/library/export/" data-s="export">Data export</a></li><li><a href="/library/api/" data-s="api">API and WebMCP</a></li><li><a href="/library/status/" data-s="status">Status</a></li></ul></nav><p class="back"><a href="/">‹ cedwyn.bucklerfamily.estate</a></p></aside>
+<main id="main"><div id="results" hidden></div><article id="doc"><h1>Overview</h1><p class="lede">What Cedwyn is as software, and where to start.</p><nav class="toc" aria-label="On this page"><ul><li><a href="#start">Where to start</a></li><li><a href="#principles">Design principles</a></li></ul></nav><p>Cedwyn is one website at <code>cedwyn.bucklerfamily.estate</code> made of many separate web apps, called <b>sections</b>. Each section lives on its own branch of one Git repository and is published under its own path, for example <code>/wayback/</code>, <code>/maps/</code> or <code>/research/</code>. A shared header lets a visitor move from one section to the next.</p>
+<p>Under the sections sits one <b>core catalogue database</b>: a single SQLite file built on every deploy from everything the sections publish. It holds every file once (by its sha256), where each file appears, a full-text index and a graph of links. Any page or tool can read it in the browser, with no server.</p>
+<div class="facts">
+<div><b>40</b><span>routes in the section registry</span></div>
+<div><b>11,829</b><span>catalogued files</span></div>
+<div><b>271,768</b><span>graph edges</span></div>
+<div><b>0</b><span>servers to run</span></div>
+</div>
+<h2 id="start">Where to start</h2>
+<ul>
+<li><a href="/library/architecture/">Architecture</a>: the core database, section data and how records are shared without copies.</li>
+<li><a href="/library/hosting/">Hosting</a>: the GitHub repository, the build workflow and Cloudflare Pages.</li>
+<li><a href="/library/front-ends/">Front ends</a>: static, serverless pages; layout in the section, data from the database.</li>
+<li><a href="/library/sections/">Sections</a>: every section, its branch, its data and its status.</li>
+<li><a href="/library/add-a-section/">Add a section</a>: a new web app on a new branch, step by step.</li>
+<li><a href="/library/export/">Data export</a>: the whole database as CSV, JSON and SQLite.</li>
+<li><a href="/library/api/">API and WebMCP</a>: endpoints, the in-browser SQL and GraphQL interface, and tools for browser agents.</li>
+<li><a href="/library/status/">Status</a>: what is built today and what is not yet.</li>
+</ul>
+<h2 id="principles">Design principles</h2>
+<ol>
+<li><b>One record, many views.</b> A file is stored once and referenced wherever it appears.</li>
+<li><b>Sections are independent.</b> A section builds, deploys and rolls back on its own branch. Changing one section does not change another.</li>
+<li><b>Static first.</b> Everything a visitor loads is a plain file. No application server, no per-request cost.</li>
+<li><b>Portable data.</b> The whole database can be downloaded and opened with ordinary tools, separately from any front end.</li>
+<li><b>Pages do not explain themselves.</b> How the site works is documented here, in the library; human pages carry the record only. Notes for software agents travel in page metadata, <code>/agents.json</code>, <code>/llms.txt</code> and <code>/academy/</code>.</li>
+</ol><nav class="pager"><span></span><a class="nx" href="/library/architecture/">Architecture ›</a></nav></article></main></div>
+<script src="/library/search-index.js" defer></script><script src="/library/library.js" defer></script></body></html>
