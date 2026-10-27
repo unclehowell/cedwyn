@@ -151,13 +151,26 @@ def run(dist):
         rel = p.relative_to(dist).as_posix()
         if rel.startswith(skip) or rel.startswith('_') and not rel.startswith('_cedwyn/og'):
             continue
+        try:
+            n, added, untouched = page(p, rel, dist, themes, cards, n, added, untouched, samples)
+        except Exception as e:
+            print('og_cards: skipped', rel, e)
+    rep = {'pages_changed': n, 'tags_added': added, 'pages_already_complete': untouched, 'pillow': cards.pil,
+           'cards': {k: v[0] for k, v in cards.made.items()}, 'samples': samples}
+    (dist / '_cedwyn' / 'reports').mkdir(parents=True, exist_ok=True)
+    json.dump(rep, open(dist / '_cedwyn' / 'reports' / 'og_cards.json', 'w'), indent=1)
+    print('og_cards: %d pages, %d tags, %d cards (pillow %s)' % (n, added, len(cards.made), cards.pil))
+
+
+def page(p, rel, dist, themes, cards, n, added, untouched, samples):
+    if True:
         try: txt = p.read_text('utf-8')
-        except Exception: continue
+        except Exception: return n, added, untouched
         m = HEAD_END.search(txt[:600000])
-        if not m: continue
+        if not m: return n, added, untouched
         head = txt[:m.start()]
         if re.search(r'http-equiv=["\']refresh', head, re.I) and len(txt) < 3000:
-            continue   # a redirect stub, not a page
+            return n, added, untouched   # a redirect stub, not a page
         head_clean = BLOCK.sub('', head)
         have = {}; drop = []
         for t in META.findall(head_clean):
@@ -218,17 +231,13 @@ def run(dist):
             want.append(('name', 'description', desc))
         tags = ['<meta %s="%s" content="%s">' % (k, v, esc(c)) for k, v, c in want if v not in have and c]
         if not tags and head_clean == head:
-            untouched += 1; continue
+            return n, added, untouched + 1
         block = ('<!-- og:cedwyn -->' + ''.join(tags) + '<!-- /og:cedwyn -->') if tags else ''
         new = head_clean + block + txt[m.start():]
         if new != txt:
             p.write_text(new, 'utf-8'); n += 1; added += len(tags)
             if len(samples) < 12 and rel_dir.count('/') <= 1: samples['/' + rel_dir] = nfa
-    rep = {'pages_changed': n, 'tags_added': added, 'pages_already_complete': untouched, 'pillow': cards.pil,
-           'cards': {k: v[0] for k, v in cards.made.items()}, 'samples': samples}
-    (dist / '_cedwyn' / 'reports').mkdir(parents=True, exist_ok=True)
-    json.dump(rep, open(dist / '_cedwyn' / 'reports' / 'og_cards.json', 'w'), indent=1)
-    print('og_cards: %d pages, %d tags, %d cards (pillow %s)' % (n, added, len(cards.made), cards.pil))
+    return n, added, untouched
 
 
 if __name__ == '__main__':
