@@ -45,11 +45,15 @@
       '<select class="gg-sel" id="gg-sv" autocomplete="off">' + vers(a).map(function (v, k) { return '<option value="' + esc(v) + '"' + (k ? '' : ' selected') + '>' + esc(v) + (v === 'v0.0.1' ? ' · free' : '') + (k ? '' : ' · latest') + '</option>'; }).join('') + '</select>' +
       '<div class="gg-acts"><button type="button" class="gg-btn gg-soon" disabled aria-disabled="true">' + esc(T.coming_soon || 'Coming soon') + '</button>' +
       '<button type="button" class="gg-btn gg-png">' + esc(T.save_png || 'Save as PNG') + '</button></div>' +
-      '<a class="gg-free" href="' + esc(a.image) + '" data-png="1">free version (v0.0.1 2026)</a></div>' +
+      '<a class="gg-free" href="' + esc(a.v001_image || a.image) + '" data-png="1">free version (v0.0.1 2026)</a></div>' +
       '<nav class="gg-nav"><a href="#/' + esc(prev.id) + '">← ' + esc(prev.title) + '</a><a href="#/' + esc(next.id) + '">' + esc(next.title) + ' →</a></nav>';
     var pb = d.querySelector('.gg-png'), fl = d.querySelector('.gg-free');
-    if (pb) pb.addEventListener('click', function () { savePng(a, pb); });
-    if (fl) fl.addEventListener('click', function (ev) { if (ev.button || ev.metaKey || ev.ctrlKey) return; ev.preventDefault(); savePng(a, pb || fl); });
+    var sel = d.querySelector('.gg-sel'), fig = d.querySelector('figure img');
+    /* A reworked piece keeps its first release as a.v001_image; the drop-down shows the chosen version (flower rework 27 Oct 2026). - Sion's Tab agent */
+    function pick(v) { return (v === 'v0.0.1' && a.v001_image) ? Object.assign({}, a, { image: a.v001_image, version: 'v0.0.1' }) : a; }
+    if (sel && fig) sel.addEventListener('change', function () { fig.src = pick(sel.value).image; });
+    if (pb) pb.addEventListener('click', function () { savePng(pick(sel ? sel.value : ver(a)), pb); });
+    if (fl) fl.addEventListener('click', function (ev) { if (ev.button || ev.metaKey || ev.ctrlKey) return; ev.preventDefault(); savePng(pick('v0.0.1'), pb || fl); });
     show(true); window.scrollTo(0, 0);
     document.title = a.title + ' · ' + (T.title || '');
   }
