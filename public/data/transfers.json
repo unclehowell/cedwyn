@@ -1,6 +1,6 @@
 {
- "version": "3.3.2",
- "updated": "2026-10-24",
+ "version": "3.4.1",
+ "updated": "2026-10-27",
  "parties": [
   {
    "id": "family",
@@ -168,25 +168,25 @@
   {
    "id": "A",
    "name": "Parcel A",
-   "desc": "The house parcel, whole: farmhouse, yard, woodland and green, about 10 acres (the 1877 split).",
+   "desc": "The house parcel: farmhouse, yard, buildings and woodland (the proposed 1877 split; instrument and extent require site-matched verification). On the family’s boundary plan the Parcel A line ends before the green begins: the green is not part of Parcel A.",
    "color": "#f4f1ff"
   },
   {
    "id": "A1",
    "name": "Parcel A1 · north wood",
-   "desc": "Top third of Parcel A: the woodland (OS 1900 field 45). Later title WA735527.",
+   "desc": "North part of Parcel A: the woodland (OS 1900 field 45). Later title WA735527.",
    "color": "#34c38f"
   },
   {
    "id": "A2",
    "name": "Parcel A2 · house & yard",
-   "desc": "Middle third: farmhouse, yard and buildings (OS 1900 field 70). Title WA240304 (1983), merged into WA231076 (1987).",
+   "desc": "South part of Parcel A: farmhouse, yard and buildings (OS 1900 field 70), whose boundary ends before the green. Title WA240304 (1983), merged into WA231076 (1987).",
    "color": "#c4a484"
   },
   {
    "id": "A3",
-   "name": "Parcel A3 · the green",
-   "desc": "Lower third: the green by Leckwith Road, village green VG41 (1970).",
+   "name": "The green · VG41 (outside Parcel A)",
+   "desc": "Separate ground, outside Parcel A: the green by Leckwith Road, registered by Glamorgan County Council as village green VG41 in 1970.",
    "color": "#f2d64b"
   },
   {
@@ -524,7 +524,7 @@
    "note": "Our case: the woodland and the green were taken in 1955 with Parcel B, just after Mary’s amputation, when she could not defend them.",
    "sources": [
     {
-     "t": "1955 Parcel-A loss dossier: woodland and green",
+     "t": "1955 loss dossier: the woodland (Parcel A) and the green (outside Parcel A)",
      "u": "https://greathousefarmwiki.wordpress.com/family-legal-case-control-room/1955-parcel-a-loss-dossier-woodland-vg41-green/"
     },
     {
@@ -1127,7 +1127,7 @@
    {
     "title": "VG41",
     "t": "t1970",
-    "why": "THE GREEN · 1958/59 attempt → VG41 registration (1970)"
+    "why": "THE GREEN (outside Parcel A) · 1958/59 attempt → VG41 registration (1970)"
    }
   ],
   "not": "These links are not conveyances. A1: the 29 Mar 1961 deed is recited in the woodland title strand; WA735527 lists Forest of Cardiff as proprietor from 1994. A2: BP Properties applied to register WA240304 on 23 Feb 1983 while Mary lived there; no conveyance from the occupiers is on record. A3: VG41 was registered on 16 Jun 1970; Glamorgan County Council was the registration authority, but the entry alone does not establish freehold ownership or vesting in that council.",
@@ -1163,8 +1163,8 @@
     "title": "VG41",
     "year": 1970,
     "transferId": "t1970",
-    "caption": "THE GREEN · 1958/59 attempt → VG41 registration (1970)",
-    "label": "A3 · VG41 registration endpoint",
+    "caption": "THE GREEN (outside Parcel A) · 1958/59 attempt → VG41 registration (1970)",
+    "label": "A3 · VG41 registration endpoint (separate from Parcel A)",
     "interval": "VG41 was registered on 16 Jun 1970, about 11–12 years after the recorded 1958/59 attempt.",
     "note": "Destination is Glamorgan County Council as the 1970 registration authority. The register entry and underlying application/map/ownership file remain outstanding; registration alone does not establish that the council took the green’s freehold.",
     "color": "#f2d64b"
@@ -1427,7 +1427,7 @@
      "text": "Enforcing possession of Parcel B under “whole farm” wording, Western Ground Rents took the north forest and the south-east green on 4 July 1955. Mary was objecting strongly.",
      "src": [
       {
-       "t": "Legal Wiki · 1955 Parcel-A loss dossier: woodland and green",
+       "t": "Legal Wiki · 1955 loss dossier: the woodland (Parcel A) and the green (outside Parcel A)",
        "u": "https://greathousefarmwiki.wordpress.com/family-legal-case-control-room/1955-parcel-a-loss-dossier-woodland-vg41-green/"
       },
       {
@@ -1501,7 +1501,7 @@
   },
   {
    "id": "C",
-   "name": "A3 · green | 1958/59 attempt → VG41 (1970)",
+   "name": "A3 · green, outside Parcel A | 1958/59 attempt → VG41 (1970)",
    "short": "1970 green VG41",
    "parcels": [
     "A3",
@@ -1542,7 +1542,7 @@
      "text": "The same 4 July 1955 enforcement took the south-east green with the north forest.",
      "src": [
       {
-       "t": "Legal Wiki · 1955 Parcel-A loss dossier: woodland and green",
+       "t": "Legal Wiki · 1955 loss dossier: the woodland (Parcel A) and the green (outside Parcel A)",
        "u": "https://greathousefarmwiki.wordpress.com/family-legal-case-control-room/1955-parcel-a-loss-dossier-woodland-vg41-green/"
       },
       {
@@ -1861,7 +1861,7 @@
     "kind": "gap",
     "todo": true,
     "label": "Parcel A · no later freehold conveyance located",
-    "text": "On the documents presently identified, the freehold chain for Parcel A stops with the Williams family after 1928. No later deed has been located conveying Parcel A, or its parts A1, A2 or A3, from Williams to WGR, BP or a current possessor. The later possession orders, licence letters, deeds and registrations are separately displayed below as record chronologies; they are not shown as conveyances from Williams.",
+    "text": "On the documents presently identified, the freehold chain for Parcel A stops with the Williams family after 1928. No later deed has been located conveying Parcel A, or its parts A1 or A2 (the green, A3, lies outside Parcel A), from Williams to WGR, BP or a current possessor. The later possession orders, licence letters, deeds and registrations are separately displayed below as record chronologies; they are not shown as conveyances from Williams.",
     "src": [
      {
       "t": "The Two Parcels",
@@ -2296,7 +2296,7 @@
     "text": "Enforcing possession of Parcel B under “whole farm” wording, Western Ground Rents took the north forest and the south-east green on 4 July 1955. Mary was objecting strongly.",
     "src": [
      {
-      "t": "Legal Wiki · 1955 Parcel-A loss dossier: woodland and green",
+      "t": "Legal Wiki · 1955 loss dossier: the woodland (Parcel A) and the green (outside Parcel A)",
       "u": "https://greathousefarmwiki.wordpress.com/family-legal-case-control-room/1955-parcel-a-loss-dossier-woodland-vg41-green/"
      },
      {
@@ -2975,7 +2975,7 @@
     "text": "Enforcing possession of Parcel B under “whole farm” wording, Western Ground Rents took the north forest and the south-east green on 4 July 1955. Mary was objecting strongly.",
     "src": [
      {
-      "t": "Legal Wiki · 1955 Parcel-A loss dossier: woodland and green",
+      "t": "Legal Wiki · 1955 loss dossier: the woodland (Parcel A) and the green (outside Parcel A)",
       "u": "https://greathousefarmwiki.wordpress.com/family-legal-case-control-room/1955-parcel-a-loss-dossier-woodland-vg41-green/"
      },
      {
@@ -3464,7 +3464,7 @@
      }
     ],
     "start": "dpoo",
-    "cap": "Synthetic A2, the village green: 💩💩 1955 → 💩 1959 → Glamorgan County Council 1970 (VG41); afterwards Llandough Community Council."
+    "cap": "Synthetic A2, the village green (separate ground, outside Parcel A): 💩💩 1955 → 💩 1959 → Glamorgan County Council 1970 (VG41); afterwards Llandough Community Council."
    },
    {
     "k": "SA3",
@@ -3764,7 +3764,7 @@
     },
     "tSA2": {
      "segs": [],
-     "en": "Synthetic A2, the village green.",
+     "en": "Synthetic A2, the village green, outside Parcel A.",
      "cy": "A2 synthetig, maes y pentref.",
      "es": "A2 sintética, el prado comunal del pueblo."
     },
