@@ -268,11 +268,34 @@
   var CEDWYN_GROUPS = /*CEDWYN_GROUPS*/null;
   // 25 Oct 2026: inside a section (/wales/<theme>/, /argentina/<theme>/, or the two hubs) the ‹ › and menu links stay in that
   // section; on the Argentina side the menu drops "Farm" from the estate's names (themes.json / sections.json) - Sion's Tab agent
-  var CSEC = document.documentElement.getAttribute("data-cedwyn-sec-url") || "", CSECP = CSEC ? "/" + CSEC : "", CAMAP = /*CEDWYN_AMAP*/null;
+  // 27 Oct 2026: the section (/wales/... or /argentina/...) is read from the address itself as well, so the header still knows it
+  // when runtime.js has not run. The section is the visitor's half (Wales or Patagonia, chosen on the landing tiles); it is
+  // remembered (localStorage cedwyn-half) and the chain drops the themes the other half owns (tuple field 5, from
+  // data/halves.json wales_exclude / argentina_exclude via tools/site.py). CFULL keeps every theme id in themes.json order so a
+  // page outside the filtered chain still finds its neighbours.
+  var CPM = location.hostname === "cedwyn.bucklerfamily.estate" ? /^\/(wales|argentina)(?:\/|$)/.exec(location.pathname) : null;
+  var CSEC = document.documentElement.getAttribute("data-cedwyn-sec-url") || (CPM ? CPM[1] : ""), CSECP = CSEC ? "/" + CSEC : "", CAMAP = /*CEDWYN_AMAP*/null;
+  var CHALF = CSEC === "wales" ? "wales" : CSEC === "argentina" ? "patagonia" : "", CFULL = [];
+  try { if (CHALF) localStorage.setItem("cedwyn-half", CHALF); else CHALF = localStorage.getItem("cedwyn-half") || ""; } catch (e) {}
+  if (CHALF !== "wales" && CHALF !== "patagonia") CHALF = "";
+  if (!CSECP && CHALF && location.hostname === "cedwyn.bucklerfamily.estate") CSECP = CHALF === "wales" ? "/wales" : "/argentina";   // the chosen half's section, so ‹ › keep the visitor in it
   if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) {
     var CBY = {}; CHAIN.forEach(function (c) { CBY[c.id] = c; });
-    CHAIN = CEDWYN_CHAIN.map(function (t) { var o = CBY[t[0]] || {}, r = {}, k; for (k in o) r[k] = o[k];
-      r.id = t[0]; r.t = o.t || t[1]; r.g = t[2] || ""; if (t[3] && !r.cy) r.cy = t[3]; if (t[4] && !r.es) r.es = t[4]; r.u = CSECP + "/" + t[0] + "/"; if (t[0] === "wales") r.u = "/wales/#stop-1"; r.h = []; r.p = ["/" + t[0] + "/"]; return r; });
+    CFULL = CEDWYN_CHAIN.map(function (t) { return t[0]; });
+    CHAIN = CEDWYN_CHAIN.filter(function (t) { return !CHALF || (t[5] || []).indexOf(CHALF) < 0; }).map(function (t) { var o = CBY[t[0]] || {}, r = {}, k; for (k in o) r[k] = o[k];
+      r.id = t[0]; r.t = t[1] || o.t; r.g = t[2] || ""; if (t[3]) r.cy = t[3]; if (t[4]) r.es = t[4]; r.u = CSECP + "/" + t[0] + "/";
+      if (t[0] === "wales") r.u = "/wales/";   // the Wales tour is the Wales section's own home page
+      r.h = []; r.p = ["/" + t[0] + "/"]; return r; });
+  }
+  // the theme this page belongs to: inside a section its own pages (the hub, vouchers, caso) are that half's stop
+  function cedSeg() {
+    var p = window.__cedwynLP || location.pathname;
+    if (CPM && !window.__cedwynLP) p = location.pathname.slice(CPM[1].length + 1) || "/";
+    var seg = (p.split("/")[1] || "").toLowerCase();
+    if (CSEC && (!seg || CFULL.indexOf(seg) < 0)) return CSEC === "wales" ? "wales" : "patagonia";
+    if (!seg && location.hostname === "cedwyn.bucklerfamily.estate") seg = "estate";
+    else if (!seg && /^(?:www\.)?bucklerfamily\.estate$/.test(location.hostname)) seg = "dartboard";
+    return seg;
   }
   var TOKENS = ":root{\n --ghf-font:Barlow,'Helvetica Neue',Arial,system-ui,-apple-system,'Segoe UI',sans-serif;\n --ghf-font-serif:Georgia,'Times New Roman',serif;\n --ghf-font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;\n --ghf-fs-xs:12px;--ghf-fs-sm:14px;--ghf-fs-base:16px;--ghf-fs-md:17px;--ghf-fs-lg:20px;--ghf-fs-xl:22px;--ghf-fs-2xl:26px;\n --ghf-lh:1.55;--ghf-lh-tight:1.2;\n --ghf-space-1:4px;--ghf-space-2:8px;--ghf-space-3:12px;--ghf-space-4:16px;--ghf-space-5:24px;--ghf-space-6:32px;--ghf-space-7:48px;\n --ghf-radius:6px;\n --ghf-bg:#000;--ghf-fg:#fff;--ghf-muted:#bdbdbd;--ghf-line:rgba(255,255,255,.18);\n --ghf-day-bg:#fff;--ghf-day-fg:#111;--ghf-day-muted:#555;--ghf-day-line:rgba(0,0,0,.12);\n --ghf-gold:#f2c94c;\n --ghf-wpbar:45px;\n}\n@media (min-width:783px){:root{--ghf-wpbar:49px;--ghf-fs-md:18px;--ghf-fs-lg:22px;--ghf-fs-xl:28px;--ghf-fs-2xl:36px}}\n\nhtml.ghf-shell:not(.ghf-keep-type) body{font-size:var(--ghf-fs-base);line-height:var(--ghf-lh)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h1:not(.ghf-v2-dup){font-size:var(--ghf-fs-2xl);line-height:var(--ghf-lh-tight)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h2{font-size:var(--ghf-fs-xl);line-height:var(--ghf-lh-tight)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h3{font-size:var(--ghf-fs-lg);line-height:1.3}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(p,li,dd,td){font-size:var(--ghf-fs-base)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(small,figcaption,.caption){font-size:var(--ghf-fs-sm)}\n\n:root{--ghf-fs-text:clamp(1rem,calc(1rem + (1vw - .2rem) * .545),1.3rem);--ghf-lh-text:1.55;--ghf-para:1em;--ghf-measure:760px;--ghf-radius:0px}\nhtml.ghf-hy:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(p,li,dd,blockquote){font-size:var(--ghf-fs-text);line-height:var(--ghf-lh-text)}\nhtml.ghf-hy:not(.ghf-keep-type) body :where(main,article,.content,#content) p:not(:last-child){margin-bottom:var(--ghf-para)}\nhtml.ghf-hy :is(button,input,select,textarea,.btn,.button,.card,.cta):not(.ghf-round){border-radius:0}"; // copy of ghf-tokens.css, used only where that file cannot load (a strict same-origin CSP)
   var V2 = (function () {
@@ -293,12 +316,8 @@
     function find() {
       var i, j, best = -1, bl = -1, c, ps;
       if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) {
-        var seg = ((window.__cedwynLP || location.pathname).split("/")[1] || "").toLowerCase();
-        // The root of the Cedwyn subdomain is the estate directory; the apex root remains the Disclosure Dartboard.
-        if (!seg && location.hostname === "cedwyn.bucklerfamily.estate") seg = "estate";
-        else if (!seg && /^(?:www\\.)?bucklerfamily\\.estate$/.test(location.hostname)) seg = "dartboard";
-        c = CSECP + "/" + seg + "/";
-        for (i = 0; i < CHAIN.length; i++) if (CSECP + "/" + CHAIN[i].id + "/" === c) return i;
+        var seg = cedSeg();
+        for (i = 0; i < CHAIN.length; i++) if (CHAIN[i].id === seg) return i;
         return -1;
       }
       for (i = 0; i < CHAIN.length; i++) {
@@ -311,6 +330,10 @@
     function btn(cls, svg, lab, fn) { var b = mk("button", cls); b.type = "button"; b.innerHTML = svg; b.setAttribute("aria-label", lab); b.title = lab; b.addEventListener("click", fn); return b; }
     function fillChain() {
       var s = L[lg()], n = CHAIN.length, k = find(), pv = CHAIN[k < 0 ? n - 1 : (k - 1 + n) % n], nx = CHAIN[k < 0 ? 0 : (k + 1) % n];
+      if (k < 0 && CFULL.length) {   // a page whose theme is not in this half's chain: step to the nearest themes either side of it
+        var f = CFULL.indexOf(cedSeg()), by = {}, d, F = CFULL.length; CHAIN.forEach(function (c) { by[c.id] = c; });
+        if (f >= 0) { pv = nx = null; for (d = 1; d < F && (!pv || !nx); d++) { nx = nx || by[CFULL[(f + d) % F]]; pv = pv || by[CFULL[(f - d + F) % F]]; } pv = pv || CHAIN[n - 1]; nx = nx || CHAIN[0]; }
+      }
       chainBar.textContent = "";
       chainBar.appendChild(btn("ghf-v2-btn ghf-v2-fs", IC_FS, s.fs, toggleFs));
       var arr = function (st, cls, ch, lab) { var a = mk("a", "ghf-v2-arr " + cls); a.href = st.u; a.setAttribute("aria-label", lab + ": " + nm(st)); a.title = lab + ": " + nm(st); a.appendChild(mk("span", null, ch)); a.setAttribute("data-ghf-chain", st.id); return a; };
@@ -775,7 +798,7 @@
       pins();
       watchTitles();
       var later = function () { fitBody(); pins(); hideSiteBurgers(); dedupe(); moveSubs(); // after parsing, so a page's own ghf-lang.js tag (with its data-site) is seen first
-        if (!window.GHFLang && !document.querySelector('script[src*="ghf-lang.js"]')) { var gs = document.createElement("script"); gs.src = "/_cedwyn/ghf/ghf-lang.js?v=2.1.4d"; gs.async = true; (document.head || de).appendChild(gs); } };
+        if (!window.GHFLang && !document.querySelector('script[src*="ghf-lang.js"]')) { var gs = document.createElement("script"); gs.src = "/_cedwyn/ghf/ghf-lang.js?v=2.1.5"; gs.async = true; (document.head || de).appendChild(gs); } };
       if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", later); else setTimeout(later, 0);
       window.addEventListener("load", function () { fitBody(); pins(); setTimeout(function () { fitBody(); pins(); }, 1200); }); // pages whose CSS arrives late (bundled apps)
       hideSiteBurgers(); setTimeout(hideSiteBurgers, 1200); setTimeout(moveSubs, 1300); window.addEventListener("load", function () { setTimeout(moveSubs, 400); setTimeout(shareBar, 600); }); dedupe(); setTimeout(dedupe, 1200); window.addEventListener("load", function () { setTimeout(dedupe, 300); });

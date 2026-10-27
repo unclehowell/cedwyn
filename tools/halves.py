@@ -143,7 +143,7 @@ def img(H, name):
     return f'{H["img"]}{name}.webp?v={H.get("img_v","1")}'
 
 def grouping(H, cfg, sec):
-    G = H['groups']; past = set(G['past']); pres = set(G['present']); excl = set(G.get('wales_exclude', [])) if sec == 'wales' else set()
+    G = H['groups']; past = set(G['past']); pres = set(G['present']); excl = set(G.get('wales_exclude' if sec == 'wales' else 'argentina_exclude', []))
     out = {'past': [], 'present': []}
     for t in cfg['themes']:
         if t['id'] in excl: continue
