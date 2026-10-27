@@ -12,19 +12,19 @@
   var EDIT = "https:" + "/" + "/" + ["github", "com"].join(".") + "/" + REPO + "/edit/" + REF + "/PROMPT.md";
   var T = {
     en: {scene: "Scene", released: "Release date", ai: "artist's impression", more: "Script, subtitles and evidence", enlarge: "View the picture full screen", close: "Close", sub_l: "A new scene every morning. Get it by email:", sub_ph: "Your email", sub_b: "Subscribe", sub_human: "One more step: Mailchimp wants to check you are human. Tap Subscribe again to finish in a new tab.", sub_tab: "Finish in the new tab, then check your inbox to confirm.", sub_ok: "Thank you. Check your inbox to confirm.", sub_err: "That did not go through. Please check the address and try again.", sub_bad: "Please enter a valid email address.", sending: "Sending…", mtl: "machine translation", kicker: "A tab.bot production", sub: "One door a day. Behind each door, a scene of about two minutes: the people of Llandough talking over what is happening on paper and around the village, from before the deeds to today.",
-      of: "of", doors: "scenes released", runtime: "planned running time", subs: "Subtitles", on: "on", off: "off", audio: "Audio", menu: "Production",
+      of: "of", doors: "scenes released", runtime: "planned running time", subs: "Subtitles", on: "on", off: "off", audio: "Audio", menu: "Production", fs: "Full screen", fsx: "Exit full screen", play: "Play", pause: "Pause", seek: "Position in the scene", soff: "Off",
       prompt: "Production prompt", prompt_note: "The producer's prompt steers the film. The daily scene run reads it first, every day, before it works on the next door.",
       edit: "Edit the prompt", acts: "Acts", how: "How it is made", how_note: "Every dated event in the chronology sits behind exactly one door, with its evidence numbers. The same faces, voices, buildings and landscapes are used in every scene. Anything a scene leaves out is noted and taken up in a later scene.",
       frame: "Frame", act: "Act", script: "Script", subtitles: "Subtitles", next: "Next scene", soon: "Script in writing: the logline above is the plan.", subsoon: "Subtitles come with the script.",
       events: "Events", evidence: "Evidence", review: "Draft for review", mt: "machine translation, for review", play: "Play", left: "Left out, taken up later"},
     cy: {scene: "Golygfa", released: "Dyddiad rhyddhau", ai: "argraff arlunydd", more: "Sgript, isdeitlau a thystiolaeth", enlarge: "Gweld y llun ar sgrin lawn", close: "Cau", sub_l: "Golygfa newydd bob bore. Derbyniwch hi drwy e-bost:", sub_ph: "Eich e-bost", sub_b: "Tanysgrifio", sub_human: "Un cam arall: mae Mailchimp am wirio eich bod yn ddynol. Tapiwch Tanysgrifio eto i orffen mewn tab newydd.", sub_tab: "Gorffennwch yn y tab newydd, yna edrychwch yn eich mewnflwch i gadarnhau.", sub_ok: "Diolch. Edrychwch yn eich mewnflwch i gadarnhau.", sub_err: "Ni aeth hynny drwodd. Gwiriwch y cyfeiriad a rhowch gynnig arall arni.", sub_bad: "Rhowch gyfeiriad e-bost dilys.", sending: "Yn anfon…", mtl: "cyfieithiad peiriant", kicker: "Cynhyrchiad tab.bot", sub: "Un drws y dydd. Y tu ôl i bob drws, golygfa o tua dau funud: pobl Llandochau yn trafod beth sy'n digwydd ar bapur ac o gwmpas y pentref, o'r cyfnod cyn y gweithredoedd hyd heddiw.",
-      of: "o", doors: "golygfa wedi'u rhyddhau", runtime: "hyd arfaethedig", subs: "Isdeitlau", on: "ymlaen", off: "i ffwrdd", audio: "Sain", menu: "Cynhyrchu",
+      of: "o", doors: "golygfa wedi'u rhyddhau", runtime: "hyd arfaethedig", subs: "Isdeitlau", on: "ymlaen", off: "i ffwrdd", audio: "Sain", menu: "Cynhyrchu", fs: "Sgrin lawn", fsx: "Gadael y sgrin lawn", play: "Chwarae", pause: "Oedi", seek: "Safle yn yr olygfa", soff: "Dim",
       prompt: "Anogwr y cynhyrchiad", prompt_note: "Anogwr y cynhyrchydd sy'n llywio'r ffilm. Mae'r rhediad dyddiol yn ei ddarllen yn gyntaf, bob dydd, cyn gweithio ar y drws nesaf.",
       edit: "Golygu'r anogwr", acts: "Actau", how: "Sut mae'n cael ei wneud", how_note: "Mae pob digwyddiad dyddiedig yn y cronoleg y tu ôl i un drws yn union, gyda'i rifau tystiolaeth. Defnyddir yr un wynebau, lleisiau, adeiladau a thirluniau ym mhob golygfa. Caiff unrhyw beth a adewir allan ei nodi a'i godi mewn golygfa ddiweddarach.",
       frame: "Ffrâm", act: "Act", script: "Sgript", subtitles: "Isdeitlau", next: "Y nesaf", soon: "Sgript ar y gweill: y crynodeb uchod yw'r cynllun.", subsoon: "Daw'r isdeitlau gyda'r sgript.",
       events: "Digwyddiadau", evidence: "Tystiolaeth", review: "Drafft i'w adolygu", mt: "cyfieithiad peiriant, i'w adolygu", play: "Chwarae", left: "Wedi'i adael allan, i'w godi wedyn"},
     es: {scene: "Escena", released: "Fecha de estreno", ai: "impresión artística", more: "Guion, subtítulos y pruebas", enlarge: "Ver la imagen a pantalla completa", close: "Cerrar", sub_l: "Una escena nueva cada mañana. Recíbela por correo:", sub_ph: "Tu correo", sub_b: "Suscribirme", sub_human: "Un paso más: Mailchimp quiere comprobar que eres humano. Toca Suscribirme otra vez para terminar en una pestaña nueva.", sub_tab: "Termina en la pestaña nueva y luego revisa tu bandeja de entrada para confirmar.", sub_ok: "Gracias. Revisa tu bandeja de entrada para confirmar.", sub_err: "No se pudo enviar. Revisa la dirección e inténtalo de nuevo.", sub_bad: "Escribe un correo válido.", sending: "Enviando…", mtl: "traducción automática", kicker: "Una producción de tab.bot", sub: "Una puerta por día. Detrás de cada puerta, una escena de unos dos minutos: la gente de Llandough comentando lo que pasa en los papeles y por el pueblo, desde antes de las escrituras hasta hoy.",
-      of: "de", doors: "escenas estrenadas", runtime: "duración prevista", subs: "Subtítulos", on: "sí", off: "no", audio: "Audio", menu: "Producción",
+      of: "de", doors: "escenas estrenadas", runtime: "duración prevista", subs: "Subtítulos", on: "sí", off: "no", audio: "Audio", menu: "Producción", fs: "Pantalla completa", fsx: "Salir de pantalla completa", play: "Reproducir", pause: "Pausa", seek: "Posición en la escena", soff: "No",
       prompt: "Indicaciones de producción", prompt_note: "Las indicaciones del productor guían la película. La tarea diaria las lee primero, cada día, antes de trabajar en la siguiente puerta.",
       edit: "Editar las indicaciones", acts: "Actos", how: "Cómo se hace", how_note: "Cada hecho fechado de la cronología está detrás de una sola puerta, con sus números de prueba. Las mismas caras, voces, edificios y paisajes se usan en todas las escenas. Lo que una escena deja fuera se anota y se retoma en una escena posterior.",
       frame: "Cuadro", act: "Acto", script: "Guion", subtitles: "Subtítulos", next: "Próxima", soon: "Guion en preparación: el resumen de arriba es el plan.", subsoon: "Los subtítulos llegan con el guion.",
@@ -43,12 +43,12 @@
       .catch(function () { var local = "data/" + path.replace(/^subs\//, "scripts/").replace(/^PROMPT\.md$/, "prompt.md");
         return fetch(local).then(function (r) { if (!r.ok) throw r.status; return as === "text" ? r.text() : r.json(); }); });
   }
-  try { var st = localStorage.getItem("cedwyn-movie-subs"); if (st === "0") S.subs = false; S.audio = localStorage.getItem("cedwyn-movie-audio"); } catch (e) {}
+  try { var st = localStorage.getItem("cedwyn-movie-subs"); if (st === "0") { S.subs = false; S.subsOffLegacy = true; } S.audio = localStorage.getItem("cedwyn-movie-audio"); S.sub = localStorage.getItem("cedwyn-movie-sublang"); if (S.sub && S.sub !== "off" && !T[S.sub]) S.sub = null; } catch (e) {}
   if (!S.audio) S.audio = lang();
   function paintStatic() {
     var q = document.querySelectorAll("[data-t]"); for (var i = 0; i < q.length; i++) q[i].textContent = t(q[i].getAttribute("data-t"));
     var qp = document.querySelectorAll("[data-tp]"); for (var i2 = 0; i2 < qp.length; i2++) { qp[i2].setAttribute("placeholder", t(qp[i2].getAttribute("data-tp"))); qp[i2].setAttribute("aria-label", t(qp[i2].getAttribute("data-tp"))); }
-    $("cm-subs").setAttribute("aria-pressed", S.subs ? "true" : "false"); $("cm-subs-state").textContent = S.subs ? t("on") : t("off");
+    var son = subLang() !== "off"; $("cm-subs").setAttribute("aria-pressed", son ? "true" : "false"); $("cm-subs-state").textContent = son ? t("on") : t("off");
     var a = document.querySelectorAll(".cm-a"); for (var j = 0; j < a.length; j++) a[j].setAttribute("aria-pressed", a[j].getAttribute("data-a") === S.audio ? "true" : "false");
   }
   function filledMap() { var m = {}; (S.manifest.filled || []).forEach(function (f) { m[f.n] = f; }); return m; }
@@ -160,32 +160,109 @@
     });
   }
   function loadScript(f) { if (!f.script) return Promise.resolve(); if (S.scripts[f.id]) return Promise.resolve(); return get(f.script).then(function (s) { S.scripts[f.id] = s; }).catch(function () {}); }
-  // player: the clip plays muted; the chosen language track plays beside it, kept in step
-  var V = $("cm-video"), A = $("cm-audio"), cues = [], cur = null;
+  // player: the clip plays muted; the chosen language track plays beside it, kept in step.
+  // Playback controls (v1.2.0): play/pause, position, full screen, audio language, subtitle language (independent of audio).
+  var V = $("cm-video"), A = $("cm-audio"), ST = $("cm-stage"), cur = null, LANGS = ["cy", "en", "es"], NAT = {cy: "Cymraeg", en: "English", es: "Español"}, cuesBy = {}, trackUrls = [], iosFS = false, idleT = null;
+  function subLang() { return S.sub ? S.sub : (S.subsOffLegacy ? "off" : S.audio); }
+  function subPath(L) { return cur.m.subs && cur.m.subs[L] ? cur.m.subs[L] : "subs/" + cur.f.id + "." + L + ".vtt"; }
   function play(f, m) {
     cur = {f: f, m: m}; $("cm-p-title").textContent = t("scene") + " " + f.n + " · " + tl(f, "title"); $("cm-p-meta").textContent = f.date_range + (m.seconds ? " · " + fmt(m.seconds) : "");
-    V.src = RAW + m.clip; setAudio(); loadCues(); $("cm-player").hidden = false; V.play().catch(function () {});
+    if (m.poster) V.setAttribute("poster", RAW + m.poster); else V.removeAttribute("poster");
+    V.src = RAW + m.clip; setAudio(true); loadCues(); $("cm-player").hidden = false; paintPlayer();
+    if (A.getAttribute("src")) A.play().catch(function () {});   // inside the tap, so phones allow the sound
+    V.play().catch(function () {}); try { $("cm-pp").focus({preventScroll: true}); } catch (e) {}
   }
-  function setAudio() { if (!cur) return; var a = cur.m.audio && cur.m.audio[S.audio]; if (a) { V.muted = true; A.src = RAW + a; A.currentTime = V.currentTime || 0; if (!V.paused) A.play().catch(function () {}); } else { A.removeAttribute("src"); V.muted = false; } }
-  function loadCues() { cues = []; if (!cur) return; var key = cur.f.id + "." + lang(); var p = cur.m.subs && cur.m.subs[lang()] ? cur.m.subs[lang()] : "subs/" + key + ".vtt"; get(p, "text").then(function (v) { cues = parseVTT(v); }).catch(function () {}); }
-  V.addEventListener("play", function () { if (A.src) { A.currentTime = V.currentTime; A.play().catch(function () {}); } });
-  V.addEventListener("pause", function () { A.pause(); }); V.addEventListener("seeked", function () { if (A.src) A.currentTime = V.currentTime; });
-  V.addEventListener("timeupdate", function () { if (A.src && !V.paused && Math.abs(A.currentTime - V.currentTime) > 0.3) A.currentTime = V.currentTime;
-    var c = $("cm-cue"); if (!S.subs) { c.textContent = ""; return; } var x = V.currentTime, hit = cues.filter(function (q) { return x >= q.a && x <= q.b; })[0];
-    c.textContent = ""; if (hit) c.appendChild(el("span", "", hit.t)); });
-  function closePlayer() { V.pause(); A.pause(); $("cm-player").hidden = true; V.removeAttribute("src"); V.load(); cur = null; }
+  function syncA() { if (A.getAttribute("src")) { try { A.currentTime = V.currentTime || 0; } catch (e) {} if (!V.paused) A.play().catch(function () {}); } }
+  function setAudio(fresh) {
+    if (!cur) return; var a = cur.m.audio && cur.m.audio[S.audio];
+    if (!a) { A.pause(); A.removeAttribute("src"); V.muted = false; return; }
+    V.muted = true; if (A.getAttribute("src") === RAW + a && !fresh) { syncA(); return; }
+    var wasPlaying = !V.paused; A.pause(); A.src = RAW + a;
+    var once = function () { A.removeEventListener("loadedmetadata", once); try { A.currentTime = V.currentTime || 0; } catch (e) {} if (!V.paused) A.play().catch(function () {}); };
+    A.addEventListener("loadedmetadata", once); try { A.currentTime = V.currentTime || 0; } catch (e) {}
+    if (wasPlaying) A.play().catch(function () {});
+  }
+  // subtitles: every language is fetched once per scene; the on-screen line is drawn by the page, and the same files ride
+  // as <track> elements (same-origin blob URLs) so the phone's own full-screen player shows them too
+  function loadCues() {
+    if (!cur) return; var f = cur.f;
+    while (V.firstChild) V.removeChild(V.firstChild); trackUrls.forEach(function (u) { try { URL.revokeObjectURL(u); } catch (e) {} }); trackUrls = []; cuesBy = {};
+    LANGS.forEach(function (L) {
+      get(subPath(L), "text").then(function (v) {
+        if (!cur || cur.f !== f) return; cuesBy[L] = parseVTT(v);
+        try { var u = URL.createObjectURL(new Blob([/^WEBVTT/.test(v) ? v : "WEBVTT\n\n" + v], {type: "text/vtt"})); trackUrls.push(u);
+          var tr = document.createElement("track"); tr.kind = "subtitles"; tr.srclang = L; tr.label = NAT[L]; tr.src = u; V.appendChild(tr); trackModes(); } catch (e) {}
+        drawCue();
+      }).catch(function () {});
+    });
+  }
+  function trackModes() { var s = subLang(); for (var k = 0; k < V.textTracks.length; k++) { var tt = V.textTracks[k]; tt.mode = (tt.language === s) ? (iosFS ? "showing" : "hidden") : "disabled"; } }
+  function drawCue() { var c = $("cm-cue"); c.textContent = ""; var s = subLang(); if (s === "off" || iosFS) return; var x = V.currentTime, hit = (cuesBy[s] || []).filter(function (q) { return x >= q.a && x <= q.b; })[0]; if (hit) c.appendChild(el("span", "", hit.t)); }
+  function paintPlayer() {
+    var pp = $("cm-pp"), playing = !V.paused && !V.ended; pp.setAttribute("aria-label", playing ? t("pause") : t("play")); pp.classList.toggle("is-play", !playing);
+    var fs = isFS(); $("cm-fs").setAttribute("aria-label", fs ? t("fsx") : t("fs")); $("cm-fs").setAttribute("aria-pressed", fs ? "true" : "false"); $("cm-fs").classList.toggle("is-on", fs);
+    $("cm-seek").setAttribute("aria-label", t("seek"));
+    var s = subLang(); Array.prototype.forEach.call(document.querySelectorAll(".cm-ps"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-s") === s ? "true" : "false"); });
+    Array.prototype.forEach.call(document.querySelectorAll(".cm-pa"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-a") === S.audio ? "true" : "false"); });
+  }
+  function dur() { return (isFinite(V.duration) && V.duration > 0) ? V.duration : (cur && cur.m.seconds) || 0; }
+  function paintTime() { var d = dur(), x = V.currentTime || 0, sk = $("cm-seek"); if (d) { sk.max = d.toFixed(1); if (!sk._drag) sk.value = x.toFixed(1); } $("cm-time").textContent = fmt(x) + " / " + fmt(d); sk.setAttribute("aria-valuetext", fmt(x) + " / " + fmt(d)); }
+  V.addEventListener("play", function () { syncA(); paintPlayer(); poke(); });
+  V.addEventListener("playing", function () { syncA(); });
+  V.addEventListener("pause", function () { A.pause(); paintPlayer(); poke(); }); V.addEventListener("ended", function () { A.pause(); paintPlayer(); poke(); });
+  V.addEventListener("waiting", function () { A.pause(); });
+  V.addEventListener("seeked", function () { if (A.getAttribute("src")) { try { A.currentTime = V.currentTime; } catch (e) {} } drawCue(); paintTime(); });
+  V.addEventListener("loadedmetadata", paintTime);
+  V.addEventListener("timeupdate", function () { if (A.getAttribute("src") && !V.paused && A.readyState > 0 && Math.abs(A.currentTime - V.currentTime) > 0.3) { try { A.currentTime = V.currentTime; } catch (e) {} } drawCue(); paintTime(); });
+  function togglePlay() { if (!cur) return; if (V.paused || V.ended) { if (V.ended) V.currentTime = 0; if (A.getAttribute("src")) { syncA(); A.play().catch(function () {}); } V.play().catch(function () {}); } else V.pause(); }
+  $("cm-pp").onclick = togglePlay; V.addEventListener("click", togglePlay);
+  var sk = $("cm-seek");
+  sk.addEventListener("input", function () { sk._drag = true; V.currentTime = parseFloat(sk.value) || 0; drawCue(); $("cm-time").textContent = fmt(V.currentTime) + " / " + fmt(dur()); });
+  sk.addEventListener("change", function () { sk._drag = false; syncA(); });
+  // full screen: the stage (video + subtitles + these controls) on desktop and Android; the phone's own player on iPhone
+  function isFS() { return !!(document.fullscreenElement || document.webkitFullscreenElement) || iosFS; }
+  function enterFS() {
+    var r = ST.requestFullscreen ? ST.requestFullscreen({navigationUI: "hide"}) : ST.webkitRequestFullscreen ? ST.webkitRequestFullscreen() : null;
+    if (r && r.then) r.then(function () { try { screen.orientation.lock("landscape").catch(function () {}); } catch (e) {} }).catch(nativeFS);
+    else if (!ST.requestFullscreen && !ST.webkitRequestFullscreen) nativeFS();
+  }
+  function nativeFS() { if (V.webkitEnterFullscreen) { try { iosFS = true; trackModes(); drawCue(); V.webkitEnterFullscreen(); } catch (e) { iosFS = false; trackModes(); } } }
+  function exitFS() { if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () {}); else if (document.webkitFullscreenElement && document.webkitExitFullscreen) document.webkitExitFullscreen(); else if (iosFS && V.webkitExitFullscreen) V.webkitExitFullscreen(); }
+  function onFS() { var on = (document.fullscreenElement || document.webkitFullscreenElement) === ST; ST.classList.toggle("cm-isfs", on); if (!on) { ST.classList.remove("cm-idle"); try { screen.orientation.unlock(); } catch (e) {} } paintPlayer(); poke(); }
+  document.addEventListener("fullscreenchange", onFS); document.addEventListener("webkitfullscreenchange", onFS);
+  V.addEventListener("webkitbeginfullscreen", function () { iosFS = true; trackModes(); drawCue(); paintPlayer(); });
+  V.addEventListener("webkitendfullscreen", function () {   // keep any subtitle choice made in the phone's own menu
+    for (var k = 0; k < V.textTracks.length; k++) if (V.textTracks[k].mode === "showing") { S.sub = V.textTracks[k].language; break; }
+    if (k === V.textTracks.length && V.textTracks.length) S.sub = "off";
+    iosFS = false; trackModes(); drawCue(); paintPlayer(); paintStatic(); if (!V.paused) syncA(); });
+  $("cm-fs").onclick = function () { if (isFS()) exitFS(); else enterFS(); };
+  // in full screen the controls fade after 3 s of playback and come back on any touch, mouse move or key
+  function poke() { ST.classList.remove("cm-idle"); clearTimeout(idleT); if (ST.classList.contains("cm-isfs") && !V.paused) idleT = setTimeout(function () { if (ST.contains(document.activeElement) && document.activeElement !== V && document.activeElement !== document.body && document.activeElement.tagName === "INPUT") return; ST.classList.add("cm-idle"); }, 3000); }
+  ["mousemove", "touchstart", "keydown"].forEach(function (ev) { ST.addEventListener(ev, poke, {passive: true}); });
+  function pickAudio(a) { S.audio = a; try { localStorage.setItem("cedwyn-movie-audio", S.audio); } catch (e) {} setAudio(); trackModes(); drawCue(); paintStatic(); paintPlayer(); }
+  function pickSub(s) { S.sub = s; if (s !== "off") S.subLast = s; S.subsOffLegacy = false; try { localStorage.setItem("cedwyn-movie-sublang", s); localStorage.setItem("cedwyn-movie-subs", s === "off" ? "0" : "1"); } catch (e) {} trackModes(); drawCue(); paintStatic(); paintPlayer(); }
+  Array.prototype.forEach.call(document.querySelectorAll(".cm-pa"), function (b) { b.onclick = function () { pickAudio(b.getAttribute("data-a")); }; });
+  Array.prototype.forEach.call(document.querySelectorAll(".cm-ps"), function (b) { b.onclick = function () { pickSub(b.getAttribute("data-s")); }; });
+  function closePlayer() { if (isFS()) exitFS(); V.pause(); A.pause(); $("cm-player").hidden = true; V.removeAttribute("src"); while (V.firstChild) V.removeChild(V.firstChild); V.load(); cur = null; cuesBy = {}; $("cm-cue").textContent = ""; }
   $("cm-p-x").onclick = closePlayer; $("cm-player").addEventListener("click", function (e) { if (e.target === $("cm-player")) closePlayer(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { closeLB(); if (!$("cm-player").hidden) closePlayer(); closeDrawer(); } });
-  $("cm-subs").onclick = function () { S.subs = !S.subs; try { localStorage.setItem("cedwyn-movie-subs", S.subs ? "1" : "0"); } catch (e) {} paintStatic(); };
-  Array.prototype.forEach.call(document.querySelectorAll(".cm-a"), function (b) { b.onclick = function () { S.audio = b.getAttribute("data-a"); try { localStorage.setItem("cedwyn-movie-audio", S.audio); } catch (e) {} paintStatic(); setAudio(); }; });
+  document.addEventListener("keydown", function (e) {
+    var open = !$("cm-player").hidden, tag = (e.target && e.target.tagName) || "";
+    if (e.key === "Escape") { if (open && isFS()) { exitFS(); return; } closeLB(); if (open) closePlayer(); closeDrawer(); return; }
+    if (!open || /INPUT|TEXTAREA|SELECT|BUTTON/.test(tag) || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.key === " " || e.key === "k") { e.preventDefault(); togglePlay(); }
+    else if (e.key === "f") { e.preventDefault(); $("cm-fs").onclick(); }
+    else if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); V.currentTime = Math.max(0, Math.min(dur(), V.currentTime + (e.key === "ArrowRight" ? 5 : -5))); }
+  });
+  $("cm-subs").onclick = function () { pickSub(subLang() === "off" ? (S.subLast || S.audio) : "off"); };
+  Array.prototype.forEach.call(document.querySelectorAll(".cm-a"), function (b) { b.onclick = function () { pickAudio(b.getAttribute("data-a")); }; });
   function openDrawer() { $("cm-drawer").hidden = false; $("cm-menu").setAttribute("aria-expanded", "true");
     get("PROMPT.md", "text").then(function (p) { $("cm-prompt").textContent = p.replace(/<!--[\s\S]*?-->\n*/g, ""); }).catch(function () { $("cm-prompt").textContent = "…"; }); }
   function closeDrawer() { $("cm-drawer").hidden = true; $("cm-menu").setAttribute("aria-expanded", "false"); }
   $("cm-menu").onclick = function () { if ($("cm-drawer").hidden) openDrawer(); else closeDrawer(); };
   $("cm-drawer-x").onclick = closeDrawer; $("cm-drawer").addEventListener("click", function (e) { if (e.target === $("cm-drawer")) closeDrawer(); });
   $("cm-edit").onclick = function () { window.open(EDIT, "_blank", "noopener"); };
-  document.addEventListener("ghf-lang-change", function () { paintStatic(); render(); loadCues(); });
-  new MutationObserver(function () { paintStatic(); render(); }).observe(document.documentElement, {attributes: true, attributeFilter: ["lang"]});
+  document.addEventListener("ghf-lang-change", function () { paintStatic(); render(); if (cur) { trackModes(); drawCue(); paintPlayer(); } });
+  new MutationObserver(function () { paintStatic(); render(); if (cur) paintPlayer(); }).observe(document.documentElement, {attributes: true, attributeFilter: ["lang"]});
   paintStatic();
   get("frames.json").then(function (F) { S.frames = F; render();
     return get("manifest.json").then(function (m) { S.manifest = m || {filled: []}; render(); }).catch(function () {}); }).catch(function () { $("cm-grid").textContent = "…"; });
