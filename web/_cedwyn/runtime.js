@@ -43,7 +43,7 @@
   var DBX = /\.(json|csv|xml|geojson|png|jpe?g|gif|webp|svg|avif|ico|bmp|tiff?|pdf|docx?|mp3|m4a|ogg|wav)$/i, DBP = null;
   function noSW() { return !(SWC && SWC.controller); }
   function dbfs() {
-    if (!DBP) DBP = new Promise(function (ok, no) { if (window.CedwynDB) return ok(window.CedwynDB); var s = document.createElement('script'); s.src = '/_cedwyn/dbfs.js?v=3';
+    if (!DBP) DBP = new Promise(function (ok, no) { if (window.CedwynDB) return ok(window.CedwynDB); var s = document.createElement('script'); s.src = '/_cedwyn/dbfs.js?v=4';
       s.onload = function () { ok(window.CedwynDB); }; s.onerror = no; (document.head || document.documentElement).appendChild(s); });
     return DBP;
   }
