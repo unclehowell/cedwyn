@@ -230,22 +230,22 @@
         return wsData;
       }
       function wsRender(q) {
-        const items = (wsData.items || []).filter(i => !q || (i.title + ' ' + i.url).toLowerCase().includes(q));
+        const items = (wsData.items || []).filter(i => !q || ((i.short_title || '') + ' ' + i.title + ' ' + i.url).toLowerCase().includes(q));
         document.getElementById('ws-count').textContent = (wsData.items || []).length;
         const by = {};
         items.forEach(i => (by[i.host] = by[i.host] || []).push(i));
         const hosts = Object.keys(by).sort((a, b) => by[b].length - by[a].length || a.localeCompare(b));
         wsList.innerHTML = hosts.length ? hosts.map(h => `<details class="ws-host"${q ? ' open' : ''}><summary><span class="h">${wsEsc(h)}</span><span class="n">${by[h].length} page${by[h].length !== 1 ? 's' : ''}</span></summary><div class="ws-grid">` +
-          by[h].map(i => `<div class="ws-card"><button class="ws-thumb" type="button" data-ws="${wsEsc(i.latest)}" aria-label="Preview ${wsEsc(i.title)}"><img loading="lazy" src="${wsEsc(i.thumb)}" alt=""></button>` +
+          by[h].map(i => `<div class="ws-card"><button class="ws-thumb" type="button" data-ws="${wsEsc(i.latest)}" aria-label="Preview ${wsEsc(i.short_title || i.title)}"><img loading="lazy" src="${wsEsc(i.thumb)}" alt=""></button>` +
             `<a class="ws-live" href="${wsEsc(i.url)}" target="_blank" rel="noopener">Live website ↗</a>` +
-            `<div class="ws-t" data-ws="${wsEsc(i.latest)}">${wsEsc(i.title)}</div>` +
+            `<div class="ws-t" data-ws="${wsEsc(i.latest)}" title="${wsEsc(i.title)}">${wsEsc(i.short_title || i.title)}</div>` +
             `<div class="ws-m">${wsDate(i.captured)} · ${wsEsc(i.version)}${i.n_versions > 1 ? ' (' + i.n_versions + ' versions)' : ''} · <a href="${wsEsc(i.latest)}" target="_blank" rel="noopener">latest</a></div></div>`).join('') +
           `</div></details>`).join('') : '<p style="text-align:center;color:#99a;padding:1.5rem">No archived pages match.</p>';
         wsList.querySelectorAll('[data-ws]').forEach(el => el.addEventListener('click', () => wsOpen(el.dataset.ws)));
       }
       function wsOpen(latest) {
         const i = (wsData.items || []).find(x => x.latest === latest); if (!i) return;
-        document.getElementById('ws-mt').textContent = i.title + ' · ' + i.version;
+        document.getElementById('ws-mt').textContent = (i.short_title || i.title) + ' · ' + i.version;
         document.getElementById('ws-mopen').href = latest;
         document.getElementById('ws-mlive').href = i.url;
         document.getElementById('ws-mframe').src = latest;
@@ -340,7 +340,7 @@
             ...item,
             _category: cat,
             _hashtags: extractTags(item),
-            _tags: (item.name || '').toLowerCase()
+            _tags: ((item.name || '') + ' ' + (item.title || '')).toLowerCase()
           }));
         } catch(e) {
           return [];
@@ -534,7 +534,7 @@
           let media = '';
           const safe = `/${getSafePath(item.path)}`;
           if (isImg) {
-            media = `<a href="${safe}" target="_blank"><img data-xhr-src="${safe}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23334' width='100' height='100'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='%23667' font-size='12'%3ELoading...%3C/text%3E%3C/svg%3E" alt="${item.name}"></a>`;
+            media = `<a href="${safe}" target="_blank"><img data-xhr-src="${safe}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23334' width='100' height='100'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='%23667' font-size='12'%3ELoading...%3C/text%3E%3C/svg%3E" alt="${(item.title || item.name || '').replace(/"/g, '&quot;')}"></a>`;
           } else if (isVid) {
             media = `<a href="${safe}" target="_blank"><video data-xhr-src="${safe}" controls preload="metadata" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect fill='%23334' width='100' height='100'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='%23667' font-size='12'%3ELoading...%3C/text%3E%3C/svg%3E"></video></a>`;
           } else if (ext === 'pdf') {
@@ -544,10 +544,10 @@
             const txtIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="%2360a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>`;
             media = `<a href="${safe}" target="_blank" class="pdf-link" data-xhr-txt="${safe}">${txtIcon}<span class="pdf-label" style="color:%2360a5fa">Open Text</span></a>`;
           } else {
-            media = `<a href="${safe}" target="_blank">${item.name}</a>`;
+            media = `<a href="${safe}" target="_blank">${item.title || item.name}</a>`;
           }
-          const nameClean = (item.name || '').replace(/\s*#\w+/g, '').trim();
-          return `<div class="item ${item._category}">${media}<div class="name">${nameClean}</div>${hash ? `<span class="hash-badge ${hash}">#${hash}</span>` : ''}</div>`;
+          const nameClean = (item.title || (item.name || '').replace(/\s*#\w+/g, '')).trim();
+          return `<div class="item ${item._category}">${media}<div class="name" data-file="${(item.name || '').replace(/"/g, '&quot;')}">${nameClean}</div>${hash ? `<span class="hash-badge ${hash}">#${hash}</span>` : ''}</div>`;
         }).join('');
 
         // Load media via XHR to bypass Cloudflare challenge
