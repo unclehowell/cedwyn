@@ -95,7 +95,7 @@ function newsSitemap(posts) {
   const cut = Date.now() - 2 * 86400e3;   // Google News sitemaps list articles from the last two days
   let recent = posts.filter(p => new Date(p.date).getTime() >= cut);
   if (!recent.length) recent = posts.slice(0, 1);
-  const urls = recent.map(p => `<url><loc>${postUrl(p)}</loc><news:news><news:publication><news:name>Cedwyn</news:name><news:language>en</news:language></news:publication><news:publication_date>${new Date(p.date).toISOString()}</news:publication_date><news:title>${esc(p.title)}</news:title></news:news><image:image><image:loc>${esc(p.image || DEFAULT_IMG)}</image:loc></image:image></url>`).join('');
+  const urls = recent.map(p => `<url><loc>${postUrl(p)}</loc><news:news><news:publication><news:name>Cedwyn</news:name><news:language>${esc(p.lang || 'en')}</news:language></news:publication><news:publication_date>${new Date(p.date).toISOString()}</news:publication_date><news:title>${esc(p.title)}</news:title></news:news><image:image><image:loc>${esc(p.image || DEFAULT_IMG)}</image:loc></image:image></url>`).join('');
   const all = posts.filter(p => !recent.includes(p)).map(p => `<url><loc>${postUrl(p)}</loc><lastmod>${new Date(p.updated || p.date).toISOString()}</lastmod></url>`).join('');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"><url><loc>${BLOG}</loc><changefreq>daily</changefreq></url>${urls}${all}</urlset>`;
 }
@@ -244,6 +244,10 @@ export default {
       const now = new Date(); const day = now.toISOString().slice(0, 10);
       if (now.getUTCHours() >= 7 && (await env.BLOG.get('last_run')) !== day) ctx.waitUntil(autoPost(env, false));
     } catch (e) { }
+    if (path === '/sitemap.xml') {   // sitemap index for Cedwyn: the core sitemap plus the blog's news sitemap
+      const now = new Date().toISOString();
+      return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>${ORIGIN}/sitemap-core.xml</loc></sitemap><sitemap><loc>${BLOG}news-sitemap.xml</loc><lastmod>${now}</lastmod></sitemap></sitemapindex>`, { headers: { 'content-type': 'application/xml; charset=utf-8', 'cache-control': 'public, max-age=3600' } });
+    }
     const name = path.replace(/^\/blog\//, '');
     if (TYPES[name]) {
       const posts = (await allPosts(env)).slice(0, 30);   // keeps each feed well under 100 KB
