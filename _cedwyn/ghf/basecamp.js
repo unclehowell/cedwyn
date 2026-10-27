@@ -263,16 +263,39 @@
   // (themes.json order, written in by tools/site.py) drives ‹ ›, the page name ("N of 36") and the menu's every-site list.
   // A page's theme is the first segment of its address (/records/ … /research/), so every page of a theme knows its place,
   // ‹ from 1 goes to 36 and › from 36 goes to 1. Links are the internal /<theme>/ routes, never the old addresses.
-  var CEDWYN_CHAIN = [["records", "Primary Records", "artifacts", "Cofnodion Sylfaenol", "Registros Primarios"], ["docs", "Docs · The Evidence Catalogue", "artifacts", "Dogfennau · Y Catalog Tystiolaeth", "Documentos · El Catálogo de Pruebas"], ["wayback", "The Wayback Vault", "artifacts", "Claddgell Wayback", "La Bóveda Wayback"], ["nomenclature", "Nomenclature", "artifacts", "Enwau", "Nomenclatura"], ["maps", "The Map Room", "artifacts", "Ystafell y Mapiau", "La Sala de Mapas"], ["infographic", "The Land Changing Hands", "interactive", "Y Tir yn Newid Dwylo", "La Tierra Cambia de Manos"], ["wiki", "The Legal Wiki", "artifacts", "Y Wici Cyfreithiol", "La Wiki Legal"], ["ebooks", "The E-book Shelf", "story", "Y Silff E-lyfrau", "La Estantería de Libros"], ["story", "The Story", "story", "Y Stori", "La Historia"], ["thousand-cuts", "1000 Cuts", "story", "Mil o Doriadau", "Mil Cortes"], ["fb", "The Farm Album", "artifacts", "Albwm y Fferm", "El Álbum de la Granja"], ["chess", "The Chessboard", "interactive", "Y Bwrdd Gwyddbwyll", "El Tablero"], ["csscpsg", "The Grammar House (CSSCPSGP)", "interactive", "Tŷ’r Gramadeg (CSSCPSGP)", "La Casa de la Gramática (CSSCPSGP)"], ["courtdrills", "Court Drills · Procedural Unfairness", "interactive", "Driliau’r Llys · Annhegwch Gweithdrefnol", "Simulacros Judiciales · Injusticia Procesal"], ["fcg", "FCG · Security Clearance", "research", "FCG · Clirio Diogelwch", "FCG · Habilitación de Seguridad"], ["oldbill", "Old Bill · Who Gained, Who Lost", "story", "Hen Bil · Pwy Enillodd, Pwy Gollodd", "Old Bill · Quién Ganó, Quién Perdió"], ["accounts", "The Counting House", "research", "Y Tŷ Cyfrif", "La Casa de Cuentas"], ["authorities", "Public Authorities", "research", "Awdurdodau Cyhoeddus", "Autoridades Públicas"], ["wdtk", "FOI Requests (WhatDoTheyKnow)", "research", "Ceisiadau Rhyddid Gwybodaeth (WhatDoTheyKnow)", "Solicitudes de información (WhatDoTheyKnow)"], ["review", "Independent Review", "research", "Adolygiad Annibynnol", "Revisión Independiente"], ["research", "The Research Library", "research", "Y Llyfrgell Ymchwil", "La Biblioteca de Investigación"], ["qa", "The Q&A Hall", "story", "Neuadd Holi ac Ateb", "La Sala de Preguntas"], ["meeting", "The Council Chamber", "research", "Siambr y Cyngor", "La Sala del Consejo"], ["projects", "The Project Office", "research", "Swyddfa’r Prosiect", "La Oficina de Proyectos"], ["app", "The Case Office", "interactive", "Swyddfa’r Achos", "La Oficina del Caso"], ["chat", "Ask the Archive", "interactive", "Holi’r Archif", "Pregunte al Archivo"], ["watchtower", "Watchtower", "research", "Y Tŵr Gwylio", "La Atalaya"], ["fb2", "farmbook 2 · Today", "research", "farmbook 2 · Heddiw", "farmbook 2 · Hoy"], ["email", "The Post Office", "research", "Swyddfa’r Post", "La Oficina de Correos"], ["emails", "The Post Office · Calendar", "research", "Swyddfa’r Post · Calendr", "La Oficina de Correos · Calendario"], ["dartboard", "The Disclosure Dartboard", "interactive", "Bwrdd Dartiau Datgelu", "La Diana de la Divulgación"], ["estate", "Cedwyn Estate", "interactive", "Ystâd Cedwyn", "Finca Cedwyn"], ["directory", "Cedwyn Estate Directory", "interactive", "Cyfeiriadur Ystâd Cedwyn", "Directorio de Finca Cedwyn"], ["patagonia", "Great House Farm II · Patagonia Museum", "artifacts", "Great House Farm II · Amgueddfa Patagonia", "Great House Farm II · Museo de la Patagonia"], ["wales", "Virtual Tour · Wales", "interactive", "Taith Rithwir · Cymru", "Visita Virtual · Gales"], ["terrain", "Terrain · Cedwyn Estate in 3D", "interactive", "Tirwedd · Ystâd Cedwyn mewn 3D", "Terreno · Finca Cedwyn en 3D"], ["cyberspace", "The Digital Estate", "interactive", "Yr Ystâd Ddigidol", "La Finca Digital"], ["shop", "Gift Shop & Marketplace", "story", "Siop Anrhegion a Marchnad", "Tienda y Mercado"], ["movie", "Cedwyn · the film", "story", "Cedwyn · y ffilm", "Cedwyn · la película"], ["kissed-frogs", "Kissed Frogs", "research", "Brogaod a gusanwyd", "Ranas besadas"], ["nft-art", "The Garden Gallery", "interactive", "Oriel yr Ardd", "La Galería del Jardín"]];
+  var CEDWYN_CHAIN = [["records", "Primary Records", "artifacts", "Cofnodion Sylfaenol", "Registros Primarios", []], ["docs", "Docs · The Evidence Catalogue", "artifacts", "Dogfennau · Y Catalog Tystiolaeth", "Documentos · El Catálogo de Pruebas", []], ["wayback", "The Wayback Vault", "artifacts", "Claddgell Wayback", "La Bóveda Wayback", []], ["nomenclature", "Nomenclature", "artifacts", "Enwau", "Nomenclatura", []], ["maps", "The Map Room", "artifacts", "Ystafell y Mapiau", "La Sala de Mapas", []], ["infographic", "The Land Changing Hands", "interactive", "Y Tir yn Newid Dwylo", "La Tierra Cambia de Manos", []], ["wiki", "The Legal Wiki", "artifacts", "Y Wici Cyfreithiol", "La Wiki Legal", []], ["ebooks", "The E-book Shelf", "story", "Y Silff E-lyfrau", "La Estantería de Libros", []], ["story", "The Story", "story", "Y Stori", "La Historia", ["wales"]], ["thousand-cuts", "1000 Cuts", "story", "Mil o Doriadau", "Mil Cortes", []], ["fb", "The Farm Album", "artifacts", "Albwm y Fferm", "El Álbum de la Granja", []], ["chess", "The Chessboard", "interactive", "Y Bwrdd Gwyddbwyll", "El Tablero", []], ["csscpsg", "The Grammar House (CSSCPSGP)", "interactive", "Tŷ’r Gramadeg (CSSCPSGP)", "La Casa de la Gramática (CSSCPSGP)", []], ["courtdrills", "Court Drills · Procedural Unfairness", "interactive", "Driliau’r Llys · Annhegwch Gweithdrefnol", "Simulacros Judiciales · Injusticia Procesal", []], ["fcg", "FCG · Security Clearance", "research", "FCG · Clirio Diogelwch", "FCG · Habilitación de Seguridad", []], ["oldbill", "Old Bill · Who Gained, Who Lost", "story", "Hen Bil · Pwy Enillodd, Pwy Gollodd", "Old Bill · Quién Ganó, Quién Perdió", []], ["accounts", "The Counting House", "research", "Y Tŷ Cyfrif", "La Casa de Cuentas", []], ["authorities", "Public Authorities", "research", "Awdurdodau Cyhoeddus", "Autoridades Públicas", []], ["wdtk", "FOI Requests (WhatDoTheyKnow)", "research", "Ceisiadau Rhyddid Gwybodaeth (WhatDoTheyKnow)", "Solicitudes de información (WhatDoTheyKnow)", []], ["review", "Independent Review", "research", "Adolygiad Annibynnol", "Revisión Independiente", []], ["research", "The Research Library", "research", "Y Llyfrgell Ymchwil", "La Biblioteca de Investigación", []], ["qa", "The Q&A Hall", "story", "Neuadd Holi ac Ateb", "La Sala de Preguntas", []], ["meeting", "The Council Chamber", "research", "Siambr y Cyngor", "La Sala del Consejo", []], ["projects", "The Project Office", "research", "Swyddfa’r Prosiect", "La Oficina de Proyectos", []], ["app", "The Case Office", "interactive", "Swyddfa’r Achos", "La Oficina del Caso", []], ["chat", "Ask the Archive", "interactive", "Holi’r Archif", "Pregunte al Archivo", []], ["watchtower", "Watchtower", "research", "Y Tŵr Gwylio", "La Atalaya", []], ["fb2", "farmbook 2 · Today", "research", "farmbook 2 · Heddiw", "farmbook 2 · Hoy", []], ["email", "The Post Office", "research", "Swyddfa’r Post", "La Oficina de Correos", []], ["emails", "The Post Office · Calendar", "research", "Swyddfa’r Post · Calendr", "La Oficina de Correos · Calendario", []], ["dartboard", "The Disclosure Dartboard", "interactive", "Bwrdd Dartiau Datgelu", "La Diana de la Divulgación", []], ["estate", "Cedwyn Estate", "interactive", "Ystâd Cedwyn", "Finca Cedwyn", []], ["directory", "Cedwyn Pages", "interactive", "Tudalennau Cedwyn", "Páginas Cedwyn", []], ["patagonia", "Great House Farm II · Patagonia Museum", "artifacts", "Great House Farm II · Amgueddfa Patagonia", "Great House Farm II · Museo de la Patagonia", ["wales"]], ["wales", "Virtual Tour · Wales", "interactive", "Taith Rithwir · Cymru", "Visita Virtual · Gales", ["patagonia"]], ["terrain", "Terrain · Cedwyn Estate in 3D", "interactive", "Tirwedd · Ystâd Cedwyn mewn 3D", "Terreno · Finca Cedwyn en 3D", []], ["cyberspace", "The Digital Estate", "interactive", "Yr Ystâd Ddigidol", "La Finca Digital", []], ["shop", "Gift Shop & Marketplace", "story", "Siop Anrhegion a Marchnad", "Tienda y Mercado", []], ["movie", "Cedwyn · the film", "story", "Cedwyn · y ffilm", "Cedwyn · la película", []], ["kissed-frogs", "Kissed Frogs", "research", "Brogaod a gusanwyd", "Ranas besadas", []], ["nft-art", "The Garden Gallery", "interactive", "Oriel yr Ardd", "La Galería del Jardín", []]];
   // 25 Oct 2026: the theme groups (themes.json "groups", filled by tools/site.py) for the side menu's dropdowns - Cedwyn editors
   var CEDWYN_GROUPS = [{"id": "interactive", "t": "Interactive", "cy": "Rhyngweithiol", "es": "Interactivo"}, {"id": "research", "t": "Modern research and how it's going", "cy": "Ymchwil heddiw a sut mae’n mynd", "es": "La investigación de hoy y cómo avanza"}, {"id": "artifacts", "t": "Historic artifacts", "cy": "Arteffactau hanesyddol", "es": "Artefactos históricos"}, {"id": "story", "t": "A story to be retold", "cy": "Stori i’w hailadrodd", "es": "Una historia para volver a contar"}];
   // 25 Oct 2026: inside a section (/wales/<theme>/, /argentina/<theme>/, or the two hubs) the ‹ › and menu links stay in that
   // section; on the Argentina side the menu drops "Farm" from the estate's names (themes.json / sections.json) - Cedwyn editors
-  var CSEC = document.documentElement.getAttribute("data-cedwyn-sec-url") || "", CSECP = CSEC ? "/" + CSEC : "", CAMAP = {"Great House Farm II · Patagonia Museum": "Great House II · Patagonia Museum", "The Farm Album": "The Album", "Great House Farm II · Amgueddfa Patagonia": "Great House II · Amgueddfa Patagonia", "Great House Farm II · Museo de la Patagonia": "Great House II · Museo de la Patagonia", "Albwm y Fferm": "Yr Albwm", "El Álbum de la Granja": "El Álbum"};
+  // 27 Oct 2026: the section (/wales/... or /argentina/...) is read from the address itself as well, so the header still knows it
+  // when runtime.js has not run. The section is the visitor's half (Wales or Patagonia, chosen on the landing tiles); it is
+  // remembered (localStorage cedwyn-half) and the chain drops the themes the other half owns (tuple field 5, from
+  // data/halves.json wales_exclude / argentina_exclude via tools/site.py). CFULL keeps every theme id in themes.json order so a
+  // page outside the filtered chain still finds its neighbours.
+  var CPM = location.hostname === "cedwyn.bucklerfamily.estate" ? /^\/(wales|argentina)(?:\/|$)/.exec(location.pathname) : null;
+  var CSEC = document.documentElement.getAttribute("data-cedwyn-sec-url") || (CPM ? CPM[1] : ""), CSECP = CSEC ? "/" + CSEC : "", CAMAP = {"Great House Farm II · Patagonia Museum": "Great House II · Patagonia Museum", "The Farm Album": "The Album", "Great House Farm II · Amgueddfa Patagonia": "Great House II · Amgueddfa Patagonia", "Great House Farm II · Museo de la Patagonia": "Great House II · Museo de la Patagonia", "Albwm y Fferm": "Yr Albwm", "El Álbum de la Granja": "El Álbum"};
+  var CHALF = CSEC === "wales" ? "wales" : CSEC === "argentina" ? "patagonia" : "", CFULL = [];
+  try { if (CHALF) localStorage.setItem("cedwyn-half", CHALF); else CHALF = localStorage.getItem("cedwyn-half") || ""; } catch (e) {}
+  if (CHALF !== "wales" && CHALF !== "patagonia") CHALF = "";
+  if (!CSECP && CHALF && location.hostname === "cedwyn.bucklerfamily.estate") CSECP = CHALF === "wales" ? "/wales" : "/argentina";   // the chosen half's section, so ‹ › keep the visitor in it
   if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) {
     var CBY = {}; CHAIN.forEach(function (c) { CBY[c.id] = c; });
-    CHAIN = CEDWYN_CHAIN.map(function (t) { var o = CBY[t[0]] || {}, r = {}, k; for (k in o) r[k] = o[k];
-      r.id = t[0]; r.t = o.t || t[1]; r.g = t[2] || ""; if (t[3] && !r.cy) r.cy = t[3]; if (t[4] && !r.es) r.es = t[4]; r.u = CSECP + "/" + t[0] + "/"; if (t[0] === "wales") r.u = "/wales/#stop-1"; r.h = []; r.p = ["/" + t[0] + "/"]; return r; });
+    CFULL = CEDWYN_CHAIN.map(function (t) { return t[0]; });
+    CHAIN = CEDWYN_CHAIN.filter(function (t) { return !CHALF || (t[5] || []).indexOf(CHALF) < 0; }).map(function (t) { var o = CBY[t[0]] || {}, r = {}, k; for (k in o) r[k] = o[k];
+      r.id = t[0]; r.t = t[1] || o.t; r.g = t[2] || ""; if (t[3]) r.cy = t[3]; if (t[4]) r.es = t[4]; r.u = CSECP + "/" + t[0] + "/";
+      if (t[0] === "wales") r.u = "/wales/";   // the Wales tour is the Wales section's own home page
+      r.h = []; r.p = ["/" + t[0] + "/"]; return r; });
+  }
+  // the theme this page belongs to: inside a section its own pages (the hub, vouchers, caso) are that half's stop
+  function cedSeg() {
+    var p = window.__cedwynLP || location.pathname;
+    if (CPM && !window.__cedwynLP) p = location.pathname.slice(CPM[1].length + 1) || "/";
+    var seg = (p.split("/")[1] || "").toLowerCase();
+    if (CSEC && (!seg || CFULL.indexOf(seg) < 0)) return CSEC === "wales" ? "wales" : "patagonia";
+    if (!seg && location.hostname === "cedwyn.bucklerfamily.estate") seg = "estate";
+    else if (!seg && /^(?:www\.)?bucklerfamily\.estate$/.test(location.hostname)) seg = "dartboard";
+    return seg;
   }
   var TOKENS = ":root{\n --ghf-font:Barlow,'Helvetica Neue',Arial,system-ui,-apple-system,'Segoe UI',sans-serif;\n --ghf-font-serif:Georgia,'Times New Roman',serif;\n --ghf-font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;\n --ghf-fs-xs:12px;--ghf-fs-sm:14px;--ghf-fs-base:16px;--ghf-fs-md:17px;--ghf-fs-lg:20px;--ghf-fs-xl:22px;--ghf-fs-2xl:26px;\n --ghf-lh:1.55;--ghf-lh-tight:1.2;\n --ghf-space-1:4px;--ghf-space-2:8px;--ghf-space-3:12px;--ghf-space-4:16px;--ghf-space-5:24px;--ghf-space-6:32px;--ghf-space-7:48px;\n --ghf-radius:6px;\n --ghf-bg:#000;--ghf-fg:#fff;--ghf-muted:#bdbdbd;--ghf-line:rgba(255,255,255,.18);\n --ghf-day-bg:#fff;--ghf-day-fg:#111;--ghf-day-muted:#555;--ghf-day-line:rgba(0,0,0,.12);\n --ghf-gold:#f2c94c;\n --ghf-wpbar:45px;\n}\n@media (min-width:783px){:root{--ghf-wpbar:49px;--ghf-fs-md:18px;--ghf-fs-lg:22px;--ghf-fs-xl:28px;--ghf-fs-2xl:36px}}\n\nhtml.ghf-shell:not(.ghf-keep-type) body{font-size:var(--ghf-fs-base);line-height:var(--ghf-lh)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h1:not(.ghf-v2-dup){font-size:var(--ghf-fs-2xl);line-height:var(--ghf-lh-tight)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h2{font-size:var(--ghf-fs-xl);line-height:var(--ghf-lh-tight)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h3{font-size:var(--ghf-fs-lg);line-height:1.3}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(p,li,dd,td){font-size:var(--ghf-fs-base)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(small,figcaption,.caption){font-size:var(--ghf-fs-sm)}\n\n:root{--ghf-fs-text:clamp(1rem,calc(1rem + (1vw - .2rem) * .545),1.3rem);--ghf-lh-text:1.55;--ghf-para:1em;--ghf-measure:760px;--ghf-radius:0px}\nhtml.ghf-hy:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(p,li,dd,blockquote){font-size:var(--ghf-fs-text);line-height:var(--ghf-lh-text)}\nhtml.ghf-hy:not(.ghf-keep-type) body :where(main,article,.content,#content) p:not(:last-child){margin-bottom:var(--ghf-para)}\nhtml.ghf-hy :is(button,input,select,textarea,.btn,.button,.card,.cta):not(.ghf-round){border-radius:0}"; // copy of ghf-tokens.css, used only where that file cannot load (a strict same-origin CSP)
   var V2 = (function () {
@@ -293,12 +316,8 @@
     function find() {
       var i, j, best = -1, bl = -1, c, ps;
       if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) {
-        var seg = ((window.__cedwynLP || location.pathname).split("/")[1] || "").toLowerCase();
-        // The root of the Cedwyn subdomain is the estate directory; the apex root remains the Disclosure Dartboard.
-        if (!seg && location.hostname === "cedwyn.bucklerfamily.estate") seg = "estate";
-        else if (!seg && /^(?:www\\.)?bucklerfamily\\.estate$/.test(location.hostname)) seg = "dartboard";
-        c = CSECP + "/" + seg + "/";
-        for (i = 0; i < CHAIN.length; i++) if (CSECP + "/" + CHAIN[i].id + "/" === c) return i;
+        var seg = cedSeg();
+        for (i = 0; i < CHAIN.length; i++) if (CHAIN[i].id === seg) return i;
         return -1;
       }
       for (i = 0; i < CHAIN.length; i++) {
@@ -311,9 +330,13 @@
     function btn(cls, svg, lab, fn) { var b = mk("button", cls); b.type = "button"; b.innerHTML = svg; b.setAttribute("aria-label", lab); b.title = lab; b.addEventListener("click", fn); return b; }
     function fillChain() {
       var s = L[lg()], n = CHAIN.length, k = find(), pv = CHAIN[k < 0 ? n - 1 : (k - 1 + n) % n], nx = CHAIN[k < 0 ? 0 : (k + 1) % n];
+      if (k < 0 && CFULL.length) {   // a page whose theme is not in this half's chain: step to the nearest themes either side of it
+        var f = CFULL.indexOf(cedSeg()), by = {}, d, F = CFULL.length; CHAIN.forEach(function (c) { by[c.id] = c; });
+        if (f >= 0) { pv = nx = null; for (d = 1; d < F && (!pv || !nx); d++) { nx = nx || by[CFULL[(f + d) % F]]; pv = pv || by[CFULL[(f - d + F) % F]]; } pv = pv || CHAIN[n - 1]; nx = nx || CHAIN[0]; }
+      }
       chainBar.textContent = "";
       chainBar.appendChild(btn("ghf-v2-btn ghf-v2-fs", IC_FS, s.fs, toggleFs));
-      var arr = function (st, cls, ch, lab) { var a = mk("a", "ghf-v2-arr " + cls); a.href = st.u; a.setAttribute("aria-label", lab + ": " + nm(st)); a.title = lab + ": " + nm(st); a.appendChild(mk("span", null, ch)); a.setAttribute("data-ghf-chain", st.id); return a; };
+      var arr = function (st, cls, ch, lab) { var a = mk("a", "ghf-v2-arr " + cls); pinHref(a, st.u); a.setAttribute("aria-label", lab + ": " + nm(st)); a.title = lab + ": " + nm(st); a.appendChild(mk("span", null, ch)); a.setAttribute("data-ghf-chain", st.id); return a; };
       chainBar.appendChild(arr(pv, "ghf-v2-prev", "\u2039", s.prev));
       var mid = mk("div", "ghf-v2-name"), b = mk("b", null, k >= 0 ? nm(CHAIN[k]) : ((document.title || host).split(/\s[·|—–-]\s/)[0]));
       mid.appendChild(b); if (k >= 0) mid.appendChild(mk("small", null, (k + 1) + " " + s.of + " " + n));
@@ -385,13 +408,17 @@
       inn.appendChild(b); inn.appendChild(list);
     }
     function themeLink(st, i, k) {
-      var li = mk("li"), a = mk("a"); a.href = st.u; a.appendChild(mk("span", "ghf-v2-ddi", (i + 1) + "")); a.appendChild(document.createTextNode(nm(st)));
+      var li = mk("li"), a = mk("a"); pinHref(a, st.u); a.appendChild(mk("span", "ghf-v2-ddi", (i + 1) + "")); a.appendChild(document.createTextNode(nm(st)));
       if (i === k) a.setAttribute("aria-current", "page");
       a.onclick = function () { setTimeout(closeDrawer, 10); }; li.appendChild(a); return li;
     }
     // the oak board link: the in-theme path prefixer (runtime.js) turns "/" into "/<theme>/", so the href is written as an
     // absolute address through an attribute node (which the prefixer does not wrap) and written again on click
     function rawHref(a, u) { try { var at = document.createAttribute("href"); at.value = u; a.setAttributeNode(at); } catch (e) { a.href = u; } }
+    // 27 Oct 2026: theme links in the header and menu are pinned the same way. Inside a theme that has a folder named like another
+    // theme (/research/qa/), the prefixer turned "/qa/" into "/research/qa/" and › then stayed on the Research Library forever.
+    function pinHref(a, u) { var abs = u.charAt(0) === "/" && u.charAt(1) !== "/" ? location.origin + u : u; rawHref(a, abs); a.setAttribute("data-ghf-go", u);
+      a.addEventListener("click", function () { rawHref(a, abs); }); }
     function fillCedwyn(s, k, inn) {
       var l = lg(), cur = k >= 0 ? CHAIN[k].g : "", li, a;
       if (!ddOpen) { ddOpen = {}; if (cur) ddOpen["ghf-dd-" + cur] = true; }
@@ -412,7 +439,7 @@
         ddBlock(inn, id, (l !== "en" && g[l]) || g.t, n, !!ddOpen[id], ul, g.id === cur ? "ghf-v2-ddcur" : "");
       });
       var ol = mk("ol", "ghf-v2-dl ghf-v2-dall");
-      CHAIN.forEach(function (st, i) { var li2 = mk("li"), a2 = mk("a", null, nm(st)); a2.href = st.u; if (i === k) a2.setAttribute("aria-current", "page"); a2.onclick = function () { setTimeout(closeDrawer, 10); }; li2.appendChild(a2); ol.appendChild(li2); });
+      CHAIN.forEach(function (st, i) { var li2 = mk("li"), a2 = mk("a", null, nm(st)); pinHref(a2, st.u); if (i === k) a2.setAttribute("aria-current", "page"); a2.onclick = function () { setTimeout(closeDrawer, 10); }; li2.appendChild(a2); ol.appendChild(li2); });
       ddBlock(inn, "ghf-dd-all", (s.all37 || "All {n} themes").replace("{n}", CHAIN.length), null, !!ddOpen["ghf-dd-all"], ol, "ghf-v2-dd37");
       var links = harvest();
       if (links.length) {
@@ -443,7 +470,7 @@
       inn.appendChild(ul);
       var dh2 = mk("div", "ghf-v2-dh", s.all); dh2.setAttribute("role", "heading"); dh2.setAttribute("aria-level", "2"); inn.appendChild(dh2);
       var ol = mk("ol", "ghf-v2-dl ghf-v2-dall");
-      CHAIN.forEach(function (st, i) { li = mk("li"); a = mk("a", null, nm(st)); a.href = st.u; if (i === k) a.setAttribute("aria-current", "page"); li.appendChild(a); ol.appendChild(li); });
+      CHAIN.forEach(function (st, i) { li = mk("li"); a = mk("a", null, nm(st)); pinHref(a, st.u); if (i === k) a.setAttribute("aria-current", "page"); li.appendChild(a); ol.appendChild(li); });
       inn.appendChild(ol);
       var hm = mk("a", "ghf-v2-dhome", s.home); hm.href = HOME; inn.appendChild(hm);
       // Values and Standards (25 Oct 2026): the editorial standards page, in every menu. - Cedwyn editors
@@ -775,7 +802,7 @@
       pins();
       watchTitles();
       var later = function () { fitBody(); pins(); hideSiteBurgers(); dedupe(); moveSubs(); // after parsing, so a page's own ghf-lang.js tag (with its data-site) is seen first
-        if (!window.GHFLang && !document.querySelector('script[src*="ghf-lang.js"]')) { var gs = document.createElement("script"); gs.src = "/_cedwyn/ghf/ghf-lang.js?v=2.1.4d"; gs.async = true; (document.head || de).appendChild(gs); } };
+        if (!window.GHFLang && !document.querySelector('script[src*="ghf-lang.js"]')) { var gs = document.createElement("script"); gs.src = "/_cedwyn/ghf/ghf-lang.js?v=2.1.5"; gs.async = true; (document.head || de).appendChild(gs); } };
       if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", later); else setTimeout(later, 0);
       window.addEventListener("load", function () { fitBody(); pins(); setTimeout(function () { fitBody(); pins(); }, 1200); }); // pages whose CSS arrives late (bundled apps)
       hideSiteBurgers(); setTimeout(hideSiteBurgers, 1200); setTimeout(moveSubs, 1300); window.addEventListener("load", function () { setTimeout(moveSubs, 400); setTimeout(shareBar, 600); }); dedupe(); setTimeout(dedupe, 1200); window.addEventListener("load", function () { setTimeout(dedupe, 300); });
