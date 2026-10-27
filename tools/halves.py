@@ -61,6 +61,7 @@ body[data-cedwyn-page=landing] .wrap{padding-top:6px;padding-bottom:6px}
 .hv-sr{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}.hv-a .stripe{background:linear-gradient(180deg,#74ACDF 0 33%,#fff 33% 66%,#74ACDF 66%)}
 .hv-tile .hv-tag{top:14px;bottom:auto}
 .hv-foot{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;font-size:12px;color:var(--mut)}.hv-foot a{color:var(--mut)}
+.hv-eb{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 16px;border-radius:12px;background:#d9a441;color:#111!important;font-weight:700;font-size:16px;line-height:1.2;text-align:center;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)}.hv-eb:hover,.hv-eb:focus-visible{background:#e8b553;outline:2px solid #fff;outline-offset:2px}.hv-eb .ar{font-size:18px}
 /* hub common */
 .hv-hero{position:relative;border-radius:14px;overflow:hidden;margin:4px 0 14px;color:#fff;background:#111}
 .hv-hero img{width:100%;aspect-ratio:16/9;object-fit:cover}
@@ -405,6 +406,7 @@ def landing(sections, S, cfg, H):
 <span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
 <span class="tb"><span class="tn" data-i18n="ta_name">{E(tx(T,'ta_name',l))}</span><span class="ts" data-i18n="ta_sub">{E(tx(T,'ta_sub',l))}</span><span class="tc" data-i18n="ta_cta">{E(tx(T,'ta_cta',l))}</span></span></a>
 </div>
+<a class="hv-eb" href="/ebooks/?utm_source=home&amp;utm_medium=button&amp;utm_campaign=push1027"><span data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</span><span class="ar" aria-hidden="true">→</span></a>
 <p class="hv-foot"><a href="/explore/" data-i18n="land_more">{E(tx(T,'land_more',l))}</a><a href="/ebooks/" data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</a><a href="/dartboard/" data-i18n="land_dart">{E(tx(T,'land_dart',l))}</a><a href="/email/" data-i18n="land_mail">{E(tx(T,'land_mail',l))}</a></p>
 </div>
 </main>
