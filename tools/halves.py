@@ -433,6 +433,144 @@ def wales(sections, S, cfg, H):
 """
     return page(sections, 'Cedwyn Estate, Wales · augmented-reality guided tour', 'Cedwyn Estate, Wales: an augmented-reality guided tour from Tŷ Mawr, the former manorial house at Llandough, to Lavernock Point. Every fact linked to its record.', l, '/wales/', 'wales', T, n, body)
 
+# ---------- /argentina/ images: the Garden Gallery's NFT pieces (Sion, WhatsApp 08:16 GMT 27 Oct 2026: "The images on this page
+# should be all the ones from nft ... Except any with excessive flowers"). Every /nft-art/ piece except the flower-heavy ones:
+# the 73 restored v0.0.2 pieces plus the unrestored pieces the flower audit found clear, less four where flowers still fill the
+# frame (NFA-0065, NFA-0066, NFA-0104, NFA-0125). Images are the gallery's own /nft-art/ files, never copies; captions are each
+# piece's own title. Restored Tŷ Mawr pieces belong on the Patagonia/Argentina side only, never on Wales pages. Text and pictures
+# alternate: after each block of text one picture shows, and a sideways swipe moves to the next one in that row. - Sion's Tab agent
+ARG_NFT = {
+    'NFA-0094': ('The Long Farmhouse', '/nft-art/art/nfa-0094-v0.0.2.webp', '/nft-art/art/nfa-0094-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0059': ('The Quilted Bedroom', '/nft-art/art/nfa-0059-v0.0.2.webp', '/nft-art/art/nfa-0059-v0.0.2-t.webp', 1200, 800),
+    'NFA-0141': ('The Long Cottage', '/nft-art/art/nfa-0141-v0.0.2.webp', '/nft-art/art/nfa-0141-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0107': ('From Above', '/nft-art/art/nfa-0107.webp', '/nft-art/art/nfa-0107-t.webp', 1200, 800),
+    'NFA-0100': ('Tables for the Party', '/nft-art/art/nfa-0100-v0.0.2.webp', '/nft-art/art/nfa-0100-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0157': ('The Farmhouse Over the Wall', '/nft-art/art/nfa-0157-v0.0.2.webp', '/nft-art/art/nfa-0157-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0035': ('Lime-Washed House', '/nft-art/art/nfa-0035-v0.0.2.webp', '/nft-art/art/nfa-0035-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0026': ('The Gable End', '/nft-art/art/nfa-0026-v0.0.2.webp', '/nft-art/art/nfa-0026-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0076': ('The House Over the Hedge', '/nft-art/art/nfa-0076-v0.0.2.webp', '/nft-art/art/nfa-0076-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0032': ('The Old Porch', '/nft-art/art/nfa-0032-v0.0.2.webp', '/nft-art/art/nfa-0032-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0011': ('Fields of 1824, Replanted', '/nft-art/art/nfa-0011.webp', '/nft-art/art/nfa-0011-t.webp', 816, 816),
+    'NFA-0046': ('The Field Plan in Bloom', '/nft-art/art/nfa-0046.webp', '/nft-art/art/nfa-0046-t.webp', 1200, 900),
+    'NFA-0111': ('The Estate in Flower', '/nft-art/art/nfa-0111.webp', '/nft-art/art/nfa-0111-t.webp', 800, 1200),
+    'NFA-0112': ('Boundaries in Bloom', '/nft-art/art/nfa-0112.webp', '/nft-art/art/nfa-0112-t.webp', 800, 1200),
+    'NFA-0137': ('The House Plan in Flower', '/nft-art/art/nfa-0137.webp', '/nft-art/art/nfa-0137-t.webp', 1200, 900),
+    'NFA-0138': ('The Kitchen Garden Plan', '/nft-art/art/nfa-0138.webp', '/nft-art/art/nfa-0138-t.webp', 1200, 800),
+    'NFA-0047': ('The Valley Fold', '/nft-art/art/nfa-0047.webp', '/nft-art/art/nfa-0047-t.webp', 800, 1200),
+    'NFA-0093': ('The Village Track', '/nft-art/art/nfa-0093-v0.0.2.webp', '/nft-art/art/nfa-0093-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0115': ('The Bend by the Cottages', '/nft-art/art/nfa-0115-v0.0.2.webp', '/nft-art/art/nfa-0115-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0114': ('Two Barns Beyond the Meadow', '/nft-art/art/nfa-0114-v0.0.2.webp', '/nft-art/art/nfa-0114-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0043': ('Lane to the Paddock', '/nft-art/art/nfa-0043-v0.0.2.webp', '/nft-art/art/nfa-0043-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0050': ('The Chapel Walls', '/nft-art/art/nfa-0050-v0.0.2.webp', '/nft-art/art/nfa-0050-v0.0.2-t.webp', 1200, 800),
+    'NFA-0090': ('Below the Chapel Windows', '/nft-art/art/nfa-0090-v0.0.2.webp', '/nft-art/art/nfa-0090-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0106': ('The Churchyard Meadow', '/nft-art/art/nfa-0106-v0.0.2.webp', '/nft-art/art/nfa-0106-v0.0.2-t.webp', 900, 1200),
+    'NFA-0121': ('By the Churchyard Wall', '/nft-art/art/nfa-0121-v0.0.2.webp', '/nft-art/art/nfa-0121-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0139': ('The Old Footings', '/nft-art/art/nfa-0139.webp', '/nft-art/art/nfa-0139-t.webp', 1200, 900),
+    'NFA-0057': ('The Porch Door', '/nft-art/art/nfa-0057-v0.0.2.webp', '/nft-art/art/nfa-0057-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0122': ('The Gabled Porch', '/nft-art/art/nfa-0122-v0.0.2.webp', '/nft-art/art/nfa-0122-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0038': ('Parterre and Porch', '/nft-art/art/nfa-0038-v0.0.2.webp', '/nft-art/art/nfa-0038-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0014': ('The Yard Gate in June', '/nft-art/art/nfa-0014-v0.0.2.webp', '/nft-art/art/nfa-0014-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0048': ('Through the Garden Gate', '/nft-art/art/nfa-0048-v0.0.2.webp', '/nft-art/art/nfa-0048-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0023': ('Chimneys Through the Pear', '/nft-art/art/nfa-0023-v0.0.2.webp', '/nft-art/art/nfa-0023-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0092': ('White Gable, White Blossom', '/nft-art/art/nfa-0092-v0.0.2.webp', '/nft-art/art/nfa-0092-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0126': ('The Cottage Gable', '/nft-art/art/nfa-0126-v0.0.2.webp', '/nft-art/art/nfa-0126-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0133': ('The Blossom Lawn', '/nft-art/art/nfa-0133-v0.0.2.webp', '/nft-art/art/nfa-0133-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0144': ('The Terrace Steps', '/nft-art/art/nfa-0144-v0.0.2.webp', '/nft-art/art/nfa-0144-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0081': ('Hanging Basket Lane', '/nft-art/art/nfa-0081-v0.0.2.webp', '/nft-art/art/nfa-0081-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0123': ('The Narrow Garden Path', '/nft-art/art/nfa-0123-v0.0.2.webp', '/nft-art/art/nfa-0123-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0021': ('Field Road Home', '/nft-art/art/nfa-0021-v0.0.2.webp', '/nft-art/art/nfa-0021-v0.0.2-t.webp', 1200, 800),
+    'NFA-0044': ("The Visitor's Car", '/nft-art/art/nfa-0044-v0.0.2.webp', '/nft-art/art/nfa-0044-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0150': ('The Blue Van and Trailer', '/nft-art/art/nfa-0150-v0.0.2.webp', '/nft-art/art/nfa-0150-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0113': ('The Old Cart', '/nft-art/art/nfa-0113-v0.0.2.webp', '/nft-art/art/nfa-0113-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0117': ('Cartwheel Row', '/nft-art/art/nfa-0117-v0.0.2.webp', '/nft-art/art/nfa-0117-v0.0.2-t.webp', 1200, 800),
+    'NFA-0052': ('The Hay Rake', '/nft-art/art/nfa-0052-v0.0.2.webp', '/nft-art/art/nfa-0052-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0051': ('Tractor by the Barn', '/nft-art/art/nfa-0051-v0.0.2.webp', '/nft-art/art/nfa-0051-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0128': ('Through to the Hall', '/nft-art/art/nfa-0128-v0.0.2.webp', '/nft-art/art/nfa-0128-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0071': ('The Lamp in the Hall', '/nft-art/art/nfa-0071-v0.0.2.webp', '/nft-art/art/nfa-0071-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0072': ('The Tall Doorway', '/nft-art/art/nfa-0072-v0.0.2.webp', '/nft-art/art/nfa-0072-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0087': ('The Dining Room Door', '/nft-art/art/nfa-0087-v0.0.2.webp', '/nft-art/art/nfa-0087-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0088': ('The Inglenook', '/nft-art/art/nfa-0088-v0.0.2.webp', '/nft-art/art/nfa-0088-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0060': ('The Fireside Corner', '/nft-art/art/nfa-0060-v0.0.2.webp', '/nft-art/art/nfa-0060-v0.0.2-t.webp', 1200, 800),
+    'NFA-0016': ('Stable Row at Noon', '/nft-art/art/nfa-0016-v0.0.2.webp', '/nft-art/art/nfa-0016-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0029': ('The Barn Door, Evening', '/nft-art/art/nfa-0029-v0.0.2.webp', '/nft-art/art/nfa-0029-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0019': ('Long Barn, Long Grass', '/nft-art/art/nfa-0019-v0.0.2.webp', '/nft-art/art/nfa-0019-v0.0.2-t.webp', 1200, 900),
+    'NFA-0055': ('Barn End and Meadow', '/nft-art/art/nfa-0055-v0.0.2.webp', '/nft-art/art/nfa-0055-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0049': ('Hayloft Meadow', '/nft-art/art/nfa-0049-v0.0.2.webp', '/nft-art/art/nfa-0049-v0.0.2-t.webp', 1200, 900),
+    'NFA-0015': ('Woodpile by the Old Wall', '/nft-art/art/nfa-0015-v0.0.2.webp', '/nft-art/art/nfa-0015-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0020': ('Cart Track and Barrel', '/nft-art/art/nfa-0020-v0.0.2.webp', '/nft-art/art/nfa-0020-v0.0.2-t.webp', 1200, 900),
+    'NFA-0067': ('Water Butt and Shed', '/nft-art/art/nfa-0067-v0.0.2.webp', '/nft-art/art/nfa-0067-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0089': ('The China Cabinets', '/nft-art/art/nfa-0089-v0.0.2.webp', '/nft-art/art/nfa-0089-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0131': ('Brass on the Sideboard', '/nft-art/art/nfa-0131-v0.0.2.webp', '/nft-art/art/nfa-0131-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0130': ('The Long-Case Clock', '/nft-art/art/nfa-0130-v0.0.2.webp', '/nft-art/art/nfa-0130-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0069': ('A Wall of Small Pictures', '/nft-art/art/nfa-0069-v0.0.2.webp', '/nft-art/art/nfa-0069-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0058': ('The Dresser Room', '/nft-art/art/nfa-0058-v0.0.2.webp', '/nft-art/art/nfa-0058-v0.0.2-t.webp', 1200, 900),
+    'NFA-0070': ('The Back Kitchen', '/nft-art/art/nfa-0070-v0.0.2.webp', '/nft-art/art/nfa-0070-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0145': ('The Kitchen Hearth', '/nft-art/art/nfa-0145-v0.0.2.webp', '/nft-art/art/nfa-0145-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0077': ('The Green Quilt', '/nft-art/art/nfa-0077-v0.0.2.webp', '/nft-art/art/nfa-0077-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0082': ('The Old Bedstead', '/nft-art/art/nfa-0082-v0.0.2.webp', '/nft-art/art/nfa-0082-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0146': ('The Pink Bedhead', '/nft-art/art/nfa-0146-v0.0.2.webp', '/nft-art/art/nfa-0146-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0083': ('The Window Seat', '/nft-art/art/nfa-0083-v0.0.2.webp', '/nft-art/art/nfa-0083-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0080': ('Window Over the Valley', '/nft-art/art/nfa-0080-v0.0.2.webp', '/nft-art/art/nfa-0080-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0078': ('The Turn of the Stair', '/nft-art/art/nfa-0078-v0.0.2.webp', '/nft-art/art/nfa-0078-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0079': ('The Landing', '/nft-art/art/nfa-0079-v0.0.2.webp', '/nft-art/art/nfa-0079-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0129': ('The Banister', '/nft-art/art/nfa-0129-v0.0.2.webp', '/nft-art/art/nfa-0129-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0152': ('The Curving Stair', '/nft-art/art/nfa-0152-v0.0.2.webp', '/nft-art/art/nfa-0152-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0084': ('Stone Steps Up', '/nft-art/art/nfa-0084-v0.0.2.webp', '/nft-art/art/nfa-0084-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0153': ('Steps Under the Lintel', '/nft-art/art/nfa-0153-v0.0.2.webp', '/nft-art/art/nfa-0153-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0147': ('The Cottage Window', '/nft-art/art/nfa-0147-v0.0.2.webp', '/nft-art/art/nfa-0147-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0148': ('The White Door', '/nft-art/art/nfa-0148-v0.0.2.webp', '/nft-art/art/nfa-0148-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0149': ('The Hall Door', '/nft-art/art/nfa-0149-v0.0.2.webp', '/nft-art/art/nfa-0149-v0.0.2-t.webp', 1200, 1200),
+    'NFA-0103': ('The Garden Room', '/nft-art/art/nfa-0103-v0.0.2.webp', '/nft-art/art/nfa-0103-v0.0.2-t.webp', 1200, 800),
+}
+ARG_NFT_HERO = 'NFA-0094'
+ARG_NFT_VENUE = {'room': 'NFA-0059', 'cottage': 'NFA-0141', 'villa': 'NFA-0107', 'wed': 'NFA-0100'}
+ARG_NFT_SLOTS = {
+    'hl0': ['NFA-0157', 'NFA-0035', 'NFA-0026', 'NFA-0076', 'NFA-0032'],
+    'hl1': ['NFA-0011', 'NFA-0046', 'NFA-0111', 'NFA-0112', 'NFA-0137', 'NFA-0138'],
+    'hl2': ['NFA-0047', 'NFA-0093', 'NFA-0115', 'NFA-0114', 'NFA-0043'],
+    'hl3': ['NFA-0050', 'NFA-0090', 'NFA-0106', 'NFA-0121', 'NFA-0139'],
+    'hl4': ['NFA-0057', 'NFA-0122', 'NFA-0038', 'NFA-0014', 'NFA-0048'],
+    'hl5': ['NFA-0023', 'NFA-0092', 'NFA-0126', 'NFA-0133', 'NFA-0144', 'NFA-0123'],
+    'lede': ['NFA-0021', 'NFA-0044', 'NFA-0150'],
+    'menu': ['NFA-0113', 'NFA-0117', 'NFA-0052', 'NFA-0051'],
+    'house': ['NFA-0128', 'NFA-0071', 'NFA-0072', 'NFA-0087', 'NFA-0088', 'NFA-0060'],
+    'feats': ['NFA-0016', 'NFA-0029', 'NFA-0019', 'NFA-0055', 'NFA-0049', 'NFA-0020', 'NFA-0067'],
+    'museum': ['NFA-0089', 'NFA-0131', 'NFA-0130', 'NFA-0069', 'NFA-0058', 'NFA-0070', 'NFA-0145'],
+    'book': ['NFA-0077', 'NFA-0082', 'NFA-0146', 'NFA-0083', 'NFA-0080'],
+    'form': ['NFA-0078', 'NFA-0079', 'NFA-0129', 'NFA-0152', 'NFA-0084', 'NFA-0153', 'NFA-0147', 'NFA-0148', 'NFA-0149'],
+    'retell': ['NFA-0103', 'NFA-0081', 'NFA-0015'],
+}
+NFT_CSS = ('<style>.nf-s{display:flex;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:14px 0 18px;padding:0 0 6px}'
+           '.nf-s>.nf-f{flex:0 0 86%;scroll-snap-align:start}.nf-s>.nf-f:only-child{flex-basis:100%}@media (min-width:783px){.nf-s>.nf-f{flex-basis:calc(50% - 5px)}}'
+           '.nf-f{position:relative;margin:0;border-radius:10px;overflow:hidden;background:#111}.nf-f a{display:block;color:inherit;text-decoration:none}'
+           '.nf-f img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}.nf-f figcaption{padding:6px 8px 8px;font-size:12.5px;line-height:1.3;color:#eee}'
+           '.nf-f .hv-tag{top:8px;bottom:auto}.hv-hls>.nf-s{margin:4px 0 12px}</style>')
+
+def nft_img(i, sizes='(min-width:783px) 560px, 86vw', eager=False, extra=''):
+    t, im, tb, w, h = ARG_NFT[i]
+    return (f'<img src="{tb}" srcset="{tb} 520w, {im} {w}w" sizes="{sizes}" width="{w}" height="{h}" alt="{E(t)}"'
+            f'{" fetchpriority=high" if eager else " loading=lazy"} decoding="async"{extra}>')
+
+def nft_strip(ids, T, l):
+    ids = [i for i in ids if i in ARG_NFT]
+    if not ids: return ''
+    return ('<div class="nf-s" tabindex="0">' + ''.join(
+        f'<figure class="nf-f"><a href="/nft-art/#/{E(i)}">{nft_img(i)}<figcaption>{E(ARG_NFT[i][0])}</figcaption></a>'
+        f'<span class="hv-tag" data-i18n="ai_tag">{E(tx(T,"ai_tag",l))}</span></figure>' for i in ids) + '</div>')
+
+def nft_between(html, strips):
+    """Put one strip after each headline block (between clamp.js read-more blocks, never inside one)."""
+    segs = html.split('<div class="hv-hl">')
+    if len(segs) < 2: return html
+    out = segs[0]
+    for k, s in enumerate(segs[1:]):
+        st = strips[k] if k < len(strips) else ''
+        if k == len(segs) - 2 and s.endswith('</section>'):
+            out += '<div class="hv-hl">' + s[:-len('</section>')] + st + '</section>'
+        else:
+            out += '<div class="hv-hl">' + s + st
+    return out
+
 def argentina(sections, S, cfg, H):
     l = 'es'; n = len(cfg['themes']); T = base_T(sections, S, cfg, 'argentina', H)
     fc_card = ''
@@ -446,14 +584,12 @@ def argentina(sections, S, cfg, H):
         print('halves: family_case not available:', e)
     if not fc_card:
         fc_card = f'<a class="hv-btn" href="/argentina/caso/" data-i18n="a_caso">{E(tx(T,"a_caso",l))}</a>'
-    gal = [('ghf2-exterior', 'cap_ext', True), ('ghf2-bedroom', 'cap_bed', False), ('ghf2-drawing-room', 'cap_draw', False), ('ghf2-stables', 'cap_stab', False),
-           ('ghf2-barn', 'cap_barn', False), ('ghf2-cottage', 'cap_cot', False), ('ghf2-wedding', 'cap_wed', False), ('ghf2-villa', 'cap_villa', False)]
-    g = ''.join(f'<figure{" class=wide" if w else ""}><img src="{img(H,a)}" width="1280" height="853" alt="{E(tx(T,c,l))}" data-i18n-al="{c}" loading="lazy" decoding="async">'
-                f'<figcaption data-i18n="{c}">{E(tx(T,c,l))}</figcaption><span class="hv-tag" data-i18n="ai_tag">{E(tx(T,"ai_tag",l))}</span></figure>' for a, c, w in gal if not w)
+    NS = ARG_NFT_SLOTS; st = lambda k: nft_strip(NS.get(k, []), T, l)
+    g = st('feats')
     feats = ''.join(f'<li data-i18n="a_feat{i}">{E(tx(T,"a_feat"+str(i),l))}</li>' for i in range(1, 7))
-    vimg = {'room': 'ghf2-bedroom', 'cottage': 'ghf2-cottage', 'villa': 'ghf2-villa', 'wed': 'ghf2-wedding'}
+    vimg = ARG_NFT_VENUE
     unit = {'room_night': '/', 'night': '/', 'day': '/'}
-    vo = ''.join(f'<label class="hv-opt"><input type="radio" name="venue" value="{v["id"]}"{" checked" if v["id"] == "room" else ""}><img src="{img(H,vimg[v["id"]])}" width="88" height="62" alt="" loading="lazy">'
+    vo = ''.join(f'<label class="hv-opt"><input type="radio" name="venue" value="{v["id"]}"{" checked" if v["id"] == "room" else ""}><img src="{ARG_NFT[vimg[v["id"]]][2]}" width="88" height="62" alt="" loading="lazy">'
                  f'<span><b data-i18n="v_{v["id"]}">{E(tx(T,"v_"+v["id"],l))}</b><small data-i18n="v_{v["id"]}_d">{E(tx(T,"v_"+v["id"]+"_d",l))}</small><span class="pr">£{v["price"]:,}</span></span></label>' for v in H['venues'])
     ap = '<option value="NONE" data-i18n="b_nofly">' + E(tx(T, 'b_nofly', l)) + '</option>' + ''.join(
         f'<option value="{a}"{" selected" if a == "LHR" else ""}>{E(nm)} ({a})' + (f' · £{p:,}' if p else '') + '</option>' if a != 'OTHER' else f'<option value="OTHER">…</option>' for a, nm, p in H['airports'])
@@ -464,19 +600,24 @@ def argentina(sections, S, cfg, H):
     body = f"""
 <body data-cedwyn-page="argentina">
 <main class="wrap hv" data-no-translate style="--hv-a:#2f78b8;--hv-b:#F6B40E">
-<header class="hv-hero"><img src="{img(H,'ghf2-exterior')}" width="1280" height="853" alt="{E(tx(T,'cap_ext',l))}" data-i18n-al="cap_ext" fetchpriority="high"><span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
+{NFT_CSS}<header class="hv-hero">{nft_img(ARG_NFT_HERO, sizes='(min-width:783px) 900px, 100vw', eager=True)}<span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
 <div class="hb"><p class="eyebrow" style="color:#ddd" data-i18n="a_kick">{E(tx(T,'a_kick',l))}</p><h1 data-i18n="a_h1">{E(tx(T,'a_h1',l))}</h1><p style="margin:0" data-i18n="a_h2">{E(tx(T,'a_h2',l))}</p></div></header>
-{headlines(H, T, l, 'argentina')}
+{nft_between(headlines(H, T, l, 'argentina'), [st('hl%d' % j) for j in range(6)])}
 <span class="soon" data-i18n="a_soon">{E(tx(T,'a_soon',l))}</span>
 <p class="lede" data-i18n="a_lede">{E(tx(T,'a_lede',l))}</p>
+{st('lede')}
 <div class="hv-btns"><a class="hv-btn pri" href="#book" data-i18n="a_build">{E(tx(T,'a_build',l))}</a><a class="hv-btn" href="#museum" data-i18n="mu_h">{E(tx(T,'mu_h',l))}</a><a class="hv-btn" href="/argentina/caso/" data-i18n="a_caso">{E(tx(T,'a_caso',l))}</a><a class="hv-btn" href="#menu" data-i18n="a_menu">{E(tx(T,'a_menu',l))}</a></div>
 {mn}
-<section id="house"><h2 data-i18n="a_house_h">{E(tx(T,'a_house_h',l))}</h2><p data-i18n="a_house_p">{E(tx(T,'a_house_p',l))}</p><ul class="hv-feat">{feats}</ul>
-<div class="hv-gal">{g}</div></section>
+{st('menu')}
+<section id="house"><h2 data-i18n="a_house_h">{E(tx(T,'a_house_h',l))}</h2><p data-i18n="a_house_p">{E(tx(T,'a_house_p',l))}</p>
+{st('house')}
+<ul class="hv-feat">{feats}</ul>
+{g}</section>
 <section id="museum"><h2 data-i18n="mu_h">{E(tx(T,'mu_h',l))}</h2>
-<figure class="hv-gal" style="display:block;margin:0 0 10px"><span style="display:block;position:relative;border-radius:10px;overflow:hidden"><img src="{img(H,'ghf2-museum')}" width="1280" height="853" alt="{E(tx(T,'cap_mus',l))}" data-i18n-al="cap_mus" loading="lazy" decoding="async" style="width:100%;aspect-ratio:3/2;object-fit:cover"><span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span></span><figcaption class="mut" data-i18n="cap_mus">{E(tx(T,'cap_mus',l))}</figcaption></figure>
+{st('museum')}
 <p data-i18n="mu_p">{E(tx(T,'mu_p',l))}</p></section>
 <section id="book"><h2 data-i18n="b_h">{E(tx(T,'b_h',l))}</h2><p data-i18n="b_p">{E(tx(T,'b_p',l))}</p>
+{st('book')}
 <form class="hv-bk" id="hv-book" novalidate>
 <ol class="hv-steps"><li class="on" data-i18n="b_s1">{E(tx(T,'b_s1',l))}</li><li data-i18n="b_s2">{E(tx(T,'b_s2',l))}</li><li data-i18n="b_s3">{E(tx(T,'b_s3',l))}</li><li data-i18n="b_s4">{E(tx(T,'b_s4',l))}</li></ol>
 <div class="hv-pane on" data-step="1"><h3 data-i18n="b_venue">{E(tx(T,'b_venue',l))}</h3><div class="hv-opts">{vo}</div>
@@ -495,8 +636,10 @@ def argentina(sections, S, cfg, H):
 <div class="hv-done" id="bk-done" role="status" hidden><p data-i18n="b_done">{E(tx(T,'b_done',l))}</p><b id="bk-ref"></b><p data-i18n="b_mc">{E(tx(T,'b_mc',l))}</p><p class="mut" data-i18n="b_done2">{E(tx(T,'b_done2',l))}</p></div></div>
 <p class="hv-err" id="bk-err" role="alert" hidden></p>
 <div class="hv-btns" style="justify-content:space-between"><button type="button" class="hv-btn" id="bk-back" hidden data-i18n="b_back">{E(tx(T,'b_back',l))}</button><button type="button" class="hv-btn pri" id="bk-next" data-i18n="b_cont">{E(tx(T,'b_cont',l))}</button></div>
-</form></section>
+</form>
+{st('form')}</section>
 <section id="retelling"><h2 data-i18n="a_retell_h">{E(tx(T,'a_retell_h',l))}</h2><p class="mut" data-i18n="a_retell_p">{E(tx(T,'a_retell_p',l))}</p>
+{st('retell')}
 {fc_card}
 <div class="hv-btns"><a class="hv-btn" href="/argentina/thousand-cuts/" data-i18n="th_thousand-cuts">{E(tx(T,'th_thousand-cuts',l))}</a><a class="hv-btn" href="/argentina/story/" data-i18n="th_story">{E(tx(T,'th_story',l))}</a><a class="hv-btn" href="/argentina/research/timeline/" data-i18n="tl_link">{E(tx(T,'tl_link',l))}</a></div>
 </section>
