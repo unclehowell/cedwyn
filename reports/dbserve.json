@@ -1,32 +1,32 @@
 {
- "db_version": "d84b3a54668f",
+ "db_version": "2b2cfa07e906",
  "paths_served_from_db": 6607,
  "blobs": 4068,
  "files_dropped": {
-  "document": 3300,
-  "image": 1229,
+  "document": 3297,
+  "image": 1212,
   "data": 1306,
   "audio": 84
  },
  "bytes_dropped": {
-  "document": 1274806998,
-  "image": 85922218,
+  "document": 1274426084,
+  "image": 83980693,
   "data": 34994021,
   "audio": 14922925
  },
- "bytes_dropped_total": 1410646162,
+ "bytes_dropped_total": 1408323723,
  "files_kept_as_well": {
-  "image": 615,
+  "image": 632,
   "data": 41,
-  "document": 12
+  "document": 15
  },
  "kept_why": {
-  "named in page markup": 428,
+  "named in page markup": 444,
   "link/meta tag": 188,
   "css url()": 25,
   "fetched by script": 9,
   "fetched by browsers outside a service worker": 16,
-  "page without runtime": 2
+  "page without runtime": 6
  },
  "kept_examples": [
   [
