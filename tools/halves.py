@@ -194,12 +194,19 @@ JS = r"""
     var prev=document.getElementById('hv-prev'),next=document.getElementById('hv-next'),cnt=document.getElementById('hv-cnt');
     function show(i,scroll){cur=Math.max(0,Math.min(stops.length-1,i));stops.forEach(function(s,j){s.classList.toggle('on',j===cur)});dots.forEach(function(d,j){d.classList.toggle('on',j===cur)});
       if(cnt)cnt.textContent=(cur+1)+' / '+stops.length;prev.disabled=cur===0;next.disabled=cur===stops.length-1;
-      try{history.replaceState(null,'','#stop-'+(cur+1))}catch(e){}
+      if(scroll){try{history.replaceState(null,'',location.pathname+location.search+'#stop-'+(cur+1))}catch(e){}}
       if(scroll){var el=document.getElementById('tour');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}stopSpeak()}
     prev.addEventListener('click',function(){show(cur-1,true)});next.addEventListener('click',function(){show(cur+1,true)});
     dots.forEach(function(d,j){d.addEventListener('click',function(){show(j,true)});d.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();show(j,true)}})});
     [].forEach.call(document.querySelectorAll('[data-hv-go]'),function(a){a.addEventListener('click',function(e){var j=+a.getAttribute('data-hv-go');if(stops[j]){e.preventDefault();show(j,true)}})});
     var m=/#stop-(\d+)/.exec(location.hash);show(m?+m[1]-1:0,false);
+    // open at the top (Sion, WhatsApp 06:31 GMT 27 Oct 2026: "when I select wales I dont anchor to half way down the page"): the first
+    // show() writes no #stop-N; a #stop-N link selects its stop, leaves the URL clean and the page at the top - Sion's Tab agent
+    if(m||!location.hash){var userMoved=false,top0=function(){if(!userMoved)window.scrollTo(0,0)};
+      try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}
+      if(m){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
+      ['touchstart','wheel','keydown','mousedown'].forEach(function(t){window.addEventListener(t,function(){userMoved=true},{once:true,passive:true})});
+      top0();setTimeout(top0,0);window.addEventListener('load',function(){top0();setTimeout(top0,80)})}
     var sy=window.speechSynthesis,btn=document.getElementById('hv-say'),speaking=false;
     function stopSpeak(){if(sy&&speaking){sy.cancel()}speaking=false;if(btn)btn.textContent=tr('w_listen')}
     if(!sy&&btn)btn.hidden=true;
