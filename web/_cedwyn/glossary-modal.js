@@ -1,4 +1,4 @@
-/*! glossary-modal.js v1.0.1 - Cedwyn site-wide glossary pop-up (27 Oct 2026). One source: /_cedwyn/glossary.json
+/*! glossary-modal.js v1.0.2 - Cedwyn site-wide glossary pop-up (27 Oct 2026). One source: /_cedwyn/glossary.json
  (built from data/glossary.json by tools/wikilinks.py). Native <dialog>: Esc closes, focus returns to the opener, the page
  behind is inert. Dotted glossary words, links to /glossary/ and the "Glossary" button open it at the term. /glossary/ stays a
  plain crawlable page that opens the pop-up on load. Day/night aware (also under the night-mode inversion). - Sion's Tab agent */
@@ -16,8 +16,8 @@
     ".cw-gl-it a{color:#8a5300;font-weight:600}.cw-gl-it.cw-gl-on{background:rgba(214,145,0,.16);border-radius:8px;padding:10px 8px}" +
     ".cw-gl-none{padding:12px 0;opacity:.75}.cw-gl-x:focus-visible,.cw-gl-q:focus-visible,.cw-gl-open:focus-visible{outline:2px solid currentColor;outline-offset:2px}" +
     ".cw-gl-open{font:inherit;color:inherit;background:transparent;border:1px solid currentColor;border-radius:999px;padding:4px 12px;margin:0 6px;cursor:pointer;min-height:32px}" +
-    "html[data-ghf-mode=night]:not(.ghf-inv) .cw-gl,html[data-ghf-mode=day].ghf-inv .cw-gl{background:#16161c;color:#f1f1f5}" +
-    "html[data-ghf-mode=night]:not(.ghf-inv) .cw-gl-it a,html[data-ghf-mode=day].ghf-inv .cw-gl-it a{color:#ffcf70}" +
+    "html[data-ghf-mode=night] .cw-gl{background:#16161c;color:#f1f1f5}" + /* the dialog sits in the top layer, outside the night-mode inversion */
+    "html[data-ghf-mode=night] .cw-gl-it a{color:#ffcf70}" +
     "@media (prefers-color-scheme:dark){html:not([data-ghf-mode]) .cw-gl{background:#16161c;color:#f1f1f5}html:not([data-ghf-mode]) .cw-gl-it a{color:#ffcf70}}";
   function el(t, c, txt) { var e = D.createElement(t); if (c) e.className = c; if (txt != null) e.textContent = txt; return e; }
   function links(lm) {
