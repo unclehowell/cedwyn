@@ -1,0 +1,73 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Line length and body type: keep reading text at 50–75 characters a line · Cedwyn Academy</title><link rel="alternate" type="text/markdown" href="line-length-readability-50-75-cpl.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style><!-- og:cedwyn --><meta property="og:title" content="Line length and body type: keep reading text at 50–75 characters a line · Cedwyn Academy"><meta property="og:description" content="Live measurement, 27 Oct 2026 08:25Z (cache-busted, headless shell):"><meta property="og:type" content="website"><meta property="og:url" content="https://cedwyn.bucklerfamily.estate/academy/SKILLS/marketing/line-length-readability-50-75-cpl.html"><meta property="og:site_name" content="Cedwyn Estate"><meta property="og:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta property="og:image:secure_url" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Open Cart Shed: a farm scene repainted in gouache with honeysuckle, roses and ivy in warm gold light (NFA-0042, Garden Gallery)"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Line length and body type: keep reading text at 50–75 characters a line · Cedwyn Academy"><meta name="twitter:description" content="Live measurement, 27 Oct 2026 08:25Z (cache-busted, headless shell):"><meta name="twitter:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta name="description" content="Live measurement, 27 Oct 2026 08:25Z (cache-busted, headless shell):"><!-- /og:cedwyn --><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.15"></script></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Line length and body type: keep reading text at 50–75 characters a line</h1>
+<p>Harvested 27 Oct 2026. Topic: CRO / readability / accessibility. Tool written: <code>tools/line_length_audit.js</code>.</p>
+<h2>The evidence (read 27 Oct 2026)</h2>
+<ul>
+<li><strong>Baymard (Edward Scott, May 2022, large-scale e-commerce usability testing):</strong></li>
+<li>The best length for body text is <strong>50–75 characters per line, spaces included.</strong></li>
+<li>Long lines "are typically perceived by users as intimidating and overwhelming". In testing, users went straight <strong>back to the previous page</strong> when they landed on long-line text, or gave up partway and left without understanding the product.</li>
+<li>Lines that are too short also hurt: the eye has to return too often, and readers skip words.</li>
+<li>Tester quotes: "There's way too much here, I can't even suss out what would be helpful" (Mahalo); "I'm never a fan of having to read through all this material" (Vrbo "About" section).</li>
+<li><strong>Typographic basis:</strong> Emil Ruder (Typographie) gives 50–60 characters per line, and other sources allow up to 75. These are cited in the Baymard article.</li>
+<li><strong>Accessibility:</strong> WCAG 2.x SC 1.4.8 (AAA) sets <strong>80 characters or fewer</strong> (40 for CJK). Baymard's accessibility research backs this: users tire on 100+ character lines.</li>
+<li>There are no published conversion uplift figures. This is observational usability evidence, so treat it as hygiene, not a growth lever with a promised percentage.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Measure first:</strong> <code>node tools/line_length_audit.js &lt;url&gt; [390,1280]</code>. It uses the installed playwright-core and headless shell; nothing new is installed. For every visible paragraph or list item with 160+ characters it counts the real rendered lines (from the text's own line boxes, so collapsed read-more blocks are not inflated). It reports, per viewport:
+   - the median and maximum characters per line, the number of blocks over 80, and the number under 40;
+   - the smallest body font size.</li>
+<li><strong>Fix wide text with a measure, not a narrower page:</strong> <code>max-width: 68ch</code> (about 60–75 real characters) on the prose container, centred or left-aligned. Keep images and galleries full width if wanted. Only the text column narrows.</li>
+<li><strong>Fix tiny or narrow text on phones:</strong>
+   - Body text at least 16 px. Captions and meta can go to 14 px, never below about 13 px for anything a buyer must read (price lines, what's included).
+   - Anything you need read should not be in 2-column cards at 390 px; on a phone, sub-40 characters per line is choppy.</li>
+<li><strong>Line height</strong> about 1.4–1.6 for body text (Cedwyn already uses 1.55). Leave a clear space between paragraphs.</li>
+<li><strong>Re-run the audit after every theme change.</strong> Log any change in the GSC/GA4 annotation log (see <code>search-console-ga4-change-annotations-log.md</code>). Watch scroll and engagement on that page month on month, as directional only.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<p>Live measurement, 27 Oct 2026 08:25Z (cache-busted, headless shell):</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>page</th>
+<th>390 px median / max CPL</th>
+<th>1280 px median / max CPL</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/wales/</td>
+<td>45 / 49</td>
+<td><strong>100</strong> / 100 (1068 px column, 20.8 px font)</td>
+<td>desktop body runs past WCAG's 80</td>
+</tr>
+<tr>
+<td>/patagonia/</td>
+<td>42 / 46</td>
+<td>70 / 80</td>
+<td>fine; one block at 80 is on the edge (layout changing today, re-check after a worker's build)</td>
+</tr>
+<tr>
+<td>/ebooks/</td>
+<td><strong>29</strong> / 43 (14 of 18 blocks under 40)</td>
+<td>35 / 70</td>
+<td>smallest text <strong>13.6 px</strong>; card descriptions in narrow columns on phone</td>
+</tr>
+</tbody>
+</table></div>
+<p>PROPOSED, markup/CSS only, for the onpage run. These are design changes, so they need the project lead's OK under the onpage rules:
+- (a) /wales/ and other long-read theme pages: <code>max-width: 68ch</code> on the prose block at desktop widths. The read-more component (PR #30) is unaffected.
+- (b) /ebooks/ at 390 px: card descriptions full width (one column) and edition and price lines at least 15–16 px. Pair with the button copy and trust-line proposals (<code>cta-button-copy-first-person-benefit.md</code>, <code>payment-trust-cues-checkout-uk-legal.md</code>).
+- (c) add the audit to the weekly onpage run for /, /wales/, /patagonia/, /ebooks/, /research/ (the /research/ hub returned no long blocks, so it's a list page and there's nothing to fix).
+- No wording changes.</p>
+<h2>Sources</h2>
+<ul>
+<li>baymard.com (read)</li>
+<li>w3.org (SC 1.4.8; cited via Baymard, standard text not re-read this run)</li>
+</ul><p class="raw">Raw Markdown: <a href="line-length-readability-50-75-cpl.md">line-length-readability-50-75-cpl.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main><section id="cedwyn-guestbook" class="ghf-ui" data-no-translate translate="no" aria-label="Agent guest book"><style>#cedwyn-guestbook{display:block!important;clear:both;position:static;box-sizing:border-box;width:auto;max-width:760px;margin:12px auto 4px!important;padding:0 8px!important;text-align:left!important;font:400 12px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!important;color:inherit;background:transparent;border:0}#cedwyn-guestbook *{box-sizing:border-box}#cedwyn-guestbook summary{cursor:pointer;padding:4px 0;font:inherit!important;color:inherit!important;text-align:left!important}#cedwyn-guestbook summary b{font-weight:700}#cedwyn-guestbook .gb-r{opacity:.7}#cedwyn-guestbook .gbw{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;margin:4px 0}#cedwyn-guestbook table{border-collapse:collapse;width:100%;min-width:0;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th,#cedwyn-guestbook td{display:table-cell!important;text-align:left!important;vertical-align:top;padding:4px 6px!important;border:0!important;border-bottom:1px solid rgba(128,128,128,.32)!important;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th{font-weight:700!important;white-space:nowrap}#cedwyn-guestbook td:nth-child(1),#cedwyn-guestbook td:nth-child(4){white-space:nowrap}#cedwyn-guestbook td:nth-child(2){min-width:6.6em;width:6.6em}#cedwyn-guestbook td:nth-child(3){min-width:13em}@media(min-width:700px){#cedwyn-guestbook td:nth-child(2){white-space:nowrap;width:auto}}#cedwyn-guestbook a{color:inherit!important;text-decoration:underline!important;margin:0!important;padding:0!important;display:inline!important;font:inherit!important}#cedwyn-guestbook p{margin:4px 0!important;max-width:none!important;font:inherit!important;color:inherit!important;text-align:left!important}</style><details><summary><b data-gb-l="title">Agent guest book</b> <span class="gb-v"></span> <span class="gb-r">· <span data-gb-l="rule">versions 1.change.fix, from the commit history</span></span></summary><div class="gbw"><table><thead><tr><th data-gb-l="v">Version</th><th data-gb-l="d">Date</th><th data-gb-l="n">Change</th><th data-gb-l="w">Who</th></tr></thead><tbody class="gb-rows"></tbody></table></div><p><a href="/guestbook/" data-gb-l="all">See all</a></p></details></section><script src="/_cedwyn/guestbook/gb.js?v=1.1.0" defer></script></body></html>

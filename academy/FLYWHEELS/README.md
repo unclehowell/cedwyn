@@ -16,7 +16,7 @@ Every self-running loop on the project. Each has a runner, state, a log, a fixed
 | [Skills harvest](skills-harvest.md) | every 15 minutes | Add 2–4 new practitioner-sourced sales and marketing skills per run, each with sources and how it applies to Cedwyn. |
 | [Sales fix](sales-fix.md) | every 3 hours | If no e-book has sold, find out why and apply the top-priority fix. |
 | [Growth flywheels (on-page, quote pack, visibility, weekly report)](growth.md) | weekly (Mon 07:30 visibility, Tue 19:00 quote pack, Wed 13:30 on-page, Sun 18:00 report) | Make Cedwyn findable and shareable: markup audits, quote cards from the records, search and AI visibility checks, and a weekly measured report. |
-| [Cedwyn film — daily scene](movie.md) | daily 06:00 UK | Make one two-minute scene a day from the chronology, in Welsh, English and Spanish, and open the next door on /movie/. |
+| [Cedwyn film — daily scene](movie.md) | daily 06:00 UK | Make one two-minute scene a day from the chronology, in Welsh, English and Spanish, and open the next door on /documentary/. |
 | [Morning brief](morning-brief.md) | daily 08:00 UK | Tell the project lead what finished overnight, mail that needs him, today's calendar and deadlines due soon. |
 | [Intelligence flywheel](intelligence.md) | daily 04:15 Europe/London | Normalise events and actors, test patterns honestly, map who answered and who stayed silent, and publish missing-record (MR-) pages. |
 | [Email ingest](email-ingest.md) | every 2 hours, 07:00-23:00 Europe/London | Turn inbound project correspondence into site updates: the dartboard lanes, missing-record and catalogue candidates for the research cycles, and dated notes on the matching case tasks. |

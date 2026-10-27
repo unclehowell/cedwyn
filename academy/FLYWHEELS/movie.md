@@ -5,7 +5,7 @@
 **Runner:** `work/cedwyn-movie/RUNNER.md` (on the project workspace)
 
 ## Purpose
-Make one two-minute scene a day from the chronology, in Welsh, English and Spanish, and open the next door on /movie/.
+Make one two-minute scene a day from the chronology, in Welsh, English and Spanish, and open the next door on /documentary/.
 
 ## Inputs
 - the editable prompt in the film repository

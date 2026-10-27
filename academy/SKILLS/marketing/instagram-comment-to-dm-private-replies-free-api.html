@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Comment-to-DM on Instagram via Meta&#x27;s free private-replies API (no paid tool) · Cedwyn Academy</title><link rel="alternate" type="text/markdown" href="instagram-comment-to-dm-private-replies-free-api.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style><!-- og:cedwyn --><meta property="og:title" content="Comment-to-DM on Instagram via Meta&#x27;s free private-replies API (no paid tool) · Cedwyn Academy"><meta property="og:description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><meta property="og:type" content="website"><meta property="og:url" content="https://cedwyn.bucklerfamily.estate/academy/SKILLS/marketing/instagram-comment-to-dm-private-replies-free-api.html"><meta property="og:site_name" content="Cedwyn Estate"><meta property="og:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta property="og:image:secure_url" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Open Cart Shed: a farm scene repainted in gouache with honeysuckle, roses and ivy in warm gold light (NFA-0042, Garden Gallery)"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Comment-to-DM on Instagram via Meta&#x27;s free private-replies API (no paid tool) · Cedwyn Academy"><meta name="twitter:description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><meta name="twitter:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta name="description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><!-- /og:cedwyn --><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.15"></script></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Comment-to-DM on Instagram via Meta's free private-replies API (no paid tool)</h1>
+<p>Harvested 2026-10-27 06:58Z. Topic: turning "LINK" / "BOOK" comments on Reels and posts into a single DM carrying the free-edition link. Moves the instagram-bio-link file's "comment-to-DM PROPOSED" from an idea to a rules-checked design.</p>
+<h2>Meta's rules (primary: developers.facebook.com, Instagram Platform "Send a Private Reply to a Commenter", updated 30 Jun 2026, read)</h2>
+<ul>
+<li>Works on a professional account's posts, Reels, stories, Live and ad posts. A webhook announces each comment, and the app replies with POST <code>&lt;IG_ID&gt;/messages</code> using <code>recipient.comment_id</code>.</li>
+<li><strong>One message per comment,</strong> sent <strong>within 7 days</strong> of the comment (Live: only during the broadcast).</li>
+<li><strong>Follow-ups only if the person replies,</strong> and then within 24 hours of their reply. No drip to someone who never answered.</li>
+<li><strong>Where it lands:</strong> in the person's <strong>Inbox if they follow</strong> the account, otherwise in <strong>Message Requests</strong>.</li>
+<li>The reply carries a link back to the post.</li>
+<li><strong>Permissions:</strong> <code>instagram_business_basic</code>, <code>instagram_business_manage_comments</code> and <code>instagram_manage_messages</code> (or the Facebook-login equivalents), plus the comments webhook.</li>
+<li><strong>Rate limits</strong> (as quoted by creatorflow.so from Meta): 750 private replies per hour per post-comment route. Not checked on Meta's page.</li>
+<li><strong>Disclosure</strong> (ChattyFlow's summary of Meta's messaging policy, not read at source): where the law requires it, an automated chat states it's automated. Meta recommends this everywhere. One line does it: "Automatic reply from Cedwyn".</li>
+</ul>
+<h2>Practitioner numbers (all vendor-published; treat as optimistic)</h2>
+<ul>
+<li><strong>creatorflow.so case studies (2026):</strong></li>
+<li>a running coach got 2,000 emails, with 80% of people who received the DM entering their email, against 4-5% from her bio-link landing page;</li>
+<li>typical ranges they quote: DM link click-through 10-25%, DM-to-email 50-60%, direct sale 2-5%;</li>
+<li>targeted DMs to commenters get 40% replies against 2% for cold mass DMs (Inro, 2025).</li>
+<li><strong>ManyChat</strong> (vendor figure, already in instagram-bio-link-conversion-no-link-yet.md): link-in-bio about 1% against DM about 46% click-through. One Reddit test: 2% against 18%.</li>
+<li>None of these is an independent study. The mechanism is credible: it cuts steps (post → bio → page → form becomes comment → DM link).</li>
+</ul>
+<h2>How-to</h2>
+<ol>
+<li><strong>Account:</strong> a professional (Business or Creator) IG account linked to the FB Page. A personal account can't use the API.</li>
+<li><strong>One keyword per post,</strong> stated in the caption and on screen: "Comment BOOK and I'll DM you the free edition". Add variants (book, Book, LLYFR, LIBRO), since matching is exact.</li>
+<li><strong>One message that does everything,</strong> because you only get one:
+   - the free v0.0.1 link with UTMs (<code>utm_source=instagram&amp;utm_medium=dm&amp;utm_campaign=&lt;post-slug&gt;</code>);
+   - one sentence of value;
+   - a question to open the 24 h window ("Want the 1824 survey page too?").
+   - Never spend the one message on "Hi 👋".</li>
+<li><strong>Public reply too,</strong> e.g. "Sent! Check your message requests if you don't follow us", because non-followers' DMs go to Requests.</li>
+<li><strong>Release within 7 days</strong> of the first comments. After that, reply publicly and invite them to message.</li>
+<li><strong>Test from a second, unconnected account.</strong> Comments from the connected account don't trigger.</li>
+<li><strong>One tool per post.</strong> Two automations race for the single reply.</li>
+<li><strong>Measure weekly:</strong> comments with the keyword → DMs sent → link clicks (GA4 by <code>utm_medium=dm</code>) → free downloads → paid. Target: at least 10% DM click-through. Below that, rewrite the message.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Status: PROPOSED, needs the project lead's GO.</strong></li>
+<li>Standing rule: "no DMs to strangers". A private reply only answers someone who publicly asked by commenting the keyword. It's a reply, not outreach, but it's still a DM, so the project lead decides.</li>
+<li>Zero spend: built on the free Graph API, no ManyChat or other paid tool.</li>
+<li><strong>Not checked:</strong> whether the connected Instagram account (@cedwynestate) grant includes <code>instagram_manage_messages</code> and the comments webhook. The current posting script only publishes. A webhook needs a public endpoint (the cedwyn-blog Cloudflare Worker could host it). Build only after GO.</li>
+<li><strong>First use:</strong> the next movie "Door" Reel or a quote-pack carousel.</li>
+<li>Caption: "Comment LLYFR / BOOK / LIBRO for the free edition".</li>
+<li>DM: free v0.0.1 link to /ebooks/ (trilingual line), plus one question.</li>
+<li>Public reply: points non-followers to Requests.</li>
+<li><strong>Rules carried:</strong> never name the project lead; banned words list; no prices in the DM beyond the listed ones; no urgency (UK DMCC Sch.20); automated-reply line in all three languages; never a second unsolicited message; log to the project workspace</li>
+<li><strong>Facebook Page</strong> (Great House Farm II) has an equivalent Messenger private reply. Its limits were not read in this run: check before extending.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.facebook.com (read 06:57Z)</li>
+<li>chattyflow.com (read; vendor summary of Meta's messaging policy, Human Agent tag, disclosure)</li>
+<li>creatorflow.so/blog/comment-to-dm-automation-case-studies/ (read; vendor case studies)</li>
+<li>the project workspace (ManyChat and Reddit figures)</li>
+</ul><p class="raw">Raw Markdown: <a href="instagram-comment-to-dm-private-replies-free-api.md">instagram-comment-to-dm-private-replies-free-api.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main><section id="cedwyn-guestbook" class="ghf-ui" data-no-translate translate="no" aria-label="Agent guest book"><style>#cedwyn-guestbook{display:block!important;clear:both;position:static;box-sizing:border-box;width:auto;max-width:760px;margin:12px auto 4px!important;padding:0 8px!important;text-align:left!important;font:400 12px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!important;color:inherit;background:transparent;border:0}#cedwyn-guestbook *{box-sizing:border-box}#cedwyn-guestbook summary{cursor:pointer;padding:4px 0;font:inherit!important;color:inherit!important;text-align:left!important}#cedwyn-guestbook summary b{font-weight:700}#cedwyn-guestbook .gb-r{opacity:.7}#cedwyn-guestbook .gbw{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;margin:4px 0}#cedwyn-guestbook table{border-collapse:collapse;width:100%;min-width:0;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th,#cedwyn-guestbook td{display:table-cell!important;text-align:left!important;vertical-align:top;padding:4px 6px!important;border:0!important;border-bottom:1px solid rgba(128,128,128,.32)!important;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th{font-weight:700!important;white-space:nowrap}#cedwyn-guestbook td:nth-child(1),#cedwyn-guestbook td:nth-child(4){white-space:nowrap}#cedwyn-guestbook td:nth-child(2){min-width:6.6em;width:6.6em}#cedwyn-guestbook td:nth-child(3){min-width:13em}@media(min-width:700px){#cedwyn-guestbook td:nth-child(2){white-space:nowrap;width:auto}}#cedwyn-guestbook a{color:inherit!important;text-decoration:underline!important;margin:0!important;padding:0!important;display:inline!important;font:inherit!important}#cedwyn-guestbook p{margin:4px 0!important;max-width:none!important;font:inherit!important;color:inherit!important;text-align:left!important}</style><details><summary><b data-gb-l="title">Agent guest book</b> <span class="gb-v"></span> <span class="gb-r">· <span data-gb-l="rule">versions 1.change.fix, from the commit history</span></span></summary><div class="gbw"><table><thead><tr><th data-gb-l="v">Version</th><th data-gb-l="d">Date</th><th data-gb-l="n">Change</th><th data-gb-l="w">Who</th></tr></thead><tbody class="gb-rows"></tbody></table></div><p><a href="/guestbook/" data-gb-l="all">See all</a></p></details></section><script src="/_cedwyn/guestbook/gb.js?v=1.1.0" defer></script></body></html>

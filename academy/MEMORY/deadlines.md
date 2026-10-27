@@ -4,10 +4,13 @@ Live tracking is on /dartboard/ (one lane per body). This list is refreshed each
 
 | Due | What |
 |---|---|
-| 28 Oct 2026 | HM Land Registry: response to an information request |
+| paused | HM Land Registry: response to an information request. On 27 Oct the body asked for identity verification; the one-month period restarts when it is received |
 | 29 Oct 2026 | South Wales Police: response to an information request |
 | 6 Nov 2026 | HM Land Registry copies: if not received, a PRINCE2 exception report is raised |
 | 9 Nov 2026 | Freedom of Information response due |
+| 10 Nov 2026 | Llandough Community Council: internal review of an FOI refusal (latest 8 Dec) |
+| 17 Nov 2026 | Natural Resources Wales: environmental information request response (20 working days) |
+| 18 Nov 2026 | Llandough Community Council: confirmation of the 22 Oct draft minutes |
 | 13 Nov 2026 | Target date for the complaint to HM Land Registry's Independent Complaints Reviewer (hard limit about 25 Nov) |
 | 18 Nov 2026 | Crown Prosecution Service: FOI 14786 response due |
 | open | Wales Office IR/26/16: whether to take it to the ICO (time limit not checked) |

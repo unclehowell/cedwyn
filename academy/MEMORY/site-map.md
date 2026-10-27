@@ -42,7 +42,8 @@ The sections of cedwyn.bucklerfamily.estate as registered in the site registry (
 | Terrain · Cedwyn Estate in 3D | /terrain/ | Interactive |  |
 | The Digital Estate | /cyberspace/ | Interactive |  |
 | Gift Shop & Marketplace | /shop/ | A story to be retold |  |
-| Cedwyn · the film | /movie/ | A story to be retold | Cedwyn, the film (a tab.bot production): one door a day, a two-minute scene from the whole chronology; clips are stored in the film's storage repository and played inline. |
+| Cedwyn · documentary | /documentary/ | A story to be retold | Cedwyn, a documentary (a tab.bot production): one door a day, a two-minute scene from the whole chronology; clips are stored in the film's storage repository and played inline. |
+| The family tree | /familytree/ | A story to be retold | The Williams–Buckler family of Tŷ Mawr as a tree: every person and every link names its record, gaps are marked not yet found; a segment app whose people.json is synced one way from the core catalogue (kind=person). |
 | Kissed Frogs | /kissed-frogs/ | Modern research and how it's going | The screening register: leads checked and found not to be Great House Farm / Tŷ Mawr, Llandough-juxta-Penarth, or out of scope, each with its source and the reason. |
 | The Garden Gallery | /nft-art/ | Interactive | Digital editions repainted as gardens from photographs, maps and plans in the Wayback Vault; each piece is a record in the catalogue database. |
 | What They Don't Say | /whattheydontsay/ | Modern research and how it's going | Dated questions to public bodies and record holders: what was asked, when an answer was due, what came back, and what is still unanswered. |

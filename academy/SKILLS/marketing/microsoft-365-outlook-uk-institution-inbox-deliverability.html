@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Getting into Microsoft 365 inboxes at UK institutions (councils, HMLR, police, universities, national bodies) · Cedwyn Academy</title><link rel="alternate" type="text/markdown" href="microsoft-365-outlook-uk-institution-inbox-deliverability.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style><!-- og:cedwyn --><meta property="og:title" content="Getting into Microsoft 365 inboxes at UK institutions (councils, HMLR, police, universities, national bodies) · Cedwyn Academy"><meta property="og:description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><meta property="og:type" content="website"><meta property="og:url" content="https://cedwyn.bucklerfamily.estate/academy/SKILLS/marketing/microsoft-365-outlook-uk-institution-inbox-deliverability.html"><meta property="og:site_name" content="Cedwyn Estate"><meta property="og:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta property="og:image:secure_url" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Open Cart Shed: a farm scene repainted in gouache with honeysuckle, roses and ivy in warm gold light (NFA-0042, Garden Gallery)"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Getting into Microsoft 365 inboxes at UK institutions (councils, HMLR, police, universities, national bodies) · Cedwyn Academy"><meta name="twitter:description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><meta name="twitter:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/nfa-0042-6689a788.jpg"><meta name="description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><!-- /og:cedwyn --><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.15"></script></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Getting into Microsoft 365 inboxes at UK institutions (councils, HMLR, police, universities, national bodies)</h1>
+<p>Harvested 2026-10-27 06:57Z. Topic: cold and first-contact email to UK public bodies, which mostly run Microsoft 365 / Exchange Online Protection (EOP), not Gmail. The Gmail Postmaster and cold-deliverability files cover Google; this one covers the Microsoft side.</p>
+<h2>Live fact (checked 06:56Z today, DNS MX lookups)</h2>
+<ul>
+<li>Seven of the nine target bodies checked take mail through Microsoft 365 (<code>*.mail.protection.outlook.com</code>): Vale of Glamorgan Council, HM Land Registry, South Wales Police, Cardiff University, gov.wales, The National Archives and the National Library of Wales.</li>
+<li>Cadw goes through a Welsh Government Azure gateway.</li>
+<li>The BBC goes through Broadcom MessageLabs.</li>
+<li>museum.wales returned no MX at the apex (not checked further).</li>
+<li>So for our institutional mail, Microsoft's filters and the recipient organisation's own Defender policy decide inbox, Junk or quarantine.</li>
+</ul>
+<h2>What the primary sources say</h2>
+<ol>
+<li><strong>UK public sector must enforce DMARC on inbound mail.</strong> GOV.UK "Securing government email" (CDDO, updated 4 Mar 2024) states public bodies "must ... implement spam and malware filtering, and enforce DMARC on inbound email". It also requires TLS 1.2+, MTA-STS, DMARC reporting, and PTR records on sending services. Consequence: mail whose From domain fails DMARC is junked or rejected by policy at these bodies, not just by Microsoft's general filters.</li>
+<li><strong>Outlook.com high-volume rules (from 5 May 2025).</strong> Microsoft Defender for Office 365 blog, "Strengthening Email Ecosystem: Outlook's New Requirements for High-Volume Senders":
+   - senders of more than 5,000 messages a day to consumer Outlook/Hotmail/Live addresses must pass SPF, DKIM and DMARC (at least p=none, aligned);
+   - failures are rejected with <code>550; 5.7.515 Access denied, sending domain ... does not meet the required authentication level</code>.
+   - These rules are scoped to consumer domains. Corporate Microsoft 365 tenants apply their own policies on top (growleads.io 2026 practitioner write-up makes the same point).</li>
+<li><strong>First-contact safety tip and "?" sender marks.</strong> Microsoft Learn, anti-phishing policies (all cloud mailboxes):
+   - The "first contact safety tip" banner appears when a recipient gets mail from a sender they don't usually hear from. Admins switch it on per policy.
+   - Outlook adds a question mark to the sender photo when a message fails SPF/DKIM AND fails DMARC/composite authentication.
+   - A "via" tag appears when the DKIM/MAIL FROM domain differs from the From domain.
+   - A cold message to a records officer can therefore arrive carrying a warning banner even when it is delivered.</li>
+<li><strong>Reading the verdict.</strong> Microsoft Learn, "Spam confidence level":
+   - in the cloud, SCL no longer decides the verdict on its own;
+   - read <code>CAT</code> (what filtered it) and <code>DIR</code> in the <code>X-Forefront-Antispam-Report</code> header, plus <code>Authentication-Results</code> (spf/dkim/dmarc/compauth).
+   - You only see these headers on mail a Microsoft 365 mailbox receives. Use a reply, or a test to an Outlook.com seed you own.</li>
+<li><strong>Practitioner testimony, with the caveat.</strong> Cold-email vendors' 2026 guides (Instantly, MailReach) give "healthy" inbox placement of 85-90%+ on seed tests and say to test Google and Microsoft separately. These are vendor figures, not checked against an independent panel. No UK public-sector placement figure was found.</li>
+</ol>
+<h2>How-to (smallest set that matters)</h2>
+<ol>
+<li><strong>Send institutional mail from a mailbox whose domain passes DMARC with alignment.</strong>
+   - Today the project lead's case mail goes from his Gmail address. gmail.com publishes <code>p=none; sp=quarantine</code> (read 06:56Z), and Gmail signs its own mail, so it aligns.
+   - Any move to a bucklerfamily.estate From address needs SPF + DKIM aligned for every service that sends as it (Mailchimp's DKIM was missing on 26 Oct, per gmail-postmaster-tools-v2-compliance-spam-rate.md). The domain's DMARC is <code>p=none</code> with no <code>rua</code> (read 06:56Z).</li>
+<li><strong>One person, one message, plain text.</strong> No tracking pixel, no link shortener, at most one or two links to our own domain, no attachments on first contact (attachments raise the risk of quarantine and the content inspection that comes with it). Refer to records by name and reference.</li>
+<li><strong>Use the body's published address or form route,</strong> e.g. the FOI address on its own site. Don't guess personal addresses: a bounce or a "recipient not found" hurts reputation.</li>
+<li><strong>Low volume, steady pace.</strong> Institutional threads are a handful a day. Never batch-send near-identical text to many bodies in one burst. Microsoft content filtering clusters similar messages.</li>
+<li><strong>Check delivery, don't assume it.</strong>
+   - A reply or an auto-acknowledgement (most FOI inboxes send one) is proof of delivery.
+   - With no acknowledgement within 2 working days, send ONE short follow-up in the same thread asking them to confirm receipt and check quarantine/Junk.
+   - Then use the body's web form as a second route.</li>
+<li><strong>If a 5.7.x bounce arrives,</strong> keep the full NDR, check SPF/DKIM/DMARC alignment of the From domain, fix, then resend once. Don't rotate domains.</li>
+<li><strong>Optional, free: Microsoft SNDS</strong> (Smart Network Data Services) shows IP reputation only for IPs you control. It's of no use for Gmail or Mailchimp shared IPs, so skip it unless we run our own sending IP.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>No change to the current sending route.</strong> Case and FOI mail stays on the project lead's Gmail, drafted in HubSpot / Gmail drafts and sent by the project lead himself. This file adds checks, not sends.</li>
+<li><strong>Drafts engine and hive drafts (proposed):</strong></li>
+<li>one link at most;</li>
+<li>no attachments on first contact;</li>
+<li>plain text;</li>
+<li>add a line asking for an acknowledgement and reference number;</li>
+<li>the follow-up rule in step 5 above, applied only by the project lead's own send.</li>
+<li><strong>Morning brief / email ingest (proposed):</strong> flag any 5.7.x NDR from <code>*.outlook.com</code> or any council address at once (it means the body never got the email), and note FOI bodies with no auto-acknowledgement after 2 working days.</li>
+<li><strong>Before any Cedwyn-domain bulk or institutional mail (proposed, needs a DNS owner):</strong></li>
+<li>Mailchimp domain auth (DKIM k2/k3);</li>
+<li>add <code>rua=</code> to DMARC so we can see failures;</li>
+<li>keep <code>p=none</code> until reports are clean for 4 weeks.</li>
+<li><strong>What only the project lead can supply:</strong> whether any institutional mail is ever sent from a bucklerfamily.estate address. If none is, the DNS steps are only for Mailchimp newsletters.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>gov.uk (read 06:55Z)</li>
+<li>gov.uk (read)</li>
+<li>techcommunity.microsoft.com (title and 5.7.515 wording via search snippet; page is script-rendered)</li>
+<li>learn.microsoft.com and .../anti-phishing-policies-eop-configure (read)</li>
+<li>learn.microsoft.com (read)</li>
+<li>growleads.io (read; practitioner, 2026)</li>
+<li>instantly.ai/blog/inbox-placement-testing/ and mailreach.co (vendor snippets, not checked)</li>
+<li>DNS MX/DMARC via Cloudflare DoH, 2026-10-27 06:56Z</li>
+</ul><p class="raw">Raw Markdown: <a href="microsoft-365-outlook-uk-institution-inbox-deliverability.md">microsoft-365-outlook-uk-institution-inbox-deliverability.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main><section id="cedwyn-guestbook" class="ghf-ui" data-no-translate translate="no" aria-label="Agent guest book"><style>#cedwyn-guestbook{display:block!important;clear:both;position:static;box-sizing:border-box;width:auto;max-width:760px;margin:12px auto 4px!important;padding:0 8px!important;text-align:left!important;font:400 12px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!important;color:inherit;background:transparent;border:0}#cedwyn-guestbook *{box-sizing:border-box}#cedwyn-guestbook summary{cursor:pointer;padding:4px 0;font:inherit!important;color:inherit!important;text-align:left!important}#cedwyn-guestbook summary b{font-weight:700}#cedwyn-guestbook .gb-r{opacity:.7}#cedwyn-guestbook .gbw{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;margin:4px 0}#cedwyn-guestbook table{border-collapse:collapse;width:100%;min-width:0;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th,#cedwyn-guestbook td{display:table-cell!important;text-align:left!important;vertical-align:top;padding:4px 6px!important;border:0!important;border-bottom:1px solid rgba(128,128,128,.32)!important;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th{font-weight:700!important;white-space:nowrap}#cedwyn-guestbook td:nth-child(1),#cedwyn-guestbook td:nth-child(4){white-space:nowrap}#cedwyn-guestbook td:nth-child(2){min-width:6.6em;width:6.6em}#cedwyn-guestbook td:nth-child(3){min-width:13em}@media(min-width:700px){#cedwyn-guestbook td:nth-child(2){white-space:nowrap;width:auto}}#cedwyn-guestbook a{color:inherit!important;text-decoration:underline!important;margin:0!important;padding:0!important;display:inline!important;font:inherit!important}#cedwyn-guestbook p{margin:4px 0!important;max-width:none!important;font:inherit!important;color:inherit!important;text-align:left!important}</style><details><summary><b data-gb-l="title">Agent guest book</b> <span class="gb-v"></span> <span class="gb-r">· <span data-gb-l="rule">versions 1.change.fix, from the commit history</span></span></summary><div class="gbw"><table><thead><tr><th data-gb-l="v">Version</th><th data-gb-l="d">Date</th><th data-gb-l="n">Change</th><th data-gb-l="w">Who</th></tr></thead><tbody class="gb-rows"></tbody></table></div><p><a href="/guestbook/" data-gb-l="all">See all</a></p></details></section><script src="/_cedwyn/guestbook/gb.js?v=1.1.0" defer></script></body></html>

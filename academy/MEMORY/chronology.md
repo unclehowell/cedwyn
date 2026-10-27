@@ -21,6 +21,8 @@ A reading aid, not the record. The record is the research catalogue (EV- IDs) an
 - No Bute or other third-party paper is a record of Tŷ Mawr dated before 1824. Where such a paper appears it is described as an outside catalogue entry whose application and dating are under forensic examination.
 - The NLW Bute catalogue entry D 219 is a catalogue heading, never a dated Tŷ Mawr mention.
 - The Mansion of Llandough is not Tŷ Mawr.
+- The farm's hill at Llandough is inland. It overlooks the Ely, the marshes and the estuary; never describe it as by the sea or on the coast.
+- The house was demolished on 6 December 1988 (RCAHMW NA/GL/88/49). NA/GL/89/208 is typed "House demolished Nov. 1988"; the difference is an open question, not a finding.
 - The 1806 and 1807 exchange papers are catalogued with the words "Ty Mawr Farm"; those are catalogue words, the deeds themselves are unread, and they are shown as under forensic examination.
 - Never infer a document's date or origin from a filename, a media title or a neighbouring item.
 
