@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cedwyn · the film</title>
-<meta name="description" content="Cedwyn, the film. A tab.bot production. One door a day: a two-minute scene from the whole chronology of Great House Farm / Tŷ Mawr, Llandough.">
-<link rel="stylesheet" href="movie.css?v=1.2.1">
+<title>Cedwyn · documentary · a tab.bot production</title>
+<meta name="description" content="Cedwyn, a documentary. A tab.bot production. One door a day: a two-minute scene from the whole chronology of Great House Farm / Tŷ Mawr, Llandough.">
+<link rel="stylesheet" href="movie.css?v=1.3.0">
 </head>
 <body class="cm">
 <main id="cm-main">
@@ -15,7 +15,7 @@
     <p id="cm-sub-msg" class="cm-sub-msg" role="status" aria-live="polite"></p>
   </form>
   <section class="cm-hero">
-    <p class="cm-kicker" data-t="kicker">A tab.bot production</p>
+    <p class="cm-kicker" data-t="kicker">Documentary · a tab.bot production</p>
     <h1 class="cm-title">Cedwyn</h1>
     <p class="cm-sub" data-t="sub">One door a day. Behind each door, a scene of about two minutes: the people of Llandough talking over what is happening on paper and around the village, from before the deeds to today.</p>
     <p class="cm-count"><span id="cm-open">0</span> <span data-t="of">of</span> <span id="cm-total">148</span> <span data-t="doors">scenes released</span> · <span data-t="runtime">planned running time</span> <span id="cm-runtime">4 h 56 min</span></p>
@@ -43,7 +43,29 @@
       <p class="cm-note" data-t="how_note">Every dated event in the chronology sits behind exactly one door, with its evidence numbers. The same faces, voices, buildings and landscapes are used in every scene. Anything a scene leaves out is noted and taken up in a later scene.</p>
     </div>
   </aside>
+  <section id="cd-ver" class="cd-ver" hidden aria-label="Version">
+    <div class="cd-row"><label for="cd-v" class="cd-l" data-cd="ver">Version</label><select id="cd-v" class="cd-sel" autocomplete="off"></select></div>
+    <p id="cd-note" class="cm-note cd-note"></p>
+    <div id="cd-pay" class="cd-pay" hidden>
+      <label class="cd-agree"><input type="checkbox" id="cd-ok"> <span data-cd="lic_ok">I agree to the licence terms</span></label>
+      <p class="cd-lic"><a href="licence/" data-cd="lic">licence terms</a></p>
+      <a id="cd-buy" class="cm-btn cd-buy off" href="#" rel="nofollow" aria-disabled="true">Buy · £4.99</a>
+      <p id="cd-msg" class="cd-msg" role="status" aria-live="polite"></p>
+      <p class="cm-note cd-small" data-cd="member">Members of the Cedwyn course watch every version free.</p>
+    </div>
+  </section>
   <section id="cm-grid" class="cm-grid" aria-live="polite"></section>
+  <footer class="cd-foot" aria-label="Page versions">
+    <h2 data-cd="vtab">Page versions</h2>
+    <div class="cd-tw"><table class="cd-vt"><thead><tr><th data-cd="v">Version</th><th data-cd="d">Date</th><th data-cd="c">Change</th></tr></thead><tbody>
+      <tr><td>1.3.0</td><td>2026-10-27</td><td>Now a documentary at /documentary/: film versions (v1.0.0 free and played by default, newest scenes under a viewing licence), licence terms, checkout.</td></tr>
+      <tr><td>1.2.1</td><td>2026-10-27</td><td>Full screen shows the picture in its normal colours in the light theme.</td></tr>
+      <tr><td>1.2.0</td><td>2026-10-27</td><td>Playback controls in the player: play and pause, position, full screen, audio and subtitle language.</td></tr>
+      <tr><td>1.1.0</td><td>2026-10-26</td><td>Email signup; scene tiles two across on phones, each with a picture.</td></tr>
+      <tr><td>1.0.0</td><td>2026-10-25</td><td>First release: 148 doors, with scripts and subtitles for the first ten scenes.</td></tr>
+    </tbody></table></div>
+    <p><a id="cd-all" href="/wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fcedwyn%2Fcommits%2Fcedwyn-movie%2Fpublic" data-cd="all">See all</a></p>
+  </footer>
 </main>
 <div id="cm-player" class="cm-player" hidden role="dialog" aria-modal="true" aria-labelledby="cm-p-title">
   <div class="cm-p-in">
@@ -66,6 +88,7 @@
     <p id="cm-p-meta" class="cm-note"></p>
   </div>
 </div>
-<script src="movie.js?v=1.2.1"></script>
+<script src="documentary.js?v=1.3.0"></script>
+<script src="movie.js?v=1.3.0"></script>
 </body>
 </html>
