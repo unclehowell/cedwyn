@@ -79,9 +79,9 @@ The case-mail API now holds 767 emails in 411 threads. email.bucklerfamily.estat
 
 ## v0.0.0.15
 - Critical fix for broken UI: only title "v0.0.0.09" and no content visible.
-- Fixed fetch path in loadCategory() from `wayback/${cat}/_treeview.json` (wrong, caused 200 HTML fallback or json parse fail) to `${cat}/_treeview.json` (matches CF Pages deploy structure where images/, pdf/ etc. live at project root next to index.html).
+- Fixed fetch path in loadCategory from `wayback/${cat}/_treeview.json` (wrong, caused 200 HTML fallback or json parse fail) to `${cat}/_treeview.json` (matches CF Pages deploy structure where images/, pdf/ etc. live at project root next to index.html).
 - Updated title tag and main <p class="main-title"> to v0.0.0.15 for consistency.
-- This allows init() to succeed, load real JSON treeviews (with #bpvsbuckler tags), render tabs, hashtag cloud (bpvs/slide hidden), gallery and pagination.
+- This allows init to succeed, load real JSON treeviews (with #bpvsbuckler tags), render tabs, hashtag cloud (bpvs/slide hidden), gallery and pagination.
 - Rerelease + wrangler deploy for wayback project.
 
 ## v0.0.0.12

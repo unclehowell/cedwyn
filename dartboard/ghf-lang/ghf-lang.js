@@ -4,7 +4,7 @@
  * authoritative record. Choice is remembered (?lang=, localStorage, and a .bucklerfamily.estate cookie)
  * and sets <html lang>.  Source: bucklerfamily.estate/ghf-lang/  ·  v1.0.4 (22 Oct 2026; loads basecamp.js?v=2.1.3)
  */
-(function () {
+(function  {
   "use strict";
   if (window.GHFLang) return;
   var LANGS = ["en", "cy", "es"];
@@ -22,25 +22,25 @@
     },
     close: { cy: "Cau", es: "Cerrar", en: "Close" }
   };
-  var me = document.currentScript || (function () {
+  var me = document.currentScript || (function  {
     var s = document.getElementsByTagName("script");
     for (var i = s.length - 1; i >= 0; i--) if (/ghf-lang(\.min)?\.js/.test(s[i].src)) return s[i];
     return null;
-  })();
+  });
   var base = me && me.src ? me.src.replace(/[^\/]*$/, "") : "https://cedwyn.bucklerfamily.estate/dartboard/ghf-lang/";
-  function siteKey() {
+  function siteKey {
     if (me && me.getAttribute("data-site")) return me.getAttribute("data-site");
     var h = location.hostname.replace(/^www\./, "");
     if (h === "bucklerfamily.estate" || /pages\.dev$/.test(h) && /bucklerfamilyfarm/.test(h)) return "estate";
     return h.split(".")[0];
   }
-  var SITE = siteKey();
+  var SITE = siteKey;
   var dict = {}, conf = {}, cur = "en", origLang = document.documentElement.getAttribute("lang") || "en";
-  var orig = new WeakMap(), done = new WeakMap(), origAttr = new WeakMap(), origTitle = null;
+  var orig = new WeakMap, done = new WeakMap, origAttr = new WeakMap, origTitle = null;
   var SKIP = "script,style,noscript,textarea,code,pre,blockquote,[data-no-translate],[translate=no],.ghf-lang,.ghf-lang-note,[contenteditable=true]";
   var ATTRS = ["placeholder", "title", "aria-label"];
 
-  function norm(s) { return s.replace(/\s+/g, " ").trim(); }
+  function norm(s) { return s.replace(/\s+/g, " ").trim; }
   var EDGE = /^([^\p{L}\p{N}]*)([\s\S]*?)([^\p{L}\p{N}.)?!]*)$/u;
   function look(text) {
     var n = norm(text);
@@ -55,7 +55,7 @@
   var MK = "janfebmaraprmayjunjulaugsepoctnovdec";
   function dates(s) {
     return s.replace(MRE, function (_, d, m, y) {
-      var i = MK.indexOf(m.slice(0, 3).toLowerCase()) / 3;
+      var i = MK.indexOf(m.slice(0, 3).toLowerCase) / 3;
       return cur === "es" ? d + " de " + MON.es[i] + " de " + y : d + " " + MON.cy[i] + " " + y;
     });
   }
@@ -138,12 +138,12 @@
       }
     });
     var n, els = root.nodeType === 1 ? root.querySelectorAll("[placeholder],[title],[aria-label]") : document.querySelectorAll("[placeholder],[title],[aria-label]");
-    while ((n = tw.nextNode())) doText(n);
+    while ((n = tw.nextNode)) doText(n);
     for (var i = 0; i < els.length; i++) doEl(els[i]);
   }
-  function restore() {
+  function restore {
     var tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), n;
-    while ((n = tw.nextNode())) {
+    while ((n = tw.nextNode)) {
       if (done.has(n) && done.get(n) === n.nodeValue && orig.has(n)) { n.nodeValue = orig.get(n); done.delete(n); }
     }
     var els = document.querySelectorAll("[placeholder],[title],[aria-label]");
@@ -155,7 +155,7 @@
       }
     }
   }
-  function doTitle() {
+  function doTitle {
     if (origTitle === null) origTitle = document.title;
     if (cur === "en") { document.title = origTitle; return; }
     var parts = origTitle.split(/(\s[·|—–-]\s)/), out = "";
@@ -164,12 +164,12 @@
   }
 
   var mo = null, queue = [], rafId = 0;
-  function flush() {
+  function flush {
     rafId = 0;
     var q = queue; queue = [];
     for (var i = 0; i < q.length; i++) walk(q[i]);
   }
-  function observe() {
+  function observe {
     if (mo || !window.MutationObserver) return;
     mo = new MutationObserver(function (list) {
       for (var i = 0; i < list.length; i++) {
@@ -183,17 +183,17 @@
   }
 
   // ---------- persistence ----------
-  function readCookie() { var m = document.cookie.match(/(?:^|;\s*)ghf_lang=(en|cy|es)/); return m ? m[1] : null; }
+  function readCookie { var m = document.cookie.match(/(?:^|;\s*)ghf_lang=(en|cy|es)/); return m ? m[1] : null; }
   function save(l) {
     try { localStorage.setItem("ghf_lang", l); } catch (e) {}
     var dom = /(^|\.)bucklerfamily\.estate$/.test(location.hostname) ? "; domain=.bucklerfamily.estate" : "";
     document.cookie = "ghf_lang=" + l + "; path=/; max-age=31536000; SameSite=Lax" + dom + (location.protocol === "https:" ? "; Secure" : "");
   }
-  function initial() {
+  function initial {
     var q = null;
     try { q = new URLSearchParams(location.search).get("lang"); } catch (e) {}
-    if (q && LANGS.indexOf(q.toLowerCase()) >= 0) { q = q.toLowerCase(); save(q); return q; }
-    var c = readCookie(); if (c) return c;
+    if (q && LANGS.indexOf(q.toLowerCase) >= 0) { q = q.toLowerCase; save(q); return q; }
+    var c = readCookie; if (c) return c;
     try { var s = localStorage.getItem("ghf_lang"); if (LANGS.indexOf(s) >= 0) return s; } catch (e) {}
     return "en";
   }
@@ -215,7 +215,7 @@
     "@media print{.ghf-lang,.ghf-lang-note{display:none!important}}";
   var GLOBE = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.6 3.9 5.6 3.9 9.2s-1.3 6.6-3.9 9.2c-2.6-2.6-3.9-5.6-3.9-9.2S9.4 5.4 12 2.8z"/></svg>';
   var root, btn, menu;
-  function build() {
+  function build {
     var st = document.createElement("style"); st.id = "ghf-lang-css"; st.textContent = CSS + (conf.css || "");
     document.head.appendChild(st);
     root = document.createElement("div");
@@ -228,20 +228,20 @@
       var b = document.createElement("button"); b.type = "button"; b.className = "ghf-lang-opt"; b.setAttribute("role", "option");
       b.setAttribute("data-lang", l); b.setAttribute("lang", l);
       b.innerHTML = "<span>" + NAMES[l] + "</span><small>" + SHORT[l] + "</small>";
-      b.addEventListener("click", function () { set(l); close(); btn.focus(); });
+      b.addEventListener("click", function  { set(l); close; btn.focus; });
       li.appendChild(b); menu.appendChild(li);
     });
-    btn.addEventListener("click", function (e) { e.stopPropagation(); root.classList.contains("ghf-open") ? close() : open(true); });
+    btn.addEventListener("click", function (e) { e.stopPropagation; root.classList.contains("ghf-open") ? close : open(true); });
     root.addEventListener("keydown", function (e) {
       var opts = [].slice.call(menu.querySelectorAll(".ghf-lang-opt")), i = opts.indexOf(document.activeElement);
-      if (e.key === "Escape") { close(); btn.focus(); }
-      else if (e.key === "ArrowDown") { e.preventDefault(); if (!root.classList.contains("ghf-open")) open(true); else opts[(i + 1) % opts.length].focus(); }
-      else if (e.key === "ArrowUp") { e.preventDefault(); if (i >= 0) opts[(i + opts.length - 1) % opts.length].focus(); }
+      if (e.key === "Escape") { close; btn.focus; }
+      else if (e.key === "ArrowDown") { e.preventDefault; if (!root.classList.contains("ghf-open")) open(true); else opts[(i + 1) % opts.length].focus; }
+      else if (e.key === "ArrowUp") { e.preventDefault; if (i >= 0) opts[(i + opts.length - 1) % opts.length].focus; }
     });
-    document.addEventListener("click", function (e) { if (!root.contains(e.target)) close(); });
-    place();
+    document.addEventListener("click", function (e) { if (!root.contains(e.target)) close; });
+    place;
   }
-  function place() {
+  function place {
     var pos = (me && me.getAttribute("data-position")) || conf.position || "auto";
     var sel = (me && me.getAttribute("data-mount")) || conf.mount;
     var host = null;
@@ -265,19 +265,19 @@
   }
   function open(focus) {
     root.classList.add("ghf-open"); btn.setAttribute("aria-expanded", "true");
-    var r = root.getBoundingClientRect();
+    var r = root.getBoundingClientRect;
     if (r.left < 170 && !root.classList.contains("ghf-left") && r.right < 170) root.classList.add("ghf-left");
-    if (focus) { var s = menu.querySelector("[aria-selected=true]"); if (s) s.focus(); }
+    if (focus) { var s = menu.querySelector("[aria-selected=true]"); if (s) s.focus; }
   }
-  function close() { if (!root) return; root.classList.remove("ghf-open"); btn.setAttribute("aria-expanded", "false"); }
-  function paint() {
+  function close { if (!root) return; root.classList.remove("ghf-open"); btn.setAttribute("aria-expanded", "false"); }
+  function paint {
     if (!root) return;
     root.querySelector(".ghf-lang-cur").textContent = SHORT[cur];
     btn.setAttribute("aria-label", UI.label[cur] + ": " + NAMES[cur] + " (Language / Iaith / Idioma)");
     btn.title = UI.label[cur];
     [].forEach.call(menu.querySelectorAll(".ghf-lang-opt"), function (b) { b.setAttribute("aria-selected", b.getAttribute("data-lang") === cur ? "true" : "false"); });
   }
-  function note() {
+  function note {
     var old = document.querySelector(".ghf-lang-note"); if (old) old.parentNode.removeChild(old);
     if (cur === "en" || conf.note === false) return;
     try { if (sessionStorage.getItem("ghf_lang_note_" + cur) === "x") return; } catch (e) {}
@@ -287,7 +287,7 @@
     d.firstChild.textContent = UI.note[cur];
     d.childNodes[1].textContent = UI.tr[cur]; d.childNodes[1].href = u;
     d.lastChild.setAttribute("aria-label", UI.close[cur]);
-    d.lastChild.addEventListener("click", function () { try { sessionStorage.setItem("ghf_lang_note_" + cur, "x"); } catch (e) {} d.parentNode.removeChild(d); });
+    d.lastChild.addEventListener("click", function  { try { sessionStorage.setItem("ghf_lang_note_" + cur, "x"); } catch (e) {} d.parentNode.removeChild(d); });
     document.body.appendChild(d);
   }
   function set(l, quiet) {
@@ -295,9 +295,9 @@
     var prev = cur; cur = l;
     if (!quiet) save(l);
     document.documentElement.setAttribute("lang", l === "en" ? origLang : l);
-    if (prev !== "en") restore();
-    if (l !== "en") { walk(document.body); observe(); }
-    doTitle(); paint(); note();
+    if (prev !== "en") restore;
+    if (l !== "en") { walk(document.body); observe; }
+    doTitle; paint; note;
     try { document.dispatchEvent(new CustomEvent("ghf-lang-change", { detail: { lang: l } })); } catch (e) {}
   }
 
@@ -305,38 +305,38 @@
     conf = data || {};
     dict = conf.strings || {};
     if (!document.body) return;
-    build();
-    var l = initial();
-    if (l !== "en") set(l, true); else { paint(); walk(document.body); }
-    observe();
+    build;
+    var l = initial;
+    if (l !== "en") set(l, true); else { paint; walk(document.body); }
+    observe;
   }
-  function load() {
+  function load {
     var url = (me && me.getAttribute("data-dict")) || (base + "sites/" + SITE + ".json");
     var fallback = base + "sites/estate.json";
     var done1 = false;
     function go(d) { if (done1) return; done1 = true; start(d); }
     function get(u, last) {
       try {
-        var x = new XMLHttpRequest();
+        var x = new XMLHttpRequest;
         x.open("GET", u, true);
-        x.onload = function () {
+        x.onload = function  {
           var d = null; try { d = JSON.parse(x.responseText); } catch (e) {}
           if ((x.status >= 400 || !d) && !last && u !== fallback) return get(fallback, true);
           go(x.status < 400 ? d : null);
         };
-        x.onerror = function () { if (!last && u !== fallback) get(fallback, true); else go(null); };
-        x.timeout = 8000; x.ontimeout = function () { go(null); };
-        x.send();
+        x.onerror = function  { if (!last && u !== fallback) get(fallback, true); else go(null); };
+        x.timeout = 8000; x.ontimeout = function  { go(null); };
+        x.send;
       } catch (e) { go(null); }
     }
     get(url, false);
   }
   window.GHFLang = {
-    set: function (l) { set(l); }, get: function () { return cur; },
-    open: function () { open(false); }, close: close, site: SITE, version: "1.0.3"
+    set: function (l) { set(l); }, get: function  { return cur; },
+    open: function  { open(false); }, close: close, site: SITE, version: "1.0.3"
   };
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", load); else load();
-  // Base camp: every GHF site gets a "Back to base camp" link (basecamp.js, same folder; 20 Oct 2026, Sion's Tab agent).
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", load); else load;
+  // Base camp: every GHF site gets a "Back to base camp" link (basecamp.js, same folder; 20 Oct 2026, Cedwyn editors).
   try {
     if (!window.GHFBasecamp && !document.querySelector('script[src*="basecamp.js"]')) {
       var bc = document.createElement("script");
@@ -344,4 +344,4 @@
       (document.head || document.documentElement).appendChild(bc);
     }
   } catch (e) {}
-})();
+});

@@ -22,15 +22,15 @@
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = root.pdfjsWorker = factory();
+		module.exports = root.pdfjsWorker = factory;
 	else if(typeof define === 'function' && define.amd)
-		define("pdfjs-dist/build/pdf.worker", [], () => { return (root.pdfjsWorker = factory()); });
+		define("pdfjs-dist/build/pdf.worker", [],  => { return (root.pdfjsWorker = factory); });
 	else if(typeof exports === 'object')
-		exports["pdfjs-dist/build/pdf.worker"] = root.pdfjsWorker = factory();
+		exports["pdfjs-dist/build/pdf.worker"] = root.pdfjsWorker = factory;
 	else
-		root["pdfjs-dist/build/pdf.worker"] = root.pdfjsWorker = factory();
-})(globalThis, () => {
-return /******/ (() => { // webpackBootstrap
+		root["pdfjs-dist/build/pdf.worker"] = root.pdfjsWorker = factory;
+})(globalThis,  => {
+return /******/ ( => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ([
 /* 0 */,
@@ -57,18 +57,18 @@ class WorkerTask {
   constructor(name) {
     this.name = name;
     this.terminated = false;
-    this._capability = new _util.PromiseCapability();
+    this._capability = new _util.PromiseCapability;
   }
-  get finished() {
+  get finished {
     return this._capability.promise;
   }
-  finish() {
-    this._capability.resolve();
+  finish {
+    this._capability.resolve;
   }
-  terminate() {
+  terminate {
     this.terminated = true;
   }
-  ensureNotTerminated() {
+  ensureNotTerminated {
     if (this.terminated) {
       throw new Error("Worker task was terminated");
     }
@@ -96,8 +96,8 @@ class WorkerMessageHandler {
     let pdfManager;
     let terminated = false;
     let cancelXHRs = null;
-    const WorkerTasks = new Set();
-    const verbosity = (0, _util.getVerbosityLevel)();
+    const WorkerTasks = new Set;
+    const verbosity = (0, _util.getVerbosityLevel);
     const {
       docId,
       apiVersion
@@ -115,7 +115,7 @@ class WorkerMessageHandler {
     }
     const workerHandlerName = docId + "_worker";
     let handler = new _message_handler.MessageHandler(workerHandlerName, docId, port);
-    function ensureNotTerminated() {
+    function ensureNotTerminated {
       if (terminated) {
         throw new Error("Worker was terminated");
       }
@@ -124,7 +124,7 @@ class WorkerMessageHandler {
       WorkerTasks.add(task);
     }
     function finishWorkerTask(task) {
-      task.finish();
+      task.finish;
       WorkerTasks.delete(task);
     }
     async function loadDocument(recoveryMode) {
@@ -137,7 +137,7 @@ class WorkerMessageHandler {
       if (isPureXfa) {
         const task = new WorkerTask("loadXfaFonts");
         startWorkerTask(task);
-        await Promise.all([pdfManager.loadXfaFonts(handler, task).catch(reason => {}).then(() => finishWorkerTask(task)), pdfManager.loadXfaImages()]);
+        await Promise.all([pdfManager.loadXfaFonts(handler, task).catch(reason => {}).then( => finishWorkerTask(task)), pdfManager.loadXfaImages]);
       }
       const [numPages, fingerprints] = await Promise.all([pdfManager.ensureDoc("numPages"), pdfManager.ensureDoc("fingerprints")]);
       const htmlForXfa = isPureXfa ? await pdfManager.ensureDoc("htmlForXfa") : null;
@@ -169,7 +169,7 @@ class WorkerMessageHandler {
         password,
         rangeChunkSize
       };
-      const pdfManagerCapability = new _util.PromiseCapability();
+      const pdfManagerCapability = new _util.PromiseCapability;
       let newPdfManager;
       if (data) {
         try {
@@ -189,8 +189,8 @@ class WorkerMessageHandler {
         pdfManagerCapability.reject(ex);
         return pdfManagerCapability.promise;
       }
-      const fullRequest = pdfStream.getFullReader();
-      fullRequest.headersReady.then(function () {
+      const fullRequest = pdfStream.getFullReader;
+      fullRequest.headersReady.then(function  {
         if (!fullRequest.isRangeSupported) {
           return;
         }
@@ -209,7 +209,7 @@ class WorkerMessageHandler {
         cancelXHRs = null;
       });
       let loaded = 0;
-      const flushChunks = function () {
+      const flushChunks = function  {
         const pdfFile = (0, _core_utils.arrayBuffersToBytes)(cachedChunks);
         if (length && pdfFile.length !== length) {
           (0, _util.warn)("reported HTTP length is different from actual");
@@ -229,10 +229,10 @@ class WorkerMessageHandler {
           done
         }) {
           try {
-            ensureNotTerminated();
+            ensureNotTerminated;
             if (done) {
               if (!newPdfManager) {
-                flushChunks();
+                flushChunks;
               }
               cancelXHRs = null;
               return;
@@ -249,12 +249,12 @@ class WorkerMessageHandler {
             } else {
               cachedChunks.push(value);
             }
-            fullRequest.read().then(readChunk, reject);
+            fullRequest.read.then(readChunk, reject);
           } catch (e) {
             reject(e);
           }
         };
-        fullRequest.read().then(readChunk, reject);
+        fullRequest.read.then(readChunk, reject);
       }).catch(function (e) {
         pdfManagerCapability.reject(e);
         cancelXHRs = null;
@@ -266,13 +266,13 @@ class WorkerMessageHandler {
     }
     function setupDoc(data) {
       function onSuccess(doc) {
-        ensureNotTerminated();
+        ensureNotTerminated;
         handler.send("GetDoc", {
           pdfInfo: doc
         });
       }
       function onFailure(ex) {
-        ensureNotTerminated();
+        ensureNotTerminated;
         if (ex instanceof _util.PasswordException) {
           const task = new WorkerTask(`PasswordException: response ${ex.code}`);
           startWorkerTask(task);
@@ -281,32 +281,32 @@ class WorkerMessageHandler {
           }) {
             finishWorkerTask(task);
             pdfManager.updatePassword(password);
-            pdfManagerReady();
-          }).catch(function () {
+            pdfManagerReady;
+          }).catch(function  {
             finishWorkerTask(task);
             handler.send("DocException", ex);
           });
         } else if (ex instanceof _util.InvalidPDFException || ex instanceof _util.MissingPDFException || ex instanceof _util.UnexpectedResponseException || ex instanceof _util.UnknownErrorException) {
           handler.send("DocException", ex);
         } else {
-          handler.send("DocException", new _util.UnknownErrorException(ex.message, ex.toString()));
+          handler.send("DocException", new _util.UnknownErrorException(ex.message, ex.toString));
         }
       }
-      function pdfManagerReady() {
-        ensureNotTerminated();
+      function pdfManagerReady {
+        ensureNotTerminated;
         loadDocument(false).then(onSuccess, function (reason) {
-          ensureNotTerminated();
+          ensureNotTerminated;
           if (!(reason instanceof _core_utils.XRefParseException)) {
             onFailure(reason);
             return;
           }
-          pdfManager.requestLoadedStream().then(function () {
-            ensureNotTerminated();
+          pdfManager.requestLoadedStream.then(function  {
+            ensureNotTerminated;
             loadDocument(true).then(onSuccess, onFailure);
           });
         });
       }
-      ensureNotTerminated();
+      ensureNotTerminated;
       getPdfManager(data).then(function (newPdfManager) {
         if (terminated) {
           newPdfManager.terminate(new _util.AbortException("Worker was terminated."));
@@ -386,7 +386,7 @@ class WorkerMessageHandler {
       return pdfManager.ensureCatalog("markInfo");
     });
     handler.on("GetData", function (data) {
-      return pdfManager.requestLoadedStream().then(function (stream) {
+      return pdfManager.requestLoadedStream.then(function (stream) {
         return stream.bytes;
       });
     });
@@ -421,7 +421,7 @@ class WorkerMessageHandler {
       annotationStorage,
       filename
     }) {
-      const globalPromises = [pdfManager.requestLoadedStream(), pdfManager.ensureCatalog("acroForm"), pdfManager.ensureCatalog("acroFormRef"), pdfManager.ensureDoc("startXRef"), pdfManager.ensureDoc("xref"), pdfManager.ensureDoc("linearization"), pdfManager.ensureCatalog("structTreeRoot")];
+      const globalPromises = [pdfManager.requestLoadedStream, pdfManager.ensureCatalog("acroForm"), pdfManager.ensureCatalog("acroFormRef"), pdfManager.ensureDoc("startXRef"), pdfManager.ensureDoc("xref"), pdfManager.ensureDoc("linearization"), pdfManager.ensureCatalog("structTreeRoot")];
       const promises = [];
       const newAnnotationsByPage = !isPureXfa ? (0, _core_utils.getNewAnnotationsMap)(annotationStorage) : null;
       const [stream, acroForm, acroFormRef, startXRef, xref, linearization, _structTreeRoot] = await Promise.all(globalPromises);
@@ -442,12 +442,12 @@ class WorkerMessageHandler {
         })) {
           structTreeRoot = _structTreeRoot;
         }
-        const imagePromises = _annotation.AnnotationFactory.generateImages(annotationStorage.values(), xref, pdfManager.evaluatorOptions.isOffscreenCanvasSupported);
+        const imagePromises = _annotation.AnnotationFactory.generateImages(annotationStorage.values, xref, pdfManager.evaluatorOptions.isOffscreenCanvasSupported);
         const newAnnotationPromises = structTreeRoot === undefined ? promises : [];
         for (const [pageIndex, annotations] of newAnnotationsByPage) {
           newAnnotationPromises.push(pdfManager.getPage(pageIndex).then(page => {
             const task = new WorkerTask(`Save (editor): page ${pageIndex}`);
-            return page.saveNewAnnotations(handler, task, annotations, imagePromises).finally(function () {
+            return page.saveNewAnnotations(handler, task, annotations, imagePromises).finally(function  {
               finishWorkerTask(task);
             });
           }));
@@ -480,7 +480,7 @@ class WorkerMessageHandler {
         for (let pageIndex = 0; pageIndex < numPages; pageIndex++) {
           promises.push(pdfManager.getPage(pageIndex).then(function (page) {
             const task = new WorkerTask(`Save: page ${pageIndex}`);
-            return page.save(handler, task, annotationStorage).finally(function () {
+            return page.save(handler, task, annotationStorage).finally(function  {
               finishWorkerTask(task);
             });
           }));
@@ -512,7 +512,7 @@ class WorkerMessageHandler {
           }
         }
         if (xfaDatasetsRef === null) {
-          xfaDatasetsRef = xref.getNewTemporaryRef();
+          xfaDatasetsRef = xref.getNewTemporaryRef;
         }
       } else if (xfa) {
         (0, _util.warn)("Unsupported XFA type.");
@@ -531,7 +531,7 @@ class WorkerMessageHandler {
         newXrefInfo = {
           rootRef: catalogRef,
           encryptRef: xref.trailer.getRaw("Encrypt") || null,
-          newRef: xref.getNewTemporaryRef(),
+          newRef: xref.getNewTemporaryRef,
           infoRef: xref.trailer.getRaw("Info") || null,
           info: infoObj,
           fileIds: xref.trailer.get("ID") || null,
@@ -551,8 +551,8 @@ class WorkerMessageHandler {
         acroFormRef,
         acroForm,
         xfaData
-      }).finally(() => {
-        xref.resetNewTemporaryRef();
+      }).finally( => {
+        xref.resetNewTemporaryRef;
       });
     });
     handler.on("GetOperatorList", function (data, sink) {
@@ -560,7 +560,7 @@ class WorkerMessageHandler {
       pdfManager.getPage(pageIndex).then(function (page) {
         const task = new WorkerTask(`GetOperatorList: page ${pageIndex}`);
         startWorkerTask(task);
-        const start = verbosity >= _util.VerbosityLevel.INFOS ? Date.now() : 0;
+        const start = verbosity >= _util.VerbosityLevel.INFOS ? Date.now : 0;
         page.getOperatorList({
           handler,
           sink,
@@ -571,9 +571,9 @@ class WorkerMessageHandler {
         }).then(function (operatorListInfo) {
           finishWorkerTask(task);
           if (start) {
-            (0, _util.info)(`page=${pageIndex + 1} - getOperatorList: time=` + `${Date.now() - start}ms, len=${operatorListInfo.length}`);
+            (0, _util.info)(`page=${pageIndex + 1} - getOperatorList: time=` + `${Date.now - start}ms, len=${operatorListInfo.length}`);
           }
-          sink.close();
+          sink.close;
         }, function (reason) {
           finishWorkerTask(task);
           if (task.terminated) {
@@ -592,19 +592,19 @@ class WorkerMessageHandler {
       pdfManager.getPage(pageIndex).then(function (page) {
         const task = new WorkerTask("GetTextContent: page " + pageIndex);
         startWorkerTask(task);
-        const start = verbosity >= _util.VerbosityLevel.INFOS ? Date.now() : 0;
+        const start = verbosity >= _util.VerbosityLevel.INFOS ? Date.now : 0;
         page.extractTextContent({
           handler,
           task,
           sink,
           includeMarkedContent,
           disableNormalization
-        }).then(function () {
+        }).then(function  {
           finishWorkerTask(task);
           if (start) {
-            (0, _util.info)(`page=${pageIndex + 1} - getTextContent: time=` + `${Date.now() - start}ms`);
+            (0, _util.info)(`page=${pageIndex + 1} - getTextContent: time=` + `${Date.now - start}ms`);
           }
-          sink.close();
+          sink.close;
         }, function (reason) {
           finishWorkerTask(task);
           if (task.terminated) {
@@ -630,21 +630,21 @@ class WorkerMessageHandler {
       const waitOn = [];
       if (pdfManager) {
         pdfManager.terminate(new _util.AbortException("Worker was terminated."));
-        const cleanupPromise = pdfManager.cleanup();
+        const cleanupPromise = pdfManager.cleanup;
         waitOn.push(cleanupPromise);
         pdfManager = null;
       } else {
-        (0, _cleanup_helper.clearGlobalCaches)();
+        (0, _cleanup_helper.clearGlobalCaches);
       }
       if (cancelXHRs) {
         cancelXHRs(new _util.AbortException("Worker was terminated."));
       }
       for (const task of WorkerTasks) {
         waitOn.push(task.finished);
-        task.terminate();
+        task.terminate;
       }
-      return Promise.all(waitOn).then(function () {
-        handler.destroy();
+      return Promise.all(waitOn).then(function  {
+        handler.destroy;
         handler = null;
       });
     });
@@ -1003,7 +1003,7 @@ function setVerbosityLevel(level) {
     verbosity = level;
   }
 }
-function getVerbosityLevel() {
+function getVerbosityLevel {
   return verbosity;
 }
 function info(msg) {
@@ -1070,7 +1070,7 @@ function shadow(obj, prop, value, nonSerializable = false) {
   });
   return value;
 }
-const BaseException = function BaseExceptionClosure() {
+const BaseException = function BaseExceptionClosure {
   function BaseException(message, name) {
     if (this.constructor === BaseException) {
       unreachable("Cannot initialize BaseException.");
@@ -1078,10 +1078,10 @@ const BaseException = function BaseExceptionClosure() {
     this.message = message;
     this.name = name;
   }
-  BaseException.prototype = new Error();
+  BaseException.prototype = new Error;
   BaseException.constructor = BaseException;
   return BaseException;
-}();
+};
 exports.BaseException = BaseException;
 class PasswordException extends BaseException {
   constructor(msg, code) {
@@ -1169,13 +1169,13 @@ function objectFromMap(map) {
   }
   return obj;
 }
-function isLittleEndian() {
+function isLittleEndian {
   const buffer8 = new Uint8Array(4);
   buffer8[0] = 1;
   const view32 = new Uint32Array(buffer8.buffer, 0, 1);
   return view32[0] === 1;
 }
-function isEvalSupported() {
+function isEvalSupported {
   try {
     new Function("");
     return true;
@@ -1184,16 +1184,16 @@ function isEvalSupported() {
   }
 }
 class FeatureTest {
-  static get isLittleEndian() {
-    return shadow(this, "isLittleEndian", isLittleEndian());
+  static get isLittleEndian {
+    return shadow(this, "isLittleEndian", isLittleEndian);
   }
-  static get isEvalSupported() {
-    return shadow(this, "isEvalSupported", isEvalSupported());
+  static get isEvalSupported {
+    return shadow(this, "isEvalSupported", isEvalSupported);
   }
-  static get isOffscreenCanvasSupported() {
+  static get isOffscreenCanvasSupported {
     return shadow(this, "isOffscreenCanvasSupported", typeof OffscreenCanvas !== "undefined");
   }
-  static get platform() {
+  static get platform {
     if (typeof navigator === "undefined") {
       return shadow(this, "platform", {
         isWin: false,
@@ -1205,12 +1205,12 @@ class FeatureTest {
       isMac: navigator.platform.includes("Mac")
     });
   }
-  static get isCSSRoundSupported() {
+  static get isCSSRoundSupported {
     return shadow(this, "isCSSRoundSupported", globalThis.CSS?.supports?.("width: round(1.5px, 1px)"));
   }
 }
 exports.FeatureTest = FeatureTest;
-const hexNumbers = [...Array(256).keys()].map(n => n.toString(16).padStart(2, "0"));
+const hexNumbers = [...Array(256).keys].map(n => n.toString(16).padStart(2, "0"));
 class Util {
   static makeHexColor(r, g, b) {
     return `#${hexNumbers[r]}${hexNumbers[g]}${hexNumbers[b]}`;
@@ -1427,13 +1427,13 @@ function isArrayEqual(arr1, arr2) {
   }
   return true;
 }
-function getModificationDate(date = new Date()) {
-  const buffer = [date.getUTCFullYear().toString(), (date.getUTCMonth() + 1).toString().padStart(2, "0"), date.getUTCDate().toString().padStart(2, "0"), date.getUTCHours().toString().padStart(2, "0"), date.getUTCMinutes().toString().padStart(2, "0"), date.getUTCSeconds().toString().padStart(2, "0")];
+function getModificationDate(date = new Date) {
+  const buffer = [date.getUTCFullYear.toString, (date.getUTCMonth + 1).toString.padStart(2, "0"), date.getUTCDate.toString.padStart(2, "0"), date.getUTCHours.toString.padStart(2, "0"), date.getUTCMinutes.toString.padStart(2, "0"), date.getUTCSeconds.toString.padStart(2, "0")];
   return buffer.join("");
 }
 class PromiseCapability {
   #settled = false;
-  constructor() {
+  constructor {
     this.promise = new Promise((resolve, reject) => {
       this.resolve = data => {
         this.#settled = true;
@@ -1445,7 +1445,7 @@ class PromiseCapability {
       };
     });
   }
-  get settled() {
+  get settled {
     return this.#settled;
   }
 }
@@ -1461,16 +1461,16 @@ function normalizeUnicode(str) {
     return p1 ? p1.normalize("NFKC") : NormalizationMap.get(p2);
   });
 }
-function getUuid() {
+function getUuid {
   if (typeof crypto !== "undefined" && typeof crypto?.randomUUID === "function") {
-    return crypto.randomUUID();
+    return crypto.randomUUID;
   }
   const buf = new Uint8Array(32);
   if (typeof crypto !== "undefined" && typeof crypto?.getRandomValues === "function") {
     crypto.getRandomValues(buf);
   } else {
     for (let i = 0; i < 32; i++) {
-      buf[i] = Math.floor(Math.random() * 255);
+      buf[i] = Math.floor(Math.random * 255);
     }
   }
   return bytesToString(buf);
@@ -1518,7 +1518,7 @@ const PDF_VERSION_REGEXP = /^[1-9]\.\d$/;
 exports.PDF_VERSION_REGEXP = PDF_VERSION_REGEXP;
 function getLookupTableFactory(initializer) {
   let lookup;
-  return function () {
+  return function  {
     if (initializer) {
       lookup = Object.create(null);
       initializer(lookup);
@@ -1581,7 +1581,7 @@ function getInheritableProperty({
   stopWhenFound = true
 }) {
   let values;
-  const visited = new _primitives.RefSet();
+  const visited = new _primitives.RefSet;
   while (dict instanceof _primitives.Dict && !(dict.objId && visited.has(dict.objId))) {
     if (dict.objId) {
       visited.put(dict.objId);
@@ -1614,7 +1614,7 @@ function toRomanNumerals(number, lowerCase = false) {
   romanBuf.push(ROMAN_NUMBER_MAP[10 + pos]);
   romanBuf.push(ROMAN_NUMBER_MAP[20 + number]);
   const romanStr = romanBuf.join("");
-  return lowerCase ? romanStr.toLowerCase() : romanStr;
+  return lowerCase ? romanStr.toLowerCase : romanStr;
 }
 function log2(x) {
   if (x <= 0) {
@@ -1672,7 +1672,7 @@ function escapePDFName(str) {
   return buffer.join("");
 }
 function escapeString(str) {
-  return str.replaceAll(/([()\\\n\r])/g, match => {
+  return str.replaceAll(/([\\\n\r])/g, match => {
     if (match === "\n") {
       return "\\n";
     } else if (match === "\r") {
@@ -1703,7 +1703,7 @@ function _collectJS(entry, xref, list, parents) {
       const js = entry.get("JS");
       let code;
       if (js instanceof _base_stream.BaseStream) {
-        code = js.getString();
+        code = js.getString;
       } else if (typeof js === "string") {
         code = js;
       }
@@ -1731,13 +1731,13 @@ function collectActions(xref, dict, eventType) {
       if (!(additionalActions instanceof _primitives.Dict)) {
         continue;
       }
-      for (const key of additionalActions.getKeys()) {
+      for (const key of additionalActions.getKeys) {
         const action = eventType[key];
         if (!action) {
           continue;
         }
         const actionDict = additionalActions.getRaw(key);
-        const parents = new _primitives.RefSet();
+        const parents = new _primitives.RefSet;
         const list = [];
         _collectJS(actionDict, xref, list, parents);
         if (list.length > 0) {
@@ -1748,7 +1748,7 @@ function collectActions(xref, dict, eventType) {
   }
   if (dict.has("A")) {
     const actionDict = dict.get("A");
-    const parents = new _primitives.RefSet();
+    const parents = new _primitives.RefSet;
     const list = [];
     _collectJS(actionDict, xref, list, parents);
     if (list.length > 0) {
@@ -1782,7 +1782,7 @@ function encodeToXmlString(str) {
       if (start < i) {
         buffer.push(str.substring(start, i));
       }
-      buffer.push(`&#x${char.toString(16).toUpperCase()};`);
+      buffer.push(`&#x${char.toString(16).toUpperCase};`);
       if (char > 0xd7ff && (char < 0xe000 || char > 0xfffd)) {
         i++;
       }
@@ -1831,10 +1831,10 @@ function validateCSSFont(cssFontInfo) {
   if (!validateFontName(fontFamily, true)) {
     return false;
   }
-  const weight = fontWeight ? fontWeight.toString() : "";
+  const weight = fontWeight ? fontWeight.toString : "";
   cssFontInfo.fontWeight = CSS_FONT_WEIGHT_VALUES.has(weight) ? weight : DEFAULT_CSS_FONT_WEIGHT;
   const angle = parseFloat(italicAngle);
-  cssFontInfo.italicAngle = isNaN(angle) || angle < -90 || angle > 90 ? DEFAULT_CSS_FONT_OBLIQUE : italicAngle.toString();
+  cssFontInfo.italicAngle = isNaN(angle) || angle < -90 || angle > 90 ? DEFAULT_CSS_FONT_OBLIQUE : italicAngle.toString;
   return true;
 }
 function recoverJsURL(str) {
@@ -1856,11 +1856,11 @@ function recoverJsURL(str) {
 }
 function numberToString(value) {
   if (Number.isInteger(value)) {
-    return value.toString();
+    return value.toString;
   }
   const roundedValue = Math.round(value * 100);
   if (roundedValue % 100 === 0) {
-    return (roundedValue / 100).toString();
+    return (roundedValue / 100).toString;
   }
   if (roundedValue % 10 === 0) {
     return value.toFixed(1);
@@ -1871,7 +1871,7 @@ function getNewAnnotationsMap(annotationStorage) {
   if (!annotationStorage) {
     return null;
   }
-  const newAnnotationsByPage = new Map();
+  const newAnnotationsByPage = new Map;
   for (const [key, value] of annotationStorage) {
     if (!key.startsWith(_util.AnnotationEditorPrefix)) {
       continue;
@@ -1943,7 +1943,7 @@ exports.EOF = EOF;
 let CmdCache = Object.create(null);
 let NameCache = Object.create(null);
 let RefCache = Object.create(null);
-function clearPrimitiveCaches() {
+function clearPrimitiveCaches {
   CmdCache = Object.create(null);
   NameCache = Object.create(null);
   RefCache = Object.create(null);
@@ -1966,7 +1966,7 @@ class Cmd {
   }
 }
 exports.Cmd = Cmd;
-const nonSerializable = function nonSerializableClosure() {
+const nonSerializable = function nonSerializableClosure {
   return nonSerializable;
 };
 class Dict {
@@ -1980,7 +1980,7 @@ class Dict {
   assignXref(newXref) {
     this.xref = newXref;
   }
-  get size() {
+  get size {
     return Object.keys(this._map).length;
   }
   get(key1, key2, key3) {
@@ -2021,7 +2021,7 @@ class Dict {
       value = this.xref.fetch(value, this.suppressEncryption);
     }
     if (Array.isArray(value)) {
-      value = value.slice();
+      value = value.slice;
       for (let i = 0, ii = value.length; i < ii; i++) {
         if (value[i] instanceof Ref && this.xref) {
           value[i] = this.xref.fetch(value[i], this.suppressEncryption);
@@ -2033,10 +2033,10 @@ class Dict {
   getRaw(key) {
     return this._map[key];
   }
-  getKeys() {
+  getKeys {
     return Object.keys(this._map);
   }
-  getRawValues() {
+  getRawValues {
     return Object.values(this._map);
   }
   set(key, value) {
@@ -2050,7 +2050,7 @@ class Dict {
       callback(key, this.get(key));
     }
   }
-  static get empty() {
+  static get empty {
     const emptyDict = new Dict(null);
     emptyDict.set = (key, value) => {
       (0, _util.unreachable)("Should not call `set` on the empty dictionary.");
@@ -2063,7 +2063,7 @@ class Dict {
     mergeSubDicts = false
   }) {
     const mergedDict = new Dict(xref),
-      properties = new Map();
+      properties = new Map;
     for (const dict of dictArray) {
       if (!(dict instanceof Dict)) {
         continue;
@@ -2096,12 +2096,12 @@ class Dict {
         mergedDict._map[name] = subDict;
       }
     }
-    properties.clear();
+    properties.clear;
     return mergedDict.size > 0 ? mergedDict : Dict.empty;
   }
-  clone() {
+  clone {
     const dict = new Dict(this.xref);
-    for (const key of this.getKeys()) {
+    for (const key of this.getKeys) {
       dict.set(key, this.getRaw(key));
     }
     return dict;
@@ -2113,7 +2113,7 @@ class Ref {
     this.num = num;
     this.gen = gen;
   }
-  toString() {
+  toString {
     if (this.gen === 0) {
       return `${this.num}R`;
     }
@@ -2141,46 +2141,46 @@ class RefSet {
     this._set = new Set(parent?._set);
   }
   has(ref) {
-    return this._set.has(ref.toString());
+    return this._set.has(ref.toString);
   }
   put(ref) {
-    this._set.add(ref.toString());
+    this._set.add(ref.toString);
   }
   remove(ref) {
-    this._set.delete(ref.toString());
+    this._set.delete(ref.toString);
   }
-  [Symbol.iterator]() {
-    return this._set.values();
+  [Symbol.iterator] {
+    return this._set.values;
   }
-  clear() {
-    this._set.clear();
+  clear {
+    this._set.clear;
   }
 }
 exports.RefSet = RefSet;
 class RefSetCache {
-  constructor() {
-    this._map = new Map();
+  constructor {
+    this._map = new Map;
   }
-  get size() {
+  get size {
     return this._map.size;
   }
   get(ref) {
-    return this._map.get(ref.toString());
+    return this._map.get(ref.toString);
   }
   has(ref) {
-    return this._map.has(ref.toString());
+    return this._map.has(ref.toString);
   }
   put(ref, obj) {
-    this._map.set(ref.toString(), obj);
+    this._map.set(ref.toString, obj);
   }
   putAlias(ref, aliasRef) {
-    this._map.set(ref.toString(), this.get(aliasRef));
+    this._map.set(ref.toString, this.get(aliasRef));
   }
-  [Symbol.iterator]() {
-    return this._map.values();
+  [Symbol.iterator] {
+    return this._map.values;
   }
-  clear() {
-    this._map.clear();
+  clear {
+    this._map.clear;
   }
 }
 exports.RefSetCache = RefSetCache;
@@ -2209,28 +2209,28 @@ Object.defineProperty(exports, "__esModule", ({
 exports.BaseStream = void 0;
 var _util = __w_pdfjs_require__(2);
 class BaseStream {
-  constructor() {
+  constructor {
     if (this.constructor === BaseStream) {
       (0, _util.unreachable)("Cannot initialize BaseStream.");
     }
   }
-  get length() {
+  get length {
     (0, _util.unreachable)("Abstract getter `length` accessed");
   }
-  get isEmpty() {
+  get isEmpty {
     (0, _util.unreachable)("Abstract getter `isEmpty` accessed");
   }
-  get isDataLoaded() {
+  get isDataLoaded {
     return (0, _util.shadow)(this, "isDataLoaded", true);
   }
-  getByte() {
+  getByte {
     (0, _util.unreachable)("Abstract method `getByte` called");
   }
   getBytes(length) {
     (0, _util.unreachable)("Abstract method `getBytes` called");
   }
-  peekByte() {
-    const peekedByte = this.getByte();
+  peekByte {
+    const peekedByte = this.getByte;
     if (peekedByte !== -1) {
       this.pos--;
     }
@@ -2241,19 +2241,19 @@ class BaseStream {
     this.pos -= bytes.length;
     return bytes;
   }
-  getUint16() {
-    const b0 = this.getByte();
-    const b1 = this.getByte();
+  getUint16 {
+    const b0 = this.getByte;
+    const b1 = this.getByte;
     if (b0 === -1 || b1 === -1) {
       return -1;
     }
     return (b0 << 8) + b1;
   }
-  getInt32() {
-    const b0 = this.getByte();
-    const b1 = this.getByte();
-    const b2 = this.getByte();
-    const b3 = this.getByte();
+  getInt32 {
+    const b0 = this.getByte;
+    const b1 = this.getByte;
+    const b2 = this.getByte;
+    const b3 = this.getByte;
     return (b0 << 24) + (b1 << 16) + (b2 << 8) + b3;
   }
   getByteRange(begin, end) {
@@ -2265,16 +2265,16 @@ class BaseStream {
   skip(n) {
     this.pos += n || 1;
   }
-  reset() {
+  reset {
     (0, _util.unreachable)("Abstract method `reset` called");
   }
-  moveStart() {
+  moveStart {
     (0, _util.unreachable)("Abstract method `moveStart` called");
   }
   makeSubStream(start, length, dict = null) {
     (0, _util.unreachable)("Abstract method `makeSubStream` called");
   }
-  getBaseStreams() {
+  getBaseStreams {
     return null;
   }
 }
@@ -2317,16 +2317,16 @@ class BasePdfManager {
     args.evaluatorOptions.isOffscreenCanvasSupported &&= _util.FeatureTest.isOffscreenCanvasSupported;
     this.evaluatorOptions = args.evaluatorOptions;
   }
-  get docId() {
+  get docId {
     return this._docId;
   }
-  get password() {
+  get password {
     return this._password;
   }
-  get docBaseUrl() {
+  get docBaseUrl {
     return this._docBaseUrl;
   }
-  get catalog() {
+  get catalog {
     return this.pdfDocument.catalog;
   }
   ensureDoc(prop, args) {
@@ -2347,8 +2347,8 @@ class BasePdfManager {
   loadXfaFonts(handler, task) {
     return this.pdfDocument.loadXfaFonts(handler, task);
   }
-  loadXfaImages() {
-    return this.pdfDocument.loadXfaImages();
+  loadXfaImages {
+    return this.pdfDocument.loadXfaImages;
   }
   serializeXfaData(annotationStorage) {
     return this.pdfDocument.serializeXfaData(annotationStorage);
@@ -2390,7 +2390,7 @@ class LocalPdfManager extends BasePdfManager {
     return value;
   }
   requestRange(begin, end) {
-    return Promise.resolve();
+    return Promise.resolve;
   }
   requestLoadedStream(noFetch = false) {
     return this._loadedStreamPromise;
@@ -2407,7 +2407,7 @@ class NetworkPdfManager extends BasePdfManager {
       disableAutoFetch: args.disableAutoFetch,
       rangeChunkSize: args.rangeChunkSize
     });
-    this.pdfDocument = new _document.PDFDocument(this, this.streamManager.getStream());
+    this.pdfDocument = new _document.PDFDocument(this, this.streamManager.getStream);
   }
   async ensure(obj, prop, args) {
     try {
@@ -2458,13 +2458,13 @@ class ChunkedStream extends _stream.Stream {
   constructor(length, chunkSize, manager) {
     super(new Uint8Array(length), 0, length, null);
     this.chunkSize = chunkSize;
-    this._loadedChunks = new Set();
+    this._loadedChunks = new Set;
     this.numChunks = Math.ceil(length / chunkSize);
     this.manager = manager;
     this.progressiveDataLength = 0;
     this.lastSuccessfulEnsureByteChunk = -1;
   }
-  getMissingChunks() {
+  getMissingChunks {
     const chunks = [];
     for (let chunk = 0, n = this.numChunks; chunk < n; ++chunk) {
       if (!this._loadedChunks.has(chunk)) {
@@ -2473,10 +2473,10 @@ class ChunkedStream extends _stream.Stream {
     }
     return chunks;
   }
-  get numChunksLoaded() {
+  get numChunksLoaded {
     return this._loadedChunks.size;
   }
-  get isDataLoaded() {
+  get isDataLoaded {
     return this.numChunksLoaded === this.numChunks;
   }
   onReceiveData(begin, chunk) {
@@ -2553,7 +2553,7 @@ class ChunkedStream extends _stream.Stream {
   hasChunk(chunk) {
     return this._loadedChunks.has(chunk);
   }
-  getByte() {
+  getByte {
     const pos = this.pos;
     if (pos >= this.end) {
       return -1;
@@ -2603,9 +2603,9 @@ class ChunkedStream extends _stream.Stream {
     } else if (start >= this.progressiveDataLength) {
       this.ensureByte(start);
     }
-    function ChunkedStreamSubstream() {}
+    function ChunkedStreamSubstream {}
     ChunkedStreamSubstream.prototype = Object.create(this);
-    ChunkedStreamSubstream.prototype.getMissingChunks = function () {
+    ChunkedStreamSubstream.prototype.getMissingChunks = function  {
       const chunkSize = this.chunkSize;
       const beginChunk = Math.floor(this.start / chunkSize);
       const endChunk = Math.floor((this.end - 1) / chunkSize) + 1;
@@ -2618,21 +2618,21 @@ class ChunkedStream extends _stream.Stream {
       return missingChunks;
     };
     Object.defineProperty(ChunkedStreamSubstream.prototype, "isDataLoaded", {
-      get() {
+      get {
         if (this.numChunksLoaded === this.numChunks) {
           return true;
         }
-        return this.getMissingChunks().length === 0;
+        return this.getMissingChunks.length === 0;
       },
       configurable: true
     });
-    const subStream = new ChunkedStreamSubstream();
+    const subStream = new ChunkedStreamSubstream;
     subStream.pos = subStream.start = start;
     subStream.end = start + length || this.end;
     subStream.dict = dict;
     return subStream;
   }
-  getBaseStreams() {
+  getBaseStreams {
     return [this];
   }
 }
@@ -2646,12 +2646,12 @@ class ChunkedStreamManager {
     this.disableAutoFetch = args.disableAutoFetch;
     this.msgHandler = args.msgHandler;
     this.currRequestId = 0;
-    this._chunksNeededByRequest = new Map();
-    this._requestsByChunk = new Map();
-    this._promisesByRequest = new Map();
+    this._chunksNeededByRequest = new Map;
+    this._requestsByChunk = new Map;
+    this._promisesByRequest = new Map;
     this.progressiveDataLength = 0;
     this.aborted = false;
-    this._loadedStreamCapability = new _util.PromiseCapability();
+    this._loadedStreamCapability = new _util.PromiseCapability;
   }
   sendRequest(begin, end) {
     const rangeReader = this.pdfNetworkStream.getRangeReader(begin, end);
@@ -2679,12 +2679,12 @@ class ChunkedStreamManager {
             });
           }
           chunks.push(value);
-          rangeReader.read().then(readChunk, reject);
+          rangeReader.read.then(readChunk, reject);
         } catch (e) {
           reject(e);
         }
       };
-      rangeReader.read().then(readChunk, reject);
+      rangeReader.read.then(readChunk, reject);
     }).then(data => {
       if (this.aborted) {
         return;
@@ -2697,14 +2697,14 @@ class ChunkedStreamManager {
   }
   requestAllChunks(noFetch = false) {
     if (!noFetch) {
-      const missingChunks = this.stream.getMissingChunks();
+      const missingChunks = this.stream.getMissingChunks;
       this._requestChunks(missingChunks);
     }
     return this._loadedStreamCapability.promise;
   }
   _requestChunks(chunks) {
     const requestId = this.currRequestId++;
-    const chunksNeeded = new Set();
+    const chunksNeeded = new Set;
     this._chunksNeededByRequest.set(requestId, chunksNeeded);
     for (const chunk of chunks) {
       if (!this.stream.hasChunk(chunk)) {
@@ -2712,9 +2712,9 @@ class ChunkedStreamManager {
       }
     }
     if (chunksNeeded.size === 0) {
-      return Promise.resolve();
+      return Promise.resolve;
     }
-    const capability = new _util.PromiseCapability();
+    const capability = new _util.PromiseCapability;
     this._promisesByRequest.set(requestId, capability);
     const chunksToRequest = [];
     for (const chunk of chunksNeeded) {
@@ -2741,7 +2741,7 @@ class ChunkedStreamManager {
       throw reason;
     });
   }
-  getStream() {
+  getStream {
     return this.stream;
   }
   requestRange(begin, end) {
@@ -2853,7 +2853,7 @@ class ChunkedStreamManager {
     for (const requestId of loadedRequests) {
       const capability = this._promisesByRequest.get(requestId);
       this._promisesByRequest.delete(requestId);
-      capability.resolve();
+      capability.resolve;
     }
     this.msgHandler.send("DocProgress", {
       loaded: this.stream.numChunksLoaded * this.chunkSize,
@@ -2872,7 +2872,7 @@ class ChunkedStreamManager {
   abort(reason) {
     this.aborted = true;
     this.pdfNetworkStream?.cancelAllRequests(reason);
-    for (const capability of this._promisesByRequest.values()) {
+    for (const capability of this._promisesByRequest.values) {
       capability.reject(reason);
     }
   }
@@ -2893,20 +2893,20 @@ var _base_stream = __w_pdfjs_require__(5);
 var _util = __w_pdfjs_require__(2);
 class Stream extends _base_stream.BaseStream {
   constructor(arrayBuffer, start, length, dict) {
-    super();
+    super;
     this.bytes = arrayBuffer instanceof Uint8Array ? arrayBuffer : new Uint8Array(arrayBuffer);
     this.start = start || 0;
     this.pos = this.start;
     this.end = start + length || this.bytes.length;
     this.dict = dict;
   }
-  get length() {
+  get length {
     return this.end - this.start;
   }
-  get isEmpty() {
+  get isEmpty {
     return this.length === 0;
   }
-  getByte() {
+  getByte {
     if (this.pos >= this.end) {
       return -1;
     }
@@ -2935,10 +2935,10 @@ class Stream extends _base_stream.BaseStream {
     }
     return this.bytes.subarray(begin, end);
   }
-  reset() {
+  reset {
     this.pos = this.start;
   }
-  moveStart() {
+  moveStart {
     this.start = this.pos;
   }
   makeSubStream(start, length, dict = null) {
@@ -2953,7 +2953,7 @@ class StringStream extends Stream {
 }
 exports.StringStream = StringStream;
 class NullStream extends Stream {
-  constructor() {
+  constructor {
     super(new Uint8Array(0));
   }
 }
@@ -3025,11 +3025,11 @@ class Page {
       obj: 0
     };
     this._localIdFactory = class extends globalIdFactory {
-      static createObjId() {
+      static createObjId {
         return `p${pageIndex}_${++idCounters.obj}`;
       }
-      static getPageObjId() {
-        return `p${ref.toString()}`;
+      static getPageObjId {
+        return `p${ref.toString}`;
       }
     };
   }
@@ -3051,10 +3051,10 @@ class Page {
       dictArray: value
     });
   }
-  get content() {
+  get content {
     return this.pageDict.getArray("Contents");
   }
-  get resources() {
+  get resources {
     const resources = this._getInheritableProperty("Resources");
     return (0, _util.shadow)(this, "resources", resources instanceof _primitives.Dict ? resources : _primitives.Dict.empty);
   }
@@ -3072,20 +3072,20 @@ class Page {
     }
     return null;
   }
-  get mediaBox() {
+  get mediaBox {
     return (0, _util.shadow)(this, "mediaBox", this._getBoundingBox("MediaBox") || LETTER_SIZE_MEDIABOX);
   }
-  get cropBox() {
+  get cropBox {
     return (0, _util.shadow)(this, "cropBox", this._getBoundingBox("CropBox") || this.mediaBox);
   }
-  get userUnit() {
+  get userUnit {
     let obj = this.pageDict.get("UserUnit");
     if (typeof obj !== "number" || obj <= 0) {
       obj = DEFAULT_USER_UNIT;
     }
     return (0, _util.shadow)(this, "userUnit", obj);
   }
-  get view() {
+  get view {
     const {
       cropBox,
       mediaBox
@@ -3099,7 +3099,7 @@ class Page {
     }
     return (0, _util.shadow)(this, "view", mediaBox);
   }
-  get rotate() {
+  get rotate {
     let rotate = this._getInheritableProperty("Rotate") || 0;
     if (rotate % 90 !== 0) {
       rotate = 0;
@@ -3117,7 +3117,7 @@ class Page {
     }
     throw reason;
   }
-  getContentStream() {
+  getContentStream {
     return this.pdfManager.ensure(this, "content").then(content => {
       if (content instanceof _base_stream.BaseStream) {
         return content;
@@ -3125,10 +3125,10 @@ class Page {
       if (Array.isArray(content)) {
         return new _decode_stream.StreamsSequenceStream(content, this._onSubStreamError.bind(this));
       }
-      return new _stream.NullStream();
+      return new _stream.NullStream;
     });
   }
-  get xfaData() {
+  get xfaData {
     return (0, _util.shadow)(this, "xfaData", this.xfaFactory ? {
       bbox: this.xfaFactory.getBoundingBox(this.pageIndex)
     } : null);
@@ -3167,8 +3167,8 @@ class Page {
       systemFontCache: this.systemFontCache,
       options: this.evaluatorOptions
     });
-    const deletedAnnotations = new _primitives.RefSet();
-    const existingAnnotations = new _primitives.RefSet();
+    const deletedAnnotations = new _primitives.RefSet;
+    const existingAnnotations = new _primitives.RefSet;
     this.#replaceIdByRef(annotations, deletedAnnotations, existingAnnotations);
     const pageDict = this.pageDict;
     const annotationsArray = this.annotations.filter(a => !(a instanceof _primitives.Ref && deletedAnnotations.has(a)));
@@ -3227,9 +3227,9 @@ class Page {
     if (!this.resourcesPromise) {
       this.resourcesPromise = this.pdfManager.ensure(this, "resources");
     }
-    return this.resourcesPromise.then(() => {
+    return this.resourcesPromise.then( => {
       const objectLoader = new _object_loader.ObjectLoader(this.resources, keys, this.xref);
-      return objectLoader.load();
+      return objectLoader.load;
     });
   }
   getOperatorList({
@@ -3240,7 +3240,7 @@ class Page {
     cacheKey,
     annotationStorage = null
   }) {
-    const contentStreamPromise = this.getContentStream();
+    const contentStreamPromise = this.getContentStream;
     const resourcesPromise = this.loadResources(["ColorSpace", "ExtGState", "Font", "Pattern", "Properties", "Shading", "XObject"]);
     const partialEvaluator = new _evaluator.PartialEvaluator({
       xref: this.xref,
@@ -3262,7 +3262,7 @@ class Page {
       if (newAnnotations) {
         const annotationGlobalsPromise = this.pdfManager.ensureDoc("annotationGlobals");
         let imagePromises;
-        const missingBitmaps = new Set();
+        const missingBitmaps = new Set;
         for (const {
           bitmapId,
           bitmap
@@ -3275,7 +3275,7 @@ class Page {
           isOffscreenCanvasSupported
         } = this.evaluatorOptions;
         if (missingBitmaps.size > 0) {
-          const annotationWithBitmaps = newAnnotations.slice();
+          const annotationWithBitmaps = newAnnotations.slice;
           for (const [key, annotation] of annotationStorage) {
             if (!key.startsWith(_util.AnnotationEditorPrefix)) {
               continue;
@@ -3288,7 +3288,7 @@ class Page {
         } else {
           imagePromises = _annotation.AnnotationFactory.generateImages(newAnnotations, this.xref, isOffscreenCanvasSupported);
         }
-        deletedAnnotations = new _primitives.RefSet();
+        deletedAnnotations = new _primitives.RefSet;
         this.#replaceIdByRef(newAnnotations, deletedAnnotations, null);
         newAnnotationsPromise = annotationGlobalsPromise.then(annotationGlobals => {
           if (!annotationGlobals) {
@@ -3311,7 +3311,7 @@ class Page {
         task,
         resources: this.resources,
         operatorList: opList
-      }).then(function () {
+      }).then(function  {
         return opList;
       });
     });
@@ -3383,7 +3383,7 @@ class Page {
     disableNormalization,
     sink
   }) {
-    const contentStreamPromise = this.getContentStream();
+    const contentStreamPromise = this.getContentStream;
     const resourcesPromise = this.loadResources(["ExtGState", "Font", "Properties", "XObject"]);
     const dataPromises = Promise.all([contentStreamPromise, resourcesPromise]);
     return dataPromises.then(([contentStream]) => {
@@ -3410,7 +3410,7 @@ class Page {
       });
     });
   }
-  async getStructTree() {
+  async getStructTree {
     const structTreeRoot = await this.pdfManager.ensureCatalog("structTreeRoot");
     if (!structTreeRoot) {
       return null;
@@ -3461,11 +3461,11 @@ class Page {
     await Promise.all(textContentPromises);
     return annotationsData;
   }
-  get annotations() {
+  get annotations {
     const annots = this._getInheritableProperty("Annots");
     return (0, _util.shadow)(this, "annotations", Array.isArray(annots) ? annots : []);
   }
-  get _parsedAnnotations() {
+  get _parsedAnnotations {
     const promise = this.pdfManager.ensure(this, "annotations").then(async annots => {
       if (annots.length === 0) {
         return annots;
@@ -3500,7 +3500,7 @@ class Page {
     });
     return (0, _util.shadow)(this, "_parsedAnnotations", promise);
   }
-  get jsActions() {
+  get jsActions {
     const actions = (0, _core_utils.collectActions)(this.xref, this.pageDict, _util.PageActionEventType);
     return (0, _util.shadow)(this, "jsActions", actions);
   }
@@ -3556,22 +3556,22 @@ class PDFDocument {
     this.pdfManager = pdfManager;
     this.stream = stream;
     this.xref = new _xref.XRef(stream, pdfManager);
-    this._pagePromises = new Map();
+    this._pagePromises = new Map;
     this._version = null;
     const idCounters = {
       font: 0
     };
     this._globalIdFactory = class {
-      static getDocId() {
+      static getDocId {
         return `g_${pdfManager.docId}`;
       }
-      static createFontId() {
+      static createFontId {
         return `f${++idCounters.font}`;
       }
-      static createObjId() {
+      static createObjId {
         (0, _util.unreachable)("Abstract method `createObjId` called.");
       }
-      static getPageObjId() {
+      static getPageObjId {
         (0, _util.unreachable)("Abstract method `getPageObjId` called.");
       }
     };
@@ -3580,7 +3580,7 @@ class PDFDocument {
     this.xref.parse(recoveryMode);
     this.catalog = new _catalog.Catalog(this.pdfManager, this.xref);
   }
-  get linearization() {
+  get linearization {
     let linearization = null;
     try {
       linearization = _parser.Linearization.create(this.stream);
@@ -3592,11 +3592,11 @@ class PDFDocument {
     }
     return (0, _util.shadow)(this, "linearization", linearization);
   }
-  get startXRef() {
+  get startXRef {
     const stream = this.stream;
     let startXRef = 0;
     if (this.linearization) {
-      stream.reset();
+      stream.reset;
       if (find(stream, ENDOBJ_SIGNATURE)) {
         startXRef = stream.pos + 6 - stream.start;
       }
@@ -3617,12 +3617,12 @@ class PDFDocument {
         stream.skip(9);
         let ch;
         do {
-          ch = stream.getByte();
+          ch = stream.getByte;
         } while ((0, _core_utils.isWhiteSpace)(ch));
         let str = "";
         while (ch >= 0x20 && ch <= 0x39) {
           str += String.fromCharCode(ch);
-          ch = stream.getByte();
+          ch = stream.getByte;
         }
         startXRef = parseInt(str, 10);
         if (isNaN(startXRef)) {
@@ -3632,17 +3632,17 @@ class PDFDocument {
     }
     return (0, _util.shadow)(this, "startXRef", startXRef);
   }
-  checkHeader() {
+  checkHeader {
     const stream = this.stream;
-    stream.reset();
+    stream.reset;
     if (!find(stream, PDF_HEADER_SIGNATURE)) {
       return;
     }
-    stream.moveStart();
+    stream.moveStart;
     stream.skip(PDF_HEADER_SIGNATURE.length);
     let version = "",
       ch;
-    while ((ch = stream.getByte()) > 0x20 && version.length < 7) {
+    while ((ch = stream.getByte) > 0x20 && version.length < 7) {
       version += String.fromCharCode(ch);
     }
     if (_core_utils.PDF_VERSION_REGEXP.test(version)) {
@@ -3651,15 +3651,15 @@ class PDFDocument {
       (0, _util.warn)(`Invalid PDF header version: ${version}`);
     }
   }
-  parseStartXRef() {
+  parseStartXRef {
     this.xref.setStartXRef(this.startXRef);
   }
-  get numPages() {
+  get numPages {
     let num = 0;
     if (this.catalog.hasActualNumPages) {
       num = this.catalog.numPages;
     } else if (this.xfaFactory) {
-      num = this.xfaFactory.getNumPages();
+      num = this.xfaFactory.getNumPages;
     } else if (this.linearization) {
       num = this.linearization.numPages;
     } else {
@@ -3690,7 +3690,7 @@ class PDFDocument {
       return isSignature && isInvisible;
     });
   }
-  get _xfaStreams() {
+  get _xfaStreams {
     const acroForm = this.catalog.acroForm;
     if (!acroForm) {
       return null;
@@ -3733,7 +3733,7 @@ class PDFDocument {
     }
     return entries;
   }
-  get xfaDatasets() {
+  get xfaDatasets {
     const streams = this._xfaStreams;
     if (!streams) {
       return (0, _util.shadow)(this, "xfaDatasets", null);
@@ -3744,7 +3744,7 @@ class PDFDocument {
         continue;
       }
       try {
-        const str = (0, _util.stringToUTF8String)(stream.getString());
+        const str = (0, _util.stringToUTF8String)(stream.getString);
         const data = {
           [key]: str
         };
@@ -3756,7 +3756,7 @@ class PDFDocument {
     }
     return (0, _util.shadow)(this, "xfaDatasets", null);
   }
-  get xfaData() {
+  get xfaData {
     const streams = this._xfaStreams;
     if (!streams) {
       return null;
@@ -3767,7 +3767,7 @@ class PDFDocument {
         continue;
       }
       try {
-        data[key] = (0, _util.stringToUTF8String)(stream.getString());
+        data[key] = (0, _util.stringToUTF8String)(stream.getString);
       } catch {
         (0, _util.warn)("XFA - Invalid utf-8 string.");
         return null;
@@ -3775,32 +3775,32 @@ class PDFDocument {
     }
     return data;
   }
-  get xfaFactory() {
+  get xfaFactory {
     let data;
     if (this.pdfManager.enableXfa && this.catalog.needsRendering && this.formInfo.hasXfa && !this.formInfo.hasAcroForm) {
       data = this.xfaData;
     }
     return (0, _util.shadow)(this, "xfaFactory", data ? new _factory.XFAFactory(data) : null);
   }
-  get isPureXfa() {
-    return this.xfaFactory ? this.xfaFactory.isValid() : false;
+  get isPureXfa {
+    return this.xfaFactory ? this.xfaFactory.isValid : false;
   }
-  get htmlForXfa() {
-    return this.xfaFactory ? this.xfaFactory.getPages() : null;
+  get htmlForXfa {
+    return this.xfaFactory ? this.xfaFactory.getPages : null;
   }
-  async loadXfaImages() {
+  async loadXfaImages {
     const xfaImagesDict = await this.pdfManager.ensureCatalog("xfaImages");
     if (!xfaImagesDict) {
       return;
     }
-    const keys = xfaImagesDict.getKeys();
+    const keys = xfaImagesDict.getKeys;
     const objectLoader = new _object_loader.ObjectLoader(xfaImagesDict, keys, this.xref);
-    await objectLoader.load();
-    const xfaImages = new Map();
+    await objectLoader.load;
+    const xfaImages = new Map;
     for (const key of keys) {
       const stream = xfaImagesDict.get(key);
       if (stream instanceof _base_stream.BaseStream) {
-        xfaImages.set(key, stream.getBytes());
+        xfaImages.set(key, stream.getBytes);
       }
     }
     this.xfaFactory.setImages(xfaImages);
@@ -3815,7 +3815,7 @@ class PDFDocument {
       return;
     }
     const objectLoader = new _object_loader.ObjectLoader(resources, ["Font"], this.xref);
-    await objectLoader.load();
+    await objectLoader.load;
     const fontRes = resources.get("Font");
     if (!(fontRes instanceof _primitives.Dict)) {
       return;
@@ -3832,20 +3832,20 @@ class PDFDocument {
       standardFontDataCache: this.catalog.standardFontDataCache,
       options
     });
-    const operatorList = new _operator_list.OperatorList();
+    const operatorList = new _operator_list.OperatorList;
     const pdfFonts = [];
     const initialState = {
-      get font() {
+      get font {
         return pdfFonts.at(-1);
       },
       set font(font) {
         pdfFonts.push(font);
       },
-      clone() {
+      clone {
         return this;
       }
     };
-    const fonts = new Map();
+    const fonts = new Map;
     fontRes.forEach((fontName, font) => {
       fonts.set(fontName, font);
     });
@@ -3880,7 +3880,7 @@ class PDFDocument {
     options.ignoreErrors = true;
     promises.length = 0;
     pdfFonts.length = 0;
-    const reallyMissingFonts = new Set();
+    const reallyMissingFonts = new Set;
     for (const missing of missingFonts) {
       if (!(0, _xfa_fonts.getXfaFontName)(`${missing}-Regular`)) {
         reallyMissingFonts.add(missing);
@@ -3928,10 +3928,10 @@ class PDFDocument {
   async serializeXfaData(annotationStorage) {
     return this.xfaFactory ? this.xfaFactory.serializeData(annotationStorage) : null;
   }
-  get version() {
+  get version {
     return this.catalog.version || this._version;
   }
-  get formInfo() {
+  get formInfo {
     const formInfo = {
       hasFields: false,
       hasAcroForm: false,
@@ -3961,7 +3961,7 @@ class PDFDocument {
     }
     return (0, _util.shadow)(this, "formInfo", formInfo);
   }
-  get documentInfo() {
+  get documentInfo {
     const docInfo = {
       PDFFormatVersion: this.version,
       Language: this.catalog.lang,
@@ -3984,7 +3984,7 @@ class PDFDocument {
     if (!(infoDict instanceof _primitives.Dict)) {
       return (0, _util.shadow)(this, "documentInfo", docInfo);
     }
-    for (const key of infoDict.getKeys()) {
+    for (const key of infoDict.getKeys) {
       const value = infoDict.get(key);
       switch (key) {
         case "Title":
@@ -4036,7 +4036,7 @@ class PDFDocument {
     }
     return (0, _util.shadow)(this, "documentInfo", docInfo);
   }
-  get fingerprints() {
+  get fingerprints {
     function validate(data) {
       return typeof data === "string" && data.length > 0 && data !== EMPTY_FINGERPRINT;
     }
@@ -4137,8 +4137,8 @@ class PDFDocument {
     } catch (reason) {
       if (reason instanceof _core_utils.XRefEntryException) {
         this._pagePromises.delete(0);
-        await this.cleanup();
-        throw new _core_utils.XRefParseException();
+        await this.cleanup;
+        throw new _core_utils.XRefParseException;
       }
     }
   }
@@ -4147,7 +4147,7 @@ class PDFDocument {
       catalog,
       pdfManager
     } = this;
-    catalog.setActualNumPages();
+    catalog.setActualNumPages;
     let numPages;
     try {
       await Promise.all([pdfManager.ensureDoc("xfaFactory"), pdfManager.ensureDoc("linearization"), pdfManager.ensureCatalog("numPages")]);
@@ -4166,9 +4166,9 @@ class PDFDocument {
       await this.getPage(numPages - 1);
     } catch (reason) {
       this._pagePromises.delete(numPages - 1);
-      await this.cleanup();
+      await this.cleanup;
       if (reason instanceof _core_utils.XRefEntryException && !recoveryMode) {
-        throw new _core_utils.XRefParseException();
+        throw new _core_utils.XRefParseException;
       }
       (0, _util.warn)(`checkLastPage - invalid /Pages tree /Count: ${numPages}.`);
       let pagesTree;
@@ -4176,7 +4176,7 @@ class PDFDocument {
         pagesTree = await catalog.getAllPageDicts(recoveryMode);
       } catch (reasonAll) {
         if (reasonAll instanceof _core_utils.XRefEntryException && !recoveryMode) {
-          throw new _core_utils.XRefParseException();
+          throw new _core_utils.XRefParseException;
         }
         catalog.setActualNumPages(1);
         return;
@@ -4185,7 +4185,7 @@ class PDFDocument {
         let promise;
         if (pageDict instanceof Error) {
           promise = Promise.reject(pageDict);
-          promise.catch(() => {});
+          promise.catch( => {});
         } else {
           promise = Promise.resolve(new Page({
             pdfManager,
@@ -4212,7 +4212,7 @@ class PDFDocument {
     return this.catalog.fontFallback(id, handler);
   }
   async cleanup(manuallyTriggered = false) {
-    return this.catalog ? this.catalog.cleanup(manuallyTriggered) : (0, _cleanup_helper.clearGlobalCaches)();
+    return this.catalog ? this.catalog.cleanup(manuallyTriggered) : (0, _cleanup_helper.clearGlobalCaches);
   }
   #collectFieldObjects(name, fieldRef, promises, annotationGlobals) {
     const field = this.xref.fetchIfRef(fieldRef);
@@ -4223,7 +4223,7 @@ class PDFDocument {
     if (!promises.has(name)) {
       promises.set(name, []);
     }
-    promises.get(name).push(_annotation.AnnotationFactory.create(this.xref, fieldRef, annotationGlobals, this._localIdFactory, true, null).then(annotation => annotation?.getFieldObject()).catch(function (reason) {
+    promises.get(name).push(_annotation.AnnotationFactory.create(this.xref, fieldRef, annotationGlobals, this._localIdFactory, true, null).then(annotation => annotation?.getFieldObject).catch(function (reason) {
       (0, _util.warn)(`#collectFieldObjects: "${reason}".`);
       return null;
     }));
@@ -4233,7 +4233,7 @@ class PDFDocument {
       }
     }
   }
-  get fieldObjects() {
+  get fieldObjects {
     if (!this.formInfo.hasFields) {
       return (0, _util.shadow)(this, "fieldObjects", Promise.resolve(null));
     }
@@ -4242,7 +4242,7 @@ class PDFDocument {
         return null;
       }
       const allFields = Object.create(null);
-      const fieldPromises = new Map();
+      const fieldPromises = new Map;
       for (const fieldRef of this.catalog.acroForm.get("Fields")) {
         this.#collectFieldObjects("", fieldRef, fieldPromises, annotationGlobals);
       }
@@ -4260,11 +4260,11 @@ class PDFDocument {
     });
     return (0, _util.shadow)(this, "fieldObjects", promise);
   }
-  get hasJSActions() {
+  get hasJSActions {
     const promise = this.pdfManager.ensureDoc("_parseHasJSActions");
     return (0, _util.shadow)(this, "hasJSActions", promise);
   }
-  async _parseHasJSActions() {
+  async _parseHasJSActions {
     const [catalogJsActions, fieldObjects] = await Promise.all([this.pdfManager.ensureCatalog("jsActions"), this.pdfManager.ensureDoc("fieldObjects")]);
     if (catalogJsActions) {
       return true;
@@ -4274,7 +4274,7 @@ class PDFDocument {
     }
     return false;
   }
-  get calculationOrderIds() {
+  get calculationOrderIds {
     const acroForm = this.catalog.acroForm;
     if (!acroForm?.has("CO")) {
       return (0, _util.shadow)(this, "calculationOrderIds", null);
@@ -4286,7 +4286,7 @@ class PDFDocument {
     const ids = [];
     for (const id of calculationOrder) {
       if (id instanceof _primitives.Ref) {
-        ids.push(id.toString());
+        ids.push(id.toString);
       }
     }
     if (ids.length === 0) {
@@ -4294,7 +4294,7 @@ class PDFDocument {
     }
     return (0, _util.shadow)(this, "calculationOrderIds", ids);
   }
-  get annotationGlobals() {
+  get annotationGlobals {
     return (0, _util.shadow)(this, "annotationGlobals", _annotation.AnnotationFactory.createGlobals(this.pdfManager));
   }
 }
@@ -4355,7 +4355,7 @@ class AnnotationFactory {
       acroForm,
       pdfManager
     } = annotationGlobals;
-    const id = ref instanceof _primitives.Ref ? ref.toString() : `annot_${idFactory.createObjId()}`;
+    const id = ref instanceof _primitives.Ref ? ref.toString : `annot_${idFactory.createObjId}`;
     let subtype = dict.get("Subtype");
     subtype = subtype instanceof _primitives.Name ? subtype.name : null;
     const parameters = {
@@ -4481,7 +4481,7 @@ class AnnotationFactory {
       if (!bitmap) {
         continue;
       }
-      imagePromises ||= new Map();
+      imagePromises ||= new Map;
       imagePromises.set(bitmapId, StampAnnotation.createImage(bitmap, xref));
     }
     return imagePromises;
@@ -4507,7 +4507,7 @@ class AnnotationFactory {
             baseFont.set("Subtype", _primitives.Name.get("Type1"));
             baseFont.set("Encoding", _primitives.Name.get("WinAnsiEncoding"));
             const buffer = [];
-            baseFontRef = xref.getNewTemporaryRef();
+            baseFontRef = xref.getNewTemporaryRef;
             await (0, _writer.writeObject)(baseFontRef, baseFont, buffer, xref);
             dependencies.push({
               ref: baseFontRef,
@@ -4535,7 +4535,7 @@ class AnnotationFactory {
             } = image;
             const buffer = [];
             if (smaskStream) {
-              const smaskRef = xref.getNewTemporaryRef();
+              const smaskRef = xref.getNewTemporaryRef;
               await (0, _writer.writeObject)(smaskRef, smaskStream, buffer, xref);
               dependencies.push({
                 ref: smaskRef,
@@ -4544,7 +4544,7 @@ class AnnotationFactory {
               imageStream.dict.set("SMask", smaskRef);
               buffer.length = 0;
             }
-            const imageRef = image.imageRef = xref.getNewTemporaryRef();
+            const imageRef = image.imageRef = xref.getNewTemporaryRef;
             await (0, _writer.writeObject)(imageRef, imageStream, buffer, xref);
             dependencies.push({
               ref: imageRef,
@@ -4741,7 +4741,7 @@ class Annotation {
         const kidIds = [];
         for (const kid of kids) {
           if (kid instanceof _primitives.Ref) {
-            kidIds.push(kid.toString());
+            kidIds.push(kid.toString);
           }
         }
         if (kidIds.length !== 0) {
@@ -4779,7 +4779,7 @@ class Annotation {
     }
     return this.printable;
   }
-  get viewable() {
+  get viewable {
     if (this.data.quadPoints === null) {
       return false;
     }
@@ -4788,7 +4788,7 @@ class Annotation {
     }
     return this._isViewable(this.flags);
   }
-  get printable() {
+  get printable {
     if (this.data.quadPoints === null) {
       return false;
     }
@@ -4886,7 +4886,7 @@ class Annotation {
     }
   }
   setBorderStyle(borderStyle) {
-    this.borderStyle = new AnnotationBorderStyle();
+    this.borderStyle = new AnnotationBorderStyle;
     if (!(borderStyle instanceof _primitives.Dict)) {
       return;
     }
@@ -4950,7 +4950,7 @@ class Annotation {
         return undefined;
       }
       const objectLoader = new _object_loader.ObjectLoader(resources, keys, resources.xref);
-      return objectLoader.load().then(function () {
+      return objectLoader.load.then(function  {
         return resources;
       });
     });
@@ -4962,20 +4962,20 @@ class Annotation {
     if (!appearance) {
       if (!isUsingOwnCanvas) {
         return {
-          opList: new _operator_list.OperatorList(),
+          opList: new _operator_list.OperatorList,
           separateForm: false,
           separateCanvas: false
         };
       }
       appearance = new _stream.StringStream("");
-      appearance.dict = new _primitives.Dict();
+      appearance.dict = new _primitives.Dict;
     }
     const appearanceDict = appearance.dict;
     const resources = await this.loadResources(["ExtGState", "ColorSpace", "Pattern", "Shading", "XObject", "Font"], appearance);
     const bbox = appearanceDict.getArray("BBox") || [0, 0, 1, 1];
     const matrix = appearanceDict.getArray("Matrix") || [1, 0, 0, 1, 0, 0];
     const transform = getTransformMatrix(data.rect, bbox, matrix);
-    const opList = new _operator_list.OperatorList();
+    const opList = new _operator_list.OperatorList;
     let optionalContent;
     if (this.oc) {
       optionalContent = await evaluator.parseMarkedContentProps(this.oc, null);
@@ -4995,7 +4995,7 @@ class Annotation {
     if (optionalContent !== undefined) {
       opList.addOp(_util.OPS.endMarkedContent, []);
     }
-    this.reset();
+    this.reset;
     return {
       opList,
       separateForm: false,
@@ -5005,7 +5005,7 @@ class Annotation {
   async save(evaluator, task, annotationStorage) {
     return null;
   }
-  get hasTextContent() {
+  get hasTextContent {
     return false;
   }
   async extractTextContent(evaluator, task, viewBox) {
@@ -5041,7 +5041,7 @@ class Annotation {
       sink,
       viewBox
     });
-    this.reset();
+    this.reset;
     if (buffer.length) {
       text.push(buffer.join(""));
     }
@@ -5059,7 +5059,7 @@ class Annotation {
       this.data.textContent = text;
     }
   }
-  getFieldObject() {
+  getFieldObject {
     if (this.data.kidIds) {
       return {
         id: this.data.id,
@@ -5075,9 +5075,9 @@ class Annotation {
     }
     return null;
   }
-  reset() {
+  reset {
     for (const stream of this._streams) {
-      stream.reset();
+      stream.reset;
     }
   }
   _constructFieldName(dict) {
@@ -5093,7 +5093,7 @@ class Annotation {
       fieldName.unshift((0, _util.stringToPDFString)(dict.get("T")));
     }
     let loopDict = dict;
-    const visited = new _primitives.RefSet();
+    const visited = new _primitives.RefSet;
     if (dict.objId) {
       visited.put(dict.objId);
     }
@@ -5114,7 +5114,7 @@ class Annotation {
 }
 exports.Annotation = Annotation;
 class AnnotationBorderStyle {
-  constructor() {
+  constructor {
     this.width = 1;
     this.style = _util.AnnotationBorderStyleType.SOLID;
     this.dashArray = [3];
@@ -5207,7 +5207,7 @@ class MarkupAnnotation extends Annotation {
     } = params;
     if (dict.has("IRT")) {
       const rawIRT = dict.getRaw("IRT");
-      this.data.inReplyTo = rawIRT instanceof _primitives.Ref ? rawIRT.toString() : null;
+      this.data.inReplyTo = rawIRT instanceof _primitives.Ref ? rawIRT.toString : null;
       const rt = dict.get("RT");
       this.data.replyType = rt instanceof _primitives.Name ? rt.name : _util.AnnotationReplyType.REPLY;
     }
@@ -5246,7 +5246,7 @@ class MarkupAnnotation extends Annotation {
         this.data.color = null;
       }
     }
-    this.data.popupRef = popupRef instanceof _primitives.Ref ? popupRef.toString() : null;
+    this.data.popupRef = popupRef instanceof _primitives.Ref ? popupRef.toString : null;
     if (dict.has("RC")) {
       this.data.richText = _factory.XFAFactory.getRichTextAsHtml(dict.get("RC"));
     }
@@ -5332,12 +5332,12 @@ class MarkupAnnotation extends Annotation {
     this._streams.push(this.appearance, appearanceStream);
   }
   static async createNewAnnotation(xref, annotation, dependencies, params) {
-    const annotationRef = annotation.ref ||= xref.getNewTemporaryRef();
+    const annotationRef = annotation.ref ||= xref.getNewTemporaryRef;
     const ap = await this.createNewAppearanceStream(annotation, xref, params);
     const buffer = [];
     let annotationDict;
     if (ap) {
-      const apRef = xref.getNewTemporaryRef();
+      const apRef = xref.getNewTemporaryRef;
       annotationDict = this.createNewDict(annotation, xref, {
         apRef
       });
@@ -5509,7 +5509,7 @@ class WidgetAnnotation extends Annotation {
   async getOperatorList(evaluator, task, intent, renderForms, annotationStorage) {
     if (renderForms && !(this instanceof SignatureWidgetAnnotation) && !this.data.noHTML && !this.data.hasOwnCanvas) {
       return {
-        opList: new _operator_list.OperatorList(),
+        opList: new _operator_list.OperatorList,
         separateForm: true,
         separateCanvas: false
       };
@@ -5521,7 +5521,7 @@ class WidgetAnnotation extends Annotation {
     if (this.appearance && content === null) {
       return super.getOperatorList(evaluator, task, intent, renderForms, annotationStorage);
     }
-    const opList = new _operator_list.OperatorList();
+    const opList = new _operator_list.OperatorList;
     if (!this._defaultAppearance || content === null) {
       return {
         opList,
@@ -5608,7 +5608,7 @@ class WidgetAnnotation extends Annotation {
       return null;
     }
     const dict = new _primitives.Dict(xref);
-    for (const key of originalDict.getKeys()) {
+    for (const key of originalDict.getKeys) {
       if (key !== "AP") {
         dict.set(key, originalDict.getRaw(key));
       }
@@ -5634,7 +5634,7 @@ class WidgetAnnotation extends Annotation {
       needAppearances
     }];
     if (appearance !== null) {
-      const newRef = xref.getNewTemporaryRef();
+      const newRef = xref.getNewTemporaryRef;
       const AP = new _primitives.Dict(xref);
       dict.set("AP", AP);
       AP.set("N", newRef);
@@ -5657,7 +5657,7 @@ class WidgetAnnotation extends Annotation {
       });
       buffer.length = 0;
     }
-    dict.set("M", `D:${(0, _util.getModificationDate)()}`);
+    dict.set("M", `D:${(0, _util.getModificationDate)}`);
     await (0, _writer.writeObject)(this.ref, dict, buffer, xref);
     changes[0].data = buffer.join("");
     return changes;
@@ -5689,7 +5689,7 @@ class WidgetAnnotation extends Annotation {
       value = value[0];
     }
     (0, _util.assert)(typeof value === "string", "Expected `value` to be a string.");
-    value = value.trim();
+    value = value.trim;
     if (this.data.combo) {
       const option = this.data.options.find(({
         exportValue
@@ -5743,7 +5743,7 @@ class WidgetAnnotation extends Annotation {
       const newFont = resources.getRaw("Font");
       if (this._fieldResources.mergedResources.has("Font")) {
         const oldFont = this._fieldResources.mergedResources.get("Font");
-        for (const key of newFont.getKeys()) {
+        for (const key of newFont.getKeys) {
           oldFont.set(key, newFont.getRaw(key));
         }
       } else {
@@ -5793,10 +5793,10 @@ class WidgetAnnotation extends Annotation {
     return `/Tx BMC q ${colors}BT ` + defaultAppearance + ` 1 0 0 1 0 0 Tm ${renderedText}` + " ET Q EMC";
   }
   static async _getFontData(evaluator, task, appearanceData, resources) {
-    const operatorList = new _operator_list.OperatorList();
+    const operatorList = new _operator_list.OperatorList;
     const initialState = {
       font: null,
-      clone() {
+      clone {
         return this;
       }
     };
@@ -5919,7 +5919,7 @@ class WidgetAnnotation extends Annotation {
     }
     return localResources || _primitives.Dict.empty;
   }
-  getFieldObject() {
+  getFieldObject {
     return null;
   }
 }
@@ -5952,7 +5952,7 @@ class TextWidgetAnnotation extends WidgetAnnotation {
     this.data.comb = this.hasFieldFlag(_util.AnnotationFieldFlag.COMB) && !this.hasFieldFlag(_util.AnnotationFieldFlag.MULTILINE) && !this.hasFieldFlag(_util.AnnotationFieldFlag.PASSWORD) && !this.hasFieldFlag(_util.AnnotationFieldFlag.FILESELECT) && this.data.maxLen !== 0;
     this.data.doNotScroll = this.hasFieldFlag(_util.AnnotationFieldFlag.DONOTSCROLL);
   }
-  get hasTextContent() {
+  get hasTextContent {
     return !!this.appearance && !this._needAppearances;
   }
   _getCombAppearance(defaultAppearance, font, text, fontSize, width, height, hPadding, vPadding, descent, lineHeight, annotationStorage) {
@@ -6037,7 +6037,7 @@ class TextWidgetAnnotation extends WidgetAnnotation {
     }
     return chunks;
   }
-  getFieldObject() {
+  getFieldObject {
     return {
       id: this.data.id,
       value: this.data.fieldValue,
@@ -6110,7 +6110,7 @@ class ButtonWidgetAnnotation extends WidgetAnnotation {
       return operatorList;
     }
     return {
-      opList: new _operator_list.OperatorList(),
+      opList: new _operator_list.OperatorList,
       separateForm: false,
       separateCanvas: false
     };
@@ -6157,7 +6157,7 @@ class ButtonWidgetAnnotation extends WidgetAnnotation {
     const name = _primitives.Name.get(value ? this.data.exportValue : "Off");
     dict.set("V", name);
     dict.set("AS", name);
-    dict.set("M", `D:${(0, _util.getModificationDate)()}`);
+    dict.set("M", `D:${(0, _util.getModificationDate)}`);
     const maybeMK = this._getMKDict(rotation);
     if (maybeMK) {
       dict.set("MK", maybeMK);
@@ -6215,7 +6215,7 @@ class ButtonWidgetAnnotation extends WidgetAnnotation {
       }
     }
     dict.set("AS", name);
-    dict.set("M", `D:${(0, _util.getModificationDate)()}`);
+    dict.set("M", `D:${(0, _util.getModificationDate)}`);
     const maybeMK = this._getMKDict(rotation);
     if (maybeMK) {
       dict.set("MK", maybeMK);
@@ -6290,7 +6290,7 @@ class ButtonWidgetAnnotation extends WidgetAnnotation {
       this.data.fieldValue = asValue;
     }
     const yes = this.data.fieldValue !== null && this.data.fieldValue !== "Off" ? this.data.fieldValue : "Yes";
-    const exportValues = normalAppearance.getKeys();
+    const exportValues = normalAppearance.getKeys;
     if (exportValues.length === 0) {
       exportValues.push("Off", yes);
     } else if (exportValues.length === 1) {
@@ -6346,7 +6346,7 @@ class ButtonWidgetAnnotation extends WidgetAnnotation {
     if (!(normalAppearance instanceof _primitives.Dict)) {
       return;
     }
-    for (const key of normalAppearance.getKeys()) {
+    for (const key of normalAppearance.getKeys) {
       if (key !== "Off") {
         this.data.buttonValue = this._decodeFormValue(key);
         break;
@@ -6386,7 +6386,7 @@ class ButtonWidgetAnnotation extends WidgetAnnotation {
       docAttachments: annotationGlobals.attachments
     });
   }
-  getFieldObject() {
+  getFieldObject {
     let type = "button";
     let exportValues;
     if (this.data.checkBox) {
@@ -6413,8 +6413,8 @@ class ButtonWidgetAnnotation extends WidgetAnnotation {
       type
     };
   }
-  get fallbackFontDict() {
-    const dict = new _primitives.Dict();
+  get fallbackFontDict {
+    const dict = new _primitives.Dict;
     dict.set("BaseFont", _primitives.Name.get("ZapfDingbats"));
     dict.set("Type", _primitives.Name.get("FallbackType"));
     dict.set("Subtype", _primitives.Name.get("FallbackType"));
@@ -6465,7 +6465,7 @@ class ChoiceWidgetAnnotation extends WidgetAnnotation {
     this.data.multiSelect = this.hasFieldFlag(_util.AnnotationFieldFlag.MULTISELECT);
     this._hasText = true;
   }
-  getFieldObject() {
+  getFieldObject {
     const type = this.data.combo ? "combobox" : "listbox";
     const value = this.data.fieldValue.length > 0 ? this.data.fieldValue[0] : null;
     return {
@@ -6610,7 +6610,7 @@ class SignatureWidgetAnnotation extends WidgetAnnotation {
     this.data.fieldValue = null;
     this.data.hasOwnCanvas = this.data.noRotate;
   }
-  getFieldObject() {
+  getFieldObject {
     return {
       id: this.data.id,
       value: null,
@@ -6747,7 +6747,7 @@ class FreeTextAnnotation extends MarkupAnnotation {
       (0, _util.warn)("FreeTextAnnotation: OffscreenCanvas is not supported, annotation may not render correctly.");
     }
   }
-  get hasTextContent() {
+  get hasTextContent {
     return !!this.appearance;
   }
   static createNewDict(annotation, xref, {
@@ -6765,7 +6765,7 @@ class FreeTextAnnotation extends MarkupAnnotation {
     const freetext = new _primitives.Dict(xref);
     freetext.set("Type", _primitives.Name.get("Annot"));
     freetext.set("Subtype", _primitives.Name.get("FreeText"));
-    freetext.set("CreationDate", `D:${(0, _util.getModificationDate)()}`);
+    freetext.set("CreationDate", `D:${(0, _util.getModificationDate)}`);
     freetext.set("Rect", rect);
     const da = `/Helv ${fontSize} Tf ${(0, _default_appearance.getPdfColor)(color, true)}`;
     freetext.set("DA", da);
@@ -7166,7 +7166,7 @@ class InkAnnotation extends MarkupAnnotation {
     const ink = new _primitives.Dict(xref);
     ink.set("Type", _primitives.Name.get("Annot"));
     ink.set("Subtype", _primitives.Name.get("Ink"));
-    ink.set("CreationDate", `D:${(0, _util.getModificationDate)()}`);
+    ink.set("CreationDate", `D:${(0, _util.getModificationDate)}`);
     ink.set("Rect", rect);
     ink.set("InkList", paths.map(p => p.points));
     ink.set("F", 4);
@@ -7391,7 +7391,7 @@ class StampAnnotation extends MarkupAnnotation {
       type: "image/jpeg",
       quality: 1
     }).then(blob => {
-      return blob.arrayBuffer();
+      return blob.arrayBuffer;
     });
     const xobjectName = _primitives.Name.get("XObject");
     const imageName = _primitives.Name.get("Image");
@@ -7445,7 +7445,7 @@ class StampAnnotation extends MarkupAnnotation {
     const stamp = new _primitives.Dict(xref);
     stamp.set("Type", _primitives.Name.get("Annot"));
     stamp.set("Subtype", _primitives.Name.get("Stamp"));
-    stamp.set("CreationDate", `D:${(0, _util.getModificationDate)()}`);
+    stamp.set("CreationDate", `D:${(0, _util.getModificationDate)}`);
     stamp.set("Rect", rect);
     stamp.set("F", 4);
     stamp.set("Border", [0, 0, 0]);
@@ -7537,7 +7537,7 @@ class DefaultAppearanceEvaluator extends _evaluator.EvaluatorPreprocessor {
   constructor(str) {
     super(new _stream.StringStream(str));
   }
-  parse() {
+  parse {
     const operation = {
       fn: 0,
       args: []
@@ -7588,7 +7588,7 @@ class DefaultAppearanceEvaluator extends _evaluator.EvaluatorPreprocessor {
   }
 }
 function parseDefaultAppearance(str) {
-  return new DefaultAppearanceEvaluator(str).parse();
+  return new DefaultAppearanceEvaluator(str).parse;
 }
 class AppearanceStreamEvaluator extends _evaluator.EvaluatorPreprocessor {
   constructor(stream, evaluatorOptions, xref) {
@@ -7598,7 +7598,7 @@ class AppearanceStreamEvaluator extends _evaluator.EvaluatorPreprocessor {
     this.xref = xref;
     this.resources = stream.dict?.get("Resources");
   }
-  parse() {
+  parse {
     const operation = {
       fn: 0,
       args: []
@@ -7628,12 +7628,12 @@ class AppearanceStreamEvaluator extends _evaluator.EvaluatorPreprocessor {
               scaleFactor: result.scaleFactor,
               fontSize: result.fontSize,
               fontName: result.fontName,
-              fontColor: result.fontColor.slice(),
+              fontColor: result.fontColor.slice,
               fillColorSpace: result.fillColorSpace
             });
             break;
           case _util.OPS.restore:
-            result = stack.pop() || result;
+            result = stack.pop || result;
             break;
           case _util.OPS.setTextMatrix:
             result.scaleFactor *= Math.hypot(args[0], args[1]);
@@ -7680,15 +7680,15 @@ class AppearanceStreamEvaluator extends _evaluator.EvaluatorPreprocessor {
     } catch (reason) {
       (0, _util.warn)(`parseAppearanceStream - ignoring errors: "${reason}".`);
     }
-    this.stream.reset();
+    this.stream.reset;
     delete result.scaleFactor;
     delete result.fillColorSpace;
     return result;
   }
-  get _localColorSpaceCache() {
-    return (0, _util.shadow)(this, "_localColorSpaceCache", new _image_utils.LocalColorSpaceCache());
+  get _localColorSpaceCache {
+    return (0, _util.shadow)(this, "_localColorSpaceCache", new _image_utils.LocalColorSpaceCache);
   }
-  get _pdfFunctionFactory() {
+  get _pdfFunctionFactory {
     const pdfFunctionFactory = new _function.PDFFunctionFactory({
       xref: this.xref,
       isEvalSupported: this.evaluatorOptions.isEvalSupported
@@ -7697,7 +7697,7 @@ class AppearanceStreamEvaluator extends _evaluator.EvaluatorPreprocessor {
   }
 }
 function parseAppearanceStream(stream, evaluatorOptions, xref) {
-  return new AppearanceStreamEvaluator(stream, evaluatorOptions, xref).parse();
+  return new AppearanceStreamEvaluator(stream, evaluatorOptions, xref).parse;
 }
 function getPdfColor(color, isFill) {
   if (color[0] === color[1] && color[1] === color[2]) {
@@ -7727,7 +7727,7 @@ class FakeUnicodeFont {
     }
     this.fontName = _primitives.Name.get(`InvalidPDFjsFont_${fontFamily}_${FakeUnicodeFont._fontNameId++}`);
   }
-  get toUnicodeRef() {
+  get toUnicodeRef {
     if (!FakeUnicodeFont._toUnicodeRef) {
       const toUnicode = `/CIDInit /ProcSet findresource begin
 12 dict begin
@@ -7752,7 +7752,7 @@ endcmap CMapName currentdict /CMap defineresource pop end end`;
     }
     return FakeUnicodeFont._toUnicodeRef;
   }
-  get fontDescriptorRef() {
+  get fontDescriptorRef {
     if (!FakeUnicodeFont._fontDescriptorRef) {
       const fontDescriptor = new _primitives.Dict(this.xref);
       fontDescriptor.set("Type", _primitives.Name.get("FontDescriptor"));
@@ -7766,7 +7766,7 @@ endcmap CMapName currentdict /CMap defineresource pop end end`;
     }
     return FakeUnicodeFont._fontDescriptorRef;
   }
-  get descendantFontRef() {
+  get descendantFontRef {
     const descendantFont = new _primitives.Dict(this.xref);
     descendantFont.set("BaseFont", this.fontName);
     descendantFont.set("Type", _primitives.Name.get("Font"));
@@ -7777,7 +7777,7 @@ endcmap CMapName currentdict /CMap defineresource pop end end`;
     descendantFont.set("FontDescriptor", this.fontDescriptorRef);
     descendantFont.set("DW", 1000);
     const widths = [];
-    const chars = [...this.widths.entries()].sort();
+    const chars = [...this.widths.entries].sort;
     let currentChar = null;
     let currentWidths = null;
     for (const [char, width] of chars) {
@@ -7805,7 +7805,7 @@ endcmap CMapName currentdict /CMap defineresource pop end end`;
     descendantFont.set("CIDSystemInfo", cidSystemInfo);
     return this.xref.getNewPersistentRef(descendantFont);
   }
-  get baseFontRef() {
+  get baseFontRef {
     const baseFont = new _primitives.Dict(this.xref);
     baseFont.set("BaseFont", this.fontName);
     baseFont.set("Type", _primitives.Name.get("Font"));
@@ -7815,20 +7815,20 @@ endcmap CMapName currentdict /CMap defineresource pop end end`;
     baseFont.set("ToUnicode", this.toUnicodeRef);
     return this.xref.getNewPersistentRef(baseFont);
   }
-  get resources() {
+  get resources {
     const resources = new _primitives.Dict(this.xref);
     const font = new _primitives.Dict(this.xref);
     font.set(this.fontName.name, this.baseFontRef);
     resources.set("Font", font);
     return resources;
   }
-  _createContext() {
-    this.widths = new Map();
+  _createContext {
+    this.widths = new Map;
     this.ctxMeasure.font = `1000px ${this.fontFamily}`;
     return this.ctxMeasure;
   }
   createFontResources(text) {
-    const ctx = this._createContext();
+    const ctx = this._createContext;
     for (const line of text.split(/\r\n?|\n/)) {
       for (const char of line.split("")) {
         const code = char.charCodeAt(0);
@@ -7845,7 +7845,7 @@ endcmap CMapName currentdict /CMap defineresource pop end end`;
     return this.resources;
   }
   createAppearance(text, rect, rotation, fontSize, bgColor, strokeAlpha) {
-    const ctx = this._createContext();
+    const ctx = this._createContext;
     const lines = [];
     let maxWidth = -Infinity;
     for (const line of text.split(/\r\n?|\n/)) {
@@ -8041,7 +8041,7 @@ class ColorSpace {
       }
     }
   }
-  get usesZeroToOneRange() {
+  get usesZeroToOneRange {
     return (0, _util.shadow)(this, "usesZeroToOneRange", true);
   }
   static _cache(cacheKey, xref, localColorSpaceCache, parsedColorSpace) {
@@ -8238,16 +8238,16 @@ class ColorSpace {
     }
     return true;
   }
-  static get singletons() {
+  static get singletons {
     return (0, _util.shadow)(this, "singletons", {
-      get gray() {
-        return (0, _util.shadow)(this, "gray", new DeviceGrayCS());
+      get gray {
+        return (0, _util.shadow)(this, "gray", new DeviceGrayCS);
       },
-      get rgb() {
-        return (0, _util.shadow)(this, "rgb", new DeviceRgbCS());
+      get rgb {
+        return (0, _util.shadow)(this, "rgb", new DeviceRgbCS);
       },
-      get cmyk() {
-        return (0, _util.shadow)(this, "cmyk", new DeviceCmykCS());
+      get cmyk {
+        return (0, _util.shadow)(this, "cmyk", new DeviceCmykCS);
       }
     });
   }
@@ -8362,7 +8362,7 @@ class IndexedCS extends ColorSpace {
   }
 }
 class DeviceGrayCS extends ColorSpace {
-  constructor() {
+  constructor {
     super("DeviceGray", 1);
   }
   getRgbItem(src, srcOffset, dest, destOffset) {
@@ -8386,7 +8386,7 @@ class DeviceGrayCS extends ColorSpace {
   }
 }
 class DeviceRgbCS extends ColorSpace {
-  constructor() {
+  constructor {
     super("DeviceRGB", 3);
   }
   getRgbItem(src, srcOffset, dest, destOffset) {
@@ -8417,7 +8417,7 @@ class DeviceRgbCS extends ColorSpace {
   }
 }
 class DeviceCmykCS extends ColorSpace {
-  constructor() {
+  constructor {
     super("DeviceCMYK", 4);
   }
   #toRgb(src, srcOffset, srcScale, dest, destOffset) {
@@ -8732,7 +8732,7 @@ class LabCS extends ColorSpace {
   isDefaultDecode(decodeMap, bpc) {
     return true;
   }
-  get usesZeroToOneRange() {
+  get usesZeroToOneRange {
     return (0, _util.shadow)(this, "usesZeroToOneRange", false);
   }
 }
@@ -8790,7 +8790,7 @@ const PatternType = {
   SHADING: 2
 };
 const TEXT_CHUNK_BATCH_SIZE = 10;
-const deferred = Promise.resolve();
+const deferred = Promise.resolve;
 function normalizeBlendMode(value, parsingArray = false) {
   if (Array.isArray(value)) {
     for (const val of value) {
@@ -8857,18 +8857,18 @@ function incrementCachedImageMaskCount(data) {
 class TimeSlotManager {
   static TIME_SLOT_DURATION_MS = 20;
   static CHECK_TIME_EVERY = 100;
-  constructor() {
-    this.reset();
+  constructor {
+    this.reset;
   }
-  check() {
+  check {
     if (++this.checked < TimeSlotManager.CHECK_TIME_EVERY) {
       return false;
     }
     this.checked = 0;
-    return this.endTime <= Date.now();
+    return this.endTime <= Date.now;
   }
-  reset() {
-    this.endTime = Date.now() + TimeSlotManager.TIME_SLOT_DURATION_MS;
+  reset {
+    this.endTime = Date.now + TimeSlotManager.TIME_SLOT_DURATION_MS;
     this.checked = 0;
   }
 }
@@ -8896,11 +8896,11 @@ class PartialEvaluator {
     this.systemFontCache = systemFontCache;
     this.options = options || DefaultPartialEvaluatorOptions;
     this.parsingType3Font = false;
-    this._regionalImageCache = new _image_utils.RegionalImageCache();
+    this._regionalImageCache = new _image_utils.RegionalImageCache;
     this._fetchBuiltInCMapBound = this.fetchBuiltInCMap.bind(this);
     _image_resizer.ImageResizer.setMaxArea(this.options.canvasMaxAreaInBytes);
   }
-  get _pdfFunctionFactory() {
+  get _pdfFunctionFactory {
     const pdfFunctionFactory = new _function.PDFFunctionFactory({
       xref: this.xref,
       isEvalSupported: this.options.isEvalSupported
@@ -8926,10 +8926,10 @@ class PartialEvaluator {
     const nodes = [resources],
       xref = this.xref;
     while (nodes.length) {
-      const node = nodes.shift();
+      const node = nodes.shift;
       const graphicStates = node.get("ExtGState");
       if (graphicStates instanceof _primitives.Dict) {
-        for (let graphicState of graphicStates.getRawValues()) {
+        for (let graphicState of graphicStates.getRawValues) {
           if (graphicState instanceof _primitives.Ref) {
             if (processed.has(graphicState)) {
               continue;
@@ -8968,7 +8968,7 @@ class PartialEvaluator {
       if (!(xObjects instanceof _primitives.Dict)) {
         continue;
       }
-      for (let xObject of xObjects.getRawValues()) {
+      for (let xObject of xObjects.getRawValues) {
         if (xObject instanceof _primitives.Ref) {
           if (processed.has(xObject)) {
             continue;
@@ -9018,7 +9018,7 @@ class PartialEvaluator {
         throw new Error(`fetchBuiltInCMap: failed to fetch file "${url}" with "${response.statusText}".`);
       }
       data = {
-        cMapData: new Uint8Array(await response.arrayBuffer()),
+        cMapData: new Uint8Array(await response.arrayBuffer),
         compressionType: _util.CMapCompressionType.BINARY
       };
     } else {
@@ -9039,7 +9039,7 @@ class PartialEvaluator {
     if (this.options.useSystemFonts && name !== "Symbol" && name !== "ZapfDingbats") {
       return null;
     }
-    const standardFontNameToFileName = (0, _standard_fonts.getFontNameToFileMap)(),
+    const standardFontNameToFileName = (0, _standard_fonts.getFontNameToFileMap),
       filename = standardFontNameToFileName[name];
     let data;
     if (this.options.standardFontDataUrl !== null) {
@@ -9048,7 +9048,7 @@ class PartialEvaluator {
       if (!response.ok) {
         (0, _util.warn)(`fetchStandardFontData: failed to fetch file "${url}" with "${response.statusText}".`);
       } else {
-        data = await response.arrayBuffer();
+        data = await response.arrayBuffer;
       }
     } else {
       try {
@@ -9119,7 +9119,7 @@ class PartialEvaluator {
       resources: dict.get("Resources") || resources,
       operatorList,
       initialState
-    }).then(function () {
+    }).then(function  {
       operatorList.addOp(_util.OPS.paintFormXObjectEnd, []);
       if (group) {
         operatorList.addOp(_util.OPS.endGroup, [groupOptions]);
@@ -9222,7 +9222,7 @@ class PartialEvaluator {
         }
         return;
       }
-      const objId = `mask_${this.idFactory.createObjId()}`;
+      const objId = `mask_${this.idFactory.createObjId}`;
       operatorList.addDependency(objId);
       this._sendImgData(objId, imgData);
       args = [{
@@ -9261,14 +9261,14 @@ class PartialEvaluator {
       operatorList.addImageOps(_util.OPS.paintInlineImageXObject, [imgData], optionalContent);
       return;
     }
-    let objId = `img_${this.idFactory.createObjId()}`,
+    let objId = `img_${this.idFactory.createObjId}`,
       cacheGlobally = false;
     if (this.parsingType3Font) {
-      objId = `${this.idFactory.getDocId()}_type3_${objId}`;
+      objId = `${this.idFactory.getDocId}_type3_${objId}`;
     } else if (imageRef) {
       cacheGlobally = this.globalImageCache.shouldCache(imageRef, this.pageIndex);
       if (cacheGlobally) {
-        objId = `${this.idFactory.getDocId()}_${objId}`;
+        objId = `${this.idFactory.getDocId}_${objId}`;
       }
     }
     operatorList.addDependency(objId);
@@ -9332,7 +9332,7 @@ class PartialEvaluator {
       }
       smaskOptions.transferMap = transferMap;
     }
-    return this.buildFormXObject(resources, smaskContent, smaskOptions, operatorList, task, stateManager.state.clone(), localColorSpaceCache);
+    return this.buildFormXObject(resources, smaskContent, smaskOptions, operatorList, task, stateManager.state.clone, localColorSpaceCache);
   }
   handleTransferFunction(tr) {
     let transferArray;
@@ -9375,7 +9375,7 @@ class PartialEvaluator {
     return transferMaps;
   }
   handleTilingType(fn, color, resources, pattern, patternDict, operatorList, task, localTilingPatternCache) {
-    const tilingOpList = new _operator_list.OperatorList();
+    const tilingOpList = new _operator_list.OperatorList;
     const patternResources = _primitives.Dict.merge({
       xref: this.xref,
       dictArray: [patternDict.get("Resources"), resources]
@@ -9385,8 +9385,8 @@ class PartialEvaluator {
       task,
       resources: patternResources,
       operatorList: tilingOpList
-    }).then(function () {
-      const operatorListIR = tilingOpList.getIR();
+    }).then(function  {
+      const operatorListIR = tilingOpList.getIR;
       const tilingPatternIR = (0, _pattern.getTilingPatternIR)(operatorListIR, patternDict, color);
       operatorList.addDependencies(tilingOpList.dependencies);
       operatorList.addOp(fn, tilingPatternIR);
@@ -9413,7 +9413,7 @@ class PartialEvaluator {
       if (!translated.font.isType3Font) {
         return translated;
       }
-      return translated.loadType3Data(this, resources, task).then(function () {
+      return translated.loadType3Data(this, resources, task).then(function  {
         operatorList.addDependencies(translated.type3Dependencies);
         return translated;
       }).catch(reason => {
@@ -9465,8 +9465,8 @@ class PartialEvaluator {
     const gStateRef = gState.objId;
     let isSimpleGState = true;
     const gStateObj = [];
-    let promise = Promise.resolve();
-    for (const key of gState.getKeys()) {
+    let promise = Promise.resolve;
+    for (const key of gState.getKeys) {
       const value = gState.get(key);
       switch (key) {
         case "Type":
@@ -9484,7 +9484,7 @@ class PartialEvaluator {
           break;
         case "Font":
           isSimpleGState = false;
-          promise = promise.then(() => {
+          promise = promise.then( => {
             return this.handleSetFont(resources, null, value[0], operatorList, task, stateManager.state).then(function (loadedName) {
               operatorList.addDependency(loadedName);
               gStateObj.push([key, [loadedName, value[1]]]);
@@ -9501,7 +9501,7 @@ class PartialEvaluator {
           }
           if (value instanceof _primitives.Dict) {
             isSimpleGState = false;
-            promise = promise.then(() => {
+            promise = promise.then( => {
               return this.handleSMask(value, resources, operatorList, task, stateManager, localColorSpaceCache);
             });
             gStateObj.push([key, true]);
@@ -9533,7 +9533,7 @@ class PartialEvaluator {
           break;
       }
     }
-    return promise.then(function () {
+    return promise.then(function  {
       if (gStateObj.length > 0) {
         operatorList.addOp(_util.OPS.setGState, [gStateObj]);
       }
@@ -9543,7 +9543,7 @@ class PartialEvaluator {
     });
   }
   loadFont(fontName, font, resources, fallbackFontDict = null, cssFontInfo = null) {
-    const errorFont = async () => {
+    const errorFont = async  => {
       return new TranslatedFont({
         loadedName: "g_font_error",
         font: new _fonts.ErrorFont(`Font "${fontName}" is not available.`),
@@ -9564,7 +9564,7 @@ class PartialEvaluator {
     }
     if (fontRef) {
       if (this.parsingType3Font && this.type3FontRefs.has(fontRef)) {
-        return errorFont();
+        return errorFont;
       }
       if (this.fontCache.has(fontRef)) {
         return this.fontCache.get(fontRef);
@@ -9574,7 +9574,7 @@ class PartialEvaluator {
     if (!(font instanceof _primitives.Dict)) {
       if (!this.options.ignoreErrors && !this.parsingType3Font) {
         (0, _util.warn)(`Font "${fontName}" is not available.`);
-        return errorFont();
+        return errorFont;
       }
       (0, _util.warn)(`Font "${fontName}" is not available -- attempting to fallback to a default font.`);
       font = fallbackFontDict || PartialEvaluator.fallbackFontDict;
@@ -9582,14 +9582,14 @@ class PartialEvaluator {
     if (font.cacheKey && this.fontCache.has(font.cacheKey)) {
       return this.fontCache.get(font.cacheKey);
     }
-    const fontCapability = new _util.PromiseCapability();
+    const fontCapability = new _util.PromiseCapability;
     let preEvaluatedFont;
     try {
       preEvaluatedFont = this.preEvaluateFont(font);
       preEvaluatedFont.cssFontInfo = cssFontInfo;
     } catch (reason) {
       (0, _util.warn)(`loadFont - preEvaluateFont failed: "${reason}".`);
-      return errorFont();
+      return errorFont;
     }
     const {
       descriptor,
@@ -9607,7 +9607,7 @@ class PartialEvaluator {
         }
       } else {
         fontAliases[hash] = {
-          fontID: this.idFactory.createFontId()
+          fontID: this.idFactory.createFontId
         };
       }
       if (fontRefIsRef) {
@@ -9615,7 +9615,7 @@ class PartialEvaluator {
       }
       fontID = fontAliases[hash].fontID;
     } else {
-      fontID = this.idFactory.createFontId();
+      fontID = this.idFactory.createFontId;
     }
     (0, _util.assert)(fontID?.startsWith("f"), 'The "fontID" must be (correctly) defined.');
     if (fontRefIsRef) {
@@ -9624,7 +9624,7 @@ class PartialEvaluator {
       font.cacheKey = `cacheKey_${fontID}`;
       this.fontCache.put(font.cacheKey, fontCapability.promise);
     }
-    font.loadedName = `${this.idFactory.getDocId()}_${fontID}`;
+    font.loadedName = `${this.idFactory.getDocId}_${fontID}`;
     this.translateFont(preEvaluatedFont).then(translatedFont => {
       fontCapability.resolve(new TranslatedFont({
         loadedName: font.loadedName,
@@ -9727,10 +9727,10 @@ class PartialEvaluator {
     let id = localShadingPatternCache.get(shading);
     if (!id) {
       var shadingFill = _pattern.Pattern.parseShading(shading, this.xref, resources, this._pdfFunctionFactory, localColorSpaceCache);
-      const patternIR = shadingFill.getIR();
-      id = `pattern_${this.idFactory.createObjId()}`;
+      const patternIR = shadingFill.getIR;
+      id = `pattern_${this.idFactory.createObjId}`;
       if (this.parsingType3Font) {
-        id = `${this.idFactory.getDocId()}_type3_${id}`;
+        id = `${this.idFactory.getDocId}_type3_${id}`;
       }
       localShadingPatternCache.set(shading, id);
       if (this.parsingType3Font) {
@@ -9742,7 +9742,7 @@ class PartialEvaluator {
     return id;
   }
   handleColorN(operatorList, fn, args, cs, patterns, resources, task, localColorSpaceCache, localTilingPatternCache, localShadingPatternCache) {
-    const patternName = args.pop();
+    const patternName = args.pop;
     if (patternName instanceof _primitives.Name) {
       const rawPattern = patterns.getRaw(patternName.name);
       const localTilingPattern = rawPattern instanceof _primitives.Ref && localTilingPatternCache.getByRef(rawPattern);
@@ -9808,7 +9808,7 @@ class PartialEvaluator {
         currentResult.push(nestedResult);
         this._parseVisibilityExpression(object, nestingCounter, nestedResult);
       } else if (raw instanceof _primitives.Ref) {
-        currentResult.push(raw.toString());
+        currentResult.push(raw.toString);
       }
     }
   }
@@ -9845,7 +9845,7 @@ class PartialEvaluator {
         const groupIds = [];
         if (Array.isArray(optionalContentGroups)) {
           for (const ocg of optionalContentGroups) {
-            groupIds.push(ocg.toString());
+            groupIds.push(ocg.toString);
           }
         } else {
           groupIds.push(optionalContentGroups.objId);
@@ -9859,7 +9859,7 @@ class PartialEvaluator {
       } else if (optionalContentGroups instanceof _primitives.Ref) {
         return {
           type: optionalContentType,
-          id: optionalContentGroups.toString()
+          id: optionalContentGroups.toString
         };
       }
     }
@@ -9874,23 +9874,23 @@ class PartialEvaluator {
     fallbackFontDict = null
   }) {
     resources ||= _primitives.Dict.empty;
-    initialState ||= new EvalState();
+    initialState ||= new EvalState;
     if (!operatorList) {
       throw new Error('getOperatorList: missing "operatorList" parameter');
     }
     const self = this;
     const xref = this.xref;
     let parsingText = false;
-    const localImageCache = new _image_utils.LocalImageCache();
-    const localColorSpaceCache = new _image_utils.LocalColorSpaceCache();
-    const localGStateCache = new _image_utils.LocalGStateCache();
-    const localTilingPatternCache = new _image_utils.LocalTilingPatternCache();
-    const localShadingPatternCache = new Map();
+    const localImageCache = new _image_utils.LocalImageCache;
+    const localColorSpaceCache = new _image_utils.LocalColorSpaceCache;
+    const localGStateCache = new _image_utils.LocalGStateCache;
+    const localTilingPatternCache = new _image_utils.LocalTilingPatternCache;
+    const localShadingPatternCache = new Map;
     const xobjs = resources.get("XObject") || _primitives.Dict.empty;
     const patterns = resources.get("Pattern") || _primitives.Dict.empty;
     const stateManager = new StateManager(initialState);
     const preprocessor = new EvaluatorPreprocessor(stream, xref, stateManager);
-    const timeSlotManager = new TimeSlotManager();
+    const timeSlotManager = new TimeSlotManager;
     function closePendingRestoreOPS(argument) {
       for (let i = 0, ii = preprocessor.savedStatesDepth; i < ii; i++) {
         operatorList.addOp(_util.OPS.restore, []);
@@ -9898,7 +9898,7 @@ class PartialEvaluator {
     }
     return new Promise(function promiseBody(resolve, reject) {
       const next = function (promise) {
-        Promise.all([promise, operatorList.ready]).then(function () {
+        Promise.all([promise, operatorList.ready]).then(function  {
           try {
             promiseBody(resolve, reject);
           } catch (ex) {
@@ -9906,11 +9906,11 @@ class PartialEvaluator {
           }
         }, reject);
       };
-      task.ensureNotTerminated();
-      timeSlotManager.reset();
+      task.ensureNotTerminated;
+      timeSlotManager.reset;
       const operation = {};
       let stop, i, ii, cs, name, isValidName;
-      while (!(stop = timeSlotManager.check())) {
+      while (!(stop = timeSlotManager.check)) {
         operation.args = null;
         if (!preprocessor.read(operation)) {
           break;
@@ -9940,14 +9940,14 @@ class PartialEvaluator {
                 if (localImage) {
                   operatorList.addImageOps(localImage.fn, localImage.args, localImage.optionalContent);
                   incrementCachedImageMaskCount(localImage);
-                  resolveXObject();
+                  resolveXObject;
                   return;
                 }
                 const globalImage = self.globalImageCache.getData(xobj, self.pageIndex);
                 if (globalImage) {
                   operatorList.addDependency(globalImage.objId);
                   operatorList.addImageOps(globalImage.fn, globalImage.args, globalImage.optionalContent);
-                  resolveXObject();
+                  resolveXObject;
                   return;
                 }
                 xobj = xref.fetch(xobj);
@@ -9960,10 +9960,10 @@ class PartialEvaluator {
                 throw new _util.FormatError("XObject should have a Name subtype");
               }
               if (type.name === "Form") {
-                stateManager.save();
-                self.buildFormXObject(resources, xobj, null, operatorList, task, stateManager.state.clone(), localColorSpaceCache).then(function () {
-                  stateManager.restore();
-                  resolveXObject();
+                stateManager.save;
+                self.buildFormXObject(resources, xobj, null, operatorList, task, stateManager.state.clone, localColorSpaceCache).then(function  {
+                  stateManager.restore;
+                  resolveXObject;
                 }, rejectXObject);
                 return;
               } else if (type.name === "Image") {
@@ -9981,7 +9981,7 @@ class PartialEvaluator {
               } else {
                 throw new _util.FormatError(`Unhandled XObject subtype ${type.name}`);
               }
-              resolveXObject();
+              resolveXObject;
             }).catch(function (reason) {
               if (reason instanceof _util.AbortException) {
                 return;
@@ -10066,8 +10066,8 @@ class PartialEvaluator {
               continue;
             }
             operatorList.addOp(_util.OPS.nextLine);
-            operatorList.addOp(_util.OPS.setWordSpacing, [args.shift()]);
-            operatorList.addOp(_util.OPS.setCharSpacing, [args.shift()]);
+            operatorList.addOp(_util.OPS.setWordSpacing, [args.shift]);
+            operatorList.addOp(_util.OPS.setCharSpacing, [args.shift]);
             args[0] = self.handleText(args[0], stateManager.state);
             fn = _util.OPS.showText;
             break;
@@ -10287,15 +10287,15 @@ class PartialEvaluator {
         next(deferred);
         return;
       }
-      closePendingRestoreOPS();
-      resolve();
+      closePendingRestoreOPS;
+      resolve;
     }).catch(reason => {
       if (reason instanceof _util.AbortException) {
         return;
       }
       if (this.options.ignoreErrors) {
         (0, _util.warn)(`getOperatorList - ignoring errors during "${task.name}" ` + `task: "${reason}".`);
-        closePendingRestoreOPS();
+        closePendingRestoreOPS;
         return;
       }
       throw reason;
@@ -10308,13 +10308,13 @@ class PartialEvaluator {
     stateManager = null,
     includeMarkedContent = false,
     sink,
-    seenStyles = new Set(),
+    seenStyles = new Set,
     viewBox,
     markedContentData = null,
     disableNormalization = false
   }) {
     resources ||= _primitives.Dict.empty;
-    stateManager ||= new StateManager(new TextState());
+    stateManager ||= new StateManager(new TextState);
     if (includeMarkedContent) {
       markedContentData ||= {
         level: 0
@@ -10352,10 +10352,10 @@ class PartialEvaluator {
       twoLastCharsPos = nextPos;
       return ret;
     }
-    function shouldAddWhitepsace() {
+    function shouldAddWhitepsace {
       return twoLastChars[twoLastCharsPos] !== " " && twoLastChars[(twoLastCharsPos + 1) % 2] === " ";
     }
-    function resetLastChars() {
+    function resetLastChars {
       twoLastChars[0] = twoLastChars[1] = " ";
       twoLastCharsPos = 0;
     }
@@ -10369,8 +10369,8 @@ class PartialEvaluator {
     const xref = this.xref;
     const showSpacedTextBuffer = [];
     let xobjs = null;
-    const emptyXObjectCache = new _image_utils.LocalImageCache();
-    const emptyGStateCache = new _image_utils.LocalGStateCache();
+    const emptyXObjectCache = new _image_utils.LocalImageCache;
+    const emptyGStateCache = new _image_utils.LocalGStateCache;
     const preprocessor = new EvaluatorPreprocessor(stream, xref, stateManager);
     let textState;
     function pushWhitespace({
@@ -10389,7 +10389,7 @@ class PartialEvaluator {
         hasEOL: false
       });
     }
-    function getCurrentTextTransform() {
+    function getCurrentTextTransform {
       const font = textState.font;
       const tsm = [textState.fontSize * textState.textHScale, 0, 0, textState.fontSize, 0, textState.textRise];
       if (font.isType3Font && (textState.fontSize <= 1 || font.isCharBBox) && !(0, _util.isArrayEqual)(textState.fontMatrix, _util.FONT_IDENTITY_MATRIX)) {
@@ -10400,7 +10400,7 @@ class PartialEvaluator {
       }
       return _util.Util.transform(textState.ctm, _util.Util.transform(textState.textMatrix, tsm));
     }
-    function ensureTextContentItem() {
+    function ensureTextContentItem {
       if (textContentItem.initialized) {
         return textContentItem;
       }
@@ -10418,7 +10418,7 @@ class PartialEvaluator {
         };
       }
       textContentItem.fontName = loadedName;
-      const trm = textContentItem.transform = getCurrentTextTransform();
+      const trm = textContentItem.transform = getCurrentTextTransform;
       if (!font.vertical) {
         textContentItem.width = textContentItem.totalWidth = 0;
         textContentItem.height = textContentItem.totalHeight = Math.hypot(trm[2], trm[3]);
@@ -10443,7 +10443,7 @@ class PartialEvaluator {
       textContentItem.initialized = true;
       return textContentItem;
     }
-    function updateAdvanceScale() {
+    function updateAdvanceScale {
       if (!textContentItem.initialized) {
         return;
       }
@@ -10483,7 +10483,7 @@ class PartialEvaluator {
         if (!translated.font.isType3Font) {
           return translated;
         }
-        return translated.loadType3Data(self, resources, task).catch(function () {}).then(function () {
+        return translated.loadType3Data(self, resources, task).catch(function  {}).then(function  {
           return translated;
         });
       }).then(function (translated) {
@@ -10497,7 +10497,7 @@ class PartialEvaluator {
       return [(matrix[0] * x + matrix[1] * y) / scale, (matrix[2] * x + matrix[3] * y) / scale];
     }
     function compareWithLastPosition(glyphWidth) {
-      const currentTransform = getCurrentTextTransform();
+      const currentTransform = getCurrentTextTransform;
       let posX = currentTransform[4];
       let posY = currentTransform[5];
       if (textState.font?.vertical) {
@@ -10545,24 +10545,24 @@ class PartialEvaluator {
         const textOrientation = Math.sign(textContentItem.height);
         if (advanceY < textOrientation * textContentItem.negativeSpaceMax) {
           if (Math.abs(advanceX) > 0.5 * textContentItem.width) {
-            appendEOL();
+            appendEOL;
             return true;
           }
-          resetLastChars();
-          flushTextContentItem();
+          resetLastChars;
+          flushTextContentItem;
           return true;
         }
         if (Math.abs(advanceX) > textContentItem.width) {
-          appendEOL();
+          appendEOL;
           return true;
         }
         if (advanceY <= textOrientation * textContentItem.notASpace) {
-          resetLastChars();
+          resetLastChars;
         }
         if (advanceY <= textOrientation * textContentItem.trackingSpaceMin) {
-          if (shouldAddWhitepsace()) {
-            resetLastChars();
-            flushTextContentItem();
+          if (shouldAddWhitepsace) {
+            resetLastChars;
+            flushTextContentItem;
             pushWhitespace({
               height: Math.abs(advanceY)
             });
@@ -10571,7 +10571,7 @@ class PartialEvaluator {
           }
         } else if (!addFakeSpaces(advanceY, textContentItem.prevTransform, textOrientation)) {
           if (textContentItem.str.length === 0) {
-            resetLastChars();
+            resetLastChars;
             pushWhitespace({
               height: Math.abs(advanceY)
             });
@@ -10580,7 +10580,7 @@ class PartialEvaluator {
           }
         }
         if (Math.abs(advanceX) > textContentItem.width * VERTICAL_SHIFT_RATIO) {
-          flushTextContentItem();
+          flushTextContentItem;
         }
         return true;
       }
@@ -10589,24 +10589,24 @@ class PartialEvaluator {
       const textOrientation = Math.sign(textContentItem.width);
       if (advanceX < textOrientation * textContentItem.negativeSpaceMax) {
         if (Math.abs(advanceY) > 0.5 * textContentItem.height) {
-          appendEOL();
+          appendEOL;
           return true;
         }
-        resetLastChars();
-        flushTextContentItem();
+        resetLastChars;
+        flushTextContentItem;
         return true;
       }
       if (Math.abs(advanceY) > textContentItem.height) {
-        appendEOL();
+        appendEOL;
         return true;
       }
       if (advanceX <= textOrientation * textContentItem.notASpace) {
-        resetLastChars();
+        resetLastChars;
       }
       if (advanceX <= textOrientation * textContentItem.trackingSpaceMin) {
-        if (shouldAddWhitepsace()) {
-          resetLastChars();
-          flushTextContentItem();
+        if (shouldAddWhitepsace) {
+          resetLastChars;
+          flushTextContentItem;
           pushWhitespace({
             width: Math.abs(advanceX)
           });
@@ -10615,7 +10615,7 @@ class PartialEvaluator {
         }
       } else if (!addFakeSpaces(advanceX, textContentItem.prevTransform, textOrientation)) {
         if (textContentItem.str.length === 0) {
-          resetLastChars();
+          resetLastChars;
           pushWhitespace({
             width: Math.abs(advanceX)
           });
@@ -10624,7 +10624,7 @@ class PartialEvaluator {
         }
       }
       if (Math.abs(advanceY) > textContentItem.height * VERTICAL_SHIFT_RATIO) {
-        flushTextContentItem();
+        flushTextContentItem;
       }
       return true;
     }
@@ -10679,7 +10679,7 @@ class PartialEvaluator {
           }
           continue;
         }
-        const textChunk = ensureTextContentItem();
+        const textChunk = ensureTextContentItem;
         if (category.isZeroWidthDiacritic) {
           scaledDim = 0;
         }
@@ -10693,7 +10693,7 @@ class PartialEvaluator {
           textChunk.height += scaledDim;
         }
         if (scaledDim) {
-          textChunk.prevTransform = getCurrentTextTransform();
+          textChunk.prevTransform = getCurrentTextTransform;
         }
         const glyphUnicode = glyph.unicode;
         if (saveLastChar(glyphUnicode)) {
@@ -10709,18 +10709,18 @@ class PartialEvaluator {
         }
       }
     }
-    function appendEOL() {
-      resetLastChars();
+    function appendEOL {
+      resetLastChars;
       if (textContentItem.initialized) {
         textContentItem.hasEOL = true;
-        flushTextContentItem();
+        flushTextContentItem;
       } else {
         textContent.items.push({
           str: "",
           dir: "ltr",
           width: 0,
           height: 0,
-          transform: getCurrentTextTransform(),
+          transform: getCurrentTextTransform,
           fontName: textState.loadedName,
           hasEOL: true
         });
@@ -10729,7 +10729,7 @@ class PartialEvaluator {
     function addFakeSpaces(width, transf, textOrientation) {
       if (textOrientation * textContentItem.spaceInFlowMin <= width && width <= textOrientation * textContentItem.spaceInFlowMax) {
         if (textContentItem.initialized) {
-          resetLastChars();
+          resetLastChars;
           textContentItem.str.push(" ");
         }
         return false;
@@ -10740,17 +10740,17 @@ class PartialEvaluator {
         height = width;
         width = 0;
       }
-      flushTextContentItem();
-      resetLastChars();
+      flushTextContentItem;
+      resetLastChars;
       pushWhitespace({
         width: Math.abs(width),
         height: Math.abs(height),
-        transform: transf || getCurrentTextTransform(),
+        transform: transf || getCurrentTextTransform,
         fontName
       });
       return true;
     }
-    function flushTextContentItem() {
+    function flushTextContentItem {
       if (!textContentItem.initialized || !textContentItem.str) {
         return;
       }
@@ -10775,11 +10775,11 @@ class PartialEvaluator {
       textContent.items = [];
       textContent.styles = Object.create(null);
     }
-    const timeSlotManager = new TimeSlotManager();
+    const timeSlotManager = new TimeSlotManager;
     return new Promise(function promiseBody(resolve, reject) {
       const next = function (promise) {
         enqueueChunk(true);
-        Promise.all([promise, sink.ready]).then(function () {
+        Promise.all([promise, sink.ready]).then(function  {
           try {
             promiseBody(resolve, reject);
           } catch (ex) {
@@ -10787,12 +10787,12 @@ class PartialEvaluator {
           }
         }, reject);
       };
-      task.ensureNotTerminated();
-      timeSlotManager.reset();
+      task.ensureNotTerminated;
+      timeSlotManager.reset;
       const operation = {};
       let stop,
         args = [];
-      while (!(stop = timeSlotManager.check())) {
+      while (!(stop = timeSlotManager.check)) {
         args.length = 0;
         operation.args = args;
         if (!preprocessor.read(operation)) {
@@ -10809,7 +10809,7 @@ class PartialEvaluator {
             if (textState.font && fontNameArg === textState.fontName && fontSizeArg === textState.fontSize) {
               break;
             }
-            flushTextContentItem();
+            flushTextContentItem;
             textState.fontName = fontNameArg;
             textState.fontSize = fontSizeArg;
             next(handleSetFont(fontNameArg, null));
@@ -10825,20 +10825,20 @@ class PartialEvaluator {
             break;
           case _util.OPS.moveText:
             textState.translateTextLineMatrix(args[0], args[1]);
-            textState.textMatrix = textState.textLineMatrix.slice();
+            textState.textMatrix = textState.textLineMatrix.slice;
             break;
           case _util.OPS.setLeadingMoveText:
             textState.leading = -args[1];
             textState.translateTextLineMatrix(args[0], args[1]);
-            textState.textMatrix = textState.textLineMatrix.slice();
+            textState.textMatrix = textState.textLineMatrix.slice;
             break;
           case _util.OPS.nextLine:
-            textState.carriageReturn();
+            textState.carriageReturn;
             break;
           case _util.OPS.setTextMatrix:
             textState.setTextMatrix(args[0], args[1], args[2], args[3], args[4], args[5]);
             textState.setTextLineMatrix(args[0], args[1], args[2], args[3], args[4], args[5]);
-            updateAdvanceScale();
+            updateAdvanceScale;
             break;
           case _util.OPS.setCharSpacing:
             textState.charSpacing = args[0];
@@ -10847,8 +10847,8 @@ class PartialEvaluator {
             textState.wordSpacing = args[0];
             break;
           case _util.OPS.beginText:
-            textState.textMatrix = _util.IDENTITY_MATRIX.slice();
-            textState.textLineMatrix = _util.IDENTITY_MATRIX.slice();
+            textState.textMatrix = _util.IDENTITY_MATRIX.slice;
+            textState.textLineMatrix = _util.IDENTITY_MATRIX.slice;
             break;
           case _util.OPS.showSpacedText:
             if (!stateManager.state.font) {
@@ -10894,7 +10894,7 @@ class PartialEvaluator {
               self.ensureStateFont(stateManager.state);
               continue;
             }
-            textState.carriageReturn();
+            textState.carriageReturn;
             buildTextContentItem({
               chars: args[0],
               extraSpacing: 0
@@ -10907,14 +10907,14 @@ class PartialEvaluator {
             }
             textState.wordSpacing = args[0];
             textState.charSpacing = args[1];
-            textState.carriageReturn();
+            textState.carriageReturn;
             buildTextContentItem({
               chars: args[2],
               extraSpacing: 0
             });
             break;
           case _util.OPS.paintXObject:
-            flushTextContentItem();
+            flushTextContentItem;
             if (!xobjs) {
               xobjs = resources.get("XObject") || _primitives.Dict.empty;
             }
@@ -10930,12 +10930,12 @@ class PartialEvaluator {
               let xobj = xobjs.getRaw(name);
               if (xobj instanceof _primitives.Ref) {
                 if (emptyXObjectCache.getByRef(xobj)) {
-                  resolveXObject();
+                  resolveXObject;
                   return;
                 }
                 const globalImage = self.globalImageCache.getData(xobj, self.pageIndex);
                 if (globalImage) {
-                  resolveXObject();
+                  resolveXObject;
                   return;
                 }
                 xobj = xref.fetch(xobj);
@@ -10949,26 +10949,26 @@ class PartialEvaluator {
               }
               if (type.name !== "Form") {
                 emptyXObjectCache.set(name, xobj.dict.objId, true);
-                resolveXObject();
+                resolveXObject;
                 return;
               }
-              const currentState = stateManager.state.clone();
+              const currentState = stateManager.state.clone;
               const xObjStateManager = new StateManager(currentState);
               const matrix = xobj.dict.getArray("Matrix");
               if (Array.isArray(matrix) && matrix.length === 6) {
                 xObjStateManager.transform(matrix);
               }
-              enqueueChunk();
+              enqueueChunk;
               const sinkWrapper = {
                 enqueueInvoked: false,
                 enqueue(chunk, size) {
                   this.enqueueInvoked = true;
                   sink.enqueue(chunk, size);
                 },
-                get desiredSize() {
+                get desiredSize {
                   return sink.desiredSize;
                 },
-                get ready() {
+                get ready {
                   return sink.ready;
                 }
               };
@@ -10983,11 +10983,11 @@ class PartialEvaluator {
                 viewBox,
                 markedContentData,
                 disableNormalization
-              }).then(function () {
+              }).then(function  {
                 if (!sinkWrapper.enqueueInvoked) {
                   emptyXObjectCache.set(name, xobj.dict.objId, true);
                 }
-                resolveXObject();
+                resolveXObject;
               }, rejectXObject);
             }).catch(function (reason) {
               if (reason instanceof _util.AbortException) {
@@ -11021,10 +11021,10 @@ class PartialEvaluator {
               const gStateFont = gState.get("Font");
               if (!gStateFont) {
                 emptyGStateCache.set(name, gState.objId, true);
-                resolveGState();
+                resolveGState;
                 return;
               }
-              flushTextContentItem();
+              flushTextContentItem;
               textState.fontName = null;
               textState.fontSize = gStateFont[1];
               handleSetFont(null, gStateFont[0]).then(resolveGState, rejectGState);
@@ -11040,7 +11040,7 @@ class PartialEvaluator {
             }));
             return;
           case _util.OPS.beginMarkedContent:
-            flushTextContentItem();
+            flushTextContentItem;
             if (includeMarkedContent) {
               markedContentData.level++;
               textContent.items.push({
@@ -11050,7 +11050,7 @@ class PartialEvaluator {
             }
             break;
           case _util.OPS.beginMarkedContentProps:
-            flushTextContentItem();
+            flushTextContentItem;
             if (includeMarkedContent) {
               markedContentData.level++;
               let mcid = null;
@@ -11059,13 +11059,13 @@ class PartialEvaluator {
               }
               textContent.items.push({
                 type: "beginMarkedContentProps",
-                id: Number.isInteger(mcid) ? `${self.idFactory.getPageObjId()}_mc${mcid}` : null,
+                id: Number.isInteger(mcid) ? `${self.idFactory.getPageObjId}_mc${mcid}` : null,
                 tag: args[0] instanceof _primitives.Name ? args[0].name : null
               });
             }
             break;
           case _util.OPS.endMarkedContent:
-            flushTextContentItem();
+            flushTextContentItem;
             if (includeMarkedContent) {
               if (markedContentData.level === 0) {
                 break;
@@ -11078,7 +11078,7 @@ class PartialEvaluator {
             break;
           case _util.OPS.restore:
             if (previousState && (previousState.font !== textState.font || previousState.fontSize !== textState.fontSize || previousState.fontName !== textState.fontName)) {
-              flushTextContentItem();
+              flushTextContentItem;
             }
             break;
         }
@@ -11091,17 +11091,17 @@ class PartialEvaluator {
         next(deferred);
         return;
       }
-      flushTextContentItem();
-      enqueueChunk();
-      resolve();
+      flushTextContentItem;
+      enqueueChunk;
+      resolve;
     }).catch(reason => {
       if (reason instanceof _util.AbortException) {
         return;
       }
       if (this.options.ignoreErrors) {
         (0, _util.warn)(`getTextContent - ignoring errors during "${task.name}" ` + `task: "${reason}".`);
-        flushTextContentItem();
-        enqueueChunk();
+        flushTextContentItem;
+        enqueueChunk;
         return;
       }
       throw reason;
@@ -11123,7 +11123,7 @@ class PartialEvaluator {
       try {
         const cidToGidMap = dict.get("CIDToGIDMap");
         if (cidToGidMap instanceof _base_stream.BaseStream) {
-          cidToGidBytes = cidToGidMap.getBytes();
+          cidToGidBytes = cidToGidMap.getBytes;
         }
       } catch (ex) {
         if (!this.options.ignoreErrors) {
@@ -11168,7 +11168,7 @@ class PartialEvaluator {
       }
     }
     const nonEmbeddedFont = !properties.file || properties.isInternalFont,
-      isSymbolsFontName = (0, _standard_fonts.getSymbolsFonts)()[properties.name];
+      isSymbolsFontName = (0, _standard_fonts.getSymbolsFonts)[properties.name];
     if (baseEncodingName && nonEmbeddedFont && isSymbolsFontName) {
       baseEncodingName = null;
     }
@@ -11213,7 +11213,7 @@ class PartialEvaluator {
   _simpleFontToUnicode(properties, forceGlyphs = false) {
     (0, _util.assert)(!properties.composite, "Must be a simple font.");
     const toUnicode = [];
-    const encoding = properties.defaultEncoding.slice();
+    const encoding = properties.defaultEncoding.slice;
     const baseEncodingName = properties.baseEncodingName;
     const differences = properties.differences;
     for (const charcode in differences) {
@@ -11223,7 +11223,7 @@ class PartialEvaluator {
       }
       encoding[charcode] = glyphName;
     }
-    const glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode)();
+    const glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode);
     for (const charcode in encoding) {
       let glyphName = encoding[charcode];
       if (glyphName === "") {
@@ -11343,7 +11343,7 @@ class PartialEvaluator {
         if (cmap instanceof _cmap.IdentityCMap) {
           return new _to_unicode_map.IdentityToUnicodeMap(0, 0xffff);
         }
-        return new _to_unicode_map.ToUnicodeMap(cmap.getMap());
+        return new _to_unicode_map.ToUnicodeMap(cmap.getMap);
       });
     } else if (cmapObj instanceof _base_stream.BaseStream) {
       return _cmap.CMapFactory.create({
@@ -11492,15 +11492,15 @@ class PartialEvaluator {
   }
   isSerifFont(baseFontName) {
     const fontNameWoStyle = baseFontName.split("-")[0];
-    return fontNameWoStyle in (0, _standard_fonts.getSerifFonts)() || /serif/gi.test(fontNameWoStyle);
+    return fontNameWoStyle in (0, _standard_fonts.getSerifFonts) || /serif/gi.test(fontNameWoStyle);
   }
   getBaseFontMetrics(name) {
     let defaultWidth = 0;
     let widths = Object.create(null);
     let monospace = false;
-    const stdFontMap = (0, _standard_fonts.getStdFontMap)();
+    const stdFontMap = (0, _standard_fonts.getStdFontMap);
     let lookupName = stdFontMap[name] || name;
-    const Metrics = (0, _metrics.getMetrics)();
+    const Metrics = (0, _metrics.getMetrics);
     if (!(lookupName in Metrics)) {
       lookupName = this.isSerifFont(name) ? "Times-Roman" : "Helvetica";
     }
@@ -11509,7 +11509,7 @@ class PartialEvaluator {
       defaultWidth = glyphWidths;
       monospace = true;
     } else {
-      widths = glyphWidths();
+      widths = glyphWidths;
     }
     return {
       defaultWidth,
@@ -11560,18 +11560,18 @@ class PartialEvaluator {
       lastChar = dict.get("LastChar") || (composite ? 0xffff : 0xff);
     const descriptor = dict.get("FontDescriptor");
     if (descriptor) {
-      hash = new _murmurhash.MurmurHash3_64();
+      hash = new _murmurhash.MurmurHash3_64;
       const encoding = baseDict.getRaw("Encoding");
       if (encoding instanceof _primitives.Name) {
         hash.update(encoding.name);
       } else if (encoding instanceof _primitives.Ref) {
-        hash.update(encoding.toString());
+        hash.update(encoding.toString);
       } else if (encoding instanceof _primitives.Dict) {
-        for (const entry of encoding.getRawValues()) {
+        for (const entry of encoding.getRawValues) {
           if (entry instanceof _primitives.Name) {
             hash.update(entry.name);
           } else if (entry instanceof _primitives.Ref) {
-            hash.update(entry.toString());
+            hash.update(entry.toString);
           } else if (Array.isArray(entry)) {
             const diffLength = entry.length,
               diffBuf = new Array(diffLength);
@@ -11580,10 +11580,10 @@ class PartialEvaluator {
               if (diffEntry instanceof _primitives.Name) {
                 diffBuf[j] = diffEntry.name;
               } else if (typeof diffEntry === "number" || diffEntry instanceof _primitives.Ref) {
-                diffBuf[j] = diffEntry.toString();
+                diffBuf[j] = diffEntry.toString;
               }
             }
-            hash.update(diffBuf.join());
+            hash.update(diffBuf.join);
           }
         }
       }
@@ -11601,10 +11601,10 @@ class PartialEvaluator {
         const widthsBuf = [];
         for (const entry of widths) {
           if (typeof entry === "number" || entry instanceof _primitives.Ref) {
-            widthsBuf.push(entry.toString());
+            widthsBuf.push(entry.toString);
           }
         }
-        hash.update(widthsBuf.join());
+        hash.update(widthsBuf.join);
       }
       if (composite) {
         hash.update("compositeFont");
@@ -11613,26 +11613,26 @@ class PartialEvaluator {
           const widthsBuf = [];
           for (const entry of compositeWidths) {
             if (typeof entry === "number" || entry instanceof _primitives.Ref) {
-              widthsBuf.push(entry.toString());
+              widthsBuf.push(entry.toString);
             } else if (Array.isArray(entry)) {
               const subWidthsBuf = [];
               for (const element of entry) {
                 if (typeof element === "number" || element instanceof _primitives.Ref) {
-                  subWidthsBuf.push(element.toString());
+                  subWidthsBuf.push(element.toString);
                 }
               }
-              widthsBuf.push(`[${subWidthsBuf.join()}]`);
+              widthsBuf.push(`[${subWidthsBuf.join}]`);
             }
           }
-          hash.update(widthsBuf.join());
+          hash.update(widthsBuf.join);
         }
         const cidToGidMap = dict.getRaw("CIDToGIDMap") || baseDict.getRaw("CIDToGIDMap");
         if (cidToGidMap instanceof _primitives.Name) {
           hash.update(cidToGidMap.name);
         } else if (cidToGidMap instanceof _primitives.Ref) {
-          hash.update(cidToGidMap.toString());
+          hash.update(cidToGidMap.toString);
         } else if (cidToGidMap instanceof _base_stream.BaseStream) {
-          hash.update(cidToGidMap.peekBytes());
+          hash.update(cidToGidMap.peekBytes);
         }
       }
     }
@@ -11645,7 +11645,7 @@ class PartialEvaluator {
       firstChar,
       lastChar,
       toUnicode,
-      hash: hash ? hash.hexdigest() : ""
+      hash: hash ? hash.hexdigest : ""
     };
   }
   async translateFont({
@@ -11674,7 +11674,7 @@ class PartialEvaluator {
         baseFontName = baseFontName.name.replaceAll(/[,_]/g, "-");
         const metrics = this.getBaseFontMetrics(baseFontName);
         const fontNameWoStyle = baseFontName.split("-")[0];
-        const flags = (this.isSerifFont(fontNameWoStyle) ? _fonts_utils.FontFlags.Serif : 0) | (metrics.monospace ? _fonts_utils.FontFlags.FixedPitch : 0) | ((0, _standard_fonts.getSymbolsFonts)()[fontNameWoStyle] ? _fonts_utils.FontFlags.Symbolic : _fonts_utils.FontFlags.Nonsymbolic);
+        const flags = (this.isSerifFont(fontNameWoStyle) ? _fonts_utils.FontFlags.Serif : 0) | (metrics.monospace ? _fonts_utils.FontFlags.FixedPitch : 0) | ((0, _standard_fonts.getSymbolsFonts)[fontNameWoStyle] ? _fonts_utils.FontFlags.Symbolic : _fonts_utils.FontFlags.Nonsymbolic);
         properties = {
           type,
           name: baseFontName,
@@ -11745,7 +11745,7 @@ class PartialEvaluator {
         throw ex;
       }
       (0, _util.warn)(`translateFont - fetching "${fontName.name}" font file: "${ex}".`);
-      fontFile = new _stream.NullStream();
+      fontFile = new _stream.NullStream;
     }
     let isInternalFont = false;
     let glyphScaleFactors = null;
@@ -11851,8 +11851,8 @@ class PartialEvaluator {
       }
     }
   }
-  static get fallbackFontDict() {
-    const dict = new _primitives.Dict();
+  static get fallbackFontDict {
+    const dict = new _primitives.Dict;
     dict.set("BaseFont", _primitives.Name.get("Helvetica"));
     dict.set("Type", _primitives.Name.get("FallbackType"));
     dict.set("Subtype", _primitives.Name.get("FallbackType"));
@@ -11873,7 +11873,7 @@ class TranslatedFont {
     this.dict = dict;
     this._evaluatorOptions = evaluatorOptions || DefaultPartialEvaluatorOptions;
     this.type3Loaded = null;
-    this.type3Dependencies = font.isType3Font ? new Set() : null;
+    this.type3Dependencies = font.isType3Font ? new Set : null;
     this.sent = false;
   }
   send(handler) {
@@ -11908,7 +11908,7 @@ class TranslatedFont {
     type3Evaluator.type3FontRefs = type3FontRefs;
     const translatedFont = this.font,
       type3Dependencies = this.type3Dependencies;
-    let loadCharProcsPromise = Promise.resolve();
+    let loadCharProcsPromise = Promise.resolve;
     const charProcs = this.dict.get("CharProcs");
     const fontResources = this.dict.get("Resources") || resources;
     const charProcOperatorList = Object.create(null);
@@ -11916,31 +11916,31 @@ class TranslatedFont {
       width = fontBBox[2] - fontBBox[0],
       height = fontBBox[3] - fontBBox[1];
     const fontBBoxSize = Math.hypot(width, height);
-    for (const key of charProcs.getKeys()) {
-      loadCharProcsPromise = loadCharProcsPromise.then(() => {
+    for (const key of charProcs.getKeys) {
+      loadCharProcsPromise = loadCharProcsPromise.then( => {
         const glyphStream = charProcs.get(key);
-        const operatorList = new _operator_list.OperatorList();
+        const operatorList = new _operator_list.OperatorList;
         return type3Evaluator.getOperatorList({
           stream: glyphStream,
           task,
           resources: fontResources,
           operatorList
-        }).then(() => {
+        }).then( => {
           if (operatorList.fnArray[0] === _util.OPS.setCharWidthAndBounds) {
             this._removeType3ColorOperators(operatorList, fontBBoxSize);
           }
-          charProcOperatorList[key] = operatorList.getIR();
+          charProcOperatorList[key] = operatorList.getIR;
           for (const dependency of operatorList.dependencies) {
             type3Dependencies.add(dependency);
           }
         }).catch(function (reason) {
           (0, _util.warn)(`Type3 font resource "${key}" is not available.`);
-          const dummyOperatorList = new _operator_list.OperatorList();
-          charProcOperatorList[key] = dummyOperatorList.getIR();
+          const dummyOperatorList = new _operator_list.OperatorList;
+          charProcOperatorList[key] = dummyOperatorList.getIR;
         });
       });
     }
-    this.type3Loaded = loadCharProcsPromise.then(() => {
+    this.type3Loaded = loadCharProcsPromise.then( => {
       translatedFont.charProcOperatorList = charProcOperatorList;
       if (this._bbox) {
         translatedFont.isCharBBox = true;
@@ -12017,17 +12017,17 @@ class TranslatedFont {
   }
 }
 class StateManager {
-  constructor(initialState = new EvalState()) {
+  constructor(initialState = new EvalState) {
     this.state = initialState;
     this.stateStack = [];
   }
-  save() {
+  save {
     const old = this.state;
     this.stateStack.push(this.state);
-    this.state = old.clone();
+    this.state = old.clone;
   }
-  restore() {
-    const prev = this.stateStack.pop();
+  restore {
+    const prev = this.stateStack.pop;
     if (prev) {
       this.state = prev;
     }
@@ -12037,15 +12037,15 @@ class StateManager {
   }
 }
 class TextState {
-  constructor() {
+  constructor {
     this.ctm = new Float32Array(_util.IDENTITY_MATRIX);
     this.fontName = null;
     this.fontSize = 0;
     this.loadedName = null;
     this.font = null;
     this.fontMatrix = _util.FONT_IDENTITY_MATRIX;
-    this.textMatrix = _util.IDENTITY_MATRIX.slice();
-    this.textLineMatrix = _util.IDENTITY_MATRIX.slice();
+    this.textMatrix = _util.IDENTITY_MATRIX.slice;
+    this.textLineMatrix = _util.IDENTITY_MATRIX.slice;
     this.charSpacing = 0;
     this.wordSpacing = 0;
     this.leading = 0;
@@ -12080,32 +12080,32 @@ class TextState {
     m[4] = m[0] * x + m[2] * y + m[4];
     m[5] = m[1] * x + m[3] * y + m[5];
   }
-  carriageReturn() {
+  carriageReturn {
     this.translateTextLineMatrix(0, -this.leading);
-    this.textMatrix = this.textLineMatrix.slice();
+    this.textMatrix = this.textLineMatrix.slice;
   }
-  clone() {
+  clone {
     const clone = Object.create(this);
-    clone.textMatrix = this.textMatrix.slice();
-    clone.textLineMatrix = this.textLineMatrix.slice();
-    clone.fontMatrix = this.fontMatrix.slice();
+    clone.textMatrix = this.textMatrix.slice;
+    clone.textLineMatrix = this.textLineMatrix.slice;
+    clone.fontMatrix = this.fontMatrix.slice;
     return clone;
   }
 }
 class EvalState {
-  constructor() {
+  constructor {
     this.ctm = new Float32Array(_util.IDENTITY_MATRIX);
     this.font = null;
     this.textRenderingMode = _util.TextRenderingMode.FILL;
     this.fillColorSpace = _colorspace.ColorSpace.singletons.gray;
     this.strokeColorSpace = _colorspace.ColorSpace.singletons.gray;
   }
-  clone() {
+  clone {
     return Object.create(this);
   }
 }
 class EvaluatorPreprocessor {
-  static get opMap() {
+  static get opMap {
     return (0, _util.shadow)(this, "opMap", {
       w: {
         id: _util.OPS.setLineWidth,
@@ -12485,7 +12485,7 @@ class EvaluatorPreprocessor {
     });
   }
   static MAX_INVALID_PATH_OPS = 10;
-  constructor(stream, xref, stateManager = new StateManager()) {
+  constructor(stream, xref, stateManager = new StateManager) {
     this.parser = new _parser.Parser({
       lexer: new _parser.Lexer(stream, EvaluatorPreprocessor.opMap),
       xref
@@ -12495,13 +12495,13 @@ class EvaluatorPreprocessor {
     this._isPathOp = false;
     this._numInvalidPathOPS = 0;
   }
-  get savedStatesDepth() {
+  get savedStatesDepth {
     return this.stateManager.stateStack.length;
   }
   read(operation) {
     let args = operation.args;
     while (true) {
-      const obj = this.parser.getObj();
+      const obj = this.parser.getObj;
       if (obj instanceof _primitives.Cmd) {
         const cmd = obj.cmd;
         const opSpec = EvaluatorPreprocessor.opMap[cmd];
@@ -12520,14 +12520,14 @@ class EvaluatorPreprocessor {
           if (argsLength !== numArgs) {
             const nonProcessedArgs = this.nonProcessedArgs;
             while (argsLength > numArgs) {
-              nonProcessedArgs.push(args.shift());
+              nonProcessedArgs.push(args.shift);
               argsLength--;
             }
             while (argsLength < numArgs && nonProcessedArgs.length !== 0) {
               if (args === null) {
                 args = [];
               }
-              args.unshift(nonProcessedArgs.pop());
+              args.unshift(nonProcessedArgs.pop);
               argsLength++;
             }
           }
@@ -12567,10 +12567,10 @@ class EvaluatorPreprocessor {
   preprocessCommand(fn, args) {
     switch (fn | 0) {
       case _util.OPS.save:
-        this.stateManager.save();
+        this.stateManager.save;
         break;
       case _util.OPS.restore:
-        this.stateManager.restore();
+        this.stateManager.restore;
         break;
       case _util.OPS.transform:
         this.stateManager.transform(args);
@@ -12683,7 +12683,7 @@ class CMap {
     }
     return -1;
   }
-  getMap() {
+  getMap {
     return this._map;
   }
   readCharCode(str, offset, out) {
@@ -12719,10 +12719,10 @@ class CMap {
     }
     return 1;
   }
-  get length() {
+  get length {
     return this._map.length;
   }
-  get isIdentityCMap() {
+  get isIdentityCMap {
     if (!(this.name === "Identity-H" || this.name === "Identity-V")) {
       return false;
     }
@@ -12740,7 +12740,7 @@ class CMap {
 exports.CMap = CMap;
 class IdentityCMap extends CMap {
   constructor(vertical, n) {
-    super();
+    super;
     this.vertical = vertical;
     this.addCodespaceRange(n, 0, 0xffff);
   }
@@ -12770,17 +12770,17 @@ class IdentityCMap extends CMap {
   charCodeOf(value) {
     return Number.isInteger(value) && value <= 0xffff ? value : -1;
   }
-  getMap() {
+  getMap {
     const map = new Array(0x10000);
     for (let i = 0; i <= 0xffff; i++) {
       map[i] = i;
     }
     return map;
   }
-  get length() {
+  get length {
     return 0x10000;
   }
-  get isIdentityCMap() {
+  get isIdentityCMap {
     (0, _util.unreachable)("should not access .isIdentityCMap");
   }
 }
@@ -12804,7 +12804,7 @@ function expectInt(obj) {
 }
 function parseBfChar(cMap, lexer) {
   while (true) {
-    let obj = lexer.getObj();
+    let obj = lexer.getObj;
     if (obj === _primitives.EOF) {
       break;
     }
@@ -12813,7 +12813,7 @@ function parseBfChar(cMap, lexer) {
     }
     expectString(obj);
     const src = strToInt(obj);
-    obj = lexer.getObj();
+    obj = lexer.getObj;
     expectString(obj);
     const dst = obj;
     cMap.mapOne(src, dst);
@@ -12821,7 +12821,7 @@ function parseBfChar(cMap, lexer) {
 }
 function parseBfRange(cMap, lexer) {
   while (true) {
-    let obj = lexer.getObj();
+    let obj = lexer.getObj;
     if (obj === _primitives.EOF) {
       break;
     }
@@ -12830,19 +12830,19 @@ function parseBfRange(cMap, lexer) {
     }
     expectString(obj);
     const low = strToInt(obj);
-    obj = lexer.getObj();
+    obj = lexer.getObj;
     expectString(obj);
     const high = strToInt(obj);
-    obj = lexer.getObj();
+    obj = lexer.getObj;
     if (Number.isInteger(obj) || typeof obj === "string") {
       const dstLow = Number.isInteger(obj) ? String.fromCharCode(obj) : obj;
       cMap.mapBfRange(low, high, dstLow);
     } else if ((0, _primitives.isCmd)(obj, "[")) {
-      obj = lexer.getObj();
+      obj = lexer.getObj;
       const array = [];
       while (!(0, _primitives.isCmd)(obj, "]") && obj !== _primitives.EOF) {
         array.push(obj);
-        obj = lexer.getObj();
+        obj = lexer.getObj;
       }
       cMap.mapBfRangeToArray(low, high, array);
     } else {
@@ -12853,7 +12853,7 @@ function parseBfRange(cMap, lexer) {
 }
 function parseCidChar(cMap, lexer) {
   while (true) {
-    let obj = lexer.getObj();
+    let obj = lexer.getObj;
     if (obj === _primitives.EOF) {
       break;
     }
@@ -12862,7 +12862,7 @@ function parseCidChar(cMap, lexer) {
     }
     expectString(obj);
     const src = strToInt(obj);
-    obj = lexer.getObj();
+    obj = lexer.getObj;
     expectInt(obj);
     const dst = obj;
     cMap.mapOne(src, dst);
@@ -12870,7 +12870,7 @@ function parseCidChar(cMap, lexer) {
 }
 function parseCidRange(cMap, lexer) {
   while (true) {
-    let obj = lexer.getObj();
+    let obj = lexer.getObj;
     if (obj === _primitives.EOF) {
       break;
     }
@@ -12879,10 +12879,10 @@ function parseCidRange(cMap, lexer) {
     }
     expectString(obj);
     const low = strToInt(obj);
-    obj = lexer.getObj();
+    obj = lexer.getObj;
     expectString(obj);
     const high = strToInt(obj);
-    obj = lexer.getObj();
+    obj = lexer.getObj;
     expectInt(obj);
     const dstLow = obj;
     cMap.mapCidRange(low, high, dstLow);
@@ -12890,7 +12890,7 @@ function parseCidRange(cMap, lexer) {
 }
 function parseCodespaceRange(cMap, lexer) {
   while (true) {
-    let obj = lexer.getObj();
+    let obj = lexer.getObj;
     if (obj === _primitives.EOF) {
       break;
     }
@@ -12901,7 +12901,7 @@ function parseCodespaceRange(cMap, lexer) {
       break;
     }
     const low = strToInt(obj);
-    obj = lexer.getObj();
+    obj = lexer.getObj;
     if (typeof obj !== "string") {
       break;
     }
@@ -12911,13 +12911,13 @@ function parseCodespaceRange(cMap, lexer) {
   throw new _util.FormatError("Invalid codespace range.");
 }
 function parseWMode(cMap, lexer) {
-  const obj = lexer.getObj();
+  const obj = lexer.getObj;
   if (Number.isInteger(obj)) {
     cMap.vertical = !!obj;
   }
 }
 function parseCMapName(cMap, lexer) {
-  const obj = lexer.getObj();
+  const obj = lexer.getObj;
   if (obj instanceof _primitives.Name) {
     cMap.name = obj.name;
   }
@@ -12926,7 +12926,7 @@ async function parseCMap(cMap, lexer, fetchBuiltInCMap, useCMap) {
   let previous, embeddedUseCMap;
   objLoop: while (true) {
     try {
-      const obj = lexer.getObj();
+      const obj = lexer.getObj;
       if (obj === _primitives.EOF) {
         break;
       } else if (obj instanceof _primitives.Name) {
@@ -12983,7 +12983,7 @@ async function extendCMap(cMap, fetchBuiltInCMap, useCMap) {
   if (cMap.numCodespaceRanges === 0) {
     const useCodespaceRanges = cMap.useCMap.codespaceRanges;
     for (let i = 0; i < useCodespaceRanges.length; i++) {
-      cMap.codespaceRanges[i] = useCodespaceRanges[i].slice();
+      cMap.codespaceRanges[i] = useCodespaceRanges[i].slice;
     }
     cMap.numCodespaceRanges = cMap.useCMap.numCodespaceRanges;
   }
@@ -13012,7 +13012,7 @@ async function createBuiltInCMap(name, fetchBuiltInCMap) {
   } = await fetchBuiltInCMap(name);
   const cMap = new CMap(true);
   if (compressionType === _util.CMapCompressionType.BINARY) {
-    return new _binary_cmap.BinaryCMapReader().process(cMapData, cMap, useCMap => {
+    return new _binary_cmap.BinaryCMapReader.process(cMapData, cMap, useCMap => {
       return extendCMap(cMap, fetchBuiltInCMap, useCMap);
     });
   }
@@ -13031,7 +13031,7 @@ class CMapFactory {
     if (encoding instanceof _primitives.Name) {
       return createBuiltInCMap(encoding.name, fetchBuiltInCMap);
     } else if (encoding instanceof _base_stream.BaseStream) {
-      const parsedCMap = await parseCMap(new CMap(), new _parser.Lexer(encoding), fetchBuiltInCMap, useCMap);
+      const parsedCMap = await parseCMap(new CMap, new _parser.Lexer(encoding), fetchBuiltInCMap, useCMap);
       if (parsedCMap.isIdentityCMap) {
         return createBuiltInCMap(parsedCMap.name, fetchBuiltInCMap);
       }
@@ -13094,17 +13094,17 @@ class BinaryCMapStream {
     this.end = data.length;
     this.tmpBuf = new Uint8Array(MAX_ENCODED_NUM_SIZE);
   }
-  readByte() {
+  readByte {
     if (this.pos >= this.end) {
       return -1;
     }
     return this.buffer[this.pos++];
   }
-  readNumber() {
+  readNumber {
     let n = 0;
     let last;
     do {
-      const b = this.readByte();
+      const b = this.readByte;
       if (b < 0) {
         throw new _util.FormatError("unexpected EOF in bcmap");
       }
@@ -13113,8 +13113,8 @@ class BinaryCMapStream {
     } while (!last);
     return n;
   }
-  readSigned() {
-    const n = this.readNumber();
+  readSigned {
+    const n = this.readNumber;
     return n & 1 ? ~(n >>> 1) : n >>> 1;
   }
   readHex(num, size) {
@@ -13126,7 +13126,7 @@ class BinaryCMapStream {
     const stack = this.tmpBuf;
     let sp = 0;
     do {
-      const b = this.readByte();
+      const b = this.readByte;
       if (b < 0) {
         throw new _util.FormatError("unexpected EOF in bcmap");
       }
@@ -13156,11 +13156,11 @@ class BinaryCMapStream {
       num[i] = c >> 1 ^ sign;
     }
   }
-  readString() {
-    const len = this.readNumber(),
+  readString {
+    const len = this.readNumber,
       buf = new Array(len);
     for (let i = 0; i < len; i++) {
-      buf[i] = this.readNumber();
+      buf[i] = this.readNumber;
     }
     return String.fromCharCode(...buf);
   }
@@ -13168,7 +13168,7 @@ class BinaryCMapStream {
 class BinaryCMapReader {
   async process(data, cMap, extend) {
     const stream = new BinaryCMapStream(data);
-    const header = stream.readByte();
+    const header = stream.readByte;
     cMap.vertical = !!(header & 1);
     let useCMap = null;
     const start = new Uint8Array(MAX_NUM_SIZE);
@@ -13178,15 +13178,15 @@ class BinaryCMapReader {
     const tmp = new Uint8Array(MAX_NUM_SIZE);
     let code;
     let b;
-    while ((b = stream.readByte()) >= 0) {
+    while ((b = stream.readByte) >= 0) {
       const type = b >> 5;
       if (type === 7) {
         switch (b & 0x1f) {
           case 0:
-            stream.readString();
+            stream.readString;
             break;
           case 1:
-            useCMap = stream.readString();
+            useCMap = stream.readString;
             break;
         }
         continue;
@@ -13197,7 +13197,7 @@ class BinaryCMapReader {
         throw new Error("BinaryCMapReader.process: Invalid dataSize.");
       }
       const ucs2DataSize = 1;
-      const subitemsCount = stream.readNumber();
+      const subitemsCount = stream.readNumber;
       switch (type) {
         case 0:
           stream.readHex(start, dataSize);
@@ -13217,19 +13217,19 @@ class BinaryCMapReader {
           stream.readHex(start, dataSize);
           stream.readHexNumber(end, dataSize);
           addHex(end, start, dataSize);
-          stream.readNumber();
+          stream.readNumber;
           for (let i = 1; i < subitemsCount; i++) {
             incHex(end, dataSize);
             stream.readHexNumber(start, dataSize);
             addHex(start, end, dataSize);
             stream.readHexNumber(end, dataSize);
             addHex(end, start, dataSize);
-            stream.readNumber();
+            stream.readNumber;
           }
           break;
         case 2:
           stream.readHex(char, dataSize);
-          code = stream.readNumber();
+          code = stream.readNumber;
           cMap.mapOne(hexToInt(char, dataSize), code);
           for (let i = 1; i < subitemsCount; i++) {
             incHex(char, dataSize);
@@ -13237,7 +13237,7 @@ class BinaryCMapReader {
               stream.readHexNumber(tmp, dataSize);
               addHex(char, tmp, dataSize);
             }
-            code = stream.readSigned() + (code + 1);
+            code = stream.readSigned + (code + 1);
             cMap.mapOne(hexToInt(char, dataSize), code);
           }
           break;
@@ -13245,7 +13245,7 @@ class BinaryCMapReader {
           stream.readHex(start, dataSize);
           stream.readHexNumber(end, dataSize);
           addHex(end, start, dataSize);
-          code = stream.readNumber();
+          code = stream.readNumber;
           cMap.mapCidRange(hexToInt(start, dataSize), hexToInt(end, dataSize), code);
           for (let i = 1; i < subitemsCount; i++) {
             incHex(end, dataSize);
@@ -13257,7 +13257,7 @@ class BinaryCMapReader {
             }
             stream.readHexNumber(end, dataSize);
             addHex(end, start, dataSize);
-            code = stream.readNumber();
+            code = stream.readNumber;
             cMap.mapCidRange(hexToInt(start, dataSize), hexToInt(end, dataSize), code);
           }
           break;
@@ -13359,24 +13359,24 @@ class Parser {
     this.recoveryMode = recoveryMode;
     this.imageCache = Object.create(null);
     this._imageId = 0;
-    this.refill();
+    this.refill;
   }
-  refill() {
-    this.buf1 = this.lexer.getObj();
-    this.buf2 = this.lexer.getObj();
+  refill {
+    this.buf1 = this.lexer.getObj;
+    this.buf2 = this.lexer.getObj;
   }
-  shift() {
+  shift {
     if (this.buf2 instanceof _primitives.Cmd && this.buf2.cmd === "ID") {
       this.buf1 = this.buf2;
       this.buf2 = null;
     } else {
       this.buf1 = this.buf2;
-      this.buf2 = this.lexer.getObj();
+      this.buf2 = this.lexer.getObj;
     }
   }
-  tryShift() {
+  tryShift {
     try {
-      this.shift();
+      this.shift;
       return true;
     } catch (e) {
       if (e instanceof _core_utils.MissingDataException) {
@@ -13387,7 +13387,7 @@ class Parser {
   }
   getObj(cipherTransform = null) {
     const buf1 = this.buf1;
-    this.shift();
+    this.shift;
     if (buf1 instanceof _primitives.Cmd) {
       switch (buf1.cmd) {
         case "BI":
@@ -13403,18 +13403,18 @@ class Parser {
             }
             throw new _core_utils.ParserEOFException("End of file inside array.");
           }
-          this.shift();
+          this.shift;
           return array;
         case "<<":
           const dict = new _primitives.Dict(this.xref);
           while (!(0, _primitives.isCmd)(this.buf1, ">>") && this.buf1 !== _primitives.EOF) {
             if (!(this.buf1 instanceof _primitives.Name)) {
               (0, _util.info)("Malformed dictionary: key must be a name object");
-              this.shift();
+              this.shift;
               continue;
             }
             const key = this.buf1.name;
-            this.shift();
+            this.shift;
             if (this.buf1 === _primitives.EOF) {
               break;
             }
@@ -13429,7 +13429,7 @@ class Parser {
           if ((0, _primitives.isCmd)(this.buf2, "stream")) {
             return this.allowStreams ? this.makeStream(dict, cipherTransform) : dict;
           }
-          this.shift();
+          this.shift;
           return dict;
         default:
           return buf1;
@@ -13438,8 +13438,8 @@ class Parser {
     if (Number.isInteger(buf1)) {
       if (Number.isInteger(this.buf1) && (0, _primitives.isCmd)(this.buf2, "R")) {
         const ref = _primitives.Ref.get(buf1, this.buf1);
-        this.shift();
-        this.shift();
+        this.shift;
+        this.shift;
         return ref;
       }
       return buf1;
@@ -13467,7 +13467,7 @@ class Parser {
     let state = 0,
       ch,
       maybeEIPos;
-    while ((ch = stream.getByte()) !== -1) {
+    while ((ch = stream.getByte) !== -1) {
       if (state === 0) {
         state = ch === E ? 1 : 0;
       } else if (state === 1) {
@@ -13497,11 +13497,11 @@ class Parser {
             (0, _util.warn)("findDefaultInlineStreamEnd - `lexer.knownCommands` is undefined.");
             continue;
           }
-          const tmpLexer = new Lexer(new _stream.Stream(followingBytes.slice()), knownCommands);
-          tmpLexer._hexStringWarn = () => {};
+          const tmpLexer = new Lexer(new _stream.Stream(followingBytes.slice), knownCommands);
+          tmpLexer._hexStringWarn =  => {};
           let numArgs = 0;
           while (true) {
-            const nextObj = tmpLexer.getObj();
+            const nextObj = tmpLexer.getObj;
             if (nextObj === _primitives.EOF) {
               state = 0;
               break;
@@ -13536,7 +13536,7 @@ class Parser {
     }
     let endOffset = 4;
     stream.skip(-endOffset);
-    ch = stream.peekByte();
+    ch = stream.peekByte;
     stream.skip(endOffset);
     if (!(0, _core_utils.isWhiteSpace)(ch)) {
       endOffset--;
@@ -13548,11 +13548,11 @@ class Parser {
     let foundEOI = false,
       b,
       markerLength;
-    while ((b = stream.getByte()) !== -1) {
+    while ((b = stream.getByte) !== -1) {
       if (b !== 0xff) {
         continue;
       }
-      switch (stream.getByte()) {
+      switch (stream.getByte) {
         case 0x00:
           break;
         case 0xff:
@@ -13599,7 +13599,7 @@ class Parser {
         case 0xee:
         case 0xef:
         case 0xfe:
-          markerLength = stream.getUint16();
+          markerLength = stream.getUint16;
           if (markerLength > 2) {
             stream.skip(markerLength - 2);
           } else {
@@ -13625,16 +13625,16 @@ class Parser {
       GT = 0x3e;
     const startPos = stream.pos;
     let ch;
-    while ((ch = stream.getByte()) !== -1) {
+    while ((ch = stream.getByte) !== -1) {
       if (ch === TILDE) {
         const tildePos = stream.pos;
-        ch = stream.peekByte();
+        ch = stream.peekByte;
         while ((0, _core_utils.isWhiteSpace)(ch)) {
-          stream.skip();
-          ch = stream.peekByte();
+          stream.skip;
+          ch = stream.peekByte;
         }
         if (ch === GT) {
-          stream.skip();
+          stream.skip;
           break;
         }
         if (stream.pos > tildePos) {
@@ -13658,7 +13658,7 @@ class Parser {
     const GT = 0x3e;
     const startPos = stream.pos;
     let ch;
-    while ((ch = stream.getByte()) !== -1) {
+    while ((ch = stream.getByte) !== -1) {
       if (ch === GT) {
         break;
       }
@@ -13677,7 +13677,7 @@ class Parser {
       I = 0x49;
     let state = 0,
       ch;
-    while ((ch = stream.getByte()) !== -1) {
+    while ((ch = stream.getByte) !== -1) {
       if (state === 0) {
         state = ch === E ? 1 : 0;
       } else if (state === 1) {
@@ -13697,7 +13697,7 @@ class Parser {
         throw new _util.FormatError("Dictionary key must be a name object");
       }
       const key = this.buf1.name;
-      this.shift();
+      this.shift;
       if (this.buf1 === _primitives.EOF) {
         break;
       }
@@ -13743,8 +13743,8 @@ class Parser {
       const cacheEntry = this.imageCache[cacheKey];
       if (cacheEntry !== undefined) {
         this.buf2 = _primitives.Cmd.get("EI");
-        this.shift();
-        cacheEntry.reset();
+        this.shift;
+        cacheEntry.reset;
         return cacheEntry;
       }
     }
@@ -13763,7 +13763,7 @@ class Parser {
       this.imageCache[cacheKey] = imageStream;
     }
     this.buf2 = _primitives.Cmd.get("EI");
-    this.shift();
+    this.shift;
     return imageStream;
   }
   _findStreamLength(startPos, signature) {
@@ -13798,17 +13798,17 @@ class Parser {
   makeStream(dict, cipherTransform) {
     const lexer = this.lexer;
     let stream = lexer.stream;
-    lexer.skipToNextLine();
+    lexer.skipToNextLine;
     const startPos = stream.pos - 1;
     let length = dict.get("Length");
     if (!Number.isInteger(length)) {
-      (0, _util.info)(`Bad length "${length && length.toString()}" in stream.`);
+      (0, _util.info)(`Bad length "${length && length.toString}" in stream.`);
       length = 0;
     }
     stream.pos = startPos + length;
-    lexer.nextChar();
-    if (this.tryShift() && (0, _primitives.isCmd)(this.buf2, "endstream")) {
-      this.shift();
+    lexer.nextChar;
+    if (this.tryShift && (0, _primitives.isCmd)(this.buf2, "endstream")) {
+      this.shift;
     } else {
       const ENDSTREAM_SIGNATURE = new Uint8Array([0x65, 0x6e, 0x64, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d]);
       let actualLength = this._findStreamLength(startPos, ENDSTREAM_SIGNATURE);
@@ -13833,11 +13833,11 @@ class Parser {
         }
       }
       length = actualLength;
-      lexer.nextChar();
-      this.shift();
-      this.shift();
+      lexer.nextChar;
+      this.shift;
+      this.shift;
     }
-    this.shift();
+    this.shift;
     stream = stream.makeSubStream(startPos, length, dict);
     if (cipherTransform) {
       stream = cipherTransform.createStream(stream, length);
@@ -13877,7 +13877,7 @@ class Parser {
   makeFilter(stream, name, maybeLength, params) {
     if (maybeLength === 0) {
       (0, _util.warn)(`Empty "${name}" stream.`);
-      return new _stream.NullStream();
+      return new _stream.NullStream;
     }
     try {
       switch (name) {
@@ -13925,7 +13925,7 @@ class Parser {
         throw ex;
       }
       (0, _util.warn)(`Invalid stream: "${ex}"`);
-      return new _stream.NullStream();
+      return new _stream.NullStream;
     }
   }
 }
@@ -13943,40 +13943,40 @@ function toHexDigit(ch) {
 class Lexer {
   constructor(stream, knownCommands = null) {
     this.stream = stream;
-    this.nextChar();
+    this.nextChar;
     this.strBuf = [];
     this.knownCommands = knownCommands;
     this._hexStringNumWarn = 0;
     this.beginInlineImagePos = -1;
   }
-  nextChar() {
-    return this.currentChar = this.stream.getByte();
+  nextChar {
+    return this.currentChar = this.stream.getByte;
   }
-  peekChar() {
-    return this.stream.peekByte();
+  peekChar {
+    return this.stream.peekByte;
   }
-  getNumber() {
+  getNumber {
     let ch = this.currentChar;
     let eNotation = false;
     let divideBy = 0;
     let sign = 1;
     if (ch === 0x2d) {
       sign = -1;
-      ch = this.nextChar();
+      ch = this.nextChar;
       if (ch === 0x2d) {
-        ch = this.nextChar();
+        ch = this.nextChar;
       }
     } else if (ch === 0x2b) {
-      ch = this.nextChar();
+      ch = this.nextChar;
     }
     if (ch === 0x0a || ch === 0x0d) {
       do {
-        ch = this.nextChar();
+        ch = this.nextChar;
       } while (ch === 0x0a || ch === 0x0d);
     }
     if (ch === 0x2e) {
       divideBy = 10;
-      ch = this.nextChar();
+      ch = this.nextChar;
     }
     if (ch < 0x30 || ch > 0x39) {
       const msg = `Invalid number: ${String.fromCharCode(ch)} (charCode ${ch})`;
@@ -13989,7 +13989,7 @@ class Lexer {
     let baseValue = ch - 0x30;
     let powerValue = 0;
     let powerValueSign = 1;
-    while ((ch = this.nextChar()) >= 0) {
+    while ((ch = this.nextChar) >= 0) {
       if (ch >= 0x30 && ch <= 0x39) {
         const currentDigit = ch - 0x30;
         if (eNotation) {
@@ -14009,10 +14009,10 @@ class Lexer {
       } else if (ch === 0x2d) {
         (0, _util.warn)("Badly formatted number: minus sign in the middle");
       } else if (ch === 0x45 || ch === 0x65) {
-        ch = this.peekChar();
+        ch = this.peekChar;
         if (ch === 0x2b || ch === 0x2d) {
           powerValueSign = ch === 0x2d ? -1 : 1;
-          this.nextChar();
+          this.nextChar;
         } else if (ch < 0x30 || ch > 0x39) {
           break;
         }
@@ -14029,12 +14029,12 @@ class Lexer {
     }
     return sign * baseValue;
   }
-  getString() {
+  getString {
     let numParen = 1;
     let done = false;
     const strBuf = this.strBuf;
     strBuf.length = 0;
-    let ch = this.nextChar();
+    let ch = this.nextChar;
     while (true) {
       let charBuffered = false;
       switch (ch | 0) {
@@ -14048,14 +14048,14 @@ class Lexer {
           break;
         case 0x29:
           if (--numParen === 0) {
-            this.nextChar();
+            this.nextChar;
             done = true;
           } else {
             strBuf.push(")");
           }
           break;
         case 0x5c:
-          ch = this.nextChar();
+          ch = this.nextChar;
           switch (ch) {
             case -1:
               (0, _util.warn)("Unterminated string");
@@ -14090,11 +14090,11 @@ class Lexer {
             case 0x36:
             case 0x37:
               let x = ch & 0x0f;
-              ch = this.nextChar();
+              ch = this.nextChar;
               charBuffered = true;
               if (ch >= 0x30 && ch <= 0x37) {
                 x = (x << 3) + (ch & 0x0f);
-                ch = this.nextChar();
+                ch = this.nextChar;
                 if (ch >= 0x30 && ch <= 0x37) {
                   charBuffered = false;
                   x = (x << 3) + (ch & 0x0f);
@@ -14103,8 +14103,8 @@ class Lexer {
               strBuf.push(String.fromCharCode(x));
               break;
             case 0x0d:
-              if (this.peekChar() === 0x0a) {
-                this.nextChar();
+              if (this.peekChar === 0x0a) {
+                this.nextChar;
               }
               break;
             case 0x0a:
@@ -14122,18 +14122,18 @@ class Lexer {
         break;
       }
       if (!charBuffered) {
-        ch = this.nextChar();
+        ch = this.nextChar;
       }
     }
     return strBuf.join("");
   }
-  getName() {
+  getName {
     let ch, previousCh;
     const strBuf = this.strBuf;
     strBuf.length = 0;
-    while ((ch = this.nextChar()) >= 0 && !specialChars[ch]) {
+    while ((ch = this.nextChar) >= 0 && !specialChars[ch]) {
       if (ch === 0x23) {
-        ch = this.nextChar();
+        ch = this.nextChar;
         if (specialChars[ch]) {
           (0, _util.warn)("Lexer_getName: " + "NUMBER SIGN (#) should be followed by a hexadecimal number.");
           strBuf.push("#");
@@ -14142,7 +14142,7 @@ class Lexer {
         const x = toHexDigit(ch);
         if (x !== -1) {
           previousCh = ch;
-          ch = this.nextChar();
+          ch = this.nextChar;
           const x2 = toHexDigit(ch);
           if (x2 === -1) {
             (0, _util.warn)(`Lexer_getName: Illegal digit (${String.fromCharCode(ch)}) ` + "in hexadecimal number.");
@@ -14177,7 +14177,7 @@ class Lexer {
     }
     (0, _util.warn)(`getHexString - ignoring invalid character: ${ch}`);
   }
-  getHexString() {
+  getHexString {
     const strBuf = this.strBuf;
     strBuf.length = 0;
     let ch = this.currentChar;
@@ -14189,35 +14189,35 @@ class Lexer {
         (0, _util.warn)("Unterminated hex string");
         break;
       } else if (ch === 0x3e) {
-        this.nextChar();
+        this.nextChar;
         break;
       } else if (specialChars[ch] === 1) {
-        ch = this.nextChar();
+        ch = this.nextChar;
         continue;
       } else {
         if (isFirstHex) {
           firstDigit = toHexDigit(ch);
           if (firstDigit === -1) {
             this._hexStringWarn(ch);
-            ch = this.nextChar();
+            ch = this.nextChar;
             continue;
           }
         } else {
           secondDigit = toHexDigit(ch);
           if (secondDigit === -1) {
             this._hexStringWarn(ch);
-            ch = this.nextChar();
+            ch = this.nextChar;
             continue;
           }
           strBuf.push(String.fromCharCode(firstDigit << 4 | secondDigit));
         }
         isFirstHex = !isFirstHex;
-        ch = this.nextChar();
+        ch = this.nextChar;
       }
     }
     return strBuf.join("");
   }
-  getObj() {
+  getObj {
     let comment = false;
     let ch = this.currentChar;
     while (true) {
@@ -14233,7 +14233,7 @@ class Lexer {
       } else if (specialChars[ch] !== 1) {
         break;
       }
-      ch = this.nextChar();
+      ch = this.nextChar;
     }
     switch (ch | 0) {
       case 0x30:
@@ -14249,52 +14249,52 @@ class Lexer {
       case 0x2b:
       case 0x2d:
       case 0x2e:
-        return this.getNumber();
+        return this.getNumber;
       case 0x28:
-        return this.getString();
+        return this.getString;
       case 0x2f:
-        return this.getName();
+        return this.getName;
       case 0x5b:
-        this.nextChar();
+        this.nextChar;
         return _primitives.Cmd.get("[");
       case 0x5d:
-        this.nextChar();
+        this.nextChar;
         return _primitives.Cmd.get("]");
       case 0x3c:
-        ch = this.nextChar();
+        ch = this.nextChar;
         if (ch === 0x3c) {
-          this.nextChar();
+          this.nextChar;
           return _primitives.Cmd.get("<<");
         }
-        return this.getHexString();
+        return this.getHexString;
       case 0x3e:
-        ch = this.nextChar();
+        ch = this.nextChar;
         if (ch === 0x3e) {
-          this.nextChar();
+          this.nextChar;
           return _primitives.Cmd.get(">>");
         }
         return _primitives.Cmd.get(">");
       case 0x7b:
-        this.nextChar();
+        this.nextChar;
         return _primitives.Cmd.get("{");
       case 0x7d:
-        this.nextChar();
+        this.nextChar;
         return _primitives.Cmd.get("}");
       case 0x29:
-        this.nextChar();
+        this.nextChar;
         throw new _util.FormatError(`Illegal character: ${ch}`);
     }
     let str = String.fromCharCode(ch);
     if (ch < 0x20 || ch > 0x7f) {
-      const nextCh = this.peekChar();
+      const nextCh = this.peekChar;
       if (nextCh >= 0x20 && nextCh <= 0x7f) {
-        this.nextChar();
+        this.nextChar;
         return _primitives.Cmd.get(str);
       }
     }
     const knownCommands = this.knownCommands;
     let knownCommandFound = knownCommands?.[str] !== undefined;
-    while ((ch = this.nextChar()) >= 0 && !specialChars[ch]) {
+    while ((ch = this.nextChar) >= 0 && !specialChars[ch]) {
       const possibleCommand = str + String.fromCharCode(ch);
       if (knownCommandFound && knownCommands[possibleCommand] === undefined) {
         break;
@@ -14319,20 +14319,20 @@ class Lexer {
     }
     return _primitives.Cmd.get(str);
   }
-  skipToNextLine() {
+  skipToNextLine {
     let ch = this.currentChar;
     while (ch >= 0) {
       if (ch === 0x0d) {
-        ch = this.nextChar();
+        ch = this.nextChar;
         if (ch === 0x0a) {
-          this.nextChar();
+          this.nextChar;
         }
         break;
       } else if (ch === 0x0a) {
-        this.nextChar();
+        this.nextChar;
         break;
       }
-      ch = this.nextChar();
+      ch = this.nextChar;
     }
   }
 }
@@ -14364,10 +14364,10 @@ class Linearization {
       lexer: new Lexer(stream),
       xref: null
     });
-    const obj1 = parser.getObj();
-    const obj2 = parser.getObj();
-    const obj3 = parser.getObj();
-    const linDict = parser.getObj();
+    const obj1 = parser.getObj;
+    const obj2 = parser.getObj;
+    const obj3 = parser.getObj;
+    const linDict = parser.getObj;
     let obj, length;
     if (!(Number.isInteger(obj1) && Number.isInteger(obj2) && (0, _primitives.isCmd)(obj3, "obj") && linDict instanceof _primitives.Dict && typeof (obj = linDict.get("Linearized")) === "number" && obj > 0)) {
       return null;
@@ -14409,14 +14409,14 @@ class Ascii85Stream extends _decode_stream.DecodeStream {
     this.dict = str.dict;
     this.input = new Uint8Array(5);
   }
-  readBlock() {
+  readBlock {
     const TILDA_CHAR = 0x7e;
     const Z_LOWER_CHAR = 0x7a;
     const EOF = -1;
     const str = this.str;
-    let c = str.getByte();
+    let c = str.getByte;
     while ((0, _core_utils.isWhiteSpace)(c)) {
-      c = str.getByte();
+      c = str.getByte;
     }
     if (c === EOF || c === TILDA_CHAR) {
       this.eof = true;
@@ -14434,9 +14434,9 @@ class Ascii85Stream extends _decode_stream.DecodeStream {
       const input = this.input;
       input[0] = c;
       for (i = 1; i < 5; ++i) {
-        c = str.getByte();
+        c = str.getByte;
         while ((0, _core_utils.isWhiteSpace)(c)) {
-          c = str.getByte();
+          c = str.getByte;
         }
         input[i] = c;
         if (c === EOF || c === TILDA_CHAR) {
@@ -14479,7 +14479,7 @@ var _stream = __w_pdfjs_require__(8);
 const emptyBuffer = new Uint8Array(0);
 class DecodeStream extends _base_stream.BaseStream {
   constructor(maybeMinBufferLength) {
-    super();
+    super;
     this._rawMinBufferLength = maybeMinBufferLength || 0;
     this.pos = 0;
     this.bufferLength = 0;
@@ -14492,9 +14492,9 @@ class DecodeStream extends _base_stream.BaseStream {
       }
     }
   }
-  get isEmpty() {
+  get isEmpty {
     while (!this.eof && this.bufferLength === 0) {
-      this.readBlock();
+      this.readBlock;
     }
     return this.bufferLength === 0;
   }
@@ -14511,13 +14511,13 @@ class DecodeStream extends _base_stream.BaseStream {
     buffer2.set(buffer);
     return this.buffer = buffer2;
   }
-  getByte() {
+  getByte {
     const pos = this.pos;
     while (this.bufferLength <= pos) {
       if (this.eof) {
         return -1;
       }
-      this.readBlock();
+      this.readBlock;
     }
     return this.buffer[this.pos++];
   }
@@ -14528,7 +14528,7 @@ class DecodeStream extends _base_stream.BaseStream {
       this.ensureBuffer(pos + length);
       end = pos + length;
       while (!this.eof && this.bufferLength < end) {
-        this.readBlock();
+        this.readBlock;
       }
       const bufEnd = this.bufferLength;
       if (end > bufEnd) {
@@ -14536,31 +14536,31 @@ class DecodeStream extends _base_stream.BaseStream {
       }
     } else {
       while (!this.eof) {
-        this.readBlock();
+        this.readBlock;
       }
       end = this.bufferLength;
     }
     this.pos = end;
     return this.buffer.subarray(pos, end);
   }
-  reset() {
+  reset {
     this.pos = 0;
   }
   makeSubStream(start, length, dict = null) {
     if (length === undefined) {
       while (!this.eof) {
-        this.readBlock();
+        this.readBlock;
       }
     } else {
       const end = start + length;
       while (this.bufferLength <= end && !this.eof) {
-        this.readBlock();
+        this.readBlock;
       }
     }
     return new _stream.Stream(this.buffer, start, length, dict);
   }
-  getBaseStreams() {
-    return this.str ? this.str.getBaseStreams() : null;
+  getBaseStreams {
+    return this.str ? this.str.getBaseStreams : null;
   }
 }
 exports.DecodeStream = DecodeStream;
@@ -14574,16 +14574,16 @@ class StreamsSequenceStream extends DecodeStream {
     this.streams = streams;
     this._onError = onError;
   }
-  readBlock() {
+  readBlock {
     const streams = this.streams;
     if (streams.length === 0) {
       this.eof = true;
       return;
     }
-    const stream = streams.shift();
+    const stream = streams.shift;
     let chunk;
     try {
-      chunk = stream.getBytes();
+      chunk = stream.getBytes;
     } catch (reason) {
       if (this._onError) {
         this._onError(reason, stream.dict?.objId);
@@ -14597,10 +14597,10 @@ class StreamsSequenceStream extends DecodeStream {
     buffer.set(chunk, bufferLength);
     this.bufferLength = newLength;
   }
-  getBaseStreams() {
+  getBaseStreams {
     const baseStreamsBuf = [];
     for (const stream of this.streams) {
-      const baseStreams = stream.getBaseStreams();
+      const baseStreams = stream.getBaseStreams;
       if (baseStreams) {
         baseStreamsBuf.push(...baseStreams);
       }
@@ -14631,7 +14631,7 @@ class AsciiHexStream extends _decode_stream.DecodeStream {
     this.dict = str.dict;
     this.firstDigit = -1;
   }
-  readBlock() {
+  readBlock {
     const UPSTREAM_BLOCK_SIZE = 8000;
     const bytes = this.str.getBytes(UPSTREAM_BLOCK_SIZE);
     if (!bytes.length) {
@@ -14693,8 +14693,8 @@ class CCITTFaxStream extends _decode_stream.DecodeStream {
       params = _primitives.Dict.empty;
     }
     const source = {
-      next() {
-        return str.getByte();
+      next {
+        return str.getByte;
       }
     };
     this.ccittFaxDecoder = new _ccitt.CCITTFaxDecoder(source, {
@@ -14707,9 +14707,9 @@ class CCITTFaxStream extends _decode_stream.DecodeStream {
       BlackIs1: params.get("BlackIs1")
     });
   }
-  readBlock() {
+  readBlock {
     while (!this.eof) {
-      const c = this.ccittFaxDecoder.readNextChar();
+      const c = this.ccittFaxDecoder.readNextChar;
       if (c === -1) {
         this.eof = true;
         return;
@@ -14785,7 +14785,7 @@ class CCITTFaxDecoder {
       this._eatBits(1);
     }
   }
-  readNextChar() {
+  readNextChar {
     if (this.eof) {
       return -1;
     }
@@ -14813,7 +14813,7 @@ class CCITTFaxDecoder {
         refPos = 0;
         blackPixels = 0;
         while (codingLine[this.codingPos] < columns) {
-          code1 = this._getTwoDimCode();
+          code1 = this._getTwoDimCode;
           switch (code1) {
             case twoDimPass:
               this._addPixels(refLine[refPos + 1], blackPixels);
@@ -14825,17 +14825,17 @@ class CCITTFaxDecoder {
               code1 = code2 = 0;
               if (blackPixels) {
                 do {
-                  code1 += code3 = this._getBlackCode();
+                  code1 += code3 = this._getBlackCode;
                 } while (code3 >= 64);
                 do {
-                  code2 += code3 = this._getWhiteCode();
+                  code2 += code3 = this._getWhiteCode;
                 } while (code3 >= 64);
               } else {
                 do {
-                  code1 += code3 = this._getWhiteCode();
+                  code1 += code3 = this._getWhiteCode;
                 } while (code3 >= 64);
                 do {
-                  code2 += code3 = this._getBlackCode();
+                  code2 += code3 = this._getBlackCode;
                 } while (code3 >= 64);
               }
               this._addPixels(codingLine[this.codingPos] + code1, blackPixels);
@@ -14946,11 +14946,11 @@ class CCITTFaxDecoder {
           code1 = 0;
           if (blackPixels) {
             do {
-              code1 += code3 = this._getBlackCode();
+              code1 += code3 = this._getBlackCode;
             } while (code3 >= 64);
           } else {
             do {
-              code1 += code3 = this._getWhiteCode();
+              code1 += code3 = this._getWhiteCode;
             } while (code3 >= 64);
           }
           this._addPixels(codingLine[this.codingPos] + code1, blackPixels);
@@ -15137,7 +15137,7 @@ class CCITTFaxDecoder {
     }
     return [false, 0, false];
   }
-  _getTwoDimCode() {
+  _getTwoDimCode {
     let code = 0;
     let p;
     if (this.eoblock) {
@@ -15156,7 +15156,7 @@ class CCITTFaxDecoder {
     (0, _util.info)("Bad two dim code");
     return ccittEOF;
   }
-  _getWhiteCode() {
+  _getWhiteCode {
     let code = 0;
     let p;
     if (this.eoblock) {
@@ -15183,7 +15183,7 @@ class CCITTFaxDecoder {
     this._eatBits(1);
     return 1;
   }
-  _getBlackCode() {
+  _getBlackCode {
     let code, p;
     if (this.eoblock) {
       code = this._lookBits(13);
@@ -15222,7 +15222,7 @@ class CCITTFaxDecoder {
   _lookBits(n) {
     let c;
     while (this.inputBits < n) {
-      if ((c = this.source.next()) === -1) {
+      if ((c = this.source.next) === -1) {
         if (this.inputBits === 0) {
           return ccittEOF;
         }
@@ -15263,8 +15263,8 @@ class FlateStream extends _decode_stream.DecodeStream {
     super(maybeLength);
     this.str = str;
     this.dict = str.dict;
-    const cmf = str.getByte();
-    const flg = str.getByte();
+    const cmf = str.getByte;
+    const flg = str.getByte;
     if (cmf === -1 || flg === -1) {
       throw new _util.FormatError(`Invalid header in flate stream: ${cmf}, ${flg}`);
     }
@@ -15286,7 +15286,7 @@ class FlateStream extends _decode_stream.DecodeStream {
     let codeBuf = this.codeBuf;
     let b;
     while (codeSize < bits) {
-      if ((b = str.getByte()) === -1) {
+      if ((b = str.getByte) === -1) {
         throw new _util.FormatError("Bad encoding in flate stream");
       }
       codeBuf |= b << codeSize;
@@ -15305,7 +15305,7 @@ class FlateStream extends _decode_stream.DecodeStream {
     let codeBuf = this.codeBuf;
     let b;
     while (codeSize < maxLen) {
-      if ((b = str.getByte()) === -1) {
+      if ((b = str.getByte) === -1) {
         break;
       }
       codeBuf |= b << codeSize;
@@ -15350,7 +15350,7 @@ class FlateStream extends _decode_stream.DecodeStream {
     }
     return [codes, maxLen];
   }
-  readBlock() {
+  readBlock {
     let buffer, len;
     const str = this.str;
     let hdr = this.getBits(3);
@@ -15360,19 +15360,19 @@ class FlateStream extends _decode_stream.DecodeStream {
     hdr >>= 1;
     if (hdr === 0) {
       let b;
-      if ((b = str.getByte()) === -1) {
+      if ((b = str.getByte) === -1) {
         throw new _util.FormatError("Bad block header in flate stream");
       }
       let blockLen = b;
-      if ((b = str.getByte()) === -1) {
+      if ((b = str.getByte) === -1) {
         throw new _util.FormatError("Bad block header in flate stream");
       }
       blockLen |= b << 8;
-      if ((b = str.getByte()) === -1) {
+      if ((b = str.getByte) === -1) {
         throw new _util.FormatError("Bad block header in flate stream");
       }
       let check = b;
-      if ((b = str.getByte()) === -1) {
+      if ((b = str.getByte) === -1) {
         throw new _util.FormatError("Bad block header in flate stream");
       }
       check |= b << 8;
@@ -15386,7 +15386,7 @@ class FlateStream extends _decode_stream.DecodeStream {
       buffer = this.ensureBuffer(end);
       this.bufferLength = end;
       if (blockLen === 0) {
-        if (str.peekByte() === -1) {
+        if (str.peekByte === -1) {
           this.eof = true;
         }
       } else {
@@ -15512,20 +15512,20 @@ class Jbig2Stream extends _decode_stream.DecodeStream {
     this.maybeLength = maybeLength;
     this.params = params;
   }
-  get bytes() {
+  get bytes {
     return (0, _util.shadow)(this, "bytes", this.stream.getBytes(this.maybeLength));
   }
   ensureBuffer(requested) {}
-  readBlock() {
+  readBlock {
     if (this.eof) {
       return;
     }
-    const jbig2Image = new _jbig.Jbig2Image();
+    const jbig2Image = new _jbig.Jbig2Image;
     const chunks = [];
     if (this.params instanceof _primitives.Dict) {
       const globalsStream = this.params.get("JBIG2Globals");
       if (globalsStream instanceof _base_stream.BaseStream) {
-        const globals = globalsStream.getBytes();
+        const globals = globalsStream.getBytes;
         chunks.push({
           data: globals,
           start: 0,
@@ -15583,12 +15583,12 @@ class DecodingContext {
     this.start = start;
     this.end = end;
   }
-  get decoder() {
+  get decoder {
     const decoder = new _arithmetic_decoder.ArithmeticDecoder(this.data, this.start, this.end);
     return (0, _util.shadow)(this, "decoder", decoder);
   }
-  get contextCache() {
-    const cache = new ContextCache();
+  get contextCache {
+    const cache = new ContextCache;
     return (0, _util.shadow)(this, "contextCache", cache);
   }
 }
@@ -16075,7 +16075,7 @@ function decodeSymbolDictionary(huffman, refinement, symbols, numberOfNewSymbols
     }
     if (huffman && !refinement) {
       const bitmapSize = huffmanTables.tableBitmapSize.decode(huffmanInput);
-      huffmanInput.byteAlign();
+      huffmanInput.byteAlign;
       let collectiveBitmap;
       if (bitmapSize === 0) {
         collectiveBitmap = readUncompressedBitmap(huffmanInput, totalWidth, currentHeight);
@@ -16168,7 +16168,7 @@ function decodeTextRegion(huffman, refinement, width, height, defaultPixelValue,
       }
       const t = stripSize * stripT + currentT;
       const symbolId = huffman ? huffmanTables.symbolIDTable.decode(huffmanInput) : decodeIAID(contextCache, decoder, symbolCodeLength);
-      const applyRefinement = refinement && (huffman ? huffmanInput.readBit() : decodeInteger(contextCache, "IARI", decoder));
+      const applyRefinement = refinement && (huffman ? huffmanInput.readBit : decodeInteger(contextCache, "IARI", decoder));
       let symbolBitmap = inputSymbols[symbolId];
       let symbolWidth = symbolBitmap[0].length;
       let symbolHeight = symbolBitmap.length;
@@ -16702,7 +16702,7 @@ function processSegments(segments, visitor) {
   }
 }
 function parseJbig2Chunks(chunks) {
-  const visitor = new SimpleSegmentVisitor();
+  const visitor = new SimpleSegmentVisitor;
   for (let i = 0, ii = chunks.length; i < ii; i++) {
     const chunk = chunks[i];
     const segments = readSegments({}, chunk.data, chunk.start, chunk.end);
@@ -16778,7 +16778,7 @@ class SimpleSegmentVisitor {
     const bitmap = decodeBitmap(region.mmr, regionInfo.width, regionInfo.height, region.template, region.prediction, null, region.at, decodingContext);
     this.drawBitmap(regionInfo, bitmap);
   }
-  onImmediateLosslessGenericRegion() {
+  onImmediateLosslessGenericRegion {
     this.onImmediateGenericRegion(...arguments);
   }
   onSymbolDictionary(dictionary, currentSegment, referredSegments, data, start, end) {
@@ -16821,7 +16821,7 @@ class SimpleSegmentVisitor {
     const bitmap = decodeTextRegion(region.huffman, region.refinement, regionInfo.width, regionInfo.height, region.defaultPixelValue, region.numberOfSymbolInstances, region.stripSize, inputSymbols, symbolCodeLength, region.transposed, region.dsOffset, region.referenceCorner, region.combinationOperator, huffmanTables, region.refinementTemplate, region.refinementAt, decodingContext, region.logStripSize, huffmanInput);
     this.drawBitmap(regionInfo, bitmap);
   }
-  onImmediateLosslessTextRegion() {
+  onImmediateLosslessTextRegion {
     this.onImmediateTextRegion(...arguments);
   }
   onPatternDictionary(dictionary, currentSegment, data, start, end) {
@@ -16839,7 +16839,7 @@ class SimpleSegmentVisitor {
     const bitmap = decodeHalftoneRegion(region.mmr, patterns, region.template, regionInfo.width, regionInfo.height, region.defaultPixelValue, region.enableSkip, region.combinationOperator, region.gridWidth, region.gridHeight, region.gridOffsetX, region.gridOffsetY, region.gridVectorX, region.gridVectorY, decodingContext);
     this.drawBitmap(regionInfo, bitmap);
   }
-  onImmediateLosslessHalftoneRegion() {
+  onImmediateLosslessHalftoneRegion {
     this.onImmediateHalftoneRegion(...arguments);
   }
   onTables(currentSegment, data, start, end) {
@@ -16902,7 +16902,7 @@ class HuffmanTreeNode {
       const htOffset = reader.readBits(this.rangeLength);
       return this.rangeLow + (this.isLowerRange ? -htOffset : htOffset);
     }
-    const node = this.children[reader.readBit()];
+    const node = this.children[reader.readBit];
     if (!node) {
       throw new Jbig2Error("invalid Huffman data");
     }
@@ -17056,7 +17056,7 @@ class Reader {
     this.shift = -1;
     this.currentByte = 0;
   }
-  readBit() {
+  readBit {
     if (this.shift < 0) {
       if (this.position >= this.end) {
         throw new Jbig2Error("end of data while reading bit");
@@ -17072,14 +17072,14 @@ class Reader {
     let result = 0,
       i;
     for (i = numBits - 1; i >= 0; i--) {
-      result |= this.readBit() << i;
+      result |= this.readBit << i;
     }
     return result;
   }
-  byteAlign() {
+  byteAlign {
     this.shift = -1;
   }
-  next() {
+  next {
     if (this.position >= this.end) {
       return -1;
     }
@@ -17139,7 +17139,7 @@ function getTextRegionHuffmanTables(textRegion, referredTo, customTables, number
       i++;
     }
   }
-  reader.byteAlign();
+  reader.byteAlign;
   const symbolIDTable = new HuffmanTable(codes, false);
   let customIndex = 0,
     tableFirstS,
@@ -17246,9 +17246,9 @@ function readUncompressedBitmap(reader, width, height) {
     const row = new Uint8Array(width);
     bitmap.push(row);
     for (let x = 0; x < width; x++) {
-      row[x] = reader.readBit();
+      row[x] = reader.readBit;
     }
-    reader.byteAlign();
+    reader.byteAlign;
   }
   return bitmap;
 }
@@ -17270,7 +17270,7 @@ function decodeMMRBitmap(input, width, height, endOfBlock) {
     let shift = -1;
     for (let x = 0; x < width; x++) {
       if (shift < 0) {
-        currentByte = decoder.readNextChar();
+        currentByte = decoder.readNextChar;
         if (currentByte === -1) {
           currentByte = 0;
           eof = true;
@@ -17284,7 +17284,7 @@ function decodeMMRBitmap(input, width, height, endOfBlock) {
   if (endOfBlock && !eof) {
     const lookForEOFLimit = 5;
     for (let i = 0; i < lookForEOFLimit; i++) {
-      if (decoder.readNextChar() === -1) {
+      if (decoder.readNextChar === -1) {
         break;
       }
     }
@@ -17554,13 +17554,13 @@ class ArithmeticDecoder {
     this.dataEnd = end;
     this.chigh = data[start];
     this.clow = 0;
-    this.byteIn();
+    this.byteIn;
     this.chigh = this.chigh << 7 & 0xffff | this.clow >> 9 & 0x7f;
     this.clow = this.clow << 7 & 0xffff;
     this.ct -= 7;
     this.a = 0x8000;
   }
-  byteIn() {
+  byteIn {
     const data = this.data;
     let bp = this.bp;
     if (data[bp] === 0xff) {
@@ -17623,7 +17623,7 @@ class ArithmeticDecoder {
     }
     do {
       if (this.ct === 0) {
-        this.byteIn();
+        this.byteIn;
       }
       a <<= 1;
       this.chigh = this.chigh << 1 & 0xffff | this.clow >> 15 & 1;
@@ -17654,7 +17654,7 @@ var _util = __w_pdfjs_require__(2);
 class JpegStream extends _decode_stream.DecodeStream {
   constructor(stream, maybeLength, params) {
     let ch;
-    while ((ch = stream.getByte()) !== -1) {
+    while ((ch = stream.getByte) !== -1) {
       if (ch === 0xff) {
         stream.skip(-1);
         break;
@@ -17666,11 +17666,11 @@ class JpegStream extends _decode_stream.DecodeStream {
     this.maybeLength = maybeLength;
     this.params = params;
   }
-  get bytes() {
+  get bytes {
     return (0, _util.shadow)(this, "bytes", this.stream.getBytes(this.maybeLength));
   }
   ensureBuffer(requested) {}
-  readBlock() {
+  readBlock {
     if (this.eof) {
       return;
     }
@@ -17772,10 +17772,10 @@ function buildHuffmanTable(codeLengths, values) {
     q;
   for (i = 0; i < length; i++) {
     for (j = 0; j < codeLengths[i]; j++) {
-      p = code.pop();
+      p = code.pop;
       p.children[p.index] = values[k];
       while (p.index > 0) {
-        p = code.pop();
+        p = code.pop;
       }
       p.index++;
       code.push(p);
@@ -17809,7 +17809,7 @@ function decodeScan(data, offset, frame, components, resetInterval, spectralStar
   const startOffset = offset;
   let bitsData = 0,
     bitsCount = 0;
-  function readBit() {
+  function readBit {
     if (bitsCount > 0) {
       bitsCount--;
       return bitsData >> bitsCount & 1;
@@ -17843,7 +17843,7 @@ function decodeScan(data, offset, frame, components, resetInterval, spectralStar
   function decodeHuffman(tree) {
     let node = tree;
     while (true) {
-      node = node[readBit()];
+      node = node[readBit];
       switch (typeof node) {
         case "number":
           return node;
@@ -17856,14 +17856,14 @@ function decodeScan(data, offset, frame, components, resetInterval, spectralStar
   function receive(length) {
     let n = 0;
     while (length > 0) {
-      n = n << 1 | readBit();
+      n = n << 1 | readBit;
       length--;
     }
     return n;
   }
   function receiveAndExtend(length) {
     if (length === 1) {
-      return readBit() === 1 ? 1 : -1;
+      return readBit === 1 ? 1 : -1;
     }
     const n = receive(length);
     if (n >= 1 << length - 1) {
@@ -17899,7 +17899,7 @@ function decodeScan(data, offset, frame, components, resetInterval, spectralStar
     component.blockData[blockOffset] = component.pred += diff;
   }
   function decodeDCSuccessive(component, blockOffset) {
-    component.blockData[blockOffset] |= readBit() << successive;
+    component.blockData[blockOffset] |= readBit << successive;
   }
   let eobrun = 0;
   function decodeACFirst(component, blockOffset) {
@@ -17962,7 +17962,7 @@ function decodeScan(data, offset, frame, components, resetInterval, spectralStar
         case 1:
         case 2:
           if (component.blockData[offsetZ]) {
-            component.blockData[offsetZ] += sign * (readBit() << successive);
+            component.blockData[offsetZ] += sign * (readBit << successive);
           } else {
             r--;
             if (r === 0) {
@@ -17972,7 +17972,7 @@ function decodeScan(data, offset, frame, components, resetInterval, spectralStar
           break;
         case 3:
           if (component.blockData[offsetZ]) {
-            component.blockData[offsetZ] += sign * (readBit() << successive);
+            component.blockData[offsetZ] += sign * (readBit << successive);
           } else {
             component.blockData[offsetZ] = successiveACNextValue << successive;
             successiveACState = 0;
@@ -17980,7 +17980,7 @@ function decodeScan(data, offset, frame, components, resetInterval, spectralStar
           break;
         case 4:
           if (component.blockData[offsetZ]) {
-            component.blockData[offsetZ] += sign * (readBit() << successive);
+            component.blockData[offsetZ] += sign * (readBit << successive);
           }
           break;
       }
@@ -18324,7 +18324,7 @@ class JpegImage {
   parse(data, {
     dnlScanLines = null
   } = {}) {
-    function readDataBlock() {
+    function readDataBlock {
       const length = (0, _core_utils.readUint16)(data, offset);
       offset += 2;
       let endOffset = offset + length - 2;
@@ -18388,7 +18388,7 @@ class JpegImage {
         case 0xffee:
         case 0xffef:
         case 0xfffe:
-          const appData = readDataBlock();
+          const appData = readDataBlock;
           if (fileMarker === 0xffe0) {
             if (appData[0] === 0x4a && appData[1] === 0x46 && appData[2] === 0x49 && appData[3] === 0x46 && appData[4] === 0) {
               jfif = {
@@ -18639,7 +18639,7 @@ class JpegImage {
     }
     return data;
   }
-  get _isColorConversionNeeded() {
+  get _isColorConversionNeeded {
     if (this.adobe) {
       return !!this.adobe.transformCode;
     }
@@ -18936,15 +18936,15 @@ class JpxStream extends _decode_stream.DecodeStream {
     this.maybeLength = maybeLength;
     this.params = params;
   }
-  get bytes() {
+  get bytes {
     return (0, _util.shadow)(this, "bytes", this.stream.getBytes(this.maybeLength));
   }
   ensureBuffer(requested) {}
-  readBlock() {
+  readBlock {
     if (this.eof) {
       return;
     }
-    const jpxImage = new _jpx.JpxImage();
+    const jpxImage = new _jpx.JpxImage;
     jpxImage.parse(this.bytes);
     const width = jpxImage.width;
     const height = jpxImage.height;
@@ -19005,7 +19005,7 @@ const SubbandsGainLog2 = {
   HH: 2
 };
 class JpxImage {
-  constructor() {
+  constructor {
     this.failOnCorruptedImage = false;
   }
   parse(data) {
@@ -19080,19 +19080,19 @@ class JpxImage {
     }
   }
   parseImageProperties(stream) {
-    let newByte = stream.getByte();
+    let newByte = stream.getByte;
     while (newByte >= 0) {
       const oldByte = newByte;
-      newByte = stream.getByte();
+      newByte = stream.getByte;
       const code = oldByte << 8 | newByte;
       if (code === 0xff51) {
         stream.skip(4);
-        const Xsiz = stream.getInt32() >>> 0;
-        const Ysiz = stream.getInt32() >>> 0;
-        const XOsiz = stream.getInt32() >>> 0;
-        const YOsiz = stream.getInt32() >>> 0;
+        const Xsiz = stream.getInt32 >>> 0;
+        const Ysiz = stream.getInt32 >>> 0;
+        const XOsiz = stream.getInt32 >>> 0;
+        const YOsiz = stream.getInt32 >>> 0;
         stream.skip(16);
-        const Csiz = stream.getUint16();
+        const Csiz = stream.getUint16;
         this.width = Xsiz - XOsiz;
         this.height = Ysiz - YOsiz;
         this.componentsCount = Csiz;
@@ -19541,7 +19541,7 @@ function LayerResolutionComponentPositionIterator(context) {
     r = 0,
     i = 0,
     k = 0;
-  this.nextPacket = function JpxImage_nextPacket() {
+  this.nextPacket = function JpxImage_nextPacket {
     for (; l < layersCount; l++) {
       for (; r <= maxDecompositionLevelsCount; r++) {
         for (; i < componentsCount; i++) {
@@ -19579,7 +19579,7 @@ function ResolutionLayerComponentPositionIterator(context) {
     l = 0,
     i = 0,
     k = 0;
-  this.nextPacket = function JpxImage_nextPacket() {
+  this.nextPacket = function JpxImage_nextPacket {
     for (; r <= maxDecompositionLevelsCount; r++) {
       for (; l < layersCount; l++) {
         for (; i < componentsCount; i++) {
@@ -19630,7 +19630,7 @@ function ResolutionPositionComponentLayerIterator(context) {
   r = 0;
   c = 0;
   p = 0;
-  this.nextPacket = function JpxImage_nextPacket() {
+  this.nextPacket = function JpxImage_nextPacket {
     for (; r <= maxDecompositionLevelsCount; r++) {
       for (; p < maxNumPrecinctsInLevel[r]; p++) {
         for (; c < componentsCount; c++) {
@@ -19670,7 +19670,7 @@ function PositionComponentResolutionLayerIterator(context) {
     c = 0,
     px = 0,
     py = 0;
-  this.nextPacket = function JpxImage_nextPacket() {
+  this.nextPacket = function JpxImage_nextPacket {
     for (; py < precinctsIterationSizes.maxNumHigh; py++) {
       for (; px < precinctsIterationSizes.maxNumWide; px++) {
         for (; c < componentsCount; c++) {
@@ -19711,7 +19711,7 @@ function ComponentPositionResolutionLayerIterator(context) {
     c = 0,
     px = 0,
     py = 0;
-  this.nextPacket = function JpxImage_nextPacket() {
+  this.nextPacket = function JpxImage_nextPacket {
     for (; c < componentsCount; ++c) {
       const component = tile.components[c];
       const precinctsIterationSizes = precinctsSizes.components[c];
@@ -19930,14 +19930,14 @@ function parseTilePackets(context, data, offset, dataLength) {
   function skipBytes(count) {
     position += count;
   }
-  function alignToByte() {
+  function alignToByte {
     bufferSize = 0;
     if (skipNextBit) {
       position++;
       skipNextBit = false;
     }
   }
-  function readCodingpasses() {
+  function readCodingpasses {
     if (readBits(1) === 0) {
       return 1;
     }
@@ -19961,11 +19961,11 @@ function parseTilePackets(context, data, offset, dataLength) {
   const ephMarkerUsed = context.COD.ephMarkerUsed;
   const packetsIterator = tile.packetsIterator;
   while (position < dataLength) {
-    alignToByte();
+    alignToByte;
     if (sopMarkerUsed && skipMarkerIfEqual(0x91)) {
       skipBytes(4);
     }
-    const packet = packetsIterator.nextPacket();
+    const packet = packetsIterator.nextPacket;
     if (!readBits(1)) {
       continue;
     }
@@ -20003,7 +20003,7 @@ function parseTilePackets(context, data, offset, dataLength) {
         if (inclusionTree.reset(codeblockColumn, codeblockRow, layerNumber)) {
           while (true) {
             if (readBits(1)) {
-              valueReady = !inclusionTree.nextLevel();
+              valueReady = !inclusionTree.nextLevel;
               if (valueReady) {
                 codeblock.included = true;
                 codeblockIncluded = firstTimeInclusion = true;
@@ -20024,17 +20024,17 @@ function parseTilePackets(context, data, offset, dataLength) {
         zeroBitPlanesTree.reset(codeblockColumn, codeblockRow);
         while (true) {
           if (readBits(1)) {
-            valueReady = !zeroBitPlanesTree.nextLevel();
+            valueReady = !zeroBitPlanesTree.nextLevel;
             if (valueReady) {
               break;
             }
           } else {
-            zeroBitPlanesTree.incrementValue();
+            zeroBitPlanesTree.incrementValue;
           }
         }
         codeblock.zeroBitPlanes = zeroBitPlanesTree.value;
       }
-      const codingpasses = readCodingpasses();
+      const codingpasses = readCodingpasses;
       while (readBits(1)) {
         codeblock.Lblock++;
       }
@@ -20047,12 +20047,12 @@ function parseTilePackets(context, data, offset, dataLength) {
         dataLength: codedDataLength
       });
     }
-    alignToByte();
+    alignToByte;
     if (ephMarkerUsed) {
       skipMarkerIfEqual(0x92);
     }
     while (queue.length > 0) {
-      const packetItem = queue.shift();
+      const packetItem = queue.shift;
       codeblock = packetItem.codeblock;
       if (codeblock.data === undefined) {
         codeblock.data = [];
@@ -20109,20 +20109,20 @@ function copyCoefficients(coefficients, levelWidth, levelHeight, subband, delta,
     for (j = 0; j < codingpasses; j++) {
       switch (currentCodingpassType) {
         case 0:
-          bitModel.runSignificancePropagationPass();
+          bitModel.runSignificancePropagationPass;
           break;
         case 1:
-          bitModel.runMagnitudeRefinementPass();
+          bitModel.runMagnitudeRefinementPass;
           break;
         case 2:
-          bitModel.runCleanupPass();
+          bitModel.runCleanupPass;
           if (segmentationSymbolUsed) {
-            bitModel.checkSegmentationSymbol();
+            bitModel.checkSegmentationSymbol;
           }
           break;
       }
       if (resetContextProbabilities) {
-        bitModel.reset();
+        bitModel.reset;
       }
       currentCodingpassType = (currentCodingpassType + 1) % 3;
     }
@@ -20167,7 +20167,7 @@ function transformTile(context, tile, c) {
   const resetContextProbabilities = codingStyleParameters.resetContextProbabilities;
   const precision = context.components[c].precision;
   const reversible = codingStyleParameters.reversibleTransformation;
-  const transform = reversible ? new ReversibleTransform() : new IrreversibleTransform();
+  const transform = reversible ? new ReversibleTransform : new IrreversibleTransform;
   const subbandCoefficients = [];
   let b = 0;
   for (let i = 0; i <= decompositionLevelsCount; i++) {
@@ -20334,11 +20334,11 @@ class TagTree {
     this.currentLevel = currentLevel;
     delete this.value;
   }
-  incrementValue() {
+  incrementValue {
     const level = this.levels[this.currentLevel];
     level.items[level.index]++;
   }
-  nextLevel() {
+  nextLevel {
     let currentLevel = this.currentLevel;
     let level = this.levels[currentLevel];
     const value = level.items[level.index];
@@ -20384,7 +20384,7 @@ class InclusionTree {
       }
       if (value > stopValue) {
         this.currentLevel = currentLevel;
-        this.propagateValues();
+        this.propagateValues;
         return false;
       }
       i >>= 1;
@@ -20397,9 +20397,9 @@ class InclusionTree {
   incrementValue(stopValue) {
     const level = this.levels[this.currentLevel];
     level.items[level.index] = stopValue + 1;
-    this.propagateValues();
+    this.propagateValues;
   }
-  propagateValues() {
+  propagateValues {
     let levelIndex = this.currentLevel;
     let level = this.levels[levelIndex];
     const currentValue = level.items[level.index];
@@ -20408,7 +20408,7 @@ class InclusionTree {
       level.items[level.index] = currentValue;
     }
   }
-  nextLevel() {
+  nextLevel {
     let currentLevel = this.currentLevel;
     let level = this.levels[currentLevel];
     const value = level.items[level.index];
@@ -20461,12 +20461,12 @@ class BitModel {
       }
     }
     this.bitsDecoded = bitsDecoded;
-    this.reset();
+    this.reset;
   }
   setDecoder(decoder) {
     this.decoder = decoder;
   }
-  reset() {
+  reset {
     this.contexts = new Int8Array(19);
     this.contexts[0] = 4 << 1 | 0;
     this.contexts[BitModel.UNIFORM_CONTEXT] = 46 << 1 | 0;
@@ -20507,7 +20507,7 @@ class BitModel {
     }
     neighborsSignificance[index] |= 0x80;
   }
-  runSignificancePropagationPass() {
+  runSignificancePropagationPass {
     const decoder = this.decoder;
     const width = this.width,
       height = this.height;
@@ -20595,7 +20595,7 @@ class BitModel {
     }
     return decoded;
   }
-  runMagnitudeRefinementPass() {
+  runMagnitudeRefinementPass {
     const decoder = this.decoder;
     const width = this.width,
       height = this.height;
@@ -20629,7 +20629,7 @@ class BitModel {
       }
     }
   }
-  runCleanupPass() {
+  runCleanupPass {
     const decoder = this.decoder;
     const width = this.width,
       height = this.height;
@@ -20700,7 +20700,7 @@ class BitModel {
       }
     }
   }
-  checkSegmentationSymbol() {
+  checkSegmentationSymbol {
     const decoder = this.decoder;
     const contexts = this.contexts;
     const symbol = decoder.readBit(contexts, BitModel.UNIFORM_CONTEXT) << 3 | decoder.readBit(contexts, BitModel.UNIFORM_CONTEXT) << 2 | decoder.readBit(contexts, BitModel.UNIFORM_CONTEXT) << 1 | decoder.readBit(contexts, BitModel.UNIFORM_CONTEXT);
@@ -20710,7 +20710,7 @@ class BitModel {
   }
 }
 class Transform {
-  constructor() {
+  constructor {
     if (this.constructor === Transform) {
       (0, _util.unreachable)("Cannot initialize Transform.");
     }
@@ -20940,7 +20940,7 @@ class LZWStream extends _decode_stream.DecodeStream {
     let bitsCached = this.bitsCached;
     let cachedData = this.cachedData;
     while (bitsCached < n) {
-      const c = this.str.getByte();
+      const c = this.str.getByte;
       if (c === -1) {
         this.eof = true;
         return null;
@@ -20953,7 +20953,7 @@ class LZWStream extends _decode_stream.DecodeStream {
     this.lastCode = null;
     return cachedData >>> bitsCached & (1 << n) - 1;
   }
-  readBlock() {
+  readBlock {
     const blockSize = 512,
       decodedSizeDelta = blockSize;
     let estimatedDecodedSize = blockSize * 2;
@@ -21064,7 +21064,7 @@ class PredictorStream extends _decode_stream.DecodeStream {
     this.rowBytes = columns * colors * bits + 7 >> 3;
     return this;
   }
-  readBlockTiff() {
+  readBlockTiff {
     const rowBytes = this.rowBytes;
     const bufferLength = this.bufferLength;
     const buffer = this.ensureBuffer(bufferLength + rowBytes);
@@ -21136,10 +21136,10 @@ class PredictorStream extends _decode_stream.DecodeStream {
     }
     this.bufferLength += rowBytes;
   }
-  readBlockPng() {
+  readBlockPng {
     const rowBytes = this.rowBytes;
     const pixBytes = this.pixBytes;
-    const predictor = this.str.getByte();
+    const predictor = this.str.getByte;
     const rawBytes = this.str.getBytes(rowBytes);
     this.eof = !rawBytes.length;
     if (this.eof) {
@@ -21242,7 +21242,7 @@ class RunLengthStream extends _decode_stream.DecodeStream {
     this.str = str;
     this.dict = str.dict;
   }
-  readBlock() {
+  readBlock {
     const repeatHeader = this.str.getBytes(2);
     if (!repeatHeader || repeatHeader.length < 2 || repeatHeader[0] === 128) {
       this.eof = true;
@@ -21346,7 +21346,7 @@ function adjustTrueTypeToUnicode(properties, isSymbolicFont, nameRecords) {
   }
   const encoding = _encodings.WinAnsiEncoding;
   const toUnicode = [],
-    glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode)();
+    glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode);
   for (const charCode in encoding) {
     const glyphName = encoding[charCode];
     if (glyphName === "") {
@@ -21376,7 +21376,7 @@ function adjustType1ToUnicode(properties, builtInEncoding) {
     return;
   }
   const toUnicode = [],
-    glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode)();
+    glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode);
   for (const charCode in builtInEncoding) {
     if (properties.hasEncoding) {
       if (properties.baseEncodingName || properties.differences[charCode] !== undefined) {
@@ -21423,7 +21423,7 @@ class Glyph {
     this.isSpace = isSpace;
     this.isInFont = isInFont;
   }
-  get category() {
+  get category {
     return (0, _util.shadow)(this, "category", (0, _unicode.getCharUnicodeCategory)(this.unicode), true);
   }
 }
@@ -21556,9 +21556,9 @@ function convertCidString(charCode, cid, shouldThrow = false) {
 }
 function adjustMapping(charCodeToGlyphId, hasGlyph, newGlyphZeroId, toUnicode) {
   const newMap = Object.create(null);
-  const toUnicodeExtraMap = new Map();
+  const toUnicodeExtraMap = new Map;
   const toFontChar = [];
-  const usedGlyphIds = new Set();
+  const usedGlyphIds = new Set;
   let privateUseAreaIndex = 0;
   const privateUseOffetStart = PRIVATE_USE_AREAS[privateUseAreaIndex][0];
   let nextAvailableFontCharCode = privateUseOffetStart;
@@ -21736,19 +21736,19 @@ function createCmapTable(glyphs, toUnicodeExtraMap, numGlyphs) {
 }
 function validateOS2Table(os2, file) {
   file.pos = (file.start || 0) + os2.offset;
-  const version = file.getUint16();
+  const version = file.getUint16;
   file.skip(60);
-  const selection = file.getUint16();
+  const selection = file.getUint16;
   if (version < 4 && selection & 0x0300) {
     return false;
   }
-  const firstChar = file.getUint16();
-  const lastChar = file.getUint16();
+  const firstChar = file.getUint16;
+  const lastChar = file.getUint16;
   if (firstChar > lastChar) {
     return false;
   }
   file.skip(6);
-  const usWinAscent = file.getUint16();
+  const usWinAscent = file.getUint16;
   if (usWinAscent === 0) {
     return false;
   }
@@ -21816,7 +21816,7 @@ function createPostTable(properties) {
   return "\x00\x03\x00\x00" + (0, _util.string32)(angle) + "\x00\x00" + "\x00\x00" + (0, _util.string32)(properties.fixedPitch ? 1 : 0) + "\x00\x00\x00\x00" + "\x00\x00\x00\x00" + "\x00\x00\x00\x00" + "\x00\x00\x00\x00";
 }
 function createPostscriptName(name) {
-  return name.replaceAll(/[^\x21-\x7E]|[[\](){}<>/%]/g, "").slice(0, 63);
+  return name.replaceAll(/[^\x21-\x7E]|[[\]{}<>/%]/g, "").slice(0, 63);
 }
 function createNameTable(name, proto) {
   if (!proto) {
@@ -21867,7 +21867,7 @@ class Font {
     let isSerifFont = !!(properties.flags & _fonts_utils.FontFlags.Serif);
     if (!isSerifFont && !properties.isSimulatedFlags) {
       const baseName = name.replaceAll(/[,_]/g, "-").split("-")[0],
-        serifFonts = (0, _standard_fonts.getSerifFonts)();
+        serifFonts = (0, _standard_fonts.getSerifFonts);
       for (const namePart of baseName.split("+")) {
         if (serifFonts[namePart]) {
           isSerifFont = true;
@@ -21977,7 +21977,7 @@ class Font {
     this.toUnicode = properties.toUnicode;
     this.seacMap = properties.seacMap;
   }
-  get renderer() {
+  get renderer {
     const renderer = _font_renderer.FontRendererFactory.create(this, _fonts_utils.SEAC_ANALYSIS_ENABLED);
     return (0, _util.shadow)(this, "renderer", renderer);
   }
@@ -22000,12 +22000,12 @@ class Font {
       type
     } = this;
     let fontName = (0, _fonts_utils.normalizeFontName)(name);
-    const stdFontMap = (0, _standard_fonts.getStdFontMap)(),
-      nonStdFontMap = (0, _standard_fonts.getNonStdFontMap)();
+    const stdFontMap = (0, _standard_fonts.getStdFontMap),
+      nonStdFontMap = (0, _standard_fonts.getNonStdFontMap);
     const isStandardFont = !!stdFontMap[fontName];
     const isMappedToStandardFont = !!(nonStdFontMap[fontName] && stdFontMap[nonStdFontMap[fontName]]);
     fontName = stdFontMap[fontName] || nonStdFontMap[fontName] || fontName;
-    const fontBasicMetricsMap = (0, _metrics.getFontBasicMetrics)();
+    const fontBasicMetricsMap = (0, _metrics.getFontBasicMetrics);
     const metrics = fontBasicMetricsMap[fontName];
     if (metrics) {
       if (isNaN(this.ascent)) {
@@ -22026,11 +22026,11 @@ class Font {
     if ((isStandardFont || isMappedToStandardFont) && type === "CIDFontType2" && this.cidEncoding.startsWith("Identity-")) {
       const cidToGidMap = properties.cidToGidMap;
       const map = [];
-      applyStandardFontGlyphMap(map, (0, _standard_fonts.getGlyphMapForStandardFonts)());
+      applyStandardFontGlyphMap(map, (0, _standard_fonts.getGlyphMapForStandardFonts));
       if (/Arial-?Black/i.test(name)) {
-        applyStandardFontGlyphMap(map, (0, _standard_fonts.getSupplementalGlyphMapForArialBlack)());
+        applyStandardFontGlyphMap(map, (0, _standard_fonts.getSupplementalGlyphMapForArialBlack));
       } else if (/Calibri/i.test(name)) {
-        applyStandardFontGlyphMap(map, (0, _standard_fonts.getSupplementalGlyphMapForCalibri)());
+        applyStandardFontGlyphMap(map, (0, _standard_fonts.getSupplementalGlyphMapForCalibri));
       }
       if (cidToGidMap) {
         for (const charCode in map) {
@@ -22056,11 +22056,11 @@ class Font {
       this.toFontChar = map;
       this.toUnicode = new _to_unicode_map.ToUnicodeMap(map);
     } else if (/Symbol/i.test(fontName)) {
-      this.toFontChar = buildToFontChar(_encodings.SymbolSetEncoding, (0, _glyphlist.getGlyphsUnicode)(), this.differences);
+      this.toFontChar = buildToFontChar(_encodings.SymbolSetEncoding, (0, _glyphlist.getGlyphsUnicode), this.differences);
     } else if (/Dingbats/i.test(fontName)) {
-      this.toFontChar = buildToFontChar(_encodings.ZapfDingbatsEncoding, (0, _glyphlist.getDingbatsGlyphsUnicode)(), this.differences);
+      this.toFontChar = buildToFontChar(_encodings.ZapfDingbatsEncoding, (0, _glyphlist.getDingbatsGlyphsUnicode), this.differences);
     } else if (isStandardFont) {
-      const map = buildToFontChar(this.defaultEncoding, (0, _glyphlist.getGlyphsUnicode)(), this.differences);
+      const map = buildToFontChar(this.defaultEncoding, (0, _glyphlist.getGlyphsUnicode), this.differences);
       if (type === "CIDFontType2" && !this.cidEncoding.startsWith("Identity-") && !(this.toUnicode instanceof _to_unicode_map.IdentityToUnicodeMap)) {
         this.toUnicode.forEach(function (charCode, unicodeCharCode) {
           map[+charCode] = unicodeCharCode;
@@ -22068,7 +22068,7 @@ class Font {
       }
       this.toFontChar = map;
     } else {
-      const glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode)();
+      const glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode);
       const map = [];
       this.toUnicode.forEach((charCode, unicodeCharCode) => {
         if (!this.composite) {
@@ -22082,7 +22082,7 @@ class Font {
       });
       if (this.composite && this.toUnicode instanceof _to_unicode_map.IdentityToUnicodeMap) {
         if (/Tahoma|Verdana/i.test(name)) {
-          applyStandardFontGlyphMap(map, (0, _standard_fonts.getGlyphMapForStandardFonts)());
+          applyStandardFontGlyphMap(map, (0, _standard_fonts.getGlyphMapForStandardFonts));
         }
       }
       this.toFontChar = map;
@@ -22116,9 +22116,9 @@ class Font {
     }
     function readTableEntry(file) {
       const tag = file.getString(4);
-      const checksum = file.getInt32() >>> 0;
-      const offset = file.getInt32() >>> 0;
-      const length = file.getInt32() >>> 0;
+      const checksum = file.getInt32 >>> 0;
+      const offset = file.getInt32 >>> 0;
+      const length = file.getInt32 >>> 0;
       const previousPosition = file.pos;
       file.pos = file.start || 0;
       file.skip(offset);
@@ -22139,21 +22139,21 @@ class Font {
     function readOpenTypeHeader(ttf) {
       return {
         version: ttf.getString(4),
-        numTables: ttf.getUint16(),
-        searchRange: ttf.getUint16(),
-        entrySelector: ttf.getUint16(),
-        rangeShift: ttf.getUint16()
+        numTables: ttf.getUint16,
+        searchRange: ttf.getUint16,
+        entrySelector: ttf.getUint16,
+        rangeShift: ttf.getUint16
       };
     }
     function readTrueTypeCollectionHeader(ttc) {
       const ttcTag = ttc.getString(4);
       (0, _util.assert)(ttcTag === "ttcf", "Must be a TrueType Collection font.");
-      const majorVersion = ttc.getUint16();
-      const minorVersion = ttc.getUint16();
-      const numFonts = ttc.getInt32() >>> 0;
+      const majorVersion = ttc.getUint16;
+      const minorVersion = ttc.getUint16;
+      const numFonts = ttc.getInt32 >>> 0;
       const offsetTable = [];
       for (let i = 0; i < numFonts; i++) {
-        offsetTable.push(ttc.getInt32() >>> 0);
+        offsetTable.push(ttc.getInt32 >>> 0);
       }
       const header = {
         ttcTag,
@@ -22166,9 +22166,9 @@ class Font {
         case 1:
           return header;
         case 2:
-          header.dsigTag = ttc.getInt32() >>> 0;
-          header.dsigLength = ttc.getInt32() >>> 0;
-          header.dsigOffset = ttc.getInt32() >>> 0;
+          header.dsigTag = ttc.getInt32 >>> 0;
+          header.dsigLength = ttc.getInt32 >>> 0;
+          header.dsigOffset = ttc.getInt32 >>> 0;
           return header;
       }
       throw new _util.FormatError(`Invalid TrueType Collection majorVersion: ${majorVersion}.`);
@@ -22238,13 +22238,13 @@ class Font {
       let start = (file.start || 0) + cmap.offset;
       file.pos = start;
       file.skip(2);
-      const numTables = file.getUint16();
+      const numTables = file.getUint16;
       let potentialTable;
       let canBreak = false;
       for (let i = 0; i < numTables; i++) {
-        const platformId = file.getUint16();
-        const encodingId = file.getUint16();
-        const offset = file.getInt32() >>> 0;
+        const platformId = file.getUint16;
+        const encodingId = file.getUint16;
+        const offset = file.getInt32 >>> 0;
         let useTable = false;
         if (potentialTable?.platformId === platformId && potentialTable?.encodingId === encodingId) {
           continue;
@@ -22286,7 +22286,7 @@ class Font {
       if (potentialTable) {
         file.pos = start + potentialTable.offset;
       }
-      if (!potentialTable || file.peekByte() === -1) {
+      if (!potentialTable || file.peekByte === -1) {
         (0, _util.warn)("Could not find a preferred cmap table.");
         return {
           platformId: -1,
@@ -22295,14 +22295,14 @@ class Font {
           hasShortCmap: false
         };
       }
-      const format = file.getUint16();
+      const format = file.getUint16;
       let hasShortCmap = false;
       const mappings = [];
       let j, glyphId;
       if (format === 0) {
         file.skip(2 + 2);
         for (j = 0; j < 256; j++) {
-          const index = file.getByte();
+          const index = file.getByte;
           if (!index) {
             continue;
           }
@@ -22317,23 +22317,23 @@ class Font {
         const subHeaderKeys = [];
         let maxSubHeaderKey = 0;
         for (let i = 0; i < 256; i++) {
-          const subHeaderKey = file.getUint16() >> 3;
+          const subHeaderKey = file.getUint16 >> 3;
           subHeaderKeys.push(subHeaderKey);
           maxSubHeaderKey = Math.max(subHeaderKey, maxSubHeaderKey);
         }
         const subHeaders = [];
         for (let i = 0; i <= maxSubHeaderKey; i++) {
           subHeaders.push({
-            firstCode: file.getUint16(),
-            entryCount: file.getUint16(),
-            idDelta: signedInt16(file.getByte(), file.getByte()),
-            idRangePos: file.pos + file.getUint16()
+            firstCode: file.getUint16,
+            entryCount: file.getUint16,
+            idDelta: signedInt16(file.getByte, file.getByte),
+            idRangePos: file.pos + file.getUint16
           });
         }
         for (let i = 0; i < 256; i++) {
           if (subHeaderKeys[i] === 0) {
             file.pos = subHeaders[0].idRangePos + 2 * i;
-            glyphId = file.getUint16();
+            glyphId = file.getUint16;
             mappings.push({
               charCode: i,
               glyphId
@@ -22343,7 +22343,7 @@ class Font {
             for (j = 0; j < s.entryCount; j++) {
               const charCode = (i << 8) + j + s.firstCode;
               file.pos = s.idRangePos + 2 * j;
-              glyphId = file.getUint16();
+              glyphId = file.getUint16;
               if (glyphId !== 0) {
                 glyphId = (glyphId + s.idDelta) % 65536;
               }
@@ -22356,27 +22356,27 @@ class Font {
         }
       } else if (format === 4) {
         file.skip(2 + 2);
-        const segCount = file.getUint16() >> 1;
+        const segCount = file.getUint16 >> 1;
         file.skip(6);
         const segments = [];
         let segIndex;
         for (segIndex = 0; segIndex < segCount; segIndex++) {
           segments.push({
-            end: file.getUint16()
+            end: file.getUint16
           });
         }
         file.skip(2);
         for (segIndex = 0; segIndex < segCount; segIndex++) {
-          segments[segIndex].start = file.getUint16();
+          segments[segIndex].start = file.getUint16;
         }
         for (segIndex = 0; segIndex < segCount; segIndex++) {
-          segments[segIndex].delta = file.getUint16();
+          segments[segIndex].delta = file.getUint16;
         }
         let offsetsCount = 0,
           offsetIndex;
         for (segIndex = 0; segIndex < segCount; segIndex++) {
           segment = segments[segIndex];
-          const rangeOffset = file.getUint16();
+          const rangeOffset = file.getUint16;
           if (!rangeOffset) {
             segment.offsetIndex = -1;
             continue;
@@ -22387,7 +22387,7 @@ class Font {
         }
         const offsets = [];
         for (j = 0; j < offsetsCount; j++) {
-          offsets.push(file.getUint16());
+          offsets.push(file.getUint16);
         }
         for (segIndex = 0; segIndex < segCount; segIndex++) {
           segment = segments[segIndex];
@@ -22409,10 +22409,10 @@ class Font {
         }
       } else if (format === 6) {
         file.skip(2 + 2);
-        const firstCode = file.getUint16();
-        const entryCount = file.getUint16();
+        const firstCode = file.getUint16;
+        const entryCount = file.getUint16;
         for (j = 0; j < entryCount; j++) {
-          glyphId = file.getUint16();
+          glyphId = file.getUint16;
           const charCode = firstCode + j;
           mappings.push({
             charCode,
@@ -22421,11 +22421,11 @@ class Font {
         }
       } else if (format === 12) {
         file.skip(2 + 4 + 4);
-        const nGroups = file.getInt32() >>> 0;
+        const nGroups = file.getInt32 >>> 0;
         for (j = 0; j < nGroups; j++) {
-          const startCharCode = file.getInt32() >>> 0;
-          const endCharCode = file.getInt32() >>> 0;
-          let glyphCode = file.getInt32() >>> 0;
+          const startCharCode = file.getInt32 >>> 0;
+          const endCharCode = file.getInt32 >>> 0;
+          let glyphCode = file.getInt32 >>> 0;
           for (let charCode = startCharCode; charCode <= endCharCode; charCode++) {
             mappings.push({
               charCode,
@@ -22476,10 +22476,10 @@ class Font {
       file.pos += 2;
       file.pos += 2;
       file.pos += 2;
-      const caretOffset = file.getUint16();
+      const caretOffset = file.getUint16;
       file.pos += 8;
       file.pos += 2;
-      let numOfMetrics = file.getUint16();
+      let numOfMetrics = file.getUint16;
       if (caretOffset !== 0) {
         const macStyle = int16(headTable.data[44], headTable.data[45]);
         if (!(macStyle & 2)) {
@@ -22742,7 +22742,7 @@ class Font {
       font.pos = start;
       const length = post.length,
         end = start + length;
-      const version = font.getInt32();
+      const version = font.getInt32;
       font.skip(28);
       let glyphNames;
       let valid = true;
@@ -22752,14 +22752,14 @@ class Font {
           glyphNames = _fonts_utils.MacStandardGlyphOrdering;
           break;
         case 0x00020000:
-          const numGlyphs = font.getUint16();
+          const numGlyphs = font.getUint16;
           if (numGlyphs !== maxpNumGlyphs) {
             valid = false;
             break;
           }
           const glyphNameIndexes = [];
           for (i = 0; i < numGlyphs; ++i) {
-            const index = font.getUint16();
+            const index = font.getUint16;
             if (index >= 32768) {
               valid = false;
               break;
@@ -22772,10 +22772,10 @@ class Font {
           const customNames = [],
             strBuf = [];
           while (font.pos < end) {
-            const stringLength = font.getByte();
+            const stringLength = font.getByte;
             strBuf.length = stringLength;
             for (i = 0; i < stringLength; ++i) {
-              strBuf[i] = String.fromCharCode(font.getByte());
+              strBuf[i] = String.fromCharCode(font.getByte);
             }
             customNames.push(strBuf.join(""));
           }
@@ -22809,23 +22809,23 @@ class Font {
         records = [];
       const length = nameTable.length,
         end = start + length;
-      const format = font.getUint16();
+      const format = font.getUint16;
       const FORMAT_0_HEADER_LENGTH = 6;
       if (format !== 0 || length < FORMAT_0_HEADER_LENGTH) {
         return [names, records];
       }
-      const numRecords = font.getUint16();
-      const stringsStart = font.getUint16();
+      const numRecords = font.getUint16;
+      const stringsStart = font.getUint16;
       const NAME_RECORD_LENGTH = 12;
       let i, ii;
       for (i = 0; i < numRecords && font.pos + NAME_RECORD_LENGTH <= end; i++) {
         const r = {
-          platform: font.getUint16(),
-          encoding: font.getUint16(),
-          language: font.getUint16(),
-          name: font.getUint16(),
-          length: font.getUint16(),
-          offset: font.getUint16()
+          platform: font.getUint16,
+          encoding: font.getUint16,
+          language: font.getUint16,
+          name: font.getUint16,
+          length: font.getUint16,
+          offset: font.getUint16
         };
         if (isMacNameRecord(r) || isWinNameRecord(r)) {
           records.push(r);
@@ -22845,7 +22845,7 @@ class Font {
         if (record.encoding) {
           let str = "";
           for (let j = 0, jj = record.length; j < jj; j += 2) {
-            str += String.fromCharCode(font.getUint16());
+            str += String.fromCharCode(font.getUint16);
           }
           names[1][nameIndex] = str;
         } else {
@@ -22952,7 +22952,7 @@ class Font {
           }
           inFDEF = true;
           lastDeff = i;
-          funcId = stack.pop();
+          funcId = stack.pop;
           ttContext.functionsDefined[funcId] = {
             data,
             i
@@ -22962,13 +22962,13 @@ class Font {
             inFDEF = false;
             lastEndf = i;
           } else {
-            pc = callstack.pop();
+            pc = callstack.pop;
             if (!pc) {
               (0, _util.warn)("TT: ENDF bad stack");
               ttContext.hintsValid = false;
               return;
             }
-            funcId = functionsCalled.pop();
+            funcId = functionsCalled.pop;
             data = pc.data;
             i = pc.i;
             ttContext.functionsStackDeltas[funcId] = stack.length - pc.stackTop;
@@ -23007,13 +23007,13 @@ class Font {
             stackDelta = -2;
           }
           if (op >= 0x71 && op <= 0x75) {
-            n = stack.pop();
+            n = stack.pop;
             if (!isNaN(n)) {
               stackDelta = -n * 2;
             }
           }
           while (stackDelta < 0 && stack.length > 0) {
-            stack.pop();
+            stack.pop;
             stackDelta++;
           }
           while (stackDelta > 0) {
@@ -23097,7 +23097,7 @@ class Font {
       }
       return ttContext.hintsValid;
     }
-    font = new _stream.Stream(new Uint8Array(font.getBytes()));
+    font = new _stream.Stream(new Uint8Array(font.getBytes));
     let header, tables;
     if (isTrueTypeCollectionFile(font)) {
       const ttcData = readTrueTypeCollectionData(font, this.name);
@@ -23140,8 +23140,8 @@ class Font {
       throw new _util.FormatError('Required "maxp" table is not found');
     }
     font.pos = (font.start || 0) + tables.maxp.offset;
-    const version = font.getInt32();
-    const numGlyphs = font.getUint16();
+    const version = font.getInt32;
+    const numGlyphs = font.getUint16;
     if (properties.scaleFactors?.length === numGlyphs && isTrueType) {
       const {
         scaleFactors
@@ -23158,7 +23158,7 @@ class Font {
         glyf,
         loca,
         isLocationLong
-      } = glyphs.write();
+      } = glyphs.write;
       tables.glyf.data = glyf;
       tables.loca.data = loca;
       if (isLocationLong !== !!isGlyphLocationsLong) {
@@ -23186,15 +23186,15 @@ class Font {
     let maxSizeOfInstructions = 0;
     if (version >= 0x00010000 && tables.maxp.length >= 22) {
       font.pos += 8;
-      const maxZones = font.getUint16();
+      const maxZones = font.getUint16;
       if (maxZones > 2) {
         tables.maxp.data[14] = 0;
         tables.maxp.data[15] = 2;
       }
       font.pos += 4;
-      maxFunctionDefs = font.getUint16();
+      maxFunctionDefs = font.getUint16;
       font.pos += 4;
-      maxSizeOfInstructions = font.getUint16();
+      maxSizeOfInstructions = font.getUint16;
     }
     tables.maxp.data[4] = numGlyphsOut >> 8;
     tables.maxp.data[5] = numGlyphsOut & 255;
@@ -23285,7 +23285,7 @@ class Font {
         baseEncoding = (0, _encodings.getEncoding)(properties.baseEncodingName);
       }
       if (properties.hasEncoding && !this.isSymbolicFont && (cmapPlatformId === 3 && cmapEncodingId === 1 || cmapPlatformId === 1 && cmapEncodingId === 0)) {
-        const glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode)();
+        const glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode);
         for (let charCode = 0; charCode < 256; charCode++) {
           let glyphName;
           if (this.differences[charCode] !== undefined) {
@@ -23379,10 +23379,10 @@ class Font {
       try {
         cffFile = new _stream.Stream(tables["CFF "].data);
         const parser = new _cff_parser.CFFParser(cffFile, properties, _fonts_utils.SEAC_ANALYSIS_ENABLED);
-        cff = parser.parse();
-        cff.duplicateFirstGlyph();
+        cff = parser.parse;
+        cff.duplicateFirstGlyph;
         const compiler = new _cff_parser.CFFCompiler(cff);
-        tables["CFF "].data = compiler.compile();
+        tables["CFF "].data = compiler.compile;
       } catch {
         (0, _util.warn)("Failed to compile font " + properties.loadedName);
       }
@@ -23404,7 +23404,7 @@ class Font {
     for (const tableTag in tables) {
       builder.addTable(tableTag, tables[tableTag].data);
     }
-    return builder.toArray();
+    return builder.toArray;
   }
   convert(fontName, font, properties) {
     properties.fixedPitch = false;
@@ -23447,7 +23447,7 @@ class Font {
     const seacs = font.seacs;
     if (newMapping && _fonts_utils.SEAC_ANALYSIS_ENABLED && seacs?.length) {
       const matrix = properties.fontMatrix || _util.FONT_IDENTITY_MATRIX;
-      const charset = font.getCharset();
+      const charset = font.getCharset;
       const seacMap = Object.create(null);
       for (let glyphId in seacs) {
         glyphId |= 0;
@@ -23487,7 +23487,7 @@ class Font {
     builder.addTable("cmap", createCmapTable(newCharCodeToGlyphId, toUnicodeExtraMap, numGlyphs));
     builder.addTable("head", "\x00\x01\x00\x00" + "\x00\x00\x10\x00" + "\x00\x00\x00\x00" + "\x5F\x0F\x3C\xF5" + "\x00\x00" + safeString16(unitsPerEm) + "\x00\x00\x00\x00\x9e\x0b\x7e\x27" + "\x00\x00\x00\x00\x9e\x0b\x7e\x27" + "\x00\x00" + safeString16(properties.descent) + "\x0F\xFF" + safeString16(properties.ascent) + string16(properties.italicAngle ? 2 : 0) + "\x00\x11" + "\x00\x00" + "\x00\x00" + "\x00\x00");
     builder.addTable("hhea", "\x00\x01\x00\x00" + safeString16(properties.ascent) + safeString16(properties.descent) + "\x00\x00" + "\xFF\xFF" + "\x00\x00" + "\x00\x00" + "\x00\x00" + safeString16(properties.capHeight) + safeString16(Math.tan(properties.italicAngle) * properties.xHeight) + "\x00\x00" + "\x00\x00" + "\x00\x00" + "\x00\x00" + "\x00\x00" + "\x00\x00" + string16(numGlyphs));
-    builder.addTable("hmtx", function fontFieldsHmtx() {
+    builder.addTable("hmtx", function fontFieldsHmtx {
       const charstrings = font.charstrings;
       const cffWidths = font.cff ? font.cff.widths : null;
       let hmtx = "\x00\x00\x00\x00";
@@ -23502,13 +23502,13 @@ class Font {
         hmtx += string16(width) + string16(0);
       }
       return hmtx;
-    }());
+    });
     builder.addTable("maxp", "\x00\x00\x50\x00" + string16(numGlyphs));
     builder.addTable("name", createNameTable(fontName));
     builder.addTable("post", createPostTable(properties));
-    return builder.toArray();
+    return builder.toArray;
   }
-  get spaceWidth() {
+  get spaceWidth {
     const possibleSpaceReplacements = ["space", "minus", "one", "i", "I"];
     let width;
     for (const glyphName of possibleSpaceReplacements) {
@@ -23516,7 +23516,7 @@ class Font {
         width = this.widths[glyphName];
         break;
       }
-      const glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode)();
+      const glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode);
       const glyphUnicode = glyphsUnicodeMap[glyphName];
       let charcode = 0;
       if (this.composite && this.cMap.contains(glyphUnicode)) {
@@ -23640,13 +23640,13 @@ class Font {
     }
     return positions;
   }
-  get glyphCacheValues() {
+  get glyphCacheValues {
     return Object.values(this._glyphCache);
   }
   encodeString(str) {
     const buffers = [];
     const currentBuf = [];
-    const hasCurrentBufErrors = () => buffers.length % 2 === 1;
+    const hasCurrentBufErrors =  => buffers.length % 2 === 1;
     const getCharCode = this.toUnicode instanceof _to_unicode_map.IdentityToUnicodeMap ? unicode => this.toUnicode.charCodeOf(unicode) : unicode => this.toUnicode.charCodeOf(String.fromCodePoint(unicode));
     for (let i = 0, ii = str.length; i < ii; i++) {
       const unicode = str.codePointAt(i);
@@ -23656,7 +23656,7 @@ class Font {
       if (this.toUnicode) {
         const charCode = getCharCode(unicode);
         if (charCode !== -1) {
-          if (hasCurrentBufErrors()) {
+          if (hasCurrentBufErrors) {
             buffers.push(currentBuf.join(""));
             currentBuf.length = 0;
           }
@@ -23667,7 +23667,7 @@ class Font {
           continue;
         }
       }
-      if (!hasCurrentBufErrors()) {
+      if (!hasCurrentBufErrors) {
         buffers.push(currentBuf.join(""));
         currentBuf.length = 0;
       }
@@ -23684,7 +23684,7 @@ class ErrorFont {
     this.loadedName = "g_font_error";
     this.missingFile = true;
   }
-  charsToGlyphs() {
+  charsToGlyphs {
     return [];
   }
   encodeString(chars) {
@@ -23926,15 +23926,15 @@ const CharstringValidationData12 = [null, null, null, {
 }];
 class CFFParser {
   constructor(file, properties, seacAnalysisEnabled) {
-    this.bytes = file.getBytes();
+    this.bytes = file.getBytes;
     this.properties = properties;
     this.seacAnalysisEnabled = !!seacAnalysisEnabled;
   }
-  parse() {
+  parse {
     const properties = this.properties;
-    const cff = new CFF();
+    const cff = new CFF;
     this.cff = cff;
-    const header = this.parseHeader();
+    const header = this.parseHeader;
     const nameIndex = this.parseIndex(header.endPos);
     const topDictIndex = this.parseIndex(nameIndex.endPos);
     const stringIndex = this.parseIndex(topDictIndex.endPos);
@@ -23991,7 +23991,7 @@ class CFFParser {
     cff.widths = charStringsAndSeacs.widths;
     return cff;
   }
-  parseHeader() {
+  parseHeader {
     let bytes = this.bytes;
     const bytesLength = bytes.length;
     let offset = 0;
@@ -24018,10 +24018,10 @@ class CFFParser {
   }
   parseDict(dict) {
     let pos = 0;
-    function parseOperand() {
+    function parseOperand {
       let value = dict[pos++];
       if (value === 30) {
-        return parseFloatOperand();
+        return parseFloatOperand;
       } else if (value === 28) {
         value = dict[pos++];
         value = (value << 24 | dict[pos++] << 16) >> 16;
@@ -24042,7 +24042,7 @@ class CFFParser {
       (0, _util.warn)('CFFParser_parseDict: "' + value + '" is a reserved command.');
       return NaN;
     }
-    function parseFloatOperand() {
+    function parseFloatOperand {
       let str = "";
       const eof = 15;
       const lookup = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "E", "E-", null, "-"];
@@ -24076,13 +24076,13 @@ class CFFParser {
         operands = [];
         ++pos;
       } else {
-        operands.push(parseOperand());
+        operands.push(parseOperand);
       }
     }
     return entries;
   }
   parseIndex(pos) {
-    const cffIndex = new CFFIndex();
+    const cffIndex = new CFFIndex;
     const bytes = this.bytes;
     const count = bytes[pos++] << 8 | bytes[pos++];
     const offsets = [];
@@ -24120,7 +24120,7 @@ class CFFParser {
     return names;
   }
   parseStringIndex(index) {
-    const strings = new CFFStrings();
+    const strings = new CFFStrings;
     for (let i = 0, ii = index.count; i < ii; ++i) {
       const data = index.get(i);
       strings.add((0, _util.bytesToString)(data));
@@ -24445,7 +24445,7 @@ class CFFParser {
     let predefined = false;
     let format, i, ii;
     let raw = null;
-    function readSupplement() {
+    function readSupplement {
       const supplementsCount = bytes[pos++];
       for (i = 0; i < supplementsCount; i++) {
         const code = bytes[pos++];
@@ -24490,7 +24490,7 @@ class CFFParser {
       const dataEnd = pos;
       if (format & 0x80) {
         bytes[dataStart] &= 0x7f;
-        readSupplement();
+        readSupplement;
       }
       raw = bytes.subarray(dataStart, dataEnd);
     }
@@ -24536,11 +24536,11 @@ class CFFParser {
 }
 exports.CFFParser = CFFParser;
 class CFF {
-  constructor() {
+  constructor {
     this.header = null;
     this.names = [];
     this.topDict = null;
-    this.strings = new CFFStrings();
+    this.strings = new CFFStrings;
     this.globalSubrIndex = null;
     this.encoding = null;
     this.charset = null;
@@ -24549,7 +24549,7 @@ class CFF {
     this.fdSelect = null;
     this.isCIDFont = false;
   }
-  duplicateFirstGlyph() {
+  duplicateFirstGlyph {
     if (this.charStrings.count >= 65535) {
       (0, _util.warn)("Not enough space in charstrings to duplicate first glyph.");
       return;
@@ -24579,7 +24579,7 @@ class CFFHeader {
 }
 exports.CFFHeader = CFFHeader;
 class CFFStrings {
-  constructor() {
+  constructor {
     this.strings = [];
   }
   get(index) {
@@ -24605,13 +24605,13 @@ class CFFStrings {
   add(value) {
     this.strings.push(value);
   }
-  get count() {
+  get count {
     return this.strings.length;
   }
 }
 exports.CFFStrings = CFFStrings;
 class CFFIndex {
-  constructor() {
+  constructor {
     this.objects = [];
     this.length = 0;
   }
@@ -24626,7 +24626,7 @@ class CFFIndex {
   get(index) {
     return this.objects[index];
   }
-  get count() {
+  get count {
     return this.objects.length;
   }
 }
@@ -24707,7 +24707,7 @@ class CFFDict {
 }
 const CFFTopDictLayout = [[[12, 30], "ROS", ["sid", "sid", "num"], null], [[12, 20], "SyntheticBase", "num", null], [0, "version", "sid", null], [1, "Notice", "sid", null], [[12, 0], "Copyright", "sid", null], [2, "FullName", "sid", null], [3, "FamilyName", "sid", null], [4, "Weight", "sid", null], [[12, 1], "isFixedPitch", "num", 0], [[12, 2], "ItalicAngle", "num", 0], [[12, 3], "UnderlinePosition", "num", -100], [[12, 4], "UnderlineThickness", "num", 50], [[12, 5], "PaintType", "num", 0], [[12, 6], "CharstringType", "num", 2], [[12, 7], "FontMatrix", ["num", "num", "num", "num", "num", "num"], [0.001, 0, 0, 0.001, 0, 0]], [13, "UniqueID", "num", null], [5, "FontBBox", ["num", "num", "num", "num"], [0, 0, 0, 0]], [[12, 8], "StrokeWidth", "num", 0], [14, "XUID", "array", null], [15, "charset", "offset", 0], [16, "Encoding", "offset", 0], [17, "CharStrings", "offset", 0], [18, "Private", ["offset", "offset"], null], [[12, 21], "PostScript", "sid", null], [[12, 22], "BaseFontName", "sid", null], [[12, 23], "BaseFontBlend", "delta", null], [[12, 31], "CIDFontVersion", "num", 0], [[12, 32], "CIDFontRevision", "num", 0], [[12, 33], "CIDFontType", "num", 0], [[12, 34], "CIDCount", "num", 8720], [[12, 35], "UIDBase", "num", null], [[12, 37], "FDSelect", "offset", null], [[12, 36], "FDArray", "offset", null], [[12, 38], "FontName", "sid", null]];
 class CFFTopDict extends CFFDict {
-  static get tables() {
+  static get tables {
     return (0, _util.shadow)(this, "tables", this.createTables(CFFTopDictLayout));
   }
   constructor(strings) {
@@ -24718,7 +24718,7 @@ class CFFTopDict extends CFFDict {
 exports.CFFTopDict = CFFTopDict;
 const CFFPrivateDictLayout = [[6, "BlueValues", "delta", null], [7, "OtherBlues", "delta", null], [8, "FamilyBlues", "delta", null], [9, "FamilyOtherBlues", "delta", null], [[12, 9], "BlueScale", "num", 0.039625], [[12, 10], "BlueShift", "num", 7], [[12, 11], "BlueFuzz", "num", 1], [10, "StdHW", "num", null], [11, "StdVW", "num", null], [[12, 12], "StemSnapH", "delta", null], [[12, 13], "StemSnapV", "delta", null], [[12, 14], "ForceBold", "num", 0], [[12, 17], "LanguageGroup", "num", 0], [[12, 18], "ExpansionFactor", "num", 0.06], [[12, 19], "initialRandomSeed", "num", 0], [20, "defaultWidthX", "num", 0], [21, "nominalWidthX", "num", 0], [19, "Subrs", "offset", null]];
 class CFFPrivateDict extends CFFDict {
-  static get tables() {
+  static get tables {
     return (0, _util.shadow)(this, "tables", this.createTables(CFFPrivateDictLayout));
   }
   constructor(strings) {
@@ -24763,7 +24763,7 @@ class CFFFDSelect {
 }
 exports.CFFFDSelect = CFFFDSelect;
 class CFFOffsetTracker {
-  constructor() {
+  constructor {
     this.offsets = Object.create(null);
   }
   isTracking(key) {
@@ -24809,7 +24809,7 @@ class CFFCompiler {
   constructor(cff) {
     this.cff = cff;
   }
-  compile() {
+  compile {
     const cff = this.cff;
     const output = {
       data: [],
@@ -24887,15 +24887,15 @@ class CFFCompiler {
     }
     return this.encodeFloat(value);
   }
-  static get EncodeFloatRegExp() {
+  static get EncodeFloatRegExp {
     return (0, _util.shadow)(this, "EncodeFloatRegExp", /\.(\d*?)(?:9{5,20}|0{5,20})\d{0,2}(?:e(.+)|$)/);
   }
   encodeFloat(num) {
-    let value = num.toString();
+    let value = num.toString;
     const m = CFFCompiler.EncodeFloatRegExp.exec(value);
     if (m) {
       const epsilon = parseFloat("1e" + ((m[2] ? +m[2] : 0) + m[1].length));
-      value = (Math.round(num * epsilon) / epsilon).toString();
+      value = (Math.round(num * epsilon) / epsilon).toString;
     }
     let nibbles = "";
     let i, ii;
@@ -24939,7 +24939,7 @@ class CFFCompiler {
     return [header.major, header.minor, 4, header.offSize];
   }
   compileNameIndex(names) {
-    const nameIndex = new CFFIndex();
+    const nameIndex = new CFFIndex;
     for (const name of names) {
       const length = Math.min(name.length, 127);
       let sanitizedName = new Array(length);
@@ -24960,7 +24960,7 @@ class CFFCompiler {
   }
   compileTopDicts(dicts, length, removeCidKeys) {
     const fontDictTrackers = [];
-    let fdArrayIndex = new CFFIndex();
+    let fdArrayIndex = new CFFIndex;
     for (const fontDict of dicts) {
       if (removeCidKeys) {
         fontDict.removeByName("CIDFontVersion");
@@ -24969,7 +24969,7 @@ class CFFCompiler {
         fontDict.removeByName("CIDCount");
         fontDict.removeByName("UIDBase");
       }
-      const fontDictTracker = new CFFOffsetTracker();
+      const fontDictTracker = new CFFOffsetTracker;
       const fontDictData = this.compileDict(fontDict, fontDictTracker);
       fontDictTrackers.push(fontDictTracker);
       fdArrayIndex.add(fontDictData);
@@ -24988,7 +24988,7 @@ class CFFCompiler {
       if (!privateDict || !fontDict.hasName("Private")) {
         throw new _util.FormatError("There must be a private dictionary.");
       }
-      const privateDictTracker = new CFFOffsetTracker();
+      const privateDictTracker = new CFFOffsetTracker;
       const privateDictData = this.compileDict(privateDict, privateDictTracker);
       let outputLength = output.length;
       privateDictTracker.offset(outputLength);
@@ -25052,14 +25052,14 @@ class CFFCompiler {
     return out;
   }
   compileStringIndex(strings) {
-    const stringIndex = new CFFIndex();
+    const stringIndex = new CFFIndex;
     for (const string of strings) {
       stringIndex.add((0, _util.stringToBytes)(string));
     }
     return this.compileIndex(stringIndex);
   }
   compileCharStrings(charStrings) {
-    const charStringsIndex = new CFFIndex();
+    const charStringsIndex = new CFFIndex;
     for (let i = 0; i < charStrings.count; i++) {
       const glyph = charStrings.get(i);
       if (glyph.length === 0) {
@@ -25332,7 +25332,7 @@ function type1FontGlyphMapping(properties, builtInEncoding, glyphNames) {
       glyphId = glyphNames.indexOf(glyphName);
       if (glyphId === -1) {
         if (!glyphsUnicodeMap) {
-          glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode)();
+          glyphsUnicodeMap = (0, _glyphlist.getGlyphsUnicode);
         }
         const standardGlyphName = recoverGlyphName(glyphName, glyphsUnicodeMap);
         if (standardGlyphName !== glyphName) {
@@ -29942,7 +29942,7 @@ function mapSpecialUnicodeValues(code) {
   if (code >= 0xfff0 && code <= 0xffff) {
     return 0;
   } else if (code >= 0xf600 && code <= 0xf8ff) {
-    return getSpecialPUASymbols()[code] || code;
+    return getSpecialPUASymbols[code] || code;
   } else if (code === 0x00ad) {
     return 0x002d;
   }
@@ -29966,7 +29966,7 @@ function getUnicodeForGlyph(name, glyphsUnicodeMap) {
     } else {
       return -1;
     }
-    if (hexStr === hexStr.toUpperCase()) {
+    if (hexStr === hexStr.toUpperCase) {
       unicode = parseInt(hexStr, 16);
       if (unicode >= 0) {
         return unicode;
@@ -29996,7 +29996,7 @@ function getUnicodeRangeFor(value, lastPosition = -1) {
   return -1;
 }
 const SpecialCharRegExp = new RegExp("^(\\s)|(\\p{Mn})|(\\p{Cf})$", "u");
-const CategoryCache = new Map();
+const CategoryCache = new Map;
 function getCharUnicodeCategory(char) {
   const cachedCategory = CategoryCache.get(char);
   if (cachedCategory) {
@@ -30011,8 +30011,8 @@ function getCharUnicodeCategory(char) {
   CategoryCache.set(char, category);
   return category;
 }
-function clearUnicodeCaches() {
-  CategoryCache.clear();
+function clearUnicodeCaches {
+  CategoryCache.clear;
 }
 
 /***/ }),
@@ -30878,12 +30878,12 @@ const getSupplementalGlyphMapForCalibri = (0, _core_utils.getLookupTableFactory)
 exports.getSupplementalGlyphMapForCalibri = getSupplementalGlyphMapForCalibri;
 function getStandardFontName(name) {
   const fontName = (0, _fonts_utils.normalizeFontName)(name);
-  const stdFontMap = getStdFontMap();
+  const stdFontMap = getStdFontMap;
   return stdFontMap[fontName];
 }
 function isKnownFontName(name) {
   const fontName = (0, _fonts_utils.normalizeFontName)(name);
-  return !!(getStdFontMap()[fontName] || getNonStdFontMap()[fontName] || getSerifFonts()[fontName] || getSymbolsFonts()[fontName]);
+  return !!(getStdFontMap[fontName] || getNonStdFontMap[fontName] || getSerifFonts[fontName] || getSymbolsFonts[fontName]);
 }
 
 /***/ }),
@@ -30901,7 +30901,7 @@ class ToUnicodeMap {
   constructor(cmap = []) {
     this._map = cmap;
   }
-  get length() {
+  get length {
     return this._map.length;
   }
   forEach(callback) {
@@ -30939,7 +30939,7 @@ class IdentityToUnicodeMap {
     this.firstChar = firstChar;
     this.lastChar = lastChar;
   }
-  get length() {
+  get length {
     return this.lastChar + 1 - this.firstChar;
   }
   forEach(callback) {
@@ -30960,7 +30960,7 @@ class IdentityToUnicodeMap {
     return Number.isInteger(v) && v >= this.firstChar && v <= this.lastChar ? v : -1;
   }
   amend(map) {
-    (0, _util.unreachable)("Should not call amend()");
+    (0, _util.unreachable)("Should not call amend");
   }
 }
 exports.IdentityToUnicodeMap = IdentityToUnicodeMap;
@@ -30982,25 +30982,25 @@ class CFFFont {
   constructor(file, properties) {
     this.properties = properties;
     const parser = new _cff_parser.CFFParser(file, properties, _fonts_utils.SEAC_ANALYSIS_ENABLED);
-    this.cff = parser.parse();
-    this.cff.duplicateFirstGlyph();
+    this.cff = parser.parse;
+    this.cff.duplicateFirstGlyph;
     const compiler = new _cff_parser.CFFCompiler(this.cff);
     this.seacs = this.cff.seacs;
     try {
-      this.data = compiler.compile();
+      this.data = compiler.compile;
     } catch {
       (0, _util.warn)("Failed to compile font " + properties.loadedName);
       this.data = file;
     }
-    this._createBuiltInEncoding();
+    this._createBuiltInEncoding;
   }
-  get numGlyphs() {
+  get numGlyphs {
     return this.cff.charStrings.count;
   }
-  getCharset() {
+  getCharset {
     return this.cff.charset.charset;
   }
-  getGlyphMapping() {
+  getGlyphMapping {
     const cff = this.cff;
     const properties = this.properties;
     const {
@@ -31050,7 +31050,7 @@ class CFFFont {
   hasGlyphId(id) {
     return this.cff.hasGlyphId(id);
   }
-  _createBuiltInEncoding() {
+  _createBuiltInEncoding {
     const {
       charset,
       encoding
@@ -31170,7 +31170,7 @@ function parseCmap(data, start, end) {
 function parseCff(data, start, end, seacAnalysisEnabled) {
   const properties = {};
   const parser = new _cff_parser.CFFParser(new _stream.Stream(data, start, end - start), properties, seacAnalysisEnabled);
-  const cff = parser.parse();
+  const cff = parser.parse;
   return {
     glyphs: cff.charStrings.objects,
     subrs: cff.topDict.privateDict?.subrsIndex?.objects,
@@ -31430,52 +31430,52 @@ function compileCharString(charStringCode, cmds, font, glyphId) {
           stackClean = true;
           break;
         case 4:
-          y += stack.pop();
+          y += stack.pop;
           moveTo(x, y);
           stackClean = true;
           break;
         case 5:
           while (stack.length > 0) {
-            x += stack.shift();
-            y += stack.shift();
+            x += stack.shift;
+            y += stack.shift;
             lineTo(x, y);
           }
           break;
         case 6:
           while (stack.length > 0) {
-            x += stack.shift();
+            x += stack.shift;
             lineTo(x, y);
             if (stack.length === 0) {
               break;
             }
-            y += stack.shift();
+            y += stack.shift;
             lineTo(x, y);
           }
           break;
         case 7:
           while (stack.length > 0) {
-            y += stack.shift();
+            y += stack.shift;
             lineTo(x, y);
             if (stack.length === 0) {
               break;
             }
-            x += stack.shift();
+            x += stack.shift;
             lineTo(x, y);
           }
           break;
         case 8:
           while (stack.length > 0) {
-            xa = x + stack.shift();
-            ya = y + stack.shift();
-            xb = xa + stack.shift();
-            yb = ya + stack.shift();
-            x = xb + stack.shift();
-            y = yb + stack.shift();
+            xa = x + stack.shift;
+            ya = y + stack.shift;
+            xb = xa + stack.shift;
+            yb = ya + stack.shift;
+            x = xb + stack.shift;
+            y = yb + stack.shift;
             bezierCurveTo(xa, ya, xb, yb, x, y);
           }
           break;
         case 10:
-          n = stack.pop();
+          n = stack.pop;
           subrCode = null;
           if (font.isCFFCIDFont) {
             const fdIndex = font.fdSelect.getFDIndex(glyphId);
@@ -31505,66 +31505,66 @@ function compileCharString(charStringCode, cmds, font, glyphId) {
           v = code[i++];
           switch (v) {
             case 34:
-              xa = x + stack.shift();
-              xb = xa + stack.shift();
-              y1 = y + stack.shift();
-              x = xb + stack.shift();
+              xa = x + stack.shift;
+              xb = xa + stack.shift;
+              y1 = y + stack.shift;
+              x = xb + stack.shift;
               bezierCurveTo(xa, y, xb, y1, x, y1);
-              xa = x + stack.shift();
-              xb = xa + stack.shift();
-              x = xb + stack.shift();
+              xa = x + stack.shift;
+              xb = xa + stack.shift;
+              x = xb + stack.shift;
               bezierCurveTo(xa, y1, xb, y, x, y);
               break;
             case 35:
-              xa = x + stack.shift();
-              ya = y + stack.shift();
-              xb = xa + stack.shift();
-              yb = ya + stack.shift();
-              x = xb + stack.shift();
-              y = yb + stack.shift();
+              xa = x + stack.shift;
+              ya = y + stack.shift;
+              xb = xa + stack.shift;
+              yb = ya + stack.shift;
+              x = xb + stack.shift;
+              y = yb + stack.shift;
               bezierCurveTo(xa, ya, xb, yb, x, y);
-              xa = x + stack.shift();
-              ya = y + stack.shift();
-              xb = xa + stack.shift();
-              yb = ya + stack.shift();
-              x = xb + stack.shift();
-              y = yb + stack.shift();
+              xa = x + stack.shift;
+              ya = y + stack.shift;
+              xb = xa + stack.shift;
+              yb = ya + stack.shift;
+              x = xb + stack.shift;
+              y = yb + stack.shift;
               bezierCurveTo(xa, ya, xb, yb, x, y);
-              stack.pop();
+              stack.pop;
               break;
             case 36:
-              xa = x + stack.shift();
-              y1 = y + stack.shift();
-              xb = xa + stack.shift();
-              y2 = y1 + stack.shift();
-              x = xb + stack.shift();
+              xa = x + stack.shift;
+              y1 = y + stack.shift;
+              xb = xa + stack.shift;
+              y2 = y1 + stack.shift;
+              x = xb + stack.shift;
               bezierCurveTo(xa, y1, xb, y2, x, y2);
-              xa = x + stack.shift();
-              xb = xa + stack.shift();
-              y3 = y2 + stack.shift();
-              x = xb + stack.shift();
+              xa = x + stack.shift;
+              xb = xa + stack.shift;
+              y3 = y2 + stack.shift;
+              x = xb + stack.shift;
               bezierCurveTo(xa, y2, xb, y3, x, y);
               break;
             case 37:
               const x0 = x,
                 y0 = y;
-              xa = x + stack.shift();
-              ya = y + stack.shift();
-              xb = xa + stack.shift();
-              yb = ya + stack.shift();
-              x = xb + stack.shift();
-              y = yb + stack.shift();
+              xa = x + stack.shift;
+              ya = y + stack.shift;
+              xb = xa + stack.shift;
+              yb = ya + stack.shift;
+              x = xb + stack.shift;
+              y = yb + stack.shift;
               bezierCurveTo(xa, ya, xb, yb, x, y);
-              xa = x + stack.shift();
-              ya = y + stack.shift();
-              xb = xa + stack.shift();
-              yb = ya + stack.shift();
+              xa = x + stack.shift;
+              ya = y + stack.shift;
+              xb = xa + stack.shift;
+              yb = ya + stack.shift;
               x = xb;
               y = yb;
               if (Math.abs(x - x0) > Math.abs(y - y0)) {
-                x += stack.shift();
+                x += stack.shift;
               } else {
-                y += stack.shift();
+                y += stack.shift;
               }
               bezierCurveTo(xa, ya, xb, yb, x, y);
               break;
@@ -31574,10 +31574,10 @@ function compileCharString(charStringCode, cmds, font, glyphId) {
           break;
         case 14:
           if (stack.length >= 4) {
-            const achar = stack.pop();
-            const bchar = stack.pop();
-            y = stack.pop();
-            x = stack.pop();
+            const achar = stack.pop;
+            const bchar = stack.pop;
+            y = stack.pop;
+            x = stack.pop;
             cmds.push({
               cmd: "save"
             }, {
@@ -31608,13 +31608,13 @@ function compileCharString(charStringCode, cmds, font, glyphId) {
           stackClean = true;
           break;
         case 21:
-          y += stack.pop();
-          x += stack.pop();
+          y += stack.pop;
+          x += stack.pop;
           moveTo(x, y);
           stackClean = true;
           break;
         case 22:
-          x += stack.pop();
+          x += stack.pop;
           moveTo(x, y);
           stackClean = true;
           break;
@@ -31624,56 +31624,56 @@ function compileCharString(charStringCode, cmds, font, glyphId) {
           break;
         case 24:
           while (stack.length > 2) {
-            xa = x + stack.shift();
-            ya = y + stack.shift();
-            xb = xa + stack.shift();
-            yb = ya + stack.shift();
-            x = xb + stack.shift();
-            y = yb + stack.shift();
+            xa = x + stack.shift;
+            ya = y + stack.shift;
+            xb = xa + stack.shift;
+            yb = ya + stack.shift;
+            x = xb + stack.shift;
+            y = yb + stack.shift;
             bezierCurveTo(xa, ya, xb, yb, x, y);
           }
-          x += stack.shift();
-          y += stack.shift();
+          x += stack.shift;
+          y += stack.shift;
           lineTo(x, y);
           break;
         case 25:
           while (stack.length > 6) {
-            x += stack.shift();
-            y += stack.shift();
+            x += stack.shift;
+            y += stack.shift;
             lineTo(x, y);
           }
-          xa = x + stack.shift();
-          ya = y + stack.shift();
-          xb = xa + stack.shift();
-          yb = ya + stack.shift();
-          x = xb + stack.shift();
-          y = yb + stack.shift();
+          xa = x + stack.shift;
+          ya = y + stack.shift;
+          xb = xa + stack.shift;
+          yb = ya + stack.shift;
+          x = xb + stack.shift;
+          y = yb + stack.shift;
           bezierCurveTo(xa, ya, xb, yb, x, y);
           break;
         case 26:
           if (stack.length % 2) {
-            x += stack.shift();
+            x += stack.shift;
           }
           while (stack.length > 0) {
             xa = x;
-            ya = y + stack.shift();
-            xb = xa + stack.shift();
-            yb = ya + stack.shift();
+            ya = y + stack.shift;
+            xb = xa + stack.shift;
+            yb = ya + stack.shift;
             x = xb;
-            y = yb + stack.shift();
+            y = yb + stack.shift;
             bezierCurveTo(xa, ya, xb, yb, x, y);
           }
           break;
         case 27:
           if (stack.length % 2) {
-            y += stack.shift();
+            y += stack.shift;
           }
           while (stack.length > 0) {
-            xa = x + stack.shift();
+            xa = x + stack.shift;
             ya = y;
-            xb = xa + stack.shift();
-            yb = ya + stack.shift();
-            x = xb + stack.shift();
+            xb = xa + stack.shift;
+            yb = ya + stack.shift;
+            x = xb + stack.shift;
             y = yb;
             bezierCurveTo(xa, ya, xb, yb, x, y);
           }
@@ -31683,7 +31683,7 @@ function compileCharString(charStringCode, cmds, font, glyphId) {
           i += 2;
           break;
         case 29:
-          n = stack.pop() + font.gsubrsBias;
+          n = stack.pop + font.gsubrsBias;
           subrCode = font.gsubrs[n];
           if (subrCode) {
             parse(subrCode);
@@ -31692,42 +31692,42 @@ function compileCharString(charStringCode, cmds, font, glyphId) {
         case 30:
           while (stack.length > 0) {
             xa = x;
-            ya = y + stack.shift();
-            xb = xa + stack.shift();
-            yb = ya + stack.shift();
-            x = xb + stack.shift();
-            y = yb + (stack.length === 1 ? stack.shift() : 0);
+            ya = y + stack.shift;
+            xb = xa + stack.shift;
+            yb = ya + stack.shift;
+            x = xb + stack.shift;
+            y = yb + (stack.length === 1 ? stack.shift : 0);
             bezierCurveTo(xa, ya, xb, yb, x, y);
             if (stack.length === 0) {
               break;
             }
-            xa = x + stack.shift();
+            xa = x + stack.shift;
             ya = y;
-            xb = xa + stack.shift();
-            yb = ya + stack.shift();
-            y = yb + stack.shift();
-            x = xb + (stack.length === 1 ? stack.shift() : 0);
+            xb = xa + stack.shift;
+            yb = ya + stack.shift;
+            y = yb + stack.shift;
+            x = xb + (stack.length === 1 ? stack.shift : 0);
             bezierCurveTo(xa, ya, xb, yb, x, y);
           }
           break;
         case 31:
           while (stack.length > 0) {
-            xa = x + stack.shift();
+            xa = x + stack.shift;
             ya = y;
-            xb = xa + stack.shift();
-            yb = ya + stack.shift();
-            y = yb + stack.shift();
-            x = xb + (stack.length === 1 ? stack.shift() : 0);
+            xb = xa + stack.shift;
+            yb = ya + stack.shift;
+            y = yb + stack.shift;
+            x = xb + (stack.length === 1 ? stack.shift : 0);
             bezierCurveTo(xa, ya, xb, yb, x, y);
             if (stack.length === 0) {
               break;
             }
             xa = x;
-            ya = y + stack.shift();
-            xb = xa + stack.shift();
-            yb = ya + stack.shift();
-            x = xb + stack.shift();
-            y = yb + (stack.length === 1 ? stack.shift() : 0);
+            ya = y + stack.shift;
+            xb = xa + stack.shift;
+            yb = ya + stack.shift;
+            x = xb + stack.shift;
+            y = yb + (stack.length === 1 ? stack.shift : 0);
             bezierCurveTo(xa, ya, xb, yb, x, y);
           }
           break;
@@ -31805,7 +31805,7 @@ class CompiledFont {
       cmd: "save"
     }, {
       cmd: "transform",
-      args: fontMatrix.slice()
+      args: fontMatrix.slice
     }, {
       cmd: "scale",
       args: ["size", "-size"]
@@ -31816,7 +31816,7 @@ class CompiledFont {
     });
     return cmds;
   }
-  compileGlyphImpl() {
+  compileGlyphImpl {
     (0, _util.unreachable)("Children classes should implement this.");
   }
   hasBuiltPath(unicode) {
@@ -31844,7 +31844,7 @@ class Type2Compiled extends CompiledFont {
     this.gsubrs = cffInfo.gsubrs || [];
     this.subrs = cffInfo.subrs || [];
     this.cmap = cmap;
-    this.glyphNameMap = glyphNameMap || (0, _glyphlist.getGlyphsUnicode)();
+    this.glyphNameMap = glyphNameMap || (0, _glyphlist.getGlyphsUnicode);
     this.gsubrsBias = getSubroutineBias(this.gsubrs);
     this.subrsBias = getSubroutineBias(this.subrs);
     this.isCFFCIDFont = cffInfo.isCFFCIDFont;
@@ -34979,14 +34979,14 @@ class GlyfTable {
       prev = next;
     }
   }
-  getSize() {
+  getSize {
     return this.glyphs.reduce((a, g) => {
-      const size = g.getSize();
+      const size = g.getSize;
       return a + (size + 3 & ~3);
     }, 0);
   }
-  write() {
-    const totalSize = this.getSize();
+  write {
+    const totalSize = this.getSize;
     const glyfTable = new DataView(new ArrayBuffer(totalSize));
     const isLocationLong = totalSize > 0x1fffe;
     const offsetSize = isLocationLong ? 4 : 2;
@@ -35055,12 +35055,12 @@ class Glyph {
       simple
     });
   }
-  getSize() {
+  getSize {
     if (!this.header) {
       return 0;
     }
-    const size = this.simple ? this.simple.getSize() : this.composites.reduce((a, c) => a + c.getSize(), 0);
-    return this.header.getSize() + size;
+    const size = this.simple ? this.simple.getSize : this.composites.reduce((a, c) => a + c.getSize, 0);
+    return this.header.getSize + size;
   }
   write(pos, buf) {
     if (!this.header) {
@@ -35115,7 +35115,7 @@ class GlyphHeader {
       yMax: glyf.getInt16(pos + 8)
     })];
   }
-  getSize() {
+  getSize {
     return 10;
   }
   write(pos, buf) {
@@ -35234,7 +35234,7 @@ class SimpleGlyph {
       instructions
     });
   }
-  getSize() {
+  getSize {
     let size = this.contours.length * 2 + 2 + this.instructions.length;
     let lastX = 0;
     let lastY = 0;
@@ -35417,7 +35417,7 @@ class CompositeGlyph {
       instructions
     })];
   }
-  getSize() {
+  getSize {
     let size = 2 + 2 + this.transf.length * 2;
     if (this.flags & WE_HAVE_INSTRUCTIONS) {
       size += 2 + this.instructions.length;
@@ -35527,11 +35527,11 @@ class OpenTypeFileBuilder {
       rangeShift: entrySize * entriesCount - searchRange
     };
   }
-  toArray() {
+  toArray {
     let sfnt = this.sfnt;
     const tables = this.tables;
     const tablesNames = Object.keys(tables);
-    tablesNames.sort();
+    tablesNames.sort;
     const numTables = tablesNames.length;
     let i, j, jj, table, tableName;
     let offset = OTF_HEADER_SIZE + numTables * OTF_TABLE_ENTRY_SIZE;
@@ -35676,7 +35676,7 @@ function getHeaderBlock(stream, suggestedLength) {
   };
 }
 function getEexecBlock(stream, suggestedLength) {
-  const eexecBytes = stream.getBytes();
+  const eexecBytes = stream.getBytes;
   if (eexecBytes.length === 0) {
     throw new _util.FormatError("getEexecBlock - no font program found.");
   }
@@ -35716,10 +35716,10 @@ class Type1Font {
     this.data = this.wrap(name, type2Charstrings, this.charstrings, subrs, properties);
     this.seacs = this.getSeacs(data.charstrings);
   }
-  get numGlyphs() {
+  get numGlyphs {
     return this.charstrings.length + 1;
   }
-  getCharset() {
+  getCharset {
     const charset = [".notdef"];
     for (const {
       glyphName
@@ -35803,10 +35803,10 @@ class Type1Font {
     return type2Subrs;
   }
   wrap(name, glyphs, charstrings, subrs, properties) {
-    const cff = new _cff_parser.CFF();
+    const cff = new _cff_parser.CFF;
     cff.header = new _cff_parser.CFFHeader(1, 0, 4, 4);
     cff.names = [name];
-    const topDict = new _cff_parser.CFFTopDict();
+    const topDict = new _cff_parser.CFFTopDict;
     topDict.setByName("version", 391);
     topDict.setByName("Notice", 392);
     topDict.setByName("FullName", 393);
@@ -35819,14 +35819,14 @@ class Type1Font {
     topDict.setByName("CharStrings", null);
     topDict.setByName("Private", null);
     cff.topDict = topDict;
-    const strings = new _cff_parser.CFFStrings();
+    const strings = new _cff_parser.CFFStrings;
     strings.add("Version 0.11");
     strings.add("See original notice");
     strings.add(name);
     strings.add(name);
     strings.add("Medium");
     cff.strings = strings;
-    cff.globalSubrIndex = new _cff_parser.CFFIndex();
+    cff.globalSubrIndex = new _cff_parser.CFFIndex;
     const count = glyphs.length;
     const charsetArray = [".notdef"];
     let i, ii;
@@ -35839,13 +35839,13 @@ class Type1Font {
       charsetArray.push(glyphName);
     }
     cff.charset = new _cff_parser.CFFCharset(false, 0, charsetArray);
-    const charStringsIndex = new _cff_parser.CFFIndex();
+    const charStringsIndex = new _cff_parser.CFFIndex;
     charStringsIndex.add([0x8b, 0x0e]);
     for (i = 0; i < count; i++) {
       charStringsIndex.add(glyphs[i]);
     }
     cff.charStrings = charStringsIndex;
-    const privateDict = new _cff_parser.CFFPrivateDict();
+    const privateDict = new _cff_parser.CFFPrivateDict;
     privateDict.setByName("Subrs", null);
     const fields = ["BlueValues", "OtherBlues", "FamilyBlues", "FamilyOtherBlues", "StemSnapH", "StemSnapV", "BlueShift", "BlueFuzz", "BlueScale", "LanguageGroup", "ExpansionFactor", "ForceBold", "StdHW", "StdVW"];
     for (i = 0, ii = fields.length; i < ii; i++) {
@@ -35862,13 +35862,13 @@ class Type1Font {
       privateDict.setByName(field, value);
     }
     cff.topDict.privateDict = privateDict;
-    const subrIndex = new _cff_parser.CFFIndex();
+    const subrIndex = new _cff_parser.CFFIndex;
     for (i = 0, ii = subrs.length; i < ii; i++) {
       subrIndex.add(subrs[i]);
     }
     privateDict.subrsIndex = subrIndex;
     const compiler = new _cff_parser.CFFCompiler(cff);
-    return compiler.compile();
+    return compiler.compile;
   }
 }
 exports.Type1Font = Type1Font;
@@ -35906,7 +35906,7 @@ const COMMAND_MAP = {
   hvcurveto: [31]
 };
 class Type1CharString {
-  constructor() {
+  constructor {
     this.width = 0;
     this.lsb = 0;
     this.flexing = false;
@@ -35944,7 +35944,7 @@ class Type1CharString {
                 error = true;
                 break;
               }
-              const dy = this.stack.pop();
+              const dy = this.stack.pop;
               this.stack.push(0, dy);
               break;
             }
@@ -35970,7 +35970,7 @@ class Type1CharString {
               error = true;
               break;
             }
-            subrNumber = this.stack.pop();
+            subrNumber = this.stack.pop;
             if (!subrs[subrNumber]) {
               error = true;
               break;
@@ -35984,8 +35984,8 @@ class Type1CharString {
               error = true;
               break;
             }
-            wx = this.stack.pop();
-            sbx = this.stack.pop();
+            wx = this.stack.pop;
+            sbx = this.stack.pop;
             this.lsb = sbx;
             this.width = wx;
             this.stack.push(wx, sbx);
@@ -36045,10 +36045,10 @@ class Type1CharString {
               error = true;
               break;
             }
-            this.stack.pop();
-            wx = this.stack.pop();
-            const sby = this.stack.pop();
-            sbx = this.stack.pop();
+            this.stack.pop;
+            wx = this.stack.pop;
+            const sby = this.stack.pop;
+            sbx = this.stack.pop;
             this.lsb = sbx;
             this.width = wx;
             this.stack.push(wx, sbx, sby);
@@ -36059,8 +36059,8 @@ class Type1CharString {
               error = true;
               break;
             }
-            const num2 = this.stack.pop();
-            const num1 = this.stack.pop();
+            const num2 = this.stack.pop;
+            const num1 = this.stack.pop;
             this.stack.push(num1 / num2);
             break;
           case (12 << 8) + 16:
@@ -36068,8 +36068,8 @@ class Type1CharString {
               error = true;
               break;
             }
-            subrNumber = this.stack.pop();
-            const numArgs = this.stack.pop();
+            subrNumber = this.stack.pop;
+            const numArgs = this.stack.pop;
             if (subrNumber === 0 && numArgs === 3) {
               const flexArgs = this.stack.splice(-17, 17);
               this.stack.push(flexArgs[2] + flexArgs[0], flexArgs[3] + flexArgs[1], flexArgs[4], flexArgs[5], flexArgs[6], flexArgs[7], flexArgs[8], flexArgs[9], flexArgs[10], flexArgs[11], flexArgs[12], flexArgs[13], flexArgs[14]);
@@ -36188,19 +36188,19 @@ function isSpecial(c) {
 class Type1Parser {
   constructor(stream, encrypted, seacAnalysisEnabled) {
     if (encrypted) {
-      const data = stream.getBytes();
+      const data = stream.getBytes;
       const isBinary = !((isHexDigit(data[0]) || (0, _core_utils.isWhiteSpace)(data[0])) && isHexDigit(data[1]) && isHexDigit(data[2]) && isHexDigit(data[3]) && isHexDigit(data[4]) && isHexDigit(data[5]) && isHexDigit(data[6]) && isHexDigit(data[7]));
       stream = new _stream.Stream(isBinary ? decrypt(data, EEXEC_ENCRYPT_KEY, 4) : decryptAscii(data, EEXEC_ENCRYPT_KEY, 4));
     }
     this.seacAnalysisEnabled = !!seacAnalysisEnabled;
     this.stream = stream;
-    this.nextChar();
+    this.nextChar;
   }
-  readNumberArray() {
-    this.getToken();
+  readNumberArray {
+    this.getToken;
     const array = [];
     while (true) {
-      const token = this.getToken();
+      const token = this.getToken;
       if (token === null || token === "]" || token === "}") {
         break;
       }
@@ -36208,26 +36208,26 @@ class Type1Parser {
     }
     return array;
   }
-  readNumber() {
-    const token = this.getToken();
+  readNumber {
+    const token = this.getToken;
     return parseFloat(token || 0);
   }
-  readInt() {
-    const token = this.getToken();
+  readInt {
+    const token = this.getToken;
     return parseInt(token || 0, 10) | 0;
   }
-  readBoolean() {
-    const token = this.getToken();
+  readBoolean {
+    const token = this.getToken;
     return token === "true" ? 1 : 0;
   }
-  nextChar() {
-    return this.currentChar = this.stream.getByte();
+  nextChar {
+    return this.currentChar = this.stream.getByte;
   }
-  prevChar() {
+  prevChar {
     this.stream.skip(-2);
-    return this.currentChar = this.stream.getByte();
+    return this.currentChar = this.stream.getByte;
   }
-  getToken() {
+  getToken {
     let comment = false;
     let ch = this.currentChar;
     while (true) {
@@ -36243,16 +36243,16 @@ class Type1Parser {
       } else if (!(0, _core_utils.isWhiteSpace)(ch)) {
         break;
       }
-      ch = this.nextChar();
+      ch = this.nextChar;
     }
     if (isSpecial(ch)) {
-      this.nextChar();
+      this.nextChar;
       return String.fromCharCode(ch);
     }
     let token = "";
     do {
       token += String.fromCharCode(ch);
-      ch = this.nextChar();
+      ch = this.nextChar;
     } while (ch >= 0 && !(0, _core_utils.isWhiteSpace)(ch) && !isSpecial(ch));
     return token;
   }
@@ -36276,37 +36276,37 @@ class Type1Parser {
       }
     };
     let token, length, data, lenIV;
-    while ((token = this.getToken()) !== null) {
+    while ((token = this.getToken) !== null) {
       if (token !== "/") {
         continue;
       }
-      token = this.getToken();
+      token = this.getToken;
       switch (token) {
         case "CharStrings":
-          this.getToken();
-          this.getToken();
-          this.getToken();
-          this.getToken();
+          this.getToken;
+          this.getToken;
+          this.getToken;
+          this.getToken;
           while (true) {
-            token = this.getToken();
+            token = this.getToken;
             if (token === null || token === "end") {
               break;
             }
             if (token !== "/") {
               continue;
             }
-            const glyph = this.getToken();
-            length = this.readInt();
-            this.getToken();
+            const glyph = this.getToken;
+            length = this.readInt;
+            this.getToken;
             data = length > 0 ? stream.getBytes(length) : new Uint8Array(0);
             lenIV = program.properties.privateData.lenIV;
             const encoded = this.readCharStrings(data, lenIV);
-            this.nextChar();
-            token = this.getToken();
+            this.nextChar;
+            token = this.getToken;
             if (token === "noaccess") {
-              this.getToken();
+              this.getToken;
             } else if (token === "/") {
-              this.prevChar();
+              this.prevChar;
             }
             charstrings.push({
               glyph,
@@ -36315,19 +36315,19 @@ class Type1Parser {
           }
           break;
         case "Subrs":
-          this.readInt();
-          this.getToken();
-          while (this.getToken() === "dup") {
-            const index = this.readInt();
-            length = this.readInt();
-            this.getToken();
+          this.readInt;
+          this.getToken;
+          while (this.getToken === "dup") {
+            const index = this.readInt;
+            length = this.readInt;
+            this.getToken;
             data = length > 0 ? stream.getBytes(length) : new Uint8Array(0);
             lenIV = program.properties.privateData.lenIV;
             const encoded = this.readCharStrings(data, lenIV);
-            this.nextChar();
-            token = this.getToken();
+            this.nextChar;
+            token = this.getToken;
             if (token === "noaccess") {
-              this.getToken();
+              this.getToken;
             }
             subrs[index] = encoded;
           }
@@ -36336,31 +36336,31 @@ class Type1Parser {
         case "OtherBlues":
         case "FamilyBlues":
         case "FamilyOtherBlues":
-          const blueArray = this.readNumberArray();
+          const blueArray = this.readNumberArray;
           if (blueArray.length > 0 && blueArray.length % 2 === 0 && HINTING_ENABLED) {
             program.properties.privateData[token] = blueArray;
           }
           break;
         case "StemSnapH":
         case "StemSnapV":
-          program.properties.privateData[token] = this.readNumberArray();
+          program.properties.privateData[token] = this.readNumberArray;
           break;
         case "StdHW":
         case "StdVW":
-          program.properties.privateData[token] = this.readNumberArray()[0];
+          program.properties.privateData[token] = this.readNumberArray[0];
           break;
         case "BlueShift":
         case "lenIV":
         case "BlueFuzz":
         case "BlueScale":
         case "LanguageGroup":
-          program.properties.privateData[token] = this.readNumber();
+          program.properties.privateData[token] = this.readNumber;
           break;
         case "ExpansionFactor":
-          program.properties.privateData[token] = this.readNumber() || 0.06;
+          program.properties.privateData[token] = this.readNumber || 0.06;
           break;
         case "ForceBold":
-          program.properties.privateData[token] = this.readBoolean();
+          program.properties.privateData[token] = this.readBoolean;
           break;
       }
     }
@@ -36368,7 +36368,7 @@ class Type1Parser {
       encoded,
       glyph
     } of charstrings) {
-      const charString = new Type1CharString();
+      const charString = new Type1CharString;
       const error = charString.convert(encoded, subrs, this.seacAnalysisEnabled);
       let output = charString.output;
       if (error) {
@@ -36397,29 +36397,29 @@ class Type1Parser {
   }
   extractFontHeader(properties) {
     let token;
-    while ((token = this.getToken()) !== null) {
+    while ((token = this.getToken) !== null) {
       if (token !== "/") {
         continue;
       }
-      token = this.getToken();
+      token = this.getToken;
       switch (token) {
         case "FontMatrix":
-          const matrix = this.readNumberArray();
+          const matrix = this.readNumberArray;
           properties.fontMatrix = matrix;
           break;
         case "Encoding":
-          const encodingArg = this.getToken();
+          const encodingArg = this.getToken;
           let encoding;
           if (!/^\d+$/.test(encodingArg)) {
             encoding = (0, _encodings.getEncoding)(encodingArg);
           } else {
             encoding = [];
             const size = parseInt(encodingArg, 10) | 0;
-            this.getToken();
+            this.getToken;
             for (let j = 0; j < size; j++) {
-              token = this.getToken();
+              token = this.getToken;
               while (token !== "dup" && token !== "def") {
-                token = this.getToken();
+                token = this.getToken;
                 if (token === null) {
                   return;
                 }
@@ -36427,17 +36427,17 @@ class Type1Parser {
               if (token === "def") {
                 break;
               }
-              const index = this.readInt();
-              this.getToken();
-              const glyph = this.getToken();
+              const index = this.readInt;
+              this.getToken;
+              const glyph = this.getToken;
               encoding[index] = glyph;
-              this.getToken();
+              this.getToken;
             }
           }
           properties.builtInEncoding = encoding;
           break;
         case "FontBBox":
-          const fontBBox = this.readNumberArray();
+          const fontBBox = this.readNumberArray;
           properties.ascent = Math.max(fontBBox[3], fontBBox[1]);
           properties.descent = Math.min(fontBBox[1], fontBBox[3]);
           properties.ascentScaled = true;
@@ -36474,7 +36474,7 @@ const ShadingType = {
   TENSOR_PATCH_MESH: 7
 };
 class Pattern {
-  constructor() {
+  constructor {
     (0, _util.unreachable)("Cannot initialize Pattern.");
   }
   static parseShading(shading, xref, res, pdfFunctionFactory, localColorSpaceCache) {
@@ -36498,25 +36498,25 @@ class Pattern {
         throw ex;
       }
       (0, _util.warn)(ex);
-      return new DummyShading();
+      return new DummyShading;
     }
   }
 }
 exports.Pattern = Pattern;
 class BaseShading {
   static SMALL_NUMBER = 1e-6;
-  constructor() {
+  constructor {
     if (this.constructor === BaseShading) {
       (0, _util.unreachable)("Cannot initialize BaseShading.");
     }
   }
-  getIR() {
+  getIR {
     (0, _util.unreachable)("Abstract method `getIR` called.");
   }
 }
 class RadialAxialShading extends BaseShading {
   constructor(dict, xref, resources, pdfFunctionFactory, localColorSpaceCache) {
-    super();
+    super;
     this.coordsArr = dict.getArray("Coords");
     this.shadingType = dict.get("ShadingType");
     const cs = _colorspace.ColorSpace.parse({
@@ -36623,7 +36623,7 @@ class RadialAxialShading extends BaseShading {
     }
     this.colorStops = colorStops;
   }
-  getIR() {
+  getIR {
     const coordsArr = this.coordsArr;
     const shadingType = this.shadingType;
     let type, p0, p1, r0, r1;
@@ -36656,14 +36656,14 @@ class MeshStreamReader {
     const csNumComps = context.colorSpace.numComps;
     this.tmpCsCompsBuf = context.colorFn ? new Float32Array(csNumComps) : this.tmpCompsBuf;
   }
-  get hasData() {
+  get hasData {
     if (this.stream.end) {
       return this.stream.pos < this.stream.end;
     }
     if (this.bufferLength > 0) {
       return true;
     }
-    const nextByte = this.stream.getByte();
+    const nextByte = this.stream.getByte;
     if (nextByte < 0) {
       return false;
     }
@@ -36676,18 +36676,18 @@ class MeshStreamReader {
     let bufferLength = this.bufferLength;
     if (n === 32) {
       if (bufferLength === 0) {
-        return (this.stream.getByte() << 24 | this.stream.getByte() << 16 | this.stream.getByte() << 8 | this.stream.getByte()) >>> 0;
+        return (this.stream.getByte << 24 | this.stream.getByte << 16 | this.stream.getByte << 8 | this.stream.getByte) >>> 0;
       }
-      buffer = buffer << 24 | this.stream.getByte() << 16 | this.stream.getByte() << 8 | this.stream.getByte();
-      const nextByte = this.stream.getByte();
+      buffer = buffer << 24 | this.stream.getByte << 16 | this.stream.getByte << 8 | this.stream.getByte;
+      const nextByte = this.stream.getByte;
       this.buffer = nextByte & (1 << bufferLength) - 1;
       return (buffer << 8 - bufferLength | (nextByte & 0xff) >> bufferLength) >>> 0;
     }
     if (n === 8 && bufferLength === 0) {
-      return this.stream.getByte();
+      return this.stream.getByte;
     }
     while (bufferLength < n) {
-      buffer = buffer << 8 | this.stream.getByte();
+      buffer = buffer << 8 | this.stream.getByte;
       bufferLength += 8;
     }
     bufferLength -= n;
@@ -36695,14 +36695,14 @@ class MeshStreamReader {
     this.buffer = buffer & (1 << bufferLength) - 1;
     return buffer >> bufferLength;
   }
-  align() {
+  align {
     this.buffer = 0;
     this.bufferLength = 0;
   }
-  readFlag() {
+  readFlag {
     return this.readBits(this.context.bitsPerFlag);
   }
-  readCoordinate() {
+  readCoordinate {
     const bitsPerCoordinate = this.context.bitsPerCoordinate;
     const xi = this.readBits(bitsPerCoordinate);
     const yi = this.readBits(bitsPerCoordinate);
@@ -36710,7 +36710,7 @@ class MeshStreamReader {
     const scale = bitsPerCoordinate < 32 ? 1 / ((1 << bitsPerCoordinate) - 1) : 2.3283064365386963e-10;
     return [xi * scale * (decode[1] - decode[0]) + decode[0], yi * scale * (decode[3] - decode[2]) + decode[2]];
   }
-  readComponents() {
+  readComponents {
     const numComps = this.context.numComps;
     const bitsPerComponent = this.context.bitsPerComponent;
     const scale = bitsPerComponent < 32 ? 1 / ((1 << bitsPerComponent) - 1) : 2.3283064365386963e-10;
@@ -36740,7 +36740,7 @@ function buildB(count) {
 function getB(count) {
   return bCache[count] ||= buildB(count);
 }
-function clearPatternCaches() {
+function clearPatternCaches {
   bCache = Object.create(null);
 }
 class MeshShading extends BaseShading {
@@ -36748,7 +36748,7 @@ class MeshShading extends BaseShading {
   static MAX_SPLIT_PATCH_CHUNKS_AMOUNT = 20;
   static TRIANGLE_DENSITY = 20;
   constructor(stream, xref, resources, pdfFunctionFactory, localColorSpaceCache) {
-    super();
+    super;
     if (!(stream instanceof _base_stream.BaseStream)) {
       throw new _util.FormatError("Mesh data is not a stream");
     }
@@ -36804,13 +36804,13 @@ class MeshShading extends BaseShading {
         break;
     }
     if (patchMesh) {
-      this._updateBounds();
+      this._updateBounds;
       for (let i = 0, ii = this.figures.length; i < ii; i++) {
         this._buildFigureFromPatch(i);
       }
     }
-    this._updateBounds();
-    this._packData();
+    this._updateBounds;
+    this._packData;
   }
   _decodeType4Shading(reader) {
     const coords = this.coords;
@@ -36819,9 +36819,9 @@ class MeshShading extends BaseShading {
     const ps = [];
     let verticesLeft = 0;
     while (reader.hasData) {
-      const f = reader.readFlag();
-      const coord = reader.readCoordinate();
-      const color = reader.readComponents();
+      const f = reader.readFlag;
+      const coord = reader.readCoordinate;
+      const color = reader.readComponents;
       if (verticesLeft === 0) {
         if (!(0 <= f && f <= 2)) {
           throw new _util.FormatError("Unknown type4 flag");
@@ -36845,7 +36845,7 @@ class MeshShading extends BaseShading {
       coords.push(coord);
       colors.push(color);
       verticesLeft--;
-      reader.align();
+      reader.align;
     }
     this.figures.push({
       type: "triangles",
@@ -36858,8 +36858,8 @@ class MeshShading extends BaseShading {
     const colors = this.colors;
     const ps = [];
     while (reader.hasData) {
-      const coord = reader.readCoordinate();
-      const color = reader.readComponents();
+      const coord = reader.readCoordinate;
+      const color = reader.readComponents;
       ps.push(coords.length);
       coords.push(coord);
       colors.push(color);
@@ -36877,17 +36877,17 @@ class MeshShading extends BaseShading {
     const ps = new Int32Array(16);
     const cs = new Int32Array(4);
     while (reader.hasData) {
-      const f = reader.readFlag();
+      const f = reader.readFlag;
       if (!(0 <= f && f <= 3)) {
         throw new _util.FormatError("Unknown type6 flag");
       }
       const pi = coords.length;
       for (let i = 0, ii = f !== 0 ? 8 : 12; i < ii; i++) {
-        coords.push(reader.readCoordinate());
+        coords.push(reader.readCoordinate);
       }
       const ci = colors.length;
       for (let i = 0, ii = f !== 0 ? 2 : 4; i < ii; i++) {
-        colors.push(reader.readComponents());
+        colors.push(reader.readComponents);
       }
       let tmp1, tmp2, tmp3, tmp4;
       switch (f) {
@@ -36994,17 +36994,17 @@ class MeshShading extends BaseShading {
     const ps = new Int32Array(16);
     const cs = new Int32Array(4);
     while (reader.hasData) {
-      const f = reader.readFlag();
+      const f = reader.readFlag;
       if (!(0 <= f && f <= 3)) {
         throw new _util.FormatError("Unknown type7 flag");
       }
       const pi = coords.length;
       for (let i = 0, ii = f !== 0 ? 12 : 16; i < ii; i++) {
-        coords.push(reader.readCoordinate());
+        coords.push(reader.readCoordinate);
       }
       const ci = colors.length;
       for (let i = 0, ii = f !== 0 ? 2 : 4; i < ii; i++) {
-        colors.push(reader.readComponents());
+        colors.push(reader.readComponents);
       }
       let tmp1, tmp2, tmp3, tmp4;
       switch (f) {
@@ -37186,7 +37186,7 @@ class MeshShading extends BaseShading {
       verticesPerRow
     };
   }
-  _updateBounds() {
+  _updateBounds {
     let minX = this.coords[0][0],
       minY = this.coords[0][1],
       maxX = minX,
@@ -37201,7 +37201,7 @@ class MeshShading extends BaseShading {
     }
     this.bounds = [minX, minY, maxX, maxY];
   }
-  _packData() {
+  _packData {
     let i, ii, j, jj;
     const coords = this.coords;
     const coordsPacked = new Float32Array(coords.length * 2);
@@ -37231,12 +37231,12 @@ class MeshShading extends BaseShading {
       }
     }
   }
-  getIR() {
+  getIR {
     return ["Mesh", this.shadingType, this.coords, this.colors, this.figures, this.bounds, this.bbox, this.background];
   }
 }
 class DummyShading extends BaseShading {
-  getIR() {
+  getIR {
     return ["Dummy"];
   }
 }
@@ -37408,7 +37408,7 @@ const getXFAFontMap = (0, _core_utils.getLookupTableFactory)(function (t) {
 });
 function getXfaFontName(name) {
   const fontName = (0, _fonts_utils.normalizeFontName)(name);
-  const fontMap = getXFAFontMap();
+  const fontMap = getXFAFontMap;
   return fontMap[fontName];
 }
 function getXfaFontWidths(name) {
@@ -37727,8 +37727,8 @@ class PDFFunctionFactory {
       this._localFunctionCache.set(null, fnRef, parsedFunction);
     }
   }
-  get _localFunctionCache() {
-    return (0, _util.shadow)(this, "_localFunctionCache", new _image_utils.LocalFunctionCache());
+  get _localFunctionCache {
+    return (0, _util.shadow)(this, "_localFunctionCache", new _image_utils.LocalFunctionCache);
   }
 }
 exports.PDFFunctionFactory = PDFFunctionFactory;
@@ -38019,9 +38019,9 @@ class PDFFunction {
     }
     const lexer = new _ps_parser.PostScriptLexer(fn);
     const parser = new _ps_parser.PostScriptParser(lexer);
-    const code = parser.parse();
+    const code = parser.parse;
     if (isEvalSupported && _util.FeatureTest.isEvalSupported) {
-      const compiled = new PostScriptCompiler().compile(code, domain, range);
+      const compiled = new PostScriptCompiler.compile(code, domain, range);
       if (compiled) {
         return new Function("src", "srcOffset", "dest", "destOffset", compiled);
       }
@@ -38094,11 +38094,11 @@ class PostScriptStack {
     }
     this.stack.push(value);
   }
-  pop() {
+  pop {
     if (this.stack.length <= 0) {
       throw new Error("PostScript function stack underflow.");
     }
-    return this.stack.pop();
+    return this.stack.pop;
   }
   copy(n) {
     if (this.stack.length + n >= PostScriptStack.MAX_STACK_SIZE) {
@@ -38152,28 +38152,28 @@ class PostScriptEvaluator {
       }
       switch (operator) {
         case "jz":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           if (!a) {
             counter = b;
           }
           break;
         case "j":
-          a = stack.pop();
+          a = stack.pop;
           counter = a;
           break;
         case "abs":
-          a = stack.pop();
+          a = stack.pop;
           stack.push(Math.abs(a));
           break;
         case "add":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a + b);
           break;
         case "and":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           if (typeof a === "boolean" && typeof b === "boolean") {
             stack.push(a && b);
           } else {
@@ -38181,8 +38181,8 @@ class PostScriptEvaluator {
           }
           break;
         case "atan":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           a = Math.atan2(a, b) / Math.PI * 180;
           if (a < 0) {
             a += 360;
@@ -38190,8 +38190,8 @@ class PostScriptEvaluator {
           stack.push(a);
           break;
         case "bitshift":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           if (a > 0) {
             stack.push(a << b);
           } else {
@@ -38199,109 +38199,109 @@ class PostScriptEvaluator {
           }
           break;
         case "ceiling":
-          a = stack.pop();
+          a = stack.pop;
           stack.push(Math.ceil(a));
           break;
         case "copy":
-          a = stack.pop();
+          a = stack.pop;
           stack.copy(a);
           break;
         case "cos":
-          a = stack.pop();
+          a = stack.pop;
           stack.push(Math.cos(a % 360 / 180 * Math.PI));
           break;
         case "cvi":
-          a = stack.pop() | 0;
+          a = stack.pop | 0;
           stack.push(a);
           break;
         case "cvr":
           break;
         case "div":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a / b);
           break;
         case "dup":
           stack.copy(1);
           break;
         case "eq":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a === b);
           break;
         case "exch":
           stack.roll(2, 1);
           break;
         case "exp":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a ** b);
           break;
         case "false":
           stack.push(false);
           break;
         case "floor":
-          a = stack.pop();
+          a = stack.pop;
           stack.push(Math.floor(a));
           break;
         case "ge":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a >= b);
           break;
         case "gt":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a > b);
           break;
         case "idiv":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a / b | 0);
           break;
         case "index":
-          a = stack.pop();
+          a = stack.pop;
           stack.index(a);
           break;
         case "le":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a <= b);
           break;
         case "ln":
-          a = stack.pop();
+          a = stack.pop;
           stack.push(Math.log(a));
           break;
         case "log":
-          a = stack.pop();
+          a = stack.pop;
           stack.push(Math.log10(a));
           break;
         case "lt":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a < b);
           break;
         case "mod":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a % b);
           break;
         case "mul":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a * b);
           break;
         case "ne":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a !== b);
           break;
         case "neg":
-          a = stack.pop();
+          a = stack.pop;
           stack.push(-a);
           break;
         case "not":
-          a = stack.pop();
+          a = stack.pop;
           if (typeof a === "boolean") {
             stack.push(!a);
           } else {
@@ -38309,8 +38309,8 @@ class PostScriptEvaluator {
           }
           break;
         case "or":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           if (typeof a === "boolean" && typeof b === "boolean") {
             stack.push(a || b);
           } else {
@@ -38318,41 +38318,41 @@ class PostScriptEvaluator {
           }
           break;
         case "pop":
-          stack.pop();
+          stack.pop;
           break;
         case "roll":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.roll(a, b);
           break;
         case "round":
-          a = stack.pop();
+          a = stack.pop;
           stack.push(Math.round(a));
           break;
         case "sin":
-          a = stack.pop();
+          a = stack.pop;
           stack.push(Math.sin(a % 360 / 180 * Math.PI));
           break;
         case "sqrt":
-          a = stack.pop();
+          a = stack.pop;
           stack.push(Math.sqrt(a));
           break;
         case "sub":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           stack.push(a - b);
           break;
         case "true":
           stack.push(true);
           break;
         case "truncate":
-          a = stack.pop();
+          a = stack.pop;
           a = a < 0 ? Math.ceil(a) : Math.floor(a);
           stack.push(a);
           break;
         case "xor":
-          b = stack.pop();
-          a = stack.pop();
+          b = stack.pop;
+          a = stack.pop;
           if (typeof a === "boolean" && typeof b === "boolean") {
             stack.push(a !== b);
           } else {
@@ -38443,7 +38443,7 @@ class AstVariableDefinition extends AstNode {
   }
 }
 class ExpressionBuilderVisitor {
-  constructor() {
+  constructor {
     this.parts = [];
   }
   visitArgument(arg) {
@@ -38474,7 +38474,7 @@ class ExpressionBuilderVisitor {
     max.arg.visit(this);
     this.parts.push(", ", max.max, ")");
   }
-  toString() {
+  toString {
     return this.parts.join("");
   }
 }
@@ -38555,8 +38555,8 @@ class PostScriptCompiler {
           if (stack.length < 2) {
             return null;
           }
-          num2 = stack.pop();
-          num1 = stack.pop();
+          num2 = stack.pop;
+          num1 = stack.pop;
           stack.push(buildAddOperation(num1, num2));
           break;
         case "cvr":
@@ -38568,37 +38568,37 @@ class PostScriptCompiler {
           if (stack.length < 2) {
             return null;
           }
-          num2 = stack.pop();
-          num1 = stack.pop();
+          num2 = stack.pop;
+          num1 = stack.pop;
           stack.push(buildMulOperation(num1, num2));
           break;
         case "sub":
           if (stack.length < 2) {
             return null;
           }
-          num2 = stack.pop();
-          num1 = stack.pop();
+          num2 = stack.pop;
+          num1 = stack.pop;
           stack.push(buildSubOperation(num1, num2));
           break;
         case "exch":
           if (stack.length < 2) {
             return null;
           }
-          ast1 = stack.pop();
-          ast2 = stack.pop();
+          ast1 = stack.pop;
+          ast2 = stack.pop;
           stack.push(ast1, ast2);
           break;
         case "pop":
           if (stack.length < 1) {
             return null;
           }
-          stack.pop();
+          stack.pop;
           break;
         case "index":
           if (stack.length < 1) {
             return null;
           }
-          num1 = stack.pop();
+          num1 = stack.pop;
           if (num1.type !== "literal") {
             return null;
           }
@@ -38621,7 +38621,7 @@ class PostScriptCompiler {
             return null;
           }
           if (typeof code[i + 1] === "number" && code[i + 2] === "gt" && code[i + 3] === i + 7 && code[i + 4] === "jz" && code[i + 5] === "pop" && code[i + 6] === code[i + 1]) {
-            num1 = stack.pop();
+            num1 = stack.pop;
             stack.push(buildMinOperation(num1, code[i + 1]));
             i += 6;
             break;
@@ -38640,8 +38640,8 @@ class PostScriptCompiler {
           if (stack.length < 2) {
             return null;
           }
-          num2 = stack.pop();
-          num1 = stack.pop();
+          num2 = stack.pop;
+          num1 = stack.pop;
           if (num2.type !== "literal" || num1.type !== "literal") {
             return null;
           }
@@ -38665,17 +38665,17 @@ class PostScriptCompiler {
     }
     const result = [];
     for (const instruction of instructions) {
-      const statementBuilder = new ExpressionBuilderVisitor();
+      const statementBuilder = new ExpressionBuilderVisitor;
       instruction.visit(statementBuilder);
-      result.push(statementBuilder.toString());
+      result.push(statementBuilder.toString);
     }
     for (let i = 0, ii = stack.length; i < ii; i++) {
       const expr = stack[i],
-        statementBuilder = new ExpressionBuilderVisitor();
+        statementBuilder = new ExpressionBuilderVisitor;
       expr.visit(statementBuilder);
       const min = range[i * 2],
         max = range[i * 2 + 1];
-      const out = [statementBuilder.toString()];
+      const out = [statementBuilder.toString];
       if (min > expr.min) {
         out.unshift("Math.max(", min, ", ");
         out.push(")");
@@ -38713,13 +38713,13 @@ class PostScriptParser {
     this.token = null;
     this.prev = null;
   }
-  nextToken() {
+  nextToken {
     this.prev = this.token;
-    this.token = this.lexer.getToken();
+    this.token = this.lexer.getToken;
   }
   accept(type) {
     if (this.token.type === type) {
-      this.nextToken();
+      this.nextToken;
       return true;
     }
     return false;
@@ -38730,30 +38730,30 @@ class PostScriptParser {
     }
     throw new _util.FormatError(`Unexpected symbol: found ${this.token.type} expected ${type}.`);
   }
-  parse() {
-    this.nextToken();
+  parse {
+    this.nextToken;
     this.expect(PostScriptTokenTypes.LBRACE);
-    this.parseBlock();
+    this.parseBlock;
     this.expect(PostScriptTokenTypes.RBRACE);
     return this.operators;
   }
-  parseBlock() {
+  parseBlock {
     while (true) {
       if (this.accept(PostScriptTokenTypes.NUMBER)) {
         this.operators.push(this.prev.value);
       } else if (this.accept(PostScriptTokenTypes.OPERATOR)) {
         this.operators.push(this.prev.value);
       } else if (this.accept(PostScriptTokenTypes.LBRACE)) {
-        this.parseCondition();
+        this.parseCondition;
       } else {
         return;
       }
     }
   }
-  parseCondition() {
+  parseCondition {
     const conditionLocation = this.operators.length;
     this.operators.push(null, null);
-    this.parseBlock();
+    this.parseBlock;
     this.expect(PostScriptTokenTypes.RBRACE);
     if (this.accept(PostScriptTokenTypes.IF)) {
       this.operators[conditionLocation] = this.operators.length;
@@ -38762,7 +38762,7 @@ class PostScriptParser {
       const jumpLocation = this.operators.length;
       this.operators.push(null, null);
       const endOfTrue = this.operators.length;
-      this.parseBlock();
+      this.parseBlock;
       this.expect(PostScriptTokenTypes.RBRACE);
       this.expect(PostScriptTokenTypes.IFELSE);
       this.operators[jumpLocation] = this.operators.length;
@@ -38784,7 +38784,7 @@ const PostScriptTokenTypes = {
   IFELSE: 5
 };
 class PostScriptToken {
-  static get opCache() {
+  static get opCache {
     return (0, _util.shadow)(this, "opCache", Object.create(null));
   }
   constructor(type, value) {
@@ -38794,29 +38794,29 @@ class PostScriptToken {
   static getOperator(op) {
     return PostScriptToken.opCache[op] ||= new PostScriptToken(PostScriptTokenTypes.OPERATOR, op);
   }
-  static get LBRACE() {
+  static get LBRACE {
     return (0, _util.shadow)(this, "LBRACE", new PostScriptToken(PostScriptTokenTypes.LBRACE, "{"));
   }
-  static get RBRACE() {
+  static get RBRACE {
     return (0, _util.shadow)(this, "RBRACE", new PostScriptToken(PostScriptTokenTypes.RBRACE, "}"));
   }
-  static get IF() {
+  static get IF {
     return (0, _util.shadow)(this, "IF", new PostScriptToken(PostScriptTokenTypes.IF, "IF"));
   }
-  static get IFELSE() {
+  static get IFELSE {
     return (0, _util.shadow)(this, "IFELSE", new PostScriptToken(PostScriptTokenTypes.IFELSE, "IFELSE"));
   }
 }
 class PostScriptLexer {
   constructor(stream) {
     this.stream = stream;
-    this.nextChar();
+    this.nextChar;
     this.strBuf = [];
   }
-  nextChar() {
-    return this.currentChar = this.stream.getByte();
+  nextChar {
+    return this.currentChar = this.stream.getByte;
   }
-  getToken() {
+  getToken {
     let comment = false;
     let ch = this.currentChar;
     while (true) {
@@ -38832,7 +38832,7 @@ class PostScriptLexer {
       } else if (!(0, _core_utils.isWhiteSpace)(ch)) {
         break;
       }
-      ch = this.nextChar();
+      ch = this.nextChar;
     }
     switch (ch | 0) {
       case 0x30:
@@ -38848,22 +38848,22 @@ class PostScriptLexer {
       case 0x2b:
       case 0x2d:
       case 0x2e:
-        return new PostScriptToken(PostScriptTokenTypes.NUMBER, this.getNumber());
+        return new PostScriptToken(PostScriptTokenTypes.NUMBER, this.getNumber);
       case 0x7b:
-        this.nextChar();
+        this.nextChar;
         return PostScriptToken.LBRACE;
       case 0x7d:
-        this.nextChar();
+        this.nextChar;
         return PostScriptToken.RBRACE;
     }
     const strBuf = this.strBuf;
     strBuf.length = 0;
     strBuf[0] = String.fromCharCode(ch);
-    while ((ch = this.nextChar()) >= 0 && (ch >= 0x41 && ch <= 0x5a || ch >= 0x61 && ch <= 0x7a)) {
+    while ((ch = this.nextChar) >= 0 && (ch >= 0x41 && ch <= 0x5a || ch >= 0x61 && ch <= 0x7a)) {
       strBuf.push(String.fromCharCode(ch));
     }
     const str = strBuf.join("");
-    switch (str.toLowerCase()) {
+    switch (str.toLowerCase) {
       case "if":
         return PostScriptToken.IF;
       case "ifelse":
@@ -38872,12 +38872,12 @@ class PostScriptLexer {
         return PostScriptToken.getOperator(str);
     }
   }
-  getNumber() {
+  getNumber {
     let ch = this.currentChar;
     const strBuf = this.strBuf;
     strBuf.length = 0;
     strBuf[0] = String.fromCharCode(ch);
-    while ((ch = this.nextChar()) >= 0) {
+    while ((ch = this.nextChar) >= 0) {
       if (ch >= 0x30 && ch <= 0x39 || ch === 0x2d || ch === 0x2e) {
         strBuf.push(String.fromCharCode(ch));
       } else {
@@ -38912,10 +38912,10 @@ class BaseLocalCache {
     }
     this._onlyRefs = options?.onlyRefs === true;
     if (!this._onlyRefs) {
-      this._nameRefMap = new Map();
-      this._imageMap = new Map();
+      this._nameRefMap = new Map;
+      this._imageMap = new Map;
     }
-    this._imageCache = new _primitives.RefSetCache();
+    this._imageCache = new _primitives.RefSetCache;
   }
   getByName(name) {
     if (this._onlyRefs) {
@@ -39051,18 +39051,18 @@ class GlobalImageCache {
   static NUM_PAGES_THRESHOLD = 2;
   static MIN_IMAGES_TO_CACHE = 10;
   static MAX_BYTE_SIZE = 5 * _util.MAX_IMAGE_SIZE_TO_CACHE;
-  constructor() {
-    this._refCache = new _primitives.RefSetCache();
-    this._imageCache = new _primitives.RefSetCache();
+  constructor {
+    this._refCache = new _primitives.RefSetCache;
+    this._imageCache = new _primitives.RefSetCache;
   }
-  get _byteSize() {
+  get _byteSize {
     let byteSize = 0;
     for (const imageData of this._imageCache) {
       byteSize += imageData.byteSize;
     }
     return byteSize;
   }
-  get _cacheLimitReached() {
+  get _cacheLimitReached {
     if (this._imageCache.size < GlobalImageCache.MIN_IMAGES_TO_CACHE) {
       return false;
     }
@@ -39074,7 +39074,7 @@ class GlobalImageCache {
   shouldCache(ref, pageIndex) {
     let pageIndexSet = this._refCache.get(ref);
     if (!pageIndexSet) {
-      pageIndexSet = new Set();
+      pageIndexSet = new Set;
       this._refCache.put(ref, pageIndexSet);
     }
     pageIndexSet.add(pageIndex);
@@ -39126,9 +39126,9 @@ class GlobalImageCache {
   }
   clear(onlyData = false) {
     if (!onlyData) {
-      this._refCache.clear();
+      this._refCache.clear;
     }
-    this._imageCache.clear();
+    this._imageCache.clear;
   }
 }
 exports.GlobalImageCache = GlobalImageCache;
@@ -39598,7 +39598,7 @@ function getFontSubstitution(systemFontCache, idFactory, localFontPath, baseFont
     substitution = substitutionMap.get(standardFontName);
     mustAddBaseFont = true;
   }
-  const loadedName = `${idFactory.getDocId()}_s${idFactory.createFontId()}`;
+  const loadedName = `${idFactory.getDocId}_s${idFactory.createFontId}`;
   if (!substitution) {
     if (!(0, _core_utils.validateFontName)(baseFontName)) {
       systemFontCache.set(key, null);
@@ -39684,10 +39684,10 @@ class ImageResizer {
     const maxArea = this.MAX_AREA = this._goodSquareLength ** 2;
     return area > maxArea;
   }
-  static get MAX_DIM() {
+  static get MAX_DIM {
     return (0, _util.shadow)(this, "MAX_DIM", this._guessMax(MIN_IMAGE_DIM, MAX_IMAGE_DIM, 0, 1));
   }
-  static get MAX_AREA() {
+  static get MAX_AREA {
     this._hasMaxArea = true;
     return (0, _util.shadow)(this, "MAX_AREA", this._guessMax(ImageResizer._goodSquareLength, this.MAX_DIM, MAX_ERROR, 0) ** 2);
   }
@@ -39727,10 +39727,10 @@ class ImageResizer {
     return start;
   }
   static async createImage(imgData, isMask = false) {
-    return new ImageResizer(imgData, isMask)._createImage();
+    return new ImageResizer(imgData, isMask)._createImage;
   }
-  async _createImage() {
-    const data = this._encodeBMP();
+  async _createImage {
+    const data = this._encodeBMP;
     const blob = new Blob([data.buffer], {
       type: "image/bmp"
     });
@@ -39764,7 +39764,7 @@ class ImageResizer {
       const canvas = new OffscreenCanvas(newWidth, newHeight);
       const ctx = canvas.getContext("2d");
       ctx.drawImage(bitmap, 0, 0, prevWidth, prevHeight, 0, 0, newWidth, newHeight);
-      bitmap = canvas.transferToImageBitmap();
+      bitmap = canvas.transferToImageBitmap;
     }
     imgData.data = null;
     imgData.bitmap = bitmap;
@@ -39772,7 +39772,7 @@ class ImageResizer {
     imgData.height = newHeight;
     return imgData;
   }
-  _encodeBMP() {
+  _encodeBMP {
     const {
       width,
       height,
@@ -39928,7 +39928,7 @@ class MurmurHash3_64 {
         }
       }
     } else if ((0, _util.isArrayBuffer)(input)) {
-      data = input.slice();
+      data = input.slice;
       length = data.byteLength;
     } else {
       throw new Error("Wrong data format in MurmurHash3_64_update. " + "Input must be a string or array.");
@@ -39983,7 +39983,7 @@ class MurmurHash3_64 {
     this.h1 = h1;
     this.h2 = h2;
   }
-  hexdigest() {
+  hexdigest {
     let h1 = this.h1,
       h2 = this.h2;
     h1 ^= h2 >>> 1;
@@ -40112,7 +40112,7 @@ addState(InitialState, [_util.OPS.save, _util.OPS.transform, _util.OPS.paintInli
     const canvas = new OffscreenCanvas(imgWidth, imgHeight);
     const ctx = canvas.getContext("2d");
     ctx.putImageData(new ImageData(new Uint8ClampedArray(imgData.buffer), imgWidth, imgHeight), 0, 0);
-    img.bitmap = canvas.transferToImageBitmap();
+    img.bitmap = canvas.transferToImageBitmap;
     img.data = null;
   } else {
     img.kind = _util.ImageKind.RGBA_32BPP;
@@ -40331,14 +40331,14 @@ class NullOptimizer {
   constructor(queue) {
     this.queue = queue;
   }
-  _optimize() {}
+  _optimize {}
   push(fn, args) {
     this.queue.fnArray.push(fn);
     this.queue.argsArray.push(args);
-    this._optimize();
+    this._optimize;
   }
-  flush() {}
-  reset() {}
+  flush {}
+  reset {}
 }
 class QueueOptimizer extends NullOptimizer {
   constructor(queue) {
@@ -40356,7 +40356,7 @@ class QueueOptimizer extends NullOptimizer {
   set isOffscreenCanvasSupported(value) {
     this.context.isOffscreenCanvasSupported = value;
   }
-  _optimize() {
+  _optimize {
     const fnArray = this.queue.fnArray;
     let i = this.lastProcessed,
       ii = fnArray.length;
@@ -40400,16 +40400,16 @@ class QueueOptimizer extends NullOptimizer {
     this.match = match;
     this.lastProcessed = i;
   }
-  flush() {
+  flush {
     while (this.match) {
       const length = this.queue.fnArray.length;
       this.lastProcessed = (0, this.match.processFn)(this.context, length);
       this.match = null;
       this.state = null;
-      this._optimize();
+      this._optimize;
     }
   }
-  reset() {
+  reset {
     this.state = null;
     this.match = null;
     this.lastProcessed = 0;
@@ -40423,21 +40423,21 @@ class OperatorList {
     this.fnArray = [];
     this.argsArray = [];
     this.optimizer = streamSink && !(intent & _util.RenderingIntentFlag.OPLIST) ? new QueueOptimizer(this) : new NullOptimizer(this);
-    this.dependencies = new Set();
+    this.dependencies = new Set;
     this._totalLength = 0;
     this.weight = 0;
-    this._resolved = streamSink ? null : Promise.resolve();
+    this._resolved = streamSink ? null : Promise.resolve;
   }
   set isOffscreenCanvasSupported(value) {
     this.optimizer.isOffscreenCanvasSupported = value;
   }
-  get length() {
+  get length {
     return this.argsArray.length;
   }
-  get ready() {
+  get ready {
     return this._resolved || this._streamSink.ready;
   }
-  get totalLength() {
+  get totalLength {
     return this._totalLength + this.length;
   }
   addOp(fn, args) {
@@ -40445,9 +40445,9 @@ class OperatorList {
     this.weight++;
     if (this._streamSink) {
       if (this.weight >= OperatorList.CHUNK_SIZE) {
-        this.flush();
+        this.flush;
       } else if (this.weight >= OperatorList.CHUNK_SIZE_ABOUT && (fn === _util.OPS.restore || fn === _util.OPS.endText)) {
-        this.flush();
+        this.flush;
       }
     }
   }
@@ -40484,14 +40484,14 @@ class OperatorList {
       this.addOp(opList.fnArray[i], opList.argsArray[i]);
     }
   }
-  getIR() {
+  getIR {
     return {
       fnArray: this.fnArray,
       argsArray: this.argsArray,
       length: this.length
     };
   }
-  get _transfers() {
+  get _transfers {
     const transfers = [];
     const {
       fnArray,
@@ -40513,7 +40513,7 @@ class OperatorList {
     return transfers;
   }
   flush(lastChunk = false, separateAnnots = null) {
-    this.optimizer.flush();
+    this.optimizer.flush;
     const length = this.length;
     this._totalLength += length;
     this._streamSink.enqueue({
@@ -40523,11 +40523,11 @@ class OperatorList {
       separateAnnots,
       length
     }, 1, this._transfers);
-    this.dependencies.clear();
+    this.dependencies.clear;
     this.fnArray.length = 0;
     this.argsArray.length = 0;
     this.weight = 0;
-    this.optimizer.reset();
+    this.optimizer.reset;
   }
 }
 exports.OperatorList = OperatorList;
@@ -40617,9 +40617,9 @@ class PDFImage {
     }
     switch (filterName) {
       case "JPXDecode":
-        const jpxImage = new _jpx.JpxImage();
+        const jpxImage = new _jpx.JpxImage;
         jpxImage.parseImageProperties(image.stream);
-        image.stream.reset();
+        image.stream.reset;
         image.width = jpxImage.width;
         image.height = jpxImage.height;
         image.bitsPerComponent = jpxImage.bitsPerComponent;
@@ -40846,7 +40846,7 @@ class PDFImage {
         inverseDecode
       });
       ctx.putImageData(imgData, 0, 0);
-      const bitmap = canvas.transferToImageBitmap();
+      const bitmap = canvas.transferToImageBitmap;
       return {
         data: null,
         width,
@@ -40864,10 +40864,10 @@ class PDFImage {
       interpolate
     });
   }
-  get drawWidth() {
+  get drawWidth {
     return Math.max(this.width, this.smask?.width || 0, this.mask?.width || 0);
   }
-  get drawHeight() {
+  get drawHeight {
     return Math.max(this.height, this.smask?.height || 0, this.mask?.height || 0);
   }
   decodeBuffer(buffer) {
@@ -41180,7 +41180,7 @@ class PDFImage {
     }
     if (isOffscreenCanvasSupported && !mustBeResized) {
       ctx.putImageData(canvasImgData, 0, 0);
-      const bitmap = canvas.transferToImageBitmap();
+      const bitmap = canvas.transferToImageBitmap;
       return {
         data: null,
         width: drawWidth,
@@ -41249,7 +41249,7 @@ class PDFImage {
       });
     }
     ctx.putImageData(imgData, 0, 0);
-    const bitmap = canvas.transferToImageBitmap();
+    const bitmap = canvas.transferToImageBitmap;
     return {
       data: null,
       width,
@@ -41265,7 +41265,7 @@ class PDFImage {
     forceRGB = false,
     internal = false
   }) {
-    this.image.reset();
+    this.image.reset;
     this.image.drawWidth = drawWidth || this.width;
     this.image.drawHeight = drawHeight || this.height;
     this.image.forceRGBA = !!forceRGBA;
@@ -41311,25 +41311,25 @@ class Catalog {
   constructor(pdfManager, xref) {
     this.pdfManager = pdfManager;
     this.xref = xref;
-    this._catDict = xref.getCatalogObj();
+    this._catDict = xref.getCatalogObj;
     if (!(this._catDict instanceof _primitives.Dict)) {
       throw new _util.FormatError("Catalog object is not a dictionary.");
     }
     this.toplevelPagesDict;
     this._actualNumPages = null;
-    this.fontCache = new _primitives.RefSetCache();
-    this.builtInCMapCache = new Map();
-    this.standardFontDataCache = new Map();
-    this.globalImageCache = new _image_utils.GlobalImageCache();
-    this.pageKidsCountCache = new _primitives.RefSetCache();
-    this.pageIndexCache = new _primitives.RefSetCache();
-    this.nonBlendModesSet = new _primitives.RefSet();
-    this.systemFontCache = new Map();
+    this.fontCache = new _primitives.RefSetCache;
+    this.builtInCMapCache = new Map;
+    this.standardFontDataCache = new Map;
+    this.globalImageCache = new _image_utils.GlobalImageCache;
+    this.pageKidsCountCache = new _primitives.RefSetCache;
+    this.pageIndexCache = new _primitives.RefSetCache;
+    this.nonBlendModesSet = new _primitives.RefSet;
+    this.systemFontCache = new Map;
   }
-  cloneDict() {
-    return this._catDict.clone();
+  cloneDict {
+    return this._catDict.clone;
   }
-  get version() {
+  get version {
     const version = this._catDict.get("Version");
     if (version instanceof _primitives.Name) {
       if (_core_utils.PDF_VERSION_REGEXP.test(version.name)) {
@@ -41339,15 +41339,15 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "version", null);
   }
-  get lang() {
+  get lang {
     const lang = this._catDict.get("Lang");
     return (0, _util.shadow)(this, "lang", typeof lang === "string" ? (0, _util.stringToPDFString)(lang) : null);
   }
-  get needsRendering() {
+  get needsRendering {
     const needsRendering = this._catDict.get("NeedsRendering");
     return (0, _util.shadow)(this, "needsRendering", typeof needsRendering === "boolean" ? needsRendering : false);
   }
-  get collection() {
+  get collection {
     let collection = null;
     try {
       const obj = this._catDict.get("Collection");
@@ -41362,7 +41362,7 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "collection", collection);
   }
-  get acroForm() {
+  get acroForm {
     let acroForm = null;
     try {
       const obj = this._catDict.get("AcroForm");
@@ -41377,11 +41377,11 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "acroForm", acroForm);
   }
-  get acroFormRef() {
+  get acroFormRef {
     const value = this._catDict.getRaw("AcroForm");
     return (0, _util.shadow)(this, "acroFormRef", value instanceof _primitives.Ref ? value : null);
   }
-  get metadata() {
+  get metadata {
     const streamRef = this._catDict.getRaw("Metadata");
     if (!(streamRef instanceof _primitives.Ref)) {
       return (0, _util.shadow)(this, "metadata", null);
@@ -41393,7 +41393,7 @@ class Catalog {
         const type = stream.dict.get("Type");
         const subtype = stream.dict.get("Subtype");
         if ((0, _primitives.isName)(type, "Metadata") && (0, _primitives.isName)(subtype, "XML")) {
-          const data = (0, _util.stringToUTF8String)(stream.getString());
+          const data = (0, _util.stringToUTF8String)(stream.getString);
           if (data) {
             metadata = new _metadata_parser.MetadataParser(data).serializable;
           }
@@ -41407,10 +41407,10 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "metadata", metadata);
   }
-  get markInfo() {
+  get markInfo {
     let markInfo = null;
     try {
-      markInfo = this._readMarkInfo();
+      markInfo = this._readMarkInfo;
     } catch (ex) {
       if (ex instanceof _core_utils.MissingDataException) {
         throw ex;
@@ -41419,7 +41419,7 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "markInfo", markInfo);
   }
-  _readMarkInfo() {
+  _readMarkInfo {
     const obj = this._catDict.get("MarkInfo");
     if (!(obj instanceof _primitives.Dict)) {
       return null;
@@ -41437,10 +41437,10 @@ class Catalog {
     }
     return markInfo;
   }
-  get structTreeRoot() {
+  get structTreeRoot {
     let structTree = null;
     try {
-      structTree = this._readStructTreeRoot();
+      structTree = this._readStructTreeRoot;
     } catch (ex) {
       if (ex instanceof _core_utils.MissingDataException) {
         throw ex;
@@ -41449,27 +41449,27 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "structTreeRoot", structTree);
   }
-  _readStructTreeRoot() {
+  _readStructTreeRoot {
     const rawObj = this._catDict.getRaw("StructTreeRoot");
     const obj = this.xref.fetchIfRef(rawObj);
     if (!(obj instanceof _primitives.Dict)) {
       return null;
     }
     const root = new _struct_tree.StructTreeRoot(obj, rawObj);
-    root.init();
+    root.init;
     return root;
   }
-  get toplevelPagesDict() {
+  get toplevelPagesDict {
     const pagesObj = this._catDict.get("Pages");
     if (!(pagesObj instanceof _primitives.Dict)) {
       throw new _util.FormatError("Invalid top-level pages dictionary.");
     }
     return (0, _util.shadow)(this, "toplevelPagesDict", pagesObj);
   }
-  get documentOutline() {
+  get documentOutline {
     let obj = null;
     try {
-      obj = this._readDocumentOutline();
+      obj = this._readDocumentOutline;
     } catch (ex) {
       if (ex instanceof _core_utils.MissingDataException) {
         throw ex;
@@ -41478,7 +41478,7 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "documentOutline", obj);
   }
-  _readDocumentOutline() {
+  _readDocumentOutline {
     let obj = this._catDict.get("Outlines");
     if (!(obj instanceof _primitives.Dict)) {
       return null;
@@ -41494,12 +41494,12 @@ class Catalog {
       obj,
       parent: root
     }];
-    const processed = new _primitives.RefSet();
+    const processed = new _primitives.RefSet;
     processed.put(obj);
     const xref = this.xref,
       blackColor = new Uint8ClampedArray(3);
     while (queue.length > 0) {
-      const i = queue.shift();
+      const i = queue.shift;
       const outlineDict = xref.fetchIfRef(i.obj);
       if (outlineDict === null) {
         continue;
@@ -41561,10 +41561,10 @@ class Catalog {
     }
     return root.items.length > 0 ? root.items : null;
   }
-  get permissions() {
+  get permissions {
     let permissions = null;
     try {
-      permissions = this._readPermissions();
+      permissions = this._readPermissions;
     } catch (ex) {
       if (ex instanceof _core_utils.MissingDataException) {
         throw ex;
@@ -41573,7 +41573,7 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "permissions", permissions);
   }
-  _readPermissions() {
+  _readPermissions {
     const encrypt = this.xref.trailer.get("Encrypt");
     if (!(encrypt instanceof _primitives.Dict)) {
       return null;
@@ -41592,7 +41592,7 @@ class Catalog {
     }
     return permissions;
   }
-  get optionalContentConfig() {
+  get optionalContentConfig {
     let config = null;
     try {
       const properties = this._catDict.get("OCProperties");
@@ -41616,7 +41616,7 @@ class Catalog {
         groupRefs.push(groupRef);
         const group = this.xref.fetchIfRef(groupRef);
         groups.push({
-          id: groupRef.toString(),
+          id: groupRef.toString,
           name: typeof group.get("Name") === "string" ? (0, _util.stringToPDFString)(group.get("Name")) : null,
           intent: typeof group.get("Intent") === "string" ? (0, _util.stringToPDFString)(group.get("Intent")) : null
         });
@@ -41640,7 +41640,7 @@ class Catalog {
             continue;
           }
           if (contentGroupRefs.includes(value)) {
-            onParsed.push(value.toString());
+            onParsed.push(value.toString);
           }
         }
       }
@@ -41654,7 +41654,7 @@ class Catalog {
       for (const value of refs) {
         if (value instanceof _primitives.Ref && contentGroupRefs.includes(value)) {
           parsedOrderRefs.put(value);
-          order.push(value.toString());
+          order.push(value.toString);
           continue;
         }
         const nestedOrder = parseNestedOrder(value, nestedLevels);
@@ -41670,7 +41670,7 @@ class Catalog {
         if (parsedOrderRefs.has(groupRef)) {
           continue;
         }
-        hiddenGroups.push(groupRef.toString());
+        hiddenGroups.push(groupRef.toString);
       }
       if (hiddenGroups.length) {
         order.push({
@@ -41703,7 +41703,7 @@ class Catalog {
       };
     }
     const xref = this.xref,
-      parsedOrderRefs = new _primitives.RefSet(),
+      parsedOrderRefs = new _primitives.RefSet,
       MAX_NESTED_LEVELS = 10;
     return {
       name: typeof config.get("Name") === "string" ? (0, _util.stringToPDFString)(config.get("Name")) : null,
@@ -41718,24 +41718,24 @@ class Catalog {
   setActualNumPages(num = null) {
     this._actualNumPages = num;
   }
-  get hasActualNumPages() {
+  get hasActualNumPages {
     return this._actualNumPages !== null;
   }
-  get _pagesCount() {
+  get _pagesCount {
     const obj = this.toplevelPagesDict.get("Count");
     if (!Number.isInteger(obj)) {
       throw new _util.FormatError("Page count in top-level pages dictionary is not an integer.");
     }
     return (0, _util.shadow)(this, "_pagesCount", obj);
   }
-  get numPages() {
+  get numPages {
     return this.hasActualNumPages ? this._actualNumPages : this._pagesCount;
   }
-  get destinations() {
-    const obj = this._readDests(),
+  get destinations {
+    const obj = this._readDests,
       dests = Object.create(null);
     if (obj instanceof _name_number_tree.NameTree) {
-      for (const [key, value] of obj.getAll()) {
+      for (const [key, value] of obj.getAll) {
         const dest = fetchDestination(value);
         if (dest) {
           dests[(0, _util.stringToPDFString)(key)] = dest;
@@ -41752,7 +41752,7 @@ class Catalog {
     return (0, _util.shadow)(this, "destinations", dests);
   }
   getDestination(id) {
-    const obj = this._readDests();
+    const obj = this._readDests;
     if (obj instanceof _name_number_tree.NameTree) {
       const dest = fetchDestination(obj.get(id));
       if (dest) {
@@ -41771,7 +41771,7 @@ class Catalog {
     }
     return null;
   }
-  _readDests() {
+  _readDests {
     const obj = this._catDict.get("Names");
     if (obj?.has("Dests")) {
       return new _name_number_tree.NameTree(obj.getRaw("Dests"), this.xref);
@@ -41780,10 +41780,10 @@ class Catalog {
     }
     return undefined;
   }
-  get pageLabels() {
+  get pageLabels {
     let obj = null;
     try {
-      obj = this._readPageLabels();
+      obj = this._readPageLabels;
     } catch (ex) {
       if (ex instanceof _core_utils.MissingDataException) {
         throw ex;
@@ -41792,7 +41792,7 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "pageLabels", obj);
   }
-  _readPageLabels() {
+  _readPageLabels {
     const obj = this._catDict.getRaw("PageLabels");
     if (!obj) {
       return null;
@@ -41801,7 +41801,7 @@ class Catalog {
     let style = null,
       prefix = "";
     const numberTree = new _name_number_tree.NumberTree(obj, this.xref);
-    const nums = numberTree.getAll();
+    const nums = numberTree.getAll;
     let currentLabel = "",
       currentIndex = 1;
     for (let i = 0, ii = this.numPages; i < ii; i++) {
@@ -41870,7 +41870,7 @@ class Catalog {
     }
     return pageLabels;
   }
-  get pageLayout() {
+  get pageLayout {
     const obj = this._catDict.get("PageLayout");
     let pageLayout = "";
     if (obj instanceof _primitives.Name) {
@@ -41886,7 +41886,7 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "pageLayout", pageLayout);
   }
-  get pageMode() {
+  get pageMode {
     const obj = this._catDict.get("PageMode");
     let pageMode = "UseNone";
     if (obj instanceof _primitives.Name) {
@@ -41902,13 +41902,13 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "pageMode", pageMode);
   }
-  get viewerPreferences() {
+  get viewerPreferences {
     const obj = this._catDict.get("ViewerPreferences");
     if (!(obj instanceof _primitives.Dict)) {
       return (0, _util.shadow)(this, "viewerPreferences", null);
     }
     let prefs = null;
-    for (const key of obj.getKeys()) {
+    for (const key of obj.getKeys) {
       const value = obj.get(key);
       let prefValue;
       switch (key) {
@@ -42022,7 +42022,7 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "viewerPreferences", prefs);
   }
-  get openAction() {
+  get openAction {
     const obj = this._catDict.get("OpenAction");
     const openAction = Object.create(null);
     if (obj instanceof _primitives.Dict) {
@@ -42047,12 +42047,12 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "openAction", (0, _util.objectSize)(openAction) > 0 ? openAction : null);
   }
-  get attachments() {
+  get attachments {
     const obj = this._catDict.get("Names");
     let attachments = null;
     if (obj instanceof _primitives.Dict && obj.has("EmbeddedFiles")) {
       const nameTree = new _name_number_tree.NameTree(obj.getRaw("EmbeddedFiles"), this.xref);
-      for (const [key, value] of nameTree.getAll()) {
+      for (const [key, value] of nameTree.getAll) {
         const fs = new _file_spec.FileSpec(value, this.xref);
         if (!attachments) {
           attachments = Object.create(null);
@@ -42062,12 +42062,12 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "attachments", attachments);
   }
-  get xfaImages() {
+  get xfaImages {
     const obj = this._catDict.get("Names");
     let xfaImages = null;
     if (obj instanceof _primitives.Dict && obj.has("XFAImages")) {
       const nameTree = new _name_number_tree.NameTree(obj.getRaw("XFAImages"), this.xref);
-      for (const [key, value] of nameTree.getAll()) {
+      for (const [key, value] of nameTree.getAll) {
         if (!xfaImages) {
           xfaImages = new _primitives.Dict(this.xref);
         }
@@ -42076,7 +42076,7 @@ class Catalog {
     }
     return (0, _util.shadow)(this, "xfaImages", xfaImages);
   }
-  _collectJavaScript() {
+  _collectJavaScript {
     const obj = this._catDict.get("Names");
     let javaScript = null;
     function appendIfJavaScriptDict(name, jsDict) {
@@ -42088,18 +42088,18 @@ class Catalog {
       }
       let js = jsDict.get("JS");
       if (js instanceof _base_stream.BaseStream) {
-        js = js.getString();
+        js = js.getString;
       } else if (typeof js !== "string") {
         return;
       }
       js = (0, _util.stringToPDFString)(js).replaceAll("\x00", "");
       if (js) {
-        (javaScript ||= new Map()).set(name, js);
+        (javaScript ||= new Map).set(name, js);
       }
     }
     if (obj instanceof _primitives.Dict && obj.has("JavaScript")) {
       const nameTree = new _name_number_tree.NameTree(obj.getRaw("JavaScript"), this.xref);
-      for (const [key, value] of nameTree.getAll()) {
+      for (const [key, value] of nameTree.getAll) {
         appendIfJavaScriptDict((0, _util.stringToPDFString)(key), value);
       }
     }
@@ -42109,8 +42109,8 @@ class Catalog {
     }
     return javaScript;
   }
-  get jsActions() {
-    const javaScript = this._collectJavaScript();
+  get jsActions {
+    const javaScript = this._collectJavaScript;
     let actions = (0, _core_utils.collectActions)(this.xref, this._catDict, _util.DocumentActionEventType);
     if (javaScript) {
       actions ||= Object.create(null);
@@ -42134,25 +42134,25 @@ class Catalog {
     }
   }
   async cleanup(manuallyTriggered = false) {
-    (0, _cleanup_helper.clearGlobalCaches)();
+    (0, _cleanup_helper.clearGlobalCaches);
     this.globalImageCache.clear(manuallyTriggered);
-    this.pageKidsCountCache.clear();
-    this.pageIndexCache.clear();
-    this.nonBlendModesSet.clear();
+    this.pageKidsCountCache.clear;
+    this.pageIndexCache.clear;
+    this.nonBlendModesSet.clear;
     const translatedFonts = await Promise.all(this.fontCache);
     for (const {
       dict
     } of translatedFonts) {
       delete dict.cacheKey;
     }
-    this.fontCache.clear();
-    this.builtInCMapCache.clear();
-    this.standardFontDataCache.clear();
-    this.systemFontCache.clear();
+    this.fontCache.clear;
+    this.builtInCMapCache.clear;
+    this.standardFontDataCache.clear;
+    this.systemFontCache.clear;
   }
   async getPageDict(pageIndex) {
     const nodesToVisit = [this.toplevelPagesDict];
-    const visitedNodes = new _primitives.RefSet();
+    const visitedNodes = new _primitives.RefSet;
     const pagesRef = this._catDict.getRaw("Pages");
     if (pagesRef instanceof _primitives.Ref) {
       visitedNodes.put(pagesRef);
@@ -42162,7 +42162,7 @@ class Catalog {
       pageIndexCache = this.pageIndexCache;
     let currentPageIndex = 0;
     while (nodesToVisit.length) {
-      const currentNode = nodesToVisit.pop();
+      const currentNode = nodesToVisit.pop;
       if (currentNode instanceof _primitives.Ref) {
         const count = pageKidsCountCache.get(currentNode);
         if (count >= 0 && currentPageIndex + count <= pageIndex) {
@@ -42247,12 +42247,12 @@ class Catalog {
       currentNode: this.toplevelPagesDict,
       posInKids: 0
     }];
-    const visitedNodes = new _primitives.RefSet();
+    const visitedNodes = new _primitives.RefSet;
     const pagesRef = this._catDict.getRaw("Pages");
     if (pagesRef instanceof _primitives.Ref) {
       visitedNodes.put(pagesRef);
     }
-    const map = new Map(),
+    const map = new Map,
       xref = this.xref,
       pageIndexCache = this.pageIndexCache;
     let pageIndex = 0;
@@ -42292,7 +42292,7 @@ class Catalog {
         break;
       }
       if (posInKids >= kids.length) {
-        queue.pop();
+        queue.pop;
         continue;
       }
       const kidObj = kids[posInKids];
@@ -42394,7 +42394,7 @@ class Catalog {
         if (!found) {
           throw new _util.FormatError("Kid reference not found in parent's kids.");
         }
-        return Promise.all(kidPromises).then(function () {
+        return Promise.all(kidPromises).then(function  {
           return [total, parentRef];
         });
       });
@@ -42411,7 +42411,7 @@ class Catalog {
     });
     return next(pageRef);
   }
-  get baseUrl() {
+  get baseUrl {
     const uri = this._catDict.get("URI");
     if (uri instanceof _primitives.Dict) {
       const base = uri.get("Base");
@@ -42468,7 +42468,7 @@ class Catalog {
           const refs = [];
           for (const obj of action.get("Fields") || []) {
             if (obj instanceof _primitives.Ref) {
-              refs.push(obj.toString());
+              refs.push(obj.toString);
             } else if (typeof obj === "string") {
               fields.push((0, _util.stringToPDFString)(obj));
             }
@@ -42554,7 +42554,7 @@ class Catalog {
                   break;
               }
             } else if (elem instanceof _primitives.Ref) {
-              stateArr.push(elem.toString());
+              stateArr.push(elem.toString);
             }
           }
           if (stateArr.length !== state.length) {
@@ -42569,7 +42569,7 @@ class Catalog {
           const jsAction = action.get("JS");
           let js;
           if (jsAction instanceof _base_stream.BaseStream) {
-            js = jsAction.getString();
+            js = jsAction.getString;
           } else if (typeof jsAction === "string") {
             js = jsAction;
           }
@@ -42634,17 +42634,17 @@ class NameOrNumberTree {
     this.xref = xref;
     this._type = type;
   }
-  getAll() {
-    const map = new Map();
+  getAll {
+    const map = new Map;
     if (!this.root) {
       return map;
     }
     const xref = this.xref;
-    const processed = new _primitives.RefSet();
+    const processed = new _primitives.RefSet;
     processed.put(this.root);
     const queue = [this.root];
     while (queue.length > 0) {
-      const obj = xref.fetchIfRef(queue.shift());
+      const obj = xref.fetchIfRef(queue.shift);
       if (!(obj instanceof _primitives.Dict)) {
         continue;
       }
@@ -42754,10 +42754,10 @@ exports.clearGlobalCaches = clearGlobalCaches;
 var _pattern = __w_pdfjs_require__(50);
 var _primitives = __w_pdfjs_require__(4);
 var _unicode = __w_pdfjs_require__(40);
-function clearGlobalCaches() {
-  (0, _pattern.clearPatternCaches)();
-  (0, _primitives.clearPrimitiveCaches)();
-  (0, _unicode.clearUnicodeCaches)();
+function clearGlobalCaches {
+  (0, _pattern.clearPatternCaches);
+  (0, _primitives.clearPrimitiveCaches);
+  (0, _unicode.clearUnicodeCaches);
 }
 
 /***/ }),
@@ -42807,14 +42807,14 @@ class FileSpec {
       (0, _util.warn)("Non-embedded file specifications are not supported");
     }
   }
-  get filename() {
+  get filename {
     if (!this._filename && this.root) {
       const filename = pickPlatformItem(this.root) || "unnamed";
       this._filename = (0, _util.stringToPDFString)(filename).replaceAll("\\\\", "\\").replaceAll("\\/", "/").replaceAll("\\", "/");
     }
     return this._filename;
   }
-  get content() {
+  get content {
     if (!this.contentAvailable) {
       return null;
     }
@@ -42825,7 +42825,7 @@ class FileSpec {
     if (this.contentRef) {
       const fileObj = this.xref.fetchIfRef(this.contentRef);
       if (fileObj instanceof _base_stream.BaseStream) {
-        content = fileObj.getBytes();
+        content = fileObj.getBytes;
       } else {
         (0, _util.warn)("Embedded file specification points to non-existing/invalid content");
       }
@@ -42834,7 +42834,7 @@ class FileSpec {
     }
     return content;
   }
-  get serializable() {
+  get serializable {
     return {
       filename: this.filename,
       content: this.content
@@ -42861,7 +42861,7 @@ class MetadataParser {
       lowerCaseName: true
     });
     const xmlDocument = parser.parseFromString(data);
-    this._metadataMap = new Map();
+    this._metadataMap = new Map;
     this._data = data;
     if (xmlDocument) {
       this._parse(xmlDocument);
@@ -42906,12 +42906,12 @@ class MetadataParser {
     return entry.childNodes.filter(node => node.nodeName === "rdf:li");
   }
   _parseArray(entry) {
-    if (!entry.hasChildNodes()) {
+    if (!entry.hasChildNodes) {
       return;
     }
     const [seqNode] = entry.childNodes;
     const sequence = this._getSequence(seqNode) || [];
-    this._metadataMap.set(entry.nodeName, sequence.map(node => node.textContent.trim()));
+    this._metadataMap.set(entry.nodeName, sequence.map(node => node.textContent.trim));
   }
   _parse(xmlDocument) {
     let rdf = xmlDocument.documentElement;
@@ -42921,7 +42921,7 @@ class MetadataParser {
         rdf = rdf.nextSibling;
       }
     }
-    if (!rdf || rdf.nodeName !== "rdf:rdf" || !rdf.hasChildNodes()) {
+    if (!rdf || rdf.nodeName !== "rdf:rdf" || !rdf.hasChildNodes) {
       return;
     }
     for (const desc of rdf.childNodes) {
@@ -42938,11 +42938,11 @@ class MetadataParser {
             this._parseArray(entry);
             continue;
         }
-        this._metadataMap.set(name, entry.textContent.trim());
+        this._metadataMap.set(name, entry.textContent.trim);
       }
     }
   }
-  get serializable() {
+  get serializable {
     return {
       parsedData: this._metadataMap,
       rawData: this._data
@@ -43014,7 +43014,7 @@ class XMLParserBase {
   _parseContent(s, start) {
     const attributes = [];
     let pos = start;
-    function skipWs() {
+    function skipWs {
       while (pos < s.length && isWhitespace(s, pos)) {
         ++pos;
       }
@@ -43023,21 +43023,21 @@ class XMLParserBase {
       ++pos;
     }
     const name = s.substring(start, pos);
-    skipWs();
+    skipWs;
     while (pos < s.length && s[pos] !== ">" && s[pos] !== "/" && s[pos] !== "?") {
-      skipWs();
+      skipWs;
       let attrName = "",
         attrValue = "";
       while (pos < s.length && !isWhitespace(s, pos) && s[pos] !== "=") {
         attrName += s[pos];
         ++pos;
       }
-      skipWs();
+      skipWs;
       if (s[pos] !== "=") {
         return null;
       }
       ++pos;
-      skipWs();
+      skipWs;
       const attrEndChar = s[pos];
       if (attrEndChar !== '"' && attrEndChar !== "'") {
         return null;
@@ -43052,7 +43052,7 @@ class XMLParserBase {
         value: this._resolveEntities(attrValue)
       });
       pos = attrEndIndex + 1;
-      skipWs();
+      skipWs;
     }
     return {
       name,
@@ -43062,7 +43062,7 @@ class XMLParserBase {
   }
   _parseProcessingInstruction(s, start) {
     let pos = start;
-    function skipWs() {
+    function skipWs {
       while (pos < s.length && isWhitespace(s, pos)) {
         ++pos;
       }
@@ -43071,7 +43071,7 @@ class XMLParserBase {
       ++pos;
     }
     const name = s.substring(start, pos);
-    skipWs();
+    skipWs;
     const attrStart = pos;
     while (pos < s.length && (s[pos] !== "?" || s[pos + 1] !== ">")) {
       ++pos;
@@ -43203,10 +43203,10 @@ class SimpleDOMNode {
       writable: true
     });
   }
-  get firstChild() {
+  get firstChild {
     return this.childNodes?.[0];
   }
-  get nextSibling() {
+  get nextSibling {
     const childNodes = this.parentNode.childNodes;
     if (!childNodes) {
       return undefined;
@@ -43217,7 +43217,7 @@ class SimpleDOMNode {
     }
     return childNodes[index + 1];
   }
-  get textContent() {
+  get textContent {
     if (!this.childNodes) {
       return this.nodeValue || "";
     }
@@ -43225,10 +43225,10 @@ class SimpleDOMNode {
       return child.textContent;
     }).join("");
   }
-  get children() {
+  get children {
     return this.childNodes || [];
   }
-  hasChildNodes() {
+  hasChildNodes {
     return this.childNodes?.length > 0;
   }
   searchNode(paths, pos) {
@@ -43251,7 +43251,7 @@ class SimpleDOMNode {
         } else if (stack.length === 0) {
           return null;
         } else {
-          const [parent] = stack.pop();
+          const [parent] = stack.pop;
           let siblingPos = 0;
           for (const child of parent.childNodes) {
             if (component.name === child.nodeName) {
@@ -43271,7 +43271,7 @@ class SimpleDOMNode {
         return null;
       } else {
         while (stack.length !== 0) {
-          const [parent, currentPos] = stack.pop();
+          const [parent, currentPos] = stack.pop;
           const newPos = currentPos + 1;
           if (newPos < parent.childNodes.length) {
             stack.push([parent, newPos]);
@@ -43296,7 +43296,7 @@ class SimpleDOMNode {
         buffer.push(` ${attribute.name}="${(0, _core_utils.encodeToXmlString)(attribute.value)}"`);
       }
     }
-    if (this.hasChildNodes()) {
+    if (this.hasChildNodes) {
       buffer.push(">");
       for (const child of this.childNodes) {
         child.dump(buffer);
@@ -43315,7 +43315,7 @@ class SimpleXMLParser extends XMLParserBase {
     hasAttributes = false,
     lowerCaseName = false
   }) {
-    super();
+    super;
     this._currentFragment = null;
     this._stack = null;
     this._errorCode = XMLParserErrorCode.NoError;
@@ -43351,7 +43351,7 @@ class SimpleXMLParser extends XMLParserBase {
   }
   onBeginElement(name, attributes, isEmpty) {
     if (this._lowerCaseName) {
-      name = name.toLowerCase();
+      name = name.toLowerCase;
     }
     const node = new SimpleDOMNode(name);
     node.childNodes = [];
@@ -43366,7 +43366,7 @@ class SimpleXMLParser extends XMLParserBase {
     this._currentFragment = node.childNodes;
   }
   onEndElement(name) {
-    this._currentFragment = this._stack.pop() || [];
+    this._currentFragment = this._stack.pop || [];
     const lastElement = this._currentFragment.at(-1);
     if (!lastElement) {
       return null;
@@ -43408,17 +43408,17 @@ class StructTreeRoot {
   constructor(rootDict, rootRef) {
     this.dict = rootDict;
     this.ref = rootRef instanceof _primitives.Ref ? rootRef : null;
-    this.roleMap = new Map();
+    this.roleMap = new Map;
     this.structParentIds = null;
   }
-  init() {
-    this.readRoleMap();
+  init {
+    this.readRoleMap;
   }
   #addIdToPage(pageRef, id, type) {
     if (!(pageRef instanceof _primitives.Ref) || id < 0) {
       return;
     }
-    this.structParentIds ||= new _primitives.RefSetCache();
+    this.structParentIds ||= new _primitives.RefSetCache;
     let ids = this.structParentIds.get(pageRef);
     if (!ids) {
       ids = [];
@@ -43429,7 +43429,7 @@ class StructTreeRoot {
   addAnnotationIdToPage(pageRef, id) {
     this.#addIdToPage(pageRef, id, StructElementType.ANNOTATION);
   }
-  readRoleMap() {
+  readRoleMap {
     const roleMapDict = this.dict.get("RoleMap");
     if (!(roleMapDict instanceof _primitives.Dict)) {
       return;
@@ -43469,7 +43469,7 @@ class StructTreeRoot {
       }
     }
     if (hasNothingToUpdate) {
-      for (const elements of newAnnotationsByPage.values()) {
+      for (const elements of newAnnotationsByPage.values) {
         for (const element of elements) {
           delete element.parentTreeId;
         }
@@ -43485,8 +43485,8 @@ class StructTreeRoot {
     pdfManager,
     newRefs
   }) {
-    const root = pdfManager.catalog.cloneDict();
-    const structTreeRootRef = xref.getNewTemporaryRef();
+    const root = pdfManager.catalog.cloneDict;
+    const structTreeRootRef = xref.getNewTemporaryRef;
     root.set("StructTreeRoot", structTreeRootRef);
     const buffer = [];
     await (0, _writer.writeObject)(catalogRef, root, buffer, xref);
@@ -43496,7 +43496,7 @@ class StructTreeRoot {
     });
     const structTreeRoot = new _primitives.Dict(xref);
     structTreeRoot.set("Type", _primitives.Name.get("StructTreeRoot"));
-    const parentTreeRef = xref.getNewTemporaryRef();
+    const parentTreeRef = xref.getNewTemporaryRef;
     structTreeRoot.set("ParentTree", parentTreeRef);
     const kids = [];
     structTreeRoot.set("K", kids);
@@ -43553,7 +43553,7 @@ class StructTreeRoot {
     const {
       numPages
     } = pdfManager.catalog;
-    for (const pageIndex of newAnnotationsByPage.keys()) {
+    for (const pageIndex of newAnnotationsByPage.keys) {
       const {
         pageDict,
         ref: pageRef
@@ -43587,7 +43587,7 @@ class StructTreeRoot {
       }
     }
     if (hasNothingToUpdate) {
-      for (const elements of newAnnotationsByPage.values()) {
+      for (const elements of newAnnotationsByPage.values) {
         for (const element of elements) {
           delete element.parentTreeId;
           delete element.structTreeParent;
@@ -43603,7 +43603,7 @@ class StructTreeRoot {
     newRefs
   }) {
     const xref = this.dict.xref;
-    const structTreeRoot = this.dict.clone();
+    const structTreeRoot = this.dict.clone;
     const structTreeRootRef = this.ref;
     let parentTreeRef = structTreeRoot.getRaw("ParentTree");
     let parentTree;
@@ -43611,17 +43611,17 @@ class StructTreeRoot {
       parentTree = xref.fetch(parentTreeRef);
     } else {
       parentTree = parentTreeRef;
-      parentTreeRef = xref.getNewTemporaryRef();
+      parentTreeRef = xref.getNewTemporaryRef;
       structTreeRoot.set("ParentTree", parentTreeRef);
     }
-    parentTree = parentTree.clone();
+    parentTree = parentTree.clone;
     let nums = parentTree.getRaw("Nums");
     let numsRef = null;
     if (nums instanceof _primitives.Ref) {
       numsRef = nums;
       nums = xref.fetch(numsRef);
     }
-    nums = nums.slice();
+    nums = nums.slice;
     if (!numsRef) {
       parentTree.set("Nums", nums);
     }
@@ -43631,10 +43631,10 @@ class StructTreeRoot {
       kidsRef = kids;
       kids = xref.fetch(kidsRef);
     } else {
-      kidsRef = xref.getNewTemporaryRef();
+      kidsRef = xref.getNewTemporaryRef;
       structTreeRoot.set("K", kidsRef);
     }
-    kids = Array.isArray(kids) ? kids.slice() : [kids];
+    kids = Array.isArray(kids) ? kids.slice : [kids];
     const buffer = [];
     const newNextkey = await StructTreeRoot.#writeKids({
       newAnnotationsByPage,
@@ -43704,7 +43704,7 @@ class StructTreeRoot {
         structTreeParent
       } of elements) {
         nextKey = Math.max(nextKey, parentTreeId);
-        const tagRef = xref.getNewTemporaryRef();
+        const tagRef = xref.getNewTemporaryRef;
         const tagDict = new _primitives.Dict(xref);
         tagDict.set("S", _primitives.Name.get(type));
         if (title) {
@@ -43758,7 +43758,7 @@ class StructTreeRoot {
     pageDict,
     parentTree
   }) {
-    const idToElement = new Map();
+    const idToElement = new Map;
     for (const element of elements) {
       if (element.structTreeParentId) {
         const id = parseInt(element.structTreeParentId.split("_mc")[1], 10);
@@ -43827,8 +43827,8 @@ class StructTreeRoot {
     let parentKidsRef = parentDict.getRaw("K");
     if (!(parentKidsRef instanceof _primitives.Ref)) {
       parentKids = parentKidsRef;
-      parentKidsRef = xref.getNewTemporaryRef();
-      parentDict = parentDict.clone();
+      parentKidsRef = xref.getNewTemporaryRef;
+      parentDict = parentDict.clone;
       parentDict.set("K", parentKidsRef);
       saveParentDict = true;
     } else {
@@ -43837,7 +43837,7 @@ class StructTreeRoot {
     if (Array.isArray(parentKids)) {
       const index = parentKids.indexOf(ref);
       if (index >= 0) {
-        parentKids = parentKids.slice();
+        parentKids = parentKids.slice;
         parentKids.splice(index + 1, 0, newTagRef);
       } else {
         (0, _util.warn)("Cannot update the struct tree: parent kid not found.");
@@ -43846,7 +43846,7 @@ class StructTreeRoot {
       }
     } else if (parentKids instanceof _primitives.Dict) {
       parentKids = [parentKidsRef, newTagRef];
-      parentKidsRef = xref.getNewTemporaryRef();
+      parentKidsRef = xref.getNewTemporaryRef;
       parentDict.set("K", parentKidsRef);
       saveParentDict = true;
     }
@@ -43873,9 +43873,9 @@ class StructElementNode {
     this.tree = tree;
     this.dict = dict;
     this.kids = [];
-    this.parseKids();
+    this.parseKids;
   }
-  get role() {
+  get role {
     const nameObj = this.dict.get("S");
     const name = nameObj instanceof _primitives.Name ? nameObj.name : "";
     const {
@@ -43886,11 +43886,11 @@ class StructElementNode {
     }
     return name;
   }
-  parseKids() {
+  parseKids {
     let pageObjId = null;
     const objRef = this.dict.getRaw("Pg");
     if (objRef instanceof _primitives.Ref) {
-      pageObjId = objRef.toString();
+      pageObjId = objRef.toString;
     }
     const kids = this.dict.get("K");
     if (Array.isArray(kids)) {
@@ -43929,7 +43929,7 @@ class StructElementNode {
     }
     const pageRef = kidDict.getRaw("Pg");
     if (pageRef instanceof _primitives.Ref) {
-      pageObjId = pageRef.toString();
+      pageObjId = pageRef.toString;
     }
     const type = kidDict.get("Type") instanceof _primitives.Name ? kidDict.get("Type").name : null;
     if (type === "MCR") {
@@ -43939,7 +43939,7 @@ class StructElementNode {
       const kidRef = kidDict.getRaw("Stm");
       return new StructElement({
         type: StructElementType.STREAM_CONTENT,
-        refObjId: kidRef instanceof _primitives.Ref ? kidRef.toString() : null,
+        refObjId: kidRef instanceof _primitives.Ref ? kidRef.toString : null,
         pageObjId,
         mcid: kidDict.get("MCID")
       });
@@ -43951,7 +43951,7 @@ class StructElementNode {
       const kidRef = kidDict.getRaw("Obj");
       return new StructElement({
         type: StructElementType.OBJECT,
-        refObjId: kidRef instanceof _primitives.Ref ? kidRef.toString() : null,
+        refObjId: kidRef instanceof _primitives.Ref ? kidRef.toString : null,
         pageObjId
       });
     }
@@ -43997,7 +43997,7 @@ class StructTreePage {
     if (!Number.isInteger(id) && !ids) {
       return;
     }
-    const map = new Map();
+    const map = new Map;
     const numberTree = new _name_number_tree.NumberTree(parentTree, this.rootDict.xref);
     if (Number.isInteger(id)) {
       const parentArray = numberTree.get(id);
@@ -44073,14 +44073,14 @@ class StructTreePage {
     let save = false;
     for (let i = 0; i < obj.length; i++) {
       const kidRef = obj[i];
-      if (kidRef?.toString() === dict.objId) {
+      if (kidRef?.toString === dict.objId) {
         this.nodes[i] = element;
         save = true;
       }
     }
     return save;
   }
-  get serializable() {
+  get serializable {
     function nodeToSerializable(node, parent, level = 0) {
       if (level > MAX_DEPTH) {
         (0, _util.warn)("StructTree too deep to be fully serialized.");
@@ -44169,14 +44169,14 @@ async function writeObject(ref, obj, buffer, {
 }
 async function writeDict(dict, buffer, transform) {
   buffer.push("<<");
-  for (const key of dict.getKeys()) {
+  for (const key of dict.getKeys) {
     buffer.push(` /${(0, _core_utils.escapePDFName)(key)} `);
     await writeValue(dict.getRaw(key), buffer, transform);
   }
   buffer.push(">>");
 }
 async function writeStream(stream, buffer, transform) {
-  let string = stream.getString();
+  let string = stream.getString;
   const {
     dict
   } = stream;
@@ -44188,10 +44188,10 @@ async function writeStream(stream, buffer, transform) {
     try {
       const byteArray = (0, _util.stringToBytes)(string);
       const cs = new CompressionStream("deflate");
-      const writer = cs.writable.getWriter();
+      const writer = cs.writable.getWriter;
       writer.write(byteArray);
-      writer.close();
-      const buf = await new Response(cs.readable).arrayBuffer();
+      writer.close;
+      const buf = await new Response(cs.readable).arrayBuffer;
       string = (0, _util.bytesToString)(new Uint8Array(buf));
       let newFilter, newParams;
       if (!filter) {
@@ -44247,7 +44247,7 @@ async function writeValue(value, buffer, transform) {
   } else if (typeof value === "number") {
     buffer.push((0, _core_utils.numberToString)(value));
   } else if (typeof value === "boolean") {
-    buffer.push(value.toString());
+    buffer.push(value.toString);
   } else if (value instanceof _primitives.Dict) {
     await writeDict(value, buffer, transform);
   } else if (value instanceof _base_stream.BaseStream) {
@@ -44271,9 +44271,9 @@ function writeString(string, offset, buffer) {
   }
 }
 function computeMD5(filesize, xrefInfo) {
-  const time = Math.floor(Date.now() / 1000);
+  const time = Math.floor(Date.now / 1000);
   const filename = xrefInfo.filename || "";
-  const md5Buffer = [time.toString(), filename, filesize.toString()];
+  const md5Buffer = [time.toString, filename, filesize.toString];
   let md5BufferLen = md5Buffer.reduce((a, str) => a + str.length, 0);
   for (const value of Object.values(xrefInfo.info)) {
     md5Buffer.push(value);
@@ -44335,9 +44335,9 @@ async function updateAcroform({
   if (!needAppearances && (!hasXfa || !xfaDatasetsRef || hasXfaDatasetsEntry)) {
     return;
   }
-  const dict = acroForm.clone();
+  const dict = acroForm.clone;
   if (hasXfa && !hasXfaDatasetsEntry) {
-    const newXfa = acroForm.get("XFA").slice();
+    const newXfa = acroForm.get("XFA").slice;
     newXfa.splice(2, 0, "datasets");
     newXfa.splice(3, 0, xfaDatasetsRef);
     dict.set("XFA", newXfa);
@@ -44360,7 +44360,7 @@ function updateXFA({
 }) {
   if (xfaData === null) {
     const datasets = xref.fetchIfRef(xfaDatasetsRef);
-    xfaData = writeXFADataForAcroform(datasets.getString(), newRefs);
+    xfaData = writeXFADataForAcroform(datasets.getString, newRefs);
   }
   const encrypt = xref.encrypt;
   if (encrypt) {
@@ -44538,7 +44538,7 @@ class ARCFourCipher {
   }
 }
 exports.ARCFourCipher = ARCFourCipher;
-const calculateMD5 = function calculateMD5Closure() {
+const calculateMD5 = function calculateMD5Closure {
   const r = new Uint8Array([7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21]);
   const k = new Int32Array([-680876936, -389564586, 606105819, -1044525330, -176418897, 1200080426, -1473231341, -45705983, 1770035416, -1958414417, -42063, -1990404162, 1804603682, -40341101, -1502002290, 1236535329, -165796510, -1069501632, 643717713, -373897302, -701558691, 38016083, -660478335, -405537848, 568446438, -1019803690, -187363961, 1163531501, -1444681467, -51403784, 1735328473, -1926607734, -378558, -2022574463, 1839030562, -35309556, -1530992060, 1272893353, -155497632, -1094730640, 681279174, -358537222, -722521979, 76029189, -640364487, -421815835, 530742520, -995338651, -198630844, 1126891415, -1416354905, -57434055, 1700485571, -1894986606, -1051523, -2054922799, 1873313359, -30611744, -1560198380, 1309151649, -145523070, -1120210379, 718787259, -343485551]);
   function hash(data, offset, length) {
@@ -44606,7 +44606,7 @@ const calculateMD5 = function calculateMD5Closure() {
     return new Uint8Array([h0 & 0xFF, h0 >> 8 & 0xFF, h0 >> 16 & 0xFF, h0 >>> 24 & 0xFF, h1 & 0xFF, h1 >> 8 & 0xFF, h1 >> 16 & 0xFF, h1 >>> 24 & 0xFF, h2 & 0xFF, h2 >> 8 & 0xFF, h2 >> 16 & 0xFF, h2 >>> 24 & 0xFF, h3 & 0xFF, h3 >> 8 & 0xFF, h3 >> 16 & 0xFF, h3 >>> 24 & 0xFF]);
   }
   return hash;
-}();
+};
 exports.calculateMD5 = calculateMD5;
 class Word64 {
   constructor(highInteger, lowInteger) {
@@ -44656,7 +44656,7 @@ class Word64 {
     this.low = low >>> places | high << 32 - places;
     this.high = high >>> places | low << 32 - places;
   }
-  not() {
+  not {
     this.high = ~this.high;
     this.low = ~this.low;
   }
@@ -44684,7 +44684,7 @@ class Word64 {
     this.low = word.low;
   }
 }
-const calculateSHA256 = function calculateSHA256Closure() {
+const calculateSHA256 = function calculateSHA256Closure {
   function rotr(x, n) {
     return x >>> n | x << 32 - n;
   }
@@ -44778,14 +44778,14 @@ const calculateSHA256 = function calculateSHA256Closure() {
     return new Uint8Array([h0 >> 24 & 0xFF, h0 >> 16 & 0xFF, h0 >> 8 & 0xFF, h0 & 0xFF, h1 >> 24 & 0xFF, h1 >> 16 & 0xFF, h1 >> 8 & 0xFF, h1 & 0xFF, h2 >> 24 & 0xFF, h2 >> 16 & 0xFF, h2 >> 8 & 0xFF, h2 & 0xFF, h3 >> 24 & 0xFF, h3 >> 16 & 0xFF, h3 >> 8 & 0xFF, h3 & 0xFF, h4 >> 24 & 0xFF, h4 >> 16 & 0xFF, h4 >> 8 & 0xFF, h4 & 0xFF, h5 >> 24 & 0xFF, h5 >> 16 & 0xFF, h5 >> 8 & 0xFF, h5 & 0xFF, h6 >> 24 & 0xFF, h6 >> 16 & 0xFF, h6 >> 8 & 0xFF, h6 & 0xFF, h7 >> 24 & 0xFF, h7 >> 16 & 0xFF, h7 >> 8 & 0xFF, h7 & 0xFF]);
   }
   return hash;
-}();
+};
 exports.calculateSHA256 = calculateSHA256;
-const calculateSHA512 = function calculateSHA512Closure() {
+const calculateSHA512 = function calculateSHA512Closure {
   function ch(result, x, y, z, tmp) {
     result.assign(x);
     result.and(y);
     tmp.assign(x);
-    tmp.not();
+    tmp.not;
     tmp.and(z);
     result.xor(tmp);
   }
@@ -44983,7 +44983,7 @@ const calculateSHA512 = function calculateSHA512Closure() {
     return result;
   }
   return hash;
-}();
+};
 exports.calculateSHA512 = calculateSHA512;
 function calculateSHA384(data, offset, length) {
   return calculateSHA512(data, offset, length, true);
@@ -44997,7 +44997,7 @@ class NullCipher {
   }
 }
 class AESBaseCipher {
-  constructor() {
+  constructor {
     if (this.constructor === AESBaseCipher) {
       (0, _util.unreachable)("Cannot initialize AESBaseCipher.");
     }
@@ -45262,7 +45262,7 @@ class AESBaseCipher {
 }
 class AES128Cipher extends AESBaseCipher {
   constructor(key) {
-    super();
+    super;
     this._cyclesOfRepetition = 10;
     this._keySize = 160;
     this._rcon = new Uint8Array([0x8d, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36, 0x6c, 0xd8, 0xab, 0x4d, 0x9a, 0x2f, 0x5e, 0xbc, 0x63, 0xc6, 0x97, 0x35, 0x6a, 0xd4, 0xb3, 0x7d, 0xfa, 0xef, 0xc5, 0x91, 0x39, 0x72, 0xe4, 0xd3, 0xbd, 0x61, 0xc2, 0x9f, 0x25, 0x4a, 0x94, 0x33, 0x66, 0xcc, 0x83, 0x1d, 0x3a, 0x74, 0xe8, 0xcb, 0x8d, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36, 0x6c, 0xd8, 0xab, 0x4d, 0x9a, 0x2f, 0x5e, 0xbc, 0x63, 0xc6, 0x97, 0x35, 0x6a, 0xd4, 0xb3, 0x7d, 0xfa, 0xef, 0xc5, 0x91, 0x39, 0x72, 0xe4, 0xd3, 0xbd, 0x61, 0xc2, 0x9f, 0x25, 0x4a, 0x94, 0x33, 0x66, 0xcc, 0x83, 0x1d, 0x3a, 0x74, 0xe8, 0xcb, 0x8d, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36, 0x6c, 0xd8, 0xab, 0x4d, 0x9a, 0x2f, 0x5e, 0xbc, 0x63, 0xc6, 0x97, 0x35, 0x6a, 0xd4, 0xb3, 0x7d, 0xfa, 0xef, 0xc5, 0x91, 0x39, 0x72, 0xe4, 0xd3, 0xbd, 0x61, 0xc2, 0x9f, 0x25, 0x4a, 0x94, 0x33, 0x66, 0xcc, 0x83, 0x1d, 0x3a, 0x74, 0xe8, 0xcb, 0x8d, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36, 0x6c, 0xd8, 0xab, 0x4d, 0x9a, 0x2f, 0x5e, 0xbc, 0x63, 0xc6, 0x97, 0x35, 0x6a, 0xd4, 0xb3, 0x7d, 0xfa, 0xef, 0xc5, 0x91, 0x39, 0x72, 0xe4, 0xd3, 0xbd, 0x61, 0xc2, 0x9f, 0x25, 0x4a, 0x94, 0x33, 0x66, 0xcc, 0x83, 0x1d, 0x3a, 0x74, 0xe8, 0xcb, 0x8d, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36, 0x6c, 0xd8, 0xab, 0x4d, 0x9a, 0x2f, 0x5e, 0xbc, 0x63, 0xc6, 0x97, 0x35, 0x6a, 0xd4, 0xb3, 0x7d, 0xfa, 0xef, 0xc5, 0x91, 0x39, 0x72, 0xe4, 0xd3, 0xbd, 0x61, 0xc2, 0x9f, 0x25, 0x4a, 0x94, 0x33, 0x66, 0xcc, 0x83, 0x1d, 0x3a, 0x74, 0xe8, 0xcb, 0x8d]);
@@ -45301,7 +45301,7 @@ class AES128Cipher extends AESBaseCipher {
 exports.AES128Cipher = AES128Cipher;
 class AES256Cipher extends AESBaseCipher {
   constructor(key) {
-    super();
+    super;
     this._cyclesOfRepetition = 14;
     this._keySize = 224;
     this._key = this._expandKey(key);
@@ -45455,19 +45455,19 @@ class CipherTransform {
     this.StreamCipherConstructor = streamCipherConstructor;
   }
   createStream(stream, length) {
-    const cipher = new this.StreamCipherConstructor();
+    const cipher = new this.StreamCipherConstructor;
     return new _decrypt_stream.DecryptStream(stream, length, function cipherTransformDecryptStream(data, finalize) {
       return cipher.decryptBlock(data, finalize);
     });
   }
   decryptString(s) {
-    const cipher = new this.StringCipherConstructor();
+    const cipher = new this.StringCipherConstructor;
     let data = (0, _util.stringToBytes)(s);
     data = cipher.decryptBlock(data, true);
     return (0, _util.bytesToString)(data);
   }
   encryptString(s) {
-    const cipher = new this.StringCipherConstructor();
+    const cipher = new this.StringCipherConstructor;
     if (cipher instanceof AESBaseCipher) {
       const strLen = s.length;
       const pad = 16 - strLen % 16;
@@ -45477,7 +45477,7 @@ class CipherTransform {
         crypto.getRandomValues(iv);
       } else {
         for (let i = 0; i < 16; i++) {
-          iv[i] = Math.floor(256 * Math.random());
+          iv[i] = Math.floor(256 * Math.random);
         }
       }
       let data = (0, _util.stringToBytes)(s);
@@ -45501,7 +45501,7 @@ class CipherTransformFactory {
     } else {
       password = [];
     }
-    const pdfAlgorithm = revision === 6 ? new PDF20() : new PDF17();
+    const pdfAlgorithm = revision === 6 ? new PDF20 : new PDF17;
     if (pdfAlgorithm.checkUserPassword(password, userValidationSalt, userPassword)) {
       return pdfAlgorithm.getUserKey(password, userKeySalt, userEncryption);
     } else if (password.length && pdfAlgorithm.checkOwnerPassword(password, ownerValidationSalt, uBytes, ownerPassword)) {
@@ -45648,22 +45648,22 @@ class CipherTransformFactory {
     const cryptFilter = cf.get(name.name);
     const cfm = cryptFilter?.get("CFM");
     if (!cfm || cfm.name === "None") {
-      return function () {
-        return new NullCipher();
+      return function  {
+        return new NullCipher;
       };
     }
     if (cfm.name === "V2") {
-      return function () {
+      return function  {
         return new ARCFourCipher(self.#buildObjectKey(num, gen, key, false));
       };
     }
     if (cfm.name === "AESV2") {
-      return function () {
+      return function  {
         return new AES128Cipher(self.#buildObjectKey(num, gen, key, true));
       };
     }
     if (cfm.name === "AESV3") {
-      return function () {
+      return function  {
         return new AES256Cipher(key);
       };
     }
@@ -45761,7 +45761,7 @@ class CipherTransformFactory {
       return new CipherTransform(this.#buildCipherConstructor(this.cf, this.strf, num, gen, this.encryptionKey), this.#buildCipherConstructor(this.cf, this.stmf, num, gen, this.encryptionKey));
     }
     const key = this.#buildObjectKey(num, gen, this.encryptionKey, false);
-    const cipherConstructor = function () {
+    const cipherConstructor = function  {
       return new ARCFourCipher(key);
     };
     return new CipherTransform(cipherConstructor, cipherConstructor);
@@ -45790,7 +45790,7 @@ class DecryptStream extends _decode_stream.DecodeStream {
     this.nextChunk = null;
     this.initialized = false;
   }
-  readBlock() {
+  readBlock {
     let chunk;
     if (this.initialized) {
       chunk = this.nextChunk;
@@ -45834,9 +45834,9 @@ function mayHaveChildren(value) {
 }
 function addChildren(node, nodesToVisit) {
   if (node instanceof _primitives.Dict) {
-    node = node.getRawValues();
+    node = node.getRawValues;
   } else if (node instanceof _base_stream.BaseStream) {
-    node = node.dict.getRawValues();
+    node = node.dict.getRawValues;
   } else if (!Array.isArray(node)) {
     return;
   }
@@ -45853,7 +45853,7 @@ class ObjectLoader {
     this.xref = xref;
     this.refSet = null;
   }
-  async load() {
+  async load {
     if (this.xref.stream.isDataLoaded) {
       return undefined;
     }
@@ -45861,7 +45861,7 @@ class ObjectLoader {
       keys,
       dict
     } = this;
-    this.refSet = new _primitives.RefSet();
+    this.refSet = new _primitives.RefSet;
     const nodesToVisit = [];
     for (const key of keys) {
       const rawValue = dict.getRaw(key);
@@ -45875,7 +45875,7 @@ class ObjectLoader {
     const nodesToRevisit = [];
     const pendingRequests = [];
     while (nodesToVisit.length) {
-      let currentNode = nodesToVisit.pop();
+      let currentNode = nodesToVisit.pop;
       if (currentNode instanceof _primitives.Ref) {
         if (this.refSet.has(currentNode)) {
           continue;
@@ -45890,7 +45890,7 @@ class ObjectLoader {
             const {
               manager
             } = this.xref.stream;
-            return manager.requestAllChunks();
+            return manager.requestAllChunks;
           }
           nodesToRevisit.push(currentNode);
           pendingRequests.push({
@@ -45900,7 +45900,7 @@ class ObjectLoader {
         }
       }
       if (currentNode instanceof _base_stream.BaseStream) {
-        const baseStreams = currentNode.getBaseStreams();
+        const baseStreams = currentNode.getBaseStreams;
         if (baseStreams) {
           let foundMissingData = false;
           for (const stream of baseStreams) {
@@ -45956,24 +45956,24 @@ var _xhtml = __w_pdfjs_require__(100);
 class XFAFactory {
   constructor(data) {
     try {
-      this.root = new _parser.XFAParser().parse(XFAFactory._createDocument(data));
+      this.root = new _parser.XFAParser.parse(XFAFactory._createDocument(data));
       const binder = new _bind.Binder(this.root);
-      this.form = binder.bind();
-      this.dataHandler = new _data.DataHandler(this.root, binder.getData());
+      this.form = binder.bind;
+      this.dataHandler = new _data.DataHandler(this.root, binder.getData);
       this.form[_symbol_utils.$globalData].template = this.form;
     } catch (e) {
       (0, _util.warn)(`XFA - an error occurred during parsing and binding: ${e}`);
     }
   }
-  isValid() {
+  isValid {
     return this.root && this.form;
   }
-  _createPagesHelper() {
-    const iterator = this.form[_symbol_utils.$toPages]();
+  _createPagesHelper {
+    const iterator = this.form[_symbol_utils.$toPages];
     return new Promise((resolve, reject) => {
-      const nextIteration = () => {
+      const nextIteration =  => {
         try {
-          const value = iterator.next();
+          const value = iterator.next;
           if (value.done) {
             resolve(value.value);
           } else {
@@ -45986,9 +45986,9 @@ class XFAFactory {
       setTimeout(nextIteration, 0);
     });
   }
-  async _createPages() {
+  async _createPages {
     try {
-      this.pages = await this._createPagesHelper();
+      this.pages = await this._createPagesHelper;
       this.dims = this.pages.children.map(c => {
         const {
           width,
@@ -46003,9 +46003,9 @@ class XFAFactory {
   getBoundingBox(pageIndex) {
     return this.dims[pageIndex];
   }
-  async getNumPages() {
+  async getNumPages {
     if (!this.pages) {
-      await this._createPages();
+      await this._createPages;
     }
     return this.dims.length;
   }
@@ -46030,9 +46030,9 @@ class XFAFactory {
   appendFonts(fonts, reallyMissingFonts) {
     this.form[_symbol_utils.$globalData].fontFinder.add(fonts, reallyMissingFonts);
   }
-  async getPages() {
+  async getPages {
     if (!this.pages) {
-      await this._createPages();
+      await this._createPages;
     }
     const pages = this.pages;
     this.pages = null;
@@ -46058,7 +46058,7 @@ class XFAFactory {
         newRoot[_symbol_utils.$appendChild](root);
         root = newRoot;
       }
-      const result = root[_symbol_utils.$toHTML]();
+      const result = root[_symbol_utils.$toHTML];
       if (!result.success) {
         return null;
       }
@@ -46076,7 +46076,7 @@ class XFAFactory {
       }
       return {
         html,
-        str: root[_symbol_utils.$text]()
+        str: root[_symbol_utils.$text]
       };
     } catch (e) {
       (0, _util.warn)(`XFA - an error occurred during parsing of rich text: ${e}`);
@@ -46096,139 +46096,139 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports.$uid = exports.$toStyle = exports.$toString = exports.$toPages = exports.$toHTML = exports.$text = exports.$tabIndex = exports.$setValue = exports.$setSetAttributes = exports.$setId = exports.$searchNode = exports.$root = exports.$resolvePrototypes = exports.$removeChild = exports.$pushPara = exports.$pushGlyphs = exports.$popPara = exports.$onText = exports.$onChildCheck = exports.$onChild = exports.$nsAttributes = exports.$nodeName = exports.$namespaceId = exports.$lastAttribute = exports.$isUsable = exports.$isTransparent = exports.$isThereMoreWidth = exports.$isSplittable = exports.$isNsAgnostic = exports.$isDescendent = exports.$isDataValue = exports.$isCDATAXml = exports.$isBindable = exports.$insertAt = exports.$indexOf = exports.$ids = exports.$hasSettableValue = exports.$globalData = exports.$getTemplateRoot = exports.$getSubformParent = exports.$getRealChildrenByNameIt = exports.$getParent = exports.$getNextPage = exports.$getExtra = exports.$getDataValue = exports.$getContainedChildren = exports.$getChildrenByNameIt = exports.$getChildrenByName = exports.$getChildrenByClass = exports.$getChildren = exports.$getAvailableSpace = exports.$getAttributes = exports.$getAttributeIt = exports.$flushHTML = exports.$finalize = exports.$extra = exports.$dump = exports.$data = exports.$content = exports.$consumed = exports.$clone = exports.$cleanup = exports.$cleanPage = exports.$clean = exports.$childrenToHTML = exports.$appendChild = exports.$addHTML = exports.$acceptWhitespace = void 0;
-const $acceptWhitespace = Symbol();
+const $acceptWhitespace = Symbol;
 exports.$acceptWhitespace = $acceptWhitespace;
-const $addHTML = Symbol();
+const $addHTML = Symbol;
 exports.$addHTML = $addHTML;
-const $appendChild = Symbol();
+const $appendChild = Symbol;
 exports.$appendChild = $appendChild;
-const $childrenToHTML = Symbol();
+const $childrenToHTML = Symbol;
 exports.$childrenToHTML = $childrenToHTML;
-const $clean = Symbol();
+const $clean = Symbol;
 exports.$clean = $clean;
-const $cleanPage = Symbol();
+const $cleanPage = Symbol;
 exports.$cleanPage = $cleanPage;
-const $cleanup = Symbol();
+const $cleanup = Symbol;
 exports.$cleanup = $cleanup;
-const $clone = Symbol();
+const $clone = Symbol;
 exports.$clone = $clone;
-const $consumed = Symbol();
+const $consumed = Symbol;
 exports.$consumed = $consumed;
 const $content = Symbol("content");
 exports.$content = $content;
 const $data = Symbol("data");
 exports.$data = $data;
-const $dump = Symbol();
+const $dump = Symbol;
 exports.$dump = $dump;
 const $extra = Symbol("extra");
 exports.$extra = $extra;
-const $finalize = Symbol();
+const $finalize = Symbol;
 exports.$finalize = $finalize;
-const $flushHTML = Symbol();
+const $flushHTML = Symbol;
 exports.$flushHTML = $flushHTML;
-const $getAttributeIt = Symbol();
+const $getAttributeIt = Symbol;
 exports.$getAttributeIt = $getAttributeIt;
-const $getAttributes = Symbol();
+const $getAttributes = Symbol;
 exports.$getAttributes = $getAttributes;
-const $getAvailableSpace = Symbol();
+const $getAvailableSpace = Symbol;
 exports.$getAvailableSpace = $getAvailableSpace;
-const $getChildrenByClass = Symbol();
+const $getChildrenByClass = Symbol;
 exports.$getChildrenByClass = $getChildrenByClass;
-const $getChildrenByName = Symbol();
+const $getChildrenByName = Symbol;
 exports.$getChildrenByName = $getChildrenByName;
-const $getChildrenByNameIt = Symbol();
+const $getChildrenByNameIt = Symbol;
 exports.$getChildrenByNameIt = $getChildrenByNameIt;
-const $getDataValue = Symbol();
+const $getDataValue = Symbol;
 exports.$getDataValue = $getDataValue;
-const $getExtra = Symbol();
+const $getExtra = Symbol;
 exports.$getExtra = $getExtra;
-const $getRealChildrenByNameIt = Symbol();
+const $getRealChildrenByNameIt = Symbol;
 exports.$getRealChildrenByNameIt = $getRealChildrenByNameIt;
-const $getChildren = Symbol();
+const $getChildren = Symbol;
 exports.$getChildren = $getChildren;
-const $getContainedChildren = Symbol();
+const $getContainedChildren = Symbol;
 exports.$getContainedChildren = $getContainedChildren;
-const $getNextPage = Symbol();
+const $getNextPage = Symbol;
 exports.$getNextPage = $getNextPage;
-const $getSubformParent = Symbol();
+const $getSubformParent = Symbol;
 exports.$getSubformParent = $getSubformParent;
-const $getParent = Symbol();
+const $getParent = Symbol;
 exports.$getParent = $getParent;
-const $getTemplateRoot = Symbol();
+const $getTemplateRoot = Symbol;
 exports.$getTemplateRoot = $getTemplateRoot;
-const $globalData = Symbol();
+const $globalData = Symbol;
 exports.$globalData = $globalData;
-const $hasSettableValue = Symbol();
+const $hasSettableValue = Symbol;
 exports.$hasSettableValue = $hasSettableValue;
-const $ids = Symbol();
+const $ids = Symbol;
 exports.$ids = $ids;
-const $indexOf = Symbol();
+const $indexOf = Symbol;
 exports.$indexOf = $indexOf;
-const $insertAt = Symbol();
+const $insertAt = Symbol;
 exports.$insertAt = $insertAt;
-const $isCDATAXml = Symbol();
+const $isCDATAXml = Symbol;
 exports.$isCDATAXml = $isCDATAXml;
-const $isBindable = Symbol();
+const $isBindable = Symbol;
 exports.$isBindable = $isBindable;
-const $isDataValue = Symbol();
+const $isDataValue = Symbol;
 exports.$isDataValue = $isDataValue;
-const $isDescendent = Symbol();
+const $isDescendent = Symbol;
 exports.$isDescendent = $isDescendent;
-const $isNsAgnostic = Symbol();
+const $isNsAgnostic = Symbol;
 exports.$isNsAgnostic = $isNsAgnostic;
-const $isSplittable = Symbol();
+const $isSplittable = Symbol;
 exports.$isSplittable = $isSplittable;
-const $isThereMoreWidth = Symbol();
+const $isThereMoreWidth = Symbol;
 exports.$isThereMoreWidth = $isThereMoreWidth;
-const $isTransparent = Symbol();
+const $isTransparent = Symbol;
 exports.$isTransparent = $isTransparent;
-const $isUsable = Symbol();
+const $isUsable = Symbol;
 exports.$isUsable = $isUsable;
-const $lastAttribute = Symbol();
+const $lastAttribute = Symbol;
 exports.$lastAttribute = $lastAttribute;
 const $namespaceId = Symbol("namespaceId");
 exports.$namespaceId = $namespaceId;
 const $nodeName = Symbol("nodeName");
 exports.$nodeName = $nodeName;
-const $nsAttributes = Symbol();
+const $nsAttributes = Symbol;
 exports.$nsAttributes = $nsAttributes;
-const $onChild = Symbol();
+const $onChild = Symbol;
 exports.$onChild = $onChild;
-const $onChildCheck = Symbol();
+const $onChildCheck = Symbol;
 exports.$onChildCheck = $onChildCheck;
-const $onText = Symbol();
+const $onText = Symbol;
 exports.$onText = $onText;
-const $pushGlyphs = Symbol();
+const $pushGlyphs = Symbol;
 exports.$pushGlyphs = $pushGlyphs;
-const $popPara = Symbol();
+const $popPara = Symbol;
 exports.$popPara = $popPara;
-const $pushPara = Symbol();
+const $pushPara = Symbol;
 exports.$pushPara = $pushPara;
-const $removeChild = Symbol();
+const $removeChild = Symbol;
 exports.$removeChild = $removeChild;
 const $root = Symbol("root");
 exports.$root = $root;
-const $resolvePrototypes = Symbol();
+const $resolvePrototypes = Symbol;
 exports.$resolvePrototypes = $resolvePrototypes;
-const $searchNode = Symbol();
+const $searchNode = Symbol;
 exports.$searchNode = $searchNode;
-const $setId = Symbol();
+const $setId = Symbol;
 exports.$setId = $setId;
-const $setSetAttributes = Symbol();
+const $setSetAttributes = Symbol;
 exports.$setSetAttributes = $setSetAttributes;
-const $setValue = Symbol();
+const $setValue = Symbol;
 exports.$setValue = $setValue;
-const $tabIndex = Symbol();
+const $tabIndex = Symbol;
 exports.$tabIndex = $tabIndex;
-const $text = Symbol();
+const $text = Symbol;
 exports.$text = $text;
-const $toPages = Symbol();
+const $toPages = Symbol;
 exports.$toPages = $toPages;
-const $toHTML = Symbol();
+const $toHTML = Symbol;
 exports.$toHTML = $toHTML;
-const $toString = Symbol();
+const $toString = Symbol;
 exports.$toString = $toString;
-const $toStyle = Symbol();
+const $toStyle = Symbol;
 exports.$toStyle = $toStyle;
 const $uid = Symbol("uid");
 exports.$uid = $uid;
@@ -46260,35 +46260,35 @@ class Binder {
     this.root = root;
     this.datasets = root.datasets;
     this.data = root.datasets?.data || new _xfa_object.XmlObject(_namespaces.NamespaceIds.datasets.id, "data");
-    this.emptyMerge = this.data[_symbol_utils.$getChildren]().length === 0;
-    this.root.form = this.form = root.template[_symbol_utils.$clone]();
+    this.emptyMerge = this.data[_symbol_utils.$getChildren].length === 0;
+    this.root.form = this.form = root.template[_symbol_utils.$clone];
   }
-  _isConsumeData() {
+  _isConsumeData {
     return !this.emptyMerge && this._mergeMode;
   }
-  _isMatchTemplate() {
-    return !this._isConsumeData();
+  _isMatchTemplate {
+    return !this._isConsumeData;
   }
-  bind() {
+  bind {
     this._bindElement(this.form, this.data);
     return this.form;
   }
-  getData() {
+  getData {
     return this.data;
   }
   _bindValue(formNode, data, picture) {
     formNode[_symbol_utils.$data] = data;
-    if (formNode[_symbol_utils.$hasSettableValue]()) {
-      if (data[_symbol_utils.$isDataValue]()) {
-        const value = data[_symbol_utils.$getDataValue]();
+    if (formNode[_symbol_utils.$hasSettableValue]) {
+      if (data[_symbol_utils.$isDataValue]) {
+        const value = data[_symbol_utils.$getDataValue];
         formNode[_symbol_utils.$setValue](createText(value));
       } else if (formNode instanceof _template.Field && formNode.ui?.choiceList?.open === "multiSelect") {
-        const value = data[_symbol_utils.$getChildren]().map(child => child[_symbol_utils.$content].trim()).join("\n");
+        const value = data[_symbol_utils.$getChildren].map(child => child[_symbol_utils.$content].trim).join("\n");
         formNode[_symbol_utils.$setValue](createText(value));
-      } else if (this._isConsumeData()) {
+      } else if (this._isConsumeData) {
         (0, _util.warn)(`XFA - Nodes haven't the same type.`);
       }
-    } else if (!data[_symbol_utils.$isDataValue]() || this._isMatchTemplate()) {
+    } else if (!data[_symbol_utils.$isDataValue] || this._isMatchTemplate) {
       this._bindElement(formNode, data);
     } else {
       (0, _util.warn)(`XFA - Nodes haven't the same type.`);
@@ -46302,30 +46302,30 @@ class Binder {
     for (let i = 0; i < 3; i++) {
       generator = dataNode[_symbol_utils.$getRealChildrenByNameIt](name, false, true);
       while (true) {
-        match = generator.next().value;
+        match = generator.next.value;
         if (!match) {
           break;
         }
-        if (isValue === match[_symbol_utils.$isDataValue]()) {
+        if (isValue === match[_symbol_utils.$isDataValue]) {
           return match;
         }
       }
       if (dataNode[_symbol_utils.$namespaceId] === _namespaces.NamespaceIds.datasets.id && dataNode[_symbol_utils.$nodeName] === "data") {
         break;
       }
-      dataNode = dataNode[_symbol_utils.$getParent]();
+      dataNode = dataNode[_symbol_utils.$getParent];
     }
     if (!global) {
       return null;
     }
     generator = this.data[_symbol_utils.$getRealChildrenByNameIt](name, true, false);
-    match = generator.next().value;
+    match = generator.next.value;
     if (match) {
       return match;
     }
     generator = this.data[_symbol_utils.$getAttributeIt](name, true);
-    match = generator.next().value;
-    if (match?.[_symbol_utils.$isDataValue]()) {
+    match = generator.next.value;
+    if (match?.[_symbol_utils.$isDataValue]) {
       return match;
     }
     return null;
@@ -46365,7 +46365,7 @@ class Binder {
         (0, _util.warn)(`XFA - Invalid target: must be a property or subproperty.`);
         continue;
       }
-      const targetParent = targetNode[_symbol_utils.$getParent]();
+      const targetParent = targetNode[_symbol_utils.$getParent];
       if (targetNode instanceof _template.SetProperty || targetParent instanceof _template.SetProperty) {
         (0, _util.warn)(`XFA - Invalid target: cannot be a setProperty or one of its properties.`);
         continue;
@@ -46374,7 +46374,7 @@ class Binder {
         (0, _util.warn)(`XFA - Invalid target: cannot be a bindItems or one of its properties.`);
         continue;
       }
-      const content = node[_symbol_utils.$text]();
+      const content = node[_symbol_utils.$text];
       const name = targetNode[_symbol_utils.$nodeName];
       if (targetNode instanceof _xfa_object.XFAAttribute) {
         const attrs = Object.create(null);
@@ -46389,17 +46389,17 @@ class Binder {
       }
       targetNode[_symbol_utils.$data] = node;
       targetNode[_symbol_utils.$content] = content;
-      targetNode[_symbol_utils.$finalize]();
+      targetNode[_symbol_utils.$finalize];
     }
   }
   _bindItems(formNode, dataNode) {
-    if (!formNode.hasOwnProperty("items") || !formNode.hasOwnProperty("bindItems") || formNode.bindItems.isEmpty()) {
+    if (!formNode.hasOwnProperty("items") || !formNode.hasOwnProperty("bindItems") || formNode.bindItems.isEmpty) {
       return;
     }
     for (const item of formNode.items.children) {
       formNode[_symbol_utils.$removeChild](item);
     }
-    formNode.items.clear();
+    formNode.items.clear;
     const labels = new _template.Items({});
     const values = new _template.Items({});
     formNode[_symbol_utils.$appendChild](labels);
@@ -46448,8 +46448,8 @@ class Binder {
           (0, _util.warn)(`XFA - Invalid value: must be a datasets child.`);
           continue;
         }
-        const label = createText(labelNode[_symbol_utils.$text]());
-        const value = createText(valueNode[_symbol_utils.$text]());
+        const label = createText(labelNode[_symbol_utils.$text]);
+        const value = createText(valueNode[_symbol_utils.$text]);
         labels[_symbol_utils.$appendChild](label);
         labels.text.push(label);
         values[_symbol_utils.$appendChild](value);
@@ -46460,7 +46460,7 @@ class Binder {
   _bindOccurrences(formNode, matches, picture) {
     let baseClone;
     if (matches.length > 1) {
-      baseClone = formNode[_symbol_utils.$clone]();
+      baseClone = formNode[_symbol_utils.$clone];
       baseClone[_symbol_utils.$removeChild](baseClone.occur);
       baseClone.occur = null;
     }
@@ -46470,12 +46470,12 @@ class Binder {
     if (matches.length === 1) {
       return;
     }
-    const parent = formNode[_symbol_utils.$getParent]();
+    const parent = formNode[_symbol_utils.$getParent];
     const name = formNode[_symbol_utils.$nodeName];
     const pos = parent[_symbol_utils.$indexOf](formNode);
     for (let i = 1, ii = matches.length; i < ii; i++) {
       const match = matches[i];
-      const clone = baseClone[_symbol_utils.$clone]();
+      const clone = baseClone[_symbol_utils.$clone];
       parent[name].push(clone);
       parent[_symbol_utils.$insertAt](pos + i, clone);
       this._bindValue(clone, match, picture);
@@ -46493,7 +46493,7 @@ class Binder {
     if (!occur || occur.initial <= 1) {
       return;
     }
-    const parent = formNode[_symbol_utils.$getParent]();
+    const parent = formNode[_symbol_utils.$getParent];
     const name = formNode[_symbol_utils.$nodeName];
     if (!(parent[name] instanceof _xfa_object.XFAObjectArray)) {
       return;
@@ -46507,13 +46507,13 @@ class Binder {
     const pos = parent[_symbol_utils.$indexOf](formNode) + 1;
     const ii = occur.initial - currentNumber;
     if (ii) {
-      const nodeClone = formNode[_symbol_utils.$clone]();
+      const nodeClone = formNode[_symbol_utils.$clone];
       nodeClone[_symbol_utils.$removeChild](nodeClone.occur);
       nodeClone.occur = null;
       parent[name].push(nodeClone);
       parent[_symbol_utils.$insertAt](pos, nodeClone);
       for (let i = 1; i < ii; i++) {
-        const clone = nodeClone[_symbol_utils.$clone]();
+        const clone = nodeClone[_symbol_utils.$clone];
         parent[name].push(clone);
         parent[_symbol_utils.$insertAt](pos + i, clone);
       }
@@ -46538,13 +46538,13 @@ class Binder {
   _bindElement(formNode, dataNode) {
     const uselessNodes = [];
     this._createOccurrences(formNode);
-    for (const child of formNode[_symbol_utils.$getChildren]()) {
+    for (const child of formNode[_symbol_utils.$getChildren]) {
       if (child[_symbol_utils.$data]) {
         continue;
       }
       if (this._mergeMode === undefined && child[_symbol_utils.$nodeName] === "subform") {
         this._mergeMode = child.mergeMode === "consumeData";
-        const dataChildren = dataNode[_symbol_utils.$getChildren]();
+        const dataChildren = dataNode[_symbol_utils.$getChildren];
         if (dataChildren.length > 0) {
           this._bindOccurrences(child, [dataChildren[0]], null);
         } else if (this.emptyMerge) {
@@ -46555,7 +46555,7 @@ class Binder {
         }
         continue;
       }
-      if (!child[_symbol_utils.$isBindable]()) {
+      if (!child[_symbol_utils.$isBindable]) {
         continue;
       }
       let global = false;
@@ -46593,13 +46593,13 @@ class Binder {
           if (!match) {
             continue;
           }
-          if (this._isConsumeData()) {
+          if (this._isConsumeData) {
             match[_symbol_utils.$consumed] = true;
           }
           this._setAndBind(child, match);
           continue;
         } else {
-          if (this._isConsumeData()) {
+          if (this._isConsumeData) {
             match = match.filter(node => !node[_symbol_utils.$consumed]);
           }
           if (match.length > max) {
@@ -46607,7 +46607,7 @@ class Binder {
           } else if (match.length === 0) {
             match = null;
           }
-          if (match && this._isConsumeData()) {
+          if (match && this._isConsumeData) {
             match.forEach(node => {
               node[_symbol_utils.$consumed] = true;
             });
@@ -46618,10 +46618,10 @@ class Binder {
           this._setAndBind(child, dataNode);
           continue;
         }
-        if (this._isConsumeData()) {
+        if (this._isConsumeData) {
           const matches = [];
           while (matches.length < max) {
-            const found = this._findDataByNameToConsume(child.name, child[_symbol_utils.$hasSettableValue](), dataNode, global);
+            const found = this._findDataByNameToConsume(child.name, child[_symbol_utils.$hasSettableValue], dataNode, global);
             if (!found) {
               break;
             }
@@ -46630,7 +46630,7 @@ class Binder {
           }
           match = matches.length > 0 ? matches : null;
         } else {
-          match = dataNode[_symbol_utils.$getRealChildrenByNameIt](child.name, false, this.emptyMerge).next().value;
+          match = dataNode[_symbol_utils.$getRealChildrenByNameIt](child.name, false, this.emptyMerge).next.value;
           if (!match) {
             if (min === 0) {
               uselessNodes.push(child);
@@ -46659,7 +46659,7 @@ class Binder {
         uselessNodes.push(child);
       }
     }
-    uselessNodes.forEach(node => node[_symbol_utils.$getParent]()[_symbol_utils.$removeChild](node));
+    uselessNodes.forEach(node => node[_symbol_utils.$getParent][_symbol_utils.$removeChild](node));
   }
 }
 exports.Binder = Binder;
@@ -46699,7 +46699,7 @@ function getBorderDims(node) {
       h: 0
     };
   }
-  const borderExtra = node.border[_symbol_utils.$getExtra]();
+  const borderExtra = node.border[_symbol_utils.$getExtra];
   if (!borderExtra) {
     return {
       w: 0,
@@ -46723,9 +46723,9 @@ function _setValue(templateNode, value) {
   templateNode.value[_symbol_utils.$setValue](value);
 }
 function* getContainedChildren(node) {
-  for (const child of node[_symbol_utils.$getChildren]()) {
+  for (const child of node[_symbol_utils.$getChildren]) {
     if (child instanceof SubformSet) {
-      yield* child[_symbol_utils.$getContainedChildren]();
+      yield* child[_symbol_utils.$getContainedChildren];
       continue;
     }
     yield child;
@@ -46737,24 +46737,24 @@ function isRequired(node) {
 function setTabIndex(node) {
   while (node) {
     if (!node.traversal) {
-      node[_symbol_utils.$tabIndex] = node[_symbol_utils.$getParent]()[_symbol_utils.$tabIndex];
+      node[_symbol_utils.$tabIndex] = node[_symbol_utils.$getParent][_symbol_utils.$tabIndex];
       return;
     }
     if (node[_symbol_utils.$tabIndex]) {
       return;
     }
     let next = null;
-    for (const child of node.traversal[_symbol_utils.$getChildren]()) {
+    for (const child of node.traversal[_symbol_utils.$getChildren]) {
       if (child.operation === "next") {
         next = child;
         break;
       }
     }
     if (!next || !next.ref) {
-      node[_symbol_utils.$tabIndex] = node[_symbol_utils.$getParent]()[_symbol_utils.$tabIndex];
+      node[_symbol_utils.$tabIndex] = node[_symbol_utils.$getParent][_symbol_utils.$tabIndex];
       return;
     }
-    const root = node[_symbol_utils.$getTemplateRoot]();
+    const root = node[_symbol_utils.$getTemplateRoot];
     node[_symbol_utils.$tabIndex] = ++root[_symbol_utils.$tabIndex];
     const ref = root[_symbol_utils.$searchNode](next.ref, node);
     if (!ref) {
@@ -46766,7 +46766,7 @@ function setTabIndex(node) {
 function applyAssist(obj, attributes) {
   const assist = obj.assist;
   if (assist) {
-    const assistTitle = assist[_symbol_utils.$toHTML]();
+    const assistTitle = assist[_symbol_utils.$toHTML];
     if (assistTitle) {
       attributes.title = assistTitle;
     }
@@ -46784,7 +46784,7 @@ function applyAssist(obj, attributes) {
   } else if (obj.layout === "row") {
     attributes.role = "row";
   } else {
-    const parent = obj[_symbol_utils.$getParent]();
+    const parent = obj[_symbol_utils.$getParent];
     if (parent.layout === "row") {
       attributes.role = parent.assist?.role === "TH" ? "columnheader" : "cell";
     }
@@ -46820,14 +46820,14 @@ function valueToHtml(value) {
   });
 }
 function setFirstUnsplittable(node) {
-  const root = node[_symbol_utils.$getTemplateRoot]();
+  const root = node[_symbol_utils.$getTemplateRoot];
   if (root[_symbol_utils.$extra].firstUnsplittable === null) {
     root[_symbol_utils.$extra].firstUnsplittable = node;
     root[_symbol_utils.$extra].noLayoutFailure = true;
   }
 }
 function unsetFirstUnsplittable(node) {
-  const root = node[_symbol_utils.$getTemplateRoot]();
+  const root = node[_symbol_utils.$getTemplateRoot];
   if (root[_symbol_utils.$extra].firstUnsplittable === node) {
     root[_symbol_utils.$extra].noLayoutFailure = false;
   }
@@ -46840,10 +46840,10 @@ function handleBreak(node) {
   if (node.targetType === "auto") {
     return false;
   }
-  const root = node[_symbol_utils.$getTemplateRoot]();
+  const root = node[_symbol_utils.$getTemplateRoot];
   let target = null;
   if (node.target) {
-    target = root[_symbol_utils.$searchNode](node.target, node[_symbol_utils.$getParent]());
+    target = root[_symbol_utils.$searchNode](node.target, node[_symbol_utils.$getParent]);
     if (!target) {
       return false;
     }
@@ -46869,7 +46869,7 @@ function handleBreak(node) {
   if (!(target instanceof ContentArea)) {
     target = null;
   }
-  const pageArea = target && target[_symbol_utils.$getParent]();
+  const pageArea = target && target[_symbol_utils.$getParent];
   let index;
   let nextPageArea = pageArea;
   if (node.startNew) {
@@ -46896,10 +46896,10 @@ function handleBreak(node) {
   return true;
 }
 function handleOverflow(node, extraNode, space) {
-  const root = node[_symbol_utils.$getTemplateRoot]();
+  const root = node[_symbol_utils.$getTemplateRoot];
   const saved = root[_symbol_utils.$extra].noLayoutFailure;
   const savedMethod = extraNode[_symbol_utils.$getSubformParent];
-  extraNode[_symbol_utils.$getSubformParent] = () => node;
+  extraNode[_symbol_utils.$getSubformParent] =  => node;
   root[_symbol_utils.$extra].noLayoutFailure = true;
   const res = extraNode[_symbol_utils.$toHTML](space);
   node[_symbol_utils.$addHTML](res.html, res.bbox);
@@ -46940,12 +46940,12 @@ class Arc extends _xfa_object.XFAObject {
     this.edge = null;
     this.fill = null;
   }
-  [_symbol_utils.$toHTML]() {
+  [_symbol_utils.$toHTML] {
     const edge = this.edge || new Edge({});
-    const edgeStyle = edge[_symbol_utils.$toStyle]();
+    const edgeStyle = edge[_symbol_utils.$toStyle];
     const style = Object.create(null);
     if (this.fill?.presence === "visible") {
-      Object.assign(style, this.fill[_symbol_utils.$toStyle]());
+      Object.assign(style, this.fill[_symbol_utils.$toStyle]);
     } else {
       style.fill = "transparent";
     }
@@ -46996,7 +46996,7 @@ class Arc extends _xfa_object.XFAObject {
       children: [arc],
       attributes
     };
-    const parent = this[_symbol_utils.$getParent]()[_symbol_utils.$getParent]();
+    const parent = this[_symbol_utils.$getParent][_symbol_utils.$getParent];
     if (hasMargin(parent)) {
       return _utils.HTMLResult.success({
         name: "div",
@@ -47031,21 +47031,21 @@ class Area extends _xfa_object.XFAObject {
     this.y = (0, _utils.getMeasurement)(attributes.y, "0pt");
     this.desc = null;
     this.extras = null;
-    this.area = new _xfa_object.XFAObjectArray();
-    this.draw = new _xfa_object.XFAObjectArray();
-    this.exObject = new _xfa_object.XFAObjectArray();
-    this.exclGroup = new _xfa_object.XFAObjectArray();
-    this.field = new _xfa_object.XFAObjectArray();
-    this.subform = new _xfa_object.XFAObjectArray();
-    this.subformSet = new _xfa_object.XFAObjectArray();
+    this.area = new _xfa_object.XFAObjectArray;
+    this.draw = new _xfa_object.XFAObjectArray;
+    this.exObject = new _xfa_object.XFAObjectArray;
+    this.exclGroup = new _xfa_object.XFAObjectArray;
+    this.field = new _xfa_object.XFAObjectArray;
+    this.subform = new _xfa_object.XFAObjectArray;
+    this.subformSet = new _xfa_object.XFAObjectArray;
   }
-  *[_symbol_utils.$getContainedChildren]() {
+  *[_symbol_utils.$getContainedChildren] {
     yield* getContainedChildren(this);
   }
-  [_symbol_utils.$isTransparent]() {
+  [_symbol_utils.$isTransparent] {
     return true;
   }
-  [_symbol_utils.$isBindable]() {
+  [_symbol_utils.$isBindable] {
     return true;
   }
   [_symbol_utils.$addHTML](html, bbox) {
@@ -47054,7 +47054,7 @@ class Area extends _xfa_object.XFAObject {
     this[_symbol_utils.$extra].height = Math.max(this[_symbol_utils.$extra].height, y + h);
     this[_symbol_utils.$extra].children.push(html);
   }
-  [_symbol_utils.$getAvailableSpace]() {
+  [_symbol_utils.$getAvailableSpace] {
     return this[_symbol_utils.$extra].availableSpace;
   }
   [_symbol_utils.$toHTML](availableSpace) {
@@ -47082,7 +47082,7 @@ class Area extends _xfa_object.XFAObject {
       include: true
     });
     if (!result.success) {
-      if (result.isBreak()) {
+      if (result.isBreak) {
         return result;
       }
       delete this[_symbol_utils.$extra];
@@ -47110,7 +47110,7 @@ class Assist extends _xfa_object.XFAObject {
     this.speak = null;
     this.toolTip = null;
   }
-  [_symbol_utils.$toHTML]() {
+  [_symbol_utils.$toHTML] {
     return this.toolTip?.[_symbol_utils.$content] || null;
   }
 }
@@ -47118,7 +47118,7 @@ class Barcode extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "barcode", true);
     this.charEncoding = (0, _utils.getKeyword)({
-      data: attributes.charEncoding ? attributes.charEncoding.toLowerCase() : "",
+      data: attributes.charEncoding ? attributes.charEncoding.toLowerCase : "",
       defaultValue: "",
       validate: k => ["utf-8", "big-five", "fontspecific", "gbk", "gb-18030", "gb-2312", "ksc-5601", "none", "shift-jis", "ucs-2", "utf-16"].includes(k) || k.match(/iso-8859-\d{2}/)
     });
@@ -47161,7 +47161,7 @@ class Barcode extends _xfa_object.XFAObject {
       defaultValue: 0,
       validate: x => x === 1
     });
-    this.type = (0, _utils.getStringOption)(attributes.type ? attributes.type.toLowerCase() : "", ["aztec", "codabar", "code2of5industrial", "code2of5interleaved", "code2of5matrix", "code2of5standard", "code3of9", "code3of9extended", "code11", "code49", "code93", "code128", "code128a", "code128b", "code128c", "code128sscc", "datamatrix", "ean8", "ean8add2", "ean8add5", "ean13", "ean13add2", "ean13add5", "ean13pwcd", "fim", "logmars", "maxicode", "msi", "pdf417", "pdf417macro", "plessey", "postauscust2", "postauscust3", "postausreplypaid", "postausstandard", "postukrm4scc", "postusdpbc", "postusimb", "postusstandard", "postus5zip", "qrcode", "rfid", "rss14", "rss14expanded", "rss14limited", "rss14stacked", "rss14stackedomni", "rss14truncated", "telepen", "ucc128", "ucc128random", "ucc128sscc", "upca", "upcaadd2", "upcaadd5", "upcapwcd", "upce", "upceadd2", "upceadd5", "upcean2", "upcean5", "upsmaxicode"]);
+    this.type = (0, _utils.getStringOption)(attributes.type ? attributes.type.toLowerCase : "", ["aztec", "codabar", "code2of5industrial", "code2of5interleaved", "code2of5matrix", "code2of5standard", "code3of9", "code3of9extended", "code11", "code49", "code93", "code128", "code128a", "code128b", "code128c", "code128sscc", "datamatrix", "ean8", "ean8add2", "ean8add5", "ean13", "ean13add2", "ean13add5", "ean13pwcd", "fim", "logmars", "maxicode", "msi", "pdf417", "pdf417macro", "plessey", "postauscust2", "postauscust3", "postausreplypaid", "postausstandard", "postukrm4scc", "postusdpbc", "postusimb", "postusstandard", "postus5zip", "qrcode", "rfid", "rss14", "rss14expanded", "rss14limited", "rss14stacked", "rss14stackedomni", "rss14truncated", "telepen", "ucc128", "ucc128random", "ucc128sscc", "upca", "upcaadd2", "upcaadd5", "upcapwcd", "upce", "upceadd2", "upceadd5", "upcean2", "upcean5", "upsmaxicode"]);
     this.upsMode = (0, _utils.getStringOption)(attributes.upsMode, ["usCarrier", "internationalCarrier", "secureSymbol", "standardSymbol"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -47226,9 +47226,9 @@ class Border extends _xfa_object.XFAObject {
     this.fill = null;
     this.margin = null;
   }
-  [_symbol_utils.$getExtra]() {
+  [_symbol_utils.$getExtra] {
     if (!this[_symbol_utils.$extra]) {
-      const edges = this.edge.children.slice();
+      const edges = this.edge.children.slice;
       if (edges.length < 4) {
         const defaultEdge = edges.at(-1) || new Edge({});
         for (let i = edges.length; i < 4; i++) {
@@ -47251,24 +47251,24 @@ class Border extends _xfa_object.XFAObject {
     }
     return this[_symbol_utils.$extra];
   }
-  [_symbol_utils.$toStyle]() {
+  [_symbol_utils.$toStyle] {
     const {
       edges
-    } = this[_symbol_utils.$getExtra]();
+    } = this[_symbol_utils.$getExtra];
     const edgeStyles = edges.map(node => {
-      const style = node[_symbol_utils.$toStyle]();
+      const style = node[_symbol_utils.$toStyle];
       style.color ||= "#000000";
       return style;
     });
     const style = Object.create(null);
     if (this.margin) {
-      Object.assign(style, this.margin[_symbol_utils.$toStyle]());
+      Object.assign(style, this.margin[_symbol_utils.$toStyle]);
     }
     if (this.fill?.presence === "visible") {
-      Object.assign(style, this.fill[_symbol_utils.$toStyle]());
+      Object.assign(style, this.fill[_symbol_utils.$toStyle]);
     }
     if (this.corner.children.some(node => node.radius !== 0)) {
-      const cornerStyles = this.corner.children.map(node => node[_symbol_utils.$toStyle]());
+      const cornerStyles = this.corner.children.map(node => node[_symbol_utils.$toStyle]);
       if (cornerStyles.length === 2 || cornerStyles.length === 3) {
         const last = cornerStyles.at(-1);
         for (let i = cornerStyles.length; i < 4; i++) {
@@ -47367,8 +47367,8 @@ class Button extends _xfa_object.XFAObject {
     this.extras = null;
   }
   [_symbol_utils.$toHTML](availableSpace) {
-    const parent = this[_symbol_utils.$getParent]();
-    const grandpa = parent[_symbol_utils.$getParent]();
+    const parent = this[_symbol_utils.$getParent];
+    const grandpa = parent[_symbol_utils.$getParent];
     const htmlButton = {
       name: "button",
       attributes: {
@@ -47463,10 +47463,10 @@ class Caption extends _xfa_object.XFAObject {
     if (!this.value) {
       return _utils.HTMLResult.EMPTY;
     }
-    this[_symbol_utils.$pushPara]();
+    this[_symbol_utils.$pushPara];
     const value = this.value[_symbol_utils.$toHTML](availableSpace).html;
     if (!value) {
-      this[_symbol_utils.$popPara]();
+      this[_symbol_utils.$popPara];
       return _utils.HTMLResult.EMPTY;
     }
     const savedReserve = this.reserve;
@@ -47512,7 +47512,7 @@ class Caption extends _xfa_object.XFAObject {
         break;
     }
     (0, _html_utils.setPara)(this, null, value);
-    this[_symbol_utils.$popPara]();
+    this[_symbol_utils.$popPara];
     this.reserve = savedReserve;
     return _utils.HTMLResult.success({
       name: "div",
@@ -47570,15 +47570,15 @@ class CheckButton extends _xfa_object.XFAObject {
     let type;
     let className;
     let groupId;
-    const field = this[_symbol_utils.$getParent]()[_symbol_utils.$getParent]();
-    const items = field.items.children.length && field.items.children[0][_symbol_utils.$toHTML]().html || [];
+    const field = this[_symbol_utils.$getParent][_symbol_utils.$getParent];
+    const items = field.items.children.length && field.items.children[0][_symbol_utils.$toHTML].html || [];
     const exportedValue = {
-      on: (items[0] !== undefined ? items[0] : "on").toString(),
-      off: (items[1] !== undefined ? items[1] : "off").toString()
+      on: (items[0] !== undefined ? items[0] : "on").toString,
+      off: (items[1] !== undefined ? items[1] : "off").toString
     };
-    const value = field.value?.[_symbol_utils.$text]() || "off";
+    const value = field.value?.[_symbol_utils.$text] || "off";
     const checked = value === exportedValue.on || undefined;
-    const container = field[_symbol_utils.$getSubformParent]();
+    const container = field[_symbol_utils.$getSubformParent];
     const fieldId = field[_symbol_utils.$uid];
     let dataId;
     if (container instanceof ExclGroup) {
@@ -47641,8 +47641,8 @@ class ChoiceList extends _xfa_object.XFAObject {
   }
   [_symbol_utils.$toHTML](availableSpace) {
     const style = (0, _html_utils.toStyle)(this, "border", "margin");
-    const ui = this[_symbol_utils.$getParent]();
-    const field = ui[_symbol_utils.$getParent]();
+    const ui = this[_symbol_utils.$getParent];
+    const field = ui[_symbol_utils.$getParent];
     const fontSize = field.font?.size || 10;
     const optionStyle = {
       fontSize: `calc(${fontSize}px * var(--scale-factor))`
@@ -47656,10 +47656,10 @@ class ChoiceList extends _xfa_object.XFAObject {
         displayedIndex = items.children[0].save;
         saveIndex = 1 - displayedIndex;
       }
-      const displayed = items.children[displayedIndex][_symbol_utils.$toHTML]().html;
-      const values = items.children[saveIndex][_symbol_utils.$toHTML]().html;
+      const displayed = items.children[displayedIndex][_symbol_utils.$toHTML].html;
+      const values = items.children[saveIndex][_symbol_utils.$toHTML].html;
       let selected = false;
-      const value = field.value?.[_symbol_utils.$text]() || "";
+      const value = field.value?.[_symbol_utils.$text] || "";
       for (let i = 0, ii = displayed.length; i < ii; i++) {
         const option = {
           name: "option",
@@ -47723,10 +47723,10 @@ class Color extends _xfa_object.XFAObject {
     this.value = attributes.value ? (0, _utils.getColor)(attributes.value) : "";
     this.extras = null;
   }
-  [_symbol_utils.$hasSettableValue]() {
+  [_symbol_utils.$hasSettableValue] {
     return false;
   }
-  [_symbol_utils.$toStyle]() {
+  [_symbol_utils.$toStyle] {
     return this.value ? _util.Util.makeHexColor(this.value.r, this.value.g, this.value.b) : null;
   }
 }
@@ -47813,7 +47813,7 @@ class Corner extends _xfa_object.XFAObject {
     this.color = null;
     this.extras = null;
   }
-  [_symbol_utils.$toStyle]() {
+  [_symbol_utils.$toStyle] {
     const style = (0, _html_utils.toStyle)(this, "visibility");
     style.radius = (0, _html_utils.measureToString)(this.join === "square" ? 0 : this.radius);
     return style;
@@ -47827,12 +47827,12 @@ class DateElement extends _xfa_object.ContentObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
-  [_symbol_utils.$finalize]() {
-    const date = this[_symbol_utils.$content].trim();
+  [_symbol_utils.$finalize] {
+    const date = this[_symbol_utils.$content].trim;
     this[_symbol_utils.$content] = date ? new Date(date) : null;
   }
   [_symbol_utils.$toHTML](availableSpace) {
-    return valueToHtml(this[_symbol_utils.$content] ? this[_symbol_utils.$content].toString() : "");
+    return valueToHtml(this[_symbol_utils.$content] ? this[_symbol_utils.$content].toString : "");
   }
 }
 class DateTime extends _xfa_object.ContentObject {
@@ -47843,12 +47843,12 @@ class DateTime extends _xfa_object.ContentObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
-  [_symbol_utils.$finalize]() {
-    const date = this[_symbol_utils.$content].trim();
+  [_symbol_utils.$finalize] {
+    const date = this[_symbol_utils.$content].trim;
     this[_symbol_utils.$content] = date ? new Date(date) : null;
   }
   [_symbol_utils.$toHTML](availableSpace) {
-    return valueToHtml(this[_symbol_utils.$content] ? this[_symbol_utils.$content].toString() : "");
+    return valueToHtml(this[_symbol_utils.$content] ? this[_symbol_utils.$content].toString : "");
   }
 }
 class DateTimeEdit extends _xfa_object.XFAObject {
@@ -47866,7 +47866,7 @@ class DateTimeEdit extends _xfa_object.XFAObject {
   }
   [_symbol_utils.$toHTML](availableSpace) {
     const style = (0, _html_utils.toStyle)(this, "border", "font", "margin");
-    const field = this[_symbol_utils.$getParent]()[_symbol_utils.$getParent]();
+    const field = this[_symbol_utils.$getParent][_symbol_utils.$getParent];
     const html = {
       name: "input",
       attributes: {
@@ -47910,12 +47910,12 @@ class Decimal extends _xfa_object.ContentObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
-  [_symbol_utils.$finalize]() {
-    const number = parseFloat(this[_symbol_utils.$content].trim());
+  [_symbol_utils.$finalize] {
+    const number = parseFloat(this[_symbol_utils.$content].trim);
     this[_symbol_utils.$content] = isNaN(number) ? null : number;
   }
   [_symbol_utils.$toHTML](availableSpace) {
-    return valueToHtml(this[_symbol_utils.$content] !== null ? this[_symbol_utils.$content].toString() : "");
+    return valueToHtml(this[_symbol_utils.$content] !== null ? this[_symbol_utils.$content].toString : "");
   }
 }
 class DefaultUi extends _xfa_object.XFAObject {
@@ -47933,16 +47933,16 @@ class Desc extends _xfa_object.XFAObject {
     this.id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.boolean = new _xfa_object.XFAObjectArray();
-    this.date = new _xfa_object.XFAObjectArray();
-    this.dateTime = new _xfa_object.XFAObjectArray();
-    this.decimal = new _xfa_object.XFAObjectArray();
-    this.exData = new _xfa_object.XFAObjectArray();
-    this.float = new _xfa_object.XFAObjectArray();
-    this.image = new _xfa_object.XFAObjectArray();
-    this.integer = new _xfa_object.XFAObjectArray();
-    this.text = new _xfa_object.XFAObjectArray();
-    this.time = new _xfa_object.XFAObjectArray();
+    this.boolean = new _xfa_object.XFAObjectArray;
+    this.date = new _xfa_object.XFAObjectArray;
+    this.dateTime = new _xfa_object.XFAObjectArray;
+    this.decimal = new _xfa_object.XFAObjectArray;
+    this.exData = new _xfa_object.XFAObjectArray;
+    this.float = new _xfa_object.XFAObjectArray;
+    this.image = new _xfa_object.XFAObjectArray;
+    this.integer = new _xfa_object.XFAObjectArray;
+    this.text = new _xfa_object.XFAObjectArray;
+    this.time = new _xfa_object.XFAObjectArray;
   }
 }
 class DigestMethod extends _xfa_object.OptionObject {
@@ -47960,7 +47960,7 @@ class DigestMethods extends _xfa_object.XFAObject {
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.digestMethod = new _xfa_object.XFAObjectArray();
+    this.digestMethod = new _xfa_object.XFAObjectArray;
   }
 }
 class Draw extends _xfa_object.XFAObject {
@@ -48005,7 +48005,7 @@ class Draw extends _xfa_object.XFAObject {
     this.traversal = null;
     this.ui = null;
     this.value = null;
-    this.setProperty = new _xfa_object.XFAObjectArray();
+    this.setProperty = new _xfa_object.XFAObjectArray;
   }
   [_symbol_utils.$setValue](value) {
     _setValue(this, value);
@@ -48016,7 +48016,7 @@ class Draw extends _xfa_object.XFAObject {
       return _utils.HTMLResult.EMPTY;
     }
     (0, _html_utils.fixDimensions)(this);
-    this[_symbol_utils.$pushPara]();
+    this[_symbol_utils.$pushPara];
     const savedW = this.w;
     const savedH = this.h;
     const {
@@ -48025,8 +48025,8 @@ class Draw extends _xfa_object.XFAObject {
       isBroken
     } = (0, _html_utils.layoutNode)(this, availableSpace);
     if (w && this.w === "") {
-      if (isBroken && this[_symbol_utils.$getSubformParent]()[_symbol_utils.$isThereMoreWidth]()) {
-        this[_symbol_utils.$popPara]();
+      if (isBroken && this[_symbol_utils.$getSubformParent][_symbol_utils.$isThereMoreWidth]) {
+        this[_symbol_utils.$popPara];
         return _utils.HTMLResult.FAILURE;
       }
       this.w = w;
@@ -48038,7 +48038,7 @@ class Draw extends _xfa_object.XFAObject {
     if (!(0, _layout.checkDimensions)(this, availableSpace)) {
       this.w = savedW;
       this.h = savedH;
-      this[_symbol_utils.$popPara]();
+      this[_symbol_utils.$popPara];
       return _utils.HTMLResult.FAILURE;
     }
     unsetFirstUnsplittable(this);
@@ -48074,14 +48074,14 @@ class Draw extends _xfa_object.XFAObject {
     if (value === null) {
       this.w = savedW;
       this.h = savedH;
-      this[_symbol_utils.$popPara]();
+      this[_symbol_utils.$popPara];
       return _utils.HTMLResult.success((0, _html_utils.createWrapper)(this, html), bbox);
     }
     html.children.push(value);
     (0, _html_utils.setPara)(this, style, value);
     this.w = savedW;
     this.h = savedH;
-    this[_symbol_utils.$popPara]();
+    this[_symbol_utils.$popPara];
     return _utils.HTMLResult.success((0, _html_utils.createWrapper)(this, html), bbox);
   }
 }
@@ -48098,12 +48098,12 @@ class Edge extends _xfa_object.XFAObject {
     this.color = null;
     this.extras = null;
   }
-  [_symbol_utils.$toStyle]() {
+  [_symbol_utils.$toStyle] {
     const style = (0, _html_utils.toStyle)(this, "visibility");
     Object.assign(style, {
       linecap: this.cap,
       width: (0, _html_utils.measureToString)(this.thickness),
-      color: this.color ? this.color[_symbol_utils.$toStyle]() : "#000000",
+      color: this.color ? this.color[_symbol_utils.$toStyle] : "#000000",
       style: ""
     });
     if (this.presence !== "visible") {
@@ -48157,7 +48157,7 @@ class Encodings extends _xfa_object.XFAObject {
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.encoding = new _xfa_object.XFAObjectArray();
+    this.encoding = new _xfa_object.XFAObjectArray;
   }
 }
 class Encrypt extends _xfa_object.XFAObject {
@@ -48188,7 +48188,7 @@ class Encryption extends _xfa_object.XFAObject {
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.certificate = new _xfa_object.XFAObjectArray();
+    this.certificate = new _xfa_object.XFAObjectArray;
   }
 }
 class EncryptionMethod extends _xfa_object.OptionObject {
@@ -48206,7 +48206,7 @@ class EncryptionMethods extends _xfa_object.XFAObject {
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.encryptionMethod = new _xfa_object.XFAObjectArray();
+    this.encryptionMethod = new _xfa_object.XFAObjectArray;
   }
 }
 class Event extends _xfa_object.XFAObject {
@@ -48244,7 +48244,7 @@ class ExData extends _xfa_object.ContentObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
-  [_symbol_utils.$isCDATAXml]() {
+  [_symbol_utils.$isCDATAXml] {
     return this.contentType === "text/html";
   }
   [_symbol_utils.$onChild](child) {
@@ -48277,17 +48277,17 @@ class ExObject extends _xfa_object.XFAObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.extras = null;
-    this.boolean = new _xfa_object.XFAObjectArray();
-    this.date = new _xfa_object.XFAObjectArray();
-    this.dateTime = new _xfa_object.XFAObjectArray();
-    this.decimal = new _xfa_object.XFAObjectArray();
-    this.exData = new _xfa_object.XFAObjectArray();
-    this.exObject = new _xfa_object.XFAObjectArray();
-    this.float = new _xfa_object.XFAObjectArray();
-    this.image = new _xfa_object.XFAObjectArray();
-    this.integer = new _xfa_object.XFAObjectArray();
-    this.text = new _xfa_object.XFAObjectArray();
-    this.time = new _xfa_object.XFAObjectArray();
+    this.boolean = new _xfa_object.XFAObjectArray;
+    this.date = new _xfa_object.XFAObjectArray;
+    this.dateTime = new _xfa_object.XFAObjectArray;
+    this.decimal = new _xfa_object.XFAObjectArray;
+    this.exData = new _xfa_object.XFAObjectArray;
+    this.exObject = new _xfa_object.XFAObjectArray;
+    this.float = new _xfa_object.XFAObjectArray;
+    this.image = new _xfa_object.XFAObjectArray;
+    this.integer = new _xfa_object.XFAObjectArray;
+    this.text = new _xfa_object.XFAObjectArray;
+    this.time = new _xfa_object.XFAObjectArray;
   }
 }
 class ExclGroup extends _xfa_object.XFAObject {
@@ -48328,15 +48328,15 @@ class ExclGroup extends _xfa_object.XFAObject {
     this.para = null;
     this.traversal = null;
     this.validate = null;
-    this.connect = new _xfa_object.XFAObjectArray();
-    this.event = new _xfa_object.XFAObjectArray();
-    this.field = new _xfa_object.XFAObjectArray();
-    this.setProperty = new _xfa_object.XFAObjectArray();
+    this.connect = new _xfa_object.XFAObjectArray;
+    this.event = new _xfa_object.XFAObjectArray;
+    this.field = new _xfa_object.XFAObjectArray;
+    this.setProperty = new _xfa_object.XFAObjectArray;
   }
-  [_symbol_utils.$isBindable]() {
+  [_symbol_utils.$isBindable] {
     return true;
   }
-  [_symbol_utils.$hasSettableValue]() {
+  [_symbol_utils.$hasSettableValue] {
     return true;
   }
   [_symbol_utils.$setValue](value) {
@@ -48349,12 +48349,12 @@ class ExclGroup extends _xfa_object.XFAObject {
       field.value[_symbol_utils.$setValue](value);
     }
   }
-  [_symbol_utils.$isThereMoreWidth]() {
-    return this.layout.endsWith("-tb") && this[_symbol_utils.$extra].attempt === 0 && this[_symbol_utils.$extra].numberInLine > 0 || this[_symbol_utils.$getParent]()[_symbol_utils.$isThereMoreWidth]();
+  [_symbol_utils.$isThereMoreWidth] {
+    return this.layout.endsWith("-tb") && this[_symbol_utils.$extra].attempt === 0 && this[_symbol_utils.$extra].numberInLine > 0 || this[_symbol_utils.$getParent][_symbol_utils.$isThereMoreWidth];
   }
-  [_symbol_utils.$isSplittable]() {
-    const parent = this[_symbol_utils.$getSubformParent]();
-    if (!parent[_symbol_utils.$isSplittable]()) {
+  [_symbol_utils.$isSplittable] {
+    const parent = this[_symbol_utils.$getSubformParent];
+    if (!parent[_symbol_utils.$isSplittable]) {
       return false;
     }
     if (this[_symbol_utils.$extra]._isSplittable !== undefined) {
@@ -48370,13 +48370,13 @@ class ExclGroup extends _xfa_object.XFAObject {
     this[_symbol_utils.$extra]._isSplittable = true;
     return true;
   }
-  [_symbol_utils.$flushHTML]() {
+  [_symbol_utils.$flushHTML] {
     return (0, _layout.flushHTML)(this);
   }
   [_symbol_utils.$addHTML](html, bbox) {
     (0, _layout.addHTML)(this, html, bbox);
   }
-  [_symbol_utils.$getAvailableSpace]() {
+  [_symbol_utils.$getAvailableSpace] {
     return (0, _layout.getAvailableSpace)(this);
   }
   [_symbol_utils.$toHTML](availableSpace) {
@@ -48409,7 +48409,7 @@ class ExclGroup extends _xfa_object.XFAObject {
       prevHeight: 0,
       currentWidth: 0
     });
-    const isSplittable = this[_symbol_utils.$isSplittable]();
+    const isSplittable = this[_symbol_utils.$isSplittable];
     if (!isSplittable) {
       setFirstUnsplittable(this);
     }
@@ -48418,7 +48418,7 @@ class ExclGroup extends _xfa_object.XFAObject {
     }
     const filter = new Set(["field"]);
     if (this.layout.includes("row")) {
-      const columnWidths = this[_symbol_utils.$getSubformParent]().columnWidths;
+      const columnWidths = this[_symbol_utils.$getSubformParent].columnWidths;
       if (Array.isArray(columnWidths) && columnWidths.length > 0) {
         this[_symbol_utils.$extra].columnWidths = columnWidths;
         this[_symbol_utils.$extra].currentColumn = 0;
@@ -48438,7 +48438,7 @@ class ExclGroup extends _xfa_object.XFAObject {
     if (this.name) {
       attributes.xfaName = this.name;
     }
-    this[_symbol_utils.$pushPara]();
+    this[_symbol_utils.$pushPara];
     const isLrTb = this.layout === "lr-tb" || this.layout === "rl-tb";
     const maxRun = isLrTb ? MAX_ATTEMPTS_FOR_LRTB_LAYOUT : 1;
     for (; this[_symbol_utils.$extra].attempt < maxRun; this[_symbol_utils.$extra].attempt++) {
@@ -48452,16 +48452,16 @@ class ExclGroup extends _xfa_object.XFAObject {
       if (result.success) {
         break;
       }
-      if (result.isBreak()) {
-        this[_symbol_utils.$popPara]();
+      if (result.isBreak) {
+        this[_symbol_utils.$popPara];
         return result;
       }
-      if (isLrTb && this[_symbol_utils.$extra].attempt === 0 && this[_symbol_utils.$extra].numberInLine === 0 && !this[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].noLayoutFailure) {
+      if (isLrTb && this[_symbol_utils.$extra].attempt === 0 && this[_symbol_utils.$extra].numberInLine === 0 && !this[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].noLayoutFailure) {
         this[_symbol_utils.$extra].attempt = maxRun;
         break;
       }
     }
-    this[_symbol_utils.$popPara]();
+    this[_symbol_utils.$popPara];
     if (!isSplittable) {
       unsetFirstUnsplittable(this);
     }
@@ -48514,17 +48514,17 @@ class Extras extends _xfa_object.XFAObject {
     this.name = attributes.name || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.boolean = new _xfa_object.XFAObjectArray();
-    this.date = new _xfa_object.XFAObjectArray();
-    this.dateTime = new _xfa_object.XFAObjectArray();
-    this.decimal = new _xfa_object.XFAObjectArray();
-    this.exData = new _xfa_object.XFAObjectArray();
-    this.extras = new _xfa_object.XFAObjectArray();
-    this.float = new _xfa_object.XFAObjectArray();
-    this.image = new _xfa_object.XFAObjectArray();
-    this.integer = new _xfa_object.XFAObjectArray();
-    this.text = new _xfa_object.XFAObjectArray();
-    this.time = new _xfa_object.XFAObjectArray();
+    this.boolean = new _xfa_object.XFAObjectArray;
+    this.date = new _xfa_object.XFAObjectArray;
+    this.dateTime = new _xfa_object.XFAObjectArray;
+    this.decimal = new _xfa_object.XFAObjectArray;
+    this.exData = new _xfa_object.XFAObjectArray;
+    this.extras = new _xfa_object.XFAObjectArray;
+    this.float = new _xfa_object.XFAObjectArray;
+    this.image = new _xfa_object.XFAObjectArray;
+    this.integer = new _xfa_object.XFAObjectArray;
+    this.text = new _xfa_object.XFAObjectArray;
+    this.time = new _xfa_object.XFAObjectArray;
   }
 }
 class Field extends _xfa_object.XFAObject {
@@ -48576,12 +48576,12 @@ class Field extends _xfa_object.XFAObject {
     this.ui = null;
     this.validate = null;
     this.value = null;
-    this.bindItems = new _xfa_object.XFAObjectArray();
-    this.connect = new _xfa_object.XFAObjectArray();
-    this.event = new _xfa_object.XFAObjectArray();
-    this.setProperty = new _xfa_object.XFAObjectArray();
+    this.bindItems = new _xfa_object.XFAObjectArray;
+    this.connect = new _xfa_object.XFAObjectArray;
+    this.event = new _xfa_object.XFAObjectArray;
+    this.setProperty = new _xfa_object.XFAObjectArray;
   }
-  [_symbol_utils.$isBindable]() {
+  [_symbol_utils.$isBindable] {
     return true;
   }
   [_symbol_utils.$setValue](value) {
@@ -48616,7 +48616,7 @@ class Field extends _xfa_object.XFAObject {
     if (this.caption) {
       delete this.caption[_symbol_utils.$extra];
     }
-    this[_symbol_utils.$pushPara]();
+    this[_symbol_utils.$pushPara];
     const caption = this.caption ? this.caption[_symbol_utils.$toHTML](availableSpace).html : null;
     const savedW = this.w;
     const savedH = this.h;
@@ -48646,7 +48646,7 @@ class Field extends _xfa_object.XFAObject {
           uiH = (0, _fonts.getMetrics)(this.font, true).lineNoGap;
         }
       }
-      borderDims = getBorderDims(this.ui[_symbol_utils.$getExtra]());
+      borderDims = getBorderDims(this.ui[_symbol_utils.$getExtra]);
       uiW += borderDims.w;
       uiH += borderDims.h;
       if (this.caption) {
@@ -48655,8 +48655,8 @@ class Field extends _xfa_object.XFAObject {
           h,
           isBroken
         } = this.caption[_symbol_utils.$getExtra](availableSpace);
-        if (isBroken && this[_symbol_utils.$getSubformParent]()[_symbol_utils.$isThereMoreWidth]()) {
-          this[_symbol_utils.$popPara]();
+        if (isBroken && this[_symbol_utils.$getSubformParent][_symbol_utils.$isThereMoreWidth]) {
+          this[_symbol_utils.$popPara];
           return _utils.HTMLResult.FAILURE;
         }
         width = w;
@@ -48685,13 +48685,13 @@ class Field extends _xfa_object.XFAObject {
         this.h = Math.min(this.maxH <= 0 ? Infinity : this.maxH, this.minH + 1 < height ? height : this.minH);
       }
     }
-    this[_symbol_utils.$popPara]();
+    this[_symbol_utils.$popPara];
     (0, _html_utils.fixDimensions)(this);
     setFirstUnsplittable(this);
     if (!(0, _layout.checkDimensions)(this, availableSpace)) {
       this.w = savedW;
       this.h = savedH;
-      this[_symbol_utils.$popPara]();
+      this[_symbol_utils.$popPara];
       return _utils.HTMLResult.FAILURE;
     }
     unsetFirstUnsplittable(this);
@@ -48724,9 +48724,9 @@ class Field extends _xfa_object.XFAObject {
       children
     };
     applyAssist(this, attributes);
-    const borderStyle = this.border ? this.border[_symbol_utils.$toStyle]() : null;
+    const borderStyle = this.border ? this.border[_symbol_utils.$toStyle] : null;
     const bbox = (0, _html_utils.computeBbox)(this, html, availableSpace);
-    const ui = this.ui[_symbol_utils.$toHTML]().html;
+    const ui = this.ui[_symbol_utils.$toHTML].html;
     if (!ui) {
       Object.assign(style, borderStyle);
       return _utils.HTMLResult.success((0, _html_utils.createWrapper)(this, html), bbox);
@@ -48753,15 +48753,15 @@ class Field extends _xfa_object.XFAObject {
     children.push(ui);
     if (this.value) {
       if (this.ui.imageEdit) {
-        ui.children.push(this.value[_symbol_utils.$toHTML]().html);
+        ui.children.push(this.value[_symbol_utils.$toHTML].html);
       } else if (!this.ui.button) {
         let value = "";
         if (this.value.exData) {
-          value = this.value.exData[_symbol_utils.$text]();
+          value = this.value.exData[_symbol_utils.$text];
         } else if (this.value.text) {
-          value = this.value.text[_symbol_utils.$getExtra]();
+          value = this.value.text[_symbol_utils.$getExtra];
         } else {
-          const htmlValue = this.value[_symbol_utils.$toHTML]().html;
+          const htmlValue = this.value[_symbol_utils.$toHTML].html;
           if (htmlValue !== null) {
             value = htmlValue.children[0].value;
           }
@@ -48772,7 +48772,7 @@ class Field extends _xfa_object.XFAObject {
         if (value) {
           if (this.ui.numericEdit) {
             value = parseFloat(value);
-            value = isNaN(value) ? "" : value.toString();
+            value = isNaN(value) ? "" : value.toString;
           }
           if (ui.children[0].name === "textarea") {
             ui.children[0].attributes.textContent = value;
@@ -48783,7 +48783,7 @@ class Field extends _xfa_object.XFAObject {
       }
     }
     if (!this.ui.imageEdit && ui.children?.[0] && this.h) {
-      borderDims = borderDims || getBorderDims(this.ui[_symbol_utils.$getExtra]());
+      borderDims = borderDims || getBorderDims(this.ui[_symbol_utils.$getExtra]);
       let captionHeight = 0;
       if (this.caption && ["top", "bottom"].includes(this.caption.placement)) {
         captionHeight = this.caption.reserve;
@@ -48861,10 +48861,10 @@ class Fill extends _xfa_object.XFAObject {
     this.solid = null;
     this.stipple = null;
   }
-  [_symbol_utils.$toStyle]() {
-    const parent = this[_symbol_utils.$getParent]();
-    const grandpa = parent[_symbol_utils.$getParent]();
-    const ggrandpa = grandpa[_symbol_utils.$getParent]();
+  [_symbol_utils.$toStyle] {
+    const parent = this[_symbol_utils.$getParent];
+    const grandpa = parent[_symbol_utils.$getParent];
+    const ggrandpa = grandpa[_symbol_utils.$getParent];
     const style = Object.create(null);
     let propName = "color";
     let altPropName = propName;
@@ -48894,7 +48894,7 @@ class Fill extends _xfa_object.XFAObject {
       return style;
     }
     if (this.color?.value) {
-      const color = this.color[_symbol_utils.$toStyle]();
+      const color = this.color[_symbol_utils.$toStyle];
       style[color.startsWith("#") ? propName : altPropName] = color;
     }
     return style;
@@ -48933,12 +48933,12 @@ class Float extends _xfa_object.ContentObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
-  [_symbol_utils.$finalize]() {
-    const number = parseFloat(this[_symbol_utils.$content].trim());
+  [_symbol_utils.$finalize] {
+    const number = parseFloat(this[_symbol_utils.$content].trim);
     this[_symbol_utils.$content] = isNaN(number) ? null : number;
   }
   [_symbol_utils.$toHTML](availableSpace) {
-    return valueToHtml(this[_symbol_utils.$content] !== null ? this[_symbol_utils.$content].toString() : "");
+    return valueToHtml(this[_symbol_utils.$content] !== null ? this[_symbol_utils.$content].toString : "");
   }
 }
 class Font extends _xfa_object.XFAObject {
@@ -48989,7 +48989,7 @@ class Font extends _xfa_object.XFAObject {
     super[_symbol_utils.$clean](builder);
     this[_symbol_utils.$globalData].usedTypefaces.add(this.typeface);
   }
-  [_symbol_utils.$toStyle]() {
+  [_symbol_utils.$toStyle] {
     const style = (0, _html_utils.toStyle)(this, "fill");
     const color = style.color;
     if (color) {
@@ -49100,8 +49100,8 @@ class Image extends _xfa_object.StringObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
-  [_symbol_utils.$toHTML]() {
-    if (this.contentType && !MIMES.has(this.contentType.toLowerCase())) {
+  [_symbol_utils.$toHTML] {
+    if (this.contentType && !MIMES.has(this.contentType.toLowerCase)) {
       return _utils.HTMLResult.EMPTY;
     }
     let buffer = this[_symbol_utils.$globalData].images && this[_symbol_utils.$globalData].images.get(this.href);
@@ -49153,14 +49153,14 @@ class Image extends _xfa_object.StringObject {
         };
         break;
     }
-    const parent = this[_symbol_utils.$getParent]();
+    const parent = this[_symbol_utils.$getParent];
     return _utils.HTMLResult.success({
       name: "img",
       attributes: {
         class: ["xfaImage"],
         style,
         src: URL.createObjectURL(blob),
-        alt: parent ? ariaLabel(parent[_symbol_utils.$getParent]()) : null
+        alt: parent ? ariaLabel(parent[_symbol_utils.$getParent]) : null
       }
     });
   }
@@ -49195,12 +49195,12 @@ class Integer extends _xfa_object.ContentObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
-  [_symbol_utils.$finalize]() {
-    const number = parseInt(this[_symbol_utils.$content].trim(), 10);
+  [_symbol_utils.$finalize] {
+    const number = parseInt(this[_symbol_utils.$content].trim, 10);
     this[_symbol_utils.$content] = isNaN(number) ? null : number;
   }
   [_symbol_utils.$toHTML](availableSpace) {
-    return valueToHtml(this[_symbol_utils.$content] !== null ? this[_symbol_utils.$content].toString() : "");
+    return valueToHtml(this[_symbol_utils.$content] !== null ? this[_symbol_utils.$content].toString : "");
   }
 }
 class Issuers extends _xfa_object.XFAObject {
@@ -49210,7 +49210,7 @@ class Issuers extends _xfa_object.XFAObject {
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.certificate = new _xfa_object.XFAObjectArray();
+    this.certificate = new _xfa_object.XFAObjectArray;
   }
 }
 class Items extends _xfa_object.XFAObject {
@@ -49227,21 +49227,21 @@ class Items extends _xfa_object.XFAObject {
     });
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.boolean = new _xfa_object.XFAObjectArray();
-    this.date = new _xfa_object.XFAObjectArray();
-    this.dateTime = new _xfa_object.XFAObjectArray();
-    this.decimal = new _xfa_object.XFAObjectArray();
-    this.exData = new _xfa_object.XFAObjectArray();
-    this.float = new _xfa_object.XFAObjectArray();
-    this.image = new _xfa_object.XFAObjectArray();
-    this.integer = new _xfa_object.XFAObjectArray();
-    this.text = new _xfa_object.XFAObjectArray();
-    this.time = new _xfa_object.XFAObjectArray();
+    this.boolean = new _xfa_object.XFAObjectArray;
+    this.date = new _xfa_object.XFAObjectArray;
+    this.dateTime = new _xfa_object.XFAObjectArray;
+    this.decimal = new _xfa_object.XFAObjectArray;
+    this.exData = new _xfa_object.XFAObjectArray;
+    this.float = new _xfa_object.XFAObjectArray;
+    this.image = new _xfa_object.XFAObjectArray;
+    this.integer = new _xfa_object.XFAObjectArray;
+    this.text = new _xfa_object.XFAObjectArray;
+    this.time = new _xfa_object.XFAObjectArray;
   }
-  [_symbol_utils.$toHTML]() {
+  [_symbol_utils.$toHTML] {
     const output = [];
-    for (const child of this[_symbol_utils.$getChildren]()) {
-      output.push(child[_symbol_utils.$text]());
+    for (const child of this[_symbol_utils.$getChildren]) {
+      output.push(child[_symbol_utils.$text]);
     }
     return _utils.HTMLResult.success(output);
   }
@@ -49289,10 +49289,10 @@ class Line extends _xfa_object.XFAObject {
     this.usehref = attributes.usehref || "";
     this.edge = null;
   }
-  [_symbol_utils.$toHTML]() {
-    const parent = this[_symbol_utils.$getParent]()[_symbol_utils.$getParent]();
+  [_symbol_utils.$toHTML] {
+    const parent = this[_symbol_utils.$getParent][_symbol_utils.$getParent];
     const edge = this.edge || new Edge({});
-    const edgeStyle = edge[_symbol_utils.$toStyle]();
+    const edgeStyle = edge[_symbol_utils.$toStyle];
     const style = Object.create(null);
     const thickness = edge.presence === "visible" ? edge.thickness : 0;
     style.strokeWidth = (0, _html_utils.measureToString)(thickness);
@@ -49362,9 +49362,9 @@ class Linear extends _xfa_object.XFAObject {
     this.extras = null;
   }
   [_symbol_utils.$toStyle](startColor) {
-    startColor = startColor ? startColor[_symbol_utils.$toStyle]() : "#FFFFFF";
-    const transf = this.type.replace(/([RBLT])/, " $1").toLowerCase();
-    const endColor = this.color ? this.color[_symbol_utils.$toStyle]() : "#000000";
+    startColor = startColor ? startColor[_symbol_utils.$toStyle] : "#FFFFFF";
+    const transf = this.type.replace(/([RBLT])/, " $1").toLowerCase;
+    const endColor = this.color ? this.color[_symbol_utils.$toStyle] : "#000000";
     return `linear-gradient(${transf}, ${startColor}, ${endColor})`;
   }
 }
@@ -49376,7 +49376,7 @@ class LockDocument extends _xfa_object.ContentObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
-  [_symbol_utils.$finalize]() {
+  [_symbol_utils.$finalize] {
     this[_symbol_utils.$content] = (0, _utils.getStringOption)(this[_symbol_utils.$content], ["auto", "0", "1"]);
   }
 }
@@ -49389,7 +49389,7 @@ class Manifest extends _xfa_object.XFAObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.extras = null;
-    this.ref = new _xfa_object.XFAObjectArray();
+    this.ref = new _xfa_object.XFAObjectArray;
   }
 }
 class Margin extends _xfa_object.XFAObject {
@@ -49404,7 +49404,7 @@ class Margin extends _xfa_object.XFAObject {
     this.usehref = attributes.usehref || "";
     this.extras = null;
   }
-  [_symbol_utils.$toStyle]() {
+  [_symbol_utils.$toStyle] {
     return {
       margin: (0, _html_utils.measureToString)(this.topInset) + " " + (0, _html_utils.measureToString)(this.rightInset) + " " + (0, _html_utils.measureToString)(this.bottomInset) + " " + (0, _html_utils.measureToString)(this.leftInset)
     };
@@ -49445,7 +49445,7 @@ class Message extends _xfa_object.XFAObject {
     this.id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.text = new _xfa_object.XFAObjectArray();
+    this.text = new _xfa_object.XFAObjectArray;
   }
 }
 class NumericEdit extends _xfa_object.XFAObject {
@@ -49462,7 +49462,7 @@ class NumericEdit extends _xfa_object.XFAObject {
   }
   [_symbol_utils.$toHTML](availableSpace) {
     const style = (0, _html_utils.toStyle)(this, "border", "font", "margin");
-    const field = this[_symbol_utils.$getParent]()[_symbol_utils.$getParent]();
+    const field = this[_symbol_utils.$getParent][_symbol_utils.$getParent];
     const html = {
       name: "input",
       attributes: {
@@ -49511,8 +49511,8 @@ class Occur extends _xfa_object.XFAObject {
     this.usehref = attributes.usehref || "";
     this.extras = null;
   }
-  [_symbol_utils.$clean]() {
-    const parent = this[_symbol_utils.$getParent]();
+  [_symbol_utils.$clean] {
+    const parent = this[_symbol_utils.$getParent];
     const originalMin = this.min;
     if (this.min === "") {
       this.min = parent instanceof PageArea || parent instanceof PageSet ? 0 : 1;
@@ -49548,7 +49548,7 @@ class Oids extends _xfa_object.XFAObject {
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.oid = new _xfa_object.XFAObjectArray();
+    this.oid = new _xfa_object.XFAObjectArray;
   }
 }
 class Overflow extends _xfa_object.XFAObject {
@@ -49561,10 +49561,10 @@ class Overflow extends _xfa_object.XFAObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
-  [_symbol_utils.$getExtra]() {
+  [_symbol_utils.$getExtra] {
     if (!this[_symbol_utils.$extra]) {
-      const parent = this[_symbol_utils.$getParent]();
-      const root = this[_symbol_utils.$getTemplateRoot]();
+      const parent = this[_symbol_utils.$getParent];
+      const root = this[_symbol_utils.$getTemplateRoot];
       const target = root[_symbol_utils.$searchNode](this.target, parent);
       const leader = root[_symbol_utils.$searchNode](this.leader, parent);
       const trailer = root[_symbol_utils.$searchNode](this.trailer, parent);
@@ -49604,14 +49604,14 @@ class PageArea extends _xfa_object.XFAObject {
     this.extras = null;
     this.medium = null;
     this.occur = null;
-    this.area = new _xfa_object.XFAObjectArray();
-    this.contentArea = new _xfa_object.XFAObjectArray();
-    this.draw = new _xfa_object.XFAObjectArray();
-    this.exclGroup = new _xfa_object.XFAObjectArray();
-    this.field = new _xfa_object.XFAObjectArray();
-    this.subform = new _xfa_object.XFAObjectArray();
+    this.area = new _xfa_object.XFAObjectArray;
+    this.contentArea = new _xfa_object.XFAObjectArray;
+    this.draw = new _xfa_object.XFAObjectArray;
+    this.exclGroup = new _xfa_object.XFAObjectArray;
+    this.field = new _xfa_object.XFAObjectArray;
+    this.subform = new _xfa_object.XFAObjectArray;
   }
-  [_symbol_utils.$isUsable]() {
+  [_symbol_utils.$isUsable] {
     if (!this[_symbol_utils.$extra]) {
       this[_symbol_utils.$extra] = {
         numberOfUse: 0
@@ -49620,31 +49620,31 @@ class PageArea extends _xfa_object.XFAObject {
     }
     return !this.occur || this.occur.max === -1 || this[_symbol_utils.$extra].numberOfUse < this.occur.max;
   }
-  [_symbol_utils.$cleanPage]() {
+  [_symbol_utils.$cleanPage] {
     delete this[_symbol_utils.$extra];
   }
-  [_symbol_utils.$getNextPage]() {
+  [_symbol_utils.$getNextPage] {
     if (!this[_symbol_utils.$extra]) {
       this[_symbol_utils.$extra] = {
         numberOfUse: 0
       };
     }
-    const parent = this[_symbol_utils.$getParent]();
+    const parent = this[_symbol_utils.$getParent];
     if (parent.relation === "orderedOccurrence") {
-      if (this[_symbol_utils.$isUsable]()) {
+      if (this[_symbol_utils.$isUsable]) {
         this[_symbol_utils.$extra].numberOfUse += 1;
         return this;
       }
     }
-    return parent[_symbol_utils.$getNextPage]();
+    return parent[_symbol_utils.$getNextPage];
   }
-  [_symbol_utils.$getAvailableSpace]() {
+  [_symbol_utils.$getAvailableSpace] {
     return this[_symbol_utils.$extra].space || {
       width: 0,
       height: 0
     };
   }
-  [_symbol_utils.$toHTML]() {
+  [_symbol_utils.$toHTML] {
     if (!this[_symbol_utils.$extra]) {
       this[_symbol_utils.$extra] = {
         numberOfUse: 1
@@ -49704,21 +49704,21 @@ class PageSet extends _xfa_object.XFAObject {
     this.usehref = attributes.usehref || "";
     this.extras = null;
     this.occur = null;
-    this.pageArea = new _xfa_object.XFAObjectArray();
-    this.pageSet = new _xfa_object.XFAObjectArray();
+    this.pageArea = new _xfa_object.XFAObjectArray;
+    this.pageSet = new _xfa_object.XFAObjectArray;
   }
-  [_symbol_utils.$cleanPage]() {
+  [_symbol_utils.$cleanPage] {
     for (const page of this.pageArea.children) {
-      page[_symbol_utils.$cleanPage]();
+      page[_symbol_utils.$cleanPage];
     }
     for (const page of this.pageSet.children) {
-      page[_symbol_utils.$cleanPage]();
+      page[_symbol_utils.$cleanPage];
     }
   }
-  [_symbol_utils.$isUsable]() {
+  [_symbol_utils.$isUsable] {
     return !this.occur || this.occur.max === -1 || this[_symbol_utils.$extra].numberOfUse < this.occur.max;
   }
-  [_symbol_utils.$getNextPage]() {
+  [_symbol_utils.$getNextPage] {
     if (!this[_symbol_utils.$extra]) {
       this[_symbol_utils.$extra] = {
         numberOfUse: 1,
@@ -49730,26 +49730,26 @@ class PageSet extends _xfa_object.XFAObject {
       if (this[_symbol_utils.$extra].pageIndex + 1 < this.pageArea.children.length) {
         this[_symbol_utils.$extra].pageIndex += 1;
         const pageArea = this.pageArea.children[this[_symbol_utils.$extra].pageIndex];
-        return pageArea[_symbol_utils.$getNextPage]();
+        return pageArea[_symbol_utils.$getNextPage];
       }
       if (this[_symbol_utils.$extra].pageSetIndex + 1 < this.pageSet.children.length) {
         this[_symbol_utils.$extra].pageSetIndex += 1;
-        return this.pageSet.children[this[_symbol_utils.$extra].pageSetIndex][_symbol_utils.$getNextPage]();
+        return this.pageSet.children[this[_symbol_utils.$extra].pageSetIndex][_symbol_utils.$getNextPage];
       }
-      if (this[_symbol_utils.$isUsable]()) {
+      if (this[_symbol_utils.$isUsable]) {
         this[_symbol_utils.$extra].numberOfUse += 1;
         this[_symbol_utils.$extra].pageIndex = -1;
         this[_symbol_utils.$extra].pageSetIndex = -1;
-        return this[_symbol_utils.$getNextPage]();
+        return this[_symbol_utils.$getNextPage];
       }
-      const parent = this[_symbol_utils.$getParent]();
+      const parent = this[_symbol_utils.$getParent];
       if (parent instanceof PageSet) {
-        return parent[_symbol_utils.$getNextPage]();
+        return parent[_symbol_utils.$getNextPage];
       }
-      this[_symbol_utils.$cleanPage]();
-      return this[_symbol_utils.$getNextPage]();
+      this[_symbol_utils.$cleanPage];
+      return this[_symbol_utils.$getNextPage];
     }
-    const pageNumber = this[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].pageNumber;
+    const pageNumber = this[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].pageNumber;
     const parity = pageNumber % 2 === 0 ? "even" : "odd";
     const position = pageNumber === 0 ? "first" : "rest";
     let page = this.pageArea.children.find(p => p.oddOrEven === parity && p.pagePosition === position);
@@ -49785,7 +49785,7 @@ class Para extends _xfa_object.XFAObject {
     this.spaceAbove = attributes.spaceAbove ? (0, _utils.getMeasurement)(attributes.spaceAbove, "0pt") : "";
     this.spaceBelow = attributes.spaceBelow ? (0, _utils.getMeasurement)(attributes.spaceBelow, "0pt") : "";
     this.tabDefault = attributes.tabDefault ? (0, _utils.getMeasurement)(this.tabDefault) : "";
-    this.tabStops = (attributes.tabStops || "").trim().split(/\s+/).map((x, i) => i % 2 === 1 ? (0, _utils.getMeasurement)(x) : x);
+    this.tabStops = (attributes.tabStops || "").trim.split(/\s+/).map((x, i) => i % 2 === 1 ? (0, _utils.getMeasurement)(x) : x);
     this.textIndent = attributes.textIndent ? (0, _utils.getMeasurement)(attributes.textIndent, "0pt") : "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
@@ -49797,7 +49797,7 @@ class Para extends _xfa_object.XFAObject {
     });
     this.hyphenation = null;
   }
-  [_symbol_utils.$toStyle]() {
+  [_symbol_utils.$toStyle] {
     const style = (0, _html_utils.toStyle)(this, "hAlign");
     if (this.marginLeft !== "") {
       style.paddingLeft = (0, _html_utils.measureToString)(this.marginLeft);
@@ -49823,7 +49823,7 @@ class Para extends _xfa_object.XFAObject {
     }
     if (this.tabStops.length > 0) {}
     if (this.hyphenatation) {
-      Object.assign(style, this.hyphenatation[_symbol_utils.$toStyle]());
+      Object.assign(style, this.hyphenatation[_symbol_utils.$toStyle]);
     }
     return style;
   }
@@ -49852,8 +49852,8 @@ class Pattern extends _xfa_object.XFAObject {
     this.extras = null;
   }
   [_symbol_utils.$toStyle](startColor) {
-    startColor = startColor ? startColor[_symbol_utils.$toStyle]() : "#FFFFFF";
-    const endColor = this.color ? this.color[_symbol_utils.$toStyle]() : "#000000";
+    startColor = startColor ? startColor[_symbol_utils.$toStyle] : "#FFFFFF";
+    const endColor = this.color ? this.color[_symbol_utils.$toStyle] : "#000000";
     const width = 5;
     const cmd = "repeating-linear-gradient";
     const colors = `${startColor},${startColor} ${width}px,${endColor} ${width}px,${endColor} ${2 * width}px`;
@@ -49885,116 +49885,116 @@ class Picture extends _xfa_object.StringObject {
 class Proto extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(TEMPLATE_NS_ID, "proto", true);
-    this.appearanceFilter = new _xfa_object.XFAObjectArray();
-    this.arc = new _xfa_object.XFAObjectArray();
-    this.area = new _xfa_object.XFAObjectArray();
-    this.assist = new _xfa_object.XFAObjectArray();
-    this.barcode = new _xfa_object.XFAObjectArray();
-    this.bindItems = new _xfa_object.XFAObjectArray();
-    this.bookend = new _xfa_object.XFAObjectArray();
-    this.boolean = new _xfa_object.XFAObjectArray();
-    this.border = new _xfa_object.XFAObjectArray();
-    this.break = new _xfa_object.XFAObjectArray();
-    this.breakAfter = new _xfa_object.XFAObjectArray();
-    this.breakBefore = new _xfa_object.XFAObjectArray();
-    this.button = new _xfa_object.XFAObjectArray();
-    this.calculate = new _xfa_object.XFAObjectArray();
-    this.caption = new _xfa_object.XFAObjectArray();
-    this.certificate = new _xfa_object.XFAObjectArray();
-    this.certificates = new _xfa_object.XFAObjectArray();
-    this.checkButton = new _xfa_object.XFAObjectArray();
-    this.choiceList = new _xfa_object.XFAObjectArray();
-    this.color = new _xfa_object.XFAObjectArray();
-    this.comb = new _xfa_object.XFAObjectArray();
-    this.connect = new _xfa_object.XFAObjectArray();
-    this.contentArea = new _xfa_object.XFAObjectArray();
-    this.corner = new _xfa_object.XFAObjectArray();
-    this.date = new _xfa_object.XFAObjectArray();
-    this.dateTime = new _xfa_object.XFAObjectArray();
-    this.dateTimeEdit = new _xfa_object.XFAObjectArray();
-    this.decimal = new _xfa_object.XFAObjectArray();
-    this.defaultUi = new _xfa_object.XFAObjectArray();
-    this.desc = new _xfa_object.XFAObjectArray();
-    this.digestMethod = new _xfa_object.XFAObjectArray();
-    this.digestMethods = new _xfa_object.XFAObjectArray();
-    this.draw = new _xfa_object.XFAObjectArray();
-    this.edge = new _xfa_object.XFAObjectArray();
-    this.encoding = new _xfa_object.XFAObjectArray();
-    this.encodings = new _xfa_object.XFAObjectArray();
-    this.encrypt = new _xfa_object.XFAObjectArray();
-    this.encryptData = new _xfa_object.XFAObjectArray();
-    this.encryption = new _xfa_object.XFAObjectArray();
-    this.encryptionMethod = new _xfa_object.XFAObjectArray();
-    this.encryptionMethods = new _xfa_object.XFAObjectArray();
-    this.event = new _xfa_object.XFAObjectArray();
-    this.exData = new _xfa_object.XFAObjectArray();
-    this.exObject = new _xfa_object.XFAObjectArray();
-    this.exclGroup = new _xfa_object.XFAObjectArray();
-    this.execute = new _xfa_object.XFAObjectArray();
-    this.extras = new _xfa_object.XFAObjectArray();
-    this.field = new _xfa_object.XFAObjectArray();
-    this.fill = new _xfa_object.XFAObjectArray();
-    this.filter = new _xfa_object.XFAObjectArray();
-    this.float = new _xfa_object.XFAObjectArray();
-    this.font = new _xfa_object.XFAObjectArray();
-    this.format = new _xfa_object.XFAObjectArray();
-    this.handler = new _xfa_object.XFAObjectArray();
-    this.hyphenation = new _xfa_object.XFAObjectArray();
-    this.image = new _xfa_object.XFAObjectArray();
-    this.imageEdit = new _xfa_object.XFAObjectArray();
-    this.integer = new _xfa_object.XFAObjectArray();
-    this.issuers = new _xfa_object.XFAObjectArray();
-    this.items = new _xfa_object.XFAObjectArray();
-    this.keep = new _xfa_object.XFAObjectArray();
-    this.keyUsage = new _xfa_object.XFAObjectArray();
-    this.line = new _xfa_object.XFAObjectArray();
-    this.linear = new _xfa_object.XFAObjectArray();
-    this.lockDocument = new _xfa_object.XFAObjectArray();
-    this.manifest = new _xfa_object.XFAObjectArray();
-    this.margin = new _xfa_object.XFAObjectArray();
-    this.mdp = new _xfa_object.XFAObjectArray();
-    this.medium = new _xfa_object.XFAObjectArray();
-    this.message = new _xfa_object.XFAObjectArray();
-    this.numericEdit = new _xfa_object.XFAObjectArray();
-    this.occur = new _xfa_object.XFAObjectArray();
-    this.oid = new _xfa_object.XFAObjectArray();
-    this.oids = new _xfa_object.XFAObjectArray();
-    this.overflow = new _xfa_object.XFAObjectArray();
-    this.pageArea = new _xfa_object.XFAObjectArray();
-    this.pageSet = new _xfa_object.XFAObjectArray();
-    this.para = new _xfa_object.XFAObjectArray();
-    this.passwordEdit = new _xfa_object.XFAObjectArray();
-    this.pattern = new _xfa_object.XFAObjectArray();
-    this.picture = new _xfa_object.XFAObjectArray();
-    this.radial = new _xfa_object.XFAObjectArray();
-    this.reason = new _xfa_object.XFAObjectArray();
-    this.reasons = new _xfa_object.XFAObjectArray();
-    this.rectangle = new _xfa_object.XFAObjectArray();
-    this.ref = new _xfa_object.XFAObjectArray();
-    this.script = new _xfa_object.XFAObjectArray();
-    this.setProperty = new _xfa_object.XFAObjectArray();
-    this.signData = new _xfa_object.XFAObjectArray();
-    this.signature = new _xfa_object.XFAObjectArray();
-    this.signing = new _xfa_object.XFAObjectArray();
-    this.solid = new _xfa_object.XFAObjectArray();
-    this.speak = new _xfa_object.XFAObjectArray();
-    this.stipple = new _xfa_object.XFAObjectArray();
-    this.subform = new _xfa_object.XFAObjectArray();
-    this.subformSet = new _xfa_object.XFAObjectArray();
-    this.subjectDN = new _xfa_object.XFAObjectArray();
-    this.subjectDNs = new _xfa_object.XFAObjectArray();
-    this.submit = new _xfa_object.XFAObjectArray();
-    this.text = new _xfa_object.XFAObjectArray();
-    this.textEdit = new _xfa_object.XFAObjectArray();
-    this.time = new _xfa_object.XFAObjectArray();
-    this.timeStamp = new _xfa_object.XFAObjectArray();
-    this.toolTip = new _xfa_object.XFAObjectArray();
-    this.traversal = new _xfa_object.XFAObjectArray();
-    this.traverse = new _xfa_object.XFAObjectArray();
-    this.ui = new _xfa_object.XFAObjectArray();
-    this.validate = new _xfa_object.XFAObjectArray();
-    this.value = new _xfa_object.XFAObjectArray();
-    this.variables = new _xfa_object.XFAObjectArray();
+    this.appearanceFilter = new _xfa_object.XFAObjectArray;
+    this.arc = new _xfa_object.XFAObjectArray;
+    this.area = new _xfa_object.XFAObjectArray;
+    this.assist = new _xfa_object.XFAObjectArray;
+    this.barcode = new _xfa_object.XFAObjectArray;
+    this.bindItems = new _xfa_object.XFAObjectArray;
+    this.bookend = new _xfa_object.XFAObjectArray;
+    this.boolean = new _xfa_object.XFAObjectArray;
+    this.border = new _xfa_object.XFAObjectArray;
+    this.break = new _xfa_object.XFAObjectArray;
+    this.breakAfter = new _xfa_object.XFAObjectArray;
+    this.breakBefore = new _xfa_object.XFAObjectArray;
+    this.button = new _xfa_object.XFAObjectArray;
+    this.calculate = new _xfa_object.XFAObjectArray;
+    this.caption = new _xfa_object.XFAObjectArray;
+    this.certificate = new _xfa_object.XFAObjectArray;
+    this.certificates = new _xfa_object.XFAObjectArray;
+    this.checkButton = new _xfa_object.XFAObjectArray;
+    this.choiceList = new _xfa_object.XFAObjectArray;
+    this.color = new _xfa_object.XFAObjectArray;
+    this.comb = new _xfa_object.XFAObjectArray;
+    this.connect = new _xfa_object.XFAObjectArray;
+    this.contentArea = new _xfa_object.XFAObjectArray;
+    this.corner = new _xfa_object.XFAObjectArray;
+    this.date = new _xfa_object.XFAObjectArray;
+    this.dateTime = new _xfa_object.XFAObjectArray;
+    this.dateTimeEdit = new _xfa_object.XFAObjectArray;
+    this.decimal = new _xfa_object.XFAObjectArray;
+    this.defaultUi = new _xfa_object.XFAObjectArray;
+    this.desc = new _xfa_object.XFAObjectArray;
+    this.digestMethod = new _xfa_object.XFAObjectArray;
+    this.digestMethods = new _xfa_object.XFAObjectArray;
+    this.draw = new _xfa_object.XFAObjectArray;
+    this.edge = new _xfa_object.XFAObjectArray;
+    this.encoding = new _xfa_object.XFAObjectArray;
+    this.encodings = new _xfa_object.XFAObjectArray;
+    this.encrypt = new _xfa_object.XFAObjectArray;
+    this.encryptData = new _xfa_object.XFAObjectArray;
+    this.encryption = new _xfa_object.XFAObjectArray;
+    this.encryptionMethod = new _xfa_object.XFAObjectArray;
+    this.encryptionMethods = new _xfa_object.XFAObjectArray;
+    this.event = new _xfa_object.XFAObjectArray;
+    this.exData = new _xfa_object.XFAObjectArray;
+    this.exObject = new _xfa_object.XFAObjectArray;
+    this.exclGroup = new _xfa_object.XFAObjectArray;
+    this.execute = new _xfa_object.XFAObjectArray;
+    this.extras = new _xfa_object.XFAObjectArray;
+    this.field = new _xfa_object.XFAObjectArray;
+    this.fill = new _xfa_object.XFAObjectArray;
+    this.filter = new _xfa_object.XFAObjectArray;
+    this.float = new _xfa_object.XFAObjectArray;
+    this.font = new _xfa_object.XFAObjectArray;
+    this.format = new _xfa_object.XFAObjectArray;
+    this.handler = new _xfa_object.XFAObjectArray;
+    this.hyphenation = new _xfa_object.XFAObjectArray;
+    this.image = new _xfa_object.XFAObjectArray;
+    this.imageEdit = new _xfa_object.XFAObjectArray;
+    this.integer = new _xfa_object.XFAObjectArray;
+    this.issuers = new _xfa_object.XFAObjectArray;
+    this.items = new _xfa_object.XFAObjectArray;
+    this.keep = new _xfa_object.XFAObjectArray;
+    this.keyUsage = new _xfa_object.XFAObjectArray;
+    this.line = new _xfa_object.XFAObjectArray;
+    this.linear = new _xfa_object.XFAObjectArray;
+    this.lockDocument = new _xfa_object.XFAObjectArray;
+    this.manifest = new _xfa_object.XFAObjectArray;
+    this.margin = new _xfa_object.XFAObjectArray;
+    this.mdp = new _xfa_object.XFAObjectArray;
+    this.medium = new _xfa_object.XFAObjectArray;
+    this.message = new _xfa_object.XFAObjectArray;
+    this.numericEdit = new _xfa_object.XFAObjectArray;
+    this.occur = new _xfa_object.XFAObjectArray;
+    this.oid = new _xfa_object.XFAObjectArray;
+    this.oids = new _xfa_object.XFAObjectArray;
+    this.overflow = new _xfa_object.XFAObjectArray;
+    this.pageArea = new _xfa_object.XFAObjectArray;
+    this.pageSet = new _xfa_object.XFAObjectArray;
+    this.para = new _xfa_object.XFAObjectArray;
+    this.passwordEdit = new _xfa_object.XFAObjectArray;
+    this.pattern = new _xfa_object.XFAObjectArray;
+    this.picture = new _xfa_object.XFAObjectArray;
+    this.radial = new _xfa_object.XFAObjectArray;
+    this.reason = new _xfa_object.XFAObjectArray;
+    this.reasons = new _xfa_object.XFAObjectArray;
+    this.rectangle = new _xfa_object.XFAObjectArray;
+    this.ref = new _xfa_object.XFAObjectArray;
+    this.script = new _xfa_object.XFAObjectArray;
+    this.setProperty = new _xfa_object.XFAObjectArray;
+    this.signData = new _xfa_object.XFAObjectArray;
+    this.signature = new _xfa_object.XFAObjectArray;
+    this.signing = new _xfa_object.XFAObjectArray;
+    this.solid = new _xfa_object.XFAObjectArray;
+    this.speak = new _xfa_object.XFAObjectArray;
+    this.stipple = new _xfa_object.XFAObjectArray;
+    this.subform = new _xfa_object.XFAObjectArray;
+    this.subformSet = new _xfa_object.XFAObjectArray;
+    this.subjectDN = new _xfa_object.XFAObjectArray;
+    this.subjectDNs = new _xfa_object.XFAObjectArray;
+    this.submit = new _xfa_object.XFAObjectArray;
+    this.text = new _xfa_object.XFAObjectArray;
+    this.textEdit = new _xfa_object.XFAObjectArray;
+    this.time = new _xfa_object.XFAObjectArray;
+    this.timeStamp = new _xfa_object.XFAObjectArray;
+    this.toolTip = new _xfa_object.XFAObjectArray;
+    this.traversal = new _xfa_object.XFAObjectArray;
+    this.traverse = new _xfa_object.XFAObjectArray;
+    this.ui = new _xfa_object.XFAObjectArray;
+    this.validate = new _xfa_object.XFAObjectArray;
+    this.value = new _xfa_object.XFAObjectArray;
+    this.variables = new _xfa_object.XFAObjectArray;
   }
 }
 class Radial extends _xfa_object.XFAObject {
@@ -50008,8 +50008,8 @@ class Radial extends _xfa_object.XFAObject {
     this.extras = null;
   }
   [_symbol_utils.$toStyle](startColor) {
-    startColor = startColor ? startColor[_symbol_utils.$toStyle]() : "#FFFFFF";
-    const endColor = this.color ? this.color[_symbol_utils.$toStyle]() : "#000000";
+    startColor = startColor ? startColor[_symbol_utils.$toStyle] : "#FFFFFF";
+    const endColor = this.color ? this.color[_symbol_utils.$toStyle] : "#000000";
     const colors = this.type === "toEdge" ? `${startColor},${endColor}` : `${endColor},${startColor}`;
     return `radial-gradient(circle at center, ${colors})`;
   }
@@ -50030,7 +50030,7 @@ class Reasons extends _xfa_object.XFAObject {
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.reason = new _xfa_object.XFAObjectArray();
+    this.reason = new _xfa_object.XFAObjectArray;
   }
 }
 class Rectangle extends _xfa_object.XFAObject {
@@ -50044,19 +50044,19 @@ class Rectangle extends _xfa_object.XFAObject {
     this.edge = new _xfa_object.XFAObjectArray(4);
     this.fill = null;
   }
-  [_symbol_utils.$toHTML]() {
+  [_symbol_utils.$toHTML] {
     const edge = this.edge.children.length ? this.edge.children[0] : new Edge({});
-    const edgeStyle = edge[_symbol_utils.$toStyle]();
+    const edgeStyle = edge[_symbol_utils.$toStyle];
     const style = Object.create(null);
     if (this.fill?.presence === "visible") {
-      Object.assign(style, this.fill[_symbol_utils.$toStyle]());
+      Object.assign(style, this.fill[_symbol_utils.$toStyle]);
     } else {
       style.fill = "transparent";
     }
     style.strokeWidth = (0, _html_utils.measureToString)(edge.presence === "visible" ? edge.thickness : 0);
     style.stroke = edgeStyle.color;
     const corner = this.corner.children.length ? this.corner.children[0] : new Corner({});
-    const cornerStyle = corner[_symbol_utils.$toStyle]();
+    const cornerStyle = corner[_symbol_utils.$toStyle];
     const rect = {
       name: "rect",
       attributes: {
@@ -50082,7 +50082,7 @@ class Rectangle extends _xfa_object.XFAObject {
         height: "100%"
       }
     };
-    const parent = this[_symbol_utils.$getParent]()[_symbol_utils.$getParent]();
+    const parent = this[_symbol_utils.$getParent][_symbol_utils.$getParent];
     if (hasMargin(parent)) {
       return _utils.HTMLResult.success({
         name: "div",
@@ -50163,7 +50163,7 @@ class Signing extends _xfa_object.XFAObject {
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.certificate = new _xfa_object.XFAObjectArray();
+    this.certificate = new _xfa_object.XFAObjectArray;
   }
 }
 class Solid extends _xfa_object.XFAObject {
@@ -50175,7 +50175,7 @@ class Solid extends _xfa_object.XFAObject {
     this.extras = null;
   }
   [_symbol_utils.$toStyle](startColor) {
-    return startColor ? startColor[_symbol_utils.$toStyle]() : "#FFFFFF";
+    return startColor ? startColor[_symbol_utils.$toStyle] : "#FFFFFF";
   }
 }
 class Speak extends _xfa_object.StringObject {
@@ -50227,7 +50227,7 @@ class Subform extends _xfa_object.XFAObject {
       defaultValue: 1,
       validate: n => n >= 1 || n === -1
     });
-    this.columnWidths = (attributes.columnWidths || "").trim().split(/\s+/).map(x => x === "-1" ? -1 : (0, _utils.getMeasurement)(x));
+    this.columnWidths = (attributes.columnWidths || "").trim.split(/\s+/).map(x => x === "-1" ? -1 : (0, _utils.getMeasurement)(x));
     this.h = attributes.h ? (0, _utils.getMeasurement)(attributes.h) : "";
     this.hAlign = (0, _utils.getStringOption)(attributes.hAlign, ["left", "center", "justify", "justifyAll", "radix", "right"]);
     this.id = attributes.id || "";
@@ -50265,48 +50265,48 @@ class Subform extends _xfa_object.XFAObject {
     this.traversal = null;
     this.validate = null;
     this.variables = null;
-    this.area = new _xfa_object.XFAObjectArray();
-    this.breakAfter = new _xfa_object.XFAObjectArray();
-    this.breakBefore = new _xfa_object.XFAObjectArray();
-    this.connect = new _xfa_object.XFAObjectArray();
-    this.draw = new _xfa_object.XFAObjectArray();
-    this.event = new _xfa_object.XFAObjectArray();
-    this.exObject = new _xfa_object.XFAObjectArray();
-    this.exclGroup = new _xfa_object.XFAObjectArray();
-    this.field = new _xfa_object.XFAObjectArray();
-    this.proto = new _xfa_object.XFAObjectArray();
-    this.setProperty = new _xfa_object.XFAObjectArray();
-    this.subform = new _xfa_object.XFAObjectArray();
-    this.subformSet = new _xfa_object.XFAObjectArray();
+    this.area = new _xfa_object.XFAObjectArray;
+    this.breakAfter = new _xfa_object.XFAObjectArray;
+    this.breakBefore = new _xfa_object.XFAObjectArray;
+    this.connect = new _xfa_object.XFAObjectArray;
+    this.draw = new _xfa_object.XFAObjectArray;
+    this.event = new _xfa_object.XFAObjectArray;
+    this.exObject = new _xfa_object.XFAObjectArray;
+    this.exclGroup = new _xfa_object.XFAObjectArray;
+    this.field = new _xfa_object.XFAObjectArray;
+    this.proto = new _xfa_object.XFAObjectArray;
+    this.setProperty = new _xfa_object.XFAObjectArray;
+    this.subform = new _xfa_object.XFAObjectArray;
+    this.subformSet = new _xfa_object.XFAObjectArray;
   }
-  [_symbol_utils.$getSubformParent]() {
-    const parent = this[_symbol_utils.$getParent]();
+  [_symbol_utils.$getSubformParent] {
+    const parent = this[_symbol_utils.$getParent];
     if (parent instanceof SubformSet) {
-      return parent[_symbol_utils.$getSubformParent]();
+      return parent[_symbol_utils.$getSubformParent];
     }
     return parent;
   }
-  [_symbol_utils.$isBindable]() {
+  [_symbol_utils.$isBindable] {
     return true;
   }
-  [_symbol_utils.$isThereMoreWidth]() {
-    return this.layout.endsWith("-tb") && this[_symbol_utils.$extra].attempt === 0 && this[_symbol_utils.$extra].numberInLine > 0 || this[_symbol_utils.$getParent]()[_symbol_utils.$isThereMoreWidth]();
+  [_symbol_utils.$isThereMoreWidth] {
+    return this.layout.endsWith("-tb") && this[_symbol_utils.$extra].attempt === 0 && this[_symbol_utils.$extra].numberInLine > 0 || this[_symbol_utils.$getParent][_symbol_utils.$isThereMoreWidth];
   }
-  *[_symbol_utils.$getContainedChildren]() {
+  *[_symbol_utils.$getContainedChildren] {
     yield* getContainedChildren(this);
   }
-  [_symbol_utils.$flushHTML]() {
+  [_symbol_utils.$flushHTML] {
     return (0, _layout.flushHTML)(this);
   }
   [_symbol_utils.$addHTML](html, bbox) {
     (0, _layout.addHTML)(this, html, bbox);
   }
-  [_symbol_utils.$getAvailableSpace]() {
+  [_symbol_utils.$getAvailableSpace] {
     return (0, _layout.getAvailableSpace)(this);
   }
-  [_symbol_utils.$isSplittable]() {
-    const parent = this[_symbol_utils.$getSubformParent]();
-    if (!parent[_symbol_utils.$isSplittable]()) {
+  [_symbol_utils.$isSplittable] {
+    const parent = this[_symbol_utils.$getSubformParent];
+    if (!parent[_symbol_utils.$isSplittable]) {
       return false;
     }
     if (this[_symbol_utils.$extra]._isSplittable !== undefined) {
@@ -50333,7 +50333,7 @@ class Subform extends _xfa_object.XFAObject {
         const node = new BreakAfter({
           targetType: this.break.after,
           target: this.break.afterTarget,
-          startNew: this.break.startNew.toString()
+          startNew: this.break.startNew.toString
         });
         node[_symbol_utils.$globalData] = this[_symbol_utils.$globalData];
         this[_symbol_utils.$appendChild](node);
@@ -50343,7 +50343,7 @@ class Subform extends _xfa_object.XFAObject {
         const node = new BreakBefore({
           targetType: this.break.before,
           target: this.break.beforeTarget,
-          startNew: this.break.startNew.toString()
+          startNew: this.break.startNew.toString
         });
         node[_symbol_utils.$globalData] = this[_symbol_utils.$globalData];
         this[_symbol_utils.$appendChild](node);
@@ -50402,9 +50402,9 @@ class Subform extends _xfa_object.XFAObject {
       prevHeight: 0,
       currentWidth: 0
     });
-    const root = this[_symbol_utils.$getTemplateRoot]();
+    const root = this[_symbol_utils.$getTemplateRoot];
     const savedNoLayoutFailure = root[_symbol_utils.$extra].noLayoutFailure;
-    const isSplittable = this[_symbol_utils.$isSplittable]();
+    const isSplittable = this[_symbol_utils.$isSplittable];
     if (!isSplittable) {
       setFirstUnsplittable(this);
     }
@@ -50413,7 +50413,7 @@ class Subform extends _xfa_object.XFAObject {
     }
     const filter = new Set(["area", "draw", "exclGroup", "field", "subform", "subformSet"]);
     if (this.layout.includes("row")) {
-      const columnWidths = this[_symbol_utils.$getSubformParent]().columnWidths;
+      const columnWidths = this[_symbol_utils.$getSubformParent].columnWidths;
       if (Array.isArray(columnWidths) && columnWidths.length > 0) {
         this[_symbol_utils.$extra].columnWidths = columnWidths;
         this[_symbol_utils.$extra].currentColumn = 0;
@@ -50431,13 +50431,13 @@ class Subform extends _xfa_object.XFAObject {
       attributes.xfaName = this.name;
     }
     if (this.overflow) {
-      const overflowExtra = this.overflow[_symbol_utils.$getExtra]();
+      const overflowExtra = this.overflow[_symbol_utils.$getExtra];
       if (overflowExtra.addLeader) {
         overflowExtra.addLeader = false;
         handleOverflow(this, overflowExtra.leader, availableSpace);
       }
     }
-    this[_symbol_utils.$pushPara]();
+    this[_symbol_utils.$pushPara];
     const isLrTb = this.layout === "lr-tb" || this.layout === "rl-tb";
     const maxRun = isLrTb ? MAX_ATTEMPTS_FOR_LRTB_LAYOUT : 1;
     for (; this[_symbol_utils.$extra].attempt < maxRun; this[_symbol_utils.$extra].attempt++) {
@@ -50451,8 +50451,8 @@ class Subform extends _xfa_object.XFAObject {
       if (result.success) {
         break;
       }
-      if (result.isBreak()) {
-        this[_symbol_utils.$popPara]();
+      if (result.isBreak) {
+        this[_symbol_utils.$popPara];
         return result;
       }
       if (isLrTb && this[_symbol_utils.$extra].attempt === 0 && this[_symbol_utils.$extra].numberInLine === 0 && !root[_symbol_utils.$extra].noLayoutFailure) {
@@ -50460,14 +50460,14 @@ class Subform extends _xfa_object.XFAObject {
         break;
       }
     }
-    this[_symbol_utils.$popPara]();
+    this[_symbol_utils.$popPara];
     if (!isSplittable) {
       unsetFirstUnsplittable(this);
     }
     root[_symbol_utils.$extra].noLayoutFailure = savedNoLayoutFailure;
     if (this[_symbol_utils.$extra].attempt === maxRun) {
       if (this.overflow) {
-        this[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].overflowNode = this.overflow;
+        this[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].overflowNode = this.overflow;
       }
       if (!isSplittable) {
         delete this[_symbol_utils.$extra];
@@ -50475,7 +50475,7 @@ class Subform extends _xfa_object.XFAObject {
       return _utils.HTMLResult.FAILURE;
     }
     if (this.overflow) {
-      const overflowExtra = this.overflow[_symbol_utils.$getExtra]();
+      const overflowExtra = this.overflow[_symbol_utils.$getExtra];
       if (overflowExtra.addTrailer) {
         overflowExtra.addTrailer = false;
         handleOverflow(this, overflowExtra.trailer, availableSpace);
@@ -50532,22 +50532,22 @@ class SubformSet extends _xfa_object.XFAObject {
     this.extras = null;
     this.occur = null;
     this.overflow = null;
-    this.breakAfter = new _xfa_object.XFAObjectArray();
-    this.breakBefore = new _xfa_object.XFAObjectArray();
-    this.subform = new _xfa_object.XFAObjectArray();
-    this.subformSet = new _xfa_object.XFAObjectArray();
+    this.breakAfter = new _xfa_object.XFAObjectArray;
+    this.breakBefore = new _xfa_object.XFAObjectArray;
+    this.subform = new _xfa_object.XFAObjectArray;
+    this.subformSet = new _xfa_object.XFAObjectArray;
   }
-  *[_symbol_utils.$getContainedChildren]() {
+  *[_symbol_utils.$getContainedChildren] {
     yield* getContainedChildren(this);
   }
-  [_symbol_utils.$getSubformParent]() {
-    let parent = this[_symbol_utils.$getParent]();
+  [_symbol_utils.$getSubformParent] {
+    let parent = this[_symbol_utils.$getParent];
     while (!(parent instanceof Subform)) {
-      parent = parent[_symbol_utils.$getParent]();
+      parent = parent[_symbol_utils.$getParent];
     }
     return parent;
   }
-  [_symbol_utils.$isBindable]() {
+  [_symbol_utils.$isBindable] {
     return true;
   }
 }
@@ -50560,10 +50560,10 @@ class SubjectDN extends _xfa_object.ContentObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
-  [_symbol_utils.$finalize]() {
+  [_symbol_utils.$finalize] {
     this[_symbol_utils.$content] = new Map(this[_symbol_utils.$content].split(this.delimiter).map(kv => {
       kv = kv.split("=", 2);
-      kv[0] = kv[0].trim();
+      kv[0] = kv[0].trim;
       return kv;
     }));
   }
@@ -50575,7 +50575,7 @@ class SubjectDNs extends _xfa_object.XFAObject {
     this.type = (0, _utils.getStringOption)(attributes.type, ["optional", "required"]);
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.subjectDN = new _xfa_object.XFAObjectArray();
+    this.subjectDN = new _xfa_object.XFAObjectArray;
   }
 }
 class Submit extends _xfa_object.XFAObject {
@@ -50590,7 +50590,7 @@ class Submit extends _xfa_object.XFAObject {
     this.id = attributes.id || "";
     this.target = attributes.target || "";
     this.textEncoding = (0, _utils.getKeyword)({
-      data: attributes.textEncoding ? attributes.textEncoding.toLowerCase() : "",
+      data: attributes.textEncoding ? attributes.textEncoding.toLowerCase : "",
       defaultValue: "",
       validate: k => ["utf-8", "big-five", "fontspecific", "gbk", "gb-18030", "gb-2312", "ksc-5601", "none", "shift-jis", "ucs-2", "utf-16"].includes(k) || k.match(/iso-8859-\d{2}/)
     });
@@ -50598,8 +50598,8 @@ class Submit extends _xfa_object.XFAObject {
     this.usehref = attributes.usehref || "";
     this.xdpContent = attributes.xdpContent || "";
     this.encrypt = null;
-    this.encryptData = new _xfa_object.XFAObjectArray();
-    this.signData = new _xfa_object.XFAObjectArray();
+    this.encryptData = new _xfa_object.XFAObjectArray;
+    this.signData = new _xfa_object.XFAObjectArray;
   }
 }
 class Template extends _xfa_object.XFAObject {
@@ -50607,9 +50607,9 @@ class Template extends _xfa_object.XFAObject {
     super(TEMPLATE_NS_ID, "template", true);
     this.baseProfile = (0, _utils.getStringOption)(attributes.baseProfile, ["full", "interactiveForms"]);
     this.extras = null;
-    this.subform = new _xfa_object.XFAObjectArray();
+    this.subform = new _xfa_object.XFAObjectArray;
   }
-  [_symbol_utils.$finalize]() {
+  [_symbol_utils.$finalize] {
     if (this.subform.children.length === 0) {
       (0, _util.warn)("XFA - No subforms in template node.");
     }
@@ -50618,7 +50618,7 @@ class Template extends _xfa_object.XFAObject {
     }
     this[_symbol_utils.$tabIndex] = DEFAULT_TAB_INDEX;
   }
-  [_symbol_utils.$isSplittable]() {
+  [_symbol_utils.$isSplittable] {
     return true;
   }
   [_symbol_utils.$searchNode](expr, container) {
@@ -50627,7 +50627,7 @@ class Template extends _xfa_object.XFAObject {
     }
     return (0, _som.searchNode)(this, container, expr, true, true);
   }
-  *[_symbol_utils.$toPages]() {
+  *[_symbol_utils.$toPages] {
     if (!this.subform.children.length) {
       return _utils.HTMLResult.success({
         name: "div",
@@ -50647,7 +50647,7 @@ class Template extends _xfa_object.XFAObject {
       paraStack: []
     };
     const root = this.subform.children[0];
-    root.pageSet[_symbol_utils.$cleanPage]();
+    root.pageSet[_symbol_utils.$cleanPage];
     const pageAreas = root.pageSet.pageArea.children;
     const mainHtml = {
       name: "div",
@@ -50670,7 +50670,7 @@ class Template extends _xfa_object.XFAObject {
       breakBeforeTarget = breakBefore.beforeTarget;
     }
     if (breakBefore) {
-      const target = this[_symbol_utils.$searchNode](breakBeforeTarget, breakBefore[_symbol_utils.$getParent]());
+      const target = this[_symbol_utils.$searchNode](breakBeforeTarget, breakBefore[_symbol_utils.$getParent]);
       if (target instanceof PageArea) {
         pageArea = target;
         breakBefore[_symbol_utils.$extra] = {};
@@ -50682,7 +50682,7 @@ class Template extends _xfa_object.XFAObject {
     pageArea[_symbol_utils.$extra] = {
       numberOfUse: 1
     };
-    const pageAreaParent = pageArea[_symbol_utils.$getParent]();
+    const pageAreaParent = pageArea[_symbol_utils.$getParent];
     pageAreaParent[_symbol_utils.$extra] = {
       numberOfUse: 1,
       pageIndex: pageAreaParent.pageArea.children.indexOf(pageArea),
@@ -50696,7 +50696,7 @@ class Template extends _xfa_object.XFAObject {
     let startIndex = 0;
     while (true) {
       if (!hasSomething) {
-        mainHtml.children.pop();
+        mainHtml.children.pop;
         if (++hasSomethingCounter === MAX_EMPTY_PAGES) {
           (0, _util.warn)("XFA - Something goes wrong: please file a bug.");
           return mainHtml;
@@ -50706,7 +50706,7 @@ class Template extends _xfa_object.XFAObject {
       }
       targetPageArea = null;
       this[_symbol_utils.$extra].currentPageArea = pageArea;
-      const page = pageArea[_symbol_utils.$toHTML]().html;
+      const page = pageArea[_symbol_utils.$toHTML].html;
       mainHtml.children.push(page);
       if (leader) {
         this[_symbol_utils.$extra].noLayoutFailure = true;
@@ -50724,7 +50724,7 @@ class Template extends _xfa_object.XFAObject {
       this[_symbol_utils.$extra].firstUnsplittable = null;
       this[_symbol_utils.$extra].noLayoutFailure = false;
       const flush = index => {
-        const html = root[_symbol_utils.$flushHTML]();
+        const html = root[_symbol_utils.$flushHTML];
         if (html) {
           hasSomething ||= html.children?.length > 0;
           htmlContentAreas[index].children.push(html);
@@ -50751,22 +50751,22 @@ class Template extends _xfa_object.XFAObject {
             hasSomething ||= html.html.children?.length > 0;
             htmlContentAreas[i].children.push(html.html);
           } else if (!hasSomething && mainHtml.children.length > 1) {
-            mainHtml.children.pop();
+            mainHtml.children.pop;
           }
           return mainHtml;
         }
-        if (html.isBreak()) {
+        if (html.isBreak) {
           const node = html.breakNode;
           flush(i);
           if (node.targetType === "auto") {
             continue;
           }
           if (node.leader) {
-            leader = this[_symbol_utils.$searchNode](node.leader, node[_symbol_utils.$getParent]());
+            leader = this[_symbol_utils.$searchNode](node.leader, node[_symbol_utils.$getParent]);
             leader = leader ? leader[0] : null;
           }
           if (node.trailer) {
-            trailer = this[_symbol_utils.$searchNode](node.trailer, node[_symbol_utils.$getParent]());
+            trailer = this[_symbol_utils.$searchNode](node.trailer, node[_symbol_utils.$getParent]);
             trailer = trailer ? trailer[0] : null;
           }
           if (node.targetType === "pageArea") {
@@ -50784,7 +50784,7 @@ class Template extends _xfa_object.XFAObject {
         if (this[_symbol_utils.$extra].overflowNode) {
           const node = this[_symbol_utils.$extra].overflowNode;
           this[_symbol_utils.$extra].overflowNode = null;
-          const overflowExtra = node[_symbol_utils.$getExtra]();
+          const overflowExtra = node[_symbol_utils.$getExtra];
           const target = overflowExtra.target;
           overflowExtra.addLeader = overflowExtra.leader !== null;
           overflowExtra.addTrailer = overflowExtra.trailer !== null;
@@ -50802,7 +50802,7 @@ class Template extends _xfa_object.XFAObject {
                 startIndex = index;
               }
             } else {
-              targetPageArea = target[_symbol_utils.$getParent]();
+              targetPageArea = target[_symbol_utils.$getParent];
               startIndex = targetPageArea.contentArea.children.indexOf(target);
             }
           }
@@ -50812,13 +50812,13 @@ class Template extends _xfa_object.XFAObject {
       }
       this[_symbol_utils.$extra].pageNumber += 1;
       if (targetPageArea) {
-        if (targetPageArea[_symbol_utils.$isUsable]()) {
+        if (targetPageArea[_symbol_utils.$isUsable]) {
           targetPageArea[_symbol_utils.$extra].numberOfUse += 1;
         } else {
           targetPageArea = null;
         }
       }
-      pageArea = targetPageArea || pageArea[_symbol_utils.$getNextPage]();
+      pageArea = targetPageArea || pageArea[_symbol_utils.$getNextPage];
       yield null;
     }
   }
@@ -50838,7 +50838,7 @@ class Text extends _xfa_object.ContentObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
-  [_symbol_utils.$acceptWhitespace]() {
+  [_symbol_utils.$acceptWhitespace] {
     return true;
   }
   [_symbol_utils.$onChild](child) {
@@ -50855,12 +50855,12 @@ class Text extends _xfa_object.ContentObject {
     }
     super[_symbol_utils.$onText](str);
   }
-  [_symbol_utils.$finalize]() {
+  [_symbol_utils.$finalize] {
     if (typeof this[_symbol_utils.$content] === "string") {
       this[_symbol_utils.$content] = this[_symbol_utils.$content].replaceAll("\r\n", "\n");
     }
   }
-  [_symbol_utils.$getExtra]() {
+  [_symbol_utils.$getExtra] {
     if (typeof this[_symbol_utils.$content] === "string") {
       return this[_symbol_utils.$content].split(/[\u2029\u2028\n]/).reduce((acc, line) => {
         if (line) {
@@ -50869,7 +50869,7 @@ class Text extends _xfa_object.ContentObject {
         return acc;
       }, []).join("\n");
     }
-    return this[_symbol_utils.$content][_symbol_utils.$text]();
+    return this[_symbol_utils.$content][_symbol_utils.$text];
   }
   [_symbol_utils.$toHTML](availableSpace) {
     if (typeof this[_symbol_utils.$content] === "string") {
@@ -50935,7 +50935,7 @@ class TextEdit extends _xfa_object.XFAObject {
   [_symbol_utils.$toHTML](availableSpace) {
     const style = (0, _html_utils.toStyle)(this, "border", "font", "margin");
     let html;
-    const field = this[_symbol_utils.$getParent]()[_symbol_utils.$getParent]();
+    const field = this[_symbol_utils.$getParent][_symbol_utils.$getParent];
     if (this.multiLine === "") {
       this.multiLine = field instanceof Draw ? 1 : 0;
     }
@@ -50986,12 +50986,12 @@ class Time extends _xfa_object.StringObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
   }
-  [_symbol_utils.$finalize]() {
-    const date = this[_symbol_utils.$content].trim();
+  [_symbol_utils.$finalize] {
+    const date = this[_symbol_utils.$content].trim;
     this[_symbol_utils.$content] = date ? new Date(date) : null;
   }
   [_symbol_utils.$toHTML](availableSpace) {
-    return valueToHtml(this[_symbol_utils.$content] ? this[_symbol_utils.$content].toString() : "");
+    return valueToHtml(this[_symbol_utils.$content] ? this[_symbol_utils.$content].toString : "");
   }
 }
 class TimeStamp extends _xfa_object.XFAObject {
@@ -51020,7 +51020,7 @@ class Traversal extends _xfa_object.XFAObject {
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
     this.extras = null;
-    this.traverse = new _xfa_object.XFAObjectArray();
+    this.traverse = new _xfa_object.XFAObjectArray;
   }
 }
 class Traverse extends _xfa_object.XFAObject {
@@ -51034,10 +51034,10 @@ class Traverse extends _xfa_object.XFAObject {
     this.extras = null;
     this.script = null;
   }
-  get name() {
+  get name {
     return this.operation;
   }
-  [_symbol_utils.$isTransparent]() {
+  [_symbol_utils.$isTransparent] {
     return false;
   }
 }
@@ -51061,7 +51061,7 @@ class Ui extends _xfa_object.XFAObject {
     this.signature = null;
     this.textEdit = null;
   }
-  [_symbol_utils.$getExtra]() {
+  [_symbol_utils.$getExtra] {
     if (this[_symbol_utils.$extra] === undefined) {
       for (const name of Object.getOwnPropertyNames(this)) {
         if (name === "extras" || name === "picture") {
@@ -51079,7 +51079,7 @@ class Ui extends _xfa_object.XFAObject {
     return this[_symbol_utils.$extra];
   }
   [_symbol_utils.$toHTML](availableSpace) {
-    const obj = this[_symbol_utils.$getExtra]();
+    const obj = this[_symbol_utils.$getExtra];
     if (obj) {
       return obj[_symbol_utils.$toHTML](availableSpace);
     }
@@ -51128,7 +51128,7 @@ class Value extends _xfa_object.XFAObject {
     this.time = null;
   }
   [_symbol_utils.$setValue](value) {
-    const parent = this[_symbol_utils.$getParent]();
+    const parent = this[_symbol_utils.$getParent];
     if (parent instanceof Field) {
       if (parent.ui?.imageEdit) {
         if (!this.image) {
@@ -51154,12 +51154,12 @@ class Value extends _xfa_object.XFAObject {
     this[value[_symbol_utils.$nodeName]] = value;
     this[_symbol_utils.$appendChild](value);
   }
-  [_symbol_utils.$text]() {
+  [_symbol_utils.$text] {
     if (this.exData) {
       if (typeof this.exData[_symbol_utils.$content] === "string") {
-        return this.exData[_symbol_utils.$content].trim();
+        return this.exData[_symbol_utils.$content].trim;
       }
-      return this.exData[_symbol_utils.$content][_symbol_utils.$text]().trim();
+      return this.exData[_symbol_utils.$content][_symbol_utils.$text].trim;
     }
     for (const name of Object.getOwnPropertyNames(this)) {
       if (name === "image") {
@@ -51167,7 +51167,7 @@ class Value extends _xfa_object.XFAObject {
       }
       const obj = this[name];
       if (obj instanceof _xfa_object.XFAObject) {
-        return (obj[_symbol_utils.$content] || "").toString().trim();
+        return (obj[_symbol_utils.$content] || "").toString.trim;
       }
     }
     return null;
@@ -51190,20 +51190,20 @@ class Variables extends _xfa_object.XFAObject {
     this.id = attributes.id || "";
     this.use = attributes.use || "";
     this.usehref = attributes.usehref || "";
-    this.boolean = new _xfa_object.XFAObjectArray();
-    this.date = new _xfa_object.XFAObjectArray();
-    this.dateTime = new _xfa_object.XFAObjectArray();
-    this.decimal = new _xfa_object.XFAObjectArray();
-    this.exData = new _xfa_object.XFAObjectArray();
-    this.float = new _xfa_object.XFAObjectArray();
-    this.image = new _xfa_object.XFAObjectArray();
-    this.integer = new _xfa_object.XFAObjectArray();
-    this.manifest = new _xfa_object.XFAObjectArray();
-    this.script = new _xfa_object.XFAObjectArray();
-    this.text = new _xfa_object.XFAObjectArray();
-    this.time = new _xfa_object.XFAObjectArray();
+    this.boolean = new _xfa_object.XFAObjectArray;
+    this.date = new _xfa_object.XFAObjectArray;
+    this.dateTime = new _xfa_object.XFAObjectArray;
+    this.decimal = new _xfa_object.XFAObjectArray;
+    this.exData = new _xfa_object.XFAObjectArray;
+    this.float = new _xfa_object.XFAObjectArray;
+    this.image = new _xfa_object.XFAObjectArray;
+    this.integer = new _xfa_object.XFAObjectArray;
+    this.manifest = new _xfa_object.XFAObjectArray;
+    this.script = new _xfa_object.XFAObjectArray;
+    this.text = new _xfa_object.XFAObjectArray;
+    this.time = new _xfa_object.XFAObjectArray;
   }
-  [_symbol_utils.$isTransparent]() {
+  [_symbol_utils.$isTransparent] {
     return true;
   }
 }
@@ -51568,7 +51568,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports.NamespaceIds = exports.$buildXFAObject = void 0;
-const $buildXFAObject = Symbol();
+const $buildXFAObject = Symbol;
 exports.$buildXFAObject = $buildXFAObject;
 const NamespaceIds = {
   config: {
@@ -51669,7 +51669,7 @@ function flushHTML(node) {
     children: node[_symbol_utils.$extra].children
   };
   if (node[_symbol_utils.$extra].failingNode) {
-    const htmlFromFailing = node[_symbol_utils.$extra].failingNode[_symbol_utils.$flushHTML]();
+    const htmlFromFailing = node[_symbol_utils.$extra].failingNode[_symbol_utils.$flushHTML];
     if (htmlFromFailing) {
       if (node.layout.endsWith("-tb")) {
         html.children.push(createLine(node, [htmlFromFailing]));
@@ -51829,21 +51829,21 @@ function getTransformedBBox(node) {
   return [node.x + x + Math.min(0, w), node.y + y + Math.min(0, h), Math.abs(w), Math.abs(h)];
 }
 function checkDimensions(node, space) {
-  if (node[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].firstUnsplittable === null) {
+  if (node[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].firstUnsplittable === null) {
     return true;
   }
   if (node.w === 0 || node.h === 0) {
     return true;
   }
   const ERROR = 2;
-  const parent = node[_symbol_utils.$getSubformParent]();
+  const parent = node[_symbol_utils.$getSubformParent];
   const attempt = parent[_symbol_utils.$extra]?.attempt || 0;
   const [, y, w, h] = getTransformedBBox(node);
   switch (parent.layout) {
     case "lr-tb":
     case "rl-tb":
       if (attempt === 0) {
-        if (!node[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].noLayoutFailure) {
+        if (!node[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].noLayoutFailure) {
           if (node.h !== "" && Math.round(h - space.height) > ERROR) {
             return false;
           }
@@ -51863,7 +51863,7 @@ function checkDimensions(node, space) {
         }
         return space.width > ERROR;
       }
-      if (node[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].noLayoutFailure) {
+      if (node[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].noLayoutFailure) {
         return true;
       }
       if (node.h !== "" && Math.round(h - space.height) > ERROR) {
@@ -51872,37 +51872,37 @@ function checkDimensions(node, space) {
       if (node.w === "" || Math.round(w - space.width) <= ERROR) {
         return space.height > ERROR;
       }
-      if (parent[_symbol_utils.$isThereMoreWidth]()) {
+      if (parent[_symbol_utils.$isThereMoreWidth]) {
         return false;
       }
       return space.height > ERROR;
     case "table":
     case "tb":
-      if (node[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].noLayoutFailure) {
+      if (node[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].noLayoutFailure) {
         return true;
       }
-      if (node.h !== "" && !node[_symbol_utils.$isSplittable]()) {
+      if (node.h !== "" && !node[_symbol_utils.$isSplittable]) {
         return Math.round(h - space.height) <= ERROR;
       }
       if (node.w === "" || Math.round(w - space.width) <= ERROR) {
         return space.height > ERROR;
       }
-      if (parent[_symbol_utils.$isThereMoreWidth]()) {
+      if (parent[_symbol_utils.$isThereMoreWidth]) {
         return false;
       }
       return space.height > ERROR;
     case "position":
-      if (node[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].noLayoutFailure) {
+      if (node[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].noLayoutFailure) {
         return true;
       }
       if (node.h === "" || Math.round(h + y - space.height) <= ERROR) {
         return true;
       }
-      const area = node[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].currentContentArea;
+      const area = node[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].currentContentArea;
       return h + y > area.h;
     case "rl-row":
     case "row":
-      if (node[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].noLayoutFailure) {
+      if (node[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].noLayoutFailure) {
         return true;
       }
       if (node.h !== "") {
@@ -51951,7 +51951,7 @@ function measureToString(m) {
 }
 const converters = {
   anchorType(node, style) {
-    const parent = node[_symbol_utils.$getSubformParent]();
+    const parent = node[_symbol_utils.$getSubformParent];
     if (!parent || parent.layout && parent.layout !== "position") {
       return;
     }
@@ -51986,7 +51986,7 @@ const converters = {
     }
   },
   dimensions(node, style) {
-    const parent = node[_symbol_utils.$getSubformParent]();
+    const parent = node[_symbol_utils.$getSubformParent];
     let width = node.w;
     const height = node.h;
     if (parent.layout?.includes("row")) {
@@ -52008,7 +52008,7 @@ const converters = {
     style.height = height !== "" ? measureToString(height) : "auto";
   },
   position(node, style) {
-    const parent = node[_symbol_utils.$getSubformParent]();
+    const parent = node[_symbol_utils.$getSubformParent];
     if (parent?.layout && parent.layout !== "position") {
       return;
     }
@@ -52064,12 +52064,12 @@ const converters = {
   },
   margin(node, style) {
     if (node.margin) {
-      style.margin = node.margin[_symbol_utils.$toStyle]().margin;
+      style.margin = node.margin[_symbol_utils.$toStyle].margin;
     }
   }
 };
 function setMinMaxDimensions(node, style) {
-  const parent = node[_symbol_utils.$getSubformParent]();
+  const parent = node[_symbol_utils.$getSubformParent];
   if (parent.layout === "position") {
     if (node.minW > 0) {
       style.minWidth = measureToString(node.minW);
@@ -52117,14 +52117,14 @@ function layoutNode(node, availableSpace) {
     }
     let font = node.font;
     if (!font) {
-      const root = node[_symbol_utils.$getTemplateRoot]();
-      let parent = node[_symbol_utils.$getParent]();
+      const root = node[_symbol_utils.$getTemplateRoot];
+      let parent = node[_symbol_utils.$getParent];
       while (parent && parent !== root) {
         if (parent.font) {
           font = parent.font;
           break;
         }
-        parent = parent[_symbol_utils.$getParent]();
+        parent = parent[_symbol_utils.$getParent];
       }
     }
     const maxWidth = (node.w || availableSpace.width) - marginH;
@@ -52135,7 +52135,7 @@ function layoutNode(node, availableSpace) {
       height = res.height;
       isBroken = res.isBroken;
     } else {
-      const text = node.value[_symbol_utils.$text]();
+      const text = node.value[_symbol_utils.$text];
       if (text) {
         const res = layoutText(text, font, margin, lineHeight, fontFinder, maxWidth);
         width = res.width;
@@ -52167,7 +52167,7 @@ function computeBbox(node, html, availableSpace) {
     let width = node.w;
     if (width === "") {
       if (node.maxW === 0) {
-        const parent = node[_symbol_utils.$getSubformParent]();
+        const parent = node[_symbol_utils.$getSubformParent];
         width = parent.layout === "position" && parent.w !== "" ? 0 : node.minW;
       } else {
         width = Math.min(node.maxW, availableSpace.width);
@@ -52177,7 +52177,7 @@ function computeBbox(node, html, availableSpace) {
     let height = node.h;
     if (height === "") {
       if (node.maxH === 0) {
-        const parent = node[_symbol_utils.$getSubformParent]();
+        const parent = node[_symbol_utils.$getSubformParent];
         height = parent.layout === "position" && parent.h !== "" ? 0 : node.minH;
       } else {
         height = Math.min(node.maxH, availableSpace.height);
@@ -52189,7 +52189,7 @@ function computeBbox(node, html, availableSpace) {
   return bbox;
 }
 function fixDimensions(node) {
-  const parent = node[_symbol_utils.$getSubformParent]();
+  const parent = node[_symbol_utils.$getSubformParent];
   if (parent.layout?.includes("row")) {
     const extra = parent[_symbol_utils.$extra];
     const colSpan = node.colSpan;
@@ -52244,7 +52244,7 @@ function toStyle(node, ...names) {
       continue;
     }
     if (value instanceof _xfa_object.XFAObject) {
-      const newStyle = value[_symbol_utils.$toStyle]();
+      const newStyle = value[_symbol_utils.$toStyle];
       if (newStyle) {
         Object.assign(style, newStyle);
       } else {
@@ -52366,7 +52366,7 @@ function isPrintOnly(node) {
   return node.relevant.length > 0 && !node.relevant[0].excluded && node.relevant[0].viewname === "print";
 }
 function getCurrentPara(node) {
-  const stack = node[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].paraStack;
+  const stack = node[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].paraStack;
   return stack.length ? stack.at(-1) : null;
 }
 function setPara(node, nodeStyle, value) {
@@ -52395,7 +52395,7 @@ function setPara(node, nodeStyle, value) {
           valueStyle.justifyContent = "center";
           break;
       }
-      const paraStyle = para[_symbol_utils.$toStyle]();
+      const paraStyle = para[_symbol_utils.$toStyle];
       for (const [key, val] of Object.entries(paraStyle)) {
         if (!(key in valueStyle)) {
           valueStyle[key] = val;
@@ -52483,7 +52483,7 @@ function getInteger({
   if (!data) {
     return defaultValue;
   }
-  data = data.trim();
+  data = data.trim;
   const n = parseInt(data, 10);
   if (!isNaN(n) && validate(n)) {
     return n;
@@ -52498,7 +52498,7 @@ function getFloat({
   if (!data) {
     return defaultValue;
   }
-  data = data.trim();
+  data = data.trim;
   const n = parseFloat(data);
   if (!isNaN(n) && validate(n)) {
     return n;
@@ -52513,7 +52513,7 @@ function getKeyword({
   if (!data) {
     return defaultValue;
   }
-  data = data.trim();
+  data = data.trim;
   if (validate(data)) {
     return data;
   }
@@ -52531,7 +52531,7 @@ function getMeasurement(str, def = "0") {
   if (!str) {
     return getMeasurement(def);
   }
-  const match = str.trim().match(measurementPattern);
+  const match = str.trim.match(measurementPattern);
   if (!match) {
     return getMeasurement(def);
   }
@@ -52556,7 +52556,7 @@ function getRatio(data) {
       den: 1
     };
   }
-  const ratio = data.trim().split(/\s*:\s*/).map(x => parseFloat(x)).filter(x => !isNaN(x));
+  const ratio = data.trim.split(/\s*:\s*/).map(x => parseFloat(x)).filter(x => !isNaN(x));
   if (ratio.length === 1) {
     ratio.push(1);
   }
@@ -52576,7 +52576,7 @@ function getRelevant(data) {
   if (!data) {
     return [];
   }
-  return data.trim().split(/\s+/).map(e => {
+  return data.trim.split(/\s+/).map(e => {
     return {
       excluded: e[0] === "-",
       viewname: e.substring(1)
@@ -52592,7 +52592,7 @@ function getColor(data, def = [0, 0, 0]) {
       b
     };
   }
-  const color = data.trim().split(/\s*,\s*/).map(c => Math.min(Math.max(0, parseInt(c.trim(), 10)), 255)).map(c => isNaN(c) ? 0 : c);
+  const color = data.trim.split(/\s*,\s*/).map(c => Math.min(Math.max(0, parseInt(c.trim, 10)), 255)).map(c => isNaN(c) ? 0 : c);
   if (color.length < 3) {
     return {
       r,
@@ -52617,7 +52617,7 @@ function getBBox(data) {
       height: def
     };
   }
-  const bbox = data.trim().split(/\s*,\s*/).map(m => getMeasurement(m, "-1"));
+  const bbox = data.trim.split(/\s*,\s*/).map(m => getMeasurement(m, "-1"));
   if (bbox.length < 4 || bbox[2] < 0 || bbox[3] < 0) {
     return {
       x: def,
@@ -52635,10 +52635,10 @@ function getBBox(data) {
   };
 }
 class HTMLResult {
-  static get FAILURE() {
+  static get FAILURE {
     return (0, _util.shadow)(this, "FAILURE", new HTMLResult(false, null, null, null));
   }
-  static get EMPTY() {
+  static get EMPTY {
     return (0, _util.shadow)(this, "EMPTY", new HTMLResult(true, null, null, null));
   }
   constructor(success, html, bbox, breakNode) {
@@ -52647,7 +52647,7 @@ class HTMLResult {
     this.bbox = bbox;
     this.breakNode = breakNode;
   }
-  isBreak() {
+  isBreak {
     return !!this.breakNode;
   }
   static breakNode(node) {
@@ -52676,9 +52676,9 @@ var _utils = __w_pdfjs_require__(84);
 var _util = __w_pdfjs_require__(2);
 class FontFinder {
   constructor(pdfFonts) {
-    this.fonts = new Map();
-    this.cache = new Map();
-    this.warned = new Set();
+    this.fonts = new Map;
+    this.cache = new Map;
+    this.warned = new Set;
     this.defaultFont = null;
     this.add(pdfFonts);
   }
@@ -52686,7 +52686,7 @@ class FontFinder {
     for (const pdfFont of pdfFonts) {
       this.addPdfFont(pdfFont);
     }
-    for (const pdfFont of this.fonts.values()) {
+    for (const pdfFont of this.fonts.values) {
       if (!pdfFont.regular) {
         pdfFont.regular = pdfFont.italic || pdfFont.bold || pdfFont.bolditalic;
       }
@@ -52730,7 +52730,7 @@ class FontFinder {
     }
     font[property] = pdfFont;
   }
-  getDefault() {
+  getDefault {
     return this.defaultFont;
   }
   find(fontName, mustWarn = true) {
@@ -52745,31 +52745,31 @@ class FontFinder {
       this.cache.set(fontName, font);
       return font;
     }
-    name = name.toLowerCase();
+    name = name.toLowerCase;
     const maybe = [];
-    for (const [family, pdfFont] of this.fonts.entries()) {
-      if (family.replaceAll(pattern, "").toLowerCase().startsWith(name)) {
+    for (const [family, pdfFont] of this.fonts.entries) {
+      if (family.replaceAll(pattern, "").toLowerCase.startsWith(name)) {
         maybe.push(pdfFont);
       }
     }
     if (maybe.length === 0) {
-      for (const [, pdfFont] of this.fonts.entries()) {
-        if (pdfFont.regular.name?.replaceAll(pattern, "").toLowerCase().startsWith(name)) {
+      for (const [, pdfFont] of this.fonts.entries) {
+        if (pdfFont.regular.name?.replaceAll(pattern, "").toLowerCase.startsWith(name)) {
           maybe.push(pdfFont);
         }
       }
     }
     if (maybe.length === 0) {
       name = name.replaceAll(/psmt|mt/gi, "");
-      for (const [family, pdfFont] of this.fonts.entries()) {
-        if (family.replaceAll(pattern, "").toLowerCase().startsWith(name)) {
+      for (const [family, pdfFont] of this.fonts.entries) {
+        if (family.replaceAll(pattern, "").toLowerCase.startsWith(name)) {
           maybe.push(pdfFont);
         }
       }
     }
     if (maybe.length === 0) {
-      for (const pdfFont of this.fonts.values()) {
-        if (pdfFont.regular.name?.replaceAll(pattern, "").toLowerCase().startsWith(name)) {
+      for (const pdfFont of this.fonts.values) {
+        if (pdfFont.regular.name?.replaceAll(pattern, "").toLowerCase.startsWith(name)) {
           maybe.push(pdfFont);
         }
       }
@@ -52867,7 +52867,7 @@ class FontInfo {
     }
   }
   defaultFont(fontFinder) {
-    const font = fontFinder.find("Helvetica", false) || fontFinder.find("Myriad Pro", false) || fontFinder.find("Arial", false) || fontFinder.getDefault();
+    const font = fontFinder.find("Helvetica", false) || fontFinder.find("Myriad Pro", false) || fontFinder.find("Arial", false) || fontFinder.getDefault;
     if (font?.regular) {
       const pdfFont = font.regular;
       const info = pdfFont.cssFontInfo;
@@ -52913,10 +52913,10 @@ class FontSelector {
     }
     this.stack.push(fontInfo);
   }
-  popFont() {
-    this.stack.pop();
+  popFont {
+    this.stack.pop;
   }
-  topFont() {
+  topFont {
     return this.stack.at(-1);
   }
 }
@@ -52930,17 +52930,17 @@ class TextMeasure {
     this.fontSelector.pushData(xfaFont, margin, lineHeight);
   }
   popFont(xfaFont) {
-    return this.fontSelector.popFont();
+    return this.fontSelector.popFont;
   }
-  addPara() {
-    const lastFont = this.fontSelector.topFont();
+  addPara {
+    const lastFont = this.fontSelector.topFont;
     this.extraHeight += lastFont.paraMargin.top + lastFont.paraMargin.bottom;
   }
   addString(str) {
     if (!str) {
       return;
     }
-    const lastFont = this.fontSelector.topFont();
+    const lastFont = this.fontSelector.topFont;
     const fontSize = lastFont.xfaFont.size;
     if (lastFont.pdfFont) {
       const letterSpacing = lastFont.xfaFont.letterSpacing;
@@ -52961,7 +52961,7 @@ class TextMeasure {
         }
         this.glyphs.push([0, 0, 0, "\n", true]);
       }
-      this.glyphs.pop();
+      this.glyphs.pop;
       return;
     }
     for (const line of str.split(/[\u2029\n]/)) {
@@ -52970,7 +52970,7 @@ class TextMeasure {
       }
       this.glyphs.push([0, 0, 0, "\n", true]);
     }
-    this.glyphs.pop();
+    this.glyphs.pop;
   }
   compute(maxWidth) {
     let lastSpacePos = -1,
@@ -53060,23 +53060,23 @@ var _util = __w_pdfjs_require__(2);
 var _core_utils = __w_pdfjs_require__(3);
 var _namespaces = __w_pdfjs_require__(81);
 var _som = __w_pdfjs_require__(88);
-const _applyPrototype = Symbol();
-const _attributes = Symbol();
-const _attributeNames = Symbol();
+const _applyPrototype = Symbol;
+const _attributes = Symbol;
+const _attributeNames = Symbol;
 const _children = Symbol("_children");
-const _cloneAttribute = Symbol();
-const _dataValue = Symbol();
-const _defaultValue = Symbol();
-const _filteredChildrenGenerator = Symbol();
-const _getPrototype = Symbol();
-const _getUnsetAttributes = Symbol();
-const _hasChildren = Symbol();
-const _max = Symbol();
-const _options = Symbol();
+const _cloneAttribute = Symbol;
+const _dataValue = Symbol;
+const _defaultValue = Symbol;
+const _filteredChildrenGenerator = Symbol;
+const _getPrototype = Symbol;
+const _getUnsetAttributes = Symbol;
+const _hasChildren = Symbol;
+const _max = Symbol;
+const _options = Symbol;
 const _parent = Symbol("parent");
-const _resolvePrototypesHelper = Symbol();
-const _setAttributes = Symbol();
-const _validator = Symbol();
+const _resolvePrototypesHelper = Symbol;
+const _setAttributes = Symbol;
+const _validator = Symbol;
 let uid = 0;
 const NS_DATASETS = _namespaces.NamespaceIds.datasets.id;
 class XFAObject {
@@ -53089,10 +53089,10 @@ class XFAObject {
     this[_symbol_utils.$uid] = `${name}${uid++}`;
     this[_symbol_utils.$globalData] = null;
   }
-  get isXFAObject() {
+  get isXFAObject {
     return true;
   }
-  get isXFAObjectArray() {
+  get isXFAObjectArray {
     return false;
   }
   createNodes(path) {
@@ -53142,38 +53142,38 @@ class XFAObject {
   [_symbol_utils.$onChildCheck](child) {
     return this.hasOwnProperty(child[_symbol_utils.$nodeName]) && child[_symbol_utils.$namespaceId] === this[_symbol_utils.$namespaceId];
   }
-  [_symbol_utils.$isNsAgnostic]() {
+  [_symbol_utils.$isNsAgnostic] {
     return false;
   }
-  [_symbol_utils.$acceptWhitespace]() {
+  [_symbol_utils.$acceptWhitespace] {
     return false;
   }
-  [_symbol_utils.$isCDATAXml]() {
+  [_symbol_utils.$isCDATAXml] {
     return false;
   }
-  [_symbol_utils.$isBindable]() {
+  [_symbol_utils.$isBindable] {
     return false;
   }
-  [_symbol_utils.$popPara]() {
+  [_symbol_utils.$popPara] {
     if (this.para) {
-      this[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].paraStack.pop();
+      this[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].paraStack.pop;
     }
   }
-  [_symbol_utils.$pushPara]() {
-    this[_symbol_utils.$getTemplateRoot]()[_symbol_utils.$extra].paraStack.push(this.para);
+  [_symbol_utils.$pushPara] {
+    this[_symbol_utils.$getTemplateRoot][_symbol_utils.$extra].paraStack.push(this.para);
   }
   [_symbol_utils.$setId](ids) {
     if (this.id && this[_symbol_utils.$namespaceId] === _namespaces.NamespaceIds.template.id) {
       ids.set(this.id, this);
     }
   }
-  [_symbol_utils.$getTemplateRoot]() {
+  [_symbol_utils.$getTemplateRoot] {
     return this[_symbol_utils.$globalData].template;
   }
-  [_symbol_utils.$isSplittable]() {
+  [_symbol_utils.$isSplittable] {
     return false;
   }
-  [_symbol_utils.$isThereMoreWidth]() {
+  [_symbol_utils.$isThereMoreWidth] {
     return false;
   }
   [_symbol_utils.$appendChild](child) {
@@ -53187,12 +53187,12 @@ class XFAObject {
     const i = this[_children].indexOf(child);
     this[_children].splice(i, 1);
   }
-  [_symbol_utils.$hasSettableValue]() {
+  [_symbol_utils.$hasSettableValue] {
     return this.hasOwnProperty("value");
   }
   [_symbol_utils.$setValue](_) {}
   [_symbol_utils.$onText](_) {}
-  [_symbol_utils.$finalize]() {}
+  [_symbol_utils.$finalize] {}
   [_symbol_utils.$clean](builder) {
     delete this[_hasChildren];
     if (this[_symbol_utils.$cleanup]) {
@@ -53210,22 +53210,22 @@ class XFAObject {
       child[_symbol_utils.$globalData] = this[_symbol_utils.$globalData];
     }
   }
-  [_symbol_utils.$isTransparent]() {
+  [_symbol_utils.$isTransparent] {
     return !this.name;
   }
-  [_symbol_utils.$lastAttribute]() {
+  [_symbol_utils.$lastAttribute] {
     return "";
   }
-  [_symbol_utils.$text]() {
+  [_symbol_utils.$text] {
     if (this[_children].length === 0) {
       return this[_symbol_utils.$content];
     }
-    return this[_children].map(c => c[_symbol_utils.$text]()).join("");
+    return this[_children].map(c => c[_symbol_utils.$text]).join("");
   }
-  get [_attributeNames]() {
+  get [_attributeNames] {
     const proto = Object.getPrototypeOf(this);
     if (!proto._attributes) {
-      const attributes = proto._attributes = new Set();
+      const attributes = proto._attributes = new Set;
       for (const name of Object.getOwnPropertyNames(this)) {
         if (this[name] === null || this[name] instanceof XFAObject || this[name] instanceof XFAObjectArray) {
           break;
@@ -53241,15 +53241,15 @@ class XFAObject {
       if (node === parent) {
         return true;
       }
-      node = node[_symbol_utils.$getParent]();
+      node = node[_symbol_utils.$getParent];
     }
     return false;
   }
-  [_symbol_utils.$getParent]() {
+  [_symbol_utils.$getParent] {
     return this[_parent];
   }
-  [_symbol_utils.$getSubformParent]() {
-    return this[_symbol_utils.$getParent]();
+  [_symbol_utils.$getSubformParent] {
+    return this[_symbol_utils.$getParent];
   }
   [_symbol_utils.$getChildren](name = null) {
     if (!name) {
@@ -53257,7 +53257,7 @@ class XFAObject {
     }
     return this[name];
   }
-  [_symbol_utils.$dump]() {
+  [_symbol_utils.$dump] {
     const dumped = Object.create(null);
     if (this[_symbol_utils.$content]) {
       dumped.$content = this[_symbol_utils.$content];
@@ -53268,10 +53268,10 @@ class XFAObject {
         continue;
       }
       if (value instanceof XFAObject) {
-        dumped[name] = value[_symbol_utils.$dump]();
+        dumped[name] = value[_symbol_utils.$dump];
       } else if (value instanceof XFAObjectArray) {
-        if (!value.isEmpty()) {
-          dumped[name] = value.dump();
+        if (!value.isEmpty) {
+          dumped[name] = value.dump;
         }
       } else {
         dumped[name] = value;
@@ -53279,21 +53279,21 @@ class XFAObject {
     }
     return dumped;
   }
-  [_symbol_utils.$toStyle]() {
+  [_symbol_utils.$toStyle] {
     return null;
   }
-  [_symbol_utils.$toHTML]() {
+  [_symbol_utils.$toHTML] {
     return _utils.HTMLResult.EMPTY;
   }
-  *[_symbol_utils.$getContainedChildren]() {
-    for (const node of this[_symbol_utils.$getChildren]()) {
+  *[_symbol_utils.$getContainedChildren] {
+    for (const node of this[_symbol_utils.$getChildren]) {
       yield node;
     }
   }
   *[_filteredChildrenGenerator](filter, include) {
-    for (const node of this[_symbol_utils.$getContainedChildren]()) {
+    for (const node of this[_symbol_utils.$getContainedChildren]) {
       if (!filter || include === filter.has(node[_symbol_utils.$nodeName])) {
-        const availableSpace = this[_symbol_utils.$getAvailableSpace]();
+        const availableSpace = this[_symbol_utils.$getAvailableSpace];
         const res = node[_symbol_utils.$toHTML](availableSpace);
         if (!res.success) {
           this[_symbol_utils.$extra].failingNode = node;
@@ -53302,13 +53302,13 @@ class XFAObject {
       }
     }
   }
-  [_symbol_utils.$flushHTML]() {
+  [_symbol_utils.$flushHTML] {
     return null;
   }
   [_symbol_utils.$addHTML](html, bbox) {
     this[_symbol_utils.$extra].children.push(html);
   }
-  [_symbol_utils.$getAvailableSpace]() {}
+  [_symbol_utils.$getAvailableSpace] {}
   [_symbol_utils.$childrenToHTML]({
     filter = null,
     include = true
@@ -53316,7 +53316,7 @@ class XFAObject {
     if (!this[_symbol_utils.$extra].generator) {
       this[_symbol_utils.$extra].generator = this[_filteredChildrenGenerator](filter, include);
     } else {
-      const availableSpace = this[_symbol_utils.$getAvailableSpace]();
+      const availableSpace = this[_symbol_utils.$getAvailableSpace];
       const res = this[_symbol_utils.$extra].failingNode[_symbol_utils.$toHTML](availableSpace);
       if (!res.success) {
         return res;
@@ -53327,7 +53327,7 @@ class XFAObject {
       delete this[_symbol_utils.$extra].failingNode;
     }
     while (true) {
-      const gen = this[_symbol_utils.$extra].generator.next();
+      const gen = this[_symbol_utils.$extra].generator.next;
       if (gen.done) {
         break;
       }
@@ -53350,7 +53350,7 @@ class XFAObject {
     const setAttr = this[_setAttributes];
     return [...protoAttributes].filter(x => allAttr.has(x) && !setAttr.has(x));
   }
-  [_symbol_utils.$resolvePrototypes](ids, ancestors = new Set()) {
+  [_symbol_utils.$resolvePrototypes](ids, ancestors = new Set) {
     for (const child of this[_children]) {
       child[_resolvePrototypesHelper](ids, ancestors);
     }
@@ -53448,7 +53448,7 @@ class XFAObject {
           child[_resolvePrototypesHelper](ids, ancestors);
         }
         for (let i = value[_children].length, ii = protoValue[_children].length; i < ii; i++) {
-          const child = proto[_children][i][_symbol_utils.$clone]();
+          const child = proto[_children][i][_symbol_utils.$clone];
           if (value.push(child)) {
             child[_parent] = this;
             this[_children].push(child);
@@ -53467,7 +53467,7 @@ class XFAObject {
         continue;
       }
       if (protoValue !== null) {
-        const child = protoValue[_symbol_utils.$clone]();
+        const child = protoValue[_symbol_utils.$clone];
         child[_parent] = this;
         this[name] = child;
         this[_children].push(child);
@@ -53484,7 +53484,7 @@ class XFAObject {
     }
     return obj;
   }
-  [_symbol_utils.$clone]() {
+  [_symbol_utils.$clone] {
     const clone = Object.create(Object.getPrototypeOf(this));
     for (const $symbol of Object.getOwnPropertySymbols(this)) {
       try {
@@ -53505,7 +53505,7 @@ class XFAObject {
     }
     for (const child of this[_children]) {
       const name = child[_symbol_utils.$nodeName];
-      const clonedChild = child[_symbol_utils.$clone]();
+      const clonedChild = child[_symbol_utils.$clone];
       clone[_children].push(clonedChild);
       clonedChild[_parent] = clone;
       if (clone[name] === null) {
@@ -53540,7 +53540,7 @@ class XFAObject {
       if (child.name === name) {
         yield child;
       }
-      if (allTransparent || child[_symbol_utils.$isTransparent]()) {
+      if (allTransparent || child[_symbol_utils.$isTransparent]) {
         yield* child[_symbol_utils.$getChildrenByNameIt](name, allTransparent, false);
       }
     }
@@ -53555,10 +53555,10 @@ class XFAObjectArray {
     this[_max] = max;
     this[_children] = [];
   }
-  get isXFAObject() {
+  get isXFAObject {
     return false;
   }
-  get isXFAObjectArray() {
+  get isXFAObjectArray {
     return true;
   }
   push(child) {
@@ -53570,21 +53570,21 @@ class XFAObjectArray {
     (0, _util.warn)(`XFA - node "${child[_symbol_utils.$nodeName]}" accepts no more than ${this[_max]} children`);
     return false;
   }
-  isEmpty() {
+  isEmpty {
     return this[_children].length === 0;
   }
-  dump() {
-    return this[_children].length === 1 ? this[_children][0][_symbol_utils.$dump]() : this[_children].map(x => x[_symbol_utils.$dump]());
+  dump {
+    return this[_children].length === 1 ? this[_children][0][_symbol_utils.$dump] : this[_children].map(x => x[_symbol_utils.$dump]);
   }
-  [_symbol_utils.$clone]() {
+  [_symbol_utils.$clone] {
     const clone = new XFAObjectArray(this[_max]);
-    clone[_children] = this[_children].map(c => c[_symbol_utils.$clone]());
+    clone[_children] = this[_children].map(c => c[_symbol_utils.$clone]);
     return clone;
   }
-  get children() {
+  get children {
     return this[_children];
   }
-  clear() {
+  clear {
     this[_children].length = 0;
   }
 }
@@ -53597,20 +53597,20 @@ class XFAAttribute {
     this[_symbol_utils.$consumed] = false;
     this[_symbol_utils.$uid] = `attribute${uid++}`;
   }
-  [_symbol_utils.$getParent]() {
+  [_symbol_utils.$getParent] {
     return this[_parent];
   }
-  [_symbol_utils.$isDataValue]() {
+  [_symbol_utils.$isDataValue] {
     return true;
   }
-  [_symbol_utils.$getDataValue]() {
-    return this[_symbol_utils.$content].trim();
+  [_symbol_utils.$getDataValue] {
+    return this[_symbol_utils.$content].trim;
   }
   [_symbol_utils.$setValue](value) {
     value = value.value || "";
-    this[_symbol_utils.$content] = value.toString();
+    this[_symbol_utils.$content] = value.toString;
   }
-  [_symbol_utils.$text]() {
+  [_symbol_utils.$text] {
     return this[_symbol_utils.$content];
   }
   [_symbol_utils.$isDescendent](parent) {
@@ -53624,7 +53624,7 @@ class XmlObject extends XFAObject {
     this[_symbol_utils.$content] = "";
     this[_dataValue] = null;
     if (name !== "#text") {
-      const map = new Map();
+      const map = new Map;
       this[_attributes] = map;
       for (const [attrName, value] of Object.entries(attributes)) {
         map.set(attrName, new XFAAttribute(this, attrName, value));
@@ -53651,7 +53651,7 @@ class XmlObject extends XFAObject {
     const utf8TagName = (0, _util.utf8StringToString)(tagName);
     const prefix = this[_symbol_utils.$namespaceId] === NS_DATASETS ? "xfa:" : "";
     buf.push(`<${prefix}${utf8TagName}`);
-    for (const [name, value] of this[_attributes].entries()) {
+    for (const [name, value] of this[_attributes].entries) {
       const utf8Name = (0, _util.utf8StringToString)(name);
       buf.push(` ${utf8Name}="${(0, _core_utils.encodeToXmlString)(value[_symbol_utils.$content])}"`);
     }
@@ -53693,7 +53693,7 @@ class XmlObject extends XFAObject {
   [_symbol_utils.$onText](str) {
     this[_symbol_utils.$content] += str;
   }
-  [_symbol_utils.$finalize]() {
+  [_symbol_utils.$finalize] {
     if (this[_symbol_utils.$content] && this[_children].length > 0) {
       const node = new XmlObject(this[_symbol_utils.$namespaceId], "#text");
       this[_symbol_utils.$appendChild](node);
@@ -53701,7 +53701,7 @@ class XmlObject extends XFAObject {
       delete this[_symbol_utils.$content];
     }
   }
-  [_symbol_utils.$toHTML]() {
+  [_symbol_utils.$toHTML] {
     if (this[_symbol_utils.$nodeName] === "#text") {
       return _utils.HTMLResult.success({
         name: "#text",
@@ -53716,7 +53716,7 @@ class XmlObject extends XFAObject {
     }
     return this[_children].filter(c => c[_symbol_utils.$nodeName] === name);
   }
-  [_symbol_utils.$getAttributes]() {
+  [_symbol_utils.$getAttributes] {
     return this[_attributes];
   }
   [_symbol_utils.$getChildrenByClass](name) {
@@ -53759,27 +53759,27 @@ class XmlObject extends XFAObject {
       }
     }
   }
-  [_symbol_utils.$isDataValue]() {
+  [_symbol_utils.$isDataValue] {
     if (this[_dataValue] === null) {
       return this[_children].length === 0 || this[_children][0][_symbol_utils.$namespaceId] === _namespaces.NamespaceIds.xhtml.id;
     }
     return this[_dataValue];
   }
-  [_symbol_utils.$getDataValue]() {
+  [_symbol_utils.$getDataValue] {
     if (this[_dataValue] === null) {
       if (this[_children].length === 0) {
-        return this[_symbol_utils.$content].trim();
+        return this[_symbol_utils.$content].trim;
       }
       if (this[_children][0][_symbol_utils.$namespaceId] === _namespaces.NamespaceIds.xhtml.id) {
-        return this[_children][0][_symbol_utils.$text]().trim();
+        return this[_children][0][_symbol_utils.$text].trim;
       }
       return null;
     }
-    return this[_symbol_utils.$content].trim();
+    return this[_symbol_utils.$content].trim;
   }
   [_symbol_utils.$setValue](value) {
     value = value.value || "";
-    this[_symbol_utils.$content] = value.toString();
+    this[_symbol_utils.$content] = value.toString;
   }
   [_symbol_utils.$dump](hasNS = false) {
     const dumped = Object.create(null);
@@ -53810,7 +53810,7 @@ class ContentObject extends XFAObject {
   [_symbol_utils.$onText](text) {
     this[_symbol_utils.$content] += text;
   }
-  [_symbol_utils.$finalize]() {}
+  [_symbol_utils.$finalize] {}
 }
 exports.ContentObject = ContentObject;
 class OptionObject extends ContentObject {
@@ -53818,7 +53818,7 @@ class OptionObject extends ContentObject {
     super(nsId, name);
     this[_options] = options;
   }
-  [_symbol_utils.$finalize]() {
+  [_symbol_utils.$finalize] {
     this[_symbol_utils.$content] = (0, _utils.getKeyword)({
       data: this[_symbol_utils.$content],
       defaultValue: this[_options][0],
@@ -53832,8 +53832,8 @@ class OptionObject extends ContentObject {
 }
 exports.OptionObject = OptionObject;
 class StringObject extends ContentObject {
-  [_symbol_utils.$finalize]() {
-    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim();
+  [_symbol_utils.$finalize] {
+    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim;
   }
 }
 exports.StringObject = StringObject;
@@ -53843,7 +53843,7 @@ class IntegerObject extends ContentObject {
     this[_defaultValue] = defaultValue;
     this[_validator] = validator;
   }
-  [_symbol_utils.$finalize]() {
+  [_symbol_utils.$finalize] {
     this[_symbol_utils.$content] = (0, _utils.getInteger)({
       data: this[_symbol_utils.$content],
       defaultValue: this[_defaultValue],
@@ -53892,10 +53892,10 @@ const operators = {
   dotBracket: 3,
   dotParen: 4
 };
-const shortcuts = new Map([["$data", (root, current) => root.datasets ? root.datasets.data : root], ["$record", (root, current) => (root.datasets ? root.datasets.data : root)[_symbol_utils.$getChildren]()[0]], ["$template", (root, current) => root.template], ["$connectionSet", (root, current) => root.connectionSet], ["$form", (root, current) => root.form], ["$layout", (root, current) => root.layout], ["$host", (root, current) => root.host], ["$dataWindow", (root, current) => root.dataWindow], ["$event", (root, current) => root.event], ["!", (root, current) => root.datasets], ["$xfa", (root, current) => root], ["xfa", (root, current) => root], ["$", (root, current) => current]]);
-const somCache = new WeakMap();
+const shortcuts = new Map([["$data", (root, current) => root.datasets ? root.datasets.data : root], ["$record", (root, current) => (root.datasets ? root.datasets.data : root)[_symbol_utils.$getChildren][0]], ["$template", (root, current) => root.template], ["$connectionSet", (root, current) => root.connectionSet], ["$form", (root, current) => root.form], ["$layout", (root, current) => root.layout], ["$host", (root, current) => root.host], ["$dataWindow", (root, current) => root.dataWindow], ["$event", (root, current) => root.event], ["!", (root, current) => root.datasets], ["$xfa", (root, current) => root], ["xfa", (root, current) => root], ["$", (root, current) => current]]);
+const somCache = new WeakMap;
 function parseIndex(index) {
-  index = index.trim();
+  index = index.trim;
   if (index === "*") {
     return Infinity;
   }
@@ -54009,7 +54009,7 @@ function searchNode(root, container, expr, dotDotAllowed = true, useCache = true
       if (useCache) {
         cached = somCache.get(node);
         if (!cached) {
-          cached = new Map();
+          cached = new Map;
           somCache.set(node, cached);
         }
         children = cached.get(cacheName);
@@ -54038,7 +54038,7 @@ function searchNode(root, container, expr, dotDotAllowed = true, useCache = true
       }
     }
     if (nodes.length === 0 && !isQualified && i === 0) {
-      const parent = container[_symbol_utils.$getParent]();
+      const parent = container[_symbol_utils.$getParent];
       container = parent;
       if (!container) {
         return null;
@@ -54047,7 +54047,7 @@ function searchNode(root, container, expr, dotDotAllowed = true, useCache = true
       root = [container];
       continue;
     }
-    root = isFinite(index) ? nodes.filter(node => index < node.length).map(node => node[index]) : nodes.flat();
+    root = isFinite(index) ? nodes.filter(node => index < node.length).map(node => node[index]) : nodes.flat;
   }
   if (root.length === 0) {
     return null;
@@ -54130,12 +54130,12 @@ class DataHandler {
     this.dataset = root.datasets || null;
   }
   serialize(storage) {
-    const stack = [[-1, this.data[_symbol_utils.$getChildren]()]];
+    const stack = [[-1, this.data[_symbol_utils.$getChildren]]];
     while (stack.length > 0) {
       const last = stack.at(-1);
       const [i, children] = last;
       if (i + 1 === children.length) {
-        stack.pop();
+        stack.pop;
         continue;
       }
       const child = children[++last[0]];
@@ -54143,8 +54143,8 @@ class DataHandler {
       if (storageEntry) {
         child[_symbol_utils.$setValue](storageEntry);
       } else {
-        const attributes = child[_symbol_utils.$getAttributes]();
-        for (const value of attributes.values()) {
+        const attributes = child[_symbol_utils.$getAttributes];
+        for (const value of attributes.values) {
           const entry = storage.get(value[_symbol_utils.$uid]);
           if (entry) {
             value[_symbol_utils.$setValue](entry);
@@ -54152,14 +54152,14 @@ class DataHandler {
           }
         }
       }
-      const nodes = child[_symbol_utils.$getChildren]();
+      const nodes = child[_symbol_utils.$getChildren];
       if (nodes.length > 0) {
         stack.push([-1, nodes]);
       }
     }
     const buf = [`<xfa:datasets xmlns:xfa="https://cedwyn.bucklerfamily.estate/wayback/go/?u=http%3A%2F%2Fwww.xfa.org%2Fschema%2Fxfa-data%2F1.0%2F">`];
     if (this.dataset) {
-      for (const child of this.dataset[_symbol_utils.$getChildren]()) {
+      for (const child of this.dataset[_symbol_utils.$getChildren]) {
         if (child[_symbol_utils.$nodeName] !== "data") {
           child[_symbol_utils.$toString](buf);
         }
@@ -54188,13 +54188,13 @@ var _builder = __w_pdfjs_require__(91);
 var _util = __w_pdfjs_require__(2);
 class XFAParser extends _xml_parser.XMLParserBase {
   constructor(rootNameSpace = null, richText = false) {
-    super();
+    super;
     this._builder = new _builder.Builder(rootNameSpace);
     this._stack = [];
     this._globalData = {
-      usedTypefaces: new Set()
+      usedTypefaces: new Set
     };
-    this._ids = new Map();
+    this._ids = new Map;
     this._current = this._builder.buildRoot(this._ids);
     this._errorCode = _xml_parser.XMLParserErrorCode.NoError;
     this._whiteRegex = /^\s+$/;
@@ -54206,19 +54206,19 @@ class XFAParser extends _xml_parser.XMLParserBase {
     if (this._errorCode !== _xml_parser.XMLParserErrorCode.NoError) {
       return undefined;
     }
-    this._current[_symbol_utils.$finalize]();
+    this._current[_symbol_utils.$finalize];
     return this._current.element;
   }
   onText(text) {
     text = text.replace(this._nbsps, match => match.slice(1) + " ");
-    if (this._richText || this._current[_symbol_utils.$acceptWhitespace]()) {
+    if (this._richText || this._current[_symbol_utils.$acceptWhitespace]) {
       this._current[_symbol_utils.$onText](text, this._richText);
       return;
     }
     if (this._whiteRegex.test(text)) {
       return;
     }
-    this._current[_symbol_utils.$onText](text.trim());
+    this._current[_symbol_utils.$onText](text.trim);
   }
   onCdata(text) {
     this._current[_symbol_utils.$onText](text);
@@ -54272,7 +54272,7 @@ class XFAParser extends _xml_parser.XMLParserBase {
   }
   onBeginElement(tagName, attributes, isEmpty) {
     const [namespace, prefixes, attributesObj] = this._mkAttributes(attributes, tagName);
-    const [name, nsPrefix] = this._getNameAndPrefix(tagName, this._builder.isNsAgnostic());
+    const [name, nsPrefix] = this._getNameAndPrefix(tagName, this._builder.isNsAgnostic);
     const node = this._builder.build({
       nsPrefix,
       name,
@@ -54282,7 +54282,7 @@ class XFAParser extends _xml_parser.XMLParserBase {
     });
     node[_symbol_utils.$globalData] = this._globalData;
     if (isEmpty) {
-      node[_symbol_utils.$finalize]();
+      node[_symbol_utils.$finalize];
       if (this._current[_symbol_utils.$onChild](node)) {
         node[_symbol_utils.$setId](this._ids);
       }
@@ -54294,15 +54294,15 @@ class XFAParser extends _xml_parser.XMLParserBase {
   }
   onEndElement(name) {
     const node = this._current;
-    if (node[_symbol_utils.$isCDATAXml]() && typeof node[_symbol_utils.$content] === "string") {
-      const parser = new XFAParser();
+    if (node[_symbol_utils.$isCDATAXml] && typeof node[_symbol_utils.$content] === "string") {
+      const parser = new XFAParser;
       parser._globalData = this._globalData;
       const root = parser.parse(node[_symbol_utils.$content]);
       node[_symbol_utils.$content] = null;
       node[_symbol_utils.$onChild](root);
     }
-    node[_symbol_utils.$finalize]();
-    this._current = this._stack.pop();
+    node[_symbol_utils.$finalize];
+    this._current = this._stack.pop;
     if (this._current[_symbol_utils.$onChild](node)) {
       node[_symbol_utils.$setId](this._ids);
     }
@@ -54341,8 +54341,8 @@ class Root extends _xfa_object.XFAObject {
     this.element = child;
     return true;
   }
-  [_symbol_utils.$finalize]() {
-    super[_symbol_utils.$finalize]();
+  [_symbol_utils.$finalize] {
+    super[_symbol_utils.$finalize];
     if (this.element.template instanceof _template.Template) {
       this[_symbol_utils.$ids].set(_symbol_utils.$root, this.element);
       this.element.template[_symbol_utils.$resolvePrototypes](this[_symbol_utils.$ids]);
@@ -54351,7 +54351,7 @@ class Root extends _xfa_object.XFAObject {
   }
 }
 class Empty extends _xfa_object.XFAObject {
-  constructor() {
+  constructor {
     super(-1, "", Object.create(null));
   }
   [_symbol_utils.$onChild](_) {
@@ -54362,8 +54362,8 @@ class Builder {
   constructor(rootNameSpace = null) {
     this._namespaceStack = [];
     this._nsAgnosticLevel = 0;
-    this._namespacePrefixes = new Map();
-    this._namespaces = new Map();
+    this._namespacePrefixes = new Map;
+    this._namespaces = new Map;
     this._nextNsId = Math.max(...Object.values(_namespaces.NamespaceIds).map(({
       id
     }) => id));
@@ -54407,20 +54407,20 @@ class Builder {
       }
     }
     const namespaceToUse = this._getNamespaceToUse(nsPrefix);
-    const node = namespaceToUse?.[_namespaces.$buildXFAObject](name, attributes) || new Empty();
-    if (node[_symbol_utils.$isNsAgnostic]()) {
+    const node = namespaceToUse?.[_namespaces.$buildXFAObject](name, attributes) || new Empty;
+    if (node[_symbol_utils.$isNsAgnostic]) {
       this._nsAgnosticLevel++;
     }
-    if (hasNamespaceDef || prefixes || node[_symbol_utils.$isNsAgnostic]()) {
+    if (hasNamespaceDef || prefixes || node[_symbol_utils.$isNsAgnostic]) {
       node[_symbol_utils.$cleanup] = {
         hasNamespace: hasNamespaceDef,
         prefixes,
-        nsAgnostic: node[_symbol_utils.$isNsAgnostic]()
+        nsAgnostic: node[_symbol_utils.$isNsAgnostic]
       };
     }
     return node;
   }
-  isNsAgnostic() {
+  isNsAgnostic {
     return this._nsAgnosticLevel > 0;
   }
   _searchNamespace(nsName) {
@@ -54476,13 +54476,13 @@ class Builder {
       nsAgnostic
     } = data;
     if (hasNamespace) {
-      this._currentNamespace = this._namespaceStack.pop();
+      this._currentNamespace = this._namespaceStack.pop;
     }
     if (prefixes) {
       prefixes.forEach(({
         prefix
       }) => {
-        this._namespacePrefixes.get(prefix).pop();
+        this._namespacePrefixes.get(prefix).pop;
       });
     }
     if (nsAgnostic) {
@@ -54548,7 +54548,7 @@ class Acrobat extends _xfa_object.XFAObject {
     this.common = null;
     this.validate = null;
     this.validateApprovalSignatures = null;
-    this.submitUrl = new _xfa_object.XFAObjectArray();
+    this.submitUrl = new _xfa_object.XFAObjectArray;
   }
 }
 class Acrobat7 extends _xfa_object.XFAObject {
@@ -54590,8 +54590,8 @@ class AdobeExtensionLevel extends _xfa_object.IntegerObject {
 class Agent extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "agent", true);
-    this.name = attributes.name ? attributes.name.trim() : "";
-    this.common = new _xfa_object.XFAObjectArray();
+    this.name = attributes.name ? attributes.name.trim : "";
+    this.common = new _xfa_object.XFAObjectArray;
   }
 }
 class AlwaysEmbed extends _xfa_object.ContentObject {
@@ -54640,8 +54640,8 @@ class BehaviorOverride extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "behaviorOverride");
   }
-  [_symbol_utils.$finalize]() {
-    this[_symbol_utils.$content] = new Map(this[_symbol_utils.$content].trim().split(/\s+/).filter(x => x.includes(":")).map(x => x.split(":", 2)));
+  [_symbol_utils.$finalize] {
+    this[_symbol_utils.$content] = new Map(this[_symbol_utils.$content].trim.split(/\s+/).filter(x => x.includes(":")).map(x => x.split(":", 2)));
   }
 }
 class Cache extends _xfa_object.XFAObject {
@@ -54666,7 +54666,7 @@ class Common extends _xfa_object.XFAObject {
     this.template = null;
     this.validationMessaging = null;
     this.versionControl = null;
-    this.log = new _xfa_object.XFAObjectArray();
+    this.log = new _xfa_object.XFAObjectArray;
   }
 }
 class Compress extends _xfa_object.XFAObject {
@@ -54700,7 +54700,7 @@ class Config extends _xfa_object.XFAObject {
     this.acrobat = null;
     this.present = null;
     this.trace = null;
-    this.agent = new _xfa_object.XFAObjectArray();
+    this.agent = new _xfa_object.XFAObjectArray;
   }
 }
 class Conformance extends _xfa_object.OptionObject {
@@ -54741,8 +54741,8 @@ class Data extends _xfa_object.XFAObject {
     this.uri = null;
     this.window = null;
     this.xsl = null;
-    this.excludeNS = new _xfa_object.XFAObjectArray();
-    this.transform = new _xfa_object.XFAObjectArray();
+    this.excludeNS = new _xfa_object.XFAObjectArray;
+    this.transform = new _xfa_object.XFAObjectArray;
   }
 }
 class Debug extends _xfa_object.XFAObject {
@@ -54770,7 +54770,7 @@ class DocumentAssembly extends _xfa_object.Option01 {
 class Driver extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "driver", true);
-    this.name = attributes.name ? attributes.name.trim() : "";
+    this.name = attributes.name ? attributes.name.trim : "";
     this.fontInfo = null;
     this.xdc = null;
   }
@@ -54832,11 +54832,11 @@ class EquateRange extends _xfa_object.XFAObject {
     this.to = attributes.to || "";
     this._unicodeRange = attributes.unicodeRange || "";
   }
-  get unicodeRange() {
+  get unicodeRange {
     const ranges = [];
     const unicodeRegex = /U\+([0-9a-fA-F]+)/;
     const unicodeRange = this._unicodeRange;
-    for (let range of unicodeRange.split(",").map(x => x.trim()).filter(x => !!x)) {
+    for (let range of unicodeRange.split(",").map(x => x.trim).filter(x => !!x)) {
       range = range.split("-", 2).map(x => {
         const found = x.match(unicodeRegex);
         if (!found) {
@@ -54856,8 +54856,8 @@ class Exclude extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "exclude");
   }
-  [_symbol_utils.$finalize]() {
-    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim().split(/\s+/).filter(x => x && ["calculate", "close", "enter", "exit", "initialize", "ready", "validate"].includes(x));
+  [_symbol_utils.$finalize] {
+    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim.split(/\s+/).filter(x => x && ["calculate", "close", "enter", "exit", "initialize", "ready", "validate"].includes(x));
   }
 }
 class ExcludeNS extends _xfa_object.StringObject {
@@ -54876,9 +54876,9 @@ class FontInfo extends _xfa_object.XFAObject {
     this.embed = null;
     this.map = null;
     this.subsetBelow = null;
-    this.alwaysEmbed = new _xfa_object.XFAObjectArray();
-    this.defaultTypeface = new _xfa_object.XFAObjectArray();
-    this.neverEmbed = new _xfa_object.XFAObjectArray();
+    this.alwaysEmbed = new _xfa_object.XFAObjectArray;
+    this.defaultTypeface = new _xfa_object.XFAObjectArray;
+    this.neverEmbed = new _xfa_object.XFAObjectArray;
   }
 }
 class FormFieldFilling extends _xfa_object.Option01 {
@@ -54968,8 +54968,8 @@ class Log extends _xfa_object.XFAObject {
 class MapElement extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "map", true);
-    this.equate = new _xfa_object.XFAObjectArray();
-    this.equateRange = new _xfa_object.XFAObjectArray();
+    this.equate = new _xfa_object.XFAObjectArray;
+    this.equateRange = new _xfa_object.XFAObjectArray;
   }
 }
 class MediumInfo extends _xfa_object.XFAObject {
@@ -54988,7 +54988,7 @@ class Message extends _xfa_object.XFAObject {
 class Messaging extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "messaging", true);
-    this.message = new _xfa_object.XFAObjectArray();
+    this.message = new _xfa_object.XFAObjectArray;
   }
 }
 class Mode extends _xfa_object.OptionObject {
@@ -55055,11 +55055,11 @@ class Packets extends _xfa_object.StringObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "packets");
   }
-  [_symbol_utils.$finalize]() {
+  [_symbol_utils.$finalize] {
     if (this[_symbol_utils.$content] === "*") {
       return;
     }
-    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim().split(/\s+/).filter(x => ["config", "datasets", "template", "xfdf", "xslt"].includes(x));
+    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim.split(/\s+/).filter(x => ["config", "datasets", "template", "xfdf", "xslt"].includes(x));
   }
 }
 class PageOffset extends _xfa_object.XFAObject {
@@ -55081,8 +55081,8 @@ class PageRange extends _xfa_object.StringObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "pageRange");
   }
-  [_symbol_utils.$finalize]() {
-    const numbers = this[_symbol_utils.$content].trim().split(/\s+/).map(x => parseInt(x, 10));
+  [_symbol_utils.$finalize] {
+    const numbers = this[_symbol_utils.$content].trim.split(/\s+/).map(x => parseInt(x, 10));
     const ranges = [];
     for (let i = 0, ii = numbers.length; i < ii; i += 2) {
       ranges.push(numbers.slice(i, i + 2));
@@ -55204,14 +55204,14 @@ class Present extends _xfa_object.XFAObject {
     this.script = null;
     this.validate = null;
     this.xdp = null;
-    this.driver = new _xfa_object.XFAObjectArray();
-    this.labelPrinter = new _xfa_object.XFAObjectArray();
-    this.pcl = new _xfa_object.XFAObjectArray();
-    this.pdf = new _xfa_object.XFAObjectArray();
-    this.ps = new _xfa_object.XFAObjectArray();
-    this.submitUrl = new _xfa_object.XFAObjectArray();
-    this.webClient = new _xfa_object.XFAObjectArray();
-    this.zpl = new _xfa_object.XFAObjectArray();
+    this.driver = new _xfa_object.XFAObjectArray;
+    this.labelPrinter = new _xfa_object.XFAObjectArray;
+    this.pcl = new _xfa_object.XFAObjectArray;
+    this.pdf = new _xfa_object.XFAObjectArray;
+    this.ps = new _xfa_object.XFAObjectArray;
+    this.submitUrl = new _xfa_object.XFAObjectArray;
+    this.webClient = new _xfa_object.XFAObjectArray;
+    this.zpl = new _xfa_object.XFAObjectArray;
   }
 }
 class Print extends _xfa_object.Option01 {
@@ -55256,8 +55256,8 @@ class Range extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "range");
   }
-  [_symbol_utils.$finalize]() {
-    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim().split(/\s*,\s*/, 2).map(range => range.split("-").map(x => parseInt(x.trim(), 10))).filter(range => range.every(x => !isNaN(x))).map(range => {
+  [_symbol_utils.$finalize] {
+    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim.split(/\s*,\s*/, 2).map(range => range.split("-").map(x => parseInt(x.trim, 10))).filter(range => range.every(x => !isNaN(x))).map(range => {
       if (range.length === 1) {
         range.push(range[0]);
       }
@@ -55269,8 +55269,8 @@ class Record extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "record");
   }
-  [_symbol_utils.$finalize]() {
-    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim();
+  [_symbol_utils.$finalize] {
+    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim;
     const n = parseInt(this[_symbol_utils.$content], 10);
     if (!isNaN(n) && n >= 0) {
       this[_symbol_utils.$content] = n;
@@ -55281,17 +55281,17 @@ class Relevant extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "relevant");
   }
-  [_symbol_utils.$finalize]() {
-    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim().split(/\s+/);
+  [_symbol_utils.$finalize] {
+    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim.split(/\s+/);
   }
 }
 class Rename extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "rename");
   }
-  [_symbol_utils.$finalize]() {
-    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim();
-    if (this[_symbol_utils.$content].toLowerCase().startsWith("xml") || new RegExp("[\\p{L}_][\\p{L}\\d._\\p{M}-]*", "u").test(this[_symbol_utils.$content])) {
+  [_symbol_utils.$finalize] {
+    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim;
+    if (this[_symbol_utils.$content].toLowerCase.startsWith("xml") || new RegExp("[\\p{L}_][\\p{L}\\d._\\p{M}-]*", "u").test(this[_symbol_utils.$content])) {
       (0, _util.warn)("XFA - Rename: invalid XFA name");
     }
   }
@@ -55405,7 +55405,7 @@ class TemplateCache extends _xfa_object.XFAObject {
 class Trace extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "trace", true);
-    this.area = new _xfa_object.XFAObjectArray();
+    this.area = new _xfa_object.XFAObjectArray;
   }
 }
 class Transform extends _xfa_object.XFAObject {
@@ -55439,8 +55439,8 @@ class ValidateApprovalSignatures extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "validateApprovalSignatures");
   }
-  [_symbol_utils.$finalize]() {
-    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim().split(/\s+/).filter(x => ["docReady", "postSign"].includes(x));
+  [_symbol_utils.$finalize] {
+    this[_symbol_utils.$content] = this[_symbol_utils.$content].trim.split(/\s+/).filter(x => ["docReady", "postSign"].includes(x));
   }
 }
 class ValidationMessaging extends _xfa_object.OptionObject {
@@ -55478,7 +55478,7 @@ class ViewerPreferences extends _xfa_object.XFAObject {
 class WebClient extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "webClient", true);
-    this.name = attributes.name ? attributes.name.trim() : "";
+    this.name = attributes.name ? attributes.name.trim : "";
     this.fontInfo = null;
     this.xdc = null;
   }
@@ -55492,8 +55492,8 @@ class Window extends _xfa_object.ContentObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "window");
   }
-  [_symbol_utils.$finalize]() {
-    const pair = this[_symbol_utils.$content].trim().split(/\s*,\s*/, 2).map(x => parseInt(x, 10));
+  [_symbol_utils.$finalize] {
+    const pair = this[_symbol_utils.$content].trim.split(/\s*,\s*/, 2).map(x => parseInt(x, 10));
     if (pair.some(x => isNaN(x))) {
       this[_symbol_utils.$content] = [0, 0];
       return;
@@ -55507,8 +55507,8 @@ class Window extends _xfa_object.ContentObject {
 class Xdc extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "xdc", true);
-    this.uri = new _xfa_object.XFAObjectArray();
-    this.xsl = new _xfa_object.XFAObjectArray();
+    this.uri = new _xfa_object.XFAObjectArray;
+    this.xsl = new _xfa_object.XFAObjectArray;
   }
 }
 class Xdp extends _xfa_object.XFAObject {
@@ -55527,7 +55527,7 @@ class Xsl extends _xfa_object.XFAObject {
 class Zpl extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONFIG_NS_ID, "zpl", true);
-    this.name = attributes.name ? attributes.name.trim() : "";
+    this.name = attributes.name ? attributes.name.trim : "";
     this.batchOutput = null;
     this.flipLabel = null;
     this.fontInfo = null;
@@ -55977,9 +55977,9 @@ const CONNECTION_SET_NS_ID = _namespaces.NamespaceIds.connectionSet.id;
 class ConnectionSet extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(CONNECTION_SET_NS_ID, "connectionSet", true);
-    this.wsdlConnection = new _xfa_object.XFAObjectArray();
-    this.xmlConnection = new _xfa_object.XFAObjectArray();
-    this.xsdConnection = new _xfa_object.XFAObjectArray();
+    this.wsdlConnection = new _xfa_object.XFAObjectArray;
+    this.xmlConnection = new _xfa_object.XFAObjectArray;
+    this.xsdConnection = new _xfa_object.XFAObjectArray;
   }
 }
 class EffectiveInputPolicy extends _xfa_object.XFAObject {
@@ -56150,7 +56150,7 @@ class Data extends _xfa_object.XmlObject {
   constructor(attributes) {
     super(DATASETS_NS_ID, "data", attributes);
   }
-  [_symbol_utils.$isNsAgnostic]() {
+  [_symbol_utils.$isNsAgnostic] {
     return true;
   }
 }
@@ -56282,7 +56282,7 @@ class Locale extends _xfa_object.XFAObject {
 class LocaleSet extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(LOCALE_SET_NS_ID, "localeSet", true);
-    this.locale = new _xfa_object.XFAObjectArray();
+    this.locale = new _xfa_object.XFAObjectArray;
   }
 }
 class Meridiem extends _xfa_object.StringObject {
@@ -56357,7 +56357,7 @@ class TypeFace extends _xfa_object.XFAObject {
 class TypeFaces extends _xfa_object.XFAObject {
   constructor(attributes) {
     super(LOCALE_SET_NS_ID, "typeFaces", true);
-    this.typeFace = new _xfa_object.XFAObjectArray();
+    this.typeFace = new _xfa_object.XFAObjectArray;
   }
 }
 class LocaleSetNamespace {
@@ -56527,7 +56527,7 @@ class Xdp extends _xfa_object.XFAObject {
     this.connectionSet = null;
     this.datasets = null;
     this.localeSet = null;
-    this.stylesheet = new _xfa_object.XFAObjectArray();
+    this.stylesheet = new _xfa_object.XFAObjectArray;
     this.template = null;
   }
   [_symbol_utils.$onChildCheck](child) {
@@ -56564,7 +56564,7 @@ var _html_utils = __w_pdfjs_require__(83);
 var _utils = __w_pdfjs_require__(84);
 var _xfa_object = __w_pdfjs_require__(87);
 const XHTML_NS_ID = _namespaces.NamespaceIds.xhtml.id;
-const $richText = Symbol();
+const $richText = Symbol;
 const VALID_STYLES = new Set(["color", "font", "font-family", "font-size", "font-stretch", "font-style", "font-weight", "margin", "margin-bottom", "margin-left", "margin-right", "margin-top", "letter-spacing", "line-height", "orphans", "page-break-after", "page-break-before", "page-break-inside", "tab-interval", "tab-stop", "text-align", "text-decoration", "text-indent", "vertical-align", "widows", "kerning-mode", "xfa-font-horizontal-scale", "xfa-font-vertical-scale", "xfa-spacerun", "xfa-tab-stops"]);
 const StyleMapping = new Map([["page-break-after", "breakAfter"], ["page-break-before", "breakBefore"], ["page-break-inside", "breakInside"], ["kerning-mode", value => value === "none" ? "none" : "normal"], ["xfa-font-horizontal-scale", value => `scaleX(${Math.max(0, Math.min(parseInt(value) / 100)).toFixed(2)})`], ["xfa-font-vertical-scale", value => `scaleY(${Math.max(0, Math.min(parseInt(value) / 100)).toFixed(2)})`], ["xfa-spacerun", ""], ["xfa-tab-stops", ""], ["font-size", (value, original) => {
   value = original.fontSize = (0, _utils.getMeasurement)(value);
@@ -56591,7 +56591,7 @@ function mapStyle(styleStr, node, richText) {
     if (key.endsWith("scale")) {
       style.transform = style.transform ? `${style[key]} ${newValue}` : newValue;
     } else {
-      style[key.replaceAll(/-([a-zA-Z])/g, (_, x) => x.toUpperCase())] = newValue;
+      style[key.replaceAll(/-([a-zA-Z])/g, (_, x) => x.toUpperCase)] = newValue;
     }
   }
   if (style.fontFamily) {
@@ -56619,7 +56619,7 @@ function checkStyle(node) {
   if (!node.style) {
     return "";
   }
-  return node.style.trim().split(/\s*;\s*/).filter(s => !!s).map(s => s.split(/\s*:\s*/, 2)).filter(([key, value]) => {
+  return node.style.trim.split(/\s*;\s*/).filter(s => !!s).map(s => s.split(/\s*:\s*/, 2)).filter(([key, value]) => {
     if (key === "font-family") {
       node[_symbol_utils.$globalData].usedTypefaces.add(value);
     }
@@ -56637,7 +56637,7 @@ class XhtmlObject extends _xfa_object.XmlObject {
     super[_symbol_utils.$clean](builder);
     this.style = checkStyle(this);
   }
-  [_symbol_utils.$acceptWhitespace]() {
+  [_symbol_utils.$acceptWhitespace] {
     return !NoWhites.has(this[_symbol_utils.$nodeName]);
   }
   [_symbol_utils.$onText](str, richText = false) {
@@ -56723,7 +56723,7 @@ class XhtmlObject extends _xfa_object.XmlObject {
     if (this[_symbol_utils.$content]) {
       measure.addString(this[_symbol_utils.$content]);
     } else {
-      for (const child of this[_symbol_utils.$getChildren]()) {
+      for (const child of this[_symbol_utils.$getChildren]) {
         if (child[_symbol_utils.$nodeName] === "#text") {
           measure.addString(child[_symbol_utils.$content]);
           continue;
@@ -56732,7 +56732,7 @@ class XhtmlObject extends _xfa_object.XmlObject {
       }
     }
     if (mustPop) {
-      measure.popFont();
+      measure.popFont;
     }
   }
   [_symbol_utils.$toHTML](availableSpace) {
@@ -56776,7 +56776,7 @@ class B extends XhtmlObject {
       weight: "bold"
     });
     super[_symbol_utils.$pushGlyphs](measure);
-    measure.popFont();
+    measure.popFont;
   }
 }
 class Body extends XhtmlObject {
@@ -56800,7 +56800,7 @@ class Br extends XhtmlObject {
   constructor(attributes) {
     super(attributes, "br");
   }
-  [_symbol_utils.$text]() {
+  [_symbol_utils.$text] {
     return "\n";
   }
   [_symbol_utils.$pushGlyphs](measure) {
@@ -56857,7 +56857,7 @@ class I extends XhtmlObject {
       posture: "italic"
     });
     super[_symbol_utils.$pushGlyphs](measure);
-    measure.popFont();
+    measure.popFont;
   }
 }
 class Li extends XhtmlObject {
@@ -56877,15 +56877,15 @@ class P extends XhtmlObject {
   [_symbol_utils.$pushGlyphs](measure) {
     super[_symbol_utils.$pushGlyphs](measure, false);
     measure.addString("\n");
-    measure.addPara();
-    measure.popFont();
+    measure.addPara;
+    measure.popFont;
   }
-  [_symbol_utils.$text]() {
-    const siblings = this[_symbol_utils.$getParent]()[_symbol_utils.$getChildren]();
+  [_symbol_utils.$text] {
+    const siblings = this[_symbol_utils.$getParent][_symbol_utils.$getChildren];
     if (siblings.at(-1) === this) {
-      return super[_symbol_utils.$text]();
+      return super[_symbol_utils.$text];
     }
-    return super[_symbol_utils.$text]() + "\n";
+    return super[_symbol_utils.$text] + "\n";
   }
 }
 class Span extends XhtmlObject {
@@ -57068,9 +57068,9 @@ class XRef {
     this.stream = stream;
     this.pdfManager = pdfManager;
     this.entries = [];
-    this._xrefStms = new Set();
-    this._cacheMap = new Map();
-    this._pendingRefs = new _primitives.RefSet();
+    this._xrefStms = new Set;
+    this._cacheMap = new Map;
+    this._pendingRefs = new _primitives.RefSet;
     this._newPersistentRefNum = null;
     this._newTemporaryRefNum = null;
   }
@@ -57082,13 +57082,13 @@ class XRef {
     this._cacheMap.set(num, obj);
     return _primitives.Ref.get(num, 0);
   }
-  getNewTemporaryRef() {
+  getNewTemporaryRef {
     if (this._newTemporaryRefNum === null) {
       this._newTemporaryRefNum = this.entries.length || 1;
     }
     return _primitives.Ref.get(this._newTemporaryRefNum++, 0);
   }
-  resetNewTemporaryRef() {
+  resetNewTemporaryRef {
     this._newTemporaryRefNum = null;
   }
   setStartXRef(startXRef) {
@@ -57097,10 +57097,10 @@ class XRef {
   parse(recoveryMode = false) {
     let trailerDict;
     if (!recoveryMode) {
-      trailerDict = this.readXRef();
+      trailerDict = this.readXRef;
     } else {
       (0, _util.warn)("Indexing all PDF objects");
-      trailerDict = this.indexObjects();
+      trailerDict = this.indexObjects;
     }
     trailerDict.assignXref(this);
     this.trailer = trailerDict;
@@ -57143,7 +57143,7 @@ class XRef {
       }
     }
     if (!recoveryMode) {
-      throw new _core_utils.XRefParseException();
+      throw new _core_utils.XRefParseException;
     }
     throw new _util.InvalidPDFException("Invalid Root reference.");
   }
@@ -57160,7 +57160,7 @@ class XRef {
     if (!(0, _primitives.isCmd)(obj, "trailer")) {
       throw new _util.FormatError("Invalid XRef table: could not find trailer dictionary");
     }
-    let dict = parser.getObj();
+    let dict = parser.getObj;
     if (!(dict instanceof _primitives.Dict) && dict.dict) {
       dict = dict.dict;
     }
@@ -57179,11 +57179,11 @@ class XRef {
     let obj;
     while (true) {
       if (!("firstEntryNum" in tableState) || !("entryCount" in tableState)) {
-        if ((0, _primitives.isCmd)(obj = parser.getObj(), "trailer")) {
+        if ((0, _primitives.isCmd)(obj = parser.getObj, "trailer")) {
           break;
         }
         tableState.firstEntryNum = obj;
-        tableState.entryCount = parser.getObj();
+        tableState.entryCount = parser.getObj;
       }
       let first = tableState.firstEntryNum;
       const count = tableState.entryCount;
@@ -57196,9 +57196,9 @@ class XRef {
         tableState.parserBuf1 = parser.buf1;
         tableState.parserBuf2 = parser.buf2;
         const entry = {};
-        entry.offset = parser.getObj();
-        entry.gen = parser.getObj();
-        const type = parser.getObj();
+        entry.offset = parser.getObj;
+        entry.gen = parser.getObj;
+        const type = parser.getObj;
         if (type instanceof _primitives.Cmd) {
           switch (type.cmd) {
             case "f":
@@ -57270,7 +57270,7 @@ class XRef {
           offset = 0,
           generation = 0;
         for (let j = 0; j < typeFieldWidth; ++j) {
-          const typeByte = stream.getByte();
+          const typeByte = stream.getByte;
           if (typeByte === -1) {
             throw new _util.FormatError("Invalid XRef byteWidths 'type'.");
           }
@@ -57280,14 +57280,14 @@ class XRef {
           type = 1;
         }
         for (let j = 0; j < offsetFieldWidth; ++j) {
-          const offsetByte = stream.getByte();
+          const offsetByte = stream.getByte;
           if (offsetByte === -1) {
             throw new _util.FormatError("Invalid XRef byteWidths 'offset'.");
           }
           offset = offset << 8 | offsetByte;
         }
         for (let j = 0; j < generationFieldWidth; ++j) {
-          const generationByte = stream.getByte();
+          const generationByte = stream.getByte;
           if (generationByte === -1) {
             throw new _util.FormatError("Invalid XRef byteWidths 'generation'.");
           }
@@ -57317,7 +57317,7 @@ class XRef {
       entryRanges.splice(0, 2);
     }
   }
-  indexObjects() {
+  indexObjects {
     const TAB = 0x9,
       LF = 0xa,
       CR = 0xd,
@@ -57360,10 +57360,10 @@ class XRef {
     const startxrefBytes = new Uint8Array([115, 116, 97, 114, 116, 120, 114, 101, 102]);
     const xrefBytes = new Uint8Array([47, 88, 82, 101, 102]);
     this.entries.length = 0;
-    this._cacheMap.clear();
+    this._cacheMap.clear;
     const stream = this.stream;
     stream.pos = 0;
-    const buffer = stream.getBytes(),
+    const buffer = stream.getBytes,
       bufferStr = (0, _util.bytesToString)(buffer),
       length = buffer.length;
     let position = stream.start;
@@ -57404,7 +57404,7 @@ class XRef {
             const parser = new _parser.Parser({
               lexer: new _parser.Lexer(stream.makeSubStream(startPos))
             });
-            parser.getObj();
+            parser.getObj;
             updateEntries = true;
           } catch (ex) {
             if (ex instanceof _core_utils.ParserEOFException) {
@@ -57475,11 +57475,11 @@ class XRef {
         allowStreams: true,
         recoveryMode: true
       });
-      const obj = parser.getObj();
+      const obj = parser.getObj;
       if (!(0, _primitives.isCmd)(obj, "trailer")) {
         continue;
       }
-      const dict = parser.getObj();
+      const dict = parser.getObj;
       if (!(dict instanceof _primitives.Dict)) {
         continue;
       }
@@ -57530,13 +57530,13 @@ class XRef {
   }
   readXRef(recoveryMode = false) {
     const stream = this.stream;
-    const startXRefParsedCache = new Set();
+    const startXRefParsedCache = new Set;
     while (this.startXRefQueue.length) {
       try {
         const startXRef = this.startXRefQueue[0];
         if (startXRefParsedCache.has(startXRef)) {
           (0, _util.warn)("readXRef - skipping XRef table since it was already parsed.");
-          this.startXRefQueue.shift();
+          this.startXRefQueue.shift;
           continue;
         }
         startXRefParsedCache.add(startXRef);
@@ -57546,7 +57546,7 @@ class XRef {
           xref: this,
           allowStreams: true
         });
-        let obj = parser.getObj();
+        let obj = parser.getObj;
         let dict;
         if ((0, _primitives.isCmd)(obj, "xref")) {
           dict = this.processXRefTable(parser);
@@ -57560,7 +57560,7 @@ class XRef {
             this.#firstXRefStmPos ??= obj;
           }
         } else if (Number.isInteger(obj)) {
-          if (!Number.isInteger(parser.getObj()) || !(0, _primitives.isCmd)(parser.getObj(), "obj") || !((obj = parser.getObj()) instanceof _base_stream.BaseStream)) {
+          if (!Number.isInteger(parser.getObj) || !(0, _primitives.isCmd)(parser.getObj, "obj") || !((obj = parser.getObj) instanceof _base_stream.BaseStream)) {
             throw new _util.FormatError("Invalid XRef stream");
           }
           dict = this.processXRefStream(obj);
@@ -57585,7 +57585,7 @@ class XRef {
         }
         (0, _util.info)("(while reading XRef): " + e);
       }
-      this.startXRefQueue.shift();
+      this.startXRefQueue.shift;
     }
     if (this.topDict) {
       return this.topDict;
@@ -57593,9 +57593,9 @@ class XRef {
     if (recoveryMode) {
       return undefined;
     }
-    throw new _core_utils.XRefParseException();
+    throw new _core_utils.XRefParseException;
   }
-  get lastXRefStreamPos() {
+  get lastXRefStreamPos {
     return this.#firstXRefStmPos ?? (this._xrefStms.size > 0 ? Math.max(...this._xrefStms) : null);
   }
   getEntry(i) {
@@ -57619,7 +57619,7 @@ class XRef {
     const cacheEntry = this._cacheMap.get(num);
     if (cacheEntry !== undefined) {
       if (cacheEntry instanceof _primitives.Dict && !cacheEntry.objId) {
-        cacheEntry.objId = ref.toString();
+        cacheEntry.objId = ref.toString;
       }
       return cacheEntry;
     }
@@ -57642,9 +57642,9 @@ class XRef {
       throw ex;
     }
     if (xrefEntry instanceof _primitives.Dict) {
-      xrefEntry.objId = ref.toString();
+      xrefEntry.objId = ref.toString;
     } else if (xrefEntry instanceof _base_stream.BaseStream) {
-      xrefEntry.dict.objId = ref.toString();
+      xrefEntry.dict.objId = ref.toString;
     }
     return xrefEntry;
   }
@@ -57665,9 +57665,9 @@ class XRef {
       xref: this,
       allowStreams: true
     });
-    const obj1 = parser.getObj();
-    const obj2 = parser.getObj();
-    const obj3 = parser.getObj();
+    const obj1 = parser.getObj;
+    const obj2 = parser.getObj;
+    const obj3 = parser.getObj;
     if (obj1 !== num || obj2 !== gen || !(obj3 instanceof _primitives.Cmd)) {
       throw new _core_utils.XRefEntryException(`Bad (uncompressed) XRef entry: ${ref}`);
     }
@@ -57680,7 +57680,7 @@ class XRef {
       }
       throw new _core_utils.XRefEntryException(`Bad (uncompressed) XRef entry: ${ref}`);
     }
-    xrefEntry = this.encrypt && !suppressEncryption ? parser.getObj(this.encrypt.createCipherTransform(num, gen)) : parser.getObj();
+    xrefEntry = this.encrypt && !suppressEncryption ? parser.getObj(this.encrypt.createCipherTransform(num, gen)) : parser.getObj;
     if (!(xrefEntry instanceof _base_stream.BaseStream)) {
       this._cacheMap.set(num, xrefEntry);
     }
@@ -57705,11 +57705,11 @@ class XRef {
     const nums = new Array(n);
     const offsets = new Array(n);
     for (let i = 0; i < n; ++i) {
-      const num = parser.getObj();
+      const num = parser.getObj;
       if (!Number.isInteger(num)) {
         throw new _util.FormatError(`invalid object number in the ObjStm stream: ${num}`);
       }
-      const offset = parser.getObj();
+      const offset = parser.getObj;
       if (!Number.isInteger(offset)) {
         throw new _util.FormatError(`invalid object offset in the ObjStm stream: ${offset}`);
       }
@@ -57728,7 +57728,7 @@ class XRef {
         xref: this,
         allowStreams: true
       });
-      const obj = parser.getObj();
+      const obj = parser.getObj;
       entries[i] = obj;
       if (obj instanceof _base_stream.BaseStream) {
         continue;
@@ -57762,7 +57762,7 @@ class XRef {
       return this.fetchAsync(ref, suppressEncryption);
     }
   }
-  getCatalogObj() {
+  getCatalogObj {
     return this.root;
   }
 }
@@ -57811,7 +57811,7 @@ function wrapReason(reason) {
     case "UnknownErrorException":
       return new _util.UnknownErrorException(reason.message, reason.details);
     default:
-      return new _util.UnknownErrorException(reason.message, reason.toString());
+      return new _util.UnknownErrorException(reason.message, reason.toString);
   }
 }
 class MessageHandler {
@@ -57903,7 +57903,7 @@ class MessageHandler {
   }
   sendWithPromise(actionName, data, transfers) {
     const callbackId = this.callbackId++;
-    const capability = new _util.PromiseCapability();
+    const capability = new _util.PromiseCapability;
     this.callbackCapabilities[callbackId] = capability;
     try {
       this.comObj.postMessage({
@@ -57925,7 +57925,7 @@ class MessageHandler {
       comObj = this.comObj;
     return new ReadableStream({
       start: controller => {
-        const startCapability = new _util.PromiseCapability();
+        const startCapability = new _util.PromiseCapability;
         this.streamControllers[streamId] = {
           controller,
           startCall: startCapability,
@@ -57944,7 +57944,7 @@ class MessageHandler {
         return startCapability.promise;
       },
       pull: controller => {
-        const pullCapability = new _util.PromiseCapability();
+        const pullCapability = new _util.PromiseCapability;
         this.streamControllers[streamId].pullCall = pullCapability;
         comObj.postMessage({
           sourceName,
@@ -57957,7 +57957,7 @@ class MessageHandler {
       },
       cancel: reason => {
         (0, _util.assert)(reason instanceof Error, "cancel must have a valid reason");
-        const cancelCapability = new _util.PromiseCapability();
+        const cancelCapability = new _util.PromiseCapability;
         this.streamControllers[streamId].cancelCall = cancelCapability;
         this.streamControllers[streamId].isClosed = true;
         comObj.postMessage({
@@ -57986,7 +57986,7 @@ class MessageHandler {
         const lastDesiredSize = this.desiredSize;
         this.desiredSize -= size;
         if (lastDesiredSize > 0 && this.desiredSize <= 0) {
-          this.sinkCapability = new _util.PromiseCapability();
+          this.sinkCapability = new _util.PromiseCapability;
           this.ready = this.sinkCapability.promise;
         }
         comObj.postMessage({
@@ -57997,7 +57997,7 @@ class MessageHandler {
           chunk
         }, transfers);
       },
-      close() {
+      close {
         if (this.isCancelled) {
           return;
         }
@@ -58024,19 +58024,19 @@ class MessageHandler {
           reason: wrapReason(reason)
         });
       },
-      sinkCapability: new _util.PromiseCapability(),
+      sinkCapability: new _util.PromiseCapability,
       onPull: null,
       onCancel: null,
       isCancelled: false,
       desiredSize: data.desiredSize,
       ready: null
     };
-    streamSink.sinkCapability.resolve();
+    streamSink.sinkCapability.resolve;
     streamSink.ready = streamSink.sinkCapability.promise;
     this.streamSinks[streamId] = streamSink;
     new Promise(function (resolve) {
       resolve(action(data.data, streamSink));
-    }).then(function () {
+    }).then(function  {
       comObj.postMessage({
         sourceName,
         targetName,
@@ -58064,14 +58064,14 @@ class MessageHandler {
     switch (data.stream) {
       case StreamKind.START_COMPLETE:
         if (data.success) {
-          streamController.startCall.resolve();
+          streamController.startCall.resolve;
         } else {
           streamController.startCall.reject(wrapReason(data.reason));
         }
         break;
       case StreamKind.PULL_COMPLETE:
         if (data.success) {
-          streamController.pullCall.resolve();
+          streamController.pullCall.resolve;
         } else {
           streamController.pullCall.reject(wrapReason(data.reason));
         }
@@ -58088,12 +58088,12 @@ class MessageHandler {
           break;
         }
         if (streamSink.desiredSize <= 0 && data.desiredSize > 0) {
-          streamSink.sinkCapability.resolve();
+          streamSink.sinkCapability.resolve;
         }
         streamSink.desiredSize = data.desiredSize;
         new Promise(function (resolve) {
-          resolve(streamSink.onPull?.());
-        }).then(function () {
+          resolve(streamSink.onPull?.);
+        }).then(function  {
           comObj.postMessage({
             sourceName,
             targetName,
@@ -58124,7 +58124,7 @@ class MessageHandler {
           break;
         }
         streamController.isClosed = true;
-        streamController.controller.close();
+        streamController.controller.close;
         this.#deleteStreamController(streamController, streamId);
         break;
       case StreamKind.ERROR:
@@ -58134,7 +58134,7 @@ class MessageHandler {
         break;
       case StreamKind.CANCEL_COMPLETE:
         if (data.success) {
-          streamController.cancelCall.resolve();
+          streamController.cancelCall.resolve;
         } else {
           streamController.cancelCall.reject(wrapReason(data.reason));
         }
@@ -58146,7 +58146,7 @@ class MessageHandler {
         }
         new Promise(function (resolve) {
           resolve(streamSink.onCancel?.(wrapReason(data.reason)));
-        }).then(function () {
+        }).then(function  {
           comObj.postMessage({
             sourceName,
             targetName,
@@ -58175,7 +58175,7 @@ class MessageHandler {
     await Promise.allSettled([streamController.startCall?.promise, streamController.pullCall?.promise, streamController.cancelCall?.promise]);
     delete this.streamControllers[streamId];
   }
-  destroy() {
+  destroy {
     this.comObj.removeEventListener("message", this._onComObjOnMessage);
   }
 }
@@ -58199,7 +58199,7 @@ class PDFWorkerStream {
     this._fullRequestReader = null;
     this._rangeRequestReaders = [];
   }
-  getFullReader() {
+  getFullReader {
     (0, _util.assert)(!this._fullRequestReader, "PDFWorkerStream.getFullReader can only be called once.");
     this._fullRequestReader = new PDFWorkerStreamReader(this._msgHandler);
     return this._fullRequestReader;
@@ -58225,30 +58225,30 @@ class PDFWorkerStreamReader {
     this._isRangeSupported = false;
     this._isStreamingSupported = false;
     const readableStream = this._msgHandler.sendWithStream("GetReader");
-    this._reader = readableStream.getReader();
+    this._reader = readableStream.getReader;
     this._headersReady = this._msgHandler.sendWithPromise("ReaderHeadersReady").then(data => {
       this._isStreamingSupported = data.isStreamingSupported;
       this._isRangeSupported = data.isRangeSupported;
       this._contentLength = data.contentLength;
     });
   }
-  get headersReady() {
+  get headersReady {
     return this._headersReady;
   }
-  get contentLength() {
+  get contentLength {
     return this._contentLength;
   }
-  get isStreamingSupported() {
+  get isStreamingSupported {
     return this._isStreamingSupported;
   }
-  get isRangeSupported() {
+  get isRangeSupported {
     return this._isRangeSupported;
   }
-  async read() {
+  async read {
     const {
       value,
       done
-    } = await this._reader.read();
+    } = await this._reader.read;
     if (done) {
       return {
         value: undefined,
@@ -58272,16 +58272,16 @@ class PDFWorkerStreamRangeReader {
       begin,
       end
     });
-    this._reader = readableStream.getReader();
+    this._reader = readableStream.getReader;
   }
-  get isStreamingSupported() {
+  get isStreamingSupported {
     return false;
   }
-  async read() {
+  async read {
     const {
       value,
       done
-    } = await this._reader.read();
+    } = await this._reader.read;
     if (done) {
       return {
         value: undefined,
@@ -58328,7 +58328,7 @@ class PDFWorkerStreamRangeReader {
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
+( => {
 var exports = __webpack_exports__;
 
 
@@ -58337,17 +58337,17 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 Object.defineProperty(exports, "WorkerMessageHandler", ({
   enumerable: true,
-  get: function () {
+  get: function  {
     return _worker.WorkerMessageHandler;
   }
 }));
 var _worker = __w_pdfjs_require__(1);
 const pdfjsVersion = '3.11.174';
 const pdfjsBuild = 'ce8716743';
-})();
+});
 
 /******/ 	return __webpack_exports__;
-/******/ })()
+/******/ })
 ;
 });
 //# sourceMappingURL=pdf.worker.js.map

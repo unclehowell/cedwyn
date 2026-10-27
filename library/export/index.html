@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Data export · Cedwyn developer library</title><meta name="description" content="The whole database as portable files: CSV, JSON, SQLite and one slice per section.">
+<link rel="stylesheet" href="/library/library.css"><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.12"></script></head>
+<body data-cw-wiki-off data-page="export"><a class="skip" href="#main">Skip to content</a>
+<header class="top"><button class="menu" aria-controls="side" aria-expanded="false" aria-label="Menu">☰</button><a class="brand" href="/library/">Cedwyn <span>library</span></a>
+<form class="sf" role="search" onsubmit="return false"><input id="q" type="search" placeholder="Search the docs" aria-label="Search the docs" autocomplete="off"></form></header>
+<div class="wrap"><aside id="side"><nav aria-label="Library"><ul class="nav"><li><a href="/library/" data-s="index">Overview</a></li><li><a href="/library/architecture/" data-s="architecture">Architecture</a></li><li><a href="/library/hosting/" data-s="hosting">Hosting</a></li><li><a href="/library/front-ends/" data-s="front-ends">Front ends</a></li><li><a href="/library/sections/" data-s="sections">Sections</a></li><li><a href="/library/add-a-section/" data-s="add-a-section">Add a section</a></li><li><a href="/library/export/" data-s="export">Data export</a></li><li><a href="/library/api/" data-s="api">API and WebMCP</a></li><li><a href="/library/status/" data-s="status">Status</a></li></ul></nav><p class="back"><a href="/">‹ cedwyn.bucklerfamily.estate</a></p></aside>
+<main id="main"><div id="results" hidden></div><article id="doc"><h1>Data export</h1><p class="lede">The whole database as portable files: CSV, JSON, SQLite and one slice per section.</p><nav class="toc" aria-label="On this page"><ul><li><a href="#one-url">One URL</a></li><li><a href="#files">Files</a></li><li><a href="#commands">One command</a></li><li><a href="#blobs">File bodies</a></li></ul></nav><p>Everything in the core catalogue can be taken away and opened with ordinary tools, independently of any front end. The export is rebuilt with the database on every deploy.</p>
+<h2 id="one-url">One URL</h2>
+<p><code>/db/export/manifest.json</code> lists every table with its row count and columns, every export file with its size and sha256, and the size and sha256 of the full database.</p>
+<h2 id="files">Files</h2>
+<table><tr><th>File</th><th>Contents</th></tr>
+<tr><td><code>/db/export/&lt;table&gt;.csv.gz</code></td><td>One CSV per table (artifacts, locations, section_records, nodes, edges, captures, fts, layers, layer_items, layer_refs, layer_deps, evidence_grades, themes, meta). Large tables continue in <code>-001</code>, <code>-002</code> parts.</td></tr>
+<tr><td><code>/db/export/cedwyn-data.json.gz</code></td><td>Every table up to 60,000 rows in one JSON document: <code>{"table": [rows]}</code>.</td></tr>
+<tr><td><code>/db/export/cedwyn-metadata.sqlite3.gz</code></td><td>The database without blob bytes and without the full-text index, as one SQLite file (written when it fits under 24 MB).</td></tr>
+<tr><td><code>/db/export/sections/&lt;id&gt;.json.gz</code></td><td>One slice per section: its row in <code>themes</code>, its own database rows (<code>records</code>) and every artifact it shows, with paths.</td></tr>
+<tr><td><code>/&lt;id&gt;/_db/section.sqlite</code></td><td>A section's own database, where the section ships one (for example <code>/nft-art/_db/section.sqlite</code>).</td></tr>
+<tr><td><code>/db/export/fetch-full.sh</code></td><td>Rebuilds the complete database, blobs included, from the chunk files, and prints the expected sha256.</td></tr></table>
+<h2 id="commands">One command</h2>
+<pre><code># the complete database, every table and every stored file
+curl -sO https://cedwyn.bucklerfamily.estate/db/export/fetch-full.sh &amp;&amp; sh fetch-full.sh
+sqlite3 cedwyn.sqlite3 "SELECT theme, count(*) FROM locations GROUP BY theme"
+
+# everything except file bodies, as one small SQLite file
+curl -s https://cedwyn.bucklerfamily.estate/db/export/cedwyn-metadata.sqlite3.gz | gunzip &gt; cedwyn-metadata.sqlite3
+
+# one section
+curl -s https://cedwyn.bucklerfamily.estate/db/export/sections/wayback.json.gz | gunzip | jq '.artifacts | length'</code></pre>
+<h2 id="blobs">File bodies</h2>
+<p>Stored images and documents are in the <code>blobs</code> table of the full database and are also served one by one at <code>/_blob/&lt;sha&gt;.&lt;ext&gt;</code>. Files over 2.5 MB and video stay with the Wayback media stores and are referenced, not stored.</p><nav class="pager"><a class="pv" href="/library/add-a-section/">‹ Add a section</a><a class="nx" href="/library/api/">API and WebMCP ›</a></nav></article></main></div>
+<script src="/library/search-index.js" defer></script><script src="/library/library.js" defer></script></body></html>

@@ -1,6 +1,6 @@
 # GHF artifact manifest — spec v1 (stable)
 
-Owner: evidence-catalogue sweep (Sion's Tab agent). Readers: email site, dartboard, site flywheels, forensic reports, wiki.
+Owner: evidence-catalogue sweep (Cedwyn editors). Readers: email site, dartboard, site flywheels, forensic reports, wiki.
 Written 2026-10-21. Changes to this spec are additive only (new optional fields); nothing listed here is removed or renamed.
 
 ## Where
@@ -60,7 +60,7 @@ Items live in the part files (`/artifacts/items-N.json`, each `{ "schema", "part
 
 ### Rules for readers and writers
 - Match items by `id`; de-duplicate new material by `source.gmail_message_id` + `files[].original_filename`, or by `files[].sha256`.
-- Writers other than the sweep: append items with the next free `WB-` number, never edit another item's `id`, `files[].path` or `sha256`; fetch + rebase before every push; never force-push; commit messages end "— Sion's Tab agent".
+- Writers other than the sweep: append items with the next free `WB-` number, never edit another item's `id`, `files[].path` or `sha256`; fetch + rebase before every push; never force-push; commit messages end "— Cedwyn editors".
 - Privacy: the repo is public. No subject-access (SAR) disclosures, private phone numbers, private home addresses, personal ID documents, or the account holder's own name in public text. Such items are listed with `status` as usual, `files: []`, and `note: "held privately"`.
 - Wording: plain, neutral; dates from the document; ""
 

@@ -10,7 +10,7 @@ const d = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
 const a1 = eval('(' + d.a1.replace(/^a1=/, '') + ')');
 
 const yearLabel = y => y === 'present_day' ? 'Present Day' : y;
-const today = new Date().toISOString().split('T')[0];
+const today = new Date.toISOString.split('T')[0];
 
 // ---- /api/timeline.json ----
 fs.mkdirSync(API_DIR, { recursive: true });

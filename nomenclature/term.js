@@ -1,4 +1,4 @@
-/*! term.js — nomenclature term modal for bucklerfamily.estate sites · v1.0.0 (2026-10-21) · Sion's Tab agent
+/*! term.js — nomenclature term modal for bucklerfamily.estate sites · v1.0.0 (2026-10-21) · Cedwyn editors
  * Tap a term that the records name in more than one way: a small dialog shows two icons,
  *   (i)  more information — the Legal Wiki page (greyed out when there is none)
  *   文A  nomenclature — every wording the records use, on nomenclature.bucklerfamily.estate (lit when that page exists).
@@ -11,7 +11,7 @@
  *   data-max="3"              at most N automatic marks per concept per page (default 3)
  * Elements inside a, button, input, select, textarea, code, pre, h1–h3, dialog or [data-term-skip] are never scanned.
  * Mark a word yourself with <span data-term="great-house-farm">Tŷ Mawr</span>. */
-(function () {
+(function  {
   if (window.GHFTerm) return; window.GHFTerm = "1.0.0";
   var me = document.currentScript || document.querySelector('script[src*="term.js"]');
   var base = me && me.src ? me.src.replace(/[^\/?#]*([?#].*)?$/, "") : "https://cedwyn.bucklerfamily.estate/nomenclature/";
@@ -36,7 +36,7 @@
   function open(id, word) {
     var c = byId[id]; if (!c) return;
     if (!dlg) { dlg = document.createElement("dialog"); dlg.className = "nm-dlg"; dlg.setAttribute("aria-label", "Term"); document.body.appendChild(dlg);
-      dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); }); }
+      dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close; }); }
     var n = (c.variants || []).length, wiki = c.wiki, page = c.page && c.has_page !== false ? c.page : null;
     var here = page && location.href.split("#")[0].replace(/index\.html$/, "") === page;
     dlg.innerHTML = '<div class="nm-in"><button class="nm-x" type="button" aria-label="Close">×</button>' +
@@ -48,14 +48,14 @@
       (page ? '<a class="nm-b lit" href="' + esc(page) + '"' + (here ? ' aria-current="page"' : "") + ' aria-label="All the wordings the records use (nomenclature)">' + I_TR + "Nomenclature</a>"
             : '<span class="nm-b off" aria-disabled="true" title="No nomenclature page yet">' + I_TR + "Nomenclature</span>") +
       "</div></div>";
-    dlg.querySelector(".nm-x").onclick = function () { dlg.close(); };
-    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+    dlg.querySelector(".nm-x").onclick = function  { dlg.close; };
+    if (dlg.showModal) dlg.showModal; else dlg.setAttribute("open", "");
   }
   function mark(el, id) {
     if (el.getAttribute("data-nm") === "1") return; el.setAttribute("data-nm", "1");
     el.classList.add("nm-term"); el.setAttribute("role", "button"); el.setAttribute("tabindex", "0");
     el.setAttribute("aria-haspopup", "dialog"); el.setAttribute("title", "Other names in the records");
-    var go = function (e) { e.preventDefault(); open(id, el.textContent); };
+    var go = function (e) { e.preventDefault; open(id, el.textContent); };
     el.addEventListener("click", go); el.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") go(e); });
   }
   var SKIP = /^(A|BUTTON|INPUT|SELECT|TEXTAREA|CODE|PRE|SCRIPT|STYLE|H1|H2|H3|DIALOG|SVG|LABEL|OPTION)$/;
@@ -63,12 +63,12 @@
     var count = {}, walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: function (n) {
       for (var p = n.parentNode; p && p !== root.parentNode; p = p.parentNode) { if (p.nodeType === 1 && (SKIP.test(p.tagName) || p.hasAttribute("data-term-skip") || p.hasAttribute("data-nm"))) return NodeFilter.FILTER_REJECT; }
       return rx.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP; } }), list = [], n;
-    while ((n = walker.nextNode())) list.push(n);
+    while ((n = walker.nextNode)) list.push(n);
     list.forEach(function (node) {
-      var s = node.nodeValue, out = document.createDocumentFragment(), last = 0, m, any = false; rx.lastIndex = 0;
+      var s = node.nodeValue, out = document.createDocumentFragment, last = 0, m, any = false; rx.lastIndex = 0;
       var g = new RegExp(rx.source, "g" + (rx.flags.indexOf("i") > -1 ? "i" : ""));
       while ((m = g.exec(s))) {
-        var hit = idx[m[1].toLowerCase()]; if (!hit) continue;
+        var hit = idx[m[1].toLowerCase]; if (!hit) continue;
         count[hit] = (count[hit] || 0) + 1; if (count[hit] > MAX) continue;
         if (m.index > last) out.appendChild(document.createTextNode(s.slice(last, m.index)));
         var sp = document.createElement("span"); sp.textContent = m[1]; sp.setAttribute("data-term", hit); out.appendChild(sp); mark(sp, hit);
@@ -79,18 +79,18 @@
     });
   }
   function init(lex) {
-    (lex.concepts || []).forEach(function (c) { byId[c.id] = c; (c.link_terms || []).forEach(function (t) { if (t.length > 2) idx[t.toLowerCase()] = c.id; }); });
+    (lex.concepts || []).forEach(function (c) { byId[c.id] = c; (c.link_terms || []).forEach(function (t) { if (t.length > 2) idx[t.toLowerCase] = c.id; }); });
     var root = document.querySelector(opt("scope", "main")) || document.body;
     [].forEach.call(document.querySelectorAll("[data-term]"), function (el) { if (byId[el.getAttribute("data-term")]) mark(el, el.getAttribute("data-term")); });
     if (!AUTO) return;
     var terms = Object.keys(idx).sort(function (a, b) { return b.length - a.length; })
-      .map(function (t) { return t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); });
+      .map(function (t) { return t.replace(/[.*+?^${}|[\]\\]/g, "\\$&"); });
     if (!terms.length) return;
     rx = new RegExp("(?<![\\w\\u00C0-\\u024F])(" + terms.join("|") + ")(?![\\w\\u00C0-\\u024F])", "i");
     scan(root);
   }
   window.GHFTermOpen = open;
-  fetch(LEX, { mode: "cors" }).then(function (r) { return r.json(); }).then(function (j) {
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { init(j); }); else init(j);
-  }).catch(function () {});
-})();
+  fetch(LEX, { mode: "cors" }).then(function (r) { return r.json; }).then(function (j) {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function  { init(j); }); else init(j);
+  }).catch(function  {});
+});

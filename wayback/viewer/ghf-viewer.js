@@ -3,8 +3,8 @@
  * A click on a link to wayback.bucklerfamily.estate (or any link with data-ghf-view) opens the artifact in a modal
  * instead of leaving the page. Ctrl/Cmd/Shift/middle-click, download links and data-ghf-noview keep normal behaviour.
  * Images show as <img>, audio/video in native players, Wayback PDFs page by page (pdf.js, same origin, works on phones), pages/text in a frame. "Open" and "Download" are always offered.
- * No dependencies, no tracking, styles isolated in a shadow root. Change control: library.bucklerfamily.estate/sop/wayback.html — Sion's Tab agent */
-(function () {
+ * No dependencies, no tracking, styles isolated in a shadow root. Change control: library.bucklerfamily.estate/sop/wayback.html — Cedwyn editors */
+(function  {
   'use strict';
   if (window.__ghfViewer) return; window.__ghfViewer = '1.0.1';
   var HOSTS = ['wayback.bucklerfamily.estate', 'wayback-81x.pages.dev'];
@@ -18,7 +18,7 @@
     return u.protocol === 'https:';
   }
   var host, root, dlg, body, title, openA, dlA, lastFocus;
-  function build() {
+  function build {
     host = document.createElement('div'); host.setAttribute('data-ghf-viewer', '');
     root = host.attachShadow ? host.attachShadow({ mode: 'open' }) : host;
     root.innerHTML = '<style>' +
@@ -42,16 +42,16 @@
     dlg = root.querySelector('.bk'); body = root.querySelector('.bd'); title = root.querySelector('.t');
     openA = root.querySelector('.op'); dlA = root.querySelector('.dl');
     root.querySelector('.x').addEventListener('click', close);
-    dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
-    dlg.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) close; });
+    dlg.addEventListener('cancel', function (e) { e.preventDefault; close; });
   }
-  function close() {
-    if (!dlg) return; dlg.classList.remove('on'); if (dlg.open && dlg.close) dlg.close(); body.innerHTML = '';
+  function close {
+    if (!dlg) return; dlg.classList.remove('on'); if (dlg.open && dlg.close) dlg.close; body.innerHTML = '';
     document.documentElement.style.overflow = '';
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    if (lastFocus && lastFocus.focus) lastFocus.focus;
   }
   function show(href, label) {
-    if (!host) build();
+    if (!host) build;
     var path = href.split('#')[0].split('?')[0], el;
     if (IMG.test(path)) { el = document.createElement('img'); el.src = href; el.alt = label; }
     else if (AUD.test(path)) { el = document.createElement('audio'); el.src = href; el.controls = true; el.preload = 'metadata'; }
@@ -64,19 +64,19 @@
     body.innerHTML = ''; body.appendChild(el);
     title.textContent = label; openA.href = href; dlA.href = href;
     dlA.style.display = /\.(pdf|jpe?g|png|gif|webp|mp3|m4a|wav|ogg|mp4|webm|txt)$/i.test(path) ? '' : 'none';
-    lastFocus = document.activeElement; dlg.classList.add('on'); if (dlg.showModal && !dlg.open) { try { dlg.showModal(); } catch (e) {} }
+    lastFocus = document.activeElement; dlg.classList.add('on'); if (dlg.showModal && !dlg.open) { try { dlg.showModal; } catch (e) {} }
     document.documentElement.style.overflow = 'hidden';
-    root.querySelector('.x').focus();
+    root.querySelector('.x').focus;
   }
   document.addEventListener('click', function (e) {
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!wanted(a)) return;
-    e.preventDefault(); e.stopPropagation();
-    var label = (a.getAttribute('data-ghf-title') || a.getAttribute('title') || a.textContent || '').trim().replace(/\s+/g, ' ');
-    if (label.length < 6) { try { label = decodeURIComponent(new URL(a.href).pathname.split('/').pop()); } catch (x) { label = 'Artifact'; } }
+    e.preventDefault; e.stopPropagation;
+    var label = (a.getAttribute('data-ghf-title') || a.getAttribute('title') || a.textContent || '').trim.replace(/\s+/g, ' ');
+    if (label.length < 6) { try { label = decodeURIComponent(new URL(a.href).pathname.split('/').pop); } catch (x) { label = 'Artifact'; } }
     show(a.href, label.slice(0, 160));
   }, false);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && dlg && dlg.classList.contains('on')) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && dlg && dlg.classList.contains('on')) close; });
   window.ghfViewer = { open: function (href, label) { show(href, label || href); }, close: close, version: '1.0.1' };
-})();
+});

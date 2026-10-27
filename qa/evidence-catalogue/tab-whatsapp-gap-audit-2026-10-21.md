@@ -35,7 +35,7 @@ The chat reports that the VG41 register and map may be inspected free of charge 
 
 ### 3. 1972–74 planning records — distinguish the thirteen-house scheme
 
-Tab's research says **1974/00270/FUL is a BP Pension Trust estate application, not the distinct proposal for thirteen houses that Mary reportedly petitioned against**. Do not attach the thirteen-house claim to 1974/00270/FUL without primary-file support. Search Penarth UDC planning registers, plans and committee minutes for 1972–74 and ask the Vale for the specific application and petition, including the original plan and public-notice record.
+research says **1974/00270/FUL is a BP Pension Trust estate application, not the distinct proposal for thirteen houses that Mary reportedly petitioned against**. Do not attach the thirteen-house claim to 1974/00270/FUL without primary-file support. Search Penarth UDC planning registers, plans and committee minutes for 1972–74 and ask the Vale for the specific application and petition, including the original plan and public-notice record.
 
 The Daily Telegraph report of 16 April 1974 already transcribed on the Wiki says **about 1,000** people had signed a protest petition. A separate claim of 1,700 names was mentioned online in the chat but no source was identified. Keep 1,700 **unverified**; do not replace the sourced “about 1,000” figure unless the separate source is recovered.
 

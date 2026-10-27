@@ -1,9 +1,9 @@
 /* Cedwyn runtime - loaded first in every theme page. Keeps each theme working under /<theme>/ on one URL:
    prefixes root-absolute paths made by page scripts, maps old subdomain URLs to /<theme>/..., and sends every
-   outbound link to the archive interface (/wayback/go/). No tracking, no outbound requests. - Sion's Tab agent */
-(function () {
+   outbound link to the archive interface (/wayback/go/). No tracking, no outbound requests. - Cedwyn editors */
+(function  {
   var me = document.currentScript, T = (me && me.getAttribute('data-theme')) || location.pathname.split('/')[1] || '';
-  var SECTION_SPA = [], P = '/' + T, HOSTS = {"records.bucklerfamily.estate": "records", "docs.bucklerfamily.estate": "docs", "wayback.bucklerfamily.estate": "wayback", "nomenclature.bucklerfamily.estate": "nomenclature", "nomlecture.bucklerfamily.estate": "nomenclature", "nolecture.bucklerfamily.estate": "nomenclature", "maps.bucklerfamily.estate": "maps", "infographic.bucklerfamily.estate": "infographic", "greathousefarmwiki.wordpress.com": "wiki", "wiki.bucklerfamily.estate": "wiki", "ebooks.bucklerfamily.estate": "ebooks", "bpvsbuckler.bucklerfamily.estate": "story", "story.bucklerfamily.estate": "story", "fb.bucklerfamily.estate": "fb", "chess.bucklerfamily.estate": "chess", "csscpsg.bucklerfamily.estate": "csscpsg", "csscpsgp.bucklerfamily.estate": "csscpsg", "courtdrills.bucklerfamily.estate": "courtdrills", "fcg.bucklerfamily.estate": "fcg", "oldbill.bucklerfamily.estate": "oldbill", "accounts.bucklerfamily.estate": "accounts", "authorities.bucklerfamily.estate": "authorities", "whatdotheyknow.bucklerfamily.estate": "wdtk", "review.bucklerfamily.estate": "review", "research.bucklerfamily.estate": "research", "qa.bucklerfamily.estate": "qa", "2026-10-22.bucklerfamily.estate": "meeting", "projects.bucklerfamily.estate": "projects", "app.bucklerfamily.estate": "app", "apps.bucklerfamily.estate": "app", "chat.bucklerfamily.estate": "chat", "watchtower.bucklerfamily.estate": "watchtower", "fb2.bucklerfamily.estate": "fb2", "email.bucklerfamily.estate": "email", "emails.bucklerfamily.estate": "emails", "dartboard.bucklerfamily.estate": "dartboard", "directory.bucklerfamily.estate": "directory", "terrain.bucklerfamily.estate": "terrain", "shop.bucklerfamily.estate": "shop", "clerk.bucklerfamily.estate": "wiki"}, APEX = [["/cyberspace/", "cyberspace"], ["/patagonia/", "patagonia"], ["/cedwyn/", "estate"], ["/wales/", "wales"], ["/", "dartboard"]], MEDIA = ["wayback-video.bucklerfamily.estate", "wayback-pdf.bucklerfamily.estate", "wayback-img.bucklerfamily.estate", "wayback-html.bucklerfamily.estate", "wayback-text.bucklerfamily.estate", "internetarchive.bucklerfamily.estate", "archive.org", "web.archive.org"], THEMES = ["records", "docs", "wayback", "nomenclature", "maps", "infographic", "wiki", "ebooks", "story", "thousand-cuts", "fb", "chess", "csscpsg", "courtdrills", "fcg", "oldbill", "accounts", "authorities", "wdtk", "review", "research", "qa", "meeting", "projects", "app", "chat", "watchtower", "fb2", "email", "emails", "dartboard", "estate", "directory", "patagonia", "wales", "terrain", "cyberspace", "shop", "movie", "kissed-frogs"], COLLIDE = {"wayback": ["ebooks", "watchtower", "email"], "wiki": ["qa"], "ebooks": ["fcg", "projects", "dartboard", "shop"], "story": ["research"], "research": ["story", "qa"], "projects": ["estate"]}, VHOST = {"records": ["records.bucklerfamily.estate", "/"], "docs": ["docs.bucklerfamily.estate", "/"], "wayback": ["wayback.bucklerfamily.estate", "/"], "nomenclature": ["nomenclature.bucklerfamily.estate", "/"], "maps": ["maps.bucklerfamily.estate", "/"], "infographic": ["infographic.bucklerfamily.estate", "/"], "wiki": ["greathousefarmwiki.wordpress.com", "/"], "ebooks": ["ebooks.bucklerfamily.estate", "/"], "story": ["bpvsbuckler.bucklerfamily.estate", "/"], "thousand-cuts": ["research.bucklerfamily.estate", "/timeline/thousand-cuts/"], "fb": ["fb.bucklerfamily.estate", "/"], "chess": ["chess.bucklerfamily.estate", "/"], "csscpsg": ["csscpsg.bucklerfamily.estate", "/"], "courtdrills": ["courtdrills.bucklerfamily.estate", "/"], "fcg": ["fcg.bucklerfamily.estate", "/"], "oldbill": ["oldbill.bucklerfamily.estate", "/"], "accounts": ["accounts.bucklerfamily.estate", "/"], "authorities": ["authorities.bucklerfamily.estate", "/"], "wdtk": ["whatdotheyknow.bucklerfamily.estate", "/"], "review": ["review.bucklerfamily.estate", "/"], "research": ["research.bucklerfamily.estate", "/"], "qa": ["qa.bucklerfamily.estate", "/"], "meeting": ["2026-10-22.bucklerfamily.estate", "/"], "projects": ["projects.bucklerfamily.estate", "/"], "app": ["app.bucklerfamily.estate", "/"], "chat": ["chat.bucklerfamily.estate", "/"], "watchtower": ["watchtower.bucklerfamily.estate", "/"], "fb2": ["fb2.bucklerfamily.estate", "/"], "email": ["email.bucklerfamily.estate", "/"], "emails": ["email.bucklerfamily.estate", "/calendar/"], "dartboard": ["bucklerfamily.estate", "/"], "estate": ["bucklerfamily.estate", "/cedwyn/"], "directory": ["directory.bucklerfamily.estate", "/"], "patagonia": ["bucklerfamily.estate", "/patagonia/"], "wales": ["bucklerfamily.estate", "/wales/"], "terrain": ["terrain.bucklerfamily.estate", "/"], "cyberspace": ["bucklerfamily.estate", "/cyberspace/"], "shop": ["shop.bucklerfamily.estate", "/"], "movie": ["cedwyn.bucklerfamily.estate", "/movie/"], "kissed-frogs": ["cedwyn.bucklerfamily.estate", "/kissed-frogs/"]};
+  var SECTION_SPA = [], P = '/' + T, HOSTS = {"records.bucklerfamily.estate": "records", "docs.bucklerfamily.estate": "docs", "wayback.bucklerfamily.estate": "wayback", "nomenclature.bucklerfamily.estate": "nomenclature", "nomlecture.bucklerfamily.estate": "nomenclature", "nolecture.bucklerfamily.estate": "nomenclature", "maps.bucklerfamily.estate": "maps", "infographic.bucklerfamily.estate": "infographic", "greathousefarmwiki.wordpress.com": "wiki", "wiki.bucklerfamily.estate": "wiki", "ebooks.bucklerfamily.estate": "ebooks", "bpvsbuckler.bucklerfamily.estate": "story", "story.bucklerfamily.estate": "story", "fb.bucklerfamily.estate": "fb", "chess.bucklerfamily.estate": "chess", "csscpsg.bucklerfamily.estate": "csscpsg", "csscpsgp.bucklerfamily.estate": "csscpsg", "courtdrills.bucklerfamily.estate": "courtdrills", "fcg.bucklerfamily.estate": "fcg", "oldbill.bucklerfamily.estate": "oldbill", "accounts.bucklerfamily.estate": "accounts", "authorities.bucklerfamily.estate": "authorities", "whatdotheyknow.bucklerfamily.estate": "wdtk", "review.bucklerfamily.estate": "review", "research.bucklerfamily.estate": "research", "qa.bucklerfamily.estate": "qa", "2026-10-22.bucklerfamily.estate": "meeting", "projects.bucklerfamily.estate": "projects", "app.bucklerfamily.estate": "app", "apps.bucklerfamily.estate": "app", "chat.bucklerfamily.estate": "chat", "watchtower.bucklerfamily.estate": "watchtower", "fb2.bucklerfamily.estate": "fb2", "email.bucklerfamily.estate": "email", "emails.bucklerfamily.estate": "emails", "dartboard.bucklerfamily.estate": "dartboard", "directory.bucklerfamily.estate": "directory", "terrain.bucklerfamily.estate": "terrain", "shop.bucklerfamily.estate": "shop", "clerk.bucklerfamily.estate": "wiki"}, APEX = [["/cyberspace/", "cyberspace"], ["/patagonia/", "patagonia"], ["/cedwyn/", "estate"], ["/wales/", "wales"], ["/", "dartboard"]], MEDIA = ["wayback-video.bucklerfamily.estate", "wayback-pdf.bucklerfamily.estate", "wayback-img.bucklerfamily.estate", "wayback-html.bucklerfamily.estate", "wayback-text.bucklerfamily.estate", "internetarchive.bucklerfamily.estate", "archive.org", "web.archive.org"], THEMES = ["records", "docs", "wayback", "nomenclature", "maps", "infographic", "wiki", "ebooks", "story", "thousand-cuts", "fb", "chess", "csscpsg", "courtdrills", "fcg", "oldbill", "accounts", "authorities", "wdtk", "review", "research", "qa", "meeting", "projects", "app", "chat", "watchtower", "fb2", "email", "emails", "dartboard", "estate", "directory", "patagonia", "wales", "terrain", "cyberspace", "shop", "movie", "kissed-frogs", "nft-art"], COLLIDE = {"wayback": ["ebooks", "watchtower", "email"], "wiki": ["qa"], "ebooks": ["fcg", "projects", "dartboard", "shop"], "story": ["research"], "research": ["story", "qa"], "projects": ["estate"]}, VHOST = {"records": ["records.bucklerfamily.estate", "/"], "docs": ["docs.bucklerfamily.estate", "/"], "wayback": ["wayback.bucklerfamily.estate", "/"], "nomenclature": ["nomenclature.bucklerfamily.estate", "/"], "maps": ["maps.bucklerfamily.estate", "/"], "infographic": ["infographic.bucklerfamily.estate", "/"], "wiki": ["greathousefarmwiki.wordpress.com", "/"], "ebooks": ["ebooks.bucklerfamily.estate", "/"], "story": ["bpvsbuckler.bucklerfamily.estate", "/"], "thousand-cuts": ["research.bucklerfamily.estate", "/timeline/thousand-cuts/"], "fb": ["fb.bucklerfamily.estate", "/"], "chess": ["chess.bucklerfamily.estate", "/"], "csscpsg": ["csscpsg.bucklerfamily.estate", "/"], "courtdrills": ["courtdrills.bucklerfamily.estate", "/"], "fcg": ["fcg.bucklerfamily.estate", "/"], "oldbill": ["oldbill.bucklerfamily.estate", "/"], "accounts": ["accounts.bucklerfamily.estate", "/"], "authorities": ["authorities.bucklerfamily.estate", "/"], "wdtk": ["whatdotheyknow.bucklerfamily.estate", "/"], "review": ["review.bucklerfamily.estate", "/"], "research": ["research.bucklerfamily.estate", "/"], "qa": ["qa.bucklerfamily.estate", "/"], "meeting": ["2026-10-22.bucklerfamily.estate", "/"], "projects": ["projects.bucklerfamily.estate", "/"], "app": ["app.bucklerfamily.estate", "/"], "chat": ["chat.bucklerfamily.estate", "/"], "watchtower": ["watchtower.bucklerfamily.estate", "/"], "fb2": ["fb2.bucklerfamily.estate", "/"], "email": ["email.bucklerfamily.estate", "/"], "emails": ["email.bucklerfamily.estate", "/calendar/"], "dartboard": ["bucklerfamily.estate", "/"], "estate": ["bucklerfamily.estate", "/cedwyn/"], "directory": ["directory.bucklerfamily.estate", "/"], "patagonia": ["bucklerfamily.estate", "/patagonia/"], "wales": ["bucklerfamily.estate", "/wales/"], "terrain": ["terrain.bucklerfamily.estate", "/"], "cyberspace": ["bucklerfamily.estate", "/cyberspace/"], "shop": ["shop.bucklerfamily.estate", "/"], "movie": ["cedwyn.bucklerfamily.estate", "/movie/"], "kissed-frogs": ["cedwyn.bucklerfamily.estate", "/kissed-frogs/"], "nft-art": ["cedwyn.bucklerfamily.estate", "/nft-art/"]};
   // 25 Oct 2026 (Sion): two sections over one database. /wales/<theme>/... and /argentina/<theme>/... serve the same theme files
   // (Pages rewrites in _redirects, tools/sections.py); LP is the theme path without the section prefix. section.js adds the
   // section ribbon and keeps theme links inside the section; the section gives the default language (Wales cy, Argentina es).
@@ -19,9 +19,9 @@
   }
   window.__cedwynSec = SEC; window.__cedwynLP = LP;
   // the shared header (basecamp.js) reads the theme's former address from <html data-ghf-host / data-ghf-path>
-  (function () { var v = VHOST[T]; if (!v) return; var de = document.documentElement, rest = LP.slice(P.length).replace(/^\/+/, '');
+  (function  { var v = VHOST[T]; if (!v) return; var de = document.documentElement, rest = LP.slice(P.length).replace(/^\/+/, '');
     if (!de.getAttribute('data-ghf-host')) de.setAttribute('data-ghf-host', v[0]);
-    if (!de.getAttribute('data-ghf-path')) de.setAttribute('data-ghf-path', v[1] + rest); })();
+    if (!de.getAttribute('data-ghf-path')) de.setAttribute('data-ghf-path', v[1] + rest); });
   // Stage 3: every theme reads its data and evidence from the one catalogue database. The service worker (/cedwyn-sw.js)
   // answers those requests from the database chunks. On a first visit, before the worker controls this page, loading
   // stops, the worker starts, and the page loads again under it (once per tab). Where no service worker can run, the
@@ -31,28 +31,28 @@
   if (SWOK) {
     if (!SWC.controller && !ss('cedwyn-sw')) {
       ss('cedwyn-sw', '1');
-      try { window.stop(); } catch (e) {}
-      var went = false, go = function () { if (!went) { went = true; location.reload(); } };
+      try { window.stop; } catch (e) {}
+      var went = false, go = function  { if (!went) { went = true; location.reload; } };
       SWC.addEventListener('controllerchange', go);
       SWC.register('/cedwyn-sw.js', { scope: '/', updateViaCache: 'none' }).then(function (reg) {
         if (reg.active && !SWC.controller) reg.active.postMessage('claim');
       }).catch(go);
       setTimeout(go, 6000);
-    } else SWC.register('/cedwyn-sw.js', { scope: '/', updateViaCache: 'none' }).catch(function () {});
+    } else SWC.register('/cedwyn-sw.js', { scope: '/', updateViaCache: 'none' }).catch(function  {});
   }
   var DBX = /\.(json|csv|xml|geojson|png|jpe?g|gif|webp|svg|avif|ico|bmp|tiff?|pdf|docx?|mp3|m4a|ogg|wav)$/i, DBP = null;
-  function noSW() { return !(SWC && SWC.controller); }
-  function dbfs() {
+  function noSW { return !(SWC && SWC.controller); }
+  function dbfs {
     if (!DBP) DBP = new Promise(function (ok, no) { if (window.CedwynDB) return ok(window.CedwynDB); var s = document.createElement('script'); s.src = '/_cedwyn/dbfs.js?v=3';
-      s.onload = function () { ok(window.CedwynDB); }; s.onerror = no; (document.head || document.documentElement).appendChild(s); });
+      s.onload = function  { ok(window.CedwynDB); }; s.onerror = no; (document.head || document.documentElement).appendChild(s); });
     return DBP;
   }
   function dbPath(u) { try { var x = new URL(u, location.href); return x.origin === location.origin && DBX.test(x.pathname) && !/^\/(db|_cedwyn)\//.test(x.pathname) ? x.pathname : null; } catch (e) { return null; } }
-  function fromDB(path) { return dbfs().then(function (D) { var p2 = path.replace(/^\/(wales|argentina)(\/[^\/]+\/)/, '$2'); return D.get(path).then(function (r) { return r || p2 === path ? r : D.get(p2); }); }); }
+  function fromDB(path) { return dbfs.then(function (D) { var p2 = path.replace(/^\/(wales|argentina)(\/[^\/]+\/)/, '$2'); return D.get(path).then(function (r) { return r || p2 === path ? r : D.get(p2); }); }); }
   var RES = ['/_cedwyn/', '/_blob/', '/db/', '/graphql', '/catalogue', '/wayback/go/', '/values/', '/argentina/', '/explore/', '/guestbook/'];   // 26 Oct 2026: + the Agent guest book
   function starts(u, a) { for (var i = 0; i < a.length; i++) if (u.indexOf(a[i]) === 0) return true; return false; }
   function mapHost(host, path) {
-    host = host.toLowerCase();
+    host = host.toLowerCase;
     if (host === 'bucklerfamily.estate' || host === 'www.bucklerfamily.estate') {
       for (var i = 0; i < APEX.length; i++) { var pre = APEX[i][0]; if (path.indexOf(pre) === 0 || path + '/' === pre) return '/' + APEX[i][1] + '/' + path.slice(pre.length).replace(/^\/+/, ''); }
     }
@@ -74,7 +74,7 @@
   }
   function isOut(u) {
     var m = String(u).match(/^(?:https?:)?\/\/([^\/?#:]+)/i);
-    return !!(m && m[1].toLowerCase() !== location.hostname && mapHost(m[1], '/') === null) && !pass(String(u));
+    return !!(m && m[1].toLowerCase !== location.hostname && mapHost(m[1], '/') === null) && !pass(String(u));
   }
   function archive(u) { return '/wayback/go/?u=' + encodeURIComponent(u); }
   window.__cedwyn = { theme: T, fix: fix, archive: archive };
@@ -85,7 +85,7 @@
   window.__cedwyn.untrap = untrap;
   // 25 Oct 2026 (sales fix): the shop's own checkout and sign-up hosts are the one exception to "no outbound links":
   // a buy button opens Stripe/Gumroad checkout instead of the archive page (26 Oct 2026: the mailing list is now Cedwyn's own, below).
-  function pass(u) { var m = /^https:\/\/([^\/?#:]+)/i.exec(u || ''), h; if (!m) return false; h = m[1].toLowerCase();
+  function pass(u) { var m = /^https:\/\/([^\/?#:]+)/i.exec(u || ''), h; if (!m) return false; h = m[1].toLowerCase;
     return h === 'buy.stripe.com' || h === 'checkout.stripe.com' || h === 'gumroad.com' || /\.gumroad\.com$/.test(h)
       // 26 Oct 2026: the Agent guest book's version links (commits of this site's own repository) open GitHub directly; the owner allowed them out
       || (h === 'github.com' && /^\/unclehowell\/cedwyn\/commit\/[0-9a-f]{7,40}\/?$/i.test(u.replace(/^https:\/\/[^\/]+/i, '').split(/[?#]/)[0])); }
@@ -99,11 +99,11 @@
   var LW = { en: ['Nearly there: check your email and tap the link to confirm.', 'That did not go through. Please try again later.', 'Please enter a valid email address.'],
     cy: ['Bron yno: edrychwch ar eich e-bost a thapio’r ddolen i gadarnhau.', 'Ni aeth hynny drwodd. Rhowch gynnig arall arni yn nes ymlaen.', 'Rhowch gyfeiriad e-bost dilys.'],
     es: ['Casi listo: revise su correo y pulse el enlace para confirmar.', 'No se pudo enviar. Inténtelo más tarde.', 'Escriba una dirección de correo válida.'] };
-  function llang() { var l = window.__cedwynLang || ''; if (!l) { try { l = localStorage.getItem('ghf_lang') || ''; } catch (x) {} }
-    l = (l || DE0.getAttribute('data-ghf-lang-default') || DE0.getAttribute('lang') || 'en').slice(0, 2).toLowerCase(); return LW[l] ? l : 'en'; }
+  function llang { var l = window.__cedwynLang || ''; if (!l) { try { l = localStorage.getItem('ghf_lang') || ''; } catch (x) {} }
+    l = (l || DE0.getAttribute('data-ghf-lang-default') || DE0.getAttribute('lang') || 'en').slice(0, 2).toLowerCase; return LW[l] ? l : 'en'; }
   function mcForm(f) { var a = f.getAttribute('action') || ''; try { a = decodeURIComponent(a); } catch (x) {} return /list-manage\.com/i.test(a) || f.id === 'cm-sub' || f.hasAttribute('data-cedwyn-mc'); }   // data-cedwyn-mc: a Mailchimp form the build pointed at /api/list/subscribe (26 Oct 2026)
   function listSend(f) {
-    var em = f.querySelector('input[name=EMAIL],input[name=email],input[type=email]'), v = em ? String(em.value || '').trim() : '', l = llang(), W = LW[l];
+    var em = f.querySelector('input[name=EMAIL],input[name=email],input[type=email]'), v = em ? String(em.value || '').trim : '', l = llang, W = LW[l];
     var hp = f.querySelector('input[name^="b_"],input[name=website]'), nm = f.querySelector('input[name=FNAME],input[name=name]'), src = f.querySelector('input[name=UTMSRC]');
     var done = f.parentNode && f.parentNode.querySelector('.ghf-done'), msg = f.querySelector('[role=status]') || f.querySelector('.ghf-err');
     function say(t, ok) {
@@ -116,42 +116,42 @@
     var b = f.querySelector('[type=submit]'); if (b) b.disabled = true;
     (of || fetch).call(window, '/api/list/subscribe', { method: 'POST', credentials: 'omit', headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ email: v, lang: l, topic: topic, source: location.pathname, name: nm ? nm.value : '', website: hp ? hp.value : '' }) })
-      .then(function (r) { return r.json().catch(function () { return {}; }); })
-      .then(function (j) { if (b) b.disabled = false; if (j && j.ok) say(W[0], true); else say((j && j.message) || W[1]); }, function () { if (b) b.disabled = false; say(W[1]); });
+      .then(function (r) { return r.json.catch(function  { return {}; }); })
+      .then(function (j) { if (b) b.disabled = false; if (j && j.ok) say(W[0], true); else say((j && j.message) || W[1]); }, function  { if (b) b.disabled = false; say(W[1]); });
   }
   document.addEventListener('submit', function (e) { var f = e.target; if (!f || !f.getAttribute || f.id !== 'cm-sub' || !mcForm(f)) return;
-    e.preventDefault(); e.stopImmediatePropagation(); listSend(f); }, true);   // the film page's form: ours from the start
+    e.preventDefault; e.stopImmediatePropagation; listSend(f); }, true);   // the film page's form: ours from the start
   document.addEventListener('submit', function (e) { var f = e.target; if (!f || !f.getAttribute || f.id === 'cm-sub' || !mcForm(f)) return;
     if (e.defaultPrevented) return;   // the page's own check stopped it (no email, no tick)
-    e.preventDefault(); setTimeout(function () { listSend(f); }, 0); }, false);
+    e.preventDefault; setTimeout(function  { listSend(f); }, 0); }, false);
   document.addEventListener('click', function (e) { var a = e.target && e.target.closest ? e.target.closest('a[href]') : null, t;
     if (a && (t = untrap(a.getAttribute('href')))) a.setAttribute('href', t); }, true);
   var of = window.fetch;
   if (of) window.fetch = function (i, o) {
     try { if (typeof i === 'string') i = fix(i); else if (i && i.url && i.url.indexOf(location.origin + '/') === 0) { var f = fix(i.url.slice(location.origin.length)); if (f !== i.url.slice(location.origin.length)) i = new Request(f, i); } } catch (e) {}
-    var self_ = this, dp = noSW() && (!o || !o.method || /^get$/i.test(o.method)) && dbPath(typeof i === 'string' ? i : (i && i.url) || '');
-    if (dp) return fromDB(dp).then(function (r) { return r ? new Response(r.bytes, { status: 200, headers: { 'Content-Type': r.mime, 'X-Cedwyn-Source': 'db-page' } }) : of.call(self_, i, o); }, function () { return of.call(self_, i, o); });
+    var self_ = this, dp = noSW && (!o || !o.method || /^get$/i.test(o.method)) && dbPath(typeof i === 'string' ? i : (i && i.url) || '');
+    if (dp) return fromDB(dp).then(function (r) { return r ? new Response(r.bytes, { status: 200, headers: { 'Content-Type': r.mime, 'X-Cedwyn-Source': 'db-page' } }) : of.call(self_, i, o); }, function  { return of.call(self_, i, o); });
     return of.call(this, i, o);
   };
   var xo = XMLHttpRequest.prototype.open;
   XMLHttpRequest.prototype.open = function (m, u) { var a = [].slice.call(arguments); a[1] = fix(u);
-    this.__cdb = noSW() && /^get$/i.test(m) && a[2] !== false && dbPath(a[1]) ? [m, dbPath(a[1])] : null; return xo.apply(this, a); };
+    this.__cdb = noSW && /^get$/i.test(m) && a[2] !== false && dbPath(a[1]) ? [m, dbPath(a[1])] : null; return xo.apply(this, a); };
   var xs = XMLHttpRequest.prototype.send;
-  XMLHttpRequest.prototype.send = function () {   // no service worker: the same database, read from this page
+  XMLHttpRequest.prototype.send = function  {   // no service worker: the same database, read from this page
     var x = this, d = x.__cdb, args = arguments; if (!d) return xs.apply(x, args);
     x.__cdb = null;
-    fromDB(d[1]).then(function (r) { if (r) { xo.call(x, d[0], URL.createObjectURL(new Blob([r.bytes], { type: r.mime })), true); } xs.apply(x, args); }, function () { xs.apply(x, args); });
+    fromDB(d[1]).then(function (r) { if (r) { xo.call(x, d[0], URL.createObjectURL(new Blob([r.bytes], { type: r.mime })), true); } xs.apply(x, args); }, function  { xs.apply(x, args); });
   };
   // media that failed to load before the worker took over (or with no worker at all): load it again from the database
   document.addEventListener('error', function (e) {
     var el = e.target, tag = el && el.tagName; if (!/^(IMG|SOURCE|VIDEO|AUDIO|EMBED|INPUT)$/.test(tag || '') || el.__cdbTried) return;
     var src = el.currentSrc || el.getAttribute('src'), dp = src && dbPath(src); if (!dp) return; el.__cdbTried = 1;
-    if (!noSW()) { var u = new URL(src, location.href); u.searchParams.set('cdb', '1'); el.setAttribute('src', u.pathname + u.search); return; }
-    fromDB(dp).then(function (r) { if (r) el.setAttribute('src', URL.createObjectURL(new Blob([r.bytes], { type: r.mime }))); }, function () {});
+    if (!noSW) { var u = new URL(src, location.href); u.searchParams.set('cdb', '1'); el.setAttribute('src', u.pathname + u.search); return; }
+    fromDB(dp).then(function (r) { if (r) el.setAttribute('src', URL.createObjectURL(new Blob([r.bytes], { type: r.mime }))); }, function  {});
   }, true);
   var sa = Element.prototype.setAttribute, ATTRS = { src: 1, href: 1, action: 1, poster: 1, 'data-src': 1 };
   Element.prototype.setAttribute = function (n, v) {
-    if (ATTRS[String(n).toLowerCase()] && typeof v === 'string') { v = fix(v); if (/^iframe$/i.test(this.tagName) && /UC2sN1VEs1WeLfBH8VmbvLWw|sionbuckler5713/i.test(v)) v = 'about:blank'; }
+    if (ATTRS[String(n).toLowerCase] && typeof v === 'string') { v = fix(v); if (/^iframe$/i.test(this.tagName) && /UC2sN1VEs1WeLfBH8VmbvLWw|sionbuckler5713/i.test(v)) v = 'about:blank'; }
     return sa.call(this, n, v);
   };
   [['HTMLImageElement', 'src'], ['HTMLScriptElement', 'src'], ['HTMLLinkElement', 'href'], ['HTMLSourceElement', 'src'], ['HTMLIFrameElement', 'src'],
@@ -164,12 +164,12 @@
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href],area[href]') : null; if (!a) return;
     var h = a.getAttribute('href'); if (!h) return;
-    if (isOut(h)) { e.preventDefault(); e.stopPropagation(); location.href = archive(new URL(h, location.href).href); return; }
+    if (isOut(h)) { e.preventDefault; e.stopPropagation; location.href = archive(new URL(h, location.href).href); return; }
     if (/^(?:https?:)?\/\//i.test(h)) { var f = fix(h); if (f !== h) a.setAttribute('href', f); }  // static paths are already resolved at build time
   }, true);
   document.addEventListener('submit', function (e) {
     var f = e.target, act = f && f.getAttribute && f.getAttribute('action');
-    if (act && isOut(act)) { e.preventDefault(); location.href = archive(new URL(act, location.href).href); }
+    if (act && isOut(act)) { e.preventDefault; location.href = archive(new URL(act, location.href).href); }
   }, true);
   function sweep(root) {
     if (!root || !root.querySelectorAll) return;
@@ -177,9 +177,9 @@
     for (var i = 0; i < els.length; i++) ['src', 'href', 'poster'].forEach(function (n) { var v = els[i].getAttribute(n); if (v && v.charAt(0) === '/') { var f = fix(v); if (f !== v) sa.call(els[i], n, f); } });
   }
   // only nodes that page scripts add after parsing are swept: the parsed page was resolved at build time
-  function watch() { try { new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (n) { if (n.nodeType === 1) { sweep(n); } }); }); }).observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {} }
+  function watch { try { new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (n) { if (n.nodeType === 1) { sweep(n); } }); }); }).observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {} }
   // small Cedwyn pill: back to the theme picker, search the shared catalogue
-  function pill() {
+  function pill {
     if (document.getElementById('cedwyn-pill') || !document.body) return;
     var d = document.createElement('div'); d.id = 'cedwyn-pill';
     d.innerHTML = '<a href="/" title="All Cedwyn themes" aria-label="All Cedwyn themes">C</a><a href="/catalogue/?theme=' + encodeURIComponent(T) + '" title="Search the catalogue" aria-label="Search the catalogue">&#9906;</a>';
@@ -187,34 +187,34 @@
     s.textContent = '#cedwyn-pill{position:fixed;left:8px;bottom:8px;z-index:2147483000;display:flex;gap:4px;opacity:.72;font:600 13px/1 -apple-system,Segoe UI,Roboto,sans-serif}#cedwyn-pill:hover{opacity:1}#cedwyn-pill a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:15px;background:#14141c;color:#fca;text-decoration:none;border:1px solid #fca;box-shadow:0 1px 4px rgba(0,0,0,.3)}@media print{#cedwyn-pill{display:none}}';
     document.head.appendChild(s); document.body.appendChild(d);
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { watch(); pill(); }); else { watch(); pill(); }
-  // Unsubstantiated text (Sion, 03:07 GMT 26 Oct 2026): .unsub = smaller italic, one en/cy/es legend per page (tools/unsub.py) - Sion's Tab agent
-  (function () {
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function  { watch; pill; }); else { watch; pill; }
+  // Unsubstantiated text (Sion, 03:07 GMT 26 Oct 2026): .unsub = smaller italic, one en/cy/es legend per page (tools/unsub.py) - Cedwyn editors
+  (function  {
     var LG = { en: "Small italic text = not yet backed by a record in this archive.", cy: "Testun italig bach = heb ei ategu eto gan gofnod yn yr archif hon.", es: "Texto pequeño en cursiva = aún sin respaldo de un documento en este archivo." };
-    function css() { if (document.getElementById("cedwyn-unsub-css")) return; var s = document.createElement("style"); s.id = "cedwyn-unsub-css";
+    function css { if (document.getElementById("cedwyn-unsub-css")) return; var s = document.createElement("style"); s.id = "cedwyn-unsub-css";
       s.textContent = ".unsub{font-size:.86em;font-style:italic}.unsub .unsub{font-size:1em}#cedwyn-unsub-legend{font-size:12px;line-height:1.35;font-style:italic;opacity:.85;margin:6px 0 8px}#cedwyn-unsub-legend .unsub-eg{font-size:.86em}";
       (document.head || document.documentElement).appendChild(s); }
-    function lg() { var l = ""; try { if (window.CedwynSection) l = window.CedwynSection.lang(); } catch (e) {} if (!l) { try { l = localStorage.getItem("ghf_lang") || ""; } catch (e) {} }
+    function lg { var l = ""; try { if (window.CedwynSection) l = window.CedwynSection.lang; } catch (e) {} if (!l) { try { l = localStorage.getItem("ghf_lang") || ""; } catch (e) {} }
       l = (l || document.documentElement.getAttribute("lang") || "en").slice(0, 2); return LG[l] ? l : "en"; }
-    function go() { css(); if (!document.body) return; var u = document.querySelector(".unsub"), g = document.getElementById("cedwyn-unsub-legend"); if (!u) return;
+    function go { css; if (!document.body) return; var u = document.querySelector(".unsub"), g = document.getElementById("cedwyn-unsub-legend"); if (!u) return;
       if (!g) { g = document.createElement("p"); g.id = "cedwyn-unsub-legend"; g.setAttribute("data-no-translate", ""); var m = document.querySelector("main") || u.parentNode;
         if (m === document.querySelector("main")) m.insertBefore(g, m.firstChild); else m.parentNode.insertBefore(g, m); }
-      var l = lg(); g.setAttribute("lang", l); g.textContent = LG[l]; }
-    css(); if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
-    window.addEventListener("load", go); document.addEventListener("ghf-lang-change", function () { setTimeout(go, 150); }); window.CedwynUnsub = go;
-  })();
+      var l = lg; g.setAttribute("lang", l); g.textContent = LG[l]; }
+    css; if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go;
+    window.addEventListener("load", go); document.addEventListener("ghf-lang-change", function  { setTimeout(go, 150); }); window.CedwynUnsub = go;
+  });
   // Headline-first pages (Sion, 12:01 GMT 26 Oct 2026, m:2c8d96e9): tools/headlines.py folds each section's detail into a native
-  // <details class="cw-more">; this relabels "Read more" in the chosen language and opens a fold that a link points into - Sion's Tab agent
-  (function () {
+  // <details class="cw-more">; this relabels "Read more" in the chosen language and opens a fold that a link points into - Cedwyn editors
+  (function  {
     var LB = { en: "Learn more", cy: "Dysgu mwy", es: "Saber m\u00e1s" };   // Sion 22:12 GMT 26 Oct 2026 (m:611a2587): "learn more"
-    function lg() { var l = ""; try { if (window.CedwynSection) l = window.CedwynSection.lang(); } catch (e) {} if (!l) { try { l = localStorage.getItem("ghf_lang") || ""; } catch (e) {} }
+    function lg { var l = ""; try { if (window.CedwynSection) l = window.CedwynSection.lang; } catch (e) {} if (!l) { try { l = localStorage.getItem("ghf_lang") || ""; } catch (e) {} }
       l = (l || document.documentElement.getAttribute("data-ghf-lang-default") || document.documentElement.getAttribute("lang") || "en").slice(0, 2); return LB[l] ? l : "en"; }
-    function label() { var q = document.querySelectorAll("details.cw-more > summary .cw-more-l"), t = LB[lg()], i; for (i = 0; i < q.length; i++) if (q[i].textContent !== t) q[i].textContent = t; }
-    function reveal() { var h = location.hash ? decodeURIComponent(location.hash.slice(1)) : "", el, d; if (!h) return; try { el = document.getElementById(h); } catch (e) { el = null; }
+    function label { var q = document.querySelectorAll("details.cw-more > summary .cw-more-l"), t = LB[lg], i; for (i = 0; i < q.length; i++) if (q[i].textContent !== t) q[i].textContent = t; }
+    function reveal { var h = location.hash ? decodeURIComponent(location.hash.slice(1)) : "", el, d; if (!h) return; try { el = document.getElementById(h); } catch (e) { el = null; }
       d = el && el.closest ? el.closest("details.cw-more") : null; while (d) { d.open = true; d = d.parentElement && d.parentElement.closest ? d.parentElement.closest("details.cw-more") : null; }
-      if (el && el.scrollIntoView) setTimeout(function () { el.scrollIntoView(); }, 30); }
-    function go() { label(); reveal(); }
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
-    window.addEventListener("hashchange", reveal); document.addEventListener("ghf-lang-change", function () { setTimeout(label, 150); }); window.CedwynMore = go;
-  })();
-})();
+      if (el && el.scrollIntoView) setTimeout(function  { el.scrollIntoView; }, 30); }
+    function go { label; reveal; }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go;
+    window.addEventListener("hashchange", reveal); document.addEventListener("ghf-lang-change", function  { setTimeout(label, 150); }); window.CedwynMore = go;
+  });
+});

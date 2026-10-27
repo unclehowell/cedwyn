@@ -1,0 +1,42 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Architecture · Cedwyn developer library</title><meta name="description" content="The core catalogue database, section data, federation and the no-duplication rule.">
+<link rel="stylesheet" href="/library/library.css"><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.12"></script></head>
+<body data-cw-wiki-off data-page="architecture"><a class="skip" href="#main">Skip to content</a>
+<header class="top"><button class="menu" aria-controls="side" aria-expanded="false" aria-label="Menu">☰</button><a class="brand" href="/library/">Cedwyn <span>library</span></a>
+<form class="sf" role="search" onsubmit="return false"><input id="q" type="search" placeholder="Search the docs" aria-label="Search the docs" autocomplete="off"></form></header>
+<div class="wrap"><aside id="side"><nav aria-label="Library"><ul class="nav"><li><a href="/library/" data-s="index">Overview</a></li><li><a href="/library/architecture/" data-s="architecture">Architecture</a></li><li><a href="/library/hosting/" data-s="hosting">Hosting</a></li><li><a href="/library/front-ends/" data-s="front-ends">Front ends</a></li><li><a href="/library/sections/" data-s="sections">Sections</a></li><li><a href="/library/add-a-section/" data-s="add-a-section">Add a section</a></li><li><a href="/library/export/" data-s="export">Data export</a></li><li><a href="/library/api/" data-s="api">API and WebMCP</a></li><li><a href="/library/status/" data-s="status">Status</a></li></ul></nav><p class="back"><a href="/">‹ cedwyn.bucklerfamily.estate</a></p></aside>
+<main id="main"><div id="results" hidden></div><article id="doc"><h1>Architecture</h1><p class="lede">The core catalogue database, section data, federation and the no-duplication rule.</p><nav class="toc" aria-label="On this page"><ul><li><a href="#layers">Three layers</a></li><li><a href="#core-db">The core catalogue database</a></li><li><a href="#no-duplication">Shared without duplication</a></li><li><a href="#federation">Federation: section data and the core</a></li><li><a href="#graph">Graph and GraphQL</a></li></ul></nav><h2 id="layers">Three layers</h2>
+<table><tr><th>Layer</th><th>Where it lives</th><th>What it holds</th></tr>
+<tr><td>Section source</td><td>One branch per section</td><td>The section's pages, styles, scripts and its own data files (JSON, CSV, Markdown).</td></tr>
+<tr><td>Assembled site</td><td>Branch <code>site</code></td><td>Every section copied under <code>/&lt;id&gt;/</code>, links rewritten, shared files stored once in <code>/_blob/</code>.</td></tr>
+<tr><td>Core catalogue</td><td><code>/db/</code> in the assembled site</td><td>One SQLite database built from the assembled site: files, locations, full-text index, graph, captures, layers.</td></tr></table>
+<h2 id="core-db">The core catalogue database</h2>
+<p>Built by <code>tools/build_db.py</code> on every deploy. Size at the last build: 672 MB, split into 2,565 chunk files of 256 KB (<code>/db/cedwyn.sqlite3.000</code> onwards). Counts: 11,829 artifacts, 18,857 locations, 4,042 stored blobs, 1,166 nodes, 271,768 edges, 8,481 full-text rows, 183 captures. Live figures: <code>/db/stats.json</code>.</p>
+<table><tr><th>Table</th><th>One row per</th><th>Key columns</th></tr>
+<tr><td><code>artifacts</code></td><td>unique file (by sha256)</td><td>id, sha, kind, mime, bytes, title, year_min, year_max, has_blob</td></tr>
+<tr><td><code>locations</code></td><td>place a file appears</td><td>aid → artifacts.id, theme (section id), path, url</td></tr>
+<tr><td><code>blobs</code></td><td>stored file body</td><td>sha, data (raw bytes: images, PDFs, data files up to 2.5 MB each)</td></tr>
+<tr><td><code>fts</code></td><td>page or text file</td><td>FTS5 index: title, body, aid, theme, path</td></tr>
+<tr><td><code>nodes</code>, <code>edges</code></td><td>graph node / relation</td><td>page→embeds/links→artifact, artifact→mentions→year, artifact→cites→host, artifact→in_theme→section</td></tr>
+<tr><td><code>captures</code></td><td>archived web address</td><td>key, url, title, latest, captured</td></tr>
+<tr><td><code>layers</code>, <code>layer_items</code>, <code>layer_refs</code>, <code>layer_deps</code></td><td>reading over the evidence</td><td>items point at artifact ids; they never copy content</td></tr>
+<tr><td><code>section_records</code></td><td>record from a section's own database</td><td>theme, kind, id, seq, data (JSON)</td></tr>
+<tr><td><code>evidence_grades</code></td><td>evidence record</td><td>ev, grade, origin, path, note</td></tr>
+<tr><td><code>themes</code>, <code>meta</code></td><td>section / build fact</td><td>section id, title, source, file and page counts; build statistics</td></tr></table>
+<h2 id="no-duplication">Shared without duplication</h2>
+<ul>
+<li><b>Content addressing.</b> A file that appears in several sections is stored once, at <code>/_blob/&lt;sha&gt;.&lt;ext&gt;</code>, and once in <code>blobs</code>. Each appearance is a row in <code>locations</code>.</li>
+<li><b>References, not copies.</b> A layer such as 1000 Cuts stores artifact ids. A section that needs a core record links to it or reads it from the database.</li>
+<li><b>Served from the database.</b> After the build, data and evidence files whose exact bytes are in the database are removed from the deploy and served from the database chunks by the service worker (<code>/cedwyn-sw.js</code>) and the page fallback (<code>/_cedwyn/runtime.js</code> with <code>/_cedwyn/dbfs.js</code>). Files that browsers fetch before a service worker runs stay as files.</li>
+</ul>
+<h2 id="federation">Federation: section data and the core</h2>
+<p>Each section is the source of truth for its own data. The convention for a section's own database: the branch ships <code>public/_db/section.sqlite</code>, a small SQLite file with one table</p>
+<pre><code>CREATE TABLE records(kind TEXT, id TEXT, seq INTEGER, data TEXT,  -- data = one JSON object
+                     PRIMARY KEY(kind, id));
+CREATE TABLE meta(k TEXT, v TEXT);</code></pre>
+<p>holding every word and record the section shows (interface strings are rows too, for example <code>kind = 'words'</code>). The section's database works on its own and is served at <code>/&lt;id&gt;/_db/section.sqlite</code>. On every build, <code>tools/build_db.py</code> merges each section database into the core table <code>section_records(theme, kind, id, seq, data)</code> and adds graph edges: <code>in_theme</code>, <code>derived_from</code> (a record made from a core artifact) and <code>shows</code> (an image the record displays). The section's pages read their rows back from the core: <code>SELECT kind, id, data FROM section_records WHERE theme = ? ORDER BY seq</code>.</p>
+<p>So a section owns its data, the core holds one merged copy for reading, search, graph and export, and a record that already exists in the core (an image, a document) is referenced by path or sha256, never copied into the section. Sections with live writes keep a small store of their own (see <a href="/library/sections/">Sections</a>). Every section can be taken out as a slice: <code>/db/export/sections/&lt;id&gt;.json.gz</code> holds its row, its own database rows and every artifact it shows (see <a href="/library/export/">Data export</a>).</p>
+<p>Why one built database rather than a live database per section: it costs nothing to serve, it cannot drift out of sync, and it stays inside the free limits of the host. Live per-section databases add servers, quota and replication with no gain at the current scale.</p>
+<h2 id="graph">Graph and GraphQL</h2>
+<p>The <code>nodes</code> and <code>edges</code> tables are a ready graph for retrieval and analysis. A GraphQL schema is resolved in the browser against the same database: see <a href="/library/api/#graphql">API</a>.</p><nav class="pager"><a class="pv" href="/library/">‹ Overview</a><a class="nx" href="/library/hosting/">Hosting ›</a></nav></article></main></div>
+<script src="/library/search-index.js" defer></script><script src="/library/library.js" defer></script></body></html>

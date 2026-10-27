@@ -1,5 +1,5 @@
 # Facebook Group as community engine + the 2026 link-limit reality
-Harvested 26 Oct 2026 by the project lead's Tab agent (skills harvest). Complements 8.md (Page posting); this file is about a Group.
+Harvested 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Complements 8.md (Page posting); this file is about a Group.
 
 ## Evidence
 - Link limit: Meta is testing a cap on organic LINK posts for non-Meta-Verified Pages and Professional Mode profiles — reported as 2 per month; Meta confirmed to Matt Navarra that it is "a limited test", the allowed number "varies by account", Meta Verified subscribers are unaffected (Mari Smith, 16–17 Dec 2025, marismith.com). Page owners report extra link posts blocked until the 1st of the next month, and that comments share the same link budget (Facebook posts, not checked).

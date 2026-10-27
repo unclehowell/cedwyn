@@ -1,5 +1,5 @@
 # Skill: turning reader signups into first sales (a welcome sequence for a small e-book list)
-Written 26 Oct 2026 by the project lead's Tab agent (skills harvest). Builds on 1.md (email/CRM overview); this file is the concrete 5-email sequence and its rules.
+Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Builds on 1.md (email/CRM overview); this file is the concrete 5-email sequence and its rules.
 
 ## What the evidence states
 - Welcome automations are the best-performing email: Omnisend's May 2026 benchmarks (via digitalapplied.com) put automated welcome emails at ~35.5% open, 3.9% click, 2.1% conversion, and a 3-email series drives ~90% more orders than a single email; the first 48 hours after signup are the highest-engagement window.

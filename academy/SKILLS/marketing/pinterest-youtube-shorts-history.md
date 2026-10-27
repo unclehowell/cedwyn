@@ -1,5 +1,5 @@
 # Skill: Pinterest and YouTube Shorts for history content
-Written 26 Oct 2026 by the project lead's Tab agent (skills harvest). Complements the project workspace (long-form) and instagram-reels-carousels-heritage.md; this file covers Pinterest search traffic and the Shorts -> long-form bridge only.
+Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Complements the project workspace (long-form) and instagram-reels-carousels-heritage.md; this file covers Pinterest search traffic and the Shorts -> long-form bridge only.
 
 ## Pinterest: what practitioners report works
 - Case study (Pinterest manager Sarah, caffeineandconquer.com, May-Dec 2025): an established blog went from ~1,000 to 7,653 outbound clicks a month (October 2025, +433% year on year). What changed:

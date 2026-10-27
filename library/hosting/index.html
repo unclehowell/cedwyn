@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hosting · Cedwyn developer library</title><meta name="description" content="GitHub repository, the build workflow and Cloudflare Pages.">
+<link rel="stylesheet" href="/library/library.css"><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.12"></script></head>
+<body data-cw-wiki-off data-page="hosting"><a class="skip" href="#main">Skip to content</a>
+<header class="top"><button class="menu" aria-controls="side" aria-expanded="false" aria-label="Menu">☰</button><a class="brand" href="/library/">Cedwyn <span>library</span></a>
+<form class="sf" role="search" onsubmit="return false"><input id="q" type="search" placeholder="Search the docs" aria-label="Search the docs" autocomplete="off"></form></header>
+<div class="wrap"><aside id="side"><nav aria-label="Library"><ul class="nav"><li><a href="/library/" data-s="index">Overview</a></li><li><a href="/library/architecture/" data-s="architecture">Architecture</a></li><li><a href="/library/hosting/" data-s="hosting">Hosting</a></li><li><a href="/library/front-ends/" data-s="front-ends">Front ends</a></li><li><a href="/library/sections/" data-s="sections">Sections</a></li><li><a href="/library/add-a-section/" data-s="add-a-section">Add a section</a></li><li><a href="/library/export/" data-s="export">Data export</a></li><li><a href="/library/api/" data-s="api">API and WebMCP</a></li><li><a href="/library/status/" data-s="status">Status</a></li></ul></nav><p class="back"><a href="/">‹ cedwyn.bucklerfamily.estate</a></p></aside>
+<main id="main"><div id="results" hidden></div><article id="doc"><h1>Hosting</h1><p class="lede">GitHub repository, the build workflow and Cloudflare Pages.</p><nav class="toc" aria-label="On this page"><ul><li><a href="#repo">The repository</a></li><li><a href="#build">The build (GitHub Actions)</a></li><li><a href="#cloudflare">Cloudflare</a></li><li><a href="#changes">Change rules</a></li></ul></nav><h2 id="repo">The repository</h2>
+<p>Everything is in one public GitHub repository, <code>unclehowell/cedwyn</code>.</p>
+<table><tr><th>Branch</th><th>Holds</th></tr>
+<tr><td><code>main</code></td><td>The shell only: section registry <code>themes.json</code>, build tools in <code>tools/</code>, shared runtime in <code>web/_cedwyn/</code>, shared data in <code>data/</code>, <code>sections.lock</code>, workflows.</td></tr>
+<tr><td>one branch per section</td><td>That section's static site and data (for example <code>wayback</code>, <code>maps</code>, <code>section/research</code>).</td></tr>
+<tr><td><code>agents</code></td><td>The machine-facing academy at <code>/academy/</code> (not a section).</td></tr>
+<tr><td><code>library</code></td><td>This library at <code>/library/</code> (not a section).</td></tr>
+<tr><td><code>site</code></td><td>The assembled output that the host serves. Written only by the build.</td></tr></table>
+<h2 id="build">The build (GitHub Actions)</h2>
+<p>Workflow <code>.github/workflows/build.yml</code> (job <code>build-cedwyn</code>) runs on a push to <code>main</code>, after a section push through <code>sections-ci.yml</code>, or on demand. A full build takes about 30 to 45 minutes.</p>
+<ol>
+<li><b>Fetch</b> the tip of every section branch named in <code>themes.json</code>.</li>
+<li><b>Assemble</b> (<code>tools/assemble.py</code>): copy each section's output folder to <code>dist/&lt;id&gt;/</code>. A section with <code>snapshot_branch</code> is read at the commit <code>sections.lock</code> pins. A few sections are still copied by a read-only crawl of their live origin.</li>
+<li><b>Rewrite</b> (<code>tools/rewrite.py</code>): old subdomain links become <code>/&lt;id&gt;/</code> paths; every external link goes to the archive interface; shared files go to <code>/_blob/</code>.</li>
+<li><b>Site root</b> (<code>tools/site.py</code>): shared header and menu (generated from <code>themes.json</code>), runtime, landing page, glossary and name links, footer, the pass that keeps pages from explaining themselves (<code>tools/quiet_pages.py</code>) and the developer library (<code>tools/library_pointer.py</code>).</li>
+<li><b>Self-contained pass</b> (<code>tools/selfcontain.py</code>): every asset served from this site; the build fails on any reference to another host.</li>
+<li><b>Catalogue database</b> (<code>tools/build_db.py</code>) and the <b>export</b> (<code>tools/db_export.py</code>).</li>
+<li><b>Guards</b>: outbound-link test (<code>tools/check_links.py</code>), self-contained test, internal-link audit.</li>
+<li><b>Publish</b> to branch <code>site</code>; build reports are committed to <code>main</code> under <code>reports/</code>.</li>
+</ol>
+<h2 id="cloudflare">Cloudflare</h2>
+<p>Cloudflare Pages serves branch <code>site</code> as static files on the custom domain. DNS is on Cloudflare; the former subdomains answer with a permanent redirect to their <code>/&lt;id&gt;/</code> path. A few sections with live features (FCG, Ask the Archive, the Case Office, the email search) run a Cloudflare Worker at their own origin; the static site carries a snapshot of each. Free-plan limits that shape the design: 500 builds a month, 20,000 files per deployment, 25 MB per file, and a daily Workers request quota. Static files do not use the Workers quota.</p>
+<h2 id="changes">Change rules</h2>
+<ul>
+<li>A pull request into <code>main</code> changes every section, so it must carry the label <code>site-wide</code> (the <code>scope-main</code> check fails without it).</li>
+<li>A push to <code>section/&lt;id&gt;</code> passes a scope check (its <code>section.json</code> id matches, no workflow files, no other section inside), then <code>sections.lock</code> is updated and a build starts.</li>
+<li>No force-pushes. Roll a snapshot section back by pointing its <code>sections.lock</code> line at an older commit.</li>
+</ul><nav class="pager"><a class="pv" href="/library/architecture/">‹ Architecture</a><a class="nx" href="/library/front-ends/">Front ends ›</a></nav></article></main></div>
+<script src="/library/search-index.js" defer></script><script src="/library/library.js" defer></script></body></html>

@@ -1,4 +1,4 @@
-(() => {
+( => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -11,17 +11,17 @@
     if (typeof require !== "undefined") return require.apply(this, arguments);
     throw Error('Dynamic require of "' + x + '" is not supported');
   });
-  var __esm = (fn, res) => function __init() {
+  var __esm = (fn, res) => function __init {
     return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
-  var __commonJS = (cb, mod) => function __require2() {
+  var __commonJS = (cb, mod) => function __require2 {
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
   var __copyProps = (to, from, except, desc) => {
     if (from && typeof from === "object" || typeof from === "function") {
       for (let key of __getOwnPropNames(from))
         if (!__hasOwnProp.call(to, key) && key !== except)
-          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+          __defProp(to, key, { get:  => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
     }
     return to;
   };
@@ -38,10 +38,10 @@
   var require_react_development = __commonJS({
     "node_modules/react/cjs/react.development.js"(exports, module) {
       "use strict";
-      (function() {
+      (function {
         function defineDeprecationWarning(methodName, info) {
           Object.defineProperty(Component.prototype, methodName, {
-            get: function() {
+            get: function {
               console.warn(
                 "%s(...) is deprecated in plain JavaScript React classes. %s",
                 info[0],
@@ -71,7 +71,7 @@
           this.refs = emptyObject;
           this.updater = updater || ReactNoopUpdateQueue;
         }
-        function ComponentDummy() {
+        function ComponentDummy {
         }
         function PureComponent(props, context, updater) {
           this.props = props;
@@ -79,7 +79,7 @@
           this.refs = emptyObject;
           this.updater = updater || ReactNoopUpdateQueue;
         }
-        function noop2() {
+        function noop2 {
         }
         function testStringCoercion(value) {
           return "" + value;
@@ -124,7 +124,7 @@
           }
           if ("object" === typeof type)
             switch ("number" === typeof type.tag && console.error(
-              "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
+              "Received an unexpected object in getComponentNameFromType. This is likely a bug in React. Please file an issue."
             ), type.$$typeof) {
               case REACT_PORTAL_TYPE:
                 return "Portal";
@@ -160,11 +160,11 @@
             return "<...>";
           }
         }
-        function getOwner() {
+        function getOwner {
           var dispatcher = ReactSharedInternals.A;
-          return null === dispatcher ? null : dispatcher.getOwner();
+          return null === dispatcher ? null : dispatcher.getOwner;
         }
-        function UnknownOwner() {
+        function UnknownOwner {
           return Error("react-stack-top-frame");
         }
         function hasValidKey(config) {
@@ -175,7 +175,7 @@
           return void 0 !== config.key;
         }
         function defineKeyPropWarningGetter(props, displayName) {
-          function warnAboutAccessingKey() {
+          function warnAboutAccessingKey {
             specialPropKeyWarningShown || (specialPropKeyWarningShown = true, console.error(
               "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fspecial-props%29",
               displayName
@@ -187,7 +187,7 @@
             configurable: true
           });
         }
-        function elementRefGetterWithDeprecationWarning() {
+        function elementRefGetterWithDeprecationWarning {
           var componentName = getComponentNameFromType(this.type);
           didWarnAboutElementRef[componentName] || (didWarnAboutElementRef[componentName] = true, console.error(
             "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
@@ -343,7 +343,7 @@
           else if (i2 = getIteratorFn(children), "function" === typeof i2)
             for (i2 === children.entries && (didWarnAboutMaps || console.warn(
               "Using Maps as children is not supported. Use an array of keyed ReactElements instead."
-            ), didWarnAboutMaps = true), children = i2.call(children), i2 = 0; !(nameSoFar = children.next()).done; )
+            ), didWarnAboutMaps = true), children = i2.call(children), i2 = 0; !(nameSoFar = children.next).done; )
               nameSoFar = nameSoFar.value, type = childKey + getElementKey(nameSoFar, i2++), invokeCallback += mapIntoArray(
                 nameSoFar,
                 array,
@@ -378,16 +378,16 @@
         function lazyInitializer(payload) {
           if (-1 === payload._status) {
             var ioInfo = payload._ioInfo;
-            null != ioInfo && (ioInfo.start = ioInfo.end = performance.now());
+            null != ioInfo && (ioInfo.start = ioInfo.end = performance.now);
             ioInfo = payload._result;
-            var thenable = ioInfo();
+            var thenable = ioInfo;
             thenable.then(
               function(moduleObject) {
                 if (0 === payload._status || -1 === payload._status) {
                   payload._status = 1;
                   payload._result = moduleObject;
                   var _ioInfo = payload._ioInfo;
-                  null != _ioInfo && (_ioInfo.end = performance.now());
+                  null != _ioInfo && (_ioInfo.end = performance.now);
                   void 0 === thenable.status && (thenable.status = "fulfilled", thenable.value = moduleObject);
                 }
               },
@@ -396,7 +396,7 @@
                   payload._status = 2;
                   payload._result = error;
                   var _ioInfo2 = payload._ioInfo;
-                  null != _ioInfo2 && (_ioInfo2.end = performance.now());
+                  null != _ioInfo2 && (_ioInfo2.end = performance.now);
                   void 0 === thenable.status && (thenable.status = "rejected", thenable.reason = error);
                 }
               }
@@ -411,28 +411,28 @@
           }
           if (1 === payload._status)
             return ioInfo = payload._result, void 0 === ioInfo && console.error(
-              "lazy: Expected the result of a dynamic import() call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy(() => import('./MyComponent'))\n\nDid you accidentally put curly braces around the import?",
+              "lazy: Expected the result of a dynamic import call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy( => import('./MyComponent'))\n\nDid you accidentally put curly braces around the import?",
               ioInfo
             ), "default" in ioInfo || console.error(
-              "lazy: Expected the result of a dynamic import() call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy(() => import('./MyComponent'))",
+              "lazy: Expected the result of a dynamic import call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy( => import('./MyComponent'))",
               ioInfo
             ), ioInfo.default;
           throw payload._result;
         }
-        function resolveDispatcher() {
+        function resolveDispatcher {
           var dispatcher = ReactSharedInternals.H;
           null === dispatcher && console.error(
             "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Finvalid-hook-call for tips about how to debug and fix this problem."
           );
           return dispatcher;
         }
-        function releaseAsyncTransition() {
+        function releaseAsyncTransition {
           ReactSharedInternals.asyncTransitions--;
         }
         function enqueueTask(task) {
           if (null === enqueueTaskImpl)
             try {
-              var requireString = ("require" + Math.random()).slice(0, 7);
+              var requireString = ("require" + Math.random).slice(0, 7);
               enqueueTaskImpl = (module && module[requireString]).call(
                 module,
                 "timers"
@@ -440,9 +440,9 @@
             } catch (_err) {
               enqueueTaskImpl = function(callback) {
                 false === didWarnAboutMessageChannel && (didWarnAboutMessageChannel = true, "undefined" === typeof MessageChannel && console.error(
-                  "This browser does not have a MessageChannel implementation, so enqueuing tasks via await act(async () => ...) will fail. Please file an issue at https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Ffacebook%2Freact%2Fissues if you encounter this warning."
+                  "This browser does not have a MessageChannel implementation, so enqueuing tasks via await act(async  => ...) will fail. Please file an issue at https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Ffacebook%2Freact%2Fissues if you encounter this warning."
                 ));
-                var channel = new MessageChannel();
+                var channel = new MessageChannel;
                 channel.port1.onmessage = callback;
                 channel.port2.postMessage(void 0);
               };
@@ -454,7 +454,7 @@
         }
         function popActScope(prevActQueue, prevActScopeDepth) {
           prevActScopeDepth !== actScopeDepth - 1 && console.error(
-            "You seem to have overlapping act() calls, this is not supported. Be sure to await previous act() calls before making a new one. "
+            "You seem to have overlapping act calls, this is not supported. Be sure to await previous act calls before making a new one. "
           );
           actScopeDepth = prevActScopeDepth;
         }
@@ -464,7 +464,7 @@
             if (0 !== queue.length)
               try {
                 flushActQueue(queue);
-                enqueueTask(function() {
+                enqueueTask(function {
                   return recursivelyFlushAsyncActWork(returnValue, resolve, reject);
                 });
                 return;
@@ -502,9 +502,9 @@
             }
           }
         }
-        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
+        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error);
         var REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, didWarnStateUpdateForUnmountedComponent = {}, ReactNoopUpdateQueue = {
-          isMounted: function() {
+          isMounted: function {
             return false;
           },
           enqueueForceUpdate: function(publicInstance) {
@@ -542,7 +542,7 @@
         for (fnName in deprecatedAPIs)
           deprecatedAPIs.hasOwnProperty(fnName) && defineDeprecationWarning(fnName, deprecatedAPIs[fnName]);
         ComponentDummy.prototype = Component.prototype;
-        deprecatedAPIs = PureComponent.prototype = new ComponentDummy();
+        deprecatedAPIs = PureComponent.prototype = new ComponentDummy;
         deprecatedAPIs.constructor = PureComponent;
         assign(deprecatedAPIs, Component.prototype);
         deprecatedAPIs.isPureReactComponent = true;
@@ -559,12 +559,12 @@
           thrownErrors: [],
           getCurrentStack: null,
           recentlyCreatedOwnerStacks: 0
-        }, hasOwnProperty = Object.prototype.hasOwnProperty, createTask = console.createTask ? console.createTask : function() {
+        }, hasOwnProperty = Object.prototype.hasOwnProperty, createTask = console.createTask ? console.createTask : function {
           return null;
         };
         deprecatedAPIs = {
           react_stack_bottom_frame: function(callStackForError) {
-            return callStackForError();
+            return callStackForError;
           }
         };
         var specialPropKeyWarningShown, didWarnAboutOldJSXRuntime;
@@ -572,7 +572,7 @@
         var unknownOwnerDebugStack = deprecatedAPIs.react_stack_bottom_frame.bind(
           deprecatedAPIs,
           UnknownOwner
-        )();
+        );
         var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
         var didWarnAboutMaps = false, userProvidedKeyEscapeRegex = /\/+/g, reportGlobalError = "function" === typeof reportError ? reportError : function(error) {
           if ("object" === typeof window && "function" === typeof window.ErrorEvent) {
@@ -589,14 +589,14 @@
           }
           console.error(error);
         }, didWarnAboutMessageChannel = false, enqueueTaskImpl = null, actScopeDepth = 0, didWarnNoAwaitAct = false, isFlushing = false, queueSeveralMicrotasks = "function" === typeof queueMicrotask ? function(callback) {
-          queueMicrotask(function() {
+          queueMicrotask(function {
             return queueMicrotask(callback);
           });
         } : enqueueTask;
         deprecatedAPIs = Object.freeze({
           __proto__: null,
           c: function(size) {
-            return resolveDispatcher().useMemoCache(size);
+            return resolveDispatcher.useMemoCache(size);
           }
         });
         var fnName = {
@@ -604,7 +604,7 @@
           forEach: function(children, forEachFunc, forEachContext) {
             mapChildren(
               children,
-              function() {
+              function {
                 forEachFunc.apply(this, arguments);
               },
               forEachContext
@@ -612,7 +612,7 @@
           },
           count: function(children) {
             var n3 = 0;
-            mapChildren(children, function() {
+            mapChildren(children, function {
               n3++;
             });
             return n3;
@@ -645,7 +645,7 @@
           actScopeDepth++;
           var queue = ReactSharedInternals.actQueue = null !== prevActQueue ? prevActQueue : [], didAwaitActCall = false;
           try {
-            var result = callback();
+            var result = callback;
           } catch (error) {
             ReactSharedInternals.thrownErrors.push(error);
           }
@@ -653,9 +653,9 @@
             throw popActScope(prevActQueue, prevActScopeDepth), callback = aggregateErrors(ReactSharedInternals.thrownErrors), ReactSharedInternals.thrownErrors.length = 0, callback;
           if (null !== result && "object" === typeof result && "function" === typeof result.then) {
             var thenable = result;
-            queueSeveralMicrotasks(function() {
+            queueSeveralMicrotasks(function {
               didAwaitActCall || didWarnNoAwaitAct || (didWarnNoAwaitAct = true, console.error(
-                "You called act(async () => ...) without await. This could lead to unexpected testing behaviour, interleaving multiple act calls and mixing their scopes. You should - await act(async () => ...);"
+                "You called act(async  => ...) without await. This could lead to unexpected testing behaviour, interleaving multiple act calls and mixing their scopes. You should - await act(async  => ...);"
               ));
             });
             return {
@@ -666,7 +666,7 @@
                     popActScope(prevActQueue, prevActScopeDepth);
                     if (0 === prevActScopeDepth) {
                       try {
-                        flushActQueue(queue), enqueueTask(function() {
+                        flushActQueue(queue), enqueueTask(function {
                           return recursivelyFlushAsyncActWork(
                             returnValue,
                             resolve,
@@ -697,9 +697,9 @@
           }
           var returnValue$jscomp$0 = result;
           popActScope(prevActQueue, prevActScopeDepth);
-          0 === prevActScopeDepth && (flushActQueue(queue), 0 !== queue.length && queueSeveralMicrotasks(function() {
+          0 === prevActScopeDepth && (flushActQueue(queue), 0 !== queue.length && queueSeveralMicrotasks(function {
             didAwaitActCall || didWarnNoAwaitAct || (didWarnNoAwaitAct = true, console.error(
-              "A component suspended inside an `act` scope, but the `act` call was not awaited. When testing React components that depend on asynchronous data, you must await the result:\n\nawait act(() => ...)"
+              "A component suspended inside an `act` scope, but the `act` call was not awaited. When testing React components that depend on asynchronous data, you must await the result:\n\nawait act( => ...)"
             ));
           }), ReactSharedInternals.actQueue = null);
           if (0 < ReactSharedInternals.thrownErrors.length)
@@ -707,7 +707,7 @@
           return {
             then: function(resolve, reject) {
               didAwaitActCall = true;
-              0 === prevActScopeDepth ? (ReactSharedInternals.actQueue = queue, enqueueTask(function() {
+              0 === prevActScopeDepth ? (ReactSharedInternals.actQueue = queue, enqueueTask(function {
                 return recursivelyFlushAsyncActWork(
                   returnValue$jscomp$0,
                   resolve,
@@ -718,16 +718,16 @@
           };
         };
         exports.cache = function(fn) {
-          return function() {
+          return function {
             return fn.apply(null, arguments);
           };
         };
-        exports.cacheSignal = function() {
+        exports.cacheSignal = function {
           return null;
         };
-        exports.captureOwnerStack = function() {
+        exports.captureOwnerStack = function {
           var getCurrentStack = ReactSharedInternals.getCurrentStack;
-          return null === getCurrentStack ? null : getCurrentStack();
+          return null === getCurrentStack ? null : getCurrentStack;
         };
         exports.cloneElement = function(element, config, children) {
           if (null === element || void 0 === element)
@@ -747,7 +747,7 @@
               }
               JSCompiler_inline_result = void 0 !== config.ref;
             }
-            JSCompiler_inline_result && (owner = getOwner());
+            JSCompiler_inline_result && (owner = getOwner);
             hasValidKey(config) && (checkKeyStringCoercion(config.key), key = "" + config.key);
             for (propName in config)
               !hasOwnProperty.call(config, propName) || "key" === propName || "__self" === propName || "__source" === propName || "ref" === propName && void 0 === config.ref || (props[propName] = config[propName]);
@@ -820,12 +820,12 @@
             type,
             key,
             i2,
-            getOwner(),
+            getOwner,
             propName ? Error("react-stack-top-frame") : unknownOwnerDebugStack,
             propName ? createTask(getTaskName(type)) : unknownOwnerDebugTask
           );
         };
-        exports.createRef = function() {
+        exports.createRef = function {
           var refObject = { current: null };
           Object.seal(refObject);
           return refObject;
@@ -847,7 +847,7 @@
           Object.defineProperty(elementType, "displayName", {
             enumerable: false,
             configurable: true,
-            get: function() {
+            get: function {
               return ownName;
             },
             set: function(name) {
@@ -871,7 +871,7 @@
             value: null,
             owner: null,
             debugStack: Error("react-stack-top-frame"),
-            debugTask: console.createTask ? console.createTask("lazy()") : null
+            debugTask: console.createTask ? console.createTask("lazy") : null
           };
           ctor._ioInfo = ioInfo;
           lazyType._debugInfo = [{ awaited: ioInfo }];
@@ -891,7 +891,7 @@
           Object.defineProperty(compare, "displayName", {
             enumerable: false,
             configurable: true,
-            get: function() {
+            get: function {
               return ownName;
             },
             set: function(name) {
@@ -903,106 +903,106 @@
         };
         exports.startTransition = function(scope) {
           var prevTransition = ReactSharedInternals.T, currentTransition = {};
-          currentTransition._updatedFibers = /* @__PURE__ */ new Set();
+          currentTransition._updatedFibers = /* @__PURE__ */ new Set;
           ReactSharedInternals.T = currentTransition;
           try {
-            var returnValue = scope(), onStartTransitionFinish = ReactSharedInternals.S;
+            var returnValue = scope, onStartTransitionFinish = ReactSharedInternals.S;
             null !== onStartTransitionFinish && onStartTransitionFinish(currentTransition, returnValue);
             "object" === typeof returnValue && null !== returnValue && "function" === typeof returnValue.then && (ReactSharedInternals.asyncTransitions++, returnValue.then(releaseAsyncTransition, releaseAsyncTransition), returnValue.then(noop2, reportGlobalError));
           } catch (error) {
             reportGlobalError(error);
           } finally {
-            null === prevTransition && currentTransition._updatedFibers && (scope = currentTransition._updatedFibers.size, currentTransition._updatedFibers.clear(), 10 < scope && console.warn(
+            null === prevTransition && currentTransition._updatedFibers && (scope = currentTransition._updatedFibers.size, currentTransition._updatedFibers.clear, 10 < scope && console.warn(
               "Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table."
             )), null !== prevTransition && null !== currentTransition.types && (null !== prevTransition.types && prevTransition.types !== currentTransition.types && console.error(
               "We expected inner Transitions to have transferred the outer types set and that you cannot add to the outer Transition while inside the inner.This is a bug in React."
             ), prevTransition.types = currentTransition.types), ReactSharedInternals.T = prevTransition;
           }
         };
-        exports.unstable_useCacheRefresh = function() {
-          return resolveDispatcher().useCacheRefresh();
+        exports.unstable_useCacheRefresh = function {
+          return resolveDispatcher.useCacheRefresh;
         };
         exports.use = function(usable) {
-          return resolveDispatcher().use(usable);
+          return resolveDispatcher.use(usable);
         };
         exports.useActionState = function(action, initialState, permalink) {
-          return resolveDispatcher().useActionState(
+          return resolveDispatcher.useActionState(
             action,
             initialState,
             permalink
           );
         };
         exports.useCallback = function(callback, deps) {
-          return resolveDispatcher().useCallback(callback, deps);
+          return resolveDispatcher.useCallback(callback, deps);
         };
         exports.useContext = function(Context) {
-          var dispatcher = resolveDispatcher();
+          var dispatcher = resolveDispatcher;
           Context.$$typeof === REACT_CONSUMER_TYPE && console.error(
             "Calling useContext(Context.Consumer) is not supported and will cause bugs. Did you mean to call useContext(Context) instead?"
           );
           return dispatcher.useContext(Context);
         };
         exports.useDebugValue = function(value, formatterFn) {
-          return resolveDispatcher().useDebugValue(value, formatterFn);
+          return resolveDispatcher.useDebugValue(value, formatterFn);
         };
         exports.useDeferredValue = function(value, initialValue) {
-          return resolveDispatcher().useDeferredValue(value, initialValue);
+          return resolveDispatcher.useDeferredValue(value, initialValue);
         };
         exports.useEffect = function(create2, deps) {
           null == create2 && console.warn(
             "React Hook useEffect requires an effect callback. Did you forget to pass a callback to the hook?"
           );
-          return resolveDispatcher().useEffect(create2, deps);
+          return resolveDispatcher.useEffect(create2, deps);
         };
         exports.useEffectEvent = function(callback) {
-          return resolveDispatcher().useEffectEvent(callback);
+          return resolveDispatcher.useEffectEvent(callback);
         };
-        exports.useId = function() {
-          return resolveDispatcher().useId();
+        exports.useId = function {
+          return resolveDispatcher.useId;
         };
         exports.useImperativeHandle = function(ref, create2, deps) {
-          return resolveDispatcher().useImperativeHandle(ref, create2, deps);
+          return resolveDispatcher.useImperativeHandle(ref, create2, deps);
         };
         exports.useInsertionEffect = function(create2, deps) {
           null == create2 && console.warn(
             "React Hook useInsertionEffect requires an effect callback. Did you forget to pass a callback to the hook?"
           );
-          return resolveDispatcher().useInsertionEffect(create2, deps);
+          return resolveDispatcher.useInsertionEffect(create2, deps);
         };
         exports.useLayoutEffect = function(create2, deps) {
           null == create2 && console.warn(
             "React Hook useLayoutEffect requires an effect callback. Did you forget to pass a callback to the hook?"
           );
-          return resolveDispatcher().useLayoutEffect(create2, deps);
+          return resolveDispatcher.useLayoutEffect(create2, deps);
         };
         exports.useMemo = function(create2, deps) {
-          return resolveDispatcher().useMemo(create2, deps);
+          return resolveDispatcher.useMemo(create2, deps);
         };
         exports.useOptimistic = function(passthrough, reducer) {
-          return resolveDispatcher().useOptimistic(passthrough, reducer);
+          return resolveDispatcher.useOptimistic(passthrough, reducer);
         };
         exports.useReducer = function(reducer, initialArg, init) {
-          return resolveDispatcher().useReducer(reducer, initialArg, init);
+          return resolveDispatcher.useReducer(reducer, initialArg, init);
         };
         exports.useRef = function(initialValue) {
-          return resolveDispatcher().useRef(initialValue);
+          return resolveDispatcher.useRef(initialValue);
         };
         exports.useState = function(initialState) {
-          return resolveDispatcher().useState(initialState);
+          return resolveDispatcher.useState(initialState);
         };
         exports.useSyncExternalStore = function(subscribe, getSnapshot, getServerSnapshot) {
-          return resolveDispatcher().useSyncExternalStore(
+          return resolveDispatcher.useSyncExternalStore(
             subscribe,
             getSnapshot,
             getServerSnapshot
           );
         };
-        exports.useTransition = function() {
-          return resolveDispatcher().useTransition();
+        exports.useTransition = function {
+          return resolveDispatcher.useTransition;
         };
         exports.version = "19.2.4";
-        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
-      })();
+        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error);
+      });
     }
   });
 
@@ -1013,7 +1013,7 @@
       if (false) {
         module.exports = null;
       } else {
-        module.exports = require_react_development();
+        module.exports = require_react_development;
       }
     }
   });
@@ -1022,11 +1022,11 @@
   var require_scheduler_development = __commonJS({
     "node_modules/scheduler/cjs/scheduler.development.js"(exports) {
       "use strict";
-      (function() {
-        function performWorkUntilDeadline() {
+      (function {
+        function performWorkUntilDeadline {
           needsPaint = false;
           if (isMessageLoopRunning) {
-            var currentTime = exports.unstable_now();
+            var currentTime = exports.unstable_now;
             startTime = currentTime;
             var hasMoreWork = true;
             try {
@@ -1038,7 +1038,7 @@
                 try {
                   b: {
                     advanceTimers(currentTime);
-                    for (currentTask = peek(taskQueue); null !== currentTask && !(currentTask.expirationTime > currentTime && shouldYieldToHost()); ) {
+                    for (currentTask = peek(taskQueue); null !== currentTask && !(currentTask.expirationTime > currentTime && shouldYieldToHost); ) {
                       var callback = currentTask.callback;
                       if ("function" === typeof callback) {
                         currentTask.callback = null;
@@ -1046,7 +1046,7 @@
                         var continuationCallback = callback(
                           currentTask.expirationTime <= currentTime
                         );
-                        currentTime = exports.unstable_now();
+                        currentTime = exports.unstable_now;
                         if ("function" === typeof continuationCallback) {
                           currentTask.callback = continuationCallback;
                           advanceTimers(currentTime);
@@ -1075,7 +1075,7 @@
                 hasMoreWork = void 0;
               }
             } finally {
-              hasMoreWork ? schedulePerformWorkUntilDeadline() : isMessageLoopRunning = false;
+              hasMoreWork ? schedulePerformWorkUntilDeadline : isMessageLoopRunning = false;
             }
           }
         }
@@ -1094,7 +1094,7 @@
         }
         function pop(heap) {
           if (0 === heap.length) return null;
-          var first = heap[0], last = heap.pop();
+          var first = heap[0], last = heap.pop;
           if (last !== first) {
             heap[0] = last;
             a: for (var index = 0, length = heap.length, halfLength = length >>> 1; index < halfLength; ) {
@@ -1126,7 +1126,7 @@
           advanceTimers(currentTime);
           if (!isHostCallbackScheduled)
             if (null !== peek(taskQueue))
-              isHostCallbackScheduled = true, isMessageLoopRunning || (isMessageLoopRunning = true, schedulePerformWorkUntilDeadline());
+              isHostCallbackScheduled = true, isMessageLoopRunning || (isMessageLoopRunning = true, schedulePerformWorkUntilDeadline);
             else {
               var firstTimer = peek(timerQueue);
               null !== firstTimer && requestHostTimeout(
@@ -1135,40 +1135,40 @@
               );
             }
         }
-        function shouldYieldToHost() {
-          return needsPaint ? true : exports.unstable_now() - startTime < frameInterval ? false : true;
+        function shouldYieldToHost {
+          return needsPaint ? true : exports.unstable_now - startTime < frameInterval ? false : true;
         }
         function requestHostTimeout(callback, ms) {
-          taskTimeoutID = localSetTimeout(function() {
-            callback(exports.unstable_now());
+          taskTimeoutID = localSetTimeout(function {
+            callback(exports.unstable_now);
           }, ms);
         }
-        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
+        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error);
         exports.unstable_now = void 0;
         if ("object" === typeof performance && "function" === typeof performance.now) {
           var localPerformance = performance;
-          exports.unstable_now = function() {
-            return localPerformance.now();
+          exports.unstable_now = function {
+            return localPerformance.now;
           };
         } else {
-          var localDate = Date, initialTime = localDate.now();
-          exports.unstable_now = function() {
-            return localDate.now() - initialTime;
+          var localDate = Date, initialTime = localDate.now;
+          exports.unstable_now = function {
+            return localDate.now - initialTime;
           };
         }
         var taskQueue = [], timerQueue = [], taskIdCounter = 1, currentTask = null, currentPriorityLevel = 3, isPerformingWork = false, isHostCallbackScheduled = false, isHostTimeoutScheduled = false, needsPaint = false, localSetTimeout = "function" === typeof setTimeout ? setTimeout : null, localClearTimeout = "function" === typeof clearTimeout ? clearTimeout : null, localSetImmediate = "undefined" !== typeof setImmediate ? setImmediate : null, isMessageLoopRunning = false, taskTimeoutID = -1, frameInterval = 5, startTime = -1;
         if ("function" === typeof localSetImmediate)
-          var schedulePerformWorkUntilDeadline = function() {
+          var schedulePerformWorkUntilDeadline = function {
             localSetImmediate(performWorkUntilDeadline);
           };
         else if ("undefined" !== typeof MessageChannel) {
-          var channel = new MessageChannel(), port = channel.port2;
+          var channel = new MessageChannel, port = channel.port2;
           channel.port1.onmessage = performWorkUntilDeadline;
-          schedulePerformWorkUntilDeadline = function() {
+          schedulePerformWorkUntilDeadline = function {
             port.postMessage(null);
           };
         } else
-          schedulePerformWorkUntilDeadline = function() {
+          schedulePerformWorkUntilDeadline = function {
             localSetTimeout(performWorkUntilDeadline, 0);
           };
         exports.unstable_IdlePriority = 5;
@@ -1185,7 +1185,7 @@
             "forceFrameRate takes a positive int between 0 and 125, forcing frame rates higher than 125 fps is not supported"
           ) : frameInterval = 0 < fps ? Math.floor(1e3 / fps) : 5;
         };
-        exports.unstable_getCurrentPriorityLevel = function() {
+        exports.unstable_getCurrentPriorityLevel = function {
           return currentPriorityLevel;
         };
         exports.unstable_next = function(eventHandler) {
@@ -1201,12 +1201,12 @@
           var previousPriorityLevel = currentPriorityLevel;
           currentPriorityLevel = priorityLevel;
           try {
-            return eventHandler();
+            return eventHandler;
           } finally {
             currentPriorityLevel = previousPriorityLevel;
           }
         };
-        exports.unstable_requestPaint = function() {
+        exports.unstable_requestPaint = function {
           needsPaint = true;
         };
         exports.unstable_runWithPriority = function(priorityLevel, eventHandler) {
@@ -1223,13 +1223,13 @@
           var previousPriorityLevel = currentPriorityLevel;
           currentPriorityLevel = priorityLevel;
           try {
-            return eventHandler();
+            return eventHandler;
           } finally {
             currentPriorityLevel = previousPriorityLevel;
           }
         };
         exports.unstable_scheduleCallback = function(priorityLevel, callback, options2) {
-          var currentTime = exports.unstable_now();
+          var currentTime = exports.unstable_now;
           "object" === typeof options2 && null !== options2 ? (options2 = options2.delay, options2 = "number" === typeof options2 && 0 < options2 ? currentTime + options2 : currentTime) : options2 = currentTime;
           switch (priorityLevel) {
             case 1:
@@ -1256,13 +1256,13 @@
             expirationTime: timeout3,
             sortIndex: -1
           };
-          options2 > currentTime ? (priorityLevel.sortIndex = options2, push(timerQueue, priorityLevel), null === peek(taskQueue) && priorityLevel === peek(timerQueue) && (isHostTimeoutScheduled ? (localClearTimeout(taskTimeoutID), taskTimeoutID = -1) : isHostTimeoutScheduled = true, requestHostTimeout(handleTimeout, options2 - currentTime))) : (priorityLevel.sortIndex = timeout3, push(taskQueue, priorityLevel), isHostCallbackScheduled || isPerformingWork || (isHostCallbackScheduled = true, isMessageLoopRunning || (isMessageLoopRunning = true, schedulePerformWorkUntilDeadline())));
+          options2 > currentTime ? (priorityLevel.sortIndex = options2, push(timerQueue, priorityLevel), null === peek(taskQueue) && priorityLevel === peek(timerQueue) && (isHostTimeoutScheduled ? (localClearTimeout(taskTimeoutID), taskTimeoutID = -1) : isHostTimeoutScheduled = true, requestHostTimeout(handleTimeout, options2 - currentTime))) : (priorityLevel.sortIndex = timeout3, push(taskQueue, priorityLevel), isHostCallbackScheduled || isPerformingWork || (isHostCallbackScheduled = true, isMessageLoopRunning || (isMessageLoopRunning = true, schedulePerformWorkUntilDeadline)));
           return priorityLevel;
         };
         exports.unstable_shouldYield = shouldYieldToHost;
         exports.unstable_wrapCallback = function(callback) {
           var parentPriorityLevel = currentPriorityLevel;
-          return function() {
+          return function {
             var previousPriorityLevel = currentPriorityLevel;
             currentPriorityLevel = parentPriorityLevel;
             try {
@@ -1272,8 +1272,8 @@
             }
           };
         };
-        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
-      })();
+        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error);
+      });
     }
   });
 
@@ -1284,7 +1284,7 @@
       if (false) {
         module.exports = null;
       } else {
-        module.exports = require_scheduler_development();
+        module.exports = require_scheduler_development;
       }
     }
   });
@@ -1293,8 +1293,8 @@
   var require_react_dom_development = __commonJS({
     "node_modules/react-dom/cjs/react-dom.development.js"(exports) {
       "use strict";
-      (function() {
-        function noop2() {
+      (function {
+        function noop2 {
         }
         function testStringCoercion(value) {
           return "" + value;
@@ -1330,18 +1330,18 @@
         function getValueDescriptorExpectingEnumForWarning(thing) {
           return null === thing ? "`null`" : void 0 === thing ? "`undefined`" : "" === thing ? "an empty string" : "string" === typeof thing ? JSON.stringify(thing) : "number" === typeof thing ? "`" + thing + "`" : 'something with type "' + typeof thing + '"';
         }
-        function resolveDispatcher() {
+        function resolveDispatcher {
           var dispatcher = ReactSharedInternals.H;
           null === dispatcher && console.error(
             "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Finvalid-hook-call for tips about how to debug and fix this problem."
           );
           return dispatcher;
         }
-        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var React4 = require_react(), Internals = {
+        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error);
+        var React4 = require_react, Internals = {
           d: {
             f: noop2,
-            r: function() {
+            r: function {
               throw Error(
                 "Invalid form element. requestFormReset must be passed a form that was rendered by React."
               );
@@ -1371,22 +1371,22 @@
           var previousTransition = ReactSharedInternals.T, previousUpdatePriority = Internals.p;
           try {
             if (ReactSharedInternals.T = null, Internals.p = 2, fn)
-              return fn();
+              return fn;
           } finally {
-            ReactSharedInternals.T = previousTransition, Internals.p = previousUpdatePriority, Internals.d.f() && console.error(
+            ReactSharedInternals.T = previousTransition, Internals.p = previousUpdatePriority, Internals.d.f && console.error(
               "flushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task."
             );
           }
         };
         exports.preconnect = function(href, options2) {
           "string" === typeof href && href ? null != options2 && "object" !== typeof options2 ? console.error(
-            "ReactDOM.preconnect(): Expected the `options` argument (second) to be an object but encountered %s instead. The only supported option at this time is `crossOrigin` which accepts a string.",
+            "ReactDOM.preconnect: Expected the `options` argument (second) to be an object but encountered %s instead. The only supported option at this time is `crossOrigin` which accepts a string.",
             getValueDescriptorExpectingEnumForWarning(options2)
           ) : null != options2 && "string" !== typeof options2.crossOrigin && console.error(
-            "ReactDOM.preconnect(): Expected the `crossOrigin` option (second argument) to be a string but encountered %s instead. Try removing this option or passing a string value instead.",
+            "ReactDOM.preconnect: Expected the `crossOrigin` option (second argument) to be a string but encountered %s instead. Try removing this option or passing a string value instead.",
             getValueDescriptorExpectingObjectForWarning(options2.crossOrigin)
           ) : console.error(
-            "ReactDOM.preconnect(): Expected the `href` argument (first) to be a non-empty string but encountered %s instead.",
+            "ReactDOM.preconnect: Expected the `href` argument (first) to be a non-empty string but encountered %s instead.",
             getValueDescriptorExpectingObjectForWarning(href)
           );
           "string" === typeof href && (options2 ? (options2 = options2.crossOrigin, options2 = "string" === typeof options2 ? "use-credentials" === options2 ? options2 : "" : void 0) : options2 = null, Internals.d.C(href, options2));
@@ -1394,16 +1394,16 @@
         exports.prefetchDNS = function(href) {
           if ("string" !== typeof href || !href)
             console.error(
-              "ReactDOM.prefetchDNS(): Expected the `href` argument (first) to be a non-empty string but encountered %s instead.",
+              "ReactDOM.prefetchDNS: Expected the `href` argument (first) to be a non-empty string but encountered %s instead.",
               getValueDescriptorExpectingObjectForWarning(href)
             );
           else if (1 < arguments.length) {
             var options2 = arguments[1];
             "object" === typeof options2 && options2.hasOwnProperty("crossOrigin") ? console.error(
-              "ReactDOM.prefetchDNS(): Expected only one argument, `href`, but encountered %s as a second argument instead. This argument is reserved for future options and is currently disallowed. It looks like the you are attempting to set a crossOrigin property for this DNS lookup hint. Browsers do not perform DNS queries using CORS and setting this attribute on the resource hint has no effect. Try calling ReactDOM.prefetchDNS() with just a single string argument, `href`.",
+              "ReactDOM.prefetchDNS: Expected only one argument, `href`, but encountered %s as a second argument instead. This argument is reserved for future options and is currently disallowed. It looks like the you are attempting to set a crossOrigin property for this DNS lookup hint. Browsers do not perform DNS queries using CORS and setting this attribute on the resource hint has no effect. Try calling ReactDOM.prefetchDNS with just a single string argument, `href`.",
               getValueDescriptorExpectingEnumForWarning(options2)
             ) : console.error(
-              "ReactDOM.prefetchDNS(): Expected only one argument, `href`, but encountered %s as a second argument instead. This argument is reserved for future options and is currently disallowed. Try calling ReactDOM.prefetchDNS() with just a single string argument, `href`.",
+              "ReactDOM.prefetchDNS: Expected only one argument, `href`, but encountered %s as a second argument instead. This argument is reserved for future options and is currently disallowed. Try calling ReactDOM.prefetchDNS with just a single string argument, `href`.",
               getValueDescriptorExpectingEnumForWarning(options2)
             );
           }
@@ -1411,13 +1411,13 @@
         };
         exports.preinit = function(href, options2) {
           "string" === typeof href && href ? null == options2 || "object" !== typeof options2 ? console.error(
-            "ReactDOM.preinit(): Expected the `options` argument (second) to be an object with an `as` property describing the type of resource to be preinitialized but encountered %s instead.",
+            "ReactDOM.preinit: Expected the `options` argument (second) to be an object with an `as` property describing the type of resource to be preinitialized but encountered %s instead.",
             getValueDescriptorExpectingEnumForWarning(options2)
           ) : "style" !== options2.as && "script" !== options2.as && console.error(
-            'ReactDOM.preinit(): Expected the `as` property in the `options` argument (second) to contain a valid value describing the type of resource to be preinitialized but encountered %s instead. Valid values for `as` are "style" and "script".',
+            'ReactDOM.preinit: Expected the `as` property in the `options` argument (second) to contain a valid value describing the type of resource to be preinitialized but encountered %s instead. Valid values for `as` are "style" and "script".',
             getValueDescriptorExpectingEnumForWarning(options2.as)
           ) : console.error(
-            "ReactDOM.preinit(): Expected the `href` argument (first) to be a non-empty string but encountered %s instead.",
+            "ReactDOM.preinit: Expected the `href` argument (first) to be a non-empty string but encountered %s instead.",
             getValueDescriptorExpectingObjectForWarning(href)
           );
           if ("string" === typeof href && options2 && "string" === typeof options2.as) {
@@ -1444,7 +1444,7 @@
           void 0 !== options2 && "object" !== typeof options2 ? encountered += " The `options` argument encountered was " + getValueDescriptorExpectingObjectForWarning(options2) + "." : options2 && "as" in options2 && "script" !== options2.as && (encountered += " The `as` option encountered was " + getValueDescriptorExpectingEnumForWarning(options2.as) + ".");
           if (encountered)
             console.error(
-              "ReactDOM.preinitModule(): Expected up to two arguments, a non-empty `href` string and, optionally, an `options` object with a valid `as` property.%s",
+              "ReactDOM.preinitModule: Expected up to two arguments, a non-empty `href` string and, optionally, an `options` object with a valid `as` property.%s",
               encountered
             );
           else
@@ -1453,7 +1453,7 @@
                 break;
               default:
                 encountered = getValueDescriptorExpectingEnumForWarning(encountered), console.error(
-                  'ReactDOM.preinitModule(): Currently the only supported "as" type for this function is "script" but received "%s" instead. This warning was generated for `href` "%s". In the future other module types will be supported, aligning with the import-attributes proposal. Learn more here: (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Ftc39%2Fproposal-import-attributes%29',
+                  'ReactDOM.preinitModule: Currently the only supported "as" type for this function is "script" but received "%s" instead. This warning was generated for `href` "%s". In the future other module types will be supported, aligning with the import-attributes proposal. Learn more here: (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Ftc39%2Fproposal-import-attributes%29',
                   encountered,
                   href
                 );
@@ -1476,7 +1476,7 @@
           "string" === typeof href && href || (encountered += " The `href` argument encountered was " + getValueDescriptorExpectingObjectForWarning(href) + ".");
           null == options2 || "object" !== typeof options2 ? encountered += " The `options` argument encountered was " + getValueDescriptorExpectingObjectForWarning(options2) + "." : "string" === typeof options2.as && options2.as || (encountered += " The `as` option encountered was " + getValueDescriptorExpectingObjectForWarning(options2.as) + ".");
           encountered && console.error(
-            'ReactDOM.preload(): Expected two arguments, a non-empty `href` string and an `options` object with an `as` property valid for a `<link rel="preload" as="..." />` tag.%s',
+            'ReactDOM.preload: Expected two arguments, a non-empty `href` string and an `options` object with an `as` property valid for a `<link rel="preload" as="..." />` tag.%s',
             encountered
           );
           if ("string" === typeof href && "object" === typeof options2 && null !== options2 && "string" === typeof options2.as) {
@@ -1503,7 +1503,7 @@
           "string" === typeof href && href || (encountered += " The `href` argument encountered was " + getValueDescriptorExpectingObjectForWarning(href) + ".");
           void 0 !== options2 && "object" !== typeof options2 ? encountered += " The `options` argument encountered was " + getValueDescriptorExpectingObjectForWarning(options2) + "." : options2 && "as" in options2 && "string" !== typeof options2.as && (encountered += " The `as` option encountered was " + getValueDescriptorExpectingObjectForWarning(options2.as) + ".");
           encountered && console.error(
-            'ReactDOM.preloadModule(): Expected two arguments, a non-empty `href` string and, optionally, an `options` object with an `as` property valid for a `<link rel="modulepreload" as="..." />` tag.%s',
+            'ReactDOM.preloadModule: Expected two arguments, a non-empty `href` string and, optionally, an `options` object with an `as` property valid for a `<link rel="modulepreload" as="..." />` tag.%s',
             encountered
           );
           "string" === typeof href && (options2 ? (encountered = getCrossOriginStringAs(
@@ -1522,14 +1522,14 @@
           return fn(a2);
         };
         exports.useFormState = function(action, initialState, permalink) {
-          return resolveDispatcher().useFormState(action, initialState, permalink);
+          return resolveDispatcher.useFormState(action, initialState, permalink);
         };
-        exports.useFormStatus = function() {
-          return resolveDispatcher().useHostTransitionStatus();
+        exports.useFormStatus = function {
+          return resolveDispatcher.useHostTransitionStatus;
         };
         exports.version = "19.2.4";
-        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
-      })();
+        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error);
+      });
     }
   });
 
@@ -1538,10 +1538,10 @@
     "node_modules/react-dom/index.js"(exports, module) {
       "use strict";
       if (false) {
-        checkDCE();
+        checkDCE;
         module.exports = null;
       } else {
-        module.exports = require_react_dom_development();
+        module.exports = require_react_dom_development;
       }
     }
   });
@@ -1550,7 +1550,7 @@
   var require_react_dom_client_development = __commonJS({
     "node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
       "use strict";
-      (function() {
+      (function {
         function findHook(fiber, id) {
           for (fiber = fiber.memoizedState; null !== fiber && 0 < id; )
             fiber = fiber.next, id--;
@@ -1558,18 +1558,18 @@
         }
         function copyWithSetImpl(obj, path, index, value) {
           if (index >= path.length) return value;
-          var key = path[index], updated = isArrayImpl(obj) ? obj.slice() : assign({}, obj);
+          var key = path[index], updated = isArrayImpl(obj) ? obj.slice : assign({}, obj);
           updated[key] = copyWithSetImpl(obj[key], path, index + 1, value);
           return updated;
         }
         function copyWithRename(obj, oldPath, newPath) {
           if (oldPath.length !== newPath.length)
-            console.warn("copyWithRename() expects paths of the same length");
+            console.warn("copyWithRename expects paths of the same length");
           else {
             for (var i2 = 0; i2 < newPath.length - 1; i2++)
               if (oldPath[i2] !== newPath[i2]) {
                 console.warn(
-                  "copyWithRename() expects paths to be the same except for the deepest key"
+                  "copyWithRename expects paths to be the same except for the deepest key"
                 );
                 return;
               }
@@ -1577,7 +1577,7 @@
           }
         }
         function copyWithRenameImpl(obj, oldPath, newPath, index) {
-          var oldKey = oldPath[index], updated = isArrayImpl(obj) ? obj.slice() : assign({}, obj);
+          var oldKey = oldPath[index], updated = isArrayImpl(obj) ? obj.slice : assign({}, obj);
           index + 1 === oldPath.length ? (updated[newPath[index]] = updated[oldKey], isArrayImpl(updated) ? updated.splice(oldKey, 1) : delete updated[oldKey]) : updated[oldKey] = copyWithRenameImpl(
             obj[oldKey],
             oldPath,
@@ -1587,56 +1587,56 @@
           return updated;
         }
         function copyWithDeleteImpl(obj, path, index) {
-          var key = path[index], updated = isArrayImpl(obj) ? obj.slice() : assign({}, obj);
+          var key = path[index], updated = isArrayImpl(obj) ? obj.slice : assign({}, obj);
           if (index + 1 === path.length)
             return isArrayImpl(updated) ? updated.splice(key, 1) : delete updated[key], updated;
           updated[key] = copyWithDeleteImpl(obj[key], path, index + 1);
           return updated;
         }
-        function shouldSuspendImpl() {
+        function shouldSuspendImpl {
           return false;
         }
-        function shouldErrorImpl() {
+        function shouldErrorImpl {
           return null;
         }
-        function warnInvalidHookAccess() {
+        function warnInvalidHookAccess {
           console.error(
             "Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Frules-of-hooks"
           );
         }
-        function warnInvalidContextAccess() {
+        function warnInvalidContextAccess {
           console.error(
-            "Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer() or useMemo()."
+            "Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer or useMemo."
           );
         }
-        function noop2() {
+        function noop2 {
         }
-        function warnForMissingKey() {
+        function warnForMissingKey {
         }
         function setToSortedString(set) {
           var array = [];
           set.forEach(function(value) {
             array.push(value);
           });
-          return array.sort().join(", ");
+          return array.sort.join(", ");
         }
         function createFiber(tag, pendingProps, key, mode) {
           return new FiberNode(tag, pendingProps, key, mode);
         }
         function scheduleRoot(root2, element) {
-          root2.context === emptyContextObject && (updateContainerImpl(root2.current, 2, element, root2, null, null), flushSyncWork$1());
+          root2.context === emptyContextObject && (updateContainerImpl(root2.current, 2, element, root2, null, null), flushSyncWork$1);
         }
         function scheduleRefresh(root2, update) {
           if (null !== resolveFamily) {
             var staleFamilies = update.staleFamilies;
             update = update.updatedFamilies;
-            flushPendingEffects();
+            flushPendingEffects;
             scheduleFibersWithFamiliesRecursively(
               root2.current,
               update,
               staleFamilies
             );
-            flushSyncWork$1();
+            flushSyncWork$1;
           }
         }
         function setRefreshHandler(handler) {
@@ -1789,7 +1789,7 @@
           }
           if ("object" === typeof type)
             switch ("number" === typeof type.tag && console.error(
-              "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
+              "Received an unexpected object in getComponentNameFromType. This is likely a bug in React. Please file an issue."
             ), type.$$typeof) {
               case REACT_PORTAL_TYPE:
                 return "Portal";
@@ -1926,7 +1926,7 @@
                     nextRootInstance = HostContextNamespaceNone;
                 }
           }
-          nextRootContext = nextRootContext.toLowerCase();
+          nextRootContext = nextRootContext.toLowerCase;
           nextRootContext = updatedAncestorInfoDev(null, nextRootContext);
           nextRootContext = {
             context: nextRootInstance,
@@ -1940,7 +1940,7 @@
           pop(contextFiberStackCursor, fiber);
           pop(rootInstanceStackCursor, fiber);
         }
-        function getHostContext() {
+        function getHostContext {
           return requiredContext(contextStackCursor.current);
         }
         function pushHostContext(fiber) {
@@ -1956,9 +1956,9 @@
           contextFiberStackCursor.current === fiber && (pop(contextStackCursor, fiber), pop(contextFiberStackCursor, fiber));
           hostTransitionProviderCursor.current === fiber && (pop(hostTransitionProviderCursor, fiber), HostTransitionContext._currentValue = NotPendingTransition);
         }
-        function disabledLog() {
+        function disabledLog {
         }
-        function disableLogs() {
+        function disableLogs {
           if (0 === disabledDepth) {
             prevLog = console.log;
             prevInfo = console.info;
@@ -1985,7 +1985,7 @@
           }
           disabledDepth++;
         }
-        function reenableLogs() {
+        function reenableLogs {
           disabledDepth--;
           if (0 === disabledDepth) {
             var props = { configurable: true, enumerable: true, writable: true };
@@ -2024,9 +2024,9 @@
         function describeBuiltInComponentFrame(name) {
           if (void 0 === prefix2)
             try {
-              throw Error();
+              throw Error;
             } catch (x) {
-              var match = x.stack.trim().match(/\n( *(at )?)/);
+              var match = x.stack.trim.match(/\n( *(at )?)/);
               prefix2 = match && match[1] || "";
               suffix = -1 < x.stack.indexOf("\n    at") ? " (<anonymous>)" : -1 < x.stack.indexOf("@") ? "@unknown:0:0" : "";
             }
@@ -2042,18 +2042,18 @@
           var previousDispatcher2 = null;
           previousDispatcher2 = ReactSharedInternals.H;
           ReactSharedInternals.H = null;
-          disableLogs();
+          disableLogs;
           try {
             var RunInRootFrame = {
-              DetermineComponentFrameRoot: function() {
+              DetermineComponentFrameRoot: function {
                 try {
                   if (construct) {
-                    var Fake = function() {
-                      throw Error();
+                    var Fake = function {
+                      throw Error;
                     };
                     Object.defineProperty(Fake.prototype, "props", {
-                      set: function() {
-                        throw Error();
+                      set: function {
+                        throw Error;
                       }
                     });
                     if ("object" === typeof Reflect && Reflect.construct) {
@@ -2065,7 +2065,7 @@
                       Reflect.construct(fn, [], Fake);
                     } else {
                       try {
-                        Fake.call();
+                        Fake.call;
                       } catch (x$0) {
                         control = x$0;
                       }
@@ -2073,11 +2073,11 @@
                     }
                   } else {
                     try {
-                      throw Error();
+                      throw Error;
                     } catch (x$1) {
                       control = x$1;
                     }
-                    (Fake = fn()) && "function" === typeof Fake.catch && Fake.catch(function() {
+                    (Fake = fn) && "function" === typeof Fake.catch && Fake.catch(function {
                     });
                   }
                 } catch (sample) {
@@ -2097,7 +2097,7 @@
               "name",
               { value: "DetermineComponentFrameRoot" }
             );
-            var _RunInRootFrame$Deter = RunInRootFrame.DetermineComponentFrameRoot(), sampleStack = _RunInRootFrame$Deter[0], controlStack = _RunInRootFrame$Deter[1];
+            var _RunInRootFrame$Deter = RunInRootFrame.DetermineComponentFrameRoot, sampleStack = _RunInRootFrame$Deter[0], controlStack = _RunInRootFrame$Deter[1];
             if (sampleStack && controlStack) {
               var sampleLines = sampleStack.split("\n"), controlLines = controlStack.split("\n");
               for (_RunInRootFrame$Deter = namePropDescriptor = 0; namePropDescriptor < sampleLines.length && !sampleLines[namePropDescriptor].includes(
@@ -2130,7 +2130,7 @@
                 }
             }
           } finally {
-            reentry = false, ReactSharedInternals.H = previousDispatcher2, reenableLogs(), Error.prepareStackTrace = frame;
+            reentry = false, ReactSharedInternals.H = previousDispatcher2, reenableLogs, Error.prepareStackTrace = frame;
           }
           sampleLines = (sampleLines = fn ? fn.displayName || fn.name : "") ? describeBuiltInComponentFrame(sampleLines) : "";
           "function" === typeof fn && componentFrameCache.set(fn, sampleLines);
@@ -2199,12 +2199,12 @@
         function describeFunctionComponentFrameWithoutLineNumber(fn) {
           return (fn = fn ? fn.displayName || fn.name : "") ? describeBuiltInComponentFrame(fn) : "";
         }
-        function getCurrentFiberOwnerNameInDevOrNull() {
+        function getCurrentFiberOwnerNameInDevOrNull {
           if (null === current) return null;
           var owner = current._debugOwner;
           return null != owner ? getComponentNameFromOwner(owner) : null;
         }
-        function getCurrentFiberStackInDev() {
+        function getCurrentFiberStackInDev {
           if (null === current) return "";
           var workInProgress2 = current;
           try {
@@ -2455,7 +2455,7 @@
               ), -1;
           }
         }
-        function claimNextRetryLane() {
+        function claimNextRetryLane {
           var lane = nextRetryLane;
           nextRetryLane <<= 1;
           0 === (nextRetryLane & 62914560) && (nextRetryLane = 4194304);
@@ -2571,7 +2571,7 @@
               0 < index.size && (index.forEach(function(fiber) {
                 var alternate = fiber.alternate;
                 null !== alternate && memoizedUpdaters.has(alternate) || memoizedUpdaters.add(fiber);
-              }), index.clear());
+              }), index.clear);
               lanes &= ~root2;
             }
         }
@@ -2579,7 +2579,7 @@
           lanes &= -lanes;
           return 0 !== DiscreteEventPriority && DiscreteEventPriority < lanes ? 0 !== ContinuousEventPriority && ContinuousEventPriority < lanes ? 0 !== (lanes & 134217727) ? DefaultEventPriority : IdleEventPriority : ContinuousEventPriority : DiscreteEventPriority;
         }
-        function resolveUpdatePriority() {
+        function resolveUpdatePriority {
           var updatePriority = ReactDOMSharedInternals.p;
           if (0 !== updatePriority) return updatePriority;
           updatePriority = window.event;
@@ -2588,7 +2588,7 @@
         function runWithPriority(priority, fn) {
           var previousPriority = ReactDOMSharedInternals.p;
           try {
-            return ReactDOMSharedInternals.p = priority, fn();
+            return ReactDOMSharedInternals.p = priority, fn;
           } finally {
             ReactDOMSharedInternals.p = previousPriority;
           }
@@ -2635,7 +2635,7 @@
         }
         function getResourcesFromRoot(root2) {
           var resources = root2[internalRootNodeResourcesKey];
-          resources || (resources = root2[internalRootNodeResourcesKey] = { hoistableStyles: /* @__PURE__ */ new Map(), hoistableScripts: /* @__PURE__ */ new Map() });
+          resources || (resources = root2[internalRootNodeResourcesKey] = { hoistableStyles: /* @__PURE__ */ new Map, hoistableScripts: /* @__PURE__ */ new Map });
           return resources;
         }
         function markNodeAsHoistable(node) {
@@ -2651,7 +2651,7 @@
             registrationName
           );
           registrationNameDependencies[registrationName] = dependencies;
-          var lowerCasedName = registrationName.toLowerCase();
+          var lowerCasedName = registrationName.toLowerCase;
           possibleRegistrationNames[lowerCasedName] = registrationName;
           "onDoubleClick" === registrationName && (possibleRegistrationNames.ondblclick = registrationName);
           for (registrationName = 0; registrationName < dependencies.length; registrationName++)
@@ -2709,7 +2709,7 @@
                   node.removeAttribute(name);
                   return;
                 case "boolean":
-                  var prefix3 = name.toLowerCase().slice(0, 5);
+                  var prefix3 = name.toLowerCase.slice(0, 5);
                   if ("data-" !== prefix3 && "aria-" !== prefix3) {
                     node.removeAttribute(name);
                     return;
@@ -2765,7 +2765,7 @@
         }
         function isCheckable(elem) {
           var type = elem.type;
-          return (elem = elem.nodeName) && "input" === elem.toLowerCase() && ("checkbox" === type || "radio" === type);
+          return (elem = elem.nodeName) && "input" === elem.toLowerCase && ("checkbox" === type || "radio" === type);
         }
         function trackValueOnNode(node, valueField, currentValue2) {
           var descriptor2 = Object.getOwnPropertyDescriptor(
@@ -2776,7 +2776,7 @@
             var get = descriptor2.get, set = descriptor2.set;
             Object.defineProperty(node, valueField, {
               configurable: true,
-              get: function() {
+              get: function {
                 return get.call(this);
               },
               set: function(value) {
@@ -2789,14 +2789,14 @@
               enumerable: descriptor2.enumerable
             });
             return {
-              getValue: function() {
+              getValue: function {
                 return currentValue2;
               },
               setValue: function(value) {
                 checkFormFieldValueStringCoercion(value);
                 currentValue2 = "" + value;
               },
-              stopTracking: function() {
+              stopTracking: function {
                 node._valueTracker = null;
                 delete node[valueField];
               }
@@ -2817,7 +2817,7 @@
           if (!node) return false;
           var tracker = node._valueTracker;
           if (!tracker) return true;
-          var lastValue = tracker.getValue();
+          var lastValue = tracker.getValue;
           var value = "";
           node && (value = isCheckable(node) ? node.checked ? "true" : "false" : node.value);
           node = value;
@@ -2843,12 +2843,12 @@
         function validateInputProps(element, props) {
           void 0 === props.checked || void 0 === props.defaultChecked || didWarnCheckedDefaultChecked || (console.error(
             "%s contains an input of type %s with both checked and defaultChecked props. Input elements must be either controlled or uncontrolled (specify either the checked prop, or the defaultChecked prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fcontrolled-components",
-            getCurrentFiberOwnerNameInDevOrNull() || "A component",
+            getCurrentFiberOwnerNameInDevOrNull || "A component",
             props.type
           ), didWarnCheckedDefaultChecked = true);
           void 0 === props.value || void 0 === props.defaultValue || didWarnValueDefaultValue$1 || (console.error(
             "%s contains an input of type %s with both value and defaultValue props. Input elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fcontrolled-components",
-            getCurrentFiberOwnerNameInDevOrNull() || "A component",
+            getCurrentFiberOwnerNameInDevOrNull || "A component",
             props.type
           ), didWarnValueDefaultValue$1 = true);
         }
@@ -2902,8 +2902,8 @@
             "Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>."
           ), didWarnSelectedSetOnOption = true);
         }
-        function getDeclarationErrorAddendum() {
-          var ownerName = getCurrentFiberOwnerNameInDevOrNull();
+        function getDeclarationErrorAddendum {
+          var ownerName = getCurrentFiberOwnerNameInDevOrNull;
           return ownerName ? "\n\nCheck the render method of `" + ownerName + "`." : "";
         }
         function updateOptions(node, multiple, propValue, setDefaultSelected) {
@@ -2936,11 +2936,11 @@
               props.multiple && !propNameIsArray ? console.error(
                 "The `%s` prop supplied to <select> must be an array if `multiple` is true.%s",
                 propName,
-                getDeclarationErrorAddendum()
+                getDeclarationErrorAddendum
               ) : !props.multiple && propNameIsArray && console.error(
                 "The `%s` prop supplied to <select> must be a scalar value if `multiple` is false.%s",
                 propName,
-                getDeclarationErrorAddendum()
+                getDeclarationErrorAddendum
               );
             }
           }
@@ -2951,7 +2951,7 @@
         function validateTextareaProps(element, props) {
           void 0 === props.value || void 0 === props.defaultValue || didWarnValDefaultVal || (console.error(
             "%s contains a textarea with both value and defaultValue props. Textarea elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled textarea and remove one of these props. More info: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fcontrolled-components",
-            getCurrentFiberOwnerNameInDevOrNull() || "A component"
+            getCurrentFiberOwnerNameInDevOrNull || "A component"
           ), didWarnValDefaultVal = true);
           null != props.children && null == props.value && console.error(
             "Use the `defaultValue` or `value` props instead of setting children on <textarea>."
@@ -3113,10 +3113,10 @@
           return properties;
         }
         function describeElementDiff(type, clientProps, serverProps, indent) {
-          var content = "", serverPropNames = /* @__PURE__ */ new Map();
+          var content = "", serverPropNames = /* @__PURE__ */ new Map;
           for (propName$jscomp$0 in serverProps)
             serverProps.hasOwnProperty(propName$jscomp$0) && serverPropNames.set(
-              propName$jscomp$0.toLowerCase(),
+              propName$jscomp$0.toLowerCase,
               propName$jscomp$0
             );
           if (1 === serverPropNames.size && serverPropNames.has("children"))
@@ -3128,9 +3128,9 @@
           else {
             for (var _propName2 in clientProps)
               if (clientProps.hasOwnProperty(_propName2) && "children" !== _propName2) {
-                var maxLength$jscomp$0 = 120 - 2 * (indent + 1) - _propName2.length - 1, serverPropName = serverPropNames.get(_propName2.toLowerCase());
+                var maxLength$jscomp$0 = 120 - 2 * (indent + 1) - _propName2.length - 1, serverPropName = serverPropNames.get(_propName2.toLowerCase);
                 if (void 0 !== serverPropName) {
-                  serverPropNames.delete(_propName2.toLowerCase());
+                  serverPropNames.delete(_propName2.toLowerCase);
                   var propName$jscomp$0 = clientProps[_propName2];
                   serverPropName = serverProps[serverPropName];
                   var clientPropValue = describePropValue(
@@ -3426,7 +3426,7 @@
             ancestorTag,
             ancestorDescription
           );
-          ancestorInfo && (childTag = ancestorInfo.return, null === ancestor || null === childTag || ancestor === childTag && childTag._debugOwner === ancestorInfo._debugOwner || runWithFiberInDEV(ancestor, function() {
+          ancestorInfo && (childTag = ancestorInfo.return, null === ancestor || null === childTag || ancestor === childTag && childTag._debugOwner === ancestorInfo._debugOwner || runWithFiberInDEV(ancestor, function {
             console.error(
               "<%s> cannot contain a nested %s.\nSee this log for the ancestor stack trace.",
               ancestorTag,
@@ -3470,7 +3470,7 @@
         }
         function camelize(string) {
           return string.replace(hyphenPattern, function(_2, character) {
-            return character.toUpperCase();
+            return character.toUpperCase;
           });
         }
         function setValueForStyle(style2, styleName, value) {
@@ -3482,7 +3482,7 @@
           )) : badVendoredStyleNamePattern.test(styleName) ? warnedStyleNames.hasOwnProperty(styleName) && warnedStyleNames[styleName] || (warnedStyleNames[styleName] = true, console.error(
             "Unsupported vendor-prefixed style property %s. Did you mean %s?",
             styleName,
-            styleName.charAt(0).toUpperCase() + styleName.slice(1)
+            styleName.charAt(0).toUpperCase + styleName.slice(1)
           )) : !badStyleValueWithSemicolonPattern.test(value) || warnedStyleValues.hasOwnProperty(value) && warnedStyleValues[value] || (warnedStyleValues[value] = true, console.error(
             `Style property values shouldn't contain a semicolon. Try "%s: %s" instead.`,
             styleName,
@@ -3494,7 +3494,7 @@
             "`Infinity` is an invalid value for the `%s` css style property.",
             styleName
           ))));
-          null == value || "boolean" === typeof value || "" === value ? isCustomProperty ? style2.setProperty(styleName, "") : "float" === styleName ? style2.cssFloat = "" : style2[styleName] = "" : isCustomProperty ? style2.setProperty(styleName, value) : "number" !== typeof value || 0 === value || unitlessNumbers.has(styleName) ? "float" === styleName ? style2.cssFloat = value : (checkCSSPropertyStringCoercion(value, styleName), style2[styleName] = ("" + value).trim()) : style2[styleName] = value + "px";
+          null == value || "boolean" === typeof value || "" === value ? isCustomProperty ? style2.setProperty(styleName, "") : "float" === styleName ? style2.cssFloat = "" : style2[styleName] = "" : isCustomProperty ? style2.setProperty(styleName, value) : "number" !== typeof value || 0 === value || unitlessNumbers.has(styleName) ? "float" === styleName ? style2.cssFloat = value : (checkCSSPropertyStringCoercion(value, styleName), style2[styleName] = ("" + value).trim) : style2[styleName] = value + "px";
         }
         function setValueForStyles(node, styles2, prevStyles) {
           if (null != styles2 && "object" !== typeof styles2)
@@ -3566,7 +3566,7 @@
           if (hasOwnProperty.call(warnedProperties$1, name) && warnedProperties$1[name])
             return true;
           if (rARIACamel$1.test(name)) {
-            tagName = "aria-" + name.slice(4).toLowerCase();
+            tagName = "aria-" + name.slice(4).toLowerCase;
             tagName = ariaProperties.hasOwnProperty(tagName) ? tagName : null;
             if (null == tagName)
               return console.error(
@@ -3581,7 +3581,7 @@
               ), warnedProperties$1[name] = true;
           }
           if (rARIA$1.test(name)) {
-            tagName = name.toLowerCase();
+            tagName = name.toLowerCase;
             tagName = ariaProperties.hasOwnProperty(tagName) ? tagName : null;
             if (null == tagName) return warnedProperties$1[name] = true, false;
             name !== tagName && (console.error(
@@ -3612,7 +3612,7 @@
         function validateProperty(tagName, name, value, eventRegistry) {
           if (hasOwnProperty.call(warnedProperties, name) && warnedProperties[name])
             return true;
-          var lowerCasedName = name.toLowerCase();
+          var lowerCasedName = name.toLowerCase;
           if ("onfocusin" === lowerCasedName || "onfocusout" === lowerCasedName)
             return console.error(
               "React uses onFocus and onBlur instead of onFocusIn and onFocusOut. All React events are normalized to bubble, so onFocusIn and onFocusOut are not needed/supported by React."
@@ -3730,18 +3730,18 @@
                 case "inert":
                   return true;
                 default:
-                  lowerCasedName = name.toLowerCase().slice(0, 5);
+                  lowerCasedName = name.toLowerCase.slice(0, 5);
                   if ("data-" === lowerCasedName || "aria-" === lowerCasedName)
                     return true;
                   value ? console.error(
-                    'Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}.',
+                    'Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString}.',
                     value,
                     name,
                     name,
                     value,
                     name
                   ) : console.error(
-                    'Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead.',
+                    'Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString}.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead.',
                     value,
                     name,
                     name,
@@ -3822,7 +3822,7 @@
         function sanitizeURL(url) {
           return isJavaScriptProtocol.test("" + url) ? "javascript:throw new Error('React has blocked a javascript: URL as a security precaution.')" : url;
         }
-        function noop$1() {
+        function noop$1 {
         }
         function getEventTarget(nativeEvent) {
           nativeEvent = nativeEvent.target || nativeEvent.srcElement || window;
@@ -3894,7 +3894,7 @@
             return JSCompiler_inline_result;
           } finally {
             if (isInsideEventHandler = false, null !== restoreTarget || null !== restoreQueue) {
-              if (flushSyncWork$1(), restoreTarget && (a2 = restoreTarget, fn = restoreQueue, restoreQueue = restoreTarget = null, restoreStateOfTarget(a2), fn))
+              if (flushSyncWork$1, restoreTarget && (a2 = restoreTarget, fn = restoreQueue, restoreQueue = restoreTarget = null, restoreStateOfTarget(a2), fn))
                 for (a2 = 0; a2 < fn.length; a2++) restoreStateOfTarget(fn[a2]);
             }
           }
@@ -3930,7 +3930,7 @@
             );
           return stateNode;
         }
-        function getData() {
+        function getData {
           if (fallbackText) return fallbackText;
           var start, startValue = startText, startLength = startValue.length, end, endValue = "value" in root ? root.value : root.textContent, endLength = endValue.length;
           for (start = 0; start < startLength && startValue[start] === endValue[start]; start++) ;
@@ -3944,10 +3944,10 @@
           10 === nativeEvent && (nativeEvent = 13);
           return 32 <= nativeEvent || 13 === nativeEvent ? nativeEvent : 0;
         }
-        function functionThatReturnsTrue() {
+        function functionThatReturnsTrue {
           return true;
         }
-        function functionThatReturnsFalse() {
+        function functionThatReturnsFalse {
           return false;
         }
         function createSyntheticEvent(Interface) {
@@ -3965,16 +3965,16 @@
             return this;
           }
           assign(SyntheticBaseEvent.prototype, {
-            preventDefault: function() {
+            preventDefault: function {
               this.defaultPrevented = true;
               var event = this.nativeEvent;
-              event && (event.preventDefault ? event.preventDefault() : "unknown" !== typeof event.returnValue && (event.returnValue = false), this.isDefaultPrevented = functionThatReturnsTrue);
+              event && (event.preventDefault ? event.preventDefault : "unknown" !== typeof event.returnValue && (event.returnValue = false), this.isDefaultPrevented = functionThatReturnsTrue);
             },
-            stopPropagation: function() {
+            stopPropagation: function {
               var event = this.nativeEvent;
-              event && (event.stopPropagation ? event.stopPropagation() : "unknown" !== typeof event.cancelBubble && (event.cancelBubble = true), this.isPropagationStopped = functionThatReturnsTrue);
+              event && (event.stopPropagation ? event.stopPropagation : "unknown" !== typeof event.cancelBubble && (event.cancelBubble = true), this.isPropagationStopped = functionThatReturnsTrue);
             },
-            persist: function() {
+            persist: function {
             },
             isPersistent: functionThatReturnsTrue
           });
@@ -3984,7 +3984,7 @@
           var nativeEvent = this.nativeEvent;
           return nativeEvent.getModifierState ? nativeEvent.getModifierState(keyArg) : (keyArg = modifierKeyToProp[keyArg]) ? !!nativeEvent[keyArg] : false;
         }
-        function getEventModifierState() {
+        function getEventModifierState {
           return modifierStateGetter;
         }
         function isFallbackCompositionEnd(domEventName, nativeEvent) {
@@ -4021,7 +4021,7 @@
         }
         function getFallbackBeforeInputChars(domEventName, nativeEvent) {
           if (isComposing)
-            return "compositionend" === domEventName || !canUseCompositionEvent && isFallbackCompositionEnd(domEventName, nativeEvent) ? (domEventName = getData(), fallbackText = startText = root = null, isComposing = false, domEventName) : null;
+            return "compositionend" === domEventName || !canUseCompositionEvent && isFallbackCompositionEnd(domEventName, nativeEvent) ? (domEventName = getData, fallbackText = startText = root = null, isComposing = false, domEventName) : null;
           switch (domEventName) {
             case "paste":
               return null;
@@ -4040,7 +4040,7 @@
           }
         }
         function isTextInputElement(elem) {
-          var nodeName = elem && elem.nodeName && elem.nodeName.toLowerCase();
+          var nodeName = elem && elem.nodeName && elem.nodeName.toLowerCase;
           return "input" === nodeName ? !!supportedInputTypes[elem.type] : "textarea" === nodeName ? true : false;
         }
         function isEventSupported(eventNameSuffix) {
@@ -4071,7 +4071,7 @@
         function getTargetInstForChangeEvent(domEventName, targetInst) {
           if ("change" === domEventName) return targetInst;
         }
-        function stopWatchingForValueChange() {
+        function stopWatchingForValueChange {
           activeElement$1 && (activeElement$1.detachEvent("onpropertychange", handlePropertyChange), activeElementInst$1 = activeElement$1 = null);
         }
         function handlePropertyChange(nativeEvent) {
@@ -4087,7 +4087,7 @@
           }
         }
         function handleEventsForInputEventPolyfill(domEventName, target, targetInst) {
-          "focusin" === domEventName ? (stopWatchingForValueChange(), activeElement$1 = target, activeElementInst$1 = targetInst, activeElement$1.attachEvent("onpropertychange", handlePropertyChange)) : "focusout" === domEventName && stopWatchingForValueChange();
+          "focusin" === domEventName ? (stopWatchingForValueChange, activeElement$1 = target, activeElementInst$1 = targetInst, activeElement$1.attachEvent("onpropertychange", handlePropertyChange)) : "focusout" === domEventName && stopWatchingForValueChange;
         }
         function getTargetInstForInputEventPolyfill(domEventName) {
           if ("selectionchange" === domEventName || "keyup" === domEventName || "keydown" === domEventName)
@@ -4161,12 +4161,12 @@
           return element;
         }
         function hasSelectionCapabilities(elem) {
-          var nodeName = elem && elem.nodeName && elem.nodeName.toLowerCase();
+          var nodeName = elem && elem.nodeName && elem.nodeName.toLowerCase;
           return nodeName && ("input" === nodeName && ("text" === elem.type || "search" === elem.type || "tel" === elem.type || "url" === elem.type || "password" === elem.type) || "textarea" === nodeName || "true" === elem.contentEditable);
         }
         function constructSelectEvent(dispatchQueue, nativeEvent, nativeEventTarget) {
           var doc = nativeEventTarget.window === nativeEventTarget ? nativeEventTarget.document : 9 === nativeEventTarget.nodeType ? nativeEventTarget : nativeEventTarget.ownerDocument;
-          mouseDown || null == activeElement || activeElement !== getActiveElement(doc) || (doc = activeElement, "selectionStart" in doc && hasSelectionCapabilities(doc) ? doc = { start: doc.selectionStart, end: doc.selectionEnd } : (doc = (doc.ownerDocument && doc.ownerDocument.defaultView || window).getSelection(), doc = {
+          mouseDown || null == activeElement || activeElement !== getActiveElement(doc) || (doc = activeElement, "selectionStart" in doc && hasSelectionCapabilities(doc) ? doc = { start: doc.selectionStart, end: doc.selectionEnd } : (doc = (doc.ownerDocument && doc.ownerDocument.defaultView || window).getSelection, doc = {
             anchorNode: doc.anchorNode,
             anchorOffset: doc.anchorOffset,
             focusNode: doc.focusNode,
@@ -4181,7 +4181,7 @@
         }
         function makePrefixMap(styleProp, eventName) {
           var prefixes = {};
-          prefixes[styleProp.toLowerCase()] = eventName.toLowerCase();
+          prefixes[styleProp.toLowerCase] = eventName.toLowerCase;
           prefixes["Webkit" + styleProp] = "webkit" + eventName;
           prefixes["Moz" + styleProp] = "moz" + eventName;
           return prefixes;
@@ -4326,7 +4326,7 @@
                 return;
               }
             case "function":
-              value = "" === value.name ? "() => {}" : value.name + "() {}";
+              value = "" === value.name ? " => {}" : value.name + " {}";
               break;
             case "string":
               value = value === OMITTED_PROP_ERROR ? "\u2026" : JSON.stringify(value);
@@ -4396,7 +4396,7 @@
                         }
                       }
                     else if ("function" === typeof key && "function" === typeof nextValue && key.name === nextValue.name && key.length === nextValue.length && (prevKind = Function.prototype.toString.call(key), nextKind = Function.prototype.toString.call(nextValue), prevKind === nextKind)) {
-                      key = "" === nextValue.name ? "() => {}" : nextValue.name + "() {}";
+                      key = "" === nextValue.name ? " => {}" : nextValue.name + " {}";
                       properties.push([
                         UNCHANGED + "\xA0\xA0".repeat(indent) + _key,
                         key + " Referentially unequal function closure. Consider memoization."
@@ -4744,7 +4744,7 @@
             "secondary-dark"
           ));
         }
-        function finishQueueingConcurrentUpdates() {
+        function finishQueueingConcurrentUpdates {
           for (var endIndex = concurrentQueuesIndex, i2 = concurrentlyUpdatedLanes = concurrentQueuesIndex = 0; i2 < endIndex; ) {
             var fiber = concurrentQueues[i2];
             concurrentQueues[i2++] = null;
@@ -4836,7 +4836,7 @@
           return needsCompareFamilies && (fiber = resolveFamily(prevType), void 0 !== fiber && fiber === resolveFamily(element)) ? true : false;
         }
         function markFailedErrorBoundaryForHotReloading(fiber) {
-          null !== resolveFamily && "function" === typeof WeakSet && (null === failedBoundaries && (failedBoundaries = /* @__PURE__ */ new WeakSet()), failedBoundaries.add(fiber));
+          null !== resolveFamily && "function" === typeof WeakSet && (null === failedBoundaries && (failedBoundaries = /* @__PURE__ */ new WeakSet), failedBoundaries.add(fiber));
         }
         function scheduleFibersWithFamiliesRecursively(fiber, updatedFamilies, staleFamilies) {
           do {
@@ -4952,7 +4952,7 @@
           if ("function" === typeof type)
             shouldConstruct(type) && (fiberTag = 1), resolvedType = resolveFunctionForHotReloading(resolvedType);
           else if ("string" === typeof type)
-            fiberTag = getHostContext(), fiberTag = isHostHoistableType(type, pendingProps, fiberTag) ? 26 : "html" === type || "head" === type || "body" === type ? 27 : 5;
+            fiberTag = getHostContext, fiberTag = isHostHoistableType(type, pendingProps, fiberTag) ? 26 : "html" === type || "head" === type || "body" === type ? 27 : 5;
           else
             a: switch (type) {
               case REACT_ACTIVITY_TYPE:
@@ -5080,14 +5080,14 @@
           };
         }
         function pushTreeFork(workInProgress2, totalChildren) {
-          warnIfNotHydrating();
+          warnIfNotHydrating;
           forkStack[forkStackIndex++] = treeForkCount;
           forkStack[forkStackIndex++] = treeForkProvider;
           treeForkProvider = workInProgress2;
           treeForkCount = totalChildren;
         }
         function pushTreeId(workInProgress2, totalChildren, index) {
-          warnIfNotHydrating();
+          warnIfNotHydrating;
           idStack[idStackIndex++] = treeContextId;
           idStack[idStackIndex++] = treeContextOverflow;
           idStack[idStackIndex++] = treeContextProvider;
@@ -5109,7 +5109,7 @@
             treeContextId = 1 << length | index << baseLength | baseIdWithLeadingBit, treeContextOverflow = workInProgress2;
         }
         function pushMaterializedTreeId(workInProgress2) {
-          warnIfNotHydrating();
+          warnIfNotHydrating;
           null !== workInProgress2.return && (pushTreeFork(workInProgress2, 1), pushTreeId(workInProgress2, 1, 0));
         }
         function popTreeContext(workInProgress2) {
@@ -5118,12 +5118,12 @@
           for (; workInProgress2 === treeContextProvider; )
             treeContextProvider = idStack[--idStackIndex], idStack[idStackIndex] = null, treeContextOverflow = idStack[--idStackIndex], idStack[idStackIndex] = null, treeContextId = idStack[--idStackIndex], idStack[idStackIndex] = null;
         }
-        function getSuspendedTreeContext() {
-          warnIfNotHydrating();
+        function getSuspendedTreeContext {
+          warnIfNotHydrating;
           return null !== treeContextProvider ? { id: treeContextId, overflow: treeContextOverflow } : null;
         }
         function restoreSuspendedTreeContext(workInProgress2, suspendedContext) {
-          warnIfNotHydrating();
+          warnIfNotHydrating;
           idStack[idStackIndex++] = treeContextId;
           idStack[idStackIndex++] = treeContextOverflow;
           idStack[idStackIndex++] = treeContextProvider;
@@ -5131,7 +5131,7 @@
           treeContextOverflow = suspendedContext.overflow;
           treeContextProvider = workInProgress2;
         }
-        function warnIfNotHydrating() {
+        function warnIfNotHydrating {
           isHydrating || console.error(
             "Expected to be hydrating. This is a bug in React. Please file an issue."
           );
@@ -5171,7 +5171,7 @@
           siblings.push(distanceFromLeaf);
           return distanceFromLeaf;
         }
-        function warnIfHydrating() {
+        function warnIfHydrating {
           isHydrating && console.error(
             "We should not be hydrating here. This is a bug in React. Please file a bug."
           );
@@ -5185,7 +5185,7 @@
           queueHydrationError(
             createCapturedValueAtFiber(
               Error(
-                "Hydration failed because the server rendered " + (fromText ? "text" : "HTML") + " didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\nhttps://react.dev/link/hydration-mismatch" + diff
+                "Hydration failed because the server rendered " + (fromText ? "text" : "HTML") + " didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now` or `Math.random` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\nhttps://react.dev/link/hydration-mismatch" + diff
               ),
               fiber
             )
@@ -5315,11 +5315,11 @@
             27 === tag ? (tag = nextHydratableInstance, isSingletonScope(fiber.type) ? (fiber = previousHydratableOnEnteringScopedSingleton, previousHydratableOnEnteringScopedSingleton = null, nextHydratableInstance = fiber) : nextHydratableInstance = tag) : nextHydratableInstance = hydrationParentFiber ? getNextHydratable(fiber.stateNode.nextSibling) : null;
           return true;
         }
-        function resetHydrationState() {
+        function resetHydrationState {
           nextHydratableInstance = hydrationParentFiber = null;
           didSuspendOrErrorDEV = isHydrating = false;
         }
-        function upgradeHydrationErrorsToRecoverable() {
+        function upgradeHydrationErrorsToRecoverable {
           var queuedErrors = hydrationErrors;
           null !== queuedErrors && (null === workInProgressRootRecoverableErrors ? workInProgressRootRecoverableErrors = queuedErrors : workInProgressRootRecoverableErrors.push.apply(
             workInProgressRootRecoverableErrors,
@@ -5330,22 +5330,22 @@
         function queueHydrationError(error) {
           null === hydrationErrors ? hydrationErrors = [error] : hydrationErrors.push(error);
         }
-        function emitPendingHydrationWarnings() {
+        function emitPendingHydrationWarnings {
           var diffRoot = hydrationDiffRootDEV;
           if (null !== diffRoot) {
             hydrationDiffRootDEV = null;
             for (var diff = describeDiff(diffRoot); 0 < diffRoot.children.length; )
               diffRoot = diffRoot.children[0];
-            runWithFiberInDEV(diffRoot.fiber, function() {
+            runWithFiberInDEV(diffRoot.fiber, function {
               console.error(
-                "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s",
+                "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now` or `Math.random` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s",
                 "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fhydration-mismatch",
                 diff
               );
             });
           }
         }
-        function resetContextDependencies() {
+        function resetContextDependencies {
           lastContextDependency = currentlyRenderingFiber$1 = null;
           isDisallowedContextReadInDEV = false;
         }
@@ -5487,7 +5487,7 @@
         }
         function readContext(context) {
           isDisallowedContextReadInDEV && console.error(
-            "Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer() or useMemo()."
+            "Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer or useMemo."
           );
           return readContextForConsumer(currentlyRenderingFiber$1, context);
         }
@@ -5501,7 +5501,7 @@
           if (null === lastContextDependency) {
             if (null === consumer)
               throw Error(
-                "Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer() or useMemo()."
+                "Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer or useMemo."
               );
             lastContextDependency = context;
             consumer.dependencies = {
@@ -5513,10 +5513,10 @@
           } else lastContextDependency = lastContextDependency.next = context;
           return value;
         }
-        function createCache() {
+        function createCache {
           return {
-            controller: new AbortControllerLocal(),
-            data: /* @__PURE__ */ new Map(),
+            controller: new AbortControllerLocal,
+            data: /* @__PURE__ */ new Map,
             refCount: 0
           };
         }
@@ -5531,16 +5531,16 @@
           0 > cache2.refCount && console.warn(
             "A cache instance was released after it was already freed. This likely indicates a bug in React."
           );
-          0 === cache2.refCount && scheduleCallback$2(NormalPriority, function() {
-            cache2.controller.abort();
+          0 === cache2.refCount && scheduleCallback$2(NormalPriority, function {
+            cache2.controller.abort;
           });
         }
         function startUpdateTimerByLane(lane, method, fiber) {
           if (0 !== (lane & 127))
-            0 > blockingUpdateTime && (blockingUpdateTime = now(), blockingUpdateTask = createTask(method), blockingUpdateMethodName = method, null != fiber && (blockingUpdateComponentName = getComponentNameFromFiber(fiber)), (executionContext & (RenderContext | CommitContext)) !== NoContext && (componentEffectSpawnedUpdate = true, blockingUpdateType = SPAWNED_UPDATE), lane = resolveEventTimeStamp(), method = resolveEventType(), lane !== blockingEventRepeatTime || method !== blockingEventType ? blockingEventRepeatTime = -1.1 : null !== method && (blockingUpdateType = SPAWNED_UPDATE), blockingEventTime = lane, blockingEventType = method);
-          else if (0 !== (lane & 4194048) && 0 > transitionUpdateTime && (transitionUpdateTime = now(), transitionUpdateTask = createTask(method), transitionUpdateMethodName = method, null != fiber && (transitionUpdateComponentName = getComponentNameFromFiber(fiber)), 0 > transitionStartTime)) {
-            lane = resolveEventTimeStamp();
-            method = resolveEventType();
+            0 > blockingUpdateTime && (blockingUpdateTime = now, blockingUpdateTask = createTask(method), blockingUpdateMethodName = method, null != fiber && (blockingUpdateComponentName = getComponentNameFromFiber(fiber)), (executionContext & (RenderContext | CommitContext)) !== NoContext && (componentEffectSpawnedUpdate = true, blockingUpdateType = SPAWNED_UPDATE), lane = resolveEventTimeStamp, method = resolveEventType, lane !== blockingEventRepeatTime || method !== blockingEventType ? blockingEventRepeatTime = -1.1 : null !== method && (blockingUpdateType = SPAWNED_UPDATE), blockingEventTime = lane, blockingEventType = method);
+          else if (0 !== (lane & 4194048) && 0 > transitionUpdateTime && (transitionUpdateTime = now, transitionUpdateTask = createTask(method), transitionUpdateMethodName = method, null != fiber && (transitionUpdateComponentName = getComponentNameFromFiber(fiber)), 0 > transitionStartTime)) {
+            lane = resolveEventTimeStamp;
+            method = resolveEventType;
             if (lane !== transitionEventRepeatTime || method !== transitionEventType)
               transitionEventRepeatTime = -1.1;
             transitionEventTime = lane;
@@ -5549,24 +5549,24 @@
         }
         function startHostActionTimer(fiber) {
           if (0 > blockingUpdateTime) {
-            blockingUpdateTime = now();
+            blockingUpdateTime = now;
             blockingUpdateTask = null != fiber._debugTask ? fiber._debugTask : null;
             (executionContext & (RenderContext | CommitContext)) !== NoContext && (blockingUpdateType = SPAWNED_UPDATE);
-            var newEventTime = resolveEventTimeStamp(), newEventType = resolveEventType();
+            var newEventTime = resolveEventTimeStamp, newEventType = resolveEventType;
             newEventTime !== blockingEventRepeatTime || newEventType !== blockingEventType ? blockingEventRepeatTime = -1.1 : null !== newEventType && (blockingUpdateType = SPAWNED_UPDATE);
             blockingEventTime = newEventTime;
             blockingEventType = newEventType;
           }
-          if (0 > transitionUpdateTime && (transitionUpdateTime = now(), transitionUpdateTask = null != fiber._debugTask ? fiber._debugTask : null, 0 > transitionStartTime)) {
-            fiber = resolveEventTimeStamp();
-            newEventTime = resolveEventType();
+          if (0 > transitionUpdateTime && (transitionUpdateTime = now, transitionUpdateTask = null != fiber._debugTask ? fiber._debugTask : null, 0 > transitionStartTime)) {
+            fiber = resolveEventTimeStamp;
+            newEventTime = resolveEventType;
             if (fiber !== transitionEventRepeatTime || newEventTime !== transitionEventType)
               transitionEventRepeatTime = -1.1;
             transitionEventTime = fiber;
             transitionEventType = newEventTime;
           }
         }
-        function pushNestedEffectDurations() {
+        function pushNestedEffectDurations {
           var prevEffectDuration = profilerEffectDuration;
           profilerEffectDuration = 0;
           return prevEffectDuration;
@@ -5581,10 +5581,10 @@
           profilerEffectDuration += prevEffectDuration;
           return elapsedTime;
         }
-        function resetComponentEffectTimers() {
+        function resetComponentEffectTimers {
           componentEffectEndTime = componentEffectStartTime = -1.1;
         }
-        function pushComponentEffectStart() {
+        function pushComponentEffectStart {
           var prevEffectStart = componentEffectStartTime;
           componentEffectStartTime = -1.1;
           return prevEffectStart;
@@ -5592,7 +5592,7 @@
         function popComponentEffectStart(prevEffectStart) {
           0 <= prevEffectStart && (componentEffectStartTime = prevEffectStart);
         }
-        function pushComponentEffectDuration() {
+        function pushComponentEffectDuration {
           var prevEffectDuration = componentEffectDuration;
           componentEffectDuration = -0;
           return prevEffectDuration;
@@ -5600,23 +5600,23 @@
         function popComponentEffectDuration(prevEffectDuration) {
           0 <= prevEffectDuration && (componentEffectDuration = prevEffectDuration);
         }
-        function pushComponentEffectErrors() {
+        function pushComponentEffectErrors {
           var prevErrors = componentEffectErrors;
           componentEffectErrors = null;
           return prevErrors;
         }
-        function pushComponentEffectDidSpawnUpdate() {
+        function pushComponentEffectDidSpawnUpdate {
           var prev = componentEffectSpawnedUpdate;
           componentEffectSpawnedUpdate = false;
           return prev;
         }
         function startProfilerTimer(fiber) {
-          profilerStartTime = now();
+          profilerStartTime = now;
           0 > fiber.actualStartTime && (fiber.actualStartTime = profilerStartTime);
         }
         function stopProfilerTimerIfRunningAndRecordDuration(fiber) {
           if (0 <= profilerStartTime) {
-            var elapsedTime = now() - profilerStartTime;
+            var elapsedTime = now - profilerStartTime;
             fiber.actualDuration += elapsedTime;
             fiber.selfBaseDuration = elapsedTime;
             profilerStartTime = -1;
@@ -5624,14 +5624,14 @@
         }
         function stopProfilerTimerIfRunningAndRecordIncompleteDuration(fiber) {
           if (0 <= profilerStartTime) {
-            var elapsedTime = now() - profilerStartTime;
+            var elapsedTime = now - profilerStartTime;
             fiber.actualDuration += elapsedTime;
             profilerStartTime = -1;
           }
         }
-        function recordEffectDuration() {
+        function recordEffectDuration {
           if (0 <= profilerStartTime) {
-            var endTime = now(), elapsedTime = endTime - profilerStartTime;
+            var endTime = now, elapsedTime = endTime - profilerStartTime;
             profilerStartTime = -1;
             profilerEffectDuration += elapsedTime;
             componentEffectDuration += elapsedTime;
@@ -5644,8 +5644,8 @@
           null === commitErrors && (commitErrors = []);
           commitErrors.push(errorInfo);
         }
-        function startEffectTimer() {
-          profilerStartTime = now();
+        function startEffectTimer {
+          profilerStartTime = now;
           0 > componentEffectStartTime && (componentEffectStartTime = profilerStartTime);
         }
         function transferActualDuration(fiber) {
@@ -5656,7 +5656,7 @@
           if (null === currentEntangledListeners) {
             var entangledListeners = currentEntangledListeners = [];
             currentEntangledPendingCount = 0;
-            currentEntangledLane = requestTransitionLane();
+            currentEntangledLane = requestTransitionLane;
             currentEntangledActionThenable = {
               status: "pending",
               value: void 0,
@@ -5669,14 +5669,14 @@
           thenable.then(pingEngtangledActionScope, pingEngtangledActionScope);
           return thenable;
         }
-        function pingEngtangledActionScope() {
+        function pingEngtangledActionScope {
           if (0 === --currentEntangledPendingCount && (-1 < transitionUpdateTime || (transitionStartTime = -1.1), null !== currentEntangledListeners)) {
             null !== currentEntangledActionThenable && (currentEntangledActionThenable.status = "fulfilled");
             var listeners = currentEntangledListeners;
             currentEntangledListeners = null;
             currentEntangledLane = 0;
             currentEntangledActionThenable = null;
-            for (var i2 = 0; i2 < listeners.length; i2++) (0, listeners[i2])();
+            for (var i2 = 0; i2 < listeners.length; i2++) (0, listeners[i2]);
           }
         }
         function chainThenableValue(thenable, result) {
@@ -5689,7 +5689,7 @@
             }
           };
           thenable.then(
-            function() {
+            function {
               thenableWithOverride.status = "fulfilled";
               thenableWithOverride.value = result;
               for (var i2 = 0; i2 < listeners.length; i2++) (0, listeners[i2])(result);
@@ -5703,18 +5703,18 @@
           );
           return thenableWithOverride;
         }
-        function peekCacheFromPool() {
+        function peekCacheFromPool {
           var cacheResumedFromPreviousRender = resumedCache.current;
           return null !== cacheResumedFromPreviousRender ? cacheResumedFromPreviousRender : workInProgressRoot.pooledCache;
         }
         function pushTransition(offscreenWorkInProgress, prevCachePool) {
           null === prevCachePool ? push(resumedCache, resumedCache.current, offscreenWorkInProgress) : push(resumedCache, prevCachePool.pool, offscreenWorkInProgress);
         }
-        function getSuspendedCache() {
-          var cacheFromPool = peekCacheFromPool();
+        function getSuspendedCache {
+          var cacheFromPool = peekCacheFromPool;
           return null === cacheFromPool ? null : { parent: CacheContext._currentValue, pool: cacheFromPool };
         }
-        function createThenableState() {
+        function createThenableState {
           return { didWarnAboutUncachedPromise: false, thenables: [] };
         }
         function isThenableResolved(thenable) {
@@ -5729,7 +5729,7 @@
             "A component was suspended by an uncached promise. Creating promises inside a Client Component or hook is not yet supported, except via a Suspense-compatible library or framework."
           )), thenable.then(noop$1, noop$1), thenable = index);
           if (void 0 === thenable._debugInfo) {
-            thenableState2 = performance.now();
+            thenableState2 = performance.now;
             trackedThenables = thenable.displayName;
             var ioInfo = {
               name: "string" === typeof trackedThenables ? trackedThenables : "Promise",
@@ -5738,8 +5738,8 @@
               value: thenable
             };
             thenable._debugInfo = [{ awaited: ioInfo }];
-            "fulfilled" !== thenable.status && "rejected" !== thenable.status && (thenableState2 = function() {
-              ioInfo.end = performance.now();
+            "fulfilled" !== thenable.status && "rejected" !== thenable.status && (thenableState2 = function {
+              ioInfo.end = performance.now;
             }, thenable.then(thenableState2, thenableState2));
           }
           switch (thenable.status) {
@@ -5795,7 +5795,7 @@
             throw x;
           }
         }
-        function getSuspendedThenable() {
+        function getSuspendedThenable {
           if (null === suspendedThenable)
             throw Error(
               "Expected a suspended thenable. This is a bug in React. Please file an issue."
@@ -5816,7 +5816,7 @@
           null != debugInfo && (currentDebugInfo = null === previousDebugInfo ? debugInfo : previousDebugInfo.concat(debugInfo));
           return previousDebugInfo;
         }
-        function getCurrentDebugTask() {
+        function getCurrentDebugTask {
           var debugInfo = currentDebugInfo;
           if (null != debugInfo) {
             for (var i2 = debugInfo.length - 1; 0 <= i2; i2--)
@@ -5849,7 +5849,7 @@
         function unwrapThenable(thenable) {
           var index = thenableIndexCounter$1;
           thenableIndexCounter$1 += 1;
-          null === thenableState$1 && (thenableState$1 = createThenableState());
+          null === thenableState$1 && (thenableState$1 = createThenableState);
           return trackUsedThenable(thenableState$1, thenable, index);
         }
         function coerceRef(workInProgress2, element) {
@@ -5867,7 +5867,7 @@
           );
         }
         function throwOnInvalidObjectType(returnFiber, newChild) {
-          var debugTask = getCurrentDebugTask();
+          var debugTask = getCurrentDebugTask;
           null !== debugTask ? debugTask.run(
             throwOnInvalidObjectTypeImpl.bind(null, returnFiber, newChild)
           ) : throwOnInvalidObjectTypeImpl(returnFiber, newChild);
@@ -5889,7 +5889,7 @@
           ));
         }
         function warnOnFunctionType(returnFiber, invalidChild) {
-          var debugTask = getCurrentDebugTask();
+          var debugTask = getCurrentDebugTask;
           null !== debugTask ? debugTask.run(
             warnOnFunctionTypeImpl.bind(null, returnFiber, invalidChild)
           ) : warnOnFunctionTypeImpl(returnFiber, invalidChild);
@@ -5907,7 +5907,7 @@
           ));
         }
         function warnOnSymbolType(returnFiber, invalidChild) {
-          var debugTask = getCurrentDebugTask();
+          var debugTask = getCurrentDebugTask;
           null !== debugTask ? debugTask.run(
             warnOnSymbolTypeImpl.bind(null, returnFiber, invalidChild)
           ) : warnOnSymbolTypeImpl(returnFiber, invalidChild);
@@ -5926,7 +5926,7 @@
             return null;
           }
           function mapRemainingChildren(currentFirstChild) {
-            for (var existingChildren = /* @__PURE__ */ new Map(); null !== currentFirstChild; )
+            for (var existingChildren = /* @__PURE__ */ new Map; null !== currentFirstChild; )
               null !== currentFirstChild.key ? existingChildren.set(currentFirstChild.key, currentFirstChild) : existingChildren.set(currentFirstChild.index, currentFirstChild), currentFirstChild = currentFirstChild.sibling;
             return existingChildren;
           }
@@ -6180,7 +6180,7 @@
                 var key = child.key;
                 if ("string" !== typeof key) break;
                 if (null === knownKeys) {
-                  knownKeys = /* @__PURE__ */ new Set();
+                  knownKeys = /* @__PURE__ */ new Set;
                   knownKeys.add(key);
                   break;
                 }
@@ -6188,7 +6188,7 @@
                   knownKeys.add(key);
                   break;
                 }
-                runWithFiberInDEV(workInProgress2, function() {
+                runWithFiberInDEV(workInProgress2, function {
                   console.error(
                     "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted \u2014 the behavior is unsupported and could change in a future version.",
                     key
@@ -6270,7 +6270,7 @@
           function reconcileChildrenIterator(returnFiber, currentFirstChild, newChildren, lanes) {
             if (null == newChildren)
               throw Error("An iterable object provided no iterator.");
-            for (var resultingFirstChild = null, previousNewFiber = null, oldFiber = currentFirstChild, newIdx = currentFirstChild = 0, nextOldFiber = null, knownKeys = null, step = newChildren.next(); null !== oldFiber && !step.done; newIdx++, step = newChildren.next()) {
+            for (var resultingFirstChild = null, previousNewFiber = null, oldFiber = currentFirstChild, newIdx = currentFirstChild = 0, nextOldFiber = null, knownKeys = null, step = newChildren.next; null !== oldFiber && !step.done; newIdx++, step = newChildren.next) {
               oldFiber.index > newIdx ? (nextOldFiber = oldFiber, oldFiber = null) : nextOldFiber = oldFiber.sibling;
               var newFiber = updateSlot(returnFiber, oldFiber, step.value, lanes);
               if (null === newFiber) {
@@ -6292,7 +6292,7 @@
             if (step.done)
               return deleteRemainingChildren(returnFiber, oldFiber), isHydrating && pushTreeFork(returnFiber, newIdx), resultingFirstChild;
             if (null === oldFiber) {
-              for (; !step.done; newIdx++, step = newChildren.next())
+              for (; !step.done; newIdx++, step = newChildren.next)
                 oldFiber = createChild(returnFiber, step.value, lanes), null !== oldFiber && (knownKeys = warnOnInvalidKey(
                   returnFiber,
                   oldFiber,
@@ -6306,7 +6306,7 @@
               isHydrating && pushTreeFork(returnFiber, newIdx);
               return resultingFirstChild;
             }
-            for (oldFiber = mapRemainingChildren(oldFiber); !step.done; newIdx++, step = newChildren.next())
+            for (oldFiber = mapRemainingChildren(oldFiber); !step.done; newIdx++, step = newChildren.next)
               nextOldFiber = updateFromMap(
                 oldFiber,
                 returnFiber,
@@ -6452,7 +6452,7 @@
                 if (newChildren === newChild) {
                   if (0 !== returnFiber.tag || "[object GeneratorFunction]" !== Object.prototype.toString.call(returnFiber.type) || "[object Generator]" !== Object.prototype.toString.call(newChildren))
                     didWarnAboutGenerators || console.error(
-                      "Using Iterators as children is unsupported and will likely yield unexpected results because enumerating a generator mutates it. You may convert it to an array with `Array.from()` or the `[...spread]` operator before rendering. You can also use an Iterable that can iterate multiple times over the same items."
+                      "Using Iterators as children is unsupported and will likely yield unexpected results because enumerating a generator mutates it. You may convert it to an array with `Array.from` or the `[...spread]` operator before rendering. You can also use an Iterable that can iterate multiple times over the same items."
                     ), didWarnAboutGenerators = true;
                 } else
                   newChild.entries !== key || didWarnAboutMaps || (console.error(
@@ -6629,7 +6629,7 @@
           null === workInProgress2 ? queue.firstBaseUpdate = capturedUpdate : workInProgress2.next = capturedUpdate;
           queue.lastBaseUpdate = capturedUpdate;
         }
-        function suspendIfUpdateReadFromEntangledAsyncAction() {
+        function suspendIfUpdateReadFromEntangledAsyncAction {
           if (didReadFromEntangledAsyncAction) {
             var entangledActionThenable = currentEntangledActionThenable;
             if (null !== entangledActionThenable) throw entangledActionThenable;
@@ -6842,11 +6842,11 @@
           }
           return null;
         }
-        function mountHookTypesDev() {
+        function mountHookTypesDev {
           var hookName = currentHookNameInDev;
           null === hookTypesDev ? hookTypesDev = [hookName] : hookTypesDev.push(hookName);
         }
-        function updateHookTypesDev() {
+        function updateHookTypesDev {
           var hookName = currentHookNameInDev;
           if (null !== hookTypesDev && (hookTypesUpdateIndexDev++, hookTypesDev[hookTypesUpdateIndexDev] !== hookName)) {
             var componentName2 = getComponentNameFromFiber(currentlyRenderingFiber);
@@ -6873,14 +6873,14 @@
             typeof deps
           );
         }
-        function warnOnUseFormStateInDev() {
+        function warnOnUseFormStateInDev {
           var componentName2 = getComponentNameFromFiber(currentlyRenderingFiber);
           didWarnAboutUseFormState.has(componentName2) || (didWarnAboutUseFormState.add(componentName2), console.error(
             "ReactDOM.useFormState has been renamed to React.useActionState. Please update %s to use React.useActionState.",
             componentName2
           ));
         }
-        function throwInvalidHookError() {
+        function throwInvalidHookError {
           throw Error(
             "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Finvalid-hook-call for tips about how to debug and fix this problem."
           );
@@ -6997,14 +6997,14 @@
           } while (didScheduleRenderPhaseUpdateDuringThisPass);
           return children;
         }
-        function TransitionAwareHostComponent() {
-          var dispatcher = ReactSharedInternals.H, maybeThenable = dispatcher.useState()[0];
+        function TransitionAwareHostComponent {
+          var dispatcher = ReactSharedInternals.H, maybeThenable = dispatcher.useState[0];
           maybeThenable = "function" === typeof maybeThenable.then ? useThenable(maybeThenable) : maybeThenable;
-          dispatcher = dispatcher.useState()[0];
+          dispatcher = dispatcher.useState[0];
           (null !== currentHook ? currentHook.memoizedState : null) !== dispatcher && (currentlyRenderingFiber.flags |= 1024);
           return maybeThenable;
         }
-        function checkDidRenderIdHook() {
+        function checkDidRenderIdHook {
           var didRenderIdHook = 0 !== localIdCounter;
           localIdCounter = 0;
           return didRenderIdHook;
@@ -7031,7 +7031,7 @@
           thenableIndexCounter = localIdCounter = 0;
           thenableState = null;
         }
-        function mountWorkInProgressHook() {
+        function mountWorkInProgressHook {
           var hook = {
             memoizedState: null,
             baseState: null,
@@ -7042,7 +7042,7 @@
           null === workInProgressHook ? currentlyRenderingFiber.memoizedState = workInProgressHook = hook : workInProgressHook = workInProgressHook.next = hook;
           return workInProgressHook;
         }
-        function updateWorkInProgressHook() {
+        function updateWorkInProgressHook {
           if (null === currentHook) {
             var nextCurrentHook = currentlyRenderingFiber.alternate;
             nextCurrentHook = null !== nextCurrentHook ? nextCurrentHook.memoizedState : null;
@@ -7070,13 +7070,13 @@
           }
           return workInProgressHook;
         }
-        function createFunctionComponentUpdateQueue() {
+        function createFunctionComponentUpdateQueue {
           return { lastEffect: null, events: null, stores: null, memoCache: null };
         }
         function useThenable(thenable) {
           var index = thenableIndexCounter;
           thenableIndexCounter += 1;
-          null === thenableState && (thenableState = createThenableState());
+          null === thenableState && (thenableState = createThenableState);
           thenable = trackUsedThenable(thenableState, thenable, index);
           index = currentlyRenderingFiber;
           null === (null === workInProgressHook ? index.memoizedState : workInProgressHook.next) && (index = index.alternate, ReactSharedInternals.H = null !== index && null !== index.memoizedState ? HooksDispatcherOnUpdateInDEV : HooksDispatcherOnMountInDEV);
@@ -7087,7 +7087,7 @@
             if ("function" === typeof usable.then) return useThenable(usable);
             if (usable.$$typeof === REACT_CONTEXT_TYPE) return readContext(usable);
           }
-          throw Error("An unsupported type was passed to use(): " + String(usable));
+          throw Error("An unsupported type was passed to use: " + String(usable));
         }
         function useMemoCache(size) {
           var memoCache = null, updateQueue = currentlyRenderingFiber.updateQueue;
@@ -7096,13 +7096,13 @@
             var current2 = currentlyRenderingFiber.alternate;
             null !== current2 && (current2 = current2.updateQueue, null !== current2 && (current2 = current2.memoCache, null != current2 && (memoCache = {
               data: current2.data.map(function(array) {
-                return array.slice();
+                return array.slice;
               }),
               index: 0
             })));
           }
           null == memoCache && (memoCache = { data: [], index: 0 });
-          null === updateQueue && (updateQueue = createFunctionComponentUpdateQueue(), currentlyRenderingFiber.updateQueue = updateQueue);
+          null === updateQueue && (updateQueue = createFunctionComponentUpdateQueue, currentlyRenderingFiber.updateQueue = updateQueue);
           updateQueue.memoCache = memoCache;
           updateQueue = memoCache.data[memoCache.index];
           if (void 0 === updateQueue || ignorePreviousDependencies)
@@ -7121,7 +7121,7 @@
           return "function" === typeof action ? action(state) : action;
         }
         function mountReducer(reducer, initialArg, init) {
-          var hook = mountWorkInProgressHook();
+          var hook = mountWorkInProgressHook;
           if (void 0 !== init) {
             var initialState = init(initialArg);
             if (shouldDoubleInvokeUserFnsInHooksDEV) {
@@ -7150,7 +7150,7 @@
           return [hook.memoizedState, reducer];
         }
         function updateReducer(reducer) {
-          var hook = updateWorkInProgressHook();
+          var hook = updateWorkInProgressHook;
           return updateReducerImpl(hook, currentHook, reducer);
         }
         function updateReducerImpl(hook, current2, reducer) {
@@ -7233,7 +7233,7 @@
           return [hook.memoizedState, queue.dispatch];
         }
         function rerenderReducer(reducer) {
-          var hook = updateWorkInProgressHook(), queue = hook.queue;
+          var hook = updateWorkInProgressHook, queue = hook.queue;
           if (null === queue)
             throw Error(
               "Should have a queue. You are likely calling Hooks conditionally, which is not allowed. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Finvalid-hook-call%29"
@@ -7254,19 +7254,19 @@
           return [newState, dispatch];
         }
         function mountSyncExternalStore(subscribe, getSnapshot, getServerSnapshot) {
-          var fiber = currentlyRenderingFiber, hook = mountWorkInProgressHook();
+          var fiber = currentlyRenderingFiber, hook = mountWorkInProgressHook;
           if (isHydrating) {
             if (void 0 === getServerSnapshot)
               throw Error(
                 "Missing getServerSnapshot, which is required for server-rendered content. Will revert to client rendering."
               );
-            var nextSnapshot = getServerSnapshot();
-            didWarnUncachedGetSnapshot || nextSnapshot === getServerSnapshot() || (console.error(
+            var nextSnapshot = getServerSnapshot;
+            didWarnUncachedGetSnapshot || nextSnapshot === getServerSnapshot || (console.error(
               "The result of getServerSnapshot should be cached to avoid an infinite loop"
             ), didWarnUncachedGetSnapshot = true);
           } else {
-            nextSnapshot = getSnapshot();
-            didWarnUncachedGetSnapshot || (getServerSnapshot = getSnapshot(), objectIs(nextSnapshot, getServerSnapshot) || (console.error(
+            nextSnapshot = getSnapshot;
+            didWarnUncachedGetSnapshot || (getServerSnapshot = getSnapshot, objectIs(nextSnapshot, getServerSnapshot) || (console.error(
               "The result of getSnapshot should be cached to avoid an infinite loop"
             ), didWarnUncachedGetSnapshot = true));
             if (null === workInProgressRoot)
@@ -7298,15 +7298,15 @@
           return nextSnapshot;
         }
         function updateSyncExternalStore(subscribe, getSnapshot, getServerSnapshot) {
-          var fiber = currentlyRenderingFiber, hook = updateWorkInProgressHook(), isHydrating$jscomp$0 = isHydrating;
+          var fiber = currentlyRenderingFiber, hook = updateWorkInProgressHook, isHydrating$jscomp$0 = isHydrating;
           if (isHydrating$jscomp$0) {
             if (void 0 === getServerSnapshot)
               throw Error(
                 "Missing getServerSnapshot, which is required for server-rendered content. Will revert to client rendering."
               );
-            getServerSnapshot = getServerSnapshot();
-          } else if (getServerSnapshot = getSnapshot(), !didWarnUncachedGetSnapshot) {
-            var cachedSnapshot = getSnapshot();
+            getServerSnapshot = getServerSnapshot;
+          } else if (getServerSnapshot = getSnapshot, !didWarnUncachedGetSnapshot) {
+            var cachedSnapshot = getSnapshot;
             objectIs(getServerSnapshot, cachedSnapshot) || (console.error(
               "The result of getSnapshot should be cached to avoid an infinite loop"
             ), didWarnUncachedGetSnapshot = true);
@@ -7345,7 +7345,7 @@
           fiber.flags |= 16384;
           fiber = { getSnapshot, value: renderedSnapshot };
           getSnapshot = currentlyRenderingFiber.updateQueue;
-          null === getSnapshot ? (getSnapshot = createFunctionComponentUpdateQueue(), currentlyRenderingFiber.updateQueue = getSnapshot, getSnapshot.stores = [fiber]) : (renderedSnapshot = getSnapshot.stores, null === renderedSnapshot ? getSnapshot.stores = [fiber] : renderedSnapshot.push(fiber));
+          null === getSnapshot ? (getSnapshot = createFunctionComponentUpdateQueue, currentlyRenderingFiber.updateQueue = getSnapshot, getSnapshot.stores = [fiber]) : (renderedSnapshot = getSnapshot.stores, null === renderedSnapshot ? getSnapshot.stores = [fiber] : renderedSnapshot.push(fiber));
         }
         function updateStoreInstance(fiber, inst, nextSnapshot, getSnapshot) {
           inst.value = nextSnapshot;
@@ -7353,15 +7353,15 @@
           checkIfSnapshotChanged(inst) && forceStoreRerender(fiber);
         }
         function subscribeToStore(fiber, inst, subscribe) {
-          return subscribe(function() {
-            checkIfSnapshotChanged(inst) && (startUpdateTimerByLane(2, "updateSyncExternalStore()", fiber), forceStoreRerender(fiber));
+          return subscribe(function {
+            checkIfSnapshotChanged(inst) && (startUpdateTimerByLane(2, "updateSyncExternalStore", fiber), forceStoreRerender(fiber));
           });
         }
         function checkIfSnapshotChanged(inst) {
           var latestGetSnapshot = inst.getSnapshot;
           inst = inst.value;
           try {
-            var nextValue = latestGetSnapshot();
+            var nextValue = latestGetSnapshot;
             return !objectIs(inst, nextValue);
           } catch (error) {
             return true;
@@ -7372,14 +7372,14 @@
           null !== root2 && scheduleUpdateOnFiber(root2, fiber, 2);
         }
         function mountStateImpl(initialState) {
-          var hook = mountWorkInProgressHook();
+          var hook = mountWorkInProgressHook;
           if ("function" === typeof initialState) {
             var initialStateInitializer = initialState;
-            initialState = initialStateInitializer();
+            initialState = initialStateInitializer;
             if (shouldDoubleInvokeUserFnsInHooksDEV) {
               setIsStrictModeForDevtools(true);
               try {
-                initialStateInitializer();
+                initialStateInitializer;
               } finally {
                 setIsStrictModeForDevtools(false);
               }
@@ -7402,7 +7402,7 @@
           return [initialState.memoizedState, dispatch];
         }
         function mountOptimistic(passthrough) {
-          var hook = mountWorkInProgressHook();
+          var hook = mountWorkInProgressHook;
           hook.memoizedState = hook.baseState = passthrough;
           var queue = {
             pending: null,
@@ -7422,7 +7422,7 @@
           return [passthrough, hook];
         }
         function updateOptimistic(passthrough, reducer) {
-          var hook = updateWorkInProgressHook();
+          var hook = updateWorkInProgressHook;
           return updateOptimisticImpl(hook, currentHook, passthrough, reducer);
         }
         function updateOptimisticImpl(hook, current2, passthrough, reducer) {
@@ -7434,7 +7434,7 @@
           );
         }
         function rerenderOptimistic(passthrough, reducer) {
-          var hook = updateWorkInProgressHook();
+          var hook = updateWorkInProgressHook;
           if (null !== currentHook)
             return updateOptimisticImpl(hook, currentHook, passthrough, reducer);
           hook.baseState = passthrough;
@@ -7468,7 +7468,7 @@
           var action = node.action, payload = node.payload, prevState = actionQueue.state;
           if (node.isTransition) {
             var prevTransition = ReactSharedInternals.T, currentTransition = {};
-            currentTransition._updatedFibers = /* @__PURE__ */ new Set();
+            currentTransition._updatedFibers = /* @__PURE__ */ new Set;
             ReactSharedInternals.T = currentTransition;
             try {
               var returnValue = action(prevState, payload), onStartTransitionFinish = ReactSharedInternals.S;
@@ -7479,7 +7479,7 @@
             } finally {
               null !== prevTransition && null !== currentTransition.types && (null !== prevTransition.types && prevTransition.types !== currentTransition.types && console.error(
                 "We expected inner Transitions to have transferred the outer types set and that you cannot add to the outer Transition while inside the inner.This is a bug in React."
-              ), prevTransition.types = currentTransition.types), ReactSharedInternals.T = prevTransition, null === prevTransition && currentTransition._updatedFibers && (actionQueue = currentTransition._updatedFibers.size, currentTransition._updatedFibers.clear(), 10 < actionQueue && console.warn(
+              ), prevTransition.types = currentTransition.types), ReactSharedInternals.T = prevTransition, null === prevTransition && currentTransition._updatedFibers && (actionQueue = currentTransition._updatedFibers.size, currentTransition._updatedFibers.clear, 10 < actionQueue && console.warn(
                 "Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table."
               ));
             }
@@ -7523,7 +7523,7 @@
         }
         function notifyActionListeners(actionNode) {
           actionNode = actionNode.listeners;
-          for (var i2 = 0; i2 < actionNode.length; i2++) (0, actionNode[i2])();
+          for (var i2 = 0; i2 < actionNode.length; i2++) (0, actionNode[i2]);
         }
         function actionStateReducer(oldState, newState) {
           return newState;
@@ -7569,7 +7569,7 @@
               isMatching && (initialStateProp = ssrFormState[0]);
             }
           }
-          ssrFormState = mountWorkInProgressHook();
+          ssrFormState = mountWorkInProgressHook;
           ssrFormState.memoizedState = ssrFormState.baseState = initialStateProp;
           isMatching = {
             pending: null,
@@ -7592,7 +7592,7 @@
             false,
             isMatching.queue
           );
-          isMatching = mountWorkInProgressHook();
+          isMatching = mountWorkInProgressHook;
           markerInstance = {
             state: initialStateProp,
             dispatch: null,
@@ -7612,7 +7612,7 @@
           return [initialStateProp, ssrFormState, false];
         }
         function updateActionState(action) {
-          var stateHook = updateWorkInProgressHook();
+          var stateHook = updateWorkInProgressHook;
           return updateActionStateImpl(stateHook, currentHook, action);
         }
         function updateActionStateImpl(stateHook, currentStateHook, action) {
@@ -7630,7 +7630,7 @@
               throw x;
             }
           else state = currentStateHook;
-          currentStateHook = updateWorkInProgressHook();
+          currentStateHook = updateWorkInProgressHook;
           var actionQueue = currentStateHook.queue, dispatch = actionQueue.dispatch;
           action !== currentStateHook.memoizedState && (currentlyRenderingFiber.flags |= 2048, pushSimpleEffect(
             HasEffect | Passive,
@@ -7644,12 +7644,12 @@
           actionQueue.action = action;
         }
         function rerenderActionState(action) {
-          var stateHook = updateWorkInProgressHook(), currentStateHook = currentHook;
+          var stateHook = updateWorkInProgressHook, currentStateHook = currentHook;
           if (null !== currentStateHook)
             return updateActionStateImpl(stateHook, currentStateHook, action);
-          updateWorkInProgressHook();
+          updateWorkInProgressHook;
           stateHook = stateHook.memoizedState;
-          currentStateHook = updateWorkInProgressHook();
+          currentStateHook = updateWorkInProgressHook;
           var dispatch = currentStateHook.queue.dispatch;
           currentStateHook.memoizedState = action;
           return [stateHook, dispatch, false];
@@ -7657,18 +7657,18 @@
         function pushSimpleEffect(tag, inst, create2, deps) {
           tag = { tag, create: create2, deps, inst, next: null };
           inst = currentlyRenderingFiber.updateQueue;
-          null === inst && (inst = createFunctionComponentUpdateQueue(), currentlyRenderingFiber.updateQueue = inst);
+          null === inst && (inst = createFunctionComponentUpdateQueue, currentlyRenderingFiber.updateQueue = inst);
           create2 = inst.lastEffect;
           null === create2 ? inst.lastEffect = tag.next = tag : (deps = create2.next, create2.next = tag, tag.next = deps, inst.lastEffect = tag);
           return tag;
         }
         function mountRef(initialValue) {
-          var hook = mountWorkInProgressHook();
+          var hook = mountWorkInProgressHook;
           initialValue = { current: initialValue };
           return hook.memoizedState = initialValue;
         }
         function mountEffectImpl(fiberFlags, hookFlags, create2, deps) {
-          var hook = mountWorkInProgressHook();
+          var hook = mountWorkInProgressHook;
           currentlyRenderingFiber.flags |= fiberFlags;
           hook.memoizedState = pushSimpleEffect(
             HasEffect | hookFlags,
@@ -7678,7 +7678,7 @@
           );
         }
         function updateEffectImpl(fiberFlags, hookFlags, create2, deps) {
-          var hook = updateWorkInProgressHook();
+          var hook = updateWorkInProgressHook;
           deps = void 0 === deps ? null : deps;
           var inst = hook.memoizedState.inst;
           null !== currentHook && null !== deps && areHookInputsEqual(deps, currentHook.memoizedState.deps) ? hook.memoizedState = pushSimpleEffect(hookFlags, inst, create2, deps) : (currentlyRenderingFiber.flags |= fiberFlags, hook.memoizedState = pushSimpleEffect(
@@ -7695,16 +7695,16 @@
           currentlyRenderingFiber.flags |= 4;
           var componentUpdateQueue = currentlyRenderingFiber.updateQueue;
           if (null === componentUpdateQueue)
-            componentUpdateQueue = createFunctionComponentUpdateQueue(), currentlyRenderingFiber.updateQueue = componentUpdateQueue, componentUpdateQueue.events = [payload];
+            componentUpdateQueue = createFunctionComponentUpdateQueue, currentlyRenderingFiber.updateQueue = componentUpdateQueue, componentUpdateQueue.events = [payload];
           else {
             var events = componentUpdateQueue.events;
             null === events ? componentUpdateQueue.events = [payload] : events.push(payload);
           }
         }
         function mountEvent(callback) {
-          var hook = mountWorkInProgressHook(), ref = { impl: callback };
+          var hook = mountWorkInProgressHook, ref = { impl: callback };
           hook.memoizedState = ref;
-          return function() {
+          return function {
             if ((executionContext & RenderContext) !== NoContext)
               throw Error(
                 "A function wrapped in useEffectEvent can't be called during rendering."
@@ -7713,9 +7713,9 @@
           };
         }
         function updateEvent(callback) {
-          var ref = updateWorkInProgressHook().memoizedState;
+          var ref = updateWorkInProgressHook.memoizedState;
           useEffectEventImpl({ ref, nextImpl: callback });
-          return function() {
+          return function {
             if ((executionContext & RenderContext) !== NoContext)
               throw Error(
                 "A function wrapped in useEffectEvent can't be called during rendering."
@@ -7730,23 +7730,23 @@
         }
         function imperativeHandleEffect(create2, ref) {
           if ("function" === typeof ref) {
-            create2 = create2();
+            create2 = create2;
             var refCleanup = ref(create2);
-            return function() {
-              "function" === typeof refCleanup ? refCleanup() : ref(null);
+            return function {
+              "function" === typeof refCleanup ? refCleanup : ref(null);
             };
           }
           if (null !== ref && void 0 !== ref)
             return ref.hasOwnProperty("current") || console.error(
-              "Expected useImperativeHandle() first argument to either be a ref callback or React.createRef() object. Instead received: %s.",
+              "Expected useImperativeHandle first argument to either be a ref callback or React.createRef object. Instead received: %s.",
               "an object with keys {" + Object.keys(ref).join(", ") + "}"
-            ), create2 = create2(), ref.current = create2, function() {
+            ), create2 = create2, ref.current = create2, function {
               ref.current = null;
             };
         }
         function mountImperativeHandle(ref, create2, deps) {
           "function" !== typeof create2 && console.error(
-            "Expected useImperativeHandle() second argument to be a function that creates a handle. Instead received: %s.",
+            "Expected useImperativeHandle second argument to be a function that creates a handle. Instead received: %s.",
             null !== create2 ? typeof create2 : "null"
           );
           deps = null !== deps && void 0 !== deps ? deps.concat([ref]) : null;
@@ -7761,7 +7761,7 @@
         }
         function updateImperativeHandle(ref, create2, deps) {
           "function" !== typeof create2 && console.error(
-            "Expected useImperativeHandle() second argument to be a function that creates a handle. Instead received: %s.",
+            "Expected useImperativeHandle second argument to be a function that creates a handle. Instead received: %s.",
             null !== create2 ? typeof create2 : "null"
           );
           deps = null !== deps && void 0 !== deps ? deps.concat([ref]) : null;
@@ -7773,14 +7773,14 @@
           );
         }
         function mountCallback(callback, deps) {
-          mountWorkInProgressHook().memoizedState = [
+          mountWorkInProgressHook.memoizedState = [
             callback,
             void 0 === deps ? null : deps
           ];
           return callback;
         }
         function updateCallback(callback, deps) {
-          var hook = updateWorkInProgressHook();
+          var hook = updateWorkInProgressHook;
           deps = void 0 === deps ? null : deps;
           var prevState = hook.memoizedState;
           if (null !== deps && areHookInputsEqual(deps, prevState[1]))
@@ -7789,13 +7789,13 @@
           return callback;
         }
         function mountMemo(nextCreate, deps) {
-          var hook = mountWorkInProgressHook();
+          var hook = mountWorkInProgressHook;
           deps = void 0 === deps ? null : deps;
-          var nextValue = nextCreate();
+          var nextValue = nextCreate;
           if (shouldDoubleInvokeUserFnsInHooksDEV) {
             setIsStrictModeForDevtools(true);
             try {
-              nextCreate();
+              nextCreate;
             } finally {
               setIsStrictModeForDevtools(false);
             }
@@ -7804,16 +7804,16 @@
           return nextValue;
         }
         function updateMemo(nextCreate, deps) {
-          var hook = updateWorkInProgressHook();
+          var hook = updateWorkInProgressHook;
           deps = void 0 === deps ? null : deps;
           var prevState = hook.memoizedState;
           if (null !== deps && areHookInputsEqual(deps, prevState[1]))
             return prevState[0];
-          prevState = nextCreate();
+          prevState = nextCreate;
           if (shouldDoubleInvokeUserFnsInHooksDEV) {
             setIsStrictModeForDevtools(true);
             try {
-              nextCreate();
+              nextCreate;
             } finally {
               setIsStrictModeForDevtools(false);
             }
@@ -7822,11 +7822,11 @@
           return prevState;
         }
         function mountDeferredValue(value, initialValue) {
-          var hook = mountWorkInProgressHook();
+          var hook = mountWorkInProgressHook;
           return mountDeferredValueImpl(hook, value, initialValue);
         }
         function updateDeferredValue(value, initialValue) {
-          var hook = updateWorkInProgressHook();
+          var hook = updateWorkInProgressHook;
           return updateDeferredValueImpl(
             hook,
             currentHook.memoizedState,
@@ -7835,7 +7835,7 @@
           );
         }
         function rerenderDeferredValue(value, initialValue) {
-          var hook = updateWorkInProgressHook();
+          var hook = updateWorkInProgressHook;
           return null === currentHook ? mountDeferredValueImpl(hook, value, initialValue) : updateDeferredValueImpl(
             hook,
             currentHook.memoizedState,
@@ -7847,7 +7847,7 @@
           if (void 0 === initialValue || 0 !== (renderLanes & 1073741824) && 0 === (workInProgressRootRenderLanes & 261930))
             return hook.memoizedState = value;
           hook.memoizedState = initialValue;
-          hook = requestDeferredLane();
+          hook = requestDeferredLane;
           currentlyRenderingFiber.lanes |= hook;
           workInProgressRootSkippedLanes |= hook;
           return initialValue;
@@ -7858,23 +7858,23 @@
             return hook = mountDeferredValueImpl(hook, value, initialValue), objectIs(hook, prevValue) || (didReceiveUpdate = true), hook;
           if (0 === (renderLanes & 42) || 0 !== (renderLanes & 1073741824) && 0 === (workInProgressRootRenderLanes & 261930))
             return didReceiveUpdate = true, hook.memoizedState = value;
-          hook = requestDeferredLane();
+          hook = requestDeferredLane;
           currentlyRenderingFiber.lanes |= hook;
           workInProgressRootSkippedLanes |= hook;
           return prevValue;
         }
-        function releaseAsyncTransition() {
+        function releaseAsyncTransition {
           ReactSharedInternals.asyncTransitions--;
         }
         function startTransition2(fiber, queue, pendingState, finishedState, callback) {
           var previousPriority = ReactDOMSharedInternals.p;
           ReactDOMSharedInternals.p = 0 !== previousPriority && previousPriority < ContinuousEventPriority ? previousPriority : ContinuousEventPriority;
           var prevTransition = ReactSharedInternals.T, currentTransition = {};
-          currentTransition._updatedFibers = /* @__PURE__ */ new Set();
+          currentTransition._updatedFibers = /* @__PURE__ */ new Set;
           ReactSharedInternals.T = currentTransition;
           dispatchOptimisticSetState(fiber, false, queue, pendingState);
           try {
-            var returnValue = callback(), onStartTransitionFinish = ReactSharedInternals.S;
+            var returnValue = callback, onStartTransitionFinish = ReactSharedInternals.S;
             null !== onStartTransitionFinish && onStartTransitionFinish(currentTransition, returnValue);
             if (null !== returnValue && "object" === typeof returnValue && "function" === typeof returnValue.then) {
               ReactSharedInternals.asyncTransitions++;
@@ -7900,14 +7900,14 @@
             dispatchSetStateInternal(
               fiber,
               queue,
-              { then: function() {
+              { then: function {
               }, status: "rejected", reason: error },
               requestUpdateLane(fiber)
             );
           } finally {
             ReactDOMSharedInternals.p = previousPriority, null !== prevTransition && null !== currentTransition.types && (null !== prevTransition.types && prevTransition.types !== currentTransition.types && console.error(
               "We expected inner Transitions to have transferred the outer types set and that you cannot add to the outer Transition while inside the inner.This is a bug in React."
-            ), prevTransition.types = currentTransition.types), ReactSharedInternals.T = prevTransition, null === prevTransition && currentTransition._updatedFibers && (fiber = currentTransition._updatedFibers.size, currentTransition._updatedFibers.clear(), 10 < fiber && console.warn(
+            ), prevTransition.types = currentTransition.types), ReactSharedInternals.T = prevTransition, null === prevTransition && currentTransition._updatedFibers && (fiber = currentTransition._updatedFibers.size, currentTransition._updatedFibers.clear, 10 < fiber && console.warn(
               "Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table."
             ));
           }
@@ -7924,7 +7924,7 @@
             queue,
             pendingState,
             NotPendingTransition,
-            null === action ? noop2 : function() {
+            null === action ? noop2 : function {
               requestFormReset$1(formFiber);
               return action(formData);
             }
@@ -7978,7 +7978,7 @@
             requestUpdateLane(formFiber)
           );
         }
-        function mountTransition() {
+        function mountTransition {
           var stateHook = mountStateImpl(false);
           stateHook = startTransition2.bind(
             null,
@@ -7987,28 +7987,28 @@
             true,
             false
           );
-          mountWorkInProgressHook().memoizedState = stateHook;
+          mountWorkInProgressHook.memoizedState = stateHook;
           return [false, stateHook];
         }
-        function updateTransition() {
-          var booleanOrThenable = updateReducer(basicStateReducer)[0], start = updateWorkInProgressHook().memoizedState;
+        function updateTransition {
+          var booleanOrThenable = updateReducer(basicStateReducer)[0], start = updateWorkInProgressHook.memoizedState;
           return [
             "boolean" === typeof booleanOrThenable ? booleanOrThenable : useThenable(booleanOrThenable),
             start
           ];
         }
-        function rerenderTransition() {
-          var booleanOrThenable = rerenderReducer(basicStateReducer)[0], start = updateWorkInProgressHook().memoizedState;
+        function rerenderTransition {
+          var booleanOrThenable = rerenderReducer(basicStateReducer)[0], start = updateWorkInProgressHook.memoizedState;
           return [
             "boolean" === typeof booleanOrThenable ? booleanOrThenable : useThenable(booleanOrThenable),
             start
           ];
         }
-        function useHostTransitionStatus() {
+        function useHostTransitionStatus {
           return readContext(HostTransitionContext);
         }
-        function mountId() {
-          var hook = mountWorkInProgressHook(), identifierPrefix = workInProgressRoot.identifierPrefix;
+        function mountId {
+          var hook = mountWorkInProgressHook, identifierPrefix = workInProgressRoot.identifierPrefix;
           if (isHydrating) {
             var treeId = treeContextOverflow;
             var idWithLeadingBit = treeContextId;
@@ -8021,8 +8021,8 @@
             treeId = globalClientIdCounter++, identifierPrefix = "_" + identifierPrefix + "r_" + treeId.toString(32) + "_";
           return hook.memoizedState = identifierPrefix;
         }
-        function mountRefresh() {
-          return mountWorkInProgressHook().memoizedState = refreshCache.bind(
+        function mountRefresh {
+          return mountWorkInProgressHook.memoizedState = refreshCache.bind(
             null,
             currentlyRenderingFiber
           );
@@ -8033,8 +8033,8 @@
               case 24:
               case 3:
                 var lane = requestUpdateLane(provider), refreshUpdate = createUpdate(lane), root2 = enqueueUpdate(provider, refreshUpdate, lane);
-                null !== root2 && (startUpdateTimerByLane(lane, "refresh()", fiber), scheduleUpdateOnFiber(root2, provider, lane), entangleTransitions(root2, provider, lane));
-                fiber = createCache();
+                null !== root2 && (startUpdateTimerByLane(lane, "refresh", fiber), scheduleUpdateOnFiber(root2, provider, lane), entangleTransitions(root2, provider, lane));
+                fiber = createCache;
                 null !== seedKey && void 0 !== seedKey && null !== root2 && console.error(
                   "The seed argument is not enabled outside experimental channels."
                 );
@@ -8047,7 +8047,7 @@
         function dispatchReducerAction(fiber, queue, action) {
           var args = arguments;
           "function" === typeof args[3] && console.error(
-            "State updates from the useState() and useReducer() Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect()."
+            "State updates from the useState and useReducer Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect."
           );
           args = requestUpdateLane(fiber);
           var update = {
@@ -8059,15 +8059,15 @@
             eagerState: null,
             next: null
           };
-          isRenderPhaseUpdate(fiber) ? enqueueRenderPhaseUpdate(queue, update) : (update = enqueueConcurrentHookUpdate(fiber, queue, update, args), null !== update && (startUpdateTimerByLane(args, "dispatch()", fiber), scheduleUpdateOnFiber(update, fiber, args), entangleTransitionUpdate(update, queue, args)));
+          isRenderPhaseUpdate(fiber) ? enqueueRenderPhaseUpdate(queue, update) : (update = enqueueConcurrentHookUpdate(fiber, queue, update, args), null !== update && (startUpdateTimerByLane(args, "dispatch", fiber), scheduleUpdateOnFiber(update, fiber, args), entangleTransitionUpdate(update, queue, args)));
         }
         function dispatchSetState(fiber, queue, action) {
           var args = arguments;
           "function" === typeof args[3] && console.error(
-            "State updates from the useState() and useReducer() Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect()."
+            "State updates from the useState and useReducer Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect."
           );
           args = requestUpdateLane(fiber);
-          dispatchSetStateInternal(fiber, queue, action, args) && startUpdateTimerByLane(args, "setState()", fiber);
+          dispatchSetStateInternal(fiber, queue, action, args) && startUpdateTimerByLane(args, "setState", fiber);
         }
         function dispatchSetStateInternal(fiber, queue, action, lane) {
           var update = {
@@ -8090,7 +8090,7 @@
                 update.hasEagerState = true;
                 update.eagerState = eagerState;
                 if (objectIs(eagerState, currentState))
-                  return enqueueUpdate$1(fiber, queue, update, 0), null === workInProgressRoot && finishQueueingConcurrentUpdates(), false;
+                  return enqueueUpdate$1(fiber, queue, update, 0), null === workInProgressRoot && finishQueueingConcurrentUpdates, false;
               } catch (error) {
               } finally {
                 ReactSharedInternals.H = prevDispatcher;
@@ -8108,7 +8108,7 @@
           );
           action = {
             lane: 2,
-            revertLane: requestTransitionLane(),
+            revertLane: requestTransitionLane,
             gesture: null,
             action,
             hasEagerState: false,
@@ -8125,7 +8125,7 @@
               queue,
               action,
               2
-            ), null !== throwIfDuringRender && (startUpdateTimerByLane(2, "setOptimistic()", fiber), scheduleUpdateOnFiber(throwIfDuringRender, fiber, 2));
+            ), null !== throwIfDuringRender && (startUpdateTimerByLane(2, "setOptimistic", fiber), scheduleUpdateOnFiber(throwIfDuringRender, fiber, 2));
         }
         function isRenderPhaseUpdate(fiber) {
           var alternate = fiber.alternate;
@@ -8166,7 +8166,7 @@
             }
           }
           void 0 === partialState && (ctor = getComponentNameFromType(ctor) || "Component", didWarnAboutUndefinedDerivedState.has(ctor) || (didWarnAboutUndefinedDerivedState.add(ctor), console.error(
-            "%s.getDerivedStateFromProps(): A valid state object (or null) must be returned. You have returned undefined.",
+            "%s.getDerivedStateFromProps: A valid state object (or null) must be returned. You have returned undefined.",
             ctor
           )));
           prevState = null === partialState || void 0 === partialState ? prevState : assign({}, prevState, partialState);
@@ -8194,7 +8194,7 @@
               }
             }
             void 0 === oldProps && console.error(
-              "%s.shouldComponentUpdate(): Returned undefined instead of a boolean value. Make sure to return true or false.",
+              "%s.shouldComponentUpdate: Returned undefined instead of a boolean value. Make sure to return true or false.",
               getComponentNameFromType(ctor) || "Component"
             );
             return oldProps;
@@ -8206,7 +8206,7 @@
           "function" === typeof instance.componentWillReceiveProps && instance.componentWillReceiveProps(newProps, nextContext);
           "function" === typeof instance.UNSAFE_componentWillReceiveProps && instance.UNSAFE_componentWillReceiveProps(newProps, nextContext);
           instance.state !== oldState && (workInProgress2 = getComponentNameFromFiber(workInProgress2) || "Component", didWarnAboutStateAssignmentForComponent.has(workInProgress2) || (didWarnAboutStateAssignmentForComponent.add(workInProgress2), console.error(
-            "%s.componentWillReceiveProps(): Assigning directly to this.state is deprecated (except inside a component's constructor). Use setState instead.",
+            "%s.componentWillReceiveProps: Assigning directly to this.state is deprecated (except inside a component's constructor). Use setState instead.",
             workInProgress2
           )), classComponentUpdater.enqueueReplaceState(
             instance,
@@ -8263,7 +8263,7 @@
             );
             error.unshift(console);
             JSCompiler_inline_result = bind.apply(console.error, error);
-            JSCompiler_inline_result();
+            JSCompiler_inline_result;
           } else
             console.error(
               "%o\n\n%s\n\n%s\n",
@@ -8287,7 +8287,7 @@
               onUncaughtError(error, { componentStack: errorInfo.stack });
             }
           } catch (e$5) {
-            setTimeout(function() {
+            setTimeout(function {
               throw e$5;
             });
           }
@@ -8302,7 +8302,7 @@
               errorBoundary: 1 === boundary.tag ? boundary.stateNode : null
             });
           } catch (e$6) {
-            setTimeout(function() {
+            setTimeout(function {
               throw e$6;
             });
           }
@@ -8311,7 +8311,7 @@
           lane = createUpdate(lane);
           lane.tag = CaptureUpdate;
           lane.payload = { element: null };
-          lane.callback = function() {
+          lane.callback = function {
             runWithFiberInDEV(errorInfo.source, logUncaughtError, root2, errorInfo);
           };
           return lane;
@@ -8325,10 +8325,10 @@
           var getDerivedStateFromError = fiber.type.getDerivedStateFromError;
           if ("function" === typeof getDerivedStateFromError) {
             var error = errorInfo.value;
-            update.payload = function() {
+            update.payload = function {
               return getDerivedStateFromError(error);
             };
-            update.callback = function() {
+            update.callback = function {
               markFailedErrorBoundaryForHotReloading(fiber);
               runWithFiberInDEV(
                 errorInfo.source,
@@ -8340,7 +8340,7 @@
             };
           }
           var inst = fiber.stateNode;
-          null !== inst && "function" === typeof inst.componentDidCatch && (update.callback = function() {
+          null !== inst && "function" === typeof inst.componentDidCatch && (update.callback = function {
             markFailedErrorBoundaryForHotReloading(fiber);
             runWithFiberInDEV(
               errorInfo.source,
@@ -8352,7 +8352,7 @@
             "function" !== typeof getDerivedStateFromError && (null === legacyErrorBoundariesThatAlreadyFailed ? legacyErrorBoundariesThatAlreadyFailed = /* @__PURE__ */ new Set([this]) : legacyErrorBoundariesThatAlreadyFailed.add(this));
             callComponentDidCatchInDEV(this, errorInfo);
             "function" === typeof getDerivedStateFromError || 0 === (fiber.lanes & 2) && console.error(
-              "%s: Error boundaries should implement getDerivedStateFromError(). In that method, return a state update to display an error message or fallback UI.",
+              "%s: Error boundaries should implement getDerivedStateFromError. In that method, return a state update to display an error message or fallback UI.",
               getComponentNameFromFiber(fiber) || "Unknown"
             );
           });
@@ -8374,7 +8374,7 @@
               switch (sourceFiber.tag) {
                 case 31:
                 case 13:
-                  return null === shellBoundary ? renderDidSuspendDelayIfPossible() : null === sourceFiber.alternate && workInProgressRootExitStatus === RootInProgress && (workInProgressRootExitStatus = RootSuspended), sourceFiber.flags &= -257, sourceFiber.flags |= 65536, sourceFiber.lanes = rootRenderLanes, value === noopSuspenseyCommitThenable ? sourceFiber.flags |= 16384 : (returnFiber = sourceFiber.updateQueue, null === returnFiber ? sourceFiber.updateQueue = /* @__PURE__ */ new Set([value]) : returnFiber.add(value), attachPingListener(root2, value, rootRenderLanes)), false;
+                  return null === shellBoundary ? renderDidSuspendDelayIfPossible : null === sourceFiber.alternate && workInProgressRootExitStatus === RootInProgress && (workInProgressRootExitStatus = RootSuspended), sourceFiber.flags &= -257, sourceFiber.flags |= 65536, sourceFiber.lanes = rootRenderLanes, value === noopSuspenseyCommitThenable ? sourceFiber.flags |= 16384 : (returnFiber = sourceFiber.updateQueue, null === returnFiber ? sourceFiber.updateQueue = /* @__PURE__ */ new Set([value]) : returnFiber.add(value), attachPingListener(root2, value, rootRenderLanes)), false;
                 case 22:
                   return sourceFiber.flags |= 65536, value === noopSuspenseyCommitThenable ? sourceFiber.flags |= 16384 : (returnFiber = sourceFiber.updateQueue, null === returnFiber ? (returnFiber = {
                     transitions: null,
@@ -8387,7 +8387,7 @@
               );
             }
             attachPingListener(root2, value, rootRenderLanes);
-            renderDidSuspendDelayIfPossible();
+            renderDidSuspendDelayIfPossible;
             return false;
           }
           if (isHydrating)
@@ -8470,7 +8470,7 @@
             ref,
             renderLanes2
           );
-          key = checkDidRenderIdHook();
+          key = checkDidRenderIdHook;
           if (null !== current2 && !didReceiveUpdate)
             return bailoutHooks(current2, workInProgress2, renderLanes2), bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
           isHydrating && key && pushMaterializedTreeId(workInProgress2);
@@ -8589,7 +8589,7 @@
           return workInProgress2.sibling;
         }
         function deferHiddenOffscreenComponent(current2, workInProgress2, nextBaseLanes, renderLanes2, remainingChildLanes) {
-          var JSCompiler_inline_result = peekCacheFromPool();
+          var JSCompiler_inline_result = peekCacheFromPool;
           JSCompiler_inline_result = null === JSCompiler_inline_result ? null : {
             parent: CacheContext._currentValue,
             pool: JSCompiler_inline_result
@@ -8647,7 +8647,7 @@
                 rootOrSingletonContext
               ), renderLanes2 = null !== renderLanes2 && renderLanes2.data === ACTIVITY_START_DATA ? renderLanes2 : null, null !== renderLanes2 && (nextProps = {
                 dehydrated: renderLanes2,
-                treeContext: getSuspendedTreeContext(),
+                treeContext: getSuspendedTreeContext,
                 retryLane: 536870912,
                 hydrationErrors: null
               }, workInProgress2.memoizedState = nextProps, nextProps = createFiberFromDehydratedFragment(renderLanes2), nextProps.return = workInProgress2, workInProgress2.child = nextProps, hydrationParentFiber = workInProgress2, nextHydratableInstance = null)) : renderLanes2 = null;
@@ -8675,7 +8675,7 @@
                 throw Error(
                   "Client rendering an Activity suspended it again. This is a bug in React."
                 );
-            else if (warnIfHydrating(), 0 !== (renderLanes2 & 536870912) && markRenderDerivedCause(workInProgress2), didReceiveUpdate || propagateParentContextChanges(
+            else if (warnIfHydrating, 0 !== (renderLanes2 & 536870912) && markRenderDerivedCause(workInProgress2), didReceiveUpdate || propagateParentContextChanges(
               current2,
               workInProgress2,
               renderLanes2,
@@ -8687,7 +8687,7 @@
                 renderLanes2
               ), 0 !== activityInstance && activityInstance !== prevState.retryLane))
                 throw prevState.retryLane = activityInstance, enqueueConcurrentRenderForLane(current2, activityInstance), scheduleUpdateOnFiber(nextProps, current2, activityInstance), SelectiveHydrationException;
-              renderDidSuspendDelayIfPossible();
+              renderDidSuspendDelayIfPossible;
               workInProgress2 = retryActivityComponentWithoutHydrating(
                 current2,
                 workInProgress2,
@@ -8715,7 +8715,7 @@
           else {
             if ("function" !== typeof ref && "object" !== typeof ref)
               throw Error(
-                "Expected ref to be a function, an object returned by React.createRef(), or undefined/null."
+                "Expected ref to be a function, an object returned by React.createRef, or undefined/null."
               );
             if (null === current2 || current2.ref !== ref)
               workInProgress2.flags |= 4194816;
@@ -8735,7 +8735,7 @@
             null
           );
           null === current2 && (validateFunctionComponentInDev(workInProgress2, workInProgress2.type), Component.contextTypes && (componentName2 = getComponentNameFromType(Component) || "Unknown", didWarnAboutContextTypes[componentName2] || (didWarnAboutContextTypes[componentName2] = true, console.error(
-            "%s uses the legacy contextTypes API which was removed in React 19. Use React.createContext() with React.useContext() instead. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Flegacy-context%29",
+            "%s uses the legacy contextTypes API which was removed in React 19. Use React.createContext with React.useContext instead. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Flegacy-context%29",
             componentName2
           ))));
           prepareToReadContext(workInProgress2);
@@ -8747,7 +8747,7 @@
             void 0,
             renderLanes2
           );
-          nextProps = checkDidRenderIdHook();
+          nextProps = checkDidRenderIdHook;
           if (null !== current2 && !didReceiveUpdate)
             return bailoutHooks(current2, workInProgress2, renderLanes2), bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
           isHydrating && nextProps && pushMaterializedTreeId(workInProgress2);
@@ -8767,7 +8767,7 @@
             secondArg
           );
           finishRenderingHooks(current2, workInProgress2);
-          Component = checkDidRenderIdHook();
+          Component = checkDidRenderIdHook;
           if (null !== current2 && !didReceiveUpdate)
             return bailoutHooks(current2, workInProgress2, renderLanes2), bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
           isHydrating && Component && pushMaterializedTreeId(workInProgress2);
@@ -8808,8 +8808,8 @@
           if (null === workInProgress2.stateNode) {
             state = emptyContextObject;
             _instance = Component.contextType;
-            "contextType" in Component && null !== _instance && (void 0 === _instance || _instance.$$typeof !== REACT_CONTEXT_TYPE) && !didWarnAboutInvalidateContextType.has(Component) && (didWarnAboutInvalidateContextType.add(Component), lane = void 0 === _instance ? " However, it is set to undefined. This can be caused by a typo or by mixing up named and default imports. This can also happen due to a circular dependency, so try moving the createContext() call to a separate file." : "object" !== typeof _instance ? " However, it is set to a " + typeof _instance + "." : _instance.$$typeof === REACT_CONSUMER_TYPE ? " Did you accidentally pass the Context.Consumer instead?" : " However, it is set to an object with keys {" + Object.keys(_instance).join(", ") + "}.", console.error(
-              "%s defines an invalid contextType. contextType should point to the Context object returned by React.createContext().%s",
+            "contextType" in Component && null !== _instance && (void 0 === _instance || _instance.$$typeof !== REACT_CONTEXT_TYPE) && !didWarnAboutInvalidateContextType.has(Component) && (didWarnAboutInvalidateContextType.add(Component), lane = void 0 === _instance ? " However, it is set to undefined. This can be caused by a typo or by mixing up named and default imports. This can also happen due to a circular dependency, so try moving the createContext call to a separate file." : "object" !== typeof _instance ? " However, it is set to a " + typeof _instance + "." : _instance.$$typeof === REACT_CONSUMER_TYPE ? " Did you accidentally pass the Context.Consumer instead?" : " However, it is set to an object with keys {" + Object.keys(_instance).join(", ") + "}.", console.error(
+              "%s defines an invalid contextType. contextType should point to the Context object returned by React.createContext.%s",
               getComponentNameFromType(Component) || "Component",
               lane
             ));
@@ -8841,7 +8841,7 @@
               "function" === typeof _instance.componentWillUpdate && true !== _instance.componentWillUpdate.__suppressDeprecationWarning ? foundWillUpdateName = "componentWillUpdate" : "function" === typeof _instance.UNSAFE_componentWillUpdate && (foundWillUpdateName = "UNSAFE_componentWillUpdate");
               if (null !== state || null !== lane || null !== foundWillUpdateName) {
                 _instance = getComponentNameFromType(Component) || "Component";
-                var newApiName = "function" === typeof Component.getDerivedStateFromProps ? "getDerivedStateFromProps()" : "getSnapshotBeforeUpdate()";
+                var newApiName = "function" === typeof Component.getDerivedStateFromProps ? "getDerivedStateFromProps" : "getSnapshotBeforeUpdate";
                 didWarnAboutLegacyLifecyclesAndDerivedState.has(_instance) || (didWarnAboutLegacyLifecyclesAndDerivedState.add(_instance), console.error(
                   "Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n%s uses %s but also contains the following legacy lifecycles:%s%s%s\n\nThe above lifecycles should be removed. Learn more about this warning here:\nhttps://react.dev/link/unsafe-component-lifecycles",
                   _instance,
@@ -8874,40 +8874,40 @@
               state
             );
             Component.childContextTypes && !didWarnAboutChildContextTypes.has(Component) && (didWarnAboutChildContextTypes.add(Component), console.error(
-              "%s uses the legacy childContextTypes API which was removed in React 19. Use React.createContext() instead. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Flegacy-context%29",
+              "%s uses the legacy childContextTypes API which was removed in React 19. Use React.createContext instead. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Flegacy-context%29",
               state
             ));
             Component.contextTypes && !didWarnAboutContextTypes$1.has(Component) && (didWarnAboutContextTypes$1.add(Component), console.error(
-              "%s uses the legacy contextTypes API which was removed in React 19. Use React.createContext() with static contextType instead. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Flegacy-context%29",
+              "%s uses the legacy contextTypes API which was removed in React 19. Use React.createContext with static contextType instead. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Flegacy-context%29",
               state
             ));
             "function" === typeof _instance.componentShouldUpdate && console.error(
-              "%s has a method called componentShouldUpdate(). Did you mean shouldComponentUpdate()? The name is phrased as a question because the function is expected to return a value.",
+              "%s has a method called componentShouldUpdate. Did you mean shouldComponentUpdate? The name is phrased as a question because the function is expected to return a value.",
               state
             );
             Component.prototype && Component.prototype.isPureReactComponent && "undefined" !== typeof _instance.shouldComponentUpdate && console.error(
-              "%s has a method called shouldComponentUpdate(). shouldComponentUpdate should not be used when extending React.PureComponent. Please extend React.Component if shouldComponentUpdate is used.",
+              "%s has a method called shouldComponentUpdate. shouldComponentUpdate should not be used when extending React.PureComponent. Please extend React.Component if shouldComponentUpdate is used.",
               getComponentNameFromType(Component) || "A pure component"
             );
             "function" === typeof _instance.componentDidUnmount && console.error(
-              "%s has a method called componentDidUnmount(). But there is no such lifecycle method. Did you mean componentWillUnmount()?",
+              "%s has a method called componentDidUnmount. But there is no such lifecycle method. Did you mean componentWillUnmount?",
               state
             );
             "function" === typeof _instance.componentDidReceiveProps && console.error(
-              "%s has a method called componentDidReceiveProps(). But there is no such lifecycle method. If you meant to update the state in response to changing props, use componentWillReceiveProps(). If you meant to fetch data or run side-effects or mutations after React has updated the UI, use componentDidUpdate().",
+              "%s has a method called componentDidReceiveProps. But there is no such lifecycle method. If you meant to update the state in response to changing props, use componentWillReceiveProps. If you meant to fetch data or run side-effects or mutations after React has updated the UI, use componentDidUpdate.",
               state
             );
             "function" === typeof _instance.componentWillRecieveProps && console.error(
-              "%s has a method called componentWillRecieveProps(). Did you mean componentWillReceiveProps()?",
+              "%s has a method called componentWillRecieveProps. Did you mean componentWillReceiveProps?",
               state
             );
             "function" === typeof _instance.UNSAFE_componentWillRecieveProps && console.error(
-              "%s has a method called UNSAFE_componentWillRecieveProps(). Did you mean UNSAFE_componentWillReceiveProps()?",
+              "%s has a method called UNSAFE_componentWillRecieveProps. Did you mean UNSAFE_componentWillReceiveProps?",
               state
             );
             lane = _instance.props !== nextProps;
             void 0 !== _instance.props && lane && console.error(
-              "When calling super() in `%s`, make sure to pass up the same props that your component's constructor was passed.",
+              "When calling super in `%s`, make sure to pass up the same props that your component's constructor was passed.",
               state
             );
             _instance.defaultProps && console.error(
@@ -8916,24 +8916,24 @@
               state
             );
             "function" !== typeof _instance.getSnapshotBeforeUpdate || "function" === typeof _instance.componentDidUpdate || didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate.has(Component) || (didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate.add(Component), console.error(
-              "%s: getSnapshotBeforeUpdate() should be used with componentDidUpdate(). This component defines getSnapshotBeforeUpdate() only.",
+              "%s: getSnapshotBeforeUpdate should be used with componentDidUpdate. This component defines getSnapshotBeforeUpdate only.",
               getComponentNameFromType(Component)
             ));
             "function" === typeof _instance.getDerivedStateFromProps && console.error(
-              "%s: getDerivedStateFromProps() is defined as an instance method and will be ignored. Instead, declare it as a static method.",
+              "%s: getDerivedStateFromProps is defined as an instance method and will be ignored. Instead, declare it as a static method.",
               state
             );
             "function" === typeof _instance.getDerivedStateFromError && console.error(
-              "%s: getDerivedStateFromError() is defined as an instance method and will be ignored. Instead, declare it as a static method.",
+              "%s: getDerivedStateFromError is defined as an instance method and will be ignored. Instead, declare it as a static method.",
               state
             );
             "function" === typeof Component.getSnapshotBeforeUpdate && console.error(
-              "%s: getSnapshotBeforeUpdate() is defined as a static method and will be ignored. Instead, declare it as an instance method.",
+              "%s: getSnapshotBeforeUpdate is defined as a static method and will be ignored. Instead, declare it as an instance method.",
               state
             );
             (lane = _instance.state) && ("object" !== typeof lane || isArrayImpl(lane)) && console.error("%s.state: must be set to an object or null", state);
             "function" === typeof _instance.getChildContext && "object" !== typeof Component.childContextTypes && console.error(
-              "%s.getChildContext(): childContextTypes must be defined in order to use getChildContext().",
+              "%s.getChildContext: childContextTypes must be defined in order to use getChildContext.",
               state
             );
             _instance = workInProgress2.stateNode;
@@ -8963,14 +8963,14 @@
               state,
               nextProps
             ), _instance.state = workInProgress2.memoizedState);
-            "function" === typeof Component.getDerivedStateFromProps || "function" === typeof _instance.getSnapshotBeforeUpdate || "function" !== typeof _instance.UNSAFE_componentWillMount && "function" !== typeof _instance.componentWillMount || (state = _instance.state, "function" === typeof _instance.componentWillMount && _instance.componentWillMount(), "function" === typeof _instance.UNSAFE_componentWillMount && _instance.UNSAFE_componentWillMount(), state !== _instance.state && (console.error(
-              "%s.componentWillMount(): Assigning directly to this.state is deprecated (except inside a component's constructor). Use setState instead.",
+            "function" === typeof Component.getDerivedStateFromProps || "function" === typeof _instance.getSnapshotBeforeUpdate || "function" !== typeof _instance.UNSAFE_componentWillMount && "function" !== typeof _instance.componentWillMount || (state = _instance.state, "function" === typeof _instance.componentWillMount && _instance.componentWillMount, "function" === typeof _instance.UNSAFE_componentWillMount && _instance.UNSAFE_componentWillMount, state !== _instance.state && (console.error(
+              "%s.componentWillMount: Assigning directly to this.state is deprecated (except inside a component's constructor). Use setState instead.",
               getComponentNameFromFiber(workInProgress2) || "Component"
             ), classComponentUpdater.enqueueReplaceState(
               _instance,
               _instance.state,
               null
-            )), processUpdateQueue(workInProgress2, nextProps, _instance, renderLanes2), suspendIfUpdateReadFromEntangledAsyncAction(), _instance.state = workInProgress2.memoizedState);
+            )), processUpdateQueue(workInProgress2, nextProps, _instance, renderLanes2), suspendIfUpdateReadFromEntangledAsyncAction, _instance.state = workInProgress2.memoizedState);
             "function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308);
             (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728);
             _instance = true;
@@ -8996,7 +8996,7 @@
             var oldState = workInProgress2.memoizedState;
             _instance.state = oldState;
             processUpdateQueue(workInProgress2, nextProps, _instance, renderLanes2);
-            suspendIfUpdateReadFromEntangledAsyncAction();
+            suspendIfUpdateReadFromEntangledAsyncAction;
             oldContext = workInProgress2.memoizedState;
             unresolvedOldProps || oldState !== oldContext || hasForceUpdate ? ("function" === typeof newApiName && (applyDerivedStateFromProps(
               workInProgress2,
@@ -9011,7 +9011,7 @@
               oldState,
               oldContext,
               state
-            )) ? (foundWillUpdateName || "function" !== typeof _instance.UNSAFE_componentWillMount && "function" !== typeof _instance.componentWillMount || ("function" === typeof _instance.componentWillMount && _instance.componentWillMount(), "function" === typeof _instance.UNSAFE_componentWillMount && _instance.UNSAFE_componentWillMount()), "function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728)) : ("function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728), workInProgress2.memoizedProps = nextProps, workInProgress2.memoizedState = oldContext), _instance.props = nextProps, _instance.state = oldContext, _instance.context = state, _instance = lane) : ("function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728), _instance = false);
+            )) ? (foundWillUpdateName || "function" !== typeof _instance.UNSAFE_componentWillMount && "function" !== typeof _instance.componentWillMount || ("function" === typeof _instance.componentWillMount && _instance.componentWillMount, "function" === typeof _instance.UNSAFE_componentWillMount && _instance.UNSAFE_componentWillMount), "function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728)) : ("function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728), workInProgress2.memoizedProps = nextProps, workInProgress2.memoizedState = oldContext), _instance.props = nextProps, _instance.state = oldContext, _instance.context = state, _instance = lane) : ("function" === typeof _instance.componentDidMount && (workInProgress2.flags |= 4194308), (workInProgress2.mode & StrictEffectsMode) !== NoMode && (workInProgress2.flags |= 134217728), _instance = false);
           } else {
             _instance = workInProgress2.stateNode;
             cloneUpdateQueue(current2, workInProgress2);
@@ -9034,7 +9034,7 @@
             oldState = workInProgress2.memoizedState;
             _instance.state = oldState;
             processUpdateQueue(workInProgress2, nextProps, _instance, renderLanes2);
-            suspendIfUpdateReadFromEntangledAsyncAction();
+            suspendIfUpdateReadFromEntangledAsyncAction;
             var newState = workInProgress2.memoizedState;
             state !== newApiName || oldState !== newState || hasForceUpdate || null !== current2 && null !== current2.dependencies && checkIfContextChanged(current2.dependencies) ? ("function" === typeof unresolvedOldProps && (applyDerivedStateFromProps(
               workInProgress2,
@@ -9099,7 +9099,7 @@
           return current2;
         }
         function mountHostRootWithoutHydrating(current2, workInProgress2, nextChildren, renderLanes2) {
-          resetHydrationState();
+          resetHydrationState;
           workInProgress2.flags |= 256;
           reconcileChildren(current2, workInProgress2, nextChildren, renderLanes2);
           return workInProgress2.child;
@@ -9119,7 +9119,7 @@
           ), didWarnAboutContextTypeOnFunctionComponent[Component] = true));
         }
         function mountSuspenseOffscreenState(renderLanes2) {
-          return { baseLanes: renderLanes2, cachePool: getSuspendedCache() };
+          return { baseLanes: renderLanes2, cachePool: getSuspendedCache };
         }
         function getRemainingWorkInPrimaryTree(current2, primaryTreeDidDefer, renderLanes2) {
           current2 = null !== current2 ? current2.childLanes & ~renderLanes2 : 0;
@@ -9144,7 +9144,7 @@
                 rootOrSingletonContext
               ), renderLanes2 = null !== renderLanes2 && renderLanes2.data !== ACTIVITY_START_DATA ? renderLanes2 : null, null !== renderLanes2 && (JSCompiler_object_inline_digest_2724 = {
                 dehydrated: renderLanes2,
-                treeContext: getSuspendedTreeContext(),
+                treeContext: getSuspendedTreeContext,
                 retryLane: 536870912,
                 hydrationErrors: null
               }, workInProgress2.memoizedState = JSCompiler_object_inline_digest_2724, JSCompiler_object_inline_digest_2724 = createFiberFromDehydratedFragment(renderLanes2), JSCompiler_object_inline_digest_2724.return = workInProgress2, workInProgress2.child = JSCompiler_object_inline_digest_2724, hydrationParentFiber = workInProgress2, nextHydratableInstance = null)) : renderLanes2 = null;
@@ -9224,7 +9224,7 @@
                   null,
                   JSCompiler_object_inline_stack_2725
                 ));
-              else if (pushPrimaryTreeSuspenseHandler(workInProgress2), warnIfHydrating(), 0 !== (renderLanes2 & 536870912) && markRenderDerivedCause(workInProgress2), isSuspenseInstanceFallback(
+              else if (pushPrimaryTreeSuspenseHandler(workInProgress2), warnIfHydrating, 0 !== (renderLanes2 & 536870912) && markRenderDerivedCause(workInProgress2), isSuspenseInstanceFallback(
                 JSCompiler_object_inline_componentStack_2726
               )) {
                 JSCompiler_object_inline_digest_2724 = JSCompiler_object_inline_componentStack_2726.nextSibling && JSCompiler_object_inline_componentStack_2726.nextSibling.dataset;
@@ -9282,7 +9282,7 @@
                   ), SelectiveHydrationException;
                 isSuspenseInstancePending(
                   JSCompiler_object_inline_componentStack_2726
-                ) || renderDidSuspendDelayIfPossible();
+                ) || renderDidSuspendDelayIfPossible;
                 workInProgress2 = retrySuspenseComponentWithoutHydrating(
                   current2,
                   workInProgress2,
@@ -9315,7 +9315,7 @@
               mode,
               renderLanes2,
               null
-            ), nextPrimaryChildren.flags |= 2), nextPrimaryChildren.return = workInProgress2, JSCompiler_object_inline_stack_2725.return = workInProgress2, JSCompiler_object_inline_stack_2725.sibling = nextPrimaryChildren, workInProgress2.child = JSCompiler_object_inline_stack_2725, bailoutOffscreenComponent(null, JSCompiler_object_inline_stack_2725), JSCompiler_object_inline_stack_2725 = workInProgress2.child, nextPrimaryChildren = current2.child.memoizedState, null === nextPrimaryChildren ? nextPrimaryChildren = mountSuspenseOffscreenState(renderLanes2) : (mode = nextPrimaryChildren.cachePool, null !== mode ? (componentStack = CacheContext._currentValue, mode = mode.parent !== componentStack ? { parent: componentStack, pool: componentStack } : mode) : mode = getSuspendedCache(), nextPrimaryChildren = {
+            ), nextPrimaryChildren.flags |= 2), nextPrimaryChildren.return = workInProgress2, JSCompiler_object_inline_stack_2725.return = workInProgress2, JSCompiler_object_inline_stack_2725.sibling = nextPrimaryChildren, workInProgress2.child = JSCompiler_object_inline_stack_2725, bailoutOffscreenComponent(null, JSCompiler_object_inline_stack_2725), JSCompiler_object_inline_stack_2725 = workInProgress2.child, nextPrimaryChildren = current2.child.memoizedState, null === nextPrimaryChildren ? nextPrimaryChildren = mountSuspenseOffscreenState(renderLanes2) : (mode = nextPrimaryChildren.cachePool, null !== mode ? (componentStack = CacheContext._currentValue, mode = mode.parent !== componentStack ? { parent: componentStack, pool: componentStack } : mode) : mode = getSuspendedCache, nextPrimaryChildren = {
               baseLanes: nextPrimaryChildren.baseLanes | renderLanes2,
               cachePool: mode
             }), JSCompiler_object_inline_stack_2725.memoizedState = nextPrimaryChildren, JSCompiler_object_inline_stack_2725.childLanes = getRemainingWorkInPrimaryTree(
@@ -9401,7 +9401,7 @@
                 'The rendering order of <SuspenseList revealOrder="backwards"> is changing. To be future compatible you must specify revealOrder="legacy_unstable-backwards" instead.'
               );
             else if ("string" === typeof revealOrder)
-              switch (revealOrder.toLowerCase()) {
+              switch (revealOrder.toLowerCase) {
                 case "together":
                 case "forwards":
                 case "backwards":
@@ -9409,7 +9409,7 @@
                   console.error(
                     '"%s" is not a valid value for revealOrder on <SuspenseList />. Use lowercase "%s" instead.',
                     revealOrder,
-                    revealOrder.toLowerCase()
+                    revealOrder.toLowerCase
                   );
                   break;
                 case "forward":
@@ -9417,7 +9417,7 @@
                   console.error(
                     '"%s" is not a valid value for revealOrder on <SuspenseList />. React uses the -s suffix in the spelling. Use "%ss" instead.',
                     revealOrder,
-                    revealOrder.toLowerCase()
+                    revealOrder.toLowerCase
                   );
                   break;
                 default:
@@ -9457,7 +9457,7 @@
               }
             else if (suspenseContext = getIteratorFn(newChildren), "function" === typeof suspenseContext) {
               if (suspenseContext = suspenseContext.call(newChildren))
-                for (var step = suspenseContext.next(), _i = 0; !step.done; step = suspenseContext.next()) {
+                for (var step = suspenseContext.next, _i = 0; !step.done; step = suspenseContext.next) {
                   if (!validateSuspenseListNestedChild(step.value, _i)) break a;
                   _i++;
                 }
@@ -9467,7 +9467,7 @@
                 revealOrder
               );
           reconcileChildren(current2, workInProgress2, newChildren, renderLanes2);
-          isHydrating ? (warnIfNotHydrating(), newChildren = treeForkCount) : newChildren = 0;
+          isHydrating ? (warnIfNotHydrating, newChildren = treeForkCount) : newChildren = 0;
           if (!nextProps && null !== current2 && 0 !== (current2.flags & 128))
             a: for (current2 = workInProgress2.child; null !== current2; ) {
               if (13 === current2.tag)
@@ -9586,7 +9586,7 @@
                 CacheContext,
                 current2.memoizedState.cache
               );
-              resetHydrationState();
+              resetHydrationState;
               break;
             case 27:
             case 5:
@@ -9732,8 +9732,8 @@
           else {
             didReceiveUpdate = false;
             if (returnFiber = isHydrating)
-              warnIfNotHydrating(), returnFiber = 0 !== (workInProgress2.flags & 1048576);
-            returnFiber && (returnFiber = workInProgress2.index, warnIfNotHydrating(), pushTreeId(workInProgress2, treeForkCount, returnFiber));
+              warnIfNotHydrating, returnFiber = 0 !== (workInProgress2.flags & 1048576);
+            returnFiber && (returnFiber = workInProgress2.index, warnIfNotHydrating, pushTreeId(workInProgress2, treeForkCount, returnFiber));
           }
           workInProgress2.lanes = 0;
           switch (workInProgress2.tag) {
@@ -9781,7 +9781,7 @@
                   }
                 }
                 workInProgress2 = "";
-                null !== current2 && "object" === typeof current2 && current2.$$typeof === REACT_LAZY_TYPE && (workInProgress2 = " Did you wrap a component in React.lazy() more than once?");
+                null !== current2 && "object" === typeof current2 && current2.$$typeof === REACT_LAZY_TYPE && (workInProgress2 = " Did you wrap a component in React.lazy more than once?");
                 renderLanes2 = getComponentNameFromType(current2) || current2;
                 throw Error(
                   "Element type is invalid. Received a promise that resolves to: " + renderLanes2 + ". Lazy element type must resolve to a class or function." + workInProgress2
@@ -9831,7 +9831,7 @@
                   renderLanes2,
                   true
                 );
-                suspendIfUpdateReadFromEntangledAsyncAction();
+                suspendIfUpdateReadFromEntangledAsyncAction;
                 returnFiber = nextState.element;
                 if (prevState.isDehydrated)
                   if (prevState = {
@@ -9887,7 +9887,7 @@
                       renderLanes2.flags = renderLanes2.flags & -3 | 4096, renderLanes2 = renderLanes2.sibling;
                   }
                 else {
-                  resetHydrationState();
+                  resetHydrationState;
                   if (returnFiber === prevSibling) {
                     workInProgress2 = bailoutOnAlreadyFinishedWork(
                       current2,
@@ -9923,7 +9923,7 @@
                 current2.memoizedState
               ), null;
             case 27:
-              return pushHostContext(workInProgress2), null === current2 && isHydrating && (returnFiber = requiredContext(rootInstanceStackCursor.current), prevSibling = getHostContext(), returnFiber = workInProgress2.stateNode = resolveSingletonInstance(
+              return pushHostContext(workInProgress2), null === current2 && isHydrating && (returnFiber = requiredContext(rootInstanceStackCursor.current), prevSibling = getHostContext, returnFiber = workInProgress2.stateNode = resolveSingletonInstance(
                 workInProgress2.type,
                 workInProgress2.pendingProps,
                 returnFiber,
@@ -9943,7 +9943,7 @@
                 renderLanes2
               ), markRef(current2, workInProgress2), null === current2 && (workInProgress2.flags |= 4194304), workInProgress2.child;
             case 5:
-              return null === current2 && isHydrating && (prevState = getHostContext(), returnFiber = validateDOMNesting(
+              return null === current2 && isHydrating && (prevState = getHostContext, returnFiber = validateDOMNesting(
                 workInProgress2.type,
                 prevState.ancestorInfo
               ), prevSibling = nextHydratableInstance, (nextState = !prevSibling) || (nextState = canHydrateInstance(
@@ -9972,7 +9972,7 @@
                 renderLanes2
               ), workInProgress2.child;
             case 6:
-              return null === current2 && isHydrating && (renderLanes2 = workInProgress2.pendingProps, current2 = getHostContext(), returnFiber = current2.ancestorInfo.current, renderLanes2 = null != returnFiber ? validateTextNesting(
+              return null === current2 && isHydrating && (renderLanes2 = workInProgress2.pendingProps, current2 = getHostContext, returnFiber = current2.ancestorInfo.current, renderLanes2 = null != returnFiber ? validateTextNesting(
                 renderLanes2,
                 returnFiber.tag,
                 current2.ancestorInfo.implicitRootScope
@@ -10081,10 +10081,10 @@
                 workInProgress2.pendingProps
               );
             case 24:
-              return prepareToReadContext(workInProgress2), returnFiber = readContext(CacheContext), null === current2 ? (prevSibling = peekCacheFromPool(), null === prevSibling && (prevSibling = workInProgressRoot, prevState = createCache(), prevSibling.pooledCache = prevState, retainCache(prevState), null !== prevState && (prevSibling.pooledCacheLanes |= renderLanes2), prevSibling = prevState), workInProgress2.memoizedState = {
+              return prepareToReadContext(workInProgress2), returnFiber = readContext(CacheContext), null === current2 ? (prevSibling = peekCacheFromPool, null === prevSibling && (prevSibling = workInProgressRoot, prevState = createCache, prevSibling.pooledCache = prevState, retainCache(prevState), null !== prevState && (prevSibling.pooledCacheLanes |= renderLanes2), prevSibling = prevState), workInProgress2.memoizedState = {
                 parent: returnFiber,
                 cache: prevSibling
-              }, initializeUpdateQueue(workInProgress2), pushProvider(workInProgress2, CacheContext, prevSibling)) : (0 !== (current2.lanes & renderLanes2) && (cloneUpdateQueue(current2, workInProgress2), processUpdateQueue(workInProgress2, null, null, renderLanes2), suspendIfUpdateReadFromEntangledAsyncAction()), prevSibling = current2.memoizedState, prevState = workInProgress2.memoizedState, prevSibling.parent !== returnFiber ? (prevSibling = {
+              }, initializeUpdateQueue(workInProgress2), pushProvider(workInProgress2, CacheContext, prevSibling)) : (0 !== (current2.lanes & renderLanes2) && (cloneUpdateQueue(current2, workInProgress2), processUpdateQueue(workInProgress2, null, null, renderLanes2), suspendIfUpdateReadFromEntangledAsyncAction), prevSibling = current2.memoizedState, prevState = workInProgress2.memoizedState, prevSibling.parent !== returnFiber ? (prevSibling = {
                 parent: returnFiber,
                 cache: returnFiber
               }, workInProgress2.memoizedState = prevSibling, 0 === workInProgress2.lanes && (workInProgress2.memoizedState = workInProgress2.updateQueue.baseState = prevSibling), pushProvider(workInProgress2, CacheContext, returnFiber)) : (returnFiber = prevState.cache, pushProvider(workInProgress2, CacheContext, returnFiber), returnFiber !== prevSibling.cache && propagateContextChanges(
@@ -10114,7 +10114,7 @@
           if (type) {
             if (workInProgress2.flags |= 16777216, (renderLanes2 & 335544128) === renderLanes2)
               if (workInProgress2.stateNode.complete) workInProgress2.flags |= 8192;
-              else if (shouldRemainOnPreviousScreen()) workInProgress2.flags |= 8192;
+              else if (shouldRemainOnPreviousScreen) workInProgress2.flags |= 8192;
               else
                 throw suspendedThenable = noopSuspenseyCommitThenable, SuspenseyCommitException;
           } else workInProgress2.flags &= -16777217;
@@ -10123,13 +10123,13 @@
           if ("stylesheet" !== resource.type || (resource.state.loading & Inserted) !== NotLoaded)
             workInProgress2.flags &= -16777217;
           else if (workInProgress2.flags |= 16777216, !preloadResource(resource))
-            if (shouldRemainOnPreviousScreen()) workInProgress2.flags |= 8192;
+            if (shouldRemainOnPreviousScreen) workInProgress2.flags |= 8192;
             else
               throw suspendedThenable = noopSuspenseyCommitThenable, SuspenseyCommitException;
         }
         function scheduleRetryEffect(workInProgress2, retryQueue) {
           null !== retryQueue && (workInProgress2.flags |= 4);
-          workInProgress2.flags & 16384 && (retryQueue = 22 !== workInProgress2.tag ? claimNextRetryLane() : 536870912, workInProgress2.lanes |= retryQueue, workInProgressSuspendedRetryLanes |= retryQueue);
+          workInProgress2.flags & 16384 && (retryQueue = 22 !== workInProgress2.tag ? claimNextRetryLane : 536870912, workInProgress2.lanes |= retryQueue, workInProgressSuspendedRetryLanes |= retryQueue);
         }
         function cutOffTailIfNeeded(renderState, hasRenderedATailFallback) {
           if (!isHydrating)
@@ -10196,7 +10196,7 @@
               popHostContainer(workInProgress2);
               renderLanes2.pendingContext && (renderLanes2.context = renderLanes2.pendingContext, renderLanes2.pendingContext = null);
               if (null === current2 || null === current2.child)
-                popHydrationState(workInProgress2) ? (emitPendingHydrationWarnings(), markUpdate(workInProgress2)) : null === current2 || current2.memoizedState.isDehydrated && 0 === (workInProgress2.flags & 256) || (workInProgress2.flags |= 1024, upgradeHydrationErrorsToRecoverable());
+                popHydrationState(workInProgress2) ? (emitPendingHydrationWarnings, markUpdate(workInProgress2)) : null === current2 || current2.memoizedState.isDehydrated && 0 === (workInProgress2.flags & 256) || (workInProgress2.flags |= 1024, upgradeHydrationErrorsToRecoverable);
               bubbleProperties(workInProgress2);
               return null;
             case 26:
@@ -10236,7 +10236,7 @@
                   bubbleProperties(workInProgress2);
                   return null;
                 }
-                current2 = getHostContext();
+                current2 = getHostContext;
                 popHydrationState(workInProgress2) ? prepareToHydrateHostInstance(workInProgress2, current2) : (current2 = resolveSingletonInstance(
                   type,
                   newProps,
@@ -10261,7 +10261,7 @@
                   bubbleProperties(workInProgress2);
                   return null;
                 }
-                var _currentHostContext = getHostContext();
+                var _currentHostContext = getHostContext;
                 if (popHydrationState(workInProgress2))
                   prepareToHydrateHostInstance(workInProgress2, _currentHostContext);
                 else {
@@ -10312,7 +10312,7 @@
                         default:
                           nextResource = "string" === typeof newProps.is ? nextResource.createElement(type, {
                             is: newProps.is
-                          }) : nextResource.createElement(type), -1 === type.indexOf("-") && (type !== type.toLowerCase() && console.error(
+                          }) : nextResource.createElement(type), -1 === type.indexOf("-") && (type !== type.toLowerCase && console.error(
                             "<%s /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.",
                             type
                           ), "[object HTMLUnknownElement]" !== Object.prototype.toString.call(nextResource) || hasOwnProperty.call(warnedUnknownTags, type) || (warnedUnknownTags[type] = true, console.error(
@@ -10375,7 +10375,7 @@
                     "We must have new props for new mounts. This error is likely caused by a bug in React. Please file an issue."
                   );
                 current2 = requiredContext(rootInstanceStackCursor.current);
-                renderLanes2 = getHostContext();
+                renderLanes2 = getHostContext;
                 if (popHydrationState(workInProgress2)) {
                   current2 = workInProgress2.stateNode;
                   renderLanes2 = workInProgress2.memoizedProps;
@@ -10436,10 +10436,10 @@
                     bubbleProperties(workInProgress2);
                     (workInProgress2.mode & ProfileMode) !== NoMode && null !== renderLanes2 && (current2 = workInProgress2.child, null !== current2 && (workInProgress2.treeBaseDuration -= current2.treeBaseDuration));
                   } else
-                    emitPendingHydrationWarnings(), resetHydrationState(), 0 === (workInProgress2.flags & 128) && (renderLanes2 = workInProgress2.memoizedState = null), workInProgress2.flags |= 4, bubbleProperties(workInProgress2), (workInProgress2.mode & ProfileMode) !== NoMode && null !== renderLanes2 && (current2 = workInProgress2.child, null !== current2 && (workInProgress2.treeBaseDuration -= current2.treeBaseDuration));
+                    emitPendingHydrationWarnings, resetHydrationState, 0 === (workInProgress2.flags & 128) && (renderLanes2 = workInProgress2.memoizedState = null), workInProgress2.flags |= 4, bubbleProperties(workInProgress2), (workInProgress2.mode & ProfileMode) !== NoMode && null !== renderLanes2 && (current2 = workInProgress2.child, null !== current2 && (workInProgress2.treeBaseDuration -= current2.treeBaseDuration));
                   current2 = false;
                 } else
-                  renderLanes2 = upgradeHydrationErrorsToRecoverable(), null !== current2 && null !== current2.memoizedState && (current2.memoizedState.hydrationErrors = renderLanes2), current2 = true;
+                  renderLanes2 = upgradeHydrationErrorsToRecoverable, null !== current2 && null !== current2.memoizedState && (current2.memoizedState.hydrationErrors = renderLanes2), current2 = true;
                 if (!current2) {
                   if (workInProgress2.flags & 256)
                     return popSuspenseHandler(workInProgress2), workInProgress2;
@@ -10474,10 +10474,10 @@
                     bubbleProperties(workInProgress2);
                     (workInProgress2.mode & ProfileMode) !== NoMode && null !== type && (type = workInProgress2.child, null !== type && (workInProgress2.treeBaseDuration -= type.treeBaseDuration));
                   } else
-                    emitPendingHydrationWarnings(), resetHydrationState(), 0 === (workInProgress2.flags & 128) && (type = workInProgress2.memoizedState = null), workInProgress2.flags |= 4, bubbleProperties(workInProgress2), (workInProgress2.mode & ProfileMode) !== NoMode && null !== type && (type = workInProgress2.child, null !== type && (workInProgress2.treeBaseDuration -= type.treeBaseDuration));
+                    emitPendingHydrationWarnings, resetHydrationState, 0 === (workInProgress2.flags & 128) && (type = workInProgress2.memoizedState = null), workInProgress2.flags |= 4, bubbleProperties(workInProgress2), (workInProgress2.mode & ProfileMode) !== NoMode && null !== type && (type = workInProgress2.child, null !== type && (workInProgress2.treeBaseDuration -= type.treeBaseDuration));
                   type = false;
                 } else
-                  type = upgradeHydrationErrorsToRecoverable(), null !== current2 && null !== current2.memoizedState && (current2.memoizedState.hydrationErrors = type), type = true;
+                  type = upgradeHydrationErrorsToRecoverable, null !== current2 && null !== current2.memoizedState && (current2.memoizedState.hydrationErrors = type), type = true;
                 if (!type) {
                   if (workInProgress2.flags & 256)
                     return popSuspenseHandler(workInProgress2), workInProgress2;
@@ -10534,7 +10534,7 @@
                       }
                       current2 = current2.sibling;
                     }
-                  null !== newProps.tail && now$1() > workInProgressRootRenderTargetTime && (workInProgress2.flags |= 128, type = true, cutOffTailIfNeeded(newProps, false), workInProgress2.lanes = 4194304);
+                  null !== newProps.tail && now$1 > workInProgressRootRenderTargetTime && (workInProgress2.flags |= 128, type = true, cutOffTailIfNeeded(newProps, false), workInProgress2.lanes = 4194304);
                 }
               else {
                 if (!type)
@@ -10542,11 +10542,11 @@
                     if (workInProgress2.flags |= 128, type = true, current2 = current2.updateQueue, workInProgress2.updateQueue = current2, scheduleRetryEffect(workInProgress2, current2), cutOffTailIfNeeded(newProps, true), null === newProps.tail && "hidden" === newProps.tailMode && !nextResource.alternate && !isHydrating)
                       return bubbleProperties(workInProgress2), null;
                   } else
-                    2 * now$1() - newProps.renderingStartTime > workInProgressRootRenderTargetTime && 536870912 !== renderLanes2 && (workInProgress2.flags |= 128, type = true, cutOffTailIfNeeded(newProps, false), workInProgress2.lanes = 4194304);
+                    2 * now$1 - newProps.renderingStartTime > workInProgressRootRenderTargetTime && 536870912 !== renderLanes2 && (workInProgress2.flags |= 128, type = true, cutOffTailIfNeeded(newProps, false), workInProgress2.lanes = 4194304);
                 newProps.isBackwards ? (nextResource.sibling = workInProgress2.child, workInProgress2.child = nextResource) : (current2 = newProps.last, null !== current2 ? current2.sibling = nextResource : workInProgress2.child = nextResource, newProps.last = nextResource);
               }
               if (null !== newProps.tail)
-                return current2 = newProps.tail, newProps.rendering = current2, newProps.tail = current2.sibling, newProps.renderingStartTime = now$1(), current2.sibling = null, renderLanes2 = suspenseStackCursor.current, renderLanes2 = type ? renderLanes2 & SubtreeSuspenseContextMask | ForceSuspenseFallback : renderLanes2 & SubtreeSuspenseContextMask, push(suspenseStackCursor, renderLanes2, workInProgress2), isHydrating && pushTreeFork(workInProgress2, newProps.treeForkCount), current2;
+                return current2 = newProps.tail, newProps.rendering = current2, newProps.tail = current2.sibling, newProps.renderingStartTime = now$1, current2.sibling = null, renderLanes2 = suspenseStackCursor.current, renderLanes2 = type ? renderLanes2 & SubtreeSuspenseContextMask | ForceSuspenseFallback : renderLanes2 & SubtreeSuspenseContextMask, push(suspenseStackCursor, renderLanes2, workInProgress2), isHydrating && pushTreeFork(workInProgress2, newProps.treeForkCount), current2;
               bubbleProperties(workInProgress2);
               return null;
             case 22:
@@ -10581,7 +10581,7 @@
                   throw Error(
                     "Threw in newly mounted dehydrated component. This is likely a bug in React. Please file an issue."
                   );
-                resetHydrationState();
+                resetHydrationState;
               }
               current2 = workInProgress2.flags;
               return current2 & 65536 ? (workInProgress2.flags = current2 & -65537 | 128, (workInProgress2.mode & ProfileMode) !== NoMode && transferActualDuration(workInProgress2), workInProgress2) : null;
@@ -10593,7 +10593,7 @@
                   throw Error(
                     "Threw in newly mounted dehydrated component. This is likely a bug in React. Please file an issue."
                   );
-                resetHydrationState();
+                resetHydrationState;
               }
               current2 = workInProgress2.flags;
               return current2 & 65536 ? (workInProgress2.flags = current2 & -65537 | 128, (workInProgress2.mode & ProfileMode) !== NoMode && transferActualDuration(workInProgress2), workInProgress2) : null;
@@ -10655,14 +10655,14 @@
           return (current2.mode & ProfileMode) !== NoMode;
         }
         function commitHookLayoutEffects(finishedWork, hookFlags) {
-          shouldProfile(finishedWork) ? (startEffectTimer(), commitHookEffectListMount(hookFlags, finishedWork), recordEffectDuration()) : commitHookEffectListMount(hookFlags, finishedWork);
+          shouldProfile(finishedWork) ? (startEffectTimer, commitHookEffectListMount(hookFlags, finishedWork), recordEffectDuration) : commitHookEffectListMount(hookFlags, finishedWork);
         }
         function commitHookLayoutUnmountEffects(finishedWork, nearestMountedAncestor, hookFlags) {
-          shouldProfile(finishedWork) ? (startEffectTimer(), commitHookEffectListUnmount(
+          shouldProfile(finishedWork) ? (startEffectTimer, commitHookEffectListUnmount(
             hookFlags,
             finishedWork,
             nearestMountedAncestor
-          ), recordEffectDuration()) : commitHookEffectListUnmount(
+          ), recordEffectDuration) : commitHookEffectListUnmount(
             hookFlags,
             finishedWork,
             nearestMountedAncestor
@@ -10683,7 +10683,7 @@
                   var hookName = void 0;
                   hookName = 0 !== (updateQueue.tag & Layout) ? "useLayoutEffect" : 0 !== (updateQueue.tag & Insertion) ? "useInsertionEffect" : "useEffect";
                   var addendum = void 0;
-                  addendum = null === lastEffect ? " You returned null. If your effect does not require clean up, return undefined (or nothing)." : "function" === typeof lastEffect.then ? "\n\nIt looks like you wrote " + hookName + "(async () => ...) or returned a Promise. Instead, write the async function inside your effect and call it immediately:\n\n" + hookName + "(() => {\n  async function fetchData() {\n    // You can await here\n    const response = await MyAPI.getData(someId);\n    // ...\n  }\n  fetchData();\n}, [someId]); // Or [] if effect doesn't need props or state\n\nLearn more about data fetching with Hooks: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fhooks-data-fetching" : " You returned: " + lastEffect;
+                  addendum = null === lastEffect ? " You returned null. If your effect does not require clean up, return undefined (or nothing)." : "function" === typeof lastEffect.then ? "\n\nIt looks like you wrote " + hookName + "(async  => ...) or returned a Promise. Instead, write the async function inside your effect and call it immediately:\n\n" + hookName + "( => {\n  async function fetchData {\n    // You can await here\n    const response = await MyAPI.getData(someId);\n    // ...\n  }\n  fetchData;\n}, [someId]); // Or [] if effect doesn't need props or state\n\nLearn more about data fetching with Hooks: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fhooks-data-fetching" : " You returned: " + lastEffect;
                   runWithFiberInDEV(
                     finishedWork,
                     function(n3, a2) {
@@ -10729,14 +10729,14 @@
           }
         }
         function commitHookPassiveMountEffects(finishedWork, hookFlags) {
-          shouldProfile(finishedWork) ? (startEffectTimer(), commitHookEffectListMount(hookFlags, finishedWork), recordEffectDuration()) : commitHookEffectListMount(hookFlags, finishedWork);
+          shouldProfile(finishedWork) ? (startEffectTimer, commitHookEffectListMount(hookFlags, finishedWork), recordEffectDuration) : commitHookEffectListMount(hookFlags, finishedWork);
         }
         function commitHookPassiveUnmountEffects(finishedWork, nearestMountedAncestor, hookFlags) {
-          shouldProfile(finishedWork) ? (startEffectTimer(), commitHookEffectListUnmount(
+          shouldProfile(finishedWork) ? (startEffectTimer, commitHookEffectListUnmount(
             hookFlags,
             finishedWork,
             nearestMountedAncestor
-          ), recordEffectDuration()) : commitHookEffectListUnmount(
+          ), recordEffectDuration) : commitHookEffectListUnmount(
             hookFlags,
             finishedWork,
             nearestMountedAncestor
@@ -10791,9 +10791,9 @@
               prevState
             );
             prevProps = didWarnAboutUndefinedSnapshotBeforeUpdate;
-            void 0 !== snapshot2 || prevProps.has(finishedWork.type) || (prevProps.add(finishedWork.type), runWithFiberInDEV(finishedWork, function() {
+            void 0 !== snapshot2 || prevProps.has(finishedWork.type) || (prevProps.add(finishedWork.type), runWithFiberInDEV(finishedWork, function {
               console.error(
-                "%s.getSnapshotBeforeUpdate(): A snapshot value (or null) must be returned. You have returned undefined.",
+                "%s.getSnapshotBeforeUpdate: A snapshot value (or null) must be returned. You have returned undefined.",
                 getComponentNameFromFiber(finishedWork)
               );
             }));
@@ -10808,13 +10808,13 @@
             current2.memoizedProps
           );
           instance.state = current2.memoizedState;
-          shouldProfile(current2) ? (startEffectTimer(), runWithFiberInDEV(
+          shouldProfile(current2) ? (startEffectTimer, runWithFiberInDEV(
             current2,
             callComponentWillUnmountInDEV,
             current2,
             nearestMountedAncestor,
             instance
-          ), recordEffectDuration()) : runWithFiberInDEV(
+          ), recordEffectDuration) : runWithFiberInDEV(
             current2,
             callComponentWillUnmountInDEV,
             current2,
@@ -10840,14 +10840,14 @@
             if ("function" === typeof ref)
               if (shouldProfile(finishedWork))
                 try {
-                  startEffectTimer(), finishedWork.refCleanup = ref(instanceToUse);
+                  startEffectTimer, finishedWork.refCleanup = ref(instanceToUse);
                 } finally {
-                  recordEffectDuration();
+                  recordEffectDuration;
                 }
               else finishedWork.refCleanup = ref(instanceToUse);
             else
               "string" === typeof ref ? console.error("String refs are no longer supported.") : ref.hasOwnProperty("current") || console.error(
-                "Unexpected ref object provided for %s. Use either a ref-setter function or React.createRef().",
+                "Unexpected ref object provided for %s. Use either a ref-setter function or React.createRef.",
                 getComponentNameFromFiber(finishedWork)
               ), ref.current = instanceToUse;
           }
@@ -10866,7 +10866,7 @@
               try {
                 if (shouldProfile(current2))
                   try {
-                    startEffectTimer(), runWithFiberInDEV(current2, refCleanup);
+                    startEffectTimer, runWithFiberInDEV(current2, refCleanup);
                   } finally {
                     recordEffectDuration(current2);
                   }
@@ -10880,7 +10880,7 @@
               try {
                 if (shouldProfile(current2))
                   try {
-                    startEffectTimer(), runWithFiberInDEV(current2, ref, null);
+                    startEffectTimer, runWithFiberInDEV(current2, ref, null);
                   } finally {
                     recordEffectDuration(current2);
                   }
@@ -11062,7 +11062,7 @@
             else
               a: {
                 JSCompiler_temp = (JSCompiler_temp = root2.ownerDocument) && JSCompiler_temp.defaultView || window;
-                var selection = JSCompiler_temp.getSelection && JSCompiler_temp.getSelection();
+                var selection = JSCompiler_temp.getSelection && JSCompiler_temp.getSelection;
                 if (selection && 0 !== selection.rangeCount) {
                   JSCompiler_temp = selection.anchorNode;
                   var anchorOffset = selection.anchorOffset, focusNode = selection.focusNode;
@@ -11162,7 +11162,7 @@
               }
         }
         function commitLayoutEffectOnFiber(finishedRoot, current2, finishedWork) {
-          var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate(), flags = finishedWork.flags;
+          var prevEffectStart = pushComponentEffectStart, prevEffectDuration = pushComponentEffectDuration, prevEffectErrors = pushComponentEffectErrors, prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate, flags = finishedWork.flags;
           switch (finishedWork.tag) {
             case 0:
             case 11:
@@ -11180,12 +11180,12 @@
                   ), finishedRoot.state !== finishedWork.memoizedState && console.error(
                     "Expected %s state to match memoized state before componentDidMount. This might either be because of a bug in React, or because a component reassigns its own `this.state`. Please file an issue.",
                     getComponentNameFromFiber(finishedWork) || "instance"
-                  )), shouldProfile(finishedWork) ? (startEffectTimer(), runWithFiberInDEV(
+                  )), shouldProfile(finishedWork) ? (startEffectTimer, runWithFiberInDEV(
                     finishedWork,
                     callComponentDidMountInDEV,
                     finishedWork,
                     finishedRoot
-                  ), recordEffectDuration()) : runWithFiberInDEV(
+                  ), recordEffectDuration) : runWithFiberInDEV(
                     finishedWork,
                     callComponentDidMountInDEV,
                     finishedWork,
@@ -11204,7 +11204,7 @@
                     "Expected %s state to match memoized state before componentDidUpdate. This might either be because of a bug in React, or because a component reassigns its own `this.state`. Please file an issue.",
                     getComponentNameFromFiber(finishedWork) || "instance"
                   ));
-                  shouldProfile(finishedWork) ? (startEffectTimer(), runWithFiberInDEV(
+                  shouldProfile(finishedWork) ? (startEffectTimer, runWithFiberInDEV(
                     finishedWork,
                     callComponentDidUpdateInDEV,
                     finishedWork,
@@ -11212,7 +11212,7 @@
                     prevProps,
                     current2,
                     finishedRoot.__reactInternalSnapshotBeforeUpdate
-                  ), recordEffectDuration()) : runWithFiberInDEV(
+                  ), recordEffectDuration) : runWithFiberInDEV(
                     finishedWork,
                     callComponentDidUpdateInDEV,
                     finishedWork,
@@ -11226,7 +11226,7 @@
               flags & 512 && safelyAttachRef(finishedWork, finishedWork.return);
               break;
             case 3:
-              current2 = pushNestedEffectDurations();
+              current2 = pushNestedEffectDurations;
               recursivelyTraverseLayoutEffects(finishedRoot, finishedWork);
               if (flags & 64 && (flags = finishedWork.updateQueue, null !== flags)) {
                 prevProps = null;
@@ -11285,7 +11285,7 @@
               break;
             case 12:
               if (flags & 4) {
-                flags = pushNestedEffectDurations();
+                flags = pushNestedEffectDurations;
                 recursivelyTraverseLayoutEffects(finishedRoot, finishedWork);
                 finishedRoot = finishedWork.stateNode;
                 finishedRoot.effectDuration += bubbleNestedEffectDurations(flags);
@@ -11395,7 +11395,7 @@
                 err
               ));
             }
-          var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate();
+          var prevEffectStart = pushComponentEffectStart, prevEffectDuration = pushComponentEffectDuration, prevEffectErrors = pushComponentEffectErrors, prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate;
           switch (deletedFiber.tag) {
             case 26:
               offscreenSubtreeWasHidden || safelyDetachRef(deletedFiber, nearestMountedAncestor);
@@ -11586,10 +11586,10 @@
             case 13:
             case 19:
               var retryCache = finishedWork.stateNode;
-              null === retryCache && (retryCache = finishedWork.stateNode = new PossiblyWeakSet());
+              null === retryCache && (retryCache = finishedWork.stateNode = new PossiblyWeakSet);
               return retryCache;
             case 22:
-              return finishedWork = finishedWork.stateNode, retryCache = finishedWork._retryCache, null === retryCache && (retryCache = finishedWork._retryCache = new PossiblyWeakSet()), retryCache;
+              return finishedWork = finishedWork.stateNode, retryCache = finishedWork._retryCache, null === retryCache && (retryCache = finishedWork._retryCache = new PossiblyWeakSet), retryCache;
             default:
               throw Error(
                 "Unexpected Suspense handler tag (" + finishedWork.tag + "). This is a bug in React."
@@ -11617,7 +11617,7 @@
           var deletions = parentFiber.deletions;
           if (null !== deletions)
             for (var i2 = 0; i2 < deletions.length; i2++) {
-              var root2 = root$jscomp$0, returnFiber = parentFiber, deletedFiber = deletions[i2], prevEffectStart = pushComponentEffectStart(), parent = returnFiber;
+              var root2 = root$jscomp$0, returnFiber = parentFiber, deletedFiber = deletions[i2], prevEffectStart = pushComponentEffectStart, parent = returnFiber;
               a: for (; null !== parent; ) {
                 switch (parent.tag) {
                   case 27:
@@ -11663,7 +11663,7 @@
               commitMutationEffectsOnFiber(parentFiber, root$jscomp$0), parentFiber = parentFiber.sibling;
         }
         function commitMutationEffectsOnFiber(finishedWork, root2) {
-          var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate(), current2 = finishedWork.alternate, flags = finishedWork.flags;
+          var prevEffectStart = pushComponentEffectStart, prevEffectDuration = pushComponentEffectDuration, prevEffectErrors = pushComponentEffectErrors, prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate, current2 = finishedWork.alternate, flags = finishedWork.flags;
           switch (finishedWork.tag) {
             case 0:
             case 11:
@@ -11860,7 +11860,7 @@
               }
               break;
             case 3:
-              existingHiddenCallbacks = pushNestedEffectDurations();
+              existingHiddenCallbacks = pushNestedEffectDurations;
               tagCaches = null;
               currentResource = currentHoistableRoot;
               currentHoistableRoot = getHoistableRoot(root2.containerInfo);
@@ -11892,7 +11892,7 @@
               currentHoistableRoot = flags;
               break;
             case 12:
-              flags = pushNestedEffectDurations();
+              flags = pushNestedEffectDurations;
               recursivelyTraverseMutationEffects(root2, finishedWork);
               commitReconciliationEffects(finishedWork);
               finishedWork.stateNode.effectDuration += bubbleNestedEffectDurations(flags);
@@ -11905,7 +11905,7 @@
             case 13:
               recursivelyTraverseMutationEffects(root2, finishedWork);
               commitReconciliationEffects(finishedWork);
-              finishedWork.child.flags & 8192 && null !== finishedWork.memoizedState !== (null !== current2 && null !== current2.memoizedState) && (globalMostRecentFallbackTime = now$1());
+              finishedWork.child.flags & 8192 && null !== finishedWork.memoizedState !== (null !== current2 && null !== current2.memoizedState) && (globalMostRecentFallbackTime = now$1);
               flags & 4 && (flags = finishedWork.updateQueue, null !== flags && (finishedWork.updateQueue = null, attachSuspenseRetryListeners(finishedWork, flags)));
               break;
             case 22:
@@ -12049,7 +12049,7 @@
             for (parentFiber = parentFiber.child; null !== parentFiber; ) {
               var fiber = parentFiber;
               recursivelyResetForms(fiber);
-              5 === fiber.tag && fiber.flags & 1024 && fiber.stateNode.reset();
+              5 === fiber.tag && fiber.flags & 1024 && fiber.stateNode.reset;
               parentFiber = parentFiber.sibling;
             }
         }
@@ -12059,7 +12059,7 @@
               commitLayoutEffectOnFiber(root2, parentFiber.alternate, parentFiber), parentFiber = parentFiber.sibling;
         }
         function disappearLayoutEffects(finishedWork) {
-          var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate();
+          var prevEffectStart = pushComponentEffectStart, prevEffectDuration = pushComponentEffectDuration, prevEffectErrors = pushComponentEffectErrors, prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate;
           switch (finishedWork.tag) {
             case 0:
             case 11:
@@ -12119,7 +12119,7 @@
             disappearLayoutEffects(parentFiber), parentFiber = parentFiber.sibling;
         }
         function reappearLayoutEffects(finishedRoot, current2, finishedWork, includeWorkInProgressEffects) {
-          var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate(), flags = finishedWork.flags;
+          var prevEffectStart = pushComponentEffectStart, prevEffectDuration = pushComponentEffectDuration, prevEffectErrors = pushComponentEffectErrors, prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate, flags = finishedWork.flags;
           switch (finishedWork.tag) {
             case 0:
             case 11:
@@ -12175,7 +12175,7 @@
               break;
             case 12:
               if (includeWorkInProgressEffects && flags & 4) {
-                flags = pushNestedEffectDurations();
+                flags = pushNestedEffectDurations;
                 recursivelyTraverseReappearLayoutEffects(
                   finishedRoot,
                   finishedWork,
@@ -12285,7 +12285,7 @@
             }
         }
         function commitPassiveMountOnFiber(finishedRoot, finishedWork, committedLanes, committedTransitions, endTime) {
-          var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate(), prevDeepEquality = alreadyWarnedForDeepEquality, flags = finishedWork.flags;
+          var prevEffectStart = pushComponentEffectStart, prevEffectDuration = pushComponentEffectDuration, prevEffectErrors = pushComponentEffectErrors, prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate, prevDeepEquality = alreadyWarnedForDeepEquality, flags = finishedWork.flags;
           switch (finishedWork.tag) {
             case 0:
             case 11:
@@ -12328,7 +12328,7 @@
               );
               break;
             case 3:
-              var prevProfilerEffectDuration = pushNestedEffectDurations(), wasInHydratedSubtree = inHydratedSubtree;
+              var prevProfilerEffectDuration = pushNestedEffectDurations, wasInHydratedSubtree = inHydratedSubtree;
               inHydratedSubtree = null !== finishedWork.alternate && finishedWork.alternate.memoizedState.isDehydrated && 0 === (finishedWork.flags & 256);
               recursivelyTraversePassiveMountEffects(
                 finishedRoot,
@@ -12345,7 +12345,7 @@
               break;
             case 12:
               if (flags & 2048) {
-                flags = pushNestedEffectDurations();
+                flags = pushNestedEffectDurations;
                 recursivelyTraversePassiveMountEffects(
                   finishedRoot,
                   finishedWork,
@@ -12516,7 +12516,7 @@
           }
         }
         function reconnectPassiveEffects(finishedRoot, finishedWork, committedLanes, committedTransitions, includeWorkInProgressEffects, endTime) {
-          var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate(), prevDeepEquality = alreadyWarnedForDeepEquality;
+          var prevEffectStart = pushComponentEffectStart, prevEffectDuration = pushComponentEffectDuration, prevEffectErrors = pushComponentEffectErrors, prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate, prevDeepEquality = alreadyWarnedForDeepEquality;
           includeWorkInProgressEffects && (finishedWork.mode & ProfileMode) !== NoMode && 0 < finishedWork.actualStartTime && 0 !== (finishedWork.flags & 1) && logComponentRender(
             finishedWork,
             finishedWork.actualStartTime,
@@ -12727,7 +12727,7 @@
           if (0 !== (parentFiber.flags & 16)) {
             if (null !== deletions)
               for (var i2 = 0; i2 < deletions.length; i2++) {
-                var childToDelete = deletions[i2], prevEffectStart = pushComponentEffectStart();
+                var childToDelete = deletions[i2], prevEffectStart = pushComponentEffectStart;
                 nextEffect = childToDelete;
                 commitPassiveUnmountEffectsInsideOfDeletedTree_begin(
                   childToDelete,
@@ -12748,7 +12748,7 @@
               commitPassiveUnmountOnFiber(parentFiber), parentFiber = parentFiber.sibling;
         }
         function commitPassiveUnmountOnFiber(finishedWork) {
-          var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate();
+          var prevEffectStart = pushComponentEffectStart, prevEffectDuration = pushComponentEffectDuration, prevEffectErrors = pushComponentEffectErrors, prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate;
           switch (finishedWork.tag) {
             case 0:
             case 11:
@@ -12761,12 +12761,12 @@
               );
               break;
             case 3:
-              var prevProfilerEffectDuration = pushNestedEffectDurations();
+              var prevProfilerEffectDuration = pushNestedEffectDurations;
               recursivelyTraversePassiveUnmountEffects(finishedWork);
               finishedWork.stateNode.passiveEffectDuration += popNestedEffectDurations(prevProfilerEffectDuration);
               break;
             case 12:
-              prevProfilerEffectDuration = pushNestedEffectDurations();
+              prevProfilerEffectDuration = pushNestedEffectDurations;
               recursivelyTraversePassiveUnmountEffects(finishedWork);
               finishedWork.stateNode.passiveEffectDuration += bubbleNestedEffectDurations(prevProfilerEffectDuration);
               break;
@@ -12799,7 +12799,7 @@
           if (0 !== (parentFiber.flags & 16)) {
             if (null !== deletions)
               for (var i2 = 0; i2 < deletions.length; i2++) {
-                var childToDelete = deletions[i2], prevEffectStart = pushComponentEffectStart();
+                var childToDelete = deletions[i2], prevEffectStart = pushComponentEffectStart;
                 nextEffect = childToDelete;
                 commitPassiveUnmountEffectsInsideOfDeletedTree_begin(
                   childToDelete,
@@ -12819,7 +12819,7 @@
             disconnectPassiveEffect(parentFiber), parentFiber = parentFiber.sibling;
         }
         function disconnectPassiveEffect(finishedWork) {
-          var prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate();
+          var prevEffectStart = pushComponentEffectStart, prevEffectDuration = pushComponentEffectDuration, prevEffectErrors = pushComponentEffectErrors, prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate;
           switch (finishedWork.tag) {
             case 0:
             case 11:
@@ -12852,7 +12852,7 @@
         }
         function commitPassiveUnmountEffectsInsideOfDeletedTree_begin(deletedSubtreeRoot, nearestMountedAncestor$jscomp$0) {
           for (; null !== nextEffect; ) {
-            var fiber = nextEffect, current2 = fiber, nearestMountedAncestor = nearestMountedAncestor$jscomp$0, prevEffectStart = pushComponentEffectStart(), prevEffectDuration = pushComponentEffectDuration(), prevEffectErrors = pushComponentEffectErrors(), prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate();
+            var fiber = nextEffect, current2 = fiber, nearestMountedAncestor = nearestMountedAncestor$jscomp$0, prevEffectStart = pushComponentEffectStart, prevEffectDuration = pushComponentEffectDuration, prevEffectErrors = pushComponentEffectErrors, prevEffectDidSpawnUpdate = pushComponentEffectDidSpawnUpdate;
             switch (current2.tag) {
               case 0:
               case 11:
@@ -12902,12 +12902,12 @@
               }
           }
         }
-        function onCommitRoot() {
+        function onCommitRoot {
           commitHooks.forEach(function(commitHook) {
-            return commitHook();
+            return commitHook;
           });
         }
-        function isConcurrentActEnvironment() {
+        function isConcurrentActEnvironment {
           var isReactActEnvironmentGlobal = "undefined" !== typeof IS_REACT_ACT_ENVIRONMENT ? IS_REACT_ACT_ENVIRONMENT : void 0;
           isReactActEnvironmentGlobal || null === ReactSharedInternals.actQueue || console.error(
             "The current testing environment is not configured to support act(...)"
@@ -12918,9 +12918,9 @@
           if ((executionContext & RenderContext) !== NoContext && 0 !== workInProgressRootRenderLanes)
             return workInProgressRootRenderLanes & -workInProgressRootRenderLanes;
           var transition = ReactSharedInternals.T;
-          return null !== transition ? (transition._updatedFibers || (transition._updatedFibers = /* @__PURE__ */ new Set()), transition._updatedFibers.add(fiber), requestTransitionLane()) : resolveUpdatePriority();
+          return null !== transition ? (transition._updatedFibers || (transition._updatedFibers = /* @__PURE__ */ new Set), transition._updatedFibers.add(fiber), requestTransitionLane) : resolveUpdatePriority;
         }
-        function requestDeferredLane() {
+        function requestDeferredLane {
           if (0 === workInProgressDeferredLane)
             if (0 === (workInProgressRootRenderLanes & 536870912) || isHydrating) {
               var lane = nextTransitionDeferredLane;
@@ -12951,7 +12951,7 @@
                 case 15:
                   root2 = workInProgress && getComponentNameFromFiber(workInProgress) || "Unknown";
                   didWarnAboutUpdateInRenderForAnotherComponent.has(root2) || (didWarnAboutUpdateInRenderForAnotherComponent.add(root2), fiber = getComponentNameFromFiber(fiber) || "Unknown", console.error(
-                    "Cannot update a component (`%s`) while rendering a different component (`%s`). To locate the bad setState() call inside `%s`, follow the stack trace as described in https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fsetstate-in-render",
+                    "Cannot update a component (`%s`) while rendering a different component (`%s`). To locate the bad setState call inside `%s`, follow the stack trace as described in https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fsetstate-in-render",
                     fiber,
                     root2,
                     root2
@@ -12974,7 +12974,7 @@
           if ((executionContext & (RenderContext | CommitContext)) !== NoContext)
             throw Error("Should not already be working.");
           if (0 !== workInProgressRootRenderLanes && null !== workInProgress) {
-            var yieldedFiber = workInProgress, yieldEndTime = now$1();
+            var yieldedFiber = workInProgress, yieldEndTime = now$1;
             switch (yieldReason) {
               case SuspendedOnImmediate:
               case SuspendedOnData:
@@ -13036,11 +13036,11 @@
             if (startTime === RootInProgress) {
               workInProgressRootIsPrerendering && !forceSync && markRootSuspended(root2, lanes, 0, false);
               lanes = workInProgressSuspendedReason;
-              yieldStartTime = now();
+              yieldStartTime = now;
               yieldReason = lanes;
               break;
             } else {
-              yieldedFiber = now$1();
+              yieldedFiber = now$1;
               yieldEndTime = root2.current.alternate;
               if (renderWasConcurrent && !isRenderConsistentWithExternalStores(yieldEndTime)) {
                 setCurrentTrackFromLanes(lanes);
@@ -13114,7 +13114,7 @@
                   }
                   renderWasConcurrent = false;
                   if (startTime !== RootErrored) continue;
-                  else yieldedFiber = now$1();
+                  else yieldedFiber = now$1;
                 }
               }
               if (startTime === RootFatalErrored) {
@@ -13183,7 +13183,7 @@
                     yieldedFiber
                   );
                 else {
-                  if ((lanes & 62914560) === lanes && (renderWasConcurrent = globalMostRecentFallbackTime + FALLBACK_THROTTLE_MS - now$1(), 10 < renderWasConcurrent)) {
+                  if ((lanes & 62914560) === lanes && (renderWasConcurrent = globalMostRecentFallbackTime + FALLBACK_THROTTLE_MS - now$1, 10 < renderWasConcurrent)) {
                     markRootSuspended(
                       forceSync,
                       lanes,
@@ -13250,7 +13250,7 @@
               waitingForImages: true,
               waitingForViewTransition: false,
               unsuspend: noop$1
-            }, accumulateSuspenseyCommitOnFiber(finishedWork, lanes, suspendedState), subtreeFlags = (lanes & 62914560) === lanes ? globalMostRecentFallbackTime - now$1() : (lanes & 4194048) === lanes ? globalMostRecentTransitionTime - now$1() : 0, subtreeFlags = waitForCommitToBeReady(suspendedState, subtreeFlags), null !== subtreeFlags) {
+            }, accumulateSuspenseyCommitOnFiber(finishedWork, lanes, suspendedState), subtreeFlags = (lanes & 62914560) === lanes ? globalMostRecentFallbackTime - now$1 : (lanes & 4194048) === lanes ? globalMostRecentTransitionTime - now$1 : 0, subtreeFlags = waitForCommitToBeReady(suspendedState, subtreeFlags), null !== subtreeFlags) {
               pendingEffectsLanes = lanes;
               root2.cancelPendingCommit = subtreeFlags(
                 commitRoot.bind(
@@ -13305,7 +13305,7 @@
                 var check = tag[i2], getSnapshot = check.getSnapshot;
                 check = check.value;
                 try {
-                  if (!objectIs(getSnapshot(), check)) return false;
+                  if (!objectIs(getSnapshot, check)) return false;
                 } catch (error) {
                   return false;
                 }
@@ -13339,15 +13339,15 @@
           }
           0 !== spawnedLane && markSpawnedDeferredLane(root2, spawnedLane, suspendedLanes);
         }
-        function flushSyncWork$1() {
+        function flushSyncWork$1 {
           return (executionContext & (RenderContext | CommitContext)) === NoContext ? (flushSyncWorkAcrossRoots_impl(0, false), false) : true;
         }
-        function resetWorkInProgressStack() {
+        function resetWorkInProgressStack {
           if (null !== workInProgress) {
             if (workInProgressSuspendedReason === NotSuspended)
               var interruptedWork = workInProgress.return;
             else
-              interruptedWork = workInProgress, resetContextDependencies(), resetHooksOnUnwind(interruptedWork), thenableState$1 = null, thenableIndexCounter$1 = 0, interruptedWork = workInProgress;
+              interruptedWork = workInProgress, resetContextDependencies, resetHooksOnUnwind(interruptedWork), thenableState$1 = null, thenableIndexCounter$1 = 0, interruptedWork = workInProgress;
             for (; null !== interruptedWork; )
               unwindInterruptedWork(interruptedWork.alternate, interruptedWork), interruptedWork = interruptedWork.return;
             workInProgress = null;
@@ -13390,7 +13390,7 @@
             "primary-light"
           ));
           var previousRenderStartTime = renderStartTime;
-          renderStartTime = now();
+          renderStartTime = now;
           if (0 !== workInProgressRootRenderLanes && 0 < previousRenderStartTime) {
             setCurrentTrackFromLanes(workInProgressRootRenderLanes);
             if (workInProgressRootExitStatus === RootSuspended || workInProgressRootExitStatus === RootSuspendedWithDelay)
@@ -13495,7 +13495,7 @@
             blockingSuspendedTime = -1.1;
             blockingEventRepeatTime = blockingEventTime;
             blockingEventTime = -1.1;
-            blockingClampTime = now();
+            blockingClampTime = now;
           }
           0 !== (lanes & 4194048) && (workInProgressUpdateTask = transitionUpdateTask, debugTask = 0 <= transitionStartTime && transitionStartTime < transitionClampTime ? transitionClampTime : transitionStartTime, previousRenderStartTime = 0 <= transitionUpdateTime && transitionUpdateTime < transitionClampTime ? transitionClampTime : transitionUpdateTime, endTime = 0 <= transitionEventTime && transitionEventTime < transitionClampTime ? transitionClampTime : transitionEventTime, color = 0 <= endTime ? endTime : 0 <= previousRenderStartTime ? previousRenderStartTime : renderStartTime, 0 <= transitionSuspendedTime ? (setCurrentTrackFromLanes(256), logSuspendedWithDelayPhase(
             transitionSuspendedTime,
@@ -13553,15 +13553,15 @@
               debugTask,
               previousRenderStartTime
             )
-          ) : performance.measure(debugTask, previousRenderStartTime))), transitionUpdateTime = transitionStartTime = -1.1, transitionUpdateType = 0, transitionSuspendedTime = -1.1, transitionEventRepeatTime = transitionEventTime, transitionEventTime = -1.1, transitionClampTime = now());
+          ) : performance.measure(debugTask, previousRenderStartTime))), transitionUpdateTime = transitionStartTime = -1.1, transitionUpdateType = 0, transitionSuspendedTime = -1.1, transitionEventRepeatTime = transitionEventTime, transitionEventTime = -1.1, transitionClampTime = now);
           0 !== (lanes & 62914560) && 0 !== (animatingLanes & 62914560) && (setCurrentTrackFromLanes(4194304), logAnimatingPhase(retryClampTime, renderStartTime, animatingTask));
           0 !== (lanes & 2080374784) && 0 !== (animatingLanes & 2080374784) && (setCurrentTrackFromLanes(268435456), logAnimatingPhase(idleClampTime, renderStartTime, animatingTask));
           previousRenderStartTime = root2.timeoutHandle;
           previousRenderStartTime !== noTimeout && (root2.timeoutHandle = noTimeout, cancelTimeout(previousRenderStartTime));
           previousRenderStartTime = root2.cancelPendingCommit;
-          null !== previousRenderStartTime && (root2.cancelPendingCommit = null, previousRenderStartTime());
+          null !== previousRenderStartTime && (root2.cancelPendingCommit = null, previousRenderStartTime);
           pendingEffectsLanes = 0;
-          resetWorkInProgressStack();
+          resetWorkInProgressStack;
           workInProgressRoot = root2;
           workInProgress = previousRenderStartTime = createWorkInProgress(
             root2.current,
@@ -13583,10 +13583,10 @@
             for (root2 = root2.entanglements, endTime &= lanes; 0 < endTime; )
               debugTask = 31 - clz32(endTime), color = 1 << debugTask, lanes |= root2[debugTask], endTime &= ~color;
           entangledRenderLanes = lanes;
-          finishQueueingConcurrentUpdates();
-          root2 = getCurrentTime();
+          finishQueueingConcurrentUpdates;
+          root2 = getCurrentTime;
           1e3 < root2 - lastResetTime && (ReactSharedInternals.recentlyCreatedOwnerStacks = 0, lastResetTime = root2);
-          ReactStrictModeWarnings.discardPendingWarnings();
+          ReactStrictModeWarnings.discardPendingWarnings;
           return previousRenderStartTime;
         }
         function handleThrow(root2, thrownValue) {
@@ -13595,7 +13595,7 @@
           ReactSharedInternals.getCurrentStack = null;
           isRendering = false;
           current = null;
-          thrownValue === SuspenseException || thrownValue === SuspenseActionException ? (thrownValue = getSuspendedThenable(), workInProgressSuspendedReason = SuspendedOnImmediate) : thrownValue === SuspenseyCommitException ? (thrownValue = getSuspendedThenable(), workInProgressSuspendedReason = SuspendedOnInstance) : workInProgressSuspendedReason = thrownValue === SelectiveHydrationException ? SuspendedOnHydration : null !== thrownValue && "object" === typeof thrownValue && "function" === typeof thrownValue.then ? SuspendedOnDeprecatedThrowPromise : SuspendedOnError;
+          thrownValue === SuspenseException || thrownValue === SuspenseActionException ? (thrownValue = getSuspendedThenable, workInProgressSuspendedReason = SuspendedOnImmediate) : thrownValue === SuspenseyCommitException ? (thrownValue = getSuspendedThenable, workInProgressSuspendedReason = SuspendedOnInstance) : workInProgressSuspendedReason = thrownValue === SelectiveHydrationException ? SuspendedOnHydration : null !== thrownValue && "object" === typeof thrownValue && "function" === typeof thrownValue.then ? SuspendedOnDeprecatedThrowPromise : SuspendedOnError;
           workInProgressThrownValue = thrownValue;
           var erroredWork = workInProgress;
           null === erroredWork ? (workInProgressRootExitStatus = RootFatalErrored, logUncaughtError(
@@ -13603,16 +13603,16 @@
             createCapturedValueAtFiber(thrownValue, root2.current)
           )) : erroredWork.mode & ProfileMode && stopProfilerTimerIfRunningAndRecordDuration(erroredWork);
         }
-        function shouldRemainOnPreviousScreen() {
+        function shouldRemainOnPreviousScreen {
           var handler = suspenseHandlerStackCursor.current;
           return null === handler ? true : (workInProgressRootRenderLanes & 4194048) === workInProgressRootRenderLanes ? null === shellBoundary ? true : false : (workInProgressRootRenderLanes & 62914560) === workInProgressRootRenderLanes || 0 !== (workInProgressRootRenderLanes & 536870912) ? handler === shellBoundary : false;
         }
-        function pushDispatcher() {
+        function pushDispatcher {
           var prevDispatcher = ReactSharedInternals.H;
           ReactSharedInternals.H = ContextOnlyDispatcher;
           return null === prevDispatcher ? ContextOnlyDispatcher : prevDispatcher;
         }
-        function pushAsyncDispatcher() {
+        function pushAsyncDispatcher {
           var prevAsyncDispatcher = ReactSharedInternals.A;
           ReactSharedInternals.A = DefaultAsyncDispatcher;
           return prevAsyncDispatcher;
@@ -13620,7 +13620,7 @@
         function markRenderDerivedCause(fiber) {
           null === workInProgressUpdateTask && (workInProgressUpdateTask = null == fiber._debugTask ? null : fiber._debugTask);
         }
-        function renderDidSuspendDelayIfPossible() {
+        function renderDidSuspendDelayIfPossible {
           workInProgressRootExitStatus = RootSuspendedWithDelay;
           workInProgressRootDidSkipSuspendedSiblings || (workInProgressRootRenderLanes & 4194048) !== workInProgressRootRenderLanes && null !== suspenseHandlerStackCursor.current || (workInProgressRootIsPrerendering = true);
           0 === (workInProgressRootSkippedLanes & 134217727) && 0 === (workInProgressRootInterleavedUpdatedLanes & 134217727) || null === workInProgressRoot || markRootSuspended(
@@ -13633,11 +13633,11 @@
         function renderRootSync(root2, lanes, shouldYieldForPrerendering) {
           var prevExecutionContext = executionContext;
           executionContext |= RenderContext;
-          var prevDispatcher = pushDispatcher(), prevAsyncDispatcher = pushAsyncDispatcher();
+          var prevDispatcher = pushDispatcher, prevAsyncDispatcher = pushAsyncDispatcher;
           if (workInProgressRoot !== root2 || workInProgressRootRenderLanes !== lanes) {
             if (isDevToolsPresent) {
               var memoizedUpdaters = root2.memoizedUpdaters;
-              0 < memoizedUpdaters.size && (restorePendingUpdaters(root2, workInProgressRootRenderLanes), memoizedUpdaters.clear());
+              0 < memoizedUpdaters.size && (restorePendingUpdaters(root2, workInProgressRootRenderLanes), memoizedUpdaters.clear);
               movePendingFibersToMemoized(root2, lanes);
             }
             workInProgressTransitions = null;
@@ -13651,7 +13651,7 @@
                 var unitOfWork = workInProgress, thrownValue = workInProgressThrownValue;
                 switch (workInProgressSuspendedReason) {
                   case SuspendedOnHydration:
-                    resetWorkInProgressStack();
+                    resetWorkInProgressStack;
                     memoizedUpdaters = RootSuspendedAtTheShell;
                     break a;
                   case SuspendedOnImmediate:
@@ -13672,7 +13672,7 @@
                     reason = workInProgressSuspendedReason, workInProgressSuspendedReason = NotSuspended, workInProgressThrownValue = null, throwAndUnwindWorkLoop(root2, unitOfWork, thrownValue, reason);
                 }
               }
-              workLoopSync();
+              workLoopSync;
               memoizedUpdaters = workInProgressRootExitStatus;
               break;
             } catch (thrownValue$8) {
@@ -13680,28 +13680,28 @@
             }
           while (1);
           lanes && root2.shellSuspendCounter++;
-          resetContextDependencies();
+          resetContextDependencies;
           executionContext = prevExecutionContext;
           ReactSharedInternals.H = prevDispatcher;
           ReactSharedInternals.A = prevAsyncDispatcher;
-          null === workInProgress && (workInProgressRoot = null, workInProgressRootRenderLanes = 0, finishQueueingConcurrentUpdates());
+          null === workInProgress && (workInProgressRoot = null, workInProgressRootRenderLanes = 0, finishQueueingConcurrentUpdates);
           return memoizedUpdaters;
         }
-        function workLoopSync() {
+        function workLoopSync {
           for (; null !== workInProgress; ) performUnitOfWork(workInProgress);
         }
         function renderRootConcurrent(root2, lanes) {
           var prevExecutionContext = executionContext;
           executionContext |= RenderContext;
-          var prevDispatcher = pushDispatcher(), prevAsyncDispatcher = pushAsyncDispatcher();
+          var prevDispatcher = pushDispatcher, prevAsyncDispatcher = pushAsyncDispatcher;
           if (workInProgressRoot !== root2 || workInProgressRootRenderLanes !== lanes) {
             if (isDevToolsPresent) {
               var memoizedUpdaters = root2.memoizedUpdaters;
-              0 < memoizedUpdaters.size && (restorePendingUpdaters(root2, workInProgressRootRenderLanes), memoizedUpdaters.clear());
+              0 < memoizedUpdaters.size && (restorePendingUpdaters(root2, workInProgressRootRenderLanes), memoizedUpdaters.clear);
               movePendingFibersToMemoized(root2, lanes);
             }
             workInProgressTransitions = null;
-            workInProgressRootRenderTargetTime = now$1() + RENDER_TIMEOUT_MS;
+            workInProgressRootRenderTargetTime = now$1 + RENDER_TIMEOUT_MS;
             prepareFreshStack(root2, lanes);
           } else
             workInProgressRootIsPrerendering = checkIfRootIsPrerendering(
@@ -13730,7 +13730,7 @@
                       replaySuspendedUnitOfWork(lanes);
                       break;
                     }
-                    lanes = function() {
+                    lanes = function {
                       workInProgressSuspendedReason !== SuspendedOnData && workInProgressSuspendedReason !== SuspendedOnAction || workInProgressRoot !== root2 || (workInProgressSuspendedReason = SuspendedAndReadyToContinue);
                       ensureRootIsScheduled(root2);
                     };
@@ -13795,7 +13795,7 @@
                     );
                     break;
                   case SuspendedOnHydration:
-                    resetWorkInProgressStack();
+                    resetWorkInProgressStack;
                     workInProgressRootExitStatus = RootSuspendedAtTheShell;
                     break a;
                   default:
@@ -13803,24 +13803,24 @@
                       "Unexpected SuspendedReason. This is a bug in React."
                     );
                 }
-              null !== ReactSharedInternals.actQueue ? workLoopSync() : workLoopConcurrentByScheduler();
+              null !== ReactSharedInternals.actQueue ? workLoopSync : workLoopConcurrentByScheduler;
               break;
             } catch (thrownValue$9) {
               handleThrow(root2, thrownValue$9);
             }
           while (1);
-          resetContextDependencies();
+          resetContextDependencies;
           ReactSharedInternals.H = prevDispatcher;
           ReactSharedInternals.A = prevAsyncDispatcher;
           executionContext = prevExecutionContext;
           if (null !== workInProgress) return RootInProgress;
           workInProgressRoot = null;
           workInProgressRootRenderLanes = 0;
-          finishQueueingConcurrentUpdates();
+          finishQueueingConcurrentUpdates;
           return workInProgressRootExitStatus;
         }
-        function workLoopConcurrentByScheduler() {
-          for (; null !== workInProgress && !shouldYield(); )
+        function workLoopConcurrentByScheduler {
+          for (; null !== workInProgress && !shouldYield; )
             performUnitOfWork(workInProgress);
         }
         function performUnitOfWork(unitOfWork) {
@@ -13880,7 +13880,7 @@
           return current2;
         }
         function throwAndUnwindWorkLoop(root2, unitOfWork, thrownValue, suspendedReason) {
-          resetContextDependencies();
+          resetContextDependencies;
           resetHooksOnUnwind(unitOfWork);
           thenableState$1 = null;
           thenableIndexCounter$1 = 0;
@@ -13983,10 +13983,10 @@
         function commitRoot(root2, finishedWork, lanes, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, spawnedLane, updatedLanes, suspendedRetryLanes, exitStatus, suspendedState, suspendedCommitReason, completedRenderStartTime, completedRenderEndTime) {
           root2.cancelPendingCommit = null;
           do
-            flushPendingEffects();
+            flushPendingEffects;
           while (pendingEffectsStatus !== NO_PENDING_EFFECTS);
-          ReactStrictModeWarnings.flushLegacyContextWarning();
-          ReactStrictModeWarnings.flushPendingUnsafeLifecycleWarnings();
+          ReactStrictModeWarnings.flushLegacyContextWarning;
+          ReactStrictModeWarnings.flushPendingUnsafeLifecycleWarnings;
           if ((executionContext & (RenderContext | CommitContext)) !== NoContext)
             throw Error("Should not already be working.");
           setCurrentTrackFromLanes(lanes);
@@ -14037,14 +14037,14 @@
             pendingSuspendedCommitReason = suspendedCommitReason;
             pendingDelayedCommitReason = IMMEDIATE_COMMIT;
             pendingSuspendedViewTransitionReason = null;
-            0 !== finishedWork.actualDuration || 0 !== (finishedWork.subtreeFlags & 10256) || 0 !== (finishedWork.flags & 10256) ? (root2.callbackNode = null, root2.callbackPriority = 0, scheduleCallback$1(NormalPriority$1, function() {
+            0 !== finishedWork.actualDuration || 0 !== (finishedWork.subtreeFlags & 10256) || 0 !== (finishedWork.flags & 10256) ? (root2.callbackNode = null, root2.callbackPriority = 0, scheduleCallback$1(NormalPriority$1, function {
               schedulerEvent = window.event;
               pendingDelayedCommitReason === IMMEDIATE_COMMIT && (pendingDelayedCommitReason = DELAYED_PASSIVE_COMMIT);
-              flushPassiveEffects();
+              flushPassiveEffects;
               return null;
             })) : (root2.callbackNode = null, root2.callbackPriority = 0);
             commitErrors = null;
-            commitStartTime = now();
+            commitStartTime = now;
             null !== suspendedCommitReason && logSuspendedCommitPhase(
               completedRenderEndTime,
               commitStartTime,
@@ -14066,12 +14066,12 @@
               }
             }
             pendingEffectsStatus = PENDING_MUTATION_PHASE;
-            flushMutationEffects();
-            flushLayoutEffects();
-            flushSpawnedWork();
+            flushMutationEffects;
+            flushLayoutEffects;
+            flushSpawnedWork;
           }
         }
-        function flushMutationEffects() {
+        function flushMutationEffects {
           if (pendingEffectsStatus === PENDING_MUTATION_PHASE) {
             pendingEffectsStatus = NO_PENDING_EFFECTS;
             var root2 = pendingEffectsRoot, finishedWork = pendingFinishedWork, lanes = pendingEffectsLanes, rootMutationHasEffect = 0 !== (finishedWork.flags & 13878);
@@ -14085,7 +14085,7 @@
               try {
                 inProgressLanes = lanes;
                 inProgressRoot = root2;
-                resetComponentEffectTimers();
+                resetComponentEffectTimers;
                 commitMutationEffectsOnFiber(finishedWork, root2);
                 inProgressRoot = inProgressLanes = null;
                 lanes = selectionInformation;
@@ -14105,7 +14105,7 @@
                     else {
                       var doc = priorFocusedElem.ownerDocument || document, win = doc && doc.defaultView || window;
                       if (win.getSelection) {
-                        var selection = win.getSelection(), length = priorFocusedElem.textContent.length, start$jscomp$0 = Math.min(
+                        var selection = win.getSelection, length = priorFocusedElem.textContent.length, start$jscomp$0 = Math.min(
                           priorSelectionRange.start,
                           length
                         ), end$jscomp$0 = void 0 === priorSelectionRange.end ? start$jscomp$0 : Math.min(priorSelectionRange.end, length);
@@ -14118,9 +14118,9 @@
                           end$jscomp$0
                         );
                         if (startMarker && endMarker && (1 !== selection.rangeCount || selection.anchorNode !== startMarker.node || selection.anchorOffset !== startMarker.offset || selection.focusNode !== endMarker.node || selection.focusOffset !== endMarker.offset)) {
-                          var range = doc.createRange();
+                          var range = doc.createRange;
                           range.setStart(startMarker.node, startMarker.offset);
-                          selection.removeAllRanges();
+                          selection.removeAllRanges;
                           start$jscomp$0 > end$jscomp$0 ? (selection.addRange(range), selection.extend(endMarker.node, endMarker.offset)) : (range.setEnd(endMarker.node, endMarker.offset), selection.addRange(range));
                         }
                       }
@@ -14133,7 +14133,7 @@
                       left: selection.scrollLeft,
                       top: selection.scrollTop
                     });
-                  "function" === typeof priorFocusedElem.focus && priorFocusedElem.focus();
+                  "function" === typeof priorFocusedElem.focus && priorFocusedElem.focus;
                   for (priorFocusedElem = 0; priorFocusedElem < doc.length; priorFocusedElem++) {
                     var info = doc[priorFocusedElem];
                     info.element.scrollLeft = info.left;
@@ -14150,12 +14150,12 @@
             pendingEffectsStatus = PENDING_LAYOUT_PHASE;
           }
         }
-        function flushLayoutEffects() {
+        function flushLayoutEffects {
           if (pendingEffectsStatus === PENDING_LAYOUT_PHASE) {
             pendingEffectsStatus = NO_PENDING_EFFECTS;
             var suspendedViewTransitionReason = pendingSuspendedViewTransitionReason;
             if (null !== suspendedViewTransitionReason) {
-              commitStartTime = now();
+              commitStartTime = now;
               var startTime = commitEndTime, endTime = commitStartTime;
               !supportsUserTiming || endTime <= startTime || (animatingTask ? animatingTask.run(
                 console.timeStamp.bind(
@@ -14188,7 +14188,7 @@
               var _prevExecutionContext = executionContext;
               executionContext |= CommitContext;
               try {
-                inProgressLanes = endTime, inProgressRoot = suspendedViewTransitionReason, resetComponentEffectTimers(), commitLayoutEffectOnFiber(
+                inProgressLanes = endTime, inProgressRoot = suspendedViewTransitionReason, resetComponentEffectTimers, commitLayoutEffectOnFiber(
                   suspendedViewTransitionReason,
                   startTime.alternate,
                   startTime
@@ -14199,7 +14199,7 @@
             }
             suspendedViewTransitionReason = pendingEffectsRenderEndTime;
             startTime = pendingSuspendedCommitReason;
-            commitEndTime = now();
+            commitEndTime = now;
             suspendedViewTransitionReason = null === startTime ? suspendedViewTransitionReason : commitStartTime;
             startTime = commitEndTime;
             endTime = pendingDelayedCommitReason === ABORTED_VIEW_TRANSITION_COMMIT;
@@ -14231,11 +14231,11 @@
             pendingEffectsStatus = PENDING_AFTER_MUTATION_PHASE;
           }
         }
-        function flushSpawnedWork() {
+        function flushSpawnedWork {
           if (pendingEffectsStatus === PENDING_SPAWNED_WORK || pendingEffectsStatus === PENDING_AFTER_MUTATION_PHASE) {
             if (pendingEffectsStatus === PENDING_SPAWNED_WORK) {
               var startViewTransitionStartTime = commitEndTime;
-              commitEndTime = now();
+              commitEndTime = now;
               var endTime = commitEndTime, abortedViewTransition = pendingDelayedCommitReason === ABORTED_VIEW_TRANSITION_COMMIT;
               !supportsUserTiming || endTime <= startViewTransitionStartTime || (animatingTask ? animatingTask.run(
                 console.timeStamp.bind(
@@ -14258,7 +14258,7 @@
               pendingDelayedCommitReason !== ABORTED_VIEW_TRANSITION_COMMIT && (pendingDelayedCommitReason = ANIMATION_STARTED_COMMIT);
             }
             pendingEffectsStatus = NO_PENDING_EFFECTS;
-            requestPaint();
+            requestPaint;
             startViewTransitionStartTime = pendingEffectsRoot;
             var finishedWork = pendingFinishedWork;
             endTime = pendingEffectsLanes;
@@ -14304,8 +14304,8 @@
                   err
                 ));
               }
-            isDevToolsPresent && startViewTransitionStartTime.memoizedUpdaters.clear();
-            onCommitRoot();
+            isDevToolsPresent && startViewTransitionStartTime.memoizedUpdaters.clear;
+            onCommitRoot;
             if (null !== abortedViewTransition) {
               didError = ReactSharedInternals.T;
               schedulerPriority = ReactDOMSharedInternals.p;
@@ -14326,7 +14326,7 @@
                 ReactSharedInternals.T = didError, ReactDOMSharedInternals.p = schedulerPriority;
               }
             }
-            0 !== (pendingEffectsLanes & 3) && flushPendingEffects();
+            0 !== (pendingEffectsLanes & 3) && flushPendingEffects;
             ensureRootIsScheduled(startViewTransitionStartTime);
             remainingLanes = startViewTransitionStartTime.pendingLanes;
             0 !== (endTime & 261930) && 0 !== (remainingLanes & 42) ? (nestedUpdateScheduled = true, startViewTransitionStartTime === rootWithNestedUpdates ? nestedUpdateCount++ : (nestedUpdateCount = 0, rootWithNestedUpdates = startViewTransitionStartTime)) : nestedUpdateCount = 0;
@@ -14337,7 +14337,7 @@
         function makeErrorInfo(componentStack) {
           componentStack = { componentStack };
           Object.defineProperty(componentStack, "digest", {
-            get: function() {
+            get: function {
               console.error(
                 'You are accessing "digest" from the errorInfo object passed to onRecoverableError. This property is no longer provided as part of errorInfo but can be accessed as a property of the Error instance itself.'
               );
@@ -14348,13 +14348,13 @@
         function releaseRootPooledCache(root2, remainingLanes) {
           0 === (root2.pooledCacheLanes &= remainingLanes) && (remainingLanes = root2.pooledCache, null != remainingLanes && (root2.pooledCache = null, releaseCache(remainingLanes)));
         }
-        function flushPendingEffects() {
-          flushMutationEffects();
-          flushLayoutEffects();
-          flushSpawnedWork();
-          return flushPassiveEffects();
+        function flushPendingEffects {
+          flushMutationEffects;
+          flushLayoutEffects;
+          flushSpawnedWork;
+          return flushPassiveEffects;
         }
-        function flushPassiveEffects() {
+        function flushPassiveEffects {
           if (pendingEffectsStatus !== PENDING_PASSIVE_PHASE) return false;
           var root2 = pendingEffectsRoot, remainingLanes = pendingEffectsRemainingLanes;
           pendingEffectsRemainingLanes = 0;
@@ -14378,7 +14378,7 @@
             didScheduleUpdateDuringPassiveEffects = false;
             var passiveEffectStartTime = 0;
             commitErrors = null;
-            passiveEffectStartTime = now$1();
+            passiveEffectStartTime = now$1;
             if (pendingDelayedCommitReason === ANIMATION_STARTED_COMMIT)
               logAnimatingPhase(
                 commitEndTime,
@@ -14409,11 +14409,11 @@
             startTime = executionContext;
             executionContext |= CommitContext;
             var finishedWork = priority.current;
-            resetComponentEffectTimers();
+            resetComponentEffectTimers;
             commitPassiveUnmountOnFiber(finishedWork);
             var finishedWork$jscomp$0 = priority.current;
             finishedWork = pendingEffectsRenderEndTime;
-            resetComponentEffectTimers();
+            resetComponentEffectTimers;
             commitPassiveMountOnFiber(
               priority,
               finishedWork$jscomp$0,
@@ -14423,7 +14423,7 @@
             );
             commitDoubleInvokeEffectsInDEV(priority);
             executionContext = startTime;
-            var passiveEffectsEndTime = now$1();
+            var passiveEffectsEndTime = now$1;
             finishedWork$jscomp$0 = passiveEffectStartTime;
             finishedWork = workInProgressUpdateTask;
             null !== commitErrors ? logCommitErrored(
@@ -14519,11 +14519,11 @@
         function attachPingListener(root2, wakeable, lanes) {
           var pingCache = root2.pingCache;
           if (null === pingCache) {
-            pingCache = root2.pingCache = new PossiblyWeakMap();
-            var threadIDs = /* @__PURE__ */ new Set();
+            pingCache = root2.pingCache = new PossiblyWeakMap;
+            var threadIDs = /* @__PURE__ */ new Set;
             pingCache.set(wakeable, threadIDs);
           } else
-            threadIDs = pingCache.get(wakeable), void 0 === threadIDs && (threadIDs = /* @__PURE__ */ new Set(), pingCache.set(wakeable, threadIDs));
+            threadIDs = pingCache.get(wakeable), void 0 === threadIDs && (threadIDs = /* @__PURE__ */ new Set, pingCache.set(wakeable, threadIDs));
           threadIDs.has(lanes) || (workInProgressRootDidAttachPingListener = true, threadIDs.add(lanes), pingCache = pingSuspendedRoot.bind(null, root2, wakeable, lanes), isDevToolsPresent && restorePendingUpdaters(root2, lanes), wakeable.then(pingCache, pingCache));
         }
         function pingSuspendedRoot(root2, wakeable, pingedLanes) {
@@ -14531,15 +14531,15 @@
           null !== pingCache && pingCache.delete(wakeable);
           root2.pingedLanes |= root2.suspendedLanes & pingedLanes;
           root2.warmLanes &= ~pingedLanes;
-          0 !== (pingedLanes & 127) ? 0 > blockingUpdateTime && (blockingClampTime = blockingUpdateTime = now(), blockingUpdateTask = createTask("Promise Resolved"), blockingUpdateType = PINGED_UPDATE) : 0 !== (pingedLanes & 4194048) && 0 > transitionUpdateTime && (transitionClampTime = transitionUpdateTime = now(), transitionUpdateTask = createTask("Promise Resolved"), transitionUpdateType = PINGED_UPDATE);
-          isConcurrentActEnvironment() && null === ReactSharedInternals.actQueue && console.error(
-            "A suspended resource finished loading inside a test, but the event was not wrapped in act(...).\n\nWhen testing, code that resolves suspended data should be wrapped into act(...):\n\nact(() => {\n  /* finish loading suspended data */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fwrap-tests-with-act"
+          0 !== (pingedLanes & 127) ? 0 > blockingUpdateTime && (blockingClampTime = blockingUpdateTime = now, blockingUpdateTask = createTask("Promise Resolved"), blockingUpdateType = PINGED_UPDATE) : 0 !== (pingedLanes & 4194048) && 0 > transitionUpdateTime && (transitionClampTime = transitionUpdateTime = now, transitionUpdateTask = createTask("Promise Resolved"), transitionUpdateType = PINGED_UPDATE);
+          isConcurrentActEnvironment && null === ReactSharedInternals.actQueue && console.error(
+            "A suspended resource finished loading inside a test, but the event was not wrapped in act(...).\n\nWhen testing, code that resolves suspended data should be wrapped into act(...):\n\nact( => {\n  /* finish loading suspended data */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fwrap-tests-with-act"
           );
-          workInProgressRoot === root2 && (workInProgressRootRenderLanes & pingedLanes) === pingedLanes && (workInProgressRootExitStatus === RootSuspendedWithDelay || workInProgressRootExitStatus === RootSuspended && (workInProgressRootRenderLanes & 62914560) === workInProgressRootRenderLanes && now$1() - globalMostRecentFallbackTime < FALLBACK_THROTTLE_MS ? (executionContext & RenderContext) === NoContext && prepareFreshStack(root2, 0) : workInProgressRootPingedLanes |= pingedLanes, workInProgressSuspendedRetryLanes === workInProgressRootRenderLanes && (workInProgressSuspendedRetryLanes = 0));
+          workInProgressRoot === root2 && (workInProgressRootRenderLanes & pingedLanes) === pingedLanes && (workInProgressRootExitStatus === RootSuspendedWithDelay || workInProgressRootExitStatus === RootSuspended && (workInProgressRootRenderLanes & 62914560) === workInProgressRootRenderLanes && now$1 - globalMostRecentFallbackTime < FALLBACK_THROTTLE_MS ? (executionContext & RenderContext) === NoContext && prepareFreshStack(root2, 0) : workInProgressRootPingedLanes |= pingedLanes, workInProgressSuspendedRetryLanes === workInProgressRootRenderLanes && (workInProgressSuspendedRetryLanes = 0));
           ensureRootIsScheduled(root2);
         }
         function retryTimedOutBoundary(boundaryFiber, retryLane) {
-          0 === retryLane && (retryLane = claimNextRetryLane());
+          0 === retryLane && (retryLane = claimNextRetryLane);
           boundaryFiber = enqueueConcurrentRenderForLane(boundaryFiber, retryLane);
           null !== boundaryFiber && (markRootUpdated$1(boundaryFiber, retryLane), ensureRootIsScheduled(boundaryFiber));
         }
@@ -14626,7 +14626,7 @@
                 if (didWarnStateUpdateForNotYetMountedComponent.has(tag)) return;
                 didWarnStateUpdateForNotYetMountedComponent.add(tag);
               } else didWarnStateUpdateForNotYetMountedComponent = /* @__PURE__ */ new Set([tag]);
-              runWithFiberInDEV(fiber, function() {
+              runWithFiberInDEV(fiber, function {
                 console.error(
                   "Can't perform a React state update on a component that hasn't mounted yet. This indicates that you have a side-effect in your render function that asynchronously tries to update the component. Move this work to useEffect instead."
                 );
@@ -14644,9 +14644,9 @@
           return null !== actQueue ? (actQueue.push(callback), fakeActCallbackNode$1) : scheduleCallback$3(priorityLevel, callback);
         }
         function warnIfUpdatesNotWrappedWithActDEV(fiber) {
-          isConcurrentActEnvironment() && null === ReactSharedInternals.actQueue && runWithFiberInDEV(fiber, function() {
+          isConcurrentActEnvironment && null === ReactSharedInternals.actQueue && runWithFiberInDEV(fiber, function {
             console.error(
-              "An update to %s inside a test was not wrapped in act(...).\n\nWhen testing, code that causes React state updates should be wrapped into act(...):\n\nact(() => {\n  /* fire events that update state */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fwrap-tests-with-act",
+              "An update to %s inside a test was not wrapped in act(...).\n\nWhen testing, code that causes React state updates should be wrapped into act(...):\n\nact( => {\n  /* fire events that update state */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fwrap-tests-with-act",
               getComponentNameFromFiber(fiber)
             );
           });
@@ -14654,7 +14654,7 @@
         function ensureRootIsScheduled(root2) {
           root2 !== lastScheduledRoot && null === root2.next && (null === lastScheduledRoot ? firstScheduledRoot = lastScheduledRoot = root2 : lastScheduledRoot = lastScheduledRoot.next = root2);
           mightHavePendingSyncWork = true;
-          null !== ReactSharedInternals.actQueue ? didScheduleMicrotask_act || (didScheduleMicrotask_act = true, scheduleImmediateRootScheduleTask()) : didScheduleMicrotask || (didScheduleMicrotask = true, scheduleImmediateRootScheduleTask());
+          null !== ReactSharedInternals.actQueue ? didScheduleMicrotask_act || (didScheduleMicrotask_act = true, scheduleImmediateRootScheduleTask) : didScheduleMicrotask || (didScheduleMicrotask = true, scheduleImmediateRootScheduleTask);
         }
         function flushSyncWorkAcrossRoots_impl(syncTransitionLanes, onlyLegacy) {
           if (!isFlushingWork && mightHavePendingSyncWork) {
@@ -14685,15 +14685,15 @@
             isFlushingWork = false;
           }
         }
-        function processRootScheduleInImmediateTask() {
+        function processRootScheduleInImmediateTask {
           schedulerEvent = window.event;
-          processRootScheduleInMicrotask();
+          processRootScheduleInMicrotask;
         }
-        function processRootScheduleInMicrotask() {
+        function processRootScheduleInMicrotask {
           mightHavePendingSyncWork = didScheduleMicrotask_act = didScheduleMicrotask = false;
           var syncTransitionLanes = 0;
-          0 !== currentEventTransitionLane && shouldAttemptEagerTransition() && (syncTransitionLanes = currentEventTransitionLane);
-          for (var currentTime = now$1(), prev = null, root2 = firstScheduledRoot; null !== root2; ) {
+          0 !== currentEventTransitionLane && shouldAttemptEagerTransition && (syncTransitionLanes = currentEventTransitionLane);
+          for (var currentTime = now$1, prev = null, root2 = firstScheduledRoot; null !== root2; ) {
             var next = root2.next, nextLanes = scheduleTaskForRootDuringMicrotask(root2, currentTime);
             if (0 === nextLanes)
               root2.next = null, null === prev ? firstScheduledRoot = next : prev.next = next, null === next && (lastScheduledRoot = prev);
@@ -14760,7 +14760,7 @@
             return root2.callbackNode = null, root2.callbackPriority = 0, null;
           var originalCallbackNode = root2.callbackNode;
           pendingDelayedCommitReason === IMMEDIATE_COMMIT && (pendingDelayedCommitReason = DELAYED_PASSIVE_COMMIT);
-          if (flushPendingEffects() && root2.callbackNode !== originalCallbackNode)
+          if (flushPendingEffects && root2.callbackNode !== originalCallbackNode)
             return null;
           var workInProgressRootRenderLanes$jscomp$0 = workInProgressRootRenderLanes;
           workInProgressRootRenderLanes$jscomp$0 = getNextLanes(
@@ -14774,11 +14774,11 @@
             workInProgressRootRenderLanes$jscomp$0,
             didTimeout
           );
-          scheduleTaskForRootDuringMicrotask(root2, now$1());
+          scheduleTaskForRootDuringMicrotask(root2, now$1);
           return null != root2.callbackNode && root2.callbackNode === originalCallbackNode ? performWorkOnRootViaSchedulerTask.bind(null, root2) : null;
         }
         function performSyncWorkOnRoot(root2, lanes) {
-          if (flushPendingEffects()) return null;
+          if (flushPendingEffects) return null;
           currentUpdateIsNested = nestedUpdateScheduled;
           nestedUpdateScheduled = false;
           performWorkOnRoot(root2, lanes, true);
@@ -14786,19 +14786,19 @@
         function cancelCallback(callbackNode) {
           callbackNode !== fakeActCallbackNode && null !== callbackNode && cancelCallback$1(callbackNode);
         }
-        function scheduleImmediateRootScheduleTask() {
-          null !== ReactSharedInternals.actQueue && ReactSharedInternals.actQueue.push(function() {
-            processRootScheduleInMicrotask();
+        function scheduleImmediateRootScheduleTask {
+          null !== ReactSharedInternals.actQueue && ReactSharedInternals.actQueue.push(function {
+            processRootScheduleInMicrotask;
             return null;
           });
-          scheduleMicrotask(function() {
+          scheduleMicrotask(function {
             (executionContext & (RenderContext | CommitContext)) !== NoContext ? scheduleCallback$3(
               ImmediatePriority,
               processRootScheduleInImmediateTask
-            ) : processRootScheduleInMicrotask();
+            ) : processRootScheduleInMicrotask;
           });
         }
-        function requestTransitionLane() {
+        function requestTransitionLane {
           if (0 === currentEventTransitionLane) {
             var actionScopeLane = currentEntangledLane;
             0 === actionScopeLane && (actionScopeLane = nextTransitionUpdateLane, nextTransitionUpdateLane <<= 1, 0 === (nextTransitionUpdateLane & 261888) && (nextTransitionUpdateLane = 256));
@@ -14841,7 +14841,7 @@
               listeners: [
                 {
                   instance: null,
-                  listener: function() {
+                  listener: function {
                     if (nativeEvent.defaultPrevented) {
                       if (0 !== currentEventTransitionLane) {
                         var formData = submitter ? createFormDataWithSubmitter(
@@ -14862,7 +14862,7 @@
                         );
                       }
                     } else
-                      "function" === typeof action && (event.preventDefault(), formData = submitter ? createFormDataWithSubmitter(
+                      "function" === typeof action && (event.preventDefault, formData = submitter ? createFormDataWithSubmitter(
                         nativeEventTarget,
                         submitter
                       ) : new FormData(nativeEventTarget), pendingState = {
@@ -14903,7 +14903,7 @@
                 for (var i$jscomp$0 = _dispatchQueue$i.length - 1; 0 <= i$jscomp$0; i$jscomp$0--) {
                   var _dispatchListeners$i = _dispatchQueue$i[i$jscomp$0], instance = _dispatchListeners$i.instance, currentTarget = _dispatchListeners$i.currentTarget;
                   _dispatchListeners$i = _dispatchListeners$i.listener;
-                  if (instance !== previousInstance && event.isPropagationStopped())
+                  if (instance !== previousInstance && event.isPropagationStopped)
                     break a;
                   null !== instance ? runWithFiberInDEV(
                     instance,
@@ -14920,7 +14920,7 @@
                   instance = _dispatchListeners$i.instance;
                   currentTarget = _dispatchListeners$i.currentTarget;
                   _dispatchListeners$i = _dispatchListeners$i.listener;
-                  if (instance !== previousInstance && event.isPropagationStopped())
+                  if (instance !== previousInstance && event.isPropagationStopped)
                     break a;
                   null !== instance ? runWithFiberInDEV(
                     instance,
@@ -14936,17 +14936,17 @@
         }
         function listenToNonDelegatedEvent(domEventName, targetElement) {
           nonDelegatedEvents.has(domEventName) || console.error(
-            'Did not expect a listenToNonDelegatedEvent() call for "%s". This is a bug in React. Please file an issue.',
+            'Did not expect a listenToNonDelegatedEvent call for "%s". This is a bug in React. Please file an issue.',
             domEventName
           );
           var listenerSet = targetElement[internalEventHandlersKey];
-          void 0 === listenerSet && (listenerSet = targetElement[internalEventHandlersKey] = /* @__PURE__ */ new Set());
+          void 0 === listenerSet && (listenerSet = targetElement[internalEventHandlersKey] = /* @__PURE__ */ new Set);
           var listenerSetKey = domEventName + "__bubble";
           listenerSet.has(listenerSetKey) || (addTrappedEventListener(targetElement, domEventName, 2, false), listenerSet.add(listenerSetKey));
         }
         function listenToNativeEvent(domEventName, isCapturePhaseListener, target) {
           nonDelegatedEvents.has(domEventName) && !isCapturePhaseListener && console.error(
-            'Did not expect a listenToNativeEvent() call for "%s" in the bubble phase. This is a bug in React. Please file an issue.',
+            'Did not expect a listenToNativeEvent call for "%s" in the bubble phase. This is a bug in React. Please file an issue.',
             domEventName
           );
           var eventSystemFlags = 0;
@@ -15027,7 +15027,7 @@
               }
               targetInst$jscomp$0 = targetInst$jscomp$0.return;
             }
-          batchedUpdates$1(function() {
+          batchedUpdates$1(function {
             var targetInst = ancestorInst, nativeEventTarget = getEventTarget(nativeEvent), dispatchQueue = [];
             a: {
               var reactName = topLevelEventsToReactNames.get(domEventName);
@@ -15226,7 +15226,7 @@
               }
               a: {
                 reactName = targetInst ? getNodeFromInstance(targetInst) : window;
-                SyntheticEventCtor = reactName.nodeName && reactName.nodeName.toLowerCase();
+                SyntheticEventCtor = reactName.nodeName && reactName.nodeName.toLowerCase;
                 if ("select" === SyntheticEventCtor || "input" === SyntheticEventCtor && "file" === reactName.type)
                   var getTargetInstFunc = getTargetInstForChangeEvent;
                 else if (isTextInputElement(reactName))
@@ -15237,7 +15237,7 @@
                     var handleEventFunc = handleEventsForInputEventPolyfill;
                   }
                 else
-                  SyntheticEventCtor = reactName.nodeName, !SyntheticEventCtor || "input" !== SyntheticEventCtor.toLowerCase() || "checkbox" !== reactName.type && "radio" !== reactName.type ? targetInst && isCustomElement(targetInst.elementType) && (getTargetInstFunc = getTargetInstForChangeEvent) : getTargetInstFunc = getTargetInstForClickEvent;
+                  SyntheticEventCtor = reactName.nodeName, !SyntheticEventCtor || "input" !== SyntheticEventCtor.toLowerCase || "checkbox" !== reactName.type && "radio" !== reactName.type ? targetInst && isCustomElement(targetInst.elementType) && (getTargetInstFunc = getTargetInstForChangeEvent) : getTargetInstFunc = getTargetInstForClickEvent;
                 if (getTargetInstFunc && (getTargetInstFunc = getTargetInstFunc(domEventName, targetInst))) {
                   createAndAccumulateChangeEvent(
                     dispatchQueue,
@@ -15300,7 +15300,7 @@
                 }
               else
                 isComposing ? isFallbackCompositionEnd(domEventName, nativeEvent) && (eventType = "onCompositionEnd") : "keydown" === domEventName && nativeEvent.keyCode === START_KEYCODE && (eventType = "onCompositionStart");
-              eventType && (useFallbackCompositionData && "ko" !== nativeEvent.locale && (isComposing || "onCompositionStart" !== eventType ? "onCompositionEnd" === eventType && isComposing && (fallbackData = getData()) : (root = nativeEventTarget, startText = "value" in root ? root.value : root.textContent, isComposing = true)), handleEventFunc = accumulateTwoPhaseListeners(
+              eventType && (useFallbackCompositionData && "ko" !== nativeEvent.locale && (isComposing || "onCompositionStart" !== eventType ? "onCompositionEnd" === eventType && isComposing && (fallbackData = getData) : (root = nativeEventTarget, startText = "value" in root ? root.value : root.textContent, isComposing = true)), handleEventFunc = accumulateTwoPhaseListeners(
                 targetInst,
                 eventType
               ), 0 < handleEventFunc.length && (eventType = new SyntheticCompositionEvent(
@@ -15517,7 +15517,7 @@
               if ("function" === typeof value) {
                 domElement.setAttribute(
                   key,
-                  "javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')"
+                  "javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit manually, consider using form.requestSubmit instead. If you\\'re trying to use event.stopPropagation in a submit event handler, consider also calling event.preventDefault.')"
                 );
                 break;
               } else
@@ -16361,7 +16361,7 @@
             for (styleName in value$jscomp$0)
               if (value$jscomp$0.hasOwnProperty(styleName)) {
                 var value = value$jscomp$0[styleName];
-                null != value && "boolean" !== typeof value && "" !== value && (0 === styleName.indexOf("--") ? (checkCSSPropertyStringCoercion(value, styleName), clientValue += delimiter + styleName + ":" + ("" + value).trim()) : "number" !== typeof value || 0 === value || unitlessNumbers.has(styleName) ? (checkCSSPropertyStringCoercion(value, styleName), clientValue += delimiter + styleName.replace(uppercasePattern, "-$1").toLowerCase().replace(msPattern$1, "-ms-") + ":" + ("" + value).trim()) : clientValue += delimiter + styleName.replace(uppercasePattern, "-$1").toLowerCase().replace(msPattern$1, "-ms-") + ":" + value + "px", delimiter = ";");
+                null != value && "boolean" !== typeof value && "" !== value && (0 === styleName.indexOf("--") ? (checkCSSPropertyStringCoercion(value, styleName), clientValue += delimiter + styleName + ":" + ("" + value).trim) : "number" !== typeof value || 0 === value || unitlessNumbers.has(styleName) ? (checkCSSPropertyStringCoercion(value, styleName), clientValue += delimiter + styleName.replace(uppercasePattern, "-$1").toLowerCase.replace(msPattern$1, "-ms-") + ":" + ("" + value).trim) : clientValue += delimiter + styleName.replace(uppercasePattern, "-$1").toLowerCase.replace(msPattern$1, "-ms-") + ":" + value + "px", delimiter = ";");
               }
             clientValue = clientValue || null;
             value$jscomp$0 = domElement.getAttribute("style");
@@ -16481,8 +16481,8 @@
           warnForPropDifference(propKey, domElement, value, serverDifferences);
         }
         function diffHydratedProperties(domElement, tag, props, hostContext) {
-          for (var serverDifferences = {}, extraAttributes = /* @__PURE__ */ new Set(), attributes = domElement.attributes, i2 = 0; i2 < attributes.length; i2++)
-            switch (attributes[i2].name.toLowerCase()) {
+          for (var serverDifferences = {}, extraAttributes = /* @__PURE__ */ new Set, attributes = domElement.attributes, i2 = 0; i2 < attributes.length; i2++)
+            switch (attributes[i2].name.toLowerCase) {
               case "value":
                 break;
               case "checked":
@@ -16538,7 +16538,7 @@
                       case "isContentEditable":
                       case "outerText":
                       case "outerHTML":
-                        extraAttributes.delete(propKey.toLowerCase());
+                        extraAttributes.delete(propKey.toLowerCase);
                         console.error(
                           "Assignment to read-only property will result in a no-op: `%s`",
                           propKey
@@ -16559,7 +16559,7 @@
                         );
                         continue;
                       default:
-                        hostContext.context === HostContextNamespaceNone && "svg" !== tag && "math" !== tag ? extraAttributes.delete(propKey.toLowerCase()) : extraAttributes.delete(propKey), attributes = getValueForAttributeOnCustomComponent(
+                        hostContext.context === HostContextNamespaceNone && "svg" !== tag && "math" !== tag ? extraAttributes.delete(propKey.toLowerCase) : extraAttributes.delete(propKey), attributes = getValueForAttributeOnCustomComponent(
                           domElement,
                           propKey,
                           value
@@ -16693,11 +16693,11 @@
                     case "formAction":
                       attributes = domElement.getAttribute(value);
                       if ("function" === typeof propKey) {
-                        extraAttributes.delete(value.toLowerCase());
+                        extraAttributes.delete(value.toLowerCase);
                         "formAction" === value ? (extraAttributes.delete("name"), extraAttributes.delete("formenctype"), extraAttributes.delete("formmethod"), extraAttributes.delete("formtarget")) : (extraAttributes.delete("enctype"), extraAttributes.delete("method"), extraAttributes.delete("target"));
                         continue;
                       } else if (attributes === EXPECTED_FORM_ACTION_URL) {
-                        extraAttributes.delete(value.toLowerCase());
+                        extraAttributes.delete(value.toLowerCase);
                         warnForPropDifference(
                           value,
                           "function",
@@ -16709,7 +16709,7 @@
                       hydrateSanitizedAttribute(
                         domElement,
                         value,
-                        value.toLowerCase(),
+                        value.toLowerCase,
                         propKey,
                         extraAttributes,
                         serverDifferences
@@ -16784,7 +16784,7 @@
                       hydrateBooleanAttribute(
                         domElement,
                         value,
-                        value.toLowerCase(),
+                        value.toLowerCase,
                         propKey,
                         extraAttributes,
                         serverDifferences
@@ -17002,7 +17002,7 @@
                       if (!(2 < value.length) || "o" !== value[0] && "O" !== value[0] || "n" !== value[1] && "N" !== value[1]) {
                         i2 = getAttributeAlias(value);
                         attributes = false;
-                        hostContext.context === HostContextNamespaceNone && "svg" !== tag && "math" !== tag ? extraAttributes.delete(i2.toLowerCase()) : (attributeName = value.toLowerCase(), attributeName = possibleStandardNames.hasOwnProperty(
+                        hostContext.context === HostContextNamespaceNone && "svg" !== tag && "math" !== tag ? extraAttributes.delete(i2.toLowerCase) : (attributeName = value.toLowerCase, attributeName = possibleStandardNames.hasOwnProperty(
                           attributeName
                         ) ? possibleStandardNames[attributeName] || null : null, null !== attributeName && attributeName !== value && (attributes = true, extraAttributes.delete(attributeName)), extraAttributes.delete(i2));
                         a: if (attributeName = domElement, serverDifferences$jscomp$0 = i2, i2 = propKey, isAttributeNameSafe(serverDifferences$jscomp$0))
@@ -17019,7 +17019,7 @@
                               case "symbol":
                                 break a;
                               case "boolean":
-                                if (attributeName = serverDifferences$jscomp$0.toLowerCase().slice(0, 5), "data-" !== attributeName && "aria-" !== attributeName)
+                                if (attributeName = serverDifferences$jscomp$0.toLowerCase.slice(0, 5), "data-" !== attributeName && "aria-" !== attributeName)
                                   break a;
                             }
                             i2 = void 0 === i2 ? void 0 : null;
@@ -17063,7 +17063,7 @@
               return false;
           }
         }
-        function estimateBandwidth() {
+        function estimateBandwidth {
           if ("function" === typeof performance.getEntriesByType) {
             for (var count = 0, bits = 0, resourceEntries = performance.getEntriesByType("resource"), i2 = 0; i2 < resourceEntries.length; i2++) {
               var entry = resourceEntries[i2], transferSize = entry.transferSize, initiatorType = entry.initiatorType, duration = entry.duration;
@@ -17114,7 +17114,7 @@
         function shouldSetTextContent(type, props) {
           return "textarea" === type || "noscript" === type || "string" === typeof props.children || "number" === typeof props.children || "bigint" === typeof props.children || "object" === typeof props.dangerouslySetInnerHTML && null !== props.dangerouslySetInnerHTML && null != props.dangerouslySetInnerHTML.__html;
         }
-        function shouldAttemptEagerTransition() {
+        function shouldAttemptEagerTransition {
           var event = window.event;
           if (event && "popstate" === event.type) {
             if (event === currentPopstateTransitionEvent) return false;
@@ -17124,16 +17124,16 @@
           currentPopstateTransitionEvent = null;
           return false;
         }
-        function resolveEventType() {
+        function resolveEventType {
           var event = window.event;
           return event && event !== schedulerEvent ? event.type : null;
         }
-        function resolveEventTimeStamp() {
+        function resolveEventTimeStamp {
           var event = window.event;
           return event && event !== schedulerEvent ? event.timeStamp : -1.1;
         }
         function handleErrorInNextTick(error) {
-          setTimeout(function() {
+          setTimeout(function {
             throw error;
           });
         }
@@ -17143,13 +17143,13 @@
             case "input":
             case "select":
             case "textarea":
-              newProps.autoFocus && domElement.focus();
+              newProps.autoFocus && domElement.focus;
               break;
             case "img":
               newProps.src ? domElement.src = newProps.src : newProps.srcSet && (domElement.srcset = newProps.srcSet);
           }
         }
-        function commitHydratedInstance() {
+        function commitHydratedInstance {
         }
         function commitUpdate(domElement, type, oldProps, newProps) {
           updateProperties(domElement, type, oldProps, newProps);
@@ -17166,11 +17166,11 @@
             var props = container[internalPropsKey] || null;
             if (null !== props) {
               var fiber = getInstanceFromNode(container);
-              null !== fiber && ("string" === typeof props.children || "number" === typeof props.children ? (container.__reactWarnedAboutChildrenConflict = true, runWithFiberInDEV(fiber, function() {
+              null !== fiber && ("string" === typeof props.children || "number" === typeof props.children ? (container.__reactWarnedAboutChildrenConflict = true, runWithFiberInDEV(fiber, function {
                 console.error(
                   'Cannot use a ref on a React element as a container to `createRoot` or `createPortal` if that element also sets "children" text content using React. It should be a leaf with no children. Otherwise it\'s ambiguous which children should be used.'
                 );
-              })) : null != props.dangerouslySetInnerHTML && (container.__reactWarnedAboutChildrenConflict = true, runWithFiberInDEV(fiber, function() {
+              })) : null != props.dangerouslySetInnerHTML && (container.__reactWarnedAboutChildrenConflict = true, runWithFiberInDEV(fiber, function {
                 console.error(
                   'Cannot use a ref on a React element as a container to `createRoot` or `createPortal` if that element also sets "dangerouslySetInnerHTML" using React. It should be a leaf with no children. Otherwise it\'s ambiguous which children should be used.'
                 );
@@ -17211,7 +17211,7 @@
                 releaseSingletonInstance(node);
                 for (var node$jscomp$0 = node.firstChild; node$jscomp$0; ) {
                   var nextNode$jscomp$0 = node$jscomp$0.nextSibling, nodeName = node$jscomp$0.nodeName;
-                  node$jscomp$0[internalHoistableMarker] || "SCRIPT" === nodeName || "STYLE" === nodeName || "LINK" === nodeName && "stylesheet" === node$jscomp$0.rel.toLowerCase() || node.removeChild(node$jscomp$0);
+                  node$jscomp$0[internalHoistableMarker] || "SCRIPT" === nodeName || "STYLE" === nodeName || "LINK" === nodeName && "stylesheet" === node$jscomp$0.rel.toLowerCase || node.removeChild(node$jscomp$0);
                   node$jscomp$0 = nextNode$jscomp$0;
                 }
               } else
@@ -17251,7 +17251,7 @@
         function unhideInstance(instance, props) {
           props = props[STYLE];
           props = void 0 !== props && null !== props && props.hasOwnProperty("display") ? props.display : null;
-          instance.style.display = null == props || "boolean" === typeof props ? "" : ("" + props).trim();
+          instance.style.display = null == props || "boolean" === typeof props ? "" : ("" + props).trim;
         }
         function unhideTextInstance(textInstance, text) {
           textInstance.nodeValue = text;
@@ -17273,7 +17273,7 @@
               case "STYLE":
                 continue;
               case "LINK":
-                if ("stylesheet" === node.rel.toLowerCase()) continue;
+                if ("stylesheet" === node.rel.toLowerCase) continue;
             }
             container.removeChild(node);
           }
@@ -17281,7 +17281,7 @@
         function canHydrateInstance(instance, type, props, inRootOrSingleton) {
           for (; 1 === instance.nodeType; ) {
             var anyProps = props;
-            if (instance.nodeName.toLowerCase() !== type.toLowerCase()) {
+            if (instance.nodeName.toLowerCase !== type.toLowerCase) {
               if (!inRootOrSingleton && ("INPUT" !== instance.nodeName || "hidden" !== instance.type))
                 break;
             } else if (!inRootOrSingleton)
@@ -17349,10 +17349,10 @@
           if (instance.data === SUSPENSE_QUEUED_START_DATA)
             instance._reactRetry = callback;
           else if (instance.data !== SUSPENSE_PENDING_START_DATA || ownerDocument.readyState !== DOCUMENT_READY_STATE_LOADING)
-            callback();
+            callback;
           else {
-            var listener = function() {
-              callback();
+            var listener = function {
+              callback;
               ownerDocument.removeEventListener("DOMContentLoaded", listener);
             };
             ownerDocument.addEventListener("DOMContentLoaded", listener);
@@ -17375,9 +17375,9 @@
         }
         function describeHydratableInstanceForDevWarnings(instance) {
           if (1 === instance.nodeType) {
-            for (var JSCompiler_temp_const = instance.nodeName.toLowerCase(), serverDifferences = {}, attributes = instance.attributes, i2 = 0; i2 < attributes.length; i2++) {
+            for (var JSCompiler_temp_const = instance.nodeName.toLowerCase, serverDifferences = {}, attributes = instance.attributes, i2 = 0; i2 < attributes.length; i2++) {
               var attr = attributes[i2];
-              serverDifferences[getPropNameFromAttributeName(attr.name)] = "style" === attr.name.toLowerCase() ? getStylesObjectFromElement(instance) : attr.value;
+              serverDifferences[getPropNameFromAttributeName(attr.name)] = "style" === attr.name.toLowerCase ? getStylesObjectFromElement(instance) : attr.value;
             }
             return { type: JSCompiler_temp_const, props: serverDifferences };
           }
@@ -17459,7 +17459,7 @@
         }
         function acquireSingletonInstance(type, props, instance, internalInstanceHandle) {
           if (!instance[internalContainerInstanceKey] && getInstanceFromNode(instance)) {
-            var tagName = instance.tagName.toLowerCase();
+            var tagName = instance.tagName.toLowerCase;
             console.error(
               "You are mounting a new %s component when a previous one has not first unmounted. It is an error to render more than one %s component at a time and attributes and children of these components will likely fail in unpredictable ways. Please only render a single instance of <%s> and if you need to mount a new one, ensure any previous ones have unmounted first.",
               tagName,
@@ -17489,7 +17489,7 @@
           detachDeletedInstance(instance);
         }
         function getHoistableRoot(container) {
-          return "function" === typeof container.getRootNode ? container.getRootNode() : 9 === container.nodeType ? container : container.ownerDocument;
+          return "function" === typeof container.getRootNode ? container.getRootNode : 9 === container.nodeType ? container : container.ownerDocument;
         }
         function preconnectAs(rel, href, crossOrigin) {
           var ownerDocument = globalDocument;
@@ -17594,9 +17594,9 @@
         function preloadStylesheet(ownerDocument, key, preloadProps, state) {
           ownerDocument.querySelector(
             'link[rel="preload"][as="style"][' + key + "]"
-          ) ? state.loading = Loaded : (key = ownerDocument.createElement("link"), state.preload = key, key.addEventListener("load", function() {
+          ) ? state.loading = Loaded : (key = ownerDocument.createElement("link"), state.preload = key, key.addEventListener("load", function {
             return state.loading |= Loaded;
-          }), key.addEventListener("error", function() {
+          }), key.addEventListener("error", function {
             return state.loading |= Errored;
           }), setInitialProperties(key, "link", preloadProps), markNodeAsHoistable(key), ownerDocument.head.appendChild(key));
         }
@@ -17695,11 +17695,11 @@
         }
         function getHydratableHoistableCache(type, keyAttribute, ownerDocument) {
           if (null === tagCaches) {
-            var cache2 = /* @__PURE__ */ new Map();
-            var caches = tagCaches = /* @__PURE__ */ new Map();
+            var cache2 = /* @__PURE__ */ new Map;
+            var caches = tagCaches = /* @__PURE__ */ new Map;
             caches.set(ownerDocument, cache2);
           } else
-            caches = tagCaches, cache2 = caches.get(ownerDocument), cache2 || (cache2 = /* @__PURE__ */ new Map(), caches.set(ownerDocument, cache2));
+            caches = tagCaches, cache2 = caches.get(ownerDocument), cache2 || (cache2 = /* @__PURE__ */ new Map, caches.set(ownerDocument, cache2));
           if (cache2.has(type)) return cache2;
           cache2.set(type, null);
           ownerDocument = ownerDocument.getElementsByTagName(type);
@@ -17827,7 +17827,7 @@
               setInitialProperties(instance, "link", props);
               resource.instance = instance;
             }
-            null === state.stylesheets && (state.stylesheets = /* @__PURE__ */ new Map());
+            null === state.stylesheets && (state.stylesheets = /* @__PURE__ */ new Map);
             state.stylesheets.set(resource, hoistableRoot);
             (hoistableRoot = resource.state.preload) && (resource.state.loading & Settled) === NotLoaded && (state.count++, resource = onUnsuspend.bind(state), hoistableRoot.addEventListener("load", resource), hoistableRoot.addEventListener("error", resource));
           }
@@ -17835,35 +17835,35 @@
         function waitForCommitToBeReady(state, timeoutOffset) {
           state.stylesheets && 0 === state.count && insertSuspendedStylesheets(state, state.stylesheets);
           return 0 < state.count || 0 < state.imgCount ? function(commit) {
-            var stylesheetTimer = setTimeout(function() {
+            var stylesheetTimer = setTimeout(function {
               state.stylesheets && insertSuspendedStylesheets(state, state.stylesheets);
               if (state.unsuspend) {
                 var unsuspend = state.unsuspend;
                 state.unsuspend = null;
-                unsuspend();
+                unsuspend;
               }
             }, SUSPENSEY_STYLESHEET_TIMEOUT + timeoutOffset);
-            0 < state.imgBytes && 0 === estimatedBytesWithinLimit && (estimatedBytesWithinLimit = 125 * estimateBandwidth() * SUSPENSEY_IMAGE_TIME_ESTIMATE);
+            0 < state.imgBytes && 0 === estimatedBytesWithinLimit && (estimatedBytesWithinLimit = 125 * estimateBandwidth * SUSPENSEY_IMAGE_TIME_ESTIMATE);
             var imgTimer = setTimeout(
-              function() {
+              function {
                 state.waitingForImages = false;
                 if (0 === state.count && (state.stylesheets && insertSuspendedStylesheets(state, state.stylesheets), state.unsuspend)) {
                   var unsuspend = state.unsuspend;
                   state.unsuspend = null;
-                  unsuspend();
+                  unsuspend;
                 }
               },
               (state.imgBytes > estimatedBytesWithinLimit ? 50 : SUSPENSEY_IMAGE_TIMEOUT) + timeoutOffset
             );
             state.unsuspend = commit;
-            return function() {
+            return function {
               state.unsuspend = null;
               clearTimeout(stylesheetTimer);
               clearTimeout(imgTimer);
             };
           } : null;
         }
-        function onUnsuspend() {
+        function onUnsuspend {
           this.count--;
           if (0 === this.count && (0 === this.imgCount || !this.waitingForImages)) {
             if (this.stylesheets)
@@ -17871,20 +17871,20 @@
             else if (this.unsuspend) {
               var unsuspend = this.unsuspend;
               this.unsuspend = null;
-              unsuspend();
+              unsuspend;
             }
           }
         }
         function insertSuspendedStylesheets(state, resources) {
           state.stylesheets = null;
-          null !== state.unsuspend && (state.count++, precedencesByRoot = /* @__PURE__ */ new Map(), resources.forEach(insertStylesheetIntoRoot, state), precedencesByRoot = null, onUnsuspend.call(state));
+          null !== state.unsuspend && (state.count++, precedencesByRoot = /* @__PURE__ */ new Map, resources.forEach(insertStylesheetIntoRoot, state), precedencesByRoot = null, onUnsuspend.call(state));
         }
         function insertStylesheetIntoRoot(root2, resource) {
           if (!(resource.state.loading & Inserted)) {
             var precedences = precedencesByRoot.get(root2);
             if (precedences) var last = precedences.get(LAST_PRECEDENCE);
             else {
-              precedences = /* @__PURE__ */ new Map();
+              precedences = /* @__PURE__ */ new Map;
               precedencesByRoot.set(root2, precedences);
               for (var nodes = root2.querySelectorAll(
                 "link[data-precedence],style[data-precedence]"
@@ -17926,12 +17926,12 @@
           this.pooledCache = null;
           this.pooledCacheLanes = 0;
           this.formState = formState;
-          this.incompleteTransitions = /* @__PURE__ */ new Map();
+          this.incompleteTransitions = /* @__PURE__ */ new Map;
           this.passiveEffectDuration = this.effectDuration = -0;
-          this.memoizedUpdaters = /* @__PURE__ */ new Set();
+          this.memoizedUpdaters = /* @__PURE__ */ new Set;
           containerInfo = this.pendingUpdatersLaneMap = [];
-          for (tag = 0; 31 > tag; tag++) containerInfo.push(/* @__PURE__ */ new Set());
-          this._debugRootType = hydrate ? "hydrateRoot()" : "createRoot()";
+          for (tag = 0; 31 > tag; tag++) containerInfo.push(/* @__PURE__ */ new Set);
+          this._debugRootType = hydrate ? "hydrateRoot" : "createRoot";
         }
         function createFiberRoot(containerInfo, tag, hydrate, initialChildren, hydrationCallbacks, isStrictMode, identifierPrefix, formState, onUncaughtError, onCaughtError, onRecoverableError, onDefaultTransitionIndicator) {
           containerInfo = new FiberRootNode(
@@ -17951,7 +17951,7 @@
           isStrictMode = createFiber(3, null, null, tag);
           containerInfo.current = isStrictMode;
           isStrictMode.stateNode = containerInfo;
-          tag = createCache();
+          tag = createCache;
           retainCache(tag);
           containerInfo.pooledCache = tag;
           retainCache(tag);
@@ -17992,7 +17992,7 @@
             callback
           ), container.callback = callback);
           element = enqueueUpdate(rootFiber, container, lane);
-          null !== element && (startUpdateTimerByLane(lane, "root.render()", null), scheduleUpdateOnFiber(element, rootFiber, lane), entangleTransitions(element, rootFiber, lane));
+          null !== element && (startUpdateTimerByLane(lane, "root.render", null), scheduleUpdateOnFiber(element, rootFiber, lane), entangleTransitions(element, rootFiber, lane));
         }
         function markRetryLaneImpl(fiber, retryLane) {
           fiber = fiber.memoizedState;
@@ -18021,7 +18021,7 @@
             markRetryLaneIfNotHydrated(fiber, lane);
           }
         }
-        function getCurrentFiberForDevTools() {
+        function getCurrentFiberForDevTools {
           return current;
         }
         function dispatchDiscreteEvent(domEventName, eventSystemFlags, container, nativeEvent) {
@@ -18062,7 +18062,7 @@
               targetContainer,
               nativeEvent
             ))
-              nativeEvent.stopPropagation();
+              nativeEvent.stopPropagation;
             else if (clearIfContinuousEvent(domEventName, nativeEvent), eventSystemFlags & 4 && -1 < discreteReplayableEvents.indexOf(domEventName)) {
               for (; null !== blockedOn; ) {
                 var fiber = getInstanceFromNode(blockedOn);
@@ -18081,13 +18081,13 @@
                             lanes &= ~lane;
                           }
                           ensureRootIsScheduled(fiber);
-                          (executionContext & (RenderContext | CommitContext)) === NoContext && (workInProgressRootRenderTargetTime = now$1() + RENDER_TIMEOUT_MS, flushSyncWorkAcrossRoots_impl(0, false));
+                          (executionContext & (RenderContext | CommitContext)) === NoContext && (workInProgressRootRenderTargetTime = now$1 + RENDER_TIMEOUT_MS, flushSyncWorkAcrossRoots_impl(0, false));
                         }
                       }
                       break;
                     case 31:
                     case 13:
-                      root2 = enqueueConcurrentRenderForLane(fiber, 2), null !== root2 && scheduleUpdateOnFiber(root2, fiber, 2), flushSyncWork$1(), markRetryLaneIfNotHydrated(fiber, 2);
+                      root2 = enqueueConcurrentRenderForLane(fiber, 2), null !== root2 && scheduleUpdateOnFiber(root2, fiber, 2), flushSyncWork$1, markRetryLaneIfNotHydrated(fiber, 2);
                   }
                 fiber = findInstanceBlockingEvent(nativeEvent);
                 null === fiber && dispatchEventForPluginEventSystem(
@@ -18100,7 +18100,7 @@
                 if (fiber === blockedOn) break;
                 blockedOn = fiber;
               }
-              null !== blockedOn && nativeEvent.stopPropagation();
+              null !== blockedOn && nativeEvent.stopPropagation;
             } else
               dispatchEventForPluginEventSystem(
                 domEventName,
@@ -18217,7 +18217,7 @@
             case "pointerleave":
               return ContinuousEventPriority;
             case "message":
-              switch (getCurrentPriorityLevel()) {
+              switch (getCurrentPriorityLevel) {
                 case ImmediatePriority:
                   return DiscreteEventPriority;
                 case UserBlockingPriority:
@@ -18337,7 +18337,7 @@
               if (targetInst = nearestMounted.tag, 13 === targetInst) {
                 if (targetInst = getSuspenseInstanceFromFiber(nearestMounted), null !== targetInst) {
                   queuedTarget.blockedOn = targetInst;
-                  runWithPriority(queuedTarget.priority, function() {
+                  runWithPriority(queuedTarget.priority, function {
                     attemptHydrationAtCurrentPriority(nearestMounted);
                   });
                   return;
@@ -18345,7 +18345,7 @@
               } else if (31 === targetInst) {
                 if (targetInst = getActivityInstanceFromFiber(nearestMounted), null !== targetInst) {
                   queuedTarget.blockedOn = targetInst;
-                  runWithPriority(queuedTarget.priority, function() {
+                  runWithPriority(queuedTarget.priority, function {
                     attemptHydrationAtCurrentPriority(nearestMounted);
                   });
                   return;
@@ -18379,14 +18379,14 @@
               currentReplayingEvent = null;
             } else
               return targetContainers = getInstanceFromNode(nextBlockedOn), null !== targetContainers && attemptContinuousHydration(targetContainers), queuedEvent.blockedOn = nextBlockedOn, false;
-            targetContainers.shift();
+            targetContainers.shift;
           }
           return true;
         }
         function attemptReplayContinuousQueuedEventInMap(queuedEvent, key, map) {
           attemptReplayContinuousQueuedEvent(queuedEvent) && map.delete(key);
         }
-        function replayUnblockedEvents() {
+        function replayUnblockedEvents {
           hasScheduledReplayAttempt = false;
           null !== queuedFocus && attemptReplayContinuousQueuedEvent(queuedFocus) && (queuedFocus = null);
           null !== queuedDrag && attemptReplayContinuousQueuedEvent(queuedDrag) && (queuedDrag = null);
@@ -18403,7 +18403,7 @@
         function scheduleReplayQueueIfNeeded(formReplayingQueue) {
           lastScheduledReplayQueue !== formReplayingQueue && (lastScheduledReplayQueue = formReplayingQueue, Scheduler3.unstable_scheduleCallback(
             Scheduler3.unstable_NormalPriority,
-            function() {
+            function {
               lastScheduledReplayQueue === formReplayingQueue && (lastScheduledReplayQueue = null);
               for (var i2 = 0; i2 < formReplayingQueue.length; i2 += 3) {
                 var form = formReplayingQueue[i2], submitterOrAction = formReplayingQueue[i2 + 1], formData = formReplayingQueue[i2 + 2];
@@ -18441,7 +18441,7 @@
             queuedTarget.blockedOn === unblocked && (queuedTarget.blockedOn = null);
           }
           for (; 0 < queuedExplicitHydrationTargets.length && (i2 = queuedExplicitHydrationTargets[0], null === i2.blockedOn); )
-            attemptExplicitHydrationTarget(i2), null === i2.blockedOn && queuedExplicitHydrationTargets.shift();
+            attemptExplicitHydrationTarget(i2), null === i2.blockedOn && queuedExplicitHydrationTargets.shift;
           i2 = (unblocked.ownerDocument || unblocked).$$reactFormReplay;
           if (null != i2)
             for (queuedTarget = 0; queuedTarget < i2.length; queuedTarget += 3) {
@@ -18462,10 +18462,10 @@
               }
             }
         }
-        function defaultOnDefaultTransitionIndicator() {
+        function defaultOnDefaultTransitionIndicator {
           function handleNavigate(event) {
             event.canIntercept && "react-transition" === event.info && event.intercept({
-              handler: function() {
+              handler: function {
                 return new Promise(function(resolve) {
                   return pendingResolve = resolve;
                 });
@@ -18474,15 +18474,15 @@
               scroll: "manual"
             });
           }
-          function handleNavigateComplete() {
-            null !== pendingResolve && (pendingResolve(), pendingResolve = null);
+          function handleNavigateComplete {
+            null !== pendingResolve && (pendingResolve, pendingResolve = null);
             isCancelled || setTimeout(startFakeNavigation, 20);
           }
-          function startFakeNavigation() {
+          function startFakeNavigation {
             if (!isCancelled && !navigation.transition) {
               var currentEntry = navigation.currentEntry;
               currentEntry && null != currentEntry.url && navigation.navigate(currentEntry.url, {
-                state: currentEntry.getState(),
+                state: currentEntry.getState,
                 info: "react-transition",
                 history: "replace"
               });
@@ -18494,7 +18494,7 @@
             navigation.addEventListener("navigatesuccess", handleNavigateComplete);
             navigation.addEventListener("navigateerror", handleNavigateComplete);
             setTimeout(startFakeNavigation, 100);
-            return function() {
+            return function {
               isCancelled = true;
               navigation.removeEventListener("navigate", handleNavigate);
               navigation.removeEventListener(
@@ -18505,7 +18505,7 @@
                 "navigateerror",
                 handleNavigateComplete
               );
-              null !== pendingResolve && (pendingResolve(), pendingResolve = null);
+              null !== pendingResolve && (pendingResolve, pendingResolve = null);
             };
           }
         }
@@ -18517,13 +18517,13 @@
         }
         function warnIfReactDOMContainerInDEV(container) {
           container[internalContainerInstanceKey] && (container._reactRootContainer ? console.error(
-            "You are calling ReactDOMClient.createRoot() on a container that was previously passed to ReactDOM.render(). This is not supported."
+            "You are calling ReactDOMClient.createRoot on a container that was previously passed to ReactDOM.render. This is not supported."
           ) : console.error(
-            "You are calling ReactDOMClient.createRoot() on a container that has already been passed to createRoot() before. Instead, call root.render() on the existing root instead if you want to update it."
+            "You are calling ReactDOMClient.createRoot on a container that has already been passed to createRoot before. Instead, call root.render on the existing root instead if you want to update it."
           ));
         }
-        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var Scheduler3 = require_scheduler(), React4 = require_react(), ReactDOM = require_react_dom(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
+        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error);
+        var Scheduler3 = require_scheduler, React4 = require_react, ReactDOM = require_react_dom, assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.element"), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy");
         /* @__PURE__ */ Symbol.for("react.scope");
         var REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity");
         /* @__PURE__ */ Symbol.for("react.legacy_hidden");
@@ -18540,8 +18540,8 @@
         var index$jscomp$0 = -1, contextStackCursor = createCursor(null), contextFiberStackCursor = createCursor(null), rootInstanceStackCursor = createCursor(null), hostTransitionProviderCursor = createCursor(null), disabledDepth = 0, prevLog, prevInfo, prevWarn, prevError, prevGroup, prevGroupCollapsed, prevGroupEnd;
         disabledLog.__reactDisabledLog = true;
         var prefix2, suffix, reentry = false;
-        var componentFrameCache = new ("function" === typeof WeakMap ? WeakMap : Map)();
-        var current = null, isRendering = false, hasOwnProperty = Object.prototype.hasOwnProperty, scheduleCallback$3 = Scheduler3.unstable_scheduleCallback, cancelCallback$1 = Scheduler3.unstable_cancelCallback, shouldYield = Scheduler3.unstable_shouldYield, requestPaint = Scheduler3.unstable_requestPaint, now$1 = Scheduler3.unstable_now, getCurrentPriorityLevel = Scheduler3.unstable_getCurrentPriorityLevel, ImmediatePriority = Scheduler3.unstable_ImmediatePriority, UserBlockingPriority = Scheduler3.unstable_UserBlockingPriority, NormalPriority$1 = Scheduler3.unstable_NormalPriority, LowPriority = Scheduler3.unstable_LowPriority, IdlePriority = Scheduler3.unstable_IdlePriority, log$1 = Scheduler3.log, unstable_setDisableYieldValue = Scheduler3.unstable_setDisableYieldValue, rendererID = null, injectedHook = null, hasLoggedError = false, isDevToolsPresent = "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__, clz32 = Math.clz32 ? Math.clz32 : clz32Fallback, log = Math.log, LN2 = Math.LN2, nextTransitionUpdateLane = 256, nextTransitionDeferredLane = 262144, nextRetryLane = 4194304, DiscreteEventPriority = 2, ContinuousEventPriority = 8, DefaultEventPriority = 32, IdleEventPriority = 268435456, randomKey = Math.random().toString(36).slice(2), internalInstanceKey = "__reactFiber$" + randomKey, internalPropsKey = "__reactProps$" + randomKey, internalContainerInstanceKey = "__reactContainer$" + randomKey, internalEventHandlersKey = "__reactEvents$" + randomKey, internalEventHandlerListenersKey = "__reactListeners$" + randomKey, internalEventHandlesSetKey = "__reactHandles$" + randomKey, internalRootNodeResourcesKey = "__reactResources$" + randomKey, internalHoistableMarker = "__reactMarker$" + randomKey, allNativeEvents = /* @__PURE__ */ new Set(), registrationNameDependencies = {}, possibleRegistrationNames = {}, hasReadOnlyValue = {
+        var componentFrameCache = new ("function" === typeof WeakMap ? WeakMap : Map);
+        var current = null, isRendering = false, hasOwnProperty = Object.prototype.hasOwnProperty, scheduleCallback$3 = Scheduler3.unstable_scheduleCallback, cancelCallback$1 = Scheduler3.unstable_cancelCallback, shouldYield = Scheduler3.unstable_shouldYield, requestPaint = Scheduler3.unstable_requestPaint, now$1 = Scheduler3.unstable_now, getCurrentPriorityLevel = Scheduler3.unstable_getCurrentPriorityLevel, ImmediatePriority = Scheduler3.unstable_ImmediatePriority, UserBlockingPriority = Scheduler3.unstable_UserBlockingPriority, NormalPriority$1 = Scheduler3.unstable_NormalPriority, LowPriority = Scheduler3.unstable_LowPriority, IdlePriority = Scheduler3.unstable_IdlePriority, log$1 = Scheduler3.log, unstable_setDisableYieldValue = Scheduler3.unstable_setDisableYieldValue, rendererID = null, injectedHook = null, hasLoggedError = false, isDevToolsPresent = "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__, clz32 = Math.clz32 ? Math.clz32 : clz32Fallback, log = Math.log, LN2 = Math.LN2, nextTransitionUpdateLane = 256, nextTransitionDeferredLane = 262144, nextRetryLane = 4194304, DiscreteEventPriority = 2, ContinuousEventPriority = 8, DefaultEventPriority = 32, IdleEventPriority = 268435456, randomKey = Math.random.toString(36).slice(2), internalInstanceKey = "__reactFiber$" + randomKey, internalPropsKey = "__reactProps$" + randomKey, internalContainerInstanceKey = "__reactContainer$" + randomKey, internalEventHandlersKey = "__reactEvents$" + randomKey, internalEventHandlerListenersKey = "__reactListeners$" + randomKey, internalEventHandlesSetKey = "__reactHandles$" + randomKey, internalRootNodeResourcesKey = "__reactResources$" + randomKey, internalHoistableMarker = "__reactMarker$" + randomKey, allNativeEvents = /* @__PURE__ */ new Set, registrationNameDependencies = {}, possibleRegistrationNames = {}, hasReadOnlyValue = {
           button: true,
           checkbox: true,
           image: true,
@@ -19341,7 +19341,7 @@
           try {
             var options$jscomp$0 = {};
             Object.defineProperty(options$jscomp$0, "passive", {
-              get: function() {
+              get: function {
                 passiveBrowserEventsSupported = true;
               }
             });
@@ -19355,7 +19355,7 @@
           bubbles: 0,
           cancelable: 0,
           timeStamp: function(event) {
-            return event.timeStamp || Date.now();
+            return event.timeStamp || Date.now;
           },
           defaultPrevented: 0,
           isTrusted: 0
@@ -19541,20 +19541,20 @@
           transitionend: makePrefixMap("Transition", "TransitionEnd")
         }, prefixedEventNames = {}, style = {};
         canUseDOM3 && (style = document.createElement("div").style, "AnimationEvent" in window || (delete vendorPrefixes.animationend.animation, delete vendorPrefixes.animationiteration.animation, delete vendorPrefixes.animationstart.animation), "TransitionEvent" in window || delete vendorPrefixes.transitionend.transition);
-        var ANIMATION_END = getVendorPrefixedEventName("animationend"), ANIMATION_ITERATION = getVendorPrefixedEventName("animationiteration"), ANIMATION_START = getVendorPrefixedEventName("animationstart"), TRANSITION_RUN = getVendorPrefixedEventName("transitionrun"), TRANSITION_START = getVendorPrefixedEventName("transitionstart"), TRANSITION_CANCEL = getVendorPrefixedEventName("transitioncancel"), TRANSITION_END = getVendorPrefixedEventName("transitionend"), topLevelEventsToReactNames = /* @__PURE__ */ new Map(), simpleEventPluginEvents = "abort auxClick beforeToggle cancel canPlay canPlayThrough click close contextMenu copy cut drag dragEnd dragEnter dragExit dragLeave dragOver dragStart drop durationChange emptied encrypted ended error gotPointerCapture input invalid keyDown keyPress keyUp load loadedData loadedMetadata loadStart lostPointerCapture mouseDown mouseMove mouseOut mouseOver mouseUp paste pause play playing pointerCancel pointerDown pointerMove pointerOut pointerOver pointerUp progress rateChange reset resize seeked seeking stalled submit suspend timeUpdate touchCancel touchEnd touchStart volumeChange scroll toggle touchMove waiting wheel".split(
+        var ANIMATION_END = getVendorPrefixedEventName("animationend"), ANIMATION_ITERATION = getVendorPrefixedEventName("animationiteration"), ANIMATION_START = getVendorPrefixedEventName("animationstart"), TRANSITION_RUN = getVendorPrefixedEventName("transitionrun"), TRANSITION_START = getVendorPrefixedEventName("transitionstart"), TRANSITION_CANCEL = getVendorPrefixedEventName("transitioncancel"), TRANSITION_END = getVendorPrefixedEventName("transitionend"), topLevelEventsToReactNames = /* @__PURE__ */ new Map, simpleEventPluginEvents = "abort auxClick beforeToggle cancel canPlay canPlayThrough click close contextMenu copy cut drag dragEnd dragEnter dragExit dragLeave dragOver dragStart drop durationChange emptied encrypted ended error gotPointerCapture input invalid keyDown keyPress keyUp load loadedData loadedMetadata loadStart lostPointerCapture mouseDown mouseMove mouseOut mouseOver mouseUp paste pause play playing pointerCancel pointerDown pointerMove pointerOut pointerOver pointerUp progress rateChange reset resize seeked seeking stalled submit suspend timeUpdate touchCancel touchEnd touchStart volumeChange scroll toggle touchMove waiting wheel".split(
           " "
         );
         simpleEventPluginEvents.push("scrollEnd");
         var lastResetTime = 0;
         if ("object" === typeof performance && "function" === typeof performance.now) {
           var localPerformance = performance;
-          var getCurrentTime = function() {
-            return localPerformance.now();
+          var getCurrentTime = function {
+            return localPerformance.now;
           };
         } else {
           var localDate = Date;
-          getCurrentTime = function() {
-            return localDate.now();
+          getCurrentTime = function {
+            return localDate.now;
           };
         }
         var reportGlobalError = "function" === typeof reportError ? reportError : function(error) {
@@ -19591,22 +19591,22 @@
         } catch (e$3) {
           hasBadMapPolyfill = true;
         }
-        var CapturedStacks = /* @__PURE__ */ new WeakMap(), forkStack = [], forkStackIndex = 0, treeForkProvider = null, treeForkCount = 0, idStack = [], idStackIndex = 0, treeContextProvider = null, treeContextId = 1, treeContextOverflow = "", hydrationParentFiber = null, nextHydratableInstance = null, isHydrating = false, didSuspendOrErrorDEV = false, hydrationDiffRootDEV = null, hydrationErrors = null, rootOrSingletonContext = false, HydrationMismatchException = Error(
+        var CapturedStacks = /* @__PURE__ */ new WeakMap, forkStack = [], forkStackIndex = 0, treeForkProvider = null, treeForkCount = 0, idStack = [], idStackIndex = 0, treeContextProvider = null, treeContextId = 1, treeContextOverflow = "", hydrationParentFiber = null, nextHydratableInstance = null, isHydrating = false, didSuspendOrErrorDEV = false, hydrationDiffRootDEV = null, hydrationErrors = null, rootOrSingletonContext = false, HydrationMismatchException = Error(
           "Hydration Mismatch Exception: This is not a real error, and should not leak into userspace. If you're seeing this, it's likely a bug in React."
         ), valueCursor = createCursor(null);
         var rendererCursorDEV = createCursor(null);
         var rendererSigil = {};
-        var currentlyRenderingFiber$1 = null, lastContextDependency = null, isDisallowedContextReadInDEV = false, AbortControllerLocal = "undefined" !== typeof AbortController ? AbortController : function() {
+        var currentlyRenderingFiber$1 = null, lastContextDependency = null, isDisallowedContextReadInDEV = false, AbortControllerLocal = "undefined" !== typeof AbortController ? AbortController : function {
           var listeners = [], signal = this.signal = {
             aborted: false,
             addEventListener: function(type, listener) {
               listeners.push(listener);
             }
           };
-          this.abort = function() {
+          this.abort = function {
             signal.aborted = true;
             listeners.forEach(function(listener) {
-              return listener();
+              return listener;
             });
           };
         }, scheduleCallback$2 = Scheduler3.unstable_scheduleCallback, NormalPriority = Scheduler3.unstable_NormalPriority, CacheContext = {
@@ -19618,15 +19618,15 @@
           _threadCount: 0,
           _currentRenderer: null,
           _currentRenderer2: null
-        }, now = Scheduler3.unstable_now, createTask = console.createTask ? console.createTask : function() {
+        }, now = Scheduler3.unstable_now, createTask = console.createTask ? console.createTask : function {
           return null;
         }, SPAWNED_UPDATE = 1, PINGED_UPDATE = 2, renderStartTime = -0, commitStartTime = -0, commitEndTime = -0, commitErrors = null, profilerStartTime = -1.1, profilerEffectDuration = -0, componentEffectDuration = -0, componentEffectStartTime = -1.1, componentEffectEndTime = -1.1, componentEffectErrors = null, componentEffectSpawnedUpdate = false, blockingClampTime = -0, blockingUpdateTime = -1.1, blockingUpdateTask = null, blockingUpdateType = 0, blockingUpdateMethodName = null, blockingUpdateComponentName = null, blockingEventTime = -1.1, blockingEventType = null, blockingEventRepeatTime = -1.1, blockingSuspendedTime = -1.1, transitionClampTime = -0, transitionStartTime = -1.1, transitionUpdateTime = -1.1, transitionUpdateType = 0, transitionUpdateTask = null, transitionUpdateMethodName = null, transitionUpdateComponentName = null, transitionEventTime = -1.1, transitionEventType = null, transitionEventRepeatTime = -1.1, transitionSuspendedTime = -1.1, retryClampTime = -0, idleClampTime = -0, animatingLanes = 0, animatingTask = null, yieldReason = 0, yieldStartTime = -1.1, currentUpdateIsNested = false, nestedUpdateScheduled = false, currentEntangledListeners = null, currentEntangledPendingCount = 0, currentEntangledLane = 0, currentEntangledActionThenable = null, prevOnStartTransitionFinish = ReactSharedInternals.S;
         ReactSharedInternals.S = function(transition, returnValue) {
-          globalMostRecentTransitionTime = now$1();
+          globalMostRecentTransitionTime = now$1;
           if ("object" === typeof returnValue && null !== returnValue && "function" === typeof returnValue.then) {
             if (0 > transitionStartTime && 0 > transitionUpdateTime) {
-              transitionStartTime = now();
-              var newEventTime = resolveEventTimeStamp(), newEventType = resolveEventType();
+              transitionStartTime = now;
+              var newEventTime = resolveEventTimeStamp, newEventType = resolveEventType;
               if (newEventTime !== transitionEventRepeatTime || newEventType !== transitionEventType)
                 transitionEventRepeatTime = -1.1;
               transitionEventTime = newEventTime;
@@ -19637,43 +19637,43 @@
           null !== prevOnStartTransitionFinish && prevOnStartTransitionFinish(transition, returnValue);
         };
         var resumedCache = createCursor(null), ReactStrictModeWarnings = {
-          recordUnsafeLifecycleWarnings: function() {
+          recordUnsafeLifecycleWarnings: function {
           },
-          flushPendingUnsafeLifecycleWarnings: function() {
+          flushPendingUnsafeLifecycleWarnings: function {
           },
-          recordLegacyContextWarning: function() {
+          recordLegacyContextWarning: function {
           },
-          flushLegacyContextWarning: function() {
+          flushLegacyContextWarning: function {
           },
-          discardPendingWarnings: function() {
+          discardPendingWarnings: function {
           }
-        }, pendingComponentWillMountWarnings = [], pendingUNSAFE_ComponentWillMountWarnings = [], pendingComponentWillReceivePropsWarnings = [], pendingUNSAFE_ComponentWillReceivePropsWarnings = [], pendingComponentWillUpdateWarnings = [], pendingUNSAFE_ComponentWillUpdateWarnings = [], didWarnAboutUnsafeLifecycles = /* @__PURE__ */ new Set();
+        }, pendingComponentWillMountWarnings = [], pendingUNSAFE_ComponentWillMountWarnings = [], pendingComponentWillReceivePropsWarnings = [], pendingUNSAFE_ComponentWillReceivePropsWarnings = [], pendingComponentWillUpdateWarnings = [], pendingUNSAFE_ComponentWillUpdateWarnings = [], didWarnAboutUnsafeLifecycles = /* @__PURE__ */ new Set;
         ReactStrictModeWarnings.recordUnsafeLifecycleWarnings = function(fiber, instance) {
           didWarnAboutUnsafeLifecycles.has(fiber.type) || ("function" === typeof instance.componentWillMount && true !== instance.componentWillMount.__suppressDeprecationWarning && pendingComponentWillMountWarnings.push(fiber), fiber.mode & StrictLegacyMode && "function" === typeof instance.UNSAFE_componentWillMount && pendingUNSAFE_ComponentWillMountWarnings.push(fiber), "function" === typeof instance.componentWillReceiveProps && true !== instance.componentWillReceiveProps.__suppressDeprecationWarning && pendingComponentWillReceivePropsWarnings.push(fiber), fiber.mode & StrictLegacyMode && "function" === typeof instance.UNSAFE_componentWillReceiveProps && pendingUNSAFE_ComponentWillReceivePropsWarnings.push(fiber), "function" === typeof instance.componentWillUpdate && true !== instance.componentWillUpdate.__suppressDeprecationWarning && pendingComponentWillUpdateWarnings.push(fiber), fiber.mode & StrictLegacyMode && "function" === typeof instance.UNSAFE_componentWillUpdate && pendingUNSAFE_ComponentWillUpdateWarnings.push(fiber));
         };
-        ReactStrictModeWarnings.flushPendingUnsafeLifecycleWarnings = function() {
-          var componentWillMountUniqueNames = /* @__PURE__ */ new Set();
+        ReactStrictModeWarnings.flushPendingUnsafeLifecycleWarnings = function {
+          var componentWillMountUniqueNames = /* @__PURE__ */ new Set;
           0 < pendingComponentWillMountWarnings.length && (pendingComponentWillMountWarnings.forEach(function(fiber) {
             componentWillMountUniqueNames.add(
               getComponentNameFromFiber(fiber) || "Component"
             );
             didWarnAboutUnsafeLifecycles.add(fiber.type);
           }), pendingComponentWillMountWarnings = []);
-          var UNSAFE_componentWillMountUniqueNames = /* @__PURE__ */ new Set();
+          var UNSAFE_componentWillMountUniqueNames = /* @__PURE__ */ new Set;
           0 < pendingUNSAFE_ComponentWillMountWarnings.length && (pendingUNSAFE_ComponentWillMountWarnings.forEach(function(fiber) {
             UNSAFE_componentWillMountUniqueNames.add(
               getComponentNameFromFiber(fiber) || "Component"
             );
             didWarnAboutUnsafeLifecycles.add(fiber.type);
           }), pendingUNSAFE_ComponentWillMountWarnings = []);
-          var componentWillReceivePropsUniqueNames = /* @__PURE__ */ new Set();
+          var componentWillReceivePropsUniqueNames = /* @__PURE__ */ new Set;
           0 < pendingComponentWillReceivePropsWarnings.length && (pendingComponentWillReceivePropsWarnings.forEach(function(fiber) {
             componentWillReceivePropsUniqueNames.add(
               getComponentNameFromFiber(fiber) || "Component"
             );
             didWarnAboutUnsafeLifecycles.add(fiber.type);
           }), pendingComponentWillReceivePropsWarnings = []);
-          var UNSAFE_componentWillReceivePropsUniqueNames = /* @__PURE__ */ new Set();
+          var UNSAFE_componentWillReceivePropsUniqueNames = /* @__PURE__ */ new Set;
           0 < pendingUNSAFE_ComponentWillReceivePropsWarnings.length && (pendingUNSAFE_ComponentWillReceivePropsWarnings.forEach(
             function(fiber) {
               UNSAFE_componentWillReceivePropsUniqueNames.add(
@@ -19682,14 +19682,14 @@
               didWarnAboutUnsafeLifecycles.add(fiber.type);
             }
           ), pendingUNSAFE_ComponentWillReceivePropsWarnings = []);
-          var componentWillUpdateUniqueNames = /* @__PURE__ */ new Set();
+          var componentWillUpdateUniqueNames = /* @__PURE__ */ new Set;
           0 < pendingComponentWillUpdateWarnings.length && (pendingComponentWillUpdateWarnings.forEach(function(fiber) {
             componentWillUpdateUniqueNames.add(
               getComponentNameFromFiber(fiber) || "Component"
             );
             didWarnAboutUnsafeLifecycles.add(fiber.type);
           }), pendingComponentWillUpdateWarnings = []);
-          var UNSAFE_componentWillUpdateUniqueNames = /* @__PURE__ */ new Set();
+          var UNSAFE_componentWillUpdateUniqueNames = /* @__PURE__ */ new Set;
           0 < pendingUNSAFE_ComponentWillUpdateWarnings.length && (pendingUNSAFE_ComponentWillUpdateWarnings.forEach(function(fiber) {
             UNSAFE_componentWillUpdateUniqueNames.add(
               getComponentNameFromFiber(fiber) || "Component"
@@ -19732,7 +19732,7 @@
             sortedNames
           ));
         };
-        var pendingLegacyContextWarning = /* @__PURE__ */ new Map(), didWarnAboutLegacyContext = /* @__PURE__ */ new Set();
+        var pendingLegacyContextWarning = /* @__PURE__ */ new Map, didWarnAboutLegacyContext = /* @__PURE__ */ new Set;
         ReactStrictModeWarnings.recordLegacyContextWarning = function(fiber, instance) {
           var strictRoot = null;
           for (var node = fiber; null !== node; )
@@ -19741,16 +19741,16 @@
             "Expected to find a StrictMode component in a strict mode tree. This error is likely caused by a bug in React. Please file an issue."
           ) : !didWarnAboutLegacyContext.has(fiber.type) && (node = pendingLegacyContextWarning.get(strictRoot), null != fiber.type.contextTypes || null != fiber.type.childContextTypes || null !== instance && "function" === typeof instance.getChildContext) && (void 0 === node && (node = [], pendingLegacyContextWarning.set(strictRoot, node)), node.push(fiber));
         };
-        ReactStrictModeWarnings.flushLegacyContextWarning = function() {
+        ReactStrictModeWarnings.flushLegacyContextWarning = function {
           pendingLegacyContextWarning.forEach(function(fiberArray) {
             if (0 !== fiberArray.length) {
-              var firstFiber = fiberArray[0], uniqueNames = /* @__PURE__ */ new Set();
+              var firstFiber = fiberArray[0], uniqueNames = /* @__PURE__ */ new Set;
               fiberArray.forEach(function(fiber) {
                 uniqueNames.add(getComponentNameFromFiber(fiber) || "Component");
                 didWarnAboutLegacyContext.add(fiber.type);
               });
               var sortedNames = setToSortedString(uniqueNames);
-              runWithFiberInDEV(firstFiber, function() {
+              runWithFiberInDEV(firstFiber, function {
                 console.error(
                   "Legacy context API has been detected within a strict-mode tree.\n\nThe old API will be supported in all 16.x releases, but applications using it should migrate to the new version.\n\nPlease update the following components: %s\n\nLearn more about this warning here: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Flegacy-context",
                   sortedNames
@@ -19759,14 +19759,14 @@
             }
           });
         };
-        ReactStrictModeWarnings.discardPendingWarnings = function() {
+        ReactStrictModeWarnings.discardPendingWarnings = function {
           pendingComponentWillMountWarnings = [];
           pendingUNSAFE_ComponentWillMountWarnings = [];
           pendingComponentWillReceivePropsWarnings = [];
           pendingUNSAFE_ComponentWillReceivePropsWarnings = [];
           pendingComponentWillUpdateWarnings = [];
           pendingUNSAFE_ComponentWillUpdateWarnings = [];
-          pendingLegacyContextWarning = /* @__PURE__ */ new Map();
+          pendingLegacyContextWarning = /* @__PURE__ */ new Map;
         };
         var callComponent = {
           react_stack_bottom_frame: function(Component, props, secondArg) {
@@ -19783,7 +19783,7 @@
             var wasRendering = isRendering;
             isRendering = true;
             try {
-              return instance.render();
+              return instance.render;
             } finally {
               isRendering = wasRendering;
             }
@@ -19791,7 +19791,7 @@
         }, callRenderInDEV = callRender.react_stack_bottom_frame.bind(callRender), callComponentDidMount = {
           react_stack_bottom_frame: function(finishedWork, instance) {
             try {
-              instance.componentDidMount();
+              instance.componentDidMount;
             } catch (error) {
               captureCommitPhaseError(finishedWork, finishedWork.return, error);
             }
@@ -19820,7 +19820,7 @@
         ), callComponentWillUnmount = {
           react_stack_bottom_frame: function(current2, nearestMountedAncestor, instance) {
             try {
-              instance.componentWillUnmount();
+              instance.componentWillUnmount;
             } catch (error) {
               captureCommitPhaseError(current2, nearestMountedAncestor, error);
             }
@@ -19831,13 +19831,13 @@
           react_stack_bottom_frame: function(effect) {
             var create2 = effect.create;
             effect = effect.inst;
-            create2 = create2();
+            create2 = create2;
             return effect.destroy = create2;
           }
         }, callCreateInDEV = callCreate.react_stack_bottom_frame.bind(callCreate), callDestroy = {
           react_stack_bottom_frame: function(current2, nearestMountedAncestor, destroy) {
             try {
-              destroy();
+              destroy;
             } catch (error) {
               captureCommitPhaseError(current2, nearestMountedAncestor, error);
             }
@@ -19854,7 +19854,7 @@
         ), SuspenseActionException = Error(
           "Suspense Exception: This is not a real error! It's an implementation detail of `useActionState` to interrupt the current render. You must either rethrow it immediately, or move the `useActionState` call outside of the `try/catch` block. Capturing without rethrowing will lead to unexpected behavior.\n\nTo handle async errors, wrap your component in an error boundary."
         ), noopSuspenseyCommitThenable = {
-          then: function() {
+          then: function {
             console.error(
               'Internal React error: A listener was unexpectedly attached to a "noop" thenable. This is a bug in React. Please file an issue.'
             );
@@ -19881,7 +19881,7 @@
               currentComponentErrorInfo || componentName2 && (currentComponentErrorInfo = "\n\nCheck the top-level render call using <" + componentName2 + ">.");
               var childOwnerAppendix = "";
               null != child && returnFiber !== child && (componentName2 = null, "number" === typeof child.tag ? componentName2 = getComponentNameFromFiber(child) : "string" === typeof child.name && (componentName2 = child.name), componentName2 && (childOwnerAppendix = " It was passed a child from " + componentName2 + "."));
-              runWithFiberInDEV(workInProgress2, function() {
+              runWithFiberInDEV(workInProgress2, function {
                 console.error(
                   'Each child in a list should have a unique "key" prop.%s%s See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fwarning-keys for more information.',
                   currentComponentErrorInfo,
@@ -19895,10 +19895,10 @@
         var didWarnUpdateInsideUpdate = false;
         var currentlyProcessingQueue = null;
         var didReadFromEntangledAsyncAction = false, currentTreeHiddenStackCursor = createCursor(null), prevEntangledRenderLanesCursor = createCursor(0), suspenseHandlerStackCursor = createCursor(null), shellBoundary = null, SubtreeSuspenseContextMask = 1, ForceSuspenseFallback = 2, suspenseStackCursor = createCursor(0), NoFlags = 0, HasEffect = 1, Insertion = 2, Layout = 4, Passive = 8, didWarnUncachedGetSnapshot;
-        var didWarnAboutMismatchedHooksForComponent = /* @__PURE__ */ new Set();
-        var didWarnAboutUseWrappedInTryCatch = /* @__PURE__ */ new Set();
-        var didWarnAboutAsyncClientComponent = /* @__PURE__ */ new Set();
-        var didWarnAboutUseFormState = /* @__PURE__ */ new Set();
+        var didWarnAboutMismatchedHooksForComponent = /* @__PURE__ */ new Set;
+        var didWarnAboutUseWrappedInTryCatch = /* @__PURE__ */ new Set;
+        var didWarnAboutAsyncClientComponent = /* @__PURE__ */ new Set;
+        var didWarnAboutUseFormState = /* @__PURE__ */ new Set;
         var renderLanes = 0, currentlyRenderingFiber = null, currentHook = null, workInProgressHook = null, didScheduleRenderPhaseUpdate = false, didScheduleRenderPhaseUpdateDuringThisPass = false, shouldDoubleInvokeUserFnsInHooksDEV = false, localIdCounter = 0, thenableIndexCounter = 0, thenableState = null, globalClientIdCounter = 0, RE_RENDER_LIMIT = 25, currentHookNameInDev = null, hookTypesDev = null, hookTypesUpdateIndexDev = -1, ignorePreviousDependencies = false, ContextOnlyDispatcher = {
           readContext,
           use,
@@ -19933,42 +19933,42 @@
           use,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
-            mountHookTypesDev();
+            mountHookTypesDev;
             checkDepsAreArrayDev(deps);
             return mountCallback(callback, deps);
           },
           useContext: function(context) {
             currentHookNameInDev = "useContext";
-            mountHookTypesDev();
+            mountHookTypesDev;
             return readContext(context);
           },
           useEffect: function(create2, deps) {
             currentHookNameInDev = "useEffect";
-            mountHookTypesDev();
+            mountHookTypesDev;
             checkDepsAreArrayDev(deps);
             return mountEffect(create2, deps);
           },
           useImperativeHandle: function(ref, create2, deps) {
             currentHookNameInDev = "useImperativeHandle";
-            mountHookTypesDev();
+            mountHookTypesDev;
             checkDepsAreArrayDev(deps);
             return mountImperativeHandle(ref, create2, deps);
           },
           useInsertionEffect: function(create2, deps) {
             currentHookNameInDev = "useInsertionEffect";
-            mountHookTypesDev();
+            mountHookTypesDev;
             checkDepsAreArrayDev(deps);
             mountEffectImpl(4, Insertion, create2, deps);
           },
           useLayoutEffect: function(create2, deps) {
             currentHookNameInDev = "useLayoutEffect";
-            mountHookTypesDev();
+            mountHookTypesDev;
             checkDepsAreArrayDev(deps);
             return mountLayoutEffect(create2, deps);
           },
           useMemo: function(create2, deps) {
             currentHookNameInDev = "useMemo";
-            mountHookTypesDev();
+            mountHookTypesDev;
             checkDepsAreArrayDev(deps);
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
@@ -19980,7 +19980,7 @@
           },
           useReducer: function(reducer, initialArg, init) {
             currentHookNameInDev = "useReducer";
-            mountHookTypesDev();
+            mountHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
             try {
@@ -19991,12 +19991,12 @@
           },
           useRef: function(initialValue) {
             currentHookNameInDev = "useRef";
-            mountHookTypesDev();
+            mountHookTypesDev;
             return mountRef(initialValue);
           },
           useState: function(initialState) {
             currentHookNameInDev = "useState";
-            mountHookTypesDev();
+            mountHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
             try {
@@ -20005,60 +20005,60 @@
               ReactSharedInternals.H = prevDispatcher;
             }
           },
-          useDebugValue: function() {
+          useDebugValue: function {
             currentHookNameInDev = "useDebugValue";
-            mountHookTypesDev();
+            mountHookTypesDev;
           },
           useDeferredValue: function(value, initialValue) {
             currentHookNameInDev = "useDeferredValue";
-            mountHookTypesDev();
+            mountHookTypesDev;
             return mountDeferredValue(value, initialValue);
           },
-          useTransition: function() {
+          useTransition: function {
             currentHookNameInDev = "useTransition";
-            mountHookTypesDev();
-            return mountTransition();
+            mountHookTypesDev;
+            return mountTransition;
           },
           useSyncExternalStore: function(subscribe, getSnapshot, getServerSnapshot) {
             currentHookNameInDev = "useSyncExternalStore";
-            mountHookTypesDev();
+            mountHookTypesDev;
             return mountSyncExternalStore(
               subscribe,
               getSnapshot,
               getServerSnapshot
             );
           },
-          useId: function() {
+          useId: function {
             currentHookNameInDev = "useId";
-            mountHookTypesDev();
-            return mountId();
+            mountHookTypesDev;
+            return mountId;
           },
           useFormState: function(action, initialState) {
             currentHookNameInDev = "useFormState";
-            mountHookTypesDev();
-            warnOnUseFormStateInDev();
+            mountHookTypesDev;
+            warnOnUseFormStateInDev;
             return mountActionState(action, initialState);
           },
           useActionState: function(action, initialState) {
             currentHookNameInDev = "useActionState";
-            mountHookTypesDev();
+            mountHookTypesDev;
             return mountActionState(action, initialState);
           },
           useOptimistic: function(passthrough) {
             currentHookNameInDev = "useOptimistic";
-            mountHookTypesDev();
+            mountHookTypesDev;
             return mountOptimistic(passthrough);
           },
           useHostTransitionStatus,
           useMemoCache,
-          useCacheRefresh: function() {
+          useCacheRefresh: function {
             currentHookNameInDev = "useCacheRefresh";
-            mountHookTypesDev();
-            return mountRefresh();
+            mountHookTypesDev;
+            return mountRefresh;
           },
           useEffectEvent: function(callback) {
             currentHookNameInDev = "useEffectEvent";
-            mountHookTypesDev();
+            mountHookTypesDev;
             return mountEvent(callback);
           }
         };
@@ -20069,37 +20069,37 @@
           use,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return mountCallback(callback, deps);
           },
           useContext: function(context) {
             currentHookNameInDev = "useContext";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return readContext(context);
           },
           useEffect: function(create2, deps) {
             currentHookNameInDev = "useEffect";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return mountEffect(create2, deps);
           },
           useImperativeHandle: function(ref, create2, deps) {
             currentHookNameInDev = "useImperativeHandle";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return mountImperativeHandle(ref, create2, deps);
           },
           useInsertionEffect: function(create2, deps) {
             currentHookNameInDev = "useInsertionEffect";
-            updateHookTypesDev();
+            updateHookTypesDev;
             mountEffectImpl(4, Insertion, create2, deps);
           },
           useLayoutEffect: function(create2, deps) {
             currentHookNameInDev = "useLayoutEffect";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return mountLayoutEffect(create2, deps);
           },
           useMemo: function(create2, deps) {
             currentHookNameInDev = "useMemo";
-            updateHookTypesDev();
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
             try {
@@ -20110,7 +20110,7 @@
           },
           useReducer: function(reducer, initialArg, init) {
             currentHookNameInDev = "useReducer";
-            updateHookTypesDev();
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
             try {
@@ -20121,12 +20121,12 @@
           },
           useRef: function(initialValue) {
             currentHookNameInDev = "useRef";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return mountRef(initialValue);
           },
           useState: function(initialState) {
             currentHookNameInDev = "useState";
-            updateHookTypesDev();
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
             try {
@@ -20135,60 +20135,60 @@
               ReactSharedInternals.H = prevDispatcher;
             }
           },
-          useDebugValue: function() {
+          useDebugValue: function {
             currentHookNameInDev = "useDebugValue";
-            updateHookTypesDev();
+            updateHookTypesDev;
           },
           useDeferredValue: function(value, initialValue) {
             currentHookNameInDev = "useDeferredValue";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return mountDeferredValue(value, initialValue);
           },
-          useTransition: function() {
+          useTransition: function {
             currentHookNameInDev = "useTransition";
-            updateHookTypesDev();
-            return mountTransition();
+            updateHookTypesDev;
+            return mountTransition;
           },
           useSyncExternalStore: function(subscribe, getSnapshot, getServerSnapshot) {
             currentHookNameInDev = "useSyncExternalStore";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return mountSyncExternalStore(
               subscribe,
               getSnapshot,
               getServerSnapshot
             );
           },
-          useId: function() {
+          useId: function {
             currentHookNameInDev = "useId";
-            updateHookTypesDev();
-            return mountId();
+            updateHookTypesDev;
+            return mountId;
           },
           useActionState: function(action, initialState) {
             currentHookNameInDev = "useActionState";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return mountActionState(action, initialState);
           },
           useFormState: function(action, initialState) {
             currentHookNameInDev = "useFormState";
-            updateHookTypesDev();
-            warnOnUseFormStateInDev();
+            updateHookTypesDev;
+            warnOnUseFormStateInDev;
             return mountActionState(action, initialState);
           },
           useOptimistic: function(passthrough) {
             currentHookNameInDev = "useOptimistic";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return mountOptimistic(passthrough);
           },
           useHostTransitionStatus,
           useMemoCache,
-          useCacheRefresh: function() {
+          useCacheRefresh: function {
             currentHookNameInDev = "useCacheRefresh";
-            updateHookTypesDev();
-            return mountRefresh();
+            updateHookTypesDev;
+            return mountRefresh;
           },
           useEffectEvent: function(callback) {
             currentHookNameInDev = "useEffectEvent";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return mountEvent(callback);
           }
         };
@@ -20199,37 +20199,37 @@
           use,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateCallback(callback, deps);
           },
           useContext: function(context) {
             currentHookNameInDev = "useContext";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return readContext(context);
           },
           useEffect: function(create2, deps) {
             currentHookNameInDev = "useEffect";
-            updateHookTypesDev();
+            updateHookTypesDev;
             updateEffectImpl(2048, Passive, create2, deps);
           },
           useImperativeHandle: function(ref, create2, deps) {
             currentHookNameInDev = "useImperativeHandle";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateImperativeHandle(ref, create2, deps);
           },
           useInsertionEffect: function(create2, deps) {
             currentHookNameInDev = "useInsertionEffect";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateEffectImpl(4, Insertion, create2, deps);
           },
           useLayoutEffect: function(create2, deps) {
             currentHookNameInDev = "useLayoutEffect";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateEffectImpl(4, Layout, create2, deps);
           },
           useMemo: function(create2, deps) {
             currentHookNameInDev = "useMemo";
-            updateHookTypesDev();
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnUpdateInDEV;
             try {
@@ -20240,7 +20240,7 @@
           },
           useReducer: function(reducer, initialArg, init) {
             currentHookNameInDev = "useReducer";
-            updateHookTypesDev();
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnUpdateInDEV;
             try {
@@ -20249,14 +20249,14 @@
               ReactSharedInternals.H = prevDispatcher;
             }
           },
-          useRef: function() {
+          useRef: function {
             currentHookNameInDev = "useRef";
-            updateHookTypesDev();
-            return updateWorkInProgressHook().memoizedState;
+            updateHookTypesDev;
+            return updateWorkInProgressHook.memoizedState;
           },
-          useState: function() {
+          useState: function {
             currentHookNameInDev = "useState";
-            updateHookTypesDev();
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnUpdateInDEV;
             try {
@@ -20265,60 +20265,60 @@
               ReactSharedInternals.H = prevDispatcher;
             }
           },
-          useDebugValue: function() {
+          useDebugValue: function {
             currentHookNameInDev = "useDebugValue";
-            updateHookTypesDev();
+            updateHookTypesDev;
           },
           useDeferredValue: function(value, initialValue) {
             currentHookNameInDev = "useDeferredValue";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateDeferredValue(value, initialValue);
           },
-          useTransition: function() {
+          useTransition: function {
             currentHookNameInDev = "useTransition";
-            updateHookTypesDev();
-            return updateTransition();
+            updateHookTypesDev;
+            return updateTransition;
           },
           useSyncExternalStore: function(subscribe, getSnapshot, getServerSnapshot) {
             currentHookNameInDev = "useSyncExternalStore";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateSyncExternalStore(
               subscribe,
               getSnapshot,
               getServerSnapshot
             );
           },
-          useId: function() {
+          useId: function {
             currentHookNameInDev = "useId";
-            updateHookTypesDev();
-            return updateWorkInProgressHook().memoizedState;
+            updateHookTypesDev;
+            return updateWorkInProgressHook.memoizedState;
           },
           useFormState: function(action) {
             currentHookNameInDev = "useFormState";
-            updateHookTypesDev();
-            warnOnUseFormStateInDev();
+            updateHookTypesDev;
+            warnOnUseFormStateInDev;
             return updateActionState(action);
           },
           useActionState: function(action) {
             currentHookNameInDev = "useActionState";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateActionState(action);
           },
           useOptimistic: function(passthrough, reducer) {
             currentHookNameInDev = "useOptimistic";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateOptimistic(passthrough, reducer);
           },
           useHostTransitionStatus,
           useMemoCache,
-          useCacheRefresh: function() {
+          useCacheRefresh: function {
             currentHookNameInDev = "useCacheRefresh";
-            updateHookTypesDev();
-            return updateWorkInProgressHook().memoizedState;
+            updateHookTypesDev;
+            return updateWorkInProgressHook.memoizedState;
           },
           useEffectEvent: function(callback) {
             currentHookNameInDev = "useEffectEvent";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateEvent(callback);
           }
         };
@@ -20329,37 +20329,37 @@
           use,
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateCallback(callback, deps);
           },
           useContext: function(context) {
             currentHookNameInDev = "useContext";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return readContext(context);
           },
           useEffect: function(create2, deps) {
             currentHookNameInDev = "useEffect";
-            updateHookTypesDev();
+            updateHookTypesDev;
             updateEffectImpl(2048, Passive, create2, deps);
           },
           useImperativeHandle: function(ref, create2, deps) {
             currentHookNameInDev = "useImperativeHandle";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateImperativeHandle(ref, create2, deps);
           },
           useInsertionEffect: function(create2, deps) {
             currentHookNameInDev = "useInsertionEffect";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateEffectImpl(4, Insertion, create2, deps);
           },
           useLayoutEffect: function(create2, deps) {
             currentHookNameInDev = "useLayoutEffect";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateEffectImpl(4, Layout, create2, deps);
           },
           useMemo: function(create2, deps) {
             currentHookNameInDev = "useMemo";
-            updateHookTypesDev();
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnRerenderInDEV;
             try {
@@ -20370,7 +20370,7 @@
           },
           useReducer: function(reducer, initialArg, init) {
             currentHookNameInDev = "useReducer";
-            updateHookTypesDev();
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnRerenderInDEV;
             try {
@@ -20379,14 +20379,14 @@
               ReactSharedInternals.H = prevDispatcher;
             }
           },
-          useRef: function() {
+          useRef: function {
             currentHookNameInDev = "useRef";
-            updateHookTypesDev();
-            return updateWorkInProgressHook().memoizedState;
+            updateHookTypesDev;
+            return updateWorkInProgressHook.memoizedState;
           },
-          useState: function() {
+          useState: function {
             currentHookNameInDev = "useState";
-            updateHookTypesDev();
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnRerenderInDEV;
             try {
@@ -20395,112 +20395,112 @@
               ReactSharedInternals.H = prevDispatcher;
             }
           },
-          useDebugValue: function() {
+          useDebugValue: function {
             currentHookNameInDev = "useDebugValue";
-            updateHookTypesDev();
+            updateHookTypesDev;
           },
           useDeferredValue: function(value, initialValue) {
             currentHookNameInDev = "useDeferredValue";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return rerenderDeferredValue(value, initialValue);
           },
-          useTransition: function() {
+          useTransition: function {
             currentHookNameInDev = "useTransition";
-            updateHookTypesDev();
-            return rerenderTransition();
+            updateHookTypesDev;
+            return rerenderTransition;
           },
           useSyncExternalStore: function(subscribe, getSnapshot, getServerSnapshot) {
             currentHookNameInDev = "useSyncExternalStore";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateSyncExternalStore(
               subscribe,
               getSnapshot,
               getServerSnapshot
             );
           },
-          useId: function() {
+          useId: function {
             currentHookNameInDev = "useId";
-            updateHookTypesDev();
-            return updateWorkInProgressHook().memoizedState;
+            updateHookTypesDev;
+            return updateWorkInProgressHook.memoizedState;
           },
           useFormState: function(action) {
             currentHookNameInDev = "useFormState";
-            updateHookTypesDev();
-            warnOnUseFormStateInDev();
+            updateHookTypesDev;
+            warnOnUseFormStateInDev;
             return rerenderActionState(action);
           },
           useActionState: function(action) {
             currentHookNameInDev = "useActionState";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return rerenderActionState(action);
           },
           useOptimistic: function(passthrough, reducer) {
             currentHookNameInDev = "useOptimistic";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return rerenderOptimistic(passthrough, reducer);
           },
           useHostTransitionStatus,
           useMemoCache,
-          useCacheRefresh: function() {
+          useCacheRefresh: function {
             currentHookNameInDev = "useCacheRefresh";
-            updateHookTypesDev();
-            return updateWorkInProgressHook().memoizedState;
+            updateHookTypesDev;
+            return updateWorkInProgressHook.memoizedState;
           },
           useEffectEvent: function(callback) {
             currentHookNameInDev = "useEffectEvent";
-            updateHookTypesDev();
+            updateHookTypesDev;
             return updateEvent(callback);
           }
         };
         InvalidNestedHooksDispatcherOnMountInDEV = {
           readContext: function(context) {
-            warnInvalidContextAccess();
+            warnInvalidContextAccess;
             return readContext(context);
           },
           use: function(usable) {
-            warnInvalidHookAccess();
+            warnInvalidHookAccess;
             return use(usable);
           },
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             return mountCallback(callback, deps);
           },
           useContext: function(context) {
             currentHookNameInDev = "useContext";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             return readContext(context);
           },
           useEffect: function(create2, deps) {
             currentHookNameInDev = "useEffect";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             return mountEffect(create2, deps);
           },
           useImperativeHandle: function(ref, create2, deps) {
             currentHookNameInDev = "useImperativeHandle";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             return mountImperativeHandle(ref, create2, deps);
           },
           useInsertionEffect: function(create2, deps) {
             currentHookNameInDev = "useInsertionEffect";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             mountEffectImpl(4, Insertion, create2, deps);
           },
           useLayoutEffect: function(create2, deps) {
             currentHookNameInDev = "useLayoutEffect";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             return mountLayoutEffect(create2, deps);
           },
           useMemo: function(create2, deps) {
             currentHookNameInDev = "useMemo";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
             try {
@@ -20511,8 +20511,8 @@
           },
           useReducer: function(reducer, initialArg, init) {
             currentHookNameInDev = "useReducer";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
             try {
@@ -20523,14 +20523,14 @@
           },
           useRef: function(initialValue) {
             currentHookNameInDev = "useRef";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             return mountRef(initialValue);
           },
           useState: function(initialState) {
             currentHookNameInDev = "useState";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnMountInDEV;
             try {
@@ -20539,123 +20539,123 @@
               ReactSharedInternals.H = prevDispatcher;
             }
           },
-          useDebugValue: function() {
+          useDebugValue: function {
             currentHookNameInDev = "useDebugValue";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
           },
           useDeferredValue: function(value, initialValue) {
             currentHookNameInDev = "useDeferredValue";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             return mountDeferredValue(value, initialValue);
           },
-          useTransition: function() {
+          useTransition: function {
             currentHookNameInDev = "useTransition";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
-            return mountTransition();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
+            return mountTransition;
           },
           useSyncExternalStore: function(subscribe, getSnapshot, getServerSnapshot) {
             currentHookNameInDev = "useSyncExternalStore";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             return mountSyncExternalStore(
               subscribe,
               getSnapshot,
               getServerSnapshot
             );
           },
-          useId: function() {
+          useId: function {
             currentHookNameInDev = "useId";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
-            return mountId();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
+            return mountId;
           },
           useFormState: function(action, initialState) {
             currentHookNameInDev = "useFormState";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             return mountActionState(action, initialState);
           },
           useActionState: function(action, initialState) {
             currentHookNameInDev = "useActionState";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             return mountActionState(action, initialState);
           },
           useOptimistic: function(passthrough) {
             currentHookNameInDev = "useOptimistic";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             return mountOptimistic(passthrough);
           },
           useMemoCache: function(size) {
-            warnInvalidHookAccess();
+            warnInvalidHookAccess;
             return useMemoCache(size);
           },
           useHostTransitionStatus,
-          useCacheRefresh: function() {
+          useCacheRefresh: function {
             currentHookNameInDev = "useCacheRefresh";
-            mountHookTypesDev();
-            return mountRefresh();
+            mountHookTypesDev;
+            return mountRefresh;
           },
           useEffectEvent: function(callback) {
             currentHookNameInDev = "useEffectEvent";
-            warnInvalidHookAccess();
-            mountHookTypesDev();
+            warnInvalidHookAccess;
+            mountHookTypesDev;
             return mountEvent(callback);
           }
         };
         InvalidNestedHooksDispatcherOnUpdateInDEV = {
           readContext: function(context) {
-            warnInvalidContextAccess();
+            warnInvalidContextAccess;
             return readContext(context);
           },
           use: function(usable) {
-            warnInvalidHookAccess();
+            warnInvalidHookAccess;
             return use(usable);
           },
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateCallback(callback, deps);
           },
           useContext: function(context) {
             currentHookNameInDev = "useContext";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return readContext(context);
           },
           useEffect: function(create2, deps) {
             currentHookNameInDev = "useEffect";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             updateEffectImpl(2048, Passive, create2, deps);
           },
           useImperativeHandle: function(ref, create2, deps) {
             currentHookNameInDev = "useImperativeHandle";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateImperativeHandle(ref, create2, deps);
           },
           useInsertionEffect: function(create2, deps) {
             currentHookNameInDev = "useInsertionEffect";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateEffectImpl(4, Insertion, create2, deps);
           },
           useLayoutEffect: function(create2, deps) {
             currentHookNameInDev = "useLayoutEffect";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateEffectImpl(4, Layout, create2, deps);
           },
           useMemo: function(create2, deps) {
             currentHookNameInDev = "useMemo";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnUpdateInDEV;
             try {
@@ -20666,8 +20666,8 @@
           },
           useReducer: function(reducer, initialArg, init) {
             currentHookNameInDev = "useReducer";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnUpdateInDEV;
             try {
@@ -20676,16 +20676,16 @@
               ReactSharedInternals.H = prevDispatcher;
             }
           },
-          useRef: function() {
+          useRef: function {
             currentHookNameInDev = "useRef";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
-            return updateWorkInProgressHook().memoizedState;
+            warnInvalidHookAccess;
+            updateHookTypesDev;
+            return updateWorkInProgressHook.memoizedState;
           },
-          useState: function() {
+          useState: function {
             currentHookNameInDev = "useState";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnUpdateInDEV;
             try {
@@ -20694,123 +20694,123 @@
               ReactSharedInternals.H = prevDispatcher;
             }
           },
-          useDebugValue: function() {
+          useDebugValue: function {
             currentHookNameInDev = "useDebugValue";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
           },
           useDeferredValue: function(value, initialValue) {
             currentHookNameInDev = "useDeferredValue";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateDeferredValue(value, initialValue);
           },
-          useTransition: function() {
+          useTransition: function {
             currentHookNameInDev = "useTransition";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
-            return updateTransition();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
+            return updateTransition;
           },
           useSyncExternalStore: function(subscribe, getSnapshot, getServerSnapshot) {
             currentHookNameInDev = "useSyncExternalStore";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateSyncExternalStore(
               subscribe,
               getSnapshot,
               getServerSnapshot
             );
           },
-          useId: function() {
+          useId: function {
             currentHookNameInDev = "useId";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
-            return updateWorkInProgressHook().memoizedState;
+            warnInvalidHookAccess;
+            updateHookTypesDev;
+            return updateWorkInProgressHook.memoizedState;
           },
           useFormState: function(action) {
             currentHookNameInDev = "useFormState";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateActionState(action);
           },
           useActionState: function(action) {
             currentHookNameInDev = "useActionState";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateActionState(action);
           },
           useOptimistic: function(passthrough, reducer) {
             currentHookNameInDev = "useOptimistic";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateOptimistic(passthrough, reducer);
           },
           useMemoCache: function(size) {
-            warnInvalidHookAccess();
+            warnInvalidHookAccess;
             return useMemoCache(size);
           },
           useHostTransitionStatus,
-          useCacheRefresh: function() {
+          useCacheRefresh: function {
             currentHookNameInDev = "useCacheRefresh";
-            updateHookTypesDev();
-            return updateWorkInProgressHook().memoizedState;
+            updateHookTypesDev;
+            return updateWorkInProgressHook.memoizedState;
           },
           useEffectEvent: function(callback) {
             currentHookNameInDev = "useEffectEvent";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateEvent(callback);
           }
         };
         InvalidNestedHooksDispatcherOnRerenderInDEV = {
           readContext: function(context) {
-            warnInvalidContextAccess();
+            warnInvalidContextAccess;
             return readContext(context);
           },
           use: function(usable) {
-            warnInvalidHookAccess();
+            warnInvalidHookAccess;
             return use(usable);
           },
           useCallback: function(callback, deps) {
             currentHookNameInDev = "useCallback";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateCallback(callback, deps);
           },
           useContext: function(context) {
             currentHookNameInDev = "useContext";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return readContext(context);
           },
           useEffect: function(create2, deps) {
             currentHookNameInDev = "useEffect";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             updateEffectImpl(2048, Passive, create2, deps);
           },
           useImperativeHandle: function(ref, create2, deps) {
             currentHookNameInDev = "useImperativeHandle";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateImperativeHandle(ref, create2, deps);
           },
           useInsertionEffect: function(create2, deps) {
             currentHookNameInDev = "useInsertionEffect";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateEffectImpl(4, Insertion, create2, deps);
           },
           useLayoutEffect: function(create2, deps) {
             currentHookNameInDev = "useLayoutEffect";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateEffectImpl(4, Layout, create2, deps);
           },
           useMemo: function(create2, deps) {
             currentHookNameInDev = "useMemo";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnUpdateInDEV;
             try {
@@ -20821,8 +20821,8 @@
           },
           useReducer: function(reducer, initialArg, init) {
             currentHookNameInDev = "useReducer";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnUpdateInDEV;
             try {
@@ -20831,16 +20831,16 @@
               ReactSharedInternals.H = prevDispatcher;
             }
           },
-          useRef: function() {
+          useRef: function {
             currentHookNameInDev = "useRef";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
-            return updateWorkInProgressHook().memoizedState;
+            warnInvalidHookAccess;
+            updateHookTypesDev;
+            return updateWorkInProgressHook.memoizedState;
           },
-          useState: function() {
+          useState: function {
             currentHookNameInDev = "useState";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             var prevDispatcher = ReactSharedInternals.H;
             ReactSharedInternals.H = InvalidNestedHooksDispatcherOnUpdateInDEV;
             try {
@@ -20849,85 +20849,85 @@
               ReactSharedInternals.H = prevDispatcher;
             }
           },
-          useDebugValue: function() {
+          useDebugValue: function {
             currentHookNameInDev = "useDebugValue";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
           },
           useDeferredValue: function(value, initialValue) {
             currentHookNameInDev = "useDeferredValue";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return rerenderDeferredValue(value, initialValue);
           },
-          useTransition: function() {
+          useTransition: function {
             currentHookNameInDev = "useTransition";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
-            return rerenderTransition();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
+            return rerenderTransition;
           },
           useSyncExternalStore: function(subscribe, getSnapshot, getServerSnapshot) {
             currentHookNameInDev = "useSyncExternalStore";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateSyncExternalStore(
               subscribe,
               getSnapshot,
               getServerSnapshot
             );
           },
-          useId: function() {
+          useId: function {
             currentHookNameInDev = "useId";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
-            return updateWorkInProgressHook().memoizedState;
+            warnInvalidHookAccess;
+            updateHookTypesDev;
+            return updateWorkInProgressHook.memoizedState;
           },
           useFormState: function(action) {
             currentHookNameInDev = "useFormState";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return rerenderActionState(action);
           },
           useActionState: function(action) {
             currentHookNameInDev = "useActionState";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return rerenderActionState(action);
           },
           useOptimistic: function(passthrough, reducer) {
             currentHookNameInDev = "useOptimistic";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return rerenderOptimistic(passthrough, reducer);
           },
           useMemoCache: function(size) {
-            warnInvalidHookAccess();
+            warnInvalidHookAccess;
             return useMemoCache(size);
           },
           useHostTransitionStatus,
-          useCacheRefresh: function() {
+          useCacheRefresh: function {
             currentHookNameInDev = "useCacheRefresh";
-            updateHookTypesDev();
-            return updateWorkInProgressHook().memoizedState;
+            updateHookTypesDev;
+            return updateWorkInProgressHook.memoizedState;
           },
           useEffectEvent: function(callback) {
             currentHookNameInDev = "useEffectEvent";
-            warnInvalidHookAccess();
-            updateHookTypesDev();
+            warnInvalidHookAccess;
+            updateHookTypesDev;
             return updateEvent(callback);
           }
         };
         var fakeInternalInstance = {};
-        var didWarnAboutStateAssignmentForComponent = /* @__PURE__ */ new Set();
-        var didWarnAboutUninitializedState = /* @__PURE__ */ new Set();
-        var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate = /* @__PURE__ */ new Set();
-        var didWarnAboutLegacyLifecyclesAndDerivedState = /* @__PURE__ */ new Set();
-        var didWarnAboutDirectlyAssigningPropsToState = /* @__PURE__ */ new Set();
-        var didWarnAboutUndefinedDerivedState = /* @__PURE__ */ new Set();
-        var didWarnAboutContextTypes$1 = /* @__PURE__ */ new Set();
-        var didWarnAboutChildContextTypes = /* @__PURE__ */ new Set();
-        var didWarnAboutInvalidateContextType = /* @__PURE__ */ new Set();
-        var didWarnOnInvalidCallback = /* @__PURE__ */ new Set();
+        var didWarnAboutStateAssignmentForComponent = /* @__PURE__ */ new Set;
+        var didWarnAboutUninitializedState = /* @__PURE__ */ new Set;
+        var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate = /* @__PURE__ */ new Set;
+        var didWarnAboutLegacyLifecyclesAndDerivedState = /* @__PURE__ */ new Set;
+        var didWarnAboutDirectlyAssigningPropsToState = /* @__PURE__ */ new Set;
+        var didWarnAboutUndefinedDerivedState = /* @__PURE__ */ new Set;
+        var didWarnAboutContextTypes$1 = /* @__PURE__ */ new Set;
+        var didWarnAboutChildContextTypes = /* @__PURE__ */ new Set;
+        var didWarnAboutInvalidateContextType = /* @__PURE__ */ new Set;
+        var didWarnOnInvalidCallback = /* @__PURE__ */ new Set;
         Object.freeze(fakeInternalInstance);
         var classComponentUpdater = {
           enqueueSetState: function(inst, payload, callback) {
@@ -20936,7 +20936,7 @@
             update.payload = payload;
             void 0 !== callback && null !== callback && (warnOnInvalidCallback(callback), update.callback = callback);
             payload = enqueueUpdate(inst, update, lane);
-            null !== payload && (startUpdateTimerByLane(lane, "this.setState()", inst), scheduleUpdateOnFiber(payload, inst, lane), entangleTransitions(payload, inst, lane));
+            null !== payload && (startUpdateTimerByLane(lane, "this.setState", inst), scheduleUpdateOnFiber(payload, inst, lane), entangleTransitions(payload, inst, lane));
           },
           enqueueReplaceState: function(inst, payload, callback) {
             inst = inst._reactInternals;
@@ -20945,7 +20945,7 @@
             update.payload = payload;
             void 0 !== callback && null !== callback && (warnOnInvalidCallback(callback), update.callback = callback);
             payload = enqueueUpdate(inst, update, lane);
-            null !== payload && (startUpdateTimerByLane(lane, "this.replaceState()", inst), scheduleUpdateOnFiber(payload, inst, lane), entangleTransitions(payload, inst, lane));
+            null !== payload && (startUpdateTimerByLane(lane, "this.replaceState", inst), scheduleUpdateOnFiber(payload, inst, lane), entangleTransitions(payload, inst, lane));
           },
           enqueueForceUpdate: function(inst, callback) {
             inst = inst._reactInternals;
@@ -20953,7 +20953,7 @@
             update.tag = ForceUpdate;
             void 0 !== callback && null !== callback && (warnOnInvalidCallback(callback), update.callback = callback);
             callback = enqueueUpdate(inst, update, lane);
-            null !== callback && (startUpdateTimerByLane(lane, "this.forceUpdate()", inst), scheduleUpdateOnFiber(callback, inst, lane), entangleTransitions(callback, inst, lane));
+            null !== callback && (startUpdateTimerByLane(lane, "this.forceUpdate", inst), scheduleUpdateOnFiber(callback, inst, lane), entangleTransitions(callback, inst, lane));
           }
         }, componentName = null, errorBoundaryName = null, SelectiveHydrationException = Error(
           "This is not a real error. It's an implementation detail of React's selective hydration feature. If this leaks into userspace, it's a bug in React. Please file an issue."
@@ -20971,17 +20971,17 @@
           retryLane: 0,
           hydrationErrors: null
         }, hasWarnedAboutUsingNoValuePropOnContextProvider = false, didWarnAboutUndefinedSnapshotBeforeUpdate = null;
-        didWarnAboutUndefinedSnapshotBeforeUpdate = /* @__PURE__ */ new Set();
+        didWarnAboutUndefinedSnapshotBeforeUpdate = /* @__PURE__ */ new Set;
         var offscreenSubtreeIsHidden = false, offscreenSubtreeWasHidden = false, needsFormReset = false, PossiblyWeakSet = "function" === typeof WeakSet ? WeakSet : Set, nextEffect = null, inProgressLanes = null, inProgressRoot = null, hostParent = null, hostParentIsContainer = false, currentHoistableRoot = null, inHydratedSubtree = false, suspenseyCommitFlag = 8192, DefaultAsyncDispatcher = {
           getCacheForType: function(resourceType) {
             var cache2 = readContext(CacheContext), cacheForType = cache2.data.get(resourceType);
-            void 0 === cacheForType && (cacheForType = resourceType(), cache2.data.set(resourceType, cacheForType));
+            void 0 === cacheForType && (cacheForType = resourceType, cache2.data.set(resourceType, cacheForType));
             return cacheForType;
           },
-          cacheSignal: function() {
+          cacheSignal: function {
             return readContext(CacheContext).controller.signal;
           },
-          getOwner: function() {
+          getOwner: function {
             return current;
           }
         };
@@ -20994,12 +20994,12 @@
           symbolFor("selector.text");
         }
         var commitHooks = [], PossiblyWeakMap = "function" === typeof WeakMap ? WeakMap : Map, NoContext = 0, RenderContext = 2, CommitContext = 4, RootInProgress = 0, RootFatalErrored = 1, RootErrored = 2, RootSuspended = 3, RootSuspendedWithDelay = 4, RootSuspendedAtTheShell = 6, RootCompleted = 5, executionContext = NoContext, workInProgressRoot = null, workInProgress = null, workInProgressRootRenderLanes = 0, NotSuspended = 0, SuspendedOnError = 1, SuspendedOnData = 2, SuspendedOnImmediate = 3, SuspendedOnInstance = 4, SuspendedOnInstanceAndReadyToContinue = 5, SuspendedOnDeprecatedThrowPromise = 6, SuspendedAndReadyToContinue = 7, SuspendedOnHydration = 8, SuspendedOnAction = 9, workInProgressSuspendedReason = NotSuspended, workInProgressThrownValue = null, workInProgressRootDidSkipSuspendedSiblings = false, workInProgressRootIsPrerendering = false, workInProgressRootDidAttachPingListener = false, entangledRenderLanes = 0, workInProgressRootExitStatus = RootInProgress, workInProgressRootSkippedLanes = 0, workInProgressRootInterleavedUpdatedLanes = 0, workInProgressRootPingedLanes = 0, workInProgressDeferredLane = 0, workInProgressSuspendedRetryLanes = 0, workInProgressRootConcurrentErrors = null, workInProgressRootRecoverableErrors = null, workInProgressRootDidIncludeRecursiveRenderUpdate = false, globalMostRecentFallbackTime = 0, globalMostRecentTransitionTime = 0, FALLBACK_THROTTLE_MS = 300, workInProgressRootRenderTargetTime = Infinity, RENDER_TIMEOUT_MS = 500, workInProgressTransitions = null, workInProgressUpdateTask = null, legacyErrorBoundariesThatAlreadyFailed = null, IMMEDIATE_COMMIT = 0, ABORTED_VIEW_TRANSITION_COMMIT = 1, DELAYED_PASSIVE_COMMIT = 2, ANIMATION_STARTED_COMMIT = 3, NO_PENDING_EFFECTS = 0, PENDING_MUTATION_PHASE = 1, PENDING_LAYOUT_PHASE = 2, PENDING_AFTER_MUTATION_PHASE = 3, PENDING_SPAWNED_WORK = 4, PENDING_PASSIVE_PHASE = 5, pendingEffectsStatus = 0, pendingEffectsRoot = null, pendingFinishedWork = null, pendingEffectsLanes = 0, pendingEffectsRemainingLanes = 0, pendingEffectsRenderEndTime = -0, pendingPassiveTransitions = null, pendingRecoverableErrors = null, pendingSuspendedCommitReason = null, pendingDelayedCommitReason = IMMEDIATE_COMMIT, pendingSuspendedViewTransitionReason = null, NESTED_UPDATE_LIMIT = 50, nestedUpdateCount = 0, rootWithNestedUpdates = null, isFlushingPassiveEffects = false, didScheduleUpdateDuringPassiveEffects = false, NESTED_PASSIVE_UPDATE_LIMIT = 50, nestedPassiveUpdateCount = 0, rootWithPassiveNestedUpdates = null, isRunningInsertionEffect = false, didWarnStateUpdateForNotYetMountedComponent = null, didWarnAboutUpdateInRender = false;
-        var didWarnAboutUpdateInRenderForAnotherComponent = /* @__PURE__ */ new Set();
+        var didWarnAboutUpdateInRenderForAnotherComponent = /* @__PURE__ */ new Set;
         var fakeActCallbackNode$1 = {}, firstScheduledRoot = null, lastScheduledRoot = null, didScheduleMicrotask = false, didScheduleMicrotask_act = false, mightHavePendingSyncWork = false, isFlushingWork = false, currentEventTransitionLane = 0, fakeActCallbackNode = {};
-        (function() {
+        (function {
           for (var i2 = 0; i2 < simpleEventPluginEvents.length; i2++) {
-            var eventName = simpleEventPluginEvents[i2], domEventName = eventName.toLowerCase();
-            eventName = eventName[0].toUpperCase() + eventName.slice(1);
+            var eventName = simpleEventPluginEvents[i2], domEventName = eventName.toLowerCase;
+            eventName = eventName[0].toUpperCase + eventName.slice(1);
             registerSimpleEvent(domEventName, "on" + eventName);
           }
           registerSimpleEvent(ANIMATION_END, "onAnimationEnd");
@@ -21012,7 +21012,7 @@
           registerSimpleEvent(TRANSITION_START, "onTransitionStart");
           registerSimpleEvent(TRANSITION_CANCEL, "onTransitionCancel");
           registerSimpleEvent(TRANSITION_END, "onTransitionEnd");
-        })();
+        });
         registerDirectEvent("onMouseEnter", ["mouseout", "mouseover"]);
         registerDirectEvent("onMouseLeave", ["mouseout", "mouseover"]);
         registerDirectEvent("onPointerEnter", ["pointerout", "pointerover"]);
@@ -21051,14 +21051,14 @@
           " "
         ), nonDelegatedEvents = new Set(
           "beforetoggle cancel close invalid load scroll scrollend toggle".split(" ").concat(mediaEventTypes)
-        ), listeningMarker = "_reactListening" + Math.random().toString(36).slice(2), didWarnControlledToUncontrolled = false, didWarnUncontrolledToControlled = false, didWarnFormActionType = false, didWarnFormActionName = false, didWarnFormActionTarget = false, didWarnFormActionMethod = false, didWarnPopoverTargetObject = false;
+        ), listeningMarker = "_reactListening" + Math.random.toString(36).slice(2), didWarnControlledToUncontrolled = false, didWarnUncontrolledToControlled = false, didWarnFormActionType = false, didWarnFormActionName = false, didWarnFormActionTarget = false, didWarnFormActionMethod = false, didWarnPopoverTargetObject = false;
         var didWarnForNewBooleanPropsWithEmptyValue = {};
         var NORMALIZE_NEWLINES_REGEX = /\r\n?/g, NORMALIZE_NULL_AND_REPLACEMENT_REGEX = /\u0000|\uFFFD/g, xlinkNamespace = "http://www.w3.org/1999/xlink", xmlNamespace = "http://www.w3.org/XML/1998/namespace", EXPECTED_FORM_ACTION_URL = "javascript:throw new Error('React form unexpectedly submitted.')", SUPPRESS_HYDRATION_WARNING = "suppressHydrationWarning", ACTIVITY_START_DATA = "&", ACTIVITY_END_DATA = "/&", SUSPENSE_START_DATA = "$", SUSPENSE_END_DATA = "/$", SUSPENSE_PENDING_START_DATA = "$?", SUSPENSE_QUEUED_START_DATA = "$~", SUSPENSE_FALLBACK_START_DATA = "$!", PREAMBLE_CONTRIBUTION_HTML = "html", PREAMBLE_CONTRIBUTION_BODY = "body", PREAMBLE_CONTRIBUTION_HEAD = "head", FORM_STATE_IS_MATCHING = "F!", FORM_STATE_IS_NOT_MATCHING = "F", DOCUMENT_READY_STATE_LOADING = "loading", STYLE = "style", HostContextNamespaceNone = 0, HostContextNamespaceSvg = 1, HostContextNamespaceMath = 2, eventsEnabled = null, selectionInformation = null, warnedUnknownTags = { dialog: true, webview: true }, currentPopstateTransitionEvent = null, schedulerEvent = void 0, scheduleTimeout = "function" === typeof setTimeout ? setTimeout : void 0, cancelTimeout = "function" === typeof clearTimeout ? clearTimeout : void 0, noTimeout = -1, localPromise = "function" === typeof Promise ? Promise : void 0, scheduleMicrotask = "function" === typeof queueMicrotask ? queueMicrotask : "undefined" !== typeof localPromise ? function(callback) {
           return localPromise.resolve(null).then(callback).catch(handleErrorInNextTick);
-        } : scheduleTimeout, previousHydratableOnEnteringScopedSingleton = null, NotLoaded = 0, Loaded = 1, Errored = 2, Settled = 3, Inserted = 4, preloadPropsMap = /* @__PURE__ */ new Map(), preconnectsSet = /* @__PURE__ */ new Set(), previousDispatcher = ReactDOMSharedInternals.d;
+        } : scheduleTimeout, previousHydratableOnEnteringScopedSingleton = null, NotLoaded = 0, Loaded = 1, Errored = 2, Settled = 3, Inserted = 4, preloadPropsMap = /* @__PURE__ */ new Map, preconnectsSet = /* @__PURE__ */ new Set, previousDispatcher = ReactDOMSharedInternals.d;
         ReactDOMSharedInternals.d = {
-          f: function() {
-            var previousWasRendering = previousDispatcher.f(), wasRendering = flushSyncWork$1();
+          f: function {
+            var previousWasRendering = previousDispatcher.f, wasRendering = flushSyncWork$1;
             return previousWasRendering || wasRendering;
           },
           r: function(form) {
@@ -21180,10 +21180,10 @@
                     link.onload = resolve;
                     link.onerror = reject;
                   });
-                  link.addEventListener("load", function() {
+                  link.addEventListener("load", function {
                     state.loading |= Loaded;
                   });
-                  link.addEventListener("error", function() {
+                  link.addEventListener("error", function {
                     state.loading |= Errored;
                   });
                   state.loading |= Inserted;
@@ -21264,7 +21264,7 @@
           null !== root2 && scheduleUpdateOnFiber(root2, fiber, 2);
         };
         scheduleRetry = function(fiber) {
-          var lane = claimNextRetryLane(), root2 = enqueueConcurrentRenderForLane(fiber, lane);
+          var lane = claimNextRetryLane, root2 = enqueueConcurrentRenderForLane(fiber, lane);
           null !== root2 && scheduleUpdateOnFiber(root2, fiber, lane);
         };
         setErrorHandler = function(newShouldErrorImpl) {
@@ -21273,7 +21273,7 @@
         setSuspenseHandler = function(newShouldSuspendImpl) {
           shouldSuspendImpl = newShouldSuspendImpl;
         };
-        var _enabled = true, return_targetInst = null, hasScheduledReplayAttempt = false, queuedFocus = null, queuedDrag = null, queuedMouse = null, queuedPointers = /* @__PURE__ */ new Map(), queuedPointerCaptures = /* @__PURE__ */ new Map(), queuedExplicitHydrationTargets = [], discreteReplayableEvents = "mousedown mouseup touchcancel touchend touchstart auxclick dblclick pointercancel pointerdown pointerup dragend dragstart drop compositionend compositionstart keydown keypress keyup input textInput copy cut paste click change contextmenu reset".split(
+        var _enabled = true, return_targetInst = null, hasScheduledReplayAttempt = false, queuedFocus = null, queuedDrag = null, queuedMouse = null, queuedPointers = /* @__PURE__ */ new Map, queuedPointerCaptures = /* @__PURE__ */ new Map, queuedExplicitHydrationTargets = [], discreteReplayableEvents = "mousedown mouseup touchcancel touchend touchstart auxclick dblclick pointercancel pointerdown pointerup dragend dragstart drop compositionend compositionstart keydown keypress keyup input textInput copy cut paste click change contextmenu reset".split(
           " "
         ), lastScheduledReplayQueue = null;
         ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render = function(children) {
@@ -21281,7 +21281,7 @@
           if (null === root2) throw Error("Cannot update an unmounted root.");
           var args = arguments;
           "function" === typeof args[1] ? console.error(
-            "does not support the second callback argument. To execute a side effect after rendering, declare it in a component body with useEffect()."
+            "does not support the second callback argument. To execute a side effect after rendering, declare it in a component body with useEffect."
           ) : isValidContainer(args[1]) ? console.error(
             "You passed a container to the second argument of root.render(...). You don't need to pass it again since you already passed it to create the root."
           ) : "undefined" !== typeof args[1] && console.error(
@@ -21291,10 +21291,10 @@
           var current2 = root2.current, lane = requestUpdateLane(current2);
           updateContainerImpl(current2, lane, args, root2, null, null);
         };
-        ReactDOMHydrationRoot.prototype.unmount = ReactDOMRoot.prototype.unmount = function() {
+        ReactDOMHydrationRoot.prototype.unmount = ReactDOMRoot.prototype.unmount = function {
           var args = arguments;
           "function" === typeof args[0] && console.error(
-            "does not support a callback argument. To execute a side effect after rendering, declare it in a component body with useEffect()."
+            "does not support a callback argument. To execute a side effect after rendering, declare it in a component body with useEffect."
           );
           args = this._internalRoot;
           if (null !== args) {
@@ -21304,26 +21304,26 @@
               "Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition."
             );
             updateContainerImpl(args.current, 2, null, args, null, null);
-            flushSyncWork$1();
+            flushSyncWork$1;
             container[internalContainerInstanceKey] = null;
           }
         };
         ReactDOMHydrationRoot.prototype.unstable_scheduleHydration = function(target) {
           if (target) {
-            var updatePriority = resolveUpdatePriority();
+            var updatePriority = resolveUpdatePriority;
             target = { blockedOn: null, target, priority: updatePriority };
             for (var i2 = 0; i2 < queuedExplicitHydrationTargets.length && 0 !== updatePriority && updatePriority < queuedExplicitHydrationTargets[i2].priority; i2++) ;
             queuedExplicitHydrationTargets.splice(i2, 0, target);
             0 === i2 && attemptExplicitHydrationTarget(target);
           }
         };
-        (function() {
+        (function {
           var isomorphicReactPackageVersion = React4.version;
           if ("19.2.4" !== isomorphicReactPackageVersion)
             throw Error(
               'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.2.4\nLearn more: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Fwarnings%2Fversion-mismatch")
             );
-        })();
+        });
         "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
           "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Freact-polyfills"
         );
@@ -21342,7 +21342,7 @@
           componentOrElement = null === componentOrElement ? null : componentOrElement.stateNode;
           return componentOrElement;
         };
-        if (!(function() {
+        if (!(function {
           var internals = {
             bundleType: 1,
             version: "19.2.4",
@@ -21365,7 +21365,7 @@
           internals.setRefreshHandler = setRefreshHandler;
           internals.getCurrentFiber = getCurrentFiberForDevTools;
           return injectInternals(internals);
-        })() && canUseDOM3 && window.top === window.self && (-1 < navigator.userAgent.indexOf("Chrome") && -1 === navigator.userAgent.indexOf("Edge") || -1 < navigator.userAgent.indexOf("Firefox"))) {
+        }) && canUseDOM3 && window.top === window.self && (-1 < navigator.userAgent.indexOf("Chrome") && -1 === navigator.userAgent.indexOf("Edge") || -1 < navigator.userAgent.indexOf("Firefox"))) {
           var protocol = window.location.protocol;
           /^(https?|file):$/.test(protocol) && console.info(
             "%cDownload the React DevTools for a better development experience: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Freact-devtools" + ("file:" === protocol ? "\nYou might need to use a local HTTP server (instead of file://): https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Freact-devtools-faq" : ""),
@@ -21430,7 +21430,7 @@
           identifierPrefix = createUpdate(isStrictMode);
           identifierPrefix.callback = null;
           enqueueUpdate(options2, identifierPrefix, isStrictMode);
-          startUpdateTimerByLane(isStrictMode, "hydrateRoot()", null);
+          startUpdateTimerByLane(isStrictMode, "hydrateRoot", null);
           options2 = isStrictMode;
           initialChildren.current.lanes = options2;
           markRootUpdated$1(initialChildren, options2);
@@ -21440,8 +21440,8 @@
           return new ReactDOMHydrationRoot(initialChildren);
         };
         exports.version = "19.2.4";
-        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
-      })();
+        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error);
+      });
     }
   });
 
@@ -21450,10 +21450,10 @@
     "node_modules/react-dom/client.js"(exports, module) {
       "use strict";
       if (false) {
-        checkDCE();
+        checkDCE;
         module.exports = null;
       } else {
-        module.exports = require_react_dom_client_development();
+        module.exports = require_react_dom_client_development;
       }
     }
   });
@@ -21542,7 +21542,7 @@
         }, {});
         Object.keys(target).forEach(function(key) {
           const split = key.split(delimiter).map(transformKey);
-          let key1 = getkey(split.shift());
+          let key1 = getkey(split.shift);
           let key2 = getkey(split[0]);
           let recipient = result;
           while (key2 !== void 0) {
@@ -21559,7 +21559,7 @@
             }
             recipient = recipient[key1];
             if (split.length > 0) {
-              key1 = getkey(split.shift());
+              key1 = getkey(split.shift);
               key2 = getkey(split[0]);
             }
           }
@@ -21587,8 +21587,8 @@
             return true;
           }
           if (a2.constructor === RegExp) return a2.source === b2.source && a2.flags === b2.flags;
-          if (a2.valueOf !== Object.prototype.valueOf) return a2.valueOf() === b2.valueOf();
-          if (a2.toString !== Object.prototype.toString) return a2.toString() === b2.toString();
+          if (a2.valueOf !== Object.prototype.valueOf) return a2.valueOf === b2.valueOf;
+          if (a2.toString !== Object.prototype.toString) return a2.toString === b2.toString;
           keys = Object.keys(a2);
           length = keys.length;
           if (length !== Object.keys(b2).length) return false;
@@ -21609,7 +21609,7 @@
   var require_react_jsx_runtime_development = __commonJS({
     "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
       "use strict";
-      (function() {
+      (function {
         function getComponentNameFromType(type) {
           if (null == type) return null;
           if ("function" === typeof type)
@@ -21631,7 +21631,7 @@
           }
           if ("object" === typeof type)
             switch ("number" === typeof type.tag && console.error(
-              "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
+              "Received an unexpected object in getComponentNameFromType. This is likely a bug in React. Please file an issue."
             ), type.$$typeof) {
               case REACT_PORTAL_TYPE:
                 return "Portal";
@@ -21689,11 +21689,11 @@
             return "<...>";
           }
         }
-        function getOwner() {
+        function getOwner {
           var dispatcher = ReactSharedInternals.A;
-          return null === dispatcher ? null : dispatcher.getOwner();
+          return null === dispatcher ? null : dispatcher.getOwner;
         }
-        function UnknownOwner() {
+        function UnknownOwner {
           return Error("react-stack-top-frame");
         }
         function hasValidKey(config) {
@@ -21704,7 +21704,7 @@
           return void 0 !== config.key;
         }
         function defineKeyPropWarningGetter(props, displayName) {
-          function warnAboutAccessingKey() {
+          function warnAboutAccessingKey {
             specialPropKeyWarningShown || (specialPropKeyWarningShown = true, console.error(
               "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Freact.dev%2Flink%2Fspecial-props%29",
               displayName
@@ -21716,7 +21716,7 @@
             configurable: true
           });
         }
-        function elementRefGetterWithDeprecationWarning() {
+        function elementRefGetterWithDeprecationWarning {
           var componentName = getComponentNameFromType(this.type);
           didWarnAboutElementRef[componentName] || (didWarnAboutElementRef[componentName] = true, console.error(
             "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
@@ -21808,7 +21808,7 @@
             type,
             children,
             maybeKey,
-            getOwner(),
+            getOwner,
             debugStack,
             debugTask
           );
@@ -21819,12 +21819,12 @@
         function isValidElement2(object) {
           return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
         }
-        var React4 = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React4.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+        var React4 = require_react, REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React4.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function {
           return null;
         };
         React4 = {
           react_stack_bottom_frame: function(callStackForError) {
-            return callStackForError();
+            return callStackForError;
           }
         };
         var specialPropKeyWarningShown;
@@ -21832,7 +21832,7 @@
         var unknownOwnerDebugStack = React4.react_stack_bottom_frame.bind(
           React4,
           UnknownOwner
-        )();
+        );
         var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
         var didWarnAboutKeySpread = {};
         exports.Fragment = REACT_FRAGMENT_TYPE;
@@ -21858,7 +21858,7 @@
             trackActualOwner ? createTask(getTaskName(type)) : unknownOwnerDebugTask
           );
         };
-      })();
+      });
     }
   });
 
@@ -21869,7 +21869,7 @@
       if (false) {
         module.exports = null;
       } else {
-        module.exports = require_react_jsx_runtime_development();
+        module.exports = require_react_jsx_runtime_development;
       }
     }
   });
@@ -22067,7 +22067,7 @@
     });
   }
   function useFieldTransforms(config, item, transforms, readOnly, forceReadOnly) {
-    const mappers = (0, import_react2.useMemo)(() => {
+    const mappers = (0, import_react2.useMemo)( => {
       return Object.keys(transforms).reduce((acc, _fieldType) => {
         const fieldType = _fieldType;
         return __spreadProps(__spreadValues({}, acc), {
@@ -22088,12 +22088,12 @@
         });
       }, {});
     }, [transforms, readOnly, forceReadOnly]);
-    const transformedProps = (0, import_react2.useMemo)(() => {
+    const transformedProps = (0, import_react2.useMemo)( => {
       const mapped = mapFields(item, mappers, config).props;
       return mapped;
     }, [config, item, mappers]);
     const mergedProps = (0, import_react2.useMemo)(
-      () => __spreadValues(__spreadValues({}, item.props), transformedProps),
+       => __spreadValues(__spreadValues({}, item.props), transformedProps),
       [item.props, transformedProps]
     );
     return mergedProps;
@@ -22109,14 +22109,14 @@
   }
   var import_react, import_flat, import_fast_deep_equal, import_fast_deep_equal2, import_react2, import_react3, import_jsx_runtime, __create2, __defProp2, __defProps, __getOwnPropDesc2, __getOwnPropDescs, __getOwnPropNames2, __getOwnPropSymbols, __getProtoOf2, __hasOwnProp2, __propIsEnum, __defNormalProp, __spreadValues, __spreadProps, __objRest, __esm2, __commonJS2, __copyProps2, __toESM2, __async, init_react_import, defaultSlots, isPromise, flatten, containsPromise, walkField, walkObject, defaultViewports, defaultAppState, rootAreaId, rootZone, rootDroppableId, getZoneId, stripSlots, flatten2, unflatten, flattenNode, expandNode, getChanged, cache, resolveComponentData, setupZone, getSlotTransform, SlotRenderPure, Item, SlotRender;
   var init_chunk_OOLYDXKW = __esm({
-    "node_modules/@measured/puck/dist/chunk-OOLYDXKW.mjs"() {
-      import_react = __toESM(require_react(), 1);
-      import_flat = __toESM(require_flat(), 1);
-      import_fast_deep_equal = __toESM(require_fast_deep_equal(), 1);
-      import_fast_deep_equal2 = __toESM(require_fast_deep_equal(), 1);
-      import_react2 = __toESM(require_react(), 1);
-      import_react3 = __toESM(require_react(), 1);
-      import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
+    "node_modules/@measured/puck/dist/chunk-OOLYDXKW.mjs" {
+      import_react = __toESM(require_react, 1);
+      import_flat = __toESM(require_flat, 1);
+      import_fast_deep_equal = __toESM(require_fast_deep_equal, 1);
+      import_fast_deep_equal2 = __toESM(require_fast_deep_equal, 1);
+      import_react2 = __toESM(require_react, 1);
+      import_react3 = __toESM(require_react, 1);
+      import_jsx_runtime = __toESM(require_jsx_runtime, 1);
       __create2 = Object.create;
       __defProp2 = Object.defineProperty;
       __defProps = Object.defineProperties;
@@ -22152,17 +22152,17 @@
           }
         return target;
       };
-      __esm2 = (fn, res) => function __init() {
+      __esm2 = (fn, res) => function __init {
         return fn && (res = (0, fn[__getOwnPropNames2(fn)[0]])(fn = 0)), res;
       };
-      __commonJS2 = (cb, mod) => function __require2() {
+      __commonJS2 = (cb, mod) => function __require2 {
         return mod || (0, cb[__getOwnPropNames2(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
       };
       __copyProps2 = (to, from, except, desc) => {
         if (from && typeof from === "object" || typeof from === "function") {
           for (let key of __getOwnPropNames2(from))
             if (!__hasOwnProp2.call(to, key) && key !== except)
-              __defProp2(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable });
+              __defProp2(to, key, { get:  => from[key], enumerable: !(desc = __getOwnPropDesc2(from, key)) || desc.enumerable });
         }
         return to;
       };
@@ -22191,17 +22191,17 @@
             }
           };
           var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
-          step((generator = generator.apply(__this, __arguments)).next());
+          step((generator = generator.apply(__this, __arguments)).next);
         });
       };
       init_react_import = __esm2({
-        "../tsup-config/react-import.js"() {
+        "../tsup-config/react-import.js" {
           "use strict";
         }
       });
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       defaultSlots = (value, fields) => Object.keys(fields).reduce(
         (acc, fieldName) => fields[fieldName].type === "slot" ? __spreadValues({ [fieldName]: [] }, acc) : acc,
         value
@@ -22331,9 +22331,9 @@
         }
         return flatten(newProps);
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       defaultViewports = [
         { width: 360, height: "auto", icon: "Smartphone", label: "Small" },
         { width: 768, height: "auto", icon: "Tablet", label: "Medium" },
@@ -22364,10 +22364,10 @@
           zones: {}
         }
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
       rootAreaId = "root";
       rootZone = "default-zone";
       rootDroppableId = `${rootAreaId}:${rootZone}`;
@@ -22380,10 +22380,10 @@
         }
         return [rootDroppableId, zoneCompound];
       };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       stripSlots = (data, config) => {
-        return mapFields(data, { slot: () => null }, config);
+        return mapFields(data, { slot:  => null }, config);
       };
       ({ flatten: flatten2, unflatten } = import_flat.default);
       flattenNode = (node, config) => {
@@ -22397,11 +22397,11 @@
           props
         });
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
       getChanged = (newItem, oldItem) => {
         return newItem ? Object.keys(newItem.props || {}).reduce((acc, item) => {
           const newItemProps = (newItem == null ? void 0 : newItem.props) || {};
@@ -22444,7 +22444,7 @@
               const content = value;
               return yield Promise.all(
                 content.map(
-                  (childItem) => __async(void 0, null, function* () {
+                  (childItem) => __async(void 0, null, function*  {
                     return (yield resolveComponentData(
                       childItem,
                       config,
@@ -22472,8 +22472,8 @@
           didChange: !(0, import_fast_deep_equal2.default)(item, itemWithResolvedChildren)
         };
       });
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       setupZone = (data, zoneKey) => {
         if (zoneKey === rootDroppableId) {
           return data;
@@ -22484,8 +22484,8 @@
         newData.zones[zoneKey] = newData.zones[zoneKey] || [];
         return newData;
       };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       getSlotTransform = (renderSlotEdit, renderSlotRender = renderSlotEdit) => ({
         slot: ({ value: content, propName, field, isReadOnly }) => {
           const render = isReadOnly ? renderSlotRender : renderSlotEdit;
@@ -22499,8 +22499,8 @@
           return Slot;
         }
       });
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       SlotRenderPure = (props) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SlotRender, __spreadValues({}, props));
       Item = ({
         config,
@@ -22540,18 +22540,18 @@
   });
 
   // node_modules/uuid/dist/esm-browser/rng.js
-  function rng() {
+  function rng {
     if (!getRandomValues) {
       getRandomValues = typeof crypto !== "undefined" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto);
       if (!getRandomValues) {
-        throw new Error("crypto.getRandomValues() not supported. See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Fuuidjs%2Fuuid%23getrandomvalues-not-supported");
+        throw new Error("crypto.getRandomValues not supported. See https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Fuuidjs%2Fuuid%23getrandomvalues-not-supported");
       }
     }
     return getRandomValues(rnds8);
   }
   var getRandomValues, rnds8;
   var init_rng = __esm({
-    "node_modules/uuid/dist/esm-browser/rng.js"() {
+    "node_modules/uuid/dist/esm-browser/rng.js" {
       rnds8 = new Uint8Array(16);
     }
   });
@@ -22562,7 +22562,7 @@
   }
   var byteToHex;
   var init_stringify = __esm({
-    "node_modules/uuid/dist/esm-browser/stringify.js"() {
+    "node_modules/uuid/dist/esm-browser/stringify.js" {
       byteToHex = [];
       for (let i2 = 0; i2 < 256; ++i2) {
         byteToHex.push((i2 + 256).toString(16).slice(1));
@@ -22573,7 +22573,7 @@
   // node_modules/uuid/dist/esm-browser/native.js
   var randomUUID, native_default;
   var init_native = __esm({
-    "node_modules/uuid/dist/esm-browser/native.js"() {
+    "node_modules/uuid/dist/esm-browser/native.js" {
       randomUUID = typeof crypto !== "undefined" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
       native_default = {
         randomUUID
@@ -22584,10 +22584,10 @@
   // node_modules/uuid/dist/esm-browser/v4.js
   function v4(options2, buf, offset) {
     if (native_default.randomUUID && !buf && !options2) {
-      return native_default.randomUUID();
+      return native_default.randomUUID;
     }
     options2 = options2 || {};
-    const rnds = options2.random || (options2.rng || rng)();
+    const rnds = options2.random || (options2.rng || rng);
     rnds[6] = rnds[6] & 15 | 64;
     rnds[8] = rnds[8] & 63 | 128;
     if (buf) {
@@ -22601,28 +22601,28 @@
   }
   var v4_default;
   var init_v4 = __esm({
-    "node_modules/uuid/dist/esm-browser/v4.js"() {
-      init_native();
-      init_rng();
-      init_stringify();
+    "node_modules/uuid/dist/esm-browser/v4.js" {
+      init_native;
+      init_rng;
+      init_stringify;
       v4_default = v4;
     }
   });
 
   // node_modules/uuid/dist/esm-browser/index.js
   var init_esm_browser = __esm({
-    "node_modules/uuid/dist/esm-browser/index.js"() {
-      init_v4();
+    "node_modules/uuid/dist/esm-browser/index.js" {
+      init_v4;
     }
   });
 
   // node_modules/zustand/esm/vanilla.mjs
   var createStoreImpl, createStore;
   var init_vanilla = __esm({
-    "node_modules/zustand/esm/vanilla.mjs"() {
+    "node_modules/zustand/esm/vanilla.mjs" {
       createStoreImpl = (createState) => {
         let state;
-        const listeners = /* @__PURE__ */ new Set();
+        const listeners = /* @__PURE__ */ new Set;
         const setState = (partial, replace2) => {
           const nextState = typeof partial === "function" ? partial(state) : partial;
           if (!Object.is(nextState, state)) {
@@ -22631,11 +22631,11 @@
             listeners.forEach((listener) => listener(state, previousState));
           }
         };
-        const getState = () => state;
-        const getInitialState = () => initialState;
+        const getState =  => state;
+        const getInitialState =  => initialState;
         const subscribe = (listener) => {
           listeners.add(listener);
-          return () => listeners.delete(listener);
+          return  => listeners.delete(listener);
         };
         const api = { setState, getState, getInitialState, subscribe };
         const initialState = state = createState(setState, getState, api);
@@ -22649,17 +22649,17 @@
   function useStore(api, selector = identity) {
     const slice = import_react4.default.useSyncExternalStore(
       api.subscribe,
-      import_react4.default.useCallback(() => selector(api.getState()), [api, selector]),
-      import_react4.default.useCallback(() => selector(api.getInitialState()), [api, selector])
+      import_react4.default.useCallback( => selector(api.getState), [api, selector]),
+      import_react4.default.useCallback( => selector(api.getInitialState), [api, selector])
     );
     import_react4.default.useDebugValue(slice);
     return slice;
   }
   var import_react4, identity, createImpl, create;
   var init_react = __esm({
-    "node_modules/zustand/esm/react.mjs"() {
-      import_react4 = __toESM(require_react(), 1);
-      init_vanilla();
+    "node_modules/zustand/esm/react.mjs" {
+      import_react4 = __toESM(require_react, 1);
+      init_vanilla;
       identity = (arg) => arg;
       createImpl = (createState) => {
         const api = createStore(createState);
@@ -22673,23 +22673,23 @@
 
   // node_modules/zustand/esm/index.mjs
   var init_esm = __esm({
-    "node_modules/zustand/esm/index.mjs"() {
-      init_vanilla();
-      init_react();
+    "node_modules/zustand/esm/index.mjs" {
+      init_vanilla;
+      init_react;
     }
   });
 
   // node_modules/zustand/esm/middleware.mjs
   var subscribeWithSelectorImpl, subscribeWithSelector;
   var init_middleware = __esm({
-    "node_modules/zustand/esm/middleware.mjs"() {
+    "node_modules/zustand/esm/middleware.mjs" {
       subscribeWithSelectorImpl = (fn) => (set, get, api) => {
         const origSubscribe = api.subscribe;
         api.subscribe = ((selector, optListener, options2) => {
           let listener = selector;
           if (optListener) {
             const equalityFn = (options2 == null ? void 0 : options2.equalityFn) || Object.is;
-            let currentSlice = selector(api.getState());
+            let currentSlice = selector(api.getState);
             listener = (state) => {
               const nextSlice = selector(state);
               if (!equalityFn(currentSlice, nextSlice)) {
@@ -22711,7 +22711,7 @@
   });
 
   // node_modules/@preact/signals-core/dist/signals-core.module.js
-  function t() {
+  function t {
     if (!(s > 1)) {
       var i2, t3 = false;
       while (void 0 !== h) {
@@ -22723,7 +22723,7 @@
           n3.o = void 0;
           n3.f &= -3;
           if (!(8 & n3.f) && a(n3)) try {
-            n3.c();
+            n3.c;
           } catch (n4) {
             if (!t3) {
               i2 = n4;
@@ -22739,19 +22739,19 @@
     } else s--;
   }
   function n(i2) {
-    if (s > 0) return i2();
+    if (s > 0) return i2;
     s++;
     try {
-      return i2();
+      return i2;
     } finally {
-      t();
+      t;
     }
   }
   function o(i2) {
     var t3 = r;
     r = void 0;
     try {
-      return i2();
+      return i2;
     } finally {
       r = t3;
     }
@@ -22793,7 +22793,7 @@
     return new d(i2, t3);
   }
   function a(i2) {
-    for (var t3 = i2.s; void 0 !== t3; t3 = t3.n) if (t3.S.i !== t3.i || !t3.S.h() || t3.S.i !== t3.i) return true;
+    for (var t3 = i2.s; void 0 !== t3; t3 = t3.n) if (t3.S.i !== t3.i || !t3.S.h || t3.S.i !== t3.i) return true;
     return false;
   }
   function l(i2) {
@@ -22844,7 +22844,7 @@
       var o2 = r;
       r = void 0;
       try {
-        n3();
+        n3;
       } catch (t3) {
         i2.f &= -2;
         i2.f |= 8;
@@ -22852,7 +22852,7 @@
         throw t3;
       } finally {
         r = o2;
-        t();
+        t;
       }
     }
   }
@@ -22868,7 +22868,7 @@
     r = i2;
     this.f &= -2;
     if (8 & this.f) p(this);
-    t();
+    t;
   }
   function S(i2, t3) {
     this.x = i2;
@@ -22882,9 +22882,9 @@
   function m(i2, t3) {
     var n3 = new S(i2, t3);
     try {
-      n3.c();
+      n3.c;
     } catch (i3) {
-      n3.d();
+      n3.d;
       throw i3;
     }
     var r3 = n3.d.bind(n3);
@@ -22893,7 +22893,7 @@
   }
   var i, r, f, h, s, v, u;
   var init_signals_core_module = __esm({
-    "node_modules/@preact/signals-core/dist/signals-core.module.js"() {
+    "node_modules/@preact/signals-core/dist/signals-core.module.js" {
       i = /* @__PURE__ */ Symbol.for("preact-signals");
       r = void 0;
       h = void 0;
@@ -22901,7 +22901,7 @@
       v = 0;
       u = 0;
       d.prototype.brand = i;
-      d.prototype.h = function() {
+      d.prototype.h = function {
         return true;
       };
       d.prototype.S = function(i2) {
@@ -22910,7 +22910,7 @@
           i2.x = n3;
           this.t = i2;
           if (void 0 !== n3) n3.e = i2;
-          else o(function() {
+          else o(function {
             var i3;
             null == (i3 = t3.W) || i3.call(t3);
           });
@@ -22930,7 +22930,7 @@
           }
           if (i2 === this.t) {
             this.t = r3;
-            if (void 0 === r3) o(function() {
+            if (void 0 === r3) o(function {
               var i3;
               null == (i3 = t3.Z) || i3.call(t3);
             });
@@ -22939,7 +22939,7 @@
       };
       d.prototype.subscribe = function(i2) {
         var t3 = this;
-        return m(function() {
+        return m(function {
           var n3 = t3.value, o2 = r;
           r = void 0;
           try {
@@ -22949,16 +22949,16 @@
           }
         }, { name: "sub" });
       };
-      d.prototype.valueOf = function() {
+      d.prototype.valueOf = function {
         return this.value;
       };
-      d.prototype.toString = function() {
+      d.prototype.toString = function {
         return this.value + "";
       };
-      d.prototype.toJSON = function() {
+      d.prototype.toJSON = function {
         return this.value;
       };
-      d.prototype.peek = function() {
+      d.prototype.peek = function {
         var i2 = r;
         r = void 0;
         try {
@@ -22967,7 +22967,7 @@
           r = i2;
         }
       };
-      Object.defineProperty(d.prototype, "value", { get: function() {
+      Object.defineProperty(d.prototype, "value", { get: function {
         var i2 = e(this);
         if (void 0 !== i2) i2.i = this.i;
         return this.v;
@@ -22979,14 +22979,14 @@
           u++;
           s++;
           try {
-            for (var n3 = this.t; void 0 !== n3; n3 = n3.x) n3.t.N();
+            for (var n3 = this.t; void 0 !== n3; n3 = n3.x) n3.t.N;
           } finally {
-            t();
+            t;
           }
         }
       } });
-      w.prototype = new d();
-      w.prototype.h = function() {
+      w.prototype = new d;
+      w.prototype.h = function {
         this.f &= -3;
         if (1 & this.f) return false;
         if (32 == (36 & this.f)) return true;
@@ -23002,7 +23002,7 @@
         try {
           l(this);
           r = this;
-          var t3 = this.x();
+          var t3 = this.x;
           if (16 & this.f || this.v !== t3 || 0 === this.i) {
             this.v = t3;
             this.f &= -17;
@@ -23034,32 +23034,32 @@
           }
         }
       };
-      w.prototype.N = function() {
+      w.prototype.N = function {
         if (!(2 & this.f)) {
           this.f |= 6;
-          for (var i2 = this.t; void 0 !== i2; i2 = i2.x) i2.t.N();
+          for (var i2 = this.t; void 0 !== i2; i2 = i2.x) i2.t.N;
         }
       };
-      Object.defineProperty(w.prototype, "value", { get: function() {
+      Object.defineProperty(w.prototype, "value", { get: function {
         if (1 & this.f) throw new Error("Cycle detected");
         var i2 = e(this);
-        this.h();
+        this.h;
         if (void 0 !== i2) i2.i = this.i;
         if (16 & this.f) throw this.v;
         return this.v;
       } });
-      S.prototype.c = function() {
-        var i2 = this.S();
+      S.prototype.c = function {
+        var i2 = this.S;
         try {
           if (8 & this.f) return;
           if (void 0 === this.x) return;
-          var t3 = this.x();
+          var t3 = this.x;
           if ("function" == typeof t3) this.u = t3;
         } finally {
-          i2();
+          i2;
         }
       };
-      S.prototype.S = function() {
+      S.prototype.S = function {
         if (1 & this.f) throw new Error("Cycle detected");
         this.f |= 1;
         this.f &= -9;
@@ -23070,19 +23070,19 @@
         r = this;
         return g.bind(this, i2);
       };
-      S.prototype.N = function() {
+      S.prototype.N = function {
         if (!(2 & this.f)) {
           this.f |= 2;
           this.o = h;
           h = this;
         }
       };
-      S.prototype.d = function() {
+      S.prototype.d = function {
         this.f |= 8;
         if (!(1 & this.f)) p(this);
       };
-      S.prototype.dispose = function() {
-        this.d();
+      S.prototype.dispose = function {
+        this.d;
       };
     }
   });
@@ -23091,8 +23091,8 @@
   function computed(compute, comparator) {
     if (comparator) {
       let previousValue;
-      return b(() => {
-        const value = compute();
+      return b( => {
+        const value = compute;
         if (value && previousValue && comparator(previousValue, value)) {
           return previousValue;
         }
@@ -23146,13 +23146,13 @@
       init(value) {
         return c(value);
       },
-      get() {
+      get {
         const current = get.call(this);
         return current.value;
       },
       set(newValue) {
         const current = get.call(this);
-        if (current.peek() === newValue) {
+        if (current.peek === newValue) {
           return;
         }
         current.value = newValue;
@@ -23160,8 +23160,8 @@
     };
   }
   function derived(target, _2) {
-    const map = /* @__PURE__ */ new WeakMap();
-    return function() {
+    const map = /* @__PURE__ */ new WeakMap;
+    return function {
       let result = map.get(this);
       if (!result) {
         result = computed(target.bind(this));
@@ -23172,7 +23172,7 @@
   }
   function enumerable(enumerable2 = true) {
     return function(_value2, context) {
-      context.addInitializer(function() {
+      context.addInitializer(function {
         const host = context.kind === "field" ? this : context.static ? this : Object.getPrototypeOf(this);
         const descriptor2 = Object.getOwnPropertyDescriptor(host, context.name);
         if (descriptor2) {
@@ -23183,10 +23183,10 @@
   }
   function effects(...entries) {
     const effects2 = entries.map(m);
-    return () => effects2.forEach((cleanup) => cleanup());
+    return  => effects2.forEach((cleanup) => cleanup);
   }
   function snapshot(value) {
-    return o(() => {
+    return o( => {
       const output = {};
       for (const key in value) {
         output[key] = value[key];
@@ -23196,13 +23196,13 @@
   }
   var __create3, __defProp3, __defProps2, __getOwnPropDesc3, __getOwnPropDescs2, __getOwnPropSymbols2, __hasOwnProp3, __propIsEnum2, __knownSymbol, __typeError, __defNormalProp2, __spreadValues2, __spreadProps2, __name, __decoratorStart, __decoratorStrings, __expectFn, __decoratorContext, __decoratorMetadata, __runInitializers, __decorateElement, __accessCheck, __privateIn, __privateGet, __privateAdd, __privateSet, __privateMethod, _previous_dec, _initial_dec, _current_dec, _current_dec2, _previous_dec2, _initial_dec2, _init, _initial, _a, initial_get, initial_set, _ValueHistory_instances, _previous, _b, previous_get, previous_set, _current, _c, current_get, current_set, ValueHistory, _store, WeakStore;
   var init_dist = __esm({
-    "node_modules/@dnd-kit/state/dist/index.mjs"() {
-      init_signals_core_module();
-      init_signals_core_module();
-      init_signals_core_module();
-      init_signals_core_module();
-      init_signals_core_module();
-      init_signals_core_module();
+    "node_modules/@dnd-kit/state/dist/index.mjs" {
+      init_signals_core_module;
+      init_signals_core_module;
+      init_signals_core_module;
+      init_signals_core_module;
+      init_signals_core_module;
+      init_signals_core_module;
       __create3 = Object.create;
       __defProp3 = Object.defineProperty;
       __defProps2 = Object.defineProperties;
@@ -23245,7 +23245,7 @@
         var fn, it, done, ctx, access, k = flags & 7, s2 = !!(flags & 8), p2 = !!(flags & 16);
         var j = k > 3 ? array.length + 1 : k ? s2 ? 1 : 2 : 0, key = __decoratorStrings[k + 5];
         var initializers = k > 3 && (array[j - 1] = []), extraInitializers = array[j] || (array[j] = []);
-        var desc = k && (!p2 && !s2 && (target = target.prototype), k < 5 && (k > 3 || !p2) && __getOwnPropDesc3(k < 4 ? target : { get [name]() {
+        var desc = k && (!p2 && !s2 && (target = target.prototype), k < 5 && (k > 3 || !p2) && __getOwnPropDesc3(k < 4 ? target : { get [name] {
           return __privateGet(this, extra);
         }, set [name](x) {
           return __privateSet(this, extra, x);
@@ -23271,7 +23271,7 @@
       __privateAdd = (obj, member, value) => member.has(obj) ? __typeError("Cannot add the same private member more than once") : member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
       __privateSet = (obj, member, value, setter) => (__accessCheck(obj, member, "write to private field"), setter ? setter.call(obj, value) : member.set(obj, value), value);
       __privateMethod = (obj, member, method) => (__accessCheck(obj, member, "access private method"), method);
-      _initial_dec2 = [reactive], _previous_dec2 = [reactive], _current_dec2 = [reactive], _current_dec = [enumerable()], _initial_dec = [enumerable()], _previous_dec = [enumerable()];
+      _initial_dec2 = [reactive], _previous_dec2 = [reactive], _current_dec2 = [reactive], _current_dec = [enumerable], _initial_dec = [enumerable], _previous_dec = [enumerable];
       ValueHistory = class {
         constructor(defaultValue, equals = Object.is) {
           this.defaultValue = defaultValue;
@@ -23282,24 +23282,24 @@
           __privateAdd(this, _previous, __runInitializers(_init, 12, this)), __runInitializers(_init, 15, this);
           __privateAdd(this, _current, __runInitializers(_init, 16, this)), __runInitializers(_init, 19, this);
           this.reset = this.reset.bind(this);
-          this.reset();
+          this.reset;
         }
-        get current() {
+        get current {
           return __privateGet(this, _ValueHistory_instances, current_get);
         }
-        get initial() {
+        get initial {
           return __privateGet(this, _ValueHistory_instances, initial_get);
         }
-        get previous() {
+        get previous {
           return __privateGet(this, _ValueHistory_instances, previous_get);
         }
         /** Set the current value */
         set current(value) {
-          const current = o(() => __privateGet(this, _ValueHistory_instances, current_get));
+          const current = o( => __privateGet(this, _ValueHistory_instances, current_get));
           if (value && current && this.equals(current, value)) {
             return;
           }
-          n(() => {
+          n( => {
             if (!__privateGet(this, _ValueHistory_instances, initial_get)) {
               __privateSet(this, _ValueHistory_instances, value, initial_set);
             }
@@ -23309,7 +23309,7 @@
         }
         /** Reset the state to the initial value */
         reset(value = this.defaultValue) {
-          n(() => {
+          n( => {
             __privateSet(this, _ValueHistory_instances, void 0, previous_set);
             __privateSet(this, _ValueHistory_instances, value, initial_set);
             __privateSet(this, _ValueHistory_instances, value, current_set);
@@ -23317,10 +23317,10 @@
         }
       };
       _init = __decoratorStart(null);
-      _initial = /* @__PURE__ */ new WeakMap();
-      _ValueHistory_instances = /* @__PURE__ */ new WeakSet();
-      _previous = /* @__PURE__ */ new WeakMap();
-      _current = /* @__PURE__ */ new WeakMap();
+      _initial = /* @__PURE__ */ new WeakMap;
+      _ValueHistory_instances = /* @__PURE__ */ new WeakSet;
+      _previous = /* @__PURE__ */ new WeakMap;
+      _current = /* @__PURE__ */ new WeakMap;
       _a = __decorateElement(_init, 20, "#initial", _initial_dec2, _ValueHistory_instances, _initial), initial_get = _a.get, initial_set = _a.set;
       _b = __decorateElement(_init, 20, "#previous", _previous_dec2, _ValueHistory_instances, _previous), previous_get = _b.get, previous_set = _b.set;
       _c = __decorateElement(_init, 20, "#current", _current_dec2, _ValueHistory_instances, _current), current_get = _c.get, current_set = _c.set;
@@ -23329,8 +23329,8 @@
       __decorateElement(_init, 2, "previous", _previous_dec, ValueHistory);
       __decoratorMetadata(_init, ValueHistory);
       WeakStore = class {
-        constructor() {
-          __privateAdd(this, _store, /* @__PURE__ */ new WeakMap());
+        constructor {
+          __privateAdd(this, _store, /* @__PURE__ */ new WeakMap);
         }
         get(key, id) {
           var _a23;
@@ -23339,15 +23339,15 @@
         set(key, id, value) {
           var _a23;
           if (!key) return;
-          if (!__privateGet(this, _store).has(key)) __privateGet(this, _store).set(key, /* @__PURE__ */ new Map());
+          if (!__privateGet(this, _store).has(key)) __privateGet(this, _store).set(key, /* @__PURE__ */ new Map);
           return (_a23 = __privateGet(this, _store).get(key)) == null ? void 0 : _a23.set(id, value);
         }
         clear(key) {
           var _a23;
-          return key ? (_a23 = __privateGet(this, _store).get(key)) == null ? void 0 : _a23.clear() : void 0;
+          return key ? (_a23 = __privateGet(this, _store).get(key)) == null ? void 0 : _a23.clear : void 0;
         }
       };
-      _store = /* @__PURE__ */ new WeakMap();
+      _store = /* @__PURE__ */ new WeakMap;
     }
   });
 
@@ -23384,8 +23384,8 @@
   }
   var __create4, __defProp4, __getOwnPropDesc4, __getOwnPropSymbols3, __hasOwnProp4, __propIsEnum3, __knownSymbol2, __typeError2, __pow, __defNormalProp3, __spreadValues3, __name2, __decoratorStart2, __decoratorStrings2, __expectFn2, __decoratorContext2, __decoratorMetadata2, __runInitializers2, __decorateElement2, __accessCheck2, __privateIn2, __privateGet2, __privateAdd2, __privateSet2, __privateMethod2, Point, Rectangle, _direction_dec, _delta_dec, _a2, _timestamp, _init2, Position, Axis, Axes;
   var init_dist2 = __esm({
-    "node_modules/@dnd-kit/geometry/dist/index.mjs"() {
-      init_dist();
+    "node_modules/@dnd-kit/geometry/dist/index.mjs" {
+      init_dist;
       __create4 = Object.create;
       __defProp4 = Object.defineProperty;
       __getOwnPropDesc4 = Object.getOwnPropertyDescriptor;
@@ -23426,7 +23426,7 @@
         var fn, it, done, ctx, access, k = flags & 7, s2 = !!(flags & 8), p2 = !!(flags & 16);
         var j = k > 3 ? array.length + 1 : k ? s2 ? 1 : 2 : 0, key = __decoratorStrings2[k + 5];
         var initializers = k > 3 && (array[j - 1] = []), extraInitializers = array[j] || (array[j] = []);
-        var desc = k && (!p2 && !s2 && (target = target.prototype), k < 5 && (k > 3 || !p2) && __getOwnPropDesc4(k < 4 ? target : { get [name]() {
+        var desc = k && (!p2 && !s2 && (target = target.prototype), k < 5 && (k > 3 || !p2) && __getOwnPropDesc4(k < 4 ? target : { get [name] {
           return __privateGet2(this, extra);
         }, set [name](x) {
           return __privateSet2(this, extra, x);
@@ -23503,7 +23503,7 @@
             y: 1
           };
         }
-        get inverseScale() {
+        get inverseScale {
           return {
             x: 1 / this.scale.x,
             y: 1 / this.scale.y
@@ -23515,15 +23515,15 @@
           newShape.scale = __spreadValues3({}, scale);
           return newShape;
         }
-        get boundingRectangle() {
+        get boundingRectangle {
           const { width, height, left, top, right, bottom } = this;
           return { width, height, left, top, right, bottom };
         }
-        get center() {
+        get center {
           const { left, top, right, bottom } = this;
           return new Point((left + right) / 2, (top + bottom) / 2);
         }
-        get area() {
+        get area {
           const { width, height } = this;
           return width * height;
         }
@@ -23550,19 +23550,19 @@
           const intersectionRatio = intersectionArea / (shape.area + area - intersectionArea);
           return intersectionRatio;
         }
-        get bottom() {
+        get bottom {
           const { top, height } = this;
           return top + height;
         }
-        get right() {
+        get right {
           const { left, width } = this;
           return left + width;
         }
-        get aspectRatio() {
+        get aspectRatio {
           const { width, height } = this;
           return width / height;
         }
-        get corners() {
+        get corners {
           return [
             { x: this.left, y: this.top },
             { x: this.right, y: this.top },
@@ -23599,10 +23599,10 @@
           __privateAdd2(this, _timestamp, 0);
           this.velocity = { x: 0, y: 0 };
         }
-        get delta() {
+        get delta {
           return Point.delta(this.current, this.initial);
         }
-        get direction() {
+        get direction {
           const { current, previous } = this;
           if (!previous) return null;
           const delta = {
@@ -23617,7 +23617,7 @@
           }
           return delta.y > 0 ? "down" : "up";
         }
-        get current() {
+        get current {
           return super.current;
         }
         set current(coordinates) {
@@ -23627,10 +23627,10 @@
             x: point.x - current.x,
             y: point.y - current.y
           };
-          const timestamp = Date.now();
+          const timestamp = Date.now;
           const timeDelta = timestamp - __privateGet2(this, _timestamp);
           const velocity = (delta2) => Math.round(delta2 / timeDelta * 100);
-          n(() => {
+          n( => {
             __privateSet2(this, _timestamp, timestamp);
             this.velocity = {
               x: velocity(delta.x),
@@ -23645,7 +23645,7 @@
         }
       };
       _init2 = __decoratorStart2(_a2);
-      _timestamp = /* @__PURE__ */ new WeakMap();
+      _timestamp = /* @__PURE__ */ new WeakMap;
       __decorateElement2(_init2, 2, "delta", _delta_dec, Position);
       __decorateElement2(_init2, 2, "direction", _direction_dec, Position);
       __decoratorMetadata2(_init2, Position);
@@ -23692,10 +23692,10 @@
     let defaultPrevented = false;
     return __spreadProps3(__spreadValues4({}, event), {
       cancelable,
-      get defaultPrevented() {
+      get defaultPrevented {
         return defaultPrevented;
       },
-      preventDefault() {
+      preventDefault {
         if (!cancelable) {
           return;
         }
@@ -23705,9 +23705,9 @@
   }
   var __create5, __defProp5, __defProps3, __getOwnPropDesc5, __getOwnPropDescs3, __getOwnPropSymbols4, __hasOwnProp5, __propIsEnum4, __knownSymbol3, __typeError3, __defNormalProp4, __spreadValues4, __spreadProps3, __name3, __objRest2, __decoratorStart3, __decoratorStrings3, __expectFn3, __decoratorContext3, __decoratorMetadata3, __runInitializers3, __decorateElement3, __accessCheck3, __privateIn3, __privateGet3, __privateAdd3, __privateSet3, __privateMethod3, _disabled_dec, _init3, _disabled, _cleanupFunctions, Plugin, CorePlugin, _previousValues, PluginRegistry, DEFAULT_VALUE, _previousCoordinates, _collisions, CollisionObserver, Monitor, DragDropMonitor, CollisionNotifier, CollisionPriority, CollisionType, _dropped_dec, _dragging_dec, _initialized_dec, _initializing_dec, _idle_dec, _current_dec3, _value_dec, _init22, _value, Status, DragActions, _disabled_dec2, _data_dec, _id_dec, _manager_dec, _init32, _manager, _id, _data, _disabled2, Entity, EntityRegistry, _isDragSource_dec, _isDragging_dec, _isDropping_dec, _status_dec, _modifiers_dec, _type_dec, _c2, _init4, _type, _modifiers, _status, Draggable, _isDropTarget_dec, _shape_dec, _collisionPriority_dec, _collisionDetector_dec, _type_dec2, _accept_dec, _c22, _init5, _accept, _type2, _collisionDetector, _collisionPriority, _shape, Droppable, Sensor, Modifier, DragDropRegistry, _transform_dec, _target_dec, _source_dec, _modifiers_dec2, _targetIdentifier_dec, _sourceIdentifier_dec, _activatorEvent_dec, _canceled_dec, _shape_dec2, _manager2, _previousSource, _shape2, _init6, _canceled, _activatorEvent, _sourceIdentifier, _targetIdentifier, _modifiers2, _transform, DragOperation, defaultRenderer, DragDropManager;
   var init_abstract = __esm({
-    "node_modules/@dnd-kit/abstract/index.js"() {
-      init_dist();
-      init_dist2();
+    "node_modules/@dnd-kit/abstract/index.js" {
+      init_dist;
+      init_dist2;
       __create5 = Object.create;
       __defProp5 = Object.defineProperty;
       __defProps3 = Object.defineProperties;
@@ -23762,7 +23762,7 @@
         var fn, it, done, ctx, access, k = flags & 7, s2 = !!(flags & 8), p2 = !!(flags & 16);
         var j = k > 3 ? array.length + 1 : k ? s2 ? 1 : 2 : 0, key = __decoratorStrings3[k + 5];
         var initializers = k > 3 && (array[j - 1] = []), extraInitializers = array[j] || (array[j] = []);
-        var desc = k && (!p2 && !s2 && (target = target.prototype), k < 5 && (k > 3 || !p2) && __getOwnPropDesc5(k < 4 ? target : { get [name]() {
+        var desc = k && (!p2 && !s2 && (target = target.prototype), k < 5 && (k > 3 || !p2) && __getOwnPropDesc5(k < 4 ? target : { get [name] {
           return __privateGet3(this, extra);
         }, set [name](x) {
           return __privateSet3(this, extra, x);
@@ -23800,7 +23800,7 @@
           this.manager = manager;
           this.options = options2;
           __privateAdd3(this, _disabled, __runInitializers3(_init3, 8, this, false)), __runInitializers3(_init3, 11, this);
-          __privateAdd3(this, _cleanupFunctions, /* @__PURE__ */ new Set());
+          __privateAdd3(this, _cleanupFunctions, /* @__PURE__ */ new Set);
         }
         /**
          * Enables a disabled plugin instance.
@@ -23808,7 +23808,7 @@
          * @remarks
          * This method triggers effects when called.
          */
-        enable() {
+        enable {
           this.disabled = false;
         }
         /**
@@ -23817,7 +23817,7 @@
          * @remarks
          * This method triggers effects when called.
          */
-        disable() {
+        disable {
           this.disabled = true;
         }
         /**
@@ -23827,8 +23827,8 @@
          * @remarks
          * This method does not trigger effects when accessed.
          */
-        isDisabled() {
-          return o(() => {
+        isDisabled {
+          return o( => {
             return this.disabled;
           });
         }
@@ -23859,8 +23859,8 @@
          * - Calls all registered cleanup functions
          * - Should be overridden by subclasses to clean up additional resources
          */
-        destroy() {
-          __privateGet3(this, _cleanupFunctions).forEach((cleanup) => cleanup());
+        destroy {
+          __privateGet3(this, _cleanupFunctions).forEach((cleanup) => cleanup);
         }
         /**
          * Configures a plugin constructor with options.
@@ -23877,8 +23877,8 @@
         }
       };
       _init3 = __decoratorStart3(null);
-      _disabled = /* @__PURE__ */ new WeakMap();
-      _cleanupFunctions = /* @__PURE__ */ new WeakMap();
+      _disabled = /* @__PURE__ */ new WeakMap;
+      _cleanupFunctions = /* @__PURE__ */ new WeakMap;
       __decorateElement3(_init3, 4, "disabled", _disabled_dec, Plugin, _disabled);
       __decoratorMetadata3(_init3, Plugin);
       CorePlugin = class extends Plugin {
@@ -23891,7 +23891,7 @@
          */
         constructor(manager) {
           this.manager = manager;
-          this.instances = /* @__PURE__ */ new Map();
+          this.instances = /* @__PURE__ */ new Map;
           __privateAdd3(this, _previousValues, []);
         }
         /**
@@ -23899,8 +23899,8 @@
          *
          * @returns An array of all active plugin instances
          */
-        get values() {
-          return Array.from(this.instances.values());
+        get values {
+          return Array.from(this.instances.values);
         }
         /**
          * Sets the list of plugins to be used by the registry.
@@ -23977,7 +23977,7 @@
         unregister(plugin) {
           const instance = this.instances.get(plugin);
           if (instance) {
-            instance.destroy();
+            instance.destroy;
             this.instances.delete(plugin);
           }
         }
@@ -23986,17 +23986,17 @@
          *
          * @remarks
          * This method:
-         * - Calls destroy() on all plugin instances
+         * - Calls destroy on all plugin instances
          * - Clears the registry
          */
-        destroy() {
-          for (const plugin of this.instances.values()) {
-            plugin.destroy();
+        destroy {
+          for (const plugin of this.instances.values) {
+            plugin.destroy;
           }
-          this.instances.clear();
+          this.instances.clear;
         }
       };
-      _previousValues = /* @__PURE__ */ new WeakMap();
+      _previousValues = /* @__PURE__ */ new WeakMap;
       DEFAULT_VALUE = [];
       CollisionObserver = class extends Plugin {
         /**
@@ -24011,10 +24011,10 @@
           this.computeCollisions = this.computeCollisions.bind(this);
           __privateSet3(this, _collisions, c(DEFAULT_VALUE));
           this.destroy = effects(
-            () => {
-              const collisions = this.computeCollisions();
+             => {
+              const collisions = this.computeCollisions;
               const coordinates = o(
-                () => this.manager.dragOperation.position.current
+                 => this.manager.dragOperation.position.current
               );
               if (collisions !== DEFAULT_VALUE) {
                 const previousCoordinates = __privateGet3(this, _previousCoordinates);
@@ -24027,10 +24027,10 @@
               }
               __privateGet3(this, _collisions).value = collisions;
             },
-            () => {
+             => {
               const { dragOperation } = this.manager;
               if (dragOperation.status.initialized) {
-                this.forceUpdate();
+                this.forceUpdate;
               }
             }
           );
@@ -24041,9 +24041,9 @@
          * @param immediate - If true, updates collisions immediately. If false, resets previous coordinates.
          */
         forceUpdate(immediate = true) {
-          o(() => {
+          o( => {
             if (immediate) {
-              __privateGet3(this, _collisions).value = this.computeCollisions();
+              __privateGet3(this, _collisions).value = this.computeCollisions;
             } else {
               __privateSet3(this, _previousCoordinates, void 0);
             }
@@ -24078,7 +24078,7 @@
             potentialTargets.push(entry);
             void entry.shape;
             const collision = o(
-              () => detectCollision({
+               => detectCollision({
                 droppable: entry,
                 dragOperation
               })
@@ -24099,15 +24099,15 @@
         /**
          * Gets the current collisions signal value.
          */
-        get collisions() {
+        get collisions {
           return __privateGet3(this, _collisions).value;
         }
       };
-      _previousCoordinates = /* @__PURE__ */ new WeakMap();
-      _collisions = /* @__PURE__ */ new WeakMap();
+      _previousCoordinates = /* @__PURE__ */ new WeakMap;
+      _collisions = /* @__PURE__ */ new WeakMap;
       Monitor = class {
-        constructor() {
-          this.registry = /* @__PURE__ */ new Map();
+        constructor {
+          this.registry = /* @__PURE__ */ new Map;
         }
         /**
          * Adds an event listener for the specified event type.
@@ -24121,7 +24121,7 @@
           const listeners = new Set(registry.get(name));
           listeners.add(handler);
           registry.set(name, listeners);
-          return () => this.removeEventListener(name, handler);
+          return  => this.removeEventListener(name, handler);
         }
         /**
          * Removes an event listener for the specified event type.
@@ -24159,7 +24159,7 @@
          * @param manager - The drag and drop manager to monitor
          */
         constructor(manager) {
-          super();
+          super;
           this.manager = manager;
         }
         /**
@@ -24179,17 +24179,17 @@
           const isEqual = (a2, b2) => a2.map(({ id }) => id).join("") === b2.map(({ id }) => id).join("");
           let previousCollisions = [];
           this.destroy = effects(
-            () => {
+             => {
               const { dragOperation, collisionObserver } = manager;
               if (dragOperation.status.initializing) {
                 previousCollisions = [];
-                collisionObserver.enable();
+                collisionObserver.enable;
               }
             },
-            () => {
+             => {
               const { collisionObserver, monitor } = manager;
               const { collisions } = collisionObserver;
-              if (collisionObserver.isDisabled()) {
+              if (collisionObserver.isDisabled) {
                 return;
               }
               const event = defaultPreventable({
@@ -24205,12 +24205,12 @@
                 previousCollisions = collisions;
               }
               const [firstCollision] = collisions;
-              o(() => {
+              o( => {
                 var _a5;
                 if ((firstCollision == null ? void 0 : firstCollision.id) !== ((_a5 = manager.dragOperation.target) == null ? void 0 : _a5.id)) {
-                  collisionObserver.disable();
-                  manager.actions.setDropTarget(firstCollision == null ? void 0 : firstCollision.id).then(() => {
-                    collisionObserver.enable();
+                  collisionObserver.disable;
+                  manager.actions.setDropTarget(firstCollision == null ? void 0 : firstCollision.id).then( => {
+                    collisionObserver.enable;
                   });
                 }
               });
@@ -24234,7 +24234,7 @@
       })(CollisionType || {});
       _value_dec = [reactive], _current_dec3 = [derived], _idle_dec = [derived], _initializing_dec = [derived], _initialized_dec = [derived], _dragging_dec = [derived], _dropped_dec = [derived];
       Status = class {
-        constructor() {
+        constructor {
           __runInitializers3(_init22, 5, this);
           __privateAdd3(this, _value, __runInitializers3(
             _init22,
@@ -24244,23 +24244,23 @@
             /* Idle */
           )), __runInitializers3(_init22, 11, this);
         }
-        get current() {
+        get current {
           return this.value;
         }
-        get idle() {
+        get idle {
           return this.value === "idle";
         }
-        get initializing() {
+        get initializing {
           return this.value === "initializing";
         }
-        get initialized() {
+        get initialized {
           const { value } = this;
           return value !== "idle" && value !== "initialization-pending";
         }
-        get dragging() {
+        get dragging {
           return this.value === "dragging";
         }
-        get dropped() {
+        get dropped {
           return this.value === "dropped";
         }
         /**
@@ -24273,7 +24273,7 @@
         }
       };
       _init22 = __decoratorStart3(null);
-      _value = /* @__PURE__ */ new WeakMap();
+      _value = /* @__PURE__ */ new WeakMap;
       __decorateElement3(_init22, 4, "value", _value_dec, Status, _value);
       __decorateElement3(_init22, 2, "current", _current_dec3, Status);
       __decorateElement3(_init22, 2, "idle", _idle_dec, Status);
@@ -24307,7 +24307,7 @@
          * @returns A promise that resolves to true if the drop was prevented
          */
         setDropTarget(identifier) {
-          return o(() => {
+          return o( => {
             const { dragOperation } = this.manager;
             const id = identifier != null ? identifier : null;
             if (dragOperation.targetIdentifier === id) {
@@ -24315,12 +24315,12 @@
             }
             dragOperation.targetIdentifier = id;
             const event = defaultPreventable({
-              operation: dragOperation.snapshot()
+              operation: dragOperation.snapshot
             });
             if (dragOperation.status.dragging) {
               this.manager.monitor.dispatch("dragover", event);
             }
-            return this.manager.renderer.rendering.then(() => event.defaultPrevented);
+            return this.manager.renderer.rendering.then( => event.defaultPrevented);
           });
         }
         /**
@@ -24334,7 +24334,7 @@
          * @throws {Error} If there is no drag source or another operation is active
          */
         start(args) {
-          return o(() => {
+          return o( => {
             const { dragOperation } = this.manager;
             if (args.source != null) {
               this.setDragSource(args.source);
@@ -24348,9 +24348,9 @@
                 "Cannot start a drag operation while another is active"
               );
             }
-            const controller = new AbortController();
+            const controller = new AbortController;
             const { event: nativeEvent, coordinates } = args;
-            n(() => {
+            n( => {
               dragOperation.status.set(
                 "initialization-pending"
                 /* InitializationPending */
@@ -24361,12 +24361,12 @@
               dragOperation.position.reset(coordinates);
             });
             const beforeStartEvent = defaultPreventable({
-              operation: dragOperation.snapshot()
+              operation: dragOperation.snapshot
             });
             this.manager.monitor.dispatch("beforedragstart", beforeStartEvent);
             if (beforeStartEvent.defaultPrevented) {
-              dragOperation.reset();
-              controller.abort();
+              dragOperation.reset;
+              controller.abort;
               return controller;
             }
             dragOperation.status.set(
@@ -24374,7 +24374,7 @@
               /* Initializing */
             );
             dragOperation.controller = controller;
-            this.manager.renderer.rendering.then(() => {
+            this.manager.renderer.rendering.then( => {
               if (controller.signal.aborted) return;
               const { status } = dragOperation;
               if (status.current !== "initializing") return;
@@ -24384,7 +24384,7 @@
               );
               this.manager.monitor.dispatch("dragstart", {
                 nativeEvent,
-                operation: dragOperation.snapshot(),
+                operation: dragOperation.snapshot,
                 cancelable: false
               });
             });
@@ -24402,7 +24402,7 @@
          * @param args.propagate - Whether to dispatch dragmove events
          */
         move(args) {
-          return o(() => {
+          return o( => {
             var _a5, _b3;
             const { dragOperation } = this.manager;
             const { status, controller } = dragOperation;
@@ -24412,7 +24412,7 @@
             const event = defaultPreventable(
               {
                 nativeEvent: args.event,
-                operation: dragOperation.snapshot(),
+                operation: dragOperation.snapshot,
                 by: args.by,
                 to: args.to
               },
@@ -24421,7 +24421,7 @@
             if ((_b3 = args.propagate) != null ? _b3 : true) {
               this.manager.monitor.dispatch("dragmove", event);
             }
-            queueMicrotask(() => {
+            queueMicrotask( => {
               var _a23, _b22, _c32, _d2, _e;
               if (event.defaultPrevented) {
                 return;
@@ -24447,17 +24447,17 @@
          * - Handles cleanup of the operation state
          */
         stop(args = {}) {
-          return o(() => {
+          return o( => {
             var _a5, _b3;
             const { dragOperation } = this.manager;
             const { controller } = dragOperation;
             if (!controller || controller.signal.aborted) return;
             let promise;
-            const suspend = () => {
+            const suspend =  => {
               const output = {
-                resume: () => {
+                resume:  => {
                 },
-                abort: () => {
+                abort:  => {
                 }
               };
               promise = new Promise((resolve, reject) => {
@@ -24466,31 +24466,31 @@
               });
               return output;
             };
-            controller.abort();
-            const end = () => {
-              this.manager.renderer.rendering.then(() => {
+            controller.abort;
+            const end =  => {
+              this.manager.renderer.rendering.then( => {
                 dragOperation.status.set(
                   "dropped"
                   /* Dropped */
                 );
                 const dropping = o(
-                  () => {
+                   => {
                     var _a23;
                     return ((_a23 = dragOperation.source) == null ? void 0 : _a23.status) === "dropping";
                   }
                 );
-                const cleanup = () => {
+                const cleanup =  => {
                   if (dragOperation.controller === controller) {
                     dragOperation.controller = void 0;
                   }
-                  dragOperation.reset();
+                  dragOperation.reset;
                 };
                 if (dropping) {
                   const { source } = dragOperation;
-                  const dispose = m(() => {
+                  const dispose = m( => {
                     if ((source == null ? void 0 : source.status) === "idle") {
-                      dispose();
-                      cleanup();
+                      dispose;
+                      cleanup;
                     }
                   });
                 } else {
@@ -24501,14 +24501,14 @@
             dragOperation.canceled = (_a5 = args.canceled) != null ? _a5 : false;
             this.manager.monitor.dispatch("dragend", {
               nativeEvent: args.event,
-              operation: dragOperation.snapshot(),
+              operation: dragOperation.snapshot,
               canceled: (_b3 = args.canceled) != null ? _b3 : false,
               suspend
             });
             if (promise) {
-              promise.then(end).catch(() => dragOperation.reset());
+              promise.then(end).catch( => dragOperation.reset);
             } else {
-              end();
+              end;
             }
           });
         }
@@ -24532,18 +24532,18 @@
           this.id = id;
           this.data = data;
           this.disabled = disabled;
-          this.effects = () => {
+          this.effects =  => {
             var _a5;
             return [
-              () => {
+               => {
                 const { id: id2, manager: manager2 } = this;
                 if (id2 === previousId) {
                   return;
                 }
                 manager2 == null ? void 0 : manager2.registry.register(this);
-                return () => manager2 == null ? void 0 : manager2.registry.unregister(this);
+                return  => manager2 == null ? void 0 : manager2.registry.unregister(this);
               },
-              ...(_a5 = effects6 == null ? void 0 : effects6()) != null ? _a5 : []
+              ...(_a5 = effects6 == null ? void 0 : effects6) != null ? _a5 : []
             ];
           };
           this.register = this.register.bind(this);
@@ -24557,7 +24557,7 @@
          * A method that registers the entity with the manager.
          * @returns CleanupFunction | void
          */
-        register() {
+        register {
           var _a5;
           return (_a5 = this.manager) == null ? void 0 : _a5.registry.register(this);
         }
@@ -24565,7 +24565,7 @@
          * A method that unregisters the entity from the manager.
          * @returns void
          */
-        unregister() {
+        unregister {
           var _a5;
           (_a5 = this.manager) == null ? void 0 : _a5.registry.unregister(this);
         }
@@ -24573,49 +24573,49 @@
          * A method that cleans up the entity when it is no longer needed.
          * @returns void
          */
-        destroy() {
+        destroy {
           var _a5;
           (_a5 = this.manager) == null ? void 0 : _a5.registry.unregister(this);
         }
       };
       _init32 = __decoratorStart3(null);
-      _manager = /* @__PURE__ */ new WeakMap();
-      _id = /* @__PURE__ */ new WeakMap();
-      _data = /* @__PURE__ */ new WeakMap();
-      _disabled2 = /* @__PURE__ */ new WeakMap();
+      _manager = /* @__PURE__ */ new WeakMap;
+      _id = /* @__PURE__ */ new WeakMap;
+      _data = /* @__PURE__ */ new WeakMap;
+      _disabled2 = /* @__PURE__ */ new WeakMap;
       __decorateElement3(_init32, 4, "manager", _manager_dec, Entity, _manager);
       __decorateElement3(_init32, 4, "id", _id_dec, Entity, _id);
       __decorateElement3(_init32, 4, "data", _data_dec, Entity, _data);
       __decorateElement3(_init32, 4, "disabled", _disabled_dec2, Entity, _disabled2);
       __decoratorMetadata3(_init32, Entity);
       EntityRegistry = class {
-        constructor() {
-          this.map = c(/* @__PURE__ */ new Map());
-          this.cleanupFunctions = /* @__PURE__ */ new WeakMap();
+        constructor {
+          this.map = c(/* @__PURE__ */ new Map);
+          this.cleanupFunctions = /* @__PURE__ */ new WeakMap;
           this.register = (key, value) => {
-            const current = this.map.peek();
+            const current = this.map.peek;
             const currentValue2 = current.get(key);
-            const unregister = () => this.unregister(key, value);
+            const unregister =  => this.unregister(key, value);
             if (currentValue2 === value) return unregister;
             if (currentValue2) {
               const cleanup2 = this.cleanupFunctions.get(currentValue2);
-              cleanup2 == null ? void 0 : cleanup2();
+              cleanup2 == null ? void 0 : cleanup2;
               this.cleanupFunctions.delete(currentValue2);
             }
             const updatedMap = new Map(current);
             updatedMap.set(key, value);
             this.map.value = updatedMap;
-            const cleanup = effects(...value.effects());
+            const cleanup = effects(...value.effects);
             this.cleanupFunctions.set(value, cleanup);
             return unregister;
           };
           this.unregister = (key, value) => {
-            const current = this.map.peek();
+            const current = this.map.peek;
             if (current.get(key) !== value) {
               return;
             }
             const cleanup = this.cleanupFunctions.get(value);
-            cleanup == null ? void 0 : cleanup();
+            cleanup == null ? void 0 : cleanup;
             this.cleanupFunctions.delete(value);
             const updatedMap = new Map(current);
             updatedMap.delete(key);
@@ -24626,11 +24626,11 @@
          * Iterator for the EntityRegistry class.
          * @returns An iterator for the values in the map.
          */
-        [Symbol.iterator]() {
-          return this.map.peek().values();
+        [Symbol.iterator] {
+          return this.map.peek.values;
         }
-        get value() {
-          return this.map.value.values();
+        get value {
+          return this.map.value.values;
         }
         /**
          * Checks if a entity with the given identifier exists in the registry.
@@ -24651,13 +24651,13 @@
         /**
          * Destroys all entries in the registry and clears the registry.
          */
-        destroy() {
+        destroy {
           for (const entry of this) {
             const cleanup = this.cleanupFunctions.get(entry);
-            cleanup == null ? void 0 : cleanup();
-            entry.destroy();
+            cleanup == null ? void 0 : cleanup;
+            entry.destroy;
           }
-          this.map.value = /* @__PURE__ */ new Map();
+          this.map.value = /* @__PURE__ */ new Map;
         }
       };
       Draggable = class extends (_c2 = Entity, _type_dec = [reactive], _modifiers_dec = [reactive], _status_dec = [reactive], _isDropping_dec = [derived], _isDragging_dec = [derived], _isDragSource_dec = [derived], _c2) {
@@ -24673,21 +24673,21 @@
           this.modifiers = modifiers;
           this.alignment = input.alignment;
         }
-        get isDropping() {
+        get isDropping {
           return this.status === "dropping" && this.isDragSource;
         }
-        get isDragging() {
+        get isDragging {
           return this.status === "dragging" && this.isDragSource;
         }
-        get isDragSource() {
+        get isDragSource {
           var _a5, _b3;
           return ((_b3 = (_a5 = this.manager) == null ? void 0 : _a5.dragOperation.source) == null ? void 0 : _b3.id) === this.id;
         }
       };
       _init4 = __decoratorStart3(_c2);
-      _type = /* @__PURE__ */ new WeakMap();
-      _modifiers = /* @__PURE__ */ new WeakMap();
-      _status = /* @__PURE__ */ new WeakMap();
+      _type = /* @__PURE__ */ new WeakMap;
+      _modifiers = /* @__PURE__ */ new WeakMap;
+      _status = /* @__PURE__ */ new WeakMap;
       __decorateElement3(_init4, 4, "type", _type_dec, Draggable, _type);
       __decorateElement3(_init4, 4, "modifiers", _modifiers_dec, Draggable, _modifiers);
       __decorateElement3(_init4, 4, "status", _status_dec, Draggable, _status);
@@ -24732,17 +24732,17 @@
           }
           return draggable.type === accept;
         }
-        get isDropTarget() {
+        get isDropTarget {
           var _a5, _b3;
           return ((_b3 = (_a5 = this.manager) == null ? void 0 : _a5.dragOperation.target) == null ? void 0 : _b3.id) === this.id;
         }
       };
       _init5 = __decoratorStart3(_c22);
-      _accept = /* @__PURE__ */ new WeakMap();
-      _type2 = /* @__PURE__ */ new WeakMap();
-      _collisionDetector = /* @__PURE__ */ new WeakMap();
-      _collisionPriority = /* @__PURE__ */ new WeakMap();
-      _shape = /* @__PURE__ */ new WeakMap();
+      _accept = /* @__PURE__ */ new WeakMap;
+      _type2 = /* @__PURE__ */ new WeakMap;
+      _collisionDetector = /* @__PURE__ */ new WeakMap;
+      _collisionPriority = /* @__PURE__ */ new WeakMap;
+      _shape = /* @__PURE__ */ new WeakMap;
       __decorateElement3(_init5, 4, "accept", _accept_dec, Droppable, _accept);
       __decorateElement3(_init5, 4, "type", _type_dec2, Droppable, _type2);
       __decorateElement3(_init5, 4, "collisionDetector", _collisionDetector_dec, Droppable, _collisionDetector);
@@ -24796,8 +24796,8 @@
          * @param manager - The drag and drop manager that owns this registry
          */
         constructor(manager) {
-          this.draggables = new EntityRegistry();
-          this.droppables = new EntityRegistry();
+          this.draggables = new EntityRegistry;
+          this.droppables = new EntityRegistry;
           this.plugins = new PluginRegistry(manager);
           this.sensors = new PluginRegistry(manager);
           this.modifiers = new PluginRegistry(manager);
@@ -24828,7 +24828,7 @@
             if (input instanceof Droppable) {
               return this.droppables.unregister(input.id, input);
             }
-            return () => {
+            return  => {
             };
           }
           if (input.prototype instanceof Modifier) {
@@ -24851,12 +24851,12 @@
          * - Destroys all plugins, sensors, and modifiers
          * - Cleans up any associated resources
          */
-        destroy() {
-          this.draggables.destroy();
-          this.droppables.destroy();
-          this.plugins.destroy();
-          this.sensors.destroy();
-          this.modifiers.destroy();
+        destroy {
+          this.draggables.destroy;
+          this.droppables.destroy;
+          this.plugins.destroy;
+          this.sensors.destroy;
+          this.modifiers.destroy;
         }
       };
       _shape_dec2 = [derived], _canceled_dec = [reactive], _activatorEvent_dec = [reactive], _sourceIdentifier_dec = [reactive], _targetIdentifier_dec = [reactive], _modifiers_dec2 = [reactive], _source_dec = [derived], _target_dec = [derived], _transform_dec = [derived];
@@ -24874,7 +24874,7 @@
             void 0,
             (a2, b2) => a2 && b2 ? a2.equals(b2) : a2 === b2
           ));
-          this.status = new Status();
+          this.status = new Status;
           __privateAdd3(this, _canceled, __runInitializers3(_init6, 8, this, false)), __runInitializers3(_init6, 11, this);
           __privateAdd3(this, _activatorEvent, __runInitializers3(_init6, 12, this, null)), __runInitializers3(_init6, 15, this);
           __privateAdd3(this, _sourceIdentifier, __runInitializers3(_init6, 16, this, null)), __runInitializers3(_init6, 19, this);
@@ -24884,7 +24884,7 @@
           __privateAdd3(this, _transform, { x: 0, y: 0 });
           __privateSet3(this, _manager2, manager);
         }
-        get shape() {
+        get shape {
           const { current, initial, previous } = __privateGet3(this, _shape2);
           if (!current || !initial) {
             return null;
@@ -24898,12 +24898,12 @@
          */
         set shape(value) {
           if (!value) {
-            __privateGet3(this, _shape2).reset();
+            __privateGet3(this, _shape2).reset;
           } else {
             __privateGet3(this, _shape2).current = value;
           }
         }
-        get source() {
+        get source {
           var _a5;
           const identifier = this.sourceIdentifier;
           if (identifier == null) return null;
@@ -24913,16 +24913,16 @@
           }
           return (_a5 = value != null ? value : __privateGet3(this, _previousSource)) != null ? _a5 : null;
         }
-        get target() {
+        get target {
           var _a5;
           const identifier = this.targetIdentifier;
           return identifier != null ? (_a5 = __privateGet3(this, _manager2).registry.droppables.get(identifier)) != null ? _a5 : null : null;
         }
-        get transform() {
+        get transform {
           const { x, y: y2 } = this.position.delta;
           let transform = { x, y: y2 };
           for (const modifier of this.modifiers) {
-            transform = modifier.apply(__spreadProps3(__spreadValues4({}, this.snapshot()), {
+            transform = modifier.apply(__spreadProps3(__spreadValues4({}, this.snapshot), {
               transform
             }));
           }
@@ -24934,8 +24934,8 @@
          *
          * @returns An immutable snapshot of the current operation state
          */
-        snapshot() {
-          return o(() => ({
+        snapshot {
+          return o( => ({
             source: this.source,
             target: this.target,
             activatorEvent: this.activatorEvent,
@@ -24957,15 +24957,15 @@
          * - Resets position and transform
          * - Clears modifiers
          */
-        reset() {
-          n(() => {
+        reset {
+          n( => {
             this.status.set(
               "idle"
               /* Idle */
             );
             this.sourceIdentifier = null;
             this.targetIdentifier = null;
-            __privateGet3(this, _shape2).reset();
+            __privateGet3(this, _shape2).reset;
             this.position.reset({ x: 0, y: 0 });
             __privateSet3(this, _transform, { x: 0, y: 0 });
             this.modifiers = [];
@@ -24973,15 +24973,15 @@
         }
       };
       _init6 = __decoratorStart3(null);
-      _manager2 = /* @__PURE__ */ new WeakMap();
-      _previousSource = /* @__PURE__ */ new WeakMap();
-      _shape2 = /* @__PURE__ */ new WeakMap();
-      _canceled = /* @__PURE__ */ new WeakMap();
-      _activatorEvent = /* @__PURE__ */ new WeakMap();
-      _sourceIdentifier = /* @__PURE__ */ new WeakMap();
-      _targetIdentifier = /* @__PURE__ */ new WeakMap();
-      _modifiers2 = /* @__PURE__ */ new WeakMap();
-      _transform = /* @__PURE__ */ new WeakMap();
+      _manager2 = /* @__PURE__ */ new WeakMap;
+      _previousSource = /* @__PURE__ */ new WeakMap;
+      _shape2 = /* @__PURE__ */ new WeakMap;
+      _canceled = /* @__PURE__ */ new WeakMap;
+      _activatorEvent = /* @__PURE__ */ new WeakMap;
+      _sourceIdentifier = /* @__PURE__ */ new WeakMap;
+      _targetIdentifier = /* @__PURE__ */ new WeakMap;
+      _modifiers2 = /* @__PURE__ */ new WeakMap;
+      _transform = /* @__PURE__ */ new WeakMap;
       __decorateElement3(_init6, 2, "shape", _shape_dec2, DragOperation);
       __decorateElement3(_init6, 4, "canceled", _canceled_dec, DragOperation, _canceled);
       __decorateElement3(_init6, 4, "activatorEvent", _activatorEvent_dec, DragOperation, _activatorEvent);
@@ -24993,8 +24993,8 @@
       __decorateElement3(_init6, 2, "transform", _transform_dec, DragOperation);
       __decoratorMetadata3(_init6, DragOperation);
       defaultRenderer = {
-        get rendering() {
-          return Promise.resolve();
+        get rendering {
+          return Promise.resolve;
         }
       };
       DragDropManager = class {
@@ -25004,13 +25004,13 @@
          * @param config - Optional configuration for plugins, sensors, modifiers, and renderer
          */
         constructor(config) {
-          this.destroy = () => {
+          this.destroy =  => {
             if (!this.dragOperation.status.idle) {
               this.actions.stop({ canceled: true });
             }
-            this.dragOperation.modifiers.forEach((modifier) => modifier.destroy());
-            this.registry.destroy();
-            this.collisionObserver.destroy();
+            this.dragOperation.modifiers.forEach((modifier) => modifier.destroy);
+            this.registry.destroy;
+            this.collisionObserver.destroy;
           };
           const {
             plugins = [],
@@ -25030,21 +25030,21 @@
           this.modifiers = modifiers;
           this.sensors = sensors;
           const { destroy } = this;
-          const cleanup = effects(() => {
+          const cleanup = effects( => {
             var _a5, _b3, _c32;
-            const currentModifiers = o(() => this.dragOperation.modifiers);
+            const currentModifiers = o( => this.dragOperation.modifiers);
             const managerModifiers = this.modifiers;
             if (currentModifiers !== managerModifiers) {
-              currentModifiers.forEach((modifier) => modifier.destroy());
+              currentModifiers.forEach((modifier) => modifier.destroy);
             }
             this.dragOperation.modifiers = (_c32 = (_b3 = (_a5 = this.dragOperation.source) == null ? void 0 : _a5.modifiers) == null ? void 0 : _b3.map((modifier) => {
               const { plugin, options: options2 } = descriptor(modifier);
               return new plugin(this, options2);
             })) != null ? _c32 : managerModifiers;
           });
-          this.destroy = () => {
-            cleanup();
-            destroy();
+          this.destroy =  => {
+            cleanup;
+            destroy;
           };
         }
         /**
@@ -25052,7 +25052,7 @@
          *
          * @returns Array of active plugin instances
          */
-        get plugins() {
+        get plugins {
           return this.registry.plugins.values;
         }
         /**
@@ -25068,7 +25068,7 @@
          *
          * @returns Array of active modifier instances
          */
-        get modifiers() {
+        get modifiers {
           return this.registry.modifiers.values;
         }
         /**
@@ -25084,7 +25084,7 @@
          *
          * @returns Array of active sensor instances
          */
-        get sensors() {
+        get sensors {
           return this.registry.sensors.values;
         }
         /**
@@ -25106,12 +25106,12 @@
     return "getKeyframes" in effect && typeof effect.getKeyframes === "function";
   }
   function getFinalKeyframe(element, match) {
-    const animations2 = element.getAnimations();
+    const animations2 = element.getAnimations;
     if (animations2.length > 0) {
       for (const animation of animations2) {
         if (animation.playState !== "running") continue;
         const { effect } = animation;
-        const keyframes = isKeyframeEffect(effect) ? effect.getKeyframes() : [];
+        const keyframes = isKeyframeEffect(effect) ? effect.getKeyframes : [];
         const matchedKeyframes = keyframes.filter(match);
         if (matchedKeyframes.length > 0) {
           return [matchedKeyframes[matchedKeyframes.length - 1], animation];
@@ -25121,7 +25121,7 @@
     return null;
   }
   function getBoundingRectangle(element) {
-    const { width, height, top, left, bottom, right } = element.getBoundingClientRect();
+    const { width, height, top, left, bottom, right } = element.getBoundingClientRect;
     return { width, height, top, left, bottom, right };
   }
   function isWindow(element) {
@@ -25200,7 +25200,7 @@
   function isDetailsElement(element) {
     return element.tagName === "DETAILS";
   }
-  function getVisibleBoundingRectangle(element, boundingClientRect = element.getBoundingClientRect(), margin = 0) {
+  function getVisibleBoundingRectangle(element, boundingClientRect = element.getBoundingClientRect, margin = 0) {
     var _a5;
     let rect = boundingClientRect;
     const { ownerDocument } = element;
@@ -25208,7 +25208,7 @@
     let ancestor = element.parentElement;
     while (ancestor && ancestor !== ownerDocument.documentElement) {
       if (!isOverflowVisible(ancestor)) {
-        const ancestorRect = ancestor.getBoundingClientRect();
+        const ancestorRect = ancestor.getBoundingClientRect;
         const marginTop = margin * (ancestorRect.bottom - ancestorRect.top);
         const marginRight = margin * (ancestorRect.right - ancestorRect.left);
         const marginBottom = margin * (ancestorRect.bottom - ancestorRect.top);
@@ -25252,7 +25252,7 @@
     }
     return rect;
   }
-  function isSafari() {
+  function isSafari {
     return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   }
   function cloneElement(element) {
@@ -25288,7 +25288,7 @@
     if (isIFrameElement(element)) {
       const { contentDocument } = element;
       if (contentDocument) {
-        const { left, top } = element.getBoundingClientRect();
+        const { left, top } = element.getBoundingClientRect;
         return getElementFromPoint(contentDocument, {
           x: x - left,
           y: y2 - top
@@ -25307,7 +25307,7 @@
     }
   }
   function getFrameElements(el) {
-    const frames = /* @__PURE__ */ new Set();
+    const frames = /* @__PURE__ */ new Set;
     let frame = getFrameElement(el);
     while (frame) {
       frames.add(frame);
@@ -25317,25 +25317,25 @@
   }
   function timeout(callback, duration) {
     const id = setTimeout(callback, duration);
-    return () => clearTimeout(id);
+    return  => clearTimeout(id);
   }
   function throttle(func, limit) {
-    const time = () => performance.now();
+    const time =  => performance.now;
     let cancel;
     let lastRan;
     return function(...args) {
       const context = this;
       if (!lastRan) {
         func.apply(context, args);
-        lastRan = time();
+        lastRan = time;
       } else {
-        cancel == null ? void 0 : cancel();
+        cancel == null ? void 0 : cancel;
         cancel = timeout(
-          () => {
+           => {
             func.apply(context, args);
-            lastRan = time();
+            lastRan = time;
           },
-          limit - (time() - lastRan)
+          limit - (time - lastRan)
         );
       }
     };
@@ -25345,7 +25345,7 @@
     if (!a2 || !b2) return false;
     return a2.top == b2.top && a2.left == b2.left && a2.right == b2.right && a2.bottom == b2.bottom;
   }
-  function isVisible(element, boundingClientRect = element.getBoundingClientRect()) {
+  function isVisible(element, boundingClientRect = element.getBoundingClientRect) {
     const { width, height } = getVisibleBoundingRectangle(
       element,
       boundingClientRect
@@ -25364,32 +25364,32 @@
         },
         { skipInitial: true }
       );
-      cached = { disconnect: observer.disconnect, callbacks: /* @__PURE__ */ new Set() };
+      cached = { disconnect: observer.disconnect, callbacks: /* @__PURE__ */ new Set };
     }
     cached.callbacks.add(callback);
     framePositionObservers.set(frame, cached);
-    return () => {
+    return  => {
       cached.callbacks.delete(callback);
       if (cached.callbacks.size === 0) {
         framePositionObservers.delete(frame);
-        cached.disconnect();
+        cached.disconnect;
       }
     };
   }
   function observeParentFrames(frames, callback) {
-    const cleanup = /* @__PURE__ */ new Set();
+    const cleanup = /* @__PURE__ */ new Set;
     for (const frame of frames) {
       const remove2 = addFrameListener(frame, callback);
       cleanup.add(remove2);
     }
-    return () => cleanup.forEach((remove2) => remove2());
+    return  => cleanup.forEach((remove2) => remove2);
   }
   function addScrollListener(element, callback) {
     var _a5;
     const doc = element.ownerDocument;
     if (!scrollListeners.has(doc)) {
-      const controller = new AbortController();
-      const listeners2 = /* @__PURE__ */ new Set();
+      const controller = new AbortController;
+      const listeners2 = /* @__PURE__ */ new Set;
       document.addEventListener(
         "scroll",
         (event) => listeners2.forEach((listener) => listener(event)),
@@ -25399,16 +25399,16 @@
           signal: controller.signal
         }
       );
-      scrollListeners.set(doc, { disconnect: () => controller.abort(), listeners: listeners2 });
+      scrollListeners.set(doc, { disconnect:  => controller.abort, listeners: listeners2 });
     }
     const { listeners, disconnect } = (_a5 = scrollListeners.get(doc)) != null ? _a5 : {};
-    if (!listeners || !disconnect) return () => {
+    if (!listeners || !disconnect) return  => {
     };
     listeners.add(callback);
-    return () => {
+    return  => {
       listeners.delete(callback);
       if (listeners.size === 0) {
-        disconnect();
+        disconnect;
         scrollListeners.delete(doc);
       }
     };
@@ -25420,7 +25420,7 @@
     try {
       if (supportsPopover(element) && element.isConnected && element.hasAttribute("popover") && // This selector can throw an error in browsers that don't support it
       !element.matches(":popover-open")) {
-        element.showPopover();
+        element.showPopover;
       }
     } catch (error) {
     }
@@ -25505,7 +25505,7 @@
   }
   function getScrollableAncestors(element, options2 = defaultOptions) {
     const { limit, excludeElement } = options2;
-    const scrollParents = /* @__PURE__ */ new Set();
+    const scrollParents = /* @__PURE__ */ new Set;
     function findScrollableAncestors(node) {
       if (limit != null && scrollParents.size >= limit) {
         return scrollParents;
@@ -25729,7 +25729,7 @@
       return;
     }
     if (!isHTMLElement(el)) {
-      return el.scrollIntoView();
+      return el.scrollIntoView;
     }
     var parent = getFirstScrollableAncestor(el);
     if (!isHTMLElement(parent)) {
@@ -25811,7 +25811,7 @@
     const document2 = element.ownerDocument;
     let documentAnimations = animations.get(document2);
     if (documentAnimations) return documentAnimations;
-    documentAnimations = document2.getAnimations();
+    documentAnimations = document2.getAnimations;
     animations.set(document2, documentAnimations);
     scheduler3.schedule(clear2);
     const elementAnimations = documentAnimations.filter(
@@ -25827,7 +25827,7 @@
         const { target } = animation.effect;
         const isValidTarget = (_b3 = target && ((_a5 = options2.isValidTarget) == null ? void 0 : _a5.call(options2, target))) != null ? _b3 : true;
         if (isValidTarget) {
-          return animation.effect.getKeyframes().some((keyframe) => {
+          return animation.effect.getKeyframes.some((keyframe) => {
             for (const property of options2.properties) {
               if (keyframe[property]) return true;
             }
@@ -25836,27 +25836,27 @@
       }
     }).map((animation) => {
       const { effect, currentTime } = animation;
-      const duration = effect == null ? void 0 : effect.getComputedTiming().duration;
+      const duration = effect == null ? void 0 : effect.getComputedTiming.duration;
       if (animation.pending || animation.playState === "finished") return;
       if (typeof duration == "number" && typeof currentTime == "number" && currentTime < duration) {
         animation.currentTime = duration;
-        return () => {
+        return  => {
           animation.currentTime = currentTime;
         };
       }
     });
     if (animations2.length > 0) {
-      return () => animations2.forEach((reset) => reset == null ? void 0 : reset());
+      return  => animations2.forEach((reset) => reset == null ? void 0 : reset);
     }
   }
   function getProjectedTransform(element, computedStyles) {
     var _a5;
-    const animations2 = element.getAnimations();
+    const animations2 = element.getAnimations;
     let projectedTransform = null;
     if (!animations2.length) return null;
     for (const animation of animations2) {
       if (animation.playState !== "running") continue;
-      const keyframes = isKeyframeEffect(animation.effect) ? animation.effect.getKeyframes() : [];
+      const keyframes = isKeyframeEffect(animation.effect) ? animation.effect.getKeyframes : [];
       const keyframe = keyframes[keyframes.length - 1];
       if (!keyframe) continue;
       const { transform, translate, scale } = keyframe;
@@ -25911,8 +25911,8 @@
   }
   var __typeError4, __accessCheck4, __privateGet4, __privateAdd4, __privateSet4, __privateMethod4, canUseDOM, ProxiedElements, Listeners, Observer, _initialized, ResizeNotifier, threshold, THROTTLE_INTERVAL, _visible, _previousBoundingClientRect, _resizeObserver, _positionObserver, _visibilityObserver, _debug, _disconnected, _observePosition, _PositionObserver_instances, notify_fn, updateDebug_fn, PositionObserver, framePositionObservers, scrollListeners, _elementObserver, _disconnected2, _frames, _handleScroll, FrameObserver, Scheduler, scheduler, scheduler2, cachedStyles, clear, defaultOptions, ScrollDirection, defaultThreshold, defaultTolerance, scheduler3, animations, clear2, DOMRectangle, Styles, ids;
   var init_utilities = __esm({
-    "node_modules/@dnd-kit/dom/utilities.js"() {
-      init_dist2();
+    "node_modules/@dnd-kit/dom/utilities.js" {
+      init_dist2;
       __typeError4 = (msg) => {
         throw TypeError(msg);
       };
@@ -25922,16 +25922,16 @@
       __privateSet4 = (obj, member, value, setter) => (__accessCheck4(obj, member, "write to private field"), member.set(obj, value), value);
       __privateMethod4 = (obj, member, method) => (__accessCheck4(obj, member, "access private method"), method);
       canUseDOM = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
-      ProxiedElements = /* @__PURE__ */ new WeakMap();
+      ProxiedElements = /* @__PURE__ */ new WeakMap;
       Listeners = class {
-        constructor() {
-          this.entries = /* @__PURE__ */ new Set();
-          this.clear = () => {
+        constructor {
+          this.entries = /* @__PURE__ */ new Set;
+          this.clear =  => {
             for (const entry of this.entries) {
               const [target, { type, listener, options: options2 }] = entry;
               target.removeEventListener(type, listener, options2);
             }
-            this.entries.clear();
+            this.entries.clear;
           };
         }
         bind(target, input) {
@@ -25944,7 +25944,7 @@
             this.entries.add(entry);
             entries.push(entry);
           }
-          return function cleanup() {
+          return function cleanup {
             for (const [target2, { type, listener, options: options2 }] of entries) {
               target2.removeEventListener(type, listener, options2);
             }
@@ -25952,11 +25952,11 @@
         }
       };
       Observer = canUseDOM ? ResizeObserver : class MockResizeObserver {
-        observe() {
+        observe {
         }
-        unobserve() {
+        unobserve {
         }
-        disconnect() {
+        disconnect {
         }
       };
       ResizeNotifier = class extends Observer {
@@ -25971,7 +25971,7 @@
           __privateAdd4(this, _initialized, false);
         }
       };
-      _initialized = /* @__PURE__ */ new WeakMap();
+      _initialized = /* @__PURE__ */ new WeakMap;
       threshold = Array.from({ length: 100 }, (_2, index) => index / 100);
       THROTTLE_INTERVAL = 75;
       PositionObserver = class {
@@ -25982,13 +25982,13 @@
           this.element = element;
           this.callback = callback;
           __privateAdd4(this, _PositionObserver_instances);
-          this.disconnect = () => {
+          this.disconnect =  => {
             var _a5, _b3, _c4;
             __privateSet4(this, _disconnected, true);
-            (_a5 = __privateGet4(this, _resizeObserver)) == null ? void 0 : _a5.disconnect();
-            (_b3 = __privateGet4(this, _positionObserver)) == null ? void 0 : _b3.disconnect();
-            __privateGet4(this, _visibilityObserver).disconnect();
-            (_c4 = __privateGet4(this, _debug)) == null ? void 0 : _c4.remove();
+            (_a5 = __privateGet4(this, _resizeObserver)) == null ? void 0 : _a5.disconnect;
+            (_b3 = __privateGet4(this, _positionObserver)) == null ? void 0 : _b3.disconnect;
+            __privateGet4(this, _visibilityObserver).disconnect;
+            (_c4 = __privateGet4(this, _debug)) == null ? void 0 : _c4.remove;
           };
           __privateAdd4(this, _visible, true);
           __privateAdd4(this, _previousBoundingClientRect);
@@ -25997,16 +25997,16 @@
           __privateAdd4(this, _visibilityObserver);
           __privateAdd4(this, _debug);
           __privateAdd4(this, _disconnected, false);
-          __privateAdd4(this, _observePosition, throttle(() => {
+          __privateAdd4(this, _observePosition, throttle( => {
             var _a5, _b3, _c4;
             const { element: element2 } = this;
-            (_a5 = __privateGet4(this, _positionObserver)) == null ? void 0 : _a5.disconnect();
+            (_a5 = __privateGet4(this, _positionObserver)) == null ? void 0 : _a5.disconnect;
             if (__privateGet4(this, _disconnected) || !__privateGet4(this, _visible) || !element2.isConnected) {
               return;
             }
             const root2 = (_b3 = element2.ownerDocument) != null ? _b3 : document;
             const { innerHeight, innerWidth } = (_c4 = root2.defaultView) != null ? _c4 : window;
-            const clientRect = element2.getBoundingClientRect();
+            const clientRect = element2.getBoundingClientRect;
             const visibleRect = getVisibleBoundingRectangle(element2, clientRect);
             const { top, left, bottom, right } = visibleRect;
             const insetTop = -Math.floor(top);
@@ -26036,7 +26036,7 @@
             __privateGet4(this, _positionObserver).observe(element2);
             __privateMethod4(this, _PositionObserver_instances, notify_fn).call(this);
           }, THROTTLE_INTERVAL));
-          this.boundingClientRect = element.getBoundingClientRect();
+          this.boundingClientRect = element.getBoundingClientRect;
           __privateSet4(this, _visible, isVisible(element, this.boundingClientRect));
           let initial = true;
           this.callback = (boundingClientRect) => {
@@ -26064,9 +26064,9 @@
               __privateSet4(this, _visible, visible);
               if (!width && !height) return;
               if (previousVisible && !visible) {
-                (_a5 = __privateGet4(this, _positionObserver)) == null ? void 0 : _a5.disconnect();
+                (_a5 = __privateGet4(this, _positionObserver)) == null ? void 0 : _a5.disconnect;
                 this.callback(null);
-                (_b3 = __privateGet4(this, _resizeObserver)) == null ? void 0 : _b3.disconnect();
+                (_b3 = __privateGet4(this, _resizeObserver)) == null ? void 0 : _b3.disconnect;
                 __privateSet4(this, _resizeObserver, void 0);
                 if (__privateGet4(this, _debug)) __privateGet4(this, _debug).style.visibility = "hidden";
               } else {
@@ -26088,16 +26088,16 @@
           __privateGet4(this, _visibilityObserver).observe(element);
         }
       };
-      _visible = /* @__PURE__ */ new WeakMap();
-      _previousBoundingClientRect = /* @__PURE__ */ new WeakMap();
-      _resizeObserver = /* @__PURE__ */ new WeakMap();
-      _positionObserver = /* @__PURE__ */ new WeakMap();
-      _visibilityObserver = /* @__PURE__ */ new WeakMap();
-      _debug = /* @__PURE__ */ new WeakMap();
-      _disconnected = /* @__PURE__ */ new WeakMap();
-      _observePosition = /* @__PURE__ */ new WeakMap();
-      _PositionObserver_instances = /* @__PURE__ */ new WeakSet();
-      notify_fn = function() {
+      _visible = /* @__PURE__ */ new WeakMap;
+      _previousBoundingClientRect = /* @__PURE__ */ new WeakMap;
+      _resizeObserver = /* @__PURE__ */ new WeakMap;
+      _positionObserver = /* @__PURE__ */ new WeakMap;
+      _visibilityObserver = /* @__PURE__ */ new WeakMap;
+      _debug = /* @__PURE__ */ new WeakMap;
+      _disconnected = /* @__PURE__ */ new WeakMap;
+      _observePosition = /* @__PURE__ */ new WeakMap;
+      _PositionObserver_instances = /* @__PURE__ */ new WeakSet;
+      notify_fn = function {
         if (__privateGet4(this, _disconnected)) return;
         __privateMethod4(this, _PositionObserver_instances, updateDebug_fn).call(this);
         if (isRectEqual(this.boundingClientRect, __privateGet4(this, _previousBoundingClientRect)))
@@ -26105,7 +26105,7 @@
         this.callback(this.boundingClientRect);
         __privateSet4(this, _previousBoundingClientRect, this.boundingClientRect);
       };
-      updateDebug_fn = function() {
+      updateDebug_fn = function {
         if (__privateGet4(this, _debug)) {
           const { top, left, width, height } = getVisibleBoundingRectangle(
             this.element
@@ -26118,8 +26118,8 @@
           __privateGet4(this, _debug).style.height = `${Math.floor(height)}px`;
         }
       };
-      framePositionObservers = /* @__PURE__ */ new WeakMap();
-      scrollListeners = /* @__PURE__ */ new WeakMap();
+      framePositionObservers = /* @__PURE__ */ new WeakMap;
+      scrollListeners = /* @__PURE__ */ new WeakMap;
       FrameObserver = class {
         constructor(element, callback, options2) {
           this.callback = callback;
@@ -26143,35 +26143,35 @@
           const removeScrollListener = addScrollListener(element, __privateGet4(this, _handleScroll));
           __privateSet4(this, _frames, frames);
           __privateSet4(this, _elementObserver, new PositionObserver(element, callback, options2));
-          this.disconnect = () => {
+          this.disconnect =  => {
             if (__privateGet4(this, _disconnected2)) return;
             __privateSet4(this, _disconnected2, true);
-            unobserveParentFrames();
-            removeScrollListener();
-            __privateGet4(this, _elementObserver).disconnect();
+            unobserveParentFrames;
+            removeScrollListener;
+            __privateGet4(this, _elementObserver).disconnect;
           };
         }
       };
-      _elementObserver = /* @__PURE__ */ new WeakMap();
-      _disconnected2 = /* @__PURE__ */ new WeakMap();
-      _frames = /* @__PURE__ */ new WeakMap();
-      _handleScroll = /* @__PURE__ */ new WeakMap();
+      _elementObserver = /* @__PURE__ */ new WeakMap;
+      _disconnected2 = /* @__PURE__ */ new WeakMap;
+      _frames = /* @__PURE__ */ new WeakMap;
+      _handleScroll = /* @__PURE__ */ new WeakMap;
       Scheduler = class {
         constructor(scheduler4) {
           this.scheduler = scheduler4;
           this.pending = false;
-          this.tasks = /* @__PURE__ */ new Set();
-          this.resolvers = /* @__PURE__ */ new Set();
-          this.flush = () => {
+          this.tasks = /* @__PURE__ */ new Set;
+          this.resolvers = /* @__PURE__ */ new Set;
+          this.flush =  => {
             const { tasks, resolvers } = this;
             this.pending = false;
-            this.tasks = /* @__PURE__ */ new Set();
-            this.resolvers = /* @__PURE__ */ new Set();
+            this.tasks = /* @__PURE__ */ new Set;
+            this.resolvers = /* @__PURE__ */ new Set;
             for (const task of tasks) {
-              task();
+              task;
             }
             for (const resolve of resolvers) {
-              resolve();
+              resolve;
             }
           };
         }
@@ -26188,11 +26188,11 @@
         if (typeof requestAnimationFrame === "function") {
           requestAnimationFrame(callback);
         } else {
-          callback();
+          callback;
         }
       });
       scheduler2 = new Scheduler((callback) => setTimeout(callback, 50));
-      cachedStyles = /* @__PURE__ */ new Map();
+      cachedStyles = /* @__PURE__ */ new Map;
       clear = cachedStyles.clear.bind(cachedStyles);
       defaultOptions = {
         excludeElement: true
@@ -26212,7 +26212,7 @@
         y: 10
       };
       scheduler3 = new Scheduler((callback) => setTimeout(callback, 0));
-      animations = /* @__PURE__ */ new Map();
+      animations = /* @__PURE__ */ new Map;
       clear2 = animations.clear.bind(animations);
       DOMRectangle = class extends Rectangle {
         constructor(element, options2 = {}) {
@@ -26224,7 +26224,7 @@
           } = options2;
           const resetAnimations = forceFinishAnimations(element, {
             properties: ["transform", "translate", "scale", "width", "height"],
-            isValidTarget: (target) => (target !== element || isSafari()) && target.contains(element)
+            isValidTarget: (target) => (target !== element || isSafari) && target.contains(element)
           });
           const boundingRectangle = getBoundingClientRect(element);
           let { top, left, width, height } = boundingRectangle;
@@ -26236,7 +26236,7 @@
             y: (_b3 = parsedTransform == null ? void 0 : parsedTransform.scaleY) != null ? _b3 : 1
           };
           const projectedTransform = getProjectedTransform(element, computedStyles);
-          resetAnimations == null ? void 0 : resetAnimations();
+          resetAnimations == null ? void 0 : resetAnimations;
           if (parsedTransform) {
             updated = inverseTransform(
               boundingRectangle,
@@ -26286,7 +26286,7 @@
       Styles = class {
         constructor(element) {
           this.element = element;
-          this.initial = /* @__PURE__ */ new Map();
+          this.initial = /* @__PURE__ */ new Map;
         }
         set(properties, prefix2 = "") {
           const { element } = this;
@@ -26314,7 +26314,7 @@
             element.style.removeProperty(property);
           }
         }
-        reset() {
+        reset {
           const { element } = this;
           if (!supportsStyle(element)) {
             return;
@@ -26334,13 +26334,13 @@
   // node_modules/@dnd-kit/collision/dist/index.js
   var pointerIntersection, shapeIntersection, defaultCollisionDetection, closestCorners;
   var init_dist3 = __esm({
-    "node_modules/@dnd-kit/collision/dist/index.js"() {
-      init_abstract();
-      init_dist2();
-      init_abstract();
-      init_dist2();
-      init_abstract();
-      init_dist2();
+    "node_modules/@dnd-kit/collision/dist/index.js" {
+      init_abstract;
+      init_dist2;
+      init_abstract;
+      init_dist2;
+      init_abstract;
+      init_dist2;
       pointerIntersection = ({
         dragOperation,
         droppable
@@ -26423,7 +26423,7 @@
 
   // node_modules/@dnd-kit/dom/index.js
   function isFocusable(element) {
-    const tagName = element.tagName.toLowerCase();
+    const tagName = element.tagName.toLowerCase;
     return ["input", "select", "textarea", "a", "button"].includes(tagName);
   }
   function createHiddenText(id, value) {
@@ -26453,15 +26453,15 @@
   }
   function debounce(fn, wait) {
     let timeout3;
-    const debounced = () => {
+    const debounced =  => {
       clearTimeout(timeout3);
       timeout3 = setTimeout(fn, wait);
     };
-    debounced.cancel = () => clearTimeout(timeout3);
+    debounced.cancel =  => clearTimeout(timeout3);
     return debounced;
   }
   function createPlaceholder(source, type = "hidden") {
-    return o(() => {
+    return o( => {
       const { element, manager } = source;
       if (!element || !manager) return;
       const containedDroppables = findContainedDroppables(
@@ -26473,15 +26473,15 @@
       const { remove: remove2 } = placeholder;
       proxyDroppableElements(containedDroppables, placeholder, cleanup);
       configurePlaceholder(placeholder, type);
-      placeholder.remove = () => {
-        cleanup.forEach((fn) => fn());
+      placeholder.remove =  => {
+        cleanup.forEach((fn) => fn);
         remove2.call(placeholder);
       };
       return placeholder;
     });
   }
   function findContainedDroppables(element, droppables) {
-    const containedDroppables = /* @__PURE__ */ new Map();
+    const containedDroppables = /* @__PURE__ */ new Map;
     for (const droppable of droppables) {
       if (!droppable.element) continue;
       if (element === droppable.element || element.contains(droppable.element)) {
@@ -26503,7 +26503,7 @@
       droppable.proxy = clonedElement;
       clonedElement.removeAttribute(identifierAttribute);
       ProxiedElements.set(originalElement, clonedElement);
-      cleanup.push(() => {
+      cleanup.push( => {
         ProxiedElements.delete(originalElement);
         droppable.proxy = void 0;
       });
@@ -26522,7 +26522,7 @@
   function preventPopoverClose(event) {
     const { target } = event;
     if ("newState" in event && event.newState === "closed" && isElement(target) && target.hasAttribute("popover")) {
-      requestAnimationFrame(() => showPopover(target));
+      requestAnimationFrame( => showPopover(target));
     }
   }
   function isTableRow(element) {
@@ -26540,9 +26540,9 @@
     }
     return ScrollDirection.Idle;
   }
-  function removeSelection() {
+  function removeSelection {
     var _a42;
-    (_a42 = document.getSelection()) == null ? void 0 : _a42.removeAllRanges();
+    (_a42 = document.getSelection) == null ? void 0 : _a42.removeAllRanges;
   }
   function isKeycode(event, codes) {
     return codes.includes(event.code);
@@ -26551,9 +26551,9 @@
     return "sensor" in event;
   }
   function preventDefault(event) {
-    event.preventDefault();
+    event.preventDefault;
   }
-  function noop() {
+  function noop {
   }
   function patchWindow(window2) {
     if (!window2 || windows.has(window2)) {
@@ -26567,12 +26567,12 @@
   }
   var __create6, __defProp6, __defProps4, __getOwnPropDesc6, __getOwnPropDescs4, __getOwnPropSymbols5, __hasOwnProp6, __propIsEnum5, __knownSymbol4, __typeError5, __defNormalProp5, __spreadValues5, __spreadProps4, __name4, __objRest3, __decoratorStart4, __decoratorStrings4, __expectFn4, __decoratorContext4, __decoratorMetadata4, __runInitializers4, __decorateElement4, __accessCheck5, __privateIn4, __privateGet5, __privateAdd5, __privateSet5, __privateMethod5, defaultAttributes, defaultDescriptionIdPrefix, defaultAnnouncementIdPrefix, defaultScreenReaderInstructions, defaultAnnouncements, debouncedEvents, Accessibility, Cursor, ATTR_PREFIX, DROPPING_ATTRIBUTE, CSS_PREFIX, ATTRIBUTE, PLACEHOLDER_ATTRIBUTE, IGNORED_ATTRIBUTES, IGNORED_STYLES, CSS_RULES, styleSheetRegistry, _overlay_dec, _a3, _init7, _overlay, _Feedback_instances, render_fn, injectStyles_fn, _Feedback, Feedback, LOCKED, UNLOCKED, _dec, _a22, _dec2, _b2, _init23, __b, __a, ScrollLock, DIRECTIONS, ScrollIntent, ScrollIntentTracker, _autoScrolling_dec, _a32, _init33, _autoScrolling, _meta, _scroll, Scroller, Scheduler2, scheduler32, AUTOSCROLL_INTERVAL, AutoScroller, listenerOptions, _timeout, ScrollListener, PreventSelection, defaults, _cleanupFunctions2, _KeyboardSensor, KeyboardSensor, defaults2, _cleanup, _clearTimeout, _PointerSensor, PointerSensor, windows, defaultPreset, DragDropManager2, _feedback_dec, _element_dec, _handle_dec, _c3, _init42, _handle, _element, _feedback, Draggable2, _proxy_dec, _element_dec2, _c23, _init52, _element2, _d, element_get, element_set, _Droppable_instances, _proxy, Droppable2;
   var init_dom = __esm({
-    "node_modules/@dnd-kit/dom/index.js"() {
-      init_abstract();
-      init_utilities();
-      init_dist();
-      init_dist2();
-      init_dist3();
+    "node_modules/@dnd-kit/dom/index.js" {
+      init_abstract;
+      init_utilities;
+      init_dist;
+      init_dist2;
+      init_dist3;
       __create6 = Object.create;
       __defProp6 = Object.defineProperty;
       __defProps4 = Object.defineProperties;
@@ -26627,7 +26627,7 @@
         var fn, it, done, ctx, access, k = flags & 7, s2 = !!(flags & 8), p2 = !!(flags & 16);
         var j = k > 3 ? array.length + 1 : k ? s2 ? 1 : 2 : 0, key = __decoratorStrings4[k + 5];
         var initializers = k > 3 && (array[j - 1] = []), extraInitializers = array[j] || (array[j] = []);
-        var desc = k && (!p2 && !s2 && (target = target.prototype), k < 5 && (k > 3 || !p2) && __getOwnPropDesc6(k < 4 ? target : { get [name]() {
+        var desc = k && (!p2 && !s2 && (target = target.prototype), k < 5 && (k > 3 || !p2) && __getOwnPropDesc6(k < 4 ? target : { get [name] {
           return __privateGet5(this, extra);
         }, set [name](x) {
           return __privateSet5(this, extra, x);
@@ -26711,7 +26711,7 @@
               liveRegionTextNode.nodeValue = value;
             }
           };
-          const scheduleUpdateAnnouncement = () => scheduler.schedule(updateAnnouncement);
+          const scheduleUpdateAnnouncement =  => scheduler.schedule(updateAnnouncement);
           const debouncedUpdateAnnouncement = debounce(
             scheduleUpdateAnnouncement,
             debounceMs
@@ -26727,17 +26727,17 @@
                   if (announcement && element.nodeValue !== announcement) {
                     latestAnnouncement = announcement;
                     if (debouncedEvents.includes(eventName)) {
-                      debouncedUpdateAnnouncement();
+                      debouncedUpdateAnnouncement;
                     } else {
-                      scheduleUpdateAnnouncement();
-                      debouncedUpdateAnnouncement.cancel();
+                      scheduleUpdateAnnouncement;
+                      debouncedUpdateAnnouncement.cancel;
                     }
                   }
                 }
               );
             }
           );
-          const initialize = () => {
+          const initialize =  => {
             let elements = [];
             if (!(hiddenTextElement == null ? void 0 : hiddenTextElement.isConnected)) {
               hiddenTextElement = createHiddenText(
@@ -26756,32 +26756,32 @@
               document.body.append(...elements);
             }
           };
-          const mutations = /* @__PURE__ */ new Set();
-          function executeMutations() {
+          const mutations = /* @__PURE__ */ new Set;
+          function executeMutations {
             for (const operation of mutations) {
-              operation();
+              operation;
             }
           }
-          this.registerEffect(() => {
+          this.registerEffect( => {
             var _a42;
-            mutations.clear();
+            mutations.clear;
             for (const draggable of this.manager.registry.draggables.value) {
               const activator = (_a42 = draggable.handle) != null ? _a42 : draggable.element;
               if (activator) {
                 if (!hiddenTextElement || !liveRegionElement) {
                   mutations.add(initialize);
                 }
-                if ((!isFocusable(activator) || isSafari()) && !activator.hasAttribute("tabindex")) {
-                  mutations.add(() => activator.setAttribute("tabindex", "0"));
+                if ((!isFocusable(activator) || isSafari) && !activator.hasAttribute("tabindex")) {
+                  mutations.add( => activator.setAttribute("tabindex", "0"));
                 }
-                if (!activator.hasAttribute("role") && !(activator.tagName.toLowerCase() === "button")) {
+                if (!activator.hasAttribute("role") && !(activator.tagName.toLowerCase === "button")) {
                   mutations.add(
-                    () => activator.setAttribute("role", defaultAttributes.role)
+                     => activator.setAttribute("role", defaultAttributes.role)
                   );
                 }
                 if (!activator.hasAttribute("aria-roledescription")) {
                   mutations.add(
-                    () => activator.setAttribute(
+                     => activator.setAttribute(
                       "aria-roledescription",
                       defaultAttributes.roleDescription
                     )
@@ -26789,19 +26789,19 @@
                 }
                 if (!activator.hasAttribute("aria-describedby")) {
                   mutations.add(
-                    () => activator.setAttribute("aria-describedby", descriptionId)
+                     => activator.setAttribute("aria-describedby", descriptionId)
                   );
                 }
                 for (const key of ["aria-pressed", "aria-grabbed"]) {
                   const value = String(draggable.isDragging);
                   if (activator.getAttribute(key) !== value) {
-                    mutations.add(() => activator.setAttribute(key, value));
+                    mutations.add( => activator.setAttribute(key, value));
                   }
                 }
                 const disabled = String(draggable.disabled);
                 if (activator.getAttribute("aria-disabled") !== disabled) {
                   mutations.add(
-                    () => activator.setAttribute("aria-disabled", disabled)
+                     => activator.setAttribute("aria-disabled", disabled)
                   );
                 }
               }
@@ -26810,11 +26810,11 @@
               scheduler.schedule(executeMutations);
             }
           });
-          this.destroy = () => {
-            super.destroy();
-            hiddenTextElement == null ? void 0 : hiddenTextElement.remove();
-            liveRegionElement == null ? void 0 : liveRegionElement.remove();
-            eventListeners.forEach((unsubscribe) => unsubscribe());
+          this.destroy =  => {
+            super.destroy;
+            hiddenTextElement == null ? void 0 : hiddenTextElement.remove;
+            liveRegionElement == null ? void 0 : liveRegionElement.remove;
+            eventListeners.forEach((unsubscribe) => unsubscribe);
           };
         }
       };
@@ -26823,12 +26823,12 @@
           super(manager, options2);
           this.manager = manager;
           const doc = computed(
-            () => {
+             => {
               var _a42;
               return getDocument((_a42 = this.manager.dragOperation.source) == null ? void 0 : _a42.element);
             }
           );
-          this.destroy = m(() => {
+          this.destroy = m( => {
             var _a42;
             const { dragOperation } = this.manager;
             const { cursor = "grabbing", nonce } = (_a42 = this.options) != null ? _a42 : {};
@@ -26840,7 +26840,7 @@
               }
               style.textContent = `* { cursor: ${cursor} !important; }`;
               document2.head.appendChild(style);
-              return () => style.remove();
+              return  => style.remove;
             }
           });
         }
@@ -26916,8 +26916,8 @@
     display: none;
     visibility: hidden;
   }
-`.replace(/\n+/g, " ").replace(/\s+/g, " ").trim();
-      styleSheetRegistry = /* @__PURE__ */ new Map();
+`.replace(/\n+/g, " ").replace(/\s+/g, " ").trim;
+      styleSheetRegistry = /* @__PURE__ */ new Map;
       _Feedback = class _Feedback2 extends (_a3 = Plugin, _overlay_dec = [reactive], _a3) {
         constructor(manager, options2) {
           super(manager, options2);
@@ -26930,13 +26930,13 @@
           this.registerEffect(__privateMethod5(this, _Feedback_instances, injectStyles_fn));
           this.registerEffect(__privateMethod5(this, _Feedback_instances, render_fn));
         }
-        destroy() {
-          super.destroy();
-          for (const [doc, registration] of styleSheetRegistry.entries()) {
+        destroy {
+          super.destroy;
+          for (const [doc, registration] of styleSheetRegistry.entries) {
             if (registration.instances.has(this)) {
               registration.instances.delete(this);
               if (registration.instances.size === 0) {
-                registration.cleanup();
+                registration.cleanup;
                 styleSheetRegistry.delete(doc);
               }
             }
@@ -26944,9 +26944,9 @@
         }
       };
       _init7 = __decoratorStart4(_a3);
-      _overlay = /* @__PURE__ */ new WeakMap();
-      _Feedback_instances = /* @__PURE__ */ new WeakSet();
-      render_fn = function() {
+      _overlay = /* @__PURE__ */ new WeakMap;
+      _Feedback_instances = /* @__PURE__ */ new WeakSet;
+      render_fn = function {
         var _a42, _b22, _c32;
         const { state, manager, options: options2 } = this;
         const { dragOperation } = manager;
@@ -27001,7 +27001,7 @@
         const heightOffset = contentBox ? parseInt(paddingBlockStart) + parseInt(paddingBlockEnd) + parseInt(borderBlockStartWidth) + parseInt(borderBlockEndWidth) : 0;
         const placeholder = feedback !== "move" && !this.overlay ? createPlaceholder(source, clone ? "clone" : "hidden") : null;
         const isKeyboardOperation = o(
-          () => isKeyboardEvent(manager.dragOperation.activatorEvent)
+           => isKeyboardEvent(manager.dragOperation.activatorEvent)
         );
         if (translate !== "none") {
           const parsedTranslate = parseTranslate(translate);
@@ -27010,7 +27010,7 @@
           }
         }
         if (!initial.transformOrigin) {
-          const current = o(() => position.current);
+          const current = o( => position.current);
           initial.transformOrigin = {
             x: (current.x - left * frameTransform.scaleX - frameTransform.x) / (width * frameTransform.scaleX),
             y: (current.y - top * frameTransform.scaleY - frameTransform.y) / (height * frameTransform.scaleY)
@@ -27054,7 +27054,7 @@
           top: top + delta.y
         };
         feedbackElement.setAttribute(ATTRIBUTE, "true");
-        const transform = o(() => dragOperation.transform);
+        const transform = o( => dragOperation.transform);
         const initialTranslate = (_b22 = initial.translate) != null ? _b22 : { x: 0, y: 0 };
         const tX = transform.x * frameTransform.scaleX + initialTranslate.x;
         const tY = transform.y * frameTransform.scaleY + initialTranslate.y;
@@ -27087,7 +27087,7 @@
           showPopover(feedbackElement);
           feedbackElement.addEventListener("beforetoggle", preventPopoverClose);
         }
-        const resizeObserver = new ResizeObserver(() => {
+        const resizeObserver = new ResizeObserver( => {
           if (!placeholder) return;
           const placeholderShape = new DOMRectangle(placeholder, {
             frameTransform,
@@ -27105,11 +27105,11 @@
             },
             CSS_PREFIX
           );
-          elementMutationObserver == null ? void 0 : elementMutationObserver.takeRecords();
+          elementMutationObserver == null ? void 0 : elementMutationObserver.takeRecords;
           if (isTableRow(element) && isTableRow(placeholder)) {
             const cells = Array.from(element.cells);
             const placeholderCells = Array.from(placeholder.cells);
-            for (const [index, cell] of cells.entries()) {
+            for (const [index, cell] of cells.entries) {
               const placeholderCell = placeholderCells[index];
               cell.style.width = `${placeholderCell.offsetWidth}px`;
             }
@@ -27117,7 +27117,7 @@
           dragOperation.shape = new DOMRectangle(feedbackElement);
         });
         const initialShape = new DOMRectangle(feedbackElement);
-        o(() => dragOperation.shape = initialShape);
+        o( => dragOperation.shape = initialShape);
         const feedbackWindow = getWindow(feedbackElement);
         const handleWindowResize = (event) => {
           this.manager.actions.stop({ event });
@@ -27125,8 +27125,8 @@
         if (isKeyboardOperation) {
           feedbackWindow.addEventListener("resize", handleWindowResize);
         }
-        if (o(() => source.status) === "idle") {
-          requestAnimationFrame(() => source.status = "dragging");
+        if (o( => source.status) === "idle") {
+          requestAnimationFrame( => source.status = "dragging");
         }
         if (placeholder) {
           resizeObserver.observe(placeholder);
@@ -27199,7 +27199,7 @@
           });
         }
         const id = (_c32 = manager.dragOperation.source) == null ? void 0 : _c32.id;
-        const restoreFocus = () => {
+        const restoreFocus =  => {
           var _a5;
           if (!isKeyboardOperation || id == null) {
             return;
@@ -27207,13 +27207,13 @@
           const draggable = manager.registry.draggables.get(id);
           const element2 = (_a5 = draggable == null ? void 0 : draggable.handle) != null ? _a5 : draggable == null ? void 0 : draggable.element;
           if (isHTMLElement(element2)) {
-            element2.focus();
+            element2.focus;
           }
         };
-        const cleanup = () => {
-          elementMutationObserver == null ? void 0 : elementMutationObserver.disconnect();
-          documentMutationObserver == null ? void 0 : documentMutationObserver.disconnect();
-          resizeObserver.disconnect();
+        const cleanup =  => {
+          elementMutationObserver == null ? void 0 : elementMutationObserver.disconnect;
+          documentMutationObserver == null ? void 0 : documentMutationObserver.disconnect;
+          resizeObserver.disconnect;
           feedbackWindow.removeEventListener("resize", handleWindowResize);
           if (supportsPopover(feedbackElement)) {
             feedbackElement.removeEventListener(
@@ -27223,17 +27223,17 @@
             feedbackElement.removeAttribute("popover");
           }
           feedbackElement.removeAttribute(ATTRIBUTE);
-          styles2.reset();
+          styles2.reset;
           source.status = "idle";
           const moved = state.current.translate != null;
           if (placeholder && (moved || placeholder.parentElement !== feedbackElement.parentElement) && feedbackElement.isConnected) {
             placeholder.replaceWith(feedbackElement);
           }
-          placeholder == null ? void 0 : placeholder.remove();
+          placeholder == null ? void 0 : placeholder.remove;
         };
         const cleanupEffects = effects(
           // Update transform on move
-          () => {
+           => {
             var _a5;
             const { transform: transform2, status: status2 } = dragOperation;
             if (!transform2.x && !transform2.y && !state.current.translate) {
@@ -27246,8 +27246,8 @@
                 y: transform2.y / frameTransform.scaleY + initialTranslate2.y
               };
               const previousTranslate = state.current.translate;
-              const modifiers = o(() => dragOperation.modifiers);
-              const currentShape = o(() => {
+              const modifiers = o( => dragOperation.modifiers);
+              const currentShape = o( => {
                 var _a6;
                 return (_a6 = dragOperation.shape) == null ? void 0 : _a6.current;
               });
@@ -27259,7 +27259,7 @@
                 },
                 CSS_PREFIX
               );
-              elementMutationObserver == null ? void 0 : elementMutationObserver.takeRecords();
+              elementMutationObserver == null ? void 0 : elementMutationObserver.takeRecords;
               if (currentShape && currentShape !== initialShape && previousTranslate && !modifiers.length) {
                 const delta2 = Point.delta(translate2, previousTranslate);
                 dragOperation.shape = Rectangle.from(
@@ -27276,9 +27276,9 @@
             }
           },
           // Drop animation
-          function() {
+          function {
             if (dragOperation.status.dropped) {
-              this.dispose();
+              this.dispose;
               source.status = "dropping";
               let translate2 = state.current.translate;
               const moved = translate2 != null;
@@ -27289,10 +27289,10 @@
                 };
               }
               if (!translate2) {
-                cleanup();
+                cleanup;
                 return;
               }
-              const dropAnimation = () => {
+              const dropAnimation =  => {
                 var _a5, _b3;
                 {
                   showPopover(feedbackElement);
@@ -27300,7 +27300,7 @@
                     feedbackElement,
                     (keyframe) => "translate" in keyframe
                   )) != null ? _a5 : [];
-                  animation == null ? void 0 : animation.pause();
+                  animation == null ? void 0 : animation.pause;
                   const target = placeholder != null ? placeholder : element;
                   const options22 = {
                     frameTransform: isSameFrame(feedbackElement, target) ? null : void 0
@@ -27335,7 +27335,7 @@
                   } : {};
                   styles2.set({ transition }, CSS_PREFIX);
                   feedbackElement.setAttribute(DROPPING_ATTRIBUTE, "");
-                  elementMutationObserver == null ? void 0 : elementMutationObserver.takeRecords();
+                  elementMutationObserver == null ? void 0 : elementMutationObserver.takeRecords;
                   animateTransform({
                     element: feedbackElement,
                     keyframes: __spreadProps4(__spreadValues5(__spreadValues5({}, heightKeyframes), widthKeyframes), {
@@ -27348,10 +27348,10 @@
                       duration: moved || feedbackElement !== element ? 250 : 0,
                       easing: "ease"
                     }
-                  }).then(() => {
+                  }).then( => {
                     feedbackElement.removeAttribute(DROPPING_ATTRIBUTE);
-                    animation == null ? void 0 : animation.finish();
-                    cleanup();
+                    animation == null ? void 0 : animation.finish;
+                    cleanup;
                     requestAnimationFrame(restoreFocus);
                   });
                 }
@@ -27360,12 +27360,12 @@
             }
           }
         );
-        return () => {
-          cleanup();
-          cleanupEffects();
+        return  => {
+          cleanup;
+          cleanupEffects;
         };
       };
-      injectStyles_fn = function() {
+      injectStyles_fn = function {
         var _a42, _b22, _c32;
         const { status, source, target } = this.manager.dragOperation;
         const { nonce } = (_a42 = this.options) != null ? _a42 : {};
@@ -27394,11 +27394,11 @@
               });
               mutationObserver.observe(doc.head, { childList: true });
               registration = {
-                cleanup: () => {
-                  mutationObserver.disconnect();
-                  style.remove();
+                cleanup:  => {
+                  mutationObserver.disconnect;
+                  style.remove;
                 },
-                instances: /* @__PURE__ */ new Set()
+                instances: /* @__PURE__ */ new Set
               };
               styleSheetRegistry.set(doc, registration);
             }
@@ -27414,7 +27414,7 @@
       UNLOCKED = false;
       _b2 = (_dec2 = [reactive], ScrollDirection.Forward), _a22 = (_dec = [reactive], ScrollDirection.Reverse);
       ScrollLock = class {
-        constructor() {
+        constructor {
           __privateAdd5(this, __b, __runInitializers4(_init23, 8, this, LOCKED)), __runInitializers4(_init23, 11, this);
           __privateAdd5(this, __a, __runInitializers4(_init23, 12, this, LOCKED)), __runInitializers4(_init23, 15, this);
         }
@@ -27435,32 +27435,32 @@
         }
       };
       _init23 = __decoratorStart4(null);
-      __b = /* @__PURE__ */ new WeakMap();
-      __a = /* @__PURE__ */ new WeakMap();
+      __b = /* @__PURE__ */ new WeakMap;
+      __a = /* @__PURE__ */ new WeakMap;
       __decorateElement4(_init23, 4, _b2, _dec2, ScrollLock, __b);
       __decorateElement4(_init23, 4, _a22, _dec, ScrollLock, __a);
       __decoratorMetadata4(_init23, ScrollLock);
       DIRECTIONS = [ScrollDirection.Forward, ScrollDirection.Reverse];
       ScrollIntent = class {
-        constructor() {
-          this.x = new ScrollLock();
-          this.y = new ScrollLock();
+        constructor {
+          this.x = new ScrollLock;
+          this.y = new ScrollLock;
         }
-        isLocked() {
-          return this.x.isLocked() && this.y.isLocked();
+        isLocked {
+          return this.x.isLocked && this.y.isLocked;
         }
       };
       ScrollIntentTracker = class extends Plugin {
         constructor(manager) {
           super(manager);
-          const scrollIntent = c(new ScrollIntent());
+          const scrollIntent = c(new ScrollIntent);
           let previousDelta = null;
           this.signal = scrollIntent;
-          m(() => {
+          m( => {
             const { status } = manager.dragOperation;
             if (!status.initialized) {
               previousDelta = null;
-              scrollIntent.value = new ScrollIntent();
+              scrollIntent.value = new ScrollIntent;
               return;
             }
             const { delta } = manager.dragOperation.position;
@@ -27469,8 +27469,8 @@
                 x: getDirection(delta.x, previousDelta.x),
                 y: getDirection(delta.y, previousDelta.y)
               };
-              const intent = scrollIntent.peek();
-              n(() => {
+              const intent = scrollIntent.peek;
+              n( => {
                 for (const axis of Axes) {
                   for (const direction of DIRECTIONS) {
                     if (directions[axis] === direction) {
@@ -27484,8 +27484,8 @@
             previousDelta = delta;
           });
         }
-        get current() {
-          return this.signal.peek();
+        get current {
+          return this.signal.peek;
         }
       };
       Scroller = class extends (_a32 = CorePlugin, _autoScrolling_dec = [reactive], _a32) {
@@ -27493,7 +27493,7 @@
           super(manager);
           __privateAdd5(this, _autoScrolling, __runInitializers4(_init33, 8, this, false)), __runInitializers4(_init33, 11, this);
           __privateAdd5(this, _meta);
-          __privateAdd5(this, _scroll, () => {
+          __privateAdd5(this, _scroll,  => {
             if (!__privateGet5(this, _meta)) {
               return;
             }
@@ -27506,7 +27506,7 @@
             if (this.disabled) {
               return false;
             }
-            const elements = this.getScrollableElements();
+            const elements = this.getScrollableElements;
             if (!elements) {
               __privateSet5(this, _meta, void 0);
               return false;
@@ -27520,7 +27520,7 @@
                 y: getScrollIntent(by.y)
               } : void 0;
               const scrollIntent = intent ? void 0 : this.scrollIntentTracker.current;
-              if (scrollIntent == null ? void 0 : scrollIntent.isLocked()) {
+              if (scrollIntent == null ? void 0 : scrollIntent.isLocked) {
                 return false;
               }
               for (const scrollableElement of elements) {
@@ -27568,7 +27568,7 @@
           };
           let previousElementFromPoint = null;
           let previousScrollableElements = null;
-          const elementFromPoint = computed(() => {
+          const elementFromPoint = computed( => {
             const { position, source } = manager.dragOperation;
             if (!position) {
               return null;
@@ -27582,7 +27582,7 @@
             }
             return element != null ? element : previousElementFromPoint;
           });
-          const scrollableElements = computed(() => {
+          const scrollableElements = computed( => {
             const element = elementFromPoint.value;
             const { documentElement } = getDocument(element);
             if (!element || element === documentElement) {
@@ -27609,7 +27609,7 @@
             previousScrollableElements = null;
             return null;
           }, deepEqual);
-          this.getScrollableElements = () => {
+          this.getScrollableElements =  => {
             return scrollableElements.value;
           };
           this.scrollIntentTracker = new ScrollIntentTracker(manager);
@@ -27618,33 +27618,33 @@
               return;
             }
             if (this.scroll({ by: event.by })) {
-              event.preventDefault();
+              event.preventDefault;
             }
           });
         }
       };
       _init33 = __decoratorStart4(_a32);
-      _autoScrolling = /* @__PURE__ */ new WeakMap();
-      _meta = /* @__PURE__ */ new WeakMap();
-      _scroll = /* @__PURE__ */ new WeakMap();
+      _autoScrolling = /* @__PURE__ */ new WeakMap;
+      _meta = /* @__PURE__ */ new WeakMap;
+      _scroll = /* @__PURE__ */ new WeakMap;
       __decorateElement4(_init33, 4, "autoScrolling", _autoScrolling_dec, Scroller, _autoScrolling);
       __decoratorMetadata4(_init33, Scroller);
       Scheduler2 = class {
         constructor(scheduler5) {
           this.scheduler = scheduler5;
           this.pending = false;
-          this.tasks = /* @__PURE__ */ new Set();
-          this.resolvers = /* @__PURE__ */ new Set();
-          this.flush = () => {
+          this.tasks = /* @__PURE__ */ new Set;
+          this.resolvers = /* @__PURE__ */ new Set;
+          this.flush =  => {
             const { tasks, resolvers } = this;
             this.pending = false;
-            this.tasks = /* @__PURE__ */ new Set();
-            this.resolvers = /* @__PURE__ */ new Set();
+            this.tasks = /* @__PURE__ */ new Set;
+            this.resolvers = /* @__PURE__ */ new Set;
             for (const task of tasks) {
-              task();
+              task;
             }
             for (const resolve of resolvers) {
-              resolve();
+              resolve;
             }
           };
         }
@@ -27661,7 +27661,7 @@
         if (typeof requestAnimationFrame === "function") {
           requestAnimationFrame(callback);
         } else {
-          callback();
+          callback;
         }
       });
       AUTOSCROLL_INTERVAL = 10;
@@ -27672,20 +27672,20 @@
           if (!scroller) {
             throw new Error("AutoScroller plugin depends on Scroller plugin");
           }
-          this.destroy = m(() => {
+          this.destroy = m( => {
             if (this.disabled) {
               return;
             }
             const { position: _2, status } = manager.dragOperation;
             if (status.dragging) {
-              const canScroll2 = scroller.scroll();
+              const canScroll2 = scroller.scroll;
               if (canScroll2) {
                 scroller.autoScrolling = true;
                 const interval = setInterval(
-                  () => scheduler32.schedule(scroller.scroll),
+                   => scheduler32.schedule(scroller.scroll),
                   AUTOSCROLL_INTERVAL
                 );
-                return () => {
+                return  => {
                   clearInterval(interval);
                 };
               } else {
@@ -27703,22 +27703,22 @@
         constructor(manager) {
           super(manager);
           __privateAdd5(this, _timeout);
-          this.handleScroll = () => {
+          this.handleScroll =  => {
             if (__privateGet5(this, _timeout) == null) {
-              __privateSet5(this, _timeout, setTimeout(() => {
+              __privateSet5(this, _timeout, setTimeout( => {
                 this.manager.collisionObserver.forceUpdate(false);
                 __privateSet5(this, _timeout, void 0);
               }, 50));
             }
           };
           const { dragOperation } = this.manager;
-          this.destroy = m(() => {
+          this.destroy = m( => {
             var _a42, _b22, _c32;
             const enabled = dragOperation.status.dragging;
             if (enabled) {
               const root = (_c32 = (_b22 = (_a42 = dragOperation.source) == null ? void 0 : _a42.element) == null ? void 0 : _b22.ownerDocument) != null ? _c32 : document;
               root.addEventListener("scroll", this.handleScroll, listenerOptions);
-              return () => {
+              return  => {
                 root.removeEventListener(
                   "scroll",
                   this.handleScroll,
@@ -27729,12 +27729,12 @@
           });
         }
       };
-      _timeout = /* @__PURE__ */ new WeakMap();
+      _timeout = /* @__PURE__ */ new WeakMap;
       PreventSelection = class extends Plugin {
         constructor(manager, options2) {
           super(manager, options2);
           this.manager = manager;
-          this.destroy = m(() => {
+          this.destroy = m( => {
             var _a42;
             const { dragOperation } = this.manager;
             const { nonce } = (_a42 = this.options) != null ? _a42 : {};
@@ -27745,15 +27745,15 @@
               }
               style.textContent = `* { user-select: none !important; -webkit-user-select: none !important; }`;
               document.head.appendChild(style);
-              removeSelection();
+              removeSelection;
               document.addEventListener("selectionchange", removeSelection, {
                 capture: true
               });
-              return () => {
+              return  => {
                 document.removeEventListener("selectionchange", removeSelection, {
                   capture: true
                 });
-                style.remove();
+                style.remove;
               };
             }
           });
@@ -27783,7 +27783,7 @@
           this.manager = manager;
           this.options = options2;
           __privateAdd5(this, _cleanupFunctions2, []);
-          this.listeners = new Listeners();
+          this.listeners = new Listeners;
           this.handleSourceKeyDown = (event, source, options3) => {
             if (this.disabled || event.defaultPrevented) {
               return;
@@ -27810,7 +27810,7 @@
           };
         }
         bind(source, options2 = this.options) {
-          const unbind = m(() => {
+          const unbind = m( => {
             var _a42;
             const target = (_a42 = source.handle) != null ? _a42 : source.element;
             const listener = (event) => {
@@ -27820,7 +27820,7 @@
             };
             if (target) {
               target.addEventListener("keydown", listener);
-              return () => {
+              return  => {
                 target.removeEventListener("keydown", listener);
               };
             }
@@ -27832,8 +27832,8 @@
           if (!element) {
             throw new Error("Source draggable does not have an associated element");
           }
-          event.preventDefault();
-          event.stopImmediatePropagation();
+          event.preventDefault;
+          event.stopImmediatePropagation;
           scrollIntoViewIfNeeded(element);
           const { center } = new DOMRectangle(element);
           const controller = this.manager.actions.start({
@@ -27844,8 +27844,8 @@
             },
             source
           });
-          if (controller.signal.aborted) return this.cleanup();
-          this.sideEffects();
+          if (controller.signal.aborted) return this.cleanup;
+          this.sideEffects;
           const sourceDocument = getDocument(element);
           const listeners = [
             this.listeners.bind(sourceDocument, [
@@ -27861,7 +27861,7 @@
         handleKeyDown(event, _source, options2) {
           const { keyboardCodes = defaults.keyboardCodes } = options2 != null ? options2 : {};
           if (isKeycode(event, [...keyboardCodes.end, ...keyboardCodes.cancel])) {
-            event.preventDefault();
+            event.preventDefault;
             const canceled = isKeycode(event, keyboardCodes.cancel);
             this.handleEnd(event, canceled);
             return;
@@ -27882,7 +27882,7 @@
             event,
             canceled
           });
-          this.cleanup();
+          this.cleanup;
         }
         handleMove(direction, event) {
           var _a42, _b22;
@@ -27914,32 +27914,32 @@
               break;
           }
           if (by.x || by.y) {
-            event.preventDefault();
+            event.preventDefault;
             this.manager.actions.move({
               event,
               by
             });
           }
         }
-        sideEffects() {
+        sideEffects {
           const autoScroller = this.manager.registry.plugins.get(AutoScroller);
           if ((autoScroller == null ? void 0 : autoScroller.disabled) === false) {
-            autoScroller.disable();
-            __privateGet5(this, _cleanupFunctions2).push(() => {
-              autoScroller.enable();
+            autoScroller.disable;
+            __privateGet5(this, _cleanupFunctions2).push( => {
+              autoScroller.enable;
             });
           }
         }
-        cleanup() {
-          __privateGet5(this, _cleanupFunctions2).forEach((cleanup) => cleanup());
+        cleanup {
+          __privateGet5(this, _cleanupFunctions2).forEach((cleanup) => cleanup);
           __privateSet5(this, _cleanupFunctions2, []);
         }
-        destroy() {
-          this.cleanup();
-          this.listeners.clear();
+        destroy {
+          this.cleanup;
+          this.listeners.clear;
         }
       };
-      _cleanupFunctions2 = /* @__PURE__ */ new WeakMap();
+      _cleanupFunctions2 = /* @__PURE__ */ new WeakMap;
       _KeyboardSensor.configure = configurator(_KeyboardSensor);
       _KeyboardSensor.defaults = defaults;
       KeyboardSensor = _KeyboardSensor;
@@ -27971,14 +27971,14 @@
           super(manager);
           this.manager = manager;
           this.options = options2;
-          __privateAdd5(this, _cleanup, /* @__PURE__ */ new Set());
+          __privateAdd5(this, _cleanup, /* @__PURE__ */ new Set);
           __privateAdd5(this, _clearTimeout);
-          this.listeners = new Listeners();
+          this.listeners = new Listeners;
           this.latest = {
             event: void 0,
             coordinates: void 0
           };
-          this.handleMove = () => {
+          this.handleMove =  => {
             const { event, coordinates: to } = this.latest;
             if (!event || !to) {
               return;
@@ -27996,9 +27996,9 @@
           return constraints;
         }
         bind(source, options2 = this.options) {
-          const unbind = m(() => {
+          const unbind = m( => {
             var _a42;
-            const controller = new AbortController();
+            const controller = new AbortController;
             const { signal: signal3 } = controller;
             const listener = (event) => {
               if (isPointerEvent(event)) {
@@ -28018,7 +28018,7 @@
               patchWindow(target.ownerDocument.defaultView);
               target.addEventListener("pointerdown", listener, { signal: signal3 });
             }
-            return () => controller.abort();
+            return  => controller.abort;
           });
           return unbind;
         }
@@ -28041,10 +28041,10 @@
             const { delay } = constraints;
             if (delay) {
               const timeout3 = setTimeout(
-                () => this.handleStart(source, event),
+                 => this.handleStart(source, event),
                 delay.value
               );
-              __privateSet5(this, _clearTimeout, () => {
+              __privateSet5(this, _clearTimeout,  => {
                 clearTimeout(timeout3);
                 __privateSet5(this, _clearTimeout, void 0);
               });
@@ -28072,9 +28072,9 @@
               }
             }
           ]);
-          const cleanup = () => {
+          const cleanup =  => {
             var _a42;
-            unbindListeners();
+            unbindListeners;
             (_a42 = __privateGet5(this, _clearTimeout)) == null ? void 0 : _a42.call(this);
             this.initialCoordinates = void 0;
           };
@@ -28089,8 +28089,8 @@
           coordinates.x = coordinates.x * offset.scaleX + offset.x;
           coordinates.y = coordinates.y * offset.scaleY + offset.y;
           if (this.manager.dragOperation.status.dragging) {
-            event.preventDefault();
-            event.stopPropagation();
+            event.preventDefault;
+            event.stopPropagation;
             this.latest.event = event;
             this.latest.coordinates = coordinates;
             scheduler.schedule(this.handleMove);
@@ -28122,16 +28122,16 @@
         handlePointerUp(event) {
           const { status } = this.manager.dragOperation;
           if (!status.idle) {
-            event.preventDefault();
-            event.stopPropagation();
+            event.preventDefault;
+            event.stopPropagation;
             const canceled = !status.initialized;
             this.manager.actions.stop({ event, canceled });
           }
-          this.cleanup();
+          this.cleanup;
         }
         handleKeyDown(event) {
           if (event.key === "Escape") {
-            event.preventDefault();
+            event.preventDefault;
             this.handleCancel(event);
           }
         }
@@ -28150,8 +28150,8 @@
             event,
             source
           });
-          if (controller.signal.aborted) return this.cleanup();
-          event.preventDefault();
+          if (controller.signal.aborted) return this.cleanup;
+          event.preventDefault;
           const ownerDocument = getDocument(event.target);
           const pointerCaptureTarget = ownerDocument.body;
           pointerCaptureTarget.setPointerCapture(event.pointerId);
@@ -28192,27 +28192,27 @@
           if (dragOperation.status.initialized) {
             this.manager.actions.stop({ event, canceled: true });
           }
-          this.cleanup();
+          this.cleanup;
         }
-        cleanup() {
+        cleanup {
           this.latest = {
             event: void 0,
             coordinates: void 0
           };
-          __privateGet5(this, _cleanup).forEach((cleanup) => cleanup());
-          __privateGet5(this, _cleanup).clear();
+          __privateGet5(this, _cleanup).forEach((cleanup) => cleanup);
+          __privateGet5(this, _cleanup).clear;
         }
-        destroy() {
-          this.cleanup();
-          this.listeners.clear();
+        destroy {
+          this.cleanup;
+          this.listeners.clear;
         }
       };
-      _cleanup = /* @__PURE__ */ new WeakMap();
-      _clearTimeout = /* @__PURE__ */ new WeakMap();
+      _cleanup = /* @__PURE__ */ new WeakMap;
+      _clearTimeout = /* @__PURE__ */ new WeakMap;
       _PointerSensor.configure = configurator(_PointerSensor);
       _PointerSensor.defaults = defaults2;
       PointerSensor = _PointerSensor;
-      windows = /* @__PURE__ */ new WeakSet();
+      windows = /* @__PURE__ */ new WeakSet;
       defaultPreset = {
         modifiers: [],
         plugins: [Accessibility, AutoScroller, Cursor, Feedback, PreventSelection],
@@ -28236,7 +28236,7 @@
         constructor(_a42, manager) {
           var _b22 = _a42, {
             element,
-            effects: effects2 = () => [],
+            effects: effects2 =  => [],
             handle,
             feedback = "default"
           } = _b22, input = __objRest3(_b22, [
@@ -28247,9 +28247,9 @@
           ]);
           super(
             __spreadValues5({
-              effects: () => [
-                ...effects2(),
-                () => {
+              effects:  => [
+                ...effects2,
+                 => {
                   var _a5, _b3;
                   const { manager: manager2 } = this;
                   if (!manager2) return;
@@ -28262,8 +28262,8 @@
                     const unbind = sensorInstance.bind(this, options2);
                     return unbind;
                   });
-                  return function cleanup() {
-                    unbindFunctions.forEach((unbind) => unbind());
+                  return function cleanup {
+                    unbindFunctions.forEach((unbind) => unbind);
                   };
                 }
               ]
@@ -28279,16 +28279,16 @@
         }
       };
       _init42 = __decoratorStart4(_c3);
-      _handle = /* @__PURE__ */ new WeakMap();
-      _element = /* @__PURE__ */ new WeakMap();
-      _feedback = /* @__PURE__ */ new WeakMap();
+      _handle = /* @__PURE__ */ new WeakMap;
+      _element = /* @__PURE__ */ new WeakMap;
+      _feedback = /* @__PURE__ */ new WeakMap;
       __decorateElement4(_init42, 4, "handle", _handle_dec, Draggable2, _handle);
       __decorateElement4(_init42, 4, "element", _element_dec, Draggable2, _element);
       __decorateElement4(_init42, 4, "feedback", _feedback_dec, Draggable2, _feedback);
       __decoratorMetadata4(_init42, Draggable2);
       Droppable2 = class extends (_c23 = Droppable, _element_dec2 = [reactive], _proxy_dec = [reactive], _c23) {
         constructor(_a42, manager) {
-          var _b22 = _a42, { element, effects: effects2 = () => [] } = _b22, input = __objRest3(_b22, ["element", "effects"]);
+          var _b22 = _a42, { element, effects: effects2 =  => [] } = _b22, input = __objRest3(_b22, ["element", "effects"]);
           const { collisionDetector = defaultCollisionDetection } = input;
           const updateShape = (boundingClientRect) => {
             const { manager: manager2, element: element2 } = this;
@@ -28298,7 +28298,7 @@
             }
             if (!manager2) return;
             const updatedShape = new DOMRectangle(element2);
-            const shape = o(() => this.shape);
+            const shape = o( => this.shape);
             if (updatedShape && (shape == null ? void 0 : shape.equals(updatedShape))) {
               return shape;
             }
@@ -28309,9 +28309,9 @@
           super(
             __spreadProps4(__spreadValues5({}, input), {
               collisionDetector,
-              effects: () => [
-                ...effects2(),
-                () => {
+              effects:  => [
+                ...effects2,
+                 => {
                   const { element: element2, manager: manager2 } = this;
                   if (!manager2) return;
                   const { dragOperation } = manager2;
@@ -28320,23 +28320,23 @@
                     source && dragOperation.status.initialized && element2 && !this.disabled && this.accepts(source)
                   );
                 },
-                () => {
+                 => {
                   const { element: element2 } = this;
                   if (observePosition.value && element2) {
                     const positionObserver = new FrameObserver(
                       element2,
                       updateShape
                     );
-                    return () => {
-                      positionObserver.disconnect();
+                    return  => {
+                      positionObserver.disconnect;
                       this.shape = void 0;
                     };
                   }
                 },
-                () => {
+                 => {
                   var _a5;
                   if ((_a5 = this.manager) == null ? void 0 : _a5.dragOperation.status.initialized) {
-                    return () => {
+                    return  => {
                       this.shape = void 0;
                     };
                   }
@@ -28349,20 +28349,20 @@
           __privateAdd5(this, _element2, __runInitializers4(_init52, 8, this)), __runInitializers4(_init52, 11, this);
           __privateAdd5(this, _proxy, __runInitializers4(_init52, 12, this)), __runInitializers4(_init52, 15, this);
           this.element = element;
-          this.refreshShape = () => updateShape();
+          this.refreshShape =  => updateShape;
         }
         set element(element) {
           __privateSet5(this, _Droppable_instances, element, element_set);
         }
-        get element() {
+        get element {
           var _a42;
           return (_a42 = this.proxy) != null ? _a42 : __privateGet5(this, _Droppable_instances, element_get);
         }
       };
       _init52 = __decoratorStart4(_c23);
-      _element2 = /* @__PURE__ */ new WeakMap();
-      _Droppable_instances = /* @__PURE__ */ new WeakSet();
-      _proxy = /* @__PURE__ */ new WeakMap();
+      _element2 = /* @__PURE__ */ new WeakMap;
+      _Droppable_instances = /* @__PURE__ */ new WeakSet;
+      _proxy = /* @__PURE__ */ new WeakMap;
       _d = __decorateElement4(_init52, 20, "#element", _element_dec2, _Droppable_instances, _element2), element_get = _d.get, element_set = _d.set;
       __decorateElement4(_init52, 4, "proxy", _proxy_dec, Droppable2, _proxy);
       __decoratorMetadata4(_init52, Droppable2);
@@ -28384,32 +28384,32 @@
     return value;
   }
   var init_utilities2 = __esm({
-    "node_modules/@dnd-kit/react/utilities.js"() {
+    "node_modules/@dnd-kit/react/utilities.js" {
     }
   });
 
   // node_modules/@dnd-kit/react/hooks.js
-  function useForceUpdate() {
+  function useForceUpdate {
     const setState = (0, import_react5.useState)(0)[1];
-    return (0, import_react5.useCallback)(() => {
+    return (0, import_react5.useCallback)( => {
       setState((value) => value + 1);
     }, [setState]);
   }
   function useDeepSignal(target, synchronous) {
-    const tracked = (0, import_react5.useRef)(/* @__PURE__ */ new Map());
-    const forceUpdate = useForceUpdate();
-    useIsomorphicLayoutEffect(() => {
+    const tracked = (0, import_react5.useRef)(/* @__PURE__ */ new Map);
+    const forceUpdate = useForceUpdate;
+    useIsomorphicLayoutEffect( => {
       if (!target) {
-        tracked.current.clear();
+        tracked.current.clear;
         return;
       }
-      return m(() => {
+      return m( => {
         var _a5;
         let stale = false;
         let sync = false;
         for (const entry of tracked.current) {
           const [key] = entry;
-          const value = o(() => entry[1]);
+          const value = o( => entry[1]);
           const latestValue = target[key];
           if (value !== latestValue) {
             stale = true;
@@ -28418,12 +28418,12 @@
           }
         }
         if (stale) {
-          sync ? (0, import_react_dom.flushSync)(forceUpdate) : forceUpdate();
+          sync ? (0, import_react_dom.flushSync)(forceUpdate) : forceUpdate;
         }
       });
     }, [target]);
     return (0, import_react5.useMemo)(
-      () => target ? new Proxy(target, {
+       => target ? new Proxy(target, {
         get(target2, key) {
           const value = target2[key];
           tracked.current.set(key, value);
@@ -28434,18 +28434,18 @@
     );
   }
   function useImmediateEffect(callback, _2) {
-    callback();
+    callback;
   }
   function useLatest(value) {
     const valueRef = (0, import_react5.useRef)(value);
-    useIsomorphicLayoutEffect(() => {
+    useIsomorphicLayoutEffect( => {
       valueRef.current = value;
     }, [value]);
     return valueRef;
   }
   function useOnValueChange(value, onChange, effect3 = import_react5.useEffect, compare = Object.is) {
     const tracked = (0, import_react5.useRef)(value);
-    effect3(() => {
+    effect3( => {
       const oldValue = tracked.current;
       if (!compare(value, oldValue)) {
         tracked.current = value;
@@ -28455,7 +28455,7 @@
   }
   function useOnElementChange(value, onChange) {
     const previous = (0, import_react5.useRef)(currentValue(value));
-    useIsomorphicLayoutEffect(() => {
+    useIsomorphicLayoutEffect( => {
       const current = currentValue(value);
       if (current !== previous.current) {
         previous.current = current;
@@ -28465,11 +28465,11 @@
   }
   var import_react5, import_react_dom, canUseDOM2, useIsomorphicLayoutEffect;
   var init_hooks = __esm({
-    "node_modules/@dnd-kit/react/hooks.js"() {
-      import_react5 = __toESM(require_react(), 1);
-      init_dist();
-      import_react_dom = __toESM(require_react_dom(), 1);
-      init_utilities2();
+    "node_modules/@dnd-kit/react/hooks.js" {
+      import_react5 = __toESM(require_react, 1);
+      init_dist;
+      import_react_dom = __toESM(require_react_dom, 1);
+      init_utilities2;
       canUseDOM2 = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
       useIsomorphicLayoutEffect = canUseDOM2 ? import_react5.useLayoutEffect : import_react5.useEffect;
     }
@@ -28504,7 +28504,7 @@
     const handleDragMove = useLatest(onDragMove);
     const handleDragEnd = useLatest(onDragEnd);
     const handleCollision = useLatest(onCollision);
-    (0, import_react6.useEffect)(() => {
+    (0, import_react6.useEffect)( => {
       var _a42;
       if (!rendererRef.current) throw new Error("Renderer not found");
       const { renderer, trackRendering } = rendererRef.current;
@@ -28513,7 +28513,7 @@
       manager2.monitor.addEventListener("beforedragstart", (event) => {
         const callback = handleBeforeDragStart.current;
         if (callback) {
-          trackRendering(() => callback(event, manager2));
+          trackRendering( => callback(event, manager2));
         }
       });
       manager2.monitor.addEventListener(
@@ -28526,19 +28526,19 @@
       manager2.monitor.addEventListener("dragover", (event) => {
         const callback = handleDragOver.current;
         if (callback) {
-          trackRendering(() => callback(event, manager2));
+          trackRendering( => callback(event, manager2));
         }
       });
       manager2.monitor.addEventListener("dragmove", (event) => {
         const callback = handleDragMove.current;
         if (callback) {
-          trackRendering(() => callback(event, manager2));
+          trackRendering( => callback(event, manager2));
         }
       });
       manager2.monitor.addEventListener("dragend", (event) => {
         const callback = handleDragEnd.current;
         if (callback) {
-          trackRendering(() => callback(event, manager2));
+          trackRendering( => callback(event, manager2));
         }
       });
       manager2.monitor.addEventListener(
@@ -28548,22 +28548,22 @@
           return (_a5 = handleCollision.current) == null ? void 0 : _a5.call(handleCollision, event, manager2);
         }
       );
-      (0, import_react6.startTransition)(() => setManager(manager2));
+      (0, import_react6.startTransition)( => setManager(manager2));
       return manager2.destroy;
     }, [input.manager]);
     useOnValueChange(
       plugins,
-      () => manager && (manager.plugins = plugins != null ? plugins : defaultPreset.plugins),
+       => manager && (manager.plugins = plugins != null ? plugins : defaultPreset.plugins),
       ...options
     );
     useOnValueChange(
       sensors,
-      () => manager && (manager.sensors = sensors != null ? sensors : defaultPreset.sensors),
+       => manager && (manager.sensors = sensors != null ? sensors : defaultPreset.sensors),
       ...options
     );
     useOnValueChange(
       modifiers,
-      () => manager && (manager.modifiers = modifiers != null ? modifiers : defaultPreset.modifiers),
+       => manager && (manager.modifiers = modifiers != null ? modifiers : defaultPreset.modifiers),
       ...options
     );
     return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(DragDropContext.Provider, { value: manager, children: [
@@ -28571,13 +28571,13 @@
       children
     ] });
   }
-  function useDragDropManager() {
+  function useDragDropManager {
     return (0, import_react6.useContext)(DragDropContext);
   }
   function useInstance(initializer) {
     var _a23;
-    const manager = (_a23 = useDragDropManager()) != null ? _a23 : void 0;
-    const [instance] = (0, import_react6.useState)(() => initializer(manager));
+    const manager = (_a23 = useDragDropManager) != null ? _a23 : void 0;
+    const [instance] = (0, import_react6.useState)( => initializer(manager));
     if (instance.manager !== manager) {
       instance.manager = manager;
     }
@@ -28597,38 +28597,38 @@
       )
     );
     const trackedDraggable = useDeepSignal(draggable, shouldUpdateSynchronously);
-    useOnValueChange(id, () => draggable.id = id);
+    useOnValueChange(id,  => draggable.id = id);
     useOnElementChange(handle, (handle2) => draggable.handle = handle2);
     useOnElementChange(element, (element2) => draggable.element = element2);
-    useOnValueChange(data, () => data && (draggable.data = data));
-    useOnValueChange(disabled, () => draggable.disabled = disabled === true);
-    useOnValueChange(sensors, () => draggable.sensors = sensors);
+    useOnValueChange(data,  => data && (draggable.data = data));
+    useOnValueChange(disabled,  => draggable.disabled = disabled === true);
+    useOnValueChange(sensors,  => draggable.sensors = sensors);
     useOnValueChange(
       modifiers,
-      () => draggable.modifiers = modifiers,
+       => draggable.modifiers = modifiers,
       void 0,
       deepEqual
     );
     useOnValueChange(
       input.feedback,
-      () => {
+       => {
         var _a23;
         return draggable.feedback = (_a23 = input.feedback) != null ? _a23 : "default";
       }
     );
     useOnValueChange(
       input.alignment,
-      () => draggable.alignment = input.alignment
+       => draggable.alignment = input.alignment
     );
     return {
       draggable: trackedDraggable,
-      get isDragging() {
+      get isDragging {
         return trackedDraggable.isDragging;
       },
-      get isDropping() {
+      get isDropping {
         return trackedDraggable.isDropping;
       },
-      get isDragSource() {
+      get isDragSource {
         return trackedDraggable.isDragSource;
       },
       handleRef: (0, import_react6.useCallback)(
@@ -28665,24 +28665,24 @@
       )
     );
     const trackedDroppalbe = useDeepSignal(droppable);
-    useOnValueChange(id, () => droppable.id = id);
+    useOnValueChange(id,  => droppable.id = id);
     useOnElementChange(element, (element2) => droppable.element = element2);
     useOnValueChange(
       accept,
-      () => droppable.accept = accept,
+       => droppable.accept = accept,
       void 0,
       deepEqual
     );
     useOnValueChange(
       collisionDetector,
-      () => droppable.collisionDetector = collisionDetector != null ? collisionDetector : defaultCollisionDetection2
+       => droppable.collisionDetector = collisionDetector != null ? collisionDetector : defaultCollisionDetection2
     );
-    useOnValueChange(data, () => data && (droppable.data = data));
-    useOnValueChange(disabled, () => droppable.disabled = disabled === true);
-    useOnValueChange(type, () => droppable.type = type);
+    useOnValueChange(data,  => data && (droppable.data = data));
+    useOnValueChange(disabled,  => droppable.disabled = disabled === true);
+    useOnValueChange(type,  => droppable.type = type);
     return {
       droppable: trackedDroppalbe,
-      get isDropTarget() {
+      get isDropTarget {
         return trackedDroppalbe.isDropTarget;
       },
       ref: (0, import_react6.useCallback)(
@@ -28699,15 +28699,15 @@
   }
   var import_react6, import_jsx_runtime2, __defProp7, __defProps5, __getOwnPropDescs5, __getOwnPropSymbols6, __hasOwnProp7, __propIsEnum6, __defNormalProp6, __spreadValues6, __spreadProps5, __objRest4, defaultManager, DragDropContext, Renderer, options, __create7, __defProp22, __getOwnPropDesc7, __knownSymbol5, __typeError6, __defNormalProp22, __decoratorStart5, __decoratorStrings5, __expectFn5, __decoratorContext5, __decoratorMetadata5, __runInitializers5, __decorateElement5, __accessCheck6, __privateGet6, __privateAdd6, __privateSet6, Point2, _direction_dec2, _delta_dec2, _a4, _timestamp2, _init8, Position2, Axis2, pointerIntersection2, shapeIntersection2, defaultCollisionDetection2;
   var init_react2 = __esm({
-    "node_modules/@dnd-kit/react/index.js"() {
-      import_react6 = __toESM(require_react(), 1);
-      init_dom();
-      init_dom();
-      init_hooks();
-      init_dist();
-      import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
-      init_utilities2();
-      init_abstract();
+    "node_modules/@dnd-kit/react/index.js" {
+      import_react6 = __toESM(require_react, 1);
+      init_dom;
+      init_dom;
+      init_hooks;
+      init_dist;
+      import_jsx_runtime2 = __toESM(require_jsx_runtime, 1);
+      init_utilities2;
+      init_abstract;
       __defProp7 = Object.defineProperty;
       __defProps5 = Object.defineProperties;
       __getOwnPropDescs5 = Object.getOwnPropertyDescriptors;
@@ -28739,7 +28739,7 @@
           }
         return target;
       };
-      defaultManager = new DragDropManager2();
+      defaultManager = new DragDropManager2;
       DragDropContext = (0, import_react6.createContext)(
         defaultManager
       );
@@ -28749,11 +28749,11 @@
           const rendering = (0, import_react6.useRef)(null);
           const resolver = (0, import_react6.useRef)(null);
           const renderer = (0, import_react6.useMemo)(
-            () => ({
+             => ({
               renderer: {
-                get rendering() {
+                get rendering {
                   var _a23;
-                  return (_a23 = rendering.current) != null ? _a23 : Promise.resolve();
+                  return (_a23 = rendering.current) != null ? _a23 : Promise.resolve;
                 }
               },
               trackRendering(callback) {
@@ -28762,20 +28762,20 @@
                     resolver.current = resolve;
                   });
                 }
-                (0, import_react6.startTransition)(() => {
-                  callback();
+                (0, import_react6.startTransition)( => {
+                  callback;
                   setTransitionCount((count) => count + 1);
                 });
               }
             }),
             []
           );
-          useIsomorphicLayoutEffect(() => {
+          useIsomorphicLayoutEffect( => {
             var _a23;
             (_a23 = resolver.current) == null ? void 0 : _a23.call(resolver);
             rendering.current = null;
           }, [children, transitionCount]);
-          (0, import_react6.useImperativeHandle)(ref, () => renderer);
+          (0, import_react6.useImperativeHandle)(ref,  => renderer);
           return null;
         })
       );
@@ -28868,10 +28868,10 @@
           __privateAdd6(this, _timestamp2, 0);
           this.velocity = { x: 0, y: 0 };
         }
-        get delta() {
+        get delta {
           return Point2.delta(this.current, this.initial);
         }
-        get direction() {
+        get direction {
           const { current, previous } = this;
           if (!previous) return null;
           const delta = {
@@ -28886,7 +28886,7 @@
           }
           return delta.y > 0 ? "down" : "up";
         }
-        get current() {
+        get current {
           return super.current;
         }
         set current(coordinates) {
@@ -28896,10 +28896,10 @@
             x: point.x - current.x,
             y: point.y - current.y
           };
-          const timestamp = Date.now();
+          const timestamp = Date.now;
           const timeDelta = timestamp - __privateGet6(this, _timestamp2);
           const velocity = (delta2) => Math.round(delta2 / timeDelta * 100);
-          n(() => {
+          n( => {
             __privateSet6(this, _timestamp2, timestamp);
             this.velocity = {
               x: velocity(delta.x),
@@ -28914,7 +28914,7 @@
         }
       };
       _init8 = __decoratorStart5(_a4);
-      _timestamp2 = /* @__PURE__ */ new WeakMap();
+      _timestamp2 = /* @__PURE__ */ new WeakMap;
       __decorateElement5(_init8, 2, "delta", _delta_dec2, Position2);
       __decorateElement5(_init8, 2, "direction", _direction_dec2, Position2);
       __decoratorMetadata5(_init8, Position2);
@@ -28997,7 +28997,7 @@
     if (from === to) {
       return array;
     }
-    const newArray = array.slice();
+    const newArray = array.slice;
     newArray.splice(to, 0, newArray.splice(from, 1)[0]);
     return newArray;
   }
@@ -29005,7 +29005,7 @@
     var _a5, _b3;
     const { source, target, canceled } = event.operation;
     if (!source || !target || canceled) {
-      if ("preventDefault" in event) event.preventDefault();
+      if ("preventDefault" in event) event.preventDefault;
       return items;
     }
     const findIndex = (item, id) => item === id || typeof item === "object" && "id" in item && item.id === id;
@@ -29056,7 +29056,7 @@
       }
     }
     if (sourceParent == null || targetParent == null || sourceParent === targetParent && sourceIndex === targetIndex) {
-      if ("preventDefault" in event) event.preventDefault();
+      if ("preventDefault" in event) event.preventDefault;
       return items;
     }
     if (sourceParent === targetParent) {
@@ -29094,13 +29094,13 @@
   }
   var __create8, __defProp8, __defProps6, __getOwnPropDesc8, __getOwnPropDescs6, __getOwnPropSymbols7, __hasOwnProp8, __propIsEnum7, __knownSymbol6, __typeError7, __defNormalProp7, __spreadValues7, __spreadProps6, __objRest5, __decoratorStart6, __decoratorStrings6, __expectFn6, __decoratorContext6, __decoratorMetadata6, __runInitializers6, __decorateElement6, __accessCheck7, __privateGet7, __privateAdd7, __privateSet7, TOLERANCE, SortableKeyboardPlugin, __defProp23, __defProps22, __getOwnPropDescs22, __getOwnPropSymbols22, __hasOwnProp22, __propIsEnum22, __defNormalProp23, __spreadValues22, __spreadProps22, defaultGroup, OptimisticSortingPlugin, defaultPlugins, defaultSortableTransition, store, _group_dec, _index_dec, _init9, _index, _previousGroup, _previousIndex, _group, _element3, Sortable2, SortableDraggable, SortableDroppable;
   var init_sortable = __esm({
-    "node_modules/@dnd-kit/dom/sortable.js"() {
-      init_dist();
-      init_dist3();
-      init_dom();
-      init_utilities();
-      init_abstract();
-      init_dist2();
+    "node_modules/@dnd-kit/dom/sortable.js" {
+      init_dist;
+      init_dist3;
+      init_dom;
+      init_utilities;
+      init_abstract;
+      init_dist2;
       __create8 = Object.create;
       __defProp8 = Object.defineProperty;
       __defProps6 = Object.defineProperties;
@@ -29154,7 +29154,7 @@
         var fn, it, done, ctx, access, k = flags & 7, s2 = false, p2 = false;
         var j = array.length + 1, key = __decoratorStrings6[k + 5];
         var initializers = array[j - 1] = [], extraInitializers = array[j] || (array[j] = []);
-        var desc = (target = target.prototype, __getOwnPropDesc8({ get [name]() {
+        var desc = (target = target.prototype, __getOwnPropDesc8({ get [name] {
           return __privateGet7(this, extra);
         }, set [name](x) {
           return __privateSet7(this, extra, x);
@@ -29181,7 +29181,7 @@
       SortableKeyboardPlugin = class extends Plugin {
         constructor(manager) {
           super(manager);
-          const cleanupEffect = m(() => {
+          const cleanupEffect = m( => {
             const { dragOperation } = manager;
             if (!isKeyboardEvent(dragOperation.activatorEvent)) {
               return;
@@ -29192,15 +29192,15 @@
             if (dragOperation.status.initialized) {
               const scroller = manager.registry.plugins.get(Scroller);
               if (scroller) {
-                scroller.disable();
-                return () => scroller.enable();
+                scroller.disable;
+                return  => scroller.enable;
               }
             }
           });
           const unsubscribe = manager.monitor.addEventListener(
             "dragmove",
             (event, manager2) => {
-              queueMicrotask(() => {
+              queueMicrotask( => {
                 if (this.disabled || event.defaultPrevented || !event.nativeEvent) {
                   return;
                 }
@@ -29224,7 +29224,7 @@
                 const { center } = dragOperation.shape.current;
                 const potentialTargets = [];
                 const cleanup = [];
-                n(() => {
+                n( => {
                   for (const droppable of registry.droppables) {
                     const { id: id2 } = droppable;
                     if (!droppable.accepts(source) || id2 === (target == null ? void 0 : target.id) && isSortable(droppable) || !droppable.element) {
@@ -29238,24 +29238,24 @@
                     if (direction == "down" && center.y + TOLERANCE < shape.center.y || direction == "up" && center.y - TOLERANCE > shape.center.y || direction == "left" && center.x - TOLERANCE > shape.center.x || direction == "right" && center.x + TOLERANCE < shape.center.x) {
                       potentialTargets.push(droppable);
                       droppable.shape = shape;
-                      cleanup.push(() => droppable.shape = previousShape);
+                      cleanup.push( => droppable.shape = previousShape);
                     }
                   }
                 });
-                event.preventDefault();
-                collisionObserver.disable();
+                event.preventDefault;
+                collisionObserver.disable;
                 const collisions = collisionObserver.computeCollisions(
                   potentialTargets,
                   closestCorners
                 );
-                n(() => cleanup.forEach((clean) => clean()));
+                n( => cleanup.forEach((clean) => clean));
                 const [firstCollision] = collisions;
                 if (!firstCollision) {
                   return;
                 }
                 const { id } = firstCollision;
                 const { index, group } = source.sortable;
-                actions.setDropTarget(id).then(() => {
+                actions.setDropTarget(id).then( => {
                   const { source: source2, target: target2, shape } = dragOperation;
                   if (!source2 || !isSortable(source2) || !shape) {
                     return;
@@ -29282,17 +29282,17 @@
                     by: delta
                   });
                   if (updated) {
-                    actions.setDropTarget(source2.id).then(() => collisionObserver.enable());
+                    actions.setDropTarget(source2.id).then( => collisionObserver.enable);
                   } else {
-                    collisionObserver.enable();
+                    collisionObserver.enable;
                   }
                 });
               });
             }
           );
-          this.destroy = () => {
-            unsubscribe();
-            cleanupEffect();
+          this.destroy =  => {
+            unsubscribe;
+            cleanupEffect;
           };
         }
       };
@@ -29319,15 +29319,15 @@
       OptimisticSortingPlugin = class extends Plugin {
         constructor(manager) {
           super(manager);
-          const getSortableInstances = () => {
-            const sortableInstances = /* @__PURE__ */ new Map();
+          const getSortableInstances =  => {
+            const sortableInstances = /* @__PURE__ */ new Map;
             for (const droppable of manager.registry.droppables) {
               if (droppable instanceof SortableDroppable) {
                 const { sortable } = droppable;
                 const { group } = sortable;
                 let instances = sortableInstances.get(group);
                 if (!instances) {
-                  instances = /* @__PURE__ */ new Set();
+                  instances = /* @__PURE__ */ new Set;
                   sortableInstances.set(group, instances);
                 }
                 instances.add(sortable);
@@ -29351,18 +29351,18 @@
               if (source.sortable === target.sortable) {
                 return;
               }
-              const instances = getSortableInstances();
+              const instances = getSortableInstances;
               const sameGroup = source.sortable.group === target.sortable.group;
               const sourceInstances = instances.get(source.sortable.group);
               const targetInstances = sameGroup ? sourceInstances : instances.get(target.sortable.group);
               if (!sourceInstances || !targetInstances) return;
-              queueMicrotask(() => {
+              queueMicrotask( => {
                 if (event.defaultPrevented) return;
-                manager2.renderer.rendering.then(() => {
+                manager2.renderer.rendering.then( => {
                   var _a5, _b3, _c4;
-                  const newInstances = getSortableInstances();
-                  for (const [group, sortableInstances] of instances.entries()) {
-                    const entries = Array.from(sortableInstances).entries();
+                  const newInstances = getSortableInstances;
+                  for (const [group, sortableInstances] of instances.entries) {
+                    const entries = Array.from(sortableInstances).entries;
                     for (const [index, sortable] of entries) {
                       if (sortable.index !== index || sortable.group !== group || !((_a5 = newInstances.get(group)) == null ? void 0 : _a5.has(sortable))) {
                         return;
@@ -29389,20 +29389,20 @@
                   if (state === newState) return;
                   const sourceIndex = newState[targetGroup].indexOf(source.sortable);
                   const targetIndex = newState[targetGroup].indexOf(target.sortable);
-                  manager2.collisionObserver.disable();
+                  manager2.collisionObserver.disable;
                   reorder(sourceElement, sourceIndex, targetElement, targetIndex);
-                  n(() => {
-                    for (const [index, sortable] of newState[sourceGroup].entries()) {
+                  n( => {
+                    for (const [index, sortable] of newState[sourceGroup].entries) {
                       sortable.index = index;
                     }
                     if (!sameGroup) {
-                      for (const [index, sortable] of newState[targetGroup].entries()) {
+                      for (const [index, sortable] of newState[targetGroup].entries) {
                         sortable.group = target.sortable.group;
                         sortable.index = index;
                       }
                     }
                   });
-                  manager2.actions.setDropTarget(source.id).then(() => manager2.collisionObserver.enable());
+                  manager2.actions.setDropTarget(source.id).then( => manager2.collisionObserver.enable);
                 });
               });
             }),
@@ -29418,15 +29418,15 @@
               if (source.sortable.initialIndex === source.sortable.index && source.sortable.initialGroup === source.sortable.group) {
                 return;
               }
-              queueMicrotask(() => {
-                const instances = getSortableInstances();
+              queueMicrotask( => {
+                const instances = getSortableInstances;
                 const initialGroupInstances = instances.get(
                   source.sortable.initialGroup
                 );
                 if (!initialGroupInstances) return;
-                manager2.renderer.rendering.then(() => {
-                  for (const [group, sortableInstances] of instances.entries()) {
-                    const entries = Array.from(sortableInstances).entries();
+                manager2.renderer.rendering.then( => {
+                  for (const [group, sortableInstances] of instances.entries) {
+                    const entries = Array.from(sortableInstances).entries;
                     for (const [index, sortable] of entries) {
                       if (sortable.index !== index || sortable.group !== group) {
                         return;
@@ -29441,9 +29441,9 @@
                     return;
                   }
                   reorder(sourceElement, target.index, targetElement, source.index);
-                  n(() => {
-                    for (const [_2, sortableInstances] of instances.entries()) {
-                      const entries = Array.from(sortableInstances).values();
+                  n( => {
+                    for (const [_2, sortableInstances] of instances.entries) {
+                      const entries = Array.from(sortableInstances).values;
                       for (const sortable of entries) {
                         sortable.index = sortable.initialIndex;
                         sortable.group = sortable.initialGroup;
@@ -29454,9 +29454,9 @@
               });
             })
           ];
-          this.destroy = () => {
+          this.destroy =  => {
             for (const unsubscribeListener of unsubscribe) {
-              unsubscribeListener();
+              unsubscribeListener;
             }
           };
         }
@@ -29470,7 +29470,7 @@
         easing: "cubic-bezier(0.25, 1, 0.5, 1)",
         idle: false
       };
-      store = new WeakStore();
+      store = new WeakStore;
       _index_dec = [reactive], _group_dec = [reactive];
       Sortable2 = class {
         constructor(_a5, manager) {
@@ -29479,29 +29479,29 @@
           __privateAdd7(this, _previousIndex);
           __privateAdd7(this, _group, __runInitializers6(_init9, 12, this)), __runInitializers6(_init9, 15, this);
           __privateAdd7(this, _element3);
-          this.register = () => {
-            n(() => {
+          this.register =  => {
+            n( => {
               var _a6, _b4;
               (_a6 = this.manager) == null ? void 0 : _a6.registry.register(this.droppable);
               (_b4 = this.manager) == null ? void 0 : _b4.registry.register(this.draggable);
             });
-            return () => this.unregister();
+            return  => this.unregister;
           };
-          this.unregister = () => {
-            n(() => {
+          this.unregister =  => {
+            n( => {
               var _a6, _b4;
               (_a6 = this.manager) == null ? void 0 : _a6.registry.unregister(this.droppable);
               (_b4 = this.manager) == null ? void 0 : _b4.registry.unregister(this.draggable);
             });
           };
-          this.destroy = () => {
-            n(() => {
-              this.droppable.destroy();
-              this.draggable.destroy();
+          this.destroy =  => {
+            n( => {
+              this.droppable.destroy;
+              this.draggable.destroy;
             });
           };
           var _b3 = _a5, {
-            effects: inputEffects = () => [],
+            effects: inputEffects =  => [],
             group,
             index,
             sensors,
@@ -29520,8 +29520,8 @@
           this.droppable = new SortableDroppable(input, manager, this);
           this.draggable = new SortableDraggable(
             __spreadProps6(__spreadValues7({}, input), {
-              effects: () => [
-                () => {
+              effects:  => [
+                 => {
                   var _a23, _b22, _c4;
                   const status = (_a23 = this.manager) == null ? void 0 : _a23.dragOperation.status;
                   if ((status == null ? void 0 : status.initializing) && this.id === ((_c4 = (_b22 = this.manager) == null ? void 0 : _b22.dragOperation.source) == null ? void 0 : _c4.id)) {
@@ -29531,37 +29531,37 @@
                     store.set(
                       this.manager,
                       this.id,
-                      o(() => ({
+                      o( => ({
                         initialIndex: this.index,
                         initialGroup: this.group
                       }))
                     );
                   }
                 },
-                () => {
+                 => {
                   const { index: index2, group: group2, manager: _2 } = this;
                   const previousIndex = __privateGet7(this, _previousIndex);
                   const previousGroup = __privateGet7(this, _previousGroup);
                   if (index2 !== previousIndex || group2 !== previousGroup) {
                     __privateSet7(this, _previousIndex, index2);
                     __privateSet7(this, _previousGroup, group2);
-                    this.animate();
+                    this.animate;
                   }
                 },
-                () => {
+                 => {
                   const { target } = this;
                   const { feedback, isDragSource } = this.draggable;
                   if (feedback == "move" && isDragSource) {
                     this.droppable.disabled = !target;
                   }
                 },
-                () => {
+                 => {
                   const { manager: manager2 } = this;
                   for (const plugin of plugins) {
                     manager2 == null ? void 0 : manager2.registry.register(plugin);
                   }
                 },
-                ...inputEffects()
+                ...inputEffects
               ],
               type,
               sensors
@@ -29578,16 +29578,16 @@
           this.type = type;
           this.transition = transition;
         }
-        get initialIndex() {
+        get initialIndex {
           var _a5, _b3;
           return (_b3 = (_a5 = store.get(this.manager, this.id)) == null ? void 0 : _a5.initialIndex) != null ? _b3 : this.index;
         }
-        get initialGroup() {
+        get initialGroup {
           var _a5, _b3;
           return (_b3 = (_a5 = store.get(this.manager, this.id)) == null ? void 0 : _a5.initialGroup) != null ? _b3 : this.group;
         }
-        animate() {
-          o(() => {
+        animate {
+          o( => {
             const { manager, transition } = this;
             const { shape } = this.droppable;
             if (!manager) return;
@@ -29595,12 +29595,12 @@
             if (!shape || !transition || idle && !transition.idle) {
               return;
             }
-            manager.renderer.rendering.then(() => {
+            manager.renderer.rendering.then( => {
               const { element } = this;
               if (!element) {
                 return;
               }
-              const updatedShape = this.refreshShape();
+              const updatedShape = this.refreshShape;
               if (!updatedShape) {
                 return;
               }
@@ -29621,7 +29621,7 @@
                     ]
                   },
                   options: transition
-                }).then(() => {
+                }).then( => {
                   if (!manager.dragOperation.status.dragging) {
                     this.droppable.shape = void 0;
                   }
@@ -29630,17 +29630,17 @@
             });
           });
         }
-        get manager() {
+        get manager {
           return this.draggable.manager;
         }
         set manager(manager) {
-          n(() => {
+          n( => {
             this.draggable.manager = manager;
             this.droppable.manager = manager;
           });
         }
         set element(element) {
-          n(() => {
+          n( => {
             const previousElement = __privateGet7(this, _element3);
             const droppableElement = this.droppable.element;
             const draggableElement = this.draggable.element;
@@ -29653,7 +29653,7 @@
             __privateSet7(this, _element3, element);
           });
         }
-        get element() {
+        get element {
           var _a5, _b3;
           const element = __privateGet7(this, _element3);
           if (!element) return;
@@ -29662,29 +29662,29 @@
         set target(target) {
           this.droppable.element = target;
         }
-        get target() {
+        get target {
           return this.droppable.element;
         }
         set source(source) {
           this.draggable.element = source;
         }
-        get source() {
+        get source {
           return this.draggable.element;
         }
-        get disabled() {
+        get disabled {
           return this.draggable.disabled && this.droppable.disabled;
         }
         set feedback(value) {
           this.draggable.feedback = value;
         }
         set disabled(value) {
-          n(() => {
+          n( => {
             this.droppable.disabled = value;
             this.draggable.disabled = value;
           });
         }
         set data(data) {
-          n(() => {
+          n( => {
             this.droppable.data = data;
             this.draggable.data = data;
           });
@@ -29693,12 +29693,12 @@
           this.draggable.handle = handle;
         }
         set id(id) {
-          n(() => {
+          n( => {
             this.droppable.id = id;
             this.draggable.id = id;
           });
         }
-        get id() {
+        get id {
           return this.droppable.id;
         }
         set sensors(value) {
@@ -29716,61 +29716,61 @@
         set alignment(value) {
           this.draggable.alignment = value;
         }
-        get alignment() {
+        get alignment {
           return this.draggable.alignment;
         }
         set type(type) {
-          n(() => {
+          n( => {
             this.droppable.type = type;
             this.draggable.type = type;
           });
         }
-        get type() {
+        get type {
           return this.draggable.type;
         }
         set accept(value) {
           this.droppable.accept = value;
         }
-        get accept() {
+        get accept {
           return this.droppable.accept;
         }
-        get isDropTarget() {
+        get isDropTarget {
           return this.droppable.isDropTarget;
         }
         /**
          * A boolean indicating whether the sortable item is the source of a drag operation.
          */
-        get isDragSource() {
+        get isDragSource {
           return this.draggable.isDragSource;
         }
         /**
          * A boolean indicating whether the sortable item is being dragged.
          */
-        get isDragging() {
+        get isDragging {
           return this.draggable.isDragging;
         }
         /**
          * A boolean indicating whether the sortable item is being dropped.
          */
-        get isDropping() {
+        get isDropping {
           return this.draggable.isDropping;
         }
-        get status() {
+        get status {
           return this.draggable.status;
         }
-        refreshShape() {
-          return this.droppable.refreshShape();
+        refreshShape {
+          return this.droppable.refreshShape;
         }
         accepts(draggable) {
           return this.droppable.accepts(draggable);
         }
       };
-      _init9 = __decoratorStart6();
-      _index = /* @__PURE__ */ new WeakMap();
-      _previousGroup = /* @__PURE__ */ new WeakMap();
-      _previousIndex = /* @__PURE__ */ new WeakMap();
-      _group = /* @__PURE__ */ new WeakMap();
-      _element3 = /* @__PURE__ */ new WeakMap();
+      _init9 = __decoratorStart6;
+      _index = /* @__PURE__ */ new WeakMap;
+      _previousGroup = /* @__PURE__ */ new WeakMap;
+      _previousIndex = /* @__PURE__ */ new WeakMap;
+      _group = /* @__PURE__ */ new WeakMap;
+      _element3 = /* @__PURE__ */ new WeakMap;
       __decorateElement6(_init9, 4, "index", _index_dec, Sortable2, _index);
       __decorateElement6(_init9, 4, "group", _group_dec, Sortable2, _group);
       __decoratorMetadata6(_init9, Sortable2);
@@ -29779,7 +29779,7 @@
           super(input, manager);
           this.sortable = sortable;
         }
-        get index() {
+        get index {
           return this.sortable.index;
         }
       };
@@ -29826,27 +29826,27 @@
       );
     });
     const trackedSortable = useDeepSignal(sortable, shouldUpdateSynchronously2);
-    useOnValueChange(id, () => sortable.id = id);
-    useIsomorphicLayoutEffect(() => {
-      n(() => {
+    useOnValueChange(id,  => sortable.id = id);
+    useIsomorphicLayoutEffect( => {
+      n( => {
         sortable.group = group;
         sortable.index = index;
       });
     }, [sortable, group, index]);
-    useOnValueChange(type, () => sortable.type = type);
+    useOnValueChange(type,  => sortable.type = type);
     useOnValueChange(
       accept,
-      () => sortable.accept = accept,
+       => sortable.accept = accept,
       void 0,
       deepEqual
     );
-    useOnValueChange(data, () => data && (sortable.data = data));
+    useOnValueChange(data,  => data && (sortable.data = data));
     useOnValueChange(
       index,
-      () => {
+       => {
         var _a5;
         if (((_a5 = sortable.manager) == null ? void 0 : _a5.dragOperation.status.idle) && (transition == null ? void 0 : transition.idle)) {
-          sortable.refreshShape();
+          sortable.refreshShape;
         }
       },
       useImmediateEffect
@@ -29854,45 +29854,45 @@
     useOnElementChange(handle, (handle2) => sortable.handle = handle2);
     useOnElementChange(element, (element2) => sortable.element = element2);
     useOnElementChange(target, (target2) => sortable.target = target2);
-    useOnValueChange(disabled, () => sortable.disabled = disabled === true);
-    useOnValueChange(sensors, () => sortable.sensors = sensors);
+    useOnValueChange(disabled,  => sortable.disabled = disabled === true);
+    useOnValueChange(sensors,  => sortable.sensors = sensors);
     useOnValueChange(
       collisionDetector,
-      () => sortable.collisionDetector = collisionDetector
+       => sortable.collisionDetector = collisionDetector
     );
     useOnValueChange(
       collisionPriority,
-      () => sortable.collisionPriority = collisionPriority
+       => sortable.collisionPriority = collisionPriority
     );
-    useOnValueChange(feedback, () => sortable.feedback = feedback != null ? feedback : "default");
+    useOnValueChange(feedback,  => sortable.feedback = feedback != null ? feedback : "default");
     useOnValueChange(
       transition,
-      () => sortable.transition = transition,
+       => sortable.transition = transition,
       void 0,
       deepEqual
     );
     useOnValueChange(
       modifiers,
-      () => sortable.modifiers = modifiers,
+       => sortable.modifiers = modifiers,
       void 0,
       deepEqual
     );
     useOnValueChange(
       input.alignment,
-      () => sortable.alignment = input.alignment
+       => sortable.alignment = input.alignment
     );
     return {
       sortable: trackedSortable,
-      get isDragging() {
+      get isDragging {
         return trackedSortable.isDragging;
       },
-      get isDropping() {
+      get isDropping {
         return trackedSortable.isDropping;
       },
-      get isDragSource() {
+      get isDragSource {
         return trackedSortable.isDragSource;
       },
-      get isDropTarget() {
+      get isDropTarget {
         return trackedSortable.isDropTarget;
       },
       handleRef: (0, import_react7.useCallback)(
@@ -29939,13 +29939,13 @@
   }
   var import_react7, __defProp9, __defProps7, __getOwnPropDescs7, __getOwnPropSymbols8, __hasOwnProp9, __propIsEnum8, __defNormalProp8, __spreadValues8, __spreadProps7;
   var init_sortable2 = __esm({
-    "node_modules/@dnd-kit/react/sortable.js"() {
-      import_react7 = __toESM(require_react(), 1);
-      init_dist();
-      init_sortable();
-      init_react2();
-      init_hooks();
-      init_utilities2();
+    "node_modules/@dnd-kit/react/sortable.js" {
+      import_react7 = __toESM(require_react, 1);
+      init_dist;
+      init_sortable;
+      init_react2;
+      init_hooks;
+      init_utilities2;
       __defProp9 = Object.defineProperty;
       __defProps7 = Object.defineProperties;
       __getOwnPropDescs7 = Object.getOwnPropertyDescriptors;
@@ -29986,21 +29986,21 @@
       return compareIterables(valueA, valueB);
     }
     return compareEntries(
-      { entries: () => Object.entries(valueA) },
-      { entries: () => Object.entries(valueB) }
+      { entries:  => Object.entries(valueA) },
+      { entries:  => Object.entries(valueB) }
     );
   }
   var isIterable, hasIterableEntries, compareEntries, compareIterables;
   var init_shallow = __esm({
-    "node_modules/zustand/esm/vanilla/shallow.mjs"() {
+    "node_modules/zustand/esm/vanilla/shallow.mjs" {
       isIterable = (obj) => Symbol.iterator in obj;
       hasIterableEntries = (value) => (
         // HACK: avoid checking entries type
         "entries" in value
       );
       compareEntries = (valueA, valueB) => {
-        const mapA = valueA instanceof Map ? valueA : new Map(valueA.entries());
-        const mapB = valueB instanceof Map ? valueB : new Map(valueB.entries());
+        const mapA = valueA instanceof Map ? valueA : new Map(valueA.entries);
+        const mapB = valueB instanceof Map ? valueB : new Map(valueB.entries);
         if (mapA.size !== mapB.size) {
           return false;
         }
@@ -30012,16 +30012,16 @@
         return true;
       };
       compareIterables = (valueA, valueB) => {
-        const iteratorA = valueA[Symbol.iterator]();
-        const iteratorB = valueB[Symbol.iterator]();
-        let nextA = iteratorA.next();
-        let nextB = iteratorB.next();
+        const iteratorA = valueA[Symbol.iterator];
+        const iteratorB = valueB[Symbol.iterator];
+        let nextA = iteratorA.next;
+        let nextB = iteratorB.next;
         while (!nextA.done && !nextB.done) {
           if (!Object.is(nextA.value, nextB.value)) {
             return false;
           }
-          nextA = iteratorA.next();
-          nextB = iteratorB.next();
+          nextA = iteratorA.next;
+          nextB = iteratorB.next;
         }
         return !!nextA.done && !!nextB.done;
       };
@@ -30038,28 +30038,28 @@
   }
   var import_react9;
   var init_shallow2 = __esm({
-    "node_modules/zustand/esm/react/shallow.mjs"() {
-      import_react9 = __toESM(require_react(), 1);
-      init_shallow();
+    "node_modules/zustand/esm/react/shallow.mjs" {
+      import_react9 = __toESM(require_react, 1);
+      init_shallow;
     }
   });
 
   // node_modules/use-debounce/dist/index.module.js
   function c2(u3, e3, c3) {
-    var i2 = this, a2 = (0, import_react10.useRef)(null), o2 = (0, import_react10.useRef)(0), f2 = (0, import_react10.useRef)(null), l2 = (0, import_react10.useRef)([]), m2 = (0, import_react10.useRef)(), v2 = (0, import_react10.useRef)(), d2 = (0, import_react10.useRef)(u3), p2 = (0, import_react10.useRef)(true);
-    (0, import_react10.useEffect)(function() {
+    var i2 = this, a2 = (0, import_react10.useRef)(null), o2 = (0, import_react10.useRef)(0), f2 = (0, import_react10.useRef)(null), l2 = (0, import_react10.useRef)([]), m2 = (0, import_react10.useRef), v2 = (0, import_react10.useRef), d2 = (0, import_react10.useRef)(u3), p2 = (0, import_react10.useRef)(true);
+    (0, import_react10.useEffect)(function {
       d2.current = u3;
     }, [u3]);
     var g2 = !e3 && 0 !== e3 && "undefined" != typeof window;
     if ("function" != typeof u3) throw new TypeError("Expected a function");
     e3 = +e3 || 0;
     var w2 = !!(c3 = c3 || {}).leading, s2 = !("trailing" in c3) || !!c3.trailing, x = "maxWait" in c3, y2 = x ? Math.max(+c3.maxWait || 0, e3) : null;
-    (0, import_react10.useEffect)(function() {
-      return p2.current = true, function() {
+    (0, import_react10.useEffect)(function {
+      return p2.current = true, function {
         p2.current = false;
       };
     }, []);
-    var h2 = (0, import_react10.useMemo)(function() {
+    var h2 = (0, import_react10.useMemo)(function {
       var r3 = function(r4) {
         var n4 = l2.current, t4 = m2.current;
         return l2.current = m2.current = null, o2.current = r4, v2.current = d2.current.apply(t4, n4);
@@ -30071,35 +30071,35 @@
         return !a2.current || n4 >= e3 || n4 < 0 || x && r4 - o2.current >= y2;
       }, u4 = function(n4) {
         return f2.current = null, s2 && l2.current ? r3(n4) : (l2.current = m2.current = null, v2.current);
-      }, c4 = function r4() {
-        var c5 = Date.now();
+      }, c4 = function r4 {
+        var c5 = Date.now;
         if (t3(c5)) return u4(c5);
         if (p2.current) {
           var i3 = e3 - (c5 - a2.current), f3 = x ? Math.min(i3, y2 - (c5 - o2.current)) : i3;
           n3(r4, f3);
         }
-      }, h3 = function() {
-        var u5 = Date.now(), d3 = t3(u5);
+      }, h3 = function {
+        var u5 = Date.now, d3 = t3(u5);
         if (l2.current = [].slice.call(arguments), m2.current = i2, a2.current = u5, d3) {
           if (!f2.current && p2.current) return o2.current = a2.current, n3(c4, e3), w2 ? r3(a2.current) : v2.current;
           if (x) return n3(c4, e3), r3(a2.current);
         }
         return f2.current || n3(c4, e3), v2.current;
       };
-      return h3.cancel = function() {
+      return h3.cancel = function {
         f2.current && (g2 ? cancelAnimationFrame(f2.current) : clearTimeout(f2.current)), o2.current = 0, l2.current = a2.current = m2.current = f2.current = null;
-      }, h3.isPending = function() {
+      }, h3.isPending = function {
         return !!f2.current;
-      }, h3.flush = function() {
-        return f2.current ? u4(Date.now()) : v2.current;
+      }, h3.flush = function {
+        return f2.current ? u4(Date.now) : v2.current;
       }, h3;
     }, [w2, x, e3, y2, s2, g2]);
     return h2;
   }
   var import_react10;
   var init_index_module = __esm({
-    "node_modules/use-debounce/dist/index.module.js"() {
-      import_react10 = __toESM(require_react());
+    "node_modules/use-debounce/dist/index.module.js" {
+      import_react10 = __toESM(require_react);
     }
   });
 
@@ -30108,8 +30108,8 @@
     "node_modules/object-hash/dist/object_hash.js"(exports, module) {
       !(function(e3) {
         var t3;
-        "object" == typeof exports ? module.exports = e3() : "function" == typeof define && define.amd ? define(e3) : ("undefined" != typeof window ? t3 = window : "undefined" != typeof global ? t3 = global : "undefined" != typeof self && (t3 = self), t3.objectHash = e3());
-      })(function() {
+        "object" == typeof exports ? module.exports = e3 : "function" == typeof define && define.amd ? define(e3) : ("undefined" != typeof window ? t3 = window : "undefined" != typeof global ? t3 = global : "undefined" != typeof self && (t3 = self), t3.objectHash = e3);
+      })(function {
         return (function r3(o2, i2, u3) {
           function s2(n3, e4) {
             if (!i2[n3]) {
@@ -30136,7 +30136,7 @@
             function t3(e4, t4) {
               t4 = u3(e4, t4);
               var n4;
-              return void 0 === (n4 = "passthrough" !== t4.algorithm ? r3.createHash(t4.algorithm) : new l2()).write && (n4.write = n4.update, n4.end = n4.update), f2(t4, n4).dispatch(e4), n4.update || n4.end(""), n4.digest ? n4.digest("buffer" === t4.encoding ? void 0 : t4.encoding) : (e4 = n4.read(), "buffer" !== t4.encoding ? e4.toString(t4.encoding) : e4);
+              return void 0 === (n4 = "passthrough" !== t4.algorithm ? r3.createHash(t4.algorithm) : new l2).write && (n4.write = n4.update, n4.end = n4.update), f2(t4, n4).dispatch(e4), n4.update || n4.end(""), n4.digest ? n4.digest("buffer" === t4.encoding ? void 0 : t4.encoding) : (e4 = n4.read, "buffer" !== t4.encoding ? e4.toString(t4.encoding) : e4);
             }
             (m2 = b2.exports = t3).sha1 = function(e4) {
               return t3(e4);
@@ -30147,11 +30147,11 @@
             }, m2.keysMD5 = function(e4) {
               return t3(e4, { algorithm: "md5", encoding: "hex", excludeValues: true });
             };
-            var o2 = r3.getHashes ? r3.getHashes().slice() : ["sha1", "md5"], i2 = (o2.push("passthrough"), ["buffer", "hex", "binary", "base64"]);
+            var o2 = r3.getHashes ? r3.getHashes.slice : ["sha1", "md5"], i2 = (o2.push("passthrough"), ["buffer", "hex", "binary", "base64"]);
             function u3(e4, t4) {
               var n4 = {};
-              if (n4.algorithm = (t4 = t4 || {}).algorithm || "sha1", n4.encoding = t4.encoding || "hex", n4.excludeValues = !!t4.excludeValues, n4.algorithm = n4.algorithm.toLowerCase(), n4.encoding = n4.encoding.toLowerCase(), n4.ignoreUnknown = true === t4.ignoreUnknown, n4.respectType = false !== t4.respectType, n4.respectFunctionNames = false !== t4.respectFunctionNames, n4.respectFunctionProperties = false !== t4.respectFunctionProperties, n4.unorderedArrays = true === t4.unorderedArrays, n4.unorderedSets = false !== t4.unorderedSets, n4.unorderedObjects = false !== t4.unorderedObjects, n4.replacer = t4.replacer || void 0, n4.excludeKeys = t4.excludeKeys || void 0, void 0 === e4) throw new Error("Object argument required.");
-              for (var r4 = 0; r4 < o2.length; ++r4) o2[r4].toLowerCase() === n4.algorithm.toLowerCase() && (n4.algorithm = o2[r4]);
+              if (n4.algorithm = (t4 = t4 || {}).algorithm || "sha1", n4.encoding = t4.encoding || "hex", n4.excludeValues = !!t4.excludeValues, n4.algorithm = n4.algorithm.toLowerCase, n4.encoding = n4.encoding.toLowerCase, n4.ignoreUnknown = true === t4.ignoreUnknown, n4.respectType = false !== t4.respectType, n4.respectFunctionNames = false !== t4.respectFunctionNames, n4.respectFunctionProperties = false !== t4.respectFunctionProperties, n4.unorderedArrays = true === t4.unorderedArrays, n4.unorderedSets = false !== t4.unorderedSets, n4.unorderedObjects = false !== t4.unorderedObjects, n4.replacer = t4.replacer || void 0, n4.excludeKeys = t4.excludeKeys || void 0, void 0 === e4) throw new Error("Object argument required.");
+              for (var r4 = 0; r4 < o2.length; ++r4) o2[r4].toLowerCase === n4.algorithm.toLowerCase && (n4.algorithm = o2[r4]);
               if (-1 === o2.indexOf(n4.algorithm)) throw new Error('Algorithm "' + n4.algorithm + '"  not supported. supported values: ' + o2.join(", "));
               if (-1 === i2.indexOf(n4.encoding) && "passthrough" !== n4.algorithm) throw new Error('Encoding "' + n4.encoding + '"  not supported. supported values: ' + i2.join(", "));
               return n4;
@@ -30168,10 +30168,10 @@
                 return this["_" + (null === (e4 = o3.replacer ? o3.replacer(e4) : e4) ? "null" : typeof e4)](e4);
               }, _object: function(t5) {
                 var n4, e4 = Object.prototype.toString.call(t5), r4 = /\[object (.*)\]/i.exec(e4);
-                r4 = (r4 = r4 ? r4[1] : "unknown:[" + e4 + "]").toLowerCase();
+                r4 = (r4 = r4 ? r4[1] : "unknown:[" + e4 + "]").toLowerCase;
                 if (0 <= (e4 = i3.indexOf(t5))) return this.dispatch("[CIRCULAR:" + e4 + "]");
                 if (i3.push(t5), void 0 !== s2 && s2.isBuffer && s2.isBuffer(t5)) return u4("buffer:"), u4(t5);
-                if ("object" === r4 || "function" === r4 || "asyncfunction" === r4) return e4 = Object.keys(t5), o3.unorderedObjects && (e4 = e4.sort()), false === o3.respectType || a2(t5) || e4.splice(0, 0, "prototype", "__proto__", "constructor"), o3.excludeKeys && (e4 = e4.filter(function(e5) {
+                if ("object" === r4 || "function" === r4 || "asyncfunction" === r4) return e4 = Object.keys(t5), o3.unorderedObjects && (e4 = e4.sort), false === o3.respectType || a2(t5) || e4.splice(0, 0, "prototype", "__proto__", "constructor"), o3.excludeKeys && (e4 = e4.filter(function(e5) {
                   return !o3.excludeKeys(e5);
                 })), u4("object:" + e4.length + ":"), n4 = this, e4.forEach(function(e5) {
                   n4.dispatch(e5), u4(":"), o3.excludeValues || n4.dispatch(t5[e5]), u4(",");
@@ -30188,32 +30188,32 @@
                   return n4.dispatch(e5);
                 });
                 var r4 = [], t5 = e4.map(function(e5) {
-                  var t6 = new l2(), n5 = i3.slice();
-                  return f2(o3, t6, n5).dispatch(e5), r4 = r4.concat(n5.slice(i3.length)), t6.read().toString();
+                  var t6 = new l2, n5 = i3.slice;
+                  return f2(o3, t6, n5).dispatch(e5), r4 = r4.concat(n5.slice(i3.length)), t6.read.toString;
                 });
-                return i3 = i3.concat(r4), t5.sort(), this._array(t5, false);
+                return i3 = i3.concat(r4), t5.sort, this._array(t5, false);
               }, _date: function(e4) {
-                return u4("date:" + e4.toJSON());
+                return u4("date:" + e4.toJSON);
               }, _symbol: function(e4) {
-                return u4("symbol:" + e4.toString());
+                return u4("symbol:" + e4.toString);
               }, _error: function(e4) {
-                return u4("error:" + e4.toString());
+                return u4("error:" + e4.toString);
               }, _boolean: function(e4) {
-                return u4("bool:" + e4.toString());
+                return u4("bool:" + e4.toString);
               }, _string: function(e4) {
-                u4("string:" + e4.length + ":"), u4(e4.toString());
+                u4("string:" + e4.length + ":"), u4(e4.toString);
               }, _function: function(e4) {
-                u4("fn:"), a2(e4) ? this.dispatch("[native]") : this.dispatch(e4.toString()), false !== o3.respectFunctionNames && this.dispatch("function-name:" + String(e4.name)), o3.respectFunctionProperties && this._object(e4);
+                u4("fn:"), a2(e4) ? this.dispatch("[native]") : this.dispatch(e4.toString), false !== o3.respectFunctionNames && this.dispatch("function-name:" + String(e4.name)), o3.respectFunctionProperties && this._object(e4);
               }, _number: function(e4) {
-                return u4("number:" + e4.toString());
+                return u4("number:" + e4.toString);
               }, _xml: function(e4) {
-                return u4("xml:" + e4.toString());
-              }, _null: function() {
+                return u4("xml:" + e4.toString);
+              }, _null: function {
                 return u4("Null");
-              }, _undefined: function() {
+              }, _undefined: function {
                 return u4("Undefined");
               }, _regexp: function(e4) {
-                return u4("regex:" + e4.toString());
+                return u4("regex:" + e4.toString);
               }, _uint8array: function(e4) {
                 return u4("uint8array:"), this.dispatch(Array.prototype.slice.call(e4));
               }, _uint8clampedarray: function(e4) {
@@ -30235,7 +30235,7 @@
               }, _arraybuffer: function(e4) {
                 return u4("arraybuffer:"), this.dispatch(new Uint8Array(e4));
               }, _url: function(e4) {
-                return u4("url:" + e4.toString());
+                return u4("url:" + e4.toString);
               }, _map: function(e4) {
                 u4("map:");
                 e4 = Array.from(e4);
@@ -30246,55 +30246,55 @@
                 return this._array(e4, false !== o3.unorderedSets);
               }, _file: function(e4) {
                 return u4("file:"), this.dispatch([e4.name, e4.size, e4.type, e4.lastModfied]);
-              }, _blob: function() {
+              }, _blob: function {
                 if (o3.ignoreUnknown) return u4("[blob]");
                 throw Error('Hashing Blob objects is currently not supported\n(see https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Fpuleos%2Fobject-hash%2Fissues%2F26%29\nUse "options.replacer" or "options.ignoreUnknown"\n');
-              }, _domwindow: function() {
+              }, _domwindow: function {
                 return u4("domwindow");
               }, _bigint: function(e4) {
-                return u4("bigint:" + e4.toString());
-              }, _process: function() {
+                return u4("bigint:" + e4.toString);
+              }, _process: function {
                 return u4("process");
-              }, _timer: function() {
+              }, _timer: function {
                 return u4("timer");
-              }, _pipe: function() {
+              }, _pipe: function {
                 return u4("pipe");
-              }, _tcp: function() {
+              }, _tcp: function {
                 return u4("tcp");
-              }, _udp: function() {
+              }, _udp: function {
                 return u4("udp");
-              }, _tty: function() {
+              }, _tty: function {
                 return u4("tty");
-              }, _statwatcher: function() {
+              }, _statwatcher: function {
                 return u4("statwatcher");
-              }, _securecontext: function() {
+              }, _securecontext: function {
                 return u4("securecontext");
-              }, _connection: function() {
+              }, _connection: function {
                 return u4("connection");
-              }, _zlib: function() {
+              }, _zlib: function {
                 return u4("zlib");
-              }, _context: function() {
+              }, _context: function {
                 return u4("context");
-              }, _nodescript: function() {
+              }, _nodescript: function {
                 return u4("nodescript");
-              }, _httpparser: function() {
+              }, _httpparser: function {
                 return u4("httpparser");
-              }, _dataview: function() {
+              }, _dataview: function {
                 return u4("dataview");
-              }, _signal: function() {
+              }, _signal: function {
                 return u4("signal");
-              }, _fsevent: function() {
+              }, _fsevent: function {
                 return u4("fsevent");
-              }, _tlswrap: function() {
+              }, _tlswrap: function {
                 return u4("tlswrap");
               } };
             }
-            function l2() {
+            function l2 {
               return { buf: "", write: function(e4) {
                 this.buf += e4;
               }, end: function(e4) {
                 this.buf += e4;
-              }, read: function() {
+              }, read: function {
                 return this.buf;
               } };
             }
@@ -30343,7 +30343,7 @@
             function f2(e5, t4, n4) {
               if (!(this instanceof f2)) return new f2(e5, t4, n4);
               var r4, o3, i3, u4, s3 = typeof e5;
-              if ("base64" === t4 && "string" == s3) for (e5 = (u4 = e5).trim ? u4.trim() : u4.replace(/^\s+|\s+$/g, ""); e5.length % 4 != 0; ) e5 += "=";
+              if ("base64" === t4 && "string" == s3) for (e5 = (u4 = e5).trim ? u4.trim : u4.replace(/^\s+|\s+$/g, ""); e5.length % 4 != 0; ) e5 += "=";
               if ("number" == s3) r4 = j(e5);
               else if ("string" == s3) r4 = f2.byteLength(e5, t4);
               else {
@@ -30418,17 +30418,17 @@
             function x(e5, t4, n4, r4, o3) {
               o3 || (d2(null != t4, "missing value"), d2("boolean" == typeof r4, "missing or invalid endian"), d2(null != n4, "missing offset"), d2(n4 + 7 < e5.length, "Trying to write beyond buffer length"), D(t4, 17976931348623157e292, -17976931348623157e292)), e5.length <= n4 || i2.write(e5, t4, n4, r4, 52, 8);
             }
-            H.Buffer = f2, H.SlowBuffer = f2, H.INSPECT_MAX_BYTES = 50, f2.poolSize = 8192, f2._useTypedArrays = (function() {
+            H.Buffer = f2, H.SlowBuffer = f2, H.INSPECT_MAX_BYTES = 50, f2.poolSize = 8192, f2._useTypedArrays = (function {
               try {
                 var e5 = new ArrayBuffer(0), t4 = new Uint8Array(e5);
-                return t4.foo = function() {
+                return t4.foo = function {
                   return 42;
-                }, 42 === t4.foo() && "function" == typeof t4.subarray;
+                }, 42 === t4.foo && "function" == typeof t4.subarray;
               } catch (e6) {
                 return false;
               }
-            })(), f2.isEncoding = function(e5) {
-              switch (String(e5).toLowerCase()) {
+            }), f2.isEncoding = function(e5) {
+              switch (String(e5).toLowerCase) {
                 case "hex":
                 case "utf8":
                 case "utf-8":
@@ -30486,7 +30486,7 @@
             }, f2.prototype.write = function(e5, t4, n4, r4) {
               isFinite(t4) ? isFinite(n4) || (r4 = n4, n4 = void 0) : (a3 = r4, r4 = t4, t4 = n4, n4 = a3), t4 = Number(t4) || 0;
               var o3, i3, u4, s3, a3 = this.length - t4;
-              switch ((!n4 || a3 < (n4 = Number(n4))) && (n4 = a3), r4 = String(r4 || "utf8").toLowerCase()) {
+              switch ((!n4 || a3 < (n4 = Number(n4))) && (n4 = a3), r4 = String(r4 || "utf8").toLowerCase) {
                 case "hex":
                   o3 = (function(e6, t5, n5, r5) {
                     n5 = Number(n5) || 0;
@@ -30522,7 +30522,7 @@
               return o3;
             }, f2.prototype.toString = function(e5, t4, n4) {
               var r4, o3, i3, u4, s3 = this;
-              if (e5 = String(e5 || "utf8").toLowerCase(), t4 = Number(t4) || 0, (n4 = void 0 !== n4 ? Number(n4) : s3.length) === t4) return "";
+              if (e5 = String(e5 || "utf8").toLowerCase, t4 = Number(t4) || 0, (n4 = void 0 !== n4 ? Number(n4) : s3.length) === t4) return "";
               switch (e5) {
                 case "hex":
                   r4 = (function(e6, t5, n5) {
@@ -30562,7 +30562,7 @@
                   throw new Error("Unknown encoding");
               }
               return r4;
-            }, f2.prototype.toJSON = function() {
+            }, f2.prototype.toJSON = function {
               return { type: "Buffer", data: Array.prototype.slice.call(this._arr || this, 0) };
             }, f2.prototype.copy = function(e5, t4, n4, r4) {
               if (t4 = t4 || 0, (r4 = r4 || 0 === r4 ? r4 : this.length) !== (n4 = n4 || 0) && 0 !== e5.length && 0 !== this.length) {
@@ -30577,9 +30577,9 @@
               for (var r4 = t4 - e5, o3 = new f2(r4, void 0, true), i3 = 0; i3 < r4; i3++) o3[i3] = this[i3 + e5];
               return o3;
             }, f2.prototype.get = function(e5) {
-              return console.log(".get() is deprecated. Access using array indexes instead."), this.readUInt8(e5);
+              return console.log(".get is deprecated. Access using array indexes instead."), this.readUInt8(e5);
             }, f2.prototype.set = function(e5, t4) {
-              return console.log(".set() is deprecated. Access using array indexes instead."), this.writeUInt8(e5, t4);
+              return console.log(".set is deprecated. Access using array indexes instead."), this.writeUInt8(e5, t4);
             }, f2.prototype.readUInt8 = function(e5, t4) {
               if (t4 || (d2(null != e5, "missing offset"), d2(e5 < this.length, "Trying to read beyond buffer length")), !(e5 >= this.length)) return this[e5];
             }, f2.prototype.readUInt16LE = function(e5, t4) {
@@ -30641,13 +30641,13 @@
                 d2(0 <= t4 && t4 < this.length, "start out of bounds"), d2(0 <= n4 && n4 <= this.length, "end out of bounds");
                 for (var r4 = t4; r4 < n4; r4++) this[r4] = e5;
               }
-            }, f2.prototype.inspect = function() {
+            }, f2.prototype.inspect = function {
               for (var e5 = [], t4 = this.length, n4 = 0; n4 < t4; n4++) if (e5[n4] = k(this[n4]), n4 === H.INSPECT_MAX_BYTES) {
                 e5[n4 + 1] = "...";
                 break;
               }
               return "<Buffer " + e5.join(" ") + ">";
-            }, f2.prototype.toArrayBuffer = function() {
+            }, f2.prototype.toArrayBuffer = function {
               if ("undefined" == typeof Uint8Array) throw new Error("Buffer.toArrayBuffer not supported in this browser");
               if (f2._useTypedArrays) return new f2(this).buffer;
               for (var e5 = new Uint8Array(this.length), t4 = 0, n4 = e5.length; t4 < n4; t4 += 1) e5[t4] = this[t4];
@@ -30735,7 +30735,7 @@
                 return o3 = null, e6 ? t4.toString(e6) : t4;
               } };
             }
-            function i2() {
+            function i2 {
               var e5 = [].slice.call(arguments).join(" ");
               throw new Error([e5, "we accept pull requests", "https://cedwyn.bucklerfamily.estate/wayback/go/?u=http%3A%2F%2Fgithub.com%2Fdominictarr%2Fcrypto-browserify"].join("\n"));
             }
@@ -30750,7 +30750,7 @@
               }
             };
             var o2, f2 = ["createCredentials", "createCipher", "createCipheriv", "createDecipher", "createDecipheriv", "createSign", "createVerify", "createDiffieHellman", "pbkdf2"], m2 = function(e5) {
-              _2[e5] = function() {
+              _2[e5] = function {
                 i2("sorry,", e5, "is not implemented yet");
               };
             };
@@ -30794,7 +30794,7 @@
           !function(e4, t4, n3, r3, o2, i2, u3, s2, f2) {
             var a2;
             l2.exports = a2 || function(e5) {
-              for (var t5, n4 = new Array(e5), r4 = 0; r4 < e5; r4++) 0 == (3 & r4) && (t5 = 4294967296 * Math.random()), n4[r4] = t5 >>> ((3 & r4) << 3) & 255;
+              for (var t5, n4 = new Array(e5), r4 = 0; r4 < e5; r4++) 0 == (3 & r4) && (t5 = 4294967296 * Math.random), n4[r4] = t5 >>> ((3 & r4) << 3) & 255;
               return n4;
             };
           }.call(this, e3("lYpoI2"), "undefined" != typeof self ? self : "undefined" != typeof window ? window : {}, e3("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/node_modules/gulp-browserify/node_modules/crypto-browserify/rng.js", "/node_modules/gulp-browserify/node_modules/crypto-browserify");
@@ -30869,20 +30869,20 @@
         }, { buffer: 3, lYpoI2: 11 }], 11: [function(e3, h2, t3) {
           !function(e4, t4, n3, r3, o2, f2, l2, c3, d2) {
             var i2, u3, s2;
-            function a2() {
+            function a2 {
             }
             (e4 = h2.exports = {}).nextTick = (u3 = "undefined" != typeof window && window.setImmediate, s2 = "undefined" != typeof window && window.postMessage && window.addEventListener, u3 ? function(e5) {
               return window.setImmediate(e5);
             } : s2 ? (i2 = [], window.addEventListener("message", function(e5) {
               var t5 = e5.source;
-              t5 !== window && null !== t5 || "process-tick" !== e5.data || (e5.stopPropagation(), 0 < i2.length && i2.shift()());
+              t5 !== window && null !== t5 || "process-tick" !== e5.data || (e5.stopPropagation, 0 < i2.length && i2.shift);
             }, true), function(e5) {
               i2.push(e5), window.postMessage("process-tick", "*");
             }) : function(e5) {
               setTimeout(e5, 0);
             }), e4.title = "browser", e4.browser = true, e4.env = {}, e4.argv = [], e4.on = a2, e4.addListener = a2, e4.once = a2, e4.off = a2, e4.removeListener = a2, e4.removeAllListeners = a2, e4.emit = a2, e4.binding = function(e5) {
               throw new Error("process.binding is not supported");
-            }, e4.cwd = function() {
+            }, e4.cwd = function {
               return "/";
             }, e4.chdir = function(e5) {
               throw new Error("process.chdir is not supported");
@@ -31093,7 +31093,7 @@
     let timer;
     return (...args) => {
       clearTimeout(timer);
-      timer = setTimeout(() => {
+      timer = setTimeout( => {
         func(...args);
       }, timeout3);
     };
@@ -31104,8 +31104,8 @@
     initialAppState
   }) {
     (0, import_react13.useEffect)(
-      () => appStore.setState({
-        history: __spreadProps(__spreadValues({}, appStore.getState().history), {
+       => appStore.setState({
+        history: __spreadProps(__spreadValues({}, appStore.getState.history), {
           histories,
           index,
           initialAppState
@@ -31113,11 +31113,11 @@
       }),
       [histories, index, initialAppState]
     );
-    const back = () => {
-      appStore.getState().history.back();
+    const back =  => {
+      appStore.getState.history.back;
     };
-    const forward = () => {
-      appStore.getState().history.forward();
+    const forward =  => {
+      appStore.getState.history.forward;
     };
     useHotkey({ meta: true, z: true }, back);
     useHotkey({ meta: true, shift: true, z: true }, forward);
@@ -31130,7 +31130,7 @@
     const context = (0, import_react12.useContext)(appStoreContext);
     return useStore(context, selector);
   }
-  function useAppStoreApi() {
+  function useAppStoreApi {
     return (0, import_react12.useContext)(appStoreContext);
   }
   function invariant(condition, message) {
@@ -31140,7 +31140,7 @@
     if (isProduction) {
       throw new Error(prefix);
     }
-    var provided = typeof message === "function" ? message() : message;
+    var provided = typeof message === "function" ? message : message;
     var value = provided ? "".concat(prefix, ": ").concat(provided) : prefix;
     throw new Error(value);
   }
@@ -31157,10 +31157,10 @@
     const field = props.field;
     const label = field.label;
     const labelIcon = field.labelIcon;
-    const defaultId = useSafeId();
+    const defaultId = useSafeId;
     const resolvedId = id || defaultId;
     const render = (0, import_react18.useMemo)(
-      () => {
+       => {
         var _a23, _b3, _c4, _d2, _e, _f, _g, _h;
         return __spreadProps(__spreadValues({}, overrides.fieldTypes), {
           array: ((_a23 = overrides.fieldTypes) == null ? void 0 : _a23.array) || defaultFields.array,
@@ -31176,7 +31176,7 @@
       [overrides]
     );
     const mergedProps = (0, import_react18.useMemo)(
-      () => __spreadProps(__spreadValues({}, props), {
+       => __spreadProps(__spreadValues({}, props), {
         field,
         label,
         labelIcon,
@@ -31188,7 +31188,7 @@
     const onFocus = (0, import_react18.useCallback)(
       (e3) => {
         if (mergedProps.name && (e3.target.nodeName === "INPUT" || e3.target.nodeName === "TEXTAREA")) {
-          e3.stopPropagation();
+          e3.stopPropagation;
           dispatch({
             type: "setUi",
             ui: {
@@ -31209,13 +31209,13 @@
         });
       }
     }, []);
-    let Children = (0, import_react18.useMemo)(() => {
+    let Children = (0, import_react18.useMemo)( => {
       if (field.type !== "custom" && field.type !== "slot") {
         return defaultFields[field.type];
       }
       return (_props) => null;
     }, [field.type]);
-    let FieldComponent = (0, import_react18.useMemo)(() => {
+    let FieldComponent = (0, import_react18.useMemo)( => {
       if (field.type === "custom") {
         if (!field.render) {
           return null;
@@ -31245,11 +31245,11 @@
         children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
           "div",
           {
-            className: getClassNameWrapper(),
+            className: getClassNameWrapper,
             onFocus,
             onBlur,
             onClick: (e3) => {
-              e3.stopPropagation();
+              e3.stopPropagation;
             },
             children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(FieldComponent, __spreadProps(__spreadValues({}, mergedProps), { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Children, __spreadValues({}, mergedProps)) }))
           }
@@ -31268,12 +31268,12 @@
       },
       [onChange]
     );
-    (0, import_react18.useEffect)(() => {
+    (0, import_react18.useEffect)( => {
       if (!isFocused) {
         setLocalValue(value);
       }
     }, [value]);
-    (0, import_react18.useEffect)(() => {
+    (0, import_react18.useEffect)( => {
       if (!isFocused) {
         if (value !== localValue) {
           setLocalValue(value);
@@ -31303,7 +31303,7 @@
     return totalScroll;
   }
   function accumulateTransform(el) {
-    let matrix = new DOMMatrixReadOnly();
+    let matrix = new DOMMatrixReadOnly;
     let n3 = el.parentElement;
     while (n3 && n3 !== document.documentElement) {
       const t3 = getComputedStyle(n3).transform;
@@ -31323,23 +31323,23 @@
   }
   function timeout22(callback, duration) {
     const id = setTimeout(callback, duration);
-    return () => clearTimeout(id);
+    return  => clearTimeout(id);
   }
   function throttle2(func, limit) {
-    const time = () => performance.now();
+    const time =  => performance.now;
     let cancel;
     let lastRan = 0;
     return function(...args) {
-      const now = time();
+      const now = time;
       const context = this;
       if (now - lastRan >= limit) {
         func.apply(context, args);
         lastRan = now;
       } else {
-        cancel == null ? void 0 : cancel();
-        cancel = timeout22(() => {
+        cancel == null ? void 0 : cancel;
+        cancel = timeout22( => {
           func.apply(context, args);
-          lastRan = time();
+          lastRan = time;
         }, limit - (now - lastRan));
       }
     };
@@ -31354,7 +31354,7 @@
   }
   function useDragListener(type, fn, deps = []) {
     const { setDragListeners } = (0, import_react38.useContext)(dragListenerContext);
-    (0, import_react38.useEffect)(() => {
+    (0, import_react38.useEffect)( => {
       if (setDragListeners) {
         setDragListeners((old) => __spreadProps(__spreadValues({}, old), {
           [type]: [...old[type] || [], fn]
@@ -31375,9 +31375,9 @@
     });
   }
   function useRenderedCallback(callback, deps) {
-    const manager = useDragDropManager();
+    const manager = useDragDropManager;
     return (0, import_react43.useCallback)(
-      (...args) => __async(this, null, function* () {
+      (...args) => __async(this, null, function*  {
         yield manager == null ? void 0 : manager.renderer.rendering;
         return callback(...args);
       }),
@@ -31444,7 +31444,7 @@
       (props) => /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(SlotRender, __spreadProps(__spreadValues({}, props), { config, metadata }))
     );
     const nextContextValue = (0, import_react46.useMemo)(
-      () => ({
+       => ({
         mode: "render",
         depth: 0
       }),
@@ -31461,9 +31461,9 @@
       className,
       debug,
       id,
-      onReady = () => {
+      onReady =  => {
       },
-      onNotReady = () => {
+      onNotReady =  => {
       },
       frameRef
     } = _b3, props = __objRest(_b3, [
@@ -31477,9 +31477,9 @@
     ]);
     const [loaded, setLoaded] = (0, import_react55.useState)(false);
     const [ctx, setCtx] = (0, import_react55.useState)({});
-    const [mountTarget, setMountTarget] = (0, import_react55.useState)();
+    const [mountTarget, setMountTarget] = (0, import_react55.useState);
     const [stylesLoaded, setStylesLoaded] = (0, import_react55.useState)(false);
-    (0, import_react55.useEffect)(() => {
+    (0, import_react55.useEffect)( => {
       var _a23;
       if (frameRef.current) {
         const doc = frameRef.current.contentDocument;
@@ -31492,9 +31492,9 @@
           (_a23 = frameRef.current.contentDocument) == null ? void 0 : _a23.getElementById("frame-root")
         );
         if (doc && win && stylesLoaded) {
-          onReady();
+          onReady;
         } else {
-          onNotReady();
+          onNotReady;
         }
       }
     }, [frameRef, loaded, stylesLoaded]);
@@ -31505,14 +31505,14 @@
         id,
         srcDoc: '<!DOCTYPE html><html><head></head><body><div id="frame-root" data-puck-entry></div></body></html>',
         ref: frameRef,
-        onLoad: () => {
+        onLoad:  => {
           setLoaded(true);
         },
         children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(autoFrameContext.Provider, { value: ctx, children: loaded && mountTarget && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
           CopyHostStyles,
           {
             debug,
-            onStylesLoaded: () => setStylesLoaded(true),
+            onStylesLoaded:  => setStylesLoaded(true),
             children: (0, import_react_dom4.createPortal)(children, mountTarget)
           }
         ) })
@@ -31526,8 +31526,8 @@
   }) {
     const back = useAppStore((s2) => s2.history.back);
     const forward = useAppStore((s2) => s2.history.forward);
-    const hasFuture = useAppStore((s2) => s2.history.hasFuture());
-    const hasPast = useAppStore((s2) => s2.history.hasPast());
+    const hasFuture = useAppStore((s2) => s2.history.hasFuture);
+    const hasPast = useAppStore((s2) => s2.history.hasPast);
     return /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(
       "div",
       {
@@ -31565,7 +31565,7 @@
               }
             )
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_jsx_runtime43.Fragment, { children: renderHeaderActions && renderHeaderActions() })
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_jsx_runtime43.Fragment, { children: renderHeaderActions && renderHeaderActions })
         ] })
       }
     );
@@ -31576,7 +31576,7 @@
     const storeWidth = useAppStore(
       (s2) => position === "left" ? s2.state.ui.leftSideBarWidth : s2.state.ui.rightSideBarWidth
     );
-    (0, import_react66.useEffect)(() => {
+    (0, import_react66.useEffect)( => {
       if (typeof window !== "undefined" && !storeWidth) {
         try {
           const savedWidths = localStorage.getItem("puck-sidebar-widths");
@@ -31601,7 +31601,7 @@
         }
       }
     }, [dispatch, position, storeWidth]);
-    (0, import_react66.useEffect)(() => {
+    (0, import_react66.useEffect)( => {
       if (storeWidth !== void 0) {
         setWidth(storeWidth);
       }
@@ -31665,15 +31665,15 @@
       metadata,
       onAction,
       fieldTransforms
-    } = usePropsContext();
+    } = usePropsContext;
     const iframe = (0, import_react48.useMemo)(
-      () => __spreadValues({
+       => __spreadValues({
         enabled: true,
         waitForStyles: true
       }, _iframe),
       [_iframe]
     );
-    const [generatedAppState] = (0, import_react48.useState)(() => {
+    const [generatedAppState] = (0, import_react48.useState)( => {
       var _a5, _b3, _c4, _d2, _e, _f, _g, _h, _i;
       const initial = __spreadValues(__spreadValues({}, defaultAppState.ui), initialUi);
       let clientUiState = {};
@@ -31753,7 +31753,7 @@
       overrides,
       plugins
     });
-    const loadedFieldTransforms = (0, import_react48.useMemo)(() => {
+    const loadedFieldTransforms = (0, import_react48.useMemo)( => {
       const _plugins = plugins || [];
       const pluginFieldTransforms = _plugins.reduce(
         (acc, plugin) => __spreadValues(__spreadValues({}, acc), plugin.fieldTransforms),
@@ -31788,15 +31788,15 @@
       ]
     );
     const [appStore] = (0, import_react48.useState)(
-      () => createAppStore(generateAppStore(initialAppState))
+       => createAppStore(generateAppStore(initialAppState))
     );
-    (0, import_react48.useEffect)(() => {
+    (0, import_react48.useEffect)( => {
       if (true) {
         window.__PUCK_INTERNAL_DO_NOT_USE = { appStore };
       }
     }, [appStore]);
-    (0, import_react48.useEffect)(() => {
-      const state = appStore.getState().state;
+    (0, import_react48.useEffect)( => {
+      const state = appStore.getState.state;
       appStore.setState(__spreadValues({}, generateAppStore(state)));
     }, [config, plugins, loadedOverrides, viewports, iframe, onAction, metadata]);
     useRegisterHistorySlice(appStore, {
@@ -31805,7 +31805,7 @@
       initialAppState
     });
     const previousData = (0, import_react48.useRef)(null);
-    (0, import_react48.useEffect)(() => {
+    (0, import_react48.useEffect)( => {
       appStore.subscribe(
         (s2) => s2.state.data,
         (data) => {
@@ -31819,9 +31819,9 @@
     }, []);
     useRegisterPermissionsSlice(appStore, permissions);
     const uPuckStore = useRegisterUsePuckStore(appStore);
-    (0, import_react48.useEffect)(() => {
-      const { resolveAndCommitData } = appStore.getState();
-      resolveAndCommitData();
+    (0, import_react48.useEffect)( => {
+      const { resolveAndCommitData } = appStore.getState;
+      resolveAndCommitData;
     }, []);
     return /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(appStoreContext.Provider, { value: appStore, children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(UsePuckStoreContext.Provider, { value: uPuckStore, children }) });
   }
@@ -31830,9 +31830,9 @@
       iframe: _iframe,
       dnd,
       initialHistory: _initialHistory
-    } = usePropsContext();
+    } = usePropsContext;
     const iframe = (0, import_react48.useMemo)(
-      () => __spreadValues({
+       => __spreadValues({
         enabled: true,
         waitForStyles: true
       }, _iframe),
@@ -31856,7 +31856,7 @@
       sidebarRef: rightSidebarRef,
       handleResizeEnd: handleRightSidebarResizeEnd
     } = useSidebarResize("right", dispatch);
-    (0, import_react48.useEffect)(() => {
+    (0, import_react48.useEffect)( => {
       if (!window.matchMedia("(min-width: 638px)").matches) {
         dispatch({
           type: "setUi",
@@ -31866,7 +31866,7 @@
           }
         });
       }
-      const handleResize = () => {
+      const handleResize =  => {
         if (!window.matchMedia("(min-width: 638px)").matches) {
           dispatch({
             type: "setUi",
@@ -31875,30 +31875,30 @@
         }
       };
       window.addEventListener("resize", handleResize);
-      return () => {
+      return  => {
         window.removeEventListener("resize", handleResize);
       };
     }, []);
     const overrides = useAppStore((s2) => s2.overrides);
     const CustomPuck = (0, import_react48.useMemo)(
-      () => overrides.puck || DefaultOverride,
+       => overrides.puck || DefaultOverride,
       [overrides]
     );
     const [mounted, setMounted] = (0, import_react48.useState)(false);
-    (0, import_react48.useEffect)(() => {
+    (0, import_react48.useEffect)( => {
       setMounted(true);
     }, []);
     const ready = useAppStore((s2) => s2.status === "READY");
-    useMonitorHotkeys();
-    (0, import_react48.useEffect)(() => {
+    useMonitorHotkeys;
+    (0, import_react48.useEffect)( => {
       if (ready && iframe.enabled) {
-        const frameDoc = getFrame();
+        const frameDoc = getFrame;
         if (frameDoc) {
           return monitorHotkeys(frameDoc);
         }
       }
     }, [ready, iframe.enabled]);
-    usePreviewModeHotkeys();
+    usePreviewModeHotkeys;
     const layoutOptions = {};
     if (leftWidth) {
       layoutOptions["--puck-user-left-side-bar-width"] = `${leftWidth}px`;
@@ -31906,7 +31906,7 @@
     if (rightWidth) {
       layoutOptions["--puck-user-right-side-bar-width"] = `${rightWidth}px`;
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)("div", { className: `Puck ${getClassName31()}`, children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)("div", { className: `Puck ${getClassName31}`, children: [
       /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(DragDropContext2, { disableAutoScroll: dnd == null ? void 0 : dnd.disableAutoScroll, children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(CustomPuck, { children: children || /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(FrameProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
         "div",
         {
@@ -31961,154 +31961,154 @@
   }
   var import_jsx_runtime3, import_react11, import_react12, import_react13, import_react14, import_react15, import_react16, import_jsx_runtime4, import_jsx_runtime5, import_react17, import_jsx_runtime6, import_react18, import_react19, import_react20, import_react21, import_jsx_runtime7, import_react23, import_jsx_runtime8, import_react25, import_jsx_runtime9, import_jsx_runtime10, import_jsx_runtime11, import_react26, import_react27, import_react28, import_react_dom2, import_jsx_runtime12, import_jsx_runtime13, import_jsx_runtime14, import_jsx_runtime15, import_jsx_runtime16, import_jsx_runtime17, import_jsx_runtime18, import_jsx_runtime19, import_react29, import_jsx_runtime20, import_react30, import_react31, import_react_dom3, import_react32, import_jsx_runtime21, import_react33, import_react34, import_jsx_runtime22, import_react36, import_react38, import_jsx_runtime23, import_jsx_runtime24, import_react40, import_react41, import_react43, import_react44, import_jsx_runtime25, import_react45, import_jsx_runtime26, import_jsx_runtime27, import_jsx_runtime28, import_react46, import_jsx_runtime29, import_react47, import_react48, import_react49, import_jsx_runtime30, import_react50, import_jsx_runtime31, import_react51, import_react52, import_jsx_runtime32, import_jsx_runtime33, import_react53, import_jsx_runtime34, import_react54, import_react55, import_object_hash, import_react_dom4, import_jsx_runtime35, import_jsx_runtime36, import_react56, import_jsx_runtime37, import_react57, import_jsx_runtime38, import_react58, import_react59, import_jsx_runtime39, import_react60, import_jsx_runtime40, import_jsx_runtime41, import_react61, import_jsx_runtime42, import_react62, import_react63, import_fast_deep_equal3, import_react64, import_jsx_runtime43, import_jsx_runtime44, import_react65, import_jsx_runtime45, import_jsx_runtime46, import_react66, import_jsx_runtime47, require_classnames, import_classnames, getClassNameFactory, get_class_name_factory_default, styles_module_default, getClassName, ActionBar, Action, Group, Label, IconButton_module_default, reorder2, replace, setAction, insert, generateId, getIdsForParent, populateIds, replaceAction, replaceRootAction, remove, moveAction, reorderAction, removeAction, zoneCache, setDataAction, setUiAction, makeStatePublic, keyCodeMap, useHotkeyStore, monitorHotkeys, useMonitorHotkeys, useHotkey, EMPTY_HISTORY_INDEX, tidyState, createHistorySlice, createNodesSlice, flattenData, createPermissionsSlice, useRegisterPermissionsSlice, createFieldsSlice, useRegisterFieldsSlice, toRoot, defaultPageFields, createAppStore, appStoreContext, isProduction, prefix, getRect, expand, shrink, noSpacing, createBox, parse, calculateBox, getBox, RESET_ZOOM_SMALLER_THAN_FRAME, getZoomConfig, useResetAutoZoom, styles_module_default2, getClassName2, Loader, getClassName3, IconButton, Button_module_default, dataAttrRe, filterDataAttrs, getClassName4, Button, styles_module_default3, styles_module_default4, toKebabCase, mergeClasses, defaultAttributes2, Icon, createLucideIcon, ChevronDown, ChevronRight, ChevronUp, CircleCheckBig, Copy, CornerLeftUp, EllipsisVertical, Globe, Hash, Layers, LayoutGrid, Link, List, LockOpen, Lock, Monitor2, PanelLeft, PanelRight, Plus, Redo2, Search, SlidersHorizontal, Smartphone, Tablet, Trash, Type, Undo2, ZoomIn, ZoomOut, styles_module_default5, getClassName5, DragIcon, touchDefault, otherDefault, useSensors, DEBUG, debugElements, timeout2, collisionDebug, distanceChange, directionalCollision, getDirection3, getMidpointImpact, INTERVAL_SENSITIVITY, intervalCache, trackMovementInterval, pointerIntersection3, closestCorners2, collisionStore, flushNext, createDynamicCollisionDetector, SortableProvider, Sortable, NestedFieldContext, useNestedFieldContext, NestedFieldProvider, getClassName6, getClassNameItem, ArrayField, getClassName7, DefaultField, styles_module_default6, styles_module_default7, getClassName8, Modal, styles_module_default8, getClassName9, Heading, getClassName10, getClassNameModal, dataCache, ExternalInput, ExternalField, getClassName11, RadioField, getClassName12, SelectField, getClassName13, TextareaField, styles_module_default9, getClassName14, ObjectField, useSafeId, getClassName15, getClassNameWrapper, FieldLabel, FieldLabelInternal, defaultFields, styles_module_default10, dropZoneContext, ZoneStoreContext, ZoneStoreProvider, DropZoneProvider, useOnDragFinished, getClassName16, DEBUG2, space, actionsOverlayTop, actionsTop, actionsSide, DefaultActionBar, DefaultOverlay, DraggableComponent, styles_module_default11, styles_module_default12, getFrame, GlobalPosition, BaseEvent, BubbledPointerEvent, depthSort, getZoneId2, BUFFER, getPointerCollisions, findDeepestCandidate, createNestedDroppablePlugin, insertComponent, DEBUG3, dragListenerContext, AREA_CHANGE_DEBOUNCE_MS, useTempDisableFallback, DragDropContextClient, DragDropContext2, getClassName17, getClassNameItem2, DrawerItemInner, DrawerItemDraggable, DrawerItem, Drawer, getNumItems, useMinEmptyHeight, useContentIdsWithPreview, GRID_DRAG_AXIS, FLEX_ROW_DRAG_AXIS, DEFAULT_DRAG_AXIS, useDragAxis, ContextSlotRender, registerOverlayPortal, styles_module_default13, getSelectorForId, getClassName18, InlineTextFieldInternal, InlineTextField, getInlineTextTransform, getClassName19, getRandomColor, RENDER_DEBUG, DropZoneEditPure, DropZoneChild, DropZoneChildMemo, DropZoneEdit, DropZoneRenderItem, DropZoneRenderPure, DropZoneRender, DropZonePure, DropZone, renderContext, generateUsePuck, UsePuckStoreContext, convertToPickedStore, useRegisterUsePuckStore, styles_module_default14, useBreadcrumbs, getClassName20, SidebarSection, styles_module_default15, styles_module_default16, getClassName21, DefaultFields, createOnChange, FieldsChild, FieldsChildMemo, FieldsInternal, Fields, styles_module_default17, getClassName22, ComponentListItem, ComponentList, useComponentList, Components, styleSelector, collectStyles, getStyleSheet, getStyles, syncAttributes, defer, CopyHostStyles, autoFrameContext, useFrame, AutoFrame_default, styles_module_default18, getClassName23, useBubbleIframeEvents, Preview2, styles_module_default19, scrollIntoView, onScrollEnd, getClassName24, getClassNameLayer, Layer, LayerTree, findZonesForArea, Outline, styles_module_default20, icons, getClassName25, getClassNameButton, ViewportButton, defaultZoomOptions, ViewportControls, styles_module_default21, FrameContext, FrameProvider, useCanvasFrame, getClassName26, ZOOM_ON_CHANGE, TRANSITION_DURATION, Canvas, loadOverrides, useLoadedOverrides, DefaultOverride, styles, useInjectStyleSheet, useInjectGlobalCss, usePreviewModeHotkeys, styles_module_default22, getClassName27, styles_module_default23, getClassName28, HeaderInner, Header, styles_module_default24, getClassName29, ResizeHandle, styles_module_default25, getClassName30, Sidebar, getClassName31, getLayoutClassName, FieldSideBar, propsContext, usePropsContext;
   var init_chunk_QIGVND56 = __esm({
-    "node_modules/@measured/puck/dist/chunk-QIGVND56.mjs"() {
-      init_chunk_OOLYDXKW();
-      import_jsx_runtime3 = __toESM(require_jsx_runtime(), 1);
-      import_react11 = __toESM(require_react(), 1);
-      init_esm_browser();
-      init_esm();
-      init_middleware();
-      import_react12 = __toESM(require_react(), 1);
-      import_react13 = __toESM(require_react(), 1);
-      import_react14 = __toESM(require_react(), 1);
-      init_esm();
-      init_middleware();
-      import_react15 = __toESM(require_react(), 1);
-      import_react16 = __toESM(require_react(), 1);
-      import_jsx_runtime4 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
-      import_react17 = __toESM(require_react(), 1);
-      import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
-      import_react18 = __toESM(require_react(), 1);
-      import_react19 = __toESM(require_react(), 1);
-      import_react20 = __toESM(require_react(), 1);
-      import_react21 = __toESM(require_react(), 1);
-      import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
-      init_react2();
-      import_react23 = __toESM(require_react(), 1);
-      init_react2();
-      init_utilities();
-      init_abstract();
-      init_abstract();
-      init_dist2();
-      init_abstract();
-      init_dist2();
-      init_abstract();
-      init_dist2();
-      init_vanilla();
-      init_sortable2();
-      import_jsx_runtime8 = __toESM(require_jsx_runtime(), 1);
-      import_react25 = __toESM(require_react(), 1);
-      import_jsx_runtime9 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime10 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime11 = __toESM(require_jsx_runtime(), 1);
-      import_react26 = __toESM(require_react(), 1);
-      import_react27 = __toESM(require_react(), 1);
-      import_react28 = __toESM(require_react(), 1);
-      import_react_dom2 = __toESM(require_react_dom(), 1);
-      import_jsx_runtime12 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime13 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime15 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime17 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime18 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime19 = __toESM(require_jsx_runtime(), 1);
-      import_react29 = __toESM(require_react(), 1);
-      import_jsx_runtime20 = __toESM(require_jsx_runtime(), 1);
-      import_react30 = __toESM(require_react(), 1);
-      import_react31 = __toESM(require_react(), 1);
-      import_react_dom3 = __toESM(require_react_dom(), 1);
-      import_react32 = __toESM(require_react(), 1);
-      init_esm();
-      import_jsx_runtime21 = __toESM(require_jsx_runtime(), 1);
-      init_shallow2();
-      init_sortable2();
-      import_react33 = __toESM(require_react(), 1);
-      init_esm();
-      init_shallow2();
-      import_react34 = __toESM(require_react(), 1);
-      import_jsx_runtime22 = __toESM(require_jsx_runtime(), 1);
-      init_react2();
-      import_react36 = __toESM(require_react(), 1);
-      init_react2();
-      import_react38 = __toESM(require_react(), 1);
-      init_dom();
-      init_abstract();
-      init_index_module();
-      init_esm();
-      init_dist();
-      import_jsx_runtime23 = __toESM(require_jsx_runtime(), 1);
-      init_react2();
-      import_jsx_runtime24 = __toESM(require_jsx_runtime(), 1);
-      import_react40 = __toESM(require_react(), 1);
-      import_react41 = __toESM(require_react(), 1);
-      init_react2();
-      import_react43 = __toESM(require_react(), 1);
-      import_react44 = __toESM(require_react(), 1);
-      init_shallow2();
-      init_shallow2();
-      import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
-      import_react45 = __toESM(require_react(), 1);
-      import_jsx_runtime26 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime27 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime28 = __toESM(require_jsx_runtime(), 1);
-      import_react46 = __toESM(require_react(), 1);
-      import_jsx_runtime29 = __toESM(require_jsx_runtime(), 1);
-      import_react47 = __toESM(require_react(), 1);
-      init_esm();
-      import_react48 = __toESM(require_react(), 1);
-      import_react49 = __toESM(require_react(), 1);
-      import_jsx_runtime30 = __toESM(require_jsx_runtime(), 1);
-      import_react50 = __toESM(require_react(), 1);
-      init_shallow2();
-      import_jsx_runtime31 = __toESM(require_jsx_runtime(), 1);
-      import_react51 = __toESM(require_react(), 1);
-      import_react52 = __toESM(require_react(), 1);
-      import_jsx_runtime32 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime33 = __toESM(require_jsx_runtime(), 1);
-      import_react53 = __toESM(require_react(), 1);
-      import_jsx_runtime34 = __toESM(require_jsx_runtime(), 1);
-      import_react54 = __toESM(require_react(), 1);
-      import_react55 = __toESM(require_react(), 1);
-      import_object_hash = __toESM(require_object_hash(), 1);
-      import_react_dom4 = __toESM(require_react_dom(), 1);
-      import_jsx_runtime35 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime36 = __toESM(require_jsx_runtime(), 1);
-      import_react56 = __toESM(require_react(), 1);
-      init_shallow2();
-      import_jsx_runtime37 = __toESM(require_jsx_runtime(), 1);
-      import_react57 = __toESM(require_react(), 1);
-      init_shallow2();
-      import_jsx_runtime38 = __toESM(require_jsx_runtime(), 1);
-      import_react58 = __toESM(require_react(), 1);
-      import_react59 = __toESM(require_react(), 1);
-      import_jsx_runtime39 = __toESM(require_jsx_runtime(), 1);
-      init_shallow2();
-      import_react60 = __toESM(require_react(), 1);
-      import_jsx_runtime40 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime41 = __toESM(require_jsx_runtime(), 1);
-      import_react61 = __toESM(require_react(), 1);
-      import_jsx_runtime42 = __toESM(require_jsx_runtime(), 1);
-      import_react62 = __toESM(require_react(), 1);
-      import_react63 = __toESM(require_react(), 1);
-      import_fast_deep_equal3 = __toESM(require_fast_deep_equal(), 1);
-      import_react64 = __toESM(require_react(), 1);
-      import_jsx_runtime43 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime44 = __toESM(require_jsx_runtime(), 1);
-      import_react65 = __toESM(require_react(), 1);
-      import_jsx_runtime45 = __toESM(require_jsx_runtime(), 1);
-      import_jsx_runtime46 = __toESM(require_jsx_runtime(), 1);
-      import_react66 = __toESM(require_react(), 1);
-      import_jsx_runtime47 = __toESM(require_jsx_runtime(), 1);
+    "node_modules/@measured/puck/dist/chunk-QIGVND56.mjs" {
+      init_chunk_OOLYDXKW;
+      import_jsx_runtime3 = __toESM(require_jsx_runtime, 1);
+      import_react11 = __toESM(require_react, 1);
+      init_esm_browser;
+      init_esm;
+      init_middleware;
+      import_react12 = __toESM(require_react, 1);
+      import_react13 = __toESM(require_react, 1);
+      import_react14 = __toESM(require_react, 1);
+      init_esm;
+      init_middleware;
+      import_react15 = __toESM(require_react, 1);
+      import_react16 = __toESM(require_react, 1);
+      import_jsx_runtime4 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime5 = __toESM(require_jsx_runtime, 1);
+      import_react17 = __toESM(require_react, 1);
+      import_jsx_runtime6 = __toESM(require_jsx_runtime, 1);
+      import_react18 = __toESM(require_react, 1);
+      import_react19 = __toESM(require_react, 1);
+      import_react20 = __toESM(require_react, 1);
+      import_react21 = __toESM(require_react, 1);
+      import_jsx_runtime7 = __toESM(require_jsx_runtime, 1);
+      init_react2;
+      import_react23 = __toESM(require_react, 1);
+      init_react2;
+      init_utilities;
+      init_abstract;
+      init_abstract;
+      init_dist2;
+      init_abstract;
+      init_dist2;
+      init_abstract;
+      init_dist2;
+      init_vanilla;
+      init_sortable2;
+      import_jsx_runtime8 = __toESM(require_jsx_runtime, 1);
+      import_react25 = __toESM(require_react, 1);
+      import_jsx_runtime9 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime10 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime11 = __toESM(require_jsx_runtime, 1);
+      import_react26 = __toESM(require_react, 1);
+      import_react27 = __toESM(require_react, 1);
+      import_react28 = __toESM(require_react, 1);
+      import_react_dom2 = __toESM(require_react_dom, 1);
+      import_jsx_runtime12 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime13 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime14 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime15 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime16 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime17 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime18 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime19 = __toESM(require_jsx_runtime, 1);
+      import_react29 = __toESM(require_react, 1);
+      import_jsx_runtime20 = __toESM(require_jsx_runtime, 1);
+      import_react30 = __toESM(require_react, 1);
+      import_react31 = __toESM(require_react, 1);
+      import_react_dom3 = __toESM(require_react_dom, 1);
+      import_react32 = __toESM(require_react, 1);
+      init_esm;
+      import_jsx_runtime21 = __toESM(require_jsx_runtime, 1);
+      init_shallow2;
+      init_sortable2;
+      import_react33 = __toESM(require_react, 1);
+      init_esm;
+      init_shallow2;
+      import_react34 = __toESM(require_react, 1);
+      import_jsx_runtime22 = __toESM(require_jsx_runtime, 1);
+      init_react2;
+      import_react36 = __toESM(require_react, 1);
+      init_react2;
+      import_react38 = __toESM(require_react, 1);
+      init_dom;
+      init_abstract;
+      init_index_module;
+      init_esm;
+      init_dist;
+      import_jsx_runtime23 = __toESM(require_jsx_runtime, 1);
+      init_react2;
+      import_jsx_runtime24 = __toESM(require_jsx_runtime, 1);
+      import_react40 = __toESM(require_react, 1);
+      import_react41 = __toESM(require_react, 1);
+      init_react2;
+      import_react43 = __toESM(require_react, 1);
+      import_react44 = __toESM(require_react, 1);
+      init_shallow2;
+      init_shallow2;
+      import_jsx_runtime25 = __toESM(require_jsx_runtime, 1);
+      import_react45 = __toESM(require_react, 1);
+      import_jsx_runtime26 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime27 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime28 = __toESM(require_jsx_runtime, 1);
+      import_react46 = __toESM(require_react, 1);
+      import_jsx_runtime29 = __toESM(require_jsx_runtime, 1);
+      import_react47 = __toESM(require_react, 1);
+      init_esm;
+      import_react48 = __toESM(require_react, 1);
+      import_react49 = __toESM(require_react, 1);
+      import_jsx_runtime30 = __toESM(require_jsx_runtime, 1);
+      import_react50 = __toESM(require_react, 1);
+      init_shallow2;
+      import_jsx_runtime31 = __toESM(require_jsx_runtime, 1);
+      import_react51 = __toESM(require_react, 1);
+      import_react52 = __toESM(require_react, 1);
+      import_jsx_runtime32 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime33 = __toESM(require_jsx_runtime, 1);
+      import_react53 = __toESM(require_react, 1);
+      import_jsx_runtime34 = __toESM(require_jsx_runtime, 1);
+      import_react54 = __toESM(require_react, 1);
+      import_react55 = __toESM(require_react, 1);
+      import_object_hash = __toESM(require_object_hash, 1);
+      import_react_dom4 = __toESM(require_react_dom, 1);
+      import_jsx_runtime35 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime36 = __toESM(require_jsx_runtime, 1);
+      import_react56 = __toESM(require_react, 1);
+      init_shallow2;
+      import_jsx_runtime37 = __toESM(require_jsx_runtime, 1);
+      import_react57 = __toESM(require_react, 1);
+      init_shallow2;
+      import_jsx_runtime38 = __toESM(require_jsx_runtime, 1);
+      import_react58 = __toESM(require_react, 1);
+      import_react59 = __toESM(require_react, 1);
+      import_jsx_runtime39 = __toESM(require_jsx_runtime, 1);
+      init_shallow2;
+      import_react60 = __toESM(require_react, 1);
+      import_jsx_runtime40 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime41 = __toESM(require_jsx_runtime, 1);
+      import_react61 = __toESM(require_react, 1);
+      import_jsx_runtime42 = __toESM(require_jsx_runtime, 1);
+      import_react62 = __toESM(require_react, 1);
+      import_react63 = __toESM(require_react, 1);
+      import_fast_deep_equal3 = __toESM(require_fast_deep_equal, 1);
+      import_react64 = __toESM(require_react, 1);
+      import_jsx_runtime43 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime44 = __toESM(require_jsx_runtime, 1);
+      import_react65 = __toESM(require_react, 1);
+      import_jsx_runtime45 = __toESM(require_jsx_runtime, 1);
+      import_jsx_runtime46 = __toESM(require_jsx_runtime, 1);
+      import_react66 = __toESM(require_react, 1);
+      import_jsx_runtime47 = __toESM(require_jsx_runtime, 1);
       require_classnames = __commonJS2({
         "../../node_modules/classnames/index.js"(exports, module) {
           "use strict";
-          init_react_import();
-          (function() {
+          init_react_import;
+          (function {
             "use strict";
             var hasOwn = {}.hasOwnProperty;
-            function classNames() {
+            function classNames {
               var classes = "";
               for (var i2 = 0; i2 < arguments.length; i2++) {
                 var arg = arguments[i2];
@@ -32128,8 +32128,8 @@
               if (Array.isArray(arg)) {
                 return classNames.apply(null, arg);
               }
-              if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes("[native code]")) {
-                return arg.toString();
+              if (arg.toString !== Object.prototype.toString && !arg.toString.toString.includes("[native code]")) {
+                return arg.toString;
               }
               var classes = "";
               for (var key in arg) {
@@ -32152,19 +32152,19 @@
               classNames.default = classNames;
               module.exports = classNames;
             } else if (typeof define === "function" && typeof define.amd === "object" && define.amd) {
-              define("classnames", [], function() {
+              define("classnames", [], function {
                 return classNames;
               });
             } else {
               window.classNames = classNames;
             }
-          })();
+          });
         }
       });
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      import_classnames = __toESM2(require_classnames());
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      import_classnames = __toESM2(require_classnames);
       getClassNameFactory = (rootClass, styles2, config = { baseClass: "" }) => (options2 = {}) => {
         if (typeof options2 === "string") {
           const descendant = options2;
@@ -32188,7 +32188,7 @@
         }
       };
       get_class_name_factory_default = getClassNameFactory;
-      init_react_import();
+      init_react_import;
       styles_module_default = { "ActionBar": "_ActionBar_rvadt_1", "ActionBar-label": "_ActionBar-label_rvadt_18", "ActionBar-action": "_ActionBar-action_rvadt_30", "ActionBar-group": "_ActionBar-group_rvadt_38" };
       getClassName = get_class_name_factory_default("ActionBar", styles_module_default);
       ActionBar = ({
@@ -32197,9 +32197,9 @@
       }) => /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
         "div",
         {
-          className: getClassName(),
+          className: getClassName,
           onClick: (e3) => {
-            e3.stopPropagation();
+            e3.stopPropagation;
           },
           children: [
             label && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(ActionBar.Group, { children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: getClassName("label"), children: label }) }),
@@ -32226,30 +32226,30 @@
       ActionBar.Action = Action;
       ActionBar.Label = Label;
       ActionBar.Group = Group;
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       IconButton_module_default = { "IconButton": "_IconButton_swpni_1", "IconButton--disabled": "_IconButton--disabled_swpni_20", "IconButton-title": "_IconButton-title_swpni_33" };
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
       reorder2 = (list, startIndex, endIndex) => {
         const result = Array.from(list);
         const [removed] = result.splice(startIndex, 1);
         result.splice(endIndex, 0, removed);
         return result;
       };
-      init_react_import();
+      init_react_import;
       replace = (list, index, newItem) => {
         const result = Array.from(list);
         result.splice(index, 1);
         result.splice(index, 0, newItem);
         return result;
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
       setAction = (state, action, appStore) => {
         if (typeof action.state === "object") {
           const newState = __spreadValues(__spreadValues({}, state), action.state);
@@ -32263,22 +32263,22 @@
         }
         return __spreadValues(__spreadValues({}, state), action.state(state));
       };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       insert = (list, index, item) => {
         const result = Array.from(list || []);
         result.splice(index, 0, item);
         return result;
       };
-      init_react_import();
-      generateId = (type) => type ? `${type}-${v4_default()}` : v4_default();
-      init_react_import();
+      init_react_import;
+      generateId = (type) => type ? `${type}-${v4_default}` : v4_default;
+      init_react_import;
       getIdsForParent = (zoneCompound, state) => {
         const [parentId] = zoneCompound.split(":");
         const node = state.indexes.nodes[parentId];
         return ((node == null ? void 0 : node.path) || []).map((p2) => p2.split(":")[0]);
       };
-      init_react_import();
+      init_react_import;
       populateIds = (data, config, override = false) => {
         const id = generateId(data.type);
         return walkTree(
@@ -32294,7 +32294,7 @@
           })
         );
       };
-      init_react_import();
+      init_react_import;
       replaceAction = (state, action, appStore) => {
         const [parentId] = action.destinationZone.split(":");
         const idsInPath = getIdsForParent(action.destinationZone, state);
@@ -32349,7 +32349,7 @@
           }
         );
       };
-      init_react_import();
+      init_react_import;
       replaceRootAction = (state, action, appStore) => {
         return walkAppState(
           state,
@@ -32366,11 +32366,11 @@
           }
         );
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
       remove = (list, index) => {
         const result = Array.from(list);
         result.splice(index, 1);
@@ -32428,7 +32428,7 @@
           appStore
         );
       };
-      init_react_import();
+      init_react_import;
       removeAction = (state, action, appStore) => {
         const item = getItem({ index: action.index, zone: action.zone }, state);
         const nodesToDelete = Object.entries(state.indexes.nodes).reduce(
@@ -32468,9 +32468,9 @@
         });
         return newState;
       };
-      init_react_import();
+      init_react_import;
       zoneCache = {};
-      init_react_import();
+      init_react_import;
       setDataAction = (state, action, appStore) => {
         if (typeof action.data === "object") {
           console.warn(
@@ -32490,7 +32490,7 @@
           appStore.config
         );
       };
-      init_react_import();
+      init_react_import;
       setUiAction = (state, action) => {
         if (typeof action.ui === "object") {
           return __spreadProps(__spreadValues({}, state), {
@@ -32501,14 +32501,14 @@
           ui: __spreadValues(__spreadValues({}, state.ui), action.ui(state.ui))
         });
       };
-      init_react_import();
+      init_react_import;
       makeStatePublic = (state) => {
         const { data, ui } = state;
         return { data, ui };
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       keyCodeMap = {
         ControlLeft: "ctrl",
         ControlRight: "ctrl",
@@ -32543,12 +32543,12 @@
         KeyY: "y",
         KeyZ: "z"
       };
-      useHotkeyStore = create()(
+      useHotkeyStore = create(
         subscribeWithSelector((set) => ({
           held: {},
           hold: (key) => set((s2) => s2.held[key] ? s2 : { held: __spreadProps(__spreadValues({}, s2.held), { [key]: true }) }),
           release: (key) => set((s2) => s2.held[key] ? { held: __spreadProps(__spreadValues({}, s2.held), { [key]: false }) } : s2),
-          reset: (held = {}) => set(() => ({ held })),
+          reset: (held = {}) => set( => ({ held })),
           triggers: {}
         }))
       );
@@ -32556,8 +32556,8 @@
         const onKeyDown = (e3) => {
           const key = keyCodeMap[e3.code];
           if (key) {
-            useHotkeyStore.getState().hold(key);
-            const { held, triggers } = useHotkeyStore.getState();
+            useHotkeyStore.getState.hold(key);
+            const { held, triggers } = useHotkeyStore.getState;
             Object.values(triggers).forEach(({ combo, cb }) => {
               const conditionMet = Object.entries(combo).every(
                 ([key2, value]) => value === !!held[key2]
@@ -32565,12 +32565,12 @@
                 ([key2, value]) => value === !!combo[key2]
               );
               if (conditionMet) {
-                e3.preventDefault();
-                cb();
+                e3.preventDefault;
+                cb;
               }
             });
             if (key !== "meta" && key !== "ctrl" && key !== "shift") {
-              useHotkeyStore.getState().release(key);
+              useHotkeyStore.getState.release(key);
             }
           }
         };
@@ -32578,32 +32578,32 @@
           const key = keyCodeMap[e3.code];
           if (key) {
             if (key === "meta") {
-              useHotkeyStore.getState().reset();
+              useHotkeyStore.getState.reset;
             } else {
-              useHotkeyStore.getState().release(key);
+              useHotkeyStore.getState.release(key);
             }
           }
         };
         const onVisibilityChanged = (e3) => {
           if (document.visibilityState === "hidden") {
-            useHotkeyStore.getState().reset();
+            useHotkeyStore.getState.reset;
           }
         };
         doc.addEventListener("keydown", onKeyDown);
         doc.addEventListener("keyup", onKeyUp);
         doc.addEventListener("visibilitychange", onVisibilityChanged);
-        return () => {
+        return  => {
           doc.removeEventListener("keydown", onKeyDown);
           doc.removeEventListener("keyup", onKeyUp);
           doc.removeEventListener("visibilitychange", onVisibilityChanged);
         };
       };
-      useMonitorHotkeys = () => {
-        (0, import_react14.useEffect)(() => monitorHotkeys(document), []);
+      useMonitorHotkeys =  => {
+        (0, import_react14.useEffect)( => monitorHotkeys(document), []);
       };
       useHotkey = (combo, cb) => {
         (0, import_react14.useEffect)(
-          () => useHotkeyStore.setState((s2) => ({
+           => useHotkeyStore.setState((s2) => ({
             triggers: __spreadProps(__spreadValues({}, s2.triggers), {
               [`${Object.keys(combo).join("+")}`]: { combo, cb }
             })
@@ -32623,14 +32623,14 @@
       };
       createHistorySlice = (set, get) => {
         const record = debounce2((state) => {
-          const { histories, index } = get().history;
+          const { histories, index } = get.history;
           const history = {
             state,
             id: generateId("history")
           };
           const newHistories = [...histories.slice(0, index + 1), history];
           set({
-            history: __spreadProps(__spreadValues({}, get().history), {
+            history: __spreadProps(__spreadValues({}, get.history), {
               histories: newHistories,
               index: newHistories.length - 1
             })
@@ -32640,23 +32640,23 @@
           initialAppState: {},
           index: EMPTY_HISTORY_INDEX,
           histories: [],
-          hasPast: () => get().history.index > EMPTY_HISTORY_INDEX,
-          hasFuture: () => get().history.index < get().history.histories.length - 1,
-          prevHistory: () => {
-            const { history } = get();
-            return history.hasPast() ? history.histories[history.index - 1] : null;
+          hasPast:  => get.history.index > EMPTY_HISTORY_INDEX,
+          hasFuture:  => get.history.index < get.history.histories.length - 1,
+          prevHistory:  => {
+            const { history } = get;
+            return history.hasPast ? history.histories[history.index - 1] : null;
           },
-          nextHistory: () => {
-            const s2 = get().history;
-            return s2.hasFuture() ? s2.histories[s2.index + 1] : null;
+          nextHistory:  => {
+            const s2 = get.history;
+            return s2.hasFuture ? s2.histories[s2.index + 1] : null;
           },
-          currentHistory: () => get().history.histories[get().history.index],
-          back: () => {
+          currentHistory:  => get.history.histories[get.history.index],
+          back:  => {
             var _a5;
-            const { history, dispatch } = get();
-            if (history.hasPast()) {
+            const { history, dispatch } = get;
+            if (history.hasPast) {
               const state = tidyState(
-                ((_a5 = history.prevHistory()) == null ? void 0 : _a5.state) || history.initialAppState
+                ((_a5 = history.prevHistory) == null ? void 0 : _a5.state) || history.initialAppState
               );
               dispatch({
                 type: "set",
@@ -32665,18 +32665,18 @@
               set({ history: __spreadProps(__spreadValues({}, history), { index: history.index - 1 }) });
             }
           },
-          forward: () => {
+          forward:  => {
             var _a5;
-            const { history, dispatch } = get();
-            if (history.hasFuture()) {
-              const state = (_a5 = history.nextHistory()) == null ? void 0 : _a5.state;
+            const { history, dispatch } = get;
+            if (history.hasFuture) {
+              const state = (_a5 = history.nextHistory) == null ? void 0 : _a5.state;
               dispatch({ type: "set", state: state ? tidyState(state) : {} });
               set({ history: __spreadProps(__spreadValues({}, history), { index: history.index + 1 }) });
             }
           },
           setHistories: (histories) => {
             var _a5;
-            const { dispatch, history } = get();
+            const { dispatch, history } = get;
             dispatch({
               type: "set",
               state: ((_a5 = histories[histories.length - 1]) == null ? void 0 : _a5.state) || history.initialAppState
@@ -32685,7 +32685,7 @@
           },
           setHistoryIndex: (index) => {
             var _a5;
-            const { dispatch, history } = get();
+            const { dispatch, history } = get;
             dispatch({
               type: "set",
               state: ((_a5 = history.histories[index]) == null ? void 0 : _a5.state) || history.initialAppState
@@ -32695,17 +32695,17 @@
           record
         };
       };
-      init_react_import();
+      init_react_import;
       createNodesSlice = (set, get) => ({
         nodes: {},
         registerNode: (id, node) => {
-          const s2 = get().nodes;
+          const s2 = get.nodes;
           const emptyNode = {
             id,
             methods: {
-              sync: () => null,
-              hideOverlay: () => null,
-              showOverlay: () => null
+              sync:  => null,
+              hideOverlay:  => null,
+              showOverlay:  => null
             },
             element: null
           };
@@ -32721,7 +32721,7 @@
           });
         },
         unregisterNode: (id) => {
-          const s2 = get().nodes;
+          const s2 = get.nodes;
           const existingNode = s2.nodes[id];
           if (existingNode) {
             const newNodes = __spreadValues({}, s2.nodes);
@@ -32734,8 +32734,8 @@
           }
         }
       });
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       flattenData = (state, config) => {
         const data = [];
         walkAppState(
@@ -32751,11 +32751,11 @@
       };
       createPermissionsSlice = (set, get) => {
         const resolvePermissions = (..._0) => __async(void 0, [..._0], function* (params = {}, force) {
-          const { state, permissions, config } = get();
+          const { state, permissions, config } = get;
           const { cache: cache2, globalPermissions } = permissions;
-          const resolveDataForItem = (item2, force2 = false) => __async(void 0, null, function* () {
+          const resolveDataForItem = (item2, force2 = false) => __async(void 0, null, function*  {
             var _a5, _b3, _c4;
-            const { config: config2, state: appState, setComponentLoading } = get();
+            const { config: config2, state: appState, setComponentLoading } = get;
             const componentConfig = item2.type === "root" ? config2.root : config2.components[item2.type];
             if (!componentConfig) {
               return;
@@ -32775,7 +32775,7 @@
                     lastData: ((_c4 = cache2[item2.props.id]) == null ? void 0 : _c4.lastData) || null
                   }
                 );
-                const latest = get().permissions;
+                const latest = get.permissions;
                 set({
                   permissions: __spreadProps(__spreadValues({}, latest), {
                     cache: __spreadProps(__spreadValues({}, latest.cache), {
@@ -32789,12 +32789,12 @@
                     })
                   })
                 });
-                clearTimeout2();
+                clearTimeout2;
               }
             }
           });
           const resolveDataForRoot = (force2 = false) => {
-            const { state: appState } = get();
+            const { state: appState } = get;
             resolveDataForItem(
               // Shim the root data in by conforming to component data shape
               {
@@ -32808,13 +32808,13 @@
           if (item) {
             yield resolveDataForItem(item, force);
           } else if (type) {
-            flattenData(state, config).filter((item2) => item2.type === type).map((item2) => __async(void 0, null, function* () {
+            flattenData(state, config).filter((item2) => item2.type === type).map((item2) => __async(void 0, null, function*  {
               yield resolveDataForItem(item2, force);
             }));
           } else if (root) {
             resolveDataForRoot(force);
           } else {
-            flattenData(state, config).map((item2) => __async(void 0, null, function* () {
+            flattenData(state, config).map((item2) => __async(void 0, null, function*  {
               yield resolveDataForItem(item2, force);
             }));
           }
@@ -32831,7 +32831,7 @@
           },
           resolvedPermissions: {},
           getPermissions: ({ item, type, root } = {}) => {
-            const { config, permissions } = get();
+            const { config, permissions } = get;
             const { globalPermissions, resolvedPermissions } = permissions;
             if (item) {
               const componentConfig = config.components[item.type];
@@ -32854,34 +32854,34 @@
         };
       };
       useRegisterPermissionsSlice = (appStore, globalPermissions) => {
-        (0, import_react15.useEffect)(() => {
-          const { permissions } = appStore.getState();
+        (0, import_react15.useEffect)( => {
+          const { permissions } = appStore.getState;
           const { globalPermissions: existingGlobalPermissions } = permissions;
           appStore.setState({
             permissions: __spreadProps(__spreadValues({}, permissions), {
               globalPermissions: __spreadValues(__spreadValues({}, existingGlobalPermissions), globalPermissions)
             })
           });
-          permissions.resolvePermissions();
+          permissions.resolvePermissions;
         }, [globalPermissions]);
-        (0, import_react15.useEffect)(() => {
+        (0, import_react15.useEffect)( => {
           return appStore.subscribe(
             (s2) => s2.state.data,
-            () => {
-              appStore.getState().permissions.resolvePermissions();
+             => {
+              appStore.getState.permissions.resolvePermissions;
             }
           );
         }, []);
-        (0, import_react15.useEffect)(() => {
+        (0, import_react15.useEffect)( => {
           return appStore.subscribe(
             (s2) => s2.config,
-            () => {
-              appStore.getState().permissions.resolvePermissions();
+             => {
+              appStore.getState.permissions.resolvePermissions;
             }
           );
         }, []);
       };
-      init_react_import();
+      init_react_import;
       createFieldsSlice = (_set, _get) => {
         return {
           fields: {},
@@ -32892,15 +32892,15 @@
       };
       useRegisterFieldsSlice = (appStore, id) => {
         const resolveFields = (0, import_react16.useCallback)(
-          (reset) => __async(void 0, null, function* () {
+          (reset) => __async(void 0, null, function*  {
             var _a5, _b3;
-            const { fields, lastResolvedData } = appStore.getState().fields;
-            const nodes = appStore.getState().state.indexes.nodes;
+            const { fields, lastResolvedData } = appStore.getState.fields;
+            const nodes = appStore.getState.state.indexes.nodes;
             const node = nodes[id || "root"];
             const componentData = node == null ? void 0 : node.data;
             const parentNode = (node == null ? void 0 : node.parentId) ? nodes[node.parentId] : null;
             const parent = (parentNode == null ? void 0 : parentNode.data) || null;
-            const { getComponentConfig, state } = appStore.getState();
+            const { getComponentConfig, state } = appStore.getState;
             const componentConfig = getComponentConfig(componentData == null ? void 0 : componentData.type);
             if (!componentData || !componentConfig) return;
             const defaultFields2 = componentConfig.fields || {};
@@ -32913,7 +32913,7 @@
               lastFields = defaultFields2;
             }
             if (resolver) {
-              const timeout3 = setTimeout(() => {
+              const timeout3 = setTimeout( => {
                 appStore.setState((s2) => ({
                   fields: __spreadProps(__spreadValues({}, s2.fields), { loading: true })
                 }));
@@ -32929,7 +32929,7 @@
                 parent
               });
               clearTimeout(timeout3);
-              if (((_b3 = appStore.getState().selectedItem) == null ? void 0 : _b3.props.id) !== id) {
+              if (((_b3 = appStore.getState.selectedItem) == null ? void 0 : _b3.props.id) !== id) {
                 return;
               }
               appStore.setState({
@@ -32948,15 +32948,15 @@
           }),
           [id]
         );
-        (0, import_react16.useEffect)(() => {
+        (0, import_react16.useEffect)( => {
           resolveFields(true);
           return appStore.subscribe(
             (s2) => s2.state.indexes.nodes[id || "root"],
-            () => resolveFields()
+             => resolveFields
           );
         }, [id]);
       };
-      init_react_import();
+      init_react_import;
       toRoot = (item) => {
         if ("type" in item && item.type !== "root") {
           throw new Error("Converting non-root item to root.");
@@ -32974,7 +32974,7 @@
       defaultPageFields = {
         title: { type: "text" }
       };
-      createAppStore = (initialAppStore) => create()(
+      createAppStore = (initialAppStore) => create(
         subscribeWithSelector((set, get) => {
           var _a5, _b3;
           return __spreadProps(__spreadValues({
@@ -33000,7 +33000,7 @@
             permissions: createPermissionsSlice(set, get),
             getComponentConfig: (type) => {
               var _a23;
-              const { config, selectedItem } = get();
+              const { config, selectedItem } = get;
               const rootFields = ((_a23 = config.root) == null ? void 0 : _a23.fields) || defaultPageFields;
               return type && type !== "root" ? config.components[type] : selectedItem ? config.components[selectedItem.type] : __spreadProps(__spreadValues({}, config.root), { fields: rootFields });
             },
@@ -33010,14 +33010,14 @@
             ) : null,
             dispatch: (action) => set((s2) => {
               var _a23, _b22;
-              const { record } = get().history;
+              const { record } = get.history;
               const dispatch = createReducer({
                 record,
                 appStore: s2
               });
               const state = dispatch(s2.state, action);
               const selectedItem = state.ui.itemSelector ? getItem(state.ui.itemSelector, state) : null;
-              (_b22 = (_a23 = get()).onAction) == null ? void 0 : _b22.call(_a23, action, state, get().state);
+              (_b22 = (_a23 = get).onAction) == null ? void 0 : _b22.call(_a23, action, state, get.state);
               return __spreadProps(__spreadValues({}, s2), { state, selectedItem });
             }),
             setZoomConfig: (zoomConfig) => set({ zoomConfig }),
@@ -33025,20 +33025,20 @@
             setComponentState: (componentState) => set({ componentState }),
             pendingLoadTimeouts: {},
             setComponentLoading: (id, loading = true, defer2 = 0) => {
-              const { setComponentState, pendingLoadTimeouts } = get();
-              const loadId = generateId();
-              const setLoading = () => {
+              const { setComponentState, pendingLoadTimeouts } = get;
+              const loadId = generateId;
+              const setLoading =  => {
                 var _a23;
-                const { componentState } = get();
+                const { componentState } = get;
                 setComponentState(__spreadProps(__spreadValues({}, componentState), {
                   [id]: __spreadProps(__spreadValues({}, componentState[id]), {
                     loadingCount: (((_a23 = componentState[id]) == null ? void 0 : _a23.loadingCount) || 0) + 1
                   })
                 }));
               };
-              const unsetLoading = () => {
+              const unsetLoading =  => {
                 var _a23;
-                const { componentState } = get();
+                const { componentState } = get;
                 clearTimeout(timeout3);
                 delete pendingLoadTimeouts[loadId];
                 set({ pendingLoadTimeouts });
@@ -33051,11 +33051,11 @@
                   })
                 }));
               };
-              const timeout3 = setTimeout(() => {
+              const timeout3 = setTimeout( => {
                 if (loading) {
-                  setLoading();
+                  setLoading;
                 } else {
-                  unsetLoading();
+                  unsetLoading;
                 }
                 delete pendingLoadTimeouts[loadId];
                 set({ pendingLoadTimeouts });
@@ -33068,13 +33068,13 @@
               return unsetLoading;
             },
             unsetComponentLoading: (id) => {
-              const { setComponentLoading } = get();
+              const { setComponentLoading } = get;
               setComponentLoading(id, false);
             },
             // Helper
             setUi: (ui, recordHistory) => set((s2) => {
               const dispatch = createReducer({
-                record: () => {
+                record:  => {
                 },
                 appStore: s2
               });
@@ -33086,8 +33086,8 @@
               const selectedItem = state.ui.itemSelector ? getItem(state.ui.itemSelector, state) : null;
               return __spreadProps(__spreadValues({}, s2), { state, selectedItem });
             }),
-            resolveComponentData: (componentData, trigger) => __async(void 0, null, function* () {
-              const { config, metadata, setComponentLoading, permissions } = get();
+            resolveComponentData: (componentData, trigger) => __async(void 0, null, function*  {
+              const { config, metadata, setComponentLoading, permissions } = get;
               const timeouts = {};
               return yield resolveComponentData(
                 componentData,
@@ -33097,27 +33097,27 @@
                   const id = "id" in item.props ? item.props.id : "root";
                   timeouts[id] = setComponentLoading(id, true, 50);
                 },
-                (item) => __async(void 0, null, function* () {
+                (item) => __async(void 0, null, function*  {
                   const id = "id" in item.props ? item.props.id : "root";
                   if ("type" in item) {
                     yield permissions.refreshPermissions({ item });
                   } else {
                     yield permissions.refreshPermissions({ root: true });
                   }
-                  timeouts[id]();
+                  timeouts[id];
                 }),
                 trigger
               );
             }),
-            resolveAndCommitData: () => __async(void 0, null, function* () {
-              const { config, state, dispatch, resolveComponentData: resolveComponentData2 } = get();
+            resolveAndCommitData:  => __async(void 0, null, function*  {
+              const { config, state, dispatch, resolveComponentData: resolveComponentData2 } = get;
               walkAppState(
                 state,
                 config,
                 (content) => content,
                 (childItem) => {
                   resolveComponentData2(childItem, "load").then((resolved) => {
-                    const { state: state2 } = get();
+                    const { state: state2 } = get;
                     const node = state2.indexes.nodes[resolved.node.props.id];
                     if (node && resolved.didChange) {
                       if (resolved.node.props.id === "root") {
@@ -33147,10 +33147,10 @@
           });
         })
       );
-      appStoreContext = (0, import_react12.createContext)(createAppStore());
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      appStoreContext = (0, import_react12.createContext)(createAppStore);
+      init_react_import;
+      init_react_import;
+      init_react_import;
       isProduction = false;
       prefix = "Invariant failed";
       getRect = function getRect2(_ref) {
@@ -33247,7 +33247,7 @@
         });
       };
       getBox = function getBox2(el) {
-        var borderBox = el.getBoundingClientRect();
+        var borderBox = el.getBoundingClientRect;
         var styles2 = window.getComputedStyle(el);
         return calculateBox(borderBox, styles2);
       };
@@ -33279,9 +33279,9 @@
         return { autoZoom, rootHeight, zoom };
       };
       useResetAutoZoom = (frameRef) => {
-        const appStoreApi = useAppStoreApi();
+        const appStoreApi = useAppStoreApi;
         const resetAutoZoom = (options2) => {
-          const { state, zoomConfig, setZoomConfig } = appStoreApi.getState();
+          const { state, zoomConfig, setZoomConfig } = appStoreApi.getState;
           const { viewports } = state.ui;
           const newViewports = (options2 == null ? void 0 : options2.viewports) || viewports;
           if (frameRef.current) {
@@ -33292,7 +33292,7 @@
         };
         return resetAutoZoom;
       };
-      init_react_import();
+      init_react_import;
       styles_module_default2 = { "Loader": "_Loader_nacdm_13", "loader-animation": "_loader-animation_nacdm_1" };
       getClassName2 = get_class_name_factory_default("Loader", styles_module_default2);
       Loader = (_a5) => {
@@ -33306,7 +33306,7 @@
         return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
           "span",
           __spreadValues({
-            className: getClassName2(),
+            className: getClassName2,
             style: {
               width: size,
               height: size,
@@ -33343,7 +33343,7 @@
             onClick: (e3) => {
               if (!onClick) return;
               setLoading(true);
-              Promise.resolve(onClick(e3)).then(() => {
+              Promise.resolve(onClick(e3)).then( => {
                 setLoading(false);
               });
             },
@@ -33366,10 +33366,10 @@
         );
         return el;
       };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       Button_module_default = { "Button": "_Button_10byl_1", "Button--medium": "_Button--medium_10byl_29", "Button--large": "_Button--large_10byl_37", "Button-icon": "_Button-icon_10byl_44", "Button--primary": "_Button--primary_10byl_48", "Button--secondary": "_Button--secondary_10byl_67", "Button--flush": "_Button--flush_10byl_84", "Button--disabled": "_Button--disabled_10byl_88", "Button--fullWidth": "_Button--fullWidth_10byl_95", "Button-spinner": "_Button-spinner_10byl_100" };
-      init_react_import();
+      init_react_import;
       dataAttrRe = /^(data-.*)$/;
       filterDataAttrs = (props) => {
         let filteredProps = {};
@@ -33410,7 +33410,7 @@
           "loading"
         ]);
         const [loading, setLoading] = (0, import_react17.useState)(loadingProp);
-        (0, import_react17.useEffect)(() => setLoading(loadingProp), [loadingProp]);
+        (0, import_react17.useEffect)( => setLoading(loadingProp), [loadingProp]);
         const ElementType = href ? "a" : type ? "button" : "span";
         const dataAttrs = filterDataAttrs(props);
         const el = /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
@@ -33426,7 +33426,7 @@
             onClick: (e3) => {
               if (!onClick) return;
               setLoading(true);
-              Promise.resolve(onClick(e3)).then(() => {
+              Promise.resolve(onClick(e3)).then( => {
                 setLoading(false);
               });
             },
@@ -33446,22 +33446,22 @@
         );
         return el;
       };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       styles_module_default3 = { "InputWrapper": "_InputWrapper_bsxfo_1", "Input-label": "_Input-label_bsxfo_5", "Input-labelIcon": "_Input-labelIcon_bsxfo_14", "Input-disabledIcon": "_Input-disabledIcon_bsxfo_21", "Input-input": "_Input-input_bsxfo_26", "Input": "_Input_bsxfo_1", "Input--readOnly": "_Input--readOnly_bsxfo_82", "Input-radioGroupItems": "_Input-radioGroupItems_bsxfo_93", "Input-radio": "_Input-radio_bsxfo_93", "Input-radioInner": "_Input-radioInner_bsxfo_110", "Input-radioInput": "_Input-radioInput_bsxfo_155" };
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       styles_module_default4 = { "ArrayField": "_ArrayField_14u8o_5", "ArrayField--isDraggingFrom": "_ArrayField--isDraggingFrom_14u8o_13", "ArrayField-addButton": "_ArrayField-addButton_14u8o_18", "ArrayField--hasItems": "_ArrayField--hasItems_14u8o_33", "ArrayField-inner": "_ArrayField-inner_14u8o_59", "ArrayFieldItem": "_ArrayFieldItem_14u8o_67", "ArrayFieldItem--isDragging": "_ArrayFieldItem--isDragging_14u8o_78", "ArrayFieldItem--isExpanded": "_ArrayFieldItem--isExpanded_14u8o_82", "ArrayFieldItem-summary": "_ArrayFieldItem-summary_14u8o_97", "ArrayField--addDisabled": "_ArrayField--addDisabled_14u8o_127", "ArrayFieldItem-body": "_ArrayFieldItem-body_14u8o_166", "ArrayFieldItem-fieldset": "_ArrayFieldItem-fieldset_14u8o_175", "ArrayFieldItem-rhs": "_ArrayFieldItem-rhs_14u8o_183", "ArrayFieldItem-actions": "_ArrayFieldItem-actions_14u8o_189" };
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      toKebabCase = (string) => string.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      toKebabCase = (string) => string.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase;
       mergeClasses = (...classes) => classes.filter((className, index, array) => {
-        return Boolean(className) && className.trim() !== "" && array.indexOf(className) === index;
-      }).join(" ").trim();
-      init_react_import();
-      init_react_import();
+        return Boolean(className) && className.trim !== "" && array.indexOf(className) === index;
+      }).join(" ").trim;
+      init_react_import;
+      init_react_import;
       defaultAttributes2 = {
         xmlns: "http://www.w3.org/2000/svg",
         width: 24,
@@ -33524,51 +33524,51 @@
         Component.displayName = `${iconName}`;
         return Component;
       };
-      init_react_import();
+      init_react_import;
       ChevronDown = createLucideIcon("ChevronDown", [
         ["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]
       ]);
-      init_react_import();
+      init_react_import;
       ChevronRight = createLucideIcon("ChevronRight", [
         ["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]
       ]);
-      init_react_import();
+      init_react_import;
       ChevronUp = createLucideIcon("ChevronUp", [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]]);
-      init_react_import();
+      init_react_import;
       CircleCheckBig = createLucideIcon("CircleCheckBig", [
         ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
         ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
       ]);
-      init_react_import();
+      init_react_import;
       Copy = createLucideIcon("Copy", [
         ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
         ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
       ]);
-      init_react_import();
+      init_react_import;
       CornerLeftUp = createLucideIcon("CornerLeftUp", [
         ["polyline", { points: "14 9 9 4 4 9", key: "m9oyvo" }],
         ["path", { d: "M20 20h-7a4 4 0 0 1-4-4V4", key: "1blwi3" }]
       ]);
-      init_react_import();
+      init_react_import;
       EllipsisVertical = createLucideIcon("EllipsisVertical", [
         ["circle", { cx: "12", cy: "12", r: "1", key: "41hilf" }],
         ["circle", { cx: "12", cy: "5", r: "1", key: "gxeob9" }],
         ["circle", { cx: "12", cy: "19", r: "1", key: "lyex9k" }]
       ]);
-      init_react_import();
+      init_react_import;
       Globe = createLucideIcon("Globe", [
         ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
         ["path", { d: "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20", key: "13o1zl" }],
         ["path", { d: "M2 12h20", key: "9i4pu4" }]
       ]);
-      init_react_import();
+      init_react_import;
       Hash = createLucideIcon("Hash", [
         ["line", { x1: "4", x2: "20", y1: "9", y2: "9", key: "4lhtct" }],
         ["line", { x1: "4", x2: "20", y1: "15", y2: "15", key: "vyu0kd" }],
         ["line", { x1: "10", x2: "8", y1: "3", y2: "21", key: "1ggp8o" }],
         ["line", { x1: "16", x2: "14", y1: "3", y2: "21", key: "weycgp" }]
       ]);
-      init_react_import();
+      init_react_import;
       Layers = createLucideIcon("Layers", [
         [
           "path",
@@ -33592,19 +33592,19 @@
           }
         ]
       ]);
-      init_react_import();
+      init_react_import;
       LayoutGrid = createLucideIcon("LayoutGrid", [
         ["rect", { width: "7", height: "7", x: "3", y: "3", rx: "1", key: "1g98yp" }],
         ["rect", { width: "7", height: "7", x: "14", y: "3", rx: "1", key: "6d4xhi" }],
         ["rect", { width: "7", height: "7", x: "14", y: "14", rx: "1", key: "nxv5o0" }],
         ["rect", { width: "7", height: "7", x: "3", y: "14", rx: "1", key: "1bb6yr" }]
       ]);
-      init_react_import();
+      init_react_import;
       Link = createLucideIcon("Link", [
         ["path", { d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71", key: "1cjeqo" }],
         ["path", { d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71", key: "19qd67" }]
       ]);
-      init_react_import();
+      init_react_import;
       List = createLucideIcon("List", [
         ["path", { d: "M3 12h.01", key: "nlz23k" }],
         ["path", { d: "M3 18h.01", key: "1tta3j" }],
@@ -33613,48 +33613,48 @@
         ["path", { d: "M8 18h13", key: "1lx6n3" }],
         ["path", { d: "M8 6h13", key: "ik3vkj" }]
       ]);
-      init_react_import();
+      init_react_import;
       LockOpen = createLucideIcon("LockOpen", [
         ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
         ["path", { d: "M7 11V7a5 5 0 0 1 9.9-1", key: "1mm8w8" }]
       ]);
-      init_react_import();
+      init_react_import;
       Lock = createLucideIcon("Lock", [
         ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
         ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4", key: "fwvmzm" }]
       ]);
-      init_react_import();
+      init_react_import;
       Monitor2 = createLucideIcon("Monitor", [
         ["rect", { width: "20", height: "14", x: "2", y: "3", rx: "2", key: "48i651" }],
         ["line", { x1: "8", x2: "16", y1: "21", y2: "21", key: "1svkeh" }],
         ["line", { x1: "12", x2: "12", y1: "17", y2: "21", key: "vw1qmm" }]
       ]);
-      init_react_import();
+      init_react_import;
       PanelLeft = createLucideIcon("PanelLeft", [
         ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
         ["path", { d: "M9 3v18", key: "fh3hqa" }]
       ]);
-      init_react_import();
+      init_react_import;
       PanelRight = createLucideIcon("PanelRight", [
         ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
         ["path", { d: "M15 3v18", key: "14nvp0" }]
       ]);
-      init_react_import();
+      init_react_import;
       Plus = createLucideIcon("Plus", [
         ["path", { d: "M5 12h14", key: "1ays0h" }],
         ["path", { d: "M12 5v14", key: "s699le" }]
       ]);
-      init_react_import();
+      init_react_import;
       Redo2 = createLucideIcon("Redo2", [
         ["path", { d: "m15 14 5-5-5-5", key: "12vg1m" }],
         ["path", { d: "M20 9H9.5A5.5 5.5 0 0 0 4 14.5A5.5 5.5 0 0 0 9.5 20H13", key: "6uklza" }]
       ]);
-      init_react_import();
+      init_react_import;
       Search = createLucideIcon("Search", [
         ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }],
         ["path", { d: "m21 21-4.3-4.3", key: "1qie3q" }]
       ]);
-      init_react_import();
+      init_react_import;
       SlidersHorizontal = createLucideIcon("SlidersHorizontal", [
         ["line", { x1: "21", x2: "14", y1: "4", y2: "4", key: "obuewd" }],
         ["line", { x1: "10", x2: "3", y1: "4", y2: "4", key: "1q6298" }],
@@ -33666,54 +33666,54 @@
         ["line", { x1: "8", x2: "8", y1: "10", y2: "14", key: "1i6ji0" }],
         ["line", { x1: "16", x2: "16", y1: "18", y2: "22", key: "1lctlv" }]
       ]);
-      init_react_import();
+      init_react_import;
       Smartphone = createLucideIcon("Smartphone", [
         ["rect", { width: "14", height: "20", x: "5", y: "2", rx: "2", ry: "2", key: "1yt0o3" }],
         ["path", { d: "M12 18h.01", key: "mhygvu" }]
       ]);
-      init_react_import();
+      init_react_import;
       Tablet = createLucideIcon("Tablet", [
         ["rect", { width: "16", height: "20", x: "4", y: "2", rx: "2", ry: "2", key: "76otgf" }],
         ["line", { x1: "12", x2: "12.01", y1: "18", y2: "18", key: "1dp563" }]
       ]);
-      init_react_import();
+      init_react_import;
       Trash = createLucideIcon("Trash", [
         ["path", { d: "M3 6h18", key: "d0wm0j" }],
         ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
         ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }]
       ]);
-      init_react_import();
+      init_react_import;
       Type = createLucideIcon("Type", [
         ["polyline", { points: "4 7 4 4 20 4 20 7", key: "1nosan" }],
         ["line", { x1: "9", x2: "15", y1: "20", y2: "20", key: "swin9y" }],
         ["line", { x1: "12", x2: "12", y1: "4", y2: "20", key: "1tx1rr" }]
       ]);
-      init_react_import();
+      init_react_import;
       Undo2 = createLucideIcon("Undo2", [
         ["path", { d: "M9 14 4 9l5-5", key: "102s5s" }],
         ["path", { d: "M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11", key: "f3b9sd" }]
       ]);
-      init_react_import();
+      init_react_import;
       ZoomIn = createLucideIcon("ZoomIn", [
         ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }],
         ["line", { x1: "21", x2: "16.65", y1: "21", y2: "16.65", key: "13gj7c" }],
         ["line", { x1: "11", x2: "11", y1: "8", y2: "14", key: "1vmskp" }],
         ["line", { x1: "8", x2: "14", y1: "11", y2: "11", key: "durymu" }]
       ]);
-      init_react_import();
+      init_react_import;
       ZoomOut = createLucideIcon("ZoomOut", [
         ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }],
         ["line", { x1: "21", x2: "16.65", y1: "21", y2: "16.65", key: "13gj7c" }],
         ["line", { x1: "8", x2: "14", y1: "11", y2: "11", key: "durymu" }]
       ]);
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       styles_module_default5 = { "DragIcon": "_DragIcon_17p8x_1", "DragIcon--disabled": "_DragIcon--disabled_17p8x_8" };
       getClassName5 = get_class_name_factory_default("DragIcon", styles_module_default5);
       DragIcon = ({ isDragDisabled }) => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: getClassName5({ disabled: isDragDisabled }), children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("svg", { viewBox: "0 0 20 20", width: "12", fill: "currentColor", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("path", { d: "M7 2a2 2 0 1 0 .001 4.001A2 2 0 0 0 7 2zm0 6a2 2 0 1 0 .001 4.001A2 2 0 0 0 7 8zm0 6a2 2 0 1 0 .001 4.001A2 2 0 0 0 7 14zm6-8a2 2 0 1 0-.001-4.001A2 2 0 0 0 13 6zm0 2a2 2 0 1 0 .001 4.001A2 2 0 0 0 13 8zm0 6a2 2 0 1 0 .001 4.001A2 2 0 0 0 13 14z" }) }) });
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       touchDefault = { delay: { value: 200, tolerance: 10 } };
       otherDefault = {
         delay: { value: 200, tolerance: 10 },
@@ -33727,7 +33727,7 @@
         touch: touchDefault,
         other: otherDefault
       }) => {
-        const [sensors] = (0, import_react23.useState)(() => [
+        const [sensors] = (0, import_react23.useState)( => [
           PointerSensor.configure({
             activationConstraints(event, source) {
               var _a5;
@@ -33744,22 +33744,22 @@
         ]);
         return sensors;
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       DEBUG = false;
       debugElements = {};
       collisionDebug = (a2, b2, id, color, label) => {
         if (!DEBUG) return;
         const debugId = `${id}-debug`;
         clearTimeout(timeout2);
-        timeout2 = setTimeout(() => {
+        timeout2 = setTimeout( => {
           Object.entries(debugElements).forEach(([id2, { svg }]) => {
-            svg.remove();
+            svg.remove;
             delete debugElements[id2];
           });
         }, 1e3);
-        requestAnimationFrame(() => {
+        requestAnimationFrame( => {
           var _a5, _b3;
           const existingEl = debugElements[debugId];
           let line = (_a5 = debugElements[debugId]) == null ? void 0 : _a5.line;
@@ -33780,13 +33780,13 @@
             document.body.appendChild(svg);
             debugElements[debugId] = { svg, line, text };
           }
-          line.setAttribute("x1", a2.x.toString());
-          line.setAttribute("x2", b2.x.toString());
-          line.setAttribute("y1", a2.y.toString());
-          line.setAttribute("y2", b2.y.toString());
+          line.setAttribute("x1", a2.x.toString);
+          line.setAttribute("x2", b2.x.toString);
+          line.setAttribute("y1", a2.y.toString);
+          line.setAttribute("y2", b2.y.toString);
           line.setAttribute("style", `stroke:${color};stroke-width:2`);
-          text.setAttribute("x", (a2.x - (a2.x - b2.x) / 2).toString());
-          text.setAttribute("y", (a2.y - (a2.y - b2.y) / 2).toString());
+          text.setAttribute("x", (a2.x - (a2.x - b2.x) / 2).toString);
+          text.setAttribute("y", (a2.y - (a2.y - b2.y) / 2).toString);
           if (label) {
             text.innerHTML = label;
           }
@@ -33811,7 +33811,7 @@
         collisionDebug(
           dragShape.center,
           dropCenter,
-          droppable.id.toString(),
+          droppable.id.toString,
           "rebeccapurple"
         );
         if (distanceChange === "decreasing") {
@@ -33823,7 +33823,7 @@
         }
         return null;
       };
-      init_react_import();
+      init_react_import;
       getDirection3 = (dragAxis, delta) => {
         if (dragAxis === "dynamic") {
           if (Math.abs(delta.y) > Math.abs(delta.x)) {
@@ -33836,7 +33836,7 @@
         }
         return delta.y === 0 ? null : delta.y > 0 ? "down" : "up";
       };
-      init_react_import();
+      init_react_import;
       getMidpointImpact = (dragShape, dropShape, direction, offsetMultiplier = 0) => {
         const dragRect = dragShape.boundingRectangle;
         const dropCenter = dropShape.center;
@@ -33853,7 +33853,7 @@
         const offset = offsetMultiplier * dropShape.boundingRectangle.width;
         return dragRect.right - offset >= dropCenter.x;
       };
-      init_react_import();
+      init_react_import;
       INTERVAL_SENSITIVITY = 10;
       intervalCache = {
         current: { x: 0, y: 0 },
@@ -33873,7 +33873,7 @@
         }
         return intervalCache;
       };
-      init_react_import();
+      init_react_import;
       pointerIntersection3 = ({
         dragOperation,
         droppable
@@ -33924,8 +33924,8 @@
           priority: CollisionPriority.Normal
         };
       };
-      init_react_import();
-      collisionStore = createStore(() => ({
+      init_react_import;
+      collisionStore = createStore( => ({
         fallbackEnabled: false
       }));
       flushNext = "";
@@ -33939,7 +33939,7 @@
           return null;
         }
         const { center: dragCenter } = dragShape;
-        const { fallbackEnabled } = collisionStore.getState();
+        const { fallbackEnabled } = collisionStore.getState;
         const interval = trackMovementInterval(position.current, dragAxis);
         const data = {
           direction: interval.direction
@@ -33953,7 +33953,7 @@
         );
         if (((_b3 = dragOperation.source) == null ? void 0 : _b3.id) === droppable.id) {
           const collision = directionalCollision(input, interval.previous);
-          collisionDebug(dragCenter, dropCenter, droppable.id.toString(), "yellow");
+          collisionDebug(dragCenter, dropCenter, droppable.id.toString, "yellow");
           if (collision) {
             return __spreadProps(__spreadValues({}, collision), {
               priority: CollisionPriority.Highest,
@@ -33967,7 +33967,7 @@
           collisionDebug(
             dragCenter,
             dropCenter,
-            droppable.id.toString(),
+            droppable.id.toString,
             "green",
             interval.direction
           );
@@ -33996,7 +33996,7 @@
                 collisionDebug(
                   dragCenter,
                   dropCenter,
-                  droppable.id.toString(),
+                  droppable.id.toString,
                   "red",
                   direction || ""
                 );
@@ -34009,7 +34009,7 @@
               collisionDebug(
                 dragCenter,
                 dropCenter,
-                droppable.id.toString(),
+                droppable.id.toString,
                 "orange",
                 direction || ""
               );
@@ -34020,7 +34020,7 @@
             }
           }
         }
-        collisionDebug(dragCenter, dropCenter, droppable.id.toString(), "hotpink");
+        collisionDebug(dragCenter, dropCenter, droppable.id.toString, "hotpink");
         return null;
       };
       SortableProvider = ({
@@ -34038,11 +34038,11 @@
             sensors,
             onDragStart: (event) => {
               var _a5, _b3;
-              return onDragStart((_b3 = (_a5 = event.operation.source) == null ? void 0 : _a5.id.toString()) != null ? _b3 : "");
+              return onDragStart((_b3 = (_a5 = event.operation.source) == null ? void 0 : _a5.id.toString) != null ? _b3 : "");
             },
             onDragOver: (event, manager) => {
               var _a5;
-              event.preventDefault();
+              event.preventDefault;
               const { operation } = event;
               const { source, target } = operation;
               if (!source || !target) return;
@@ -34063,9 +34063,9 @@
                 });
               }
             },
-            onDragEnd: () => {
-              setTimeout(() => {
-                onDragEnd();
+            onDragEnd:  => {
+              setTimeout( => {
+                onDragEnd;
               }, 250);
             },
             children
@@ -34094,9 +34094,9 @@
         });
         return children({ isDragging, isDropping, ref: sortableRef, handleRef });
       };
-      init_react_import();
+      init_react_import;
       NestedFieldContext = (0, import_react25.createContext)({});
-      useNestedFieldContext = () => {
+      useNestedFieldContext =  => {
         const context = (0, import_react25.useContext)(NestedFieldContext);
         return __spreadProps(__spreadValues({}, context), {
           readOnlyFields: context.readOnlyFields || {}
@@ -34112,7 +34112,7 @@
         const subPath = `${name}.${subName}`;
         const wildcardSubPath = `${wildcardName}.${subName}`;
         const subReadOnlyFields = (0, import_react25.useMemo)(
-          () => Object.keys(readOnlyFields).reduce((acc, readOnlyKey) => {
+           => Object.keys(readOnlyFields).reduce((acc, readOnlyKey) => {
             const isLocal = readOnlyKey.indexOf(subPath) > -1 || readOnlyKey.indexOf(wildcardSubPath) > -1;
             if (isLocal) {
               const subPathPattern = new RegExp(
@@ -34150,7 +34150,7 @@
       }) => {
         const thisArrayState = useAppStore((s2) => s2.state.ui.arrayState[id]);
         const setUi = useAppStore((s2) => s2.setUi);
-        const { readOnlyFields, localName = name } = useNestedFieldContext();
+        const { readOnlyFields, localName = name } = useNestedFieldContext;
         const value = _value2;
         const arrayState = thisArrayState || {
           items: Array.from(value || []).map((item, idx) => {
@@ -34162,15 +34162,15 @@
           openId: ""
         };
         const [localState, setLocalState] = (0, import_react21.useState)({ arrayState, value });
-        (0, import_react21.useEffect)(() => {
+        (0, import_react21.useEffect)( => {
           var _a5;
-          const _arrayState = (_a5 = appStore.getState().state.ui.arrayState[id]) != null ? _a5 : arrayState;
+          const _arrayState = (_a5 = appStore.getState.state.ui.arrayState[id]) != null ? _a5 : arrayState;
           setLocalState({ arrayState: _arrayState, value });
         }, [value]);
-        const appStore = useAppStoreApi();
+        const appStore = useAppStoreApi;
         const mapArrayStateToUi = (0, import_react21.useCallback)(
           (partialArrayState) => {
-            const state = appStore.getState().state;
+            const state = appStore.getState.state;
             return {
               arrayState: __spreadProps(__spreadValues({}, state.ui.arrayState), {
                 [id]: __spreadValues(__spreadValues({}, arrayState), partialArrayState)
@@ -34179,7 +34179,7 @@
           },
           [arrayState, appStore]
         );
-        const getHighestIndex = (0, import_react21.useCallback)(() => {
+        const getHighestIndex = (0, import_react21.useCallback)( => {
           return arrayState.items.reduce(
             (acc, item) => item._originalIndex > acc ? item._originalIndex : acc,
             -1
@@ -34187,7 +34187,7 @@
         }, [arrayState]);
         const regenerateArrayState = (0, import_react21.useCallback)(
           (value2) => {
-            let highestIndex = getHighestIndex();
+            let highestIndex = getHighestIndex;
             const newItems = Array.from(value2 || []).map((item, idx) => {
               var _a5;
               const arrayStateItem = arrayState.items[idx];
@@ -34204,7 +34204,7 @@
           },
           [arrayState]
         );
-        (0, import_react21.useEffect)(() => {
+        (0, import_react21.useEffect)( => {
           if (arrayState.items.length > 0) {
             setUi(mapArrayStateToUi(arrayState));
           }
@@ -34219,7 +34219,7 @@
         const uniqifyItem = (0, import_react21.useCallback)(
           (val) => {
             if (field.type !== "array" || !field.arrayFields) return;
-            const config = appStore.getState().config;
+            const config = appStore.getState.config;
             return walkField({
               value: val,
               fields: field.arrayFields,
@@ -34249,7 +34249,7 @@
               SortableProvider,
               {
                 onDragStart: (id2) => setDraggedItem(id2),
-                onDragEnd: () => {
+                onDragEnd:  => {
                   setDraggedItem("");
                   onChange(valueRef.current);
                 },
@@ -34263,7 +34263,7 @@
                     move2.source,
                     move2.target
                   );
-                  const state = appStore.getState().state;
+                  const state = appStore.getState.state;
                   const newUi = {
                     arrayState: __spreadProps(__spreadValues({}, state.ui.arrayState), {
                       [id]: __spreadProps(__spreadValues({}, arrayState), { items: newArrayStateItems })
@@ -34309,8 +34309,8 @@
                                       ref: handleRef,
                                       onClick: (e3) => {
                                         if (isDragging) return;
-                                        e3.preventDefault();
-                                        e3.stopPropagation();
+                                        e3.preventDefault;
+                                        e3.stopPropagation;
                                         if (arrayState.openId === _arrayId) {
                                           setUi(
                                             mapArrayStateToUi({
@@ -34336,7 +34336,7 @@
                                                 type: "button",
                                                 disabled: !!addDisabled,
                                                 onClick: (e3) => {
-                                                  e3.stopPropagation();
+                                                  e3.stopPropagation;
                                                   const existingValue = [...value || []];
                                                   const newItem = uniqifyItem(
                                                     existingValue[i2]
@@ -34358,7 +34358,7 @@
                                                 type: "button",
                                                 disabled: field.min !== void 0 && field.min >= localState.arrayState.items.length,
                                                 onClick: (e3) => {
-                                                  e3.stopPropagation();
+                                                  e3.stopPropagation;
                                                   const existingValue = [...value || []];
                                                   const existingItems = [
                                                     ...arrayState.items || []
@@ -34440,7 +34440,7 @@
                         {
                           type: "button",
                           className: getClassName6("addButton"),
-                          onClick: () => {
+                          onClick:  => {
                             var _a5;
                             if (isDraggingAny) return;
                             const existingValue = value || [];
@@ -34464,7 +34464,7 @@
           }
         );
       };
-      init_react_import();
+      init_react_import;
       getClassName7 = get_class_name_factory_default("Input", styles_module_default3);
       DefaultField = ({
         field,
@@ -34495,7 +34495,7 @@
                 type: field.type,
                 title: label || name,
                 name,
-                value: (value == null ? void 0 : value.toString) ? value.toString() : "",
+                value: (value == null ? void 0 : value.toString) ? value.toString : "",
                 onChange: (e3) => {
                   if (field.type === "number") {
                     const numberValue = Number(e3.currentTarget.value);
@@ -34522,12 +34522,12 @@
           }
         );
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       styles_module_default6 = { "ExternalInput-actions": "_ExternalInput-actions_91ls0_1", "ExternalInput-button": "_ExternalInput-button_91ls0_5", "ExternalInput--dataSelected": "_ExternalInput--dataSelected_91ls0_24", "ExternalInput--readOnly": "_ExternalInput--readOnly_91ls0_31", "ExternalInput-detachButton": "_ExternalInput-detachButton_91ls0_35", "ExternalInput": "_ExternalInput_91ls0_1", "ExternalInputModal": "_ExternalInputModal_91ls0_79", "ExternalInputModal-grid": "_ExternalInputModal-grid_91ls0_89", "ExternalInputModal--filtersToggled": "_ExternalInputModal--filtersToggled_91ls0_100", "ExternalInputModal-filters": "_ExternalInputModal-filters_91ls0_105", "ExternalInputModal-masthead": "_ExternalInputModal-masthead_91ls0_124", "ExternalInputModal-tableWrapper": "_ExternalInputModal-tableWrapper_91ls0_133", "ExternalInputModal-table": "_ExternalInputModal-table_91ls0_133", "ExternalInputModal-thead": "_ExternalInputModal-thead_91ls0_149", "ExternalInputModal-th": "_ExternalInputModal-th_91ls0_149", "ExternalInputModal-td": "_ExternalInputModal-td_91ls0_164", "ExternalInputModal-tr": "_ExternalInputModal-tr_91ls0_169", "ExternalInputModal-tbody": "_ExternalInputModal-tbody_91ls0_176", "ExternalInputModal--hasData": "_ExternalInputModal--hasData_91ls0_202", "ExternalInputModal-loadingBanner": "_ExternalInputModal-loadingBanner_91ls0_206", "ExternalInputModal--isLoading": "_ExternalInputModal--isLoading_91ls0_223", "ExternalInputModal-searchForm": "_ExternalInputModal-searchForm_91ls0_227", "ExternalInputModal-search": "_ExternalInputModal-search_91ls0_227", "ExternalInputModal-searchIcon": "_ExternalInputModal-searchIcon_91ls0_264", "ExternalInputModal-searchIconText": "_ExternalInputModal-searchIconText_91ls0_289", "ExternalInputModal-searchInput": "_ExternalInputModal-searchInput_91ls0_299", "ExternalInputModal-searchActions": "_ExternalInputModal-searchActions_91ls0_313", "ExternalInputModal-searchActionIcon": "_ExternalInputModal-searchActionIcon_91ls0_326", "ExternalInputModal-footerContainer": "_ExternalInputModal-footerContainer_91ls0_330", "ExternalInputModal-footer": "_ExternalInputModal-footer_91ls0_330", "ExternalInputModal-field": "_ExternalInputModal-field_91ls0_343" };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       styles_module_default7 = { "Modal": "_Modal_ikbaj_1", "Modal--isOpen": "_Modal--isOpen_ikbaj_15", "Modal-inner": "_Modal-inner_ikbaj_19" };
       getClassName8 = get_class_name_factory_default("Modal", styles_module_default7);
       Modal = ({
@@ -34536,7 +34536,7 @@
         isOpen
       }) => {
         const [rootEl, setRootEl] = (0, import_react28.useState)(null);
-        (0, import_react28.useEffect)(() => {
+        (0, import_react28.useEffect)( => {
           setRootEl(document.getElementById("puck-portal-root"));
         }, []);
         if (!rootEl) {
@@ -34547,15 +34547,15 @@
             "div",
             {
               className: getClassName8("inner"),
-              onClick: (e3) => e3.stopPropagation(),
+              onClick: (e3) => e3.stopPropagation,
               children
             }
           ) }),
           rootEl
         );
       };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       styles_module_default8 = { "Heading": "_Heading_qxrry_1", "Heading--xxxxl": "_Heading--xxxxl_qxrry_12", "Heading--xxxl": "_Heading--xxxl_qxrry_18", "Heading--xxl": "_Heading--xxl_qxrry_22", "Heading--xl": "_Heading--xl_qxrry_26", "Heading--l": "_Heading--l_qxrry_30", "Heading--m": "_Heading--m_qxrry_34", "Heading--s": "_Heading--s_qxrry_38", "Heading--xs": "_Heading--xs_qxrry_42" };
       getClassName9 = get_class_name_factory_default("Heading", styles_module_default8);
       Heading = ({ children, rank, size = "m" }) => {
@@ -34570,7 +34570,7 @@
           }
         );
       };
-      init_react_import();
+      init_react_import;
       getClassName10 = get_class_name_factory_default("ExternalInput", styles_module_default6);
       getClassNameModal = get_class_name_factory_default("ExternalInputModal", styles_module_default6);
       dataCache = {};
@@ -34593,11 +34593,11 @@
         const hasFilterFields = !!filterFields;
         const [filters, setFilters] = (0, import_react27.useState)(field.initialFilters || {});
         const [filtersToggled, setFiltersToggled] = (0, import_react27.useState)(hasFilterFields);
-        const mappedData = (0, import_react27.useMemo)(() => {
+        const mappedData = (0, import_react27.useMemo)( => {
           return data.map(mapRow);
         }, [data]);
-        const keys = (0, import_react27.useMemo)(() => {
-          const validKeys = /* @__PURE__ */ new Set();
+        const keys = (0, import_react27.useMemo)( => {
+          const validKeys = /* @__PURE__ */ new Set;
           for (const item of mappedData) {
             for (const key of Object.keys(item)) {
               if (typeof item[key] === "string" || typeof item[key] === "number" || (0, import_react27.isValidElement)(item[key])) {
@@ -34609,7 +34609,7 @@
         }, [mappedData]);
         const [searchQuery, setSearchQuery] = (0, import_react27.useState)(field.initialQuery || "");
         const search = (0, import_react27.useCallback)(
-          (query, filters2) => __async(void 0, null, function* () {
+          (query, filters2) => __async(void 0, null, function*  {
             setIsLoading(true);
             const cacheKey = `${id}-${query}-${JSON.stringify(filters2)}`;
             const listData = dataCache[cacheKey] || (yield field.fetchList({ query, filters: filters2 }));
@@ -34629,7 +34629,7 @@
           ] }),
           [field.renderFooter]
         );
-        (0, import_react27.useEffect)(() => {
+        (0, import_react27.useEffect)( => {
           search(searchQuery, filters);
         }, []);
         return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
@@ -34647,7 +34647,7 @@
                   "button",
                   {
                     type: "button",
-                    onClick: () => setOpen(true),
+                    onClick:  => setOpen(true),
                     className: getClassName10("button"),
                     disabled: readOnly,
                     children: value ? field.getItemSummary ? field.getItemSummary(value) : "External item" : /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(import_jsx_runtime14.Fragment, { children: [
@@ -34661,7 +34661,7 @@
                   {
                     type: "button",
                     className: getClassName10("detachButton"),
-                    onClick: () => {
+                    onClick:  => {
                       onChange(null);
                     },
                     disabled: readOnly,
@@ -34669,7 +34669,7 @@
                   }
                 )
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Modal, { onClose: () => setOpen(false), isOpen, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(Modal, { onClose:  => setOpen(false), isOpen, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
                 "form",
                 {
                   className: getClassNameModal({
@@ -34679,7 +34679,7 @@
                     filtersToggled
                   }),
                   onSubmit: (e3) => {
-                    e3.preventDefault();
+                    e3.preventDefault;
                     search(searchQuery, filters);
                   },
                   children: [
@@ -34710,8 +34710,8 @@
                             type: "button",
                             title: "Toggle filters",
                             onClick: (e3) => {
-                              e3.preventDefault();
-                              e3.stopPropagation();
+                              e3.preventDefault;
+                              e3.stopPropagation;
                               setFiltersToggled(!filtersToggled);
                             },
                             children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(SlidersHorizontal, { size: 20 })
@@ -34764,7 +34764,7 @@
                               {
                                 style: { whiteSpace: "nowrap" },
                                 className: getClassNameModal("tr"),
-                                onClick: () => {
+                                onClick:  => {
                                   onChange(mapProp(data[i2]));
                                   setOpen(false);
                                 },
@@ -34799,7 +34799,7 @@
         var _a5, _b3, _c4;
         const validField = field;
         const deprecatedField = field;
-        (0, import_react26.useEffect)(() => {
+        (0, import_react26.useEffect)( => {
           if (deprecatedField.adaptor) {
             console.error(
               "Warning: The `adaptor` API is deprecated. Please use updated APIs on the `external` field instead. This will be a breaking change in a future release."
@@ -34824,7 +34824,7 @@
                   placeholder: ((_a5 = deprecatedField.adaptor) == null ? void 0 : _a5.name) ? `Select from ${deprecatedField.adaptor.name}` : validField.placeholder || "Select data",
                   mapProp: ((_b3 = deprecatedField.adaptor) == null ? void 0 : _b3.mapProp) || validField.mapProp,
                   mapRow: validField.mapRow,
-                  fetchList: ((_c4 = deprecatedField.adaptor) == null ? void 0 : _c4.fetchList) ? () => __async(void 0, null, function* () {
+                  fetchList: ((_c4 = deprecatedField.adaptor) == null ? void 0 : _c4.fetchList) ?  => __async(void 0, null, function*  {
                     return yield deprecatedField.adaptor.fetchList(
                       deprecatedField.adaptorParams
                     );
@@ -34839,7 +34839,7 @@
           }
         );
       };
-      init_react_import();
+      init_react_import;
       getClassName11 = get_class_name_factory_default("Input", styles_module_default3);
       RadioField = ({
         field,
@@ -34883,7 +34883,7 @@
                         checked: value === option.value
                       }
                     ),
-                    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: getClassName11("radioInner"), children: option.label || ((_a5 = option.value) == null ? void 0 : _a5.toString()) })
+                    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: getClassName11("radioInner"), children: option.label || ((_a5 = option.value) == null ? void 0 : _a5.toString) })
                   ]
                 },
                 option.label + option.value
@@ -34892,7 +34892,7 @@
           }
         );
       };
-      init_react_import();
+      init_react_import;
       getClassName12 = get_class_name_factory_default("Input", styles_module_default3);
       SelectField = ({
         field,
@@ -34938,7 +34938,7 @@
           }
         );
       };
-      init_react_import();
+      init_react_import;
       getClassName13 = get_class_name_factory_default("Input", styles_module_default3);
       TextareaField = ({
         field,
@@ -34975,8 +34975,8 @@
           }
         );
       };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       styles_module_default9 = { "ObjectField": "_ObjectField_1ua3y_5", "ObjectField-fieldset": "_ObjectField-fieldset_1ua3y_13" };
       getClassName14 = get_class_name_factory_default("ObjectField", styles_module_default9);
       ObjectField = ({
@@ -34990,7 +34990,7 @@
         readOnly,
         id
       }) => {
-        const { readOnlyFields, localName = name } = useNestedFieldContext();
+        const { readOnlyFields, localName = name } = useNestedFieldContext;
         if (field.type !== "object" || !field.objectFields) {
           return null;
         }
@@ -35002,7 +35002,7 @@
             icon: labelIcon || /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(EllipsisVertical, { size: 16 }),
             el: "div",
             readOnly,
-            children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: getClassName14(), children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("fieldset", { className: getClassName14("fieldset"), children: Object.keys(field.objectFields).map((subName) => {
+            children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: getClassName14, children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("fieldset", { className: getClassName14("fieldset"), children: Object.keys(field.objectFields).map((subName) => {
               const subField = field.objectFields[subName];
               const subPath = `${localName}.${subName}`;
               const subReadOnly = readOnly ? readOnly : readOnlyFields[subPath];
@@ -35042,12 +35042,12 @@
           }
         );
       };
-      init_react_import();
-      useSafeId = () => {
+      init_react_import;
+      useSafeId =  => {
         if (typeof import_react29.default.useId !== "undefined") {
-          return import_react29.default.useId();
+          return import_react29.default.useId;
         }
-        const [id] = (0, import_react29.useState)(generateId());
+        const [id] = (0, import_react29.useState)(generateId);
         return id;
       };
       getClassName15 = get_class_name_factory_default("Input", styles_module_default3);
@@ -35079,7 +35079,7 @@
       }) => {
         const overrides = useAppStore((s2) => s2.overrides);
         const Wrapper = (0, import_react18.useMemo)(
-          () => overrides.fieldLabel || FieldLabel,
+           => overrides.fieldLabel || FieldLabel,
           [overrides]
         );
         if (!label) {
@@ -35107,16 +35107,16 @@
         text: DefaultField,
         number: DefaultField
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
       styles_module_default10 = { "DraggableComponent": "_DraggableComponent_1vaqy_1", "DraggableComponent-overlayWrapper": "_DraggableComponent-overlayWrapper_1vaqy_12", "DraggableComponent-overlay": "_DraggableComponent-overlay_1vaqy_12", "DraggableComponent-loadingOverlay": "_DraggableComponent-loadingOverlay_1vaqy_34", "DraggableComponent--hover": "_DraggableComponent--hover_1vaqy_50", "DraggableComponent--isSelected": "_DraggableComponent--isSelected_1vaqy_57", "DraggableComponent-actionsOverlay": "_DraggableComponent-actionsOverlay_1vaqy_71", "DraggableComponent-actions": "_DraggableComponent-actions_1vaqy_71" };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       dropZoneContext = (0, import_react32.createContext)(null);
       ZoneStoreContext = (0, import_react32.createContext)(
-        createStore(() => ({
+        createStore( => ({
           zoneDepthIndex: {},
           nextZoneDepthIndex: {},
           areaDepthIndex: {},
@@ -35148,32 +35148,32 @@
           [dispatch]
         );
         const memoValue = (0, import_react32.useMemo)(
-          () => __spreadValues({
+           => __spreadValues({
             registerZone
           }, value),
           [value]
         );
         return /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(import_jsx_runtime21.Fragment, { children: memoValue && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(dropZoneContext.Provider, { value: memoValue, children }) });
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       useOnDragFinished = (cb, deps = []) => {
-        const appStore = useAppStoreApi();
-        return (0, import_react34.useCallback)(() => {
-          let dispose = () => {
+        const appStore = useAppStoreApi;
+        return (0, import_react34.useCallback)( => {
+          let dispose =  => {
           };
           const processDragging = (isDragging2) => {
             if (isDragging2) {
               cb(false);
             } else {
-              setTimeout(() => {
+              setTimeout( => {
                 cb(true);
               }, 0);
-              if (dispose) dispose();
+              if (dispose) dispose;
             }
           };
-          const isDragging = appStore.getState().state.ui.isDragging;
+          const isDragging = appStore.getState.state.ui.isDragging;
           processDragging(isDragging);
           if (isDragging) {
             dispose = appStore.subscribe(
@@ -35268,7 +35268,7 @@
         const zoneStore = (0, import_react31.useContext)(ZoneStoreContext);
         const [dragAxis, setDragAxis] = (0, import_react31.useState)(userDragAxis || autoDragAxis);
         const dynamicCollisionDetector = (0, import_react31.useMemo)(
-          () => createDynamicCollisionDetector(dragAxis),
+           => createDynamicCollisionDetector(dragAxis),
           [dragAxis]
         );
         const {
@@ -35299,8 +35299,8 @@
           },
           feedback: "clone"
         });
-        (0, import_react31.useEffect)(() => {
-          const isEnabled = zoneStore.getState().enabledIndex[zoneCompound];
+        (0, import_react31.useEffect)( => {
+          const isEnabled = zoneStore.getState.enabledIndex[zoneCompound];
           sortable.droppable.disabled = !isEnabled;
           sortable.draggable.disabled = !permissions.drag;
           const cleanup = zoneStore.subscribe((s2) => {
@@ -35308,10 +35308,10 @@
           });
           if (ref.current && !permissions.drag) {
             ref.current.setAttribute("data-puck-disabled", "");
-            return () => {
+            return  => {
               var _a5;
               (_a5 = ref.current) == null ? void 0 : _a5.removeAttribute("data-puck-disabled");
-              cleanup();
+              cleanup;
             };
           }
           return cleanup;
@@ -35326,20 +35326,20 @@
           },
           [sortableRef]
         );
-        const [portalEl, setPortalEl] = (0, import_react31.useState)();
-        (0, import_react31.useEffect)(() => {
+        const [portalEl, setPortalEl] = (0, import_react31.useState);
+        (0, import_react31.useEffect)( => {
           var _a5, _b3, _c4;
           setPortalEl(
             iframe.enabled ? (_a5 = ref.current) == null ? void 0 : _a5.ownerDocument.body : (_c4 = (_b3 = ref.current) == null ? void 0 : _b3.closest("[data-puck-preview]")) != null ? _c4 : document.body
           );
         }, [iframe.enabled, ref.current]);
-        const getStyle = (0, import_react31.useCallback)(() => {
+        const getStyle = (0, import_react31.useCallback)( => {
           var _a5, _b3, _c4;
           if (!ref.current) return;
-          const rect = ref.current.getBoundingClientRect();
+          const rect = ref.current.getBoundingClientRect;
           const deepScrollPosition = getDeepScrollPosition(ref.current);
           const portalContainerEl = iframe.enabled ? null : (_a5 = ref.current) == null ? void 0 : _a5.closest("[data-puck-preview]");
-          const portalContainerRect = portalContainerEl == null ? void 0 : portalContainerEl.getBoundingClientRect();
+          const portalContainerRect = portalContainerEl == null ? void 0 : portalContainerEl.getBoundingClientRect;
           const portalScroll = portalContainerEl ? getDeepScrollPosition(portalContainerEl) : { x: 0, y: 0 };
           const scroll = {
             x: deepScrollPosition.x - portalScroll.x - ((_b3 = portalContainerRect == null ? void 0 : portalContainerRect.left) != null ? _b3 : 0),
@@ -35358,56 +35358,56 @@
           };
           return style2;
         }, [ref.current]);
-        const [style, setStyle] = (0, import_react31.useState)();
-        const sync = (0, import_react31.useCallback)(() => {
-          setStyle(getStyle());
+        const [style, setStyle] = (0, import_react31.useState);
+        const sync = (0, import_react31.useCallback)( => {
+          setStyle(getStyle);
         }, [ref.current, iframe]);
-        (0, import_react31.useEffect)(() => {
+        (0, import_react31.useEffect)( => {
           if (ref.current) {
             const observer = new ResizeObserver(sync);
             observer.observe(ref.current);
-            return () => {
-              observer.disconnect();
+            return  => {
+              observer.disconnect;
             };
           }
         }, [ref.current]);
         const registerNode = useAppStore((s2) => s2.nodes.registerNode);
-        const hideOverlay = (0, import_react31.useCallback)(() => {
+        const hideOverlay = (0, import_react31.useCallback)( => {
           setIsVisible(false);
         }, []);
-        const showOverlay = (0, import_react31.useCallback)(() => {
+        const showOverlay = (0, import_react31.useCallback)( => {
           setIsVisible(true);
         }, []);
-        (0, import_react31.useEffect)(() => {
+        (0, import_react31.useEffect)( => {
           var _a5;
           registerNode(id, {
             methods: { sync, showOverlay, hideOverlay },
             element: (_a5 = ref.current) != null ? _a5 : null
           });
-          return () => {
+          return  => {
             registerNode(id, {
               methods: {
-                sync: () => null,
-                hideOverlay: () => null,
-                showOverlay: () => null
+                sync:  => null,
+                hideOverlay:  => null,
+                showOverlay:  => null
               },
               element: null
             });
           };
         }, [id, zoneCompound, index, componentType, sync]);
         const CustomActionBar = (0, import_react31.useMemo)(
-          () => overrides.actionBar || DefaultActionBar,
+           => overrides.actionBar || DefaultActionBar,
           [overrides.actionBar]
         );
         const CustomOverlay = (0, import_react31.useMemo)(
-          () => overrides.componentOverlay || DefaultOverlay,
+           => overrides.componentOverlay || DefaultOverlay,
           [overrides.componentOverlay]
         );
         const onClick = (0, import_react31.useCallback)(
           (e3) => {
             const el = e3.target;
             if (!el.closest("[data-puck-overlay-portal]")) {
-              e3.stopPropagation();
+              e3.stopPropagation;
             }
             dispatch({
               type: "setUi",
@@ -35418,9 +35418,9 @@
           },
           [index, zoneCompound, id]
         );
-        const appStore = useAppStoreApi();
-        const onSelectParent = (0, import_react31.useCallback)(() => {
-          const { nodes, zones } = appStore.getState().state.indexes;
+        const appStore = useAppStoreApi;
+        const onSelectParent = (0, import_react31.useCallback)( => {
+          const { nodes, zones } = appStore.getState.state.indexes;
           const node = nodes[id];
           const parentNode = (node == null ? void 0 : node.parentId) ? nodes[node == null ? void 0 : node.parentId] : null;
           if (!parentNode || !node.parentId) {
@@ -35440,14 +35440,14 @@
             }
           });
         }, [ctx, path]);
-        const onDuplicate = (0, import_react31.useCallback)(() => {
+        const onDuplicate = (0, import_react31.useCallback)( => {
           dispatch({
             type: "duplicate",
             sourceIndex: index,
             sourceZone: zoneCompound
           });
         }, [index, zoneCompound]);
-        const onDelete = (0, import_react31.useCallback)(() => {
+        const onDelete = (0, import_react31.useCallback)( => {
           dispatch({
             type: "remove",
             index,
@@ -35459,13 +35459,13 @@
           ZoneStoreContext,
           (s2) => s2.hoveringComponent === id
         );
-        (0, import_react31.useEffect)(() => {
+        (0, import_react31.useEffect)( => {
           if (!ref.current) {
             return;
           }
           const el = ref.current;
           const _onMouseOver = (e3) => {
-            const userIsDragging = !!zoneStore.getState().draggedItem;
+            const userIsDragging = !!zoneStore.getState.draggedItem;
             if (userIsDragging) {
               if (thisIsDragging) {
                 setHover(true);
@@ -35475,10 +35475,10 @@
             } else {
               setHover(true);
             }
-            e3.stopPropagation();
+            e3.stopPropagation;
           };
           const _onMouseOut = (e3) => {
-            e3.stopPropagation();
+            e3.stopPropagation;
             setHover(false);
           };
           el.setAttribute("data-puck-component", id);
@@ -35487,7 +35487,7 @@
           el.addEventListener("click", onClick);
           el.addEventListener("mouseover", _onMouseOver);
           el.addEventListener("mouseout", _onMouseOut);
-          return () => {
+          return  => {
             el.removeAttribute("data-puck-component");
             el.removeAttribute("data-puck-dnd");
             el.removeEventListener("click", onClick);
@@ -35506,11 +35506,11 @@
         ]);
         const [isVisible2, setIsVisible] = (0, import_react31.useState)(false);
         const [dragFinished, setDragFinished] = (0, import_react31.useState)(true);
-        const [_2, startTransition2] = (0, import_react31.useTransition)();
-        (0, import_react31.useEffect)(() => {
-          startTransition2(() => {
+        const [_2, startTransition2] = (0, import_react31.useTransition);
+        (0, import_react31.useEffect)( => {
+          startTransition2( => {
             if (hover || indicativeHover || isSelected) {
-              sync();
+              sync;
               setIsVisible(true);
               setThisWasDragging(false);
             } else {
@@ -35521,28 +35521,28 @@
         const [thisWasDragging, setThisWasDragging] = (0, import_react31.useState)(false);
         const onDragFinished = useOnDragFinished((finished) => {
           if (finished) {
-            startTransition2(() => {
-              sync();
+            startTransition2( => {
+              sync;
               setDragFinished(true);
             });
           } else {
             setDragFinished(false);
           }
         });
-        (0, import_react31.useEffect)(() => {
+        (0, import_react31.useEffect)( => {
           if (thisIsDragging) {
             setThisWasDragging(true);
           }
         }, [thisIsDragging]);
-        (0, import_react31.useEffect)(() => {
-          if (thisWasDragging) return onDragFinished();
+        (0, import_react31.useEffect)( => {
+          if (thisWasDragging) return onDragFinished;
         }, [thisWasDragging, onDragFinished]);
         const syncActionsPosition = (0, import_react31.useCallback)(
           (el) => {
             if (el) {
               const view = el.ownerDocument.defaultView;
               if (view) {
-                const rect = el.getBoundingClientRect();
+                const rect = el.getBoundingClientRect;
                 const diffLeft = rect.x;
                 const exceedsBoundsLeft = diffLeft < 0;
                 const diffTop = rect.y;
@@ -35562,7 +35562,7 @@
           },
           [zoom]
         );
-        (0, import_react31.useEffect)(() => {
+        (0, import_react31.useEffect)( => {
           if (userDragAxis) {
             setDragAxis(userDragAxis);
             return;
@@ -35577,11 +35577,11 @@
           setDragAxis(autoDragAxis);
         }, [ref, userDragAxis, autoDragAxis]);
         const parentAction = (0, import_react31.useMemo)(
-          () => (ctx == null ? void 0 : ctx.areaId) && (ctx == null ? void 0 : ctx.areaId) !== "root" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ActionBar.Action, { onClick: onSelectParent, label: "Select parent", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(CornerLeftUp, { size: 16 }) }),
+           => (ctx == null ? void 0 : ctx.areaId) && (ctx == null ? void 0 : ctx.areaId) !== "root" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ActionBar.Action, { onClick: onSelectParent, label: "Select parent", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(CornerLeftUp, { size: 16 }) }),
           [ctx == null ? void 0 : ctx.areaId]
         );
         const nextContextValue = (0, import_react31.useMemo)(
-          () => __spreadProps(__spreadValues({}, ctx), {
+           => __spreadProps(__spreadValues({}, ctx), {
             areaId: id,
             zoneCompound,
             index,
@@ -35666,16 +35666,16 @@
           children(refSetter)
         ] });
       };
-      init_react_import();
+      init_react_import;
       styles_module_default11 = { "DropZone": "_DropZone_1i2sv_1", "DropZone--hasChildren": "_DropZone--hasChildren_1i2sv_11", "DropZone--isAreaSelected": "_DropZone--isAreaSelected_1i2sv_24", "DropZone--hoveringOverArea": "_DropZone--hoveringOverArea_1i2sv_25", "DropZone--isRootZone": "_DropZone--isRootZone_1i2sv_25", "DropZone--isDestination": "_DropZone--isDestination_1i2sv_35", "DropZone-item": "_DropZone-item_1i2sv_47", "DropZone-hitbox": "_DropZone-hitbox_1i2sv_51", "DropZone--isEnabled": "_DropZone--isEnabled_1i2sv_59", "DropZone--isAnimating": "_DropZone--isAnimating_1i2sv_68" };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       styles_module_default12 = { "Drawer": "_Drawer_pl7z0_1", "Drawer-draggable": "_Drawer-draggable_pl7z0_8", "Drawer-draggableBg": "_Drawer-draggableBg_pl7z0_12", "DrawerItem-draggable": "_DrawerItem-draggable_pl7z0_22", "DrawerItem--disabled": "_DrawerItem--disabled_pl7z0_35", "DrawerItem": "_DrawerItem_pl7z0_22", "Drawer--isDraggingFrom": "_Drawer--isDraggingFrom_pl7z0_45", "DrawerItem-name": "_DrawerItem-name_pl7z0_63" };
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      getFrame = () => {
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      getFrame =  => {
         if (typeof window === "undefined") return;
         let frameEl = document.querySelector("#preview-frame");
         if ((frameEl == null ? void 0 : frameEl.tagName) === "IFRAME") {
@@ -35683,7 +35683,7 @@
         }
         return (frameEl == null ? void 0 : frameEl.ownerDocument) || document;
       };
-      init_react_import();
+      init_react_import;
       GlobalPosition = class {
         constructor(target, original) {
           this.scaleFactor = 1;
@@ -35694,17 +35694,17 @@
           this.original = original;
           this.frameEl = document.querySelector("iframe#preview-frame");
           if (this.frameEl) {
-            this.frameRect = this.frameEl.getBoundingClientRect();
+            this.frameRect = this.frameEl.getBoundingClientRect;
             this.scaleFactor = this.frameRect.width / (((_a5 = this.frameEl.contentWindow) == null ? void 0 : _a5.innerWidth) || 1);
           }
         }
-        get x() {
+        get x {
           return this.original.x;
         }
-        get y() {
+        get y {
           return this.original.y;
         }
-        get global() {
+        get global {
           if (document !== this.target.ownerDocument && this.frameRect) {
             return {
               x: this.x * this.scaleFactor + this.frameRect.left,
@@ -35713,7 +35713,7 @@
           }
           return this.original;
         }
-        get frame() {
+        get frame {
           if (document === this.target.ownerDocument && this.frameRect) {
             return {
               x: (this.x - this.frameRect.left) / this.scaleFactor,
@@ -35723,7 +35723,7 @@
           return this.original;
         }
       };
-      init_react_import();
+      init_react_import;
       BaseEvent = typeof PointerEvent !== "undefined" ? PointerEvent : Event;
       BubbledPointerEvent = class extends BaseEvent {
         constructor(type, data) {
@@ -35736,7 +35736,7 @@
           this._originalTarget = target;
         }
         // Necessary for Firefox
-        get originalTarget() {
+        get originalTarget {
           return this._originalTarget;
         }
       };
@@ -35783,7 +35783,7 @@
           elements = [drawer];
         }
         if (previewFrame) {
-          const frame = getFrame();
+          const frame = getFrame;
           if (frame) {
             elements = frame.elementsFromPoint(position.frame.x, position.frame.y);
           }
@@ -35795,7 +35795,7 @@
             const id = element.getAttribute("data-puck-dnd");
             const isVoid = element.hasAttribute("data-puck-dnd-void");
             if (BUFFER && (dropzoneId || id) && !isVoid) {
-              const box = element.getBoundingClientRect();
+              const box = element.getBoundingClientRect;
               const contractedBox = {
                 left: box.left + BUFFER,
                 right: box.right - BUFFER,
@@ -35859,7 +35859,7 @@
             }
             return true;
           });
-          filteredCandidates.reverse();
+          filteredCandidates.reverse;
           const primaryCandidate = filteredCandidates[0];
           if (!primaryCandidate) return { zone: null, area: null };
           const primaryCandidateData = primaryCandidate.data;
@@ -35879,7 +35879,7 @@
           if (typeof window === "undefined") {
             return;
           }
-          this.registerEffect(() => {
+          this.registerEffect( => {
             const handleMove = (event) => {
               const target = event instanceof BubbledPointerEvent ? event.originalTarget || event.target : event.target;
               const position = new GlobalPosition(target, {
@@ -35903,7 +35903,7 @@
               capture: true
               // dndkit's PointerSensor prevents propagation during drag
             });
-            const cleanup = () => {
+            const cleanup =  => {
               document.body.removeEventListener("pointermove", handlePointerMove, {
                 capture: true
               });
@@ -35912,8 +35912,8 @@
           });
         }
       };
-      init_react_import();
-      insertComponent = (componentType, zone, index, appStore) => __async(void 0, null, function* () {
+      init_react_import;
+      insertComponent = (componentType, zone, index, appStore) => __async(void 0, null, function*  {
         const id = generateId(componentType);
         const insertActionData = {
           type: "insert",
@@ -35949,7 +35949,7 @@
           }
         }
       });
-      init_react_import();
+      init_react_import;
       DEBUG3 = false;
       dragListenerContext = (0, import_react38.createContext)({
         dragListeners: {}
@@ -35959,9 +35959,9 @@
         const lastFallbackDisable = (0, import_react38.useRef)(null);
         return (0, import_react38.useCallback)((manager) => {
           collisionStore.setState({ fallbackEnabled: false });
-          const fallbackId = generateId();
+          const fallbackId = generateId;
           lastFallbackDisable.current = fallbackId;
-          setTimeout(() => {
+          setTimeout( => {
             if (lastFallbackDisable.current === fallbackId) {
               collisionStore.setState({ fallbackEnabled: true });
               manager.collisionObserver.forceUpdate(true);
@@ -35974,12 +35974,12 @@
         disableAutoScroll
       }) => {
         const dispatch = useAppStore((s2) => s2.dispatch);
-        const appStore = useAppStoreApi();
-        const id = useSafeId();
+        const appStore = useAppStoreApi;
+        const id = useSafeId;
         const debouncedParamsRef = (0, import_react38.useRef)(null);
         const tempDisableFallback = useTempDisableFallback(100);
         const [zoneStore] = (0, import_react38.useState)(
-          () => createStore(() => ({
+           => createStore( => ({
             zoneDepthIndex: {},
             nextZoneDepthIndex: {},
             areaDepthIndex: {},
@@ -35992,7 +35992,7 @@
         );
         const getChanged2 = (0, import_react38.useCallback)(
           (params, id2) => {
-            const { zoneDepthIndex = {}, areaDepthIndex = {} } = zoneStore.getState() || {};
+            const { zoneDepthIndex = {}, areaDepthIndex = {} } = zoneStore.getState || {};
             const stateHasZone = Object.keys(zoneDepthIndex).length > 0;
             const stateHasArea = Object.keys(areaDepthIndex).length > 0;
             let zoneChanged = false;
@@ -36020,7 +36020,7 @@
               areaDepthIndex: params.area ? { [params.area]: true } : {}
             });
             tempDisableFallback(manager);
-            setTimeout(() => {
+            setTimeout( => {
               manager.collisionObserver.forceUpdate(true);
             }, 50);
             debouncedParamsRef.current = null;
@@ -36031,11 +36031,11 @@
           setDeepestAndCollide,
           AREA_CHANGE_DEBOUNCE_MS
         );
-        const cancelDb = () => {
-          setDeepestDb.cancel();
+        const cancelDb =  => {
+          setDeepestDb.cancel;
           debouncedParamsRef.current = null;
         };
-        (0, import_react38.useEffect)(() => {
+        (0, import_react38.useEffect)( => {
           if (DEBUG3) {
             zoneStore.subscribe(
               (s2) => {
@@ -36049,12 +36049,12 @@
             );
           }
         }, []);
-        const [plugins] = (0, import_react38.useState)(() => [
+        const [plugins] = (0, import_react38.useState)( => [
           ...disableAutoScroll ? defaultPreset.plugins.filter((plugin) => plugin !== AutoScroller) : defaultPreset.plugins,
           createNestedDroppablePlugin(
             {
               onChange: (params, manager) => {
-                const state = zoneStore.getState();
+                const state = zoneStore.getState;
                 const { zoneChanged, areaChanged } = getChanged2(params, id);
                 const isDragging = manager.dragOperation.status.dragging;
                 if (areaChanged || zoneChanged) {
@@ -36077,12 +36077,12 @@
                     const debouncedParams = debouncedParamsRef.current;
                     const isSameParams = debouncedParams && debouncedParams.area === params.area && debouncedParams.zone === params.zone;
                     if (!isSameParams) {
-                      cancelDb();
+                      cancelDb;
                       setDeepestDb(params, manager);
                       debouncedParamsRef.current = params;
                     }
                   } else {
-                    cancelDb();
+                    cancelDb;
                     setDeepestAndCollide(params, manager);
                   }
                   return;
@@ -36090,18 +36090,18 @@
                 if (zoneChanged) {
                   setDeepestAndCollide(params, manager);
                 }
-                cancelDb();
+                cancelDb;
               }
             },
             id
           )
         ]);
-        const sensors = useSensors();
+        const sensors = useSensors;
         const [dragListeners, setDragListeners] = (0, import_react38.useState)({});
         const dragMode = (0, import_react38.useRef)(null);
         const initialSelector = (0, import_react38.useRef)(void 0);
         const nextContextValue = (0, import_react38.useMemo)(
-          () => ({
+           => ({
             mode: "edit",
             areaId: "root",
             depth: 0
@@ -36122,7 +36122,7 @@
                 sensors,
                 onDragEnd: (event, manager) => {
                   var _a5, _b3;
-                  const entryEl = (_a5 = getFrame()) == null ? void 0 : _a5.querySelector("[data-puck-entry]");
+                  const entryEl = (_a5 = getFrame) == null ? void 0 : _a5.querySelector("[data-puck-entry]");
                   entryEl == null ? void 0 : entryEl.removeAttribute("data-puck-dragging");
                   const { source, target } = event.operation;
                   if (!source) {
@@ -36130,9 +36130,9 @@
                     return;
                   }
                   const { zone, index } = source.data;
-                  const { previewIndex = {} } = zoneStore.getState() || {};
+                  const { previewIndex = {} } = zoneStore.getState || {};
                   const thisPreview = ((_b3 = previewIndex[zone]) == null ? void 0 : _b3.props.id) === source.id ? previewIndex[zone] : null;
-                  const onAnimationEnd = () => {
+                  const onAnimationEnd =  => {
                     var _a23, _b22;
                     zoneStore.setState({ draggedItem: null });
                     if (event.canceled || (target == null ? void 0 : target.type) === "void") {
@@ -36156,7 +36156,7 @@
                           thisPreview.componentType,
                           thisPreview.zone,
                           thisPreview.index,
-                          appStore.getState()
+                          appStore.getState
                         );
                       } else if (initialSelector.current) {
                         dispatch({
@@ -36182,19 +36182,19 @@
                     });
                   };
                   let dispose;
-                  dispose = m(() => {
+                  dispose = m( => {
                     if (source.status === "idle") {
-                      onAnimationEnd();
-                      dispose == null ? void 0 : dispose();
+                      onAnimationEnd;
+                      dispose == null ? void 0 : dispose;
                     }
                   });
                 },
                 onDragOver: (event, manager) => {
                   var _a5, _b3, _c4, _d2;
-                  event.preventDefault();
-                  const draggedItem = (_a5 = zoneStore.getState()) == null ? void 0 : _a5.draggedItem;
+                  event.preventDefault;
+                  const draggedItem = (_a5 = zoneStore.getState) == null ? void 0 : _a5.draggedItem;
                   if (!draggedItem) return;
-                  cancelDb();
+                  cancelDb;
                   const { source, target } = event.operation;
                   if (!target || !source || target.type === "void") return;
                   const [sourceId] = source.id.split(":");
@@ -36218,10 +36218,10 @@
                       targetIndex = targetIndex + 1;
                     }
                   } else {
-                    targetZone = target.id.toString();
+                    targetZone = target.id.toString;
                     targetIndex = 0;
                   }
-                  const path = ((_c4 = appStore.getState().state.indexes.nodes[target.id]) == null ? void 0 : _c4.path) || [];
+                  const path = ((_c4 = appStore.getState.state.indexes.nodes[target.id]) == null ? void 0 : _c4.path) || [];
                   if (targetId === sourceId || path.find((path2) => {
                     const [pathId] = path2.split(":");
                     return pathId === sourceId;
@@ -36238,7 +36238,7 @@
                           zone: targetZone,
                           element: source.element,
                           props: {
-                            id: source.id.toString()
+                            id: source.id.toString
                           }
                         }
                       }
@@ -36252,7 +36252,7 @@
                     }
                     const item = getItem(
                       initialSelector.current,
-                      appStore.getState().state
+                      appStore.getState.state
                     );
                     if (item) {
                       zoneStore.setState({
@@ -36283,7 +36283,7 @@
                         zone: sourceData.zone,
                         index: sourceData.index
                       },
-                      appStore.getState().state
+                      appStore.getState.state
                     );
                     if (item) {
                       zoneStore.setState({
@@ -36310,7 +36310,7 @@
                   dragMode.current = isNewComponent ? "new" : "existing";
                   initialSelector.current = void 0;
                   zoneStore.setState({ draggedItem: event.operation.source });
-                  if (((_b3 = appStore.getState().selectedItem) == null ? void 0 : _b3.props.id) !== ((_c4 = event.operation.source) == null ? void 0 : _c4.id)) {
+                  if (((_b3 = appStore.getState.selectedItem) == null ? void 0 : _b3.props.id) !== ((_c4 = event.operation.source) == null ? void 0 : _c4.id)) {
                     dispatch({
                       type: "setUi",
                       ui: {
@@ -36328,7 +36328,7 @@
                       recordHistory: false
                     });
                   }
-                  const entryEl = (_d2 = getFrame()) == null ? void 0 : _d2.querySelector("[data-puck-entry]");
+                  const entryEl = (_d2 = getFrame) == null ? void 0 : _d2.querySelector("[data-puck-entry]");
                   entryEl == null ? void 0 : entryEl.setAttribute("data-puck-dragging", "true");
                 },
                 children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(ZoneStoreProvider, { store: zoneStore, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(DropZoneProvider, { value: nextContextValue, children }) })
@@ -36357,7 +36357,7 @@
         isDragDisabled
       }) => {
         const CustomInner = (0, import_react36.useMemo)(
-          () => children || (({ children: children2 }) => /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: getClassNameItem2("default"), children: children2 })),
+           => children || (({ children: children2 }) => /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: getClassNameItem2("default"), children: children2 })),
           [children]
         );
         return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
@@ -36365,7 +36365,7 @@
           {
             className: getClassNameItem2({ disabled: isDragDisabled }),
             ref: dragRef,
-            onMouseDown: (e3) => e3.preventDefault(),
+            onMouseDown: (e3) => e3.preventDefault,
             "data-testid": dragRef ? `drawer-item:${name}` : "",
             "data-puck-drawer-item": true,
             children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(CustomInner, { name, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: getClassNameItem2("draggableWrapper"), children: /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: getClassNameItem2("draggable"), children: [
@@ -36419,7 +36419,7 @@
         }
         useDragListener(
           "dragend",
-          () => {
+           => {
             setDynamicId(generateId(resolvedId));
           },
           [resolvedId]
@@ -36450,7 +36450,7 @@
             "Warning: The `direction` prop on Drawer is deprecated and no longer required to achieve multi-directional dragging."
           );
         }
-        const id = useSafeId();
+        const id = useSafeId;
         const { ref } = useDroppable({
           id,
           type: "void",
@@ -36460,7 +36460,7 @@
         return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
           "div",
           {
-            className: getClassName17(),
+            className: getClassName17,
             ref,
             "data-puck-dnd": id,
             "data-puck-drawer": true,
@@ -36470,14 +36470,14 @@
         );
       };
       Drawer.Item = DrawerItem;
-      init_react_import();
-      getNumItems = (appStore, zoneCompound) => appStore.getState().state.indexes.zones[zoneCompound].contentIds.length;
+      init_react_import;
+      getNumItems = (appStore, zoneCompound) => appStore.getState.state.indexes.zones[zoneCompound].contentIds.length;
       useMinEmptyHeight = ({
         zoneCompound,
         userMinEmptyHeight,
         ref
       }) => {
-        const appStore = useAppStoreApi();
+        const appStore = useAppStoreApi;
         const [prevHeight, setPrevHeight] = (0, import_react40.useState)(0);
         const [isAnimating, setIsAnimating] = (0, import_react40.useState)(false);
         const { draggedItem, isZone } = useContextStore(ZoneStoreContext, (s2) => {
@@ -36498,22 +36498,22 @@
                 setIsAnimating(false);
                 return;
               }
-              const selectedItem = appStore.getState().selectedItem;
-              const zones = appStore.getState().state.indexes.zones;
-              const nodes = appStore.getState().nodes;
-              (_a5 = nodes.nodes[selectedItem == null ? void 0 : selectedItem.props.id]) == null ? void 0 : _a5.methods.hideOverlay();
-              setTimeout(() => {
+              const selectedItem = appStore.getState.selectedItem;
+              const zones = appStore.getState.state.indexes.zones;
+              const nodes = appStore.getState.nodes;
+              (_a5 = nodes.nodes[selectedItem == null ? void 0 : selectedItem.props.id]) == null ? void 0 : _a5.methods.hideOverlay;
+              setTimeout( => {
                 var _a23;
                 const contentIds = ((_a23 = zones[zoneCompound]) == null ? void 0 : _a23.contentIds) || [];
                 contentIds.forEach((contentId) => {
                   const node = nodes.nodes[contentId];
-                  node == null ? void 0 : node.methods.sync();
+                  node == null ? void 0 : node.methods.sync;
                 });
                 if (selectedItem) {
-                  setTimeout(() => {
+                  setTimeout( => {
                     var _a33, _b3;
-                    (_a33 = nodes.nodes[selectedItem.props.id]) == null ? void 0 : _a33.methods.sync();
-                    (_b3 = nodes.nodes[selectedItem.props.id]) == null ? void 0 : _b3.methods.showOverlay();
+                    (_a33 = nodes.nodes[selectedItem.props.id]) == null ? void 0 : _a33.methods.sync;
+                    (_b3 = nodes.nodes[selectedItem.props.id]) == null ? void 0 : _b3.methods.showOverlay;
                   }, 200);
                 }
                 setIsAnimating(false);
@@ -36522,22 +36522,22 @@
           },
           [appStore, prevHeight, zoneCompound]
         );
-        (0, import_react40.useEffect)(() => {
+        (0, import_react40.useEffect)( => {
           if (draggedItem && ref.current) {
             if (isZone) {
-              const rect = ref.current.getBoundingClientRect();
+              const rect = ref.current.getBoundingClientRect;
               numItems.current = getNumItems(appStore, zoneCompound);
               setPrevHeight(rect.height);
               setIsAnimating(true);
-              return onDragFinished();
+              return onDragFinished;
             }
           }
         }, [ref.current, draggedItem, onDragFinished]);
         return [prevHeight || userMinEmptyHeight, isAnimating];
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       useContentIdsWithPreview = (contentIds, zoneCompound) => {
         const zoneStore = (0, import_react41.useContext)(ZoneStoreContext);
         const preview = useContextStore(
@@ -36581,9 +36581,9 @@
           },
           []
         );
-        (0, import_react41.useEffect)(() => {
+        (0, import_react41.useEffect)( => {
           var _a5;
-          const s2 = zoneStore.getState();
+          const s2 = zoneStore.getState;
           const draggedItemId = (_a5 = s2.draggedItem) == null ? void 0 : _a5.id;
           const previewExists = Object.keys(s2.previewIndex || {}).length > 0;
           updateContent(
@@ -36596,7 +36596,7 @@
         }, [contentIds, preview, isDragging]);
         return [contentIdsWithPreview, localPreview];
       };
-      init_react_import();
+      init_react_import;
       GRID_DRAG_AXIS = "dynamic";
       FLEX_ROW_DRAG_AXIS = "x";
       DEFAULT_DRAG_AXIS = "y";
@@ -36605,7 +36605,7 @@
         const [dragAxis, setDragAxis] = (0, import_react44.useState)(
           collisionAxis || DEFAULT_DRAG_AXIS
         );
-        const calculateDragAxis = (0, import_react44.useCallback)(() => {
+        const calculateDragAxis = (0, import_react44.useCallback)( => {
           if (ref.current) {
             const computedStyle = window.getComputedStyle(ref.current);
             if (computedStyle.display === "grid") {
@@ -36617,19 +36617,19 @@
             }
           }
         }, [ref.current]);
-        (0, import_react44.useEffect)(() => {
-          const onViewportChange = () => {
-            calculateDragAxis();
+        (0, import_react44.useEffect)( => {
+          const onViewportChange =  => {
+            calculateDragAxis;
           };
           window.addEventListener("viewportchange", onViewportChange);
-          return () => {
+          return  => {
             window.removeEventListener("viewportchange", onViewportChange);
           };
         }, []);
         (0, import_react44.useEffect)(calculateDragAxis, [status, collisionAxis]);
         return [dragAxis, calculateDragAxis];
       };
-      init_react_import();
+      init_react_import;
       ContextSlotRender = ({
         componentId,
         zone
@@ -36654,26 +36654,26 @@
           }
         );
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       registerOverlayPortal = (el, opts = {}) => {
         if (!el) return;
         const { disableDrag = false, disableDragOnFocus = true } = opts;
         const stopPropagation = (e3) => {
-          e3.stopPropagation();
+          e3.stopPropagation;
         };
         el.addEventListener("mouseover", stopPropagation, {
           capture: true
         });
-        const onFocus = () => {
-          setTimeout(() => {
+        const onFocus =  => {
+          setTimeout( => {
             el.addEventListener("pointerdown", stopPropagation, {
               capture: true
             });
           }, 200);
         };
-        const onBlur = () => {
+        const onBlur =  => {
           el.removeEventListener("pointerdown", stopPropagation, {
             capture: true
           });
@@ -36687,7 +36687,7 @@
           });
         }
         el.setAttribute("data-puck-overlay-portal", "true");
-        return () => {
+        return  => {
           el.removeEventListener("mouseover", stopPropagation, {
             capture: true
           });
@@ -36702,10 +36702,10 @@
           el.removeAttribute("data-puck-overlay-portal");
         };
       };
-      init_react_import();
+      init_react_import;
       styles_module_default13 = { "InlineTextField": "_InlineTextField_1xph6_1" };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       getSelectorForId = (state, id) => {
         const node = state.indexes.nodes[id];
         if (!node) return;
@@ -36723,10 +36723,10 @@
       }) => {
         var _a5;
         const ref = (0, import_react45.useRef)(null);
-        const appStoreApi = useAppStoreApi();
+        const appStoreApi = useAppStoreApi;
         const disableLineBreaks = (_a5 = opts.disableLineBreaks) != null ? _a5 : false;
-        (0, import_react45.useEffect)(() => {
-          const appStore = appStoreApi.getState();
+        (0, import_react45.useEffect)( => {
+          const appStore = appStoreApi.getState;
           const data = appStore.state.indexes.nodes[componentId].data;
           const componentConfig = appStore.getComponentConfig(data.type);
           if (!componentConfig) {
@@ -36739,9 +36739,9 @@
               ref.current.replaceChildren(value);
             }
             const cleanupPortal = registerOverlayPortal(ref.current);
-            const handleInput = (e3) => __async(void 0, null, function* () {
+            const handleInput = (e3) => __async(void 0, null, function*  {
               var _a23;
-              const appStore2 = appStoreApi.getState();
+              const appStore2 = appStoreApi.getState;
               const node = appStore2.state.indexes.nodes[componentId];
               const zoneCompound = `${node.parentId}:${node.zone}`;
               const index = (_a23 = appStore2.state.indexes.zones[zoneCompound]) == null ? void 0 : _a23.contentIds.indexOf(
@@ -36764,10 +36764,10 @@
               });
             });
             ref.current.addEventListener("input", handleInput);
-            return () => {
+            return  => {
               var _a23;
               (_a23 = ref.current) == null ? void 0 : _a23.removeEventListener("input", handleInput);
-              cleanupPortal == null ? void 0 : cleanupPortal();
+              cleanupPortal == null ? void 0 : cleanupPortal;
             };
           }
         }, [appStoreApi, ref.current, value, disableLineBreaks]);
@@ -36776,41 +36776,41 @@
         return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
           "span",
           {
-            className: getClassName18(),
+            className: getClassName18,
             ref,
             contentEditable: isHovering || isFocused ? "plaintext-only" : "false",
             onClick: (e3) => {
-              e3.preventDefault();
-              e3.stopPropagation();
+              e3.preventDefault;
+              e3.stopPropagation;
             },
             onClickCapture: (e3) => {
-              e3.preventDefault();
-              e3.stopPropagation();
+              e3.preventDefault;
+              e3.stopPropagation;
               const itemSelector = getSelectorForId(
-                appStoreApi.getState().state,
+                appStoreApi.getState.state,
                 componentId
               );
-              appStoreApi.getState().setUi({ itemSelector });
+              appStoreApi.getState.setUi({ itemSelector });
             },
             onKeyDown: (e3) => {
-              e3.stopPropagation();
+              e3.stopPropagation;
               if (disableLineBreaks && e3.key === "Enter" || isReadOnly) {
-                e3.preventDefault();
+                e3.preventDefault;
               }
             },
             onKeyUp: (e3) => {
-              e3.stopPropagation();
-              e3.preventDefault();
+              e3.stopPropagation;
+              e3.preventDefault;
             },
-            onMouseOverCapture: () => setIsHovering(true),
-            onMouseOutCapture: () => setIsHovering(false),
-            onFocus: () => setIsFocused(true),
-            onBlur: () => setIsFocused(false)
+            onMouseOverCapture:  => setIsHovering(true),
+            onMouseOutCapture:  => setIsHovering(false),
+            onFocus:  => setIsFocused(true),
+            onBlur:  => setIsFocused(false)
           }
         );
       };
       InlineTextField = (0, import_react45.memo)(InlineTextFieldInternal);
-      getInlineTextTransform = () => ({
+      getInlineTextTransform =  => ({
         text: ({ value, componentId, field, propPath, isReadOnly }) => {
           if (field.contentEditable) {
             return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
@@ -36856,7 +36856,7 @@
         }
       });
       getClassName19 = get_class_name_factory_default("DropZone", styles_module_default11);
-      getRandomColor = () => `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+      getRandomColor =  => `#${Math.floor(Math.random * 16777215).toString(16)}`;
       RENDER_DEBUG = false;
       DropZoneEditPure = (props) => /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(DropZoneEdit, __spreadValues({}, props));
       DropZoneChild = ({
@@ -36890,8 +36890,8 @@
             return (_a23 = s2.state.indexes.nodes[componentId]) == null ? void 0 : _a23.data.readOnly;
           })
         );
-        const appStore = useAppStoreApi();
-        const item = (0, import_react30.useMemo)(() => {
+        const appStore = useAppStoreApi;
+        const item = (0, import_react30.useMemo)( => {
           if (nodeProps) {
             const expanded = expandNode({
               type: nodeType,
@@ -36899,7 +36899,7 @@
             });
             return expanded;
           }
-          const preview = zoneStore.getState().previewIndex[zoneCompound];
+          const preview = zoneStore.getState.previewIndex[zoneCompound];
           if (componentId === (preview == null ? void 0 : preview.props.id)) {
             return {
               type: preview.componentType,
@@ -36914,7 +36914,7 @@
           (s2) => (item == null ? void 0 : item.type) ? s2.config.components[item.type] : null
         );
         const puckProps = (0, import_react30.useMemo)(
-          () => ({
+           => ({
             renderDropZone: DropZoneEditPure,
             isEditing: true,
             dragRef: null,
@@ -36935,9 +36935,9 @@
             return ((_a23 = s2.selectedItem) == null ? void 0 : _a23.props.id) === componentId || false;
           }
         );
-        let label = (_b3 = (_a5 = componentConfig == null ? void 0 : componentConfig.label) != null ? _a5 : item == null ? void 0 : item.type.toString()) != null ? _b3 : "Component";
+        let label = (_b3 = (_a5 = componentConfig == null ? void 0 : componentConfig.label) != null ? _a5 : item == null ? void 0 : item.type.toString) != null ? _b3 : "Component";
         const renderPreview = (0, import_react30.useMemo)(
-          () => function Preview3() {
+           => function Preview3 {
             var _a23;
             if (item && "element" in item && item.element) {
               return (
@@ -36950,7 +36950,7 @@
           [componentId, label, overrides]
         );
         const defaultsProps = (0, import_react30.useMemo)(
-          () => __spreadProps(__spreadValues(__spreadValues({}, componentConfig == null ? void 0 : componentConfig.defaultProps), item == null ? void 0 : item.props), {
+           => __spreadProps(__spreadValues(__spreadValues({}, componentConfig == null ? void 0 : componentConfig.defaultProps), item == null ? void 0 : item.props), {
             puck: puckProps,
             editMode: true
             // DEPRECATED
@@ -36958,7 +36958,7 @@
           [componentConfig == null ? void 0 : componentConfig.defaultProps, item == null ? void 0 : item.props, puckProps]
         );
         const defaultedNode = (0, import_react30.useMemo)(
-          () => {
+           => {
             var _a23;
             return { type: (_a23 = item == null ? void 0 : item.type) != null ? _a23 : nodeType, props: defaultsProps };
           },
@@ -36968,7 +36968,7 @@
         const plugins = useAppStore((s2) => s2.plugins);
         const userFieldTransforms = useAppStore((s2) => s2.fieldTransforms);
         const combinedFieldTransforms = (0, import_react30.useMemo)(
-          () => __spreadValues(__spreadValues(__spreadValues(__spreadValues({}, getSlotTransform(DropZoneEditPure, (slotProps) => /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ContextSlotRender, { componentId, zone: slotProps.zone }))), getInlineTextTransform()), plugins.reduce(
+           => __spreadValues(__spreadValues(__spreadValues(__spreadValues({}, getSlotTransform(DropZoneEditPure, (slotProps) => /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(ContextSlotRender, { componentId, zone: slotProps.zone }))), getInlineTextTransform), plugins.reduce(
             (acc, plugin) => __spreadValues(__spreadValues({}, acc), plugin.fieldTransforms),
             {}
           )), userFieldTransforms),
@@ -36982,7 +36982,7 @@
           isLoading
         );
         if (!item) return;
-        let Render2 = componentConfig ? componentConfig.render : () => /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { style: { padding: 48, textAlign: "center" }, children: [
+        let Render2 = componentConfig ? componentConfig.render :  => /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { style: { padding: 48, textAlign: "center" }, children: [
           "No configuration for ",
           item.type
         ] });
@@ -37028,7 +37028,7 @@
           collisionAxis
         }, userRef) {
           const ctx = (0, import_react30.useContext)(dropZoneContext);
-          const appStoreApi = useAppStoreApi();
+          const appStoreApi = useAppStoreApi;
           const {
             // These all need setting via context
             areaId,
@@ -37065,14 +37065,14 @@
               return (_a5 = s2.state.indexes.zones[zoneCompound]) == null ? void 0 : _a5.type;
             })
           );
-          (0, import_react30.useEffect)(() => {
+          (0, import_react30.useEffect)( => {
             if (!zoneType || zoneType === "dropzone") {
               if (ctx == null ? void 0 : ctx.registerZone) {
                 ctx == null ? void 0 : ctx.registerZone(zoneCompound);
               }
             }
           }, [zoneType, appStoreApi]);
-          (0, import_react30.useEffect)(() => {
+          (0, import_react30.useEffect)( => {
             if (zoneType === "dropzone") {
               if (zoneCompound !== rootDroppableId) {
                 console.warn(
@@ -37081,7 +37081,7 @@
               }
             }
           }, [zoneType]);
-          const contentIds = (0, import_react30.useMemo)(() => {
+          const contentIds = (0, import_react30.useMemo)( => {
             return zoneContentIds || [];
           }, [zoneContentIds]);
           const ref = (0, import_react30.useRef)(null);
@@ -37123,11 +37123,11 @@
             }
             return _isEnabled;
           });
-          (0, import_react30.useEffect)(() => {
+          (0, import_react30.useEffect)( => {
             if (registerLocalZone) {
               registerLocalZone(zoneCompound, targetAccepted || isEnabled);
             }
-            return () => {
+            return  => {
               if (unregisterLocalZone) {
                 unregisterLocalZone(zoneCompound);
               }
@@ -37139,8 +37139,8 @@
           );
           const isDropEnabled = isEnabled && (preview ? contentIdsWithPreview.length === 1 : contentIdsWithPreview.length === 0);
           const zoneStore = (0, import_react30.useContext)(ZoneStoreContext);
-          (0, import_react30.useEffect)(() => {
-            const { enabledIndex } = zoneStore.getState();
+          (0, import_react30.useEffect)( => {
+            const { enabledIndex } = zoneStore.getState;
             zoneStore.setState({
               enabledIndex: __spreadProps(__spreadValues({}, enabledIndex), { [zoneCompound]: isEnabled })
             });
@@ -37186,7 +37186,7 @@
               "data-puck-dropzone": zoneCompound,
               style: __spreadProps(__spreadValues({}, style), {
                 "--min-empty-height": `${minEmptyHeight}px`,
-                backgroundColor: RENDER_DEBUG ? getRandomColor() : style == null ? void 0 : style.backgroundColor
+                backgroundColor: RENDER_DEBUG ? getRandomColor : style == null ? void 0 : style.backgroundColor
               }),
               children: contentIdsWithPreview.map((componentId, i2) => {
                 return /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
@@ -37214,7 +37214,7 @@
         const Component = config.components[item.type];
         const props = useSlots(config, item, (slotProps) => /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(SlotRenderPure, __spreadProps(__spreadValues({}, slotProps), { config, metadata })));
         const nextContextValue = (0, import_react30.useMemo)(
-          () => ({
+           => ({
             areaId: props.id,
             depth: 1
           }),
@@ -37238,7 +37238,7 @@
           const { config, data, metadata } = (0, import_react30.useContext)(renderContext);
           let zoneCompound = `${areaId}:${zone}`;
           let content = (data == null ? void 0 : data.content) || [];
-          (0, import_react30.useEffect)(() => {
+          (0, import_react30.useEffect)( => {
             if (!content) {
               if (ctx == null ? void 0 : ctx.registerZone) {
                 ctx == null ? void 0 : ctx.registerZone(zoneCompound);
@@ -37283,15 +37283,15 @@
         data: { root: {}, content: [] },
         metadata: {}
       });
-      init_react_import();
+      init_react_import;
       generateUsePuck = (store2) => {
         const history = {
           back: store2.history.back,
           forward: store2.history.forward,
           setHistories: store2.history.setHistories,
           setHistoryIndex: store2.history.setHistoryIndex,
-          hasPast: store2.history.hasPast(),
-          hasFuture: store2.history.hasFuture(),
+          hasPast: store2.history.hasPast,
+          hasFuture: store2.history.hasFuture,
           histories: store2.history.histories,
           index: store2.history.index
         };
@@ -37324,11 +37324,11 @@
       };
       useRegisterUsePuckStore = (appStore) => {
         const [usePuckStore] = (0, import_react47.useState)(
-          () => createStore(
-            () => generateUsePuck(convertToPickedStore(appStore.getState()))
+           => createStore(
+             => generateUsePuck(convertToPickedStore(appStore.getState))
           )
         );
-        (0, import_react47.useEffect)(() => {
+        (0, import_react47.useEffect)( => {
           return appStore.subscribe(
             (store2) => convertToPickedStore(store2),
             (pickedStore) => {
@@ -37338,11 +37338,11 @@
         }, []);
         return usePuckStore;
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       styles_module_default14 = { "SidebarSection": "_SidebarSection_8boj8_1", "SidebarSection-title": "_SidebarSection-title_8boj8_12", "SidebarSection--noBorderTop": "_SidebarSection--noBorderTop_8boj8_20", "SidebarSection-content": "_SidebarSection-content_8boj8_24", "SidebarSection--noPadding": "_SidebarSection--noPadding_8boj8_28", "SidebarSection-breadcrumbLabel": "_SidebarSection-breadcrumbLabel_8boj8_41", "SidebarSection-breadcrumbs": "_SidebarSection-breadcrumbs_8boj8_70", "SidebarSection-breadcrumb": "_SidebarSection-breadcrumb_8boj8_41", "SidebarSection-heading": "_SidebarSection-heading_8boj8_82", "SidebarSection-loadingOverlay": "_SidebarSection-loadingOverlay_8boj8_86" };
-      init_react_import();
+      init_react_import;
       useBreadcrumbs = (renderCount) => {
         const selectedId = useAppStore((s2) => {
           var _a5;
@@ -37353,8 +37353,8 @@
           var _a5;
           return (_a5 = s2.state.indexes.nodes[selectedId]) == null ? void 0 : _a5.path;
         });
-        const appStore = useAppStoreApi();
-        return (0, import_react49.useMemo)(() => {
+        const appStore = useAppStoreApi;
+        return (0, import_react49.useMemo)( => {
           const breadcrumbs = (path == null ? void 0 : path.map((zoneCompound) => {
             var _a5, _b3, _c4;
             const [componentId] = zoneCompound.split(":");
@@ -37364,9 +37364,9 @@
                 selector: null
               };
             }
-            const node = appStore.getState().state.indexes.nodes[componentId];
+            const node = appStore.getState.state.indexes.nodes[componentId];
             const parentId = node.path[node.path.length - 1];
-            const contentIds = ((_a5 = appStore.getState().state.indexes.zones[parentId]) == null ? void 0 : _a5.contentIds) || [];
+            const contentIds = ((_a5 = appStore.getState.state.indexes.zones[parentId]) == null ? void 0 : _a5.contentIds) || [];
             const index = contentIds.indexOf(componentId);
             const label = node ? (_c4 = (_b3 = config.components[node.data.type]) == null ? void 0 : _b3.label) != null ? _c4 : node.data.type : "Component";
             return {
@@ -37408,7 +37408,7 @@
                     {
                       type: "button",
                       className: getClassName20("breadcrumbLabel"),
-                      onClick: () => setUi({ itemSelector: breadcrumb.selector }),
+                      onClick:  => setUi({ itemSelector: breadcrumb.selector }),
                       children: breadcrumb.label
                     }
                   ),
@@ -37422,10 +37422,10 @@
           }
         );
       };
-      init_react_import();
+      init_react_import;
       styles_module_default15 = { "Puck": "_Puck_1yxlw_19", "Puck-portal": "_Puck-portal_1yxlw_31", "PuckLayout-inner": "_PuckLayout-inner_1yxlw_38", "PuckLayout--mounted": "_PuckLayout--mounted_1yxlw_59", "PuckLayout--leftSideBarVisible": "_PuckLayout--leftSideBarVisible_1yxlw_63", "PuckLayout--rightSideBarVisible": "_PuckLayout--rightSideBarVisible_1yxlw_69", "PuckLayout-mounted": "_PuckLayout-mounted_1yxlw_83", "PuckLayout": "_PuckLayout_1yxlw_38" };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       styles_module_default16 = { "PuckFields": "_PuckFields_10bh7_1", "PuckFields--isLoading": "_PuckFields--isLoading_10bh7_6", "PuckFields-loadingOverlay": "_PuckFields-loadingOverlay_10bh7_10", "PuckFields-loadingOverlayInner": "_PuckFields-loadingOverlayInner_10bh7_25", "PuckFields-field": "_PuckFields-field_10bh7_32", "PuckFields--wrapFields": "_PuckFields--wrapFields_10bh7_36" };
       getClassName21 = get_class_name_factory_default("PuckFields", styles_module_default16);
       DefaultFields = ({
@@ -37433,9 +37433,9 @@
       }) => {
         return /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_jsx_runtime31.Fragment, { children });
       };
-      createOnChange = (fieldName, appStore) => (value, updatedUi) => __async(void 0, null, function* () {
+      createOnChange = (fieldName, appStore) => (value, updatedUi) => __async(void 0, null, function*  {
         let currentProps;
-        const { dispatch, state, selectedItem, resolveComponentData: resolveComponentData2 } = appStore.getState();
+        const { dispatch, state, selectedItem, resolveComponentData: resolveComponentData2 } = appStore.getState;
         const { data, ui } = state;
         const { itemSelector } = ui;
         const rootProps = data.root.props || data.root;
@@ -37496,7 +37496,7 @@
             return selectedItem ? permissions2.getPermissions({ item: selectedItem }) : permissions2.getPermissions({ root: true });
           })
         );
-        const appStore = useAppStoreApi();
+        const appStore = useAppStoreApi;
         const onChange = (0, import_react50.useCallback)(createOnChange(fieldName, appStore), [
           fieldName
         ]);
@@ -37528,7 +37528,7 @@
           var _a5;
           return (_a5 = s2.selectedItem) == null ? void 0 : _a5.props.id;
         });
-        const appStore = useAppStoreApi();
+        const appStore = useAppStoreApi;
         useRegisterFieldsSlice(appStore, id);
         const fieldsLoading = useAppStore((s2) => s2.fields.loading);
         const fieldNames = useAppStore(
@@ -37540,13 +37540,13 @@
           })
         );
         const isLoading = fieldsLoading || componentResolving;
-        const Wrapper = (0, import_react50.useMemo)(() => overrides.fields || DefaultFields, [overrides]);
+        const Wrapper = (0, import_react50.useMemo)( => overrides.fields || DefaultFields, [overrides]);
         return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
           "form",
           {
             className: getClassName21({ wrapFields }),
             onSubmit: (e3) => {
-              e3.preventDefault();
+              e3.preventDefault;
             },
             children: [
               /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Wrapper, { isLoading, itemSelector, children: fieldNames.map((fieldName) => /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(FieldsChildMemo, { fieldName }, fieldName)) }),
@@ -37556,10 +37556,10 @@
         );
       };
       Fields = (0, import_react50.memo)(FieldsInternal);
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
       styles_module_default17 = { "ComponentList": "_ComponentList_1rrlt_1", "ComponentList--isExpanded": "_ComponentList--isExpanded_1rrlt_5", "ComponentList-content": "_ComponentList-content_1rrlt_9", "ComponentList-title": "_ComponentList-title_1rrlt_17", "ComponentList-titleIcon": "_ComponentList-titleIcon_1rrlt_53" };
       getClassName22 = get_class_name_factory_default("ComponentList", styles_module_default17);
       ComponentListItem = ({
@@ -37573,7 +37573,7 @@
             type: name
           }).insert
         );
-        (0, import_react52.useEffect)(() => {
+        (0, import_react52.useEffect)( => {
           if (overrides.componentItem) {
             console.warn(
               "The `componentItem` override has been deprecated and renamed to `drawerItem`"
@@ -37597,7 +37597,7 @@
             {
               type: "button",
               className: getClassName22("title"),
-              onClick: () => setUi({
+              onClick:  => setUi({
                 componentList: __spreadProps(__spreadValues({}, componentList), {
                   [id]: __spreadProps(__spreadValues({}, componentList[id]), {
                     expanded: !expanded
@@ -37625,11 +37625,11 @@
         ] });
       };
       ComponentList.Item = ComponentListItem;
-      useComponentList = () => {
-        const [componentList, setComponentList] = (0, import_react51.useState)();
+      useComponentList =  => {
+        const [componentList, setComponentList] = (0, import_react51.useState);
         const config = useAppStore((s2) => s2.config);
         const uiComponentList = useAppStore((s2) => s2.state.ui.componentList);
-        (0, import_react51.useEffect)(() => {
+        (0, import_react51.useEffect)( => {
           var _a5, _b3, _c4;
           if (Object.keys(uiComponentList).length > 0) {
             const matchedComponents = [];
@@ -37701,10 +37701,10 @@
         }, [config.categories, config.components, uiComponentList]);
         return componentList;
       };
-      Components = () => {
+      Components =  => {
         const overrides = useAppStore((s2) => s2.overrides);
-        const componentList = useComponentList();
-        const Wrapper = (0, import_react53.useMemo)(() => {
+        const componentList = useComponentList;
+        const Wrapper = (0, import_react53.useMemo)( => {
           if (overrides.components) {
             console.warn(
               "The `components` override has been deprecated and renamed to `drawer`"
@@ -37714,14 +37714,14 @@
         }, [overrides]);
         return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Wrapper, { children: componentList ? componentList : /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(ComponentList, { id: "all" }) });
       };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       styleSelector = 'style, link[rel="stylesheet"]';
       collectStyles = (doc) => {
         const collected = [];
         doc.querySelectorAll(styleSelector).forEach((style) => {
           if (style.tagName === "STYLE") {
-            const hasContent = !!style.innerHTML.trim();
+            const hasContent = !!style.innerHTML.trim;
             if (hasContent) {
               collected.push(style);
             }
@@ -37762,18 +37762,18 @@
       CopyHostStyles = ({
         children,
         debug = false,
-        onStylesLoaded = () => null
+        onStylesLoaded =  => null
       }) => {
-        const { document: doc, window: win } = useFrame();
-        (0, import_react55.useEffect)(() => {
+        const { document: doc, window: win } = useFrame;
+        (0, import_react55.useEffect)( => {
           if (!win || !doc) {
-            return () => {
+            return  => {
             };
           }
           let elements = [];
           const hashes = {};
           const lookupEl = (el) => elements.findIndex((elementMap) => elementMap.original === el);
-          const mirrorEl = (el, inlineStyles = false) => __async(void 0, null, function* () {
+          const mirrorEl = (el, inlineStyles = false) => __async(void 0, null, function*  {
             let mirror;
             if (el.nodeName === "LINK" && inlineStyles) {
               mirror = document.createElement("style");
@@ -37781,8 +37781,8 @@
               let styleSheet = getStyleSheet(el);
               if (!styleSheet) {
                 yield new Promise((resolve) => {
-                  const fn = () => {
-                    resolve();
+                  const fn =  => {
+                    resolve;
                     el.removeEventListener("load", fn);
                   };
                   el.addEventListener("load", fn);
@@ -37805,7 +37805,7 @@
             }
             return mirror;
           });
-          const addEl = (el) => __async(void 0, null, function* () {
+          const addEl = (el) => __async(void 0, null, function*  {
             const index = lookupEl(el);
             if (index > -1) {
               if (debug)
@@ -37834,7 +37834,7 @@
               return;
             }
             const elHash = (0, import_object_hash.default)(el.outerHTML);
-            (_b3 = (_a5 = elements[index]) == null ? void 0 : _a5.mirror) == null ? void 0 : _b3.remove();
+            (_b3 = (_a5 = elements[index]) == null ? void 0 : _a5.mirror) == null ? void 0 : _b3.remove;
             delete hashes[elHash];
             if (debug) console.log(`Removed style node ${el.outerHTML}`);
           };
@@ -37845,7 +37845,7 @@
                   if (node.nodeType === Node.TEXT_NODE || node.nodeType === Node.ELEMENT_NODE) {
                     const el = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
                     if (el && el.matches(styleSelector)) {
-                      defer(() => addEl(el));
+                      defer( => addEl(el));
                     }
                   }
                 });
@@ -37853,7 +37853,7 @@
                   if (node.nodeType === Node.TEXT_NODE || node.nodeType === Node.ELEMENT_NODE) {
                     const el = node.nodeType === Node.TEXT_NODE ? node.parentElement : node;
                     if (el && el.matches(styleSelector)) {
-                      defer(() => removeEl(el));
+                      defer( => removeEl(el));
                     }
                   }
                 });
@@ -37869,7 +37869,7 @@
           const parentBody = parentDocument.getElementsByTagName("body")[0];
           syncAttributes(parentBody, doc.body);
           Promise.all(
-            collectedStyles.map((styleNode, i2) => __async(void 0, null, function* () {
+            collectedStyles.map((styleNode, i2) => __async(void 0, null, function*  {
               if (styleNode.nodeName === "LINK") {
                 const linkHref = styleNode.href;
                 if (hrefs.indexOf(linkHref) > -1) {
@@ -37887,17 +37887,17 @@
               (el) => typeof el !== "undefined"
             );
             filtered.forEach((mirror) => {
-              mirror.onload = () => {
+              mirror.onload =  => {
                 stylesLoaded = stylesLoaded + 1;
                 if (stylesLoaded >= elements.length) {
-                  onStylesLoaded();
+                  onStylesLoaded;
                 }
               };
-              mirror.onerror = () => {
+              mirror.onerror =  => {
                 console.warn(`AutoFrame couldn't load a stylesheet`);
                 stylesLoaded = stylesLoaded + 1;
                 if (stylesLoaded >= elements.length) {
-                  onStylesLoaded();
+                  onStylesLoaded;
                 }
               };
             });
@@ -37909,22 +37909,22 @@
               hashes[elHash] = true;
             });
           });
-          return () => {
-            observer.disconnect();
+          return  => {
+            observer.disconnect;
           };
         }, []);
         return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(import_jsx_runtime35.Fragment, { children });
       };
       autoFrameContext = (0, import_react55.createContext)({});
-      useFrame = () => (0, import_react55.useContext)(autoFrameContext);
+      useFrame =  => (0, import_react55.useContext)(autoFrameContext);
       AutoFrame.displayName = "AutoFrame";
       AutoFrame_default = AutoFrame;
-      init_react_import();
+      init_react_import;
       styles_module_default18 = { "PuckPreview": "_PuckPreview_z2rgu_1", "PuckPreview-frame": "_PuckPreview-frame_z2rgu_6" };
       getClassName23 = get_class_name_factory_default("PuckPreview", styles_module_default18);
       useBubbleIframeEvents = (ref) => {
         const status = useAppStore((s2) => s2.status);
-        (0, import_react54.useEffect)(() => {
+        (0, import_react54.useEffect)( => {
           if (ref.current && status === "READY") {
             const iframe = ref.current;
             const handlePointerMove = (event) => {
@@ -37937,9 +37937,9 @@
               }));
               iframe.dispatchEvent(evt);
             };
-            const register = () => {
+            const register =  => {
               var _a5;
-              unregister();
+              unregister;
               (_a5 = iframe.contentDocument) == null ? void 0 : _a5.addEventListener(
                 "pointermove",
                 handlePointerMove,
@@ -37948,16 +37948,16 @@
                 }
               );
             };
-            const unregister = () => {
+            const unregister =  => {
               var _a5;
               (_a5 = iframe.contentDocument) == null ? void 0 : _a5.removeEventListener(
                 "pointermove",
                 handlePointerMove
               );
             };
-            register();
-            return () => {
-              unregister();
+            register;
+            return  => {
+              unregister;
             };
           }
         }, [status]);
@@ -37987,7 +37987,7 @@
           },
           [config]
         );
-        const Frame = (0, import_react54.useMemo)(() => overrides.iframe, [overrides]);
+        const Frame = (0, import_react54.useMemo)( => overrides.iframe, [overrides]);
         const rootProps = root.props || root;
         const ref = (0, import_react54.useRef)(null);
         useBubbleIframeEvents(ref);
@@ -38004,7 +38004,7 @@
             children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(DropZonePure, { zone: rootDroppableId })
           })
         ) : /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Render, { data: renderData, config, metadata });
-        (0, import_react54.useEffect)(() => {
+        (0, import_react54.useEffect)( => {
           if (!iframe.enabled) {
             setStatus("READY");
           }
@@ -38012,7 +38012,7 @@
         return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
           "div",
           {
-            className: getClassName23(),
+            className: getClassName23,
             id,
             "data-puck-preview": true,
             onClick: (e3) => {
@@ -38027,10 +38027,10 @@
                 id: "preview-frame",
                 className: getClassName23("frame"),
                 "data-rfd-iframe": true,
-                onReady: () => {
+                onReady:  => {
                   setStatus("READY");
                 },
-                onNotReady: () => {
+                onNotReady:  => {
                   setStatus("MOUNTED");
                 },
                 frameRef: ref,
@@ -38054,11 +38054,11 @@
           }
         );
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       styles_module_default19 = { "LayerTree": "_LayerTree_7rx04_1", "LayerTree-zoneTitle": "_LayerTree-zoneTitle_7rx04_11", "LayerTree-helper": "_LayerTree-helper_7rx04_17", "Layer": "_Layer_7rx04_1", "Layer-inner": "_Layer-inner_7rx04_29", "Layer--containsZone": "_Layer--containsZone_7rx04_35", "Layer-clickable": "_Layer-clickable_7rx04_39", "Layer--isSelected": "_Layer--isSelected_7rx04_61", "Layer-chevron": "_Layer-chevron_7rx04_77", "Layer--childIsSelected": "_Layer--childIsSelected_7rx04_78", "Layer-zones": "_Layer-zones_7rx04_82", "Layer-title": "_Layer-title_7rx04_96", "Layer-name": "_Layer-name_7rx04_105", "Layer-icon": "_Layer-icon_7rx04_111", "Layer-zoneIcon": "_Layer-zoneIcon_7rx04_116" };
-      init_react_import();
+      init_react_import;
       scrollIntoView = (el) => {
         const oldStyle = __spreadValues({}, el.style);
         el.style.scrollMargin = "256px";
@@ -38067,20 +38067,20 @@
           el.style.scrollMargin = oldStyle.scrollMargin || "";
         }
       };
-      init_react_import();
+      init_react_import;
       onScrollEnd = (frame, cb) => {
         let scrollTimeout;
-        const callback = function() {
+        const callback = function {
           clearTimeout(scrollTimeout);
-          scrollTimeout = setTimeout(function() {
-            cb();
+          scrollTimeout = setTimeout(function {
+            cb;
             frame == null ? void 0 : frame.removeEventListener("scroll", callback);
           }, 50);
         };
         frame == null ? void 0 : frame.addEventListener("scroll", callback);
-        setTimeout(() => {
+        setTimeout( => {
           if (!scrollTimeout) {
-            cb();
+            cb;
           }
         }, 50);
       };
@@ -38129,7 +38129,7 @@
           })) != null ? _b3 : false;
         });
         const componentConfig = config.components[nodeData.data.type];
-        const label = (_a5 = componentConfig == null ? void 0 : componentConfig["label"]) != null ? _a5 : nodeData.data.type.toString();
+        const label = (_a5 = componentConfig == null ? void 0 : componentConfig["label"]) != null ? _a5 : nodeData.data.type.toString;
         return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)(
           "li",
           {
@@ -38145,12 +38145,12 @@
                 {
                   type: "button",
                   className: getClassNameLayer("clickable"),
-                  onClick: () => {
+                  onClick:  => {
                     if (isSelected) {
                       setItemSelector(null);
                       return;
                     }
-                    const frame = getFrame();
+                    const frame = getFrame;
                     const el = frame == null ? void 0 : frame.querySelector(
                       `[data-puck-component="${itemId}"]`
                     );
@@ -38162,7 +38162,7 @@
                       return;
                     }
                     scrollIntoView(el);
-                    onScrollEnd(frame, () => {
+                    onScrollEnd(frame,  => {
                       setItemSelector({
                         index,
                         zone: zoneCompound
@@ -38170,11 +38170,11 @@
                     });
                   },
                   onMouseEnter: (e3) => {
-                    e3.stopPropagation();
+                    e3.stopPropagation;
                     zoneStore.setState({ hoveringComponent: itemId });
                   },
                   onMouseLeave: (e3) => {
-                    e3.stopPropagation();
+                    e3.stopPropagation;
                     zoneStore.setState({ hoveringComponent: null });
                   },
                   children: [
@@ -38224,7 +38224,7 @@
             /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { className: getClassName24("zoneIcon"), children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Layers, { size: "16" }) }),
             label
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("ul", { className: getClassName24(), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("ul", { className: getClassName24, children: [
             contentIds.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { className: getClassName24("helper"), children: "No items" }),
             contentIds.map((itemId, i2) => {
               return /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
@@ -38240,18 +38240,18 @@
           ] })
         ] });
       };
-      init_react_import();
+      init_react_import;
       findZonesForArea = (state, area) => {
         return Object.keys(state.indexes.zones).filter(
           (zone) => zone.split(":")[0] === area
         );
       };
-      Outline = () => {
+      Outline =  => {
         const outlineOverride = useAppStore((s2) => s2.overrides.outline);
         const rootZones = useAppStore(
           useShallow((s2) => findZonesForArea(s2.state, "root"))
         );
-        const Wrapper = (0, import_react57.useMemo)(() => outlineOverride || "div", [outlineOverride]);
+        const Wrapper = (0, import_react57.useMemo)( => outlineOverride || "div", [outlineOverride]);
         return /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Wrapper, { children: rootZones.map((zoneCompound) => /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(
           LayerTree,
           {
@@ -38261,9 +38261,9 @@
           zoneCompound
         )) });
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       styles_module_default20 = { "ViewportControls": "_ViewportControls_gejzr_1", "ViewportControls-divider": "_ViewportControls-divider_gejzr_15", "ViewportControls-zoomSelect": "_ViewportControls-zoomSelect_gejzr_21", "ViewportButton--isActive": "_ViewportButton--isActive_gejzr_38", "ViewportButton-inner": "_ViewportButton-inner_gejzr_38" };
       icons = {
         Smartphone: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Smartphone, { size: 16 }),
@@ -38281,7 +38281,7 @@
       }) => {
         const viewports = useAppStore((s2) => s2.state.ui.viewports);
         const [isActive, setIsActive] = (0, import_react59.useState)(false);
-        (0, import_react59.useEffect)(() => {
+        (0, import_react59.useEffect)( => {
           setIsActive(width === viewports.current.width);
         }, [width, viewports.current.width]);
         return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("span", { className: getClassNameButton({ isActive }), children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
@@ -38291,7 +38291,7 @@
             title,
             disabled: isActive,
             onClick: (e3) => {
-              e3.stopPropagation();
+              e3.stopPropagation;
               onClick({ width, height });
             },
             children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("span", { className: getClassNameButton("inner"), children })
@@ -38319,7 +38319,7 @@
           (option) => option.value === autoZoom
         );
         const zoomOptions = (0, import_react59.useMemo)(
-          () => [
+           => [
             ...defaultZoomOptions,
             ...defaultsContainAutoZoom ? [] : [
               {
@@ -38330,7 +38330,7 @@
           ].filter((a2) => a2.value <= autoZoom).sort((a2, b2) => a2.value > b2.value ? 1 : -1),
           [autoZoom]
         );
-        return /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("div", { className: getClassName25(), children: [
+        return /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("div", { className: getClassName25, children: [
           viewports.map((viewport, i2) => /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
             ViewportButton,
             {
@@ -38350,7 +38350,7 @@
               title: "Zoom viewport out",
               disabled: zoom <= ((_a5 = zoomOptions[0]) == null ? void 0 : _a5.value),
               onClick: (e3) => {
-                e3.stopPropagation();
+                e3.stopPropagation;
                 onZoom(
                   zoomOptions[Math.max(
                     zoomOptions.findIndex((option) => option.value === zoom) - 1,
@@ -38368,7 +38368,7 @@
               title: "Zoom viewport in",
               disabled: zoom >= ((_b3 = zoomOptions[zoomOptions.length - 1]) == null ? void 0 : _b3.value),
               onClick: (e3) => {
-                e3.stopPropagation();
+                e3.stopPropagation;
                 onZoom(
                   zoomOptions[Math.min(
                     zoomOptions.findIndex((option) => option.value === zoom) + 1,
@@ -38384,9 +38384,9 @@
             "select",
             {
               className: getClassName25("zoomSelect"),
-              value: zoom.toString(),
+              value: zoom.toString,
               onClick: (e3) => {
-                e3.stopPropagation();
+                e3.stopPropagation;
               },
               onChange: (e3) => {
                 onZoom(parseFloat(e3.currentTarget.value));
@@ -38403,23 +38403,23 @@
           )
         ] });
       };
-      init_react_import();
+      init_react_import;
       styles_module_default21 = { "PuckCanvas": "_PuckCanvas_18jay_1", "PuckCanvas-controls": "_PuckCanvas-controls_18jay_16", "PuckCanvas-inner": "_PuckCanvas-inner_18jay_21", "PuckCanvas-root": "_PuckCanvas-root_18jay_30", "PuckCanvas--ready": "_PuckCanvas--ready_18jay_55", "PuckCanvas-loader": "_PuckCanvas-loader_18jay_60", "PuckCanvas--showLoader": "_PuckCanvas--showLoader_18jay_70" };
-      init_react_import();
+      init_react_import;
       FrameContext = (0, import_react60.createContext)(null);
       FrameProvider = ({
         children
       }) => {
         const frameRef = (0, import_react60.useRef)(null);
         const value = (0, import_react60.useMemo)(
-          () => ({
+           => ({
             frameRef
           }),
           []
         );
         return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(FrameContext.Provider, { value, children });
       };
-      useCanvasFrame = () => {
+      useCanvasFrame =  => {
         const context = (0, import_react60.useContext)(FrameContext);
         if (context === null) {
           throw new Error("useCanvasFrame must be used within a FrameProvider");
@@ -38429,8 +38429,8 @@
       getClassName26 = get_class_name_factory_default("PuckCanvas", styles_module_default21);
       ZOOM_ON_CHANGE = true;
       TRANSITION_DURATION = 150;
-      Canvas = () => {
-        const { frameRef } = useCanvasFrame();
+      Canvas =  => {
+        const { frameRef } = useCanvasFrame;
         const resetAutoZoom = useResetAutoZoom(frameRef);
         const {
           dispatch,
@@ -38468,15 +38468,15 @@
         );
         const [showTransition, setShowTransition] = (0, import_react58.useState)(false);
         const isResizingRef = (0, import_react58.useRef)(false);
-        const defaultRender = (0, import_react58.useMemo)(() => {
+        const defaultRender = (0, import_react58.useMemo)( => {
           const PuckDefault = ({ children }) => /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(import_jsx_runtime41.Fragment, { children });
           return PuckDefault;
         }, []);
         const CustomPreview = (0, import_react58.useMemo)(
-          () => overrides.preview || defaultRender,
+           => overrides.preview || defaultRender,
           [overrides]
         );
-        const getFrameDimensions = (0, import_react58.useCallback)(() => {
+        const getFrameDimensions = (0, import_react58.useCallback)( => {
           if (frameRef.current) {
             const frame = frameRef.current;
             const box = getBox(frame);
@@ -38484,8 +38484,8 @@
           }
           return { width: 0, height: 0 };
         }, [frameRef]);
-        (0, import_react58.useEffect)(() => {
-          resetAutoZoom();
+        (0, import_react58.useEffect)( => {
+          resetAutoZoom;
         }, [
           frameRef,
           leftSideBarVisible,
@@ -38494,34 +38494,34 @@
           rightSideBarWidth,
           viewports
         ]);
-        (0, import_react58.useEffect)(() => {
-          const { height: frameHeight } = getFrameDimensions();
+        (0, import_react58.useEffect)( => {
+          const { height: frameHeight } = getFrameDimensions;
           if (viewports.current.height === "auto") {
             setZoomConfig(__spreadProps(__spreadValues({}, zoomConfig), {
               rootHeight: frameHeight / zoomConfig.zoom
             }));
           }
         }, [zoomConfig.zoom, getFrameDimensions, setZoomConfig]);
-        (0, import_react58.useEffect)(() => {
+        (0, import_react58.useEffect)( => {
           if (ZOOM_ON_CHANGE) {
-            resetAutoZoom();
+            resetAutoZoom;
           }
         }, [viewports.current.width, viewports]);
-        (0, import_react58.useEffect)(() => {
+        (0, import_react58.useEffect)( => {
           if (!frameRef.current) return;
-          const resizeObserver = new ResizeObserver(() => {
+          const resizeObserver = new ResizeObserver( => {
             if (!isResizingRef.current) {
-              resetAutoZoom();
+              resetAutoZoom;
             }
           });
           resizeObserver.observe(frameRef.current);
-          return () => {
-            resizeObserver.disconnect();
+          return  => {
+            resizeObserver.disconnect;
           };
         }, [frameRef.current]);
         const [showLoader, setShowLoader] = (0, import_react58.useState)(false);
-        (0, import_react58.useEffect)(() => {
-          setTimeout(() => {
+        (0, import_react58.useEffect)( => {
+          setTimeout( => {
             setShowLoader(true);
           }, 500);
         }, []);
@@ -38586,7 +38586,7 @@
                     },
                     suppressHydrationWarning: true,
                     id: "puck-canvas-root",
-                    onTransitionEnd: () => {
+                    onTransitionEnd:  => {
                       setShowTransition(false);
                       isResizingRef.current = false;
                     },
@@ -38599,8 +38599,8 @@
           }
         );
       };
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
       loadOverrides = ({
         overrides,
         plugins
@@ -38637,27 +38637,27 @@
         overrides,
         plugins
       }) => {
-        return (0, import_react61.useMemo)(() => {
+        return (0, import_react61.useMemo)( => {
           return loadOverrides({ overrides, plugins });
         }, [plugins, overrides]);
       };
-      init_react_import();
+      init_react_import;
       DefaultOverride = ({ children }) => /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_jsx_runtime42.Fragment, { children });
-      init_react_import();
+      init_react_import;
       styles = ``;
       useInjectStyleSheet = (initialStyles, iframeEnabled) => {
-        const [el, setEl] = (0, import_react62.useState)();
-        (0, import_react62.useEffect)(() => {
+        const [el, setEl] = (0, import_react62.useState);
+        (0, import_react62.useEffect)( => {
           setEl(document.createElement("style"));
         }, []);
-        (0, import_react62.useEffect)(() => {
+        (0, import_react62.useEffect)( => {
           var _a5;
           if (!el || typeof window === "undefined") {
             return;
           }
           el.innerHTML = initialStyles;
           if (iframeEnabled) {
-            const frame = getFrame();
+            const frame = getFrame;
             (_a5 = frame == null ? void 0 : frame.head) == null ? void 0 : _a5.appendChild(el);
           }
           document.head.appendChild(el);
@@ -38667,11 +38667,11 @@
       useInjectGlobalCss = (iframeEnabled) => {
         return useInjectStyleSheet(styles, iframeEnabled);
       };
-      init_react_import();
-      usePreviewModeHotkeys = () => {
-        const appStore = useAppStoreApi();
-        const toggleInteractive = (0, import_react63.useCallback)(() => {
-          const dispatch = appStore.getState().dispatch;
+      init_react_import;
+      usePreviewModeHotkeys =  => {
+        const appStore = useAppStoreApi;
+        const toggleInteractive = (0, import_react63.useCallback)( => {
+          const dispatch = appStore.getState.dispatch;
           dispatch({
             type: "setUi",
             ui: (ui) => ({
@@ -38682,15 +38682,15 @@
         useHotkey({ meta: true, i: true }, toggleInteractive);
         useHotkey({ ctrl: true, i: true }, toggleInteractive);
       };
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       styles_module_default22 = { "MenuBar": "_MenuBar_8pf8c_1", "MenuBar--menuOpen": "_MenuBar--menuOpen_8pf8c_14", "MenuBar-inner": "_MenuBar-inner_8pf8c_29", "MenuBar-history": "_MenuBar-history_8pf8c_45" };
       getClassName27 = get_class_name_factory_default("MenuBar", styles_module_default22);
-      init_react_import();
+      init_react_import;
       styles_module_default23 = { "PuckHeader": "_PuckHeader_15xnq_1", "PuckHeader-inner": "_PuckHeader-inner_15xnq_10", "PuckHeader-toggle": "_PuckHeader-toggle_15xnq_20", "PuckHeader--rightSideBarVisible": "_PuckHeader--rightSideBarVisible_15xnq_27", "PuckHeader-rightSideBarToggle": "_PuckHeader-rightSideBarToggle_15xnq_27", "PuckHeader--leftSideBarVisible": "_PuckHeader--leftSideBarVisible_15xnq_28", "PuckHeader-leftSideBarToggle": "_PuckHeader-leftSideBarToggle_15xnq_28", "PuckHeader-title": "_PuckHeader-title_15xnq_32", "PuckHeader-path": "_PuckHeader-path_15xnq_36", "PuckHeader-tools": "_PuckHeader-tools_15xnq_43", "PuckHeader-menuButton": "_PuckHeader-menuButton_15xnq_49", "PuckHeader--menuOpen": "_PuckHeader--menuOpen_15xnq_54" };
       getClassName28 = get_class_name_factory_default("PuckHeader", styles_module_default23);
-      HeaderInner = () => {
+      HeaderInner =  => {
         const {
           onPublish,
           renderHeader,
@@ -38698,10 +38698,10 @@
           headerTitle,
           headerPath,
           iframe: _iframe
-        } = usePropsContext();
+        } = usePropsContext;
         const dispatch = useAppStore((s2) => s2.dispatch);
-        const appStore = useAppStoreApi();
-        const defaultHeaderRender = (0, import_react64.useMemo)(() => {
+        const appStore = useAppStoreApi;
+        const defaultHeaderRender = (0, import_react64.useMemo)( => {
           if (renderHeader) {
             console.warn(
               "`renderHeader` is deprecated. Please use `overrides.header` and the `usePuck` hook instead"
@@ -38716,7 +38716,7 @@
           }
           return DefaultOverride;
         }, [renderHeader]);
-        const defaultHeaderActionsRender = (0, import_react64.useMemo)(() => {
+        const defaultHeaderActionsRender = (0, import_react64.useMemo)( => {
           if (renderHeaderActions) {
             console.warn(
               "`renderHeaderActions` is deprecated. Please use `overrides.headerActions` and the `usePuck` hook instead."
@@ -38766,8 +38766,8 @@
             actions: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(import_jsx_runtime44.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(CustomHeaderActions, { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
               Button,
               {
-                onClick: () => {
-                  const data = appStore.getState().state.data;
+                onClick:  => {
+                  const data = appStore.getState.state.data;
                   onPublish && onPublish(data);
                 },
                 icon: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Globe, { size: "14px" }),
@@ -38784,7 +38784,7 @@
                       IconButton,
                       {
                         type: "button",
-                        onClick: () => {
+                        onClick:  => {
                           toggleSidebars("left");
                         },
                         title: "Toggle left sidebar",
@@ -38795,7 +38795,7 @@
                       IconButton,
                       {
                         type: "button",
-                        onClick: () => {
+                        onClick:  => {
                           toggleSidebars("right");
                         },
                         title: "Toggle right sidebar",
@@ -38815,7 +38815,7 @@
                       IconButton,
                       {
                         type: "button",
-                        onClick: () => {
+                        onClick:  => {
                           return setMenuOpen(!menuOpen);
                         },
                         title: "Toggle menu bar",
@@ -38828,11 +38828,11 @@
                         dispatch,
                         onPublish,
                         menuOpen,
-                        renderHeaderActions: () => /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(CustomHeaderActions, { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+                        renderHeaderActions:  => /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(CustomHeaderActions, { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
                           Button,
                           {
-                            onClick: () => {
-                              const data = appStore.getState().state.data;
+                            onClick:  => {
+                              const data = appStore.getState.state.data;
                               onPublish && onPublish(data);
                             },
                             icon: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Globe, { size: "14px" }),
@@ -38850,9 +38850,9 @@
         );
       };
       Header = (0, import_react64.memo)(HeaderInner);
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
       styles_module_default24 = { "ResizeHandle": "_ResizeHandle_144bf_2", "ResizeHandle--left": "_ResizeHandle--left_144bf_16", "ResizeHandle--right": "_ResizeHandle--right_144bf_20" };
       getClassName29 = get_class_name_factory_default("ResizeHandle", styles_module_default24);
       ResizeHandle = ({
@@ -38861,7 +38861,7 @@
         onResize,
         onResizeEnd
       }) => {
-        const { frameRef } = useCanvasFrame();
+        const { frameRef } = useCanvasFrame;
         const resetAutoZoom = useResetAutoZoom(frameRef);
         const handleRef = (0, import_react65.useRef)(null);
         const isDragging = (0, import_react65.useRef)(false);
@@ -38874,11 +38874,11 @@
             const newWidth = position === "left" ? startWidth.current + delta : startWidth.current - delta;
             const width = Math.max(192, newWidth);
             onResize(width);
-            e3.preventDefault();
+            e3.preventDefault;
           },
           [onResize, position]
         );
-        const handleMouseUp = (0, import_react65.useCallback)(() => {
+        const handleMouseUp = (0, import_react65.useCallback)( => {
           var _a5;
           if (!isDragging.current) return;
           isDragging.current = false;
@@ -38890,16 +38890,16 @@
           }
           document.removeEventListener("mousemove", handleMouseMove);
           document.removeEventListener("mouseup", handleMouseUp);
-          const finalWidth = ((_a5 = sidebarRef.current) == null ? void 0 : _a5.getBoundingClientRect().width) || 0;
+          const finalWidth = ((_a5 = sidebarRef.current) == null ? void 0 : _a5.getBoundingClientRect.width) || 0;
           onResizeEnd(finalWidth);
-          resetAutoZoom();
+          resetAutoZoom;
         }, [onResizeEnd]);
         const handleMouseDown = (0, import_react65.useCallback)(
           (e3) => {
             var _a5;
             isDragging.current = true;
             startX.current = e3.clientX;
-            startWidth.current = ((_a5 = sidebarRef.current) == null ? void 0 : _a5.getBoundingClientRect().width) || 0;
+            startWidth.current = ((_a5 = sidebarRef.current) == null ? void 0 : _a5.getBoundingClientRect.width) || 0;
             document.body.style.cursor = "col-resize";
             document.body.style.userSelect = "none";
             const overlay = document.createElement("div");
@@ -38908,7 +38908,7 @@
             document.body.appendChild(overlay);
             document.addEventListener("mousemove", handleMouseMove);
             document.addEventListener("mouseup", handleMouseUp);
-            e3.preventDefault();
+            e3.preventDefault;
           },
           [position, handleMouseMove, handleMouseUp]
         );
@@ -38921,7 +38921,7 @@
           }
         );
       };
-      init_react_import();
+      init_react_import;
       styles_module_default25 = { "Sidebar": "_Sidebar_1xksb_1", "Sidebar--left": "_Sidebar--left_1xksb_8", "Sidebar--right": "_Sidebar--right_1xksb_14", "Sidebar-resizeHandle": "_Sidebar-resizeHandle_1xksb_20" };
       getClassName30 = get_class_name_factory_default("Sidebar", styles_module_default25);
       Sidebar = ({
@@ -38946,54 +38946,54 @@
           ) })
         ] });
       };
-      init_react_import();
+      init_react_import;
       getClassName31 = get_class_name_factory_default("Puck", styles_module_default15);
       getLayoutClassName = get_class_name_factory_default("PuckLayout", styles_module_default15);
-      FieldSideBar = () => {
+      FieldSideBar =  => {
         const title = useAppStore(
           (s2) => {
             var _a5, _b3;
-            return s2.selectedItem ? (_b3 = (_a5 = s2.config.components[s2.selectedItem.type]) == null ? void 0 : _a5["label"]) != null ? _b3 : s2.selectedItem.type.toString() : "Page";
+            return s2.selectedItem ? (_b3 = (_a5 = s2.config.components[s2.selectedItem.type]) == null ? void 0 : _a5["label"]) != null ? _b3 : s2.selectedItem.type.toString : "Page";
           }
         );
         return /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(SidebarSection, { noPadding: true, noBorderTop: true, showBreadcrumbs: true, title, children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Fields, {}) });
       };
       propsContext = (0, import_react48.createContext)({});
-      usePropsContext = () => (0, import_react48.useContext)(propsContext);
+      usePropsContext =  => (0, import_react48.useContext)(propsContext);
       Puck.Components = Components;
       Puck.Fields = Fields;
       Puck.Outline = Outline;
       Puck.Preview = Preview2;
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
-      init_react_import();
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
+      init_react_import;
     }
   });
 
   // node_modules/@measured/puck/dist/index.mjs
   var init_dist4 = __esm({
-    "node_modules/@measured/puck/dist/index.mjs"() {
-      init_chunk_QIGVND56();
-      init_chunk_OOLYDXKW();
-      init_react_import();
+    "node_modules/@measured/puck/dist/index.mjs" {
+      init_chunk_QIGVND56;
+      init_chunk_OOLYDXKW;
+      init_react_import;
     }
   });
 
   // admin/puck-editor.jsx
   var require_puck_editor = __commonJS({
-    "admin/puck-editor.jsx"() {
-      var import_react67 = __toESM(require_react());
-      var import_client = __toESM(require_client());
-      init_dist4();
+    "admin/puck-editor.jsx" {
+      var import_react67 = __toESM(require_react);
+      var import_client = __toESM(require_client);
+      init_dist4;
       var config = {
         components: {
           Heading: {
@@ -39016,8 +39016,8 @@
       root.render(/* @__PURE__ */ import_react67.default.createElement(Puck, { config, data }));
     }
   });
-  require_puck_editor();
-})();
+  require_puck_editor;
+});
 /*! Bundled license information:
 
 react/cjs/react.development.js:
