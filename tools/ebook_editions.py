@@ -18,6 +18,9 @@ CSS = ('<style id="eb-editions-css">.eb-eds{margin:0 auto 18px;max-width:1100px;
        '@media(max-width:640px){.eb-eds{padding:0 12px}.eb-eds .sc{overflow:visible}.eb-eds table,.eb-eds tbody,.eb-eds tr,.eb-eds td{display:block;width:auto}.eb-eds thead{display:none}'
        '.eb-eds tr{border:1px solid rgba(128,128,128,.35);border-radius:10px;padding:8px 10px;margin:0 0 8px}.eb-eds td,.eb-eds td.n{border:0;padding:2px 0;white-space:normal;overflow-wrap:anywhere}'
        '.eb-eds td:first-child{font-weight:600}.eb-eds td:nth-child(2)::before{content:"Edition · ";opacity:.7;font-size:12px}.eb-eds td:nth-child(3)::before{content:"Price · ";opacity:.7;font-size:12px}}</style>')
+ACADEMY = ('<section class="eb-about eb-bundle" id="academy-upsell"><h2>Cedwyn Academy · £49.99 a month</h2>'
+           '<p>Members get the latest version of every e-book and the latest documentary scenes included, with the course on the case, module by module.</p>'
+           '<div class="eb-actions2"><a class="sl-btn" href="/learn/">See the Academy</a></div></section>')
 def table(D):
     rows = ''.join(f'<tr><td><a href="{E(b["page"] or "/ebooks/")}">{E(b["title"])}</a></td><td class="n">{E(b["edition"])}' + (f'<br><small><a href="{E(b["supplement"])}">+ supplement, 25 Oct 2026 (free PDF)</a></small>' if b.get('supplement') else '') + '</td>'
                    f'<td class="n">{E(b["price"])}</td></tr>' for b in D['books'])
@@ -33,6 +36,9 @@ def run(dist):
         if 'id="editions"' not in t:
             m = re.search(r'<main\b[^>]*>', t)
             if m: t = t[:m.end()] + table(D) + t[m.end():]
+        if 'id="academy-upsell"' not in t:   # cross-sell: membership includes the latest editions (27 Oct 2026) - Sion's Tab agent
+            m = re.search(r'<section class="eb-about eb-bundle" id="all-four">.*?</section>', t, flags=re.S)
+            if m: t = t[:m.end()] + ACADEMY + t[m.end():]
         for b in D['books']:   # "version x.y.z · £" on the book's own card
             m = re.search(r'(<article class="eb-card" id="%s".*?<p class="eb-facts">)' % re.escape(b['id']), t, flags=re.S)
             if m and ('data-eb-ver="%s"' % b['id']) not in t:
