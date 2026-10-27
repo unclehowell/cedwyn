@@ -402,6 +402,7 @@ def wales(sections, S, cfg, H):
 <div class="hv-btns"><a class="hv-btn pri" href="#tour" data-hv-go="0" data-i18n="w_start">{E(tx(T,'w_start',l))}</a><a class="hv-btn" href="#shop" data-i18n="w_tickets">{E(tx(T,'w_tickets',l))}</a><a class="hv-btn" href="#menu" data-i18n="w_menu">{E(tx(T,'w_menu',l))}</a></div>
 {mn}
 <section id="route"><h2 data-i18n="w_map_h">{E(tx(T,'w_map_h',l))}</h2><p class="mut" data-i18n="w_map_p">{E(tx(T,'w_map_p',l))}</p>{mp}</section>
+<figure class="hv-holo" id="hologram" style="margin:0 0 14px"><img src="{img(H,'wales-hologram')}" width="1536" height="864" alt="{E(tx(T,'w_holo_alt',l))}" data-i18n-al="w_holo_alt" loading="lazy" decoding="async" style="width:100%;height:auto;aspect-ratio:16/9;object-fit:cover"><figcaption class="mut" style="padding:6px 2px 0;font-size:13px" data-i18n="w_holo_cap">{E(tx(T,'w_holo_cap',l))}</figcaption></figure>
 <section id="tour">{stops}
 <div class="hv-nav"><button type="button" class="hv-btn" id="hv-prev" data-i18n="w_prev">{E(tx(T,'w_prev',l))}</button><span id="hv-cnt" class="mut">1 / {ns}</span>
 <button type="button" class="hv-btn" id="hv-say" data-i18n="w_listen">{E(tx(T,'w_listen',l))}</button><button type="button" class="hv-btn pri" id="hv-next" data-i18n="w_next">{E(tx(T,'w_next',l))}</button></div></section>
