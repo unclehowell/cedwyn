@@ -2,11 +2,11 @@
  * No sign-in, no email. Backend: comments.bucklerfamily.estate (Cloudflare Worker + R2, open JSON API for people and AI agents:
  * https://cedwyn.bucklerfamily.estate/fb/api/). Comments appear straight away unless the automatic filter holds them for review.
  * Stored: display name (default "Guest"), comment, post id, time, likes. No email, no IP address. — Cedwyn editors */
-(function  {
+(function () {
   "use strict";
   var API = "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fcomments.bucklerfamily.estate";
   var NOTE = "Comments appear straight away. Be respectful; no accusations about named people. Posts that break this are hidden.";
-  var started = Date.now, feed = {}, single = document.body.getAttribute("data-post");
+  var started = Date.now(), feed = {}, single = document.body.getAttribute("data-post");
   var LS = { get: function (k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }, set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
   var ICON = {
     x: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
@@ -21,20 +21,20 @@
   };
   function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
   function h(s) { var d = el("div"); d.innerHTML = s; return d.firstChild; }
-  function initials(n) { var p = String(n || "Guest").replace(/[^\p{L}\p{N} ]/gu, " ").trim.split(/\s+/); return ((p[0] || "G")[0] + (p.length > 1 ? p[p.length - 1][0] : "")).toUpperCase; }
-  function hue(n) { var x = 0, s = String(n || "Guest").toLowerCase; for (var i = 0; i < s.length; i++) x = (x * 31 + s.charCodeAt(i)) >>> 0; return x % 360; }
+  function initials(n) { var p = String(n || "Guest").replace(/[^\p{L}\p{N} ]/gu, " ").trim().split(/\s+/); return ((p[0] || "G")[0] + (p.length > 1 ? p[p.length - 1][0] : "")).toUpperCase(); }
+  function hue(n) { var x = 0, s = String(n || "Guest").toLowerCase(); for (var i = 0; i < s.length; i++) x = (x * 31 + s.charCodeAt(i)) >>> 0; return x % 360; }
   function avatar(n, size, agent) { var a = el("span", "fbc-av" + (agent ? " fbc-av-bot" : ""), agent ? "🤖" : initials(n)); a.style.setProperty("--h", hue(n)); a.style.width = a.style.height = size + "px"; a.style.fontSize = Math.round(size * 0.4) + "px"; a.setAttribute("aria-hidden", "true"); return a; }
-  function ago(ts) { var s = (Date.now - new Date(ts).getTime) / 1000; if (!(s >= 0)) s = 0; if (s < 60) return "Just now"; if (s < 3600) return Math.floor(s / 60) + "m"; if (s < 86400) return Math.floor(s / 3600) + "h"; if (s < 604800) return Math.floor(s / 86400) + "d"; if (s < 2419200) return Math.floor(s / 604800) + "w"; try { return new Date(ts).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); } catch (e) { return ""; } }
-  function pidOf(a) { return a.id.toLowerCase; }
+  function ago(ts) { var s = (Date.now() - new Date(ts).getTime()) / 1000; if (!(s >= 0)) s = 0; if (s < 60) return "Just now"; if (s < 3600) return Math.floor(s / 60) + "m"; if (s < 86400) return Math.floor(s / 3600) + "h"; if (s < 604800) return Math.floor(s / 86400) + "d"; if (s < 2419200) return Math.floor(s / 604800) + "w"; try { return new Date(ts).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); } catch (e) { return ""; } }
+  function pidOf(a) { return a.id.toLowerCase(); }
   function link(id) { return location.origin + "/p/" + id + ".html"; }
   var ME = null; // signed-in family member (from /m/api/me), else null: guests comment as before
-  function myName { return ME ? ME.name : (LS.get("ghfc-name", "") || "Guest"); }
+  function myName() { return ME ? ME.name : (LS.get("ghfc-name", "") || "Guest"); }
   function avImg(src, size, href, label) { var pa = el(href ? "a" : "span", "fbc-av fbc-av-img"); if (href) { pa.href = href; pa.setAttribute("aria-label", label + " profile"); } var pi = el("img"); pi.src = src; pi.alt = ""; pi.width = pi.height = size; pi.loading = "lazy"; pa.appendChild(pi); pa.style.width = pa.style.height = size + "px"; return pa; }
   var liked = LS.get("ghfc-likes", {});
-  function mine { var m = LS.get("ghfc-mine", []), now = Date.now; return m.filter(function (x) { return x.status === "pending" ? now - x.at < 14 * 864e5 : now - x.at < 6e5; }); }
-  function remember(post, c, status) { var m = mine; m.push({ post: post, status: status, at: Date.now, c: c }); LS.set("ghfc-mine", m.slice(-50)); }
-  function api(path, body) { return fetch(API + path, body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : {}).then(function (r) { return r.json.then(function (d) { d._status = r.status; return d; }); }); }
-  function toast(t) { var x = el("div", "fbc-toast", t); document.body.appendChild(x); setTimeout(function  { x.remove; }, 1800); }
+  function mine() { var m = LS.get("ghfc-mine", []), now = Date.now(); return m.filter(function (x) { return x.status === "pending" ? now - x.at < 14 * 864e5 : now - x.at < 6e5; }); }
+  function remember(post, c, status) { var m = mine(); m.push({ post: post, status: status, at: Date.now(), c: c }); LS.set("ghfc-mine", m.slice(-50)); }
+  function api(path, body) { return fetch(API + path, body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : {}).then(function (r) { return r.json().then(function (d) { d._status = r.status; return d; }); }); }
+  function toast(t) { var x = el("div", "fbc-toast", t); document.body.appendChild(x); setTimeout(function () { x.remove(); }, 1800); }
 
   function likeReq(post, cid, on) { var b = { post: post }; if (cid) b.comment = cid; if (!on) b.unlike = true; return api("/api/like", b); }
 
@@ -50,15 +50,15 @@
     if (c.agent) { var bd = el("span", "fbc-bot", "🤖 AI agent"); bd.title = "Posted by an AI agent (self-declared)"; nm.appendChild(bd); }
     bub.appendChild(nm); var tx = el("div", "fbc-tx"); tx.textContent = c.text; bub.appendChild(tx);
     var key = st.post + "/" + c.id, n = c.likes || 0;
-    var lc = el("span", "fbc-lc"); function paintLc { lc.innerHTML = n ? ICON.thumb + "<i>" + n + "</i>" : ""; lc.hidden = !n; } paintLc; bub.appendChild(lc);
+    var lc = el("span", "fbc-lc"); function paintLc() { lc.innerHTML = n ? ICON.thumb + "<i>" + n + "</i>" : ""; lc.hidden = !n; } paintLc(); bub.appendChild(lc);
     col.appendChild(bub);
     var meta = el("div", "fbc-meta");
     if (c.pending) { meta.appendChild(el("span", "fbc-pend", "Pending review · only you can see this")); }
     else {
       var lb = el("button", "fbc-a", "Like"); lb.type = "button"; if (liked[key]) lb.classList.add("on"); lb.setAttribute("aria-pressed", liked[key] ? "true" : "false");
-      lb.addEventListener("click", function  { var on = !liked[key]; liked[key] = on ? 1 : 0; if (!on) delete liked[key]; LS.set("ghfc-likes", liked); lb.classList.toggle("on", on); lb.setAttribute("aria-pressed", on); n = Math.max(0, n + (on ? 1 : -1)); paintLc; likeReq(st.post, c.id, on).then(function (d) { if (d && typeof d.likes === "number") { n = d.likes; paintLc; } }).catch(function  {}); });
+      lb.addEventListener("click", function () { var on = !liked[key]; liked[key] = on ? 1 : 0; if (!on) delete liked[key]; LS.set("ghfc-likes", liked); lb.classList.toggle("on", on); lb.setAttribute("aria-pressed", on); n = Math.max(0, n + (on ? 1 : -1)); paintLc(); likeReq(st.post, c.id, on).then(function (d) { if (d && typeof d.likes === "number") { n = d.likes; paintLc(); } }).catch(function () {}); });
       var rb = el("button", "fbc-a", "Reply"); rb.type = "button";
-      rb.addEventListener("click", function  { st.reply(isReply ? c.parent : c.id, c.name, wrap); });
+      rb.addEventListener("click", function () { st.reply(isReply ? c.parent : c.id, c.name, wrap); });
       meta.appendChild(lb); meta.appendChild(rb);
     }
     var t = el("time", "fbc-t", c.pending ? "" : ago(c.ts)); t.dateTime = c.ts; t.title = new Date(c.ts).toLocaleString("en-GB"); meta.appendChild(t);
@@ -69,35 +69,35 @@
   function composer(st, opts) {
     opts = opts || {};
     var f = el("form", "fbc-form" + (opts.reply ? " fbc-form-r" : "")); f.noValidate = true;
-    var av = ME && ME.avatar ? avImg(ME.avatar, opts.reply ? 24 : 32, ME.profile, ME.name) : avatar(myName, opts.reply ? 24 : 32); f.appendChild(av);
+    var av = ME && ME.avatar ? avImg(ME.avatar, opts.reply ? 24 : 32, ME.profile, ME.name) : avatar(myName(), opts.reply ? 24 : 32); f.appendChild(av);
     var col = el("div", "fbc-col");
     var pill = el("div", "fbc-pill");
     var ta = el("textarea"); ta.rows = 1; ta.maxLength = 1000; ta.placeholder = opts.reply ? "Reply to " + opts.to + "…" : "Write a comment…"; ta.setAttribute("aria-label", ta.placeholder); ta.enterKeyHint = "send";
     var send = el("button", "fbc-send"); send.type = "submit"; send.innerHTML = ICON.send; send.setAttribute("aria-label", "Post comment"); send.disabled = true;
     pill.appendChild(ta); pill.appendChild(send); col.appendChild(pill);
     var hp = el("input", "fbc-hp"); hp.name = "website"; hp.tabIndex = -1; hp.autocomplete = "off"; hp.setAttribute("aria-hidden", "true"); col.appendChild(hp);
-    var sub = el("div", "fbc-sub"); var as = el("span", null, "Commenting as "); var nb = el("button", "fbc-name", myName); nb.type = "button"; nb.title = "Change your display name";
+    var sub = el("div", "fbc-sub"); var as = el("span", null, "Commenting as "); var nb = el("button", "fbc-name", myName()); nb.type = "button"; nb.title = "Change your display name";
     if (ME) { nb.disabled = true; nb.title = "Signed in as " + ME.name; nb.classList.add("fbc-name-me"); } as.appendChild(nb); if (ME) as.appendChild(el("span", "fbc-mem", "Member")); sub.appendChild(as); var msg = el("span", "fbc-msg"); msg.setAttribute("role", "status"); sub.appendChild(msg); col.appendChild(sub); f.appendChild(col);
-    nb.addEventListener("click", function  { if (ME) return; var v = prompt("Your display name (optional, shown with your comments):", LS.get("ghfc-name", "")); if (v === null) return; v = v.replace(/\s+/g, " ").trim.slice(0, 40); LS.set("ghfc-name", v); document.querySelectorAll(".fbc-name").forEach(function (b) { b.textContent = v || "Guest"; }); document.querySelectorAll(".fbc-form > .fbc-av").forEach(function (a) { a.textContent = initials(v || "Guest"); a.style.setProperty("--h", hue(v || "Guest")); }); });
-    function grow { ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight, 160) + "px"; send.disabled = ta.value.trim.length < 2; }
+    nb.addEventListener("click", function () { if (ME) return; var v = prompt("Your display name (optional, shown with your comments):", LS.get("ghfc-name", "")); if (v === null) return; v = v.replace(/\s+/g, " ").trim().slice(0, 40); LS.set("ghfc-name", v); document.querySelectorAll(".fbc-name").forEach(function (b) { b.textContent = v || "Guest"; }); document.querySelectorAll(".fbc-form > .fbc-av").forEach(function (a) { a.textContent = initials(v || "Guest"); a.style.setProperty("--h", hue(v || "Guest")); }); });
+    function grow() { ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight, 160) + "px"; send.disabled = ta.value.trim().length < 2; }
     ta.addEventListener("input", grow);
-    ta.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault; if (!send.disabled) f.requestSubmit ? f.requestSubmit : f.dispatchEvent(new Event("submit", { cancelable: true })); } });
+    ta.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); if (!send.disabled) f.requestSubmit ? f.requestSubmit() : f.dispatchEvent(new Event("submit", { cancelable: true })); } });
     f.addEventListener("submit", function (e) {
-      e.preventDefault; var text = ta.value.trim; if (text.length < 2 || send.disabled) return;
+      e.preventDefault(); var text = ta.value.trim(); if (text.length < 2 || send.disabled) return;
       send.disabled = true; msg.textContent = "Posting…";
-      var body = { post: st.post, name: myName, text: text, website: hp.value, started: started }; if (opts.parent) body.parent = opts.parent; if (ME && ME.token) body.member_token = ME.token;
+      var body = { post: st.post, name: myName(), text: text, website: hp.value, started: started }; if (opts.parent) body.parent = opts.parent; if (ME && ME.token) body.member_token = ME.token;
       api("/api/comments", body).then(function (d) {
         if (d && d.ok && d.comment) {
-          ta.value = ""; grow; msg.textContent = "";
+          ta.value = ""; grow(); msg.textContent = "";
           var c = d.comment; if (opts.parent) c.parent = opts.parent;
           if (d.status === "pending") { c.pending = true; remember(st.post, c, "pending"); msg.textContent = "Held for review."; }
           else remember(st.post, c, "published");
-          st.add(c); if (opts.done) opts.done;
+          st.add(c); if (opts.done) opts.done();
           if (d.host_replying) st.typing(c, d.host_replying);
         } else { msg.textContent = (d && d.error) || "That did not go through. Please try again."; send.disabled = false; }
-      }).catch(function  { msg.textContent = "That did not go through. Please try again."; send.disabled = false; });
+      }).catch(function () { msg.textContent = "That did not go through. Please try again."; send.disabled = false; });
     });
-    if (opts.focus) setTimeout(function  { ta.focus; }, 0);
+    if (opts.focus) setTimeout(function () { ta.focus(); }, 0);
     f._ta = ta; return f;
   }
 
@@ -105,58 +105,58 @@
     o = o || {};
     if (a.querySelector(".fbc")) return;
     var post = pidOf(a), data = feed[post] || { likes: 0, count: 0, top: [] };
-    var st = { post: post, all: false, comments: (data.top || []).slice, count: data.count || 0, likes: data.likes || 0 };
+    var st = { post: post, all: false, comments: (data.top || []).slice(), count: data.count || 0, likes: data.likes || 0 };
     // reaction / comment count bar
     var bar = el("div", "fbc-bar"), lk = el("span", "fbc-bl"), cc = el("button", "fbc-bc"); cc.type = "button"; bar.appendChild(lk); bar.appendChild(cc);
-    function paintBar { lk.innerHTML = st.likes ? ICON.thumb + "<span>" + st.likes + "</span>" : ""; cc.textContent = st.count ? st.count + (st.count === 1 ? " comment" : " comments") : ""; bar.hidden = !st.likes && !st.count; }
+    function paintBar() { lk.innerHTML = st.likes ? ICON.thumb + "<span>" + st.likes + "</span>" : ""; cc.textContent = st.count ? st.count + (st.count === 1 ? " comment" : " comments") : ""; bar.hidden = !st.likes && !st.count; }
     // Like · Comment · Share
     var old = a.querySelector(".acts"), acts = el("div", "acts fbc-acts");
     var lb = el("button", "fbc-act"), cb = el("button", "fbc-act"), sb = el("button", "fbc-act");
     [lb, cb, sb].forEach(function (b) { b.type = "button"; acts.appendChild(b); });
-    function paintLike { var on = !!liked[post]; lb.innerHTML = (on ? ICON.likeOn : ICON.like) + "<span>Like</span>"; lb.classList.toggle("on", on); lb.setAttribute("aria-pressed", on); }
+    function paintLike() { var on = !!liked[post]; lb.innerHTML = (on ? ICON.likeOn : ICON.like) + "<span>Like</span>"; lb.classList.toggle("on", on); lb.setAttribute("aria-pressed", on); }
     cb.innerHTML = ICON.cmt + "<span>Comment</span>"; sb.innerHTML = ICON.share + "<span>Share</span>";
-    lb.addEventListener("click", function  { var on = !liked[post]; if (on) liked[post] = 1; else delete liked[post]; LS.set("ghfc-likes", liked); st.likes = Math.max(0, st.likes + (on ? 1 : -1)); paintLike; paintBar; likeReq(post, null, on).then(function (d) { if (d && typeof d.likes === "number") { st.likes = d.likes; paintBar; } }).catch(function  {}); });
-    sb.addEventListener("click", function  { var url = o.link || link(post), title = o.title || (a.querySelector(".pt") || {}).textContent || document.title; if (navigator.share) { navigator.share({ title: "Williams / Buckler family · farmbook", text: title.slice(0, 120), url: url }).catch(function  {}); } else if (navigator.clipboard) { navigator.clipboard.writeText(url).then(function  { toast("Link copied"); }, function  { prompt("Copy this link:", url); }); } else prompt("Copy this link:", url); });
+    lb.addEventListener("click", function () { var on = !liked[post]; if (on) liked[post] = 1; else delete liked[post]; LS.set("ghfc-likes", liked); st.likes = Math.max(0, st.likes + (on ? 1 : -1)); paintLike(); paintBar(); likeReq(post, null, on).then(function (d) { if (d && typeof d.likes === "number") { st.likes = d.likes; paintBar(); } }).catch(function () {}); });
+    sb.addEventListener("click", function () { var url = o.link || link(post), title = o.title || (a.querySelector(".pt") || {}).textContent || document.title; if (navigator.share) { navigator.share({ title: "Williams / Buckler family · farmbook", text: title.slice(0, 120), url: url }).catch(function () {}); } else if (navigator.clipboard) { navigator.clipboard.writeText(url).then(function () { toast("Link copied"); }, function () { prompt("Copy this link:", url); }); } else prompt("Copy this link:", url); });
     var box = el("div", "fbc"), list = el("div", "fbc-list"), more = el("button", "fbc-more"); more.type = "button";
     var form = composer(st);
-    cb.addEventListener("click", function  { form._ta.focus; form._ta.scrollIntoView({ block: "center", behavior: "smooth" }); });
-    cc.addEventListener("click", function  { if (!st.all) loadAll; else form._ta.focus; });
+    cb.addEventListener("click", function () { form._ta.focus(); form._ta.scrollIntoView({ block: "center", behavior: "smooth" }); });
+    cc.addEventListener("click", function () { if (!st.all) loadAll(); else form._ta.focus(); });
     st.reply = function (parentId, to, node) {
       var th = document.getElementById("c-" + parentId) ; var holder = th ? th.querySelector(".fbc-replies") : null; if (!holder) holder = node.parentNode;
-      var ex = holder.querySelector(".fbc-form-r"); if (ex) { ex._ta.focus; return; }
-      var rf = composer(st, { reply: true, parent: parentId, to: to, focus: true, done: function  { rf.remove; } }); holder.appendChild(rf);
+      var ex = holder.querySelector(".fbc-form-r"); if (ex) { ex._ta.focus(); return; }
+      var rf = composer(st, { reply: true, parent: parentId, to: to, focus: true, done: function () { rf.remove(); } }); holder.appendChild(rf);
     };
-    st.add = function (c) { st.comments.push(c); if (!c.pending) st.count++; render; paintBar; var n = document.getElementById("c-" + c.id); if (n) { n.classList.add("fbc-new"); } };
+    st.add = function (c) { st.comments.push(c); if (!c.pending) st.count++; render(); paintBar(); var n = document.getElementById("c-" + c.id); if (n) { n.classList.add("fbc-new"); } };
     st.typing = function (c, host) {
       var top = c.parent || c.id, t = el("div", "fbc-c fbc-r fbc-typing");
       var pa = el("span", "fbc-av fbc-av-img"); pa.style.width = pa.style.height = "24px"; var pi = el("img"); pi.src = host.avatar; pi.alt = ""; pi.width = pi.height = 24; pa.appendChild(pi); t.appendChild(pa);
       var col = el("div", "fbc-col"); var bub = el("div", "fbc-bub fbc-dots"); bub.innerHTML = "<i></i><i></i><i></i>"; bub.setAttribute("aria-hidden", "true"); col.appendChild(bub);
       var lab = el("div", "fbc-meta"); lab.appendChild(el("span", null, host.name.split(" ")[0] + " is typing…")); lab.setAttribute("role", "status"); col.appendChild(lab); t.appendChild(col);
-      st.typingEl = { top: top, el: t }; placeTyping;
+      st.typingEl = { top: top, el: t }; placeTyping();
       var tries = 0;
-      (function poll {
-        setTimeout(function  {
+      (function poll() {
+        setTimeout(function () {
           tries++;
-          fetch(API + host.poll).then(function (r) { return r.json; }).then(function (d) {
-            if (d && d.reply) { st.typingEl = null; t.remove; st.add(d.reply); var n = document.getElementById("c-" + d.reply.id); if (n) n.classList.add("fbc-new"); }
-            else if (tries < 12) poll; else { st.typingEl = null; t.remove; }
-          }).catch(function  { if (tries < 12) poll; else { st.typingEl = null; t.remove; } });
+          fetch(API + host.poll).then(function (r) { return r.json(); }).then(function (d) {
+            if (d && d.reply) { st.typingEl = null; t.remove(); st.add(d.reply); var n = document.getElementById("c-" + d.reply.id); if (n) n.classList.add("fbc-new"); }
+            else if (tries < 12) poll(); else { st.typingEl = null; t.remove(); }
+          }).catch(function () { if (tries < 12) poll(); else { st.typingEl = null; t.remove(); } });
         }, tries ? 2000 : 2600);
-      });
+      })();
     };
-    function placeTyping { if (!st.typingEl) return; var th = document.getElementById("c-" + st.typingEl.top); var holder = th && th.querySelector(".fbc-replies"); if (holder) holder.appendChild(st.typingEl.el); }
-    function merged {
+    function placeTyping() { if (!st.typingEl) return; var th = document.getElementById("c-" + st.typingEl.top); var holder = th && th.querySelector(".fbc-replies"); if (holder) holder.appendChild(st.typingEl.el); }
+    function merged() {
       var cs = JSON.parse(JSON.stringify(st.comments)), ids = {};
       function walk(arr) { arr.forEach(function (c) { ids[c.id] = 1; (c.replies || []).forEach(function (r) { ids[r.id] = 1; }); }); } walk(cs);
       // flat additions (new posts this session, pending ones from this browser)
       var extra = cs.filter(function (c) { return c.parent && !c.replies; }); cs = cs.filter(function (c) { return !(c.parent && !c.replies); });
-      mine.forEach(function (m) { if (m.post === post && !ids[m.c.id]) { var c = m.c; if (m.status === "pending") c.pending = true; extra.push(c); ids[c.id] = 1; } });
+      mine().forEach(function (m) { if (m.post === post && !ids[m.c.id]) { var c = m.c; if (m.status === "pending") c.pending = true; extra.push(c); ids[c.id] = 1; } });
       extra.forEach(function (c) { if (c.parent) { var p = cs.filter(function (x) { return x.id === c.parent; })[0]; if (p) { p.replies = p.replies || []; if (!p.replies.some(function (r) { return r.id === c.id; })) p.replies.push(c); } } else if (!cs.some(function (x) { return x.id === c.id; })) cs.push(c); });
       return cs;
     }
-    function render {
+    function render() {
       list.textContent = "";
-      var cs = merged, shown = 0;
+      var cs = merged(), shown = 0;
       cs.forEach(function (c) {
         var t = commentNode(st, c, false); shown++;
         var reps = el("div", "fbc-replies");
@@ -165,51 +165,51 @@
         t.querySelector(".fbc-col").appendChild(reps); list.appendChild(t);
       });
       var hiddenN = st.count - cs.reduce(function (n, c) { return n + (c.pending ? 0 : 1) + (c.replies || []).filter(function (r) { return !r.pending; }).length + (st.all ? 0 : (c.more_replies || 0)); }, 0);
-      placeTyping;
+      placeTyping();
       more.hidden = st.all || hiddenN <= 0; more.textContent = "View " + (hiddenN > 0 ? hiddenN + " more " : "more ") + (hiddenN === 1 ? "comment" : "comments");
     }
-    function loadAll {
+    function loadAll() {
       more.textContent = "Loading…";
       api("/api/comments?post=" + encodeURIComponent(post)).then(function (d) {
-        if (d && d.comments) { st.all = true; st.comments = d.comments; st.count = d.count; st.likes = d.likes; render; paintBar; }
-      }).catch(function  { more.textContent = "Could not load comments just now"; });
+        if (d && d.comments) { st.all = true; st.comments = d.comments; st.count = d.count; st.likes = d.likes; render(); paintBar(); }
+      }).catch(function () { more.textContent = "Could not load comments just now"; });
     }
     more.addEventListener("click", loadAll);
     box.appendChild(more); box.appendChild(list); box.appendChild(form);
     var nt = el("p", "fbc-note"); nt.innerHTML = NOTE.replace(/&/g, "&amp;").replace(/</g, "&lt;") + ' No sign-in; we keep your display name, comment and time, no email or IP. <a class="ln" href="https://cedwyn.bucklerfamily.estate/dartboard/privacy/#comments">Privacy</a> · <a class="ln" href="/api/">API for AI agents</a>';
-    box.appendChild(nt); if (!single && !o.full) { nt.hidden = true; form._ta.addEventListener("focus", function  { nt.hidden = false; }); }
+    box.appendChild(nt); if (!single && !o.full) { nt.hidden = true; form._ta.addEventListener("focus", function () { nt.hidden = false; }); }
     if (old) { old.parentNode.insertBefore(bar, old); old.parentNode.replaceChild(acts, old); } else { a.appendChild(bar); a.appendChild(acts); }
     acts.parentNode.insertBefore(box, acts.nextSibling);
-    paintBar; paintLike; render;
-    if (single || o.full) loadAll;
+    paintBar(); paintLike(); render();
+    if (single || o.full) loadAll();
     return st;
   }
 
 
   // ---- photo viewer: every archive photo (img[data-ph]) opens with its own likes, comments and share, like a post ----
   var LBX = null;
-  function photoList { var seen = {}, out = []; document.querySelectorAll("img[data-ph]").forEach(function (im) { var id = im.getAttribute("data-ph"); if (!seen[id] && !im.closest(".fbl")) { seen[id] = 1; out.push(im); } }); return out; }
+  function photoList() { var seen = {}, out = []; document.querySelectorAll("img[data-ph]").forEach(function (im) { var id = im.getAttribute("data-ph"); if (!seen[id] && !im.closest(".fbl")) { seen[id] = 1; out.push(im); } }); return out; }
   function photoInfo(im) {
     var id = im.getAttribute("data-ph"), art = im.closest("article.post[id]"), fig = im.closest("figure"), cap = fig && fig.querySelector("figcaption");
     var when = art ? (art.querySelector(".pd time") || {}).textContent : (cap && cap.querySelector("strong") ? cap.querySelector("strong").textContent : "");
     var href = (im.closest("a") && /\.(jpe?g|png|webp)$/i.test(im.closest("a").getAttribute("href") || "")) ? im.closest("a").href : im.currentSrc || im.src;
-    return { id: id, src: href, alt: im.alt || "Photo", cap: cap, when: when || "", post: art ? art.id.toLowerCase : null, link: location.origin + location.pathname + "#photo=" + id };
+    return { id: id, src: href, alt: im.alt || "Photo", cap: cap, when: when || "", post: art ? art.id.toLowerCase() : null, link: location.origin + location.pathname + "#photo=" + id };
   }
   function openPhoto(im, push) {
-    var list = photoList, i = list.indexOf(im); if (i < 0) return;
+    var list = photoList(), i = list.indexOf(im); if (i < 0) return;
     var p = photoInfo(im);
     if (!LBX) {
       LBX = el("div", "fbl"); LBX.setAttribute("role", "dialog"); LBX.setAttribute("aria-modal", "true"); LBX.tabIndex = -1;
       LBX.innerHTML = '<div class="fbl-stage"><button type="button" class="fbl-x" aria-label="Close">' + ICON.x + '</button><a class="fbl-logo" href="/index.html">farmbook</a><button type="button" class="fbl-nav fbl-prev" aria-label="Previous photo">' + ICON.prev + '</button><img class="fbl-img" alt=""><button type="button" class="fbl-nav fbl-next" aria-label="Next photo">' + ICON.next + '</button></div><div class="fbl-side"></div>';
       document.body.appendChild(LBX);
       LBX.querySelector(".fbl-x").addEventListener("click", closePhoto);
-      LBX.querySelector(".fbl-prev").addEventListener("click", function  { step(-1); });
-      LBX.querySelector(".fbl-next").addEventListener("click", function  { step(1); });
-      LBX.querySelector(".fbl-stage").addEventListener("click", function (e) { if (e.target === this) closePhoto; });
+      LBX.querySelector(".fbl-prev").addEventListener("click", function () { step(-1); });
+      LBX.querySelector(".fbl-next").addEventListener("click", function () { step(1); });
+      LBX.querySelector(".fbl-stage").addEventListener("click", function (e) { if (e.target === this) closePhoto(); });
       var x0 = null, y0 = 0; var stg = LBX.querySelector(".fbl-stage");
       stg.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
       stg.addEventListener("touchend", function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null; if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1); });
-      document.addEventListener("keydown", function (e) { if (!LBX || LBX.hidden) return; if (e.key === "Escape") closePhoto; else if (e.target.tagName !== "TEXTAREA" && e.target.tagName !== "INPUT") { if (e.key === "ArrowRight") step(1); if (e.key === "ArrowLeft") step(-1); } });
+      document.addEventListener("keydown", function (e) { if (!LBX || LBX.hidden) return; if (e.key === "Escape") closePhoto(); else if (e.target.tagName !== "TEXTAREA" && e.target.tagName !== "INPUT") { if (e.key === "ArrowRight") step(1); if (e.key === "ArrowLeft") step(-1); } });
     }
     LBX._list = list; LBX._i = i; LBX._from = LBX._from || document.activeElement;
     var img = LBX.querySelector(".fbl-img"); img.src = p.src; img.alt = p.alt;
@@ -224,26 +224,26 @@
     LBX.hidden = false; document.documentElement.classList.add("fbl-open");
     if (push !== false) { try { history.replaceState(history.state, "", "#photo=" + p.id); } catch (e) {} }
     LBX.focus({ preventScroll: true });
-    [list[i - 1], list[i + 1]].forEach(function (n) { if (n) { var pre = new Image; pre.src = photoInfo(n).src; } });
+    [list[i - 1], list[i + 1]].forEach(function (n) { if (n) { var pre = new Image(); pre.src = photoInfo(n).src; } });
   }
   function step(k) { if (!LBX) return; var n = LBX._list[LBX._i + k]; if (n) openPhoto(n); }
-  function closePhoto {
+  function closePhoto() {
     if (!LBX) return; LBX.hidden = true; LBX.querySelector(".fbl-side").textContent = ""; document.documentElement.classList.remove("fbl-open");
     try { history.replaceState(history.state, "", location.pathname + location.search); } catch (e) {}
     if (LBX._from && LBX._from.focus) LBX._from.focus({ preventScroll: true }); LBX._from = null;
   }
-  function photos {
+  function photos() {
     document.addEventListener("click", function (e) {
       if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey) return;
       var im = e.target.closest && e.target.closest("img[data-ph]"); if (!im || im.closest(".fbl")) return;
-      e.preventDefault; openPhoto(im);
+      e.preventDefault(); openPhoto(im);
     });
-    photoList.forEach(function (im) { im.setAttribute("role", "button"); im.tabIndex = im.closest("a") ? -1 : 0; im.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault; openPhoto(im); } }); });
+    photoList().forEach(function (im) { im.setAttribute("role", "button"); im.tabIndex = im.closest("a") ? -1 : 0; im.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openPhoto(im); } }); });
     var m = /#photo=(p-ph-[a-z0-9-]+)/.exec(location.hash);
     if (m) { var im = document.querySelector('img[data-ph="' + m[1] + '"]'); if (im) openPhoto(im, false); }
   }
 
-  function css {
+  function css() {
     var s = el("style"); s.textContent =
 
       ".fbc-mem{display:inline-block;margin-left:6px;font-size:11px;font-weight:600;color:#3b5998;background:#e7f0fd;border-radius:4px;padding:1px 5px;vertical-align:1px}.fbc-avl{flex:none;text-decoration:none!important}.fbc-name-me{cursor:default!important;text-decoration:none!important}" +
@@ -292,14 +292,14 @@
       ".fbc-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#242526;color:#fff;padding:9px 16px;border-radius:8px;font-size:14px;z-index:99}";
     document.head.appendChild(s);
   }
-  function start {
-    css;
+  function start() {
+    css();
     var posts = document.querySelectorAll("article.post[id]");
-    var go = function  { for (var i = 0; i < posts.length; i++) wire(posts[i]); };
+    var go = function () { for (var i = 0; i < posts.length; i++) wire(posts[i]); };
     // signed-in family member (fail-safe: guests carry on if the members service is down or slow)
-    var me = new Promise(function (res) { var t = setTimeout(function  { res(null); }, 2500); (/^fb2\./.test(location.hostname) ? Promise.resolve(null) : fetch("/m/api/me", { credentials: "same-origin" }).then(function (r) { return r.ok ? r.json : null; })).then(function (d) { clearTimeout(t); res(d && d.signedIn && d.name ? d : null); }).catch(function  { clearTimeout(t); res(null); }); });
-    var fd = fetch(API + "/api/feed").then(function (r) { return r.json; }).then(function (d) { feed = (d && d.posts) || {}; }).catch(function  {});
-    Promise.all([me, fd]).then(function (v) { ME = v[0]; go; photos; });
+    var me = new Promise(function (res) { var t = setTimeout(function () { res(null); }, 2500); (/^fb2\./.test(location.hostname) ? Promise.resolve(null) : fetch("/m/api/me", { credentials: "same-origin" }).then(function (r) { return r.ok ? r.json() : null; })).then(function (d) { clearTimeout(t); res(d && d.signedIn && d.name ? d : null); }).catch(function () { clearTimeout(t); res(null); }); });
+    var fd = fetch(API + "/api/feed").then(function (r) { return r.json(); }).then(function (d) { feed = (d && d.posts) || {}; }).catch(function () {});
+    Promise.all([me, fd]).then(function (v) { ME = v[0]; go(); photos(); });
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start;
-});
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();

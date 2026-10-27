@@ -1,5 +1,5 @@
 # Skill: Welsh-language media for a Cardiff/Vale heritage story (2026)
-Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Topic: getting the Tŷ Mawr / Cedwyn records in front of Welsh-speaking readers through the outlets that actually take community stories. Press contact is on the project lead's GO only; runs draft, never send.
+Written 26 Oct 2026 (skills harvest). Topic: getting the Tŷ Mawr / Cedwyn records in front of Welsh-speaking readers through the outlets that actually take community stories. Press contact is on the project lead's GO only; runs draft, never send.
 
 ## What the evidence shows (checked 26 Oct 2026 on each outlet's own page)
 - **Pitching in general (Muck Rack, State of Journalism 2026, 1,000+ journalists, summarised by Univ. of Minnesota Marcom, 13 Apr 2026):** 86% say some of their work began with a PR pitch; 43% say relevant pitches are rare; what they value most is clear relevance to their beat (70%), access to a source (58%), original data or research (40%) and high-resolution images (37%); 62% prefer a 1:1 email; 78% prefer it before noon; 69% want it under 200 words.

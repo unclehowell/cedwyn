@@ -1,6 +1,6 @@
 # Flywheel: Intelligence flywheel
 
-**Cadence:** proposed by its build (see its schedule proposal)  
+**Cadence:** daily 04:15 Europe/London  
 **Goal prefix (duplicate check):** `INTEL`  
 **Runner:** `work/intel-flywheel/RUNNER.md` (on the project workspace)
 

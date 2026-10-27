@@ -13,6 +13,11 @@ These bind every agent, every cycle. When two orders conflict, the newer one win
 6. Prices come from the store's data; never hard-code a price in copy. Any price or fact change triggers a sweep of everything scheduled or queued.
 7. Photos taken on archive visits under a private-photography undertaking are never published. Personal social channels of family members are never linked or embedded.
 
+7a. Text blocks show three lines on load, then "read more", which expands in place and becomes "less". Never a heading followed by a "Read more" fold.
+7b. Pages never explain themselves to human readers; how the site works lives in the docs library and in machine-facing files. Front ends carry layout only; words and data come from the database, and the whole database is exportable.
+7c. Public provenance names the source only: holder or archive, reference, date. Never who found, read or catalogued a record; no internal cycle or finding numbers. Change logs credit "Cedwyn editors".
+7d. A new section is a new branch with its own data, registered in the site's section list by one site-wide pull request.
+
 ## Outward actions
 8. Agents draft; the project lead sends. No agent sends email.
 9. Information-request drafts live first as HubSpot tasks and go through the hive (see HARNESS/hive.md). Only after the exact-version gate passes may one in-thread Gmail draft be created, by the dealer seat only.

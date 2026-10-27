@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded',  => {
+document.addEventListener('DOMContentLoaded', () => {
     const ocTab = document.getElementById('ocTab');
     const ocDrawer = document.getElementById('ocDrawer');
     const ocToggleUp = document.getElementById('ocToggleUp');
@@ -25,14 +25,14 @@ document.addEventListener('DOMContentLoaded',  => {
     const TARGET_BALANCE = 1846.23;
     const DURATION_SECONDS = 3 * 60 + 16; // 196 seconds
 
-    function startBalanceClimb {
+    function startBalanceClimb() {
         clearInterval(balanceInterval);
-        const startTime = Date.now;
+        const startTime = Date.now();
         const startVal = balance;
         const totalIncrease = TARGET_BALANCE - startVal;
         
-        balanceInterval = setInterval( => {
-            const elapsed = (Date.now - startTime) / 1000;
+        balanceInterval = setInterval(() => {
+            const elapsed = (Date.now() - startTime) / 1000;
             const progress = Math.min(elapsed / DURATION_SECONDS, 1);
             balance = startVal + (totalIncrease * progress);
             
@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded',  => {
     const PUBLIC_USER_NUM = '5';
     const PUBLIC_USER_PWD = 'quantum25148535!!';
 
-    const USER_NUM_RAW = URL_USER || getLocalStorageItem('user_num', '').trim;
-    const USER_PWD_RAW = URL_PWD || getLocalStorageItem('user_pwd', '').trim;
+    const USER_NUM_RAW = URL_USER || getLocalStorageItem('user_num', '').trim();
+    const USER_PWD_RAW = URL_PWD || getLocalStorageItem('user_pwd', '').trim();
     const USER_NUM = IS_PUBLIC_LOGIN_DRAWER && !URL_USER
         ? PUBLIC_USER_NUM
         : (/^[1-5]$/.test(USER_NUM_RAW) ? USER_NUM_RAW : PUBLIC_USER_NUM);
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded',  => {
     const LEGACY_GATEWAY_URL = `${GATEWAY_BASE}/command`;
     const GATEWAY_TOKEN = '9533263d7ff39819800754b970748ddf';
 
-    function resolveProjectRootUrl {
+    function resolveProjectRootUrl() {
         const scriptEl = document.getElementById('app-script')
             || Array.from(document.scripts).find((s) => /\/js\/app\.js(\?|$)/.test(s.src || ''));
         if (scriptEl && scriptEl.src) {
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded',  => {
         return new URL('./', window.location.href);
     }
 
-    const PROJECT_ROOT_URL = resolveProjectRootUrl;
+    const PROJECT_ROOT_URL = resolveProjectRootUrl();
 
     let drawerState = 'CLOSED'; // CLOSED, OPEN, CLOSING
     let isMuted = false;
@@ -124,13 +124,13 @@ document.addEventListener('DOMContentLoaded',  => {
     const GUAC_AUTOLOGIN_URL = `${GUAC_BASE_URL}#/?${new URLSearchParams({
         username: GUAC_USERNAME,
         password: GUAC_PASSWORD
-    }).toString}`;
+    }).toString()}`;
     const GUAC_AUTOLOGIN_URL_FALLBACK = `${GUAC_BASE_URL_FALLBACK}#/?${new URLSearchParams({
         username: GUAC_USERNAME,
         password: GUAC_PASSWORD
-    }).toString}`;
+    }).toString()}`;
     const RADIO_MAX_VOLUME = 0.05;
-    const ASSET_VERSION = (document.querySelector('meta[name="fc-asset-version"]')?.getAttribute('content') || '').trim;
+    const ASSET_VERSION = (document.querySelector('meta[name="fc-asset-version"]')?.getAttribute('content') || '').trim();
     let guacToken = null;
 
     window.setGuacToken = (token) => { guacToken = token || null; };
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded',  => {
     if (ocToggleUp) ocToggleUp.querySelector('img').src = getAssetUrl(ASSET_OAK_IMG);
     if (radioStream) {
         radioStream.volume = 0;
-        radioStream.addEventListener('volumechange',  => {
+        radioStream.addEventListener('volumechange', () => {
             const capped = clampRadioVolume(radioStream.volume);
             if (radioStream.volume !== capped) {
                 radioStream.volume = capped;
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded',  => {
     }
     setAgentTitleVisible(false);
 
-    async function releaseGuacConnection {
+    async function releaseGuacConnection() {
         const iframe = document.getElementById('guac-frame');
         if (iframe) {
             try { iframe.src = 'about:blank'; } catch (error) {}
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded',  => {
         }
     }
 
-    function clearDynamicContent {
+    function clearDynamicContent() {
         if (!dynamicContentArea) return;
         Array.from(dynamicContentArea.children).forEach((child) => {
             if (scanlinesLayer && child === scanlinesLayer) return;
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded',  => {
     }
 
     function loadContent(url, type = 'image', autoplay = false, controls = false, loop = false) {
-        clearDynamicContent;
+        clearDynamicContent();
         const assetUrl = getAssetUrl(url);
         if (type === 'image') {
             const img = document.createElement('img');
@@ -227,10 +227,10 @@ document.addEventListener('DOMContentLoaded',  => {
             video.volume = 1.0;
             video.classList.add('fullscreen-video');
             appendDynamicNode(video);
-            if (autoplay) video.play.catch( => {});
+            if (autoplay) video.play().catch(() => {});
             const endPromise = new Promise((resolve) => {
                 video.onended = resolve;
-                video.onerror =  => resolve;
+                video.onerror = () => resolve();
             });
             return Promise.resolve({element: video, endPromise});
         } else if (type === 'iframe') {
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded',  => {
             iframe.style.backgroundColor = 'transparent';
             iframe.style.opacity = '0';
             iframe.style.transition = 'opacity 0.5s ease-in-out';
-            iframe.onload =  => { iframe.style.opacity = '1'; };
+            iframe.onload = () => { iframe.style.opacity = '1'; };
             appendDynamicNode(iframe);
             return Promise.resolve({element: iframe});
         }
@@ -279,12 +279,12 @@ document.addEventListener('DOMContentLoaded',  => {
         }
     }
 
-    function startCountdown {
+    function startCountdown() {
         clearInterval(countdownInterval);
         clearTimeout(countdownTimeout);
         let remainingTime = DURATION_SECONDS;
         updateTimerDisplay(remainingTime);
-        countdownInterval = setInterval( => {
+        countdownInterval = setInterval(() => {
             remainingTime--;
             updateTimerDisplay(remainingTime);
             if (remainingTime <= 0) {
@@ -292,12 +292,12 @@ document.addEventListener('DOMContentLoaded',  => {
                 if (drawerState === 'OPEN') setDrawerState('CLOSING');
             }
         }, 1000);
-        countdownTimeout = setTimeout( => {
+        countdownTimeout = setTimeout(() => {
             if (drawerState === 'OPEN') setDrawerState('CLOSING');
         }, DURATION_SECONDS * 1000);
     }
 
-    function stopCountdown {
+    function stopCountdown() {
         clearInterval(countdownInterval);
         clearTimeout(countdownTimeout);
         if (timerDisplay) {
@@ -306,13 +306,13 @@ document.addEventListener('DOMContentLoaded',  => {
         }
     }
 
-    function resetCountdownOnActivity {
+    function resetCountdownOnActivity() {
         if (drawerState !== 'OPEN') return;
-        startCountdown;
+        startCountdown();
     }
 
     function fadeRadioVolume(targetVolume, duration, onComplete) {
-        if (!radioStream) { if (onComplete) onComplete; return; }
+        if (!radioStream) { if (onComplete) onComplete(); return; }
         targetVolume = clampRadioVolume(targetVolume);
         clearInterval(radioFadeInterval);
         const startVolume = clampRadioVolume(radioStream.volume);
@@ -320,41 +320,41 @@ document.addEventListener('DOMContentLoaded',  => {
         const steps = duration / 50;
         if (steps <= 0) {
             radioStream.volume = targetVolume;
-            if (onComplete) onComplete;
+            if (onComplete) onComplete();
             return;
         }
         const volumeChangePerStep = (targetVolume - startVolume) / steps;
         let currentStep = 0;
-        radioFadeInterval = setInterval( => {
+        radioFadeInterval = setInterval(() => {
             currentStep++;
             radioStream.volume = clampRadioVolume(startVolume + volumeChangePerStep * currentStep);
             if (currentStep >= steps) {
                 clearInterval(radioFadeInterval);
                 radioStream.volume = targetVolume;
-                if (onComplete) onComplete;
+                if (onComplete) onComplete();
             }
         }, 50);
     }
 
-    function hideJohnOverlay {
+    function hideJohnOverlay() {
         if (!johnVideoOverlay) return;
         setAgentTitleVisible(false);
         johnVideoOverlay.style.opacity = 0;
-        setTimeout( => {
+        setTimeout(() => {
             if (johnVideoOverlay.style.opacity === "0") {
                 johnVideoOverlay.style.display = 'none';
-                johnVideoOverlay.pause;
+                johnVideoOverlay.pause();
             }
         }, 1500);
     }
 
     function fadeToColor(duration, colors = ['#ffffff', '#ffff00']) {
-        if (!fadeOverlay) return Promise.resolve;
+        if (!fadeOverlay) return Promise.resolve();
         fadeOverlay.style.transition = 'none';
         fadeOverlay.style.opacity = 0;
         fadeOverlay.style.background = `linear-gradient(135deg, ${colors.join(', ')})`;
         return new Promise(resolve => {
-            setTimeout( => {
+            setTimeout(() => {
                 fadeOverlay.style.transition = `opacity ${duration/1000}s ease`;
                 fadeOverlay.style.opacity = 1;
                 setTimeout(resolve, duration);
@@ -362,37 +362,37 @@ document.addEventListener('DOMContentLoaded',  => {
         });
     }
 
-    function startMusic {
+    function startMusic() {
         if (radioStream && !isMuted) {
             if (!radioStream.src || radioStream.src === window.location.href) {
                 radioStream.src = 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fstream.rcs.revma.com%2Ffxp289cp81uvv';
-                radioStream.load;
+                radioStream.load();
             }
             radioStream.volume = 0;
-            radioStream.play.catch( => {});
+            radioStream.play().catch(() => {});
             fadeRadioVolume(RADIO_MAX_VOLUME, 1000);
         }
     }
 
     function showJohnOverlay(playMusic = true) {
-        if (playMusic) startMusic;
+        if (playMusic) startMusic();
         if (!johnVideoOverlay) return;
         johnVideoOverlay.src = getAssetUrl(ASSET_JOHN_VIDEO);
         johnVideoOverlay.style.pointerEvents = 'none';
         johnVideoOverlay.style.display = 'block';
         setAgentTitleVisible(true);
-        johnVideoOverlay.play.catch( => {});
-        setTimeout( => {
+        johnVideoOverlay.play().catch(() => {});
+        setTimeout(() => {
             johnVideoOverlay.style.opacity = 1;
             // Set input placeholder text
             if (userQuery) userQuery.placeholder = "How can I answer your prayers today?";
-            setTimeout( => {
+            setTimeout(() => {
                 if (accountBalanceDisplay && drawerState === 'OPEN') {
                     accountBalanceDisplay.style.display = 'flex';
                     // Trigger 10s fade in via CSS transition
-                    setTimeout( => {
+                    setTimeout(() => {
                         accountBalanceDisplay.style.opacity = 1;
-                        startBalanceClimb;
+                        startBalanceClimb();
                     }, 50);
                 }
             }, 1000);
@@ -422,12 +422,12 @@ document.addEventListener('DOMContentLoaded',  => {
                 accountBalanceDisplay.style.display = 'none';
                 accountBalanceDisplay.style.opacity = 0;
             }
-            hideJohnOverlay;
-            releaseGuacConnection;
-            if (radioStream) { radioStream.pause; radioStream.currentTime = 0; radioStream.volume = 0; }
+            hideJohnOverlay();
+            releaseGuacConnection();
+            if (radioStream) { radioStream.pause(); radioStream.currentTime = 0; radioStream.volume = 0; }
             isMuted = false;
-            updateMuteButton;
-            stopCountdown;
+            updateMuteButton();
+            stopCountdown();
             loadContent(ASSET_TESTCARD, 'image');
             const standby = document.getElementById('standby-screen');
             if (standby) standby.classList.remove('hidden');
@@ -440,9 +440,9 @@ document.addEventListener('DOMContentLoaded',  => {
             if (ocDrawer) ocDrawer.style.pointerEvents = 'auto';
             if (ocTab) ocTab.style.display = 'none';
 
-            const onOpen =  => {
+            const onOpen = () => {
                 if (drawerState !== 'OPEN' || currentToken !== transitionToken) return;
-                hideJohnOverlay;
+                hideJohnOverlay();
                 if (powerBtn) powerBtn.classList.add('on');
                 if (userQuery) {
                     userQuery.disabled = !HAS_REMOTE_LOGIN;
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded',  => {
                 }
                 if (muteBtn) muteBtn.style.display = HAS_REMOTE_LOGIN ? 'flex' : 'none';
                 if (toggleWebmBtn) toggleWebmBtn.style.display = HAS_REMOTE_LOGIN ? 'flex' : 'none';
-                startCountdown;
+                startCountdown();
 
                 if (!HAS_REMOTE_LOGIN) {
                     loadContent(ASSET_TESTCARD, 'image');
@@ -465,25 +465,25 @@ document.addEventListener('DOMContentLoaded',  => {
                 }
 
                 loadContent(ASSET_WELCOME_VIDEO, 'video', true, false).then(({element: video, endPromise}) => {
-                    const checkDuration =  => {
+                    const checkDuration = () => {
                         const durationMs = video.duration * 1000 || 8000;
-                        setTimeout( => {
+                        setTimeout(() => {
                             if (drawerState === 'OPEN' && currentToken === transitionToken) {
                                 showJohnOverlay(true); 
                             }
                         }, Math.max(0, durationMs - 2000));
-                        setTimeout( => {
+                        setTimeout(() => {
                             if (drawerState === 'OPEN' && currentToken === transitionToken) {
-                                fadeToColor(800).then( => {
+                                fadeToColor(800).then(() => {
                                     if (fadeOverlay) fadeOverlay.style.opacity = 0;
                                 });
                             }
                         }, Math.max(0, durationMs - 800));
-                        setTimeout( => {
-                            loadContent(GUAC_AUTOLOGIN_URL, 'iframe').then( => {});
+                        setTimeout(() => {
+                            loadContent(GUAC_AUTOLOGIN_URL, 'iframe').then(() => {});
                         }, Math.max(0, durationMs - 500));
                     };
-                    if (video.readyState >= 1) checkDuration;
+                    if (video.readyState >= 1) checkDuration();
                     else video.addEventListener('loadedmetadata', checkDuration, { once: true });
                 });
             };
@@ -492,24 +492,24 @@ document.addEventListener('DOMContentLoaded',  => {
                 const onDrawerOpenTransition = (event) => {
                     if (event.target !== ocDrawer || event.propertyName !== 'transform') return;
                     ocDrawer.removeEventListener('transitionend', onDrawerOpenTransition);
-                    onOpen;
+                    onOpen();
                 };
                 ocDrawer.addEventListener('transitionend', onDrawerOpenTransition);
             } else {
-                onOpen;
+                onOpen();
             }
 
         } else if (newState === 'CLOSING') {
             if (ocDrawer) ocDrawer.style.pointerEvents = 'auto';
-            hideJohnOverlay;
-            releaseGuacConnection;
-            fadeRadioVolume(0, 2000,  => {
+            hideJohnOverlay();
+            releaseGuacConnection();
+            fadeRadioVolume(0, 2000, () => {
                 if (currentToken !== transitionToken) return;
-                if (radioStream) { radioStream.pause; radioStream.currentTime = 0; }
+                if (radioStream) { radioStream.pause(); radioStream.currentTime = 0; }
                 isMuted = false;
-                updateMuteButton;
+                updateMuteButton();
             });
-            const performRetraction = async  => {
+            const performRetraction = async () => {
                 await fadeToColor(1000, ['#000', '#000']);
                 loadContent(ASSET_TESTCARD, 'image');
                 if (fadeOverlay) fadeOverlay.style.opacity = 0;
@@ -528,7 +528,7 @@ document.addEventListener('DOMContentLoaded',  => {
                     ocDrawer.addEventListener('transitionend', onDrawerCloseTransition);
                 }
             };
-            performRetraction;
+            performRetraction();
             if (powerBtn) powerBtn.classList.remove('on');
             if (userQuery) { 
                 userQuery.disabled = true; 
@@ -542,38 +542,38 @@ document.addEventListener('DOMContentLoaded',  => {
                 accountBalanceDisplay.style.display = 'none';
                 accountBalanceDisplay.style.opacity = 0;
             }
-            stopCountdown;
+            stopCountdown();
         }
     }
 
-    function toggleWebmOverlay {
+    function toggleWebmOverlay() {
         if (johnVideoOverlay) {
             if (johnVideoOverlay.style.display === 'none' || johnVideoOverlay.style.opacity === "0") {
                 johnVideoOverlay.style.display = 'block';
                 setAgentTitleVisible(true);
-                johnVideoOverlay.play.catch( => {});
-                setTimeout( => { johnVideoOverlay.style.opacity = 1; }, 50);
+                johnVideoOverlay.play().catch(() => {});
+                setTimeout(() => { johnVideoOverlay.style.opacity = 1; }, 50);
             } else {
                 johnVideoOverlay.style.opacity = 0;
                 setAgentTitleVisible(false);
-                setTimeout( => { 
+                setTimeout(() => { 
                     if (johnVideoOverlay.style.opacity === "0") {
                         johnVideoOverlay.style.display = 'none';
-                        johnVideoOverlay.pause;
+                        johnVideoOverlay.pause();
                     }
                 }, 1500);
             }
         }
     }
 
-    function togglePower {
+    function togglePower() {
         if (drawerState === 'CLOSED') setDrawerState('OPEN');
         else if (drawerState === 'OPEN') setDrawerState('CLOSING');
     }
 
-    async function sendMessage {
+    async function sendMessage() {
         if (!userQuery || !HAS_REMOTE_LOGIN) return;
-        const message = userQuery.value.trim;
+        const message = userQuery.value.trim();
         if (message === '' || drawerState !== 'OPEN') return;
         const feedback = document.getElementById('feedback');
         userQuery.disabled = true;
@@ -597,29 +597,29 @@ document.addEventListener('DOMContentLoaded',  => {
             if (sent) {
                 if (feedback) feedback.textContent = '✓ Sent';
                 userQuery.value = '';
-                setTimeout( => { if (feedback) feedback.textContent = ''; }, 3000);
+                setTimeout(() => { if (feedback) feedback.textContent = ''; }, 3000);
             }
         } catch (e) {} finally {
             if (drawerState === 'OPEN') {
                 userQuery.disabled = false;
                 userQuery.style.opacity = '1';
-                sendBtn.disabled = userQuery.value.trim === '';
+                sendBtn.disabled = userQuery.value.trim() === '';
                 sendBtn.style.opacity = sendBtn.disabled ? '0.5' : '1';
-                userQuery.focus;
+                userQuery.focus();
             }
         }
     }
 
-    function toggleMute {
+    function toggleMute() {
         isMuted = !isMuted;
         if (radioStream) {
             if (isMuted) fadeRadioVolume(0, 300);
             else { radioStream.volume = 0; fadeRadioVolume(RADIO_MAX_VOLUME, 1000); }
         }
-        updateMuteButton;
+        updateMuteButton();
     }
 
-    function updateMuteButton {
+    function updateMuteButton() {
         if (!muteBtn) return;
         const volumeIcon = muteBtn.querySelector('.volume-icon');
         const muteSlash = muteBtn.querySelector('.mute-slash');
@@ -634,8 +634,8 @@ document.addEventListener('DOMContentLoaded',  => {
         }
     }
 
-    if (ocTab) ocTab.addEventListener('click',  => { if (drawerState === 'CLOSED') setDrawerState('OPEN'); });
-    if (ocToggleUp) ocToggleUp.addEventListener('click',  => { if (drawerState === 'OPEN') setDrawerState('CLOSING'); });
+    if (ocTab) ocTab.addEventListener('click', () => { if (drawerState === 'CLOSED') setDrawerState('OPEN'); });
+    if (ocToggleUp) ocToggleUp.addEventListener('click', () => { if (drawerState === 'OPEN') setDrawerState('CLOSING'); });
     if (powerBtn) powerBtn.addEventListener('click', togglePower);
     if (muteBtn) muteBtn.addEventListener('click', toggleMute);
     if (sendBtn) sendBtn.addEventListener('click', sendMessage);
@@ -646,21 +646,21 @@ document.addEventListener('DOMContentLoaded',  => {
         });
     }
     if (userQuery) {
-        userQuery.addEventListener('input',  => {
-            resetCountdownOnActivity;
+        userQuery.addEventListener('input', () => {
+            resetCountdownOnActivity();
             if (drawerState === 'OPEN' && sendBtn) {
-                sendBtn.disabled = userQuery.value.trim === '';
+                sendBtn.disabled = userQuery.value.trim() === '';
                 sendBtn.style.opacity = sendBtn.disabled ? '0.5' : '1';
             }
         });
         userQuery.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !sendBtn?.disabled) sendMessage;
+            if (e.key === 'Enter' && !sendBtn?.disabled) sendMessage();
         });
     }
     if (accountBalanceDisplay) {
-        accountBalanceDisplay.addEventListener('click',  => { if (bankingModal) bankingModal.style.display = 'flex'; });
+        accountBalanceDisplay.addEventListener('click', () => { if (bankingModal) bankingModal.style.display = 'flex'; });
     }
-    function closeModal { if (bankingModal) bankingModal.style.display = 'none'; }
+    function closeModal() { if (bankingModal) bankingModal.style.display = 'none'; }
     if (bankingModalClose) bankingModalClose.addEventListener('click', closeModal);
     if (bankingModalCloseBtn) bankingModalCloseBtn.addEventListener('click', closeModal);
     setDrawerState('CLOSED');

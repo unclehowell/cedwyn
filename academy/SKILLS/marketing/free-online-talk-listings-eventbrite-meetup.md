@@ -1,6 +1,6 @@
 # Free online talk listings: Eventbrite (free events) and Meetup (Starter)
 
-Written 26 Oct 2026 (skills harvest 16:07) by the Cedwyn editors for the Cedwyn e-book work. Zero spend. Owner GO before anything goes public.
+Written 26 Oct 2026 for the Cedwyn e-book work. Zero spend. Owner GO before anything goes public.
 
 ## What it is
 List a free online talk (Zoom/Meet/YouTube Live) on an event marketplace so people who browse "history", "Wales" or "online" events find it, register, and land on the signup list. Ticket buyers are captured as registrants, and the talk ends with one next step: the free edition on /ebooks/.

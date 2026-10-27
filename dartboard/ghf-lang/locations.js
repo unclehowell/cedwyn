@@ -4,7 +4,7 @@
  *    to the location they chose. ?map shows the 2D map, ?choose shows the chooser. Choice kept in localStorage + a
  *    .bucklerfamily.estate cookie (ghf_loc).
  */
-(function  {
+(function () {
   if (window.GHFLoc) return;
   var T = {"en": {"loc": "Location", "wales": "Wales", "patagonia": "Patagonia", "cyberspace": "Cyberspace", "choose": "Choose a location", "estate": "Cedwyn Estate", "title": "Choose your destination", "soon": "Coming soon", "w_kick": "Llandough, Wales", "w_name": "Great House Farm", "w_line": "Virtual-reality guided tour", "p_kick": "Puerto Madryn, Patagonia, Argentina", "p_name": "Great House Farm II", "p_line": "Cedwyn Estate: replica farmhouse, wax museum, weddings, stables, B&B", "c_kick": "Online", "c_name": "Cyberspace", "c_line": "The digital estate: maps, library, shops, app", "note": "Your choice is remembered on this device. Change it any time with the bar at the top."}, "cy": {"loc": "Lleoliad", "wales": "Cymru", "patagonia": "Patagonia", "cyberspace": "Cyberspace", "choose": "Dewiswch leoliad", "estate": "Ystâd Cedwyn", "title": "Dewiswch eich cyrchfan", "soon": "Yn dod cyn hir", "w_kick": "Llandochau, Cymru", "w_name": "Tŷ Mawr", "w_line": "Taith dywys rhith-wirionedd", "p_kick": "Porth Madryn, Patagonia, yr Ariannin", "p_name": "Tŷ Mawr II", "p_line": "Ystâd Cedwyn: ffermdy replica, amgueddfa gwyr, priodasau, stablau, gwely a brecwast", "c_kick": "Ar-lein", "c_name": "Cyberspace", "c_line": "Yr ystâd ddigidol: mapiau, llyfrgell, siopau, ap", "note": "Cofir eich dewis ar y ddyfais hon. Newidiwch ef unrhyw bryd gyda’r bar ar y brig."}, "es": {"loc": "Lugar", "wales": "Gales", "patagonia": "Patagonia", "cyberspace": "Cyberspace", "choose": "Elija un lugar", "estate": "Finca Cedwyn", "title": "Elija su destino", "soon": "Próximamente", "w_kick": "Llandough, Gales", "w_name": "Great House Farm", "w_line": "Visita guiada en realidad virtual", "p_kick": "Puerto Madryn, Patagonia, Argentina", "p_name": "Great House Farm II", "p_line": "Finca Cedwyn: réplica de la casa, museo de cera, bodas, caballerizas, B&B", "c_kick": "En línea", "c_name": "Cyberspace", "c_line": "La finca digital: mapas, biblioteca, tiendas, app", "note": "Su elección se recuerda en este dispositivo. Cámbiela cuando quiera con la barra superior."}};
   var ICO = {"wales": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 36\" width=\"24\" height=\"14.4\" role=\"img\" aria-label=\"Flag of Wales\"><rect width=\"60\" height=\"18\" fill=\"#fff\"/><rect y=\"18\" width=\"60\" height=\"18\" fill=\"#00B140\"/><path fill=\"#D30731\" d=\"M13 24c2-1 4-3 5-6-2 0-4-1-5-3 3 1 5 1 7 0l3-6c1-2 3-3 5-2l-2 2c1 1 3 1 4 0l3 1-3 2c-1 3-1 5 1 7 3-2 6-5 9-9 0 4-2 7-4 10 3 0 6-1 9-3-1 3-4 5-8 6l3 3-3 1-2-3c-3 1-6 1-9 0l-2 4-3-1 2-4c-3-1-5-1-7 1-1 1-2 2-4 2l1-2z\"/></svg>", "uk": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 36\" width=\"24\" height=\"14.4\" role=\"img\" aria-label=\"Union Flag\"><rect width=\"60\" height=\"36\" fill=\"#012169\"/><path d=\"M0 0L60 36M60 0L0 36\" stroke=\"#fff\" stroke-width=\"7\"/><path d=\"M0 0L60 36M60 0L0 36\" stroke=\"#C8102E\" stroke-width=\"2.6\"/><path d=\"M30 0v36M0 18h60\" stroke=\"#fff\" stroke-width=\"11\"/><path d=\"M30 0v36M0 18h60\" stroke=\"#C8102E\" stroke-width=\"6.5\"/></svg>", "argentina": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 36\" width=\"24\" height=\"14.4\" role=\"img\" aria-label=\"Flag of Argentina\"><rect width=\"60\" height=\"36\" fill=\"#74ACDF\"/><rect y=\"12\" width=\"60\" height=\"12\" fill=\"#fff\"/><g fill=\"#F6B40E\"><circle cx=\"30\" cy=\"18\" r=\"3.6\"/><path d=\"M30 12.2l.9 2.4h-1.8zM30 23.8l.9-2.4h-1.8zM24.2 18l2.4.9v-1.8zM35.8 18l-2.4.9v-1.8zM25.9 13.9l2.3 1.1-1.2 1.2zM34.1 22.1l-2.3-1.1 1.2-1.2zM34.1 13.9l-1.1 2.3-1.2-1.2zM25.9 22.1l1.1-2.3 1.2 1.2z\"/></g></svg>", "robot": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" role=\"img\" aria-label=\"AI agent\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2.5v3\"/><circle cx=\"12\" cy=\"2.5\" r=\"1\" fill=\"currentColor\"/><rect x=\"4.5\" y=\"5.5\" width=\"15\" height=\"12\" rx=\"3\"/><circle cx=\"9.2\" cy=\"11\" r=\"1.5\" fill=\"currentColor\"/><circle cx=\"14.8\" cy=\"11\" r=\"1.5\" fill=\"currentColor\"/><path d=\"M9.5 14.6h5M2.5 10v4M21.5 10v4M8 17.5v3h8v-3\"/></svg>"}, LICO = {"wales": ["wales", "uk"], "patagonia": ["wales", "argentina"], "cyberspace": ["robot"]}; // inline SVG flags and the robot icon for the strip (campus/build_locations.py ICONS)
@@ -13,10 +13,10 @@
   var BASE = "https://cedwyn.bucklerfamily.estate/dartboard", host = (document.documentElement.getAttribute("data-ghf-host") || location.hostname).replace(/^www\./, ""), path = location.pathname || "/"; // the dartboard served at the apex root names its own host (21 Oct 2026)
   var apex = host === "bucklerfamily.estate" || /(^|\.)bucklerfamilyfarm\.pages\.dev$/.test(host);
   var href = function (p) { return apex ? p : BASE + p; };
-  function lang { var l = (document.documentElement.getAttribute("lang") || "en").slice(0, 2).toLowerCase; return T[l] ? l : "en"; }
-  function get { var v = null; try { v = localStorage.getItem("ghf_loc"); } catch (e) {} if (!v) { var m = /(?:^|; )ghf_loc=([a-z]+)/.exec(document.cookie); v = m && m[1]; } return /^(wales|patagonia|cyberspace)$/.test(v || "") ? v : null; }
+  function lang() { var l = (document.documentElement.getAttribute("lang") || "en").slice(0, 2).toLowerCase(); return T[l] ? l : "en"; }
+  function get() { var v = null; try { v = localStorage.getItem("ghf_loc"); } catch (e) {} if (!v) { var m = /(?:^|; )ghf_loc=([a-z]+)/.exec(document.cookie); v = m && m[1]; } return /^(wales|patagonia|cyberspace)$/.test(v || "") ? v : null; }
   function set(v) { try { localStorage.setItem("ghf_loc", v); } catch (e) {} try { document.cookie = "ghf_loc=" + v + "; path=/; max-age=31536000; SameSite=Lax; Secure" + (/(^|\.)bucklerfamily\.estate$/.test(location.hostname) ? "; domain=.bucklerfamily.estate" : ""); } catch (e) {} }
-  function here { if (apex && /^\/wales(\/|$)/.test(path)) return "wales"; if (apex && /^\/patagonia(\/|$)/.test(path)) return "patagonia"; if (apex && /^\/choose(\/|$)/.test(path)) return ""; return "cyberspace"; }
+  function here() { if (apex && /^\/wales(\/|$)/.test(path)) return "wales"; if (apex && /^\/patagonia(\/|$)/.test(path)) return "patagonia"; if (apex && /^\/choose(\/|$)/.test(path)) return ""; return "cyberspace"; }
   function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
   var CSS = ".ghf-loc{display:flex!important;align-items:stretch;justify-content:center;gap:0;width:100%;box-sizing:border-box;margin:0!important;padding:0 6px!important;background:#000!important;border-bottom:1px solid rgba(255,255,255,.18)!important;position:relative;z-index:2147481989;font:500 11px/1 Barlow,'Helvetica Neue',Arial,sans-serif!important;-webkit-font-smoothing:antialiased}" +
     ".ghf-loc a{flex:1 1 0;display:flex!important;align-items:center;justify-content:center;min-height:38px;padding:0 4px!important;color:#cfcfcf!important;text-decoration:none!important;letter-spacing:.2em;text-transform:uppercase;border-bottom:2px solid transparent;white-space:nowrap;font:inherit!important}" +
@@ -53,66 +53,66 @@
     "html[data-ghf-mode=day] .ghf-cho-opt:hover,html[data-ghf-mode=day] .ghf-cho-opt:focus-visible{background:#000;color:#fff!important;border-color:#000}" +
     "html[data-ghf-mode=day] .ghf-cho-opt:hover span,html[data-ghf-mode=day] .ghf-cho-opt:focus-visible span{color:#f2c94c}html[data-ghf-mode=day] .ghf-cho-opt:hover small,html[data-ghf-mode=day] .ghf-cho-opt:focus-visible small{color:#ddd}" +
     "html[data-ghf-mode=day] .ghf-cho-note{color:#4a4a4a}";
-  function css { if (document.querySelector("style[data-ghf-loc]")) return; var s = el("style"); s.setAttribute("data-ghf-loc", ""); s.textContent = CSS; (document.head || document.documentElement).appendChild(s); }
+  function css() { if (document.querySelector("style[data-ghf-loc]")) return; var s = el("style"); s.setAttribute("data-ghf-loc", ""); s.textContent = CSS; (document.head || document.documentElement).appendChild(s); }
   var strips = [];
   function fill(nav) {
-    var s = T[lang], cur = here; nav.textContent = "";
+    var s = T[lang()], cur = here(); nav.textContent = "";
     nav.setAttribute("aria-label", s.loc);
-    LOCS.forEach(function (x) { var a = el("a"); a.appendChild(ic(x[0])); a.appendChild(el("span", "ghf-loc-t", s[x[0]])); a.setAttribute("data-loc", x[0]); a.href = href(x[1]); if (x[0] === cur) a.setAttribute("aria-current", "page"); a.addEventListener("click", function  { set(x[0]); }); nav.appendChild(a); });
+    LOCS.forEach(function (x) { var a = el("a"); a.appendChild(ic(x[0])); a.appendChild(el("span", "ghf-loc-t", s[x[0]])); a.setAttribute("data-loc", x[0]); a.href = href(x[1]); if (x[0] === cur) a.setAttribute("aria-current", "page"); a.addEventListener("click", function () { set(x[0]); }); nav.appendChild(a); });
     var c = el("a", "ghf-loc-ch", "◎"); c.href = href("/choose/"); c.title = s.choose; c.setAttribute("aria-label", s.choose); nav.appendChild(c);
   }
   var minis = [];
-  function fillMini(box) { var s = T[lang]; box.textContent = ""; LOCS.forEach(function (x) { var a = el("a", "ghf-loc-mini"); a.href = href(x[1]); a.title = s[x[0]]; a.setAttribute("aria-label", s[x[0]]); a.appendChild(ic(x[0])); a.addEventListener("click", function  { set(x[0]); }); box.appendChild(a); }); }
-  function mini(box) { if (!box) return; css; fillMini(box); if (minis.indexOf(box) < 0) minis.push(box); }
+  function fillMini(box) { var s = T[lang()]; box.textContent = ""; LOCS.forEach(function (x) { var a = el("a", "ghf-loc-mini"); a.href = href(x[1]); a.title = s[x[0]]; a.setAttribute("aria-label", s[x[0]]); a.appendChild(ic(x[0])); a.addEventListener("click", function () { set(x[0]); }); box.appendChild(a); }); }
+  function mini(box) { if (!box) return; css(); fillMini(box); if (minis.indexOf(box) < 0) minis.push(box); }
   function strip(after) {
     if (!document.body) return;
     if (document.querySelector(".ghf-loc")) return;
-    css;
+    css();
     var nav = el("nav", "ghf-loc ghf-ui"); nav.setAttribute("data-no-translate", ""); nav.setAttribute("translate", "no");
     fill(nav); strips.push(nav);
     if (after && after.parentNode) after.parentNode.insertBefore(nav, after.nextSibling); else document.body.insertBefore(nav, document.body.firstChild);
   }
   var box = null;
-  function render {
+  function render() {
     if (!box) return;
-    var s = T[lang], l = lang; box.querySelector(".ghf-cho-in").innerHTML = "";
+    var s = T[lang()], l = lang(); box.querySelector(".ghf-cho-in").innerHTML = "";
     var inn = box.querySelector(".ghf-cho-in");
     var top = el("div", "ghf-cho-top"), br = el("div", "ghf-cho-brand"); var im = document.createElement("img"); im.src = BASE + "/brand/cedwyn-tent-icon-64.png"; im.alt = ""; br.appendChild(im); br.appendChild(el("span", null, s.estate)); top.appendChild(br);
-    var lg = el("div", "ghf-cho-lang"); ["en", "cy", "es"].forEach(function (k) { var b = el("button", null, k.toUpperCase); b.type = "button"; b.setAttribute("aria-pressed", k === l ? "true" : "false"); b.onclick = function  { if (window.GHFLang) window.GHFLang.set(k); else { document.documentElement.setAttribute("lang", k); } setTimeout(render, 60); }; lg.appendChild(b); }); top.appendChild(lg);
+    var lg = el("div", "ghf-cho-lang"); ["en", "cy", "es"].forEach(function (k) { var b = el("button", null, k.toUpperCase()); b.type = "button"; b.setAttribute("aria-pressed", k === l ? "true" : "false"); b.onclick = function () { if (window.GHFLang) window.GHFLang.set(k); else { document.documentElement.setAttribute("lang", k); } setTimeout(render, 60); }; lg.appendChild(b); }); top.appendChild(lg);
     inn.appendChild(top);
     inn.appendChild(el("h1", null, s.title));
     [["wales", "/wales/", s.w_kick, s.w_name, s.w_line], ["patagonia", "/patagonia/", s.p_kick, s.p_name, s.p_line], ["cyberspace", "/cyberspace/", s.c_kick, s.c_name, s.c_line]].forEach(function (o) {
       var a = el("a", "ghf-cho-opt"); a.href = href(o[1]);
       a.appendChild(el("span", null, o[2] + (o[0] !== "cyberspace" ? " · " + s.soon : ""))); var nb = el("b", null, o[3]); var ci = ic(o[0]); ci.className = "ghf-loc-ic ghf-cho-ic"; nb.insertBefore(ci, nb.firstChild); a.appendChild(nb); a.appendChild(el("small", null, o[4]));
-      a.addEventListener("click", function  { set(o[0]); });
+      a.addEventListener("click", function () { set(o[0]); });
       inn.appendChild(a);
     });
     inn.appendChild(el("p", "ghf-cho-note", s.note));
   }
   function choose(fixed) {
-    if (!document.body) { document.addEventListener("DOMContentLoaded", function  { choose(fixed); }); return; }
+    if (!document.body) { document.addEventListener("DOMContentLoaded", function () { choose(fixed); }); return; }
     if (box) return;
-    css;
-    box = el("div", "ghf-cho ghf-ui"); box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true"); box.setAttribute("aria-label", T[lang].title);
+    css();
+    box = el("div", "ghf-cho ghf-ui"); box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true"); box.setAttribute("aria-label", T[lang()].title);
     box.setAttribute("data-no-translate", ""); box.setAttribute("translate", "no");
     box.appendChild(el("div", "ghf-cho-bg")); box.appendChild(el("div", "ghf-cho-in"));
     document.body.appendChild(box); document.documentElement.style.overflow = "hidden";
-    render;
+    render();
       }
-  document.addEventListener("ghf-lang-change", function  { strips.forEach(fill); minis.forEach(fillMini); render; });
+  document.addEventListener("ghf-lang-change", function () { strips.forEach(fill); minis.forEach(fillMini); render(); });
   window.GHFLoc = { strip: strip, mini: mini, icon: ic, choose: choose, get: get, set: set, version: "1.1.2" };
   // pages that carry their own header (the base camp map and the 1D list) get the strip at the top here;
   // every other page gets it from basecamp.js, under the shared header bar
   var own = apex && (path === "/" || path === "/index.html" || /^\/(1d|cedwyn)(\/|$)/.test(path));
-  if (own) { if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function  { strip(null); }); else strip(null); }
+  if (own) { if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { strip(null); }); else strip(null); }
   if (apex && (path === "/" || path === "/index.html" || /^\/cedwyn\/?$/.test(path))) { // base camp (now also at /cedwyn/)
     var q = location.search || "";
     if (/[?&]choose\b/.test(q)) choose(false);
     else if (!/[?&]map\b/.test(q)) {
-      var c = get, ref = document.referrer || "";
+      var c = get(), ref = document.referrer || "";
       var inside = /^https:\/\/([a-z0-9-]+\.)*bucklerfamily\.estate\//.test(ref) || /\.pages\.dev\//.test(ref);
       if (!c) choose(false);
       else if (!inside) location.replace("/" + c + "/");
     }
   }
-});
+})();

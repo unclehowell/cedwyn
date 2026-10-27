@@ -18,8 +18,9 @@ Every self-running loop on the project. Each has a runner, state, a log, a fixed
 | [Growth flywheels (on-page, quote pack, visibility, weekly report)](growth.md) | weekly (Mon 07:30 visibility, Tue 19:00 quote pack, Wed 13:30 on-page, Sun 18:00 report) | Make Cedwyn findable and shareable: markup audits, quote cards from the records, search and AI visibility checks, and a weekly measured report. |
 | [Cedwyn film — daily scene](movie.md) | daily 06:00 UK | Make one two-minute scene a day from the chronology, in Welsh, English and Spanish, and open the next door on /movie/. |
 | [Morning brief](morning-brief.md) | daily 08:00 UK | Tell the project lead what finished overnight, mail that needs him, today's calendar and deadlines due soon. |
-| [Intelligence flywheel](intelligence.md) | proposed by its build (see its schedule proposal) | Normalise events and actors, test patterns honestly, map who answered and who stayed silent, and publish missing-record (MR-) pages. |
-| [Programme office](programme-office.md) | weekly review (see its schedule proposal) | Keep the objectives register (Wales tour, Argentina land and museum, chronology, e-books, the case) scored, mirrored into projects, and moving. |
+| [Intelligence flywheel](intelligence.md) | daily 04:15 Europe/London | Normalise events and actors, test patterns honestly, map who answered and who stayed silent, and publish missing-record (MR-) pages. |
+| [Email ingest](email-ingest.md) | every 2 hours, 07:00-23:00 Europe/London | Turn inbound project correspondence into site updates: the dartboard lanes, missing-record and catalogue candidates for the research cycles, and dated notes on the matching case tasks. |
+| [Programme office](programme-office.md) | weekly, Monday 06:00 Europe/London | Keep the objectives register (Wales tour, Argentina land and museum, chronology, e-books, the case) scored, mirrored into projects, and moving. |
 | [Cedwyn Academy (this section)](agent-library.md) | every 6 hours (proposed) | Keep the academy current: read new memory notes, lessons, runners, skills and worker reports; distil the public-safe parts; regenerate the work board from real gaps; rebuild, scan, publish, log. |
 
 Machine-readable: [flywheels.json](flywheels.json).

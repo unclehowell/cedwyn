@@ -196,24 +196,24 @@ blockquote{margin:8px 0;padding:4px 0 4px 14px;border-left:4px solid var(--red);
 </footer>
 
 <script>
-(function{
+(function(){
   var segs=[].slice.call(document.querySelectorAll('details.seg'));
   // one top-level segment open at a time (fallback for browsers without details[name])
-  segs.forEach(function(d){d.addEventListener('toggle',function{if(d.open){segs.forEach(function(o){if(o!==d)o.open=false;});}});});
-  [].forEach.call(document.querySelectorAll('[data-close]'),function(b){b.addEventListener('click',function{var d=b.closest('details.seg');d.open=false;[].forEach.call(d.querySelectorAll('details'),function(x){x.open=false;});d.scrollIntoView({block:'nearest'});d.querySelector('summary').focus;});});
+  segs.forEach(function(d){d.addEventListener('toggle',function(){if(d.open){segs.forEach(function(o){if(o!==d)o.open=false;});}});});
+  [].forEach.call(document.querySelectorAll('[data-close]'),function(b){b.addEventListener('click',function(){var d=b.closest('details.seg');d.open=false;[].forEach.call(d.querySelectorAll('details'),function(x){x.open=false;});d.scrollIntoView({block:'nearest'});d.querySelector('summary').focus();});});
   var menu=document.getElementById('menu'),scrim=document.querySelector('.scrim'),burger=document.querySelector('[data-menu]');
-  function setMenu(open){menu.hidden=!open;scrim.hidden=!open;burger.setAttribute('aria-expanded',open?'true':'false');if(open)menu.querySelector('a').focus;}
-  burger.addEventListener('click',function{setMenu(menu.hidden);});
-  [].forEach.call(document.querySelectorAll('[data-menu-close]'),function(x){x.addEventListener('click',function{setMenu(false);});});
+  function setMenu(open){menu.hidden=!open;scrim.hidden=!open;burger.setAttribute('aria-expanded',open?'true':'false');if(open)menu.querySelector('a').focus();}
+  burger.addEventListener('click',function(){setMenu(menu.hidden);});
+  [].forEach.call(document.querySelectorAll('[data-menu-close]'),function(x){x.addEventListener('click',function(){setMenu(false);});});
   document.addEventListener('keydown',function(ev){if(ev.key==='Escape')setMenu(false);});
-  [].forEach.call(document.querySelectorAll('[data-go]'),function(a){a.addEventListener('click',function(ev){ev.preventDefault;var d=document.getElementById(a.getAttribute('data-go'));setMenu(false);d.open=true;d.scrollIntoView({behavior:'smooth',block:'start'});});});
-  var c=document.querySelector('[data-collapse]');c.addEventListener('click',function(ev){ev.preventDefault;setMenu(false);[].forEach.call(document.querySelectorAll('details'),function(x){x.open=false;});window.scrollTo({top:0,behavior:'smooth'});});
-  function fromHash{var d=location.hash&&document.getElementById(location.hash.slice(1));if(d&&d.tagName==='DETAILS'){d.open=true;}}
-  fromHash;window.addEventListener('hashchange',fromHash);
+  [].forEach.call(document.querySelectorAll('[data-go]'),function(a){a.addEventListener('click',function(ev){ev.preventDefault();var d=document.getElementById(a.getAttribute('data-go'));setMenu(false);d.open=true;d.scrollIntoView({behavior:'smooth',block:'start'});});});
+  var c=document.querySelector('[data-collapse]');c.addEventListener('click',function(ev){ev.preventDefault();setMenu(false);[].forEach.call(document.querySelectorAll('details'),function(x){x.open=false;});window.scrollTo({top:0,behavior:'smooth'});});
+  function fromHash(){var d=location.hash&&document.getElementById(location.hash.slice(1));if(d&&d.tagName==='DETAILS'){d.open=true;}}
+  fromHash();window.addEventListener('hashchange',fromHash);
   var saved=[];
-  window.addEventListener('beforeprint',function{var all=[].slice.call(document.querySelectorAll('details'));saved=all.map(function(d){return d.open;});all.forEach(function(d){d.removeAttribute('name');d.open=true;});});
-  window.addEventListener('afterprint',function{[].slice.call(document.querySelectorAll('details')).forEach(function(d,i){d.open=!!saved[i];if(d.classList.contains('seg'))d.setAttribute('name','seg');});});
-});
+  window.addEventListener('beforeprint',function(){var all=[].slice.call(document.querySelectorAll('details'));saved=all.map(function(d){return d.open;});all.forEach(function(d){d.removeAttribute('name');d.open=true;});});
+  window.addEventListener('afterprint',function(){[].slice.call(document.querySelectorAll('details')).forEach(function(d,i){d.open=!!saved[i];if(d.classList.contains('seg'))d.setAttribute('name','seg');});});
+})();
 </script>
 <script src="/meeting/agent-tools.js" defer></script>
 <script src="/_cedwyn/ghf/basecamp.js?v=2.1.4e" defer></script>

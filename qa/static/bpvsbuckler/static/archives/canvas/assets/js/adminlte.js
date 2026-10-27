@@ -14,16 +14,16 @@
         if (document.readyState === 'loading') {
             // add listener on the first call when the document is in loading state
             if (!domContentLoadedCallbacks.length) {
-                document.addEventListener('DOMContentLoaded',  => {
+                document.addEventListener('DOMContentLoaded', () => {
                     for (const callback of domContentLoadedCallbacks) {
-                        callback;
+                        callback();
                     }
                 });
             }
             domContentLoadedCallbacks.push(callback);
         }
         else {
-            callback;
+            callback();
         }
     };
     /* SLIDE UP */
@@ -33,14 +33,14 @@
         target.style.boxSizing = 'border-box';
         target.style.height = `${target.offsetHeight}px`;
         target.style.overflow = 'hidden';
-        globalThis.setTimeout( => {
+        globalThis.setTimeout(() => {
             target.style.height = '0';
             target.style.paddingTop = '0';
             target.style.paddingBottom = '0';
             target.style.marginTop = '0';
             target.style.marginBottom = '0';
         }, 1);
-        globalThis.setTimeout( => {
+        globalThis.setTimeout(() => {
             target.style.display = 'none';
             target.style.removeProperty('height');
             target.style.removeProperty('padding-top');
@@ -67,7 +67,7 @@
         target.style.paddingBottom = '0';
         target.style.marginTop = '0';
         target.style.marginBottom = '0';
-        globalThis.setTimeout( => {
+        globalThis.setTimeout(() => {
             target.style.boxSizing = 'border-box';
             target.style.transitionProperty = 'height, margin, padding';
             target.style.transitionDuration = `${duration}ms`;
@@ -77,7 +77,7 @@
             target.style.removeProperty('margin-top');
             target.style.removeProperty('margin-bottom');
         }, 1);
-        globalThis.setTimeout( => {
+        globalThis.setTimeout(() => {
             target.style.removeProperty('height');
             target.style.removeProperty('overflow');
             target.style.removeProperty('transition-duration');
@@ -108,21 +108,21 @@
         constructor(element) {
             this._element = element;
         }
-        holdTransition {
+        holdTransition() {
             let resizeTimer;
-            window.addEventListener('resize',  => {
+            window.addEventListener('resize', () => {
                 document.body.classList.add(CLASS_NAME_HOLD_TRANSITIONS);
                 clearTimeout(resizeTimer);
-                resizeTimer = setTimeout( => {
+                resizeTimer = setTimeout(() => {
                     document.body.classList.remove(CLASS_NAME_HOLD_TRANSITIONS);
                 }, 400);
             });
         }
     }
-    onDOMContentLoaded( => {
+    onDOMContentLoaded(() => {
         const data = new Layout(document.body);
-        data.holdTransition;
-        setTimeout( => {
+        data.holdTransition();
+        setTimeout(() => {
             document.body.classList.add(CLASS_NAME_APP_LOADED);
         }, 400);
     });
@@ -176,7 +176,7 @@
             }
             this._config = { ...Default$1, ...config };
         }
-        collapse {
+        collapse() {
             const event = new Event(EVENT_COLLAPSED$2);
             if (this._parent) {
                 this._parent.classList.add(CLASS_NAME_COLLAPSING);
@@ -187,7 +187,7 @@
                         slideUp(el, this._config.animationSpeed);
                     }
                 });
-                setTimeout( => {
+                setTimeout(() => {
                     if (this._parent) {
                         this._parent.classList.add(CLASS_NAME_COLLAPSED);
                         this._parent.classList.remove(CLASS_NAME_COLLAPSING);
@@ -196,7 +196,7 @@
             }
             this._element?.dispatchEvent(event);
         }
-        expand {
+        expand() {
             const event = new Event(EVENT_EXPANDED$2);
             if (this._parent) {
                 this._parent.classList.add(CLASS_NAME_EXPANDING);
@@ -207,7 +207,7 @@
                         slideDown(el, this._config.animationSpeed);
                     }
                 });
-                setTimeout( => {
+                setTimeout(() => {
                     if (this._parent) {
                         this._parent.classList.remove(CLASS_NAME_COLLAPSED, CLASS_NAME_EXPANDING);
                     }
@@ -215,27 +215,27 @@
             }
             this._element?.dispatchEvent(event);
         }
-        remove {
+        remove() {
             const event = new Event(EVENT_REMOVE);
             if (this._parent) {
                 slideUp(this._parent, this._config.animationSpeed);
             }
             this._element?.dispatchEvent(event);
         }
-        toggle {
+        toggle() {
             if (this._parent?.classList.contains(CLASS_NAME_COLLAPSED)) {
-                this.expand;
+                this.expand();
                 return;
             }
-            this.collapse;
+            this.collapse();
         }
-        maximize {
+        maximize() {
             const event = new Event(EVENT_MAXIMIZED$1);
             if (this._parent) {
                 this._parent.style.height = `${this._parent.offsetHeight}px`;
                 this._parent.style.width = `${this._parent.offsetWidth}px`;
                 this._parent.style.transition = 'all .15s';
-                setTimeout( => {
+                setTimeout(() => {
                     const htmlTag = document.querySelector('html');
                     if (htmlTag) {
                         htmlTag.classList.add(CLASS_NAME_MAXIMIZED);
@@ -250,13 +250,13 @@
             }
             this._element?.dispatchEvent(event);
         }
-        minimize {
+        minimize() {
             const event = new Event(EVENT_MINIMIZED$1);
             if (this._parent) {
                 this._parent.style.height = 'auto';
                 this._parent.style.width = 'auto';
                 this._parent.style.transition = 'all .15s';
-                setTimeout( => {
+                setTimeout(() => {
                     const htmlTag = document.querySelector('html');
                     if (htmlTag) {
                         htmlTag.classList.remove(CLASS_NAME_MAXIMIZED);
@@ -271,12 +271,12 @@
             }
             this._element?.dispatchEvent(event);
         }
-        toggleMaximize {
+        toggleMaximize() {
             if (this._parent?.classList.contains(CLASS_NAME_MAXIMIZED)) {
-                this.minimize;
+                this.minimize();
                 return;
             }
-            this.maximize;
+            this.maximize();
         }
     }
     /**
@@ -284,32 +284,32 @@
      * Data Api implementation
      * ====================================================
      */
-    onDOMContentLoaded( => {
+    onDOMContentLoaded(() => {
         const collapseBtn = document.querySelectorAll(SELECTOR_DATA_COLLAPSE);
         collapseBtn.forEach(btn => {
             btn.addEventListener('click', event => {
-                event.preventDefault;
+                event.preventDefault();
                 const target = event.target;
                 const data = new CardWidget(target, Default$1);
-                data.toggle;
+                data.toggle();
             });
         });
         const removeBtn = document.querySelectorAll(SELECTOR_DATA_REMOVE);
         removeBtn.forEach(btn => {
             btn.addEventListener('click', event => {
-                event.preventDefault;
+                event.preventDefault();
                 const target = event.target;
                 const data = new CardWidget(target, Default$1);
-                data.remove;
+                data.remove();
             });
         });
         const maxBtn = document.querySelectorAll(SELECTOR_DATA_MAXIMIZE);
         maxBtn.forEach(btn => {
             btn.addEventListener('click', event => {
-                event.preventDefault;
+                event.preventDefault();
                 const target = event.target;
                 const data = new CardWidget(target, Default$1);
-                data.toggleMaximize;
+                data.toggleMaximize();
             });
         });
     });
@@ -352,7 +352,7 @@
             this._element = element;
             this._config = { ...Default, ...config };
         }
-        open {
+        open() {
             const event = new Event(EVENT_EXPANDED$1);
             if (this._config.accordion) {
                 const openMenuList = this._element.parentElement?.querySelectorAll(`${SELECTOR_NAV_ITEM$1}.${CLASS_NAME_MENU_OPEN$1}`);
@@ -373,7 +373,7 @@
             }
             this._element.dispatchEvent(event);
         }
-        close {
+        close() {
             const event = new Event(EVENT_COLLAPSED$1);
             this._element.classList.remove(CLASS_NAME_MENU_OPEN$1);
             const childElement = this._element?.querySelector(SELECTOR_TREEVIEW_MENU);
@@ -382,12 +382,12 @@
             }
             this._element.dispatchEvent(event);
         }
-        toggle {
+        toggle() {
             if (this._element.classList.contains(CLASS_NAME_MENU_OPEN$1)) {
-                this.close;
+                this.close();
             }
             else {
-                this.open;
+                this.open();
             }
         }
     }
@@ -396,7 +396,7 @@
      * Data Api implementation
      * ------------------------------------------------------------------------
      */
-    onDOMContentLoaded( => {
+    onDOMContentLoaded(() => {
         const openMenuItems = document.querySelectorAll(`${SELECTOR_NAV_ITEM$1}.${CLASS_NAME_MENU_OPEN$1}`);
         openMenuItems.forEach(menuItem => {
             const childElement = menuItem.querySelector(SELECTOR_TREEVIEW_MENU);
@@ -419,7 +419,7 @@
                     return;
                 }
                 if (target?.getAttribute('href') === '#' || targetLink?.getAttribute('href') === '#') {
-                    event.preventDefault;
+                    event.preventDefault();
                 }
                 if (targetItem) {
                     // Read data attributes
@@ -431,7 +431,7 @@
                         animationSpeed: animationSpeedAttr === undefined ? Default.animationSpeed : Number(animationSpeedAttr)
                     };
                     const data = new Treeview(targetItem, config);
-                    data.toggle;
+                    data.toggle();
                 }
             });
         });
@@ -464,7 +464,7 @@
         constructor(element) {
             this._element = element;
         }
-        toggle {
+        toggle() {
             if (this._element.classList.contains(CLASS_NAME_DIRECT_CHAT_OPEN)) {
                 const event = new Event(EVENT_COLLAPSED);
                 this._element.classList.remove(CLASS_NAME_DIRECT_CHAT_OPEN);
@@ -482,16 +482,16 @@
      * Data Api implementation
      * ====================================================
      */
-    onDOMContentLoaded( => {
+    onDOMContentLoaded(() => {
         const button = document.querySelectorAll(SELECTOR_DATA_TOGGLE);
         button.forEach(btn => {
             btn.addEventListener('click', event => {
-                event.preventDefault;
+                event.preventDefault();
                 const target = event.target;
                 const chatPane = target.closest(SELECTOR_DIRECT_CHAT);
                 if (chatPane) {
                     const data = new DirectChat(chatPane);
-                    data.toggle;
+                    data.toggle();
                 }
             });
         });
@@ -526,11 +526,11 @@
             this._element = element;
             this._config = config;
         }
-        inFullScreen {
+        inFullScreen() {
             const event = new Event(EVENT_MAXIMIZED);
             const iconMaximize = document.querySelector(SELECTOR_MAXIMIZE_ICON);
             const iconMinimize = document.querySelector(SELECTOR_MINIMIZE_ICON);
-            void document.documentElement.requestFullscreen;
+            void document.documentElement.requestFullscreen();
             if (iconMaximize) {
                 iconMaximize.style.display = 'none';
             }
@@ -539,11 +539,11 @@
             }
             this._element.dispatchEvent(event);
         }
-        outFullscreen {
+        outFullscreen() {
             const event = new Event(EVENT_MINIMIZED);
             const iconMaximize = document.querySelector(SELECTOR_MAXIMIZE_ICON);
             const iconMinimize = document.querySelector(SELECTOR_MINIMIZE_ICON);
-            void document.exitFullscreen;
+            void document.exitFullscreen();
             if (iconMaximize) {
                 iconMaximize.style.display = 'block';
             }
@@ -552,13 +552,13 @@
             }
             this._element.dispatchEvent(event);
         }
-        toggleFullScreen {
+        toggleFullScreen() {
             if (document.fullscreenEnabled) {
                 if (document.fullscreenElement) {
-                    this.outFullscreen;
+                    this.outFullscreen();
                 }
                 else {
-                    this.inFullScreen;
+                    this.inFullScreen();
                 }
             }
         }
@@ -567,16 +567,16 @@
      * Data Api implementation
      * ============================================================================
      */
-    onDOMContentLoaded( => {
+    onDOMContentLoaded(() => {
         const buttons = document.querySelectorAll(SELECTOR_FULLSCREEN_TOGGLE);
         buttons.forEach(btn => {
             btn.addEventListener('click', event => {
-                event.preventDefault;
+                event.preventDefault();
                 const target = event.target;
                 const button = target.closest(SELECTOR_FULLSCREEN_TOGGLE);
                 if (button) {
                     const data = new FullScreen(button, undefined);
-                    data.toggleFullScreen;
+                    data.toggleFullScreen();
                 }
             });
         });
@@ -627,7 +627,7 @@
             this._element = element;
             this._config = { ...Defaults, ...config };
         }
-        menusClose {
+        menusClose() {
             const navTreeview = document.querySelectorAll(SELECTOR_NAV_TREEVIEW);
             navTreeview.forEach(navTree => {
                 navTree.style.removeProperty('display');
@@ -641,19 +641,19 @@
                 });
             }
         }
-        expand {
+        expand() {
             const event = new Event(EVENT_OPEN);
             document.body.classList.remove(CLASS_NAME_SIDEBAR_COLLAPSE);
             document.body.classList.add(CLASS_NAME_SIDEBAR_OPEN);
             this._element.dispatchEvent(event);
         }
-        collapse {
+        collapse() {
             const event = new Event(EVENT_COLLAPSE);
             document.body.classList.remove(CLASS_NAME_SIDEBAR_OPEN);
             document.body.classList.add(CLASS_NAME_SIDEBAR_COLLAPSE);
             this._element.dispatchEvent(event);
         }
-        addSidebarBreakPoint {
+        addSidebarBreakPoint() {
             const sidebarExpandList = document.querySelector(SELECTOR_SIDEBAR_EXPAND)?.classList ?? [];
             const sidebarExpand = Array.from(sidebarExpandList).find(className => className.startsWith(CLASS_NAME_SIDEBAR_EXPAND)) ?? '';
             const sidebar = document.getElementsByClassName(sidebarExpand)[0];
@@ -665,31 +665,31 @@
             if (window.innerWidth <= this._config.sidebarBreakpoint) {
                 // Only collapse if not currently open (prevents scroll-triggered closes)
                 if (!isCurrentlyOpen) {
-                    this.collapse;
+                    this.collapse();
                 }
             }
             else {
                 if (!document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI)) {
-                    this.expand;
+                    this.expand();
                 }
                 if (document.body.classList.contains(CLASS_NAME_SIDEBAR_MINI) && document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
-                    this.collapse;
+                    this.collapse();
                 }
             }
         }
-        toggle {
+        toggle() {
             if (document.body.classList.contains(CLASS_NAME_SIDEBAR_COLLAPSE)) {
-                this.expand;
+                this.expand();
             }
             else {
-                this.collapse;
+                this.collapse();
             }
-            this.saveSidebarState;
+            this.saveSidebarState();
         }
         /**
          * Save sidebar state to localStorage
          */
-        saveSidebarState {
+        saveSidebarState() {
             if (!this._config.enablePersistence) {
                 return;
             }
@@ -711,7 +711,7 @@
          * Load sidebar state from localStorage
          * Only applies on desktop; mobile always starts collapsed
          */
-        loadSidebarState {
+        loadSidebarState() {
             if (!this._config.enablePersistence) {
                 return;
             }
@@ -726,10 +726,10 @@
             try {
                 const storedState = localStorage.getItem(STORAGE_KEY_SIDEBAR_STATE);
                 if (storedState === CLASS_NAME_SIDEBAR_COLLAPSE) {
-                    this.collapse;
+                    this.collapse();
                 }
                 else if (storedState === CLASS_NAME_SIDEBAR_OPEN) {
-                    this.expand;
+                    this.expand();
                 }
                 // If null (never saved), let default behavior apply
             }
@@ -737,9 +737,9 @@
                 // localStorage may be unavailable
             }
         }
-        init {
-            this.addSidebarBreakPoint;
-            this.loadSidebarState;
+        init() {
+            this.addSidebarBreakPoint();
+            this.loadSidebarState();
         }
     }
     /**
@@ -747,13 +747,13 @@
      * Data Api implementation
      * ------------------------------------------------------------------------
      */
-    onDOMContentLoaded( => {
+    onDOMContentLoaded(() => {
         const sidebar = document?.querySelector(SELECTOR_APP_SIDEBAR);
         if (sidebar) {
             const data = new PushMenu(sidebar, Defaults);
-            data.init;
-            window.addEventListener('resize',  => {
-                data.init;
+            data.init();
+            window.addEventListener('resize', () => {
+                data.init();
             });
         }
         const sidebarOverlay = document.createElement('div');
@@ -761,39 +761,39 @@
         document.querySelector(SELECTOR_APP_WRAPPER)?.append(sidebarOverlay);
         let overlayTouchMoved = false;
         // Handle touch events on overlay (area outside sidebar)
-        sidebarOverlay.addEventListener('touchstart',  => {
+        sidebarOverlay.addEventListener('touchstart', () => {
             overlayTouchMoved = false;
         }, { passive: true });
-        sidebarOverlay.addEventListener('touchmove',  => {
+        sidebarOverlay.addEventListener('touchmove', () => {
             overlayTouchMoved = true;
         }, { passive: true });
         sidebarOverlay.addEventListener('touchend', event => {
             if (!overlayTouchMoved) {
-                event.preventDefault;
+                event.preventDefault();
                 const target = event.currentTarget;
                 const data = new PushMenu(target, Defaults);
-                data.collapse;
+                data.collapse();
             }
             overlayTouchMoved = false;
         }, { passive: false });
         sidebarOverlay.addEventListener('click', event => {
-            event.preventDefault;
+            event.preventDefault();
             const target = event.currentTarget;
             const data = new PushMenu(target, Defaults);
-            data.collapse;
+            data.collapse();
         });
         const fullBtn = document.querySelectorAll(SELECTOR_SIDEBAR_TOGGLE);
         fullBtn.forEach(btn => {
             btn.addEventListener('click', event => {
-                event.preventDefault;
+                event.preventDefault();
                 let button = event.currentTarget;
                 if (button?.dataset.lteToggle !== 'sidebar') {
                     button = button?.closest(SELECTOR_SIDEBAR_TOGGLE);
                 }
                 if (button) {
-                    event?.preventDefault;
+                    event?.preventDefault();
                     const data = new PushMenu(button, Defaults);
-                    data.toggle;
+                    data.toggle();
                 }
             });
         });
@@ -816,30 +816,30 @@
                 reducedMotion: true,
                 ...config
             };
-            this.init;
+            this.init();
         }
-        init {
+        init() {
             if (this.config.announcements) {
-                this.createLiveRegion;
+                this.createLiveRegion();
             }
             if (this.config.skipLinks) {
-                this.addSkipLinks;
+                this.addSkipLinks();
             }
             if (this.config.focusManagement) {
-                this.initFocusManagement;
+                this.initFocusManagement();
             }
             if (this.config.keyboardNavigation) {
-                this.initKeyboardNavigation;
+                this.initKeyboardNavigation();
             }
             if (this.config.reducedMotion) {
-                this.respectReducedMotion;
+                this.respectReducedMotion();
             }
-            this.initErrorAnnouncements;
-            this.initTableAccessibility;
-            this.initFormAccessibility;
+            this.initErrorAnnouncements();
+            this.initTableAccessibility();
+            this.initFormAccessibility();
         }
         // WCAG 4.1.3: Status Messages
-        createLiveRegion {
+        createLiveRegion() {
             if (this.liveRegion)
                 return;
             this.liveRegion = document.createElement('div');
@@ -851,7 +851,7 @@
             document.body.append(this.liveRegion);
         }
         // WCAG 2.4.1: Bypass Blocks
-        addSkipLinks {
+        addSkipLinks() {
             const skipLinksContainer = document.createElement('div');
             skipLinksContainer.className = 'skip-links';
             const skipToMain = document.createElement('a');
@@ -866,9 +866,9 @@
             skipLinksContainer.append(skipToNav);
             document.body.insertBefore(skipLinksContainer, document.body.firstChild);
             // Ensure targets exist and are focusable
-            this.ensureSkipTargets;
+            this.ensureSkipTargets();
         }
-        ensureSkipTargets {
+        ensureSkipTargets() {
             const main = document.querySelector('#main, main, [role="main"]');
             if (main && !main.id) {
                 main.id = 'main';
@@ -885,7 +885,7 @@
             }
         }
         // WCAG 2.4.3: Focus Order & 2.4.7: Focus Visible
-        initFocusManagement {
+        initFocusManagement() {
             document.addEventListener('keydown', (event) => {
                 if (event.key === 'Tab') {
                     this.handleTabNavigation(event);
@@ -895,26 +895,26 @@
                 }
             });
             // Focus management for modals and dropdowns
-            this.initModalFocusManagement;
-            this.initDropdownFocusManagement;
+            this.initModalFocusManagement();
+            this.initDropdownFocusManagement();
         }
         handleTabNavigation(event) {
-            const focusableElements = this.getFocusableElements;
+            const focusableElements = this.getFocusableElements();
             const currentIndex = focusableElements.indexOf(document.activeElement);
             if (event.shiftKey) {
                 // Shift+Tab (backward)
                 if (currentIndex <= 0) {
-                    event.preventDefault;
-                    focusableElements.at(-1)?.focus;
+                    event.preventDefault();
+                    focusableElements.at(-1)?.focus();
                 }
             }
             else if (currentIndex >= focusableElements.length - 1) {
                 // Tab (forward)
-                event.preventDefault;
-                focusableElements[0]?.focus;
+                event.preventDefault();
+                focusableElements[0]?.focus();
             }
         }
-        getFocusableElements {
+        getFocusableElements() {
             const selector = [
                 'a[href]',
                 'button:not([disabled])',
@@ -932,17 +932,17 @@
             const activeDropdown = document.querySelector('.dropdown-menu.show');
             if (activeModal) {
                 const closeButton = activeModal.querySelector('[data-bs-dismiss="modal"]');
-                closeButton?.click;
-                event.preventDefault;
+                closeButton?.click();
+                event.preventDefault();
             }
             else if (activeDropdown) {
                 const toggleButton = document.querySelector('[data-bs-toggle="dropdown"][aria-expanded="true"]');
-                toggleButton?.click;
-                event.preventDefault;
+                toggleButton?.click();
+                event.preventDefault();
             }
         }
         // WCAG 2.1.1: Keyboard Access
-        initKeyboardNavigation {
+        initKeyboardNavigation() {
             // Add keyboard support for custom components
             document.addEventListener('keydown', (event) => {
                 const target = event.target;
@@ -952,8 +952,8 @@
                 }
                 // Handle Enter and Space for custom buttons
                 if ((event.key === 'Enter' || event.key === ' ') && target.hasAttribute('role') && target.getAttribute('role') === 'button' && !target.matches('button, input[type="button"], input[type="submit"]')) {
-                    event.preventDefault;
-                    target.click;
+                    event.preventDefault();
+                    target.click();
                 }
             });
         }
@@ -988,11 +988,11 @@
                     return;
                 }
             }
-            event.preventDefault;
-            menuItems[nextIndex]?.focus;
+            event.preventDefault();
+            menuItems[nextIndex]?.focus();
         }
         // WCAG 2.3.3: Animation from Interactions
-        respectReducedMotion {
+        respectReducedMotion() {
             const prefersReducedMotion = globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
             if (prefersReducedMotion) {
                 document.body.classList.add('reduce-motion');
@@ -1011,7 +1011,7 @@
             }
         }
         // WCAG 3.3.1: Error Identification
-        initErrorAnnouncements {
+        initErrorAnnouncements() {
             const observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
                     mutation.addedNodes.forEach((node) => {
@@ -1035,7 +1035,7 @@
             });
         }
         // WCAG 1.3.1: Info and Relationships
-        initTableAccessibility {
+        initTableAccessibility() {
             document.querySelectorAll('table').forEach((table) => {
                 // Add table role if missing
                 if (!table.hasAttribute('role')) {
@@ -1063,7 +1063,7 @@
             });
         }
         // WCAG 3.3.2: Labels or Instructions
-        initFormAccessibility {
+        initFormAccessibility() {
             document.querySelectorAll('input, select, textarea').forEach((input) => {
                 const htmlInput = input;
                 // Ensure all inputs have labels
@@ -1086,7 +1086,7 @@
                 // Handle invalid state unless the element explicitly opts out via the
                 // 'disable-adminlte-validations' class.
                 if (!htmlInput.classList.contains('disable-adminlte-validations')) {
-                    htmlInput.addEventListener('invalid',  => {
+                    htmlInput.addEventListener('invalid', () => {
                         this.handleFormError(htmlInput);
                     });
                 }
@@ -1112,45 +1112,45 @@
             this.announce(`Error in ${input.labels?.[0]?.textContent || input.name}: ${input.validationMessage}`, 'assertive');
         }
         // Modal focus management
-        initModalFocusManagement {
+        initModalFocusManagement() {
             document.addEventListener('shown.bs.modal', (event) => {
                 const modal = event.target;
                 const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
                 if (focusableElements.length > 0) {
-                    focusableElements[0].focus;
+                    focusableElements[0].focus();
                 }
                 // Store previous focus
                 this.focusHistory.push(document.activeElement);
             });
-            document.addEventListener('hidden.bs.modal',  => {
+            document.addEventListener('hidden.bs.modal', () => {
                 // Restore previous focus
-                const previousElement = this.focusHistory.pop;
+                const previousElement = this.focusHistory.pop();
                 if (previousElement) {
-                    previousElement.focus;
+                    previousElement.focus();
                 }
             });
         }
         // Dropdown focus management
-        initDropdownFocusManagement {
+        initDropdownFocusManagement() {
             document.addEventListener('shown.bs.dropdown', (event) => {
                 const dropdown = event.target;
                 const menu = dropdown.querySelector('.dropdown-menu');
                 const firstItem = menu?.querySelector('a, button');
                 if (firstItem) {
-                    firstItem.focus;
+                    firstItem.focus();
                 }
             });
         }
         // Public API methods
         announce(message, priority = 'polite') {
             if (!this.liveRegion) {
-                this.createLiveRegion;
+                this.createLiveRegion();
             }
             if (this.liveRegion) {
                 this.liveRegion.setAttribute('aria-live', priority);
                 this.liveRegion.textContent = message;
                 // Clear after announcement
-                setTimeout( => {
+                setTimeout(() => {
                     if (this.liveRegion) {
                         this.liveRegion.textContent = '';
                     }
@@ -1160,7 +1160,7 @@
         focusElement(selector) {
             const element = document.querySelector(selector);
             if (element) {
-                element.focus;
+                element.focus();
                 // Ensure element is visible
                 element.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
@@ -1174,18 +1174,18 @@
                 if (event.key === 'Tab') {
                     if (event.shiftKey) {
                         if (document.activeElement === firstElement) {
-                            lastElement?.focus;
-                            event.preventDefault;
+                            lastElement?.focus();
+                            event.preventDefault();
                         }
                     }
                     else if (document.activeElement === lastElement) {
-                        firstElement.focus;
-                        event.preventDefault;
+                        firstElement.focus();
+                        event.preventDefault();
                     }
                 }
             });
         }
-        addLandmarks {
+        addLandmarks() {
             // Add main landmark if missing
             const main = document.querySelector('main');
             if (!main) {
@@ -1222,13 +1222,13 @@
      * Website: AdminLTE.io <https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fadminlte.io>
      * License: Open source - MIT <https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fopensource.org%2Flicenses%2FMIT>
      */
-    onDOMContentLoaded( => {
+    onDOMContentLoaded(() => {
         /**
          * Initialize AdminLTE Core Components
          * -------------------------------
          */
         const layout = new Layout(document.body);
-        layout.holdTransition;
+        layout.holdTransition();
         /**
          * Initialize Accessibility Features - WCAG 2.1 AA Compliance
          * --------------------------------------------------------
@@ -1241,9 +1241,9 @@
             reducedMotion: true
         });
         // Add semantic landmarks
-        accessibilityManager.addLandmarks;
+        accessibilityManager.addLandmarks();
         // Mark app as loaded after initialization
-        setTimeout( => {
+        setTimeout(() => {
             document.body.classList.add('app-loaded');
         }, 400);
     });

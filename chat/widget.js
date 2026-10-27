@@ -1,6 +1,6 @@
 /*! GHF "Agent" chat widget (was "Ask the archive") — chat.bucklerfamily.estate/widget.js — Cedwyn editors, 20 Oct 2026.
  * Opt out per site/page: <html data-ghf-chat="off"> or <meta name="ghf-chat" content="off">. Never on clerk./chess./email. */
-(function  {
+(function () {
   "use strict";
   if (window.GHFChat) return;
   var host = location.hostname, de = document.documentElement;
@@ -15,8 +15,8 @@
     cy: { open: "Asiant", title: "Asiant", note: "Atebion AI o'n tudalennau cyhoeddedig; gallant fod yn anghywir.", ph: "Holwch am Dŷ Mawr, y cofnod neu'r e-lyfrau…", send: "Anfon", close: "Cau'r sgwrs", src: "Ffynonellau", wait: "Yn chwilio'r tudalennau…", err: "Mae'n ddrwg gennym, ni weithiodd hynny. Rhowch gynnig arall ymhen munud.", hi: "Gofynnwch gwestiwn am Fferm y Tŷ Mawr, ei hanes, y cofnod cyhoeddedig, yr e-lyfrau neu'r siop. Daw'r atebion o'n tudalennau cyhoeddedig yn unig. Nid cyngor cyfreithiol." },
     es: { open: "Agente", title: "Agente", note: "Respuestas de IA a partir de nuestras páginas publicadas; pueden contener errores.", ph: "Pregunta sobre Tŷ Mawr, el registro o los e-books…", send: "Enviar", close: "Cerrar chat", src: "Fuentes", wait: "Buscando en las páginas publicadas…", err: "Lo sentimos, no se pudo enviar. Inténtalo de nuevo en un minuto.", hi: "Haz una pregunta sobre Great House Farm (Tŷ Mawr), su historia, el registro publicado, los e-books o la tienda. Las respuestas salen solo de nuestras páginas publicadas. No es asesoramiento legal." }
   };
-  function lang { var l = (de.getAttribute("lang") || "en").slice(0, 2).toLowerCase; try { l = localStorage.getItem("ghf-lang") || l; } catch (e) {} return L[l] ? l : "en"; }
-  var T = L[lang];
+  function lang() { var l = (de.getAttribute("lang") || "en").slice(0, 2).toLowerCase(); try { l = localStorage.getItem("ghf-lang") || l; } catch (e) {} return L[l] ? l : "en"; }
+  var T = L[lang()];
   if (host === "app.bucklerfamily.estate" || host === "apps.bucklerfamily.estate") T = Object.assign({}, T, { note: "AI answers about this service and our published pages; may be wrong.", ph: "Ask about the service, prices or the demo…", hi: "Hello, I'm the Case Office agent. Ask me about the service, prices, how to start, or the Great House Farm demo. I can't give legal advice." });
   var pair = (window.GHFBasecamp && window.GHFBasecamp.colors) || ["#0d0d0d", "#f2c94c"];
   var P = pair[0] || "#0d0d0d", S = pair[1] || "#f2c94c";
@@ -63,31 +63,31 @@
     }
     log.appendChild(d); log.scrollTop = log.scrollHeight; return d;
   }
-  function open { if (!opened) { opened = Date.now; add("ghfc-a", T.hi); } pn.classList.add("on"); btn.style.display = "none"; setTimeout(function  { inp.focus; }, 30); }
-  function close { pn.classList.remove("on"); btn.style.display = ""; btn.focus; }
+  function open() { if (!opened) { opened = Date.now(); add("ghfc-a", T.hi); } pn.classList.add("on"); btn.style.display = "none"; setTimeout(function () { inp.focus(); }, 30); }
+  function close() { pn.classList.remove("on"); btn.style.display = ""; btn.focus(); }
   btn.addEventListener("click", open); x.addEventListener("click", close);
-  window.GHFChat.open = function  { open; };
-  pn.addEventListener("keydown", function (e) { if (e.key === "Escape") close; });
+  window.GHFChat.open = function () { open(); };
+  pn.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
   f.addEventListener("submit", function (e) {
-    e.preventDefault; var q = inp.value.trim; if (!q || busy) return;
+    e.preventDefault(); var q = inp.value.trim(); if (!q || busy) return;
     busy = true; sb.disabled = true; add("ghfc-u", q); inp.value = ""; var w = add("ghfc-a", T.wait);
-    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ q: q, website: hp.value, t: Date.now - opened, page: location.origin + location.pathname, lang: lang }) })
-      .then(function (r) { return r.json.catch(function  { return {}; }); })
-      .then(function (j) { w.remove; add("ghfc-a", j.answer || T.err, j.sources); })
-      .catch(function  { w.remove; add("ghfc-a", T.err); })
-      .then(function  { busy = false; sb.disabled = false; inp.focus; });
+    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ q: q, website: hp.value, t: Date.now() - opened, page: location.origin + location.pathname, lang: lang() }) })
+      .then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (j) { w.remove(); add("ghfc-a", j.answer || T.err, j.sources); })
+      .catch(function () { w.remove(); add("ghfc-a", T.err); })
+      .then(function () { busy = false; sb.disabled = false; inp.focus(); });
   });
   // keep clear of the base camp pill (bottom-left): if they overlap on a narrow screen, sit just above it
-  function place {
+  function place() {
     btn.style.bottom = "14px";
     var n = document.querySelector(".ghf-bc"); if (!n) return;
-    var a = btn.getBoundingClientRect, b = n.getBoundingClientRect;
+    var a = btn.getBoundingClientRect(), b = n.getBoundingClientRect();
     if (b.width && b.height && a.left < b.right && a.right > b.left && a.bottom > b.top) btn.style.bottom = Math.round(window.innerHeight - b.top + 8) + "px";
   }
-  function mount {
+  function mount() {
     if (!document.body) return; document.body.appendChild(btn); document.body.appendChild(pn);
-    place; setTimeout(place, 800); setTimeout(place, 2500); window.addEventListener("resize", place);
-    if (/[?&#]ask=1\b/.test(location.href)) open;
+    place(); setTimeout(place, 800); setTimeout(place, 2500); window.addEventListener("resize", place);
+    if (/[?&#]ask=1\b/.test(location.href)) open();
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount); else mount;
-});
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount); else mount();
+})();

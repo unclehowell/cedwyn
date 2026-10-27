@@ -3,7 +3,7 @@
  * Fixes cross-origin iframe and API communication issues
  */
 
-(function {
+(function() {
     'use strict';
     
     // Configuration for different environments
@@ -24,11 +24,11 @@
     const CONFIG = ENVIRONMENTS[CURRENT_ENV];
     
     // Enhanced CORS headers function
-    function getCorsHeaders {
+    function getCorsHeaders() {
         const headers = {
             'Content-Type': 'application/json',
             'X-Requested-With': 'XMLHttpRequest',
-            'X-Custom-Header': 'PCP-WEBAPP-' + Date.now
+            'X-Custom-Header': 'PCP-WEBAPP-' + Date.now()
         };
         
         // Add proper origin header
@@ -48,7 +48,7 @@
             method: method,
             mode: 'cors',
             credentials: 'include',
-            headers: getCorsHeaders
+            headers: getCorsHeaders()
         };
         
         if (data) {
@@ -59,7 +59,7 @@
     }
     
     // OpenClaw drawer initialization with CORS fixes
-    document.addEventListener('DOMContentLoaded',  => {
+    document.addEventListener('DOMContentLoaded', () => {
         const ocTab = document.getElementById('ocTab');
         const ocDrawer = document.getElementById('ocDrawer');
         const guacFrame = document.getElementById('guac-frame');
@@ -69,7 +69,7 @@
         // Enhanced configuration for cross-origin support
         const USER_NUM = getLocalStorageItem('user_num', '1');
         const USER_PWD = getLocalStorageItem('user_pwd', '');
-        const hasRemoteLogin = USER_PWD.trim.length > 0;
+        const hasRemoteLogin = USER_PWD.trim().length > 0;
         
         const REMOTE_HOST_PRIMARY = CONFIG.apiBase;
         const REMOTE_HOST_FALLBACK = CONFIG.apiBase.replace('ai.', '');
@@ -79,8 +79,8 @@
         
         // Override the default sendMessage function with CORS fixes
         if (sendBtn && userQuery && hasRemoteLogin) {
-            sendBtn.addEventListener('click', async function {
-                const message = userQuery.value.trim;
+            sendBtn.addEventListener('click', async function() {
+                const message = userQuery.value.trim();
                 if (!message) return;
                 
                 try {
@@ -106,18 +106,18 @@
         
         // Enhanced Guacamole iframe handling
         if (ocTab) {
-            ocTab.addEventListener('click',  => {
+            ocTab.addEventListener('click', () => {
                 if (guacFrame && guacFrame.src === 'about:blank') {
                     // Set proper src with CORS parameters
                     const guacUrl = `${REMOTE_HOST_PRIMARY}/guacamole/#/?username=user2514853${USER_NUM}&password=${USER_PWD}`;
                     guacFrame.src = guacUrl;
                     
                     // Wait for iframe to load
-                    guacFrame.onload =  => {
+                    guacFrame.onload = () => {
                         showFeedback('Guacamole session connected');
                     };
                     
-                    guacFrame.onerror =  => {
+                    guacFrame.onerror = () => {
                         showFeedback('Failed to connect Guacamole - check configuration');
                     };
                 }
@@ -138,7 +138,7 @@
         const feedback = document.getElementById('feedback');
         if (feedback) {
             feedback.textContent = message;
-            setTimeout( => feedback.textContent = '', 5000);
+            setTimeout(() => feedback.textContent = '', 5000);
         } else {
         }
     }
@@ -147,4 +147,4 @@
     window.PCP_CONFIG = CONFIG;
     window.makeCorsRequest = makeCorsRequest;
     window.getCorsHeaders = getCorsHeaders;
-});
+})();

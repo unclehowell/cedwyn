@@ -187,7 +187,7 @@
   </footer>
 
   <script data-cfasync="true">
-    (async  => {
+    (async () => {
       const CATEGORIES = [
         { name: 'all', label: 'All', icon: '📦' },
         { name: 'images', label: 'Images', icon: '🖼' },
@@ -212,7 +212,7 @@
       const allSearchWrapper = document.getElementById('all-search-wrapper');
 
       // render tabs immediately so UI is never just the title
-      renderTabs;
+      renderTabs();
 
       // -- WEBSITES tab (24 Oct 2026): archived web pages from /websites/index.json --
       let wsData = null;
@@ -220,15 +220,15 @@
       const wsList = document.getElementById('ws-list');
       const wsEsc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
       const wsDate = t => { try { return new Date(t).toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'}); } catch(e) { return t; } };
-      async function wsLoad {
+      async function wsLoad() {
         if (wsData) return wsData;
         try { wsData = JSON.parse(await xhrGet('/websites/index.json')); } catch(e) { wsData = {items: []}; }
         allData.websites = wsData.items || [];
-        renderTabs;
+        renderTabs();
         return wsData;
       }
       function wsRender(q) {
-        const items = (wsData.items || []).filter(i => !q || (i.title + ' ' + i.url).toLowerCase.includes(q));
+        const items = (wsData.items || []).filter(i => !q || (i.title + ' ' + i.url).toLowerCase().includes(q));
         document.getElementById('ws-count').textContent = (wsData.items || []).length;
         const by = {};
         items.forEach(i => (by[i.host] = by[i.host] || []).push(i));
@@ -239,7 +239,7 @@
             `<div class="ws-t" data-ws="${wsEsc(i.latest)}">${wsEsc(i.title)}</div>` +
             `<div class="ws-m">${wsDate(i.captured)} · ${wsEsc(i.version)}${i.n_versions > 1 ? ' (' + i.n_versions + ' versions)' : ''} · <a href="${wsEsc(i.latest)}" target="_blank" rel="noopener">latest</a></div></div>`).join('') +
           `</div></details>`).join('') : '<p style="text-align:center;color:#99a;padding:1.5rem">No archived pages match.</p>';
-        wsList.querySelectorAll('[data-ws]').forEach(el => el.addEventListener('click',  => wsOpen(el.dataset.ws)));
+        wsList.querySelectorAll('[data-ws]').forEach(el => el.addEventListener('click', () => wsOpen(el.dataset.ws)));
       }
       function wsOpen(latest) { if (latest) { location.href = '/wayback' + latest; return; }
         const i = (wsData.items || []).find(x => x.latest === latest); if (!i) return;
@@ -250,37 +250,37 @@
         document.getElementById('ws-modal').classList.add('open');
         history.replaceState(null, '', '#websites/' + i.host + '/' + i.slug);
       }
-      function wsClose {
+      function wsClose() {
         document.getElementById('ws-modal').classList.remove('open');
         document.getElementById('ws-mframe').src = 'about:blank';
         history.replaceState(null, '', '#websites');
       }
       document.getElementById('ws-mclose').addEventListener('click', wsClose);
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') wsClose; });
-      document.getElementById('ws-search').addEventListener('input', e => wsRender(e.target.value.toLowerCase.trim));
-      async function wsShow {
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') wsClose(); });
+      document.getElementById('ws-search').addEventListener('input', e => wsRender(e.target.value.toLowerCase().trim()));
+      async function wsShow() {
         ['gallery','pagination','hashtag-cloud','category-info','all-search-wrapper'].forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
         wsView.style.display = 'block';
-        await wsLoad; wsRender('');
+        await wsLoad(); wsRender('');
         const m = location.hash.match(/^#websites\/([^/]+)\/([^/]+)/);
         if (m) { location.replace(`/wayback/websites/${m[1]}/${m[2]}/latest.html`); return; }
         else if (location.hash !== '#websites') history.replaceState(null, '', '#websites');
       }
-      function wsHide {
+      function wsHide() {
         wsView.style.display = 'none';
         ['gallery','pagination','hashtag-cloud','category-info'].forEach(id => { const el = document.getElementById(id); if (el) el.style.display = ''; });
         if (/^#websites/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
       }
-      wsLoad;
+      wsLoad();
 
       // Dynamic version from GitHub releases API
-      (async function updateWaybackVersion {
+      (async function updateWaybackVersion() {
         try {
           const res = await fetch('https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fapi.github.com%2Frepos%2Funclehowell%2Fdatro%2Freleases%3Fper_page%3D10', {
             headers: { 'Accept': 'application/vnd.github.v3+json' }
           });
           if (res.ok) {
-            const releases = await res.json;
+            const releases = await res.json();
             const wb = releases.find(r => r.tag_name && r.tag_name.startsWith('wayback-v'));
             if (wb) {
               const ver = wb.tag_name.replace('wayback-', '');
@@ -293,30 +293,30 @@
         } catch(e) {}
         // fallback to version.txt
         try {
-          const ver = (await xhrGet('version.txt')).trim;
+          const ver = (await xhrGet('version.txt')).trim();
           const titleEl = document.getElementById('main-title');
           if (titleEl) titleEl.textContent = `· Archive ${ver}`;
           document.title = 'The Wayback Vault';
         } catch(e) {}
-      });
+      })();
 
       function extractTags(item) {
         const tags = (item.name || '').match(/#\w+/g) || [];
         if (Array.isArray(item.tags)) tags.push(...item.tags.map(t => t.startsWith('#') ? t : '#' + t));
-        return tags.map(t => t.toLowerCase);
+        return tags.map(t => t.toLowerCase());
       }
 
       function xhrGet(url) {
         return new Promise((resolve, reject) => {
-          const xhr = new XMLHttpRequest;
+          const xhr = new XMLHttpRequest();
           xhr.open('GET', url, true);
           xhr.responseType = 'text';
-          xhr.onload = function {
+          xhr.onload = function() {
             if (xhr.status >= 200 && xhr.status < 300) resolve(xhr.responseText);
             else reject(new Error('HTTP ' + xhr.status));
           };
-          xhr.onerror = function { reject(new Error('Network error')); };
-          xhr.send;
+          xhr.onerror = function() { reject(new Error('Network error')); };
+          xhr.send();
         });
       }
 
@@ -338,7 +338,7 @@
             ...item,
             _category: cat,
             _hashtags: extractTags(item),
-            _tags: (item.name || '').toLowerCase
+            _tags: (item.name || '').toLowerCase()
           }));
         } catch(e) {
           return [];
@@ -351,30 +351,30 @@
         return p.split('/').map(encodeURIComponent).join('/');
       }
 
-      function renderHashtagCloud {
+      function renderHashtagCloud() {
         // restore previous single-row under categories style: click tags to filter/show matching
         const allTags = ['#email', '#ghf', '#planning', '#bpvsbuckler', '#datro', '#ccan', '#morgan', '#ceo', '#gui', '#library', '#family'];
         const tags = allTags.filter(t => !t.includes('slide')); // keep bpvs etc visible for click-to-show
-        const active = window.activeTagFilters || (window.activeTagFilters = new Set);
+        const active = window.activeTagFilters || (window.activeTagFilters = new Set());
         hashCloudEl.innerHTML = `<span class="tag-label">Filter:</span>` +
           tags.map(t =>
             `<span class="tag${active.has(t) ? ' active' : ''}" data-tag="${t}">${t}</span>`
           ).join('') +
           `<button class="clear-btn" id="hash-clear">clear</button>`;
         hashCloudEl.querySelectorAll('.tag').forEach(el => {
-          el.addEventListener('click',  => {
+          el.addEventListener('click', () => {
             const tag = el.dataset.tag;
             if (active.has(tag)) active.delete(tag);
             else active.add(tag);
             currentPage = 1;
-            applyFilter;
+            applyFilter();
           });
         });
         const clearBtn = document.getElementById('hash-clear');
-        if (clearBtn) clearBtn.addEventListener('click',  => { active.clear; currentPage = 1; applyFilter; });
+        if (clearBtn) clearBtn.addEventListener('click', () => { active.clear(); currentPage = 1; applyFilter(); });
       }
 
-      async function init {
+      async function init() {
         try {
           for (const cat of CATEGORIES) {
             if (cat.name === 'all') {
@@ -390,61 +390,61 @@
             }
           }
           allData.email = (allData.text || []).filter(item =>
-            (item.tags || []).some(t => String(t).toLowerCase === 'email')
+            (item.tags || []).some(t => String(t).toLowerCase() === 'email')
             || (item._hashtags || []).includes('#email')
           );
         } catch (e) {
           console.warn('load error, continuing with partial data', e);
         }
-        renderTabs;
+        renderTabs();
         switchCategory('images');
 
         // Support URL param from bpvsbuckler for filtered view, e.g. ?slide=65 or ?year=1988
         // Filter items with matching #slide-N or year in name, without affecting main UI
         const params = new URLSearchParams(window.location.search);
-        if ((params.get('cat') || '').toLowerCase === 'email') {
+        if ((params.get('cat') || '').toLowerCase() === 'email') {
           // Preserve existing deep links while using the single Text / Email tab.
           window.activeTagFilters = new Set(['#email']);
           switchCategory('text');
         }
-        if ((params.get('cat') || '').toLowerCase === 'websites' || /^#websites/.test(location.hash)) switchCategory('websites');
+        if ((params.get('cat') || '').toLowerCase() === 'websites' || /^#websites/.test(location.hash)) switchCategory('websites');
         const slideParam = params.get('slide') || params.get('s');
         const yearParam = params.get('year') || params.get('y');
         if (slideParam || yearParam) {
-          setTimeout( => {
+          setTimeout(() => {
             let items = allData[currentCat] || [];
             if (slideParam) {
               const tag = '#slide-' + slideParam;
-              items = items.filter(item => (item._hashtags || []).includes(tag.toLowerCase) || (item.name || '').includes(slideParam));
+              items = items.filter(item => (item._hashtags || []).includes(tag.toLowerCase()) || (item.name || '').includes(slideParam));
             } else if (yearParam) {
               items = items.filter(item => (item.name || '').includes(yearParam));
             }
             filtered = items;
             infoEl.textContent = `${filtered.length} result${filtered.length !== 1 ? 's' : ''} (filtered for bpvsbuckler)`;
-            renderPage;
+            renderPage();
           }, 200);
         }
 
         // support ?hashtag=bpvsbuckler for bpvs integration
         const hashParam = params.get('hashtag');
         if (hashParam) {
-          setTimeout( => {
+          setTimeout(() => {
             let items = allData[currentCat] || [];
-            const tag = '#' + hashParam.toLowerCase;
-            items = items.filter(item => (item._hashtags || []).includes(tag) || (item.name || '').toLowerCase.includes(tag));
+            const tag = '#' + hashParam.toLowerCase();
+            items = items.filter(item => (item._hashtags || []).includes(tag) || (item.name || '').toLowerCase().includes(tag));
             filtered = items;
             infoEl.textContent = `${filtered.length} result${filtered.length !== 1 ? 's' : ''} (bpvsbuckler filter)`;
-            renderPage;
+            renderPage();
           }, 300);
         }
       }
 
-      function renderTabs {
+      function renderTabs() {
         tabsEl.innerHTML = CATEGORIES.map(c =>
           `<div class="tab${c.name === currentCat ? ' active' : ''}" data-cat="${c.name}">${c.icon} ${c.label}<span class="count-badge">${(allData[c.name] || []).length}</span></div>`
         ).join('');
         tabsEl.querySelectorAll('.tab').forEach(el => {
-          el.addEventListener('click',  => {
+          el.addEventListener('click', () => {
             switchCategory(el.dataset.cat);
           });
         });
@@ -455,10 +455,10 @@
           currentCat = cat;
           tabsEl.querySelectorAll('.tab').forEach(el => el.classList.toggle('active', el.dataset.cat === cat));
           allSearchWrapper.style.display = 'none';
-          wsShow;
+          wsShow();
           return;
         }
-        if (wsView.style.display === 'block') wsHide;
+        if (wsView.style.display === 'block') wsHide();
         currentCat = cat;
         currentPage = 1;
         tabsEl.querySelectorAll('.tab').forEach(el => {
@@ -470,17 +470,17 @@
         } else {
           allSearchWrapper.style.display = 'none';
         }
-        applyFilter;
+        applyFilter();
       }
 
-      function applyFilter {
+      function applyFilter() {
         let items = allData[currentCat] || [];
 
-        const query = currentCat === 'all' ? allSearchEl.value.toLowerCase.trim : '';
+        const query = currentCat === 'all' ? allSearchEl.value.toLowerCase().trim() : '';
         if (query) {
           items = items.filter(item => item._tags.includes(query));
         }
-        const active = window.activeTagFilters || new Set;
+        const active = window.activeTagFilters || new Set();
         if (active.size > 0) {
           items = items.filter(item =>
             item._hashtags.some(t => active.has(t))
@@ -488,28 +488,28 @@
         }
         filtered = items;
         infoEl.textContent = `${filtered.length} result${filtered.length !== 1 ? 's' : ''} in ${currentCat}`;
-        renderHashtagCloud;
-        renderPage;
+        renderHashtagCloud();
+        renderPage();
       }
 
       function xhrBlob(url) {
         return new Promise((resolve, reject) => {
-          const xhr = new XMLHttpRequest;
+          const xhr = new XMLHttpRequest();
           xhr.open('GET', url, true);
           xhr.responseType = 'blob';
-          xhr.onload = function {
+          xhr.onload = function() {
             if (xhr.status >= 200 && xhr.status < 300) {
               const ct = xhr.getResponseHeader('content-type') || '';
               if (ct.includes('text/html')) { reject(new Error('Cloudflare challenge')); return; }
               resolve(URL.createObjectURL(xhr.response));
             } else reject(new Error('HTTP ' + xhr.status));
           };
-          xhr.onerror = function { reject(new Error('Network error')); };
-          xhr.send;
+          xhr.onerror = function() { reject(new Error('Network error')); };
+          xhr.send();
         });
       }
 
-      function renderPage {
+      function renderPage() {
         const total = filtered.length;
         const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
         if (currentPage > totalPages) currentPage = totalPages;
@@ -523,7 +523,7 @@
         }
 
         galleryEl.innerHTML = pageItems.map(item => {
-          const ext = (item.path || '').split('.').pop.toLowerCase;
+          const ext = (item.path || '').split('.').pop().toLowerCase();
           const imgExts = ['jpg','jpeg','png','gif','webp','bmp','svg'];
           const vidExts = ['mp4', 'webm', 'mov', 'avi'];
           const isImg = imgExts.includes(ext);
@@ -544,7 +544,7 @@
           } else {
             media = `<a href="${safe}" target="_blank">${item.name}</a>`;
           }
-          const nameClean = (item.name || '').replace(/\s*#\w+/g, '').trim;
+          const nameClean = (item.name || '').replace(/\s*#\w+/g, '').trim();
           return `<div class="item ${item._category}">${media}<div class="name">${nameClean}</div>${hash ? `<span class="hash-badge ${hash}">#${hash}</span>` : ''}</div>`;
         }).join('');
 
@@ -553,7 +553,7 @@
           const url = el.getAttribute('data-xhr-src');
           xhrBlob(url).then(blobUrl => {
             el.src = blobUrl;
-          }).catch( => {
+          }).catch(() => {
             el.alt = 'Failed to load';
           });
         });
@@ -562,12 +562,12 @@
         galleryEl.querySelectorAll('[data-xhr-pdf]').forEach(el => {
           const url = el.getAttribute('data-xhr-pdf');
           el.addEventListener('click', (e) => {
-            e.preventDefault;
+            e.preventDefault();
             el.querySelector('.pdf-label').textContent = 'Loading...';
             xhrBlob(url).then(blobUrl => {
               window.open(blobUrl, '_blank');
               el.querySelector('.pdf-label').textContent = 'Open PDF';
-            }).catch( => {
+            }).catch(() => {
               el.querySelector('.pdf-label').textContent = 'Failed to load';
             });
           });
@@ -577,12 +577,12 @@
         galleryEl.querySelectorAll('[data-xhr-txt]').forEach(el => {
           const url = el.getAttribute('data-xhr-txt');
           el.addEventListener('click', (e) => {
-            e.preventDefault;
+            e.preventDefault();
             el.querySelector('.pdf-label').textContent = 'Loading...';
             xhrBlob(url).then(blobUrl => {
               window.open(blobUrl, '_blank');
               el.querySelector('.pdf-label').textContent = 'Open Text';
-            }).catch( => {
+            }).catch(() => {
               el.querySelector('.pdf-label').textContent = 'Failed to load';
             });
           });
@@ -618,46 +618,46 @@
         html += `<span class="info">Page ${currentPage} of ${totalPages}</span>`;
         paginationEl.innerHTML = html;
         paginationEl.querySelectorAll('button:not(:disabled)').forEach(btn => {
-          btn.addEventListener('click',  => {
+          btn.addEventListener('click', () => {
             const page = parseInt(btn.dataset.page);
-            if (!isNaN(page)) { currentPage = page; renderPage; window.scrollTo({ top: 0, behavior: 'smooth' }); }
+            if (!isNaN(page)) { currentPage = page; renderPage(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
           });
         });
       }
 
       if (allSearchEl) {
-        allSearchEl.addEventListener('input',  => { currentPage = 1; applyFilter; });
+        allSearchEl.addEventListener('input', () => { currentPage = 1; applyFilter(); });
       }
 
-      await init;
+      await init();
 
       // Support URL param for cross-site filter from bpvsbuckler, e.g. ?slide=85 or ?year=1988
-      (function applyUrlFilter {
+      (function applyUrlFilter() {
         const params = new URLSearchParams(window.location.search);
         const slide = params.get('slide') || params.get('s');
         const yr = params.get('year') || params.get('y');
         const q = params.get('q') || params.get('query');
         if (slide || yr || q) {
-          setTimeout( => {
+          setTimeout(() => {
             if (slide) {
               // filter items with #slide-N or the number in name
               const tag = '#slide-' + slide;
               filtered = (allData[currentCat] || []).filter(item => 
-                (item.name || '').toLowerCase.includes(tag) || (item.name || '').includes(slide)
+                (item.name || '').toLowerCase().includes(tag) || (item.name || '').includes(slide)
               );
               infoEl.textContent = `${filtered.length} result${filtered.length !== 1 ? 's' : ''} for slide ${slide}`;
             } else if (yr) {
               filtered = (allData[currentCat] || []).filter(item => (item.name || '').includes(yr));
               infoEl.textContent = `${filtered.length} result${filtered.length !== 1 ? 's' : ''} for year ${yr}`;
             } else if (q) {
-              filtered = (allData[currentCat] || []).filter(item => (item._tags || '').includes(q.toLowerCase));
+              filtered = (allData[currentCat] || []).filter(item => (item._tags || '').includes(q.toLowerCase()));
             }
             currentPage = 1;
-            renderPage;
+            renderPage();
           }, 300);
         }
-      });
-    });
+      })();
+    })();
   </script>
 <section id="agent-access" aria-label="AI-agent access" style="margin:20px auto;padding:12px 10px;border-top:1px solid #889;font:13px/1.5 system-ui,sans-serif;color:inherit" hidden data-for-agents><strong>Agent reading access</strong><p id="webmcp-status" hidden data-for-agents>Read-only WebMCP tools are supported in compatible browser agents; direct text, JSON and PDF resources remain available as fallback.</p><p hidden data-for-agents><a href="/wayback/agent-index.json">Machine-readable archive index</a> · <a href="/wayback/llms.txt">Agent guide</a> · <a href="/wayback/text/_treeview.json">Text archive index</a> · <a href="/wayback/pdf/_treeview.json">PDF archive index</a></p></section><script src="/wayback/agent-tools.js" defer></script>
 <footer id="ghf-agent-footer" class="gaf ghf-ui" data-agent-footer="1.0.2"><style>#ghf-agent-footer{display:block;clear:both;position:static;float:none;width:auto;max-width:100%;box-sizing:border-box;margin:0;padding:4px 8px 6px;font:400 9px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:inherit;background:transparent!important;border:0!important;box-shadow:none!important;color:#8a8a8a;color:color-mix(in srgb,currentColor 38%,transparent);text-align:left;overflow-wrap:anywhere;word-break:break-word}#ghf-agent-footer *{font-size:9px!important;line-height:1.2!important;font-family:inherit;color:inherit!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;margin:0;padding:0;min-width:0!important;max-width:100%;letter-spacing:0;text-transform:none;text-align:left}#ghf-agent-footer .gaf-in{max-width:none;margin:0;padding:0}#ghf-agent-footer h2,#ghf-agent-footer strong,#ghf-agent-footer th{font-weight:600}#ghf-agent-footer h2{display:inline}#ghf-agent-footer h2::after{content:" — "}#ghf-agent-footer p{margin:0 0 2px}#ghf-agent-footer a{text-decoration:underline}#ghf-agent-footer .gaf-scroll{overflow:visible;margin:0 0 2px}#ghf-agent-footer table,#ghf-agent-footer thead,#ghf-agent-footer tbody,#ghf-agent-footer tr{display:block;width:auto}#ghf-agent-footer th,#ghf-agent-footer td{display:inline}#ghf-agent-footer th+th::before,#ghf-agent-footer td+td::before{content:" · "}#ghf-agent-footer em{font-style:normal}#ghf-agent-footer .gaf-addr{font-family:inherit;white-space:normal}#ghf-agent-footer .gaf-log,#ghf-agent-footer .gaf-trigger{display:block}html #ghf-agent-footer.gaf{filter:none!important}.ghf-lf:has(+#ghf-agent-footer){padding-bottom:16px!important}.ghf-lf+#ghf-agent-footer{padding-bottom:76px!important}</style><p class="gaf-agents"><a href="/academy/">For agents</a> · <a href="/library/">Docs</a></p><div class="gaf-in" hidden data-for-agents><section class="gaf-log" id="page-version-log"><h2>Page version &amp; change log</h2><p><strong>Current version:</strong> 1.0.2</p><div class="gaf-scroll"><table><thead><tr><th>Version</th><th>Date (UTC)</th><th>Editor (human or agent name)</th><th>Change</th><th>Source / evidence</th></tr></thead><tbody><tr><td>1.0.0</td><td>2026-10-25T09:35Z</td><td>Cedwyn editors</td><td>Site-wide agent footer installed on every page: page version &amp; change log, the agent rules, and the THE TRIGGER EVENT agent instruction.</td><td>Editorial review; footer text taken from the family’s earlier research site</td></tr><tr><td>1.0.1</td><td>2026-10-25T10:35Z</td><td>Cedwyn editors</td><td>Footer restyled for human visitors: small, low-contrast text in each site’s own colours, no box or background; wording unchanged and still full text for agents.</td><td>Editorial review</td></tr><tr><td>1.0.2</td><td>2026-10-25T10:43Z</td><td>Cedwyn editors</td><td>References now point to the research theme of Cedwyn; HubSpot place named as the queue “THE TRIGGER EVENT”.</td><td>Editorial review</td></tr></tbody></table></div><p>Agents and editors: follow the <a href="/research/editing-protocol/">Editing Protocol</a>.</p></section>

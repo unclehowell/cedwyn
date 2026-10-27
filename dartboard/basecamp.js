@@ -11,7 +11,7 @@
  *    to the location they chose. ?map shows the 2D map, ?choose shows the chooser. Choice kept in localStorage + a
  *    .bucklerfamily.estate cookie (ghf_loc).
  */
-(function  {
+(function () {
   if (window.GHFLoc) return;
   var T = {"en": {"loc": "Location", "wales": "Wales", "patagonia": "Patagonia", "cyberspace": "Cyberspace", "choose": "Choose a location", "estate": "Cedwyn Estate", "title": "Choose your destination", "soon": "Coming soon", "w_kick": "Llandough, Wales", "w_name": "Great House Farm", "w_line": "Virtual-reality guided tour", "p_kick": "Puerto Madryn, Patagonia, Argentina", "p_name": "Great House Farm II", "p_line": "Cedwyn Estate: replica farmhouse, wax museum, weddings, stables, B&B", "c_kick": "Online", "c_name": "Cyberspace", "c_line": "The digital estate: maps, library, shops, app", "note": "Your choice is remembered on this device. Change it any time with the bar at the top."}, "cy": {"loc": "Lleoliad", "wales": "Cymru", "patagonia": "Patagonia", "cyberspace": "Cyberspace", "choose": "Dewiswch leoliad", "estate": "Ystâd Cedwyn", "title": "Dewiswch eich cyrchfan", "soon": "Yn dod cyn hir", "w_kick": "Llandochau, Cymru", "w_name": "Tŷ Mawr", "w_line": "Taith dywys rhith-wirionedd", "p_kick": "Porth Madryn, Patagonia, yr Ariannin", "p_name": "Tŷ Mawr II", "p_line": "Ystâd Cedwyn: ffermdy replica, amgueddfa gwyr, priodasau, stablau, gwely a brecwast", "c_kick": "Ar-lein", "c_name": "Cyberspace", "c_line": "Yr ystâd ddigidol: mapiau, llyfrgell, siopau, ap", "note": "Cofir eich dewis ar y ddyfais hon. Newidiwch ef unrhyw bryd gyda’r bar ar y brig."}, "es": {"loc": "Lugar", "wales": "Gales", "patagonia": "Patagonia", "cyberspace": "Cyberspace", "choose": "Elija un lugar", "estate": "Finca Cedwyn", "title": "Elija su destino", "soon": "Próximamente", "w_kick": "Llandough, Gales", "w_name": "Great House Farm", "w_line": "Visita guiada en realidad virtual", "p_kick": "Puerto Madryn, Patagonia, Argentina", "p_name": "Great House Farm II", "p_line": "Finca Cedwyn: réplica de la casa, museo de cera, bodas, caballerizas, B&B", "c_kick": "En línea", "c_name": "Cyberspace", "c_line": "La finca digital: mapas, biblioteca, tiendas, app", "note": "Su elección se recuerda en este dispositivo. Cámbiela cuando quiera con la barra superior."}};
   var ICO = {"wales": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 36\" width=\"24\" height=\"14.4\" role=\"img\" aria-label=\"Flag of Wales\"><rect width=\"60\" height=\"18\" fill=\"#fff\"/><rect y=\"18\" width=\"60\" height=\"18\" fill=\"#00B140\"/><path fill=\"#D30731\" d=\"M13 24c2-1 4-3 5-6-2 0-4-1-5-3 3 1 5 1 7 0l3-6c1-2 3-3 5-2l-2 2c1 1 3 1 4 0l3 1-3 2c-1 3-1 5 1 7 3-2 6-5 9-9 0 4-2 7-4 10 3 0 6-1 9-3-1 3-4 5-8 6l3 3-3 1-2-3c-3 1-6 1-9 0l-2 4-3-1 2-4c-3-1-5-1-7 1-1 1-2 2-4 2l1-2z\"/></svg>", "uk": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 36\" width=\"24\" height=\"14.4\" role=\"img\" aria-label=\"Union Flag\"><rect width=\"60\" height=\"36\" fill=\"#012169\"/><path d=\"M0 0L60 36M60 0L0 36\" stroke=\"#fff\" stroke-width=\"7\"/><path d=\"M0 0L60 36M60 0L0 36\" stroke=\"#C8102E\" stroke-width=\"2.6\"/><path d=\"M30 0v36M0 18h60\" stroke=\"#fff\" stroke-width=\"11\"/><path d=\"M30 0v36M0 18h60\" stroke=\"#C8102E\" stroke-width=\"6.5\"/></svg>", "argentina": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 60 36\" width=\"24\" height=\"14.4\" role=\"img\" aria-label=\"Flag of Argentina\"><rect width=\"60\" height=\"36\" fill=\"#74ACDF\"/><rect y=\"12\" width=\"60\" height=\"12\" fill=\"#fff\"/><g fill=\"#F6B40E\"><circle cx=\"30\" cy=\"18\" r=\"3.6\"/><path d=\"M30 12.2l.9 2.4h-1.8zM30 23.8l.9-2.4h-1.8zM24.2 18l2.4.9v-1.8zM35.8 18l-2.4.9v-1.8zM25.9 13.9l2.3 1.1-1.2 1.2zM34.1 22.1l-2.3-1.1 1.2-1.2zM34.1 13.9l-1.1 2.3-1.2-1.2zM25.9 22.1l1.1-2.3 1.2 1.2z\"/></g></svg>", "robot": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" role=\"img\" aria-label=\"AI agent\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2.5v3\"/><circle cx=\"12\" cy=\"2.5\" r=\"1\" fill=\"currentColor\"/><rect x=\"4.5\" y=\"5.5\" width=\"15\" height=\"12\" rx=\"3\"/><circle cx=\"9.2\" cy=\"11\" r=\"1.5\" fill=\"currentColor\"/><circle cx=\"14.8\" cy=\"11\" r=\"1.5\" fill=\"currentColor\"/><path d=\"M9.5 14.6h5M2.5 10v4M21.5 10v4M8 17.5v3h8v-3\"/></svg>"}, LICO = {"wales": ["wales", "uk"], "patagonia": ["wales", "argentina"], "cyberspace": ["robot"]}; // inline SVG flags and the robot icon for the strip (campus/build_locations.py ICONS)
@@ -20,10 +20,10 @@
   var BASE = "https://cedwyn.bucklerfamily.estate/dartboard", host = (document.documentElement.getAttribute("data-ghf-host") || location.hostname).replace(/^www\./, ""), path = location.pathname || "/"; // the dartboard served at the apex root names its own host (21 Oct 2026)
   var apex = host === "bucklerfamily.estate" || /(^|\.)bucklerfamilyfarm\.pages\.dev$/.test(host);
   var href = function (p) { return apex ? p : BASE + p; };
-  function lang { var l = (document.documentElement.getAttribute("lang") || "en").slice(0, 2).toLowerCase; return T[l] ? l : "en"; }
-  function get { var v = null; try { v = localStorage.getItem("ghf_loc"); } catch (e) {} if (!v) { var m = /(?:^|; )ghf_loc=([a-z]+)/.exec(document.cookie); v = m && m[1]; } return /^(wales|patagonia|cyberspace)$/.test(v || "") ? v : null; }
+  function lang() { var l = (document.documentElement.getAttribute("lang") || "en").slice(0, 2).toLowerCase(); return T[l] ? l : "en"; }
+  function get() { var v = null; try { v = localStorage.getItem("ghf_loc"); } catch (e) {} if (!v) { var m = /(?:^|; )ghf_loc=([a-z]+)/.exec(document.cookie); v = m && m[1]; } return /^(wales|patagonia|cyberspace)$/.test(v || "") ? v : null; }
   function set(v) { try { localStorage.setItem("ghf_loc", v); } catch (e) {} try { document.cookie = "ghf_loc=" + v + "; path=/; max-age=31536000; SameSite=Lax; Secure" + (/(^|\.)bucklerfamily\.estate$/.test(location.hostname) ? "; domain=.bucklerfamily.estate" : ""); } catch (e) {} }
-  function here { if (apex && /^\/wales(\/|$)/.test(path)) return "wales"; if (apex && /^\/patagonia(\/|$)/.test(path)) return "patagonia"; if (apex && /^\/choose(\/|$)/.test(path)) return ""; return "cyberspace"; }
+  function here() { if (apex && /^\/wales(\/|$)/.test(path)) return "wales"; if (apex && /^\/patagonia(\/|$)/.test(path)) return "patagonia"; if (apex && /^\/choose(\/|$)/.test(path)) return ""; return "cyberspace"; }
   function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
   var CSS = ".ghf-loc{display:flex!important;align-items:stretch;justify-content:center;gap:0;width:100%;box-sizing:border-box;margin:0!important;padding:0 6px!important;background:#000!important;border-bottom:1px solid rgba(255,255,255,.18)!important;position:relative;z-index:2147481989;font:500 11px/1 Barlow,'Helvetica Neue',Arial,sans-serif!important;-webkit-font-smoothing:antialiased}" +
     ".ghf-loc a{flex:1 1 0;display:flex!important;align-items:center;justify-content:center;min-height:38px;padding:0 4px!important;color:#cfcfcf!important;text-decoration:none!important;letter-spacing:.2em;text-transform:uppercase;border-bottom:2px solid transparent;white-space:nowrap;font:inherit!important}" +
@@ -60,72 +60,72 @@
     "html[data-ghf-mode=day] .ghf-cho-opt:hover,html[data-ghf-mode=day] .ghf-cho-opt:focus-visible{background:#000;color:#fff!important;border-color:#000}" +
     "html[data-ghf-mode=day] .ghf-cho-opt:hover span,html[data-ghf-mode=day] .ghf-cho-opt:focus-visible span{color:#f2c94c}html[data-ghf-mode=day] .ghf-cho-opt:hover small,html[data-ghf-mode=day] .ghf-cho-opt:focus-visible small{color:#ddd}" +
     "html[data-ghf-mode=day] .ghf-cho-note{color:#4a4a4a}";
-  function css { if (document.querySelector("style[data-ghf-loc]")) return; var s = el("style"); s.setAttribute("data-ghf-loc", ""); s.textContent = CSS; (document.head || document.documentElement).appendChild(s); }
+  function css() { if (document.querySelector("style[data-ghf-loc]")) return; var s = el("style"); s.setAttribute("data-ghf-loc", ""); s.textContent = CSS; (document.head || document.documentElement).appendChild(s); }
   var strips = [];
   function fill(nav) {
-    var s = T[lang], cur = here; nav.textContent = "";
+    var s = T[lang()], cur = here(); nav.textContent = "";
     nav.setAttribute("aria-label", s.loc);
-    LOCS.forEach(function (x) { var a = el("a"); a.appendChild(ic(x[0])); a.appendChild(el("span", "ghf-loc-t", s[x[0]])); a.setAttribute("data-loc", x[0]); a.href = href(x[1]); if (x[0] === cur) a.setAttribute("aria-current", "page"); a.addEventListener("click", function  { set(x[0]); }); nav.appendChild(a); });
+    LOCS.forEach(function (x) { var a = el("a"); a.appendChild(ic(x[0])); a.appendChild(el("span", "ghf-loc-t", s[x[0]])); a.setAttribute("data-loc", x[0]); a.href = href(x[1]); if (x[0] === cur) a.setAttribute("aria-current", "page"); a.addEventListener("click", function () { set(x[0]); }); nav.appendChild(a); });
     var c = el("a", "ghf-loc-ch", "◎"); c.href = href("/choose/"); c.title = s.choose; c.setAttribute("aria-label", s.choose); nav.appendChild(c);
   }
   var minis = [];
-  function fillMini(box) { var s = T[lang]; box.textContent = ""; LOCS.forEach(function (x) { var a = el("a", "ghf-loc-mini"); a.href = href(x[1]); a.title = s[x[0]]; a.setAttribute("aria-label", s[x[0]]); a.appendChild(ic(x[0])); a.addEventListener("click", function  { set(x[0]); }); box.appendChild(a); }); }
-  function mini(box) { if (!box) return; css; fillMini(box); if (minis.indexOf(box) < 0) minis.push(box); }
+  function fillMini(box) { var s = T[lang()]; box.textContent = ""; LOCS.forEach(function (x) { var a = el("a", "ghf-loc-mini"); a.href = href(x[1]); a.title = s[x[0]]; a.setAttribute("aria-label", s[x[0]]); a.appendChild(ic(x[0])); a.addEventListener("click", function () { set(x[0]); }); box.appendChild(a); }); }
+  function mini(box) { if (!box) return; css(); fillMini(box); if (minis.indexOf(box) < 0) minis.push(box); }
   function strip(after) {
     if (!document.body) return;
     if (document.querySelector(".ghf-loc")) return;
-    css;
+    css();
     var nav = el("nav", "ghf-loc ghf-ui"); nav.setAttribute("data-no-translate", ""); nav.setAttribute("translate", "no");
     fill(nav); strips.push(nav);
     if (after && after.parentNode) after.parentNode.insertBefore(nav, after.nextSibling); else document.body.insertBefore(nav, document.body.firstChild);
   }
   var box = null;
-  function render {
+  function render() {
     if (!box) return;
-    var s = T[lang], l = lang; box.querySelector(".ghf-cho-in").innerHTML = "";
+    var s = T[lang()], l = lang(); box.querySelector(".ghf-cho-in").innerHTML = "";
     var inn = box.querySelector(".ghf-cho-in");
     var top = el("div", "ghf-cho-top"), br = el("div", "ghf-cho-brand"); var im = document.createElement("img"); im.src = BASE + "/brand/cedwyn-tent-icon-64.png"; im.alt = ""; br.appendChild(im); br.appendChild(el("span", null, s.estate)); top.appendChild(br);
-    var lg = el("div", "ghf-cho-lang"); ["en", "cy", "es"].forEach(function (k) { var b = el("button", null, k.toUpperCase); b.type = "button"; b.setAttribute("aria-pressed", k === l ? "true" : "false"); b.onclick = function  { if (window.GHFLang) window.GHFLang.set(k); else { document.documentElement.setAttribute("lang", k); } setTimeout(render, 60); }; lg.appendChild(b); }); top.appendChild(lg);
+    var lg = el("div", "ghf-cho-lang"); ["en", "cy", "es"].forEach(function (k) { var b = el("button", null, k.toUpperCase()); b.type = "button"; b.setAttribute("aria-pressed", k === l ? "true" : "false"); b.onclick = function () { if (window.GHFLang) window.GHFLang.set(k); else { document.documentElement.setAttribute("lang", k); } setTimeout(render, 60); }; lg.appendChild(b); }); top.appendChild(lg);
     inn.appendChild(top);
     inn.appendChild(el("h1", null, s.title));
     [["wales", "/wales/", s.w_kick, s.w_name, s.w_line], ["patagonia", "/patagonia/", s.p_kick, s.p_name, s.p_line], ["cyberspace", "/cyberspace/", s.c_kick, s.c_name, s.c_line]].forEach(function (o) {
       var a = el("a", "ghf-cho-opt"); a.href = href(o[1]);
       a.appendChild(el("span", null, o[2] + (o[0] !== "cyberspace" ? " · " + s.soon : ""))); var nb = el("b", null, o[3]); var ci = ic(o[0]); ci.className = "ghf-loc-ic ghf-cho-ic"; nb.insertBefore(ci, nb.firstChild); a.appendChild(nb); a.appendChild(el("small", null, o[4]));
-      a.addEventListener("click", function  { set(o[0]); });
+      a.addEventListener("click", function () { set(o[0]); });
       inn.appendChild(a);
     });
     inn.appendChild(el("p", "ghf-cho-note", s.note));
   }
   function choose(fixed) {
-    if (!document.body) { document.addEventListener("DOMContentLoaded", function  { choose(fixed); }); return; }
+    if (!document.body) { document.addEventListener("DOMContentLoaded", function () { choose(fixed); }); return; }
     if (box) return;
-    css;
-    box = el("div", "ghf-cho ghf-ui"); box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true"); box.setAttribute("aria-label", T[lang].title);
+    css();
+    box = el("div", "ghf-cho ghf-ui"); box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true"); box.setAttribute("aria-label", T[lang()].title);
     box.setAttribute("data-no-translate", ""); box.setAttribute("translate", "no");
     box.appendChild(el("div", "ghf-cho-bg")); box.appendChild(el("div", "ghf-cho-in"));
     document.body.appendChild(box); document.documentElement.style.overflow = "hidden";
-    render;
+    render();
       }
-  document.addEventListener("ghf-lang-change", function  { strips.forEach(fill); minis.forEach(fillMini); render; });
+  document.addEventListener("ghf-lang-change", function () { strips.forEach(fill); minis.forEach(fillMini); render(); });
   window.GHFLoc = { strip: strip, mini: mini, icon: ic, choose: choose, get: get, set: set, version: "1.1.2" };
   // pages that carry their own header (the base camp map and the 1D list) get the strip at the top here;
   // every other page gets it from basecamp.js, under the shared header bar
   var own = apex && (path === "/" || path === "/index.html" || /^\/(1d|cedwyn)(\/|$)/.test(path));
-  if (own) { if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function  { strip(null); }); else strip(null); }
+  if (own) { if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { strip(null); }); else strip(null); }
   if (apex && (path === "/" || path === "/index.html" || /^\/cedwyn\/?$/.test(path))) { // base camp (now also at /cedwyn/)
     var q = location.search || "";
     if (/[?&]choose\b/.test(q)) choose(false);
     else if (!/[?&]map\b/.test(q)) {
-      var c = get, ref = document.referrer || "";
+      var c = get(), ref = document.referrer || "";
       var inside = /^https:\/\/([a-z0-9-]+\.)*bucklerfamily\.estate\//.test(ref) || /\.pages\.dev\//.test(ref);
       if (!c) choose(false);
       else if (!inside) location.replace("/" + c + "/");
     }
   }
-});
+})();
 
 /* ---- end locations.js ---- */
-(function  {
+(function () {
   "use strict";
   if (window.GHFBasecamp) return;
   var STOPS = [{"n": 1, "t": "The Legal Wiki", "u": "https://cedwyn.bucklerfamily.estate/wiki/", "h": ["greathousefarmwiki.wordpress.com", "wiki.bucklerfamily.estate"], "p": [], "c": ["#1B4D6A", "#0F9DF0"]}, {"n": 2, "t": "The Story", "u": "https://cedwyn.bucklerfamily.estate/story/", "h": ["bpvsbuckler.bucklerfamily.estate"], "p": [], "c": ["#6A3A1B", "#F1721E"]}, {"n": 3, "t": "The Map Room", "u": "https://cedwyn.bucklerfamily.estate/maps/", "h": ["maps.bucklerfamily.estate"], "p": [], "c": ["#6A2B22", "#FF8F7A"]}, {"n": 4, "t": "The Chessboard", "u": "https://cedwyn.bucklerfamily.estate/chess/", "h": ["chess.bucklerfamily.estate"], "p": [], "c": ["#3D2614", "#D9AE7E"]}, {"n": 5, "t": "FCG · Security Clearance", "u": "https://cedwyn.bucklerfamily.estate/fcg/", "h": ["fcg.bucklerfamily.estate"], "p": [], "c": ["#4A1B6A", "#C274F6"]}, {"n": 6, "t": "The Grammar House (CSSCPSGP)", "u": "https://cedwyn.bucklerfamily.estate/csscpsg/", "h": ["csscpsg.bucklerfamily.estate", "csscpsgp.bucklerfamily.estate"], "p": [], "c": ["#364E13", "#92DB24"]}, {"n": 7, "t": "Primary Records", "u": "https://cedwyn.bucklerfamily.estate/records/", "h": ["records.bucklerfamily.estate"], "p": [], "c": ["#215214", "#48DB24"]}, {"n": 8, "t": "The Wayback Vault", "u": "https://cedwyn.bucklerfamily.estate/wayback/", "h": ["wayback.bucklerfamily.estate"], "p": [], "c": ["#144E52", "#0FE1F0"]}, {"n": 9, "t": "The Post Office", "u": "https://cedwyn.bucklerfamily.estate/email/", "h": ["email.bucklerfamily.estate"], "p": [], "c": ["#145227", "#24DB5B"]}, {"n": 10, "t": "Public Authorities", "u": "https://cedwyn.bucklerfamily.estate/authorities/", "h": ["authorities.bucklerfamily.estate"], "p": [], "c": ["#263238", "#B0BEC5"]}, {"n": 11, "t": "The Disclosure Dartboard", "u": "https://cedwyn.bucklerfamily.estate/dartboard/", "h": ["dartboard.bucklerfamily.estate"], "p": [], "c": ["#671B6A", "#EE4EF4"]}, {"n": 12, "t": "The Q&A Hall", "u": "https://cedwyn.bucklerfamily.estate/qa/", "h": ["qa.bucklerfamily.estate"], "p": [], "c": ["#14523F", "#24DBA4"]}, {"n": 13, "t": "The Council House", "u": "https://cedwyn.bucklerfamily.estate/wiki/", "h": ["clerk.bucklerfamily.estate"], "p": [], "c": ["#1B4D6A", "#0F9DF0"]}, {"n": 14, "t": "The Council Chamber", "u": "https://cedwyn.bucklerfamily.estate/meeting/", "h": ["2026-10-22.bucklerfamily.estate"], "p": [], "c": ["#484912", "#D5DB24"]}, {"n": 15, "t": "Independent Review", "u": "https://cedwyn.bucklerfamily.estate/review/", "h": ["review.bucklerfamily.estate"], "p": [], "c": ["#1B1D6A", "#878BF7"]}, {"n": 16, "t": "The Research Library", "u": "https://cedwyn.bucklerfamily.estate/research/", "h": ["research.bucklerfamily.estate"], "p": [], "c": ["#301B6A", "#A182F7"]}, {"n": 17, "t": "Kissed Frogs", "u": "https://cedwyn.bucklerfamily.estate/wiki/anomalies-register/bpvsbuckler-archive-research-leads/#kissed-frogs-register", "h": [], "p": [], "c": ["#1B4D6A", "#0F9DF0"]}, {"n": 18, "t": "The Project Office", "u": "https://cedwyn.bucklerfamily.estate/projects/", "h": ["projects.bucklerfamily.estate"], "p": [], "c": ["#1B356A", "#6695F5"]}, {"n": 19, "t": "The Film House", "u": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fwww.facebook.com%2F901925066346636", "h": [], "p": [], "c": ["#6A1B50", "#F55CC2"]}, {"n": 20, "t": "The Farm Album", "u": "https://cedwyn.bucklerfamily.estate/fb/", "h": ["fb.bucklerfamily.estate"], "p": [], "c": ["#6A1B50", "#F55CC2"]}, {"n": 21, "t": "The Estate Campus", "u": "https://cedwyn.bucklerfamily.estate/dartboard/campus/", "h": [], "p": ["/campus/", "/enemy/", "/webapp/"], "c": ["#0A0A0A", "#F2C94C"]}, {"n": 22, "t": "The Counting House", "u": "https://cedwyn.bucklerfamily.estate/accounts/", "h": ["accounts.bucklerfamily.estate"], "p": [], "c": ["#6A1B38", "#F56197"]}, {"n": 23, "t": "The Case Office", "u": "https://cedwyn.bucklerfamily.estate/app/", "h": ["app.bucklerfamily.estate", "apps.bucklerfamily.estate"], "p": [], "c": ["#6A1B1B", "#FF5252"]}, {"n": 24, "t": "Gift Shop & Marketplace", "u": "https://cedwyn.bucklerfamily.estate/dartboard/#shop", "h": ["ebooks.bucklerfamily.estate", "shop.bucklerfamily.estate"], "p": ["/ebook/"], "c": ["#0A0A0A", "#F2C94C"]}];
@@ -144,24 +144,24 @@
   // signature hue (colors in campus/basecamp_stops.json). A site whose own design is light is shown in night mode with a
   // colour inversion that keeps photos, maps and the chessboard as they are; a dark site is inverted the same way for day.
   // Shared CSS: https://cedwyn.bucklerfamily.estate/dartboard/ghf-lang/ghf-theme.css (generated by campus/build_basecamp.py).
-  var GT = (function  {
+  var GT = (function () {
     var KEY = "ghf-theme", de = document.documentElement, native = null, btns = [];
     var pageNative = de.getAttribute("data-ghf-native"); // a page may pin its own scheme in its markup
     // v2.1.0 hybrid theme (21 Oct 2026): an explicit choice made with the toggle is saved and wins; with no saved choice the
     // page follows the device's light/dark setting (prefers-color-scheme), and where the browser reports none, the local
     // time (day 07:00-19:00, night otherwise). ghf-boot.js runs the same rule in <head> before the first paint.
-    function saved {
+    function saved() {
       try { var v = localStorage.getItem(KEY); if (v === "day" || v === "night") return v; } catch (e) {}
       var m = /(?:^|; )ghf_theme=(day|night)/.exec(document.cookie || "");
       return m ? m[1] : null;
     }
-    function auto {
+    function auto() {
       var preferred = de.getAttribute("data-ghf-theme-default");
       if (preferred === "day" || preferred === "night") return preferred;
       try { if (matchMedia("(prefers-color-scheme: dark)").matches) return "night"; if (matchMedia("(prefers-color-scheme: light)").matches) return "day"; } catch (e) {}
-      var h = new Date.getHours; return h >= 7 && h < 19 ? "day" : "night";
+      var h = new Date().getHours(); return h >= 7 && h < 19 ? "day" : "night";
     }
-    function mode { return saved || auto; }
+    function mode() { return saved() || auto(); }
     function chrome(m) { // color-scheme (form controls, scrollbars) and the browser bar colour follow the mode
       if (document.body) de.style.colorScheme = (native === "auto" ? m === "night" : native === "dark") ? "dark" : "light"; // the scheme the page itself is drawn in (an inverted page keeps its own: the filter flips the rest)
       var q = document.querySelectorAll('meta[name="theme-color"]'), i, mt = q[0];
@@ -174,7 +174,7 @@
       try { document.cookie = "ghf_theme=" + v + "; path=/; max-age=31536000; SameSite=Lax; Secure" + (/(^|\.)bucklerfamily\.estate$/.test(location.hostname) ? "; domain=.bucklerfamily.estate" : ""); } catch (e) {}
     }
     function rgbOf(c) { var m = /rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?/.exec(c || ""); return m ? [+m[1], +m[2], +m[3], m[4] == null ? 1 : +m[4]] : null; }
-    function detect { // the site's own scheme, read before any theme CSS is applied
+    function detect() { // the site's own scheme, read before any theme CSS is applied
       var forced = pageNative || (TWEAKS[host] || {}).native;
       if (forced) return forced;
       de.style.colorScheme = ""; de.removeAttribute("data-ghf-native"); // read the page's own scheme, not the one an earlier pass set (ghf-theme.css paints body by data-ghf-native)
@@ -191,7 +191,7 @@
     }
     var crit = null;
     function apply(m) {
-      if (!native) native = detect;
+      if (!native) native = detect();
       de.setAttribute("data-ghf-native", native);
       de.setAttribute("data-ghf-mode", m);
       de.classList.add("ghf-shell"); chrome(m);
@@ -210,11 +210,11 @@
           (document.head || de).appendChild(l);
         }
       }
-      if (de.classList.contains("ghf-inv")) markBg;
+      if (de.classList.contains("ghf-inv")) markBg();
       for (var i = 0; i < btns.length; i++) paintBtn(btns[i]);
       try { document.dispatchEvent(new CustomEvent("ghf-theme-change", { detail: { mode: m, native: native } })); } catch (e) {}
     }
-    function markBg { // elements painted with a photo keep their real colours
+    function markBg() { // elements painted with a photo keep their real colours
       var q = document.querySelectorAll("body *"), i, e, n = 0;
       for (i = 0; i < q.length && n < 3000; i++) {
         e = q[i]; if (e.classList.contains("ghf-bgimg") || e.closest(".ghf-ui")) continue;
@@ -222,35 +222,35 @@
         if (bi && bi !== "none" && /url\(/.test(bi)) { e.classList.add("ghf-bgimg"); n++; }
       }
     }
-    function L { var l = (de.getAttribute("lang") || "en").slice(0, 2).toLowerCase; return { cy: 1, es: 1 }[l] ? l : "en"; }
+    function L() { var l = (de.getAttribute("lang") || "en").slice(0, 2).toLowerCase(); return { cy: 1, es: 1 }[l] ? l : "en"; }
     var TT = { en: ["Day", "Night", "Switch to day mode", "Switch to night mode"], cy: ["Dydd", "Nos", "Newid i’r modd dydd", "Newid i’r modd nos"], es: ["Día", "Noche", "Cambiar al modo día", "Cambiar al modo noche"] };
     function paintBtn(b) {
-      var m = mode, t = TT[L], toDay = m === "night";
+      var m = mode(), t = TT[L()], toDay = m === "night";
       b.setAttribute("aria-pressed", m === "day" ? "true" : "false");
       b.setAttribute("aria-label", toDay ? t[2] : t[3]); b.title = toDay ? t[2] : t[3];
       b.innerHTML = '<span aria-hidden="true" class="ghf-mode-ico">' + (toDay ? "☀" : "☾") + '</span><span class="ghf-mode-txt">' + (toDay ? t[0] : t[1]) + "</span>";
     }
     function wire(b) {
       if (!b || b.getAttribute("data-ghf-wired")) return; b.setAttribute("data-ghf-wired", "1"); b.type = "button";
-      b.addEventListener("click", function  { var m = mode === "night" ? "day" : "night"; save(m); apply(m); });
+      b.addEventListener("click", function () { var m = mode() === "night" ? "day" : "night"; save(m); apply(m); });
       btns.push(b); paintBtn(b);
     }
-    function boot {
+    function boot() {
       var kp = (TWEAKS[host] || {}).keep; if (kp) { var kq = document.querySelectorAll(kp); for (var ki = 0; ki < kq.length; ki++) kq[ki].setAttribute("data-ghf-keep", ""); }
-      native = null; apply(mode); // re-read the site's own scheme now that its CSS and body have loaded
+      native = null; apply(mode()); // re-read the site's own scheme now that its CSS and body have loaded
       var q = document.querySelectorAll("[data-ghf-mode-toggle]"); for (var i = 0; i < q.length; i++) wire(q[i]);
-      document.addEventListener("ghf-lang-change", function  { for (var i = 0; i < btns.length; i++) paintBtn(btns[i]); });
-      window.addEventListener("load", function  { if (de.classList.contains("ghf-inv")) setTimeout(markBg, 300); });
+      document.addEventListener("ghf-lang-change", function () { for (var i = 0; i < btns.length; i++) paintBtn(btns[i]); });
+      window.addEventListener("load", function () { if (de.classList.contains("ghf-inv")) setTimeout(markBg, 300); });
       window.addEventListener("storage", function (ev) { if (ev.key === KEY && ev.newValue) apply(ev.newValue); });
-      try { var mq = matchMedia("(prefers-color-scheme: dark)"), fol = function  { if (!saved) apply(auto); }; // no saved choice: follow the device live
+      try { var mq = matchMedia("(prefers-color-scheme: dark)"), fol = function () { if (!saved()) apply(auto()); }; // no saved choice: follow the device live
         if (mq.addEventListener) mq.addEventListener("change", fol); else if (mq.addListener) mq.addListener(fol); setInterval(fol, 600000); } catch (e) {}
     }
-    return { boot: boot, wire: wire, mode: mode, saved: saved, auto: auto, apply: apply, native: function  { return native; } };
-  });
+    return { boot: boot, wire: wire, mode: mode, saved: saved, auto: auto, apply: apply, native: function () { return native; } };
+  })();
   window.GHFTheme = GT;
-  function whenBody(f) { if (document.body && document.readyState !== "loading") f; else document.addEventListener("DOMContentLoaded", f); }
+  function whenBody(f) { if (document.body && document.readyState !== "loading") f(); else document.addEventListener("DOMContentLoaded", f); }
   // v2.0.3: run as soon as <body> exists (before the first paint when this file is loaded by the synchronous ghf-boot.js in <head>)
-  function bodyNow(f) { if (document.body) return f; var mo0 = new MutationObserver(function  { if (document.body) { mo0.disconnect; f; } }); mo0.observe(document.documentElement, { childList: true }); }
+  function bodyNow(f) { if (document.body) return f(); var mo0 = new MutationObserver(function () { if (document.body) { mo0.disconnect(); f(); } }); mo0.observe(document.documentElement, { childList: true }); }
   if (apex && /^\/3d(\/|$)/.test(path)) return; // the full-screen 3D walk keeps its own look
 
   // ---------- header standard v2 (21 Oct 2026, Cedwyn editors) ----------
@@ -260,7 +260,7 @@
   // full-screen toggle at the left and the menu (slides in from the right) at the right. Then the page's own content.
   var CHAIN = [{"id":"records","t":"Primary Records","cy":"Cofnodion Sylfaenol","es":"Registros Primarios","u":"https://cedwyn.bucklerfamily.estate/records/","h":["records.bucklerfamily.estate"],"d":["Great House Farm — Primary Record Register"]},{"id":"docs","t":"Docs · The Evidence Catalogue","cy":"Dogfennau · Y Catalog Tystiolaeth","es":"Documentos · El Catálogo de Pruebas","u":"https://cedwyn.bucklerfamily.estate/docs/","h":["docs.bucklerfamily.estate"]},{"id":"wayback","t":"The Wayback Vault","cy":"Claddgell Wayback","es":"La Bóveda Wayback","u":"https://cedwyn.bucklerfamily.estate/wayback/","h":["wayback.bucklerfamily.estate"]},{"id":"nomenclature","t":"Nomenclature","cy":"Enwau","es":"Nomenclatura","u":"https://cedwyn.bucklerfamily.estate/nomenclature/","h":["nomenclature.bucklerfamily.estate","nomlecture.bucklerfamily.estate","nolecture.bucklerfamily.estate"]},{"id":"maps","t":"The Map Room","cy":"Ystafell y Mapiau","es":"La Sala de Mapas","u":"https://cedwyn.bucklerfamily.estate/maps/","h":["maps.bucklerfamily.estate"],"x":["#top > a.brand"]},{"id":"infographic","t":"The Land Changing Hands","cy":"Y Tir yn Newid Dwylo","es":"La Tierra Cambia de Manos","u":"https://cedwyn.bucklerfamily.estate/infographic/","h":["infographic.bucklerfamily.estate"],"d":["Great House Farm · the land changing hands"]},{"id":"wiki","t":"The Legal Wiki","cy":"Y Wici Cyfreithiol","es":"La Wiki Legal","u":"https://cedwyn.bucklerfamily.estate/wiki/","h":["greathousefarmwiki.wordpress.com","wiki.bucklerfamily.estate"]},{"id":"ebooks","t":"The E-book Shelf","cy":"Y Silff E-lyfrau","es":"La Estantería de Libros","u":"https://cedwyn.bucklerfamily.estate/ebooks/","h":["ebooks.bucklerfamily.estate"],"d":["E-books"],"x":[".eb-hero .sl-hero-in > .sl-kicker"]},{"id":"story","t":"The Story","cy":"Y Stori","es":"La Historia","u":"https://cedwyn.bucklerfamily.estate/story/","h":["bpvsbuckler.bucklerfamily.estate","story.bucklerfamily.estate"]},{"id":"thousand-cuts","t":"1000 Cuts","cy":"Mil o Doriadau","es":"Mil Cortes","u":"https://cedwyn.bucklerfamily.estate/thousand-cuts/","h":[],"p":["/thousand-cuts/"],"d":["A dated chronology of events at Great House Farm, 1870s–1988"]},{"id":"fb","t":"The Farm Album","cy":"Albwm y Fferm","es":"El Álbum de la Granja","u":"https://cedwyn.bucklerfamily.estate/fb/","h":["fb.bucklerfamily.estate"]},{"id":"chess","t":"The Chessboard","cy":"Y Bwrdd Gwyddbwyll","es":"El Tablero","u":"https://cedwyn.bucklerfamily.estate/chess/","h":["chess.bucklerfamily.estate"],"x":[".top > .bar > a.brand"]},{"id":"csscpsg","t":"The Grammar House (CSSCPSGP)","cy":"Tŷ’r Gramadeg (CSSCPSGP)","es":"La Casa de la Gramática (CSSCPSGP)","u":"https://cedwyn.bucklerfamily.estate/csscpsg/","h":["csscpsg.bucklerfamily.estate","csscpsgp.bucklerfamily.estate"]},{"id":"courtdrills","t":"Court Drills · Procedural Unfairness","cy":"Driliau’r Llys · Annhegwch Gweithdrefnol","es":"Simulacros Judiciales · Injusticia Procesal","u":"https://cedwyn.bucklerfamily.estate/courtdrills/","h":["courtdrills.bucklerfamily.estate"]},{"id":"fcg","t":"FCG · Security Clearance","cy":"FCG · Clirio Diogelwch","es":"FCG · Habilitación de Seguridad","u":"https://cedwyn.bucklerfamily.estate/fcg/","h":["fcg.bucklerfamily.estate"],"x":[".cl-hero > .cl-kick",".sl-hero .sl-kicker",".sl-nav > nav.top > a:first-child"],"d":["Clearance"]},{"id":"oldbill","t":"Old Bill · Who Gained, Who Lost","cy":"Hen Bil · Pwy Enillodd, Pwy Gollodd","es":"Old Bill · Quién Ganó, Quién Perdió","u":"https://cedwyn.bucklerfamily.estate/oldbill/","h":["oldbill.bucklerfamily.estate"]},{"id":"accounts","t":"The Counting House","cy":"Y Tŷ Cyfrif","es":"La Casa de Cuentas","u":"https://cedwyn.bucklerfamily.estate/accounts/","h":["accounts.bucklerfamily.estate"]},{"id":"authorities","t":"Public Authorities","cy":"Awdurdodau Cyhoeddus","es":"Autoridades Públicas","u":"https://cedwyn.bucklerfamily.estate/authorities/","h":["authorities.bucklerfamily.estate"],"d":["Great House Farm — Public Authority Correspondence"]},{"id":"wdtk","t":"FOI Requests (WhatDoTheyKnow)","cy":"Ceisiadau Rhyddid Gwybodaeth (WhatDoTheyKnow)","es":"Solicitudes de información (WhatDoTheyKnow)","u":"https://cedwyn.bucklerfamily.estate/wdtk/","h":["whatdotheyknow.bucklerfamily.estate"]},{"id":"review","t":"Independent Review","cy":"Adolygiad Annibynnol","es":"Revisión Independiente","u":"https://cedwyn.bucklerfamily.estate/review/","h":["review.bucklerfamily.estate"],"d":["Great House Farm — Independent Review Register"]},{"id":"research","t":"The Research Library","cy":"Y Llyfrgell Ymchwil","es":"La Biblioteca de Investigación","u":"https://cedwyn.bucklerfamily.estate/research/","h":["research.bucklerfamily.estate"],"d":["The Research Library"]},{"id":"qa","t":"The Q&A Hall","cy":"Neuadd Holi ac Ateb","es":"La Sala de Preguntas","u":"https://cedwyn.bucklerfamily.estate/qa/","h":["qa.bucklerfamily.estate"],"d":["Questions & answers"],"x":[".hero > .wrap > p.brand"]},{"id":"meeting","t":"The Council Chamber","cy":"Siambr y Cyngor","es":"La Sala del Consejo","u":"https://cedwyn.bucklerfamily.estate/meeting/","h":["2026-10-22.bucklerfamily.estate"]},{"id":"projects","t":"The Project Office","cy":"Swyddfa’r Prosiect","es":"La Oficina de Proyectos","u":"https://cedwyn.bucklerfamily.estate/projects/","h":["projects.bucklerfamily.estate"]},{"id":"app","t":"The Case Office","cy":"Swyddfa’r Achos","es":"La Oficina del Caso","u":"https://cedwyn.bucklerfamily.estate/app/","h":["app.bucklerfamily.estate","apps.bucklerfamily.estate"]},{"id":"chat","t":"Ask the Archive","cy":"Holi’r Archif","es":"Pregunte al Archivo","u":"https://cedwyn.bucklerfamily.estate/chat/","h":["chat.bucklerfamily.estate"],"d":["Agent"]},{"id":"watchtower","t":"Watchtower","cy":"Y Tŵr Gwylio","es":"La Atalaya","u":"https://cedwyn.bucklerfamily.estate/watchtower/","h":["watchtower.bucklerfamily.estate"]},{"id":"fb2","t":"farmbook 2 · Today","cy":"farmbook 2 · Heddiw","es":"farmbook 2 · Hoy","u":"https://cedwyn.bucklerfamily.estate/fb2/","h":["fb2.bucklerfamily.estate"]},{"id":"email","t":"The Post Office","cy":"Swyddfa’r Post","es":"La Oficina de Correos","u":"https://cedwyn.bucklerfamily.estate/email/","h":["email.bucklerfamily.estate"],"x":[".topbar > .brand"]},{"id":"emails","t":"The Post Office · Calendar","cy":"Swyddfa’r Post · Calendr","es":"La Oficina de Correos · Calendario","u":"https://cedwyn.bucklerfamily.estate/email/calendar/","h":["emails.bucklerfamily.estate"]},{"id":"dartboard","t":"Home · The Disclosure Dartboard","cy":"Hafan · Bwrdd Dartiau Datgelu","es":"Inicio · La Diana de la Divulgación","u":"https://cedwyn.bucklerfamily.estate/dartboard/","h":["dartboard.bucklerfamily.estate"]},{"id":"estate","t":"Cedwyn Estate","cy":"Ystâd Cedwyn","es":"Finca Cedwyn","u":"https://cedwyn.bucklerfamily.estate/estate/","h":["bucklerfamily.estate","www.bucklerfamily.estate"],"p":["/","/cedwyn/"]},{"id":"directory","t":"Cedwyn Estate Directory","cy":"Cyfeiriadur Ystâd Cedwyn","es":"Directorio de Finca Cedwyn","u":"https://cedwyn.bucklerfamily.estate/directory/","h":["directory.bucklerfamily.estate"]},{"id":"patagonia","t":"Great House Farm II · Patagonia Museum","cy":"Great House Farm II · Amgueddfa Patagonia","es":"Great House Farm II · Museo de la Patagonia","u":"https://cedwyn.bucklerfamily.estate/patagonia/","h":[],"p":["/patagonia/"]},{"id":"wales","t":"Virtual Tour · Wales","cy":"Taith Rithwir · Cymru","es":"Visita Virtual · Gales","u":"https://cedwyn.bucklerfamily.estate/wales/","h":[],"p":["/wales/"]},{"id":"terrain","t":"Terrain · Cedwyn Estate in 3D","cy":"Tirwedd · Ystâd Cedwyn mewn 3D","es":"Terreno · Finca Cedwyn en 3D","u":"https://cedwyn.bucklerfamily.estate/terrain/","h":["terrain.bucklerfamily.estate"]},{"id":"cyberspace","t":"The Digital Estate","cy":"Yr Ystâd Ddigidol","es":"La Finca Digital","u":"https://cedwyn.bucklerfamily.estate/cyberspace/","h":[],"p":["/cyberspace/"],"x":["header.stage > p.kick"]},{"id":"shop","t":"Gift Shop & Marketplace","cy":"Siop Anrhegion a Marchnad","es":"Tienda y Mercado","u":"https://cedwyn.bucklerfamily.estate/shop/","h":["shop.bucklerfamily.estate"],"x":[".sl-nav > nav.top > a:first-child"]}];
   var TOKENS = ":root{\n --ghf-font:Barlow,'Helvetica Neue',Arial,system-ui,-apple-system,'Segoe UI',sans-serif;\n --ghf-font-serif:Georgia,'Times New Roman',serif;\n --ghf-font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;\n --ghf-fs-xs:12px;--ghf-fs-sm:14px;--ghf-fs-base:16px;--ghf-fs-md:17px;--ghf-fs-lg:20px;--ghf-fs-xl:22px;--ghf-fs-2xl:26px;\n --ghf-lh:1.55;--ghf-lh-tight:1.2;\n --ghf-space-1:4px;--ghf-space-2:8px;--ghf-space-3:12px;--ghf-space-4:16px;--ghf-space-5:24px;--ghf-space-6:32px;--ghf-space-7:48px;\n --ghf-radius:6px;\n --ghf-bg:#000;--ghf-fg:#fff;--ghf-muted:#bdbdbd;--ghf-line:rgba(255,255,255,.18);\n --ghf-day-bg:#fff;--ghf-day-fg:#111;--ghf-day-muted:#555;--ghf-day-line:rgba(0,0,0,.12);\n --ghf-gold:#f2c94c;\n --ghf-wpbar:45px;\n}\n@media (min-width:783px){:root{--ghf-wpbar:49px;--ghf-fs-md:18px;--ghf-fs-lg:22px;--ghf-fs-xl:28px;--ghf-fs-2xl:36px}}\n\nhtml.ghf-shell:not(.ghf-keep-type) body{font-size:var(--ghf-fs-base);line-height:var(--ghf-lh)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h1:not(.ghf-v2-dup){font-size:var(--ghf-fs-2xl);line-height:var(--ghf-lh-tight)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h2{font-size:var(--ghf-fs-xl);line-height:var(--ghf-lh-tight)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,section,.content,.container,.wrap,#content) h3{font-size:var(--ghf-fs-lg);line-height:1.3}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(p,li,dd,td){font-size:var(--ghf-fs-base)}\nhtml.ghf-shell:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(small,figcaption,.caption){font-size:var(--ghf-fs-sm)}\n\n:root{--ghf-fs-text:clamp(1rem,calc(1rem + (1vw - .2rem) * .545),1.3rem);--ghf-lh-text:1.55;--ghf-para:1em;--ghf-measure:760px;--ghf-radius:0px}\nhtml.ghf-hy:not(.ghf-keep-type) body :where(main,article,.content,#content) :where(p,li,dd,blockquote){font-size:var(--ghf-fs-text);line-height:var(--ghf-lh-text)}\nhtml.ghf-hy:not(.ghf-keep-type) body :where(main,article,.content,#content) p:not(:last-child){margin-bottom:var(--ghf-para)}\nhtml.ghf-hy :is(button,input,select,textarea,.btn,.button,.card,.cta):not(.ghf-round){border-radius:0}"; // copy of ghf-tokens.css, used only where that file cannot load (a strict same-origin CSP)
-  var V2 = (function  {
+  var V2 = (function () {
     var de = document.documentElement, wrap = null, chainBar = null, locBar = null, drawer = null, scrim = null, fsx = null, bgx = null;
     var shift = null, fsApi = false, lastFocus = null;
     var L = {
@@ -272,10 +272,10 @@
     var IC_FSX = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>';
     var IC_MENU = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6.5h16M4 12h16M4 17.5h16"/></svg>';
     var IC_CHAT = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H9l-4.5 4v-4H5.5A1.5 1.5 0 0 1 4 14.5z"/><path d="M8 9h8M8 12.5h5"/></svg>';
-    function lg { var l = (de.getAttribute("lang") || "en").slice(0, 2).toLowerCase; return L[l] ? l : "en"; }
+    function lg() { var l = (de.getAttribute("lang") || "en").slice(0, 2).toLowerCase(); return L[l] ? l : "en"; }
     function mk(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
-    function nm(st) { var l = lg; return (l !== "en" && st[l]) || st.t; }
-    function find {
+    function nm(st) { var l = lg(); return (l !== "en" && st[l]) || st.t; }
+    function find() {
       var i, j, best = -1, bl = -1, c, ps;
       for (i = 0; i < CHAIN.length; i++) {
         c = CHAIN[i]; ps = c.p || [];
@@ -285,8 +285,8 @@
       return best;
     }
     function btn(cls, svg, lab, fn) { var b = mk("button", cls); b.type = "button"; b.innerHTML = svg; b.setAttribute("aria-label", lab); b.title = lab; b.addEventListener("click", fn); return b; }
-    function fillChain {
-      var s = L[lg], n = CHAIN.length, k = find, pv = CHAIN[k < 0 ? n - 1 : (k - 1 + n) % n], nx = CHAIN[k < 0 ? 0 : (k + 1) % n];
+    function fillChain() {
+      var s = L[lg()], n = CHAIN.length, k = find(), pv = CHAIN[k < 0 ? n - 1 : (k - 1 + n) % n], nx = CHAIN[k < 0 ? 0 : (k + 1) % n];
       chainBar.textContent = "";
       chainBar.appendChild(btn("ghf-v2-btn ghf-v2-fs", IC_FS, s.fs, toggleFs));
       var arr = function (st, cls, ch, lab) { var a = mk("a", "ghf-v2-arr " + cls); a.href = st.u; a.setAttribute("aria-label", lab + ": " + nm(st)); a.title = lab + ": " + nm(st); a.appendChild(mk("span", null, ch)); a.setAttribute("data-ghf-chain", st.id); return a; };
@@ -300,41 +300,41 @@
       if (fsx) { fsx.setAttribute("aria-label", s.fsx); fsx.title = s.fsx; bgx.setAttribute("aria-label", s.menu); bgx.title = s.menu; }
     }
     // ---- full screen: the browser's Fullscreen API where it exists, plus a class that hides bars 1–3 (all iOS Safari gets) ----
-    function isFs { return de.classList.contains("ghf-fs"); }
+    function isFs() { return de.classList.contains("ghf-fs"); }
     function setFs(on) { de.classList.toggle("ghf-fs", on); if (shift) setTimeout(shift, 30); }
-    function toggleFs {
-      var on = !isFs, cur = document.fullscreenElement || document.webkitFullscreenElement;
+    function toggleFs() {
+      var on = !isFs(), cur = document.fullscreenElement || document.webkitFullscreenElement;
       var req = de.requestFullscreen || de.webkitRequestFullscreen, ex = document.exitFullscreen || document.webkitExitFullscreen;
       setFs(on);
       try {
-        if (on && req && !cur) { var p = req.call(de); if (p && p.catch) p.catch(function  {}); }
-        if (!on && ex && cur) { var q = ex.call(document); if (q && q.catch) q.catch(function  {}); }
+        if (on && req && !cur) { var p = req.call(de); if (p && p.catch) p.catch(function () {}); }
+        if (!on && ex && cur) { var q = ex.call(document); if (q && q.catch) q.catch(function () {}); }
       } catch (e) {}
     }
-    function fsSync { var cur = document.fullscreenElement || document.webkitFullscreenElement; if (cur) fsApi = true; else if (fsApi) { fsApi = false; if (isFs) setFs(false); } }
+    function fsSync() { var cur = document.fullscreenElement || document.webkitFullscreenElement; if (cur) fsApi = true; else if (fsApi) { fsApi = false; if (isFs()) setFs(false); } }
     document.addEventListener("fullscreenchange", fsSync); document.addEventListener("webkitfullscreenchange", fsSync);
     // ---- the menu: slides in from the right; this site's own links, Day/Night, then every site in chain order ----
     // a site's own burger is replaced by this one: its links move into this menu (one burger, top right, on every site)
     var SB = "button.burger, button.hamburger, .menu-toggle, .nav-toggle, button[aria-label='Menu' i], button[aria-label='Open menu' i], button[aria-label='Open the menu' i]";
-    function siteBurgers {
+    function siteBurgers() {
       var out = [], q = document.querySelectorAll(SB), i, b, r, y = window.pageYOffset || 0;
-      for (i = 0; i < q.length; i++) { b = q[i]; if (b.closest(".ghf-ui")) continue; r = b.getBoundingClientRect; if (r.width && r.top + y < 320) out.push(b); }
+      for (i = 0; i < q.length; i++) { b = q[i]; if (b.closest(".ghf-ui")) continue; r = b.getBoundingClientRect(); if (r.width && r.top + y < 320) out.push(b); }
       return out;
     }
-    function hideSiteBurgers {
-      siteBurgers.forEach(function (b) {
+    function hideSiteBurgers() {
+      siteBurgers().forEach(function (b) {
         var id = b.getAttribute("aria-controls"), m = id && document.getElementById(id);
         if (!m || m.querySelectorAll("a[href]").length >= 2) b.classList.add("ghf-v2-gone");
       });
     }
-    function txt(n) { var w = document.createTreeWalker(n, 4), o = [], c; while ((c = w.nextNode)) o.push(c.nodeValue); return o.join(" "); }
-    function harvest {
+    function txt(n) { var w = document.createTreeWalker(n, 4), o = [], c; while ((c = w.nextNode())) o.push(c.nodeValue); return o.join(" "); }
+    function harvest() {
       var sel = "header a[href], nav a[href], [role=navigation] a[href], .menu a[href], .nav a[href]";
       document.querySelectorAll(".ghf-v2-gone[aria-controls]").forEach(function (b) { sel = "#" + b.getAttribute("aria-controls") + " a[href], " + sel; });
       var out = [], seen = {}, q = document.querySelectorAll(sel), i, a, t, h;
       for (i = 0; i < q.length && out.length < 24; i++) {
         a = q[i]; if (a.closest(".ghf-ui") || a.closest(".ghf-v2-drawer")) continue;
-        t = (a.innerText || txt(a) || a.getAttribute("aria-label") || a.title || "").replace(/\s+/g, " ").trim;
+        t = (a.innerText || txt(a) || a.getAttribute("aria-label") || a.title || "").replace(/\s+/g, " ").trim();
         h = a.getAttribute("href"); if (!t || t.length > 70 || !h || /^javascript:/i.test(h) || h === "#") continue;
         h = a.href; if (seen[h]) continue; seen[h] = 1; out.push([t, h]);
       }
@@ -342,26 +342,26 @@
         q = document.querySelectorAll("h2[id], section[id] > h2, section[id] > header > h2");
         for (i = 0; i < q.length && out.length < 24; i++) {
           a = q[i]; if (a.closest(".ghf-ui")) continue; var id = a.id || (a.closest("section[id]") || {}).id; if (!id || seen["#" + id]) continue;
-          t = (a.textContent || "").replace(/\s+/g, " ").trim; if (!t || t.length > 70) continue; seen["#" + id] = 1; out.push([t, "#" + id]);
+          t = (a.textContent || "").replace(/\s+/g, " ").trim(); if (!t || t.length > 70) continue; seen["#" + id] = 1; out.push([t, "#" + id]);
         }
       }
       return out;
     }
-    function fillDrawer {
-      var s = L[lg], k = find, inn = drawer.querySelector(".ghf-v2-din"); inn.textContent = "";
+    function fillDrawer() {
+      var s = L[lg()], k = find(), inn = drawer.querySelector(".ghf-v2-din"); inn.textContent = "";
       var hd = mk("div", "ghf-v2-dhd"); hd.appendChild(mk("b", null, k >= 0 ? nm(CHAIN[k]) : host));
       var x = mk("button", "ghf-v2-btn ghf-v2-dx", "\u00D7"); x.type = "button"; x.setAttribute("aria-label", s.close); x.title = s.close; x.onclick = closeDrawer; hd.appendChild(x); inn.appendChild(hd);
       // v2.1.1: Day/Night and the Agent chat sit at the TOP of the menu; nothing floats on the page.
       var row = mk("div", "ghf-v2-drow"), mb = mk("button", "ghf-v2-mode"); mb.setAttribute("data-ghf-mode-toggle", ""); row.appendChild(mb);
-      if (window.GHFChatAllowed && window.GHFChatAllowed) { var cb = mk("button", "ghf-v2-mode ghf-v2-chat"); cb.type = "button"; cb.setAttribute("aria-haspopup", "dialog"); cb.setAttribute("aria-label", s.chat); cb.title = s.chat;
-        cb.innerHTML = IC_CHAT + '<span class="ghf-mode-txt">' + s.chat + "</span>"; cb.onclick = function  { closeDrawer; if (window.GHFChatOpen) window.GHFChatOpen; }; row.appendChild(cb); }
+      if (window.GHFChatAllowed && window.GHFChatAllowed()) { var cb = mk("button", "ghf-v2-mode ghf-v2-chat"); cb.type = "button"; cb.setAttribute("aria-haspopup", "dialog"); cb.setAttribute("aria-label", s.chat); cb.title = s.chat;
+        cb.innerHTML = IC_CHAT + '<span class="ghf-mode-txt">' + s.chat + "</span>"; cb.onclick = function () { closeDrawer(); if (window.GHFChatOpen) window.GHFChatOpen(); }; row.appendChild(cb); }
       inn.appendChild(row);
       try { GT.wire(mb); } catch (e) {}
-      var links = harvest;
+      var links = harvest();
       var dh1 = mk("div", "ghf-v2-dh", s.here); dh1.setAttribute("role", "heading"); dh1.setAttribute("aria-level", "2"); inn.appendChild(dh1);
       var ul = mk("ul", "ghf-v2-dl"), li, a;
-      li = mk("li"); a = mk("a", null, s.top); a.href = "#"; a.onclick = function (e) { e.preventDefault; closeDrawer; window.scrollTo(0, 0); }; li.appendChild(a); ul.appendChild(li);
-      links.forEach(function (l) { li = mk("li"); a = mk("a", null, l[0]); a.href = l[1]; a.onclick = function  { setTimeout(closeDrawer, 10); }; li.appendChild(a); ul.appendChild(li); });
+      li = mk("li"); a = mk("a", null, s.top); a.href = "#"; a.onclick = function (e) { e.preventDefault(); closeDrawer(); window.scrollTo(0, 0); }; li.appendChild(a); ul.appendChild(li);
+      links.forEach(function (l) { li = mk("li"); a = mk("a", null, l[0]); a.href = l[1]; a.onclick = function () { setTimeout(closeDrawer, 10); }; li.appendChild(a); ul.appendChild(li); });
       inn.appendChild(ul);
       var dh2 = mk("div", "ghf-v2-dh", s.all); dh2.setAttribute("role", "heading"); dh2.setAttribute("aria-level", "2"); inn.appendChild(dh2);
       var ol = mk("ol", "ghf-v2-dl ghf-v2-dall");
@@ -369,41 +369,41 @@
       inn.appendChild(ol);
       var hm = mk("a", "ghf-v2-dhome", s.home); hm.href = HOME; inn.appendChild(hm);
     }
-    function openDrawer {
+    function openDrawer() {
       if (!drawer) {
         scrim = mk("div", "ghf-v2-scrim ghf-ui"); scrim.onclick = closeDrawer;
         drawer = mk("aside", "ghf-v2-drawer ghf-ui"); drawer.setAttribute("role", "dialog"); drawer.setAttribute("aria-modal", "true");
         drawer.setAttribute("data-no-translate", ""); drawer.setAttribute("translate", "no"); drawer.appendChild(mk("div", "ghf-v2-din"));
         document.body.appendChild(scrim); document.body.appendChild(drawer);
-        document.addEventListener("keydown", function (e) { if (e.key === "Escape" && de.classList.contains("ghf-v2-open")) closeDrawer; });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape" && de.classList.contains("ghf-v2-open")) closeDrawer(); });
       }
-      lastFocus = document.activeElement; fillDrawer; drawer.setAttribute("aria-label", L[lg].menu);
+      lastFocus = document.activeElement; fillDrawer(); drawer.setAttribute("aria-label", L[lg()].menu);
       drawer.offsetWidth; de.classList.add("ghf-v2-open");
-      var f = drawer.querySelector(".ghf-v2-dx"); if (f) setTimeout(function  { try { f.focus; } catch (e) {} }, 60);
+      var f = drawer.querySelector(".ghf-v2-dx"); if (f) setTimeout(function () { try { f.focus(); } catch (e) {} }, 60);
     }
-    function closeDrawer { de.classList.remove("ghf-v2-open"); if (lastFocus && lastFocus.focus) try { lastFocus.focus; } catch (e) {} }
+    function closeDrawer() { de.classList.remove("ghf-v2-open"); if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch (e) {} }
     // ---- a page title that only repeats the name in the bar is hidden (kept for screen readers) ----
-    function norm(x) { return (x || "").toLowerCase.replace(/&/g, " and ").replace(/[\u2018\u2019']/g, "").replace(/[^a-z0-9\u00c0-\u024f\u0174-\u0177 ]+/g, " ").replace(/\b(the|a|an|y|yr|la|el)\b/g, " ").replace(/\s+/g, " ").trim; }
-    function dedupe {
-      var k = find; if (k < 0) return;
+    function norm(x) { return (x || "").toLowerCase().replace(/&/g, " and ").replace(/[\u2018\u2019']/g, "").replace(/[^a-z0-9\u00c0-\u024f\u0174-\u0177 ]+/g, " ").replace(/\b(the|a|an|y|yr|la|el)\b/g, " ").replace(/\s+/g, " ").trim(); }
+    function dedupe() {
+      var k = find(); if (k < 0) return;
       var names = [CHAIN[k].t, CHAIN[k].cy, CHAIN[k].es].concat(CHAIN[k].d || []).filter(Boolean).map(norm);
       var hs = document.querySelectorAll("h1, [data-ghf-title]"), i, h, t, r, y = window.pageYOffset || 0, xs = [];
       // site_chain.json "x": that site's own title block (kicker, brand line) that only repeats the bar's name; hidden the same way
       try { if (CHAIN[k].x && CHAIN[k].x.length) xs = document.querySelectorAll(CHAIN[k].x.join(",")); } catch (e) { xs = []; }
       for (i = 0; i < xs.length && i < 12; i++) {
         h = xs[i]; if (h.closest(".ghf-ui")) continue;
-        r = h.getBoundingClientRect; if (r.top + y > 1100) continue;
+        r = h.getBoundingClientRect(); if (r.top + y > 1100) continue;
         h.classList.add("ghf-v2-dup");
       }
       for (i = 0; i < hs.length && i < 6; i++) {
         h = hs[i]; if (h.closest(".ghf-ui")) continue;
-        r = h.getBoundingClientRect; if (r.top + y > 1100 || (r.width === 0 && r.height === 0)) continue;
+        r = h.getBoundingClientRect(); if (r.top + y > 1100 || (r.width === 0 && r.height === 0)) continue;
         t = norm(h.textContent); if (!t) continue;
         if (h.hasAttribute("data-ghf-title") || names.some(function (n) { return n && (t === n || (n.length > 5 && (t.indexOf(n) === 0 || n.indexOf(t) === 0) && Math.abs(t.length - n.length) <= 14)); })) h.classList.add("ghf-v2-dup");
       }
     }
     // ---- v2.0.3: the bars are built the moment <body> exists; these re-run once the page has parsed ----
-    function fitBody { // cancel the page's own body margin/padding so the bars run edge to edge
+    function fitBody() { // cancel the page's own body margin/padding so the bars run edge to edge
       if (!wrap) return;
       var bs = getComputedStyle(document.body), mt = (parseFloat(bs.marginTop) || 0) + (parseFloat(bs.paddingTop) || 0), ml = (parseFloat(bs.marginLeft) || 0) + (parseFloat(bs.paddingLeft) || 0), mr = (parseFloat(bs.marginRight) || 0) + (parseFloat(bs.paddingRight) || 0);
       wrap.style.removeProperty("margin"); wrap.style.removeProperty("width"); wrap.style.removeProperty("margin-bottom");
@@ -411,52 +411,52 @@
       if (mt) wrap.style.setProperty("margin-bottom", mt + "px", "important");
     }
     var pinned = [], pinWired = false;
-    function pins { // keep the bars above any header the site pins to the top of the screen
+    function pins() { // keep the bars above any header the site pins to the top of the screen
       if (!wrap) return;
       var q = document.querySelectorAll("body > *, body > * > *, body > * > * > *"), i, e, r, cs;
       for (i = 0; i < q.length && i < 600; i++) {
         e = q[i]; if (e === wrap || e.closest(".ghf-ui") || pinned.indexOf(e) >= 0) continue;
         cs = getComputedStyle(e); if (cs.position !== "fixed" && cs.position !== "sticky") continue;
-        r = e.getBoundingClientRect;
+        r = e.getBoundingClientRect();
         if (r.top <= 2 && r.height > 0 && r.height < 170 && r.width > (window.innerWidth || 390) * 0.5) pinned.push(e);
       }
-      shift = function  {
-        var off = isFs ? 0 : Math.max(0, Math.round(wrap.getBoundingClientRect.bottom));
+      shift = function () {
+        var off = isFs() ? 0 : Math.max(0, Math.round(wrap.getBoundingClientRect().bottom));
         for (var k2 = 0; k2 < pinned.length; k2++) { if (getComputedStyle(pinned[k2]).position === "fixed") pinned[k2].style.setProperty("top", off + "px", "important"); }
       };
-      if (pinned.length) { shift; if (!pinWired) { pinWired = true; window.addEventListener("scroll", shift, { passive: true }); window.addEventListener("resize", shift); setTimeout(shift, 900); } }
+      if (pinned.length) { shift(); if (!pinWired) { pinWired = true; window.addEventListener("scroll", shift, { passive: true }); window.addEventListener("resize", shift); setTimeout(shift, 900); } }
     }
-    function watchTitles { // hide a repeated page title the moment the parser adds it, so it is never painted
+    function watchTitles() { // hide a repeated page title the moment the parser adds it, so it is never painted
       if (document.readyState !== "loading" || !window.MutationObserver) return;
-      var kx = find, XS = kx >= 0 && CHAIN[kx].x && CHAIN[kx].x.length ? CHAIN[kx].x.join(",") : "";
+      var kx = find(), XS = kx >= 0 && CHAIN[kx].x && CHAIN[kx].x.length ? CHAIN[kx].x.join(",") : "";
       try { if (XS) document.querySelector(XS); } catch (e) { XS = ""; }
       var mo = new MutationObserver(function (recs) {
         for (var a = 0; a < recs.length; a++) for (var b = 0; b < recs[a].addedNodes.length; b++) {
           var n = recs[a].addedNodes[b];
-          if (n.nodeType === 1 && (n.tagName === "H1" || n.hasAttribute("data-ghf-title") || (n.querySelector && n.querySelector("h1,[data-ghf-title]")) || (XS && (n.matches(XS) || n.querySelector(XS))))) { dedupe; return; }
+          if (n.nodeType === 1 && (n.tagName === "H1" || n.hasAttribute("data-ghf-title") || (n.querySelector && n.querySelector("h1,[data-ghf-title]")) || (XS && (n.matches(XS) || n.querySelector(XS))))) { dedupe(); return; }
         }
       });
       mo.observe(document.body, { childList: true, subtree: true });
-      document.addEventListener("DOMContentLoaded", function  { mo.disconnect; });
+      document.addEventListener("DOMContentLoaded", function () { mo.disconnect(); });
     }
     // ---- language menu: one switch, always at the right end of the location bar ----
-    function moveLang {
+    function moveLang() {
       var slot = wrap && wrap.querySelector(".ghf-v2-lang"), l = document.querySelector(".ghf-lang");
       if (slot && l && !slot.contains(l)) { slot.appendChild(l); l.classList.remove("ghf-fixed"); l.style.top = l.style.right = l.style.left = l.style.bottom = ""; l.style.position = ""; }
     }
-    function locs {
+    function locs() {
       var box = wrap.querySelector(".ghf-v2-locs");
-      var go = function  {
+      var go = function () {
         var have = document.querySelector(".ghf-loc");
         if (have) { if (!box.contains(have)) box.appendChild(have); }
         else if (window.GHFLoc) { var m = mk("span"); box.appendChild(m); window.GHFLoc.strip(m); m.parentNode && m.parentNode.removeChild(m); }
         if (shift) setTimeout(shift, 50);
       };
-      if (window.GHFLoc) return go;
+      if (window.GHFLoc) return go();
       var ls = document.createElement("script"); ls.src = ASSET + "/ghf-lang/locations.js?v=2.1.4"; ls.async = true; ls.onload = go;
       (document.head || de).appendChild(ls);
     }
-    function mount {
+    function mount() {
       if (wrap) return wrap;
       if (!document.body || window.self !== window.top && !/[?&]ghfbars\b/.test(location.search)) return null;
       // the shared type tokens go in inline (same bytes as /ghf-lang/ghf-tokens.css), so sizes and fonts never change after the first paint
@@ -464,25 +464,25 @@
       var st = document.createElement("style"); st.setAttribute("data-ghf-v2", ""); st.textContent = V2CSS; (document.head || de).appendChild(st);
       wrap = mk("div", "ghf-v2 ghf-ui"); wrap.setAttribute("data-no-translate", ""); wrap.setAttribute("translate", "no");
       var sp = mk("div", "ghf-v2-sp"); sp.setAttribute("aria-hidden", "true");
-      locBar = mk("nav", "ghf-v2-loc"); locBar.setAttribute("aria-label", L[lg].loc);
+      locBar = mk("nav", "ghf-v2-loc"); locBar.setAttribute("aria-label", L[lg()].loc);
       locBar.appendChild(mk("div", "ghf-v2-locs")); locBar.appendChild(mk("div", "ghf-v2-lang"));
       chainBar = mk("nav", "ghf-v2-chain");
       wrap.appendChild(sp); wrap.appendChild(locBar); wrap.appendChild(chainBar);
       document.body.insertBefore(wrap, document.body.firstChild);
-      fitBody;
-      fsx = btn("ghf-v2-btn ghf-v2-fsx ghf-ui", IC_FSX, L[lg].fsx, toggleFs); bgx = btn("ghf-v2-btn ghf-v2-bgx ghf-ui", IC_MENU, L[lg].menu, openDrawer);
+      fitBody();
+      fsx = btn("ghf-v2-btn ghf-v2-fsx ghf-ui", IC_FSX, L[lg()].fsx, toggleFs); bgx = btn("ghf-v2-btn ghf-v2-bgx ghf-ui", IC_MENU, L[lg()].menu, openDrawer);
       document.body.appendChild(fsx); document.body.appendChild(bgx);
       de.classList.add("ghf-v2-on"); de.classList.remove("ghf-v2-pre"); if (/^(maps|chess)\./.test(host)) de.classList.add("ghf-keep-type");
-      fillChain; locs; moveLang;
-      var mo = new MutationObserver(moveLang); mo.observe(document.body, { childList: true, subtree: true }); setTimeout(function  { mo.disconnect; }, 15000);
-      document.addEventListener("ghf-lang-change", function  { fillChain; if (de.classList.contains("ghf-v2-open")) fillDrawer; });
-      pins;
-      watchTitles;
-      var later = function  { fitBody; pins; hideSiteBurgers; dedupe; // after parsing, so a page's own ghf-lang.js tag (with its data-site) is seen first
+      fillChain(); locs(); moveLang();
+      var mo = new MutationObserver(moveLang); mo.observe(document.body, { childList: true, subtree: true }); setTimeout(function () { mo.disconnect(); }, 15000);
+      document.addEventListener("ghf-lang-change", function () { fillChain(); if (de.classList.contains("ghf-v2-open")) fillDrawer(); });
+      pins();
+      watchTitles();
+      var later = function () { fitBody(); pins(); hideSiteBurgers(); dedupe(); // after parsing, so a page's own ghf-lang.js tag (with its data-site) is seen first
         if (!window.GHFLang && !document.querySelector('script[src*="ghf-lang.js"]')) { var gs = document.createElement("script"); gs.src = ASSET + "/ghf-lang/ghf-lang.js?v=2.1.4"; gs.async = true; (document.head || de).appendChild(gs); } };
       if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", later); else setTimeout(later, 0);
-      window.addEventListener("load", function  { fitBody; pins; setTimeout(function  { fitBody; pins; }, 1200); }); // pages whose CSS arrives late (bundled apps)
-      hideSiteBurgers; setTimeout(hideSiteBurgers, 1200); dedupe; setTimeout(dedupe, 1200); window.addEventListener("load", function  { setTimeout(dedupe, 300); });
+      window.addEventListener("load", function () { fitBody(); pins(); setTimeout(function () { fitBody(); pins(); }, 1200); }); // pages whose CSS arrives late (bundled apps)
+      hideSiteBurgers(); setTimeout(hideSiteBurgers, 1200); dedupe(); setTimeout(dedupe, 1200); window.addEventListener("load", function () { setTimeout(dedupe, 300); });
       return wrap;
     }
     var V2CSS =
@@ -532,11 +532,11 @@
       "html[data-ghf-mode=day] .ghf-v2-fsx,html[data-ghf-mode=day] .ghf-v2-bgx{background:rgba(255,255,255,.85)!important;color:#000!important}" +
       "html.ghf-v2-on .ghf-top,html.ghf-v2-on .ghf-sub{display:none!important}html.ghf-v2-on{overflow-x:clip}" +
       "@media print{.ghf-v2,.ghf-v2-fsx,.ghf-v2-bgx,.ghf-v2-drawer,.ghf-v2-scrim{display:none!important}}";
-    return { mount: mount, find: find, chain: CHAIN, wrap: function  { return wrap; }, fullscreen: toggleFs, menu: openDrawer };
-  });
+    return { mount: mount, find: find, chain: CHAIN, wrap: function () { return wrap; }, fullscreen: toggleFs, menu: openDrawer };
+  })();
   // v2.0.3: theme and bars as soon as <body> exists (no late pop-in, no light-to-dark flash); the full theme pass re-runs after parsing
-  if (!(window.self !== window.top && !/[?&]ghfbars\b/.test(location.search))) bodyNow(function  { try { GT.apply(GT.mode); } catch (e) {} try { V2.mount; } catch (e) {} });
-  if (apex && (path === "/" || path === "/index.html" || /^\/(1d|cedwyn)(\/|$)/.test(path))) { whenBody(GT.boot); whenBody(function  { V2.mount; }); return; } // this IS base camp (1D list, 2D map)
+  if (!(window.self !== window.top && !/[?&]ghfbars\b/.test(location.search))) bodyNow(function () { try { GT.apply(GT.mode()); } catch (e) {} try { V2.mount(); } catch (e) {} });
+  if (apex && (path === "/" || path === "/index.html" || /^\/(1d|cedwyn)(\/|$)/.test(path))) { whenBody(GT.boot); whenBody(function () { V2.mount(); }); return; } // this IS base camp (1D list, 2D map)
   var here = null, i, j;
   for (i = 0; i < STOPS.length && !here; i++) {
     for (j = 0; j < STOPS[i].h.length; j++) if (STOPS[i].h[j] === host) { here = STOPS[i]; break; }
@@ -561,13 +561,13 @@
   // v2.1.3 palette v3 (22 Oct 2026): one unique two-colour hint per site; the same table ghf-boot.js carries, for pages that load
   // this file without it (ghf-lang.js, /basecamp.js). Table: palette.md.
   var HOST_PAIRS = {"greathousefarmwiki.wordpress.com":["#1B4D6A","#0F9DF0"],"wiki.bucklerfamily.estate":["#1B4D6A","#0F9DF0"],"clerk.bucklerfamily.estate":["#1B4D6A","#0F9DF0"],"bpvsbuckler.bucklerfamily.estate":["#6A3A1B","#F1721E"],"story.bucklerfamily.estate":["#6A3A1B","#F1721E"],"maps.bucklerfamily.estate":["#1E4D45","#FF8F7A"],"chess.bucklerfamily.estate":["#3D2614","#D9AE7E"],"fcg.bucklerfamily.estate":["#4A1B6A","#C274F6"],"csscpsg.bucklerfamily.estate":["#364E13","#92DB24"],"csscpsgp.bucklerfamily.estate":["#364E13","#92DB24"],"records.bucklerfamily.estate":["#215214","#BDEBFF"],"wayback.bucklerfamily.estate":["#144E52","#0FE1F0"],"email.bucklerfamily.estate":["#145227","#24DB5B"],"email.bucklerfamily.estate/calendar/":["#145227","#FFB627"],"emails.bucklerfamily.estate":["#145227","#FFB627"],"authorities.bucklerfamily.estate":["#263238","#B0BEC5"],"dartboard.bucklerfamily.estate":["#671B6A","#EE4EF4"],"qa.bucklerfamily.estate":["#14523F","#24DBA4"],"2026-10-22.bucklerfamily.estate":["#484912","#D5DB24"],"review.bucklerfamily.estate":["#1B1D6A","#F7A8C4"],"research.bucklerfamily.estate":["#1F3D2B","#C9B6FF"],"projects.bucklerfamily.estate":["#1B356A","#6695F5"],"fb.bucklerfamily.estate":["#6A1B50","#F55CC2"],"fb2.bucklerfamily.estate":["#2E1B6A","#FF8A5B"],"accounts.bucklerfamily.estate":["#6A1B38","#9DE6CF"],"app.bucklerfamily.estate":["#6A1B1B","#FF5252"],"apps.bucklerfamily.estate":["#6A1B1B","#FF5252"],"ebooks.bucklerfamily.estate":["#4A1942","#F2C94C"],"shop.bucklerfamily.estate":["#5C1A2B","#F3E3B5"],"docs.bucklerfamily.estate":["#1C2E5C","#FFB27A"],"infographic.bucklerfamily.estate":["#14304A","#9BE15D"],"oldbill.bucklerfamily.estate":["#2B2B2B","#E08A4F"],"terrain.bucklerfamily.estate":["#3A2E1F","#A8D8FF"],"directory.bucklerfamily.estate":["#3D1F4A","#9FE2FF"],"watchtower.bucklerfamily.estate":["#6B2D1F","#FFE14D"],"chat.bucklerfamily.estate":["#0F4C5C","#F3A6F0"],"nomenclature.bucklerfamily.estate":["#3A1F3D","#7EF0E0"],"nomlecture.bucklerfamily.estate":["#3A1F3D","#7EF0E0"],"nolecture.bucklerfamily.estate":["#3A1F3D","#7EF0E0"],"whatdotheyknow.bucklerfamily.estate":["#5A3E12","#9DF2B8"],"bucklerfamily.estate/cyberspace/":["#0B1A2E","#39FF9C"]};
-  function hostPair { var hp = location.hostname + location.pathname, pk = null, k; for (k in HOST_PAIRS) if (k.indexOf("/") > 0 && hp.indexOf(k) === 0 && (!pk || k.length > pk.length)) pk = k; return HOST_PAIRS[pk || location.hostname] || null; }
+  function hostPair() { var hp = location.hostname + location.pathname, pk = null, k; for (k in HOST_PAIRS) if (k.indexOf("/") > 0 && hp.indexOf(k) === 0 && (!pk || k.length > pk.length)) pk = k; return HOST_PAIRS[pk || location.hostname] || null; }
   function brand(stop) {
     var de = document.documentElement;
     if (de.getAttribute("data-ghf-brand") === "off") return;
     var pair = null, k;
     for (k in BRAND_PATHS) if (apex && path.indexOf(k) === 0) pair = BRAND_PATHS[k];
-    if (!pair) pair = window.GHFPair || hostPair; // v2.1.3 palette v3: one unique pair per site, ahead of the stop's own
+    if (!pair) pair = window.GHFPair || hostPair(); // v2.1.3 palette v3: one unique pair per site, ahead of the stop's own
     if (!pair && stop) pair = stop.c;
     if (!pair) return;
     var P = pair[0], S = pair[1], tw = TWEAKS[host] || (stop ? {} : { buttons: false, links: false }); // a site outside the stops carries the hint only: band, header underline, focus ring
@@ -591,8 +591,8 @@
     (document.head || de).appendChild(css);
     var mt = document.querySelector('meta[name="theme-color"]');
     if (!mt) { mt = document.createElement("meta"); mt.name = "theme-color"; (document.head || de).appendChild(mt); }
-    try { mt.content = GT.mode === "day" ? "#ffffff" : "#000000"; } catch (e) {} // v2.1.0: the browser bar follows the day/night mode
-    function paintPage {
+    try { mt.content = GT.mode() === "day" ? "#ffffff" : "#000000"; } catch (e) {} // v2.1.0: the browser bar follows the day/night mode
+    function paintPage() {
       if (!document.body) return;
       if (!document.querySelector(".ghf-glow")) { var gl = el("div", "ghf-glow ghf-ui"); gl.setAttribute("aria-hidden", "true"); document.body.appendChild(gl); }
       var lP = hexL(P), lS = hexL(S), vw = window.innerWidth || 390, q, i, e, r;
@@ -601,7 +601,7 @@
         q = document.querySelectorAll(tw.header || "header, [role=banner], .site-header, .topbar, .navbar, .nav, .navrow, body > nav");
         for (i = 0; i < q.length; i++) {
           e = q[i]; if (e.closest(".ghf-bc")) continue;
-          r = e.getBoundingClientRect;
+          r = e.getBoundingClientRect();
           if (r.width < vw * 0.6 || r.height < 24 || r.top > 160 || r.height > 260) continue;
           var cs = getComputedStyle(e), img = cs.backgroundImage && cs.backgroundImage !== "none" && !/gradient/.test(cs.backgroundImage);
           var fg = rgb(cs.color), light = fg && lumi(fg) > 0.5;
@@ -631,8 +631,8 @@
         }
       }
     }
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", paintPage); else paintPage;
-    window.addEventListener("load", function  { setTimeout(paintPage, 400); });
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", paintPage); else paintPage();
+    window.addEventListener("load", function () { setTimeout(paintPage, 400); });
   }
   whenBody(GT.boot);
   brand(here);
@@ -642,26 +642,26 @@
     cy: { less: "Cau", all: "Pob safle", prev: "Safle blaenorol", nxt: "Safle nesaf", site: "Safle", sof: "o", home: "Ystâd Cedwyn · Gwersyll Sylfaen", back: "Yn ôl i Ystâd Cedwyn", sub: "Tŷ Mawr", stop: "Arhosfan", of: "o", next: "Nesaf", hide: "Cuddio", show: "Ystâd Cedwyn", end: "Diwedd y daith" },
     es: { less: "Cerrar", all: "Todos los sitios", prev: "Sitio anterior", nxt: "Sitio siguiente", site: "Sitio", sof: "de", home: "Finca Cedwyn · Campamento base", back: "Volver a la Finca Cedwyn", sub: "Great House", stop: "Parada", of: "de", next: "Siguiente", hide: "Ocultar", show: "Finca Cedwyn", end: "Fin del recorrido" }
   };
-  function lang {
-    var l = (document.documentElement.getAttribute("lang") || "en").slice(0, 2).toLowerCase;
+  function lang() {
+    var l = (document.documentElement.getAttribute("lang") || "en").slice(0, 2).toLowerCase();
     return T[l] ? l : "en";
   }
   var KEY = "ghf-bc-min", nav, css, bar, sub = null, shiftNow = null;
   var TWO = !apex && /(^|\.)bucklerfamily\.estate$/.test(host); // a subdomain: master bar collapses, the site's own tier shows
   var RING = STOPS.filter(function (st, i) { return /^https:\/\/[a-z0-9-]+\.bucklerfamily\.estate\//.test(st.u) && STOPS.map(function (x) { return x.u; }).indexOf(st.u) === i; }); // the subdomain sites, in base camp order (the WordPress wiki and external pages cannot show these arrows)
-  function mini { try { return sessionStorage.getItem(KEY) === "1"; } catch (e) { return false; } }
-  function setMini(v) { try { sessionStorage.setItem(KEY, v ? "1" : "0"); } catch (e) {} render; }
+  function mini() { try { return sessionStorage.getItem(KEY) === "1"; } catch (e) { return false; } }
+  function setMini(v) { try { sessionStorage.setItem(KEY, v ? "1" : "0"); } catch (e) {} render(); }
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
   var ICON = ASSET + "/brand/cedwyn-tent-icon-64.png";
   // floating pill (shown once the header has scrolled away): home + "stop N, next stop"
-  function render {
-    var s = T[lang];
+  function render() {
+    var s = T[lang()];
     nav.textContent = "";
-    nav.className = "ghf-bc ghf-ui" + (mini ? " ghf-bc-min" : "") + (nav.getAttribute("data-away") === "1" ? "" : " ghf-bc-hide");
-    if (mini) {
+    nav.className = "ghf-bc ghf-ui" + (mini() ? " ghf-bc-min" : "") + (nav.getAttribute("data-away") === "1" ? "" : " ghf-bc-hide");
+    if (mini()) {
       var b = el("button", "ghf-bc-open", "⟵ " + s.show);
       b.type = "button"; b.setAttribute("aria-label", s.back);
-      b.onclick = function  { setMini(false); };
+      b.onclick = function () { setMini(false); };
       nav.appendChild(b); return;
     }
     var a = el("a", "ghf-bc-home");
@@ -682,21 +682,21 @@
     }
     var x = el("button", "ghf-bc-x", "×");
     x.type = "button"; x.setAttribute("aria-label", s.hide); x.title = s.hide;
-    x.onclick = function  { setMini(true); };
+    x.onclick = function () { setMini(true); };
     nav.appendChild(x);
   }
   // the shared header bar: "Cedwyn Estate · Base Camp" home link (tent mark in this site's hue ring), language, Day/Night
-  function renderBar {
-    var s = T[lang], home = bar.querySelector(".ghf-top-home");
+  function renderBar() {
+    var s = T[lang()], home = bar.querySelector(".ghf-top-home");
     home.setAttribute("aria-label", s.back);
     home.querySelector(".ghf-top-name").textContent = s.home;
     var sh = home.querySelector(".ghf-top-short"); if (sh) sh.textContent = s.show;
     var sn = bar.querySelector(".ghf-top-site"); if (sn) sn.textContent = here ? here.t : "";
     var tg = bar.querySelector(".ghf-top-tog");
     if (tg) { var o = document.documentElement.classList.contains("ghf-open"); tg.setAttribute("aria-expanded", o ? "true" : "false"); tg.setAttribute("aria-label", o ? s.less : s.all); tg.title = o ? s.less : s.all; tg.innerHTML = '<span class="ghf-tog-t">' + (o ? s.less : s.all) + '</span><span class="ghf-tog-i" aria-hidden="true">' + (o ? "\u25B4" : "\u25BE") + "</span>"; }
-    if (sub) fillSub;
+    if (sub) fillSub();
   }
-  function buildBar {
+  function buildBar() {
     bar = el("header", "ghf-top ghf-ui"); bar.setAttribute("data-no-translate", ""); bar.setAttribute("translate", "no");
     bar.setAttribute("aria-label", "Cedwyn Estate");
     var a = el("a", "ghf-top-home"); a.href = HOME;
@@ -710,28 +710,28 @@
     if (TWO) { // two tiers: on a subdomain the master bar starts as a thin strip, one tap to open
       var mn = el("span", "ghf-top-mini"); right.insertBefore(mn, right.firstChild);
       var tg = el("button", "ghf-top-tog"); tg.type = "button"; tg.setAttribute("aria-expanded", "false");
-      tg.onclick = function  { var o = !document.documentElement.classList.contains("ghf-open"); document.documentElement.classList.toggle("ghf-open", o); renderBar; if (shiftNow) shiftNow; };
+      tg.onclick = function () { var o = !document.documentElement.classList.contains("ghf-open"); document.documentElement.classList.toggle("ghf-open", o); renderBar(); if (shiftNow) shiftNow(); };
       right.appendChild(tg);
       document.documentElement.classList.add("ghf-two");
     }
     bar.appendChild(right);
     document.body.insertBefore(bar, document.body.firstChild);
-    if (TWO) { sub = buildSub; bar.parentNode.insertBefore(sub, bar.nextSibling); }
+    if (TWO) { sub = buildSub(); bar.parentNode.insertBefore(sub, bar.nextSibling); }
     GT.wire(mb);
-    renderBar;
-    moveLang;
-    locStrip;
+    renderBar();
+    moveLang();
+    locStrip();
     // keep the bar above any header the site pins to the top of the screen
     var pinned = [], q = document.querySelectorAll("body > *, body > * > *, body > * > * > *"), i, e, r, cs;
     for (i = 0; i < q.length && i < 600; i++) {
       e = q[i]; if (e === bar || e.closest(".ghf-ui")) continue;
       cs = getComputedStyle(e); if (cs.position !== "fixed") continue;
-      r = e.getBoundingClientRect;
+      r = e.getBoundingClientRect();
       if (r.top <= 2 && r.height > 0 && r.height < 170 && r.width > (window.innerWidth || 390) * 0.5) pinned.push(e);
     }
-    var bh = function  { var last = sub || bar, r = last.getBoundingClientRect; return Math.round(r.bottom + (window.pageYOffset || 0)) || bar.offsetHeight || 46; };
-    var shift = function  { var off = Math.max(0, bh - (window.pageYOffset || 0)); for (var k = 0; k < pinned.length; k++) pinned[k].style.setProperty("top", off + "px", "important"); };
-    if (pinned.length) { shift; window.addEventListener("scroll", shift, { passive: true }); window.addEventListener("resize", shift); }
+    var bh = function () { var last = sub || bar, r = last.getBoundingClientRect(); return Math.round(r.bottom + (window.pageYOffset || 0)) || bar.offsetHeight || 46; };
+    var shift = function () { var off = Math.max(0, bh() - (window.pageYOffset || 0)); for (var k = 0; k < pinned.length; k++) pinned[k].style.setProperty("top", off + "px", "important"); };
+    if (pinned.length) { shift(); window.addEventListener("scroll", shift, { passive: true }); window.addEventListener("resize", shift); }
     shiftNow = shift; setTimeout(shift, 900);
     // the floating pill appears only once the bar is out of view, so the way home is always one tap away
     if ("IntersectionObserver" in window) {
@@ -743,9 +743,9 @@
   // in base camp order (campus/basecamp_stops.json, wrapping round), so a visitor can browse them all one by one.
   function label(st) { var h = st.h[0]; if (!h) return st.p[0] ? "bucklerfamily.estate" + st.p[0].replace(/\/$/, "") : st.t;
     return /\.bucklerfamily\.estate$/.test(h) ? h.replace(/\.bucklerfamily\.estate$/, "") : h; }
-  function buildSub { var d = el("nav", "ghf-sub ghf-ui"); d.setAttribute("data-no-translate", ""); d.setAttribute("translate", "no"); return d; }
-  function fillSub {
-    var s = T[lang], k = here ? RING.indexOf(here) : -1, n = RING.length;
+  function buildSub() { var d = el("nav", "ghf-sub ghf-ui"); d.setAttribute("data-no-translate", ""); d.setAttribute("translate", "no"); return d; }
+  function fillSub() {
+    var s = T[lang()], k = here ? RING.indexOf(here) : -1, n = RING.length;
     var pv = RING[k < 0 ? n - 1 : (k - 1 + n) % n], nx = RING[k < 0 ? 0 : (k + 1) % n];
     sub.textContent = ""; sub.setAttribute("aria-label", here ? here.t : host);
     var mk = function (st, cls, ch, lab) { var a = el("a", "ghf-sub-arr " + cls); a.href = st.u; a.setAttribute("aria-label", lab + ": " + st.t); a.title = lab + ": " + st.t; a.appendChild(el("span", "ghf-sub-ch", ch)); a.setAttribute("aria-hidden", "false"); return a; };
@@ -758,17 +758,17 @@
     sub.appendChild(mk(nx, "ghf-sub-next", "\u203A", s.nxt));
   }
   // Cedwyn Estate locations strip (WALES / PATAGONIA / CYBERSPACE) under the shared bar: /ghf-lang/locations.js, generated by campus/build_locations.py
-  function locStrip {
-    var go = function  { if (window.GHFLoc && bar) { window.GHFLoc.strip(bar); var m = bar.querySelector(".ghf-top-mini"); if (m && window.GHFLoc.mini) window.GHFLoc.mini(m); if (shiftNow) setTimeout(shiftNow, 50); } };
-    if (window.GHFLoc) return go;
+  function locStrip() {
+    var go = function () { if (window.GHFLoc && bar) { window.GHFLoc.strip(bar); var m = bar.querySelector(".ghf-top-mini"); if (m && window.GHFLoc.mini) window.GHFLoc.mini(m); if (shiftNow) setTimeout(shiftNow, 50); } };
+    if (window.GHFLoc) return go();
     var ls = document.createElement("script"); ls.src = ASSET + "/ghf-lang/locations.js?v=2.1.4"; ls.async = true; ls.onload = go;
     (document.head || document.documentElement).appendChild(ls);
   }
-  function moveLang { // one language switch, always in the same place: the shared header
+  function moveLang() { // one language switch, always in the same place: the shared header
     var slot = bar && bar.querySelector(".ghf-top-lang"), l = document.querySelector(".ghf-lang");
     if (slot && l && !slot.contains(l)) { slot.appendChild(l); l.classList.remove("ghf-fixed"); l.style.top = l.style.right = l.style.left = l.style.bottom = ""; l.style.position = ""; }
   }
-  function start {
+  function start() {
     if (!document.body || document.querySelector(".ghf-bc")) return;
     css = el("style"); css.setAttribute("data-ghf-bc", "");
     css.textContent =
@@ -837,27 +837,27 @@
     nav.setAttribute("translate", "no");
     // v2.1.1: the floating "back to base camp" pill and its "stop N · next" line are gone from every
     // page; the way home is the menu's last line and the ‹ › chain. The nav is built but never attached.
-    render;
-    var vw = V2.mount; // header standard v2: spacer, locations + language, ‹ page name ›, full screen, menu
-    if (!vw) buildBar;
-    var place = function  {
+    render();
+    var vw = V2.mount(); // header standard v2: spacer, locations + language, ‹ page name ›, full screen, menu
+    if (!vw) buildBar();
+    var place = function () {
       var h = nav.querySelector(".ghf-bc-home"), x = nav.querySelector(".ghf-bc-x");
       if (h && x) { x.style.left = (h.offsetLeft + h.offsetWidth - 30) + "px"; x.style.top = h.offsetTop + "px"; x.style.height = h.offsetHeight + "px"; x.style.lineHeight = h.offsetHeight + "px"; }
     };
-    nav.style.position = "fixed"; place;
-    new MutationObserver(function  { place; }).observe(nav, { childList: true });
+    nav.style.position = "fixed"; place();
+    new MutationObserver(function () { place(); }).observe(nav, { childList: true });
     window.addEventListener("resize", place);
-    document.addEventListener("ghf-lang-change", function  { render; if (bar) renderBar; });
+    document.addEventListener("ghf-lang-change", function () { render(); if (bar) renderBar(); });
     var mo = new MutationObserver(moveLang); mo.observe(document.body, { childList: true, subtree: true });
-    setTimeout(function  { mo.disconnect; }, 15000);
+    setTimeout(function () { mo.disconnect(); }, 15000);
   }
   // Shared legal footer on every Great House Farm site: licence, privacy, cookies, terms, disclaimer (Cedwyn editors, 20 Oct 2026).
   // Skipped where the page already carries it (data-ghf-legal-foot) and on the full-screen 3D walk.
-  function legalFoot {
+  function legalFoot() {
     if (!document.body || document.querySelector("[data-ghf-legal-foot]") || /^\/3d(\/|$)/.test(path)) return;
     // A page whose body does not scroll (a full-screen app such as chess.) has no bottom for an in-flow footer: it would sit at the top, so none is added there (21 Oct 2026).
-    var appPage = function  { try { return /hidden|clip/.test(getComputedStyle(document.body).overflowY + " " + getComputedStyle(document.documentElement).overflowY); } catch (e) { return false; } };
-    if (appPage) return;
+    var appPage = function () { try { return /hidden|clip/.test(getComputedStyle(document.body).overflowY + " " + getComputedStyle(document.documentElement).overflowY); } catch (e) { return false; } };
+    if (appPage()) return;
     var B = "https://cedwyn.bucklerfamily.estate/dartboard", L = [["Licence", "/licence/"], ["Privacy", "/privacy/"], ["Cookies", "/cookies/"], ["Terms", "/terms/"], ["Accessibility", "/accessibility/"], ["Enquire", "/enquire/"]];
     var st = el("style"); st.setAttribute("data-ghf-lf", "");
     st.textContent = ".ghf-lf{display:block!important;clear:both;position:relative;z-index:2;box-sizing:border-box;width:100%;flex:0 0 auto;margin:32px 0 0!important;padding:16px 16px 76px!important;background:#0a0a0a!important;border-top:1px solid #333!important;color:#b8b8b8!important;font:400 12.5px/1.6 Barlow,'Helvetica Neue',Arial,system-ui,sans-serif!important;text-align:center!important;letter-spacing:0!important;text-transform:none!important}" +
@@ -870,7 +870,7 @@
     L.forEach(function (x) { var a = el("a", null, x[0]); a.href = B + x[1]; nv.appendChild(a); }); f.appendChild(nv);
     document.body.appendChild(f);
     // Keep the footer the last thing on the page: content a page adds to <body> after load goes above it, never below (21 Oct 2026).
-    var keepLast = function  {
+    var keepLast = function () {
       if (!f.parentNode) return;
       for (var n = f.nextElementSibling; n; n = n.nextElementSibling) {
         if (/^(SCRIPT|STYLE|LINK|TEMPLATE|NOSCRIPT)$/.test(n.tagName) || (n.classList && n.classList.contains("ghf-ui"))) continue;
@@ -878,19 +878,19 @@
         if (cs.position !== "fixed" && cs.position !== "absolute" && cs.display !== "none") { document.body.appendChild(f); return; }
       }
     };
-    var fo = new MutationObserver(keepLast); fo.observe(document.body, { childList: true }); setTimeout(function  { fo.disconnect; }, 20000);
-    window.addEventListener("load", function  { if (appPage && f.parentNode) { f.parentNode.removeChild(f); return; } keepLast; });
+    var fo = new MutationObserver(keepLast); fo.observe(document.body, { childList: true }); setTimeout(function () { fo.disconnect(); }, 20000);
+    window.addEventListener("load", function () { if (appPage() && f.parentNode) { f.parentNode.removeChild(f); return; } keepLast(); });
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", legalFoot); else legalFoot;
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start;
-});
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", legalFoot); else legalFoot();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();
 /* "Ask the archive" AI chat widget loader (Cedwyn editors, 20 Oct 2026): AI answers from our published pages, with
  * source links; may be wrong. Served by chat.bucklerfamily.estate. Opt out per site or page with <html data-ghf-chat="off">
  * or <meta name="ghf-chat" content="off">. Never loaded on clerk., chess. or email. */
-(function  {
+(function () {
   // v2.1.1: nothing floats on the page. The widget loads only when "Agent chat" is tapped in the menu
   // (next to Day / Night); its own floating button stays hidden (CSS in basecamp.js), and its × takes it off the screen.
-  function allowed {
+  function allowed() {
     try {
       var h = location.hostname, d = document.documentElement;
       if (/^(clerk|chess|email)\./.test(h) || !/(^|\.)bucklerfamily\.estate$/.test(h)) return false;
@@ -900,26 +900,26 @@
     } catch (e) { return false; }
   }
   var loading = null;
-  function open {
-    if (!allowed) return;
-    if (window.GHFChat && window.GHFChat.open) return window.GHFChat.open;
+  function open() {
+    if (!allowed()) return;
+    if (window.GHFChat && window.GHFChat.open) return window.GHFChat.open();
     if (!loading) {
       loading = document.createElement("script"); loading.src = "https://cedwyn.bucklerfamily.estate/chat/widget.js"; loading.async = true;
       (document.head || document.documentElement).appendChild(loading);
     }
-    var n = 0, t = setInterval(function  { if (window.GHFChat && window.GHFChat.open) { clearInterval(t); window.GHFChat.open; } else if (++n > 100) clearInterval(t); }, 100);
+    var n = 0, t = setInterval(function () { if (window.GHFChat && window.GHFChat.open) { clearInterval(t); window.GHFChat.open(); } else if (++n > 100) clearInterval(t); }, 100);
   }
   window.GHFChatAllowed = allowed; window.GHFChatOpen = open;
-});
+})();
 
 /* ghf-webmcp loader (agent readability, 21 Oct 2026): loads this site's read-only WebMCP tools (/agent/webmcp.js, served
    by the agent-ready Worker on every bucklerfamily.estate site; it does nothing unless the browser has navigator.modelContext).
    Not on the frozen meeting site. Source: campus/build_basecamp.py. Cedwyn editors. */
-(function  {
+(function () {
   try {
     var h = location.hostname, d = document;
     if (window.GHFWebMCP || !("modelContext" in navigator) || !/(^|\.)bucklerfamily\.estate$/.test(h) || /^2026-10-22\./.test(h) || d.querySelector("script[data-ghf-webmcp]")) return;
     var s = d.createElement("script"); s.src = "/agent/webmcp.js?v=1"; s.async = true; s.setAttribute("data-ghf-webmcp", "");
     (d.head || d.documentElement).appendChild(s);
   } catch (e) {}
-});
+})();

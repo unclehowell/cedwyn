@@ -12,7 +12,7 @@ const BLACKLISTED_KEY_CONTROL_ELEMENTS = new Set([
 
 const _ready = (callback) => {
   if (document.readyState !== "loading") {
-    callback;
+    callback();
   } else {
     document.addEventListener("DOMContentLoaded", callback);
   }
@@ -22,9 +22,9 @@ const _ready = (callback) => {
  * Small JavaScript module for the documentation.
  */
 const Documentation = {
-  init:  => {
-    Documentation.initDomainIndexTable;
-    Documentation.initOnKeyListeners;
+  init: () => {
+    Documentation.initDomainIndexTable();
+    Documentation.initOnKeyListeners();
   },
 
   /**
@@ -67,14 +67,14 @@ const Documentation = {
   /**
    * helper function to focus on search bar
    */
-  focusSearchBar:  => {
-    document.querySelectorAll("input[name=q]")[0]?.focus;
+  focusSearchBar: () => {
+    document.querySelectorAll("input[name=q]")[0]?.focus();
   },
 
   /**
    * Initialise the domain index toggle buttons
    */
-  initDomainIndexTable:  => {
+  initDomainIndexTable: () => {
     const toggler = (el) => {
       const idNumber = el.id.substr(7);
       const toggledRows = document.querySelectorAll(`tr.cg-${idNumber}`);
@@ -95,7 +95,7 @@ const Documentation = {
     if (DOCUMENTATION_OPTIONS.COLLAPSE_INDEX) togglerElements.forEach(toggler);
   },
 
-  initOnKeyListeners:  => {
+  initOnKeyListeners: () => {
     // only install a listener if it is really needed
     if (
       !DOCUMENTATION_OPTIONS.NAVIGATION_WITH_KEYS
@@ -118,7 +118,7 @@ const Documentation = {
             const prevLink = document.querySelector('link[rel="prev"]');
             if (prevLink && prevLink.href) {
               window.location.href = prevLink.href;
-              event.preventDefault;
+              event.preventDefault();
             }
             break;
           case "ArrowRight":
@@ -127,7 +127,7 @@ const Documentation = {
             const nextLink = document.querySelector('link[rel="next"]');
             if (nextLink && nextLink.href) {
               window.location.href = nextLink.href;
-              event.preventDefault;
+              event.preventDefault();
             }
             break;
         }
@@ -137,8 +137,8 @@ const Documentation = {
       switch (event.key) {
         case "/":
           if (!DOCUMENTATION_OPTIONS.ENABLE_SEARCH_SHORTCUTS) break;
-          Documentation.focusSearchBar;
-          event.preventDefault;
+          Documentation.focusSearchBar();
+          event.preventDefault();
       }
     });
   },

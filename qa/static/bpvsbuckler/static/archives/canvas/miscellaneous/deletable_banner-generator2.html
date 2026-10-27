@@ -408,13 +408,13 @@
 
   <!-- ── Sidebar scrollbar ── -->
   <script>
-    document.addEventListener('DOMContentLoaded', function  {
+    document.addEventListener('DOMContentLoaded', function () {
       const sw = document.querySelector('.sidebar-wrapper');
       if (sw && OverlayScrollbarsGlobal?.OverlayScrollbars && window.innerWidth > 992) {
         OverlayScrollbarsGlobal.OverlayScrollbars(sw, { scrollbars: { theme:'os-theme-light', autoHide:'leave', clickScroll:true } });
       }
     });
-    function logout { localStorage.removeItem('authenticated'); window.location.href = '../index.html'; }
+    function logout() { localStorage.removeItem('authenticated'); window.location.href = '../index.html'; }
   </script>
 
   <!-- ── Menu data (embedded fallback) ── -->
@@ -459,7 +459,7 @@
 
   <!-- ── Menu loader ── -->
   <script>
-    (async  => {
+    (async () => {
       const nav = document.getElementById('navigation');
       if (!nav) return;
 
@@ -493,7 +493,7 @@
       for (const url of ['../menu.json', 'menu.json', '/menu.json']) {
         try {
           const r = await fetch(url, { cache: 'no-store' });
-          if (r.ok) { menuData = await r.json; break; }
+          if (r.ok) { menuData = await r.json(); break; }
         } catch {}
       }
 
@@ -504,7 +504,7 @@
 
       if (menuData) nav.innerHTML = buildMenuHTML(menuData);
       else nav.innerHTML = `<li class="nav-item"><a href="#" class="nav-link text-danger"><i class="nav-icon bi bi-exclamation-triangle"></i><p>Menu unavailable</p></a></li>`;
-    });
+    })();
   </script>
 
   <!-- ══════════════════════════════════════
@@ -533,7 +533,7 @@
   const DEFAULT_COLORS = ['#1a1a2e','#16213e','#0f3460','#e94560','#f5a623'];
 
   let state = {
-    selectedSizes: new Set,
+    selectedSizes: new Set(),
     colors:       [...DEFAULT_COLORS],
     bgImage:      null,
     tintOpacity:  0,
@@ -544,15 +544,15 @@
     ads:          [],
   };
 
-  async function init {
-    await loadDefaults;
+  async function init() {
+    await loadDefaults();
 
     const sizesGrid = document.getElementById('sizesGrid');
     AD_SIZES.forEach((size, i) => {
       const div = document.createElement('div');
       div.className = 'bf-size-check';
       div.dataset.index = i;
-      div.onclick =  => toggleSize(i, div);
+      div.onclick = () => toggleSize(i, div);
       div.innerHTML = `<input type="checkbox"><div class="bf-dot"></div><div><div class="bf-size-name">${size.name}</div><div class="bf-size-dims">${size.w}×${size.h}</div></div>`;
       sizesGrid.appendChild(div);
     });
@@ -560,13 +560,13 @@
     const colorSlots = document.getElementById('colorSlots');
     state.colors.forEach((c, i) => colorSlots.appendChild(makeColorRow(i, c)));
 
-    document.getElementById('tintSlots').appendChild(makeTintControls);
+    document.getElementById('tintSlots').appendChild(makeTintControls());
 
     const headlineSlots = document.getElementById('headlineSlots');
     for (let i = 0; i < 5; i++) {
       const row = document.createElement('div');
       row.className = 'bf-hl-input';
-      row.innerHTML = `<label>${i+1}</label><input type="text" placeholder="Headline ${i+1}..." value="${escapeAttr(state.headlines[i])}" oninput="state.headlines[${i}]=this.value;updateStats">`;
+      row.innerHTML = `<label>${i+1}</label><input type="text" placeholder="Headline ${i+1}..." value="${escapeAttr(state.headlines[i])}" oninput="state.headlines[${i}]=this.value;updateStats()">`;
       headlineSlots.appendChild(row);
     }
 
@@ -574,8 +574,8 @@
     if (state.logo)    showUploadPreview('logoArea',    state.logo,    '✓ Default logo');
     if (state.bgImage) showUploadPreview('bgImageArea', state.bgImage, '✓ Default background');
 
-    loadFromCache;
-    updateStats;
+    loadFromCache();
+    updateStats();
   }
 
   function escapeAttr(s) { return (s||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
@@ -584,7 +584,7 @@
     const area = document.getElementById(areaId);
     if (!area) return;
     area.classList.add('has-file');
-    area.querySelectorAll('.preview-thumb,.preview-label').forEach(el => el.remove);
+    area.querySelectorAll('.preview-thumb,.preview-label').forEach(el => el.remove());
     const fileInput = area.querySelector('input[type="file"]');
     const img  = Object.assign(document.createElement('img'),  { src, className:'preview-thumb' });
     const span = Object.assign(document.createElement('span'), { className:'preview-label', textContent:label });
@@ -592,11 +592,11 @@
     area.insertBefore(span, fileInput);
   }
 
-  async function loadDefaults {
+  async function loadDefaults() {
     try {
       const res = await fetch('./defaults.json');
       if (!res.ok) return;
-      const d = await res.json;
+      const d = await res.json();
       if (Array.isArray(d.headlines)) d.headlines.slice(0,5).forEach((h,i)=>{ state.headlines[i]=h||''; });
       if (typeof d.smallPrint==='string') state.smallPrint = d.smallPrint;
       if (Array.isArray(d.colors) && d.colors.length) {
@@ -618,12 +618,12 @@
     input.type = 'color'; input.id = `cbg-${index}`; input.value = defaultColor;
     const hex = document.createElement('span');
     hex.className = 'bf-hex-val'; hex.textContent = defaultColor;
-    input.addEventListener('input',  => { state.colors[index]=input.value; hex.textContent=input.value; updateStats; });
+    input.addEventListener('input', () => { state.colors[index]=input.value; hex.textContent=input.value; updateStats(); });
     row.appendChild(lbl); row.appendChild(input); row.appendChild(hex);
     return row;
   }
 
-  function makeTintControls {
+  function makeTintControls() {
     const wrap = document.createElement('div');
     wrap.style.cssText = 'display:flex;flex-direction:column;gap:0.35rem;';
 
@@ -635,7 +635,7 @@
     const colorInput = document.createElement('input');
     colorInput.type = 'color'; colorInput.id = 'tintColor'; colorInput.value = state.tintColor;
     colorInput.style.cssText = 'width:38px;height:24px;border:1px solid var(--border);border-radius:4px;cursor:pointer;padding:2px;background:none;flex-shrink:0;';
-    colorInput.addEventListener('input',  => { state.tintColor = colorInput.value; updateTintSwatch; updateStats; });
+    colorInput.addEventListener('input', () => { state.tintColor = colorInput.value; updateTintSwatch(); updateStats(); });
     colorRow.appendChild(colorLbl); colorRow.appendChild(colorInput);
 
     // Opacity row
@@ -651,18 +651,18 @@
     valSpan.textContent = `${slider.value}%`;
     const swatch = document.createElement('div');
     swatch.className = 'bf-tint-swatch'; swatch.id = 'tintSwatch';
-    slider.addEventListener('input',  => {
+    slider.addEventListener('input', () => {
       state.tintOpacity = slider.value / 100;
       valSpan.textContent = `${slider.value}%`;
-      updateTintSwatch; updateStats;
+      updateTintSwatch(); updateStats();
     });
     opRow.appendChild(opLbl); opRow.appendChild(slider); opRow.appendChild(valSpan); opRow.appendChild(swatch);
     wrap.appendChild(colorRow); wrap.appendChild(opRow);
-    updateTintSwatch;
+    updateTintSwatch();
     return wrap;
   }
 
-  function updateTintSwatch {
+  function updateTintSwatch() {
     const s = document.getElementById('tintSwatch');
     if (s) s.style.background = hexToRgba(state.tintColor, state.tintOpacity);
   }
@@ -675,48 +675,48 @@
   function toggleSize(i, el) {
     if (state.selectedSizes.has(i)) { state.selectedSizes.delete(i); el.classList.remove('selected'); }
     else { state.selectedSizes.add(i); el.classList.add('selected'); }
-    updateStats;
+    updateStats();
   }
 
   let allSelected = false;
-  function toggleSelectAll {
+  function toggleSelectAll() {
     allSelected = !allSelected;
     document.querySelectorAll('.bf-size-check').forEach((el,i) => {
       if (allSelected) { state.selectedSizes.add(i); el.classList.add('selected'); }
       else             { state.selectedSizes.delete(i); el.classList.remove('selected'); }
     });
     document.getElementById('selectAllBtn').textContent = allSelected ? 'DESELECT ALL' : 'SELECT ALL';
-    updateStats;
+    updateStats();
   }
 
   function handleBgImage(e) {
     const file = e.target.files[0]; if (!file) return;
-    const reader = new FileReader;
-    reader.onload = ev => { state.bgImage = ev.target.result; showUploadPreview('bgImageArea', ev.target.result, file.name); saveToCache; updateStats; };
+    const reader = new FileReader();
+    reader.onload = ev => { state.bgImage = ev.target.result; showUploadPreview('bgImageArea', ev.target.result, file.name); saveToCache(); updateStats(); };
     reader.readAsDataURL(file);
   }
 
   function handleLogo(e) {
     const file = e.target.files[0]; if (!file) return;
-    const reader = new FileReader;
-    reader.onload = ev => { state.logo = ev.target.result; showUploadPreview('logoArea', ev.target.result, file.name); saveToCache; };
+    const reader = new FileReader();
+    reader.onload = ev => { state.logo = ev.target.result; showUploadPreview('logoArea', ev.target.result, file.name); saveToCache(); };
     reader.readAsDataURL(file);
   }
 
-  function updateStats {
+  function updateStats() {
     const sizes = state.selectedSizes.size;
     const bgs   = state.colors.filter(Boolean).length;
-    const heads = state.headlines.filter(h => h.trim).length;
+    const heads = state.headlines.filter(h => h.trim()).length;
     const total = sizes * bgs * heads;
     document.getElementById('statCount').textContent = total;
     document.getElementById('statSizes').textContent = sizes;
     document.getElementById('statBgs').textContent   = bgs;
     document.getElementById('statHeads').textContent = heads;
     document.getElementById('generateBtn').disabled  = total === 0;
-    saveToCache;
+    saveToCache();
   }
 
-  async function generate {
+  async function generate() {
     const btn  = document.getElementById('generateBtn');
     const grid = document.getElementById('adsGrid');
     btn.disabled = true; btn.textContent = 'GENERATING...';
@@ -726,7 +726,7 @@
     pb.style.display = 'block';
 
     const sizes     = [...state.selectedSizes].map(i => AD_SIZES[i]);
-    const headlines = state.headlines.filter(h => h.trim);
+    const headlines = state.headlines.filter(h => h.trim());
     const colors    = state.colors.filter(Boolean);
     const tintStr   = state.tintOpacity > 0 ? hexToRgba(state.tintColor, state.tintOpacity) : null;
 
@@ -809,10 +809,10 @@
         if (lines.length * fontSize * 1.3 <= spAvailH || fontSize <= 5) break;
         fontSize = Math.max(5, fontSize - 0.3);
       }
-      ctx.save;
+      ctx.save();
       ctx.globalAlpha = 0.5; ctx.fillStyle = '#000';
       ctx.fillRect(0, spZoneY, size.w, spZoneH - accentH);
-      ctx.restore;
+      ctx.restore();
       ctx.font = `${fontSize}px Arial, sans-serif`;
       ctx.fillStyle = '#fff'; ctx.globalAlpha = 0.88;
       ctx.textAlign = 'left'; ctx.textBaseline = 'top';
@@ -860,12 +860,12 @@
 
   function drawImageCover(ctx, src, x, y, w, h) {
     return new Promise(res => {
-      const img = new Image;
-      img.onload =  => {
+      const img = new Image();
+      img.onload = () => {
         const s = Math.max(w/img.width, h/img.height);
         const sw = img.width*s, sh = img.height*s;
         ctx.drawImage(img, x-(sw-w)/2, y-(sh-h)/2, sw, sh);
-        res;
+        res();
       };
       img.onerror = res; img.src = src;
     });
@@ -873,8 +873,8 @@
 
   function drawImageFit(ctx, src, x, y, mw, mh) {
     return new Promise(res => {
-      const img = new Image;
-      img.onload =  => { const s=Math.min(mw/img.width,mh/img.height); ctx.drawImage(img,x,y,img.width*s,img.height*s); res; };
+      const img = new Image();
+      img.onload = () => { const s=Math.min(mw/img.width,mh/img.height); ctx.drawImage(img,x,y,img.width*s,img.height*s); res(); };
       img.onerror = res; img.src = src;
     });
   }
@@ -892,7 +892,7 @@
     const {canvas,adData} = state.ads[index];
     const a = document.createElement('a');
     a.download = `ad-${adData.size.w}x${adData.size.h}-${adData.headline.slice(0,20).replace(/\s+/g,'-')}.png`;
-    a.href = canvas.toDataURL('image/png'); a.click;
+    a.href = canvas.toDataURL('image/png'); a.click();
   }
 
   function exportSvg(index) {
@@ -900,14 +900,14 @@
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${adData.size.w}" height="${adData.size.h}"><image href="${canvas.toDataURL('image/png')}" width="${adData.size.w}" height="${adData.size.h}"/></svg>`;
     const a = document.createElement('a');
     a.download = `ad-${adData.size.w}x${adData.size.h}-${adData.headline.slice(0,20).replace(/\s+/g,'-')}.svg`;
-    a.href = URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'})); a.click;
+    a.href = URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'})); a.click();
   }
 
   async function exportAll(format) {
     for (let i = 0; i < state.ads.length; i++) { if (format==='png') exportPng(i); await sleep(80); }
   }
 
-  function saveToCache {
+  function saveToCache() {
     try {
       sessionStorage.setItem('bannerforge', JSON.stringify({
         colors: state.colors, headlines: state.headlines,
@@ -918,7 +918,7 @@
     } catch {}
   }
 
-  function loadFromCache {
+  function loadFromCache() {
     try {
       const raw = sessionStorage.getItem('bannerforge');
       if (!raw) return;
@@ -952,15 +952,15 @@
         const el = document.getElementById('tintColor');
         if (el) el.value = data.tintColor;
       }
-      updateTintSwatch;
+      updateTintSwatch();
     } catch {}
   }
 
-  document.getElementById('smallPrint').addEventListener('input', function {
-    state.smallPrint = this.value; saveToCache;
+  document.getElementById('smallPrint').addEventListener('input', function() {
+    state.smallPrint = this.value; saveToCache();
   });
 
-  init;
+  init();
   </script>
 
 <section id="cedwyn-guestbook" class="ghf-ui" data-no-translate translate="no" aria-label="Agent guest book" hidden data-for-agents><style>#cedwyn-guestbook{display:block!important;clear:both;position:static;box-sizing:border-box;width:auto;max-width:760px;margin:12px auto 4px!important;padding:0 8px!important;text-align:left!important;font:400 12px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!important;color:inherit;background:transparent;border:0}#cedwyn-guestbook *{box-sizing:border-box}#cedwyn-guestbook summary{cursor:pointer;padding:4px 0;font:inherit!important;color:inherit!important;text-align:left!important}#cedwyn-guestbook summary b{font-weight:700}#cedwyn-guestbook .gb-r{opacity:.7}#cedwyn-guestbook .gbw{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;margin:4px 0}#cedwyn-guestbook table{border-collapse:collapse;width:100%;min-width:0;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th,#cedwyn-guestbook td{display:table-cell!important;text-align:left!important;vertical-align:top;padding:4px 6px!important;border:0!important;border-bottom:1px solid rgba(128,128,128,.32)!important;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th{font-weight:700!important;white-space:nowrap}#cedwyn-guestbook td:nth-child(1),#cedwyn-guestbook td:nth-child(4){white-space:nowrap}#cedwyn-guestbook td:nth-child(2){min-width:6.6em;width:6.6em}#cedwyn-guestbook td:nth-child(3){min-width:13em}@media(min-width:700px){#cedwyn-guestbook td:nth-child(2){white-space:nowrap;width:auto}}#cedwyn-guestbook a{color:inherit!important;text-decoration:underline!important;margin:0!important;padding:0!important;display:inline!important;font:inherit!important}#cedwyn-guestbook p{margin:4px 0!important;max-width:none!important;font:inherit!important;color:inherit!important;text-align:left!important}</style><details><summary><b data-gb-l="title">Agent guest book</b> <span class="gb-v"></span> <span class="gb-r">· <span data-gb-l="rule">versions 1.change.fix, from the commit history</span></span></summary><div class="gbw"><table><thead><tr><th data-gb-l="v">Version</th><th data-gb-l="d">Date</th><th data-gb-l="n">Change</th><th data-gb-l="w">Who</th></tr></thead><tbody class="gb-rows"></tbody></table></div><p><a href="/guestbook/" data-gb-l="all">See all</a></p></details></section><script src="/_cedwyn/guestbook/gb.js?v=1.0.2" defer></script><footer id="ghf-agent-footer" class="gaf ghf-ui" data-agent-footer="1.0.2"><style>#ghf-agent-footer{display:block;clear:both;position:static;float:none;width:auto;max-width:100%;box-sizing:border-box;margin:0;padding:4px 8px 6px;font:400 9px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:inherit;background:transparent!important;border:0!important;box-shadow:none!important;color:#8a8a8a;color:color-mix(in srgb,currentColor 38%,transparent);text-align:left;overflow-wrap:anywhere;word-break:break-word}#ghf-agent-footer *{font-size:9px!important;line-height:1.2!important;font-family:inherit;color:inherit!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;margin:0;padding:0;min-width:0!important;max-width:100%;letter-spacing:0;text-transform:none;text-align:left}#ghf-agent-footer .gaf-in{max-width:none;margin:0;padding:0}#ghf-agent-footer h2,#ghf-agent-footer strong,#ghf-agent-footer th{font-weight:600}#ghf-agent-footer h2{display:inline}#ghf-agent-footer h2::after{content:" — "}#ghf-agent-footer p{margin:0 0 2px}#ghf-agent-footer a{text-decoration:underline}#ghf-agent-footer .gaf-scroll{overflow:visible;margin:0 0 2px}#ghf-agent-footer table,#ghf-agent-footer thead,#ghf-agent-footer tbody,#ghf-agent-footer tr{display:block;width:auto}#ghf-agent-footer th,#ghf-agent-footer td{display:inline}#ghf-agent-footer th+th::before,#ghf-agent-footer td+td::before{content:" · "}#ghf-agent-footer em{font-style:normal}#ghf-agent-footer .gaf-addr{font-family:inherit;white-space:normal}#ghf-agent-footer .gaf-log,#ghf-agent-footer .gaf-trigger{display:block}html #ghf-agent-footer.gaf{filter:none!important}.ghf-lf:has(+#ghf-agent-footer){padding-bottom:16px!important}.ghf-lf+#ghf-agent-footer{padding-bottom:76px!important}</style><p class="gaf-agents"><a href="/academy/">For agents</a> · <a href="/library/">Docs</a></p><div class="gaf-in" hidden data-for-agents><section class="gaf-log" id="page-version-log"><h2>Page version &amp; change log</h2><p><strong>Current version:</strong> 1.0.2</p><div class="gaf-scroll"><table><thead><tr><th>Version</th><th>Date (UTC)</th><th>Editor (human or agent name)</th><th>Change</th><th>Source / evidence</th></tr></thead><tbody><tr><td>1.0.0</td><td>2026-10-25T09:35Z</td><td>Cedwyn editors</td><td>Site-wide agent footer installed on every page: page version &amp; change log, the agent rules, and the THE TRIGGER EVENT agent instruction.</td><td>Editorial review; footer text taken from the family’s earlier research site</td></tr><tr><td>1.0.1</td><td>2026-10-25T10:35Z</td><td>Cedwyn editors</td><td>Footer restyled for human visitors: small, low-contrast text in each site’s own colours, no box or background; wording unchanged and still full text for agents.</td><td>Editorial review</td></tr><tr><td>1.0.2</td><td>2026-10-25T10:43Z</td><td>Cedwyn editors</td><td>References now point to the research theme of Cedwyn; HubSpot place named as the queue “THE TRIGGER EVENT”.</td><td>Editorial review</td></tr></tbody></table></div><p>Agents and editors: follow the <a href="/research/editing-protocol/">Editing Protocol</a>.</p></section>

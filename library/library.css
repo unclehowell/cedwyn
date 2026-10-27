@@ -5,7 +5,7 @@ pre{background:#0f1720;color:#e6edf3;padding:12px 14px;border-radius:6px;overflo
 .skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:6px;z-index:9}
 .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;height:52px;padding:0 12px;background:var(--side);color:#fff}
 .brand{color:#fff;text-decoration:none;font-weight:700;white-space:nowrap}.brand span{font-weight:400;opacity:.75}
-.menu{background:none;border:0;color:#fff;font-size:22px;cursor:pointer;padding:4px 6px}.sf{flex:1;max-width:420px;margin-left:auto}
+.lib-menu{background:none;border:0;color:#fff;font-size:22px;cursor:pointer;padding:4px 6px}.sf{flex:1;max-width:420px;margin-left:auto}
 .sf input{width:100%;padding:7px 10px;border-radius:5px;border:1px solid #3c4b5c;background:#2a3846;color:#fff;font:inherit;font-size:15px}.sf input::placeholder{color:#a9b6c3}
 .wrap{display:flex;min-height:calc(100vh - 52px)}aside{width:250px;flex:none;background:var(--side);color:var(--sidefg);padding:14px 0}
 .nav{list-style:none;margin:0;padding:0}.nav a{display:block;padding:8px 20px;color:var(--sidefg);text-decoration:none;border-left:3px solid transparent}
@@ -20,6 +20,6 @@ th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-alig
 .muted{color:var(--mut);font-size:13px}#secq{width:100%;max-width:360px;padding:7px 10px;border:1px solid var(--line);border-radius:5px;font:inherit}
 .pager{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:14px;border-top:1px solid var(--line)}
 #results h2{border:0;margin-top:0}.hit{padding:10px 0;border-bottom:1px solid var(--line)}.hit a{font-weight:600}.hit p{margin:.2em 0;color:var(--mut);font-size:14px}mark{background:#fff3b0}
-@media (min-width:861px){.menu{display:none}}
+@media (min-width:861px){.lib-menu{display:none}}
 @media (max-width:860px){aside{position:fixed;top:52px;left:0;bottom:0;transform:translateX(-100%);transition:transform .2s;z-index:4;overflow:auto}
 body.open aside{transform:none}main{padding:16px 16px 50px}h1{font-size:1.6rem}.toc ul{columns:1}.brand span{display:none}}

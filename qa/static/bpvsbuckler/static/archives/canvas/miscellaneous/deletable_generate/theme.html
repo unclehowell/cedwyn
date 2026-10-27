@@ -719,7 +719,7 @@
         scrollbarAutoHide: 'leave',
         scrollbarClickScroll: true,
       };
-      document.addEventListener('DOMContentLoaded', function  {
+      document.addEventListener('DOMContentLoaded', function () {
         const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
 
         // Disable OverlayScrollbars on mobile devices to prevent touch interference
@@ -742,7 +742,7 @@
     </script>
     <!--end::OverlayScrollbars Configure-->
     <script>
-      document.addEventListener('DOMContentLoaded',  => {
+      document.addEventListener('DOMContentLoaded', () => {
         const appSidebar = document.querySelector('.app-sidebar');
         const sidebarColorModes = document.querySelector('#sidebar-color-modes');
         const sidebarColor = document.querySelector('#sidebar-color');
@@ -782,7 +782,7 @@
         let sidebarColorMode = '';
         let sidebarBg = '';
 
-        function updateSidebar {
+        function updateSidebar() {
           appSidebar.setAttribute('data-bs-theme', sidebarColorMode);
 
           sidebarColorCode.innerHTML = `<pre><code class="language-html">&lt;aside class="app-sidebar ${sidebarBg}" data-bs-theme="${sidebarColorMode}"&gt;...&lt;/aside&gt;</code></pre>`;
@@ -790,7 +790,7 @@
 
         sidebarColorModes.addEventListener('input', (event) => {
           sidebarColorMode = event.target.value;
-          updateSidebar;
+          updateSidebar();
         });
 
         sidebarColor.addEventListener('input', (event) => {
@@ -804,11 +804,11 @@
             appSidebar.classList.add(sidebarBg);
           }
 
-          updateSidebar;
+          updateSidebar();
         });
       });
 
-      document.addEventListener('DOMContentLoaded',  => {
+      document.addEventListener('DOMContentLoaded', () => {
         const appNavbar = document.querySelector('.app-header');
         const navbarColorModes = document.querySelector('#navbar-color-modes');
         const navbarColor = document.querySelector('#navbar-color');
@@ -848,14 +848,14 @@
         let navbarColorMode = '';
         let navbarBg = '';
 
-        function updateNavbar {
+        function updateNavbar() {
           appNavbar.setAttribute('data-bs-theme', navbarColorMode);
           navbarColorCode.innerHTML = `<pre><code class="language-html">&lt;nav class="app-header navbar navbar-expand ${navbarBg}" data-bs-theme="${navbarColorMode}"&gt;...&lt;/nav&gt;</code></pre>`;
         }
 
         navbarColorModes.addEventListener('input', (event) => {
           navbarColorMode = event.target.value;
-          updateNavbar;
+          updateNavbar();
         });
 
         navbarColor.addEventListener('input', (event) => {
@@ -869,11 +869,11 @@
             appNavbar.classList.add(navbarBg);
           }
 
-          updateNavbar;
+          updateNavbar();
         });
       });
 
-      document.addEventListener('DOMContentLoaded',  => {
+      document.addEventListener('DOMContentLoaded', () => {
         const appFooter = document.querySelector('.app-footer');
         const footerColorModes = document.querySelector('#footer-color-modes');
         const footerColor = document.querySelector('#footer-color');
@@ -913,14 +913,14 @@
         let footerColorMode = '';
         let footerBg = '';
 
-        function updateFooter {
+        function updateFooter() {
           appFooter.setAttribute('data-bs-theme', footerColorMode);
           footerColorCode.innerHTML = `<pre><code class="language-html">&lt;footer class="app-footer ${footerBg}" data-bs-theme="${footerColorMode}"&gt;...&lt;/footer&gt;</code></pre>`;
         }
 
         footerColorModes.addEventListener('input', (event) => {
           footerColorMode = event.target.value;
-          updateFooter;
+          updateFooter();
         });
 
         footerColor.addEventListener('input', (event) => {
@@ -934,7 +934,7 @@
             appFooter.classList.add(footerBg);
           }
 
-          updateFooter;
+          updateFooter();
         });
       });
     </script>

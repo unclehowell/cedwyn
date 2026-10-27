@@ -153,14 +153,14 @@
   Datro Release • <span id="db-version">loading…</span>
 </footer>
 <script>
-  (function{
+  (function(){
     try {
       var el=document.getElementById("db-version");
       if(el && typeof DB_STATUS !== "undefined") {
         el.textContent = "v"+DB_STATUS.version+" • "+DB_STATUS.release_date+" • Gateway: "+DB_STATUS.gateway_state+" • Sessions: "+DB_STATUS.active_sessions;
       }
     } catch(e) {}
-  });
+  })();
 </script>
 
 <script src="/dartboard/ebook/cta.js" defer></script>

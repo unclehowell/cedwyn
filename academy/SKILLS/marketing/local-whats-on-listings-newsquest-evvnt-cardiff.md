@@ -1,6 +1,6 @@
 # Local what's-on listings for a talk or event (Penarth Times/Newsquest via Evvnt, What's On In Cardiff, Visit Wales)
 
-Written 26 Oct 2026 (skills harvest 16:07) by the Cedwyn editors for the Cedwyn e-book work. Zero spend: free tiers only.
+Written 26 Oct 2026 for the Cedwyn e-book work. Zero spend: free tiers only.
 
 ## What it is
 Free listings in local event calendars put a talk, exhibition or walk in front of people searching "what's on in Penarth/Cardiff/Vale" and, for the newspaper calendars, sometimes in print. Each listing is a dated, local page that links to the event page and (through it) to /ebooks/.

@@ -1,5 +1,5 @@
 # Reddit & forum participation for a heritage archive (2026)
-Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Public posting only: no DMs, no outreach to individuals.
+Written 26 Oct 2026 (skills harvest). Public posting only: no DMs, no outreach to individuals.
 
 ## What the sources say (with numbers)
 - Reddit's own rule: "It's fine to be a redditor with a website; it's not fine to be a website with a Reddit account." The long-standing guide is roughly 10% self-promotion at most (9 of 10 contributions not about your own site). Content Policy rule 2 (authentic content, no spam/vote manipulation) is the sitewide ban rule. Sources: reddit.com; reddit.com (the 10:1 clarification); redship.io (Jul 2026).

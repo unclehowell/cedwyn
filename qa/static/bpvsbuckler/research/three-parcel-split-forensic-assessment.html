@@ -188,7 +188,7 @@ code{background:#eef0f2;border-radius:4px;padding:.1rem .25rem}
 </footer>
 <script>
 document.querySelectorAll("button[data-layer]").forEach(function(btn){
-  btn.addEventListener("click",function{
+  btn.addEventListener("click",function(){
     var layer=btn.getAttribute("data-layer");
     var nodes=document.querySelectorAll('[data-part="'+layer+'"]');
     var next=btn.getAttribute("aria-pressed")!=="true";
@@ -196,7 +196,7 @@ document.querySelectorAll("button[data-layer]").forEach(function(btn){
     nodes.forEach(function(node){node.classList.toggle("hidden",!next);});
   });
 });
-document.getElementById("show-all").addEventListener("click",function{
+document.getElementById("show-all").addEventListener("click",function(){
   document.querySelectorAll("button[data-layer]").forEach(function(btn){btn.setAttribute("aria-pressed","true");});
   document.querySelectorAll(".layer").forEach(function(node){node.classList.remove("hidden");});
 });

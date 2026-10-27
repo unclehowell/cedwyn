@@ -4,7 +4,7 @@
    Every text block (p, dd, a blockquote without paragraphs) shows its first three lines; when, and only when, it runs longer, a
    "… read more" button sits at the end of the third line. It opens the block in place and then reads "less", which closes it.
    Headings, images, video, tables, navigation, tiles, buttons and forms are never cropped. Without JavaScript every word shows. */
-(function  {
+(function () {
   'use strict';
   if (window.__cwClamp) return; window.__cwClamp = 1;
   var d = document, n = 0, items = [], timer = 0, lastW = 0;
@@ -13,9 +13,9 @@
     '[role=dialog],[role=navigation],[role=menu],[hidden],[aria-hidden=true],[data-for-agents],[data-cw-noclamp],' +
     '.cw-modal,.cw-tip,.cw-ior,.hv-tile,.hv-tiles,.hv-menu,.cedwyn-notice,#cedwyn-guestbook,#ghf-agent-footer';
   var INNER = 'p,div,ul,ol,dl,table,img,picture,video,iframe,figure,canvas,svg,h1,h2,h3,h4,h5,h6,form,input,select,button:not(.cw-rm)';
-  function lg { var l = (d.documentElement.getAttribute('lang') || 'en').slice(0, 2).toLowerCase; return L[l] ? l : 'en'; }
+  function lg() { var l = (d.documentElement.getAttribute('lang') || 'en').slice(0, 2).toLowerCase(); return L[l] ? l : 'en'; }
   function label(b) {
-    var open = b.getAttribute('aria-expanded') === 'true', t = L[lg][open ? 1 : 0], s = b.querySelector('.cw-rm-l');
+    var open = b.getAttribute('aria-expanded') === 'true', t = L[lg()][open ? 1 : 0], s = b.querySelector('.cw-rm-l');
     if (s && s.textContent !== t) s.textContent = t;
   }
   function bgOf(e) {
@@ -30,8 +30,8 @@
     if (p.__cw) return false;
     if (p.tagName === 'BLOCKQUOTE' && p.querySelector('p')) return false;
     if (p.closest(SKIP) || p.querySelector(INNER)) { p.__cw = 'skip'; return false; }
-    if ((p.textContent || '').replace(/\s+/g, ' ').trim.length < 90) { p.__cw = 'skip'; return false; }
-    if (!p.getClientRects.length || p.closest('details:not([open])')) return false;   /* not on show yet (closed panel): looked at again when opened */
+    if ((p.textContent || '').replace(/\s+/g, ' ').trim().length < 90) { p.__cw = 'skip'; return false; }
+    if (!p.getClientRects().length || p.closest('details:not([open])')) return false;   /* not on show yet (closed panel): looked at again when opened */
     return true;
   }
   function button(p) {
@@ -44,7 +44,7 @@
     b.style.setProperty('--cw-bg', bgOf(p));
     p.appendChild(b); return b;
   }
-  function scan {
+  function scan() {
     timer = 0;
     var i, p, all = d.querySelectorAll('p,dd,blockquote'), fresh = [];
     for (i = 0; i < all.length; i++) if (candidate(all[i])) fresh.push(all[i]);
@@ -62,18 +62,18 @@
       if (over[i]) { p.__cw = 'clamp'; button(p); items.push(p); }
       else { p.classList.remove('cw-c'); p.__cw = 'short'; }
     }
-    openHash;
+    openHash();
   }
-  function remeasure {                                       /* the width changed: short blocks may now overflow and back */
+  function remeasure() {                                       /* the width changed: short blocks may now overflow and back */
     var i, all = d.querySelectorAll('p,dd,blockquote');
     for (i = 0; i < all.length; i++) if (all[i].__cw === 'short') all[i].__cw = 0;
     for (i = items.length - 1; i >= 0; i--) {
       var p = items[i]; if (!p.classList.contains('cw-c')) continue;
       var b = p.querySelector(':scope > .cw-rm'); if (b) b.style.display = 'none';
       var over = p.scrollHeight > p.clientHeight + 3; if (b) b.style.display = '';
-      if (!over) { if (b) b.remove; p.classList.remove('cw-c'); p.__cw = 'short'; items.splice(i, 1); }
+      if (!over) { if (b) b.remove(); p.classList.remove('cw-c'); p.__cw = 'short'; items.splice(i, 1); }
     }
-    scan;
+    scan();
   }
   function later(ms) { if (!timer) timer = setTimeout(scan, ms || 200); }
   function toggle(p, b, open) {
@@ -81,29 +81,29 @@
     if (open) { p.classList.remove('cw-c'); p.classList.add('cw-o'); }
     else {
       p.classList.remove('cw-o'); p.classList.add('cw-c');
-      var r = p.getBoundingClientRect; if (r.top < 0) p.scrollIntoView({ block: 'start' });
+      var r = p.getBoundingClientRect(); if (r.top < 0) p.scrollIntoView({ block: 'start' });
     }
     b.setAttribute('aria-expanded', open ? 'true' : 'false'); label(b);
   }
-  function openHash {
+  function openHash() {
     var h = location.hash; if (!h || h.length < 2) return;
     var t; try { t = d.getElementById(decodeURIComponent(h.slice(1))); } catch (e) { t = null; }
     var p = t && t.closest ? t.closest('.cw-c') : null;
-    if (p) { var b = p.querySelector(':scope > .cw-rm'); if (b) { toggle(p, b, true); t.scrollIntoView; } }
+    if (p) { var b = p.querySelector(':scope > .cw-rm'); if (b) { toggle(p, b, true); t.scrollIntoView(); } }
   }
   d.addEventListener('click', function (e) {
     var b = e.target && e.target.closest ? e.target.closest('.cw-rm') : null; if (!b) return;
-    e.preventDefault; e.stopPropagation; toggle(b.parentNode, b);
+    e.preventDefault(); e.stopPropagation(); toggle(b.parentNode, b);
   }, true);
   window.addEventListener('hashchange', openHash);
-  window.addEventListener('resize', function  {
+  window.addEventListener('resize', function () {
     var w = d.documentElement.clientWidth; if (Math.abs(w - lastW) < 8) return; lastW = w;
     clearTimeout(window.__cwRz); window.__cwRz = setTimeout(remeasure, 250);
   });
-  function start {
-    lastW = d.documentElement.clientWidth; scan;
-    if (d.fonts && d.fonts.ready) d.fonts.ready.then(function  { remeasure; });
-    window.addEventListener('load', function  { remeasure; });
+  function start() {
+    lastW = d.documentElement.clientWidth; scan();
+    if (d.fonts && d.fonts.ready) d.fonts.ready.then(function () { remeasure(); });
+    window.addEventListener('load', function () { remeasure(); });
     if (window.MutationObserver) {
       new MutationObserver(function (ms) {
         for (var i = 0; i < ms.length; i++) {
@@ -115,8 +115,8 @@
       }).observe(d.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['lang'] });
     }
     /* panels that open later (tabs, details) are measured when shown */
-    d.addEventListener('toggle', function  { later(60); }, true);
-    d.addEventListener('click', function  { later(300); });
+    d.addEventListener('toggle', function () { later(60); }, true);
+    d.addEventListener('click', function () { later(300); });
   }
-  if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', start); else start;
-});
+  if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', start); else start();
+})();

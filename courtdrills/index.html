@@ -92,19 +92,19 @@ if(x.quote)h+='\n  \u201c'+esc(x.quote)+'\u201d\n';
 h+='\nwhy it matters\n  '+esc(x.why)+'\n\n';
 x.src.forEach(function(e){h+='  src: '+(e.url?'<a href="'+esc(e.url)+'" rel="noopener">'+esc(e.ref)+'</a>':esc(e.ref))+'\n'});
 h+='\n ';mt.innerHTML=h;
-if(dlg.showModal)dlg.showModal;else dlg.setAttribute('open','');
+if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');
 try{history.replaceState(null,'','#'+id)}catch(e){}}
-function state{return['P','M','O'].filter(function(k){return de.classList.contains('h'+k)})}
+function state(){return['P','M','O'].filter(function(k){return de.classList.contains('h'+k)})}
 function setK(k,on){de.classList.toggle('h'+k,on);var b=document.querySelector('#tg button[data-k='+k+']');if(b)b.setAttribute('aria-pressed',on?'true':'false');
 if(b)b.querySelector('.x').textContent=on?'[x]':'[ ]';}
-function sync{var s=state.join('').toLowerCase;try{var u=new URL(location.href);if(s==='p')u.searchParams.delete('h');else u.searchParams.set('h',s||'-');history.replaceState(null,'',u.pathname+u.search+u.hash)}catch(e){}}
-document.getElementById('tg').addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;var k=b.dataset.k;setK(k,!de.classList.contains('h'+k));sync});
-(function{var q=new URLSearchParams(location.search).get('h');if(q){['P','M','O'].forEach(function(k){setK(k,q.toUpperCase.indexOf(k)>=0)})}});
+function sync(){var s=state().join('').toLowerCase();try{var u=new URL(location.href);if(s==='p')u.searchParams.delete('h');else u.searchParams.set('h',s||'-');history.replaceState(null,'',u.pathname+u.search+u.hash)}catch(e){}}
+document.getElementById('tg').addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;var k=b.dataset.k;setK(k,!de.classList.contains('h'+k));sync()});
+(function(){var q=new URLSearchParams(location.search).get('h');if(q){['P','M','O'].forEach(function(k){setK(k,q.toUpperCase().indexOf(k)>=0)})}})();
 document.getElementById('doc').addEventListener('click',function(ev){if(ev.target.closest('a'))return;var s=ev.target.closest('.l');if(s)open_(s.dataset.id)});
-document.getElementById('doc').addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){var s=ev.target.closest('.l');if(s){ev.preventDefault;open_(s.dataset.id)}}});
-function shut{dlg.close?dlg.close:dlg.removeAttribute('open');try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
+document.getElementById('doc').addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){var s=ev.target.closest('.l');if(s){ev.preventDefault();open_(s.dataset.id)}}});
+function shut(){dlg.close?dlg.close():dlg.removeAttribute('open');try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
 document.getElementById('mc').onclick=shut;
-dlg.addEventListener('click',function(ev){if(ev.target===dlg)shut});
+dlg.addEventListener('click',function(ev){if(ev.target===dlg)shut()});
 if(location.hash&&M[location.hash.slice(1)])open_(location.hash.slice(1));
 </script>
 <script src="/wayback/viewer/ghf-viewer.js" defer></script>

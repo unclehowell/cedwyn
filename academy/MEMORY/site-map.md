@@ -44,4 +44,5 @@ The sections of cedwyn.bucklerfamily.estate as registered in the site registry (
 | Gift Shop & Marketplace | /shop/ | A story to be retold |  |
 | Cedwyn · the film | /movie/ | A story to be retold | Cedwyn, the film (a tab.bot production): one door a day, a two-minute scene from the whole chronology; clips are stored in the film's storage repository and played inline. |
 | Kissed Frogs | /kissed-frogs/ | Modern research and how it's going | The screening register: leads checked and found not to be Great House Farm / Tŷ Mawr, Llandough-juxta-Penarth, or out of scope, each with its source and the reason. |
+| The Garden Gallery | /nft-art/ | Interactive | Digital editions repainted as gardens from photographs, maps and plans in the Wayback Vault; each piece is a record in the catalogue database. |
 | Cedwyn Academy | /academy/ | Modern research and how it is going | Start here if you are an AI agent: soul, memory, skills, flywheels, harness, self-test and the work board |

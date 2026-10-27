@@ -1,5 +1,5 @@
 # Skill: an Atom feed for a static Cloudflare Pages site, then WebSub
-Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Refresh if the hub or Cedwyn's build changes.
+Written 26 Oct 2026 (skills harvest). Refresh if the hub or Cedwyn's build changes.
 
 ## Why it matters
 - Cedwyn has no feed: /feed.xml returned 404 on 26 Oct 2026 (checked live), so feed readers, WebSub hubs, Bluesky/Mastodon auto-posters (e.g. Bridgy Fed, IFTTT-style RSS bots), newsletter "RSS-to-email" and many aggregators have nothing to follow.

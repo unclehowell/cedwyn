@@ -1,5 +1,5 @@
 # Skill: Cold email deliverability + UK PECR for institutional outreach (2026)
-Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Topic: getting story emails to UK institutions into the inbox, legally.
+Written 26 Oct 2026 (skills harvest). Topic: getting story emails to UK institutions into the inbox, legally.
 
 ## What the evidence shows
 - Google's own sender rules (support.google.com, read 26 Oct 2026): every sender needs SPF or DKIM, valid PTR, TLS, and a Postmaster spam rate **below 0.3%**. Senders of 5,000+/day to Gmail also need SPF **and** DKIM **and** DMARC with From-domain alignment, plus **one-click unsubscribe** (headers `List-Unsubscribe: ...` and `List-Unsubscribe-Post: List-Unsubscribe=One-Click`) and a visible unsubscribe link in the body. We are far below 5,000/day, but meeting the bulk rules anyway costs nothing and protects the domain.

@@ -1,4 +1,4 @@
-(function(){var b=document.body,m=document.querySelector('.menu'),s=b.getAttribute('data-page');
+(function(){var b=document.body,m=document.querySelector('.lib-menu'),s=b.getAttribute('data-page');
 document.querySelectorAll('.nav a').forEach(function(a){if(a.getAttribute('data-s')===s)a.setAttribute('aria-current','page')});
 if(m)m.addEventListener('click',function(){var o=b.classList.toggle('open');m.setAttribute('aria-expanded',o)});
 var q=document.getElementById('q'),R=document.getElementById('results'),D=document.getElementById('doc');
