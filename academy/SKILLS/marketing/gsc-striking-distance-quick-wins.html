@@ -4,17 +4,17 @@ nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-blo
 a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
 pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
 th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
-blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style><style id="cw-more-css">.cw-more{margin:.2em 0 1.1em}.cw-more>summary{cursor:pointer;display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 16px;border:1px solid currentColor;border-radius:999px;font-weight:600;font-size:.92em;line-height:1.2;list-style:none;opacity:.88;-webkit-tap-highlight-color:transparent}.cw-more>summary::-webkit-details-marker{display:none}.cw-more>summary::after{content:"\25BE";font-size:.9em}.cw-more[open]>summary::after{content:"\25B4"}.cw-more>summary:focus-visible{outline:2px solid currentColor;outline-offset:2px;opacity:1}.cw-more[open]>summary{margin-bottom:.6em}[data-cw-lead]{font-weight:600}.cw-more-3{margin:.6em 0 .8em;padding-left:12px;border-left:3px solid currentColor}.cw-less{display:inline-flex;align-items:center;min-height:40px;margin:.5em 0 .2em;padding:0 14px;border:1px dashed currentColor;border-radius:999px;background:transparent;color:inherit;font:inherit;font-size:.86em;cursor:pointer;opacity:.85}.cw-less[hidden]{display:none}.cw-less::before{content:"\25B4\00a0"}@media print{.cw-more>summary,.cw-less{display:none}}</style><noscript><style>details.cw-more::details-content{content-visibility:visible;display:block}details.cw-more>summary{display:none}</style></noscript><script src="/_cedwyn/wiki.js?v=1" defer></script><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.12"></script></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Search Console "striking distance" quick wins for a small history site (2026)</h1>
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.12"></script></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Search Console "striking distance" quick wins for a small history site (2026)</h1>
 <p>Written 26 Oct 2026 by the project lead's Tab agent (skills harvest). Complements 3.md (site SEO hygiene); this is the monthly query-mining routine.</p>
 <h2>Why it works (numbers)</h2>
-<details class="cw-more"><summary data-cw-more><span class="cw-more-l">Learn more</span></summary><div class="cw-more-b"><ul>
+<ul>
 <li>Advanced Web Ranking 2026 CTR study (hundreds of millions of impressions, Sep 2026): position 1 averages 20.0% organic CTR, 9.7% when an AI Overview shows (-52%); AI Overviews on 43% of sampled desktop results; since 2015 positions 2-10 lost 40-47% of their clicks. Page two gets almost nothing, so moving a query from ~12 to ~6 is where a small site gains real visits. advancedwebranking.com</li>
 <li>AWR also finds transactional queries are barely touched by AI Overviews, while navigational/informational ones lose most: aim the edits at "buy"/"book"/"e-book"/"map"/"plan" style queries and at specific long-tail questions the archive answers best.</li>
 <li>GSC PAP guide (Sep 2026): striking distance has no official band; pick one (11-20 strict, or 5-20 incl. weak page-one snippets) and keep it fixed month to month. Use 3 months of data. The UI exports max 1,000 rows; the API returns 25,000 per request. gscpap.com</li>
 <li>Chris Long (LinkedIn, Jan 2025, practitioner test): longer, more descriptive titles gave +15% organic traffic to the tested page.</li>
-</ul><button type="button" class="cw-less" data-cw-less hidden>Show less</button></div></details>
+</ul>
 <h2>How-to (monthly, ~30 min)</h2>
-<details class="cw-more"><summary data-cw-more><span class="cw-more-l">Learn more</span></summary><div class="cw-more-b"><ol>
+<ol>
 <li>Pull Queries x Pages for the last 90 days (connected google_search_console app, or Performance &gt; Search results &gt; Export). Turn on CTR and position.</li>
 <li>Run <code>python3 tools/gsc_striking.py export.csv --min-pos 5 --max-pos 20 --min-impr 20</code> (small-site threshold; raise as traffic grows). It ranks rows by impressions, groups by page, and flags low-CTR page-one rows (pos &lt;= 10, CTR &lt; 2%) as snippet fixes.</li>
 <li>Drop accidental matches (queries the page doesn't truly answer).</li>
@@ -26,14 +26,14 @@ blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}<
    - Add 2-3 internal links from related Cedwyn pages with anchor text close to the query (plain internal links, never UTMs).</li>
 <li>Log date, page, query, old position/CTR, edit in the project workspace Re-run the same window length 4 weeks later and compare.</li>
 <li>If two Cedwyn URLs split one query, merge or canonicalise before editing (cannibalisation).</li>
-</ol><button type="button" class="cw-less" data-cw-less hidden>Show less</button></div></details>
+</ol>
 <h2>How we apply it to Cedwyn</h2>
-<details class="cw-more"><summary data-cw-more><span class="cw-more-l">Learn more</span></summary><div class="cw-more-b"><ul>
+<ul>
 <li>Cedwyn has little search traffic yet (~56 UK page views/day, few clicks), so use a low impressions floor (10-20) and a wide band (5-30) until there are more rows; also run it on the older family sites with history.</li>
 <li>Likely winners: place-and-date queries ("Llandough 1824 survey", "Ty Mawr farm Llandough", "Bute estate Glamorgan plans", "Jim Driscoll", "Marconi Lavernock"). Edits route through the weekly CEDWYN ONPAGE run (markup and titles only; body text changes are PROPOSED while the repair freeze is on).</li>
 <li>Public wording rules apply to any new title/heading: never name the project lead, none of the banned words, no accusations about named people.</li>
 <li>Feed the winning queries to the AI visibility check (visibility/RUNNER.md) as fixed questions.</li>
-</ul><button type="button" class="cw-less" data-cw-less hidden>Show less</button></div></details>
+</ul>
 <h2>Tool</h2>
 <p>tools/gsc_striking.py (standard library, written 26 Oct 2026): reads a GSC CSV export (Query, Page, Clicks, Impressions, CTR, Position; header names matched loosely) or API JSON rows.</p>
 <h2>Sources</h2>

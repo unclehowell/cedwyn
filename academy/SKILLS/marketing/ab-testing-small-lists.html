@@ -4,31 +4,31 @@ nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-blo
 a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
 pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
 th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
-blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style><style id="cw-more-css">.cw-more{margin:.2em 0 1.1em}.cw-more>summary{cursor:pointer;display:inline-flex;align-items:center;gap:.4em;min-height:44px;padding:0 16px;border:1px solid currentColor;border-radius:999px;font-weight:600;font-size:.92em;line-height:1.2;list-style:none;opacity:.88;-webkit-tap-highlight-color:transparent}.cw-more>summary::-webkit-details-marker{display:none}.cw-more>summary::after{content:"\25BE";font-size:.9em}.cw-more[open]>summary::after{content:"\25B4"}.cw-more>summary:focus-visible{outline:2px solid currentColor;outline-offset:2px;opacity:1}.cw-more[open]>summary{margin-bottom:.6em}[data-cw-lead]{font-weight:600}.cw-more-3{margin:.6em 0 .8em;padding-left:12px;border-left:3px solid currentColor}.cw-less{display:inline-flex;align-items:center;min-height:40px;margin:.5em 0 .2em;padding:0 14px;border:1px dashed currentColor;border-radius:999px;background:transparent;color:inherit;font:inherit;font-size:.86em;cursor:pointer;opacity:.85}.cw-less[hidden]{display:none}.cw-less::before{content:"\25B4\00a0"}@media print{.cw-more>summary,.cw-less{display:none}}</style><noscript><style>details.cw-more::details-content{content-visibility:visible;display:block}details.cw-more>summary{display:none}</style></noscript><script src="/_cedwyn/wiki.js?v=1" defer></script><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.12"></script></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Skill: A/B testing on small lists without fooling ourselves (2026)</h1>
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.12"></script></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Skill: A/B testing on small lists without fooling ourselves (2026)</h1>
 <p>Written 26 Oct 2026 by the project lead's Tab agent (skills harvest). Topic: subject-line / landing-page tests at 20-50 sends a day.</p>
 <h2>What the evidence shows</h2>
-<details class="cw-more"><summary data-cw-more><span class="cw-more-l">Learn more</span></summary><div class="cw-more-b"><ul>
+<ul>
 <li>Evan Miller, "How Not To Run an A/B Test" (evanmiller.org): significance figures assume the <strong>sample size was fixed in advance</strong>. "Run it until it looks significant" (peeking) makes reported significance meaningless and inflates false winners. Fix the stop size first, or use a method built for sequential looks.</li>
 <li>The arithmetic of small lists (computed with our helper, standard two-proportion power calc, alpha 0.05, power 0.8): detecting a click-rate jump from 5% to 10% needs <strong>~435 recipients per arm</strong>; 3% -&gt; 4.5% needs <strong>~2,518 per arm</strong>. At 20-50 sends a day, a classic significant result on a subtle subject-line change takes weeks to months.</li>
 <li>Worked example (helper output): 1/10 vs 3/10 clicks looks like "3x better" but Fisher p = 0.58, P(B beats A) = 85% -&gt; a tie. 4/200 vs 14/200: p = 0.027, P(B&gt;A) = 99% -&gt; real.</li>
 <li>Practitioner consensus in the 2026 cold-email guides above (Cassata, Unify): open rate is no longer a trustworthy metric (pixel blocking, Gmail's tracking warning), so test on <strong>clicks and replies</strong>, not opens.</li>
-</ul><button type="button" class="cw-less" data-cw-less hidden>Show less</button></div></details>
+</ul>
 <h2>How-to</h2>
-<details class="cw-more"><summary data-cw-more><span class="cw-more-l">Learn more</span></summary><div class="cw-more-b"><ol>
+<ol>
 <li>One variable per test (subject OR landing page OR first line), two arms, random alternate assignment.</li>
 <li>Pick the metric before sending: click on the UTM deep link (utm_content=<variant>) or reply. Not opens.</li>
 <li>Pick the stop size before sending: <code>python3 the project workspace samplesize &lt;base_rate&gt; &lt;relative_lift&gt;</code>. With small volume, test <strong>big</strong> differences (different story angle, different landing page), not word tweaks: big lifts need far fewer sends.</li>
 <li>At the stop size: <code>python3 .../ab_stats.py compare nA clicksA nB clicksB</code>. Significant -&gt; ship the winner and start a new test. "Leaning" (&gt;= 90% posterior, not significant) -&gt; keep the leader as default, keep testing. Tie -&gt; test a bolder change.</li>
 <li>Never stop a test early because it looks good; log every look in ab.csv anyway.</li>
 <li>Pool learning across batches only for the same pair of variants.</li>
-</ol><button type="button" class="cw-less" data-cw-less hidden>Show less</button></div></details>
+</ol>
 <h2>How we apply it to Cedwyn</h2>
-<details class="cw-more"><summary data-cw-more><span class="cw-more-l">Learn more</span></summary><div class="cw-more-b"><ul>
+<ul>
 <li>the project workspace: columns batch, variant, subject, landing page, sent, clicks, replies, unsubscribes, decided_at, verdict.</li>
 <li>First tests worth running (large differences): landing page "title chain" vs "tour stop 1"; subject leading with a dated record fact vs a question.</li>
 <li>On-site: the header e-book strip copy (two versions) measured by buy-clicks per page view in Cloudflare/GA4 events; same helper.</li>
 <li>Report test results honestly in the Sunday growth report: "tie so far, 60 sends per arm" is a valid result.</li>
-</ul><button type="button" class="cw-less" data-cw-less hidden>Show less</button></div></details>
+</ul>
 <h2>Tools</h2>
 <ul>
 <li>tools/ab_stats.py - standard library only (no install): Fisher exact p, Bayesian P(B&gt;A), sample-size calculator.</li>
