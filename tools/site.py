@@ -190,6 +190,13 @@ import quiet_pages
 quiet_pages.run(DIST)
 # Developer library (/library/, branch `library`, not a theme): database, hosting, front ends, sections, export, API/WebMCP.
 # Copied last so no page pass rewrites it - docs library build
+# "Cited on" (Sion, 27 Oct 2026): every artifact page (/research/evidence/ev-NNNN-*/, /wiki/evidence/ev-NNNN-*/) lists the
+# pages that link to it, built from a scan of the real internal links in dist. Runs after the page passes - Sion's Tab agent
+import cited_on
+try:
+    cited_on.main(str(DIST))
+except Exception as _e:   # a backlink list must never stop a build
+    print('cited_on failed:', _e)
 import library_pointer
 library_pointer.run(DIST)
 # Social share previews (Sion, WhatsApp 05:29 GMT 27 Oct 2026): og:/twitter: tags on every page, share cards from the
