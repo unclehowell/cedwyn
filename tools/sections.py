@@ -141,7 +141,7 @@ def layers(cfg, T, l, sec, amap):
 def ebook_prices():
     try:
         D = json.load(open(ROOT / 'data' / 'ebooks.json', encoding='utf-8'))
-        p2 = next((b['price'] for b in D['books'] if b['edition'] == 'v0.02'), '£9.99'); pb = (D.get('bundles') or [{}])[0].get('price', '')
+        p2 = next((b['price'] for b in D['books'] if b['edition'] == 'v0.0.2'), '£4.99'); pb = (D.get('bundles') or [{}])[0].get('price', '')
         return p2, pb
     except Exception:
         return None, None

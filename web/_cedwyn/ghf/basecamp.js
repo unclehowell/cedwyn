@@ -569,13 +569,13 @@
     // one-line e-book strip (the book that fits the page, free first edition or preview, /ebooks/ only, plain link + click event); a page's own menu
     // row under the bars is moved into the side menu ("This page's menu"), links and all. Funnel events: see track(). - Tab agent
     var UPL = {
-      en: { read: "Read free", prev: "Free preview", cta: "E-books", bundle: "All four e-books, one checkout · £31.99", pmenu: "This page’s menu",
+      en: { read: "Read free", prev: "Free preview", cta: "E-books", bundle: "All four e-books, one checkout · £19.96", pmenu: "This page’s menu",
         share: "Share this page", sh_more: "Share", sh_email: "Email", sh_copy: "Copy link", sh_done: "Link copied",
         c_txt: "May we use Google Analytics cookies to count which pages are read? Nothing is used for advertising.", c_yes: "Accept", c_no: "No thanks" },
-      cy: { read: "Am ddim", prev: "Rhagolwg", cta: "E-lyfrau", bundle: "Y pedwar e-lyfr, un taliad · £31.99", pmenu: "Dewislen y dudalen hon",
+      cy: { read: "Am ddim", prev: "Rhagolwg", cta: "E-lyfrau", bundle: "Y pedwar e-lyfr, un taliad · £19.96", pmenu: "Dewislen y dudalen hon",
         share: "Rhannwch y dudalen hon", sh_more: "Rhannu", sh_email: "E-bost", sh_copy: "Copïo’r ddolen", sh_done: "Dolen wedi’i chopïo",
         c_txt: "Gawn ni ddefnyddio cwcis Google Analytics i gyfrif pa dudalennau sy’n cael eu darllen? Does dim yn cael ei ddefnyddio i hysbysebu.", c_yes: "Derbyn", c_no: "Dim diolch" },
-      es: { read: "Gratis", prev: "Avance gratis", cta: "E-libros", bundle: "Los cuatro e-libros, un solo pago · £31,99", pmenu: "Menú de esta página",
+      es: { read: "Gratis", prev: "Avance gratis", cta: "E-libros", bundle: "Los cuatro e-libros, un solo pago · £19,96", pmenu: "Menú de esta página",
         share: "Comparte esta página", sh_more: "Compartir", sh_email: "Correo", sh_copy: "Copiar enlace", sh_done: "Enlace copiado",
         c_txt: "¿Podemos usar cookies de Google Analytics para contar qué páginas se leen? Nada se usa para publicidad.", c_yes: "Aceptar", c_no: "No, gracias" }
     };
