@@ -1,5 +1,5 @@
 {
- "note": "Derived from themes.json and sections.lock on main at a16463d (27 Oct 2026). Refresh: python3 build.py --refresh",
+ "note": "Derived from themes.json and sections.lock on main. Refresh: python3 build.py --refresh",
  "sections": [
   {
    "id": "records",
@@ -228,7 +228,7 @@
    "kind": "snapshot",
    "source": "branch section/research",
    "branch": "section/research",
-   "pinned": "a75b0ad",
+   "pinned": "b103d4d",
    "build": false,
    "own_store": "snapshot pinned on section/research"
   },
@@ -440,6 +440,17 @@
    "pinned": "",
    "build": false,
    "own_store": ""
+  },
+  {
+   "id": "nft-art",
+   "title": "The Garden Gallery",
+   "group": "Interactive",
+   "kind": "branch",
+   "source": "branch nft-art / public",
+   "branch": "nft-art",
+   "pinned": "",
+   "build": false,
+   "own_store": "its own public/_db/section.sqlite, merged into section_records"
   }
  ]
 }

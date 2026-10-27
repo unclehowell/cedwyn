@@ -10,10 +10,11 @@
 <p><code>/db/export/manifest.json</code> lists every table with its row count and columns, every export file with its size and sha256, and the size and sha256 of the full database.</p>
 <h2 id="files">Files</h2>
 <table><tr><th>File</th><th>Contents</th></tr>
-<tr><td><code>/db/export/&lt;table&gt;.csv.gz</code></td><td>One CSV per table (artifacts, locations, nodes, edges, captures, fts, layers, layer_items, layer_refs, layer_deps, evidence_grades, themes, meta). Large tables continue in <code>-001</code>, <code>-002</code> parts.</td></tr>
+<tr><td><code>/db/export/&lt;table&gt;.csv.gz</code></td><td>One CSV per table (artifacts, locations, section_records, nodes, edges, captures, fts, layers, layer_items, layer_refs, layer_deps, evidence_grades, themes, meta). Large tables continue in <code>-001</code>, <code>-002</code> parts.</td></tr>
 <tr><td><code>/db/export/cedwyn-data.json.gz</code></td><td>Every table up to 60,000 rows in one JSON document: <code>{"table": [rows]}</code>.</td></tr>
 <tr><td><code>/db/export/cedwyn-metadata.sqlite3.gz</code></td><td>The database without blob bytes and without the full-text index, as one SQLite file (written when it fits under 24 MB).</td></tr>
-<tr><td><code>/db/export/sections/&lt;id&gt;.json.gz</code></td><td>One slice per section: its row in <code>themes</code> and every artifact it shows, with paths.</td></tr>
+<tr><td><code>/db/export/sections/&lt;id&gt;.json.gz</code></td><td>One slice per section: its row in <code>themes</code>, its own database rows (<code>records</code>) and every artifact it shows, with paths.</td></tr>
+<tr><td><code>/&lt;id&gt;/_db/section.sqlite</code></td><td>A section's own database, where the section ships one (for example <code>/nft-art/_db/section.sqlite</code>).</td></tr>
 <tr><td><code>/db/export/fetch-full.sh</code></td><td>Rebuilds the complete database, blobs included, from the chunk files, and prints the expected sha256.</td></tr></table>
 <h2 id="commands">One command</h2>
 <pre><code># the complete database, every table and every stored file

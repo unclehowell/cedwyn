@@ -9,7 +9,7 @@
 <h2 id="built">Built and running</h2>
 <ul>
 <li>One domain, static hosting on Cloudflare Pages, built by GitHub Actions from one repository.</li>
-<li>40 sections in the registry, each on its own branch or snapshot branch, each under its own path, all reachable from the header selector.</li>
+<li>41 sections in the registry, each on its own branch or snapshot branch, each under its own path, all reachable from the header selector.</li>
 <li>One core catalogue database rebuilt on every deploy, read in the browser with SQL and GraphQL, with content-addressed storage so a shared file is stored once.</li>
 <li>Snapshot branches pinned by <code>sections.lock</code> for 7 sections with live origins, so builds no longer depend on those origins answering.</li>
 <li>Whole-database export at <code>/db/export/</code>, including one slice per section.</li>
@@ -18,7 +18,7 @@
 <h2 id="not-yet">Not yet</h2>
 <ul>
 <li><b>Words in templates.</b> Most sections are full static sites whose text sits in their HTML. The core database indexes those pages; it does not yet generate them. Sections generated from data today are listed in <a href="/library/front-ends/#layout-only">Front ends</a>.</li>
-<li><b>Own database per section.</b> Sections keep their data as files on their branch, and a few with live features keep a Worker store. A separate database file per section (a shard the build merges) is not built yet; the per-section export slices are derived from the core database.</li>
+<li><b>Own database per section.</b> The convention exists (<code>public/_db/section.sqlite</code>, merged into <code>section_records</code>) and one section uses it: nft-art. The other sections keep their data as files on their branch, and a few with live features keep a Worker store; their export slices are derived from the core database.</li>
 <li><b>Crawled sections.</b> 4 sections (email, dartboard, wales, terrain) are still copied from their live origin on each build.</li>
 <li><b>Data still read from the old repository.</b> The dartboard's roadmap data is published from a branch of the earlier repository before it reaches this site.</li>
 <li><b>Branch protection.</b> The section and main scope checks run in CI; repository rulesets that enforce them for every push are not switched on yet.</li>
@@ -28,7 +28,7 @@
 <li>Snapshot the remaining crawled sections into <code>section/&lt;id&gt;</code> branches.</li>
 <li>Move the dartboard's data source into its own section branch.</li>
 <li>Move section text into data files, starting with the sections that are already mostly data (e-books, nomenclature, records registers, title chain), then the evidence and research pages.</li>
-<li>Have each section emit its own data shard, and build the core catalogue by merging shards.</li>
+<li>Give each section its own <code>section.sqlite</code> in the nft-art convention, so its pages read their words from <code>section_records</code>.</li>
 <li>Turn on repository rulesets for <code>main</code> and the section branches.</li>
 </ol><nav class="pager"><a class="pv" href="/library/api/">‹ API and WebMCP</a><span></span></nav></article></main></div>
 <script src="/library/search-index.js" defer></script><script src="/library/library.js" defer></script></body></html>

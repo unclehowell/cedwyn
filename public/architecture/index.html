@@ -20,6 +20,7 @@
 <tr><td><code>nodes</code>, <code>edges</code></td><td>graph node / relation</td><td>page→embeds/links→artifact, artifact→mentions→year, artifact→cites→host, artifact→in_theme→section</td></tr>
 <tr><td><code>captures</code></td><td>archived web address</td><td>key, url, title, latest, captured</td></tr>
 <tr><td><code>layers</code>, <code>layer_items</code>, <code>layer_refs</code>, <code>layer_deps</code></td><td>reading over the evidence</td><td>items point at artifact ids; they never copy content</td></tr>
+<tr><td><code>section_records</code></td><td>record from a section's own database</td><td>theme, kind, id, seq, data (JSON)</td></tr>
 <tr><td><code>evidence_grades</code></td><td>evidence record</td><td>ev, grade, origin, path, note</td></tr>
 <tr><td><code>themes</code>, <code>meta</code></td><td>section / build fact</td><td>section id, title, source, file and page counts; build statistics</td></tr></table>
 <h2 id="no-duplication">Shared without duplication</h2>
@@ -29,7 +30,12 @@
 <li><b>Served from the database.</b> After the build, data and evidence files whose exact bytes are in the database are removed from the deploy and served from the database chunks by the service worker (<code>/cedwyn-sw.js</code>) and the page fallback (<code>/_cedwyn/runtime.js</code> with <code>/_cedwyn/dbfs.js</code>). Files that browsers fetch before a service worker runs stay as files.</li>
 </ul>
 <h2 id="federation">Federation: section data and the core</h2>
-<p>Each section is the source of truth for its own data: the files on its branch. The build merges every section into the one core catalogue. Sections with live writes keep a small store of their own (see <a href="/library/sections/">Sections</a>), and the core reads what they publish. Every section can be taken out of the core as a slice: <code>/db/export/sections/&lt;id&gt;.json.gz</code> holds that section's row and every artifact it shows (see <a href="/library/export/">Data export</a>).</p>
+<p>Each section is the source of truth for its own data. The convention for a section's own database: the branch ships <code>public/_db/section.sqlite</code>, a small SQLite file with one table</p>
+<pre><code>CREATE TABLE records(kind TEXT, id TEXT, seq INTEGER, data TEXT,  -- data = one JSON object
+                     PRIMARY KEY(kind, id));
+CREATE TABLE meta(k TEXT, v TEXT);</code></pre>
+<p>holding every word and record the section shows (interface strings are rows too, for example <code>kind = 'words'</code>). The section's database works on its own and is served at <code>/&lt;id&gt;/_db/section.sqlite</code>. On every build, <code>tools/build_db.py</code> merges each section database into the core table <code>section_records(theme, kind, id, seq, data)</code> and adds graph edges: <code>in_theme</code>, <code>derived_from</code> (a record made from a core artifact) and <code>shows</code> (an image the record displays). The section's pages read their rows back from the core: <code>SELECT kind, id, data FROM section_records WHERE theme = ? ORDER BY seq</code>.</p>
+<p>So a section owns its data, the core holds one merged copy for reading, search, graph and export, and a record that already exists in the core (an image, a document) is referenced by path or sha256, never copied into the section. Sections with live writes keep a small store of their own (see <a href="/library/sections/">Sections</a>). Every section can be taken out as a slice: <code>/db/export/sections/&lt;id&gt;.json.gz</code> holds its row, its own database rows and every artifact it shows (see <a href="/library/export/">Data export</a>).</p>
 <p>Why one built database rather than a live database per section: it costs nothing to serve, it cannot drift out of sync, and it stays inside the free limits of the host. Live per-section databases add servers, quota and replication with no gain at the current scale.</p>
 <h2 id="graph">Graph and GraphQL</h2>
 <p>The <code>nodes</code> and <code>edges</code> tables are a ready graph for retrieval and analysis. A GraphQL schema is resolved in the browser against the same database: see <a href="/library/api/#graphql">API</a>.</p><nav class="pager"><a class="pv" href="/library/">‹ Overview</a><a class="nx" href="/library/hosting/">Hosting ›</a></nav></article></main></div>
