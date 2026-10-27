@@ -8,7 +8,6 @@
   "use strict";
   var REPO = "unclehowell/cedwyn-movie", REF = "main";
   var RAW = "https:" + "/" + "/" + ["raw", "githubusercontent", "com"].join(".") + "/" + REPO + "/" + REF + "/";
-  var CDN = "https:" + "/" + "/" + ["cdn", "jsdelivr", "net"].join(".") + "/gh/" + REPO + "@";
   var MC = {u: "284f08fe7e1b8d39250808104", id: "6139ff4a0d", host: ["estate", "us3", "list-manage", "com"].join(".")};
   var EDIT = "https:" + "/" + "/" + ["github", "com"].join(".") + "/" + REPO + "/edit/" + REF + "/PROMPT.md";
   var T = {
@@ -70,7 +69,7 @@
   }
 
   function tl(f, k) { var L = lang(); return (L !== "en" && f.i18n && f.i18n[L] && f.i18n[L][k]) || f[k]; }
-  function thumbURL(f) { var F = S.frames || {}; return CDN + (F.thumbs_ref || REF) + "/" + (f.thumb || ("thumbs/" + f.id + ".webp")); }
+  function thumbURL(f) { return RAW + (f.thumb || ("thumbs/" + f.id + ".webp")); }
   // release dates: released scenes show the day their clip was made (Europe/London); the rest show the planned day,
   // one scene a day at 06:00 Europe/London in frame order, never earlier than the day after the last release (or today)
   var D = (function () {
