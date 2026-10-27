@@ -589,7 +589,7 @@
       family: ["williams-buckler-family", "The Williams–Buckler Family", 1]
     };
     var UPT = { "title-chain": "cedwyn", nomenclature: "cedwyn", estate: "cedwyn", wales: "cedwyn", patagonia: "cedwyn", argentina: "cedwyn", terrain: "cedwyn",
-      directory: "cedwyn", cyberspace: "cedwyn", explore: "cedwyn", maps: "heritage", story: "heritage", movie: "heritage", records: "wiki", docs: "wiki", wiki: "wiki",
+      directory: "cedwyn", cyberspace: "cedwyn", explore: "cedwyn", maps: "heritage", story: "heritage", documentary: "heritage", records: "wiki", docs: "wiki", wiki: "wiki",
       research: "wiki", review: "wiki", qa: "wiki", wayback: "heritage", fb: "family", fb2: "family", fcg: "fcg", authorities: "fcg", accounts: "fcg", watchtower: "fcg",
       "kissed-frogs": "fcg", wdtk: "fcg", meeting: "fcg", dartboard: "dartboard", infographic: "dartboard", chess: "dartboard", projects: "projects",
       oldbill: "incidents", "thousand-cuts": "incidents", courtdrills: "incidents", csscpsg: "incidents", email: "deaths", emails: "deaths", app: "wiki", chat: "wiki" };
@@ -749,7 +749,7 @@
     }
     // ---- share buttons on story pages: the phone's own share sheet first; else Facebook, X, WhatsApp, email, copy link. They are
     // buttons (no outbound links on the page); the share address opens only when tapped ----
-    var SHARE_ON = { ebooks: 1, story: 1, "thousand-cuts": 1, oldbill: 1, qa: 1, shop: 1, movie: 1, "title-chain": 1, wales: 1, argentina: 1, explore: 1, home: 1, estate: 1, patagonia: 1, nomenclature: 1, wiki: 1 };
+    var SHARE_ON = { ebooks: 1, story: 1, "thousand-cuts": 1, oldbill: 1, qa: 1, shop: 1, documentary: 1, "title-chain": 1, wales: 1, argentina: 1, explore: 1, home: 1, estate: 1, patagonia: 1, nomenclature: 1, wiki: 1 };
     // addresses are joined at run time: the build sends every literal outside address in a script to the archive interface
     function xu(h, p) { return "https:" + "/" + "/" + h + p; }
     function openOut(u) { var a = document.createElement("a"); a.href = u; a.target = "_blank"; a.rel = "noopener noreferrer"; a.click(); }

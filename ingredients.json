@@ -2147,11 +2147,11 @@
    "audit_point": "framing-26oct:A01"
   },
   {
-   "theme": "movie",
+   "theme": "documentary",
    "file": "**/*.html",
    "find": "<h2 id=\"cm-p-title\"></h2>",
-   "replace": "<h2 id=\"cm-p-title\">Cedwyn: the film</h2>",
-   "why": "Empty heading on /movie/ (accessibility; root steer 12:25); the player still sets its own title when a door plays.",
+   "replace": "<h2 id=\"cm-p-title\">Cedwyn: the documentary</h2>",
+   "why": "Empty heading on /documentary/ (was /movie/ until 27 Oct 2026) (accessibility; root steer 12:25); the player still sets its own title when a door plays.",
    "class": "a11y",
    "audit_point": "framing-26oct:A02"
   }
