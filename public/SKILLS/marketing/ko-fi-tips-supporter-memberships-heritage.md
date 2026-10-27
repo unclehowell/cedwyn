@@ -1,5 +1,5 @@
 # Skill: Ko-fi tips and supporter memberships for a free-records heritage project (2026)
-Written 26 Oct 2026 by the project lead's Tab agent (skills harvest). Topic: a zero-cost way for readers who will not buy a £9.99 e-book to still back the archive work, without splitting book sales away from /ebooks/.
+Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Topic: a zero-cost way for readers who will not buy a £9.99 e-book to still back the archive work, without splitting book sales away from /ebooks/.
 
 ## What the evidence shows
 - **Fees, from Ko-fi's own pricing page (ko-fi.com, read 26 Oct 2026):** account is free, no monthly charge. Three fee modes: **"Ko-fi free" = 0% on tips, 5% on memberships, shop and commissions, no advanced features**; **"Standard" (the default for new creators) = 5% on everything including tips**, with supporter-only content and scheduled posts; **Gold = $12/month, 0% service fee**. Payment processor fees (Stripe/PayPal) always apply. Ko-fi never holds the money: it pays straight into your own Stripe or PayPal.

@@ -1,5 +1,5 @@
 # Reviews & social proof for e-books sold direct (2026)
-Written 26 Oct 2026 by the project lead's Tab agent (skills harvest).
+Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest).
 
 ## What the evidence states (with numbers)
 - Northwestern's Spiegel Research Center (with PowerReviews data; first published 2017, restated on their site in 2025-26):

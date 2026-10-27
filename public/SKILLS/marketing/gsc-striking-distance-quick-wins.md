@@ -1,5 +1,5 @@
 # Search Console "striking distance" quick wins for a small history site (2026)
-Written 26 Oct 2026 by the project lead's Tab agent (skills harvest). Complements 3.md (site SEO hygiene); this is the monthly query-mining routine.
+Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Complements 3.md (site SEO hygiene); this is the monthly query-mining routine.
 
 ## Why it works (numbers)
 - Advanced Web Ranking 2026 CTR study (hundreds of millions of impressions, Sep 2026): position 1 averages 20.0% organic CTR, 9.7% when an AI Overview shows (-52%); AI Overviews on 43% of sampled desktop results; since 2015 positions 2-10 lost 40-47% of their clicks. Page two gets almost nothing, so moving a query from ~12 to ~6 is where a small site gains real visits. advancedwebranking.com

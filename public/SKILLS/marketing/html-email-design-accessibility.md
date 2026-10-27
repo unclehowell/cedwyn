@@ -1,5 +1,5 @@
 # HTML email design & accessibility (2026) — story emails that render, read and get clicked
-Harvested 26 Oct 2026 by the project lead's Tab agent (skills harvest). Numbers carry their source; anything not checked this run is marked.
+Harvested 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Numbers carry their source; anything not checked this run is marked.
 
 ## What the evidence shows
 - Almost nobody gets this right: the Email Markup Consortium audited 376,348 emails (May 2025–May 2026); 99.88% had "Serious" or "Critical" accessibility defects and only 8 emails from 3 brands passed. 10,566 emails sent via Substack, Shopify and Beehiiv: none passed. Most failures are "basic, machine-checkable" (missing lang, layout tables without role, missing/poor alt text, tiny text). Even the passing emails had alt text not matching image text and 10px footers. (emailmarkup.org)

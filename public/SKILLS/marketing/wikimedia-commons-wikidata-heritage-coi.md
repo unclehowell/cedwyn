@@ -1,5 +1,5 @@
 # Skill: contributing to Wikimedia Commons and Wikidata as a heritage archive, inside the conflict-of-interest rules
-Written 26 Oct 2026 by the project lead's Tab agent (skills harvest). Policy pages change; re-read the linked ones before a first upload.
+Written 26 Oct 2026 by the project lead's Cedwyn editors (skills harvest). Policy pages change; re-read the linked ones before a first upload.
 
 ## Why it matters (evidence)
 - The National Library of Wales's Wikimedian in Residence reported that in 16 months the library shared nearly 15,000 images on Commons and they generated over 100 million views (Jason Evans, talk "Sharing digital content with Wikimedia"; figure from the talk's published description, not re-measured here).
