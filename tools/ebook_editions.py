@@ -7,6 +7,8 @@ Touches only /ebooks/ (the e-book theme's own pages) and the /ebooks/api/ route:
 Usage: python3 tools/ebook_editions.py dist   (site.py calls it after sections.py)"""
 import json, html, pathlib, sys, re
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+STEP_GBP = 4.99  # whole-release price step: v0.0.1 free, each later release +STEP_GBP (Sion 05:13 GMT 27 Oct 2026) - Sion's Tab agent
+def release_price(n): return '£%d.%02d' % divmod((n - 1) * round(STEP_GBP * 100), 100)  # whole pence
 E = html.escape
 CSS = ('<style id="eb-editions-css">.eb-eds{margin:0 auto 18px;max-width:1100px;padding:0 16px}.eb-eds h2{margin:6px 0 6px}.eb-eds p{margin:0 0 8px;opacity:.85;font-size:14px}'
        '.eb-eds .sc{overflow-x:auto;-webkit-overflow-scrolling:touch}.eb-eds table{border-collapse:collapse;width:100%;font-size:14px}'
@@ -17,11 +19,11 @@ CSS = ('<style id="eb-editions-css">.eb-eds{margin:0 auto 18px;max-width:1100px;
        '.eb-eds tr{border:1px solid rgba(128,128,128,.35);border-radius:10px;padding:8px 10px;margin:0 0 8px}.eb-eds td,.eb-eds td.n{border:0;padding:2px 0;white-space:normal;overflow-wrap:anywhere}'
        '.eb-eds td:first-child{font-weight:600}.eb-eds td:nth-child(2)::before{content:"Edition · ";opacity:.7;font-size:12px}.eb-eds td:nth-child(3)::before{content:"Price · ";opacity:.7;font-size:12px}}</style>')
 def table(D):
-    rows = ''.join(f'<tr><td><a href="{E(b["page"] or "/ebooks/")}">{E(b["title"])}</a></td><td class="n">{E(b["edition"])}<br><small>version {E(b["semver"])}</small>' + (f'<br><small><a href="{E(b["supplement"])}">+ supplement, 25 Oct 2026 (free PDF)</a></small>' if b.get('supplement') else '') + '</td>'
+    rows = ''.join(f'<tr><td><a href="{E(b["page"] or "/ebooks/")}">{E(b["title"])}</a></td><td class="n">{E(b["edition"])}' + (f'<br><small><a href="{E(b["supplement"])}">+ supplement, 25 Oct 2026 (free PDF)</a></small>' if b.get('supplement') else '') + '</td>'
                    f'<td class="n">{E(b["price"])}</td></tr>' for b in D['books'])
     rows += ''.join(f'<tr><td><a href="{E(x["page"] or "/ebooks/")}">{E(x["title"])}</a></td><td class="n">newest<br><small>editions</small></td><td class="n">{E(x["price"])}</td></tr>' for x in D.get('bundles', []))
     return (f'<section class="eb-eds" id="editions" aria-label="Editions and prices">{CSS}<h2>Editions and prices</h2>'
-            f'<p>Each book’s current edition, its version number and its price. Every book’s first edition (v0.01) is free.</p>'
+            f'<p>Each book’s current edition, its version number and its price. Every book’s first whole release (v0.0.1) is free; each later release costs £4.99 more than the one before.</p>'
             f'<div class="sc"><table><thead><tr><th>Book</th><th>Edition</th><th>Price</th></tr></thead><tbody>{rows}</tbody></table></div></section>')
 def run(dist):
     dist = pathlib.Path(dist); D = json.load(open(ROOT / 'data' / 'ebooks.json', encoding='utf-8')); n = 0
@@ -34,7 +36,7 @@ def run(dist):
         for b in D['books']:   # "version x.y.z · £" on the book's own card
             m = re.search(r'(<article class="eb-card" id="%s".*?<p class="eb-facts">)' % re.escape(b['id']), t, flags=re.S)
             if m and ('data-eb-ver="%s"' % b['id']) not in t:
-                t = t[:m.end()] + f'<span data-eb-ver="{E(b["id"])}">version {E(b["semver"])} · {E(b["price"])}</span>' + t[m.end():]
+                t = t[:m.end()] + f'<span data-eb-ver="{E(b["id"])}">{E(b["edition"])} · {E(b["price"])}</span>' + t[m.end():]
         if t != o: p.write_text(t, encoding='utf-8'); n += 1
     rd = dist / '_redirects'
     gate = ['/ebooks/api/* https://ebooks.bucklerfamily.estate/api/:splat 302', '/wales/ebooks/api/* https://ebooks.bucklerfamily.estate/api/:splat 302',
