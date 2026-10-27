@@ -214,7 +214,7 @@ def glossary_page(g, n):
             'content:"\\25BE"}.cw-more[open]>summary::after{content:"\\25B4"}.cw-less{min-height:40px;padding:0 14px;border-radius:999px;'
             'border:1px dashed currentColor;background:transparent;color:inherit;font:inherit;font-size:.88em;cursor:pointer;margin:4px 0}.cw-less[hidden]{display:none}'
             '</style><noscript><style>details.cw-more::details-content{content-visibility:visible;display:block}details.cw-more>summary'
-            '{display:none}</style></noscript><script src="/_cedwyn/runtime.js?v=10" defer></script>' + _clamp_head() + '</head><body><main class="gl">'
+            '{display:none}</style></noscript><script src="/_cedwyn/runtime.js?v=11" defer></script>' + _clamp_head() + '</head><body><main class="gl">'
             '<p class="gl-top"><a href="/">‹ Cedwyn</a></p><h1>The words of the story</h1><p class="gl-in">New here? Every legal, land '
             'and records word on Cedwyn, in one line each. Each one links on, all the way to the record itself.</p>'
             '<nav class="gl-az" aria-label="A to Z">' + az + '</nav>' + ''.join(body) + '</main></body></html>')

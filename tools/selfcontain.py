@@ -22,7 +22,7 @@ FIX = '--fix' in sys.argv
 ONLY = [a.split('=', 1)[1] for a in sys.argv if a.startswith('--only=')]
 SELF = 'cedwyn.bucklerfamily.estate'
 ABS = 'https://' + SELF
-BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.12'
+BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.13'
 TIDS = [t['id'] for t in CFG['themes']]
 HOST = {}
 for t in CFG['themes']:
@@ -181,7 +181,7 @@ def do_html(s, page):
             pre = m.group(1) or ''
             if pre.startswith('/_cedwyn/'): return m.group(0)
             if m.group(3) and not re.match(r'(?:https?:)?//(?:www\.)?bucklerfamily\.estate$|/dartboard$', pre): return m.group(0)
-            return '/_cedwyn/ghf/' + (m.group(2) or m.group(3)) + '.js?v=2.1.4e'
+            return '/_cedwyn/ghf/' + (m.group(2) or m.group(3)) + '.js?v=2.1.5'
         s = GHF_SRC.sub(ghf, s)
     # split into comments / script+style blocks / markup, keep comments and text as written
     out = []; pos = 0
