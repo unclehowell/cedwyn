@@ -116,6 +116,11 @@ lines += ['/email/api /email/api/ 301', '/email/api/records /email/view/index.js
           '/email/api/openapi.json /email/api/ 302', '/email/api/export /email/api/ 302', '/email/api/export/ /email/api/ 302',
           '/email/api/message /email/view/ 302', '/email/api/search /email/view/ 302', '/email/api/thread /email/view/ 302']
 lines += ['/graphql /graphql/ 301', '/catalogue /catalogue/ 301']
+# 27 Oct 2026 (Sion: fix every 'That page did not open'): links that landed on the fallback page in the 27 Oct crawl. Cross-theme links a
+# theme wrote as /<theme>/<other>/... go to the other theme; Sphinx index/search/release-note links the evidence docs no longer carry go to the
+# document's own page; the kissed-frogs wiki copy points at the wiki. Dynamic lines first so the 95-line cap keeps them. - Sion's Tab agent
+LINKFIX_DYN = ["/kissed-frogs/wiki/* /wiki/:splat 301", "/ebooks/:b/online/gen /ebooks/:b/online/ 301", "/docs/ghf_evidence/:id/latest/html/:lang/genindex.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/search.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/releasenotes.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/1-record.html /docs/ghf_evidence/:id/latest/html/:lang/ 302"]
+lines = LINKFIX_DYN + lines + ["/accounts/research/new-in-the-catalogue/ /research/new-in-the-catalogue/ 301", "/accounts/infographic/title-chain/ /infographic/title-chain/ 301", "/accounts/story/museum/ /story/museum/ 301", "/accounts/whattheydontsay/ /whattheydontsay/ 301", "/oldbill/accounts/ /accounts/ 301", "/oldbill/whattheydontsay/ /whattheydontsay/ 301", "/documentary/learn/ /learn/ 301", "/documentary/wayback/go/ /wayback/go/ 301", "/dartboard/wales/ /wales/ 301", "/dartboard/patagonia/ /argentina/ 301", "/dartboard/cyberspace/ /cyberspace/ 301", "/research/counter-evidence-disconfirmation/ /wiki/counter-evidence-disconfirmation/ 301", "/research/scrutiny-and-accountability/suspected-fraud-concealment/working-theory-fraud-concealment-and-limitation/ /wiki/scrutiny-and-accountability/suspected-fraud-concealment/working-theory-fraud-concealment-and-limitation/ 301"]
 tr = DIST / '_theme_redirects.txt'
 if tr.exists():
     for l in tr.read_text().splitlines():
