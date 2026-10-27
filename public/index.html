@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cedwyn · the film</title>
 <meta name="description" content="Cedwyn, the film. A tab.bot production. One door a day: a two-minute scene from the whole chronology of Great House Farm / Tŷ Mawr, Llandough.">
-<link rel="stylesheet" href="movie.css?v=1.1.0">
+<link rel="stylesheet" href="movie.css?v=1.2.0">
 </head>
 <body class="cm">
 <main id="cm-main">
@@ -49,11 +49,23 @@
   <div class="cm-p-in">
     <button type="button" class="cm-x" id="cm-p-x" aria-label="Close">×</button>
     <h2 id="cm-p-title"></h2>
-    <div class="cm-stage"><video id="cm-video" playsinline preload="metadata" muted></video><div id="cm-cue" class="cm-cue"></div></div>
+    <div class="cm-stage" id="cm-stage">
+      <div class="cm-vid"><video id="cm-video" playsinline webkit-playsinline preload="metadata" muted></video><div id="cm-cue" class="cm-cue" aria-live="off"></div></div>
+      <div class="cm-pc" role="group" aria-label="Playback">
+        <div class="cm-pc-row cm-pc-top">
+          <button type="button" id="cm-pp" class="cm-btn cm-pc-b cm-pp" aria-label="Pause"><span class="cm-ico" aria-hidden="true"></span></button>
+          <input type="range" id="cm-seek" class="cm-seek" min="0" max="100" step="0.1" value="0" aria-label="Position in the scene">
+          <span id="cm-time" class="cm-time">0:00 / 0:00</span>
+          <button type="button" id="cm-fs" class="cm-btn cm-pc-b cm-fsb" aria-label="Full screen" aria-pressed="false"><span class="cm-ico" aria-hidden="true"></span></button>
+        </div>
+        <div class="cm-pc-row" role="group" aria-label="Audio"><span class="cm-pc-l" data-t="audio">Audio</span><button type="button" class="cm-btn cm-pc-o cm-pa" data-a="cy" aria-pressed="false" lang="cy">Cymraeg</button><button type="button" class="cm-btn cm-pc-o cm-pa" data-a="en" aria-pressed="true" lang="en">English</button><button type="button" class="cm-btn cm-pc-o cm-pa" data-a="es" aria-pressed="false" lang="es">Español</button></div>
+        <div class="cm-pc-row" role="group" aria-label="Subtitles"><span class="cm-pc-l" data-t="subs">Subtitles</span><button type="button" class="cm-btn cm-pc-o cm-ps" data-s="off" aria-pressed="false" data-t="soff">Off</button><button type="button" class="cm-btn cm-pc-o cm-ps" data-s="cy" aria-pressed="false" lang="cy">Cymraeg</button><button type="button" class="cm-btn cm-pc-o cm-ps" data-s="en" aria-pressed="true" lang="en">English</button><button type="button" class="cm-btn cm-pc-o cm-ps" data-s="es" aria-pressed="false" lang="es">Español</button></div>
+      </div>
+    </div>
     <audio id="cm-audio" preload="auto"></audio>
     <p id="cm-p-meta" class="cm-note"></p>
   </div>
 </div>
-<script src="movie.js?v=1.1.0"></script>
+<script src="movie.js?v=1.2.0"></script>
 </body>
 </html>
