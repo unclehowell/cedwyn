@@ -238,7 +238,10 @@ def _footer_snips():
     return _FOOT
 def _small_footer(t, href):
     link = '<p class="gaf-agents"><a href="%s">For agents</a></p>' % href
-    return t.replace(GAF_IN, link + '<div class="gaf-in" hidden data-for-agents>', 1)
+    # fold the footer's own block: on /projects/ the visible TRIGGER EVENT section has an earlier gaf-in that must stay visible
+    gi = t.find(GAF_IN, max(0, t.find('<footer id="ghf-agent-footer"')))
+    if gi < 0: return t
+    return t[:gi] + link + '<div class="gaf-in" hidden data-for-agents>' + t[gi + len(GAF_IN):]
 def hide_agent_text(t, href='/llms.txt'):
     n = [0]
     def rep(m):
