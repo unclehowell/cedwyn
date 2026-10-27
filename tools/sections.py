@@ -296,6 +296,7 @@ def run(dist, cfg):
     sec = ['/wales/tour /wales/#stop-1 301', '/wales/tour/ /wales/#stop-1 301', '/wales/tour/* /wales/#stop-1 301',
            '/wales/wales/ /wales/#stop-1 301', '/argentina/wales/ /wales/#stop-1 301']
     sec += [f'/wales/{t}/* /{t}/:splat 200' for t in tids]
+    sec += ['/wales/movie/* /documentary/:splat 301', '/argentina/movie/* /documentary/:splat 301']   # the film page is now /documentary/ (27 Oct 2026)
     sec += ['/argentina/:theme/* /:theme/:splat 200']
     rd = dist / '_redirects'
     old = rd.read_text().splitlines() if rd.exists() else []

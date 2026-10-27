@@ -106,7 +106,8 @@ a.card strong{display:block;color:#fff;margin-bottom:4px}a.card span{display:blo
 })();
 </script></main></body></html>''')
 alias = {'bpvsbuckler': 'story', 'whatdotheyknow': 'wdtk', 'ghf-primary-records': 'records', 'ghf-public-authorities': 'authorities',
-         'ghf-independent-review': 'review', '2026-10-22': 'meeting', 'merch': 'shop', 'email-archive': 'email', 'cedwyn': 'estate', 'museum': 'story', 'farmbook': 'fb2', 'media': 'wayback', 'agents': 'academy'}
+         'ghf-independent-review': 'review', '2026-10-22': 'meeting', 'merch': 'shop', 'email-archive': 'email', 'cedwyn': 'estate', 'museum': 'story', 'farmbook': 'fb2', 'media': 'wayback', 'agents': 'academy',
+         'movie': 'documentary', 'documentry': 'documentary'}  # 27 Oct 2026: the film page became the documentary; both old spellings 301
 lines = [f'/{a}/* /{b}/:splat 301' for a, b in alias.items()] + [f'/{a} /{b}/ 301' for a, b in alias.items()]
 lines += ['/email/thread/* /email/view/ 200', '/email/reference/* /email/view/ 200']  # dynamic correspondence routes must load the viewer shell, not 404
 # Legacy mail API endpoints were advertised by the old interactive page, but the consolidated site is a static archive.
