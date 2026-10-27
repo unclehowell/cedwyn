@@ -6,8 +6,9 @@
   function fill(s, o) { return String(s || '').replace(/\{(\w+)\}/g, function (_, k) { return o[k] != null ? o[k] : ''; }); }
   function words() { document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = T[el.getAttribute('data-t')] || ''; }); if (T.page_title) document.title = T.page_title; }
   function edition(a) { return a.edition === 1 ? T.one_of_one : fill(T.limited, { n: a.edition }); }
+  function sub(a) { return a.price ? esc(a.price) + ' · ' + esc(edition(a)) : esc(a.id); }
   function card(a, i) {
-    return '<a class="gg-c" style="animation-delay:' + (i * 70) + 'ms" href="#/' + esc(a.id) + '"><img loading="lazy" src="' + esc(a.thumb) + '" alt="' + esc(a.alt) + '"><span class="gg-ct"><b>' + esc(a.title) + '</b><small>' + esc(a.price) + ' · ' + esc(edition(a)) + '</small></span></a>';
+    return '<a class="gg-c" style="animation-delay:' + (Math.min(i, 12) * 70) + 'ms" href="#/' + esc(a.id) + '"><img loading="lazy" src="' + esc(a.thumb) + '" alt="' + esc(a.alt) + '"><span class="gg-ct"><b>' + esc(a.title) + '</b><small>' + sub(a) + '</small></span></a>';
   }
   function grid() { $('gg-grid').innerHTML = A.map(card).join(''); }
   function detail(id) {
@@ -17,12 +18,14 @@
     d.innerHTML = '<a class="gg-back" href="#/">← ' + esc(T.back) + '</a>' +
       '<figure><img src="' + esc(a.image) + '" alt="' + esc(a.alt) + '"></figure>' +
       '<h2>' + esc(a.title) + '</h2><p class="gg-cap">' + esc(a.caption) + '</p>' +
-      '<dl class="gg-meta"><dt>' + esc(T.catalogue_label) + '</dt><dd>' + esc(a.id) + '</dd><dt>' + esc(T.edition_label) + '</dt><dd>' + esc(edition(a)) + '</dd>' +
-      '<dt>' + esc(T.medium_label) + '</dt><dd>' + esc(T.medium) + '</dd><dt>' + esc(T.source_label) + '</dt><dd>' + esc(a.source_id) + '</dd></dl>' +
-      '<div class="gg-src"><img loading="lazy" src="' + esc(a.src) + '" alt=""><span>' + esc(T.grown_from) + ' ' + esc(a.source_title) + '</span></div>' +
-      '<div class="gg-buy"><span class="gg-price">' + esc(a.price) + '</span>' +
+      '<dl class="gg-meta"><dt>' + esc(T.catalogue_label) + '</dt><dd>' + esc(a.id) + '</dd>' +
+      (a.edition ? '<dt>' + esc(T.edition_label) + '</dt><dd>' + esc(edition(a)) + '</dd>' : '') +
+      '<dt>' + esc(T.medium_label) + '</dt><dd>' + esc(T.medium) + '</dd>' +
+      (a.source_id ? '<dt>' + esc(T.source_label) + '</dt><dd>' + esc(a.source_id) + '</dd>' : '') + '</dl>' +
+      (a.src ? '<div class="gg-src"><img loading="lazy" src="' + esc(a.src) + '" alt=""><span>' + esc(T.grown_from) + ' ' + esc(a.source_title) + '</span></div>' : '') +
+      (a.price ? '<div class="gg-buy"><span class="gg-price">' + esc(a.price) + '</span>' +
       (a.buy ? '<a class="gg-btn" rel="nofollow" href="/wayback/go/?u=' + encodeURIComponent(a.buy) + '">' + esc(T.buy) + '</a>' : '<a class="gg-btn" href="/shop/">' + esc(T.shop) + '</a>') +
-      '<p class="gg-inc">' + esc(T.includes) + '</p></div>' +
+      '<p class="gg-inc">' + esc(T.includes) + '</p></div>' : '') +
       '<nav class="gg-nav"><a href="#/' + esc(prev.id) + '">← ' + esc(prev.title) + '</a><a href="#/' + esc(next.id) + '">' + esc(next.title) + ' →</a></nav>';
     show(true); window.scrollTo(0, 0);
     document.title = a.title + ' · ' + (T.title || '');
