@@ -55,6 +55,7 @@ def run(dist):
         try:
             subprocess.run(['git', '-C', str(tmp), 'sparse-checkout', 'set', '--no-cone'] + [f'/{t}/' for t in need] + [f'!/{t}/db/' for t in need], check=True, timeout=900)
             subprocess.run(['git', '-C', str(tmp), 'checkout', '-q'], check=True, timeout=1500)
+            kept = set()   # files this pass copied from an earlier build (never a file this build crawled)
             def copy_missing(t):
                 src = tmp / t; n = 0
                 if not src.exists(): return 0
@@ -62,7 +63,7 @@ def run(dist):
                     if not f.is_file() or 'db' in f.relative_to(src).parts[:1]: continue
                     dst = dist / t / f.relative_to(src)
                     if dst.exists(): continue
-                    dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(f, dst); n += 1
+                    dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(f, dst); n += 1; kept.add(dst)
                 return n
             for t in need: rep['restored'][t] = copy_missing(t)
             for t in need:
@@ -74,6 +75,16 @@ def run(dist):
                                     '--recurse-submodules=no', '--filter=blob:none', '--stdin'], input=oids, text=True, timeout=1500)
                     subprocess.run(['git', '-C', str(tmp), 'checkout', '-q', src_of[t], '--', t], check=True, timeout=1500)
                     rep['restored'][t] += copy_missing(t)
+            # 27 Oct 2026 (problems flywheel, terrain): a page that loads 'app.js?v=1.5.2' is crawled as 'app.js@v=1.5.2' (fresh), but the
+            # server ignores the query and serves the bare 'app.js', which only ever came from an old kept build (the 27 Oct 00:59 copy
+            # whose script brackets the old privacy scrub had stripped, so /terrain/ showed a broken map every build since). When a kept
+            # bare file has a fresh versioned sibling from this build, the fresh copy wins. Only kept files are replaced. — Sion's Tab agent
+            fresh_won = []
+            for dst in sorted(kept):
+                sibs = sorted(p for p in dst.parent.glob(dst.name + '@*') if p.is_file() and p not in kept)
+                if sibs:
+                    shutil.copy2(sibs[-1], dst); fresh_won.append(str(dst.relative_to(dist)))
+            rep['fresh_versioned_copy_won'] = fresh_won
             # kept copies may come from a build whose ingredients pass was older than this one's: apply this build's rewords and
             # link repoints to the kept themes too, skipping any entry whose replacement is already in the file (so nothing is applied twice)
             try:
