@@ -1,4 +1,4 @@
-/*! glossary-modal.js v1.0.0 - Cedwyn site-wide glossary pop-up (27 Oct 2026). One source: /_cedwyn/glossary.json
+/*! glossary-modal.js v1.0.1 - Cedwyn site-wide glossary pop-up (27 Oct 2026). One source: /_cedwyn/glossary.json
  (built from data/glossary.json by tools/wikilinks.py). Native <dialog>: Esc closes, focus returns to the opener, the page
  behind is inert. Dotted glossary words, links to /glossary/ and the "Glossary" button open it at the term. /glossary/ stays a
  plain crawlable page that opens the pop-up on load. Day/night aware (also under the night-mode inversion). - Sion's Tab agent */
@@ -39,6 +39,7 @@
     inn.appendChild(hd); inn.appendChild(q); inn.appendChild(list); dlg.appendChild(inn); D.body.appendChild(dlg);
     dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
     dlg.addEventListener("close", function () { if (opener && opener.focus) try { opener.focus(); } catch (e) {} });
+    dlg.addEventListener("keydown", function (e) { if (e.key === "Escape") { e.preventDefault(); dlg.close(); } }); // Esc closes even from the search box
   }
   function render() {
     list.textContent = "";
