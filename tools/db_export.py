@@ -63,9 +63,17 @@ def run(dbf, out, stats=None):
                 th = dict(zip(tcols, trow)); tid = th['id']
                 cur = con.execute('SELECT a.*, l.path AS path, l.url AS url FROM locations l JOIN artifacts a ON a.id=l.aid WHERE l.theme=? ORDER BY l.path', (tid,))
                 cols = [d[0] for d in cur.description]; rows = [dict(zip(cols, r)) for r in cur]
+                recs = []
+                if 'section_records' in man['tables']:   # the section's own database rows (public/_db/section.sqlite), merged by build_db
+                    for k, i, sq, dt in con.execute('SELECT kind, id, seq, data FROM section_records WHERE theme=? ORDER BY seq', (tid,)):
+                        try: dt = json.loads(dt)
+                        except Exception: pass
+                        recs.append({'kind': k, 'id': i, 'seq': sq, 'data': dt})
                 with gzip.open(ex / 'sections' / ('%s.json.gz' % tid), 'wt', encoding='utf-8', compresslevel=6) as f:
-                    json.dump({'schema': 'cedwyn_section_slice/v1', 'section': th, 'artifacts': rows}, f, ensure_ascii=False, default=str)
-                man['sections'][tid] = {'file': 'sections/%s.json.gz' % tid, 'artifacts': len(rows)}
+                    json.dump({'schema': 'cedwyn_section_slice/v1', 'section': th, 'records': recs, 'artifacts': rows}, f, ensure_ascii=False, default=str)
+                sdb = out.parent / tid / '_db' / 'section.sqlite'
+                man['sections'][tid] = {'file': 'sections/%s.json.gz' % tid, 'artifacts': len(rows), 'records': len(recs),
+                                        'section_db': ('/%s/_db/section.sqlite' % tid) if sdb.exists() else None}
         # metadata-only sqlite
         tmp = pathlib.Path('cedwyn-metadata.sqlite3'); tmp.unlink(missing_ok=True)
         dst = sqlite3.connect(tmp); con.backup(dst); dst.execute('DROP TABLE IF EXISTS blobs')
