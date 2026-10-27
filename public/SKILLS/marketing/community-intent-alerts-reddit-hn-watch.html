@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Community intent alerts: free Reddit + Hacker News keyword watch, then answer by hand · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Community intent alerts: free Reddit + Hacker News keyword watch, then answer by hand"><link rel="alternate" type="text/markdown" href="community-intent-alerts-reddit-hn-watch.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Community intent alerts: free Reddit + Hacker News keyword watch, then answer by hand</h1>
+<p>Read 27 Oct 2026 (skills harvest 01:22). Type: community / listening / zero-spend. Complements press-requests-and-mention-monitoring.md (Google Alerts + Talkwalker cover the open web and news; neither covers Reddit comments well) and reddit-forum-participation-heritage.md (how to take part once a thread is found).</p>
+<h2>Why</h2>
+<p>Reddit threads where someone asks about Llandough, a Vale of Glamorgan farm, a Welsh place name or Patagonian settler records are the moments a helpful, sourced answer earns trust and a profile click. The skill is finding those threads within hours, not weeks, without paying for a monitoring tool.</p>
+<h2>Evidence (how solid each is)</h2>
+<ul>
+<li>F5Bot own site (read 27 Oct 2026): monitors Reddit, Hacker News and Lobsters for keywords and emails alerts; "Since 2017", "430,000+ alerts delivered daily"; free tier exists; paid Silver is $12.99/month (20 keywords, "for individuals, non-commercial use").</li>
+<li>okara.ai F5Bot-alternatives review (6 Oct 2026, read; secondary, citing F5Bot's tiers page): free plan is "personal use only", 5 keywords, 20 alerts a day, alerts "within 2 hours", common words blocked, 7-day match history. Treat the free tier as not for a business's commercial use.</li>
+<li>Indie Hackers founder post (snippet, not read in full): "You can use a free tool like F5bot to get alerts when certain keywords appear on Reddit. It works, but you're stuck reviewing every single" match - i.e. alerts need human triage; the value is in the reply, not the alert.</li>
+<li>Box test 27 Oct 2026 01:26Z (our own run): Reddit's public search feed reddit.com returned 200 with results for "Llandough" (mostly University Hospital Llandough / Cardiff threads - noise to filter); a second query seconds later answered 429. HN Algolia API (hn.algolia.com) answered 200.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li>Pick 5-10 tight queries (quoted phrases, place + topic): "Llandough" history; "Great House Farm" Llandough; "Ty Mawr" Llandough; "Vale of Glamorgan" farm history; Welsh Patagonia settlers / "Gaiman" history; "Penarth" history. Exclude the obvious noise in triage (hospital, parking, jobs).</li>
+<li>Run the watch every 1-2 hours at most: <code>python3 tools/mention_watch.py --terms tools/mention_terms.txt</code> (prints only new items; state in tools/mention_watch_seen.json; 8 s pause between requests; retries one 429 after Retry-After). Reddit unauthenticated feeds rate-limit quickly - keep queries few and runs spaced.</li>
+<li>Triage each hit in under a minute: is someone asking a question we can answer from a primary record? Is the subreddit's self-promotion rule OK with a link (read the sidebar)? If not, answer without a link.</li>
+<li>Reply by hand, human-reviewed, value first: the record, its date and holder, one sentence of context; a link to the matching Cedwyn evidence page only where the rules allow and it directly answers the question. Never paste the e-book shop link as the answer.</li>
+<li>Log hit, reply URL and any profile/site clicks (UTM: utm_source=reddit&amp;utm_medium=community&amp;utm_campaign=answers via tools/utm.py) to the bizdev log.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>The watch is read-only and free; it can run inside the existing BIZDEV EXECUTE runs (no new schedule without the project lead).</li>
+<li>Posting on Reddit needs an account and is public speech for the project: drafts of any reply go into the run's HubSpot task for review unless a standing rule allows the run to post. No DMs to strangers. Never name the owner; banned public words apply; no accusations about named people.</li>
+<li>F5Bot: do not sign up the business on the free "personal use" tier; our own script does the same job within Reddit's public feed limits.</li>
+<li>Success = within 2 weeks, 3+ genuinely relevant threads found and answered with a sourced reply, and at least one referral visit logged.</li>
+</ul>
+<h2>Tool</h2>
+<ul>
+<li>tools/mention_watch.py (written here, standard library only, 0 installs). Terms in tools/mention_terms.txt.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>f5bot.com (read 27 Oct 2026)</li>
+<li>okara.ai (read 27 Oct 2026; cites F5Bot tiers page)</li>
+<li>indiehackers.com (snippet)</li>
+<li>hn.algolia.com (public API, tested)</li>
+</ul><p class="raw">Raw Markdown: <a href="community-intent-alerts-reddit-hn-watch.md">community-intent-alerts-reddit-hn-watch.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

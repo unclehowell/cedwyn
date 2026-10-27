@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Versioned releases with a rising price ladder (free first version, each release dearer) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Versioned releases with a rising price ladder (free first version, each release dearer)"><link rel="alternate" type="text/markdown" href="versioned-release-rising-price-ladder.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Versioned releases with a rising price ladder (free first version, each release dearer)</h1>
+<p>Read 27 Oct 2026. Context: on 27 Oct the e-books and NFTs moved to whole-release versions: v0.0.1 free, then each release £4.99 more than the last (£4.99, £9.98, £14.97 …).</p>
+<h2>What practitioners report (primary sources, read)</h2>
+<ul>
+<li><strong>Leanpub, "How to price a self-published book" (help centre, read in full):</strong> "Publish Early, Publish Often". Publish after the first couple of chapters, then a new version for each new chapter, and <strong>raise the price as you go</strong>. Their worked example: decide the <em>final</em> price first ($40 suggested / $35 minimum), then step back down in equal $5 steps across five releases ($20 → $25 → $30 → $35 → $40).</li>
+<li><strong>Frame it as a thank-you to early buyers, "not a punishment for latecomers".</strong> Put the ladder in the "About the book" text and in every newsletter or post about the book.</li>
+<li>Set the normal price higher than feels natural, or a later discount code won't look like a deal.</li>
+<li><strong>Free minimum works:</strong> "One of Leanpub's bestselling books, by both copies sold and revenue earned, has a free Minimum Price and a non-free Suggested Price". The page shows "Author earns" beside the slider, and Leanpub states this is the main reason readers pay more than suggested (e.g. moving $23.20 up to $25.00).</li>
+<li><strong>Leanpub, "If I buy an in-progress ebook, will I get free updates?" (17 Mar 2025, read):</strong> "Yes, you get free updates for as long as the author is updating the book". The download link always serves the latest version. This is the norm buyers of versioned e-books expect.</li>
+<li><strong>Leanpub royalties (13 Feb 2025, read):</strong> minimum paid price as low as $0.99. Royalty is 80% from $7.99 up and 80% minus 50¢ below that. Scale reference from "Leanpub at Sixteen" (read): dozens of authors have earned over $50,000, hundreds over $10,000.</li>
+<li><strong>Steam Early Access data (Chris Zukowski, howtomarketagame.com, 19 Sep 2023, read):</strong> games with 10+ reviews that entered and left Early Access since 2014.</li>
+<li>Median time in Early Access was 260 days (mean 399).</li>
+<li>Price changes during Early Access had a median of $4.00 and a mean of $5.82.</li>
+<li>Correlation between a price rise and % positive reviews was −0.23 ("very minor"). His view: "indies should always be increasing their price".</li>
+<li>Games aren't books, but this is the largest public dataset on raising prices across versions of the same product.</li>
+<li><strong>UK law, CMA207 "Unfair commercial practices" guidance (DMCC Act, in force 6 Apr 2025, read):</strong> Banned practice 7 is <strong>falsely</strong> stating that a product or its terms are available only for a limited time to force a quick decision; a fake countdown clock is the CMA's own example. A genuine, documented next-release price rise is fine. "Price goes up Friday" with no real release behind it is not.</li>
+</ul>
+<h2>How to run a rising ladder (checklist)</h2>
+<ol>
+<li><strong>Compute prices in pence, never in floats or by mental arithmetic.</strong> Price of vN = (N−1) × step, with v1 = 0. Use <code>tools/price_ladder.py</code> (below).</li>
+<li>Publish the ladder on the product page: "v0.0.1 free · v0.0.2 £4.99 · next release £9.98". Show the current version as default with an upgrade line. The free link stays visible.</li>
+<li>Announce each release as news with a changelog: what's new, how many pages or records were added. Make the price step the reward for early readers, never a threat.</li>
+<li>Only state a price-rise date when the next release is real and dated (CMA banned practice 7). No fake timers.</li>
+<li><strong>Decide the upgrade policy before the second paid release.</strong> The market norm (Leanpub) is free updates for existing buyers. Options:
+   (a) free updates within the same major version, for example all v0.x;
+   (b) an upgrade at the difference between the two prices;
+   (c) each version a separate purchase, as now. If you choose (c), say so plainly at checkout so nobody feels cheated.</li>
+<li>Track per-version sales and refunds. If a version step brings refunds or complaints, slow the step down rather than reversing prices already paid.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Current state (27 Oct):</strong> v0.0.1 free, v0.0.2 £4.99 (replacing the old £9.99 v0.02), step £4.99. The bundle is the sum of the latest versions. Worker 82ec3efa is building the drop-down and the "free version (v0.0.1 2026)" link.</li>
+<li><strong>Do now (in that build's scope, done by that worker):</strong> the page shows the ladder and the next price. Prices are generated from <code>tools/price_ladder.py</code> output or the same pence arithmetic, never typed by hand. This is the class of slip caught at 05:18 GMT on 27 Oct.</li>
+<li><strong>PROPOSED, the project lead's decision:</strong> upgrade policy (a), (b) or (c) above, stated on /ebooks/. Recommendation: (b), upgrade at the price difference. It keeps the £4.99 ladder and removes the main reason an early buyer would hold off. Implement with a Stripe promotion code per buyer, or a "previous buyer" price.</li>
+<li><strong>PROPOSED:</strong> each release email (Mailchimp) leads with the changelog and the honest next price. No countdowns.</li>
+<li><strong>Not for NFTs yet:</strong> they show "Coming soon", so no prices go live. When they launch, the same ladder applies per piece (v0.0.1 free preview).</li>
+</ul>
+<h2>Tool</h2>
+<ul>
+<li><code>tools/price_ladder.py</code>: our own stdlib script (no install). <code>python3 tools/price_ladder.py --step 4.99 --versions 6</code> prints v0.0.1 £0.00 … v0.0.6 £24.95, all in integer pence. <code>--bundle 0.0.2,0.0.2,0.0.3,0.0.2</code> sums those versions' prices.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>help.leanpub.com</li>
+<li>help.leanpub.com</li>
+<li>help.leanpub.com</li>
+<li>leanpub.com</li>
+<li>howtomarketagame.com</li>
+<li>gov.uk</li>
+</ul><p class="raw">Raw Markdown: <a href="versioned-release-rising-price-ladder.md">versioned-release-rising-price-ladder.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

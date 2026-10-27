@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Instagram API publishing for a new account: what it can post, what it can&#x27;t, and how often (@cedwynestate) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Instagram API publishing for a new account: what it can post, what it can&#x27;t, and how often (@cedwynestate)"><link rel="alternate" type="text/markdown" href="instagram-api-publishing-cadence-new-account.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Instagram API publishing for a new account: what it can post, what it can't, and how often (@cedwynestate)</h1>
+<p>Harvested 27 Oct 2026 (skills harvest run). Purpose: @cedwynestate went live 27 Oct 02:00 GMT as a Business account connected for API posting, with no posts yet. This file is the posting playbook for it: which formats the API takes, which jobs stay manual in the app, and the cadence that the largest frequency study supports.</p>
+<h2>1. What the API can publish (Meta's own docs, read 27 Oct 2026, API v26.0)</h2>
+<ul>
+<li><strong>Single image</strong>: JPEG only. MPO/JPS, shopping tags and filters are not supported.</li>
+<li><strong>Carousel</strong>: <code>media_type=CAROUSEL</code> with <code>children</code> = "up to 20" container ids. The same page's diagram still states 10, and older guides say 10. Use 10 until one 11+ test carousel succeeds. Every slide is cropped to the first image's ratio (default 1:1), so make the first slide 4:5 if you want 4:5.</li>
+<li><strong>Reels</strong>: <code>media_type=REELS</code>. Optional: <code>cover_url</code> or <code>thumb_offset</code>, <code>audio_name</code> (original audio only), <code>share_to_feed</code>, <code>collaborators</code>, <code>user_tags</code>, <code>location_id</code>.</li>
+<li><strong>Trial reels</strong> (shown to non-followers first): add <code>trial_params</code> with <code>graduation_strategy</code> = <code>MANUAL</code> (you graduate it in the app) or <code>SS_PERFORMANCE</code> (it goes to followers automatically if it performs). See instagram-new-account-90-days-trial-reels-gate.md for when trials make sense.</li>
+<li><strong>Stories</strong>: <code>media_type=STORIES</code>. <strong>Link, poll and location stickers cannot be published</strong>; @-mentions without a sticker can. Stories expire after 24 h.</li>
+<li><strong>Alt text</strong>: <code>alt_text</code> on image posts (added 24 Mar 2025). Reels and stories don't take it.</li>
+<li><strong>Location</strong>: <code>location_id</code> = the Facebook Page id of a place.</li>
+<li><strong>AI disclosure</strong>: <code>is_ai_generated=true</code> self-labels AI-made media.</li>
+<li><strong>Rate limit</strong>: "100 API-published posts within a 24-hour moving period; carousels count as a single post". The carousel section of the same page still states 50. Either way it is far above our cadence. <code>GET /&lt;IG_ID&gt;/content_publishing_limit</code> returns current usage.</li>
+</ul>
+<h2>2. What stays manual in the Instagram app (no API route)</h2>
+<ul>
+<li>The profile <strong>link field</strong> (the account-setup run on 27 Oct confirmed this too).</li>
+<li><strong>Highlights</strong> and story <strong>link stickers</strong>. This settles the open question in instagram-stories-highlights-profile-menu-new-account.md: the API can post the story frames, but the owner adds the link stickers and pins the Highlights, once, in the app.</li>
+<li>Product/shopping tags and filters.</li>
+</ul>
+<h2>3. How often to post (practitioner data)</h2>
+<ul>
+<li>Buffer, Aug 2025 (Julian Winternheimer's analysis, read): <strong>2.1 million posts from 102K accounts</strong>, split into 0 / 1–2 / 3–5 / 6–9 / 10+ feed posts a week (reels, photos and carousels; stories excluded).</li>
+<li><strong>3–5 posts a week more than doubled follower growth</strong> compared with 1–2 a week.</li>
+<li>It lifted <strong>reach per post by about 12%</strong> over the account's own baseline.</li>
+<li>6–9 and 10+ a week grow faster still, with diminishing returns. Buffer's own conclusion: "the best posting schedule is one you can stick to consistently."</li>
+<li>Stories reach existing followers, not new people (same study), so for growth the feed posts come first.</li>
+</ul>
+<h2>4. Recipe: a weekly batch for a small heritage account</h2>
+<ol>
+<li>Plan <strong>4 feed posts a week</strong>, made in one sitting and published by API on fixed days, for example:
+   - Tue: carousel, a record + map + place-name slide, with alt text on every image slide.
+   - Thu: reel, 15–40 s from existing footage. Make it a trial reel (<code>MANUAL</code>) while the follower count is under ~100.
+   - Sat: single image, an archive photo or map detail, with alt text.
+   - Sun: second carousel or reel.</li>
+<li><strong>Alt text on every image</strong>: describe what is visible (map sheet, field names, building outline) in plain words, under ~125 characters. It helps screen readers and gives Instagram search/indexing a text signal. instagram-search-seo-google-indexing.md covers keywords.</li>
+<li><strong>Location</strong> on place posts (Llandough, Penarth, Trelew/Gaiman for the Patagonia half) once the place's Facebook Page id is found. Keep Wales and Patagonia posts separate.</li>
+<li><strong>Captions</strong>: the first line carries the hook (it is all that shows before "more"). End with the typed address cedwyn.bucklerfamily.estate/ebooks, because links in captions aren't clickable.</li>
+<li><strong>Disclose AI</strong>: anything generated or restyled (e.g. Garden Gallery pieces) gets <code>is_ai_generated=true</code>. Plain archive scans and photos don't.</li>
+<li>Check <code>content_publishing_limit</code> before a backfill, and log every permalink.</li>
+<li><strong>After 4 weeks</strong> read follows per week and reach per post for each format. Shift the mix toward the format with the best follows per post; keep the total at 3–5.</li>
+</ol>
+<h2>5. How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Tooling gap:</strong> the project workspace is hard-wired to @shbuckler's IG id and posts <strong>Reels only</strong>. Before @cedwynestate can post, someone has to:</li>
+<li>add an <code>--account</code> switch that reads @cedwynestate's IG user id from the instagram connection added 27 Oct;</li>
+<li>add image/carousel containers with <code>alt_text</code>, plus <code>location_id</code>, <code>is_ai_generated</code>, <code>trial_params</code> and <code>collaborators</code>.
+  Keep its existing caption guard (no name, banned words, prices). Proposed, not done in this run.</li>
+<li><strong>First month:</strong> 4 posts a week from material already on the site (estate maps, record cards, Patagonia house). Keep all of it non-human and non-heraldic, never name people, and use none of the banned words. Quote cards from the Tuesday quote-pack can feed the Tue carousel.</li>
+<li><strong>One manual job for the owner</strong> (fold into a message already going to the project lead, never a separate ping): add link stickers to the five Highlight covers and pin them (~10 min). It joins the link-field item he was already asked about at 02:02 GMT.</li>
+<li><strong>Measure:</strong> add @cedwynestate followers and reach to the Sunday growth report row.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>Meta for Developers, Content Publishing (read 27 Oct 2026): developers.facebook.com</li>
+<li>Meta for Developers, IG User Media reference (stickers line, parameters; read 27 Oct 2026): developers.facebook.com</li>
+<li>Buffer, "How Often Should You Post on Instagram in 2026? What Data From 2 Million Posts Tells Us", 13 Aug 2025 (read): buffer.com</li>
+<li>Social Media Today summary of the same study: socialmediatoday.com</li>
+</ul><p class="raw">Raw Markdown: <a href="instagram-api-publishing-cadence-new-account.md">instagram-api-publishing-cadence-new-account.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

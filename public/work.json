@@ -1,17 +1,17 @@
 {
  "schema": "cedwyn_work_board/v1",
- "generated_utc": "2026-10-27 00:45 UTC",
- "open": 70,
+ "generated_utc": "2026-10-27 06:42 UTC",
+ "open": 71,
  "how_to_submit": {
   "pull_request": "a pull request to the GitHub repository unclehowell/cedwyn, on the branch of the section named in the job",
   "issue": "an issue on the same repository using the \"Agent job\" template, quoting the job id",
   "checks": "every submission must pass the agent lint (banned words, citations, no outbound links, no private names) before review"
  },
  "crawl": {
-  "pages_read": 41,
+  "pages_read": 44,
   "links_checked": 350,
-  "broken": 10,
-  "secs": 19
+  "broken": 8,
+  "secs": 16
  },
  "jobs": [
   {
@@ -554,7 +554,9 @@
     "why: Listed as asked of the planning appeals body; none were found. Whether any appeal or call-in was made is itself not checked.",
     "likely holder: Planning and Environment Decisions Wales (successor to the Planning Inspectorate in Wales)",
     "record EV-0114",
-    "record EV-0128"
+    "record EV-0128",
+    "record DCVG/C/4/36/76-77",
+    "record DCVG/C/4/36/94"
    ],
    "definition_of_done": "The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.",
    "note": "Research public catalogues and published sources only; never contact the holder (requests go through the hive).",
@@ -813,6 +815,54 @@
    "first_listed": "2026-10-26 22:15 UTC"
   },
   {
+   "id": "J-844A8D",
+   "type": "find-missing-record",
+   "section": "research",
+   "branch": "section/research",
+   "title": "MR-0047: National Farm Survey farm record and map for Tŷ Mawr / Great House Farm, Llandough (1941–43)",
+   "inputs": [
+    "/research/missing-records/mr-0047/",
+    "why: The wartime National Farm Survey recorded every holding of five acres or more, with its occupier, its owner, whether the farmer was tenant or owner, and a map of the fields. For this farm it would show, three years after the 1938 sale, who was recorded as owner and on what tenure the occupier held — independently of the parties' own papers.",
+    "likely holder: The National Archives (MAF 32 farm records by parish; MAF 73 field maps); Welsh Government named by Defra"
+   ],
+   "definition_of_done": "The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.",
+   "note": "Research public catalogues and published sources only; never contact the holder (requests go through the hive).",
+   "status": "open",
+   "first_listed": "2026-10-27 06:42 UTC"
+  },
+  {
+   "id": "J-E052B6",
+   "type": "find-missing-record",
+   "section": "research",
+   "branch": "section/research",
+   "title": "MR-0048: 1910 Valuation Office field book entry for Great House, Llandough (sheet Glamorgan XLVII.6)",
+   "inputs": [
+    "/research/missing-records/mr-0048/",
+    "why: The 1910 land valuation recorded the owner, occupier, tenure and extent of every hereditament. The record map for this sheet has been identified (IR 131/4/96); the matching field book entry needs the assessment number from that map. It would show how the house and the adjoining land were held under Bute ownership before the 1916 tenancy.",
+    "likely holder: The National Archives (IR 131 record map; IR 58 field books)"
+   ],
+   "definition_of_done": "The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.",
+   "note": "Research public catalogues and published sources only; never contact the holder (requests go through the hive).",
+   "status": "open",
+   "first_listed": "2026-10-27 06:42 UTC"
+  },
+  {
+   "id": "J-587DB2",
+   "type": "find-missing-record",
+   "section": "research",
+   "branch": "section/research",
+   "title": "MR-0049: Itemised list of the RCHME microfiche section sent from Historic England to RCAHMW on 12 January 2018",
+   "inputs": [
+    "/research/missing-records/mr-0049/",
+    "why: Historic England records that its Welsh section of archaeological-report microfiche went to RCAHMW on 12 January 2018 but holds no itemised list. A transfer between record bodies normally carries a list or receipt at one end or the other; without it nobody can show whether any report on this site was in the batch.",
+    "likely holder: RCAHMW (receiving body); Historic England"
+   ],
+   "definition_of_done": "The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.",
+   "note": "Research public catalogues and published sources only; never contact the holder (requests go through the hive).",
+   "status": "open",
+   "first_listed": "2026-10-27 06:42 UTC"
+  },
+  {
    "id": "J-D91D74",
    "type": "chronology-gap",
    "section": "research",
@@ -955,19 +1005,6 @@
    "first_listed": "2026-10-26 22:15 UTC"
   },
   {
-   "id": "J-E88260",
-   "type": "discovery-file",
-   "section": "main (site-wide)",
-   "branch": "main (pull request labelled site-wide)",
-   "title": "Site has no sitemap.xml",
-   "inputs": [
-    "/sitemap.xml answers 404"
-   ],
-   "definition_of_done": "/sitemap.xml is generated by the build and served with status 200.",
-   "status": "open",
-   "first_listed": "2026-10-26 22:15 UTC"
-  },
-  {
    "id": "J-19549B",
    "type": "cite-uncited-text",
    "section": "thousand-cuts",
@@ -992,21 +1029,6 @@
     "passages shown in the small italic style (class unsub)"
    ],
    "definition_of_done": "Each passage is either cited to a catalogue record (EV-####) and restyled as normal text, or left in the small italic style with neutral wording. Nothing is deleted.",
-   "status": "open",
-   "first_listed": "2026-10-26 22:15 UTC"
-  },
-  {
-   "id": "J-5DEF91",
-   "type": "fix-broken-links",
-   "section": "wayback",
-   "branch": "the branch of that section",
-   "title": "2 broken internal link(s) on /wayback/",
-   "inputs": [
-    "/wayback/",
-    "/wayback/text/_treeview.json",
-    "/wayback/pdf/_treeview.json"
-   ],
-   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
    "status": "open",
    "first_listed": "2026-10-26 22:15 UTC"
   },
@@ -1155,32 +1177,34 @@
    "first_listed": "2026-10-26 22:15 UTC"
   },
   {
-   "id": "J-1A77EC",
+   "id": "J-E88260",
    "type": "discovery-file",
    "section": "main (site-wide)",
    "branch": "main (pull request labelled site-wide)",
-   "title": "Site has no robots.txt",
+   "title": "Site has no sitemap.xml",
    "inputs": [
-    "/robots.txt answers 404"
+    "/sitemap.xml answers 404"
    ],
-   "definition_of_done": "/robots.txt is generated by the build and served with status 200.",
+   "definition_of_done": "/sitemap.xml is generated by the build and served with status 200.",
    "status": "closed",
    "first_listed": "2026-10-26 22:15 UTC",
-   "closed": "2026-10-27 00:45 UTC"
+   "closed": "2026-10-27 06:42 UTC"
   },
   {
-   "id": "J-1D119E",
-   "type": "discovery-file",
-   "section": "main (site-wide)",
-   "branch": "main (pull request labelled site-wide)",
-   "title": "Site has no root llms.txt",
+   "id": "J-5DEF91",
+   "type": "fix-broken-links",
+   "section": "wayback",
+   "branch": "the branch of that section",
+   "title": "2 broken internal link(s) on /wayback/",
    "inputs": [
-    "/llms.txt answers 404"
+    "/wayback/",
+    "/wayback/text/_treeview.json",
+    "/wayback/pdf/_treeview.json"
    ],
-   "definition_of_done": "/llms.txt is generated by the build and served with status 200.",
+   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
    "status": "closed",
    "first_listed": "2026-10-26 22:15 UTC",
-   "closed": "2026-10-27 00:45 UTC"
+   "closed": "2026-10-27 06:42 UTC"
   }
  ]
 }

@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Web push notifications on a static heritage site: when it is worth it (2026) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Web push notifications on a static heritage site: when it is worth it (2026)"><link rel="alternate" type="text/markdown" href="web-push-notifications-soft-ask-ios-home-screen.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Web push notifications on a static heritage site: when it is worth it (2026)</h1>
+<p>Harvested 2026-10-27 06:41Z. Read today: Chrome for Developers (CrUX notification data; Jan 2026 push rate limits), WebKit blog (iOS web push), a practitioner's CrUX read (Erwin Hofman). Mozilla's 2019 blog answered 403 to a script; its figures are quoted via Hofman and the search snippet.</p>
+<h2>The numbers (primary where possible)</h2>
+<ul>
+<li>Firefox (Mozilla, Nov 2019): "about 99% of notification prompts go unaccepted, with 48% being actively denied". Mozilla then restricted prompts.</li>
+<li>Chrome 80 (2020) introduced a "quieter" permission UI for sites with low acceptance rates; later versions add quiet UI for abusive notification content.</li>
+<li>Chrome UX Report carries per-origin notification permission data (accept / deny / dismiss / ignore). Chrome's worked example (Google News origin): 82.3% accept, 4.8% deny, 5.0% ignore, 7.9% dismiss - a site people actively want alerts from. Not typical.</li>
+<li>A practitioner's CrUX read of a news site that prompted on arrival, desktop: Feb 2.47% accepted, 39.63% dismissed, 13.96% denied, 44.21% ignored; Mar 3.55% accepted (erwinhofman.com, read).</li>
+<li>Vendor claim (PushPushGo 2025, vendor data, not checked): about 6% average opt-in among unique visitors.</li>
+<li>Chrome, Jan 2026: Push API message rate limits for sites that send many notifications with little site engagement; Chrome also removes notification permission per user for sites the user has not interacted with (developer.chrome.com, read).</li>
+<li>iOS/iPadOS 16.4+ (WebKit, Feb 2023): web push works only for Home Screen web apps (a manifest with display standalone/fullscreen, added via Share &gt; Add to Home Screen). A normal Safari tab on an iPhone gets no push.</li>
+</ul>
+<h2>What the numbers mean</h2>
+<ol>
+<li>Prompting on arrival is what fails (2-4% accept, about half actively annoyed). The same prompt, asked after the person clicked "notify me", is what sites like Google News see (80%+ of those asked).</li>
+<li>A low accept rate is now penalised: quiet UI, then rate limits, then auto-revoked permission. Fewer, wanted notifications protect the channel.</li>
+<li>On iPhone, push requires the reader to install the site to the Home Screen first. For a mostly mobile, UK audience this cuts reach hard.</li>
+</ol>
+<h2>How to do it well (steps)</h2>
+<ol>
+<li>Never call Notification.requestPermission() on page load. Show your own soft button ("Notify me when the next chapter / door opens"), and request permission only after that click.</li>
+<li>Promise a cadence in the button text and keep it (for example one notification per new film scene or new e-book version).</li>
+<li>Each notification: one event, one link with UTM (utm_source=webpush, utm_medium=push, utm_campaign=<event>).</li>
+<li>Watch your origin's CrUX notification permission data (BigQuery / CrUX) and your own click-through; if accept falls or blocks rise, stop prompting.</li>
+<li>Pair with email: email remains the main owned channel; push is a nudge for people who already said yes.</li>
+<li>Free self-hosted route: a service worker plus the Push API with VAPID keys and a small sender (open-source libraries such as web-push for Node or pywebpush for Python). Hosted free tiers exist, but check data processing, UK GDPR terms and cookies/consent before adding any third-party script.</li>
+</ol>
+<h2>How we apply it to Cedwyn (PROPOSED, not built)</h2>
+<ul>
+<li>Verdict: low priority while traffic is small. Email signups (Mailchimp) and the WhatsApp/Instagram channels come first; push adds a second opt-in for the same few readers.</li>
+<li>If built, use exactly one trigger, the project lead's own flywheel: "Door N is open" for the daily Cedwyn movie scene, plus new e-book version releases. Button only on /movie/ and /ebooks/ ("Tell me when the next door opens"), never a prompt on arrival, never on research/evidence pages.</li>
+<li>iPhone readers need the Home Screen install; add a manifest only if the site is otherwise ready to behave as an app. Otherwise point iPhone readers to email or WhatsApp.</li>
+<li>Measure: UTM clicks per notification in GA4; stop if fewer than about 1 in 10 recipients click after 4 sends (our own rule of thumb, not checked).</li>
+<li>Tools: none installed (disk 1.6 GB free, under the 2 GB line). web-push (npm) / pywebpush are small, free, open-source options for later.</li>
+<li>Public text rules apply to notification text (never name the project lead; banned words; no outbound links).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developer.chrome.com (read 2026-10-27)</li>
+<li>developer.chrome.com (read, published 6 Jan 2026)</li>
+<li>blog.chromium.org (snippet)</li>
+<li>blog.mozilla.org (snippet; 403 to script)</li>
+<li>erwinhofman.com (read)</li>
+<li>webkit.org (read)</li>
+<li>pushpushgo.com (vendor snippet, not checked)</li>
+</ul><p class="raw">Raw Markdown: <a href="web-push-notifications-soft-ask-ios-home-screen.md">web-push-notifications-soft-ask-ios-home-screen.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

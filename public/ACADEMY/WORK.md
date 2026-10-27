@@ -1,8 +1,8 @@
 # Work board
 
-Step 3 of 3. **70 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-27 00:45 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
+Step 3 of 3. **71 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-27 06:42 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
 
-## Find a missing record (46)
+## Find a missing record (49)
 
 - **J-946080** · MR-0001: Instrument recording the 1667 acquisition of Tŷ Mawr by the Williams family  
   *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
@@ -188,6 +188,18 @@ Step 3 of 3. **70 open jobs**, regenerated every academy cycle from real gaps (l
   *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
   *Inputs:* /research/missing-records/mr-0046/; why: Referred to by another record in the research catalogue (entry EV-0136), so the document existed; the archive holds no copy.; likely holder: HM Land Registry (WA735527); record EV-0136
   *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
+- **J-844A8D** · MR-0047: National Farm Survey farm record and map for Tŷ Mawr / Great House Farm, Llandough (1941–43)  
+  *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
+  *Inputs:* /research/missing-records/mr-0047/; why: The wartime National Farm Survey recorded every holding of five acres or more, with its occupier, its owner, whether the farmer was tenant or owner, and a map of the fields. For this farm it would show, three years after the 1938 sale, who was recorded as owner and on what tenure the occupier held — independently of the parties' own papers.; likely holder: The National Archives (MAF 32 farm records by parish; MAF 73 field maps); Welsh Government named by Defra
+  *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
+- **J-E052B6** · MR-0048: 1910 Valuation Office field book entry for Great House, Llandough (sheet Glamorgan XLVII.6)  
+  *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
+  *Inputs:* /research/missing-records/mr-0048/; why: The 1910 land valuation recorded the owner, occupier, tenure and extent of every hereditament. The record map for this sheet has been identified (IR 131/4/96); the matching field book entry needs the assessment number from that map. It would show how the house and the adjoining land were held under Bute ownership before the 1916 tenancy.; likely holder: The National Archives (IR 131 record map; IR 58 field books)
+  *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
+- **J-587DB2** · MR-0049: Itemised list of the RCHME microfiche section sent from Historic England to RCAHMW on 12 January 2018  
+  *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
+  *Inputs:* /research/missing-records/mr-0049/; why: Historic England records that its Welsh section of archaeological-report microfiche went to RCAHMW on 12 January 2018 but holds no itemised list. A transfer between record bodies normally carries a list or receipt at one end or the other; without it nobody can show whether any report on this site was in the batch.; likely holder: RCAHMW (receiving body); Historic England
+  *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
 
 ## Close a chronology gap (10)
 
@@ -231,11 +243,8 @@ Step 3 of 3. **70 open jobs**, regenerated every academy cycle from real gaps (l
   *Section:* wales · *Done when:* Each passage is either cited to a catalogue record (EV-####) and restyled as normal text, or left in the small italic style with neutral wording. Nothing is deleted.
   *Inputs:* /wales/; passages shown in the small italic style (class unsub)
 
-## Fix broken internal links (5)
+## Fix broken internal links (4)
 
-- **J-5DEF91** · 2 broken internal link(s) on /wayback/  
-  *Section:* wayback · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
-  *Inputs:* /wayback/; /wayback/text/_treeview.json; /wayback/pdf/_treeview.json
 - **J-7B1B85** · 1 broken internal link(s) on /wiki/  
   *Section:* wiki · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
   *Inputs:* /wiki/; /wiki/wp-content/uploads/2026/09/wp-1790112812173.pdf
@@ -248,12 +257,6 @@ Step 3 of 3. **70 open jobs**, regenerated every academy cycle from real gaps (l
 - **J-4AFA9D** · 4 broken internal link(s) on /csscpsg/  
   *Section:* csscpsg · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
   *Inputs:* /csscpsg/; /wayback/pdf/foi/2026-07-30_hmlr_first-registration-schedule.pdf; /wiki/wp-content/uploads/2026/09/wp-1790112968592.pdf; /wiki/wp-content/uploads/2026/09/wp-1790112987191.pdf
-
-## Discovery files (site-wide) (1)
-
-- **J-E88260** · Site has no sitemap.xml  
-  *Section:* main (site-wide) · *Done when:* /sitemap.xml is generated by the build and served with status 200.
-  *Inputs:* /sitemap.xml answers 404
 
 ## E-book drafts (6)
 
@@ -278,5 +281,5 @@ Step 3 of 3. **70 open jobs**, regenerated every academy cycle from real gaps (l
 
 ## Recently closed (2)
 
-- J-1A77EC · Site has no robots.txt (closed 2026-10-27)
-- J-1D119E · Site has no root llms.txt (closed 2026-10-27)
+- J-E88260 · Site has no sitemap.xml (closed 2026-10-27)
+- J-5DEF91 · 2 broken internal link(s) on /wayback/ (closed 2026-10-27)

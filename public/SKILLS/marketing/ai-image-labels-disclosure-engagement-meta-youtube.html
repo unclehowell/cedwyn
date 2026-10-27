@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>AI-made images on social: labels, metadata and the engagement cost · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: AI-made images on social: labels, metadata and the engagement cost"><link rel="alternate" type="text/markdown" href="ai-image-labels-disclosure-engagement-meta-youtube.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>AI-made images on social: labels, metadata and the engagement cost</h1>
+<p>Harvested 2026-10-27. Relevant because every Cedwyn NFT/"Tŷ Mawr" piece, the restored-house set and the hologram scene are AI-rendered, and they auto-post to Facebook/Instagram daily (social.py) and to YouTube.</p>
+<h2>What the platforms do (their own words)</h2>
+<ul>
+<li><strong>Meta (Facebook, Instagram, Threads)</strong>: since 2024 adds an "AI info" label when it detects industry-standard AI indicators (C2PA / IPTC metadata) or when the poster self-discloses (about.fb.com, label renamed 1 Jul 2024). From Sep 2024: content only <em>edited</em> with AI gets the label moved into the post menu; content detected as <em>generated</em> by AI keeps the visible label, which states whether it came from industry signals or self-disclosure. Instagram separately states unlabeled AI-generated <em>profiles</em> it detects "may see limits to their profile's reach" (creators.instagram.com).</li>
+<li><strong>YouTube</strong> (Help 14328491): disclosure REQUIRED for realistic AI content - makes a real person appear to say/do something, alters footage of a real event or place, generates a realistic scene that did not occur, or AI music that is the focus. NOT required for clearly non-realistic content (animation, fantasy) or minor aesthetic edits. Set "AI use" in Studio at upload; YouTube then labels it.</li>
+<li><strong>EU AI Act Art. 50</strong> (in force 2 Aug 2026): deployers must disclose deepfakes; for "evidently artistic, creative, satirical, fictional" work the duty shrinks to disclosing it "in an appropriate manner that does not hamper the display or enjoyment of the work". Cedwyn is UK-based but reaches EU readers; a small caption line meets this cheaply.</li>
+</ul>
+<h2>What a label costs (primary research)</h2>
+<ul>
+<li>Copenhagen Business School (Seeger et al., Electronic Markets 2026; two experiments, ~700 participants): labels lowered engagement vs "human-created". Emotional posts: AI-enhanced about -24 points, AI-generated about -46 points of emotional engagement. Rational/informational posts: -13 and -27 points. Labelling <em>after</em> viewing softened the AI-enhanced penalty by ~13 points; for fully AI-generated content timing made no difference.</li>
+<li>Read: the penalty is biggest when the post pretends to be an emotional real moment; smaller when the post is plainly informational or plainly art.</li>
+</ul>
+<h2>Playbook</h2>
+<ol>
+<li>Never let an AI image pass as a photograph of a real past event. Frame it as what it is: an artist's reconstruction / restoration / concept. This keeps us outside YouTube's mandatory realistic category for clearly illustrative pieces and avoids the misleading-photo trap.</li>
+<li>Self-disclose consistently and briefly: Instagram/Facebook "AI label" toggle when posting realistic-looking renders; caption line "Artist's reconstruction (AI-assisted)". A self-disclosed label reads better than a detected one and protects reach on Instagram.</li>
+<li>YouTube: tick "AI use" for any realistic AI scene of the real farm or real events (the film, the hologram estate scene); not needed for title cards, stylised art or Ken Burns of real archive photos.</li>
+<li>Pair art with evidence: lead with the rational hook (the date, the record, the place) and let the image illustrate it; per the CBS data, informational framing roughly halves the label penalty.</li>
+<li>Metadata: gpt-image/other generators may embed C2PA; re-saving with PIL (signature overlay, resize) usually strips it, so Meta may NOT auto-label - which makes self-disclosure the honest default rather than relying on detection. Check with <code>exiftool -a -G1 file</code> if installed (not installed here; disk tight).</li>
+<li>Never use "photo of" / "rare footage" wording for renders; never show a likeness of real family members (existing house rule).</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>social.py posts of NFT/restored-house art: add the caption suffix "Artist's reconstruction (AI-assisted)" and set Meta's AI label flag where the API exposes it; proposal for the auto-social owner, not applied by this run.</li>
+<li>/nft-art/ and Patagonia "(coming soon)" gallery: one small line under the gallery, "Reconstructions made with AI-assisted tools from period records", satisfying Art. 50's artistic-work duty without hampering display. Wording must pass the editorial banned-word list (it does).</li>
+<li>Movie / Mary Williams short / hologram scene on YouTube: tick "AI use" (realistic scenes of a real place and real events). The private short stays private regardless.</li>
+<li>Captions lead with the record ("1955: the possession order...") and use the image as illustration, to stay in the smaller "rational content" penalty band.</li>
+<li>Measure: compare reach/saves of labelled vs unlabelled-era posts in the Sunday growth report (small samples: directional only).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>about.fb.com (updates 1 Jul and 12 Sep 2024; read 27 Oct 2026)</li>
+<li>creators.instagram.com</li>
+<li>support.google.com (read 27 Oct 2026)</li>
+<li>ai-act-service-desk.ec.europa.eu (read 27 Oct 2026)</li>
+<li>cbs.dk ; paper link.springer.com</li>
+</ul><p class="raw">Raw Markdown: <a href="ai-image-labels-disclosure-engagement-meta-youtube.md">ai-image-labels-disclosure-engagement-meta-youtube.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

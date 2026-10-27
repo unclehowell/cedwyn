@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Skill: Email holdout (incrementality) tests: did the email cause the sale? And when a list is too small to ask (2026) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Skill: Email holdout (incrementality) tests: did the email cause the sale? And when a list is too small to ask (2026)"><link rel="alternate" type="text/markdown" href="email-holdout-incrementality-test-small-list-gate.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Skill: Email holdout (incrementality) tests: did the email cause the sale? And when a list is too small to ask (2026)</h1>
+<p>Written 27 Oct 2026 (skills harvest). Topic: proving a welcome or abandoned-checkout journey earns sales, rather than taking credit for buyers who would have bought anyway.</p>
+<h2>What the evidence shows</h2>
+<ul>
+<li><strong>Attribution isn't causation.</strong> Mailchimp, Klaviyo and Stripe all credit a sale to an email if the buyer opened or clicked within a window. A holdout keeps a random slice from getting the email at all. The gap in purchase rate between the emailed group and the held-out group is what the email caused.</li>
+<li><strong>Klaviyo's own help centre</strong> (Global holdout groups, read 27 Oct 2026):</li>
+<li>Its account-wide holdout requires <strong>at least 400,000 profiles</strong>.</li>
+<li>It recommends <strong>about 5%</strong> of marketable profiles, run for <strong>3 months</strong>.</li>
+<li>The percentage can't be changed once set.</li>
+<li><strong>Braze</strong> (Global Control Groups guide, read):</li>
+<li>The control group should be <strong>no smaller than 1,000 users</strong>. The bigger the audience, the smaller the percentage can be.</li>
+<li>Their worked example: 4% of users, about 40K, assigned on Save.</li>
+<li>Their 2021 survey: 88% of marketing leaders rate their engagement practice good or excellent, yet 74% worry the metrics don't translate to business outcomes. That gap is the reason holdouts exist (vendor survey).</li>
+<li><strong>Customer.io docs</strong> (Holdout tests, read): in a workflow you set the percentage to hold back. Held-out people get a "delivery" to an internal trap instead, so conversions can be compared like for like.</li>
+<li><strong>Flow-level recipe</strong> (causalityengine.ai, a vendor guide, read; its numbers are invented for illustration):</li>
+<li>Put a random-sample split right under the trigger of ONE steady flow.</li>
+<li>Leave the control path empty. Hold out about 1 in 10.</li>
+<li>Run past the slow buyers (weeks), then compare purchase rates.</li>
+<li>Building it takes about an hour; the waiting is "the part people skip".</li>
+<li><strong>Mailchimp:</strong> its Customer Journey builder has a random split path, per a hands-on review (ventureharbour.com 2026). Not checked against Mailchimp's own docs.</li>
+<li><strong>Our arithmetic</strong> (ab_stats.py samplesize, alpha .05, power .8):</li>
+<li>detecting a purchase rate going from 2% to 4% needs <strong>~1,141 people per arm</strong>;</li>
+<li>5% to 7.5% needs ~1,471 per arm.</li>
+<li>With a 90/10 split, the 10% arm sets the pace, so at least ~11,000 journey entrants are needed before a 2%-&gt;4% effect can show. A 50/50 split needs ~2,300, but then half the new subscribers get no welcome, which costs more than it teaches on a small list.</li>
+</ul>
+<h2>How-to</h2>
+<ol>
+<li><strong>Gate first.</strong> Run a holdout only when a journey gets <strong>at least 1,000 entrants a month</strong> (Braze's floor for the control) AND has at least 20 purchases a month to measure. Until then, measure with JTBD questions, HDYHAU ("how did you hear about us") and first-buyer interviews (already in the index).</li>
+<li>Pick ONE journey with steady entries (the welcome or an abandoned-checkout journey). Don't test one you plan to rewrite this quarter.</li>
+<li>Put a random split directly under the trigger: control = 10% (or 20% if volume is modest) with NO emails, treatment = the existing emails unchanged.</li>
+<li>Before starting, fix in the test log: the metric (purchase within 30 days of entry, from Stripe), the stop date or size (from <code>ab_stats.py samplesize</code>), and the split.</li>
+<li>Check the split with <code>tools/srm_check.py &lt;treatment&gt; &lt;control&gt; --ratio 90,10</code> weekly. If there's an SRM, stop and fix (see sample-ratio-mismatch-srm-check-ab-tests.md).</li>
+<li>At the stop size, compare purchase rates with <code>ab_stats.py compare</code>.
+   - <strong>Incremental lift</strong> = (treatment rate − control rate) ÷ control rate.
+   - <strong>Incremental sales</strong> = the rate gap × treatment entrants.
+   - Report it beside what Mailchimp attributes to the journey. The gap between the two is the over-credit.</li>
+<li>Keep the people held out out of that journey only. Transactional mail (receipts, download links) always goes to everyone.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Today: don't run one.</strong></li>
+<li>Mailchimp had 1 member at W43 (growth-report weekly.csv, 25 Oct 2026), with 0 Stripe and 0 Gumroad sales.</li>
+<li>A holdout would hold back the very welcome emails that are meant to make the first sale.</li>
+<li>Logged as a gate, not a task.</li>
+<li><strong>Trigger to revisit:</strong> the Sunday growth report shows the welcome journey taking 1,000+ entrants a month, or the abandoned-checkout recovery (stripe-checkout-abandonment-recovery.md) logging 20+ purchases a month. Then propose a 10% holdout on that one journey for the project lead's GO, with the plan from steps 2–7.</li>
+<li><strong>Until then:</strong> fill the attribution gap cheaply with the HDYHAU field on the thank-you page, plus utm_content per email link (utm-discipline-ga4-funnel.md). Treat Mailchimp's "revenue from this journey" as an upper bound, never as proof.</li>
+<li><strong>Versioned releases:</strong> when v0.0.3 launches, a "release email vs no release email" holdout is tempting. It's the same gate: below 1,000 notify-me subscribers, everyone gets the release email.</li>
+<li><strong>Status:</strong> proposal only. Nothing has changed on Cedwyn or Mailchimp, and nothing was sent.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>help.klaviyo.com (400,000 profiles, ~5%, 3 months, fixed % — read 27 Oct 2026)</li>
+<li>braze.com (&gt;=1,000 control floor, 4% example, 88%/74% survey — read)</li>
+<li>braze.com (setup)</li>
+<li>docs.customer.io (holdout trap deliveries — read)</li>
+<li>causalityengine.ai (flow split recipe; vendor, illustrative numbers — read)</li>
+<li>ventureharbour.com (Mailchimp random split path; snippet, not checked)</li>
+<li>Tools: tools/ab_stats.py samplesize (per-arm sizes above), tools/srm_check.py</li>
+</ul><p class="raw">Raw Markdown: <a href="email-holdout-incrementality-test-small-list-gate.md">email-holdout-incrementality-test-small-list-gate.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

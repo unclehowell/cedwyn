@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Weekly blog digest by email: a Mailchimp RSS automation fed by /blog/rss.xml · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Weekly blog digest by email: a Mailchimp RSS automation fed by /blog/rss.xml"><link rel="alternate" type="text/markdown" href="mailchimp-rss-weekly-blog-digest.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Weekly blog digest by email: a Mailchimp RSS automation fed by /blog/rss.xml</h1>
+<p>Checked 27 Oct 2026. Email + content. Owner: whoever runs Mailchimp (growth/funnel workers).</p>
+<h2>Facts (sources read)</h2>
+<ul>
+<li><strong>Mailchimp help, "Share Your Blog Posts with Mailchimp"</strong> (read 27 Oct 2026):</li>
+<li>Automations &gt; Flow templates &gt; Nurture leads &gt; <strong>Share blog updates via RSS</strong>. Choose a feed URL, a schedule (<strong>daily, weekly or monthly</strong>) and a send time.</li>
+<li>It <strong>sends at most once per day</strong>. Posts must be published <strong>at least 3 hours before</strong> the send time.</li>
+<li>It <strong>sends nothing if there is no new post</strong>. The first send includes the last 24 h (daily), 7 days (weekly) or 30 days (monthly). After that, each send includes everything since the last one.</li>
+<li>Content comes from RSS merge tags (<code>*|RSSITEMS:|*</code>, <code>*|RSSITEM:TITLE|*</code>, <code>*|RSSITEM:URL|*</code>, <code>*|RSSITEM:IMAGE|*</code>, <code>*|RSSITEM:CONTENT|*</code>). If the tags are missing, the email goes out empty. To change formatting, change the feed, not the email builder. <code>*|RSSITEM:TITLE|*</code> works in the subject line, but test it first.</li>
+<li>Each send gets its own report under Analytics &gt; Reports.</li>
+<li>Plan availability: one Reddit tester (r/rss, 2026, snippet) states RSS is on all plans. Our own Mailchimp free-plan skill states flows aren't on Free. <strong>Not checked for this account.</strong> Read it in the Automations screen before relying on it.</li>
+<li><strong>MailerLite e-commerce email stats (read):</strong> across their customers' campaign types, <strong>RSS-to-email had the highest engagement: 47.86% opens and 6.53% clicks</strong>, against 40.83% / 5.28% for regular campaigns. Their case study: KC Tool's daily "Tool of the Day" RSS emails "regularly sell out" (testimony, no numbers). Caveats:</li>
+<li>Opens are inflated by Apple Mail privacy since 2021. Judge on clicks.</li>
+<li>People on an RSS list chose that stream, so they're a self-selected, keener group.</li>
+</ul>
+<h2>How to run it well</h2>
+<ol>
+<li><strong>Weekly, not daily</strong>, unless readers ask for daily. A daily blog plus a daily email means an email every day. Pick one fixed slot, e.g. <strong>Sunday 09:00 Europe/London</strong>. Mailchimp skips a week with no posts.</li>
+<li><strong>Its own stream:</strong> use a tag or group such as "Blog digest", ticked at signup or offered in the welcome email. Don't put every subscriber on it by default. Separate streams keep unsubscribes and complaints apart (Gmail's per-sender unsubscribe list).</li>
+<li><strong>Template:</strong> a short intro line that works as Gmail's AI summary, then for each item the title (linked), one sentence, and an image only if it isn't the generic site image. Add one fixed footer block: "E-books from the records" -&gt; /ebooks/ with a UTM link. Subject: <code>This week at Cedwyn: *|RSSITEM:TITLE|*</code> (after a test send).</li>
+<li><strong>UTM:</strong> Mailchimp's own Google Analytics tracking box, or <code>?utm_source=mailchimp&amp;utm_medium=email&amp;utm_campaign=blog-digest</code> built into the feed's item links.</li>
+<li><strong>Feed hygiene:</strong> a real excerpt in <code>&lt;description&gt;</code>, a distinct image per item, absolute URLs, and no private or draft items. The feed must never carry anything the editorial rules ban, because Mailchimp sends it unseen.</li>
+<li><strong>Measure per send:</strong> unique clicks, clicks to /ebooks/, unique unsubscribes. If unsubscribes run higher than clicks for 3 sends in a row, go to monthly.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Feed checked live 27 Oct 2026 05:00Z: <code>cedwyn.bucklerfamily.estate returns 200, RSS 2.0 with</code>content:encoded<code>and</code>media:content<code>, and has 10 items. Atom (</code>/blog/atom.xml`) and JSON Feed also return 200. <strong>Use /blog/rss.xml for Mailchimp</strong> (RSS 2.0, image tags present).</li>
+<li>Gaps: several items use the generic <code>/maps/img/og.jpg</code> as their image, and "Cedwyn Film" has a 45-character description. Suppress the generic image in the template, or fix it in the blog worker (PROPOSED to the blog/feeds owner).</li>
+<li>The list has about 1 subscriber now (sales-fix run 14). The point is a <strong>set-and-forget habit</strong>: every new subscriber starts getting the week's posts plus the /ebooks/ footer with no work from us. The email-ingest/blog workers already publish daily.</li>
+<li><strong>PROPOSED, not done:</strong> create the RSS automation in Mailchimp as a <em>draft</em>, weekly on Sundays at 09:00, audience = tag "Blog digest", footer = /ebooks/ UTM link. It needs one test send to an internal address before Start. <strong>Starting it is an outward, recurring send to subscribers, so it waits for the project lead's GO.</strong> The existing allowance covers one-off campaigns to the existing list, not a new recurring stream.</li>
+<li>Editorial rules apply to the template text. The weekly growth report adds a row: digest sends, unique clicks, /ebooks/ clicks, unsubscribes.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>mailchimp.com (Mailchimp help, read 27 Oct 2026)</li>
+<li>mailerlite.com (MailerLite, read)</li>
+<li>reddit.com (snippet only, not checked)</li>
+<li>related skills: mailchimp-free-plan-2026-limits-gates.md, gmail-manage-subscriptions-gemini-summaries-metrics.md, feeds-json-feed-images-conditional-get.md</li>
+</ul><p class="raw">Raw Markdown: <a href="mailchimp-rss-weekly-blog-digest.md">mailchimp-rss-weekly-blog-digest.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

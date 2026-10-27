@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Release notes for versioned e-books and art (what changed, why it is worth the next price) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Release notes for versioned e-books and art (what changed, why it is worth the next price)"><link rel="alternate" type="text/markdown" href="release-notes-changelog-versioned-ebooks-art.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Release notes for versioned e-books and art (what changed, why it is worth the next price)</h1>
+<p>Harvested 2026-10-27. Companion to versioned-release-rising-price-ladder.md: the project lead set whole-release semver today (v0.0.1 free, each release +£4.99). A rising price per version only sells if each version visibly states what it added.</p>
+<h2>Practitioner practice</h2>
+<ul>
+<li><strong>Leanpub</strong> (help centre, 2022-2023; blog 22 Apr 2026): on each publish an author can tick "Notify your readers" and write Release Notes; readers opt in and can opt out. Leanpub's own guidance: "Most readers love this feature, especially for in-progress books", but use it ONLY for significant new content - not typos, never product offers. Its new Release History page (Apr 2026) keeps every version's date, release notes, reader count at the time and stated completeness.</li>
+<li><strong>Keep a Changelog 1.1.0</strong> (the convention most software projects follow): for humans, not machines; an entry for every version; latest first; date on each; linkable versions; say you follow Semantic Versioning; group changes as Added / Changed / Deprecated / Removed / Fixed / Security; keep an "Unreleased" section on top so the next release's notes build up as you work.</li>
+<li><strong>Steam (Valve's Steamworks docs)</strong>: a "Major Update" event shows on the store page, community hub and Library, and Update Visibility Rounds show the update to people who own OR wishlist the game - i.e. the update itself is the marketing moment for both buyers and waiters. Patches use a quieter "Small update" type. Same split works for us: major = email; patch = page only.</li>
+<li>Numbers: no measured uplift figure for release notes found this run; the case rests on the Leanpub/Steam mechanics. Don't quote a percentage.</li>
+</ul>
+<h2>How to write one (template)</h2>
+<pre><code>v0.0.3 - 14 Nov 2026 - £9.98            (latest first, date, price)
+Added:   Ch. 7 &quot;The 1955 order&quot; (12 pages, 9 new record images)
+Changed: Timeline corrected for 19 Sep 1974 (leave to enforce)
+Fixed:   34 typos; broken figure links in Ch. 3
+Why it matters: one sentence on what a reader now knows that v0.0.2 did not.
+Free version (v0.0.1 2026) remains available.
+</code></pre>
+<p>Rules: concrete counts (pages, records, images); one "why it matters" line; no hype words; patch-level fixes roll into the next minor note, not their own email.</p>
+<h2>Semver meaning for books/art (pick and publish it)</h2>
+<ul>
+<li>PATCH (0.0.x): corrections, typos, image fixes - no email.</li>
+<li>MINOR (0.x.0): new chapter / new record set / restored image set - email to the version list.</li>
+<li>MAJOR (x.0.0): restructure or new edition.
+(the project lead's current ladder bumps PATCH per release; if each release adds a chapter, the publicly stated meaning should say so. Flag for the project lead, not changed here.)</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ol>
+<li>Each e-book page: a "What's new in each version" block under the version drop-down, newest first, built from one <code>releases.json</code> per book (version, date, price, added/changed/fixed, why). Same file can drive the drop-down, so price and notes never disagree.</li>
+<li>Keep an "Unreleased" list per book in the repo; the bizdev/programme-office runs append to it as chapters land; publishing moves it under the new version.</li>
+<li>Email only on MINOR-or-bigger releases, to the Mailchimp tag for that book (buyers and notify-me signups), with the release note as the body and the free v0.0.1 link kept in the footer; never for typos.</li>
+<li>NFTs: each piece's version history (v0.0.1 original, v0.0.2 restored without flowers on buildings) shown as a two-line note under the "Coming soon" button; good "before/after" content for social.</li>
+<li>Atom feed (rss-atom-feed skill): one entry per release, so feed readers and WebSub carry each version.</li>
+<li>Wording passes the editorial rules (no banned words, never name the project lead).</li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li>help.leanpub.com (read 27 Oct 2026)</li>
+<li>help.leanpub.com (in-progress book release notes; read 27 Oct 2026)</li>
+<li>leanpub.com (22 Apr 2026)</li>
+<li>keepachangelog.com (read 27 Oct 2026)</li>
+<li>partner.steamgames.com ; partner.steamgames.com (search snippets; pages need sign-in, not read in full)</li>
+</ul><p class="raw">Raw Markdown: <a href="release-notes-changelog-versioned-ebooks-art.md">release-notes-changelog-versioned-ebooks-art.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
