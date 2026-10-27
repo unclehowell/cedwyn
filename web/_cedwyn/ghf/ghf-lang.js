@@ -2,7 +2,7 @@
  * Dependency-free. Translates interface text only (nav, headings, buttons, labels) from a static
  * per-site dictionary; long evidence and legal text stays in its original English, which is the
  * authoritative record. Choice is remembered (?lang=, localStorage, and a .bucklerfamily.estate cookie)
- * and sets <html lang>.  Source: bucklerfamily.estate/ghf-lang/  ·  v1.0.4 (22 Oct 2026; loads basecamp.js?v=2.1.4c)
+ * and sets <html lang>.  Source: bucklerfamily.estate/ghf-lang/  ·  v1.0.5 (27 Oct 2026: no translation notice; the menu opens downward)
  */
 (function () {
   "use strict";
@@ -12,14 +12,6 @@
   var SHORT = { en: "EN", cy: "CY", es: "ES" };
   var UI = {
     label: { en: "Language", cy: "Iaith", es: "Idioma" },
-    note: {
-      cy: "Cyfieithiad o’r rhyngwyneb yw hwn; y testun Saesneg gwreiddiol yw’r cofnod awdurdodol.",
-      es: "Traducción de la interfaz; el texto original en inglés es el registro autorizado."
-    },
-    tr: {
-      cy: "Cyfieithu’r dudalen (peiriant, gwefan allanol)",
-      es: "Traducir la página (automático, sitio externo)"
-    },
     close: { cy: "Cau", es: "Cerrar", en: "Close" }
   };
   var me = document.currentScript || (function () {
@@ -204,17 +196,15 @@
   var CSS = ".ghf-lang{position:relative;display:inline-flex;align-items:center;font:500 13px/1.2 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;z-index:2147482000;flex:0 0 auto;letter-spacing:0;text-transform:none}" +
     ".ghf-lang.ghf-fixed{position:fixed}" +
     ".ghf-lang-btn{display:inline-flex;align-items:center;gap:5px;min-height:32px;padding:5px 10px;border-radius:999px;border:1px solid var(--ghf-lang-bd,rgba(255,255,255,.35));background:var(--ghf-lang-bg,rgba(12,14,18,.82));color:var(--ghf-lang-fg,#fff);font:inherit;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);white-space:nowrap;box-shadow:0 1px 6px rgba(0,0,0,.18)}" +
-    ".ghf-lang-btn:hover{filter:brightness(1.12)}.ghf-lang-btn:focus-visible,.ghf-lang-opt:focus-visible,.ghf-lang-note a:focus-visible,.ghf-lang-note button:focus-visible{outline:2px solid #f5c542;outline-offset:2px}" +
+    ".ghf-lang-btn:hover{filter:brightness(1.12)}.ghf-lang-btn:focus-visible,.ghf-lang-opt:focus-visible{outline:2px solid #f5c542;outline-offset:2px}" +
     ".ghf-lang-btn svg{width:15px;height:15px;flex:0 0 auto}.ghf-lang-caret{font-size:10px;opacity:.8}" +
-    ".ghf-lang-menu{position:absolute;top:calc(100% + 6px);right:0;min-width:150px;margin:0;padding:5px;list-style:none;border-radius:12px;background:var(--ghf-lang-menu,#111418);color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 30px rgba(0,0,0,.35);display:none}" +
-    ".ghf-lang.ghf-up .ghf-lang-menu{top:auto;bottom:calc(100% + 6px)}.ghf-lang.ghf-left .ghf-lang-menu{right:auto;left:0}" +
+    ".ghf-lang-menu{position:absolute;top:calc(100% + 6px);right:0;min-width:150px;margin:0;padding:5px;list-style:none;z-index:2147483000;border-radius:12px;background:var(--ghf-lang-menu,#111418);color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 30px rgba(0,0,0,.35);display:none}" +
+    ".ghf-lang.ghf-left .ghf-lang-menu{right:auto;left:0}.ghf-v2-loc.ghf-lang-row-open{overflow:visible!important}" +   /* 27 Oct: the menu always opens downward, in front of the header */
     ".ghf-lang.ghf-open .ghf-lang-menu{display:block}" +
     ".ghf-lang-opt{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;padding:9px 10px;border:0;border-radius:8px;background:transparent;color:inherit;font:inherit;font-size:14px;text-align:left;cursor:pointer}" +
     ".ghf-lang-opt:hover,.ghf-lang-opt[aria-selected=true]{background:rgba(255,255,255,.1)}.ghf-lang-opt small{opacity:.6;font-size:11px}" +
     ".ghf-lang-opt[aria-selected=true]::after{content:'\\2713';color:#f5c542}" +
-    ".ghf-lang-note{position:fixed;left:8px;right:8px;bottom:8px;z-index:2147481999;display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;max-width:760px;margin:0 auto;padding:9px 38px 9px 12px;border-radius:12px;background:rgba(12,14,18,.93);color:#fff;font:400 12.5px/1.4 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.3)}" +
-    ".ghf-lang-note a{color:#f5c542;text-decoration:underline}.ghf-lang-note button{position:absolute;top:4px;right:4px;width:30px;height:30px;border:0;background:transparent;color:#fff;font-size:18px;cursor:pointer;border-radius:8px}" +
-    "@media print{.ghf-lang,.ghf-lang-note{display:none!important}}";
+    "@media print{.ghf-lang{display:none!important}}";
   var GLOBE = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.6 3.9 5.6 3.9 9.2s-1.3 6.6-3.9 9.2c-2.6-2.6-3.9-5.6-3.9-9.2S9.4 5.4 12 2.8z"/></svg>';
   var root, btn, menu;
   function build() {
@@ -259,7 +249,6 @@
       var f = conf.fixed || { top: "10px", right: "10px" };
       root.classList.add("ghf-fixed");
       for (var k in f) root.style[k] = f[k];
-      if (f.bottom) root.classList.add("ghf-up");
       if (f.left) root.classList.add("ghf-left");
       document.body.appendChild(root);
     }
@@ -267,11 +256,16 @@
   }
   function open(focus) {
     root.classList.add("ghf-open"); btn.setAttribute("aria-expanded", "true");
+    var row = root.closest && root.closest(".ghf-v2-loc"); if (row) row.classList.add("ghf-lang-row-open");
+    if (root.classList.contains("ghf-fixed")) { var over = menu.getBoundingClientRect().bottom - ((window.innerHeight || 600) - 8); if (over > 0) root.style.transform = "translateY(" + (-Math.ceil(over)) + "px)"; }
     var r = root.getBoundingClientRect();
     if (r.left < 170 && !root.classList.contains("ghf-left") && r.right < 170) root.classList.add("ghf-left");
     if (focus) { var s = menu.querySelector("[aria-selected=true]"); if (s) s.focus(); }
   }
-  function close() { if (!root) return; root.classList.remove("ghf-open"); btn.setAttribute("aria-expanded", "false"); }
+  function close() {
+    if (!root) return; root.classList.remove("ghf-open"); btn.setAttribute("aria-expanded", "false"); root.style.transform = "";
+    var row = root.closest && root.closest(".ghf-v2-loc"); if (row) row.classList.remove("ghf-lang-row-open");
+  }
   function paint() {
     if (!root) return;
     root.querySelector(".ghf-lang-cur").textContent = SHORT[cur];
@@ -279,18 +273,8 @@
     btn.title = UI.label[cur];
     [].forEach.call(menu.querySelectorAll(".ghf-lang-opt"), function (b) { b.setAttribute("aria-selected", b.getAttribute("data-lang") === cur ? "true" : "false"); });
   }
-  function note() {
-    var old = document.querySelector(".ghf-lang-note"); if (old) old.parentNode.removeChild(old);
-    if (cur === "en" || conf.note === false) return;
-    try { if (sessionStorage.getItem("ghf_lang_note_" + cur) === "x") return; } catch (e) {}
-    var d = document.createElement("div"); d.className = "ghf-lang-note"; d.setAttribute("role", "note"); d.setAttribute("data-no-translate", ""); d.setAttribute("lang", cur);
-    var u = "#";
-    d.innerHTML = "<span></span><a hidden></a><button type=\"button\">&times;</button>";
-    d.firstChild.textContent = UI.note[cur];
-    d.childNodes[1].textContent = UI.tr[cur]; d.childNodes[1].href = u;
-    d.lastChild.setAttribute("aria-label", UI.close[cur]);
-    d.lastChild.addEventListener("click", function () { try { sessionStorage.setItem("ghf_lang_note_" + cur, "x"); } catch (e) {} d.parentNode.removeChild(d); });
-    document.body.appendChild(d);
+  function note() { // 27 Oct 2026: the translation notice is gone for good; clear any copy an older script left on the page
+    var old = document.querySelectorAll(".ghf-lang-note"); for (var i = 0; i < old.length; i++) old[i].parentNode.removeChild(old[i]);
   }
   function set(l, quiet) {
     if (LANGS.indexOf(l) < 0) l = "en";
@@ -335,14 +319,14 @@
   }
   window.GHFLang = {
     set: function (l) { set(l); }, get: function () { return cur; },
-    open: function () { open(false); }, close: close, site: SITE, version: "1.0.3"
+    open: function () { open(false); }, close: close, site: SITE, version: "1.0.5"
   };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", load); else load();
   // Base camp: every GHF site gets a "Back to base camp" link (basecamp.js, same folder; 20 Oct 2026, Sion's Tab agent).
   try {
     if (!window.GHFBasecamp && !document.querySelector('script[src*="basecamp.js"]')) {
       var bc = document.createElement("script");
-      bc.src = base + "basecamp.js?v=2.1.14"; bc.async = true;
+      bc.src = base + "basecamp.js?v=2.1.15"; bc.async = true;
       (document.head || document.documentElement).appendChild(bc);
     }
   } catch (e) {}
