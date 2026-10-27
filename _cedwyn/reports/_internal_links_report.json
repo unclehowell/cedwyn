@@ -1,17 +1,17 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8564,
+  "pages_scanned": 8582,
   "references_checked": {
-    "resource": 177084,
-    "nav": 325575
+    "resource": 177289,
+    "nav": 335310
   },
   "database_backed_paths": 7059,
-  "unique_missing_destinations": 4791,
-  "missing_references": 31538,
-  "missing_navigation_references": 15882,
-  "missing_resource_references": 15656,
-  "unique_broken_fragments": 1815,
-  "broken_fragment_references": 3146,
+  "unique_missing_destinations": 4792,
+  "missing_references": 31609,
+  "missing_navigation_references": 15917,
+  "missing_resource_references": 15692,
+  "unique_broken_fragments": 1810,
+  "broken_fragment_references": 3141,
   "form_or_endpoint_actions_not_checked": {
     "form[action]": 2528
   },
@@ -19,7 +19,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6563,
+      "references": 6581,
       "examples": [
         {
           "from": "/qa/",
@@ -46,7 +46,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6563,
+      "references": 6581,
       "examples": [
         {
           "from": "/qa/",
@@ -526,6 +526,33 @@
           "from": "/qa/static/bpvsbuckler/content/graph/raw/catalogue/vale-of-glamorgan-council-email-correspondence-catalogue-part-2.html",
           "attribute": "a[href]",
           "url": "/qa/records-access-chronology/foi-reply-register/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/research/>*.html",
+      "references": 35,
+      "examples": [
+        {
+          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0043-wgr-bp-pension-trust-conveyance/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0032-1955-order-14-possession-order/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0066-hmlr-wa240304-item-10-register-1983/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
         }
       ]
     },
@@ -4036,33 +4063,6 @@
           "from": "/docs/ghf_wiki/ir_cardiffcitycouncilforensicinstitutionalr/latest/html/en/",
           "attribute": "a[href]",
           "url": "1-record.html#current-finding"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/docs/ghf_wiki/ir_europeancommissionhumanrightsstrasbourgf/latest/html/en/1-record.html",
-      "references": 7,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/ir_europeancommissionhumanrightsstrasbourgf/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_europeancommissionhumanrightsstrasbourgf/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_europeancommissionhumanrightsstrasbourgf/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#forensic-assessment-european-commission-of-human-rights-strasbourg"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_europeancommissionhumanrightsstrasbourgf/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#institutional-appearance-timeline-linked-source-index"
         }
       ]
     }

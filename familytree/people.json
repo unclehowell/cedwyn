@@ -2,7 +2,7 @@
  "name": "The Williams–Buckler family tree",
  "segment": "familytree",
  "version": "0.1.0",
- "synced_utc": "2026-10-27T10:42:45Z",
+ "synced_utc": "2026-10-27T11:27:58Z",
  "source": "Cedwyn core catalogue (kind=person) + segment overlay",
  "api": "/api/catalogue?kind=person",
  "living_rule": "no death record and born within the last 110 years: name and birth year only",
@@ -11,10 +11,36 @@
    "v": "0.1.0",
    "date": "27 October 2026",
    "price": "Free",
-   "change": "First edition: 12 people and 4 marked gaps over seven generations, each link with its record."
+   "change": "First edition: 13 people and 4 marked gaps over seven generations, each link with its record."
   }
  ],
  "people": [
+  {
+   "gen": 1,
+   "order": 0,
+   "col": 0,
+   "born": null,
+   "died": null,
+   "dates": "dates not given",
+   "place": "Great House Farm, Llandough",
+   "side": "wales",
+   "summary": "A local history book’s section on Llandough (Penarth) describes Great House Farm as “the home of Mr John Williams’ family for generations”. The book gives no dates, so which John Williams it means, one of those in this tree or another, is not yet found.",
+   "parents": [],
+   "sources": [
+    {
+     "ref": null,
+     "label": "Local history book, Llandough (Penarth) section, pp. 64–65, title not yet identified: “It was the home of Mr John Williams’ family for generations”; the same page records that in 1974 1,700 people signed a petition for the preservation of the farm"
+    }
+   ],
+   "gaps": [
+    "Which John Williams the book means: not yet found",
+    "The book’s title, author and date: not yet identified"
+   ],
+   "living": false,
+   "historical": true,
+   "id": "PE-0011",
+   "name": "Mr John Williams"
+  },
   {
    "gen": 1,
    "order": 1,
