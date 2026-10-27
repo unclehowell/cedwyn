@@ -1,5 +1,10 @@
 # Changelog
 
+## [3.4.1] - 2026-10-27
+
+### Fixed
+- Parcel A boundary: Parcel A is the farmhouse, yard, buildings and woodland. On the family's boundary plan the Parcel A line ends before the green begins, so the green is no longer shown as a third of Parcel A. The green (village green VG41, registered by Glamorgan County Council in 1970) is shown as separate ground, outside Parcel A. A1/A2 now read "north part" / "south part"; A3 is relabelled "The green · VG41 (outside Parcel A)". Narration audio unchanged.
+
 ## [3.4.0] - 2026-10-25
 
 ### Added
