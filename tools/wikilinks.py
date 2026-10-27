@@ -139,7 +139,7 @@ CSS = ('<style id="cw-wiki-css">a.cw-g{color:inherit;text-decoration:underline d
        '.cw-legend{font:400 11px/1.4 system-ui,-apple-system,sans-serif;opacity:.72;margin:10px 12px;padding:0;text-align:left}'
        '.cw-legend a{color:inherit}.cw-legend .cw-lg-n{background:rgba(214,145,0,.14);text-decoration:underline dotted 2px #c98200}'
        '.cw-legend .cw-lg-g{text-decoration:underline dotted 1.5px}</style>')
-JS = '<script src="/_cedwyn/wiki.js?v=1" defer></script>'
+JS = '<script src="/_cedwyn/wiki.js?v=1" defer></script><script src="/_cedwyn/glossary-modal.js?v=1.0.0" defer></script>'
 LEGEND = ('<p class="cw-legend" data-cw-legend>Small print: <span class="cw-lg-g">dotted links</span> explain a word (see the '
           '<a href="/glossary/">glossary</a>); <span class="cw-lg-n">amber-shaded links</span> list every name the records use for '
           'the same thing.</p>')
@@ -214,7 +214,7 @@ def glossary_page(g, n):
             'content:"\\25BE"}.cw-more[open]>summary::after{content:"\\25B4"}.cw-less{min-height:40px;padding:0 14px;border-radius:999px;'
             'border:1px dashed currentColor;background:transparent;color:inherit;font:inherit;font-size:.88em;cursor:pointer;margin:4px 0}.cw-less[hidden]{display:none}'
             '</style><noscript><style>details.cw-more::details-content{content-visibility:visible;display:block}details.cw-more>summary'
-            '{display:none}</style></noscript><script src="/_cedwyn/runtime.js?v=11" defer></script>' + _clamp_head() + '</head><body><main class="gl">'
+            '{display:none}</style></noscript><script src="/_cedwyn/runtime.js?v=11" defer></script><script src="/_cedwyn/glossary-modal.js?v=1.0.0" defer></script>' + _clamp_head() + '</head><body><main class="gl">'
             '<p class="gl-top"><a href="/">‹ Cedwyn</a></p><h1>The words of the story</h1><p class="gl-in">New here? Every legal, land '
             'and records word on Cedwyn, in one line each. Each one links on, all the way to the record itself.</p>'
             '<nav class="gl-az" aria-label="A to Z">' + az + '</nav>' + ''.join(body) + '</main></body></html>')
