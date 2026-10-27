@@ -1,20 +1,23 @@
-/*! gb.js - the Agent guest book in the shared footer of every Cedwyn page (v1.0.1, 26 Oct 2026). Moves the page's
- * #cedwyn-guestbook into the shared legal footer, fills the newest 20 changes from /guestbook/guestbook.json (the one data
- * file every page reads) and labels it in the visitor's language (en / cy / es). Version links open the commit on GitHub
- * (a new tab). - Cedwyn editors */
+/*! gb.js - the page version table (Agent guest book) in the shared footer of every Cedwyn page (v1.1.0, 27 Oct 2026).
+ * v1.1.0: shows THIS page's 3 most recent versions, open, from /api/v (the commits to the file the page is built from;
+ * semver 1.change.fix per page), and "See all" opens that file's full commit history on GitHub. If /api/v cannot answer,
+ * it falls back to the site-wide /guestbook/guestbook.json rows and the repo history.  Also carries the
+ * first-party analytics beacon (bottom of this file; no cookies). Labels in en / cy / es. v1.0.1: moves #cedwyn-guestbook into the shared
+ * legal footer (or the app footer line on full-screen app pages). - Cedwyn editors */
 (function () {
   "use strict";
   if (window.__cedwynGB) return; window.__cedwynGB = 1;
-  var DATA = location.origin + "/guestbook/guestbook.json", data = null, loading = false;   // absolute: the theme runtime prefixes root paths
+  var DATA = location.origin + "/guestbook/guestbook.json", PAGE = location.origin + "/api/v?p=" + encodeURIComponent(location.pathname), data = null, loading = false;   // absolute: the theme runtime prefixes root paths
+  var HIST = "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fcedwyn%2Fcommits%2Fmain";
   var L = {
-    en: { title: "Agent guest book", v: "Version", d: "Date", n: "Change", w: "Who", all: "See all",
-          rule: "versions 1.change.fix, from the commit history",
+    en: { title: "Page versions", v: "Version", d: "Date", n: "Change", w: "Who", all: "See all", log: "Whole-site log",
+          rule: "versions 1.change.fix, from this page\u2019s commit history",
           intro: "Every change to this site, newest first. Each version opens the change on GitHub." },
-    cy: { title: "Llyfr ymwelwyr yr asiantau", v: "Fersiwn", d: "Dyddiad", n: "Newid", w: "Pwy", all: "Gweld y cyfan",
-          rule: "fersiynau 1.newid.trwsiad, o hanes y newidiadau",
+    cy: { title: "Fersiynau\u2019r dudalen", v: "Fersiwn", d: "Dyddiad", n: "Newid", w: "Pwy", all: "Gweld y cyfan", log: "Cofnod y wefan gyfan",
+          rule: "fersiynau 1.newid.trwsiad, o hanes newidiadau\u2019r dudalen hon",
           intro: "Pob newid i\u2019r wefan hon, y diweddaraf yn gyntaf. Mae pob fersiwn yn agor y newid ar GitHub." },
-    es: { title: "Libro de visitas de los agentes", v: "Versi\u00f3n", d: "Fecha", n: "Cambio", w: "Qui\u00e9n", all: "Ver todo",
-          rule: "versiones 1.cambio.correcci\u00f3n, del historial de cambios",
+    es: { title: "Versiones de la p\u00e1gina", v: "Versi\u00f3n", d: "Fecha", n: "Cambio", w: "Qui\u00e9n", all: "Ver todo", log: "Registro de todo el sitio",
+          rule: "versiones 1.cambio.correcci\u00f3n, del historial de cambios de esta p\u00e1gina",
           intro: "Todos los cambios de este sitio, del m\u00e1s reciente al m\u00e1s antiguo. Cada versi\u00f3n abre el cambio en GitHub." }
   };
   function lang() {
@@ -64,39 +67,51 @@
   var TPL = null;
   function keep() {
     if (sec() || !TPL || !document.body) return;
-    var n = TPL.cloneNode(true); document.body.appendChild(n); wire(n); absolutize(); place(); label(); if (data) fill();
+    var n = TPL.cloneNode(true); document.body.appendChild(n); wire(n); absolutize(); place(); label(); openUp(); if (data) fill();
   }
   function wire(s) { var d = s && s.querySelector("details"); if (d) d.addEventListener("toggle", function () { if (d.open) { load(); fill(); } }); }
   function fill() {
     var s = sec(); if (!s || !data) return;
     var v = s.querySelector(".gb-v"); if (v) v.textContent = data.version ? "v" + data.version : "";
+    if (data.history_url) HIST = data.history_url;
+    absolutize();
     var tb = s.querySelector(".gb-rows"); if (!tb || tb.getAttribute("data-filled")) return;
     var rows = (data.rows || []).filter(function (r) { return r.kind !== "build"; }).slice(0, 3), h = "";
     rows.forEach(function (r) {
-      h += '<tr><td><a href="' + esc(link(data.repo, r.sha)) + '" target="_blank" rel="noopener" title="' + esc(r.sha.slice(0, 7)) + '">' + esc(r.v) + "</a></td><td>" +
+      h += '<tr><td><a href="' + esc(link(data.repo || "unclehowell/cedwyn", r.sha)) + '" target="_blank" rel="noopener" title="' + esc(r.sha.slice(0, 7)) + '">' + esc(r.v) + "</a></td><td>" +
         esc(r.date) + "</td><td>" + esc(r.note) + "</td><td>" + esc(r.who) + "</td></tr>";
     });
     tb.innerHTML = h; tb.setAttribute("data-filled", "1");
   }
   function load() {
     if (data || loading) return; loading = true;
-    fetch(DATA, { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (d) { data = d; fill(); })
-      .catch(function () { loading = false; });
+    fetch(PAGE).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) { if (!d || !(d.rows || []).length) throw 0; data = d; fill(); })
+      .catch(function () {   // fallback: the site-wide log (main), "See all" still opens GitHub
+        fetch(DATA, { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (d) { data = d; fill(); }).catch(function () { loading = false; });
+      });
   }
   function untrapAll() {   // the full guest book page's static links pass through /wayback/go/ (the build's outbound guard): open GitHub directly
     var as = document.querySelectorAll('#guestbook a[href^="/wayback/go/?u="]');
     for (var i = 0; i < as.length; i++) { var u; try { u = decodeURIComponent(as[i].getAttribute("href").slice(15)); } catch (e) { continue; }
       if (/^https:\/\/github\.com\/unclehowell\/cedwyn\/commit\/[0-9a-f]{7,40}$/i.test(u)) { as[i].setAttribute("href", u); as[i].setAttribute("target", "_blank"); as[i].setAttribute("rel", "noopener"); } }
   }
-  function absolutize() { var a = document.querySelectorAll('#cedwyn-guestbook a[data-gb-l="all"]'), u = location.origin + "/guestbook/"; for (var i = 0; i < a.length; i++) if (a[i].getAttribute("href") !== u) a[i].setAttribute("href", u); }
-  // a theme runtime may prefix root links (/ebooks/guestbook/): the full guest book always opens at the site root
-  document.addEventListener("click", function (e) { var a = e.target && e.target.closest && e.target.closest('#cedwyn-guestbook a[data-gb-l="all"]'); if (!a) return; if (e.button || e.metaKey || e.ctrlKey || e.shiftKey) { absolutize(); return; } e.preventDefault(); e.stopImmediatePropagation(); location.href = location.origin + "/guestbook/"; }, true);
+  function absolutize() {
+    var a = document.querySelectorAll('#cedwyn-guestbook a[data-gb-l="all"]');
+    for (var i = 0; i < a.length; i++) { if (a[i].getAttribute("href") !== HIST) a[i].setAttribute("href", HIST); a[i].setAttribute("target", "_blank"); a[i].setAttribute("rel", "noopener");
+      if (!a[i].parentNode.querySelector('a[data-gb-l="log"]')) { var l = document.createElement("a"); l.setAttribute("data-gb-l", "log"); l.textContent = L[lang()].log; a[i].parentNode.appendChild(document.createTextNode(" \u00b7 ")); a[i].parentNode.appendChild(l); } }
+    var g = document.querySelectorAll('#cedwyn-guestbook a[data-gb-l="log"]'), u = location.origin + "/guestbook/"; for (var j = 0; j < g.length; j++) if (g[j].getAttribute("href") !== u) g[j].setAttribute("href", u);
+  }
+  // v1.1.0: open by default so the 3 newest versions of this page show at the bottom of every page
+  function openUp() { var d = sec() && sec().querySelector("details"); if (d && !d.hasAttribute("data-gb-opened")) { d.setAttribute("data-gb-opened", "1"); d.open = true; } }
+  // a theme runtime may prefix root links or guard outbound ones: the site log always opens at the root, "See all" opens GitHub
+  document.addEventListener("click", function (e) { var a = e.target && e.target.closest && e.target.closest('#cedwyn-guestbook a[data-gb-l="all"],#cedwyn-guestbook a[data-gb-l="log"]'); if (!a) return; absolutize(); if (e.button || e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); e.stopImmediatePropagation();
+    if (a.getAttribute("data-gb-l") === "log") location.href = location.origin + "/guestbook/"; else window.open(HIST, "_blank", "noopener"); }, true);
   function init() {
     if (!TPL && sec()) TPL = sec().cloneNode(true);
-    absolutize(); place(); label(); untrapAll(); wire(sec());
+    absolutize(); place(); label(); untrapAll(); wire(sec()); openUp();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
-  addEventListener("load", function () { keep(); absolutize(); place(); label(); setTimeout(load, 800); });
+  addEventListener("load", function () { keep(); absolutize(); place(); label(); openUp(); setTimeout(load, 300); });
   [300, 600, 1300, 2600, 6100, 12100].forEach(function (t) { setTimeout(function () { keep(); place(); absolutize(); }, t); });
   if (window.MutationObserver) {
     var mo = new MutationObserver(function () { if (!sec()) { keep(); return; } var f = document.querySelector("[data-ghf-legal-foot]"); if (f && sec().parentNode !== f) place(); });
@@ -105,3 +120,6 @@
   document.addEventListener("ghf-lang-change", label); window.addEventListener("ghf-lang-change", label);
   new MutationObserver(label).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
 })();
+/* Cedwyn's first-party analytics beacon (27 Oct 2026): one POST to /api/a per page view and per checkout / academy click;
+ * no cookies, no storage; the server keeps path, referrer host, country, browser class and a daily-salted hash, never the IP. */
+(function(){if(window.__cedwynA)return;window.__cedwynA=1;var O=location.origin+"/api/a";function s(e,t){try{var d=JSON.stringify({p:location.pathname,r:document.referrer,e:e,t:t||null,l:(document.documentElement.getAttribute("lang")||"").slice(0,2),w:window.innerWidth,d:navigator.webdriver?1:0});if(navigator.sendBeacon&&navigator.sendBeacon(O,new Blob([d],{type:"text/plain"})))return;fetch(O,{method:"POST",body:d,keepalive:true}).catch(function(){});}catch(x){}}window.cedwynTrack=s;function pv(){s("pv");}if(document.readyState==="complete")pv();else addEventListener("load",pv);document.addEventListener("click",function(ev){var a=ev.target&&ev.target.closest&&ev.target.closest("a[href]");if(!a)return;var h=a.href,u=h,m=h.match(/[?&]u=([^&]+)/);if(m){try{u=decodeURIComponent(m[1]);}catch(x){}}if(/^https:\/\/(buy|checkout)\.stripe\.com\/|gumroad\.com\//.test(u))s("checkout",u.slice(0,200));else{try{var q=new URL(h,location.href);if(q.origin===location.origin&&/^\/learn\/?$/.test(q.pathname))s("academy",location.pathname);}catch(x){}}},true);})();

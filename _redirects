@@ -47,11 +47,13 @@
 /wales/terrain/* /terrain/:splat 200
 /wales/cyberspace/* /cyberspace/:splat 200
 /wales/shop/* /shop/:splat 200
-/wales/movie/* /movie/:splat 200
+/wales/documentary/* /documentary/:splat 200
 /wales/kissed-frogs/* /kissed-frogs/:splat 200
 /wales/nft-art/* /nft-art/:splat 200
 /wales/whattheydontsay/* /whattheydontsay/:splat 200
 /wales/blog/* /blog/:splat 200
+/wales/movie/* /documentary/:splat 301
+/argentina/movie/* /documentary/:splat 301
 /argentina/:theme/* /:theme/:splat 200
 /bpvsbuckler/* /story/:splat 301
 /whatdotheyknow/* /wdtk/:splat 301
@@ -66,6 +68,8 @@
 /farmbook/* /fb2/:splat 301
 /media/* /wayback/:splat 301
 /agents/* /academy/:splat 301
+/movie/* /documentary/:splat 301
+/documentry/* /documentary/:splat 301
 /email/thread/* /email/view/ 200
 /email/reference/* /email/view/ 200
 /wayback/websites/whatdotheyknow.com/request-1988-dispossession-of-great-hous-response-3431830-attach-3-foi2026-09019-cd1103cb/* /wayback/websites/whatdotheyknow.com/request-1988-dispossession-of-great-hous-response-3431830-attach-3-foi2026-09019-13fbd322/:splat 301
@@ -93,6 +97,8 @@
 /farmbook /fb2/ 301
 /media /wayback/ 301
 /agents /academy/ 301
+/movie /documentary/ 301
+/documentry /documentary/ 301
 /email/api /email/api/ 301
 /email/api/records /email/view/index.json 200
 /email/api/records/ /email/view/index.json 200
