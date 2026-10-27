@@ -255,7 +255,7 @@ h1{font-size:clamp(1.9rem,4vw,3.15rem);line-height:1.08;letter-spacing:-.035em;m
 </style></head><body><main class="wrap">
 <div class="topline"><div><p class="eyebrow">Disclosure Dartboard · route inventory</p><p class="small" style="margin:0">Cross-institution view</p></div><a class="back" href="/dartboard/" aria-label="Return to the Disclosure Dartboard">← Back to Dartboard</a></div>
 <h1>All route options, side by side</h1>
-<p class="lede">Compare what is recorded as used, awaiting an outcome, overdue, available, queued, or not pursued across the institutions in the route register. Search the whole inventory, then open an institution to inspect the individual steps, dates, costs and source links.</p>
+<p class="lede"><a href="/research/read-the-docs/#analysis-pages">What this page is about → Read the Docs</a></p>
 <p class="snapshot"><strong>%%INST_COUNT%% roadmaps · %%TOTAL%% route steps</strong><span>·</span><span>Status snapshot: <strong>%%DATE%%</strong></span></p>
 <section class="metrics" aria-label="Route status counts">%%METRICS%%</section>
 <div class="explainer"><p><strong>How to read this:</strong> each count represents a recorded route step, not a request, a court case, or a percentage chance of success. Each bar shows the mix of statuses within one institution’s own route list.</p><p>These routes are not one compulsory ladder. Some run in parallel; a status of “available” means listed but not marked as used. “Not used / N/A” combines routes the source labels unavailable, inapplicable, or intentionally unpursued. Check time limits and current rules before relying on an entry.</p></div>
@@ -282,7 +282,7 @@ h1{font-size:clamp(1.9rem,4vw,3.15rem);line-height:1.08;letter-spacing:-.035em;m
 <h2>Source, limits and change log</h2>
 <p>Source: the Dartboard route register (<code>src/data/ramps.json</code> on the <code>dartboard</code> branch), with each institution’s route status and notes reproduced as recorded in that file.</p>
 <p>The list is only as current as its dated source. It is a way to compare the recorded position, not legal advice, a finding that a remedy is available, or a recommendation to take every route. Where the source flags a payment or costs risk, that wording is shown rather than turned into an instruction.</p>
-<details><summary>Change log</summary><p class="change-log">v1.0.0 · 27 October 2026 · Added a searchable, cross-institution route-status map and a link from the Dartboard page. Route status data remains dated %%DATE%%. Signed: ChatGPT.</p></details>
+<details><summary>Change log</summary><p class="change-log">v1.0.0 · 27 October 2026 · Added a searchable, cross-institution route-status map and a Dartboard entry point. Source status snapshot: 20 October 2026. Signed: ChatGPT.<br>v1.0.1 · 27 October 2026 · Added the required Read-the-Docs anchor and standard AI-agent footer. Signed: ChatGPT.</p></details>
 </section></main>
 <script>
 (function(){
@@ -418,6 +418,10 @@ def run(dist: pathlib.Path | str) -> bool:
         target = dist / "dartboard" / "options" / "index.html"
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(render_page(data), encoding="utf-8")
+        # Nested /dartboard/options/ is outside agent_footer.run()'s immediate-child glob.
+        # Inject the shared anti-boilerplate instructions and page-local version log explicitly.
+        import agent_footer
+        agent_footer.inject(target, False)
         launcher_added = inject_launcher(dist / "dartboard" / "index.html", len(institutions), step_count)
         print("dartboard options: %s roadmaps, %s route steps, snapshot %s; launcher %s" % (
             len(institutions), step_count, data.get("asOf") or "date not stated",
