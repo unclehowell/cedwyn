@@ -1,6 +1,6 @@
 # Clearance Standard — fcg.bucklerfamily.estate
 
-Version 1.0.0 · 21 October 2026 · Sion's Tab agent
+Version 1.0.0 · 21 October 2026 · Cedwyn editors
 
 Our case, prospective. Not a finding of any court.
 
