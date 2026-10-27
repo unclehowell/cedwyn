@@ -1,5 +1,10 @@
 # Changelog
 
+## [3.5.0] - 2026-10-27
+
+### Changed
+- Parcel A in three parts, from the family's boundary plan: A1 the north wood (OS 1900 field 45), A2 the farmhouse, yard and buildings (south part of field 70), A3 the garden and orchard (north part of field 70, with the strip west to the road as its access). A3 is marked "title not traced"; the 1959 offer and the 1962 possession order name the garden with the farmhouse and buildings. The green keeps its own entry outside Parcel A, and its labels no longer call it A3. Animation paths and narration audio unchanged (3.3.3).
+
 ## [3.4.1] - 2026-10-27
 
 ### Fixed
