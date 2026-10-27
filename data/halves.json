@@ -1,8 +1,8 @@
 {
- "version": "1.0.0",
+ "version": "1.1.0",
  "note": "Two halves of Cedwyn (Sion, 23:39 GMT 25 Oct 2026, m:2a7c8c27): landing (two tiles), /wales/ = augmented-reality guided tour of Cedwyn Estate, Wales (former manorial house, never 'farm'; no museum stop), /argentina/ = Cedwyn Estate II / Great House II retreat with package builder. Wales copy follows EDITORIAL.md (ingredients + citations, courts' view first, banned words). AI images carry 'artist's impression'. Bookings are pre-order requests, not confirmed holidays. Welsh and Spanish are first drafts for review. tools/halves.py renders it. - Sion's Tab agent",
  "img": "/_cedwyn/halves/img/",
- "img_v": "2",
+ "img_v": "3",
  "ev_href": {
   "EV-0001": "/research/evidence/ev-0001-cwm-cedwyn-llandough-boundary-1392/",
   "EV-0002": "/research/evidence/ev-0002-herbert-vaughan-cydwin-lease-1547/",
@@ -55,9 +55,9 @@
     "es": "Church View Close, Llandough"
    },
    "overlay": {
-    "en": "The former manorial house rises again where it stood: a long, low two-storey stone house with a chimney at each end, its cross-passage door open and smoke drifting from the hearth.",
-    "cy": "Mae’r hen faenordy’n codi eto lle safai: tŷ carreg hir, isel, deulawr, simnai ym mhob pen, drws y llwybr croes ar agor a mwg yn codi o’r aelwyd.",
-    "es": "La antigua casa señorial vuelve a alzarse donde estaba: una casa de piedra larga y baja, de dos plantas, con una chimenea en cada extremo, la puerta del pasillo abierta y humo saliendo del hogar."
+    "en": "Approximate position of the former manorial house, from the 1974 measured survey, overlaid on today's street. The outline is placed to about 3 metres; wall and roof heights are an estimate.",
+    "cy": "Safle bras yr hen faenordy, o arolwg mesuredig 1974, wedi’i osod dros y stryd heddiw. Mae’r amlinell yn gywir i tua 3 metr; amcangyfrif yw uchder y waliau a’r to.",
+    "es": "Posición aproximada de la antigua casa señorial, según el levantamiento medido de 1974, superpuesta a la calle actual. El contorno está situado con un margen de unos 3 metros; la altura de muros y tejado es una estimación."
    },
    "story": {
     "en": "Welcome to Llandough. Stand on the green and look up: this is where Tŷ Mawr, the Great House, stood beside the church. Its name is first read in a record in 1824, when the surveyor drew it as plan 19, “Cedfin or Ty Mawr …”. ⟦Cwm Cedwyn (1392) is a place name from boundary notes still to be found.⟧ Cydwin, the name in a Herbert–Vaughan lease, belongs to another document: it is not a record of Tŷ Mawr, and its application to Tŷ Mawr is under forensic examination. The Williams family acquired Tŷ Mawr in 1667 (Mary Williams’ statement, 1974 newspapers; ITV News, 1988). By 1841 the tithe lists John Williams as occupier of 36 plots here, among them no. 209, “Courtyard &c”, where Church View Close now stands. His family lived and worked here for generations; the manor courts of Llandough and Leckwith met in this house, and in 1908 the manor court remembered him as “for many years a juror of the court”.",
@@ -69,7 +69,18 @@
     "cy": "Mae tai Church View Close, a godwyd yn y 1990au, yn sefyll lle bu’r tŷ a’i fuarth.",
     "es": "Las casas de Church View Close, construidas en los años noventa, ocupan el lugar de la casa y su patio."
    },
-   "recs": []
+   "recs": [
+    [
+     {
+      "en": "Measured survey and floor plan of the house, 1974",
+      "cy": "Arolwg mesuredig a chynllun llawr y tŷ, 1974",
+      "es": "Levantamiento medido y planta de la casa, 1974"
+     },
+     [
+      "EV-0047"
+     ]
+    ]
+   ]
   },
   {
    "id": "church",
@@ -87,9 +98,9 @@
     "es": "Cementerio parroquial de Llandough"
    },
    "overlay": {
-    "en": "Around the churchyard the early monastery returns: timber halls, the monks’ cells, and the Irbic Cross standing carved and whole.",
-    "cy": "O amgylch y fynwent daw’r fynachlog gynnar yn ôl: neuaddau pren, celloedd y mynaich, a Chroes Irbic yn sefyll yn gyfan a cherfiedig.",
-    "es": "Alrededor del cementerio vuelve el monasterio primitivo: salas de madera, las celdas de los monjes y la Cruz de Irbic, entera y tallada."
+    "en": "From the churchyard: the former manorial house stood just north of the church, on the edge of the scarp. Wireframe from the 1974 measured survey; heights estimated.",
+    "cy": "O’r fynwent: safai’r hen faenordy ychydig i’r gogledd o’r eglwys, ar ymyl y llethr. Ffrâm wifren o arolwg mesuredig 1974; amcangyfrif yw’r uchder.",
+    "es": "Desde el cementerio: la antigua casa señorial se alzaba justo al norte de la iglesia, al borde del escarpe. Estructura alámbrica según el levantamiento medido de 1974; alturas estimadas."
    },
    "story": {
     "en": "A few steps away lies some of the oldest sacred ground in Wales. Monks were here by the seventh century, and for hundreds of years the people of the valley were laid to rest in this cemetery. The church you see was rebuilt in 1866, right beside the Great House: on Sundays the whole parish passed its door.",
@@ -460,9 +471,9 @@
     "es": "De vuelta a Church View Close"
    },
    "overlay": {
-    "en": "Back at the start, the estate’s old field boundaries light up over the houses, parcel by parcel, as the guide retells the story.",
-    "cy": "Yn ôl yn y dechrau, mae hen ffiniau caeau’r ystâd yn goleuo dros y tai, parsel wrth barsel, wrth i’r tywysydd ailadrodd y stori.",
-    "es": "De vuelta al inicio, los antiguos lindes de la finca se iluminan sobre las casas, parcela a parcela, mientras el guía vuelve a contar la historia."
+    "en": "Plan view: the 1974 measured survey placed on the Ordnance Survey 25-inch map of about 1900, with today's buildings drawn over it. The house's long side ran almost exactly east–west (089° true), facing the church.",
+    "cy": "Golwg cynllun: arolwg mesuredig 1974 wedi’i osod ar fap 25 modfedd yr Arolwg Ordnans o tua 1900, gydag adeiladau heddiw drosto. Rhedai ochr hir y tŷ bron yn union o’r dwyrain i’r gorllewin (089° gwir), yn wynebu’r eglwys.",
+    "es": "Vista en planta: el levantamiento medido de 1974 situado sobre el mapa de 25 pulgadas del Ordnance Survey de hacia 1900, con los edificios actuales encima. El lado largo de la casa corría casi exactamente de este a oeste (089° verdadero), frente a la iglesia."
    },
    "story": {
     "en": "Back where we began. As the old field boundaries light up over the houses, walk six centuries in a minute with the guide. The house stood through it all, until December 1988; the story did not end there. Far away in Patagonia, Great House II is rising as a replica, to carry the house’s name and memory into a new century.",
@@ -548,7 +559,18 @@
     "cy": "Church View Close, y lawnt a’r coetir.",
     "es": "Church View Close, el prado comunal y el bosque."
    },
-   "recs": []
+   "recs": [
+    [
+     {
+      "en": "Measured survey and floor plan of the house, 1974",
+      "cy": "Arolwg mesuredig a chynllun llawr y tŷ, 1974",
+      "es": "Levantamiento medido y planta de la casa, 1974"
+     },
+     [
+      "EV-0047"
+     ]
+    ]
+   ]
   }
  ],
  "t": {
@@ -643,14 +665,14 @@
    "es": "Menú"
   },
   "w_holo_alt": {
-   "en": "Tŷ Mawr, the former manorial house, as a glowing wireframe hologram in the middle of a modern housing estate, with a group in green and black wearing augmented-reality glasses gathered round, looking up and pointing.",
-   "cy": "Tŷ Mawr, y cyn faenordy, fel hologram gwifrog disglair yng nghanol ystâd dai fodern, gyda grŵp mewn gwyrdd a du yn gwisgo sbectol realiti estynedig o’i gwmpas, yn edrych i fyny ac yn pwyntio.",
-   "es": "Tŷ Mawr, la antigua casa señorial, como un holograma de malla luminosa en medio de una urbanización moderna, con un grupo de verde y negro con gafas de realidad aumentada a su alrededor, mirando y señalando."
+   "en": "Aerial view over the Ordnance Survey 25-inch map of about 1900: today's houses in grey, St Dochdwy's Church, and a glowing wireframe of the former manorial house and its outbuildings where they stood.",
+   "cy": "Golwg o’r awyr dros fap 25 modfedd yr Arolwg Ordnans o tua 1900: tai heddiw mewn llwyd, Eglwys Sant Dochdwy, a ffrâm wifren ddisglair o’r hen faenordy a’i dai allan lle safent.",
+   "es": "Vista aérea sobre el mapa de 25 pulgadas del Ordnance Survey de hacia 1900: las casas actuales en gris, la iglesia de St Dochdwy y una estructura alámbrica luminosa de la antigua casa señorial y sus dependencias donde se alzaban."
   },
   "w_holo_cap": {
-   "en": "Tŷ Mawr, where it once stood.",
-   "cy": "Tŷ Mawr, lle safai unwaith.",
-   "es": "Tŷ Mawr, donde se alzaba."
+   "en": "Approximate position of the former manorial house, from the 1974 measured survey, overlaid on today's street. Method: the 1974 RCAHMW measured plan (1:100) was fitted to the house drawn on the Ordnance Survey 25-inch map of about 1900, then checked against St Dochdwy's Church in OpenStreetMap, which lines up within about 1 metre. Estimated error about 3 metres; long side 089° true. Wall and roof heights are estimates. Sources: RCAHMW / National Monuments Record of Wales (EV-0047); OS 25-inch map, National Library of Scotland (CC-BY); © OpenStreetMap contributors (ODbL); terrain from EU-DEM (Copernicus).",
+   "cy": "Safle bras yr hen faenordy, o arolwg mesuredig 1974, wedi’i osod dros y stryd heddiw. Dull: gosodwyd cynllun mesuredig CBHC 1974 (1:100) ar y tŷ a ddangosir ar fap 25 modfedd yr Arolwg Ordnans o tua 1900, a’i wirio yn erbyn Eglwys Sant Dochdwy yn OpenStreetMap, sy’n cyfateb o fewn tua metr. Gwall amcangyfrifedig tua 3 metr; ochr hir 089° gwir. Amcangyfrif yw uchder y waliau a’r to. Ffynonellau: CBHC / Cofnod Henebion Cenedlaethol Cymru (EV-0047); map 25 modfedd yr AO, Llyfrgell Genedlaethol yr Alban (CC-BY); © cyfranwyr OpenStreetMap (ODbL); tirwedd o EU-DEM (Copernicus).",
+   "es": "Posición aproximada de la antigua casa señorial, según el levantamiento medido de 1974, superpuesta a la calle actual. Método: la planta medida de la RCAHMW de 1974 (1:100) se ajustó a la casa dibujada en el mapa de 25 pulgadas del Ordnance Survey de hacia 1900 y se comprobó con la iglesia de St Dochdwy en OpenStreetMap, que coincide con un margen de alrededor de 1 metro. Error estimado de unos 3 metros; lado largo a 089° verdadero. La altura de muros y tejado es una estimación. Fuentes: RCAHMW / National Monuments Record of Wales (EV-0047); mapa de 25 pulgadas del OS, Biblioteca Nacional de Escocia (CC-BY); © colaboradores de OpenStreetMap (ODbL); terreno de EU-DEM (Copernicus)."
   },
   "w_map_h": {
    "en": "The route",
