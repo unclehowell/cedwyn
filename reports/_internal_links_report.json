@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8627,
+  "pages_scanned": 8480,
   "references_checked": {
-    "resource": 182215,
-    "nav": 329601
+    "resource": 180457,
+    "nav": 325262
   },
-  "database_backed_paths": 7086,
-  "unique_missing_destinations": 4759,
-  "missing_references": 31517,
-  "missing_navigation_references": 15820,
-  "missing_resource_references": 15697,
+  "database_backed_paths": 7001,
+  "unique_missing_destinations": 4691,
+  "missing_references": 30915,
+  "missing_navigation_references": 15511,
+  "missing_resource_references": 15404,
   "unique_broken_fragments": 1810,
   "broken_fragment_references": 3141,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6582,
+      "references": 6435,
       "examples": [
         {
           "from": "/qa/",
@@ -46,7 +46,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6582,
+      "references": 6435,
       "examples": [
         {
           "from": "/qa/",
@@ -180,60 +180,6 @@
     },
     {
       "kind": "nav",
-      "path": "/research/research/timeline/",
-      "references": 77,
-      "examples": [
-        {
-          "from": "/research/artifacts/ghf-e106-r28-a1/",
-          "attribute": "a[href]",
-          "url": "/research/research/timeline/"
-        },
-        {
-          "from": "/research/artifacts/ghf-e106-r103-a1/",
-          "attribute": "a[href]",
-          "url": "/research/research/timeline/"
-        },
-        {
-          "from": "/research/artifacts/ghf-e106-r36-a1/",
-          "attribute": "a[href]",
-          "url": "/research/research/timeline/"
-        },
-        {
-          "from": "/research/artifacts/ghf-e106-r101-a1/",
-          "attribute": "a[href]",
-          "url": "/research/research/timeline/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/dartboard/",
-      "references": 77,
-      "examples": [
-        {
-          "from": "/research/artifacts/ghf-e106-r28-a1/",
-          "attribute": "a[href]",
-          "url": "/research/dartboard/"
-        },
-        {
-          "from": "/research/artifacts/ghf-e106-r103-a1/",
-          "attribute": "a[href]",
-          "url": "/research/dartboard/"
-        },
-        {
-          "from": "/research/artifacts/ghf-e106-r36-a1/",
-          "attribute": "a[href]",
-          "url": "/research/dartboard/"
-        },
-        {
-          "from": "/research/artifacts/ghf-e106-r101-a1/",
-          "attribute": "a[href]",
-          "url": "/research/dartboard/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
       "path": "/catalogue/",
       "references": 70,
       "examples": [
@@ -256,33 +202,6 @@
           "from": "/graphql/",
           "attribute": "a[href]",
           "url": "/catalogue/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/whattheydontsay/",
-      "references": 56,
-      "examples": [
-        {
-          "from": "/research/artifacts/ghf-e106-r28-a1/",
-          "attribute": "a[href]",
-          "url": "/research/whattheydontsay/"
-        },
-        {
-          "from": "/research/artifacts/ghf-e106-r103-a1/",
-          "attribute": "a[href]",
-          "url": "/research/whattheydontsay/"
-        },
-        {
-          "from": "/research/artifacts/ghf-e106-r101-a1/",
-          "attribute": "a[href]",
-          "url": "/research/whattheydontsay/"
-        },
-        {
-          "from": "/research/artifacts/ghf-e106-r35-a1/",
-          "attribute": "a[href]",
-          "url": "/research/whattheydontsay/"
         }
       ]
     },
@@ -532,7 +451,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 36,
+      "references": 34,
       "examples": [
         {
           "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
@@ -4063,6 +3982,87 @@
           "from": "/docs/ghf_wiki/ot_starthere/latest/html/en/",
           "attribute": "a[href]",
           "url": "1-record.html#what-did-the-1987-court-of-appeal-decide"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/1-record.html",
+      "references": 7,
+      "examples": [
+        {
+          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#institutional-appearance-timeline-direct-evidence-links"
+        },
+        {
+          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#forensic-control-points"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/docs/ghf_wiki/ir_southwesternbrickandtileforensicinstitut/latest/html/en/1-record.html",
+      "references": 7,
+      "examples": [
+        {
+          "from": "/docs/ghf_wiki/ir_southwesternbrickandtileforensicinstitut/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/ir_southwesternbrickandtileforensicinstitut/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/ir_southwesternbrickandtileforensicinstitut/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#documented-appearances"
+        },
+        {
+          "from": "/docs/ghf_wiki/ir_southwesternbrickandtileforensicinstitut/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#current-finding"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/docs/ghf_wiki/co_rcahmwnationalmonumentsrecordemailcorres/latest/html/en/1-record.html",
+      "references": 7,
+      "examples": [
+        {
+          "from": "/docs/ghf_wiki/co_rcahmwnationalmonumentsrecordemailcorres/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/co_rcahmwnationalmonumentsrecordemailcorres/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/co_rcahmwnationalmonumentsrecordemailcorres/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#thread-index"
+        },
+        {
+          "from": "/docs/ghf_wiki/co_rcahmwnationalmonumentsrecordemailcorres/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#thread-1-initial-foi-eir-and-early-acknowledgements-821-september-2026"
         }
       ]
     }
