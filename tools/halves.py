@@ -17,7 +17,12 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.1.0'
+VERSION = '1.2.0'
+# 1.2.0 (27 Oct 2026, Sion 09:45 GMT): the in-content pictures of /wales/ and /argentina/ are thumbnails; a tap opens the shared
+# full-screen viewer (web/_cedwyn/halves/lb.js + lb.css): full width, the picture's own title as caption, swipe / arrows loop
+# round every picture on the page, Escape / X / swipe down / backdrop closes. The landing page is unchanged. - Sion's Tab agent
+LB_CSS = '<link rel="stylesheet" href="/_cedwyn/halves/lb.css?v=1.0.0">'
+LB_JS = '<script src="/_cedwyn/halves/lb.js?v=1.0.0" defer></script>'
 
 def tx(T, k, l):
     v = T.get(k) or {}
@@ -344,7 +349,7 @@ def stop_html(H, T, l, i, s, n):
     if s.get('links'):
         extra += '<div class="hv-btns">' + ''.join(f'<a class="hv-btn" href="{E(u)}" data-i18n="{E(k)}">{E(tx(T, k, l) or u)}</a>' for k, u in s['links']) + '</div>'
     return (f'<article class="hv-stop{" on" if i == 0 else ""}" id="stop-{i+1}" data-stop="{E(sid)}" aria-label="{E(str(i+1))}">'
-            f'<div class="hv-ar"><img src="{img(H, s["img"])}" width="1280" height="853" alt="{E(alt)}" data-i18n-al="stop_{sid}_overlay" loading="{"eager" if i == 0 else "lazy"}" decoding="async"><span class="scan"></span>'
+            f'<div class="hv-ar cwlb-th" data-lb=""><img src="{img(H, s["img"])}" width="1280" height="853" alt="{E(alt)}" data-i18n-al="stop_{sid}_overlay" loading="{"eager" if i == 0 else "lazy"}" decoding="async"><span class="scan"></span>'
             f'<span class="chip" data-i18n="ar_tag">{E(tx(T, "ar_tag", l))}</span></div>'
             f'<p class="hv-sn"><span data-i18n="w_stop">{E(tx(T, "w_stop", l))}</span> {i+1} / {n}</p>'
             f'{sp(T, f"stop_{sid}_name", l, "h3")}{sp(T, f"stop_{sid}_place", l, "p", "pl")}'
@@ -409,7 +414,7 @@ def wales(sections, S, cfg, H):
     vouchers = ''.join(f'<a class="hv-btn{" pri" if i == 0 else ""}" href="/wayback/go/?u={u}" rel="noopener">{lt(T, d, l, k)}</a>' for i, (k, u, d) in enumerate(VOUCHERS))
     body = f"""
 <body data-cedwyn-page="wales">
-<main class="wrap hv" data-no-translate>
+<main class="wrap hv" data-no-translate>{LB_CSS}
 <header class="hv-hero"><img src="{img(H,'wales-ar-green')}" width="1280" height="725" alt="" fetchpriority="high"><span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
 <div class="hb"><p class="eyebrow" style="color:#ddd" data-i18n="w_kick">{E(tx(T,'w_kick',l))}</p><h1 data-i18n="w_h1">{E(tx(T,'w_h1',l))}</h1></div></header>
 <h2 data-i18n="w_h2">{E(tx(T,'w_h2',l))}</h2>
@@ -417,7 +422,7 @@ def wales(sections, S, cfg, H):
 <div class="hv-btns"><a class="hv-btn pri" href="#tour" data-hv-go="0" data-i18n="w_start">{E(tx(T,'w_start',l))}</a><a class="hv-btn" href="#shop" data-i18n="w_tickets">{E(tx(T,'w_tickets',l))}</a><a class="hv-btn" href="#menu" data-i18n="w_menu">{E(tx(T,'w_menu',l))}</a></div>
 {mn}
 <section id="route"><h2 data-i18n="w_map_h">{E(tx(T,'w_map_h',l))}</h2><p class="mut" data-i18n="w_map_p">{E(tx(T,'w_map_p',l))}</p>{mp}</section>
-<figure class="hv-holo" id="hologram" style="margin:0 0 14px"><img src="{img(H,'wales-hologram')}" width="1536" height="864" alt="{E(tx(T,'w_holo_alt',l))}" data-i18n-al="w_holo_alt" loading="lazy" decoding="async" style="width:100%;height:auto;aspect-ratio:16/9;object-fit:cover"><figcaption class="mut" style="padding:6px 2px 0;font-size:13px" data-i18n="w_holo_cap">{E(tx(T,'w_holo_cap',l))}</figcaption></figure>
+<figure class="hv-holo cwlb-row" id="hologram" style="margin:0 0 14px"><img data-lb="" src="{img(H,'wales-hologram')}" width="1536" height="864" alt="{E(tx(T,'w_holo_alt',l))}" data-i18n-al="w_holo_alt" loading="lazy" decoding="async" style="width:100%;height:auto;aspect-ratio:16/9;object-fit:cover"><figcaption class="mut" style="padding:6px 2px 0;font-size:13px" data-i18n="w_holo_cap">{E(tx(T,'w_holo_cap',l))}</figcaption></figure>
 <section id="tour">{stops}
 <div class="hv-nav"><button type="button" class="hv-btn" id="hv-prev" data-i18n="w_prev">{E(tx(T,'w_prev',l))}</button><span id="hv-cnt" class="mut">1 / {ns}</span>
 <button type="button" class="hv-btn" id="hv-say" data-i18n="w_listen">{E(tx(T,'w_listen',l))}</button><button type="button" class="hv-btn pri" id="hv-next" data-i18n="w_next">{E(tx(T,'w_next',l))}</button></div></section>
@@ -427,7 +432,7 @@ def wales(sections, S, cfg, H):
 <section><a class="hv-btn" style="width:100%;justify-content:flex-start;min-height:64px;border-radius:12px" href="/argentina/?lang=es" hreflang="es"><span><b data-i18n="w_cross_h">{E(tx(T,'w_cross_h',l))}</b><br><span class="mut" data-i18n="w_cross_p">{E(tx(T,'w_cross_p',l))}</span></span></a></section>
 <p class="endnote"><a href="/" data-i18n="home">{E(tx(T,'home',l) or 'Home')}</a> · <a href="/explore/" data-i18n="land_more">{E(tx(T,'land_more',l))}</a></p>
 </main>
-<script>{JS}</script>
+<script>{JS}</script>{LB_JS}
 </body>
 </html>
 """
@@ -552,11 +557,14 @@ def nft_img(i, sizes='(min-width:783px) 560px, 86vw', eager=False, extra=''):
             f'{" fetchpriority=high" if eager else " loading=lazy"} decoding="async"{extra}>')
 
 def nft_strip(ids, T, l):
+    """A row of small square thumbnails; each opens the full picture in the shared viewer (lb.js). The plain link to the
+    piece in /nft-art/ stays as the no-script fallback. One artist's-impression label per row. - Sion's Tab agent"""
     ids = [i for i in ids if i in ARG_NFT]
     if not ids: return ''
-    return ('<div class="nf-s" tabindex="0">' + ''.join(
-        f'<figure class="nf-f"><a href="/nft-art/#/{E(i)}">{nft_img(i)}<figcaption>{E(ARG_NFT[i][0])}</figcaption></a>'
-        f'<span class="hv-tag" data-i18n="ai_tag">{E(tx(T,"ai_tag",l))}</span></figure>' for i in ids) + '</div>')
+    return ('<div class="nf-s nf-th">' + ''.join(
+        f'<figure class="nf-f"><a href="/nft-art/#/{E(i)}" data-lb="{E(ARG_NFT[i][1])}">'
+        f'<img src="{ARG_NFT[i][2]}" width="{ARG_NFT[i][3]}" height="{ARG_NFT[i][4]}" alt="{E(ARG_NFT[i][0])}" loading="lazy" decoding="async"></a></figure>'
+        for i in ids) + f'<p class="nf-tg" data-i18n="ai_tag">{E(tx(T,"ai_tag",l))}</p></div>')
 
 def nft_between(html, strips):
     """Put one strip after each headline block (between clamp.js read-more blocks, never inside one)."""
@@ -600,7 +608,7 @@ def argentina(sections, S, cfg, H):
     body = f"""
 <body data-cedwyn-page="argentina">
 <main class="wrap hv" data-no-translate style="--hv-a:#2f78b8;--hv-b:#F6B40E">
-{NFT_CSS}<header class="hv-hero">{nft_img(ARG_NFT_HERO, sizes='(min-width:783px) 900px, 100vw', eager=True)}<span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
+{NFT_CSS}{LB_CSS}<header class="hv-hero">{nft_img(ARG_NFT_HERO, sizes='(min-width:783px) 900px, 100vw', eager=True)}<span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
 <div class="hb"><p class="eyebrow" style="color:#ddd" data-i18n="a_kick">{E(tx(T,'a_kick',l))}</p><h1 data-i18n="a_h1">{E(tx(T,'a_h1',l))}</h1><p style="margin:0" data-i18n="a_h2">{E(tx(T,'a_h2',l))}</p></div></header>
 {nft_between(headlines(H, T, l, 'argentina'), [st('hl%d' % j) for j in range(6)])}
 <span class="soon" data-i18n="a_soon">{E(tx(T,'a_soon',l))}</span>
@@ -647,7 +655,7 @@ def argentina(sections, S, cfg, H):
 <p class="endnote"><a href="/" data-i18n="home">{E(tx(T,'home',l) or 'Home')}</a> · <a href="/explore/" data-i18n="land_more">{E(tx(T,'land_more',l))}</a></p>
 </main>
 <script>window.HV_BOOK={json.dumps(book, ensure_ascii=False)};</script>
-<script>{JS}</script>
+<script>{JS}</script>{LB_JS}
 </body>
 </html>
 """
