@@ -787,7 +787,7 @@
       ".ghf-v2-upi{flex:0 0 auto;color:var(--ghf-s,#f2c94c)}.ghf-v2-upt{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ghf-v2-upt b{font-weight:700;color:var(--ghf-s,#f2c94c)}" +
       ".ghf-v2-upc{flex:0 0 auto;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.8;white-space:nowrap}.ghf-v2 a.ghf-v2-upa:focus-visible{outline:2px solid var(--ghf-s,#f2c94c);outline-offset:-2px}" +
       "html[data-ghf-mode=day] .ghf-v2-up{background:#fff;border-bottom-color:#ddd}html[data-ghf-mode=day] .ghf-v2 a.ghf-v2-upa{color:#000!important}html[data-ghf-mode=day] .ghf-v2-upi,html[data-ghf-mode=day] .ghf-v2-upt b{color:var(--ghf-p,#4a1942)}" +
-      ".ghf-v2-moved{display:none!important}" +
+      ".ghf-v2-moved{display:none!important}.ghf-lang-note{display:none!important}" +
       ".ghf-sh{display:block;clear:both;max-width:760px;margin:24px auto 8px;padding:0 12px;font:400 14px/1.3 var(--ghf-font,Barlow,system-ui,sans-serif);text-align:left}.ghf-sh b{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px}" +
       ".ghf-sh-r{display:flex;flex-wrap:wrap;gap:8px}.ghf-sh-b{font:inherit;font-size:14px;min-height:40px;padding:8px 14px;border:1px solid currentColor;border-radius:20px;background:transparent;color:inherit;cursor:pointer}" +
       ".ghf-cc{position:fixed;left:8px;right:8px;bottom:8px;z-index:2147481995;max-width:520px;margin:0 auto;padding:12px 14px;background:#111;color:#fff;border:1px solid var(--ghf-s,#f2c94c);border-radius:10px;font:400 14px/1.35 var(--ghf-font,Barlow,system-ui,sans-serif);box-shadow:0 6px 24px rgba(0,0,0,.4)}" +
@@ -816,7 +816,7 @@
       pins();
       watchTitles();
       var later = function () { fitBody(); pins(); hideSiteBurgers(); dedupe(); moveSubs(); // after parsing, so a page's own ghf-lang.js tag (with its data-site) is seen first
-        if (!window.GHFLang && !document.querySelector('script[src*="ghf-lang.js"]')) { var gs = document.createElement("script"); gs.src = "/_cedwyn/ghf/ghf-lang.js?v=2.1.5"; gs.async = true; (document.head || de).appendChild(gs); } };
+        if (!window.GHFLang && !document.querySelector('script[src*="ghf-lang.js"]')) { var gs = document.createElement("script"); gs.src = "/_cedwyn/ghf/ghf-lang.js?v=2.1.6"; gs.async = true; (document.head || de).appendChild(gs); } };
       if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", later); else setTimeout(later, 0);
       window.addEventListener("load", function () { fitBody(); pins(); setTimeout(function () { fitBody(); pins(); }, 1200); }); // pages whose CSS arrives late (bundled apps)
       hideSiteBurgers(); setTimeout(hideSiteBurgers, 1200); setTimeout(moveSubs, 1300); window.addEventListener("load", function () { setTimeout(moveSubs, 400); setTimeout(shareBar, 600); }); dedupe(); setTimeout(dedupe, 1200); window.addEventListener("load", function () { setTimeout(dedupe, 300); });
