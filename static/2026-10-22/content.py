@@ -808,10 +808,11 @@ CORR_PHASES = {"before": "Before the meeting", "after": "After the meeting (22 O
 WDTK_INTRO = ("Public requests made on WhatDoTheyKnow, with our own backed-up copy of each. "
               "Status as at 27 October 2026.")
 # (title, body, sent, status, answered, our copy)
+# Our copy is linked by its wdtk theme host; the Cedwyn build rewrites it to /wdtk/r/<slug>/ (a bare /wdtk/ path would be re-rooted under /meeting/).
 WDTK_REQS = [
     ("Meeting of 22 October 2026: remote-only arrangements, outstanding questions and the Great House Farm (Tŷ Mawr) records",
      "Llandough Community Council", "20 Oct 2026", "Awaiting response; due 17 Nov 2026",
-     "Nothing answered yet.", "/wdtk/r/meeting_of_22_october_2026_remot/"),
+     "Nothing answered yet.", "https://whatdotheyknow.bucklerfamily.estate/r/meeting_of_22_october_2026_remot/"),
 ]
 WDTK_NOTES = [
     "The first information request (21 September 2026) and the 20 October 2026 narrower request went to the Clerk by email, not through WhatDoTheyKnow; both are in the Correspondence section.",
