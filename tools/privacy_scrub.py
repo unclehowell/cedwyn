@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """privacy_scrub.py — removes working-process attributions from every public file before the catalogue database is built.
 Public pages carry sources only: no statement of who found, read or catalogued a record, no attribution to an assistant
-or agent, no quotation of private instructions and no research-cycle numbers. Fixes in place, then fails (exit 1) if any
+or agent, no personal name of the family's representative in correspondence, no quotation of private instructions and no research-cycle numbers. Fixes in place, then fails (exit 1) if any
 pattern in CHECK survives, so a page that leaks cannot be published.
 Usage: python3 tools/privacy_scrub.py dist [--check-only]"""
 import pathlib, re, sys, json
@@ -65,6 +65,47 @@ def scrub(t, kind='text'):
     elif kind == 'text':
         t, k = EMPTY[0].subn(EMPTY[1], t); n += k
     return t, n
+# Correspondence never names the family's representative (Cedwyn editors, 27 Oct 2026). The site's own mail pages
+# (/email/..., /wayback/mail/<id>.txt, /wayback/email/, the What They Don't Say and WhatDoTheyKnow sections) are built from
+# exported mail whose From lines, salutations and signatures carry a personal name. Here the sender becomes "Requester"
+# (the label the What They Don't Say section uses), the signature title lines go, and any email handle or phone number of the
+# family is redacted site-wide. Runs on every build, so a later mail import cannot bring the name back; CORR_CHECK then fails the
+# build if the name survives in a correspondence file. The agent instruction meta in the shared footer is left as written.
+CORR_PATH = re.compile(r"^(?:email|whattheydontsay|whatdotheyknow)/|^wayback/(?:mail|api|email)/")
+_S = r"(?:[\s\u2009]|\\u2009|&#8201;|&thinsp;)+"
+_RETD = rf"Ret{A}d"
+_FIRST = r"(?i:\bsi(?:[o\u00f4]|\\u00f4|&ocirc;|&#244;)n\b)"
+NAME = re.compile(
+    rf"(?:{_RETD}{_S}(?:Sergeant|Sgt)\.?{_S})?{_FIRST}(?:{_S}\(?Hywel\)?)?(?:{_S}(?i:buckler)\b)?(?:,?{_S}Esq\.?)?"
+    rf"(?:[\s,]*\(?[\s]*(?:{_RETD}{_S}(?:Sergeant|Sergenant|Sgt)\.?|Sgt\.?[\s]*\({_RETD}\))[\s]*\)?)?")
+KEEP = 'Sion Buckler (Williams heir'          # the shared footer's agent instruction, not correspondence
+CORR_R = [(re.compile(x[0], x[2] if len(x) > 2 else 0), x[1]) for x in [
+  (r"\b(Dear|Hello|Hi|Good (?:morning|afternoon|evening)|Morning|Afternoon)(,?\s+)Mr\.?\s+(?:S\.?\s+)?(?i:buckler)\b", r"\1\2Requester", re.I),
+  (r"\bHywel ap Buckler\b", "Requester", re.I),
+  (r"\b(Dear|Hello|Hi|Good (?:morning|afternoon|evening)|Morning|Afternoon|Shw ?mae|Helo|Annwyl)(,?\s+)Hywel\b", r"\1\2Requester", re.I),
+  (rf"(Requester\**)\s*\(\s*Ret{A}d (?:Army )?(?:Sergeant|Sergenant|Sgt)\.?\s*\)", r"\1"),
+  (r",\s*Hywel(?=[,.!?])", ""),
+  (r"^((?:>[ \t]*)*)Hywel[ \t]*$", r"\1Requester", re.M),
+  (rf"^((?:>[ \t]*)*)\(\s*Ret{A}d (?:Army )?(?:Sergeant|Sergenant|Sgt)\.?\s*\)[ \t]*$", r"\1", re.M),
+  (r"[ \t]*Royal Signals Cyber\s*(?:/|and|&amp;|&)\s*Electronic Warfare Professional(?:\s*(?:and|&amp;|&)\s*Life Member)?", ""),
+]]
+CONTACT_R = [(re.compile(x[0], re.I), x[1]) for x in [
+  (r"\bhywelapbuckler(?:@gmail\.com)?\b", "[email redacted]"),
+  (r"(?:\+|\b00\s?)?\b44\s?\(?0?\)?\s?7845[\s.-]?933[\s.-]?262\b|\b07845[\s.-]?933[\s.-]?262\b", "[phone redacted]"),
+]]
+CORR_CHECK = re.compile(r"(?i:\bsi(?:[o\u00f4]|\\u00f4|&ocirc;|&#244;)n\b)(?! Buckler \(Williams heir)")
+CONTACT_CHECK = re.compile(r"hywelapbuckler|7845[\s.-]?933[\s.-]?262", re.I)
+def corr(t, rel):
+    n = 0
+    for rx, rep in CONTACT_R:
+        t, k = rx.subn(rep, t); n += k
+    if CORR_PATH.search(rel):
+        t = t.replace(KEEP, '\ue000')
+        t, k = NAME.subn('Requester', t); n += k
+        for rx, rep in CORR_R:
+            t, k = rx.subn(rep, t); n += k
+        t = t.replace('\ue000', KEEP)
+    return t, n
 def main(root, check_only=False):
     root = pathlib.Path(root); changed = hits = 0; left = []
     for f in root.rglob('*'):
@@ -72,15 +113,20 @@ def main(root, check_only=False):
         if any(p in ('db', '.git', 'node_modules') for p in f.relative_to(root).parts[:1]): continue
         try: t = f.read_text('utf-8')
         except Exception: continue
+        rel = f.relative_to(root).as_posix()
         if not check_only:
             sx = f.suffix.lower()
             new, n = scrub(t, 'code' if sx in ('.js', '.mjs', '.json', '.jsonl', '.webmanifest', '.svg') else 'html' if sx in ('.html', '.htm', '.xml', '.rss', '.atom') else 'text')
+            new, k = corr(new, rel); n += k
             if n and new != t:
                 if f.suffix.lower() == '.json':
                     try: json.loads(new)
                     except Exception: new = t; left.append(f'{f}: json would break, left for review')
                 if new != t: f.write_text(new, 'utf-8'); changed += 1; hits += n; t = new
         for m in CHECK.finditer(t): left.append(f'{f.relative_to(root)}: {t[max(0,m.start()-60):m.end()+40]!r}')
+        for m in CONTACT_CHECK.finditer(t): left.append(f'{rel}: contact detail {t[max(0,m.start()-40):m.end()+20]!r}')
+        if CORR_PATH.search(rel):
+            for m in CORR_CHECK.finditer(t): left.append(f'{rel}: name in correspondence {t[max(0,m.start()-60):m.end()+40]!r}')
     print(json.dumps({'files_changed': changed, 'rewrites': hits, 'remaining': len(left)}))
     for x in left[:200]: print('::error::privacy: ' + x)
     return 1 if left else 0
