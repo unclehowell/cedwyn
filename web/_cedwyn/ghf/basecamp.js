@@ -336,7 +336,7 @@
       }
       chainBar.textContent = "";
       chainBar.appendChild(btn("ghf-v2-btn ghf-v2-fs", IC_FS, s.fs, toggleFs));
-      var arr = function (st, cls, ch, lab) { var a = mk("a", "ghf-v2-arr " + cls); a.href = st.u; a.setAttribute("aria-label", lab + ": " + nm(st)); a.title = lab + ": " + nm(st); a.appendChild(mk("span", null, ch)); a.setAttribute("data-ghf-chain", st.id); return a; };
+      var arr = function (st, cls, ch, lab) { var a = mk("a", "ghf-v2-arr " + cls); pinHref(a, st.u); a.setAttribute("aria-label", lab + ": " + nm(st)); a.title = lab + ": " + nm(st); a.appendChild(mk("span", null, ch)); a.setAttribute("data-ghf-chain", st.id); return a; };
       chainBar.appendChild(arr(pv, "ghf-v2-prev", "\u2039", s.prev));
       var mid = mk("div", "ghf-v2-name"), b = mk("b", null, k >= 0 ? nm(CHAIN[k]) : ((document.title || host).split(/\s[·|—–-]\s/)[0]));
       mid.appendChild(b); if (k >= 0) mid.appendChild(mk("small", null, (k + 1) + " " + s.of + " " + n));
@@ -408,13 +408,17 @@
       inn.appendChild(b); inn.appendChild(list);
     }
     function themeLink(st, i, k) {
-      var li = mk("li"), a = mk("a"); a.href = st.u; a.appendChild(mk("span", "ghf-v2-ddi", (i + 1) + "")); a.appendChild(document.createTextNode(nm(st)));
+      var li = mk("li"), a = mk("a"); pinHref(a, st.u); a.appendChild(mk("span", "ghf-v2-ddi", (i + 1) + "")); a.appendChild(document.createTextNode(nm(st)));
       if (i === k) a.setAttribute("aria-current", "page");
       a.onclick = function () { setTimeout(closeDrawer, 10); }; li.appendChild(a); return li;
     }
     // the oak board link: the in-theme path prefixer (runtime.js) turns "/" into "/<theme>/", so the href is written as an
     // absolute address through an attribute node (which the prefixer does not wrap) and written again on click
     function rawHref(a, u) { try { var at = document.createAttribute("href"); at.value = u; a.setAttributeNode(at); } catch (e) { a.href = u; } }
+    // 27 Oct 2026: theme links in the header and menu are pinned the same way. Inside a theme that has a folder named like another
+    // theme (/research/qa/), the prefixer turned "/qa/" into "/research/qa/" and › then stayed on the Research Library forever.
+    function pinHref(a, u) { var abs = u.charAt(0) === "/" && u.charAt(1) !== "/" ? location.origin + u : u; rawHref(a, abs); a.setAttribute("data-ghf-go", u);
+      a.addEventListener("click", function () { rawHref(a, abs); }); }
     function fillCedwyn(s, k, inn) {
       var l = lg(), cur = k >= 0 ? CHAIN[k].g : "", li, a;
       if (!ddOpen) { ddOpen = {}; if (cur) ddOpen["ghf-dd-" + cur] = true; }
@@ -435,7 +439,7 @@
         ddBlock(inn, id, (l !== "en" && g[l]) || g.t, n, !!ddOpen[id], ul, g.id === cur ? "ghf-v2-ddcur" : "");
       });
       var ol = mk("ol", "ghf-v2-dl ghf-v2-dall");
-      CHAIN.forEach(function (st, i) { var li2 = mk("li"), a2 = mk("a", null, nm(st)); a2.href = st.u; if (i === k) a2.setAttribute("aria-current", "page"); a2.onclick = function () { setTimeout(closeDrawer, 10); }; li2.appendChild(a2); ol.appendChild(li2); });
+      CHAIN.forEach(function (st, i) { var li2 = mk("li"), a2 = mk("a", null, nm(st)); pinHref(a2, st.u); if (i === k) a2.setAttribute("aria-current", "page"); a2.onclick = function () { setTimeout(closeDrawer, 10); }; li2.appendChild(a2); ol.appendChild(li2); });
       ddBlock(inn, "ghf-dd-all", (s.all37 || "All {n} themes").replace("{n}", CHAIN.length), null, !!ddOpen["ghf-dd-all"], ol, "ghf-v2-dd37");
       var links = harvest();
       if (links.length) {
@@ -466,7 +470,7 @@
       inn.appendChild(ul);
       var dh2 = mk("div", "ghf-v2-dh", s.all); dh2.setAttribute("role", "heading"); dh2.setAttribute("aria-level", "2"); inn.appendChild(dh2);
       var ol = mk("ol", "ghf-v2-dl ghf-v2-dall");
-      CHAIN.forEach(function (st, i) { li = mk("li"); a = mk("a", null, nm(st)); a.href = st.u; if (i === k) a.setAttribute("aria-current", "page"); li.appendChild(a); ol.appendChild(li); });
+      CHAIN.forEach(function (st, i) { li = mk("li"); a = mk("a", null, nm(st)); pinHref(a, st.u); if (i === k) a.setAttribute("aria-current", "page"); li.appendChild(a); ol.appendChild(li); });
       inn.appendChild(ol);
       var hm = mk("a", "ghf-v2-dhome", s.home); hm.href = HOME; inn.appendChild(hm);
       // Values and Standards (25 Oct 2026): the editorial standards page, in every menu. - Sion's Tab agent
