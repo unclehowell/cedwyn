@@ -47,11 +47,23 @@ R = [
 R = [(re.compile(x[0], x[2] if len(x) > 2 else 0), x[1]) for x in R]
 CHECK = re.compile(rf"Tab{A}s research|\bby Tab\b(?![\w-])|Sion{A}s Tab agent|Buckler{A}s request|\bTab agent|catalogued by Tab\b|(?<!site )\bowner{A}s instruction\b(?!s)|\b(?:flywheel|research) cycle \d+", re.I)
 PRE = re.compile(r"Tab|[Cc]ycle|[Oo]wner|Sion")
-def scrub(t):
+EMPTY = R.pop()   # the "()" tidy-up: prose only. Applied to code it turns function(){ into function{ and breaks every script.
+PROTECT = re.compile(r"<(script|style|code|pre|textarea)\b[^>]*>.*?</\1\s*>", re.S | re.I)
+def _prose_only(t, rx, rep):
+    out, n, last = [], 0, 0
+    for m in PROTECT.finditer(t):
+        seg, k = rx.subn(rep, t[last:m.start()]); out.append(seg); out.append(m.group(0)); n += k; last = m.end()
+    seg, k = rx.subn(rep, t[last:]); out.append(seg); n += k
+    return ''.join(out), n
+def scrub(t, kind='text'):
     n = 0
     if not PRE.search(t): return t, 0
     for rx, rep in R:
         t, k = rx.subn(rep, t); n += k
+    if kind == 'html':
+        t, k = _prose_only(t, *EMPTY); n += k
+    elif kind == 'text':
+        t, k = EMPTY[0].subn(EMPTY[1], t); n += k
     return t, n
 def main(root, check_only=False):
     root = pathlib.Path(root); changed = hits = 0; left = []
@@ -61,7 +73,8 @@ def main(root, check_only=False):
         try: t = f.read_text('utf-8')
         except Exception: continue
         if not check_only:
-            new, n = scrub(t)
+            sx = f.suffix.lower()
+            new, n = scrub(t, 'code' if sx in ('.js', '.mjs', '.json', '.jsonl', '.webmanifest', '.svg') else 'html' if sx in ('.html', '.htm', '.xml', '.rss', '.atom') else 'text')
             if n and new != t:
                 if f.suffix.lower() == '.json':
                     try: json.loads(new)
