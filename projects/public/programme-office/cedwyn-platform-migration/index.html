@@ -38,7 +38,7 @@
 <tbody>
 <tr><td>Site</td><td><code>site</code> branch; production deployment <code>cd51f1a7-ebc0-4787-9f9d-5210a8104e0e</code></td><td>Rollback target recorded; live pages and routing have not been changed by this work</td></tr>
 <tr><td>Route registry</td><td>44 themes; registry version 1.1.1; visible footer version 1.0.2</td><td>Registry note records 38 routes while the README reports 35 themes. Reconcile all version and route counts before releasing</td></tr>
-<tr><td>Zone configuration</td><td>102 DNS records fetched; 76 Pages projects fetched; 10 redirect rules; 179 Worker routes</td><td>Not all hosts are theme routes. Media and service endpoints need classification before any catch-all change</td></tr>
+<tr><td>Zone configuration</td><td>103 DNS records after the story alias fix; 76 Pages projects; 10 redirect rules; 179 Worker routes</td><td>27 Pages projects have custom domains not directly mapped to one of the current 44 themes. Classify those as app routes, media, aliases or services before calling the whole zone migrated.</td></tr>
 <tr><td>Evidence catalogue</td><td>14,194 artifacts; 19,584 locations; 301,175 graph edges; 10,351 FTS rows</td><td>The published SQLite catalogue is chunked static output, not a writable application database</td></tr>
 <tr><td>Application storage</td><td>10 D1 databases; 13 KV namespaces; 10 R2 buckets</td><td>Several apps already have separate data stores. Inventory bindings and sync contracts before adding any store</td></tr>
 <tr><td>Post-change HTTP acceptance suite</td><td>44/44 canonical routes; 78/78 legacy root/index redirects; 25/25 agent endpoints; 2/2 synonym aliases; 0 failures</td><td>Verified in Actions run #126 after the live redirect and story DNS fix. Query strings were preserved in all 78 app-host redirect checks.</td></tr>
@@ -95,7 +95,7 @@
 <tr><td>Code review</td><td>Detailed plan and read-only route probe are in a draft engineering PR. Keep it unmerged until the test report is reviewed</td></tr>
 <tr><td>CRM follow-up</td><td>Dedicated HubSpot task proposed; it has not been created pending confirmation of its associations</td></tr>
 </tbody></table>
-<p class="note">Next action: finish nested-path and asset reference testing, audit the branch build/version evidence, preview the 46-theme registry including Architecture and Gallery, then publish namespaced SemVer releases only for apps that meet their gates. The site activation PRs remain drafts pending preview and front-end checks.</p>
+<p class="note">Next action: finish nested-path and asset reference testing, audit the branch build/version evidence, preview the 46-theme registry including Architecture and Gallery, then publish namespaced SemVer releases only for apps that meet their gates. The site activation PRs remain drafts pending preview and front-end checks. The 27 unmatched Pages projects and file/media/service paths remain a separate route inventory task.</p>
 </div></details>
 <p class="note">Source: Cedwyn migration control plan and host-route inventory, created 28 October 2026. This page records controls and planned work; it is not a release approval.</p>
 </main></body></html>
