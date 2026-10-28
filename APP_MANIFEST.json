@@ -1,0 +1,20 @@
+{
+  "app_id": "gallery",
+  "title": "Gallery",
+  "version": "0.1.0",
+  "release_status": "candidate",
+  "canonical_path": "/gallery/",
+  "source_branch": "gallery",
+  "app_data_schema_version": "0.1.0",
+  "catalogue_contract": "index existing canonical artifact IDs and source URLs; do not duplicate source binaries",
+  "database_binding": "not assigned; begin with static source links and catalogue references",
+  "required_release_checks": [
+    "HTML build",
+    "responsive visual check",
+    "search interaction test",
+    "link test",
+    "accessibility check",
+    "route activation check"
+  ],
+  "purpose": "Unified discovery across Farmbook, Garden and image collections, Wayback media, records, research and architecture."
+}
