@@ -30,6 +30,7 @@ The source repos and deployed front end must remain separate concerns:
 | Historical tags | Existing tag set; mirror report records 70 branches pushed and 0 branch-push failures, but tag push ended with remote validation timeouts | Inventory current tags before creating new tags; do not overwrite legacy refs |
 | Link guard | 8,713 pages / 337,996 links; `outbound_found: 0`, `pass: true` | Positive build check, but not proof that every redirect works |
 | Pages projects | 76 configured projects | Several legacy apps still point at `unclehowell/datro` branches |
+| Server-side database inventory | 10 Cloudflare D1 databases, 13 KV namespaces and 10 R2 buckets | Existing app-owned data backends already exist; map ownership and sync before adding another database |
 | Redirect rules | Cloudflare dynamic-redirect zone ruleset version 26 | Covers many but not all application hosts; some paths/user agents/file extensions are excluded by design |
 
 ### Route/redirect observations requiring resolution
@@ -66,7 +67,7 @@ Architecture scope should cover floor plans, elevations/sections, dimensional sc
 
 ### Stage A — hostname, path and reference inventory
 - [x] Inspect the current registry, build/test reports, active Cloudflare ruleset, Pages project/deployment snapshot, branch model and release state.
-- [ ] Save a machine-readable inventory joining theme ID, old host aliases, desired path, source branch/commit, build mode, DNS target, Pages project/deployment, redirect rule, API/media exceptions and test status.
+- [x] Save a machine-readable inventory joining theme ID, old host aliases, desired path, source branch/commit, build mode, DNS target, Pages project/domain, redirect rule, API/media exceptions and HTTP test status (`work/cedwyn-arch/host-route-inventory.json`).
 - [ ] Scan generated pages, static assets, scripts/data and raw source separately for hostname references; report executable links and plain-text mentions separately.
 - [ ] Inventory all 76 Pages projects and all DNS records, then classify non-theme infrastructure/media hosts explicitly.
 
@@ -86,7 +87,7 @@ Architecture scope should cover floor plans, elevations/sections, dimensional sc
 
 ### Stage D — modular app / central catalogue contract
 - [ ] Write an architecture decision record describing app independence, deployment boundaries, per-app data, central evidence ownership, schema evolution and extraction paths.
-- [ ] Inspect existing Cloudflare DB bindings/storage before selecting a backend. The current catalogue is a chunked SQLite database in static Pages output; that is not the same as a server-side writable DB.
+- [ ] Inspect existing Cloudflare DB bindings/storage before selecting a backend. The current catalogue is a chunked SQLite database in static Pages output; that is not the same as a server-side writable DB. Read-only Cloudflare API inspection confirms 10 D1 databases already exist: `terrain`, `cedwyn-apps`, `cedwyn-coins`, `ghf-chat`, `ghf-enquiries`, `qa-graph`, `research-wp-d1`, `fcg-wp-d1`, `bpvsbuckler-graph` and `financecheque-db`. Worker settings confirm bindings from `cedwyn-apps`/`cedwyn-api`, `fcg-wp`, `research-wp`, `ghf-chat`, `ghf-enquire`, `cedwyn-coins` and `terrain` to some of those data stores. Read-only `sqlite_master` queries confirm each DB has distinct application tables; the `research-wp-d1` and `ghf-chat` stores are especially substantial. This is a partial modular-backend foundation, not evidence that all 44 public themes have their own database or sync contract. Document the real binding map before designing any new DB.
 - [ ] Define canonical evidence keys (stable artifact IDs/content hash), provenance/citations/location references, read API, incremental sync cursor, idempotency, schema compatibility and error/repair behavior.
 - [ ] Keep per-app databases limited to app-owned state or derived projections; use canonical artifact references and do not duplicate the evidence blob as a second authority.
 - [ ] Implement one small, testable vertical slice first—prefer the architecture app plus the new gallery index—before refactoring all existing themes.
@@ -111,7 +112,7 @@ Do not proceed with a production cutover if any of the following applies:
 | Date UTC | Status | Evidence / next action |
 |---|---|---|
 | 2026-10-28 | Baseline audit in progress | Registry 1.1.1 has 44 entries; database and outbound-test snapshots recorded above. |
-| 2026-10-28 | Redirect gaps identified | Current rules are selective; `projects`, `email` and `story` require explicit verification/mapping. |
+| 2026-10-28 | Redirect gaps identified | Current rules are selective; `projects`, `email` and `story` require explicit verification/mapping. |\n| 2026-10-28 | Existing app DBs found | Cloudflare API read confirms 10 D1s, 13 KV namespaces and 10 R2 buckets; schemas were inspected as names only, with no application rows read. |
 | 2026-10-28 | GitHub Issues unavailable | Repository returns HTTP 410 for Issues. Use this version-controlled checkpoint and a project-office / HubSpot task instead. |
 | 2026-10-28 | Waiting for task-record approval | Propose one HubSpot task for the work plan; create only after the user approves the exact fields. |
 
