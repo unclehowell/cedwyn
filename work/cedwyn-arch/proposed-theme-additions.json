@@ -1,0 +1,39 @@
+{
+  "current_registry_version": "1.1.1",
+  "proposed_registry_version": "1.2.0",
+  "current_registered_theme_count": 44,
+  "proposed_registered_theme_count": 46,
+  "state": "staged_not_active",
+  "entries": [
+    {
+      "id": "architecture",
+      "title": "Architecture",
+      "branch": "architecture",
+      "hosts": [],
+      "proposed_path": "/architecture/",
+      "initial_app_version": "0.1.0",
+      "manifest": "APP_MANIFEST.json",
+      "state": "route_activation_pending",
+      "purpose": "Floor plans, elevations, sections, dimension schedules, material register, photograph provenance and reconstruction alternatives."
+    },
+    {
+      "id": "gallery",
+      "title": "Gallery",
+      "branch": "gallery",
+      "hosts": [],
+      "proposed_path": "/gallery/",
+      "initial_app_version": "0.1.0",
+      "manifest": "APP_MANIFEST.json",
+      "state": "route_activation_pending",
+      "purpose": "Unified index to existing photographs, image records, scans and archive media without duplicating source files."
+    }
+  ],
+  "activation_gates": [
+    "Confirm source branches and app manifests are present.",
+    "Run a local build/preview of the complete 46-theme registry without changing production.",
+    "Test all current routes plus /architecture/ and /gallery/ in the preview.",
+    "Check navigation, mobile layout, accessible search, link rewrites and content-provenance treatment.",
+    "Review the version drift and build fallbacks before changing the production registry.",
+    "Only then update themes.json to 1.2.0 and run post-deploy route checks."
+  ]
+}
