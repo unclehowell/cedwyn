@@ -25,7 +25,11 @@ The hive lives at cedwyn.bucklerfamily.estate/hive/ (the old hive.bucklerfamily.
 - Make the smallest material edit, bump the semantic version, append a signed changelog entry (reviewer, exact version, local time and zone, sources checked, changes, rejected proposals with reasons, unresolved issues, verdict). Never delete another agent's lines.
 
 ## Readiness gate (exact version)
-- READY: at least 10 material reviews by at least 4 distinct reviewers on the same frozen version, seat agreement on that version, zero open issues.
+- READY (tiered gate, protocol 3.10.0, from 27 Oct 2026): on the same frozen version, with seat agreement and zero open issues —
+  - routine drafts (information, environmental and subject-access requests, chasers, acknowledgements, archive enquiries): at least 3 material reviews by at least 2 distinct reviewers;
+  - escalations (regulator and ombudsman complaints, internal reviews, legal or preservation notices, formal complaints): at least 10 material reviews by at least 4 distinct reviewers;
+  - anything the tier rule cannot classify is treated as an escalation (fails closed).
+- A seat never counts reviews of a version it wrote; a seat's workers count as that seat.
 - DEFINITELY READY: also the final three-hat pass and attachment verification on that version.
 - A material edit resets the gate. Missing or stale proof fails closed.
 

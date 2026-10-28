@@ -39,3 +39,6 @@ Skill date: 26 Oct 2026 (skills harvest 18:22). Status for Cedwyn: applies to cl
 - about.fb.com (read in full)
 - buffer.com (read in full)
 - facebook.com (Meta original content help page; returned 400 from this box, snippet only, not checked)
+
+
+> 27 Oct 2026 note: Meta's Original Content Guidelines (business/help/262834734651607, read) list 'adding subtitle transcripts' and 'only an on-screen text caption' as minor editorialization when the clip or image is third-party (e.g. archive scans): the enhancement has to be new information, ideally a presenter on screen. Diagnosis steps: facebook-page-reach-limited-originality-triage.md.

@@ -1,8 +1,8 @@
 {
  "schema": "cedwyn_academy/v1",
  "name": "Cedwyn Academy",
- "version": "1.0.5",
- "built_utc": "2026-10-27 19:40 UTC",
+ "version": "1.0.6",
+ "built_utc": "2026-10-28 00:42 UTC",
  "base_path": "/academy/",
  "alias_paths": [
   "/academy/"
@@ -460,14 +460,14 @@
    "html": "ACADEMY/WORK.html",
    "title": "Work board",
    "bytes": 48046,
-   "sha256": "d93eb43c5bb163319a00a4dfb1897b03511ca5fdf50d7a4419a015d12c28f8ac"
+   "sha256": "68058e7fec2145a60efdc492a422a2ec23fd7175fa30c465bd28837627dc18c4"
   },
   {
    "path": "CHANGELOG.md",
    "html": "CHANGELOG.html",
    "title": "CHANGELOG",
-   "bytes": 2405,
-   "sha256": "e766e008371b436c5c2763f981b14c3cb34742b4a38ef381d2c291c3f9bdf06e"
+   "bytes": 2847,
+   "sha256": "1c795d9a1825ba947adfbc130943f89e58853f6bee57304828526c8eefcf3326"
   },
   {
    "path": "FLYWHEELS/README.md",
@@ -641,8 +641,8 @@
    "path": "HARNESS/hive.md",
    "html": "HARNESS/hive.html",
    "title": "The hive — multi-agent draft review",
-   "bytes": 2918,
-   "sha256": "8e5137d4c9ce6ef669933a48f555dd282a7b77a5ca065953fb99f97523a2f1fa"
+   "bytes": 3447,
+   "sha256": "3f2e0425542eba276649b8b438da27c9557957d54e529aeda72650f1923f534c"
   },
   {
    "path": "HARNESS/publish-gate.md",
@@ -662,8 +662,8 @@
    "path": "LESSONS.md",
    "html": "LESSONS.html",
    "title": "LESSONS — mistakes and the rules they produced",
-   "bytes": 11048,
-   "sha256": "644033d9709652b525f178990348bce007e3c8debd9dc2869f52e4f678bc9c74"
+   "bytes": 13023,
+   "sha256": "f2d291521304f8ed6ad97a097eb66e6073729684014ebb34916f002983e45122"
   },
   {
    "path": "MEMORY/README.md",
@@ -725,8 +725,8 @@
    "path": "SKILLS/README.md",
    "html": "SKILLS/index.html",
    "title": "SKILLS",
-   "bytes": 218485,
-   "sha256": "286541a6f29ee038d22c8a81888326ad2a93b6174f15ac90588fc2cc7f78fe27"
+   "bytes": 234211,
+   "sha256": "c1a8853a6bfd317f0e71bca170752efd66a323e3bab9c3234521c99dfec17e79"
   },
   {
    "path": "SKILLS/marketing/1.md",
@@ -883,6 +883,13 @@
    "sha256": "700214ea9161e6c55958b386d45b7189c53a4cc4744f8abd65b47d4f07883305"
   },
   {
+   "path": "SKILLS/marketing/autocomplete-question-mining-blog-topics.md",
+   "html": "SKILLS/marketing/autocomplete-question-mining-blog-topics.html",
+   "title": "Question mining from autocomplete: what people type before we rank for anything",
+   "bytes": 4661,
+   "sha256": "339ebc82003da37e00ce56e99c30e3dea448057811efe4dc87933a7784708270"
+  },
+  {
    "path": "SKILLS/marketing/b2b-pitch-uk-companies.md",
    "html": "SKILLS/marketing/b2b-pitch-uk-companies.html",
    "title": "B2B pitch emails to UK companies (2026 how-to)",
@@ -916,6 +923,13 @@
    "title": "Black Friday / Cyber Weekend for a small direct e-book shop (UK, 2026)",
    "bytes": 5356,
    "sha256": "53b056109340a9d4d6680a43e7ccdb2c1493ecfa0508cb3a5320e8d7586c3230"
+  },
+  {
+   "path": "SKILLS/marketing/blog-inline-anchor-text-cta-vs-end-banner.md",
+   "html": "SKILLS/marketing/blog-inline-anchor-text-cta-vs-end-banner.html",
+   "title": "Blog-to-shop links: an in-sentence link early in the post, not just a closing banner",
+   "bytes": 5257,
+   "sha256": "884041369d6e18617e333513a1447bc4035e6a51cdfae340d401edefe7af16f7"
   },
   {
    "path": "SKILLS/marketing/bluesky-custom-feeds-history.md",
@@ -1198,6 +1212,13 @@
    "sha256": "fae8a7a0efb0e544d3b37a5d8eaced97640f93a9795335beaae687d8769f08b8"
   },
   {
+   "path": "SKILLS/marketing/email-links-shorteners-tracking-safe-links-bot-clicks.md",
+   "html": "SKILLS/marketing/email-links-shorteners-tracking-safe-links-bot-clicks.html",
+   "title": "Links in emails: no shorteners, tracking off for cold mail, and expect bot \"clicks\" from institutions",
+   "bytes": 5234,
+   "sha256": "e329de08270fcfd46f7a47301545e9be992c6709673c7fe1e332edd201118050"
+  },
+  {
    "path": "SKILLS/marketing/email-preference-centre-snooze-topics.md",
    "html": "SKILLS/marketing/email-preference-centre-snooze-topics.html",
    "title": "Email preference centre: \"fewer emails\" and topic choice instead of unsubscribe",
@@ -1289,11 +1310,18 @@
    "sha256": "cc15c617842c6da583a2382f86dc14ea11c7d8f127bc381cabf37c7023948ff7"
   },
   {
+   "path": "SKILLS/marketing/facebook-page-reach-limited-originality-triage.md",
+   "html": "SKILLS/marketing/facebook-page-reach-limited-originality-triage.html",
+   "title": "Facebook Page reach triage: limited originality, recommendation eligibility, Page quality",
+   "bytes": 7215,
+   "sha256": "9cb8dd01a489056bb0319dd72205909abbb731009c26f228064e4343fee391a5"
+  },
+  {
    "path": "SKILLS/marketing/facebook-reels-originality-archive-clips.md",
    "html": "SKILLS/marketing/facebook-reels-originality-archive-clips.html",
    "title": "Facebook Reels for archive clips under Meta's 2026 originality rules",
-   "bytes": 4188,
-   "sha256": "92bdb092a10671559056daca5934220b96729f541247cb6aaff0dcb2a13ae226"
+   "bytes": 4583,
+   "sha256": "1a28e1e7ddab8d6a934c1b5013a58df44dfe0b0245a70387f11167dc76ed5130"
   },
   {
    "path": "SKILLS/marketing/facebook-your-algorithm-topic-signals.md",
@@ -1357,6 +1385,13 @@
    "title": "Film festival submissions at $0: premiere status gate + free entries (documentary scenes)",
    "bytes": 4087,
    "sha256": "f69d435a9d5529d7c87f0be73333e3b34e6b6864649a196c093a6f1b63b7d992"
+  },
+  {
+   "path": "SKILLS/marketing/first-name-personalisation-email-subject-body-fallback.md",
+   "html": "SKILLS/marketing/first-name-personalisation-email-subject-body-fallback.html",
+   "title": "First-name personalisation in email: where it earns its place, and where it doesn't",
+   "bytes": 4588,
+   "sha256": "68945b117a5dc349b480ef70684d45b700db687721ced84ffe9478915273e280"
   },
   {
    "path": "SKILLS/marketing/flipboard-publisher-magazine-rss.md",
@@ -1688,11 +1723,25 @@
    "sha256": "1df9f4a719bd4d7a968cb7486752881721bab6107dfb8d7335dab084d3528caf"
   },
   {
+   "path": "SKILLS/marketing/instagram-reach-collapse-account-status-originality-triage.md",
+   "html": "SKILLS/marketing/instagram-reach-collapse-account-status-originality-triage.html",
+   "title": "Instagram reach collapse: triage before changing content (Account Status, originality, watermarks, 5 hashtags)",
+   "bytes": 5822,
+   "sha256": "5e04a6526150c9358079cf6d02495b56f971b7073ee79f99fd64b7be47f698e0"
+  },
+  {
    "path": "SKILLS/marketing/instagram-reels-carousels-heritage.md",
    "html": "SKILLS/marketing/instagram-reels-carousels-heritage.html",
    "title": "Instagram: Reels for reach, carousels for saves (heritage account playbook, 2026)",
    "bytes": 4778,
    "sha256": "6cc71ffcd9bb439a63edb119f5e6cd3758d9efb04207b7902c3f2fad65cf723a"
+  },
+  {
+   "path": "SKILLS/marketing/instagram-reels-from-stills-api-cover-grid-safe-zone.md",
+   "html": "SKILLS/marketing/instagram-reels-from-stills-api-cover-grid-safe-zone.html",
+   "title": "Instagram Reels from stills via the API: covers, the 3:4 grid, safe zones, length",
+   "bytes": 6475,
+   "sha256": "55e18ba50f6d455d64fb0bc9afe432daffffa3f61cf71820dfdcf41457603a9d"
   },
   {
    "path": "SKILLS/marketing/instagram-search-seo-google-indexing.md",
@@ -1735,6 +1784,13 @@
    "title": "Komoot Highlights + a public route for a heritage walk (walker discovery, zero spend)",
    "bytes": 4515,
    "sha256": "c3d85a4677ecca512da95f58cab10b9968c49394c545025838adb8cc6f4558bf"
+  },
+  {
+   "path": "SKILLS/marketing/land-law-students-reading-list-case-audience.md",
+   "html": "SKILLS/marketing/land-law-students-reading-list-case-audience.html",
+   "title": "Land-law students and tutors: meeting a reading-list case where it is already studied",
+   "bytes": 5132,
+   "sha256": "a370eeb22456482544a3f69e10448cb38d5001605a337f971db47ecd085cbd91"
   },
   {
    "path": "SKILLS/marketing/launch-week-email-sequence-deadline-last-day.md",
@@ -1793,6 +1849,13 @@
    "sha256": "979ec251f9426f63f15548347c9ca75081c7d455ee4f4ce0f0d179afbe8e3e4a"
   },
   {
+   "path": "SKILLS/marketing/linkedin-2026-format-benchmarks-document-vs-image-vs-video.md",
+   "html": "SKILLS/marketing/linkedin-2026-format-benchmarks-document-vs-image-vs-video.html",
+   "title": "LinkedIn post formats in 2026: documents for reach, images for engagement rate, links last",
+   "bytes": 5188,
+   "sha256": "015f44697e2740840a63ae16dd1c8037e305514903e4b759c00247518290586e"
+  },
+  {
    "path": "SKILLS/marketing/linkedin-company-page-small-heritage-org.md",
    "html": "SKILLS/marketing/linkedin-company-page-small-heritage-org.html",
    "title": "LinkedIn Page for a small heritage org: what a Page can and cannot do in 2026",
@@ -1814,6 +1877,13 @@
    "sha256": "45341f0dd784267d0122cd00d0a0a97dd62f3ee4424f894bb877d4b5458f7019"
   },
   {
+   "path": "SKILLS/marketing/list-hygiene-spam-traps-address-sourcing-sunset-rule.md",
+   "html": "SKILLS/marketing/list-hygiene-spam-traps-address-sourcing-sunset-rule.html",
+   "title": "List hygiene: spam traps, sourcing addresses, and a sunset rule for a small list",
+   "bytes": 5465,
+   "sha256": "d893472263cb0515d0ad598fa5cc28e0069e6ec934542ecf82c24501e11b50b2"
+  },
+  {
    "path": "SKILLS/marketing/llms-txt-markdown-mirrors-evidence-ai-crawler-logs.md",
    "html": "SKILLS/marketing/llms-txt-markdown-mirrors-evidence-ai-crawler-logs.html",
    "title": "llms.txt and Markdown mirrors: what the logs show (and where effort pays instead)",
@@ -1833,6 +1903,13 @@
    "title": "Local what's-on listings for a talk or event (Penarth Times/Newsquest via Evvnt, What's On In Cardiff, Visit Wales)",
    "bytes": 3510,
    "sha256": "64d54bbd87fd1de5790ee60338bf101703fcc8406308d97b3d756a7392a54579"
+  },
+  {
+   "path": "SKILLS/marketing/low-price-entry-offer-tiny-offer-first-buyer.md",
+   "html": "SKILLS/marketing/low-price-entry-offer-tiny-offer-first-buyer.html",
+   "title": "Low-price entry offer (\"tiny offer\" / tripwire) to get a first buyer - a PROPOSAL under the no-new-Stripe-objects rule",
+   "bytes": 4018,
+   "sha256": "027c0f24cceae485a776975fab87ff66e95f71d6af4757df35ab19ffc2513945"
   },
   {
    "path": "SKILLS/marketing/mailchimp-click-interest-tags-segments.md",
@@ -1910,6 +1987,13 @@
    "title": "Launching a new e-book with a discounted (or free) backlist title",
    "bytes": 3735,
    "sha256": "73b3d3509051a434872b59dc1b5475fb584a20cffe60b1b265e9742402a63e1a"
+  },
+  {
+   "path": "SKILLS/marketing/newsjacking-same-day-archive-angle-news-hooks.md",
+   "html": "SKILLS/marketing/newsjacking-same-day-archive-angle-news-hooks.html",
+   "title": "Newsjacking: a same-day angle from the archive on a breaking story",
+   "bytes": 6068,
+   "sha256": "f337deb285728686fb16cce4fba32ca44419c077c38cc2224e863b8a07024cb2"
   },
   {
    "path": "SKILLS/marketing/newsletter-referral-programme-gate-free-rewards.md",
@@ -2008,6 +2092,13 @@
    "title": "Skill: Pinterest and YouTube Shorts for history content",
    "bytes": 5105,
    "sha256": "4d8a9c81a990e228ad229e62ed32d7a25f782da74978d32acf9b795bf5030f39"
+  },
+  {
+   "path": "SKILLS/marketing/plain-text-vs-html-email-letter-style-test.md",
+   "html": "SKILLS/marketing/plain-text-vs-html-email-letter-style-test.html",
+   "title": "Plain-text (letter-style) vs designed HTML email: what tests show, and how to test on a small list",
+   "bytes": 5504,
+   "sha256": "7a7cea674a736d075f228350df8d4d4b1607a4757c0af5752f4b3b151145cc09"
   },
   {
    "path": "SKILLS/marketing/podcast-guesting-heritage-history.md",
@@ -2295,6 +2386,20 @@
    "title": "Small-sample usability tests on the buy path (5 users, think-aloud, five-second test)",
    "bytes": 4433,
    "sha256": "8a9ca4e84cc416dc0a8744183bedadc0a7ab3ed37c732ba3ee155d13849a2bdf"
+  },
+  {
+   "path": "SKILLS/marketing/social-posting-times-buffer-2026-own-data-test.md",
+   "html": "SKILLS/marketing/social-posting-times-buffer-2026-own-data-test.html",
+   "title": "Social posting times: Buffer 2026 priors, then test on our own posts",
+   "bytes": 5709,
+   "sha256": "d13ffd1c5eb1bacb2cbb0d7e6db8446a1558c909438bc81d808bd163cb0f2929"
+  },
+  {
+   "path": "SKILLS/marketing/spam-words-myth-what-filters-weigh-offline-sa-check.md",
+   "html": "SKILLS/marketing/spam-words-myth-what-filters-weigh-offline-sa-check.html",
+   "title": "Spam words are mostly a myth: what filters actually weigh, plus an offline pre-send check",
+   "bytes": 5363,
+   "sha256": "3789aea22d05e7ee8a288139c91c33808b43f53634a524fd4c7e1674de0d76d1"
   },
   {
    "path": "SKILLS/marketing/spanish-patagonia-audience.md",
@@ -2661,6 +2766,13 @@
    "sha256": "4b6040cb4a52da6307c61e71384827b459d2d6ab80c650f2bd9e56f1b19092ef"
   },
   {
+   "path": "SKILLS/marketing/youtube-partner-program-2027-thresholds-hype-readiness.md",
+   "html": "SKILLS/marketing/youtube-partner-program-2027-thresholds-hype-readiness.html",
+   "title": "YouTube Partner Program ladder 2026-27 and Hype: what a 6-subscriber history channel can and can't unlock",
+   "bytes": 6393,
+   "sha256": "32c6eef43dbcd5dd99119da4649e989ddff9b7ed0a733fa951e0f1d4511b27fb"
+  },
+  {
    "path": "SKILLS/marketing/youtube-posts-tab-polls-history-channel.md",
    "html": "SKILLS/marketing/youtube-posts-tab-polls-history-channel.html",
    "title": "YouTube Posts (formerly the Community tab) for a small history channel",
@@ -2673,6 +2785,13 @@
    "title": "YouTube Premieres for long archive films: when to use them, and when not to (2026)",
    "bytes": 4854,
    "sha256": "1134226ba330ad992e076ed20e38b6aa7814ffc67d5a34ace7d98fc150f64ffe"
+  },
+  {
+   "path": "SKILLS/marketing/youtube-shorts-non-clickable-links-related-video-bridge.md",
+   "html": "SKILLS/marketing/youtube-shorts-non-clickable-links-related-video-bridge.html",
+   "title": "YouTube Shorts links: what can be clicked, and where the shop link has to go",
+   "bytes": 5596,
+   "sha256": "f6ee471ca1e0f42e190701e7e944e0ccc072066a21344b3d21437f957aa9a783"
   },
   {
    "path": "SKILLS/marketing/youtube-test-compare-titles-thumbnails.md",

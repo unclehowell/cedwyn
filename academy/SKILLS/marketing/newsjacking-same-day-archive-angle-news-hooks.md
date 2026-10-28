@@ -1,0 +1,47 @@
+# Newsjacking: a same-day angle from the archive on a breaking story
+
+Topic: reactive PR. Watch the news for stories Cedwyn's records can add to, and publish a short, dated, factual angle within hours, while reporters and searchers are still on the story. This is different from the existing skills: `press-requests-and-mention-monitoring.md` answers journalists' requests, `data-led-digital-pr-heritage-dataset-pitch.md` is a planned data campaign, and `pr-exclusive-first-then-embargo-one-outlet-ladder.md` covers pitch order. Here we start the move ourselves, and the deadline is the story's.
+
+## Evidence (agency case studies, self-reported, read 28 Oct 2026)
+- **Fractl** (Joe Mercurio, "Newsjacking Digital PR: Case Studies", read): ZipHealth ran 16 reactive campaigns. One return-to-office study earned 586 links and mentions, a recession piece 131 and an AI piece 112. The NYC ChatGPT school ban (Jan 2023) produced two surveys with 413 links (192 + 221). A Roe v Wade vasectomy-search cut got 132 links (NYT, TODAY, Slate, The Times UK). Their method: Google Trends spikes, Google Alerts, BuzzSumo, hashtags, a "same-day survey or a fresh cut of search data". In their words: "Show up on day three, and the trending topic has already cooled."
+- **Reboot Online** (case study, read): an OnBuy angle on what Bridgerton's jewellery would cost in real life, built on one expert's view, got coverage in Elle, Metro, Welt and Nine.com.au. A "most Googled White House questions" piece for Online Mortgage Advisor got a "100% link rate" with an average DA of 70.
+- **Caveats:** these are vendors marketing themselves, with no denominators (how many reactive pieces got nothing). They are US/UK consumer brands with research budgets. The mechanism carries over to Cedwyn; the link counts don't.
+
+## The routine (15 min a day; a draft within 4 h of a hit)
+1. **Monitor.** Run `tools/news_hooks.py --hours 24` each morning (free Google News RSS, GB edition, stdlib, read-only, 1.2 s between calls). Its default watch list: adverse possession, HM Land Registry, Welsh longhouse, Llandough/Penarth, Welsh Patagonia/Y Wladfa, Vale of Glamorgan heritage, Cadw farmhouses, NLW archives, Bute estate, squatters in Wales. Add Google Trends "rising" for the same terms (see `google-trends-seasonal-timing.md`).
+2. **Triage each hit** with three questions. Do we hold a dated primary record that adds a fact nobody else has? Is the story under 24 h old and still climbing? Can we say it without opinion about named people? Three yeses means draft it. Otherwise log it and move on.
+3. **Make the angle in 60–90 minutes:**
+   - one record, its date and reference, one image;
+   - one sentence linking it to the story;
+   - one neutral explainer paragraph;
+   - published as a dated blog post on Cedwyn, with the record's evidence page linked in-sentence early on (see `blog-inline-anchor-text-cta-vs-end-banner.md`).
+   The post is the asset. The search traffic arrives while the topic is trending, even if nobody covers it.
+4. **Social the same day:** one quote card or image post, plus a LinkedIn image post (see `linkedin-2026-format-benchmarks-document-vs-image-vs-video.md`).
+5. **Press is a draft only.** Write a 120-word note to one best-fit journalist who is already covering the story (byline from the article) as a HubSpot draft task. It goes out only on the project lead's GO. No mass pitch, and no chasing after day 2.
+6. **Log** date, story, hours to publish, post URL, clicks after 7 days (UTM `utm_campaign=newsjack-<slug>`), and any pickups. After 10 entries, keep the terms that produced hooks and drop the rest.
+
+## Rules that hold even when speed is tempting
+- Editorial rules apply in full: public text never names the project lead; banned words (states, assertions, per, second-hand report, not checked, reported, deception, taken); no accusations about named people; no outbound links; Cedwyn internal links only.
+- Never tie the record to a tragedy, a crime story or a named private person.
+- Write the record's facts, not commentary on the news.
+- A live legal matter affecting the family (HMLR complaints, SARs) is not newsjack material. Cover public policy, not the case.
+- If the hook needs a claim we can't source to a dated document, drop it.
+
+## Live example found by this run (28 Oct 2026, 00:30Z)
+`news_hooks.py --hours 168` returned 11 stories. The strongest:
+- **GOV.UK, 27 Oct 2026** (read): "New consultations launched on future of fees and access to data". HMLR proposes that everyone could access mappable datasets of ownership across most land in England and Wales and inspect detailed title information free. It also proposes simplifying Scale Two fees, and considers datasets on significant land holdings and commercial owners.
+- The Guardian, the same day ("Landowners could scupper free Land Registry access plans") and Mortgage Solutions are running it. The story is about 13 h old.
+- **Angle to propose:** a neutral explainer, "What free title access would and wouldn't show for an old Welsh farm: unregistered land, first registration, and why pre-1990s records sit in archives, not the register", using one dated Cedwyn record.
+- This is public policy, not the case. A formal consultation response is an outward action: a separate proposal for the project lead, not part of this routine.
+
+## How we apply it to Cedwyn
+- Add `news_hooks.py` to the BIZDEV daily plan as a 09:00 check. A hit that passes triage becomes a same-day blog post plus a social post.
+- Journalist notes stay HubSpot drafts until the project lead states GO.
+- First candidate: the 27 Oct HMLR access consultation explainer above. It's proposed to the root, not published by this run, because the cedwyn-blog template belongs to other workers.
+- Measure: hours from story to post (target under 6) and 7-day clicks per newsjack against the ordinary daily post average.
+
+## Sources
+- frac.tl (read 28 Oct 2026)
+- rebootonline.com (read 28 Oct 2026)
+- gov.uk (read 28 Oct 2026)
+- Tool: tools/news_hooks.py (own, stdlib; Google News RSS search feed, hl=en-GB gl=GB)
