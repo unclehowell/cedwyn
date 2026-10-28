@@ -1,0 +1,33 @@
+{
+  "schema": "fb wall delta v1",
+  "generated": "2026-10-28T14:41:16Z",
+  "apply": "Prepend these two events to site2/api/wall.json events array; set count to 954; update generated timestamp",
+  "events": [
+    {
+      "id": "m-gm-1a18294c365af53d",
+      "date": "2026-10-28",
+      "when": "28 October 2026",
+      "actor": "sion-buckler-project-manager",
+      "kind": "Letter sent",
+      "title": "",
+      "quote": null,
+      "text": "I acknowledge Foulston's complaint outcome, state that research and findings will be published on cedwyn.bucklerfamily.estate, and note that public disclosure after pressure is not accepted as settlement of the questions about reconstructing what happened and why the record was not public for decades.",
+      "src": [["Email", "https://email.bucklerfamily.estate/reference/1a18294c365af53d"]],
+      "wall": true,
+      "tags": ["heneb", "complaint"]
+    },
+    {
+      "id": "m-gm-1a181ade960954f0",
+      "date": "2026-10-28",
+      "when": "28 October 2026",
+      "actor": "heneb",
+      "kind": "Reply · Complaint outcome",
+      "title": "",
+      "quote": null,
+      "text": "Steven Foulston issues the formal response to the 27 September 2026 complaint on HER identifiers and the 1978-1995 GGAT record. He states he has not seen the HER, redirects each numbered request to the public Archwilio record, declines to review the 1990 evaluation, and says GDPR prevents sharing information that identifies individuals. He treats the complaint as outside Heneb's complaints procedure and points the family to the public HER.",
+      "src": [["Email", "https://email.bucklerfamily.estate/reference/1a181ade960954f0"]],
+      "wall": true,
+      "tags": ["heneb", "complaint", "her", "ggat02038s"]
+    }
+  ]
+}
