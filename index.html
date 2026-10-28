@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A unified index to Cedwyn photographs, image records, scans and archive media without duplicating source files.">
+<title>Gallery · Cedwyn</title>
+<style>
+:root{color-scheme:light dark;--bg:#101820;--panel:#182832;--ink:#edf4f7;--muted:#a8bbc5;--line:#35505e;--accent:#a6d6c8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--accent)}.wrap{max-width:1120px;margin:auto;padding:clamp(18px,4vw,48px)}.crumb{font-size:.88rem;color:var(--muted)}header{padding:38px 0 28px;border-bottom:1px solid var(--line)}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.78rem;color:var(--accent);font-weight:700}h1{font-size:clamp(2rem,5vw,4rem);line-height:1.06;margin:.4rem 0 1rem}h2{font-size:1.2rem;margin:0 0 10px}p{max-width:78ch}.muted{color:var(--muted)}.tag{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:3px 9px;font-size:.78rem;color:var(--muted)}.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}.toolbar input{flex:1;min-width:220px;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--panel);color:var(--ink);font:inherit}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:10px}.card p{color:var(--muted);margin:0}.card a{margin-top:auto;align-self:flex-start}.status{font-size:.8rem;color:var(--muted)}footer{margin-top:34px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:.9rem}.none{padding:20px;text-align:center;color:var(--muted);display:none}
+</style>
+</head>
+<body><main class="wrap">
+<p class="crumb"><a href="/">Cedwyn home</a> / Gallery</p>
+<header>
+<div class="eyebrow">Cedwyn · Media discovery</div><h1>Gallery</h1>
+<p>One index for photographs, scans and archive media. Each card links to its existing collection or original record; this layer does not duplicate image files or replace their provenance.</p>
+<p><span class="tag">Candidate 0.1.0</span> <span class="tag">Cross-collection index</span></p>
+</header>
+<div class="toolbar"><label for="filter" class="muted" style="align-self:center">Filter collections</label><input id="filter" type="search" placeholder="Search photos, plans, scans, archive…" autocomplete="off" aria-describedby="hint"><span id="hint" class="status">Search titles and descriptions.</span></div>
+<section class="grid" id="collections" aria-label="Image and media collections">
+<article class="card" data-search="farmbook great house farm photographs family album building landscape"><h2>Farmbook photographs</h2><p>Photographs associated with the farm and its recorded history. Browse the existing image collection.</p><a href="/fb/">Open Farmbook collection →</a><span class="status">Existing source · no file duplication</span></article>
+<article class="card" data-search="garden gallery nft art images landscape grounds"><h2>Garden and image collection</h2><p>Existing garden and image material, kept at its source URL and linked through the shared catalogue.</p><a href="/nft-art/">Open image collection →</a><span class="status">Existing source · preserve original identifiers</span></article>
+<article class="card" data-search="wayback archive images photographs scans pdf video text"><h2>Archive and media vault</h2><p>Browse preserved media and source captures. Keep original archive links distinguishable from current interpretations.</p><a href="/wayback/">Open archive vault →</a><span class="status">Existing source · archive links retained</span></article>
+<article class="card" data-search="primary records documents scans deed title chain maps plans"><h2>Records and scans</h2><p>Use the evidence catalogue to identify the artifact and its provenance before drawing conclusions from an image.</p><a href="/records/">Browse records →</a><span class="status">Catalogue references preferred</span></article>
+<article class="card" data-search="architecture floor plans elevations sections dimensions materials geometry"><h2>Architecture and geometry</h2><p>Connect photographs to plans, elevations, material observations, dimensions and reconstruction hypotheses.</p><a href="/architecture/">Open architecture workspace →</a><span class="status">New app candidate</span></article>
+<article class="card" data-search="research legal context interpretation provenance citations"><h2>Research context</h2><p>Read linked analysis and citations alongside visual material, without replacing the original artifact record.</p><a href="/research/">Open research library →</a><span class="status">Interpretation stays separate from source</span></article>
+</section>
+<p class="none" id="empty" role="status">No collection matches that search.</p>
+<footer>Gallery app · future catalogue integration should index stable artifact IDs and source URLs, not maintain duplicate master image files.</footer>
+</main>
+<script>
+(function(){
+ const input=document.getElementById("filter");
+ const cards=[...document.querySelectorAll("#collections .card")];
+ const empty=document.getElementById("empty");
+ input.addEventListener("input",function(){
+  const q=input.value.trim().toLowerCase();
+  let shown=0;
+  cards.forEach(function(card){
+   const hay=(card.textContent+" "+(card.dataset.search||"")).toLowerCase();
+   const visible=!q||hay.includes(q);
+   card.hidden=!visible;
+   if(visible)shown++;
+  });
+  empty.style.display=shown?"none":"block";
+ });
+})();
+</script>
+</body></html>
