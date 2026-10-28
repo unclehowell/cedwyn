@@ -5474,7 +5474,26 @@
       }
     ],
     "r2_total": 10,
-    "r2": [],
+    "r2": [
+      {
+        "name": "cedwyn-apps-uploads"
+      },
+      {
+        "name": "fcg-media"
+      },
+      {
+        "name": "ghf-comments"
+      },
+      {
+        "name": "ghf-social"
+      },
+      {
+        "name": "terrain-scene"
+      },
+      {
+        "name": "wayback-media"
+      }
+    ],
     "worker_bindings": [
       {
         "script": "cedwyn-apps",
@@ -5828,6 +5847,6 @@
       "bpvsbuckler-graph"
     ],
     "out_of_scope_database_count": 1,
-    "unresolved": "Cross-app synchronization, canonical evidence IDs/API, schema compatibility/versioning and full theme-to-database ownership remain unverified."
+    "unresolved": "Cross-app synchronization, canonical evidence IDs/API, schema compatibility/versioning and full theme-to-database ownership remain not yet tested."
   }
 }
