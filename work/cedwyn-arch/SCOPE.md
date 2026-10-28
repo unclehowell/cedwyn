@@ -33,6 +33,15 @@ The source repos and deployed front end must remain separate concerns:
 | Server-side database inventory | 10 Cloudflare D1 databases, 13 KV namespaces and 10 R2 buckets | Existing app-owned data backends already exist; map ownership and sync before adding another database |
 | Redirect rules | Cloudflare dynamic-redirect zone ruleset version 26 | Covers many but not all application hosts; some paths/user agents/file extensions are excluded by design |
 
+### Source-scan/build findings added 2026-10-28
+
+- `reports/_rewrite_report.json` records 6,634 HTML pages processed, 150,031 cross-host references rewritten, 56,749 root-relative paths prefixed to their theme, 18,431 outbound URL references routed through the Wayback interface, 151 theme redirects, 0 rewrite errors and 0 occurrences of the build's configured privacy-banned patterns. These are transformation counts—not a list of every plain-text subdomain mention.
+- `tools/rewrite.py` resolves cross-subdomain links against `themes.json` plus `extra_hosts`; it also moves shared assets to the content-addressed `/_blob/` store and rewrites outbound links. `tools/check_links.py` checks HTML anchors/areas, form actions and iframe sources. Neither result alone proves that script-loaded JSON/JS, CSS references, downloads, media services, MCP/WebMCP, agent routes, or every old hostname behaves correctly over HTTP.
+- `reports/_outbound_test.json` passes for 8,713 pages and 337,996 links with 0 surviving outbound links under its specific checks.
+- Build report shows `thousand-cuts` produced 0 files/no index. The Docs section could not run Sphinx (`No module named sphinx`) and was assembled using a crawl fallback; current index exists, but source/build parity is not certified. `chat`'s pinned snapshot returned 0 files and was supplemented by a crawl fallback.
+- The inventory maps 44 themes, all 102 DNS records and all 76 Pages projects. At least one declared old theme host, `story.bucklerfamily.estate`, has no explicit DNS record in the zone snapshot; the known `bpvsbuckler` alias has a separate redirect to `/story`. Treat the missing host as an ambiguity to resolve, not evidence it should automatically be created.
+- The direct web fetch tool returned cache/unavailable errors for several tested hosts/routes (including FCG and Infographic). Those results are marked **HTTP status unknown**. A real response matrix needs a direct HTTP test runner, collecting status, Location, content type, final URL and response body checks.
+
 ### Route/redirect observations requiring resolution
 
 Existing mappings include:
