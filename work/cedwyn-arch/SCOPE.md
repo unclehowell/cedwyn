@@ -51,7 +51,7 @@ Existing mappings include:
 - the catch-all is **not** unconditional: GET/HEAD, limited path extensions, API exclusions, user-agent exclusions, FCG-specific exclusions and Research-specific path exclusions apply.
 
 Known issues to test:
-- `projects.bucklerfamily.estate`, `email.bucklerfamily.estate` and `story.bucklerfamily.estate` were present as app/registry hosts but not covered by the identified host-specific migration rules. Do not infer that a hostname works because DNS still points to a Pages origin.
+- `projects.bucklerfamily.estate`, `email.bucklerfamily.estate` and `story.bucklerfamily.estate` are now included in the migrated app routes and passed registered root/index tests in Actions run #126. The `story` DNS record was added and is recorded for rollback. Do not infer that a hostname works simply because DNS points to a Pages origin.
 - `fcg.bucklerfamily.estate` and `research.bucklerfamily.estate` have Worker-backed DNS and agent/MCP/WebMCP routes. Test and preserve those routes rather than replacing them indiscriminately.
 - media hosts (for example `wayback-html`, `wayback-img`, `wayback-pdf`, `wayback-text`, `wayback-video`) may be serving files, not app pages. Classify each before any redirect.
 - web-crawler fetch errors for some old and new URLs are **unknown**, not a failure verdict. Use direct HTTP tests from a controlled CI runner or equivalent and record status, location, content type and final response.
@@ -121,11 +121,13 @@ Do not proceed with a production cutover if any of the following applies:
 | Date UTC | Status | Evidence / next action |
 |---|---|---|
 | 2026-10-28 | Baseline audit in progress | Registry 1.1.1 has 44 entries; database and outbound-test snapshots recorded above. |
-| 2026-10-28 | Redirect gaps identified | Current rules are selective; `projects`, `email` and `story` require explicit verification/mapping. |
-| 2026-10-28 | Live routing repair applied | Redirect ruleset 27 extends the same-name rule to `email` and `story`; `story` CNAME created; service/API exclusions and FCG/Research exceptions retained; post-change HTTP audit pending. |
+| 2026-10-28 | Registered route audit passed | Actions run #126: 44/44 canonical routes, 78/78 registered legacy root/index redirects, 25/25 agent endpoints, 2/2 FCG synonyms; all 149 tests passed. |
+| 2026-10-28 | Live routing repair applied and checked | Rule set v27 includes `email` and `story`; `story` CNAME created; protected service paths and FCG/Research exceptions retained; registered route acceptance run #126 passed. Rollback is recorded in `reports/cedwyn-migration-rollback.json`. |
 | 2026-10-28 | Existing app DBs found | Cloudflare API read confirms 10 D1s, 13 KV namespaces and 10 R2 buckets; schemas were inspected as names only, with no application rows read. |
-| 2026-10-28 | GitHub Issues unavailable | Repository returns HTTP 410 for Issues. Use this version-controlled checkpoint and a project-office / HubSpot task instead. |
-| 2026-10-28 | Waiting for task-record approval | Propose one HubSpot task for the work plan; create only after the user approves the exact fields. |
+| 2026-10-28 | GitHub Issues unavailable | Repository returns HTTP 410 for Issues. The version-controlled checkpoint and Programme Office page/PR provide the resume point. |
+| 2026-10-28 | HubSpot task pending approval | Proposed task will be associated with the BucklerFamily Estate company and Programme — Great House Farm umbrella deal; create only after approval of fields and associations. |
+| 2026-10-28 | App candidates staged | `architecture` and `gallery` branches contain source-only candidate apps and manifests; proposed registry additions remain staged because route activation needs a full preview first. |
+| 2026-10-28 | Release ledger/workflow staged | Per-app source and tag ledger covers 44 current themes and two new candidates. No formal GitHub Releases published; version/build gates still block several themes.
 
 ## Definition of done
 
