@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A source-led architecture workspace for plans, dimensions, materials, photographs and reconstruction alternatives.">
+<title>Architecture · Cedwyn</title>
+<style>
+:root{color-scheme:light dark;--bg:#101820;--panel:#182832;--ink:#edf4f7;--muted:#a8bbc5;--line:#35505e;--accent:#a6d6c8;--amber:#e6c58a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--accent)}.wrap{max-width:1120px;margin:auto;padding:clamp(18px,4vw,48px)}.crumb{font-size:.88rem;color:var(--muted)}.hero{padding:36px 0 28px;border-bottom:1px solid var(--line)}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.78rem;color:var(--accent);font-weight:700}h1{font-size:clamp(2rem,5vw,4rem);line-height:1.06;margin:.4rem 0 1rem}h2{font-size:1.25rem;margin:0 0 12px}p{max-width:78ch}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px;margin:24px 0}.card,section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}.card p{margin-bottom:0;color:var(--muted)}.tag{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:3px 9px;font-size:.78rem;color:var(--muted)}.caution{border-left:4px solid var(--amber);padding:10px 14px;background:#2b2923;border-radius:5px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:720px}th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--accent);font-size:.88rem}footer{margin-top:34px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:.9rem}.links{display:flex;flex-wrap:wrap;gap:10px}.links a{border:1px solid var(--line);padding:8px 12px;border-radius:8px;text-decoration:none}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body><main class="wrap">
+<p class="crumb"><a href="/">Cedwyn home</a> / Architecture</p>
+<header class="hero">
+<div class="eyebrow">Cedwyn · Reconstruction workspace</div>
+<h1>Architecture</h1>
+<p>Plans, dimensions, materials, photographs and geometry belong in one source-linked workspace. This app is designed to support the proposed Cedwyn Estate reconstruction in Argentina, south of Puerto Madryn, while keeping each measured fact separate from an interpretation.</p>
+<p><span class="tag">Candidate 0.1.0</span> <span class="tag">Source-led</span> <span class="tag">Catalogue-linked</span></p>
+</header>
+<section style="margin-top:22px">
+<h2>Recording rule</h2>
+<p class="caution">No dimension is treated as measured unless it points to a source artifact and records units, measurement method and confidence. Derived geometry and illustrative alternatives remain clearly labelled as such.</p>
+</section>
+<div class="grid">
+<article class="card"><h2>Floor plans</h2><span class="tag">Drawing register</span><p>Store each plan by level, orientation, scale, source, revision and drawing status. Keep measured plans distinct from proposed layouts.</p></article>
+<article class="card"><h2>Elevations and sections</h2><span class="tag">Vertical geometry</span><p>Index facade elevations, section cuts, roof profiles, floor heights and the evidence supporting each line or dimension.</p></article>
+<article class="card"><h2>Dimension schedule</h2><span class="tag">Units required</span><p>Record value, unit, source location, measurement method, confidence and whether the number is measured, derived or illustrative.</p></article>
+<article class="card"><h2>Materials and fabric</h2><span class="tag">Specification</span><p>Connect material descriptions, visible surface clues, repair notes, construction assumptions and proposed equivalents to their sources.</p></article>
+<article class="card"><h2>Photo register</h2><span class="tag">Image provenance</span><p>Use catalogue identifiers and original image links. Record viewpoint, date when known, depicted area and whether the image supports geometry or material interpretation.</p></article>
+<article class="card"><h2>Geometry and massing</h2><span class="tag">Model inputs</span><p>Describe footprint, roof volume, openings, orientation, proportion and relationships between spaces before committing to a 3D model.</p></article>
+</div>
+<section>
+<h2>Dimension schedule · working schema</h2>
+<p class="muted">The table defines the fields for later catalogue integration. It contains no invented measurements.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Component</th><th>Value</th><th>Unit</th><th>Source artifact</th><th>Method / status</th><th>Confidence</th></tr></thead>
+<tbody>
+<tr><td>Not yet catalogued</td><td>—</td><td>—</td><td>Catalogue ID required</td><td>Measured / derived / illustrative</td><td>Record with each entry</td></tr>
+</tbody>
+</table></div>
+</section>
+<section style="margin-top:18px">
+<h2>Linked collections</h2>
+<div class="links">
+<a href="/records/">Evidence catalogue</a><a href="/research/">Research library</a><a href="/fb/">Farmbook photographs</a><a href="/nft-art/">Garden and image collection</a><a href="/wayback/">Archive and media vault</a><a href="/infographic/">Land and title-chain view</a>
+</div>
+</section>
+<footer>Architecture app · source references should use stable catalogue IDs. This is a structured workspace, not a completed reconstruction or a set of verified dimensions.</footer>
+</main></body></html>
