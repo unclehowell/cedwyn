@@ -137,6 +137,7 @@
    "branch": "docs",
    "dir": "public",
    "build": "python3 _theme-docs/build.py",
+   "crawl_url": "https://bucklerfamily-docs.pages.dev/",
    "crawl_fallback": true,
    "group": "artifacts"
   },

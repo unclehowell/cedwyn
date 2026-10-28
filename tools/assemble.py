@@ -100,7 +100,7 @@ def one(t):
         shutil.rmtree(work, ignore_errors=True)
         if (n == 0 or not (out / 'index.html').exists()) and t.get('crawl_fallback'):
             shutil.rmtree(out, ignore_errors=True); out.mkdir(parents=True)
-            n = crawl(t['live'], out); how = 'crawl(fallback)'
+            n = crawl(t.get('crawl_url') or t['live'], out); how = 'crawl(fallback)'   # crawl_url: the theme's own origin when its public host now serves the Cedwyn copy (docs)
     elif t.get('crawl'):
         n = crawl(t['crawl'], out); how = 'crawl'
     big = []
