@@ -1,5 +1,86 @@
 {
   "generated_on": "2026-10-28",
+  "collection_completeness": {
+    "dns_total": 102,
+    "dns_collected": 102,
+    "pages_total": 76,
+    "pages_collected": 76,
+    "dns_pages": [
+      {
+        "page": 1,
+        "status": 200,
+        "count": 100,
+        "total": 102,
+        "total_pages": 2
+      },
+      {
+        "page": 2,
+        "status": 200,
+        "count": 2,
+        "total": 102,
+        "total_pages": 2
+      }
+    ],
+    "pages_pages": [
+      {
+        "page": 1,
+        "status": 200,
+        "count": 10,
+        "total": 76,
+        "total_pages": 8
+      },
+      {
+        "page": 2,
+        "status": 200,
+        "count": 10,
+        "total": 76,
+        "total_pages": 8
+      },
+      {
+        "page": 3,
+        "status": 200,
+        "count": 10,
+        "total": 76,
+        "total_pages": 8
+      },
+      {
+        "page": 4,
+        "status": 200,
+        "count": 10,
+        "total": 76,
+        "total_pages": 8
+      },
+      {
+        "page": 5,
+        "status": 200,
+        "count": 10,
+        "total": 76,
+        "total_pages": 8
+      },
+      {
+        "page": 6,
+        "status": 200,
+        "count": 10,
+        "total": 76,
+        "total_pages": 8
+      },
+      {
+        "page": 7,
+        "status": 200,
+        "count": 10,
+        "total": 76,
+        "total_pages": 8
+      },
+      {
+        "page": 8,
+        "status": 200,
+        "count": 6,
+        "total": 76,
+        "total_pages": 8
+      }
+    ],
+    "complete": true
+  },
   "source": {
     "repository": "unclehowell/cedwyn",
     "registry_file": "themes.json",
@@ -7,8 +88,6 @@
     "registry_note": "Cedwyn theme registry v1.1.1: 38 routes, ordered to match the canonical 38-stop site chain (campus/site_chain.json v2.0.14). Court Drills is restored as a theme; Research Library and 1000 Cuts are back in the ordered tour. — Sion's Tab agent, 25 Oct 2026",
     "theme_count": 44,
     "zone_id": "5307ac7d55a77d914b81d79c79532dde",
-    "dns_record_count": 46,
-    "pages_project_count": 19,
     "redirect_ruleset": {
       "id": "418cf908695742d19d24e5058b2bab22",
       "version": "26",
@@ -17,94 +96,174 @@
         {
           "description": "dishonor/dishonour -> fcg Accountability Index (worker 941c4817, Sion's Tab agent)",
           "enabled": true,
-          "expression": "(http.host eq \"dishonor.bucklerfamily.estate\") or (http.host eq \"dishonour.bucklerfamily.estate\")",
           "action": "redirect",
           "status_code": 301,
           "preserve_query_string": false,
-          "target": "https://fcg.bucklerfamily.estate/"
+          "target": "https://fcg.bucklerfamily.estate/",
+          "source_hosts": [
+            "dishonor.bucklerfamily.estate",
+            "dishonour.bucklerfamily.estate"
+          ]
         },
         {
           "description": "Treasury retired 21 Oct 2026: bare /coins/ landing -> ebooks shop (coin thanks/terms/spend/api paths kept) — Sion's Tab agent [1]",
           "enabled": true,
-          "expression": "(http.host in {\"bucklerfamily.estate\" \"www.bucklerfamily.estate\"} and http.request.uri.path in {\"/coins\" \"/coins/\" \"/coins/index.html\"} and http.request.uri.query eq \"\")",
           "action": "redirect",
           "status_code": 301,
           "preserve_query_string": false,
-          "target": "https://ebooks.bucklerfamily.estate/"
+          "target": "https://ebooks.bucklerfamily.estate/",
+          "source_hosts": [
+            "www.bucklerfamily.estate"
+          ]
         },
         {
           "description": "RETIRE->cedwyn/<label>/ for emails, ebooks, courtdrills (Tab 26Oct f191e87c; emails was ->email./calendar)",
           "enabled": true,
-          "expression": "http.host in {\"emails.bucklerfamily.estate\" \"ebooks.bucklerfamily.estate\" \"courtdrills.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request. --- TRUNCATED --- 364 chars",
           "action": "redirect",
           "status_code": 301,
           "preserve_query_string": true,
-          "target": "concat(\"https://cedwyn.bucklerfamily.estate/\", wildcard_replace(http.host, \"*.bucklerfamily.estate\", \"${1}\"), http.request.uri.path)"
+          "target": "concat(\"https://cedwyn.bucklerfamily.estate/\", wildcard_replace(http.host, \"*.bucklerfamily.estate\", \"${1}\"), http.request.uri.path)",
+          "source_hosts": [
+            "emails.bucklerfamily.estate",
+            "ebooks.bucklerfamily.estate",
+            "courtdrills.bucklerfamily.estate"
+          ]
         },
         {
           "description": "Map purge 22 Oct 2026 (no licence held, owner 20:29 BST): removed shop map images -> shop home (stale Pages cache) — Sion's Tab agent [e426632a]  ",
           "enabled": true,
-          "expression": "(http.host eq \"shop.bucklerfamily.estate\" and http.request.uri.path in {\"/img/p-cedwyn-poster.webp\" \"/img/p-cedwyn-tote.webp\" \"/img/p-cedwyn-mug.webp\" \"/img/p-cedwyn-postcard.webp\" \"/img/p-download-os-map-pack.webp\" \"/img/p-poster-map-190 --- TRUNCATED --- 512 chars",
           "action": "redirect",
           "status_code": 301,
           "preserve_query_string": false,
-          "target": "https://shop.bucklerfamily.estate/"
+          "target": "https://shop.bucklerfamily.estate/",
+          "source_hosts": [
+            "shop.bucklerfamily.estate"
+          ]
         },
         {
           "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
           "enabled": true,
-          "expression": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.est --- TRUNCATED --- 1,465 chars",
           "action": "redirect",
           "status_code": 301,
           "preserve_query_string": false,
-          "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")"
+          "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
+          "source_hosts": [
+            "records.bucklerfamily.estate",
+            "docs.bucklerfamily.estate",
+            "wayback.bucklerfamily.estate",
+            "nomenclature.bucklerfamily.estate",
+            "maps.bucklerfamily.estate",
+            "infographic.bucklerfamily.estate",
+            "wiki.bucklerfamily.estate",
+            "fb.bucklerfamily.estate",
+            "chess.bucklerfamily.estate",
+            "csscpsg.bucklerfamily.estate",
+            "fcg.bucklerfamily.estate",
+            "oldbill.bucklerfamily.estate",
+            "accounts.bucklerfamily.estate",
+            "authorities.bucklerfamily.estate",
+            "review.bucklerfamily.estate",
+            "qa.bucklerfamily.estate",
+            "app.bucklerfamily.estate",
+            "chat.bucklerfamily.estate",
+            "watchtower.bucklerfamily.estate",
+            "fb2.bucklerfamily.estate",
+            "dartboard.bucklerfamily.estate",
+            "directory.bucklerfamily.estate",
+            "terrain.bucklerfamily.estate",
+            "shop.bucklerfamily.estate",
+            "research.bucklerfamily.estate"
+          ]
         },
         {
           "description": "RETIRE->cedwyn/nomenclature/ (Tab 25Oct)",
           "enabled": true,
-          "expression": "http.host in {\"nomlecture.bucklerfamily.estate\" \"nolecture.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent --- TRUNCATED --- 336 chars",
           "action": "redirect",
           "status_code": 301,
           "preserve_query_string": true,
-          "target": "concat(\"https://cedwyn.bucklerfamily.estate/nomenclature\", http.request.uri.path)"
+          "target": "concat(\"https://cedwyn.bucklerfamily.estate/nomenclature\", http.request.uri.path)",
+          "source_hosts": [
+            "nomlecture.bucklerfamily.estate",
+            "nolecture.bucklerfamily.estate"
+          ]
         },
         {
           "description": "RETIRE->cedwyn/csscpsg/ (Tab 25Oct)",
           "enabled": true,
-          "expression": "http.host in {\"csscpsgp.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not h --- TRUNCATED --- 301 chars",
           "action": "redirect",
           "status_code": 301,
           "preserve_query_string": true,
-          "target": "concat(\"https://cedwyn.bucklerfamily.estate/csscpsg\", http.request.uri.path)"
+          "target": "concat(\"https://cedwyn.bucklerfamily.estate/csscpsg\", http.request.uri.path)",
+          "source_hosts": [
+            "csscpsgp.bucklerfamily.estate"
+          ]
         },
         {
           "description": "RETIRE->cedwyn/story/ (Tab 25Oct)",
           "enabled": true,
-          "expression": "http.host in {\"bpvsbuckler.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and no --- TRUNCATED --- 304 chars",
           "action": "redirect",
           "status_code": 301,
           "preserve_query_string": true,
-          "target": "concat(\"https://cedwyn.bucklerfamily.estate/story\", http.request.uri.path)"
+          "target": "concat(\"https://cedwyn.bucklerfamily.estate/story\", http.request.uri.path)",
+          "source_hosts": [
+            "bpvsbuckler.bucklerfamily.estate"
+          ]
         },
         {
           "description": "RETIRE->cedwyn/wdtk/ (Tab 25Oct)",
           "enabled": true,
-          "expression": "http.host in {\"whatdotheyknow.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and --- TRUNCATED --- 307 chars",
           "action": "redirect",
           "status_code": 301,
           "preserve_query_string": true,
-          "target": "concat(\"https://cedwyn.bucklerfamily.estate/wdtk\", http.request.uri.path)"
+          "target": "concat(\"https://cedwyn.bucklerfamily.estate/wdtk\", http.request.uri.path)",
+          "source_hosts": [
+            "whatdotheyknow.bucklerfamily.estate"
+          ]
         },
         {
           "description": "RETIRE->cedwyn/meeting/ (Tab 25Oct)",
           "enabled": true,
-          "expression": "http.host in {\"2026-10-22.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not --- TRUNCATED --- 303 chars",
           "action": "redirect",
           "status_code": 301,
           "preserve_query_string": true,
-          "target": "concat(\"https://cedwyn.bucklerfamily.estate/meeting\", http.request.uri.path)"
+          "target": "concat(\"https://cedwyn.bucklerfamily.estate/meeting\", http.request.uri.path)",
+          "source_hosts": [
+            "2026-10-22.bucklerfamily.estate"
+          ]
         }
       ]
+    },
+    "build_reports": {
+      "database": {
+        "artifacts": 14194,
+        "locations": 19584,
+        "blobs": 4545,
+        "blob_bytes": 659656953,
+        "blob_skipped_over_cap": 9,
+        "edges": 301175,
+        "nodes": 1535,
+        "fts_rows": 10351,
+        "captures": 183,
+        "cites": 18646,
+        "themes": 44,
+        "layer_items": 73,
+        "layer_refs": 113,
+        "layer_deps": 75,
+        "blobmap_paths": 7091,
+        "blobmap_blobs": 4545,
+        "db_version": "4f179dec1afb",
+        "db_bytes": 761405440,
+        "chunks": 2905,
+        "chunk_max_bytes": 262144
+      },
+      "link_test": {
+        "fixed_in_place": 0,
+        "pages": 8713,
+        "links_checked": 337996,
+        "outbound_found": 0,
+        "examples": [],
+        "pass": true
+      }
     },
     "production_deployment": {
       "id": "cd51f1a7-ebc0-4787-9f9d-5210a8104e0e",
@@ -113,39 +272,7 @@
       "status": "success"
     }
   },
-  "build_reports": {
-    "database": {
-      "artifacts": 14194,
-      "locations": 19584,
-      "blobs": 4545,
-      "blob_bytes": 659656953,
-      "blob_skipped_over_cap": 9,
-      "edges": 301175,
-      "nodes": 1535,
-      "fts_rows": 10351,
-      "captures": 183,
-      "cites": 18646,
-      "themes": 44,
-      "layer_items": 73,
-      "layer_refs": 113,
-      "layer_deps": 75,
-      "blobmap_paths": 7091,
-      "blobmap_blobs": 4545,
-      "db_version": "4f179dec1afb",
-      "db_bytes": 761405440,
-      "chunks": 2905,
-      "chunk_max_bytes": 262144
-    },
-    "link_test": {
-      "fixed_in_place": 0,
-      "pages": 8713,
-      "links_checked": 337996,
-      "outbound_found": 0,
-      "examples": [],
-      "pass": true
-    }
-  },
-  "route_mapping_rule": "oldhost.bucklerfamily.estate/path?x=y → https://cedwyn.bucklerfamily.estate/<theme-id>/path?x=y, except aliases, APIs, agent endpoints, media services and archived-original links explicitly classified",
+  "mapping_rule": "oldhost.bucklerfamily.estate/path?x=y → https://cedwyn.bucklerfamily.estate/<theme-id>/path?x=y, except aliases, APIs, agent endpoints, media services and archived-original links explicitly classified",
   "themes": [
     {
       "theme_id": "wiki",
@@ -153,33 +280,9 @@
       "group": "artifacts",
       "canonical_path": "/wiki/",
       "source_branch": "wiki",
-      "source_mode": "snapshot",
       "source_dir": "site",
-      "hosts": [
-        {
-          "hostname": "wiki.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [
-            {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
-              "status_code": 301,
-              "preserve_query_string": false,
-              "expression": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.est --- TRUNCATED --- 1,465 chars"
-            }
-          ],
-          "worker_routes": [
-            {
-              "pattern": "wiki.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "content_observed"
-        }
-      ]
+      "build_mode": "snapshot",
+      "hosts": []
     },
     {
       "theme_id": "records",
@@ -187,33 +290,9 @@
       "group": "artifacts",
       "canonical_path": "/records/",
       "source_branch": "ghf-primary-records",
-      "source_mode": "branch",
       "source_dir": null,
-      "hosts": [
-        {
-          "hostname": "records.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [
-            {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
-              "status_code": 301,
-              "preserve_query_string": false,
-              "expression": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.est --- TRUNCATED --- 1,465 chars"
-            }
-          ],
-          "worker_routes": [
-            {
-              "pattern": "records.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "docs",
@@ -221,43 +300,9 @@
       "group": "artifacts",
       "canonical_path": "/docs/",
       "source_branch": "docs",
-      "source_mode": "branch_plus_build",
       "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "docs.bucklerfamily.estate",
-          "dns": {
-            "name": "docs.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-docs.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "bucklerfamily-docs",
-            "repo": "datro",
-            "production_branch": "docs",
-            "latest_deployment": {
-              "id": "34aba026-d507-45e1-8c1a-a43d131302b4",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [
-            {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
-              "status_code": 301,
-              "preserve_query_string": false,
-              "expression": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.est --- TRUNCATED --- 1,465 chars"
-            }
-          ],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch_plus_build",
+      "hosts": []
     },
     {
       "theme_id": "wayback",
@@ -265,33 +310,9 @@
       "group": "artifacts",
       "canonical_path": "/wayback/",
       "source_branch": "wayback",
-      "source_mode": "branch",
       "source_dir": "wayback",
-      "hosts": [
-        {
-          "hostname": "wayback.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [
-            {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
-              "status_code": 301,
-              "preserve_query_string": false,
-              "expression": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.est --- TRUNCATED --- 1,465 chars"
-            }
-          ],
-          "worker_routes": [
-            {
-              "pattern": "wayback.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "content_observed"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "nomenclature",
@@ -299,106 +320,9 @@
       "group": "artifacts",
       "canonical_path": "/nomenclature/",
       "source_branch": "nomenclature",
-      "source_mode": "branch",
       "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "nomenclature.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": {
-            "name": "bucklerfamily-nomenclature",
-            "repo": "datro",
-            "production_branch": "nomenclature",
-            "latest_deployment": {
-              "id": "041618e5-5568-4317-9166-4e852b8b5e40",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [
-            {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
-              "status_code": 301,
-              "preserve_query_string": false,
-              "expression": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.est --- TRUNCATED --- 1,465 chars"
-            }
-          ],
-          "worker_routes": [
-            {
-              "pattern": "nomenclature.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        },
-        {
-          "hostname": "nomlecture.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": {
-            "name": "bucklerfamily-nomenclature",
-            "repo": "datro",
-            "production_branch": "nomenclature",
-            "latest_deployment": {
-              "id": "041618e5-5568-4317-9166-4e852b8b5e40",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [
-            {
-              "description": "RETIRE->cedwyn/nomenclature/ (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/nomenclature\", http.request.uri.path)",
-              "status_code": 301,
-              "preserve_query_string": true,
-              "expression": "http.host in {\"nomlecture.bucklerfamily.estate\" \"nolecture.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent --- TRUNCATED --- 336 chars"
-            }
-          ],
-          "worker_routes": [
-            {
-              "pattern": "nomlecture.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        },
-        {
-          "hostname": "nolecture.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": {
-            "name": "bucklerfamily-nomenclature",
-            "repo": "datro",
-            "production_branch": "nomenclature",
-            "latest_deployment": {
-              "id": "041618e5-5568-4317-9166-4e852b8b5e40",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [
-            {
-              "description": "RETIRE->cedwyn/nomenclature/ (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/nomenclature\", http.request.uri.path)",
-              "status_code": 301,
-              "preserve_query_string": true,
-              "expression": "http.host in {\"nomlecture.bucklerfamily.estate\" \"nolecture.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent --- TRUNCATED --- 336 chars"
-            }
-          ],
-          "worker_routes": [
-            {
-              "pattern": "nolecture.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "maps",
@@ -406,48 +330,9 @@
       "group": "artifacts",
       "canonical_path": "/maps/",
       "source_branch": "maps",
-      "source_mode": "branch",
       "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "maps.bucklerfamily.estate",
-          "dns": {
-            "name": "maps.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-maps.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "bucklerfamily-maps",
-            "repo": "datro",
-            "production_branch": "maps",
-            "latest_deployment": {
-              "id": "e5043166-82c7-402c-a880-b8c91f6d609d",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [
-            {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
-              "status_code": 301,
-              "preserve_query_string": false,
-              "expression": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.est --- TRUNCATED --- 1,465 chars"
-            }
-          ],
-          "worker_routes": [
-            {
-              "pattern": "maps.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "content_observed"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "infographic",
@@ -455,34 +340,9 @@
       "group": "interactive",
       "canonical_path": "/infographic/",
       "source_branch": "infographic",
-      "source_mode": "branch",
       "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "infographic.bucklerfamily.estate",
-          "dns": {
-            "name": "infographic.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-infographic.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [
-            {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
-              "status_code": 301,
-              "preserve_query_string": false,
-              "expression": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.est --- TRUNCATED --- 1,465 chars"
-            }
-          ],
-          "worker_routes": [],
-          "browser_crawl_status": "crawler_fetch_disabled_status_unknown"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "ebooks",
@@ -490,52 +350,9 @@
       "group": "story",
       "canonical_path": "/ebooks/",
       "source_branch": "ebooks",
-      "source_mode": "branch",
       "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "ebooks.bucklerfamily.estate",
-          "dns": {
-            "name": "ebooks.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-ebooks.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "bucklerfamily-ebooks",
-            "repo": "datro",
-            "production_branch": "ebooks",
-            "latest_deployment": {
-              "id": "b6714fc4-960d-46f3-a3af-ad9880faf091",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [
-            {
-              "description": "RETIRE->cedwyn/<label>/ for emails, ebooks, courtdrills (Tab 26Oct f191e87c; emails was ->email./calendar)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/\", wildcard_replace(http.host, \"*.bucklerfamily.estate\", \"${1}\"), http.request.uri.path)",
-              "status_code": 301,
-              "preserve_query_string": true,
-              "expression": "http.host in {\"emails.bucklerfamily.estate\" \"ebooks.bucklerfamily.estate\" \"courtdrills.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request. --- TRUNCATED --- 364 chars"
-            }
-          ],
-          "worker_routes": [
-            {
-              "pattern": "ebooks.bucklerfamily.estate/",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "ebooks.bucklerfamily.estate/api/*",
-              "script": "ebook-gate"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "story",
@@ -543,47 +360,9 @@
       "group": "story",
       "canonical_path": "/story/",
       "source_branch": "bpvsbuckler",
-      "source_mode": "branch_plus_build",
       "source_dir": "static/bpvsbuckler/dist",
-      "hosts": [
-        {
-          "hostname": "bpvsbuckler.bucklerfamily.estate",
-          "dns": {
-            "name": "bpvsbuckler.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bpvsbuckler.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [
-            {
-              "description": "RETIRE->cedwyn/story/ (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/story\", http.request.uri.path)",
-              "status_code": 301,
-              "preserve_query_string": true,
-              "expression": "http.host in {\"bpvsbuckler.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and no --- TRUNCATED --- 304 chars"
-            }
-          ],
-          "worker_routes": [
-            {
-              "pattern": "bpvsbuckler.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "content_observed"
-        },
-        {
-          "hostname": "story.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [],
-          "browser_crawl_status": "content_observed"
-        }
-      ]
+      "build_mode": "branch_plus_build",
+      "hosts": []
     },
     {
       "theme_id": "thousand-cuts",
@@ -591,47 +370,9 @@
       "group": "story",
       "canonical_path": "/thousand-cuts/",
       "source_branch": null,
-      "source_mode": "crawl_or_snapshot",
       "source_dir": null,
-      "hosts": [
-        {
-          "hostname": "research.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "research.bucklerfamily.estate/robots.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/sitemap.xml",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/llms.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/llms-full.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/.well-known/mcp.json",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/.well-known/webmcp.json",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/agent/*",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "crawl_or_snapshot",
+      "hosts": []
     },
     {
       "theme_id": "fb",
@@ -639,29 +380,9 @@
       "group": "artifacts",
       "canonical_path": "/fb/",
       "source_branch": "fb",
-      "source_mode": "branch",
       "source_dir": "site",
-      "hosts": [
-        {
-          "hostname": "fb.bucklerfamily.estate",
-          "dns": {
-            "name": "fb.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-fb.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "fb.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "content_observed"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "chess",
@@ -669,29 +390,9 @@
       "group": "interactive",
       "canonical_path": "/chess/",
       "source_branch": "chess",
-      "source_mode": "branch",
       "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "chess.bucklerfamily.estate",
-          "dns": {
-            "name": "chess.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-chess.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "chess.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "csscpsg",
@@ -699,58 +400,9 @@
       "group": "interactive",
       "canonical_path": "/csscpsg/",
       "source_branch": "csscpsg",
-      "source_mode": "branch",
       "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "csscpsg.bucklerfamily.estate",
-          "dns": {
-            "name": "csscpsg.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-csscpsg.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "csscpsg.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        },
-        {
-          "hostname": "csscpsgp.bucklerfamily.estate",
-          "dns": {
-            "name": "csscpsgp.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-csscpsg.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [
-            {
-              "description": "RETIRE->cedwyn/csscpsg/ (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/csscpsg\", http.request.uri.path)",
-              "status_code": 301,
-              "preserve_query_string": true,
-              "expression": "http.host in {\"csscpsgp.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not h --- TRUNCATED --- 301 chars"
-            }
-          ],
-          "worker_routes": [
-            {
-              "pattern": "csscpsgp.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "courtdrills",
@@ -758,43 +410,9 @@
       "group": "interactive",
       "canonical_path": "/courtdrills/",
       "source_branch": "courtdrills",
-      "source_mode": "branch",
       "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "courtdrills.bucklerfamily.estate",
-          "dns": {
-            "name": "courtdrills.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-courtdrills.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "bucklerfamily-courtdrills",
-            "repo": "datro",
-            "production_branch": "courtdrills",
-            "latest_deployment": {
-              "id": "36f72e6c-bd1f-4ef8-998b-458961e108ae",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [
-            {
-              "description": "RETIRE->cedwyn/<label>/ for emails, ebooks, courtdrills (Tab 26Oct f191e87c; emails was ->email./calendar)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/\", wildcard_replace(http.host, \"*.bucklerfamily.estate\", \"${1}\"), http.request.uri.path)",
-              "status_code": 301,
-              "preserve_query_string": true,
-              "expression": "http.host in {\"emails.bucklerfamily.estate\" \"ebooks.bucklerfamily.estate\" \"courtdrills.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request. --- TRUNCATED --- 364 chars"
-            }
-          ],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "fcg",
@@ -802,43 +420,9 @@
       "group": "research",
       "canonical_path": "/fcg/",
       "source_branch": "section/fcg",
-      "source_mode": "snapshot",
       "source_dir": null,
-      "hosts": [
-        {
-          "hostname": "fcg.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "fcg.bucklerfamily.estate/llms.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "fcg.bucklerfamily.estate/llms-full.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "fcg.bucklerfamily.estate/.well-known/mcp.json",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "fcg.bucklerfamily.estate/.well-known/webmcp.json",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "fcg.bucklerfamily.estate/agent/*",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "fcg.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "crawler_fetch_disabled_status_unknown"
-        }
-      ]
+      "build_mode": "snapshot",
+      "hosts": []
     },
     {
       "theme_id": "oldbill",
@@ -846,27 +430,9 @@
       "group": "story",
       "canonical_path": "/oldbill/",
       "source_branch": "oldbill",
-      "source_mode": "branch",
       "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "oldbill.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": {
-            "name": "bucklerfamily-oldbill",
-            "repo": "datro",
-            "production_branch": "oldbill",
-            "latest_deployment": {
-              "id": "5bdbf3ad-1fea-4786-b60f-109dc7da418a",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "accounts",
@@ -874,29 +440,9 @@
       "group": "research",
       "canonical_path": "/accounts/",
       "source_branch": "accounts",
-      "source_mode": "branch",
       "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "accounts.bucklerfamily.estate",
-          "dns": {
-            "name": "accounts.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-accounts.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "accounts.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "authorities",
@@ -904,29 +450,9 @@
       "group": "research",
       "canonical_path": "/authorities/",
       "source_branch": "ghf-public-authorities",
-      "source_mode": "branch",
       "source_dir": null,
-      "hosts": [
-        {
-          "hostname": "authorities.bucklerfamily.estate",
-          "dns": {
-            "name": "authorities.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "ghf-public-authorities.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "authorities.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "wdtk",
@@ -934,42 +460,9 @@
       "group": "research",
       "canonical_path": "/wdtk/",
       "source_branch": "whatdotheyknow",
-      "source_mode": "branch",
       "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "whatdotheyknow.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": {
-            "name": "bucklerfamily-whatdotheyknow",
-            "repo": "datro",
-            "production_branch": "whatdotheyknow",
-            "latest_deployment": {
-              "id": "10e7a3e7-0c18-452e-8f91-19e7be9f3c6f",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [
-            {
-              "description": "RETIRE->cedwyn/wdtk/ (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/wdtk\", http.request.uri.path)",
-              "status_code": 301,
-              "preserve_query_string": true,
-              "expression": "http.host in {\"whatdotheyknow.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and --- TRUNCATED --- 307 chars"
-            }
-          ],
-          "worker_routes": [
-            {
-              "pattern": "whatdotheyknow.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "review",
@@ -977,23 +470,9 @@
       "group": "research",
       "canonical_path": "/review/",
       "source_branch": "ghf-independent-review",
-      "source_mode": "branch",
       "source_dir": null,
-      "hosts": [
-        {
-          "hostname": "review.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "review.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "research",
@@ -1001,47 +480,9 @@
       "group": "research",
       "canonical_path": "/research/",
       "source_branch": "section/research",
-      "source_mode": "snapshot",
       "source_dir": null,
-      "hosts": [
-        {
-          "hostname": "research.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "research.bucklerfamily.estate/robots.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/sitemap.xml",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/llms.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/llms-full.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/.well-known/mcp.json",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/.well-known/webmcp.json",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/agent/*",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "content_observed"
-        }
-      ]
+      "build_mode": "snapshot",
+      "hosts": []
     },
     {
       "theme_id": "qa",
@@ -1049,47 +490,9 @@
       "group": "story",
       "canonical_path": "/qa/",
       "source_branch": "qa",
-      "source_mode": "branch",
       "source_dir": null,
-      "hosts": [
-        {
-          "hostname": "qa.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "qa.bucklerfamily.estate/robots.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "qa.bucklerfamily.estate/sitemap.xml",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "qa.bucklerfamily.estate/llms.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "qa.bucklerfamily.estate/llms-full.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "qa.bucklerfamily.estate/.well-known/mcp.json",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "qa.bucklerfamily.estate/agent/*",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "qa.bucklerfamily.estate/.well-known/webmcp.json",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "build_mode": "branch",
+      "hosts": []
     },
     {
       "theme_id": "meeting",
@@ -1097,634 +500,639 @@
       "group": "research",
       "canonical_path": "/meeting/",
       "source_branch": "2026-10-22",
-      "source_mode": "branch",
       "source_dir": "static/2026-10-22",
-      "hosts": [
+      "build_mode": "branch",
+      "hosts": []
+    },
+    "--- TRUNCATED --- 21 more items"
+  ],
+  "alias_hosts": [
+    {
+      "hostname": "dishonor.bucklerfamily.estate",
+      "dns": {
+        "name": "dishonor.bucklerfamily.estate",
+        "type": "AAAA",
+        "target": "100::",
+        "proxied": true,
+        "ttl": 1
+      },
+      "pages_project": null,
+      "redirect_rules": [
         {
-          "hostname": "2026-10-22.bucklerfamily.estate",
-          "dns": {
-            "name": "2026-10-22.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "2026-10-22.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [
-            {
-              "description": "RETIRE->cedwyn/meeting/ (Tab 25Oct)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/meeting\", http.request.uri.path)",
-              "status_code": 301,
-              "preserve_query_string": true,
-              "expression": "http.host in {\"2026-10-22.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not --- TRUNCATED --- 303 chars"
-            }
-          ],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
+          "enabled": true,
+          "target": "https://fcg.bucklerfamily.estate/",
+          "status_code": 301,
+          "preserve_query_string": false,
+          "--- TRUNCATED ---": "1 keys omitted: description"
         }
       ]
     },
     {
-      "theme_id": "projects",
-      "title": "The Project Office",
-      "group": "research",
-      "canonical_path": "/projects/",
-      "source_branch": "projects",
-      "source_mode": "branch",
-      "source_dir": "projects/public",
-      "hosts": [
+      "hostname": "dishonour.bucklerfamily.estate",
+      "dns": {
+        "name": "dishonour.bucklerfamily.estate",
+        "type": "AAAA",
+        "target": "100::",
+        "proxied": true,
+        "ttl": 1
+      },
+      "pages_project": null,
+      "redirect_rules": [
         {
-          "hostname": "projects.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": {
-            "name": "bucklerfamily-projects",
-            "repo": "datro",
-            "production_branch": "projects",
-            "latest_deployment": {
-              "id": "aaeb9610-8922-4ddd-b0a8-94224f2d218c",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "projects.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "content_observed"
+          "enabled": true,
+          "target": "https://fcg.bucklerfamily.estate/",
+          "status_code": 301,
+          "preserve_query_string": false,
+          "--- TRUNCATED ---": "1 keys omitted: description"
         }
       ]
     },
     {
-      "theme_id": "app",
-      "title": "The Case Office",
-      "group": "interactive",
-      "canonical_path": "/app/",
-      "source_branch": "section/app",
-      "source_mode": "snapshot",
-      "source_dir": null,
-      "hosts": [
+      "hostname": "www.bucklerfamily.estate",
+      "dns": {
+        "name": "www.bucklerfamily.estate",
+        "type": "TXT",
+        "target": "\"bucklerfamilyfarm.pages.dev\"",
+        "proxied": false,
+        "ttl": 1
+      },
+      "pages_project": {
+        "name": "bucklerfamilyfarm",
+        "repo": "BucklerFamilyFarm",
+        "branch": "main",
+        "latest_id": "1b940c48-279f-40ee-afe0-c5cf00db7efe",
+        "latest_environment": "production"
+      },
+      "redirect_rules": [
         {
-          "hostname": "app.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "app.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
+          "enabled": true,
+          "target": "https://ebooks.bucklerfamily.estate/",
+          "status_code": 301,
+          "preserve_query_string": false,
+          "--- TRUNCATED ---": "1 keys omitted: description"
+        }
+      ]
+    },
+    {
+      "hostname": "emails.bucklerfamily.estate",
+      "dns": {
+        "name": "emails.bucklerfamily.estate",
+        "type": "CNAME",
+        "target": "bucklerfamily-emails.pages.dev",
+        "proxied": true,
+        "ttl": 1
+      },
+      "pages_project": {
+        "name": "bucklerfamily-emails",
+        "repo": "datro",
+        "branch": "emails",
+        "latest_id": "41069083-a502-4779-9b1b-e4fa4c0b6932",
+        "latest_environment": "preview"
+      },
+      "redirect_rules": [
+        {
+          "enabled": true,
+          "status_code": 301,
+          "preserve_query_string": true,
+          "--- TRUNCATED ---": "2 keys omitted: description, target"
+        }
+      ]
+    },
+    {
+      "hostname": "ebooks.bucklerfamily.estate",
+      "dns": {
+        "name": "ebooks.bucklerfamily.estate",
+        "type": "CNAME",
+        "target": "bucklerfamily-ebooks.pages.dev",
+        "proxied": true,
+        "ttl": 1
+      },
+      "pages_project": {
+        "name": "bucklerfamily-ebooks",
+        "repo": "datro",
+        "branch": "ebooks",
+        "latest_id": "b6714fc4-960d-46f3-a3af-ad9880faf091",
+        "latest_environment": "preview"
+      },
+      "redirect_rules": [
+        {
+          "enabled": true,
+          "status_code": 301,
+          "preserve_query_string": true,
+          "--- TRUNCATED ---": "2 keys omitted: description, target"
+        }
+      ]
+    },
+    {
+      "hostname": "courtdrills.bucklerfamily.estate",
+      "dns": {
+        "name": "courtdrills.bucklerfamily.estate",
+        "type": "CNAME",
+        "target": "bucklerfamily-courtdrills.pages.dev",
+        "proxied": true,
+        "ttl": 1
+      },
+      "pages_project": {
+        "name": "bucklerfamily-courtdrills",
+        "repo": "datro",
+        "branch": "courtdrills",
+        "latest_id": "36f72e6c-bd1f-4ef8-998b-458961e108ae",
+        "latest_environment": "preview"
+      },
+      "redirect_rules": [
+        {
+          "enabled": true,
+          "status_code": 301,
+          "preserve_query_string": true,
+          "--- TRUNCATED ---": "2 keys omitted: description, target"
+        }
+      ]
+    },
+    {
+      "hostname": "shop.bucklerfamily.estate",
+      "dns": {
+        "name": "shop.bucklerfamily.estate",
+        "type": "CNAME",
+        "target": "bucklerfamily-shop.pages.dev",
+        "proxied": true,
+        "ttl": 1
+      },
+      "pages_project": {
+        "name": "bucklerfamily-shop",
+        "repo": "datro",
+        "branch": "merch",
+        "latest_id": "fd278691-ea46-4000-9d36-a83d44acae36",
+        "latest_environment": "preview"
+      },
+      "redirect_rules": [
+        {
+          "enabled": true,
+          "status_code": 301,
+          "preserve_query_string": false,
+          "--- TRUNCATED ---": "2 keys omitted: description, target"
         },
+        "--- TRUNCATED --- 1 more items"
+      ]
+    },
+    {
+      "hostname": "records.bucklerfamily.estate",
+      "dns": {
+        "name": "records.bucklerfamily.estate",
+        "type": "CNAME",
+        "target": "ghf-primary-records.pages.dev",
+        "proxied": true,
+        "ttl": 1
+      },
+      "pages_project": {
+        "name": "ghf-primary-records",
+        "repo": "datro",
+        "branch": "ghf-primary-records",
+        "latest_id": "e36c898c-4499-4df7-abb6-ac52be941349",
+        "latest_environment": "preview"
+      },
+      "redirect_rules": [
         {
-          "hostname": "apps.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "apps.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
+          "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+          "enabled": true,
+          "status_code": 301,
+          "preserve_query_string": false,
+          "--- TRUNCATED ---": "1 keys omitted: target"
         }
       ]
     },
     {
-      "theme_id": "chat",
-      "title": "Ask the Archive",
-      "group": "interactive",
-      "canonical_path": "/chat/",
-      "source_branch": "section/chat",
-      "source_mode": "snapshot",
-      "source_dir": null,
-      "hosts": [
+      "hostname": "docs.bucklerfamily.estate",
+      "dns": {
+        "name": "docs.bucklerfamily.estate",
+        "type": "CNAME",
+        "target": "bucklerfamily-docs.pages.dev",
+        "proxied": true,
+        "ttl": 1
+      },
+      "pages_project": {
+        "name": "bucklerfamily-docs",
+        "repo": "datro",
+        "branch": "docs",
+        "latest_id": "34aba026-d507-45e1-8c1a-a43d131302b4",
+        "latest_environment": "preview"
+      },
+      "redirect_rules": [
         {
-          "hostname": "chat.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "chat.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
+          "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+          "enabled": true,
+          "status_code": 301,
+          "preserve_query_string": false,
+          "--- TRUNCATED ---": "1 keys omitted: target"
         }
       ]
     },
+    "--- TRUNCATED --- 28 more items"
+  ],
+  "dns_not_in_registry": [
     {
-      "theme_id": "watchtower",
-      "title": "Watchtower",
-      "group": "research",
-      "canonical_path": "/watchtower/",
-      "source_branch": "watchtower",
-      "source_mode": "branch",
-      "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "watchtower.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": {
-            "name": "bucklerfamily-watchtower",
-            "repo": "datro",
-            "production_branch": "watchtower",
-            "latest_deployment": {
-              "id": "9df3b212-ca42-4b4f-b140-3ea76c39168a",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "watchtower.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.bucklerfamily.estate",
+      "type": "A",
+      "target": "185.199.108.153",
+      "proxied": true,
+      "class_guess": "nested_or_service_host"
     },
     {
-      "theme_id": "fb2",
-      "title": "farmbook 2 · Today",
-      "group": "research",
-      "canonical_path": "/fb2/",
-      "source_branch": "fb",
-      "source_mode": "branch",
-      "source_dir": "site2",
-      "hosts": [
-        {
-          "hostname": "fb2.bucklerfamily.estate",
-          "dns": {
-            "name": "fb2.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-fb2.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "call.bucklerfamily.estate",
+      "type": "A",
+      "target": "192.0.2.1",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "email",
-      "title": "The Post Office",
-      "group": "research",
-      "canonical_path": "/email/",
-      "source_branch": null,
-      "source_mode": "crawl_or_snapshot",
-      "source_dir": null,
-      "hosts": [
-        {
-          "hostname": "email.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "email.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "ccan.bucklerfamily.estate",
+      "type": "A",
+      "target": "192.0.2.1",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "emails",
-      "title": "The Post Office · Calendar",
-      "group": "research",
-      "canonical_path": "/emails/",
-      "source_branch": "emails",
-      "source_mode": "branch",
-      "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "emails.bucklerfamily.estate",
-          "dns": {
-            "name": "emails.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-emails.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "bucklerfamily-emails",
-            "repo": "datro",
-            "production_branch": "emails",
-            "latest_deployment": {
-              "id": "41069083-a502-4779-9b1b-e4fa4c0b6932",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [
-            {
-              "description": "RETIRE->cedwyn/<label>/ for emails, ebooks, courtdrills (Tab 26Oct f191e87c; emails was ->email./calendar)",
-              "enabled": true,
-              "action": "redirect",
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/\", wildcard_replace(http.host, \"*.bucklerfamily.estate\", \"${1}\"), http.request.uri.path)",
-              "status_code": 301,
-              "preserve_query_string": true,
-              "expression": "http.host in {\"emails.bucklerfamily.estate\" \"ebooks.bucklerfamily.estate\" \"courtdrills.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request. --- TRUNCATED --- 364 chars"
-            }
-          ],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
-        },
-        {
-          "hostname": "email.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "email.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "maze.bucklerfamily.estate",
+      "type": "A",
+      "target": "192.0.2.1",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "dartboard",
-      "title": "The Disclosure Dartboard",
-      "group": "interactive",
-      "canonical_path": "/dartboard/",
-      "source_branch": null,
-      "source_mode": "crawl_or_snapshot",
-      "source_dir": null,
-      "hosts": [
-        {
-          "hostname": "dartboard.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "dartboard.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "althea.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "althea-30p.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "estate",
-      "title": "Cedwyn Estate",
-      "group": "interactive",
-      "canonical_path": "/estate/",
-      "source_branch": "section/estate",
-      "source_mode": "snapshot",
-      "source_dir": null,
-      "hosts": []
+      "name": "archive.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily.estate",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "directory",
-      "title": "Cedwyn Pages",
-      "group": "interactive",
-      "canonical_path": "/directory/",
-      "source_branch": "directory",
-      "source_mode": "branch",
-      "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "directory.bucklerfamily.estate",
-          "dns": {
-            "name": "directory.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "bucklerfamily-directory.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "bucklerfamily-directory",
-            "repo": "datro",
-            "production_branch": "directory",
-            "latest_deployment": {
-              "id": "35524e43-c2fd-4e60-b1d8-c2724e192817",
-              "environment": "preview",
-              "created_on": "2026-10-28T04:03:42.721668Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_routes": [
-            {
-              "pattern": "directory.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "archives.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "archives-b01.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "patagonia",
-      "title": "Great House Farm II · Patagonia Museum",
-      "group": "artifacts",
-      "canonical_path": "/patagonia/",
-      "source_branch": "section/patagonia",
-      "source_mode": "snapshot",
-      "source_dir": null,
-      "hosts": []
+      "name": "bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamilyfarm.pages.dev",
+      "proxied": true,
+      "class_guess": "apex_alias"
     },
     {
-      "theme_id": "wales",
-      "title": "Virtual Tour · Wales",
-      "group": "interactive",
-      "canonical_path": "/wales/",
-      "source_branch": null,
-      "source_mode": "crawl_or_snapshot",
-      "source_dir": null,
-      "hosts": []
+      "name": "bucklervsbp.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklervsbp.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "terrain",
-      "title": "Terrain · Cedwyn Estate in 3D",
-      "group": "interactive",
-      "canonical_path": "/terrain/",
-      "source_branch": null,
-      "source_mode": "crawl_or_snapshot",
-      "source_dir": null,
-      "hosts": [
-        {
-          "hostname": "terrain.bucklerfamily.estate",
-          "dns": {
-            "name": "terrain.bucklerfamily.estate",
-            "type": "AAAA",
-            "target": "100::",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "calls.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "calls-ck0.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "cyberspace",
-      "title": "The Digital Estate",
-      "group": "interactive",
-      "canonical_path": "/cyberspace/",
-      "source_branch": "section/cyberspace",
-      "source_mode": "snapshot",
-      "source_dir": null,
-      "hosts": []
+      "name": "cedwyn.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "cedwyn-274.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "shop",
-      "title": "Gift Shop & Marketplace",
-      "group": "story",
-      "canonical_path": "/shop/",
-      "source_branch": "merch",
-      "source_mode": "branch",
-      "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "shop.bucklerfamily.estate",
-          "dns": null,
-          "pages_project": null,
-          "redirect_rules": [
-            {
-              "description": "Map purge 22 Oct 2026 (no licence held, owner 20:29 BST): removed shop map images -> shop home (stale Pages cache) — Sion's Tab agent [e426632a]  ",
-              "enabled": true,
-              "action": "redirect",
-              "target": "https://shop.bucklerfamily.estate/",
-              "status_code": 301,
-              "preserve_query_string": false,
-              "expression": "(http.host eq \"shop.bucklerfamily.estate\" and http.request.uri.path in {\"/img/p-cedwyn-poster.webp\" \"/img/p-cedwyn-tote.webp\" \"/img/p-cedwyn-mug.webp\" \"/img/p-cedwyn-postcard.webp\" \"/img/p-download-os-map-pack.webp\" \"/img/p-poster-map-190 --- TRUNCATED --- 512 chars"
-            }
-          ],
-          "worker_routes": [
-            {
-              "pattern": "shop.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "ceo.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "ceo-er3.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "documentary",
-      "title": "Cedwyn · documentary",
-      "group": "story",
-      "canonical_path": "/documentary/",
-      "source_branch": "cedwyn-movie",
-      "source_mode": "branch",
-      "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "cedwyn.bucklerfamily.estate",
-          "dns": {
-            "name": "cedwyn.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "cedwyn-274.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "cedwyn",
-            "repo": "cedwyn",
-            "production_branch": "site",
-            "latest_deployment": {
-              "id": "1c3c6576-ad7e-41df-96ac-4e503b2b96b2",
-              "environment": "preview",
-              "created_on": "2026-10-28T08:14:16.534395Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "cnei.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "cnei.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "familytree",
-      "title": "The family tree",
-      "group": "story",
-      "canonical_path": "/familytree/",
-      "source_branch": "familytree",
-      "source_mode": "branch",
-      "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "cedwyn.bucklerfamily.estate",
-          "dns": {
-            "name": "cedwyn.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "cedwyn-274.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "cedwyn",
-            "repo": "cedwyn",
-            "production_branch": "site",
-            "latest_deployment": {
-              "id": "1c3c6576-ad7e-41df-96ac-4e503b2b96b2",
-              "environment": "preview",
-              "created_on": "2026-10-28T08:14:16.534395Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "command.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "command-dashboard-adx.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "kissed-frogs",
-      "title": "Kissed Frogs",
-      "group": "research",
-      "canonical_path": "/kissed-frogs/",
-      "source_branch": "kissed-frogs",
-      "source_mode": "branch",
-      "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "cedwyn.bucklerfamily.estate",
-          "dns": {
-            "name": "cedwyn.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "cedwyn-274.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "cedwyn",
-            "repo": "cedwyn",
-            "production_branch": "site",
-            "latest_deployment": {
-              "id": "1c3c6576-ad7e-41df-96ac-4e503b2b96b2",
-              "environment": "preview",
-              "created_on": "2026-10-28T08:14:16.534395Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "dash.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "dash-i09.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "nft-art",
-      "title": "The Garden Gallery",
-      "group": "interactive",
-      "canonical_path": "/nft-art/",
-      "source_branch": "nft-art",
-      "source_mode": "branch",
-      "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "cedwyn.bucklerfamily.estate",
-          "dns": {
-            "name": "cedwyn.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "cedwyn-274.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "cedwyn",
-            "repo": "cedwyn",
-            "production_branch": "site",
-            "latest_deployment": {
-              "id": "1c3c6576-ad7e-41df-96ac-4e503b2b96b2",
-              "environment": "preview",
-              "created_on": "2026-10-28T08:14:16.534395Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "dcc.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "dcc-cwd.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
     },
     {
-      "theme_id": "whattheydontsay",
-      "title": "What They Don't Say",
-      "group": "research",
-      "canonical_path": "/whattheydontsay/",
-      "source_branch": "whattheydontsay",
-      "source_mode": "branch",
-      "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "cedwyn.bucklerfamily.estate",
-          "dns": {
-            "name": "cedwyn.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "cedwyn-274.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "cedwyn",
-            "repo": "cedwyn",
-            "production_branch": "site",
-            "latest_deployment": {
-              "id": "1c3c6576-ad7e-41df-96ac-4e503b2b96b2",
-              "environment": "preview",
-              "created_on": "2026-10-28T08:14:16.534395Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
+      "name": "docs.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "docs.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "class_guess": "webbrich_namespace"
     },
     {
-      "theme_id": "blog",
-      "title": "Blog",
-      "group": "research",
-      "canonical_path": "/blog/",
-      "source_branch": "blog",
-      "source_mode": "branch",
-      "source_dir": "public",
-      "hosts": [
-        {
-          "hostname": "cedwyn.bucklerfamily.estate",
-          "dns": {
-            "name": "cedwyn.bucklerfamily.estate",
-            "type": "CNAME",
-            "target": "cedwyn-274.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "cedwyn",
-            "repo": "cedwyn",
-            "production_branch": "site",
-            "latest_deployment": {
-              "id": "1c3c6576-ad7e-41df-96ac-4e503b2b96b2",
-              "environment": "preview",
-              "created_on": "2026-10-28T08:14:16.534395Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_routes": [],
-          "browser_crawl_status": "not_end_to_end_verified"
-        }
-      ]
-    }
+      "name": "_domainconnect.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "_domainconnect.gd.domaincontrol.com",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
+    },
+    {
+      "name": "ebooks.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "ebooks.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "class_guess": "webbrich_namespace"
+    },
+    {
+      "name": "fb.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "fb.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "class_guess": "webbrich_namespace"
+    },
+    {
+      "name": "ghf-app.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "ghf-app.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
+    },
+    {
+      "name": "gui.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "gui-7ey.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
+    },
+    {
+      "name": "hbnb.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "datro.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
+    },
+    {
+      "name": "infographic.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "infographic.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "class_guess": "webbrich_namespace"
+    },
+    {
+      "name": "internetarchive.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-internetarchive.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
+    },
+    {
+      "name": "library.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "library-cgm.pages.dev",
+      "proxied": true,
+      "class_guess": "non_registry_service_or_missing_theme"
+    },
+    {
+      "name": "maps.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "maps.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "class_guess": "webbrich_namespace"
+    },
+    "--- TRUNCATED --- 37 more items"
+  ],
+  "pages_projects_not_mapped_to_theme": [
+    {
+      "name": "cedwyn",
+      "repo": "cedwyn",
+      "branch": "site",
+      "domains": [
+        "cedwyn-274.pages.dev",
+        "cedwyn.bucklerfamily.estate"
+      ],
+      "latest_id": "10ae54c0-d057-41f2-91e9-1fca66a687c2",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "wayback-html",
+      "repo": "datro",
+      "branch": "wayback-html",
+      "domains": [
+        "wayback-html.pages.dev",
+        "wayback-html.bucklerfamily.estate"
+      ],
+      "latest_id": "882efd9f-1247-4c32-8d71-08b1bf31f9cc",
+      "latest_environment": "production"
+    },
+    {
+      "name": "bucklerfamily-internetarchive",
+      "repo": "datro",
+      "branch": "internetarchive",
+      "domains": [
+        "bucklerfamily-internetarchive.pages.dev",
+        "internetarchive.bucklerfamily.estate"
+      ],
+      "latest_id": "4d3acb56-a689-4004-886d-f8063bff0b31",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "bucklerfamily-courtdrills",
+      "repo": "datro",
+      "branch": "courtdrills",
+      "domains": [
+        "bucklerfamily-courtdrills.pages.dev",
+        "courtdrills.bucklerfamily.estate"
+      ],
+      "latest_id": "36f72e6c-bd1f-4ef8-998b-458961e108ae",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "wayback-video",
+      "repo": "datro",
+      "branch": "wayback-video",
+      "domains": [
+        "wayback-video.pages.dev",
+        "wayback-video.bucklerfamily.estate"
+      ],
+      "latest_id": "a0e94b02-d0a2-4c26-bed9-abc8e2d69b8f",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "wayback-pdf",
+      "repo": "datro",
+      "branch": "wayback-pdf",
+      "domains": [
+        "wayback-pdf.pages.dev",
+        "wayback-pdf.bucklerfamily.estate"
+      ],
+      "latest_id": "853fa22c-0a1c-4eb8-ab6f-912a5d4f035f",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "wayback-img",
+      "repo": "datro",
+      "branch": "wayback-img",
+      "domains": [
+        "wayback-img.pages.dev",
+        "wayback-img.bucklerfamily.estate"
+      ],
+      "latest_id": "0fb43cc5-a728-48d5-abca-1f2b9489ffc6",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "wayback-text",
+      "repo": "datro",
+      "branch": "wayback-text",
+      "domains": [
+        "wayback-text.pages.dev",
+        "wayback-text.bucklerfamily.estate"
+      ],
+      "latest_id": "3d9004a4-7deb-4daa-be4f-f9fd418e1623",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "bucklerfamily-oldbill",
+      "repo": "datro",
+      "branch": "oldbill",
+      "domains": [
+        "bucklerfamily-oldbill.pages.dev",
+        "oldbill.bucklerfamily.estate"
+      ],
+      "latest_id": "5bdbf3ad-1fea-4786-b60f-109dc7da418a",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "bucklerfamily-docs",
+      "repo": "datro",
+      "branch": "docs",
+      "domains": [
+        "bucklerfamily-docs.pages.dev",
+        "docs.bucklerfamily.estate"
+      ],
+      "latest_id": "34aba026-d507-45e1-8c1a-a43d131302b4",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "bucklerfamily-nomenclature",
+      "repo": "datro",
+      "branch": "nomenclature",
+      "domains": [
+        "bucklerfamily-nomenclature.pages.dev",
+        "nolecture.bucklerfamily.estate",
+        "nomenclature.bucklerfamily.estate",
+        "nomlecture.bucklerfamily.estate"
+      ],
+      "latest_id": "041618e5-5568-4317-9166-4e852b8b5e40",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "bucklerfamily-emails",
+      "repo": "datro",
+      "branch": "emails",
+      "domains": [
+        "bucklerfamily-emails.pages.dev",
+        "emails.bucklerfamily.estate"
+      ],
+      "latest_id": "41069083-a502-4779-9b1b-e4fa4c0b6932",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "bucklerfamily-directory",
+      "repo": "datro",
+      "branch": "directory",
+      "domains": [
+        "bucklerfamily-directory.pages.dev",
+        "directory.bucklerfamily.estate"
+      ],
+      "latest_id": "35524e43-c2fd-4e60-b1d8-c2724e192817",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "bucklerfamily-whatdotheyknow",
+      "repo": "datro",
+      "branch": "whatdotheyknow",
+      "domains": [
+        "bucklerfamily-whatdotheyknow.pages.dev",
+        "whatdotheyknow.bucklerfamily.estate"
+      ],
+      "latest_id": "10e7a3e7-0c18-452e-8f91-19e7be9f3c6f",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "bucklerfamily-watchtower",
+      "repo": "datro",
+      "branch": "watchtower",
+      "domains": [
+        "bucklerfamily-watchtower.pages.dev",
+        "watchtower.bucklerfamily.estate"
+      ],
+      "latest_id": "9df3b212-ca42-4b4f-b140-3ea76c39168a",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "bucklerfamily-maps",
+      "repo": "datro",
+      "branch": "maps",
+      "domains": [
+        "bucklerfamily-maps.pages.dev",
+        "maps.bucklerfamily.estate"
+      ],
+      "latest_id": "e5043166-82c7-402c-a880-b8c91f6d609d",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "bucklerfamily-ebooks",
+      "repo": "datro",
+      "branch": "ebooks",
+      "domains": [
+        "bucklerfamily-ebooks.pages.dev",
+        "ebooks.bucklerfamily.estate"
+      ],
+      "latest_id": "b6714fc4-960d-46f3-a3af-ad9880faf091",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "bucklerfamily-projects",
+      "repo": "datro",
+      "branch": "projects",
+      "domains": [
+        "bucklerfamily-projects.pages.dev",
+        "projects.bucklerfamily.estate"
+      ],
+      "latest_id": "aaeb9610-8922-4ddd-b0a8-94224f2d218c",
+      "latest_environment": "preview"
+    },
+    {
+      "name": "bucklerfamily-fb",
+      "repo": "datro",
+      "branch": "fb",
+      "domains": [
+        "bucklerfamily-fb.pages.dev",
+        "fb.bucklerfamily.estate"
+      ],
+      "latest_id": "bb7ec4c8-81bb-44c6-b21e-46f3d3ef3768",
+      "latest_environment": "preview"
+    },
+    "--- TRUNCATED --- 57 more items"
   ],
   "d1_databases": [
     {
@@ -1768,808 +1176,75 @@
       "id": "a04880a5-c1f7-47fc-aa42-d85e1dfab223"
     }
   ],
-  "workers_with_bindings": [
+  "kv_namespace_count": 13,
+  "r2_buckets": [
     {
-      "script": "cedwyn-apps",
-      "bindings": [
-        {
-          "type": "d1",
-          "name": "DB",
-          "database_id": "6fb11d8e-5d14-41a4-a7a0-ebf3d3de410a"
-        },
-        {
-          "type": "r2_bucket",
-          "name": "UPLOADS",
-          "bucket_name": "cedwyn-apps-uploads"
-        }
-      ]
+      "name": "cedwyn-apps-uploads",
+      "created": "2026-10-21T01:13:57.447Z"
     },
     {
-      "script": "cedwyn-api",
-      "bindings": [
-        {
-          "type": "d1",
-          "name": "DB",
-          "database_id": "6fb11d8e-5d14-41a4-a7a0-ebf3d3de410a"
-        }
-      ]
+      "name": "fcg-media",
+      "created": "2026-10-17T15:05:48.911Z"
     },
     {
-      "script": "fcg-wp",
-      "bindings": [
-        {
-          "type": "d1",
-          "name": "DB",
-          "database_id": "a15aedf1-a4d3-49fe-bd28-c2974c323b96"
-        }
-      ]
+      "name": "ghf-comments",
+      "created": "2026-10-20T20:34:06.302Z"
     },
     {
-      "script": "research-wp",
-      "bindings": [
-        {
-          "type": "d1",
-          "name": "DB",
-          "database_id": "3ca02c2d-bb78-424d-8574-a653d33f5c05"
-        }
-      ]
+      "name": "ghf-ebooks-private",
+      "created": "2026-10-20T13:30:27.672Z"
     },
     {
-      "script": "ghf-chat",
-      "bindings": [
-        {
-          "type": "d1",
-          "name": "DB",
-          "database_id": "f250f859-772a-491f-a95b-33011cd77051"
-        }
-      ]
+      "name": "ghf-social",
+      "created": "2026-10-20T22:51:20.786Z"
     },
     {
-      "script": "ghf-enquire",
-      "bindings": [
-        {
-          "type": "d1",
-          "name": "DB",
-          "database_id": "f26a7c7d-a3d8-4ee9-9311-5a97b29c8676"
-        }
-      ]
+      "name": "pirateclaw-ptor",
+      "created": "2026-04-18T20:52:31.177Z"
     },
     {
-      "script": "cedwyn-coins",
-      "bindings": [
-        {
-          "type": "d1",
-          "name": "DB",
-          "database_id": "8af686eb-e408-4e82-9acb-50fc33056c5a"
-        },
-        {
-          "type": "r2_bucket",
-          "name": "PRIV",
-          "bucket_name": "ghf-ebooks-private"
-        }
-      ]
+      "name": "projects-private",
+      "created": "2026-10-22T03:29:57.952Z"
     },
     {
-      "script": "terrain",
-      "bindings": [
-        {
-          "type": "r2_bucket",
-          "name": "BUCKET",
-          "bucket_name": "terrain-scene"
-        }
-      ]
+      "name": "richwebb-site",
+      "created": "2026-10-07T03:54:30.204Z"
     },
     {
-      "script": "cedwyn-hive",
-      "bindings": [
-        {
-          "type": "service",
-          "name": "HIVE",
-          "service": "ghf-watch"
-        }
-      ]
+      "name": "terrain-scene",
+      "created": "2026-10-21T20:34:03.728Z"
     },
     {
-      "script": "apex-home",
-      "bindings": [
-        {
-          "type": "service",
-          "name": "DARTBOARD",
-          "service": "dartboard"
-        }
-      ]
+      "name": "wayback-media",
+      "created": "2026-06-14T00:45:11.985Z"
     }
   ],
-  "storage": {
-    "kv_namespaces": [
-      {
-        "id": "07e6ff3bb10045f3a6d38bf29c939af1",
-        "title": "financecheque-FLYWHEEL_STATE"
-      },
-      {
-        "id": "14625e3713fb4383a4de56f4e0bdadc2",
-        "title": "COMMAND_DASHBOARD"
-      },
-      {
-        "id": "183b02eddd214e41a1250d20e0d33624",
-        "title": "EMAIL_SENDER"
-      },
-      {
-        "id": "350d63f198c94e1e841dfb5ec51bb361",
-        "title": "GHF_STATUS"
-      },
-      {
-        "id": "4ea74b43092b42d3aa351df8f43a764c",
-        "title": "cedwyn-visit"
-      },
-      {
-        "id": "767d17f3c7e64a27b1f00b0146dc38da",
-        "title": "cedwyn-cms"
-      },
-      {
-        "id": "8561f775ae5d478691337e0b8d65eb5b",
-        "title": "ghf-followers"
-      },
-      {
-        "id": "ae4125e852724772bd66b157c7ab8e43",
-        "title": "cedwyn-directory"
-      },
-      {
-        "id": "c958822405b243b3b2245545972d46b1",
-        "title": "ghf-watch"
-      },
-      {
-        "id": "e16ea7473f084a7ab51be6ce40e5f6d6",
-        "title": "engineroom-cache"
-      },
-      {
-        "id": "e5262b3035a0458c884738c66b534ee9",
-        "title": "FCUK_SESSIONS"
-      },
-      {
-        "id": "e6995663e4fc493a817ac95e6531f835",
-        "title": "cedwyn-blog"
-      },
-      {
-        "id": "ed3052fb8c2249979074b6096abc64f6",
-        "title": "FLYWHEEL_STATE"
-      }
+  "worker_route_count": 179,
+  "browser_observations": {
+    "content_observed": [
+      "projects",
+      "research",
+      "story",
+      "fb",
+      "maps",
+      "wayback",
+      "wiki"
     ],
-    "r2_buckets": [
-      {
-        "name": "cedwyn-apps-uploads",
-        "creation_date": "2026-10-21T01:13:57.447Z"
-      },
-      {
-        "name": "fcg-media",
-        "creation_date": "2026-10-17T15:05:48.911Z"
-      },
-      {
-        "name": "ghf-comments",
-        "creation_date": "2026-10-20T20:34:06.302Z"
-      },
-      {
-        "name": "ghf-ebooks-private",
-        "creation_date": "2026-10-20T13:30:27.672Z"
-      },
-      {
-        "name": "ghf-social",
-        "creation_date": "2026-10-20T22:51:20.786Z"
-      },
-      {
-        "name": "pirateclaw-ptor",
-        "creation_date": "2026-04-18T20:52:31.177Z"
-      },
-      {
-        "name": "projects-private",
-        "creation_date": "2026-10-22T03:29:57.952Z"
-      },
-      {
-        "name": "richwebb-site",
-        "creation_date": "2026-10-07T03:54:30.204Z"
-      },
-      {
-        "name": "terrain-scene",
-        "creation_date": "2026-10-21T20:34:03.728Z"
-      },
-      {
-        "name": "wayback-media",
-        "creation_date": "2026-06-14T00:45:11.985Z"
-      }
+    "unknown_browser_fetch": [
+      "fcg",
+      "infographic"
+    ],
+    "not_created": [
+      "architecture",
+      "gallery"
     ]
   },
-  "dns_hosts_not_in_theme_registry": [
-    {
-      "name": "8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.bucklerfamily.estate",
-      "type": "A",
-      "target": "185.199.108.153",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "call.bucklerfamily.estate",
-      "type": "A",
-      "target": "192.0.2.1",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "ccan.bucklerfamily.estate",
-      "type": "A",
-      "target": "192.0.2.1",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "maze.bucklerfamily.estate",
-      "type": "A",
-      "target": "192.0.2.1",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "dishonor.bucklerfamily.estate",
-      "type": "AAAA",
-      "target": "100::",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "dishonour.bucklerfamily.estate",
-      "type": "AAAA",
-      "target": "100::",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "althea.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "althea-30p.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "archive.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "bucklerfamily.estate",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "archives.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "archives-b01.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "bucklerfamilyfarm.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "apex_or_alias"
-    },
-    {
-      "name": "bucklervsbp.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "bucklervsbp.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "calls.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "calls-ck0.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "ceo.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "ceo-er3.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "cnei.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "cnei.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "command.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "command-dashboard-adx.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "dash.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "dash-i09.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "dcc.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "dcc-cwd.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "docs.webbrich.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "docs.bucklerfamily-webbrich.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "webbrich_namespace"
-    },
-    {
-      "name": "_domainconnect.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "_domainconnect.gd.domaincontrol.com",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "ebooks.webbrich.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "ebooks.bucklerfamily-webbrich.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "webbrich_namespace"
-    },
-    {
-      "name": "fb.webbrich.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "fb.bucklerfamily-webbrich.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "webbrich_namespace"
-    },
-    {
-      "name": "ghf-app.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "ghf-app.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "gui.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "gui-7ey.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "hbnb.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "datro.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "unclassified_needs_review"
-    },
-    {
-      "name": "infographic.webbrich.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "infographic.bucklerfamily-webbrich.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "webbrich_namespace"
-    },
-    {
-      "name": "internetarchive.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "bucklerfamily-internetarchive.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "service_or_alias_needs_endpoint_review"
-    },
-    {
-      "name": "library.bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "library-cgm.pages.dev",
-      "proxied": true,
-      "ttl": 1,
-      "class_guess": "service_or_alias_needs_endpoint_review"
-    },
-    {
-      "0": "-",
-      "1": "-",
-      "2": "-",
-      "3": " ",
-      "4": "T",
-      "5": "R",
-      "6": "U",
-      "7": "N",
-      "8": "C",
-      "9": "A",
-      "10": "T",
-      "11": "E",
-      "12": "D",
-      "13": " ",
-      "14": "-",
-      "15": "-",
-      "16": "-",
-      "17": " ",
-      "18": "5",
-      "19": "7",
-      "20": " ",
-      "21": "m",
-      "22": "o",
-      "23": "r",
-      "24": "e",
-      "25": " ",
-      "26": "i",
-      "27": "t",
-      "28": "e",
-      "29": "m",
-      "30": "s",
-      "class_guess": "unclassified_needs_review"
-    }
-  ],
-  "pages_custom_domains_not_in_theme_registry": [
-    {
-      "name": "cedwyn",
-      "domains": [
-        "cedwyn-274.pages.dev"
-      ],
-      "repo": "cedwyn",
-      "production_branch": "site",
-      "latest_deployment": {
-        "id": "1c3c6576-ad7e-41df-96ac-4e503b2b96b2",
-        "environment": "preview",
-        "created_on": "2026-10-28T08:14:16.534395Z"
-      }
-    },
-    {
-      "name": "wayback-html",
-      "domains": [
-        "wayback-html.pages.dev",
-        "wayback-html.bucklerfamily.estate"
-      ],
-      "repo": "datro",
-      "production_branch": "wayback-html",
-      "latest_deployment": {
-        "id": "882efd9f-1247-4c32-8d71-08b1bf31f9cc",
-        "environment": "production",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "bucklerfamily-internetarchive",
-      "domains": [
-        "bucklerfamily-internetarchive.pages.dev",
-        "internetarchive.bucklerfamily.estate"
-      ],
-      "repo": "datro",
-      "production_branch": "internetarchive",
-      "latest_deployment": {
-        "id": "4d3acb56-a689-4004-886d-f8063bff0b31",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "bucklerfamily-courtdrills",
-      "domains": [
-        "bucklerfamily-courtdrills.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "courtdrills",
-      "latest_deployment": {
-        "id": "36f72e6c-bd1f-4ef8-998b-458961e108ae",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "wayback-video",
-      "domains": [
-        "wayback-video.pages.dev",
-        "wayback-video.bucklerfamily.estate"
-      ],
-      "repo": "datro",
-      "production_branch": "wayback-video",
-      "latest_deployment": {
-        "id": "a0e94b02-d0a2-4c26-bed9-abc8e2d69b8f",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "wayback-pdf",
-      "domains": [
-        "wayback-pdf.pages.dev",
-        "wayback-pdf.bucklerfamily.estate"
-      ],
-      "repo": "datro",
-      "production_branch": "wayback-pdf",
-      "latest_deployment": {
-        "id": "853fa22c-0a1c-4eb8-ab6f-912a5d4f035f",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "wayback-img",
-      "domains": [
-        "wayback-img.pages.dev",
-        "wayback-img.bucklerfamily.estate"
-      ],
-      "repo": "datro",
-      "production_branch": "wayback-img",
-      "latest_deployment": {
-        "id": "0fb43cc5-a728-48d5-abca-1f2b9489ffc6",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "wayback-text",
-      "domains": [
-        "wayback-text.pages.dev",
-        "wayback-text.bucklerfamily.estate"
-      ],
-      "repo": "datro",
-      "production_branch": "wayback-text",
-      "latest_deployment": {
-        "id": "3d9004a4-7deb-4daa-be4f-f9fd418e1623",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "bucklerfamily-oldbill",
-      "domains": [
-        "bucklerfamily-oldbill.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "oldbill",
-      "latest_deployment": {
-        "id": "5bdbf3ad-1fea-4786-b60f-109dc7da418a",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "bucklerfamily-docs",
-      "domains": [
-        "bucklerfamily-docs.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "docs",
-      "latest_deployment": {
-        "id": "34aba026-d507-45e1-8c1a-a43d131302b4",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "bucklerfamily-nomenclature",
-      "domains": [
-        "bucklerfamily-nomenclature.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "nomenclature",
-      "latest_deployment": {
-        "id": "041618e5-5568-4317-9166-4e852b8b5e40",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "bucklerfamily-emails",
-      "domains": [
-        "bucklerfamily-emails.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "emails",
-      "latest_deployment": {
-        "id": "41069083-a502-4779-9b1b-e4fa4c0b6932",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "bucklerfamily-directory",
-      "domains": [
-        "bucklerfamily-directory.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "directory",
-      "latest_deployment": {
-        "id": "35524e43-c2fd-4e60-b1d8-c2724e192817",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "bucklerfamily-whatdotheyknow",
-      "domains": [
-        "bucklerfamily-whatdotheyknow.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "whatdotheyknow",
-      "latest_deployment": {
-        "id": "10e7a3e7-0c18-452e-8f91-19e7be9f3c6f",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "bucklerfamily-watchtower",
-      "domains": [
-        "bucklerfamily-watchtower.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "watchtower",
-      "latest_deployment": {
-        "id": "9df3b212-ca42-4b4f-b140-3ea76c39168a",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "bucklerfamily-maps",
-      "domains": [
-        "bucklerfamily-maps.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "maps",
-      "latest_deployment": {
-        "id": "e5043166-82c7-402c-a880-b8c91f6d609d",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "bucklerfamily-ebooks",
-      "domains": [
-        "bucklerfamily-ebooks.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "ebooks",
-      "latest_deployment": {
-        "id": "b6714fc4-960d-46f3-a3af-ad9880faf091",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "bucklerfamily-projects",
-      "domains": [
-        "bucklerfamily-projects.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "projects",
-      "latest_deployment": {
-        "id": "aaeb9610-8922-4ddd-b0a8-94224f2d218c",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    }
-  ],
-  "redirect_rules": [
-    {
-      "description": "dishonor/dishonour -> fcg Accountability Index (worker 941c4817, Sion's Tab agent)",
-      "enabled": true,
-      "expression": "(http.host eq \"dishonor.bucklerfamily.estate\") or (http.host eq \"dishonour.bucklerfamily.estate\")",
-      "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": false,
-      "target": "https://fcg.bucklerfamily.estate/"
-    },
-    {
-      "description": "Treasury retired 21 Oct 2026: bare /coins/ landing -> ebooks shop (coin thanks/terms/spend/api paths kept) — Sion's Tab agent [1]",
-      "enabled": true,
-      "expression": "(http.host in {\"bucklerfamily.estate\" \"www.bucklerfamily.estate\"} and http.request.uri.path in {\"/coins\" \"/coins/\" \"/coins/index.html\"} and http.request.uri.query eq \"\")",
-      "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": false,
-      "target": "https://ebooks.bucklerfamily.estate/"
-    },
-    {
-      "description": "RETIRE->cedwyn/<label>/ for emails, ebooks, courtdrills (Tab 26Oct f191e87c; emails was ->email./calendar)",
-      "enabled": true,
-      "expression": "http.host in {\"emails.bucklerfamily.estate\" \"ebooks.bucklerfamily.estate\" \"courtdrills.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request. --- TRUNCATED --- 364 chars",
-      "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": true,
-      "target": "concat(\"https://cedwyn.bucklerfamily.estate/\", wildcard_replace(http.host, \"*.bucklerfamily.estate\", \"${1}\"), http.request.uri.path)"
-    },
-    {
-      "description": "Map purge 22 Oct 2026 (no licence held, owner 20:29 BST): removed shop map images -> shop home (stale Pages cache) — Sion's Tab agent [e426632a]  ",
-      "enabled": true,
-      "expression": "(http.host eq \"shop.bucklerfamily.estate\" and http.request.uri.path in {\"/img/p-cedwyn-poster.webp\" \"/img/p-cedwyn-tote.webp\" \"/img/p-cedwyn-mug.webp\" \"/img/p-cedwyn-postcard.webp\" \"/img/p-download-os-map-pack.webp\" \"/img/p-poster-map-190 --- TRUNCATED --- 512 chars",
-      "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": false,
-      "target": "https://shop.bucklerfamily.estate/"
-    },
-    {
-      "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
-      "enabled": true,
-      "expression": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.est --- TRUNCATED --- 1,465 chars",
-      "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": false,
-      "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")"
-    },
-    {
-      "description": "RETIRE->cedwyn/nomenclature/ (Tab 25Oct)",
-      "enabled": true,
-      "expression": "http.host in {\"nomlecture.bucklerfamily.estate\" \"nolecture.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent --- TRUNCATED --- 336 chars",
-      "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": true,
-      "target": "concat(\"https://cedwyn.bucklerfamily.estate/nomenclature\", http.request.uri.path)"
-    },
-    {
-      "description": "RETIRE->cedwyn/csscpsg/ (Tab 25Oct)",
-      "enabled": true,
-      "expression": "http.host in {\"csscpsgp.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not h --- TRUNCATED --- 301 chars",
-      "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": true,
-      "target": "concat(\"https://cedwyn.bucklerfamily.estate/csscpsg\", http.request.uri.path)"
-    },
-    {
-      "description": "RETIRE->cedwyn/story/ (Tab 25Oct)",
-      "enabled": true,
-      "expression": "http.host in {\"bpvsbuckler.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and no --- TRUNCATED --- 304 chars",
-      "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": true,
-      "target": "concat(\"https://cedwyn.bucklerfamily.estate/story\", http.request.uri.path)"
-    },
-    {
-      "description": "RETIRE->cedwyn/wdtk/ (Tab 25Oct)",
-      "enabled": true,
-      "expression": "http.host in {\"whatdotheyknow.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and --- TRUNCATED --- 307 chars",
-      "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": true,
-      "target": "concat(\"https://cedwyn.bucklerfamily.estate/wdtk\", http.request.uri.path)"
-    },
-    {
-      "description": "RETIRE->cedwyn/meeting/ (Tab 25Oct)",
-      "enabled": true,
-      "expression": "http.host in {\"2026-10-22.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not --- TRUNCATED --- 303 chars",
-      "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": true,
-      "target": "concat(\"https://cedwyn.bucklerfamily.estate/meeting\", http.request.uri.path)"
-    }
-  ],
-  "validation_notes": [
-    "Latest build outbound-link test passed at its recorded run (8,713 pages, 337,996 links checked); it does not test HTTP redirect status.",
-    "Browser observations confirm content at /projects/, /research/, /story/, /fb/, /maps/, /wayback/ and /wiki/.",
-    "Browser fetch failures at /fcg/ and /infographic/ are recorded as status unknown, not app failure.",
-    "No /architecture/ or /gallery/ route is currently in themes.json.",
-    "D1 table-name queries were read-only; application rows were not read or modified.",
-    "Direct HTTP verification of each old host and representative deep routes remains outstanding."
+  "verification_notes": [
+    "Collection completeness is reported explicitly; it is complete only when API-reported DNS and Pages project totals match collected totals.",
+    "DNS and Pages API pagination was fetched sequentially. The source records may include multiple names for the same service and require classification, not automatic redirection.",
+    "Redirect configuration is recorded as configured state; end-to-end HTTP tests for every hostname and representative path remain pending.",
+    "Build outbound test passed at its recorded run (8,713 pages, 337,996 links); not equivalent to a redirect test.",
+    "D1 table metadata was queried read-only; no application data rows were read or changed.",
+    "A browser-crawl error is classified as unknown, not failed."
   ]
 }
