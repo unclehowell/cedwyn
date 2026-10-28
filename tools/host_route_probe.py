@@ -23,7 +23,7 @@ from html.parser import HTMLParser
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CANONICAL_HOST = "cedwyn.bucklerfamily.estate"
 USER_AGENT = "Cedwyn-Route-Audit/1.0 (+read-only; contact: repository maintainer)"
-TIMEOUT_SECONDS = 12
+TIMEOUT_SECONDS = 15
 MAX_BODY = 262144
 REDIRECT_CODES = {301, 302, 303, 307, 308}
 EXPECTED_OK = set(range(200, 300))
@@ -54,61 +54,70 @@ class _NoRedirect(urllib.request.HTTPRedirectHandler):
 
 
 def request(url: str, follow: bool = False) -> dict:
-    """Perform a bounded GET and return status, Location, type, URL and body metadata."""
-    handlers = [urllib.request.HTTPSHandler(context=ssl.create_default_context())]
-    if not follow:
-        handlers.append(_NoRedirect())
-    opener = urllib.request.build_opener(*handlers)
-    req = urllib.request.Request(
-        url,
-        method="GET",
-        headers={
-            "User-Agent": USER_AGENT,
-            "Accept": "text/html,application/xhtml+xml,application/json,text/plain,*/*",
-            "Cache-Control": "no-cache",
-        },
-    )
+    """Perform a bounded GET, retrying transient transport failures only."""
     started = time.monotonic()
-    try:
-        with opener.open(req, timeout=TIMEOUT_SECONDS) as response:
-            body = response.read(MAX_BODY)
-            final_url = response.geturl()
-            status = response.status
-            headers = response.headers
-    except urllib.error.HTTPError as err:
-        body = err.read(MAX_BODY)
-        final_url = err.geturl()
-        status = err.code
-        headers = err.headers
-    except Exception as err:
+    last_error = None
+    for attempt in range(3):
+        handlers = [urllib.request.HTTPSHandler(context=ssl.create_default_context())]
+        if not follow:
+            handlers.append(_NoRedirect())
+        opener = urllib.request.build_opener(*handlers)
+        req = urllib.request.Request(
+            url,
+            method="GET",
+            headers={
+                "User-Agent": USER_AGENT,
+                "Accept": "text/html,application/xhtml+xml,application/json,text/plain,*/*",
+                "Cache-Control": "no-cache",
+            },
+        )
+        try:
+            with opener.open(req, timeout=TIMEOUT_SECONDS) as response:
+                body = response.read(MAX_BODY)
+                final_url = response.geturl()
+                status = response.status
+                headers = response.headers
+        except urllib.error.HTTPError as err:
+            # HTTP 3xx/4xx/5xx are real responses, not transient transport errors.
+            body = err.read(MAX_BODY)
+            final_url = err.geturl()
+            status = err.code
+            headers = err.headers
+        except Exception as err:
+            last_error = f"{type(err).__name__}: {str(err)[:300]}"
+            if attempt < 2:
+                time.sleep(0.5 * (attempt + 1))
+                continue
+            return {
+                "url": url,
+                "status": None,
+                "location": None,
+                "content_type": None,
+                "final_url": None,
+                "title": None,
+                "attempts": attempt + 1,
+                "elapsed_ms": round((time.monotonic() - started) * 1000),
+                "error": last_error,
+            }
+        title = None
+        if "html" in str(headers.get("Content-Type", "")).lower():
+            try:
+                parser = _Title()
+                parser.feed(body.decode("utf-8", "replace"))
+                title = " ".join(x for x in parser.parts if x)[:200] or None
+            except Exception:
+                title = None
         return {
             "url": url,
-            "status": None,
-            "location": None,
-            "content_type": None,
-            "final_url": None,
-            "title": None,
+            "status": status,
+            "location": headers.get("Location"),
+            "content_type": headers.get("Content-Type"),
+            "final_url": final_url,
+            "title": title,
+            "attempts": attempt + 1,
             "elapsed_ms": round((time.monotonic() - started) * 1000),
-            "error": f"{type(err).__name__}: {str(err)[:300]}",
+            "error": None,
         }
-    title = None
-    if "html" in str(headers.get("Content-Type", "")).lower():
-        try:
-            parser = _Title()
-            parser.feed(body.decode("utf-8", "replace"))
-            title = " ".join(x for x in parser.parts if x)[:200] or None
-        except Exception:
-            title = None
-    return {
-        "url": url,
-        "status": status,
-        "location": headers.get("Location"),
-        "content_type": headers.get("Content-Type"),
-        "final_url": final_url,
-        "title": title,
-        "elapsed_ms": round((time.monotonic() - started) * 1000),
-        "error": None,
-    }
 
 
 def normalize_path(path: str) -> str:
@@ -125,10 +134,13 @@ def canonical_target_ok(location: str | None, theme_id: str, suffix: str) -> boo
         return False
     target = urllib.parse.urljoin(f"https://{CANONICAL_HOST}/", location)
     parts = urllib.parse.urlsplit(target)
-    expected_path = f"/{theme_id}/" + suffix.lstrip("/")
+    expected_paths = {f"/{theme_id}/" + suffix.lstrip("/")}
+    if suffix == "index.html":
+        # Cedwyn may normalize the legacy index URL to its directory index.
+        expected_paths.add(f"/{theme_id}/")
     return (
         (parts.hostname or "").lower() == CANONICAL_HOST
-        and normalize_path(parts.path) == normalize_path(expected_path)
+        and any(normalize_path(parts.path) == normalize_path(p) for p in expected_paths)
     )
 
 
@@ -141,7 +153,7 @@ def main() -> int:
     parser.add_argument("--themes", default=str(ROOT / "themes.json"))
     parser.add_argument("--inventory", default=str(ROOT / "work/cedwyn-arch/host-route-inventory.json"))
     parser.add_argument("--report", default=str(ROOT / "reports/host-route-audit.json"))
-    parser.add_argument("--workers", type=int, default=10)
+    parser.add_argument("--workers", type=int, default=4)
     args = parser.parse_args()
 
     themes_doc = json.loads(pathlib.Path(args.themes).read_text(encoding="utf-8"))
@@ -154,16 +166,15 @@ def main() -> int:
         theme_id = str(theme.get("id", "")).strip()
         if not theme_id:
             continue
+        # Only the explicit legacy-host registry is authoritative. The "live"
+        # field can point to a path on Cedwyn or to a different app and is not
+        # necessarily an old hostname that should be redirected.
         sources = list(theme.get("hosts", []) or [])
-        live = str(theme.get("live", "") or "")
-        match = re.match(r"^https?://([^/]+)", live, re.I)
-        if match:
-            sources.append(match.group(1))
         for raw_host in sources:
             host = str(raw_host).strip().lower().rstrip(".")
             if not host.endswith(".bucklerfamily.estate"):
                 continue
-            if host in media_hosts or host in {"bucklerfamily.estate", "www.bucklerfamily.estate"}:
+            if host in media_hosts or host in {"bucklerfamily.estate", "www.bucklerfamily.estate", CANONICAL_HOST}:
                 continue
             previous = host_map.get(host)
             if previous and previous != theme_id:
@@ -172,13 +183,18 @@ def main() -> int:
                 host_map[host] = theme_id
     for raw_host, theme_id in (themes_doc.get("extra_hosts", {}) or {}).items():
         host = str(raw_host).strip().lower().rstrip(".")
-        if not theme_id or host in media_hosts or host in {"bucklerfamily.estate", "www.bucklerfamily.estate"}:
+        if not theme_id or host in media_hosts or host in {"bucklerfamily.estate", "www.bucklerfamily.estate", CANONICAL_HOST}:
             continue
         previous = host_map.get(host)
         if previous and previous != theme_id:
             conflicting.setdefault(host, sorted({previous, str(theme_id)}))
         else:
             host_map[host] = str(theme_id)
+
+    # Ambiguous host ownership is reported, not arbitrarily tested against whichever
+    # theme happened to be listed first.
+    for host in conflicting:
+        host_map.pop(host, None)
 
     results: list[dict] = []
     canonical_urls = [
@@ -231,7 +247,7 @@ def main() -> int:
                 "theme": theme_id,
                 "source_path": path or "/",
                 "expected_path": f"/{theme_id}/" + suffix,
-                "passed": first_ok and target_ok,
+                "passed": first_ok and target_ok and bool(loc and "cedwyn_route_probe=" in urllib.parse.urlsplit(loc).query),
                 "redirect_passed": first_ok,
                 "destination_passed": target_ok,
                 "query_preserved": bool(loc and "cedwyn_route_probe=" in urllib.parse.urlsplit(loc).query),
