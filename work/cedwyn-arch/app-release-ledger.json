@@ -20,7 +20,7 @@
       "catalogue schema compatibility checked",
       "release notes and rollback ref recorded"
     ],
-    "publication_state": "No GitHub Releases currently exist in the repository. The connected GitHub actions available in this session can create branches/files/PRs but do not expose a direct create-release/tag write operation; the manifest is staged for reviewed release automation."
+    "publication_state": "No formal GitHub Releases have been published. A manual gated workflow is staged in this draft PR; it requires the manifest ledger to mark an app READY_FOR_RELEASE and a verified branch SHA. Do not release blocked or fallback-built apps."
   },
   "apps": [
     {
@@ -1191,6 +1191,276 @@
       "release_blocker": "Candidate branch exists; the route is not yet registered in themes.json or deployed.",
       "proposed_tag_namespace": "apps/gallery/vMAJOR.MINOR.PATCH",
       "route_test": "NOT_IN_PRODUCTION_REGISTRY"
+    }
+  ],
+  "last_refreshed": "2026-10-28",
+  "post_route_audit": {
+    "run_id": 40658331955,
+    "summary": {
+      "canonical_routes_tested": 44,
+      "canonical_routes_passed": 44,
+      "legacy_root_and_index_tests": 78,
+      "legacy_redirect_tests_passed": 78,
+      "agent_endpoints_tested": 25,
+      "agent_endpoints_passed": 25,
+      "legacy_aliases_tested": 2,
+      "legacy_aliases_passed": 2,
+      "query_preserved_count": 78,
+      "failures": 0,
+      "total_tests": 149
+    }
+  },
+  "uncovered_pages_projects": [
+    {
+      "name": "wayback-html",
+      "domains": [
+        "wayback-html.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "wayback-html",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "bucklerfamily-internetarchive",
+      "domains": [
+        "internetarchive.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "internetarchive",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "wayback-video",
+      "domains": [
+        "wayback-video.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "wayback-video",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "wayback-pdf",
+      "domains": [
+        "wayback-pdf.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "wayback-pdf",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "wayback-img",
+      "domains": [
+        "wayback-img.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "wayback-img",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "wayback-text",
+      "domains": [
+        "wayback-text.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "wayback-text",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "cnei",
+      "domains": [
+        "cnei.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "cnei",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "pirateclaw",
+      "domains": [
+        "pirateclaw.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "pirateclaw",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "archives",
+      "domains": [
+        "archives.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "archives",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "althea",
+      "domains": [
+        "althea.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "althea",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "ceo",
+      "domains": [
+        "ceo.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "ceo",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "projections",
+      "domains": [
+        "projections.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "gh-pages",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "timeline",
+      "domains": [
+        "timeline.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "gh-pages",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "bucklerfamilyfarm",
+      "domains": [
+        "www.bucklerfamily.estate"
+      ],
+      "repo": "BucklerFamilyFarm",
+      "production_branch": "main",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "ghf-app",
+      "domains": [
+        "ghf-app.bucklerfamily.estate"
+      ],
+      "repo": "BucklerFamilyFarm",
+      "production_branch": "ghf-app",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "tumbler",
+      "domains": [
+        "tumbler.bucklerfamily.estate"
+      ],
+      "repo": null,
+      "production_branch": null,
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "bucklerfamily-webbrich",
+      "domains": [
+        "docs.webbrich.bucklerfamily.estate",
+        "ebooks.webbrich.bucklerfamily.estate",
+        "fb.webbrich.bucklerfamily.estate",
+        "infographic.webbrich.bucklerfamily.estate",
+        "maps.webbrich.bucklerfamily.estate",
+        "records.webbrich.bucklerfamily.estate",
+        "research.webbrich.bucklerfamily.estate",
+        "wayback.webbrich.bucklerfamily.estate",
+        "webbrich.bucklerfamily.estate"
+      ],
+      "repo": "webbrich",
+      "production_branch": "main",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "wave",
+      "domains": [
+        "wave.bucklerfamily.estate"
+      ],
+      "repo": null,
+      "production_branch": null,
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "hbnb",
+      "domains": [
+        "hbnb.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "hbnb",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "command-dashboard",
+      "domains": [
+        "command.bucklerfamily.estate"
+      ],
+      "repo": null,
+      "production_branch": null,
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "bucklervsbp",
+      "domains": [
+        "bucklervsbp.bucklerfamily.estate"
+      ],
+      "repo": null,
+      "production_branch": null,
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "subrepos",
+      "domains": [
+        "subrepos.bucklerfamily.estate"
+      ],
+      "repo": null,
+      "production_branch": null,
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "dash",
+      "domains": [
+        "dash.bucklerfamily.estate"
+      ],
+      "repo": null,
+      "production_branch": null,
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "calls",
+      "domains": [
+        "calls.bucklerfamily.estate"
+      ],
+      "repo": null,
+      "production_branch": null,
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "library",
+      "domains": [
+        "library.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "library",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "gui",
+      "domains": [
+        "gui.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "gui",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
+    },
+    {
+      "name": "dcc",
+      "domains": [
+        "dcc.bucklerfamily.estate"
+      ],
+      "repo": "datro",
+      "production_branch": "dcc",
+      "disposition": "CLASSIFY_BEFORE_ROUTING_OR_RELEASING"
     }
   ]
 }
