@@ -1,12 +1,12 @@
 {
   "generated_on": "2026-10-28",
   "collection": {
-    "dns_records_fetched": 102,
-    "dns_records_stored_for_scope": 96,
-    "pages_projects_fetched": 76,
-    "pages_projects_stored_for_scope": 54,
-    "source_fetch_complete": true,
-    "meaning": "All API pages were fetched; stored host details are deliberately limited to the BucklerFamily Estate zone and relevant app mappings."
+    "source_dns_records_before_change": 102,
+    "current_zone_dns_records": 103,
+    "fetched_pages_project_total": 76,
+    "stored_in_scope_pages_projects": 54,
+    "api_collection": "All pages of the Cloudflare API were fetched sequentially.",
+    "note": "Current zone count includes the newly created story CNAME. Stored rows are limited to the BucklerFamily Estate zone."
   },
   "source": {
     "repository": "unclehowell/cedwyn",
@@ -71,7 +71,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -125,7 +125,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -179,7 +179,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 0,
@@ -228,7 +228,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 2,
@@ -286,7 +286,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -324,7 +324,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": true,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -362,7 +362,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": true,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -416,7 +416,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -470,7 +470,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 0,
@@ -519,7 +519,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": true,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 2,
@@ -577,7 +577,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": true,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -591,7 +591,12 @@
         },
         {
           "hostname": "story.bucklerfamily.estate",
-          "dns": null,
+          "dns": {
+            "type": "CNAME",
+            "target": "cedwyn-274.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
           "pages_project": null,
           "redirect_rules": [],
           "worker_route_count": 0,
@@ -613,53 +618,7 @@
         "crawl_url": null,
         "crawl_fallback": false
       },
-      "old_hosts": [
-        {
-          "hostname": "research.bucklerfamily.estate",
-          "dns": {
-            "type": "AAAA",
-            "target": "100::",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [
-            {
-              "id": "zone-rule-1",
-              "enabled": true,
-              "action": "redirect",
-              "host_coverage": [],
-              "status_code": 301,
-              "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
-            }
-          ],
-          "worker_route_count": 10,
-          "worker_route_samples": [
-            {
-              "pattern": "research.bucklerfamily.estate/robots.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/sitemap.xml",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/llms.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/llms-full.txt",
-              "script": "agent-ready"
-            },
-            {
-              "pattern": "research.bucklerfamily.estate/.well-known/mcp.json",
-              "script": "agent-ready"
-            }
-          ],
-          "old_host_http_test": "NOT_RUN—browser crawler did not provide trustworthy HTTP status"
-        }
-      ]
+      "old_hosts": []
     },
     {
       "id": "fb",
@@ -701,7 +660,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 3,
@@ -763,7 +722,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -817,7 +776,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -855,7 +814,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": true,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -909,7 +868,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": true,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 0,
@@ -949,7 +908,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 9,
@@ -1019,7 +978,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 0,
@@ -1068,7 +1027,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -1122,7 +1081,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -1176,7 +1135,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": true,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -1230,7 +1189,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -1275,7 +1234,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 10,
@@ -1345,7 +1304,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 8,
@@ -1415,7 +1374,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": true,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 0,
@@ -1499,7 +1458,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -1563,7 +1522,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -1617,7 +1576,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -1671,7 +1630,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 0,
@@ -1755,30 +1714,11 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": true,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 0,
           "worker_route_samples": [],
-          "old_host_http_test": "NOT_RUN—browser crawler did not provide trustworthy HTTP status"
-        },
-        {
-          "hostname": "email.bucklerfamily.estate",
-          "dns": {
-            "type": "AAAA",
-            "target": "100::",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": null,
-          "redirect_rules": [],
-          "worker_route_count": 1,
-          "worker_route_samples": [
-            {
-              "pattern": "email.bucklerfamily.estate/",
-              "script": "agent-ready"
-            }
-          ],
           "old_host_http_test": "NOT_RUN—browser crawler did not provide trustworthy HTTP status"
         }
       ]
@@ -1814,7 +1754,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -1883,7 +1823,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 2,
@@ -1962,7 +1902,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -2031,7 +1971,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             },
             {
               "id": "zone-rule-2",
@@ -2040,7 +1980,7 @@
               "host_coverage": [],
               "status_code": 301,
               "preserve_query_string": false,
-              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
             }
           ],
           "worker_route_count": 1,
@@ -2067,52 +2007,7 @@
         "crawl_url": null,
         "crawl_fallback": false
       },
-      "old_hosts": [
-        {
-          "hostname": "cedwyn.bucklerfamily.estate",
-          "dns": {
-            "type": "CNAME",
-            "target": "cedwyn-274.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "cedwyn",
-            "repo": "cedwyn",
-            "production_branch": "site",
-            "latest_deployment": {
-              "id": "919b15da-fda6-4738-9acf-8d1a0b993fe5",
-              "environment": "preview",
-              "created_on": "2026-10-28T08:17:06.571046Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_route_count": 39,
-          "worker_route_samples": [
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/admin/*",
-              "script": "cedwyn-cms"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/admin",
-              "script": "cedwyn-cms"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/a/*",
-              "script": "cedwyn-api"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/a",
-              "script": "cedwyn-api"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/v*",
-              "script": "cedwyn-api"
-            }
-          ],
-          "old_host_http_test": "NOT_RUN—browser crawler did not provide trustworthy HTTP status"
-        }
-      ]
+      "old_hosts": []
     },
     {
       "id": "familytree",
@@ -2127,52 +2022,7 @@
         "crawl_url": null,
         "crawl_fallback": false
       },
-      "old_hosts": [
-        {
-          "hostname": "cedwyn.bucklerfamily.estate",
-          "dns": {
-            "type": "CNAME",
-            "target": "cedwyn-274.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "cedwyn",
-            "repo": "cedwyn",
-            "production_branch": "site",
-            "latest_deployment": {
-              "id": "919b15da-fda6-4738-9acf-8d1a0b993fe5",
-              "environment": "preview",
-              "created_on": "2026-10-28T08:17:06.571046Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_route_count": 39,
-          "worker_route_samples": [
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/admin/*",
-              "script": "cedwyn-cms"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/admin",
-              "script": "cedwyn-cms"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/a/*",
-              "script": "cedwyn-api"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/a",
-              "script": "cedwyn-api"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/v*",
-              "script": "cedwyn-api"
-            }
-          ],
-          "old_host_http_test": "NOT_RUN—browser crawler did not provide trustworthy HTTP status"
-        }
-      ]
+      "old_hosts": []
     },
     {
       "id": "kissed-frogs",
@@ -2187,52 +2037,7 @@
         "crawl_url": null,
         "crawl_fallback": false
       },
-      "old_hosts": [
-        {
-          "hostname": "cedwyn.bucklerfamily.estate",
-          "dns": {
-            "type": "CNAME",
-            "target": "cedwyn-274.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "cedwyn",
-            "repo": "cedwyn",
-            "production_branch": "site",
-            "latest_deployment": {
-              "id": "919b15da-fda6-4738-9acf-8d1a0b993fe5",
-              "environment": "preview",
-              "created_on": "2026-10-28T08:17:06.571046Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_route_count": 39,
-          "worker_route_samples": [
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/admin/*",
-              "script": "cedwyn-cms"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/admin",
-              "script": "cedwyn-cms"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/a/*",
-              "script": "cedwyn-api"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/a",
-              "script": "cedwyn-api"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/v*",
-              "script": "cedwyn-api"
-            }
-          ],
-          "old_host_http_test": "NOT_RUN—browser crawler did not provide trustworthy HTTP status"
-        }
-      ]
+      "old_hosts": []
     },
     {
       "id": "nft-art",
@@ -2247,52 +2052,7 @@
         "crawl_url": null,
         "crawl_fallback": false
       },
-      "old_hosts": [
-        {
-          "hostname": "cedwyn.bucklerfamily.estate",
-          "dns": {
-            "type": "CNAME",
-            "target": "cedwyn-274.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "cedwyn",
-            "repo": "cedwyn",
-            "production_branch": "site",
-            "latest_deployment": {
-              "id": "919b15da-fda6-4738-9acf-8d1a0b993fe5",
-              "environment": "preview",
-              "created_on": "2026-10-28T08:17:06.571046Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_route_count": 39,
-          "worker_route_samples": [
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/admin/*",
-              "script": "cedwyn-cms"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/admin",
-              "script": "cedwyn-cms"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/a/*",
-              "script": "cedwyn-api"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/a",
-              "script": "cedwyn-api"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/v*",
-              "script": "cedwyn-api"
-            }
-          ],
-          "old_host_http_test": "NOT_RUN—browser crawler did not provide trustworthy HTTP status"
-        }
-      ]
+      "old_hosts": []
     },
     {
       "id": "whattheydontsay",
@@ -2307,52 +2067,7 @@
         "crawl_url": null,
         "crawl_fallback": false
       },
-      "old_hosts": [
-        {
-          "hostname": "cedwyn.bucklerfamily.estate",
-          "dns": {
-            "type": "CNAME",
-            "target": "cedwyn-274.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "cedwyn",
-            "repo": "cedwyn",
-            "production_branch": "site",
-            "latest_deployment": {
-              "id": "919b15da-fda6-4738-9acf-8d1a0b993fe5",
-              "environment": "preview",
-              "created_on": "2026-10-28T08:17:06.571046Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_route_count": 39,
-          "worker_route_samples": [
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/admin/*",
-              "script": "cedwyn-cms"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/admin",
-              "script": "cedwyn-cms"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/a/*",
-              "script": "cedwyn-api"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/a",
-              "script": "cedwyn-api"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/v*",
-              "script": "cedwyn-api"
-            }
-          ],
-          "old_host_http_test": "NOT_RUN—browser crawler did not provide trustworthy HTTP status"
-        }
-      ]
+      "old_hosts": []
     },
     {
       "id": "blog",
@@ -2367,52 +2082,7 @@
         "crawl_url": null,
         "crawl_fallback": false
       },
-      "old_hosts": [
-        {
-          "hostname": "cedwyn.bucklerfamily.estate",
-          "dns": {
-            "type": "CNAME",
-            "target": "cedwyn-274.pages.dev",
-            "proxied": true,
-            "ttl": 1
-          },
-          "pages_project": {
-            "name": "cedwyn",
-            "repo": "cedwyn",
-            "production_branch": "site",
-            "latest_deployment": {
-              "id": "919b15da-fda6-4738-9acf-8d1a0b993fe5",
-              "environment": "preview",
-              "created_on": "2026-10-28T08:17:06.571046Z"
-            }
-          },
-          "redirect_rules": [],
-          "worker_route_count": 39,
-          "worker_route_samples": [
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/admin/*",
-              "script": "cedwyn-cms"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/admin",
-              "script": "cedwyn-cms"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/a/*",
-              "script": "cedwyn-api"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/a",
-              "script": "cedwyn-api"
-            },
-            {
-              "pattern": "cedwyn.bucklerfamily.estate/api/v*",
-              "script": "cedwyn-api"
-            }
-          ],
-          "old_host_http_test": "NOT_RUN—browser crawler did not provide trustworthy HTTP status"
-        }
-      ]
+      "old_hosts": []
     }
   ],
   "alias_hosts_from_redirect_rules": [
@@ -3887,6 +3557,13 @@
       "name": "watch.bucklerfamily.estate",
       "type": "AAAA",
       "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "story.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "cedwyn-274.pages.dev",
       "proxied": true,
       "ttl": 1
     }
@@ -5877,7 +5554,34 @@
     "rollback": "Restore the saved rule baseline in reports/cedwyn-migration-rollback.json; delete the story CNAME by record ID c2b5c21cc178c8b72572fa2320cd1a9d if reverting the new host alias."
   },
   "post_change_audit": {
-    "status": "pending",
-    "reason": "Re-run after live redirect and DNS edits; prior run had 44/44 canonical routes, 74/78 legacy root/index checks and 25/25 agent endpoints."
-  }
+    "status": "passed",
+    "run_id": 40658105767,
+    "workflow_url": "https://github.com/unclehowell/cedwyn/actions/runs/40658105767",
+    "report_artifact_id": 12802576652,
+    "summary": {
+      "canonical_routes_tested": 44,
+      "canonical_routes_passed": 44,
+      "legacy_root_and_index_tests": 78,
+      "legacy_redirect_tests_passed": 78,
+      "agent_endpoints_tested": 25,
+      "agent_endpoints_passed": 25,
+      "query_preserved_count": 78,
+      "failures": 0
+    },
+    "note": "This run checked the registered theme hosts. The additional legacy synonym hosts above are being added to the audit script for a final follow-up pass."
+  },
+  "alias_test_cases": [
+    {
+      "hostname": "dishonor.bucklerfamily.estate",
+      "expected_theme": "fcg",
+      "expected_final_path": "/fcg/",
+      "behavior": "Existing legacy synonym redirect; final destination is FCG on Cedwyn."
+    },
+    {
+      "hostname": "dishonour.bucklerfamily.estate",
+      "expected_theme": "fcg",
+      "expected_final_path": "/fcg/",
+      "behavior": "Existing legacy synonym redirect; final destination is FCG on Cedwyn."
+    }
+  ]
 }
