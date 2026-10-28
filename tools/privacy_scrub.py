@@ -69,9 +69,10 @@ def scrub(t, kind='text'):
 # (/email/..., /wayback/mail/<id>.txt, /wayback/email/, the What They Don't Say and WhatDoTheyKnow sections) are built from
 # exported mail whose From lines, salutations and signatures carry a personal name. Here the sender becomes "Requester"
 # (the label the What They Don't Say section uses), the signature title lines go, and any email handle or phone number of the
-# family is redacted site-wide. Runs on every build, so a later mail import cannot bring the name back; CORR_CHECK then fails the
+# family is redacted site-wide. Any path segment containing "correspondence" (research/wiki evidence pages, docs co_*correspondence)
+# is correspondence too (27-28 Oct 2026: research/evidence/justice-courts-correspondence/ still signed with the name). Runs on every build, so a later mail import cannot bring the name back; CORR_CHECK then fails the
 # build if the name survives in a correspondence file. The agent instruction meta in the shared footer is left as written.
-CORR_PATH = re.compile(r"^(?:email|whattheydontsay|whatdotheyknow)/|^wayback/(?:mail|api|email)/")
+CORR_PATH = re.compile(r"^(?:email|whattheydontsay|whatdotheyknow)/|^wayback/(?:mail|api|email)/|(?:^|/)[^/]*correspondence[^/]*/")
 _S = r"(?:[\s\u2009]|\\u2009|&#8201;|&thinsp;)+"
 _RETD = rf"Ret{A}d"
 _FIRST = r"(?i:\bsi(?:[o\u00f4]|\\u00f4|&ocirc;|&#244;)n\b)"
