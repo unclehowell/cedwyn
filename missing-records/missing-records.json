@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-27",
- "count": 49,
+ "generated": "2026-10-28",
+ "count": 52,
  "items": [
   {
    "mr": "MR-0001",
@@ -349,7 +349,7 @@
    "mr": "MR-0020",
    "title": "HM Land Registry Form A13 (list of documents lodged), examiner's requisitions and any inspection note for WA231076 and WA240304 (1982–83)",
    "date": "1982-11-30 to 1983-05",
-   "status": "REQUESTED, PENDING (SAR due 28 Oct 2026)",
+   "status": "REQUESTED, PENDING (SAR paused: identity documents requested 27 Oct 2026)",
    "holder": "HM Land Registry",
    "basis": "practice (first registration under the Land Registration Act 1925)",
    "why": "First registration is made on documents lodged and examined. HM Land Registry stated on 25 May 2026 that at registration it \"did not receive or were aware of any interest\" of the family; the examination papers show what was asked about occupation.",
@@ -904,7 +904,7 @@
    "status": "NOT HELD (holder states)",
    "holder": "RCAHMW (receiving body); Historic England",
    "basis": "practice (records transfer between public bodies); cross-reference (Historic England reply 26/04323)",
-   "why": "Historic England records that its Welsh section of archaeological-report microfiche went to RCAHMW on 12 January 2018 but holds no itemised list. A transfer between record bodies normally carries a list or receipt at one end or the other; without it nobody can show whether any report on this site was in the batch.",
+   "why": "Historic England records that its Welsh section of archaeological-report microfiche went to RCAHMW on 12 January 2018 but holds no itemised list. A transfer between record bodies normally carries a list or receipt at one end or the other; without it nobody can show whether any report on this site was in the batch. On 27 October 2026 Historic England added that there never was an itemised list; it disclosed the 12 January 2018 transfer letter and a deaccession statement dated 25 July 2017, neither of which lists the fiche. Its earlier email correspondence with RCAHMW about the transfer was not disclosed.",
    "refs": [],
    "search_record": [
     [
@@ -912,9 +912,56 @@
      "Historic England",
      "EIR 26/04323",
      "\"we do not have an itemised list of the microfiche that was sent\""
+    ],
+    [
+     "2026-10-27",
+     "Historic England",
+     "EIR 26/04323 (follow-up)",
+     "\"there never was an itemised list of the microfiche and we neither destroyed nor retained the microfiche\""
     ]
    ],
    "url": "/research/missing-records/mr-0049/"
+  },
+  {
+   "mr": "MR-0050",
+   "title": "Conveyance of May 1975: farmhouse and garden, BP Pension Trust Ltd to BP Properties Ltd",
+   "date": "1975-05",
+   "status": "NOT FOUND",
+   "holder": "BP Properties Ltd or successors; HM Land Registry first-registration file for WA240304",
+   "basis": "cross-reference (1987 judgment); conveyancing practice; registration practice (deeds lodged on first registration)",
+   "why": "The 1987 judgment records that the farmhouse and garden passed from BP Pension Trust Ltd to BP Properties Ltd in May 1975, after the October 1974 letters. The deed fixes what land passed, under what description, and whether the occupier's position was recited. It would be the latest deed lodged with the 1983 first-registration application for WA240304.",
+   "refs": [],
+   "search_record": [],
+   "url": "/research/missing-records/mr-0050/"
+  },
+  {
+   "mr": "MR-0051",
+   "title": "Agreement of 1974 by which BP Properties Ltd agreed to buy the farmhouse and garden from BP Pension Trust Ltd",
+   "date": "1974 (before 31 October)",
+   "status": "NOT FOUND",
+   "holder": "BP Properties Ltd or successors; BP Pension Trustees Ltd (company 00230748)",
+   "basis": "cross-reference (1987 judgment, the letters of 31 October 1974)",
+   "why": "The 1987 judgment reads the 31 October 1974 letters as recording that BP Properties Ltd had already agreed to buy the property from the Pension Trust; that agreement is what let BP Properties Ltd grant the licence. Its date and terms show which company held what on the day of the letters.",
+   "refs": [
+    "EV-0050"
+   ],
+   "search_record": [],
+   "url": "/research/missing-records/mr-0051/"
+  },
+  {
+   "mr": "MR-0052",
+   "title": "Directors' minutes of BP Pension Trust Ltd and BP Properties Ltd approving the 31 October 1974 letters and the withdrawal of the possession warrant",
+   "date": "1974-09 to 1974-11",
+   "status": "NOT FOUND",
+   "holder": "BP Pension Trustees Ltd (company 00230748, formerly The British Petroleum Pension Trust Ltd); BP Properties Ltd (company 00699446)",
+   "basis": "statute (Companies Act 1948, section 145: minutes of proceedings of general meetings and directors' meetings); cross-reference (1987 judgment)",
+   "why": "Two companies each sent a letter on 31 October 1974 offering a rent-free licence for life, and the warrant they had obtained on 19 September 1974 was withdrawn. A company had to minute the proceedings of its directors' meetings, so a decision of this kind should appear in each company's minute book. Whether the books for 1974 are still kept is not checked.",
+   "refs": [
+    "EV-0050",
+    "EV-0080"
+   ],
+   "search_record": [],
+   "url": "/research/missing-records/mr-0052/"
   }
  ]
 }
