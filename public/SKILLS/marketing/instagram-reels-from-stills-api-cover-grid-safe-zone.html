@@ -1,0 +1,89 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Instagram Reels from stills via the API: covers, the 3:4 grid, safe zones, length · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Instagram Reels from stills via the API: covers, the 3:4 grid, safe zones, length"><link rel="alternate" type="text/markdown" href="instagram-reels-from-stills-api-cover-grid-safe-zone.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Instagram Reels from stills via the API: covers, the 3:4 grid, safe zones, length</h1>
+<p>Written 27 Oct 2026 (skills harvest). Why now: from the 28 Oct 08:15 run, <code>social.py</code> (<code>reel_from_image</code>) posts the daily @cedwynestate item as a 9 s silent Reel. It slow-zooms the post image over a blurred fill at 1080x1920, sends <code>media_type=REELS</code> with <code>share_to_feed=true</code>, and sets <strong>no <code>cover_url</code> or <code>thumb_offset</code></strong>. Feed images reached 1-2 accounts; Reels reached 3-108.</p>
+<h2>What the sources say</h2>
+<p><strong>1. Who sees it.</strong> Mosseri (Instagram head, Jan 2025 video, quoted widely): "The top three signals that matter most for ranking are watch time, likes and sends", with sends weighing a bit more for people who don't follow you. He also states to track average watch time for Reels and likes and sends per reach. <em>Source: instagram.com (search snippet; the video itself wasn't watched).</em></p>
+<p>A 9 s loop that is watched to the end gives a high completion rate. That is our edge, but it works only if the first frame stops the scroll.</p>
+<p><strong>2. Length.</strong> Reels can be up to 3 minutes since Jan 2025, when Mosseri announced it on Instagram. <em>Source: Engadget, read.</em></p>
+<p>Creators keep reporting that Reels over 3 minutes aren't shown to non-followers. That's on Reddit and in Mosseri Q&amp;As (snippets); no help page was read.</p>
+<p>Our plan:
+- Stills Reels stay at 7-15 s.
+- Talking or documentary clips stay under 90 s.
+- Postproxy (Mar 2026, read) states 5-90 s is the API Reels-tab window.</p>
+<p><strong>3. Grid.</strong> On the same weekend the profile grid changed from square to a <strong>rectangular 3:4</strong> tile (Engadget, read). Grid guides give 1080x1440 (yoursocial.team, oktopost; snippets).</p>
+<p>The cover is uploaded at 9:16, but the grid shows only the middle 3:4. Keep the title and the face or key detail inside the middle 1080x1440 band, roughly y = 240 to 1680.</p>
+<p>Postproxy still states the grid crop is a "1080x1080 square". That predates Jan 2025: trust 3:4. A feed share may also show the middle 1:1 square (Meta's IG User Media reference, snippet). <strong>Safest: keep everything that matters in the centre 1080x1080.</strong></p>
+<p><strong>4. Cover options in the API.</strong> Postproxy (read) and Meta's reference (snippet):
+- <code>cover_url</code>: a public JPEG, ideally 1080x1920. Off-ratio images get centre-cropped. It overrides <code>thumb_offset</code>.
+- <code>thumb_offset</code>: a frame offset in milliseconds. Default 0, the first frame.
+- Neither set: Instagram picks a frame itself.</p>
+<p>The API can't add music from Instagram's library. Any audio has to be in the file before upload.</p>
+<p><strong>5. Safe zones on a 1080x1920 frame.</strong> Lucid Media, 10 May 2026, read; this is ad guidance, and organic Reels carry the same UI:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Zone</th>
+<th>Size</th>
+<th>What covers it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Top</td>
+<td>270 px (14%)</td>
+<td>profile, name, time</td>
+</tr>
+<tr>
+<td>Bottom</td>
+<td>670 px (35%)</td>
+<td>like, comment, share, save, audio, caption, follow</td>
+</tr>
+<tr>
+<td>Each side</td>
+<td>65 px</td>
+<td>edge strip</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>That leaves a <strong>safe box of 950 x 980 px in the centre</strong>.</li>
+<li>Meta merged the Stories and Reels safe zones in March 2026, so one file fits both.</li>
+<li>Meta's own help page (980593475366490) blocks a plain fetch, so its numbers were not checked.</li>
+</ul>
+<p><strong>6. Caption bug, checked against our own posts.</strong> A Meta developer thread (snippet) states that from 16 Sep 2026, Reels posted through the Content Publishing API came out with no caption.</p>
+<p>I read back two API Reels from 27 Oct on @shbuckler (media 18115564624850957 and 18151467448559019): <strong>both kept their full captions.</strong> The bug doesn't affect us as of 27 Oct. Re-check after the first @cedwynestate Reel.</p>
+<h2>How to do it (checklist per stills Reel)</h2>
+<ol>
+<li><strong>Frame 0 is the hook.</strong> The first frame is the default cover and the scroll-stopper, so it shouldn't be the blurred fill fading in. Start fully zoomed on the strongest detail, or set <code>thumb_offset</code> to the sharpest frame (e.g. 1500 ms).</li>
+<li><strong>Cover.</strong> Better still, render a cover JPEG (1080x1920): the image plus a 3-6 word title. Keep it inside the centre 1080x1080. Pass it as <code>cover_url</code> from the same R2 bucket as the video.</li>
+<li><strong>Text on video</strong> goes inside the 950x980 centre box only. Nothing goes in the bottom 670 px, where the caption and buttons sit.</li>
+<li><strong>Loop.</strong> 7-12 s; ending on the opening framing makes a seamless loop, which lifts average watch time.</li>
+<li><strong>Sound.</strong> Silent is allowed. If audio is added, it must be baked in and our own, such as the folk bed from <code>music_bed.py</code>. Never library music via the API.</li>
+<li><strong>Originality.</strong> A Reel made from a still with only a zoom is the "limited originality" risk pattern. See <code>facebook-page-reach-limited-originality-triage.md</code> and <code>instagram-reach-collapse-account-status-originality-triage.md</code>. Add at least two new facts on screen, such as a date or what the record shows, and use our own photos and maps rather than raw third-party scans.</li>
+<li><strong>Measure</strong> at 48 h with <code>tools/post_time_slots.py</code>: reach, average watch time and sends per reach, against the image posts' 1-2 reach baseline.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>For the root:</strong> this is a patch suggestion for <code>the project workspace</code>, which I didn't touch because the tonight-push worker owns it.</li>
+<li>Render <code>cover.jpg</code>, a 1080x1920 frame of the un-zoomed image with the post title in the centre square.</li>
+<li>Upload it beside the mp4 and add <code>'cover_url': &lt;url&gt;</code> to the REELS container body.</li>
+<li>Or, as a minimum, add <code>'thumb_offset': '1000'</code>.</li>
+<li>Then check the first frame isn't mostly blur.</li>
+<li>Keep the caption's first line as the hook and the "Link: cedwyn.bucklerfamily.estate/ebooks" line, as now. Links in captions can't be clicked, so the bio link the project lead sets carries the click.</li>
+<li>After 4 Reels, compare reach and watch time with and without on-screen facts; keep the better one (growth-experiment-loop).</li>
+<li>Public-text rules apply to on-screen text: never name the project lead, no banned words, no insignia.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>Engadget, Jan 2025, "Instagram swoops in with 3-minute Reels and rectangular profile grids" (read).</li>
+<li>Postproxy, "Instagram Reels API Publishing Guide (2026)", 13 Mar 2026 (read): cover_url, thumb_offset, audio limits.</li>
+<li>Lucid Media, "Instagram &amp; Facebook Ad Safe Zones 2026", 10 May 2026 (read): pixel table and the Mar 2026 unification.</li>
+<li>Meta for Developers, IG User Media reference and community thread 2154026428872590 (search snippets; plain fetch blocked).</li>
+<li>Mosseri ranking video DFFyRp-pINJ, and the 3:4 size guides on yoursocial.team and oktopost (snippets).</li>
+<li>Own read-back via the connected Instagram account, 27 Oct 2026 23:3xZ (captions present on two API Reels).</li>
+</ul><p class="raw">Raw Markdown: <a href="instagram-reels-from-stills-api-cover-grid-safe-zone.md">instagram-reels-from-stills-api-cover-grid-safe-zone.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
