@@ -11,8 +11,9 @@ Prices, checkout links and utm parameters are copied from the page as they are; 
 import json, html, pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.1.0'
-VERSIONS = [('1.1.0', '27 Oct 2026', 'Poster-card shelf; cover opens the free edition; titles link only to a book’s own page'),
+VERSION = '1.2.0'
+VERSIONS = [('1.2.0', '28 Oct 2026', 'Purchase hierarchy: compact paid history book first, free 32-page introduction second, four-book bundle preserved; adds research-status caution'),
+            ('1.1.0', '27 Oct 2026', 'Poster-card shelf; cover opens the free edition; titles link only to a book’s own page'),
             ('1.0.1', '26 Oct 2026', 'Editions table shown as cards on phones'),
             ('1.0.0', '25 Oct 2026', 'Editions and prices table')]
 CSS = ('<style id="sh-css">.sh{max-width:1240px;margin:0 auto 22px;padding:0 12px}.sh h2.sh-h{margin:4px 0 12px;font-size:1.25rem}'
@@ -55,10 +56,54 @@ def card(art, pages):
     t = f'<a href="{E(page)}">{E(title)}</a>' if page else E(title)
     return (f'<li class="sh-card" id="{E(cid)}">{cov}<h3 class="sh-t">{t}</h3>'
             + (f'<p class="sh-hook">{E(hook)}</p>' if hook else '') + box + '</li>')
+def improve_hero(t):
+    """Make one modest, trackable purchase path clear without changing checkout products or prices."""
+    m = re.search(r'(<header class="sl-hero eb-hero">)(.*?)(</header>)', t, re.S)
+    if not m:
+        return t
+    inner = m.group(2)
+    inner, n = re.subn(
+        r'(<h1>\s*E-books\s*</h1>\s*)<p>.*?</p>',
+        r'\1<p>Explore Great House Farm (Tŷ Mawr) through its history and source records. Start with the 43-page history book (£4.99 for the updated edition), read a 32-page introduction free, or choose the four-book collection for £19.96.</p>',
+        inner, count=1, flags=re.S)
+    if not n:
+        return t
+    a = re.search(r'<div class="sl-actions">.*?</div>', inner, re.S)
+    if not a:
+        return t
+    # Keep the existing, tested bundle checkout URL; do not invent or alter payment links.
+    bundle = re.search(r'href="(https://buy\.stripe\.com/[^"]+)"', a.group(0))
+    if not bundle:
+        return t
+    actions = (
+        '<div class="sl-actions">'
+        '<a class="sl-btn solid" href="/ebooks/tymawr-heritage/?utm_source=ebooks&amp;utm_medium=hero&amp;utm_campaign=ebook-conversion&amp;utm_content=tymawr">Explore the 43-page Tŷ Mawr book · £4.99</a>'
+        '<a class="sl-btn" href="/ebooks/cedwyn/?utm_source=ebooks&amp;utm_medium=hero&amp;utm_campaign=ebook-conversion&amp;utm_content=free-intro">Read the free 32-page introduction</a>'
+        '<a class="sl-btn" href="' + bundle.group(1) + '">Buy all four · £19.96</a>'
+        '<a class="sl-btn" href="#versions">About versions</a>'
+        '</div>'
+    )
+    inner = inner[:a.start()] + actions + inner[a.end():]
+    trust = (
+        '<p class="eb-proof" style="margin:12px 0 0;opacity:.9">'
+        'These are family-history publications, not legal advice. Documentary records must be distinguished from interpretation; '
+        'where a proposition remains unresolved, it is a working theory—not a judicial finding unless a court has expressly decided the point.'
+        '</p>'
+    )
+    # Put the caution before the existing period-record quotation.
+    pos = inner.find('<p class="eb-proof"')
+    if pos >= 0:
+        inner = inner[:pos] + trust + inner[pos:]
+    else:
+        end_actions = inner.find('</div>', inner.find('<div class="sl-actions">')) + len('</div>')
+        if end_actions > len('</div>') - 1:
+            inner = inner[:end_actions] + trust + inner[end_actions:]
+    return t[:m.start(2)] + inner + t[m.end(2):]
 def run(dist):
     dist = pathlib.Path(dist); p = dist / 'ebooks' / 'index.html'
     if not p.exists(): print('ebook_shelf: no /ebooks/ page'); return
     t = p.read_text(encoding='utf-8', errors='ignore')
+    t = improve_hero(t)
     if 'id="sh-css"' in t: print('ebook_shelf: already applied'); return
     try: D = json.load(open(ROOT / 'data' / 'ebooks.json', encoding='utf-8'))
     except Exception: D = {'books': []}
