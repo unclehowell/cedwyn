@@ -21,6 +21,12 @@
       "commit": "15a8792bf6169d4907dedf899f7c5fc569d04667",
       "status": "success",
       "note": "Recorded production rollback target from read-only Cloudflare Pages deployment inspection."
+    },
+    "redirect_ruleset": {
+      "id": "418cf908695742d19d24e5058b2bab22",
+      "version": "27",
+      "last_updated": "2026-10-28T08:36:26.494701Z",
+      "rule_count": 10
     }
   },
   "canonical_mapping_rule": "oldhost.bucklerfamily.estate/path?x=y → https://cedwyn.bucklerfamily.estate/<theme-id>/path?x=y, except aliases, APIs, agent endpoints, media services and archived-original links explicitly classified",
@@ -5848,5 +5854,30 @@
     ],
     "out_of_scope_database_count": 1,
     "unresolved": "Cross-app synchronization, canonical evidence IDs/API, schema compatibility/versioning and full theme-to-database ownership remain not yet tested."
+  },
+  "live_remediation": {
+    "applied_at_utc": "2026-10-28T08:36:26Z",
+    "baseline_ruleset_version": "26",
+    "current_ruleset_version": "27",
+    "amended_rule_id": "e12da20c1f3e41a58c1cf6ea1b503b9b",
+    "amended_rule_version": "8",
+    "added_page_hosts": [
+      "email.bucklerfamily.estate",
+      "story.bucklerfamily.estate"
+    ],
+    "scope": "GET/HEAD HTML and extensionless routes; API paths, agent paths, .well-known paths, two protected user-agent classes, and pre-existing FCG/Research path exceptions retained.",
+    "story_dns_created": {
+      "id": "c2b5c21cc178c8b72572fa2320cd1a9d",
+      "name": "story.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "cedwyn-274.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    "rollback": "Restore the saved rule baseline in reports/cedwyn-migration-rollback.json; delete the story CNAME by record ID c2b5c21cc178c8b72572fa2320cd1a9d if reverting the new host alias."
+  },
+  "post_change_audit": {
+    "status": "pending",
+    "reason": "Re-run after live redirect and DNS edits; prior run had 44/44 canonical routes, 74/78 legacy root/index checks and 25/25 agent endpoints."
   }
 }
