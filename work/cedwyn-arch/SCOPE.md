@@ -112,7 +112,8 @@ Do not proceed with a production cutover if any of the following applies:
 | Date UTC | Status | Evidence / next action |
 |---|---|---|
 | 2026-10-28 | Baseline audit in progress | Registry 1.1.1 has 44 entries; database and outbound-test snapshots recorded above. |
-| 2026-10-28 | Redirect gaps identified | Current rules are selective; `projects`, `email` and `story` require explicit verification/mapping. |\n| 2026-10-28 | Existing app DBs found | Cloudflare API read confirms 10 D1s, 13 KV namespaces and 10 R2 buckets; schemas were inspected as names only, with no application rows read. |
+| 2026-10-28 | Redirect gaps identified | Current rules are selective; `projects`, `email` and `story` require explicit verification/mapping. |
+| 2026-10-28 | Existing app DBs found | Cloudflare API read confirms 10 D1s, 13 KV namespaces and 10 R2 buckets; schemas were inspected as names only, with no application rows read. |
 | 2026-10-28 | GitHub Issues unavailable | Repository returns HTTP 410 for Issues. Use this version-controlled checkpoint and a project-office / HubSpot task instead. |
 | 2026-10-28 | Waiting for task-record approval | Propose one HubSpot task for the work plan; create only after the user approves the exact fields. |
 
