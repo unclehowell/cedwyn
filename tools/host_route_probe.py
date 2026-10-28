@@ -261,6 +261,38 @@ def main() -> int:
             for row in group:
                 add_test(results, row)
 
+    # Some legacy names are intentional aliases rather than apps with their own theme ID.
+    # Follow the complete chain and verify the final canonical app path.
+    alias_cases = inventory.get("alias_test_cases", [])
+
+    def probe_alias(item):
+        host = str(item.get("hostname", "")).lower()
+        expected_theme = str(item.get("expected_theme", "")).strip()
+        expected_path = str(item.get("expected_final_path", f"/{expected_theme}/"))
+        url = f"https://{host}/?cedwyn_route_probe=20261028"
+        first = request(url, follow=False)
+        final = request(url, follow=True)
+        final_parts = urllib.parse.urlsplit(final.get("final_url") or "")
+        passed = (
+            final.get("status") in EXPECTED_OK
+            and (final.get("content_type") or "").lower().startswith("text/html")
+            and (final_parts.hostname or "").lower() == CANONICAL_HOST
+            and normalize_path(final_parts.path) == normalize_path(expected_path)
+        )
+        return {
+            "category": "legacy_alias",
+            "host": host,
+            "expected_theme": expected_theme,
+            "expected_final_path": expected_path,
+            "passed": passed,
+            "first_response": first,
+            "final_response": final,
+        }
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
+        for result in pool.map(probe_alias, alias_cases):
+            add_test(results, result)
+
     # Probe the exact public machine-readable agent endpoints that Cloudflare declares.
     # Wildcard-only route patterns are skipped because they do not identify a concrete old host.
     special_routes = inventory.get("worker_routes", {}).get("special_mcp_agent_routes", [])
@@ -306,6 +338,7 @@ def main() -> int:
     canonical_tests = [r for r in results if r["category"] == "canonical_route"]
     redirect_tests = [r for r in results if r["category"] == "legacy_redirect"]
     service_results = [r for r in results if r["category"] == "agent_endpoint"]
+    alias_results = [r for r in results if r["category"] == "legacy_alias"]
     failures = [r for r in results if not r.get("passed")]
     missing_dns_from_inventory = []
     dns_names = {str(r.get("name", "")).lower() for r in inventory.get("all_dns_records", [])}
@@ -329,6 +362,8 @@ def main() -> int:
             "legacy_redirect_tests_passed": sum(bool(x["passed"]) for x in redirect_tests),
             "agent_endpoints_tested": len(service_results),
             "agent_endpoints_passed": sum(bool(x["passed"]) for x in service_results),
+            "legacy_aliases_tested": len(alias_results),
+            "legacy_aliases_passed": sum(bool(x["passed"]) for x in alias_results),
             "query_preserved_count": sum(bool(x.get("query_preserved")) for x in redirect_tests),
             "failures": len(failures),
         },
