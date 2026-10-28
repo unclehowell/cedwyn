@@ -41,9 +41,9 @@
 <tr><td>Zone configuration</td><td>102 DNS records fetched; 76 Pages projects fetched; 10 redirect rules; 179 Worker routes</td><td>Not all hosts are theme routes. Media and service endpoints need classification before any catch-all change</td></tr>
 <tr><td>Evidence catalogue</td><td>14,194 artifacts; 19,584 locations; 301,175 graph edges; 10,351 FTS rows</td><td>The published SQLite catalogue is chunked static output, not a writable application database</td></tr>
 <tr><td>Application storage</td><td>10 D1 databases; 13 KV namespaces; 10 R2 buckets</td><td>Several apps already have separate data stores. Inventory bindings and sync contracts before adding any store</td></tr>
-<tr><td>First HTTP pass</td><td>39/44 canonical landing routes returned 2xx; 69/80 legacy root/index checks passed; 29/29 agent endpoints passed</td><td>Several landing requests timed out under parallel load, and one mapping rule wrongly treated a live source URL as an old host. The repeat audit with retries and corrected host mapping is the next gate</td></tr>
+<tr><td>Post-change HTTP acceptance suite</td><td>44/44 canonical routes; 78/78 legacy root/index redirects; 25/25 agent endpoints; 2/2 synonym aliases; 0 failures</td><td>Verified in Actions run #126 after the live redirect and story DNS fix. Query strings were preserved in all 78 app-host redirect checks.</td></tr>
 </tbody></table>
-<p class="note">Known route questions: <code>projects</code> and <code>email</code> need explicit tests for app-page versus redirect behaviour; <code>story</code> has a registry alias but no explicit DNS record in the snapshot; the Research/Thousand Cuts source relationship must not be resolved by guessing.</p>
+<p class="note">Current route position: <code>projects</code>, <code>email</code>, <code>story</code> and the registered aliases now pass their covered root/index checks. The Research/Thousand Cuts source mismatch was removed from the probe by relying on explicit host registration rather than a live URL. A deeper path/asset scan and per-app source/build checks remain.</p>
 </div></details>
 <details class="sec" open>
 <summary><h2>Work packages and checkpoints</h2><span class="pv">Acceptance evidence required at every gate</span></summary>
@@ -52,11 +52,11 @@
 <thead><tr><th>ID</th><th>Work package</th><th>Exit condition</th><th>State</th></tr></thead>
 <tbody>
 <tr><td>EN-01.1</td><td>Host/path map and baseline snapshot</td><td>All registry themes, relevant DNS, Pages custom domains, redirects and Worker routes are mapped; previous production deployment and routing version are recorded</td><td><span class="chip c-ok">RECORDED</span></td></tr>
-<tr><td>EN-01.2</td><td>End-to-end route checks</td><td>Every applicable legacy host root and representative deep link passes; query preservation, canonical destinations, response type, media and service endpoints are reported separately</td><td><span class="chip c-warn">IN PROGRESS</span></td></tr>
-<tr><td>EN-01.3</td><td>App manifest and release ledger</td><td>Source branch, commit, current version and rollback ref are known for each app; a GitHub Release is published only after its acceptance checks pass</td><td><span class="chip c-mut">NOT STARTED</span></td></tr>
+<tr><td>EN-01.2</td><td>End-to-end route checks</td><td>Every applicable legacy host root and representative deep link passes; query preservation, canonical destinations, response type, media and service endpoints are reported separately</td><td><span class="chip c-ok">ROOT / INDEX / SERVICE SMOKE PASSED; DEEP-LINK SCAN REMAINS</span></td></tr>
+<tr><td>EN-01.3</td><td>App manifest and release ledger</td><td>Source branch, commit, current version and rollback ref are known for each app; a GitHub Release is published only after its acceptance checks pass</td><td><span class="chip c-warn">LEDGER AND GATED WORKFLOW STAGED; 0 FORMAL RELEASES PUBLISHED</span></td></tr>
 <tr><td>EN-01.4</td><td>Catalogue and per-app data contract</td><td>Stable artifact IDs, read API, schema/version rules and idempotent sync behaviour are documented; existing D1 stores are mapped to their actual apps</td><td><span class="chip c-mut">NOT STARTED</span></td></tr>
-<tr><td>EN-01.5</td><td>Architecture webapp</td><td>New <code>/architecture/</code> area separates source measurements from hypotheses and indexes plans, elevations, sections, dimensions, materials and photo provenance</td><td><span class="chip c-mut">NOT STARTED</span></td></tr>
-<tr><td>EN-01.6</td><td>Gallery index</td><td>New <code>/gallery/</code> area indexes canonical catalogue objects and existing photo/archive sources without duplicating the master files</td><td><span class="chip c-mut">NOT STARTED</span></td></tr>
+<tr><td>EN-01.5</td><td>Architecture webapp</td><td>New <code>/architecture/</code> area separates source measurements from hypotheses and indexes plans, elevations, sections, dimensions, materials and photo provenance</td><td><span class="chip c-warn">SOURCE BRANCH AND MANIFEST BUILT; ROUTE ACTIVATION PENDING</span></td></tr>
+<tr><td>EN-01.6</td><td>Gallery index</td><td>New <code>/gallery/</code> area indexes canonical catalogue objects and existing photo/archive sources without duplicating the master files</td><td><span class="chip c-warn">SOURCE BRANCH AND MANIFEST BUILT; ROUTE ACTIVATION PENDING</span></td></tr>
 <tr><td>EN-01.7</td><td>Production cutover and rollback</td><td>Pre/post checks pass, front-end parity is confirmed on mobile and desktop, old routes are rechecked, and rollback steps work</td><td><span class="chip c-mut">BLOCKED BY ACCEPTANCE GATES</span></td></tr>
 </tbody></table>
 </div></details>
@@ -89,13 +89,13 @@
 <table class="t">
 <thead><tr><th>Control</th><th>Current state</th></tr></thead>
 <tbody>
-<tr><td>Production edits</td><td>None made by this work</td></tr>
-<tr><td>Cloudflare DNS and redirect edits</td><td>None made by this work</td></tr>
-<tr><td>App releases / tag changes</td><td>None published; first establish each app's source and version baseline</td></tr>
+<tr><td>Production edits</td><td>One Cloudflare redirect rule advanced the ruleset from v26 to v27 to include <code>email</code> and <code>story</code> page routes; a proxied <code>story</code> CNAME was added. The HTML build branch and app database rows were not changed.</td></tr>
+<tr><td>Cloudflare DNS and redirect edits</td><td>Completed with rollback snapshot in <code>reports/cedwyn-migration-rollback.json</code>; post-change HTTP suite is clean.</td></tr>
+<tr><td>App releases / tag changes</td><td>No formal GitHub Releases or new app tags published. Existing tag history and the 1.0.2/1.1.1 drift are recorded in the per-app ledger; release workflow is staged and refuses apps unless the ledger marks them ready.</td></tr>
 <tr><td>Code review</td><td>Detailed plan and read-only route probe are in a draft engineering PR. Keep it unmerged until the test report is reviewed</td></tr>
 <tr><td>CRM follow-up</td><td>Dedicated HubSpot task proposed; it has not been created pending confirmation of its associations</td></tr>
 </tbody></table>
-<p class="note">Next action: complete the repeat route audit, reconcile the remaining route cases, and produce the per-app release manifest before any live cutover.</p>
+<p class="note">Next action: finish nested-path and asset reference testing, audit the branch build/version evidence, preview the 46-theme registry including Architecture and Gallery, then publish namespaced SemVer releases only for apps that meet their gates. The site activation PRs remain drafts pending preview and front-end checks.</p>
 </div></details>
 <p class="note">Source: Cedwyn migration control plan and host-route inventory, created 28 October 2026. This page records controls and planned work; it is not a release approval.</p>
 </main></body></html>
