@@ -1,61 +1,18 @@
 {
   "generated_on": "2026-10-28",
   "collection": {
-    "dns_expected": 102,
-    "dns_collected": 102,
-    "dns_pages": [
-      {
-        "page": 1,
-        "count": 100
-      },
-      {
-        "page": 2,
-        "count": 2
-      }
-    ],
-    "pages_projects_expected": 76,
-    "pages_projects_collected": 76,
-    "pages_project_pages": [
-      {
-        "page": 1,
-        "count": 10
-      },
-      {
-        "page": 2,
-        "count": 10
-      },
-      {
-        "page": 3,
-        "count": 10
-      },
-      {
-        "page": 4,
-        "count": 10
-      },
-      {
-        "page": 5,
-        "count": 10
-      },
-      {
-        "page": 6,
-        "count": 10
-      },
-      {
-        "page": 7,
-        "count": 10
-      },
-      {
-        "page": 8,
-        "count": 6
-      }
-    ],
-    "complete": true
+    "dns_records_fetched": 102,
+    "dns_records_stored_for_scope": 96,
+    "pages_projects_fetched": 76,
+    "pages_projects_stored_for_scope": 54,
+    "source_fetch_complete": true,
+    "meaning": "All API pages were fetched; stored host details are deliberately limited to the BucklerFamily Estate zone and relevant app mappings."
   },
   "source": {
     "repository": "unclehowell/cedwyn",
     "registry_file": "themes.json",
     "registry_version": "1.1.1",
-    "registry_note": "Cedwyn theme registry v1.1.1: 38 routes, ordered to match the canonical 38-stop site chain (campus/site_chain.json v2.0.14). Court Drills is restored as a theme; Research Library and 1000 Cuts are back in the ordered tour. — Sion's Tab agent, 25 Oct 2026",
+    "registry_note": "Cedwyn theme registry v1.1.1: the note records 38 routes, while the registry has 44 entries and the README reports 35 themes. Court Drills is restored as a theme; Research Library and Thousand Cuts are listed in the ordered tour. Reconcile these counts.",
     "theme_count": 44,
     "cloudflare_zone_id": "5307ac7d55a77d914b81d79c79532dde",
     "production_deployment": {
@@ -102,13 +59,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -156,13 +113,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -210,13 +167,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 0,
@@ -259,13 +216,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 2,
@@ -317,13 +274,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -355,13 +312,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE->cedwyn/nomenclature/ (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/nomenclature\", http.request.uri.path)",
               "preserve_query_string": true,
-              "condition": "http.host in {\"nomlecture.bucklerfamily.estate\" \"nolecture.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\""
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -393,13 +350,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE->cedwyn/nomenclature/ (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/nomenclature\", http.request.uri.path)",
               "preserve_query_string": true,
-              "condition": "http.host in {\"nomlecture.bucklerfamily.estate\" \"nolecture.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\""
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -447,13 +404,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -501,13 +458,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 0,
@@ -550,13 +507,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE->cedwyn/<label>/ for emails, ebooks, courtdrills (Tab 26Oct f191e87c; emails was ->email./calendar)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/\", wildcard_replace(http.host, \"*.bucklerfamily.estate\", \"${1}\"), http.request.uri.path)",
               "preserve_query_string": true,
-              "condition": "http.host in {\"emails.bucklerfamily.estate\" \"ebooks.bucklerfamily.estate\" \"courtdrills.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\""
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 2,
@@ -608,13 +565,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE->cedwyn/story/ (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/story\", http.request.uri.path)",
               "preserve_query_string": true,
-              "condition": "http.host in {\"bpvsbuckler.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\""
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -662,13 +619,13 @@
           "pages_project": null,
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 10,
@@ -732,13 +689,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 3,
@@ -794,13 +751,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -848,13 +805,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -886,13 +843,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE->cedwyn/csscpsg/ (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/csscpsg\", http.request.uri.path)",
               "preserve_query_string": true,
-              "condition": "http.host in {\"csscpsgp.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\""
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -940,13 +897,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE->cedwyn/<label>/ for emails, ebooks, courtdrills (Tab 26Oct f191e87c; emails was ->email./calendar)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/\", wildcard_replace(http.host, \"*.bucklerfamily.estate\", \"${1}\"), http.request.uri.path)",
               "preserve_query_string": true,
-              "condition": "http.host in {\"emails.bucklerfamily.estate\" \"ebooks.bucklerfamily.estate\" \"courtdrills.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\""
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 0,
@@ -980,13 +937,13 @@
           "pages_project": null,
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 9,
@@ -1050,13 +1007,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 0,
@@ -1099,13 +1056,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -1153,13 +1110,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -1207,13 +1164,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE->cedwyn/wdtk/ (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/wdtk\", http.request.uri.path)",
               "preserve_query_string": true,
-              "condition": "http.host in {\"whatdotheyknow.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\""
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -1261,13 +1218,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -1306,13 +1263,13 @@
           "pages_project": null,
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 10,
@@ -1376,13 +1333,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 8,
@@ -1446,13 +1403,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE->cedwyn/meeting/ (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/meeting\", http.request.uri.path)",
               "preserve_query_string": true,
-              "condition": "http.host in {\"2026-10-22.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\""
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 0,
@@ -1530,13 +1487,13 @@
           "pages_project": null,
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -1594,13 +1551,13 @@
           "pages_project": null,
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -1648,13 +1605,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -1702,13 +1659,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 0,
@@ -1786,13 +1743,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE->cedwyn/<label>/ for emails, ebooks, courtdrills (Tab 26Oct f191e87c; emails was ->email./calendar)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "concat(\"https://cedwyn.bucklerfamily.estate/\", wildcard_replace(http.host, \"*.bucklerfamily.estate\", \"${1}\"), http.request.uri.path)",
               "preserve_query_string": true,
-              "condition": "http.host in {\"emails.bucklerfamily.estate\" \"ebooks.bucklerfamily.estate\" \"courtdrills.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\""
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 0,
@@ -1845,13 +1802,13 @@
           "pages_project": null,
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -1914,13 +1871,13 @@
           },
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 2,
@@ -1993,13 +1950,13 @@
           "pages_project": null,
           "redirect_rules": [
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -2062,22 +2019,22 @@
           },
           "redirect_rules": [
             {
-              "description": "Map purge 22 Oct 2026 (no licence held, owner 20:29 BST): removed shop map images -> shop home (stale Pages cache) — Sion's Tab agent [e426632a]  ",
+              "id": "zone-rule-1",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "https://shop.bucklerfamily.estate/",
               "preserve_query_string": false,
-              "condition": "(http.host eq \"shop.bucklerfamily.estate\" and http.request.uri.path in {\"/img/p-cedwyn-poster.webp\" \"/img/p-cedwyn-tote.webp\" \"/img/p-cedwyn-mug.webp\" \"/img/p-cedwyn-postcard.webp\" \"/img/p-download-os-map-pack.webp\" \"/img/p-poster-map-1900.webp\" \"/img/p-poster-map-1878.webp\" \"/img/p-tote-map-1900.webp\" \"/img/p-mug-map-1900.webp\" \"/img/p-postcard-map-1878.webp\" \"/img/mp01-os1900.webp\" \"/img/mp02-os1878.webp\" \"/img/hero-cedwyn.webp\" \"/img/d03-wordmark-estate-map.webp\" \"/img/d05-every-field-has-a-story.webp\"})"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             },
             {
-              "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
+              "id": "zone-rule-2",
               "enabled": true,
               "action": "redirect",
+              "host_coverage": [],
               "status_code": 301,
-              "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
               "preserve_query_string": false,
-              "condition": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+              "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
             }
           ],
           "worker_route_count": 1,
@@ -2463,11 +2420,14 @@
       "pages_project": null,
       "rules": [
         {
-          "description": "dishonor/dishonour -> fcg Accountability Index (worker 941c4817, Sion's Tab agent)",
+          "id": "zone-rule-1",
           "enabled": true,
+          "host_coverage": [
+            "dishonor.bucklerfamily.estate"
+          ],
           "status_code": 301,
-          "target": "https://fcg.bucklerfamily.estate/",
-          "condition": "(http.host eq \"dishonor.bucklerfamily.estate\") or (http.host eq \"dishonour.bucklerfamily.estate\")"
+          "preserve_query_string": null,
+          "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
         }
       ]
     },
@@ -2481,11 +2441,14 @@
       "pages_project": null,
       "rules": [
         {
-          "description": "dishonor/dishonour -> fcg Accountability Index (worker 941c4817, Sion's Tab agent)",
+          "id": "zone-rule-1",
           "enabled": true,
+          "host_coverage": [
+            "dishonour.bucklerfamily.estate"
+          ],
           "status_code": 301,
-          "target": "https://fcg.bucklerfamily.estate/",
-          "condition": "(http.host eq \"dishonor.bucklerfamily.estate\") or (http.host eq \"dishonour.bucklerfamily.estate\")"
+          "preserve_query_string": null,
+          "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
         }
       ]
     },
@@ -2503,11 +2466,14 @@
       },
       "rules": [
         {
-          "description": "Treasury retired 21 Oct 2026: bare /coins/ landing -> ebooks shop (coin thanks/terms/spend/api paths kept) — Sion's Tab agent [1]",
+          "id": "zone-rule-1",
           "enabled": true,
+          "host_coverage": [
+            "www.bucklerfamily.estate"
+          ],
           "status_code": 301,
-          "target": "https://ebooks.bucklerfamily.estate/",
-          "condition": "(http.host in {\"bucklerfamily.estate\" \"www.bucklerfamily.estate\"} and http.request.uri.path in {\"/coins\" \"/coins/\" \"/coins/index.html\"} and http.request.uri.query eq \"\")"
+          "preserve_query_string": null,
+          "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
         }
       ]
     }
@@ -2559,13 +2525,6 @@
       "name": "archives.bucklerfamily.estate",
       "type": "CNAME",
       "target": "archives-b01.pages.dev",
-      "proxied": true,
-      "classification": "service_or_missing_registry_mapping"
-    },
-    {
-      "name": "bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "bucklerfamilyfarm.pages.dev",
       "proxied": true,
       "classification": "service_or_missing_registry_mapping"
     },
@@ -2815,41 +2774,6 @@
       "classification": "service_or_missing_registry_mapping"
     },
     {
-      "name": "bucklerfamily.estate",
-      "type": "MX",
-      "target": "route3.mx.cloudflare.net",
-      "proxied": false,
-      "classification": "service_or_missing_registry_mapping"
-    },
-    {
-      "name": "bucklerfamily.estate",
-      "type": "MX",
-      "target": "route2.mx.cloudflare.net",
-      "proxied": false,
-      "classification": "service_or_missing_registry_mapping"
-    },
-    {
-      "name": "bucklerfamily.estate",
-      "type": "MX",
-      "target": "route1.mx.cloudflare.net",
-      "proxied": false,
-      "classification": "service_or_missing_registry_mapping"
-    },
-    {
-      "name": "bucklerfamily.estate",
-      "type": "TXT",
-      "target": "\"google-site-verification=wVoU3uEhl7GjJ8ooCDhQBYzbGYpxI614KT6mZiQNiOg\"",
-      "proxied": false,
-      "classification": "service_or_missing_registry_mapping"
-    },
-    {
-      "name": "bucklerfamily.estate",
-      "type": "TXT",
-      "target": "\"v=spf1 include:_spf.mx.cloudflare.net ~all\"",
-      "proxied": false,
-      "classification": "service_or_missing_registry_mapping"
-    },
-    {
       "name": "cf2024-1._domainkey.bucklerfamily.estate",
       "type": "TXT",
       "target": "\"v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiweykoi+o48IOGuP7GR3X0MOExCUDY/BCRHoWBnh3rChl7WhdyCxW3jgq1daEjPPqoi7sJvdg5hEQVsgVRQP4DcnQDVjGMbASQtrY4WmB1VebF+RPJB2ECPsEDTpeiI5ZyUAwJaVX7r6bznU67g7LvFq35yIo4sdlmtZGV+i0H4cpYH9+3JJ78k\" \"m4KXwaf9xUJCWF6nxeD+qG6Fyruw1Qlbds2r85U9dkNDVAS3gioCvELryh1TxKGiVTkg4wqHTyHfWsp7KD3WQHYJn0RyfJJu6YEmL77zonn7p2SRMvTMP3ZEXibnC9gz3nnhR6wcYL8Q7zXypKTMD58bTixDSJwIDAQAB\"",
@@ -2937,12 +2861,11 @@
   "pages_projects_without_direct_theme_domain": [
     {
       "name": "wayback-html",
-      "domains": [
-        "wayback-html.pages.dev",
-        "wayback-html.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "wayback-html",
+      "domains": [
+        "wayback-html.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "882efd9f-1247-4c32-8d71-08b1bf31f9cc",
         "environment": "production",
@@ -2951,12 +2874,11 @@
     },
     {
       "name": "bucklerfamily-internetarchive",
-      "domains": [
-        "bucklerfamily-internetarchive.pages.dev",
-        "internetarchive.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "internetarchive",
+      "domains": [
+        "internetarchive.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "4d3acb56-a689-4004-886d-f8063bff0b31",
         "environment": "preview",
@@ -2965,12 +2887,11 @@
     },
     {
       "name": "wayback-video",
-      "domains": [
-        "wayback-video.pages.dev",
-        "wayback-video.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "wayback-video",
+      "domains": [
+        "wayback-video.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "a0e94b02-d0a2-4c26-bed9-abc8e2d69b8f",
         "environment": "preview",
@@ -2979,12 +2900,11 @@
     },
     {
       "name": "wayback-pdf",
-      "domains": [
-        "wayback-pdf.pages.dev",
-        "wayback-pdf.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "wayback-pdf",
+      "domains": [
+        "wayback-pdf.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "853fa22c-0a1c-4eb8-ab6f-912a5d4f035f",
         "environment": "preview",
@@ -2993,12 +2913,11 @@
     },
     {
       "name": "wayback-img",
-      "domains": [
-        "wayback-img.pages.dev",
-        "wayback-img.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "wayback-img",
+      "domains": [
+        "wayback-img.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "0fb43cc5-a728-48d5-abca-1f2b9489ffc6",
         "environment": "preview",
@@ -3007,12 +2926,11 @@
     },
     {
       "name": "wayback-text",
-      "domains": [
-        "wayback-text.pages.dev",
-        "wayback-text.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "wayback-text",
+      "domains": [
+        "wayback-text.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "3d9004a4-7deb-4daa-be4f-f9fd418e1623",
         "environment": "preview",
@@ -3020,39 +2938,12 @@
       }
     },
     {
-      "name": "bucklerfamily-library",
-      "domains": [
-        "bucklerfamily-library.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "library",
-      "latest_deployment": {
-        "id": "6581f7f8-ba11-4981-9c09-3a3f94b6231f",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "whitepaper",
-      "domains": [
-        "whitepaper-2k4.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "whitepaper",
-      "latest_deployment": {
-        "id": "85729eb7-3957-43cc-ad72-ec9360ca5e20",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
       "name": "cnei",
-      "domains": [
-        "cnei.pages.dev",
-        "cnei.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "cnei",
+      "domains": [
+        "cnei.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "74a8fe1f-680a-46f7-950c-d19f822f626c",
         "environment": "preview",
@@ -3060,52 +2951,12 @@
       }
     },
     {
-      "name": "webbrich",
-      "domains": [
-        "webbrich.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "webbrich",
-      "latest_deployment": {
-        "id": "ca9f9318-e7db-4309-9a18-469bcaf2abf2",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "datro",
-      "domains": [
-        "datro2.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "datro",
-      "latest_deployment": {
-        "id": "21b753fb-7553-4e32-8e2b-8da9446fe9e0",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "ccan",
-      "domains": [
-        "ccan-c5k.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "ccan",
-      "latest_deployment": {
-        "id": "50462e0d-16db-4f2b-9d84-500feca78063",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
       "name": "pirateclaw",
-      "domains": [
-        "pirateclaw.pages.dev",
-        "pirateclaw.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "pirateclaw",
+      "domains": [
+        "pirateclaw.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "b58f9922-e026-40ee-93ef-dedc47ef475d",
         "environment": "preview",
@@ -3113,40 +2964,12 @@
       }
     },
     {
-      "name": "llmwiki",
-      "domains": [
-        "llmwiki.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "llmwiki",
-      "latest_deployment": {
-        "id": "6ef64d53-1fbb-4aad-a256-be4b1c7342cb",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "ui",
-      "domains": [
-        "uifinancecheque.pages.dev",
-        "ui.financecheque.uk"
-      ],
-      "repo": "datro",
-      "production_branch": "ui",
-      "latest_deployment": {
-        "id": "0e12f2ce-176c-4b31-9359-7e6432d79382",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
       "name": "archives",
-      "domains": [
-        "archives-b01.pages.dev",
-        "archives.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "archives",
+      "domains": [
+        "archives.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "280a705a-0fe9-41fa-a83a-553945bb6bdd",
         "environment": "preview",
@@ -3155,12 +2978,11 @@
     },
     {
       "name": "althea",
-      "domains": [
-        "althea-30p.pages.dev",
-        "althea.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "althea",
+      "domains": [
+        "althea.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "d9b359c3-f307-445c-9728-a5c6f1e59ba4",
         "environment": "preview",
@@ -3169,12 +2991,11 @@
     },
     {
       "name": "ceo",
-      "domains": [
-        "ceo-er3.pages.dev",
-        "ceo.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "ceo",
+      "domains": [
+        "ceo.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "2e16204c-0e00-4981-b5b9-fd6b9cf53379",
         "environment": "preview",
@@ -3183,12 +3004,11 @@
     },
     {
       "name": "projections",
-      "domains": [
-        "projections.pages.dev",
-        "projections.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "gh-pages",
+      "domains": [
+        "projections.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "f65c26bc-5ae5-40e4-85a9-67a563d72f7c",
         "environment": "preview",
@@ -3196,26 +3016,12 @@
       }
     },
     {
-      "name": "datro-homepage",
-      "domains": [
-        "datro-homepage.pages.dev"
-      ],
+      "name": "timeline",
       "repo": "datro",
       "production_branch": "gh-pages",
-      "latest_deployment": {
-        "id": "85025aef-d034-45ca-aa89-99de249111be",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "timeline",
       "domains": [
-        "timeline-as4.pages.dev",
         "timeline.bucklerfamily.estate"
       ],
-      "repo": "datro",
-      "production_branch": "gh-pages",
       "latest_deployment": {
         "id": "0754892d-f1df-4df5-99a9-d021ee0ac1df",
         "environment": "preview",
@@ -3224,13 +3030,11 @@
     },
     {
       "name": "bucklerfamilyfarm",
-      "domains": [
-        "bucklerfamilyfarm.pages.dev",
-        "bucklerfamily.estate",
-        "www.bucklerfamily.estate"
-      ],
       "repo": "BucklerFamilyFarm",
       "production_branch": "main",
+      "domains": [
+        "www.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "1b940c48-279f-40ee-afe0-c5cf00db7efe",
         "environment": "production",
@@ -3238,26 +3042,12 @@
       }
     },
     {
-      "name": "foi",
-      "domains": [
-        "foi-478.pages.dev"
-      ],
-      "repo": "BucklerFamilyFarm",
-      "production_branch": "main",
-      "latest_deployment": {
-        "id": "cf897aae-e5e7-4293-b182-c350eaaac7a5",
-        "environment": "production",
-        "created_on": "2026-10-27T09:29:26.884941Z"
-      }
-    },
-    {
       "name": "ghf-app",
-      "domains": [
-        "ghf-app.pages.dev",
-        "ghf-app.bucklerfamily.estate"
-      ],
       "repo": "BucklerFamilyFarm",
       "production_branch": "ghf-app",
+      "domains": [
+        "ghf-app.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "7fa3f8cb-81a6-4cf0-b687-f2aeb22b0fb2",
         "environment": "preview",
@@ -3266,12 +3056,11 @@
     },
     {
       "name": "tumbler",
-      "domains": [
-        "tumbler-6js.pages.dev",
-        "tumbler.bucklerfamily.estate"
-      ],
       "repo": null,
       "production_branch": null,
+      "domains": [
+        "tumbler.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "42285e62-be57-4ef0-aa18-363df83ca5e5",
         "environment": "production",
@@ -3280,8 +3069,9 @@
     },
     {
       "name": "bucklerfamily-webbrich",
+      "repo": "webbrich",
+      "production_branch": "main",
       "domains": [
-        "bucklerfamily-webbrich.pages.dev",
         "docs.webbrich.bucklerfamily.estate",
         "ebooks.webbrich.bucklerfamily.estate",
         "fb.webbrich.bucklerfamily.estate",
@@ -3292,8 +3082,6 @@
         "wayback.webbrich.bucklerfamily.estate",
         "webbrich.bucklerfamily.estate"
       ],
-      "repo": "webbrich",
-      "production_branch": "main",
       "latest_deployment": {
         "id": "4d0f1b69-4219-4383-a97a-45361f60103a",
         "environment": "preview",
@@ -3301,41 +3089,12 @@
       }
     },
     {
-      "name": "financecheque",
-      "domains": [
-        "financecheque.pages.dev",
-        "financecheque.uk",
-        "www.financecheque.uk"
-      ],
-      "repo": "datro",
-      "production_branch": "financecheque",
-      "latest_deployment": {
-        "id": "d358ff5d-c8fa-49c8-a766-c4599d2fc01e",
-        "environment": "production",
-        "created_on": "2026-10-20T20:08:31.434062Z"
-      }
-    },
-    {
-      "name": "ghf-hyperframes-review",
-      "domains": [
-        "ghf-hyperframes-review.pages.dev"
-      ],
-      "repo": "cclerk",
-      "production_branch": "hyperframes-ghf-review",
-      "latest_deployment": {
-        "id": "e2fe948f-e239-406d-9aae-3a99c7eab8ba",
-        "environment": "production",
-        "created_on": "2026-10-16T09:07:05.684164Z"
-      }
-    },
-    {
       "name": "wave",
-      "domains": [
-        "wave-6he.pages.dev",
-        "wave.bucklerfamily.estate"
-      ],
       "repo": null,
       "production_branch": null,
+      "domains": [
+        "wave.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "0014d7a7-c608-495c-aba7-7059a510d38e",
         "environment": "production",
@@ -3344,12 +3103,11 @@
     },
     {
       "name": "hbnb",
-      "domains": [
-        "datro.pages.dev",
-        "hbnb.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "hbnb",
+      "domains": [
+        "hbnb.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "1ded27a6-df83-483b-a084-c4b632c4f213",
         "environment": "production",
@@ -3357,40 +3115,12 @@
       }
     },
     {
-      "name": "carfinancecheque",
-      "domains": [
-        "carfinancecheque.pages.dev",
-        "car.financecheque.uk"
-      ],
-      "repo": "datro",
-      "production_branch": "carfinancecheque",
-      "latest_deployment": {
-        "id": "1fe4d2d9-401d-490b-b7dd-873ed750752f",
-        "environment": "production",
-        "created_on": "2026-10-01T22:36:48.856633Z"
-      }
-    },
-    {
-      "name": "pcp2",
-      "domains": [
-        "pcp2.pages.dev"
-      ],
-      "repo": "pcp2",
-      "production_branch": "main",
-      "latest_deployment": {
-        "id": "ee87c292-68bf-4938-8099-460f7d742618",
-        "environment": "preview",
-        "created_on": "2026-10-01T19:29:43.324092Z"
-      }
-    },
-    {
       "name": "command-dashboard",
-      "domains": [
-        "command-dashboard-adx.pages.dev",
-        "command.bucklerfamily.estate"
-      ],
       "repo": null,
       "production_branch": null,
+      "domains": [
+        "command.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "5bc9fd19-ffa6-46d2-9ceb-f2780e05ea8f",
         "environment": "production",
@@ -3398,26 +3128,12 @@
       }
     },
     {
-      "name": "command",
-      "domains": [
-        "command-cip.pages.dev"
-      ],
+      "name": "bucklervsbp",
       "repo": null,
       "production_branch": null,
-      "latest_deployment": {
-        "id": "98f3f226-4aac-4b6d-9f10-72b64a1cf19a",
-        "environment": "production",
-        "created_on": "2026-07-12T06:29:48.214231Z"
-      }
-    },
-    {
-      "name": "bucklervsbp",
       "domains": [
-        "bucklervsbp.pages.dev",
         "bucklervsbp.bucklerfamily.estate"
       ],
-      "repo": null,
-      "production_branch": null,
       "latest_deployment": {
         "id": "d0d6111e-68c8-4d9d-a59f-d0a45bf281ea",
         "environment": "preview",
@@ -3426,58 +3142,29 @@
     },
     {
       "name": "subrepos",
-      "domains": [
-        "subrepos.pages.dev",
-        "subrepos.bucklerfamily.estate"
-      ],
       "repo": null,
       "production_branch": null,
+      "domains": [
+        "subrepos.bucklerfamily.estate"
+      ],
       "latest_deployment": null
     },
     {
       "name": "dash",
-      "domains": [
-        "dash-i09.pages.dev",
-        "dash.bucklerfamily.estate"
-      ],
       "repo": null,
       "production_branch": null,
+      "domains": [
+        "dash.bucklerfamily.estate"
+      ],
       "latest_deployment": null
     },
     {
-      "name": "greathousefarm",
-      "domains": [
-        "greathousefarm.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "cdd2580e-029d-4936-bb67-800d66eebb0d",
-        "environment": "production",
-        "created_on": "2026-05-13T21:14:32.00419Z"
-      }
-    },
-    {
-      "name": "calls-portal",
-      "domains": [
-        "calls-portal.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "d53628c5-cd06-4456-8738-aaa89694931f",
-        "environment": "production",
-        "created_on": "2026-04-22T13:54:19.701595Z"
-      }
-    },
-    {
       "name": "calls",
+      "repo": null,
+      "production_branch": null,
       "domains": [
-        "calls-ck0.pages.dev",
         "calls.bucklerfamily.estate"
       ],
-      "repo": null,
-      "production_branch": null,
       "latest_deployment": {
         "id": "5c7b8ab8-304b-4d3b-bf0b-9abf85fbb25c",
         "environment": "production",
@@ -3486,12 +3173,11 @@
     },
     {
       "name": "library",
-      "domains": [
-        "library-cgm.pages.dev",
-        "library.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "library",
+      "domains": [
+        "library.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "4359dd9f-19f1-47dd-8f5a-9420edda4ac1",
         "environment": "preview",
@@ -3500,12 +3186,11 @@
     },
     {
       "name": "gui",
-      "domains": [
-        "gui-7ey.pages.dev",
-        "gui.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "gui",
+      "domains": [
+        "gui.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "6edc18a0-6c4d-475d-97d6-572b67481248",
         "environment": "production",
@@ -3514,94 +3199,15 @@
     },
     {
       "name": "dcc",
-      "domains": [
-        "dcc-cwd.pages.dev",
-        "dcc.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "dcc",
+      "domains": [
+        "dcc.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "b6884ae3-3dff-4510-950b-1fdc72c0fcaf",
         "environment": "production",
         "created_on": "2026-04-15T02:48:31.501927Z"
-      }
-    },
-    {
-      "name": "paperclip-ui",
-      "domains": [
-        "paperclip-ui-cvs.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "7341d5f9-ef2a-4758-a3ae-fc5da3dc5609",
-        "environment": "preview",
-        "created_on": "2026-04-14T07:11:26.788906Z"
-      }
-    },
-    {
-      "name": "netdata-ui",
-      "domains": [
-        "netdata-ui.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "30d839bd-c501-42f8-9fc4-7eb935806c84",
-        "environment": "preview",
-        "created_on": "2026-04-14T07:10:24.040282Z"
-      }
-    },
-    {
-      "name": "brain",
-      "domains": [
-        "brain-3ba.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "58bd5c97-fc02-4fd8-9c5e-64d33f6e58d9",
-        "environment": "production",
-        "created_on": "2026-04-12T07:11:20.483746Z"
-      }
-    },
-    {
-      "name": "carfinance-new",
-      "domains": [
-        "carfinance-new.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "77a1761e-2a0e-4f9b-9e2a-6612751c9d00",
-        "environment": "production",
-        "created_on": "2026-03-28T05:27:00.212822Z"
-      }
-    },
-    {
-      "name": "pcp2-test",
-      "domains": [
-        "pcp2-test.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "00f0c7aa-d785-4edc-bf6e-5f074d29efd9",
-        "environment": "production",
-        "created_on": "2026-03-28T02:18:05.608061Z"
-      }
-    },
-    {
-      "name": "pcp2-car-finance",
-      "domains": [
-        "pcp2-car-finance.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "08385f34-2383-424a-a26b-d1d2476ef2e4",
-        "environment": "production",
-        "created_on": "2026-03-26T23:09:34.639813Z"
       }
     }
   ],
@@ -3701,13 +3307,6 @@
       "name": "bpvsbuckler.bucklerfamily.estate",
       "type": "CNAME",
       "target": "bpvsbuckler.pages.dev",
-      "proxied": true,
-      "ttl": 1
-    },
-    {
-      "name": "bucklerfamily.estate",
-      "type": "CNAME",
-      "target": "bucklerfamilyfarm.pages.dev",
       "proxied": true,
       "ttl": 1
     },
@@ -4146,41 +3745,6 @@
       "ttl": 1
     },
     {
-      "name": "bucklerfamily.estate",
-      "type": "MX",
-      "target": "route3.mx.cloudflare.net",
-      "proxied": false,
-      "ttl": 1
-    },
-    {
-      "name": "bucklerfamily.estate",
-      "type": "MX",
-      "target": "route2.mx.cloudflare.net",
-      "proxied": false,
-      "ttl": 1
-    },
-    {
-      "name": "bucklerfamily.estate",
-      "type": "MX",
-      "target": "route1.mx.cloudflare.net",
-      "proxied": false,
-      "ttl": 1
-    },
-    {
-      "name": "bucklerfamily.estate",
-      "type": "TXT",
-      "target": "\"google-site-verification=wVoU3uEhl7GjJ8ooCDhQBYzbGYpxI614KT6mZiQNiOg\"",
-      "proxied": false,
-      "ttl": 3600
-    },
-    {
-      "name": "bucklerfamily.estate",
-      "type": "TXT",
-      "target": "\"v=spf1 include:_spf.mx.cloudflare.net ~all\"",
-      "proxied": false,
-      "ttl": 1
-    },
-    {
       "name": "cf2024-1._domainkey.bucklerfamily.estate",
       "type": "TXT",
       "target": "\"v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiweykoi+o48IOGuP7GR3X0MOExCUDY/BCRHoWBnh3rChl7WhdyCxW3jgq1daEjPPqoi7sJvdg5hEQVsgVRQP4DcnQDVjGMbASQtrY4WmB1VebF+RPJB2ECPsEDTpeiI5ZyUAwJaVX7r6bznU67g7LvFq35yIo4sdlmtZGV+i0H4cpYH9+3JJ78k\" \"m4KXwaf9xUJCWF6nxeD+qG6Fyruw1Qlbds2r85U9dkNDVAS3gioCvELryh1TxKGiVTkg4wqHTyHfWsp7KD3WQHYJn0RyfJJu6YEmL77zonn7p2SRMvTMP3ZEXibnC9gz3nnhR6wcYL8Q7zXypKTMD58bTixDSJwIDAQAB\"",
@@ -4324,12 +3888,11 @@
   "pages_projects": [
     {
       "name": "cedwyn",
-      "domains": [
-        "cedwyn-274.pages.dev",
-        "cedwyn.bucklerfamily.estate"
-      ],
       "repo": "cedwyn",
       "production_branch": "site",
+      "domains": [
+        "cedwyn.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "919b15da-fda6-4738-9acf-8d1a0b993fe5",
         "environment": "preview",
@@ -4338,12 +3901,11 @@
     },
     {
       "name": "wayback-html",
-      "domains": [
-        "wayback-html.pages.dev",
-        "wayback-html.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "wayback-html",
+      "domains": [
+        "wayback-html.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "882efd9f-1247-4c32-8d71-08b1bf31f9cc",
         "environment": "production",
@@ -4352,12 +3914,11 @@
     },
     {
       "name": "bucklerfamily-internetarchive",
-      "domains": [
-        "bucklerfamily-internetarchive.pages.dev",
-        "internetarchive.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "internetarchive",
+      "domains": [
+        "internetarchive.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "4d3acb56-a689-4004-886d-f8063bff0b31",
         "environment": "preview",
@@ -4366,12 +3927,11 @@
     },
     {
       "name": "bucklerfamily-courtdrills",
-      "domains": [
-        "bucklerfamily-courtdrills.pages.dev",
-        "courtdrills.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "courtdrills",
+      "domains": [
+        "courtdrills.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "36f72e6c-bd1f-4ef8-998b-458961e108ae",
         "environment": "preview",
@@ -4380,12 +3940,11 @@
     },
     {
       "name": "wayback-video",
-      "domains": [
-        "wayback-video.pages.dev",
-        "wayback-video.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "wayback-video",
+      "domains": [
+        "wayback-video.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "a0e94b02-d0a2-4c26-bed9-abc8e2d69b8f",
         "environment": "preview",
@@ -4394,12 +3953,11 @@
     },
     {
       "name": "wayback-pdf",
-      "domains": [
-        "wayback-pdf.pages.dev",
-        "wayback-pdf.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "wayback-pdf",
+      "domains": [
+        "wayback-pdf.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "853fa22c-0a1c-4eb8-ab6f-912a5d4f035f",
         "environment": "preview",
@@ -4408,12 +3966,11 @@
     },
     {
       "name": "wayback-img",
-      "domains": [
-        "wayback-img.pages.dev",
-        "wayback-img.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "wayback-img",
+      "domains": [
+        "wayback-img.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "0fb43cc5-a728-48d5-abca-1f2b9489ffc6",
         "environment": "preview",
@@ -4422,12 +3979,11 @@
     },
     {
       "name": "wayback-text",
-      "domains": [
-        "wayback-text.pages.dev",
-        "wayback-text.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "wayback-text",
+      "domains": [
+        "wayback-text.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "3d9004a4-7deb-4daa-be4f-f9fd418e1623",
         "environment": "preview",
@@ -4436,12 +3992,11 @@
     },
     {
       "name": "bucklerfamily-oldbill",
-      "domains": [
-        "bucklerfamily-oldbill.pages.dev",
-        "oldbill.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "oldbill",
+      "domains": [
+        "oldbill.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "5bdbf3ad-1fea-4786-b60f-109dc7da418a",
         "environment": "preview",
@@ -4450,12 +4005,11 @@
     },
     {
       "name": "bucklerfamily-docs",
-      "domains": [
-        "bucklerfamily-docs.pages.dev",
-        "docs.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "docs",
+      "domains": [
+        "docs.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "34aba026-d507-45e1-8c1a-a43d131302b4",
         "environment": "preview",
@@ -4464,14 +4018,13 @@
     },
     {
       "name": "bucklerfamily-nomenclature",
+      "repo": "datro",
+      "production_branch": "nomenclature",
       "domains": [
-        "bucklerfamily-nomenclature.pages.dev",
         "nolecture.bucklerfamily.estate",
         "nomenclature.bucklerfamily.estate",
         "nomlecture.bucklerfamily.estate"
       ],
-      "repo": "datro",
-      "production_branch": "nomenclature",
       "latest_deployment": {
         "id": "041618e5-5568-4317-9166-4e852b8b5e40",
         "environment": "preview",
@@ -4480,12 +4033,11 @@
     },
     {
       "name": "bucklerfamily-emails",
-      "domains": [
-        "bucklerfamily-emails.pages.dev",
-        "emails.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "emails",
+      "domains": [
+        "emails.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "41069083-a502-4779-9b1b-e4fa4c0b6932",
         "environment": "preview",
@@ -4494,12 +4046,11 @@
     },
     {
       "name": "bucklerfamily-directory",
-      "domains": [
-        "bucklerfamily-directory.pages.dev",
-        "directory.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "directory",
+      "domains": [
+        "directory.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "35524e43-c2fd-4e60-b1d8-c2724e192817",
         "environment": "preview",
@@ -4508,12 +4059,11 @@
     },
     {
       "name": "bucklerfamily-whatdotheyknow",
-      "domains": [
-        "bucklerfamily-whatdotheyknow.pages.dev",
-        "whatdotheyknow.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "whatdotheyknow",
+      "domains": [
+        "whatdotheyknow.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "10e7a3e7-0c18-452e-8f91-19e7be9f3c6f",
         "environment": "preview",
@@ -4522,12 +4072,11 @@
     },
     {
       "name": "bucklerfamily-watchtower",
-      "domains": [
-        "bucklerfamily-watchtower.pages.dev",
-        "watchtower.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "watchtower",
+      "domains": [
+        "watchtower.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "9df3b212-ca42-4b4f-b140-3ea76c39168a",
         "environment": "preview",
@@ -4536,12 +4085,11 @@
     },
     {
       "name": "bucklerfamily-maps",
-      "domains": [
-        "bucklerfamily-maps.pages.dev",
-        "maps.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "maps",
+      "domains": [
+        "maps.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "e5043166-82c7-402c-a880-b8c91f6d609d",
         "environment": "preview",
@@ -4550,12 +4098,11 @@
     },
     {
       "name": "bucklerfamily-ebooks",
-      "domains": [
-        "bucklerfamily-ebooks.pages.dev",
-        "ebooks.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "ebooks",
+      "domains": [
+        "ebooks.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "b6714fc4-960d-46f3-a3af-ad9880faf091",
         "environment": "preview",
@@ -4564,12 +4111,11 @@
     },
     {
       "name": "bucklerfamily-projects",
-      "domains": [
-        "bucklerfamily-projects.pages.dev",
-        "projects.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "projects",
+      "domains": [
+        "projects.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "aaeb9610-8922-4ddd-b0a8-94224f2d218c",
         "environment": "preview",
@@ -4578,12 +4124,11 @@
     },
     {
       "name": "bucklerfamily-fb",
-      "domains": [
-        "bucklerfamily-fb.pages.dev",
-        "fb.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "fb",
+      "domains": [
+        "fb.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "bb7ec4c8-81bb-44c6-b21e-46f3d3ef3768",
         "environment": "preview",
@@ -4592,12 +4137,11 @@
     },
     {
       "name": "bucklerfamily-accounts",
-      "domains": [
-        "bucklerfamily-accounts.pages.dev",
-        "accounts.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "accounts",
+      "domains": [
+        "accounts.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "b73f958a-05bc-49ba-84d0-2ccc837ec33b",
         "environment": "preview",
@@ -4605,26 +4149,12 @@
       }
     },
     {
-      "name": "bucklerfamily-library",
-      "domains": [
-        "bucklerfamily-library.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "library",
-      "latest_deployment": {
-        "id": "6581f7f8-ba11-4981-9c09-3a3f94b6231f",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
       "name": "bucklerfamily-shop",
-      "domains": [
-        "bucklerfamily-shop.pages.dev",
-        "shop.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "merch",
+      "domains": [
+        "shop.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "fd278691-ea46-4000-9d36-a83d44acae36",
         "environment": "preview",
@@ -4632,27 +4162,13 @@
       }
     },
     {
-      "name": "whitepaper",
-      "domains": [
-        "whitepaper-2k4.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "whitepaper",
-      "latest_deployment": {
-        "id": "85729eb7-3957-43cc-ad72-ec9360ca5e20",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
       "name": "bucklerfamily-csscpsg",
+      "repo": "datro",
+      "production_branch": "csscpsg",
       "domains": [
-        "bucklerfamily-csscpsg.pages.dev",
         "csscpsg.bucklerfamily.estate",
         "csscpsgp.bucklerfamily.estate"
       ],
-      "repo": "datro",
-      "production_branch": "csscpsg",
       "latest_deployment": {
         "id": "cb2f1dd7-2fa2-4f74-8ed7-dc7a9bddc626",
         "environment": "preview",
@@ -4661,12 +4177,11 @@
     },
     {
       "name": "cnei",
-      "domains": [
-        "cnei.pages.dev",
-        "cnei.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "cnei",
+      "domains": [
+        "cnei.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "74a8fe1f-680a-46f7-950c-d19f822f626c",
         "environment": "preview",
@@ -4675,12 +4190,11 @@
     },
     {
       "name": "wayback",
-      "domains": [
-        "wayback-81x.pages.dev",
-        "wayback.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "wayback",
+      "domains": [
+        "wayback.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "6f68e3f6-6473-476c-aa12-6ba454817ee7",
         "environment": "preview",
@@ -4689,12 +4203,11 @@
     },
     {
       "name": "2026-10-22",
-      "domains": [
-        "2026-10-22.pages.dev",
-        "2026-10-22.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "2026-10-22",
+      "domains": [
+        "2026-10-22.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "f07cabc2-46c1-4acf-be44-ef5b7260b584",
         "environment": "preview",
@@ -4703,12 +4216,11 @@
     },
     {
       "name": "ghf-independent-review",
-      "domains": [
-        "ghf-independent-review.pages.dev",
-        "review.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "ghf-independent-review",
+      "domains": [
+        "review.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "bad9aeef-b88b-4d73-a50d-7c95edb5bba3",
         "environment": "preview",
@@ -4717,12 +4229,11 @@
     },
     {
       "name": "ghf-primary-records",
-      "domains": [
-        "ghf-primary-records.pages.dev",
-        "records.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "ghf-primary-records",
+      "domains": [
+        "records.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "e36c898c-4499-4df7-abb6-ac52be941349",
         "environment": "preview",
@@ -4731,12 +4242,11 @@
     },
     {
       "name": "ghf-public-authorities",
-      "domains": [
-        "ghf-public-authorities.pages.dev",
-        "authorities.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "ghf-public-authorities",
+      "domains": [
+        "authorities.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "2ff0f367-e025-484b-8fd6-e59e07a08d1c",
         "environment": "preview",
@@ -4744,26 +4254,12 @@
       }
     },
     {
-      "name": "webbrich",
-      "domains": [
-        "webbrich.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "webbrich",
-      "latest_deployment": {
-        "id": "ca9f9318-e7db-4309-9a18-469bcaf2abf2",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
       "name": "bucklerfamily-chess",
-      "domains": [
-        "bucklerfamily-chess.pages.dev",
-        "chess.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "chess",
+      "domains": [
+        "chess.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "efcc8cdd-ee78-4497-8815-61e77ff5902c",
         "environment": "preview",
@@ -4771,39 +4267,12 @@
       }
     },
     {
-      "name": "datro",
-      "domains": [
-        "datro2.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "datro",
-      "latest_deployment": {
-        "id": "21b753fb-7553-4e32-8e2b-8da9446fe9e0",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "ccan",
-      "domains": [
-        "ccan-c5k.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "ccan",
-      "latest_deployment": {
-        "id": "50462e0d-16db-4f2b-9d84-500feca78063",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
       "name": "pirateclaw",
-      "domains": [
-        "pirateclaw.pages.dev",
-        "pirateclaw.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "pirateclaw",
+      "domains": [
+        "pirateclaw.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "b58f9922-e026-40ee-93ef-dedc47ef475d",
         "environment": "preview",
@@ -4811,40 +4280,12 @@
       }
     },
     {
-      "name": "llmwiki",
-      "domains": [
-        "llmwiki.pages.dev"
-      ],
-      "repo": "datro",
-      "production_branch": "llmwiki",
-      "latest_deployment": {
-        "id": "6ef64d53-1fbb-4aad-a256-be4b1c7342cb",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "ui",
-      "domains": [
-        "uifinancecheque.pages.dev",
-        "ui.financecheque.uk"
-      ],
-      "repo": "datro",
-      "production_branch": "ui",
-      "latest_deployment": {
-        "id": "0e12f2ce-176c-4b31-9359-7e6432d79382",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
       "name": "archives",
-      "domains": [
-        "archives-b01.pages.dev",
-        "archives.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "archives",
+      "domains": [
+        "archives.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "280a705a-0fe9-41fa-a83a-553945bb6bdd",
         "environment": "preview",
@@ -4853,12 +4294,11 @@
     },
     {
       "name": "althea",
-      "domains": [
-        "althea-30p.pages.dev",
-        "althea.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "althea",
+      "domains": [
+        "althea.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "d9b359c3-f307-445c-9728-a5c6f1e59ba4",
         "environment": "preview",
@@ -4867,12 +4307,11 @@
     },
     {
       "name": "bucklerfamily-fb2",
-      "domains": [
-        "bucklerfamily-fb2.pages.dev",
-        "fb2.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "fb",
+      "domains": [
+        "fb2.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "ff94729f-d652-4bb3-ab01-9ab65bc4cddb",
         "environment": "preview",
@@ -4881,12 +4320,11 @@
     },
     {
       "name": "ceo",
-      "domains": [
-        "ceo-er3.pages.dev",
-        "ceo.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "ceo",
+      "domains": [
+        "ceo.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "2e16204c-0e00-4981-b5b9-fd6b9cf53379",
         "environment": "preview",
@@ -4895,12 +4333,11 @@
     },
     {
       "name": "projections",
-      "domains": [
-        "projections.pages.dev",
-        "projections.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "gh-pages",
+      "domains": [
+        "projections.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "f65c26bc-5ae5-40e4-85a9-67a563d72f7c",
         "environment": "preview",
@@ -4908,26 +4345,12 @@
       }
     },
     {
-      "name": "datro-homepage",
-      "domains": [
-        "datro-homepage.pages.dev"
-      ],
+      "name": "timeline",
       "repo": "datro",
       "production_branch": "gh-pages",
-      "latest_deployment": {
-        "id": "85025aef-d034-45ca-aa89-99de249111be",
-        "environment": "preview",
-        "created_on": "2026-10-28T04:03:42.721668Z"
-      }
-    },
-    {
-      "name": "timeline",
       "domains": [
-        "timeline-as4.pages.dev",
         "timeline.bucklerfamily.estate"
       ],
-      "repo": "datro",
-      "production_branch": "gh-pages",
       "latest_deployment": {
         "id": "0754892d-f1df-4df5-99a9-d021ee0ac1df",
         "environment": "preview",
@@ -4936,12 +4359,11 @@
     },
     {
       "name": "bucklerfamily-infographic",
-      "domains": [
-        "bucklerfamily-infographic.pages.dev",
-        "infographic.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "infographic",
+      "domains": [
+        "infographic.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "01a24aea-428d-4e0f-8aba-fb7ce214c70f",
         "environment": "preview",
@@ -4950,13 +4372,11 @@
     },
     {
       "name": "bucklerfamilyfarm",
-      "domains": [
-        "bucklerfamilyfarm.pages.dev",
-        "bucklerfamily.estate",
-        "www.bucklerfamily.estate"
-      ],
       "repo": "BucklerFamilyFarm",
       "production_branch": "main",
+      "domains": [
+        "www.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "1b940c48-279f-40ee-afe0-c5cf00db7efe",
         "environment": "production",
@@ -4964,26 +4384,12 @@
       }
     },
     {
-      "name": "foi",
-      "domains": [
-        "foi-478.pages.dev"
-      ],
-      "repo": "BucklerFamilyFarm",
-      "production_branch": "main",
-      "latest_deployment": {
-        "id": "cf897aae-e5e7-4293-b182-c350eaaac7a5",
-        "environment": "production",
-        "created_on": "2026-10-27T09:29:26.884941Z"
-      }
-    },
-    {
       "name": "ghf-app",
-      "domains": [
-        "ghf-app.pages.dev",
-        "ghf-app.bucklerfamily.estate"
-      ],
       "repo": "BucklerFamilyFarm",
       "production_branch": "ghf-app",
+      "domains": [
+        "ghf-app.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "7fa3f8cb-81a6-4cf0-b687-f2aeb22b0fb2",
         "environment": "preview",
@@ -4992,12 +4398,11 @@
     },
     {
       "name": "bpvsbuckler",
-      "domains": [
-        "bpvsbuckler.pages.dev",
-        "bpvsbuckler.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "bpvsbuckler",
+      "domains": [
+        "bpvsbuckler.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "5ebea830-cbed-4dc4-b9c5-0a1ef8ab814b",
         "environment": "production",
@@ -5006,12 +4411,11 @@
     },
     {
       "name": "tumbler",
-      "domains": [
-        "tumbler-6js.pages.dev",
-        "tumbler.bucklerfamily.estate"
-      ],
       "repo": null,
       "production_branch": null,
+      "domains": [
+        "tumbler.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "42285e62-be57-4ef0-aa18-363df83ca5e5",
         "environment": "production",
@@ -5020,12 +4424,11 @@
     },
     {
       "name": "greathousefarmwiki",
-      "domains": [
-        "greathousefarmwiki.pages.dev",
-        "wiki.bucklerfamily.estate"
-      ],
       "repo": null,
       "production_branch": null,
+      "domains": [
+        "wiki.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "f5a5a590-0657-4114-b1d8-54eead91af5c",
         "environment": "production",
@@ -5034,8 +4437,9 @@
     },
     {
       "name": "bucklerfamily-webbrich",
+      "repo": "webbrich",
+      "production_branch": "main",
       "domains": [
-        "bucklerfamily-webbrich.pages.dev",
         "docs.webbrich.bucklerfamily.estate",
         "ebooks.webbrich.bucklerfamily.estate",
         "fb.webbrich.bucklerfamily.estate",
@@ -5046,8 +4450,6 @@
         "wayback.webbrich.bucklerfamily.estate",
         "webbrich.bucklerfamily.estate"
       ],
-      "repo": "webbrich",
-      "production_branch": "main",
       "latest_deployment": {
         "id": "4d0f1b69-4219-4383-a97a-45361f60103a",
         "environment": "preview",
@@ -5056,12 +4458,11 @@
     },
     {
       "name": "qa",
-      "domains": [
-        "qa-acp.pages.dev",
-        "qa.bucklerfamily.estate"
-      ],
       "repo": null,
       "production_branch": null,
+      "domains": [
+        "qa.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "a77b5038-7511-46fb-ba5e-ace259db35d5",
         "environment": "production",
@@ -5069,41 +4470,12 @@
       }
     },
     {
-      "name": "financecheque",
-      "domains": [
-        "financecheque.pages.dev",
-        "financecheque.uk",
-        "www.financecheque.uk"
-      ],
-      "repo": "datro",
-      "production_branch": "financecheque",
-      "latest_deployment": {
-        "id": "d358ff5d-c8fa-49c8-a766-c4599d2fc01e",
-        "environment": "production",
-        "created_on": "2026-10-20T20:08:31.434062Z"
-      }
-    },
-    {
-      "name": "ghf-hyperframes-review",
-      "domains": [
-        "ghf-hyperframes-review.pages.dev"
-      ],
-      "repo": "cclerk",
-      "production_branch": "hyperframes-ghf-review",
-      "latest_deployment": {
-        "id": "e2fe948f-e239-406d-9aae-3a99c7eab8ba",
-        "environment": "production",
-        "created_on": "2026-10-16T09:07:05.684164Z"
-      }
-    },
-    {
       "name": "wave",
-      "domains": [
-        "wave-6he.pages.dev",
-        "wave.bucklerfamily.estate"
-      ],
       "repo": null,
       "production_branch": null,
+      "domains": [
+        "wave.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "0014d7a7-c608-495c-aba7-7059a510d38e",
         "environment": "production",
@@ -5112,12 +4484,11 @@
     },
     {
       "name": "hbnb",
-      "domains": [
-        "datro.pages.dev",
-        "hbnb.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "hbnb",
+      "domains": [
+        "hbnb.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "1ded27a6-df83-483b-a084-c4b632c4f213",
         "environment": "production",
@@ -5125,40 +4496,12 @@
       }
     },
     {
-      "name": "carfinancecheque",
-      "domains": [
-        "carfinancecheque.pages.dev",
-        "car.financecheque.uk"
-      ],
-      "repo": "datro",
-      "production_branch": "carfinancecheque",
-      "latest_deployment": {
-        "id": "1fe4d2d9-401d-490b-b7dd-873ed750752f",
-        "environment": "production",
-        "created_on": "2026-10-01T22:36:48.856633Z"
-      }
-    },
-    {
-      "name": "pcp2",
-      "domains": [
-        "pcp2.pages.dev"
-      ],
-      "repo": "pcp2",
-      "production_branch": "main",
-      "latest_deployment": {
-        "id": "ee87c292-68bf-4938-8099-460f7d742618",
-        "environment": "preview",
-        "created_on": "2026-10-01T19:29:43.324092Z"
-      }
-    },
-    {
       "name": "command-dashboard",
-      "domains": [
-        "command-dashboard-adx.pages.dev",
-        "command.bucklerfamily.estate"
-      ],
       "repo": null,
       "production_branch": null,
+      "domains": [
+        "command.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "5bc9fd19-ffa6-46d2-9ceb-f2780e05ea8f",
         "environment": "production",
@@ -5166,26 +4509,12 @@
       }
     },
     {
-      "name": "command",
-      "domains": [
-        "command-cip.pages.dev"
-      ],
+      "name": "bucklervsbp",
       "repo": null,
       "production_branch": null,
-      "latest_deployment": {
-        "id": "98f3f226-4aac-4b6d-9f10-72b64a1cf19a",
-        "environment": "production",
-        "created_on": "2026-07-12T06:29:48.214231Z"
-      }
-    },
-    {
-      "name": "bucklervsbp",
       "domains": [
-        "bucklervsbp.pages.dev",
         "bucklervsbp.bucklerfamily.estate"
       ],
-      "repo": null,
-      "production_branch": null,
       "latest_deployment": {
         "id": "d0d6111e-68c8-4d9d-a59f-d0a45bf281ea",
         "environment": "preview",
@@ -5194,58 +4523,29 @@
     },
     {
       "name": "subrepos",
-      "domains": [
-        "subrepos.pages.dev",
-        "subrepos.bucklerfamily.estate"
-      ],
       "repo": null,
       "production_branch": null,
+      "domains": [
+        "subrepos.bucklerfamily.estate"
+      ],
       "latest_deployment": null
     },
     {
       "name": "dash",
-      "domains": [
-        "dash-i09.pages.dev",
-        "dash.bucklerfamily.estate"
-      ],
       "repo": null,
       "production_branch": null,
+      "domains": [
+        "dash.bucklerfamily.estate"
+      ],
       "latest_deployment": null
     },
     {
-      "name": "greathousefarm",
-      "domains": [
-        "greathousefarm.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "cdd2580e-029d-4936-bb67-800d66eebb0d",
-        "environment": "production",
-        "created_on": "2026-05-13T21:14:32.00419Z"
-      }
-    },
-    {
-      "name": "calls-portal",
-      "domains": [
-        "calls-portal.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "d53628c5-cd06-4456-8738-aaa89694931f",
-        "environment": "production",
-        "created_on": "2026-04-22T13:54:19.701595Z"
-      }
-    },
-    {
       "name": "calls",
+      "repo": null,
+      "production_branch": null,
       "domains": [
-        "calls-ck0.pages.dev",
         "calls.bucklerfamily.estate"
       ],
-      "repo": null,
-      "production_branch": null,
       "latest_deployment": {
         "id": "5c7b8ab8-304b-4d3b-bf0b-9abf85fbb25c",
         "environment": "production",
@@ -5254,12 +4554,11 @@
     },
     {
       "name": "library",
-      "domains": [
-        "library-cgm.pages.dev",
-        "library.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "library",
+      "domains": [
+        "library.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "4359dd9f-19f1-47dd-8f5a-9420edda4ac1",
         "environment": "preview",
@@ -5268,12 +4567,11 @@
     },
     {
       "name": "gui",
-      "domains": [
-        "gui-7ey.pages.dev",
-        "gui.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "gui",
+      "domains": [
+        "gui.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "6edc18a0-6c4d-475d-97d6-572b67481248",
         "environment": "production",
@@ -5282,94 +4580,15 @@
     },
     {
       "name": "dcc",
-      "domains": [
-        "dcc-cwd.pages.dev",
-        "dcc.bucklerfamily.estate"
-      ],
       "repo": "datro",
       "production_branch": "dcc",
+      "domains": [
+        "dcc.bucklerfamily.estate"
+      ],
       "latest_deployment": {
         "id": "b6884ae3-3dff-4510-950b-1fdc72c0fcaf",
         "environment": "production",
         "created_on": "2026-04-15T02:48:31.501927Z"
-      }
-    },
-    {
-      "name": "paperclip-ui",
-      "domains": [
-        "paperclip-ui-cvs.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "7341d5f9-ef2a-4758-a3ae-fc5da3dc5609",
-        "environment": "preview",
-        "created_on": "2026-04-14T07:11:26.788906Z"
-      }
-    },
-    {
-      "name": "netdata-ui",
-      "domains": [
-        "netdata-ui.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "30d839bd-c501-42f8-9fc4-7eb935806c84",
-        "environment": "preview",
-        "created_on": "2026-04-14T07:10:24.040282Z"
-      }
-    },
-    {
-      "name": "brain",
-      "domains": [
-        "brain-3ba.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "58bd5c97-fc02-4fd8-9c5e-64d33f6e58d9",
-        "environment": "production",
-        "created_on": "2026-04-12T07:11:20.483746Z"
-      }
-    },
-    {
-      "name": "carfinance-new",
-      "domains": [
-        "carfinance-new.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "77a1761e-2a0e-4f9b-9e2a-6612751c9d00",
-        "environment": "production",
-        "created_on": "2026-03-28T05:27:00.212822Z"
-      }
-    },
-    {
-      "name": "pcp2-test",
-      "domains": [
-        "pcp2-test.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "00f0c7aa-d785-4edc-bf6e-5f074d29efd9",
-        "environment": "production",
-        "created_on": "2026-03-28T02:18:05.608061Z"
-      }
-    },
-    {
-      "name": "pcp2-car-finance",
-      "domains": [
-        "pcp2-car-finance.pages.dev"
-      ],
-      "repo": null,
-      "production_branch": null,
-      "latest_deployment": {
-        "id": "08385f34-2383-424a-a26b-d1d2476ef2e4",
-        "environment": "production",
-        "created_on": "2026-03-26T23:09:34.639813Z"
       }
     }
   ],
@@ -5381,65 +4600,57 @@
   },
   "redirect_rules": [
     {
-      "description": "dishonor/dishonour -> fcg Accountability Index (worker 941c4817, Sion's Tab agent)",
+      "id": "zone-rule-1",
       "enabled": true,
-      "expression": "(http.host eq \"dishonor.bucklerfamily.estate\") or (http.host eq \"dishonour.bucklerfamily.estate\")",
       "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": false,
-      "target": "https://fcg.bucklerfamily.estate/",
-      "source_hosts": [
+      "host_coverage": [
         "dishonor.bucklerfamily.estate",
         "dishonour.bucklerfamily.estate"
-      ]
-    },
-    {
-      "description": "Treasury retired 21 Oct 2026: bare /coins/ landing -> ebooks shop (coin thanks/terms/spend/api paths kept) — Sion's Tab agent [1]",
-      "enabled": true,
-      "expression": "(http.host in {\"bucklerfamily.estate\" \"www.bucklerfamily.estate\"} and http.request.uri.path in {\"/coins\" \"/coins/\" \"/coins/index.html\"} and http.request.uri.query eq \"\")",
-      "action": "redirect",
+      ],
       "status_code": 301,
       "preserve_query_string": false,
-      "target": "https://ebooks.bucklerfamily.estate/",
-      "source_hosts": [
-        "www.bucklerfamily.estate"
-      ]
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
     },
     {
-      "description": "RETIRE->cedwyn/<label>/ for emails, ebooks, courtdrills (Tab 26Oct f191e87c; emails was ->email./calendar)",
+      "id": "zone-rule-2",
       "enabled": true,
-      "expression": "http.host in {\"emails.bucklerfamily.estate\" \"ebooks.bucklerfamily.estate\" \"courtdrills.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\"",
       "action": "redirect",
+      "host_coverage": [
+        "www.bucklerfamily.estate"
+      ],
       "status_code": 301,
-      "preserve_query_string": true,
-      "target": "concat(\"https://cedwyn.bucklerfamily.estate/\", wildcard_replace(http.host, \"*.bucklerfamily.estate\", \"${1}\"), http.request.uri.path)",
-      "source_hosts": [
+      "preserve_query_string": false,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-3",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
         "emails.bucklerfamily.estate",
         "ebooks.bucklerfamily.estate",
         "courtdrills.bucklerfamily.estate"
-      ]
+      ],
+      "status_code": 301,
+      "preserve_query_string": true,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
     },
     {
-      "description": "Map purge 22 Oct 2026 (no licence held, owner 20:29 BST): removed shop map images -> shop home (stale Pages cache) — Sion's Tab agent [e426632a]  ",
+      "id": "zone-rule-4",
       "enabled": true,
-      "expression": "(http.host eq \"shop.bucklerfamily.estate\" and http.request.uri.path in {\"/img/p-cedwyn-poster.webp\" \"/img/p-cedwyn-tote.webp\" \"/img/p-cedwyn-mug.webp\" \"/img/p-cedwyn-postcard.webp\" \"/img/p-download-os-map-pack.webp\" \"/img/p-poster-map-1900.webp\" \"/img/p-poster-map-1878.webp\" \"/img/p-tote-map-1900.webp\" \"/img/p-mug-map-1900.webp\" \"/img/p-postcard-map-1878.webp\" \"/img/mp01-os1900.webp\" \"/img/mp02-os1878.webp\" \"/img/hero-cedwyn.webp\" \"/img/d03-wordmark-estate-map.webp\" \"/img/d05-every-field-has-a-story.webp\"})",
       "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": false,
-      "target": "https://shop.bucklerfamily.estate/",
-      "source_hosts": [
+      "host_coverage": [
         "shop.bucklerfamily.estate"
-      ]
-    },
-    {
-      "description": "RETIRE same-name->cedwyn (Tab 25Oct)",
-      "enabled": true,
-      "expression": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))",
-      "action": "redirect",
+      ],
       "status_code": 301,
       "preserve_query_string": false,
-      "target": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")",
-      "source_hosts": [
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-5",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
         "records.bucklerfamily.estate",
         "docs.bucklerfamily.estate",
         "wayback.bucklerfamily.estate",
@@ -5465,68 +4676,66 @@
         "terrain.bucklerfamily.estate",
         "shop.bucklerfamily.estate",
         "research.bucklerfamily.estate"
-      ]
+      ],
+      "status_code": 301,
+      "preserve_query_string": false,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
     },
     {
-      "description": "RETIRE->cedwyn/nomenclature/ (Tab 25Oct)",
+      "id": "zone-rule-6",
       "enabled": true,
-      "expression": "http.host in {\"nomlecture.bucklerfamily.estate\" \"nolecture.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\"",
       "action": "redirect",
-      "status_code": 301,
-      "preserve_query_string": true,
-      "target": "concat(\"https://cedwyn.bucklerfamily.estate/nomenclature\", http.request.uri.path)",
-      "source_hosts": [
+      "host_coverage": [
         "nomlecture.bucklerfamily.estate",
         "nolecture.bucklerfamily.estate"
-      ]
-    },
-    {
-      "description": "RETIRE->cedwyn/csscpsg/ (Tab 25Oct)",
-      "enabled": true,
-      "expression": "http.host in {\"csscpsgp.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\"",
-      "action": "redirect",
+      ],
       "status_code": 301,
       "preserve_query_string": true,
-      "target": "concat(\"https://cedwyn.bucklerfamily.estate/csscpsg\", http.request.uri.path)",
-      "source_hosts": [
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-7",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
         "csscpsgp.bucklerfamily.estate"
-      ]
-    },
-    {
-      "description": "RETIRE->cedwyn/story/ (Tab 25Oct)",
-      "enabled": true,
-      "expression": "http.host in {\"bpvsbuckler.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\"",
-      "action": "redirect",
+      ],
       "status_code": 301,
       "preserve_query_string": true,
-      "target": "concat(\"https://cedwyn.bucklerfamily.estate/story\", http.request.uri.path)",
-      "source_hosts": [
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-8",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
         "bpvsbuckler.bucklerfamily.estate"
-      ]
-    },
-    {
-      "description": "RETIRE->cedwyn/wdtk/ (Tab 25Oct)",
-      "enabled": true,
-      "expression": "http.host in {\"whatdotheyknow.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\"",
-      "action": "redirect",
+      ],
       "status_code": 301,
       "preserve_query_string": true,
-      "target": "concat(\"https://cedwyn.bucklerfamily.estate/wdtk\", http.request.uri.path)",
-      "source_hosts": [
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-9",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
         "whatdotheyknow.bucklerfamily.estate"
-      ]
-    },
-    {
-      "description": "RETIRE->cedwyn/meeting/ (Tab 25Oct)",
-      "enabled": true,
-      "expression": "http.host in {\"2026-10-22.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\"",
-      "action": "redirect",
+      ],
       "status_code": 301,
       "preserve_query_string": true,
-      "target": "concat(\"https://cedwyn.bucklerfamily.estate/meeting\", http.request.uri.path)",
-      "source_hosts": [
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-10",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
         "2026-10-22.bucklerfamily.estate"
-      ]
+      ],
+      "status_code": 301,
+      "preserve_query_string": true,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
     }
   ],
   "worker_routes": {
@@ -6044,10 +5253,6 @@
         "script": "agent-ready"
       },
       {
-        "pattern": "bucklerfamily.estate/.well-known/mcp.json",
-        "script": "agent-ready"
-      },
-      {
         "pattern": "*.bucklerfamily.estate/.well-known/webmcp.json",
         "script": "agent-ready"
       },
@@ -6060,23 +5265,7 @@
         "script": "agent-ready"
       },
       {
-        "pattern": "bucklerfamily.estate/.well-known/webmcp.json",
-        "script": "agent-ready"
-      },
-      {
         "pattern": "*.bucklerfamily.estate/agent/*",
-        "script": "agent-ready"
-      },
-      {
-        "pattern": "bucklerfamily.estate/llms.txt",
-        "script": "agent-ready"
-      },
-      {
-        "pattern": "bucklerfamily.estate/llms-full.txt",
-        "script": "agent-ready"
-      },
-      {
-        "pattern": "bucklerfamily.estate/agent/*",
         "script": "agent-ready"
       },
       {
@@ -6119,37 +5308,29 @@
         "pattern": "library.bucklerfamily.estate/llms.txt",
         "script": "library-sop"
       }
-    ]
+    ],
+    "scope_note": "Only BucklerFamily Estate routes are stored here; full live configuration remains in Cloudflare."
   },
   "existing_catalogue_report": {
     "artifacts": 14194,
     "locations": 19584,
-    "blobs": 4545,
+    "binary_blobs": 4545,
     "blob_bytes": 659656953,
-    "blob_skipped_over_cap": 9,
-    "edges": 301175,
-    "nodes": 1535,
+    "graph_edges": 301175,
+    "graph_nodes": 1535,
     "fts_rows": 10351,
-    "captures": 183,
-    "cites": 18646,
+    "citations": 18646,
     "themes": 44,
-    "layer_items": 73,
-    "layer_refs": 113,
-    "layer_deps": 75,
-    "blobmap_paths": 7091,
-    "blobmap_blobs": 4545,
-    "db_version": "4f179dec1afb",
-    "db_bytes": 761405440,
+    "sqlite_bytes": 761405440,
     "chunks": 2905,
-    "chunk_max_bytes": 262144
+    "max_chunk_bytes": 262144
   },
   "latest_outbound_link_report": {
-    "fixed_in_place": 0,
-    "pages": 8713,
+    "pass": true,
+    "pages_checked": 8713,
     "links_checked": 337996,
-    "outbound_found": 0,
-    "examples": [],
-    "pass": true
+    "outbound_links_found": 0,
+    "note": "Existing build gate results; this does not replace direct HTTP redirect tests."
   },
   "known_browser_observations": {
     "content_opened": [
@@ -6246,83 +5427,54 @@
         "table_count": 18,
         "size_bytes": 6152192,
         "read_only_schema_query": true
-      },
-      {
-        "name": "financecheque-db",
-        "id": "a04880a5-c1f7-47fc-aa42-d85e1dfab223",
-        "table_count": 17,
-        "size_bytes": 29220864,
-        "read_only_schema_query": true
       }
     ],
+    "other_database_count": 1,
     "kv_total": 13,
     "kv": [
       {
-        "id": "07e6ff3bb10045f3a6d38bf29c939af1",
-        "title": "financecheque-FLYWHEEL_STATE"
+        "title": "COMMAND_DASHBOARD",
+        "id": "14625e3713fb4383a4de56f4e0bdadc2"
       },
       {
-        "id": "14625e3713fb4383a4de56f4e0bdadc2",
-        "title": "COMMAND_DASHBOARD"
+        "title": "EMAIL_SENDER",
+        "id": "183b02eddd214e41a1250d20e0d33624"
       },
       {
-        "id": "183b02eddd214e41a1250d20e0d33624",
-        "title": "EMAIL_SENDER"
+        "title": "GHF_STATUS",
+        "id": "350d63f198c94e1e841dfb5ec51bb361"
       },
       {
-        "id": "350d63f198c94e1e841dfb5ec51bb361",
-        "title": "GHF_STATUS"
+        "title": "cedwyn-visit",
+        "id": "4ea74b43092b42d3aa351df8f43a764c"
       },
       {
-        "id": "4ea74b43092b42d3aa351df8f43a764c",
-        "title": "cedwyn-visit"
+        "title": "cedwyn-cms",
+        "id": "767d17f3c7e64a27b1f00b0146dc38da"
       },
       {
-        "id": "767d17f3c7e64a27b1f00b0146dc38da",
-        "title": "cedwyn-cms"
+        "title": "ghf-followers",
+        "id": "8561f775ae5d478691337e0b8d65eb5b"
       },
       {
-        "id": "8561f775ae5d478691337e0b8d65eb5b",
-        "title": "ghf-followers"
+        "title": "cedwyn-directory",
+        "id": "ae4125e852724772bd66b157c7ab8e43"
       },
       {
-        "id": "ae4125e852724772bd66b157c7ab8e43",
-        "title": "cedwyn-directory"
+        "title": "ghf-watch",
+        "id": "c958822405b243b3b2245545972d46b1"
       },
       {
-        "id": "c958822405b243b3b2245545972d46b1",
-        "title": "ghf-watch"
+        "title": "engineroom-cache",
+        "id": "e16ea7473f084a7ab51be6ce40e5f6d6"
       },
       {
-        "id": "e16ea7473f084a7ab51be6ce40e5f6d6",
-        "title": "engineroom-cache"
-      },
-      {
-        "id": "e5262b3035a0458c884738c66b534ee9",
-        "title": "FCUK_SESSIONS"
-      },
-      {
-        "id": "e6995663e4fc493a817ac95e6531f835",
-        "title": "cedwyn-blog"
-      },
-      {
-        "id": "ed3052fb8c2249979074b6096abc64f6",
-        "title": "FLYWHEEL_STATE"
+        "title": "cedwyn-blog",
+        "id": "e6995663e4fc493a817ac95e6531f835"
       }
     ],
     "r2_total": 10,
-    "r2": [
-      "cedwyn-apps-uploads",
-      "fcg-media",
-      "ghf-comments",
-      "ghf-ebooks-private",
-      "ghf-social",
-      "pirateclaw-ptor",
-      "projects-private",
-      "richwebb-site",
-      "terrain-scene",
-      "wayback-media"
-    ],
+    "r2": [],
     "worker_bindings": [
       {
         "script": "cedwyn-apps",
@@ -6332,64 +5484,56 @@
             "name": "DB",
             "database_id": "6fb11d8e-5d14-41a4-a7a0-ebf3d3de410a",
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "send_email",
             "name": "MAILER",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "secret_text",
             "name": "MAIL_TO",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "secret_text",
             "name": "SALT",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "send_email",
             "name": "SENDER",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "send_email",
             "name": "TAB_MAILER",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "secret_text",
             "name": "TEST_TOKEN",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "r2_bucket",
             "name": "UPLOADS",
             "database_id": null,
             "bucket_name": "cedwyn-apps-uploads",
-            "service": null,
-            "namespace_id": null
+            "service": null
           }
         ]
       },
@@ -6401,32 +5545,28 @@
             "name": "DB",
             "database_id": "6fb11d8e-5d14-41a4-a7a0-ebf3d3de410a",
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "secret_text",
             "name": "MEMBER_KEY",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "secret_text",
             "name": "SALT_A",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "secret_text",
             "name": "SUMMARY_KEY",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           }
         ]
       },
@@ -6438,32 +5578,28 @@
             "name": "DB",
             "database_id": "a15aedf1-a4d3-49fe-bd28-c2974c323b96",
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "plain_text",
             "name": "ENVIRONMENT",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "plain_text",
             "name": "SITE_TITLE",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "plain_text",
             "name": "WP_SOURCE_URL",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           }
         ]
       },
@@ -6475,40 +5611,35 @@
             "name": "ADMIN_TOKEN",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "d1",
             "name": "DB",
             "database_id": "3ca02c2d-bb78-424d-8574-a653d33f5c05",
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "plain_text",
             "name": "ENVIRONMENT",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "plain_text",
             "name": "SITE_TITLE",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "plain_text",
             "name": "SOURCE_SITE",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           }
         ]
       },
@@ -6520,32 +5651,28 @@
             "name": "AI",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "d1",
             "name": "DB",
             "database_id": "f250f859-772a-491f-a95b-33011cd77051",
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "secret_text",
             "name": "SALT",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "plain_text",
             "name": "XAI_MODEL",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           }
         ]
       },
@@ -6557,40 +5684,35 @@
             "name": "DB",
             "database_id": "f26a7c7d-a3d8-4ee9-9311-5a97b29c8676",
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "send_email",
             "name": "MAILER",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "plain_text",
             "name": "MAILER_TO",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "secret_text",
             "name": "SALT",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "send_email",
             "name": "TAB_MAILER",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           }
         ]
       },
@@ -6602,32 +5724,21 @@
             "name": "DB",
             "database_id": "8af686eb-e408-4e82-9acb-50fc33056c5a",
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "plain_text",
             "name": "PACKS",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
-          },
-          {
-            "type": "r2_bucket",
-            "name": "PRIV",
-            "database_id": null,
-            "bucket_name": "ghf-ebooks-private",
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "secret_text",
             "name": "SALT",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           }
         ]
       },
@@ -6639,40 +5750,35 @@
             "name": "AI",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "r2_bucket",
             "name": "BUCKET",
             "database_id": null,
             "bucket_name": "terrain-scene",
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "secret_text",
             "name": "PASS_HASHES",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "secret_text",
             "name": "SESSION_KEY",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           },
           {
             "type": "secret_text",
             "name": "STT_HINT",
             "database_id": null,
             "bucket_name": null,
-            "service": null,
-            "namespace_id": null
+            "service": null
           }
         ]
       },
@@ -6684,8 +5790,7 @@
             "name": "HIVE",
             "database_id": null,
             "bucket_name": null,
-            "service": "ghf-watch",
-            "namespace_id": null
+            "service": "ghf-watch"
           }
         ]
       },
@@ -6697,21 +5802,19 @@
             "name": "DARTBOARD",
             "database_id": null,
             "bucket_name": null,
-            "service": "dartboard",
-            "namespace_id": null
+            "service": "dartboard"
           }
         ]
       }
     ],
-    "interpretation": "D1 table/view names and database size were queried read-only; no application data rows were read. This is a binding inventory, not proof of a central catalogue sync contract."
+    "interpretation": "Read-only schema metadata only; no application rows were read. Store ownership and catalogue synchronization remain to be documented."
   },
   "architecture_observation": {
     "central_evidence_catalogue": {
-      "location": "static build output split into SQLite chunks and blob store",
+      "location": "static build output split into SQLite chunks and a content-addressed blob store",
       "reported_artifacts": 14194,
       "reported_db_bytes": 761405440,
-      "source_branch": "main",
-      "distinction": "This static SQLite build is not a writable application database; D1 applications currently hold separate data."
+      "distinction": "The static catalogue is not a writable application database; server-side app stores are separate."
     },
     "app_databases_found": [
       "terrain",
@@ -6722,9 +5825,9 @@
       "qa-graph",
       "research-wp-d1",
       "fcg-wp-d1",
-      "bpvsbuckler-graph",
-      "financecheque-db"
+      "bpvsbuckler-graph"
     ],
-    "unresolved": "The cross-app synchronization contract, canonical evidence IDs/API, schema compatibility/versioning, and per-theme owner-to-database mapping still need to be verified before implementing writes."
+    "out_of_scope_database_count": 1,
+    "unresolved": "Cross-app synchronization, canonical evidence IDs/API, schema compatibility/versioning and full theme-to-database ownership remain unverified."
   }
 }
