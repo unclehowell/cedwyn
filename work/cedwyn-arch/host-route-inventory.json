@@ -6180,5 +6180,551 @@
   ],
   "validation_notes": [
     "Do not confuse the Pages project's latest deployment pointer (which may reference a preview) with the recorded production deployment ID in source.production_deployment."
-  ]
+  ],
+  "existing_storage": {
+    "d1_total": 10,
+    "d1": [
+      {
+        "name": "terrain",
+        "id": "06a8df95-5f08-41c8-9ab2-fad3ade91a6e",
+        "table_count": 10,
+        "size_bytes": 180224,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "cedwyn-apps",
+        "id": "6fb11d8e-5d14-41a4-a7a0-ebf3d3de410a",
+        "table_count": 18,
+        "size_bytes": 3248128,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "cedwyn-coins",
+        "id": "8af686eb-e408-4e82-9acb-50fc33056c5a",
+        "table_count": 7,
+        "size_bytes": 69632,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "ghf-chat",
+        "id": "f250f859-772a-491f-a95b-33011cd77051",
+        "table_count": 9,
+        "size_bytes": 20402176,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "ghf-enquiries",
+        "id": "f26a7c7d-a3d8-4ee9-9311-5a97b29c8676",
+        "table_count": 11,
+        "size_bytes": 98304,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "qa-graph",
+        "id": "b49ebd69-3e98-4e96-837d-7b4c41b23674",
+        "table_count": 18,
+        "size_bytes": 6230016,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "research-wp-d1",
+        "id": "3ca02c2d-bb78-424d-8574-a653d33f5c05",
+        "table_count": 15,
+        "size_bytes": 376946688,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "fcg-wp-d1",
+        "id": "a15aedf1-a4d3-49fe-bd28-c2974c323b96",
+        "table_count": 3,
+        "size_bytes": 2310144,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "bpvsbuckler-graph",
+        "id": "fe824415-4bfd-48b5-82d7-1bfc8f503fc9",
+        "table_count": 18,
+        "size_bytes": 6152192,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "financecheque-db",
+        "id": "a04880a5-c1f7-47fc-aa42-d85e1dfab223",
+        "table_count": 17,
+        "size_bytes": 29220864,
+        "read_only_schema_query": true
+      }
+    ],
+    "kv_total": 13,
+    "kv": [
+      {
+        "id": "07e6ff3bb10045f3a6d38bf29c939af1",
+        "title": "financecheque-FLYWHEEL_STATE"
+      },
+      {
+        "id": "14625e3713fb4383a4de56f4e0bdadc2",
+        "title": "COMMAND_DASHBOARD"
+      },
+      {
+        "id": "183b02eddd214e41a1250d20e0d33624",
+        "title": "EMAIL_SENDER"
+      },
+      {
+        "id": "350d63f198c94e1e841dfb5ec51bb361",
+        "title": "GHF_STATUS"
+      },
+      {
+        "id": "4ea74b43092b42d3aa351df8f43a764c",
+        "title": "cedwyn-visit"
+      },
+      {
+        "id": "767d17f3c7e64a27b1f00b0146dc38da",
+        "title": "cedwyn-cms"
+      },
+      {
+        "id": "8561f775ae5d478691337e0b8d65eb5b",
+        "title": "ghf-followers"
+      },
+      {
+        "id": "ae4125e852724772bd66b157c7ab8e43",
+        "title": "cedwyn-directory"
+      },
+      {
+        "id": "c958822405b243b3b2245545972d46b1",
+        "title": "ghf-watch"
+      },
+      {
+        "id": "e16ea7473f084a7ab51be6ce40e5f6d6",
+        "title": "engineroom-cache"
+      },
+      {
+        "id": "e5262b3035a0458c884738c66b534ee9",
+        "title": "FCUK_SESSIONS"
+      },
+      {
+        "id": "e6995663e4fc493a817ac95e6531f835",
+        "title": "cedwyn-blog"
+      },
+      {
+        "id": "ed3052fb8c2249979074b6096abc64f6",
+        "title": "FLYWHEEL_STATE"
+      }
+    ],
+    "r2_total": 10,
+    "r2": [
+      "cedwyn-apps-uploads",
+      "fcg-media",
+      "ghf-comments",
+      "ghf-ebooks-private",
+      "ghf-social",
+      "pirateclaw-ptor",
+      "projects-private",
+      "richwebb-site",
+      "terrain-scene",
+      "wayback-media"
+    ],
+    "worker_bindings": [
+      {
+        "script": "cedwyn-apps",
+        "bindings": [
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "6fb11d8e-5d14-41a4-a7a0-ebf3d3de410a",
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "send_email",
+            "name": "MAILER",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "secret_text",
+            "name": "MAIL_TO",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SALT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "send_email",
+            "name": "SENDER",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "send_email",
+            "name": "TAB_MAILER",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "secret_text",
+            "name": "TEST_TOKEN",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "r2_bucket",
+            "name": "UPLOADS",
+            "database_id": null,
+            "bucket_name": "cedwyn-apps-uploads",
+            "service": null,
+            "namespace_id": null
+          }
+        ]
+      },
+      {
+        "script": "cedwyn-api",
+        "bindings": [
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "6fb11d8e-5d14-41a4-a7a0-ebf3d3de410a",
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "secret_text",
+            "name": "MEMBER_KEY",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SALT_A",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SUMMARY_KEY",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          }
+        ]
+      },
+      {
+        "script": "fcg-wp",
+        "bindings": [
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "a15aedf1-a4d3-49fe-bd28-c2974c323b96",
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "plain_text",
+            "name": "ENVIRONMENT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "plain_text",
+            "name": "SITE_TITLE",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "plain_text",
+            "name": "WP_SOURCE_URL",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          }
+        ]
+      },
+      {
+        "script": "research-wp",
+        "bindings": [
+          {
+            "type": "secret_text",
+            "name": "ADMIN_TOKEN",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "3ca02c2d-bb78-424d-8574-a653d33f5c05",
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "plain_text",
+            "name": "ENVIRONMENT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "plain_text",
+            "name": "SITE_TITLE",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "plain_text",
+            "name": "SOURCE_SITE",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          }
+        ]
+      },
+      {
+        "script": "ghf-chat",
+        "bindings": [
+          {
+            "type": "ai",
+            "name": "AI",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "f250f859-772a-491f-a95b-33011cd77051",
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SALT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "plain_text",
+            "name": "XAI_MODEL",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          }
+        ]
+      },
+      {
+        "script": "ghf-enquire",
+        "bindings": [
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "f26a7c7d-a3d8-4ee9-9311-5a97b29c8676",
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "send_email",
+            "name": "MAILER",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "plain_text",
+            "name": "MAILER_TO",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SALT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "send_email",
+            "name": "TAB_MAILER",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          }
+        ]
+      },
+      {
+        "script": "cedwyn-coins",
+        "bindings": [
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "8af686eb-e408-4e82-9acb-50fc33056c5a",
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "plain_text",
+            "name": "PACKS",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "r2_bucket",
+            "name": "PRIV",
+            "database_id": null,
+            "bucket_name": "ghf-ebooks-private",
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SALT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          }
+        ]
+      },
+      {
+        "script": "terrain",
+        "bindings": [
+          {
+            "type": "ai",
+            "name": "AI",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "r2_bucket",
+            "name": "BUCKET",
+            "database_id": null,
+            "bucket_name": "terrain-scene",
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "secret_text",
+            "name": "PASS_HASHES",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SESSION_KEY",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          },
+          {
+            "type": "secret_text",
+            "name": "STT_HINT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null,
+            "namespace_id": null
+          }
+        ]
+      },
+      {
+        "script": "cedwyn-hive",
+        "bindings": [
+          {
+            "type": "service",
+            "name": "HIVE",
+            "database_id": null,
+            "bucket_name": null,
+            "service": "ghf-watch",
+            "namespace_id": null
+          }
+        ]
+      },
+      {
+        "script": "apex-home",
+        "bindings": [
+          {
+            "type": "service",
+            "name": "DARTBOARD",
+            "database_id": null,
+            "bucket_name": null,
+            "service": "dartboard",
+            "namespace_id": null
+          }
+        ]
+      }
+    ],
+    "interpretation": "D1 table/view names and database size were queried read-only; no application data rows were read. This is a binding inventory, not proof of a central catalogue sync contract."
+  },
+  "architecture_observation": {
+    "central_evidence_catalogue": {
+      "location": "static build output split into SQLite chunks and blob store",
+      "reported_artifacts": 14194,
+      "reported_db_bytes": 761405440,
+      "source_branch": "main",
+      "distinction": "This static SQLite build is not a writable application database; D1 applications currently hold separate data."
+    },
+    "app_databases_found": [
+      "terrain",
+      "cedwyn-apps",
+      "cedwyn-coins",
+      "ghf-chat",
+      "ghf-enquiries",
+      "qa-graph",
+      "research-wp-d1",
+      "fcg-wp-d1",
+      "bpvsbuckler-graph",
+      "financecheque-db"
+    ],
+    "unresolved": "The cross-app synchronization contract, canonical evidence IDs/API, schema compatibility/versioning, and per-theme owner-to-database mapping still need to be verified before implementing writes."
+  }
 }
