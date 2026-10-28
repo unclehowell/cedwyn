@@ -59,11 +59,11 @@
     "theme_count": 44,
     "cloudflare_zone_id": "5307ac7d55a77d914b81d79c79532dde",
     "production_deployment": {
-      "id": "cd51f1a7-ebc0-478f-8eb9-e2390b8e76b8",
+      "id": "cd51f1a7-ebc0-4787-9f9d-5210a8104e0e",
       "branch": "site",
       "commit": "15a8792bf6169d4907dedf899f7c5fc569d04667",
       "status": "success",
-      "note": "Previously verified Cloudflare Pages production deployment record; use deployment API for current status on resume."
+      "note": "Recorded production rollback target from read-only Cloudflare Pages deployment inspection."
     }
   },
   "canonical_mapping_rule": "oldhost.bucklerfamily.estate/path?x=y → https://cedwyn.bucklerfamily.estate/<theme-id>/path?x=y, except aliases, APIs, agent endpoints, media services and archived-original links explicitly classified",
@@ -6177,5 +6177,8 @@
     "The active redirect rules are selective by request method, path extension, user-agent, API path, and specific FCG/Research exceptions; inspect the condition before editing.",
     "Direct HTTP response status/final URL/content-type tests for all eligible old hosts and new paths remain outstanding.",
     "D1 metadata inspection was read-only and queried table names only, not application rows."
+  ],
+  "validation_notes": [
+    "Do not confuse the Pages project's latest deployment pointer (which may reference a preview) with the recorded production deployment ID in source.production_deployment."
   ]
 }
