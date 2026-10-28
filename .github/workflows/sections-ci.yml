@@ -31,6 +31,25 @@ jobs:
         run: |
           echo "labels: $LABELS"
           echo "$LABELS" | grep -q '"site-wide"' || { echo "::error::A change to main rebuilds every section. Add the label site-wide, or make the change on the section's own branch (section/<id>)."; exit 1; }
+  # Opt-in, read-only live HTTP audit for the migration PR. It is deliberately label-gated.
+  host-route-audit:
+    if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'host-route-audit')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Syntax-check and probe legacy hosts, canonical routes and agent endpoints
+        run: |
+          python3 -m py_compile tools/host_route_probe.py
+          python3 tools/host_route_probe.py --report reports/host-route-audit.json
+      - name: Preserve machine-readable audit results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cedwyn-host-route-audit
+          path: reports/host-route-audit.json
+          if-no-files-found: warn
+          retention-days: 14
   pin-section:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
