@@ -32,3 +32,17 @@ The source branch has a hostname configuration conflict: root `CNAME` contains `
 - Do not use obsolete live `datro.xyz` as an authoritative current content source.
 - Do not infer missing content from failed requests, stale redirects or unverified host guesses.
 - Do not modify production pages as part of the audit branch.
+
+
+## Inventory update — 2026-10-29 16:55 UTC
+Cloudflare API inventory reconciled against active zone `bucklerfamily.estate` and Cloudflare Pages project settings:
+- DNS records in scope where the hostname contains `datro`: **51**.
+- Cloudflare Pages projects enumerated: **91**.
+- DNS hostnames whose matched Pages project source is `unclehowell/datro`: **49**.
+- Hostnames routed to a Pages project sourced from `unclehowell/cedwyn`: **2**.
+- DNS records without a matching Pages project remain flagged unresolved, not treated as missing content.
+- Source branch list contains 73 refs; destination contains 133 refs. Same-named source branches absent from destination: backup/gh-pages-pre-april-rollback-2026-10-29, gui, hbnb. Among those, backup ref is not itself a confirmed deployable app; active Pages mappings must determine priority. `gui` and `hbnb` are confirmed production branch names in Pages configuration and currently have no same-named branch in Cedwyn, so each requires a specific scope/content assessment.
+- The host inventory now records exact DNS CNAME, Pages project, configured production branch, source repo and last DNS modification time. Host-level rows remain `UNCERTAIN` for content parity until content and behaviour are checked.
+
+## Confirmed deployment mappings requiring source/target check
+The active DNS record for `gui-datro.bucklerfamily.estate` points to `gui-7ey.pages.dev`, whose Pages project is sourced from `unclehowell/datro` branch `gui`; `hbnb-datro.bucklerfamily.estate` points to `datro.pages.dev`, whose project is sourced from branch `hbnb`. Neither source branch currently exists in the Cedwyn repo. This is a verified repository/hosting difference—not yet a judgement that the page should be copied wholesale. The `hbnb` source entry looks like a generic Harmony Hub landing page, so treat that page's relationship to Cedwyn as an open classification decision rather than importing it as historical content.
