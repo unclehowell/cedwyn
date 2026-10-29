@@ -145,7 +145,7 @@ function openPlace(id,button){
  place.specific.forEach(function(item){html+=card(item[0],item[1],item[2])});
  html+='</div></section>';
  groups.forEach(function(group){html+='<section class="app-section"><h3>'+group.title+'</h3><div class="app-grid">';
- group.items.forEach(function(item){html+=card(item[1],'/'+id+'/'+item[0]+'/',item[2])});
+ var route=id==='patagonia'?'argentina':'wales';group.items.forEach(function(item){html+=card(item[1],'/'+route+'/'+item[0]+'/',item[2])});
  html+='</div></section>'});
  html+='<section class="app-section"><h3>Coming soon</h3><div class="app-grid"><div class="app-card soon" aria-label="Network, coming soon"><img src="'+photo('network-datacentre')+'" alt="" loading="lazy"><span class="app-label">Network<small>Coming soon</small></span></div></div></section>';
  content.innerHTML=html;
