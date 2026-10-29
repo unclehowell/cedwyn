@@ -231,10 +231,123 @@ if _eg.exists():
                  json.dumps(_x.get('aliases', []), ensure_ascii=False), _x.get('grade_note'), _title))
 
 # Complete the EV index from actual built evidence pages as well as data/evidence-grades.json.
-# Missing grading metadata stays missing; discovering a page does not make its source independently verified.
+# Discovering a page does not invent a grade or establish an independent source origin.
 _ev_pages = {}
 for _rel in path_aid:
-    _m = re.match(r'^/(?:research|wiki)/evidence/(ev-[0-9]{4}-[^/]+)/index\\.htmlfor t in CFG['themes']:
+    _m = re.match(r'^/(?:research|wiki)/evidence/(ev-[0-9]{4}-[^/]+)/index[.]html$', _rel, re.I)
+    if not _m:
+        continue
+    _number = re.match(r'^ev-([0-9]{4})-', _m.group(1), re.I)
+    if not _number:
+        continue
+    _ev = 'EV-' + _number.group(1)
+    _prio = 0 if _rel.startswith('/research/') else 1
+    if _ev not in _ev_pages or _prio < _ev_pages[_ev][0]:
+        _ev_pages[_ev] = (_prio, _rel)
+for _ev, (_, _epath) in sorted(_ev_pages.items()):
+    if con.execute('SELECT 1 FROM evidence_catalogue WHERE ev=?', (_ev,)).fetchone():
+        continue
+    _aid = path_aid.get(_epath)
+    _title_row = con.execute('SELECT title FROM artifacts WHERE id=?', (_aid,)).fetchone() if _aid else None
+    _page_path = _epath.rsplit('/index.html', 1)[0] + '/'
+    con.execute('''INSERT OR IGNORE INTO evidence_catalogue
+        (ev, artifact_id, path, evidence_grade, independent_origin_id, aliases_json, grade_note, title)
+        VALUES(?,?,?,NULL,NULL,'[]','Not yet assessed in data/evidence-grades.json',?)''',
+        (_ev, _aid, _page_path, (_title_row[0] if _title_row else _epath)))
+
+# Level 1: neutral description, transcript and interpretation are separate assessment fields.
+con.execute('''CREATE TABLE IF NOT EXISTS artifact_assessments(
+ ev TEXT PRIMARY KEY, artifact_id INTEGER, description TEXT NOT NULL DEFAULT '',
+ description_status TEXT NOT NULL DEFAULT 'not_assessed',
+ transcript TEXT NOT NULL DEFAULT '', transcript_status TEXT NOT NULL DEFAULT 'not_assessed',
+ interpretation TEXT NOT NULL DEFAULT '', interpretation_status TEXT NOT NULL DEFAULT 'not_assessed',
+ source_verification_status TEXT NOT NULL DEFAULT 'not_assessed',
+ limitations TEXT NOT NULL DEFAULT '', updated_at TEXT
+) WITHOUT ROWID''')
+con.execute('''INSERT OR IGNORE INTO artifact_assessments
+ (ev, artifact_id, description_status, transcript_status, interpretation_status, source_verification_status)
+ SELECT ev, artifact_id, 'not_assessed', 'not_assessed', 'not_assessed', 'not_assessed'
+ FROM evidence_catalogue''')
+_assessment_path = ROOT / 'data' / 'artifact-assessments.json'
+if _assessment_path.exists():
+    _assessment_doc = json.load(open(_assessment_path, encoding='utf-8'))
+    _defaults = _assessment_doc.get('defaults', {})
+    _assessment_fields = ('description', 'description_status', 'transcript', 'transcript_status',
+                          'interpretation', 'interpretation_status', 'source_verification_status', 'limitations')
+    for _item in _assessment_doc.get('items', []):
+        _ev = str(_item.get('ev', '')).strip().upper()
+        if not _ev:
+            continue
+        _catalogue_row = con.execute('SELECT artifact_id FROM evidence_catalogue WHERE ev=?', (_ev,)).fetchone()
+        _aid = _catalogue_row[0] if _catalogue_row else None
+        _values = [_item.get(_field, _defaults.get(_field, '')) for _field in _assessment_fields]
+        con.execute('''INSERT OR REPLACE INTO artifact_assessments
+          (ev, artifact_id, description, description_status, transcript, transcript_status,
+           interpretation, interpretation_status, source_verification_status, limitations, updated_at)
+          VALUES(?,?,?,?,?,?,?,?,?,?,?)''',
+          (_ev, _aid, *_values, _assessment_doc.get('date', '2026-10-29')))
+
+# Level 2: derived observations cite the Level 1 records without replacing them.
+con.execute('''CREATE TABLE IF NOT EXISTS observations(
+ id TEXT PRIMARY KEY, slug TEXT UNIQUE NOT NULL, seq INTEGER NOT NULL,
+ title TEXT NOT NULL, theme TEXT NOT NULL, observation_type TEXT NOT NULL,
+ status TEXT NOT NULL, summary TEXT NOT NULL, analysis TEXT NOT NULL,
+ limits TEXT NOT NULL, test_questions_json TEXT NOT NULL, related_page TEXT,
+ page_path TEXT NOT NULL, updated_at TEXT
+) WITHOUT ROWID''')
+con.execute('''CREATE TABLE IF NOT EXISTS observation_refs(
+ observation_id TEXT NOT NULL, seq INTEGER NOT NULL, ev TEXT, path TEXT NOT NULL,
+ role TEXT NOT NULL DEFAULT '', note TEXT NOT NULL DEFAULT '', artifact_id INTEGER,
+ PRIMARY KEY(observation_id, seq)
+) WITHOUT ROWID''')
+_observation_path = ROOT / 'data' / 'observations.json'
+if _observation_path.exists():
+    _observation_doc = json.load(open(_observation_path, encoding='utf-8'))
+    for _obs in _observation_doc.get('items', []):
+        _oid = str(_obs.get('id', '')).strip()
+        _slug = str(_obs.get('slug', '')).strip()
+        if not _oid or not _slug:
+            continue
+        _page_path = '/wiki/observations/' + _slug + '/'
+        con.execute('''INSERT OR REPLACE INTO observations
+          (id, slug, seq, title, theme, observation_type, status, summary, analysis, limits,
+           test_questions_json, related_page, page_path, updated_at)
+          VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
+          (_oid, _slug, int(_obs.get('seq', 0)), _obs.get('title', ''), _obs.get('theme', 'wiki'),
+           _obs.get('observation_type', 'pattern'), _obs.get('status', 'working_observation'),
+           _obs.get('summary', ''), _obs.get('analysis', ''), _obs.get('limits', ''),
+           json.dumps(_obs.get('test_questions', []), ensure_ascii=False), _obs.get('related_page'),
+           _page_path, _observation_doc.get('date', '2026-10-29')))
+        con.execute('DELETE FROM observation_refs WHERE observation_id=?', (_oid,))
+        _node_id = 'observation:' + _oid
+        node(_node_id, 'observation', _obs.get('title', _oid))
+        edge(_node_id, 'in_theme', 'theme:' + str(_obs.get('theme', 'wiki')))
+        for _seq, _ref in enumerate(_obs.get('refs', []), 1):
+            _ref_ev = str(_ref.get('ev') or '').strip().upper() or None
+            _ref_path = str(_ref.get('path') or '').strip()
+            _ref_aid = None
+            if _ref_ev:
+                _er = con.execute('SELECT artifact_id, path FROM evidence_catalogue WHERE ev=?', (_ref_ev,)).fetchone()
+                if _er:
+                    _ref_aid = _er[0]
+                    if not _ref_path:
+                        _ref_path = _er[1] or ''
+            if _ref_path:
+                _rp = _ref_path.rstrip('/')
+                for _candidate in (_rp + '/index.html', _rp, _rp + '.html'):
+                    if path_aid.get(_candidate):
+                        _ref_aid = _ref_aid or path_aid[_candidate]
+                        break
+            if not _ref_path and _ref_ev:
+                _er = con.execute('SELECT path FROM evidence_catalogue WHERE ev=?', (_ref_ev,)).fetchone()
+                _ref_path = (_er[0] if _er else '') or ''
+            con.execute('INSERT OR REPLACE INTO observation_refs VALUES(?,?,?,?,?,?,?)',
+                (_oid, _seq, _ref_ev, _ref_path, _ref.get('role', ''), _ref.get('note', ''), _ref_aid))
+            if _ref_aid:
+                edge(_node_id, 'cites', f'a:{_ref_aid}')
+                edge(f'a:{_ref_aid}', 'cited_by_observation', _node_id)
+
+for t in CFG['themes']:
     nf = con.execute('SELECT count(*) FROM locations WHERE theme=?', (t['id'],)).fetchone()[0]
     npg = con.execute("SELECT count(*) FROM locations l JOIN artifacts a ON a.id=l.aid WHERE l.theme=? AND a.kind='page'", (t['id'],)).fetchone()[0]
     con.execute('INSERT INTO themes VALUES(?,?,?,?,?,?,?,?)', (t['id'], t['title'], t.get('cy'), t.get('es'), t['live'],
@@ -394,9 +507,14 @@ stats = dict(artifacts=cnt('SELECT count(*) FROM artifacts'), locations=cnt('SEL
              blob_bytes=blob_total, blob_skipped_over_cap=blob_skipped, edges=cnt('SELECT count(*) FROM edges'), nodes=cnt('SELECT count(*) FROM nodes'),
              fts_rows=cnt('SELECT count(*) FROM fts'), captures=cnt('SELECT count(*) FROM captures'), cites=n_ext, themes=len(TIDS),
              layer_items=n_layer_items, layer_refs=n_layer_refs, layer_deps=n_layer_deps,
-             evidence_records=cnt('SELECT count(*) FROM evidence_catalogue'), evidence_texts=cnt('SELECT count(*) FROM evidence_text'))
+             evidence_records=cnt('SELECT count(*) FROM evidence_catalogue'), evidence_texts=cnt('SELECT count(*) FROM evidence_text'),
+             artifact_assessments=cnt('SELECT count(*) FROM artifact_assessments'),
+             observations=cnt('SELECT count(*) FROM observations'), observation_refs=cnt('SELECT count(*) FROM observation_refs'))
 for k, v in stats.items(): con.execute('INSERT INTO meta VALUES(?,?)', (k, str(v)))
 con.commit()
+# Emit read-only, theme/area-specific SQLite slices generated from this central catalogue.
+import section_dbs
+section_db_stats = section_dbs.run(con, DIST, CFG, CHUNK)
 con.execute("INSERT INTO fts(fts) VALUES('optimize')"); con.commit()
 con.execute('VACUUM'); con.close()
 size = DBF.stat().st_size
