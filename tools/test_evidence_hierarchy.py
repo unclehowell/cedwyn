@@ -85,6 +85,14 @@ def main():
         assert check.execute("SELECT title FROM evidence_catalogue WHERE ev='EV-0001'").fetchone()[0] == "1955 order entry"
         assert check.execute("SELECT count(*) FROM evidence_catalogue").fetchone()[0] == 2, "Wiki slice must expose every Level 1 catalogue row, including pending records without linked artifact bytes"
         assert check.execute("SELECT description_status FROM artifact_assessments WHERE ev='EV-0002'").fetchone()[0] == "not_assessed"
+        coverage = check.execute(
+            "SELECT COUNT(*) AS total, "
+            "SUM(CASE WHEN trim(COALESCE(aa.description,''))<>'' THEN 1 ELSE 0 END) AS described, "
+            "SUM(CASE WHEN trim(COALESCE(aa.transcript,''))<>'' THEN 1 ELSE 0 END) AS transcribed, "
+            "SUM(CASE WHEN trim(COALESCE(aa.interpretation,''))<>'' THEN 1 ELSE 0 END) AS interpreted "
+            "FROM evidence_catalogue ec LEFT JOIN artifact_assessments aa ON aa.ev=ec.ev"
+        ).fetchone()
+        assert coverage == (2, 0, 0, 0), "coverage counts should include pending records and only count populated fields"
         assert check.execute("SELECT count(*) FROM artifacts").fetchone()[0] == 3, "wiki-area slice should retain local and referenced artifacts but omit the unrelated artifact"
         check.close()
         arcade_config = dist / "arcade" / "_db" / "config.json"
