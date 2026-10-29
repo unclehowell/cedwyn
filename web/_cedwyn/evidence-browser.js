@@ -29,7 +29,7 @@
     '.cw-eb .cw-eb-ref{padding:.45rem 0;border-top:1px solid var(--wiki-soft-border,#c8ccd1)}',
     '.cw-eb .cw-eb-existing{border:1px solid var(--wiki-soft-border,#c8ccd1);padding:.55rem .7rem;margin:.8rem 0;background:var(--wiki-bg,#f8f9fa)}',
     '.cw-eb .cw-eb-existing summary{cursor:pointer;font-weight:600}',
-    '.cw-eb .cw-eb-existing pre{font:13px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;max-height:24rem;overflow:auto;margin:.6rem 0 0}'
+    '.cw-eb .cw-eb-existing pre{font:13px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;max-height:24rem;overflow:auto;margin:.6rem 0 0}',
     '.cw-eb ul{padding-left:1.4rem}.cw-eb li{margin:.2rem 0}',
     '.cw-eb .cw-eb-empty{padding:.8rem;border:1px dashed var(--wiki-border,#a2a9b1)}',
     '</style>',
