@@ -298,6 +298,8 @@ def run(dist, cfg):
     sec = [
         '/wales/tour /wales/#stop-1 301', '/wales/tour/ /wales/#stop-1 301',
         '/wales/tour/* /wales/#stop-1 301',
+        '/wales/emails /emails/ 301', '/wales/emails/ /emails/ 301',
+        '/wales/emails/* /emails/:splat 301',
         '/wales/wales/ /wales/#stop-1 301', '/argentina/wales/ /wales/#stop-1 301',
         '/wales/wales/* /wales/:splat 200',
         '/wales/movie/* /documentary/:splat 301',
