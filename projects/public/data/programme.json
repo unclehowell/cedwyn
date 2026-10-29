@@ -1,8 +1,8 @@
 {
   "programme_id": "GHF-PGM-01",
   "programme_title": "Great House Farm / Tŷ Mawr Heritage Programme",
-  "last_updated": "2026-10-24",
-  "version": "0.1.1",
+  "last_updated": "2026-10-29",
+  "version": "0.1.2",
   "approval_state": "Working baseline; Executive acceptance not recorded",
   "approach": "Tailored PRINCE2 7 at project level. Master programme layer coordinates projects; it is not a replacement for project-specific control.",
   "hierarchy": [
@@ -620,6 +620,99 @@
       "id": "PGM-5",
       "title": "Conditional legal activation gate",
       "state": "standby"
+    }
+  ],
+  "cross_cutting_work_packages": [
+    {
+      "id": "WP-DIG-NOM-01",
+      "change_id": "CR-DIG-2026-10-29-01",
+      "title": "Nomenclature citation integrity",
+      "state": "in_delivery",
+      "rag": "AMBER",
+      "parent_programme": "GHF-PGM-01",
+      "delivery_scope": "Cross-cutting digital-quality work package serving P1 museum research, P2 Welsh records recovery, P3 Parcel A AR tour and the P4 conditional legal gate; not a new top-level project and excluded from project-specific task denominators.",
+      "product_id": "PROD-DIG-NOM-01",
+      "product_route": "/nomenclature/c/cedwyn-estate/",
+      "control_page": "/nomenclature-register-repair/",
+      "source_branch": "nomenclature",
+      "source_commit": "5f72a4a81bfaa5fcda4e47f533d8e54b404c59b4",
+      "served_output_commit": "ec6080e82288696f5c9495316dccd607eeed3cc2",
+      "scope_baseline": {
+        "lexicon_version": "1.0.1",
+        "lexicon_generated": "2026-10-24",
+        "groups": 25,
+        "wording_entries": 148,
+        "entries_with_source_url": 143,
+        "entries_without_source_url": 5
+      },
+      "deliverables": [
+        {
+          "id": "D-NOM-01A",
+          "name": "Expanded nomenclature page",
+          "status": "merged and in production deployment",
+          "acceptance": "Existing cited route shows 148 wording rows across 25 groups; preserve date, source/provenance, status and notes."
+        },
+        {
+          "id": "D-NOM-01B",
+          "name": "Search and status filtering",
+          "status": "committed",
+          "acceptance": "Text search, filter by status and direct group navigation work; all entries readable without JavaScript."
+        },
+        {
+          "id": "D-NOM-01C",
+          "name": "Project control sheet",
+          "status": "committed",
+          "acceptance": "Product description, release gates, tolerances, risks, issues, dependency and PRINCE2 mythology included."
+        },
+        {
+          "id": "D-NOM-01D",
+          "name": "Production and live acceptance",
+          "status": "in_progress",
+          "acceptance": "Production deployment succeeds; live route and Project Office control page are checked."
+        }
+      ],
+      "tolerances": {
+        "external_spend_gbp": 0,
+        "scope": "No title findings, parcel reassignment, new evidence harvest or legal merits conclusions within this change.",
+        "escalation": "Any failed build/deployment, count change, broken route, extra cost or unsupported identity assertion is logged as an exception."
+      },
+      "risks": [
+        {
+          "id": "RISK-NOM-01",
+          "description": "The consolidated build may overwrite a hotfixed output or pick up an old theme source.",
+          "response": "Use the standard build; record its source and served-site commits; re-check final route."
+        },
+        {
+          "id": "RISK-NOM-02",
+          "description": "Name grouping can be misread as proof of geographic or legal identity.",
+          "response": "Preserve source/status/limitations; explain that shared names do not prove identity."
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "DEP-NOM-01",
+          "description": "The lexicon 1.0.1 is compiled from the existing corpus; a fresh post-21 October harvest remains separate.",
+          "state": "open",
+          "linked_hubspot_task_id": "534560968935"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "DEC-NOM-01",
+          "description": "Retain the cited URL; expand its content rather than requiring email recipients to follow a new link.",
+          "state": "implemented"
+        }
+      ],
+      "lessons": [
+        "The user-facing description of a cited resource must match the page reached from that citation.",
+        "A source merge, a production deploy and live acceptance are three separate gates.",
+        "PRINCE2 roles must not be presented as appointed unless recorded; programme reporting status is not a substitute for observed release evidence."
+      ],
+      "source_change_url": "https://github.com/unclehowell/cedwyn/pull/53",
+      "deployment_id": "f493a6c5-fe53-4c2a-b343-3d5472a5f9df",
+      "deployment_state": "deploying",
+      "deployment_checked_at": "2026-10-29T22:47:39Z",
+      "updated_at": "2026-10-29T22:48:00Z"
     }
   ]
 }
