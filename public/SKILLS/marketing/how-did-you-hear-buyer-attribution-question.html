@@ -1,0 +1,49 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>&quot;How did you hear about us?&quot;: one-question buyer attribution for Cedwyn e-books · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: &quot;How did you hear about us?&quot;: one-question buyer attribution for Cedwyn e-books"><link rel="alternate" type="text/markdown" href="how-did-you-hear-buyer-attribution-question.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>"How did you hear about us?": one-question buyer attribution for Cedwyn e-books</h1>
+<p>Written 29 Oct 2026 by the skills harvest. Status: how-to; the checkout change is a proposal (see the last section).</p>
+<h2>Why</h2>
+<p>Cedwyn's buyers mostly arrive by routes analytics cannot see: WhatsApp forwards, Facebook groups, a talk, a family-history society journal, word of mouth. Those visits land as "direct".
+- SparkToro test (1,000+ visits, quoted by Recast): 100% of visits from TikTok, Slack, Discord, Mastodon and WhatsApp, and 75% from Facebook Messenger, were recorded as "direct". The study was not re-read here; it is quoted through Recast.
+- Refine Labs 12-month study (quoted by Recast): a 90% gap between software attribution and what customers said, mostly for social, podcasts and word of mouth. Also second-hand.
+- Fairing (post-purchase survey vendor; vendor numbers, not checked independently): a 50% average response rate across its database when the question sits on the order-confirmation step. In one anonymised client case, 35% of business was attributed to word of mouth, and word-of-mouth buyers had a 30% higher order value. Fairing states asking by email after the purchase gets far lower response.
+- Recast, quoting Chris Walker (Refine Labs): an optional field goes blank for nearly 30% of people. Free text avoids order bias in drop-downs (people pick the first option or the nearest wrong one), at the cost of hand-coding.</p>
+<p>Limits to state whenever the numbers are reported: people misremember, recency bias favours the last touch, and one answer hides the earlier touches. It is a direction-finder, not a ledger.</p>
+<h2>How to do it (any checkout)</h2>
+<ol>
+<li>Ask exactly one question, at the moment of purchase: "How did you first hear about Cedwyn?" ("first" fights recency bias).</li>
+<li>Free text, not a drop-down, while volume is small. Code the answers afterwards into a fixed channel list.</li>
+<li>Optional while sales are under ~20; friction on a £4.99 first purchase costs more than a blank answer. Revisit "required" once there are 20+ sales and the blank rate is known.</li>
+<li>Code answers weekly into: word of mouth / family; Facebook (page or group); Instagram; YouTube; search (Google/Bing); AI assistant (ChatGPT, Copilot, Grok etc.); email newsletter; talk / society / event; press / radio; library / archive; other; blank.</li>
+<li>Compare against UTM and referrer data for the same week. Where they disagree, the survey usually wins for "direct" and the UTM wins for specific links.</li>
+<li>Act only on a pattern of 3+ answers. One buyer naming a channel is a lead, not a strategy.</li>
+</ol>
+<h2>Where the question can live (checked 29 Oct 2026)</h2>
+<ul>
+<li>Gumroad: Checkout &gt; Form ("custom fields"): Textbox, Checkbox or Terms; each mandatory or optional; apply to all products or a subset. Answers appear in the sales CSV export under Custom Fields (Gumroad Help articles 101 and 74).</li>
+<li>Stripe Checkout / Payment Links: <code>custom_fields</code>, up to 3 per session; types text (up to 255 chars), numeric, dropdown (up to 200 options); required by default, <code>optional=true</code> to relax; values visible on the payment in the Dashboard and in exports, and on the Checkout Session object (Stripe docs, "Collect additional information"). Do not collect sensitive data in these fields (Stripe's own caution).</li>
+<li>Mailchimp signup form (free samples, no purchase): an optional text merge field "How did you find us?" on the embedded form; same coding list. This catches the far larger sample audience.</li>
+</ul>
+<h2>Coding helper</h2>
+<p><code>skills/tools/hdyhau_code.py</code> (stdlib, written this run, nothing installed): reads a CSV (Gumroad or Stripe export, or any CSV with a named answer column) and prints counts per channel plus the uncoded answers for hand review.
+<code>python3 hdyhau_code.py sales.csv --col "How did you first hear about Cedwyn?"</code></p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Proposal for the next BIZDEV run (needs no money; does change the live checkout, so record it as a proposed change and apply only within the existing sales-fix rules): add one optional Gumroad textbox, "How did you first hear about Cedwyn? / Sut glywsoch chi am Cedwyn?", to all e-book products; and the same optional text field on Stripe-hosted /ebooks/ checkouts if they are used.</li>
+<li>Add the same optional field to the Mailchimp free-sample signup, so answers come in before the first sale.</li>
+<li>The Sunday growth report gains one line: "Heard about us (week / all time): <channel counts>", from <code>hdyhau_code.py</code>, with the blank rate. Say plainly that these are buyers' own recollections.</li>
+<li>Kill rule: if after 15 purchases more than 70% of answers are blank, move the question to the thank-you page and the delivery email instead of the checkout.</li>
+<li>Never publish individual answers; they are customer data. Only channel counts go anywhere, and only in internal reports.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>fairing.co) (read; vendor)</li>
+<li>getrecast.com (read; quotes SparkToro and Refine Labs second-hand)</li>
+<li>gumroad.com (read: custom fields)</li>
+<li>gumroad.com (snippet: custom fields in the sales CSV)</li>
+<li>docs.stripe.com (read)</li>
+</ul><p class="raw">Raw Markdown: <a href="how-did-you-hear-buyer-attribution-question.md">how-did-you-hear-buyer-attribution-question.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

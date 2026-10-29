@@ -27,4 +27,16 @@ blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}<
 <li>Sitemaps: sitemap.xml lists 5,763 URLs, 0 indexed; sitemap-core.xml 35 URLs, 0 indexed. Both resubmitted via the API (204). Keep the 35-URL core sitemap as the indexing lever; the 5,763 thin record URLs dilute crawl budget on a new domain.</li>
 <li>IndexNow: key file still 404 (patch not applied), so no ping.</li>
 <li>On-page (15 key pages): meta description 15/15, og:image 15/15, canonical 5/15, /ebooks/ link 5/15.</li>
-</ul><p class="raw">Raw Markdown: <a href="3.md">3.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
+</ul>
+<h2>Refresh 29 Oct 2026 (BIZDEV run 5): getting a new site indexed (#3 21)</h2>
+<ul>
+<li>Google Search Central community answer (thread 434311714, 2026, snippet read): one external link per stuck URL moved it into the crawl queue in 7-14 days; crawling followed 2-4 weeks after. Not checked against Google documentation; treat as one practitioner's experience.</li>
+<li>Marie Haynes (mariehaynes.com, read in full): "Crawled - currently not indexed" is almost always a quality call (commodity content that repeats what exists elsewhere); "Discovered - currently not indexed" means known but not yet crawled. First check: URL Inspection "Test live URL" to confirm Google sees the text (JS-only content looks empty).</li>
+</ul>
+<h3>Apply to Cedwyn (0 indexed of 35 core URLs on 29 Oct)</h3>
+<ol>
+<li>Keep pushing the 35-URL core sitemap; leave the 5,763 thin record URLs out of requests until the core is indexed.</li>
+<li>Give each of the top 5 core pages one outside link we control or earn: YouTube descriptions (done for 2 videos and the playlist), the FB page About, a talk listing, a society newsletter mention.</li>
+<li>Use URL Inspection live test on /ebooks/ and /wales/ to confirm the main text is in server HTML.</li>
+<li>Re-read the Page indexing report in 14 days (12 Nov) and record Discovered vs Crawled counts in kpi notes.</li>
+</ol><p class="raw">Raw Markdown: <a href="3.md">3.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

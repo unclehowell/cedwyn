@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Instagram covers: what the thumbnail must do, and how Cedwyn makes them · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Instagram covers: what the thumbnail must do, and how Cedwyn makes them"><link rel="alternate" type="text/markdown" href="instagram-covers.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Instagram covers: what the thumbnail must do, and how Cedwyn makes them</h1>
+<p>Written 29 Oct 2026 (Instagram thumbnails fix). Tool: <code>the project workspace</code> (wired into <code>pr-syndication/social.py</code> and <code>ebook-promo/ig_post.py</code>).</p>
+<h2>What was wrong on @cedwynestate (audit, 29 Oct 2026, Graph API <code>me/media</code>)</h2>
+<ul>
+<li>Only 3 posts exist, all IMAGE feed posts (every Reel attempt had fallen back to an image post).</li>
+<li>All 3 were the site's 1.91:1 share card (1080x567). The profile grid is 3:4, so the tile kept only a narrow middle slice; the record image read as a postage stamp.</li>
+<li>2 of 3 were the SAME picture: a screenshot of the website's map app, UI chrome and small print, unreadable at tile size, no headline. The screenshot also carried the site footer line with the owner's agent signature.</li>
+<li>No post had a headline on the image. Reels had no <code>cover_url</code> and no <code>thumb_offset</code> (ig_post.py documented <code>--thumb-offset</code> but never sent it).</li>
+</ul>
+<h2>What practitioners say (2026 and the grid change)</h2>
+<ul>
+<li>Grid tile is 3:4 since Instagram's Jan 2025 change (Engadget, read for the 27 Oct note <code>instagram-reels-from-stills-api-cover-grid-safe-zone.md</code>). Reel covers upload at 9:16; the tile shows the centre 1080x1440 (y 240-1680). A feed share can show the centre 1:1 (y 420-1500). Keep headline + mark inside both.</li>
+<li>Mosseri (Jan 2025): watch time, likes and sends are the top ranking signals; for non-followers sends weigh more. The cover is what earns the tap from the grid and from Explore/Reels-tab browsing; frame 0 is what stops the scroll in the feed. So frame 0 = the cover.</li>
+<li>Graph API (Meta IG User Media reference; Postproxy 2026 guide): <code>cover_url</code> = public JPEG (ideally 1080x1920), centre-cropped if off-ratio, overrides <code>thumb_offset</code> (ms). Neither set = Instagram picks frame 0.</li>
+<li>Covers cannot be changed through the API after publishing (no update endpoint for media beyond <code>comment_enabled</code>); only the Instagram app's Edit &gt; Cover does it, by hand. Plan covers before posting.</li>
+<li>Common practitioner rules (creator guides, not checked snippets, consistent across sources): one short headline of 3-7 words in a heavy font, high contrast plate, consistent template so the grid reads as a series, no small print, no screenshots of UIs.</li>
+</ul>
+<h2>How we apply it</h2>
+<ul>
+<li><code>cover.py make(image, headline, kicker)</code> writes <code>-reel.jpg</code> (1080x1920) and <code>-feed.jpg</code> (1080x1350) plus .webp twins. Playfair Display Bold headline, auto-fit 124-&gt;80 px, max 3 lines; gold letter-spaced kicker (year or place); gold rule + CEDWYN wordmark; ink gradient behind the text; record image full-bleed or fitted over its own blurred fill. Website screenshots swap to the fallback record image; phone captures of records lose their app bars; banned public words and the owner's name are refused.</li>
+<li><code>headline_for(item)</code> turns "1824: the first record..." into kicker 1824 / headline "The first record...", and a bare place-name title into the summary's first clause.</li>
+<li>social.py: the daily Reel is now rendered FROM the 9:16 cover (slow 4% push-in), so frame 0 is the cover, and the same JPEG goes as <code>cover_url</code> (fallback <code>thumb_offset=0</code>). The image-post fallback uploads the 4:5 cover instead of the 1.91:1 card. <code>--dry</code> renders the covers; <code>--only instagram</code> limits a run to one channel.</li>
+<li>ig_post.py: <code>--cover cover.jpg</code>, or <code>--headline ".." [--kicker ..] [--cover-image img]</code> renders one from a frame at <code>--thumb-offset</code> (default 1 s); if the cover cannot be made or hosted it sends <code>thumb_offset</code> in ms. <code>upload()</code> now stores the right Content-Type (image/jpeg for covers).</li>
+<li>Measure: compare reach/plays per Reel before and after 29 Oct in the Sunday growth report.</li>
+</ul>
+<h2>Hosting gotcha (found 29 Oct 2026)</h2>
+<p>wayback.bucklerfamily.estate serves R2 objects only under /pdf/. Any other key answers the site's HTML page with HTTP 200, so a HEAD check passes and Instagram then fails the container ('container error' for video, 36001 'image format is not supported' for images). Keys now live under pdf/promo/...; ig_post.upload() rejects a text/html answer. First Reel posted with a designed cover after the fix: instagram.com</p><p class="raw">Raw Markdown: <a href="instagram-covers.md">instagram-covers.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

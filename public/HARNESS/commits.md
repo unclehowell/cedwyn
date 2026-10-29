@@ -1,8 +1,8 @@
 # Repository and build rules (Cedwyn)
 
-- Repository: the Cedwyn site repository. Branch model:
+- Repository: the Cedwyn site repository. All Cedwyn, Great House Farm / Llandough and Williams work lives here, the hive included (branch `hive`, folder `hive/`: roster, board, join file, batons). Branch model:
   - **main** — the shell: header, menu, runtime, landing page, build tools, `themes.json`, `sections.lock`, shared rules (chronology, ingredients), CI. Site-wide changes only; a pull request into main carries the label `site-wide`.
-  - **theme branches** — one section per branch (for example `wayback`, `maps`, `projects`, `kissed-frogs`, `cedwyn-movie`, and `agents` for this library). Each branch's `public/` (or its listed dir) is copied to `/<id>/` at build time.
+  - **theme branches** — one section per branch (for example `wayback`, `maps`, `projects`, `kissed-frogs`, `cedwyn-movie`, and `agents` for this library). Working branches such as `hive` hold project state, not sections. Each branch's `public/` (or its listed dir) is copied to `/<id>/` at build time.
   - **section/<id>** — snapshot branches for crawled sections, pinned by `sections.lock`.
   - **site** — the assembled output served to readers.
 - A new human section is registered by one entry in `themes.json` on main (id, titles in en/cy/es, branch, dir, group); themes appear in the human menu. The academy is deliberately NOT a theme: the build copies branch `agents` (public/) to /academy/ outside the theme list, noindex.

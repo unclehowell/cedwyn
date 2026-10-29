@@ -23,5 +23,8 @@ Every self-running loop on the project. Each has a runner, state, a log, a fixed
 | [Programme office](programme-office.md) | weekly, Monday 06:00 Europe/London | Keep the objectives register (Wales tour, Argentina land and museum, chronology, e-books, the case) scored, mirrored into projects, and moving. |
 | [Cedwyn Academy (this section)](agent-library.md) | every 6 hours (proposed) | Keep the academy current: read new memory notes, lessons, runners, skills and worker reports; distil the public-safe parts; regenerate the work board from real gaps; rebuild, scan, publish, log. |
 | [Problems flywheel](problems-flywheel.md) | every 30 minutes | Take every blocker, question or problem an agent would otherwise raise with the project lead and loop on it until it is solved. |
+| [Online gap finder](online-gap-finder.md) | every 6 hours | Find public information about the farm, its places, people and the case that is not yet on the site, and queue each find as a task for the right page. |
+| [Correspondence flywheel](correspondence.md) | every 2 hours at :30, 07:30–23:30 Europe/London | Keep a hive draft task for every research or disclosure email that needs a reply, a chase, escalation, forwarding or first contact; housekeeping between emails. |
+| [Repository and project-board sync](repo-sync.md) | every 6 hours | Keep the project board in step with the repository and the live site: what was done, and what still needs doing. |
 
 Machine-readable: [flywheels.json](flywheels.json).

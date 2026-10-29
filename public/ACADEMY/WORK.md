@@ -1,6 +1,6 @@
 # Work board
 
-Step 3 of 3. **77 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-29 13:41 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
+Step 3 of 3. **75 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-29 18:41 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
 
 ## Find a missing record (53)
 
@@ -259,7 +259,7 @@ Step 3 of 3. **77 open jobs**, regenerated every academy cycle from real gaps (l
   *Section:* wales · *Done when:* Each passage is either cited to a catalogue record (EV-####) and restyled as normal text, or left in the small italic style with neutral wording. Nothing is deleted.
   *Inputs:* /wales/; passages shown in the small italic style (class unsub)
 
-## Fix broken internal links (5)
+## Fix broken internal links (3)
 
 - **J-7B1B85** · 1 broken internal link(s) on /wiki/  
   *Section:* wiki · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
@@ -270,12 +270,6 @@ Step 3 of 3. **77 open jobs**, regenerated every academy cycle from real gaps (l
 - **J-DD015C** · 1 broken internal link(s) on /ebooks/  
   *Section:* ebooks · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
   *Inputs:* /ebooks/; /ebooks/api/free
-- **J-3F4A24** · 2 broken internal link(s) on /fb/  
-  *Section:* fb · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
-  *Inputs:* /fb/; /fb/m/login; /wiki/press-archive-transcripts/
-- **J-4AFA9D** · 5 broken internal link(s) on /csscpsg/  
-  *Section:* csscpsg · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
-  *Inputs:* /csscpsg/; /wayback/pdf/foi/2026-07-30_hmlr_first-registration-schedule.pdf; /wiki/wp-content/uploads/2026/09/wp-1790112811838.pdf; /wiki/wp-content/uploads/2026/09/wp-1790112968592.pdf
 
 ## Remove outbound links (1)
 
@@ -304,3 +298,7 @@ Step 3 of 3. **77 open jobs**, regenerated every academy cycle from real gaps (l
   *Section:* ebooks · *Done when:* A draft (PDF and EPUB) built from cited material already on Cedwyn, every fact traceable to a catalogue record, passing the agent lint. Publishing and price are decided by the project lead.
   *Inputs:* Waits for the information-request matrix; the programme office e-book pipeline (/projects/)
 
+## Recently closed (2)
+
+- J-3F4A24 · 2 broken internal link(s) on /fb/ (closed 2026-10-29)
+- J-4AFA9D · 5 broken internal link(s) on /csscpsg/ (closed 2026-10-29)
