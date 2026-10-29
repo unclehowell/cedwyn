@@ -133,7 +133,6 @@ See `reports/` (written by every build): `db.json` (database size, chunk count, 
 - Rebuild the crawl-based themes (Workers and the apex site) from source, so their script-loaded data comes along too.
 - Add people and places to the graph (it currently has years, themes, source hosts and links), then embeddings for graph-RAG.
 
-— Sion's Tab agent
 
 ## Stage 2 (25 Oct 2026): shared header, fully self-contained, parity
 
