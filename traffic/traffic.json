@@ -1,0 +1,518 @@
+{
+ "schema": "cedwyn_traffic/v1",
+ "site": "https://cedwyn.bucklerfamily.estate/",
+ "generated_at": "2026-10-29T15:31:28Z",
+ "source": "Cloudflare edge analytics for this host (HTML pages answered 200 to real browsers and agents). No Google Analytics, no cookies, no client-side tracking.",
+ "privacy": "Aggregates only. No IP addresses, user agents, individual visits or personal data are published.",
+ "definitions": {
+  "page_views": "HTML responses with status 200 for this host.",
+  "likely_human": "Page views whose browser string is current and not a declared bot, crawler, scraper or our own tooling. An upper bound of real people.",
+  "bots_crawlers": "Declared bots, crawlers, link previewers and AI agents.",
+  "suspected_automation": "Outdated or mismatched device strings typical of scraper clusters.",
+  "own_tooling": "Requests from the project's own checkers and agents; excluded from every share and total below.",
+  "visits": "Cloudflare visits (a page view whose referrer is not this site)."
+ },
+ "coverage": {
+  "days_held": 6,
+  "first_day": "2026-10-24",
+  "last_day": "2026-10-29",
+  "note": "Cloudflare keeps per-host detail for about 8 days on this plan; each refresh adds its days to a rolling 30-day history."
+ },
+ "last_7_days": {
+  "days": 6,
+  "from": "2026-10-24",
+  "to": "2026-10-29",
+  "page_views_excl_own_tooling": 62755,
+  "page_views_likely_human": 5357,
+  "visits_likely_human": 5234,
+  "share": {
+   "likely_human": 0.085,
+   "bots_crawlers": 0.745,
+   "suspected_automation": 0.169
+  },
+  "uk_page_views_likely_human": 416,
+  "top_paths_likely_human": [
+   {
+    "path": "/",
+    "views": 639
+   },
+   {
+    "path": "/research/sources-and-archives/",
+    "views": 586
+   },
+   {
+    "path": "/wayback/go/",
+    "views": 257
+   },
+   {
+    "path": "/ebooks/",
+    "views": 199
+   },
+   {
+    "path": "/hive/",
+    "views": 137
+   },
+   {
+    "path": "/wales/",
+    "views": 123
+   },
+   {
+    "path": "/story/",
+    "views": 100
+   },
+   {
+    "path": "/nomenclature/",
+    "views": 94
+   },
+   {
+    "path": "/research/",
+    "views": 92
+   },
+   {
+    "path": "/fcg/",
+    "views": 84
+   },
+   {
+    "path": "/projects/",
+    "views": 78
+   },
+   {
+    "path": "/dartboard/",
+    "views": 67
+   },
+   {
+    "path": "/csscpsg/",
+    "views": 66
+   },
+   {
+    "path": "/wiki/",
+    "views": 61
+   },
+   {
+    "path": "/wayback/",
+    "views": 60
+   },
+   {
+    "path": "/app/",
+    "views": 59
+   },
+   {
+    "path": "/movie/",
+    "views": 51
+   },
+   {
+    "path": "/documentary/",
+    "views": 51
+   },
+   {
+    "path": "/records/",
+    "views": 49
+   },
+   {
+    "path": "/argentina/",
+    "views": 49
+   }
+  ],
+  "top_sections_likely_human": [
+   {
+    "section": "/research/",
+    "views": 895
+   },
+   {
+    "section": "/",
+    "views": 639
+   },
+   {
+    "section": "/wayback/",
+    "views": 355
+   },
+   {
+    "section": "/ebooks/",
+    "views": 330
+   },
+   {
+    "section": "/nomenclature/",
+    "views": 254
+   },
+   {
+    "section": "/email/",
+    "views": 251
+   },
+   {
+    "section": "/hive/",
+    "views": 234
+   },
+   {
+    "section": "/wales/",
+    "views": 218
+   },
+   {
+    "section": "/wiki/",
+    "views": 209
+   },
+   {
+    "section": "/story/",
+    "views": 130
+   },
+   {
+    "section": "/projects/",
+    "views": 98
+   },
+   {
+    "section": "/fcg/",
+    "views": 93
+   },
+   {
+    "section": "/argentina/",
+    "views": 93
+   },
+   {
+    "section": "/app/",
+    "views": 85
+   },
+   {
+    "section": "/fb/",
+    "views": 83
+   }
+  ],
+  "top_countries_likely_human": [
+   {
+    "country": "US",
+    "views": 3520
+   },
+   {
+    "country": "HK",
+    "views": 567
+   },
+   {
+    "country": "GB",
+    "views": 416
+   },
+   {
+    "country": "NL",
+    "views": 167
+   },
+   {
+    "country": "PL",
+    "views": 89
+   },
+   {
+    "country": "DE",
+    "views": 61
+   },
+   {
+    "country": "BR",
+    "views": 43
+   },
+   {
+    "country": "FI",
+    "views": 40
+   },
+   {
+    "country": "ID",
+    "views": 38
+   },
+   {
+    "country": "SG",
+    "views": 33
+   }
+  ],
+  "home_to_ebooks": {
+   "home_views": 639,
+   "ebooks_views": 330,
+   "ebooks_index_views": 199,
+   "ebooks_index_per_home_view": 0.311,
+   "method": "likely-human views of /ebooks/ divided by likely-human views of /. Referrer paths are not available on this Cloudflare plan, so this is a ratio of page views, not a tracked click path."
+  }
+ },
+ "last_30_days": {
+  "days": 6,
+  "from": "2026-10-24",
+  "to": "2026-10-29",
+  "page_views_excl_own_tooling": 62755,
+  "page_views_likely_human": 5357,
+  "visits_likely_human": 5234,
+  "share": {
+   "likely_human": 0.085,
+   "bots_crawlers": 0.745,
+   "suspected_automation": 0.169
+  },
+  "uk_page_views_likely_human": 416,
+  "top_paths_likely_human": [
+   {
+    "path": "/",
+    "views": 639
+   },
+   {
+    "path": "/research/sources-and-archives/",
+    "views": 586
+   },
+   {
+    "path": "/wayback/go/",
+    "views": 257
+   },
+   {
+    "path": "/ebooks/",
+    "views": 199
+   },
+   {
+    "path": "/hive/",
+    "views": 137
+   },
+   {
+    "path": "/wales/",
+    "views": 123
+   },
+   {
+    "path": "/story/",
+    "views": 100
+   },
+   {
+    "path": "/nomenclature/",
+    "views": 94
+   },
+   {
+    "path": "/research/",
+    "views": 92
+   },
+   {
+    "path": "/fcg/",
+    "views": 84
+   },
+   {
+    "path": "/projects/",
+    "views": 78
+   },
+   {
+    "path": "/dartboard/",
+    "views": 67
+   },
+   {
+    "path": "/csscpsg/",
+    "views": 66
+   },
+   {
+    "path": "/wiki/",
+    "views": 61
+   },
+   {
+    "path": "/wayback/",
+    "views": 60
+   },
+   {
+    "path": "/app/",
+    "views": 59
+   },
+   {
+    "path": "/movie/",
+    "views": 51
+   },
+   {
+    "path": "/documentary/",
+    "views": 51
+   },
+   {
+    "path": "/records/",
+    "views": 49
+   },
+   {
+    "path": "/argentina/",
+    "views": 49
+   }
+  ],
+  "top_sections_likely_human": [
+   {
+    "section": "/research/",
+    "views": 895
+   },
+   {
+    "section": "/",
+    "views": 639
+   },
+   {
+    "section": "/wayback/",
+    "views": 355
+   },
+   {
+    "section": "/ebooks/",
+    "views": 330
+   },
+   {
+    "section": "/nomenclature/",
+    "views": 254
+   },
+   {
+    "section": "/email/",
+    "views": 251
+   },
+   {
+    "section": "/hive/",
+    "views": 234
+   },
+   {
+    "section": "/wales/",
+    "views": 218
+   },
+   {
+    "section": "/wiki/",
+    "views": 209
+   },
+   {
+    "section": "/story/",
+    "views": 130
+   },
+   {
+    "section": "/projects/",
+    "views": 98
+   },
+   {
+    "section": "/fcg/",
+    "views": 93
+   },
+   {
+    "section": "/argentina/",
+    "views": 93
+   },
+   {
+    "section": "/app/",
+    "views": 85
+   },
+   {
+    "section": "/fb/",
+    "views": 83
+   }
+  ],
+  "top_countries_likely_human": [
+   {
+    "country": "US",
+    "views": 3520
+   },
+   {
+    "country": "HK",
+    "views": 567
+   },
+   {
+    "country": "GB",
+    "views": 416
+   },
+   {
+    "country": "NL",
+    "views": 167
+   },
+   {
+    "country": "PL",
+    "views": 89
+   },
+   {
+    "country": "DE",
+    "views": 61
+   },
+   {
+    "country": "BR",
+    "views": 43
+   },
+   {
+    "country": "FI",
+    "views": 40
+   },
+   {
+    "country": "ID",
+    "views": 38
+   },
+   {
+    "country": "SG",
+    "views": 33
+   }
+  ],
+  "home_to_ebooks": {
+   "home_views": 639,
+   "ebooks_views": 330,
+   "ebooks_index_views": 199,
+   "ebooks_index_per_home_view": 0.311,
+   "method": "likely-human views of /ebooks/ divided by likely-human views of /. Referrer paths are not available on this Cloudflare plan, so this is a ratio of page views, not a tracked click path."
+  }
+ },
+ "daily": [
+  {
+   "date": "2026-10-24",
+   "complete": true,
+   "page_views_excl_own_tooling": 12,
+   "page_views_likely_human": 10,
+   "visits_likely_human": 8,
+   "bots_crawlers": 1,
+   "suspected_automation": 1,
+   "uk_likely_human": 0,
+   "home_views": 5,
+   "ebooks_views": 0
+  },
+  {
+   "date": "2026-10-25",
+   "complete": true,
+   "page_views_excl_own_tooling": 24019,
+   "page_views_likely_human": 814,
+   "visits_likely_human": 805,
+   "bots_crawlers": 22220,
+   "suspected_automation": 985,
+   "uk_likely_human": 9,
+   "home_views": 105,
+   "ebooks_views": 9
+  },
+  {
+   "date": "2026-10-26",
+   "complete": true,
+   "page_views_excl_own_tooling": 4514,
+   "page_views_likely_human": 934,
+   "visits_likely_human": 877,
+   "bots_crawlers": 1568,
+   "suspected_automation": 2012,
+   "uk_likely_human": 57,
+   "home_views": 127,
+   "ebooks_views": 155
+  },
+  {
+   "date": "2026-10-27",
+   "complete": true,
+   "page_views_excl_own_tooling": 8942,
+   "page_views_likely_human": 1647,
+   "visits_likely_human": 1622,
+   "bots_crawlers": 4760,
+   "suspected_automation": 2535,
+   "uk_likely_human": 151,
+   "home_views": 128,
+   "ebooks_views": 100
+  },
+  {
+   "date": "2026-10-28",
+   "complete": true,
+   "page_views_excl_own_tooling": 16297,
+   "page_views_likely_human": 487,
+   "visits_likely_human": 482,
+   "bots_crawlers": 14764,
+   "suspected_automation": 1046,
+   "uk_likely_human": 27,
+   "home_views": 61,
+   "ebooks_views": 10
+  },
+  {
+   "date": "2026-10-29",
+   "complete": false,
+   "page_views_excl_own_tooling": 8971,
+   "page_views_likely_human": 1465,
+   "visits_likely_human": 1440,
+   "bots_crawlers": 3457,
+   "suspected_automation": 4049,
+   "uk_likely_human": 172,
+   "home_views": 213,
+   "ebooks_views": 56
+  }
+ ],
+ "query": {
+  "mcp": "https://cedwyn.bucklerfamily.estate/mcp",
+  "tools": [
+   "get_traffic_summary(days)",
+   "get_top_pages(days)"
+  ],
+  "json": "https://cedwyn.bucklerfamily.estate/traffic.json",
+  "page": "https://cedwyn.bucklerfamily.estate/academy/traffic/"
+ }
+}
