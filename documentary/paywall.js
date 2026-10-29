@@ -1,4 +1,6 @@
-/* Cedwyn · documentary — choose-a-version modal (paywall.js v1.0.0). A tab.bot production.
+/* Cedwyn · documentary — choose-a-version modal (paywall.js v1.0.1). A tab.bot production.
+   v1.0.1 (29 Oct 2026): the free path plays the scene whose button was pressed when it is free (CedwynDoc.free, now Scenes 1 and 2);
+   before, Proceed on the free version always played Scene 1, so Scene 2 showed Scene 1 again.
    Pressing a scene's play button first opens a native <dialog>: v0.0.1 Free (the first cut, Scene 1) or v0.0.2 £4.99
    (every scene, under the personal viewing licence). Semantic version nodes sit under the selector; Proceed acts.
    Free: the dialog closes and v0.0.1 plays. Paid: checkout, then back to /documentary/?unlocked=v0.0.2 (or ?unlock=cs_…),
@@ -7,7 +9,7 @@
   "use strict";
   var GO = "/wayback/go/?u=https%3A%2F%2Fbuy.stripe.com%2FaFa8wQ4xJfyLbCAaAL6Zy0I";
   var K = "cedwyn-doc-choice", OPTS = [
-    {v: "0.0.1", price: "Free", note: "The first cut · Scene 1", paid: false},
+    {v: "0.0.1", price: "Free", note: "Scenes 1 and 2", paid: false},
     {v: "0.0.2", price: "£4.99", note: "Every scene · personal viewing licence", paid: true}];
   var DLG = null, pick = "0.0.1", lastBtn = null, bypass = false;
   function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
@@ -59,7 +61,8 @@
   function playFrame(n) { var b = document.querySelector("#frame-" + n + " .cm-playbig"); if (!b) return false; bypass = true; b.click(); bypass = false; return true; }
   function proceed() {
     var o = OPTS.filter(function (x) { return x.v === pick; })[0];
-    if (!o.paid) { ss(K, "free"); DLG.close(); playFrame(1); return; }
+    if (!o.paid) { ss(K, "free"); DLG.close(); var D = window.CedwynDoc, fr = (D && D.free) || [1], c = lastBtn && lastBtn.closest && lastBtn.closest("[id^='frame-']"), n = c ? +c.id.slice(6) : 1;
+      if (fr.indexOf(n) < 0) n = 1; if (!playFrame(n)) playFrame(1); return; }
     if (paidOpen()) { ss(K, "paid"); DLG.close(); if (lastBtn) { bypass = true; lastBtn.click(); bypass = false; } return; }
     var n = newest(); if (n) ls("cedwyn-doc-pending", n);
     ls("cedwyn-doc-agreed", new Date().toISOString() + " licence v1.0.0 (v0.0.2 modal)");
