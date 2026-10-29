@@ -249,42 +249,46 @@
       var r = rows[0], aid = r.artifact_id == null ? null : r.artifact_id;
       var aliases = [];
       try { aliases = JSON.parse(r.aliases_json || '[]'); } catch (_) {}
-      var refs = [], locations = [], relations = [], gradeMeaning = null;
-      if (aid != null) {
-        var parallel = await Promise.all([
-          d.query(
-            `SELECT lr.layer AS layerId, l.title AS layerTitle, lr.item AS itemId,
-                    li.kind AS itemKind, li.date AS date, li.event AS event,
-                    li.blow AS interpretationNote, li.label AS label,
-                    lr.ev AS referencedEvidence, lr.path AS referencedPath
-               FROM layer_refs lr
-               LEFT JOIN layers l ON l.id=lr.layer
-               LEFT JOIN layer_items li ON li.layer=lr.layer AND li.id=lr.item
-              WHERE lower(lr.ev)=lower(?) OR lr.aid=?
-              ORDER BY l.title, li.seq LIMIT 40`,
-            [r.ev, aid]
-          ),
-          d.query(
-            `SELECT theme, path, url FROM locations
-              WHERE aid=? AND theme<>'_blob' ORDER BY theme, path LIMIT 40`,
-            [aid]
-          ),
-          d.query(
-            `SELECT e.rel, e.dst, a.title, a.kind, a.id AS artifactId
-               FROM edges e
-               LEFT JOIN artifacts a ON e.dst=('a:' || a.id)
-              WHERE e.src=? ORDER BY e.rel, e.dst LIMIT 50`,
-            ['a:' + aid]
-          ),
-          r.evidence_grade == null ? Promise.resolve([]) :
-            d.query('SELECT meaning FROM evidence_grade_scale WHERE grade=?', [r.evidence_grade])
-        ]);
-        refs = parallel[0]; locations = parallel[1]; relations = parallel[2];
-        gradeMeaning = parallel[3].length ? parallel[3][0].meaning : null;
-      }
+      var refs = [], locations = [], relations = [], gradeMeaning = null, cataloguePolicy = {};
+      var parallel = await Promise.all([
+        d.query('SELECT key, value FROM evidence_catalogue_meta'),
+        r.evidence_grade == null ? Promise.resolve([]) :
+          d.query('SELECT meaning FROM evidence_grade_scale WHERE grade=?', [r.evidence_grade]),
+        aid == null ? Promise.resolve([]) : d.query(
+          `SELECT lr.layer AS layerId, l.title AS layerTitle, lr.item AS itemId,
+                  li.kind AS itemKind, li.date AS date, li.event AS event,
+                  li.blow AS interpretationNote, li.label AS label,
+                  lr.ev AS referencedEvidence, lr.path AS referencedPath
+             FROM layer_refs lr
+             LEFT JOIN layers l ON l.id=lr.layer
+             LEFT JOIN layer_items li ON li.layer=lr.layer AND li.id=lr.item
+            WHERE lower(lr.ev)=lower(?) OR lr.aid=?
+            ORDER BY l.title, li.seq LIMIT 40`,
+          [r.ev, aid]
+        ),
+        aid == null ? Promise.resolve([]) : d.query(
+          `SELECT theme, path, url FROM locations
+            WHERE aid=? AND theme<>'_blob' ORDER BY theme, path LIMIT 40`,
+          [aid]
+        ),
+        aid == null ? Promise.resolve([]) : d.query(
+          `SELECT e.rel, e.dst, a.title, a.kind, a.id AS artifactId
+             FROM edges e
+             LEFT JOIN artifacts a ON e.dst=('a:' || a.id)
+            WHERE e.src=? ORDER BY e.rel, e.dst LIMIT 50`,
+          ['a:' + aid]
+        )
+      ]);
+      parallel[0].forEach(function (p) {
+        try { cataloguePolicy[p.key] = JSON.parse(p.value); }
+        catch (_) { cataloguePolicy[p.key] = p.value; }
+      });
+      gradeMeaning = parallel[1].length ? parallel[1][0].meaning : null;
+      refs = parallel[2]; locations = parallel[3]; relations = parallel[4];
       return {
         found: true,
         source: 'central Cedwyn evidence catalogue database',
+        cataloguePolicy: cataloguePolicy,
         record: {
           ev: r.ev, title: r.title, path: r.path, aliases: aliases,
           evidenceGrade: r.evidence_grade, evidenceGradeMeaning: gradeMeaning,
