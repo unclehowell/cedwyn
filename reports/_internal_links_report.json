@@ -2,13 +2,13 @@
   "audit": "Cedwyn internal HTML/CSS links and fragments",
   "pages_scanned": 8765,
   "references_checked": {
-    "resource": 192084,
-    "nav": 332468
+    "resource": 192062,
+    "nav": 333208
   },
-  "database_backed_paths": 7096,
-  "unique_missing_destinations": 4873,
-  "missing_references": 31950,
-  "missing_navigation_references": 16151,
+  "database_backed_paths": 7089,
+  "unique_missing_destinations": 4870,
+  "missing_references": 31895,
+  "missing_navigation_references": 16096,
   "missing_resource_references": 15799,
   "unique_broken_fragments": 1810,
   "broken_fragment_references": 3141,
@@ -395,33 +395,6 @@
       ]
     },
     {
-      "kind": "nav",
-      "path": "/wiki/press-archive-transcripts/",
-      "references": 47,
-      "examples": [
-        {
-          "from": "/fb/",
-          "attribute": "a[href]",
-          "url": "/wiki/press-archive-transcripts/"
-        },
-        {
-          "from": "/fb/",
-          "attribute": "a[href]",
-          "url": "/wiki/press-archive-transcripts/"
-        },
-        {
-          "from": "/fb/wall/1988.html",
-          "attribute": "a[href]",
-          "url": "/wiki/press-archive-transcripts/"
-        },
-        {
-          "from": "/fb/wall/1988.html",
-          "attribute": "a[href]",
-          "url": "/wiki/press-archive-transcripts/"
-        }
-      ]
-    },
-    {
       "kind": "resource",
       "path": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/assets/img/user2-160x160.jpg",
       "references": 47,
@@ -532,7 +505,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 35,
+      "references": 34,
       "examples": [
         {
           "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
@@ -4063,6 +4036,33 @@
           "from": "/docs/ghf_wiki/tc_buildingnamenomenclature/latest/html/en/",
           "attribute": "a[href]",
           "url": "1-record.html#functional-building-terms"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/1-record.html",
+      "references": 7,
+      "examples": [
+        {
+          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#institutional-appearance-timeline-direct-evidence-links"
+        },
+        {
+          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#forensic-control-points"
         }
       ]
     }
