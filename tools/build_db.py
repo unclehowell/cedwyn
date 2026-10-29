@@ -98,7 +98,7 @@ for p in files:
             else: blob_skipped += 1
     con.execute('INSERT OR IGNORE INTO locations VALUES(?,?,?,?)', (aid, theme, rel, rel)); path_aid[rel] = aid
     # Preserve the complete plain-text evidence entry in the central DB; generic FTS text is short.
-        if kind == 'page' and re.search(r'/(?:research|wiki)/evidence/ev-[0-9]{4}-[^/]+/index\.html$', rel, re.I):
+    if kind == 'page' and re.search(r'/(?:research|wiki)/evidence/ev-[0-9]{4}-[^/]+/index\.html$', rel, re.I):
         evidence_title, evidence_body = text_of_html(data.decode('utf-8', 'ignore'))
         evidence_body = evidence_body or ''
         con.execute('INSERT OR REPLACE INTO evidence_text VALUES(?,?,?,?,?,?)',
