@@ -1,6 +1,6 @@
 {
  "rule": "Cedwyn editorial rule (25 Oct 2026): ingredients, not conclusions. Build-time rewording of conclusion sentences in mirrored theme text; cedwyn copy only, the datro sources are untouched. Each entry: theme, file (relative to the theme root), find (exact), replace, why. A find that is not present is reported, never fatal. — Sion's Tab agent",
- "version": "1.6.0",
+ "version": "1.6.1",
  "rewords": [
   {
    "theme": "maps",
@@ -2241,6 +2241,24 @@
    "file": "evidence/ev-0085-glamorgan-village-book-demolition-page/index.html",
    "find": "Secondary corroboration of date and dispute account.",
    "replace": "Secondary corroboration of date and dispute account. The same entry records Marconi’s stay at Great House Farm: “Marconi too slept here in a four poster bed whilst working with his experiments in wireless telegraphy between the Flat Holm and Lavernock Point.” (see also <a href=\"/research/evidence/ev-0646-the-post-cardiff-1995-09-14-p24-marconi-great-house-farm/\">EV-0646</a>)",
+   "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "evidence/index.html",
+   "find": "-penarth-pp64-65/\">EV-0645</a> — Printed local-history book, “",
+   "replace": "-penarth-pp64-65/\">EV-0645</a> — The Glamorgan Village Book (Countryside Books, 1993): “",
+   "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "evidence/index.html",
+   "find": "the demolition of 6 December 1988</li></ul></section>",
+   "replace": "the demolition of 6 December 1988</li><li><a href=\"/research/evidence/ev-0646-the-post-cardiff-1995-09-14-p24-marconi-great-house-farm/\">EV-0646</a> — The Post (Cardiff), 14 September 1995, p.24, Bill Barrett, “My Cardiff”: Marconi and George Kemp at Great House Farm on the eve of 11 May 1897</li></ul></section>",
    "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
    "class": "citation",
    "audit_point": "marconi-1897"
