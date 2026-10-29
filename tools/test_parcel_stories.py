@@ -26,4 +26,8 @@ assert {e["model_id"] for e in stories_doc["model_events"]} >= {"A1", "A2", "B",
 assert any(e["title"].startswith("Alfred Thomas dies") and "EV-0284" in e.get("source_evs", []) for e in stories_doc["model_events"])
 assert any(e["model_id"] == "A2" and "death date unknown" in e["date_text"].lower() for e in stories_doc["model_events"])
 assert any(e["model_id"] == "B" and "12 years after May 1939" in e["date_text"] for e in stories_doc["model_events"])
+panel = (ROOT / "web" / "_cedwyn" / "parcel-panel.js").read_text(encoding="utf-8")
+assert "parcel && parcel.model_parcel_id && e.model_id === parcel.model_parcel_id" in panel
+assert "makeSharedModelEventTable(modelEvents)" in panel
+assert "not this webapp’s own chain of title" in panel
 print("parcel story source OK: 36 public areas, 36 provisional slots, 5 working model records")
