@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['tools/**', 'web/**', 'themes.json', '.github/workflows/build.yml']
+    paths: ['tools/**', 'web/**', 'data/**', 'themes.json', '.github/workflows/build.yml']
 permissions:
   contents: write
 concurrency:
@@ -22,8 +22,9 @@ jobs:
         with: { node-version: 20 }
       - name: Fast preflight before the full archive rewrite
         run: |
-          python3 -m py_compile tools/site.py tools/sections.py tools/build_db.py tools/section_dbs.py tools/evidence_observations.py tools/test_evidence_hierarchy.py tools/selfcontain.py tools/test_agent_loader.py tools/test_evidence_pages.py
+          python3 -m py_compile tools/site.py tools/test_parcel_stories.py tools/sections.py tools/build_db.py tools/section_dbs.py tools/evidence_observations.py tools/test_evidence_hierarchy.py tools/selfcontain.py tools/test_agent_loader.py tools/test_evidence_pages.py
           node --check web/_cedwyn/agent-tools.js
+          node --check web/_cedwyn/parcel-panel.js
           node --check tools/test_agent_tools.js
           node tools/test_agent_tools.js
           node --check tools/test_agent_webmcp.js
@@ -31,6 +32,7 @@ jobs:
           python3 tools/test_evidence_hierarchy.py
           python3 tools/test_agent_loader.py
           python3 tools/test_evidence_pages.py
+          python3 tools/test_parcel_stories.py
       - name: Free disk
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true

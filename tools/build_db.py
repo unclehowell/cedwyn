@@ -352,13 +352,66 @@ for t in CFG['themes']:
     npg = con.execute("SELECT count(*) FROM locations l JOIN artifacts a ON a.id=l.aid WHERE l.theme=? AND a.kind='page'", (t['id'],)).fetchone()[0]
     con.execute('INSERT INTO themes VALUES(?,?,?,?,?,?,?,?)', (t['id'], t['title'], t.get('cy'), t.get('es'), t['live'],
                  ('branch ' + t['branch']) if t.get('branch') else ('crawl of ' + t.get('crawl', '')), nf, npg))
+
+# Parcel-story register: parent DB is canonical; section_dbs.py projects one story into each public-area child DB.
+con.executescript("""
+CREATE TABLE IF NOT EXISTS estate_parcels (
+ parcel_id TEXT PRIMARY KEY, area_id TEXT NOT NULL UNIQUE, slot INTEGER NOT NULL UNIQUE,
+ title TEXT NOT NULL, historic_plot_number TEXT, model_parcel_id TEXT,
+ mapping_status TEXT NOT NULL, map_asset TEXT NOT NULL, map_status TEXT NOT NULL,
+ summary TEXT NOT NULL, updated_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS parcel_events (
+ parcel_id TEXT NOT NULL, seq INTEGER NOT NULL, date_text TEXT NOT NULL, title TEXT NOT NULL,
+ details TEXT NOT NULL, event_type TEXT NOT NULL, scope TEXT NOT NULL, status TEXT NOT NULL,
+ source_ev TEXT, source_path TEXT, PRIMARY KEY(parcel_id, seq)
+) WITHOUT ROWID;
+CREATE TABLE IF NOT EXISTS estate_parcel_model (
+ model_id TEXT PRIMARY KEY, parent_id TEXT, label TEXT NOT NULL, status TEXT NOT NULL,
+ description TEXT NOT NULL, limits TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS estate_parcel_model_events (
+ model_id TEXT NOT NULL, seq INTEGER NOT NULL, date_text TEXT NOT NULL, title TEXT NOT NULL,
+ details TEXT NOT NULL, event_type TEXT NOT NULL, status TEXT NOT NULL,
+ source_evs_json TEXT NOT NULL, source_path TEXT, PRIMARY KEY(model_id, seq)
+) WITHOUT ROWID;
+""")
+_parcel_file = ROOT / "data" / "parcel-stories.json"
+if _parcel_file.exists():
+    _parcel_doc = json.loads(_parcel_file.read_text(encoding="utf-8"))
+    for _tbl in ("parcel_events", "estate_parcels", "estate_parcel_model_events", "estate_parcel_model"):
+        con.execute("DELETE FROM " + _tbl)
+    for _p in _parcel_doc.get("parcels", []):
+        con.execute("INSERT INTO estate_parcels VALUES(?,?,?,?,?,?,?,?,?,?,?)", (
+            _p["parcel_id"], _p["area_id"], int(_p["slot"]), _p["title"],
+            _p.get("historic_plot_number"), _p.get("model_parcel_id"), _p["mapping_status"],
+            _p.get("map_asset", "/parcels/poster.jpg"), _p.get("map_status", "pending"),
+            _p.get("summary", ""), _p.get("updated_at", _parcel_doc.get("updated_at", ""))))
+        for _e in _p.get("events", []):
+            con.execute("INSERT INTO parcel_events VALUES(?,?,?,?,?,?,?,?,?,?)", (
+                _p["parcel_id"], int(_e.get("seq", 0)), _e.get("date_text", ""),
+                _e.get("title", ""), _e.get("details", ""), _e.get("event_type", ""),
+                _e.get("scope", ""), _e.get("status", ""), _e.get("source_ev"), _e.get("source_path")))
+    for _m in _parcel_doc.get("parcel_model", []):
+        con.execute("INSERT INTO estate_parcel_model VALUES(?,?,?,?,?,?)", (
+            _m["model_id"], _m.get("parent_id"), _m.get("label", ""), _m.get("status", ""),
+            _m.get("description", ""), _m.get("limits", "")))
+    for _e in _parcel_doc.get("model_events", []):
+        con.execute("INSERT INTO estate_parcel_model_events VALUES(?,?,?,?,?,?,?,?,?)", (
+            _e["model_id"], int(_e.get("seq", 0)), _e.get("date_text", ""),
+            _e.get("title", ""), _e.get("details", ""), _e.get("event_type", ""),
+            _e.get("status", ""), json.dumps(_e.get("source_evs", []), ensure_ascii=False),
+            _e.get("source_path")))
+
 cnt = lambda q: con.execute(q).fetchone()[0]
 stats = dict(artifacts=cnt('SELECT count(*) FROM artifacts'), locations=cnt('SELECT count(*) FROM locations'), blobs=cnt('SELECT count(*) FROM blobs'),
              blob_bytes=blob_total, blob_skipped_over_cap=blob_skipped, edges=cnt('SELECT count(*) FROM edges'), nodes=cnt('SELECT count(*) FROM nodes'),
              fts_rows=cnt('SELECT count(*) FROM fts'), captures=cnt('SELECT count(*) FROM captures'), cites=n_ext, themes=len(TIDS),
              layer_items=n_layer_items, layer_refs=n_layer_refs, layer_deps=n_layer_deps,
              evidence_records=cnt('SELECT count(*) FROM evidence_catalogue'), evidence_texts=cnt('SELECT count(*) FROM evidence_text'),
-             artifact_assessments=cnt('SELECT count(*) FROM artifact_assessments'), observations=cnt('SELECT count(*) FROM observations'), observation_refs=cnt('SELECT count(*) FROM observation_refs'))
+             artifact_assessments=cnt('SELECT count(*) FROM artifact_assessments'), observations=cnt('SELECT count(*) FROM observations'), observation_refs=cnt('SELECT count(*) FROM observation_refs'),
+             parcel_stories=cnt('SELECT count(*) FROM estate_parcels'), parcel_events=cnt('SELECT count(*) FROM parcel_events'),
+             parcel_models=cnt('SELECT count(*) FROM estate_parcel_model'), parcel_model_events=cnt('SELECT count(*) FROM estate_parcel_model_events'))
 for k, v in stats.items(): con.execute('INSERT INTO meta VALUES(?,?)', (k, str(v)))
 con.commit()
 # Emit small section-local SQLite slices from the same central catalogue. The main catalogue remains authoritative.
