@@ -17,7 +17,11 @@
 /argentina/movie/* /documentary/:splat 301
 /wales/:theme/* /:theme/:splat 200
 /argentina/:theme/* /:theme/:splat 200
+/wayback/websites/:h/:s/latest.htm /wayback/websites/:h/:s/latest.html 301
+/wayback/websites/:h/:s/index.html /wayback/websites/:h/:s/latest.html 301
+/wayback/websites/:h/:s/ /wayback/websites/:h/:s/latest.html 302
 /kissed-frogs/wiki/* /wiki/:splat 301
+/r/:c /ebooks/?utm_source=r&utm_medium=link&utm_campaign=:c 302
 /ebooks/:b/online/gen /ebooks/:b/online/ 301
 /docs/ghf_evidence/:id/latest/html/:lang/genindex.html /docs/ghf_evidence/:id/latest/html/:lang/ 302
 /docs/ghf_evidence/:id/latest/html/:lang/search.html /docs/ghf_evidence/:id/latest/html/:lang/ 302
