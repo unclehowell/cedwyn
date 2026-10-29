@@ -651,6 +651,7 @@ def _script_parts(txt):
     heads = ["SIXTY-SECOND VERSION", "THE FOUR ASKS FOR TONIGHT",
              "BRIEFING CUE CARD (say the line, move on; expand only if asked)"]
     lines = txt.split("\n")
+    lines.append(heads[2]) if heads[2] not in lines else None   # P-035: no cue card in the published script
     idx = [lines.index(h) for h in heads]
     statement = [l for l in lines[2:idx[0]] if l.strip()]
     sixty = [l for l in lines[idx[0] + 1:idx[1]] if l.strip()]
@@ -699,7 +700,7 @@ def site():
                       + sub_("The statement", f'<div class="speech">{stmt_html}</div>')
                       + sub_(heads[0].capitalize(), f'<div class="speech">{sixty_html}</div>')
                       + sub_(heads[1].capitalize(), asks_html)
-                      + sub_("Briefing cue card", f'<p class="src">{e(heads[2])}</p>{cards_html}')
+                      + (sub_("Briefing cue card", f'<p class="src">{e(heads[2])}</p>{cards_html}') if cards else "")
                       + '<p class="files"><a href="meeting-script.txt">Plain text</a> · <a href="meeting-pack.pdf" download>Clerk pack (PDF)</a> · <a href="pack.html">Clerk pack (HTML)</a></p>')
 
     # 3. questions
@@ -1104,10 +1105,8 @@ def script_txt():
               "2. Make Great House Farm / Tŷ Mawr a standing item, with a named councillor.",
               "3. Recommend to the Senedd that an independent inquiry be considered.",
               "4. Write to the bodies holding the records in support of disclosure and preservation.", "",
-              "", "BRIEFING CUE CARD (say the line, move on; expand only if asked)", ""]
-    for c in BRIEF:
-        lines += [f"{c['id']}  {c['title'].upper()}", f"    SAY: {c['say']}", f"    IF ASKED {c['if_asked'][0]} {c['if_asked'][1]}"]
-        lines += [f"    AGAINST US: {t}" for t, k in c.get("against", [])] + [""]
+              ""]
+    # 29 Oct 2026 (P-035): the meeting is over; the speaker's private cue card (BRIEF) is no longer published. — Sion's Tab agent
     return "\n".join(lines)
 
 
