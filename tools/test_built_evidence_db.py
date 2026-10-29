@@ -87,11 +87,11 @@ with tempfile.TemporaryDirectory(prefix="cedwyn-db-check-") as td:
         """SELECT DISTINCT ec.ev, ec.title, ec.path, snippet(fts, 1, '[', ']', ' … ', 18) AS excerpt
              FROM fts
              JOIN evidence_catalogue ec ON ec.artifact_id=CAST(fts.aid AS INTEGER)
-            WHERE fts MATCH ? LIMIT 10""",
-        ("twelve",)
+            WHERE fts MATCH ? AND ec.ev=? LIMIT 1""",
+        ("twelve", "EV-0617")
     ).fetchall()
-    if not search or not any(r["ev"] == "EV-0617" for r in search):
-        raise SystemExit("FAIL: full-text search did not find EV-0617")
+    if not search or search[0]["ev"] != "EV-0617":
+        raise SystemExit("FAIL: full-text search does not resolve EV-0617 through the indexed evidence join")
 
     grade = con.execute(
         "SELECT meaning FROM evidence_grade_scale WHERE grade=?",
