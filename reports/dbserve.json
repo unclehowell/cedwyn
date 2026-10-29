@@ -1,32 +1,32 @@
 {
- "db_version": "666beccdd15f",
- "paths_served_from_db": 7092,
+ "db_version": "96f9788ed5f8",
+ "paths_served_from_db": 7082,
  "blobs": 4546,
  "files_dropped": {
-  "document": 3301,
-  "image": 1505,
-  "data": 1309,
+  "document": 3297,
+  "image": 1488,
+  "data": 1313,
   "audio": 84
  },
  "bytes_dropped": {
-  "document": 1275006133,
-  "image": 136845211,
-  "data": 34534289,
+  "document": 1274479419,
+  "image": 134968837,
+  "data": 34429101,
   "audio": 14922925
  },
- "bytes_dropped_total": 1461308558,
+ "bytes_dropped_total": 1458800282,
  "files_kept_as_well": {
-  "image": 794,
+  "image": 806,
   "data": 59,
-  "document": 12
+  "document": 15
  },
  "kept_why": {
-  "named in page markup": 677,
-  "link/meta tag": 46,
+  "named in page markup": 689,
+  "link/meta tag": 45,
   "css url()": 27,
   "fetched by script": 11,
   "fetched by browsers outside a service worker": 15,
-  "page without runtime": 73,
+  "page without runtime": 77,
   "fetched by script (built path)": 16
  },
  "kept_examples": [
@@ -111,7 +111,9 @@
    "named in page markup"
   ]
  ],
- "changed_after_db_build_served_as_files": 0,
- "changed_examples": [],
- "indexed_without_file": 28
+ "changed_after_db_build_served_as_files": 1,
+ "changed_examples": [
+  "/research/_db/config.json"
+ ],
+ "indexed_without_file": 20
 }
