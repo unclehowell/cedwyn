@@ -1,4 +1,8 @@
-/* Cedwyn · documentary — choose-a-version modal (paywall.js v1.0.1). A tab.bot production.
+/* Cedwyn · documentary — choose-a-version modal (paywall.js v1.0.2). A tab.bot production.
+   v1.0.2 (29 Oct 2026): a scene that is not free (Scene 3 on) never falls back to Scene 1 any more. Before, pressing
+   Scene 3's play button opened this dialog with Free pre-selected, and Proceed played Scene 1 ("door 3 is the same as
+   scene 1"). Now the pressed scene picks the version: a paid scene pre-selects v0.0.2, the Free option is greyed with a
+   line saying which version opens it, and Free + Proceed on a paid scene explains instead of playing another scene.
    v1.0.1 (29 Oct 2026): the free path plays the scene whose button was pressed when it is free (CedwynDoc.free, now Scenes 1 and 2);
    before, Proceed on the free version always played Scene 1, so Scene 2 showed Scene 1 again.
    Pressing a scene's play button first opens a native <dialog>: v0.0.1 Free (the first cut, Scene 1) or v0.0.2 £4.99
@@ -40,6 +44,9 @@
     for (var j = 0; j < nodes.length; j++) { var on = nodes[j].getAttribute("data-v") === pick; nodes[j].classList.toggle("on", on); if (on) nodes[j].setAttribute("aria-current", "step"); else nodes[j].removeAttribute("aria-current"); }
     var o = OPTS.filter(function (x) { return x.v === pick; })[0];
     DLG.querySelector(".cd-go").textContent = o.paid && !paidOpen() ? "Proceed to checkout" : "Proceed";
+    var n = frameOf(lastBtn), fr = isFree(n), fi = DLG.querySelector('input[value="0.0.1"]'), fl = DLG.querySelector('label.cd-o[data-v="0.0.1"]');
+    if (fi) fi.disabled = !fr; if (fl) fl.style.opacity = fr ? "" : "0.5";
+    DLG.querySelector(".cd-why").textContent = (fr || paidOpen()) ? "" : "Scene " + n + " is not in the free version (Scenes 1 and 2). v0.0.2 opens it.";
   }
   function make() {
     css(); DLG = document.createElement("dialog"); DLG.id = "cd-dlg"; DLG.setAttribute("aria-labelledby", "cd-dlg-h");
@@ -47,7 +54,7 @@
     OPTS.forEach(function (o) { h += '<label class="cd-o" data-v="' + o.v + '"><input type="radio" name="cd-pick" value="' + o.v + '"' + (o.v === pick ? " checked" : "") + '><span><b>v' + o.v + ' · ' + o.price + '</b><small>' + o.note + '</small></span></label>'; });
     h += '</div><ol class="cd-nodes" aria-label="Version history">';
     OPTS.forEach(function (o, i) { if (i) h += '<li class="sep" aria-hidden="true"></li>'; h += '<li data-v="' + o.v + '"><span class="cd-dot" aria-hidden="true"></span>v' + o.v + '</li>'; });
-    h += '</ol><div class="cd-row"><button type="button" class="cd-cancel">Cancel</button><button type="button" class="cd-go">Proceed</button></div></form>';
+    h += '</ol><p class="cd-why" role="status" aria-live="polite" style="margin:0 0 6px;color:#8a1c1c"></p><div class="cd-row"><button type="button" class="cd-cancel">Cancel</button><button type="button" class="cd-go">Proceed</button></div></form>';
     DLG.innerHTML = h; document.body.appendChild(DLG);
     DLG.addEventListener("change", function (e) { if (e.target.name === "cd-pick") { pick = e.target.value; paint(); } });
     DLG.querySelector(".cd-cancel").addEventListener("click", function () { DLG.close(); });
@@ -58,18 +65,21 @@
     });
     DLG.addEventListener("close", function () { if (lastBtn && !DLG.returnValue) try { lastBtn.focus(); } catch (e) {} });
   }
+  function frameOf(btn) { var c = btn && btn.closest && btn.closest("[id^='frame-']"); return c ? +c.id.slice(6) : 1; }
+  function isFree(n) { var D = window.CedwynDoc, fr = (D && D.free) || [1]; return fr.indexOf(n) >= 0; }
   function playFrame(n) { var b = document.querySelector("#frame-" + n + " .cm-playbig"); if (!b) return false; bypass = true; b.click(); bypass = false; return true; }
   function proceed() {
     var o = OPTS.filter(function (x) { return x.v === pick; })[0];
-    if (!o.paid) { ss(K, "free"); DLG.close(); var D = window.CedwynDoc, fr = (D && D.free) || [1], c = lastBtn && lastBtn.closest && lastBtn.closest("[id^='frame-']"), n = c ? +c.id.slice(6) : 1;
-      if (fr.indexOf(n) < 0) n = 1; if (!playFrame(n)) playFrame(1); return; }
+    if (!o.paid) { var n = frameOf(lastBtn);
+      if (!isFree(n)) { pick = "0.0.2"; var r2 = DLG.querySelector('input[value="0.0.2"]'); if (r2) { r2.checked = true; r2.focus(); } paint(); return; }   // never play a different scene
+      ss(K, "free"); DLG.close(); playFrame(n); return; }
     if (paidOpen()) { ss(K, "paid"); DLG.close(); if (lastBtn) { bypass = true; lastBtn.click(); bypass = false; } return; }
     var n = newest(); if (n) ls("cedwyn-doc-pending", n);
     ls("cedwyn-doc-agreed", new Date().toISOString() + " licence v1.0.0 (v0.0.2 modal)");
     location.href = GO;
   }
   function open(btn) {
-    if (!DLG) make(); lastBtn = btn; pick = paidOpen() ? "0.0.2" : "0.0.1";
+    if (!DLG) make(); lastBtn = btn; pick = (paidOpen() || !isFree(frameOf(btn))) ? "0.0.2" : "0.0.1";
     var r = DLG.querySelector('input[value="' + pick + '"]'); if (r) r.checked = true; paint();
     if (typeof DLG.showModal === "function") DLG.showModal(); else DLG.setAttribute("open", "");
     if (r) r.focus();
