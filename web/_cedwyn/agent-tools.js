@@ -112,6 +112,36 @@
     return path.startsWith('/');
   }
 
+  // Load the catalogue client only when an agent invokes a catalogue-backed tool.
+  // Ordinary evidence pages do not necessarily include cat.js in their human-facing markup.
+  var catalogueClientPromise = null;
+  function loadCatalogueClient() {
+    if (window.Cedwyn && typeof window.Cedwyn.db === 'function' &&
+        typeof window.Cedwyn.graphql === 'function') {
+      return Promise.resolve(window.Cedwyn);
+    }
+    if (catalogueClientPromise) return catalogueClientPromise;
+    catalogueClientPromise = new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      script.src = '/_cedwyn/cat.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.Cedwyn && typeof window.Cedwyn.db === 'function' &&
+            typeof window.Cedwyn.graphql === 'function') {
+          resolve(window.Cedwyn);
+        } else {
+          reject(new Error('Catalogue client loaded but Cedwyn.db()/graphql() are unavailable.'));
+        }
+      };
+      script.onerror = function () { reject(new Error('Could not load /_cedwyn/cat.js')); };
+      (document.head || document.documentElement).appendChild(script);
+    }).catch(function (err) {
+      catalogueClientPromise = null;
+      throw err;
+    });
+    return catalogueClientPromise;
+  }
+
   function textFromHtml(html) {
     var d = document.implementation.createHTMLDocument('');
     d.documentElement.innerHTML = html;
@@ -145,31 +175,19 @@
 
   function searchCatalogue(q, theme, limit) {
     limit = Math.min(Math.max(+(limit || 10), 1), 50);
-    if (window.Cedwyn && typeof Cedwyn.graphql === 'function') {
+    return loadCatalogueClient().then(function (C) {
       var gql = 'query ($q: String!, $theme: String, $limit: Int) { search(q: $q, theme: $theme, limit: $limit) { theme path snippet artifact { id title kind } } }';
-      return Cedwyn.graphql(gql, { q: q, theme: theme || null, limit: limit }).then(function (r) {
+      return C.graphql(gql, { q: q, theme: theme || null, limit: limit }).then(function (r) {
         if (r.errors) throw new Error(r.errors.map(function (e) { return e.message; }).join('; '));
         return (r.data && r.data.search || []).map(function (h) {
-          return {
-            theme: h.theme,
-            path: h.path,
-            snippet: h.snippet,
-            artifact: h.artifact
-          };
+          return { theme: h.theme, path: h.path, snippet: h.snippet, artifact: h.artifact };
         });
       });
-    }
-    // Fallback: section agent-index or simple page text search
-    return fetch('/db/stats.json', { cache: 'no-cache' }).then(function () {
-      return [{ theme: null, path: location.pathname, snippet: 'Catalogue client not yet loaded; open /catalogue/ or load /_cedwyn/cat.js then retry.', artifact: null }];
     });
   }
 
   function centralDb() {
-    if (!window.Cedwyn || typeof Cedwyn.db !== 'function') {
-      throw new Error('Central catalogue client is unavailable; /_cedwyn/cat.js did not load.');
-    }
-    return Cedwyn.db();
+    return loadCatalogueClient().then(function (C) { return C.db(); });
   }
 
   function ftsExpression(query) {

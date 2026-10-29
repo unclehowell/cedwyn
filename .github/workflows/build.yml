@@ -20,6 +20,13 @@ jobs:
         with: { ref: main, fetch-depth: 1 }
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
+      - name: Fast preflight before the full archive rewrite
+        run: |
+          python3 -m py_compile tools/site.py tools/sections.py tools/build_db.py tools/section_dbs.py tools/evidence_observations.py tools/test_evidence_hierarchy.py
+          node --check web/_cedwyn/agent-tools.js
+          node --check tools/test_agent_tools.js
+          node tools/test_agent_tools.js
+          python3 tools/test_evidence_hierarchy.py
       - name: Free disk
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
