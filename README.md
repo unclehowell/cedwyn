@@ -1,8 +1,10 @@
 # Cedwyn
 
-**cedwyn.bucklerfamily.estate** — one catalogue database of Great House Farm evidence, browsed through 35 themes.
-Each theme is one of the former datro subdomain websites, kept with its own look and navigation, now living under one URL
-at `/<theme>/`. Moving between themes works like moving between the old subdomains did.
+**cedwyn.bucklerfamily.estate** — one central SQLite catalogue of Great House Farm evidence, browsed through 44 source themes and grouped into 36 visitor-facing page areas.
+
+The 44 source themes remain separately buildable and retain their legacy routes. The public homepage and shared previous/next navigation use the 36 visitor-facing page areas. The 36-area index is a visitor-facing grouping layer, not a count of source themes. It merges the Legal Wiki with its nomenclature/dictionary reference tools, and groups the NFT gallery, cyber games and 3D world under one Arcade shell. The area-to-parcel links currently use editorial serendipity slots only: no website area is assigned a historic tithe plot number until the c.1841 schedule is checked row-by-row.
+
+The central SQLite database remains the source of truth. The browser reads it through chunked, read-only SQLite; the build also emits smaller, theme-local SQLite slices containing relevant artifacts, assessments, observations and references. Multi-theme areas such as Wiki and Arcade receive an aggregate slice. The Wiki slice deliberately includes the full Level 1 register, including pending records and their explicit unassessed status; the other area slices remain relevance-filtered. These are static catalogue databases, not separate authoring stores or a server-side write API.
 
 The old repo (`unclehowell/datro`) and the old subdomains are untouched: this repo only reads from them.
 
@@ -41,6 +43,15 @@ The old repo (`unclehowell/datro`) and the old subdomains are untouched: this re
    It covers themes, artifacts, locations, full-text search, graph edges, nodes and captures. The catalogue page `/catalogue/` uses the same layer.
 9. **Outbound-link test** (`tools/check_links.py`): the build fails if any external `<a>`/`<area>` href or form action survives,
    or if the excluded YouTube channel appears anywhere.
+
+## Evidence hierarchy (Level 1 and Level 2)
+
+- **Level 1 — Artifacts:** `evidence_catalogue` identifies the source entry and links it to a built artifact. `artifact_assessments` keeps a neutral description, transcript/transcription status, interpretation, source-verification status and limitations as separate fields. `data/artifact-assessments.json` seeds only reviewed working entries; every discovered EV page receives an explicit `not_assessed` default until a reviewer enters a value. A blank transcript is not an assertion that the source lacks text.
+- **Level 2 — Observations:** `data/observations.json` records patterns derived from one or more Level 1 artifacts. `observations` and `observation_refs` store each observation, its limits, test questions and links to supporting artifacts. The first working observations cover recurrence of the twelve-year period, repeated permissive-occupancy framing, and name variants/dispersed records. Observations are not primary artifacts and do not by themselves establish intent, misconduct, title or legal effect.
+- **Visitor views:** `/wiki/evidence/` mounts the database-backed Level 1/Level 2 browser above the original register; `/wiki/observations/` lists the observation pages. The source page and interpretation are kept distinct in both the UI and machine-readable records.
+- **Agent access:** `web/_cedwyn/agent-tools.js` exposes read-only search/read tools for artifacts and observations. The central catalogue / GraphQL API stays available; each theme's compact database is advertised at `/<theme>/_db/config.json` and is generated from the central DB.
+- **Public page areas:** `data/site-areas.json` maps all 44 source themes into 36 public-facing areas. `/arcade/` gives gallery, games and 3D world three toggles; `/wiki/reference/` gives names and dictionary two toggles. Legacy routes are retained for backward compatibility. `/parcels/site-areas/` makes the 36-slot serendipity index visible but explicitly marks actual tithe plot matching as pending verification.
+
 
 ### Why images are binary BLOBs, not base64 text
 
@@ -122,7 +133,6 @@ See `reports/` (written by every build): `db.json` (database size, chunk count, 
 - Rebuild the crawl-based themes (Workers and the apex site) from source, so their script-loaded data comes along too.
 - Add people and places to the graph (it currently has years, themes, source hosts and links), then embeddings for graph-RAG.
 
-— Sion's Tab agent
 
 ## Stage 2 (25 Oct 2026): shared header, fully self-contained, parity
 
@@ -306,7 +316,7 @@ Every theme now reads its data and evidence from the catalogue database. Before 
 
 ## Editorial rule: ingredients, not conclusions
 
-Since 25 Oct 2026 every page follows [EDITORIAL.md](EDITORIAL.md): the site presents cited ingredients (date, event, what changed, evidence link inside Cedwyn, label, open questions), never a finished conclusion. Conclusion sentences in mirrored theme text are reworded at build time from `ingredients.json` (`tools/ingredients.py`, run from `tools/site.py`); the datro sources are untouched. — Sion's Tab agent
+Since 25 Oct 2026 every page follows [EDITORIAL.md](EDITORIAL.md): the site presents cited ingredients (date, event, what changed, evidence link inside Cedwyn, label, open questions), never a finished conclusion. Conclusion sentences in mirrored theme text are reworded at build time from `ingredients.json` (`tools/ingredients.py`, run from `tools/site.py`); the datro sources are untouched.
 
 ## Two sections: Wales and Argentina (25 Oct 2026)
 

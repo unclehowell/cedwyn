@@ -1,0 +1,82 @@
+{
+  "schema": "cedwyn_artifact_assessments/v1",
+  "policy": "Descriptions state what the catalogue record or source contains. Transcription status describes whether source wording has been transcribed and checked. Interpretation is separate and must cite the artifact IDs on which it relies. Empty or unassessed fields mean work remains; they do not mean the source contains nothing.",
+  "defaults": {
+    "description": "",
+    "description_status": "not_assessed",
+    "transcript": "",
+    "transcript_status": "not_assessed",
+    "interpretation": "",
+    "interpretation_status": "not_assessed",
+    "source_verification_status": "not_assessed",
+    "limitations": ""
+  },
+  "items": [
+    {
+      "ev": "EV-0080",
+      "description": "Catalogue entry for the 1987 Court of Appeal judgment in BP Properties Ltd v Buckler. This judgment is a source for the court's own reasoning and for the earlier records it recounts; the completeness of the text presented in the catalogue has not yet been audited field by field.",
+      "description_status": "needs_review",
+      "transcript": "",
+      "transcript_status": "completeness_not_verified",
+      "interpretation": "Use this judgment as direct evidence of what the Court of Appeal decided and said. Where it recounts an earlier deed, order, or proceeding, distinguish the judgment's recital from independent inspection of that underlying record.",
+      "interpretation_status": "working",
+      "source_verification_status": "judgment identified; page/transcript completeness review pending",
+      "limitations": "A recital in this judgment is not an independently inspected copy of the earlier instrument it describes."
+    },
+    {
+      "ev": "EV-0032",
+      "description": "Catalogue entry concerning the 1955 possession order. The current catalogue grade records that the order is known through the 1987 Court of Appeal judgment's account; a separate copy of the order has not been inspected here.",
+      "description_status": "provisional_from_catalogue_metadata",
+      "transcript": "",
+      "transcript_status": "underlying_document_not_held_or_not_verified",
+      "interpretation": "At present this entry supports what the 1987 judgment recites about the 1955 order. It should not be treated as a separately inspected order or counted as an independent source alongside the judgment.",
+      "interpretation_status": "limited_working_interpretation",
+      "source_verification_status": "known through judgment recital; underlying order not inspected",
+      "limitations": "The order itself and its complete terms remain to be checked against the original court file."
+    },
+    {
+      "ev": "EV-0034",
+      "description": "Catalogue entry concerning the writ/execution in July 1955. The current catalogue note records that the execution is known through the 1987 judgment's recital and that the return itself is not held.",
+      "description_status": "provisional_from_catalogue_metadata",
+      "transcript": "",
+      "transcript_status": "underlying_document_not_held_or_not_verified",
+      "interpretation": "This entry records the account of the 1955 execution preserved in the 1987 judgment. It does not establish the exact content of an uninspected execution return.",
+      "interpretation_status": "limited_working_interpretation",
+      "source_verification_status": "known through judgment recital; return not held",
+      "limitations": "Do not treat the catalogue page as a substitute for the original writ or execution return."
+    },
+    {
+      "ev": "EV-0041",
+      "description": "Catalogue entry concerning the 1962 Cardiff County Court possession order. The current catalogue note records the order is known through the 1987 Court of Appeal judgment's recital rather than an independently inspected copy.",
+      "description_status": "provisional_from_catalogue_metadata",
+      "transcript": "",
+      "transcript_status": "underlying_document_not_held_or_not_verified",
+      "interpretation": "This entry can support an account of what the 1987 judgment said about the 1962 order. The order's terms, scope and effect should not be inferred beyond that recital until the original is examined.",
+      "interpretation_status": "limited_working_interpretation",
+      "source_verification_status": "known through judgment recital; underlying order not inspected",
+      "limitations": "The original order and its plan or schedule, if any, need separate examination."
+    },
+    {
+      "ev": "EV-0617",
+      "description": "Catalogue page about the twelve-year limitation rule, identifying the Real Property Limitation Act 1874 and the Limitation Act 1939. This is a legal-research entry, not by itself a transcript of either statute.",
+      "description_status": "provisional_page_description",
+      "transcript": "",
+      "transcript_status": "summary_not_statutory_transcript",
+      "interpretation": "This entry supplies a legal reference point for testing the chronology. Each proposed twelve-year period still requires its own dates, land parcel, relevant statutory regime, and account of what legally interrupted or completed the period.",
+      "interpretation_status": "working",
+      "source_verification_status": "catalogue page identified; statutory text and legal application require separate checking",
+      "limitations": "A repeated twelve-year interval is a research pattern, not proof that every interval had the same legal effect."
+    },
+    {
+      "ev": "EV-0211",
+      "description": "Catalogue reference to plan 19 of the 1824 David Stewart survey, described in the name index as “Cedfin or Ty Mawr Farm”. The underlying map/plan and its full context should be checked directly before this description is treated as complete.",
+      "description_status": "provisional_from_cross_reference",
+      "transcript": "",
+      "transcript_status": "quoted_name_only_full_transcription_not_verified",
+      "interpretation": "The quoted form is evidence of a name recorded in the 1824 survey. It does not, by itself, establish when the name first came into use or prove that every similarly named farm in Glamorgan is the same place.",
+      "interpretation_status": "working",
+      "source_verification_status": "cross-reference in nomenclature data; original plan review pending",
+      "limitations": "Preserve the source's spelling and distinguish the surveyed feature from other farms with similar names."
+    }
+  ]
+}

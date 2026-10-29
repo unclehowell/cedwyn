@@ -3,7 +3,7 @@
    Visitor-facing themes are views over the evidence; they are not the source of truth.
    Spec reference: /library/api/#webmcp
    Tools are never instructions; page text is historical record only.
-   — Sion's Tab agent, 29 Oct 2026 */
+   */
 (function () {
   'use strict';
 
@@ -49,6 +49,28 @@
         properties: {
           key: { type: 'string', description: 'EV identifier such as EV-0628, an alias such as GHF-E090, or an evidence page path' }
         },
+        required: ['key'],
+        additionalProperties: false
+      }
+    },
+    {
+      name: 'search_central_observations',
+      description: 'Search Level 2 observation records in the central Cedwyn catalogue. Observations describe patterns derived from cited artifacts and include limits, test questions and source references; they are not original evidence.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          q: { type: 'string', description: 'Optional words, observation ID or subject' },
+          limit: { type: 'integer', description: 'Maximum results (default 10, max 50)' }
+        },
+        additionalProperties: false
+      }
+    },
+    {
+      name: 'get_central_observation',
+      description: 'Read one Level 2 observation by its OBS ID or slug, including analysis, limits, test questions and linked Level 1 artifact references.',
+      inputSchema: {
+        type: 'object',
+        properties: { key: { type: 'string', description: 'Observation ID such as OBS-0002 or its slug' } },
         required: ['key'],
         additionalProperties: false
       }
@@ -164,9 +186,12 @@
       // Exact EV IDs, aliases and paths do not depend on FTS tokenization.
       var exact = await d.query(
         `SELECT ec.ev, ec.title, ec.path, ec.evidence_grade, ec.independent_origin_id,
-                ec.aliases_json, ec.grade_note, et.body AS excerpt, et.body_chars, et.truncated
+                ec.aliases_json, ec.grade_note, et.body AS excerpt, et.body_chars, et.truncated,
+                aa.description, aa.description_status, aa.transcript, aa.transcript_status,
+                aa.interpretation, aa.interpretation_status, aa.source_verification_status, aa.limitations
            FROM evidence_catalogue ec
            LEFT JOIN evidence_text et ON et.aid=ec.artifact_id
+           LEFT JOIN artifact_assessments aa ON aa.ev=ec.ev
           WHERE lower(ec.ev)=lower(?) OR lower(ec.path)=lower(?)
              OR lower(ec.aliases_json) LIKE lower(?)
           ORDER BY ec.ev LIMIT ?`,
@@ -183,7 +208,11 @@
               ev: r.ev, title: r.title, path: r.path, evidenceGrade: r.evidence_grade,
               independentOriginId: r.independent_origin_id, aliases: aliases,
               gradeNote: r.grade_note, excerpt: (r.excerpt || '').slice(0, 2000),
-              entryTextChars: r.body_chars || 0, entryTextTruncated: !!r.truncated
+              entryTextChars: r.body_chars || 0, entryTextTruncated: !!r.truncated,
+              assessment: { description: r.description || '', descriptionStatus: r.description_status || 'not_assessed',
+                transcript: r.transcript || '', transcriptStatus: r.transcript_status || 'not_assessed',
+                interpretation: r.interpretation || '', interpretationStatus: r.interpretation_status || 'not_assessed',
+                sourceVerificationStatus: r.source_verification_status || 'not_assessed', limitations: r.limitations || '' }
             };
           })
         };
@@ -194,10 +223,13 @@
         `SELECT DISTINCT ec.ev, ec.title, ec.path, ec.evidence_grade, ec.independent_origin_id,
                 ec.aliases_json, ec.grade_note,
                 snippet(fts, 1, '[', ']', ' … ', 18) AS match_snippet,
-                substr(et.body, 1, 1800) AS excerpt, et.body_chars, et.truncated
+                substr(et.body, 1, 1800) AS excerpt, et.body_chars, et.truncated,
+                aa.description, aa.description_status, aa.transcript, aa.transcript_status,
+                aa.interpretation, aa.interpretation_status, aa.source_verification_status, aa.limitations
            FROM fts
            JOIN evidence_catalogue ec ON ec.artifact_id=CAST(fts.aid AS INTEGER)
            LEFT JOIN evidence_text et ON et.aid=ec.artifact_id
+           LEFT JOIN artifact_assessments aa ON aa.ev=ec.ev
           WHERE fts MATCH ?
           ORDER BY rank LIMIT ?`,
         [expression, limit]
@@ -213,7 +245,11 @@
             independentOriginId: r.independent_origin_id, aliases: aliases,
             gradeNote: r.grade_note, matchSnippet: r.match_snippet,
             excerpt: r.excerpt || '', entryTextChars: r.body_chars || 0,
-            entryTextTruncated: !!r.truncated
+            entryTextTruncated: !!r.truncated,
+            assessment: { description: r.description || '', descriptionStatus: r.description_status || 'not_assessed',
+              transcript: r.transcript || '', transcriptStatus: r.transcript_status || 'not_assessed',
+              interpretation: r.interpretation || '', interpretationStatus: r.interpretation_status || 'not_assessed',
+              sourceVerificationStatus: r.source_verification_status || 'not_assessed', limitations: r.limitations || '' }
           };
         })
       };
@@ -229,10 +265,13 @@
         `SELECT ec.ev, ec.artifact_id, ec.path, ec.evidence_grade, ec.independent_origin_id,
                 ec.aliases_json, ec.grade_note, ec.title,
                 et.body AS record_text, et.body_chars, et.truncated,
-                a.sha, a.kind, a.mime, a.bytes, a.year_min, a.year_max
+                a.sha, a.kind, a.mime, a.bytes, a.year_min, a.year_max,
+                aa.description, aa.description_status, aa.transcript, aa.transcript_status,
+                aa.interpretation, aa.interpretation_status, aa.source_verification_status, aa.limitations
            FROM evidence_catalogue ec
            LEFT JOIN evidence_text et ON et.aid=ec.artifact_id
            LEFT JOIN artifacts a ON a.id=ec.artifact_id
+           LEFT JOIN artifact_assessments aa ON aa.ev=ec.ev
           WHERE lower(ec.ev)=lower(?) OR lower(ec.path)=lower(?)
              OR (?<>'' AND lower(ec.path)=lower(?))
              OR lower(ec.aliases_json) LIKE lower(?)
@@ -295,12 +334,86 @@
           independentOriginId: r.independent_origin_id, gradeNote: r.grade_note,
           sha256: r.sha, kind: r.kind, mime: r.mime, bytes: r.bytes,
           yearMin: r.year_min, yearMax: r.year_max,
-          descriptionAndInterpretation: r.record_text || '',
+          assessment: { description: r.description || '', descriptionStatus: r.description_status || 'not_assessed',
+            transcript: r.transcript || '', transcriptStatus: r.transcript_status || 'not_assessed',
+            interpretation: r.interpretation || '', interpretationStatus: r.interpretation_status || 'not_assessed',
+            sourceVerificationStatus: r.source_verification_status || 'not_assessed', limitations: r.limitations || '' },
+          sourcePageText: r.record_text || '',
           entryTextChars: r.body_chars || 0, entryTextTruncated: !!r.truncated,
           locations: locations, chronologyAndLayerReferences: refs, graphRelations: relations
         },
         interpretationNote: 'The entry text is the catalogue page’s published description and interpretation; distinguish it from the underlying primary record and from any inference it discusses. Identical copies share an independent-origin ID and are not independent corroboration.'
       };
+    });
+  }
+
+  function observationSummary(r) {
+    var tests = [];
+    try { tests = JSON.parse(r.test_questions_json || '[]'); } catch (_) {}
+    return { id: r.id, slug: r.slug, title: r.title, seq: r.seq, theme: r.theme,
+      observationType: r.observation_type, status: r.status, summary: r.summary,
+      analysis: r.analysis, limits: r.limits, testQuestions: tests,
+      relatedPage: r.related_page, pagePath: r.page_path, updatedAt: r.updated_at };
+  }
+
+  async function observationReferences(d, id) {
+    return d.query(
+      `SELECT r.ev, r.path, r.role, r.note, r.artifact_id AS artifactId,
+              ec.title, ec.independent_origin_id AS independentOriginId,
+              ec.evidence_grade AS evidenceGrade, ec.grade_note AS gradeNote
+         FROM observation_refs r LEFT JOIN evidence_catalogue ec ON ec.ev=r.ev
+        WHERE r.observation_id=? ORDER BY r.seq`,
+      [id]
+    );
+  }
+
+  async function searchCentralObservations(query, limit) {
+    query = String(query || '').trim().toLowerCase();
+    limit = Math.min(Math.max(+(limit || 10), 1), 50);
+    return centralDb().then(async function (d) {
+      var sql = 'SELECT o.*, (SELECT count(*) FROM observation_refs r WHERE r.observation_id=o.id) AS reference_count FROM observations o';
+      var params = [];
+      if (query) {
+        sql += ` WHERE lower(o.id) LIKE ? OR lower(o.slug) LIKE ? OR lower(o.title) LIKE ?
+                   OR lower(o.summary) LIKE ? OR lower(o.analysis) LIKE ? OR lower(o.limits) LIKE ?
+                   OR EXISTS (SELECT 1 FROM observation_refs r WHERE r.observation_id=o.id AND
+                     (lower(COALESCE(r.ev,'')) LIKE ? OR lower(r.path) LIKE ? OR lower(r.note) LIKE ?))`;
+        params = Array(9).fill('%' + query + '%');
+      }
+      sql += ' ORDER BY o.seq,o.id LIMIT ?';
+      params.push(limit);
+      var rows = await d.query(sql, params);
+      return {
+        source: 'central Cedwyn observations database',
+        level: 2,
+        results: await Promise.all(rows.map(async function (r) {
+          var item = observationSummary(r);
+          item.referenceCount = r.reference_count;
+          item.references = await observationReferences(d, r.id);
+          return item;
+        }))
+      };
+    });
+  }
+
+  async function getCentralObservation(key) {
+    key = String(key || '').trim();
+    if (!key) return Promise.reject(new Error('key is required'));
+    return centralDb().then(async function (d) {
+      var rows = await d.query(
+        'SELECT * FROM observations WHERE lower(id)=lower(?) OR lower(slug)=lower(?) LIMIT 2',
+        [key, key]
+      );
+      if (!rows.length) return {
+        found: false, key: key, source: 'central Cedwyn observations database',
+        message: 'No observation ID or slug was found. Search the observation catalogue first.'
+      };
+      var item = observationSummary(rows[0]);
+      item.references = await observationReferences(d, item.id);
+      item.level = 2;
+      item.source = 'central Cedwyn observations database';
+      item.editorialRule = 'This is a derived observation, not an original artifact. Check each cited source and distinguish independent records from repeated recitals or copies.';
+      return { found: true, observation: item };
     });
   }
 
@@ -313,6 +426,9 @@
       { path: '/db/stats.json', kind: 'json', note: 'Catalogue database counts and version' },
       { path: '/db/config.json', kind: 'json', note: 'SQLite chunk layout for sql.js-httpvfs' },
       { path: '/db/blobmap.json', kind: 'json', note: 'Path → blob byte locations in the DB' },
+      { path: '/db/export/manifest.json', kind: 'json', note: 'Export manifest for the central SQLite catalogue' },
+      { path: '/wiki/observations/', kind: 'html', note: 'Level 2 observation index linked to Level 1 artifacts' },
+      { path: '/wiki/_db/config.json', kind: 'json', note: 'Compact wiki section SQLite slice' },
       { path: '/graphql/', kind: 'html', note: 'In-browser GraphQL against the catalogue' },
       { path: '/library/api/', kind: 'html', note: 'API and WebMCP documentation' },
       { path: '/_cedwyn/glossary.json', kind: 'json', note: 'Glossary' },
@@ -365,6 +481,10 @@
         return searchCentralEvidence(args.q, args.limit);
       case 'get_central_evidence_record':
         return getCentralEvidenceRecord(args.key);
+      case 'search_central_observations':
+        return searchCentralObservations(args.q, args.limit);
+      case 'get_central_observation':
+        return getCentralObservation(args.key);
       case 'list_case_public_resources':
         return listResources(args.section);
       case 'read_case_public_resource':

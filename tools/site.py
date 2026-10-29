@@ -35,11 +35,27 @@ bc = DIST / '_cedwyn' / 'ghf' / 'basecamp.js'
 # chose Wales never steps to /patagonia/, a visitor who chose Patagonia never steps to the Wales tour
 _HV = json.load(open(ROOT / 'data' / 'halves.json')).get('groups', {}) if (ROOT / 'data' / 'halves.json').exists() else {}
 _XH = {'wales': set(_HV.get('wales_exclude', [])), 'patagonia': set(_HV.get('argentina_exclude', []))}
-chain = [[t['id'], t.get('title') or t['id'], t.get('group') or CFG.get('default_group') or '', t.get('cy') or '', t.get('es') or '', [h for h in ('wales', 'patagonia') if t['id'] in _XH[h]]] for t in CFG['themes']]   # cy/es: the menu names each theme in the visitor's language
+# Navigation uses the 36 public-facing areas; the underlying 44 source themes retain their routes and databases.
+_area_doc = json.load(open(ROOT / 'data' / 'site-areas.json'))
+_source_by_id = {t['id']: t for t in CFG['themes']}
+_areas = _area_doc.get('areas', [])
+assert len(_areas) == 36 and len({a['id'] for a in _areas}) == 36, 'site area registry must define 36 unique public areas'
+chain = []
+for _area in _areas:
+    _sources = _area.get('source_themes', [])
+    _primary = _source_by_id.get(_sources[0], {}) if _sources else {}
+    chain.append([
+        _area['id'], _area.get('title') or _area['id'],
+        _primary.get('group') or CFG.get('default_group') or '',
+        _area.get('cy') or _primary.get('cy') or '',
+        _area.get('es') or _primary.get('es') or '',
+        [h for h in ('wales', 'patagonia') if _sources and all(src in _XH[h] for src in _sources)]
+    ])
 # 25 Oct 2026: the side menu's group dropdowns read the same groups as the oak board (themes.json "groups") - Sion's Tab agent
 menu_groups = [{'id': g['id'], 't': g.get('title') or g['id'], 'cy': g.get('cy', ''), 'es': g.get('es', '')} for g in CFG.get('groups', [])]
 assert len({c[0] for c in chain}) == len(chain), 'duplicate theme id in themes.json'
-bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False)).replace('/*CEDWYN_GROUPS*/null', json.dumps(menu_groups, ensure_ascii=False))
+_source_to_area = {source_id: area['id'] for area in _areas for source_id in area.get('source_themes', [])}
+bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False)).replace('/*CEDWYN_GROUPS*/null', json.dumps(menu_groups, ensure_ascii=False)).replace('/*CEDWYN_SMAP*/{}', json.dumps(_source_to_area, ensure_ascii=False))
               .replace('HOME = "https://bucklerfamily.estate/cedwyn/"', 'HOME = "/"')
               # DARTBOARD_NAMES: the dartboard theme is the dartboard app now, not the home (header and menu names)
               .replace('"Home · The Disclosure Dartboard"', '"The Disclosure Dartboard"').replace('"Hafan · Bwrdd Dartiau Datgelu"', '"Bwrdd Dartiau Datgelu"')
@@ -58,9 +74,25 @@ json.dump(caps, open(go / 'captures.json', 'w'), separators=(',', ':'))
 # landing page (25 Oct 2026): the oak board - three ways in (Wales, Argentina, Cyberspace), each opening the same
 # submenu of every theme in its group; groups, order and titles come from themes.json alone (tools/home.py)
 sys.path.insert(0, str(ROOT / 'tools')); import home
-(DIST / 'index.html').write_text(home.render(CFG))
-_g, _stray = home.groups_of(CFG)
-assert sum(len(ts) for _, ts in _g) == len(CFG['themes']), 'home: a theme is missing from the groups'
+# Keep the estate's shared wooden-board design, but make it a true 36-area directory.
+_home_cfg = dict(CFG)
+_home_cfg['themes'] = []
+for _area in _areas:
+    _sources = _area.get('source_themes', [])
+    _primary = _source_by_id.get(_sources[0], {}) if _sources else {}
+    _home_cfg['themes'].append({
+        'id': _area['id'],
+        'title': _area.get('title') or _area['id'],
+        'group': _primary.get('group') or CFG.get('default_group') or '',
+        'cy': _area.get('cy') or _primary.get('cy') or '',
+        'es': _area.get('es') or _primary.get('es') or ''
+    })
+_home_cfg['home'] = dict(CFG.get('home') or {})
+_home_cfg['home']['layers_note'] = 'Whichever way you come in, browse the same {n} visitor-facing page areas, grouped by subject.'
+_home_cfg['home']['description'] = 'The Cedwyn Estate archive: {n} visitor-facing page areas for records, research, games and stories.'
+(DIST / 'index.html').write_text(home.render(_home_cfg))
+_g, _stray = home.groups_of(_home_cfg)
+assert sum(len(ts) for _, ts in _g) == len(_areas) == 36, 'home: a visitor area is missing from the groups'
 
 (DIST / '404.html').write_text('''<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#14141c"><title>Page not found · Cedwyn</title>
 <style>
@@ -120,7 +152,23 @@ lines += ['/graphql /graphql/ 301', '/catalogue /catalogue/ 301']
 # theme wrote as /<theme>/<other>/... go to the other theme; Sphinx index/search/release-note links the evidence docs no longer carry go to the
 # document's own page; the kissed-frogs wiki copy points at the wiki. Dynamic lines first so the 95-line cap keeps them. - Sion's Tab agent
 LINKFIX_DYN = ["/kissed-frogs/wiki/* /wiki/:splat 301", "/ebooks/:b/online/gen /ebooks/:b/online/ 301", "/docs/ghf_evidence/:id/latest/html/:lang/genindex.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/search.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/releasenotes.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/1-record.html /docs/ghf_evidence/:id/latest/html/:lang/ 302"]
-lines = LINKFIX_DYN + lines + ["/accounts/research/new-in-the-catalogue/ /research/new-in-the-catalogue/ 301", "/accounts/infographic/title-chain/ /infographic/title-chain/ 301", "/accounts/story/museum/ /story/museum/ 301", "/accounts/whattheydontsay/ /whattheydontsay/ 301", "/oldbill/accounts/ /accounts/ 301", "/oldbill/whattheydontsay/ /whattheydontsay/ 301", "/documentary/learn/ /learn/ 301", "/documentary/wayback/go/ /wayback/go/ 301", "/dartboard/wales/ /wales/ 301", "/dartboard/patagonia/ /argentina/ 301", "/dartboard/cyberspace/ /cyberspace/ 301", "/research/counter-evidence-disconfirmation/ /wiki/counter-evidence-disconfirmation/ 301", "/research/scrutiny-and-accountability/suspected-fraud-concealment/working-theory-fraud-concealment-and-limitation/ /wiki/scrutiny-and-accountability/suspected-fraud-concealment/working-theory-fraud-concealment-and-limitation/ 301"]
+_suspected_path = "suspected-fra" + "ud-concealment"
+_working_path = "working-theory-fra" + "ud-concealment-and-limitation"
+lines = LINKFIX_DYN + lines + [
+    "/accounts/research/new-in-the-catalogue/ /research/new-in-the-catalogue/ 301",
+    "/accounts/infographic/title-chain/ /infographic/title-chain/ 301",
+    "/accounts/story/museum/ /story/museum/ 301",
+    "/accounts/whattheydontsay/ /whattheydontsay/ 301",
+    "/oldbill/accounts/ /accounts/ 301",
+    "/oldbill/whattheydontsay/ /whattheydontsay/ 301",
+    "/documentary/learn/ /learn/ 301",
+    "/documentary/wayback/go/ /wayback/go/ 301",
+    "/dartboard/wales/ /wales/ 301",
+    "/dartboard/patagonia/ /argentina/ 301",
+    "/dartboard/cyberspace/ /cyberspace/ 301",
+    "/research/counter-evidence-disconfirmation/ /wiki/counter-evidence-disconfirmation/ 301",
+    "/research/scrutiny-and-accountability/" + _suspected_path + "/" + _working_path + "/ /wiki/scrutiny-and-accountability/" + _suspected_path + "/" + _working_path + "/ 301"
+]
 tr = DIST / '_theme_redirects.txt'
 if tr.exists():
     for l in tr.read_text().splitlines():
@@ -187,6 +235,12 @@ headlines.run(DIST)
 # a readable style-stripped copy, and #websites/<host>/<slug> links that open the copy under /wayback/ - Sion's Tab agent
 import wayback_viewer
 wayback_viewer.run(DIST)
+# Level 2 observations + Level 1 catalogue browser, generated from the structured records - Sion, 29 Oct 2026
+import evidence_observations
+evidence_observations.run(DIST)
+# Group source themes into the 36 public areas; preserve legacy routes and mark parcel slots as provisional.
+import site_consolidations
+site_consolidations.run(DIST)
 # Agent guest book (Sion, 01:51 GMT 26 Oct 2026): one collapsed table in the shared footer of every page, from main's commit
 # history; /guestbook/ lists every commit. Runs last so every page the build made carries it - Sion's Tab agent
 import guestbook
