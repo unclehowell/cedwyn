@@ -32,6 +32,7 @@ jobs:
           node --check web/_cedwyn/cat.js
           node --check web/_cedwyn/evidence-browser.js
           node --check web/_cedwyn/agent-tools.js
+          node --check web/_cedwyn/ghf/basecamp.js
       - name: Structured data validity
         run: |
           python -m json.tool data/artifact-assessments.json > /dev/null
