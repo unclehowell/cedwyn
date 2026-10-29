@@ -36,7 +36,7 @@ def crawl(url, out, robots=False, quota='150m', t=420, sitemap=None):
     return sum(1 for _ in out.rglob('*') if _.is_file())
 SECTIONS = set(os.environ.get('SECTIONS', '').split())      # assemble only these theme ids (snapshot runs, section checks)
 FORCE_CRAWL = os.environ.get('FORCE_CRAWL') == '1'           # snapshot runs: crawl the live site even when a snapshot branch exists
-# Production reproducibility note (29 Oct 2026): the committed sections.lock SHA is authoritative, not the branch tip. Keep evidence-interpretation changes in section/research (and navigation changes in section/wiki) and update the pin before a canonical rebuild; otherwise a queued build can replace manual site-only edits with an older snapshot.
+# Production reproducibility note (29 Oct 2026): the committed sections.lock SHAs are authoritative, not the branch tips. Keep item-level evidence interpretations in section/research and legacy Wiki interpretations/navigation in section/wiki, update both pins, then rebuild; otherwise a queued build can replace manual site-only edits with an older snapshot.
 LOCK = {}
 try: LOCK = json.load(open(ROOT / 'sections.lock')).get('sections', {})
 except Exception: pass
