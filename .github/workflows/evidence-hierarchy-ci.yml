@@ -26,17 +26,21 @@ jobs:
           node-version: 20
       - name: Python syntax
         run: |
-          python -m py_compile tools/build_db.py tools/db_export.py tools/section_dbs.py tools/evidence_observations.py tools/site_consolidations.py tools/test_evidence_hierarchy.py tools/site.py tools/agent_lint.py
+          python -m py_compile tools/build_db.py tools/db_export.py tools/section_dbs.py tools/evidence_observations.py tools/site_consolidations.py tools/test_evidence_hierarchy.py tools/test_parcel_stories.py tools/site.py tools/agent_lint.py
       - name: JavaScript syntax
         run: |
           node --check web/_cedwyn/cat.js
           node --check web/_cedwyn/evidence-browser.js
           node --check web/_cedwyn/agent-tools.js
+          node --check web/_cedwyn/parcel-panel.js
           node --check web/_cedwyn/ghf/basecamp.js
       - name: Structured data validity
         run: |
           python -m json.tool data/artifact-assessments.json > /dev/null
           python -m json.tool data/observations.json > /dev/null
           python -m json.tool data/site-areas.json > /dev/null
+          python -m json.tool data/parcel-stories.json > /dev/null
       - name: Section database and hierarchy tests
-        run: python tools/test_evidence_hierarchy.py
+        run: |
+          python tools/test_evidence_hierarchy.py
+          python tools/test_parcel_stories.py
