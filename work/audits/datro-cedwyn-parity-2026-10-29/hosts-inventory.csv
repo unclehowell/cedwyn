@@ -1,0 +1,5 @@
+hostname,discovery_basis,source_branch_or_location,observed_value,verification_status,notes
+"datro.bucklerfamily.estate","source index.html canonical URL and host variable","gh-pages: index.html","https://datro.bucklerfamily.estate/","UNCERTAIN","Conflicts with gh-pages CNAME value world.datro.xyz; verify current deployment and intended host mapping before any parity judgement."
+"world.datro.xyz","CNAME file","gh-pages: CNAME","world.datro.xyz","EXCLUDED_AS_OBSOLETE_HOST","Repository-level observation retained for provenance only; obsolete datro.xyz/datro.world host family is not an authoritative current content source."
+"datro.xyz","CNAME file","gui: CNAME","datro.xyz","EXCLUDED_AS_OBSOLETE_HOST","Repository branch observation only; do not use the obsolete live datro.xyz site as the parity source."
+"*.datro.bucklerfamily.estate","user-defined scope pattern","Not yet proven as wildcard/DNS deployment","Not yet verified","UNCERTAIN","Expand into individual real hostnames only when supported by repo manifests, live DNS/deployment config, app registry or links; do not assume wildcard means all guessed hosts exist."
