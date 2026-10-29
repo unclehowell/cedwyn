@@ -37,15 +37,15 @@ def run(dist):
         # from the hero to the end of the main content, without duplicating the copy.
         if 'id="digital-estate-books"' not in t:
             m = re.search(
-                r'(<p>The digital estate’s records as books you can keep:.*?</p>\\s*'
-                r'<div class="sl-actions">.*?Buy all four.*?</div>\\s*'
-                r'<p class="eb-proof"[^>]*>.*?Cardiff Times, 16 July 1904\\..*?</p>)',
+                r'(<p>The digital estate’s records as books you can keep:.*?</p>\s*'
+                r'<div class="sl-actions">.*?Buy all four.*?</div>\s*'
+                r'<p class="eb-proof"[^>]*>.*?Cardiff Times, 16 July 1904\..*?</p>)',
                 t, flags=re.S)
             if m:
                 pitch = m.group(1)
                 t = t[:m.start()] + t[m.end():]
                 pitch_section = ('<section class="sl-band eb-about" id="digital-estate-books" '
-                                 'aria-label="Digital estate books">\\n' + pitch + '\\n</section>\\n')
+                                 'aria-label="Digital estate books">\n' + pitch + '\n</section>\n')
                 at = t.rfind('</main>')
                 if at >= 0:
                     t = t[:at] + pitch_section + t[at:]
