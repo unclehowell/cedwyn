@@ -10,24 +10,24 @@
    Unlock: the checkout returns to /documentary/?unlock=<checkout session id>; the version bought is kept on this device. */
 (function () {
   "use strict";
-  var GO = "/wayback/go/?u=https%3A%2F%2Fbuy.stripe.com%2FaFa8wQ4xJfyLbCAaAL6Zy0I", PRICE = "£4.99", FREE_FRAMES = [1];
+  var GO = "/wayback/go/?u=https%3A%2F%2Fbuy.stripe.com%2FaFa8wQ4xJfyLbCAaAL6Zy0I", PRICE = "£4.99", FREE_FRAMES = [1, 2];   // 29 Oct 2026: Scene 2 is free too, at the producer's word
   var REPO = "unclehowell/cedwyn-movie", RAW = "https:" + "/" + "/" + ["raw", "githubusercontent", "com"].join(".") + "/" + REPO + "/main/";
   var T = {
     en: {ver: "Version", latest: "latest", free: "free", buy: "Buy", lic_ok: "I agree to the licence terms", lic: "licence terms",
       paid_note: "This version adds the newest scenes. One checkout opens them on this device, under a personal viewing licence.",
-      free_note: "The first cut, free for everyone. It plays by default.",
+      free_note: "Scenes 1 and 2, free for everyone. They play by default.",
       member: "Included with your Academy membership.", up: "Academy members get the latest scenes included · £49.99 a month", tick: "Tick the box to agree to the licence terms first.",
       thanks: "Thank you. This version is now open on this device.", locked: "Licence · £4.99",
       scenes: "Scenes", scene: "Scene", released: "released", vtab: "Page versions", v: "Version", d: "Date", c: "Change", all: "See all"},
     cy: {ver: "Fersiwn", latest: "diweddaraf", free: "am ddim", buy: "Prynu", lic_ok: "Rwy'n cytuno â thelerau'r drwydded", lic: "telerau'r drwydded",
       paid_note: "Mae'r fersiwn hon yn ychwanegu'r golygfeydd diweddaraf. Mae un taliad yn eu hagor ar y ddyfais hon, dan drwydded wylio bersonol.",
-      free_note: "Y toriad cyntaf, am ddim i bawb. Mae'n chwarae yn ddiofyn.",
+      free_note: "Golygfeydd 1 a 2, am ddim i bawb. Maen nhw'n chwarae yn ddiofyn.",
       member: "Wedi'i gynnwys yn eich aelodaeth o'r Academi.", up: "Mae aelodau'r Academi yn cael y golygfeydd diweddaraf wedi'u cynnwys · £49.99 y mis", tick: "Ticiwch y blwch i gytuno â thelerau'r drwydded yn gyntaf.",
       thanks: "Diolch. Mae'r fersiwn hon bellach ar agor ar y ddyfais hon.", locked: "Trwydded · £4.99",
       scenes: "Golygfeydd", scene: "Golygfa", released: "rhyddhawyd", vtab: "Fersiynau'r dudalen", v: "Fersiwn", d: "Dyddiad", c: "Newid", all: "Gweld y cyfan"},
     es: {ver: "Versión", latest: "la más reciente", free: "gratis", buy: "Comprar", lic_ok: "Acepto los términos de la licencia", lic: "términos de la licencia",
       paid_note: "Esta versión añade las escenas más recientes. Un solo pago las abre en este dispositivo, con una licencia de visionado personal.",
-      free_note: "El primer montaje, gratis para todos. Se reproduce por defecto.",
+      free_note: "Escenas 1 y 2, gratis para todos. Se reproducen por defecto.",
       member: "Incluido en su membresía de la Academia.", up: "Los miembros de la Academia tienen incluidas las escenas más recientes · £49,99 al mes", tick: "Marque la casilla para aceptar primero los términos de la licencia.",
       thanks: "Gracias. Esta versión ya está abierta en este dispositivo.", locked: "Licencia · £4,99",
       scenes: "Escenas", scene: "Escena", released: "publicada", vtab: "Versiones de la página", v: "Versión", d: "Fecha", c: "Cambio", all: "Ver todo"}
@@ -90,7 +90,7 @@
     $("cd-ver").hidden = false; changed();
     askMember().then(function (m) { if (m) changed(); });
   }
-  window.CedwynDoc = G;
+  G.free = FREE_FRAMES; window.CedwynDoc = G;
   document.addEventListener("DOMContentLoaded", function () {
     var s = $("cd-v"); if (!s) return;
     s.addEventListener("change", function () { G.sel = s.value; ls("cedwyn-doc-sel", G.sel); $("cd-ok").checked = false; changed(); });
