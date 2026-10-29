@@ -187,7 +187,12 @@
     s.textContent = '#cedwyn-pill{position:fixed;left:8px;bottom:8px;z-index:2147483000;display:flex;gap:4px;opacity:.72;font:600 13px/1 -apple-system,Segoe UI,Roboto,sans-serif}#cedwyn-pill:hover{opacity:1}#cedwyn-pill a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:15px;background:#14141c;color:#fca;text-decoration:none;border:1px solid #fca;box-shadow:0 1px 4px rgba(0,0,0,.3)}@media print{#cedwyn-pill{display:none}}';
     document.head.appendChild(s); document.body.appendChild(d);
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { watch(); pill(); }); else { watch(); pill(); }
+  function parcelPanelScript() {
+    if (document.querySelector('script[data-cedwyn-parcel-panel]')) return;
+    var s = document.createElement('script'); s.src = '/_cedwyn/parcel-panel.js?v=1'; s.defer = true;
+    s.setAttribute('data-cedwyn-parcel-panel', '1'); document.head.appendChild(s);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { watch(); pill(); parcelPanelScript(); }); else { watch(); pill(); parcelPanelScript(); }
   // Unsubstantiated text (Sion, 03:07 GMT 26 Oct 2026): .unsub = smaller italic, one en/cy/es legend per page (tools/unsub.py) - Cedwyn editors
   (function () {
     var LG = { en: "Small italic text = not yet backed by a record in this archive.", cy: "Testun italig bach = heb ei ategu eto gan gofnod yn yr archif hon.", es: "Texto pequeño en cursiva = aún sin respaldo de un documento en este archivo." };

@@ -1,6 +1,6 @@
 # Work board
 
-Step 3 of 3. **75 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-29 18:41 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
+Step 3 of 3. **99 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-29 22:42 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
 
 ## Find a missing record (53)
 
@@ -298,7 +298,108 @@ Step 3 of 3. **75 open jobs**, regenerated every academy cycle from real gaps (l
   *Section:* ebooks · *Done when:* A draft (PDF and EPUB) built from cited material already on Cedwyn, every fact traceable to a catalogue record, passing the agent lint. Publishing and price are decided by the project lead.
   *Inputs:* Waits for the information-request matrix; the programme office e-book pipeline (/projects/)
 
-## Recently closed (2)
+## parcel-research (11)
 
-- J-3F4A24 · 2 broken internal link(s) on /fb/ (closed 2026-10-29)
-- J-4AFA9D · 5 broken internal link(s) on /csscpsg/ (closed 2026-10-29)
+- **J-F41E1E** · Parcels: match the 1824 Bute survey plan 19 to the 1841 tithe, field by field  
+  *Section:* research · *Done when:* A concordance (1824 parcel no., name, acreage -> 1841 tithe no. or none, with the basis) covering every plan-19 parcel, totals reconciled or the difference explained; or the exact item that must be copied, with what it would settle.
+  *Inputs:* Glamorgan Archives catalogue DB/E/1 (plan 19) and DB/E/2 (terrier); read via catalogue search or archived captures only; NLW D219; NLW tithe apportionment 4542756 and map 4622411; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-B206D1** · Parcels: OS 1:2500 field numbers for the 36 tithe parcels (overlay on Glamorgan XLVII.6, 1878)  
+  *Section:* research · *Done when:* A 36-row table (tithe no. -> OS sheet, edition, field no(s)., OS acreage, confidence) with the control points used; splits and merges by 1878 stated.
+  *Inputs:* OS 25-inch County Series Glamorgan XLVII.6, 1st edition 1878 (and later editions); NLW tithe map 4622411; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-351020** · Parcels: title numbers for the HM Land Registry index polygons round Llandough church  
+  *Section:* research · *Done when:* Polygon id -> title number -> tithe parcels intersected, each with the date read. No purchases.
+  *Inputs:* HM Land Registry INSPIRE index polygons (Vale of Glamorgan, Cardiff); HM Land Registry free map search; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-193C0C** · Parcels: locate the plan of the 1916 tenancy of the whole farm and list its parcels  
+  *Section:* research · *Done when:* Repository, reference and date of the plan or schedule, with its tithe/OS parcels; or a dated not-found note listing every catalogue searched.
+  *Inputs:* Bute estate collections at Glamorgan Archives, NLW and Cardiff Central Library (catalogues); /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-8ECCFA** · Parcels: the 1926 Bute to Cardiff Corporation conveyance and the 1926 Penarth UDC tenancy near Lewis Road: which parcels  
+  *Section:* research · *Done when:* Deed reference(s) and the parcels per deed, or 'parcel not identified' with the plan that would identify it.
+  *Inputs:* NLW and Glamorgan Archives catalogues; DBDT123/6 (1926 tenancy plan); London Gazette and council minutes, 1926; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-9740A1** · Parcels: the schedule of the 25 Dec 1938 Bute / Mountjoy to Western Ground Rents conveyance, and whether the 1942 Leckwith Woods sale includes tithe 275-281  
+  *Section:* research · *Done when:* The schedule located with the parcels listed or excluded, or a dated not-found note; the 1942 question answered for tithe 275-281 or left open with what would settle it.
+  *Inputs:* 1965 contract recital (EV-0216); Belfast Telegraph 24 Dec 1938; Bute collections (NLW, Glamorgan Archives, Cardiff Central Library, Mount Stuart); Cardiff Corporation minutes 1942
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-1924BB** · Parcels: read the village green register entry VG41 (registered 16 Jun 1970) and tie the green to its parcel  
+  *Section:* research · *Done when:* Register entry cited (unit, date, area, plan description) and tied to tithe/OS parcel, or the exact sheet to request.
+  *Inputs:* Vale of Glamorgan commons and village green register (published extracts); Commons Registration Act 1965 records (catalogue); /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-EE5D54** · Marconi 1897: did the Lavernock / Flat Holm party (Post Office engineers) lodge at Great House, Llandough, and which military arm took part  
+  *Section:* research · *Done when:* Each source read with what it shows on lodging and on the military arm, cited, with a verdict per question (shown / not shown / contradicted) and the parcel tie (the house = tithe 209 group) or 'parcel not identified'.
+  *Inputs:* Marconi Archive (Bodleian) catalogue; IET Archives, Preece papers; BT Archives POST 30; Kemp notebooks
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-E0F9EF** · War Agricultural Executive Committee use of land at Llandough 1939-45, and any undertaking to return or resell land  
+  *Section:* research · *Done when:* Record references with what each shows and its parcel tie; the farm survey entry identified or its absence confirmed; any return or resale undertaking cited with what became of it, or marked not found with every source searched.
+  *Inputs:* TNA MAF 32 (National Farm Survey, Llandough parish) and MAF 73 maps; TNA MAF 80 (WAEC minutes); Glamorgan Archives WAEC records (catalogue); Hansard 1946-58 on requisitioned land
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-210A6B** · Which parcels were the 1958 'sites' let by Western Ground Rents (one used as a Penarth UDC tip) that drew a 'Welsh Crichel Down' objection at the county planning committee  
+  *Section:* research · *Done when:* Each 1958 site identified with its tithe/OS parcel and the record that shows it, or 'parcel not identified' with what would identify it. The phrase 'Chircwell Down' in earlier notes is Crichel Down (Dorset, 1954 affair), not a local place-name.
+  *Inputs:* Western Mail, 20 Nov 1958, p.7 (page image); Glamorgan County Council planning committee minutes, 19 Nov 1958; Penarth UDC minutes 1950s (tip site); /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-CC2B01** · The 1939 grazing agreement within the dated sequence of permissive-looking documents (~12-year intervals)  
+  *Section:* research · *Done when:* A dated table (date, document, parties by type, parcel(s), interval since the previous, legal effect) with what supports and what cuts against a regular pattern, each row sourced; labelled as analysis, not a finding.
+  *Inputs:* the chronology (/academy/MEMORY/chronology.md); DBDT123/7 (1939 plan); Limitation Act 1939; Real Property Limitation Acts 1833 and 1874; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+
+## parcel-review (1)
+
+- **J-49065B** · Parcels: review a proposed correction to the tithe numbers on wiki page 1097 (tithe 211 is an orchard; the wood is tithe 219; tithe 193 was Llandough Farm land in 1841)  
+  *Section:* research · *Done when:* Each figure checked against the apportionment and the review submitted as an issue quoting this job id. Never edit the wiki directly; the project lead applies wiki edits.
+  *Inputs:* NLW tithe apportionment 4542756; wiki page 1097 and its archived capture; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+
+## parcel-tagging (12)
+
+- **J-938E3F** · Tag evidence catalogue items EV-0001 to EV-0020 to their parcels  
+  *Section:* research · *Done when:* Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.
+  *Inputs:* evidence catalogue items EV-0001-EV-0020; each item's own record; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-6A3106** · Tag evidence catalogue items EV-0021 to EV-0040 to their parcels  
+  *Section:* research · *Done when:* Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.
+  *Inputs:* evidence catalogue items EV-0021-EV-0040; each item's own record; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-F93FDF** · Tag evidence catalogue items EV-0041 to EV-0060 to their parcels  
+  *Section:* research · *Done when:* Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.
+  *Inputs:* evidence catalogue items EV-0041-EV-0060; each item's own record; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-3152C4** · Tag evidence catalogue items EV-0061 to EV-0080 to their parcels  
+  *Section:* research · *Done when:* Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.
+  *Inputs:* evidence catalogue items EV-0061-EV-0080; each item's own record; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-D0AB5C** · Tag evidence catalogue items EV-0081 to EV-0100 to their parcels  
+  *Section:* research · *Done when:* Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.
+  *Inputs:* evidence catalogue items EV-0081-EV-0100; each item's own record; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-9363D0** · Tag evidence catalogue items EV-0101 to EV-0120 to their parcels  
+  *Section:* research · *Done when:* Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.
+  *Inputs:* evidence catalogue items EV-0101-EV-0120; each item's own record; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-E50417** · Tag evidence catalogue items EV-0121 to EV-0140 to their parcels  
+  *Section:* research · *Done when:* Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.
+  *Inputs:* evidence catalogue items EV-0121-EV-0140; each item's own record; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-160D3C** · Tag evidence catalogue items EV-0141 to EV-0160 to their parcels  
+  *Section:* research · *Done when:* Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.
+  *Inputs:* evidence catalogue items EV-0141-EV-0160; each item's own record; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-FC5A8D** · Tag evidence catalogue items EV-0161 to EV-0180 to their parcels  
+  *Section:* research · *Done when:* Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.
+  *Inputs:* evidence catalogue items EV-0161-EV-0180; each item's own record; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-B5CD07** · Tag evidence catalogue items EV-0181 to EV-0200 to their parcels  
+  *Section:* research · *Done when:* Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.
+  *Inputs:* evidence catalogue items EV-0181-EV-0200; each item's own record; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-66D5E9** · Tag evidence catalogue items EV-0201 to EV-0220 to their parcels  
+  *Section:* research · *Done when:* Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.
+  *Inputs:* evidence catalogue items EV-0201-EV-0220; each item's own record; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+- **J-4E91D3** · Tag evidence catalogue items EV-0221 to EV-0645 to their parcels  
+  *Section:* research · *Done when:* Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.
+  *Inputs:* evidence catalogue items EV-0221-EV-0645; each item's own record; /academy/MEMORY/parcels.json
+  *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
+

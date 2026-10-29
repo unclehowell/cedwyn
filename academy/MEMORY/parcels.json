@@ -1,0 +1,968 @@
+{
+ "schema": "cedwyn_parcels/v0.1.0",
+ "version": "0.1.0",
+ "updated": "2026-10-29",
+ "basis": "c.1841 tithe apportionment for the parishes of Llandough, Cogan and Leckwith (NLW 4542756; map 4622411, dated 1842)",
+ "holding": "Cydfin / Tŷ Mawr (Great House Farm): 36 tithe parcels, 30 in Llandough-juxta-Penarth parish (tithe 196-267) and 6 in Leckwith parish (tithe 275-281), 119a 2r 30p in all",
+ "rule": "Every record, finding, draft and edit about this land names the parcel(s) it concerns (tithe no., OS 1:2500 field no., HM Land Registry title no., or deed schedule item), or states 'parcel not identified' and what would identify it.",
+ "parcel_tie_levels": {
+  "named": "the record itself names this parcel",
+  "inferred": "tied by reasoning; the reason is given",
+  "not identified": "the record names no parcel; what would identify it is given"
+ },
+ "neighbouring": [
+  {
+   "id": "T193",
+   "parish": "Llandough-juxta-Penarth",
+   "use_1841": "Pasture",
+   "area_arp": "1a 2r 10p",
+   "occupier_1841": "Thomas Rees (Llandough Farm)",
+   "note": "not one of the 36; linked by some later accounts to the land of a 1939 grazing agreement (not checked)"
+  }
+ ],
+ "open_questions": [
+  "1824 plan 19 to 1841 field-level concordance (Glamorgan Archives DB/E/1, DB/E/2)",
+  "OS 1:2500 field numbers (Glamorgan XLVII.6, 1878) for all 36",
+  "title numbers for the HM Land Registry index polygons round Llandough church",
+  "plans of the 1916 tenancy, the 1926 Cardiff Corporation conveyance and the 1938 Western Ground Rents conveyance",
+  "the village green register sheet (VG41, registered 1970)"
+ ],
+ "parcels": [
+  {
+   "id": "T196",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 196,
+   "field_name": "Cottage & garden",
+   "use_1841": "Arable",
+   "area_arp": "38P",
+   "acres": 0.237,
+   "landowner_1841": "Revd James Evans (glebe of the rector of Llandough)",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z1 homestead by church",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T199",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 199,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "36P",
+   "acres": 0.225,
+   "landowner_1841": "Revd James Evans (glebe of the rector of Llandough)",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z1 homestead by church",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T208",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 208,
+   "field_name": null,
+   "use_1841": "Garden",
+   "area_arp": "30P",
+   "acres": 0.188,
+   "landowner_1841": "Revd James Evans (glebe of the rector of Llandough)",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z1 homestead by church",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T209",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 209,
+   "field_name": "Courtyard &c",
+   "use_1841": "Arable",
+   "area_arp": "3R 13P",
+   "acres": 0.831,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z1 homestead by church",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "high",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T211",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 211,
+   "field_name": null,
+   "use_1841": "Orchard",
+   "area_arp": "1A 3R 19P",
+   "acres": 1.869,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z1 homestead by church",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "high",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T215",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 215,
+   "field_name": null,
+   "use_1841": "Meadow",
+   "area_arp": "5A 2R 39P",
+   "acres": 5.744,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z2 Ely meadows",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "high",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T216",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 216,
+   "field_name": null,
+   "use_1841": "Meadow",
+   "area_arp": "7A 3R 10P",
+   "acres": 7.812,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z2 Ely meadows",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "high",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T217",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 217,
+   "field_name": null,
+   "use_1841": "Meadow",
+   "area_arp": "1A 3R 38P",
+   "acres": 1.988,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z2 Ely meadows",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "high",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T218",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 218,
+   "field_name": null,
+   "use_1841": "Meadow",
+   "area_arp": "3A 23P",
+   "acres": 3.144,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z2 Ely meadows",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "high",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T219",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 219,
+   "field_name": null,
+   "use_1841": "Wood",
+   "area_arp": "1A 3R 38P",
+   "acres": 1.988,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z1 homestead by church",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "high",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T220",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 220,
+   "field_name": null,
+   "use_1841": "Pasture",
+   "area_arp": "4A 2R 5P",
+   "acres": 4.531,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z1 homestead by church",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "high",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T221",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 221,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "3A 19P",
+   "acres": 3.119,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z4 scarp/hillside",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "high",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T222",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 222,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "2R 34P",
+   "acres": 0.713,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z4 scarp/hillside",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "high",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T223",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 223,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "8A 30P",
+   "acres": 8.188,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z4 scarp/hillside",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "high",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T245",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 245,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "4A 37P",
+   "acres": 4.231,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z5 south-west fields",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T246",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 246,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "4A 1R 36P",
+   "acres": 4.475,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z5 south-west fields",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T252",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 252,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "3A 6P",
+   "acres": 3.038,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z5 south-west fields",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T255",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 255,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "1A 2R 28P",
+   "acres": 1.675,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z5 south-west fields",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T256",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 256,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "3A 1R 23P",
+   "acres": 3.394,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z5 south-west fields",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T257",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 257,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "3A 1R 9P",
+   "acres": 3.306,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z5 south-west fields",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T258",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 258,
+   "field_name": null,
+   "use_1841": "Pasture",
+   "area_arp": "2R 9P",
+   "acres": 0.556,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z5 south-west fields",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T259",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 259,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "1A 21P",
+   "acres": 1.131,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z5 south-west fields",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T260",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 260,
+   "field_name": null,
+   "use_1841": "Pasture",
+   "area_arp": "6A 2R 10P",
+   "acres": 6.562,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z5 south-west fields",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T261",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 261,
+   "field_name": null,
+   "use_1841": "Pasture",
+   "area_arp": "2A 2R 19P",
+   "acres": 2.619,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z5 south-west fields",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T262",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 262,
+   "field_name": null,
+   "use_1841": "Meadow",
+   "area_arp": "1R 10P",
+   "acres": 0.312,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z4 scarp/hillside",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T263",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 263,
+   "field_name": null,
+   "use_1841": "Meadow",
+   "area_arp": "8A 34P",
+   "acres": 8.213,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z2 Ely meadows",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T264",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 264,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "2A 2R 26P",
+   "acres": 2.663,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z4 scarp/hillside",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T265",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 265,
+   "field_name": null,
+   "use_1841": "Pasture",
+   "area_arp": "1A 2R",
+   "acres": 1.5,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z4 scarp/hillside",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T266",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 266,
+   "field_name": null,
+   "use_1841": "Wood",
+   "area_arp": "16A 33P",
+   "acres": 16.206,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z3 northern wood band",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T267",
+   "parish": "Llandough-juxta-Penarth",
+   "tithe_no": 267,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "4A 1R 25P",
+   "acres": 4.406,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z4 scarp/hillside",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T275",
+   "parish": "Leckwith",
+   "tithe_no": 275,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "3R 16P",
+   "acres": 0.85,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z6 western fields by Wellspring",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T276",
+   "parish": "Leckwith",
+   "tithe_no": 276,
+   "field_name": null,
+   "use_1841": "Rough pasture",
+   "area_arp": "1A 15P",
+   "acres": 1.094,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z6 western fields by Wellspring",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T277",
+   "parish": "Leckwith",
+   "tithe_no": 277,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "3R 1P",
+   "acres": 0.756,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z6 western fields by Wellspring",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T278",
+   "parish": "Leckwith",
+   "tithe_no": 278,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "3A 1R 26P",
+   "acres": 3.413,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z6 western fields by Wellspring",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T279",
+   "parish": "Leckwith",
+   "tithe_no": 279,
+   "field_name": null,
+   "use_1841": "Arable",
+   "area_arp": "5A 2R 11P",
+   "acres": 5.569,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z6 western fields by Wellspring",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  },
+  {
+   "id": "T281",
+   "parish": "Leckwith",
+   "tithe_no": 281,
+   "field_name": null,
+   "use_1841": "Meadow",
+   "area_arp": "3A 23P",
+   "acres": 3.144,
+   "landowner_1841": "Marquess of Bute",
+   "occupier_1841": "John Williams",
+   "zone_1824_plan19": "Z6 western fields by Wellspring",
+   "zone_basis": "position on the 1824 Bute survey plan 19; field-level match not checked",
+   "os_1878_field_no": null,
+   "events": [
+    {
+     "date": "c.1841",
+     "event": "tithe apportionment entry",
+     "parcel_tie": "named"
+    }
+   ],
+   "confidence": "medium-high (index transcription)",
+   "sources": [
+    "NLW tithe apportionment 4542756 (parishes of Llandough, Cogan and Leckwith)",
+    "NLW tithe map 4622411"
+   ]
+  }
+ ]
+}

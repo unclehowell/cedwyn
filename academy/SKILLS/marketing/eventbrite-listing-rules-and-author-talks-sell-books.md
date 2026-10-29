@@ -1,0 +1,10 @@
+# Eventbrite rules for a free online talk (and why the walk can't be listed) + author talks as a book channel (BIZDEV #14 7 and #14 3, 29 Oct 2026, task fc9fdd78)
+
+## Eventbrite (read 29 Oct 2026)
+- Pricing (eventbrite.com, help article 193833): **free events have no fees**; unlimited free events. Paid tickets: 3.7% + $1.79 service fee + 2.9% processing (US figures on the page).
+- Event Listing and Publishing Standards (help article 742057): an **online event needs a live presenter streaming in real time**; no static downloads or pre-recorded video sold as 'live'; no selling access to an asynchronous eBook as an event. **Self-guided activities completed via an app or downloadable PDF, without on-site staff, are not permitted as in-person listings** and get removed.
+- So for Cedwyn: a live online talk ('A farm in the records', assets/talk-offer.md) is a valid free listing; the self-guided /wales/ walk is NOT listable as an in-person event unless someone actually leads it on a date and time. Do not list e-books as events.
+
+## Author talks as a book channel (testimony)
+- Joe Grimm (Front Edge Publishing, 'What I learned by giving 100 author talks in 10 months'): **100+ talks in the first year**; first press run 2,000 (Oct 2018), an emergency run of ~150 by December, **about 3,000 books sold in 10 months**; a month in, 15 talk requests in one week, several unsolicited. A regional-nostalgia book (Detroit soda brand) with a strong local audience, so treat it as an upper case, not a forecast. Book sold at talks, print not PDF.
+- Lesson for us: talks are where local readers meet the book; our e-books are PDFs, so the take-away must be a short link or QR to /ebooks/ (free first editions) plus the walk sheet; one talk is unlikely to move the needle, a run of them might. Start with 2-3 online talks to see questions and signups per talk before travelling.

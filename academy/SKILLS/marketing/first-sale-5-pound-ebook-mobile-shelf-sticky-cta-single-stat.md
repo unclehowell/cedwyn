@@ -1,0 +1,14 @@
+# First sale for a £4.99 PDF: one clear offer, one stat, a sticky Buy button (BIZDEV #12b 2, 29 Oct 2026, task fc9fdd78)
+
+## What the sources show (read 29 Oct 2026)
+- **Landing-page test study, 2026** (digitalapplied.com, "Landing Page Conversion: 2000 Pages Tested in 2026"; the vendor's own data, not checked by us): every test cleared 95% significance with 1,000+ sessions per variant. DTC e-commerce median conversion **2.3%** (B2B SaaS 4.1%). A **single-stat hero lifted +18%**; video heroes lost 7%. **Specific social proof** ("used by 8 of the Fortune 50") lifted **+22%**, a single testimonial +14%, a logo strip +8%; generic "trusted by thousands" did nothing. **Sticky-bottom CTA +11%**; adding a second above-the-fold CTA only +1%.
+- **A Gumroad e-book seller's own numbers** (behindrankings.com Gumroad review): **325+ copies, $14,000+** by Aug 2024 at $29.99-$32.99 an e-book; Gumroad keeps 10% (+ PayPal 2.9% + 30¢). Testimony from 2024, not 2026, so treat it as one data point on price, not on tactics.
+- **2026 blog advice** (inkfluenceai.com, "Sell ebooks on Etsy & Gumroad: 12 proven niches (2026)", search snippet only): start at a low price ($5-$7) to get the first 10-20 sales and reviews, then raise it. Matches our £4.99 per book.
+
+## How we apply it to Cedwyn
+1. **One stat as the hero of /ebooks/**: e.g. "1,987 pages of records on one Welsh farm" (the Evidence Archive's page count on the thank-you page) or "1824 to 1988, every record sourced". One line, no video. (Proposal for the sales-fix owner; QUEUE-after-framing.)
+2. **Sticky Buy bar on mobile** for the bundle or the page's main book: "All four · £19.96 · Buy" pinned to the bottom at 390 px. One bar, not a second hero button.
+3. **Specific proof only**: we have no buyers yet, so no testimonials. Use specific record proof instead ("a juror of the manor court for many years", Cardiff Times 1904; "plan 19, Cedfin or Ty Mawr", 1824), which the page already quotes once. Never "trusted by readers".
+4. **Keep £4.99** until the first 10 sales (matches the low-start advice); the Gumroad prices (£9.99/£31.99) are still the owner's open item.
+5. **Expectation check**: at the 2.3% DTC median, ~400 human-likely visits/day site-wide (kpi 29 Oct 20:31Z, an upper bound) should give a few sales a week if even a tenth reached /ebooks/ with intent. Zero after 7 days means intent or clarity is missing, not traffic alone; pairs with the 29 Oct card-clarity hypothesis (assets/ebooks-390-review-and-sales-hypothesis-2026-10-29.md).
+6. **Measure**: Buy clicks per /ebooks/ view (events endpoint after P-037/P-038) and paid Stripe sessions per 7 days; one change at a time.
