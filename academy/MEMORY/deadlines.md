@@ -13,6 +13,9 @@ Live tracking is on /dartboard/ (one lane per body). This list is refreshed each
 | 18 Nov 2026 | Llandough Community Council: confirmation of the 22 Oct draft minutes |
 | 13 Nov 2026 | Target date for the complaint to HM Land Registry's Independent Complaints Reviewer (hard limit about 25 Nov) |
 | 18 Nov 2026 | Crown Prosecution Service: FOI 14786 response due |
+| 25 Nov 2026 | National Library of Wales: FOI/2026/15 response due |
+| 14 Dec 2026 | Vale of Glamorgan Council: environmental information requests 00211721 and 00211722, extended response date |
+| overdue | The National Archives: information request response; chaser drafted for review |
 | open | Wales Office IR/26/16: whether to take it to the ICO (time limit not checked) |
 
 Rules: never chase before a deadline has passed; one email per body per day; read the whole thread and the body's dartboard lane before drafting the next step.

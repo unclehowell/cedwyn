@@ -1,0 +1,429 @@
+{
+ "schema": "cedwyn_areas/v1",
+ "source": "data/site-areas.json",
+ "order": "main menu reading order; previous/next wrap from the last area to the first",
+ "count": 36,
+ "areas": [
+  {
+   "id": "wiki",
+   "path": "/wiki/",
+   "title": "Legal Wiki & Evidence",
+   "cy": "Y Wici Cyfreithiol",
+   "es": "La Wiki Legal",
+   "group": "artifacts",
+   "aliases": [
+    "/nomenclature/",
+    "/records/"
+   ],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "docs",
+   "path": "/docs/",
+   "title": "Docs · Evidence Catalogue",
+   "cy": "Dogfennau · Y Catalog Tystiolaeth",
+   "es": "Documentos · El Catálogo de Pruebas",
+   "group": "artifacts",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "wayback",
+   "path": "/wayback/",
+   "title": "Wayback Vault",
+   "cy": "Claddgell Wayback",
+   "es": "La Bóveda Wayback",
+   "group": "artifacts",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "maps",
+   "path": "/maps/",
+   "title": "Map Room",
+   "cy": "Ystafell y Mapiau",
+   "es": "La Sala de Mapas",
+   "group": "artifacts",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "infographic",
+   "path": "/infographic/",
+   "title": "The Land Changing Hands",
+   "cy": "Y Tir yn Newid Dwylo",
+   "es": "La Tierra Cambia de Manos",
+   "group": "interactive",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "ebooks",
+   "path": "/ebooks/",
+   "title": "E-book Shelf",
+   "cy": "Y Silff E-lyfrau",
+   "es": "La Estantería de Libros",
+   "group": "story",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "story",
+   "path": "/story/",
+   "title": "The Story & Documentary",
+   "cy": "Y Stori",
+   "es": "La Historia",
+   "group": "story",
+   "aliases": [
+    "/documentary/"
+   ],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "thousand-cuts",
+   "path": "/thousand-cuts/",
+   "title": "1000 Cuts",
+   "cy": "Mil o Doriadau",
+   "es": "Mil Cortes",
+   "group": "story",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "fb",
+   "path": "/fb/",
+   "title": "Farm Album",
+   "cy": "Albwm y Fferm",
+   "es": "El Álbum de la Granja",
+   "group": "artifacts",
+   "aliases": [
+    "/fb2/"
+   ],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "arcade",
+   "path": "/arcade/",
+   "title": "Arcade",
+   "cy": "Oriel yr Ardd",
+   "es": "La Galería del Jardín",
+   "group": "interactive",
+   "aliases": [
+    "/cyberspace/",
+    "/nft-art/",
+    "/terrain/"
+   ],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "chess",
+   "path": "/chess/",
+   "title": "Chessboard",
+   "cy": "Y Bwrdd Gwyddbwyll",
+   "es": "El Tablero",
+   "group": "interactive",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "csscpsg",
+   "path": "/csscpsg/",
+   "title": "Grammar House",
+   "cy": "Tŷ’r Gramadeg (CSSCPSGP)",
+   "es": "La Casa de la Gramática (CSSCPSGP)",
+   "group": "interactive",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "courtdrills",
+   "path": "/courtdrills/",
+   "title": "Court Drills",
+   "cy": "Driliau’r Llys · Annhegwch Gweithdrefnol",
+   "es": "Simulacros Judiciales · Injusticia Procesal",
+   "group": "interactive",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "fcg",
+   "path": "/fcg/",
+   "title": "FCG · Security Clearance",
+   "cy": "FCG · Clirio Diogelwch",
+   "es": "FCG · Habilitación de Seguridad",
+   "group": "research",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "oldbill",
+   "path": "/oldbill/",
+   "title": "Old Bill · Who Gained, Who Lost",
+   "cy": "Hen Bil · Pwy Enillodd, Pwy Gollodd",
+   "es": "Old Bill · Quién Ganó, Quién Perdió",
+   "group": "story",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "accounts",
+   "path": "/accounts/",
+   "title": "Counting House",
+   "cy": "Y Tŷ Cyfrif",
+   "es": "La Casa de Cuentas",
+   "group": "research",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "authorities",
+   "path": "/authorities/",
+   "title": "Public Authorities & Council Chamber",
+   "cy": "Awdurdodau Cyhoeddus",
+   "es": "Autoridades Públicas",
+   "group": "research",
+   "aliases": [
+    "/meeting/"
+   ],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "wdtk",
+   "path": "/wdtk/",
+   "title": "FOI Requests",
+   "cy": "Ceisiadau Rhyddid Gwybodaeth (WhatDoTheyKnow)",
+   "es": "Solicitudes de información (WhatDoTheyKnow)",
+   "group": "research",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "review",
+   "path": "/review/",
+   "title": "Independent Review",
+   "cy": "Adolygiad Annibynnol",
+   "es": "Revisión Independiente",
+   "group": "research",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "research",
+   "path": "/research/",
+   "title": "Research Library",
+   "cy": "Y Llyfrgell Ymchwil",
+   "es": "La Biblioteca de Investigación",
+   "group": "research",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "qa",
+   "path": "/qa/",
+   "title": "Q&A Hall",
+   "cy": "Neuadd Holi ac Ateb",
+   "es": "La Sala de Preguntas",
+   "group": "story",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "projects",
+   "path": "/projects/",
+   "title": "Project Office",
+   "cy": "Swyddfa’r Prosiect",
+   "es": "La Oficina de Proyectos",
+   "group": "research",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "app",
+   "path": "/app/",
+   "title": "Case Office",
+   "cy": "Swyddfa’r Achos",
+   "es": "La Oficina del Caso",
+   "group": "interactive",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "chat",
+   "path": "/chat/",
+   "title": "Ask the Archive",
+   "cy": "Holi’r Archif",
+   "es": "Pregunte al Archivo",
+   "group": "interactive",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "watchtower",
+   "path": "/watchtower/",
+   "title": "Watchtower",
+   "cy": "Y Tŵr Gwylio",
+   "es": "La Atalaya",
+   "group": "research",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "email",
+   "path": "/email/",
+   "title": "Post Office & Calendar",
+   "cy": "Swyddfa’r Post",
+   "es": "La Oficina de Correos",
+   "group": "research",
+   "aliases": [
+    "/emails/"
+   ],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "dartboard",
+   "path": "/dartboard/",
+   "title": "Disclosure Dartboard",
+   "cy": "Bwrdd Dartiau Datgelu",
+   "es": "La Diana de la Divulgación",
+   "group": "interactive",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "estate",
+   "path": "/estate/",
+   "title": "Cedwyn Estate",
+   "cy": "Ystâd Cedwyn",
+   "es": "Finca Cedwyn",
+   "group": "interactive",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "directory",
+   "path": "/directory/",
+   "title": "Cedwyn Directory",
+   "cy": "Tudalennau Cedwyn",
+   "es": "Páginas Cedwyn",
+   "group": "interactive",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "patagonia",
+   "path": "/patagonia/",
+   "title": "Great House Farm II · Patagonia",
+   "cy": "Great House Farm II · Amgueddfa Patagonia",
+   "es": "Great House Farm II · Museo de la Patagonia",
+   "group": "artifacts",
+   "aliases": [],
+   "skip_in": [
+    "wales"
+   ],
+   "built": true
+  },
+  {
+   "id": "wales",
+   "path": "/wales/",
+   "title": "Virtual Tour · Wales",
+   "cy": "Taith Rithwir · Cymru",
+   "es": "Visita Virtual · Gales",
+   "group": "interactive",
+   "aliases": [],
+   "skip_in": [
+    "patagonia"
+   ],
+   "built": true
+  },
+  {
+   "id": "shop",
+   "path": "/shop/",
+   "title": "Gift Shop & Marketplace",
+   "cy": "Siop Anrhegion a Marchnad",
+   "es": "Tienda y Mercado",
+   "group": "story",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "familytree",
+   "path": "/familytree/",
+   "title": "Family Tree",
+   "cy": "Y goeden deulu",
+   "es": "El árbol genealógico",
+   "group": "story",
+   "aliases": [],
+   "skip_in": [
+    "patagonia"
+   ],
+   "built": true
+  },
+  {
+   "id": "kissed-frogs",
+   "path": "/kissed-frogs/",
+   "title": "Kissed Frogs",
+   "cy": "Brogaod a gusanwyd",
+   "es": "Ranas besadas",
+   "group": "research",
+   "aliases": [],
+   "skip_in": [],
+   "built": true
+  },
+  {
+   "id": "whattheydontsay",
+   "path": "/whattheydontsay/",
+   "title": "What They Don't Say",
+   "cy": "Yr Hyn Nad Ydynt yn ei Ddweud",
+   "es": "Lo que no dicen",
+   "group": "research",
+   "aliases": [],
+   "skip_in": [
+    "patagonia"
+   ],
+   "built": true
+  },
+  {
+   "id": "blog",
+   "path": "/blog/",
+   "title": "Blog",
+   "cy": "Blog",
+   "es": "Blog",
+   "group": "research",
+   "aliases": [],
+   "skip_in": [
+    "patagonia"
+   ],
+   "built": true
+  }
+ ]
+}

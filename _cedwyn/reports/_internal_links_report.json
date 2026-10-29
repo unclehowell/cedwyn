@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8718,
+  "pages_scanned": 8752,
   "references_checked": {
-    "resource": 191801,
-    "nav": 331688
+    "resource": 192042,
+    "nav": 333021
   },
-  "database_backed_paths": 7092,
-  "unique_missing_destinations": 4869,
-  "missing_references": 31867,
-  "missing_navigation_references": 16068,
-  "missing_resource_references": 15799,
+  "database_backed_paths": 7082,
+  "unique_missing_destinations": 4894,
+  "missing_references": 31979,
+  "missing_navigation_references": 16154,
+  "missing_resource_references": 15825,
   "unique_broken_fragments": 1810,
   "broken_fragment_references": 3141,
   "form_or_endpoint_actions_not_checked": {
@@ -343,8 +343,13 @@
     {
       "kind": "nav",
       "path": "/argentina/thousand-cuts/",
-      "references": 48,
+      "references": 49,
       "examples": [
+        {
+          "from": "/",
+          "attribute": "a[href]",
+          "url": "/argentina/thousand-cuts/"
+        },
         {
           "from": "/argentina/",
           "attribute": "a[href]",
@@ -359,11 +364,6 @@
           "from": "/caso/",
           "attribute": "a[href]",
           "url": "/argentina/thousand-cuts/#c02"
-        },
-        {
-          "from": "/caso/",
-          "attribute": "a[href]",
-          "url": "/argentina/thousand-cuts/#c06"
         }
       ]
     },

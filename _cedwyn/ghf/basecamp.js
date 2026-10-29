@@ -294,7 +294,7 @@
     var p = window.__cedwynLP || location.pathname;
     if (CPM && !window.__cedwynLP) p = location.pathname.slice(CPM[1].length + 1) || "/";
     var seg = (p.split("/")[1] || "").toLowerCase();
-    if (!CSEC && CEDWYN_SMAP && CEDWYN_SMAP[seg]) seg = CEDWYN_SMAP[seg];
+    if (CEDWYN_SMAP && CEDWYN_SMAP[seg]) seg = CEDWYN_SMAP[seg];   // 29 Oct 2026: merged source themes resolve to their area inside a section too - Cedwyn editors
     if (seg === "docs" && /^\/docs\/ghf_legalwiki(\/|$)/i.test(p)) seg = "wiki";   // 27 Oct 2026: the Legal Wiki document collection opens with The Legal Wiki selected (1 of 42) - 
     if (CSEC && (!seg || CFULL.indexOf(seg) < 0)) return CSEC === "wales" ? "wales" : "patagonia";
     if (!seg && location.hostname === "cedwyn.bucklerfamily.estate") seg = "estate";
@@ -319,6 +319,13 @@
     function nm(st) { var l = lg(), n0 = (l !== "en" && st[l]) || st.t; return (CAMAP && document.documentElement.getAttribute("data-cedwyn-sec") === "argentina" && CAMAP[n0]) || n0; }
     function find() {
       var i, j, best = -1, bl = -1, c, ps;
+      if (AREAS) {   // /areas.json loaded: the longest matching path prefix wins (an area's path or a merged source theme's)
+        var pp = (window.__cedwynLP || (CPM ? (location.pathname.slice(CPM[1].length + 1) || "/") : location.pathname)).toLowerCase();
+        if (/^\/docs\/ghf_legalwiki(\/|$)/.test(pp)) pp = "/wiki/";
+        for (i = 0; i < CHAIN.length; i++) { ps = CHAIN[i].p || []; for (j = 0; j < ps.length; j++) if ((pp + (pp.slice(-1) === "/" ? "" : "/")).indexOf(ps[j]) === 0 && ps[j].length > bl) { best = i; bl = ps[j].length; } }
+        if (best < 0) { var home = CSEC ? (CSEC === "wales" ? "wales" : "patagonia") : (pp === "/" ? "estate" : ""); for (i = 0; i < CHAIN.length; i++) if (CHAIN[i].id === home) best = i; }
+        return best;
+      }
       if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) {
         var seg = cedSeg();
         for (i = 0; i < CHAIN.length; i++) if (CHAIN[i].id === seg) return i;
@@ -349,6 +356,32 @@
       chainBar.appendChild(btn("ghf-v2-btn ghf-v2-bgr", IC_MENU, s.menu, openDrawer));
       chainBar.setAttribute("aria-label", k >= 0 ? nm(CHAIN[k]) : host);
       if (fsx) { fsx.setAttribute("aria-label", s.fsx); fsx.title = s.fsx; bgx.setAttribute("aria-label", s.menu); bgx.title = s.menu; }
+    }
+    // 29 Oct 2026: the ‹ › and the menu read ONE central ordered list, /areas.json, which tools/site.py writes on every build
+    // from data/site-areas.json (a new area there appears in every theme and section on the next build; nothing hand-kept).
+    // The list baked in above only paints the first frame and covers a failed fetch. Wrap-around: last -> first. Cached
+    // per tab for 10 minutes. - Cedwyn editors
+    var AREAS = false;
+    function useAreas(d) {
+      var list = (d.areas || []).filter(function (a) { return a && a.path && a.built !== false && (!CHALF || (a.skip_in || []).indexOf(CHALF) < 0); });
+      if (list.length < 2) return;
+      var by = {}; CHAIN.forEach(function (c) { by[c.id] = c; });
+      CHAIN = list.map(function (a) { var o = by[a.id] || {}, r = {}, k; for (k in o) r[k] = o[k];
+        r.id = a.id; r.t = a.title || o.t || a.id; if (a.cy) r.cy = a.cy; if (a.es) r.es = a.es; r.g = a.group || o.g || "";
+        r.u = a.id === "wales" ? "/wales/" : CSECP + a.path; r.p = [a.path].concat(a.aliases || []); r.h = []; return r; });
+      AREAS = true; fillChain();
+      if (de.classList.contains("ghf-v2-open")) fillDrawer();
+    }
+    function areasNav() {
+      if (location.hostname !== "cedwyn.bucklerfamily.estate" || !window.fetch) return;
+      var KEY = "cdw-areas-v1", c = null;
+      try { c = JSON.parse(sessionStorage.getItem(KEY) || "null"); } catch (e) { c = null; }
+      if (c && c.d && c.at > Date.now() - 6e5) { useAreas(c.d); return; }
+      fetch("/areas.json", { credentials: "omit" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+        if (!d || !d.areas) return;
+        try { sessionStorage.setItem(KEY, JSON.stringify({ at: Date.now(), d: d })); } catch (e) {}
+        useAreas(d);
+      }).catch(function () {});
     }
     // ---- full screen: the browser's Fullscreen API where it exists, plus a class that hides bars 1–3 (all iOS Safari gets) ----
     function isFs() { return de.classList.contains("ghf-fs"); }
@@ -814,7 +847,7 @@
       fsx = btn("ghf-v2-btn ghf-v2-fsx ghf-ui", IC_FSX, L[lg()].fsx, toggleFs); bgx = btn("ghf-v2-btn ghf-v2-bgx ghf-ui", IC_MENU, L[lg()].menu, openDrawer);
       document.body.appendChild(fsx); document.body.appendChild(bgx);
       de.classList.add("ghf-v2-on"); de.classList.remove("ghf-v2-pre"); if (/^(maps|chess)\./.test(host)) de.classList.add("ghf-keep-type");
-      fillChain(); fillUp(); locs(); moveLang(); try { funnel(); } catch (e) {}
+      fillChain(); fillUp(); locs(); moveLang(); try { funnel(); } catch (e) {} try { areasNav(); } catch (e) {}
       var mo = new MutationObserver(moveLang); mo.observe(document.body, { childList: true, subtree: true }); setTimeout(function () { mo.disconnect(); }, 15000);
       document.addEventListener("ghf-lang-change", function () { fillChain(); fillUp(); if (de.classList.contains("ghf-v2-open")) fillDrawer(); });
       pins();

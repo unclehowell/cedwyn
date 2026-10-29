@@ -2,74 +2,85 @@
  "checked": {
   "fcg": {
    "files_now": 147,
-   "files_previous_build": 153,
+   "files_previous_build": 156,
    "home": true
   },
   "research": {
-   "files_now": 1429,
-   "files_previous_build": 1419,
+   "files_now": 35,
+   "files_previous_build": 1452,
    "home": true
   },
   "app": {
    "files_now": 19,
-   "files_previous_build": 25,
+   "files_previous_build": 27,
    "home": true
   },
   "chat": {
    "files_now": 5,
-   "files_previous_build": 6,
+   "files_previous_build": 8,
    "home": true
   },
   "email": {
    "files_now": 1651,
-   "files_previous_build": 1649,
+   "files_previous_build": 1654,
    "home": true
   },
   "dartboard": {
    "files_now": 143,
-   "files_previous_build": 73,
+   "files_previous_build": 75,
    "home": true
   },
   "estate": {
    "files_now": 1,
-   "files_previous_build": 1,
+   "files_previous_build": 3,
    "home": true
   },
   "patagonia": {
    "files_now": 1,
-   "files_previous_build": 1,
+   "files_previous_build": 3,
    "home": true
   },
   "wales": {
    "files_now": 3,
-   "files_previous_build": 4,
+   "files_previous_build": 6,
    "home": true
   },
   "terrain": {
    "files_now": 6,
-   "files_previous_build": 10,
+   "files_previous_build": 12,
    "home": true
   },
   "cyberspace": {
    "files_now": 1,
-   "files_previous_build": 1,
+   "files_previous_build": 3,
    "home": true
   }
  },
  "restored": {
-  "app": 6,
-  "wales": 1,
-  "terrain": 4
+  "research": 1422,
+  "app": 8,
+  "chat": 3,
+  "estate": 2,
+  "patagonia": 2,
+  "wales": 3,
+  "terrain": 6,
+  "cyberspace": 2
  },
  "refused": [
+  "research",
   "app",
+  "chat",
+  "estate",
+  "patagonia",
   "wales",
-  "terrain"
+  "terrain",
+  "cyberspace"
  ],
  "fresh_versioned_copy_won": [
   "app/agent/webmcp.js",
+  "chat/agent/webmcp.js",
   "terrain/app.js",
   "terrain/style.css"
  ],
- "rewords_on_kept": 0
+ "rewords_on_kept": 134
 }
