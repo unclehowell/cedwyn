@@ -35,7 +35,22 @@ bc = DIST / '_cedwyn' / 'ghf' / 'basecamp.js'
 # chose Wales never steps to /patagonia/, a visitor who chose Patagonia never steps to the Wales tour
 _HV = json.load(open(ROOT / 'data' / 'halves.json')).get('groups', {}) if (ROOT / 'data' / 'halves.json').exists() else {}
 _XH = {'wales': set(_HV.get('wales_exclude', [])), 'patagonia': set(_HV.get('argentina_exclude', []))}
-chain = [[t['id'], t.get('title') or t['id'], t.get('group') or CFG.get('default_group') or '', t.get('cy') or '', t.get('es') or '', [h for h in ('wales', 'patagonia') if t['id'] in _XH[h]]] for t in CFG['themes']]   # cy/es: the menu names each theme in the visitor's language
+# Navigation uses the 36 public-facing areas; the underlying 44 source themes retain their routes and databases.
+_area_doc = json.load(open(ROOT / 'data' / 'site-areas.json'))
+_source_by_id = {t['id']: t for t in CFG['themes']}
+_areas = _area_doc.get('areas', [])
+assert len(_areas) == 36 and len({a['id'] for a in _areas}) == 36, 'site area registry must define 36 unique public areas'
+chain = []
+for _area in _areas:
+    _sources = _area.get('source_themes', [])
+    _primary = _source_by_id.get(_sources[0], {}) if _sources else {}
+    chain.append([
+        _area['id'], _area.get('title') or _area['id'],
+        _primary.get('group') or CFG.get('default_group') or '',
+        _area.get('cy') or _primary.get('cy') or '',
+        _area.get('es') or _primary.get('es') or '',
+        [h for h in ('wales', 'patagonia') if _sources and all(src in _XH[h] for src in _sources)]
+    ])
 # 25 Oct 2026: the side menu's group dropdowns read the same groups as the oak board (themes.json "groups") - Sion's Tab agent
 menu_groups = [{'id': g['id'], 't': g.get('title') or g['id'], 'cy': g.get('cy', ''), 'es': g.get('es', '')} for g in CFG.get('groups', [])]
 assert len({c[0] for c in chain}) == len(chain), 'duplicate theme id in themes.json'
@@ -58,9 +73,25 @@ json.dump(caps, open(go / 'captures.json', 'w'), separators=(',', ':'))
 # landing page (25 Oct 2026): the oak board - three ways in (Wales, Argentina, Cyberspace), each opening the same
 # submenu of every theme in its group; groups, order and titles come from themes.json alone (tools/home.py)
 sys.path.insert(0, str(ROOT / 'tools')); import home
-(DIST / 'index.html').write_text(home.render(CFG))
-_g, _stray = home.groups_of(CFG)
-assert sum(len(ts) for _, ts in _g) == len(CFG['themes']), 'home: a theme is missing from the groups'
+# Keep the estate's shared wooden-board design, but make it a true 36-area directory.
+_home_cfg = dict(CFG)
+_home_cfg['themes'] = []
+for _area in _areas:
+    _sources = _area.get('source_themes', [])
+    _primary = _source_by_id.get(_sources[0], {}) if _sources else {}
+    _home_cfg['themes'].append({
+        'id': _area['id'],
+        'title': _area.get('title') or _area['id'],
+        'group': _primary.get('group') or CFG.get('default_group') or '',
+        'cy': _area.get('cy') or _primary.get('cy') or '',
+        'es': _area.get('es') or _primary.get('es') or ''
+    })
+_home_cfg['home'] = dict(CFG.get('home') or {})
+_home_cfg['home']['layers_note'] = 'Whichever way you come in, browse the same {n} visitor-facing page areas, grouped by subject.'
+_home_cfg['home']['description'] = 'The Cedwyn Estate archive: {n} visitor-facing page areas for records, research, games and stories.'
+(DIST / 'index.html').write_text(home.render(_home_cfg))
+_g, _stray = home.groups_of(_home_cfg)
+assert sum(len(ts) for _, ts in _g) == len(_areas) == 36, 'home: a visitor area is missing from the groups'
 
 (DIST / '404.html').write_text('''<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#14141c"><title>Page not found · Cedwyn</title>
 <style>
