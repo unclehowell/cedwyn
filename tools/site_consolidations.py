@@ -69,7 +69,7 @@ def render_area_index(doc):
         '<div class="nav">' + a("/wiki/reference/", "Wiki references: names and dictionary") + a("/arcade/", "Arcade: gallery, games and 3D world") + '</div>' +
         '<section class="grid">' + ''.join(cards) + '</section>'
     )
-    return shell("36 page areas", "A transparent index that groups 44 source themes into 36 visitor-facing areas and records parcel matching as unverified.", body)
+    return shell("36 page areas", "A transparent index that groups 44 source themes into 36 visitor-facing areas and records parcel matching as pending source review.", body)
 
 def render_tabs(title, intro, tabs):
     tab_html = ''.join('<button type="button" data-src="' + esc(src) + '" data-label="' + esc(label) + '" aria-pressed="' + ('true' if i == 0 else 'false') + '">' + esc(label) + '</button>' for i, (label, src) in enumerate(tabs))
