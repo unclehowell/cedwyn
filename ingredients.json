@@ -1,6 +1,6 @@
 {
  "rule": "Cedwyn editorial rule (25 Oct 2026): ingredients, not conclusions. Build-time rewording of conclusion sentences in mirrored theme text; cedwyn copy only, the datro sources are untouched. Each entry: theme, file (relative to the theme root), find (exact), replace, why. A find that is not present is reported, never fatal. — Sion's Tab agent",
- "version": "1.5.0",
+ "version": "1.6.0",
  "rewords": [
   {
    "theme": "maps",
@@ -2154,6 +2154,96 @@
    "why": "Empty heading on /documentary/ (was /movie/ until 27 Oct 2026) (accessibility; root steer 12:25); the player still sets its own title when a door plays.",
    "class": "a11y",
    "audit_point": "framing-26oct:A02"
+  },
+  {
+   "theme": "research",
+   "file": "evidence/ev-0645-local-history-book-llandough-penarth-pp64-65/index.html",
+   "find": "<td>Printed local-history book (title, author and publisher to be identified)</td>",
+   "replace": "<td>The Glamorgan Village Book, compiled by the Glamorgan Federation of Women’s Institutes (Newbury: Countryside Books, 1993; ISBN 1-85306-254-5)</td>",
+   "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "evidence/ev-0645-local-history-book-llandough-penarth-pp64-65/index.html",
+   "find": "<em>Printed local-history book (title, author and date not shown in the photographs), section",
+   "replace": "<em>The Glamorgan Village Book (Glamorgan Federation of Women’s Institutes; Countryside Books, 1993), section",
+   "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "evidence/ev-0645-local-history-book-llandough-penarth-pp64-65/index.html",
+   "find": "The book's title, author, publisher and date are not visible in the photographs.",
+   "replace": "The book is The Glamorgan Village Book (Glamorgan Federation of Women’s Institutes; Countryside Books, Newbury, 1993; ISBN 1-85306-254-5).",
+   "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "evidence/ev-0645-local-history-book-llandough-penarth-pp64-65/index.html",
+   "find": "<li>Where the original is held: The printed book (title and library holdings to be identified).",
+   "replace": "<li>Where the original is held: The Glamorgan Village Book (Countryside Books, 1993; ISBN 1-85306-254-5), a published book.",
+   "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "evidence/ev-0645-local-history-book-llandough-penarth-pp64-65/index.html",
+   "find": "and Marconi’s stay. It gives",
+   "replace": "and Marconi’s stay at the farm, in a four-poster bed, while he worked on his 1897 wireless telegraphy experiments between Flat Holm and Lavernock Point (with The Post, Cardiff, 14 Sep 1995, p.24: <a href=\"/research/evidence/ev-0646-the-post-cardiff-1995-09-14-p24-marconi-great-house-farm/\">EV-0646</a>). It gives",
+   "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "evidence/ev-0645-local-history-book-llandough-penarth-pp64-65/index.html",
+   "find": "</li></ul></div></article>",
+   "replace": "</li><li>Related record: <a href=\"/research/evidence/ev-0646-the-post-cardiff-1995-09-14-p24-marconi-great-house-farm/\">EV-0646</a> — The Post (Cardiff), 14 Sep 1995, p.24: Marconi and George Kemp at Great House Farm, 10–11 May 1897</li></ul></div></article>",
+   "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "evidence/ev-0085-glamorgan-village-book-demolition-page/index.html",
+   "find": "<th>Date of document</th><td>undated</td>",
+   "replace": "<th>Date of document</th><td>1993 (published)</td>",
+   "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "evidence/ev-0085-glamorgan-village-book-demolition-page/index.html",
+   "find": "No scan uploaded; No publication details for the book given.",
+   "replace": "Published in The Glamorgan Village Book, compiled by the Glamorgan Federation of Women’s Institutes (Newbury: Countryside Books, 1993; ISBN 1-85306-254-5), “Llandough (Penarth)”, pp. 64–66; full transcript of the entry: <a href=\"/research/evidence/ev-0645-local-history-book-llandough-penarth-pp64-65/\">EV-0645</a>.",
+   "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "evidence/ev-0085-glamorgan-village-book-demolition-page/index.html",
+   "find": "No verbatim transcription; Book&#8217;s publication date and author not stated.",
+   "replace": "full transcript of the entry: <a href=\"/research/evidence/ev-0645-local-history-book-llandough-penarth-pp64-65/\">EV-0645</a>.",
+   "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "evidence/ev-0085-glamorgan-village-book-demolition-page/index.html",
+   "find": "Secondary corroboration of date and dispute account.",
+   "replace": "Secondary corroboration of date and dispute account. The same entry records Marconi’s stay at Great House Farm: “Marconi too slept here in a four poster bed whilst working with his experiments in wireless telegraphy between the Flat Holm and Lavernock Point.” (see also <a href=\"/research/evidence/ev-0646-the-post-cardiff-1995-09-14-p24-marconi-great-house-farm/\">EV-0646</a>)",
+   "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
   }
  ]
 }
