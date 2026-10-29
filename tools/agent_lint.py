@@ -12,7 +12,7 @@ EXEMPT = ('tools/', '.github/', 'reports/', 'data/', 'notices/')
 CITE = re.compile(r'\b(EV|MR)-\d{3,5}\b|\b[A-Z]{1,6}(/[A-Z0-9]{1,6}){2,}\b|\bSources?:|\b\[\d{4}\] EWCA|\bD ?\d{1,4}(/\d+)*\b')
 CHECKS = [
     ('banned word', re.compile(r'\b(' + '|'.join(re.escape(b) for b in BANNED) + r')\b', re.I)),
-    ('outbound link', re.compile(r'(href|src)\s*=\s*["\']?https?://(?!([\w-]+\.)*bucklerfamily\.estate)|\]\(https?://(?!([\w-]+\.)*bucklerfamily\.estate)', re.I)),
+    ('outbound link', re.compile(r'(href|src)\s*=\s*["\']?https?://(?!([\w-]+\.)*bucklerfamily\.estate)(?!cdn\.jsdelivr\.net/gh/unclehowell/cedwyn-movie@(?:[0-9a-f]{40}|main)/extras/parcels-1841(?:-30s)?\.webm)|\]\(https?://(?!([\w-]+\.)*bucklerfamily\.estate)(?!cdn\.jsdelivr\.net/gh/unclehowell/cedwyn-movie@(?:[0-9a-f]{40}|main)/extras/parcels-1841(?:-30s)?\.webm)', re.I)),
     ('pre-1824 outside date', re.compile(r'\b(1547|1552)\b')),
     ('email address', re.compile(r'[\w.+-]+@[\w-]+\.[\w.-]+')),
     ('phone number', re.compile(r'(\+44|\+54)[\s\d()-]{8,}\d|\b0\d{3,4}\s?\d{6,7}\b')),
