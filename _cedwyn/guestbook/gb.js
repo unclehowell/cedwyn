@@ -1,4 +1,8 @@
-/*! gb.js - the page version table (Agent guest book) in the shared footer of every Cedwyn page (v1.1.0, 27 Oct 2026).
+/*! gb.js - the page version table (Agent guest book) in the shared footer of every Cedwyn page (v1.1.1, 29 Oct 2026).
+ * v1.1.1: the page versions and the agent footer (#ghf-agent-footer: change log, agent rules, THE TRIGGER EVENT) sit in ONE
+ * native <details> "Page versions & agent info", closed on load. Nothing is hidden with display:none or removed: the agent text
+ * stays in the HTML and the DOM, so crawlers and LLM fetchers read it; a tap opens it. An older footer without the <details>
+ * is wrapped in place (its nodes are moved, never dropped). Pages with no agent footer keep the guest book alone, collapsed.
  * v1.1.0: shows THIS page's 3 most recent versions, open, from /api/v (the commits to the file the page is built from;
  * semver 1.change.fix per page), and "See all" opens that file's full commit history on GitHub. If /api/v cannot answer,
  * it falls back to the site-wide /guestbook/guestbook.json rows and the repo history.  Also carries the
@@ -10,13 +14,13 @@
   var DATA = location.origin + "/guestbook/guestbook.json", PAGE = location.origin + "/api/v?p=" + encodeURIComponent(location.pathname), data = null, loading = false;   // absolute: the theme runtime prefixes root paths
   var HIST = "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fcedwyn%2Fcommits%2Fmain";
   var L = {
-    en: { title: "Page versions", v: "Version", d: "Date", n: "Change", w: "Who", all: "See all", log: "Whole-site log",
+    en: { title: "Page versions", meta: "Page versions & agent info", v: "Version", d: "Date", n: "Change", w: "Who", all: "See all", log: "Whole-site log",
           rule: "versions 1.change.fix, from this page\u2019s commit history",
           intro: "Every change to this site, newest first. Each version opens the change on GitHub." },
-    cy: { title: "Fersiynau\u2019r dudalen", v: "Fersiwn", d: "Dyddiad", n: "Newid", w: "Pwy", all: "Gweld y cyfan", log: "Cofnod y wefan gyfan",
+    cy: { title: "Fersiynau\u2019r dudalen", meta: "Fersiynau\u2019r dudalen a gwybodaeth i asiantau", v: "Fersiwn", d: "Dyddiad", n: "Newid", w: "Pwy", all: "Gweld y cyfan", log: "Cofnod y wefan gyfan",
           rule: "fersiynau 1.newid.trwsiad, o hanes newidiadau\u2019r dudalen hon",
           intro: "Pob newid i\u2019r wefan hon, y diweddaraf yn gyntaf. Mae pob fersiwn yn agor y newid ar GitHub." },
-    es: { title: "Versiones de la p\u00e1gina", v: "Versi\u00f3n", d: "Fecha", n: "Cambio", w: "Qui\u00e9n", all: "Ver todo", log: "Registro de todo el sitio",
+    es: { title: "Versiones de la p\u00e1gina", meta: "Versiones de la p\u00e1gina e informaci\u00f3n para agentes", v: "Versi\u00f3n", d: "Fecha", n: "Cambio", w: "Qui\u00e9n", all: "Ver todo", log: "Registro de todo el sitio",
           rule: "versiones 1.cambio.correcci\u00f3n, del historial de cambios de esta p\u00e1gina",
           intro: "Todos los cambios de este sitio, del m\u00e1s reciente al m\u00e1s antiguo. Cada versi\u00f3n abre el cambio en GitHub." }
   };
@@ -44,10 +48,40 @@
     }
     return best ? (best.parentNode && best.parentNode.nodeType === 1 && best.parentNode.tagName !== "FOOTER" ? best.parentNode : best) : null;
   }
+  // v1.1.1: ONE collapsed disclosure at the foot of the page for the page versions + the agent footer (closed on load)
+  var MCSS = "#ghf-agent-footer>details.gaf-d{display:block}#ghf-agent-footer>details.gaf-d>summary{display:list-item!important;cursor:pointer;font-size:12px!important;line-height:1.5!important;padding:8px 0!important;min-height:32px;list-style-position:inside}#ghf-agent-footer>details.gaf-d>summary>span{font-size:12px!important;line-height:1.5!important}" +
+    "#ghf-agent-footer>details.gaf-d[open]>summary{margin-bottom:4px!important}#ghf-agent-footer #cedwyn-guestbook{display:block!important;margin:0 0 8px!important;padding:0!important;max-width:none!important}" +
+    "#ghf-agent-footer #cedwyn-guestbook,#ghf-agent-footer #cedwyn-guestbook *{font-size:11px!important;line-height:1.4!important}#ghf-agent-footer #cedwyn-guestbook summary{display:list-item!important;cursor:pointer}" +
+    "#ghf-agent-footer #cedwyn-guestbook table{display:table!important;width:100%!important}#ghf-agent-footer #cedwyn-guestbook thead{display:table-header-group!important}" +
+    "#ghf-agent-footer #cedwyn-guestbook tbody{display:table-row-group!important}#ghf-agent-footer #cedwyn-guestbook tr{display:table-row!important}" +
+    "#ghf-agent-footer #cedwyn-guestbook th::before,#ghf-agent-footer #cedwyn-guestbook td::before{content:none!important}";
+  function box() {
+    var f = document.getElementById("ghf-agent-footer"); if (!f) return null;
+    if (!document.getElementById("cedwyn-gb-meta-css")) { var st = document.createElement("style"); st.id = "cedwyn-gb-meta-css"; st.textContent = MCSS; (document.head || document.documentElement).appendChild(st); }
+    var d = f.querySelector(":scope>details.gaf-d");
+    if (!d) {   // an older footer (no <details>): wrap its content in place, moving every node (nothing removed or hidden)
+      d = document.createElement("details"); d.className = "gaf-d";
+      d.innerHTML = '<summary><span data-gb-l="meta">Page versions &amp; agent info</span> <span class="gb-mv"></span></summary>';
+      var kids = [].slice.call(f.childNodes);
+      for (var i = 0; i < kids.length; i++) if (!(kids[i].nodeType === 1 && kids[i].tagName === "STYLE")) d.appendChild(kids[i]);
+      f.appendChild(d); label();
+    }
+    if (!d.hasAttribute("data-gb-wired")) { d.setAttribute("data-gb-wired", "1"); d.addEventListener("toggle", function () { if (d.open) { load(); fill(); } }); }
+    return d;
+  }
+  function meta() { var m = box(); return m && (document.querySelector("[data-ghf-legal-foot]") || !document.body || !appPage()) ? m : null; }   // a full-screen app page keeps its docked guest book
+  function target() { return meta() || document.querySelector("[data-ghf-legal-foot]"); }
   function place() {
     var all = document.querySelectorAll("#cedwyn-guestbook");
     for (var i = 1; i < all.length; i++) all[i].parentNode.removeChild(all[i]);
     var s = sec(); if (!s) return;
+    var m = meta();
+    if (m) {   // first thing inside the disclosure, right under its summary; its own table shows when the disclosure opens
+      s.classList.remove("gb-dock", "gb-fixed"); var sm = m.querySelector(":scope>summary");
+      if (s.parentNode !== m || s.previousElementSibling !== sm) m.insertBefore(s, sm ? sm.nextSibling : m.firstChild);
+      var gd = s.querySelector("details"); if (gd && !gd.hasAttribute("data-gb-opened")) { gd.setAttribute("data-gb-opened", "1"); gd.open = true; }
+      return;
+    }
     var f = document.querySelector("[data-ghf-legal-foot]");
     if (f) { s.classList.remove("gb-dock", "gb-fixed"); if (s.parentNode !== f) f.appendChild(s); return; }
     if (!document.body || !appPage()) return;
@@ -73,6 +107,7 @@
   function fill() {
     var s = sec(); if (!s || !data) return;
     var v = s.querySelector(".gb-v"); if (v) v.textContent = data.version ? "v" + data.version : "";
+    var mv = document.querySelectorAll("#ghf-agent-footer .gb-mv"); for (var k = 0; k < mv.length; k++) mv[k].textContent = data.version ? "\u00b7 v" + data.version : "";
     if (data.history_url) HIST = data.history_url;
     absolutize();
     var tb = s.querySelector(".gb-rows"); if (!tb || tb.getAttribute("data-filled")) return;
@@ -101,8 +136,9 @@
       if (!a[i].parentNode.querySelector('a[data-gb-l="log"]')) { var l = document.createElement("a"); l.setAttribute("data-gb-l", "log"); l.textContent = L[lang()].log; a[i].parentNode.appendChild(document.createTextNode(" \u00b7 ")); a[i].parentNode.appendChild(l); } }
     var g = document.querySelectorAll('#cedwyn-guestbook a[data-gb-l="log"]'), u = location.origin + "/guestbook/"; for (var j = 0; j < g.length; j++) if (g[j].getAttribute("href") !== u) g[j].setAttribute("href", u);
   }
-  // v1.1.0: open by default so the 3 newest versions of this page show at the bottom of every page
-  function openUp() { var d = sec() && sec().querySelector("details"); if (d && !d.hasAttribute("data-gb-opened")) { d.setAttribute("data-gb-opened", "1"); d.open = true; } }
+  // v1.1.1: closed on load (owner, 28 Oct 2026). Inside the agent-info disclosure the guest book's own table is pre-opened (place()),
+  // so one tap shows the 3 newest versions and the agent text; on a page with no agent footer the guest book stays collapsed.
+  function openUp() { }
   // a theme runtime may prefix root links or guard outbound ones: the site log always opens at the root, "See all" opens GitHub
   document.addEventListener("click", function (e) { var a = e.target && e.target.closest && e.target.closest('#cedwyn-guestbook a[data-gb-l="all"],#cedwyn-guestbook a[data-gb-l="log"]'); if (!a) return; absolutize(); if (e.button || e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); e.stopImmediatePropagation();
     if (a.getAttribute("data-gb-l") === "log") location.href = location.origin + "/guestbook/"; else window.open(HIST, "_blank", "noopener"); }, true);
@@ -114,7 +150,7 @@
   addEventListener("load", function () { keep(); absolutize(); place(); label(); openUp(); setTimeout(load, 300); });
   [300, 600, 1300, 2600, 6100, 12100].forEach(function (t) { setTimeout(function () { keep(); place(); absolutize(); }, t); });
   if (window.MutationObserver) {
-    var mo = new MutationObserver(function () { if (!sec()) { keep(); return; } var f = document.querySelector("[data-ghf-legal-foot]"); if (f && sec().parentNode !== f) place(); });
+    var mo = new MutationObserver(function () { if (!sec()) { keep(); return; } var f = target(); if (f && sec().parentNode !== f) place(); });
     mo.observe(document.documentElement, { childList: true, subtree: true }); setTimeout(function () { mo.disconnect(); }, 20000);
   }
   document.addEventListener("ghf-lang-change", label); window.addEventListener("ghf-lang-change", label);
