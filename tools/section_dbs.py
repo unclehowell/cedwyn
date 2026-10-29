@@ -123,7 +123,7 @@ def build_slice(con, dist, area_id, source_ids, chunk_size):
     copy_table(con, dst, "section_records", themes_filter, source_ids)
     # Parent register -> area child DB: only this webapp's provisional slot, with its events.
     copy_table(con, dst, "estate_parcels", "area_id=?", (area_id,))
-    copy_table(con, dst, "parcel_events", "parcel_id IN (SELECT parcel_id FROM estate_parcels)")
+    copy_table(con, dst, "parcel_events", "parcel_id IN (SELECT parcel_id FROM estate_parcels WHERE area_id=?)", (area_id,))
     # The compact shared A1 / A2 / B / C working model is included for context in each child DB.
     copy_table(con, dst, "estate_parcel_model")
     copy_table(con, dst, "estate_parcel_model_events")
