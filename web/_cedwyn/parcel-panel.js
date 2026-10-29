@@ -40,12 +40,18 @@
   function resolveArea(doc) {
     var theme = currentTheme();
     var parts = location.pathname.split('/').filter(Boolean);
-    return (doc.areas || []).find(function (a) {
+    var areas = doc.areas || [];
+    // Match the rendered theme before the outer /wales/ or /patagonia/ section prefix.
+    var byTheme = areas.find(function (a) {
       var aliases = a.aliases || [];
       return a.id === theme ||
         (a.path || '') === ('/' + theme + '/') ||
-        aliases.indexOf('/' + theme + '/') >= 0 ||
-        (parts.length && a.id === parts[0]) ||
+        aliases.indexOf('/' + theme + '/') >= 0;
+    });
+    if (byTheme) return byTheme;
+    return areas.find(function (a) {
+      var aliases = a.aliases || [];
+      return (parts.length && a.id === parts[0]) ||
         (parts.length && aliases.indexOf('/' + parts[0] + '/') >= 0);
     }) || null;
   }
