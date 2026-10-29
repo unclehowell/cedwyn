@@ -5,7 +5,7 @@
   'use strict';
   var root = document.querySelector('[data-cedwyn-evidence-browser]');
   if (!root) return;
-  var pageSize = 50, offset = 0, mode = 'artifacts', db = null, busy = false, exhausted = false;
+  var pageSize = 50, offset = 0, mode = 'artifacts', db = null, dbSource = '', busy = false, exhausted = false;
   root.innerHTML = [
     '<section class="cw-eb" aria-labelledby="cw-eb-title">',
     '<style>',
@@ -148,9 +148,10 @@
     if (db) return db;
     if (!window.Cedwyn || typeof window.Cedwyn.db !== 'function') throw new Error('Catalogue client did not load.');
     if (typeof window.Cedwyn.sectionDb === 'function') {
-      try { db = await window.Cedwyn.sectionDb('wiki'); return db; } catch (e) { /* central fallback below */ }
+      try { db = await window.Cedwyn.sectionDb('wiki'); dbSource = 'Wiki section database'; return db; } catch (e) { /* central fallback below */ }
     }
     db = await window.Cedwyn.db();
+    dbSource = 'central catalogue database (section slice unavailable)';
     return db;
   }
   async function load(reset) {
@@ -188,7 +189,7 @@
       }
       status.textContent = (mode === 'artifacts' ? 'Level 1 · Artifacts' : 'Level 2 · Observations') +
         ' · ' + offset + ' shown' + (exhausted ? '' : ' · more available') +
-        (db === null ? '' : ' · source: ' + (window.Cedwyn.sectionDb ? 'theme database (fallback to central if unavailable)' : 'central catalogue'));
+        (db === null ? '' : ' · source: ' + dbSource);
     } catch (err) {
       status.textContent = 'Could not read the catalogue: ' + String(err && err.message || err);
       results.appendChild(el('p', 'cw-eb-empty', 'The source register remains below. This database view can be retried after the catalogue data is available.'));
