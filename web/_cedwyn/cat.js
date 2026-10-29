@@ -77,7 +77,7 @@
     'type Edge { rel: String dst: String artifact: Artifact node: Node }',
     'type Node { id: String kind: String label: String artifacts(limit: Int): [Artifact] }',
     'type Hit { artifact: Artifact theme: String path: String snippet: String }',
-    'type Capture { key: String url: String title: String latest: String captured: String }'].join('\\n');
+    'type Capture { key: String url: String title: String latest: String captured: String }'].join('\n');
 
   function Assessment(r) {
     return r && { ev: r.ev, artifactId: r.artifact_id, description: r.description, descriptionStatus: r.description_status,
