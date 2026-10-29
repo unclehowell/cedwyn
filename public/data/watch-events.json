@@ -1,5 +1,5 @@
 {
-"generated": "2026-10-29T22:35:16Z",
+"generated": "2026-10-29T22:56:28Z",
 "version": "1.0.0",
 "method": "Institution watch: dated releases recorded by the project, earliest Internet Archive copies of farm records (first-seen register), absence checks of indexes where records should appear if released, and page-text changes of pages cited in FOI/EIR/SAR replies. Robots rules respected; Internet Archive copies used where live reading is not allowed.",
 "institutions": [
@@ -94,9 +94,19 @@
 "short": "Church in Wales"
 },
 {
+"id": "bp",
+"name": "BP Archive",
+"short": "BP Archive"
+},
+{
 "id": "bute",
 "name": "Bute / Mount Stuart",
 "short": "Bute"
+},
+{
+"id": "bfi",
+"name": "BFI",
+"short": "BFI"
 },
 {
 "id": "pcw",
@@ -112,6 +122,11 @@
 "id": "mod",
 "name": "Ministry of Defence",
 "short": "MoD"
+},
+{
+"id": "dwr",
+"name": "Dwr Cymru Welsh Water",
+"short": "Dwr Cymru"
 }
 ],
 "events": [
@@ -1946,19 +1961,6 @@
 "id": "8319ce2e92"
 },
 {
-"type": "present",
-"date": "2026-10-29",
-"inst": "pcw",
-"title": "People's Collection Wales: Llandough",
-"page_url": "https://www.peoplescollection.wales/discover/query/Llandough",
-"summary": "First check: 1 matching entry already in this index.",
-"hits": [
-"Farm"
-],
-"source": "live",
-"id": "0fc1e71f58"
-},
-{
 "type": "absent",
 "date": "2026-10-29",
 "inst": "cw",
@@ -1990,6 +1992,72 @@
 "hits": [],
 "source": "ia:20260113031354",
 "id": "31e9edfbdd"
+},
+{
+"type": "absent",
+"date": "2026-10-29",
+"inst": "pcw",
+"title": "People's Collection Wales: Llandough",
+"page_url": "https://www.peoplescollection.wales/discover/query/Llandough",
+"summary": "First check: no matching record in this index.",
+"hits": [],
+"source": "live",
+"id": "caec8c49e0"
+},
+{
+"type": "absent",
+"date": "2026-10-29",
+"inst": "bfi",
+"title": "BFI Player: Llandough",
+"page_url": "https://player.bfi.org.uk/search?q=Llandough",
+"summary": "First check: no matching record in this index.",
+"hits": [],
+"source": "ia:20261029224739",
+"id": "1935bd2b85"
+},
+{
+"type": "absent",
+"date": "2026-10-29",
+"inst": "bp",
+"title": "BP Archive page",
+"page_url": "https://www.bp.com/en/global/corporate/who-we-are/our-history/bp-archive.html",
+"summary": "First check: no matching record in this index.",
+"hits": [],
+"source": "live",
+"id": "6c3af3c1b3"
+},
+{
+"type": "absent",
+"date": "2026-10-29",
+"inst": "cadw",
+"title": "Cadw listed buildings (open data, Llandough and Leckwith area)",
+"page_url": "https://datamap.gov.wales/geoserver/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=inspire-wg:Cadw_ListedBuildings&outputFormat=application/json&srsName=EPSG:27700&count=500&bbox=314500,171500,318800,175500,EPSG:27700",
+"summary": "First check: no matching record in this index.",
+"hits": [],
+"source": "live",
+"id": "5c21efbe8d"
+},
+{
+"type": "absent",
+"date": "2026-10-29",
+"inst": "vale",
+"title": "Vale of Glamorgan FOI page (no disclosure log published)",
+"page_url": "https://www.valeofglamorgan.gov.uk/en/our_council/freedom_of_information/Requests-for-Information.aspx",
+"summary": "First check: no matching record in this index.",
+"hits": [],
+"source": "live",
+"id": "9237e1694d"
+},
+{
+"type": "absent",
+"date": "2026-10-29",
+"inst": "dwr",
+"title": "Dŵr Cymru environmental information (EIR) page",
+"page_url": "https://corporate.dwrcymru.com/en/community/environment/environmental-information-regulations",
+"summary": "First check: no matching record in this index.",
+"hits": [],
+"source": "live",
+"id": "2b5b88c059"
 }
 ]
 }
