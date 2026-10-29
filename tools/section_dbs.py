@@ -60,41 +60,64 @@ def build_slice(con, dist, area_id, source_ids, chunk_size):
         "JOIN observations o ON o.id=r.observation_id WHERE " + obs_filter + " AND r.artifact_id IS NOT NULL)"
     )
     params = tuple(source_ids) + tuple(source_ids)
+    if area_id == "wiki":
+        # The Wiki's evidence register is the public browser for the whole Level 1 catalogue.
+        artifact_where = "(" + artifact_where + ") OR artifacts.id IN (SELECT artifact_id FROM evidence_catalogue WHERE artifact_id IS NOT NULL)"
     copy_table(con, dst, "meta", "k IN ('db_version','artifacts','locations','evidence_records','observations')")
     copy_table(con, dst, "themes", "id " + in_clause(source_ids), source_ids)
     copy_table(con, dst, "observations", themes_filter, source_ids)
     copy_table(con, dst, "artifacts", artifact_where, params)
-    copy_table(con, dst, "locations",
+    _location_where = (
         "aid IN (SELECT aid FROM locations WHERE " + themes_filter + ") OR aid IN "
         "(SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id "
-        "WHERE oo.theme " + in_clause(source_ids) + " AND rr.artifact_id IS NOT NULL)",
-        tuple(source_ids) + tuple(source_ids))
-    copy_table(con, dst, "evidence_catalogue",
+        "WHERE oo.theme " + in_clause(source_ids) + " AND rr.artifact_id IS NOT NULL)"
+    )
+    _location_params = tuple(source_ids) * 2
+    if area_id == "wiki":
+        _location_where += " OR aid IN (SELECT artifact_id FROM evidence_catalogue WHERE artifact_id IS NOT NULL)"
+    copy_table(con, dst, "locations", _location_where, _location_params)
+    _catalogue_where = (
         "artifact_id IN (SELECT aid FROM locations WHERE " + themes_filter + ") "
         "OR artifact_id IN (SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id "
         "WHERE oo.theme " + in_clause(source_ids) + " AND rr.artifact_id IS NOT NULL) "
         "OR ev IN (SELECT rr.ev FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id "
-        "WHERE oo.theme " + in_clause(source_ids) + " AND rr.ev IS NOT NULL)",
-        tuple(source_ids) * 3)
-    copy_table(con, dst, "evidence_grades",
+        "WHERE oo.theme " + in_clause(source_ids) + " AND rr.ev IS NOT NULL)"
+    )
+    _catalogue_params = tuple(source_ids) * 3
+    if area_id == "wiki":
+        _catalogue_where, _catalogue_params = "1=1", ()
+    copy_table(con, dst, "evidence_catalogue", _catalogue_where, _catalogue_params)
+    _grade_where = (
         "ev IN (SELECT ev FROM evidence_catalogue WHERE artifact_id IN "
         "(SELECT aid FROM locations WHERE " + themes_filter + ") OR ev IN "
         "(SELECT rr.ev FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id "
-        "WHERE oo.theme " + in_clause(source_ids) + " AND rr.ev IS NOT NULL))",
-        tuple(source_ids) * 2)
+        "WHERE oo.theme " + in_clause(source_ids) + " AND rr.ev IS NOT NULL))"
+    )
+    _grade_params = tuple(source_ids) * 2
+    if area_id == "wiki":
+        _grade_where, _grade_params = "ev IN (SELECT ev FROM evidence_catalogue)", ()
+    copy_table(con, dst, "evidence_grades", _grade_where, _grade_params)
     copy_table(con, dst, "evidence_catalogue_meta")
     copy_table(con, dst, "evidence_grade_scale")
-    copy_table(con, dst, "evidence_text",
+    _text_where = (
         "aid IN (SELECT aid FROM locations WHERE " + themes_filter + ") OR aid IN "
         "(SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id "
-        "WHERE oo.theme " + in_clause(source_ids) + " AND rr.artifact_id IS NOT NULL)",
-        tuple(source_ids) * 2)
-    copy_table(con, dst, "artifact_assessments",
+        "WHERE oo.theme " + in_clause(source_ids) + " AND rr.artifact_id IS NOT NULL)"
+    )
+    _text_params = tuple(source_ids) * 2
+    if area_id == "wiki":
+        _text_where, _text_params = "aid IN (SELECT artifact_id FROM evidence_catalogue WHERE artifact_id IS NOT NULL)", ()
+    copy_table(con, dst, "evidence_text", _text_where, _text_params)
+    _assessment_where = (
         "ev IN (SELECT ev FROM evidence_catalogue WHERE artifact_id IN "
         "(SELECT aid FROM locations WHERE " + themes_filter + ") OR ev IN "
         "(SELECT rr.ev FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id "
-        "WHERE oo.theme " + in_clause(source_ids) + " AND rr.ev IS NOT NULL))",
-        tuple(source_ids) * 2)
+        "WHERE oo.theme " + in_clause(source_ids) + " AND rr.ev IS NOT NULL))"
+    )
+    _assessment_params = tuple(source_ids) * 2
+    if area_id == "wiki":
+        _assessment_where, _assessment_params = "ev IN (SELECT ev FROM evidence_catalogue)", ()
+    copy_table(con, dst, "artifact_assessments", _assessment_where, _assessment_params)
     copy_table(con, dst, "observation_refs",
         "observation_id IN (SELECT id FROM observations WHERE " + themes_filter + ")", source_ids)
     copy_table(con, dst, "section_records", themes_filter, source_ids)
