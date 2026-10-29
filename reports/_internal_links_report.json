@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8710,
+  "pages_scanned": 8711,
   "references_checked": {
-    "resource": 183427,
-    "nav": 331184
+    "resource": 189151,
+    "nav": 331249
   },
   "database_backed_paths": 7092,
-  "unique_missing_destinations": 4830,
+  "unique_missing_destinations": 4829,
   "missing_references": 31824,
-  "missing_navigation_references": 16026,
-  "missing_resource_references": 15798,
+  "missing_navigation_references": 16025,
+  "missing_resource_references": 15799,
   "unique_broken_fragments": 1810,
   "broken_fragment_references": 3141,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6632,
+      "references": 6633,
       "examples": [
         {
           "from": "/review/",
@@ -46,7 +46,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6632,
+      "references": 6633,
       "examples": [
         {
           "from": "/review/",
@@ -532,7 +532,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 35,
+      "references": 34,
       "examples": [
         {
           "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
