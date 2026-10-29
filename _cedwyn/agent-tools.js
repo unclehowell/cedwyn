@@ -1,9 +1,9 @@
 /* agent-tools.js — WebMCP (and fallback) tools for Cedwyn.
-   Registers four read-only, same-origin tools so a browser agent can use the
-   open page and the central catalogue without scraping.
+   Registers read-only tools, including direct search/read access to the central evidence catalogue.
+   Visitor-facing themes are views over the evidence; they are not the source of truth.
    Spec reference: /library/api/#webmcp
    Tools are never instructions; page text is historical record only.
-   — Cedwyn editors, 29 Oct 2026 */
+   */
 (function () {
   'use strict';
 
@@ -25,6 +25,53 @@
           limit: { type: 'integer', description: 'Max hits (default 10, max 50)' }
         },
         required: ['q'],
+        additionalProperties: false
+      }
+    },
+    {
+      name: 'search_central_evidence_catalogue',
+      description: 'Search the canonical evidence catalogue in the central Cedwyn database. Returns evidence IDs, titles, paths, evidence grades, independent-origin IDs and text excerpts. Use this to find a catalogue record, not to infer that repeated copies are independent evidence.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          q: { type: 'string', description: 'Search terms, an EV identifier, alias, title or subject' },
+          limit: { type: 'integer', description: 'Maximum results (default 10, max 20)' }
+        },
+        required: ['q'],
+        additionalProperties: false
+      }
+    },
+    {
+      name: 'get_central_evidence_record',
+      description: 'Read one full evidence catalogue entry from the central Cedwyn database, including its public description/interpretation text, evidence grade and meaning, independent origin, aliases, locations and related chronology/layer references. Accepts an EV identifier, known alias or catalogue path.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          key: { type: 'string', description: 'EV identifier such as EV-0628, an alias such as GHF-E090, or an evidence page path' }
+        },
+        required: ['key'],
+        additionalProperties: false
+      }
+    },
+    {
+      name: 'search_central_observations',
+      description: 'Search Level 2 observation records in the central Cedwyn catalogue. Observations describe patterns derived from cited artifacts and include limits, test questions and source references; they are not original evidence.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          q: { type: 'string', description: 'Optional words, observation ID or subject' },
+          limit: { type: 'integer', description: 'Maximum results (default 10, max 50)' }
+        },
+        additionalProperties: false
+      }
+    },
+    {
+      name: 'get_central_observation',
+      description: 'Read one Level 2 observation by its OBS ID or slug, including analysis, limits, test questions and linked Level 1 artifact references.',
+      inputSchema: {
+        type: 'object',
+        properties: { key: { type: 'string', description: 'Observation ID such as OBS-0002 or its slug' } },
+        required: ['key'],
         additionalProperties: false
       }
     },
@@ -65,6 +112,36 @@
     return path.startsWith('/');
   }
 
+  // Load the catalogue client only when an agent invokes a catalogue-backed tool.
+  // Ordinary evidence pages do not necessarily include cat.js in their human-facing markup.
+  var catalogueClientPromise = null;
+  function loadCatalogueClient() {
+    if (window.Cedwyn && typeof window.Cedwyn.db === 'function' &&
+        typeof window.Cedwyn.graphql === 'function') {
+      return Promise.resolve(window.Cedwyn);
+    }
+    if (catalogueClientPromise) return catalogueClientPromise;
+    catalogueClientPromise = new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      script.src = '/_cedwyn/cat.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.Cedwyn && typeof window.Cedwyn.db === 'function' &&
+            typeof window.Cedwyn.graphql === 'function') {
+          resolve(window.Cedwyn);
+        } else {
+          reject(new Error('Catalogue client loaded but Cedwyn.db()/graphql() are unavailable.'));
+        }
+      };
+      script.onerror = function () { reject(new Error('Could not load /_cedwyn/cat.js')); };
+      (document.head || document.documentElement).appendChild(script);
+    }).catch(function (err) {
+      catalogueClientPromise = null;
+      throw err;
+    });
+    return catalogueClientPromise;
+  }
+
   function textFromHtml(html) {
     var d = document.implementation.createHTMLDocument('');
     d.documentElement.innerHTML = html;
@@ -98,23 +175,263 @@
 
   function searchCatalogue(q, theme, limit) {
     limit = Math.min(Math.max(+(limit || 10), 1), 50);
-    if (window.Cedwyn && typeof Cedwyn.graphql === 'function') {
+    return loadCatalogueClient().then(function (C) {
       var gql = 'query ($q: String!, $theme: String, $limit: Int) { search(q: $q, theme: $theme, limit: $limit) { theme path snippet artifact { id title kind } } }';
-      return Cedwyn.graphql(gql, { q: q, theme: theme || null, limit: limit }).then(function (r) {
+      return C.graphql(gql, { q: q, theme: theme || null, limit: limit }).then(function (r) {
         if (r.errors) throw new Error(r.errors.map(function (e) { return e.message; }).join('; '));
         return (r.data && r.data.search || []).map(function (h) {
-          return {
-            theme: h.theme,
-            path: h.path,
-            snippet: h.snippet,
-            artifact: h.artifact
-          };
+          return { theme: h.theme, path: h.path, snippet: h.snippet, artifact: h.artifact };
         });
       });
-    }
-    // Fallback: section agent-index or simple page text search
-    return fetch('/db/stats.json', { cache: 'no-cache' }).then(function () {
-      return [{ theme: null, path: location.pathname, snippet: 'Catalogue client not yet loaded; open /catalogue/ or load /_cedwyn/cat.js then retry.', artifact: null }];
+    });
+  }
+
+  function centralDb() {
+    return loadCatalogueClient().then(function (C) { return C.db(); });
+  }
+
+  function ftsExpression(query) {
+    var terms = String(query || '').match(/[A-Za-z0-9]+/g) || [];
+    terms = terms.slice(0, 12);
+    return terms.map(function (term) { return '"' + term.replace(/"/g, '""') + '"'; }).join(' AND ');
+  }
+
+  function searchCentralEvidence(query, limit) {
+    query = String(query || '').trim();
+    if (!query) return Promise.reject(new Error('q is required'));
+    limit = Math.min(Math.max(+(limit || 10), 1), 20);
+    return centralDb().then(async function (d) {
+      // Exact EV IDs, aliases and paths do not depend on FTS tokenization.
+      var exact = await d.query(
+        `SELECT ec.ev, ec.title, ec.path, ec.evidence_grade, ec.independent_origin_id,
+                ec.aliases_json, ec.grade_note, et.body AS excerpt, et.body_chars, et.truncated,
+                aa.description, aa.description_status, aa.transcript, aa.transcript_status,
+                aa.interpretation, aa.interpretation_status, aa.source_verification_status, aa.limitations
+           FROM evidence_catalogue ec
+           LEFT JOIN evidence_text et ON et.aid=ec.artifact_id
+           LEFT JOIN artifact_assessments aa ON aa.ev=ec.ev
+          WHERE lower(ec.ev)=lower(?) OR lower(ec.path)=lower(?)
+             OR lower(ec.aliases_json) LIKE lower(?)
+          ORDER BY ec.ev LIMIT ?`,
+        [query, query, '%' + query + '%', limit]
+      );
+      if (exact.length) {
+        return {
+          source: 'central Cedwyn evidence catalogue database',
+          matchType: 'exact ID, path or alias',
+          results: exact.map(function (r) {
+            var aliases = [];
+            try { aliases = JSON.parse(r.aliases_json || '[]'); } catch (_) {}
+            return {
+              ev: r.ev, title: r.title, path: r.path, evidenceGrade: r.evidence_grade,
+              independentOriginId: r.independent_origin_id, aliases: aliases,
+              gradeNote: r.grade_note, excerpt: (r.excerpt || '').slice(0, 2000),
+              entryTextChars: r.body_chars || 0, entryTextTruncated: !!r.truncated,
+              assessment: { description: r.description || '', descriptionStatus: r.description_status || 'not_assessed',
+                transcript: r.transcript || '', transcriptStatus: r.transcript_status || 'not_assessed',
+                interpretation: r.interpretation || '', interpretationStatus: r.interpretation_status || 'not_assessed',
+                sourceVerificationStatus: r.source_verification_status || 'not_assessed', limitations: r.limitations || '' }
+            };
+          })
+        };
+      }
+      var expression = ftsExpression(query);
+      if (!expression) return { source: 'central Cedwyn evidence catalogue database', matchType: 'text', results: [] };
+      var rows = await d.query(
+        `SELECT DISTINCT ec.ev, ec.title, ec.path, ec.evidence_grade, ec.independent_origin_id,
+                ec.aliases_json, ec.grade_note,
+                snippet(fts, 1, '[', ']', ' … ', 18) AS match_snippet,
+                substr(et.body, 1, 1800) AS excerpt, et.body_chars, et.truncated,
+                aa.description, aa.description_status, aa.transcript, aa.transcript_status,
+                aa.interpretation, aa.interpretation_status, aa.source_verification_status, aa.limitations
+           FROM fts
+           JOIN evidence_catalogue ec ON ec.artifact_id=CAST(fts.aid AS INTEGER)
+           LEFT JOIN evidence_text et ON et.aid=ec.artifact_id
+           LEFT JOIN artifact_assessments aa ON aa.ev=ec.ev
+          WHERE fts MATCH ?
+          ORDER BY rank LIMIT ?`,
+        [expression, limit]
+      );
+      return {
+        source: 'central Cedwyn evidence catalogue database',
+        matchType: 'full-text',
+        results: rows.map(function (r) {
+          var aliases = [];
+          try { aliases = JSON.parse(r.aliases_json || '[]'); } catch (_) {}
+          return {
+            ev: r.ev, title: r.title, path: r.path, evidenceGrade: r.evidence_grade,
+            independentOriginId: r.independent_origin_id, aliases: aliases,
+            gradeNote: r.grade_note, matchSnippet: r.match_snippet,
+            excerpt: r.excerpt || '', entryTextChars: r.body_chars || 0,
+            entryTextTruncated: !!r.truncated,
+            assessment: { description: r.description || '', descriptionStatus: r.description_status || 'not_assessed',
+              transcript: r.transcript || '', transcriptStatus: r.transcript_status || 'not_assessed',
+              interpretation: r.interpretation || '', interpretationStatus: r.interpretation_status || 'not_assessed',
+              sourceVerificationStatus: r.source_verification_status || 'not_assessed', limitations: r.limitations || '' }
+          };
+        })
+      };
+    });
+  }
+
+  function getCentralEvidenceRecord(key) {
+    key = String(key || '').trim();
+    if (!key) return Promise.reject(new Error('key is required'));
+    var pathCandidate = key.charAt(0) === '/' ? key.replace(/index\.html$/i, '').replace(/\/?$/, '/') : '';
+    return centralDb().then(async function (d) {
+      var rows = await d.query(
+        `SELECT ec.ev, ec.artifact_id, ec.path, ec.evidence_grade, ec.independent_origin_id,
+                ec.aliases_json, ec.grade_note, ec.title,
+                et.body AS record_text, et.body_chars, et.truncated,
+                a.sha, a.kind, a.mime, a.bytes, a.year_min, a.year_max,
+                aa.description, aa.description_status, aa.transcript, aa.transcript_status,
+                aa.interpretation, aa.interpretation_status, aa.source_verification_status, aa.limitations
+           FROM evidence_catalogue ec
+           LEFT JOIN evidence_text et ON et.aid=ec.artifact_id
+           LEFT JOIN artifacts a ON a.id=ec.artifact_id
+           LEFT JOIN artifact_assessments aa ON aa.ev=ec.ev
+          WHERE lower(ec.ev)=lower(?) OR lower(ec.path)=lower(?)
+             OR (?<>'' AND lower(ec.path)=lower(?))
+             OR lower(ec.aliases_json) LIKE lower(?)
+          ORDER BY ec.ev LIMIT 3`,
+        [key, key, pathCandidate, pathCandidate, '%' + key + '%']
+      );
+      if (!rows.length) {
+        return {
+          found: false, key: key,
+          source: 'central Cedwyn evidence catalogue database',
+          message: 'No exact evidence ID, alias or catalogue path was found. Search the catalogue first.'
+        };
+      }
+      var r = rows[0], aid = r.artifact_id == null ? null : r.artifact_id;
+      var aliases = [];
+      try { aliases = JSON.parse(r.aliases_json || '[]'); } catch (_) {}
+      var refs = [], locations = [], relations = [], gradeMeaning = null, cataloguePolicy = {};
+      var parallel = await Promise.all([
+        d.query('SELECT key, value FROM evidence_catalogue_meta'),
+        r.evidence_grade == null ? Promise.resolve([]) :
+          d.query('SELECT meaning FROM evidence_grade_scale WHERE grade=?', [r.evidence_grade]),
+        aid == null ? Promise.resolve([]) : d.query(
+          `SELECT lr.layer AS layerId, l.title AS layerTitle, lr.item AS itemId,
+                  li.kind AS itemKind, li.date AS date, li.event AS event,
+                  li.blow AS interpretationNote, li.label AS label,
+                  lr.ev AS referencedEvidence, lr.path AS referencedPath
+             FROM layer_refs lr
+             LEFT JOIN layers l ON l.id=lr.layer
+             LEFT JOIN layer_items li ON li.layer=lr.layer AND li.id=lr.item
+            WHERE lower(lr.ev)=lower(?) OR lr.aid=?
+            ORDER BY l.title, li.seq LIMIT 40`,
+          [r.ev, aid]
+        ),
+        aid == null ? Promise.resolve([]) : d.query(
+          `SELECT theme, path, url FROM locations
+            WHERE aid=? AND theme<>'_blob' ORDER BY theme, path LIMIT 40`,
+          [aid]
+        ),
+        aid == null ? Promise.resolve([]) : d.query(
+          `SELECT e.rel, e.dst, a.title, a.kind, a.id AS artifactId
+             FROM edges e
+             LEFT JOIN artifacts a ON e.dst=('a:' || a.id)
+            WHERE e.src=? ORDER BY e.rel, e.dst LIMIT 50`,
+          ['a:' + aid]
+        )
+      ]);
+      parallel[0].forEach(function (p) {
+        try { cataloguePolicy[p.key] = JSON.parse(p.value); }
+        catch (_) { cataloguePolicy[p.key] = p.value; }
+      });
+      gradeMeaning = parallel[1].length ? parallel[1][0].meaning : null;
+      refs = parallel[2]; locations = parallel[3]; relations = parallel[4];
+      return {
+        found: true,
+        source: 'central Cedwyn evidence catalogue database',
+        cataloguePolicy: cataloguePolicy,
+        record: {
+          ev: r.ev, title: r.title, path: r.path, aliases: aliases,
+          evidenceGrade: r.evidence_grade, evidenceGradeMeaning: gradeMeaning,
+          independentOriginId: r.independent_origin_id, gradeNote: r.grade_note,
+          sha256: r.sha, kind: r.kind, mime: r.mime, bytes: r.bytes,
+          yearMin: r.year_min, yearMax: r.year_max,
+          assessment: { description: r.description || '', descriptionStatus: r.description_status || 'not_assessed',
+            transcript: r.transcript || '', transcriptStatus: r.transcript_status || 'not_assessed',
+            interpretation: r.interpretation || '', interpretationStatus: r.interpretation_status || 'not_assessed',
+            sourceVerificationStatus: r.source_verification_status || 'not_assessed', limitations: r.limitations || '' },
+          sourcePageText: r.record_text || '',
+          entryTextChars: r.body_chars || 0, entryTextTruncated: !!r.truncated,
+          locations: locations, chronologyAndLayerReferences: refs, graphRelations: relations
+        },
+        interpretationNote: 'The entry text is the catalogue page’s published description and interpretation; distinguish it from the underlying primary record and from any inference it discusses. Identical copies share an independent-origin ID and are not independent corroboration.'
+      };
+    });
+  }
+
+  function observationSummary(r) {
+    var tests = [];
+    try { tests = JSON.parse(r.test_questions_json || '[]'); } catch (_) {}
+    return { id: r.id, slug: r.slug, title: r.title, seq: r.seq, theme: r.theme,
+      observationType: r.observation_type, status: r.status, summary: r.summary,
+      analysis: r.analysis, limits: r.limits, testQuestions: tests,
+      relatedPage: r.related_page, pagePath: r.page_path, updatedAt: r.updated_at };
+  }
+
+  async function observationReferences(d, id) {
+    return d.query(
+      `SELECT r.ev, r.path, r.role, r.note, r.artifact_id AS artifactId,
+              ec.title, ec.independent_origin_id AS independentOriginId,
+              ec.evidence_grade AS evidenceGrade, ec.grade_note AS gradeNote
+         FROM observation_refs r LEFT JOIN evidence_catalogue ec ON ec.ev=r.ev
+        WHERE r.observation_id=? ORDER BY r.seq`,
+      [id]
+    );
+  }
+
+  async function searchCentralObservations(query, limit) {
+    query = String(query || '').trim().toLowerCase();
+    limit = Math.min(Math.max(+(limit || 10), 1), 50);
+    return centralDb().then(async function (d) {
+      var sql = 'SELECT o.*, (SELECT count(*) FROM observation_refs r WHERE r.observation_id=o.id) AS reference_count FROM observations o';
+      var params = [];
+      if (query) {
+        sql += ` WHERE lower(o.id) LIKE ? OR lower(o.slug) LIKE ? OR lower(o.title) LIKE ?
+                   OR lower(o.summary) LIKE ? OR lower(o.analysis) LIKE ? OR lower(o.limits) LIKE ?
+                   OR EXISTS (SELECT 1 FROM observation_refs r WHERE r.observation_id=o.id AND
+                     (lower(COALESCE(r.ev,'')) LIKE ? OR lower(r.path) LIKE ? OR lower(r.note) LIKE ?))`;
+        params = Array(9).fill('%' + query + '%');
+      }
+      sql += ' ORDER BY o.seq,o.id LIMIT ?';
+      params.push(limit);
+      var rows = await d.query(sql, params);
+      return {
+        source: 'central Cedwyn observations database',
+        level: 2,
+        results: await Promise.all(rows.map(async function (r) {
+          var item = observationSummary(r);
+          item.referenceCount = r.reference_count;
+          item.references = await observationReferences(d, r.id);
+          return item;
+        }))
+      };
+    });
+  }
+
+  async function getCentralObservation(key) {
+    key = String(key || '').trim();
+    if (!key) return Promise.reject(new Error('key is required'));
+    return centralDb().then(async function (d) {
+      var rows = await d.query(
+        'SELECT * FROM observations WHERE lower(id)=lower(?) OR lower(slug)=lower(?) LIMIT 2',
+        [key, key]
+      );
+      if (!rows.length) return {
+        found: false, key: key, source: 'central Cedwyn observations database',
+        message: 'No observation ID or slug was found. Search the observation catalogue first.'
+      };
+      var item = observationSummary(rows[0]);
+      item.references = await observationReferences(d, item.id);
+      item.level = 2;
+      item.source = 'central Cedwyn observations database';
+      item.editorialRule = 'This is a derived observation, not an original artifact. Check each cited source and distinguish independent records from repeated recitals or copies.';
+      return { found: true, observation: item };
     });
   }
 
@@ -127,6 +444,9 @@
       { path: '/db/stats.json', kind: 'json', note: 'Catalogue database counts and version' },
       { path: '/db/config.json', kind: 'json', note: 'SQLite chunk layout for sql.js-httpvfs' },
       { path: '/db/blobmap.json', kind: 'json', note: 'Path → blob byte locations in the DB' },
+      { path: '/db/export/manifest.json', kind: 'json', note: 'Export manifest for the central SQLite catalogue' },
+      { path: '/wiki/observations/', kind: 'html', note: 'Level 2 observation index linked to Level 1 artifacts' },
+      { path: '/wiki/_db/config.json', kind: 'json', note: 'Compact wiki section SQLite slice' },
       { path: '/graphql/', kind: 'html', note: 'In-browser GraphQL against the catalogue' },
       { path: '/library/api/', kind: 'html', note: 'API and WebMCP documentation' },
       { path: '/_cedwyn/glossary.json', kind: 'json', note: 'Glossary' },
@@ -175,6 +495,14 @@
       case 'search_case_public_content':
         if (!args.q) return Promise.reject(new Error('q is required'));
         return searchCatalogue(String(args.q), args.theme, args.limit);
+      case 'search_central_evidence_catalogue':
+        return searchCentralEvidence(args.q, args.limit);
+      case 'get_central_evidence_record':
+        return getCentralEvidenceRecord(args.key);
+      case 'search_central_observations':
+        return searchCentralObservations(args.q, args.limit);
+      case 'get_central_observation':
+        return getCentralObservation(args.key);
       case 'list_case_public_resources':
         return listResources(args.section);
       case 'read_case_public_resource':
@@ -185,34 +513,93 @@
     }
   }
 
-  function registerWebMCP() {
-    var mc = navigator.modelContext || navigator.modelContextProvider || (window.chrome && chrome.modelContext);
-    if (!mc || typeof mc.registerTool !== 'function') {
-      window.__cedwynWebMCP = { available: false, tools: TOOLS.map(function (t) { return t.name; }), run: runTool };
+  function modelContext() {
+    // The current WebMCP API is on Document. navigator.modelContext is legacy.
+    if (document && document.modelContext && typeof document.modelContext.registerTool === 'function') {
+      return { context: document.modelContext, api: 'document.modelContext' };
+    }
+    if (navigator && navigator.modelContext && typeof navigator.modelContext.registerTool === 'function') {
+      return { context: navigator.modelContext, api: 'navigator.modelContext (legacy)' };
+    }
+    return null;
+  }
+
+  async function registerWebMCP() {
+    var found = modelContext();
+    if (!found) {
+      window.__cedwynWebMCP = {
+        available: false,
+        registered: false,
+        api: null,
+        tools: TOOLS.map(function (t) { return t.name; }),
+        run: runTool,
+        message: 'WebMCP is not exposed by this browser. The JavaScript fallback remains available.'
+      };
       return false;
     }
-    TOOLS.forEach(function (t) {
+
+    var mc = found.context;
+    var registered = [];
+    var failures = [];
+    for (var i = 0; i < TOOLS.length; i++) {
+      var tool = TOOLS[i];
       try {
-        mc.registerTool({
-          name: t.name,
-          description: t.description,
-          inputSchema: t.inputSchema,
-          execute: function (input) {
-            return runTool(t.name, input || {}).then(function (result) {
-              return { content: [{ type: 'text', text: typeof result === 'string' ? result : JSON.stringify(result, null, 2) }] };
-            });
-          }
+        await mc.registerTool({
+          name: tool.name,
+          description: tool.description,
+          inputSchema: tool.inputSchema,
+          annotations: { readOnlyHint: true },
+          execute: async function (input, options) {
+            try {
+              // Keep the public-resource reader same-origin and honour cancellation.
+              if (options && options.signal && options.signal.aborted) {
+                return { error: 'Tool execution was cancelled.' };
+              }
+              var result = await runTool(this.name, input || {});
+              return result;
+            } catch (err) {
+              return { error: String(err && err.message || err) };
+            }
+          }.bind({ name: tool.name })
         });
+        registered.push(tool.name);
       } catch (e) {
-        console.warn('[cedwyn agent-tools] registerTool failed for', t.name, e);
+        failures.push({ name: tool.name, error: String(e && e.message || e) });
+        console.warn('[cedwyn agent-tools] registration failed:', tool.name, e);
       }
-    });
-    window.__cedwynWebMCP = { available: true, tools: TOOLS.map(function (t) { return t.name; }), run: runTool };
-    return true;
+    }
+
+    // Verify via the API where supported; do not equate API presence with success.
+    var verified = false;
+    if (typeof mc.getTools === 'function') {
+      try {
+        var liveTools = await mc.getTools();
+        var liveNames = liveTools.map(function (t) { return t.name; });
+        registered = registered.filter(function (name) { return liveNames.indexOf(name) !== -1; });
+        verified = TOOLS.every(function (t) { return liveNames.indexOf(t.name) !== -1; });
+      } catch (e) {
+        failures.push({ name: 'getTools', error: String(e && e.message || e) });
+      }
+    }
+
+    window.__cedwynWebMCP = {
+      available: true,
+      registered: registered.length > 0,
+      verified: verified,
+      api: found.api,
+      tools: registered,
+      expectedTools: TOOLS.map(function (t) { return t.name; }),
+      failures: failures,
+      run: runTool,
+      message: verified ? ('All ' + TOOLS.length + ' WebMCP tools registered and verified.') :
+        (registered.length === TOOLS.length ? 'Registration calls completed; tool discovery could not be fully verified.' :
+          'WebMCP registration incomplete. See failures for details.')
+    };
+    return registered.length === TOOLS.length;
   }
 
   // Expose a small status node agents / humans can inspect
-  function statusNode(ok) {
+  function statusNode() {
     var id = 'webmcp-status';
     var el = document.getElementById(id);
     if (!el) {
@@ -223,14 +610,16 @@
       el.setAttribute('aria-hidden', 'true');
       (document.body || document.documentElement).appendChild(el);
     }
-    el.textContent = ok
-      ? 'WebMCP tools registered: ' + TOOLS.map(function (t) { return t.name; }).join(', ')
-      : 'WebMCP API not present; tools available via window.__cedwynWebMCP.run(name, args)';
+    var state = window.__cedwynWebMCP || {};
+    el.textContent = state.message || 'WebMCP registration is in progress.';
+    el.setAttribute('data-webmcp-api', state.api || 'unavailable');
+    el.setAttribute('data-webmcp-registered', (state.tools || []).join(','));
+    el.setAttribute('data-webmcp-verified', String(!!state.verified));
   }
 
-  function boot() {
-    var ok = registerWebMCP();
-    statusNode(ok);
+  async function boot() {
+    await registerWebMCP();
+    statusNode();
   }
 
   if (document.readyState === 'loading') {
