@@ -150,7 +150,7 @@ lines += ['/email/api /email/api/ 301', '/email/api/records /email/view/index.js
 lines += ['/graphql /graphql/ 301', '/catalogue /catalogue/ 301']
 # 27 Oct 2026 (Sion: fix every 'That page did not open'): links that landed on the fallback page in the 27 Oct crawl. Cross-theme links a
 # theme wrote as /<theme>/<other>/... go to the other theme; Sphinx index/search/release-note links the evidence docs no longer carry go to the
-# document's own page; the kissed-frogs wiki copy points at the wiki. Dynamic lines first so the 95-line cap keeps them. - Sion's Tab agent
+# document's own page; the kissed-frogs wiki copy points at the wiki. Dynamic lines first; the 90-line cap reserves room for section and e-book API routes. - Sion's Tab agent
 LINKFIX_DYN = ["/kissed-frogs/wiki/* /wiki/:splat 301", "/ebooks/:b/online/gen /ebooks/:b/online/ 301", "/docs/ghf_evidence/:id/latest/html/:lang/genindex.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/search.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/releasenotes.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/1-record.html /docs/ghf_evidence/:id/latest/html/:lang/ 302"]
 _suspected_path = "suspected-fra" + "ud-concealment"
 _working_path = "working-theory-fra" + "ud-concealment-and-limitation"
@@ -178,7 +178,7 @@ if tr.exists():
         if len(b) >= 2: lines.append(' '.join(b))
 dyn = [l for l in lines if '*' in l.split()[0] or ':' in l.split()[0]]
 sta = [l for l in lines if l not in dyn]
-(DIST / '_redirects').write_text('\n'.join(dyn[:95] + sta[:1900]) + '\n')
+(DIST / '_redirects').write_text('\n'.join(dyn[:90] + sta[:1900]) + '\n')
 (DIST / '_headers').write_text('''/_blob/*
   Cache-Control: public, max-age=31536000, immutable
 /_cedwyn/vendor/*
@@ -271,3 +271,12 @@ try:
     og_cards.run(DIST)
 except Exception as _e:   # share tags must never stop a build
     print('og_cards failed:', _e)
+
+# Cloudflare Pages redirect quotas: validate the final file after every theme plugin has amended it.
+_redirect_file = DIST / '_redirects'
+_redirect_lines = _redirect_file.read_text(encoding='utf-8').splitlines() if _redirect_file.exists() else []
+_redirect_dynamic = [x for x in _redirect_lines if x.split() and ('*' in x.split()[0] or ':' in x.split()[0])]
+_redirect_static = [x for x in _redirect_lines if x.strip() and x not in _redirect_dynamic]
+print('redirect quota:', len(_redirect_dynamic), '/100 dynamic;', len(_redirect_static), '/2000 static')
+assert len(_redirect_dynamic) <= 100, 'Cloudflare Pages dynamic redirect quota exceeded after all route additions'
+assert len(_redirect_static) <= 2000, 'Cloudflare Pages static redirect quota exceeded after all route additions'
