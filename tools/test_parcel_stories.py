@@ -23,4 +23,7 @@ assert model["C"]["parent_id"] is None
 assert "outside Parcel A" in model["A"]["description"]
 assert all(e["source_ev"] == "EV-0215" for p in stories for e in p["events"])
 assert {e["model_id"] for e in stories_doc["model_events"]} >= {"A1", "A2", "B", "C"}
+assert any(e["title"].startswith("Alfred Thomas dies") and "EV-0284" in e.get("source_evs", []) for e in stories_doc["model_events"])
+assert any(e["model_id"] == "A2" and "death date unknown" in e["date_text"].lower() for e in stories_doc["model_events"])
+assert any(e["model_id"] == "B" and "12 years after May 1939" in e["date_text"] for e in stories_doc["model_events"])
 print("parcel story source OK: 36 public areas, 36 provisional slots, 5 working model records")
