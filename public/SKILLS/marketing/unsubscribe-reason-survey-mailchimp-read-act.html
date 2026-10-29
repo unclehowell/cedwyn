@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Unsubscribe-reason survey: keep it on, read every answer, act on three signals · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Unsubscribe-reason survey: keep it on, read every answer, act on three signals"><link rel="alternate" type="text/markdown" href="unsubscribe-reason-survey-mailchimp-read-act.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Unsubscribe-reason survey: keep it on, read every answer, act on three signals</h1>
+<p><strong>Why.</strong> Each unsubscribe is a reader telling us something, and on a tiny list each one counts. Mailchimp already shows a reason survey after every unsubscribe. The work is to keep that survey switched on, read the answers, and react to the few signals that matter. The preference centre (<code>email-preference-centre-snooze-topics.md</code>) works <em>before</em> the click; this skill covers what happens <em>after</em> it.</p>
+<h2>Evidence (read unless marked)</h2>
+<ul>
+<li><strong>How Mailchimp's survey works</strong> (two help pages, read 28 Oct 2026):</li>
+<li>The "Unsubscribe success page includes an unsubscribe reason survey". Answering is optional.</li>
+<li><strong>You can't add or remove reasons.</strong> You can only reword them, under Forms &gt; Other forms &gt; Manage forms &gt; <em>Unsubscribe success page</em> &gt; <em>Translate it</em>.</li>
+<li>Setting a redirect URL in "send subscribed contacts to another URL" <strong>removes the survey</strong>. Don't swap in a custom goodbye page.</li>
+<li>Results are per campaign: Campaigns &gt; View Report &gt; Recipient activity &gt; filter Unsubscribed, then Export recipients.</li>
+<li>Export codes: NORMAL (no longer interested), NOSIGNUP, INAPPROPRIATE, SPAM, OTHER (free text), UNSPECIFIED. A single contact's reason also shows in their profile's activity feed.</li>
+<li><strong>MailerLite, "Unsubscribe survey: learn why your readers leave", 25 Mar 2026</strong> (read; vendor data):</li>
+<li>The average unsubscribe rate is <strong>0.22% per campaign across 3.5M+ campaigns</strong>. Legal, media and higher education run at a median of about 0.1%; photo/video, restaurants and telecoms at 0.34–0.40%. "Your own trend over time matters more than any single number."</li>
+<li>Spam: "a handful of clicks here is completely normal… start paying attention if more than <strong>4 to 5%</strong> of people who unsubscribe choose this option", because it can start to hurt sender reputation.</li>
+<li>"I never signed up" means auditing how people join: pre-ticked boxes, unclear opt-in, imported or event lists. The fix is double opt-in.</li>
+<li>Too frequent: say the frequency on the signup form ("Expect 2–3 emails per month") and offer a digest instead of leaving.</li>
+<li>Targeted, preference-based sends get <strong>+36.69% opens and +267.21% clicks</strong> compared with untargeted ones. This is MailerLite's own figure; the method isn't stated.</li>
+<li><strong>MarketingSherpa consumer study</strong> (2,400 US consumers, chart article, read):</li>
+<li>Reasons people give: too many emails in general (<strong>26%</strong>), not relevant (<strong>21%</strong>), too many from this company (<strong>19%</strong>), "always trying to sell me something" (<strong>19%</strong>).</li>
+<li><strong>49%</strong> would rather choose their own email frequency (24% prefer the brand to choose), yet only <strong>14%</strong> of marketers offer that choice.</li>
+<li>One respondent: "my choice is to receive the everyday email or nothing, when all I want is maybe once a month."</li>
+<li><strong>Small-newsletter testimony</strong> (r/beehiiv, "What is unsubscribe percentage a newsletter should have", read via RSS):</li>
+<li>A weekly writer saw unsubscribes rise from 0.5% to 2.5% per issue.</li>
+<li>Replies: "Anything above 0.5% is over the normal threshold"; "above 1%… significant risk to sender rep."</li>
+<li>The usual cause is a gap between what the signup promised and what the issues deliver.</li>
+<li>Check where unsubscribers came from: cross-promotion and recommendation sign-ups unsubscribe more than organic ones.</li>
+<li>beehiiv can attach its own survey as the unsubscribe survey.</li>
+</ul>
+<h2>The routine (10 minutes after each campaign)</h2>
+<ol>
+<li><strong>Leave the survey on.</strong> If the wording is ever changed, keep the 5 fixed reasons and use plain words, plus a Welsh line if the list is bilingual.</li>
+<li><strong>After each send,</strong> export Unsubscribed from the campaign report and run <code>python3 tools/unsub_reasons.py export.csv --sent &lt;recipients&gt;</code>. It prints the share for each reason and every free-text OTHER answer. It flags:
+   - <strong>SPAM_SHARE</strong> (above 4.5% of unsubscribers)
+   - <strong>NOSIGNUP</strong> (any at all)
+   - <strong>UNSUB_RATE</strong> (above 0.5% of sends)</li>
+<li><strong>Act on what it states:</strong>
+   - <strong>NOSIGNUP:</strong> find the source (form, import, tag) the same day, then fix or remove it. Never re-add the person.
+   - <strong>SPAM_SHARE:</strong> cut promotional emails and send the next issue as pure content. Check that double opt-in is still on.
+   - <strong>Frequency complaints, or NORMAL rising:</strong> add or promote the "monthly digest only" option and repeat the frequency on the signup form.
+   - <strong>OTHER text:</strong> quote it verbatim in the weekly report. It's voice-of-customer copy material, so feed it to <code>voc-review-mining-sales-copy.md</code>.</li>
+<li><strong>Under 20 unsubscribes in total,</strong> read each answer and ignore percentages. Never email an unsubscriber to ask why; the survey is the only ask. Mailchimp advises not to send to unsubscribed contacts unless the unsubscribe was a proven error.</li>
+<li><strong>Record each campaign</strong> as one row: campaign, sent, unsubscribes, rate, top reason, flags. Compare the trend, not single campaigns.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>The list is the Mailchimp audience <code>6139ff4a0d</code>, with double opt-in. The growth notes record 1 member. <strong>Action now:</strong> check read-only that the Unsubscribe success page still shows the survey (no redirect URL set), and leave it as is. This changes nothing public.</li>
+<li>The signup form should name the frequency, e.g. "About two emails a month: new records, new e-books." Propose that line for the free-chapter block; it is copy, so it goes through the project lead's editorial rules.</li>
+<li>After every Mailchimp campaign, the weekly report (<code>the project workspace</code>, Sunday growth report) gains one line: unsubscribes / sent, top reason, any flag. Free-text answers are quoted with no names or addresses.</li>
+<li>Institution outreach from Gmail has no unsubscribe survey. There, a "please remove me" reply is the signal: record it in HubSpot and never contact that address again. This matches <code>cold-email-reply-triage-first-72-hours.md</code>.</li>
+<li>Zero spend, nothing installed, nothing sent.</li>
+</ul>
+<h2>Tool</h2>
+<p><code>tools/unsub_reasons.py</code>: our own standard-library script (about 3 KB). It reads the Mailchimp codes or plain labels and exits 1 on any flag. Tested 28 Oct 2026 on a 5-row sample, where it flagged SPAM_SHARE, NOSIGNUP and UNSUB_RATE 2.50%.</p>
+<h2>Sources</h2>
+<ul>
+<li>mailchimp.com (read 28 Oct 2026)</li>
+<li>mailchimp.com (read 28 Oct 2026)</li>
+<li>mailerlite.com (read; 25 Mar 2026)</li>
+<li>marketingsherpa.com (read)</li>
+<li>reddit.com (read via .rss)</li>
+</ul><p class="raw">Raw Markdown: <a href="unsubscribe-reason-survey-mailchimp-read-act.md">unsubscribe-reason-survey-mailchimp-read-act.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

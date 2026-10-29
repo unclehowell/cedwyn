@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>E-book piracy stance for a direct-sold PDF shop: no hard DRM, light &quot;social DRM&quot;, 10-minute takedown routine · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: E-book piracy stance for a direct-sold PDF shop: no hard DRM, light &quot;social DRM&quot;, 10-minute takedown routine"><link rel="alternate" type="text/markdown" href="ebook-piracy-social-drm-takedown-routine.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>E-book piracy stance for a direct-sold PDF shop: no hard DRM, light "social DRM", 10-minute takedown routine</h1>
+<p>Written 2026-10-28 (skills harvest). Distinct from: peoples-collection takedown (our own uploads), wayback fair-dealing, press monitoring (mentions, not copies).</p>
+<h2>What the evidence states</h2>
+<ul>
+<li><strong>Hard DRM does not stop piracy and annoys buyers.</strong> Tor Books UK/US went DRM-free on 25 Apr 2012. One year on, Julie Crisp (Tor UK editorial director, Reactor/Tor.com 29 Apr 2013, read): "we've seen no discernible increase in piracy on any of our titles, despite them being DRM-free for nearly a year." Reasons given: readers move files between devices, and DRM-protected titles were pirated anyway. Charles Stross, quoted there: "DRM doesn't impede pirates, but it subjects honest customers to a monopoly..." This is one publisher's self-report, not a measured study.</li>
+<li><strong>Takedown monitoring does lift sales, mostly by stopping casual sharing.</strong> Reimers, "Can Private Copyright Protection Be Effective? Evidence from Book Publishing", Journal of Law &amp; Economics 59(2) 2016 (abstract read): titles placed under an anti-piracy firm's search-and-takedown service showed a <strong>&gt;14% increase in e-book sales</strong> (difference-in-differences). The effect depended on popularity, genre and search frequency, and "most of the increase is due to prevention of casual infringements rather than professional piracy". Read: the cheap part (removing easy-to-find copies from search) does most of the work.</li>
+<li><strong>Google search removal is the lever that works for a small publisher.</strong> Ian Lamont (In 30 Minutes guides, 2015/2016, read): asking pirate sites or hosts usually fails (dead "DMCA" links, overseas hosts). Removing the pirate URLs from Google Search via Google's copyright removal form takes about 2 minutes with a template and is usually actioned fast. <strong>Catch:</strong> the notice (with the requester's name) can be published on the Lumen database (formerly Chilling Effects).</li>
+<li><strong>Social DRM (a per-buyer stamp in the file)</strong> is the usual compromise (publica.la, ReadNRate 2026, vendor pages, snippets only, not checked). It deters forwarding because the copy carries a traceable mark. It is no barrier to a determined pirate, but neither is hard DRM.</li>
+</ul>
+<h2>The routine (zero spend)</h2>
+<ol>
+<li><strong>Monthly search check (5 min).</strong> For each title, search: <code>"&lt;exact title&gt;" pdf</code>, <code>"&lt;title&gt;" download</code>, <code>"&lt;title&gt;" epub</code>. Note any result that is not one of our own hosts. Free Google Alerts on each exact title cover the gaps between checks (they already exist for mentions; add the titles).</li>
+<li><strong>Triage.</strong> Our own pages, a library, a review or a quote = fine. A full copy, or a page offering it for download = infringing.</li>
+<li><strong>Takedown (about 10 minutes for each site):</strong>
+   - a. Google Search: use the copyright removal form at support.google.com (product: Web Search). List the pirate URLs and our official /ebooks/ URLs.
+   - b. Bing: use the equivalent copyright removal form.
+   - c. The host: only if it has a working abuse address. Do not chase registrars.
+   - The filer swears to being the copyright owner or an authorised agent. <strong>The filer and their name may be published on Lumen.</strong></li>
+<li><strong>Social DRM at delivery (proposal).</strong> Stamp each paid PDF with an <strong>order reference, never the buyer's email or name in clear</strong>: a 7 pt footer line on each page plus a PDF metadata field. <code>tools/pdf_stamp.py</code> does this with pypdf, which is already installed; tested 28 Oct on a 2-page file, and the stamp reads back.</li>
+<li><strong>Never:</strong> hard DRM (no Adobe DRM or locked readers), wording that sounds like an accusation in public, or contacting downloaders.</li>
+</ol>
+<h2>Numbers to watch</h2>
+<p>Pirate URLs found per month (baseline 0). Takedowns filed and actioned. Sales the month after any takedown. Don't expect to see Reimers' 14% at our volume; the point is to keep the search results ours.</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Baseline 28 Oct 01:42Z: no pirate copies found.</strong> Searches for "Disclosure Dartboard" pdf download, "Tŷ Mawr Deaths" pdf, and Great House Farm Buckler ebook pdf free download returned only cedwyn.bucklerfamily.estate and ebooks.bucklerfamily.estate pages, plus unrelated PDFs. No action is needed now. Add the check to the monthly growth/onpage audit.</li>
+<li><strong>Our biggest leak risk is our own setup, not pirate sites.</strong> Free v0.01 editions may be shared unchanged (terms page), which is fine. Paid PDFs go out through ebook-gate v4 ("recorded" mode). Its own README notes that a buyer who copies their return URL could reuse that book's token. Social DRM at the gate would make any such copy traceable. <strong>Proposal only:</strong> the Worker would need to stamp at download time (a JS PDF library in the ebook-gate Worker), and the gate belongs to its own workers. Do not change it from a harvest run.</li>
+<li><strong>Who files.</strong> A Google notice needs the copyright owner or an authorised agent, and its name can appear publicly on Lumen. Because of the rule against naming the project lead publicly, any filing goes under the publisher name with the project lead's OK. It is his decision, logged as a proposal, and nothing is filed unless a pirate copy actually appears.</li>
+<li><strong>Public wording:</strong> neutral only, e.g. "unauthorised copy". Banned public words still apply.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>reactormag.com (read)</li>
+<li>ideas.repec.org (abstract read; full paper: imkereimers.weebly.com)</li>
+<li>in30minutes.com (read)</li>
+<li>publica.la ; readnrate.com (snippets, not checked)</li>
+<li>Tool: tools/pdf_stamp.py (our own; uses pypdf 6.18.1, already installed)</li>
+</ul><p class="raw">Raw Markdown: <a href="ebook-piracy-social-drm-takedown-routine.md">ebook-piracy-social-drm-takedown-routine.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

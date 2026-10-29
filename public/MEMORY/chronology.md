@@ -2,6 +2,8 @@
 
 A reading aid, not the record. The record is the research catalogue (EV- IDs) and the title chain at /title-chain/. Every line here points to where the evidence lives. Where a point is not checked against a primary source, it is marked "not checked".
 
+Naming (from 29 Oct 2026): the John Williams of Great House Farm who died on 17 July 1908 is "John Williams Sr"; the John Williams who succeeded him (the 1916 tenancy, the 1939 signature; died in the 1950s, father of Nancy) is "John Williams Jr". Use these labels everywhere so the two are never merged.
+
 | When | What | Record |
 |---|---|---|
 | 1667 | The Williams family acquire Tŷ Mawr | Mary Williams' statement in the 1974 newspaper reports; ITV News, 1988 |

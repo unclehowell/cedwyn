@@ -1,8 +1,8 @@
 # Work board
 
-Step 3 of 3. **73 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-28 00:41 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
+Step 3 of 3. **77 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-29 13:41 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
 
-## Find a missing record (49)
+## Find a missing record (53)
 
 - **J-946080** · MR-0001: Instrument recording the 1667 acquisition of Tŷ Mawr by the Williams family  
   *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
@@ -118,7 +118,7 @@ Step 3 of 3. **73 open jobs**, regenerated every academy cycle from real gaps (l
   *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
 - **J-7DBD51** · MR-0029: Licences or orders for the removal of human remains from the site (burials found 1989–1995)  
   *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
-  *Inputs:* /research/missing-records/mr-0029/; why: Removing human remains needs a Home Office licence (Burial Act 1857, s.25), a faculty for consecrated ground, or the notices required by the Disused Burial Grounds (Amendment) Act 1981.; likely holder: Ministry of Justice (successor to the Home Office burials function); Church in Wales; Vale of Glamorgan Council (planning conditions); record EV-0132
+  *Inputs:* /research/missing-records/mr-0029/; why: Removing human remains needs a Home Office licence (Burial Act 1857, s.25), a faculty for consecrated ground, or the notices required by the Disused Burial Grounds (Amendment) Act 1981. The HER manager answered on 16 October 2026 that it holds nothing on this request, and on 28 October 2026 that any relevant information will be in the HER record; neither answer names a licence, faculty or notice.; likely holder: Ministry of Justice (successor to the Home Office burials function); Church in Wales; Vale of Glamorgan Council (planning conditions); record EV-0132
   *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
 - **J-7CE07E** · MR-0030: Planning file for outline permission 3/8996/3337 (about 13 houses, 1972)  
   *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
@@ -198,7 +198,23 @@ Step 3 of 3. **73 open jobs**, regenerated every academy cycle from real gaps (l
   *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
 - **J-587DB2** · MR-0049: Itemised list of the RCHME microfiche section sent from Historic England to RCAHMW on 12 January 2018  
   *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
-  *Inputs:* /research/missing-records/mr-0049/; why: Historic England records that its Welsh section of archaeological-report microfiche went to RCAHMW on 12 January 2018 but holds no itemised list. A transfer between record bodies normally carries a list or receipt at one end or the other; without it nobody can show whether any report on this site was in the batch.; likely holder: RCAHMW (receiving body); Historic England
+  *Inputs:* /research/missing-records/mr-0049/; why: Historic England records that its Welsh section of archaeological-report microfiche went to RCAHMW on 12 January 2018 but holds no itemised list. A transfer between record bodies normally carries a list or receipt at one end or the other; without it nobody can show whether any report on this site was in the batch. On 27 October 2026 Historic England added that there never was an itemised list; it disclosed the 12 January 2018 transfer letter and a deaccession statement dated 25 July 2017, neither of which lists the fiche. Its earlier email correspondence with RCAHMW about the transfer was not disclosed.; likely holder: RCAHMW (receiving body); Historic England
+  *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
+- **J-6B0AEF** · MR-0050: Conveyance of May 1975: farmhouse and garden, BP Pension Trust Ltd to BP Properties Ltd  
+  *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
+  *Inputs:* /research/missing-records/mr-0050/; why: The 1987 judgment records that the farmhouse and garden passed from BP Pension Trust Ltd to BP Properties Ltd in May 1975, after the October 1974 letters. The deed fixes what land passed, under what description, and whether the occupier's position was recited. It would be the latest deed lodged with the 1983 first-registration application for WA240304.; likely holder: BP Properties Ltd or successors; HM Land Registry first-registration file for WA240304
+  *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
+- **J-985309** · MR-0051: Agreement of 1974 by which BP Properties Ltd agreed to buy the farmhouse and garden from BP Pension Trust Ltd  
+  *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
+  *Inputs:* /research/missing-records/mr-0051/; why: The 1987 judgment reads the 31 October 1974 letters as recording that BP Properties Ltd had already agreed to buy the property from the Pension Trust; that agreement is what let BP Properties Ltd grant the licence. Its date and terms show which company held what on the day of the letters.; likely holder: BP Properties Ltd or successors; BP Pension Trustees Ltd (company 00230748); record EV-0050
+  *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
+- **J-BF2632** · MR-0052: Directors' minutes of BP Pension Trust Ltd and BP Properties Ltd approving the 31 October 1974 letters and the withdrawal of the possession warrant  
+  *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
+  *Inputs:* /research/missing-records/mr-0052/; why: Two companies each sent a letter on 31 October 1974 offering a rent-free licence for life, and on the same day the possession warrant was withdrawn (leave to issue it had been given to BP Pension Trust Ltd on 19 September 1974). A company had to minute the proceedings of its directors' meetings, so a decision of this kind should appear in each company's minute book. Whether the books for 1974 are still kept is not checked.; likely holder: BP Pension Trustees Ltd (company 00230748, formerly The British Petroleum Pension Trust Ltd); BP Properties Ltd (company 00699446); record EV-0050
+  *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
+- **J-5E86D1** · MR-0053: Commissioning file for the 1990 archaeological evaluation at Great House Farm: brief or specification, priced quotation and the client's instruction  
+  *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
+  *Inputs:* /research/missing-records/mr-0053/; why: A field evaluation is carried out to a written brief or specification, priced, and instructed by a client before anyone digs. That file fixes who asked for the 1990 work, what it was told to look for, what area it covered and what it cost, which the 1990 assessment report alone does not show. On 28 October 2026 Heneb, the legal entity holding the records of the former Glamorgan-Gwent Archaeological Trust, answered the question on how the work was specified, priced, bid for and carried out by withholding information that identifies individuals; it did not state that the file is not held, and it declined to review the 1990 evaluation.; likely holder: Heneb (holds the former Glamorgan-Gwent Archaeological Trust records); the commissioning client (not checked); Vale of Glamorgan Council if the work answered a planning request on 89/01396/OUT (not checked)
   *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
 
 ## Close a chronology gap (10)
@@ -257,9 +273,9 @@ Step 3 of 3. **73 open jobs**, regenerated every academy cycle from real gaps (l
 - **J-3F4A24** · 2 broken internal link(s) on /fb/  
   *Section:* fb · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
   *Inputs:* /fb/; /fb/m/login; /wiki/press-archive-transcripts/
-- **J-4AFA9D** · 4 broken internal link(s) on /csscpsg/  
+- **J-4AFA9D** · 5 broken internal link(s) on /csscpsg/  
   *Section:* csscpsg · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
-  *Inputs:* /csscpsg/; /wayback/pdf/foi/2026-07-30_hmlr_first-registration-schedule.pdf; /wiki/wp-content/uploads/2026/09/wp-1790112968592.pdf; /wiki/wp-content/uploads/2026/09/wp-1790112987191.pdf
+  *Inputs:* /csscpsg/; /wayback/pdf/foi/2026-07-30_hmlr_first-registration-schedule.pdf; /wiki/wp-content/uploads/2026/09/wp-1790112811838.pdf; /wiki/wp-content/uploads/2026/09/wp-1790112968592.pdf
 
 ## Remove outbound links (1)
 
