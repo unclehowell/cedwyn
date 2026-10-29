@@ -212,14 +212,21 @@ def do_html(s, page):
     return s
 
 def add_boot(s, rel):
-    """the shared header: ghf-boot.js last in <head>, once"""
+    """Shared GHF header and Cedwyn's central-catalogue agent tools on every published HTML page."""
     if not re.search(r'</head\s*>', s, re.I): return s
     if rel.startswith(('db/', '_blob/', '_ext/', '_cedwyn/')): return s
     s2, k = re.subn(r'<script\b[^>]*src\s*=\s*["\']/_cedwyn/ghf/ghf-boot\.js[^"\']*["\'][^>]*>\s*</script>\s*', '', s, flags=re.I)
-    tag = '<script src="' + BOOT + '"></script>'
-    s3 = re.sub(r'</head\s*>', lambda m: tag + m.group(0), s2, count=1, flags=re.I)
+    header_tag = '<script src="' + BOOT + '"></script>'
+    s3 = re.sub(r'</head\s*>', lambda m: header_tag + m.group(0), s2, count=1, flags=re.I)
     if k == 0: stats['boot_added'] += 1
     elif s3 != s: stats['boot_moved'] += 1
+
+    # The home-page footer injects this on theme indexes, but nested evidence pages need it too.
+    # Do not gate on navigator.modelContext: modern browsers expose document.modelContext instead.
+    if not re.search(r'<script\b[^>]*src\s*=\s*["\'][^"\']*/_cedwyn/agent-tools\.js(?:[?#][^"\']*)?["\']', s3, re.I):
+        agent_tag = '<script src="/_cedwyn/agent-tools.js?v=1" defer data-cedwyn-agent-tools></script>'
+        s3 = re.sub(r'</head\s*>', lambda m: agent_tag + m.group(0), s3, count=1, flags=re.I)
+        stats['agent_tools_added'] = stats.get('agent_tools_added', 0) + 1
     return s3
 
 APEX_THEMES = ["estate", "patagonia", "wales", "cyberspace"]

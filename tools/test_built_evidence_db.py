@@ -74,6 +74,17 @@ with tempfile.TemporaryDirectory(prefix="cedwyn-db-check-") as td:
     if not row["description_status"] or not row["interpretation_status"]:
         raise SystemExit("FAIL: assessment states are missing on the real evidence row")
 
+    # The site-level loader must be present on a nested evidence page, not only the theme home.
+    evidence_page = DIST / "research" / "evidence" / "ev-0617-twelve-year-limitation-rule-1879-1940" / "index.html"
+    if not evidence_page.is_file():
+        raise SystemExit(f"FAIL: expected nested Level 1 evidence page is missing: {evidence_page}")
+    page_html = evidence_page.read_text(encoding="utf-8", errors="replace")
+    if not __import__("re").search(
+        r'<script\\b[^>]*src=["\\'][^"\\']*/_cedwyn/agent-tools\\.js(?:[?#][^"\\']*)?["\\']',
+        page_html, __import__("re").I
+    ):
+        raise SystemExit("FAIL: central agent tools script not injected on the nested evidence page")
+
     # The production full-text search join must resolve the indexed evidence catalogue.
     search = con.execute(
         """SELECT DISTINCT ec.ev, ec.title, ec.path, snippet(fts, 1, '[', ']', ' … ', 18) AS excerpt
