@@ -26,6 +26,8 @@ jobs:
           node --check web/_cedwyn/agent-tools.js
           node --check tools/test_agent_tools.js
           node tools/test_agent_tools.js
+          node --check tools/test_agent_webmcp.js
+          node tools/test_agent_webmcp.js
           python3 tools/test_evidence_hierarchy.py
       - name: Free disk
         run: |
