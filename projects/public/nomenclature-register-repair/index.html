@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Nomenclature Register Repair · Project Control Sheet</title>
+<meta name="description" content="PRINCE2-style control sheet for the Cedwyn nomenclature register: scope, product description, acceptance, risks, decisions and lessons."/>
+<link rel="stylesheet" href="/assets/p2.css?v=1"/>
+<script src="https://bucklerfamily.estate/ghf-lang/ghf-lang.js?v=2.0.3" defer></script>
+<script src="https://bucklerfamily.estate/ghf-lang/ghf-boot.js?v=2.0.3"></script>
+</head>
+<body>
+<main class="p2">
+<h1 class="vh">Nomenclature Register Repair</h1>
+<p class="crumb"><a href="/">The Project Office</a> › <a href="/programme-plan/">Master programme plan</a> › Nomenclature register repair · <a href="/programme-office/">Programme Office</a></p>
+<h2>WP-DIG-NOM-01 · Nomenclature citation integrity</h2>
+<ul class="facts">
+<li>Change ID <b>CR-DIG-2026-10-29-01</b></li>
+<li>Product <b>Searchable nomenclature register</b></li>
+<li>Control model <b>PRINCE2 7, tailored</b></li>
+<li>Baseline <b>29 October 2026</b></li>
+<li>Budget tolerance <b>£0 external spend</b></li>
+</ul>
+<p class="lead">A cross-cutting digital-quality work package under the existing Great House Farm / Tŷ Mawr programme, not a fourth delivery project. Its purpose is to make the nomenclature URL cited in outbound correspondence useful as a source-aware register, and to keep its description honest about evidence quality. The same register supports Welsh records recovery (P2), the Argentina museum concept (P1), the Wales heritage tour (P3) and the conditional legal gate (P4); it does not replace any project's own evidence or decision gate.</p>
+
+<details class="sec" open><summary><h2>Product description and acceptance</h2><span class="pv">Release criteria · source-linked · no evidential overclaim</span></summary><div class="body">
+<table class="t"><thead><tr><th>Product attribute</th><th>Definition / acceptance evidence</th></tr></thead><tbody>
+<tr><td>Product ID</td><td>PROD-DIG-NOM-01 — complete current compiled nomenclature register at <a href="https://cedwyn.bucklerfamily.estate/nomenclature/c/cedwyn-estate/">the existing cited route</a>.</td></tr>
+<tr><td>Source baseline</td><td>Standalone nomenclature lexicon 1.0.1, generated 24 October 2026. Keep the lexicon as the source for this display; a future harvest is a separate work item.</td></tr>
+<tr><td>Coverage</td><td>25 groups and 148 wording entries in the current compiled lexicon. Five entries have no direct URL in the source data; the register must not pretend they do.</td></tr>
+<tr><td>Per-row fields</td><td>Exact recorded or analytical wording, date, subject group, source/provenance, evidence/status class and any limitation. Distinguish record, catalogue, secondary, reported/OCR, identity unresolved, wiki label and source pending.</td></tr>
+<tr><td>Interaction</td><td>Text search, status filtering, direct group navigation, readable small-screen fallback, and all rows still readable without JavaScript.</td></tr>
+<tr><td>Route integrity</td><td>Keep the existing route and canonical URL. Preserve the legacy-host redirect. Verify the assembled production route, not just a source-branch preview.</td></tr>
+<tr><td>Interpretive limit</td><td>“Cedwyn Estate” is a current working label, not a period name proven by the entries here. Similar wording, shared names or grouped variants do not prove identity of a place, parcel, title, legal person or boundary.</td></tr>
+<tr><td>Acceptance owner / authority</td><td>Release acceptance is a factual checklist, not a legal opinion. Independent Project Assurance is not appointed in the programme record. No separate executive decision is implied by this page.</td></tr>
+</tbody></table>
+</div></details>
+
+<details class="sec" open><summary><h2>Stage, tolerances and decision points</h2><span class="pv">A source merge is not the final outcome</span></summary><div class="body">
+<table class="t"><thead><tr><th>Gate</th><th>Pass condition</th><th>Exception trigger</th></tr></thead><tbody>
+<tr><td>G1 · Source control</td><td>Change merged into the nomenclature branch with the old route retained and counts validated against lexicon 1.0.1.</td><td>Merge conflict, changed source count or redirect/canonical regression.</td></tr>
+<tr><td>G2 · Build and publish</td><td>Cedwyn assembly completes, the build commits the generated site to the served site branch, and deployment reports success.</td><td>Build fails, deployment does not start, stale source snapshot is assembled, or the main link checker rewrites/misses a required internal link.</td></tr>
+<tr><td>G3 · Live acceptance</td><td>The public cited route returns the new title, displays 148 rows across 25 groups, search/status controls work, and no key source link or canonical route is broken.</td><td>Any count discrepancy, 404/redirect loop, missing body, unusable mobile layout, or unsupported evidential assertion.</td></tr>
+<tr><td>Scope tolerance</td><td>Change only this register presentation and the Project Office control record, plus the main site-area description needed to trigger and describe a real build.</td><td>New evidence, changed parcel boundaries, claims of legal fraud, title conclusions or a re-harvest are outside scope and require their own product/change record.</td></tr>
+<tr><td>Cost / schedule tolerance</td><td>£0 external spend; complete in the current release cycle.</td><td>Any paid dependency, major redesign, missing source data or build blocker is escalated as an exception, not silently absorbed.</td></tr>
+</tbody></table>
+<p class="note">Do not mark G2 or G3 passed from the Git commit alone. Record deployment identity and observed live checks in the Project Office / HubSpot log before declaring final acceptance.</p>
+</div></details>
+
+<details class="sec"><summary><h2>RAID and change control</h2><span class="pv">Risk · assumption · issue · dependency</span></summary><div class="body">
+<table class="t"><thead><tr><th>ID / type</th><th>Register entry</th><th>Control / response</th></tr></thead><tbody>
+<tr><td>ISS-NOM-01 · Issue</td><td>The cited Cedwyn estate entry showed only five entries, while the compiled lexicon holds 148 variants across 25 groups. It functioned as a short dictionary entry rather than the useful catalogue described in outbound correspondence.</td><td>Correct the entry into a full register while retaining the five estate-specific wordings and their individual evidence classifications.</td></tr>
+<tr><td>RISK-NOM-01 · Threat</td><td>A future assemble/build can overwrite a manually edited generated output, or assemble an older mirrored theme branch.</td><td>Edit source branch first; use the standard Cedwyn build; confirm built revision and live route. Never treat a source preview as deployment proof.</td></tr>
+<tr><td>RISK-NOM-02 · Threat</td><td>Grouped or near-identical names may be mistaken for proof of geographic or legal identity.</td><td>Preserve status, provenance and limitations on every row; keep the working-label warning prominent.</td></tr>
+<tr><td>DEP-NOM-01 · Dependency</td><td>The current compiled lexicon is version 1.0.1 (generated 24 October 2026). It is not a claim of exhaustive capture of every name in every original document.</td><td>Keep the separate ROLE-CUR harvest task open until an actual re-harvest and difference review are completed.</td></tr>
+<tr><td>DEC-NOM-01 · Decision</td><td>Use the existing cited URL and expand its content rather than force correspondence recipients to follow a new URL.</td><td>Preserve the route and canonical URL; revise external correspondence links only if live acceptance discovers a genuine link defect.</td></tr>
+</tbody></table>
+</div></details>
+
+<details class="sec"><summary><h2>PRINCE2 mythology · what the controls mean in practice</h2><span class="pv">The story of control is not the evidence itself</span></summary><div class="body">
+<p>In this programme, “PRINCE2 mythology” is used deliberately for the governing story that turns work into roles, stages, products, tolerances and decisions. The model is useful only when the claims it makes can be checked against the record.</p>
+<ul>
+<li><b>Roles are appointments, not magic words.</b> Writing “Executive”, “Senior User”, “Project Board” or “Independent Project Assurance” does not appoint a person. Where the programme has not recorded an appointment, this work package does not invent one.</li>
+<li><b>A green report is not a verified fact.</b> The source merge can be proven from Git; publication can be proven from a successful build/deployment; acceptance requires observing the live URL. Each is a different claim with its own evidence.</li>
+<li><b>Tolerance is a boundary, not permission to overrun.</b> A count mismatch, route failure, external cost or evidential overclaim triggers escalation and a recorded decision rather than a quiet scope change.</li>
+<li><b>A product description is a test, not decoration.</b> The accepted product is the usable register with the agreed fields, coverage, navigation and limits, not simply an HTML file that exists.</li>
+<li><b>Lessons change the next stage.</b> The practical lesson is that an outbound citation saying “all nomenclature” must lead to a register whose coverage and limitations are visible on arrival. A dictionary-style stub must not pass as a complete catalogue.</li>
+</ul>
+<p>PRINCE2 status does not decide ownership, historical identity, legal cause of action or whether a court should reopen a case. Those remain evidence and legal-gate questions under the separate programme controls.</p>
+</div></details>
+
+<details class="sec"><summary><h2>Lessons and follow-on work</h2><span class="pv">Keep this fix separate from the next harvest</span></summary><div class="body">
+<table class="t"><thead><tr><th>Lesson / action</th><th>Disposition</th></tr></thead><tbody>
+<tr><td>The external description of a resource must match the experience at its cited URL.</td><td>Applied here; add an explicit landing-page check to future outbound-email and website acceptance lists.</td></tr>
+<tr><td>Do not confuse a page-display repair with an evidence harvest.</td><td>The lexicon still needs a separately controlled re-harvest after the 21 October Wiki scrape, followed by a differences report and review of unresolved/source-pending forms.</td></tr>
+<tr><td>Names are a key/index into source artifacts; they are not independent proof of identity or title.</td><td>Retain links to underlying records and the per-row status and uncertainty notes.</td></tr>
+<tr><td>HubSpot mirror</td><td>Record the change ID, merge SHA, deployment run, live acceptance result, and residual ROLE-CUR harvest task separately; do not close the harvest task just because this page was repaired.</td></tr>
+</tbody></table>
+<p class="note">Machine/source control: <a href="https://github.com/unclehowell/cedwyn/pull/53">GitHub change record PR #53</a>. The final live acceptance record belongs here and in the associated HubSpot control task once verified.</p>
+</div></details>
+
+<p class="note" style="margin-top:18px"><a href="/">‹ Back to the Project Office</a> · <a href="/programme-plan/">Master programme plan</a> · <a href="/project-log/">Project log</a> · <a href="/lessons-log/">Lessons log</a></p>
+</main>
+</body>
+</html>
