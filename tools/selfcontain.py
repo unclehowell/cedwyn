@@ -79,6 +79,9 @@ def classify(m):
     if host in CDN: return 'cdn', None
     # 27 Oct 2026: e-book Buy buttons go straight to checkout (Sion 13:01: never the interstitial; a payment step is not archived)
     if host in CHECKOUT or host.endswith('.gumroad.com'): return 'ns', None
+    # 29 Oct 2026 (P-041): Stripe's buy-button script must load from js.stripe.com itself (Stripe requires it); it is part of
+    # the checkout, like the Buy links above, so it is neither archived nor vendored. - Sion's Tab agent
+    if host == 'js.stripe.com': return 'ns', None
     # a YouTube thumbnail whose video was checked (oEmbed author) and is not from the excluded channel: copied as an image
     if host == 'i.ytimg.com' and any('/vi/' + v + '/' in path for v in CFG.get('ytimg_checked', {})): return 'cdn', None
     return 'ext', None

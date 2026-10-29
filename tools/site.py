@@ -183,6 +183,71 @@ lines = LINKFIX_DYN + lines + [
     "/research/counter-evidence-disconfirmation/ /wiki/counter-evidence-disconfirmation/ 301",
     "/research/scrutiny-and-accountability/" + _suspected_path + "/" + _working_path + "/ /wiki/scrutiny-and-accountability/" + _suspected_path + "/" + _working_path + "/ 301"
 ]
+# 29 Oct 2026 (problems flywheel P-031 / P-033): the last dead internal links from the 28 Oct crawl, and the dartboard's own data.
+# Mirrored pages carry Cloudflare-obfuscated addresses whose decoder is never injected here (no-transform), so they become plain
+# mailto links; a malformed wiki link goes to /research/; tiny web manifests stand where pages name one; the dartboard app fetches
+# /data/*.json and the Wayback Websites tab /wayback/websites/index.json, which no crawl sees, so both are fetched. - Sion's Tab agent
+import re as _re, subprocess as _sp, urllib.request as _ur
+def _cfdec(h):
+    try:
+        k = int(h[:2], 16); return ''.join(chr(int(h[i:i + 2], 16) ^ k) for i in range(2, len(h), 2))
+    except Exception:
+        return ''
+def _cf_tag(m):
+    a = m.group(0); d = _re.search(r'data-cfemail="([0-9a-fA-F]+)"', a); e = _cfdec(d.group(1)) if d else ''
+    if '@' not in e: return a
+    return f'<a href="mailto:{e}">{e}</a>' if a.startswith('<a') else e
+def _cf_href(m):
+    e = _cfdec(m.group(1)); return f'href="mailto:{e}"' if '@' in e else m.group(0)
+def _fix_html(s):
+    s = _re.sub(r'<a\b[^>]*__cf_email__[^>]*>.*?</a>|<span\b[^>]*__cf_email__[^>]*>.*?</span>', _cf_tag, s, flags=_re.S)
+    s = _re.sub(r'href="[^"]*/cdn-cgi/l/email-protection#([0-9a-fA-F]+)"', _cf_href, s)
+    s = _re.sub(r'<script[^>]*src="[^"]*/cdn-cgi/scripts/[^"]*email-decode\.min\.js"[^>]*></script>', '', s)
+    return s.replace('href="/research/%3E%2A.html"', 'href="/research/"')
+try:
+    _hits = _sp.run(['grep', '-rlZ', '--include=*.html', '-e', '__cf_email__', '-e', '/research/%3E%2A.html', str(DIST)],
+                    capture_output=True, timeout=600).stdout.split(b'\0')
+except Exception:
+    _hits = []
+_fixed = 0
+for _f in [x for x in _hits if x]:
+    _p = pathlib.Path(_f.decode('utf-8', 'ignore'))
+    try:
+        _s = _p.read_text('utf-8'); _n = _fix_html(_s)
+        if _n != _s: _p.write_text(_n, 'utf-8'); _fixed += 1
+    except Exception:
+        pass
+for _d in ('cyberspace', 'estate', 'patagonia', 'dartboard/__grok'):
+    _m = DIST / _d / ('manifest.webmanifest' if _d.endswith('__grok') else 'site.webmanifest')
+    if (DIST / _d.split('/')[0]).is_dir() and not _m.exists():
+        _m.parent.mkdir(parents=True, exist_ok=True)
+        _m.write_text(json.dumps({'name': 'Cedwyn Estate', 'short_name': 'Cedwyn', 'start_url': '/' + _d.split('/')[0] + '/', 'display': 'browser'}))
+_fetched = []
+for _rel, _url in (('dartboard/data/roadmap.json', 'https://dartboard.righteous.workers.dev/data/roadmap.json'),
+                   ('dartboard/data/forecast.json', 'https://dartboard.righteous.workers.dev/data/forecast.json'),
+                   ('dartboard/data/foi-tracker.csv', 'https://dartboard.righteous.workers.dev/data/foi-tracker.csv'),
+                   ('wayback/websites/index.json', 'https://raw.githubusercontent.com/unclehowell/datro/wayback/wayback/websites/index.json')):
+    _dst = DIST / _rel
+    if _dst.exists() or not (DIST / _rel.split('/')[0]).is_dir(): continue
+    try:
+        with _ur.urlopen(_ur.Request(_url, headers={'User-Agent': 'Mozilla/5.0 cedwyn-build'}), timeout=60) as _r:
+            _b = _r.read(); _ct = _r.headers.get('Content-Type') or ''
+        if 'html' in _ct or len(_b) < 50: continue
+        if _rel.endswith('.json'): json.loads(_b)
+        _dst.parent.mkdir(parents=True, exist_ok=True); _dst.write_bytes(_b); _fetched.append(_rel)
+    except Exception:
+        pass
+print('P-031/P-033 pass:', _fixed, 'pages fixed,', 'fetched', _fetched)
+lines += [
+    "/data/roadmap.json /dartboard/data/roadmap.json 301",
+    "/data/forecast.json /dartboard/data/forecast.json 301",
+    "/data/foi-tracker.csv /dartboard/data/foi-tracker.csv 301",
+    "/wiki/press-archive-transcripts/ /wiki/evidence-library/press-archive-transcripts/ 301",
+    "/accounts/ledger/claimed.beancount /accounts/#dl 302",
+    "/argentina/accounts/ledger/claimed.beancount /argentina/accounts/#dl 302",
+    "/wales/accounts/ledger/claimed.beancount /wales/accounts/#dl 302",
+    "/wiki/wp-content/uploads/2026/10/2026-05-28_rcahmw_rc26-0205_les08-order-form-2021.docx /wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fdatro%2Fblob%2Fwayback%2Fwayback%2Fpdf%2Ffoi%2F2026-05-28_rcahmw_rc26-0205_les08-order-form-2021.docx 302"
+]
 tr = DIST / '_theme_redirects.txt'
 if tr.exists():
     for l in tr.read_text().splitlines():
@@ -193,6 +258,9 @@ if tr.exists():
 dyn = [l for l in lines if '*' in l.split()[0] or ':' in l.split()[0]]
 sta = [l for l in lines if l not in dyn]
 (DIST / '_redirects').write_text('\n'.join(dyn[:90] + sta[:1900]) + '\n')
+# 29 Oct 2026 (P-040): no-transform stays on pages (keeps the zone's analytics snippet out) but is detached from the shared
+# header/runtime scripts and the story bundle (no snippet goes into those; basecamp.js went out 161 KB raw), so Cloudflare compresses
+# them again. Paths with their own Cache-Control (/_blob/, /db/, vendor, the service worker) are left as they were. - Sion's Tab agent
 (DIST / '_headers').write_text('''/_blob/*
   Cache-Control: public, max-age=31536000, immutable
 /_cedwyn/vendor/*
@@ -208,6 +276,16 @@ sta = [l for l in lines if l not in dyn]
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
   Cache-Control: no-transform
+/_cedwyn/ghf/*
+  ! Cache-Control
+/_cedwyn/guestbook/*
+  ! Cache-Control
+/_cedwyn/section.js
+  ! Cache-Control
+/_cedwyn/agent-tools.js
+  ! Cache-Control
+/story/assets/*
+  ! Cache-Control
 ''')   # no-transform: the zone's automatic analytics snippet is not injected, so pages make no request to another host
 print('site ok', len(lines), 'redirects,', len(caps), 'captures')
 sys.path.insert(0, str(ROOT / 'tools')); import agent_footer; agent_footer.run(DIST)   # THE TRIGGER EVENT section on /projects/ + agent footer on theme homes
