@@ -190,6 +190,9 @@ wayback_viewer.run(DIST)
 # Level 2 observations + Level 1 catalogue browser, generated from the structured records - Sion, 29 Oct 2026
 import evidence_observations
 evidence_observations.run(DIST)
+# Group source themes into the 36 public areas; preserve legacy routes and mark parcel slots as provisional.
+import site_consolidations
+site_consolidations.run(DIST)
 # Agent guest book (Sion, 01:51 GMT 26 Oct 2026): one collapsed table in the shared footer of every page, from main's commit
 # history; /guestbook/ lists every commit. Runs last so every page the build made carries it - Sion's Tab agent
 import guestbook
