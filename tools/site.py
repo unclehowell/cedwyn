@@ -54,7 +54,8 @@ for _area in _areas:
 # 25 Oct 2026: the side menu's group dropdowns read the same groups as the oak board (themes.json "groups") - Sion's Tab agent
 menu_groups = [{'id': g['id'], 't': g.get('title') or g['id'], 'cy': g.get('cy', ''), 'es': g.get('es', '')} for g in CFG.get('groups', [])]
 assert len({c[0] for c in chain}) == len(chain), 'duplicate theme id in themes.json'
-bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False)).replace('/*CEDWYN_GROUPS*/null', json.dumps(menu_groups, ensure_ascii=False))
+_source_to_area = {source_id: area['id'] for area in _areas for source_id in area.get('source_themes', [])}
+bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False)).replace('/*CEDWYN_GROUPS*/null', json.dumps(menu_groups, ensure_ascii=False)).replace('/*CEDWYN_SMAP*/{}', json.dumps(_source_to_area, ensure_ascii=False))
               .replace('HOME = "https://bucklerfamily.estate/cedwyn/"', 'HOME = "/"')
               # DARTBOARD_NAMES: the dartboard theme is the dartboard app now, not the home (header and menu names)
               .replace('"Home · The Disclosure Dartboard"', '"The Disclosure Dartboard"').replace('"Hafan · Bwrdd Dartiau Datgelu"', '"Bwrdd Dartiau Datgelu"')
