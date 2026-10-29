@@ -185,34 +185,93 @@
     }
   }
 
-  function registerWebMCP() {
-    var mc = navigator.modelContext || navigator.modelContextProvider || (window.chrome && chrome.modelContext);
-    if (!mc || typeof mc.registerTool !== 'function') {
-      window.__cedwynWebMCP = { available: false, tools: TOOLS.map(function (t) { return t.name; }), run: runTool };
+  function modelContext() {
+    // The current WebMCP API is on Document. navigator.modelContext is legacy.
+    if (document && document.modelContext && typeof document.modelContext.registerTool === 'function') {
+      return { context: document.modelContext, api: 'document.modelContext' };
+    }
+    if (navigator && navigator.modelContext && typeof navigator.modelContext.registerTool === 'function') {
+      return { context: navigator.modelContext, api: 'navigator.modelContext (legacy)' };
+    }
+    return null;
+  }
+
+  async function registerWebMCP() {
+    var found = modelContext();
+    if (!found) {
+      window.__cedwynWebMCP = {
+        available: false,
+        registered: false,
+        api: null,
+        tools: TOOLS.map(function (t) { return t.name; }),
+        run: runTool,
+        message: 'WebMCP is not exposed by this browser. The JavaScript fallback remains available.'
+      };
       return false;
     }
-    TOOLS.forEach(function (t) {
+
+    var mc = found.context;
+    var registered = [];
+    var failures = [];
+    for (var i = 0; i < TOOLS.length; i++) {
+      var tool = TOOLS[i];
       try {
-        mc.registerTool({
-          name: t.name,
-          description: t.description,
-          inputSchema: t.inputSchema,
-          execute: function (input) {
-            return runTool(t.name, input || {}).then(function (result) {
-              return { content: [{ type: 'text', text: typeof result === 'string' ? result : JSON.stringify(result, null, 2) }] };
-            });
-          }
+        await mc.registerTool({
+          name: tool.name,
+          description: tool.description,
+          inputSchema: tool.inputSchema,
+          annotations: { readOnlyHint: true },
+          execute: async function (input, options) {
+            try {
+              // Keep the public-resource reader same-origin and honour cancellation.
+              if (options && options.signal && options.signal.aborted) {
+                return { error: 'Tool execution was cancelled.' };
+              }
+              var result = await runTool(this.name, input || {});
+              return result;
+            } catch (err) {
+              return { error: String(err && err.message || err) };
+            }
+          }.bind({ name: tool.name })
         });
+        registered.push(tool.name);
       } catch (e) {
-        console.warn('[cedwyn agent-tools] registerTool failed for', t.name, e);
+        failures.push({ name: tool.name, error: String(e && e.message || e) });
+        console.warn('[cedwyn agent-tools] registration failed:', tool.name, e);
       }
-    });
-    window.__cedwynWebMCP = { available: true, tools: TOOLS.map(function (t) { return t.name; }), run: runTool };
-    return true;
+    }
+
+    // Verify via the API where supported; do not equate API presence with success.
+    var verified = false;
+    if (typeof mc.getTools === 'function') {
+      try {
+        var liveTools = await mc.getTools();
+        var liveNames = liveTools.map(function (t) { return t.name; });
+        registered = registered.filter(function (name) { return liveNames.indexOf(name) !== -1; });
+        verified = TOOLS.every(function (t) { return liveNames.indexOf(t.name) !== -1; });
+      } catch (e) {
+        failures.push({ name: 'getTools', error: String(e && e.message || e) });
+      }
+    }
+
+    window.__cedwynWebMCP = {
+      available: true,
+      registered: registered.length > 0,
+      verified: verified,
+      api: found.api,
+      tools: registered,
+      expectedTools: TOOLS.map(function (t) { return t.name; }),
+      failures: failures,
+      run: runTool,
+      message: verified ? 'All four WebMCP tools registered and verified.' :
+        (registered.length === TOOLS.length ? 'Registration calls completed; tool discovery could not be fully verified.' :
+          'WebMCP registration incomplete. See failures for details.')
+    };
+    return registered.length === TOOLS.length;
   }
 
   // Expose a small status node agents / humans can inspect
-  function statusNode(ok) {
+  function statusNode() {
     var id = 'webmcp-status';
     var el = document.getElementById(id);
     if (!el) {
@@ -223,14 +282,16 @@
       el.setAttribute('aria-hidden', 'true');
       (document.body || document.documentElement).appendChild(el);
     }
-    el.textContent = ok
-      ? 'WebMCP tools registered: ' + TOOLS.map(function (t) { return t.name; }).join(', ')
-      : 'WebMCP API not present; tools available via window.__cedwynWebMCP.run(name, args)';
+    var state = window.__cedwynWebMCP || {};
+    el.textContent = state.message || 'WebMCP registration is in progress.';
+    el.setAttribute('data-webmcp-api', state.api || 'unavailable');
+    el.setAttribute('data-webmcp-registered', (state.tools || []).join(','));
+    el.setAttribute('data-webmcp-verified', String(!!state.verified));
   }
 
-  function boot() {
-    var ok = registerWebMCP();
-    statusNode(ok);
+  async function boot() {
+    await registerWebMCP();
+    statusNode();
   }
 
   if (document.readyState === 'loading') {
