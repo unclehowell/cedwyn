@@ -73,31 +73,67 @@ def run(con, dist, cfg, chunk_size=None):
         copy_table(con, dst, "themes", "id=?", (tid,))
         copy_table(con, dst, "observations", "theme=?", (tid,))
         copy_table(con, dst, "artifacts", artifact_where, (tid, tid))
-        copy_table(con, dst, "locations", "aid IN (SELECT id FROM artifacts)")
-        copy_table(con, dst, "evidence_catalogue", "artifact_id IN (SELECT id FROM artifacts) OR ev IN (SELECT ev FROM observation_refs WHERE observation_id IN (SELECT id FROM observations) AND ev IS NOT NULL)")
-        copy_table(con, dst, "evidence_grades", "ev IN (SELECT ev FROM evidence_catalogue)")
+        _relevant_artifact_sql = (
+            "EXISTS (SELECT 1 FROM locations ll WHERE ll.aid=artifacts.id AND ll.theme=?) "
+            "OR artifacts.id IN (SELECT rr.artifact_id FROM observation_refs rr "
+            "JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL)"
+        )
+        _relevant_artifact_params = (tid, tid)
+        copy_table(con, dst, "locations",
+            "aid IN (SELECT aid FROM locations WHERE theme=?) OR aid IN "
+            "(SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL)",
+            (tid, tid))
+        copy_table(con, dst, "evidence_catalogue",
+            "artifact_id IN (SELECT aid FROM locations WHERE theme=?) OR artifact_id IN "
+            "(SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL) "
+            "OR ev IN (SELECT rr.ev FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.ev IS NOT NULL)",
+            (tid, tid, tid))
+        copy_table(con, dst, "evidence_grades",
+            "ev IN (SELECT ev FROM evidence_catalogue WHERE artifact_id IN "
+            "(SELECT aid FROM locations WHERE theme=?) OR ev IN "
+            "(SELECT rr.ev FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.ev IS NOT NULL))",
+            (tid, tid))
         copy_table(con, dst, "evidence_catalogue_meta")
         copy_table(con, dst, "evidence_grade_scale")
-        copy_table(con, dst, "evidence_text", "aid IN (SELECT id FROM artifacts)")
-        copy_table(con, dst, "artifact_assessments", "ev IN (SELECT ev FROM evidence_catalogue)")
-        copy_table(con, dst, "observation_refs", "observation_id IN (SELECT id FROM observations)")
+        copy_table(con, dst, "evidence_text",
+            "aid IN (SELECT aid FROM locations WHERE theme=?) OR aid IN "
+            "(SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL)",
+            (tid, tid))
+        copy_table(con, dst, "artifact_assessments",
+            "ev IN (SELECT ev FROM evidence_catalogue WHERE artifact_id IN "
+            "(SELECT aid FROM locations WHERE theme=?) OR ev IN "
+            "(SELECT rr.ev FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.ev IS NOT NULL))",
+            (tid, tid))
+        copy_table(con, dst, "observation_refs", "observation_id IN (SELECT id FROM observations WHERE theme=?)", (tid,))
         copy_table(con, dst, "section_records", "theme=?", (tid,))
 
-        # Include chronology rows that directly cite artifacts in this slice. The main DB
-        # still owns the complete chronology graph.
-        copy_table(con, dst, "layers", "id IN (SELECT DISTINCT layer FROM layer_refs WHERE aid IN (SELECT id FROM artifacts)) OR id IN (SELECT id FROM layers WHERE ?='thousand-cuts')", (tid,))
-        copy_table(con, dst, "layer_items", "layer IN (SELECT id FROM layers)")
-        copy_table(con, dst, "layer_refs", "layer IN (SELECT id FROM layers)")
-        copy_table(con, dst, "layer_deps", "layer IN (SELECT id FROM layers)")
+        # Include chronology rows that directly cite local artifacts or are authored for this theme.
+        _layer_filter = (
+            "id IN (SELECT DISTINCT lr.layer FROM layer_refs lr WHERE "
+            "lr.aid IN (SELECT aid FROM locations WHERE theme=?) OR lr.aid IN "
+            "(SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL)) "
+            "OR ?='thousand-cuts'"
+        )
+        _layer_params = (tid, tid, tid)
+        copy_table(con, dst, "layers", _layer_filter, _layer_params)
+        copy_table(con, dst, "layer_items", "layer IN (" + _layer_filter.replace("id IN (", "id IN (", 1) + ")", _layer_params) if False else "layer IN (SELECT DISTINCT lr.layer FROM layer_refs lr WHERE lr.aid IN (SELECT aid FROM locations WHERE theme=?) OR lr.aid IN (SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL)) OR ?='thousand-cuts'", _layer_params)
+        copy_table(con, dst, "layer_refs", "layer IN (SELECT DISTINCT lr.layer FROM layer_refs lr WHERE lr.aid IN (SELECT aid FROM locations WHERE theme=?) OR lr.aid IN (SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL)) OR ?='thousand-cuts'", _layer_params)
+        copy_table(con, dst, "layer_deps", "layer IN (SELECT DISTINCT lr.layer FROM layer_refs lr WHERE lr.aid IN (SELECT aid FROM locations WHERE theme=?) OR lr.aid IN (SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL)) OR ?='thousand-cuts'", _layer_params)
         if tid == "wayback":
             copy_table(con, dst, "captures")
-        # Keep only graph rows touching local artifacts or observations included in the slice.
-        copy_table(con, dst, "edges",
-            "src IN (SELECT 'a:'||id FROM artifacts) OR dst IN (SELECT 'a:'||id FROM artifacts) "
-            "OR src IN (SELECT 'observation:'||id FROM observations) "
-            "OR dst IN (SELECT 'observation:'||id FROM observations)")
+        # Keep graph links that touch this theme's local artifacts or its observation records.
+        _edge_aids = "SELECT aid FROM locations WHERE theme=? UNION SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL"
+        _edge_obs = "SELECT id FROM observations WHERE theme=?"
+        _edge_filter = (
+            "src IN (SELECT 'a:'||aid FROM (" + _edge_aids + ")) OR dst IN (SELECT 'a:'||aid FROM (" + _edge_aids + ")) "
+            "OR src IN (SELECT 'observation:'||id FROM (" + _edge_obs + ")) "
+            "OR dst IN (SELECT 'observation:'||id FROM (" + _edge_obs + "))"
+        )
+        _edge_params = (tid, tid, tid, tid, tid, tid)
+        copy_table(con, dst, "edges", _edge_filter, _edge_params)
         copy_table(con, dst, "nodes",
-            "id IN (SELECT src FROM edges UNION SELECT dst FROM edges)")
+            "id IN (SELECT src FROM edges WHERE " + _edge_filter + ") OR id IN (SELECT dst FROM edges WHERE " + _edge_filter + ")",
+            _edge_params + _edge_params)
         dst.commit()
         dst.execute("VACUUM")
         dst.close()
@@ -118,8 +154,6 @@ def run(con, dist, cfg, chunk_size=None):
             "suffixLength": 3,
         }
         config_path.write_text(json.dumps(config, separators=(",", ":")) + "\n", encoding="utf-8")
-        check = sqlite3.connect(":memory:")
-        check.deserialize(b"") if False else None
         # Record sizes/counts without retaining the SQLite binary in the manifest.
         results[tid] = {"bytes": size, "chunks": chunk_count,
                         "artifacts": con.execute("SELECT count(*) FROM locations WHERE theme=?", (tid,)).fetchone()[0],
