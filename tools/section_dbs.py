@@ -14,7 +14,7 @@ TABLES = (
     "meta", "themes", "artifacts", "locations", "evidence_catalogue",
     "evidence_grades", "evidence_catalogue_meta", "evidence_grade_scale",
     "evidence_text", "artifact_assessments", "observations", "observation_refs",
-    "section_records", "layers", "layer_items", "layer_refs", "layer_deps",
+    "section_records", "estate_parcels", "parcel_events", "estate_parcel_model", "estate_parcel_model_events", "layers", "layer_items", "layer_refs", "layer_deps",
     "captures", "nodes", "edges",
 )
 
@@ -121,6 +121,12 @@ def build_slice(con, dist, area_id, source_ids, chunk_size):
     copy_table(con, dst, "observation_refs",
         "observation_id IN (SELECT id FROM observations WHERE " + themes_filter + ")", source_ids)
     copy_table(con, dst, "section_records", themes_filter, source_ids)
+    # Parent register -> area child DB: only this webapp's provisional slot, with its events.
+    copy_table(con, dst, "estate_parcels", "area_id=?", (area_id,))
+    copy_table(con, dst, "parcel_events", "parcel_id IN (SELECT parcel_id FROM estate_parcels)")
+    # The compact shared A1 / A2 / B / C working model is included for context in each child DB.
+    copy_table(con, dst, "estate_parcel_model")
+    copy_table(con, dst, "estate_parcel_model_events")
 
     # Keep the chronology layer(s) that cite relevant artifacts, plus the 1000 Cuts layer.
     layer_refs_where = (
