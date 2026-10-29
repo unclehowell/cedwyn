@@ -204,6 +204,12 @@ con.execute('''CREATE TABLE IF NOT EXISTS evidence_catalogue(
 _eg = ROOT / 'data' / 'evidence-grades.json'
 if _eg.exists():
     _evidence_doc = json.load(open(_eg, encoding='utf-8'))
+    con.execute('CREATE TABLE IF NOT EXISTS evidence_catalogue_meta(key TEXT PRIMARY KEY, value TEXT NOT NULL) WITHOUT ROWID')
+    for _key in ('version', 'date', 'status', 'rule_verified', 'independent_origin_id'):
+        if _key in _evidence_doc:
+            _value = _evidence_doc[_key]
+            _value = _value if isinstance(_value, str) else json.dumps(_value, ensure_ascii=False)
+            con.execute('INSERT OR REPLACE INTO evidence_catalogue_meta VALUES(?,?)', (_key, _value))
     con.execute('CREATE TABLE IF NOT EXISTS evidence_grade_scale(grade INTEGER PRIMARY KEY, meaning TEXT NOT NULL) WITHOUT ROWID')
     for _grade, _meaning in _evidence_doc.get('scale', {}).items():
         con.execute('INSERT OR REPLACE INTO evidence_grade_scale VALUES(?,?)', (int(_grade), str(_meaning)))
