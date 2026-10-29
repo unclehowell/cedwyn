@@ -105,11 +105,91 @@ def browser_section():
 </section>
 <script defer src="/_cedwyn/evidence-browser.js"></script>'''
 
+def generate_missing_assessment_pages(dist, observation_items):
+    """Publish a Level 1 page for a referenced structured assessment when its source page is absent.
+
+    The generated page is explicitly a research entry, never a substitute for an uninspected source
+    document. It does not invent a grade, transcript, source-origin ID or primary-source status.
+    """
+    dist = pathlib.Path(dist)
+    assessment_file = ROOT / 'data' / 'artifact-assessments.json'
+    if not assessment_file.exists():
+        return []
+    assessment_doc = json.loads(assessment_file.read_text(encoding='utf-8'))
+    referenced_paths = {}
+    for observation in observation_items:
+        for ref in observation.get('refs', []):
+            ev = str(ref.get('ev') or '').strip().upper()
+            path = str(ref.get('path') or '').strip()
+            if ev and path.startswith('/research/evidence/'):
+                referenced_paths.setdefault(ev, path if path.endswith('/') else path + '/')
+    generated = []
+    for item in assessment_doc.get('items', []):
+        ev = str(item.get('ev') or '').strip().upper()
+        path = referenced_paths.get(ev, '')
+        match = re.fullmatch(r'/research/evidence/(ev-\\d{4}-[a-z0-9-]+)/', path, re.I)
+        if not match or match.group(1).upper() != ev.lower().upper():
+            # The page slug must actually identify the same EV record.
+            if not match or not match.group(1).upper().startswith(ev.lower().upper() + '-'):
+                continue
+        description = str(item.get('description') or '').strip()
+        interpretation = str(item.get('interpretation') or '').strip()
+        if not description and not interpretation:
+            continue
+        dest = dist / path.lstrip('/') / 'index.html'
+        if dest.exists():
+            continue
+        slug = match.group(1).split('-', 2)[-1]
+        title = ev + ' — ' + re.sub(r'(?<=\\d)-(?=\\d)', '–', slug.replace('-', ' ').title())
+        transcript = str(item.get('transcript') or '').strip()
+        transcript_status = str(item.get('transcript_status') or 'not_assessed')
+        description_status = str(item.get('description_status') or 'not_assessed')
+        interpretation_status = str(item.get('interpretation_status') or 'not_assessed')
+        verification_status = str(item.get('source_verification_status') or 'not_assessed')
+        limitations = str(item.get('limitations') or '').strip()
+        referenced_by = [
+            o for o in observation_items
+            if any(str(r.get('ev') or '').strip().upper() == ev for r in o.get('refs', []))
+        ]
+        related_links = ''.join(
+            '<li>' + link('/wiki/observations/' + str(o.get('slug') or '') + '/',
+                          str(o.get('id') or '') + ' — ' + str(o.get('title') or 'Related observation')) + '</li>'
+            for o in referenced_by if o.get('slug')
+        )
+        page = head(title) + (
+            '<main class="cw-observation-main"><nav class="cw-observation-nav">' +
+            link('/wiki/evidence/', 'Level 1 · Evidence register') +
+            link('/wiki/observations/', 'Level 2 · Observations') +
+            '</nav><article><h1>' + esc(title) + '</h1>' +
+            '<p class="cw-observation-meta">Level 1 catalogue entry · legal research reference · evidence grade not assigned</p>' +
+            '<section class="cw-observation-panel"><h2>Record status</h2>' +
+            '<p>This is a generated research entry made from the structured assessment because a corresponding source page was not present in the section snapshots. It is not the original statutory text and does not establish that either Act has been independently inspected.</p>' +
+            '<p>No evidence grade or independent source-origin ID has been assigned to this entry.</p></section>' +
+            '<section><h2>Description</h2>' + paragraphs(description) +
+            '<p class="cw-observation-meta">Description status: ' + esc(description_status.replace('_', ' ')) + '</p></section>' +
+            '<section><h2>Transcription</h2>' +
+            (paragraphs(transcript) if transcript else '<p>No transcription is recorded for this entry; statutory text has not been reproduced here.</p>') +
+            '<p class="cw-observation-meta">Transcription status: ' + esc(transcript_status.replace('_', ' ')) + '</p></section>' +
+            '<section><h2>Interpretation</h2>' + paragraphs(interpretation) +
+            '<p class="cw-observation-meta">Interpretation status: ' + esc(interpretation_status.replace('_', ' ')) + '</p></section>' +
+            '<section class="cw-observation-limit"><h2>Verification and limitations</h2>' +
+            '<p>Source-verification status: ' + esc(verification_status.replace('_', ' ')) + '</p>' +
+            paragraphs(limitations) +
+            '<p>Use this entry as a legal-reference pointer for testing dated intervals, the land parcel concerned and the applicable statutory regime. Do not infer the legal effect of an interval from recurrence alone.</p></section>' +
+            ('<section><h2>Related observations</h2><ul>' + related_links + '</ul></section>' if related_links else '') +
+            '</article></main></body></html>'
+        )
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text(page, encoding='utf-8')
+        generated.append({'ev': ev, 'path': path, 'page': str(dest.relative_to(dist))})
+    return generated
+
 def run(dist):
     dist = pathlib.Path(dist)
     obs_file = ROOT / 'data' / 'observations.json'
     doc = json.loads(obs_file.read_text(encoding='utf-8'))
     items = doc.get('items', [])
+    assessment_pages = generate_missing_assessment_pages(dist, items)
     outdir = dist / 'wiki' / 'observations'
     outdir.mkdir(parents=True, exist_ok=True)
     (outdir / 'index.html').write_text(observations_index(items), encoding='utf-8')
@@ -148,7 +228,7 @@ def run(dist):
             '<main class="cw-observation-main"><h1>Evidence Register</h1>' + browser_section() +
             '<p>The original register was not present in this build output. The database-backed catalogue is available above; the register source should be checked in the wiki crawl report.</p></main></body></html>',
             encoding='utf-8')
-    print('evidence observations: %d observation pages; browser mounted where evidence register was found' % generated)
+    print('evidence observations: %d observation pages; %d missing Level 1 assessment pages generated; browser mounted where evidence register was found' % (generated, len(assessment_pages)))
 
 if __name__ == '__main__':
     run(sys.argv[1] if len(sys.argv) > 1 else 'dist')
