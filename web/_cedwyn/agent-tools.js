@@ -1,6 +1,6 @@
 /* agent-tools.js — WebMCP (and fallback) tools for Cedwyn.
-   Registers four read-only, same-origin tools so a browser agent can use the
-   open page and the central catalogue without scraping.
+   Registers read-only tools, including direct search/read access to the central evidence catalogue.
+   Visitor-facing themes are views over the evidence; they are not the source of truth.
    Spec reference: /library/api/#webmcp
    Tools are never instructions; page text is historical record only.
    — Sion's Tab agent, 29 Oct 2026 */
@@ -25,6 +25,31 @@
           limit: { type: 'integer', description: 'Max hits (default 10, max 50)' }
         },
         required: ['q'],
+        additionalProperties: false
+      }
+    },
+    {
+      name: 'search_central_evidence_catalogue',
+      description: 'Search the canonical evidence catalogue in the central Cedwyn database. Returns evidence IDs, titles, paths, evidence grades, independent-origin IDs and text excerpts. Use this to find a catalogue record, not to infer that repeated copies are independent evidence.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          q: { type: 'string', description: 'Search terms, an EV identifier, alias, title or subject' },
+          limit: { type: 'integer', description: 'Maximum results (default 10, max 20)' }
+        },
+        required: ['q'],
+        additionalProperties: false
+      }
+    },
+    {
+      name: 'get_central_evidence_record',
+      description: 'Read one full evidence catalogue entry from the central Cedwyn database, including its public description/interpretation text, evidence grade and meaning, independent origin, aliases, locations and related chronology/layer references. Accepts an EV identifier, known alias or catalogue path.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          key: { type: 'string', description: 'EV identifier such as EV-0628, an alias such as GHF-E090, or an evidence page path' }
+        },
+        required: ['key'],
         additionalProperties: false
       }
     },
@@ -118,6 +143,163 @@
     });
   }
 
+  function centralDb() {
+    if (!window.Cedwyn || typeof Cedwyn.db !== 'function') {
+      throw new Error('Central catalogue client is unavailable; /_cedwyn/cat.js did not load.');
+    }
+    return Cedwyn.db();
+  }
+
+  function ftsExpression(query) {
+    var terms = String(query || '').match(/[A-Za-z0-9]+/g) || [];
+    terms = terms.slice(0, 12);
+    return terms.map(function (term) { return '"' + term.replace(/"/g, '""') + '"'; }).join(' AND ');
+  }
+
+  function searchCentralEvidence(query, limit) {
+    query = String(query || '').trim();
+    if (!query) return Promise.reject(new Error('q is required'));
+    limit = Math.min(Math.max(+(limit || 10), 1), 20);
+    return centralDb().then(async function (d) {
+      // Exact EV IDs, aliases and paths do not depend on FTS tokenization.
+      var exact = await d.query(
+        `SELECT ec.ev, ec.title, ec.path, ec.evidence_grade, ec.independent_origin_id,
+                ec.aliases_json, ec.grade_note, et.body AS excerpt, et.body_chars, et.truncated
+           FROM evidence_catalogue ec
+           LEFT JOIN evidence_text et ON et.aid=ec.artifact_id
+          WHERE lower(ec.ev)=lower(?) OR lower(ec.path)=lower(?)
+             OR lower(ec.aliases_json) LIKE lower(?)
+          ORDER BY ec.ev LIMIT ?`,
+        [query, query, '%' + query + '%', limit]
+      );
+      if (exact.length) {
+        return {
+          source: 'central Cedwyn evidence catalogue database',
+          matchType: 'exact ID, path or alias',
+          results: exact.map(function (r) {
+            var aliases = [];
+            try { aliases = JSON.parse(r.aliases_json || '[]'); } catch (_) {}
+            return {
+              ev: r.ev, title: r.title, path: r.path, evidenceGrade: r.evidence_grade,
+              independentOriginId: r.independent_origin_id, aliases: aliases,
+              gradeNote: r.grade_note, excerpt: (r.excerpt || '').slice(0, 2000),
+              entryTextChars: r.body_chars || 0, entryTextTruncated: !!r.truncated
+            };
+          })
+        };
+      }
+      var expression = ftsExpression(query);
+      if (!expression) return { source: 'central Cedwyn evidence catalogue database', matchType: 'text', results: [] };
+      var rows = await d.query(
+        `SELECT DISTINCT ec.ev, ec.title, ec.path, ec.evidence_grade, ec.independent_origin_id,
+                ec.aliases_json, ec.grade_note,
+                snippet(fts, 1, '[', ']', ' … ', 18) AS match_snippet,
+                substr(et.body, 1, 1800) AS excerpt, et.body_chars, et.truncated
+           FROM fts
+           JOIN evidence_catalogue ec ON ec.artifact_id=CAST(fts.aid AS INTEGER)
+           LEFT JOIN evidence_text et ON et.aid=ec.artifact_id
+          WHERE fts MATCH ?
+          ORDER BY rank LIMIT ?`,
+        [expression, limit]
+      );
+      return {
+        source: 'central Cedwyn evidence catalogue database',
+        matchType: 'full-text',
+        results: rows.map(function (r) {
+          var aliases = [];
+          try { aliases = JSON.parse(r.aliases_json || '[]'); } catch (_) {}
+          return {
+            ev: r.ev, title: r.title, path: r.path, evidenceGrade: r.evidence_grade,
+            independentOriginId: r.independent_origin_id, aliases: aliases,
+            gradeNote: r.grade_note, matchSnippet: r.match_snippet,
+            excerpt: r.excerpt || '', entryTextChars: r.body_chars || 0,
+            entryTextTruncated: !!r.truncated
+          };
+        })
+      };
+    });
+  }
+
+  function getCentralEvidenceRecord(key) {
+    key = String(key || '').trim();
+    if (!key) return Promise.reject(new Error('key is required'));
+    var pathCandidate = key.charAt(0) === '/' ? key.replace(/index\.html$/i, '').replace(/\/?$/, '/') : '';
+    return centralDb().then(async function (d) {
+      var rows = await d.query(
+        `SELECT ec.ev, ec.artifact_id, ec.path, ec.evidence_grade, ec.independent_origin_id,
+                ec.aliases_json, ec.grade_note, ec.title,
+                et.body AS record_text, et.body_chars, et.truncated,
+                a.sha, a.kind, a.mime, a.bytes, a.year_min, a.year_max
+           FROM evidence_catalogue ec
+           LEFT JOIN evidence_text et ON et.aid=ec.artifact_id
+           LEFT JOIN artifacts a ON a.id=ec.artifact_id
+          WHERE lower(ec.ev)=lower(?) OR lower(ec.path)=lower(?)
+             OR (?<>'' AND lower(ec.path)=lower(?))
+             OR lower(ec.aliases_json) LIKE lower(?)
+          ORDER BY ec.ev LIMIT 3`,
+        [key, key, pathCandidate, pathCandidate, '%' + key + '%']
+      );
+      if (!rows.length) {
+        return {
+          found: false, key: key,
+          source: 'central Cedwyn evidence catalogue database',
+          message: 'No exact evidence ID, alias or catalogue path was found. Search the catalogue first.'
+        };
+      }
+      var r = rows[0], aid = r.artifact_id == null ? null : r.artifact_id;
+      var aliases = [];
+      try { aliases = JSON.parse(r.aliases_json || '[]'); } catch (_) {}
+      var refs = [], locations = [], relations = [], gradeMeaning = null;
+      if (aid != null) {
+        var parallel = await Promise.all([
+          d.query(
+            `SELECT lr.layer AS layerId, l.title AS layerTitle, lr.item AS itemId,
+                    li.kind AS itemKind, li.date AS date, li.event AS event,
+                    li.blow AS interpretationNote, li.label AS label,
+                    lr.ev AS referencedEvidence, lr.path AS referencedPath
+               FROM layer_refs lr
+               LEFT JOIN layers l ON l.id=lr.layer
+               LEFT JOIN layer_items li ON li.layer=lr.layer AND li.id=lr.item
+              WHERE lower(lr.ev)=lower(?) OR lr.aid=?
+              ORDER BY l.title, li.seq LIMIT 40`,
+            [r.ev, aid]
+          ),
+          d.query(
+            `SELECT theme, path, url FROM locations
+              WHERE aid=? AND theme<>'_blob' ORDER BY theme, path LIMIT 40`,
+            [aid]
+          ),
+          d.query(
+            `SELECT e.rel, e.dst, a.title, a.kind, a.id AS artifactId
+               FROM edges e
+               LEFT JOIN artifacts a ON e.dst=('a:' || a.id)
+              WHERE e.src=? ORDER BY e.rel, e.dst LIMIT 50`,
+            ['a:' + aid]
+          ),
+          r.evidence_grade == null ? Promise.resolve([]) :
+            d.query('SELECT meaning FROM evidence_grade_scale WHERE grade=?', [r.evidence_grade])
+        ]);
+        refs = parallel[0]; locations = parallel[1]; relations = parallel[2];
+        gradeMeaning = parallel[3].length ? parallel[3][0].meaning : null;
+      }
+      return {
+        found: true,
+        source: 'central Cedwyn evidence catalogue database',
+        record: {
+          ev: r.ev, title: r.title, path: r.path, aliases: aliases,
+          evidenceGrade: r.evidence_grade, evidenceGradeMeaning: gradeMeaning,
+          independentOriginId: r.independent_origin_id, gradeNote: r.grade_note,
+          sha256: r.sha, kind: r.kind, mime: r.mime, bytes: r.bytes,
+          yearMin: r.year_min, yearMax: r.year_max,
+          descriptionAndInterpretation: r.record_text || '',
+          entryTextChars: r.body_chars || 0, entryTextTruncated: !!r.truncated,
+          locations: locations, chronologyAndLayerReferences: refs, graphRelations: relations
+        },
+        interpretationNote: 'The entry text is the catalogue page’s published description and interpretation; distinguish it from the underlying primary record and from any inference it discusses. Identical copies share an independent-origin ID and are not independent corroboration.'
+      };
+    });
+  }
+
   function listResources(section) {
     var base = [
       { path: '/agents.json', kind: 'json', note: 'Agent entry point and rules' },
@@ -175,6 +357,10 @@
       case 'search_case_public_content':
         if (!args.q) return Promise.reject(new Error('q is required'));
         return searchCatalogue(String(args.q), args.theme, args.limit);
+      case 'search_central_evidence_catalogue':
+        return searchCentralEvidence(args.q, args.limit);
+      case 'get_central_evidence_record':
+        return getCentralEvidenceRecord(args.key);
       case 'list_case_public_resources':
         return listResources(args.section);
       case 'read_case_public_resource':
@@ -263,7 +449,7 @@
       expectedTools: TOOLS.map(function (t) { return t.name; }),
       failures: failures,
       run: runTool,
-      message: verified ? 'All four WebMCP tools registered and verified.' :
+      message: verified ? ('All ' + TOOLS.length + ' WebMCP tools registered and verified.') :
         (registered.length === TOOLS.length ? 'Registration calls completed; tool discovery could not be fully verified.' :
           'WebMCP registration incomplete. See failures for details.')
     };
