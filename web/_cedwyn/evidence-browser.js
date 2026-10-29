@@ -27,6 +27,9 @@
     '.cw-eb .cw-eb-links a,.cw-eb a{color:var(--wiki-link,#0645ad);text-decoration:underline}',
     '.cw-eb .cw-eb-chip{font-size:.75rem;padding:.08rem .3rem;border:1px solid var(--wiki-border,#a2a9b1);border-radius:2px}',
     '.cw-eb .cw-eb-ref{padding:.45rem 0;border-top:1px solid var(--wiki-soft-border,#c8ccd1)}',
+    '.cw-eb .cw-eb-existing{border:1px solid var(--wiki-soft-border,#c8ccd1);padding:.55rem .7rem;margin:.8rem 0;background:var(--wiki-bg,#f8f9fa)}',
+    '.cw-eb .cw-eb-existing summary{cursor:pointer;font-weight:600}',
+    '.cw-eb .cw-eb-existing pre{font:13px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;max-height:24rem;overflow:auto;margin:.6rem 0 0}'
     '.cw-eb ul{padding-left:1.4rem}.cw-eb li{margin:.2rem 0}',
     '.cw-eb .cw-eb-empty{padding:.8rem;border:1px dashed var(--wiki-border,#a2a9b1)}',
     '</style>',
@@ -94,6 +97,13 @@
       card.appendChild(note);
     }
     if (r.limitations) field(card, 'Limits and unresolved checks', r.limitations, '');
+    if (r.catalogue_page_text) {
+      var existing = el('details', 'cw-eb-existing');
+      existing.appendChild(el('summary', '', 'Existing catalogue page text · not a source transcription'));
+      existing.appendChild(el('pre', '', r.catalogue_page_text));
+      if (r.catalogue_text_truncated) existing.appendChild(el('p', 'cw-eb-meta', 'The indexed page text is truncated; open the catalogue entry for the full page.'));
+      card.appendChild(existing);
+    }
     return card;
   }
   async function observationCard(r) {
@@ -156,10 +166,12 @@
       if (mode === 'artifacts') {
         var base = "SELECT ec.ev, ec.title, ec.path, ec.evidence_grade, ec.independent_origin_id, ec.grade_note, " +
           "aa.description, aa.description_status, aa.transcript, aa.transcript_status, aa.interpretation, " +
-          "aa.interpretation_status, aa.source_verification_status, aa.limitations " +
-          "FROM evidence_catalogue ec LEFT JOIN artifact_assessments aa ON aa.ev=ec.ev ";
-        var where = q ? "WHERE lower(ec.ev) LIKE ? OR lower(ec.title) LIKE ? OR lower(ec.path) LIKE ? OR lower(ec.aliases_json) LIKE ? OR lower(COALESCE(aa.description,'')) LIKE ? OR lower(COALESCE(aa.interpretation,'')) LIKE ? " : "";
-        var params = q ? Array(6).fill('%' + q + '%') : [];
+          "aa.interpretation_status, aa.source_verification_status, aa.limitations, " +
+          "et.body AS catalogue_page_text, et.truncated AS catalogue_text_truncated " +
+          "FROM evidence_catalogue ec LEFT JOIN artifact_assessments aa ON aa.ev=ec.ev " +
+          "LEFT JOIN evidence_text et ON et.aid=ec.artifact_id ";
+        var where = q ? "WHERE lower(ec.ev) LIKE ? OR lower(ec.title) LIKE ? OR lower(ec.path) LIKE ? OR lower(ec.aliases_json) LIKE ? OR lower(COALESCE(aa.description,'')) LIKE ? OR lower(COALESCE(aa.interpretation,'')) LIKE ? OR lower(COALESCE(et.body,'')) LIKE ? " : "";
+        var params = q ? Array(7).fill('%' + q + '%') : [];
         rows = await db.query(base + where + 'ORDER BY ec.ev LIMIT ? OFFSET ?', params.concat([pageSize, offset]));
         rows.forEach(function (r) { results.appendChild(artifactCard(r)); });
       } else {
