@@ -204,6 +204,9 @@ con.execute('''CREATE TABLE IF NOT EXISTS evidence_catalogue(
 _eg = ROOT / 'data' / 'evidence-grades.json'
 if _eg.exists():
     _evidence_doc = json.load(open(_eg, encoding='utf-8'))
+    con.execute('CREATE TABLE IF NOT EXISTS evidence_grade_scale(grade INTEGER PRIMARY KEY, meaning TEXT NOT NULL) WITHOUT ROWID')
+    for _grade, _meaning in _evidence_doc.get('scale', {}).items():
+        con.execute('INSERT OR REPLACE INTO evidence_grade_scale VALUES(?,?)', (int(_grade), str(_meaning)))
     for _x in _evidence_doc.get('evidence', []):
         _ev = (_x.get('ev') or '').strip()
         _rawpath = (_x.get('path') or '').strip()
