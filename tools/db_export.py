@@ -71,9 +71,9 @@ def run(dbf, out, stats=None):
                         recs.append({'kind': k, 'id': i, 'seq': sq, 'data': dt})
                 with gzip.open(ex / 'sections' / ('%s.json.gz' % tid), 'wt', encoding='utf-8', compresslevel=6) as f:
                     json.dump({'schema': 'cedwyn_section_slice/v1', 'section': th, 'records': recs, 'artifacts': rows}, f, ensure_ascii=False, default=str)
-                sdb = out.parent / tid / '_db' / 'section.sqlite'
+                sdb = out.parent / tid / '_db' / 'config.json'
                 man['sections'][tid] = {'file': 'sections/%s.json.gz' % tid, 'artifacts': len(rows), 'records': len(recs),
-                                        'section_db': ('/%s/_db/section.sqlite' % tid) if sdb.exists() else None}
+                                        'section_db': ('/%s/_db/config.json' % tid) if sdb.exists() else None}
         # metadata-only sqlite
         tmp = pathlib.Path('cedwyn-metadata.sqlite3'); tmp.unlink(missing_ok=True)
         dst = sqlite3.connect(tmp); con.backup(dst); dst.execute('DROP TABLE IF EXISTS blobs')
