@@ -40,10 +40,12 @@ def seed_schema(con):
     con.executemany("INSERT INTO artifacts VALUES(?,?,?)", [
         (1, "Wiki evidence register", "sha-wiki"),
         (2, "1955 possession order entry", "sha-1955"),
+        (3, "Unrelated chat artifact", "sha-chat"),
     ])
     con.executemany("INSERT INTO locations VALUES(?,?,?,?)", [
         (1, "wiki", "/wiki/evidence/", "/wiki/evidence/"),
         (2, "research", "/research/evidence/ev-0001-order/", "/research/evidence/ev-0001-order/"),
+        (3, "chat", "/chat/unrelated.json", "/chat/unrelated.json"),
     ])
     con.executemany("INSERT INTO evidence_catalogue VALUES(?,?,?,?,?,?,?,?)", [
         ("EV-0001", 2, "/research/evidence/ev-0001-order/", None, None, "[]", "not assessed", "1955 order entry"),
@@ -77,7 +79,7 @@ def main():
         assert check.execute("SELECT title FROM observations WHERE id='OBS-0001'").fetchone()[0] == "Twelve-year recurrence"
         assert check.execute("SELECT ev FROM observation_refs WHERE observation_id='OBS-0001'").fetchone()[0] == "EV-0001"
         assert check.execute("SELECT title FROM evidence_catalogue WHERE ev='EV-0001'").fetchone()[0] == "1955 order entry"
-        assert check.execute("SELECT count(*) FROM artifacts").fetchone()[0] == 1, "theme-local slice should omit unrelated source artifacts"
+        assert check.execute("SELECT count(*) FROM artifacts").fetchone()[0] == 2, "theme-local slice should retain the referenced source and omit the unrelated artifact"
         check.close()
         con.close()
 
