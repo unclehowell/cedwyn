@@ -80,7 +80,7 @@ def main():
         assert check.execute("SELECT title FROM observations WHERE id='OBS-0001'").fetchone()[0] == "Twelve-year recurrence"
         assert check.execute("SELECT ev FROM observation_refs WHERE observation_id='OBS-0001'").fetchone()[0] == "EV-0001"
         assert check.execute("SELECT title FROM evidence_catalogue WHERE ev='EV-0001'").fetchone()[0] == "1955 order entry"
-        assert check.execute("SELECT count(*) FROM artifacts").fetchone()[0] == 2, "theme-local slice should retain the referenced source and omit the unrelated artifact"
+        assert check.execute("SELECT count(*) FROM artifacts").fetchone()[0] == 3, "wiki-area slice should retain local and referenced artifacts but omit the unrelated artifact"
         check.close()
         arcade_config = dist / "arcade" / "_db" / "config.json"
         assert arcade_config.exists(), "the merged Arcade page area needs its own database"
