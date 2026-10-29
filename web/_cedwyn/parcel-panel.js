@@ -82,9 +82,9 @@
       '@media(max-width:560px){#cedwyn-parcel-panel .cpp-grid{grid-template-columns:1fr}#cedwyn-parcel-panel figure{max-width:290px}#cedwyn-parcel-panel{padding:.8rem .7rem}}';
     (document.head || document.documentElement).appendChild(style);
   }
-  function makeTable(events, modelEvents) {
+  function makeTable(events, modelEvents, parcel) {
     var details = node('details', 'cpp-chronology');
-    var summary = node('summary', '', 'Expand chronology · records and working interpretations');
+    var summary = node('summary', '', 'Expand chronology · events for this webapp parcel');
     details.appendChild(summary);
     var wrap = node('div', 'cpp-table-wrap');
     var table = node('table');
@@ -93,8 +93,32 @@
     ['Date','Parcel / scope','Event','Status','Source'].forEach(function (x) { hr.appendChild(node('th','',x)); });
     thead.appendChild(hr); table.appendChild(thead);
     var body = node('tbody');
-    (events || []).forEach(function (e) { body.appendChild(eventRow(e.date_text, 'Webapp slot', e.title, e.details, e.status, e.source_ev, e.source_path)); });
-    (modelEvents || []).forEach(function (e) { body.appendChild(eventRow(e.date_text, e.model_id, e.title, e.details, e.status, (function(){try{return JSON.parse(e.source_evs_json||'[]').join(', ')}catch(_){return ''}})(), e.source_path)); });
+    (events || []).forEach(function (e) {
+      body.appendChild(eventRow(e.date_text, e.scope || ('Webapp slot P' + String(parcel.slot).padStart(2,'0')), e.title, e.details, e.status, e.source_ev, e.source_path));
+    });
+    // Only show shared-model events in this slot's chronology after a verified model link exists.
+    (modelEvents || []).filter(function (e) { return parcel && parcel.model_parcel_id && e.model_id === parcel.model_parcel_id; }).forEach(function (e) {
+      body.appendChild(eventRow(e.date_text, e.model_id, e.title, e.details, e.status, (function(){try{return JSON.parse(e.source_evs_json||'[]').join(', ')}catch(_){return ''}})(), e.source_path));
+    });
+    table.appendChild(body); wrap.appendChild(table); details.appendChild(wrap);
+    return details;
+  }
+  function makeSharedModelEventTable(modelEvents) {
+    var details = node('details', 'cpp-chronology');
+    details.appendChild(node('summary', '', 'Expand cross-parcel working chronology (A1 / A2 / B / C)'));
+    details.appendChild(node('p','cpp-note','These entries are shared research context, not this webapp’s own chain of title unless and until a verified parcel link is assigned.'));
+    var wrap = node('div', 'cpp-table-wrap');
+    var table = node('table');
+    var thead = node('thead');
+    var hr = node('tr');
+    ['Date','Model parcel','Event','Status','Source'].forEach(function (x) { hr.appendChild(node('th','',x)); });
+    thead.appendChild(hr); table.appendChild(thead);
+    var body = node('tbody');
+    (modelEvents || []).forEach(function (e) {
+      var source = '';
+      try { source = JSON.parse(e.source_evs_json || '[]').join(', '); } catch (_) {}
+      body.appendChild(eventRow(e.date_text,e.model_id,e.title,e.details,e.status,source,e.source_path));
+    });
     table.appendChild(body); wrap.appendChild(table); details.appendChild(wrap);
     return details;
   }
@@ -153,7 +177,7 @@
     grid.appendChild(copy);
     inner.appendChild(grid);
 
-    inner.appendChild(makeTable(events,modelEvents));
+    inner.appendChild(makeTable(events,modelEvents,parcel));
     var more = node('details','');
     more.appendChild(node('summary','','Expand the current A1 / A2 / B / C parcel model'));
     var cards = node('div','cpp-models');
@@ -165,7 +189,7 @@
       c.appendChild(node('p','cpp-note',m.limits || ''));
       cards.appendChild(c);
     });
-    more.appendChild(cards); inner.appendChild(more);
+    more.appendChild(cards); more.appendChild(makeSharedModelEventTable(modelEvents)); inner.appendChild(more);
     inner.appendChild(node('p','cpp-note','This panel is rendered from the current webapp’s child SQLite database. The parent catalogue stores the full 36-slot register and parcel-model records. The map overlay remains deliberately unclaimed until the original schedule, map and later deed plans can be matched.'));
     box.appendChild(inner);
 
