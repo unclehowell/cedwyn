@@ -77,7 +77,7 @@ def render_tabs(title, intro, tabs):
     script = '''<script>
 (function(){var root=document.querySelector('[data-tabs]');if(!root)return;var frame=root.querySelector('iframe');root.querySelectorAll('button[data-src]').forEach(function(b){b.addEventListener('click',function(){var src=b.getAttribute('data-src');if(frame.getAttribute('src')!==src)frame.setAttribute('src',src);root.querySelectorAll('button[data-src]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});frame.title=''' + json.dumps(title) + '''+' — '+b.getAttribute('data-label');});});})();
 </script>'''
-    body = '<nav class="nav">' + a("/parcels/site-areas/", "36 page areas") + a("/wiki/evidence/", "Evidence register") + '</nav><h1>' + esc(title) + '</h1><p class="lede">' + esc(intro) + '</p><div class="tabs" role="group" aria-label="' + esc(title + " views") + '">' + tab_html + '</div><div data-tabs>' + iframe + '</div>' + script
+    body = '<nav class="nav">' + a("/parcels/site-areas/", "36 page areas") + a("/wiki/evidence/", "Evidence register") + '</nav><h1>' + esc(title) + '</h1><p class="lede">' + esc(intro) + '</p><div data-tabs><div class="tabs" role="group" aria-label="' + esc(title + " views") + '">' + tab_html + '</div>' + iframe + '</div>' + script
     return shell(title, intro, body)
 
 def insert_link(page_path, marker, label, href):
