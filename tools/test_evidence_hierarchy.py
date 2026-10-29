@@ -50,10 +50,13 @@ def seed_schema(con):
     ])
     con.executemany("INSERT INTO evidence_catalogue VALUES(?,?,?,?,?,?,?,?)", [
         ("EV-0001", 2, "/research/evidence/ev-0001-order/", None, None, "[]", "not assessed", "1955 order entry"),
+        ("EV-0002", None, "/research/evidence/ev-0002-pending/", None, None, "[]", "not yet linked to a built artifact", "Pending catalogue entry"),
     ])
     con.execute("INSERT INTO evidence_text VALUES(?,?,?,?,?,?)", (2, "/research/evidence/ev-0001-order/", "1955 order entry", "Order known by recital", 22, 0))
-    con.execute("INSERT INTO artifact_assessments VALUES(?,?,?,?,?,?,?,?,?,?,?)",
-                ("EV-0001", 2, "", "not_assessed", "", "not_assessed", "", "not_assessed", "not_assessed", "", "2026-10-29"))
+    con.executemany("INSERT INTO artifact_assessments VALUES(?,?,?,?,?,?,?,?,?,?,?)", [
+        ("EV-0001", 2, "", "not_assessed", "", "not_assessed", "", "not_assessed", "not_assessed", "", "2026-10-29"),
+        ("EV-0002", None, "", "not_assessed", "", "not_assessed", "", "not_assessed", "not_assessed", "", "2026-10-29"),
+    ])
     con.execute("INSERT INTO observations VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (
         "OBS-0001", "twelve-year-period-recurrence", 1, "Twelve-year recurrence", "wiki",
         "chronological_pattern", "working_observation", "Pattern summary", "Analysis", "Limits",
@@ -80,6 +83,8 @@ def main():
         assert check.execute("SELECT title FROM observations WHERE id='OBS-0001'").fetchone()[0] == "Twelve-year recurrence"
         assert check.execute("SELECT ev FROM observation_refs WHERE observation_id='OBS-0001'").fetchone()[0] == "EV-0001"
         assert check.execute("SELECT title FROM evidence_catalogue WHERE ev='EV-0001'").fetchone()[0] == "1955 order entry"
+        assert check.execute("SELECT count(*) FROM evidence_catalogue").fetchone()[0] == 2, "Wiki slice must expose every Level 1 catalogue row, including pending records without linked artifact bytes"
+        assert check.execute("SELECT description_status FROM artifact_assessments WHERE ev='EV-0002'").fetchone()[0] == "not_assessed"
         assert check.execute("SELECT count(*) FROM artifacts").fetchone()[0] == 3, "wiki-area slice should retain local and referenced artifacts but omit the unrelated artifact"
         check.close()
         arcade_config = dist / "arcade" / "_db" / "config.json"
@@ -94,6 +99,24 @@ def main():
     themes = [t for a in areas for t in a["source_themes"]]
     assert len(themes) == 44 and len(set(themes)) == 44
     assert all(a["tithe_parcel_number"] is None for a in areas), "must not invent historical plot numbers"
+    # Exercise the same 36-area data contract used by the homepage generator.
+    sys.path.insert(0, str(ROOT / "tools"))
+    import home
+    theme_cfg = json.loads((ROOT / "themes.json").read_text())
+    by_id = {t["id"]: t for t in theme_cfg["themes"]}
+    home_cfg = dict(theme_cfg)
+    home_cfg["themes"] = []
+    for area in areas:
+        sources = area.get("source_themes", [])
+        primary = by_id.get(sources[0], {}) if sources else {}
+        home_cfg["themes"].append({
+            "id": area["id"], "title": area["title"],
+            "group": primary.get("group") or theme_cfg.get("default_group") or "",
+            "cy": primary.get("cy") or "", "es": primary.get("es") or ""
+        })
+    home_html = home.render(home_cfg)
+    assert home_html.count('class="entry"') == 36, "homepage should display exactly 36 public areas"
+
     obs_doc = json.loads((ROOT / "data" / "observations.json").read_text())
     assert len(obs_doc["items"]) >= 3
     assert all(o.get("refs") for o in obs_doc["items"]), "every seeded observation must cite artifact records"
