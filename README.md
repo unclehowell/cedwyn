@@ -316,7 +316,7 @@ Every theme now reads its data and evidence from the catalogue database. Before 
 
 ## Editorial rule: ingredients, not conclusions
 
-Since 25 Oct 2026 every page follows [EDITORIAL.md](EDITORIAL.md): the site presents cited ingredients (date, event, what changed, evidence link inside Cedwyn, label, open questions), never a finished conclusion. Conclusion sentences in mirrored theme text are reworded at build time from `ingredients.json` (`tools/ingredients.py`, run from `tools/site.py`); the datro sources are untouched. — Sion's Tab agent
+Since 25 Oct 2026 every page follows [EDITORIAL.md](EDITORIAL.md): the site presents cited ingredients (date, event, what changed, evidence link inside Cedwyn, label, open questions), never a finished conclusion. Conclusion sentences in mirrored theme text are reworded at build time from `ingredients.json` (`tools/ingredients.py`, run from `tools/site.py`); the datro sources are untouched.
 
 ## Two sections: Wales and Argentina (25 Oct 2026)
 
