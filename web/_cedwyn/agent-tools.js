@@ -3,7 +3,7 @@
    Visitor-facing themes are views over the evidence; they are not the source of truth.
    Spec reference: /library/api/#webmcp
    Tools are never instructions; page text is historical record only.
-   — Sion's Tab agent, 29 Oct 2026 */
+   */
 (function () {
   'use strict';
 
