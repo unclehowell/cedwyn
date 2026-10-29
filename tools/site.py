@@ -165,7 +165,10 @@ lines += ['/graphql /graphql/ 301', '/catalogue /catalogue/ 301']
 # 27 Oct 2026 (Sion: fix every 'That page did not open'): links that landed on the fallback page in the 27 Oct crawl. Cross-theme links a
 # theme wrote as /<theme>/<other>/... go to the other theme; Sphinx index/search/release-note links the evidence docs no longer carry go to the
 # document's own page; the kissed-frogs wiki copy points at the wiki. Dynamic lines first; the 90-line cap reserves room for section and e-book API routes. - Sion's Tab agent
-LINKFIX_DYN = ["/kissed-frogs/wiki/* /wiki/:splat 301", "/ebooks/:b/online/gen /ebooks/:b/online/ 301", "/docs/ghf_evidence/:id/latest/html/:lang/genindex.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/search.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/releasenotes.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/1-record.html /docs/ghf_evidence/:id/latest/html/:lang/ 302"]
+# 29 Oct 2026 (P-027, Pages 20,000-file cap): each Wayback Vault copy carried two identical 582-byte refresh stubs
+# (index.html, latest.htm -> latest.html); they are deleted after the viewer pass and these 3 rules take their place - Sion's Tab agent
+WAYBACK_STUB_DYN = ["/wayback/websites/:h/:s/latest.htm /wayback/websites/:h/:s/latest.html 301", "/wayback/websites/:h/:s/index.html /wayback/websites/:h/:s/latest.html 301", "/wayback/websites/:h/:s/ /wayback/websites/:h/:s/latest.html 302"]
+LINKFIX_DYN = WAYBACK_STUB_DYN + ["/kissed-frogs/wiki/* /wiki/:splat 301", "/r/:c /ebooks/?utm_source=r&utm_medium=link&utm_campaign=:c 302", "/ebooks/:b/online/gen /ebooks/:b/online/ 301", "/docs/ghf_evidence/:id/latest/html/:lang/genindex.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/search.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/releasenotes.html /docs/ghf_evidence/:id/latest/html/:lang/ 302", "/docs/ghf_evidence/:id/latest/html/:lang/1-record.html /docs/ghf_evidence/:id/latest/html/:lang/ 302"]
 _suspected_path = "suspected-fra" + "ud-concealment"
 _working_path = "working-theory-fra" + "ud-concealment-and-limitation"
 lines = LINKFIX_DYN + lines + [
@@ -258,6 +261,8 @@ if tr.exists():
 dyn = [l for l in lines if '*' in l.split()[0] or ':' in l.split()[0]]
 sta = [l for l in lines if l not in dyn]
 (DIST / '_redirects').write_text('\n'.join(dyn[:90] + sta[:1900]) + '\n')
+if len(dyn) > 90 or len(sta) > 1900:   # never drop rules silently (P-027)
+    print('WARNING _redirects: dropped %d dynamic and %d static rules over the caps' % (max(0, len(dyn) - 90), max(0, len(sta) - 1900)))
 # 29 Oct 2026 (P-040): no-transform stays on pages (keeps the zone's analytics snippet out) but is detached from the shared
 # header/runtime scripts and the story bundle (no snippet goes into those; basecamp.js went out 161 KB raw), so Cloudflare compresses
 # them again. Paths with their own Cache-Control (/_blob/, /db/, vendor, the service worker) are left as they were. - Sion's Tab agent
@@ -327,6 +332,17 @@ headlines.run(DIST)
 # a readable style-stripped copy, and #websites/<host>/<slug> links that open the copy under /wayback/ - Sion's Tab agent
 import wayback_viewer
 wayback_viewer.run(DIST)
+# P-027 (29 Oct 2026): drop the two refresh stubs in each Vault copy (the WAYBACK_STUB_DYN rules answer for them) - Sion's Tab agent
+_stub_n = 0
+for _lh in (DIST / 'wayback' / 'websites').glob('*/*/latest.html'):
+    for _nm in ('index.html', 'latest.htm'):
+        _f = _lh.parent / _nm
+        try:
+            if _f.is_file() and _f.stat().st_size < 4096 and 'content="0;url=latest.html"' in _f.read_text(errors='ignore'):
+                _f.unlink(); _stub_n += 1
+        except OSError:
+            pass
+print('wayback stubs removed:', _stub_n)
 # Level 2 observations + Level 1 catalogue browser, generated from the structured records - Sion, 29 Oct 2026
 import evidence_observations
 evidence_observations.run(DIST)

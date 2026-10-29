@@ -569,7 +569,8 @@ def landing(sections, S, cfg, H):
 <img src="{E(wales_src)}" alt="" fetchpriority="high"><span class="land-place-label">Wales, Britain</span></button>
 <button type="button" class="land-place" data-open-modal="modal-argentina" aria-haspopup="dialog" aria-controls="modal-argentina">
 <img src="{E(patagonia_src)}" alt="" fetchpriority="high"><span class="land-place-label">Patagonia, Argentina</span></button>
-</div></div>
+</div>
+<a class="hv-eb" href="/ebooks/?utm_source=home&amp;utm_medium=button&amp;utm_campaign=sf25"><span>E-books · first editions free</span><span class="ar" aria-hidden="true">→</span></a></div>
 {place_modal(H, cfg, 'wales')}
 {place_modal(H, cfg, 'argentina')}
 </main>
