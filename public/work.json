@@ -1,7 +1,7 @@
 {
  "schema": "cedwyn_work_board/v1",
- "generated_utc": "2026-10-29 18:41 UTC",
- "open": 75,
+ "generated_utc": "2026-10-29 22:42 UTC",
+ "open": 99,
  "how_to_submit": {
   "pull_request": "a pull request to the GitHub repository unclehowell/cedwyn, on the branch of the section named in the job",
   "issue": "an issue on the same repository using the \"Agent job\" template, quoting the job id",
@@ -11,7 +11,7 @@
   "pages_read": 45,
   "links_checked": 350,
   "broken": 5,
-  "secs": 27
+  "secs": 22
  },
  "jobs": [
   {
@@ -1072,6 +1072,402 @@
    "first_listed": "2026-10-26 22:15 UTC"
   },
   {
+   "type": "parcel-research",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Parcels: match the 1824 Bute survey plan 19 to the 1841 tithe, field by field",
+   "inputs": [
+    "Glamorgan Archives catalogue DB/E/1 (plan 19) and DB/E/2 (terrier); read via catalogue search or archived captures only",
+    "NLW D219",
+    "NLW tithe apportionment 4542756 and map 4622411",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "A concordance (1824 parcel no., name, acreage -> 1841 tithe no. or none, with the basis) covering every plan-19 parcel, totals reconciled or the difference explained; or the exact item that must be copied, with what it would settle.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-F41E1E",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-research",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Parcels: OS 1:2500 field numbers for the 36 tithe parcels (overlay on Glamorgan XLVII.6, 1878)",
+   "inputs": [
+    "OS 25-inch County Series Glamorgan XLVII.6, 1st edition 1878 (and later editions)",
+    "NLW tithe map 4622411",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "A 36-row table (tithe no. -> OS sheet, edition, field no(s)., OS acreage, confidence) with the control points used; splits and merges by 1878 stated.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-B206D1",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-research",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Parcels: title numbers for the HM Land Registry index polygons round Llandough church",
+   "inputs": [
+    "HM Land Registry INSPIRE index polygons (Vale of Glamorgan, Cardiff)",
+    "HM Land Registry free map search",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Polygon id -> title number -> tithe parcels intersected, each with the date read. No purchases.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-351020",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-research",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Parcels: locate the plan of the 1916 tenancy of the whole farm and list its parcels",
+   "inputs": [
+    "Bute estate collections at Glamorgan Archives, NLW and Cardiff Central Library (catalogues)",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Repository, reference and date of the plan or schedule, with its tithe/OS parcels; or a dated not-found note listing every catalogue searched.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-193C0C",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-research",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Parcels: the 1926 Bute to Cardiff Corporation conveyance and the 1926 Penarth UDC tenancy near Lewis Road: which parcels",
+   "inputs": [
+    "NLW and Glamorgan Archives catalogues",
+    "DBDT123/6 (1926 tenancy plan)",
+    "London Gazette and council minutes, 1926",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Deed reference(s) and the parcels per deed, or 'parcel not identified' with the plan that would identify it.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-8ECCFA",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-research",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Parcels: the schedule of the 25 Dec 1938 Bute / Mountjoy to Western Ground Rents conveyance, and whether the 1942 Leckwith Woods sale includes tithe 275-281",
+   "inputs": [
+    "1965 contract recital (EV-0216)",
+    "Belfast Telegraph 24 Dec 1938",
+    "Bute collections (NLW, Glamorgan Archives, Cardiff Central Library, Mount Stuart)",
+    "Cardiff Corporation minutes 1942",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "The schedule located with the parcels listed or excluded, or a dated not-found note; the 1942 question answered for tithe 275-281 or left open with what would settle it.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-9740A1",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-research",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Parcels: read the village green register entry VG41 (registered 16 Jun 1970) and tie the green to its parcel",
+   "inputs": [
+    "Vale of Glamorgan commons and village green register (published extracts)",
+    "Commons Registration Act 1965 records (catalogue)",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Register entry cited (unit, date, area, plan description) and tied to tithe/OS parcel, or the exact sheet to request.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-1924BB",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-review",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Parcels: review a proposed correction to the tithe numbers on wiki page 1097 (tithe 211 is an orchard; the wood is tithe 219; tithe 193 was Llandough Farm land in 1841)",
+   "inputs": [
+    "NLW tithe apportionment 4542756",
+    "wiki page 1097 and its archived capture",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Each figure checked against the apportionment and the review submitted as an issue quoting this job id. Never edit the wiki directly; the project lead applies wiki edits.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-49065B",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-research",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Marconi 1897: did the Lavernock / Flat Holm party (Post Office engineers) lodge at Great House, Llandough, and which military arm took part",
+   "inputs": [
+    "Marconi Archive (Bodleian) catalogue",
+    "IET Archives, Preece papers",
+    "BT Archives POST 30",
+    "Kemp notebooks",
+    "Welsh Newspapers Online, May 1897",
+    "Royal Engineers Journal 1897",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Each source read with what it shows on lodging and on the military arm, cited, with a verdict per question (shown / not shown / contradicted) and the parcel tie (the house = tithe 209 group) or 'parcel not identified'.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-EE5D54",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-research",
+   "section": "research",
+   "branch": "section/research",
+   "title": "War Agricultural Executive Committee use of land at Llandough 1939-45, and any undertaking to return or resell land",
+   "inputs": [
+    "TNA MAF 32 (National Farm Survey, Llandough parish) and MAF 73 maps",
+    "TNA MAF 80 (WAEC minutes)",
+    "Glamorgan Archives WAEC records (catalogue)",
+    "Hansard 1946-58 on requisitioned land",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Record references with what each shows and its parcel tie; the farm survey entry identified or its absence confirmed; any return or resale undertaking cited with what became of it, or marked not found with every source searched.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-E0F9EF",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-research",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Place-name: identify 'Chircwell Down' near Llandough / Leckwith and its parcels",
+   "inputs": [
+    "tithe field names (Llandough, Leckwith, Michaelston-le-Pit)",
+    "OS 1:2500 and 6-inch names",
+    "Melville Richards place-name archive",
+    "Coflein / Archwilio",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Location identified with map evidence and its tithe/OS numbers, or a ranked candidate list with the evidence for each.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-210A6B",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-research",
+   "section": "research",
+   "branch": "section/research",
+   "title": "The 1939 grazing agreement within the dated sequence of permissive-looking documents (~12-year intervals)",
+   "inputs": [
+    "the chronology (/academy/MEMORY/chronology.md)",
+    "DBDT123/7 (1939 plan)",
+    "Limitation Act 1939; Real Property Limitation Acts 1833 and 1874",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "A dated table (date, document, parties by type, parcel(s), interval since the previous, legal effect) with what supports and what cuts against a regular pattern, each row sourced; labelled as analysis, not a finding.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-CC2B01",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-tagging",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Tag evidence catalogue items EV-0001 to EV-0020 to their parcels",
+   "inputs": [
+    "evidence catalogue items EV-0001-EV-0020",
+    "each item's own record",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-938E3F",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-tagging",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Tag evidence catalogue items EV-0021 to EV-0040 to their parcels",
+   "inputs": [
+    "evidence catalogue items EV-0021-EV-0040",
+    "each item's own record",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-6A3106",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-tagging",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Tag evidence catalogue items EV-0041 to EV-0060 to their parcels",
+   "inputs": [
+    "evidence catalogue items EV-0041-EV-0060",
+    "each item's own record",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-F93FDF",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-tagging",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Tag evidence catalogue items EV-0061 to EV-0080 to their parcels",
+   "inputs": [
+    "evidence catalogue items EV-0061-EV-0080",
+    "each item's own record",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-3152C4",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-tagging",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Tag evidence catalogue items EV-0081 to EV-0100 to their parcels",
+   "inputs": [
+    "evidence catalogue items EV-0081-EV-0100",
+    "each item's own record",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-D0AB5C",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-tagging",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Tag evidence catalogue items EV-0101 to EV-0120 to their parcels",
+   "inputs": [
+    "evidence catalogue items EV-0101-EV-0120",
+    "each item's own record",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-9363D0",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-tagging",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Tag evidence catalogue items EV-0121 to EV-0140 to their parcels",
+   "inputs": [
+    "evidence catalogue items EV-0121-EV-0140",
+    "each item's own record",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-E50417",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-tagging",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Tag evidence catalogue items EV-0141 to EV-0160 to their parcels",
+   "inputs": [
+    "evidence catalogue items EV-0141-EV-0160",
+    "each item's own record",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-160D3C",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-tagging",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Tag evidence catalogue items EV-0161 to EV-0180 to their parcels",
+   "inputs": [
+    "evidence catalogue items EV-0161-EV-0180",
+    "each item's own record",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-FC5A8D",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-tagging",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Tag evidence catalogue items EV-0181 to EV-0200 to their parcels",
+   "inputs": [
+    "evidence catalogue items EV-0181-EV-0200",
+    "each item's own record",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-B5CD07",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-tagging",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Tag evidence catalogue items EV-0201 to EV-0220 to their parcels",
+   "inputs": [
+    "evidence catalogue items EV-0201-EV-0220",
+    "each item's own record",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-66D5E9",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
+   "type": "parcel-tagging",
+   "section": "research",
+   "branch": "section/research",
+   "title": "Tag evidence catalogue items EV-0221 to EV-0645 to their parcels",
+   "inputs": [
+    "evidence catalogue items EV-0221-EV-0645",
+    "each item's own record",
+    "/academy/MEMORY/parcels.json"
+   ],
+   "definition_of_done": "Every item in the range carries one tag: parcel(s), or 'parcel not identified' (with what would identify it), or 'not a land record', each with its tie level (named / inferred / not identified) and the source read; submitted as one issue quoting this job id.",
+   "note": "Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.",
+   "status": "open",
+   "id": "J-4E91D3",
+   "first_listed": "2026-10-29 22:42 UTC"
+  },
+  {
    "id": "J-817D15",
    "type": "remove-outbound-link",
    "section": "ebooks",
@@ -1240,41 +1636,6 @@
    "definition_of_done": "A draft (PDF and EPUB) built from cited material already on Cedwyn, every fact traceable to a catalogue record, passing the agent lint. Publishing and price are decided by the project lead.",
    "status": "open",
    "first_listed": "2026-10-26 22:15 UTC"
-  },
-  {
-   "id": "J-3F4A24",
-   "type": "fix-broken-links",
-   "section": "fb",
-   "branch": "the branch of that section",
-   "title": "2 broken internal link(s) on /fb/",
-   "inputs": [
-    "/fb/",
-    "/fb/m/login",
-    "/wiki/press-archive-transcripts/"
-   ],
-   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
-   "status": "closed",
-   "first_listed": "2026-10-26 22:15 UTC",
-   "closed": "2026-10-29 18:41 UTC"
-  },
-  {
-   "id": "J-4AFA9D",
-   "type": "fix-broken-links",
-   "section": "csscpsg",
-   "branch": "the branch of that section",
-   "title": "5 broken internal link(s) on /csscpsg/",
-   "inputs": [
-    "/csscpsg/",
-    "/wayback/pdf/foi/2026-07-30_hmlr_first-registration-schedule.pdf",
-    "/wiki/wp-content/uploads/2026/09/wp-1790112811838.pdf",
-    "/wiki/wp-content/uploads/2026/09/wp-1790112968592.pdf",
-    "/wiki/wp-content/uploads/2026/09/wp-1790112987191.pdf",
-    "/wiki/wp-content/uploads/2026/09/wp-1790112987583.pdf"
-   ],
-   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
-   "status": "closed",
-   "first_listed": "2026-10-26 22:15 UTC",
-   "closed": "2026-10-29 18:41 UTC"
   }
  ]
 }

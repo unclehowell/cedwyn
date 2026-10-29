@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Campaign tags you can actually read: first-party beacon to Workers Analytics Engine (when GA4 is off) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Campaign tags you can actually read: first-party beacon to Workers Analytics Engine (when GA4 is off)"><link rel="alternate" type="text/markdown" href="campaign-tags-first-party-beacon-workers-analytics-engine.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Campaign tags you can actually read: first-party beacon to Workers Analytics Engine (when GA4 is off)</h1>
+<p>Date: 2026-10-29 · Harvest run b20ceb26 · Fixes the gap logged as P-038 (every utm_ link since 26 Oct reads as nothing).</p>
+<h2>Why the usual routes fail for us</h2>
+<ul>
+<li><strong>GA4 is off</strong> on Cedwyn (GA_ID empty), and turning it on brings the consent question plus ad-blocker loss.</li>
+<li><strong>Cloudflare Web Analytics will not help:</strong> its FAQ (read 29 Oct) answers "Does Cloudflare Web Analytics support UTM parameters? Not yet … do not log query strings to avoid collecting potentially sensitive data". The same FAQ states its beacon "is blocked by ad-blockers (including adblockplus, Brave, DuckDuckGo extension)".</li>
+<li><strong>Zone GraphQL on our plan refuses</strong> <code>clientRequestQuery</code> and <code>clientRefererHost</code> (authz error, 29 Oct and 27 Oct).</li>
+</ul>
+<h2>What practitioners measured about blocked third-party scripts</h2>
+<ul>
+<li>Marko Saric (Plausible), his own site over 3 trending days: Plausible 50.9k unique visitors vs GA 21.1k, so 58% of a tech audience blocked GA. His earlier study: under 10% on foodie/lifestyle sites, over 25% on tech sites. This is the vendor's own data, via CSS-Tricks (read).</li>
+<li>Chris Coyier, CSS-Tricks, Oct 2021, one week (read): Plausible counted 973k uniques vs GA's 841k (+15%), but 5% fewer pageviews. His conclusion: any third-party JS "is just as easily blockable"; server-side or first-party counting is the different kind.</li>
+<li><strong>Lesson:</strong> our heritage readers are a lifestyle audience, so expect a low-teens % blocked. Even so, a <strong>same-origin</strong> beacon (<code>/_a</code> on cedwyn itself) avoids blocklists aimed at analytics domains, and stores no cookie.</li>
+</ul>
+<h2>The free tool: Workers Analytics Engine (Cloudflare docs, read 29 Oct)</h2>
+<ul>
+<li>Free plan: <strong>100,000 data points written per day and 10,000 SQL read queries per day</strong>. Paid: 10M writes/month. Billing for this is not switched on yet, per the pricing page.</li>
+<li>Retention is <strong>3 months</strong>. Limits: up to 250 data points per invocation, blobs up to 16 KB per point, index up to 96 bytes, and <strong>only one index per point</strong> (a second index means the point is not recorded).</li>
+<li><code>writeDataPoint()</code> is not awaited; the runtime writes in the background. Fields are positional (blob1..blobN), so keep the order fixed forever.</li>
+<li>Read it through the SQL API: <code>POST api.cloudflare.com, using a bearer token with **Account | Account Analytics | Read**. Rows can be sampled, so always sum</code>_sample_interval<code>, never</code>count()`.</li>
+<li>It is separate from D1, so the D1 daily read limit (P-037) does not touch it.</li>
+</ul>
+<h2>How to do it (smallest version, about 40 lines)</h2>
+<ol>
+<li><strong>Dataset + binding:</strong> <code>[[analytics_engine_datasets]] binding = "HITS"</code>, <code>dataset = "cedwyn_hits"</code>, in the Worker or Pages project that serves cedwyn. P-040 found no Worker route on cedwyn.*, so it is likely Pages; check before choosing.</li>
+<li><strong>Endpoint:</strong> a Pages Function <code>functions/_a.js</code> (only this path runs a Function, so static pages stay free). Code is in <code>skills/tools/wae_beacon/a.js</code>: it accepts POST <code>{p, q, r}</code>, drops bot user-agents, and writes blobs [path, utm_source, utm_medium, utm_campaign, utm_content, referrer host, country, lang]. No IP, no cookie, no ID.</li>
+<li><strong>Client, one line in basecamp.js, on page load only if <code>location.search</code> contains <code>utm_</code> OR the referrer is external:</strong> <code>navigator.sendBeacon('/_a', JSON.stringify({p:location.pathname,q:location.search,r:document.referrer}))</code>. Firing only on tagged or external arrivals keeps writes far under 100k/day.</li>
+<li><strong>Read:</strong> <code>CF_ACCOUNT_ID=… CF_API_TOKEN=… python3 skills/tools/wae_beacon/wae_report.py 7 bizdev</code>, or <code>--sql</code> to print the query. The output is campaign rows sorted by weighted hits.</li>
+<li><strong>Check after deploy:</strong> open <code>/?utm_source=test&amp;utm_medium=check&amp;utm_campaign=wae-smoke</code> twice, then read with <code>wae_beacon/wae_report.py 1 wae-smoke</code>. It should show 2. The Stripe links and /ebooks/ must still answer 200.</li>
+</ol>
+<h2>Rules</h2>
+<ul>
+<li>Our UTM vocabulary still applies (utm-discipline-ga4-funnel.md, tools/utm.py). Never tag internal links.</li>
+<li>UK PECR: aggregate site-improvement stats with no cookie and no identifier fall under the statistical-purposes exception (uk-analytics-statistical-exception-duaa-ga4.md). Say so in the privacy page in one line.</li>
+<li>Don't store full query strings; store only the five utm_ keys, because other params can carry emails.</li>
+<li>Purchases still come from Stripe and Gumroad exports. This beacon measures arrivals, not sales. Join the two by campaign only in the weekly report.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>P-038 hypothesis (1) is this file. The owner of the cedwyn build commits <code>functions/_a.js</code>, the binding and the one basecamp.js line in <strong>one commit, when no build-cedwyn run is going</strong> (a push starts build.yml and cancels a running build).</li>
+<li>The API token is a Cloudflare dashboard item. If the connected Cloudflare app can't mint an Analytics Read token, that is a job for the problems queue, not for the project lead.</li>
+<li>The first report answers the open BIZDEV task "15 visits with utm_campaign=bizdev-20261026". From then on the Sunday growth report gets a per-channel arrivals line (YouTube / IG / FB / email / PDF).</li>
+<li>Tag the free PDFs (Enwau, the supplement) <code>utm_source=pdf&amp;utm_medium=&lt;book&gt;</code>. They get 21 and 31 downloads a week, and each one's back-page link should show up as its own row.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.cloudflare.com (read 2026-10-29)</li>
+<li>developers.cloudflare.com (read)</li>
+<li>developers.cloudflare.com (read)</li>
+<li>developers.cloudflare.com (read)</li>
+<li>developers.cloudflare.com (read)</li>
+<li>css-tricks.com (read; quotes Saric's 58% / &lt;10% / &gt;25%)</li>
+<li>plausible.io (vendor; figures via CSS-Tricks)</li>
+<li>Not run against a live dataset yet: the SQL in wae_report.py follows the docs' syntax but has not been checked end to end.</li>
+</ul><p class="raw">Raw Markdown: <a href="campaign-tags-first-party-beacon-workers-analytics-engine.md">campaign-tags-first-party-beacon-workers-analytics-engine.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

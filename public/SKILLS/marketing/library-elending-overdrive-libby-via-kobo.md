@@ -27,7 +27,7 @@ Harvested 26 Oct 2026 (skills harvest 15:23). Zero spend. Never Draft2Digital.
 - Keep the library price clearly separate from the retail price. Never let it undercut /ebooks/ direct.
 
 ## BorrowBox (the other Welsh app)
-BorrowBox (Bolinda) has no free direct self-publisher door that we found. The common routes are paid aggregators or Draft2Digital, and both are excluded. **Verdict: skip BorrowBox. Libby via KWL is the zero-cost library route.**
+BorrowBox (Bolinda) has no free direct self-publisher door that we found. The common routes are paid aggregators or Draft2Digital, and both are excluded. **Update 29 Oct 2026: a free IngramSpark route exists, gated on an ISBN; see borrowbox-via-ingramspark-isbn-gate.md.** **Verdict: skip BorrowBox. Libby via KWL is the zero-cost library route.**
 
 ## How we apply it to Cedwyn
 - **Eligible:** the paid £9.99 volumes once they are on KWL. Free editions stay free on our own /ebooks/ links. Opting a free title into libraries earns nothing and adds admin.

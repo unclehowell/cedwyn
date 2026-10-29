@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Google Web Stories: test-or-skip gate for a small UK history site (2026) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Google Web Stories: test-or-skip gate for a small UK history site (2026)"><link rel="alternate" type="text/markdown" href="google-web-stories-test-or-skip-gate-uk.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Google Web Stories: test-or-skip gate for a small UK history site (2026)</h1>
+<p>Harvested 29 Oct 2026 (SKILLS HARVEST RUN). Topic: SEO / Google visual surfaces. Status: decision gate. Default is SKIP for now; a small test is allowed only if the gate below passes.</p>
+<h2>What the evidence states</h2>
+<ul>
+<li><strong>Still supported.</strong> Google's "Enable Web Stories on Google" page (read in full; last updated 1 Jul 2026) is still live. A Story can show as a single result in Search "in all regions and languages". In <strong>Discover</strong> it shows as a tap-through card, but Google itself states that is "most likely to appear in the United States, India, and Brazil". So the UK is not where the format gets its best placement.</li>
+<li><strong>Hard requirements (Google):</strong> valid AMP; required metadata <code>publisher-logo-src</code>, <code>poster-portrait-src</code>, <code>title</code>, <code>publisher</code>; a self-referencing <code>rel="canonical"</code>; not blocked by robots.txt or noindex; linked from the site or listed in the sitemap. Language versions use hreflang. Check with the Web Stories Google Test Tool or URL Inspection; there is also a command-line AMP Linter.</li>
+<li><strong>Impressions, not clicks (practitioner testimony).</strong> Brodie Clark (SEO consultant; post updated 10 Aug 2026) put a Web Story into Google's mobile "Visual Stories" unit in the US. It ranked on page one for "seo" and got "a ton of impressions, with very few clicks". Andrea Volpini saw the same. AWR measured the unit on about <strong>3% of US mobile results</strong> at the time. In Search Console the "Web Story" Search Appearance filter separates this traffic.</li>
+<li><strong>Prominence has faded (agency view, not checked).</strong> PWD Digital (Australian agency, 2026) states the dedicated carousels are less prominent than in 2021-22 and Stories now compete with ordinary results. Their test plan: 3-5 stories from your strongest visual material, 60-90 days, then decide.</li>
+<li><strong>Discover is volatile (testimony).</strong> A r/SEO poster said their Discover traffic fell to zero after the 2023 update. An Indian publishers' poll reported falls across web stories and news after the Aug 2025 core update (secondary source, not checked). Google released a Discover core update in Feb 2026.</li>
+</ul>
+<h2>The gate (all must be true before building anything)</h2>
+<ol>
+<li>Search Console already shows the site getting Discover traffic, or the Google Search profile / follow route (see <code>google-search-profiles-discover-follow-gate.md</code> and <code>google-discover-heritage-max-image-preview.md</code>) is live. Without Discover presence, Stories have nowhere to land in the UK.</li>
+<li>There is a ready visual set: 10-20 strong images with captions and source lines (Google's best practice is 5-30 pages; one point per page).</li>
+<li>Someone can produce valid AMP and keep each Story's canonical, poster and logo right. A static site can do this by hand from one template; no plugin needed.</li>
+<li>A real measure exists: the "Web Story" filter in Search Console, plus UTM on the Story's outlink to the shop or e-book page.</li>
+</ol>
+<p>If any is false: skip. Put the same images into Instagram carousels, Pinterest pins and YouTube Shorts, which already have skills in the index and reach UK users.</p>
+<h2>How to run the test (if the gate passes)</h2>
+<ul>
+<li>Build <strong>3 Stories</strong> only, each 10-15 pages, each from one record or one place (for example "The farm on the 1840s tithe map, in 10 frames"). The last page links to the matching evidence page, and one link goes to the e-book page.</li>
+<li>Put them at <code>/stories/&lt;slug&gt;.html</code> on the main domain (not a separate host), add them to the sitemap and link each from its parent article.</li>
+<li>Use alt text, a 640x853 portrait poster (3:4) and short on-image text (big type, at most about 10 words a page).</li>
+<li>Run for <strong>8 weeks</strong>. Record impressions, clicks and CTR from the Web Story filter weekly in the growth sheet.</li>
+<li><strong>Drop rule:</strong> stop if the 3 Stories together get fewer than 20 clicks in 8 weeks, or a CTR below 0.5%. Brodie Clark's pattern of lots of impressions and almost no clicks is the expected failure.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Today: SKIP.</strong> No Cedwyn page has Discover traffic on record, the Discover card is mostly a US/India/Brazil placement, and the build effort would come out of channels that already reach Welsh and UK readers.</li>
+<li>Re-check the gate in the <strong>Monday visibility check</strong> once Search Console shows any Discover row for cedwyn.bucklerfamily.estate. At that point the first candidate is a "Great House Farm / Tŷ Mawr / Cydfin Farm through the maps" Story built from the quote-card and map images already made.</li>
+<li>Public text rules apply to every Story page: never name the project lead, no banned words, no insignia, nothing about family holdings or addresses, internal links only, purchases via /ebooks/.</li>
+<li>Tooling: nothing installed. If the test ever runs, the AMP validator npm package can be added then; it isn't needed for a skip decision.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>Google Search Central, Enable Web Stories on Google (upd 2026-07-01): developers.google.com</li>
+<li>Brodie Clark, 7 Reasons for an Impression Spike in GSC, section 5 (upd 10 Aug 2026): brodieclark.com</li>
+<li>PWD Digital, Google Web Stories in 2026: Are They Worth It? (agency, not checked): pwd.com.au</li>
+<li>r/SEO, "Google Discover Traffic Dropped to Zero" (testimony, search snippet only; page blocked): reddit.com</li>
+<li>Google Search Central blog, Feb 2026 Discover core update (search result only): developers.google.com</li>
+</ul><p class="raw">Raw Markdown: <a href="google-web-stories-test-or-skip-gate-uk.md">google-web-stories-test-or-skip-gate-uk.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
