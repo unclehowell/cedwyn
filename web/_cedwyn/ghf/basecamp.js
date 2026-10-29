@@ -264,6 +264,8 @@
   // A page's theme is the first segment of its address (/records/ … /research/), so every page of a theme knows its place,
   // ‹ from 1 goes to 36 and › from 36 goes to 1. Links are the internal /<theme>/ routes, never the old addresses.
   var CEDWYN_CHAIN = /*CEDWYN_CHAIN*/null;
+  // Maps retained legacy source-theme URLs to their 36-area navigation stop.
+  var CEDWYN_SMAP = /*CEDWYN_SMAP*/{};
   // 25 Oct 2026: the theme groups (themes.json "groups", filled by tools/site.py) for the side menu's dropdowns - Sion's Tab agent
   var CEDWYN_GROUPS = /*CEDWYN_GROUPS*/null;
   // 25 Oct 2026: inside a section (/wales/<theme>/, /argentina/<theme>/, or the two hubs) the ‹ › and menu links stay in that
@@ -292,6 +294,7 @@
     var p = window.__cedwynLP || location.pathname;
     if (CPM && !window.__cedwynLP) p = location.pathname.slice(CPM[1].length + 1) || "/";
     var seg = (p.split("/")[1] || "").toLowerCase();
+    if (!CSEC && CEDWYN_SMAP && CEDWYN_SMAP[seg]) seg = CEDWYN_SMAP[seg];
     if (seg === "docs" && /^\/docs\/ghf_legalwiki(\/|$)/i.test(p)) seg = "wiki";   // 27 Oct 2026: the Legal Wiki document collection opens with The Legal Wiki selected (1 of 42) - Sion's Tab agent
     if (CSEC && (!seg || CFULL.indexOf(seg) < 0)) return CSEC === "wales" ? "wales" : "patagonia";
     if (!seg && location.hostname === "cedwyn.bucklerfamily.estate") seg = "estate";
