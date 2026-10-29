@@ -17,7 +17,7 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.2.1'
+VERSION = '1.3.0'
 # 1.2.1 (27 Oct 2026, Sion 11:34 GMT): /argentina/ pictures purged of four pieces that are not the farm (NFA-0139, NFA-0049,
 # NFA-0103, NFA-0081); NFA-0015 replaced by REC-0001, a line drawing from the 1974 measured survey (see ARG_REC). - Sion's Tab agent
 # 1.2.0 (27 Oct 2026, Sion 09:45 GMT): the in-content pictures of /wales/ and /argentina/ are thumbnails; a tap opens the shared
@@ -143,6 +143,56 @@ body[data-cedwyn-page=landing] .wrap{padding-top:6px;padding-bottom:6px}
 .hv-err{color:#ff8a8a;font-weight:600}
 .hv-done{padding:12px;border-radius:10px;border:2px solid var(--hv-a);background:var(--bg)}
 .hv-done b{font-size:20px;letter-spacing:.06em}
+"""
+
+LANDING_CSS = r"""
+
+/* Bare two-choice landing with location-specific webapp modals */
+body[data-cedwyn-page="landing"]{min-height:100svh;overflow-x:hidden}
+body[data-cedwyn-page="landing"] .wrap{width:100%;max-width:none;margin:0;padding:0}
+body[data-cedwyn-page="landing"] .hv-land{height:100svh;height:100dvh;min-height:0;max-height:none;padding:clamp(8px,1.7vw,20px);gap:0}
+body[data-cedwyn-page="landing"] .hv-tiles{height:100%;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr;gap:clamp(8px,1.5vw,18px)}
+body[data-cedwyn-page="landing"] .land-place{position:relative;display:flex;min-width:0;min-height:0;align-items:flex-end;justify-content:center;overflow:hidden;border:0;border-radius:clamp(10px,1.4vw,20px);padding:0;background:#101820;color:#fff;cursor:pointer;isolation:isolate;box-shadow:0 8px 30px rgba(0,0,0,.28);text-align:center;-webkit-tap-highlight-color:transparent}
+body[data-cedwyn-page="landing"] .land-place:focus-visible{outline:3px solid #fff;outline-offset:-6px}
+body[data-cedwyn-page="landing"] .land-place>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .35s ease}
+body[data-cedwyn-page="landing"] .land-place:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.04) 25%,rgba(0,0,0,.22) 52%,rgba(0,0,0,.78) 100%)}
+body[data-cedwyn-page="landing"] .land-place:hover>img,body[data-cedwyn-page="landing"] .land-place:focus-visible>img{transform:scale(1.025)}
+body[data-cedwyn-page="landing"] .land-place .land-place-label{display:block;max-width:100%;padding:clamp(12px,2.8vw,34px);font:600 clamp(20px,4.2vw,52px)/1.1 Barlow,system-ui,sans-serif;letter-spacing:.025em;text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.9)}
+body[data-cedwyn-page="landing"] .ghf-v2,body[data-cedwyn-page="landing"] #ghf-agent-footer,body[data-cedwyn-page="landing"] .ghf-agent-footer{display:none!important}
+.land-modal{width:min(1160px,calc(100vw - 18px));max-width:1160px;max-height:calc(100dvh - 18px);margin:auto;padding:0;overflow:hidden;border:1px solid rgba(219,229,240,.25);border-radius:18px;background:#0c1117;color:#f4f6f8;box-shadow:0 24px 90px rgba(0,0,0,.65)}
+.land-modal::backdrop{background:rgba(2,5,9,.84);backdrop-filter:blur(5px)}
+.land-modal-inner{display:flex;flex-direction:column;max-height:calc(100dvh - 20px);min-height:0}
+.land-modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.12);background:#0d141c}
+.land-modal-head h2{margin:0;color:#f5f7fa;font:600 clamp(20px,3.6vw,30px)/1.2 Barlow,system-ui,sans-serif;letter-spacing:.015em;text-transform:none}
+.land-modal-close{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:#18212a;color:#fff;font:300 30px/1 system-ui,sans-serif;cursor:pointer}
+.land-modal-close:hover{background:#263440}
+.land-modal-content{overflow:auto;overscroll-behavior:contain;padding:16px clamp(12px,2vw,22px) 24px}
+.land-app-section{margin:0 0 22px}
+.land-app-section h3{margin:0 0 10px;color:#aebdca;font:600 12px/1.3 Barlow,system-ui,sans-serif;letter-spacing:.13em;text-transform:uppercase}
+.land-app-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.land-app{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid rgba(255,255,255,.13);border-radius:11px;background:#121a23;color:#f3f5f7;text-decoration:none;transition:transform .15s ease,border-color .15s ease,background .15s ease}
+.land-app:hover,.land-app:focus-visible{transform:translateY(-2px);border-color:rgba(185,215,238,.7);background:#192531}
+.land-app>img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#111820}
+.land-app-label{display:block;padding:9px 10px 10px;font:600 13px/1.25 Barlow,system-ui,sans-serif;overflow-wrap:anywhere}
+.land-app-soon{cursor:default;border-style:dashed;border-color:rgba(185,215,238,.35)}
+.land-app-soon:hover{transform:none;background:#121a23;border-color:rgba(185,215,238,.35)}
+.land-app-soon .land-app-label small{display:block;margin-top:4px;color:#aebdca;font-size:11px;font-weight:500;letter-spacing:.04em}
+.land-specific{margin-bottom:24px}
+@media(max-width:780px){.land-app-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:540px){
+ body[data-cedwyn-page="landing"] .hv-land{padding:7px}
+ body[data-cedwyn-page="landing"] .hv-tiles{grid-template-columns:1fr;grid-template-rows:1fr 1fr;gap:7px}
+ body[data-cedwyn-page="landing"] .land-place{border-radius:11px}
+ body[data-cedwyn-page="landing"] .land-place .land-place-label{font-size:clamp(22px,7.2vw,34px);padding:18px}
+ .land-modal{width:calc(100vw - 10px);max-height:calc(100dvh - 10px);border-radius:13px}
+ .land-modal-inner{max-height:calc(100dvh - 12px)}
+ .land-modal-head{padding:11px 12px}
+ .land-modal-close{flex-basis:38px;width:38px;height:38px}
+ .land-modal-content{padding:12px 9px 18px}
+ .land-app-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .land-app-label{padding:8px;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){body[data-cedwyn-page="landing"] .land-place>img,.land-app{transition:none}}
 """
 
 # ---------- shared bits
@@ -387,34 +437,169 @@ def page(sections, title, desc, lang, bpath, sec, T, n, body):
     h = h.replace('</style>', CSS + '</style>', 1)
     return h + body
 
+# Every catalogued webapp is available in both location modals unless a page belongs to one
+# physical/virtual reconstruction. Images are vendored under web/_cedwyn/halves/img/ and stay on Cedwyn.
+APP_LABELS = {
+    'wiki': 'Legal Wiki',
+    'records': 'Primary Records',
+    'docs': 'Evidence Catalogue',
+    'infographic': 'Title chain · infographic',
+    'story': 'Full story · BP vs Buckler',
+    'terrain': '3D map',
+    'patagonia': 'Patagonia Museum',
+    'wales': 'Virtual reconstruction',
+    'qa': 'Q&A',
+    'familytree': 'Family tree',
+    'chat': 'Ask the Archive',
+    'nft-art': 'Gallery',
+    'thousand-cuts': '1000 Cuts',
+}
+APP_IMAGES = {
+    'wiki': 'ghf2-drawing-room', 'records': 'ty-mawr-1974-reconstruction',
+    'docs': 'wales-ar-forest', 'wayback': 'wales-stop-brynwell',
+    'nomenclature': 'wales-ar-green', 'maps': 'wales-ar-villa',
+    'infographic': 'ty-mawr-1974-reconstruction', 'ebooks': 'ghf2-bedroom',
+    'story': 'ty-mawr-1974-reconstruction', 'thousand-cuts': 'ghf2-exterior',
+    'fb': 'ghf2-museum', 'chess': 'wales-ar-forest',
+    'csscpsg': 'ghf2-drawing-room', 'courtdrills': 'ghf2-museum',
+    'fcg': 'wales-ar-forest', 'oldbill': 'ghf2-exterior',
+    'accounts': 'ghf2-bedroom', 'authorities': 'wales-ar-forest',
+    'wdtk': 'ghf2-drawing-room', 'review': 'ty-mawr-1974-reconstruction',
+    'research': 'wales-ar-villa', 'qa': 'wales-stop-brynwell',
+    'meeting': 'ghf2-drawing-room', 'projects': 'ghf2-exterior',
+    'app': 'wales-ar-green', 'chat': 'wales-stop-brynwell',
+    'watchtower': 'wales-ar-forest', 'fb2': 'ghf2-museum',
+    'email': 'ghf2-drawing-room', 'emails': 'ghf2-bedroom',
+    'dartboard': 'wales-ar-villa', 'estate': 'tile-wales',
+    'directory': 'tile-patagonia', 'terrain': 'wales-ar-villa',
+    'cyberspace': 'network-datacentre', 'shop': 'ghf2-drawing-room',
+    'documentary': 'wales-hologram', 'familytree': 'wales-ar-forest',
+    'kissed-frogs': 'ghf2-wedding', 'nft-art': 'ghf2-museum',
+    'whattheydontsay': 'wales-ar-villa', 'blog': 'ghf2-drawing-room',
+}
+APP_EXCLUDED = {'wales', 'patagonia'}
+
+def app_image(H, key):
+    if key == 'network-datacentre':
+        return f'{H["img"]}network-datacentre.svg?v=1'
+    return img(H, key)
+
+def app_tile(H, section, theme):
+    tid = theme['id']
+    label = APP_LABELS.get(tid, theme.get('title') or tid)
+    image = APP_IMAGES.get(tid, 'ty-mawr-1974-reconstruction')
+    return (f'<a class="land-app" href="/{E(section)}/{E(tid)}/" aria-label="{E(label)}">'
+            f'<img src="{E(app_image(H, image))}" alt="" loading="lazy" decoding="async">'
+            f'<span class="land-app-label">{E(label)}</span></a>')
+
+def specific_tile(H, title, href, image):
+    return (f'<a class="land-app" href="{E(href)}" aria-label="{E(title)}">'
+            f'<img src="{E(app_image(H, image))}" alt="" loading="lazy" decoding="async">'
+            f'<span class="land-app-label">{E(title)}</span></a>')
+
+def network_tile(H):
+    return (f'<div class="land-app land-app-soon" aria-label="Network, coming soon">'
+            f'<img src="{E(app_image(H, "network-datacentre"))}" alt="" loading="lazy" decoding="async">'
+            f'<span class="land-app-label">Network<small>Coming soon</small></span></div>')
+
+def modal_apps(H, cfg, section):
+    out = []
+    for group in cfg.get('groups', []):
+        items = [t for t in cfg['themes'] if t.get('group') == group['id'] and t['id'] not in APP_EXCLUDED]
+        if not items:
+            continue
+        out.append('<section class="land-app-section"><h3>' + E(group['title']) + '</h3><div class="land-app-grid">')
+        out.append(''.join(app_tile(H, section, t) for t in items))
+        out.append('</div></section>')
+    out.append('<section class="land-app-section"><h3>Coming soon</h3><div class="land-app-grid">')
+    out.append(network_tile(H))
+    out.append('</div></section>')
+    return ''.join(out)
+
+def place_modal(H, cfg, section):
+    if section == 'wales':
+        title = 'Wales, Britain'
+        specific = specific_tile(H, 'Virtual reconstruction · AR glasses', '/wales/', 'wales-ar-green')
+    else:
+        title = 'Patagonia, Argentina'
+        special = [
+            ('Great House II · physical reconstruction', '/argentina/#house', 'ghf2-exterior'),
+            ('Wedding venue', '/argentina/#book', 'ghf2-wedding'),
+            ('B&B · guest rooms', '/argentina/#book', 'ghf2-bedroom'),
+            ('Stables', '/argentina/#house', 'ghf2-stables'),
+            ('Barn and cottage', '/argentina/#house', 'ghf2-barn'),
+            ('Museum', '/argentina/#museum', 'ghf2-museum'),
+        ]
+        specific = ''.join(specific_tile(H, t, u, im) for t, u, im in special)
+    return (f'<dialog class="land-modal" id="modal-{E(section)}" aria-labelledby="modal-{E(section)}-title">'
+            f'<div class="land-modal-inner"><div class="land-modal-head">'
+            f'<h2 id="modal-{E(section)}-title">{E(title)}</h2>'
+            f'<button type="button" class="land-modal-close" data-close-modal aria-label="Close">×</button></div>'
+            f'<div class="land-modal-content">'
+            f'<section class="land-app-section land-specific"><h3>For this place</h3>'
+            f'<div class="land-app-grid">{specific}</div></section>'
+            f'{modal_apps(H, cfg, section)}'
+            f'</div></div></dialog>')
+
+def network_page(H):
+    image = app_image(H, 'network-datacentre')
+    return f'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Network · Coming soon</title><meta name="description" content="Cedwyn Network — coming soon.">
+<style>
+*{{box-sizing:border-box}}html,body{{margin:0;min-height:100%;background:#0c1117;color:#f3f6f8;font:16px/1.5 system-ui,sans-serif}}
+main{{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center}}
+img{{display:block;width:min(920px,100%);max-height:68vh;object-fit:cover;border-radius:14px;border:1px solid #34414d}}
+h1{{margin:20px 0 2px;font-size:clamp(30px,6vw,56px);font-weight:600}}p{{margin:0;color:#aebdca;letter-spacing:.12em;text-transform:uppercase;font-size:13px}}
+</style></head><body><main><img src="{E(image)}" alt="Rows of server racks in a data centre"><h1>Network</h1><p>Coming soon</p></main></body></html>'''
+
 def landing(sections, S, cfg, H):
     l = 'en'; n = len(cfg['themes']); T = base_T(sections, S, cfg, None, H)
     pre = ("<script>(function(){try{var p=sessionStorage.getItem('cedwyn-land-lang');var l=/^(en|cy|es)$/.test(p||'')?p:'en';window.__cedwynLang=l;"
            "try{localStorage.setItem('ghf_lang',l)}catch(e){}var s=location.protocol==='https:'?'; Secure':'';var c='ghf_lang='+l+'; path=/; max-age=31536000; SameSite=Lax'+s;document.cookie=c;"
            "if(/(^|\\.)bucklerfamily\\.estate$/.test(location.hostname))document.cookie=c+'; domain=.bucklerfamily.estate';"
            "if(!/[?&]lang=/.test(location.search)&&history.replaceState)history.replaceState(null,'',location.pathname+'?lang='+l+location.hash)}catch(e){}})();</script>")
+    wales_src = img(H, 'tile-wales')
+    patagonia_src = img(H, 'tile-patagonia')
     body = f"""
 <body data-cedwyn-page="landing">
 <main class="wrap hv" data-no-translate>
-<div class="hv-land">
-<h1 class="hv-sr ghf-keep-case">{E(tx(T,'tw_name',l))} · {E(tx(T,'ta_name',l))}</h1>
-<div class="hv-tiles">
-<a class="hv-tile hv-w" href="/wales/?lang=cy" hreflang="cy"><img src="{img(H,'tile-wales')}" width="960" height="544" alt="" fetchpriority="high">
-<span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
-<span class="tb"><span class="tn" data-i18n="tw_name">{E(tx(T,'tw_name',l))}</span><span class="ts" data-i18n="tw_sub">{E(tx(T,'tw_sub',l))}</span><span class="tc" data-i18n="tw_cta">{E(tx(T,'tw_cta',l))}</span></span></a>
-<a class="hv-tile hv-a" href="/argentina/?lang=es" hreflang="es"><img src="{img(H,'tile-patagonia')}" width="960" height="640" alt="" fetchpriority="high"><span class="stripe"></span>
-<span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
-<span class="tb"><span class="tn" data-i18n="ta_name">{E(tx(T,'ta_name',l))}</span><span class="ts" data-i18n="ta_sub">{E(tx(T,'ta_sub',l))}</span><span class="tc" data-i18n="ta_cta">{E(tx(T,'ta_cta',l))}</span></span></a>
-</div>
-<a class="hv-eb" href="/ebooks/?utm_source=home&amp;utm_medium=button&amp;utm_campaign=push1027"><span data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</span><span class="ar" aria-hidden="true">→</span></a>
-<p class="hv-foot"><a href="/explore/" data-i18n="land_more">{E(tx(T,'land_more',l))}</a><a href="/ebooks/" data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</a><a href="/dartboard/" data-i18n="land_dart">{E(tx(T,'land_dart',l))}</a><a href="/email/" data-i18n="land_mail">{E(tx(T,'land_mail',l))}</a></p>
-</div>
-</main>
+<div class="hv-land"><div class="hv-tiles" aria-label="Choose a place">
+<button type="button" class="land-place" data-open-modal="modal-wales" aria-haspopup="dialog" aria-controls="modal-wales">
+<img src="{E(wales_src)}" alt="" fetchpriority="high"><span class="land-place-label">Wales, Britain</span></button>
+<button type="button" class="land-place" data-open-modal="modal-argentina" aria-haspopup="dialog" aria-controls="modal-argentina">
+<img src="{E(patagonia_src)}" alt="" fetchpriority="high"><span class="land-place-label">Patagonia, Argentina</span></button>
+</div></div>
+{place_modal(H, cfg, 'wales')}
+{place_modal(H, cfg, 'argentina')}
+<script>
+(function(){{
+var openers=[].slice.call(document.querySelectorAll('[data-open-modal]'));
+openers.forEach(function(button){{
+ button.addEventListener('click',function(){{
+  var dialog=document.getElementById(button.getAttribute('data-open-modal'));
+  if(!dialog)return;
+  if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','');
+  var close=dialog.querySelector('[data-close-modal]');if(close)close.focus();
+ }});
+}});
+[].forEach.call(document.querySelectorAll('.land-modal'),function(dialog){{
+ var close=dialog.querySelector('[data-close-modal]');
+ if(close)close.addEventListener('click',function(){{if(typeof dialog.close==='function')dialog.close();else dialog.removeAttribute('open')}});
+ dialog.addEventListener('click',function(e){{if(e.target===dialog){{if(typeof dialog.close==='function')dialog.close();else dialog.removeAttribute('open')}}}});
+ dialog.addEventListener('close',function(){{
+  var opener=document.querySelector('[aria-controls="'+dialog.id+'"]');if(opener)opener.focus();
+ }});
+ dialog.addEventListener('cancel',function(){{}});
+}});
+}})();
+</script>
 <script>{JS}</script>
 </body>
 </html>
 """
-    out = page(sections, 'Cedwyn Estate · Wales and Patagonia', 'Cedwyn Estate: two ways in. Wales, an augmented-reality guided tour of Llandough; Patagonia, the Great House II retreat at Puerto Madryn.', l, '/cedwyn/home/', None, T, n, body)
+    out = page(sections, 'Cedwyn Estate', 'Select Wales, Britain or Patagonia, Argentina.', l, '/cedwyn/home/', None, T, n, body)
+    out = out.replace('</style>', LANDING_CSS + '</style>', 1)
     return out.replace('<head>\n', '<head>\n' + pre + '\n', 1)
 
 VOUCHERS = [  # the Stripe voucher links of the retired /wales/tour/ page (Sion 08:08 GMT 26 Oct 2026: purge /wales/tour/, keep /wales/#stop-1)
@@ -730,9 +915,12 @@ def run(dist, cfg):
     S = json.load(open(ROOT / 'sections.json', encoding='utf-8'))
     pages = {dist / 'index.html': landing(sections, S, cfg, H),
              dist / 'wales' / 'index.html': wales(sections, S, cfg, H),
-             dist / 'argentina' / 'index.html': argentina(sections, S, cfg, H)}
+             dist / 'argentina' / 'index.html': argentina(sections, S, cfg, H),
+             dist / 'network' / 'index.html': network_page(H)}
     for pth, txt in pages.items():
-        pth.parent.mkdir(parents=True, exist_ok=True); pth.write_text(unsub.html(txt), encoding='utf-8'); agent_footer.inject(pth, False)
+        pth.parent.mkdir(parents=True, exist_ok=True); pth.write_text(unsub.html(txt), encoding='utf-8')
+        # The Network placeholder is a deliberately unlinked, link-free page; other generated pages keep the agent footer.
+        if pth.parent.name != 'network': agent_footer.inject(pth, False)
     w = (dist / 'wales' / 'index.html').read_text(encoding='utf-8')
     sections.check_wales(w); sections.check_wales((dist / 'index.html').read_text(encoding='utf-8')); check_wales_house(w); check_tour_citations(w, H)
     for pth in pages:
