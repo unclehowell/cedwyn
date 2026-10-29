@@ -55,3 +55,9 @@ details.tracked a{color:var(--fg)}
 .small{display:block;font-size:12px;color:var(--mut)}
 
 :where(a,button,summary,select,input,[role="button"],[tabindex]):focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+/* 29 Oct 2026 (v3.1.0): institution watch marks and the absence watch list */
+.d.released{background:transparent;border:2.5px solid #c084fc}.d.archived{background:var(--gold)}.d.absent{background:transparent;border:2px solid #9aa0a6}.d.present{background:#9aa0a6;transform:scale(.7)}
+.tag.released{background:#c084fc;color:#000}.tag.absent{background:transparent;color:#9aa0a6;border:1px solid #9aa0a6}.tag.present{background:#9aa0a6;color:#000}.tag.archived{background:var(--gold)}
+.abs{margin:1.2rem 0;padding:.8rem;border:1px solid var(--line);background:var(--panel)}.abs h2{font-size:1.05rem;margin:0 0 .4rem}
+.abs-l{list-style:none;margin:0;padding:0}.abs-l li{padding:.4rem 0;border-top:1px solid var(--line);overflow-wrap:anywhere;font-size:.92rem}
+.abs-l a{color:var(--fg)}.abs-l .tag{font-size:.72rem;margin-right:.3rem}
