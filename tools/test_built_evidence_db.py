@@ -79,10 +79,7 @@ with tempfile.TemporaryDirectory(prefix="cedwyn-db-check-") as td:
     if not evidence_page.is_file():
         raise SystemExit(f"FAIL: expected nested Level 1 evidence page is missing: {evidence_page}")
     page_html = evidence_page.read_text(encoding="utf-8", errors="replace")
-    if not __import__("re").search(
-        r'<script\\b[^>]*src=["\\'][^"\\']*/_cedwyn/agent-tools\\.js(?:[?#][^"\\']*)?["\\']',
-        page_html, __import__("re").I
-    ):
+    if 'src="/_cedwyn/agent-tools.js' not in page_html and "src='/_cedwyn/agent-tools.js" not in page_html:
         raise SystemExit("FAIL: central agent tools script not injected on the nested evidence page")
 
     # The production full-text search join must resolve the indexed evidence catalogue.
