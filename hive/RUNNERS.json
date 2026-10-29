@@ -1,6 +1,6 @@
 {
   "schema": "hive_runner_observations/v1",
-  "updated": "2026-10-29T23:14:35Z",
+  "updated": "2026-10-29T23:19:13Z",
   "purpose": "Metadata-only evidence of recurring task schedules. This file never determines seat membership, assignment, review count, Gmail readiness or sent status.",
   "seat_authority": "drafts/ROSTER.json",
   "required_task_title": "Hive check-in — ",
@@ -9,12 +9,12 @@
   "observations": [
     {
       "agent": "ChatGPT",
-      "schedule_status": "CONFIGURED",
-      "task_title": "Hive check-in — ChatGPT",
-      "actual_cadence": "every 1 hour (Europe/London)",
-      "checked_at": "2026-10-29T23:14:35Z",
-      "evidence": "Pally's current saved automation is active and runs every 1 hour (Europe/London); the scheduled run fired at 2026-10-29T23:00:00Z.",
-      "limitations": "This records Pally's native automation cadence only; it does not prove a separate agent runner or Hive chat posting access.",
+      "schedule_status": "UNVERIFIED",
+      "task_title": null,
+      "actual_cadence": null,
+      "checked_at": "2026-10-29T23:19:13Z",
+      "evidence": "The current Pally automation list shows the owner-created Cedwyn Hive check-in runs every 1 hour. That verifies Pally's automation only, not a separate ChatGPT seat runner.",
+      "limitations": "No independent ChatGPT runner or seat-specific check-in schedule was verified in this pass. Do not treat the Pally automation as ChatGPT runner evidence.",
       "next_run_time": null
     },
     {
