@@ -293,17 +293,26 @@ def run(dist, cfg):
     bc.write_text(bc.read_text(encoding='utf-8').replace('/*CEDWYN_AMAP*/null', json.dumps(S.get('argentina_title_map', {}), ensure_ascii=False)), encoding='utf-8')
     # 5. _redirects: section rewrites first (first match wins). Wales lists each theme (the /wales/ folder also holds the
     #    former Wales theme's own files); Argentina has no folder of its own, so one placeholder rule covers every theme.
-    sec = ['/wales/tour /wales/#stop-1 301', '/wales/tour/ /wales/#stop-1 301', '/wales/tour/* /wales/#stop-1 301',
-           '/wales/wales/ /wales/#stop-1 301', '/argentina/wales/ /wales/#stop-1 301']
-    sec += [f'/wales/{t}/* /{t}/:splat 200' for t in tids]
-    sec += ['/wales/movie/* /documentary/:splat 301', '/argentina/movie/* /documentary/:splat 301']   # the film page is now /documentary/ (27 Oct 2026)
-    sec += ['/argentina/:theme/* /:theme/:splat 200']
+    # Keep section rewrites equivalent without allocating one dynamic rule per theme.
+    # Specific legacy routes must precede the generic parameterised routes (first match wins).
+    sec = [
+        '/wales/tour /wales/#stop-1 301', '/wales/tour/ /wales/#stop-1 301',
+        '/wales/tour/* /wales/#stop-1 301',
+        '/wales/wales/ /wales/#stop-1 301', '/argentina/wales/ /wales/#stop-1 301',
+        '/wales/wales/* /wales/:splat 200',
+        '/wales/movie/* /documentary/:splat 301',
+        '/argentina/movie/* /documentary/:splat 301',
+        '/wales/:theme/* /:theme/:splat 200',
+        '/argentina/:theme/* /:theme/:splat 200'
+    ]
     rd = dist / '_redirects'
     old = rd.read_text().splitlines() if rd.exists() else []
-    dyn_old = [x for x in old if x.split() and ('*' in x.split()[0] or ':' in x.split()[0])]
-    assert len(dyn_old) + len(sec) <= 100, 'Pages allows 100 dynamic redirects'
+    is_dynamic = lambda x: bool(x.split()) and ('*' in x.split()[0] or ':' in x.split()[0])
+    dyn_old = [x for x in old if is_dynamic(x)]
+    dyn_sec = [x for x in sec if is_dynamic(x)]
+    assert len(dyn_old) + len(dyn_sec) <= 100, 'Pages allows 100 dynamic redirects'
     rd.write_text('\n'.join(sec + old) + '\n')
-    print('sections ok:', len(sec), 'section rewrites;', len(dyn_old), 'other dynamic rules')
+    print('sections ok:', len(sec), 'section rewrites (', len(dyn_sec), 'dynamic );', len(dyn_old), 'other dynamic rules')
 
 if __name__ == '__main__':
     import sys
