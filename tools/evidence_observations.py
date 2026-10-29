@@ -127,11 +127,10 @@ def generate_missing_assessment_pages(dist, observation_items):
     for item in assessment_doc.get('items', []):
         ev = str(item.get('ev') or '').strip().upper()
         path = referenced_paths.get(ev, '')
-        match = re.fullmatch(r'/research/evidence/(ev-\\d{4}-[a-z0-9-]+)/', path, re.I)
-        if not match or match.group(1).upper() != ev.lower().upper():
-            # The page slug must actually identify the same EV record.
-            if not match or not match.group(1).upper().startswith(ev.lower().upper() + '-'):
-                continue
+        match = re.fullmatch(r'/research/evidence/(ev-\d{4}-[a-z0-9-]+)/', path, re.I)
+        # The page slug must actually identify the same EV record.
+        if not match or not match.group(1).upper().startswith(ev + '-'):
+            continue
         description = str(item.get('description') or '').strip()
         interpretation = str(item.get('interpretation') or '').strip()
         if not description and not interpretation:
@@ -140,7 +139,7 @@ def generate_missing_assessment_pages(dist, observation_items):
         if dest.exists():
             continue
         slug = match.group(1).split('-', 2)[-1]
-        title = ev + ' — ' + re.sub(r'(?<=\\d)-(?=\\d)', '–', slug.replace('-', ' ').title())
+        title = ev + ' — ' + re.sub(r'(?<=\d)-(?=\d)', '–', slug.replace('-', ' ').title())
         transcript = str(item.get('transcript') or '').strip()
         transcript_status = str(item.get('transcript_status') or 'not_assessed')
         description_status = str(item.get('description_status') or 'not_assessed')
