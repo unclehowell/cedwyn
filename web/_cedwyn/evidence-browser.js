@@ -5,7 +5,7 @@
   'use strict';
   var root = document.querySelector('[data-cedwyn-evidence-browser]');
   if (!root) return;
-  var pageSize = 50, offset = 0, mode = 'artifacts', db = null, dbSource = '', busy = false, exhausted = false;
+  var pageSize = 50, offset = 0, mode = 'artifacts', db = null, dbSource = '', coverageText = '', busy = false, exhausted = false;
   root.innerHTML = [
     '<section class="cw-eb" aria-labelledby="cw-eb-title">',
     '<style>',
@@ -35,6 +35,7 @@
     '</style>',
     '<h2 id="cw-eb-title">Evidence catalogue: artifacts and observations</h2>',
     '<p class="cw-eb-intro">Level 1 contains the source artifacts. Level 2 contains observations derived from one or more artifacts. Description, transcription and interpretation are separate fields; an unassessed field is marked as such rather than guessed.</p>',
+    '<p class="cw-eb-coverage" data-coverage>Loading catalogue coverage…</p>',
     '<div class="cw-eb-tabs" role="group" aria-label="Evidence hierarchy">',
     '<button type="button" data-mode="artifacts" aria-pressed="true">Level 1 · Artifacts</button>',
     '<button type="button" data-mode="observations" aria-pressed="false">Level 2 · Observations</button>',
@@ -162,6 +163,21 @@
     moreButton.hidden = true;
     try {
       await openDb();
+      if (!coverageText) {
+        var cov = await db.query(
+          "SELECT COUNT(*) AS total, " +
+          "SUM(CASE WHEN trim(COALESCE(aa.description,''))<>'' THEN 1 ELSE 0 END) AS described, " +
+          "SUM(CASE WHEN trim(COALESCE(aa.transcript,''))<>'' THEN 1 ELSE 0 END) AS transcribed, " +
+          "SUM(CASE WHEN trim(COALESCE(aa.interpretation,''))<>'' THEN 1 ELSE 0 END) AS interpreted " +
+          "FROM evidence_catalogue ec LEFT JOIN artifact_assessments aa ON aa.ev=ec.ev"
+        );
+        var cv = cov[0] || {};
+        coverageText = 'Catalogue coverage · ' + (cv.total || 0) + ' records · description populated: ' + (cv.described || 0) +
+          ' · source transcription entered: ' + (cv.transcribed || 0) + ' · interpretation populated: ' + (cv.interpreted || 0) +
+          '. Existing catalogue-page text is separate from a source transcription.';
+        var coverageNode = root.querySelector('[data-coverage]');
+        if (coverageNode) coverageNode.textContent = coverageText;
+      }
       var q = String(queryInput.value || '').trim().toLowerCase();
       var rows;
       if (mode === 'artifacts') {
