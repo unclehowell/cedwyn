@@ -141,7 +141,7 @@
       var img = el("img", "cm-img"); img.alt = title; img.loading = "lazy"; img.decoding = "async"; img.src = thumbURL(f); img.onerror = function () { th.classList.add("noimg"); }; th.appendChild(img);
       th.appendChild(el("span", "cm-ai", t("ai"))); th.appendChild(el("span", "cm-date", dtxt));
       if (f.n === nextN) th.appendChild(el("span", "cm-tag", t("next")));
-      var DG = window.CedwynDoc; if (m && DG && !DG.canPlay(f.n)) { card.classList.add("locked"); th.appendChild(el("span", "cm-tag cd-lock", DG.label())); }
+      var DG = window.CedwynDoc; if (m && DG && !DG.canPlay(f.n)) { card.classList.add("locked"); th.appendChild(el("span", "cm-tag cd-lock", DG.label(f.n))); }
       if (m) { var pb = el("button", "cm-playbig"); pb.type = "button"; pb.setAttribute("data-ghf-keep", ""); pb.setAttribute("aria-label", t("play") + ": " + t("scene") + " " + f.n);
         pb.onclick = function (e) { e.stopPropagation(); play(f, m); }; th.appendChild(pb); }
       th.onclick = function () { openLB(f, title, dtxt); }; th.onkeydown = function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLB(f, title, dtxt); } };
