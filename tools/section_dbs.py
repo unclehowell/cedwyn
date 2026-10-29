@@ -116,9 +116,15 @@ def run(con, dist, cfg, chunk_size=None):
         )
         _layer_params = (tid, tid, tid)
         copy_table(con, dst, "layers", _layer_filter, _layer_params)
-        copy_table(con, dst, "layer_items", "layer IN (" + _layer_filter.replace("id IN (", "id IN (", 1) + ")", _layer_params) if False else "layer IN (SELECT DISTINCT lr.layer FROM layer_refs lr WHERE lr.aid IN (SELECT aid FROM locations WHERE theme=?) OR lr.aid IN (SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL)) OR ?='thousand-cuts'", _layer_params)
-        copy_table(con, dst, "layer_refs", "layer IN (SELECT DISTINCT lr.layer FROM layer_refs lr WHERE lr.aid IN (SELECT aid FROM locations WHERE theme=?) OR lr.aid IN (SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL)) OR ?='thousand-cuts'", _layer_params)
-        copy_table(con, dst, "layer_deps", "layer IN (SELECT DISTINCT lr.layer FROM layer_refs lr WHERE lr.aid IN (SELECT aid FROM locations WHERE theme=?) OR lr.aid IN (SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL)) OR ?='thousand-cuts'", _layer_params)
+        _layer_items_filter = (
+            "layer IN (SELECT DISTINCT lr.layer FROM layer_refs lr WHERE "
+            "lr.aid IN (SELECT aid FROM locations WHERE theme=?) OR lr.aid IN "
+            "(SELECT rr.artifact_id FROM observation_refs rr JOIN observations oo ON oo.id=rr.observation_id WHERE oo.theme=? AND rr.artifact_id IS NOT NULL)) "
+            "OR ?='thousand-cuts'"
+        )
+        copy_table(con, dst, "layer_items", _layer_items_filter, _layer_params)
+        copy_table(con, dst, "layer_refs", _layer_items_filter, _layer_params)
+        copy_table(con, dst, "layer_deps", _layer_items_filter, _layer_params)
         if tid == "wayback":
             copy_table(con, dst, "captures")
         # Keep graph links that touch this theme's local artifacts or its observation records.
