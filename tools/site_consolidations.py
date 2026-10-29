@@ -28,7 +28,7 @@ def shell(title, description, body):
 <meta name="description" content="''' + esc(description) + '''">
 <style>
 :root{color-scheme:light;--wiki-bg:#f8f9fa;--wiki-paper:#fff;--wiki-text:#202122;--wiki-muted:#54595d;--wiki-border:#a2a9b1;--wiki-soft-border:#c8ccd1;--wiki-link:#0645ad}
-html{background:var(--wiki-bg)}body{margin:0;background:var(--wiki-bg);color:var(--wiki-text);font:14px/1.6 Arial,"Liberation Sans",sans-serif}
+html{background:var(--wiki-bg)}html[data-ghf-mode="night"]{--wiki-bg:#0f1115;--wiki-paper:#161a20;--wiki-text:#e8e8ee;--wiki-muted:#b6bdc8;--wiki-border:#4b5563;--wiki-soft-border:#303844;--wiki-link:#9cc8ff}body{margin:0;background:var(--wiki-bg);color:var(--wiki-text);font:14px/1.6 Arial,"Liberation Sans",sans-serif}
 a{color:var(--wiki-link);text-decoration:none}a:hover{text-decoration:underline}
 main{max-width:1320px;min-height:60vh;margin:0 auto;padding:1.5rem clamp(1rem,3vw,2.5rem) 3rem;background:var(--wiki-paper);border-left:1px solid var(--wiki-soft-border);border-right:1px solid var(--wiki-soft-border);box-sizing:border-box}
 h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:normal;line-height:1.3}h1{font-size:1.9rem;border-bottom:1px solid var(--wiki-border);padding-bottom:.3em}h2{font-size:1.3rem;margin:.4rem 0}
