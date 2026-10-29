@@ -2,9 +2,9 @@
 
 **cedwyn.bucklerfamily.estate** — one central SQLite catalogue of Great House Farm evidence, browsed through 44 source themes and grouped into 36 visitor-facing page areas.
 
-The 44 source themes remain separately buildable and retain their legacy routes. The 36-area index is a visitor-facing grouping layer, not a count of database themes. It merges the Legal Wiki with its nomenclature/dictionary reference tools, and groups the NFT gallery, cyber games and 3D world under one Arcade shell. The area-to-parcel links currently use editorial serendipity slots only: no website area is assigned a historic tithe plot number until the c.1841 schedule is checked row-by-row.
+The 44 source themes remain separately buildable and retain their legacy routes. The public homepage and shared previous/next navigation use the 36 visitor-facing page areas. The 36-area index is a visitor-facing grouping layer, not a count of source themes. It merges the Legal Wiki with its nomenclature/dictionary reference tools, and groups the NFT gallery, cyber games and 3D world under one Arcade shell. The area-to-parcel links currently use editorial serendipity slots only: no website area is assigned a historic tithe plot number until the c.1841 schedule is checked row-by-row.
 
-The central SQLite database remains the source of truth. The browser reads it through chunked, read-only SQLite; the build also emits smaller, theme-local SQLite slices which contain that theme's relevant artifacts, assessments, observations and references. These are static catalogue databases, not separate authoring stores or a server-side write API.
+The central SQLite database remains the source of truth. The browser reads it through chunked, read-only SQLite; the build also emits smaller, theme-local SQLite slices containing relevant artifacts, assessments, observations and references. Multi-theme areas such as Wiki and Arcade receive an aggregate slice. The Wiki slice deliberately includes the full Level 1 register, including pending records and their explicit unassessed status; the other area slices remain relevance-filtered. These are static catalogue databases, not separate authoring stores or a server-side write API.
 
 The old repo (`unclehowell/datro`) and the old subdomains are untouched: this repo only reads from them.
 
