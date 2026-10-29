@@ -1,17 +1,17 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8381,
+  "pages_scanned": 8417,
   "references_checked": {
-    "resource": 190534,
-    "nav": 332451
+    "resource": 190669,
+    "nav": 332455
   },
-  "database_backed_paths": 7096,
-  "unique_missing_destinations": 4867,
-  "missing_references": 31125,
+  "database_backed_paths": 7091,
+  "unique_missing_destinations": 4866,
+  "missing_references": 31126,
   "missing_navigation_references": 16097,
-  "missing_resource_references": 15028,
-  "unique_broken_fragments": 1810,
-  "broken_fragment_references": 3141,
+  "missing_resource_references": 15029,
+  "unique_broken_fragments": 1811,
+  "broken_fragment_references": 3142,
   "form_or_endpoint_actions_not_checked": {
     "form[action]": 2550
   },
@@ -19,7 +19,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6249,
+      "references": 6250,
       "examples": [
         {
           "from": "/review/",
@@ -46,7 +46,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6249,
+      "references": 6250,
       "examples": [
         {
           "from": "/review/",
