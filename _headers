@@ -13,3 +13,13 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
   Cache-Control: no-transform
+/_cedwyn/ghf/*
+  ! Cache-Control
+/_cedwyn/guestbook/*
+  ! Cache-Control
+/_cedwyn/section.js
+  ! Cache-Control
+/_cedwyn/agent-tools.js
+  ! Cache-Control
+/story/assets/*
+  ! Cache-Control
