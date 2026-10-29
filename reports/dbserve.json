@@ -1,32 +1,32 @@
 {
- "db_version": "96f9788ed5f8",
- "paths_served_from_db": 7082,
+ "db_version": "b61950204ae6",
+ "paths_served_from_db": 7092,
  "blobs": 4546,
  "files_dropped": {
-  "document": 3297,
-  "image": 1488,
-  "data": 1313,
+  "document": 3301,
+  "image": 1505,
+  "data": 1309,
   "audio": 84
  },
  "bytes_dropped": {
-  "document": 1274479419,
-  "image": 134968837,
-  "data": 34429101,
+  "document": 1275006133,
+  "image": 136845211,
+  "data": 34549836,
   "audio": 14922925
  },
- "bytes_dropped_total": 1458800282,
+ "bytes_dropped_total": 1461324105,
  "files_kept_as_well": {
-  "image": 806,
+  "image": 794,
   "data": 59,
-  "document": 15
+  "document": 12
  },
  "kept_why": {
-  "named in page markup": 689,
-  "link/meta tag": 45,
+  "named in page markup": 677,
+  "link/meta tag": 46,
   "css url()": 27,
   "fetched by script": 11,
   "fetched by browsers outside a service worker": 15,
-  "page without runtime": 77,
+  "page without runtime": 73,
   "fetched by script (built path)": 16
  },
  "kept_examples": [
@@ -111,9 +111,7 @@
    "named in page markup"
   ]
  ],
- "changed_after_db_build_served_as_files": 1,
- "changed_examples": [
-  "/research/_db/config.json"
- ],
- "indexed_without_file": 20
+ "changed_after_db_build_served_as_files": 0,
+ "changed_examples": [],
+ "indexed_without_file": 28
 }
