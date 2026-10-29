@@ -248,6 +248,9 @@ stats = dict(artifacts=cnt('SELECT count(*) FROM artifacts'), locations=cnt('SEL
              artifact_assessments=cnt('SELECT count(*) FROM artifact_assessments'), observations=cnt('SELECT count(*) FROM observations'), observation_refs=cnt('SELECT count(*) FROM observation_refs'))
 for k, v in stats.items(): con.execute('INSERT INTO meta VALUES(?,?)', (k, str(v)))
 con.commit()
+# Emit small section-local SQLite slices from the same central catalogue. The main catalogue remains authoritative.
+import section_dbs
+section_db_stats = section_dbs.run(con, DIST, CFG, CHUNK)
 con.execute("INSERT INTO fts(fts) VALUES('optimize')"); con.commit()
 con.execute('VACUUM'); con.close()
 size = DBF.stat().st_size
