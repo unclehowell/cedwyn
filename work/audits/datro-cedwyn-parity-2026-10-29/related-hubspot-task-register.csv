@@ -1,0 +1,9 @@
+hubspot_task_id,title,status,due_utc,audit_treatment,reason
+535503816906,"Migrate Hive Worker source (ghf-watch worker/index.js) from datro",NOT_STARTED,2026-10-29T15:45:25.642Z,CANDIDATE_NOT_YET_PROVEN,"Compare source and destination worker files and readers/writers; do not create duplicate task."
+535679502563,"Migrate Watch change-monitor state and records branch from datro",NOT_STARTED,2026-10-29T15:45:25.642Z,CANDIDATE_NOT_YET_PROVEN,"Compare datro watch/state/seed and records against Cedwyn runtime/data usage; existing task retained."
+535889225950,"Migrate First-seen register (fcg) from datro",NOT_STARTED,2026-10-29T15:45:25.642Z,CANDIDATE_NOT_YET_PROVEN,"Inspect FCG branch and target section/writer schedule before deciding if any gap is verified."
+535907228885,"Migrate Llandough meeting branches (claude/meeting-*) from datro",NOT_STARTED,2026-10-29T15:45:25.642Z,CANDIDATE_NOT_YET_PROVEN,"Compare four historical meeting branches with target section/archive; retain archival history."
+535699281131,"Migrate Wayback site from datro",NOT_STARTED,2026-10-29T15:45:25.642Z,CANDIDATE_NOT_YET_PROVEN,"Compare source wayback branch and intended Cedwyn theme/runtime; preserve captures and manifests."
+535706265788,"Migrate Court case sites from datro",NOT_STARTED,2026-10-29T15:45:25.642Z,CANDIDATE_NOT_YET_PROVEN,"Compare four source branches and case-site JSON/routes/content; existing migration task retained."
+535683097787,"Migrate Research site from datro",NOT_STARTED,2026-10-29T15:45:25.642Z,CANDIDATE_NOT_YET_PROVEN,"Compare source research branch and section/research plus every publishing writer; do not confuse a present section with full parity."
+535663262924,"Migrate Dartboard / roadmap source from datro",NOT_STARTED,2026-10-29T15:45:25.642Z,CANDIDATE_NOT_YET_PROVEN,"Compare datro dartboard src/data/ramps.json and Cedar section/readers before deciding if migration gap exists."
