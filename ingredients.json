@@ -1,6 +1,6 @@
 {
  "rule": "Cedwyn editorial rule (25 Oct 2026): ingredients, not conclusions. Build-time rewording of conclusion sentences in mirrored theme text; cedwyn copy only, the datro sources are untouched. Each entry: theme, file (relative to the theme root), find (exact), replace, why. A find that is not present is reported, never fatal. — Sion's Tab agent",
- "version": "1.6.1",
+ "version": "1.6.2",
  "rewords": [
   {
    "theme": "maps",
@@ -2195,7 +2195,7 @@
    "theme": "research",
    "file": "evidence/ev-0645-local-history-book-llandough-penarth-pp64-65/index.html",
    "find": "and Marconi’s stay. It gives",
-   "replace": "and Marconi’s stay at the farm, in a four-poster bed, while he worked on his 1897 wireless telegraphy experiments between Flat Holm and Lavernock Point (with The Post, Cardiff, 14 Sep 1995, p.24: <a href=\"/research/evidence/ev-0646-the-post-cardiff-1995-09-14-p24-marconi-great-house-farm/\">EV-0646</a>). It gives",
+   "replace": "and Marconi’s stay at the farm, in a four-poster bed, while he worked on his 1897 wireless telegraphy experiments between Flat Holm and Lavernock Point (see also <a href=\"/research/evidence/ev-0646-the-post-cardiff-1995-09-14-p24-marconi-great-house-farm/\">EV-0646</a>). It gives",
    "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
    "class": "citation",
    "audit_point": "marconi-1897"
@@ -2260,6 +2260,42 @@
    "find": "the demolition of 6 December 1988</li></ul></section>",
    "replace": "the demolition of 6 December 1988</li><li><a href=\"/research/evidence/ev-0646-the-post-cardiff-1995-09-14-p24-marconi-great-house-farm/\">EV-0646</a> — The Post (Cardiff), 14 September 1995, p.24, Bill Barrett, “My Cardiff”: Marconi and George Kemp at Great House Farm on the eve of 11 May 1897</li></ul></section>",
    "why": "Book identified (29 Oct 2026): The Glamorgan Village Book (Countryside Books, 1993). Marconi at Great House Farm, 1897, documented from it and from The Post (Cardiff), 14 Sep 1995, p.24 (EV-0646).",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "timeline/index.html",
+   "find": " (The Glamorgan Village Book, Glamorgan Federation of Women’s Institutes, Countryside Books, 1993, “Llandough (Penarth)”, pp. 64–66; ",
+   "replace": " (evidence: ",
+   "why": "Sion 29 Oct 2026 23:16: facts on Cedwyn link to catalogued evidence pages, not inline citations.",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "timeline/index.html",
+   "find": " (The Post, Cardiff, 14 Sep 1995, p.24, Bill Barrett, “My Cardiff”; ",
+   "replace": " (evidence: ",
+   "why": "Sion 29 Oct 2026 23:16: facts on Cedwyn link to catalogued evidence pages, not inline citations.",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "timeline/index.html",
+   "find": "apparatus left “at Penarth” (extracts published in G. R. M. Garratt, <em>The Early History of Radio</em>, 1994) (",
+   "replace": "apparatus left “at Penarth” (",
+   "why": "Sion 29 Oct 2026 23:16: facts on Cedwyn link to catalogued evidence pages, not inline citations.",
+   "class": "citation",
+   "audit_point": "marconi-1897"
+  },
+  {
+   "theme": "research",
+   "file": "timeline/index.html",
+   "find": "the Kemp diary entry names the published extracts it rests on. Nothing removed.</td><td>The Glamorgan Village Book (Countryside Books, 1993), “Llandough (Penarth)”, EV-0645 / EV-0085; The Post (Cardiff), 14 Sep 1995, p.24, EV-0646</td>",
+   "replace": "the Kemp diary entry is shortened to what the extract records. Nothing removed.</td><td>EV-0645, EV-0085, EV-0646</td>",
+   "why": "Sion 29 Oct 2026 23:16: facts on Cedwyn link to catalogued evidence pages, not inline citations.",
    "class": "citation",
    "audit_point": "marconi-1897"
   }
