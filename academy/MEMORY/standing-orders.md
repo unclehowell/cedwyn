@@ -40,4 +40,7 @@ These bind every agent, every cycle. When two orders conflict, the newer one win
 17. One relay per worker report; never repeat news already given.
 18. Bring the project lead only what truly needs him: a sale, a real milestone, a decision or login only he can give. Problems, blockers and open questions never go to the project lead: they go into the problems queue, where a flywheel loops on each one (hypothesis, smallest test, keep or discard); only a problem still unsolved after six hours of looping is raised, as unsolvable.
 19. Every time in a brief or log names its zone (UTC, GMT or BST).
-20. Each Cedwyn section lives on its own branch; main changes only for site-wide work. The old datro repository and the WordPress wiki are frozen: redirects only.
+20. Each Cedwyn section lives on its own branch; main changes only for site-wide work. The old datro repository and the WordPress wiki are frozen: redirects only. All Cedwyn work, the hive included, lives in the Cedwyn repository (29 Oct 2026).
+21. Never sit idle waiting for the project lead. Blocked work stays open as a HubSpot task naming what blocks it and what only the project lead can supply; then move on (HARNESS/hive.md, No idle).
+22. Questions agents would have put to the project lead are decided by the agents themselves, from the standing orders and the evidence, with the reasoning recorded where the decision is made (29 Oct 2026).
+23. The property is named "Great House Farm / Tŷ Mawr / Cydfin Farm" in every new draft and on the names register. Cydfin Farm is a name of the farm; it is not Cwm Cydfin, the woodland Site of Special Scientific Interest. Existing drafts take the third name at their next edit, with the smallest change and a signed changelog line.

@@ -1,17 +1,17 @@
 {
  "schema": "cedwyn_work_board/v1",
- "generated_utc": "2026-10-29 13:41 UTC",
- "open": 77,
+ "generated_utc": "2026-10-29 18:41 UTC",
+ "open": 75,
  "how_to_submit": {
   "pull_request": "a pull request to the GitHub repository unclehowell/cedwyn, on the branch of the section named in the job",
   "issue": "an issue on the same repository using the \"Agent job\" template, quoting the job id",
   "checks": "every submission must pass the agent lint (banned words, citations, no outbound links, no private names) before review"
  },
  "crawl": {
-  "pages_read": 44,
+  "pages_read": 45,
   "links_checked": 350,
-  "broken": 12,
-  "secs": 38
+  "broken": 5,
+  "secs": 27
  },
  "jobs": [
   {
@@ -1158,39 +1158,6 @@
    "first_listed": "2026-10-26 22:15 UTC"
   },
   {
-   "id": "J-3F4A24",
-   "type": "fix-broken-links",
-   "section": "fb",
-   "branch": "the branch of that section",
-   "title": "2 broken internal link(s) on /fb/",
-   "inputs": [
-    "/fb/",
-    "/fb/m/login",
-    "/wiki/press-archive-transcripts/"
-   ],
-   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
-   "status": "open",
-   "first_listed": "2026-10-26 22:15 UTC"
-  },
-  {
-   "id": "J-4AFA9D",
-   "type": "fix-broken-links",
-   "section": "csscpsg",
-   "branch": "the branch of that section",
-   "title": "5 broken internal link(s) on /csscpsg/",
-   "inputs": [
-    "/csscpsg/",
-    "/wayback/pdf/foi/2026-07-30_hmlr_first-registration-schedule.pdf",
-    "/wiki/wp-content/uploads/2026/09/wp-1790112811838.pdf",
-    "/wiki/wp-content/uploads/2026/09/wp-1790112968592.pdf",
-    "/wiki/wp-content/uploads/2026/09/wp-1790112987191.pdf",
-    "/wiki/wp-content/uploads/2026/09/wp-1790112987583.pdf"
-   ],
-   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
-   "status": "open",
-   "first_listed": "2026-10-26 22:15 UTC"
-  },
-  {
    "id": "J-BAD280",
    "type": "ebook-candidate",
    "section": "ebooks",
@@ -1273,6 +1240,41 @@
    "definition_of_done": "A draft (PDF and EPUB) built from cited material already on Cedwyn, every fact traceable to a catalogue record, passing the agent lint. Publishing and price are decided by the project lead.",
    "status": "open",
    "first_listed": "2026-10-26 22:15 UTC"
+  },
+  {
+   "id": "J-3F4A24",
+   "type": "fix-broken-links",
+   "section": "fb",
+   "branch": "the branch of that section",
+   "title": "2 broken internal link(s) on /fb/",
+   "inputs": [
+    "/fb/",
+    "/fb/m/login",
+    "/wiki/press-archive-transcripts/"
+   ],
+   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
+   "status": "closed",
+   "first_listed": "2026-10-26 22:15 UTC",
+   "closed": "2026-10-29 18:41 UTC"
+  },
+  {
+   "id": "J-4AFA9D",
+   "type": "fix-broken-links",
+   "section": "csscpsg",
+   "branch": "the branch of that section",
+   "title": "5 broken internal link(s) on /csscpsg/",
+   "inputs": [
+    "/csscpsg/",
+    "/wayback/pdf/foi/2026-07-30_hmlr_first-registration-schedule.pdf",
+    "/wiki/wp-content/uploads/2026/09/wp-1790112811838.pdf",
+    "/wiki/wp-content/uploads/2026/09/wp-1790112968592.pdf",
+    "/wiki/wp-content/uploads/2026/09/wp-1790112987191.pdf",
+    "/wiki/wp-content/uploads/2026/09/wp-1790112987583.pdf"
+   ],
+   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
+   "status": "closed",
+   "first_listed": "2026-10-26 22:15 UTC",
+   "closed": "2026-10-29 18:41 UTC"
   }
  ]
 }

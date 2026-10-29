@@ -1,8 +1,8 @@
 {
  "schema": "cedwyn_academy/v1",
  "name": "Cedwyn Academy",
- "version": "1.0.7",
- "built_utc": "2026-10-29 13:54 UTC",
+ "version": "1.0.8",
+ "built_utc": "2026-10-29 18:42 UTC",
  "base_path": "/academy/",
  "alias_paths": [
   "/academy/"
@@ -431,6 +431,62 @@
    ],
    "metric": "open problems solved per run; time each problem stays open",
    "report": "Nothing to the project lead unless a problem stays unsolved after six hours of looping; then one short line per problem: what it is and what was tried."
+  },
+  {
+   "id": "online-gap-finder",
+   "name": "Online gap finder",
+   "cadence": "every 6 hours",
+   "prefix": "ONLINE GAP FINDER RUN",
+   "runner": "work/online-gap-finder/RUNNER.md",
+   "purpose": "Find public information about the farm, its places, people and the case that is not yet on the site, and queue each find as a task for the right page.",
+   "inputs": [
+    "public archives, catalogues, newspapers and reference sites",
+    "the live site (sitemap, research, wiki, Wales sections)",
+    "a seen-ledger so nothing is repeated"
+   ],
+   "outputs": [
+    "one '[CEDWYN GAP] <title> -> <area>' HubSpot task per genuine gap, with source, capture and target page"
+   ],
+   "metric": "genuine gaps queued per run; gaps later published",
+   "report": "Nothing routine; one line only when a find changes the chronology or the reopen grounds."
+  },
+  {
+   "id": "correspondence",
+   "name": "Correspondence flywheel",
+   "cadence": "every 2 hours at :30, 07:30–23:30 Europe/London",
+   "prefix": "CORRESPONDENCE FLYWHEEL RUN",
+   "runner": "work/correspondence-flywheel/RUNNER.md",
+   "purpose": "Keep a hive draft task for every research or disclosure email that needs a reply, a chase, escalation, forwarding or first contact; housekeeping between emails.",
+   "inputs": [
+    "the mail record",
+    "open hive draft tasks"
+   ],
+   "outputs": [
+    "one hive draft task per item with no open task",
+    "dated triage lines on existing unsent drafts when a new fact exists"
+   ],
+   "metric": "items needing action with no open draft (target zero)",
+   "report": "Nothing routine; only what the project lead alone can supply."
+  },
+  {
+   "id": "repo-sync",
+   "name": "Repository and project-board sync",
+   "cadence": "every 6 hours",
+   "prefix": "REPO-HUBSPOT SYNC RUN",
+   "runner": "work/repo-hubspot-sync/RUNNER.md",
+   "purpose": "Keep the project board in step with the repository and the live site: what was done, and what still needs doing.",
+   "inputs": [
+    "new commits, pull requests and issues",
+    "the academy work board",
+    "the problems queue"
+   ],
+   "outputs": [
+    "dated notes on matching tasks",
+    "tasks completed only when verified live",
+    "new '[CEDWYN REPO]' tasks for outstanding work"
+   ],
+   "metric": "open repository work with no matching task (target zero)",
+   "report": "Nothing routine."
   }
  ],
  "files": [
@@ -459,22 +515,22 @@
    "path": "ACADEMY/WORK.md",
    "html": "ACADEMY/WORK.html",
    "title": "Work board",
-   "bytes": 53188,
-   "sha256": "2eec33ef289cbe9259fb50920f80e1f44249e10f9c799f982f9a3157bd1c7fae"
+   "bytes": 52743,
+   "sha256": "1584373aa458c791fe2c9b96b550ceace0cc11ea151cdd93a7f98f07417fcb18"
   },
   {
    "path": "CHANGELOG.md",
    "html": "CHANGELOG.html",
    "title": "CHANGELOG",
-   "bytes": 3281,
-   "sha256": "00b39faf7eb6b849286a2b54a579edd85b7b5a3352523df8735242e12e16f81f"
+   "bytes": 3811,
+   "sha256": "7aadf8bb604b8da4342e211ca16edbd13c486457bfd334b1f1cfa482bd5ac060"
   },
   {
    "path": "FLYWHEELS/README.md",
    "html": "FLYWHEELS/index.html",
    "title": "FLYWHEELS",
-   "bytes": 4149,
-   "sha256": "e671cfc8414db537080bc6762ce13b120d35e7b3ca779b8802705a1b9e59cb4a"
+   "bytes": 4813,
+   "sha256": "c7233918c05ec5f5462b81a8196a82eb07b3edca80e6f4e6114d57cf50a3ed2c"
   },
   {
    "path": "FLYWHEELS/SCHEMA.md",
@@ -503,6 +559,13 @@
    "title": "Flywheel: Contacts flywheel",
    "bytes": 700,
    "sha256": "e1a8c2fbfdf89ef11cb55e6b49b850b7f24fd40262e05f512b33f31b1ea483d2"
+  },
+  {
+   "path": "FLYWHEELS/correspondence.md",
+   "html": "FLYWHEELS/correspondence.html",
+   "title": "Flywheel: Correspondence flywheel",
+   "bytes": 794,
+   "sha256": "6cb6288a092e5e264d8eadb4e612e801fcb8f9833c59328588a92b5f04e70070"
   },
   {
    "path": "FLYWHEELS/drafts-engine.md",
@@ -561,6 +624,13 @@
    "sha256": "d01099727d0c15f871e918921f8e3fe0275a41813946020079ac8006f3261df5"
   },
   {
+   "path": "FLYWHEELS/online-gap-finder.md",
+   "html": "FLYWHEELS/online-gap-finder.html",
+   "title": "Flywheel: Online gap finder",
+   "bytes": 857,
+   "sha256": "2440c85eadf52f8cf24358734b70f132368f85bfde7af9f2c5dee19b5576a97a"
+  },
+  {
    "path": "FLYWHEELS/problems-flywheel.md",
    "html": "FLYWHEELS/problems-flywheel.html",
    "title": "Flywheel: Problems flywheel",
@@ -587,6 +657,13 @@
    "title": "Flywheel: Reopen-the-case autoresearch loop",
    "bytes": 816,
    "sha256": "392df07eeb7d3698fd44a5f94a7497e3192622374979d7830fbf9ca3503c1b81"
+  },
+  {
+   "path": "FLYWHEELS/repo-sync.md",
+   "html": "FLYWHEELS/repo-sync.html",
+   "title": "Flywheel: Repository and project-board sync",
+   "bytes": 714,
+   "sha256": "42251a77b27739543cc613b22fdeb3e3daf876cfdf2fa8f6d9991acb0879b05f"
   },
   {
    "path": "FLYWHEELS/research-cycle.md",
@@ -627,8 +704,8 @@
    "path": "HARNESS/commits.md",
    "html": "HARNESS/commits.html",
    "title": "Repository and build rules (Cedwyn)",
-   "bytes": 1658,
-   "sha256": "fd40a6c5eb625ee0db243c94348f13455c546e848a2473a9d84a43d43d4602a3"
+   "bytes": 1880,
+   "sha256": "10fabf6d31ff4fa53602180b9ecdca3e7e2c62967acd06cf6ce7301032f34b63"
   },
   {
    "path": "HARNESS/coordination.md",
@@ -641,8 +718,8 @@
    "path": "HARNESS/hive.md",
    "html": "HARNESS/hive.html",
    "title": "The hive — multi-agent draft review",
-   "bytes": 4969,
-   "sha256": "b9dbba31c5e79c79311b53b34b195faa331bdb471fe5737bfaf5dab61e8148fa"
+   "bytes": 6204,
+   "sha256": "503c3b28c39160d1967f4afca66dc72a58e30d9d86a17f7f31c0862ff5589740"
   },
   {
    "path": "HARNESS/publish-gate.md",
@@ -662,8 +739,8 @@
    "path": "LESSONS.md",
    "html": "LESSONS.html",
    "title": "LESSONS — mistakes and the rules they produced",
-   "bytes": 14073,
-   "sha256": "6befb6561281f82a750e2f59b241edd3432ce01d7242bc2cd961153b35b613b2"
+   "bytes": 15549,
+   "sha256": "8328305b415957f143354e7a2fafd34195881320d753871baf256be148453924"
   },
   {
    "path": "MEMORY/README.md",
@@ -676,8 +753,8 @@
    "path": "MEMORY/bodies-and-references.md",
    "html": "MEMORY/bodies-and-references.html",
    "title": "Bodies, archives and references",
-   "bytes": 2180,
-   "sha256": "02a304cdd2c366524205a11a3a051900248bcba29f26a4f2b967a1e8a50688fa"
+   "bytes": 2714,
+   "sha256": "3a992abc6d1bd321661493938115aee153479864402a663698d8a3988dddbfcd"
   },
   {
    "path": "MEMORY/chronology.md",
@@ -690,8 +767,8 @@
    "path": "MEMORY/deadlines.md",
    "html": "MEMORY/deadlines.html",
    "title": "Deadlines and review dates",
-   "bytes": 1624,
-   "sha256": "0025b62c56d976373f5a21f5d17a2904d412897794c097d695549835558f8be8"
+   "bytes": 2093,
+   "sha256": "1d7ad3746bc87b4fad754adb4f5ee1ea60bf427a68fb8b50f1f92242fb3c2b77"
   },
   {
    "path": "MEMORY/site-map.md",
@@ -704,8 +781,8 @@
    "path": "MEMORY/standing-orders.md",
    "html": "MEMORY/standing-orders.html",
    "title": "Standing orders",
-   "bytes": 6345,
-   "sha256": "58d72a94e3218cc3910db692c16d28f101cf1fbba2d9f109660f6d6250df9003"
+   "bytes": 7164,
+   "sha256": "c78fc224ddfac5d685b3c6f232a74b5a488a1381d9c4b601a97d056415b89456"
   },
   {
    "path": "ONBOARDING.md",
@@ -725,36 +802,36 @@
    "path": "SKILLS/README.md",
    "html": "SKILLS/index.html",
    "title": "SKILLS",
-   "bytes": 268442,
-   "sha256": "d3c45479d4fc6470c1e45f5457ed173e78c78a06216cacdab8da8996536e59f6"
+   "bytes": 276410,
+   "sha256": "5c2995e0cac3ca1c9f97dd3ba78d9039f756fd100b4885acaf0f23f786e6b8e2"
   },
   {
    "path": "SKILLS/marketing/1.md",
    "html": "SKILLS/marketing/1.html",
    "title": "Skill #1 — Email, CRM & follow-ups for a niche heritage e-book business (2026)",
-   "bytes": 3686,
-   "sha256": "90ace786bf396e0aa943ec0ac20fef49d3c4739a5f6a7b34ce89daa5acc753a8"
+   "bytes": 5273,
+   "sha256": "b913ffdc934f1b29532e0a555c14b6449bd5d23e5525b357624f35dfff404fa3"
   },
   {
-   "path": "SKILLS/marketing/2.md",
-   "html": "SKILLS/marketing/2.html",
-   "title": "Skill #2 — Business research & strategy for a niche heritage e-book shop (2026)",
-   "bytes": 8568,
-   "sha256": "7c399921e308ddbbe525467b74192d258e4454259ead38e3f1c95cd33d5270aa"
+   "path": "SKILLS/marketing/16.md",
+   "html": "SKILLS/marketing/16.html",
+   "title": "Skill 16: YouTube channel optimisation (Cedwyn)",
+   "bytes": 2026,
+   "sha256": "63c19bd0487c5de4a33a55cf43bba1192498cb204b53c2e3eecc7752acd53f0c"
   },
   {
    "path": "SKILLS/marketing/3.md",
    "html": "SKILLS/marketing/3.html",
    "title": "Skill #3 — Website analysis, SEO & AI visibility (2026)",
-   "bytes": 2039,
-   "sha256": "df845da59a61d96c10fae299f79fd6c22114ff597413cbdcf6ce2b929cac13d4"
+   "bytes": 3319,
+   "sha256": "026208137800f1bec44ff89a3e46a1989573f03b1e1eb5218b8332084bd2c30b"
   },
   {
    "path": "SKILLS/marketing/4.md",
    "html": "SKILLS/marketing/4.html",
    "title": "Entry #4 AI video creation: 30 s history Shorts that hold attention (skill, 26 Oct 2026)",
-   "bytes": 4015,
-   "sha256": "2b652fcaf8a343f50e6fcef540574f67c43d1f270a72177f17ffa0b717e51998"
+   "bytes": 4981,
+   "sha256": "bfb01e648bef305c245d75b7f04a4c68e5358ff0ed92273a128ed3326a00a752"
   },
   {
    "path": "SKILLS/marketing/40.md",
@@ -788,8 +865,8 @@
    "path": "SKILLS/marketing/8.md",
    "html": "SKILLS/marketing/8.html",
    "title": "Skill #8 — Social media content & publishing (2026), owned channels: FB page Great House Farm II, Instagram, YouTube",
-   "bytes": 2483,
-   "sha256": "cf96940361bca092ebf05dc741d64b74d31cc952f7093ac3f89c6f8b8c871a06"
+   "bytes": 4447,
+   "sha256": "39d03858a80ed409ec1ddf1a730cc744306ca1162a5f5ceb0ac57629c8ba97e1"
   },
   {
    "path": "SKILLS/marketing/ab-testing-small-lists.md",
@@ -932,6 +1009,13 @@
    "sha256": "194b480d1146b5888e60e353314bdaa10ffe07879540706c1d676ecbe7f0376c"
   },
   {
+   "path": "SKILLS/marketing/bilingual-welsh-english-layout-posts-cards-email.md",
+   "html": "SKILLS/marketing/bilingual-welsh-english-layout-posts-cards-email.html",
+   "title": "Bilingual Welsh/English layout for posts, cards and emails (Commissioner + Welsh Government rules)",
+   "bytes": 5080,
+   "sha256": "1bddc0f9ff5803b0622ade7c48a697725b2e730dad07a8a6c8b086dce660c476"
+  },
+  {
    "path": "SKILLS/marketing/bing-webmaster-ai-performance-copilot-citations.md",
    "html": "SKILLS/marketing/bing-webmaster-ai-performance-copilot-citations.html",
    "title": "Bing Webmaster Tools: AI Performance (Copilot citations) + import from Search Console",
@@ -1035,6 +1119,13 @@
    "title": "ChatGPT shopping product feed / Instant Checkout: decision gate for Cedwyn e-books",
    "bytes": 3642,
    "sha256": "e1fb92a18729f9f8eb1af90e9c12432c46f9d18b06b4111eaa8bf4566d65ff3e"
+  },
+  {
+   "path": "SKILLS/marketing/chatgpt-shopping-product-feed-ebooks.md",
+   "html": "SKILLS/marketing/chatgpt-shopping-product-feed-ebooks.html",
+   "title": "ChatGPT shopping product feed: getting the e-books into ChatGPT's product results (2026)",
+   "bytes": 5468,
+   "sha256": "e0a4b75508a8eb7c76d05272a4acc586469813920461b17d431a72154926ac27"
   },
   {
    "path": "SKILLS/marketing/chubut-spanish-press-jornada-elchubut-radio.md",
@@ -1268,11 +1359,25 @@
    "sha256": "12e373628c3d1984a9613a96863aa3401f72e2c4f1d8050a36f05ced37ee5676"
   },
   {
+   "path": "SKILLS/marketing/email-benchmarks-mailchimp-cross-check-click-band.md",
+   "html": "SKILLS/marketing/email-benchmarks-mailchimp-cross-check-click-band.html",
+   "title": "Email benchmarks, second dataset: Mailchimp vs MailerLite, and the target band Cedwyn should use",
+   "bytes": 3089,
+   "sha256": "fe4980067b293ef7d9c0543d9852e1be318c7574da72e5ddc192b8a493f45af1"
+  },
+  {
    "path": "SKILLS/marketing/email-holdout-incrementality-test-small-list-gate.md",
    "html": "SKILLS/marketing/email-holdout-incrementality-test-small-list-gate.html",
    "title": "Skill: Email holdout (incrementality) tests: did the email cause the sale? And when a list is too small to ask (2026)",
    "bytes": 5573,
    "sha256": "fae8a7a0efb0e544d3b37a5d8eaced97640f93a9795335beaae687d8769f08b8"
+  },
+  {
+   "path": "SKILLS/marketing/email-kpi-baseline-mailerlite-2025-benchmarks.md",
+   "html": "SKILLS/marketing/email-kpi-baseline-mailerlite-2025-benchmarks.html",
+   "title": "Email KPI baseline: MailerLite 2025 benchmarks as Cedwyn's yardstick",
+   "bytes": 3019,
+   "sha256": "b177283c1228fb8ae3d0962786a5bdcded4b51398a1d0d802c030c8e486d3e3e"
   },
   {
    "path": "SKILLS/marketing/email-links-shorteners-tracking-safe-links-bot-clicks.md",
@@ -1478,6 +1583,13 @@
    "sha256": "68945b117a5dc349b480ef70684d45b700db687721ced84ffe9478915273e280"
   },
   {
+   "path": "SKILLS/marketing/first-sales-price-comparables-uk-local-history.md",
+   "html": "SKILLS/marketing/first-sales-price-comparables-uk-local-history.html",
+   "title": "First sales and price comparables for UK local-history e-books (Cedwyn)",
+   "bytes": 2674,
+   "sha256": "e04f4122112ab03e01fa4f4c7b84022d146e6d65e877d3b7837af28e38c8d010"
+  },
+  {
    "path": "SKILLS/marketing/flipboard-publisher-magazine-rss.md",
    "html": "SKILLS/marketing/flipboard-publisher-magazine-rss.html",
    "title": "Flipboard: publisher profile, RSS-fed Magazine, measure before investing",
@@ -1611,6 +1723,13 @@
    "sha256": "ea7ebe00d7b1035bbf7b74fd993c7073b9fc2d03fd0a401d2549794441c59946"
   },
   {
+   "path": "SKILLS/marketing/google-merchant-center-free-listings-ebooks.md",
+   "html": "SKILLS/marketing/google-merchant-center-free-listings-ebooks.html",
+   "title": "Google Merchant Center free listings for direct-sold e-books (the feed route)",
+   "bytes": 5756,
+   "sha256": "887092031b79a40a6b2019fc8aa1643c33969b2fbc430fe30570016aede24117"
+  },
+  {
    "path": "SKILLS/marketing/google-play-auto-narrated-audiobooks-en-es.md",
    "html": "SKILLS/marketing/google-play-auto-narrated-audiobooks-en-es.html",
    "title": "Free AI-narrated audiobooks via Google Play Books (EN + ES)",
@@ -1737,6 +1856,13 @@
    "sha256": "cd8afc9314232a4016d9650e0cc54b819c1f02869e9d3bb96086f92590940393"
   },
   {
+   "path": "SKILLS/marketing/how-did-you-hear-buyer-attribution-question.md",
+   "html": "SKILLS/marketing/how-did-you-hear-buyer-attribution-question.html",
+   "title": "\"How did you hear about us?\": one-question buyer attribution for Cedwyn e-books",
+   "bytes": 5013,
+   "sha256": "37d69b38b8bb6d0d0ed4b74cddf1d859da56c143f58bb82632303c482b0de387"
+  },
+  {
    "path": "SKILLS/marketing/hreflang-trilingual-cy-en-es-real-translations-only.md",
    "html": "SKILLS/marketing/hreflang-trilingual-cy-en-es-real-translations-only.html",
    "title": "hreflang for a trilingual site (EN / CY / ES): only where a translated page really exists",
@@ -1805,6 +1931,13 @@
    "title": "Comment-to-DM on Instagram via Meta's free private-replies API (no paid tool)",
    "bytes": 5213,
    "sha256": "b918a19ebe639d87124c487a865213e8f934c9dedd0f366aa620a19bd15e9d66"
+  },
+  {
+   "path": "SKILLS/marketing/instagram-covers.md",
+   "html": "SKILLS/marketing/instagram-covers.html",
+   "title": "Instagram covers: what the thumbnail must do, and how Cedwyn makes them",
+   "bytes": 4087,
+   "sha256": "fd4d777ec00b7939cb52576262edf80250c65191910273884f5a2486f62da190"
   },
   {
    "path": "SKILLS/marketing/instagram-new-account-90-days-trial-reels-gate.md",
@@ -2367,6 +2500,13 @@
    "sha256": "5c065bf29c268009b7daf779a0c91d634b5666d195803b752f9f694ac86be1b7"
   },
   {
+   "path": "SKILLS/marketing/review-copies-welsh-local-history-journals.md",
+   "html": "SKILLS/marketing/review-copies-welsh-local-history-journals.html",
+   "title": "Review copies to Welsh and local-history journals (Morgannwg, Welsh History Review, The Local Historian, FHS journals)",
+   "bytes": 6005,
+   "sha256": "5b71e4652531d1411ede6b4ca1b9a2ebcffadc949dd2c24aedd3c491e2411980"
+  },
+  {
    "path": "SKILLS/marketing/reviews-social-proof-direct-ebooks.md",
    "html": "SKILLS/marketing/reviews-social-proof-direct-ebooks.html",
    "title": "Reviews & social proof for e-books sold direct (2026)",
@@ -2582,6 +2722,13 @@
    "title": "Spotify for Authors: getting an audiobook edition onto Spotify (and the redemption-code launch)",
    "bytes": 5738,
    "sha256": "a50a5083885cee63a4dc4418973719a79c506d81e707507ec0314a72a976a6f8"
+  },
+  {
+   "path": "SKILLS/marketing/st-davids-day-2027-random-acts-pethau-bychain-calendar.md",
+   "html": "SKILLS/marketing/st-davids-day-2027-random-acts-pethau-bychain-calendar.html",
+   "title": "St David's Day (1 Mar 2027) campaign calendar: Random Acts of Welshness / #PethauBychain",
+   "bytes": 3834,
+   "sha256": "9b16aea3079a36e30518cf6ca8219b6b346ff6db89844f62ac92a7b91d272682"
   },
   {
    "path": "SKILLS/marketing/st-dwynwens-day-25-jan-welsh-gift-free-book.md",
