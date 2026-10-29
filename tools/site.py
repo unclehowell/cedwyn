@@ -55,6 +55,20 @@ for _area in _areas:
 menu_groups = [{'id': g['id'], 't': g.get('title') or g['id'], 'cy': g.get('cy', ''), 'es': g.get('es', '')} for g in CFG.get('groups', [])]
 assert len({c[0] for c in chain}) == len(chain), 'duplicate theme id in themes.json'
 _source_to_area = {source_id: area['id'] for area in _areas for source_id in area.get('source_themes', [])}
+# 29 Oct 2026: ONE central ordered list of the public areas, published at /areas.json. The header's ‹ › and menu in every
+# theme and section (basecamp.js) fetch it and step through it with wrap-around; it is rebuilt here on every build from
+# data/site-areas.json (the area registry, same order as the main menu), so a new area appears everywhere with nothing
+# hand-kept. aliases = the merged source themes' own paths (longest prefix wins); skip_in = the halves that hide it;
+# built = the area or one of its source themes exists in this build. - Sion's Tab agent
+_areas_pub = []
+for _c, _area in zip(chain, _areas):
+    _p = _area.get('path') or '/' + _area['id'] + '/'
+    _al = sorted({'/' + s + '/' for s in _area.get('source_themes', [])} - {_p})
+    _built = any((DIST / x.strip('/')).is_dir() for x in [_p] + _al)
+    _areas_pub.append({'id': _area['id'], 'path': _p, 'title': _c[1], 'cy': _c[3], 'es': _c[4], 'group': _c[2],
+                       'aliases': _al, 'skip_in': _c[5], 'built': _built})
+json.dump({'schema': 'cedwyn_areas/v1', 'source': 'data/site-areas.json', 'order': 'main menu reading order; previous/next wrap from the last area to the first',
+           'count': len(_areas_pub), 'areas': _areas_pub}, open(DIST / 'areas.json', 'w'), ensure_ascii=False, indent=1)
 bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False)).replace('/*CEDWYN_GROUPS*/null', json.dumps(menu_groups, ensure_ascii=False)).replace('/*CEDWYN_SMAP*/{}', json.dumps(_source_to_area, ensure_ascii=False))
               .replace('HOME = "https://bucklerfamily.estate/cedwyn/"', 'HOME = "/"')
               # DARTBOARD_NAMES: the dartboard theme is the dartboard app now, not the home (header and menu names)
