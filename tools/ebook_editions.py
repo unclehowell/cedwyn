@@ -33,6 +33,22 @@ def run(dist):
     p = dist / 'ebooks' / 'index.html'
     if p.exists():
         t = p.read_text(encoding='utf-8', errors='ignore'); o = t
+        # The Argentina and Wales paths rewrite to this shared shelf. Move its pitch
+        # from the hero to the end of the main content, without duplicating the copy.
+        if 'id="digital-estate-books"' not in t:
+            m = re.search(
+                r'(<p>The digital estate’s records as books you can keep:.*?</p>\\s*'
+                r'<div class="sl-actions">.*?Buy all four.*?</div>\\s*'
+                r'<p class="eb-proof"[^>]*>.*?Cardiff Times, 16 July 1904\\..*?</p>)',
+                t, flags=re.S)
+            if m:
+                pitch = m.group(1)
+                t = t[:m.start()] + t[m.end():]
+                pitch_section = ('<section class="sl-band eb-about" id="digital-estate-books" '
+                                 'aria-label="Digital estate books">\\n' + pitch + '\\n</section>\\n')
+                at = t.rfind('</main>')
+                if at >= 0:
+                    t = t[:at] + pitch_section + t[at:]
         if 'id="editions"' not in t:
             m = re.search(r'<main\b[^>]*>', t)
             if m: t = t[:m.end()] + table(D) + t[m.end():]
