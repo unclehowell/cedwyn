@@ -1,20 +1,20 @@
 {
- "db_version": "3f50ef40dba6",
- "paths_served_from_db": 7089,
- "blobs": 4543,
+ "db_version": "2f0bb59f8dd8",
+ "paths_served_from_db": 7096,
+ "blobs": 4551,
  "files_dropped": {
   "document": 3298,
   "image": 1486,
-  "data": 1309,
+  "data": 1316,
   "audio": 84
  },
  "bytes_dropped": {
   "document": 1274210860,
   "image": 134987327,
-  "data": 34559920,
+  "data": 34561070,
   "audio": 14922925
  },
- "bytes_dropped_total": 1458681032,
+ "bytes_dropped_total": 1458682182,
  "files_kept_as_well": {
   "image": 810,
   "data": 59,
@@ -111,7 +111,9 @@
    "named in page markup"
   ]
  ],
- "changed_after_db_build_served_as_files": 0,
- "changed_examples": [],
+ "changed_after_db_build_served_as_files": 1,
+ "changed_examples": [
+  "/fcg/_db/config.json"
+ ],
  "indexed_without_file": 28
 }
