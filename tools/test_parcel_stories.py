@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+"""Static checks for the provisional 36-area parcel-story source."""
+import json
+import pathlib
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+areas_doc = json.loads((ROOT / "data" / "site-areas.json").read_text(encoding="utf-8"))
+stories_doc = json.loads((ROOT / "data" / "parcel-stories.json").read_text(encoding="utf-8"))
+areas = areas_doc.get("areas", [])
+stories = stories_doc.get("parcels", [])
+assert stories_doc.get("schema") == "cedwyn_parcel_stories/v1"
+assert len(areas) == 36 and len(stories) == 36
+assert {a["id"] for a in areas} == {p["area_id"] for p in stories}
+assert sorted(p["slot"] for p in stories) == list(range(1, 37))
+assert len({p["parcel_id"] for p in stories}) == 36
+assert all(p["historic_plot_number"] is None for p in stories)
+assert all(p["mapping_status"] == "historic_plot_number_pending_verification" for p in stories)
+assert all(len(p.get("events", [])) >= 1 for p in stories)
+assert {m["model_id"] for m in stories_doc["parcel_model"]} == {"A", "A1", "A2", "B", "C"}
+model = {m["model_id"]: m for m in stories_doc["parcel_model"]}
+assert model["A1"]["parent_id"] == "A" and model["A2"]["parent_id"] == "A"
+assert model["C"]["parent_id"] is None
+assert "outside Parcel A" in model["A"]["description"]
+assert all(e["source_ev"] == "EV-0215" for p in stories for e in p["events"])
+assert {e["model_id"] for e in stories_doc["model_events"]} >= {"A1", "A2", "B", "C"}
+print("parcel story source OK: 36 public areas, 36 provisional slots, 5 working model records")
