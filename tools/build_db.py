@@ -37,6 +37,10 @@ CREATE INDEX edges_dst ON edges(dst, rel);
 CREATE TABLE captures(key TEXT PRIMARY KEY, url TEXT, title TEXT, latest TEXT, captured TEXT) WITHOUT ROWID;
 CREATE VIRTUAL TABLE fts USING fts5(title, body, aid UNINDEXED, theme UNINDEXED, path UNINDEXED, tokenize='porter unicode61');
 CREATE TABLE blobs(sha TEXT PRIMARY KEY, data BLOB);
+CREATE TABLE evidence_text(
+  aid INTEGER PRIMARY KEY, path TEXT NOT NULL, title TEXT, body TEXT NOT NULL,
+  body_chars INTEGER NOT NULL, truncated INTEGER NOT NULL DEFAULT 0
+);
 ''')
 def text_of_html(s):
     t = re.search(r'<title[^>]*>(.*?)</title>', s, re.S | re.I)
@@ -93,6 +97,12 @@ for p in files:
                 con.execute('UPDATE artifacts SET has_blob=1 WHERE id=?', (aid,))
             else: blob_skipped += 1
     con.execute('INSERT OR IGNORE INTO locations VALUES(?,?,?,?)', (aid, theme, rel, rel)); path_aid[rel] = aid
+    # Preserve the complete plain-text evidence entry in the central DB; generic FTS text is short.
+    if kind == 'page' and re.search(r'/research/evidence/[^/]+/index\.html$', rel, re.I):
+        evidence_title, evidence_body = text_of_html(data.decode('utf-8', 'ignore'))
+        evidence_body = evidence_body or ''
+        con.execute('INSERT OR REPLACE INTO evidence_text VALUES(?,?,?,?,?,?)',
+                    (aid, rel, evidence_title, evidence_body[:40000], len(evidence_body), int(len(evidence_body) > 40000)))
     if theme != '_blob': edge(f'a:{aid}', 'in_theme', 'theme:' + theme)
 # blob rows are written clustered: every theme's JSON/CSV/XML first, then media, each grouped by theme and path, so the
 # few chunk files one theme page needs sit next to each other in the database file (stage 3: themes read from the DB)
@@ -185,12 +195,31 @@ for _sf in sorted(DIST.glob('*/_db/section.sqlite')):
             _p = _x.get(_key) if isinstance(_x, dict) else None
             if isinstance(_p, str) and path_aid.get(_p): edge(_nid, _rel, f'a:{path_aid[_p]}')
 print('section records:', n_section_records)
-# Evidence grades (shared, minimal; forensic audit intake 25 Oct 2026): two fields per evidence record, not yet shown on pages. - Sion's Tab agent
+# Evidence catalogue: stable EV key, aliases, grade/provenance metadata and full evidence-page text.
 con.execute('CREATE TABLE IF NOT EXISTS evidence_grades(ev TEXT PRIMARY KEY, grade INTEGER, origin TEXT, path TEXT, note TEXT) WITHOUT ROWID')
+con.execute('''CREATE TABLE IF NOT EXISTS evidence_catalogue(
+ ev TEXT PRIMARY KEY, artifact_id INTEGER, path TEXT NOT NULL, evidence_grade INTEGER,
+ independent_origin_id TEXT, aliases_json TEXT NOT NULL DEFAULT '[]', grade_note TEXT, title TEXT
+) WITHOUT ROWID''')
 _eg = ROOT / 'data' / 'evidence-grades.json'
 if _eg.exists():
-    for _x in json.load(open(_eg, encoding='utf-8')).get('evidence', []):
-        con.execute('INSERT OR REPLACE INTO evidence_grades VALUES(?,?,?,?,?)', (_x.get('ev'), _x.get('evidence_grade'), _x.get('independent_origin_id'), _x.get('path'), _x.get('grade_note')))
+    _evidence_doc = json.load(open(_eg, encoding='utf-8'))
+    for _x in _evidence_doc.get('evidence', []):
+        _ev = (_x.get('ev') or '').strip()
+        _rawpath = (_x.get('path') or '').strip()
+        _p = _rawpath if _rawpath.startswith('/') else ('/' + _rawpath if _rawpath else '')
+        _p_lookup = _p.rstrip('/') + '/index.html' if _p else ''
+        _aid = (path_aid.get(_p_lookup) or path_aid.get(_p) or path_aid.get(_p.rstrip('/') + '/')) if _p else None
+        _title_row = con.execute('SELECT title FROM artifacts WHERE id=?', (_aid,)).fetchone() if _aid else None
+        _title = (_title_row[0] if _title_row else '') or ''
+        con.execute('INSERT OR REPLACE INTO evidence_grades VALUES(?,?,?,?,?)',
+                    (_ev, _x.get('evidence_grade'), _x.get('independent_origin_id'), _rawpath, _x.get('grade_note')))
+        if _ev:
+            con.execute('''INSERT OR REPLACE INTO evidence_catalogue
+                (ev, artifact_id, path, evidence_grade, independent_origin_id, aliases_json, grade_note, title)
+                VALUES(?,?,?,?,?,?,?,?)''',
+                (_ev, _aid, _rawpath, _x.get('evidence_grade'), _x.get('independent_origin_id'),
+                 json.dumps(_x.get('aliases', []), ensure_ascii=False), _x.get('grade_note'), _title))
 for t in CFG['themes']:
     nf = con.execute('SELECT count(*) FROM locations WHERE theme=?', (t['id'],)).fetchone()[0]
     npg = con.execute("SELECT count(*) FROM locations l JOIN artifacts a ON a.id=l.aid WHERE l.theme=? AND a.kind='page'", (t['id'],)).fetchone()[0]
@@ -200,7 +229,8 @@ cnt = lambda q: con.execute(q).fetchone()[0]
 stats = dict(artifacts=cnt('SELECT count(*) FROM artifacts'), locations=cnt('SELECT count(*) FROM locations'), blobs=cnt('SELECT count(*) FROM blobs'),
              blob_bytes=blob_total, blob_skipped_over_cap=blob_skipped, edges=cnt('SELECT count(*) FROM edges'), nodes=cnt('SELECT count(*) FROM nodes'),
              fts_rows=cnt('SELECT count(*) FROM fts'), captures=cnt('SELECT count(*) FROM captures'), cites=n_ext, themes=len(TIDS),
-             layer_items=n_layer_items, layer_refs=n_layer_refs, layer_deps=n_layer_deps)
+             layer_items=n_layer_items, layer_refs=n_layer_refs, layer_deps=n_layer_deps,
+             evidence_records=cnt('SELECT count(*) FROM evidence_catalogue'), evidence_texts=cnt('SELECT count(*) FROM evidence_text'))
 for k, v in stats.items(): con.execute('INSERT INTO meta VALUES(?,?)', (k, str(v)))
 con.commit()
 con.execute("INSERT INTO fts(fts) VALUES('optimize')"); con.commit()
