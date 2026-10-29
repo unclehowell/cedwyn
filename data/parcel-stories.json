@@ -1,7 +1,7 @@
 {
   "schema": "cedwyn_parcel_stories/v1",
   "updated_at": "2026-10-29",
-  "description": "Parent-source data for 36 webapp parcel-story slots and the provisional A1/A2/B/C working parcel model. Editorial slots are not historic tithe plot numbers.",
+  "description": "Parent-source data for 36 webapp parcel-story slots and the provisional A1/A2/B/C working parcel model. Editorial slots are not historic tithe plot numbers. The timeline also preserves unresolved research leads about the Thomas estate/probate and John Williams’s unknown death date.",
   "map_reference": {
     "image_path": "/parcels/poster.jpg",
     "image_role": "Photograph of a tithe schedule page, not a geographic map or selected parcel polygon",
@@ -16,7 +16,7 @@
       "parent_id": null,
       "label": "Parcel A — north woods plus house and garden",
       "status": "working_interpretation",
-      "description": "Current working model: Parcel A comprises A1 (the north woods) and A2 (the house, buildings and garden). The green south of the house is outside Parcel A.",
+      "description": "Current working model: Parcel A comprises A1 (the north woods) and A2 (the house, buildings and garden). The green south of the house is outside Parcel A. The 1928 family understanding of freehold is a testimony-based interpretation to test against the 1877 arrangement and Thomas estate/probate records.",
       "limits": "Analytical reconstruction, not yet a surveyed boundary. The 1877 instrument and plan remain essential to confirming extent and title."
     },
     {
@@ -33,7 +33,7 @@
       "label": "A2 — house, buildings and garden",
       "status": "working_interpretation",
       "description": "The farmhouse, buildings and garden are analysed as A2, the house part of Parcel A. The family’s reported 1928 freehold understanding and the later separate registration of the farmhouse are central to the current theory.",
-      "limits": "The exact instrument, boundary, legal effect of the 1928 event and the relevant 1982–83 registration file remain to be verified."
+      "limits": "The exact instrument, boundary, legal effect of the 1928 event and the relevant 1982–83 registration file remain to be verified. Alfred Thomas’s death is dated 14 December 1927 by biography, but the reported Cardiff Corporation bequest is only a secondary transcription; the will has not been inspected."
     },
     {
       "model_id": "B",
@@ -58,7 +58,7 @@
       "seq": 1,
       "date_text": "4 July 1955 (scope disputed)",
       "title": "North woods and the 1955 taking",
-      "details": "The current working account places the north woods in A1 and associates them with the 1955 taking. At the same time, the working interpretation treats Order 14 as directed at Parcel B. The original order, writ, execution return and 1961 woodland deed must resolve how the wording, intended parcel and physical taking relate.",
+      "details": "The current working account places the north woods in A1 and associates them with a 1955 taking. At the same time, the working interpretation treats Order 14 as directed at Parcel B. The original order, writ, execution return and 1961 woodland deed must resolve how the wording, intended parcel and physical taking relate.",
       "event_type": "possession / parcel-scope question",
       "status": "Working account; primary execution record required",
       "source_evs": [
@@ -70,16 +70,40 @@
     {
       "model_id": "A2",
       "seq": 1,
+      "date_text": "14 December 1927; report dated 27 December 1927",
+      "title": "Alfred Thomas dies; reported Cardiff Corporation bequest requires probate verification",
+      "details": "The Dictionary of Welsh Biography dates Alfred Thomas, 1st Baron Pontypridd’s death to 14 December 1927. A secondary transcription of a 27 December 1927 report says the bulk of his property was left to Cardiff Corporation, but its original newspaper has not been identified and the will has not been inspected. Nothing located so far establishes that the estate included the Llandough house parcel. A grant reportedly made in 1928 and the contents of the will remain to be checked.",
+      "event_type": "probate / title-chain research lead",
+      "status": "Death date supported by biography; bequest is a secondary unverified report; land effect unknown",
+      "source_evs": [
+        "EV-0284"
+      ],
+      "source_path": "/research/evidence/ev-0284-alfred-thomas-lord-pontypridd-son-of-daniel-thomas-of-the-llandough-lime-works-die/"
+    },
+    {
+      "model_id": "A2",
+      "seq": 2,
       "date_text": "1928 (family account)",
       "title": "Reported end of rent and asserted freehold transition",
-      "details": "Mary Williams’s later account places the last rent payment to Alfred Thomas in 1928. The current theory is that the Williams family then understood the freehold of Parcel A to have passed to them. The deed, receipt and exact boundary have not been established; this is family testimony plus inference, not a registry finding.",
+      "details": "Mary Williams’s later account places the last rent payment to Alfred Thomas in 1928. The current theory is that the Williams family then understood the freehold of Parcel A to have passed to them. The deed, receipt and exact boundary have not been established; this is family testimony plus inference, not a registry finding. The relationship between the date of death in 1927, any executor or estate, and the reported 1928 rent payment needs primary documentation.",
       "event_type": "tenure / family testimony",
-      "status": "Family testimony; instrument not yet located",
+      "status": "Family testimony; instrument and probate context not yet established",
       "source_evs": [
         "EV-0016",
         "EV-0006"
       ],
       "source_path": "/research/missing-records/mr-0004/"
+    },
+    {
+      "model_id": "A2",
+      "seq": 3,
+      "date_text": "Early 1950s (exact death date unknown)",
+      "title": "John Williams’s death date must be established before linking it to the 1949–52 sequence",
+      "details": "The current John Williams research page records that he was still alive and very ill in the early 1950s, but his date of death has not been established and a death certificate has not yet been obtained. Mary’s later account places her continued occupation after his death. The possibility that the timing of his death relates to the 1949 surrender/regrant, missing papers around 1950–52, or later possession steps is a research hypothesis until the death record and underlying documents are checked.",
+      "event_type": "family chronology / unresolved date",
+      "status": "Death date unknown; do not infer a connection from proximity alone",
+      "source_evs": [],
+      "source_path": "/research/john-williams/"
     },
     {
       "model_id": "B",
@@ -98,6 +122,43 @@
     {
       "model_id": "B",
       "seq": 2,
+      "date_text": "2 February 1949",
+      "title": "Surrender and re-grant of the agricultural tenancy",
+      "details": "The later Court of Appeal account describes John Williams’s agricultural tenancy as surrendered and a new yearly tenancy for Frederick beginning on 2 February 1949. Read against the 1939 plan, the current working interpretation places this transaction on Parcel B. Whether this was part of a coordinated strategy affecting the separate house parcel is not established by the date or transaction alone.",
+      "event_type": "tenancy / parcel-scope question",
+      "status": "Court-history lead; original instrument and exact extent remain to be checked",
+      "source_evs": [
+        "EV-0023"
+      ],
+      "source_path": "/research/frederick-buckler/"
+    },
+    {
+      "model_id": "B",
+      "seq": 3,
+      "date_text": "June 1950–c.1952 (reported)",
+      "title": "Missing title papers and the later letting decision",
+      "details": "Mary’s account reports that title or farm papers went missing from a blanket box around this period; a lodger was said to have taken them at Mr Knapp’s request, which is uncorroborated testimony. The later court history records agents deciding not to proceed with Frederick’s letting in 1952. The underlying papers and any written termination notice have not been inspected, so the exact sequence and causal relationship remain open.",
+      "event_type": "missing document / tenancy administration",
+      "status": "Family account and later court history; primary papers required",
+      "source_evs": [],
+      "source_path": "/research/frederick-buckler/"
+    },
+    {
+      "model_id": "B",
+      "seq": 4,
+      "date_text": "May 1951 (12 years after May 1939; arithmetic only)",
+      "title": "Test the proposed 12-year trigger against the actual tenancy documents",
+      "details": "The calendar interval from the May 1939 agreement reaches twelve years in May 1951. The hypothesis is that WGR used this point to end or decline to renew an arrangement and then pursue possession. No termination document establishing that trigger has been inspected here; the later 1952 letting decision is near enough to investigate but does not prove the theory.",
+      "event_type": "limitation-period research hypothesis",
+      "status": "Date arithmetic only; no demonstrated causal link",
+      "source_evs": [
+        "EV-0023"
+      ],
+      "source_path": "/research/frederick-buckler/"
+    },
+    {
+      "model_id": "B",
+      "seq": 5,
       "date_text": "4 July 1955 (scope disputed)",
       "title": "Order 14 and the phrase “whole farm”",
       "details": "The current working interpretation is that the order was directed at Parcel B, the eastern/right-hand fields. Its later-described “whole farm” wording must not be treated as proof that Parcel A was included. The original order and execution return are needed to establish both its legal scope and the ground physically taken; the separate reasons given for leaving the house and garden undisturbed must not replace Mary’s asserted ownership.",
