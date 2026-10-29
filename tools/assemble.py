@@ -55,12 +55,33 @@ def snapshot(t, out):
             sh(f"git --git-dir={MIRROR} fetch -q --depth 1 https://github.com/{repo}.git {pin}", t=600)
         want = pin if sh(f"git --git-dir={MIRROR} cat-file -e {pin}^{{commit}}").returncode == 0 else ref
     r = sh(f"git --git-dir={MIRROR} archive --format=tar {want} | tar -x -C {out}")
+
+    # A site build can accidentally be pinned instead of a section snapshot. Its root
+    # contains several sibling theme directories; extracting it into /<theme>/ would
+    # nest the entire site under that theme and duplicate the catalogue. Reject it and
+    # fall back to the actual section branch, never to a live crawl for this condition.
+    peer_theme_roots = sorted(
+        x['id'] for x in CFG.get('themes', [])
+        if x.get('id') and x.get('id') != t.get('id') and (out / x['id']).is_dir()
+    )
+    if r.returncode == 0 and len(peer_theme_roots) >= 3:
+        report.setdefault('_snapshot_rejected', {})[t['id']] = {
+            'ref': want,
+            'reason': 'snapshot root contains multiple sibling theme directories; likely a full-site build',
+            'peer_theme_roots': peer_theme_roots[:30]
+        }
+        shutil.rmtree(out, ignore_errors=True)
+        out.mkdir(parents=True, exist_ok=True)
+        fallback = f'refs/heads/{br}'
+        r = sh(f"git --git-dir={MIRROR} archive --format=tar {fallback} | tar -x -C {out}")
+        want = fallback
+
     for x in ('section.json', '.github'):
         p = out / x
         if p.is_dir(): shutil.rmtree(p, ignore_errors=True)
         elif p.exists(): p.unlink()
     n = sum(1 for _ in out.rglob('*') if _.is_file())
-    report.setdefault('_snapshot', {})[t['id']] = {'ref': want, 'files': n, 'rc': r.returncode}
+    report.setdefault('_snapshot', {})[t['id']] = {'ref': want, 'files': n, 'rc': r.returncode, 'peer_theme_roots_detected': peer_theme_roots[:30]}
     return n if r.returncode == 0 and (out / 'index.html').exists() else 0
 def one(t):
     tid = t['id']; out = DIST / tid; shutil.rmtree(out, ignore_errors=True); out.mkdir(parents=True)
