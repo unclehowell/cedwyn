@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Small synthetic integration test for theme-local catalogue slices."""
-import importlib.util
 import json
 import pathlib
 import sqlite3
@@ -36,16 +35,18 @@ def seed_schema(con):
     for statement in ddl:
         con.execute(statement)
     con.execute("INSERT INTO meta VALUES('artifacts','2')")
-    con.executemany("INSERT INTO themes VALUES(?,?)", [("wiki", "Wiki"), ("research", "Research")])
+    con.executemany("INSERT INTO themes VALUES(?,?)", [("wiki", "Wiki"), ("records", "Records"), ("nomenclature", "Nomenclature"), ("research", "Research"), ("chat", "Chat")])
     con.executemany("INSERT INTO artifacts VALUES(?,?,?)", [
         (1, "Wiki evidence register", "sha-wiki"),
         (2, "1955 possession order entry", "sha-1955"),
         (3, "Unrelated chat artifact", "sha-chat"),
+        (4, "Name variants index", "sha-nomenclature"),
     ])
     con.executemany("INSERT INTO locations VALUES(?,?,?,?)", [
         (1, "wiki", "/wiki/evidence/", "/wiki/evidence/"),
         (2, "research", "/research/evidence/ev-0001-order/", "/research/evidence/ev-0001-order/"),
         (3, "chat", "/chat/unrelated.json", "/chat/unrelated.json"),
+        (4, "nomenclature", "/nomenclature/c/cedwyn-estate/", "/nomenclature/c/cedwyn-estate/"),
     ])
     con.executemany("INSERT INTO evidence_catalogue VALUES(?,?,?,?,?,?,?,?)", [
         ("EV-0001", 2, "/research/evidence/ev-0001-order/", None, None, "[]", "not assessed", "1955 order entry"),
@@ -81,6 +82,9 @@ def main():
         assert check.execute("SELECT title FROM evidence_catalogue WHERE ev='EV-0001'").fetchone()[0] == "1955 order entry"
         assert check.execute("SELECT count(*) FROM artifacts").fetchone()[0] == 2, "theme-local slice should retain the referenced source and omit the unrelated artifact"
         check.close()
+        arcade_config = dist / "arcade" / "_db" / "config.json"
+        assert arcade_config.exists(), "the merged Arcade page area needs its own database"
+        assert json.loads(arcade_config.read_text())["urlPrefix"] == "/arcade/_db/section.sqlite."
         con.close()
 
     area_doc = json.loads((ROOT / "data" / "site-areas.json").read_text())
