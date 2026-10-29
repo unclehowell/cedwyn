@@ -572,6 +572,7 @@ def landing(sections, S, cfg, H):
 </div></div>
 {place_modal(H, cfg, 'wales')}
 {place_modal(H, cfg, 'argentina')}
+</main>
 <script>
 (function(){{
 var openers=[].slice.call(document.querySelectorAll('[data-open-modal]'));
