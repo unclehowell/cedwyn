@@ -1,6 +1,6 @@
 {
   "rule": "Cedwyn app theme demo fact-check (25 Oct 2026): exact find -> replace on the crawled app bundle and demo page, checked against the research catalogue (/research/evidence/). Classes: WRONG (corrected, EV cited), UNSUPPORTED (replaced with a sourced fact or marked sample / not yet confirmed), CONCLUSION (reworded as ingredients), OK (citation added). Same schema as ingredients.json; file may be a glob. A find that is not present is reported, never fatal. — Sion's Tab agent",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "rewords": [
     {
       "theme": "app",
@@ -49,7 +49,7 @@
       "theme": "app",
       "file": "assets/webapp-*.js",
       "find": "details:\"Grant of 99-year renewable customary manorial lease to the Williams family covering Ty Mawr (Great House Farm). Customary renewal covenants established continuous ancestral occupancy across eight consecutive generations.\"",
-      "replace": "details:\"Family testimony: a 1667 lease or purchase is the family's starting point for the holding. No 1667 deed is in the research catalogue; a search of The National Archives for pre-1667 manorial records was redirected [EV-0443].\"",
+      "replace": "details:\"Family testimony reports 1667 as an acquisition date; no 1667 instrument has been located. A National Archives search for pre-1667 manorial records was redirected [EV-0443].\"",
       "class": "UNSUPPORTED",
       "ev": [
         "EV-0443"
@@ -1605,7 +1605,7 @@
       "theme": "app",
       "file": "assets/webapp-*.js",
       "find": "Chronological forensic comparison of paper ownership against unbroken customary domestic occupancy (1667–Present) for Great House Farm (Ty Mawr), Llandough.",
-      "replace": "Paper ownership and occupation side by side, 1667 to present, for Great House Farm (Ty Mawr), Llandough. Each row cites its record or is marked Family testimony / Not yet confirmed.",
+      "replace": "Paper ownership and occupation side by side for Great House Farm (Ty Mawr), Llandough, including the 1667 date reported in Mary Williams’s c.1974 statement. Each row cites its record or is marked Family testimony / Not yet confirmed.",
       "class": "CONCLUSION",
       "ev": [],
       "why": "\"unbroken customary occupancy\" stated the conclusion.",
@@ -1824,7 +1824,7 @@
       "theme": "app",
       "file": "assets/webapp-*.js",
       "find": "{id:\"w-5\",text:\"hereditary possession\",side:\"williams\",color:\"green\",size:\"lg\",dateOrEra:\"1667–1988\",parcelOrSubject:\"Ty Mawr Dwelling\",source:\"Parish registers, census records (1841–1911), electoral rolls\",explanation:\"Green (Documented Fact): Unbroken continuous residential possession by the Williams/Buckler family for over three centuries is an indisputable empirical fact corroborated by all census and baptismal rolls.\"}",
-      "replace": "{id:\"w-5\",text:\"family occupation history (early date from testimony)\",side:\"williams\",color:\"orange\",size:\"lg\",dateOrEra:\"1667 (reported) – 1988 (demolition)\",parcelOrSubject:\"Ty Mawr Dwelling\",source:\"c.1841 tithe apportionment [EV-0215]; 1872\\u20131876 rate books [EV-0212]; 1916 tenancy [EV-0014]; Court of Appeal [EV-0080]\",explanation:\"The c.1841 tithe records John Williams as occupier [EV-0215]. The 1916 tenancy [EV-0014] and Court of Appeal [EV-0080] concern later occupation. The 1667 date is reported by Mary Williams in her c.1974 statement; these records do not establish an unbroken occupation chain from 1667.\"}",
+      "replace": "{id:\"w-5\",text:\"family occupation history (early date from testimony)\",side:\"williams\",color:\"orange\",size:\"lg\",dateOrEra:\"c.1841–1987 records; 1667 reported separately\",parcelOrSubject:\"Ty Mawr Dwelling\",source:\"c.1841 tithe apportionment [EV-0215]; 1872\\u20131876 rate books [EV-0212]; 1916 tenancy [EV-0014]; Court of Appeal [EV-0080]\",explanation:\"The c.1841 tithe records John Williams as occupier [EV-0215]. The 1916 tenancy [EV-0014] and Court of Appeal [EV-0080] concern later occupation. The 1667 date is reported by Mary Williams in her c.1974 statement; these records do not establish an unbroken occupation chain from 1667.\"}",
       "class": "CONCLUSION",
       "ev": [
         "EV-0215",
@@ -2165,7 +2165,7 @@
       "theme": "app",
       "file": "assets/webapp-*.js",
       "find": "{id:\"w-23\",text:\"continuous exclusive occupation\",side:\"williams\",color:\"green\",size:\"lg\",dateOrEra:\"1667–1988\",parcelOrSubject:\"Ty Mawr House & Garden\",source:\"Judicial findings in BP Properties Ltd v Buckler [1987] EWCA Civ 2\",explanation:\"Green (Judicially Established Fact): Both the County Court and Court of Appeal formally found that Mary Buckler maintained continuous exclusive physical occupation.\"}",
-      "replace": "{id:\"w-23\",text:\"continuous exclusive occupation\",side:\"williams\",color:\"green\",size:\"lg\",dateOrEra:\"1953–1987\",parcelOrSubject:\"Ty Mawr House & Garden\",source:\"Court of Appeal judgment [EV-0080]\",explanation:\"Record: the Court of Appeal: Mr Buckler junior \\u201chas exclusive possession of the farmhouse and garden, as his parents did before him, and no rent has been paid since 1953\\u201d [EV-0080].\"}",
+      "replace": "{id:\"w-23\",text:\"exclusive possession recorded by Court of Appeal\",side:\"williams\",color:\"green\",size:\"lg\",dateOrEra:\"1987 judgment (no rent since 1953)\",parcelOrSubject:\"Ty Mawr House & Garden\",source:\"Court of Appeal judgment [EV-0080]\",explanation:\"Record: the Court of Appeal: Mr Buckler junior \\u201chas exclusive possession of the farmhouse and garden, as his parents did before him, and no rent has been paid since 1953\\u201d [EV-0080].\"}",
       "class": "WRONG",
       "ev": [
         "EV-0080",
@@ -2726,7 +2726,7 @@
       "theme": "app",
       "file": "assets/webapp-*.js",
       "find": "{id:\"e-31\",text:\"family were ordinary tenants for 300+ years\",side:\"estate\",color:\"red\",size:\"lg\",dateOrEra:\"1667–1988\",parcelOrSubject:\"Tenurial characterization\",source:\"Bute estate historical summaries\",explanation:\"Red (Internally Inconsistent): Ignores manorial chief rents (payable only by freeholders/copyholders), dual 1845–1893 Bute non-payment ledgers, and 1955 bailiff stand-down.\"}",
-      "replace": "{id:\"e-31\",text:\"family were ordinary tenants for 300+ years\",side:\"estate\",color:\"orange\",size:\"lg\",dateOrEra:\"1667–1988\",parcelOrSubject:\"Tenurial characterization\",source:\"Not yet confirmed: no copy in the research catalogue\",explanation:\"Open question: what the Bute rentals show for the house, if located.\"}",
+      "replace": "{id:\"e-31\",text:\"Estate-side theory: family were ordinary tenants for 300+ years\",side:\"estate\",color:\"orange\",size:\"lg\",dateOrEra:\"1667–1988 (unverified)\",parcelOrSubject:\"Tenurial characterization\",source:\"Not yet confirmed: no copy in the research catalogue\",explanation:\"Open question: what the Bute rentals show for the house, if located.\"}",
       "class": "CONCLUSION",
       "ev": [],
       "why": "\"Disproved\"/\"False\" verdicts and unsourced records replaced with open questions.",
