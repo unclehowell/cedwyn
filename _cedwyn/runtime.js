@@ -223,3 +223,57 @@
     window.addEventListener("hashchange", reveal); document.addEventListener("ghf-lang-change", function () { setTimeout(label, 150); }); window.CedwynMore = go;
   })();
 })();
+/* Dark guard 1.0.0 (30 Oct 2026): in night mode a page drawn dark by its own CSS can still carry blocks whose CSS
+   hard-codes a white or pale background (cards, tables, notes, callouts, panels), which show as white boxes, often with
+   light text on them. This recolours any such block to a dark tint of its own colour and lifts any text that would fall
+   under 4.5:1 contrast. Day mode is untouched and everything is restored on a switch back. Inverted pages (html.ghf-inv),
+   media, the shared header (.ghf-ui), [data-ghf-keep] and preserved archive copies are left alone.
+   Opt out per page with <html data-ghf-dark-guard="off">. - Cedwyn editors */
+(function () {
+  if (window.__cedwynDarkGuard) return; window.__cedwynDarkGuard = '1.0.0'; 
+  var de = document.documentElement, done = [], on = false, q = [], busy = false;
+  window.__cedwynDarkGuardCount = function () { return done.length; };
+  if (/^\/(?:[\w-]+\/)?wayback\/(?:websites|mail|go|html|snapshots?)\//.test(location.pathname)) return;
+  var SKIP = /^(IMG|VIDEO|CANVAS|IFRAME|EMBED|OBJECT|SVG|PICTURE|SOURCE|SCRIPT|STYLE|NOSCRIPT|BR|HR|PATH|G|USE|TEMPLATE|AUDIO|TRACK|MATH)$/;
+  function rgb(c) { var m = /rgba?\(([^)]+)\)/.exec(c || ''); if (!m) return null; var v = m[1].split(/[\s,\/]+/).filter(Boolean).map(parseFloat); if (v.length > 3 && v[3] < 0.35) return null; return v; }
+  function lum(v) { function f(x) { x /= 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); } return 0.2126 * f(v[0]) + 0.7152 * f(v[1]) + 0.0722 * f(v[2]); }
+  function ratio(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+  function night() { return de.getAttribute('data-ghf-mode') === 'night' && !de.classList.contains('ghf-inv') && de.getAttribute('data-ghf-dark-guard') !== 'off'; }
+  function dark(v) { var mn = Math.min(v[0], v[1], v[2]); return [0, 1, 2].map(function (i) { return Math.round(30 + (v[i] - mn) * 0.55); }); }
+  function css(v) { return 'rgb(' + v.join(',') + ')'; }
+  function set(el, p, val) { if (!el.__cdg) { el.__cdg = {}; done.push(el); } if (!(p in el.__cdg)) el.__cdg[p] = [el.style.getPropertyValue(p), el.style.getPropertyPriority(p)]; el.style.setProperty(p, val, 'important'); }
+  function kept(el) { return el.closest && el.closest('.ghf-ui,[data-ghf-keep],svg,#ghf-agent-footer[hidden]'); }
+  function ground(el) { for (var e = el; e && e.nodeType === 1; e = e.parentElement) { var v = rgb((e.__cdg && e.style.getPropertyValue('background-color')) || getComputedStyle(e).backgroundColor); if (v) return v; } return [0, 0, 0]; }
+  function fixBg(el) {
+    if (SKIP.test(el.tagName.toUpperCase()) || kept(el)) return;
+    var cs = getComputedStyle(el); if (cs.display === 'none') return;
+    var bi = cs.backgroundImage || 'none';
+    if (bi !== 'none' && /gradient/.test(bi) && !/url\(/.test(bi)) {
+      var st = (bi.match(/rgba?\([^)]+\)/g) || []).map(rgb).filter(Boolean);
+      if (st.length && st.every(function (v) { return lum(v) > 0.72; })) {
+        set(el, 'background-image', bi.replace(/rgba?\(([^)]+)\)/g, function (m0, a) { var v = a.split(/[\s,\/]+/).filter(Boolean).map(parseFloat); if (lum(v) <= 0.72) return m0; var d = dark(v); return 'rgba(' + d.join(',') + ',' + (v.length > 3 ? v[3] : 1) + ')'; }));
+        var b0 = rgb(cs.backgroundColor); if (b0 && lum(b0) > 0.72) set(el, 'background-color', css(dark(b0))); return;
+      }
+    }
+    var v = rgb(cs.backgroundColor);
+    if (v && /^(A|BUTTON|INPUT|SELECT|OPTION|LABEL)$/.test(el.tagName.toUpperCase()) || el.getAttribute('role') === 'button') { var r = el.getBoundingClientRect(); if (r.width * r.height < 40000) return; }
+    if (v && lum(v) > 0.72 && !/url\(/.test(bi)) set(el, 'background-color', css(dark(v)));
+  }
+  function hasText(el) { for (var n = el.firstChild; n; n = n.nextSibling) if (n.nodeType === 3 && /\S/.test(n.nodeValue)) return true; return /^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(el.tagName); }
+  function fixText(el) {
+    if (SKIP.test(el.tagName.toUpperCase()) || !hasText(el) || kept(el)) return;
+    var c = rgb(getComputedStyle(el).color); if (!c) return; var g = ground(el);
+    if (ratio(c, g) >= 4.5) return;
+    var light = lum(g) < 0.18, k, t;
+    for (k = 0.3; k <= 1.001; k += 0.1) { t = c.map(function (x) { return Math.round(light ? x + (255 - x) * k : x * (1 - k)); }); if (ratio(t, g) >= 4.5) break; }
+    set(el, 'color', css(t));
+  }
+  function walk(root) { var all = root.querySelectorAll ? root.querySelectorAll('*') : []; var i; if (root.nodeType === 1 && root !== de) { fixBg(root); } for (i = 0; i < all.length; i++) fixBg(all[i]); if (root.nodeType === 1 && root !== de) fixText(root); for (i = 0; i < all.length; i++) fixText(all[i]); }
+  function restore() { for (var i = 0; i < done.length; i++) { var el = done[i], s = el.__cdg; for (var p in s) { if (s[p][0]) el.style.setProperty(p, s[p][0], s[p][1]); else el.style.removeProperty(p); } el.__cdg = null; } done = []; }
+  function run() { busy = false; var n = night(); if (!n) { if (on) restore(); on = false; q = []; return; } if (!on) { on = true; q = []; if (document.body) walk(document.body); return; } var w = q; q = []; for (var i = 0; i < w.length; i++) if (w[i].isConnected) walk(w[i]); }
+  function soon(t) { if (!busy) { busy = true; setTimeout(run, t || 60); } }
+  try { new MutationObserver(function () { if (on && !night()) { restore(); on = false; } else soon(30); }).observe(de, { attributes: true, attributeFilter: ['data-ghf-mode', 'class', 'data-ghf-dark-guard', 'style'] }); } catch (e) {}
+  function start() { soon(0); try { new MutationObserver(function (ms) { if (!on) return; for (var i = 0; i < ms.length; i++) { var m = ms[i]; if (m.type === 'childList') { for (var j = 0; j < m.addedNodes.length; j++) if (m.addedNodes[j].nodeType === 1) q.push(m.addedNodes[j]); } else if (m.target.nodeType === 1 && !m.target.__cdg) q.push(m.target); } if (q.length) soon(250); }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] }); } catch (e) {} }
+  if (document.body) start(); else document.addEventListener('DOMContentLoaded', start);
+  window.addEventListener('load', function () { if (on) { q.push(document.body); soon(100); } });
+})();
