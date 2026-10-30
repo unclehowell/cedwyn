@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>&quot;Embed this graph&quot;: embeddable charts with attribution, without link-scheme risk · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: &quot;Embed this graph&quot;: embeddable charts with attribution, without link-scheme risk"><link rel="alternate" type="text/markdown" href="embeddable-charts-attribution-nofollow-embed-this-graph.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>"Embed this graph": embeddable charts with attribution, without link-scheme risk</h1>
+<p>Harvested 2026-10-30 (skills harvest run). Topic check: "embed code" 0, "datawrapper" 0, "attribution link" 0 in INDEX.md. data-led-digital-pr-heritage-dataset-pitch.md covers pitching a dataset; this skill covers making each chart easy and safe for others to reuse.</p>
+<h2>Evidence (primary and practitioner)</h2>
+<ul>
+<li><strong>Google's link spam policy (read 2026-10-30)</strong> lists among link schemes: "Keyword-rich, hidden, or low-quality links embedded in widgets that are distributed across various sites", and "Widely distributed links in the footers or templates of various sites".</li>
+<li>Matt Cutts, then Google's head of web spam (video, Aug 2013, reported by Search Engine Roundtable, read): "I would recommend putting a nofollow, especially on widgets", and the same for infographics. So an embed's credit link should carry <code>rel="nofollow"</code>, or at least be a plain brand/title link with no keyword stuffing. <strong>An embed is for reach and citation, not link equity.</strong></li>
+<li><strong>Our World in Data (FAQ + 9 Jul 2025 post, read):</strong> every chart has PNG, SVG and live embed options, and since July 2025 an <em>archived</em> embed that never changes. Reuse rule: CC BY, "cite the page that it's found on or that is linked to at the bottom of the chart". The credit line inside the chart <em>is</em> the attribution path. OWID reports about 14,000 interactive charts (About page snippet).</li>
+<li><strong>Datawrapper Academy (read):</strong> three embed options. "Embed with script" (responsive, Web Components) is recommended; "responsive iframe" is for systems that block scripts; plain iframe is the last resort. Many iframes on one page slow it down. Datawrapper offers no per-chart view counts in its interface, which is a reason to self-host and count embeds ourselves.</li>
+<li><strong>What data-led PR yields (Digital Third Coast, 2025 report, read):</strong> 67 campaigns earned 1,505 placements (1,386 earned links), an average of <strong>23 placements per campaign</strong>, average DA 56. That is an agency running many campaigns; a single small heritage site should expect far less. Use it as the ceiling, not the plan.</li>
+</ul>
+<h2>How-to</h2>
+<ol>
+<li>Each chart gets a <strong>stable URL</strong> (<code>/graphs/&lt;section&gt;/</code>) that renders the chart alone, readable at 390 px, with the title, a one-line "what this shows", the data date, and a footer credit line: "Source: Cedwyn evidence catalogue · cedwyn.bucklerfamily.estate/<page>".</li>
+<li>Below every chart, add a small <strong>Share / Embed</strong> row:
+   - <strong>PNG</strong> download (1200×675) with the credit line burned into the image, so screenshots carry attribution too (the OWID pattern).
+   - <strong>Embed code:</strong> a responsive iframe of the stable chart URL with <code>loading="lazy"</code>, a <code>title</code> attribute and a fixed aspect ratio, plus one plain credit link underneath:
+     <code>&lt;iframe src="cedwyn.bucklerfamily.estate title="Llandough farm records by date" loading="lazy" style="width:100%;aspect-ratio:16/10;border:0"&gt;&lt;/iframe&gt;</code>
+     <code>&lt;p&gt;&lt;a href="cedwyn.bucklerfamily.estate rel="nofollow"&gt;Cedwyn: records by date&lt;/a&gt;&lt;/p&gt;</code>
+     The anchor is the title, never keywords, and carries nofollow per Google's widget guidance.
+   - <strong>"Cite this":</strong> a one-line citation with the access date.</li>
+<li><strong>Live vs frozen:</strong> offer a frozen version (<code>?v=2026-10-30</code>) as OWID does, so a journalist's article does not change under them when our data updates.</li>
+<li><strong>Count embeds without third-party scripts:</strong> the <code>?embed=1</code> page sends one beacon (referrer host only) to the existing Workers Analytics Engine beacon (first-party-campaign-beacon skill). The weekly report lists hosts embedding us.</li>
+<li><strong>Accessibility:</strong> a text summary under the SVG plus a "view as table" link. That also helps AI answer engines, which read text, not SVG points.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>This rides on a worker's graph modal:</strong> each section's scatter already has build-time JSON. Proposal for that worker or the next site run: add <code>/graphs/&lt;section&gt;/?embed=1</code> standalone pages and the Share/Embed row inside the modal. Do it in the shared template, and don't touch their files while they are running. Log it as a [CEDWYN] HubSpot task.</li>
+<li><strong>First 3 charts to make embeddable:</strong> research timeline (records by date × category), /wales/qa/ (questions by date × institution, coloured by answered / not held / no answer), and the evidence catalogue (items by date × type). These are the most citable for local-history groups, students and Welsh-language media.</li>
+<li><strong>Rules:</strong> the credit line and chart text are public text. Neutral, never name the project lead, none of the banned words (write "not checked"), no insignia, nothing on family holdings or addresses. Embeds link only to our own pages. Never put archive images inside an embeddable chart (permission terms); use points and labels only.</li>
+<li><strong>Outreach:</strong> only on the project lead's press GO. The embed row is passive until then. Pair it with the data-led PR skill when a GO comes.</li>
+<li><strong>Measure:</strong> embedding hosts (beacon), PNG downloads, referrals from embedding hosts. Success after 8 weeks = at least 1 outside site embedding or citing a chart. If none, keep the PNG and drop the effort on embeds.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com (read)</li>
+<li>seroundtable.com (Cutts 2013, read)</li>
+<li>ourworldindata.org ; ourworldindata.org (read)</li>
+<li>datawrapper.de ; datawrapper.de (read / snippet)</li>
+<li>digitalthirdcoast.com (read)</li>
+</ul><p class="raw">Raw Markdown: <a href="embeddable-charts-attribution-nofollow-embed-this-graph.md">embeddable-charts-attribution-nofollow-embed-this-graph.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

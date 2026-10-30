@@ -44,7 +44,7 @@ In practice:
 5. **Outside records are tested, not repeated.** Online narratives and third-party catalogues are leads to check, not sources to copy. No outside record is presented as a Tŷ Mawr record dated earlier than the first record mention (the 1824 David Stewart survey).
 6. **Cite family evidence, do not hedge it.** The 1667 acquisition is cited to the 1974 newspaper reports (Mary Williams' statement) and ITV News 1988 — never softened with phrases that frame it as an unsupported story.
 7. **Unbacked text is shown small and italic** (the site's "unsubstantiated" style), worded neutrally — never deleted, never belittling.
-8. **Third person** on maps, video and story text.
+8. **Third person** on maps, video and story text, and on every public page: never "your theory" or "you asked", never agent notes or to-dos. The family is never called "tenant farmers" (MEMORY/standing-orders.md 7o, 7p).
 9. **No family insignia or emblem designs.** Nothing about the family's present holdings or addresses.
 10. **Cedwyn is self-contained.** Internal links only; every purchase goes through /ebooks/ or /shop/.
 11. **Banned public words** — see MEMORY/standing-orders.md (the list is encoded there so this page stays clean).

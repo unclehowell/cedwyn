@@ -1,0 +1,49 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Parliamentary written questions as a watch and a news hook (Westminster + Senedd) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Parliamentary written questions as a watch and a news hook (Westminster + Senedd)"><link rel="alternate" type="text/markdown" href="parliamentary-written-questions-watch-news-hook.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Parliamentary written questions as a watch and a news hook (Westminster + Senedd)</h1>
+<p>Harvested 2026-10-30 02:15Z. Topic: press/PR monitoring + content hooks from official answers.</p>
+<h2>Why it works (primary facts)</h2>
+<ul>
+<li>Written questions are the cheapest official record of what a department states about a topic: a member asks, the department must answer in writing, and the answer is published with a date and a reference number (UIN). Journalists and campaigners use answers as dated, citable hooks ("in a written answer on 16 June, the department said...").</li>
+<li>UK Parliament publishes all of them through a free, keyless JSON API (tested live 2026-10-30): `questions-statements-api.parliament.uk Fields include dateTabled, dateAnswered, uin, house, heading, questionText, answerText (truncated in lists), answeringBodyName, isNamedDay, answerIsHolding.</li>
+<li>Measured: "Cadw" since 2024 returns 5 questions, e.g. DCMS 8128 (tabled 9 Jun 2026, answered 16 Jun 2026: "Heritage policy is devolved..."). "Land Registry" returns a 20 Oct 2026 Commons question to MHCLG (UIN 36513, answered 28 Oct) on free Land Registry searches for councils.</li>
+<li>Gotcha: a multi-word searchTerm matches loosely (any word: "Land Registry Wales" gave 15,991 hits), so filter on the exact phrase yourself. The public detail page (`questions-statements.parliament.uk) returned 403 to curl (bot screen); open it in a real browser.</li>
+<li>Senedd (Welsh Parliament) written questions: searchable by keyword at record.senedd.wales (type "Written Question"); daily order papers list each question tabled, e.g. `record.senedd.wales Per the order paper header, questions must be tabled at least five working days before answer and answers are published in the language they are given (snippet; not checked in full). TheyWorkForYou has a Senedd section (theyworkforyou.com, items dated 21 Oct 2026 in search) and free email alerts at theyworkforyou.com; whether alerts cover Senedd written questions is NOT CHECKED (site answered 503 at 02:12Z).</li>
+<li>Most devolved heritage matters (Cadw, listing, Welsh archives) are answered in the Senedd, not Westminster: the DCMS answer above states so in its first line. Land registration (HM Land Registry) is England-and-Wales and answered at Westminster.</li>
+</ul>
+<h2>How to do it (30 minutes setup, 2 minutes a week)</h2>
+<ol>
+<li>Write a watch list of 6-10 exact phrases (bodies, places, legal terms). Prefer distinctive single words or exact phrases.</li>
+<li>Run <code>python3 the project workspace --state pq_seen.json "term" ...</code> weekly (stdlib, no key; prints only new or newly answered questions with link). A question that gets answered later shows again.</li>
+<li>For the Senedd: once a week search record.senedd.wales for the same terms (browser), or set a TheyWorkForYou alert if it covers Senedd.</li>
+<li>Triage each hit into one of three uses:
+   - <strong>Fact for a page</strong>: a dated official statement that belongs on a research/timeline page (cite the answer page, date, UIN, department).
+   - <strong>News hook</strong>: an answer that touches the project's subject on the day it is published; a same-week blog post or social card that links the answer to the archive's own records reads as timely, not opportunistic.
+   - <strong>Gap</strong>: a question nobody has asked yet. Written questions are tabled only by members; the public route is a letter to one's own representative. That is an outward action and needs the owner's decision.</li>
+<li>Log hits in a sheet: date, house, UIN, body, heading, use, page updated.</li>
+</ol>
+<h2>Signals and limits</h2>
+<ul>
+<li>Holding answers ("I will write to the honourable member") are flagged answerIsHolding; wait for the substantive answer.</li>
+<li>An answer is a department's position, not a finding; quote it exactly, in quotation marks, with date and UIN.</li>
+<li>No volume or click benchmark for "answer-hook" posts was found from a primary source; measure our own (UTM utm_source=pq-hook).</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Watch list (start): Cadw, "Land Registry", "adverse possession", Llandough, "Vale of Glamorgan", "National Library of Wales", "Welsh Patagonia", "listed buildings". Run pq_watch.py inside the weekly VISIBILITY CHECK or GROWTH REPORT run; state file at the project workspace</li>
+<li>Each relevant answer becomes: (a) a dated line on the research timeline or the relevant /wales/ page, linking the answer as a catalogued source (public text neutral, never addressing the owner, banned words apply); (b) at most one blog/social card in the same week via the existing auto-social flow, pointing to /ebooks/ or the matching e-book.</li>
+<li>Gaps go to HubSpot as a "[CEDWYN GAP] Possible written question: <topic>" task with the drafted question text for the project lead to decide whether to send to his MS or MP himself. Tab never writes to members, never files anything, press only on the project lead's GO.</li>
+<li>Success test: 1 page fact or hook per month; if 3 months give zero relevant hits, cut the watch to a quarterly run.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>UK Parliament Written Questions API (live query 2026-10-30): questions-statements-api.parliament.uk</li>
+<li>Example answers: questions-statements.parliament.uk ; questions-statements.parliament.uk</li>
+<li>Senedd Record search: record.assembly.wales ; order paper example: record.senedd.wales</li>
+<li>TheyWorkForYou Senedd + alerts: theyworkforyou.com ; theyworkforyou.com</li>
+<li>Tool: tools/pq_watch.py (stdlib, --selftest passes; live run 2026-10-30 returned real 2024-2026 answers)</li>
+</ul><p class="raw">Raw Markdown: <a href="parliamentary-written-questions-watch-news-hook.md">parliamentary-written-questions-watch-news-hook.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

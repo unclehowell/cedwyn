@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Add-to-calendar for free online talks and launch dates: registrant-to-attendee playbook · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Add-to-calendar for free online talks and launch dates: registrant-to-attendee playbook"><link rel="alternate" type="text/markdown" href="online-talk-add-to-calendar-ics-show-up-rate.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Add-to-calendar for free online talks and launch dates: registrant-to-attendee playbook</h1>
+<p>Date: 2026-10-30 · Topic: email / events conversion (show-up rate)</p>
+<h2>The numbers to beat (sources)</h2>
+<ul>
+<li>Livestorm 2026 benchmark, 33,786 sessions: average live attendance is <strong>47.7% of registrants</strong>. Above 50% is strong; below 35% "usually points to a timing, targeting, or reminder problem". Converting registrants to attendees is the top challenge for 54.2% of organisers. January has the best show-up rate (50.4%) and August the worst (42.9%).</li>
+<li>Zoom's 2026 webinar blog (citing Univid): live attendance averages <strong>49%</strong>, rising to <strong>57%</strong> with replays. TwentyThree reports 63%, with the best sessions held Tuesday to Thursday, 11:00–14:00.</li>
+<li>Livestorm's own recipe: 3–4 reminders (on confirmation, 24 h before, 1 h before, "starting now") and "one-click calendar invites" to make calendar adds frictionless.</li>
+<li><strong>Not checked:</strong> no controlled, published figure for the lift from an add-to-calendar button alone was found. Vendors (AddEvent, iContact, Instantly) assert a lift but publish no study. Treat it as best practice and measure our own rate.</li>
+</ul>
+<h2>Why the calendar entry matters for us</h2>
+<p>A free talk that sits only in Eventbrite, Facebook or LinkedIn is forgotten by the evening it happens. A calendar entry with its own 1-hour alarm is a reminder that needs no email deliverability and no app notification setting. It also carries the join link outside the platform (Livestorm makes the same point about LinkedIn Events).</p>
+<h2>Playbook</h2>
+<ol>
+<li><strong>One canonical event page</strong> on Cedwyn (e.g. /talks/<slug>/) with date, time in UK time, length, what attendees get, the join or replay link, and three buttons: <strong>Google</strong>, <strong>Outlook</strong>, <strong>Apple/other (.ics)</strong>.</li>
+<li><strong>Generate all three from one source.</strong> Run <code>python3 skills/tools/make_ics.py --title ... --start 2026-11-19T19:00 --minutes 60 --tz Europe/London --url &lt;event page&gt; --desc ... --out talk.ics --utm &lt;campaign&gt;</code>.
+   - It writes an RFC 5545 .ics with times in UTC, so BST/GMT can't drift, plus a built-in 1-hour alarm and a UTM-tagged link.
+   - It also prints Google Calendar and Outlook.com "add" links.
+   - Stdlib only; self-test passes (GMT November, BST July, line folding, UTM, link encoding).</li>
+<li><strong>Serve the .ics</strong> from the site, e.g. /talks/<slug>.ics. Check that Cloudflare serves it as <code>text/calendar</code>. iPhone opens a served .ics straight into Calendar; an email attachment is less reliable.</li>
+<li><strong>Put the buttons where the commitment happens:</strong>
+   - on the event page;
+   - in the Mailchimp confirmation email;
+   - in the 24 h reminder;
+   - in the Eventbrite/Facebook/LinkedIn event description, as a link to the event page (those platforms add their own reminders on top).</li>
+<li><strong>Reminder cadence (Livestorm):</strong> confirmation (with calendar buttons), 24 h before, 1 h before, and "starting now" with the join link. For a free history talk, three sends is the ceiling. Every email carries the replay promise, because replays add about 8 points (49% → 57%).</li>
+<li><strong>Timing:</strong>
+   - For a UK local-history audience, start with the society norm: weekday evening, 19:00 (see civic-local-history-society-talks-penarth.md).
+   - Test one lunchtime session (12:30) in the Tue–Thu window that TwentyThree reports, and compare.
+   - Avoid August; prefer January, September or November.</li>
+<li><strong>Measure:</strong>
+   - registrants, attendees, attendance %;
+   - calendar-link clicks by button, from UTM <code>utm_source=calendar</code> and Mailchimp click maps;
+   - replay views at 7 days;
+   - e-book shop clicks from the talk page.
+   - Log a row per talk in the project workspace</li>
+</ol>
+<h2>Kill / keep</h2>
+<ul>
+<li>Keep the buttons permanently: zero cost.</li>
+<li>Judge the talk programme, not the buttons. Below 35% attendance for 2 talks in a row means fix timing or topic before running a third. Fewer than 3 shop clicks per 50 attendees means the talk isn't selling; change the closing offer (one sample chapter link, as in preview-pdf-sales-tool-paid-titles.md).</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Every future Cedwyn online talk, e-book launch date and documentary door-opening gets an event page with the three buttons. A door opening is a dated public moment, so a calendar entry is the reminder that brings people back to /documentary/.</li>
+<li>Event text is neutral, third person, and never names the owner. Banned public words apply (states, assertions, per, second-hand report, not checked, reported, deception, taken); there are no outbound links beyond the join platform.</li>
+<li>Pricing and any "launch deadline" stay the project lead's decisions. A calendar entry for a sale end only marks a real date (see honest-launch-deadlines-uk-dmcc-banned-practice-7.md), never a reset countdown.</li>
+<li>Creating a talk, its date and any public event listing still needs the project lead's GO under existing rules. This skill only covers how the reminder layer is built once a talk exists.</li>
+<li>Nothing is sent by this skill. Reminder emails follow the existing Mailchimp rules: opted-in subscribers only, drafts reviewed first.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>livestorm.co (read 30 Oct 2026: 47.7% of 33,786 sessions; 54.2%; Jan 50.4% / Aug 42.9%; 3–4 reminders + one-click calendar)</li>
+<li>zoom.com (read 30 Oct 2026: Univid 49% live / 57% total; TwentyThree 63%, Tue–Thu 11:00–14:00)</li>
+<li>zoom.com (snippet: 49% average live attendance, 2026)</li>
+<li>RFC 5545 (iCalendar) for the .ics format; Google Calendar <code>action=TEMPLATE</code> link format</li>
+<li>Vendor assertions, not checked: addevent.com, icontact.com, instantly.ai event-reminder pages</li>
+<li>Tool: skills/tools/make_ics.py (stdlib; written and self-tested 30 Oct 2026). Outlook.com compose link format not tested on a live account; test once before use.</li>
+</ul><p class="raw">Raw Markdown: <a href="online-talk-add-to-calendar-ics-show-up-rate.md">online-talk-add-to-calendar-ics-show-up-rate.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

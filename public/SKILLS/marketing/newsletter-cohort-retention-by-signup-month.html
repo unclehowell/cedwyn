@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Newsletter retention by signup month (cohort table) from free Mailchimp exports · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Newsletter retention by signup month (cohort table) from free Mailchimp exports"><link rel="alternate" type="text/markdown" href="newsletter-cohort-retention-by-signup-month.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Newsletter retention by signup month (cohort table) from free Mailchimp exports</h1>
+<p>Harvested 2026-10-30 02:15Z. Topic: email analytics; which signup channels bring readers who stay.</p>
+<h2>Why it matters (primary facts)</h2>
+<ul>
+<li>beehiiv shipped a cohort "waterfall" because "not every acquisition source is created equal": it shows, per signup month and source, how many are still active N months later. beehiiv defines active as opened or clicked at least one email AND stayed subscribed the whole month. It sits in 3D Analytics on paid Scale/Enterprise plans only (product.beehiiv.com). The same table can be built free from Mailchimp's export.</li>
+<li>Lists decay whatever you do: HubSpot's database-decay page puts it at about 22.5% a year (vendor figure; its footnoted source not checked); ZeroBounce's 2026 list-decay report found 23% of analysed addresses invalid within a year (vendor data). Total list size hides this; a cohort table shows it.</li>
+<li>Mailchimp's export (Audience &gt; Export audience, CSV) carries per contact: MEMBER_RATING (1-5 activity stars), OPTIN_TIME (signup form, single opt-in), CONFIRM_TIME (clicked double opt-in link), LAST_CHANGED, and audience fields/tags; exports can include subscribed, unsubscribed and cleaned contacts (mailchimp.com). Unsubscribed/cleaned files add UNSUB_TIME / CLEAN_TIME (check the header on the first real export).</li>
+<li>No primary-source benchmark for "good" month-3 retention of a small heritage newsletter was found; set our own baseline from the first table rather than borrow one.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li>Tag every signup with its source at the form (hidden field or tag: SOURCE = fb, ig, shop, ebook-pdf, talk, blog, academy). Without this, you only get month cohorts.</li>
+<li>Monthly: export subscribed + unsubscribed + cleaned CSVs; run
+   <code>python3 the project workspace subscribed.csv unsubscribed.csv cleaned.csv --source-col SOURCE --csv cohorts.csv</code>
+   It prints, per signup month (and source), n, % still subscribed at months 1/3/6 (with the eligible count in brackets) and % of current members with 3+ stars.</li>
+<li>Read it three ways:
+   - Down a column (m3 across months): did a content or welcome-email change move retention?
+   - Across sources in one month: which channel brings people who stay. A channel with high signups but low m3 is a list-health cost (complaints, decay), not growth.
+   - engaged_now: share of survivors still reading. Low stars with high retention = silent list; run the existing win-back/sunset flow.</li>
+<li>Decide with small numbers honestly: under ~30 people in a cell, treat differences as anecdotes (use tools/ab_stats.py for any two-group comparison before acting).</li>
+<li>Act on one lever a month: move effort to the best-retaining source, fix the welcome sequence for the worst cohort, or stop a channel.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Add a SOURCE hidden field to every Cedwyn Mailchimp signup form (site strip, e-book thank-you page, academy, talks) so each subscriber records where they came from. This is a form setting, no new tool or spend.</li>
+<li>The Sunday GROWTH REPORT run exports the three CSVs through the connected Mailchimp (read-only), runs cohort_retention.py, and appends one line to the report notes. Example line: "Oct cohort m1 retention 92% (48); e-book buyers 3+ stars 70% vs Facebook 35%". Delete the CSVs after the run, since they hold personal data and disk is tight.</li>
+<li>Decision rule: after 3 monthly cohorts, the source with the best m3 retention × engaged_now gets next month's promo effort. Any source under 50% m3 with 30+ people gets reviewed (it may be the wrong audience, or the welcome email may be wrong).</li>
+<li>Never publish the table or any addresses; it goes in internal notes only. This sends nothing to subscribers.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>beehiiv cohort analysis release (active definition, plan gate): product.beehiiv.com</li>
+<li>Mailchimp export columns: mailchimp.com</li>
+<li>HubSpot database decay (22.5%/yr, vendor): hubspot.com</li>
+<li>ZeroBounce 2026 list decay report (23%, vendor): zerobounce.net</li>
+<li>Tool: tools/cohort_retention.py (stdlib, --selftest passes)</li>
+</ul><p class="raw">Raw Markdown: <a href="newsletter-cohort-retention-by-signup-month.md">newsletter-cohort-retention-by-signup-month.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

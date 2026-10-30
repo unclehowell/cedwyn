@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Zoom-through card levels with the View Transitions API: keep it fast, linkable, indexable and motion-safe · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Zoom-through card levels with the View Transitions API: keep it fast, linkable, indexable and motion-safe"><link rel="alternate" type="text/markdown" href="view-transitions-zoom-card-levels-seo-a11y.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Zoom-through card levels with the View Transitions API: keep it fast, linkable, indexable and motion-safe</h1>
+<p>Date: 2026-10-30 (skills harvest 03:00Z). Why now: on 30 Oct 02:30 the owner asked for text pages as cards (header, 4 lines, "Read more"). Read more zooms through into a deeper level of up to 4 cards, and Back zooms out. The graph-banner worker (348231ae) is building it now. This file is the CRO/SEO/accessibility checklist for that pattern, not the build.</p>
+<h2>What the sources say (read 30 Oct 2026 unless marked)</h2>
+<ul>
+<li><strong>Chrome for Developers, "View transitions case studies" (Gopalakrishnan &amp; Rajpal; read):</strong></li>
+<li><strong>redBus</strong> added view transitions in its booking funnel along with INP work and saw <strong>7% more sales</strong>. That is combined with the INP work, so it isn't the transitions alone. The team credits better perceived performance while slow inventory fetches run.</li>
+<li><strong>CyberAgent (Ameba news)</strong> uses the excerpt -&gt; "See more details" pattern: <strong>only the part that changes animates in</strong>, so a multi-page site feels like an app.</li>
+<li><strong>Nykaa and PolicyBazaar</strong> replaced custom JavaScript animations, which had cost performance and maintenance. PolicyBazaar reports better usability, engagement and satisfaction, with no number given.</li>
+<li>These are vendor-published case studies, not independently checked.</li>
+<li><strong>Browser support</strong> (from the same Chrome page's support table): Chrome 111, Edge 111, Firefox 144, Safari 18.</li>
+<li>Anything older just swaps without animation, so the feature is a progressive enhancement and nothing breaks.</li>
+<li>The multi-page (cross-document) variant was behind a flag when that page was written. Same-document <code>document.startViewTransition()</code> is the safe route.</li>
+<li><strong>prefers-reduced-motion:</strong></li>
+<li>MDN and web.dev (search snippets, pages not opened this run): the media query detects that the user asked the system to minimise motion.</li>
+<li>WordPress Performance issue #2067 (snippet): the view-transition plugin did not respect it at first, which matters for vestibular disorders. A zoom past the screen edges is exactly the large-scale motion this setting exists for.</li>
+<li><strong>Related files already in the index:</strong></li>
+<li>headline-first-read-more-progressive-disclosure.md (NN/g: users read 20–28% of words; native <code>&lt;details&gt;</code>);</li>
+<li>tools/details_audit.py (crawlability check);</li>
+<li>speculation-rules-prefetch-bfcache-instant-next-page.md.</li>
+</ul>
+<h2>How to do it (checklist)</h2>
+<ol>
+<li><strong>All text in the HTML.</strong> Every level's cards (header + full paragraph) are in the served page. "Read more" only changes which level is in view.
+   - Google and AI crawlers don't click, so text fetched on tap (page-2.json) is invisible to them unless the page also links to a crawlable URL holding it.
+   - Run details_audit.py before and after: visible-on-load words + hidden words must equal the old page's word count.</li>
+<li><strong>One URL per level.</strong> On zoom-in, <code>history.pushState</code> a hash or path (<code>#level-evidence-1987</code>). On popstate, zoom out.
+   - The phone's back button, shared links and deep links then land on the right level.
+   - A <code>#hash</code> target inside a deeper level opens that level directly, with no animation.</li>
+<li><strong>Real links and buttons.</strong> Each card's "Read more" is a <code>&lt;a href&gt;</code> to the level URL (crawlable, opens in a new tab). JS intercepts it for the animation.
+   - Back is a <code>&lt;button&gt;</code>, focusable, labelled "Back to <parent title>".
+   - Move focus to the new level's heading after each transition, and announce it with <code>aria-live="polite"</code>.</li>
+<li><strong>Same-document transitions only:</strong> <code>document.startViewTransition(() =&gt; swapLevel())</code> inside <code>if (document.startViewTransition)</code>, else swap instantly.
+   - Animate only the leaving level (<code>scale(1.6)</code>, <code>opacity:0</code>) and the entering cards (<code>scale(.85)</code>-&gt;1). That is the CyberAgent "only what changes" rule.
+   - Keep it to 250–400 ms.</li>
+<li><strong>Motion-safe by default:</strong> <code>@media (prefers-reduced-motion: reduce) { ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; } }</code>. Also skip <code>startViewTransition</code> in JS when <code>matchMedia('(prefers-reduced-motion: reduce)').matches</code>.</li>
+<li><strong>No layout shift and no blocked input:</strong>
+   - Card height is fixed by 4-line clamp (<code>-webkit-line-clamp:4</code>) with reserved space.
+   - The transition never waits on a network fetch, and INP stays under 200 ms.
+   - Test at 390 px with CPU 4x slowdown.</li>
+<li><strong>Measure</strong> with the existing first-party beacon (campaign-tags-first-party-beacon-workers-analytics-engine.md):
+   - level-open events per card;
+   - depth reached;
+   - Back vs browser-back;
+   - /ebooks/ clicks from deep levels vs the old long pages, over 14 days.
+   - Keep the change if depth or /ebooks/ clicks rise and bounce does not.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Hand to a worker</strong> (via the root, not directly) as a review list: full text in HTML, a hash URL per level, real <code>&lt;a href&gt;</code> cards, reduced-motion off-switch, focus move, and details_audit word-count parity.</li>
+<li>Its report at 02:53 lists Back, browser back and Esc as working, which covers point 2 in part.</li>
+<li>Points 1, 3 and 5 are not confirmed in that report.</li>
+<li><strong>Leave alone:</strong> the evidence register, timeline and wiki are the pages search and AI answers cite. A level-swap must never drop their text from the served HTML. Check those three first after it goes live.</li>
+<li><strong>App and filter pages stay unclipped,</strong> as the worker already chose (Q&amp;A, academy, dartboard, documentary player).</li>
+<li><strong>Not checked:</strong> whether Google gives full weight to text inside non-visible levels on our pages. Look at Search Console URL Inspection &gt; View crawled page on one level-heavy page after the build.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developer.chrome.com (read 30 Oct 2026)</li>
+<li>developer.chrome.com (read 30 Oct 2026)</li>
+<li>web.dev (snippet only)</li>
+<li>developer.mozilla.org (snippet only)</li>
+<li>github.com (snippet only)</li>
+</ul><p class="raw">Raw Markdown: <a href="view-transitions-zoom-card-levels-seo-a11y.md">view-transitions-zoom-card-levels-seo-a11y.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
