@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/4152916/4152918/29/",
  "key": "newspapers.library.wales/view/4152916/4152918/29",
- "title": "Evening Express, 31st May 1905 (Fifth Edition), p. 2 — Tramps At Llandough I",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-4152916-4152918-29/",
  "latest": "/websites/newspapers.library.wales/view-4152916-4152918-29/latest.html",
  "first_captured": "2026-10-24T14:47:45Z",
- "last_captured": "2026-10-24T14:47:45Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:40:23Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144745/newspapers.library.wales/view/4152916/4152918/29/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:40:23Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "7952f4c2c7d15aad67989fa73219ec73edbbe491968ef8300c66afcd40510cdd",
+   "markup_sha256": "056b0437bbb798c96428a26dceef66b7769c314b0b5a3c7adc1dfc5cde41265e",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:43:48Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

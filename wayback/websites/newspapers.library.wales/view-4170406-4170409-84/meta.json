@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/4170406/4170409/84/",
  "key": "newspapers.library.wales/view/4170406/4170409/84",
- "title": "Evening Express, 4th December 1906 (Pink Edition), p. 3 — I I \"I Love Her.\"I ",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-4170406-4170409-84/",
  "latest": "/websites/newspapers.library.wales/view-4170406-4170409-84/latest.html",
  "first_captured": "2026-10-24T14:48:02Z",
- "last_captured": "2026-10-24T14:48:02Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:39:19Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144802/newspapers.library.wales/view/4170406/4170409/84/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:39:19Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "3b2f3b2ab3dbe34edf73b8c70d13cbca95ce3ef73a809124c88c77703ae3c088",
+   "markup_sha256": "53d6c6bb50861e55289970827e5c9881c9a67450934b8fea195335ebd029d2ac",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:43:53Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

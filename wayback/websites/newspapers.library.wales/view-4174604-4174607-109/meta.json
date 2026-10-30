@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/4174604/4174607/109/",
  "key": "newspapers.library.wales/view/4174604/4174607/109",
- "title": "Evening Express, 27th March 1907 (Fourth Edition), p. 3 — T.V.R. Savings Banki",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-4174604-4174607-109/",
  "latest": "/websites/newspapers.library.wales/view-4174604-4174607-109/latest.html",
  "first_captured": "2026-10-24T14:48:19Z",
- "last_captured": "2026-10-24T14:48:19Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:39:01Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144819/newspapers.library.wales/view/4174604/4174607/109/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:39:01Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "16b024cc2b6807e359866dd4c7279546980bd315ebd6526f9fc7ebfacea417f2",
+   "markup_sha256": "b4dd6fd4cc61bb693aea687dc0611d91a570a925e201514e093bf4890cdd096e",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:43:38Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }
