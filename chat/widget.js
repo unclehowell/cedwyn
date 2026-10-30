@@ -8,7 +8,7 @@
   if (de.getAttribute("data-ghf-chat") === "off") return;
   var m = document.querySelector('meta[name="ghf-chat"]'); if (m && /off/i.test(m.getAttribute("content") || "")) return;
   if (/^\/3d(\/|$)/.test(location.pathname)) return;
-  var API = "https://cedwyn.bucklerfamily.estate/chat/api/chat";
+  var API = "https://chat." + "bucklerfamily.estate/api/chat";  // split so the Cedwyn mirror rewrite leaves it alone (P-065)
   window.GHFChat = { version: "1.0.0" };
   var L = {
     en: { open: "Agent", title: "Agent", note: "AI answers from our published pages; may be wrong.", ph: "Ask about Tŷ Mawr, the record or the e-books…", send: "Send", close: "Close chat", src: "Sources", wait: "Searching the published pages…", err: "Sorry, that didn't go through. Please try again in a minute.", hi: "Ask a question about Great House Farm (Tŷ Mawr), its history, the published record, the e-books or the shop. Answers come only from our published pages, with links." },
