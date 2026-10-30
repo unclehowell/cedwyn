@@ -2,13 +2,13 @@
   "audit": "Cedwyn internal HTML/CSS links and fragments",
   "pages_scanned": 8706,
   "references_checked": {
-    "resource": 195901,
-    "nav": 339222
+    "resource": 195903,
+    "nav": 339194
   },
-  "database_backed_paths": 7315,
-  "unique_missing_destinations": 4870,
-  "missing_references": 31436,
-  "missing_navigation_references": 16122,
+  "database_backed_paths": 7321,
+  "unique_missing_destinations": 4872,
+  "missing_references": 31440,
+  "missing_navigation_references": 16126,
   "missing_resource_references": 15314,
   "unique_broken_fragments": 1811,
   "broken_fragment_references": 3302,
@@ -503,6 +503,33 @@
       ]
     },
     {
+      "kind": "nav",
+      "path": "/research/>*.html",
+      "references": 35,
+      "examples": [
+        {
+          "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        }
+      ]
+    },
+    {
       "kind": "resource",
       "path": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/assets/img/user1-128x128.jpg",
       "references": 33,
@@ -526,33 +553,6 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_index2.html",
           "attribute": "img[src]",
           "url": "./assets/img/user1-128x128.jpg"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/>*.html",
-      "references": 33,
-      "examples": [
-        {
-          "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
         }
       ]
     },
