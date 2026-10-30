@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/4597051/4597058/64/",
  "key": "newspapers.library.wales/view/4597051/4597058/64",
- "title": "Barry Dock News, 15th February 1895, p. 7 — Slandercasè From Cadoxton-Barry",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-4597051-4597058-64/",
  "latest": "/websites/newspapers.library.wales/view-4597051-4597058-64/latest.html",
  "first_captured": "2026-10-24T14:50:49Z",
- "last_captured": "2026-10-24T14:50:49Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:35:08Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024145049/newspapers.library.wales/view/4597051/4597058/64/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:35:08Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "a298001fbd4c08c3eaaa1491fa670f23b95dafc96d06881364807f5ca570e570",
+   "markup_sha256": "442205ccb51899141593d6e0f5e713ce3c936f99d410d0cd6220510d06a21e48",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:42:37Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

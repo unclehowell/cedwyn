@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/4600622/4600624/20/",
  "key": "newspapers.library.wales/view/4600622/4600624/20",
- "title": "South Wales Echo, 7th July 1894 (Special edition), p. 2 — New Rector For Llandough",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-4600622-4600624-20/",
  "latest": "/websites/newspapers.library.wales/view-4600622-4600624-20/latest.html",
  "first_captured": "2026-10-24T14:51:02Z",
- "last_captured": "2026-10-24T14:51:02Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:40:56Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024145102/newspapers.library.wales/view/4600622/4600624/20/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:40:56Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "950a260e7e7f40718d12018f8b003b7da32aeb8737c080351b4ab3e4a76dbd2c",
+   "markup_sha256": "09e94bbee01162e0a434ecf691d491d8c5790ba28ea89b61bc2a3bdf1d9fc112",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:44:20Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }
