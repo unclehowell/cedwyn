@@ -280,7 +280,6 @@ if len(dyn) > 90 or len(sta) > 1900:   # never drop rules silently (P-027)
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
-  Cache-Control: no-transform
 /_cedwyn/ghf/*
   ! Cache-Control
 /_cedwyn/guestbook/*
@@ -291,7 +290,7 @@ if len(dyn) > 90 or len(sta) > 1900:   # never drop rules silently (P-027)
   ! Cache-Control
 /story/assets/*
   ! Cache-Control
-''')   # no-transform: the zone's automatic analytics snippet is not injected, so pages make no request to another host
+''')   # 30 Oct 2026 (P-040): no-transform dropped from pages; the zone config rule for cedwyn.bucklerfamily.estate (disable_rum, no email obfuscation or rewrites) keeps pages byte-identical, so HTML now goes out brotli. - Sion's Tab agent
 print('site ok', len(lines), 'redirects,', len(caps), 'captures')
 sys.path.insert(0, str(ROOT / 'tools')); import agent_footer; agent_footer.run(DIST)   # THE TRIGGER EVENT section on /projects/ + agent footer on theme homes
 import academy_pointer; academy_pointer.run(DIST)   # /llms.txt, /agents.json, robots.txt (only if absent) + one ai-agents meta per page -> /academy/ (Sion's Tab agent, 26 Oct 2026)
