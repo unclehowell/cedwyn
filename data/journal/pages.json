@@ -2,6 +2,13 @@
  "schema": "cedwyn-page-journal/1.0",
  "note": "Neutral, dated change lines per page, newest first. Rendered into each page's footer by tools/page_journal.py. Third person, no agent names, no instructions.",
  "pages": {
+  "/nft-art/": [
+   {
+    "v": "1.3.2",
+    "date": "2026-10-30",
+    "note": "Each piece’s download now has a drop-down labelled “Select a version”, listing the versions that exist for that piece (newest selected); Save as PNG saves the version selected."
+   }
+  ],
   "/wales/": [
    {
     "v": "1.2.1",
