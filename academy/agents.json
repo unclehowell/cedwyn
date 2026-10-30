@@ -2,7 +2,7 @@
  "schema": "cedwyn_academy/v1",
  "name": "Cedwyn Academy",
  "version": "1.0.14",
- "built_utc": "2026-10-30 13:56 UTC",
+ "built_utc": "2026-10-30 18:44 UTC",
  "base_path": "/academy/",
  "alias_paths": [
   "/academy/"
@@ -549,7 +549,7 @@
    "html": "ACADEMY/WORK.html",
    "title": "Work board",
    "bytes": 75963,
-   "sha256": "3f12fb0aa165d870c317478892cd732d33db7c4dcedbf233a42fee78e8bfb5a1"
+   "sha256": "327886515b9e71cfeb7c4d2e1fb4f2e23dfc9be3d0f0cc6b5bd4a4102c94ca87"
   },
   {
    "path": "CHANGELOG.md",
@@ -779,8 +779,8 @@
    "path": "LESSONS.md",
    "html": "LESSONS.html",
    "title": "LESSONS — mistakes and the rules they produced",
-   "bytes": 19174,
-   "sha256": "5bdcc7e5bddb2692a7aa6d711a6fc486c2703607335d7c30cffad27a4d002ee3"
+   "bytes": 21048,
+   "sha256": "e02650424b9cf7c01fba21723ea6bc5fac65873f691ad3526c9b29d9d6a14a22"
   },
   {
    "path": "MEMORY/README.md",
@@ -807,8 +807,8 @@
    "path": "MEMORY/deadlines.md",
    "html": "MEMORY/deadlines.html",
    "title": "Deadlines and review dates",
-   "bytes": 2325,
-   "sha256": "03829d4194a7b5e08113093df5984675df572abedfe490169018547fe2e4cde9"
+   "bytes": 2407,
+   "sha256": "c872ef800ad3142d82acf2348549eaf49fd9a7c5a93f2a2d85dbe3d48c599530"
   },
   {
    "path": "MEMORY/site-map.md",
@@ -821,8 +821,8 @@
    "path": "MEMORY/standing-orders.md",
    "html": "MEMORY/standing-orders.html",
    "title": "Standing orders",
-   "bytes": 13775,
-   "sha256": "f39f0e9664c75721f91c5c85812bd373c1a98594e2a72e6d0bb7cc23c86f6754"
+   "bytes": 14793,
+   "sha256": "e07903f3fca6ac488ad1832abdb776680086de4f81af3b8f3ce9d518a754b903"
   },
   {
    "path": "ONBOARDING.md",
@@ -842,8 +842,8 @@
    "path": "SKILLS/README.md",
    "html": "SKILLS/index.html",
    "title": "SKILLS",
-   "bytes": 422615,
-   "sha256": "278d982df55df7035afcea2c97b8ea699a86cbf34a71a44348f5029e7cfcc5dd"
+   "bytes": 460896,
+   "sha256": "cc1614c2a06baf5499679f4e94c782b0d4e7f16db16c9cbbd3ad14c1722a4ed6"
   },
   {
    "path": "SKILLS/marketing/1.md",
@@ -867,11 +867,32 @@
    "sha256": "63c19bd0487c5de4a33a55cf43bba1192498cb204b53c2e3eecc7752acd53f0c"
   },
   {
+   "path": "SKILLS/marketing/19.md",
+   "html": "SKILLS/marketing/19.html",
+   "title": "Skill #19 — Technical troubleshooting (2026)",
+   "bytes": 1654,
+   "sha256": "27c6110d9edc6497a464c8ef0502d45e29217d33189354cc3f40800df46266d7"
+  },
+  {
+   "path": "SKILLS/marketing/20.md",
+   "html": "SKILLS/marketing/20.html",
+   "title": "Skill #20 — Repurposing long video (2026)",
+   "bytes": 2021,
+   "sha256": "62e8dffdb190d1cdf4f0f95c9de6c106df7bc9fc4d5c0ce97499a8def230d0fd"
+  },
+  {
    "path": "SKILLS/marketing/22.md",
    "html": "SKILLS/marketing/22.html",
    "title": "SKILLS/marketing/22.md",
    "bytes": 243,
    "sha256": "c6f08f85f214ef74482ebe7e56861949a8b98f43731899a88b13731cace30c3e"
+  },
+  {
+   "path": "SKILLS/marketing/24.md",
+   "html": "SKILLS/marketing/24.html",
+   "title": "Skill #24 — Integrations (Stripe → HubSpot, 2026)",
+   "bytes": 1948,
+   "sha256": "a2b1122cf183805404e1177cccccc4fa284eabbfc64bfd02b5e465a7324a0b00"
   },
   {
    "path": "SKILLS/marketing/27.md",
@@ -919,15 +940,15 @@
    "path": "SKILLS/marketing/5.md",
    "html": "SKILLS/marketing/5.html",
    "title": "Skill #5 — Travel → heritage tourism (2026)",
-   "bytes": 839,
-   "sha256": "baa05dff616794fc42abc8bbde08f54c1821db2b32cf5ffbecc7c15a7aa78ba7"
+   "bytes": 2960,
+   "sha256": "84659f824d22bae2af662d7905e47597fc6668b4cc75b1c57b883bef9f537ae3"
   },
   {
    "path": "SKILLS/marketing/7.md",
    "html": "SKILLS/marketing/7.html",
    "title": "Skill #7 — LinkedIn (2026)",
-   "bytes": 883,
-   "sha256": "caa33afe56e01bebe041a71642906f735d5d075c99e591b3125e0c15e62bef6b"
+   "bytes": 3086,
+   "sha256": "0cd9490f9b295d8414c8666509d6091810a7c9f00b5522527125c6dea3e8b917"
   },
   {
    "path": "SKILLS/marketing/8.md",
@@ -991,6 +1012,13 @@
    "title": "AI-assistant referral traffic: measure visits from ChatGPT, Perplexity, Claude, Gemini, Copilot",
    "bytes": 5454,
    "sha256": "f97799be5bffd63a9092928ed7a2893a2dafa4d9c5b1546b34ebd0720f22628b"
+  },
+  {
+   "path": "SKILLS/marketing/ai-founder-digital-twin-intro-disclosure-youtube-meta-tiktok.md",
+   "html": "SKILLS/marketing/ai-founder-digital-twin-intro-disclosure-youtube-meta-tiktok.html",
+   "title": "AI \"digital twin\" intro of the founder: disclosure on YouTube, Instagram/Facebook and TikTok",
+   "bytes": 6247,
+   "sha256": "d7c68767bf53446f99f03400262729cb8c9e8a4dc555883a9c2a4b61177ec42c"
   },
   {
    "path": "SKILLS/marketing/ai-image-labels-disclosure-engagement-meta-youtube.md",
@@ -1077,6 +1105,13 @@
    "sha256": "c9e6a44de8de14b2f1727e7d2b3fa3da7244221402f82129f98b9a284e578899"
   },
   {
+   "path": "SKILLS/marketing/archive-hashtag-parties-after-nara-aca-last-thursday.md",
+   "html": "SKILLS/marketing/archive-hashtag-parties-after-nara-aca-last-thursday.html",
+   "title": "Archive hashtag parties after #ArchivesHashtagParty ended: what still runs (ACA last Thursday, EYA)",
+   "bytes": 5228,
+   "sha256": "9684523daad5b6da7e5f412fa02556f4b2290533cfeb78d53bdfca5fe43ff48e"
+  },
+  {
    "path": "SKILLS/marketing/archive-image-licensing-fees-welsh-sources-ebook.md",
    "html": "SKILLS/marketing/archive-image-licensing-fees-welsh-sources-ebook.html",
    "title": "Archive-image licensing for a local-history e-book: what each Welsh source charges, and the free routes",
@@ -1089,6 +1124,20 @@
    "title": "Permission-to-publish terms for archive images in paid e-books and AI-animated documentary versions",
    "bytes": 7391,
    "sha256": "b9bffa0ce7aed1a977a8ec84fc1c82322755647d165f9bcec8fad51a7eb177f9"
+  },
+  {
+   "path": "SKILLS/marketing/argentina-card-surcharges-30pct-ebook-checkout-es.md",
+   "html": "SKILLS/marketing/argentina-card-surcharges-30pct-ebook-checkout-es.html",
+   "title": "Argentine buyers: what our GBP price really costs them on an Argentine card (2026)",
+   "bytes": 5150,
+   "sha256": "266346acf869b24e9ea51905c2963232d5b68eb7536046fcf7ce2d13af3d42eb"
+  },
+  {
+   "path": "SKILLS/marketing/ask-days-askanarchivist-askamuseum-qa-hashtag.md",
+   "html": "SKILLS/marketing/ask-days-askanarchivist-askamuseum-qa-hashtag.html",
+   "title": "Q&A hashtag days: #AskAnArchivist (October) and #AskAMuseum (September) for a small archive",
+   "bytes": 4954,
+   "sha256": "d79ec9d90b024d421e569de3848598e3ac916dc68ef794849cd5de8c34d278ba"
   },
   {
    "path": "SKILLS/marketing/atlas-obscura-place-entry-gate-no-ai-text-private-property.md",
@@ -1406,6 +1455,13 @@
    "sha256": "add9199ad24908be460466adbc1f4effcb9f412dd3696cc0f01ba51643c59786"
   },
   {
+   "path": "SKILLS/marketing/clark-cartae-landoch-cogan-charters-finder.md",
+   "html": "SKILLS/marketing/clark-cartae-landoch-cogan-charters-finder.html",
+   "title": "Clark's Cartae: the Landoch / Cogan charters (finder, two-Llandoughs check, card format)",
+   "bytes": 6697,
+   "sha256": "780b4e95d57c27c895391800dda79c18ec9911c273d8f17ce705996597a9310d"
+  },
+  {
    "path": "SKILLS/marketing/cloudflare-ai-crawl-control-content-signals-search-vs-training.md",
    "html": "SKILLS/marketing/cloudflare-ai-crawl-control-content-signals-search-vs-training.html",
    "title": "AI crawler controls on Cloudflare: stay in search and AI answers, decide training separately",
@@ -1439,6 +1495,13 @@
    "title": "\"Coming soon\" with a notify-me list (turn a pre-launch gallery into a release audience)",
    "bytes": 4700,
    "sha256": "848b90087eb9543c9397bfc00a9f87ac08c355aff6faff5d122b68c42aa1e216"
+  },
+  {
+   "path": "SKILLS/marketing/commons-structured-data-depicts-own-uploads.md",
+   "html": "SKILLS/marketing/commons-structured-data-depicts-own-uploads.html",
+   "title": "Commons structured data: \"depicts\" (P180) and captions on our own uploads, so they are found in any language",
+   "bytes": 5675,
+   "sha256": "dbd7f6a1f57f4b2b3740720804bd88df5a33ce1edc63af3e1d058b357af0af92"
   },
   {
    "path": "SKILLS/marketing/community-foundation-wales-fund-for-wales-gate.md",
@@ -1509,6 +1572,13 @@
    "title": "Corrections log + \"how this page was made\" box (trust signals for a records-led history site)",
    "bytes": 5968,
    "sha256": "7644b8a38b7ff194e8821d40de12538a4e5a8903aba8b21420b5e4c49f0c3e92"
+  },
+  {
+   "path": "SKILLS/marketing/county-journal-backcatalogue-finder-two-llandoughs.md",
+   "html": "SKILLS/marketing/county-journal-backcatalogue-finder-two-llandoughs.html",
+   "title": "County journal back-catalogue finder: what Morgannwg and Cardiff Naturalists printed on our parishes",
+   "bytes": 6589,
+   "sha256": "0eb84107d2667c7468b4ccd1dff69ae531647e1b004a163b899ca036fa857076"
   },
   {
    "path": "SKILLS/marketing/cowbridge-history-society-talk-route.md",
@@ -1609,6 +1679,13 @@
    "sha256": "dde39d6626668e5e1365ca84fe0a803ff320e1ebc434ee7f2e18aa8f547d901d"
   },
   {
+   "path": "SKILLS/marketing/dreamwidth-livejournal-history-communities-measured-park.md",
+   "html": "SKILLS/marketing/dreamwidth-livejournal-history-communities-measured-park.html",
+   "title": "Dreamwidth / LiveJournal history communities: measured, PARK (don't re-research)",
+   "bytes": 3388,
+   "sha256": "c51a314a75c105b85fb6d38391f7b2b6d51ced16d859eb68013ad12e2552f1ee"
+  },
+  {
    "path": "SKILLS/marketing/eaa-epub-accessibility-metadata-ebooks.md",
    "html": "SKILLS/marketing/eaa-epub-accessibility-metadata-ebooks.html",
    "title": "EU Accessibility Act (EAA) + EPUB accessibility metadata for our e-books",
@@ -1670,6 +1747,13 @@
    "title": "E-book sales page CRO: test campaigns, short copy, checkout friction",
    "bytes": 4614,
    "sha256": "12e373628c3d1984a9613a96863aa3401f72e2c4f1d8050a36f05ced37ee5676"
+  },
+  {
+   "path": "SKILLS/marketing/elevenreader-publishing-direct-audiobook-60pct-ai-narration-gate.md",
+   "html": "SKILLS/marketing/elevenreader-publishing-direct-audiobook-60pct-ai-narration-gate.html",
+   "title": "ElevenReader Publishing: a direct-sale audiobook storefront for AI-narrated editions",
+   "bytes": 4893,
+   "sha256": "41f2c11a94b20afce49cf3c63eba5dd95eec820a06080784c155525e796b40a6"
   },
   {
    "path": "SKILLS/marketing/email-benchmarks-mailchimp-cross-check-click-band.md",
@@ -1847,11 +1931,25 @@
    "sha256": "26a557616a4595915abfd4b9b5537cd2c295e7bc3123815650b206e9a1a5f16a"
   },
   {
+   "path": "SKILLS/marketing/facebook-groups-2026-public-conversion-forum-admin-ai.md",
+   "html": "SKILLS/marketing/facebook-groups-2026-public-conversion-forum-admin-ai.html",
+   "title": "Facebook Groups 2025-26 changes: private->public conversion, nicknames, Forum app, Admin AI rule tags",
+   "bytes": 6166,
+   "sha256": "cd671ebfb0af8ff98bc7a97d5960c035ff249f91a56a3571887df336dfe9e62e"
+  },
+  {
    "path": "SKILLS/marketing/facebook-page-events-online-talk.md",
    "html": "SKILLS/marketing/facebook-page-events-online-talk.html",
    "title": "Facebook Events on the existing Page for an online (or library) talk",
    "bytes": 4695,
    "sha256": "b490ddf4ab6ee1fe09db3601cec589a5ebc6696bc928139189c54ceaa98221c9"
+  },
+  {
+   "path": "SKILLS/marketing/facebook-page-invites-reactors-auto-group-invites.md",
+   "html": "SKILLS/marketing/facebook-page-invites-reactors-auto-group-invites.html",
+   "title": "Facebook Page invites: reactors, friends, and automatic Page→Group invites",
+   "bytes": 5880,
+   "sha256": "5e00672b00087f01602b10026778682db9267cc74ec71528ee557f6fb77cbc9b"
   },
   {
    "path": "SKILLS/marketing/facebook-page-link-limit-meta-one-link-budget.md",
@@ -1945,6 +2043,13 @@
    "sha256": "2052a564ce379c76c5ae46a8885151f8617a4926cc0fff429cad1838441fdc0e"
   },
   {
+   "path": "SKILLS/marketing/field-names-pierce-dinas-powys-hundred-1968.md",
+   "html": "SKILLS/marketing/field-names-pierce-dinas-powys-hundred-1968.html",
+   "title": "Field-names as content and as evidence: Pierce, \"The Place-names of Dinas Powys Hundred\" (1968)",
+   "bytes": 3781,
+   "sha256": "9963b069b168aaf0f9a1455d7b77e294425ef28d21588005c73027b81a8460ff"
+  },
+  {
    "path": "SKILLS/marketing/film-festival-zero-fee-premiere-status-gate.md",
    "html": "SKILLS/marketing/film-festival-zero-fee-premiere-status-gate.html",
    "title": "Film festival submissions at $0: premiere status gate + free entries (documentary scenes)",
@@ -1987,11 +2092,32 @@
    "sha256": "b3cf6f2826595f86fff60d14bfd872c2d3cb73c38dde2e585ecaa8d1f1cd7232"
   },
   {
+   "path": "SKILLS/marketing/flipbook-sampler-issuu-calameo-yumpu-gate.md",
+   "html": "SKILLS/marketing/flipbook-sampler-issuu-calameo-yumpu-gate.html",
+   "title": "Issuu / Calameo / Yumpu flipbook \"sampler\" gate: what the free tiers give a tiny e-book shop (mostly: not enough)",
+   "bytes": 4024,
+   "sha256": "32379b2c06150c6e77801959c7135297a5640e3a8054044a152d079eb20eab04"
+  },
+  {
+   "path": "SKILLS/marketing/folklorethursday-bluesky-monthly-hosted-days.md",
+   "html": "SKILLS/marketing/folklorethursday-bluesky-monthly-hosted-days.html",
+   "title": "#FolkloreThursday: weekly tag, monthly hosted day (Bluesky, 2026)",
+   "bytes": 5938,
+   "sha256": "0457e321be712d2fa5623f9f5f8994b7ee140d1d6c88d2ec23be5c874d541e0a"
+  },
+  {
    "path": "SKILLS/marketing/founding-cohort-academy-launch-honest-urgency.md",
    "html": "SKILLS/marketing/founding-cohort-academy-launch-honest-urgency.html",
    "title": "Founding-cohort launch for a paid academy (first 10-40 members, honest urgency)",
    "bytes": 4987,
    "sha256": "a02ad4a08d1393e09b8b73823fde0f047200a276af5befb9b1f6ea38dffbad2d"
+  },
+  {
+   "path": "SKILLS/marketing/free-ebook-promo-newsletters-freebooksy-gate.md",
+   "html": "SKILLS/marketing/free-ebook-promo-newsletters-freebooksy-gate.html",
+   "title": "Free e-book promo newsletters (Freebooksy, Fussy Librarian and others): eligibility gate for our free v0.0.1",
+   "bytes": 3719,
+   "sha256": "46bb8bfe1451c86f16735f127704eb5e6afb0f9f0b656baa05ec74af35004bb2"
   },
   {
    "path": "SKILLS/marketing/free-epub-storefronts-kobo-itch-books2read.md",
@@ -2036,6 +2162,20 @@
    "sha256": "a9a77e074090c0692ae848ac6af41928e2bff143714adbfa30f3a453644c3f50"
   },
   {
+   "path": "SKILLS/marketing/from-the-journals-paterson-manors-cogan-penarth.md",
+   "html": "SKILLS/marketing/from-the-journals-paterson-manors-cogan-penarth.html",
+   "title": "From the journals: Paterson's \"Manors of Sully, Cosmeston, Penarth and Cogan\" (Cogan = our Llandough)",
+   "bytes": 5106,
+   "sha256": "48b2fda28f69816559ad8326635aae80e53d5e04db5c4f859d2ab442b25a1a67"
+  },
+  {
+   "path": "SKILLS/marketing/genealogy-blog-weekly-roundups-curator-pickup.md",
+   "html": "SKILLS/marketing/genealogy-blog-weekly-roundups-curator-pickup.html",
+   "title": "Genealogy blog weekly roundups: getting a story post picked (Best of the Genea-Blogs and peers)",
+   "bytes": 5847,
+   "sha256": "942963b364e1f0b1eb53da368aeed8029f5d9f9bd2dfeb37c2b50cc4214b4e17"
+  },
+  {
    "path": "SKILLS/marketing/genealogy-magazines-wdytya-family-tree-letters-qa-real-stories.md",
    "html": "SKILLS/marketing/genealogy-magazines-wdytya-family-tree-letters-qa-real-stories.html",
    "title": "Genealogy consumer magazines (UK): Who Do You Think You Are? Magazine + Family Tree — the free editorial doors",
@@ -2048,6 +2188,13 @@
    "title": "Geocaching Adventure Lab as a self-guided heritage trail: the gate (2026)",
    "bytes": 4766,
    "sha256": "33e881e60b43ba51ce7cd20920c24c6194c77e7426d3a35eb80c141d547fd051"
+  },
+  {
+   "path": "SKILLS/marketing/geograph-cc-by-sa-then-and-now-commons-route.md",
+   "html": "SKILLS/marketing/geograph-cc-by-sa-then-and-now-commons-route.html",
+   "title": "Geograph modern photos (CC BY-SA 2.0) for then-and-now and place shots, the legal way (2026)",
+   "bytes": 5744,
+   "sha256": "462c6e8bd1e77c1d0b2a1254ada8a383a89fe7fdeb631bb54a7e67f0a8bc5b80"
   },
   {
    "path": "SKILLS/marketing/gifted-ebook-copies-history-creators-uk-cma-asa-disclosure.md",
@@ -2484,11 +2631,25 @@
    "sha256": "fd4d777ec00b7939cb52576262edf80250c65191910273884f5a2486f62da190"
   },
   {
+   "path": "SKILLS/marketing/instagram-early-access-reels-follow-gate-door-drops.md",
+   "html": "SKILLS/marketing/instagram-early-access-reels-follow-gate-door-drops.html",
+   "title": "Instagram Early Access Reels (followers-first 24 h lock): a follow trigger for documentary \"door\" drops (GATED: limited test)",
+   "bytes": 4308,
+   "sha256": "c58a719788fba1ca6a96c5408ad5549ebcfd3eb717d4981f46204ae138a7b927"
+  },
+  {
    "path": "SKILLS/marketing/instagram-live-1000-follower-gate-notes-mutuals-carousels.md",
    "html": "SKILLS/marketing/instagram-live-1000-follower-gate-notes-mutuals-carousels.html",
    "title": "Instagram Live and Notes for a small account: what's gated, what's usable (2026)",
    "bytes": 4108,
    "sha256": "bf22985855ee984db74aa1803732c16bcc44ece2caea7825624e9db33e641b3e"
+  },
+  {
+   "path": "SKILLS/marketing/instagram-native-reposts-partner-heritage-measure.md",
+   "html": "SKILLS/marketing/instagram-native-reposts-partner-heritage-measure.html",
+   "title": "Instagram native Reposts: what they do for us, and how to measure them (2026)",
+   "bytes": 5359,
+   "sha256": "1ee36c97d41e78f727c0faf498b5ffe36dfeea59f281b0008c108fb1b001b880"
   },
   {
    "path": "SKILLS/marketing/instagram-new-account-90-days-trial-reels-gate.md",
@@ -2538,6 +2699,13 @@
    "title": "Interactive email (AMP vs CSS \"kinetic\") for a Mailchimp newsletter: gate and safe substitute",
    "bytes": 5095,
    "sha256": "e79c60b603607bcbe459d13189d28e39fdb092f78d00fa211e844d2f126980a7"
+  },
+  {
+   "path": "SKILLS/marketing/internet-archive-texts-free-edition-discovery.md",
+   "html": "SKILLS/marketing/internet-archive-texts-free-edition-discovery.html",
+   "title": "Internet Archive \"texts\" item for the free first edition: a permanent discovery outpost, sized honestly",
+   "bytes": 4978,
+   "sha256": "2187e5d19b564ca221fb5a002108da3841aba07f42dd3e99297db47b6e4ef12d"
   },
   {
    "path": "SKILLS/marketing/journalist-query-platforms-qwoted-sourcebottle-ai-flag.md",
@@ -2601,6 +2769,13 @@
    "title": "Launch-week email sequence: real deadline, 5-7 last-day emails, one row per send",
    "bytes": 4987,
    "sha256": "d2fc4fe75469f500aadc331125eeae7c981b3dcd1479961714f671ffdc16705c"
+  },
+  {
+   "path": "SKILLS/marketing/leckwith-1207-mill-1281-manor-accounts-cards.md",
+   "html": "SKILLS/marketing/leckwith-1207-mill-1281-manor-accounts-cards.html",
+   "title": "Leckwith in the records: the king's mill (1207) and the manor accounts (1281), card pack",
+   "bytes": 4059,
+   "sha256": "e503a3226f45e9c7a2d40d2567fbe7513af4dd4df55354c89d67478985ed8999"
   },
   {
    "path": "SKILLS/marketing/legal-deposit-ebooks-uk-web-archive-nomination.md",
@@ -2764,6 +2939,13 @@
    "sha256": "027c0f24cceae485a776975fab87ff66e95f71d6af4757df35ab19ffc2513945"
   },
   {
+   "path": "SKILLS/marketing/luma-event-pages-talk-launch-signups.md",
+   "html": "SKILLS/marketing/luma-event-pages-talk-launch-signups.html",
+   "title": "Luma (luma.com) event pages for a talk or launch: what actually drives sign-ups",
+   "bytes": 3637,
+   "sha256": "1f5fdbc382ab4a23c886f1f7d463eb901c96164b909ec9c37009af95031f5874"
+  },
+  {
    "path": "SKILLS/marketing/mailchimp-click-interest-tags-segments.md",
    "html": "SKILLS/marketing/mailchimp-click-interest-tags-segments.html",
    "title": "Click-based interest tags + segments in Mailchimp (small heritage list)",
@@ -2841,6 +3023,13 @@
    "sha256": "4e7d7e8d09babb026083c4a696a1e4ee17a06260116cd97836caddddac7639aa"
   },
   {
+   "path": "SKILLS/marketing/meta-ai-translations-reels-en-es-dub-chubut.md",
+   "html": "SKILLS/marketing/meta-ai-translations-reels-en-es-dub-chubut.html",
+   "title": "Meta AI translations for Reels: English <-> Spanish dubbing for the Chubut audience (2026)",
+   "bytes": 6433,
+   "sha256": "6188e47f05f82b5188c5b26924b0840f81b59bcaf2c6c3a010fcadd0c04199d1"
+  },
+  {
    "path": "SKILLS/marketing/meta-shops-instagram-tags-whatsapp-catalogue-digital-ebooks-ban.md",
    "html": "SKILLS/marketing/meta-shops-instagram-tags-whatsapp-catalogue-digital-ebooks-ban.html",
    "title": "Meta Shops, Instagram product tags, WhatsApp catalogue: e-books not allowed. Use these routes instead",
@@ -2874,6 +3063,13 @@
    "title": "Museum-guide apps: Smartify free plan + Bloomberg Connects via a partner museum",
    "bytes": 5058,
    "sha256": "1fc48cabb1503c9c7babf9c4a0f4faef4142387e976f6cd9e1eebce137da8377"
+  },
+  {
+   "path": "SKILLS/marketing/museumweek-june-seven-themes-hashtag-week.md",
+   "html": "SKILLS/marketing/museumweek-june-seven-themes-hashtag-week.html",
+   "title": "MuseumWeek (7 days, 7 themes, 7 hashtags, early June) for a small heritage archive",
+   "bytes": 5614,
+   "sha256": "f878035b8675d5356dd8dafaf41013d5ed5edaf5ff71800e0d98bd6329ece92b"
   },
   {
    "path": "SKILLS/marketing/muted-autoplay-youtube-embed-wcag-pause-no-views.md",
@@ -2930,6 +3126,13 @@
    "title": "Nextdoor Business Page for a local-history e-book shop (UK)",
    "bytes": 4458,
    "sha256": "1cc8dbc8a76a9258a03a2f5f55f1934531bc7e131fc8ce3ba7d8fa9a6cad5a9d"
+  },
+  {
+   "path": "SKILLS/marketing/nlw-welsh-journals-iiif-pdf-route-past-cloudflare.md",
+   "html": "SKILLS/marketing/nlw-welsh-journals-iiif-pdf-route-past-cloudflare.html",
+   "title": "NLW Welsh Journals behind Cloudflare: get article PDFs through the IIIF manifests",
+   "bytes": 3249,
+   "sha256": "a9569b877b269589c4604a03a679fe90f97d64a1bf806a6096887aa0437c0826"
   },
   {
    "path": "SKILLS/marketing/north-american-welsh-diaspora-ninnau-wnaa-nafow.md",
@@ -3009,6 +3212,13 @@
    "sha256": "9c0a3a1d6a98248255d327e746c3e6a3c5735b02fad1444c2c40862c57375914"
   },
   {
+   "path": "SKILLS/marketing/openverse-commons-discovery-and-view-metrics.md",
+   "html": "SKILLS/marketing/openverse-commons-discovery-and-view-metrics.html",
+   "title": "Openverse and Commons discovery: get our public-domain images found and count the views (2026)",
+   "bytes": 5147,
+   "sha256": "75699e43e212cd6a5e59452a09e51bb09b7a2feda059ff70185e32d45ff2684b"
+  },
+  {
    "path": "SKILLS/marketing/organisation-byline-editors-profilepage-how-made.md",
    "html": "SKILLS/marketing/organisation-byline-editors-profilepage-how-made.html",
    "title": "Organisation bylines, an editors' profile page and \"how this was made\" notes (Google 2026)",
@@ -3056,6 +3266,13 @@
    "title": "Paid-version pages in search: paywalled-content markup, lead-in, and the 10% paywall gauge",
    "bytes": 6383,
    "sha256": "be97fa6181971f70d58c09206462f92e4877d41fe218e43aff54f9e87bfe7e93"
+  },
+  {
+   "path": "SKILLS/marketing/parish-community-magazines-local-print-vale.md",
+   "html": "SKILLS/marketing/parish-community-magazines-local-print-vale.html",
+   "title": "Parish and community magazines as a local print channel (Vale of Glamorgan, 2026)",
+   "bytes": 6268,
+   "sha256": "c4af5b312be590970a5b0aa340d57b77e777ab5c0bf2aa2a97649bc74cfebbf7"
   },
   {
    "path": "SKILLS/marketing/parliamentary-written-questions-watch-news-hook.md",
@@ -3506,6 +3723,13 @@
    "sha256": "28a989c9e19382568d52ddd8a2247bdb98cfb8f8729b2ac87f0a2f4340e66d65"
   },
   {
+   "path": "SKILLS/marketing/shorts-longform-ratio-routing-air-18k-channels.md",
+   "html": "SKILLS/marketing/shorts-longform-ratio-routing-air-18k-channels.html",
+   "title": "Shorts-to-long-form ratio and routing (AIR 18,000-channel study, education niche)",
+   "bytes": 3939,
+   "sha256": "f203d45e1a6ce6eea88e434e09b69b08599542d9ef2aebd1b05508c0bfa081e3"
+  },
+  {
    "path": "SKILLS/marketing/signup-form-bot-protection-honeypot-turnstile-coi.md",
    "html": "SKILLS/marketing/signup-form-bot-protection-honeypot-turnstile-coi.html",
    "title": "Signup-form bot protection: honeypot + time check + Turnstile + confirmed opt-in (own endpoint)",
@@ -3546,6 +3770,13 @@
    "title": "Site name + breadcrumb structured data for Cedwyn (Google result labels)",
    "bytes": 5177,
    "sha256": "a4ddf816bc48cfd34c33c62367f4059c3deae14d27caf3591c852367aad08ec2"
+  },
+  {
+   "path": "SKILLS/marketing/sketchfab-3d-virtual-tour-replica-views.md",
+   "html": "SKILLS/marketing/sketchfab-3d-virtual-tour-replica-views.html",
+   "title": "Sketchfab 3D for the virtual tour and the replica: views we can count",
+   "bytes": 5941,
+   "sha256": "fd8d850939913c2379997186d46c1d9d493351de714022ab7343766ddc44c08e"
   },
   {
    "path": "SKILLS/marketing/small-awards-2027-digital-star-free-entry.md",
@@ -3632,6 +3863,13 @@
    "sha256": "878cdcef9f21872a24cc4a41683fad71625e5f79d70f60741f5f79f00001b274"
   },
   {
+   "path": "SKILLS/marketing/story-time-series-recurring-intro-ident-retention.md",
+   "html": "SKILLS/marketing/story-time-series-recurring-intro-ident-retention.html",
+   "title": "Founder-narrated \"story time\" series: recurring intro ident + explainer",
+   "bytes": 6481,
+   "sha256": "e2066dfe22a0589cbdf30c6f0b9d401fbdb4d9f001ff520cb375612f3e1c3236"
+  },
+  {
    "path": "SKILLS/marketing/stripe-buy-button-fallback-csp-direct-script.md",
    "html": "SKILLS/marketing/stripe-buy-button-fallback-csp-direct-script.html",
    "title": "Stripe buy buttons that can't silently die: direct script, CSP, plain-link fallback",
@@ -3665,6 +3903,13 @@
    "title": "Stripe sales into analytics: server-side purchase events, joined by a reference (gated: GA4 is not on Cedwyn)",
    "bytes": 4682,
    "sha256": "6d665340c16f863ddbeb3c0aa84cd660438b1471e0ed0975918b87121b47c0af"
+  },
+  {
+   "path": "SKILLS/marketing/stripe-payment-link-per-scene-access-codes-own-entitlements.md",
+   "html": "SKILLS/marketing/stripe-payment-link-per-scene-access-codes-own-entitlements.html",
+   "title": "Selling per-scene access codes with a Stripe Payment Link (and why not a video marketplace)",
+   "bytes": 6688,
+   "sha256": "9a766fd4cf71de9e51672c3ef775600238b48d8169204561660714f7c1a5355b"
   },
   {
    "path": "SKILLS/marketing/stripe-payment-links-wallets-ab-gate.md",
@@ -3721,6 +3966,20 @@
    "title": "Syndicating Cedwyn articles without losing the original (Medium, dev-style platforms, partner sites)",
    "bytes": 4033,
    "sha256": "c5307e5afaf09682dad8e9cadd42aa46304f464db5b2e7217b7b78f46563657f"
+  },
+  {
+   "path": "SKILLS/marketing/talktalk-everymail-legacy-isp-list-hygiene.md",
+   "html": "SKILLS/marketing/talktalk-everymail-legacy-isp-list-hygiene.html",
+   "title": "TalkTalk legacy addresses -> Everymail: dead-address waves and list hygiene (UK ISP domains)",
+   "bytes": 4989,
+   "sha256": "edcde78be4b3cc558bbcfa4d3dca82bc4af6ca7515acf9d8ebf604728903e579"
+  },
+  {
+   "path": "SKILLS/marketing/th-thomas-1903-some-folklore-south-wales-leckwith-boatman-primary.md",
+   "html": "SKILLS/marketing/th-thomas-1903-some-folklore-south-wales-leckwith-boatman-primary.html",
+   "title": "T. H. Thomas 1903 \"Some Folk-lore of South Wales\": the primary text behind the Leckwith boatman tale",
+   "bytes": 3777,
+   "sha256": "a4c6a1987d1ad77c7d4d7bfb8da7e789145c5d3e3dd9d12e5a73f9c7da54c839"
   },
   {
    "path": "SKILLS/marketing/then-and-now-comparison-slider-two-slide-posts.md",
@@ -3807,11 +4066,25 @@
    "sha256": "31272f59fd0c04543193932886ec1b2509d3c04a35cb98fd4136ee077a1c6426"
   },
   {
+   "path": "SKILLS/marketing/trevelyan-1909-glamorgan-folklore-public-domain-local-stories.md",
+   "html": "SKILLS/marketing/trevelyan-1909-glamorgan-folklore-public-domain-local-stories.html",
+   "title": "Trevelyan 1909 and T. H. Thomas 1903: public-domain Glamorgan folklore as local content",
+   "bytes": 5388,
+   "sha256": "62b3c402a58d6cbb30e550115c6e85770330b9088a09f832804db2bf1f6cfbc8"
+  },
+  {
    "path": "SKILLS/marketing/true-fans-arithmetic-fans-needed-current-prices.md",
    "html": "SKILLS/marketing/true-fans-arithmetic-fans-needed-current-prices.html",
    "title": "True-fans arithmetic: how many paying fans Cedwyn needs at TODAY's prices",
    "bytes": 4235,
    "sha256": "9543066e94b0541b34b19827362fcb60ffd383d15b880537a9a444c85ff4ed20"
+  },
+  {
+   "path": "SKILLS/marketing/tumblr-original-posts-quiet-history-tags-cold-start.md",
+   "html": "SKILLS/marketing/tumblr-original-posts-quiet-history-tags-cold-start.html",
+   "title": "Tumblr: original posts in quiet history tags (cold-start, zero budget)",
+   "bytes": 6186,
+   "sha256": "b1c73f4d382835014686504c25343a433a166586807cb2049b00df663a9e0808"
   },
   {
    "path": "SKILLS/marketing/twymans-law-too-good-ab-results-false-positive-risk.md",
@@ -4073,6 +4346,13 @@
    "sha256": "9177c915c816829c25d165b4b00728ac09d1413e639694a83eb03b917af6406c"
   },
   {
+   "path": "SKILLS/marketing/welsh-genealogy-mailing-lists-groupsio-ancestry-boards-closure.md",
+   "html": "SKILLS/marketing/welsh-genealogy-mailing-lists-groupsio-ancestry-boards-closure.html",
+   "title": "Welsh genealogy mailing lists (groups.io) and the Ancestry message-board shutdown, Oct 2026",
+   "bytes": 5761,
+   "sha256": "251de0fe6264f7c9ca7141cbca1502e684ac278690530c00fc393d94532d2e5c"
+  },
+  {
    "path": "SKILLS/marketing/welsh-historic-place-names-list-rcahmw-contribute-names.md",
    "html": "SKILLS/marketing/welsh-historic-place-names-list-rcahmw-contribute-names.html",
    "title": "Welsh historic place-name records: the List of Historic Place Names + Welsh Place-Name Society (contribution route)",
@@ -4143,6 +4423,13 @@
    "sha256": "b9560e9dd05101705bfd8f844cf7e8ba0aaf9d2b47b84809a03b4150192e0b05"
   },
   {
+   "path": "SKILLS/marketing/welsh-wikimedia-wicidestun-wicipedia-scope-sizing.md",
+   "html": "SKILLS/marketing/welsh-wikimedia-wicidestun-wicipedia-scope-sizing.html",
+   "title": "Welsh-language Wikimedia: Wicidestun (cy Wikisource) + Wicipedia (cy Wikipedia) scope and sizing",
+   "bytes": 5887,
+   "sha256": "65c0ad6aa79842bd7b8299cc27044fb8fbeb92bc8e8dc2406966b6bea572c6f0"
+  },
+  {
    "path": "SKILLS/marketing/whatsapp-channel-readers-uk-patagonia.md",
    "html": "SKILLS/marketing/whatsapp-channel-readers-uk-patagonia.html",
    "title": "WhatsApp Channel for e-book readers (UK + Spanish-speaking Patagonia)",
@@ -4171,6 +4458,13 @@
    "sha256": "5cb5f0bc75436756d83a6c72208c1d99b93f3f332c4344ca5a214a73af140c6e"
   },
   {
+   "path": "SKILLS/marketing/wiki-loves-monuments-uk-listed-heritage-photos.md",
+   "html": "SKILLS/marketing/wiki-loves-monuments-uk-listed-heritage-photos.html",
+   "title": "Wiki Loves Monuments UK: heritage photos of public listed sites, with free exposure on Wikipedia",
+   "bytes": 4391,
+   "sha256": "c8ffa334efb12d83d13668b77d4799e98e936735a32d36a2059fc14aa0cc78d4"
+  },
+  {
    "path": "SKILLS/marketing/wikimedia-commons-public-domain-archive-images-glam.md",
    "html": "SKILLS/marketing/wikimedia-commons-public-domain-archive-images-glam.html",
    "title": "Wikimedia Commons: share public-domain archive images where Wikipedia readers see them",
@@ -4192,6 +4486,13 @@
    "sha256": "6a6419210f49613fce139387bfef13b1b08afa8e00f16e20d26a15f4231dc237"
   },
   {
+   "path": "SKILLS/marketing/wikisource-scan-backed-public-domain-records-cite-back.md",
+   "html": "SKILLS/marketing/wikisource-scan-backed-public-domain-records-cite-back.html",
+   "title": "Wikisource: scan-backed transcriptions of public-domain source documents (cite-back, not traffic)",
+   "bytes": 5894,
+   "sha256": "9f6d88fca8a52b21f984916cef443a29d2c29e7ab622e6bd1e4784985c0a8815"
+  },
+  {
    "path": "SKILLS/marketing/wikivoyage-penarth-listing-gate-nofollow-no-tout.md",
    "html": "SKILLS/marketing/wikivoyage-penarth-listing-gate-nofollow-no-tout.html",
    "title": "Wikivoyage (Penarth / Vale of Glamorgan): a gate, NO for promotion",
@@ -4211,6 +4512,13 @@
    "title": "X (Twitter) growth after Communities closed: replies, threads, XChat (2026)",
    "bytes": 3436,
    "sha256": "f075c91e0f84785959690134b16cff8b6d68b4253ff1ac0cf73606ce486fc8e0"
+  },
+  {
+   "path": "SKILLS/marketing/youtube-channel-home-trailer-spotlight-sections.md",
+   "html": "SKILLS/marketing/youtube-channel-home-trailer-spotlight-sections.html",
+   "title": "YouTube channel Home tab: trailer for new visitors, Spotlight for subscribers, sections as the documentary shelf",
+   "bytes": 3999,
+   "sha256": "2d78687ae5fcdc02bdad8068bc03640564c5298b18ac7ba566623965940800ec"
   },
   {
    "path": "SKILLS/marketing/youtube-chapters-captions-transcripts-archive.md",
@@ -4295,6 +4603,13 @@
    "title": "YouTube Shorts links: what can be clicked, and where the shop link has to go",
    "bytes": 5596,
    "sha256": "f6ee471ca1e0f42e190701e7e944e0ccc072066a21344b3d21437f957aa9a783"
+  },
+  {
+   "path": "SKILLS/marketing/youtube-shorts-search-titles-descriptions-query-first.md",
+   "html": "SKILLS/marketing/youtube-shorts-search-titles-descriptions-query-first.html",
+   "title": "YouTube Shorts titles + descriptions for search (YouTube search, Google's short-video carousel, AI answers)",
+   "bytes": 5050,
+   "sha256": "13db6f4e9c414e7beddca1fd291ede283f7726584347f14514eb51b71576001f"
   },
   {
    "path": "SKILLS/marketing/youtube-studio-research-tab-outlier-multiplier-topic-choice.md",
@@ -4426,8 +4741,8 @@
    "path": "architecture/webapps.md",
    "html": "architecture/webapps.html",
    "title": "Webapps",
-   "bytes": 15765,
-   "sha256": "6c4ded0f2e2275e1df295a7a66e113ec8a6f1a2c47013129106f2e54bbd7195c"
+   "bytes": 15941,
+   "sha256": "ba0cd2513690c758bc7a0912bbb98936cb2d0420d196dee4b3b1ce836fb9c903"
   }
  ],
  "formats": {

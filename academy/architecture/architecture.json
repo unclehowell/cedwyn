@@ -1,6 +1,6 @@
 {
  "schema": "cedwyn_academy_architecture/v1",
- "version": "1.0.0",
+ "version": "1.0.1",
  "updated": "2026-10-30",
  "refreshed_by": "the agent library cycle (every 6 hours); edit this file, then rebuild the academy",
  "source_documents": [
@@ -39,7 +39,9 @@
    "builds queue and each one finishes (cancel-in-progress is off on main); never cancel or re-dispatch a build",
    "a push to a theme branch does not start a build; the next build carries it",
    "a section snapshot moves only through sections-ci",
-   "builds regenerate everything: fix sources, never the built output"
+   "builds regenerate everything: fix sources, never the built output",
+   "each webapp's header graph plots only that webapp's own view database (<app>/_db/view.json), never the central catalogue; a build check fails any graph whose points do not trace to its own app's view",
+   "files served only through the service worker (view.json, _ui templates, programme data) must be on the build's keep-list, or a plain fetch answers 404"
   ],
   "other_workflows": [
    "sections-ci",
@@ -308,7 +310,7 @@
    "group": "A story to be retold",
    "purpose": "The e-book shelf: each edition, its sample and its versions",
    "source": "branch ebooks, folder public",
-   "data_sources": "76 hand-written or pre-generated HTML pages; no data file",
+   "data_sources": "76 hand-written or pre-generated HTML pages; the header graph reads its own /ebooks/_db/view.json (releases) since 30 Oct 2026",
    "state": "HARD-CODED",
    "view_rule": "its own small register (books, products, objectives, posts), promoted to a core kind in WP5",
    "migration_wave": "WP5 (wave 1)"
@@ -584,7 +586,7 @@
    "group": "Interactive",
    "purpose": "The Disclosure Dartboard: every body asked, and how far each answer has come (served at the apex)",
    "source": "crawled from its running app at build time",
-   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first; the header graph is a scatter of replies (positive, partial, refused or no answer) from its own mail data",
    "state": "SNAPSHOT",
    "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
    "migration_wave": "WP7 (wave 3)"

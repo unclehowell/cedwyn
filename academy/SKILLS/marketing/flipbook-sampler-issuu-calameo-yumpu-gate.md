@@ -1,0 +1,31 @@
+# Issuu / Calameo / Yumpu flipbook "sampler" gate: what the free tiers give a tiny e-book shop (mostly: not enough)
+
+Checked 30 Oct 2026 (skills harvest). Zero budget. Question answered: should we put a free sample of the e-books on a flipbook/document-sharing site to get first traffic? Short answer: Internet Archive first (see internet-archive-texts-free-edition-discovery.md); a flipbook site only as a 10-page sampler, and only if it passes the checks below.
+
+## Facts (primary where marked)
+- Issuu free Basic plan: at most 5 published documents, each limited to 10 pages and a file-size cap; Issuu branding on every page (Issuu Help Center article 16000719341595 and 12363338934939, via search snippets 30 Oct 2026; the help site returned a 403 challenge to a plain fetch). A comparison page also states the free plan has no analytics and no lead capture (secondary, not checked).
+- Measured today: an Issuu document page (issuu.com) serves robots "index" and a self canonical, but the static HTML carried about 3,000 characters, all navigation, and none of the document's words. Search engines that do not run the page's scripts see a near-empty page. Treat Issuu SEO value as not shown.
+- Reddit r/Architects thread (snippet, not checked): free-plan portfolios were being changed without warning. Platform terms can change under a free user.
+- Calameo: public / private / restricted visibility; downloads and printing are a setting the owner can switch (blog.calameo.com FAQ snippets). The site refused a plain connection from our box today, so its free-tier limits are not checked.
+- Yumpu: free plan converts PDFs to flipbooks with ads; paid from about $24.95/month (Publitas comparison, secondary, not checked). Ads on a heritage sample: no.
+- Scribd uploads: free upload, embeddable; the reading audience is the paid Everand/Scribd subscription. No practitioner numbers for self-published history samples found.
+- No primary case study with traffic numbers for a small author sampler on any of these was found in this run. Vendor posts ("Issuu boosts your SEO") are assertions, not evidence.
+
+## Decision rule
+1. Do Internet Archive first (views are public, links ugc nofollow, measured 20-70 views/yr for niche Welsh local-history items).
+2. A flipbook site only if ALL hold: the free tier allows a 10-page sampler with no ads; the document text is visible in page source or a text version (check: view-source contains a sentence from page 3); a clickable link on the last page works in the viewer; the owner gives GO for the account.
+3. Never the full paid edition anywhere; never a duplicate of the IA item (duplicates got 3 views on IA).
+4. Measure with a dedicated redirect (/r/issuu); stop rule: under 5 real-phone clicks in 60 days = delete the account's document and stop.
+
+## How we apply it to Cedwyn
+- Current state: about 25 real phone visitors a day, about 4 reach /ebooks/, 0 checkouts in 12 h. A flipbook outpost does not change that on its own; it is optional and lower priority than getting /ebooks/free/ and /ebooks/tymawr-heritage/ out of "Discovered - currently not indexed" (see page-indexing-triage-duplicates-canonicals.md and gsc-striking-distance-quick-wins.md).
+- If the owner wants one: a 10-page sampler of v0.0.2 (cover, contents, 6 record pages with their source lines, last page with the shop address in text and a /r/issuu link). Embed nothing from Issuu on cedwyn itself (third-party script, cookie banner, slower page).
+- Logged as a PROPOSAL only; no account, no upload, nothing posted by this run.
+- Editorial rules apply to the sampler and the listing text: neutral third person, never name the owner, banned words, no insignia, nothing about family holdings or addresses.
+
+## Sources
+- help.issuu.com and /12363338934939 (search snippets 30 Oct 2026; direct fetch 403)
+- issuu.com (static HTML checked 30 Oct 2026: robots index, canonical, no document text)
+- blog.calameo.com and /18800/... (snippets)
+- publitas.com (snippet, secondary)
+- scribd.com (upload page snippet)
