@@ -1,7 +1,7 @@
 {
   "schema": "cedwyn_title_theory/v1",
   "model_id": "TT-0001",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "updated_at": "2026-10-30",
   "title": "The Paper Siege: sequential parcel capture and permission-framing",
   "status": "Leading working hypothesis — unproven; not a finding of fact or law",
@@ -13,7 +13,8 @@
     "1841_correction": "The c.1841 tithe apportionment records John Williams as occupier of 36 numbered plots. Occupier is not owner. The current catalogue describes 33 entries with Bute as landowner and three with Revd James Evans / glebe; this is a strong footprint of occupation, not proof that Williams owned all 36 or that all 36 were later Parcel A or B.",
     "1939_parcel_b": "The 1939 WGR–John Williams agreement is presently associated with the fields / provisional Parcel B. Its plan does not show the farmhouse parcel. Its complete wording, parcel schedule, original signature and provenance remain material questions. The family’s explanation that this is why Mary did not contest the taking of Parcel B is recorded as a hypothesis, not as an established statement by Mary.",
     "parcel_a": "Parcel A is the separate house / farmhouse / garden / yard / woodland claim as currently modelled. The exact boundaries and the relationship between the 1938 title, 1939 letting and later first registrations remain unresolved.",
-    "parcel_c": "The southern green / VG41 area is kept separate as provisional Parcel C; it must not be silently folded into Parcel A."
+    "parcel_c": "The southern green / VG41 area is kept separate as provisional Parcel C; it must not be silently folded into Parcel A.",
+    "williams_36_plot_claim": "Separate sub-hypothesis: the Williams family may have held a proprietary, beneficial, customary, leasehold or other inheritable interest across some or all of the 36 plots occupied by John Williams. The c.1841 tithe is not evidence that he owned them outright: its owner column reportedly attributes 33 plots to Bute and three to Revd James Evans / glebe. The hypothesis therefore concerns whether the family held an interest not captured by the freehold owner column, or whether later records obscured a prior interest. It is directly weakened if the original schedule and source deeds show ordinary occupation under Bute / Evans without any separate proprietary interest."
   },
   "executive_if_true": [
     "If the sequential-capture theory were true, the 1841 tithe would show that the Williams family’s occupation was broad and longstanding, while later estate and company records progressively narrowed the land treated as theirs. It would not, by itself, prove freehold ownership.",
@@ -35,9 +36,9 @@
       "id": "M01",
       "period": "c.1841–1928",
       "stage": "Occupation footprint and possible change in tenure",
-      "proposition": "Map John Williams’s 36 tithe plots, the 1870s rate-book entries, the 1916 yearly tenancy and the reported end of house-parcel rent in 1928. Test whether the family’s practical occupation or a separate interest in the house parcel was wider than the later corporate title description.",
-      "if_true": "A broad occupation history would precede the later parcel-specific legal mechanisms.",
-      "against_or_alternative": "The tithe records occupation and named landowners; the 1916 tenancy is recited in the 1987 judgment and the original is not held; the 1928 rent account is family testimony. A tenancy can explain occupation without ownership.",
+      "proposition": "Map John Williams’s 36 tithe plots, the 1870s rate-book entries, the 1916 yearly tenancy and the reported end of house-parcel rent in 1928. Test whether the family’s practical occupation or a separate interest in the house parcel was wider than the later corporate title description. Separately test the family’s broader 36-plot ownership theory: identify the nature of any claimed interest (freehold, leasehold, customary, equitable or beneficial) and reconcile it with the tithe owner column, which presently names Bute / Revd James Evans rather than John Williams.",
+      "if_true": "A broad occupation history would precede the later parcel-specific legal mechanisms. If the family held an inheritable or beneficial interest not recorded as freehold ownership in the tithe schedule, it could explain why later records show occupation but fail to carry that interest forward; the type and extent of the interest would need to be identified.",
+      "against_or_alternative": "The tithe records occupation and named landowners; the 1916 tenancy is recited in the 1987 judgment and the original is not held; the 1928 rent account is family testimony. A tenancy can explain occupation without ownership. The tithe’s owner column is a direct counter-indication to outright Williams freehold ownership of all 36 plots; occupation alone can arise from tenancy or other permission.",
       "source_evs": [
         "EV-0215",
         "EV-0212",
@@ -155,7 +156,7 @@
       "title": "Sequential parcel capture and permission-framing — the ‘paper siege’",
       "class": "leading_working_hypothesis",
       "status": "Unproven; strongest explanatory synthesis for testing",
-      "explanation": "Separate parcels and interests may have been taken, conveyed, licensed, registered or represented in ways that progressively reduced the Williams family’s independent standing. The cumulative effect may have been annexation on paper of land the family already occupied or claimed. Intentional coordination is a further proposition requiring direct evidence.",
+      "explanation": "Separate parcels and interests may have been taken, conveyed, licensed, registered or represented in ways that progressively reduced the Williams family’s independent standing. The cumulative effect may have been annexation on paper of land the family already occupied or claimed. Intentional coordination is a further proposition requiring direct evidence. A separate upstream proposition is that the Williams family held a wider inheritable or beneficial interest than the freehold column of the c.1841 tithe records; this remains unproven and is not equivalent to owning all 36 plots outright.",
       "what_it_explains": [
         "The 1841 occupation footprint",
         "The distinction between Parcel A and Parcel B",
