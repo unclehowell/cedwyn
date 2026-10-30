@@ -564,13 +564,13 @@ def landing(sections, S, cfg, H):
     body = f"""
 <body data-cedwyn-page="landing">
 <main class="wrap hv" data-no-translate>
-<div class="hv-land"><div class="hv-tiles" aria-label="Choose a place">
+<div class="hv-land"><a class="hv-eb" style="margin-bottom:10px" href="/ebooks/?utm_source=home&amp;utm_medium=button&amp;utm_campaign=sf27"><span>E-books · first editions free</span><span class="ar" aria-hidden="true">→</span></a><div class="hv-tiles" aria-label="Choose a place">
 <button type="button" class="land-place" data-open-modal="modal-wales" aria-haspopup="dialog" aria-controls="modal-wales">
 <img src="{E(wales_src)}" alt="" fetchpriority="high"><span class="land-place-label">Wales, Britain</span></button>
 <button type="button" class="land-place" data-open-modal="modal-argentina" aria-haspopup="dialog" aria-controls="modal-argentina">
 <img src="{E(patagonia_src)}" alt="" fetchpriority="high"><span class="land-place-label">Patagonia, Argentina</span></button>
 </div>
-<a class="hv-eb" href="/ebooks/?utm_source=home&amp;utm_medium=button&amp;utm_campaign=sf25"><span>E-books · first editions free</span><span class="ar" aria-hidden="true">→</span></a></div>
+</div>
 {place_modal(H, cfg, 'wales')}
 {place_modal(H, cfg, 'argentina')}
 </main>
