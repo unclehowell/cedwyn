@@ -113,7 +113,7 @@
     var tb = s.querySelector(".gb-rows"); if (!tb || tb.getAttribute("data-filled")) return;
     var rows = (data.rows || []).filter(function (r) { return r.kind !== "build"; }).slice(0, 3), h = "";
     rows.forEach(function (r) {
-      h += '<tr><td><a href="' + esc(link(data.repo || "unclehowell/cedwyn", r.sha)) + '" target="_blank" rel="noopener" title="' + esc(r.sha.slice(0, 7)) + '">' + esc(r.v) + "</a></td><td>" +
+      h += '<tr><td>' + (r.sha ? '<a href="' + esc(link(data.repo || "unclehowell/cedwyn", r.sha)) + '" target="_blank" rel="noopener" title="' + esc(r.sha.slice(0, 7)) + '">' + esc(r.v) + "</a>" : esc(r.v)) + "</td><td>" +
         esc(r.date) + "</td><td>" + esc(r.note) + "</td><td>" + esc(r.who) + "</td></tr>";
     });
     tb.innerHTML = h; tb.setAttribute("data-filled", "1");
