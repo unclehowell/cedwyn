@@ -1,4 +1,4 @@
-/* Cedwyn · documentary — scene page (page v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
+/* Cedwyn · documentary — scene page (page v1.4.2, 30 Oct 2026: window.CedwynPlayer lets download.js offer the scene with the chosen audio and subtitles; v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
    v1.3.0: film versions, viewing licence and checkout live in documentary.js (window.CedwynDoc); play() asks it first.
    Doors come from frames.json; a door opens when manifest.json in the film's storage repository lists its clip.
    The page reads the storage repository at run time (frames, manifest, prompt, scripts, subtitles, media), so the daily
@@ -173,6 +173,7 @@
   // Playback controls (v1.2.0): play/pause, position, full screen, audio language, subtitle language (independent of audio).
   var V = $("cm-video"), A = $("cm-audio"), ST = $("cm-stage"), cur = null, LANGS = ["cy", "en", "es"], NAT = {cy: "Cymraeg", en: "English", es: "Español"}, cuesBy = {}, trackUrls = [], iosFS = false, idleT = null;
   function subLang() { return S.sub ? S.sub : lang(); }
+  window.CedwynPlayer = {video: V, raw: RAW, current: function () { return cur; }, audio: function () { return S.audio; }, sub: function () { return subLang(); }};   // read by download.js (v1.4.2)
   function subPath(L) { return cur.m.subs && cur.m.subs[L] ? cur.m.subs[L] : "subs/" + cur.f.id + "." + L + ".vtt"; }
   function play(f, m) {
     var DG = window.CedwynDoc; if (DG && !DG.canPlay(f.n)) { DG.locked(f.n); return; }   // newest scenes: licence or membership (documentary.js)

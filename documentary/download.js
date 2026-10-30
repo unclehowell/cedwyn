@@ -1,0 +1,77 @@
+/* Cedwyn · documentary — download button (download.js v1.0.0, 30 Oct 2026). A tab.bot production.
+   Ten seconds into a scene a Download button fades in over the picture. It downloads that scene with exactly the
+   audio language and subtitle choice selected at the moment it is tapped (burned-in subtitles, or none), as an MP4
+   that plays on any phone or computer. The versions are made by the film pipeline (tools/download_variants.py) and
+   listed per scene in the storage manifest as "downloads": {"<audio>|<subs>": {path, bytes, title}}.
+   Reads the player through window.CedwynPlayer (movie.js 1.4.2+). */
+(function () {
+  "use strict";
+  var P = window.CedwynPlayer; if (!P || !P.video) return;
+  var V = P.video, AT = 10, shownFor = null, busy = false;
+  var T = {
+    en: {dl: "Download", wait: "Downloading", nos: "No subtitles", subs: {cy: "Welsh subtitles", en: "English subtitles", es: "Spanish subtitles"}, na: "Not available for this choice yet", fail: "Download failed, opening the file"},
+    cy: {dl: "Lawrlwytho", wait: "Yn lawrlwytho", nos: "Dim isdeitlau", subs: {cy: "Isdeitlau Cymraeg", en: "Isdeitlau Saesneg", es: "Isdeitlau Sbaeneg"}, na: "Ddim ar gael i'r dewis hwn eto", fail: "Methodd, yn agor y ffeil"},
+    es: {dl: "Descargar", wait: "Descargando", nos: "Sin subtítulos", subs: {cy: "Subtítulos en galés", en: "Subtítulos en inglés", es: "Subtítulos en español"}, na: "Aún no disponible para esta opción", fail: "Falló la descarga, abriendo el archivo"}
+  };
+  var NAT = {cy: "Cymraeg", en: "English", es: "Español"};
+  function L() { var l = (document.documentElement.getAttribute("lang") || "en").slice(0, 2).toLowerCase(); return T[l] ? l : "en"; }
+  function tt() { return T[L()]; }
+  var st = document.createElement("style");
+  st.textContent = ".cm-dl{position:absolute;top:10px;right:10px;z-index:6;display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-height:44px;min-width:44px;max-width:62%;padding:6px 12px 6px 34px;border-radius:22px;border:1px solid rgba(255,255,255,.55);background:rgba(10,14,11,.78);color:#fff;font:600 14px/1.15 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;text-align:left;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .45s ease,transform .45s ease,visibility 0s linear .45s;-webkit-tap-highlight-color:transparent;box-sizing:border-box}" +
+    ".cm-dl.is-on{opacity:1;visibility:visible;transform:none;transition:opacity .45s ease,transform .45s ease,visibility 0s}" +
+    ".cm-dl:hover,.cm-dl:focus-visible{background:rgba(10,14,11,.92);border-color:#fff;outline:none}.cm-dl:focus-visible{box-shadow:0 0 0 3px rgba(255,255,255,.5)}" +
+    ".cm-dl::before{content:'';position:absolute;left:11px;top:50%;width:16px;height:16px;margin-top:-8px;background:currentColor;-webkit-mask:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6z M4 19h16v2H4z'/%3E%3C/svg%3E\") center/contain no-repeat;mask:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6z M4 19h16v2H4z'/%3E%3C/svg%3E\") center/contain no-repeat}" +
+    ".cm-dl small{font-weight:400;font-size:11.5px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}" +
+    ".cm-dl.is-busy{cursor:progress}@media (prefers-reduced-motion:reduce){.cm-dl,.cm-dl.is-on{transition:none;transform:none}}";
+  document.head.appendChild(st);
+  var B = document.createElement("button"); B.type = "button"; B.className = "cm-dl"; B.id = "cm-dl"; B.setAttribute("aria-hidden", "true"); B.tabIndex = -1;
+  var b1 = document.createElement("span"), b2 = document.createElement("small"); B.appendChild(b1); B.appendChild(b2);
+  var host = V.parentNode; host.appendChild(B);
+  function cur() { return P.current && P.current(); }
+  function choice() {
+    var c = cur(), m = c && c.m; if (!m) return null;
+    var a = P.audio ? P.audio() : null; if (!a || !(m.audio && m.audio[a])) a = m.default_audio || "cy";
+    var s = P.sub ? P.sub() : "off"; if (s !== "off" && !NAT[s]) s = "off";
+    var d = m.downloads || null, e = d && d[a + "|" + s];
+    return {n: c.f && c.f.n, a: a, s: s, e: e, title: (e && e.title) || ("Cedwyn – Door " + (c.f && c.f.n) + " – " + NAT[a] + " audio – " + (s === "off" ? "No subtitles" : T.en.subs[s]))};
+  }
+  function paint() {
+    if (busy) return; var c = choice(), x = tt(); if (!c) return;
+    b1.textContent = x.dl; b2.textContent = NAT[c.a] + " · " + (c.s === "off" ? x.nos : x.subs[c.s]);
+    B.setAttribute("aria-label", x.dl + ": " + b2.textContent); B.title = c.e ? c.title : x.na;
+  }
+  function show(on) { B.classList.toggle("is-on", on); B.setAttribute("aria-hidden", on ? "false" : "true"); B.tabIndex = on ? 0 : -1; }
+  function hasAny() { var c = cur(); return !!(c && c.m && c.m.downloads); }
+  V.addEventListener("timeupdate", function () {
+    var c = cur(); if (!c) return; var id = c.f && c.f.n;
+    if (shownFor !== id && hasAny() && (V.currentTime || 0) >= AT) { shownFor = id; paint(); show(true); }
+  });
+  V.addEventListener("loadstart", function () { shownFor = null; busy = false; B.classList.remove("is-busy"); show(false); });
+  document.addEventListener("click", function (ev) { var t = ev.target && ev.target.closest && ev.target.closest(".cm-pa,.cm-ps"); if (t) setTimeout(paint, 0); }, true);
+  V.addEventListener("webkitendfullscreen", function () { setTimeout(paint, 0); });
+  function save(blob, name) {
+    var u = URL.createObjectURL(blob), a = document.createElement("a"); a.href = u; a.download = name; a.rel = "noopener";
+    document.body.appendChild(a); a.click(); setTimeout(function () { a.remove(); URL.revokeObjectURL(u); }, 60000);
+  }
+  B.addEventListener("click", function (ev) {
+    ev.stopPropagation(); if (busy) return; var c = choice(), x = tt(); if (!c) return;
+    if (!c.e) { b2.textContent = x.na; setTimeout(paint, 2500); return; }
+    var url = P.raw + c.e.path, name = c.title + ".mp4"; busy = true; B.classList.add("is-busy"); b1.textContent = x.wait + "…";
+    window.CedwynDownloadLast = {key: c.a + "|" + c.s, path: c.e.path, name: name, at: Date.now()};
+    fetch(url, {mode: "cors"}).then(function (r) {
+      if (!r.ok) throw new Error("http " + r.status);
+      var total = +r.headers.get("content-length") || c.e.bytes || 0;
+      if (!r.body || !window.ReadableStream) return r.blob();
+      var rd = r.body.getReader(), parts = [], got = 0;
+      return (function pump() { return rd.read().then(function (o) {
+        if (o.done) return new Blob(parts, {type: "video/mp4"});
+        parts.push(o.value); got += o.value.length; if (total) b1.textContent = x.wait + " " + Math.min(99, Math.round(got * 100 / total)) + "%";
+        return pump(); }); })();
+    }).then(function (blob) {
+      save(blob.type ? blob : new Blob([blob], {type: "video/mp4"}), name);
+      window.CedwynDownloadLast.bytes = blob.size; window.CedwynDownloadLast.done = true;
+    }).catch(function () { b2.textContent = x.fail; window.open(url, "_blank", "noopener"); })
+      .then(function () { busy = false; B.classList.remove("is-busy"); setTimeout(paint, 1200); });
+  });
+  window.CedwynDownload = {choice: choice, button: B, version: "1.0.0"};
+})();
