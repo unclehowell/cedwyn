@@ -1,0 +1,30 @@
+{
+ "schema": "cedwyn-page-journal/1.0",
+ "note": "Neutral, dated change lines per page, newest first. Rendered into each page's footer by tools/page_journal.py. Third person, no agent names, no instructions.",
+ "pages": {
+  "/kissed-frogs/": [
+   {
+    "v": "2.0.0",
+    "date": "2026-10-30",
+    "note": "Page now generated from the central catalogue: frog-with-lipstick image, short explanation, then one card per lead; Llandough Farm brought together as card KF-35, a separate farmstead."
+   },
+   {
+    "v": "2.0.1",
+    "date": "2026-10-30",
+    "note": "Card KF-50 added: the Museum Wales waterwheel record (Ref 13.2) for Llandough Farm."
+   },
+   {
+    "v": "2.0.2",
+    "date": "2026-10-30",
+    "note": "This webapp's own database is published at /kissed-frogs/_db/view.json."
+   }
+  ],
+  "/dartboard/": [
+   {
+    "v": "—",
+    "date": "2026-10-30",
+    "note": "Header graph now plots this webapp's own reply ledger for 2025/26: green positive, amber less than positive, red refused, not held or no reply by the statutory date."
+   }
+  ]
+ }
+}
