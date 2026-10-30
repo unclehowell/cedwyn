@@ -1,4 +1,4 @@
-/* cw-graph.js v1.1.1 - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
+/* cw-graph.js v1.2.0 - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
    Asked for 01:27 GMT 30 Oct 2026: the closable header strip becomes a graph promotion; tapping it slides a full-screen
    scatter graph of the data the page/section shows down over the page (it slides back up on close, Esc or swipe up);
    text pages load clipped to the screen height with a "Read more" bar, further text arriving in chunks from the build's
@@ -7,7 +7,7 @@
 (function () {
   'use strict';
   if (window.__cwGraph) return;
-  var d = document, de = d.documentElement, VER = '1.1.1';
+  var d = document, de = d.documentElement, VER = '1.2.0';
   window.__cwGraph = { v: VER };
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var T = {
@@ -55,10 +55,8 @@
     '.cw-vh-bar:before{content:"";position:absolute;left:0;right:0;top:-56px;height:56px;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,0),var(--cw-vh-bg,#fff))}' +
     '.cw-vh-btn{all:unset;box-sizing:border-box;cursor:pointer;min-height:44px;padding:0 26px;border-radius:999px;display:flex;align-items:center;font:600 15px/1 system-ui,sans-serif;background:var(--cw-vh-fg,#111);color:var(--cw-vh-bg,#fff)}' +
     '.cw-vh-btn:focus-visible{outline:3px solid var(--ghf-s,#f2c94c);outline-offset:2px}' +
-    '.cwl-on .cwl-pv,.cwl-on .cwl-rm,.cwl-back[hidden]{display:none}.cwl-on .cwl-x{display:none!important}' +
-    '.cwl-on.cwl-sub>*:not(.cwl-path):not(.cwl-cur):not(.cwl-back){display:none!important}' +
-    '.cwl-path>.cwl-h,.cwl-path>.cwl-body,.cwl-path>.cwl-pv,.cwl-path>.cwl-rm,.cwl-path>.cwl-more{display:none!important}.cwl-path>.cwl-s:not(.cwl-path):not(.cwl-cur){display:none!important}' +
-    '.cwl-card{display:block;position:relative;cursor:pointer;padding:14px 4px 12px;margin:0;border:0;border-bottom:1px solid rgba(127,127,127,.22);border-radius:0;background:none;-webkit-tap-highlight-color:transparent;transition:background .15s}' +
+    '.cwl-hid{display:none!important}.cwl-on .cwl-pv,.cwl-on .cwl-rm,.cwl-back[hidden]{display:none}.cwl-on .cwl-x{display:none!important}' +
+            '.cwl-card{display:block;position:relative;cursor:pointer;padding:14px 4px 12px;margin:0;border:0;border-bottom:1px solid rgba(127,127,127,.22);border-radius:0;background:none;-webkit-tap-highlight-color:transparent;transition:background .15s}' +
     '.cwl-card:hover{background:rgba(127,127,127,.07)}.cwl-card:focus-visible{outline:3px solid var(--ghf-s,#f2c94c);outline-offset:2px}' +
     '.cwl-card>.cwl-h{margin:0 0 6px!important;font-size:1.12em;line-height:1.3}.cwl-card>.cwl-body,.cwl-card>.cwl-s{display:none!important}' +
     '.cwl-card>.cwl-pv{display:-webkit-box!important;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;margin:0 0 6px;opacity:.86;line-height:1.5}' +
@@ -407,14 +405,16 @@
     var s = { h: h, lvl: lvl, kids: [], body: [], parent: parent, el: null, key: '' };
     parent.kids.push(s); return s;
   }
-  function materialize(s, used) {
+  function materialize(s, used, dp) {
+    dp = dp || 1;
     var el = mk('section', 'cwl-s'); s.el = el; el._cwl = s;
     var base = (s.h.id || slug(s.h.textContent)), k = base, i = 2; while (used[k]) k = base + '-' + (i++); used[k] = 1; s.key = k; el.setAttribute('data-cwl', k);
     s.h.parentNode.insertBefore(el, s.h); el.appendChild(s.h); s.h.classList.add('cwl-h');
     var pv = mk('p', 'cwl-pv'); pv.setAttribute('aria-hidden', 'true'); el.appendChild(pv);
     var body = mk('div', 'cwl-body'); el.appendChild(body); s.body.forEach(function (n) { body.appendChild(n); });
     var rm = mk('span', 'cwl-rm', lvTxt(1)); rm.setAttribute('aria-hidden', 'true');
-    s.kids.forEach(function (c) { materialize(c, used); el.appendChild(c.el); });
+    s.kids.forEach(function (c) { materialize(c, used, dp + 1); el.appendChild(c.el); });
+    if (!s.kids.length && dp < 4) subSecs(s, body, used, dp);
     el.appendChild(rm);
     var txt = spaced(body); if (txt.length < 60 && s.kids.length) txt = clean(s.kids.map(function (c) { return c.h.textContent + '. ' + spaced(c.el.querySelector('.cwl-body')); }).join(' '));
     var ht = clean(s.h.textContent); if (ht && txt.toLowerCase().indexOf(ht.toLowerCase()) === 0) txt = txt.slice(ht.length).replace(/^[\s:·.—-]+/, '');
@@ -476,6 +476,41 @@
     plan.forEach(function (s) { root.kids.push(s); materialize(s, used); });
     return root;
   }
+  function headIn(k) {   /* the heading a block-like child carries near its top, if any */
+    if (!k.querySelector || /^(TABLE|THEAD|TBODY|TR|PRE|FIGURE|IMG|SCRIPT|STYLE)$/.test(k.tagName) || k.closest(SKIPQ)) return null;
+    var h = k.querySelector('h2,h3,h4,h5'); if (!h || !isH5(h)) return null;
+    var depth = 0; for (var e = h; e && e !== k; e = e.parentElement) depth++; return depth <= 3 && clean(k.textContent).length > clean(h.textContent).length + 30 ? h : null;
+  }
+  function isH5(n) { return n && n.nodeType === 1 && /^H[2-5]$/.test(n.tagName) && !n.closest(SKIPQ) && !n.classList.contains('vh') && !n.classList.contains('cwl-h'); }
+  function subSecs(s, body, used, dp) {   /* sub-headings or heading-led blocks inside a section become its child cards */
+    var best = null, bn = 0, mode = '';
+    [body].concat([].slice.call(body.querySelectorAll('div,section,article,ul,ol,details'))).forEach(function (E) {
+      if (E.closest('table') || E.closest('.cwl-s') !== s.el) return;
+      var nh = 0, nb = 0;
+      [].forEach.call(E.children, function (k) { if (isH5(k)) nh++; else if (headIn(k)) nb++; });
+      if (nh >= 2 && nh > bn) { bn = nh; best = E; mode = 'flow'; }
+      else if (nb >= 2 && nb > bn) { bn = nb; best = E; mode = 'blocks'; }
+    });
+    if (!best) return;
+    var made = [];
+    if (mode === 'flow') {
+      var top = 9; [].forEach.call(best.children, function (k) { if (isH5(k)) top = Math.min(top, +k.tagName[1]); });
+      var cur = null;
+      [].slice.call(best.childNodes).forEach(function (n) {
+        if (isH5(n) && +n.tagName[1] <= top) { cur = { h: n, lvl: top, kids: [], body: [], parent: s, el: null, key: '' }; made.push(cur); }
+        else if (cur) cur.body.push(n);
+      });
+    } else {
+      [].slice.call(best.children).forEach(function (k) {
+        var h = headIn(k); if (!h) return;
+        var hh = mk('h' + Math.min(6, (+h.tagName[1]) || 3), '', clean(h.textContent)); if (h.id) { hh.id = h.id; h.removeAttribute('id'); }
+        k.parentNode.insertBefore(hh, k); h.classList.add('cwl-dup');
+        made.push({ h: hh, lvl: 3, kids: [], body: [k], parent: s, el: null, key: '' });
+      });
+    }
+    if (made.length < 2) return;
+    made.forEach(function (c) { s.kids.push(c); materialize(c, used, dp + 1); });
+  }
   function secOf(el) { var s = el && el.closest && el.closest('.cwl-s'); return s && s._cwl; }
   function depthOf(s) { var n = 0; while (s && s.h) { n++; s = s.parent; } return n; }
   function findKey(k) { var f = null; (function walk(a) { a.forEach(function (s) { if (s.key === k) f = s; else walk(s.kids); }); })(LV.root.kids); return f; }
@@ -484,6 +519,8 @@
     var P = LV.P; LV.cur = s; LV.pg = pg || 0;
     [].forEach.call(P.querySelectorAll('.cwl-path,.cwl-cur,.cwl-card,.cwl-x'), function (e) { e.classList.remove('cwl-path', 'cwl-cur', 'cwl-card', 'cwl-x'); e.removeAttribute('tabindex'); e.removeAttribute('role'); e.removeAttribute('aria-label'); });
     [].forEach.call(P.querySelectorAll('.cwl-more'), function (e) { e.remove(); });
+    [].forEach.call(P.querySelectorAll('.cwl-hid'), function (e) { e.classList.remove('cwl-hid'); });
+    if (s) { for (var n = s.el; n && n !== P && n.parentNode; n = n.parentNode) [].forEach.call(n.parentNode.children, function (sib) { if (sib !== n && !sib.classList.contains('cwl-back')) sib.classList.add('cwl-hid'); }); }
     var dep = depthOf(s); P.classList.toggle('cwl-sub', dep > 0); P.setAttribute('data-cwl-depth', dep);
     var list;
     if (s) { s.el.classList.add('cwl-cur'); for (var a = s.parent; a && a.h; a = a.parent) a.el.classList.add('cwl-path'); list = s.kids; }
@@ -497,7 +534,7 @@
       var mc = mk('div', 'cwl-s cwl-card cwl-more'); mc.tabIndex = 0; mc.setAttribute('role', 'button');
       mc.appendChild(mk('div', 'cwl-h cwl-mh', lvTxt(2) + ' (' + (list.length - to) + ')'));
       mc.appendChild(mk('p', 'cwl-pv', list.slice(to, to + 6).map(function (c) { return clean(c.h.textContent); }).join(' · ')));
-      mc.appendChild(mk('span', 'cwl-rm', lvTxt(1))); mc._more = true; s.el.appendChild(mc);
+      mc.appendChild(mk('span', 'cwl-rm', lvTxt(1))); mc._more = true; var last = list[to - 1].el; last.parentNode.insertBefore(mc, last.nextSibling);
     }
     var bk = LV.back; bk.hidden = dep === 0;
     if (dep) { var up = s.parent && s.parent.h ? clean(s.parent.h.textContent) : (LV.pg ? clean(s.h.textContent) : LV.title || lvTxt(3)); if (LV.pg) up = clean(s.h.textContent); bk.querySelector('.cwl-bt').textContent = up.slice(0, 40); bk.style.top = (topOff() + 8) + 'px'; }

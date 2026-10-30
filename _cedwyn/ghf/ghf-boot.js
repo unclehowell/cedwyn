@@ -45,7 +45,7 @@
   out += '<link rel="preload" as="font" type="font/woff2" crossorigin href="' + F + '400-normal.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="' + F + '700-normal.woff2">';
   var needBc = !window.GHFBasecamp && !d.querySelector('script[src*="basecamp.js"]');
   if (needBc) out += '<script src="' + B + "basecamp.js" + V + '"><\/script>';
-  if (!d.querySelector('script[src*="cw-graph.js"]')) out += '<script src="/_cedwyn/cw-graph.js?v=1.1.1" defer><\/script>'; // 30 Oct 2026: graph promo banner + 100vh Read more on every page with the header
+  if (!d.querySelector('script[src*="cw-graph.js"]')) out += '<script src="/_cedwyn/cw-graph.js?v=1.2.0" defer><\/script>'; // 30 Oct 2026: graph promo banner + 100vh Read more on every page with the header
   if (sync) { d.write(out); return; }
   var x, t = d.createElement("template"); t.innerHTML = out; // late or async load: same files, appended
   [].slice.call(t.content.childNodes).forEach(function (n) {
