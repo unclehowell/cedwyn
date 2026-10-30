@@ -22,7 +22,7 @@ jobs:
         with: { node-version: 20 }
       - name: Fast preflight before the full archive rewrite
         run: |
-          python3 -m py_compile tools/site.py tools/test_parcel_stories.py tools/sections.py tools/build_db.py tools/section_dbs.py tools/evidence_observations.py tools/test_evidence_hierarchy.py tools/selfcontain.py tools/test_agent_loader.py tools/test_evidence_pages.py
+          python3 -m py_compile tools/site.py tools/test_parcel_stories.py tools/sections.py tools/build_db.py tools/section_dbs.py tools/evidence_observations.py tools/title_theory.py tools/test_evidence_hierarchy.py tools/selfcontain.py tools/test_agent_loader.py tools/test_evidence_pages.py
           node --check web/_cedwyn/agent-tools.js
           node --check web/_cedwyn/parcel-panel.js
           node --check tools/test_agent_tools.js
