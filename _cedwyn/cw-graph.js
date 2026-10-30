@@ -1,4 +1,4 @@
-/* cw-graph.js v1.0.2 - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
+/* cw-graph.js v1.1.0 - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
    Asked for 01:27 GMT 30 Oct 2026: the closable header strip becomes a graph promotion; tapping it slides a full-screen
    scatter graph of the data the page/section shows down over the page (it slides back up on close, Esc or swipe up);
    text pages load clipped to the screen height with a "Read more" bar, further text arriving in chunks from the build's
@@ -7,7 +7,7 @@
 (function () {
   'use strict';
   if (window.__cwGraph) return;
-  var d = document, de = d.documentElement, VER = '1.0.2';
+  var d = document, de = d.documentElement, VER = '1.1.0';
   window.__cwGraph = { v: VER };
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var T = {
@@ -55,6 +55,21 @@
     '.cw-vh-bar:before{content:"";position:absolute;left:0;right:0;top:-56px;height:56px;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,0),var(--cw-vh-bg,#fff))}' +
     '.cw-vh-btn{all:unset;box-sizing:border-box;cursor:pointer;min-height:44px;padding:0 26px;border-radius:999px;display:flex;align-items:center;font:600 15px/1 system-ui,sans-serif;background:var(--cw-vh-fg,#111);color:var(--cw-vh-bg,#fff)}' +
     '.cw-vh-btn:focus-visible{outline:3px solid var(--ghf-s,#f2c94c);outline-offset:2px}' +
+    '.cwl-on .cwl-pv,.cwl-on .cwl-rm,.cwl-back[hidden]{display:none}.cwl-on .cwl-x{display:none!important}' +
+    '.cwl-on.cwl-sub>*:not(.cwl-path):not(.cwl-cur):not(.cwl-back){display:none!important}' +
+    '.cwl-path>.cwl-h,.cwl-path>.cwl-body,.cwl-path>.cwl-pv,.cwl-path>.cwl-rm,.cwl-path>.cwl-more{display:none!important}.cwl-path>.cwl-s:not(.cwl-path):not(.cwl-cur){display:none!important}' +
+    '.cwl-card{display:block;position:relative;cursor:pointer;padding:14px 4px 12px;margin:0;border:0;border-bottom:1px solid rgba(127,127,127,.22);border-radius:0;background:none;-webkit-tap-highlight-color:transparent;transition:background .15s}' +
+    '.cwl-card:hover{background:rgba(127,127,127,.07)}.cwl-card:focus-visible{outline:3px solid var(--ghf-s,#f2c94c);outline-offset:2px}' +
+    '.cwl-card>.cwl-h{margin:0 0 6px!important;font-size:1.12em;line-height:1.3}.cwl-card>.cwl-body,.cwl-card>.cwl-s{display:none!important}' +
+    '.cwl-card>.cwl-pv{display:-webkit-box!important;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;margin:0 0 6px;opacity:.86;line-height:1.5}' +
+    '.cwl-card>.cwl-rm{display:inline-block!important;font-weight:600;font-size:.92em;text-decoration:underline;text-underline-offset:3px}.cwl-card>.cwl-rm:after{content:" \u203a"}' +
+    '.cwl-cur>.cwl-h{scroll-margin-top:70px}.cwl-cur>.cwl-h:focus{outline:none}.cwl-sum{display:none!important}.cwl-dup{display:none!important}.cwl-mh{font-weight:700;font-size:1.05em;margin:0 0 6px}' +
+    '.cwl-back{position:sticky;top:8px;z-index:60;display:inline-flex;align-items:center;gap:6px;min-height:44px;min-width:44px;max-width:calc(100vw - 24px);padding:0 16px 0 12px;margin:4px 0 10px;border-radius:999px;border:1px solid rgba(127,127,127,.35);background:var(--cw-lv-bg,rgba(255,255,255,.94));color:inherit;font:600 15px/1.1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.12);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}' +
+    '.cwl-back:focus-visible{outline:3px solid var(--ghf-s,#f2c94c);outline-offset:2px}.cwl-ba{font-size:22px;line-height:1;margin-top:-2px}.cwl-bt{font-weight:400;opacity:.75;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46vw}.cwl-bt:not(:empty):before{content:"\u00b7 "}' +
+    'html[data-ghf-mode=night] .cwl-back,html.dark .cwl-back{--cw-lv-bg:rgba(24,26,30,.92)}@media (prefers-color-scheme:dark){html:not([data-ghf-mode=day]) .cwl-back{--cw-lv-bg:rgba(24,26,30,.92)}}' +
+    'html.cwl-anim,html.cwl-anim body{overflow-x:hidden!important}.cwl-on{will-change:auto}html.cwl-anim .cwl-on{will-change:transform,opacity}' +
+    '.cwl-on .cwl-gt{display:none}.cwl-card>.cwl-gt{display:block;font-weight:700;font-size:1.08em;line-height:1.3;margin:0 0 6px}.cwl-gk{display:inline-block;margin-left:6px;font-weight:500;font-size:.72em;opacity:.7;text-transform:uppercase;letter-spacing:.04em}.cwl-card.cwl-generic>.cwl-h{display:none!important}.cwl-on:not(.cwl-sub) .cwl-gh{}' +
+    '@media print{.cwl-back,.cwl-pv,.cwl-rm,.cwl-more{display:none!important}}' +
     '@media print{.cw-vh-clip{max-height:none!important;overflow:visible!important}.cw-vh-hide{display:revert!important}.cw-vh-bar,.cw-gb{display:none!important}}';
   var st = mk('style'); st.id = 'cw-graph-css'; st.textContent = CSS; (d.head || de).appendChild(st);
 
@@ -103,7 +118,7 @@
     return out;
   }
   function iso(ms, prec) { var x = new Date(ms); var s = String(x.getUTCFullYear()); if (prec === 'y') return s; s += '-' + ('0' + (x.getUTCMonth() + 1)).slice(-2); if (prec === 'm') return s; return s + '-' + ('0' + x.getUTCDate()).slice(-2); }
-  var SKIPQ = '.ghf-ui,header,nav,footer,script,style,noscript,#cedwyn-guestbook,#ghf-agent-footer,[data-for-agents],.cw-gm,.cw-vh-bar,[aria-hidden=true],template';
+  var SKIPQ = '.ghf-ui,header,nav,footer,script,style,noscript,#cedwyn-guestbook,#ghf-agent-footer,[data-for-agents],.cw-gm,.cw-vh-bar,.cwl-pv,.cwl-rm,.cwl-back,.cwl-more,.cwl-gt,.cwl-gh,[aria-hidden=true],template';
   function content() {
     var c = d.querySelector('main,[role=main]') || d.querySelector('article') || d.querySelector('#content,.content,#main');
     if (c && (c.textContent || '').length > 300) return c;
@@ -290,7 +305,7 @@
     if (vbar) vbar.remove(); vbar = null; de.classList.remove('cw-vh', 'cw-vh-lock'); C = null;
   }
   function loadMore(cb) {
-    if (!more || moreI >= moreN || busyMore) return cb && cb(false); busyMore = true;
+    if (!more || moreI >= moreN) return cb && cb(false); if (busyMore) return cb && setTimeout(function () { cb(false); }, 150); busyMore = true;
     var url = more.getAttribute('data-cw-more') + (++moreI) + '.json';
     fetch(url, { credentials: 'same-origin' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
       if (j && j.html) { var tmp = d.createElement('div'); tmp.innerHTML = j.html; while (tmp.firstChild) more.parentNode.insertBefore(tmp.firstChild, more); }
@@ -359,6 +374,226 @@
     addEventListener('beforeprint', function () { all(); });
     window.__cwGraph.loadAll = all;
   }
-  function start() { watchBanner(); try { autoMore(); } catch (e) {} }
+
+  /* ---------------- card levels 1.1.0 (02:30 GMT 30 Oct 2026): text pages become cards (header + 4 lines + Read more);
+     Read more walks into a deeper level (the level left zooms past the screen edges, the new one zooms in), Back walks out. ---- */
+  var LV = null, RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function LV_TITLE() { var h1 = d.querySelector('main h1,article h1,h1'); return h1 ? clean(h1.textContent).split(/ [—–:|] /)[0].slice(0, 60) : ''; }
+  function lvTxt(k) { var L = { en: ['Back', 'Read more', 'More in this section', 'Top of the page', 'The full list'], cy: ['Yn ôl', 'Darllen mwy', 'Rhagor yn yr adran hon', 'Brig y dudalen', 'Y rhestr lawn'], es: ['Volver', 'Leer más', 'Más en esta sección', 'Inicio de la página', 'La lista completa'] }; return (L[lg()] || L.en)[k]; }
+  function isH(n) { return n && n.nodeType === 1 && /^H[2-4]$/.test(n.tagName) && !n.closest(SKIPQ) && !n.classList.contains('vh'); }
+  function slug(s) { return clean(s).toLowerCase().replace(/[^a-z0-9\u00c0-\u024f]+/g, '-').replace(/^-|-$/g, '').slice(0, 48) || 's'; }
+  function flowParent(root) {
+    var cnt = new Map(), best = null, bn = 0;
+    [].forEach.call(root.querySelectorAll('h2,h3,h4'), function (h) { if (!isH(h)) return; var p = h.parentElement; if (p.tagName === 'SUMMARY' || p.tagName === 'A') return; cnt.set(p, (cnt.get(p) || 0) + 1); });
+    cnt.forEach(function (n, p) { if (n > bn) { bn = n; best = p; } });
+    return bn >= 3 ? { p: best, n: bn } : null;
+  }
+  function blockParent(root) {   /* pages built from <details>/<section> blocks, one heading each */
+    var best = null, bn = 0;
+    [root].concat([].slice.call(root.querySelectorAll('*'))).forEach(function (p) {
+      if (p.children.length < 3 || p.closest(SKIPQ)) return; var n = 0;
+      [].forEach.call(p.children, function (k) { if (/^(DETAILS|SECTION|ARTICLE)$/.test(k.tagName) && k.querySelector('h2,h3,h4,summary')) n++; });
+      if (n > bn) { bn = n; best = p; }
+    });
+    return bn >= 3 ? { p: best, n: bn } : null;
+  }
+  var BLK = 'p,li,td,th,div,h1,h2,h3,h4,h5,h6,dt,dd,tr,section,article,blockquote,ul,ol,table,figcaption,summary,details,pre';
+  function spaced(root) {   /* text with a space wherever one block ends and the next begins */
+    var w = d.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n, out = '', last = null, len = 0;
+    while ((n = w.nextNode()) && len < 1600) { var p = n.parentElement; if (!p || p.closest('script,style,.cwl-pv,.cwl-rm,[aria-hidden=true],.vh')) continue; var b = p.closest(BLK); out += (b !== last ? ' ' : '') + n.nodeValue; last = b; len = out.length; }
+    return clean(out);
+  }
+  function mkSec(h, lvl, parent) {
+    var s = { h: h, lvl: lvl, kids: [], body: [], parent: parent, el: null, key: '' };
+    parent.kids.push(s); return s;
+  }
+  function materialize(s, used) {
+    var el = mk('section', 'cwl-s'); s.el = el; el._cwl = s;
+    var base = (s.h.id || slug(s.h.textContent)), k = base, i = 2; while (used[k]) k = base + '-' + (i++); used[k] = 1; s.key = k; el.setAttribute('data-cwl', k);
+    s.h.parentNode.insertBefore(el, s.h); el.appendChild(s.h); s.h.classList.add('cwl-h');
+    var pv = mk('p', 'cwl-pv'); pv.setAttribute('aria-hidden', 'true'); el.appendChild(pv);
+    var body = mk('div', 'cwl-body'); el.appendChild(body); s.body.forEach(function (n) { body.appendChild(n); });
+    var rm = mk('span', 'cwl-rm', lvTxt(1)); rm.setAttribute('aria-hidden', 'true');
+    s.kids.forEach(function (c) { materialize(c, used); el.appendChild(c.el); });
+    el.appendChild(rm);
+    var txt = spaced(body); if (txt.length < 60 && s.kids.length) txt = clean(s.kids.map(function (c) { return c.h.textContent + '. ' + spaced(c.el.querySelector('.cwl-body')); }).join(' '));
+    var ht = clean(s.h.textContent); if (ht && txt.toLowerCase().indexOf(ht.toLowerCase()) === 0) txt = txt.slice(ht.length).replace(/^[\s:·.—-]+/, '');
+    if (GEN[ht.toLowerCase()] > 2 && txt.length > 20) { var m = txt.match(/^(.{20,90}?)(?:[.;!?](?:\s|$)|$)/); var gt = mk('div', 'cwl-gt', (m ? m[1] : txt.slice(0, 80)) + ' '); gt.appendChild(mk('span', 'cwl-gk', ht)); gt.setAttribute('aria-hidden', 'true'); el.insertBefore(gt, pv); el.classList.add('cwl-generic'); txt = txt.slice(m ? m[0].length : 80).trim() || txt; }
+    pv.textContent = txt.slice(0, 420);
+  }
+  var GEN = {};
+  function countGen(P) { GEN = {}; [].forEach.call(P.querySelectorAll('h2,h3,h4'), function (h) { var k = clean(h.textContent).toLowerCase(); GEN[k] = (GEN[k] || 0) + 1; }); }
+  function buildFlow(P) {
+    countGen(P);
+    var root = { kids: [], body: [], lvl: 1, el: P, key: '' }, stack = [root], top = 9;
+    [].forEach.call(P.children, function (n) { if (isH(n)) top = Math.min(top, +n.tagName[1]); });
+    [].slice.call(P.childNodes).forEach(function (n) {
+      var L = isH(n) ? +n.tagName[1] : 0;
+      if (L && L >= top) { while (stack.length > 1 && stack[stack.length - 1].lvl >= L) stack.pop(); stack.push(mkSec(n, L, stack[stack.length - 1])); }
+      else if (stack.length > 1) stack[stack.length - 1].body.push(n);
+    });
+    if (root.kids.length < 2) return null;
+    /* a long register or list before the first heading becomes its own first card, so the cards are not buried under it */
+    var intro = [].slice.call(P.childNodes).filter(function (n) { return root.kids[0].h.compareDocumentPosition(n) & 2; }), acc = 0, cut = -1;
+    for (var i = 0; i < intro.length; i++) { var n = intro[i], L = clean(n.textContent).length; if (n.nodeType === 1 && (L > 1500 || /^(TABLE|OL|UL|DL)$/.test(n.tagName) && L > 600) && acc > 0 || acc > 900) { cut = i; break; } acc += L; }
+    if (cut >= 0 && clean(intro.slice(cut).map(function (n) { return n.textContent; }).join(' ')).length > 2500) {
+      var gh = mk('h2', 'cwl-gh', LV_TITLE() || lvTxt(4)); P.insertBefore(gh, intro[cut]);
+      var gs = { h: gh, lvl: top, kids: [], body: intro.slice(cut), parent: root, el: null, key: '' }; root.kids.unshift(gs);
+    }
+    var used = {}; root.kids.forEach(function (s) { materialize(s, used); });
+    return root;
+  }
+  function looseSecs(nodes, root, top, first) {   /* loose nodes between blocks: a heading starts a card; a long run with no heading becomes one card */
+    var segs = [[]]; nodes.forEach(function (n) { if (isH(n)) segs.push([n]); else segs[segs.length - 1].push(n); });
+    var out = [];
+    segs.forEach(function (sg, k) {
+      if (!sg.length) return;
+      if (k > 0) { out.push({ h: sg[0], lvl: top, kids: [], body: sg.slice(1), parent: root, el: null, key: '' }); return; }
+      var acc = 0, cut = -1;
+      for (var i = 0; i < sg.length; i++) { var n = sg[i], L = clean(n.textContent).length; if (n.nodeType === 1 && ((L > 1500 || /^(TABLE|OL|UL|DL)$/.test(n.tagName) && L > 600) && (acc > 0 || !first) || acc > 900)) { cut = i; break; } acc += L; }
+      if (cut < 0 || clean(sg.slice(cut).map(function (n) { return n.textContent; }).join(' ')).length < 2500) return;
+      var gh = mk('h2', 'cwl-gh', first ? (LV_TITLE() || lvTxt(4)) : lvTxt(4)); sg[cut].parentNode.insertBefore(gh, sg[cut]);
+      out.push({ h: gh, lvl: top, kids: [], body: sg.slice(cut), parent: root, el: null, key: '' });
+    });
+    return out;
+  }
+  function buildBlocks(P) {
+    countGen(P);
+    var root = { kids: [], body: [], lvl: 1, el: P, key: '' }, used = {}, loose = [], seen = false, plan = [];
+    function flush() { looseSecs(loose, root, 2, !seen).forEach(function (s) { plan.push(s); }); loose = []; }
+    [].slice.call(P.childNodes).forEach(function (b) {
+      var blk = b.nodeType === 1 && /^(DETAILS|SECTION|ARTICLE)$/.test(b.tagName) && (b.querySelector('h2,h3,h4') || b.querySelector('summary'));
+      if (!blk) { loose.push(b); return; }
+      flush(); seen = true;
+      var h = b.querySelector('h2,h3,h4') || b.querySelector('summary'), sm = b.tagName === 'DETAILS' ? b.querySelector(':scope > summary') : null;
+      var hh = mk('h2', '', clean(h.textContent)); if (h.id) { hh.id = h.id; h.removeAttribute('id'); }
+      b.parentNode.insertBefore(hh, b);
+      if (sm) { b.open = true; sm.classList.add('cwl-sum'); } else if (h.tagName !== 'SUMMARY') h.classList.add('cwl-dup');
+      plan.push({ h: hh, lvl: 2, kids: [], body: [b], parent: root, el: null, key: '' });
+    });
+    flush();
+    if (plan.length < 3) return null;
+    plan.forEach(function (s) { root.kids.push(s); materialize(s, used); });
+    return root;
+  }
+  function secOf(el) { var s = el && el.closest && el.closest('.cwl-s'); return s && s._cwl; }
+  function depthOf(s) { var n = 0; while (s && s.h) { n++; s = s.parent; } return n; }
+  function findKey(k) { var f = null; (function walk(a) { a.forEach(function (s) { if (s.key === k) f = s; else walk(s.kids); }); })(LV.root.kids); return f; }
+  function topOff() { var y = 0; [].forEach.call(d.querySelectorAll('body *'), function (e) { if (e.offsetParent === null && getComputedStyle(e).position !== 'fixed') return; var cs = getComputedStyle(e); if ((cs.position === 'fixed' || cs.position === 'sticky') && e.getBoundingClientRect().top <= 1 && e.offsetHeight < innerHeight / 3 && e.offsetWidth > innerWidth / 2 && !e.closest('.cwl-on,.cw-gm')) y = Math.max(y, e.getBoundingClientRect().bottom); }); return Math.round(y); }
+  function paint(s, pg) {   /* s = null for the top level */
+    var P = LV.P; LV.cur = s; LV.pg = pg || 0;
+    [].forEach.call(P.querySelectorAll('.cwl-path,.cwl-cur,.cwl-card,.cwl-x'), function (e) { e.classList.remove('cwl-path', 'cwl-cur', 'cwl-card', 'cwl-x'); e.removeAttribute('tabindex'); e.removeAttribute('role'); e.removeAttribute('aria-label'); });
+    [].forEach.call(P.querySelectorAll('.cwl-more'), function (e) { e.remove(); });
+    var dep = depthOf(s); P.classList.toggle('cwl-sub', dep > 0); P.setAttribute('data-cwl-depth', dep);
+    var list;
+    if (s) { s.el.classList.add('cwl-cur'); for (var a = s.parent; a && a.h; a = a.parent) a.el.classList.add('cwl-path'); list = s.kids; }
+    else list = LV.root.kids;
+    var from = s ? LV.pg * 4 : 0, to = s ? from + 4 : list.length;
+    list.forEach(function (c, i) {
+      if (i < from || i >= to) { c.el.classList.add('cwl-x'); return; }
+      c.el.classList.add('cwl-card'); c.el.tabIndex = 0; c.el.setAttribute('role', 'button'); c.el.setAttribute('aria-label', lvTxt(1) + ': ' + clean(c.h.textContent));
+    });
+    if (s && list.length > to) {
+      var mc = mk('div', 'cwl-s cwl-card cwl-more'); mc.tabIndex = 0; mc.setAttribute('role', 'button');
+      mc.appendChild(mk('div', 'cwl-h cwl-mh', lvTxt(2) + ' (' + (list.length - to) + ')'));
+      mc.appendChild(mk('p', 'cwl-pv', list.slice(to, to + 6).map(function (c) { return clean(c.h.textContent); }).join(' · ')));
+      mc.appendChild(mk('span', 'cwl-rm', lvTxt(1))); mc._more = true; s.el.appendChild(mc);
+    }
+    var bk = LV.back; bk.hidden = dep === 0;
+    if (dep) { var up = s.parent && s.parent.h ? clean(s.parent.h.textContent) : (LV.pg ? clean(s.h.textContent) : LV.title || lvTxt(3)); if (LV.pg) up = clean(s.h.textContent); bk.querySelector('.cwl-bt').textContent = up.slice(0, 40); bk.style.top = (topOff() + 8) + 'px'; }
+  }
+  function hashFor(s, pg) { return s ? '#cwl-' + s.key + (pg ? '~' + (pg + 1) : '') : ''; }
+  function parseHash(h) { var m = /^#cwl-(.+?)(?:~(\d+))?$/.exec(decodeURIComponent(h || '')); if (!m) return null; var s = findKey(m[1]); return s ? { s: s, pg: m[2] ? +m[2] - 1 : 0 } : null; }
+  function anim(el, frames, ms, ease) { try { return el.animate(frames, { duration: ms, easing: ease || 'ease', fill: 'none' }).finished; } catch (e) { return Promise.resolve(); } }
+  function scrollTopOf() { return Math.max(0, LV.P.getBoundingClientRect().top + scrollY - topOff() - 8); }
+  function go(s, pg, dir, originEl) {   /* dir: 1 enter, -1 exit, 0 jump */
+    if (LV.busy) return; var P = LV.P, prevKey = hashFor(LV.cur, LV.pg);
+    if (dir > 0) LV.scrolls[prevKey] = scrollY;
+    function swap() {
+      paint(s, pg);
+      var y = dir < 0 && LV.scrolls[hashFor(s, pg)] != null ? LV.scrolls[hashFor(s, pg)] : (s ? scrollTopOf() : (dir < 0 ? 0 : scrollY));
+      scrollTo(0, y);
+    }
+    if (!dir || RM) {
+      if (RM && dir) { LV.busy = true; anim(P, [{ opacity: 1 }, { opacity: 0 }], 120).then(function () { swap(); return anim(P, [{ opacity: 0 }, { opacity: 1 }], 160); }).then(done); } else { swap(); done(); }
+      return;
+    }
+    LV.busy = true; de.classList.add('cwl-anim');
+    var pr = P.getBoundingClientRect(), o = originEl && originEl.getBoundingClientRect ? originEl.getBoundingClientRect() : null;
+    var ox = o ? (o.left + o.width / 2 - pr.left) : pr.width / 2, oy = o ? (o.top + o.height / 2 - pr.top) : Math.min(pr.height, innerHeight) / 2;
+    P.style.transformOrigin = ox + 'px ' + oy + 'px';
+    var OUT = dir > 0 ? 'perspective(800px) translateZ(260px)' : 'perspective(800px) translateZ(-110px)';
+    var IN = dir > 0 ? 'perspective(800px) translateZ(-110px)' : 'perspective(800px) translateZ(260px)';
+    anim(P, [{ transform: 'none', opacity: 1, filter: 'blur(0)' }, { transform: OUT, opacity: 0, filter: 'blur(' + (dir > 0 ? 2 : 0) + 'px)' }], dir > 0 ? 260 : 220, 'cubic-bezier(.45,0,.9,.5)').then(function () {
+      P.style.opacity = '0'; swap();
+      var pr2 = P.getBoundingClientRect(), tgt = dir < 0 && LV.lastLeft ? LV.lastLeft.getBoundingClientRect() : null;
+      P.style.transformOrigin = tgt ? (tgt.left + tgt.width / 2 - pr2.left) + 'px ' + (tgt.top + tgt.height / 2 - pr2.top) + 'px' : (pr2.width / 2) + 'px ' + Math.max(0, scrollY - (pr2.top + scrollY) + innerHeight / 3) + 'px';
+      P.style.opacity = '';
+      return anim(P, [{ transform: IN, opacity: 0 }, { transform: 'none', opacity: 1 }], dir > 0 ? 340 : 320, 'cubic-bezier(.15,.6,.3,1)');
+    }).then(done, done);
+    function done() {
+      LV.busy = false; de.classList.remove('cwl-anim'); P.style.transformOrigin = ''; P.style.opacity = '';
+      if (dir > 0 && s) { s.h.tabIndex = -1; s.h.focus({ preventScroll: true }); }
+      else if (dir < 0 && LV.lastLeft && LV.lastLeft.isConnected && LV.lastLeft.classList.contains('cwl-card')) LV.lastLeft.focus({ preventScroll: true });
+    }
+  }
+  function enterCard(card) {
+    if (card._more) { var s = LV.cur, pg = LV.pg + 1; history.pushState({ cwl: 1 }, '', hashFor(s, pg)); LV.lastLeft = card; go(s, pg, 1, card); return; }
+    var c = card._cwl; LV.lastLeft = card; history.pushState({ cwl: 1 }, '', hashFor(c, 0)); go(c, 0, 1, card);
+  }
+  function upOne() {
+    var s = LV.cur; if (!s) return;
+    if (history.state && history.state.cwl) { history.back(); return; }
+    var t = LV.pg ? { s: s, pg: LV.pg - 1 } : { s: s.parent && s.parent.h ? s.parent : null, pg: 0 };
+    LV.lastLeft = LV.pg ? null : s.el; history.replaceState(null, '', t.s ? hashFor(t.s, t.pg) : location.pathname + location.search); go(t.s, t.pg, -1);
+  }
+  function onPop() {
+    var t = parseHash(location.hash);
+    if (!t) { var tg = location.hash.length > 1 && d.getElementById(decodeURIComponent(location.hash.slice(1))); if (tg && LV.P.contains(tg)) { openFor(tg); return; } }
+    var ns = t ? t.s : null, npg = t ? t.pg : 0, cd = depthOf(LV.cur) * 10 + LV.pg, nd = depthOf(ns) * 10 + npg;
+    if (ns === LV.cur && npg === LV.pg) return;
+    if (nd < cd) LV.lastLeft = LV.cur && !LV.pg ? LV.cur.el : null;
+    go(ns, npg, nd < cd ? -1 : 1, nd < cd ? null : null);
+  }
+  function openFor(tg) {   /* a #link to text inside a card: open the level that holds it, then show it */
+    var s = secOf(tg); if (s && s.h === tg && s.parent) s = s.parent.h ? s.parent : null;
+    if (s && tg === s.el) s = s.parent && s.parent.h ? s.parent : null;
+    var sec = secOf(tg); var lvl = sec; if (sec && (tg === sec.h)) lvl = sec;
+    var pg = 0; if (lvl && lvl.parent && lvl.parent.h) { /* none */ }
+    paint(lvl || null, 0); setTimeout(function () { try { tg.scrollIntoView({ block: 'start' }); scrollBy(0, -topOff() - 52); } catch (e) {} }, 30);
+  }
+  function levels() {
+    if (NOCLIP.test(location.pathname) || location.pathname === '/' || /^\/(?:wales|argentina)\/?$/.test(location.pathname) || de.hasAttribute('data-cw-nolevels') || location.search.indexOf('full=1') >= 0) return;
+    var c = content(); if (!c || c.closest('.ghf-ui')) return;
+    if (c.querySelector('canvas,video,iframe[src*="player"],[data-cw-nolevels]') && clean(c.textContent).length < 4000) return;
+    var fp = flowParent(c), bp = blockParent(c), P = null, root = null;
+    function ok(x) { return x && !x.p.querySelector('input,select,textarea'); }
+    if (ok(bp) && (!ok(fp) || bp.n > fp.n || bp.p.contains(fp.p) && bp.n >= 3)) { P = bp.p; root = buildBlocks(P); }
+    if (!root && ok(fp)) { P = fp.p; root = buildFlow(P); }
+    if (!root || clean(P.textContent).length < 1200) return;
+    var h1 = d.querySelector('main h1,article h1,h1'); LV = { P: P, root: root, cur: null, pg: 0, scrolls: {}, busy: false, title: h1 ? clean(h1.textContent).split(/ [—–:|] /)[0] : '' };
+    P.classList.add('cwl-on');
+    var bk = mk('button', 'cwl-back'); bk.type = 'button'; bk.innerHTML = '<span class="cwl-ba" aria-hidden="true">‹</span><span>' + lvTxt(0) + '</span><span class="cwl-bt"></span>'; bk.hidden = true;
+    bk.onclick = upOne; P.insertBefore(bk, P.firstChild); LV.back = bk;
+    P.addEventListener('click', function (e) {
+      var card = e.target.closest('.cwl-card'); if (!card || !P.contains(card)) return;
+      var a = e.target.closest('a[href]'); if (a && !card.querySelector('.cwl-pv').contains(a) && card !== a) { if (!card.classList.contains('cwl-card')) return; }
+      e.preventDefault(); enterCard(card);
+    });
+    P.addEventListener('keydown', function (e) { var card = e.target.closest && e.target.closest('.cwl-card'); if (card && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); enterCard(card); } });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && LV.cur && !de.classList.contains('cw-gm-lock')) upOne(); });
+    addEventListener('popstate', onPop);
+    d.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a || a.closest('.cwl-card')) return; var id = decodeURIComponent(a.getAttribute('href').slice(1)), tg = id && d.getElementById(id); if (tg && P.contains(tg) && tg.getClientRects().length === 0) { e.preventDefault(); history.pushState({ cwl: 1 }, '', '#' + id); openFor(tg); } }, true);
+    addEventListener('beforeprint', function () { P.classList.remove('cwl-on'); }); addEventListener('afterprint', function () { P.classList.add('cwl-on'); });
+    var t0 = parseHash(location.hash);
+    if (t0) paint(t0.s, t0.pg);
+    else { paint(null, 0); var id = location.hash.length > 1 && decodeURIComponent(location.hash.slice(1)), tg = id && d.getElementById(id); if (tg && P.contains(tg)) openFor(tg); }
+    window.__cwGraph.levels = LV;
+  }
+  function start() {
+    watchBanner(); try { autoMore(); } catch (e) {}
+    function lv() { try { levels(); } catch (e) { if (window.console) console.warn('cw levels', e); } }
+    if (moreN && window.__cwGraph.loadAll) window.__cwGraph.loadAll(lv); else lv();
+  }
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', start); else start();
 })();
