@@ -90,6 +90,7 @@ table{border-collapse:collapse;width:100%;margin:1rem 0}th,td{padding:.45rem .6r
 <p><strong>Status:</strong> """ + esc(doc.get("status")) + """</p>
 <div class="note"><strong>How to read this:</strong> the model starts with a leading hypothesis so it can be tested. It does not treat a hypothesis as a fact. The court outcome, source gaps, alternative explanations and disconfirming tests remain visible alongside it.</div>
 <h2>Scope and essential corrections</h2><p>""" + esc(doc.get("scope", {}).get("1841_correction")) + """</p>
+<p>""" + esc(doc.get("scope", {}).get("williams_36_plot_claim")) + """</p>
 <p>""" + esc(doc.get("scope", {}).get("distinction")) + """</p>
 <table><tbody><tr><th>1939 agreement</th><td>""" + esc(doc.get("scope", {}).get("1939_parcel_b")) + """</td></tr>
 <tr><th>Parcel A</th><td>""" + esc(doc.get("scope", {}).get("parcel_a")) + """</td></tr>
