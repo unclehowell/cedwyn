@@ -1,4 +1,4 @@
-/* Cedwyn · documentary — scene page (page v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
+/* Cedwyn · documentary — scene page (page v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
    v1.3.0: film versions, viewing licence and checkout live in documentary.js (window.CedwynDoc); play() asks it first.
    Doors come from frames.json; a door opens when manifest.json in the film's storage repository lists its clip.
    The page reads the storage repository at run time (frames, manifest, prompt, scripts, subtitles, media), so the daily
@@ -43,8 +43,8 @@
       .catch(function () { var local = "data/" + path.replace(/^subs\//, "scripts/").replace(/^PROMPT\.md$/, "prompt.md");
         return fetch(local).then(function (r) { if (!r.ok) throw r.status; return as === "text" ? r.text() : r.json(); }); });
   }
-  try { var st = localStorage.getItem("cedwyn-movie-subs"); if (st === "0") { S.subs = false; S.subsOffLegacy = true; } S.audio = localStorage.getItem("cedwyn-movie-audio-v2"); S.sub = localStorage.getItem("cedwyn-movie-sublang-v2"); S.subsOffLegacy = false; if (S.sub && S.sub !== "off" && !T[S.sub]) S.sub = null; } catch (e) {}
-  if (!S.audio) S.audio = "cy";   // v1.4.1 (30 Oct 2026): every door starts in Welsh audio; subtitles follow the site language
+  try { var st = localStorage.getItem("cedwyn-movie-subs"); if (st === "0") { S.subs = false; S.subsOffLegacy = true; } S.audio = localStorage.getItem("cedwyn-movie-audio"); S.sub = localStorage.getItem("cedwyn-movie-sublang"); if (S.sub && S.sub !== "off" && !T[S.sub]) S.sub = null; } catch (e) {}
+  if (!S.audio) S.audio = lang();
   function paintStatic() {
     var q = document.querySelectorAll("[data-t]"); for (var i = 0; i < q.length; i++) q[i].textContent = t(q[i].getAttribute("data-t"));
     var qp = document.querySelectorAll("[data-tp]"); for (var i2 = 0; i2 < qp.length; i2++) { qp[i2].setAttribute("placeholder", t(qp[i2].getAttribute("data-tp"))); qp[i2].setAttribute("aria-label", t(qp[i2].getAttribute("data-tp"))); }
@@ -172,7 +172,7 @@
   // player: the clip plays muted; the chosen language track plays beside it, kept in step.
   // Playback controls (v1.2.0): play/pause, position, full screen, audio language, subtitle language (independent of audio).
   var V = $("cm-video"), A = $("cm-audio"), ST = $("cm-stage"), cur = null, LANGS = ["cy", "en", "es"], NAT = {cy: "Cymraeg", en: "English", es: "Español"}, cuesBy = {}, trackUrls = [], iosFS = false, idleT = null;
-  function subLang() { return S.sub ? S.sub : lang(); }
+  function subLang() { return S.sub ? S.sub : (S.subsOffLegacy ? "off" : S.audio); }
   function subPath(L) { return cur.m.subs && cur.m.subs[L] ? cur.m.subs[L] : "subs/" + cur.f.id + "." + L + ".vtt"; }
   function play(f, m) {
     var DG = window.CedwynDoc; if (DG && !DG.canPlay(f.n)) { DG.locked(f.n); return; }   // newest scenes: licence or membership (documentary.js)
@@ -249,8 +249,8 @@
   // in full screen the controls fade after 3 s of playback and come back on any touch, mouse move or key
   function poke() { ST.classList.remove("cm-idle"); clearTimeout(idleT); if (ST.classList.contains("cm-isfs") && !V.paused) idleT = setTimeout(function () { if (ST.contains(document.activeElement) && document.activeElement !== V && document.activeElement !== document.body && document.activeElement.tagName === "INPUT") return; ST.classList.add("cm-idle"); }, 3000); }
   ["mousemove", "touchstart", "keydown"].forEach(function (ev) { ST.addEventListener(ev, poke, {passive: true}); });
-  function pickAudio(a) { S.audio = a; try { localStorage.setItem("cedwyn-movie-audio-v2", S.audio); } catch (e) {} setAudio(); trackModes(); drawCue(); paintStatic(); paintPlayer(); }
-  function pickSub(s) { S.sub = s; if (s !== "off") S.subLast = s; S.subsOffLegacy = false; try { localStorage.setItem("cedwyn-movie-sublang-v2", s); localStorage.setItem("cedwyn-movie-subs", s === "off" ? "0" : "1"); } catch (e) {} trackModes(); drawCue(); paintStatic(); paintPlayer(); }
+  function pickAudio(a) { S.audio = a; try { localStorage.setItem("cedwyn-movie-audio", S.audio); } catch (e) {} setAudio(); trackModes(); drawCue(); paintStatic(); paintPlayer(); }
+  function pickSub(s) { S.sub = s; if (s !== "off") S.subLast = s; S.subsOffLegacy = false; try { localStorage.setItem("cedwyn-movie-sublang", s); localStorage.setItem("cedwyn-movie-subs", s === "off" ? "0" : "1"); } catch (e) {} trackModes(); drawCue(); paintStatic(); paintPlayer(); }
   Array.prototype.forEach.call(document.querySelectorAll(".cm-pa"), function (b) { b.onclick = function () { pickAudio(b.getAttribute("data-a")); }; });
   Array.prototype.forEach.call(document.querySelectorAll(".cm-ps"), function (b) { b.onclick = function () { pickSub(b.getAttribute("data-s")); }; });
   function closePlayer() { if (isFS()) exitFS(); V.pause(); A.pause(); $("cm-player").hidden = true; V.removeAttribute("src"); while (V.firstChild) V.removeChild(V.firstChild); V.load(); cur = null; cuesBy = {}; $("cm-cue").textContent = ""; }
