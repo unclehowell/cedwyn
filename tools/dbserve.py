@@ -13,7 +13,8 @@ DIST = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else 'dist')
 DBX = re.compile(r'\.(json|csv|xml|geojson|png|jpe?g|gif|webp|svg|avif|ico|bmp|tiff?|pdf|docx?|mp3|m4a|ogg|wav)$', re.I)
 KEEPNAME = re.compile(r'(^|/)(favicon[^/]*|apple-touch-icon[^/]*|android-chrome[^/]*|mstile[^/]*|safari-pinned-tab[^/]*|[^/]*\.ico|sitemap[^/]*\.xml|'
                       r'[^/]*(feed|rss|atom)[^/]*\.xml|browserconfig\.xml|manifest\.json|opensearch[^/]*\.xml)$', re.I)
-KEEPPREFIX = ('/wayback/snap/',)   # data files a page fetches by an address built at run time - Sion's Tab agent
+KEEPPREFIX = ('/wayback/snap/',)
+APPDB = re.compile(r'/_db/view\.json$|/_ui/[^/]+\.a2ui\.json$')   # 30 Oct 2026 (ADR-002): each webapp's own database and its A2UI surfaces stay plain files so agents, webmcp and header graphs read them without the service worker - Sion's Tab agent   # data files a page fetches by an address built at run time - Sion's Tab agent
 KIND = {'json': 'data', 'csv': 'data', 'xml': 'data', 'geojson': 'data', 'pdf': 'document', 'doc': 'document', 'docx': 'document',
         'mp3': 'audio', 'm4a': 'audio', 'ogg': 'audio', 'wav': 'audio'}
 def kind(p): return KIND.get(p.rsplit('.', 1)[-1].lower(), 'image')
@@ -100,7 +101,8 @@ def main():
         # 27 Oct 2026 (P-008): the Wayback snapshot page builds its bucket address at run time ('/wayback/snap/b/'+n+'.json'),
         # which FETCHLIT cannot see, so every bucket was dropped and /wayback/go/ found no captured copy (404). Keep them as files.
         why = keep.get(path) or ('fetched by browsers outside a service worker' if KEEPNAME.search(path) else None) \
-            or ('fetched by script (built path)' if path.startswith(KEEPPREFIX) else None)
+            or ('fetched by script (built path)' if path.startswith(KEEPPREFIX) else None) \
+            or ('webapp database / A2UI surface (read without a service worker)' if APPDB.search(path) else None)
         if why:
             kept_why[why] += 1; rep['kept_' + kind(path)] += 1
             if len(kept_examples) < 20: kept_examples.append([path, why])

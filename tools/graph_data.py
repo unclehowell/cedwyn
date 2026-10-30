@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""graph_data.py 1.0.0 - per-section scatter data for the header graph promo (cw-graph.js).
+"""graph_data.py 1.1.0 - per-section scatter data for the header graph promo (cw-graph.js).
 Asked for 01:27 GMT 30 Oct 2026: each webapp area's header banner opens a full-screen scatter graph of the data that area
 shows. Runs at the end of site.py (wrapped in try: never stops a build). Writes dist/_cedwyn/graph/<area>.json in one compact
 shape: {v, area, title, x:{label,type}, y:{label,type,cats}, c:{label,cats}, p:[[x, y, colour, label, href], ...]}.
@@ -104,12 +104,67 @@ def pages(dist, area, title):
     if sum(1 for r in rows if r['x']) < 5: return None
     return pack(area, title, 'Date', 'Part of the section', 'Page', rows, ymax=12, cmax=2)
 
+# 30 Oct 2026 (owner 14:18 GMT): every header graph plots ONLY its own webapp's database. Dartboard's database is its own
+# reply ledger (data/snl-mail.json + data/roadmap.json of the Dartboard app), never the central catalogue or its pages.
+# 2025/26 replies: green = positive (records disclosed), amber = less than positive (holding, partial, redirected, fee or
+# clarification), red = less still (refused, not held, declined, or no reply by the statutory date). - Sion's Tab agent
+RAG_CATS = ['Positive', 'Less than positive', 'Refused, not held or no reply']
+RAG_COLS = ['#29a36a', '#e0a100', '#d64545']
+RAG_GREEN = {'substantive disclosure', 'subject-access response'}
+RAG_RED = {'not held', 'not held (review upheld)', 'refusal', 'declined', 'not found'}
+DART_ORIGINS = ('https://dartboard.righteous.workers.dev', 'https://dartboard.bucklerfamily.estate')
+def _app_json(dist, app, rel):
+    f = dist / app / rel
+    if f.exists(): return json.loads(f.read_text('utf-8')), '/%s/%s' % (app, rel)
+    import urllib.request
+    for o in DART_ORIGINS:
+        try:
+            with urllib.request.urlopen(urllib.request.Request(o + '/' + rel, headers={'User-Agent': 'cedwyn-build'}), timeout=60) as r:
+                return json.loads(r.read().decode('utf-8')), '/%s/%s' % (app, rel)
+        except Exception: continue
+    return None, None
+def rag_class(c):
+    c = (c or '').strip().lower()
+    return 0 if c in RAG_GREEN else 2 if c in RAG_RED else 1
+def dartboard(dist):
+    mail, src = _app_json(dist, 'dartboard', 'data/snl-mail.json')
+    if not mail: return None
+    road, _ = _app_json(dist, 'dartboard', 'data/roadmap.json')
+    names = {l.get('id'): l.get('name') for l in (road or {}).get('lanes', [])}
+    rows = []
+    for lane, msgs in (mail.get('lanes') or {}).items():
+        inst = names.get(lane) or lane.replace('-', ' ').title()
+        for m in msgs:
+            d = (m.get('d') or '')[:10]
+            if m.get('out') or d[:4] not in ('2025', '2026'): continue
+            k = rag_class(m.get('c')); gid = (m.get('id') or '').replace('gm-', '')
+            rows.append({'x': d, 'y': inst, 'k': k, 'l': '%s · %s' % ((m.get('c') or 'reply').capitalize(), inst), 'h': '/email/reference/%s/' % gid if gid else ''})
+    for l in (road or {}).get('lanes', []):
+        for s in l.get('steps', []):
+            d = (s.get('date') or '')[:10]
+            if s.get('status') == 'missed' and d[:4] in ('2025', '2026'):
+                rows.append({'x': d, 'y': l.get('name') or l.get('id'), 'k': 2, 'l': 'No reply by the statutory date · %s' % (l.get('name') or ''), 'h': ''})
+    if not rows: return None
+    rows.sort(key=lambda r: r['x'])
+    ys = top_cats([r['y'] for r in rows], 14)
+    def ix(v): return ys.index(v) if v in ys else len(ys) - 1
+    return {'v': 1, 'area': 'dartboard', 'title': 'Disclosure Dartboard — replies 2025/26', 'source': src,
+            'x': {'label': 'Date', 'type': 'date'}, 'y': {'label': 'Institution', 'type': 'cat', 'cats': ys},
+            'c': {'label': 'Reply', 'cats': RAG_CATS, 'colors': RAG_COLS},
+            'p': [[r['x'], ix(r['y']), r['k'], label(r['l'], 90), r['h']] for r in rows[:MAXP]]}
+
+# Build check (owner 14:18 GMT 30 Oct): a graph may only name its own webapp's data as its source.
+SHARED_OK = {'research': 'data/evidence-grades.json', 'docs': 'data/evidence-grades.json'}   # evidence apps: the evidence register is their own db until WP2
+def own_source(area, j):
+    s = j.get('source') or ''
+    return s.startswith('/%s/' % area) or s == '/%s pages' % area or SHARED_OK.get(area) == s
+
 def run(dist):
     dist = pathlib.Path(dist); out = dist / '_cedwyn' / 'graph'; out.mkdir(parents=True, exist_ok=True)
     areas = []
     try: areas = json.loads((dist / 'areas.json').read_text('utf-8')).get('areas', [])
     except Exception: pass
-    done = {}; special = {'qa': lambda: qa(dist), 'email': lambda: email(dist), 'research': lambda: evidence(dist, 'research'), 'docs': lambda: evidence(dist, 'docs')}
+    done = {}; special = {'dartboard': lambda: dartboard(dist), 'qa': lambda: qa(dist), 'email': lambda: email(dist), 'research': lambda: evidence(dist, 'research'), 'docs': lambda: evidence(dist, 'docs')}
     for k, fn in special.items():
         try: j = fn()
         except Exception as e: j = None; print('graph_data', k, 'failed', e)
@@ -120,11 +175,15 @@ def run(dist):
         try: j = pages(dist, aid, a.get('title') or aid)
         except Exception as e: j = None; print('graph_data', aid, 'failed', e)
         if j: done[aid] = j
+    SRC = {'qa': '/qa/questions.json', 'email': '/email/view/index.json', 'research': 'data/evidence-grades.json', 'docs': 'data/evidence-grades.json'}
+    for k, j in done.items(): j.setdefault('source', SRC.get(k) or '/%s pages' % k)
+    bad = sorted(k for k, j in done.items() if not own_source(k, j))
+    for k in bad: print('::warning::graph_data: the %s graph plots %s, not its own webapp database' % (k, done[k].get('source')))
     for k, j in done.items(): (out / (k + '.json')).write_text(json.dumps(j, ensure_ascii=False, separators=(',', ':')), 'utf-8')
-    rep = {k: len(j['p']) for k, j in done.items()}
+    rep = {k: {'points': len(j['p']), 'source': j.get('source'), 'own_db': k not in bad} for k, j in done.items()}
     try: (dist / '_cedwyn' / 'reports').mkdir(parents=True, exist_ok=True); (dist / '_cedwyn' / 'reports' / 'graph_data.json').write_text(json.dumps(rep, indent=1))
     except Exception: pass
-    print('graph_data 1.0.0:', rep)
+    print('graph_data 1.1.0:', rep)
     return rep
 
 if __name__ == '__main__':

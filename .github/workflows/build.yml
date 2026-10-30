@@ -88,6 +88,32 @@ jobs:
       - name: Public voice check (report-only; no owner address, agent instructions or to-dos on human pages — tools/check_public_voice.py)
         if: success()
         run: python3 tools/check_public_voice.py dist --warn-only || echo "::warning::public voice check did not complete"
+      - name: Header graph check (each webapp's graph plots only its own database; report-only, owner rule 30 Oct 2026)
+        if: always()
+        run: |
+          python3 - <<'PY' || echo "::warning::header graph check did not complete"
+          import json
+          r = json.load(open('dist/_cedwyn/reports/graph_data.json'))
+          bad = [k for k, v in r.items() if isinstance(v, dict) and not v.get('own_db')]
+          print('header graphs:', len(r), 'own-db:', len(r) - len(bad), 'not own:', bad)
+          for k in bad: print('::warning::header graph %s plots %s, not its own webapp database' % (k, r[k].get('source')))
+          PY
+      - name: Prune query-named duplicate assets (P-027 b, after every writer; Pages ignores '?v=' so a byte-identical 'x.js@v=…' is never served)
+        if: success()
+        run: |
+          python3 - <<'PY'
+          import os, re, filecmp
+          n = 0
+          for r, d, f in os.walk('dist'):
+              for x in f:
+                  m = re.match(r'^(.+\.(?:js|css))@[^/]*$', x)
+                  if not m: continue
+                  a = os.path.join(r, x); b = os.path.join(r, m.group(1))
+                  try:
+                      if os.path.isfile(b) and filecmp.cmp(a, b, shallow=False): os.remove(a); n += 1
+                  except OSError: pass
+          print('query-named duplicate assets removed (pre-measure):', n)
+          PY
       - name: Measure
         if: always()
         run: |
