@@ -187,3 +187,15 @@ html.ghf-inv .cm-stage.cm-isfs video,html.ghf-inv .cm-stage:fullscreen video{fil
 .cm-artbtn{flex:none;display:inline-flex;align-items:center;gap:5px;min-height:32px;padding:4px 10px;border:1px solid currentColor;border-radius:999px;background:transparent;color:var(--mut,#9aa59c);font:inherit;font-size:12px;line-height:1.2;cursor:zoom-in}
 .cm-artbtn:before{content:"⤢";font-size:13px}
 .cm-artbtn:hover,.cm-artbtn:focus-visible{color:var(--gold);outline:none;border-color:var(--gold)}
+
+/* v1.4.2 (30 Oct 2026): no intro panel or page-level bar; the page opens on the scenes. Audio/subtitles are in the player; the version select sits in the player's control bar */
+.cm-hero,.cm-bar,#cm-drawer,#cm-menu{display:none!important}
+#cm-main .cm-grid{margin-top:10px}
+.cm-pc .cm-pc-ver{max-width:none;margin:0;padding:0;background:none;border:0;border-radius:0;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.cm-pc .cm-pc-ver[hidden]{display:none!important}
+.cm-pc .cm-pc-ver .cd-row{flex:1 1 auto;gap:6px;flex-wrap:nowrap}
+.cm-pc .cm-pc-ver .cd-l{font-size:12px;color:var(--mut);letter-spacing:.02em;text-transform:none;min-width:68px}
+.cm-pc .cm-pc-ver .cd-sel{flex:0 1 auto;width:auto;max-width:100%;font-size:13px;padding:6px 8px;min-height:36px;border-radius:999px}
+.cm-pc .cm-pc-ver .cd-note{display:none!important}
+.cm-pc .cm-pc-ver .cd-pay{flex-basis:100%;margin-top:4px;padding-top:6px;font-size:13px}
+@media (max-width:420px){.cm-pc .cm-pc-ver .cd-l{min-width:0;font-size:11.5px}}
