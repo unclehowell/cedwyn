@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.3] - 2026-10-30
+
+### Changed
+- Master highlight report refreshed for the 22–30 October 2026 period: added a compacted, coverage-labelled HubSpot work-queue view (snapshot 30 Oct 00:41 UTC: 2,065 task records; 1,121 completed; 944 open; composition and due-date caveats labelled) and an evidenced PRINCE2 controls/gaps section from queue-recorded governance tasks.
+- Dashboard gained a compact work-queue section linking to the highlight report and the new machine-readable snapshot.
+- No project percentages, RAG states, gate criteria or role appointments were changed; the 22 Oct measures remain with their existing labels, and no like-for-like queue movement is published because snapshot coverage differs.
+
+### Added
+- `data/hubspot-snapshot.json`: machine-readable compacted queue snapshot with counts, coverage notes, review-gate aggregates and governance task states.
+
+
 ## [0.1.1] - 2026-10-24
 
 ### Fixed

@@ -1,0 +1,55 @@
+{
+  "snapshot_utc": "2026-10-30T00:41Z",
+  "source": "HubSpot tasks API, all owners, portal 149419802",
+  "coverage_note": "All task records returned by the live tasks API at the snapshot time. The 2026-10-22 baseline (551 records) used different coverage, so no like-for-like movement between snapshots is published.",
+  "counts": {
+    "total": 2065,
+    "completed": 1121,
+    "not_started": 847,
+    "in_progress": 43,
+    "waiting": 54,
+    "deferred": 0,
+    "completed_pct": 54
+  },
+  "types": { "todo": 1826, "email": 239, "call": 0 },
+  "email_records_note": "Email-type task records are queue records, not proof of Gmail drafts or sent mail.",
+  "open_past_recorded_due_date": {
+    "count": 722,
+    "note": "Planning placeholders are common in this queue; this is not a list of missed obligations."
+  },
+  "queue_priorities": [
+    "Historical property records custody requests",
+    "Independent pre-publication draft reviews",
+    "Deadline and preservation-clock reconciliation",
+    "Parcel evidence tagging"
+  ],
+  "review_gate": {
+    "rule": "Outgoing email drafts pass a multi-agent review gate before any Gmail draft; the Executive is the final quality checker and sender.",
+    "tiers": { "routine": "3 reviews by 2 distinct seats", "escalation": "10 reviews by 4 distinct seats" },
+    "board_rows": 140,
+    "board_ready": 0,
+    "seats": 5,
+    "note": "Board counters describe the review board only, not the mailbox. Review capacity is the current bottleneck."
+  },
+  "governance_evidence": [
+    { "id": "CTRL01", "product": "Stage S0 baseline and ledger reconciliation", "status": "IN_PROGRESS" },
+    { "id": "CTRL02", "product": "Deadline, limitation and preservation-clock audit", "status": "IN_PROGRESS" },
+    { "id": "HR-06", "product": "Highlight report 22 October 2026", "status": "POSTED" },
+    { "id": "HR-07", "product": "Highlight report (next)", "status": "OPEN" },
+    { "id": "GOV01", "product": "Programme PRINCE2 tailoring", "status": "NOT_STARTED" },
+    { "id": "GOV06", "product": "Risk register upkeep", "status": "NOT_STARTED" },
+    { "id": "GOV11", "product": "Phase 1 tolerance baseline", "status": "COMPLETED" },
+    { "id": "D17", "product": "Project tolerances", "status": "NOT_STARTED", "note": "Unreconciled with GOV11." },
+    { "id": "D15", "product": "Role structure: Executive also Senior User; interim AI project manager", "status": "NOT_STARTED", "note": "Proposed decision, not an agreed appointment." }
+  ],
+  "products_not_evidenced_in_queue": [
+    "Approved Brief",
+    "Business Case",
+    "Stage plans",
+    "End-stage reports",
+    "Exception reports"
+  ],
+  "products_note": "Not found in a queue search; this does not prove absence across the repository and other sources.",
+  "assurance": "Independent Project Assurance is not appointed; known governance gap.",
+  "growth_audit": { "proposals_awaiting_decision": 16, "owner": "Programme Office; Executive go/no-go" }
+}

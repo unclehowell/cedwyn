@@ -6,8 +6,9 @@
 <title>Nomenclature Register Repair · Project Control Sheet</title>
 <meta name="description" content="PRINCE2-style control sheet for the Cedwyn nomenclature register: scope, product description, acceptance, risks, decisions and lessons."/>
 <link rel="stylesheet" href="/assets/p2.css?v=1"/>
-<script src="https://bucklerfamily.estate/ghf-lang/ghf-lang.js?v=2.0.3" defer></script>
-<script src="https://bucklerfamily.estate/ghf-lang/ghf-boot.js?v=2.0.3"></script>
+<script src="https://bucklerfamily.estate/ghf-lang/ghf-lang.js?v=2.1.2" defer></script>
+<script src="https://bucklerfamily.estate/ghf-lang/ghf-boot.js?v=2.1.2"></script>
+<script src="https://bucklerfamily.estate/ebook/cta.js" defer></script>
 </head>
 <body>
 <main class="p2">
@@ -41,7 +42,7 @@
 <tr><td>G1 · Source control</td><td>Change merged into the nomenclature branch with the old route retained and counts validated against lexicon 1.0.1.</td><td>Merge conflict, changed source count or redirect/canonical regression.</td></tr>
 <tr><td>G2 · Build and publish</td><td>Cedwyn assembly completes, the build commits the generated site to the served site branch, and deployment reports success.</td><td>Build fails, deployment does not start, stale source snapshot is assembled, or the main link checker rewrites/misses a required internal link.</td></tr>
 <tr><td>G3 · Live acceptance</td><td>The public cited route returns the new title, displays 148 rows across 25 groups, search/status controls work, and no key source link or canonical route is broken.</td><td>Any count discrepancy, 404/redirect loop, missing body, unusable mobile layout, or unsupported evidential assertion.</td></tr>
-<tr><td>Scope tolerance</td><td>Change only this register presentation and the Project Office control record, plus the main site-area description needed to trigger and describe a real build.</td><td>New evidence, changed parcel boundaries, claims of legal fraud, title conclusions or a re-harvest are outside scope and require their own product/change record.</td></tr>
+<tr><td>Scope tolerance</td><td>Change only this register presentation and the Project Office control record, plus the main site-area description needed to trigger and describe a real build.</td><td>New evidence, changed parcel boundaries, legal or title conclusions, or a re-harvest are outside scope and require their own product/change record.</td></tr>
 <tr><td>Cost / schedule tolerance</td><td>£0 external spend; complete in the current release cycle.</td><td>Any paid dependency, major redesign, missing source data or build blocker is escalated as an exception, not silently absorbed.</td></tr>
 </tbody></table>
 <p class="note">Do not mark G2 or G3 passed from the Git commit alone. Record deployment identity and observed live checks in the Project Office / HubSpot log before declaring final acceptance.</p>
@@ -58,7 +59,7 @@
 </div></details>
 
 <details class="sec"><summary><h2>PRINCE2 mythology · what the controls mean in practice</h2><span class="pv">The story of control is not the evidence itself</span></summary><div class="body">
-<p>In this programme, “PRINCE2 mythology” is used deliberately for the governing story that turns work into roles, stages, products, tolerances and decisions. The model is useful only when the claims it makes can be checked against the record.</p>
+<p>In this programme, “PRINCE2 mythology” is used deliberately for the governing story that turns work into roles, stages, products, tolerances and decisions. The model is useful only when the statements it makes can be checked against the record.</p>
 <ul>
 <li><b>Roles are appointments, not magic words.</b> Writing “Executive”, “Senior User”, “Project Board” or “Independent Project Assurance” does not appoint a person. Where the programme has not recorded an appointment, this work package does not invent one.</li>
 <li><b>A green report is not a verified fact.</b> The source merge can be proven from Git; publication can be proven from a successful build/deployment; acceptance requires observing the live URL. Each is a different claim with its own evidence.</li>
