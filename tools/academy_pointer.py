@@ -20,6 +20,12 @@ LLMS = """# Cedwyn
 - /academy/agents.json : read order, rules, flywheels and files as JSON
 - /academy/work.json : open, claimable jobs with definitions of done
 
+## Preservation and change-watch
+- /wayback/go/?u=<address> : our copy of any outside page, then the live website and the Internet Archive copy
+- /watchtower/ : dated changes to institutions' public records (scatter graph) and the absence watch
+- /watchtower/data/watch-events.json, /watchtower/data/watch-status.json, /watchtower/data/watch-log.csv : machine-readable watch data
+- /watchtower/data/foi-urls.csv : every URL given in FOI/EIR/SAR replies, with its Internet Archive status
+
 ## Main sections
 - /directory/ : every section of the site
 - /research/ : the research catalogue
