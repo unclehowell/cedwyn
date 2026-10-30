@@ -1,4 +1,11 @@
-/* Cedwyn · documentary — versions, licence and checkout (page v1.6.2). A tab.bot production.
+/* Cedwyn · documentary — versions, licence and checkout (page v1.7.0). A tab.bot production.
+   v1.7.0 (30 Oct 2026): access codes. The newest cut of each scene (#v0.0.2, £4.99) is opened per scene with an access code: tapping it
+   (or reaching it with Next/Back in the player) opens a box with "Enter access code" and "Buy now · £4.99". Buying goes to the film's
+   £4.99 checkout tagged with that scene and cut (client_reference_id doc-s<n>-v<cut>); the checkout returns to /documentary/?unlock=<session>,
+   and the page asks /api/doc/claim for the code, which the site issues only once the payment is confirmed (a few minutes). A code is
+   checked by /api/doc/check and, when valid for that scene, opens that cut on this device (localStorage cedwyn-doc-codes, "<n>|<cut>").
+   The old trust-based ?unlocked= return is gone. The reserved #next chip is no longer shown. CedwynDoc.gate(n) opens the box;
+   CedwynDoc.owns(n, v) says whether a cut is open here.
    v1.6.2 (30 Oct 2026; replaces the short-lived 1.6.1): version labels follow the site-wide scheme (/_cedwyn/versions.json): each door's newest cut is v0.0.2 at £4.99
    (bought with the film's one £4.99 link; members and buyers on this device play it); the previous cut is v0.0.1, free and the default;
    older cuts count backwards by creation date as -v0.0.1, -v0.0.2 …, all free (hashtags #v0.0.2, #v0.0.1, #_v0.0.1, #_v0.0.2 …; the reserved
@@ -90,20 +97,20 @@
   function nextBuy(target) { var a = asc(); for (var i = 0; i < a.length; i++) if (!has(a[i].v) && cmp(a[i].v, target) <= 0) return a[i]; return null; }
   function scenesTxt(x) { return x.frames.length === 1 ? t("scene") + " " + x.frames[0] : t("scenes") + " " + x.frames[0] + "–" + x.frames[x.frames.length - 1]; }
   function priceTxt(x) { return (x.free || PRICING.all_free) ? t("free") : "+" + gbp(x.step) + (x.total > x.step ? " (" + gbp(x.total) + " " + t("in_all") + ")" : ""); }
-  G.canPlay = function (n) { var c = G.chips ? chipOf(n, G.chosen(n)) : null; return c && c.paid ? G.ownsLatest() : has(verOf(n)); };   // v1.6.2
+  G.canPlay = function (n) { var c = G.chips ? chipOf(n, G.chosen(n)) : null; return c && c.paid ? owns(n, c.v) : has(verOf(n)); };   // v1.7.0: per scene and cut
   // v1.6.0: per-door version chips. A choice holds for this visit only, so a returning viewer always starts on the default cut.
   G.pickV = {};
   function subN(v) { var m = String(v).match(/-\d+\.\d+\.(\d+)$/); return m ? +m[1] : 0; }
   G.chips = function (n) {   // v1.6.2: newest first; labels and prices from the site-wide scheme (VS)
     var e = G.entries && G.entries[n]; if (!e) return [];
     var out = [], nx = e.next_version, cv = verOf(n);
-    if (nx && nx.status === "coming" && nx.version && String(nx.version).replace(/^v/, "") !== cv) out.push({v: String(nx.version).replace(/^v/, ""), coming: true, note: nx.note || ""});
+    void nx;   // v1.7.0: the reserved next version (#next) is no longer listed
     out.push({v: cv, current: true, note: e.cut_note || ""});
     (e.cuts || []).slice().sort(function (a, b) { return subN(b.version) - subN(a.version); }).forEach(function (c) {
       var v = String(c.version || "").replace(/^v/, ""); if (v && v !== cv) out.push({v: v, cut: c, note: c.note || ""}); });
     var made = out.filter(function (c) { return !c.coming; }), single = made.length === 1;
     made.forEach(function (c, i) {
-      if (i === 0) { c.latest = true; c.label = VS.latest; c.paid = !single && VS.price > 0; c.free = !c.paid; c.price = c.paid ? VS.price : 0; }
+      if (i === 0) { c.latest = true; c.label = VS.latest; c.paid = !single && VS.price > 0; c.free = !c.paid; c.price = c.paid ? VS.price : 0; c.open = !c.paid || owns(n, c.v); }
       else if (i === 1) { c.label = VS.previous; c.free = true; c.prev = true; }
       else { c.label = "0.0." + (i - 1); c.neg = true; c.free = true; }
     });
@@ -122,17 +129,19 @@
   function chipOf(n, v) { v = String(v || "").replace(/^v/, ""); return G.chips(n).filter(function (c) { return c.v === v; })[0] || null; }
   G.vlabel = function (n, v) { var c = chipOf(n, v); return c ? (c.coming ? VS.next : (c.neg ? "-" : "") + "v" + c.label) : "v" + String(v).replace(/^v/, ""); };   // plain text: v0.0.2, v0.0.1, -v0.0.1 …
   G.vtag = function (c) { return "#" + (c.coming ? VS.next : (c.neg ? "_" : "") + "v" + (c.label || c.v)); };   // hashtag: #v0.0.2, #v0.0.1, #_v0.0.1 …, #next
-  G.ownsLatest = function () { return isMem() || cmp(owned(), VS.latest) >= 0; };
+  // v1.7.0: a paid cut is open on this device when a valid access code for that scene and cut was entered here (or the viewer is a member).
+  function codes() { try { return JSON.parse(ls("cedwyn-doc-codes") || "{}") || {}; } catch (e) { return {}; } }
+  function owns(n, v) { if (isMem()) return true; var c = codes(); return !!(c[n + "|" + v] || c["0|*"]); }
+  function keep(scene, cut, code) { var c = codes(); c[(scene ? scene + "|" + cut : "0|*")] = code; ls("cedwyn-doc-codes", JSON.stringify(c)); }
+  G.owns = function (n, v) { var ch = chipOf(n, v); return !ch || !ch.paid || owns(n, ch.v); };
+  G.ownsLatest = function (n) { var l = n ? G.chips(n)[0] : null; return l ? G.owns(n, l.v) : isMem(); };
   G.defaultV = function (n) { var l = G.chips(n).filter(function (c) { return !c.coming; }); if (!l.length) return verOf(n);
-    return (l[0].paid && !G.ownsLatest() && l[1]) ? l[1].v : l[0].v; };
+    return (l[0].paid && !G.owns(n, l[0].v) && l[1]) ? l[1].v : l[0].v; };
   G.chosen = function (n) { return G.pickV[n] || G.defaultV(n); };
-  G.buyLatest = function (n) {   // the latest cut is paid: checkout with the film's one £4.99 link; back here it is open on this device
-    ls("cedwyn-doc-pending", VS.latest); ls("cedwyn-doc-agreed", new Date().toISOString() + " licence v1.0.0 (v" + VS.latest + ", door " + n + ")");
-    location.href = GO; return false;
-  };
+  G.buyLatest = function (n) { G.gate(n); return false; };   // v1.7.0: the gate (code or buy) replaces the straight-to-checkout jump
   G.pick = function (n, v) {
     var ok = chipOf(n, v); if (!ok || ok.coming) return false;
-    if (ok.paid && !G.ownsLatest()) return G.buyLatest(n);
+    if (ok.paid && !owns(n, ok.v)) { G.gate(n, ok.v); return false; }
     if (v === G.defaultV(n)) delete G.pickV[n]; else G.pickV[n] = v;
     document.dispatchEvent(new CustomEvent("cedwyn-doc-scene-ver", {detail: {n: n, v: v}})); return true;
   };
@@ -157,7 +166,7 @@
       .then(function (j) { G.member = !!(j && j.member === true); return G.member; }).catch(function () { return false; });
   }
   G.locked = function (n) {   // a locked scene: ask for its own version, never play another scene
-    var lc = chipOf(n, G.chosen(n)); if (lc && lc.paid && !G.ownsLatest()) { G.buyLatest(n); return; }   // v1.6.2
+    var lc = chipOf(n, G.chosen(n)); if (lc && lc.paid && !owns(n, lc.v)) { G.gate(n, lc.v); return; }   // v1.7.0
     askMember().then(function (m) { if (m) { changed(); return; }
       if (window.CedwynPay) { window.CedwynPay.open(n); return; }
       G.sel = verOf(n); ls("cedwyn-doc-sel", G.sel); paint(); var p = $("cd-pay"); if (p) { p.hidden = false; p.scrollIntoView({behavior: "smooth", block: "center"}); var c = $("cd-ok"); if (c) c.focus(); } });
@@ -180,22 +189,142 @@
   function init(man) {
     G.versions = build(man);
     var q = new URLSearchParams(location.search), un = q.get("unlock"), ud = q.get("unlocked"), want = q.get("v"), got = null;
-    if ((un && /^cs_[A-Za-z0-9_]{8,}$/.test(un)) || (ud && /^v?0\.\d+\.\d+$/.test(ud))) {   // back from checkout: one version step
-      var pend = ls("cedwyn-doc-pending") || (ud ? ud.replace(/^v/, "") : null), a = asc();
-      if (!pend) for (var i = 0; i < a.length; i++) if (!has(a[i].v)) { pend = a[i].v; break; }
-      if (pend) { if (cmp(pend, owned()) > 0) ls("cedwyn-doc-unlock", pend); ls("cedwyn-doc-sel", pend); if (un) ls("cedwyn-doc-session", un); got = pend; }
+    if (un || ud) {   // v1.7.0: back from checkout. The session id is only a claim ticket: the code comes from /api/doc/claim once the payment is confirmed.
+      if (un && /^cs_(live|test)_[A-Za-z0-9]{20,200}$/.test(un)) { var pl = pend(); if (pl.indexOf(un) < 0) pl.push(un); ls("cedwyn-doc-cs", JSON.stringify(pl.slice(-5))); got = un; }
       ls("cedwyn-doc-pending", null); q.delete("unlock"); q.delete("unlocked");
       try { history.replaceState(null, "", location.pathname + (q.toString() ? "?" + q : "") + location.hash); } catch (e) {}
     }
-    var keep = want ? want.replace(/^v/, "") : ls("cedwyn-doc-sel");
+    var keep = want ? want.replace(/^v/, "") : ls("cedwyn-doc-sel");   // (page-wide menu only; hidden while scenes are chosen with chips)
     if (keep && !want && /-/.test(keep)) keep = null;   // an earlier cut is never the default on a later visit
     var open_ = G.versions.filter(function (x) { return has(x.v); });
     G.sel = (keep && byV(keep)) ? keep : (open_.length ? open_[0].v : (G.versions[0] || {}).v);
-    G.ready = true; G.justUnlocked = got;
+    G.ready = true; G.justUnlocked = null;
+    if (pend().length) setTimeout(function () { claimAll(got); }, 300);   // v1.7.0: a checkout to collect (just now, or left open on an earlier visit)
     $("cd-ver").hidden = !!PRICING.all_free; changed();   // v1.6.0: no page-wide menu while every scene is free; versions are chips under each scene
-    document.dispatchEvent(new CustomEvent("cedwyn-doc-ready", {detail: {unlocked: got}}));
+    document.dispatchEvent(new CustomEvent("cedwyn-doc-ready", {detail: {unlocked: null}}));
     askMember().then(function (m) { if (m) changed(); });
   }
+
+  // ---- v1.7.0: access codes ------------------------------------------------------------------------------------------
+  var API = location.origin + "/api/doc";   // a full address: the site's fetch helper re-roots bare "/…" paths under the theme
+  var GT = {
+    en: {h: "Scene {n} · {v}", lead: "The newest cut of this scene. Enter an access code, or buy one for this scene for {p}.", code: "Access code", unlock: "Unlock",
+      buy: "Buy now · {p}", free: "Play {f} free instead", close: "Close", checking: "Checking…", bad: "That code is not valid. Check it and try again.",
+      other: "That code is for Scene {s}. It has been kept on this device for that scene.", older: "That code is for an earlier cut of this scene, which is now free.",
+      slow: "Too many tries. Please wait a few minutes.", net: "The code check is not answering. Please try again in a minute.", ok: "Unlocked. Playing now.",
+      paid_h: "Thank you", wait: "Your payment is being confirmed. Your access code will appear here, usually within 10 minutes. You can keep this page open, or come back to it on this device later.",
+      ready: "Your access code", keep_it: "Keep this code: it opens {v} of Scene {n} on any device.", keep_all: "Keep this code: it opens the newest cut of every scene on any device.",
+      play: "Play now", copy: "Copy", copied: "Copied", note: "Personal viewing licence. Codes are checked by this site; no account is needed.", lic: "Licence terms"},
+    cy: {h: "Golygfa {n} · {v}", lead: "Toriad diweddaraf yr olygfa hon. Rhowch god mynediad, neu prynwch un ar gyfer yr olygfa hon am {p}.", code: "Cod mynediad", unlock: "Datgloi",
+      buy: "Prynu nawr · {p}", free: "Chwarae {f} am ddim yn lle", close: "Cau", checking: "Yn gwirio…", bad: "Nid yw'r cod yn ddilys. Gwiriwch ef a rhowch gynnig arall arni.",
+      other: "Mae'r cod ar gyfer Golygfa {s}. Mae wedi'i gadw ar y ddyfais hon ar gyfer yr olygfa honno.", older: "Mae'r cod ar gyfer toriad cynharach o'r olygfa hon, sydd bellach am ddim.",
+      slow: "Gormod o ymdrechion. Arhoswch ychydig funudau.", net: "Nid yw'r gwiriad cod yn ateb. Rhowch gynnig arall arni mewn munud.", ok: "Wedi'i ddatgloi. Yn chwarae nawr.",
+      paid_h: "Diolch", wait: "Mae eich taliad yn cael ei gadarnhau. Bydd eich cod mynediad yn ymddangos yma, fel arfer o fewn 10 munud. Gallwch gadw'r dudalen hon ar agor, neu ddod yn ôl ati ar y ddyfais hon yn nes ymlaen.",
+      ready: "Eich cod mynediad", keep_it: "Cadwch y cod hwn: mae'n agor {v} o Olygfa {n} ar unrhyw ddyfais.", keep_all: "Cadwch y cod hwn: mae'n agor toriad diweddaraf pob golygfa ar unrhyw ddyfais.",
+      play: "Chwarae nawr", copy: "Copïo", copied: "Wedi'i gopïo", note: "Trwydded wylio bersonol. Mae'r wefan hon yn gwirio codau; nid oes angen cyfrif.", lic: "Telerau'r drwydded"},
+    es: {h: "Escena {n} · {v}", lead: "El montaje más reciente de esta escena. Introduzca un código de acceso o compre uno para esta escena por {p}.", code: "Código de acceso", unlock: "Desbloquear",
+      buy: "Comprar ahora · {p}", free: "Ver {f} gratis", close: "Cerrar", checking: "Comprobando…", bad: "Ese código no es válido. Compruébelo e inténtelo de nuevo.",
+      other: "Ese código es para la Escena {s}. Se ha guardado en este dispositivo para esa escena.", older: "Ese código es para un montaje anterior de esta escena, que ahora es gratis.",
+      slow: "Demasiados intentos. Espere unos minutos.", net: "La comprobación de códigos no responde. Inténtelo de nuevo en un minuto.", ok: "Desbloqueado. Reproduciendo.",
+      paid_h: "Gracias", wait: "Se está confirmando su pago. Su código de acceso aparecerá aquí, normalmente en menos de 10 minutos. Puede dejar esta página abierta o volver a ella más tarde en este dispositivo.",
+      ready: "Su código de acceso", keep_it: "Guarde este código: abre {v} de la Escena {n} en cualquier dispositivo.", keep_all: "Guarde este código: abre el montaje más reciente de todas las escenas en cualquier dispositivo.",
+      play: "Ver ahora", copy: "Copiar", copied: "Copiado", note: "Licencia personal de visionado. Este sitio comprueba los códigos; no hace falta cuenta.", lic: "Términos de la licencia"}
+  };
+  function gt(k, o) { var s = (GT[L()] || GT.en)[k] || GT.en[k]; o = o || {}; return s.replace(/\{(\w)\}/g, function (_, x) { return o[x] != null ? o[x] : ""; }); }
+  function pend() { try { var a = JSON.parse(ls("cedwyn-doc-cs") || "[]"); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
+  function dropPend(cs) { ls("cedwyn-doc-cs", JSON.stringify(pend().filter(function (x) { return x !== cs; }))); }
+  function buyUrl(n, v) {   // the film's £4.99 link, tagged with this scene and cut so the code issued opens exactly that
+    var ref = n ? "doc-s" + n + "-v" + String(v).replace(/\./g, "_") : "";
+    var to = "https://buy.stripe.com/aFa8wQ4xJfyLbCAaAL6Zy0I" + (ref ? "?client_reference_id=" + ref : "");
+    return "/wayback/go/?u=" + encodeURIComponent(to);
+  }
+  var GD = null, gateFor = null;
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  function dlg() {
+    if (GD) return GD;
+    GD = el("dialog", "cd-gate"); GD.id = "cd-gate"; GD.setAttribute("aria-labelledby", "cd-gate-h");
+    GD.innerHTML = '<button type="button" class="cd-gx" aria-label="Close">×</button><h2 id="cd-gate-h"></h2><p class="cd-glead"></p>' +
+      '<div class="cd-gwait" hidden><p class="cd-gwt"></p><div class="cd-gspin" aria-hidden="true"></div></div>' +
+      '<div class="cd-gcode" hidden><p class="cd-gcl"></p><p class="cd-gcv" translate="no"></p><p class="cd-gck"></p><div class="cd-grow"><button type="button" class="cd-gcopy"></button><button type="button" class="cd-gplay"></button></div></div>' +
+      '<form class="cd-gform" autocomplete="off"><label for="cd-gin" class="cd-gl"></label><div class="cd-grow"><input id="cd-gin" class="cd-gin" name="code" inputmode="text" autocapitalize="characters" spellcheck="false" placeholder="CDW-XXXX-XXXX-XXXX" maxlength="24"><button type="submit" class="cd-gok"></button></div>' +
+      '<p class="cd-gmsg" role="status" aria-live="polite"></p></form>' +
+      '<div class="cd-gbuyrow"><a class="cd-gbuy" rel="nofollow"></a><button type="button" class="cd-gfree"></button></div><p class="cd-gnote"><span></span> <a href="licence/"></a></p>';
+    document.body.appendChild(GD);
+    GD.querySelector(".cd-gx").onclick = function () { closeGate(); };
+    GD.addEventListener("click", function (e) { if (e.target === GD) closeGate(); });
+    GD.querySelector(".cd-gform").addEventListener("submit", function (e) { e.preventDefault(); tryCode(GD.querySelector(".cd-gin").value); });
+    GD.querySelector(".cd-gbuy").addEventListener("click", function () { if (!gateFor) return;
+      ls("cedwyn-doc-agreed", new Date().toISOString() + " licence v1.0.0 (scene " + gateFor.n + ", cut " + gateFor.v + ")"); ls("cedwyn-doc-pending", gateFor.n + "|" + gateFor.v); });
+    GD.querySelector(".cd-gfree").onclick = function () { var g = gateFor; closeGate(); if (!g) return; var l = G.chips(g.n), f = l.filter(function (c) { return !c.paid; })[0];
+      if (f) { G.pick(g.n, f.v); playScene(g.n); } };
+    GD.querySelector(".cd-gcopy").onclick = function () { var v = GD.querySelector(".cd-gcv").textContent, b = this;
+      try { navigator.clipboard.writeText(v).then(function () { b.textContent = gt("copied"); }); } catch (e) {} };
+    GD.querySelector(".cd-gplay").onclick = function () { var g = gateFor; closeGate(); if (g && g.n) { G.pick(g.n, G.chips(g.n)[0].v); playScene(g.n); } };
+    return GD;
+  }
+  function show() { var d = dlg(); if (!d.open) { if (typeof d.showModal === "function") d.showModal(); else d.setAttribute("open", ""); } return d; }
+  function closeGate() { if (GD) { if (GD.open && GD.close) GD.close(); else GD.removeAttribute("open"); } gateFor = null; if (claimT) { clearTimeout(claimT); claimT = null; } }
+  function mode(m) { var d = dlg(); d.querySelector(".cd-gwait").hidden = m !== "wait"; d.querySelector(".cd-gcode").hidden = m !== "code";
+    d.querySelector(".cd-gform").hidden = m !== "gate"; d.querySelector(".cd-gbuyrow").hidden = m !== "gate"; d.querySelector(".cd-glead").hidden = m !== "gate"; }
+  function playScene(n) {   // movie.js plays the cut chosen for door n (its play button runs the same checks)
+    if (window.CedwynPlayer && window.CedwynPlayer.playScene) { window.CedwynPlayer.playScene(n); return; }
+    var b = document.querySelector("#frame-" + n + " .cm-playbig"); if (b) b.click(); }
+  G.gate = function (n, v) {
+    var l = G.chips(n); v = v || (l[0] && l[0].v); var c = chipOf(n, v) || {}, f = l.filter(function (x) { return !x.paid; })[0];
+    gateFor = {n: n, v: v}; var d = dlg(); mode("gate");
+    var vt = G.vtag(c), price = gbp(c.price || VS.price);
+    d.querySelector("#cd-gate-h").textContent = gt("h", {n: n, v: vt});
+    d.querySelector(".cd-glead").textContent = gt("lead", {p: price});
+    d.querySelector(".cd-gl").textContent = gt("code"); d.querySelector(".cd-gok").textContent = gt("unlock");
+    d.querySelector(".cd-gx").setAttribute("aria-label", gt("close"));
+    var a = d.querySelector(".cd-gbuy"); a.textContent = gt("buy", {p: price}); a.href = buyUrl(n, v);
+    var fb = d.querySelector(".cd-gfree"); fb.hidden = !f; if (f) fb.textContent = gt("free", {f: G.vtag(f)});
+    d.querySelector(".cd-gnote span").textContent = gt("note"); d.querySelector(".cd-gnote a").textContent = gt("lic");
+    d.querySelector(".cd-gmsg").textContent = ""; d.querySelector(".cd-gin").value = "";
+    show(); try { d.querySelector(".cd-gin").focus({preventScroll: true}); } catch (e) {}
+  };
+  function tryCode(raw) {
+    var d = dlg(), msg = d.querySelector(".cd-gmsg"), g = gateFor; if (!g) return;
+    var code = String(raw || "").trim(); if (!code) { msg.textContent = gt("bad"); return; }
+    msg.textContent = gt("checking"); d.querySelector(".cd-gok").disabled = true;
+    fetch(API + "/check", {method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify({code: code, scene: g.n}), cache: "no-store"})
+      .then(function (r) { return r.json().catch(function () { return {ok: false, error: r.status === 429 ? "slow_down" : "net"}; }); })
+      .then(function (j) {
+        d.querySelector(".cd-gok").disabled = false;
+        if (j && j.ok) {
+          keep(j.scene, j.cut, j.code);
+          if (j.scene && j.cut !== g.v && j.cut !== "*") { msg.textContent = gt("older"); return; }
+          msg.textContent = gt("ok"); var n = g.n, v = g.v; setTimeout(function () { closeGate(); G.pick(n, v); document.dispatchEvent(new CustomEvent("cedwyn-doc-unlocked", {detail: {n: n, v: v}})); playScene(n); }, 500);
+          return;
+        }
+        var e = j && j.error; if (e === "other_scene") { msg.textContent = gt("other", {s: j.scene}); }
+        else msg.textContent = gt(e === "slow_down" ? "slow" : e === "net" ? "net" : "bad");
+      }).catch(function () { d.querySelector(".cd-gok").disabled = false; msg.textContent = gt("net"); });
+  }
+  var claimT = null;
+  function claimAll(fresh) {   // ask for the code of each checkout still waiting on this device; a fresh return shows the box at once
+    var list = pend(); if (!list.length) return; var cs = fresh && list.indexOf(fresh) >= 0 ? fresh : list[list.length - 1], tries = 0, shown = !!fresh;
+    var p = (ls("cedwyn-doc-pending") || "").split("|");
+    if (shown) { gateFor = {n: +p[0] || 0, v: p[1] || ""}; var d = dlg(); mode("wait"); d.querySelector("#cd-gate-h").textContent = gt("paid_h");
+      d.querySelector(".cd-gwt").textContent = gt("wait"); d.querySelector(".cd-gx").setAttribute("aria-label", gt("close")); show(); }
+    (function ask() {
+      tries++;
+      fetch(API + "/claim?cs=" + encodeURIComponent(cs), {cache: "no-store"}).then(function (r) { return r.json(); }).then(function (j) {
+        if (j && j.status === "ready" && j.code) {
+          keep(j.scene, j.cut, j.code); dropPend(cs); ls("cedwyn-doc-pending", null);
+          var d = dlg(), n = j.scene, c0 = n ? G.chips(n)[0] : null; gateFor = {n: n, v: j.cut}; mode("code");
+          d.querySelector("#cd-gate-h").textContent = gt("paid_h"); d.querySelector(".cd-gcl").textContent = gt("ready");
+          d.querySelector(".cd-gcv").textContent = j.code;
+          d.querySelector(".cd-gck").textContent = n ? gt("keep_it", {n: n, v: c0 ? G.vtag(c0) : "#v" + VS.latest}) : gt("keep_all");
+          d.querySelector(".cd-gcopy").textContent = gt("copy"); var pb = d.querySelector(".cd-gplay"); pb.textContent = gt("play"); pb.hidden = !n;
+          show(); document.dispatchEvent(new CustomEvent("cedwyn-doc-unlocked", {detail: {n: n, v: j.cut}})); return;
+        }
+        if (j && j.status === "invalid") { dropPend(cs); return; }
+        if (tries < 120) claimT = setTimeout(ask, tries < 8 ? 8000 : 15000);   // about 30 minutes, then again on the next visit
+      }).catch(function () { if (tries < 120) claimT = setTimeout(ask, 20000); });
+    })();
+  }
+  G.keepCode = keep; G.claim = claimAll;
   G.free = PRICING.free_scenes; window.CedwynDoc = G;
   document.addEventListener("DOMContentLoaded", function () {
     var s = $("cd-v"); if (!s) return;
