@@ -106,9 +106,10 @@ def shop_copy(D, t):
     if 'id="eb-shop-copy-css"' not in t:
         m = re.search(r'</head\s*>', t, re.I)
         if m: t = t[:m.start()] + SHOP_CSS + t[m.start():]
-    if 'id="whats-inside"' not in t:
-        m = re.search(r'<section class="eb-eds" id="editions".*?</section>', t, flags=re.S)
-        if m: t = t[:m.end()] + whats_inside(D) + t[m.end():]
+    if 'id="whats-inside"' not in t:   # after the books, before the questions: the first phone screen shows the books, prices and Buy (sales-fix run 33)
+        at = t.find('<section class="sl-band eb-about" id="digital-estate-books"')
+        if at < 0: at = t.rfind('</main>')
+        if at >= 0: t = t[:at] + whats_inside(D) + t[at:]
     if 'id="eb-trust"' not in t:   # site.py runs this before ebook_shelf.py builds the shelf, so the line goes at the top of <main>
         m = re.search(r'<section class="sh" id="shelf".*?</h2>', t, flags=re.S) or re.search(r'<main\b[^>]*>', t)
         if m: t = t[:m.end()] + trust_line() + t[m.end():]
