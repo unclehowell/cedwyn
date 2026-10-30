@@ -1,6 +1,8 @@
 /* Cedwyn · documentary — versions, licence and checkout (page v1.6.1). A tab.bot production.
-   v1.6.1 (30 Oct 2026): version labels follow the site-wide scheme (/_cedwyn/versions.json): each door's newest cut is shown as v0.0.2,
-   one older cut as v0.0.1, several older cuts as v0.0.1.1 (oldest) … v0.0.1.N; the reserved next version is #next. Display only (G.vlabel).
+   v1.6.1 (30 Oct 2026): version labels follow the site-wide scheme (/_cedwyn/versions.json): each door's newest cut is v0.0.2 at £4.99
+   (bought with the film's one £4.99 link; members and buyers on this device play it); the previous cut is v0.0.1, free and the default;
+   older cuts count backwards by creation date as -v0.0.1, -v0.0.2 …, all free (hashtags #v0.0.2, #v0.0.1, #_v0.0.1, #_v0.0.2 …; the reserved
+   next version is #next). Labels are display only.
    v1.6.0 (30 Oct 2026): versions are hashtag chips under each scene (movie.js 1.5.0), not a menu. Each door lists its own
    versions: a reserved next version marked "coming" (manifest entry "next_version": {version, status: "coming"}; not
    playable), the cut that plays now (free, selected by default) and its earlier cuts ("cuts", newest first). The choice is
@@ -88,40 +90,56 @@
   function nextBuy(target) { var a = asc(); for (var i = 0; i < a.length; i++) if (!has(a[i].v) && cmp(a[i].v, target) <= 0) return a[i]; return null; }
   function scenesTxt(x) { return x.frames.length === 1 ? t("scene") + " " + x.frames[0] : t("scenes") + " " + x.frames[0] + "–" + x.frames[x.frames.length - 1]; }
   function priceTxt(x) { return (x.free || PRICING.all_free) ? t("free") : "+" + gbp(x.step) + (x.total > x.step ? " (" + gbp(x.total) + " " + t("in_all") + ")" : ""); }
-  G.canPlay = function (n) { return has(verOf(n)); };
+  G.canPlay = function (n) { var c = G.chips ? chipOf(n, G.chosen(n)) : null; return c && c.paid ? G.ownsLatest() : has(verOf(n)); };   // v1.6.2
   // v1.6.0: per-door version chips. A choice holds for this visit only, so a returning viewer always starts on the default cut.
   G.pickV = {};
   function subN(v) { var m = String(v).match(/-\d+\.\d+\.(\d+)$/); return m ? +m[1] : 0; }
-  G.chips = function (n) {
+  G.chips = function (n) {   // v1.6.2: newest first; labels and prices from the site-wide scheme (VS)
     var e = G.entries && G.entries[n]; if (!e) return [];
     var out = [], nx = e.next_version, cv = verOf(n);
     if (nx && nx.status === "coming" && nx.version && String(nx.version).replace(/^v/, "") !== cv) out.push({v: String(nx.version).replace(/^v/, ""), coming: true, note: nx.note || ""});
-    out.push({v: cv, current: true, free: true, note: e.cut_note || ""});
+    out.push({v: cv, current: true, note: e.cut_note || ""});
     (e.cuts || []).slice().sort(function (a, b) { return subN(b.version) - subN(a.version); }).forEach(function (c) {
-      var v = String(c.version || "").replace(/^v/, ""); if (v && v !== cv) out.push({v: v, cut: c, free: true, note: c.note || ""}); });
-    var olds = out.filter(function (c) { return !c.coming && !c.current; }), k = olds.length;   // v1.6.1: site-wide labels (newest v0.0.2, older v0.0.1 / v0.0.1.N)
-    out.forEach(function (c) { c.label = c.coming ? VS.next : c.current ? VS.newest : (k === 1 ? VS.previous : VS.previous + "." + (k - olds.indexOf(c))); });
+      var v = String(c.version || "").replace(/^v/, ""); if (v && v !== cv) out.push({v: v, cut: c, note: c.note || ""}); });
+    var made = out.filter(function (c) { return !c.coming; }), single = made.length === 1;
+    made.forEach(function (c, i) {
+      if (i === 0) { c.latest = true; c.label = VS.latest; c.paid = !single && VS.price > 0; c.free = !c.paid; c.price = c.paid ? VS.price : 0; }
+      else if (i === 1) { c.label = VS.previous; c.free = true; c.prev = true; }
+      else { c.label = "0.0." + (i - 1); c.neg = true; c.free = true; }
+    });
+    out.forEach(function (c) { if (c.coming) c.label = VS.next; });
     return out;
   };
-  // v1.6.1: one version scheme across the site (/_cedwyn/versions.json): the newest version of anything is v0.0.2; one older version is v0.0.1;
-  // several older versions are v0.0.1.1 (oldest) … v0.0.1.N (most recent), each its own separate version (no ranges); in a hashtag an
-  // underscore, never a hyphen, joins a name to its version (#Name_v0.0.2).
-  // Labels are for display only; manifest versions (0.0.1-0.0.N), data-v attributes, downloads and saved choices keep their own values.
-  var VS = {newest: "0.0.2", previous: "0.0.1", next: "next"};
-  try { fetch("/_cedwyn/versions.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { var s = j && j.scheme; if (!s) return; ["newest", "previous", "next"].forEach(function (x) { if (typeof s[x] === "string" && s[x]) VS[x] = s[x]; }); document.dispatchEvent(new CustomEvent("cedwyn-doc-vlabels")); }).catch(function () {}); } catch (e) {}
-  G.vlabel = function (n, v) { var l = G.chips(n).filter(function (c) { return c.v === String(v).replace(/^v/, ""); })[0]; return l ? l.label : String(v).replace(/^v/, ""); };
-  G.chosen = function (n) { return G.pickV[n] || verOf(n); };
+  // v1.6.2: one version scheme across the site (/_cedwyn/versions.json): the newest version of anything is v0.0.2 (£4.99); the previous one is
+  // v0.0.1 (free); older ones count backwards by creation date as -v0.0.1, -v0.0.2 … (minus before the v; most recent older = -v0.0.1), all free;
+  // each is its own version (no ranges). In a hashtag the minus becomes an underscore: #v0.0.2, #v0.0.1, #_v0.0.1, #_v0.0.2 …. Labels are display only: manifest versions (0.0.1-0.0.N), data-v attributes, downloads
+  // and saved choices keep their own values. The latest cut is bought with the film's one £4.99 link (GO); the free v0.0.1 is the default.
+  var VS = {latest: "0.0.2", previous: "0.0.1", next: "next", price: 4.99};
+  try { fetch("/_cedwyn/versions.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { var s = j && j.scheme; if (!s) return;
+    ["latest", "previous", "next"].forEach(function (x) { if (typeof s[x] === "string" && s[x]) VS[x] = s[x]; }); if (typeof s.latest_price_gbp === "number") VS.price = s.latest_price_gbp;
+    document.dispatchEvent(new CustomEvent("cedwyn-doc-vlabels")); }).catch(function () {}); } catch (e) {}
+  G.vs = function () { return VS; };
+  function chipOf(n, v) { v = String(v || "").replace(/^v/, ""); return G.chips(n).filter(function (c) { return c.v === v; })[0] || null; }
+  G.vlabel = function (n, v) { var c = chipOf(n, v); return c ? (c.coming ? VS.next : (c.neg ? "-" : "") + "v" + c.label) : "v" + String(v).replace(/^v/, ""); };   // plain text: v0.0.2, v0.0.1, -v0.0.1 …
+  G.vtag = function (c) { return "#" + (c.coming ? VS.next : (c.neg ? "_" : "") + "v" + (c.label || c.v)); };   // hashtag: #v0.0.2, #v0.0.1, #_v0.0.1 …, #next
+  G.ownsLatest = function () { return isMem() || cmp(owned(), VS.latest) >= 0; };
+  G.defaultV = function (n) { var l = G.chips(n).filter(function (c) { return !c.coming; }); if (!l.length) return verOf(n);
+    return (l[0].paid && !G.ownsLatest() && l[1]) ? l[1].v : l[0].v; };
+  G.chosen = function (n) { return G.pickV[n] || G.defaultV(n); };
+  G.buyLatest = function (n) {   // the latest cut is paid: checkout with the film's one £4.99 link; back here it is open on this device
+    ls("cedwyn-doc-pending", VS.latest); ls("cedwyn-doc-agreed", new Date().toISOString() + " licence v1.0.0 (v" + VS.latest + ", door " + n + ")");
+    location.href = GO; return false;
+  };
   G.pick = function (n, v) {
-    var ok = G.chips(n).filter(function (c) { return c.v === v && !c.coming; })[0]; if (!ok) return false;
-    if (ok.current) delete G.pickV[n]; else G.pickV[n] = v;
+    var ok = chipOf(n, v); if (!ok || ok.coming) return false;
+    if (ok.paid && !G.ownsLatest()) return G.buyLatest(n);
+    if (v === G.defaultV(n)) delete G.pickV[n]; else G.pickV[n] = v;
     document.dispatchEvent(new CustomEvent("cedwyn-doc-scene-ver", {detail: {n: n, v: v}})); return true;
   };
-  G.cut = function (n) {   // the earlier cut of door n picked with its chips (v1.6.0) or the old version menu (v1.5.0), or null for the default cut
+  G.cut = function (n) {   // the cut of door n chosen with its chips, or null when the entry's own (newest) cut plays
     var e = G.entries && G.entries[n]; if (!e) return null;
-    if (G.pickV[n]) { for (var j = 0; j < (e.cuts || []).length; j++) if (String(e.cuts[j].version).replace(/^v/, "") === G.pickV[n]) return e.cuts[j]; return null; }
-    if (PRICING.all_free) return null;
-    var v = byV(G.sel); if (!v || !v.sub) return null;
-    for (var i = 0; i < (e.cuts || []).length; i++) if (String(e.cuts[i].version).replace(/^v/, "") === v.v) return e.cuts[i];
+    var v = G.chosen(n); if (!v || v === verOf(n)) return null;
+    for (var j = 0; j < (e.cuts || []).length; j++) if (String(e.cuts[j].version).replace(/^v/, "") === v) return e.cuts[j];
     return null;
   };
   G.allFree = function () { return !!PRICING.all_free; };
@@ -139,6 +157,7 @@
       .then(function (j) { G.member = !!(j && j.member === true); return G.member; }).catch(function () { return false; });
   }
   G.locked = function (n) {   // a locked scene: ask for its own version, never play another scene
+    var lc = chipOf(n, G.chosen(n)); if (lc && lc.paid && !G.ownsLatest()) { G.buyLatest(n); return; }   // v1.6.2
     askMember().then(function (m) { if (m) { changed(); return; }
       if (window.CedwynPay) { window.CedwynPay.open(n); return; }
       G.sel = verOf(n); ls("cedwyn-doc-sel", G.sel); paint(); var p = $("cd-pay"); if (p) { p.hidden = false; p.scrollIntoView({behavior: "smooth", block: "center"}); var c = $("cd-ok"); if (c) c.focus(); } });

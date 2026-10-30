@@ -1,4 +1,4 @@
-/* Cedwyn · documentary — scene page (page v1.5.1, 30 Oct 2026: version chips wrap inside their card like a word cloud at every card size (no sideways scrolling row) and show the site-wide labels (newest #v0.0.2, older #v0.0.1 or #v0.0.1.1 … #v0.0.1.N, reserved #next). v1.5.0, 30 Oct 2026: one card-size control above the scenes (small / medium / large, like icon sizes in a file explorer) sets every card at once and is remembered on this device (localStorage cedwyn-doc-size); large is one full-width column with unclamped text; it replaces the per-card full-width toggle of 1.4.7. Versions are hashtag chips under each released scene (#v0.0.1-0.0.5 …; the default cut is marked free and selected; a reserved version is marked coming and cannot be picked); the selected chip drives play, language video/audio and Download (documentary.js 1.6.0). v1.4.7, 30 Oct 2026: each scene card has a full-width toggle (bottom-right of its picture) that spans the card across the grid so its text is readable on a narrow phone; tap again for the grid; remembered per card for the visit; v1.4.6, 30 Oct 2026: every scene is free (documentary.js 1.5.0); choosing an earlier cut (v0.0.1-0.0.N) in the version menu plays that door's earlier cut with its own audio and subtitles, and switches an open player to it; the player's meta line names the version playing; v1.4.5, 30 Oct 2026: a scene with per-language lip-synced video (manifest "video": {cy, en, es}) plays the video of the chosen audio language and switches it, at the same position, when the audio changes; without it the single clip plays as before; v1.4.4, 30 Oct 2026: the page opens straight onto the scenes — no intro panel or page-level control bar; audio and subtitles are chosen in the player, and the version select moves into the player's control bar; v1.4.3, 30 Oct 2026: tapping anywhere on a released scene's picture plays it; the full-screen picture opens only from the small "View artwork" button under it; v1.4.2, 30 Oct 2026: window.CedwynPlayer lets download.js offer the scene with the chosen audio and subtitles; v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
+/* Cedwyn · documentary — scene page (page v1.5.1, 30 Oct 2026: version chips wrap inside their card like a word cloud at every card size (no sideways scrolling row) and show the site-wide labels (newest #v0.0.2 · £4.99, previous #v0.0.1 · free and the default, older -v0.0.1, -v0.0.2 … shown as #_v0.0.1, #_v0.0.2 …, reserved #next; documentary.js 1.6.1). v1.5.0, 30 Oct 2026: one card-size control above the scenes (small / medium / large, like icon sizes in a file explorer) sets every card at once and is remembered on this device (localStorage cedwyn-doc-size); large is one full-width column with unclamped text; it replaces the per-card full-width toggle of 1.4.7. Versions are hashtag chips under each released scene (#v0.0.1-0.0.5 …; the default cut is marked free and selected; a reserved version is marked coming and cannot be picked); the selected chip drives play, language video/audio and Download (documentary.js 1.6.0). v1.4.7, 30 Oct 2026: each scene card has a full-width toggle (bottom-right of its picture) that spans the card across the grid so its text is readable on a narrow phone; tap again for the grid; remembered per card for the visit; v1.4.6, 30 Oct 2026: every scene is free (documentary.js 1.5.0); choosing an earlier cut (v0.0.1-0.0.N) in the version menu plays that door's earlier cut with its own audio and subtitles, and switches an open player to it; the player's meta line names the version playing; v1.4.5, 30 Oct 2026: a scene with per-language lip-synced video (manifest "video": {cy, en, es}) plays the video of the chosen audio language and switches it, at the same position, when the audio changes; without it the single clip plays as before; v1.4.4, 30 Oct 2026: the page opens straight onto the scenes — no intro panel or page-level control bar; audio and subtitles are chosen in the player, and the version select moves into the player's control bar; v1.4.3, 30 Oct 2026: tapping anywhere on a released scene's picture plays it; the full-screen picture opens only from the small "View artwork" button under it; v1.4.2, 30 Oct 2026: window.CedwynPlayer lets download.js offer the scene with the chosen audio and subtitles; v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
    v1.3.0: film versions, viewing licence and checkout live in documentary.js (window.CedwynDoc); play() asks it first.
    Doors come from frames.json; a door opens when manifest.json in the film's storage repository lists its clip.
    The page reads the storage repository at run time (frames, manifest, prompt, scripts, subtitles, media), so the daily
@@ -184,17 +184,19 @@
   function chipRow(f) {
     var DG = window.CedwynDoc, row = el("div", "cm-vchips"); row.setAttribute("data-n", f.n); row.setAttribute("role", "group"); row.setAttribute("aria-label", t("vers") + ": " + t("scene") + " " + f.n);
     var list = DG && DG.chips ? DG.chips(f.n) : [];
-    if (!list.length) { var m0 = filledMap()[f.n]; list = [{v: String((m0 && m0.version) || "0.0.1"), current: true, free: true}]; }
+    if (!list.length) { var m0 = filledMap()[f.n]; list = [{v: String((m0 && m0.version) || "0.0.1"), current: true, latest: true, free: true, label: "0.0.2"}]; }
     var chosen = DG && DG.chosen ? DG.chosen(f.n) : null; if (!chosen) list.forEach(function (c) { if (c.current) chosen = c.v; });
     var tt = function (k) { return DG && DG.t ? DG.t(k) : ""; };
+    function labOf(c) { return DG && DG.vtag ? DG.vtag(c) : "#v" + (c.label || c.v); }   // v1.5.1: #v0.0.2, #v0.0.1, #_v0.0.1, #_v0.0.2 …, #next
+    var price = function (c) { return "£" + Number(c.price || 4.99).toFixed(2); };
     list.forEach(function (c) {
-      var b = el("button", "cm-vchip" + (c.coming ? " is-coming" : "") + (c.current ? " is-default" : "")); b.type = "button"; b.setAttribute("data-v", c.v); b.setAttribute("data-ghf-keep", "");
-      var lab = "#" + (c.coming ? "" : "v") + (c.label || c.v); b.appendChild(el("span", "cm-vh", lab));   // v1.5.1: display label from documentary.js 1.6.1
-      if (c.current) b.appendChild(el("span", "cm-vtag", t("vfree")));
-      if (c.coming) { b.appendChild(el("span", "cm-vtag", t("vcoming"))); b.setAttribute("aria-disabled", "true"); }
-      else b.setAttribute("aria-pressed", c.v === chosen ? "true" : "false");
-      b.title = c.coming ? tt("coming_t") : c.current ? tt("cur_t") : tt("older_t") + (c.note ? ": " + c.note : "");
-      b.setAttribute("aria-label", lab + (c.current ? ", " + t("vfree") : "") + (c.coming ? ", " + t("vcoming") : "") + (b.title ? ". " + b.title : ""));
+      var b = el("button", "cm-vchip" + (c.coming ? " is-coming" : "") + (c.latest ? " is-default" : "") + (c.paid ? " is-paid" : "")); b.type = "button"; b.setAttribute("data-v", c.v); b.setAttribute("data-ghf-keep", "");
+      var lab = labOf(c); b.appendChild(el("span", "cm-vh", lab));
+      var tag = c.coming ? t("vcoming") : c.paid ? price(c) : c.prev ? t("vfree") : "";
+      if (tag) b.appendChild(el("span", "cm-vtag", tag));
+      if (c.coming) b.setAttribute("aria-disabled", "true"); else b.setAttribute("aria-pressed", c.v === chosen ? "true" : "false");
+      b.title = c.coming ? tt("coming_t") : c.paid ? (DG && DG.ownsLatest && DG.ownsLatest() ? tt("cur_t") : price(c)) : c.prev ? tt("cur_t") : tt("older_t") + (c.note ? ": " + c.note : "");
+      b.setAttribute("aria-label", lab + (tag ? ", " + tag : "") + (b.title && b.title !== tag ? ". " + b.title : ""));
       b.onclick = function (e) { e.stopPropagation(); e.preventDefault(); if (c.coming) return; if (DG && DG.pick) DG.pick(f.n, c.v); paintChips(row, f.n); };
       b.onkeydown = function (e) { e.stopPropagation(); };
       row.appendChild(b);
@@ -203,7 +205,7 @@
   }
   document.addEventListener("cedwyn-doc-vlabels", function () {   // v1.5.1: site-wide labels arrived from /_cedwyn/versions.json
     var DG = window.CedwynDoc; Array.prototype.forEach.call(document.querySelectorAll(".cm-vchips"), function (row) { var n = +row.getAttribute("data-n"); if (!n || !DG || !DG.chips) return;
-      DG.chips(n).forEach(function (c) { var b = row.querySelector('.cm-vchip[data-v="' + c.v + '"] .cm-vh'); if (b) b.textContent = "#" + (c.coming ? "" : "v") + c.label; }); }); });
+      DG.chips(n).forEach(function (c) { var b = row.querySelector('.cm-vchip[data-v="' + c.v + '"] .cm-vh'); if (b && DG.vtag) b.textContent = DG.vtag(c); }); }); });
   function paintChips(row, n) { var DG = window.CedwynDoc, ch = DG && DG.chosen ? DG.chosen(n) : null; if (!ch) return;
     Array.prototype.forEach.call(row.querySelectorAll(".cm-vchip:not(.is-coming)"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-v") === ch ? "true" : "false"); }); }
   // v1.5.0: the card-size control (small / medium / large), set before browsing, applies to every card, remembered on this device
@@ -231,13 +233,13 @@
   function eff(n, m) {   // v1.4.6/1.5.0: the entry as chosen with the scene's version chips: the newest cut, or an earlier cut (v0.0.1-0.0.N)
     var DG = window.CedwynDoc, c = DG && DG.cut ? DG.cut(n) : null; if (!c || !c.clip) return m;
     var o = {}, k; for (k in m) o[k] = m[k]; delete o.video; delete o.downloads; delete o.next_version; for (k in c) o[k] = c[k]; if (!c.seconds) delete o.seconds;
-    var dl = {}, title = "Cedwyn – Door " + n + " – v" + (DG.vlabel ? DG.vlabel(n, c.version) : c.version) + " (earlier cut)";
+    var dl = {}, title = "Cedwyn – Door " + n + " – " + (DG.vlabel ? DG.vlabel(n, c.version) : "v" + c.version) + " (earlier cut)";
     LANGS.forEach(function (a) { var p = (c.video && c.video[a]) || c.clip; ["cy", "en", "es", "off"].forEach(function (s) { dl[a + "|" + s] = {path: p, ext: (String(p).match(/\.(\w+)$/) || [0, "webm"])[1], title: title + (c.video && c.video[a] ? " – " + NAT[a] : "")}; }); });
     o.downloads = dl; o.cut = c.version; return o;
   }
   function play(f, m) {
     var DG = window.CedwynDoc; if (DG && !DG.canPlay(f.n)) { DG.locked(f.n); return; }   // a scene not yet open (never while every scene is free)
-    m = eff(f.n, m); cur = {f: f, m: m}; $("cm-p-title").textContent = t("scene") + " " + f.n + " · " + tl(f, "title"); $("cm-p-meta").textContent = f.date_range + (m.seconds ? " · " + fmt(m.seconds) : "") + " · v" + (window.CedwynDoc && window.CedwynDoc.vlabel ? window.CedwynDoc.vlabel(f.n, m.cut || m.version || "0.0.1") : (m.cut || m.version || "0.0.1"));
+    m = eff(f.n, m); cur = {f: f, m: m}; $("cm-p-title").textContent = t("scene") + " " + f.n + " · " + tl(f, "title"); $("cm-p-meta").textContent = f.date_range + (m.seconds ? " · " + fmt(m.seconds) : "") + " · " + (window.CedwynDoc && window.CedwynDoc.vlabel ? window.CedwynDoc.vlabel(f.n, m.cut || m.version || "0.0.1") : "v" + (m.cut || m.version || "0.0.1"));
     if (m.poster) V.setAttribute("poster", RAW + m.poster); else V.removeAttribute("poster");
     V.src = RAW + clipFor(m); setAudio(true); loadCues(); $("cm-player").hidden = false; paintPlayer();
     if (A.getAttribute("src")) A.play().catch(function () {});   // inside the tap, so phones allow the sound
