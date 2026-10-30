@@ -14,7 +14,7 @@ DBX = re.compile(r'\.(json|csv|xml|geojson|png|jpe?g|gif|webp|svg|avif|ico|bmp|t
 KEEPNAME = re.compile(r'(^|/)(favicon[^/]*|apple-touch-icon[^/]*|android-chrome[^/]*|mstile[^/]*|safari-pinned-tab[^/]*|[^/]*\.ico|sitemap[^/]*\.xml|'
                       r'[^/]*(feed|rss|atom)[^/]*\.xml|browserconfig\.xml|manifest\.json|opensearch[^/]*\.xml)$', re.I)
 KEEPPREFIX = ('/wayback/snap/',)
-APPDB = re.compile(r'/_db/view\.json$|/_ui/[^/]+\.a2ui\.json$')   # 30 Oct 2026 (ADR-002): each webapp's own database and its A2UI surfaces stay plain files so agents, webmcp and header graphs read them without the service worker - Sion's Tab agent   # data files a page fetches by an address built at run time - Sion's Tab agent
+APPDB = re.compile(r'/_db/view\.json$|/_ui/[^/]+\.a2ui\.json$|^/?projects/data/(programme|programme-office|data-architecture)\.json$')   # + 30 Oct 2026: the Projects programme data a page or an agent fetches by plain URL (/projects/data/programme.json 404'd outside the service worker)   # 30 Oct 2026 (ADR-002): each webapp's own database and its A2UI surfaces stay plain files so agents, webmcp and header graphs read them without the service worker - Sion's Tab agent   # data files a page fetches by an address built at run time - Sion's Tab agent
 KIND = {'json': 'data', 'csv': 'data', 'xml': 'data', 'geojson': 'data', 'pdf': 'document', 'doc': 'document', 'docx': 'document',
         'mp3': 'audio', 'm4a': 'audio', 'ogg': 'audio', 'wav': 'audio'}
 def kind(p): return KIND.get(p.rsplit('.', 1)[-1].lower(), 'image')

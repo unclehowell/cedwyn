@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""graph_data.py 1.1.0 - per-section scatter data for the header graph promo (cw-graph.js).
+"""graph_data.py 1.2.0 - per-section scatter data for the header graph promo (cw-graph.js).
 Asked for 01:27 GMT 30 Oct 2026: each webapp area's header banner opens a full-screen scatter graph of the data that area
 shows. Runs at the end of site.py (wrapped in try: never stops a build). Writes dist/_cedwyn/graph/<area>.json in one compact
 shape: {v, area, title, x:{label,type}, y:{label,type,cats}, c:{label,cats}, p:[[x, y, colour, label, href], ...]}.
@@ -153,10 +153,53 @@ def dartboard(dist):
             'c': {'label': 'Reply', 'cats': RAG_CATS, 'colors': RAG_COLS},
             'p': [[r['x'], ix(r['y']), r['k'], label(r['l'], 90), r['h']] for r in rows[:MAXP]]}
 
+# 30 Oct 2026 (ADR-002 WP10): an app that publishes its own database (<app>/_db/view.json, a plain file) is plotted from that
+# file and nothing else - never the central catalogue, never its page list. Kissed Frogs: one point per screened record (date of
+# the record, the screening outcome). E-book shelf: one point per release of each book (first edition, current edition,
+# supplement) from the shop's own view (written by ebook_editions.py from data/ebooks.json). - Sion's Tab agent
+VIEW_APPS = ('kissed-frogs', 'ebooks')
+def _view(dist, app):
+    f = dist / app / '_db' / 'view.json'
+    if not f.exists(): return None
+    try: return json.loads(f.read_text('utf-8'))
+    except Exception: return None
+def kissed_frogs(dist):
+    v = _view(dist, 'kissed-frogs')
+    if not v: return None
+    rows = []
+    for fr in v.get('frogs') or []:
+        dt = fr.get('date') or {}; shown = '%s %s' % (dt.get('display') or '', fr.get('title') or '')
+        x = str(dt.get('sort') or '')[:10]
+        if not x or x[:4] not in shown: x = first_date(str(dt.get('display') or '')) or first_date(fr.get('title') or '')   # plot only a date the record shows
+        if not x or str(x)[:4] in ('1547', '1552'): continue
+        x = str(x)[:10]
+        sc = fr.get('scope') or {}
+        rows.append({'x': x, 'y': sc.get('label') or fr.get('status') or 'Other', 'c': 'Screened record',
+                     'l': '%s %s' % (fr.get('id') or '', fr.get('title') or ''), 'h': '/kissed-frogs/%s/' % fr['slug'] if fr.get('slug') else '/kissed-frogs/'})
+    for rt in v.get('retained') or []:
+        x = first_date(rt.get('title') or '')
+        if x: rows.append({'x': x, 'y': (rt.get('scope') or {}).get('label') or 'In scope', 'c': 'Retained in scope', 'l': '%s %s' % (rt.get('id') or '', rt.get('title') or ''), 'h': '/kissed-frogs/'})
+    if not rows: return None
+    j = pack('kissed-frogs', 'Kissed Frogs: records screened', 'Date of the record', 'Screening outcome', 'Register', rows, ymax=12, cmax=2)
+    j['source'] = '/kissed-frogs/_db/view.json'
+    return j
+def ebooks(dist):
+    v = _view(dist, 'ebooks')
+    if not v: return None
+    rows = []
+    for r in v.get('releases') or []:
+        if r.get('date'): rows.append({'x': r['date'][:10], 'y': r.get('book') or 'Other', 'c': r.get('kind') or 'Edition', 'l': r.get('label') or '', 'h': r.get('page') or '/ebooks/'})
+    if not rows: return None
+    j = pack('ebooks', 'E-book shelf: releases', 'Release date', 'Book', 'Release', rows, ymax=14, cmax=4)
+    j['source'] = '/ebooks/_db/view.json'
+    return j
+
 # Build check (owner 14:18 GMT 30 Oct): a graph may only name its own webapp's data as its source.
 SHARED_OK = {'research': 'data/evidence-grades.json', 'docs': 'data/evidence-grades.json'}   # evidence apps: the evidence register is their own db until WP2
-def own_source(area, j):
+def own_source(area, j, dist=None):
     s = j.get('source') or ''
+    if dist is not None and (pathlib.Path(dist) / area / '_db' / 'view.json').exists():   # an app with its own db must be plotted from it (WP10)
+        return s == '/%s/_db/view.json' % area
     return s.startswith('/%s/' % area) or s == '/%s pages' % area or SHARED_OK.get(area) == s
 
 def run(dist):
@@ -164,26 +207,27 @@ def run(dist):
     areas = []
     try: areas = json.loads((dist / 'areas.json').read_text('utf-8')).get('areas', [])
     except Exception: pass
-    done = {}; special = {'dartboard': lambda: dartboard(dist), 'qa': lambda: qa(dist), 'email': lambda: email(dist), 'research': lambda: evidence(dist, 'research'), 'docs': lambda: evidence(dist, 'docs')}
+    done = {}; special = {'dartboard': lambda: dartboard(dist), 'qa': lambda: qa(dist), 'email': lambda: email(dist), 'research': lambda: evidence(dist, 'research'), 'docs': lambda: evidence(dist, 'docs'),
+               'kissed-frogs': lambda: kissed_frogs(dist), 'ebooks': lambda: ebooks(dist)}
     for k, fn in special.items():
         try: j = fn()
         except Exception as e: j = None; print('graph_data', k, 'failed', e)
         if j and j['p']: done[k] = j
     for a in areas:
         aid = a.get('id')
-        if not aid or aid in done or aid in ('blog',): continue
+        if not aid or aid in done or aid in ('blog',) or aid in VIEW_APPS: continue   # a view-backed app never falls back to its page list
         try: j = pages(dist, aid, a.get('title') or aid)
         except Exception as e: j = None; print('graph_data', aid, 'failed', e)
         if j: done[aid] = j
     SRC = {'qa': '/qa/questions.json', 'email': '/email/view/index.json', 'research': 'data/evidence-grades.json', 'docs': 'data/evidence-grades.json'}
     for k, j in done.items(): j.setdefault('source', SRC.get(k) or '/%s pages' % k)
-    bad = sorted(k for k, j in done.items() if not own_source(k, j))
+    bad = sorted(k for k, j in done.items() if not own_source(k, j, dist))
     for k in bad: print('::warning::graph_data: the %s graph plots %s, not its own webapp database' % (k, done[k].get('source')))
     for k, j in done.items(): (out / (k + '.json')).write_text(json.dumps(j, ensure_ascii=False, separators=(',', ':')), 'utf-8')
     rep = {k: {'points': len(j['p']), 'source': j.get('source'), 'own_db': k not in bad} for k, j in done.items()}
     try: (dist / '_cedwyn' / 'reports').mkdir(parents=True, exist_ok=True); (dist / '_cedwyn' / 'reports' / 'graph_data.json').write_text(json.dumps(rep, indent=1))
     except Exception: pass
-    print('graph_data 1.1.0:', rep)
+    print('graph_data 1.2.0:', rep)
     return rep
 
 if __name__ == '__main__':
