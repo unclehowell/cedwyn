@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3365383/3365390/150/",
  "key": "newspapers.library.wales/view/3365383/3365390/150",
- "title": "Weekly Mail, 6th November 1886, p. 7 — - Llandough",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3365383-3365390-150/",
  "latest": "/websites/newspapers.library.wales/view-3365383-3365390-150/latest.html",
  "first_captured": "2026-10-24T14:42:59Z",
- "last_captured": "2026-10-24T14:42:59Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:40:51Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144259/newspapers.library.wales/view/3365383/3365390/150/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:40:51Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "46a180063184911ee18acdf2d9e0e80d354acd376f3ac9ef7a89cfa9b9ba7761",
+   "markup_sha256": "f2be8732978a932c6b7a15a641e3d227559f7aead88091e9692e1d21a8ce2f66",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:45:15Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

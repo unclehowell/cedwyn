@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3277036/3277038/26/",
  "key": "newspapers.library.wales/view/3277036/3277038/26",
- "title": "Evening Express, 22nd June 1898 (Fifth Edition), p. 2 — Fire At Llandough",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3277036-3277038-26/",
  "latest": "/websites/newspapers.library.wales/view-3277036-3277038-26/latest.html",
  "first_captured": "2026-10-24T14:42:35Z",
- "last_captured": "2026-10-24T14:42:35Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:40:07Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144235/newspapers.library.wales/view/3277036/3277038/26/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:40:07Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "ad35082ddf74440a7ca631e963c35c51e72b0ee96969ec47e6d47b3c53f902ff",
+   "markup_sha256": "99c796868521dd460bc9bad750680f86b1b23b011448909a124fd5c0cce03be9",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:43:13Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

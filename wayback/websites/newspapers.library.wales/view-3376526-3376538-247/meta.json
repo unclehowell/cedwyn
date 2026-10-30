@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3376526/3376538/247/",
  "key": "newspapers.library.wales/view/3376526/3376538/247",
- "title": "Weekly Mail, 28th November 1903, p. 12 — ----\"--->-----.--------------------Local Obituary Notices",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3376526-3376538-247/",
  "latest": "/websites/newspapers.library.wales/view-3376526-3376538-247/latest.html",
  "first_captured": "2026-10-24T14:43:35Z",
- "last_captured": "2026-10-24T14:43:35Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:41:54Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144335/newspapers.library.wales/view/3376526/3376538/247/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:41:54Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "405bb31cb82cdfaa1b63109a4e44524e6516e191cd64ec958a4cd1d26c6c1b36",
+   "markup_sha256": "9612f29b6952ab0781d240877c7fbd2ff571793310393088d7d1227c17fcc5a4",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:45:09Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }
