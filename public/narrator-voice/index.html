@@ -1,0 +1,97 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Narrator voice · Cedwyn developer library</title><meta name="description" content="Narrator voice: cloning method and profile. How the narrator voice for the video intros is cloned from one consented recording, the settings, the scoring and how to reproduce it.">
+<link rel="stylesheet" href="/library/library.css"></head>
+<body data-cw-wiki-off data-page="narrator-voice"><a class="skip" href="#main">Skip to content</a>
+<header class="top"><button class="lib-menu" aria-controls="side" aria-expanded="false" aria-label="Menu">☰</button><a class="brand" href="/library/">Cedwyn <span>library</span></a>
+<form class="sf" role="search" onsubmit="return false"><input id="q" type="search" placeholder="Search the docs" aria-label="Search the docs" autocomplete="off"></form></header>
+<div class="wrap"><aside id="side"><nav aria-label="Library"><ul class="nav"><li><a href="/library/" data-s="index">Overview</a></li><li><a href="/library/architecture/" data-s="architecture">Architecture</a></li><li><a href="/library/hosting/" data-s="hosting">Hosting</a></li><li><a href="/library/front-ends/" data-s="front-ends">Front ends</a></li><li><a href="/library/sections/" data-s="sections">Sections</a></li><li><a href="/library/add-a-section/" data-s="add-a-section">Add a section</a></li><li><a href="/library/export/" data-s="export">Data export</a></li><li><a href="/library/api/" data-s="api">API and WebMCP</a></li><li><a href="/library/narrator-voice/" data-s="narrator-voice">Narrator voice</a></li><li><a href="/library/status/" data-s="status">Status</a></li></ul></nav><p class="back"><a href="/">‹ cedwyn.bucklerfamily.estate</a></p></aside>
+<main id="main"><div id="results" hidden></div><article id="doc"><h1>Narrator voice</h1><p class="lede">Narrator voice: cloning method and profile. How the narrator voice for the video intros is cloned from one consented recording, the settings, the scoring and how to reproduce it.</p><nav class="toc" aria-label="On this page"><ul><li><a href="#consent">Consent and scope</a></li><li><a href="#profile">The profile in force</a></li><li><a href="#clone">Step 1: clone the voice (once)</a></li><li><a href="#speech">Step 2: make speech</a></li><li><a href="#expiry">Step 3: keep the clone alive, or clone again</a></li><li><a href="#scoring">Step 4: score a voice against the reference</a></li><li><a href="#choice">Step 5: the owner's ear decides</a></li><li><a href="#lessons">Lessons from the earlier versions</a></li><li><a href="#reproduce">Reproduce it, in order</a></li></ul></nav><p>This page records how the narrator voice used in the social video intros is made, so that another agent can reproduce the method exactly. It covers the model ids, the call shapes, the settings, the scoring and the steps. It holds no audio, no reference recording, no voice identifier and no keys. Last reviewed 30 Oct 2026.</p>
+<div class="facts">
+<div><b>1</b><span>reference recording, used whole</span></div>
+<div><b>2</b><span>calls: clone once, then speech</span></div>
+<div><b>0</b><span>filters after generation</span></div>
+<div><b>0.92</b><span>speaker similarity, full narration</span></div>
+</div>
+<h2 id="consent">Consent and scope</h2>
+<ul>
+<li>The voice is cloned only from the owner's own recording, made and sent by him for this purpose, with his permission for this use.</li>
+<li>Use is limited to the narrator's own posts: the Story Time intro and the narration of his clips. The voice never reads anyone else's words.</li>
+<li>Every post that carries the voice or the likeness carries an AI disclosure: the platform's synthetic-media flag and the caption line <i>"Intro: AI-generated likeness and voice of the narrator, made with his permission."</i></li>
+<li>The reference recording and the voice identifier stay private. They are not published here or anywhere else.</li>
+</ul>
+<h2 id="profile">The profile in force</h2>
+<table><tr><th>Setting</th><th>Value</th></tr>
+<tr><td>Clone model</td><td><code>fal-ai/minimax/voice-clone</code> (MiniMax instant voice clone)</td></tr>
+<tr><td>Speech model</td><td><code>fal-ai/minimax/speech-02-hd</code></td></tr>
+<tr><td>Reference</td><td>The narrator's whole voice note, about 95 seconds, one speaker in a quiet room, converted to mono MP3 at 96 kbps with no other change. No cutting, denoise, EQ or loudness normalisation.</td></tr>
+<tr><td>Clone flags</td><td><code>noise_reduction: false</code>, <code>need_volume_normalization: false</code>, preview <code>model: speech-02-hd</code></td></tr>
+<tr><td>Voice settings</td><td><code>speed 1</code>, <code>vol 1</code>, <code>pitch 0</code>; <code>emotion</code> unset; <code>english_normalization</code> false</td></tr>
+<tr><td>Language boost</td><td>Not set</td></tr>
+<tr><td>Output</td><td><code>output_format: url</code> (MP3, 32 kHz mono, 128 kbps)</td></tr>
+<tr><td>After generation</td><td>Nothing. No denoise, EQ, pitch, tempo or loudness change on the voice.</td></tr></table>
+<h2 id="clone">Step 1: clone the voice (once)</h2>
+<p>Send the whole reference recording to the clone model as an HTTPS URL or a base64 data URI. The model accepts 10 seconds to 5 minutes of audio.</p>
+<pre><code>POST  fal-ai/minimax/voice-clone      (queue API)
+{
+  "audio_url": "data:audio/mpeg;base64,&lt;whole reference mp3&gt;",
+  "noise_reduction": false,
+  "need_volume_normalization": false,
+  "model": "speech-02-hd",
+  "text": "&lt;optional preview line&gt;"
+}
+-&gt; { "custom_voice_id": "&lt;private id&gt;", "audio": { "url": "&lt;preview mp3&gt;" } }</code></pre>
+<p>The call costs about $1.50 at the published page rate, plus the preview characters. Store the returned id privately with the profile. The preview read by <code>speech-02-hd</code> is the exact sound the owner approved.</p>
+<h2 id="speech">Step 2: make speech</h2>
+<pre><code>POST  fal-ai/minimax/speech-02-hd      (queue API)
+{
+  "text": "Beat one. &lt;#1.0#&gt; Beat two. &lt;#1.0#&gt; Beat three.",
+  "voice_setting": { "voice_id": "&lt;private id&gt;", "speed": 1, "vol": 1, "pitch": 0 },
+  "output_format": "url"
+}
+-&gt; { "audio": { "url": "&lt;speech mp3&gt;" }, "duration_ms": 72072 }</code></pre>
+<ul>
+<li><b>Field name.</b> The <code>speech-02</code> models take <code>text</code>; the newer <code>speech-2.6</code> models take <code>prompt</code>. Pick the field from the model id.</li>
+<li><b>One call per script.</b> Send the whole narration in one request (up to 5,000 characters; there is no 40-second limit). Separate the beats with pause tags such as <code>&lt;#1.0#&gt;</code>, then cut the single take at the middle of each tagged pause when the edit needs one file per beat.</li>
+<li><b>Never per-line takes.</b> Generating each line separately lets the timbre wander from line to line. That drift was the main reason earlier versions stopped sounding like the narrator.</li>
+<li><b>Spell for the ear.</b> Welsh place names read best as phonetic spellings in the script (for example <i>Llandock</i> for Llandough) and numbers read best spelled out.</li>
+<li>Cost is cents per narration (about $0.10 per 1,000 characters; not checked against an invoice).</li>
+</ul>
+<h2 id="expiry">Step 3: keep the clone alive, or clone again</h2>
+<ul>
+<li>MiniMax may delete a cloned voice that goes unused for about 7 days (MiniMax's published rule; not tested here). Any speech call counts as use.</li>
+<li>If speech answers that the voice is not found or invalid, repeat Step 1 with the same untouched recording and the same flags (about $1.50 again). Store the new id, make one short test line and score it (Step 4) before any real narration.</li>
+<li>Never clone from a cleaned, trimmed or normalised copy. The owner approved the clone made from the whole untouched note.</li>
+</ul>
+<h2 id="scoring">Step 4: score a voice against the reference</h2>
+<ol>
+<li><b>Speaker similarity.</b> Embed the candidate and the reference with the WeSpeaker ResNet34 model trained on VoxCeleb (<code>wespeaker_en_voxceleb_resnet34_LM.onnx</code>, run with sherpa-onnx, 16 kHz mono) and take the cosine of the two embeddings. On this reference, unrelated male voices scored 0.72 to 0.83, so a clone needs to sit clearly above that band.</li>
+<li><b>Pitch.</b> Median fundamental frequency over voiced frames (autocorrelation, 60 to 300 Hz), candidate against reference.</li>
+<li><b>Brightness.</b> Median spectral centroid over voiced frames, candidate against reference.</li>
+<li><b>Words.</b> Transcribe the candidate and compare it with the script.</li>
+<li><b>Gaps.</b> Inspect the levels for silences longer than the intended pauses.</li>
+</ol>
+<table><tr><th>Candidate (30 Oct 2026)</th><th>Similarity</th><th>Note</th></tr>
+<tr><td>Zero-shot clone per call, Chatterbox HD</td><td>0.82 to 0.86</td><td>Earlier route; just above unrelated voices</td></tr>
+<tr><td>MiniMax clone + <code>speech-2.6-hd</code></td><td>0.92</td><td>Highest score on a 15-second sample</td></tr>
+<tr><td>Index-TTS-2, zero-shot from the whole note</td><td>0.90</td><td>Pitch about 10% low</td></tr>
+<tr><td><b>MiniMax clone + <code>speech-02-hd</code></b></td><td><b>0.85 to 0.86</b></td><td><b>Chosen by the narrator</b>; 0.92 on the full 72-second narration</td></tr></table>
+<h2 id="choice">Step 5: the owner's ear decides</h2>
+<p>Four 15-second samples reading the same lines were played to the narrator in order. He chose the <code>speech-02-hd</code> reading even though two others scored higher on the short samples. The rule that follows: <b>scores only shortlist; the owner's own ear makes the choice.</b> Short samples also under-read similarity: the same voice scored 0.86 on 15 seconds and 0.92 on a full narration.</p>
+<h2 id="lessons">Lessons from the earlier versions</h2>
+<ul>
+<li>Line-by-line generation drifted in timbre (spectral centroid moved between about 510 and 990 Hz across lines).</li>
+<li>Clean-up filters (high-pass, treble roll-off, denoise) dulled the voice and moved it further from the reference.</li>
+<li>Zero-shot models that condition on only the first few seconds of a reference are sensitive to which seconds are chosen; a stored clone made from the whole recording avoids that.</li>
+<li>When the owner cannot recognise the voice, change the method, not the recording: a 95-second note was enough for a recognisable clone.</li>
+</ul>
+<h2 id="reproduce">Reproduce it, in order</h2>
+<ol>
+<li>Get the owner's consent and one clean recording of at least 60 seconds, one speaker, no music.</li>
+<li>Convert to mono MP3 with no other processing.</li>
+<li>Clone it (Step 1) and keep the id private.</li>
+<li>Make a short test line (Step 2), score it (Step 4) and play it to the owner.</li>
+<li>Generate each script in one call, cut at the pause tags, apply nothing else.</li>
+<li>Re-clone if the id lapses (Step 3).</li>
+<li>Disclose the AI voice on every post.</li>
+</ol><nav class="pager"><a class="pv" href="/library/api/">‹ API and WebMCP</a><a class="nx" href="/library/status/">Status ›</a></nav></article></main></div>
+<script src="/library/search-index.js" defer></script><script src="/library/library.js" defer></script></body></html>
