@@ -1,4 +1,4 @@
-/* cw-graph.js v1.0.0 - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
+/* cw-graph.js v1.0.1 - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
    Asked for 01:27 GMT 30 Oct 2026: the closable header strip becomes a graph promotion; tapping it slides a full-screen
    scatter graph of the data the page/section shows down over the page (it slides back up on close, Esc or swipe up);
    text pages load clipped to the screen height with a "Read more" bar, further text arriving in chunks from the build's
@@ -7,7 +7,7 @@
 (function () {
   'use strict';
   if (window.__cwGraph) return;
-  var d = document, de = d.documentElement, VER = '1.0.0';
+  var d = document, de = d.documentElement, VER = '1.0.1';
   window.__cwGraph = { v: VER };
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var T = {
@@ -183,6 +183,8 @@
   function xv(v) { if (typeof v === 'number') return v; var p = String(v).split('-'); return Date.UTC(+p[0], (+p[1] || 1) - 1, +p[2] || 1); }
   function hsh(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return ((h >>> 0) % 1000) / 1000; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var MS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  function fmt(ms, step) { var x = new Date(ms); if (step < 3e9) return x.getUTCDate() + ' ' + MS[x.getUTCMonth()]; if (step < 3.2e10) return MS[x.getUTCMonth()] + ' ' + String(x.getUTCFullYear()).slice(2); return String(x.getUTCFullYear()); }
   function render(host, data, info, legend, sub) {
     var W = Math.max(320, Math.min(host.clientWidth || 360, 1100)), cat = data.y.type === 'cat', cats = cat ? data.y.cats : null;
     var padL = cat ? Math.min(132, Math.round(W * 0.32)) : 44, padR = 12, padT = 10, padB = 36;
@@ -204,7 +206,7 @@
     var ticks = Math.max(2, Math.min(6, Math.floor(pw / 70)));
     for (var k = 0; k <= ticks; k++) {
       var tv, tx; if (rank) { tv = sorted[Math.round((n - 1) * k / ticks)]; tx = X(tv); } else { tv = mn + (mx - mn) * k / ticks; tx = padL + pw * k / ticks; }
-      var lab = dateX ? (function (ms) { var x = new Date(ms); return (mx - mn < 4e10 || rank && k > 0 && Math.abs(tv - sorted[Math.round((n - 1) * (k - 1) / ticks)]) < 3e10) ? x.toISOString().slice(2, 7).replace('-', '/') : String(x.getUTCFullYear()); })(tv) : String(Math.round(tv * 10) / 10);
+      var lab = dateX ? fmt(tv, rank ? Math.abs(tv - (k > 0 ? sorted[Math.round((n - 1) * (k - 1) / ticks)] : tv)) || (mx - mn) : (mx - mn) / ticks) : String(Math.round(tv * 10) / 10);
       s += '<text x="' + tx + '" y="' + (H - padB + 15) + '" text-anchor="' + (k === 0 ? 'start' : k === ticks ? 'end' : 'middle') + '">' + esc(lab) + '</text>';
     }
     s += '<text x="' + (padL + pw / 2) + '" y="' + (H - 4) + '" text-anchor="middle">' + esc(data.x.label + (rank ? ' (' + t('rank') + ')' : '')) + '</text>';
