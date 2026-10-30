@@ -239,6 +239,8 @@ body.cm .cm-grid.cm-size-s .cm-date{font-size:9px!important;padding:1px 4px;left
 .cm-size-s .cm-playbig{transform:scale(.72)}
 body.cm .cm-size-s .cm-vchip{min-height:34px!important;padding:2px 8px!important;font-size:11.5px!important}
 .cm-size-s .cm-vchip .cm-vtag{display:none}
+.cm-vchip.is-paid .cm-vtag{background:#3a2f14;color:#f0d68a}
+.cm-size-s .cm-vchip.is-paid .cm-vtag{display:inline-block;font-size:9.5px;padding:0 4px}
 /* large: one full-width column with unclamped text */
 .cm-grid.cm-size-l{grid-template-columns:minmax(0,1fr)!important;gap:16px}
 .cm-size-l .cm-card .cm-body{padding:12px 14px 14px}
