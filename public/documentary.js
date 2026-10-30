@@ -1,5 +1,5 @@
-/* Cedwyn · documentary — versions, licence and checkout (page v1.6.1). A tab.bot production.
-   v1.6.1 (30 Oct 2026): version labels follow the site-wide scheme (/_cedwyn/versions.json): each door's newest cut is v0.0.2 at £4.99
+/* Cedwyn · documentary — versions, licence and checkout (page v1.6.2). A tab.bot production.
+   v1.6.2 (30 Oct 2026; replaces the short-lived 1.6.1): version labels follow the site-wide scheme (/_cedwyn/versions.json): each door's newest cut is v0.0.2 at £4.99
    (bought with the film's one £4.99 link; members and buyers on this device play it); the previous cut is v0.0.1, free and the default;
    older cuts count backwards by creation date as -v0.0.1, -v0.0.2 …, all free (hashtags #v0.0.2, #v0.0.1, #_v0.0.1, #_v0.0.2 …; the reserved
    next version is #next). Labels are display only.
