@@ -2564,8 +2564,7 @@
       "The National Library of Wales catalogue of the Bute estate records (D 219) describes Llandough Farm (166 acres; deeds D 219/9–13, 1824–1832) separately from Cydfin Farm or Tŷ Mawr Farm (107 acres; D 219/1, 4–5, 8 et seq.).",
       "The 1824 Stewart survey plan 19 (EV-0211) names “Llandough Farm” as its own place on the plan, beside the Village of Llandough, Wellspring and the River Ely, and apart from “Cedfin or Ty Mawr Farm”.",
       "Llandough Farm was the Rees family farm in the 1841 tithe and in press reports from 1865 to 1910 (EV-0228).",
-      "The 1940 Western Ground Rents tenancy to David and Thomas Thomas concerns Llandough Farm (EV-0233).",
-      "A 1994 developer’s drawing set is titled “Llandough Farm” (EV-0133). The title is recorded as written; which ground the drawings cover is read from the drawings, not from the name."
+      "The 1940 Western Ground Rents tenancy to David and Thomas Thomas concerns Llandough Farm (EV-0233)."
      ]
     },
     {
@@ -2593,17 +2592,14 @@
     {
      "text": "EV-0233",
      "href": "/wiki/evidence/ev-0233-dbdt129-3-wgr-thomas-llandough-farm-tenancy-1940/"
-    },
-    {
-     "text": "EV-0133",
-     "href": "/wiki/evidence/ev-0133-planning-drawings-ideal-homes-wales-llandough-farm/"
     }
    ],
    "related": [
     "KF-06",
     "KF-13",
     "KF-14",
-    "KF-12"
+    "KF-12",
+    "KF-50"
    ],
    "origin": "added-2026-10-25",
    "reworded": false,
@@ -3525,6 +3521,73 @@
      ]
     }
    ]
+  },
+  {
+   "id": "KF-50",
+   "kind": "screening_lead",
+   "slug": "kf-50-museum-wales-ref-13-2-waterwheel-llandough-farm",
+   "title": "Museum Wales Ref 13.2 — a waterwheel collected from Llandough Farm (opposite the hospital) in 1979",
+   "date": {
+    "display": "Collected 1979; reported 5 and 7 Oct 2026",
+    "sort": 1979
+   },
+   "place_text": "Llandough Farm, Llandough-juxta-Penarth",
+   "provenance": {
+    "reference": "Amgueddfa Cymru – Museum Wales, replies to FOI 2026-036 (5 and 7 Oct 2026); EV-0190"
+   },
+   "scope": {
+    "disposition": "separate_property",
+    "label": "Separate farm",
+    "reason": "The museum catalogues the waterwheel as from Llandough Farm (opposite the hospital), a separate farm from Great House Farm / Tŷ Mawr.",
+    "distinct_from": [
+     "PL-TY-MAWR"
+    ]
+   },
+   "places": [
+    "PL-LLANDOUGH-FARM"
+   ],
+   "detail": [
+    {
+     "heading": "The record",
+     "items": [
+      "In its reply of 5 October 2026 to FOI 2026-036, Amgueddfa Cymru – Museum Wales named two further records: a waterwheel collected from Llandough Farm in 1979 (Ref 13.2) and a page of the 1924 Llandough Estate sale document (MS 3360/3).",
+      "On 7 October 2026 the museum described Ref 13.2 as a waterwheel from “Llandough Farm (opposite hospital)”.",
+      "The same museum reply grouped the names in one phrase: “No further records relating specifically to Great House Farm / Ty Mawr / Llandough Farm, Llandough were identified”. That is the museum’s wording, quoted as written; Llandough Farm is a separate farm (KF-35).",
+      "Follow-up questions sent to the museum in October 2026 ask which site Ref 13.2 relates to."
+     ]
+    },
+    {
+     "heading": "What it does and does not establish",
+     "text": "On the museum’s own catalogue description the waterwheel comes from Llandough Farm, not from Great House Farm / Tŷ Mawr. It does not establish anything about the farmhouse at Tŷ Mawr or its finds."
+    },
+    {
+     "heading": "Next step",
+     "text": "Read the museum’s answer on the site of Ref 13.2 when it arrives; reopen this card only if the answer places it at Tŷ Mawr."
+    }
+   ],
+   "sources": [
+    {
+     "text": "EV-0190 — Museum Wales FOI 2026-036 reply",
+     "href": "/wiki/evidence/ev-0190-museum-wales-foi-2026-036-reply/"
+    }
+   ],
+   "related": [
+    "KF-35"
+   ],
+   "notes": [
+    {
+     "class": "kf-origin",
+     "runs": [
+      {
+       "text": "Added on 30 October 2026 when Llandough Farm records were separated from Great House Farm / Tŷ Mawr."
+      }
+     ]
+    }
+   ],
+   "origin": "added-2026-10-30",
+   "public": true,
+   "updated": "2026-10-30",
+   "rev": 1
   },
   {
    "id": "RET-01",
