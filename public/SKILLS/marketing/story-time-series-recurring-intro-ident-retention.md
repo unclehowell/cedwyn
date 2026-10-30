@@ -1,0 +1,33 @@
+# Founder-narrated "story time" series: recurring intro ident + explainer
+
+Harvested 2026-10-30 ~16:00Z. From 30 Oct 15:49 GMT, the project lead's standard social format is a short intro of him saying "Great House Farm Story Time. Today's story ..." (different top, colour and moving restored-farm background each time), then the HyperFrames explainer with him as a lower-corner narrator thumbnail, ending on BucklerFamily.Estate. Checked first: the index covers 30 s intros (video-intro-hook-first-30-seconds-retention.md), 3 s teaser hooks + Instagram skip rate (documentary-teaser-cutdowns-3s-hook-retention-metrics.md), series mechanics (youtube-serial-show-shorts-series-door-a-day-documentary.md, episodic-reels-after-link-a-reel-retired-series-fb-playlists.md) and AI image labels. None covers a **recurring spoken ident in front of every episode**, so that is this skill. AI-likeness disclosure for the same intro is the companion skill (ai-founder-digital-twin-intro-disclosure-youtube-meta-tiktok.md).
+
+## Evidence (read 30 Oct 2026)
+- **Sprout Social, "Creating a social media content series"** (sproutsocial.com): in the Sprout Q2 2025 Pulse Survey of 2,000+ global social users, **57% wanted brands to prioritise original content series**, nearly tied with "interacting with audiences" (the top answer). Sprout's reasons: routine and predictability, a cohesive narrative with **familiar faces**. Survey of stated preference, not watch data.
+- **Wistia, "What your video engagement graph is telling you"** (wistia.com), Wistia's own test: a video that spent **about a minute introducing the series** before the point showed a big drop in the first 10-15 s, so only about half of viewers reached the information. After the re-edit cut the long intro and reached "the good stuff within the first 10 seconds", **overall engagement rose 5 percentage points and the initial loss halved**. One company, one video, but a before/after on exactly this shape.
+- **YouTube Help 12942217 (Shorts content-tab analytics)**: the "how many chose to view" report is **the percentage of times viewers viewed your Short versus swiped away**. This is the number that tells us whether the ident is costing viewers. Practitioner rule of thumb on r/YouTubeCreators: below ~60% viewed is weak (forum testimony, not checked against YouTube).
+- **YouTube channel monetization policies (Help 1311392, update 15 Jul 2025)**: "repetitious" renamed **"inauthentic content"**; ineligible includes content that is "mass-produced, generic, repetitive" and **"content that looks like it's made with a template, or that may feel repetitive to viewers after watching several videos in a row from the same channel."** Reviewers look at the channel's main theme, newest and most-viewed videos and metadata. A templated intro is fine; a templated *whole video* with only the title swapped is the risk.
+- Not found: any published retention figure for a recurring personal ident on Shorts/Reels specifically. Treat the 57% and the Wistia +5 pts as direction, not a forecast. **Not checked:** any "series posts get +35% follows" figures on vendor blogs (TokPortal); left out.
+
+## The how-to
+1. **Ident ≤ 2 s, then the episode hook by 3 s.** The ident buys recognition only from people who already know the series; strangers in the feed decide in the first 1-3 s (see the teaser-cutdowns skill). So: "Great House Farm Story Time." (~1.5 s) then *"Today's story: <the one-line hook>"* in the same breath, with the hook as the on-screen line. The episode-specific words must start before 3 s.
+2. **The variation carries novelty, the line carries recognition.** Same words, same framing and same end card every time; change the top, colour and moving background (as the project lead asked). That is what keeps a series from reading as "made with a template" to viewers and to YouTube reviewers.
+3. **The explainer must differ in substance each time**: new record, new date, new place. Never ship two episodes whose only difference is the title (inauthentic-content risk above).
+4. **Narrator thumbnail = a familiar face, not decoration.** Keep it in a corner that clears the platform safe zones (right-side buttons and bottom caption bar; see the reels-from-stills safe-zone skill), circular, about 22-28% of frame width, and never over the caption text.
+5. **Title and first line say the same thing.** The title/description names "Story Time: <hook>", so a searcher sees the promise met in the first 3 s (YouTube's first fix in Help 9314415).
+6. **Measure the ident, don't assume it.** Per episode, record: Shorts viewed-vs-swiped %, average % viewed, Instagram skip rate, and a manual note of the hook. After 6 episodes compare against the pre-format median from the same channel. If viewed % falls by more than 5 points versus that median, shorten the ident to the two words "Story Time" or put the hook first and the ident second. Change one thing at a time.
+7. **Episode numbers help binge, not the hook.** Put "Ep N" in the title and a playlist/Show (series skills), not in the spoken intro.
+
+## How we apply it to Cedwyn
+- **Intro script rule for make_intro.py / the social-intro worker (PROPOSED):** spoken line = "Great House Farm Story Time. Today's story: <hook ≤ 8 words>." The hook comes from the episode, e.g. "Today's story: the 1941 flight over the farm." (neutral, dated, no accusation) (Text on screen stays limited to the line the project lead gave plus BucklerFamily.Estate; check banned words.) Target total intro 3.5-5 s, not 6.
+- **Episode log:** add columns `ident_s`, `hook_start_s`, `viewed_vs_swiped_pct`, `avg_pct_viewed`, `ig_skip_rate` to the Shorts log used by the YouTube daily runner (the project workspace) and the Sunday growth report. Baseline = median of the last 10 pre-format Shorts.
+- **Decision gate after 6 episodes (about 3-6 days at 1-2 Shorts/day):** keep the ident if viewed % is within 5 points of baseline; otherwise move the hook first. Record the decision in growth-report notes; tell the project lead only via the Sunday report.
+- **Inauthentic-content guard:** the YouTube daily runner checks that no two queued episodes share the same explainer source record; held items stay held.
+- Pairs with the companion disclosure skill: every episode's intro is AI-made, so the AI-use box is ticked on YouTube and the label toggled on Instagram/Facebook/TikTok.
+
+## Sources
+- sproutsocial.com
+- wistia.com
+- support.google.com
+- support.google.com
+- support.google.com

@@ -10,7 +10,7 @@ Live tracking is on /dartboard/ (one lane per body). This list is refreshed each
 | 6 Nov 2026 | HM Land Registry copies: if not received, a PRINCE2 exception report is raised |
 | 9 Nov 2026 | South Wales Police: FOI 1264/26 response due (the force warned of a backlog) |
 | 10 Nov 2026 | Llandough Community Council: internal review of an FOI refusal (latest 8 Dec) |
-| 13 Nov 2026 | Target date for the complaint to HM Land Registry's Independent Complaints Reviewer (hard limit about 25 Nov) |
+| 16 Nov 2026 | Welsh Government: ATISN 26-0075 (questions on an earlier refusal, four new information requests and a request to preserve records); the internal review of ATISN 26-0010 is answered separately |
 | 17 Nov 2026 | Natural Resources Wales: environmental information request response (20 working days) |
 | 18 Nov 2026 | Llandough Community Council: confirmation of the 22 Oct draft minutes |
 | 18 Nov 2026 | Crown Prosecution Service: FOI 14786 response due |

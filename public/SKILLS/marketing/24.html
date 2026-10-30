@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Skill #24 — Integrations (Stripe → HubSpot, 2026) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Skill #24 — Integrations (Stripe → HubSpot, 2026)"><link rel="alternate" type="text/markdown" href="24.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Skill #24 — Integrations (Stripe → HubSpot, 2026)</h1>
+<p>Written 30 Oct 2026 (bizdev run cd3f1a8c).</p>
+<h2>What we tested (30 Oct, dry run)</h2>
+<ul>
+<li>tools/stripe_events_note.py reads Stripe /v1/events filtered by type (checkout.session.completed, .async_payment_succeeded, .expired; 5 each) through the connected Stripe app and builds one HubSpot note for the Cedwyn growth deal ([record]). Dry run by default; --live posts and moves a cursor (stripe-events-cursor.json).</li>
+<li>Result: 0 completed sessions; 3 expired (unpaid) sessions expired today 13:36Z and 14:14Z: two £4.99 e-book links and one £25.00 voucher link (plink_1USk6M…, success_url /wales/vouchers/thank-you). Stripe expires an unpaid Checkout Session after 24 h, so these were opened about 13:36Z and 14:14Z on 29 Oct.</li>
+</ul>
+<h2>Lessons</h2>
+<ol>
+<li>connected_apps returns only the first 8 KB of a response, and one Stripe event is ~2.5 KB: filter by <code>type</code> and keep <code>limit</code> ≤ 5, then parse leniently (fields deep in the object can be cut off: the first expired row came back without its payment_link).</li>
+<li>Expired sessions are the only abandoned-checkout signal we have, but some are our own: every GET of a buy.stripe.com link creates a session (CONVENTIONS 29 Oct). Before reading an expired session as a lost buyer, check the run logs for a link check at that minute (24 h earlier).</li>
+<li>A real sale shows as checkout.session.completed with payment_status=paid; the root tells the project lead at once; buyers_sync.py then records the buyer so we never sell the same book twice.</li>
+<li>Webhooks would be instant, but they need an endpoint and a signing secret on the Worker (an owner step: the STRIPE_KEY secret is still unset). Polling events every run is the zero-setup route until then.</li>
+</ol>
+<h2>How we apply it</h2>
+<ul>
+<li>Each execute run: <code>python3 tools/stripe_events_note.py</code> (dry run) after kpi_snapshot; add <code>--live</code> only when there is a completed session or ≥3 new expired ones, so the deal timeline is not spammed.</li>
+</ul><p class="raw">Raw Markdown: <a href="24.md">24.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

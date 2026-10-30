@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Sketchfab 3D for the virtual tour and the replica: views we can count · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Sketchfab 3D for the virtual tour and the replica: views we can count"><link rel="alternate" type="text/markdown" href="sketchfab-3d-virtual-tour-replica-views.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Sketchfab 3D for the virtual tour and the replica: views we can count</h1>
+<p>Skill added 2026-10-30 (skills harvest). Scope: Great House Farm / cedwyn only. Serves two projects: the guided virtual/augmented Wales tour, and the Argentina replica (Cedwyn Estate 2.0).</p>
+<h2>What it is</h2>
+<p>Sketchfab is a web 3D viewer and community. Epic Games has owned it since 2021. Each model page shows public view and like counts. Models embed anywhere through an iframe or oEmbed, and visitors can view them in AR on a phone with no app.</p>
+<h2>Facts (checked today unless marked)</h2>
+<ul>
+<li><strong>The free Basic plan</strong> (sketchfab.com, read 30 Oct 2026): 10 uploads a month, 100 MB per model, 10 annotations per model.</li>
+<li>Annotations are clickable notes, useful for "this was the dairy" style labels.</li>
+<li>App-free AR is listed as a plan feature. Which tiers include it wasn't readable in the page text, so it is <strong>not checked</strong>.</li>
+<li>Removing the Sketchfab logo and branding needs a paid plan.</li>
+<li><strong>Still running:</strong> the public Data API answered today (<code>api.sketchfab.com) and so did oEmbed (</code>sketchfab.com).</li>
+<li><strong>The Store closed when Epic's Fab launched (Oct 2024).</strong> The search snippet of Sketchfab's own blog reads "Sketchfab Store is now closed... products remain viewable". It also signalled the end of free licensing / downloads on Sketchfab "next year" (2025). Whether free downloads are now gone is <strong>not checked</strong>.</li>
+<li>This doesn't affect us: we want viewing and embedding, not selling 3D files.</li>
+<li><strong>Heritage community:</strong> Sketchfab's blog reports over 100,000 models in the Cultural Heritage &amp; History category, about 20,000 of them downloadable under CC.</li>
+<li>Only about 30% of models carry a category, so the real number is higher.</li>
+<li>The Cultural Heritage programme, running since 2015, gives "hundreds of organisations" free subscriptions.</li>
+<li>CC0 dedication is available to cultural organisations; 27 organisations in 13 countries took part at launch.</li>
+<li>All of this is from Sketchfab blog posts I read today. Their publication dates (around 2019–2020) were not shown, so treat these as older figures.</li>
+<li><strong>Local benchmark, pulled from the Sketchfab API on 30 Oct 2026:</strong></li>
+<li>"Cardiff Castle, medieval scan": 1,488 views</li>
+<li>"Penarth Cliffs (South Wales) March 2017": 725 views</li>
+<li>"Roman dodecahedron from Cardiff Castle": 680 views</li>
+<li>"Penarth Railway Path bridge": 229 views</li>
+<li>"Llandough Hospital": 26 views</li>
+</ul>
+<p>Local 3D heritage is a small niche: hundreds of views over years, not thousands a week. The value is the embed on our own pages and on the tour, not discovery on Sketchfab itself.
+- No published case study with numbers on embedded 3D lifting time on page or sales for a heritage site turned up. Any lift is <strong>not checked</strong>.</p>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Model.</strong> Choose one of these:
+   - A simple massing reconstruction of the house built from dated plans and photos, made in free Blender, kept under 100 MB, exported as glTF/GLB.
+   - A photogrammetry scan of a public object or place.</li>
+</ol>
+<p>Label a reconstruction as a reconstruction. Record the date of each source.
+2. <strong>Upload</strong> to a Cedwyn Sketchfab account:
+   - Title it "<place> — reconstruction (sources: …)" and set the category to Cultural Heritage &amp; History.
+   - Write a description that links to the catalogued evidence page. Sketchfab descriptions allow links, but Cedwyn pages carry no outbound links, so the link only goes from Sketchfab to us.
+   - Add up to 10 annotations, each pointing to a dated record.
+3. <strong>Embed</strong> on Cedwyn pages using the oEmbed iframe, lazy-loaded behind a "View in 3D" button, because the viewer is heavy on a 390 px phone.
+4. <strong>Measure</strong> weekly views and likes from <code>GET api.sketchfab.com</code> (the <code>viewCount</code> and <code>likeCount</code> fields; no key needed). Embedded views count as views on Sketchfab. That matches how the platform reports them, but it is <strong>not checked</strong> in Sketchfab docs.</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Tour (project d):</strong> the first models are public places only: St Dochdwy church exterior, the Leckwith bridge and the woods' public paths. There are no private houses, family holdings or addresses. Those are scans or photos someone takes on site, an owner/tour-team task.</li>
+<li><strong>Replica (project c):</strong> a reconstruction of Great House (Cydfin Farm), clearly labelled "reconstruction; details not checked" wherever a source is missing. It is the shared reference model for the Argentina build brief and a "then" view for the online tour.</li>
+<li><strong>Rules:</strong></li>
+<li>Llandough Farm is not Great House Farm. Any model of it lives only with the Kissed Frogs material and is labelled that way.</li>
+<li>Check that "Llandough" means Llandough near Penarth, not the one near Cowbridge.</li>
+<li>Banned words apply to titles, descriptions and annotations. Never name the project lead. No insignia.</li>
+<li><strong>Spend:</strong> zero. Free Basic plan, Blender, and on-site phone photos. Paid AR or branding removal is a PROPOSAL only.</li>
+<li><strong>Gate before any build:</strong> a worker writes the massing brief from the dated plans already catalogued. If too few dimensions exist, write "not enough dated sources" and stop, rather than inventing.</li>
+<li><strong>Measure:</strong> total views per model each month in <code>growth-report/weekly.csv</code>. Keep the work if the embed page's time on page, from Cloudflare/Clarity, beats the same page without it over 4 weeks. Otherwise keep the model as a reference asset only.</li>
+<li><strong>Read-only helper:</strong> <code>skills/tools/sketchfab_views.py &lt;uid|search terms&gt;</code> prints name, views and likes. It uses requests only and installs nothing.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>Sketchfab plans: sketchfab.com (read 30 Oct 2026)</li>
+<li>Sketchfab Data API v3 search (queried 30 Oct 2026): api.sketchfab.com</li>
+<li>Sketchfab blog, "Over 100,000 Cultural Heritage 3D Models": sketchfab.com (read; date not shown)</li>
+<li>Sketchfab blog, "Public Domain Dedication for 3D Cultural Heritage": sketchfab.com (read; date not shown)</li>
+<li>Sketchfab blog, "What you need to know now that Fab's live": sketchfab.com (403 from box; snippet only, not checked)</li>
+</ul><p class="raw">Raw Markdown: <a href="sketchfab-3d-virtual-tour-replica-views.md">sketchfab-3d-virtual-tour-replica-views.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
