@@ -465,7 +465,7 @@
       [["/wales/", s.swales || "Wales"], ["/argentina/", s.sarg || "Argentina"], ["/explore/", s.oak || "The oak board"]].forEach(function (x) {
         li = mk("li"); a = mk("a", null, x[1]); a.href = x[0]; if (location.pathname === x[0]) a.setAttribute("aria-current", "page"); a.onclick = function () { setTimeout(closeDrawer, 10); }; li.appendChild(a); top.appendChild(li); });
       li = mk("li"); a = mk("a", null, s.values || "Values and Standards"); a.href = "/values/"; if (/^\/values\//.test(location.pathname)) a.setAttribute("aria-current", "page"); li.appendChild(a); top.appendChild(li);
-      li = mk("li"); a = mk("a", null, s.presskit || "Press Kit"); a.href = "/presskit/"; if (/^\\/presskit\\//.test(location.pathname)) a.setAttribute("aria-current", "page"); li.appendChild(a); top.appendChild(li);
+      li = mk("li"); a = mk("a", null, s.presskit || "Press Kit"); a.href = "/presskit/"; if (location.pathname.indexOf("/presskit/") === 0) a.setAttribute("aria-current", "page"); li.appendChild(a); top.appendChild(li);
       inn.appendChild(top);
       subSections(s, inn);
       var dh = mk("div", "ghf-v2-dh", s.groups); dh.setAttribute("role", "heading"); dh.setAttribute("aria-level", "2"); inn.appendChild(dh);
