@@ -56,6 +56,16 @@ def page(doc):
                     esc("; ".join(s.get("inputs", []))) + "</p><p><strong>Outputs:</strong> " +
                     esc("; ".join(s.get("outputs", []))) + "</p><p><strong>Rule:</strong> " +
                     esc(s.get("rule")) + "</p></article>")
+    chronology = []
+    for d in doc.get("date_conflicts", []):
+        date_text = d.get("recorded_date") or (str(d.get("family_chronology_date", "")) + " / " + str(d.get("repository_probate_candidate", "")))
+        chronology.append("<tr><th>" + esc(d.get("person")) + "</th><td>" + esc(date_text) + "</td><td>" + esc(d.get("status")) + "</td></tr>")
+    graph_nodes = []
+    for n in doc.get("causal_graph", {}).get("nodes", []):
+        graph_nodes.append("<tr><th>" + esc(n.get("id")) + "</th><td>" + esc(n.get("label")) + "</td><td>" + esc(n.get("type")) + "</td></tr>")
+    graph_edges = []
+    for e in doc.get("causal_graph", {}).get("edges", []):
+        graph_edges.append("<tr><td>" + esc(e.get("from")) + " → " + esc(e.get("to")) + "</td><td>" + esc(e.get("relation")) + "</td><td>" + esc(e.get("status")) + "</td></tr>")
     refs = []
     for r in doc.get("evidence_refs", []):
         refs.append("<li>" + link(r.get("path", "#"), r.get("ev", "Artifact")) +
@@ -98,8 +108,10 @@ table{border-collapse:collapse;width:100%;margin:1rem 0}th,td{padding:.45rem .6r
 <h2 id="if-true">If the leading hypothesis were true, it would explain…</h2><ol>""" + "".join("<li>" + esc(x) + "</li>" for x in doc.get("executive_if_true", [])) + """</ol>
 <h2>Mechanism, stage by stage</h2><p>Each stage states the proposition, what it would explain if true, the alternative and the artifacts to test. Dates do not establish motive.</p>
 """ + "".join(stages) + """
+<h2>People and chronology: unresolved dates</h2><table><tbody><tr><th>Person</th><th>Date or conflict</th><th>Current status</th></tr>""" + "".join(chronology) + """</tbody></table>
 <h2>Ranked hypothesis register</h2><p>The ranking is an order for testing and explanatory fit, not a probability estimate or a finding of criminal conduct. H2 records the operative court outcome; H5–H7 remain lower-confidence or fiction-only branches.</p>
 """ + "".join(hypotheses) + """
+<h2>Causal graph</h2><p>Nodes are dated stages or record states; edges are labelled as chronological, documented, unresolved or hypothetical.</p><h3>Nodes</h3><table><tbody>""" + "".join(graph_nodes) + """</tbody></table><h3>Edges</h3><table><tbody>""" + "".join(graph_edges) + """</tbody></table>
 <h2>Simulation programme</h2><p>The purpose is to reverse-engineer the documents and parcel geometry, not to generate conclusions from dates alone.</p>
 """ + "".join(sims) + """
 <h2>Priority records</h2><ol>""" + "".join("<li>" + esc(x.get("item")) + "</li>" for x in doc.get("priorities", [])) + """</ol>
