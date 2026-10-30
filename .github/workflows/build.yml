@@ -10,7 +10,9 @@ permissions:
   contents: write
 concurrency:
   group: build-cedwyn
-  cancel-in-progress: true
+  # false (P-068, 30 Oct): a running build always finishes and publishes; newer pushes wait as ONE pending run
+  # (GitHub replaces an older pending run), so main pushes every few minutes can no longer starve publishing.
+  cancel-in-progress: false
 jobs:
   build:
     runs-on: ubuntu-latest
