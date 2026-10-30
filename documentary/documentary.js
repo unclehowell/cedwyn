@@ -1,7 +1,4 @@
-/* Cedwyn · documentary — versions, licence and checkout (page v1.7.2). A tab.bot production.
-   v1.7.2 (30 Oct 2026): older cuts start at -v0.0.2 (owner's rule, 30 Oct 21:50, superseding the 10:40 numbering): there is no -v0.0.1;
-   the most recent older cut is -v0.0.2, then -v0.0.3 … (hashtags #_v0.0.2, #_v0.0.3 …). v0.0.2 and v0.0.1 are unchanged. The start
-   number is VS.older_start (2), overridable by "older_start" in /_cedwyn/versions.json. Labels only; manifest versions and downloads keep theirs.
+/* Cedwyn · documentary — versions, licence and checkout (page v1.7.1). A tab.bot production.
    v1.7.0 (30 Oct 2026): access codes. The newest cut of each scene (#v0.0.2, £4.99) is opened per scene with an access code: tapping it
    (or reaching it with Next/Back in the player) opens a box with "Enter access code" and "Buy now · £4.99". Buying goes to the film's
    £4.99 checkout tagged with that scene and cut (client_reference_id doc-s<n>-v<cut>); the checkout returns to /documentary/?unlock=<session>,
@@ -11,7 +8,7 @@
    CedwynDoc.owns(n, v) says whether a cut is open here.
    v1.6.2 (30 Oct 2026; replaces the short-lived 1.6.1): version labels follow the site-wide scheme (/_cedwyn/versions.json): each door's newest cut is v0.0.2 at £4.99
    (bought with the film's one £4.99 link; members and buyers on this device play it); the previous cut is v0.0.1, free and the default;
-   older cuts count backwards by creation date as -v0.0.2, -v0.0.3 … since 1.7.2 (was -v0.0.1 …), all free (hashtags #v0.0.2, #v0.0.1, #_v0.0.2, #_v0.0.3 …; the reserved
+   older cuts count backwards by creation date as -v0.0.1, -v0.0.2 …, all free (hashtags #v0.0.2, #v0.0.1, #_v0.0.1, #_v0.0.2 …; the reserved
    next version is #next). Labels are display only.
    v1.6.0 (30 Oct 2026): versions are hashtag chips under each scene (movie.js 1.5.0), not a menu. Each door lists its own
    versions: a reserved next version marked "coming" (manifest entry "next_version": {version, status: "coming"}; not
@@ -115,23 +112,23 @@
     made.forEach(function (c, i) {
       if (i === 0) { c.latest = true; c.label = VS.latest; c.paid = !single && VS.price > 0; c.free = !c.paid; c.price = c.paid ? VS.price : 0; c.open = !c.paid || owns(n, c.v); }
       else if (i === 1) { c.label = VS.previous; c.free = true; c.prev = true; }
-      else { c.label = "0.0." + (VS.older_start + i - 2); c.neg = true; c.free = true; }   // 1.7.2: the minus series starts at -v0.0.2 (rule 30 Oct 2026 21:50: no -v0.0.1; i = 2 is the most recent older cut)
+      else { c.label = "0.0." + (i - 1); c.neg = true; c.free = true; }
     });
     out.forEach(function (c) { if (c.coming) c.label = VS.next; });
     return out;
   };
   // v1.6.2: one version scheme across the site (/_cedwyn/versions.json): the newest version of anything is v0.0.2 (£4.99); the previous one is
-  // v0.0.1 (free); older ones count backwards by creation date as -v0.0.2, -v0.0.3 … (minus before the v; most recent older = -v0.0.2 since 1.7.2), all free;
-  // each is its own version (no ranges). In a hashtag the minus becomes an underscore: #v0.0.2, #v0.0.1, #_v0.0.2, #_v0.0.3 …. Labels are display only: manifest versions (0.0.1-0.0.N), data-v attributes, downloads
+  // v0.0.1 (free); older ones count backwards by creation date as -v0.0.1, -v0.0.2 … (minus before the v; most recent older = -v0.0.1), all free;
+  // each is its own version (no ranges). In a hashtag the minus becomes an underscore: #v0.0.2, #v0.0.1, #_v0.0.1, #_v0.0.2 …. Labels are display only: manifest versions (0.0.1-0.0.N), data-v attributes, downloads
   // and saved choices keep their own values. The latest cut is bought with the film's one £4.99 link (GO); the free v0.0.1 is the default.
-  var VS = {latest: "0.0.2", previous: "0.0.1", next: "next", price: 4.99, older_start: 2};   // 1.7.2: older cuts start at -v0.0.2 (owner's rule, 30 Oct 2026 21:50)
+  var VS = {latest: "0.0.2", previous: "0.0.1", next: "next", price: 4.99};
   try { fetch("/_cedwyn/versions.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { var s = j && j.scheme; if (!s) return;
-    ["latest", "previous", "next"].forEach(function (x) { if (typeof s[x] === "string" && s[x]) VS[x] = s[x]; }); if (typeof s.latest_price_gbp === "number") VS.price = s.latest_price_gbp; if (typeof s.older_start === "number" && s.older_start >= 1) VS.older_start = s.older_start;
+    ["latest", "previous", "next"].forEach(function (x) { if (typeof s[x] === "string" && s[x]) VS[x] = s[x]; }); if (typeof s.latest_price_gbp === "number") VS.price = s.latest_price_gbp;
     document.dispatchEvent(new CustomEvent("cedwyn-doc-vlabels")); }).catch(function () {}); } catch (e) {}
   G.vs = function () { return VS; };
   function chipOf(n, v) { v = String(v || "").replace(/^v/, ""); return G.chips(n).filter(function (c) { return c.v === v; })[0] || null; }
-  G.vlabel = function (n, v) { var c = chipOf(n, v); return c ? (c.coming ? VS.next : (c.neg ? "-" : "") + "v" + c.label) : "v" + String(v).replace(/^v/, ""); };   // plain text: v0.0.2, v0.0.1, -v0.0.2, -v0.0.3 …
-  G.vtag = function (c) { return "#" + (c.coming ? VS.next : (c.neg ? "_" : "") + "v" + (c.label || c.v)); };   // hashtag: #v0.0.2, #v0.0.1, #_v0.0.2, #_v0.0.3 …, #next
+  G.vlabel = function (n, v) { var c = chipOf(n, v); return c ? (c.coming ? VS.next : (c.neg ? "-" : "") + "v" + c.label) : "v" + String(v).replace(/^v/, ""); };   // plain text: v0.0.2, v0.0.1, -v0.0.1 …
+  G.vtag = function (c) { return "#" + (c.coming ? VS.next : (c.neg ? "_" : "") + "v" + (c.label || c.v)); };   // hashtag: #v0.0.2, #v0.0.1, #_v0.0.1 …, #next
   // v1.7.0: a paid cut is open on this device when a valid access code for that scene and cut was entered here (or the viewer is a member).
   function codes() { try { return JSON.parse(ls("cedwyn-doc-codes") || "{}") || {}; } catch (e) { return {}; } }
   function owns(n, v) { if (isMem()) return true; var c = codes(); return !!(c[n + "|" + v] || c["0|*"]); }

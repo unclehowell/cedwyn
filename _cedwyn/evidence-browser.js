@@ -46,6 +46,7 @@
     '<div class="cw-eb-links"><button type="button" data-more hidden>Load more</button><a href="/wiki/observations/">Open all observation pages</a></div>',
     '</section>'
   ].join('');
+  var hasCsscpsg = false;
   var status = root.querySelector('[data-status]');
   var results = root.querySelector('[data-results]');
   var queryInput = root.querySelector('#cw-eb-query');
@@ -98,6 +99,60 @@
       card.appendChild(note);
     }
     if (r.limitations) field(card, 'Limits and unresolved checks', r.limitations, '');
+    if (r.csscpsg_json) {
+      var cs = null;
+      try { cs = JSON.parse(r.csscpsg_json); } catch (_) {}
+      if (cs && (cs.scores || cs.result)) {
+        var csBox = el('div', 'cw-eb-note cw-eb-csscpsg');
+        csBox.appendChild(el('strong', '', 'CSSCPSG structural reading (S1-S6)'));
+        var ruleNames = { S1: 'Scope', S2: 'Party', S3: 'Agency', S4: 'Term shift', S5: 'Text gap', S6: 'Inconsistency' };
+        if (cs.scores) {
+          var csList = el('ul', '');
+          Object.keys(ruleNames).forEach(function (k) {
+            if (!(k in cs.scores)) return;
+            var li = el('li', '');
+            var why = (cs.why && cs.why[k]) ? ' - ' + cs.why[k] : '';
+            li.textContent = k + ' ' + ruleNames[k] + ': ' + cs.scores[k] + why;
+            csList.appendChild(li);
+          });
+          csBox.appendChild(csList);
+        }
+        if (cs.result) {
+          csBox.appendChild(el('p', '', cs.result.compliant
+            ? 'Read against rules S1-S6: no breach recorded for this record.'
+            : 'Recorded as not compliant' + (cs.result.reason ? ': ' + cs.result.reason : '')));
+        }
+        if (cs.timing && cs.timing.length) {
+          if (cs.timing_note) csBox.appendChild(el('p', 'cw-eb-meta', 'Timing note: ' + cs.timing_note));
+          var tList = el('ul', '');
+          cs.timing.forEach(function (t) {
+            var li = el('li', '');
+            li.textContent = 'Timing - ' + t.event + ': ' + t.score + (t.why ? ' - ' + t.why : '');
+            tList.appendChild(li);
+          });
+          csBox.appendChild(tList);
+        }
+        if (cs.S != null || cs.T != null || cs.D != null) {
+          csBox.appendChild(el('p', 'cw-eb-meta',
+            'S = ' + (cs.S != null ? cs.S : '?') + ' · T = ' + (cs.T != null ? cs.T : '?') +
+            ' · D = S x (1 + T) = ' + (cs.D != null ? cs.D : '?')));
+        }
+        if (cs.port || cs.derived) {
+          csBox.appendChild(el('p', 'cw-eb-meta',
+            'Port: ' + (cs.port || 'not stated') +
+            (cs.derived ? ' · derived fields (' + cs.derived.fields.join(', ') + ') added by ' + cs.derived.by + ': ' + cs.derived.basis : '')));
+        }
+        if (cs.unassessed_rules && cs.unassessed_rules.length) {
+          csBox.appendChild(el('p', 'cw-eb-meta', 'Rules not yet assessed: ' + cs.unassessed_rules.join(', ')));
+        }
+        if (cs.score_completeness) {
+          csBox.appendChild(el('p', 'cw-eb-meta', 'Score completeness: ' + cs.score_completeness));
+        }
+        csBox.appendChild(el('p', 'cw-eb-meta', cs.caveat || 'A mark is an observation about the record, not a finding of wrongdoing.'));
+        if (cs.source) csBox.appendChild(el('p', 'cw-eb-meta', 'Source: ' + cs.source));
+        card.appendChild(csBox);
+      }
+    }
     if (r.catalogue_page_text) {
       var existing = el('details', 'cw-eb-existing');
       existing.appendChild(el('summary', '', 'Existing catalogue page text · not a source transcription'));
@@ -163,6 +218,10 @@
     moreButton.hidden = true;
     try {
       await openDb();
+      try {
+        var cols = await db.query("SELECT name FROM pragma_table_info('artifact_assessments')", []);
+        hasCsscpsg = cols.some(function (c) { return c.name === 'csscpsg_json'; });
+      } catch (e) { hasCsscpsg = false; }
       if (!coverageText) {
         var cov = await db.query(
           "SELECT COUNT(*) AS total, " +
@@ -184,6 +243,7 @@
         var base = "SELECT ec.ev, ec.title, ec.path, ec.evidence_grade, ec.independent_origin_id, ec.grade_note, " +
           "aa.description, aa.description_status, aa.transcript, aa.transcript_status, aa.interpretation, " +
           "aa.interpretation_status, aa.source_verification_status, aa.limitations, " +
+          (hasCsscpsg ? "aa.csscpsg_json, " : "'' AS csscpsg_json, ") +
           "et.body AS catalogue_page_text, et.truncated AS catalogue_text_truncated " +
           "FROM evidence_catalogue ec LEFT JOIN artifact_assessments aa ON aa.ev=ec.ev " +
           "LEFT JOIN evidence_text et ON et.aid=ec.artifact_id ";
