@@ -1,7 +1,7 @@
 {
   "schema": "cedwyn_presskit_claims/v1",
   "title": "Great House Farm — statement scrutiny register",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "reviewed": "2026-10-30",
   "review_scope": "Initial curated scrutiny set: baseline site facts and priority Williams/Bute tenancy, title, chronology and Marconi assertions. It is not an exhaustive machine-generated audit of every sentence on every Cedwyn page.",
   "scoring": {
@@ -289,18 +289,12 @@
       "url": "/research/evidence/ev-0284-alfred-thomas-lord-pontypridd-son-of-daniel-thomas-of-the-llandough-lime-works-die/"
     },
     {
-      "id": "MARY",
-      "title": "Mary Williams’s c.1974 statement",
-      "type": "Witness statement / family testimony",
-      "status": "Statement held; no 1667 instrument is present in this record set",
-      "url": "/research/testimony/mary-williams/"
-    },
-    {
       "id": "EV-0083",
       "title": "ITV Wales report — eviction and injunction, 1988",
       "type": "Broadcast report",
       "status": "Report identified",
-      "url": "/research/evidence/ev-0083-itv-wales-report-eviction-injunction/"
+      "url": "/research/evidence/ev-0083-itv-wales-report-eviction-injunction/",
+      "origin_note": "The 1988 broadcast is a later report of the family-history account, not a contemporary record of a 1667 transaction."
     },
     {
       "id": "EV-0106",
@@ -367,6 +361,14 @@
       "type": "Diary material / extract",
       "status": "Extracts reviewed; full diary and context remain to be checked",
       "url": "/research/evidence/ev-0256-kemp-diary-lavernock-1897-bodleian-ms-marconi-89/"
+    },
+    {
+      "id": "EV-0048",
+      "title": "Daily Telegraph, 16 April 1974 — “Open day” to save ancient Welsh house",
+      "type": "Contemporary newspaper report",
+      "status": "1974 report carrying family-history material; not a 1667 instrument",
+      "url": "/research/evidence/ev-0048-telegraph-open-day-ancient-house/",
+      "origin_note": "Reports Mary Williams's family-history account; it is evidence of the report and attributed account, not an original 1667 transaction."
     }
   ],
   "claims": [
@@ -707,13 +709,12 @@
       "overallScore": 58,
       "statement": "Mary Williams's c.1974 statement reports that the Williams family acquired Tŷ Mawr in 1667.",
       "short": "The statement is an artifact; the 1667 conveyance or lease is not currently held.",
-      "supports": "The 1974 statement, as reported in the contemporary press and repeated in the 1988 ITV item, attributes the 1667 date to Mary Williams.",
+      "supports": "The Daily Telegraph report of 16 April 1974 records the family-history account associated with Mary Williams; the 1988 ITV Wales report is a later publication repeating the 1667 date. These sources show that the date was reported, not that a 1667 transaction has been located.",
       "doesNotSupport": "The statement and later reports do not themselves prove the legal instrument, parties, term, exact property or nature of the interest acquired in 1667.",
-      "safestWording": "Mary Williams's c.1974 statement gave 1667 as the date of the family's acquisition; no 1667 instrument identifying Tŷ Mawr has yet been produced in this record set.",
+      "safestWording": "The 16 April 1974 Daily Telegraph report and a later ITV Wales report record a family-history account, attributed to Mary Williams, giving 1667 as the acquisition date. No 1667 instrument identifying Tŷ Mawr has been located in this record set.",
       "evidence": [
-        "MARY",
-        "EV-0083",
-        "EV-0211"
+        "EV-0048",
+        "EV-0083"
       ],
       "flags": [
         "S5"
@@ -735,7 +736,11 @@
         "application": 12,
         "counter": 8
       },
-      "reviewNote": "Keep “Mary reported” separate from “the family acquired legal title”."
+      "reviewNote": "Keep “Mary reported” separate from “the family acquired legal title”.",
+      "contextEvidence": [
+        "EV-0211"
+      ],
+      "corroborationNote": "EV-0048 and EV-0083 are separate publications reporting the family-history account. They are not independent contemporary witnesses to a 1667 event and neither is the operative 1667 instrument."
     },
     {
       "id": "PK-012",
@@ -751,7 +756,7 @@
       "doesNotSupport": "The catalogue entry does not identify all parties, the operative wording, the exact parcel boundary, a reversion clause or a transfer to Williams. The 1877 instrument and plan are not presently held in the research set.",
       "safestWording": "Mary's later statement describes an 1877 Bute–Thomas arrangement. The instrument, plan, parties and legal effect remain to be verified.",
       "evidence": [
-        "MARY",
+        "EV-0048",
         "EV-0006",
         "EV-0291"
       ],
@@ -793,7 +798,7 @@
       "doesNotSupport": "No operative 1877 conveyance with verified parties, consideration, parcel schedule, plan and legal effect has been produced in the current set. No title link from Daniel Thomas to the Williams family has been demonstrated by the evidence cited here.",
       "safestWording": "Do not state this as an established conveyance or title chain. State only that the 1877 Bute–Thomas transaction is a family-reported hypothesis awaiting the original instrument and plan.",
       "evidence": [
-        "MARY",
+        "EV-0048",
         "EV-0006",
         "EV-0291"
       ],
@@ -1024,6 +1029,12 @@
         "ev": "EV-0023",
         "evidence_grade": 2,
         "independent_origin_id": "ORIG-EV-0023",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0048",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0048",
         "grade_note": ""
       },
       {
