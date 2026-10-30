@@ -1,6 +1,6 @@
 {
-  "version": "1.2.1",
-  "note": "Two halves of Cedwyn (Sion, 23:39 GMT 25 Oct 2026, m:2a7c8c27): landing (two tiles), /wales/ = augmented-reality guided tour of Cedwyn Estate, Wales (former manorial house, never 'farm'; no museum stop), /argentina/ = Cedwyn Estate II / Great House II retreat with package builder. Wales copy follows EDITORIAL.md (ingredients + citations, courts' view first, banned words). AI images carry 'artist's impression'. Bookings are pre-order requests, not confirmed holidays. Welsh and Spanish are first drafts for review. tools/halves.py renders it. - Sion's Tab agent 1.2.1 (30 Oct 2026): 1667 attributed to Mary Williams's c.1974 statement; no 1667 instrument located. Marconi stay presented as later attributed reports (1993 book and 1995 newspaper), with source links and the limit that contemporary materials reviewed do not independently confirm an overnight stay.",
+  "version": "1.2.2",
+  "note": "Two halves of Cedwyn (Sion, 23:39 GMT 25 Oct 2026, m:2a7c8c27): landing (two tiles), /wales/ = augmented-reality guided tour of Cedwyn Estate, Wales (former manorial house, never 'farm'; no museum stop), /argentina/ = Cedwyn Estate II / Great House II retreat with package builder. Wales copy follows EDITORIAL.md (ingredients + citations, courts' view first, banned words). AI images carry 'artist's impression'. Bookings are pre-order requests, not confirmed holidays. Welsh and Spanish are first drafts for review. tools/halves.py renders it. - Sion's Tab agent 1.2.1 (30 Oct 2026): 1667 attributed to Mary Williams's c.1974 statement; no 1667 instrument located. Marconi stay presented as later attributed reports (1993 book and 1995 newspaper), with source links and the limit that contemporary materials reviewed do not independently confirm an overnight stay. 1.2.2 (30 Oct 2026): replaced the non-catalogue MARY link with existing artifact pages EV-0048 (Daily Telegraph, 16 April 1974) and EV-0083 (ITV Wales, 1988); both are reports of family history, not the 1667 instrument.",
   "img": "/_cedwyn/halves/img/",
   "img_v": "3",
   "ev_href": {
@@ -40,7 +40,8 @@
     "EV-0085": "/research/evidence/ev-0085-glamorgan-village-book-demolition-page/",
     "EV-0645": "/research/evidence/ev-0645-local-history-book-llandough-penarth-pp64-65/",
     "EV-0646": "/research/evidence/ev-0646-the-post-cardiff-1995-09-14-p24-marconi-great-house-farm/",
-    "MARY": "/research/testimony/mary-williams/"
+    "EV-0048": "/research/evidence/ev-0048-telegraph-open-day-ancient-house/",
+    "EV-0083": "/research/evidence/ev-0083-itv-wales-report-eviction-injunction/"
   },
   "stops": [
     {
@@ -87,12 +88,13 @@
         ],
         [
           {
-            "en": "Mary Williams’s c.1974 statement reports 1667 as the family acquisition date; no 1667 instrument has been located.",
-            "cy": "Mae datganiad Mary Williams o tua 1974 yn rhoi 1667 fel dyddiad caffael y teulu; ni ddaethpwyd o hyd i offeryn o 1667.",
-            "es": "La declaración de Mary Williams de hacia 1974 da 1667 como fecha de adquisición de la familia; no se ha localizado un instrumento de 1667."
+            "en": "The Daily Telegraph (16 April 1974) and a later ITV Wales report record the family-history account, attributed to Mary Williams, that gives 1667 as the acquisition date; neither is a 1667 instrument.",
+            "cy": "Mae’r Daily Telegraph (16 Ebrill 1974) ac adroddiad diweddarach ITV Wales yn cofnodi’r hanes teuluol, a briodolir i Mary Williams, sy’n rhoi 1667 fel dyddiad caffael; nid yw’r naill na’r llall yn offeryn o 1667.",
+            "es": "The Daily Telegraph (16 de abril de 1974) y un informe posterior de ITV Wales registran el relato familiar, atribuido a Mary Williams, que da 1667 como fecha de adquisición; ninguno es un instrumento de 1667."
           },
           [
-            "MARY"
+            "EV-0048",
+            "EV-0083"
           ]
         ],
         [
