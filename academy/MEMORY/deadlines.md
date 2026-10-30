@@ -17,7 +17,8 @@ Live tracking is on /dartboard/ (one lane per body). This list is refreshed each
 | about 19 Nov 2026 | RCAHMW: reply to RC26-0375 (aim of 15 working days) |
 | 25 Nov 2026 | National Library of Wales: FOI/2026/15 response due |
 | 26 Nov 2026 | Ordnance Survey: FOI-26-46 revised response date |
-| about 26 Nov 2026 | HM Land Registry: reply to online enquiry 261029-6904545 (usually 5 working days, at most 20) |
+| 26 Nov 2026 | Ministry of Defence: FOI2026/25726 response (the request and its nomenclature supplement were re-logged on 30 Oct; target moved from 6 Nov) |
+| open | HM Land Registry: online enquiry 261029-6904545 drew an automatic reply that the address is no longer supported and no action will be taken; resend through the body's current route |
 | 14 Dec 2026 | Vale of Glamorgan Council: environmental information requests 00211721 and 00211722, extended response date |
 | overdue | The National Archives: information request response; chaser drafted for review |
 | open | Wales Office IR/26/16: whether to take it to the ICO (time limit not checked) |

@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Thompson-sampling bandit tests for low traffic (strips, headlines, button text) · Cedwyn Academy</title><link rel="alternate" type="text/markdown" href="thompson-sampling-bandit-low-traffic-strip-headline-tests.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style><!-- og:cedwyn --><meta property="og:title" content="Williams-Bucklers, Ty Mawr, Cedwyn – Academy"><meta property="og:type" content="website"><meta property="og:url" content="https://cedwyn.bucklerfamily.estate/academy/SKILLS/marketing/thompson-sampling-bandit-low-traffic-strip-headline-tests.html"><meta property="og:site_name" content="Williams-Bucklers, Ty Mawr, Cedwyn"><meta property="og:description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><meta property="og:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/share-academy-d1890a7c.jpg"><meta property="og:image:secure_url" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/share-academy-d1890a7c.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Williams-Bucklers, Ty Mawr, Cedwyn – Academy: share card on a Garden Gallery painting (NFA-0042)"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Williams-Bucklers, Ty Mawr, Cedwyn – Academy"><meta name="twitter:description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><meta name="twitter:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/share-academy-d1890a7c.jpg"><meta name="twitter:image:alt" content="Williams-Bucklers, Ty Mawr, Cedwyn – Academy: share card on a Garden Gallery painting (NFA-0042)"><meta name="description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><!-- /og:cedwyn --><script src="/_cedwyn/agent-tools.js?v=1" defer data-cedwyn-agent-tools></script><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.17"></script></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Thompson-sampling bandit tests for low traffic (strips, headlines, button text)</h1>
+<p>Skill harvested 30 Oct 2026. Topic: A/B testing / CRO. Before this, the index had 0 entries for "bandit", "multi-armed" or "explore-exploit". ab_stats.py, srm_check.py and prepost.py cover fixed A/B tests and before/after readouts.</p>
+<h2>What the sources show</h2>
+<ul>
+<li><strong>Google Analytics Content Experiments ran on a bandit.</strong> Steven L. Scott, GA blog, 22 Jan 2013 (read 30 Oct). Each day traffic is re-weighted to each variant's probability of being the best (Thompson sampling). Default stop rules:</li>
+<li>run at least <strong>2 weeks</strong>;</li>
+<li>then stop when one arm has <strong>at least a 95% chance</strong> of beating the original, <strong>or</strong> when there's a 95% chance that the "potential value remaining" is under <strong>1% of the champion's rate</strong>. That's 1% relative: 0.04 percentage points on a 4% rate.</li>
+<li><strong>Google's own simulation numbers, 2 arms:</strong></li>
+<li>Setup: 4% vs 5% conversion, 100 visits a day.</li>
+<li>A classical power calculation needs 22,330 visitors, which is <strong>223 days</strong>.</li>
+<li>Over 500 runs the bandit found the right arm 482 times. On average it finished <strong>175 days sooner</strong> and saved <strong>97.5 conversions</strong>. The reversed case was symmetric: 171.8 days and 98.7 conversions saved.</li>
+<li><strong>6 arms:</strong> the classical test would need 91,842 visitors (<strong>919 days</strong>). The bandit averaged <strong>88 days</strong>. Losing arms got starved quickly, so each wasted visit cost about 0.01 conversion.</li>
+<li><strong>Parse.ly Headline Testing</strong> (docs, read) is the same algorithm in production for publishers:</li>
+<li>Beta(clicks, non-click impressions), up to 10 variants, each visitor sticks to one variant via a cookie.</li>
+<li>It reports a "win chance". High is 95% or more and safe to ship. Fair is 70-95%, so use editorial judgement. Low is 55-70%. Below 55% is inconclusive.</li>
+<li><strong>Cautions</strong> (our reading, not checked against a study):</li>
+<li>Bandits trade a clean effect-size estimate for fewer wasted visits.</li>
+<li>Results drift if the arms' rates change over the run (seasonality, a press spike), which is why the 2-week floor matters.</li>
+<li>Stick visitors to one arm, and measure unique clicks, not reloads.</li>
+<li>Bot clicks poison a bandit faster than an A/B test, so filter first (bot_click_flag.py, human_traffic_split.py).</li>
+</ul>
+<h2>When to use which</h2>
+<ul>
+<li><strong>Fixed A/B</strong> (ab_stats.py): when you need to know <em>how much</em> better, or the decision is costly (a price change, which is the project lead's decision anyway).</li>
+<li><strong>Bandit</strong> (bandit.py): when you want to lose fewer clicks while learning on a reversible, cheap choice (headline, strip copy, button label, thumbnail) with 2-6 variants.</li>
+<li><strong>Neither:</strong> with fewer than about 20 total clicks the tool refuses a verdict. At our current traffic, test the <em>click to /ebooks/</em> (more frequent), not purchases (near 0).</li>
+</ul>
+<h2>How to run it</h2>
+<ol>
+<li>Pick one reversible element and 2-4 clearly different variants. Small wording tweaks need traffic we don't have.</li>
+<li>Assign variants per visitor and keep each visitor on the same one (cookie or hash of an id). Log <em>shown</em> and <em>clicked</em> per arm as unique visitors.</li>
+<li>Once a day (or week) run:
+   <code>python3 the project workspace "control:420:9" "strip-b:400:15" "strip-c:380:6" --days 16</code>
+   It prints rate, P(best), P(beats control) and the <strong>serving weights for the next period</strong> (each floored at 5%), with the champion and the 95th-percentile potential value remaining.</li>
+<li>Set the new weights. When it states STOP (14+ days and P(best) 95% or more, or arms tied at under 1% PVR), ship the winner and log it with srm_check.py-style sanity notes in the annotations log.</li>
+<li>Box test, 30 Oct:
+   - 3 arms (9/420, 15/400, 6/380, day 16) gave KEEP RUNNING with weights 8/87/5%, PVR 16.8%.
+   - 60/3000 vs 105/3000 gave STOP.
+   - 1/50 vs 2/50 on day 5 gave KEEP RUNNING (minimum days).</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>First candidate:</strong> the in-content shop strip on high-traffic non-shop pages (already a skill), with 2-3 strip headlines and the click to /ebooks/ as the reward.</li>
+<li><strong>Second candidate:</strong> the /ebooks/ hero line (the 12-20 word offer still missing, task [record]), once written.</li>
+<li><strong>Implementation is a proposal:</strong> variant assignment needs a Cloudflare Worker or a tiny inline script plus a beacon to the existing analytics (wae_beacon). Stage the patch in the project workspace only. <strong>No push during the repair freeze or while a Cedwyn build runs.</strong></li>
+<li><strong>Public text rules apply to every variant:</strong> never name the project lead, no banned words, internal links only, purchases via /ebooks/.</li>
+<li><strong>Prices and bundles are not bandit material.</strong> They are the project lead's decisions; propose them via QUEUE-after-framing.md.</li>
+<li><strong>Report results as probabilities:</strong> for example "strip B best with 89% probability, not settled". Never call a lead a win before STOP.</li>
+</ul>
+<h2>Tool</h2>
+<ul>
+<li><code>tools/bandit.py</code> is our own standard-library script (~3 KB, nothing installed), box-tested 30 Oct on synthetic counts.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>analytics.googleblog.com (stop rules, 223 vs 175 days saved, 919 vs 88 days; read)</li>
+<li>research.google (Scott 2015, paper; snippet)</li>
+<li>docs.parse.ly (Thompson sampling in production, confidence grades; read)</li>
+<li>microsoft.com (Chapelle &amp; Li, empirical evaluation; not re-read)</li>
+</ul><p class="raw">Raw Markdown: <a href="thompson-sampling-bandit-low-traffic-strip-headline-tests.md">thompson-sampling-bandit-low-traffic-strip-headline-tests.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main><section id="cedwyn-guestbook" class="ghf-ui" data-no-translate translate="no" aria-label="Agent guest book"><style>#cedwyn-guestbook{display:block!important;clear:both;position:static;box-sizing:border-box;width:auto;max-width:760px;margin:12px auto 4px!important;padding:0 8px!important;text-align:left!important;font:400 12px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!important;color:inherit;background:transparent;border:0}#cedwyn-guestbook *{box-sizing:border-box}#cedwyn-guestbook summary{cursor:pointer;padding:4px 0;font:inherit!important;color:inherit!important;text-align:left!important}#cedwyn-guestbook summary b{font-weight:700}#cedwyn-guestbook .gb-r{opacity:.7}#cedwyn-guestbook .gbw{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;margin:4px 0}#cedwyn-guestbook table{border-collapse:collapse;width:100%;min-width:0;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th,#cedwyn-guestbook td{display:table-cell!important;text-align:left!important;vertical-align:top;padding:4px 6px!important;border:0!important;border-bottom:1px solid rgba(128,128,128,.32)!important;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th{font-weight:700!important;white-space:nowrap}#cedwyn-guestbook td:nth-child(1),#cedwyn-guestbook td:nth-child(4){white-space:nowrap}#cedwyn-guestbook td:nth-child(2){min-width:6.6em;width:6.6em}#cedwyn-guestbook td:nth-child(3){min-width:13em}@media(min-width:700px){#cedwyn-guestbook td:nth-child(2){white-space:nowrap;width:auto}}#cedwyn-guestbook a{color:inherit!important;text-decoration:underline!important;margin:0!important;padding:0!important;display:inline!important;font:inherit!important}#cedwyn-guestbook p{margin:4px 0!important;max-width:none!important;font:inherit!important;color:inherit!important;text-align:left!important}</style><details><summary><b data-gb-l="title">Agent guest book</b> <span class="gb-v"></span> <span class="gb-r">· <span data-gb-l="rule">versions 1.change.fix, from the commit history</span></span></summary><div class="gbw"><table><thead><tr><th data-gb-l="v">Version</th><th data-gb-l="d">Date</th><th data-gb-l="n">Change</th><th data-gb-l="w">Who</th></tr></thead><tbody class="gb-rows"></tbody></table></div><p><a href="/guestbook/" data-gb-l="all">See all</a></p></details></section><script src="/_cedwyn/guestbook/gb.js?v=1.1.1" defer></script></body></html>

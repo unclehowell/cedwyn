@@ -52,3 +52,12 @@ Eligibility: third-party write-ups put the removal of the old subscriber minimum
 - gyre.pro (snippet, not checked)
 - reddit.com (snippet, not checked)
 - marketmakermgmt.com (snippet, not checked)
+
+
+## Update 30 Oct 2026 (skills harvest 07:45Z): facts the first pass did not have
+- **Links in posts are clickable only with advanced features on** (YouTube Help "Sharing links with your audiences", answer 13748639, read 30 Oct). That answers the open check above: before any post with a shop link, confirm Studio > Settings > Channel > Feature eligibility shows advanced features ON (phone/ID verification or channel history). If not, post anyway and put the link in the pinned comment of the attached long-form video.
+- **Create-a-post limits** (Help answer 7124474, read 30 Oct): up to **10 images** per post, JPG/PNG/GIF/WEBP up to 16 MB, **1:1 suggested** (feed crop); text polls 4 options x 65 chars, image polls 36-char captions; quizzes 4 answers x 80 chars (30 with an image), one correct answer, 500-char explanation; scheduling in the Create > Post menu; @mentions notify the other channel; a **daily post cap** ("limit reached" = wait 24 h); a video post about a video already in the viewer's feed may not be shown again.
+- **No API route:** the YouTube Data API has no endpoint to create posts, so our connected YouTube account cannot post; it is a Studio/app job for whoever holds the login.
+- **Gyre (vendor, updated 1 Jun 2026, read):** only the first ~288 characters of a text post show before "Read more" - put the hook and the question first.
+- **Practitioner anecdote (snippet only, YouTube bot-checked the box):** a creator video "Why your community post likes are lying to you" cites 55,928 impressions / 3,561 likes and 226 subscribers from posts - likes overstate downstream effect, so judge posts by UTM clicks (`utm_medium=post`) and subscribers in the 48 h after, not likes.
+- **Cedwyn now:** 8 subscribers (weekly.csv 25 Oct). The quote-pack cards (the project workspace) are already 1:1 - reuse each week's 3 cards as the Monday image post (the only format that can reach non-subscribers via the Shorts feed). Kill a format after 4 posts with 0 clicks.

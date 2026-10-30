@@ -17,3 +17,22 @@ html[data-ghf-mode="night"] .st-not-our-farm,html[data-ghf-mode="night"] .st-not
 @media (max-width:700px){.kf-t thead{display:none}.kf-t,.kf-t tbody,.kf-t tr,.kf-t td{display:block;width:auto}.kf-t tr{border:1px solid rgba(127,127,127,.35);border-radius:8px;margin:.6em 0;padding:.3em .2em}
 .kf-t td{border:0;padding:.15em .5em}.kf-t td[data-l]:not(:first-child)::before{content:attr(data-l) ": ";font-weight:600;font-size:.85em;opacity:.75}.kf-t td:first-child{font-weight:600}.kf-f input{width:auto}.kf-f label{flex:1 1 100%}}
 .kfw h1.kf-h1e{text-transform:none;font-size:1.35em;letter-spacing:0}
+
+/* v2.0.0 — cards rendered from the kissed-frogs view (A2UI-style surface, tools/a2ui_render.py) */
+.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.kf-hero{margin:.6em auto .4em;width:clamp(120px,34vw,190px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 55%,rgba(127,190,120,.22),rgba(127,127,127,.08) 70%);display:flex;align-items:center;justify-content:center}
+.kf-hero img{width:88%;height:auto;display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.18))}
+.kfw .kf-lede{margin:.3em auto 1em;text-align:center;max-width:40rem}
+.kf-cards{display:grid;grid-template-columns:1fr;gap:10px;margin:.6em 0 1.2em}
+@media (min-width:760px){.kf-cards{grid-template-columns:repeat(auto-fill,minmax(21rem,1fr));gap:12px}}
+.kf-card{border:1px solid rgba(127,127,127,.35);border-radius:8px;padding:.6em .8em;display:flex;flex-direction:column;gap:.35em;min-width:0}
+.kf-card[hidden]{display:none}
+.kf-card .a2-card-h{font-size:1em;line-height:1.35;margin:0;font-weight:600}
+.kf-card .a2-card-h a{text-decoration:none}.kf-card .a2-card-h a:hover{text-decoration:underline}
+.kf-card .a2-kicker{font-variant-numeric:tabular-nums;opacity:.7;font-size:.85em;font-weight:600;margin-right:.2em}
+.kf-card .a2-meta{margin:0;font-size:.88em;opacity:.85;display:flex;flex-direction:column;gap:.1em}
+.kf-card .a2-l{font-weight:600;font-size:.92em;opacity:.75}
+.kf-card .a2-card-b{margin:0;font-size:.93em}
+.kf-card .a2-card-f{margin:auto 0 0;font-size:.85em;display:flex;flex-wrap:wrap;gap:.3em .6em;align-items:center}
+.kf-card .a2-card-f small{opacity:.7}
+html[data-ghf-mode="night"] .kf-hero{background:radial-gradient(circle at 50% 55%,rgba(150,220,140,.16),rgba(255,255,255,.05) 70%)}
