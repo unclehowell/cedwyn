@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8705,
+  "pages_scanned": 8706,
   "references_checked": {
-    "resource": 195888,
-    "nav": 339141
+    "resource": 195901,
+    "nav": 339222
   },
-  "database_backed_paths": 7316,
+  "database_backed_paths": 7315,
   "unique_missing_destinations": 4870,
-  "missing_references": 31437,
-  "missing_navigation_references": 16125,
-  "missing_resource_references": 15312,
+  "missing_references": 31436,
+  "missing_navigation_references": 16122,
+  "missing_resource_references": 15314,
   "unique_broken_fragments": 1811,
   "broken_fragment_references": 3302,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6391,
+      "references": 6392,
       "examples": [
         {
           "from": "/review/",
@@ -46,7 +46,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6391,
+      "references": 6392,
       "examples": [
         {
           "from": "/review/",
@@ -503,33 +503,6 @@
       ]
     },
     {
-      "kind": "nav",
-      "path": "/research/>*.html",
-      "references": 35,
-      "examples": [
-        {
-          "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        }
-      ]
-    },
-    {
       "kind": "resource",
       "path": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/assets/img/user1-128x128.jpg",
       "references": 33,
@@ -553,6 +526,33 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_index2.html",
           "attribute": "img[src]",
           "url": "./assets/img/user1-128x128.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/research/>*.html",
+      "references": 33,
+      "examples": [
+        {
+          "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
         }
       ]
     },
@@ -769,33 +769,6 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_layout/fixed-header.html",
           "attribute": "img[src]",
           "url": "../assets/img/AdminLTELogo.png"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/projects/workstreams/evidence-recovery/",
-      "references": 20,
-      "examples": [
-        {
-          "from": "/projects/",
-          "attribute": "a[href]",
-          "url": "/projects/workstreams/evidence-recovery/"
-        },
-        {
-          "from": "/projects/404.html",
-          "attribute": "a[href]",
-          "url": "/projects/workstreams/evidence-recovery/"
-        },
-        {
-          "from": "/projects/404.html",
-          "attribute": "a[href]",
-          "url": "/projects/workstreams/evidence-recovery/"
-        },
-        {
-          "from": "/projects/404.html",
-          "attribute": "a[href]",
-          "url": "/projects/workstreams/evidence-recovery/"
         }
       ]
     },
@@ -1768,6 +1741,33 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_layout/fixed-header.html",
           "attribute": "a[href]",
           "url": "../docs/license.html"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/projects/workstreams/evidence-recovery/",
+      "references": 19,
+      "examples": [
+        {
+          "from": "/projects/404.html",
+          "attribute": "a[href]",
+          "url": "/projects/workstreams/evidence-recovery/"
+        },
+        {
+          "from": "/projects/404.html",
+          "attribute": "a[href]",
+          "url": "/projects/workstreams/evidence-recovery/"
+        },
+        {
+          "from": "/projects/404.html",
+          "attribute": "a[href]",
+          "url": "/projects/workstreams/evidence-recovery/"
+        },
+        {
+          "from": "/projects/wayback-websites-archive/",
+          "attribute": "a[href]",
+          "url": "/projects/workstreams/evidence-recovery/"
         }
       ]
     },

@@ -49,7 +49,7 @@
   }
   function dbPath(u) { try { var x = new URL(u, location.href); return x.origin === location.origin && DBX.test(x.pathname) && !/^\/(db|_cedwyn)\//.test(x.pathname) ? x.pathname : null; } catch (e) { return null; } }
   function fromDB(path) { return dbfs().then(function (D) { var p2 = path.replace(/^\/(wales|argentina)(\/[^\/]+\/)/, '$2'); return D.get(path).then(function (r) { return r || p2 === path ? r : D.get(p2); }); }); }
-  var RES = ['/_cedwyn/', '/_blob/', '/db/', '/graphql', '/catalogue', '/wayback/go/', '/values/', '/argentina/', '/explore/', '/guestbook/'];   // 26 Oct 2026: + the Agent guest book
+  var RES = ['/_cedwyn/', '/_blob/', '/db/', '/graphql', '/catalogue', '/wayback/go/', '/values/', '/argentina/', '/explore/', '/guestbook/', '/_ext/', '/areas.json'];   // P-051 (30 Oct 2026): + vendored /_ext/ files and the central /areas.json, which live at the site root (theme-prefixed copies 404) - Cedwyn editors   // 26 Oct 2026: + the Agent guest book
   function starts(u, a) { for (var i = 0; i < a.length; i++) if (u.indexOf(a[i]) === 0) return true; return false; }
   function mapHost(host, path) {
     host = host.toLowerCase();

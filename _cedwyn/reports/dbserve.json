@@ -1,23 +1,23 @@
 {
- "db_version": "47937cc3fde1",
- "paths_served_from_db": 7316,
- "blobs": 4749,
+ "db_version": "6da7e9870cc9",
+ "paths_served_from_db": 7315,
+ "blobs": 4754,
  "files_dropped": {
   "document": 3301,
   "image": 1567,
-  "data": 1396,
+  "data": 1391,
   "audio": 84
  },
  "bytes_dropped": {
   "document": 1274591774,
   "image": 148037877,
-  "data": 35839211,
+  "data": 35966530,
   "audio": 14922925
  },
- "bytes_dropped_total": 1473391787,
+ "bytes_dropped_total": 1473519106,
  "files_kept_as_well": {
   "image": 866,
-  "data": 62,
+  "data": 66,
   "document": 12
  },
  "kept_why": {
@@ -27,6 +27,7 @@
   "fetched by script": 13,
   "fetched by browsers outside a service worker": 15,
   "page without runtime": 74,
+  "webapp database / A2UI surface (read without a service worker)": 4,
   "fetched by script (built path)": 16
  },
  "kept_examples": [
@@ -111,7 +112,14 @@
    "named in page markup"
   ]
  ],
- "changed_after_db_build_served_as_files": 0,
- "changed_examples": [],
+ "changed_after_db_build_served_as_files": 6,
+ "changed_examples": [
+  "/app/_db/config.json",
+  "/chat/_db/config.json",
+  "/cyberspace/_db/config.json",
+  "/estate/_db/config.json",
+  "/patagonia/_db/config.json",
+  "/terrain/_db/config.json"
+ ],
  "indexed_without_file": 28
 }

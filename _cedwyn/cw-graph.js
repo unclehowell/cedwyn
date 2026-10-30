@@ -1,4 +1,4 @@
-/* cw-graph.js v1.2.1 - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
+/* cw-graph.js v1.2.2 (30 Oct 2026: a graph may fix its own colours, data.c.colors — Dartboard green/amber/red) - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
    Asked for 01:27 GMT 30 Oct 2026: the closable header strip becomes a graph promotion; tapping it slides a full-screen
    scatter graph of the data the page/section shows down over the page (it slides back up on close, Esc or swipe up);
    text pages load clipped to the screen height with a "Read more" bar, further text arriving in chunks from the build's
@@ -7,7 +7,7 @@
 (function () {
   'use strict';
   if (window.__cwGraph) return;
-  var d = document, de = d.documentElement, VER = '1.2.1';
+  var d = document, de = d.documentElement, VER = '1.2.2';
   window.__cwGraph = { v: VER };
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var T = {
@@ -212,7 +212,7 @@
     function X(v) { if (rank) return padL + (n > 1 ? order[v] / (n - 1) : 0.5) * pw; return padL + (mx > mn ? (v - mn) / (mx - mn) : 0.5) * pw; }
     var ys = P.map(function (p) { return +p[1]; }), ymn = Math.min.apply(null, ys), ymx = Math.max.apply(null, ys);
     function Y(p, i) { if (cat) return padT + band * (+p[1]) + band * (0.18 + 0.64 * hsh(String(p[3]) + i)); return padT + ph - (ymx > ymn ? (+p[1] - ymn) / (ymx - ymn) : 0.5) * ph; }
-    var pal = night() ? NPAL : PAL, s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(data.y.label + ' by ' + data.x.label) + '">';
+    var pal = (data.c && data.c.colors) || (night() ? NPAL : PAL), s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(data.y.label + ' by ' + data.x.label) + '">';
     if (cat) cats.forEach(function (c, i) { var y = padT + band * i; s += '<line class="ax" x1="' + padL + '" x2="' + (W - padR) + '" y1="' + y + '" y2="' + y + '"/><text x="' + (padL - 6) + '" y="' + (y + band / 2 + 4) + '" text-anchor="end">' + esc(c.length > 20 ? c.slice(0, 19) + '…' : c) + '</text>'; });
     else for (var g = 0; g <= 4; g++) { var yv = ymn + (ymx - ymn) * g / 4, yy = padT + ph - ph * g / 4; s += '<line class="ax" x1="' + padL + '" x2="' + (W - padR) + '" y1="' + yy + '" y2="' + yy + '"/><text x="' + (padL - 6) + '" y="' + (yy + 4) + '" text-anchor="end">' + (Math.round(yv * 10) / 10) + '</text>'; }
     s += '<line class="ax" x1="' + padL + '" x2="' + (W - padR) + '" y1="' + (H - padB) + '" y2="' + (H - padB) + '"/>';
