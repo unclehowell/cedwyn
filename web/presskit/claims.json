@@ -1,0 +1,1084 @@
+{
+  "schema": "cedwyn_presskit_claims/v1",
+  "title": "Great House Farm — statement scrutiny register",
+  "version": "1.1.2",
+  "reviewed": "2026-10-30",
+  "review_scope": "Initial curated scrutiny set: baseline site facts and priority Williams/Bute tenancy, title, chronology and Marconi assertions. It is not an exhaustive machine-generated audit of every sentence on every Cedwyn page.",
+  "scoring": {
+    "evidence": [
+      {
+        "key": "provenance",
+        "weight": 20,
+        "label": "Provenance",
+        "question": "Can the source be identified, located and traced to its creator or custodian?"
+      },
+      {
+        "key": "integrity",
+        "weight": 15,
+        "label": "Integrity",
+        "question": "Is the item complete, legible and sufficiently authenticated for the statement being made?"
+      },
+      {
+        "key": "fit",
+        "weight": 25,
+        "label": "Exact fit",
+        "question": "Does the source say what this sentence says, rather than something adjacent or narrower?"
+      },
+      {
+        "key": "identity",
+        "weight": 20,
+        "label": "Identity and scope",
+        "question": "Does it identify the right person, place, date and parcel?"
+      },
+      {
+        "key": "corroboration",
+        "weight": 10,
+        "label": "Independent corroboration",
+        "question": "Is the proposition supported by genuinely independent sources, not copies of one source?"
+      },
+      {
+        "key": "limits",
+        "weight": 10,
+        "label": "Limits and contrary material",
+        "question": "Are conflicts, omissions and evidence against the wording made visible?"
+      }
+    ],
+    "legal": [
+      {
+        "key": "issue",
+        "weight": 20,
+        "label": "Legal issue",
+        "question": "Is the legal question identified precisely?"
+      },
+      {
+        "key": "authority",
+        "weight": 20,
+        "label": "Authority",
+        "question": "Is the correct law and jurisdiction/date cited?"
+      },
+      {
+        "key": "elements",
+        "weight": 20,
+        "label": "Elements",
+        "question": "Are the relevant legal elements mapped to specific facts?"
+      },
+      {
+        "key": "application",
+        "weight": 20,
+        "label": "Application",
+        "question": "Does the argument follow from the cited facts without skipping steps?"
+      },
+      {
+        "key": "counter",
+        "weight": 20,
+        "label": "Counter-position",
+        "question": "Are adverse decisions, counter-authority, limitation and alternative explanations addressed?"
+      }
+    ],
+    "grades": [
+      {
+        "grade": "GREEN",
+        "from": 85,
+        "to": 100,
+        "meaning": "The bounded wording is directly supported and can be stated, with its stated limits."
+      },
+      {
+        "grade": "ORANGE",
+        "from": 50,
+        "to": 84,
+        "meaning": "Material support exists, but attribution, qualification or a missing source check is required."
+      },
+      {
+        "grade": "RED",
+        "from": 0,
+        "to": 49,
+        "meaning": "The current wording does not survive scrutiny. Keep it in quarantine as a lead, not as an established fact."
+      }
+    ],
+    "rule": "For factual statements, the evidence score governs. For legal propositions, the overall score is the lower of the evidence score and the legal-formulation score. A high source score cannot repair a weak legal inference.",
+    "caveat": "Scores are editorial triage, not probabilities, findings of fact, admissibility rulings, expert opinions or predictions of litigation outcomes. A green score applies only to the exact sentence assessed."
+  },
+  "structural_flags": {
+    "framework": "CSSCPSG S1–S6",
+    "note": "These are separate diagnostic flags, not reliability points. They identify structural problems in a legal statement; they do not show wrongdoing or prove that a statement is false.",
+    "rules": [
+      {
+        "id": "S1",
+        "label": "Scope",
+        "description": "The operative noun phrase covers more or different land than the source or instrument evidences."
+      },
+      {
+        "id": "S2",
+        "label": "Party",
+        "description": "The person most affected is not a party, addressee or person shown to have been served."
+      },
+      {
+        "id": "S3",
+        "label": "Agency",
+        "description": "An operative effect is described as imposed without an act or consent of the person it binds."
+      },
+      {
+        "id": "S4",
+        "label": "Term shift",
+        "description": "A key word changes meaning between documents or arguments, for example possession, owner or proprietor."
+      },
+      {
+        "id": "S5",
+        "label": "Text gap",
+        "description": "The operative wording is known only from a later recital, abstract or summary; the original text is not held."
+      },
+      {
+        "id": "S6",
+        "label": "Inconsistency",
+        "description": "Dates, years, parties or descriptions conflict between records of the same event or transaction."
+      }
+    ],
+    "source": "/csscpsg/"
+  },
+  "legal_framework": [
+    {
+      "title": "Civil Procedure Rules, Part 32 — Evidence",
+      "point": "The court controls what evidence it requires and how it is presented; the rules distinguish witness evidence, documents and proof of authenticity.",
+      "reference": "CPR Part 32",
+      "url": "/wayback/go/?u=https%3A%2F%2Fwww.justice.gov.uk%2Fcourts%2Fprocedure-rules%2Fcivil%2Frules%2Fpart32"
+    },
+    {
+      "title": "Practice Direction 32 — Witness statements",
+      "point": "A witness statement should distinguish matters within the witness's own knowledge from matters of information or belief and identify the source of the latter.",
+      "reference": "PD 32, paragraphs 4.2 and 18.2",
+      "url": "/wayback/go/?u=https%3A%2F%2Fwww.justice.gov.uk%2Fcourts%2Fprocedure-rules%2Fcivil%2Frules%2Fpart32%2Fpd_part32"
+    },
+    {
+      "title": "Civil Evidence Act 1995 — hearsay",
+      "point": "Hearsay is not excluded in civil proceedings merely because it is hearsay. Section 4 directs attention to circumstances relevant to the weight, including contemporaneity, multiple hearsay, motive and whether the maker could be produced.",
+      "reference": "Sections 1 and 4",
+      "url": "/wayback/go/?u=https%3A%2F%2Fwww.legislation.gov.uk%2Fukpga%2F1995%2F38%2Fsection%2F4"
+    },
+    {
+      "title": "Forensic Science Regulator, Code of Practice v2",
+      "point": "MTP 701 treats document authenticity and origin as distinct questions: whether a document is what it purports to be, whether it has been imitated or altered, and its origin. This app borrows those questions; it does not claim forensic accreditation or Code compliance.",
+      "reference": "MTP 701, Code in force from 2 October 2025",
+      "url": "/wayback/go/?u=https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Fpublications%2Fforensic-science-activities-statutory-code-of-practice-version-2"
+    }
+  ],
+  "sources": [
+    {
+      "id": "EV-0211",
+      "title": "David Stewart survey, 1824 — plan 19, “Cedfin or Ty Mawr Farm”",
+      "type": "Survey / plan",
+      "status": "Record identified",
+      "url": "/research/evidence/ev-0211-db-e-1-plan-19-cedfin-ty-mawr-1824/"
+    },
+    {
+      "id": "EV-0047",
+      "title": "RCAHMW architectural survey and floor plan",
+      "type": "Official survey",
+      "status": "Record identified",
+      "url": "/research/evidence/ev-0047-thomas-rcahmw-survey-floor-plan/"
+    },
+    {
+      "id": "EV-0126",
+      "title": "GGAT archaeological assessment, 1990",
+      "type": "Archaeological report",
+      "status": "Record identified",
+      "url": "/research/evidence/ev-0126-ggat-archaeological-assessment-great-house-1990/"
+    },
+    {
+      "id": "EV-0098",
+      "title": "South Wales Echo report — forced entry / 1988",
+      "type": "Contemporaneous press",
+      "status": "Record identified",
+      "url": "/research/evidence/ev-0098-south-wales-echo-forced-entry-1988/"
+    },
+    {
+      "id": "EV-0100",
+      "title": "South Wales Echo history / fight report, 1988",
+      "type": "Contemporaneous press",
+      "status": "Record identified",
+      "url": "/research/evidence/ev-0100-south-wales-echo-history-fight-1988/"
+    },
+    {
+      "id": "EV-0080",
+      "title": "BP Properties Ltd v Buckler [1987] EWCA Civ 2",
+      "type": "Court judgment",
+      "status": "Judgment text held / cited",
+      "url": "/research/evidence/ev-0080-bp-properties-v-buckler-judgment/"
+    },
+    {
+      "id": "EV-0215",
+      "title": "c.1841 tithe apportionment — John Williams and 36 plots",
+      "type": "Tithe record",
+      "status": "Record identified",
+      "url": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/"
+    },
+    {
+      "id": "EV-0243",
+      "title": "Barry Dock News, 1908 — Bute court leet and John Williams of Great House",
+      "type": "Contemporaneous press",
+      "status": "Record identified",
+      "url": "/research/evidence/ev-0243-barry-dock-news-1908-court-leet-john-williams-great-house/"
+    },
+    {
+      "id": "EV-0227",
+      "title": "Cardiff Times, 1904 — John Williams and tenancy since 1855",
+      "type": "Contemporaneous press",
+      "status": "Record identified",
+      "url": "/research/evidence/ev-0227-cardiff-times-1904-john-williams-tenancy-since-1855/"
+    },
+    {
+      "id": "EV-0212",
+      "title": "Llandough poor-rate books, 1870s",
+      "type": "Rate-book lead",
+      "status": "Reading provisional",
+      "url": "/research/evidence/ev-0212-llandough-poor-rate-books-1870s/"
+    },
+    {
+      "id": "EV-0278",
+      "title": "NLW Bute Estate records — Llandough manor rentals 1808–1881, catalogue lead",
+      "type": "Archive catalogue lead",
+      "status": "Catalogue reference; individual folios not transcribed here",
+      "url": "/research/evidence/ev-0278-nlw-bute-estate-records-llandough-manor-rentals-1808-1881-r-6-27-45-and-presentments/"
+    },
+    {
+      "id": "EV-0014",
+      "title": "1916 Bute–John Williams yearly tenancy, as recited in later proceedings",
+      "type": "Later recital / missing original",
+      "status": "Original tenancy and plan not held in this evidence set",
+      "url": "/research/evidence/ev-0014-bute-tenancy-john-williams-1916/"
+    },
+    {
+      "id": "EV-0023",
+      "title": "1939 Western Ground Rents–John Williams agreement plan",
+      "type": "Agreement / plan",
+      "status": "Plan identified; agreement text not fully transcribed",
+      "url": "/research/evidence/ev-0023-1939-wgr-john-williams-tenancy-plan/"
+    },
+    {
+      "id": "EV-0006",
+      "title": "Reported 1877 Bute–Daniel Thomas arrangement",
+      "type": "Family testimony / unlocated instrument",
+      "status": "Underlying instrument not located",
+      "url": "/research/evidence/ev-0006-bute-thomas-agreement-1877/"
+    },
+    {
+      "id": "EV-0291",
+      "title": "NLW Bute catalogue — D153 land formerly part of Great House Farm / Llandough Limeworks",
+      "type": "Archive catalogue",
+      "status": "Catalogue description; operative instrument not verified",
+      "url": "/research/evidence/ev-0291-nlw-bute-catalogue-d153-llandough-33-acres-great-house-farm-limeworks-and-pwllypant-d242-d247-d258/"
+    },
+    {
+      "id": "EV-0213",
+      "title": "6 November 1877 Clyde Street, Roath counterpart lease",
+      "type": "Document / wrong-place control",
+      "status": "Excluded from Great House Farm chain",
+      "url": "/research/evidence/ev-0213-clyde-street-roath-lease-6-nov-1877/"
+    },
+    {
+      "id": "EV-0016",
+      "title": "Mary Williams's c.1974 account of the 1928 rent payment",
+      "type": "Family testimony about missing receipt",
+      "status": "1928 receipt not located",
+      "url": "/research/evidence/ev-0016-1928-last-rent-receipt-quarrying/"
+    },
+    {
+      "id": "EV-0284",
+      "title": "Alfred Thomas — death / identity record",
+      "type": "Biographical record",
+      "status": "Death date recorded as 14 December 1927",
+      "url": "/research/evidence/ev-0284-alfred-thomas-lord-pontypridd-son-of-daniel-thomas-of-the-llandough-lime-works-die/"
+    },
+    {
+      "id": "EV-0083",
+      "title": "ITV Wales report — eviction and injunction, 1988",
+      "type": "Broadcast report",
+      "status": "Report identified",
+      "url": "/research/evidence/ev-0083-itv-wales-report-eviction-injunction/",
+      "origin_note": "The 1988 broadcast is a later report of the family-history account, not a contemporary record of a 1667 transaction."
+    },
+    {
+      "id": "EV-0106",
+      "title": "“Tears flow as farmhouse razed”, December 1988",
+      "type": "Contemporaneous press",
+      "status": "Report identified; day conflict retained",
+      "url": "/research/evidence/ev-0106-tears-flow-farmhouse-razed-1988/"
+    },
+    {
+      "id": "EV-0084",
+      "title": "Photograph of Great House Farm ruins with St Dochdwy's Church",
+      "type": "Photograph",
+      "status": "Image record identified",
+      "url": "/research/evidence/ev-0084-photograph-great-house-farm-ruins-with-the-church/"
+    },
+    {
+      "id": "EV-0225",
+      "title": "Trade directories, 1868–1901 — John Williams at Great House",
+      "type": "Trade directories",
+      "status": "Record extracts; identity/place matching still requires care",
+      "url": "/research/evidence/ev-0225-trade-directories-1868-1901-john-williams-great-house/"
+    },
+    {
+      "id": "EV-0085",
+      "title": "The Glamorgan Village Book (1993) — Llandough entry",
+      "type": "Later local-history publication",
+      "status": "Published 1993; secondary account of Marconi at Great House Farm",
+      "origin_note": "Same underlying publication as EV-0645; do not count the two catalogue pages as independent sources.",
+      "url": "/research/evidence/ev-0085-glamorgan-village-book-demolition-page/"
+    },
+    {
+      "id": "EV-0645",
+      "title": "The Glamorgan Village Book (1993) — transcript, pp. 64–65",
+      "type": "Transcript of a later local-history publication",
+      "status": "Transcript of the same 1993 book recorded at EV-0085",
+      "origin_note": "Same underlying publication as EV-0085; not an independent source.",
+      "url": "/research/evidence/ev-0645-local-history-book-llandough-penarth-pp64-65/"
+    },
+    {
+      "id": "EV-0646",
+      "title": "The Post (Cardiff), 14 September 1995, p.24 — Bill Barrett, “My Cardiff”",
+      "type": "Later newspaper account",
+      "status": "1995 report; not contemporary evidence of the 1897 event",
+      "origin_note": "Separate publication from the 1993 book; dependence on earlier accounts has not yet been tested.",
+      "url": "/research/evidence/ev-0646-the-post-cardiff-1995-09-14-p24-marconi-great-house-farm/"
+    },
+    {
+      "id": "EV-0011",
+      "title": "1897 press cutting — Marconi's Lavernock wireless trials",
+      "type": "Contemporary press",
+      "status": "OCR transcription; reports trials, not the farmhouse stay",
+      "url": "/research/evidence/ev-0011-marconi-lavernock-wireless-cutting-1897/"
+    },
+    {
+      "id": "EV-0248",
+      "title": "Contemporary press — Marconi in Wales, May 1897",
+      "type": "Contemporary press",
+      "status": "OCR transcription; reports trials, not the farmhouse stay",
+      "url": "/research/evidence/ev-0248-marconi-in-wales-may-1897-contemporary-press/"
+    },
+    {
+      "id": "EV-0256",
+      "title": "Kemp diary material — Bodleian MS. Marconi 89",
+      "type": "Diary material / extract",
+      "status": "Extracts reviewed; full diary and context remain to be checked",
+      "url": "/research/evidence/ev-0256-kemp-diary-lavernock-1897-bodleian-ms-marconi-89/"
+    },
+    {
+      "id": "EV-0048",
+      "title": "Daily Telegraph, 16 April 1974 — “Open day” to save ancient Welsh house",
+      "type": "Contemporary newspaper report",
+      "status": "1974 report carrying family-history material; not a 1667 instrument",
+      "url": "/research/evidence/ev-0048-telegraph-open-day-ancient-house/",
+      "origin_note": "Reports Mary Williams's family-history account; it is evidence of the report and attributed account, not an original 1667 transaction."
+    }
+  ],
+  "claims": [
+    {
+      "id": "PK-001",
+      "storyOrder": 1,
+      "kind": "bounded fact",
+      "status": "GREEN",
+      "evidenceScore": 96,
+      "legalScore": null,
+      "overallScore": 96,
+      "statement": "The 1824 survey names the holding “Cedfin or Ty Mawr Farm”.",
+      "short": "A named holding appears on the 1824 survey plan.",
+      "supports": "The survey's own plan title identifies “Cedfin or Ty Mawr Farm” and places the name in the Llandough-juxta-Penarth landscape.",
+      "doesNotSupport": "It does not establish a 1667 lease, the full later legal parcel, or that every later use of “Great House Farm” refers to an identical boundary.",
+      "safestWording": "The earliest Tŷ Mawr name located in the records reviewed is “Cedfin or Ty Mawr Farm”, on David Stewart's 1824 survey, plan 19.",
+      "evidence": [
+        "EV-0211"
+      ],
+      "flags": [],
+      "legalIssue": "Not a legal conclusion; it is a statement about the wording of a dated survey.",
+      "next": "Compare the original plan and schedule against later plans before attaching modern Parcel A/B labels.",
+      "score": {
+        "provenance": 20,
+        "integrity": 14,
+        "fit": 25,
+        "identity": 19,
+        "corroboration": 9,
+        "limits": 9
+      },
+      "reviewNote": "Green applies to the bounded statement about what the 1824 plan names, not to a claim about the estate's earlier title."
+    },
+    {
+      "id": "PK-002",
+      "storyOrder": 2,
+      "kind": "bounded fact",
+      "status": "GREEN",
+      "evidenceScore": 95,
+      "legalScore": null,
+      "overallScore": 95,
+      "statement": "Great House Farm / Tŷ Mawr stood beside St Dochdwy's Church at Llandough-juxta-Penarth.",
+      "short": "The church and the house are immediately adjacent in the site record.",
+      "supports": "The 1824 survey, later architectural/archaeological records and site descriptions locate the house beside the church and churchyard.",
+      "doesNotSupport": "It does not identify the legal boundary between church land, the house plot, garden, woods or adjoining fields.",
+      "safestWording": "Great House Farm / Tŷ Mawr stood beside St Dochdwy's Church; parcel boundaries require their own plans and deeds.",
+      "evidence": [
+        "EV-0211",
+        "EV-0047",
+        "EV-0084",
+        "EV-0126"
+      ],
+      "flags": [],
+      "legalIssue": "Not a legal conclusion; location and parcel extent remain separate questions.",
+      "next": "Overlay the original survey, tithe map, architectural plan and later title plans without assuming the lines coincide.",
+      "score": {
+        "provenance": 19,
+        "integrity": 14,
+        "fit": 25,
+        "identity": 19,
+        "corroboration": 10,
+        "limits": 8
+      },
+      "reviewNote": "The adjacency is strong. The legal extent of land around the building is not inferred from adjacency."
+    },
+    {
+      "id": "PK-003",
+      "storyOrder": 3,
+      "kind": "bounded fact",
+      "status": "GREEN",
+      "evidenceScore": 95,
+      "legalScore": null,
+      "overallScore": 95,
+      "statement": "The Great House building was demolished in 1988.",
+      "short": "The demolition year is secure in the present record set.",
+      "supports": "Contemporaneous reporting and the later archaeological/heritage record identify the demolition in 1988.",
+      "doesNotSupport": "This does not establish who owned every parcel around the building, whether any demolition or possession order was lawfully executed, or why the demolition occurred.",
+      "safestWording": "The Great House building at Llandough was demolished in 1988.",
+      "evidence": [
+        "EV-0098",
+        "EV-0106",
+        "EV-0126"
+      ],
+      "flags": [],
+      "legalIssue": "Not a legal conclusion. The fact of demolition is distinct from the legal authority for it.",
+      "next": "For exact day, sequence and order, cite the original enforcement and demolition records rather than relying on the year alone.",
+      "score": {
+        "provenance": 19,
+        "integrity": 14,
+        "fit": 25,
+        "identity": 19,
+        "corroboration": 10,
+        "limits": 8
+      },
+      "reviewNote": "The year is supported. Exact times and the identity of each officer/contractor need separate records."
+    },
+    {
+      "id": "PK-004",
+      "storyOrder": 4,
+      "kind": "bounded fact",
+      "status": "GREEN",
+      "evidenceScore": 93,
+      "legalScore": null,
+      "overallScore": 93,
+      "statement": "The Williams–Buckler household lived at Great House Farm before the 1988 demolition.",
+      "short": "Residence and occupation are supported independently of the title theory.",
+      "supports": "The Court of Appeal's account, contemporary reporting and the later account of the eviction place the family in the farmhouse.",
+      "doesNotSupport": "Residence alone does not prove freehold ownership, a 999-year lease, customary title or the precise boundary of any occupied land.",
+      "safestWording": "The Williams–Buckler family occupied and made their home at Great House Farm; the legal nature and extent of their interest are separate questions.",
+      "evidence": [
+        "EV-0080",
+        "EV-0098",
+        "EV-0100",
+        "EV-0083"
+      ],
+      "flags": [],
+      "legalIssue": "Residence is a fact relevant to occupation and potentially to legal issues, but it is not itself proof of title.",
+      "next": "Keep each period, person and parcel separate when using residence as evidence of possession.",
+      "score": {
+        "provenance": 19,
+        "integrity": 14,
+        "fit": 24,
+        "identity": 19,
+        "corroboration": 9,
+        "limits": 8
+      },
+      "reviewNote": "This is one of the baseline facts. Do not turn it into an ownership conclusion."
+    },
+    {
+      "id": "PK-005",
+      "storyOrder": 5,
+      "kind": "bounded fact",
+      "status": "GREEN",
+      "evidenceScore": 92,
+      "legalScore": null,
+      "overallScore": 92,
+      "statement": "The c.1841 tithe apportionment records John Williams as occupier of 36 numbered plots.",
+      "short": "“Occupier” is the record's term; it is not a conveyance.",
+      "supports": "The tithe schedule identifies John Williams as occupier across 36 numbered plots. The landowner column names the Marquess of Bute on 33 and the rector/glebe on three, as presently transcribed.",
+      "doesNotSupport": "It does not prove that Williams owned all 36 plots, that all 36 plots formed Great House Farm as later defined, or that they map directly onto modern Parcel A, B or C.",
+      "safestWording": "The c.1841 tithe apportionment lists John Williams as occupier of 36 numbered plots; it separately identifies the landowner against each plot.",
+      "evidence": [
+        "EV-0215",
+        "EV-0211"
+      ],
+      "flags": [
+        "S1",
+        "S4"
+      ],
+      "legalIssue": "A tithe apportionment is a land/occupier record, not an operative conveyance. Its evidential role must be kept within that scope.",
+      "next": "Reconcile every plot number and acreage to the original map before making a later-parcel comparison.",
+      "score": {
+        "provenance": 19,
+        "integrity": 14,
+        "fit": 24,
+        "identity": 18,
+        "corroboration": 9,
+        "limits": 8
+      },
+      "reviewNote": "The score is for the exact occupier statement. Any ownership or parcel-equivalence claim receives a lower score."
+    },
+    {
+      "id": "PK-006",
+      "storyOrder": 6,
+      "kind": "bounded fact",
+      "status": "GREEN",
+      "evidenceScore": 89,
+      "legalScore": null,
+      "overallScore": 89,
+      "statement": "A 1908 report describes John Williams of Great House, Llandough as a long-standing juror of the manor court.",
+      "short": "The report supports residence and standing in the manor community, not a tenancy.",
+      "supports": "The contemporaneous report records the court's expression of sympathy for the family of the late John Williams of Great House, Llandough, describing him as a juror for many years.",
+      "doesNotSupport": "It does not say that John Williams was a Bute agricultural tenant, identify a tenancy parcel, prove freehold ownership or establish the family's title.",
+      "safestWording": "The 1908 court-leet report describes John Williams of Great House, Llandough as having been a juror of the manor court for many years.",
+      "evidence": [
+        "EV-0243"
+      ],
+      "flags": [],
+      "legalIssue": "Historical context only; no title conclusion follows from the office held.",
+      "next": "Keep this source distinct from rent, rate and tenancy evidence.",
+      "score": {
+        "provenance": 18,
+        "integrity": 13,
+        "fit": 24,
+        "identity": 18,
+        "corroboration": 8,
+        "limits": 8
+      },
+      "reviewNote": "The underlying item is a newspaper report of the court's wording; it is not the court roll itself."
+    },
+    {
+      "id": "PK-007",
+      "storyOrder": 7,
+      "kind": "bounded fact",
+      "status": "ORANGE",
+      "evidenceScore": 82,
+      "legalScore": null,
+      "overallScore": 82,
+      "statement": "The 1939 Western Ground Rents–John Williams plan depicts agricultural fields beside the Tŷ Mawr farmhouse, not the farmhouse itself.",
+      "short": "This is a WGR field letting, not a Bute rent-book entry.",
+      "supports": "The archive's description of DBDT123/7 identifies an agreement and plan for 5.30 acres of agricultural land adjacent to the Tŷ Mawr farmhouse; the plan is described as showing fields and not the farmhouse.",
+      "doesNotSupport": "The plan does not establish what Western Ground Rents acquired in 1938, whether the entire 1938 conveyance covered the house plot, or the exact legal extent of every adjoining parcel. The agreement's operative wording is not fully transcribed in the current evidence set.",
+      "safestWording": "The 1939 WGR–John Williams plan is associated with a 5.30-acre agricultural letting beside the farmhouse; the plan does not depict the farmhouse.",
+      "evidence": [
+        "EV-0023"
+      ],
+      "flags": [
+        "S5"
+      ],
+      "legalIssue": "It is relevant to the scope of a 1939 letting, not by itself to the root of WGR's freehold title.",
+      "next": "Obtain and transcribe the whole agreement, plan, schedule, signatures and any counterpart; compare with the 25 December 1938 conveyance and plan.",
+      "score": {
+        "provenance": 17,
+        "integrity": 11,
+        "fit": 23,
+        "identity": 17,
+        "corroboration": 7,
+        "limits": 7
+      },
+      "reviewNote": "This is a bounded statement about the contents and scope of a plan, not a legal proposition. The evidence score governs; legal title consequences are expressly reserved for separate claims."
+    },
+    {
+      "id": "PK-008",
+      "storyOrder": 8,
+      "kind": "research-status",
+      "status": "ORANGE",
+      "evidenceScore": 80,
+      "legalScore": null,
+      "overallScore": 80,
+      "statement": "No inspected Bute rent-book folio in this current evidence set identifies a Williams as tenant of Great House Farm by name and parcel.",
+      "short": "This is a statement about the research set, not proof that such an entry never existed.",
+      "supports": "The current claim set contains the tithe apportionment, poor-rate material, a 1904 newspaper report, the 1916 Court of Appeal recital and catalogue-level Bute rental leads; it does not contain a transcribed Bute rent-book folio matching John Williams to Great House Farm.",
+      "doesNotSupport": "It does not prove that Bute never recorded a Williams tenancy, that no relevant rental survives, or that the 1916 court recital is wrong.",
+      "safestWording": "A Bute rent-book entry naming a Williams tenant of Great House Farm has not yet been identified and inspected in the records cited here.",
+      "evidence": [
+        "EV-0278",
+        "EV-0212",
+        "EV-0215",
+        "EV-0227",
+        "EV-0080"
+      ],
+      "flags": [
+        "S5"
+      ],
+      "legalIssue": "A negative search result must be bounded by the repository, catalogue, volumes and folios actually searched.",
+      "next": "Identify the Bute rental volumes and folios, record the precise search terms and inspect any relevant entries before changing this status.",
+      "score": {
+        "provenance": 18,
+        "integrity": 11,
+        "fit": 23,
+        "identity": 16,
+        "corroboration": 6,
+        "limits": 6
+      },
+      "reviewNote": "This is deliberately narrow. It records what is absent from the inspected set, not what is absent from every Bute archive."
+    },
+    {
+      "id": "PK-009",
+      "storyOrder": 9,
+      "kind": "court-recital",
+      "status": "ORANGE",
+      "evidenceScore": 76,
+      "legalScore": 80,
+      "overallScore": 76,
+      "statement": "The Court of Appeal in 1987 records that Bute granted John Williams a yearly agricultural tenancy of “the whole of the farm” in February 1916.",
+      "short": "A court recital supports the existence of a letting; the original tenancy and plan remain missing.",
+      "supports": "The 1987 judgment expressly describes Great House Farm, the Bute ownership background and the February 1916 yearly agricultural tenancy to John Williams.",
+      "doesNotSupport": "The 1916 original deed, counterpart, schedule and plan are not held in this evidence set. The recital does not let the reader independently identify every parcel covered or equate “the whole farm” with the current provisional Parcel A/B polygons.",
+      "safestWording": "The 1987 Court of Appeal judgment records a February 1916 Bute yearly agricultural tenancy to John Williams of “the whole of the farm”; the original instrument and plan have not yet been examined.",
+      "evidence": [
+        "EV-0080",
+        "EV-0014"
+      ],
+      "flags": [
+        "S1",
+        "S5"
+      ],
+      "legalIssue": "The judgment is authoritative for what the Court recorded and decided. Do not turn its factual recital into proof of unexamined plan boundaries or a separate freehold conveyance.",
+      "next": "Locate the original 1916 tenancy and plan; if absent, record the repositories, searches, catalogue terms and negative results.",
+      "score": {
+        "provenance": 18,
+        "integrity": 13,
+        "fit": 23,
+        "identity": 13,
+        "corroboration": 3,
+        "limits": 6
+      },
+      "legalBreakdown": {
+        "issue": 18,
+        "authority": 18,
+        "elements": 16,
+        "application": 16,
+        "counter": 12
+      },
+      "reviewNote": "The fact of the court's recital is strong. The original terms and land extent are not independently checkable from the missing deed.",
+      "corroborationNote": "EV-0014 is known through the 1987 Court of Appeal judgment and shares independent_origin_id ORIG-EWCA-1987-CIV-2 with EV-0080. These two catalogue references are not two independent source origins."
+    },
+    {
+      "id": "PK-010",
+      "storyOrder": 10,
+      "kind": "press-report",
+      "status": "ORANGE",
+      "evidenceScore": 68,
+      "legalScore": null,
+      "overallScore": 68,
+      "statement": "A 1904 newspaper report says John Williams succeeded his father in the tenancy of “the farm” in 1855.",
+      "short": "This is a newspaper report, not a Bute rent-book entry.",
+      "supports": "The report gives a retrospective account of a tenancy succession and names John Williams.",
+      "doesNotSupport": "The quoted wording does not, by itself, identify the holding as Great House Farm / Tŷ Mawr, specify a parcel, or provide the underlying Bute tenancy instrument.",
+      "safestWording": "A 1904 newspaper report states that John Williams succeeded his father in the tenancy of “the farm” in 1855; identifying that holding with Great House Farm requires corroboration.",
+      "evidence": [
+        "EV-0227",
+        "EV-0243",
+        "EV-0225"
+      ],
+      "flags": [
+        "S1",
+        "S5"
+      ],
+      "legalIssue": "A press report may support a historical narrative but is not a substitute for the original tenancy or a parcel schedule.",
+      "next": "Read the full original newspaper item and establish the exact place heading, person identity and corroborating estate records.",
+      "score": {
+        "provenance": 15,
+        "integrity": 11,
+        "fit": 19,
+        "identity": 12,
+        "corroboration": 5,
+        "limits": 6
+      },
+      "reviewNote": "Do not shorten this to “Bute's rent books record John Williams as tenant of Great House Farm”."
+    },
+    {
+      "id": "PK-011",
+      "storyOrder": 11,
+      "kind": "attributed-testimony",
+      "status": "ORANGE",
+      "evidenceScore": 64,
+      "legalScore": 58,
+      "overallScore": 58,
+      "statement": "Mary Williams's c.1974 statement reports that the Williams family acquired Tŷ Mawr in 1667.",
+      "short": "The statement is an artifact; the 1667 conveyance or lease is not currently held.",
+      "supports": "The Daily Telegraph report of 16 April 1974 records the family-history account associated with Mary Williams; the 1988 ITV Wales report is a later publication repeating the 1667 date. These sources show that the date was reported, not that a 1667 transaction has been located.",
+      "doesNotSupport": "The statement and later reports do not themselves prove the legal instrument, parties, term, exact property or nature of the interest acquired in 1667.",
+      "safestWording": "The 16 April 1974 Daily Telegraph report and a later ITV Wales report record a family-history account, attributed to Mary Williams, giving 1667 as the acquisition date. No 1667 instrument identifying Tŷ Mawr has been located in this record set.",
+      "evidence": [
+        "EV-0048",
+        "EV-0083"
+      ],
+      "flags": [
+        "S5"
+      ],
+      "legalIssue": "The statement is evidence that Mary gave this account. It is not a conveyance and cannot alone establish the nature of a 1667 legal estate.",
+      "next": "Locate the original lease, counterpart, assignment or enrolment and verify the identity of the holding and parties.",
+      "score": {
+        "provenance": 15,
+        "integrity": 9,
+        "fit": 17,
+        "identity": 12,
+        "corroboration": 5,
+        "limits": 6
+      },
+      "legalBreakdown": {
+        "issue": 14,
+        "authority": 12,
+        "elements": 12,
+        "application": 12,
+        "counter": 8
+      },
+      "reviewNote": "Keep “Mary reported” separate from “the family acquired legal title”.",
+      "contextEvidence": [
+        "EV-0211"
+      ],
+      "corroborationNote": "EV-0048 and EV-0083 are separate publications reporting the family-history account. They are not independent contemporary witnesses to a 1667 event and neither is the operative 1667 instrument."
+    },
+    {
+      "id": "PK-012",
+      "storyOrder": 12,
+      "kind": "family-testimony",
+      "status": "ORANGE",
+      "evidenceScore": 61,
+      "legalScore": 52,
+      "overallScore": 52,
+      "statement": "Mary Williams's c.1974 statement describes a Bute–Daniel Thomas arrangement in 1877 concerning Great House land and quarrying.",
+      "short": "The statement is a research lead; the operative 1877 instrument has not been located.",
+      "supports": "Mary's later account and the NLW Bute catalogue description of land formerly part of Great House Farm for the Llandough Limeworks are relevant leads.",
+      "doesNotSupport": "The catalogue entry does not identify all parties, the operative wording, the exact parcel boundary, a reversion clause or a transfer to Williams. The 1877 instrument and plan are not presently held in the research set.",
+      "safestWording": "Mary's later statement describes an 1877 Bute–Thomas arrangement. The instrument, plan, parties and legal effect remain to be verified.",
+      "evidence": [
+        "EV-0048",
+        "EV-0006",
+        "EV-0291"
+      ],
+      "flags": [
+        "S1",
+        "S5",
+        "S6"
+      ],
+      "legalIssue": "The title proposition requires the operative deed and plan. A later family account and a catalogue description cannot establish the conveyance's legal effect.",
+      "next": "Inspect D153/4–8 and the relevant Bute deeds, accounts and plans; record exact classmarks, folios, parties, acreage and conditions.",
+      "score": {
+        "provenance": 15,
+        "integrity": 8,
+        "fit": 15,
+        "identity": 12,
+        "corroboration": 5,
+        "limits": 6
+      },
+      "legalBreakdown": {
+        "issue": 14,
+        "authority": 10,
+        "elements": 10,
+        "application": 10,
+        "counter": 8
+      },
+      "reviewNote": "This is publishable only as an attributed account and identified research question."
+    },
+    {
+      "id": "PK-013",
+      "storyOrder": 13,
+      "kind": "legal-title-assertion",
+      "status": "RED",
+      "evidenceScore": 38,
+      "legalScore": 28,
+      "overallScore": 28,
+      "statement": "The Bute Estate conveyed the farmhouse and a defined house plot to Daniel Thomas in 1877, and this established the Williams family's later freehold.",
+      "short": "Quarantined: the underlying instrument and plan have not been examined.",
+      "supports": "The proposition is presently based on the later family account, together with catalogue leads describing land formerly part of Great House Farm and the Llandough Limeworks.",
+      "doesNotSupport": "No operative 1877 conveyance with verified parties, consideration, parcel schedule, plan and legal effect has been produced in the current set. No title link from Daniel Thomas to the Williams family has been demonstrated by the evidence cited here.",
+      "safestWording": "Do not state this as an established conveyance or title chain. State only that the 1877 Bute–Thomas transaction is a family-reported hypothesis awaiting the original instrument and plan.",
+      "evidence": [
+        "EV-0048",
+        "EV-0006",
+        "EV-0291"
+      ],
+      "flags": [
+        "S1",
+        "S5"
+      ],
+      "legalIssue": "An asserted conveyance requires the operative deed and a demonstrated chain from the grantee to the person claiming title. Neither is supplied by the materials linked here.",
+      "next": "Obtain and examine the original instrument, plan, abstract of title and subsequent probate/conveyances before advancing the proposition.",
+      "score": {
+        "provenance": 10,
+        "integrity": 4,
+        "fit": 8,
+        "identity": 6,
+        "corroboration": 4,
+        "limits": 6
+      },
+      "legalBreakdown": {
+        "issue": 10,
+        "authority": 6,
+        "elements": 4,
+        "application": 4,
+        "counter": 4
+      },
+      "reviewNote": "Red means the present wording is not safe to publish as fact. It does not mean the reported transaction could not have occurred."
+    },
+    {
+      "id": "PK-014",
+      "storyOrder": 14,
+      "kind": "misattribution",
+      "status": "RED",
+      "evidenceScore": 34,
+      "legalScore": 10,
+      "overallScore": 10,
+      "statement": "The 6 November 1877 Bute trustees–John Williams lease is a Great House Farm tenancy document.",
+      "short": "Quarantined: it is a Cardiff / Roath lease, not a Llandough farmhouse lease.",
+      "supports": "A real 6 November 1877 lease/counterpart names John Williams, but the identified property is Clyde Street, Roath, Cardiff.",
+      "doesNotSupport": "It does not identify Llandough, Great House Farm or Tŷ Mawr. The shared date and name do not make it the farm lease.",
+      "safestWording": "Exclude the Clyde Street, Roath lease from the Great House Farm title chain unless a separate source establishes a link.",
+      "evidence": [
+        "EV-0213"
+      ],
+      "flags": [
+        "S1",
+        "S6"
+      ],
+      "legalIssue": "A party-name match is insufficient to identify the relevant property. The address/property description controls.",
+      "next": "Retain it as a ruled-out name/date collision and do not cite it as a Great House instrument.",
+      "score": {
+        "provenance": 20,
+        "integrity": 14,
+        "fit": 0,
+        "identity": 0,
+        "corroboration": 0,
+        "limits": 0
+      },
+      "legalBreakdown": {
+        "issue": 4,
+        "authority": 2,
+        "elements": 2,
+        "application": 1,
+        "counter": 1
+      },
+      "reviewNote": "This is a control example: an authentic document can be irrelevant to the proposition for which it is being cited."
+    },
+    {
+      "id": "PK-015",
+      "storyOrder": 15,
+      "kind": "overstatement",
+      "status": "RED",
+      "evidenceScore": 19,
+      "legalScore": 20,
+      "overallScore": 19,
+      "statement": "Bute rent books establish that the Williams family were tenants of Great House Farm and its farmhouse throughout the period.",
+      "short": "Quarantined: the source type and parcel scope are overstated.",
+      "supports": "There are separate leads: an 1841 tithe occupier entry, 1870s poor-rate material, a 1904 newspaper report, catalogue-level Bute rental references and the Court of Appeal's 1916 tenancy recital.",
+      "doesNotSupport": "Those are not interchangeable. The tithe is an occupier record; the poor-rate books are not Bute estate rent books; the newspaper is not a Bute ledger; the original 1916 tenancy and plan are missing; and no cited rent-book folio identifies the farmhouse parcel.",
+      "safestWording": "The current record set contains several different kinds of occupation and tenancy evidence. None should be described collectively as “Bute rent books” or used to assign the farmhouse parcel without a specific folio and plan.",
+      "evidence": [
+        "EV-0215",
+        "EV-0212",
+        "EV-0227",
+        "EV-0278",
+        "EV-0080",
+        "EV-0014"
+      ],
+      "flags": [
+        "S1",
+        "S4",
+        "S5"
+      ],
+      "legalIssue": "The evidential source and the legal interest must be correctly identified. Occupation, rating, tenancy and freehold are not synonyms.",
+      "next": "For each purported rental entry, identify repository, collection, volume, folio, exact heading, person, holding, rent and associated plan.",
+      "score": {
+        "provenance": 7,
+        "integrity": 3,
+        "fit": 3,
+        "identity": 1,
+        "corroboration": 2,
+        "limits": 3
+      },
+      "legalBreakdown": {
+        "issue": 8,
+        "authority": 4,
+        "elements": 3,
+        "application": 3,
+        "counter": 2
+      },
+      "reviewNote": "This is the central wording correction prompted by the current review."
+    },
+    {
+      "id": "PK-016",
+      "storyOrder": 16,
+      "kind": "chronology-conflict",
+      "status": "RED",
+      "evidenceScore": 36,
+      "legalScore": 30,
+      "overallScore": 30,
+      "statement": "Alfred Thomas personally received the Williams family's final rent payment in 1928.",
+      "short": "Quarantined: the statement's payee/date needs explanation.",
+      "supports": "Mary's c.1974 statement records that her father paid about £4 to “Alfred Thomas the son of Daniel Thomas” in 1928 and that she saw a receipt.",
+      "doesNotSupport": "The receipt has not been located. Alfred Thomas's death is recorded as 14 December 1927, so the statement does not establish that he personally received money in 1928. Payment to his estate, executor or agent, use of his name on a continuing receipt, or error in the remembered date/payee remain open possibilities.",
+      "safestWording": "Mary's statement attributes the 1928 payment to Alfred Thomas; the receipt is missing and Alfred's recorded death predates the stated payment. The recipient and payment mechanism are unresolved.",
+      "evidence": [
+        "EV-0016",
+        "EV-0284"
+      ],
+      "flags": [
+        "S6",
+        "S5"
+      ],
+      "legalIssue": "A chronological conflict limits the precise proposition. Do not infer fraud, falsity or a personal receipt without the document and probate/accounting context.",
+      "next": "Locate the receipt, probate grant and will, Thomas estate accounts and relevant quarry/rent records.",
+      "score": {
+        "provenance": 12,
+        "integrity": 5,
+        "fit": 9,
+        "identity": 7,
+        "corroboration": 2,
+        "limits": 1
+      },
+      "legalBreakdown": {
+        "issue": 10,
+        "authority": 6,
+        "elements": 5,
+        "application": 5,
+        "counter": 4
+      },
+      "reviewNote": "The account is genuine as an attributed statement; the underlying payment to Alfred personally is not established."
+    },
+    {
+      "id": "PK-017",
+      "storyOrder": 17,
+      "kind": "attributed-later-reports",
+      "status": "ORANGE",
+      "evidenceScore": 74,
+      "legalScore": null,
+      "overallScore": 74,
+      "statement": "A 1993 local-history publication and a 1995 newspaper report associate Marconi’s May 1897 wireless work with Great House Farm.",
+      "short": "Later publications make the link; contemporary corroboration of a stay at the house remains outstanding.",
+      "supports": "The Glamorgan Village Book (1993) reports that Marconi slept at Great House Farm in a four-poster bed. Bill Barrett’s “My Cardiff” in The Post (14 September 1995, p.24) places an apparatus collection there on the eve of 11 May 1897 and describes Farmer Williams’s horse and trap.",
+      "doesNotSupport": "These are later accounts, not contemporary records of a stay. The 1897 press and Kemp material reviewed so far establish the wireless trials but do not independently place Marconi overnight at Great House Farm. The identity of Farmer Williams and the relationship between the later publications remain to be checked.",
+      "safestWording": "The Glamorgan Village Book (1993) and a 14 September 1995 report in The Post record later accounts linking Marconi’s May 1897 work with Great House Farm. The contemporary sources reviewed so far do not independently confirm an overnight stay at the house.",
+      "evidence": [
+        "EV-0085",
+        "EV-0645",
+        "EV-0646"
+      ],
+      "contextEvidence": [
+        "EV-0011",
+        "EV-0248",
+        "EV-0256"
+      ],
+      "corroborationNote": "EV-0085 and EV-0645 describe the same 1993 book and are one source, not two. EV-0646 is a separate 1995 newspaper publication; whether it independently corroborates the book or relies on earlier material has not been established.",
+      "flags": [
+        "S5"
+      ],
+      "legalIssue": "Not a legal proposition. This is a bounded statement about the contents of later publications, not a finding that Marconi stayed at the house.",
+      "next": "Inspect the original 14 September 1995 newspaper page; compare the full Kemp diary (Bodleian MS. Marconi 89) and contemporary correspondence; identify the Farmer Williams named by the 1995 article.",
+      "score": {
+        "provenance": 15,
+        "integrity": 10,
+        "fit": 22,
+        "identity": 14,
+        "corroboration": 4,
+        "limits": 9
+      },
+      "reviewNote": "This grades the proposition that the later publications make the association. It does not grade the underlying 1897 stay as established fact."
+    }
+  ],
+  "source_classification": {
+    "date": "2026-10-30",
+    "status": "Grades assigned from each evidence page's own label fields; to be confirmed by a reviewer before they are shown on pages.",
+    "scale": {
+      "1": "Contemporaneous primary record read in full (deed and plan, court order, register edition, application, official minute, original letter)",
+      "2": "Contemporaneous primary record partly read, or recited in a later record (a judgment reciting an order; a register reciting a deed not itself inspected)",
+      "3": "Later official record (Historic Environment Record, archive catalogue, information-request reply, modern Land Registry schedule)",
+      "4": "Contemporaneous press (evidence of what was reported; OCR text flagged)",
+      "5": "Named witness or family testimony",
+      "6": "Research inference (a hypothesis; never relabelled as a record without the missing step)"
+    },
+    "items": [
+      {
+        "ev": "EV-0006",
+        "evidence_grade": 5,
+        "independent_origin_id": "ORIG-EV-0006",
+        "grade_note": "known from family account; original not located"
+      },
+      {
+        "ev": "EV-0011",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0011",
+        "grade_note": "OCR text"
+      },
+      {
+        "ev": "EV-0014",
+        "evidence_grade": 2,
+        "independent_origin_id": "ORIG-EWCA-1987-CIV-2",
+        "grade_note": "known through the 1987 judgment recital; not independent of EV-0080"
+      },
+      {
+        "ev": "EV-0016",
+        "evidence_grade": 5,
+        "independent_origin_id": "ORIG-EV-0016",
+        "grade_note": "known from family account; original not located"
+      },
+      {
+        "ev": "EV-0023",
+        "evidence_grade": 2,
+        "independent_origin_id": "ORIG-EV-0023",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0048",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0048",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0080",
+        "evidence_grade": 1,
+        "independent_origin_id": "ORIG-EWCA-1987-CIV-2",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0098",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0098",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0106",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0106",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0215",
+        "evidence_grade": 1,
+        "independent_origin_id": "ORIG-EV-0215",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0227",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0227",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0248",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0248",
+        "grade_note": "OCR text"
+      },
+      {
+        "ev": "EV-0256",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0256",
+        "grade_note": ""
+      }
+    ]
+  }
+}

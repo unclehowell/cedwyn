@@ -55,7 +55,7 @@ The title chain itself is on /title-chain/ (data/title-chain.json).
   outside narratives (other websites, catalogue summaries, secondary books) are things we test, not sources we repeat.
 - Tŷ Mawr is first named in the record we have found in the 1824 David Stewart survey of the Bute Glamorgan estates
   (Glamorgan Archives DB/E/1–2, plan 19 "Cedfin or Ty Mawr Farm", EV-0211).
-- The Williams family acquired Tŷ Mawr in 1667. State it plainly with its sources (Mary Williams' statement in the 1974 newspapers; ITV News, 1988); never as "the family's account" (Sion, 13:21 GMT 26 Oct 2026). No document for it is invented.
+- Mary Williams's c.1974 statement reports 1667 as the date of the Williams family's acquisition of Tŷ Mawr. Unless an operative 1667 instrument is located, attribute the date to that statement; do not state it as an independently established acquisition or title date. Use: “Mary Williams's c.1974 statement reports 1667 as the date of family acquisition; no 1667 instrument has been located in the present record set.” Cite the statement itself and distinguish later newspaper/broadcast reports from independent contemporary corroboration.
 - Bute estate and other third-party documents are never shown as records of Tŷ Mawr dated before 1824. Do not write "the 1547 lease"
   or "the 1552 Bute deed" as Tŷ Mawr records. Where such a document must be mentioned, it is a Bute (or third-party) document whose
   application to Tŷ Mawr is under forensic examination. Bute's freeholds are under forensic examination for validity.

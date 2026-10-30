@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """chronology.py - chronology and outside records (Sion, 11:45 GMT 26 Oct 2026, m:1138070f). - Sion's Tab agent
-Tŷ Mawr is first named in the record we have found in the 1824 David Stewart survey (EV-0211); in the family's account
-Tŷ Mawr was acquired in 1667. Bute estate and other third-party documents are never shown as records of Tŷ Mawr dated
+Tŷ Mawr is first named in the record we have found in the 1824 David Stewart survey (EV-0211); Mary Williams's c.1974 statement
+reports 1667 as the date of the Williams family's acquisition; no 1667 instrument has been located in the present record set. Bute estate and other third-party documents are never shown as records of Tŷ Mawr dated
 before 1824. Reads chronology.json and, over dist/<theme>/ (cedwyn copy only; datro and the WordPress wiki are untouched):
 1. applies the ordered regex rewrites to text files (skip_prefixes = archived correspondence and third-party captures,
    kept verbatim; notice_only_themes = the wiki copy, whose own words are left as the wiki has them);
