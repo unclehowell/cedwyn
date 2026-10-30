@@ -1,4 +1,4 @@
-/* Cedwyn · documentary — scene page (page v1.4.4, 30 Oct 2026: the page opens straight onto the scenes — no intro panel or page-level control bar; audio and subtitles are chosen in the player, and the version select moves into the player's control bar; v1.4.3, 30 Oct 2026: tapping anywhere on a released scene's picture plays it; the full-screen picture opens only from the small "View artwork" button under it; v1.4.2, 30 Oct 2026: window.CedwynPlayer lets download.js offer the scene with the chosen audio and subtitles; v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
+/* Cedwyn · documentary — scene page (page v1.4.5, 30 Oct 2026: a scene with per-language lip-synced video (manifest "video": {cy, en, es}) plays the video of the chosen audio language and switches it, at the same position, when the audio changes; without it the single clip plays as before; v1.4.4, 30 Oct 2026: the page opens straight onto the scenes — no intro panel or page-level control bar; audio and subtitles are chosen in the player, and the version select moves into the player's control bar; v1.4.3, 30 Oct 2026: tapping anywhere on a released scene's picture plays it; the full-screen picture opens only from the small "View artwork" button under it; v1.4.2, 30 Oct 2026: window.CedwynPlayer lets download.js offer the scene with the chosen audio and subtitles; v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
    v1.3.0: film versions, viewing licence and checkout live in documentary.js (window.CedwynDoc); play() asks it first.
    Doors come from frames.json; a door opens when manifest.json in the film's storage repository lists its clip.
    The page reads the storage repository at run time (frames, manifest, prompt, scripts, subtitles, media), so the daily
@@ -177,13 +177,14 @@
   // Playback controls (v1.2.0): play/pause, position, full screen, audio language, subtitle language (independent of audio).
   var V = $("cm-video"), A = $("cm-audio"), ST = $("cm-stage"), cur = null, LANGS = ["cy", "en", "es"], NAT = {cy: "Cymraeg", en: "English", es: "Español"}, cuesBy = {}, trackUrls = [], iosFS = false, idleT = null;
   function subLang() { return S.sub ? S.sub : lang(); }
-  window.CedwynPlayer = {video: V, raw: RAW, current: function () { return cur; }, audio: function () { return S.audio; }, sub: function () { return subLang(); }};   // read by download.js (v1.4.2)
+  function clipFor(m) { var vv = m && m.video; return (vv && (vv[S.audio] || vv[m.default_audio || "cy"])) || m.clip; }   // v1.4.5: per-language lip-synced video, else the one clip
+  window.CedwynPlayer = {video: V, raw: RAW, current: function () { return cur; }, audio: function () { return S.audio; }, sub: function () { return subLang(); }, clip: function () { return cur ? clipFor(cur.m) : null; }};   // read by download.js (v1.4.2; clip() v1.4.5)
   function subPath(L) { return cur.m.subs && cur.m.subs[L] ? cur.m.subs[L] : "subs/" + cur.f.id + "." + L + ".vtt"; }
   function play(f, m) {
     var DG = window.CedwynDoc; if (DG && !DG.canPlay(f.n)) { DG.locked(f.n); return; }   // newest scenes: licence or membership (documentary.js)
     cur = {f: f, m: m}; $("cm-p-title").textContent = t("scene") + " " + f.n + " · " + tl(f, "title"); $("cm-p-meta").textContent = f.date_range + (m.seconds ? " · " + fmt(m.seconds) : "");
     if (m.poster) V.setAttribute("poster", RAW + m.poster); else V.removeAttribute("poster");
-    V.src = RAW + m.clip; setAudio(true); loadCues(); $("cm-player").hidden = false; paintPlayer();
+    V.src = RAW + clipFor(m); setAudio(true); loadCues(); $("cm-player").hidden = false; paintPlayer();
     if (A.getAttribute("src")) A.play().catch(function () {});   // inside the tap, so phones allow the sound
     V.play().catch(function () {}); try { $("cm-pp").focus({preventScroll: true}); } catch (e) {}
   }
@@ -254,7 +255,15 @@
   // in full screen the controls fade after 3 s of playback and come back on any touch, mouse move or key
   function poke() { ST.classList.remove("cm-idle"); clearTimeout(idleT); if (ST.classList.contains("cm-isfs") && !V.paused) idleT = setTimeout(function () { if (ST.contains(document.activeElement) && document.activeElement !== V && document.activeElement !== document.body && document.activeElement.tagName === "INPUT") return; ST.classList.add("cm-idle"); }, 3000); }
   ["mousemove", "touchstart", "keydown"].forEach(function (ev) { ST.addEventListener(ev, poke, {passive: true}); });
-  function pickAudio(a) { S.audio = a; try { localStorage.setItem("cedwyn-movie-audio-v2", S.audio); } catch (e) {} setAudio(); trackModes(); drawCue(); paintStatic(); paintPlayer(); }
+  // v1.4.5: the audio language picks the lip-synced video too; the new video resumes at the same position (and keeps playing if it was)
+  function swapVideo() {
+    if (!cur || !cur.m.video) return; var want = RAW + clipFor(cur.m); if (V.getAttribute("src") === want) return;
+    var at = V.currentTime || 0, was = !V.paused; if (A.getAttribute("src")) A.pause(); V.src = want;
+    var once = function () { V.removeEventListener("loadedmetadata", once); try { V.currentTime = at; } catch (e) {} try { A.currentTime = at; } catch (e) {}
+      if (was) { V.play().catch(function () {}); if (A.getAttribute("src")) A.play().catch(function () {}); } };
+    V.addEventListener("loadedmetadata", once);
+  }
+  function pickAudio(a) { S.audio = a; try { localStorage.setItem("cedwyn-movie-audio-v2", S.audio); } catch (e) {} swapVideo(); setAudio(); trackModes(); drawCue(); paintStatic(); paintPlayer(); }
   function pickSub(s) { S.sub = s; if (s !== "off") S.subLast = s; S.subsOffLegacy = false; try { localStorage.setItem("cedwyn-movie-sublang-v2", s); localStorage.setItem("cedwyn-movie-subs", s === "off" ? "0" : "1"); } catch (e) {} trackModes(); drawCue(); paintStatic(); paintPlayer(); }
   Array.prototype.forEach.call(document.querySelectorAll(".cm-pa"), function (b) { b.onclick = function () { pickAudio(b.getAttribute("data-a")); }; });
   Array.prototype.forEach.call(document.querySelectorAll(".cm-ps"), function (b) { b.onclick = function () { pickSub(b.getAttribute("data-s")); }; });
