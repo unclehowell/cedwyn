@@ -1,25 +1,25 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8707,
+  "pages_scanned": 8742,
   "references_checked": {
-    "resource": 195912,
-    "nav": 339220
+    "resource": 197218,
+    "nav": 339827
   },
-  "database_backed_paths": 7316,
-  "unique_missing_destinations": 4872,
-  "missing_references": 31439,
-  "missing_navigation_references": 16125,
-  "missing_resource_references": 15314,
+  "database_backed_paths": 7323,
+  "unique_missing_destinations": 4878,
+  "missing_references": 31514,
+  "missing_navigation_references": 16132,
+  "missing_resource_references": 15382,
   "unique_broken_fragments": 1811,
-  "broken_fragment_references": 3302,
+  "broken_fragment_references": 3368,
   "form_or_endpoint_actions_not_checked": {
-    "form[action]": 2550
+    "form[action]": 2549
   },
   "top_missing_destinations": [
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6392,
+      "references": 6427,
       "examples": [
         {
           "from": "/review/",
@@ -46,7 +46,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6392,
+      "references": 6427,
       "examples": [
         {
           "from": "/review/",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/_ext/s-ssl.wordpress.com/i/logo/wpcom-gray-white.png",
-      "references": 1952,
+      "references": 1950,
       "examples": [
         {
           "from": "/wiki/",
@@ -100,7 +100,7 @@
     {
       "kind": "nav",
       "path": "/wiki/wp-json/wp/v2/pages",
-      "references": 975,
+      "references": 974,
       "examples": [
         {
           "from": "/wiki/evidence-chain/",
@@ -4071,7 +4071,7 @@
     {
       "path": "/wayback/",
       "fragment": "websites",
-      "references": 1008,
+      "references": 1074,
       "examples": [
         {
           "from": "/wayback/websites/",
