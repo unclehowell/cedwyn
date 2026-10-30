@@ -90,6 +90,25 @@ def webapp_name(sec, theme):
     return sec.replace('-', ' ').title() if sec else WEBAPPS.get('', 'Home')
 
 
+# 30 Oct 2026 (shop patch bundle item 9): a book's own page shares under its own name. The owner's brand line stays first
+# ("Williams-Bucklers, Ty Mawr, Cedwyn – E-books"), then the book: "… – E-books · Enwau: the names of Tŷ Mawr".
+# Only the book pages one level under /ebooks/ (ITEM_SECTIONS); every other page keeps the webapp title. - Sion's Tab agent
+ITEM_SECTIONS = ('ebooks',)
+def item_title(sec, rel_dir, head):
+    parts = [x for x in rel_dir.strip('/').split('/') if x]
+    if sec not in ITEM_SECTIONS or len(parts) != 2: return ''
+    m = TITLE.search(head)
+    if not m: return ''
+    t = clean(html.unescape(TAG.sub('', m.group(1))))
+    ps = [x.strip() for x in re.split(r'\s+[·—|]\s+|\s+–\s+E-books', t) if x.strip()]
+    t = ps[0] if ps else ''
+    if len(t) < 12 and len(ps) > 1: t = t + ': ' + ps[1]
+    t = re.sub(r'^£0\.00 e-book:\s*', '', t); t = re.sub(r',?\s*v\d+(\.\d+)+$', '', t).strip()
+    t = t[:1].upper() + t[1:]
+    if not t or len(t) > 90 or not ok_text(t) or t.lower().startswith('not found'): return ''
+    return t
+
+
 def share_title(name):
     return BRAND + ' – ' + name if name else BRAND
 
@@ -294,9 +313,13 @@ def page(p, rel, dist, themes, cards, n, added, untouched, samples):
     cm = CANON.search(head_clean)
     if cm:
         cu = attrs(cm.group(0)).get('href', '')
+        if cu.startswith('/') and not cu.startswith('//'):   # 30 Oct 2026: a relative canonical becomes absolute (same address) - Sion's Tab agent
+            cu = BASE + cu; head_clean = head_clean.replace(cm.group(0), '<link rel="canonical" href="%s">' % esc(cu), 1)
         if cu.startswith(BASE + '/'): url = cu
     name = webapp_name(sec, theme)
     title = share_title(name)
+    book = item_title(sec, rel_dir, head_clean)
+    if book: title = title + ' · ' + book
     desc = have.get('og:description') or have.get('description', '')
     tdesc = CFG.get('section_desc', {}).get(sec) or (theme.get('desc', '') if ok_text(theme.get('desc', '')) and len(theme.get('desc', '')) > 40 else '')
     if not ok_text(desc) or len(desc) < 30 or NOISE.search(desc):
