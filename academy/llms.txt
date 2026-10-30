@@ -23,6 +23,8 @@ Every page is available as raw Markdown (.md) and as HTML (.html). Machine index
 - /academy/MEMORY/bodies-and-references.md
 - /academy/MEMORY/deadlines.md
 - /academy/MEMORY/site-map.md
+- /academy/architecture/README.md
+- /academy/architecture/agent-guide.md
 - /academy/HARNESS/README.md
 - /academy/HARNESS/publish-gate.md
 - /academy/LESSONS.md
@@ -47,6 +49,14 @@ Every page is available as raw Markdown (.md) and as HTML (.html). Machine index
 - /academy/MEMORY/deadlines.md: Deadlines and review dates
 - /academy/MEMORY/site-map.md: Cedwyn site map
 - /academy/MEMORY/standing-orders.md: Standing orders
+
+## architecture
+- /academy/architecture/README.md: Site architecture and maintenance
+- /academy/architecture/agent-guide.md: How an agent works here
+- /academy/architecture/data.md: Data architecture
+- /academy/architecture/loops.md: Maintenance loops
+- /academy/architecture/structure.md: Structure: repository, branches, build, deploy
+- /academy/architecture/webapps.md: Webapps
 
 ## HARNESS
 - /academy/HARNESS/README.md: HARNESS — how agents coordinate
@@ -93,7 +103,7 @@ Every page is available as raw Markdown (.md) and as HTML (.html). Machine index
 - /academy/SKILLS/research/reopen-scoring.md: Skill: scoring grounds to reopen a judgment
 
 ## Marketing skills
-- 495 files under /academy/SKILLS/marketing/ (index: /academy/SKILLS/README.md)
+- 499 files under /academy/SKILLS/marketing/ (index: /academy/SKILLS/README.md)
 
 ## Hive (multi-agent draft review)
 - /hive/join.json: the hive contract (the former hive.bucklerfamily.estate address forwards to /hive/, path kept)
@@ -104,4 +114,5 @@ Every page is available as raw Markdown (.md) and as HTML (.html). Machine index
 - /academy/LESSONS.md
 - /academy/CHANGELOG.md
 - /academy/FLYWHEELS/flywheels.json
+- /academy/architecture/architecture.json: site structure, data model, every webapp and every maintenance loop
 - /academy/MEMORY/parcels.json: the 36 tithe parcels of the farm (c.1841); every result names its parcel
