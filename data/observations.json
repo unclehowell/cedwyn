@@ -171,81 +171,56 @@
     },
     {
       "id": "OBS-0004",
-      "slug": "sequential-parcel-capture-paper-siege",
+      "slug": "alfred-thomas-death-1927-and-mary-williams-1928-rent",
       "seq": 4,
-      "title": "Sequential parcel capture and permission-framing: the Paper Siege working hypothesis",
+      "title": "Alfred Thomas’s 1927 death conflicts with Mary Williams’s remembered 1928 rent payment",
       "theme": "wiki",
-      "observation_type": "title_theory_model",
-      "status": "leading_working_hypothesis_unproven",
-      "summary": "A parcel-by-parcel model tests whether separate conveyances, public-body takings, possession proceedings, licences, registrations and title consolidation progressively reduced the Williams family’s standing on paper while the family continued to occupy or claim land. The model includes the court outcome, competing explanations, source gaps and a separate fiction-only branch. It does not establish a coordinated scheme or wrongdoing.",
-      "analysis": "The model is maintained in data/title-theory.json and published at /wiki/title-theory/. It treats the c.1841 tithe as evidence that John Williams occupied 36 plots, not that he owned all 36. It distinguishes the 1939 fields letting (provisional Parcel B) from the farmhouse/garden claim (provisional Parcel A), and keeps the green as provisional Parcel C. It tests the disputed 1939 signature without presuming forgery; the 1958 Welsh Crichel Down complaint as a reported family allegation; the 1974 licence letters and 1975 conveyance; the 1982–83 first-registration process and notice; the 1987 amalgamation; and the later planning and archaeology chronology. Each causal link has a competing explanation and a falsifier. Death, suppression and hidden-archaeology scenarios are explicitly segregated as unsupported or fiction-only.",
-      "limits": "The complete 1938, 1939, 1969 and 1975 instruments and plans are not all independently inspected; the original 1939 signature and provenance are not authenticated; the full WA231076 and WA240304 registration files and proof of service remain material; the 1955/1962 orders and execution returns need primary inspection; and the reported Neath fire and family-paper loss have not been linked to a common cause. The 1987 Court of Appeal outcome remains the operative legal result. Temporal proximity of deaths to registration or planning is not evidence of homicide.",
+      "observation_type": "chronology_and_title_chain",
+      "status": "working_observation",
+      "summary": "Mary (Nancy) Williams’s c.1974 statement places the last rent payment, about £4 per annum, in 1928 and names “Alfred Thomas the son of Daniel Thomas” as recipient. The Dictionary of Welsh Biography records Alfred Thomas, 1st Baron Pontypridd, as dying unmarried on 14 December 1927. A separate, secondary transcription of a 27 December 1927 newspaper report says an unofficial report had the bulk of his property going to Cardiff Corporation and citizens. The conflict is material, but neither the actual 1928 payee nor any Llandough land passing under Alfred’s estate is established.",
+      "analysis": "Keep the evidence strands separate. First, verify the death and identity through the Dictionary of Welsh Biography and its cited contemporary sources. Second, preserve Mary’s exact statement and her assertion that she saw the receipt, while cataloguing the receipt itself as pending/not located. Third, establish whether the 1928 payment was actually made to an estate, executor, authorised agent, or another person; do not silently rewrite Mary’s wording. Fourth, inspect the original newspaper report, will, grant and estate accounts before interpreting the Cardiff Corporation bequest. The phrase “bulk of his property” does not identify assets or prove that a Llandough parcel was included. The absence of a located transfer to Cardiff Corporation does not prove that no property passed. The 23 February 1905 Bute-to-Cardiff Corporation conveyance is a separate title-chain lead and may explain the Corporation’s later appearance independently of Alfred’s estate. Also compare the 10 November 1925 quarry-plant/tramline sale catalogue (DSA/12/4888), the 1927 obituary wording that the limeworks were carried on by Alfred and then given up, the 1877 Bute–Thomas instrument, and the later Court of Appeal recital of rent arrears/1953 payment. Each source has a different evidential role; no one item resolves the conflict.",
+      "limits": "This is a research observation, not a finding of fraud, concealment, inheritance or ownership. The receipt, 1877 instrument/plan, original 1927 newspaper, will, grant and relevant estate/rent accounts have not been inspected here. The press report is expressly unofficial in the transcription. Do not claim Alfred personally received a payment after his death; do not claim Cardiff Corporation inherited or did not inherit the Great House Farm land without asset-specific proof.",
       "test_questions": [
-        "Do the 1938, 1969 and 1975 deeds and plans include the exact same farmhouse, garden, woodland and field parcels later claimed or registered?",
-        "Does the original 1939 agreement concern only Parcel B, and is its signature authentic, complete and unaltered?",
-        "Who was identified as occupier and claimant in the WA231076 and WA240304 applications, and what notices were served, on whom and when?",
-        "Are the alleged permission episodes independent records, or later recitals of the same court judgment?",
-        "What contemporaneous records support or contradict the 1958 complaint of wrongful appropriation?",
-        "What primary civil, probate, coronial or police records establish the family members’ dates and causes of death?",
-        "What do the full archaeological and Neath fire records establish, and is there any documented link to the title dispute?"
+        "Can the original 1928 rent receipt or rent book be located, and what exact date, payee, collecting person, amount and land description does it show?",
+        "What is the exact identity of the Alfred Thomas named by Mary, and is it securely the Alfred who died on 14 December 1927?",
+        "What do the original 1927 newspaper report, Alfred’s will, the grant and estate accounts actually say about beneficiaries and assets?",
+        "Does the 1928 grant/Gazette reference (reported as 8 March 1928; Gazette notice reportedly 30 March 1928, p.2387) verify on inspection?",
+        "Do Cardiff Corporation’s deeds/property registers or 1928 minutes record land or a property interest at Llandough received from Alfred’s estate?",
+        "What does the separate 23 February 1905 Bute-to-Cardiff Corporation conveyance and plan cover, and is it sufficient to explain the Corporation’s later appearance?",
+        "Does the original 1877 Bute–Thomas instrument identify a reverter, rent mechanism, parcel extent or quarrying condition that explains the remembered 1928 change?",
+        "How do the Court of Appeal’s rent-arrears and 1953-payment references map to the actual parcel and tenancy?"
       ],
-      "related_page": "/wiki/title-theory/",
+      "related_page": "/wiki/evidence/ev-0284-alfred-thomas-lord-pontypridd-son-of-daniel-thomas-of-the-llandough-lime-works-die/",
       "refs": [
         {
-          "ev": "EV-0215",
-          "path": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
-          "role": "occupation footprint",
-          "note": "Occupier of 36 plots; not ownership proof."
+          "ev": "EV-0284",
+          "path": "/research/evidence/ev-0284-alfred-thomas-lord-pontypridd-son-of-daniel-thomas-of-the-llandough-lime-works-die/",
+          "role": "death and secondary estate-report lead",
+          "note": "Death supported by the Dictionary of Welsh Biography; estate report remains an unverified secondary transcription."
         },
         {
-          "ev": "EV-0019",
-          "path": "/research/evidence/ev-0019-bute-wgr-conveyance-plan-1938/",
-          "role": "root conveyance and plan",
-          "note": "Parcel scope requires full inspection."
+          "ev": "EV-0016",
+          "path": "/research/evidence/ev-0016-1928-last-rent-receipt-quarrying/",
+          "role": "missing receipt / family testimony",
+          "note": "Mary's statement says she saw a receipt; the receipt itself is not located."
         },
         {
-          "ev": "EV-0023",
-          "path": "/research/evidence/ev-0023-1939-wgr-john-williams-tenancy-plan/",
-          "role": "1939 letting and plan",
-          "note": "Signature and full wording require authentication."
+          "ev": "EV-0006",
+          "path": "/research/evidence/ev-0006-bute-daniel-thomas-1877-agreement/",
+          "role": "reported 1877 instrument",
+          "note": "Instrument and plan remain unlocated; terms and extent require inspection."
         },
         {
-          "ev": "EV-0037",
-          "path": "/research/evidence/ev-0037-western-mail-1958-crichel-down/",
-          "role": "1958 press report",
-          "note": "Family complaint, not a judicial finding."
-        },
-        {
-          "ev": "EV-0049",
-          "path": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
-          "role": "1974 plea",
-          "note": "Original county-court file remains to be read."
-        },
-        {
-          "ev": "EV-0050",
-          "path": "/research/evidence/ev-0050-1974-bp-licence-letters/",
-          "role": "1974 letters",
-          "note": "Court of Appeal treated the letters as creating a licence."
-        },
-        {
-          "ev": "EV-0052",
-          "path": "/research/evidence/ev-0052-bp-pension-trust-bp-properties-conveyance/",
-          "role": "1975 conveyance"
-        },
-        {
-          "ev": "EV-0065",
-          "path": "/research/evidence/ev-0065-wa240304-farmhouse-first-registration-file/",
-          "role": "first-registration file"
-        },
-        {
-          "ev": "EV-0078",
-          "path": "/research/evidence/ev-0078-1987-title-amalgamation-application-plan/",
-          "role": "1987 amalgamation plan"
+          "ev": "EV-0280",
+          "path": "/research/evidence/ev-0280-lime-works/",
+          "role": "quarrying context",
+          "note": "Use only for the wording actually preserved in the catalogue; verify the original obituary/record."
         },
         {
           "ev": "EV-0080",
           "path": "/research/evidence/ev-0080-bp-properties-v-buckler-judgment/",
-          "role": "Court of Appeal judgment"
+          "role": "later judgment",
+          "note": "Court recital; map rent arrears and 1953 payment to parcel/tenancy and distinguish recitals from independently held records."
         }
       ]
     }
