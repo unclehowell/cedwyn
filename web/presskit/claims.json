@@ -174,7 +174,7 @@
       "title": "RCAHMW architectural survey and floor plan",
       "type": "Official survey",
       "status": "Record identified",
-      "url": "/research/evidence/ev-0047-rcahmw-architectural-survey-great-house-farm/"
+      "url": "/research/evidence/ev-0047-thomas-rcahmw-survey-floor-plan/"
     },
     {
       "id": "EV-0126",
@@ -289,18 +289,25 @@
       "url": "/research/evidence/ev-0284-alfred-thomas-lord-pontypridd-son-of-daniel-thomas-of-the-llandough-lime-works-die/"
     },
     {
-      "id": "EV-0113",
-      "title": "ITV Wales report — Great House Farm, 1988",
-      "type": "Broadcast report",
-      "status": "Report identified",
-      "url": "/wiki/evidence-library/ghf-e113-itv-wales-report-great-house-farm-1988/"
-    },
-    {
       "id": "MARY",
       "title": "Mary Williams's c.1974 statement",
       "type": "Witness statement / family testimony",
       "status": "Statement held in the research record; its underlying 1667 instrument is not held",
       "url": "/research/testimony/mary-williams/"
+    },
+    {
+      "id": "EV-0083",
+      "title": "ITV Wales report — eviction and injunction, 1988",
+      "type": "Broadcast report",
+      "status": "Report identified",
+      "url": "/research/evidence/ev-0083-itv-wales-report-eviction-injunction/"
+    },
+    {
+      "id": "EV-0106",
+      "title": "“Tears flow as farmhouse razed”, December 1988",
+      "type": "Contemporaneous press",
+      "status": "Report identified; day conflict retained",
+      "url": "/research/evidence/ev-0106-tears-flow-farmhouse-razed-1988/"
     }
   ],
   "claims": [
@@ -349,6 +356,7 @@
       "evidence": [
         "EV-0211",
         "EV-0047",
+        "EV-0084",
         "EV-0126"
       ],
       "flags": [],
@@ -379,9 +387,8 @@
       "safestWording": "The Great House building at Llandough was demolished in 1988.",
       "evidence": [
         "EV-0098",
-        "EV-0100",
-        "EV-0126",
-        "EV-0113"
+        "EV-0106",
+        "EV-0126"
       ],
       "flags": [],
       "legalIssue": "Not a legal conclusion. The fact of demolition is distinct from the legal authority for it.",
@@ -413,7 +420,7 @@
         "EV-0080",
         "EV-0098",
         "EV-0100",
-        "EV-0113"
+        "EV-0083"
       ],
       "flags": [],
       "legalIssue": "Residence is a fact relevant to occupation and potentially to legal issues, but it is not itself proof of title.",
@@ -645,7 +652,7 @@
       "safestWording": "Mary Williams's c.1974 statement gave 1667 as the date of the family's acquisition; no 1667 instrument identifying Tŷ Mawr has yet been produced in this record set.",
       "evidence": [
         "MARY",
-        "EV-0113",
+        "EV-0083",
         "EV-0211"
       ],
       "flags": [
