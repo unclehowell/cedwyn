@@ -1,9 +1,9 @@
 {
   "schema": "cedwyn_presskit_claims/v1",
   "title": "Great House Farm — statement scrutiny register",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "reviewed": "2026-10-30",
-  "review_scope": "Initial public baseline and the Williams/Bute tenancy and title assertions most likely to be repeated on Cedwyn. This is a claim register, not an exhaustive machine-generated audit of every sentence on every page.",
+  "review_scope": "Initial curated scrutiny set: baseline site facts and priority Williams/Bute tenancy, title, chronology and Marconi assertions. It is not an exhaustive machine-generated audit of every sentence on every Cedwyn page.",
   "scoring": {
     "evidence": [
       {
@@ -290,9 +290,9 @@
     },
     {
       "id": "MARY",
-      "title": "Mary Williams's c.1974 statement",
+      "title": "Mary Williams’s c.1974 statement",
       "type": "Witness statement / family testimony",
-      "status": "Statement held in the research record; its underlying 1667 instrument is not held",
+      "status": "Statement held; no 1667 instrument is present in this record set",
       "url": "/research/testimony/mary-williams/"
     },
     {
@@ -322,6 +322,51 @@
       "type": "Trade directories",
       "status": "Record extracts; identity/place matching still requires care",
       "url": "/research/evidence/ev-0225-trade-directories-1868-1901-john-williams-great-house/"
+    },
+    {
+      "id": "EV-0085",
+      "title": "The Glamorgan Village Book (1993) — Llandough entry",
+      "type": "Later local-history publication",
+      "status": "Published 1993; secondary account of Marconi at Great House Farm",
+      "origin_note": "Same underlying publication as EV-0645; do not count the two catalogue pages as independent sources.",
+      "url": "/research/evidence/ev-0085-glamorgan-village-book-demolition-page/"
+    },
+    {
+      "id": "EV-0645",
+      "title": "The Glamorgan Village Book (1993) — transcript, pp. 64–65",
+      "type": "Transcript of a later local-history publication",
+      "status": "Transcript of the same 1993 book recorded at EV-0085",
+      "origin_note": "Same underlying publication as EV-0085; not an independent source.",
+      "url": "/research/evidence/ev-0645-local-history-book-llandough-penarth-pp64-65/"
+    },
+    {
+      "id": "EV-0646",
+      "title": "The Post (Cardiff), 14 September 1995, p.24 — Bill Barrett, “My Cardiff”",
+      "type": "Later newspaper account",
+      "status": "1995 report; not contemporary evidence of the 1897 event",
+      "origin_note": "Separate publication from the 1993 book; dependence on earlier accounts has not yet been tested.",
+      "url": "/research/evidence/ev-0646-the-post-cardiff-1995-09-14-p24-marconi-great-house-farm/"
+    },
+    {
+      "id": "EV-0011",
+      "title": "1897 press cutting — Marconi's Lavernock wireless trials",
+      "type": "Contemporary press",
+      "status": "OCR transcription; reports trials, not the farmhouse stay",
+      "url": "/research/evidence/ev-0011-marconi-lavernock-wireless-cutting-1897/"
+    },
+    {
+      "id": "EV-0248",
+      "title": "Contemporary press — Marconi in Wales, May 1897",
+      "type": "Contemporary press",
+      "status": "OCR transcription; reports trials, not the farmhouse stay",
+      "url": "/research/evidence/ev-0248-marconi-in-wales-may-1897-contemporary-press/"
+    },
+    {
+      "id": "EV-0256",
+      "title": "Kemp diary material — Bodleian MS. Marconi 89",
+      "type": "Diary material / extract",
+      "status": "Extracts reviewed; full diary and context remain to be checked",
+      "url": "/research/evidence/ev-0256-kemp-diary-lavernock-1897-bodleian-ms-marconi-89/"
     }
   ],
   "claims": [
@@ -615,7 +660,8 @@
         "application": 16,
         "counter": 12
       },
-      "reviewNote": "The fact of the court's recital is strong. The original terms and land extent are not independently checkable from the missing deed."
+      "reviewNote": "The fact of the court's recital is strong. The original terms and land extent are not independently checkable from the missing deed.",
+      "corroborationNote": "EV-0014 is known through the 1987 Court of Appeal judgment and shares independent_origin_id ORIG-EWCA-1987-CIV-2 with EV-0080. These two catalogue references are not two independent source origins."
     },
     {
       "id": "PK-010",
@@ -897,6 +943,131 @@
         "counter": 4
       },
       "reviewNote": "The account is genuine as an attributed statement; the underlying payment to Alfred personally is not established."
+    },
+    {
+      "id": "PK-017",
+      "storyOrder": 17,
+      "kind": "attributed-later-reports",
+      "status": "ORANGE",
+      "evidenceScore": 74,
+      "legalScore": null,
+      "overallScore": 74,
+      "statement": "A 1993 local-history publication and a 1995 newspaper report associate Marconi’s May 1897 wireless work with Great House Farm.",
+      "short": "Later publications make the link; contemporary corroboration of a stay at the house remains outstanding.",
+      "supports": "The Glamorgan Village Book (1993) reports that Marconi slept at Great House Farm in a four-poster bed. Bill Barrett’s “My Cardiff” in The Post (14 September 1995, p.24) places an apparatus collection there on the eve of 11 May 1897 and describes Farmer Williams’s horse and trap.",
+      "doesNotSupport": "These are later accounts, not contemporary records of a stay. The 1897 press and Kemp material reviewed so far establish the wireless trials but do not independently place Marconi overnight at Great House Farm. The identity of Farmer Williams and the relationship between the later publications remain to be checked.",
+      "safestWording": "The Glamorgan Village Book (1993) and a 14 September 1995 report in The Post record later accounts linking Marconi’s May 1897 work with Great House Farm. The contemporary sources reviewed so far do not independently confirm an overnight stay at the house.",
+      "evidence": [
+        "EV-0085",
+        "EV-0645",
+        "EV-0646"
+      ],
+      "contextEvidence": [
+        "EV-0011",
+        "EV-0248",
+        "EV-0256"
+      ],
+      "corroborationNote": "EV-0085 and EV-0645 describe the same 1993 book and are one source, not two. EV-0646 is a separate 1995 newspaper publication; whether it independently corroborates the book or relies on earlier material has not been established.",
+      "flags": [
+        "S5"
+      ],
+      "legalIssue": "Not a legal proposition. This is a bounded statement about the contents of later publications, not a finding that Marconi stayed at the house.",
+      "next": "Inspect the original 14 September 1995 newspaper page; compare the full Kemp diary (Bodleian MS. Marconi 89) and contemporary correspondence; identify the Farmer Williams named by the 1995 article.",
+      "score": {
+        "provenance": 15,
+        "integrity": 10,
+        "fit": 22,
+        "identity": 14,
+        "corroboration": 4,
+        "limits": 9
+      },
+      "reviewNote": "This grades the proposition that the later publications make the association. It does not grade the underlying 1897 stay as established fact."
     }
-  ]
+  ],
+  "source_classification": {
+    "date": "2026-10-30",
+    "status": "Grades assigned from each evidence page's own label fields; to be confirmed by a reviewer before they are shown on pages.",
+    "scale": {
+      "1": "Contemporaneous primary record read in full (deed and plan, court order, register edition, application, official minute, original letter)",
+      "2": "Contemporaneous primary record partly read, or recited in a later record (a judgment reciting an order; a register reciting a deed not itself inspected)",
+      "3": "Later official record (Historic Environment Record, archive catalogue, information-request reply, modern Land Registry schedule)",
+      "4": "Contemporaneous press (evidence of what was reported; OCR text flagged)",
+      "5": "Named witness or family testimony",
+      "6": "Research inference (a hypothesis; never relabelled as a record without the missing step)"
+    },
+    "items": [
+      {
+        "ev": "EV-0006",
+        "evidence_grade": 5,
+        "independent_origin_id": "ORIG-EV-0006",
+        "grade_note": "known from family account; original not located"
+      },
+      {
+        "ev": "EV-0011",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0011",
+        "grade_note": "OCR text"
+      },
+      {
+        "ev": "EV-0014",
+        "evidence_grade": 2,
+        "independent_origin_id": "ORIG-EWCA-1987-CIV-2",
+        "grade_note": "known through the 1987 judgment recital; not independent of EV-0080"
+      },
+      {
+        "ev": "EV-0016",
+        "evidence_grade": 5,
+        "independent_origin_id": "ORIG-EV-0016",
+        "grade_note": "known from family account; original not located"
+      },
+      {
+        "ev": "EV-0023",
+        "evidence_grade": 2,
+        "independent_origin_id": "ORIG-EV-0023",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0080",
+        "evidence_grade": 1,
+        "independent_origin_id": "ORIG-EWCA-1987-CIV-2",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0098",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0098",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0106",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0106",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0215",
+        "evidence_grade": 1,
+        "independent_origin_id": "ORIG-EV-0215",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0227",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0227",
+        "grade_note": ""
+      },
+      {
+        "ev": "EV-0248",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0248",
+        "grade_note": "OCR text"
+      },
+      {
+        "ev": "EV-0256",
+        "evidence_grade": 4,
+        "independent_origin_id": "ORIG-EV-0256",
+        "grade_note": ""
+      }
+    ]
+  }
 }
