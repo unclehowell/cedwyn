@@ -1,5 +1,5 @@
-/* Cedwyn · documentary — download button (download.js v1.0.0, 30 Oct 2026). A tab.bot production.
-   Ten seconds into a scene a Download button fades in over the picture. It downloads that scene with exactly the
+/* Cedwyn · documentary — download button (download.js v1.0.1, 30 Oct 2026 (1.0.1: the button sits in the controls, under the audio and subtitle choices, so the site header never covers it)). A tab.bot production.
+   Ten seconds into a scene a Download button fades in under the audio and subtitle choices. It downloads that scene with exactly the
    audio language and subtitle choice selected at the moment it is tapped (burned-in subtitles, or none), as an MP4
    that plays on any phone or computer. The versions are made by the film pipeline (tools/download_variants.py) and
    listed per scene in the storage manifest as "downloads": {"<audio>|<subs>": {path, bytes, title}}.
@@ -17,16 +17,18 @@
   function L() { var l = (document.documentElement.getAttribute("lang") || "en").slice(0, 2).toLowerCase(); return T[l] ? l : "en"; }
   function tt() { return T[L()]; }
   var st = document.createElement("style");
-  st.textContent = ".cm-dl{position:absolute;top:10px;right:10px;z-index:6;display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-height:44px;min-width:44px;max-width:62%;padding:6px 12px 6px 34px;border-radius:22px;border:1px solid rgba(255,255,255,.55);background:rgba(10,14,11,.78);color:#fff;font:600 14px/1.15 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;text-align:left;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .45s ease,transform .45s ease,visibility 0s linear .45s;-webkit-tap-highlight-color:transparent;box-sizing:border-box}" +
-    ".cm-dl.is-on{opacity:1;visibility:visible;transform:none;transition:opacity .45s ease,transform .45s ease,visibility 0s}" +
-    ".cm-dl:hover,.cm-dl:focus-visible{background:rgba(10,14,11,.92);border-color:#fff;outline:none}.cm-dl:focus-visible{box-shadow:0 0 0 3px rgba(255,255,255,.5)}" +
-    ".cm-dl::before{content:'';position:absolute;left:11px;top:50%;width:16px;height:16px;margin-top:-8px;background:currentColor;-webkit-mask:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6z M4 19h16v2H4z'/%3E%3C/svg%3E\") center/contain no-repeat;mask:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6z M4 19h16v2H4z'/%3E%3C/svg%3E\") center/contain no-repeat}" +
-    ".cm-dl small{font-weight:400;font-size:11.5px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}" +
-    ".cm-dl.is-busy{cursor:progress}@media (prefers-reduced-motion:reduce){.cm-dl,.cm-dl.is-on{transition:none;transform:none}}";
+  var ICO = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6z M4 19h16v2H4z'/%3E%3C/svg%3E\") center/contain no-repeat";
+  st.textContent = ".cm-dl-row{display:none}.cm-dl-row.is-on{display:flex;animation:cmdlin .45s ease both}" +
+    "@keyframes cmdlin{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}" +
+    ".cm-dl{display:inline-flex;align-items:center;gap:8px;min-height:44px;min-width:44px;max-width:100%;padding:6px 14px 6px 12px;font-weight:600;text-align:left;cursor:pointer;box-sizing:border-box}" +
+    ".cm-dl::before{content:'';flex:0 0 18px;width:18px;height:18px;background:currentColor;-webkit-mask:" + ICO + ";mask:" + ICO + "}" +
+    ".cm-dl small{font-weight:400;font-size:.86em;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}" +
+    ".cm-dl.is-busy{cursor:progress}@media (prefers-reduced-motion:reduce){.cm-dl-row.is-on{animation:none}}";
   document.head.appendChild(st);
-  var B = document.createElement("button"); B.type = "button"; B.className = "cm-dl"; B.id = "cm-dl"; B.setAttribute("aria-hidden", "true"); B.tabIndex = -1;
+  var ROW = document.createElement("div"); ROW.className = "cm-pc-row cm-dl-row";
+  var B = document.createElement("button"); B.type = "button"; B.className = "cm-btn cm-pc-o cm-dl"; B.id = "cm-dl"; ROW.appendChild(B);
   var b1 = document.createElement("span"), b2 = document.createElement("small"); B.appendChild(b1); B.appendChild(b2);
-  var host = V.parentNode; host.appendChild(B);
+  var host = document.querySelector("#cm-stage .cm-pc") || V.parentNode; host.appendChild(ROW);   // under the audio and subtitle choices it follows
   function cur() { return P.current && P.current(); }
   function choice() {
     var c = cur(), m = c && c.m; if (!m) return null;
@@ -40,7 +42,7 @@
     b1.textContent = x.dl; b2.textContent = NAT[c.a] + " · " + (c.s === "off" ? x.nos : x.subs[c.s]);
     B.setAttribute("aria-label", x.dl + ": " + b2.textContent); B.title = c.e ? c.title : x.na;
   }
-  function show(on) { B.classList.toggle("is-on", on); B.setAttribute("aria-hidden", on ? "false" : "true"); B.tabIndex = on ? 0 : -1; }
+  function show(on) { ROW.classList.toggle("is-on", on); }
   function hasAny() { var c = cur(); return !!(c && c.m && c.m.downloads); }
   V.addEventListener("timeupdate", function () {
     var c = cur(); if (!c) return; var id = c.f && c.f.n;
@@ -73,5 +75,5 @@
     }).catch(function () { b2.textContent = x.fail; window.open(url, "_blank", "noopener"); })
       .then(function () { busy = false; B.classList.remove("is-busy"); setTimeout(paint, 1200); });
   });
-  window.CedwynDownload = {choice: choice, button: B, version: "1.0.0"};
+  window.CedwynDownload = {choice: choice, button: B, version: "1.0.1"};
 })();
