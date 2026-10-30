@@ -168,6 +168,87 @@
           "note": "Keeps the wider estate name distinct from individual farm/building names."
         }
       ]
+    },
+    {
+      "id": "OBS-0004",
+      "slug": "sequential-parcel-capture-paper-siege",
+      "seq": 4,
+      "title": "Sequential parcel capture and permission-framing: the Paper Siege working hypothesis",
+      "theme": "wiki",
+      "observation_type": "title_theory_model",
+      "status": "leading_working_hypothesis_unproven",
+      "summary": "A parcel-by-parcel model tests whether separate conveyances, public-body takings, possession proceedings, licences, registrations and title consolidation progressively reduced the Williams family’s standing on paper while the family continued to occupy or claim land. The model includes the court outcome, competing explanations, source gaps and a separate fiction-only branch. It does not establish a coordinated scheme or wrongdoing.",
+      "analysis": "The model is maintained in data/title-theory.json and published at /wiki/title-theory/. It treats the c.1841 tithe as evidence that John Williams occupied 36 plots, not that he owned all 36. It distinguishes the 1939 fields letting (provisional Parcel B) from the farmhouse/garden claim (provisional Parcel A), and keeps the green as provisional Parcel C. It tests the disputed 1939 signature without presuming forgery; the 1958 Welsh Crichel Down complaint as a reported family allegation; the 1974 licence letters and 1975 conveyance; the 1982–83 first-registration process and notice; the 1987 amalgamation; and the later planning and archaeology chronology. Each causal link has a competing explanation and a falsifier. Death, suppression and hidden-archaeology scenarios are explicitly segregated as unsupported or fiction-only.",
+      "limits": "The complete 1938, 1939, 1969 and 1975 instruments and plans are not all independently inspected; the original 1939 signature and provenance are not authenticated; the full WA231076 and WA240304 registration files and proof of service remain material; the 1955/1962 orders and execution returns need primary inspection; and the reported Neath fire and family-paper loss have not been linked to a common cause. The 1987 Court of Appeal outcome remains the operative legal result. Temporal proximity of deaths to registration or planning is not evidence of homicide.",
+      "test_questions": [
+        "Do the 1938, 1969 and 1975 deeds and plans include the exact same farmhouse, garden, woodland and field parcels later claimed or registered?",
+        "Does the original 1939 agreement concern only Parcel B, and is its signature authentic, complete and unaltered?",
+        "Who was identified as occupier and claimant in the WA231076 and WA240304 applications, and what notices were served, on whom and when?",
+        "Are the alleged permission episodes independent records, or later recitals of the same court judgment?",
+        "What contemporaneous records support or contradict the 1958 complaint of wrongful appropriation?",
+        "What primary civil, probate, coronial or police records establish the family members’ dates and causes of death?",
+        "What do the full archaeological and Neath fire records establish, and is there any documented link to the title dispute?"
+      ],
+      "related_page": "/wiki/title-theory/",
+      "refs": [
+        {
+          "ev": "EV-0215",
+          "path": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
+          "role": "occupation footprint",
+          "note": "Occupier of 36 plots; not ownership proof."
+        },
+        {
+          "ev": "EV-0019",
+          "path": "/research/evidence/ev-0019-bute-wgr-conveyance-plan-1938/",
+          "role": "root conveyance and plan",
+          "note": "Parcel scope requires full inspection."
+        },
+        {
+          "ev": "EV-0023",
+          "path": "/research/evidence/ev-0023-1939-wgr-john-williams-tenancy-plan/",
+          "role": "1939 letting and plan",
+          "note": "Signature and full wording require authentication."
+        },
+        {
+          "ev": "EV-0037",
+          "path": "/research/evidence/ev-0037-western-mail-1958-crichel-down/",
+          "role": "1958 press report",
+          "note": "Family complaint, not a judicial finding."
+        },
+        {
+          "ev": "EV-0049",
+          "path": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
+          "role": "1974 plea",
+          "note": "Original county-court file remains to be read."
+        },
+        {
+          "ev": "EV-0050",
+          "path": "/research/evidence/ev-0050-1974-bp-licence-letters/",
+          "role": "1974 letters",
+          "note": "Court of Appeal treated the letters as creating a licence."
+        },
+        {
+          "ev": "EV-0052",
+          "path": "/research/evidence/ev-0052-bp-pension-trust-bp-properties-conveyance/",
+          "role": "1975 conveyance"
+        },
+        {
+          "ev": "EV-0065",
+          "path": "/research/evidence/ev-0065-wa240304-farmhouse-first-registration-file/",
+          "role": "first-registration file"
+        },
+        {
+          "ev": "EV-0078",
+          "path": "/research/evidence/ev-0078-1987-title-amalgamation-application-plan/",
+          "role": "1987 amalgamation plan"
+        },
+        {
+          "ev": "EV-0080",
+          "path": "/research/evidence/ev-0080-bp-properties-v-buckler-judgment/",
+          "role": "Court of Appeal judgment"
+        }
+      ]
     }
-  ]
+  ],
+  "updated_at": "2026-10-30"
 }
