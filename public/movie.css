@@ -200,22 +200,48 @@ html.ghf-inv .cm-stage.cm-isfs video,html.ghf-inv .cm-stage:fullscreen video{fil
 .cm-pc .cm-pc-ver .cd-pay{flex-basis:100%;margin-top:4px;padding-top:6px;font-size:13px}
 @media (max-width:420px){.cm-pc .cm-pc-ver .cd-l{min-width:0;font-size:11.5px}}
 
-/* v1.4.3 (30 Oct 2026): full-width toggle on each scene card. A 44 px button in the picture's bottom-right corner spans the card across the grid
-   (grid-column 1 / -1) with full-size text; tapping it again returns the card to the grid. Wide screens lay the wide card out picture-left, text-right. */
-.cm-widebtn{position:absolute;right:0;bottom:0;z-index:3;width:44px;height:44px;margin:0;padding:0;border:0;background:transparent;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
-.cm-widebtn:before{content:"";position:absolute;left:6px;top:6px;width:32px;height:32px;box-sizing:border-box;border-radius:50%;background:rgba(0,0,0,.68);border:1.5px solid rgba(255,255,255,.85)}
-.cm-widebtn svg{position:relative;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
-.cm-widebtn .w-c,.cm-wide .cm-widebtn .w-e{display:none}.cm-wide .cm-widebtn .w-c{display:block}
-.cm-widebtn:hover:before,.cm-widebtn:focus-visible:before{border-color:var(--gold);background:rgba(0,0,0,.82)}.cm-widebtn:focus-visible{outline:none}
-body.cm .cm-thumb .cm-widebtn{width:44px!important;height:44px!important;min-width:0!important;min-height:0!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#fff!important}
-.cm-thumb .cd-lock{bottom:48px}
-.cm-card.cm-wide{grid-column:1/-1}
-.cm-card.cm-wide .cm-body{padding:12px 14px 14px}
-body.cm .cm-card.cm-wide h3{font-size:19px!important;line-height:1.3!important}
-body.cm .cm-card.cm-wide .cm-log{font-size:15px!important;line-height:1.5!important;display:block;-webkit-line-clamp:unset;overflow:visible}
-body.cm .cm-card.cm-wide .cm-scene{font-size:12px}
-body.cm .cm-card.cm-wide summary{font-size:14px!important}
-body.cm .cm-card.cm-wide .cm-shots,body.cm .cm-card.cm-wide .cm-desc-i{font-size:14.5px!important;line-height:1.55!important}
-body.cm .cm-card.cm-wide .cm-date{font-size:12px!important;padding:2px 7px;left:6px;bottom:6px}
-body.cm .cm-card.cm-wide .cm-ai{font-size:10px!important}
-@media (min-width:700px){.cm-card.cm-wide{flex-direction:row;align-items:flex-start}.cm-card.cm-wide .cm-thumb{flex:0 0 58%;max-width:760px}.cm-card.cm-wide .cm-body{flex:1 1 0;min-width:0}}
+/* v1.5.0 (30 Oct 2026): one card-size control above the scenes, like icon sizes in a file explorer. It replaces the per-card full-width toggle of 1.4.3.
+   Small: picture + title only, many per row. Medium: the grid as before. Large: one full-width column, unclamped text (picture-left on wide screens).
+   Versions sit under each released scene as hashtag chips; the default (free) cut is selected and marked; a reserved version is marked "coming". */
+.cm-thumb .cd-lock{bottom:30px}
+.cm-size{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0 2px}
+.cm-size-lbl{font-size:13px;color:var(--mut);margin-right:4px;letter-spacing:.02em}
+body.cm .cm-size-b{display:inline-flex!important;align-items:center;gap:7px;min-height:44px!important;min-width:44px!important;padding:6px 14px 6px 11px!important;margin:0!important;border:1px solid var(--line)!important;border-radius:999px!important;background:var(--card)!important;color:var(--ink)!important;font:inherit;font-size:14px!important;line-height:1.2;cursor:pointer;box-shadow:none!important;-webkit-tap-highlight-color:transparent}
+.cm-size-b svg{flex:none;width:18px;height:18px;fill:currentColor}
+body.cm .cm-size-b[aria-pressed="true"]{border-color:var(--gold)!important;color:var(--gold)!important;background:#221f14!important;font-weight:600}
+body.cm .cm-size-b:hover,body.cm .cm-size-b:focus-visible{border-color:var(--gold)!important;outline:none}
+@media (max-width:420px){.cm-size{gap:5px}.cm-size-lbl{flex-basis:100%;font-size:12px;margin:0}body.cm .cm-size-b{flex:1 1 0;justify-content:center;padding:6px 8px!important;font-size:13.5px!important}}
+/* hashtag version chips */
+.cm-vchips{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;margin:2px 0 8px;padding:2px 0 4px}
+body.cm .cm-vchip{flex:none;display:inline-flex!important;align-items:center;gap:5px;min-height:40px!important;min-width:0!important;padding:4px 11px!important;margin:0!important;border:1px solid var(--line)!important;border-radius:999px!important;background:transparent!important;color:var(--mut)!important;font:inherit;font-size:13px!important;line-height:1.2;white-space:nowrap;cursor:pointer;box-shadow:none!important;-webkit-tap-highlight-color:transparent}
+.cm-vchip .cm-vh{font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.cm-vchip .cm-vtag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:1px 6px;border-radius:999px;background:#2b3a2f;color:#cfe3c8}
+body.cm .cm-vchip[aria-pressed="true"]{border-color:var(--gold)!important;color:var(--gold)!important;background:#221f14!important;font-weight:600}
+body.cm .cm-vchip[aria-pressed="true"] .cm-vtag{background:var(--gold);color:#1a1408}
+body.cm .cm-vchip.is-coming{border-style:dashed!important;opacity:.75;cursor:default}
+.cm-vchip.is-coming .cm-vtag{background:#33302a;color:#d8cfa8}
+body.cm .cm-vchip:not(.is-coming):hover,body.cm .cm-vchip:focus-visible{border-color:var(--gold)!important;outline:none}
+/* small */
+.cm-grid.cm-size-s{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+@media (max-width:600px){.cm-grid.cm-size-s{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}}
+.cm-size-s .cm-log,.cm-size-s .cm-card details,.cm-size-s .cm-ai,.cm-size-s .cm-tag{display:none!important}
+.cm-size-s .cm-body{padding:6px 6px 8px}
+.cm-size-s .cm-hd{flex-wrap:wrap;gap:4px;margin-top:2px}
+body.cm .cm-size-s .cm-artbtn{min-height:30px;padding:2px 8px;font-size:11px}
+body.cm .cm-grid.cm-size-s .cm-card h3{font-size:12.5px!important;line-height:1.25!important;margin:3px 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+body.cm .cm-grid.cm-size-s .cm-scene{font-size:10px}
+body.cm .cm-grid.cm-size-s .cm-date{font-size:9px!important;padding:1px 4px;left:3px;bottom:3px}
+.cm-size-s .cm-playbig{transform:scale(.72)}
+body.cm .cm-size-s .cm-vchip{min-height:34px!important;padding:2px 8px!important;font-size:11.5px!important}
+.cm-size-s .cm-vchip .cm-vtag{display:none}
+/* large: one full-width column with unclamped text */
+.cm-grid.cm-size-l{grid-template-columns:minmax(0,1fr)!important;gap:16px}
+.cm-size-l .cm-card .cm-body{padding:12px 14px 14px}
+body.cm .cm-grid.cm-size-l .cm-card h3{font-size:19px!important;line-height:1.3!important}
+body.cm .cm-grid.cm-size-l .cm-log{font-size:15px!important;line-height:1.5!important;display:block;-webkit-line-clamp:unset;overflow:visible}
+body.cm .cm-grid.cm-size-l .cm-scene{font-size:12px}
+body.cm .cm-grid.cm-size-l summary{font-size:14px!important}
+body.cm .cm-grid.cm-size-l .cm-shots,body.cm .cm-grid.cm-size-l .cm-desc-i{font-size:14.5px!important;line-height:1.55!important}
+body.cm .cm-grid.cm-size-l .cm-date{font-size:12px!important;padding:2px 7px;left:6px;bottom:6px}
+body.cm .cm-grid.cm-size-l .cm-ai{font-size:10px!important}
+@media (min-width:700px){.cm-size-l .cm-card{flex-direction:row;align-items:flex-start}.cm-size-l .cm-card .cm-thumb{flex:0 0 58%;max-width:760px}.cm-size-l .cm-card .cm-body{flex:1 1 0;min-width:0}}

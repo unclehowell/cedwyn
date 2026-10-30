@@ -1,4 +1,9 @@
-/* Cedwyn · documentary — versions, licence and checkout (page v1.5.0). A tab.bot production.
+/* Cedwyn · documentary — versions, licence and checkout (page v1.6.0). A tab.bot production.
+   v1.6.0 (30 Oct 2026): versions are hashtag chips under each scene (movie.js 1.5.0), not a menu. Each door lists its own
+   versions: a reserved next version marked "coming" (manifest entry "next_version": {version, status: "coming"}; not
+   playable), the cut that plays now (free, selected by default) and its earlier cuts ("cuts", newest first). The choice is
+   per door and for this visit only (CedwynDoc.pick(n, v) / chosen(n) / chips(n)); CedwynDoc.cut(n) returns the earlier cut
+   picked for door n, or null for the default. While every scene is free the page-wide version menu stays hidden.
    v1.5.0 (30 Oct 2026): every scene is free, at the producer's word: nothing is of paid quality yet. With the manifest's
    pricing.all_free set, every door's newest cut is v0.0.1 and plays straight away (no licence, no checkout, no pop-up);
    a door released later with no "version" also takes v0.0.1. Each door's earlier cuts are pre-releases of it, listed in
@@ -27,19 +32,19 @@
       free_note: "v0.0.1: Scenes 1 and 2, free for everyone. They play straight away.",
       member: "Included with your Academy membership.", up: "Academy members get the latest scenes included · £49.99 a month", tick: "Tick the box to agree to the licence terms first.",
       thanks: "Thank you. This version is open on this device.", in_all: "in all", first: "First buy", then: "then",
-      scenes: "Scenes", scene: "Scene", earlier: "earlier cut", all_free_note: "Every scene is free while the film is being made. Earlier cuts of a scene are listed as v0.0.1-0.0.N.", released: "released", vtab: "Page versions", v: "Version", d: "Date", c: "Change", all: "See all"},
+      scenes: "Scenes", scene: "Scene", coming: "coming", coming_t: "Coming: each language performed and filmed separately", cur_t: "Plays by default", older_t: "Earlier cut", chips: "Versions", earlier: "earlier cut", all_free_note: "Every scene is free while the film is being made. Earlier cuts of a scene are listed as v0.0.1-0.0.N.", released: "released", vtab: "Page versions", v: "Version", d: "Date", c: "Change", all: "See all"},
     cy: {ver: "Fersiwn", latest: "diweddaraf", free: "Am ddim", buy: "Prynu", lic_ok: "Rwy'n cytuno â thelerau'r drwydded", lic: "telerau'r drwydded",
       paid_note: "Mae pob fersiwn ar ôl v0.0.1 yn costio £4.99 yn ychwanegol. Mae un taliad yn agor y fersiwn nesaf ar y ddyfais hon, dan drwydded wylio bersonol.",
       free_note: "v0.0.1: Golygfeydd 1 a 2, am ddim i bawb. Maen nhw'n chwarae ar unwaith.",
       member: "Wedi'i gynnwys yn eich aelodaeth o'r Academi.", up: "Mae aelodau'r Academi yn cael y golygfeydd diweddaraf wedi'u cynnwys · £49.99 y mis", tick: "Ticiwch y blwch i gytuno â thelerau'r drwydded yn gyntaf.",
       thanks: "Diolch. Mae'r fersiwn hon ar agor ar y ddyfais hon.", in_all: "i gyd", first: "Prynwch yn gyntaf", then: "yna",
-      scenes: "Golygfeydd", scene: "Golygfa", earlier: "toriad cynharach", all_free_note: "Mae pob golygfa am ddim tra bo'r ffilm yn cael ei gwneud. Mae toriadau cynharach golygfa wedi'u rhestru fel v0.0.1-0.0.N.", released: "rhyddhawyd", vtab: "Fersiynau'r dudalen", v: "Fersiwn", d: "Dyddiad", c: "Newid", all: "Gweld y cyfan"},
+      scenes: "Golygfeydd", scene: "Golygfa", coming: "ar y ffordd", coming_t: "Ar y ffordd: pob iaith wedi'i pherfformio a'i ffilmio ar wahân", cur_t: "Yn chwarae fel arfer", older_t: "Toriad cynharach", chips: "Fersiynau", earlier: "toriad cynharach", all_free_note: "Mae pob golygfa am ddim tra bo'r ffilm yn cael ei gwneud. Mae toriadau cynharach golygfa wedi'u rhestru fel v0.0.1-0.0.N.", released: "rhyddhawyd", vtab: "Fersiynau'r dudalen", v: "Fersiwn", d: "Dyddiad", c: "Newid", all: "Gweld y cyfan"},
     es: {ver: "Versión", latest: "la más reciente", free: "Gratis", buy: "Comprar", lic_ok: "Acepto los términos de la licencia", lic: "términos de la licencia",
       paid_note: "Cada versión posterior a v0.0.1 cuesta £4,99 más. Un pago abre la versión siguiente en este dispositivo, con una licencia de visionado personal.",
       free_note: "v0.0.1: Escenas 1 y 2, gratis para todos. Se reproducen de inmediato.",
       member: "Incluido en su membresía de la Academia.", up: "Los miembros de la Academia tienen incluidas las escenas más recientes · £49,99 al mes", tick: "Marque la casilla para aceptar primero los términos de la licencia.",
       thanks: "Gracias. Esta versión está abierta en este dispositivo.", in_all: "en total", first: "Compre primero", then: "luego",
-      scenes: "Escenas", scene: "Escena", earlier: "montaje anterior", all_free_note: "Todas las escenas son gratis mientras se hace la película. Los montajes anteriores de una escena figuran como v0.0.1-0.0.N.", released: "publicada", vtab: "Versiones de la página", v: "Versión", d: "Fecha", c: "Cambio", all: "Ver todo"}
+      scenes: "Escenas", scene: "Escena", coming: "próximamente", coming_t: "Próximamente: cada idioma actuado y filmado por separado", cur_t: "Se reproduce por defecto", older_t: "Montaje anterior", chips: "Versiones", earlier: "montaje anterior", all_free_note: "Todas las escenas son gratis mientras se hace la película. Los montajes anteriores de una escena figuran como v0.0.1-0.0.N.", released: "publicada", vtab: "Versiones de la página", v: "Versión", d: "Fecha", c: "Cambio", all: "Ver todo"}
   };
   function L() { var l = (document.documentElement.getAttribute("lang") || "en").slice(0, 2).toLowerCase(); return T[l] ? l : "en"; }
   function t(k) { return T[L()][k] || T.en[k]; }
@@ -82,8 +87,29 @@
   function scenesTxt(x) { return x.frames.length === 1 ? t("scene") + " " + x.frames[0] : t("scenes") + " " + x.frames[0] + "–" + x.frames[x.frames.length - 1]; }
   function priceTxt(x) { return (x.free || PRICING.all_free) ? t("free") : "+" + gbp(x.step) + (x.total > x.step ? " (" + gbp(x.total) + " " + t("in_all") + ")" : ""); }
   G.canPlay = function (n) { return has(verOf(n)); };
-  G.cut = function (n) {   // v1.5.0: the earlier cut of door n chosen in the version menu, or null for the newest cut
-    var v = byV(G.sel), e = G.entries && G.entries[n]; if (!v || !v.sub || !e) return null;
+  // v1.6.0: per-door version chips. A choice holds for this visit only, so a returning viewer always starts on the default cut.
+  G.pickV = {};
+  function subN(v) { var m = String(v).match(/-\d+\.\d+\.(\d+)$/); return m ? +m[1] : 0; }
+  G.chips = function (n) {
+    var e = G.entries && G.entries[n]; if (!e) return [];
+    var out = [], nx = e.next_version, cv = verOf(n);
+    if (nx && nx.status === "coming" && nx.version && String(nx.version).replace(/^v/, "") !== cv) out.push({v: String(nx.version).replace(/^v/, ""), coming: true, note: nx.note || ""});
+    out.push({v: cv, current: true, free: true, note: e.cut_note || ""});
+    (e.cuts || []).slice().sort(function (a, b) { return subN(b.version) - subN(a.version); }).forEach(function (c) {
+      var v = String(c.version || "").replace(/^v/, ""); if (v && v !== cv) out.push({v: v, cut: c, free: true, note: c.note || ""}); });
+    return out;
+  };
+  G.chosen = function (n) { return G.pickV[n] || verOf(n); };
+  G.pick = function (n, v) {
+    var ok = G.chips(n).filter(function (c) { return c.v === v && !c.coming; })[0]; if (!ok) return false;
+    if (ok.current) delete G.pickV[n]; else G.pickV[n] = v;
+    document.dispatchEvent(new CustomEvent("cedwyn-doc-scene-ver", {detail: {n: n, v: v}})); return true;
+  };
+  G.cut = function (n) {   // the earlier cut of door n picked with its chips (v1.6.0) or the old version menu (v1.5.0), or null for the default cut
+    var e = G.entries && G.entries[n]; if (!e) return null;
+    if (G.pickV[n]) { for (var j = 0; j < (e.cuts || []).length; j++) if (String(e.cuts[j].version).replace(/^v/, "") === G.pickV[n]) return e.cuts[j]; return null; }
+    if (PRICING.all_free) return null;
+    var v = byV(G.sel); if (!v || !v.sub) return null;
     for (var i = 0; i < (e.cuts || []).length; i++) if (String(e.cuts[i].version).replace(/^v/, "") === v.v) return e.cuts[i];
     return null;
   };
@@ -136,7 +162,7 @@
     var open_ = G.versions.filter(function (x) { return has(x.v); });
     G.sel = (keep && byV(keep)) ? keep : (open_.length ? open_[0].v : (G.versions[0] || {}).v);
     G.ready = true; G.justUnlocked = got;
-    $("cd-ver").hidden = false; changed();
+    $("cd-ver").hidden = !!PRICING.all_free; changed();   // v1.6.0: no page-wide menu while every scene is free; versions are chips under each scene
     document.dispatchEvent(new CustomEvent("cedwyn-doc-ready", {detail: {unlocked: got}}));
     askMember().then(function (m) { if (m) changed(); });
   }
