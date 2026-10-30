@@ -417,7 +417,7 @@ def stop_html(H, T, l, i, s, n):
         extra += '<div class="hv-btns">' + ''.join(f'<a class="hv-btn" href="{E(u)}" data-i18n="{E(k)}">{E(tx(T, k, l) or u)}</a>' for k, u in s['links']) + '</div>'
     return (f'<article class="hv-stop{" on" if i == 0 else ""}" id="stop-{i+1}" data-stop="{E(sid)}" aria-label="{E(str(i+1))}">'
             f'<div class="hv-ar cwlb-th" data-lb=""><img src="{img(H, s["img"])}" width="1280" height="853" alt="{E(alt)}" data-i18n-al="stop_{sid}_overlay" loading="{"eager" if i == 0 else "lazy"}" decoding="async"><span class="scan"></span>'
-            f'<span class="chip" data-i18n="ar_tag">{E(tx(T, "ar_tag", l))}</span></div>'
+            f'<span class="chip" data-i18n="{E(s.get("chip", "ar_tag"))}">{E(tx(T, s.get("chip", "ar_tag"), l))}</span></div>'
             + ra_html(T, l, f'stop_{sid}', s) +
             f'<p class="hv-sn"><span data-i18n="w_stop">{E(tx(T, "w_stop", l))}</span> {i+1} / {n}</p>'
             f'{sp(T, f"stop_{sid}_name", l, "h3")}{sp(T, f"stop_{sid}_place", l, "p", "pl")}'
@@ -638,14 +638,13 @@ def wales(sections, S, cfg, H):
     body = f"""
 <body data-cedwyn-page="wales">
 <main class="wrap hv" data-no-translate>{LB_CSS}
-<header class="hv-hero"><img src="{img(H,'wales-ar-green')}" width="1280" height="725" alt="" fetchpriority="high"><span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
+<header class="hv-hero"><img src="{img(H,'wales-hero-house')}" width="1280" height="725" alt="" fetchpriority="high"><span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
 <div class="hb"><p class="eyebrow" style="color:#ddd" data-i18n="w_kick">{E(tx(T,'w_kick',l))}</p><h1 data-i18n="w_h1">{E(tx(T,'w_h1',l))}</h1></div></header>
 <h2 data-i18n="w_h2">{E(tx(T,'w_h2',l))}</h2>
 {headlines(H, T, l, 'wales', lead=f'<p class="lede" data-i18n="w_lede">{E(tx(T,"w_lede",l))}</p>', tail=f'<div class="hv-hl" id="no-museum"><b data-i18n="w_nomuseum_h">{E(tx(T,"w_nomuseum_h",l))}</b><p data-i18n="w_nomuseum_p">{E(tx(T,"w_nomuseum_p",l))}</p></div>')}
 <div class="hv-btns"><a class="hv-btn pri" href="#tour" data-hv-go="0" data-i18n="w_start">{E(tx(T,'w_start',l))}</a><a class="hv-btn" href="#shop" data-i18n="w_tickets">{E(tx(T,'w_tickets',l))}</a><a class="hv-btn" href="#menu" data-i18n="w_menu">{E(tx(T,'w_menu',l))}</a></div>
 {mn}
 <section id="route"><h2 data-i18n="w_map_h">{E(tx(T,'w_map_h',l))}</h2><p class="mut" data-i18n="w_map_p">{E(tx(T,'w_map_p',l))}</p>{mp}</section>
-<figure class="hv-holo cwlb-row" id="hologram" style="margin:0 0 14px"><img data-lb="" src="{img(H,'wales-hologram')}" width="1536" height="864" alt="{E(tx(T,'w_holo_alt',l))}" data-i18n-al="w_holo_alt" loading="lazy" decoding="async" style="width:100%;height:auto;aspect-ratio:16/9;object-fit:cover"><figcaption class="mut" style="padding:6px 2px 0;font-size:13px" data-i18n="w_holo_cap">{E(tx(T,'w_holo_cap',l))}</figcaption>{ra_html(T, l, 'w_holo', {'real': T.get('w_holo_real'), 'ar': T.get('w_holo_ar')})}</figure>
 <section id="tour">{stops}
 <div class="hv-nav"><button type="button" class="hv-btn" id="hv-prev" data-i18n="w_prev">{E(tx(T,'w_prev',l))}</button><span id="hv-cnt" class="mut">1 / {ns}</span>
 <button type="button" class="hv-btn" id="hv-say" data-i18n="w_listen">{E(tx(T,'w_listen',l))}</button><button type="button" class="hv-btn pri" id="hv-next" data-i18n="w_next">{E(tx(T,'w_next',l))}</button></div></section>
