@@ -1,7 +1,7 @@
 {
   "schema": "cedwyn_presskit_claims/v1",
   "title": "Great House Farm — statement scrutiny register",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "reviewed": "2026-10-30",
   "review_scope": "Initial curated scrutiny set: baseline site facts and priority Williams/Bute tenancy, title, chronology and Marconi assertions. It is not an exhaustive machine-generated audit of every sentence on every Cedwyn page.",
   "scoring": {
@@ -564,7 +564,7 @@
       "kind": "bounded fact",
       "status": "ORANGE",
       "evidenceScore": 82,
-      "legalScore": 85,
+      "legalScore": null,
       "overallScore": 82,
       "statement": "The 1939 Western Ground Rents–John Williams plan depicts agricultural fields beside the Tŷ Mawr farmhouse, not the farmhouse itself.",
       "short": "This is a WGR field letting, not a Bute rent-book entry.",
@@ -587,7 +587,7 @@
         "corroboration": 7,
         "limits": 7
       },
-      "reviewNote": "Amber because the plan and archive description are available but the full operative agreement and 1938 root conveyance are not yet examined."
+      "reviewNote": "This is a bounded statement about the contents and scope of a plan, not a legal proposition. The evidence score governs; legal title consequences are expressly reserved for separate claims."
     },
     {
       "id": "PK-008",
