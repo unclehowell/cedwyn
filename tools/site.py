@@ -428,6 +428,35 @@ for _gm in ('graph_data',):
     except Exception as _e:
         print(_gm, 'failed:', _e)
 
+# Shop strip (sales-fix sf28, 30 Oct 2026): one internal line to /ebooks/ at the top of the busiest entry pages that had no route
+# to the shop (/hive/, /nomenclature/ and its name pages, /documentary/, /wayback/go/). /r/strip-<page> 302s to /ebooks/ so clicks
+# are countable in Cloudflare. Idempotent; never stops a build - Sion's Tab agent
+def _shop_strip(dist):
+    import re as _re
+    targets = [('hive/index.html', 'hive'), ('nomenclature/index.html', 'nomenclature'),
+               ('documentary/index.html', 'documentary'), ('wayback/go/index.html', 'wayback-go')]
+    targets += [(str(p.relative_to(dist)), 'nom-c') for p in sorted((dist / 'nomenclature' / 'c').glob('*/index.html'))]
+    n = 0
+    for rel, tag in targets:
+        f = dist / rel
+        if not f.is_file():
+            continue
+        h = f.read_text(encoding='utf-8')
+        if 'class="ebook-strip"' in h:
+            continue
+        m = _re.search(r'<main\b[^>]*>', h)
+        if not m:
+            continue
+        line = ('<p class="ebook-strip" style="margin:.5rem 0 .75rem;font-size:16px;line-height:1.4">'
+                '<a href="/r/strip-%s">Read the farm\'s history in the e-books: first edition free &rarr;</a></p>' % tag)
+        f.write_text(h[:m.end()] + line + h[m.end():], encoding='utf-8')
+        n += 1
+    print('shop strip: added to', n, 'pages')
+try:
+    _shop_strip(DIST)
+except Exception as _e:
+    print('shop strip failed:', _e)
+
 # Cloudflare Pages redirect quotas: validate the final file after every theme plugin has amended it.
 _redirect_file = DIST / '_redirects'
 _redirect_lines = _redirect_file.read_text(encoding='utf-8').splitlines() if _redirect_file.exists() else []
