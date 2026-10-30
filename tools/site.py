@@ -376,6 +376,9 @@ print('query-named duplicate assets removed:', _qdup_n)
 # Level 2 observations + Level 1 catalogue browser, generated from the structured records - Sion, 29 Oct 2026
 import evidence_observations
 evidence_observations.run(DIST)
+# Canonical parcel-by-parcel Title Theory model and simulation data, generated before the central DB build.
+import title_theory
+title_theory.run(DIST)
 # Group source themes into the 36 public areas; preserve legacy routes and mark parcel slots as provisional.
 import site_consolidations
 site_consolidations.run(DIST)
