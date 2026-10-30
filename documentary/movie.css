@@ -290,3 +290,5 @@ dialog.cd-gate::backdrop{background:rgba(0,0,0,.72)}
 .cd-gate .cd-gspin{width:28px;height:28px;margin:6px auto 4px;border:3px solid #3a463d;border-top-color:#d4b25a;border-radius:50%;animation:cdSpin 1s linear infinite}
 @keyframes cdSpin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.cd-gate .cd-gspin{animation:none}}
+
+.cd-gate .cd-gcons{font-size:.82rem;line-height:1.4;color:#a9ab9f;margin:.4rem 0 .8rem}

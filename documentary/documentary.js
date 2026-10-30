@@ -1,4 +1,4 @@
-/* Cedwyn · documentary — versions, licence and checkout (page v1.7.0). A tab.bot production.
+/* Cedwyn · documentary — versions, licence and checkout (page v1.7.1). A tab.bot production.
    v1.7.0 (30 Oct 2026): access codes. The newest cut of each scene (#v0.0.2, £4.99) is opened per scene with an access code: tapping it
    (or reaching it with Next/Back in the player) opens a box with "Enter access code" and "Buy now · £4.99". Buying goes to the film's
    £4.99 checkout tagged with that scene and cut (client_reference_id doc-s<n>-v<cut>); the checkout returns to /documentary/?unlock=<session>,
@@ -214,21 +214,21 @@
       slow: "Too many tries. Please wait a few minutes.", net: "The code check is not answering. Please try again in a minute.", ok: "Unlocked. Playing now.",
       paid_h: "Thank you", wait: "Your payment is being confirmed. Your access code will appear here, usually within 10 minutes. You can keep this page open, or come back to it on this device later.",
       ready: "Your access code", keep_it: "Keep this code: it opens {v} of Scene {n} on any device.", keep_all: "Keep this code: it opens the newest cut of every scene on any device.",
-      play: "Play now", copy: "Copy", copied: "Copied", note: "Personal viewing licence. Codes are checked by this site; no account is needed.", lic: "Licence terms"},
+      play: "Play now", copy: "Copy", copied: "Copied", note: "Personal viewing licence. Codes are checked by this site; no account is needed.", lic: "Licence terms", cons: "At checkout you agreed: “I want access now and understand I lose my 14-day right to cancel once the access code is issued.”"},
     cy: {h: "Golygfa {n} · {v}", lead: "Toriad diweddaraf yr olygfa hon. Rhowch god mynediad, neu prynwch un ar gyfer yr olygfa hon am {p}.", code: "Cod mynediad", unlock: "Datgloi",
       buy: "Prynu nawr · {p}", free: "Chwarae {f} am ddim yn lle", close: "Cau", checking: "Yn gwirio…", bad: "Nid yw'r cod yn ddilys. Gwiriwch ef a rhowch gynnig arall arni.",
       other: "Mae'r cod ar gyfer Golygfa {s}. Mae wedi'i gadw ar y ddyfais hon ar gyfer yr olygfa honno.", older: "Mae'r cod ar gyfer toriad cynharach o'r olygfa hon, sydd bellach am ddim.",
       slow: "Gormod o ymdrechion. Arhoswch ychydig funudau.", net: "Nid yw'r gwiriad cod yn ateb. Rhowch gynnig arall arni mewn munud.", ok: "Wedi'i ddatgloi. Yn chwarae nawr.",
       paid_h: "Diolch", wait: "Mae eich taliad yn cael ei gadarnhau. Bydd eich cod mynediad yn ymddangos yma, fel arfer o fewn 10 munud. Gallwch gadw'r dudalen hon ar agor, neu ddod yn ôl ati ar y ddyfais hon yn nes ymlaen.",
       ready: "Eich cod mynediad", keep_it: "Cadwch y cod hwn: mae'n agor {v} o Olygfa {n} ar unrhyw ddyfais.", keep_all: "Cadwch y cod hwn: mae'n agor toriad diweddaraf pob golygfa ar unrhyw ddyfais.",
-      play: "Chwarae nawr", copy: "Copïo", copied: "Wedi'i gopïo", note: "Trwydded wylio bersonol. Mae'r wefan hon yn gwirio codau; nid oes angen cyfrif.", lic: "Telerau'r drwydded"},
+      play: "Chwarae nawr", copy: "Copïo", copied: "Wedi'i gopïo", note: "Trwydded wylio bersonol. Mae'r wefan hon yn gwirio codau; nid oes angen cyfrif.", lic: "Telerau'r drwydded", cons: "Wrth dalu fe wnaethoch gytuno: “Rwyf eisiau mynediad nawr ac rwy’n deall fy mod yn colli fy hawl 14 diwrnod i ganslo unwaith y bydd y cod mynediad wedi’i roi.”"},
     es: {h: "Escena {n} · {v}", lead: "El montaje más reciente de esta escena. Introduzca un código de acceso o compre uno para esta escena por {p}.", code: "Código de acceso", unlock: "Desbloquear",
       buy: "Comprar ahora · {p}", free: "Ver {f} gratis", close: "Cerrar", checking: "Comprobando…", bad: "Ese código no es válido. Compruébelo e inténtelo de nuevo.",
       other: "Ese código es para la Escena {s}. Se ha guardado en este dispositivo para esa escena.", older: "Ese código es para un montaje anterior de esta escena, que ahora es gratis.",
       slow: "Demasiados intentos. Espere unos minutos.", net: "La comprobación de códigos no responde. Inténtelo de nuevo en un minuto.", ok: "Desbloqueado. Reproduciendo.",
       paid_h: "Gracias", wait: "Se está confirmando su pago. Su código de acceso aparecerá aquí, normalmente en menos de 10 minutos. Puede dejar esta página abierta o volver a ella más tarde en este dispositivo.",
       ready: "Su código de acceso", keep_it: "Guarde este código: abre {v} de la Escena {n} en cualquier dispositivo.", keep_all: "Guarde este código: abre el montaje más reciente de todas las escenas en cualquier dispositivo.",
-      play: "Ver ahora", copy: "Copiar", copied: "Copiado", note: "Licencia personal de visionado. Este sitio comprueba los códigos; no hace falta cuenta.", lic: "Términos de la licencia"}
+      play: "Ver ahora", copy: "Copiar", copied: "Copiado", note: "Licencia personal de visionado. Este sitio comprueba los códigos; no hace falta cuenta.", lic: "Términos de la licencia", cons: "Al pagar aceptó: «Quiero acceso ahora y entiendo que pierdo mi derecho de desistimiento de 14 días una vez emitido el código de acceso»."}
   };
   function gt(k, o) { var s = (GT[L()] || GT.en)[k] || GT.en[k]; o = o || {}; return s.replace(/\{(\w)\}/g, function (_, x) { return o[x] != null ? o[x] : ""; }); }
   function pend() { try { var a = JSON.parse(ls("cedwyn-doc-cs") || "[]"); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
@@ -245,7 +245,7 @@
     GD = el("dialog", "cd-gate"); GD.id = "cd-gate"; GD.setAttribute("aria-labelledby", "cd-gate-h");
     GD.innerHTML = '<button type="button" class="cd-gx" aria-label="Close">×</button><h2 id="cd-gate-h"></h2><p class="cd-glead"></p>' +
       '<div class="cd-gwait" hidden><p class="cd-gwt"></p><div class="cd-gspin" aria-hidden="true"></div></div>' +
-      '<div class="cd-gcode" hidden><p class="cd-gcl"></p><p class="cd-gcv" translate="no"></p><p class="cd-gck"></p><div class="cd-grow"><button type="button" class="cd-gcopy"></button><button type="button" class="cd-gplay"></button></div></div>' +
+      '<div class="cd-gcode" hidden><p class="cd-gcl"></p><p class="cd-gcv" translate="no"></p><p class="cd-gck"></p><p class="cd-gcons"></p><div class="cd-grow"><button type="button" class="cd-gcopy"></button><button type="button" class="cd-gplay"></button></div></div>' +
       '<form class="cd-gform" autocomplete="off"><label for="cd-gin" class="cd-gl"></label><div class="cd-grow"><input id="cd-gin" class="cd-gin" name="code" inputmode="text" autocapitalize="characters" spellcheck="false" placeholder="CDW-XXXX-XXXX-XXXX" maxlength="24"><button type="submit" class="cd-gok"></button></div>' +
       '<p class="cd-gmsg" role="status" aria-live="polite"></p></form>' +
       '<div class="cd-gbuyrow"><a class="cd-gbuy" rel="nofollow"></a><button type="button" class="cd-gfree"></button></div><p class="cd-gnote"><span></span> <a href="licence/"></a></p>';
@@ -316,6 +316,7 @@
           d.querySelector("#cd-gate-h").textContent = gt("paid_h"); d.querySelector(".cd-gcl").textContent = gt("ready");
           d.querySelector(".cd-gcv").textContent = j.code;
           d.querySelector(".cd-gck").textContent = n ? gt("keep_it", {n: n, v: c0 ? G.vtag(c0) : "#v" + VS.latest}) : gt("keep_all");
+          d.querySelector(".cd-gcons").textContent = gt("cons");
           d.querySelector(".cd-gcopy").textContent = gt("copy"); var pb = d.querySelector(".cd-gplay"); pb.textContent = gt("play"); pb.hidden = !n;
           show(); document.dispatchEvent(new CustomEvent("cedwyn-doc-unlocked", {detail: {n: n, v: j.cut}})); return;
         }
