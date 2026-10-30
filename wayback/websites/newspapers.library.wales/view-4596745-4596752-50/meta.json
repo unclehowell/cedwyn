@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/4596745/4596752/50/",
  "key": "newspapers.library.wales/view/4596745/4596752/50",
- "title": "Barry Dock News, 22nd June 1894, p. 7 — Death Of The Rector Of Llandough And Cogan",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-4596745-4596752-50/",
  "latest": "/websites/newspapers.library.wales/view-4596745-4596752-50/latest.html",
  "first_captured": "2026-10-24T14:50:21Z",
- "last_captured": "2026-10-24T14:50:21Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:37:27Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024145021/newspapers.library.wales/view/4596745/4596752/50/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:37:27Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "8949bea851546f8fe549883a5e1996122543534588ff934fc01354a7024a8594",
+   "markup_sha256": "f12630b082f6afc9c9dfc2e9f0b338fe3a3788bdec8eab4f4730c6e56aecf1e9",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:42:49Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/4594680/4594682/18/",
  "key": "newspapers.library.wales/view/4594680/4594682/18",
- "title": "Barry Dock News, 16th August 1889, p. 2 — A Batch Of Orchard Looters At Llandough",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-4594680-4594682-18/",
  "latest": "/websites/newspapers.library.wales/view-4594680-4594682-18/latest.html",
  "first_captured": "2026-10-24T14:49:53Z",
- "last_captured": "2026-10-24T14:49:53Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:35:34Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144953/newspapers.library.wales/view/4594680/4594682/18/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:35:34Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "2c85e86c647cf53660d6cfae0b33691d6413f7e903fe537bdcdbc12c3c8ca908",
+   "markup_sha256": "ab50daa5f5c1facccbec17a3e5d680a6050d091d498c448687e83d1884bbfc0a",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:42:42Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }
