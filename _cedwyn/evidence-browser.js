@@ -200,9 +200,36 @@
     card.appendChild(links);
     return card;
   }
+  /* 30 Oct 2026 cold-load fix: the human catalogue view must fetch the catalogue
+     client itself - pages do not include cat.js in their markup and agent-tools
+     loads it only for agent invocations, so a first load() before any client
+     existed used to fail with 'Catalogue client did not load'. Awaits the script
+     load event (no timers, no blind retry); a genuine failure keeps the designed
+     degradation message. */
+  var clientPromise = null;
+  function clientReady() {
+    if (window.Cedwyn && typeof window.Cedwyn.db === 'function') return Promise.resolve(window.Cedwyn);
+    if (clientPromise) return clientPromise;
+    clientPromise = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = '/_cedwyn/cat.js';
+      s.async = true;
+      s.onload = function () { resolve(window.Cedwyn); };
+      s.onerror = function () { reject(new Error('Could not load /_cedwyn/cat.js')); };
+      (document.head || document.documentElement).appendChild(s);
+    }).then(function (c) {
+      if (c && typeof c.db === 'function') return c;
+      clientPromise = null;
+      throw new Error('Catalogue client did not load.');
+    }, function (err) {
+      clientPromise = null;
+      throw err;
+    });
+    return clientPromise;
+  }
   async function openDb() {
     if (db) return db;
-    if (!window.Cedwyn || typeof window.Cedwyn.db !== 'function') throw new Error('Catalogue client did not load.');
+    if (!window.Cedwyn || typeof window.Cedwyn.db !== 'function') await clientReady();
     if (typeof window.Cedwyn.sectionDb === 'function') {
       try { db = await window.Cedwyn.sectionDb('wiki'); dbSource = 'Wiki section database'; return db; } catch (e) { /* central fallback below */ }
     }
