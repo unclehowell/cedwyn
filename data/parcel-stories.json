@@ -1,7 +1,7 @@
 {
   "schema": "cedwyn_parcel_stories/v1",
-  "updated_at": "2026-10-29",
-  "description": "Parent-source data for 36 webapp parcel-story slots and the provisional A1/A2/B/C working parcel model. Editorial slots are not historic tithe plot numbers. The timeline also preserves unresolved research leads about the Thomas estate/probate and John Williams’s unknown death date.",
+  "updated_at": "2026-10-30",
+  "description": "Parent-source data for the public parcel-story slots and the provisional A1/A2/B/C working parcel model. Editorial slots are not historic tithe plot numbers. The timeline now explicitly records the conflict between Alfred Thomas’s death in December 1927 and Mary Williams’s recollection of a rent payment to him in 1928, alongside the unverified Cardiff Corporation bequest report and probate lead.",
   "map_reference": {
     "image_path": "/parcels/poster.jpg",
     "image_role": "Photograph of a tithe schedule page, not a geographic map or selected parcel polygon",
@@ -33,7 +33,7 @@
       "label": "A2 — house, buildings and garden",
       "status": "working_interpretation",
       "description": "The farmhouse, buildings and garden are analysed as A2, the house part of Parcel A. The family’s reported 1928 freehold understanding and the later separate registration of the farmhouse are central to the current theory.",
-      "limits": "The exact instrument, boundary, legal effect of the 1928 event and the relevant 1982–83 registration file remain to be verified. Alfred Thomas’s death is dated 14 December 1927 by biography, but the reported Cardiff Corporation bequest is only a secondary transcription; the will has not been inspected."
+      "limits": "The exact instrument, boundary, legal effect of the 1928 event and the relevant 1982–83 registration file remain to be verified. Alfred Thomas’s death is dated 14 December 1927 by the Dictionary of Welsh Biography, which creates a date/payee discrepancy with Mary Williams’s recollection of a 1928 payment “to Alfred Thomas”. Payment to an executor, estate or agent, a receipt still naming Alfred, or a remembered date/payee error are possibilities, not findings. The reported Cardiff Corporation bequest remains a secondary, unofficial press transcription; the will and grant have not been inspected, and no Llandough land transfer to the Corporation is established."
     },
     {
       "model_id": "B",
@@ -71,10 +71,10 @@
       "model_id": "A2",
       "seq": 1,
       "date_text": "14 December 1927; report dated 27 December 1927",
-      "title": "Alfred Thomas dies; reported Cardiff Corporation bequest requires probate verification",
-      "details": "The Dictionary of Welsh Biography dates Alfred Thomas, 1st Baron Pontypridd’s death to 14 December 1927. A secondary transcription of a 27 December 1927 report described a bequest of most of his property to Cardiff Corporation, but its original newspaper has not been identified and the will has not been inspected. Nothing located so far establishes that the estate included the Llandough house parcel. A grant reportedly made in 1928 and the contents of the will remain to be checked.",
+      "title": "Alfred Thomas dies; Corporation bequest report and 1928 payment require reconciliation",
+      "details": "The Dictionary of Welsh Biography dates Alfred Thomas, 1st Baron Pontypridd’s death to 14 December 1927; it identifies him as Daniel Thomas’s son and says he died unmarried. A secondary transcription of a 27 December 1927 newspaper report describes the “unofficial report” that the “bulk of his property” was left unconditionally to Cardiff Corporation and citizens. The original newspaper, will and grant have not been inspected. A separate Cedwyn research note cites a reported grant date of 8 March 1928 and London Gazette notice of 30 March 1928, p.2387; verify the Gazette entry and obtain the original grant and will before relying on the bequest or on any claim that the estate consisted principally of personalty. Nothing located so far establishes that Alfred’s estate included the Llandough house parcel. The 23 February 1905 Bute conveyance to Cardiff Corporation, separately listed in the WA231076 file, is another title-chain lead for the Corporation’s later appearance; its instrument and plan also require inspection.",
       "event_type": "probate / title-chain research lead",
-      "status": "Death date supported by biography; bequest is a secondary report not yet confirmed; land effect unknown",
+      "status": "Death date and identity supported by the Dictionary of Welsh Biography; 1927 Cardiff Corporation bequest is an unofficial secondary report; 1928 grant reference is a research lead not yet checked against the primary grant; any Llandough land effect unknown.",
       "source_evs": [
         "EV-0284"
       ],
@@ -84,10 +84,10 @@
       "model_id": "A2",
       "seq": 2,
       "date_text": "1928 (family account)",
-      "title": "Reported end of rent and asserted freehold transition",
-      "details": "Mary Williams’s later account places the last rent payment to Alfred Thomas in 1928. The current theory is that the Williams family then understood the freehold of Parcel A to have passed to them. The deed, receipt and exact boundary have not been established; this is family testimony plus inference, not a registry finding. The relationship between the date of death in 1927, any executor or estate, and the reported 1928 rent payment needs primary documentation.",
+      "title": "Mary recalls a 1928 final rent payment attributed to Alfred Thomas",
+      "details": "Mary (Nancy) Williams’s c.1974 statement says that when quarry machinery was removed in 1928, the last rent payment was made “to Alfred Thomas the son of Daniel Thomas”; she says her father made it, the rent was about £4 per annum, and she saw the receipt. The statement must remain quoted as given, but Alfred had died on 14 December 1927. It therefore does not establish a personal payment to Alfred while alive in 1928. The possible payee may have been his estate, executor or authorised agent; the receipt may have continued to use Alfred’s name; or Mary may have misremembered the date or recipient. No alternative is proved. The receipt is not located. A 10 November 1925 sale catalogue for Llandough Quarry plant and tramlines (Glamorgan Archives DSA/12/4888) and the 1927 obituary wording that Alfred’s father’s limeworks were “carried on by his son, who gave it up” are separate chronology leads; a sale listing does not prove the removal date. The Court of Appeal’s later recital of rent arrears and a 1953 payment must be mapped to its tenancy/parcel before treating it as inconsistent with Mary’s house-parcel recollection. The 1877 instrument, receipt, estate/rent accounts, and exact parcel extent remain unverified.",
       "event_type": "tenure / family testimony",
-      "status": "Family testimony; instrument and probate context not yet established",
+      "status": "Family testimony; the underlying receipt is not located; its remembered date and recipient conflict with Alfred Thomas’s independently recorded death on 14 December 1927; actual payee and parcel remain unresolved.",
       "source_evs": [
         "EV-0016",
         "EV-0006"
