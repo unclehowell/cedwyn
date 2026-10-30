@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3383386/3383391/14/",
  "key": "newspapers.library.wales/view/3383386/3383391/14",
- "title": "The Cardiff Times, 30th December 1864, p. 5 — Cardiff Government Savings Bank, Duke-Street, Cardiff",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3383386-3383391-14/",
  "latest": "/websites/newspapers.library.wales/view-3383386-3383391-14/latest.html",
  "first_captured": "2026-10-24T14:43:49Z",
- "last_captured": "2026-10-24T14:43:49Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:39:58Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144349/newspapers.library.wales/view/3383386/3383391/14/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:39:58Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "257d17a323c08eac58ad064f7432ba8dfc78aaa75c7ac7b769582ddcf0a68aba",
+   "markup_sha256": "6bf33c78bab97263c1942031d4dd3d9d1ce1eac78fbb9b0a011649ca98b34356",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:44:45Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

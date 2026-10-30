@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3434791/3434800/231/",
  "key": "newspapers.library.wales/view/3434791/3434800/231",
- "title": "The Cardiff Times, 22nd May 1909, p. 9 — Llandough Quarry Fatality",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3434791-3434800-231/",
  "latest": "/websites/newspapers.library.wales/view-3434791-3434800-231/latest.html",
  "first_captured": "2026-10-24T14:44:43Z",
- "last_captured": "2026-10-24T14:44:43Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:40:06Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144443/newspapers.library.wales/view/3434791/3434800/231/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:40:06Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "701348a675aa34986003cdb5a389fd6bde9e4147822bc0426ef68131ac564f29",
+   "markup_sha256": "7b19e576441a8aee862f3e8f95fdbd8548c606aa6b71c5dc8d29acdb72ae9722",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:44:34Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

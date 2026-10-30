@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3383485/3383491/31/",
  "key": "newspapers.library.wales/view/3383485/3383491/31",
- "title": "The Cardiff Times, 17th March 1865, p. 6 — Llandough",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3383485-3383491-31/",
  "latest": "/websites/newspapers.library.wales/view-3383485-3383491-31/latest.html",
  "first_captured": "2026-10-24T14:44:02Z",
- "last_captured": "2026-10-24T14:44:02Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:41:10Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144402/newspapers.library.wales/view/3383485/3383491/31/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:41:10Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "87ef337f6ab47907e3e25bb8b75b25cf6850f7de32f9f1af0201bc62f067374b",
+   "markup_sha256": "c71d909ab3ba5fa14d1280a703c576c78417de7179eabfb89cbfc59796de21d0",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:44:33Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

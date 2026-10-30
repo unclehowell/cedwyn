@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3427270/3427271/13/",
  "key": "newspapers.library.wales/view/3427270/3427271/13",
- "title": "The Cardiff Times, 16th July 1904, p. 1 — Workmen'S Topics. ",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3427270-3427271-13/",
  "latest": "/websites/newspapers.library.wales/view-3427270-3427271-13/latest.html",
  "first_captured": "2026-10-24T14:44:16Z",
- "last_captured": "2026-10-24T14:44:16Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:39:43Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144416/newspapers.library.wales/view/3427270/3427271/13/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:39:43Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "84c90248093045662ed590d38463cd8fe5b072ce3804f7388f05d24d2dd4649c",
+   "markup_sha256": "4444c2b447518a924c5610b5245e2ae3b5d10ecafc66f8c10c223db3de979468",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:44:24Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }
