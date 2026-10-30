@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/4617776/4617778/15/",
  "key": "newspapers.library.wales/view/4617776/4617778/15",
- "title": "Barry Dock News, 10th October 1913, p. 2 — Icourt Leet At Llandough",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-4617776-4617778-15/",
  "latest": "/websites/newspapers.library.wales/view-4617776-4617778-15/latest.html",
  "first_captured": "2026-10-24T14:52:56Z",
- "last_captured": "2026-10-24T14:52:56Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:34:03Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024145256/newspapers.library.wales/view/4617776/4617778/15/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:34:03Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "41a58ecd2b509d0ff8087363038dee1e69f4800730219d2f9156a420f63f1d2a",
+   "markup_sha256": "d6e2d41d399876e97043c2725afd814c463d569fa5367c0815c34a2faa0aaa26",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:42:23Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }
