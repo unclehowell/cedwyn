@@ -1,7 +1,7 @@
 {
   "schema": "cedwyn_title_theory/v1",
   "model_id": "TT-0001",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "updated_at": "2026-10-30",
   "title": "The Paper Siege: sequential parcel capture and permission-framing",
   "status": "Leading working hypothesis — unproven; not a finding of fact or law",
@@ -25,9 +25,10 @@
     "If the 1975 conveyance transferred only a defined farmhouse plot and other specified land, while retaining other land, it would explain the importance of comparing its actual plan and parcels with the 1969 root transaction and later registrations rather than assuming that every part of the estate moved together.",
     "If the 1982–83 first-registration applications described BP as in possession or failed to identify Mary’s occupation or competing claim accurately, and if effective notice was not served, that could explain how a registered title was created or completed without a meaningful opportunity for her to object. The actual application forms, requisitions, notices, service records and correspondence must establish whether this happened.",
     "If the later amalgamation and possession proceedings relied on an over-broad parcel description, they could have entrenched a title claim that originated in an earlier boundary or conveyancing error. The 1987 court decision remains legally significant for the matters it decided; it is not a substitute for independently testing every underlying instrument and parcel.",
-    "If the development sequence was connected to the acquisition of control, the 1989 outline application, 13 March 1990 outline permission, William Buckler’s reported death on 29 May 1990 and the 1992 reserved-matters approval would be dates to investigate together. Their proximity does not establish that his death was caused or arranged by anyone.",
+    "If the development sequence was connected to the acquisition of control, the 1989 outline application (outline permission 13 March 1990), William Buckler’s death-date discrepancy (family chronology: 29 May 1990; probable probate-calendar match for William Beverley Buckler: 29 April 1990, EV-0274) and the 3 September 1992 reserved-matters approval would be dates to reconcile. Both candidate dates fall between the planning milestones, but neither establishes cause, motive, knowledge or homicide.",
     "If records were deliberately suppressed or destroyed, the reported loss of papers from the farmhouse and the reported Neath fire might form part of a concealment mechanism. At present these are separate leads: no established link proves a common actor, purpose, arson or deliberate destruction.",
-    "If the archaeology were being used to conceal an earlier secret, the excavation, treatment of human remains and documentary handling would need to show a deliberate connection to the title dispute. The number of burials, damaged skulls, a cellar or a possible former court does not establish prisoners, executions, a burial secret or a state operation."
+    "If the archaeology were being used to conceal an earlier secret, the excavation, treatment of human remains and documentary handling would need to show a deliberate connection to the title dispute. The number of burials, damaged skulls, a cellar or a possible former court does not establish prisoners, executions, a burial secret or a state operation.",
+    "If BP’s spokesman in 1988 described Mary’s death as the point when “it became clear her son was not going to leave” [EV-0088], it would explain how BP publicly framed the son’s occupation as a new phase after the personal licence offered to Mary ended. That statement is relevant to the chronology and corporate narrative; it does not show that BP caused her death, knew of her illness, or arranged anything."
   ],
   "working_mechanism": [
     {
@@ -96,7 +97,7 @@
       "id": "M05",
       "period": "1982–1987",
       "stage": "First registration, notice and title consolidation",
-      "proposition": "Read the complete WA231076 and WA240304 files, including applications, statements of possession, lodged instruments, requisitions, replies, notices, service evidence and register entries. Then compare the 1987 amalgamation plan with the separate parcel histories.",
+      "proposition": "Read the complete WA231076 and WA240304 files, including applications, statements of possession, lodged instruments, requisitions, replies, notices, service evidence and register entries. Then compare the 1987 amalgamation plan with the separate parcel histories. Include the 8 April 1983 D23 letter and April–May 1983 Registry correspondence to establish what the Registry was told after Mary’s death.",
       "if_true": "A materially incomplete or inaccurate description of occupation, title scope or notice could explain why Mary’s competing position was not resolved before registration and why the later title became harder to challenge.",
       "against_or_alternative": "The fact that the applications were made while Mary was alive and that later correspondence followed her death does not establish what notice was served, whether it was required, whether it was effective or whether any appeal period was missed.",
       "source_evs": [
@@ -104,21 +105,30 @@
         "EV-0065",
         "EV-0066",
         "EV-0078",
-        "EV-0147"
+        "EV-0147",
+        "EV-0063",
+        "EV-0067",
+        "EV-0069",
+        "EV-0070",
+        "EV-0071",
+        "EV-0088"
       ]
     },
     {
       "id": "M06",
       "period": "1988–1994",
       "stage": "Eviction, demolition, planning and archaeology",
-      "proposition": "Put the 1988 eviction and demolition, the 1989 outline application, 13 March 1990 outline permission, 1992 reserved matters, archaeological correspondence and 1994 excavation into one dated chain, while keeping title, planning and archaeology as separate legal systems.",
+      "proposition": "Put the 1988 eviction and demolition, the 1989 outline application, 13 March 1990 outline permission, 1992 reserved matters, archaeological correspondence and 1994 excavation into one dated chain, while keeping title, planning and archaeology as separate legal systems. The current research correction treats the 1993–94 excavation as recording an early medieval cemetery; the reported burial count and any Roman-villa connection remain unconfirmed in the catalogue and must not be treated as established.",
       "if_true": "A completed title claim could have enabled demolition and redevelopment; unresolved archaeological and planning records could show how the physical site was transformed and what was documented or omitted.",
-      "against_or_alternative": "Planning permission and archaeological work do not prove a title conspiracy. Burial counts and trauma patterns require archaeological context and cannot identify perpetrators or motives by themselves.",
+      "against_or_alternative": "Planning permission and archaeological work do not prove a title conspiracy. Burial counts and trauma patterns require archaeological context and cannot identify perpetrators or motives by themselves. A current fact-check corrects earlier claims of 1,026 Early Christian burials and a Roman villa complex: the cemetery is recorded, but the burial count and villa link are not yet confirmed. A cemetery is not evidence of prisoners, executions or concealment.",
       "source_evs": [
         "EV-0080",
         "EV-0122",
         "EV-0126",
-        "EV-0131"
+        "EV-0131",
+        "EV-0129",
+        "EV-0132",
+        "EV-0134"
       ]
     },
     {
@@ -127,12 +137,14 @@
       "stage": "Family chronology, records and alleged loss",
       "proposition": "Build a person-by-person chronology for John Williams, Frederick Buckler, Mary Williams and William ‘Billy’ Buckler. Use original civil registration, probate, inquest, medical, police and contemporaneous correspondence where lawfully available.",
       "if_true": "A proven pattern of threats, suspicious interventions or deliberate document removal could support a separate suppression hypothesis.",
-      "against_or_alternative": "Deaths occurring near registration, planning or development milestones are not evidence of homicide. John’s and Frederick’s death dates and causes should remain blank until reliable records are found; William’s reported date is 29 May 1990 and requires primary-source verification.",
+      "against_or_alternative": "Deaths near legal or planning events do not establish homicide. John Williams’s death date remains unestablished (the family research records him alive and very ill in the early 1950s); Frederick Buckler’s date also remains unverified. For William Buckler / William Beverley Buckler, the family chronology says 29 May 1990, while a 1991 probate-calendar entry is a probable match dated 29 April 1990 (EV-0274); identity and date must be reconciled against civil and probate records before drawing a timeline inference. Mary’s death index and the 1988 BP spokesman’s reported wording are relevant context, not evidence of a caused death.",
       "source_evs": [
-        "EV-0026",
         "EV-0049",
         "EV-0065",
-        "EV-0066"
+        "EV-0066",
+        "EV-0067",
+        "EV-0088",
+        "EV-0274"
       ]
     }
   ],
@@ -301,22 +313,25 @@
       "title": "Violent suppression or deaths arranged to secure the title",
       "class": "fiction_only_red_team_hypothesis",
       "status": "No supporting evidence identified; not a factual allegation",
-      "explanation": "For a fictional mockumentary only, an unnamed network might exploit or arrange deaths so that the people most able to contest a registration, eviction or development are no longer present. This is a narrative device, not an inference from the dates and not a claim about any named person or organisation.",
+      "explanation": "For a fictional mockumentary only, an unnamed network might exploit or arrange deaths so that the people most able to contest a registration, eviction or development are no longer present. This is a narrative device, not an inference from the dates and not a claim about any named person or organisation. The 1983 registration chronology and BP’s 1988 press statement may be included as contextual plot elements only. They are not supporting evidence of homicide.",
       "what_it_explains": [
         "In fiction, the narrative coincidence between Mary’s death and post-death registration correspondence",
         "In fiction, William Buckler’s reported death between planning milestones"
       ],
       "support": [],
-      "against_or_limits": [
-        "Temporal proximity and possible benefit do not establish causation, motive, means or opportunity. No reliable evidence of homicide or threats has been identified in this model."
-      ],
+      "against_or_limits": "Temporal proximity and possible benefit do not establish causation, motive, means or opportunity. No reliable evidence of homicide or threats has been identified in this model. Mary’s death date and the spokesman’s 1988 account do not establish a causal link to BP or any other actor; the William date remains in dispute (29 April probable probate match versus 29 May family chronology).",
       "predictions": [
         "A genuinely supportable real-world hypothesis would require independent medical, coroner, police, witness or contemporaneous documentary evidence inconsistent with natural death."
       ],
       "falsifiers": [
         "Reliable medical, coroner and contemporaneous records establish natural causes and no suspicious circumstances."
       ],
-      "publication_rule": "Keep this branch segregated from the factual website narrative and label it fiction-only unless independent evidence changes its status."
+      "publication_rule": "Keep this branch segregated from the factual website narrative and label it fiction-only unless independent evidence changes its status.",
+      "context_not_homicide": [
+        "EV-0067",
+        "EV-0088",
+        "EV-0274"
+      ]
     },
     {
       "id": "H7",
@@ -329,9 +344,7 @@
         "Only the fictional narrative link between the building, later excavation and supposed records destruction"
       ],
       "support": [],
-      "against_or_limits": [
-        "Burial totals, cranial trauma, a basement and a reported fire do not identify prisoners, executions, treasure, a secret archive or a state actor."
-      ],
+      "against_or_limits": "Burial totals, cranial trauma, a basement and a reported fire do not identify prisoners, executions, treasure, a secret archive or a state actor. Current correction: the 1993–94 records describe an early medieval cemetery; the commonly repeated burial total and alleged Roman-villa connection are not yet verified in the catalogue.",
       "predictions": [
         "A real hypothesis would need dated stratigraphy, osteological interpretation, documented archaeological chain of custody and contemporaneous records linking the site to the alleged secret."
       ],
@@ -385,7 +398,7 @@
       },
       {
         "id": "N09",
-        "label": "Mary’s death, 26 March 1983",
+        "label": "Mary Williams death recorded 26 March 1983; cause not established by this model",
         "type": "date_to_verify"
       },
       {
@@ -410,8 +423,8 @@
       },
       {
         "id": "N14",
-        "label": "Reported William Buckler death, 29 May 1990",
-        "type": "date_requires_primary_verification"
+        "label": "William Buckler / William Beverley Buckler death-date discrepancy: 29 Apr 1990 probate-calendar probable match versus 29 May 1990 family chronology",
+        "type": "date_conflict_not_cause_of_death"
       }
     ],
     "edges": [
@@ -491,7 +504,7 @@
         "from": "N14",
         "to": "N12",
         "relation": "death_date_falls_between_planning_milestones",
-        "status": "chronological_only_no_causal_link"
+        "status": "chronological_only_date_identity_unresolved_no_causal_link"
       }
     ]
   },
@@ -762,6 +775,78 @@
       "ev": "EV-0622",
       "path": "/research/evidence/ev-0622-military-and-requisition-leads-crichel-down/",
       "role": "Crichel Down / military land research leads; files unread and no farm requisition established"
+    },
+    {
+      "ev": "EV-0063",
+      "path": "/research/evidence/ev-0063-hmlr-wa240304-item-11-form-1c/",
+      "role": "WA240304 first-registration Form 1C",
+      "note": "Original application wording and declaration to be read with complete file."
+    },
+    {
+      "ev": "EV-0067",
+      "path": "/research/evidence/ev-0067-mary-doreen-williams-death-index/",
+      "role": "Mary Williams death-index entry",
+      "note": "Death date recorded as 26 March 1983; cause not inferred."
+    },
+    {
+      "ev": "EV-0069",
+      "path": "/research/evidence/ev-0069-hmlr-wa240304-item-7-d23-1983/",
+      "role": "8 April 1983 Land Registry D23 correspondence",
+      "note": "Registry correspondence after Mary’s death; inspect exact content."
+    },
+    {
+      "ev": "EV-0070",
+      "path": "/research/evidence/ev-0070-hmlr-wa240304-item-4-correspondence-1983/",
+      "role": "April–May 1983 Land Registry correspondence",
+      "note": "Inspect exact content and what was disclosed about occupation."
+    },
+    {
+      "ev": "EV-0071",
+      "path": "/research/evidence/ev-0071-wa231076-1983-84-registration-activity/",
+      "role": "Registration activity / correspondence",
+      "note": "Do not infer service or non-service without original file proof."
+    },
+    {
+      "ev": "EV-0088",
+      "path": "/research/evidence/ev-0088-south-wales-echo-buckler-dispute-1988/",
+      "role": "1988 press account and BP spokesman statement",
+      "note": "Secondary report of BP’s public account; relevant to framing, not to cause of death."
+    },
+    {
+      "ev": "EV-0126",
+      "path": "/research/evidence/ev-0126-ggat-archaeological-assessment-great-house-1990/",
+      "role": "1990 archaeological assessment",
+      "note": "Read in context with later excavation and condition-18 records."
+    },
+    {
+      "ev": "EV-0129",
+      "path": "/research/evidence/ev-0129-approved-planning-drawings-ref-92-00671-res-screen/",
+      "role": "1992 reserved-matters approved drawings",
+      "note": "Planning chronology, not evidence of title or concealment."
+    },
+    {
+      "ev": "EV-0131",
+      "path": "/research/evidence/ev-0131-glamorgan-gwent-archaeological-trust-letters-on-ar/",
+      "role": "Archaeological Trust correspondence",
+      "note": "Read original context and distinguish advice from excavation findings."
+    },
+    {
+      "ev": "EV-0132",
+      "path": "/research/evidence/ev-0132-cotswold-archaeology-condition-18-discharge/",
+      "role": "Cotswold Archaeology condition-18 material",
+      "note": "The catalogue’s fact-check does not yet confirm the commonly repeated burial count."
+    },
+    {
+      "ev": "EV-0134",
+      "path": "/research/evidence/ev-0134-cotswold-archaeological-trust-letter-to-national-m/",
+      "role": "Cotswold Archaeological Trust letter",
+      "note": "Supports the 1993–94 early-medieval-cemetery research trail; counts and villa link remain unverified."
+    },
+    {
+      "ev": "EV-0274",
+      "path": "/research/evidence/ev-0274-probate-calendar-1991-william-beverley-buckler/",
+      "role": "Probate-calendar candidate for William Beverley Buckler",
+      "note": "Probable identity match dated 29 April 1990; reconcile with family chronology dated 29 May 1990."
     }
   ],
   "priorities": [
@@ -818,5 +903,32 @@
     "Corporate Manslaughter and Corporate Homicide Act 2007 is not retrospective. It cannot be applied to deaths in 1983 or 1990. Any pre-2008 common-law question would be legally distinct and would require evidence of causation and the applicable offence.",
     "No probability of murder can be derived from timing alone. Never describe a death as murder without reliable independent evidence and an established investigative basis.",
     "The 1994 excavation figures and observations about damaged skulls must be read through the full archaeological and osteological context. They cannot identify a prison, executions or the identity of perpetrators by themselves."
+  ],
+  "date_conflicts": [
+    {
+      "person": "William Buckler / William Beverley Buckler",
+      "family_chronology_date": "29 May 1990",
+      "repository_probate_candidate": "29 April 1990",
+      "source_ev": "EV-0274",
+      "source_path": "/research/evidence/ev-0274-probate-calendar-1991-william-beverley-buckler/",
+      "status": "Unresolved; probable name match, not yet authenticated as the same person. Both dates fall after outline permission on 13 March 1990 and before reserved-matters approval on 3 September 1992. Do not infer causation from this chronology."
+    },
+    {
+      "person": "John Williams",
+      "family_research_position": "Alive and very ill in early 1950s",
+      "status": "Exact date of death not established; death certificate not located."
+    },
+    {
+      "person": "Frederick Buckler",
+      "family_research_position": "Death date not established in records reviewed",
+      "status": "Leave undated pending civil, probate or other primary record."
+    },
+    {
+      "person": "Mary Williams",
+      "recorded_date": "26 March 1983",
+      "source_ev": "EV-0067",
+      "source_path": "/research/evidence/ev-0067-mary-doreen-williams-death-index/",
+      "status": "Death date appears in the death-index record; this model makes no finding about cause."
+    }
   ]
 }
