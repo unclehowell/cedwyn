@@ -27,6 +27,9 @@ INDEX = {"generated": "2026-01-04", "records": [
     {"id": "s2", "threadId": "t2", "direction": "sent", "date": "2026-01-03", "subject": "Beta",
      "institutions": [{"id": "heneb", "name": "Heneb"}]}]}
 CW = 'var NOCLIP = /^\\/(?:(?:wales|argentina)\\/)?(?:%s)(?:\\/|$)/;\n' % '|'.join(BASELINE_NOCLIP)
+REDIRECTS = ('/wales/tour /wales/#stop-1 301\n'
+             '/wales/:theme/* /:theme/:splat 200\n'
+             '/argentina/:theme/* /:theme/:splat 200\n')   # tools/sections.py step 5 contract
 
 def page(attrs=True, beta=True, alpha_answered='#Cadw', dup=False, marker=True):
     h = '<html lang="en"%s><body>' % (' data-cw-noclip data-cw-nolevels' if attrs else '')
@@ -49,6 +52,14 @@ def page(attrs=True, beta=True, alpha_answered='#Cadw', dup=False, marker=True):
 def write(p, text):
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(text)
+
+def built_dist(d, qj, redirects=REDIRECTS, **kw):
+    # the intended contract: ONE canonical page file + questions.json + the Pages rewrite rules
+    write(pathlib.Path(d) / 'qa' / 'index.html', page(**kw))
+    if qj is not None:
+        write(pathlib.Path(d) / 'qa' / 'questions.json', qj)
+    if redirects is not None:
+        write(pathlib.Path(d) / '_redirects', redirects)
 
 def alias_pages(root, **kw):
     for alias in ('qa', 'wales/qa', 'argentina/qa'):
@@ -84,17 +95,13 @@ def main():
     for name, kw in [('good', {}), ('truncated', {'beta': False}), ('chipless', {'alpha_answered': None}),
                      ('label-trap', {'alpha_answered': '#CadwExtra'}), ('dup-id', {'dup': True}),
                      ('no-marker', {'marker': False})]:
-        d = tmp / ('dist-' + name)
-        alias_pages(d, **kw)
-        write(d / 'qa' / 'questions.json', qj)
-    d = tmp / 'dist-no-alias'
-    for alias in ('qa', 'wales/qa'):
-        write(d / alias / 'index.html', page())
-    write(d / 'qa' / 'questions.json', qj)
-    d = tmp / 'dist-no-qj'
-    alias_pages(d)
+        built_dist(tmp / ('dist-' + name), qj, **kw)
+    built_dist(tmp / 'dist-no-redirects', qj, redirects=None)
+    built_dist(tmp / 'dist-one-rule', qj, redirects='/argentina/:theme/* /:theme/:splat 200\n')
+    built_dist(tmp / 'dist-no-qj', None)
     d = tmp / 'dist-no-pages'
     write(d / 'qa' / 'questions.json', qj)
+    write(d / '_redirects', REDIRECTS)
     # entity-containing question ID: renderer writes html.escape(id[:70]), the parser decodes it back
     import html as _html
     ent_base = {"source": "fixture", "count": 1, "questions": [
@@ -116,9 +123,9 @@ def main():
                 '<div class="ans"><div class="tags"><a class="tg" href="/email/reference/r1/">#Cadw</a></div></div>'
                 '</article></main></body></html>' % ent_id)
     d = tmp / 'dist-entity'
-    for alias in ('qa', 'wales/qa', 'argentina/qa'):
-        write(d / alias / 'index.html', ent_page)
+    write(d / 'qa' / 'index.html', ent_page)
     write(d / 'qa' / 'questions.json', ent_qj)
+    write(d / '_redirects', REDIRECTS)
 
     # truncated-over-HTTP fixture (uniform across all aliases)
     alias_pages(tmp / 'site-trunc', beta=False)
@@ -156,14 +163,15 @@ def main():
         ('app: --warn-only exits 0', *run('check_app_pages.py', str(tmp / 'root' / 'dist-noattrs'), '--warn-only'), 0, 'would fail'),
         ('app: --ref value not misparsed as dist', *run('check_app_pages.py', '--warn-only', '--site-root', str(tmp / 'root'), str(tmp / 'root' / 'dist-ok')), 0, 'OK'),
         # --- check_qa_built.py
-        ('built: good dist passes', *run('check_qa_built.py', str(tmp / 'dist-good')), 0, 'OK (3 pages, 2 questions'),
+        ('built: good dist passes', *run('check_qa_built.py', str(tmp / 'dist-good')), 0, 'OK (1 page file(s), 2 alias route rule(s), 2 questions'),
         ('built: uniform truncation fails', *run('check_qa_built.py', str(tmp / 'dist-truncated')), 1, 'not served'),
         ('built: dropped chip fails by name', *run('check_qa_built.py', str(tmp / 'dist-chipless')), 1, 'chip mismatch'),
         ('built: #CadwExtra is not #Cadw', *run('check_qa_built.py', str(tmp / 'dist-label-trap')), 1, 'chip mismatch'),
         ('built: duplicate article ID fails', *run('check_qa_built.py', str(tmp / 'dist-dup-id')), 1, 'duplicate question ID'),
         ('built: missing questions.json fails closed', *run('check_qa_built.py', str(tmp / 'dist-no-qj')), 1, 'questions.json missing'),
         ('built: no Q&A pages fails closed', *run('check_qa_built.py', str(tmp / 'dist-no-pages')), 1, 'nothing was checked'),
-        ('built: missing argentina alias fails', *run('check_qa_built.py', str(tmp / 'dist-no-alias')), 1, 'argentina/qa'),
+        ('built: missing _redirects fails', *run('check_qa_built.py', str(tmp / 'dist-no-redirects')), 1, '_redirects missing'),
+        ('built: lost wales rewrite rule fails', *run('check_qa_built.py', str(tmp / 'dist-one-rule')), 1, 'wales/:theme'),
         ('built: markerless alias fails', *run('check_qa_built.py', str(tmp / 'dist-no-marker')), 1, 'id="qx" absent'),
         ('built: entity-containing question ID round-trips', *run('check_qa_built.py', str(tmp / 'dist-entity')), 0, 'OK'),
         # --- check_qa_served.py

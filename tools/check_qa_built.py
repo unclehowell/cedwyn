@@ -3,19 +3,28 @@
 
 Runs in CI after tools/site.py (which calls qa_questions.run). qa_questions writes
 dist/qa/questions.json - the exact built truth: every question ID with its asked/answered
-hashtag chips. This check proves every expected Q&A alias page exists, still carries the
-id="qx" app marker, and serves all of it.
+hashtag chips. This check proves the canonical Q&A page serves all of it AND that the
+alias routes survive.
 
-Layer honesty: static check over build output (stdlib HTMLParser, no browser). Runtime/browser
-behaviour is covered by check_qa_served.py (post-deploy static) plus the manual/agent
-rendered-layer runbook.
+Intended pipeline contract (verified 30 Oct 2026 against tools/site.py step comment line 9
+and tools/sections.py run() step 5): /qa/ is the ONLY real Q&A page file. The aliases
+/wales/qa/ and /argentina/qa/ are Cloudflare Pages 200 rewrites of the canonical files via
+the generic rules in dist/_redirects:
+    /wales/:theme/* /:theme/:splat 200
+    /argentina/:theme/* /:theme/:splat 200
+There are NO dist/wales/qa or dist/argentina/qa files by design - do not add them. (dbserve
+used to drop dist/qa/questions.json into the DB, breaking this contract; fixed in 24f89c4
+by keeping ^/?(?:[^/]+/)?qa/questions.json$ as a plain file.)
 
-Fails closed (exit 1): dist/qa/questions.json missing/unparseable/empty; any EXPECTED alias
-missing from dist or lacking the id="qx" marker (a vanished Argentina alias or a swapped
-template can never silently pass); any ID/chip multiset mismatch; wrong class="tg" total.
-Uniform truncation of every alias fails because pages are compared to questions.json; a build
-that truncates questions.json itself is caught post-deploy by check_qa_served.py, whose
-expectation comes from the pinned git source data instead.
+Layer honesty: static check over build output (stdlib HTMLParser, no browser). Live serving
+of the aliases through the rewrites is covered by check_qa_served.py (post-deploy static)
+plus the manual/agent rendered-layer runbook.
+
+Fails closed (exit 1): dist/qa/questions.json missing/unparseable/empty; canonical page
+missing, markerless, or with any ID/chip multiset mismatch or wrong class="tg" total;
+dist/_redirects missing or lacking either generic section rewrite (a lost rule means dead
+aliases on publish); no Q&A page found at all. Any REAL dist/<section>/qa/index.html that
+ever materializes with id="qx" is checked too.
 
 Usage: python3 tools/check_qa_built.py [dist]"""
 import argparse, json, pathlib, sys
@@ -23,7 +32,10 @@ import argparse, json, pathlib, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from check_qa_served import page_problems, expected_totals
 
-EXPECTED_ALIASES = ['qa', 'wales/qa', 'argentina/qa']   # site structure inventory, 30 Oct 2026
+REQUIRED_REWRITES = [
+    '/wales/:theme/* /:theme/:splat 200',
+    '/argentina/:theme/* /:theme/:splat 200',
+]   # tools/sections.py step 5 - the routes behind /wales/qa/ and /argentina/qa/
 
 def main():
     ap = argparse.ArgumentParser(description='Build-time Q&A completeness guard.')
@@ -34,7 +46,7 @@ def main():
 
     qj = dist / 'qa' / 'questions.json'
     if not qj.is_file():
-        print('FAIL: %s missing - qa_questions did not run or wrote nothing; refusing to pass' % qj)
+        print('FAIL: %s missing - qa_questions did not run or the file was dropped later; refusing to pass' % qj)
         return 1
     try:
         data = json.loads(qj.read_text(errors='ignore'))
@@ -45,18 +57,17 @@ def main():
         return 1
 
     pages = {}
-    for alias in EXPECTED_ALIASES:
-        p = dist / alias / 'index.html'
-        if not p.is_file():
-            failures.append('expected alias %s/index.html missing from dist' % alias)
-            print('FAIL %-28s alias missing' % (alias + '/index.html'))
-            continue
-        txt = p.read_text(errors='ignore')
+    canon = dist / 'qa' / 'index.html'
+    if not canon.is_file():
+        failures.append('canonical qa/index.html missing from dist')
+        print('FAIL qa/index.html             canonical page missing')
+    else:
+        txt = canon.read_text(errors='ignore')
         if 'id="qx"' not in txt:
-            failures.append('%s/index.html: expected Q&A app marker id="qx" absent (template replaced?)' % alias)
-            print('FAIL %-28s marker id="qx" absent' % (alias + '/index.html'))
-            continue
-        pages[alias + '/index.html'] = txt
+            failures.append('qa/index.html: expected Q&A app marker id="qx" absent (template replaced?)')
+            print('FAIL qa/index.html             marker id="qx" absent')
+        else:
+            pages['qa/index.html'] = txt
     for p in sorted(dist.glob('*/qa/index.html')) + sorted(dist.glob('*/*/qa/index.html')):
         rel = p.relative_to(dist).as_posix()
         if rel not in pages and p.is_file():
@@ -66,6 +77,17 @@ def main():
     if not pages:
         print('FAIL: no dist Q&A page with id="qx" found - nothing was checked')
         return 1
+
+    rd = dist / '_redirects'
+    if not rd.is_file():
+        failures.append('dist/_redirects missing - section alias routes cannot be verified')
+        print('FAIL _redirects                file missing')
+    else:
+        rules = {ln.strip() for ln in rd.read_text(errors='ignore').splitlines()}
+        for rule in REQUIRED_REWRITES:
+            if rule not in rules:
+                failures.append('dist/_redirects: required section rewrite %r absent - the Q&A aliases would not serve' % rule)
+                print('FAIL _redirects                missing rule: %s' % rule)
 
     for rel, txt in sorted(pages.items()):
         problems = page_problems(rel, txt, qs)
@@ -81,8 +103,8 @@ def main():
         for f in failures[:40]:
             print(' -', f)
         return 1
-    print('\ncheck_qa_built: OK (%d pages, %d questions, %d chips+legend expected)'
-          % (len(checked), len(qs), expected_totals(qs)))
+    print('\ncheck_qa_built: OK (%d page file(s), %d alias route rule(s), %d questions, %d chips+legend expected)'
+          % (len(checked), len(REQUIRED_REWRITES), len(qs), expected_totals(qs)))
     return 0
 
 if __name__ == '__main__':
