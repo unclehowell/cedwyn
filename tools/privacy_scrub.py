@@ -76,8 +76,10 @@ CORR_PATH = re.compile(r"^(?:email|whattheydontsay|whatdotheyknow)/|^wayback/(?:
 _S = r"(?:[\s\u2009]|\\u2009|&#8201;|&thinsp;)+"
 _RETD = rf"Ret{A}d"
 _FIRST = r"(?i:\bsi(?:[o\u00f4]|\\u00f4|&ocirc;|&#244;)n\b)"
+# P-061 (30 Oct 2026): the owner's given name and mail handle are hex-encoded too, so this public file spells neither.
+_GN = bytes.fromhex('487977656c').decode(); _EM = bytes.fromhex('687977656c61706275636b6c6572').decode()
 NAME = re.compile(
-    rf"(?:{_RETD}{_S}(?:Sergeant|Sgt)\.?{_S})?{_FIRST}(?:{_S}\(?Hywel\)?)?(?:{_S}(?i:buckler)\b)?(?:,?{_S}Esq\.?)?"
+    rf"(?:{_RETD}{_S}(?:Sergeant|Sgt)\.?{_S})?{_FIRST}(?:{_S}\(?{_GN}\)?)?(?:{_S}(?i:buckler)\b)?(?:,?{_S}Esq\.?)?"
     rf"(?:[\s,]*\(?[\s]*(?:{_RETD}{_S}(?:Sergeant|Sergenant|Sgt)\.?|Sgt\.?[\s]*\({_RETD}\))[\s]*\)?)?")
 KEEP = 'Sion Buckler (Williams heir'          # the shared footer's agent instruction, not correspondence
 # P-054: the private names are stored hex-encoded so this public file does not spell them.
@@ -85,11 +87,15 @@ _PN = [bytes.fromhex(h).decode() for h in ('526567616e', '57656262', '4d6172696e
 _PRIV_RX = r"\b%s(?:\s*>)*\s*%s\b|\b%s(?:\s*>)*\s*%s\b|\b%s(?:(?:\s*>)*\s*(?i:buckler))?\b" % tuple(_PN)
 CORR_R = [(re.compile(x[0], x[2] if len(x) > 2 else 0), x[1]) for x in [
   (r"\b(Dear|Hello|Hi|Good (?:morning|afternoon|evening)|Morning|Afternoon)(,?\s+)Mr\.?\s+(?:S\.?\s+)?(?i:buckler)\b", r"\1\2Requester", re.I),
-  (r"\bHywel ap Buckler\b", "Requester", re.I),
-  (r"\b(Dear|Hello|Hi|Good (?:morning|afternoon|evening)|Morning|Afternoon|Shw ?mae|Helo|Annwyl)(,?\s+)Hywel\b", r"\1\2Requester", re.I),
+  (rf"\b{_GN} ap Buckler\b", "Requester", re.I),
+  (rf"\b{_GN}\s*\.?\s*ap\s*buckler\b", "Requester", re.I),
+  (rf"(skype(?:\s+ID)?:\s*)(?:{_GN}|(?i:si[oô]n))\.buckler\b", r"\1[contact redacted]", re.I),
+  (rf"\b{_GN}(?=\s+B\.)", "Requester"),
+  (rf"\b{_GN}\b(?!\s+Dda\b)", "Requester"),
+  (r"\b(Dear|Hello|Hi|Good (?:morning|afternoon|evening)|Morning|Afternoon|Shw ?mae|Helo|Annwyl)(,?\s+)"+_GN+r"\b", r"\1\2Requester", re.I),
   (rf"(Requester\**)\s*\(\s*Ret{A}d (?:Army )?(?:Sergeant|Sergenant|Sgt)\.?\s*\)", r"\1"),
-  (r",\s*Hywel(?=[,.!?])", ""),
-  (r"^((?:>[ \t]*)*)Hywel[ \t]*$", r"\1Requester", re.M),
+  (r",\s*"+_GN+r"(?=[,.!?])", ""),
+  (r"^((?:>[ \t]*)*)"+_GN+r"[ \t]*$", r"\1Requester", re.M),
   (rf"^((?:>[ \t]*)*)\(\s*Ret{A}d (?:Army )?(?:Sergeant|Sergenant|Sgt)\.?\s*\)[ \t]*$", r"\1", re.M),
   (r"[ \t]*Royal Signals Cyber\s*(?:/|and|&amp;|&)\s*Electronic Warfare Professional(?:\s*(?:and|&amp;|&)\s*Life Member)?", ""),
   # P-054 (30 Oct 2026): quoted replies split the signature and the private names across '>' markers, and the private
@@ -101,12 +107,13 @@ CORR_R = [(re.compile(x[0], x[2] if len(x) > 2 else 0), x[1]) for x in [
   (r"Requester(\s+Requester)+", "Requester"),
 ]]
 CONTACT_R = [(re.compile(x[0], re.I), x[1]) for x in [
-  (r"\bhywelapbuckler(?:@gmail\.com)?\b", "[email redacted]"),
+  (rf"\b{_EM}(?:\s*@\s*gmail\.com)?\b", "[email redacted]"),
+  (r"\b(?!BG|GB|NK|KN|TN|NT|ZZ)[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z]\s?\d{2}\s?\d{2}\s?\d{2}\s?[A-D]\b", "[NI number redacted]"),
   (r"(?:\+|\b00\s?)?\b44\s?\(?0?\)?\s?7845[\s.-]?933[\s.-]?262\b|\b07845[\s.-]?933[\s.-]?262\b", "[phone redacted]"),
 ]]
 CORR_CHECK = re.compile(r"(?i:\bsi(?:[o\u00f4]|\\u00f4|&ocirc;|&#244;)n\b)(?! Buckler \(Williams heir)")
 PRIV_CHECK = re.compile(_PRIV_RX + rf"|Royal Signals Cyber|Ret{A}d Sergeant", re.I)
-CONTACT_CHECK = re.compile(r"hywelapbuckler|7845[\s.-]?933[\s.-]?262", re.I)
+CONTACT_CHECK = re.compile(_EM + r"|7845[\s.-]?933[\s.-]?262", re.I)
 def corr(t, rel):
     n = 0
     for rx, rep in CONTACT_R:
