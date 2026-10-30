@@ -425,6 +425,12 @@ if _title_theory_path.exists():
                 edge(_en, "cites", "a:" + str(_er[0]))
                 edge("a:" + str(_er[0]), "cited_by_title_theory", _en)
         _n_tt_events += 1
+    for _gn in _tt.get("causal_graph", {}).get("nodes", []):
+        _gnid = str(_gn.get("id", ""))
+        if not _gnid: continue
+        _nid = "title_theory_node:" + _ttid + ":" + _gnid
+        node(_nid, "title_theory_node", _gn.get("label", _gnid))
+        edge(_ttnode, "has_graph_node", _nid)
     for _g in _tt.get("causal_graph", {}).get("edges", []):
         con.execute("INSERT OR REPLACE INTO title_theory_edges VALUES(?,?,?,?,?,?)", (
             _ttid, _g.get("from", ""), _g.get("to", ""), _g.get("relation", ""),
@@ -456,8 +462,8 @@ if _title_theory_path.exists():
             edge("a:" + str(_aid), "cited_by_title_theory", _ttnode)
         _n_tt_refs += 1
     for _edge in _tt.get("causal_graph", {}).get("edges", []):
-        _from = "title_theory_event:" + _ttid + ":" + str(_edge.get("from", ""))
-        _to = "title_theory_event:" + _ttid + ":" + str(_edge.get("to", ""))
+        _from = "title_theory_node:" + _ttid + ":" + str(_edge.get("from", ""))
+        _to = "title_theory_node:" + _ttid + ":" + str(_edge.get("to", ""))
         if _edge.get("from") and _edge.get("to"):
             edge(_from, str(_edge.get("relation", "related_to")), _to)
 
