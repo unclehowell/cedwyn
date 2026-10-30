@@ -1,4 +1,4 @@
-/* cw-graph.js v1.0.1 - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
+/* cw-graph.js v1.0.2 - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
    Asked for 01:27 GMT 30 Oct 2026: the closable header strip becomes a graph promotion; tapping it slides a full-screen
    scatter graph of the data the page/section shows down over the page (it slides back up on close, Esc or swipe up);
    text pages load clipped to the screen height with a "Read more" bar, further text arriving in chunks from the build's
@@ -7,7 +7,7 @@
 (function () {
   'use strict';
   if (window.__cwGraph) return;
-  var d = document, de = d.documentElement, VER = '1.0.1';
+  var d = document, de = d.documentElement, VER = '1.0.2';
   window.__cwGraph = { v: VER };
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var T = {
@@ -347,6 +347,18 @@
     for (var k = 0; k < 3 && de.scrollHeight > innerHeight + 1 && scrollY < 5; k++) setH(Hc - (de.scrollHeight - innerHeight));
     if (de.scrollHeight > innerHeight + 1 && scrollY < 5) de.classList.add('cw-vh-lock');   /* only a stray off-screen panel is left below: no scroll until Read more */
   }
-  function start() { watchBanner(); try { clip(); } catch (e) {} }
+
+  function autoMore() {   /* 1.0.2: no clip; chunked long pages load their remaining blocks as the reader scrolls near the end */
+    more = d.querySelector('[data-cw-more]'); moreN = more ? +more.getAttribute('data-cw-more-n') || 0 : 0; if (!moreN) return;
+    function pull() { if (moreI < moreN) loadMore(function () { if (moreI < moreN && more.getBoundingClientRect().top < innerHeight * 1.6) pull(); }); }
+    try { var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) pull(); }, { rootMargin: '0px 0px 500px 0px' }); io.observe(more); } catch (e) { pull(); }
+    function all(cb) { if (moreI < moreN) loadMore(function () { all(cb); }); else cb && cb(); }
+    function hashGo() { var h = location.hash; if (!h || h.length < 2) return; var id; try { id = decodeURIComponent(h.slice(1)); } catch (e) { id = h.slice(1); } if (!d.getElementById(id)) all(function () { var tg = d.getElementById(id); if (tg) tg.scrollIntoView({ block: 'start' }); }); }
+    hashGo(); addEventListener('hashchange', hashGo);
+    d.addEventListener('focusin', function f(e) { if (e.target.matches && e.target.matches('input[type=search],input[type=text],select')) { d.removeEventListener('focusin', f); all(); } });
+    addEventListener('beforeprint', function () { all(); });
+    window.__cwGraph.loadAll = all;
+  }
+  function start() { watchBanner(); try { autoMore(); } catch (e) {} }
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', start); else start();
 })();

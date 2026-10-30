@@ -5,6 +5,6 @@
 (function () {
   if (window.__cwClamp) return; window.__cwClamp = 3;
   if (window.__cwGraph || document.querySelector('script[src*="/_cedwyn/cw-graph.js"]')) return;
-  var s = document.createElement('script'); s.src = '/_cedwyn/cw-graph.js?v=1.0.1'; s.defer = true;
+  var s = document.createElement('script'); s.src = '/_cedwyn/cw-graph.js?v=1.0.2'; s.defer = true;
   (document.head || document.documentElement).appendChild(s);
 })();
