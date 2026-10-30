@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8641,
+  "pages_scanned": 8643,
   "references_checked": {
-    "resource": 195601,
-    "nav": 337242
+    "resource": 195617,
+    "nav": 337534
   },
-  "database_backed_paths": 7317,
+  "database_backed_paths": 7311,
   "unique_missing_destinations": 4870,
-  "missing_references": 31409,
-  "missing_navigation_references": 16097,
-  "missing_resource_references": 15312,
+  "missing_references": 31433,
+  "missing_navigation_references": 16125,
+  "missing_resource_references": 15308,
   "unique_broken_fragments": 1811,
   "broken_fragment_references": 3302,
   "form_or_endpoint_actions_not_checked": {
@@ -634,6 +634,33 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_layout/fixed-header.html",
           "attribute": "a[href]",
           "url": "../index2.html"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/r/strip-nom-c",
+      "references": 25,
+      "examples": [
+        {
+          "from": "/nomenclature/c/parcel-a/",
+          "attribute": "a[href]",
+          "url": "/r/strip-nom-c"
+        },
+        {
+          "from": "/nomenclature/c/hmlr/",
+          "attribute": "a[href]",
+          "url": "/r/strip-nom-c"
+        },
+        {
+          "from": "/nomenclature/c/parcel-b/",
+          "attribute": "a[href]",
+          "url": "/r/strip-nom-c"
+        },
+        {
+          "from": "/nomenclature/c/museum-wales/",
+          "attribute": "a[href]",
+          "url": "/r/strip-nom-c"
         }
       ]
     },
@@ -4036,33 +4063,6 @@
           "from": "/docs/ghf_wiki/tc_buildingnamenomenclature/latest/html/en/",
           "attribute": "a[href]",
           "url": "1-record.html#functional-building-terms"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/1-record.html",
-      "references": 7,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#institutional-appearance-timeline-direct-evidence-links"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_npccforensicinstitutionalreview/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#forensic-control-points"
         }
       ]
     }
