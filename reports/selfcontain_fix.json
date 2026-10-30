@@ -1,25 +1,379 @@
 {
- "files": 23268,
- "changed": 0,
- "sub": 0,
- "ext": 0,
- "cdn": 0,
- "boot_added": 0,
- "boot_moved": 0,
- "tags_dropped": 0,
+ "files": 23579,
+ "changed": 12128,
+ "sub": 33934,
+ "ext": 59943,
+ "cdn": 3238,
+ "boot_added": 2240,
+ "boot_moved": 8867,
+ "tags_dropped": 18,
  "inline_boot_removed": 0,
- "tour_removed": 0,
- "redirects_to_themes": 0,
+ "tour_removed": 14,
+ "agent_tools_added": 2692,
+ "yt_links_removed": 22,
+ "redirects_to_themes": 42,
  "filled_missing": {
-  "wanted": 0,
-  "copied": 0,
-  "not_found": [],
-  "rounds": 0,
-  "not_found_n": 0
+  "wanted": 3971,
+  "copied": 1584,
+  "not_found": [
+   [
+    "app/agents.json",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "blog/blog/feed.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "blog/ebooks/covers/great-house-farm-wiki-0.2.1.jpg",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "blog/ebooks/covers/tymawr-heritage-0.2.0.jpg",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "blog/ebooks/covers/williams-buckler-family-0.2.0.jpg",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "blog/maps/img/og.jpg",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "blog/story/media/1791868564541.jpg",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "blog/wayback/images/evidence/1824-00-00_wp87_map-of-ty-mawr-dated-1824-uploaded-image.jpg",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "chat/agents.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "cyberspace/agents.json",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/apple-touch-icon.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/favicon-32.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/favicon.ico",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/llms.txt",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "dartboard/agents.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/1988-07-29_cadw_barn-survey-photo-high-resolution.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/1988-07-29_cadw_farmhouse-survey-photo-high-resolution.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/63.24.1.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/63.24.2.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/Correspondence.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/F260213.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/_FOI2026_06174.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/ghf-lang.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/roadmap.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/webapp-BrfChvhL.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/webapp-BwNSqBjO.css",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ebook/pdf.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ebook/pdf.min.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ebook/pdf.worker.min.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-300-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-400-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-500-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-700-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-ext-400-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-ext-700-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ghf-lang.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ghf-lang/400-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ghf-lang/700-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/_static/pdf.min.mjs",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/_static/pdf.worker.min.mjs",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/agents.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/agents.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/corpus.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/index.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-1588031fbd96cb23.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-197b4a20f7343bb9.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-197b4a39099ffb34.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19817a6cb436b5f4.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-1982bae6636ba5ad.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-1984fa6453d695a9.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-1984fce332930f9f.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19897fa4724ac94f.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-199b31946d71f259.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19a2d116442247c8.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19a4660862e29ba3.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19a4e15727441570.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19a4eb0caa93538f.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19a4eb12aaa75767.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19a826918b90ec23.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19a8269a244647d6.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19a8269a3f41e059.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19a839ce79a63f15.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19a86463eaaecac0.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19a91417017e8d06.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19a9226114385268.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19aa03599a014706.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19aa06e3e76cafb5.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19ab140a8f4f1727.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19ac0350c6c1fde3.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19ac0ef3af79f19e.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19b4bcae026b0a3a.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19b4d56cf360e7aa.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19bc5168b3c427e9.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19beaed885848f36.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19c0355441d65c0a.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19c0357a12530057.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19c035a275e5a494.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19c03adce0cc91d5.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19c0968af71d61f9.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "email/api/message/gm-19c1270aaa478aaf.json",
+    "HTTP Error 404: Not Found"
+   ]
+  ],
+  "rounds": 3,
+  "pages_fetched": [
+   "story/story/index.html",
+   "dartboard/campus/index.html",
+   "dartboard/webapp/index.html"
+  ],
+  "not_found_n": 2387
  },
- "vendored": 0,
- "vendor_failed": [],
- "vendor_failed_n": 0,
+ "vendored": 177,
+ "vendor_failed": [
+  [
+   "/_ext/s1.wp.com/i/favicons/apple-touch-icon-76x76.png",
+   "https://s1.wp.com/i/favicons/apple-touch-icon-76x76.png",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "/_ext/s1.wp.com/i/favicons/apple-touch-icon-60x60.png",
+   "https://s1.wp.com/i/favicons/apple-touch-icon-60x60.png",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "/_ext/s-ssl.wordpress.com/i/logo/wpcom-gray-white.png",
+   "https://s-ssl.wordpress.com/i/logo/wpcom-gray-white.png",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "/_ext/s1.wp.com/i/favicons/apple-touch-icon-76x76.png",
+   "https://s1.wp.com/i/favicons/apple-touch-icon-76x76.png",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "/_ext/s-ssl.wordpress.com/i/logo/wpcom-gray-white.png",
+   "https://s-ssl.wordpress.com/i/logo/wpcom-gray-white.png",
+   "HTTP Error 403: Forbidden"
+  ]
+ ],
+ "vendor_failed_n": 5,
  "allowed_tile_templates": [
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
