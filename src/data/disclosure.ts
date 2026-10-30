@@ -1213,7 +1213,7 @@ export const parties: Party[] = [
     },
   },
   {
-    id: "ordinance-survey",
+    id: "ordnance-survey",
     name: "Ordnance Survey",
     short: "OS",
     kind: "authority",
