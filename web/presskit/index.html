@@ -98,6 +98,11 @@ button{cursor:pointer}
 .next-step{margin-top:15px;padding-top:13px;border-top:1px solid var(--line)}
 .next-step p{font-size:13px;margin:0}
 .review-note{font-size:11px;color:var(--muted);margin:12px 0 0}
+.origin-audit{margin-top:14px;padding:12px 14px;border:1px solid var(--line);border-radius:11px;background:var(--paper)}
+.origin-audit h4{margin:0 0 6px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.origin-audit p{font-size:12px;margin:5px 0;color:var(--muted)}
+.origin-audit ul{margin:6px 0;padding-left:18px;font:11px ui-monospace,SFMono-Regular,Consolas,monospace}
+.origin-method{margin:18px 0 30px}
 .no-results{padding:26px;background:var(--card);border:1px solid var(--line);border-radius:15px;color:var(--muted);text-align:center}
 .methods{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .method{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:19px}
@@ -150,13 +155,13 @@ button{cursor:pointer}
     <div class="eyebrow">A source-linked scrutiny register</div>
     <h1>Great House Farm<br><span style="color:#b9d995">What the record can bear.</span></h1>
     <p>Every statement has a boundary. This register shows which wording is directly supported, which needs qualification, and which should not be repeated as established fact.</p>
-    <div class="meta"><span>LLANDOUGH-JUXTA-PENARTH</span><span>REVIEWED 30 OCT 2026</span><span>REGISTER 1.0.0</span></div>
+    <div class="meta"><span>LLANDOUGH-JUXTA-PENARTH</span><span>REVIEWED 30 OCT 2026</span><span>REGISTER 1.1.0</span></div>
   </section>
 
   <section class="summary-grid" id="summary" aria-label="Register summary">
-    <div class="summary"><strong id="count-all">16</strong><span>statements assessed</span></div>
+    <div class="summary"><strong id="count-all">17</strong><span>statements assessed</span></div>
     <div class="summary green"><strong id="count-green">6</strong><span>green · bounded wording</span></div>
-    <div class="summary orange"><strong id="count-orange">6</strong><span>orange · qualify or attribute</span></div>
+    <div class="summary orange"><strong id="count-orange">7</strong><span>orange · qualify or attribute</span></div>
     <div class="summary red"><strong id="count-red">4</strong><span>red · quarantine current wording</span></div>
   </section>
 
@@ -191,7 +196,7 @@ button{cursor:pointer}
     <button class="action" id="print">Print / save PDF</button>
     <a class="action" href="/presskit/claims.json" download>Download register</a>
   </div>
-  <p class="results-line" id="results-line" aria-live="polite">Showing 16 statements, ranked by scrutiny score.</p>
+  <p class="results-line" id="results-line" aria-live="polite">Showing 17 statements, ranked by scrutiny score.</p>
   <section id="claim-list" class="claim-list" aria-label="Ranked statements"><div id="loading">Loading the claim register…</div></section>
 
   <div class="section-head">
@@ -211,6 +216,10 @@ button{cursor:pointer}
     </article>
   </section>
 
+  <div class="name-note origin-method"><strong>Source class is not the claim score.</strong>
+    The six source classes below are copied from Cedwyn’s shared source register. That register says its labels are assigned from page metadata and still require reviewer confirmation. They are therefore shown here as provisional classifications, not verified reliability ratings. The origin ID matters separately: multiple catalogue pages that derive from one judgment or book are one source origin, not independent corroboration. A missing origin mapping is shown as unknown, never counted as an extra independent source.
+  </div>
+
   <div class="section-head">
     <div><div class="eyebrow">04 · Legal grammar</div><h2>CSSCPSG · S1–S6</h2></div>
     <p>These are diagnostic flags, not evidence grades. A flag identifies a drafting or document-structure risk; it does not prove deception, illegality or falsity.</p>
@@ -223,7 +232,7 @@ button{cursor:pointer}
   </div>
   <section id="framework" class="method framework"></section>
   <div class="caveat" id="caveat"><strong>Important:</strong> editorial triage only. Scores are not probabilities, findings of fact, admissibility rulings, expert opinions or predictions of litigation outcomes. An authentic document may be irrelevant to a particular proposition. A green rating is confined to the precise statement that was assessed. A red rating quarantines the present wording; it does not prove that the underlying event did not happen.</div>
-  <footer class="footer-note"><span>CEDWYN · PRESS KIT · REGISTER 1.0.0</span><span>Sources and limitations are linked at statement level.</span></footer>
+  <footer class="footer-note"><span>CEDWYN · PRESS KIT · REGISTER 1.1.0</span><span>Sources and limitations are linked at statement level.</span></footer>
 </main>
 <script>
 (function(){
@@ -233,6 +242,25 @@ button{cursor:pointer}
   function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
   function statusLabel(s){return s==="GREEN"?"Green":s==="ORANGE"?"Orange":"Quarantined"}
   function source(id){return data.sources.find(function(s){return s.id===id})}
+  function sourceClass(id){return data.source_classification&&data.source_classification.items.find(function(x){return x.ev===id})}
+  function artifactHtml(id){
+    var s=source(id), g=sourceClass(id), title=s?s.title:"Source not mapped in this register";
+    var type=s?(s.type+" · "+s.status):"Source details not yet mapped";
+    var grading=g?("Provisional source class "+g.evidence_grade+" · "+(data.source_classification.scale[String(g.evidence_grade)]||"classification")+(g.independent_origin_id?" · origin "+g.independent_origin_id:"")):"No source class or origin ID in the current shared register";
+    var note=[g&&g.grade_note,s&&s.origin_note].filter(Boolean).join(" ");
+    return '<a class="artifact" href="'+esc(s?s.url:"#")+'"><b>'+esc(id)+'</b><span>'+esc(title)+'<em>'+esc(type)+'</em><em>'+esc(grading)+'</em>'+(note?'<em>'+esc(note)+'</em>':'')+'</span></a>';
+  }
+  function originAudit(c){
+    var groups={}, missing=[];
+    (c.evidence||[]).forEach(function(id){
+      var g=sourceClass(id);
+      if(!g||!g.independent_origin_id){missing.push(id);return;}
+      (groups[g.independent_origin_id]||(groups[g.independent_origin_id]=[])).push(id);
+    });
+    var keys=Object.keys(groups), mapped=(c.evidence||[]).length-missing.length;
+    var groupText=keys.map(function(k){return '<li>'+esc(groups[k].join(" + "))+' → '+esc(k)+'</li>'}).join("");
+    return '<div class="origin-audit"><h4>Independent-origin check</h4><p>'+mapped+' of '+(c.evidence||[]).length+' supporting references have a source-origin mapping; '+keys.length+' distinct mapped origin'+(keys.length===1?"":"s")+'. Unmapped references are not counted as independent sources.</p>'+(groupText?'<ul>'+groupText+'</ul>':'')+(missing.length?'<p>Origin not mapped: '+esc(missing.join(", "))+'.</p>':'')+(c.corroborationNote?'<p><strong>Interpretation:</strong> '+esc(c.corroborationNote)+'</p>':'')+'</div>';
+  }
   function pct(v,max){return Math.max(0,Math.min(100,Math.round((Number(v||0)/Number(max||1))*100)))}
   function weightItems(target,arr){$(target).innerHTML=arr.map(function(x){return '<div class="weight"><span>'+esc(x.label)+'<div class="barline"><i style="width:'+x.weight+'%"></i></div></span><b>'+x.weight+'</b></div>'}).join("")}
   function renderRules(){
@@ -243,14 +271,17 @@ button{cursor:pointer}
   }
   function renderClaim(c,i){
     var status=c.status, flagHtml=(c.flags||[]).length?'<div class="flags"><span class="pill neutral">CSSCPSG flags</span>'+(c.flags||[]).map(function(f){var r=data.structural_flags.rules.find(function(x){return x.id===f});return '<span class="flag" title="'+esc(r?r.description:"")+'">'+esc(f)+(r?" · "+esc(r.label):"")+'</span>'}).join("")+'</div>':'';
-    var artifacts=(c.evidence||[]).map(function(id){var s=source(id);return s?'<a class="artifact" href="'+esc(s.url)+'"><b>'+esc(id)+'</b><span>'+esc(s.title)+'<em>'+esc(s.type)+' · '+esc(s.status)+'</em></span></a>':'<span class="artifact"><b>'+esc(id)+'</b><span>Source not mapped in this register</span></span>'}).join("");
+    var artifacts=(c.evidence||[]).map(artifactHtml).join("");
+    var contextArtifacts=(c.contextEvidence||[]).map(artifactHtml).join("");
     var bars=data.scoring.evidence.map(function(w){var v=c.score&&c.score[w.key]!=null?c.score[w.key]:0;return '<div class="bar-item"><div class="bar-top"><span>'+esc(w.label)+'</span><b>'+v+'/'+w.weight+'</b></div><div class="barline"><i style="width:'+pct(v,w.weight)+'%"></i></div></div>'}).join("");
     var legal=c.legalBreakdown?'<div class="legal-break"><p><strong>Legal formulation: '+esc(c.legalScore)+'/100.</strong> Each legal factor is scored separately. Combined score is the lower of the legal and evidence scores.</p><div class="score-bars">'+data.scoring.legal.map(function(w){var v=c.legalBreakdown[w.key]||0;return '<div class="bar-item"><div class="bar-top"><span>'+esc(w.label)+'</span><b>'+v+'/'+w.weight+'</b></div><div class="barline"><i style="width:'+pct(v,w.weight)+'%"></i></div></div>'}).join("")+'</div></div>':'';
-    return '<details class="claim" data-status="'+esc(status)+'" data-search="'+esc([c.id,c.statement,c.short,c.supports,c.doesNotSupport,c.safestWording,(c.evidence||[]).join(" ")].join(" ").toLowerCase())+'">'+
+    return '<details id="claim-'+esc(c.id)+'" class="claim" data-status="'+esc(status)+'" data-search="'+esc([c.id,c.statement,c.short,c.supports,c.doesNotSupport,c.safestWording,(c.evidence||[]).concat(c.contextEvidence||[]).join(" ")].join(" ").toLowerCase())+'">'+
       '<summary><span class="node" aria-hidden="true"></span><div><h3>'+esc(c.statement)+'</h3><p class="short">'+esc(c.short)+'</p><div class="claim-meta"><span class="pill">'+statusLabel(status)+'</span><span class="pill neutral">'+esc(c.kind.replace(/-/g," "))+'</span><span class="pill neutral">'+esc(c.id)+'</span></div></div><div class="score"><strong>'+esc(c.overallScore)+'</strong><span>/ 100 · '+statusLabel(status)+'</span><div class="score-track"><i style="--score:'+esc(c.overallScore)+'%"></i></div></div></summary>'+
       '<div class="claim-body"><div class="claim-intro"><div class="detail-box"><h4>What the source supports</h4><p>'+esc(c.supports)+'</p></div><div class="detail-box limit"><h4>What it does not establish</h4><p>'+esc(c.doesNotSupport)+'</p></div></div>'+
       '<div class="safe"><span class="label">Safest wording to publish</span><p>'+esc(c.safestWording)+'</p></div>'+
-      '<div class="artifact-map"><h4>Statement → artifact / source</h4><div class="artifact-list">'+artifacts+'</div></div>'+
+      '<div class="artifact-map"><h4>Supporting artifacts / sources</h4><div class="artifact-list">'+artifacts+'</div></div>'+
+      (contextArtifacts?'<div class="artifact-map"><h4>Context and contrary material</h4><div class="artifact-list">'+contextArtifacts+'</div></div>':'')+
+      originAudit(c)+
       '<div class="scores"><h4>Evidence score breakdown</h4><div class="score-bars">'+bars+'</div>'+legal+'</div>'+
       flagHtml+
       '<div class="next-step"><h4>What would strengthen or settle it</h4><p>'+esc(c.next)+'</p></div>'+
@@ -259,7 +290,7 @@ button{cursor:pointer}
   function filtered(){
     return data.claims.slice().sort(function(a,b){return b.overallScore-a.overallScore}).filter(function(c){
       var byStatus=active==="ALL"||c.status===active;
-      var searchable=[c.id,c.statement,c.short,c.supports,c.doesNotSupport,c.safestWording,(c.evidence||[]).join(" ")].join(" ").toLowerCase();
+      var searchable=[c.id,c.statement,c.short,c.supports,c.doesNotSupport,c.safestWording,(c.evidence||[]).concat(c.contextEvidence||[]).join(" ")].join(" ").toLowerCase();
       return byStatus&&(!query||searchable.indexOf(query)>=0);
     });
   }
@@ -267,15 +298,22 @@ button{cursor:pointer}
     var list=filtered();
     $("claim-list").innerHTML=list.length?list.map(renderClaim).join(""):'<div class="no-results">No statements match that search and filter.</div>';
     $("results-line").textContent="Showing "+list.length+" of "+data.claims.length+" statements · ranked from strongest to weakest by the stated scrutiny score.";
+    openHashClaim();
+  }
+  function openHashClaim(){
+    var id=decodeURIComponent((location.hash||"").replace(/^#/,""));
+    if(!/^claim-PK-\\d+$/.test(id))return;
+    var el=$(id);if(el)el.open=true;
   }
   function setup(){
+    window.addEventListener("hashchange",openHashClaim);
     $("count-all").textContent=data.claims.length;
     $("count-green").textContent=data.claims.filter(function(c){return c.status==="GREEN"}).length;
     $("count-orange").textContent=data.claims.filter(function(c){return c.status==="ORANGE"}).length;
     $("count-red").textContent=data.claims.filter(function(c){return c.status==="RED"}).length;
     weightItems("evidence-weights",data.scoring.evidence);
     weightItems("legal-weights",data.scoring.legal);
-    renderRules();renderFramework();render();
+    renderRules();renderFramework();render();openHashClaim();
     document.querySelectorAll(".filter").forEach(function(b){b.addEventListener("click",function(){
       active=b.dataset.filter;
       document.querySelectorAll(".filter").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
