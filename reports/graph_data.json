@@ -24,6 +24,16 @@
   "source": "data/evidence-grades.json",
   "own_db": true
  },
+ "kissed-frogs": {
+  "points": 49,
+  "source": "/kissed-frogs/_db/view.json",
+  "own_db": true
+ },
+ "ebooks": {
+  "points": 20,
+  "source": "/ebooks/_db/view.json",
+  "own_db": true
+ },
  "wiki": {
   "points": 981,
   "source": "/wiki pages",
@@ -32,11 +42,6 @@
  "wayback": {
   "points": 27,
   "source": "/wayback pages",
-  "own_db": true
- },
- "ebooks": {
-  "points": 24,
-  "source": "/ebooks pages",
   "own_db": true
  },
  "wdtk": {
@@ -52,11 +57,6 @@
  "directory": {
   "points": 307,
   "source": "/directory pages",
-  "own_db": true
- },
- "kissed-frogs": {
-  "points": 51,
-  "source": "/kissed-frogs pages",
   "own_db": true
  }
 }
