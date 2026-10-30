@@ -8,6 +8,7 @@
   function edition(a) { return a.edition === 1 ? T.one_of_one : fill(T.limited, { n: a.edition }); }
   /* Whole-release versions (Sion 05:13 GMT 27 Oct 2026): every piece starts at v0.0.1, which is free; no sales yet ("Coming soon"). - Sion's Tab agent */
   function ver(a) { return a.version || 'v0.0.1'; }
+  /* Every download offers a "Select a version" drop-down listing the versions that exist for the piece, newest first and selected; Save as PNG saves the selected one (30 Oct 2026). - Sion's Tab agent */
   function vers(a) { var v = (a.versions || []).map(function (o) { return typeof o === 'string' ? o : (o && (o.v || o.version)); }).filter(Boolean); if (v.indexOf(ver(a)) < 0) v.push(ver(a)); v = v.filter(function (x, i) { return v.indexOf(x) === i; }); return v.sort(function (x, y) { var p = x.match(/\d+/g).map(Number), q = y.match(/\d+/g).map(Number); for (var k = 0; k < 3; k++) if ((q[k] || 0) !== (p[k] || 0)) return (q[k] || 0) - (p[k] || 0); return 0; }); }
   function sub(a) { return esc(a.id) + ' · ' + esc(ver(a)); }
   function slug(a) { return (a.id + '-' + String(a.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')).slice(0, 80); }
@@ -43,10 +44,10 @@
       '<dt>' + esc(T.medium_label) + '</dt><dd>' + esc(T.medium) + '</dd>' +
       (a.source_id ? '<dt>' + esc(T.source_label) + '</dt><dd>' + esc(a.source_id) + '</dd>' : '') + '</dl>' +
       (a.src ? '<div class="gg-src"><img loading="lazy" src="' + esc(a.src) + '" alt=""><span>' + esc(T.grown_from) + ' ' + esc(a.source_title) + '</span></div>' : '') +
-      '<div class="gg-buy gg-sv"><label class="gg-svl" for="gg-sv">' + esc(T.version_label || 'Version') + '</label>' +
+      '<div class="gg-buy gg-sv"><label class="gg-svl" for="gg-sv">' + esc(T.select_version || 'Select a version') + '</label>' +
       '<select class="gg-sel" id="gg-sv" autocomplete="off">' + vers(a).map(function (v, k) { return '<option value="' + esc(v) + '"' + (k ? '' : ' selected') + '>' + esc(v) + (v === 'v0.0.1' ? ' · free' : '') + (k ? '' : ' · latest') + '</option>'; }).join('') + '</select>' +
       '<div class="gg-acts"><button type="button" class="gg-btn gg-soon" disabled aria-disabled="true">' + esc(T.coming_soon || 'Coming soon') + '</button>' +
-      '<button type="button" class="gg-btn gg-png">' + esc(T.save_png || 'Save as PNG') + '</button></div>' +
+      '<button type="button" class="gg-btn gg-png" aria-label="' + esc((T.save_png || 'Save as PNG') + ' (selected version)') + '">' + esc(T.save_png || 'Save as PNG') + '</button></div>' +
       '<a class="gg-free" href="' + esc(a.v001_image || a.image) + '" data-png="1">free version (v0.0.1 2026)</a></div>';
     var pb = d.querySelector('.gg-png'), fl = d.querySelector('.gg-free');
     var sel = d.querySelector('.gg-sel'), fig = d.querySelector('figure img');
