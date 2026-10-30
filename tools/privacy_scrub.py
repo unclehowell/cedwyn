@@ -72,7 +72,7 @@ def scrub(t, kind='text'):
 # family is redacted site-wide. Any path segment containing "correspondence" (research/wiki evidence pages, docs co_*correspondence)
 # is correspondence too (27-28 Oct 2026: research/evidence/justice-courts-correspondence/ still signed with the name). Runs on every build, so a later mail import cannot bring the name back; CORR_CHECK then fails the
 # build if the name survives in a correspondence file. The agent instruction meta in the shared footer is left as written.
-CORR_PATH = re.compile(r"^(?:email|whattheydontsay|whatdotheyknow)/|^wayback/(?:mail|api|email)/|(?:^|/)[^/]*correspondence[^/]*/")
+CORR_PATH = re.compile(r"^(?:email|whattheydontsay|whatdotheyknow)/|^wayback/(?:mail|api|email|text)/|(?:^|/)[^/]*correspondence[^/]*/")
 _S = r"(?:[\s\u2009]|\\u2009|&#8201;|&thinsp;)+"
 _RETD = rf"Ret{A}d"
 _FIRST = r"(?i:\bsi(?:[o\u00f4]|\\u00f4|&ocirc;|&#244;)n\b)"
@@ -80,6 +80,9 @@ NAME = re.compile(
     rf"(?:{_RETD}{_S}(?:Sergeant|Sgt)\.?{_S})?{_FIRST}(?:{_S}\(?Hywel\)?)?(?:{_S}(?i:buckler)\b)?(?:,?{_S}Esq\.?)?"
     rf"(?:[\s,]*\(?[\s]*(?:{_RETD}{_S}(?:Sergeant|Sergenant|Sgt)\.?|Sgt\.?[\s]*\({_RETD}\))[\s]*\)?)?")
 KEEP = 'Sion Buckler (Williams heir'          # the shared footer's agent instruction, not correspondence
+# P-054: the private names are stored hex-encoded so this public file does not spell them.
+_PN = [bytes.fromhex(h).decode() for h in ('526567616e', '57656262', '4d6172696e61', '4a6166666565', '4272616e77656e')]
+_PRIV_RX = r"\b%s(?:\s*>)*\s*%s\b|\b%s(?:\s*>)*\s*%s\b|\b%s(?:(?:\s*>)*\s*(?i:buckler))?\b" % tuple(_PN)
 CORR_R = [(re.compile(x[0], x[2] if len(x) > 2 else 0), x[1]) for x in [
   (r"\b(Dear|Hello|Hi|Good (?:morning|afternoon|evening)|Morning|Afternoon)(,?\s+)Mr\.?\s+(?:S\.?\s+)?(?i:buckler)\b", r"\1\2Requester", re.I),
   (r"\bHywel ap Buckler\b", "Requester", re.I),
@@ -89,12 +92,20 @@ CORR_R = [(re.compile(x[0], x[2] if len(x) > 2 else 0), x[1]) for x in [
   (r"^((?:>[ \t]*)*)Hywel[ \t]*$", r"\1Requester", re.M),
   (rf"^((?:>[ \t]*)*)\(\s*Ret{A}d (?:Army )?(?:Sergeant|Sergenant|Sgt)\.?\s*\)[ \t]*$", r"\1", re.M),
   (r"[ \t]*Royal Signals Cyber\s*(?:/|and|&amp;|&)\s*Electronic Warfare Professional(?:\s*(?:and|&amp;|&)\s*Life Member)?", ""),
+  # P-054 (30 Oct 2026): quoted replies split the signature and the private names across '>' markers, and the private
+  # people named in exported mail (a family member and two members of the public) were not covered, so 18 mail texts
+  # published them. The Wayback Vault's own redaction (datro@wayback pass 3) is mirrored here for every build.
+  (rf"\(?\s*Ret{A}?d\.?(?:\s*>)*\s*Sergeant\s*\)?", ""),
+  (r"Royal(?:\s*>)*\s*Signals(?:\s*>)*\s*Cyber(?:\s*>)*\s*(?:/|&amp;|&|and)(?:\s*>)*\s*Electronic(?:\s*>)*\s*Warfare(?:\s*>)*\s*Professional(?:(?:\s*>)*\s*and(?:\s*>)*\s*Life(?:\s*>)*\s*Member)?", "", re.I),
+  (_PRIV_RX, "[member of the public]"),
+  (r"Requester(\s+Requester)+", "Requester"),
 ]]
 CONTACT_R = [(re.compile(x[0], re.I), x[1]) for x in [
   (r"\bhywelapbuckler(?:@gmail\.com)?\b", "[email redacted]"),
   (r"(?:\+|\b00\s?)?\b44\s?\(?0?\)?\s?7845[\s.-]?933[\s.-]?262\b|\b07845[\s.-]?933[\s.-]?262\b", "[phone redacted]"),
 ]]
 CORR_CHECK = re.compile(r"(?i:\bsi(?:[o\u00f4]|\\u00f4|&ocirc;|&#244;)n\b)(?! Buckler \(Williams heir)")
+PRIV_CHECK = re.compile(_PRIV_RX + rf"|Royal Signals Cyber|Ret{A}d Sergeant", re.I)
 CONTACT_CHECK = re.compile(r"hywelapbuckler|7845[\s.-]?933[\s.-]?262", re.I)
 def corr(t, rel):
     n = 0
@@ -126,6 +137,7 @@ def main(root, check_only=False):
                 if new != t: f.write_text(new, 'utf-8'); changed += 1; hits += n; t = new
         for m in CHECK.finditer(t): left.append(f'{f.relative_to(root)}: {t[max(0,m.start()-60):m.end()+40]!r}')
         for m in CONTACT_CHECK.finditer(t): left.append(f'{rel}: contact detail {t[max(0,m.start()-40):m.end()+20]!r}')
+        if CORR_PATH.search(rel) and PRIV_CHECK.search(t): print(f'::warning::privacy: private name left in {rel}')
         if CORR_PATH.search(rel):
             for m in CORR_CHECK.finditer(t): left.append(f'{rel}: name in correspondence {t[max(0,m.start()-60):m.end()+40]!r}')
     print(json.dumps({'files_changed': changed, 'rewrites': hits, 'remaining': len(left)}))

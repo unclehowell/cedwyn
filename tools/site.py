@@ -301,6 +301,20 @@ ingredients.apply(DIST)
 # A crawled theme whose live site refused this build's crawl (e.g. 429) keeps its previous build's files (25 Oct 2026). - Sion's Tab agent
 import keep_previous
 keep_previous.run(DIST)
+# P-034 (30 Oct 2026): the Post Office viewer reads /email/view/index.json, a copy of datro@wayback wayback/api/index.json that was
+# placed by hand on 25 Oct; the email theme's crawl now meets a 301 to Cedwyn, so the copy froze. Refresh it from this build's
+# Wayback Vault when the Vault's catalogue is newer (the redacted texts it points at are served from /wayback/mail/) - Sion's Tab agent
+try:
+    _pv_src = DIST / 'wayback' / 'api' / 'index.json'; _pv_dst = DIST / 'email' / 'view' / 'index.json'
+    if _pv_src.is_file() and _pv_dst.parent.is_dir():
+        _pv_new = json.load(open(_pv_src, encoding='utf-8'))
+        _pv_old = json.load(open(_pv_dst, encoding='utf-8')) if _pv_dst.is_file() else {}
+        if (_pv_new.get('records') and (_pv_new.get('generated') or '') > (_pv_old.get('generated') or '')
+                and len(_pv_new['records']) >= len(_pv_old.get('records') or [])):
+            shutil.copy2(_pv_src, _pv_dst)
+            print('post office catalogue refreshed:', len(_pv_old.get('records') or []), '->', len(_pv_new['records']))
+except Exception as _e:   # the mail catalogue must never stop a build
+    print('post office catalogue refresh failed:', _e)
 # Cross-institution route status map (snapshot dated from the dartboard source branch).
 import dartboard_options
 dartboard_options.run(DIST)
@@ -343,6 +357,22 @@ for _lh in (DIST / 'wayback' / 'websites').glob('*/*/latest.html'):
         except OSError:
             pass
 print('wayback stubs removed:', _stub_n)
+# P-027 (b) (30 Oct 2026): wget saves 'x.js?v=1' as 'x.js@v=1'; Pages ignores the query and serves the bare 'x.js', and pages
+# link the '?v=' form, so a versioned copy byte-identical to its bare sibling is never served. Drop those (about 1,060 files,
+# mostly the docs Sphinx assets). Runs after keep_previous, which still reads the versioned copies - Sion's Tab agent
+import filecmp as _fc_p027
+_qdup_n = 0
+for _qf in list(DIST.rglob('*@*')):
+    _qm = _re.match(r'^(.+\.(?:js|css))@[^/]*$', _qf.name)
+    if not _qm:
+        continue
+    _qb = _qf.parent / _qm.group(1)
+    try:
+        if _qf.is_file() and _qb.is_file() and _fc_p027.cmp(_qf, _qb, shallow=False):
+            _qf.unlink(); _qdup_n += 1
+    except OSError:
+        pass
+print('query-named duplicate assets removed:', _qdup_n)
 # Level 2 observations + Level 1 catalogue browser, generated from the structured records - Sion, 29 Oct 2026
 import evidence_observations
 evidence_observations.run(DIST)
