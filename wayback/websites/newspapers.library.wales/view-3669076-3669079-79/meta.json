@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3669076/3669079/79/",
  "key": "newspapers.library.wales/view/3669076/3669079/79",
- "title": "South Wales Daily News, 24th April 1888 (Swansea Edition), p. 3 — Llandough",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3669076-3669079-79/",
  "latest": "/websites/newspapers.library.wales/view-3669076-3669079-79/latest.html",
  "first_captured": "2026-10-24T14:45:16Z",
- "last_captured": "2026-10-24T14:45:16Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:40:38Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144516/newspapers.library.wales/view/3669076/3669079/79/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:40:38Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "ac0dea3bd7bf8836f4ec64f00df9b75ba3359a126ae6a0903e064c2a9324a7a4",
+   "markup_sha256": "545a17254b91912705860e272d3b650461bf44e0dc10ac4b3efeae928f11a814",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:44:03Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3803487/3803490/15/",
  "key": "newspapers.library.wales/view/3803487/3803490/15",
- "title": "Barry Herald, 6th March 1903, p. 3 — Hon. Ph[Lip Stanhope At Barity",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3803487-3803490-15/",
  "latest": "/websites/newspapers.library.wales/view-3803487-3803490-15/latest.html",
  "first_captured": "2026-10-24T14:45:44Z",
- "last_captured": "2026-10-24T14:45:44Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:38:12Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144544/newspapers.library.wales/view/3803487/3803490/15/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:38:12Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "aa0044ed8cceca3a8f760e6566208021e402ea506ce63fac5b2940774349ad8f",
+   "markup_sha256": "06d8767d3753044dc6a5f5de2e720903d1d540597c02e031562d3a09e09e8f03",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:42:59Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

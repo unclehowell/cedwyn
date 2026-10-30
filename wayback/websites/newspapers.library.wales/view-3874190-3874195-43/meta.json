@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3874190/3874195/43/",
  "key": "newspapers.library.wales/view/3874190/3874195/43",
- "title": "The Glamorgan Gazette, 3rd August 1894, p. 5 — |Induction Ceremony! At Llandough. .|",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3874190-3874195-43/",
  "latest": "/websites/newspapers.library.wales/view-3874190-3874195-43/latest.html",
  "first_captured": "2026-10-24T14:46:07Z",
- "last_captured": "2026-10-24T14:46:07Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:41:39Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144607/newspapers.library.wales/view/3874190/3874195/43/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:41:39Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "41964192cf29605397cc5f84a9dd9db160d15525d64e4762aabe1b433d4553e4",
+   "markup_sha256": "1ae76c70eea4fda35a8ffd92e6c2f32ee000dba0f8aa80568da0a138997bbce6",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:45:04Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }
