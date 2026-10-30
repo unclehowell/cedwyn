@@ -1,5 +1,5 @@
 /* watchtower.bucklerfamily.estate v3 — institution page changes about Great House Farm, from the Internet Archive — Cedwyn editors */
-/* 29 Oct 2026 (v3.1.0): restores the brackets a 27 Oct text sweep removed (the graph had stopped drawing), and merges the institution
+/* 29 Oct 2026 (v3.1.1): restores the brackets a 27 Oct text sweep removed (the graph had stopped drawing), and merges the institution
    watch (data/watch-events.json: releases, first-archived records, absence checks, detected changes) into the same scatter;
    the absence watch table reads data/watch-status.json. Both files are machine-readable for agents (see /llms.txt). */
 (function(){
@@ -67,11 +67,11 @@ function merge(d,w){if(!w||!w.events)return d;var have={};d.institutions.forEach
    d.changes.push({id:e.id,date:e.date,d1:e.d1||null,type:e.type,inst:e.inst,page:pid,summary:e.summary,add:e.add||[],rem:e.rem||[],hits:e.hits||[],source:e.source||'',before_url:e.before_url||null,after_url:e.after_url||e.page_url||null});
    have[e.inst].n_changes++;if(e.date<d.window.from)d.window.from=e.date;if(e.date>d.window.to)d.window.to=e.date});
   d.institutions.sort(function(a,b){return b.n_changes-a.n_changes||a.name.localeCompare(b.name)});
-  var p=document.querySelector('p.lh');if(p)p.textContent=d.changes.length+' points · '+d.institutions.filter(function(i){return i.n_changes}).length+' institutions · since '+fmt(d.window.from)+' · data: changes.json, watch-events.json, watch-status.json';
+  var p=document.querySelector('p.lh');if(p){p.setAttribute('data-cw-noclamp','');p.classList.add('cw-noclamp');}if(p)p.textContent=d.changes.length+' points · '+d.institutions.filter(function(i){return i.n_changes}).length+' institutions · since '+fmt(d.window.from)+'';
   var k=document.querySelector('ul.key'),seen={};d.changes.forEach(function(c){seen[c.type]=1});
   if(k)[['released','d released'],['archived','d archived'],['absent','d absent'],['present','d present']].forEach(function(x){if(seen[x[0]]){var li=document.createElement('li');li.innerHTML='<i class="'+x[1]+'"></i>'+LAB[x[0]];k.appendChild(li)}});
   return d}
-function absence(s){if(!s||!s.targets)return;var box=document.createElement('section');box.id='absence';box.className='abs';
+function absence(s){if(!s||!s.targets)return;var box=document.createElement('section');box.id='absence';box.className='abs cw-noclamp';box.setAttribute('data-cw-noclamp','');
   var h='<h2>Absence watch</h2><p class="what">Indexes and catalogues where a record would appear if it were made public. Each check is dated, so a later appearance is timestamped. Last run '+esc(fmt(s.generated))+'.</p><ul class="abs-l">';
   s.targets.forEach(function(t){h+='<li><span class="tag '+(t.status==='present'?'appeared':(t.status==='absent'?'gone':''))+'">'+esc(t.status==='present'?'In index':(t.status==='absent'?'Not in index':'Not checked'))+'</span> <a href="'+esc(t.page_url)+'" rel="noopener">'+esc(t.label)+'</a> <span class="url">'+esc((D.imap[t.inst]||{}).short||t.inst)+(t.first_checked?' · watched since '+esc(fmt(t.first_checked)):'')+(t.checked?' · checked '+esc(fmt(t.checked)):'')+'</span></li>'});
   box.innerHTML=h+'</ul>';var k=document.querySelector('ul.key');(k&&k.parentNode?k.parentNode:document.getElementById('app')).insertBefore(box,document.querySelector('ol.list'))}
