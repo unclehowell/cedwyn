@@ -109,8 +109,8 @@ def shop_copy(D, t):
     if 'id="whats-inside"' not in t:
         m = re.search(r'<section class="eb-eds" id="editions".*?</section>', t, flags=re.S)
         if m: t = t[:m.end()] + whats_inside(D) + t[m.end():]
-    if 'id="eb-trust"' not in t:
-        m = re.search(r'<section class="sh" id="shelf".*?</h2>', t, flags=re.S)
+    if 'id="eb-trust"' not in t:   # site.py runs this before ebook_shelf.py builds the shelf, so the line goes at the top of <main>
+        m = re.search(r'<section class="sh" id="shelf".*?</h2>', t, flags=re.S) or re.search(r'<main\b[^>]*>', t)
         if m: t = t[:m.end()] + trust_line() + t[m.end():]
     if 'id="faq"' not in t and 'FAQPage' not in t:
         at = t.find('<section class="sl-band eb-about" id="digital-estate-books"')
