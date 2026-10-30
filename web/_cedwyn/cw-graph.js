@@ -1,4 +1,4 @@
-/* cw-graph.js v1.2.0 - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
+/* cw-graph.js v1.2.1 - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
    Asked for 01:27 GMT 30 Oct 2026: the closable header strip becomes a graph promotion; tapping it slides a full-screen
    scatter graph of the data the page/section shows down over the page (it slides back up on close, Esc or swipe up);
    text pages load clipped to the screen height with a "Read more" bar, further text arriving in chunks from the build's
@@ -7,7 +7,7 @@
 (function () {
   'use strict';
   if (window.__cwGraph) return;
-  var d = document, de = d.documentElement, VER = '1.2.0';
+  var d = document, de = d.documentElement, VER = '1.2.1';
   window.__cwGraph = { v: VER };
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var T = {
@@ -617,7 +617,7 @@
     P.addEventListener('click', function (e) {
       var card = e.target.closest('.cwl-card'); if (!card || !P.contains(card)) return;
       var a = e.target.closest('a[href]'); if (a && !card.querySelector('.cwl-pv').contains(a) && card !== a) { if (!card.classList.contains('cwl-card')) return; }
-      e.preventDefault(); enterCard(card);
+      e.preventDefault(); e.stopPropagation(); enterCard(card);
     });
     P.addEventListener('keydown', function (e) { var card = e.target.closest && e.target.closest('.cwl-card'); if (card && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); enterCard(card); } });
     d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && LV.cur && !de.classList.contains('cw-gm-lock')) upOne(); });
