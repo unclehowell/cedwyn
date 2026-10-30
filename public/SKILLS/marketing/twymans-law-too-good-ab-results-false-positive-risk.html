@@ -1,0 +1,93 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Twyman&#x27;s law: when a small A/B &quot;win&quot; is too good to be true · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Twyman&#x27;s law: when a small A/B &quot;win&quot; is too good to be true"><link rel="alternate" type="text/markdown" href="twymans-law-too-good-ab-results-false-positive-risk.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Twyman's law: when a small A/B "win" is too good to be true</h1>
+<p>Topic: A/B testing / analytics trust. Added 2026-10-30 by the skills harvest. Companion to <code>sample-ratio-mismatch-srm-check-ab-tests.md</code> (SRM), <code>before-after-site-change-readout-placebo-control-homepage-label.md</code> (no-split readouts), <code>growth-experiment-loop-autoresearch-keep-discard.md</code> (the loop) and <code>tools/ab_stats.py</code> (Fisher p, sample size). This file covers the step those skip: <strong>deciding whether to believe a surprising result at all.</strong></p>
+<h2>The rule</h2>
+<p>Twyman's law: "Any figure that looks interesting or different is usually wrong" (Ehrenberg 1975 wording, traced by Ron Kohavi, LinkedIn, 7 May 2017, read). Kohavi, Deng and Vermeer (KDD 2022, "A/B Testing Intuition Busters", read in full): across "tens of thousands of A/B tests" at Airbnb, Booking, Amazon and Microsoft they "have never seen any change that improves conversions anywhere near" +300%. Surprising results need "a very low" p-value and a replication.</p>
+<h2>The case that is our size (read, KDD 2022 §2)</h2>
+<p>GuessTheTest, 16 Dec 2021: "Which design radically increased conversions 337%?" Real test, 35 days, 50/50 split:
+- Control 82 visitors, 3 conversions (3.7%); Treatment 75 visitors, 12 conversions (16.0%).
+- Reported p = 0.009 and "observed power 97%". Fisher exact p = 0.013.
+- Kohavi et al.: <strong>pre-experiment power was about 3%</strong>; even with the best published success rate (33%) the <strong>False Positive Risk is about 63%</strong>: more likely false than true. GuessTheTest later added that it was underpowered and suggested a replication.
+- "Observed power" computed from the observed effect is meaningless (it always looks high when p is small; Gelman 2019, cited there).
+That table is exactly the scale of a Cedwyn landing-page or email test.</p>
+<h2>False Positive Risk: the number to read instead of p</h2>
+<p>FPR = P(no real effect | "significant"). With a one-sided 0.025 threshold and 80% power (KDD 2022 Table 2):</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Org (source)</th>
+<th>Success rate</th>
+<th>FPR at 80% power</th>
+<th>at 20% power</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Microsoft</td>
+<td>33%</td>
+<td>5.9%</td>
+<td>20.0%</td>
+</tr>
+<tr>
+<td>Bing</td>
+<td>15%</td>
+<td>15.0%</td>
+<td>41.5%</td>
+</tr>
+<tr>
+<td>Booking / Google Ads / Netflix</td>
+<td>10%</td>
+<td>22.0%</td>
+<td>52.9%</td>
+</tr>
+<tr>
+<td>Airbnb search</td>
+<td>8%</td>
+<td>26.4%</td>
+<td>59.0%</td>
+</tr>
+</tbody>
+</table></div>
+<p>Most ideas don't work, and a tiny test has low power. Together they make most "wins" false.</p>
+<h2>Five puzzling outcomes to check first (Kohavi et al., KDD 2012, "Five Puzzling Outcomes Explained", PDF read)</h2>
+<ol>
+<li><strong>Wrong success metric.</strong> A Bing bug showed users very poor results, and distinct queries per user rose over 10% and revenue per user over 30%. Users were struggling, not happier. For us: count sales and engaged reads, never clicks alone.</li>
+<li><strong>Tracking artefacts.</strong> A variant that changed how clicks were logged showed "more clicks". In reality "the click logging was simply more reliable and fewer beacon requests were lost". For us: if one arm changes the link, redirect, script or page speed, the measurement itself has changed.</li>
+<li><strong>Early trends.</strong> "most cases of suspected Primacy and Novelty effects are not real, but just a statistical artifact": early deltas look big and shrink as data accumulates. Never stop on a day-2 spike.</li>
+<li><strong>Length and power.</strong> Running longer doesn't fix a test that is underpowered from the start. Decide the size first.</li>
+<li><strong>Carryover.</strong> People hurt by one test stay changed. After one bad-experience bug the buckets "still had not fully recovered" three months later. Re-randomise, or A/A-check the groups first.
+Also from that paper: "The A/A test has been our most useful tool": about 5% of A/A tests should come out "significant" at 95%.</li>
+</ol>
+<h2>How to run it (checklist, 10 minutes)</h2>
+<ol>
+<li><strong>Before the test</strong>, write in results.tsv: one metric, the smallest lift worth acting on (MDE), the stop size from <code>ab_stats.py samplesize</code>, and the stop date.</li>
+<li><strong>When a result arrives</strong>, run <code>python3 tools/fpr_check.py nA convA nB convB --mde &lt;planned lift&gt;</code>. It prints the lift, Fisher p, pre-experiment power and FPR at four success rates, and flags TWYMAN when the lift is over 30% or power is under 50%.</li>
+<li>If flagged, go through these in order:
+   - Run the SRM check (<code>tools/srm_check.py</code>).
+   - Check whether both arms used the same tracking, the same link redirect and the same bot filtering (<code>tools/bot_click_flag.py</code>, <code>human_traffic_split.py</code>).
+   - Check whether the gain sits in one day or one source (a share, a bot, a crawler).
+   - Check whether the success metric is the thing we sell.</li>
+<li><strong>Replicate</strong> with a fresh split before you call it a win. If the replication is flat, log it "inconclusive", not "lost".</li>
+<li><strong>Wording</strong>: log "B looked better (3 vs 12, underpowered, not replicated)", never "B lifted conversions 337%". Report numbers with their size, and keep surprising ones out of public copy until they replicate.</li>
+</ol>
+<h2>Free tool</h2>
+<p><code>tools/fpr_check.py</code> (own script, standard library, reuses <code>ab_stats.fisher</code>, nothing installed). Box-tested 30 Oct 2026 on the KDD 2022 numbers: Fisher p 0.013 (paper 0.013), power to detect +10% = 3% (paper about 3%), FPR at a 33% success rate 61% (paper 63%; they use a two-sided power figure). Verdict TWYMAN.</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Size reality.</strong> At about 3-4% conversion and tens of visitors per arm per week, a +10% test needs thousands per arm. That's the same lesson as <code>small-sample-usability-tests-buy-path-5-users.md</code>: test big, obvious changes, or use 5-user tests.</li>
+<li><strong>Every keep/discard in the growth loop and every bandit readout gets <code>fpr_check.py</code> first.</strong> A TWYMAN flag means "inconclusive, replicate". It never means "keep".</li>
+<li><strong>Email subject tests to a small Mailchimp list.</strong> Opens are inflated by Apple's privacy protection and bot clicks (see <code>email-metrics-mpp-bot-clicks-what-to-trust.md</code>). A "+40% opens" result fails steps 2 and 3 by default. Judge on clicks to /ebooks/ and on sales.</li>
+<li><strong>Never run tests on prices</strong> (standing rule). The check applies to copy, layout, subject lines and sample chapters only.</li>
+<li><strong>The Sunday growth report quotes a test result only once it has replicated or passed the check</strong>, with its size: "12 of 75 vs 3 of 82".</li>
+</ul>
+<h2>Sources (read 30 Oct 2026)</h2>
+<ul>
+<li>Kohavi, Deng, Vermeer, "A/B Testing Intuition Busters", KDD 2022: exp-platform.com (PDF via bit.ly) · dl.acm.org</li>
+<li>Kohavi et al., "Trustworthy Online Controlled Experiments: Five Puzzling Outcomes Explained", KDD 2012: exp-platform.com</li>
+<li>Kohavi, "Twyman's Law" (LinkedIn, 7 May 2017): linkedin.com</li>
+</ul><p class="raw">Raw Markdown: <a href="twymans-law-too-good-ab-results-false-positive-risk.md">twymans-law-too-good-ab-results-false-positive-risk.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Signup-source tagging: know which page, form and campaign each subscriber came from · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Signup-source tagging: know which page, form and campaign each subscriber came from"><link rel="alternate" type="text/markdown" href="signup-source-tagging-page-form-campaign.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Signup-source tagging: know which page, form and campaign each subscriber came from</h1>
+<p>Topic: tag every email signup with where it happened (page + form position + campaign), so list growth can be steered to the forms and pages that work. Written 30 Oct 2026 (skills harvest).</p>
+<h2>Why it matters (evidence)</h2>
+<ul>
+<li><strong>Mailchimp Help, "Determine Webpage Signup Location"</strong> (read 30 Oct 2026): add a hidden text field (e.g. merge tag <code>SIGNUP</code>) to the form, then append <code>&amp;SIGNUP=Homepage</code> to the embedded form's <code>form action</code> URL, one edited copy per page. The value lands in the subscriber profile; build auto-updating segments on it. Text-field segments are <strong>case-sensitive</strong>. For <em>how</em> people joined (hosted form vs embedded vs integration) Mailchimp states to segment by <strong>signup source</strong> instead; the hidden field is for <em>which page</em>.</li>
+<li><strong>Mailchimp Help, "Add Hidden Fields to a Signup Form"</strong> (read): hidden fields must <strong>not be required</strong>; the email field can never be hidden.</li>
+<li><strong>Backlinko content upgrades</strong> (already in INDEX, read in an earlier run): once signups were tracked per form, <strong>2 page-specific links produced 30% of all new subscribers while 54 generic forms produced the rest</strong>. Without per-form source data that result is invisible.</li>
+<li>Self-reported attribution skills already in the library (how-did-you-hear, HDYHAU) cover <em>why</em>; this skill covers <em>where</em>, which needs no question.</li>
+</ul>
+<h2>What Cedwyn has today (measured 30 Oct 2026, 07:12Z, code read)</h2>
+<ul>
+<li>Cedwyn's own list (Worker <code>/api/list/subscribe</code>, D1 table <code>cl_subscribers</code>) <strong>already has a <code>source</code> column</strong> (120 chars).</li>
+<li>JS signups (runtime.js <code>mcForm</code>) send <code>source: location.pathname</code> - the <strong>page only</strong>. No form position, no campaign, no referrer.</li>
+<li>No-JS signups send whatever hidden <code>source</code> input the form carries; only one value was found in the code (<code>/subscribe/</code>), so most no-JS signups record nothing useful.</li>
+<li>CMS invites write <code>cms</code> / <code>cms-invite</code>. The separate Mailchimp audience had <strong>1 subscribed member</strong> (06:57Z run), with no hidden SIGNUP field.</li>
+<li>So today we can tell "/ebooks/" from "/research/..." but not "footer form vs inline chapter offer" or "came from YouTube vs Facebook".</li>
+</ul>
+<h2>How to do it (smallest version)</h2>
+<ol>
+<li><strong>One vocabulary, one string.</strong> <code>source = &lt;path&gt;|&lt;form&gt;|&lt;utm_source&gt;/&lt;utm_medium&gt;|&lt;ref-host&gt;</code>, e.g. <code>/ebooks/|inline-chapter|youtube/video|-</code> or <code>/research/evidence/|footer|-/-|google.com</code>. Keep under 120 chars (D1 cap). Form ids are fixed words: <code>footer</code>, <code>inline-chapter</code>, <code>slide-in</code>, <code>subscribe-page</code>, <code>shop-strip</code>, <code>thank-you</code>.</li>
+<li><strong>Give each form a <code>data-form</code> attribute</strong> (or a hidden <code>&lt;input name="form"&gt;</code>) so JS and no-JS posts both carry it.</li>
+<li><strong>First touch, not last.</strong> On landing, store <code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code> and <code>document.referrer</code> host in <code>sessionStorage</code> once; read them at submit. (Matches utm-discipline-ga4-funnel.md naming: lowercase, <code>youtube</code>, <code>facebook</code>, <code>instagram</code>, <code>newsletter</code>.)</li>
+<li><strong>No-JS fallback:</strong> every server-rendered form gets <code>&lt;input type="hidden" name="source" value="&lt;path&gt;|&lt;form&gt;"&gt;</code> written at build time.</li>
+<li><strong>Mailchimp forms (if used):</strong> add a hidden, not-required text field <code>SIGNUP</code>; edit each embed's action URL with <code>&amp;SIGNUP=&lt;path-form&gt;</code>; or, via API, send <code>tags: ["src-&lt;form&gt;"]</code> and <code>merge_fields.SIGNUP</code> on member add (API detail from the reference, not re-read this run).</li>
+<li><strong>Read it weekly:</strong> <code>SELECT source, COUNT(*) n, SUM(status='confirmed') c FROM cl_subscribers WHERE test=0 GROUP BY source ORDER BY n DESC;</code> Rank forms by <strong>confirmed signups per 1,000 page views</strong> of the page they sit on (page views from cf_traffic.py), not raw counts.</li>
+<li><strong>Decide with small numbers carefully:</strong> below ~20 confirmed signups total, only act on a form that has <strong>zero</strong> after 500+ page views (move or reword it); otherwise keep collecting.</li>
+</ol>
+<h2>Pitfalls</h2>
+<ul>
+<li>Never put personal data in the source string (no names, no emails, no query strings other than the UTM keys).</li>
+<li>Segments are case-sensitive: lowercase everything at write time.</li>
+<li>Do not overwrite <code>source</code> when an existing subscriber signs up again; append the new form to <code>topics</code>/notes instead (the Worker already merges topics this way).</li>
+<li>Hidden fields must be optional or the form silently fails.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Patch (leave in the project workspace or a site-wide PR when no build runs and the repair freeze allows): runtime.js <code>mcForm</code> builds the 4-part string above; build step adds hidden <code>source</code> + <code>data-form</code> to every form; bump runtime.js <code>?v=</code>.</li>
+<li>Add the GROUP BY readout to the Sunday growth report (one line: top 3 sources, confirmed per 1,000 views).</li>
+<li>YouTube descriptions and pinned comments already carry UTMs (youtube-end-screens skill), so <code>youtube/video</code> signups will show up directly.</li>
+<li>Editorial rules unaffected (no public text changes). Do not test-submit from the box before the per-IP limit window allows (6/hour/IP).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>mailchimp.com (read 30 Oct 2026)</li>
+<li>mailchimp.com (read 30 Oct 2026)</li>
+<li>Backlinko content upgrades numbers: see content-upgrades-page-specific-lead-magnets.md (read in earlier run)</li>
+<li>Code read: the project workspace (subscribe, <code>source</code> column), the project workspace line 118, the project workspace</li>
+</ul><p class="raw">Raw Markdown: <a href="signup-source-tagging-page-form-campaign.md">signup-source-tagging-page-form-campaign.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

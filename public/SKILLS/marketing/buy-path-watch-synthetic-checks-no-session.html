@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Buy-path watch: scheduled, session-free checks that the e-book shop can still sell · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Buy-path watch: scheduled, session-free checks that the e-book shop can still sell"><link rel="alternate" type="text/markdown" href="buy-path-watch-synthetic-checks-no-session.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Buy-path watch: scheduled, session-free checks that the e-book shop can still sell</h1>
+<p>Harvested 2026-10-30 (skills harvest). Index check first: 'uptime' 0, 'health check' 0, 'broken buy' 0, 'synthetic' 0 skill hits. Companion to buybutton_check.py (one-off page lint) and payment-link session triage.</p>
+<h2>Why it matters</h2>
+<ul>
+<li>A shop that cannot take money earns nothing, and nobody notices: Cedwyn has very little traffic, so a broken /ebooks/ page or a deactivated Payment Link can sit unseen for days. Real examples from this project: /terms/ and /refunds/ returned 404 while /shop/terms/ worked (repo sync, 30 Oct); site builds wipe hot patches (the hologram tiles went back, 30 Oct); the project lead reported "That page did not open" (redirect skill). Every one was found by a person, not a monitor.</li>
+<li>Practitioner testimony (Paessler blog, synthetic monitoring): "I've seen it save companies thousands in lost revenue when it caught a broken payment form at 2am, hours before the morning rush." It is a vendor blog, so treat it as a story, not data.</li>
+<li>Uptime checks only answer "does the server reply". Synthetic checks run the steps a buyer takes on a timer and catch a page that loads but cannot sell (UptimeRobot knowledge hub, "what is synthetic monitoring").</li>
+</ul>
+<h2>Free tools (facts checked 30 Oct 2026)</h2>
+<ul>
+<li><strong>UptimeRobot Free:</strong> $0, "Good for personal and commercial projects", 50 monitors, 5-minute interval, HTTP/keyword/ping/port monitors, email alerts, basic status page (uptimerobot.com, read). A keyword monitor fails when a string such as "£" or "Buy" vanishes from /ebooks/. Needs an account, which is the project lead's step or a proposal.</li>
+<li><strong>GitHub Actions schedule:</strong> free on public repos, but best-effort. GitHub's docs (read): "can be delayed during periods of high loads… High load times include the start of every hour… some queued jobs may be dropped." Scheduled workflows are disabled on public repos after 60 days with no activity. Run at odd minutes (e.g. :17), never :00, and don't treat a missed run as an alert.</li>
+<li><strong>Own script:</strong> tools/buypath_watch.py (stdlib, no install). It lives here and runs on a schedule or by hand.</li>
+</ul>
+<h2>The one rule that's easy to get wrong</h2>
+<p><strong>Never let the monitor click the buy links.</strong> A GET on a Stripe Payment Link (buy.stripe.com) can open a Checkout Session. Every probe then looks like an abandoned checkout and pollutes the numbers the payment-link session-triage skill relies on. Use two separate checks instead:
+1. <strong>Page side (public, cheap):</strong> /ebooks/ answers 200, has a sensible size, shows the price text, and the set of buy links matches the saved baseline. A missing link is a FAIL, a new one is a NOTE.
+2. <strong>Stripe side (read-only API):</strong> list payment_links (url, active) through the connected Stripe account. Any linked URL with active=false is a FAIL. No session is created.
+Monitors for third-party monitoring products should point at the page, never at buy.stripe.com.</p>
+<h2>How to run it</h2>
+<pre><code>timeout -k 5 120 python3 tools/buypath_watch.py                       # first run writes the baseline
+timeout -k 5 120 python3 tools/buypath_watch.py --must &quot;£&quot; --stripe-json a temporary folder/plinks.json
+timeout -k 5 120 python3 tools/buypath_watch.py --update-baseline     # after a deliberate shop change
+</code></pre>
+<p>Exit code 1 means FAIL. Box-tested 30 Oct 08:29Z: /ebooks/ 200, 9 buy.stripe.com links, 0.2 s. A synthetic baseline with a removed link produced FAIL and exit 1.</p>
+<h2>Alert design (what practitioners converge on)</h2>
+<ul>
+<li><strong>Two consecutive fails before anyone hears.</strong> Single blips (a deploy, a CDN hiccup) are noise.</li>
+<li><strong>One alert per incident, plus one "recovered" line.</strong> Don't repeat every 5 minutes.</li>
+<li><strong>Check right after every site build.</strong> This project's builds overwrite hot patches, so a post-build check matters more than a frequent one.</li>
+<li><strong>Log every result</strong> (time, status, links, seconds) so a "since when?" question has an answer.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ol>
+<li><strong>Now (no change to anything live):</strong> run buypath_watch.py once and keep the baseline at the project workspace Done in this harvest as a test, in /tmp only, so no baseline is written yet; the first real run writes it.</li>
+<li><strong>Fold it into an existing run instead of adding a schedule.</strong> Every extra schedule costs a model turn each time it fires. Add one line to the end of the daily site flywheel and to the P-054-style post-build reapply steps: <code>buypath_watch.py --must "£"</code>. A FAIL goes into the project workspace, never straight to the project lead, per his 27 Oct "problems flywheel" rule.</li>
+<li><strong>Stripe side:</strong> once a day the same run saves a read-only payment_links list to /tmp and passes it with --stripe-json. No writes to Stripe.</li>
+<li><strong>Proposal for the project lead (QUEUE-after-framing):</strong> a free UptimeRobot account with one keyword monitor on /ebooks/ ("£") and one HTTP monitor on the home page. It runs with no model calls and alerts by email. It needs his account or OK. Never a paid plan.</li>
+<li><strong>Also check:</strong> /shop/terms/ and /shop/refunds/ (the links the checkout pages show) and the e-book download page each buyer lands on. Pass them with --pages.</li>
+</ol>
+<h2>Sources</h2>
+<ul>
+<li>uptimerobot.com (read 30 Oct 2026: Free = personal and commercial, 50 monitors, 5-min, keyword monitor)</li>
+<li>uptimerobot.com</li>
+<li>blog.paessler.com (anecdote, vendor)</li>
+<li>docs.github.com (schedule section, read: delays, dropped jobs, 60-day disable)</li>
+<li>Project evidence: repo-hubspot sync report 30 Oct 07:57Z (/terms/ 404; hot patches wiped by builds); payment-link session triage skill (sessions from bots and checkers)</li>
+</ul><p class="raw">Raw Markdown: <a href="buy-path-watch-synthetic-checks-no-session.md">buy-path-watch-synthetic-checks-no-session.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

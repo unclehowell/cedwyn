@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Search Console annotations + Google ranking-update calendar (read traffic changes against dated events) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Search Console annotations + Google ranking-update calendar (read traffic changes against dated events)"><link rel="alternate" type="text/markdown" href="search-console-annotations-ranking-update-calendar.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Search Console annotations + Google ranking-update calendar (read traffic changes against dated events)</h1>
+<p>Harvested 30 Oct 2026 ~12:00Z. Topic not in INDEX before this run ('search console annotation' 0, 'status dashboard' 0, 'incidents.json' 0, 'debug traffic' 0; the gen-AI guidance skill only mentions the Sep 2026 spam update in passing).</p>
+<h2>What the sources say (all read in full this run)</h2>
+<ul>
+<li><strong>Custom annotations in Search Console</strong> (Google blog, Nov 2025; help page 16530728, read 30 Oct 2026):</li>
+<li>Two kinds: <em>system</em> annotations (Google's data-processing notices) and <em>custom</em> ones you write.</li>
+<li>Right-click the Performance chart on a date, type up to <strong>120 characters</strong>, Add. Up to <strong>200 per property</strong>; deleted automatically after <strong>500 days</strong>; no editing (delete and re-add).</li>
+<li>Shown under any filter, but <strong>not in comparison mode or 24-hour views</strong>.</li>
+<li>Shared with every owner/full user of the property; restricted users can only view. Google states: no personal data (names, phone numbers, addresses) in annotations.</li>
+<li>The help page names no API for annotations, so treat them as UI-only.</li>
+<li><strong>Google Search Status Dashboard</strong> (status.search.google.com, Ranking history read 30 Oct): the dated list of updates. 2026 so far: Feb Discover update (5 Feb, ~22 d), Mar spam (24 Mar, &lt;1 d), Mar core (27 Mar, 12 d), May core (21 May, 12 d), Jun spam (24 Jun, 2 d), Aug spam (18 Aug, 3 d), Sep spam (24 Sep to 8 Oct, 14 d). <strong>No core update since May 2026.</strong> The same history is published as JSON at <code>/incidents.json</code> (about 11 KB, the last ~year).</li>
+<li>Caution: search snippets that put a core update "5-19 October" are about <strong>2023</strong>, not 2026 (checked against the dashboard).</li>
+<li><strong>Core updates doc</strong> (developers.google.com, read): confirm the rollout has finished on the dashboard; "wait at least a full week after a core update completes before analyzing", then compare that week "with a week before the core update started rolling out".</li>
+<li><strong>Debugging drops doc</strong> (read): the main causes are algorithmic updates, technical issues (Crawl stats, Page indexing), security, spam/manual actions, seasonality, and reporting glitches (check the Data Anomalies page).</li>
+<li>Small position moves (e.g. 2 to 4): avoid radical changes. A large site-wide drop (top 10 to ~29): self-assess the whole site.</li>
+<li>Changes can take days or months to show, so re-check in a few weeks.</li>
+<li><strong>Numbers:</strong> none from outside Google that are worth relying on. Vendor posts give core-update impact shares (e.g. "55% of sites" for Mar 2026, digitalapplied: <strong>not checked</strong>). This is a measurement-hygiene skill, not a growth lever.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li>Run <code>timeout -k 5 120 python3 tools/ranking_updates.py --since 2026-01-01</code>. It prints each Ranking update with the before/after compare windows Google recommends, a <code>[ready]</code> flag once the after-window has passed, and a ready-made annotation line of 120 characters or fewer.</li>
+<li>Add <strong>our own events</strong> as custom annotations on the day they go live. Use one short neutral line each: an e-book edition release, a documentary door opening, an academy launch, a site migration or theme change, a sitemap resubmission, a big outbound post. Never put a person's name or address in one.</li>
+<li>Add <strong>Google's updates</strong> as annotations too (copy the tool's line). The chart then shows both kinds of event, and nobody has to guess later.</li>
+<li>When a drop or spike appears:
+   - first check the dashboard dates and the system annotations;
+   - next run Page indexing and Crawl stats;
+   - then compare by page in the tool's windows (not in comparison mode, where annotations don't show);
+   - only then change content.
+   - A small position move is left alone.</li>
+<li>Keep a local mirror: one CSV row per annotation (date, text, who, why) in the growth folder. The 500-day expiry and the no-API limit mean Search Console is not the record.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Site:</strong> cedwyn.bucklerfamily.estate is new (autumn 2026), so most 2026 update windows come before it has data. The <strong>Sep 2026 spam update</strong> after-window (15–21 Oct) is ready now. PROPOSAL for the Monday VISIBILITY CHECK: compare 17–23 Sep against 15–21 Oct for the /ebooks/, /documentary/ and /learn/ pages, and record "no change" or "change" in the scores file. It should rule the spam update out before the gen-AI guidance changes are blamed for anything.</li>
+<li><strong>E-books:</strong> annotate each edition change on its release day, e.g. "Cedwyn e-book v0.0.2 £4.99 released; v0.0.1 stays free". A query-level lift can then be read against the right date. No price changes come from this skill.</li>
+<li><strong>Documentary:</strong> annotate each door opening ("Documentary door N live") so Video-tab and /documentary/ impressions can be read per door.</li>
+<li><strong>Academy:</strong> annotate the /learn/ launch and the first member-sync change.</li>
+<li><strong>Process:</strong> annotations need a human with full-user access, because there is no API. PROPOSAL: the weekly ONPAGE run writes the lines to <code>the project workspace</code>, and the owner (or a browser session with his saved Google login, on his word) pastes them in. The text stays neutral and has no banned words.</li>
+<li>Nothing was changed on the site, in Search Console or anywhere else by this harvest.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com</li>
+<li>support.google.com</li>
+<li>status.search.google.com and status.search.google.com</li>
+<li>developers.google.com</li>
+<li>developers.google.com</li>
+<li>(not checked, vendor) digitalapplied.com</li>
+</ul><p class="raw">Raw Markdown: <a href="search-console-annotations-ranking-update-calendar.md">search-console-annotations-ranking-update-calendar.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

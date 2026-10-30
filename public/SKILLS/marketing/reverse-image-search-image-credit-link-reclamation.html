@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Reverse image search: find who reuses our images, then ask for a credit link · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Reverse image search: find who reuses our images, then ask for a credit link"><link rel="alternate" type="text/markdown" href="reverse-image-search-image-credit-link-reclamation.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Reverse image search: find who reuses our images, then ask for a credit link</h1>
+<p>Topic: image link reclamation (SEO / PR monitoring). Harvested 2026-10-30. Checked first: 0 skill files mention TinEye, "reverse image" or "image reuse"; the existing link-reclamation file covers dead URLs and unlinked <em>text</em> mentions, not pictures. <code>google-images-lens-archive-photos.md</code> covers getting OUR images found in Google Images. This file covers the opposite job: finding OTHER sites using our images.</p>
+<h2>What the sources say (read 30 Oct 2026)</h2>
+<ul>
+<li><strong>TinEye help (read):</strong> free use is <strong>non-commercial only</strong>, capped at <strong>100 searches/day and 300/week</strong>. Commercial use needs the paid API, and a third-party review gives "$200 for 5,000 searches" (snippet, not checked). Cedwyn sells e-books, so treat TinEye as off-limits for routine work. Use Google Lens and Bing Visual Search by hand instead.</li>
+<li><strong>Neil Patel, "How to Use Reverse Image Search to Build 26% More Backlinks" (read, 2017, updated Jul 2026):</strong> the method is to search your own images, open each page that uses one, and check for a real link, since "they technically credited me, but they didn't give a direct link". Watch for chains too: a site credits the image to a reposter (Infographicdesignteam -&gt; Leadgenius JPG -&gt; ColourGraphics, the real origin), and the origin should ask for the link. <strong>The "26%" appears only in the title.</strong> The body gives no study and no count, so never quote it.</li>
+<li><strong>Search Engine Journal (read):</strong> "very few" of the many sites using Brian Dean's graphs credited him "properly with a backlink or image source". This is a description only, with no count.</li>
+<li><strong>editorial.link 2026 guide (read):</strong> Google's and Bing's reverse search "aren't always reliable" because many results only look similar. Check every match by hand.</li>
+<li><strong>Pixsy press page (snippet, vendor):</strong> "85% of images uploaded to the web are used without permission". This is marketing from a company that sells enforcement, so don't quote it.</li>
+<li><strong>BuzzStream State of Digital PR 2026 (read):</strong> 55.4% of PRs follow up once and 33.1% twice. BuzzStream's own study found the reply rate "drops sharply" from one follow-up to two, so its advice is a single follow-up. Reboot Online (read): 92% of pitches are 300 words or fewer, and 54% follow up after 3–6 days.</li>
+</ul>
+<p><strong>Honest gap:</strong> I found no published case study with a real count of credit requests sent and links won. Treat our own log as the evidence.</p>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Pick the images worth checking (10–20 a month):</strong> the og/share cards, the hologram tiles, the tithe-map and archive scans we restored or made, the e-book covers, and quote cards. Skip raw public-domain scans that we didn't transform, because we have no claim to credit for those.</li>
+<li><strong>Search by hand:</strong> use Google Lens ("Find image source", then the <strong>Exact matches</strong> tab), then Bing Visual Search ("Pages with this image"). Never script Google. Put the candidate URLs in a text file.</li>
+<li><strong>Verify with the tool</strong> (no install; requests + Pillow are already on the box):
+   <code>timeout -k 5 120 python3 tools/image_credit_check.py OUR.jpg URL1 URL2 ... --csv a temporary folder/credit.csv</code>
+   It compares a 64-bit dHash, so a resized copy re-saved at q55 scores 1 and a 5% crop scores 7. The default threshold is 10. Verdicts:
+   - <code>CREDITED_LINK</code>: done.
+   - <code>CREDIT_TEXT_ONLY</code>: ask them to turn the credit into a link.
+   - <code>NO_CREDIT</code>: ask for a credit plus a link.
+   - <code>NOT_FOUND</code>: a false positive from the search engine.</li>
+</ol>
+<p>It also reports whether the image itself is wrapped in a link to us.
+4. <strong>Triage before writing anything:</strong>
+   - Skip personal blogs, forums and social posts.
+   - Prioritise councils, schools, libraries, heritage and history societies, local press and Welsh/Argentine community sites. These are the links that also help AI-answer citations.
+   - Never send legal threats or DMCA notices for a credit request. The aim is goodwill and a link.
+5. <strong>The request, as a HubSpot draft only:</strong> 4–6 lines and under 120 words.
+   - Thank them for using the picture.
+   - Give the exact page where the original lives (the evidence or record page, not the homepage).
+   - Offer a credit line ready to paste: <code>Image: Cedwyn archive (cedwyn.bucklerfamily.estate/...)</code>.
+   - Offer a higher-resolution copy.
+   - Allow one follow-up after 5–7 days, only if it adds something new (for example the original date or a better scan), then stop.
+6. <strong>Log it</strong> in <code>the project workspace</code>: image, page, verdict, date drafted, sent-by-the project lead date, outcome. Re-run the tool 30 days after a send to confirm the link.</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Monthly pass:</strong> 15 images through Lens/Bing by hand, then the tool. Create one HubSpot task <code>[BIZDEV] Image credit requests &lt;month&gt;</code> with the drafts inside.</li>
+<li><strong>Public-text rules apply to the credit line:</strong> never name the project lead, avoid the banned words, and point to the catalogued evidence page.</li>
+<li><strong>Make future copies credit us automatically:</strong></li>
+<li>Keep the visible caption credit line on every image page.</li>
+<li>Keep the ImageObject <code>creditText</code>/<code>copyrightNotice</code> (see <code>google-images-licensable-badge-image-metadata-gallery.md</code>).</li>
+<li>Put a small corner mark on share cards only, not on evidence scans.</li>
+<li><strong>Kill rule:</strong> after 3 monthly passes, stop if fewer than 2 <code>NO_CREDIT</code>/<code>CREDIT_TEXT_ONLY</code> pages are found at institutions, and fold the work into the quarterly link-reclamation run.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>help.tineye.com</li>
+<li>neilpatel.com</li>
+<li>searchenginejournal.com</li>
+<li>editorial.link</li>
+<li>buzzstream.com</li>
+<li>rebootonline.com</li>
+<li>Pixsy press page (snippet only, vendor claim, not quoted)</li>
+</ul><p class="raw">Raw Markdown: <a href="reverse-image-search-image-credit-link-reclamation.md">reverse-image-search-image-credit-link-reclamation.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

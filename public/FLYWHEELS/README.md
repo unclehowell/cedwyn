@@ -26,5 +26,6 @@ Every self-running loop on the project. Each has a runner, state, a log, a fixed
 | [Online gap finder](online-gap-finder.md) | every 6 hours | Find public information about the farm, its places, people and the case that is not yet on the site, and queue each find as a task for the right page. |
 | [Correspondence flywheel](correspondence.md) | every 2 hours at :30, 07:30–23:30 Europe/London | Keep a hive draft task for every research or disclosure email that needs a reply, a chase, escalation, forwarding or first contact; housekeeping between emails. |
 | [Repository and project-board sync](repo-sync.md) | every 6 hours | Keep the project board in step with the repository and the live site: what was done, and what still needs doing. |
+| [Data-driven webapp migration](webapp-migration.md) | one webapp at a time, per the programme plan | Move each webapp to pages generated from its own view of the central catalogue, keeping the existing design (standing order 7s). |
 
 Machine-readable: [flywheels.json](flywheels.json).
