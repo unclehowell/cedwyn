@@ -1,4 +1,6 @@
-/* Cedwyn · documentary — versions, licence and checkout (page v1.6.0). A tab.bot production.
+/* Cedwyn · documentary — versions, licence and checkout (page v1.6.1). A tab.bot production.
+   v1.6.1 (30 Oct 2026): version labels follow the site-wide scheme (/_cedwyn/versions.json): each door's newest cut is shown as v0.0.2,
+   one older cut as v0.0.1, several older cuts as v0.0.1.1 (oldest) … v0.0.1.N; the reserved next version is #next. Display only (G.vlabel).
    v1.6.0 (30 Oct 2026): versions are hashtag chips under each scene (movie.js 1.5.0), not a menu. Each door lists its own
    versions: a reserved next version marked "coming" (manifest entry "next_version": {version, status: "coming"}; not
    playable), the cut that plays now (free, selected by default) and its earlier cuts ("cuts", newest first). The choice is
@@ -97,8 +99,17 @@
     out.push({v: cv, current: true, free: true, note: e.cut_note || ""});
     (e.cuts || []).slice().sort(function (a, b) { return subN(b.version) - subN(a.version); }).forEach(function (c) {
       var v = String(c.version || "").replace(/^v/, ""); if (v && v !== cv) out.push({v: v, cut: c, free: true, note: c.note || ""}); });
+    var olds = out.filter(function (c) { return !c.coming && !c.current; }), k = olds.length;   // v1.6.1: site-wide labels (newest v0.0.2, older v0.0.1 / v0.0.1.N)
+    out.forEach(function (c) { c.label = c.coming ? VS.next : c.current ? VS.newest : (k === 1 ? VS.previous : VS.previous + "." + (k - olds.indexOf(c))); });
     return out;
   };
+  // v1.6.1: one version scheme across the site (/_cedwyn/versions.json): the newest version of anything is v0.0.2; one older version is v0.0.1;
+  // several older versions are v0.0.1.1 (oldest) … v0.0.1.N (most recent), each its own separate version (no ranges); in a hashtag an
+  // underscore, never a hyphen, joins a name to its version (#Name_v0.0.2).
+  // Labels are for display only; manifest versions (0.0.1-0.0.N), data-v attributes, downloads and saved choices keep their own values.
+  var VS = {newest: "0.0.2", previous: "0.0.1", next: "next"};
+  try { fetch("/_cedwyn/versions.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { var s = j && j.scheme; if (!s) return; ["newest", "previous", "next"].forEach(function (x) { if (typeof s[x] === "string" && s[x]) VS[x] = s[x]; }); document.dispatchEvent(new CustomEvent("cedwyn-doc-vlabels")); }).catch(function () {}); } catch (e) {}
+  G.vlabel = function (n, v) { var l = G.chips(n).filter(function (c) { return c.v === String(v).replace(/^v/, ""); })[0]; return l ? l.label : String(v).replace(/^v/, ""); };
   G.chosen = function (n) { return G.pickV[n] || verOf(n); };
   G.pick = function (n, v) {
     var ok = G.chips(n).filter(function (c) { return c.v === v && !c.coming; })[0]; if (!ok) return false;

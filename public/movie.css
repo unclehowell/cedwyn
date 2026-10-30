@@ -212,9 +212,14 @@ body.cm .cm-size-b[aria-pressed="true"]{border-color:var(--gold)!important;color
 body.cm .cm-size-b:hover,body.cm .cm-size-b:focus-visible{border-color:var(--gold)!important;outline:none}
 @media (max-width:420px){.cm-size{gap:5px}.cm-size-lbl{flex-basis:100%;font-size:12px;margin:0}body.cm .cm-size-b{flex:1 1 0;justify-content:center;padding:6px 8px!important;font-size:13.5px!important}}
 /* hashtag version chips */
-.cm-vchips{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;margin:2px 0 8px;padding:2px 0 4px}
-body.cm .cm-vchip{flex:none;display:inline-flex!important;align-items:center;gap:5px;min-height:40px!important;min-width:0!important;padding:4px 11px!important;margin:0!important;border:1px solid var(--line)!important;border-radius:999px!important;background:transparent!important;color:var(--mut)!important;font:inherit;font-size:13px!important;line-height:1.2;white-space:nowrap;cursor:pointer;box-shadow:none!important;-webkit-tap-highlight-color:transparent}
-.cm-vchip .cm-vh{font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.cm-vchips{display:flex;flex-wrap:wrap;align-items:center;gap:6px 6px;max-width:100%;min-width:0;overflow:visible;margin:2px 0 8px;padding:2px 0 4px;box-sizing:border-box}   /* v1.5.1: wraps like a word cloud inside the card */
+body.cm .cm-vchip{flex:0 1 auto;max-width:100%;box-sizing:border-box;display:inline-flex!important;align-items:center;gap:5px;min-height:40px!important;min-width:0!important;padding:4px 11px!important;margin:0!important;border:1px solid var(--line)!important;border-radius:999px!important;background:transparent!important;color:var(--mut)!important;font:inherit;font-size:13px!important;line-height:1.2;white-space:normal;flex-wrap:wrap;cursor:pointer;box-shadow:none!important;-webkit-tap-highlight-color:transparent}
+.cm-vchip .cm-vh{overflow-wrap:anywhere}
+body.cm .cm-vchip.is-default{font-size:14px!important}
+body.cm .cm-vchip:not(.is-default):not(.is-coming){font-size:12.5px!important}
+body.cm .cm-size-s .cm-vchip.is-default{font-size:12px!important}
+body.cm .cm-size-s .cm-vchip:not(.is-default){font-size:11px!important}
+.cm-vchip .cm-vh{font-variant-numeric:tabular-nums;letter-spacing:.01em;min-width:0}
 .cm-vchip .cm-vtag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:1px 6px;border-radius:999px;background:#2b3a2f;color:#cfe3c8}
 body.cm .cm-vchip[aria-pressed="true"]{border-color:var(--gold)!important;color:var(--gold)!important;background:#221f14!important;font-weight:600}
 body.cm .cm-vchip[aria-pressed="true"] .cm-vtag{background:var(--gold);color:#1a1408}
