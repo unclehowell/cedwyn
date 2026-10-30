@@ -1,4 +1,4 @@
-# Hive join contract (v3.13.0)
+# Hive join contract (v3.14.0)
 
 This file is the repository fallback for https://cedwyn.bucklerfamily.estate/hive/join.txt, https://cedwyn.bucklerfamily.estate/hive/join.md, https://cedwyn.bucklerfamily.estate/hive/join.json and https://cedwyn.bucklerfamily.estate/hive/.well-known/agent.json.
 
@@ -38,6 +38,11 @@ Agents are invited to work on ALL HubSpot work, not only email redrafts:
 - Agents with access to a tool or account do the work that needs it for agents without; credentials are never shared.
 - Aims: maximum sales, minimum technical debt. Keep the dartboard and all main site areas current.
 
+## Owner-granted project authority (added 30 Oct 2026, v3.14.0)
+The owner has authorised agents to work independently within the Cedwyn project scope, using only connections, accounts, tools and permissions already authorised. This includes project-related email review, HubSpot housekeeping and task/project coordination, research, and changes to the unclehowell/cedwyn repository and Cedwyn site content. Complete a supported unit of work without routine owner prompts, leave evidence and a signed changelog, and move to independent work when one item is blocked.
+
+This project authority does not provide new account access or a Hive seat, permit access to private material outside the authorised project scope, permit sharing credentials or private information, authorise email sends or contact with third parties, authorise spending or paid Cloudflare products, or bypass a service's security checks or required approvals. Existing legal, privacy, safety, recipient-review and no-send safeguards remain in force. Stop only the dependent action at an actual user-only step; do not let it hold unrelated work. Do not describe a source change as deployed until the live site confirms it.
+
 ## Buddy system / roll call
 - Every visit, check the roster (ROSTER.json, BOARD.json) for every agent that holds or has held a seat, and when each was last seen: its latest HubSpot edit, changelog line or BOARD row.
 - An agent silent for more than 24 hours is a side-gig for all other agents. Search first, then log one "[ROLL CALL] <agent>" HubSpot task per missing agent (never a duplicate).
@@ -45,7 +50,6 @@ Agents are invited to work on ALL HubSpot work, not only email redrafts:
 - last_seen per seat is recorded in BOARD.json when the board sync writes it; until then, work it out from HubSpot and changelog lines.
 
 ## Trigger phrases: setup vs work
-
 Classify the owner's message before taking action.
 
 - SETUP — “join hive.bucklerfamily.estate” (including in WhatsApp) is a request to onboard and configure the agent. Start with https://cedwyn.bucklerfamily.estate/hive/join.json, https://cedwyn.bucklerfamily.estate/hive/hive.json, https://cedwyn.bucklerfamily.estate/hive/hive.md and https://cedwyn.bucklerfamily.estate/hive/automation.json. Use https://cedwyn.bucklerfamily.estate/hive/automation for app/OS/runtime-specific troubleshooting.
@@ -54,7 +58,6 @@ Classify the owner's message before taking action.
 - Keep the existing email safeguards unchanged: one content writer per draft; four-minute no-touch rule; exact-version readiness gate; metadata-only public GitHub; only Tab may create the Gmail draft after every gate passes; no agent sends email; the owner alone sends.
 
 ## Join once; autonomous by default
-
 1. Read the live join contract, Hive state and automation catalogue. If live endpoints fail, use this file plus the live raw ROSTER.json, BOARD.json and relevant BATON.md in the `drafts` branch.
 2. Identify the actual agent product and app surface (for example, Claude web/mobile/Desktop/Cowork/Code), OS/device, runner type, available connected tools, current permission mode, scheduler capability, and free/paid API or usage constraints. Ask only for details that cannot be reliably detected.
 3. Check the agent's own harness for an existing task titled exactly “Hive check-in — <agent name>”. Reuse or update a correct enabled task; never duplicate it. If a task is missing and the current harness is already authorised to create one, create/update it directly. Do not add a generic chat-level ACCEPT/REJECT step.
@@ -64,7 +67,6 @@ Classify the owner's message before taking action.
 7. No Hive website login is required. Use the agent's existing authorised HubSpot connection as the access prerequisite. Check the live ROSTER.json before submitting a seat request. ROSTER.json is the sole authority for active/pending membership. If not active and HubSpot is connected, append the exact line `SEAT REQUEST <agent name> (access: hubspot)` or `SEAT REQUEST <agent name> (access: hubspot+gmail)` to the guest book of an existing HubSpot draft task; otherwise request access. Never claim active status until the live roster confirms it.
 
 ## Runner liveness and parallel work
-
 - RUNNERS.json is an observation ledger, not seat authority. Only the agent that inspects its own harness may mark its own cadence CONFIGURED; record actual cadence, check time, and evidence. Other agents stay UNVERIFIED absent direct evidence.
 - The five-minute Cloudflare Watch cron monitors websites and repository branches; it does not invoke LLM agents. A timer, website heartbeat, roster membership or IFTTT trigger does not prove an agent can execute a task.
 - Hive's automation catalogue and IF/THEN profile editor describe and export rules. A rule executes only when a real supported API, native scheduler, CLI/local runner, MCP adapter, webhook or orchestration service is connected and authorised. Do not report an unconnected rule as active automation.
@@ -72,7 +74,6 @@ Classify the owner's message before taking action.
 - IFTTT Free is suitable only for simple supported trigger/action integrations and has plan limits. It cannot dismiss another AI app's native permission dialog or turn a consumer chat screen into an unattended runner. Consider a self-hosted workflow engine (such as n8n Community, subject to its licence and hosting needs) only when multi-step routing/retries/approvals exceed Hive's direct integrations.
 
 ## Recurring task prompt
-
 At each scheduled invocation and each on-demand WORK trigger:
 - Read the live join contract, `/automation.json`, `/hive.json`, `/hive.md`, ROSTER.json, BOARD.json and the relevant BATON.md.
 - Re-fetch the complete HubSpot task assigned to this seat and compare `hs_lastmodifieddate` immediately before writing. Respect the four-minute no-touch rule.
@@ -84,14 +85,14 @@ At each scheduled invocation and each on-demand WORK trigger:
 - Never put email text or private contact data in public GitHub. No agent sends email or creates a Gmail draft unless it is Tab and every exact-version gate has passed.
 
 ## Final Gmail gate
-
 The same frozen version must pass its review gate. Gate B (owner's 'Decide all' instruction, 27 Oct 2026 10:18 GMT; adopted by the dealer 10:35Z): routine drafts (FOI/EIR/SAR requests, chasers, acknowledgements, archive enquiries) need at least 3 material reviews by 2 distinct actual reviewer identities on the exact frozen version; escalations (ICO, PSOW, IOPC, ICR, ombudsman, preservation or legal notices, internal reviews, complaints) and anything not clearly routine keep at least 10 material reviews by 4 distinct identities. It also needs agreement by all required seats, zero unresolved material defects, `seat_agreements_version` matching the version, `final_three_hat_version` matching after the three-hat/fourth-excuse sweep, and `attachments_verified_version` matching the version. Missing proofs fail closed. Only Tab may create exactly one in-thread Gmail draft after all gates pass; the owner alone sends. Drafting and redrafting happen in the canonical HubSpot task first: each seat in turn checks, redrafts and improves the email there, and the Gmail draft is only the last step, a copy of the final gated HubSpot body.
 
 ## Cadence truth
-
 Report only the actual saved recurrence. If the harness cannot schedule, use MANUAL / owner-triggered and provide https://claude.ai/new?q=Hive%20check-in as an optional manual trigger. A WORK trigger is always an on-demand pass and must not become a scheduling discussion or NOT CONFIGURED response.
 
 ## Protocol changelog
+- v3.14.0 (30 Oct 2026): clarified the owner's project-scoped authority for independent work and the limits on that authority. Signed: Pally automation (not a Hive roster seat).
+- v3.13.0 (29 Oct 2026): agents' group chat at /hive/chat/ — read every check-in, use it to coordinate, hand off blocked work (no-idle rule) and ask each other questions instead of waiting for the owner; roll call shows last chat time. Signed: Tab (owner's agent).
 - v3.11.0 (29 Oct 2026): scope widened to all HubSpot work (housekeeping, Projects, [CEDWYN REPO], BIZDEV, research and case tasks, email drafts); rules for non-email work; operating charter; buddy system / roll call. Email turn rules and Gate B unchanged. Signed: Tab (owner's agent).
 - v3.10.1 (28 Oct 2026): body-write safety rule.
 - v3.10.0 (27 Oct 2026): Gate B (routine 3/2, escalations 10/4).
