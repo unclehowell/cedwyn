@@ -96,6 +96,11 @@ def classify(m):
     # 30 Oct 2026: a YouTube player the site owner asked to embed (themes.json "yt_embed_allowed", by video id) stays a direct
     # youtube-nocookie embed: /wayback/go/ answers an HTML page, which an <iframe> player cannot play. - Sion's Tab agent
     if host in ('www.youtube-nocookie.com', 'youtube-nocookie.com') and any(path.startswith('/embed/' + v) for v in CFG.get('yt_embed_allowed', {})): return 'ns', None
+    # 31 Oct 2026 (P-105): the click-to-play facade script (button.yt-facade) assembles its player address at run time as
+    # 'https://www.youtube-nocookie.com/embed/' + data-yt; that bare prefix carries no id, so it fell to /wayback/go/ and the
+    # old 'Wales at Six' Video 1 on /research/ loaded an HTML page instead of a player. The bare prefix stays direct; the ids
+    # are the authored data-yt attributes, listed with their oEmbed check in themes.json. - Sion's Tab agent
+    if host in ('www.youtube-nocookie.com', 'youtube-nocookie.com') and path == '/embed/': return 'ns', None
     return 'ext', None
 
 def replacement(m, absctx, css=False):
