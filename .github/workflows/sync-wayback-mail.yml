@@ -1,0 +1,46 @@
+name: sync-wayback-mail
+# P-054 (30 Oct 2026): copies the Wayback Vault's redacted correspondence (wayback/mail, wayback/api, wayback/text) from
+# unclehowell/datro branch wayback onto this repo's branch wayback, which the site build assembles into /wayback/. Files are
+# added or overwritten, never deleted; images and pages are left alone. Read-only on datro. A push to branch wayback
+# starts no build. Refuses to push if a private name or signature line survives in the copied files. — Sion's Tab agent
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/sync-wayback-mail.yml']
+permissions:
+  contents: write
+concurrency:
+  group: sync-wayback-mail
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Copy the redacted mail from datro@wayback
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          git clone -q --depth 1 --filter=blob:none --sparse -b wayback https://github.com/unclehowell/datro.git src
+          git -C src sparse-checkout set wayback/mail wayback/api wayback/text
+          git clone -q --depth 1 --filter=blob:none --sparse -b wayback "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" dst
+          git -C dst sparse-checkout set wayback/mail wayback/api wayback/text
+          for d in mail api text; do
+            if [ -d "src/wayback/$d" ]; then mkdir -p "dst/wayback/$d"; cp -a "src/wayback/$d/." "dst/wayback/$d/"; fi
+          done
+          python3 - <<'PY'
+          import pathlib, re, sys
+          n = [bytes.fromhex(h).decode() for h in ('526567616e', '57656262', '4d6172696e61', '4a6166666565', '4272616e77656e')]
+          rx = re.compile(r"\b%s\s*>?\s*%s\b|\b%s\s*>?\s*%s\b|\b%s\b|Royal Signals Cyber|Ret'd Sergeant" % tuple(n), re.I)
+          bad = [str(f) for d in ('mail', 'api', 'text') for f in pathlib.Path('dst/wayback', d).rglob('*')
+                 if f.is_file() and f.suffix in ('.txt', '.json') and rx.search(f.read_text('utf-8', 'ignore'))]
+          print('files still carrying a private name or signature line:', len(bad))
+          sys.exit(1 if bad else 0)
+          PY
+          cd dst
+          git add -A wayback/mail wayback/api wayback/text
+          if git diff --cached --quiet; then echo "nothing to sync"; exit 0; fi
+          git diff --cached --stat | tail -1
+          git -c user.name='cedwyn-build' -c user.email='actions@users.noreply.github.com' commit -q -m "Wayback Vault: sync the redacted correspondence from the archive (mail, records, texts) — Sion's Tab agent"
+          git push -q origin HEAD:wayback
