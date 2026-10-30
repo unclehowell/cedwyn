@@ -1,4 +1,4 @@
-/* Cedwyn · documentary — download button (download.js v1.0.2, 30 Oct 2026 (1.0.2: for a scene with per-language lip-synced video, the file offered is made from that language's video — the pipeline builds each audio language's versions from its own video, (their entries carry from_video); until those exist, a choice with subtitles off offers that language's video file itself (it carries that language's audio); 1.0.1: the button sits in the controls, under the audio and subtitle choices, so the site header never covers it)). A tab.bot production.
+/* Cedwyn · documentary — download button (download.js v1.0.1, 30 Oct 2026 (1.0.1: the button sits in the controls, under the audio and subtitle choices, so the site header never covers it)). A tab.bot production.
    Ten seconds into a scene a Download button fades in under the audio and subtitle choices. It downloads that scene with exactly the
    audio language and subtitle choice selected at the moment it is tapped (burned-in subtitles, or none), as an MP4
    that plays on any phone or computer. The versions are made by the film pipeline (tools/download_variants.py) and
@@ -35,8 +35,6 @@
     var a = P.audio ? P.audio() : null; if (!a || !(m.audio && m.audio[a])) a = m.default_audio || "cy";
     var s = P.sub ? P.sub() : "off"; if (s !== "off" && !NAT[s]) s = "off";
     var d = m.downloads || null, e = d && d[a + "|" + s];
-    var lv = m.video && m.video[a];   // 1.0.2: per-language lip-synced video
-    if (lv && s === "off" && !(e && e.from_video)) e = {path: lv, ext: (String(lv).match(/\.(\w+)$/) || [0, "webm"])[1], title: "Cedwyn – Door " + (c.f && c.f.n) + " – " + NAT[a] + " audio – No subtitles"};
     return {n: c.f && c.f.n, a: a, s: s, e: e, title: (e && e.title) || ("Cedwyn – Door " + (c.f && c.f.n) + " – " + NAT[a] + " audio – " + (s === "off" ? "No subtitles" : T.en.subs[s]))};
   }
   function paint() {
@@ -45,7 +43,7 @@
     B.setAttribute("aria-label", x.dl + ": " + b2.textContent); B.title = c.e ? c.title : x.na;
   }
   function show(on) { ROW.classList.toggle("is-on", on); }
-  function hasAny() { var c = cur(); return !!(c && c.m && (c.m.downloads || c.m.video)); }
+  function hasAny() { var c = cur(); return !!(c && c.m && c.m.downloads); }
   V.addEventListener("timeupdate", function () {
     var c = cur(); if (!c) return; var id = c.f && c.f.n;
     if (shownFor !== id && hasAny() && (V.currentTime || 0) >= AT) { shownFor = id; paint(); show(true); }
@@ -60,7 +58,7 @@
   B.addEventListener("click", function (ev) {
     ev.stopPropagation(); if (busy) return; var c = choice(), x = tt(); if (!c) return;
     if (!c.e) { b2.textContent = x.na; setTimeout(paint, 2500); return; }
-    var ext = c.e.ext || "mp4", url = P.raw + c.e.path, name = c.title + "." + ext; busy = true; B.classList.add("is-busy"); b1.textContent = x.wait + "…";
+    var url = P.raw + c.e.path, name = c.title + ".mp4"; busy = true; B.classList.add("is-busy"); b1.textContent = x.wait + "…";
     window.CedwynDownloadLast = {key: c.a + "|" + c.s, path: c.e.path, name: name, at: Date.now()};
     fetch(url, {mode: "cors"}).then(function (r) {
       if (!r.ok) throw new Error("http " + r.status);
@@ -68,14 +66,14 @@
       if (!r.body || !window.ReadableStream) return r.blob();
       var rd = r.body.getReader(), parts = [], got = 0;
       return (function pump() { return rd.read().then(function (o) {
-        if (o.done) return new Blob(parts, {type: "video/" + ext});
+        if (o.done) return new Blob(parts, {type: "video/mp4"});
         parts.push(o.value); got += o.value.length; if (total) b1.textContent = x.wait + " " + Math.min(99, Math.round(got * 100 / total)) + "%";
         return pump(); }); })();
     }).then(function (blob) {
-      save(blob.type ? blob : new Blob([blob], {type: "video/" + ext}), name);
+      save(blob.type ? blob : new Blob([blob], {type: "video/mp4"}), name);
       window.CedwynDownloadLast.bytes = blob.size; window.CedwynDownloadLast.done = true;
     }).catch(function () { b2.textContent = x.fail; window.open(url, "_blank", "noopener"); })
       .then(function () { busy = false; B.classList.remove("is-busy"); setTimeout(paint, 1200); });
   });
-  window.CedwynDownload = {choice: choice, button: B, version: "1.0.2"};
+  window.CedwynDownload = {choice: choice, button: B, version: "1.0.1"};
 })();
