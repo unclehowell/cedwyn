@@ -7,12 +7,18 @@ Runs after ebook_editions.py (site.py). Touches only dist/ebooks/index.html:
 - tapping the cover opens the book's free first release (v0.0.1) in the existing reader (a[data-edp-pdf]);
 - the title is plain text unless the book has its own page (data/ebooks.json "page", not /ebooks/ itself);
 - the editions table moves below the shelf; the bundle and Academy sections stay where they are.
+1.2.0 (30 Oct 2026, owner rule: the shop page is header -> shelf of book cards -> FAQ/trust, no explanatory blocks):
+- the "What's inside" block, the "Editions and prices" table, "About versions", the pitch band and the shelf version line leave the page;
+- each card's title carries an info button (aria-label "What's inside") that opens a dark modal with the book's contents, page count and
+  edition line (closes on the cross, Esc or a tap outside); the bundle (all four) becomes one card on the shelf with its own Buy button;
+- the payment line (#eb-trust) sits below the shelf, just above the questions. tidy() is idempotent and also runs on an already-built page.
 Prices, checkout links and utm parameters are copied from the page as they are; nothing new is created."""
 import json, html, pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.1.0'
-VERSIONS = [('1.1.0', '27 Oct 2026', 'Poster-card shelf; cover opens the free edition; titles link only to a book’s own page'),
+VERSION = '1.2.0'
+VERSIONS = [('1.2.0', '30 Oct 2026', 'Header, shelf, then questions: book details in an info modal per title; bundle card on the shelf'),
+            ('1.1.0', '27 Oct 2026', 'Poster-card shelf; cover opens the free edition; titles link only to a book’s own page'),
             ('1.0.1', '26 Oct 2026', 'Editions table shown as cards on phones'),
             ('1.0.0', '25 Oct 2026', 'Editions and prices table')]
 CSS = ('<style id="sh-css">.sh{max-width:1240px;margin:0 auto 22px;padding:0 12px}.sh h2.sh-h{margin:4px 0 12px;font-size:1.25rem}'
@@ -55,31 +61,136 @@ def card(art, pages):
     t = f'<a href="{E(page)}">{E(title)}</a>' if page else E(title)
     return (f'<li class="sh-card" id="{E(cid)}">{cov}<h3 class="sh-t">{t}</h3>'
             + (f'<p class="sh-hook">{E(hook)}</p>' if hook else '') + box + '</li>')
+WI_CSS = ('<style id="wi-css">.sh-th{display:flex;align-items:flex-start;gap:2px}.sh-th .sh-t{flex:1 1 auto;min-width:0}'
+          '.sh-i{flex:0 0 auto;background:none;border:0;color:var(--ghf-s,#F2C94C);font-size:18px;line-height:1;padding:8px 2px 6px 4px;'
+          'margin:0;cursor:pointer;min-width:30px;min-height:30px;-webkit-tap-highlight-color:transparent}.sh-i:focus-visible{outline:2px solid var(--ghf-s,#F2C94C)}'
+          'dialog.eb-wi{background:#121212;color:#ece8e1;border:1px solid #444;border-radius:10px;padding:0;width:min(560px,92vw);max-height:84vh;'
+          'overflow:auto;box-sizing:border-box}dialog.eb-wi::backdrop{background:rgba(0,0,0,.72)}.eb-wi-in{position:relative;padding:18px 18px 16px;'
+          'font-size:15px;line-height:1.5}.eb-wi-in h2{margin:0 34px 4px 0;font-size:18px;line-height:1.3}.eb-wi-ln{margin:0 0 12px;font-size:13px;'
+          'opacity:.75}.eb-wi-in p,.eb-wi-in li{margin:0 0 8px}.eb-wi-in ol{margin:0 0 8px;padding-left:20px}.eb-wi-in a{color:var(--ghf-s,#F2C94C)}'
+          '.eb-wi-x{position:absolute;top:8px;right:8px;background:none;border:0;color:inherit;font-size:20px;line-height:1;width:36px;height:36px;'
+          'cursor:pointer}.sh-bcov{display:grid;grid-template-columns:1fr 1fr;gap:2px;aspect-ratio:2/3;background:#000}.sh-bcov img{width:100%;'
+          'height:100%;object-fit:cover;display:block}.sh-bundle .sv-go{margin-top:6px}</style>')
+WI_JS = ('<script id="wi-js">(function(){document.addEventListener("click",function(e){var t=e.target;if(!t||!t.closest)return;'
+         'var b=t.closest("[data-wi]");if(b){var d=document.getElementById(b.getAttribute("data-wi"));if(d){e.preventDefault();'
+         'if(d.showModal){if(!d.open)d.showModal();}else{d.setAttribute("open","");}}return;}'
+         'var x=t.closest(".eb-wi-x");if(x){var dx=x.closest("dialog");if(dx){dx.close?dx.close():dx.removeAttribute("open");}return;}'
+         'if(t.tagName==="DIALOG"&&t.classList.contains("eb-wi")){t.close?t.close():t.removeAttribute("open");}});})();</script>')
+INSIDE = {   # contents per book, moved from the page into the info modal (owner, 19:18 30 Oct 2026)
+    'great-house-farm-wiki': '<ol><li><b>Start here</b>: where things stand and how to read the records</li>'
+        '<li><b>The case</b>: the two parcels, the people, the 1877 agreement, the 1916 tenancy, the 1955 and 1962 possession orders, the 1974 licence letters and BP Properties Ltd v Buckler</li>'
+        '<li><b>Timeline and chronologies</b>: the master timeline, year by year</li>'
+        '<li><b>Evidence</b>: each record with what it is, where it is held and how it was seen</li>'
+        '<li><b>Source conflicts, name variations and nomenclature</b></li><li><b>Correspondence</b>: letters and replies from public bodies</li>'
+        '<li><b>Research leads and lines of enquiry</b></li><li><b>Scrutiny, legal analysis and accountability</b></li>'
+        '<li><b>About the Wiki, change log and index</b></li></ol>',
+    'fcg-fraud-concealment-and-government-involvement': '<p>The case and its lines of enquiry, each graded: DOCUMENTED (a primary record in hand, cited by reference), INFERENCE (a reasoned reading of documented facts), TEST REQUIRED (needs a named record), SOURCE PENDING (identified, original not yet attached).</p>',
+    'dartboard-disclosure': '<p>Every route to a public record about the farm, institution by institution: the legal regimes that reach its records, each rung of its escalation ladder with its legal basis, time limit and cost, and what has been asked and answered.</p>',
+    'project-management': '<p>The PRINCE2 project dossier of the Tŷ Mawr digital estate and its evidence-recovery programme.</p>',
+}
+MONTHS = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split()
+def _books(D): return {b['id']: b for b in (D or {}).get('books', [])}
+def info_line(b):
+    if not b: return ''
+    bits = []
+    if b.get('edition'): bits.append('Edition ' + b['edition'])
+    if b.get('pages'): bits.append('{:,} pages'.format(int(b['pages'])))
+    m = re.search(r'(\d{4})-(\d{2})-(\d{2})', b.get('supplement') or '')
+    if m: bits.append('free supplement PDF %d %s %s' % (int(m.group(3)), MONTHS[int(m.group(2)) - 1], m.group(1)))
+    return ' · '.join(bits)
+def info_dialog(cid, title, body, line):
+    return (f'<dialog class="eb-wi" id="wi-{E(cid)}" aria-labelledby="wi-{E(cid)}-h"><div class="eb-wi-in">'
+            f'<button type="button" class="eb-wi-x" aria-label="Close">✕</button><h2 id="wi-{E(cid)}-h">{E(title)}</h2>'
+            + (f'<p class="eb-wi-ln">{E(line)}</p>' if line else '') + body + '</div></dialog>')
+def info_button(cid):
+    return f'<button type="button" class="sh-i" data-wi="wi-{E(cid)}" aria-label="What’s inside" aria-haspopup="dialog">ⓘ</button>'
+_DESC = {}   # full description per card id, read from the book list while the shelf is built
+def tidy(t, D):
+    """Idempotent: the shop page is header -> shelf -> questions and payment line; details live in each title's info modal."""
+    if 'id="sh-css"' not in t: return t
+    B = _books(D)
+    for sid in ('whats-inside', 'editions', 'versions', 'digital-estate-books'):
+        t = re.sub(r'<section\b[^>]*\bid="%s"[^>]*>.*?</section>\s*' % sid, '', t, flags=re.S)
+    t = re.sub(r'<p class="sh-ver"[^>]*>.*?</p>', '', t, flags=re.S)
+    t = re.sub(r'<a\b[^>]*href="#(?:versions|editions|whats-inside)"[^>]*>.*?</a>\s*(?:·\s*)?', '', t, flags=re.S)
+    dialogs = []
+    bm = re.search(r'<section\b[^>]*\bid="all-four"[^>]*>.*?</section>\s*', t, re.S)
+    if bm and 'sh-bundle' not in t:
+        sec = bm.group(0); buy = re.search(r'<a\b[^>]*href="(https://buy\.stripe\.com/[^"]+)"', sec)
+        bun = ((D or {}).get('bundles') or [{}])[0]; price = bun.get('price') or (re.search(r'£[\d.]+', sec) or [''])[0]
+        if buy:
+            covs = ''.join(f'<img src="/ebooks/posters/{E(i)}.webp" width="200" height="300" alt="" loading="lazy" decoding="async">'
+                           for i in bun.get('books', [])[:4] if (ROOT / 'web' / 'ebooks' / 'posters' / f'{i}.webp').exists())
+            page = bun.get('page') or '/ebooks/all-four/'
+            card_ = (f'<li class="sh-card sh-bundle" id="all-four-card"><a class="sh-cov sh-bcov" href="{E(page)}" aria-label="All four books">{covs}</a>'
+                     f'<div class="sh-th"><h3 class="sh-t"><a href="{E(page)}">All four books</a></h3>{info_button("all-four")}</div>'
+                     f'<p class="sh-hook">Four PDFs, one checkout</p><div class="eb-edbox"><a class="sv-go" href="{buy.group(1)}" rel="nofollow">Buy all four · {E(price)}</a></div></li>')
+            g = t.find('</ul>', t.find('class="sh-grid"'))
+            if g > 0:
+                t = t[:g] + card_ + t[g:]
+                t = t.replace(sec, '', 1)
+                body = re.sub(r'<[^>]+>', '', (re.search(r'<p>(.*?)</p>', sec, re.S) or [None, ''])[1]).strip()
+                titles = [B[i]['title'] for i in bun.get('books', []) if i in B]
+                inner = ('<ul>' + ''.join(f'<li>{E(x)}</li>' for x in titles) + '</ul>') if titles else ''
+                dialogs.append(info_dialog('all-four', 'All four books · ' + price, (f'<p>{E(body)}</p>' if body else '') + inner +
+                                           f'<p><a href="{E(page)}">What’s in the bundle</a></p>', ''))
+    def add_btn(m):
+        li = m.group(0); cid = m.group(1)
+        if 'class="sh-i"' in li: return li
+        h = re.search(r'<h3 class="sh-t">.*?</h3>', li, re.S)
+        if not h: return li
+        b = B.get(cid, {}); title = re.sub(r'<[^>]+>', '', h.group(0)).strip()
+        body = INSIDE.get(cid)
+        if not body:
+            d = _DESC.get(cid) or re.sub(r'<[^>]+>', '', (re.search(r'<p class="sh-hook">(.*?)</p>', li, re.S) or [None, ''])[1]).strip()
+            body = f'<p>{E(html.unescape(d))}</p>' if d else ''
+        if b.get('page') and b['page'].rstrip('/') != '/ebooks': body += f'<p><a href="{E(b["page"])}">The book’s own page</a></p>'
+        dialogs.append(info_dialog(cid, title, body, info_line(b)))
+        return li[:h.start()] + '<div class="sh-th">' + h.group(0) + info_button(cid) + '</div>' + li[h.end():]
+    t = re.sub(r'<li class="sh-card" id="([^"]+)">.*?</li>', add_btn, t, flags=re.S)
+    dialogs = [d for d in dialogs if ('id="%s"' % re.search(r'id="(wi-[^"]+)"', d).group(1)) not in t]
+    if dialogs:
+        at = t.rfind('</main>'); at = at if at >= 0 else t.rfind('</body>')
+        t = t[:at] + '<div id="wi-dialogs">' + ''.join(dialogs) + '</div>' + t[at:]
+    tm = re.search(r'<p class="eb-trust" id="eb-trust">.*?</p>', t, re.S); sh = t.find('id="shelf"')
+    if tm and sh > 0 and tm.start() < sh:   # the payment line goes below the shelf, above the questions
+        line = tm.group(0); t = t[:tm.start()] + t[tm.end():]
+        at = t.find('<section class="eb-copy" id="faq"')
+        if at < 0: at = t.find('</section>', t.find('id="shelf"')) + len('</section>')
+        t = t[:at] + line + t[at:]
+    if 'id="wi-css"' not in t:
+        m = re.search(r'</head\s*>', t, re.I)
+        if m: t = t[:m.start()] + WI_CSS + t[m.start():]
+    if 'id="wi-js"' not in t:
+        at = t.rfind('</body>')
+        if at > 0: t = t[:at] + WI_JS + t[at:]
+    return t
+
 def run(dist):
     dist = pathlib.Path(dist); p = dist / 'ebooks' / 'index.html'
     if not p.exists(): print('ebook_shelf: no /ebooks/ page'); return
-    t = p.read_text(encoding='utf-8', errors='ignore')
-    if 'id="sh-css"' in t: print('ebook_shelf: already applied'); return
+    t = p.read_text(encoding='utf-8', errors='ignore'); o = t
     try: D = json.load(open(ROOT / 'data' / 'ebooks.json', encoding='utf-8'))
     except Exception: D = {'books': []}
-    pages = {b['id']: b['page'] for b in D.get('books', []) if b.get('page') and b['page'].rstrip('/') not in ('/ebooks', '')
-             and (dist / b['page'].strip('/') / 'index.html').exists()}
-    m = re.search(r'<section class="eb-list"[^>]*>(.*?)</section>', t, re.S)
-    if not m: print('ebook_shelf: no book list found'); return
-    arts = re.findall(r'<article class="eb-card".*?</article>', m.group(1), re.S)
-    if not arts: print('ebook_shelf: no cards'); return
-    vers = ' · '.join(f'v{v} ({d})' for v, d, _ in VERSIONS)
-    shelf = (f'<section class="sh" id="shelf" aria-label="Books" data-shelf-version="{VERSION}">{CSS}<h2 class="sh-h">The books</h2>'
-             f'<ul class="sh-grid">' + ''.join(card(a, pages) for a in arts) + '</ul>'
-             f'<p class="sh-ver">Shelf version {VERSION}. Versions: {vers}.</p></section>')
-    t = t[:m.start()] + shelf + t[m.end():]
-    ed = re.search(r'<section class="eb-eds" id="editions".*?</section>', t, re.S)
-    if ed:   # editions table below the shelf; a title links only to a book's own page
-        sec = ed.group(0)
-        sec = re.sub(r'<td><a href="/ebooks/">(.*?)</a></td>', r'<td>\1</td>', sec)
-        t = t[:ed.start()] + t[ed.end():]
-        i = t.find('</section>', t.find('id="shelf"')) + len('</section>')
-        t = t[:i] + sec + t[i:]
-    p.write_text(t, encoding='utf-8')
-    print('ebook_shelf: cards', len(arts), '; titles linked', sum(1 for a in arts if re.search(r'id="([^"]+)"', a).group(1) in pages))
+    if 'id="sh-css"' in t:
+        print('ebook_shelf: shelf already built')
+    else:
+        pages = {b['id']: b['page'] for b in D.get('books', []) if b.get('page') and b['page'].rstrip('/') not in ('/ebooks', '')
+                 and (dist / b['page'].strip('/') / 'index.html').exists()}
+        m = re.search(r'<section class="eb-list"[^>]*>(.*?)</section>', t, re.S)
+        if not m: print('ebook_shelf: no book list found'); return
+        arts = re.findall(r'<article class="eb-card".*?</article>', m.group(1), re.S)
+        if not arts: print('ebook_shelf: no cards'); return
+        for a in arts:   # the full description goes into the card's info modal
+            cid = re.search(r'id="([^"]+)"', a).group(1)
+            d = re.search(r'<p class="eb-desc">(.*?)</p>', a, re.S) or re.search(r'<p class="eb-sub">(.*?)</p>', a, re.S)
+            if d: _DESC[cid] = html.unescape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', d.group(1)))).strip()
+        shelf = (f'<section class="sh" id="shelf" aria-label="Books" data-shelf-version="{VERSION}">{CSS}<h2 class="sh-h">The books</h2>'
+                 f'<ul class="sh-grid">' + ''.join(card(a, pages) for a in arts) + '</ul></section>')
+        t = t[:m.start()] + shelf + t[m.end():]
+        print('ebook_shelf: cards', len(arts), '; titles linked', sum(1 for a in arts if re.search(r'id="([^"]+)"', a).group(1) in pages))
+    t = tidy(t, D)
+    if t != o: p.write_text(t, encoding='utf-8')
+    print('ebook_shelf: info buttons', t.count('class="sh-i"'), '; dialogs', t.count('<dialog class="eb-wi"'), '; bundle card', 'sh-bundle' in t,
+          '; editions/whats-inside/versions left', sum(('id="%s"' % x) in t for x in ('editions', 'whats-inside', 'versions')))
 if __name__ == '__main__': run(sys.argv[1] if len(sys.argv) > 1 else 'dist')

@@ -106,17 +106,15 @@ def shop_copy(D, t):
     if 'id="eb-shop-copy-css"' not in t:
         m = re.search(r'</head\s*>', t, re.I)
         if m: t = t[:m.start()] + SHOP_CSS + t[m.start():]
-    if 'id="whats-inside"' not in t:   # after the books, before the questions: the first phone screen shows the books, prices and Buy (sales-fix run 33)
-        at = t.find('<section class="sl-band eb-about" id="digital-estate-books"')
-        if at < 0: at = t.rfind('</main>')
-        if at >= 0: t = t[:at] + whats_inside(D) + t[at:]
-    if 'id="eb-trust"' not in t:   # site.py runs this before ebook_shelf.py builds the shelf, so the line goes at the top of <main>
-        m = re.search(r'<section class="sh" id="shelf".*?</h2>', t, flags=re.S) or re.search(r'<main\b[^>]*>', t)
-        if m: t = t[:m.end()] + trust_line() + t[m.end():]
+    # 30 Oct 2026 (owner rule): no explanatory blocks above the books. The contents now open from each title's info button
+    # (ebook_shelf.py 1.2.0); the payment line and the questions sit below the shelf.
     if 'id="faq"' not in t and 'FAQPage' not in t:
         at = t.find('<section class="sl-band eb-about" id="digital-estate-books"')
         if at < 0: at = t.rfind('</main>')
         if at >= 0: t = t[:at] + faq(D) + t[at:]
+    if 'id="eb-trust"' not in t:
+        at = t.find('<section class="eb-copy" id="faq"')
+        if at >= 0: t = t[:at] + trust_line() + t[at:]
     return t
 def write_view(dist, D):
     out = pathlib.Path(dist) / 'ebooks' / '_db'; out.mkdir(parents=True, exist_ok=True)
