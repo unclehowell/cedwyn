@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3094324/3094329/21/",
  "key": "newspapers.library.wales/view/3094324/3094329/21",
- "title": "The Cardiff and Merthyr Guardian Glamorgan Monmouth and Brecon Gazette, 30th December 1864, p. 5 — Caedjff And Its Neighbourhood",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3094324-3094329-21/",
  "latest": "/websites/newspapers.library.wales/view-3094324-3094329-21/latest.html",
  "first_captured": "2017-09-24T14:07:15Z",
- "last_captured": "2026-10-24T14:41:33Z",
- "current_version": "v1.1.0",
+ "last_captured": "2026-10-30T06:41:25Z",
+ "current_version": "v1.1.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -32,9 +32,22 @@
    "file": "v1.1.0.html",
    "screenshot": "screenshot-v1.1.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144133/newspapers.library.wales/view/3094324/3094329/21/"
+  },
+  {
+   "version": "v1.1.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:41:25Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "b996cb7d238bd673ce59f3361921c60eea37cee6ab4f2f04fcbb516e7e8720fa",
+   "markup_sha256": "48631ce77f8d65087937bf03232d312d4aac1dd6ed0d652eab61f3079cef6800",
+   "file": "v1.1.1.html",
+   "screenshot": "screenshot-v1.1.1.jpg",
+   "published_utc": "2026-10-30T06:44:45Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

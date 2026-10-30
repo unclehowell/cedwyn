@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3114653/3114654/12/",
  "key": "newspapers.library.wales/view/3114653/3114654/12",
- "title": "Tarian Y Gweithiwr, 15th December 1887, p. 1 — - Gweithiau Alcan Cydweli Wedi Eu Hatal",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3114653-3114654-12/",
  "latest": "/websites/newspapers.library.wales/view-3114653-3114654-12/latest.html",
  "first_captured": "2026-10-24T14:41:47Z",
- "last_captured": "2026-10-24T14:41:47Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:39:52Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144147/newspapers.library.wales/view/3114653/3114654/12/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:39:52Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "0e8e2ccedcd00d3639679ebc568d9fe01c6a6492067b9aeedb97183ea4d0d740",
+   "markup_sha256": "f872834b99b043a904656aff406da733cd9ae9a0f87316dea4157fb3b46df5e6",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:44:24Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }
