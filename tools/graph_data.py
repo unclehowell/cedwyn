@@ -76,7 +76,10 @@ def evidence(dist, area):
             if pg.exists():
                 t = pg.read_text('utf-8', 'ignore'); m = re.search(r'<h1[^>]*>(.*?)</h1>', t, re.S)
                 d = first_date(re.sub('<[^>]+>', ' ', m.group(1)) if m else '') or first_date(re.sub('<[^>]+>', ' ', t[:20000]))
-        g = int(e.get('evidence_grade') or 6)
+        raw_grade = e.get('evidence_grade')
+        if raw_grade is None:
+            continue
+        g = int(raw_grade)
         slug = p.rstrip('/').split('/')[-1]; nm = re.sub(r'^ev-\d+-', '', slug).replace('-', ' ')
         rows.append({'x': d, 'y': GRADE.get(g, str(g)), 'c': GRADE.get(g, str(g)), 'l': '%s %s' % (e.get('ev', ''), nm), 'h': p})
     out = pack(area, 'Evidence catalogue', 'Date of the record', 'Evidence grade', 'Grade', rows, ymax=6, cmax=6)
