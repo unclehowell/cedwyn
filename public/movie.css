@@ -252,3 +252,41 @@ body.cm .cm-grid.cm-size-l .cm-shots,body.cm .cm-grid.cm-size-l .cm-desc-i{font-
 body.cm .cm-grid.cm-size-l .cm-date{font-size:12px!important;padding:2px 7px;left:6px;bottom:6px}
 body.cm .cm-grid.cm-size-l .cm-ai{font-size:10px!important}
 @media (min-width:700px){.cm-size-l .cm-card{flex-direction:row;align-items:flex-start}.cm-size-l .cm-card .cm-thumb{flex:0 0 58%;max-width:760px}.cm-size-l .cm-card .cm-body{flex:1 1 0;min-width:0}}
+
+/* v1.6.0 (30 Oct 2026): now playing, Back/Next, access-code box (documentary.js 1.7.0) */
+.cm-vchip .cm-vnow{display:none}
+body.cm .cm-vchip.is-playing{background:var(--gold)!important;color:#1a1408!important;border-color:var(--gold)!important;font-weight:700}
+body.cm .cm-vchip.is-playing .cm-vtag{background:#1a1408;color:var(--gold)}
+body.cm .cm-vchip.is-playing .cm-vnow{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+body.cm .cm-vchip.is-playing .cm-vnow::before{content:"";width:7px;height:7px;border-radius:50%;background:#1a1408;animation:cmPulse 1.4s ease-in-out infinite}
+@keyframes cmPulse{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){body.cm .cm-vchip.is-playing .cm-vnow::before{animation:none}}
+.cm-nav{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+body.cm .cm-navb{flex:0 0 auto;width:auto!important;height:auto!important;min-height:44px;min-width:88px;padding:6px 14px!important;font-size:14px!important;font-weight:600;background:#1e2621!important;color:var(--ink)!important;border:1px solid #3a463d!important;border-radius:999px!important}
+body.cm .cm-navb:disabled{opacity:.35;cursor:default}
+body.cm .cm-navb:not(:disabled):hover,body.cm .cm-navb:focus-visible{border-color:var(--gold)!important;outline:none}
+.cm-now{flex:1 1 auto;min-width:0;margin:0;font-size:12.5px;line-height:1.3;color:var(--gold);text-align:center;overflow-wrap:anywhere}
+@media (max-width:420px){.cm-nav{flex-wrap:wrap}.cm-now{order:-1;flex-basis:100%}body.cm .cm-navb{flex:1 1 0}}
+dialog.cd-gate{word-spacing:.12em;max-width:min(92vw,440px);width:100%;box-sizing:border-box;border:1px solid var(--gold);border-radius:14px;padding:20px 18px 16px;background:#171d19;color:#ece9df;box-shadow:0 12px 44px rgba(0,0,0,.6);font:16px/1.45 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+dialog.cd-gate::backdrop{background:rgba(0,0,0,.72)}
+.cd-gate h2{text-transform:none!important;letter-spacing:.01em!important;margin:0 36px 8px 0;font:600 20px/1.25 Georgia,"Times New Roman",serif;color:#ece9df}
+.cd-gate p{margin:0 0 10px}.cd-gate .cd-glead,.cd-gate .cd-gwt,.cd-gate .cd-gck{color:#c9c7bb;font-size:15px}
+.cd-gate .cd-gx{position:absolute;top:8px;right:8px;width:44px;height:44px;border:0;border-radius:999px;background:transparent;color:#ece9df;font-size:26px;line-height:1;cursor:pointer}
+.cd-gate .cd-gl{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#d4b25a;margin:6px 0 6px}
+.cd-gate .cd-grow{display:flex;gap:8px;flex-wrap:wrap}
+.cd-gate .cd-gin{flex:1 1 180px;min-width:0;min-height:48px;box-sizing:border-box;padding:8px 12px;border:1px solid #3a463d;border-radius:10px;background:#101512;color:#ece9df;font:600 17px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase}
+.cd-gate .cd-gin:focus{outline:2px solid #d4b25a;outline-offset:1px}
+.cd-gate button,.cd-gate .cd-gbuy{min-height:48px;padding:8px 16px;border-radius:10px;font-family:inherit;font-weight:600;font-size:15px;line-height:1.2;cursor:pointer;box-sizing:border-box}
+.cd-gate .cd-gok,.cd-gate .cd-gplay{border:1px solid #d4b25a;background:#d4b25a;color:#1a1408}
+.cd-gate .cd-gok:disabled{opacity:.6}
+.cd-gate .cd-gbuyrow{display:flex;flex-direction:column;gap:8px;margin:14px 0 8px;padding-top:12px;border-top:1px solid #2a332c}
+.cd-gate .cd-gbuy{display:flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #d4b25a;background:#221f14;color:#d4b25a}
+.cd-gate button,.cd-gate .cd-gbuy{word-spacing:.18em!important}
+.cd-gate .cd-gfree,.cd-gate .cd-gcopy{border:1px solid #3a463d;background:#1e2621;color:#ece9df}
+.cd-gate .cd-gmsg{min-height:1.4em;margin:8px 0 0;font-size:14px;color:#e9d9a6}
+.cd-gate .cd-gcv{font:700 clamp(19px,5.6vw,24px)/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;color:#d4b25a;background:#101512;border:1px dashed #d4b25a;border-radius:10px;padding:12px;text-align:center;user-select:all;overflow-wrap:anywhere}
+.cd-gate .cd-gcl{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#a9ab9f;margin-bottom:6px}
+.cd-gate .cd-gnote{font-size:12.5px;color:#a9ab9f;margin:6px 0 0}.cd-gate .cd-gnote a{color:#d4b25a}
+.cd-gate .cd-gspin{width:28px;height:28px;margin:6px auto 4px;border:3px solid #3a463d;border-top-color:#d4b25a;border-radius:50%;animation:cdSpin 1s linear infinite}
+@keyframes cdSpin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.cd-gate .cd-gspin{animation:none}}
