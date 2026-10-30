@@ -276,7 +276,7 @@ export const parties: Party[] = [
         ref: "County-wide historic planning and records-management topic",
         url: g("1a1149d647cb33dc"),
         detail:
-          "On 26 October Democratic Services acknowledged the revised county-wide proposal about management of, and public access to, historic planning, land-charges and heritage records. The officer recommended Place Scrutiny Committee as the likely fit because of its built-environment remit, but expressly said there was no decision yet to add the topic to a future work programme or choose the form of scrutiny. The proposal still needs to go through the published Topic Suggestion Form and normal work-programming process. This is a routing recommendation, not committee approval.",
+          "On 26 October Democratic Services acknowledged the revised county-wide proposal about management of, and public access to, historic planning, land-charges and heritage records. The officer recommended Place Scrutiny Committee as the likely fit because of its built-environment remit, but expressly said there was no decision yet to add the topic to a future work programme or choose the form of scrutiny. This followed the 11 October response declining the original single-site Task and Finish proposal. The 26 October county-wide suggestion still needs to go through the published Topic Suggestion Form and normal work-programming process. This is a routing recommendation, not committee approval.",
       },
     },
   },
@@ -459,7 +459,7 @@ export const parties: Party[] = [
         ref: "FOI/2026/09 follow-up · Bute Estate",
         url: g("1a11eaa0af2e3861"),
         detail:
-          "Following verification, the Library confirmed that no further classmarks had been identified since its July 2026 searches relating to Great House Farm / Tŷ Mawr / Llandough, the 1877 agreement, the 1916 tenancy or the 1938–39 sale. This closes that narrow follow-up only. It does not establish that no such record ever existed and does not answer the separate 1610 Herbert / Bute X.6(12) request or the 1974 television-archive request.",
+          "Following verification, the Library confirmed that no further classmarks had been identified since its July 2026 searches relating to Great House Farm / Tŷ Mawr / Llandough, the 1877 agreement, the 1916 tenancy or the 1938–39 sale. The earlier search history includes the Bute Estate series D153 and D205. This closes that narrow follow-up only. It does not establish that no such record ever existed and does not answer the separate 1610 Herbert / Bute X.6(12) request or the 1974 television-archive request.",
       },
       chase: {
         status: "closed",
@@ -1075,7 +1075,7 @@ export const parties: Party[] = [
         ref: "CPS FOI 14786",
         url: g("1a1790f028e2355a"),
         detail:
-          "On 21 October you asked whether the CPS holds any records from 1 October 1986 to 31 December 1990 referring to Great House Farm / Tŷ Mawr, BP Properties Ltd or the reported summons arising from events at the farm on 29 April 1988; you also asked for any applicable retention or disposal records and a description of the searches. The CPS acknowledged receipt on 26 October and set a response deadline of 18 November 2026. This is a records request, not a submission of evidence to the CPS.",
+          "On 21 October you asked whether the CPS holds any records from 1 October 1986 to 31 December 1990 referring to Great House Farm / Tŷ Mawr, BP Properties Ltd or the reported summons arising from events at the farm on 29 April 1988; you also asked for any applicable retention or disposal records and a description of the searches. The CPS acknowledged receipt on 26 October and set a response deadline of 18 November 2026. This is a records request, not a submission of evidence to the CPS. Separately, the 3 September submission asking the CPS to consider the concerns about the 1987 proceedings remains an earlier track; the October mail reviewed here contains no CPS decision on that submission.",
       },
       reply: {
         status: "dormant",
@@ -1275,7 +1275,7 @@ export const parties: Party[] = [
         ref: "COH2382411X · Western Ground Rents Limited 09760885",
         url: g("1a1273a8a3ded5fd"),
         detail:
-          "The enquiry concerns the corporate record of Western Ground Rents Limited and connected company records relevant to the historical title chain. Companies House has supplied the company number 09760885 and an explanation of its online and archive-copy routes.",
+          "The enquiry concerns the corporate record of Western Ground Rents Limited and connected company records relevant to the historical title chain. Companies House supplied 09760885 as the company number for a company currently named Western Ground Rents Limited. The original 1938 conveyance enquiry refers to Western Ground Rents Ltd, company number 00342092. The relationship or legal continuity between these numbers is not established by this reply and must be checked against the incorporation and name-history records before treating them as the same entity.",
       },
       reply: {
         status: "evidence",
@@ -1286,7 +1286,7 @@ export const parties: Party[] = [
         url: g("1a1273a8a3ded5fd"),
         feeMarker: true,
         detail:
-          "Companies House says digital data and images are free online. It quoted £3 per document, £3 for a past/current director list or mortgage/charge/debenture list, £9 for accounts or annual returns filed before 1973, and £20 for an Archive DVD containing documents from incorporation to 31 December 2002, excluding pre-1973 accounts and annual returns. No archive document has been ordered or supplied by this email; this is a retrieval route and fee schedule, not evidence of the 1926 or 1938 conveyances.",
+          "Companies House says digital data and images are free online. It quoted £3 per document, £3 for a past/current director list or mortgage/charge/debenture list, £9 for accounts or annual returns filed before 1973, and £20 for an Archive DVD containing documents from incorporation to 31 December 2002, excluding pre-1973 accounts and annual returns. No archive document has been ordered or supplied by this email; this is a retrieval route and fee schedule, not evidence of the 1926 or 1938 conveyances. In particular, the answer does not establish that company 09760885 is the same legal person as the earlier company number 00342092.",
       },
     },
   },
