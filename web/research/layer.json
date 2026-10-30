@@ -2,8 +2,8 @@
  "slug": "title-chain",
  "title": "The Title Chain and the Twelve-Year Pairs",
  "subtitle": "Who held the paper and who held the land at Cedwyn / Tŷ Mawr (Llandough and Leckwith), 1841–1987, each step tied to its catalogue entry",
- "version": "1.0.0",
- "built": "2026-10-25",
+ "version": "1.1.0",
+ "built": "2026-10-30",
  "ref_theme": "research",
  "note": "Ingredients and citations, not conclusions. Pattern charts are for discussion; dates come from the cited records; nothing here is a finding of any court.",
  "court_first": [
@@ -1121,9 +1121,9 @@
    "start": 3,
    "end": 7,
    "gap": "≈12y (year only)",
-   "years": 12.0,
+   "years": 12,
    "range": [
-    11.0,
+    11,
     12.9
    ],
    "actors": "Bute",
@@ -1780,7 +1780,7 @@
    "sort": "1941-01-01",
    "item": "About 109 acres of Leckwith Woods given to Cardiff",
    "amount": "gift",
-   "gbp": 0.0,
+   "gbp": 0,
    "party": "WGR → Cardiff Corporation",
    "ev": [
     "EV-0220"
@@ -1792,7 +1792,7 @@
    "sort": "1948-10-21",
    "item": "Wayleave, WGR and the Borough of Barry",
    "amount": "£1 a year",
-   "gbp": 1.0,
+   "gbp": 1,
    "party": "Barry Borough → WGR",
    "ev": [
     "EV-0042"
@@ -1839,7 +1839,7 @@
    "sort": "1962-03-05",
    "item": "Legal charge over Llandough land, Lakeside & Llandough Development Co → WGR",
    "amount": "£75,000",
-   "gbp": 75000.0,
+   "gbp": 75000,
    "party": "Lakeside → WGR",
    "ev": [
     "EV-0042"
@@ -1874,7 +1874,7 @@
    "sort": "1965-06-11",
    "item": "School site, 3.352 acres (part OS 106)",
    "amount": "£16,800",
-   "gbp": 16800.0,
+   "gbp": 16800,
    "party": "Glamorgan CC → Lakeside (WGR releasing as mortgagee)",
    "ev": [
     "EV-0042",
@@ -1910,7 +1910,7 @@
    "sort": "1974-10-31",
    "item": "Licence to Mary Williams, rent-free",
    "amount": "£0",
-   "gbp": 0.0,
+   "gbp": 0,
    "party": "BP Properties",
    "ev": [
     "EV-0050"
@@ -2320,22 +2320,32 @@
  ],
  "hypotheses": [
   {
+   "id": "H1-PAPER-SIEGE",
    "rank": 1,
+   "name": "Sequential parcel capture and permission-framing (‘the Paper Siege’): separate takings, title claims, licences and registrations progressively reduced the Williams family’s standing on paper",
+   "source": "Canonical working model TT-0001, 30 Oct 2026",
+   "status": "Leading working hypothesis; unproven",
+   "explains": "The 1841 occupation footprint; the distinction between the 1939 fields letting and the farmhouse claim; the 1958 ‘Welsh Crichel Down’ complaint; repeated permission framing; the 1974 letters; 1975 transfer; 1982–83 registrations; 1987 amalgamation; and later physical loss of the house.",
+   "limits": "The tithe records occupation, not ownership. Deeds and plans remain incomplete; the original 1939 signature is unauthenticated; the complete first-registration files and proof of notice are not yet established. Intentional coordination, fraud, violence and archaeological concealment are not findings. The court outcome remains the operative legal result.",
+   "model": "/wiki/title-theory/"
+  },
+  {
+   "rank": 2,
    "name": "A long private property and possession dispute, decided in the courts, followed by demolition and redevelopment, with title-root questions open",
    "source": "Preliminary forensic audit, 25 Oct 2026"
   },
   {
-   "rank": 2,
+   "rank": 3,
    "name": "Planning and developer corner-cutting without a title scheme (1990 ground investigation, 1992 reserved matters, archaeology condition 18)",
    "source": "Preliminary forensic audit, 25 Oct 2026"
   },
   {
-   "rank": 3,
+   "rank": 4,
    "name": "Both of the above",
    "source": "Preliminary forensic audit, 25 Oct 2026"
   },
   {
-   "rank": 4,
+   "rank": 5,
    "name": "A repeated pattern of recasting occupation as permission near twelve-year limits, across successive title holders (the family’s working theory; ingredients in EV-0607 to EV-0609)",
    "source": "Twelve-year pattern memo, 25 Oct 2026"
   }
@@ -2922,5 +2932,7 @@
    "path": "/evidence/ev-0628-title-chain-authenticity-audit-2026/",
    "img": ""
   }
- }
+ },
+ "title_theory_model": "/wiki/title-theory/",
+ "title_theory_data": "/wiki/title-theory/model.json"
 }
