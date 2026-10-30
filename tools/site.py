@@ -349,6 +349,13 @@ evidence_observations.run(DIST)
 # Group source themes into the 36 public areas; preserve legacy routes and mark parcel slots as provisional.
 import site_consolidations
 site_consolidations.run(DIST)
+# Q&A as questions (Sion, WhatsApp 00:54 GMT 30 Oct 2026): /qa/ and /wales/qa/ list each question asked, coloured hashtags of the
+# institutions asked and of who answered, each opening the email on /email/reference/<id>/ - Sion's Tab agent
+try:
+    import qa_questions
+    qa_questions.run(DIST)
+except Exception as _e:   # the questions list must never stop a build
+    print('qa_questions failed:', _e)
 # Agent guest book (Sion, 01:51 GMT 26 Oct 2026): one collapsed table in the shared footer of every page, from main's commit
 # history; /guestbook/ lists every commit. Runs last so every page the build made carries it - Sion's Tab agent
 import guestbook
