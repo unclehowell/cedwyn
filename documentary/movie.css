@@ -35,7 +35,7 @@ body.cm{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-syst
 .cm-body{padding:10px 12px 12px}
 .cm-meta{font-size:12px;color:var(--gold);letter-spacing:.04em}
 .cm-card h3{font:600 17px/1.25 Georgia,serif;margin:4px 0 6px}
-.cm-log{font-size:14px;color:#cfd0c6;margin:0 0 8px}
+.cm-log{font-size:14px;color:#cfd0c6;margin:0 0 8px}.cm-desc-i{font-size:14px;color:#d8d9cf;margin:6px 0}.cm-shots{font-size:13.5px;line-height:1.55;color:#c8c9bf;margin:6px 0 0;padding-left:20px}.cm-shots li{margin:0 0 7px}.cm-evl{font-size:13.5px;line-height:1.5;margin:6px 0 0;padding-left:18px}.cm-evl li{margin:0 0 7px}.cm-evl a{color:var(--gold);text-decoration:underline;overflow-wrap:anywhere}.cm-evid{color:var(--mut);font-size:11px}
 .cm-card details{border-top:1px solid var(--line);padding:6px 0 0;margin-top:6px}
 .cm-card summary{cursor:pointer;font-size:13px;color:var(--gold)}
 .cm-lines{font-size:13px;color:#c8c9bf;max-height:260px;overflow:auto;margin:6px 0 0;padding:0;list-style:none}
