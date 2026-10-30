@@ -479,15 +479,32 @@ APP_IMAGES = {
 }
 APP_EXCLUDED = {'wales', 'patagonia'}
 
+# Menu tile pictures per half (Sion, WhatsApp 01:54 GMT 30 Oct 2026). Wales: wireframe-hologram renders of building photographs from
+# the wayback archive's Great House Farm Part 1 series (holo-ghf1-<n>.webp = 'Great House Farm Part 1 - <n>'; edge-detected locally,
+# work/tile-images/holo.py; committed under web/_cedwyn/halves/img/). Argentina: the digitally restored farm pieces ('restored to former
+# glory', v0.0.2, no flowers, no people) by their own /nft-art/ thumbs, never copies; the flowery gallery pieces stay on the NFT pages only.
+WALES_TILE_IMAGES = {'infographic': 'holo-ghf1-101', 'chess': 'holo-ghf1-124', 'csscpsg': 'holo-ghf1-038', 'courtdrills': 'holo-ghf1-022', 'app': 'holo-ghf1-010', 'chat': 'holo-ghf1-039', 'dartboard': 'holo-ghf1-015', 'estate': 'holo-ghf1-025', 'directory': 'holo-ghf1-096', 'terrain': 'holo-ghf1-020', 'cyberspace': 'holo-ghf1-013', 'nft-art': 'holo-ghf1-119', 'fcg': 'holo-ghf1-018', 'accounts': 'holo-ghf1-084', 'authorities': 'holo-ghf1-100', 'wdtk': 'holo-ghf1-123', 'review': 'holo-ghf1-115', 'research': 'holo-ghf1-011', 'meeting': 'holo-ghf1-053', 'projects': 'holo-ghf1-016', 'watchtower': 'holo-ghf1-023', 'fb2': 'holo-ghf1-099', 'email': 'holo-ghf1-126', 'emails': 'holo-ghf1-092', 'kissed-frogs': 'holo-ghf1-124', 'whattheydontsay': 'holo-ghf1-039', 'blog': 'holo-ghf1-096', 'wiki': 'holo-ghf1-038', 'records': 'holo-ghf1-084', 'docs': 'holo-ghf1-076', 'wayback': 'holo-ghf1-098', 'nomenclature': 'holo-ghf1-011', 'maps': 'holo-ghf1-025', 'fb': 'holo-ghf1-099', 'ebooks': 'holo-ghf1-115', 'story': 'holo-ghf1-098', 'thousand-cuts': 'holo-ghf1-010', 'oldbill': 'holo-ghf1-084', 'qa': 'holo-ghf1-039', 'shop': 'holo-ghf1-119', 'documentary': 'holo-ghf1-101', 'familytree': 'holo-ghf1-099'}
+ARG_TILE_IMAGES = {'infographic': '0021', 'chess': '0094', 'csscpsg': '0078', 'courtdrills': '0082', 'app': '0035', 'chat': '0057', 'dartboard': '0029', 'estate': '0014', 'directory': '0048', 'terrain': '0106', 'cyberspace': '0044', 'nft-art': '0058', 'fcg': '0122', 'accounts': '0131', 'authorities': '0055', 'wdtk': '0072', 'review': '0083', 'research': '0087', 'meeting': '0050', 'projects': '0020', 'watchtower': '0026', 'fb2': '0023', 'email': '0071', 'emails': '0147', 'kissed-frogs': '0067', 'whattheydontsay': '0084', 'blog': '0076', 'wiki': '0088', 'records': '0117', 'docs': '0058', 'wayback': '0141', 'nomenclature': '0123', 'maps': '0093', 'fb': '0038', 'ebooks': '0060', 'story': '0032', 'thousand-cuts': '0130', 'oldbill': '0052', 'qa': '0080', 'shop': '0145', 'documentary': '0133', 'familytree': '0126'}
+
+def arg_restored(nfa):
+    return f'/nft-art/art/nfa-{nfa}-v0.0.2-t.webp'
+
 def app_image(H, key):
     if key == 'network-datacentre':
         return f'{H["img"]}network-datacentre.svg?v=1'
+    if key.startswith('nfa:'):
+        return arg_restored(key[4:])
     return img(H, key)
 
 def app_tile(H, section, theme):
     tid = theme['id']
     label = APP_LABELS.get(tid, theme.get('title') or tid)
-    image = APP_IMAGES.get(tid, 'ty-mawr-1974-reconstruction')
+    if section == 'wales' and tid in WALES_TILE_IMAGES:
+        image = WALES_TILE_IMAGES[tid]
+    elif section == 'argentina' and tid in ARG_TILE_IMAGES:
+        image = 'nfa:' + ARG_TILE_IMAGES[tid]
+    else:
+        image = APP_IMAGES.get(tid, 'ty-mawr-1974-reconstruction')
     return (f'<a class="land-app" href="/{E(section)}/{E(tid)}/" aria-label="{E(label)}">'
             f'<img src="{E(app_image(H, image))}" alt="" loading="lazy" decoding="async">'
             f'<span class="land-app-label">{E(label)}</span></a>')
@@ -519,16 +536,16 @@ def modal_apps(H, cfg, section):
 def place_modal(H, cfg, section):
     if section == 'wales':
         title = 'Wales, Britain'
-        specific = specific_tile(H, 'Virtual reconstruction · AR glasses', '/wales/', 'wales-ar-green')
+        specific = specific_tile(H, 'Virtual reconstruction · AR glasses', '/wales/', 'holo-ghf1-098')
     else:
         title = 'Patagonia, Argentina'
         special = [
-            ('Great House II · physical reconstruction', '/argentina/#house', 'ghf2-exterior'),
-            ('Wedding venue', '/argentina/#book', 'ghf2-wedding'),
-            ('B&B · guest rooms', '/argentina/#book', 'ghf2-bedroom'),
-            ('Stables', '/argentina/#house', 'ghf2-stables'),
-            ('Barn and cottage', '/argentina/#house', 'ghf2-barn'),
-            ('Museum', '/argentina/#museum', 'ghf2-museum'),
+            ('Great House II · physical reconstruction', '/argentina/#house', 'nfa:0157'),
+            ('Wedding venue', '/argentina/#book', 'nfa:0100'),
+            ('B&B · guest rooms', '/argentina/#book', 'nfa:0059'),
+            ('Stables', '/argentina/#house', 'nfa:0016'),
+            ('Barn and cottage', '/argentina/#house', 'nfa:0019'),
+            ('Museum', '/argentina/#museum', 'nfa:0089'),
         ]
         specific = ''.join(specific_tile(H, t, u, im) for t, u, im in special)
     return (f'<dialog class="land-modal" id="modal-{E(section)}" aria-labelledby="modal-{E(section)}-title">'
