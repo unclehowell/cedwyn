@@ -1,4 +1,5 @@
-/* cw-graph.js v1.2.3 (30 Oct 2026: long axis names wrap to two lines at 390 px; 1.2.2: a graph may fix its own colours, data.c.colors — Dartboard green/amber/red) - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
+/* cw-graph.js v1.2.4 (30 Oct 2026 21:20Z: on a page carrying the parcel-story panel, the panel leaves the page flow and opens
+   in this modal under a 'Parcel story' tab (last tab); on /research/ an 'Instruments & registrations' tab plotting /_cedwyn/graph/parcels.json opens first; 1.2.3 (30 Oct 2026: long axis names wrap to two lines at 390 px; 1.2.2: a graph may fix its own colours, data.c.colors — Dartboard green/amber/red) - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
    Asked for 01:27 GMT 30 Oct 2026: the closable header strip becomes a graph promotion; tapping it slides a full-screen
    scatter graph of the data the page/section shows down over the page (it slides back up on close, Esc or swipe up);
    text pages load clipped to the screen height with a "Read more" bar, further text arriving in chunks from the build's
@@ -7,13 +8,13 @@
 (function () {
   'use strict';
   if (window.__cwGraph) return;
-  var d = document, de = d.documentElement, VER = '1.2.3';
+  var d = document, de = d.documentElement, VER = '1.2.4';
   window.__cwGraph = { v: VER };
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var T = {
-    en: { promo: 'See this section as a graph', cta: 'Graph', close: 'Close', closeg: 'Close the graph', more: 'Read more', page: 'This page', sec: 'Whole section', open: 'Open', none: 'Nothing on this page has dates or values to plot yet.', pts: 'points', tap: 'Tap a dot to see what it is.', rank: 'dates spaced evenly in date order', loading: 'Loading…' },
-    cy: { promo: 'Gweld yr adran hon fel graff', cta: 'Graff', close: 'Cau', closeg: 'Cau’r graff', more: 'Darllen mwy', page: 'Y dudalen hon', sec: 'Yr adran gyfan', open: 'Agor', none: 'Does dim dyddiadau na gwerthoedd i’w plotio ar y dudalen hon eto.', pts: 'pwynt', tap: 'Tapiwch ddot i weld beth ydyw.', rank: 'dyddiadau wedi’u gosod yn gyfartal yn ôl trefn', loading: 'Wrthi’n llwytho…' },
-    es: { promo: 'Ver esta sección como gráfico', cta: 'Gráfico', close: 'Cerrar', closeg: 'Cerrar el gráfico', more: 'Leer más', page: 'Esta página', sec: 'Toda la sección', open: 'Abrir', none: 'Esta página aún no tiene fechas ni valores para graficar.', pts: 'puntos', tap: 'Toca un punto para ver qué es.', rank: 'fechas espaciadas por orden', loading: 'Cargando…' }
+    en: { promo: 'See this section as a graph', cta: 'Graph', close: 'Close', closeg: 'Close the graph', more: 'Read more', page: 'This page', sec: 'Whole section', open: 'Open', none: 'Nothing on this page has dates or values to plot yet.', pts: 'points', tap: 'Tap a dot to see what it is.', rank: 'dates spaced evenly in date order', loading: 'Loading…', inst: 'Instruments & registrations', story: 'Parcel story' },
+    cy: { promo: 'Gweld yr adran hon fel graff', cta: 'Graff', close: 'Cau', closeg: 'Cau’r graff', more: 'Darllen mwy', page: 'Y dudalen hon', sec: 'Yr adran gyfan', open: 'Agor', none: 'Does dim dyddiadau na gwerthoedd i’w plotio ar y dudalen hon eto.', pts: 'pwynt', tap: 'Tapiwch ddot i weld beth ydyw.', rank: 'dyddiadau wedi’u gosod yn gyfartal yn ôl trefn', loading: 'Wrthi’n llwytho…', inst: 'Offerynnau a chofrestriadau', story: 'Stori’r llain' },
+    es: { promo: 'Ver esta sección como gráfico', cta: 'Gráfico', close: 'Cerrar', closeg: 'Cerrar el gráfico', more: 'Leer más', page: 'Esta página', sec: 'Toda la sección', open: 'Abrir', none: 'Esta página aún no tiene fechas ni valores para graficar.', pts: 'puntos', tap: 'Toca un punto para ver qué es.', rank: 'fechas espaciadas por orden', loading: 'Cargando…', inst: 'Instrumentos y registros', story: 'Historia de la parcela' }
   };
   function lg() { var l = (de.getAttribute('lang') || 'en').slice(0, 2).toLowerCase(); return T[l] ? l : 'en'; }
   function t(k) { return T[lg()][k]; }
@@ -43,6 +44,7 @@
     '.cw-gm-x:focus-visible,.cw-gm-tab:focus-visible{outline:2px solid currentColor}' +
     '.cw-gm-tabs{display:flex;gap:6px;padding:8px 16px 0}.cw-gm-tab{all:unset;cursor:pointer;padding:6px 12px;border-radius:999px;border:1px solid var(--gm-ln);font-size:13px}.cw-gm-tab[aria-pressed=true]{background:var(--gm-fg);color:var(--gm-bg)}' +
     '.cw-gm-sp{flex:1 1 auto}.cw-gm-b{flex:0 1 auto;min-height:0;overflow:auto;padding:6px 8px 0;-webkit-overflow-scrolling:touch}' +
+    '#cedwyn-parcel-panel:not(.cw-gm-pp){display:none!important}.cw-gm-b #cedwyn-parcel-panel.cw-gm-pp{display:block!important;margin:0 4px 8px;max-width:none}' +
     '.cw-gm-b svg{display:block;width:100%;height:auto;touch-action:manipulation}.cw-gm-b text{fill:var(--gm-mu);font:11px system-ui,sans-serif}' +
     '.cw-gm-b .ax{stroke:var(--gm-ln)}.cw-gm-b .pt{cursor:pointer;stroke:var(--gm-bg);stroke-width:1}.cw-gm-b .pt.sel{stroke:var(--gm-fg);stroke-width:2.5}' +
     '.cw-gm-lg{display:flex;flex-wrap:wrap;gap:6px 12px;padding:6px 16px;font-size:12px;color:var(--gm-mu)}.cw-gm-lg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}' +
@@ -252,6 +254,7 @@
 
   /* ---------------- modal ---------------- */
   var M = null, opener = null, sets = {}, cur = null;
+  var PP = null; function panel() { var e = d.getElementById('cedwyn-parcel-panel'); if (e) PP = e; return PP; }   /* 1.2.4 */
   function build() {
     M = mk('div', 'cw-gm' + (RM ? ' cw-rm' : '')); M.setAttribute('role', 'dialog'); M.setAttribute('aria-modal', 'true'); M.setAttribute('aria-labelledby', 'cw-gm-t'); M.setAttribute('data-no-translate', '');
     M.innerHTML = '<div class="cw-gm-h"><h2 id="cw-gm-t"></h2><button type="button" class="cw-gm-x">\u2191</button></div><div class="cw-gm-tabs" hidden></div><div class="cw-gm-lg"></div><div class="cw-gm-b"></div><div class="cw-gm-i" aria-live="polite"></div><div class="cw-gm-sp"></div><div class="cw-gm-f"></div>';
@@ -265,6 +268,15 @@
   function show(which) {
     cur = which; var data = sets[which], body = M.querySelector('.cw-gm-b'), info = M.querySelector('.cw-gm-i');
     [].forEach.call(M.querySelectorAll('.cw-gm-tab'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-k') === which)); });
+    var hh = M.querySelector('#cw-gm-t'), ht = which === 'story' ? t('story') : ((data && data.title) || (sets.sec && sets.sec.title) || null);
+    if (ht && hh.firstChild && hh.firstChild.nodeType === 3) hh.firstChild.nodeValue = ht;
+    info.hidden = false;
+    if (which === 'story') {   /* 1.2.4: the parcel-story panel, moved (not copied) into the modal; the other tabs replace the body */
+      var pn = panel(); body.textContent = ''; M.querySelector('.cw-gm-lg').innerHTML = ''; info.textContent = ''; info.hidden = true;
+      var sm = hh.querySelector('small'); if (sm) sm.textContent = '';
+      if (pn) { pn.classList.add('cw-gm-pp'); body.appendChild(pn); }
+      return;
+    }
     info.textContent = t('tap');
     if (!data || !data.p || data.p.length < 1) { body.innerHTML = '<p style="padding:16px">' + esc(t('none')) + '</p>'; M.querySelector('.cw-gm-lg').innerHTML = ''; return; }
     render(body, data, info, M.querySelector('.cw-gm-lg'), M.querySelector('#cw-gm-t small') || (function () { var s = mk('small'); M.querySelector('#cw-gm-t').appendChild(s); return s; })());
@@ -278,7 +290,8 @@
     requestAnimationFrame(function () { requestAnimationFrame(function () { M.classList.add('cw-on'); M.querySelector('.cw-gm-x').focus({ preventScroll: true }); }); });
     loadSets(function () {
       var tabs = M.querySelector('.cw-gm-tabs'); tabs.textContent = '';
-      var ks = ['sec', 'page'].filter(function (k) { return sets[k] && sets[k].p && sets[k].p.length >= 3; });
+      var ks = ['inst', 'sec', 'page'].filter(function (k) { return sets[k] && sets[k].p && sets[k].p.length >= 3; });
+      if (panel()) ks.push('story');
       if (ks.length > 1) { tabs.hidden = false; ks.forEach(function (k) { var b = mk('button', 'cw-gm-tab', t(k)); b.type = 'button'; b.setAttribute('data-k', k); b.onclick = function () { show(k); }; tabs.appendChild(b); }); } else tabs.hidden = true;
       if (sets.sec && sets.sec.title) { h.firstChild.nodeValue = sets.sec.title; }
       show(ks[0] || 'page');
@@ -289,7 +302,10 @@
     if (loaded) return cb(); loaded = true;
     try { sets.page = domData(); } catch (e) { sets.page = null; }
     var done = false, to = setTimeout(function () { if (!done) { done = true; cb(); } }, 4000);
-    fetch('/_cedwyn/graph/' + AREA + '.json?v=' + VER, { credentials: 'same-origin' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { if (j && j.p) sets.sec = j; }).catch(function () {}).then(function () { if (!done) { done = true; clearTimeout(to); cb(); } });
+    function gj(a) { return fetch('/_cedwyn/graph/' + a + '.json?v=' + VER, { credentials: 'same-origin' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
+    var jobs = [gj(AREA).then(function (j) { if (j && j.p) sets.sec = j; })];
+    if (AREA === 'research' && panel()) jobs.push(gj('parcels').then(function (j) { if (j && j.p) sets.inst = j; }));   /* 1.2.4: on /research/ only, the parcel panel's own data (other webapps keep plotting only their own database; owner rule 30 Oct 2026) */
+    Promise.all(jobs).catch(function () {}).then(function () { if (!done) { done = true; clearTimeout(to); cb(); } });
   }
   function closeModal() {
     if (!M || !M.classList.contains('cw-on')) return;
