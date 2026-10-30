@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/4214190/4214193/141/",
  "key": "newspapers.library.wales/view/4214190/4214193/141",
- "title": "Evening Express, 1st February 1910 (Special Edition), p. 3 — Pontlottyn Coal Mining I",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-4214190-4214193-141/",
  "latest": "/websites/newspapers.library.wales/view-4214190-4214193-141/latest.html",
  "first_captured": "2026-10-24T14:49:26Z",
- "last_captured": "2026-10-24T14:49:26Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:38:39Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144926/newspapers.library.wales/view/4214190/4214193/141/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:38:39Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "ddc20e77cc73f92000cc2f399c193e55c2058de0f8802a234d63a526ca056454",
+   "markup_sha256": "bbb213e3fc31ab0e2aba430f88c04d22c23603cb136ec15df32384ee9bc5b73b",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:43:09Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

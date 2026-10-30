@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/4184766/4184768/14/",
  "key": "newspapers.library.wales/view/4184766/4184768/14",
- "title": "Evening Express, 11th January 1908 (Fifth Edition), p. 2 — ___ ( Old Debt Set Against A Contract",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-4184766-4184768-14/",
  "latest": "/websites/newspapers.library.wales/view-4184766-4184768-14/latest.html",
  "first_captured": "2026-10-24T14:49:09Z",
- "last_captured": "2026-10-24T14:49:09Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:39:51Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144909/newspapers.library.wales/view/4184766/4184768/14/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:39:51Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "aea58f57c83077a97c92428f2b0485e096c085dbf61885437e8ff6c09737af4b",
+   "markup_sha256": "aa29dce094744b91784b62380cb2aafb2c9ff8ec188cee42377cc34fb05d1424",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:43:04Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }

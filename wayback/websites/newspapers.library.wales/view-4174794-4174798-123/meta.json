@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/4174794/4174798/123/",
  "key": "newspapers.library.wales/view/4174794/4174798/123",
- "title": "Evening Express, 2nd April 1907 (Fourth Edition), p. 4 — Cardiff Rifle Club.1",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-4174794-4174798-123/",
  "latest": "/websites/newspapers.library.wales/view-4174794-4174798-123/latest.html",
  "first_captured": "2026-10-24T14:48:36Z",
- "last_captured": "2026-10-24T14:48:36Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:38:56Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144836/newspapers.library.wales/view/4174794/4174798/123/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:38:56Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "44f2c19f8e1f2f21a722199eac87bf5018e376787d64da04ecea9f17a488d1c9",
+   "markup_sha256": "0df216438b6dc8e9ce51dec93fd25a79af85b3ba295eb327eee51adbceede05b",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:43:43Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }
