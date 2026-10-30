@@ -1,0 +1,172 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Data architecture · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Data architecture"><link rel="alternate" type="text/markdown" href="data.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../index.html"><b>Cedwyn Academy</b></a><a href="../SOUL.html">Soul</a><a href="../ONBOARDING.html">Onboarding</a><a href="../ACADEMY/CHECK.html">Check</a><a href="../ACADEMY/WORK.html">Work</a><a href="../MEMORY/index.html">Memory</a><a href="../SKILLS/index.html">Skills</a><a href="../FLYWHEELS/index.html">Flywheels</a><a href="../architecture/index.html">Architecture</a><a href="../HARNESS/index.html">Harness</a><a href="../LESSONS.html">Lessons</a></nav><main><h1>Data architecture</h1>
+<h2>The rule</h2>
+<p>One central master database holds the records. Each webapp derives its own small database from it by a written rule. Every page is generated from that data through one shared renderer, in the design visitors see today. Webapps move to this one at a time, measured. (Standing order 7s.)</p>
+<h2>The master database: <code>data/core/</code></h2>
+<p>Git-versioned JSON records, validated by a JSON Schema (2020-12). Git gives every edit a diff, a history and a revert; the compiled databases are copies.</p>
+<p>Kinds: evidence, artefact, place, person or body, event, screening lead, missing record, observation, testimony. Ids carry a prefix by kind (<code>EV-</code>, <code>MR-</code>, <code>CC-</code>, <code>KF-</code>, <code>PL-</code>, <code>PE-</code>, <code>EVT-</code>, <code>AR-</code>, <code>TS-</code>, <code>OBS-</code>) and are never reused.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code>, <code>kind</code>, <code>title</code>, <code>aliases</code></td>
+<td>stable public id, kind, neutral headline, older ids and slugs</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>display text, sortable value, precision</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>what the thing is</td>
+</tr>
+<tr>
+<td><code>transcript</code></td>
+<td>verbatim text where held, with its status</td>
+</tr>
+<tr>
+<td><code>interpretation</code></td>
+<td>our reading, marked as interpretation; competing readings ranked</td>
+</tr>
+<tr>
+<td><code>provenance</code></td>
+<td>the source only: holder, reference, date, how obtained. Never who found it</td>
+</tr>
+<tr>
+<td><code>grade</code></td>
+<td>0–5</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td>disposition (<code>in_scope</code>, <code>not_this_property</code>, <code>separate_property</code>, <code>out_of_scope</code>, <code>name_correction</code>, <code>dating_correction</code>, <code>assertion_only</code>, <code>context_only</code>, <code>on_hold</code>), reason, <code>distinct_from</code>, tags</td>
+</tr>
+<tr>
+<td><code>places</code>, <code>people</code>, <code>links</code></td>
+<td>ids and typed links: cites, distinct_from, same_as_candidate, supersedes, answers</td>
+</tr>
+<tr>
+<td><code>pages</code></td>
+<td>where the record is shown (generated, never edited)</td>
+</tr>
+<tr>
+<td><code>public</code></td>
+<td>a <code>false</code> row never leaves the build</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Scope tags do the sorting.</strong> A record that looked like the farm but is not gets a scope disposition, and from then on it appears in Kissed Frogs automatically and nowhere it would be mistaken for the farm.</p>
+<h2>The compiled copies</h2>
+<ol>
+<li><strong>Catalogue SQLite.</strong> Built at every site build from core (and the file index, graph and assessments). Served in chunks at <code>/db/</code> and read over HTTP range requests, so pages and agents query it with no server calls.</li>
+<li><strong>D1 read API.</strong> An edge database mirrored from core and read through <code>/api/catalogue</code>. It is a mirror for live reads, never the source: the arrow runs from <code>data/core</code> outward.</li>
+<li><strong>Per-area slices.</strong> Older per-area SQLite slices under <code>/&lt;area&gt;/_db/</code> are being replaced by view databases.</li>
+</ol>
+<h2>One database per webapp: the view</h2>
+<p>Each webapp has a view rule in <code>data/views/&lt;app&gt;.view.json</code>:</p>
+<pre><code>{ app, version, enabled, select: {kind: [...], where: [{field, op, value}]},
+  order_by, project: [public fields], include_links: [rels], pages: [{template, path, each?}] }
+</code></pre>
+<p>The build step derives <code>/&lt;app&gt;/_db/view.json</code> from core by that rule: only matching, public rows, only the projected fields. Nobody edits a view by hand. Selection rules for every webapp are on the <a href="webapps.html">Webapps</a> page.</p>
+<p><strong>Pilot: Kissed Frogs.</strong> Its view is every core record whose scope disposition is one of not this property, separate property, out of scope, name correction, dating correction, assertion only, context only, or on hold. Since 30 Oct 2026 its index and 49 detail pages render from that view. Llandough Farm, a separate farm (NLW D 219/9–13), is its canonical card, and pages that mention Llandough Farm link to that card.</p>
+<p>Note for agents: the build serves data files from the catalogue, so a plain fetch of a view file can answer 404 while the page is rendered correctly at build time. Read app data from the catalogue or the built page.</p>
+<h2>Near-A2UI rendering</h2>
+<p>A2UI is an open format that describes a user interface as data, not code. Here each page is <code>_ui/&lt;page&gt;.a2ui.json</code> in the A2UI v0.9 shape:
+- <code>createSurface</code> names the surface and the Cedwyn component catalog;
+- <code>updateComponents</code> is a flat list of components, each with an id, its props and its children by id; lists repeat a template over a data path;
+- <code>updateDataModel</code> is the webapp's view; props bind to it by JSON pointer.</p>
+<p>One shared renderer turns it into HTML at build time (no JavaScript needed, crawlable); an optional small client renderer can re-render a surface for filters. Both render <strong>only</strong> components in the Cedwyn catalog, and each component maps one-to-one to CSS classes the site already uses, so the design and experience stay as they are. An unknown component is a build error. Agents can propose a page as a component list, validated against the catalog, without ever injecting HTML or script.</p>
+<p>Catalog: Page, Hero/Figure (theme-safe image), Lede, ReadMore, Section, CardList and Card, FilterBar, Table (with mobile cards), Accordion, EvidenceLink, NomenclatureLink, Glossary term, Badge/Status, Breadcrumb, Note/Scope, Footer meta. A new component enters only by adding it to the catalog with its CSS.</p>
+<p>"Near" means: the message names, the flat component list, path binding and the catalog model are followed; the transport, actions and streaming parts of A2UI are not used, because the site is static.</p>
+<h2>Rollback switch</h2>
+<p>Per webapp: set <code>"enabled": false</code> in its view file, a one-line commit; the next build serves the branch's static pages again (strangler fig: the old pages stay until parity is proven). Core: revert the data/core commit. Nothing force-pushes or deletes history.</p>
+<h2>Gates</h2>
+<p>A change ships only if all pass: build green · schema valid · no <code>public: false</code> row or private field (privacy scrub 0) · public voice clean (banned words 0, neutral third person) · outbound links 0 · unknown components 0.</p>
+<p>Metrics: <strong>HCR</strong> hard-coded records left on an app's pages (target 0) · <strong>COV</strong> share of pages generated from the view (target 100%) · <strong>PAR</strong> pixel difference against the baseline at 390 px and 1280 px (at most 2% per page type, no layout shift) · <strong>GREEN</strong> · <strong>CLEAN</strong> · <strong>SIZE</strong> view at most 1 MB.</p>
+<h2>Work packages and milestones</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>WP</th>
+<th>Title</th>
+<th>Milestone</th>
+<th>Target</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WP0</td>
+<td>Programme set-up: audit, plan, project board, Projects page, flywheel doc</td>
+<td>M0 Plan recorded</td>
+<td>2026-10-30</td>
+<td>done (Projects page live)</td>
+</tr>
+<tr>
+<td>WP1</td>
+<td>Pilot: Kissed Frogs (core v0.1, view, renderer v0.1, Llandough Farm separation, new layout)</td>
+<td>M1 Pilot live</td>
+<td>2026-10-31</td>
+<td>in progress (index and 49 detail pages generated live 30 Oct)</td>
+</tr>
+<tr>
+<td>WP2</td>
+<td>Core consolidation: one master</td>
+<td>M2 Core v1</td>
+<td>2026-11-03</td>
+<td>not started</td>
+</tr>
+<tr>
+<td>WP3</td>
+<td>Renderer, Cedwyn component catalog v1 and parity harness</td>
+<td>M3 Renderer v1</td>
+<td>2026-11-05</td>
+<td>not started</td>
+</tr>
+<tr>
+<td>WP4</td>
+<td>Security, privacy and validation gates</td>
+<td>M2</td>
+<td>2026-11-03</td>
+<td>not started</td>
+</tr>
+<tr>
+<td>WP5</td>
+<td>Wave 1: registers already structured (nomenclature, whattheydontsay, familytree, ebooks, projects, blog, glossary, maps index)</td>
+<td>M4 Wave 1</td>
+<td>2026-11-10</td>
+<td>not started</td>
+</tr>
+<tr>
+<td>WP6</td>
+<td>Wave 2: the evidence layer (research evidence pages, wiki evidence, missing records, 1000 Cuts, infographic, authorities, requests, review, records, accounts, oldbill)</td>
+<td>M5 Wave 2</td>
+<td>2026-11-17</td>
+<td>not started</td>
+</tr>
+<tr>
+<td>WP7</td>
+<td>Wave 3: snapshots and interactive apps</td>
+<td>M6 Wave 3</td>
+<td>2026-11-28</td>
+<td>not started</td>
+</tr>
+<tr>
+<td>WP8</td>
+<td>Flywheel automation and handover (scheduled migration loop, metrics page, academy lesson)</td>
+<td>M7 Programme closed</td>
+<td>2026-12-05</td>
+<td>not started</td>
+</tr>
+</tbody>
+</table></div>
+<p>Full plan, tasks and acceptance tests: <a href="../../projects/data-architecture/">/projects/data-architecture/</a>.</p><p class="raw">Raw Markdown: <a href="data.md">data.md</a> · version and changes: <a href="../CHANGELOG.html">changelog</a> · machine index: <a href="../agents.json">agents.json</a></p></main></body></html>

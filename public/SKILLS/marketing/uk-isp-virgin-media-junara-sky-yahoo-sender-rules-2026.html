@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Virgin Media mailbox closure (Junara/Atmail) + Sky Yahoo Mail: UK consumer-ISP sender rules, 2026 · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Virgin Media mailbox closure (Junara/Atmail) + Sky Yahoo Mail: UK consumer-ISP sender rules, 2026"><link rel="alternate" type="text/markdown" href="uk-isp-virgin-media-junara-sky-yahoo-sender-rules-2026.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Virgin Media mailbox closure (Junara/Atmail) + Sky Yahoo Mail: UK consumer-ISP sender rules, 2026</h1>
+<p>Harvested 30 Oct 2026. Companion to bt-mail-btinternet-sender-rules-postmaster-escalation.md (BT) and outlook-bulk-sender rules.</p>
+<h2>What changed (primary sources, read today)</h2>
+<ul>
+<li><strong>Virgin Media is leaving email.</strong> On 9 Sep 2026 Virgin Media O2 announced it is handing its mailboxes to Junara, a provider owned by Atmail (VMO2 newsroom; The Register, 9 Sep 2026). It affects <strong>ntlworld.com, blueyonder.co.uk, virgin.net and virginmedia.com</strong>. No new VM addresses since 2022.</li>
+<li><strong>The clock:</strong> customers are contacted in phases from September. They get at least <strong>45 days</strong> from first notice to move to Junara, export, or close. Then a <strong>120-day</strong> recovery window. After <strong>165 days</strong> the account is <strong>permanently deleted</strong> (VMO2 newsroom).</li>
+<li><strong>Cost:</strong> current VM customers get 12 months free after a <strong>99p</strong> transfer fee (18 months if registered for extra support). Former customers pay from the start (VMO2). emailexpert (18 Sep 2026) expects attrition in two waves: from <strong>late October 2026</strong> as the first 45-day windows end, and a year later when free periods end. ISPreview's comparison (Manx Telecom users paid £6.50/month after a similar move) is second-hand, not checked.</li>
+<li><strong>The MX has already moved.</strong> Live DNS read 30 Oct 2026 (Cloudflare DoH): MX for all four VM domains is <code>mx-10/mx-20.eu-west.atmailcloud.com</code>. DMARC: virginmedia.com is <code>p=reject</code>; ntlworld/blueyonder/virgin.net are <code>p=quarantine; sp=reject</code>. Mail to these addresses is now filtered by Atmail. Assume no reputation carries over. No postmaster page or feedback loop has been published (emailexpert).</li>
+<li><strong>Bounces are unknown.</strong> VM hasn't said whether mail to an account in the 120-day window is rejected or accepted and held. If it's held, the first hard bounces arrive only around late Feb 2027. Until then, falling opens/clicks on those four domains are the only warning.</li>
+<li><strong>Phishing wariness:</strong> VM's own notices carry no clickable sign-up links because it expects them to be imitated. These users are being told to distrust "update your email" mails (emailexpert).</li>
+<li><strong>Sky:</strong> Sky Yahoo Mail can no longer be opened (sky.com help). Live MX for sky.com is <code>mx-eu.mail.am0.yahoodns.net</code>, so <strong>Yahoo's sender rules apply</strong>. sky.com DMARC is <code>p=reject; adkim=s; aspf=s</code>.</li>
+<li><strong>Yahoo rules</strong> (senders.yahooinc.com, read): all senders need SPF or DKIM, spam rate under 0.3%, valid forward/reverse DNS, RFC 5321/5322. Bulk senders need SPF and DKIM, plus DMARC at least p=none that passes with From aligned (relaxed is fine). A rua is "strongly recommended". They also need one-click List-Unsubscribe (RFC 8058 POST recommended), a visible unsubscribe link, unsubscribes honoured within 2 days, and no daily mail on a weekly list's opt-in. Spam rate is counted on inbox-delivered mail only.</li>
+<li><strong>BT</strong> (for completeness, live 30 Oct): btinternet.com MX is <code>mx.bt.prod.cloud.openwave.ai</code>, DMARC p=reject.</li>
+</ul>
+<h2>How-to (any UK B2C list)</h2>
+<ol>
+<li><strong>Segment by domain.</strong> Tag subscribers on the four VM domains, plus sky.com, btinternet.com, talktalk.net. Count them before deciding any of this matters.</li>
+<li><strong>Ask VM subscribers to confirm or update their address now</strong>, while the mailbox still works. Send one plain, link-light message from your usual From domain. The only link goes to your own preference/update page on your own domain. Never say "your account will be closed"; that's VM's message, not yours.</li>
+<li><strong>Watch the segment, not the list.</strong> After each send, compare opens/clicks/bounces for the VM segment against the rest. Two sends with no engagement from a VM address after 1 Nov 2026 → move it to a "re-confirm" segment and stop mailing it. A 5.1.1 "user unknown" → remove at once.</li>
+<li><strong>Sky = Yahoo.</strong> Meet the Yahoo bulk rules (above). Watch complaints, not just bounces. Yahoo enforces at 0.3%, and emaillabs reports Yahoo recommending staying under 0.1% (not checked against Yahoo).</li>
+<li><strong>Don't mail from a free From address</strong> to strict-DMARC domains. sky.com and btinternet.com both publish p=reject, and a forged or unaligned From is refused (550 5.7.26 pattern).</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Outreach and press are on HOLD, and <strong>nothing here sends anything</strong>. These are pre-send gates for the Mailchimp list (free-chapter signups) and any later newsletter.</li>
+<li><strong>Gate 1 (read-only, next growth or bizdev run):</strong> count Mailchimp audience members by domain, counts only, no addresses copied. If any VM-domain members exist, draft (HubSpot/Mailchimp draft only) a short "Is this still the best address for your Great House Farm chapters?" note. It should be neutral, link only to the cedwyn.bucklerfamily.estate signup/preference page, and send on the project lead's GO. A local grep on 30 Oct found 1 virgin.net address, in a directory crawl and not the list, so it doesn't count as a subscriber.</li>
+<li><strong>Gate 2:</strong> Cedwyn's own sending domain (<code>_dmarc.bucklerfamily.estate</code> = <code>p=none</code>, no rua; Mailchimp DKIM absent = problem P-029) meets Yahoo's bulk bar only once DKIM CNAMEs and a rua exist. See dmarc-aggregate-reports-stdlib-parser-cloudflare.md for the rua route. Decision stays with the project lead (DNS change).</li>
+<li><strong>Gate 3:</strong> in the Sunday growth report, add one line for "VM-domain subscribers: N, engaged since 1 Nov: M" once Gate 1 has run.</li>
+<li>Never use VM's closure wording publicly, and never imply Virgin Media or Sky did anything wrong.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>news.virginmediao2.co.uk (read)</li>
+<li>theregister.com (read)</li>
+<li>emailexpert.com (read, trade press analysis)</li>
+<li>senders.yahooinc.com (read)</li>
+<li>sky.com (snippet: no new Sky Yahoo accounts)</li>
+<li>Live DNS (cloudflare-dns.com DoH, 30 Oct 2026 ~13:26Z): MX + _dmarc for sky.com, virginmedia.com, ntlworld.com, blueyonder.co.uk, virgin.net, btinternet.com, bucklerfamily.estate</li>
+</ul><p class="raw">Raw Markdown: <a href="uk-isp-virgin-media-junara-sky-yahoo-sender-rules-2026.md">uk-isp-virgin-media-junara-sky-yahoo-sender-rules-2026.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

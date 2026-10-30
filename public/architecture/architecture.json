@@ -1,0 +1,1514 @@
+{
+ "schema": "cedwyn_academy_architecture/v1",
+ "version": "1.0.0",
+ "updated": "2026-10-30",
+ "refreshed_by": "the agent library cycle (every 6 hours); edit this file, then rebuild the academy",
+ "source_documents": [
+  "/projects/data-architecture/ (programme page: plan, work packages, milestones)",
+  "/academy/MEMORY/standing-orders.md (order 7s)",
+  "/academy/HARNESS/commits.md"
+ ],
+ "structure": {
+  "repository": "one repository for the whole site, 140+ branches",
+  "branches": {
+   "main": "the shell: shared header, menu and runtime, landing page, build tools, themes.json, sections.lock, shared rules, CI. Site-wide changes only, by pull request labelled site-wide.",
+   "theme branches": "one webapp per branch (for example kissed-frogs, nomenclature, projects, maps, cedwyn-movie); the branch folder (usually public/) is copied to /{id}/ at build time",
+   "section/{id}": "snapshot branches for crawled sections (research, wiki, fcg, app, chat, estate, patagonia, cyberspace), pinned by sections.lock and moved by the sections-ci workflow",
+   "agents": "this academy (public/ copied to /academy/ outside the theme list, noindex)",
+   "hive": "hive state (roster, board, join file, batons) served at /hive/",
+   "site": "the assembled output the static host serves"
+  },
+  "registry": "themes.json on main lists every webapp (id, titles in English, Welsh and Spanish, branch, folder, group); data/site-areas.json groups 44 source themes into 36 visitor areas. Welsh mirrors live under /wales/{section}/ and Spanish under /argentina/{section}/.",
+  "build_pipeline": [
+   "fetch theme branch tips",
+   "assemble: copy each branch folder, run an optional per-theme build, read a pinned section snapshot, or crawl a running app",
+   "fetch missing assets",
+   "rewrite links (theme-relative paths, content-addressed /_blob/ files)",
+   "site: root page and shared runtime",
+   "self-contain: add the shared three-row header from /_cedwyn/ghf/",
+   "privacy scrub (fails the build on working-process attribution)",
+   "views: derive each migrated webapp's view and render its pages (never fails the build; the app falls back to its static pages)",
+   "build the catalogue database",
+   "evidence catalogue tests",
+   "outbound-link guard, self-contained test, link audit, public-voice check",
+   "measure",
+   "publish to branch site; the static host serves it"
+  ],
+  "build_facts": [
+   "a full build takes about 30–50 minutes",
+   "builds queue and each one finishes (cancel-in-progress is off on main); never cancel or re-dispatch a build",
+   "a push to a theme branch does not start a build; the next build carries it",
+   "a section snapshot moves only through sections-ci",
+   "builds regenerate everything: fix sources, never the built output"
+  ],
+  "other_workflows": [
+   "sections-ci",
+   "snapshot-sections",
+   "agent-lint (checks outside agent submissions)",
+   "evidence-hierarchy-ci",
+   "mirror",
+   "rechunk",
+   "cms-relay",
+   "sync-wayback-mail"
+  ],
+  "shared_header": "one JSON file per site under web/_cedwyn/ghf/sites/, plus themes.json and site-areas.json, produce the uniform header and menu that titles every page; pages therefore never repeat a big title",
+  "versions": "/_cedwyn/versions.json is the one site-wide version scheme: the newest edition of any product is v0.0.2, the one before it v0.0.1, older ones -v0.0.1, -v0.0.2 and so on; read by /documentary/ and /ebooks/",
+  "discovery": "/llms.txt, /agents.json, robots.txt and one alternate link plus ai-agents meta per page head point machines at /academy/; nothing machine-facing appears on human pages"
+ },
+ "data": {
+  "master": "data/core/ in git (JSON Schema 2020-12): one record per thing",
+  "kinds": [
+   "evidence",
+   "artifact",
+   "place",
+   "person_or_body",
+   "event",
+   "screening_lead",
+   "missing_record",
+   "observation",
+   "testimony"
+  ],
+  "id_prefixes": [
+   "EV-",
+   "MR-",
+   "CC-",
+   "KF-",
+   "PL-",
+   "PE-",
+   "EVT-",
+   "AR-",
+   "TS-",
+   "OBS-"
+  ],
+  "record_fields": {
+   "id": "stable public id, never reused",
+   "kind": "one of the kinds",
+   "title": "neutral headline",
+   "aliases": "other ids and old slugs",
+   "date": "display, sort, precision",
+   "description": "what the thing is",
+   "transcript": "verbatim text where held, with its status",
+   "interpretation": "our reading, marked as interpretation; ranked competing readings allowed",
+   "provenance": "source only: holder, reference, date, how obtained (never who found it)",
+   "grade": "0–5",
+   "scope": "disposition (in_scope, not_this_property, separate_property, out_of_scope, name_correction, dating_correction, assertion_only, context_only, on_hold), reason, distinct_from, tags",
+   "places / people / links": "ids and typed links (cites, distinct_from, same_as_candidate, supersedes, answers)",
+   "pages": "where the record is shown (generated)",
+   "public": "false rows never leave the build",
+   "updated / rev": "change tracking"
+  },
+  "compile_chain": [
+   "data/core (master, git)",
+   "the catalogue SQLite built at site build (core records and links; served in chunks over HTTP range requests at /db/, no server calls)",
+   "the D1 edge database mirrored from core, read through the catalogue read API (/api/catalogue); a mirror, never the source"
+  ],
+  "view_dbs": "each webapp gets its own small database at /{app}/_db/view.json, derived from core by a written selection rule in data/views/{app}.view.json (select by kind and fields, project public fields only, include links). Nobody edits a view by hand. Note: the build serves data files from the catalogue, so a plain fetch of a view file may answer 404 while the page itself is rendered at build time.",
+  "pilot": "Kissed Frogs: view = core records whose scope disposition marks them as looked-like-the-farm-but-not; its index and 49 detail pages render from the view (live 30 Oct 2026). Llandough Farm (a separate farm, NLW D 219/9–13) is its canonical card.",
+  "near_a2ui": "each page is a component list in the A2UI v0.9 shape (createSurface, a flat updateComponents list, updateDataModel bound by JSON pointer) rendered by one shared renderer at build time, with an optional small client renderer; components come only from the Cedwyn catalog, which maps one-to-one to the CSS classes the site already uses, so the design stays the same. Unknown component = build error. Agents can propose a page as a component list without injecting HTML or script.",
+  "catalog_components": [
+   "Page",
+   "Hero/Figure",
+   "Lede",
+   "ReadMore",
+   "Section",
+   "CardList and Card",
+   "FilterBar",
+   "Table (with mobile cards)",
+   "Accordion",
+   "EvidenceLink",
+   "NomenclatureLink",
+   "Glossary term",
+   "Badge/Status",
+   "Breadcrumb",
+   "Note/Scope",
+   "Footer meta"
+  ],
+  "rollback": "per webapp: set \"enabled\": false in its view file (one-line commit); the next build serves the branch's static pages again. Core: revert the data/core commit. Nothing force-pushes or deletes history.",
+  "gates": [
+   "build green",
+   "schema valid",
+   "no public:false rows or private fields; privacy scrub zero",
+   "public voice: banned words zero, neutral third person",
+   "outbound links zero",
+   "unknown components zero"
+  ],
+  "metrics": {
+   "HCR": "hard-coded records left on an app's pages (target 0)",
+   "COV": "share of the app's pages generated from its view (target 100%)",
+   "PAR": "pixel difference against the baseline at 390 px and 1280 px (at most 2% per page type, no layout shift)",
+   "GREEN": "build succeeds",
+   "CLEAN": "all scanners zero",
+   "SIZE": "view at most 1 MB; page weight at most baseline + 5%"
+  },
+  "work_packages": [
+   {
+    "id": "WP0",
+    "title": "Programme set-up: audit, plan, project board, Projects page, flywheel doc",
+    "milestone": "M0 Plan recorded",
+    "target": "2026-10-30",
+    "status": "done (Projects page live)",
+    "acceptance": "plan and flywheel published on /projects/data-architecture/, checked at 390 px; parent task and one task per work package on the project board"
+   },
+   {
+    "id": "WP1",
+    "title": "Pilot: Kissed Frogs (core v0.1, view, renderer v0.1, Llandough Farm separation, new layout)",
+    "milestone": "M1 Pilot live",
+    "target": "2026-10-31",
+    "status": "in progress (index and 49 detail pages generated live 30 Oct)",
+    "acceptance": "page renders from /kissed-frogs/_db/view.json derived from data/core by rule; zero hard-coded records on the index; frog image (light and dark), short explanation, card list, no extra title; Llandough Farm kept separate from the farm everywhere; parity at 390/1280; build green; scanners clean"
+   },
+   {
+    "id": "WP2",
+    "title": "Core consolidation: one master",
+    "milestone": "M2 Core v1",
+    "target": "2026-11-03",
+    "status": "not started",
+    "acceptance": "all EV, MR, CC, KF, PL, PE records merged into data/core with the schema; zero duplicate ids; validator in CI; the catalogue build compiles core; D1 mirrored from data/core"
+   },
+   {
+    "id": "WP3",
+    "title": "Renderer, Cedwyn component catalog v1 and parity harness",
+    "milestone": "M3 Renderer v1",
+    "target": "2026-11-05",
+    "status": "not started",
+    "acceptance": "catalog lists every component with a props schema; build-time and client renderers render all; parity harness (390/1280 screenshots and text diff) runs in CI on changed apps"
+   },
+   {
+    "id": "WP4",
+    "title": "Security, privacy and validation gates",
+    "milestone": "M2",
+    "target": "2026-11-03",
+    "status": "not started",
+    "acceptance": "CI fails on schema errors, non-public rows, private fields, secret patterns, banned words, outbound links or an unknown component; llms.txt and agents.json list view endpoints"
+   },
+   {
+    "id": "WP5",
+    "title": "Wave 1: registers already structured (nomenclature, whattheydontsay, familytree, ebooks, projects, blog, glossary, maps index)",
+    "milestone": "M4 Wave 1",
+    "target": "2026-11-10",
+    "status": "not started",
+    "acceptance": "per app: zero hard-coded records, 100% coverage, parity pass, build green, scanners clean"
+   },
+   {
+    "id": "WP6",
+    "title": "Wave 2: the evidence layer (research evidence pages, wiki evidence, missing records, 1000 Cuts, infographic, authorities, requests, review, records, accounts, oldbill)",
+    "milestone": "M5 Wave 2",
+    "target": "2026-11-17",
+    "status": "not started",
+    "acceptance": "same gates; every EV page generated from core"
+   },
+   {
+    "id": "WP7",
+    "title": "Wave 3: snapshots and interactive apps",
+    "milestone": "M6 Wave 3",
+    "target": "2026-11-28",
+    "status": "not started",
+    "acceptance": "content layer from views; engine code stays code; snapshot pins retired where content is data-driven"
+   },
+   {
+    "id": "WP8",
+    "title": "Flywheel automation and handover (scheduled migration loop, metrics page, academy lesson)",
+    "milestone": "M7 Programme closed",
+    "target": "2026-12-05",
+    "status": "not started",
+    "acceptance": "all apps at zero hard-coded records; metrics page green; academy module on how Cedwyn pages are made; old pre-generated HTML deleted"
+   }
+  ],
+  "programme_page": "/projects/data-architecture/"
+ },
+ "webapps": [
+  {
+   "id": "wiki",
+   "title": "The Legal Wiki",
+   "url": "/wiki/",
+   "group": "Historic artifacts",
+   "purpose": "Snapshot of the legacy legal wiki: case pages, evidence posts and the change log, served inside Cedwyn",
+   "source": "branch section/wiki (snapshot pinned in sections.lock)",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "state": "SNAPSHOT",
+   "view_rule": "kind = evidence and grade >= 0, ordered by EV id",
+   "migration_wave": "WP6 (wave 2)"
+  },
+  {
+   "id": "records",
+   "title": "Primary Records",
+   "url": "/records/",
+   "group": "Historic artifacts",
+   "purpose": "Primary record register: the core documents of the farm, one row each",
+   "source": "branch ghf-primary-records",
+   "data_sources": "1 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "kind = evidence and grade >= 0, ordered by EV id",
+   "migration_wave": "WP6 (wave 2)"
+  },
+  {
+   "id": "docs",
+   "title": "Docs · The Evidence Catalogue",
+   "url": "/docs/",
+   "group": "Historic artifacts",
+   "purpose": "The evidence catalogue as a document library",
+   "source": "branch docs, folder public",
+   "data_sources": "built by the branch build step",
+   "state": "BUILT",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "wayback",
+   "title": "The Wayback Vault",
+   "url": "/wayback/",
+   "group": "Historic artifacts",
+   "purpose": "The Wayback Vault: captured copies of web pages, PDFs, images and video about the farm",
+   "source": "branch wayback, folder wayback",
+   "data_sources": "716 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "nomenclature",
+   "title": "Nomenclature",
+   "url": "/nomenclature/",
+   "group": "Historic artifacts",
+   "purpose": "Every name used for the house, the estate, the town and the family, with each variant linked to its source",
+   "source": "branch nomenclature, folder public",
+   "data_sources": "27 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "kind = place, or the aliases of the farm and its variants; distinct_from shown as \"not the same place\"",
+   "migration_wave": "WP5 (wave 1)"
+  },
+  {
+   "id": "maps",
+   "title": "The Map Room",
+   "url": "/maps/",
+   "group": "Historic artifacts",
+   "purpose": "The Map Room: historic and modern maps, plans and the tithe parcels",
+   "source": "branch maps, folder public",
+   "data_sources": "1 data JSON file(s) in the branch, 2 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP5 (wave 1)"
+  },
+  {
+   "id": "infographic",
+   "title": "The Land Changing Hands",
+   "url": "/infographic/",
+   "group": "Interactive",
+   "purpose": "The land changing hands: a visual chain of who held the land and when",
+   "source": "branch infographic, folder public",
+   "data_sources": "1 data JSON file(s) in the branch, 2 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "kind in {event, evidence} with a sortable date, ordered by date",
+   "migration_wave": "WP6 (wave 2)"
+  },
+  {
+   "id": "ebooks",
+   "title": "The E-book Shelf",
+   "url": "/ebooks/",
+   "group": "A story to be retold",
+   "purpose": "The e-book shelf: each edition, its sample and its versions",
+   "source": "branch ebooks, folder public",
+   "data_sources": "76 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "its own small register (books, products, objectives, posts), promoted to a core kind in WP5",
+   "migration_wave": "WP5 (wave 1)"
+  },
+  {
+   "id": "story",
+   "title": "The Story",
+   "url": "/story/",
+   "group": "A story to be retold",
+   "purpose": "The Story: the narrative of the farm and the 1987 case as a guided read",
+   "source": "branch bpvsbuckler, folder static/bpvsbuckler/dist",
+   "data_sources": "built by the branch build step",
+   "state": "BUILT",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "thousand-cuts",
+   "title": "1000 Cuts",
+   "url": "/thousand-cuts/",
+   "group": "A story to be retold",
+   "purpose": "1000 Cuts: dated events, what each changed in law or in fact, each linked to its evidence",
+   "source": "main data layer",
+   "data_sources": "generated on main from the repository data layer (data/*.json)",
+   "state": "GENERATED",
+   "view_rule": "kind in {event, evidence} with a sortable date, ordered by date",
+   "migration_wave": "WP6 (wave 2)"
+  },
+  {
+   "id": "fb",
+   "title": "The Farm Album",
+   "url": "/fb/",
+   "group": "Historic artifacts",
+   "purpose": "The Farm Album: photographs and posts from the farm years",
+   "source": "branch fb, folder site",
+   "data_sources": "336 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "chess",
+   "title": "The Chessboard",
+   "url": "/chess/",
+   "group": "Interactive",
+   "purpose": "The Chessboard: the case as an interactive board of moves",
+   "source": "branch chess, folder public",
+   "data_sources": "4 data JSON file(s) in the branch, 4 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "csscpsg",
+   "title": "The Grammar House (CSSCPSGP)",
+   "url": "/csscpsg/",
+   "group": "Interactive",
+   "purpose": "The Grammar House: an interactive close reading of the wording in key documents",
+   "source": "branch csscpsg, folder public",
+   "data_sources": "4 data JSON file(s) in the branch, 3 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "courtdrills",
+   "title": "Court Drills · Procedural Unfairness",
+   "url": "/courtdrills/",
+   "group": "Interactive",
+   "purpose": "Court Drills: procedural points in the proceedings, 1955 to 1988, as drills",
+   "source": "branch courtdrills, folder public",
+   "data_sources": "1 data JSON file(s) in the branch, 2 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "fcg",
+   "title": "FCG · Security Clearance",
+   "url": "/fcg/",
+   "group": "Modern research and how it's going",
+   "purpose": "FCG register, including the first-seen register of records that appear online",
+   "source": "branch section/fcg (snapshot pinned in sections.lock)",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "state": "SNAPSHOT",
+   "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "oldbill",
+   "title": "Old Bill · Who Gained, Who Lost",
+   "url": "/oldbill/",
+   "group": "A story to be retold",
+   "purpose": "Old Bill: who gained and who lost, set out from the records",
+   "source": "branch oldbill, folder public",
+   "data_sources": "3 data JSON file(s) in the branch, 1 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP6 (wave 2)"
+  },
+  {
+   "id": "accounts",
+   "title": "The Counting House",
+   "url": "/accounts/",
+   "group": "Modern research and how it's going",
+   "purpose": "The Counting House: the money side of the records",
+   "source": "branch accounts, folder public",
+   "data_sources": "1 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP6 (wave 2)"
+  },
+  {
+   "id": "authorities",
+   "title": "Public Authorities",
+   "url": "/authorities/",
+   "group": "Modern research and how it's going",
+   "purpose": "Public authority correspondence register",
+   "source": "branch ghf-public-authorities",
+   "data_sources": "1 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "kind = person_or_body (public bodies) with their events and requests",
+   "migration_wave": "WP6 (wave 2)"
+  },
+  {
+   "id": "wdtk",
+   "title": "FOI Requests (WhatDoTheyKnow)",
+   "url": "/wdtk/",
+   "group": "Modern research and how it's going",
+   "purpose": "Information requests made in public, with their status",
+   "source": "branch whatdotheyknow, folder public",
+   "data_sources": "8 data JSON file(s) in the branch, 8 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "kind = person_or_body (public bodies) with their events and requests",
+   "migration_wave": "WP6 (wave 2)"
+  },
+  {
+   "id": "review",
+   "title": "Independent Review",
+   "url": "/review/",
+   "group": "Modern research and how it's going",
+   "purpose": "Independent review register",
+   "source": "branch ghf-independent-review",
+   "data_sources": "1 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "kind = person_or_body (public bodies) with their events and requests",
+   "migration_wave": "WP6 (wave 2)"
+  },
+  {
+   "id": "research",
+   "title": "The Research Library",
+   "url": "/research/",
+   "group": "Modern research and how it's going",
+   "purpose": "The Research Library: evidence pages, artefacts, missing records and findings",
+   "source": "branch section/research (snapshot pinned in sections.lock)",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "state": "SNAPSHOT",
+   "view_rule": "kind in {evidence, artifact} and scope.disposition = in_scope (with links)",
+   "migration_wave": "WP6 (wave 2)"
+  },
+  {
+   "id": "qa",
+   "title": "The Q&A Hall",
+   "url": "/qa/",
+   "group": "A story to be retold",
+   "purpose": "The Q&A Hall: questions and answers about the farm and the records",
+   "source": "branch qa",
+   "data_sources": "4 data JSON file(s) in the branch, 113 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "meeting",
+   "title": "The Council Chamber",
+   "url": "/meeting/",
+   "group": "Modern research and how it's going",
+   "purpose": "The Council Chamber: the community council meeting of 22 Oct 2026 and its papers",
+   "source": "branch 2026-10-22, folder static/2026-10-22",
+   "data_sources": "2 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "projects",
+   "title": "The Project Office",
+   "url": "/projects/",
+   "group": "Modern research and how it's going",
+   "purpose": "The Project Office: programme and project pages (PRINCE2 style), including the data architecture programme",
+   "source": "branch projects, folder projects/public",
+   "data_sources": "7 data JSON file(s) in the branch, 169 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "its own small register (books, products, objectives, posts), promoted to a core kind in WP5",
+   "migration_wave": "WP5 (wave 1)"
+  },
+  {
+   "id": "app",
+   "title": "The Case Office",
+   "url": "/app/",
+   "group": "Interactive",
+   "purpose": "The Case Office: an interactive case workspace",
+   "source": "branch section/app (snapshot pinned in sections.lock)",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "state": "SNAPSHOT",
+   "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "chat",
+   "title": "Ask the Archive",
+   "url": "/chat/",
+   "group": "Interactive",
+   "purpose": "Ask the Archive: a question box over the catalogue",
+   "source": "branch section/chat (snapshot pinned in sections.lock)",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "state": "SNAPSHOT",
+   "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "watchtower",
+   "title": "Watchtower",
+   "url": "/watchtower/",
+   "group": "Modern research and how it's going",
+   "purpose": "Watchtower: before and after copies of outside pages about the farm, recaptured on a cycle",
+   "source": "branch watchtower, folder public",
+   "data_sources": "6 data JSON file(s) in the branch, 1 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "fb2",
+   "title": "farmbook 2 · Today",
+   "url": "/fb2/",
+   "group": "Modern research and how it's going",
+   "purpose": "farmbook 2: today's posts and outside wording, quoted as written",
+   "source": "branch fb, folder site2",
+   "data_sources": "121 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "email",
+   "title": "The Post Office",
+   "url": "/email/",
+   "group": "Modern research and how it's going",
+   "purpose": "The Post Office: correspondence with record holders, summarised",
+   "source": "crawled from its running app at build time",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "state": "SNAPSHOT",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "emails",
+   "title": "The Post Office · Calendar",
+   "url": "/emails/",
+   "group": "Modern research and how it's going",
+   "purpose": "The Post Office calendar: dates of requests, replies and deadlines",
+   "source": "branch emails, folder public",
+   "data_sources": "3 data JSON file(s) in the branch, 1 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "dartboard",
+   "title": "The Disclosure Dartboard",
+   "url": "/dartboard/",
+   "group": "Interactive",
+   "purpose": "The Disclosure Dartboard: every body asked, and how far each answer has come (served at the apex)",
+   "source": "crawled from its running app at build time",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "state": "SNAPSHOT",
+   "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "estate",
+   "title": "Cedwyn Estate",
+   "url": "/estate/",
+   "group": "Interactive",
+   "purpose": "Cedwyn Estate: the estate landing area",
+   "source": "branch section/estate (snapshot pinned in sections.lock)",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "state": "SNAPSHOT",
+   "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "directory",
+   "title": "Cedwyn Pages",
+   "url": "/directory/",
+   "group": "Interactive",
+   "purpose": "Cedwyn Pages: a directory of every page on the site",
+   "source": "branch directory, folder public",
+   "data_sources": "1 data JSON file(s) in the branch, 310 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "patagonia",
+   "title": "Great House Farm II · Patagonia Museum",
+   "url": "/patagonia/",
+   "group": "Historic artifacts",
+   "purpose": "Great House Farm II: the Patagonia museum area",
+   "source": "branch section/patagonia (snapshot pinned in sections.lock)",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "state": "SNAPSHOT",
+   "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "wales",
+   "title": "Virtual Tour · Wales",
+   "url": "/wales/",
+   "group": "Interactive",
+   "purpose": "Virtual Tour: Wales, the walking tour of the farm and Llandough",
+   "source": "crawled from its running app at build time",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "state": "SNAPSHOT",
+   "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "terrain",
+   "title": "Terrain · Cedwyn Estate in 3D",
+   "url": "/terrain/",
+   "group": "Interactive",
+   "purpose": "Terrain: the estate in 3D",
+   "source": "crawled from its running app at build time",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "state": "SNAPSHOT",
+   "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "cyberspace",
+   "title": "The Digital Estate",
+   "url": "/cyberspace/",
+   "group": "Interactive",
+   "purpose": "The Digital Estate: the online side of the estate",
+   "source": "branch section/cyberspace (snapshot pinned in sections.lock)",
+   "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+   "state": "SNAPSHOT",
+   "view_rule": "content layer only (texts, stops, questions) from core or an app register; game and engine code stays code",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "shop",
+   "title": "Gift Shop & Marketplace",
+   "url": "/shop/",
+   "group": "A story to be retold",
+   "purpose": "Gift shop and marketplace",
+   "source": "branch merch, folder public",
+   "data_sources": "4 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "its own small register (books, products, objectives, posts), promoted to a core kind in WP5",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "documentary",
+   "title": "Cedwyn · documentary",
+   "url": "/documentary/",
+   "group": "A story to be retold",
+   "purpose": "The documentary: one door a day, a two-minute scene from the chronology (also reached at /movie/)",
+   "source": "branch cedwyn-movie, folder public",
+   "data_sources": "12 data JSON file(s) in the branch, 2 pre-generated HTML pages",
+   "state": "MIXED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "familytree",
+   "title": "The family tree",
+   "url": "/familytree/",
+   "group": "A story to be retold",
+   "purpose": "The Williams–Buckler family of Tŷ Mawr as a tree, every person and link with its record",
+   "source": "branch familytree, folder public",
+   "data_sources": "1 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "kind = person_or_body and tags contain family (public-safe fields only)",
+   "migration_wave": "WP5 (wave 1)"
+  },
+  {
+   "id": "kissed-frogs",
+   "title": "Kissed Frogs",
+   "url": "/kissed-frogs/",
+   "group": "Modern research and how it's going",
+   "purpose": "Kissed Frogs: leads that looked like the farm and were checked and found not to be it (for example Llandough Farm, a separate farm)",
+   "source": "branch kissed-frogs, folder public",
+   "data_sources": "central catalogue screening records (data/core) -> view rule data/views/kissed-frogs.view.json -> /kissed-frogs/_db/view.json; pages rendered by the shared renderer",
+   "state": "DATA-DRIVEN (pilot live 30 Oct 2026)",
+   "view_rule": "scope.disposition in {not_this_property, separate_property, out_of_scope, name_correction, dating_correction, assertion_only, context_only, on_hold}",
+   "migration_wave": "WP1 (pilot)"
+  },
+  {
+   "id": "nft-art",
+   "title": "The Garden Gallery",
+   "url": "/nft-art/",
+   "group": "Interactive",
+   "purpose": "The Garden Gallery: digital editions repainted as gardens from archive photographs, maps and plans",
+   "source": "branch nft-art, folder public",
+   "data_sources": "1 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "to be written in its work package",
+   "migration_wave": "WP7 (wave 3)"
+  },
+  {
+   "id": "whattheydontsay",
+   "title": "What They Don't Say",
+   "url": "/whattheydontsay/",
+   "group": "Modern research and how it's going",
+   "purpose": "What They Don't Say: dated questions to public bodies, when an answer was due, and what came back",
+   "source": "branch whattheydontsay, folder public",
+   "data_sources": "1 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "kind = observation and tags contain silence, plus public correspondence summaries",
+   "migration_wave": "WP5 (wave 1)"
+  },
+  {
+   "id": "blog",
+   "title": "Blog",
+   "url": "/blog/",
+   "group": "Modern research and how it's going",
+   "purpose": "Blog: short dated posts on the history, heritage and records of the farm",
+   "source": "branch blog, folder public",
+   "data_sources": "1 hand-written or pre-generated HTML pages; no data file",
+   "state": "HARD-CODED",
+   "view_rule": "its own small register (books, products, objectives, posts), promoted to a core kind in WP5",
+   "migration_wave": "WP5 (wave 1)"
+  }
+ ],
+ "other_areas": [
+  {
+   "url": "/academy/",
+   "what": "Cedwyn Academy, machine-facing, branch agents"
+  },
+  {
+   "url": "/hive/",
+   "what": "multi-agent draft review room, branch hive"
+  },
+  {
+   "url": "/learn/",
+   "what": "the human learning area"
+  },
+  {
+   "url": "/_cedwyn/",
+   "what": "shared runtime, header files, versions file, A2UI catalog"
+  },
+  {
+   "url": "/db/",
+   "what": "the catalogue database in chunks"
+  }
+ ],
+ "autoresearch_pattern": {
+  "shape": "hypothesis -> smallest change -> measure -> keep or discard",
+  "rules": [
+   "a fixed program file, one editable surface, a fixed time budget and one fixed metric",
+   "keep a change only if the metric improves; otherwise revert",
+   "log every experiment, kept or discarded",
+   "never change the metric to make a result look good"
+  ],
+  "used_by": [
+   "reopen-loop",
+   "problems-flywheel",
+   "sales-fix",
+   "webapp-migration"
+  ]
+ },
+ "migration_flywheel": [
+  {
+   "step": 1,
+   "name": "Claim and baseline",
+   "what": "Claim the webapp on the project board (no two agents on one app). Screenshot every page type at 390 px and 1280 px, light and dark; save the visible text and the list of record ids shown."
+  },
+  {
+   "step": 2,
+   "name": "Hypothesis",
+   "what": "One sentence: the [record type] on {page} can be expressed as view rule R plus template T with no visual change."
+  },
+  {
+   "step": 3,
+   "name": "Smallest change",
+   "what": "In order, only what the hypothesis needs: add missing records to data/core; write the view rule in data/views/{app}.view.json; write the page template as a component list (_ui/{page}.a2ui.json) using catalog components only."
+  },
+  {
+   "step": 4,
+   "name": "Measure",
+   "what": "Render locally; run the schema validator, the privacy test, the parity harness and the metrics (hard-coded records, coverage, parity)."
+  },
+  {
+   "step": 5,
+   "name": "Keep or discard",
+   "what": "Keep only if every gate passes and hard-coded records fell or coverage rose with parity in bounds; otherwise revert. Log one results row either way."
+  },
+  {
+   "step": 6,
+   "name": "Ship, verify, record",
+   "what": "Small commits, fast-forward only; let a running build finish; verify live with a cache-busted fetch at 390 px and desktop; record the metrics and commit on the task. Three discarded hypotheses in a row on one app go to the problems queue."
+  }
+ ],
+ "loops": [
+  {
+   "id": "site-daily",
+   "name": "Daily site flywheel",
+   "cadence": "daily 12:00 UK",
+   "does": "Measures every farm site (status, phone-width render, score), then works each site's own program file in priority order: safe automatic fixes only, everything else logged as a proposal.",
+   "inputs": [
+    "the site list and one program file per site",
+    "last run's scores and log"
+   ],
+   "outputs": [
+    "verified fixes, live at 390 px",
+    "proposals for anything not safe to automate",
+    "a scored log row per check"
+   ],
+   "touches": [
+    "every Cedwyn section (check), branches it is allowed to fix",
+    "legacy hosts (redirects only)"
+   ],
+   "guardrails": [
+    "sites owned by another running worker are check-and-report only",
+    "fixes verified live at 390 px before they count",
+    "the legacy wiki is never edited beyond redirects",
+    "no force-push; commits carry the house sign-off"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/site-daily.md"
+  },
+  {
+   "id": "email-ingest",
+   "name": "Email ingest",
+   "cadence": "every 2 hours, 07:00–23:00 UK",
+   "does": "Reads new project mail (read-only), classifies it, reads attachments, and feeds the record: the disclosure manifest, the roadmap and dartboard, candidate catalogue entries and missing-record candidates, and the matching case task on the project board.",
+   "inputs": [
+    "new project mail since the last run",
+    "attachments (locked ones recorded as locked, never opened by force)"
+   ],
+   "outputs": [
+    "manifest and roadmap updates",
+    "catalogue and missing-record candidates for the research cycles",
+    "a dated paragraph on the matching case task",
+    "a site build when none is queued"
+   ],
+   "touches": [
+    "/dartboard/ (served at the apex)",
+    "/research/ (via the research cycles)",
+    "the project board"
+   ],
+   "guardrails": [
+    "mail is read, never sent or drafted",
+    "personal-data material is read but held privately",
+    "scope filter: Great House Farm / cedwyn mail only"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/email-ingest.md"
+  },
+  {
+   "id": "correspondence",
+   "name": "Correspondence flywheel",
+   "cadence": "every 2 hours at :30, 07:30–23:30 UK",
+   "does": "Works out who needs a reply, a chaser, an escalation, a forward or a first contact, and writes one hive draft task per item on the project board; between items it does housekeeping on existing tasks.",
+   "inputs": [
+    "archived mail (after email ingest)",
+    "open draft tasks",
+    "the drafts engine queue"
+   ],
+   "outputs": [
+    "new hive draft tasks",
+    "triage notes on unsent tasks when a new fact exists",
+    "housekeeping (duplicates, stale fields)"
+   ],
+   "touches": [
+    "the project board",
+    "/hive/ (drafts enter the review queue)"
+   ],
+   "guardrails": [
+    "drafts only: never sent, never marked sent by an agent",
+    "research and disclosure mail only, never marketing",
+    "status values only not-started or completed"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/correspondence.md"
+  },
+  {
+   "id": "hive",
+   "name": "Hive drafts and review gates",
+   "cadence": "every 5 minutes per seat",
+   "does": "The multi-agent review room at /hive/ (the old hive host forwards there). Each seat takes its turns on draft letters: one material review per turn, a semantic version bump and a signed changelog line, then passes the turn on. A draft becomes ready only at the exact-version gate: ten reviews from at least four different seats on the same frozen version.",
+   "inputs": [
+    "the live roster",
+    "draft tasks whose turn is this seat's",
+    "each draft's changelog and baton"
+   ],
+   "outputs": [
+    "versioned reviews with signed changelog entries",
+    "board metadata (/hive/ board)",
+    "a mail draft for human review only after every gate passes"
+   ],
+   "touches": [
+    "/hive/",
+    "the project board"
+   ],
+   "guardrails": [
+    "never delete another agent's lines",
+    "re-check the last-modified time before writing",
+    "turns idle past the skip window allow only the permitted route action",
+    "a person reviews and sends; agents never send"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/hive.md"
+  },
+  {
+   "id": "board-sync",
+   "name": "Hive board sync",
+   "cadence": "every 4 hours",
+   "does": "Rebuilds the hive board (review counts, seats, percentage to ready, synced time) from the project board, read-only, and commits it only if something changed.",
+   "inputs": [
+    "task subjects, last-modified times and changelog counts (no bodies)"
+   ],
+   "outputs": [
+    "the hive board JSON with a synced_at stamp"
+   ],
+   "touches": [
+    "/hive/ (hive board on the hive branch)"
+   ],
+   "guardrails": [
+    "read-only on the project board",
+    "never drops another agent's row",
+    "JSON validated before commit",
+    "commits only when changed"
+   ]
+  },
+  {
+   "id": "repo-sync",
+   "name": "Repository and project-board sync",
+   "cadence": "every 6 hours",
+   "does": "Studies new commits, pull requests and issues and the live work board, notes them on matching tasks, closes tasks only when verified live, and opens tasks for outstanding work.",
+   "inputs": [
+    "repository activity since the last run",
+    "/academy/work.json, /hive/, dartboard and roadmap",
+    "the problems queue"
+   ],
+   "outputs": [
+    "dated notes with commit references",
+    "tasks completed when verified live",
+    "new repository tasks (capped per run)"
+   ],
+   "touches": [
+    "the project board (the site is read-only here)"
+   ],
+   "guardrails": [
+    "repository read-only",
+    "duplicate check before any new task",
+    "hive turn, sales and personal tasks are never touched"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/repo-sync.md"
+  },
+  {
+   "id": "online-gap-finder",
+   "name": "Online gap finder",
+   "cadence": "every 6 hours",
+   "does": "Searches public archives, catalogues, newspapers, registers and books for material about the farm that is not yet on Cedwyn, and turns each genuine gap into a task naming the area it belongs in.",
+   "inputs": [
+    "public archives and catalogues",
+    "the live site (sitemap, research, evidence catalogue)",
+    "its own seen ledger"
+   ],
+   "outputs": [
+    "3–8 gap tasks per run, each with source, summary and target page"
+   ],
+   "touches": [
+    "the project board; agents then add the material to /research/, /wiki/, /wales/ and other areas"
+   ],
+   "guardrails": [
+    "never edits the site itself",
+    "duplicate and seen checks first",
+    "nothing about family holdings or addresses"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/online-gap-finder.md"
+  },
+  {
+   "id": "first-seen",
+   "name": "First-seen detector",
+   "cadence": "every 6 hours",
+   "does": "Compares a baseline of known farm records online against the latest crawl; a record that quietly appears is verified against its live page and dated captures and published on the first-seen register.",
+   "inputs": [
+    "the baseline of known records",
+    "dated captures"
+   ],
+   "outputs": [
+    "verified first-seen entries with the dated evidence of absence"
+   ],
+   "touches": [
+    "/fcg/ first-seen register"
+   ],
+   "guardrails": [
+    "an entry is published only after verification",
+    "neutral dated wording: quiet release or announced disclosure, no verdict"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/first-seen.md"
+  },
+  {
+   "id": "recapture",
+   "name": "Farm page recapture (Watchtower)",
+   "cadence": "every 5 days",
+   "does": "Recaptures outside pages about the farm's history and heritage and records before and after copies, so any change made by an outside site is caught.",
+   "inputs": [
+    "the list of watched outside pages",
+    "the previous captures"
+   ],
+   "outputs": [
+    "captured / unchanged / changed / unreachable counts",
+    "the watchtower data file"
+   ],
+   "touches": [
+    "/watchtower/"
+   ],
+   "guardrails": [
+    "no alerts for layout changes; only substantive history content counts",
+    "robots rules honoured; blocked hosts noted, not forced",
+    "skipped when the disk is low"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/recapture.md"
+  },
+  {
+   "id": "intelligence",
+   "name": "Intel flywheel",
+   "cadence": "daily 04:15 UK",
+   "does": "Reviews everything known, plots it many ways (periodicity, sequences, who answered and who stayed silent), and publishes blank evidence pages with catalogue ids for records that should exist by statute, practice or cross-reference but are not held.",
+   "inputs": [
+    "the events and missing-record registers",
+    "new mail (read-only)",
+    "the latest research and reopen-loop reports"
+   ],
+   "outputs": [
+    "new missing-record ids and pages",
+    "charts and findings re-ranked with what cuts against them",
+    "a cycle report"
+   ],
+   "touches": [
+    "/research/ (section/research: missing records, events, findings)"
+   ],
+   "guardrails": [
+    "commits only to section/research",
+    "interpretation is labelled as interpretation",
+    "what cuts against a finding is shown beside it"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/intelligence.md"
+  },
+  {
+   "id": "reopen-loop",
+   "name": "Reopen loop",
+   "cadence": "every 4 hours",
+   "does": "Small one-hypothesis experiments against a fixed metric (the three limbs of the legal test for reopening a judgment) to rank grounds for reopening the 1987 judgment.",
+   "inputs": [
+    "the grounds register",
+    "the results log",
+    "the newest research cycle"
+   ],
+   "outputs": [
+    "3–6 experiments kept or discarded",
+    "score changes",
+    "the programme highlight report section on prospective triggers (only when the top three change)"
+   ],
+   "touches": [
+    "/projects/ (highlight report)",
+    "research findings"
+   ],
+   "guardrails": [
+    "the metric is fixed; never changed to make a result look better",
+    "labelled as prospective, never a finding of any court",
+    "read-only research"
+   ],
+   "pattern": "autoresearch",
+   "flywheel_page": "/academy/FLYWHEELS/reopen-loop.md"
+  },
+  {
+   "id": "research-cycle",
+   "name": "Great House Farm research cycle",
+   "cadence": "every 6 hours",
+   "does": "Starts with a change-check of the live sections, then follows the most promising untried route to evidence and artefacts not yet in Cedwyn.",
+   "inputs": [
+    "the last cycle report and next-cycle brief",
+    "the rubric",
+    "reopen-loop results"
+   ],
+   "outputs": [
+    "a cycle report with sources",
+    "new findings in the findings log",
+    "the next-cycle brief"
+   ],
+   "touches": [
+    "feeds /research/ through the intel flywheel and email ingest"
+   ],
+   "guardrails": [
+    "read-only: never edits the family sites, orders documents or files requests",
+    "strict alert bar; the primary source is re-read before any alert"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/research-cycle.md"
+  },
+  {
+   "id": "problems-flywheel",
+   "name": "Problems flywheel",
+   "cadence": "every 30 minutes",
+   "does": "Every blocker or problem goes into one queue instead of to a person. Each open problem gets autoresearch cycles (hypothesis, smallest real test, result logged, keep or discard) until solved; only after six hours of looping with no route left is it marked unsolvable.",
+   "inputs": [
+    "the problems queue (up to three open problems per run, oldest first)"
+   ],
+   "outputs": [
+    "hypothesis / action / result lines per problem",
+    "fixes applied within the rules",
+    "solved or unsolvable status with evidence"
+   ],
+   "touches": [
+    "any area, within that area's owner and commit rules"
+   ],
+   "guardrails": [
+    "decisions are made from standing rules and evidence, with the reasoning recorded",
+    "never cancels or dispatches a site build while others run",
+    "no commits to a branch another worker owns that day; a proposed patch instead"
+   ],
+   "pattern": "autoresearch",
+   "flywheel_page": "/academy/FLYWHEELS/problems-flywheel.md"
+  },
+  {
+   "id": "skills-harvest",
+   "name": "Skills harvest",
+   "cadence": "every 15 minutes",
+   "does": "Finds new practitioner playbooks for online sales and marketing (deliverability, testing, search and AI visibility, social growth, launches) and writes each as a short how-to with sources and how it applies to Cedwyn.",
+   "inputs": [
+    "the skills index",
+    "primary practitioner sources"
+   ],
+   "outputs": [
+    "2–4 new skill files per run",
+    "index lines"
+   ],
+   "touches": [
+    "/academy/SKILLS/marketing/ (sanitised at build time)"
+   ],
+   "guardrails": [
+    "free tools only, small installs only, none when disk is low",
+    "sources named as plain text"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/skills-harvest.md"
+  },
+  {
+   "id": "sales-fix",
+   "name": "Sales fix",
+   "cadence": "every 3 hours",
+   "does": "Checks e-book sales; with none, diagnoses why along the funnel (traffic, reach, sign-ups, the buy path walked at phone width) and does the one highest-leverage fix it can make that day, verified live.",
+   "inputs": [
+    "sales records",
+    "traffic and channel numbers",
+    "the buy path",
+    "its own log of past fixes"
+   ],
+   "outputs": [
+    "one verified fix per run",
+    "a log row with numbers and how the fix is measured next run"
+   ],
+   "touches": [
+    "/ebooks/, /shop/, link targets, channel bios and video descriptions"
+   ],
+   "guardrails": [
+    "prices are never changed by an agent",
+    "no paid ads, bought followers or messages to strangers",
+    "a fix that already failed is not repeated"
+   ],
+   "pattern": "autoresearch",
+   "flywheel_page": "/academy/FLYWHEELS/sales-fix.md"
+  },
+  {
+   "id": "bizdev",
+   "name": "Business development",
+   "cadence": "plan daily 09:00 UK; execute every 2 hours 10:00–22:00",
+   "does": "Writes the next 24 hours' weighted plan on the project board before any work, then executes the tasks in weight order with care, recording outcomes and lessons in the growth project.",
+   "inputs": [
+    "the weighted objectives list",
+    "yesterday's tasks and results"
+   ],
+   "outputs": [
+    "dated plan and tasks",
+    "completed tasks with outcomes",
+    "growth project updates"
+   ],
+   "touches": [
+    "the project board",
+    "/projects/ (growth project)",
+    "public channels"
+   ],
+   "guardrails": [
+    "plan before work",
+    "zero spend; no bought reach",
+    "price changes, new channels and press are proposals"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/bizdev.md"
+  },
+  {
+   "id": "auto-social",
+   "name": "Daily auto-social",
+   "cadence": "daily 08:15 UK",
+   "does": "Wakes the blog's daily post and posts at most one new item per channel, only once the page and image are live, each linking back to Cedwyn.",
+   "inputs": [
+    "the newest blog post and its image"
+   ],
+   "outputs": [
+    "at most one post per channel per day, never a duplicate"
+   ],
+   "touches": [
+    "/blog/",
+    "the project's social channels"
+   ],
+   "guardrails": [
+    "at least four hours between posts per channel",
+    "a post held by the safety scan is not forced",
+    "no posting to communities, no direct messages"
+   ]
+  },
+  {
+   "id": "youtube-shorts",
+   "name": "Short videos to YouTube Shorts",
+   "cadence": "with each new short story clip; uploads within the daily quota, queued past it",
+   "does": "Every short story clip made for the series goes to YouTube Shorts as well as the photo channel: one important moment of the story per clip, a search-friendly title, a thumbnail from the gallery images, and a description that opens with the site link and names its sources (news footage, e-book, photographs, catalogued evidence).",
+   "inputs": [
+    "rendered clips",
+    "the series plan of next story beats in date order"
+   ],
+   "outputs": [
+    "Shorts with titles, thumbnails and descriptions",
+    "a queue for anything past the daily quota"
+   ],
+   "touches": [
+    "/ebooks/ and /documentary/ (link targets)",
+    "the video channel"
+   ],
+   "guardrails": [
+    "never a duplicate upload",
+    "no version hashtags",
+    "strict chronology; each clip tied to a catalogued evidence page or e-book chapter"
+   ]
+  },
+  {
+   "id": "documentary",
+   "name": "Documentary scenes",
+   "cadence": "every 6 hours",
+   "does": "Takes the next item in the re-render queue or the next unfilled frame of the chronology and produces one short scene: one dated moment, who was there, what was most likely said, with Welsh spoken where the period calls for it and subtitles.",
+   "inputs": [
+    "the script and scene list",
+    "the re-render queue",
+    "the render budget"
+   ],
+   "outputs": [
+    "one scene with subtitles",
+    "the next door opened on the documentary page",
+    "the script kept ten frames ahead"
+   ],
+   "touches": [
+    "/documentary/ (also /movie/)"
+   ],
+   "guardrails": [
+    "strict date order; no narrator and no fourth wall from scene 3",
+    "reconstruction only; no likeness of real family members",
+    "spend only within the render budget; waits are logged as problems"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/movie.md"
+  },
+  {
+   "id": "agent-library",
+   "name": "Agent library cycle (Cedwyn Academy)",
+   "cadence": "every 6 hours at 00:40, 06:40, 12:40, 18:40 UK",
+   "does": "Reads what agents learned since the last cycle, distils only durable public-safe facts into the academy, regenerates the work board from real gaps, refreshes this architecture section, rebuilds, scans (0 hits required), publishes to the agents branch and checks it live.",
+   "inputs": [
+    "memory notes, lessons, runners, skills and worker reports",
+    "the architecture plan, the flywheel list and the webapp registry"
+   ],
+   "outputs": [
+    "academy pages, agents.json, work.json, llms.txt",
+    "this section and architecture.json",
+    "a changelog line"
+   ],
+   "touches": [
+    "/academy/",
+    "/llms.txt and /agents.json (discovery)"
+   ],
+   "guardrails": [
+    "machine-facing only: nothing on human pages",
+    "publishes only to the agents branch, never main",
+    "scanner must report zero hits"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/agent-library.md"
+  },
+  {
+   "id": "programme-office",
+   "name": "Programme office review",
+   "cadence": "weekly, Monday 06:00 UK",
+   "does": "Refreshes the inputs for each major objective, advances the cheapest next action that needs no sign-off, scores and rates each objective, and republishes the programme pages.",
+   "inputs": [
+    "objectives and their measures",
+    "worker reports since the last review",
+    "deadlines and registers"
+   ],
+   "outputs": [
+    "one review page per week",
+    "objective scores and status",
+    "proposals queued for sign-off"
+   ],
+   "touches": [
+    "/projects/ (programme office)",
+    "the e-book pipeline"
+   ],
+   "guardrails": [
+    "commits only to the projects branch",
+    "prices, publishing, new channels, press and spend are proposals",
+    "companies only for outreach drafts"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/programme-office.md"
+  },
+  {
+   "id": "growth-report",
+   "name": "Growth report",
+   "cadence": "weekly, Sunday 18:00 UK",
+   "does": "Measures the week: visitors, followers per channel, sign-ups and sales, search coverage; answers public questions; picks next week's one priority.",
+   "inputs": [
+    "traffic analytics",
+    "channel counts",
+    "sign-up and sales records"
+   ],
+   "outputs": [
+    "a weekly row of numbers",
+    "three lines on traffic, sign-ups and sales, and next week's priority"
+   ],
+   "touches": [
+    "measurement only; public replies on the project's own posts"
+   ],
+   "guardrails": [
+    "read-only on analytics",
+    "drafts only for email replies"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/growth.md"
+  },
+  {
+   "id": "visibility",
+   "name": "Visibility check",
+   "cadence": "weekly, Monday 07:30 UK",
+   "does": "Ranks the site for a fixed query set, asks a fixed set of questions of an AI assistant and counts mentions of the site, checks that AI crawlers reach it and notes three peer heritage sites.",
+   "inputs": [
+    "the fixed query and question sets",
+    "search console coverage"
+   ],
+   "outputs": [
+    "scores and up to five tagged actions"
+   ],
+   "touches": [
+    "measurement only; actions go to on-page or promotion queues"
+   ],
+   "guardrails": [
+    "read-only",
+    "the query set is fixed so weeks compare"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/growth.md"
+  },
+  {
+   "id": "onpage",
+   "name": "On-page flywheel",
+   "cadence": "weekly, Wednesday 13:30 UK",
+   "does": "Audits every section for page titles and descriptions, share cards, sitemap, robots and llms files, structured data, the buy path and the sign-up strip; fixes markup only.",
+   "inputs": [
+    "every section's live pages"
+   ],
+   "outputs": [
+    "markup fixes, an audit score, proposals for body text or design"
+   ],
+   "touches": [
+    "every section (markup only)"
+   ],
+   "guardrails": [
+    "body text and design changes are proposals",
+    "verified live at 390 px",
+    "commits only when no other worker is committing to that branch"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/growth.md"
+  },
+  {
+   "id": "quote-pack",
+   "name": "Quote pack",
+   "cadence": "weekly, Tuesday 19:00 UK",
+   "does": "Makes three quote cards from verbatim period-record lines with their source lines, plus a cover, posts them as one carousel and adds them to the quotes page linking each to its evidence page.",
+   "inputs": [
+    "the evidence catalogue",
+    "the e-books"
+   ],
+   "outputs": [
+    "three cards and a cover",
+    "the quotes page"
+   ],
+   "touches": [
+    "/shop/quotes/",
+    "the project's social channels"
+   ],
+   "guardrails": [
+    "verbatim quotes with their source lines only",
+    "no accusations about named people"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/growth.md"
+  },
+  {
+   "id": "member-sync",
+   "name": "Academy member sync",
+   "cadence": "every 10 minutes",
+   "does": "Keeps the membership list of the human learning area at /learn/ in step with the checkout records.",
+   "inputs": [
+    "checkout records"
+   ],
+   "outputs": [
+    "the member list",
+    "one log line per run"
+   ],
+   "touches": [
+    "/learn/"
+   ],
+   "guardrails": [
+    "read-only on the checkout side",
+    "stops once the site can read the checkout records itself"
+   ]
+  },
+  {
+   "id": "contacts",
+   "name": "Contacts flywheel",
+   "cadence": "daily 03:30 UK",
+   "does": "Finds institutions and groups not yet contacted that are likely to hold information, records or artefacts, works out what each may hold, and writes a draft for the hive.",
+   "inputs": [
+    "who has been contacted (sent mail, the project board, the drafts engine)",
+    "public sources"
+   ],
+   "outputs": [
+    "3–6 new candidates with what each may hold",
+    "one hive draft task each"
+   ],
+   "touches": [
+    "the project board",
+    "/hive/"
+   ],
+   "guardrails": [
+    "institutions only; never private individuals",
+    "drafts only"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/contacts.md"
+  },
+  {
+   "id": "drafts-engine",
+   "name": "Nightly drafts engine",
+   "cadence": "daily 05:30 UK",
+   "does": "Keeps every due information-request draft and chaser written, in the thread it belongs to, ready for review; a chaser only the day after a deadline lapses and only when no reply has arrived.",
+   "inputs": [
+    "the request queue",
+    "new mail since the last run",
+    "the deadline strategy"
+   ],
+   "outputs": [
+    "draft tasks in the hive format",
+    "queue updates"
+   ],
+   "touches": [
+    "the project board",
+    "/hive/"
+   ],
+   "guardrails": [
+    "never a chaser before a deadline",
+    "never sends; never duplicates an open draft"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/drafts-engine.md"
+  },
+  {
+   "id": "webapp-migration",
+   "name": "Webapp migration flywheel",
+   "cadence": "one webapp at a time, per the programme plan",
+   "does": "Moves one webapp at a time to pages generated from its own view of the central catalogue, keeping the existing design. Six steps per webapp (below).",
+   "inputs": [
+    "the central catalogue",
+    "the webapp's current pages and baseline screenshots",
+    "its selection rule"
+   ],
+   "outputs": [
+    "the webapp's view database",
+    "its page templates",
+    "parity screenshots at 390 px and desktop"
+   ],
+   "touches": [
+    "one webapp per loop; main only for data/core, data/views, tools and workflow"
+   ],
+   "guardrails": [
+    "claim the webapp first; never work one another agent holds",
+    "discard any change that breaks a gate",
+    "strangler fig: static pages stay until parity is proven; one-line rollback"
+   ],
+   "pattern": "autoresearch",
+   "flywheel_page": "/academy/FLYWHEELS/webapp-migration.md"
+  }
+ ]
+}

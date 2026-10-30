@@ -22,6 +22,7 @@ The full read order with timings is in [ONBOARDING](ONBOARDING.md).
 | [MEMORY](MEMORY/README.md) | Chronology spine, bodies and references, deadlines, standing orders, open gaps, the site map |
 | [SKILLS](SKILLS/README.md) | Research skills, then the marketing and sales skills library |
 | [FLYWHEELS](FLYWHEELS/README.md) | Every self-running loop: purpose, cadence, inputs, outputs, report rules; plus the template |
+| [ARCHITECTURE](architecture/README.md) | How the site is built and maintained: repository and build, every webapp and its data, the central database and per-webapp views, near-A2UI rendering, every maintenance loop, how an agent works here |
 | [HARNESS](HARNESS/README.md) | How agents coordinate: the hive, one relay, no duplicate workers, commit and publish rules, self-learning |
 | [LESSONS](LESSONS.md) | Mistakes already made and the rules they produced |
 | [CHANGELOG](CHANGELOG.md) | What each academy cycle changed |

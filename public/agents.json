@@ -1,8 +1,8 @@
 {
  "schema": "cedwyn_academy/v1",
  "name": "Cedwyn Academy",
- "version": "1.0.12",
- "built_utc": "2026-10-30 12:42 UTC",
+ "version": "1.0.14",
+ "built_utc": "2026-10-30 13:56 UTC",
  "base_path": "/academy/",
  "alias_paths": [
   "/academy/"
@@ -25,6 +25,8 @@
   "MEMORY/bodies-and-references.md",
   "MEMORY/deadlines.md",
   "MEMORY/site-map.md",
+  "architecture/README.md",
+  "architecture/agent-guide.md",
   "HARNESS/README.md",
   "HARNESS/publish-gate.md",
   "LESSONS.md",
@@ -509,6 +511,17 @@
    "report": "A milestone when a webapp switches over."
   }
  ],
+ "architecture": {
+  "index": "/academy/architecture/",
+  "json": "/academy/architecture/architecture.json",
+  "pages": [
+   "/academy/architecture/structure.md",
+   "/academy/architecture/webapps.md",
+   "/academy/architecture/data.md",
+   "/academy/architecture/loops.md",
+   "/academy/architecture/agent-guide.md"
+  ]
+ },
  "files": [
   {
    "path": "ACADEMY/BOUNDARIES.md",
@@ -542,8 +555,8 @@
    "path": "CHANGELOG.md",
    "html": "CHANGELOG.html",
    "title": "CHANGELOG",
-   "bytes": 5798,
-   "sha256": "155293cb3eb8b18e8f0b8758b2e4eab37f68d25a2e808717b3faff27b00a647f"
+   "bytes": 6794,
+   "sha256": "b4e6cf6d4a0e1493d3c9cc3aa91a34c8c55f232ae5f06f045e6072a58b83614f"
   },
   {
    "path": "FLYWHEELS/README.md",
@@ -808,8 +821,8 @@
    "path": "MEMORY/standing-orders.md",
    "html": "MEMORY/standing-orders.html",
    "title": "Standing orders",
-   "bytes": 13669,
-   "sha256": "0a77043a34b8e40a5d43e0743874b1818fa50daf5fffa23d2f948dc1184a5f32"
+   "bytes": 13775,
+   "sha256": "f39f0e9664c75721f91c5c85812bd373c1a98594e2a72e6d0bb7cc23c86f6754"
   },
   {
    "path": "ONBOARDING.md",
@@ -822,15 +835,15 @@
    "path": "README.md",
    "html": "index.html",
    "title": "Cedwyn Academy",
-   "bytes": 2783,
-   "sha256": "353d6a19d6c4e3a301f36a930e3afac46682a88e25c358cc032f12caafd4c596"
+   "bytes": 3027,
+   "sha256": "721f52c7cf234d7a7ee4b7b40170a8ecbbb9ee05f76630a1eac0965849885ffd"
   },
   {
    "path": "SKILLS/README.md",
    "html": "SKILLS/index.html",
    "title": "SKILLS",
-   "bytes": 418000,
-   "sha256": "50e274e7841c20bacfc767cdfd4054b3312199fa0c94c953b6165a071b5d00e8"
+   "bytes": 422615,
+   "sha256": "278d982df55df7035afcea2c97b8ea699a86cbf34a71a44348f5029e7cfcc5dd"
   },
   {
    "path": "SKILLS/marketing/1.md",
@@ -1253,6 +1266,13 @@
    "sha256": "bc8b27106bc1556e5da4ca5e428897488a2e520e16dd2e98299ee6bd9cc9fcd7"
   },
   {
+   "path": "SKILLS/marketing/bt-mail-btinternet-sender-rules-postmaster-escalation.md",
+   "html": "SKILLS/marketing/bt-mail-btinternet-sender-rules-postmaster-escalation.html",
+   "title": "BT Mail (btinternet.com) sender rules and the postmaster escalation runbook",
+   "bytes": 5484,
+   "sha256": "b4c9e522a0952ab4b43eb6a3f3090260f66d14401c8d982d5699ded69dc22dba"
+  },
+  {
    "path": "SKILLS/marketing/business-wales-events-finder-free-listing-fit-gate.md",
    "html": "SKILLS/marketing/business-wales-events-finder-free-listing-fit-gate.html",
    "title": "Business Wales Events Finder: free listing for business-facing events (fit gate first)",
@@ -1559,6 +1579,13 @@
    "title": "Selling digital art editions (download + certificate, no blockchain): edition size, retirement, trust",
    "bytes": 5995,
    "sha256": "45d9d4ed10d5d7d3f37c1df360856685ed1f2878fb0d521391aae24bef513533"
+  },
+  {
+   "path": "SKILLS/marketing/dmarc-aggregate-reports-stdlib-parser-cloudflare.md",
+   "html": "SKILLS/marketing/dmarc-aggregate-reports-stdlib-parser-cloudflare.html",
+   "title": "DMARC aggregate (rua) reports: get them free, read them with a stdlib parser, act on them",
+   "bytes": 5497,
+   "sha256": "8a44b59296b217b2f2b8795ba2703db40ad922dc2f7c4d9642ae2ab4a48203e2"
   },
   {
    "path": "SKILLS/marketing/documentary-community-educational-screening-licences.md",
@@ -3500,6 +3527,13 @@
    "sha256": "f2a54e83a82ee04d646925f649faf33fdcfc84e500649972edfdc03590db9df4"
   },
   {
+   "path": "SKILLS/marketing/site-image-provenance-iptc-c2pa-google-about-this-image.md",
+   "html": "SKILLS/marketing/site-image-provenance-iptc-c2pa-google-about-this-image.html",
+   "title": "Image provenance on our own site: IPTC DigitalSourceType + Content Credentials (C2PA) for Google \"About this image\"",
+   "bytes": 6553,
+   "sha256": "b490a3b167afc6ca53259f43db3c93be89fa0f4951cb04978350a637f9a89876"
+  },
+  {
    "path": "SKILLS/marketing/site-migration-redirect-map-internal-link-crawl.md",
    "html": "SKILLS/marketing/site-migration-redirect-map-internal-link-crawl.html",
    "title": "Site migration: redirect map + broken internal link crawl",
@@ -3834,6 +3868,13 @@
    "title": "UK DMCC Act marketing-copy compliance: urgency, reviews, prices (from 6 Apr 2025)",
    "bytes": 5222,
    "sha256": "41ceb6ed7f9b543cd063af399c162cea9a8266a1eb726cbc168b3583d9942b86"
+  },
+  {
+   "path": "SKILLS/marketing/uk-isp-virgin-media-junara-sky-yahoo-sender-rules-2026.md",
+   "html": "SKILLS/marketing/uk-isp-virgin-media-junara-sky-yahoo-sender-rules-2026.html",
+   "title": "Virgin Media mailbox closure (Junara/Atmail) + Sky Yahoo Mail: UK consumer-ISP sender rules, 2026",
+   "bytes": 5803,
+   "sha256": "57f8dffdcc3060d36c2ee1645f7f5cec7c716081c4061b239fcf6dc0ba3fb629"
   },
   {
    "path": "SKILLS/marketing/uk-parliament-e-petitions-10k-government-response-route.md",
@@ -4345,6 +4386,48 @@
    "title": "SOUL — who we are, what we are for, how we sound",
    "bytes": 6943,
    "sha256": "0952e790413cddafe8d8e9efbb7715634c6d7f27f245866c3d9875b89816c18e"
+  },
+  {
+   "path": "architecture/README.md",
+   "html": "architecture/index.html",
+   "title": "Site architecture and maintenance",
+   "bytes": 2184,
+   "sha256": "e8ab1c1ecdb4f2124c2c2f9f251a7c80707d10e1917bc9bc9caa033b0139c654"
+  },
+  {
+   "path": "architecture/agent-guide.md",
+   "html": "architecture/agent-guide.html",
+   "title": "How an agent works here",
+   "bytes": 3972,
+   "sha256": "dfff5f49b73e4b052fedaf6ca2c4529398c0fd195607fb1ee903967310044d9b"
+  },
+  {
+   "path": "architecture/data.md",
+   "html": "architecture/data.html",
+   "title": "Data architecture",
+   "bytes": 7303,
+   "sha256": "b0be4f2f70b8e5144245377fd386a12c3f597baba82adb80d14361ee3cf4a2a6"
+  },
+  {
+   "path": "architecture/loops.md",
+   "html": "architecture/loops.html",
+   "title": "Maintenance loops",
+   "bytes": 26854,
+   "sha256": "bea0a1d7e52db6e5c276522749de6972a23cd431b59b446de8d15a15fee8a817"
+  },
+  {
+   "path": "architecture/structure.md",
+   "html": "architecture/structure.html",
+   "title": "Structure: repository, branches, build, deploy",
+   "bytes": 4470,
+   "sha256": "8c657994a1d85ee10d6278be48f99b9778bec9dabe6586eed7e0a431bba4f25a"
+  },
+  {
+   "path": "architecture/webapps.md",
+   "html": "architecture/webapps.html",
+   "title": "Webapps",
+   "bytes": 15765,
+   "sha256": "6c4ded0f2e2275e1df295a7a66e113ec8a6f1a2c47013129106f2e54bbd7195c"
   }
  ],
  "formats": {

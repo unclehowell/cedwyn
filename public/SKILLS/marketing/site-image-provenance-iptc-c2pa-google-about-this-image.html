@@ -1,0 +1,50 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Image provenance on our own site: IPTC DigitalSourceType + Content Credentials (C2PA) for Google &quot;About this image&quot; · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Image provenance on our own site: IPTC DigitalSourceType + Content Credentials (C2PA) for Google &quot;About this image&quot;"><link rel="alternate" type="text/markdown" href="site-image-provenance-iptc-c2pa-google-about-this-image.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Image provenance on our own site: IPTC DigitalSourceType + Content Credentials (C2PA) for Google "About this image"</h1>
+<p>Written 30 Oct 2026 by the skills harvest. Root suggested it. Already in the index: social-side AI labels (Meta "AI info", YouTube "AI use") in ai-image-labels-disclosure-engagement-meta-youtube.md. This file covers the other half: images served from our own pages and what Google Images / Lens / Circle to Search show about them.</p>
+<h2>What the primary sources say (all read today)</h2>
+<ul>
+<li><strong>Google Search Central, Image metadata</strong> (developers.google.com): Google extracts IPTC photo metadata from the image file. "Digital Source Type" is a recommended property. Google supports four AI values: <code>trainedAlgorithmicMedia</code> (made by a generative model), <code>compositeSynthetic</code>, <code>algorithmicMedia</code>, and <code>compositeWithTrainedAlgorithmicMedia</code> (inpainting/outpainting). Either structured data or IPTC is enough for Licensable-badge eligibility. Embedded IPTC goes with the file.</li>
+<li><strong>Google, 17 Sep 2024</strong> (blog.google, Laurie Richardson, VP Trust &amp; Safety): when an image carries C2PA metadata, "About this image" will show whether it was created or edited with AI tools. "About this image" is in Google Images, Lens and Circle to Search. Validation is against the C2PA trust list. Ads are starting to use C2PA signals for policy enforcement.</li>
+<li><strong>Cloudflare Images docs</strong> (preserve-content-credentials, updated 26 May 2026): Cloudflare's transformations <strong>strip metadata unless "Preserve Content Credentials" is switched on</strong> (Images &gt; Transformations per zone; hosted images: Delivery tab). Cloudflare Polish and resizing pipelines are the usual place where a manifest disappears.</li>
+<li><strong>Practitioner walk-through</strong> (tech-insider.org "C2PA labels for AI images, 12 steps [2026]", read): "This is where most labeling efforts quietly fail": any non-C2PA-aware editor, format conversion or batch compressor drops the manifest. Test by comparing <code>c2patool file --info</code> before and after export. Also from that piece: OpenAI images have carried SynthID alongside C2PA since 19 May 2026, and Google counts 180 bn+ watermarked images and videos. SynthID survives screenshots, metadata does not. Those two figures are the article's and were not checked against Google's or OpenAI's own pages.</li>
+<li><strong>Open-source signer:</strong> c2patool (CAI open-source SDK, opensource.contentauthenticity.org). It's free, but a self-signed certificate is <strong>not on the C2PA trust list</strong>, so Google may not show it as validated. IPTC DigitalSourceType needs no certificate.</li>
+</ul>
+<h2>Live baseline, 30 Oct 2026 (our own tool, read-only)</h2>
+<p>`skills/tools/img_provenance_audit.py cedwyn.bucklerfamily.estate checked the home share card (share-home-*.jpg, 172 KB), the two tile images and five holo-ghf1 thumbnails: <strong>0 of 8 carry XMP, IPTC DigitalSourceType, C2PA or EXIF.</strong> The build strips everything, so Google sees no provenance at all on our images. The Kissed Frogs frog is an SVG. SVG has no IPTC/C2PA route, so its disclosure goes in the caption/alt or the image-metadata JSON-LD.</p>
+<h2>How to do it (smallest steps, cheapest first)</h2>
+<ol>
+<li><strong>Inventory.</strong> List every raster image in the per-webapp view databases with a field <code>source</code>: <code>archive-scan</code> | <code>photo</code> | <code>ai-generated</code> | <code>ai-edited</code> | <code>composite</code>. Real archive scans and photos must never be tagged AI. AI reconstructions (movie stills, illustrations, share cards made with a model) must be.</li>
+<li><strong>Write IPTC DigitalSourceType into the file at build time</strong>, after resizing and as the last step, so nothing strips it afterwards. Values: <code>ai-generated</code> -&gt; <code>cv.iptc.org</code>ai-edited<code>/inpainted archive -&gt;</code>compositeWithTrainedAlgorithmicMedia<code>;</code>composite<code>-&gt;</code>compositeSynthetic`. Add Creator, Credit Line and Copyright Notice using the estate/project name only, never a person.
+   - <strong>Free tools:</strong> exiftool (Perl, ~10 MB) or Pillow, both carrying XMP. <strong>Not installed today</strong> (disk 2.3 GB, root said install nothing). The build runner on GitHub Actions can apt-get exiftool at no cost to this box.</li>
+<li><strong>Mirror it in page markup.</strong> ImageObject JSON-LD with <code>creator</code>, <code>creditText</code>, <code>copyrightNotice</code>, plus a visible caption line on AI images ("AI reconstruction"). This fits the EU AI Act Art. 50 "unobtrusive disclosure" already in the social skill.</li>
+<li><strong>If images go through Cloudflare Images/Polish,</strong> switch on Preserve Content Credentials. Otherwise make sure the metadata write is the last step after any optimiser. Re-run the audit tool after each build: <code>digital_source_type</code> must be non-null on every AI image.</li>
+<li><strong>C2PA signing (optional, later).</strong> Generators that already embed C2PA (OpenAI, Adobe Firefly, Google) only need the pipeline to stop stripping it. Self-signing with c2patool proves nothing to Google (not on the trust list), so skip it unless a trusted certificate becomes available free.</li>
+<li><strong>Check:</strong> Google Images -&gt; the image -&gt; three dots -&gt; "About this image". It only appears once the image is indexed. Note the date in the check log.</li>
+</ol>
+<h2>Why it matters (sales and trust)</h2>
+<ul>
+<li>The site is evidence-led. One AI reconstruction mistaken for an archive photo would undermine every real scan. Labelling the reconstructions makes the real scans more believable, not less.</li>
+<li>Google Ads and Merchant Center (support.google.com) ask for AI images' IPTC codes to be preserved. If we ever advertise or list the e-books in Shopping, the files are ready.</li>
+<li>No numbers on traffic effect: no practitioner source measured a ranking or CTR change from IPTC/C2PA. Treat it as trust and compliance, not an SEO lever.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>PROPOSAL for the architecture programme</strong> (it owns main/data/core today; no commits from here): add <code>source</code> to the central catalogue's image records, write IPTC DigitalSourceType in the shared renderer's build step (exiftool on the Actions runner), and add ImageObject JSON-LD plus a caption on AI images. Kissed Frogs frog SVG: alt/caption "illustration". Movie stills on /movie/ = trainedAlgorithmicMedia.</li>
+<li>Never tag archive scans (EV- records, plans, deeds) as AI. Inpainted or restored scans = compositeWithTrainedAlgorithmicMedia, with a caption.</li>
+<li>Monday visibility check: run <code>img_provenance_audit.py</code> on /, /movie/, /kissed-frogs/ and /ebooks/, and log the count of AI images missing DigitalSourceType (target 0).</li>
+<li>Public wording: neutral ("AI reconstruction", "illustration"), never names a person, no banned words.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com</li>
+<li>blog.google</li>
+<li>developers.cloudflare.com</li>
+<li>tech-insider.org</li>
+<li>opensource.contentauthenticity.org</li>
+<li>support.google.com</li>
+</ul><p class="raw">Raw Markdown: <a href="site-image-provenance-iptc-c2pa-google-about-this-image.md">site-image-provenance-iptc-c2pa-google-about-this-image.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

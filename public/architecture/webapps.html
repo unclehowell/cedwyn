@@ -1,0 +1,534 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Webapps · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Webapps"><link rel="alternate" type="text/markdown" href="webapps.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../index.html"><b>Cedwyn Academy</b></a><a href="../SOUL.html">Soul</a><a href="../ONBOARDING.html">Onboarding</a><a href="../ACADEMY/CHECK.html">Check</a><a href="../ACADEMY/WORK.html">Work</a><a href="../MEMORY/index.html">Memory</a><a href="../SKILLS/index.html">Skills</a><a href="../FLYWHEELS/index.html">Flywheels</a><a href="../architecture/index.html">Architecture</a><a href="../HARNESS/index.html">Harness</a><a href="../LESSONS.html">Lessons</a></nav><main><h1>Webapps</h1>
+<p>Every webapp on the site (formerly called themes): 44 in the registry, each served at its own path, each on its own branch or snapshot. The state column is how hard-coded its content is today; the view rule is the selection that will feed its own view database; the wave is its work package. Machine-readable: <a href="architecture.json">architecture.json</a>.</p>
+<p>States: BUILT 2 · DATA-DRIVEN 1 · GENERATED 1 · HARD-CODED 15 · MIXED 13 · SNAPSHOT 12.</p>
+<ul>
+<li><strong>DATA-DRIVEN</strong>: pages rendered from the webapp's view of the central catalogue.</li>
+<li><strong>GENERATED</strong>: generated on main from repository data files.</li>
+<li><strong>BUILT</strong>: built by a build step in its branch.</li>
+<li><strong>MIXED</strong>: a data file exists, but the pages are pre-generated HTML.</li>
+<li><strong>HARD-CODED</strong>: hand-written or pre-generated HTML, no data file.</li>
+<li><strong>SNAPSHOT</strong>: a crawled or pinned copy of a running app; content must be extracted first.</li>
+</ul>
+<h2>Historic artifacts</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Webapp</th>
+<th>URL</th>
+<th>Purpose</th>
+<th>Source</th>
+<th>Data today</th>
+<th>State</th>
+<th>View rule</th>
+<th>Wave</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The Legal Wiki</td>
+<td><code>/wiki/</code></td>
+<td>Snapshot of the legacy legal wiki: case pages, evidence posts and the change log, served inside Cedwyn</td>
+<td>branch section/wiki (snapshot pinned in sections.lock)</td>
+<td>content baked into the crawled or pinned HTML/JS; must be extracted to core first</td>
+<td>SNAPSHOT</td>
+<td>kind = evidence and grade &gt;= 0, ordered by EV id</td>
+<td>WP6 (wave 2)</td>
+</tr>
+<tr>
+<td>Primary Records</td>
+<td><code>/records/</code></td>
+<td>Primary record register: the core documents of the farm, one row each</td>
+<td>branch ghf-primary-records</td>
+<td>1 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>kind = evidence and grade &gt;= 0, ordered by EV id</td>
+<td>WP6 (wave 2)</td>
+</tr>
+<tr>
+<td>Docs · The Evidence Catalogue</td>
+<td><code>/docs/</code></td>
+<td>The evidence catalogue as a document library</td>
+<td>branch docs, folder public</td>
+<td>built by the branch build step</td>
+<td>BUILT</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>The Wayback Vault</td>
+<td><code>/wayback/</code></td>
+<td>The Wayback Vault: captured copies of web pages, PDFs, images and video about the farm</td>
+<td>branch wayback, folder wayback</td>
+<td>716 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>Nomenclature</td>
+<td><code>/nomenclature/</code></td>
+<td>Every name used for the house, the estate, the town and the family, with each variant linked to its source</td>
+<td>branch nomenclature, folder public</td>
+<td>27 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>kind = place, or the aliases of the farm and its variants; distinct_from shown as "not the same place"</td>
+<td>WP5 (wave 1)</td>
+</tr>
+<tr>
+<td>The Map Room</td>
+<td><code>/maps/</code></td>
+<td>The Map Room: historic and modern maps, plans and the tithe parcels</td>
+<td>branch maps, folder public</td>
+<td>1 data JSON file(s) in the branch, 2 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>to be written in its work package</td>
+<td>WP5 (wave 1)</td>
+</tr>
+<tr>
+<td>The Farm Album</td>
+<td><code>/fb/</code></td>
+<td>The Farm Album: photographs and posts from the farm years</td>
+<td>branch fb, folder site</td>
+<td>336 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>Great House Farm II · Patagonia Museum</td>
+<td><code>/patagonia/</code></td>
+<td>Great House Farm II: the Patagonia museum area</td>
+<td>branch section/patagonia (snapshot pinned in sections.lock)</td>
+<td>content baked into the crawled or pinned HTML/JS; must be extracted to core first</td>
+<td>SNAPSHOT</td>
+<td>content layer only (texts, stops, questions) from core or an app register; game and engine code stays code</td>
+<td>WP7 (wave 3)</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Interactive</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Webapp</th>
+<th>URL</th>
+<th>Purpose</th>
+<th>Source</th>
+<th>Data today</th>
+<th>State</th>
+<th>View rule</th>
+<th>Wave</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The Land Changing Hands</td>
+<td><code>/infographic/</code></td>
+<td>The land changing hands: a visual chain of who held the land and when</td>
+<td>branch infographic, folder public</td>
+<td>1 data JSON file(s) in the branch, 2 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>kind in {event, evidence} with a sortable date, ordered by date</td>
+<td>WP6 (wave 2)</td>
+</tr>
+<tr>
+<td>The Chessboard</td>
+<td><code>/chess/</code></td>
+<td>The Chessboard: the case as an interactive board of moves</td>
+<td>branch chess, folder public</td>
+<td>4 data JSON file(s) in the branch, 4 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>content layer only (texts, stops, questions) from core or an app register; game and engine code stays code</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>The Grammar House (CSSCPSGP)</td>
+<td><code>/csscpsg/</code></td>
+<td>The Grammar House: an interactive close reading of the wording in key documents</td>
+<td>branch csscpsg, folder public</td>
+<td>4 data JSON file(s) in the branch, 3 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>content layer only (texts, stops, questions) from core or an app register; game and engine code stays code</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>Court Drills · Procedural Unfairness</td>
+<td><code>/courtdrills/</code></td>
+<td>Court Drills: procedural points in the proceedings, 1955 to 1988, as drills</td>
+<td>branch courtdrills, folder public</td>
+<td>1 data JSON file(s) in the branch, 2 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>content layer only (texts, stops, questions) from core or an app register; game and engine code stays code</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>The Case Office</td>
+<td><code>/app/</code></td>
+<td>The Case Office: an interactive case workspace</td>
+<td>branch section/app (snapshot pinned in sections.lock)</td>
+<td>content baked into the crawled or pinned HTML/JS; must be extracted to core first</td>
+<td>SNAPSHOT</td>
+<td>content layer only (texts, stops, questions) from core or an app register; game and engine code stays code</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>Ask the Archive</td>
+<td><code>/chat/</code></td>
+<td>Ask the Archive: a question box over the catalogue</td>
+<td>branch section/chat (snapshot pinned in sections.lock)</td>
+<td>content baked into the crawled or pinned HTML/JS; must be extracted to core first</td>
+<td>SNAPSHOT</td>
+<td>content layer only (texts, stops, questions) from core or an app register; game and engine code stays code</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>The Disclosure Dartboard</td>
+<td><code>/dartboard/</code></td>
+<td>The Disclosure Dartboard: every body asked, and how far each answer has come (served at the apex)</td>
+<td>crawled from its running app at build time</td>
+<td>content baked into the crawled or pinned HTML/JS; must be extracted to core first</td>
+<td>SNAPSHOT</td>
+<td>content layer only (texts, stops, questions) from core or an app register; game and engine code stays code</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>Cedwyn Estate</td>
+<td><code>/estate/</code></td>
+<td>Cedwyn Estate: the estate landing area</td>
+<td>branch section/estate (snapshot pinned in sections.lock)</td>
+<td>content baked into the crawled or pinned HTML/JS; must be extracted to core first</td>
+<td>SNAPSHOT</td>
+<td>content layer only (texts, stops, questions) from core or an app register; game and engine code stays code</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>Cedwyn Pages</td>
+<td><code>/directory/</code></td>
+<td>Cedwyn Pages: a directory of every page on the site</td>
+<td>branch directory, folder public</td>
+<td>1 data JSON file(s) in the branch, 310 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>Virtual Tour · Wales</td>
+<td><code>/wales/</code></td>
+<td>Virtual Tour: Wales, the walking tour of the farm and Llandough</td>
+<td>crawled from its running app at build time</td>
+<td>content baked into the crawled or pinned HTML/JS; must be extracted to core first</td>
+<td>SNAPSHOT</td>
+<td>content layer only (texts, stops, questions) from core or an app register; game and engine code stays code</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>Terrain · Cedwyn Estate in 3D</td>
+<td><code>/terrain/</code></td>
+<td>Terrain: the estate in 3D</td>
+<td>crawled from its running app at build time</td>
+<td>content baked into the crawled or pinned HTML/JS; must be extracted to core first</td>
+<td>SNAPSHOT</td>
+<td>content layer only (texts, stops, questions) from core or an app register; game and engine code stays code</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>The Digital Estate</td>
+<td><code>/cyberspace/</code></td>
+<td>The Digital Estate: the online side of the estate</td>
+<td>branch section/cyberspace (snapshot pinned in sections.lock)</td>
+<td>content baked into the crawled or pinned HTML/JS; must be extracted to core first</td>
+<td>SNAPSHOT</td>
+<td>content layer only (texts, stops, questions) from core or an app register; game and engine code stays code</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>The Garden Gallery</td>
+<td><code>/nft-art/</code></td>
+<td>The Garden Gallery: digital editions repainted as gardens from archive photographs, maps and plans</td>
+<td>branch nft-art, folder public</td>
+<td>1 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+</tbody>
+</table></div>
+<h2>A story to be retold</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Webapp</th>
+<th>URL</th>
+<th>Purpose</th>
+<th>Source</th>
+<th>Data today</th>
+<th>State</th>
+<th>View rule</th>
+<th>Wave</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The E-book Shelf</td>
+<td><code>/ebooks/</code></td>
+<td>The e-book shelf: each edition, its sample and its versions</td>
+<td>branch ebooks, folder public</td>
+<td>76 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>its own small register (books, products, objectives, posts), promoted to a core kind in WP5</td>
+<td>WP5 (wave 1)</td>
+</tr>
+<tr>
+<td>The Story</td>
+<td><code>/story/</code></td>
+<td>The Story: the narrative of the farm and the 1987 case as a guided read</td>
+<td>branch bpvsbuckler, folder static/bpvsbuckler/dist</td>
+<td>built by the branch build step</td>
+<td>BUILT</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>1000 Cuts</td>
+<td><code>/thousand-cuts/</code></td>
+<td>1000 Cuts: dated events, what each changed in law or in fact, each linked to its evidence</td>
+<td>main data layer</td>
+<td>generated on main from the repository data layer (data/*.json)</td>
+<td>GENERATED</td>
+<td>kind in {event, evidence} with a sortable date, ordered by date</td>
+<td>WP6 (wave 2)</td>
+</tr>
+<tr>
+<td>Old Bill · Who Gained, Who Lost</td>
+<td><code>/oldbill/</code></td>
+<td>Old Bill: who gained and who lost, set out from the records</td>
+<td>branch oldbill, folder public</td>
+<td>3 data JSON file(s) in the branch, 1 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>to be written in its work package</td>
+<td>WP6 (wave 2)</td>
+</tr>
+<tr>
+<td>The Q&amp;A Hall</td>
+<td><code>/qa/</code></td>
+<td>The Q&amp;A Hall: questions and answers about the farm and the records</td>
+<td>branch qa</td>
+<td>4 data JSON file(s) in the branch, 113 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>Gift Shop &amp; Marketplace</td>
+<td><code>/shop/</code></td>
+<td>Gift shop and marketplace</td>
+<td>branch merch, folder public</td>
+<td>4 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>its own small register (books, products, objectives, posts), promoted to a core kind in WP5</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>Cedwyn · documentary</td>
+<td><code>/documentary/</code></td>
+<td>The documentary: one door a day, a two-minute scene from the chronology (also reached at /movie/)</td>
+<td>branch cedwyn-movie, folder public</td>
+<td>12 data JSON file(s) in the branch, 2 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>The family tree</td>
+<td><code>/familytree/</code></td>
+<td>The Williams–Buckler family of Tŷ Mawr as a tree, every person and link with its record</td>
+<td>branch familytree, folder public</td>
+<td>1 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>kind = person_or_body and tags contain family (public-safe fields only)</td>
+<td>WP5 (wave 1)</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Modern research and how it's going</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Webapp</th>
+<th>URL</th>
+<th>Purpose</th>
+<th>Source</th>
+<th>Data today</th>
+<th>State</th>
+<th>View rule</th>
+<th>Wave</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FCG · Security Clearance</td>
+<td><code>/fcg/</code></td>
+<td>FCG register, including the first-seen register of records that appear online</td>
+<td>branch section/fcg (snapshot pinned in sections.lock)</td>
+<td>content baked into the crawled or pinned HTML/JS; must be extracted to core first</td>
+<td>SNAPSHOT</td>
+<td>content layer only (texts, stops, questions) from core or an app register; game and engine code stays code</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>The Counting House</td>
+<td><code>/accounts/</code></td>
+<td>The Counting House: the money side of the records</td>
+<td>branch accounts, folder public</td>
+<td>1 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>to be written in its work package</td>
+<td>WP6 (wave 2)</td>
+</tr>
+<tr>
+<td>Public Authorities</td>
+<td><code>/authorities/</code></td>
+<td>Public authority correspondence register</td>
+<td>branch ghf-public-authorities</td>
+<td>1 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>kind = person_or_body (public bodies) with their events and requests</td>
+<td>WP6 (wave 2)</td>
+</tr>
+<tr>
+<td>FOI Requests (WhatDoTheyKnow)</td>
+<td><code>/wdtk/</code></td>
+<td>Information requests made in public, with their status</td>
+<td>branch whatdotheyknow, folder public</td>
+<td>8 data JSON file(s) in the branch, 8 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>kind = person_or_body (public bodies) with their events and requests</td>
+<td>WP6 (wave 2)</td>
+</tr>
+<tr>
+<td>Independent Review</td>
+<td><code>/review/</code></td>
+<td>Independent review register</td>
+<td>branch ghf-independent-review</td>
+<td>1 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>kind = person_or_body (public bodies) with their events and requests</td>
+<td>WP6 (wave 2)</td>
+</tr>
+<tr>
+<td>The Research Library</td>
+<td><code>/research/</code></td>
+<td>The Research Library: evidence pages, artefacts, missing records and findings</td>
+<td>branch section/research (snapshot pinned in sections.lock)</td>
+<td>content baked into the crawled or pinned HTML/JS; must be extracted to core first</td>
+<td>SNAPSHOT</td>
+<td>kind in {evidence, artifact} and scope.disposition = in_scope (with links)</td>
+<td>WP6 (wave 2)</td>
+</tr>
+<tr>
+<td>The Council Chamber</td>
+<td><code>/meeting/</code></td>
+<td>The Council Chamber: the community council meeting of 22 Oct 2026 and its papers</td>
+<td>branch 2026-10-22, folder static/2026-10-22</td>
+<td>2 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>The Project Office</td>
+<td><code>/projects/</code></td>
+<td>The Project Office: programme and project pages (PRINCE2 style), including the data architecture programme</td>
+<td>branch projects, folder projects/public</td>
+<td>7 data JSON file(s) in the branch, 169 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>its own small register (books, products, objectives, posts), promoted to a core kind in WP5</td>
+<td>WP5 (wave 1)</td>
+</tr>
+<tr>
+<td>Watchtower</td>
+<td><code>/watchtower/</code></td>
+<td>Watchtower: before and after copies of outside pages about the farm, recaptured on a cycle</td>
+<td>branch watchtower, folder public</td>
+<td>6 data JSON file(s) in the branch, 1 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>farmbook 2 · Today</td>
+<td><code>/fb2/</code></td>
+<td>farmbook 2: today's posts and outside wording, quoted as written</td>
+<td>branch fb, folder site2</td>
+<td>121 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>The Post Office</td>
+<td><code>/email/</code></td>
+<td>The Post Office: correspondence with record holders, summarised</td>
+<td>crawled from its running app at build time</td>
+<td>content baked into the crawled or pinned HTML/JS; must be extracted to core first</td>
+<td>SNAPSHOT</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>The Post Office · Calendar</td>
+<td><code>/emails/</code></td>
+<td>The Post Office calendar: dates of requests, replies and deadlines</td>
+<td>branch emails, folder public</td>
+<td>3 data JSON file(s) in the branch, 1 pre-generated HTML pages</td>
+<td>MIXED</td>
+<td>to be written in its work package</td>
+<td>WP7 (wave 3)</td>
+</tr>
+<tr>
+<td>Kissed Frogs</td>
+<td><code>/kissed-frogs/</code></td>
+<td>Kissed Frogs: leads that looked like the farm and were checked and found not to be it (for example Llandough Farm, a separate farm)</td>
+<td>branch kissed-frogs, folder public</td>
+<td>central catalogue screening records (data/core) -&gt; view rule data/views/kissed-frogs.view.json -&gt; /kissed-frogs/_db/view.json; pages rendered by the shared renderer</td>
+<td>DATA-DRIVEN (pilot live 30 Oct 2026)</td>
+<td>scope.disposition in {not_this_property, separate_property, out_of_scope, name_correction, dating_correction, assertion_only, context_only, on_hold}</td>
+<td>WP1 (pilot)</td>
+</tr>
+<tr>
+<td>What They Don't Say</td>
+<td><code>/whattheydontsay/</code></td>
+<td>What They Don't Say: dated questions to public bodies, when an answer was due, and what came back</td>
+<td>branch whattheydontsay, folder public</td>
+<td>1 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>kind = observation and tags contain silence, plus public correspondence summaries</td>
+<td>WP5 (wave 1)</td>
+</tr>
+<tr>
+<td>Blog</td>
+<td><code>/blog/</code></td>
+<td>Blog: short dated posts on the history, heritage and records of the farm</td>
+<td>branch blog, folder public</td>
+<td>1 hand-written or pre-generated HTML pages; no data file</td>
+<td>HARD-CODED</td>
+<td>its own small register (books, products, objectives, posts), promoted to a core kind in WP5</td>
+<td>WP5 (wave 1)</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Other areas (not webapps)</h2>
+<ul>
+<li><code>/academy/</code>: Cedwyn Academy, machine-facing, branch agents</li>
+<li><code>/hive/</code>: multi-agent draft review room, branch hive</li>
+<li><code>/learn/</code>: the human learning area</li>
+<li><code>/_cedwyn/</code>: shared runtime, header files, versions file, A2UI catalog</li>
+<li><code>/db/</code>: the catalogue database in chunks</li>
+</ul>
+<p>Shared across all of them: the header and menu files and <code>/_cedwyn/versions.json</code> (see <a href="structure.html">Structure</a>).</p><p class="raw">Raw Markdown: <a href="webapps.md">webapps.md</a> · version and changes: <a href="../CHANGELOG.html">changelog</a> · machine index: <a href="../agents.json">agents.json</a></p></main></body></html>
