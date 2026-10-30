@@ -390,7 +390,9 @@ except Exception as _e:   # share tags must never stop a build
 # Graph promo + progressive Read more (asked for 01:27 GMT 30 Oct 2026): per-section scatter data for the header graph banner
 # (/_cedwyn/graph/<area>.json, read by web/_cedwyn/cw-graph.js) and long list pages cut into <page>/_more/N.json chunks that
 # cw-graph.js loads on "Read more". Runs after og_cards and cited_on; never stops a build - Sion's Tab agent
-for _gm in ('graph_data', 'readmore_chunks'):
+# readmore_chunks is parked (30 Oct 03:24 build): its _more/N.json chunks were written before privacy_scrub/selfcontain, whose
+# HTML passes do not reach JSON-escaped HTML, so the privacy check failed on them. It needs its own step after those passes.
+for _gm in ('graph_data',):
     try:
         __import__(_gm).run(DIST)
     except Exception as _e:
