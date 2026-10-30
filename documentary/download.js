@@ -1,4 +1,4 @@
-/* Cedwyn · documentary — download button (download.js v1.0.2, 30 Oct 2026 (1.0.2: for a scene with per-language lip-synced video, the file offered is made from that language's video — the pipeline builds each audio language's versions from its own video, (their entries carry from_video); until those exist, a choice with subtitles off offers that language's video file itself (it carries that language's audio); 1.0.1: the button sits in the controls, under the audio and subtitle choices, so the site header never covers it)). A tab.bot production.
+/* Cedwyn · documentary — download button (download.js v1.0.3, 30 Oct 2026 (1.0.3: the button names the scene version it will download (the hashtag chip selected under the scene, movie.js 1.5.0), beside the audio and subtitle choice; 1.0.2: for a scene with per-language lip-synced video, the file offered is made from that language's video — the pipeline builds each audio language's versions from its own video, (their entries carry from_video); until those exist, a choice with subtitles off offers that language's video file itself (it carries that language's audio); 1.0.1: the button sits in the controls, under the audio and subtitle choices, so the site header never covers it)). A tab.bot production.
    Ten seconds into a scene a Download button fades in under the audio and subtitle choices. It downloads that scene with exactly the
    audio language and subtitle choice selected at the moment it is tapped (burned-in subtitles, or none), as an MP4
    that plays on any phone or computer. The versions are made by the film pipeline (tools/download_variants.py) and
@@ -41,7 +41,8 @@
   }
   function paint() {
     if (busy) return; var c = choice(), x = tt(); if (!c) return;
-    b1.textContent = x.dl; b2.textContent = NAT[c.a] + " · " + (c.s === "off" ? x.nos : x.subs[c.s]);
+    var cm = cur() && cur().m, vv = cm ? (cm.cut || cm.version || "") : "";
+    b1.textContent = x.dl; b2.textContent = (vv ? "#v" + vv + " · " : "") + NAT[c.a] + " · " + (c.s === "off" ? x.nos : x.subs[c.s]);
     B.setAttribute("aria-label", x.dl + ": " + b2.textContent); B.title = c.e ? c.title : x.na;
   }
   function show(on) { ROW.classList.toggle("is-on", on); }
@@ -77,5 +78,5 @@
     }).catch(function () { b2.textContent = x.fail; window.open(url, "_blank", "noopener"); })
       .then(function () { busy = false; B.classList.remove("is-busy"); setTimeout(paint, 1200); });
   });
-  window.CedwynDownload = {choice: choice, button: B, version: "1.0.2"};
+  window.CedwynDownload = {choice: choice, button: B, version: "1.0.3"};
 })();

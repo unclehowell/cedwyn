@@ -1,4 +1,4 @@
-/* Cedwyn · documentary — scene page (page v1.4.7, 30 Oct 2026: each scene card has a full-width toggle (bottom-right of its picture) that spans the card across the grid so its text is readable on a narrow phone; tap again for the grid; remembered per card for the visit; v1.4.6, 30 Oct 2026: every scene is free (documentary.js 1.5.0); choosing an earlier cut (v0.0.1-0.0.N) in the version menu plays that door's earlier cut with its own audio and subtitles, and switches an open player to it; the player's meta line names the version playing; v1.4.5, 30 Oct 2026: a scene with per-language lip-synced video (manifest "video": {cy, en, es}) plays the video of the chosen audio language and switches it, at the same position, when the audio changes; without it the single clip plays as before; v1.4.4, 30 Oct 2026: the page opens straight onto the scenes — no intro panel or page-level control bar; audio and subtitles are chosen in the player, and the version select moves into the player's control bar; v1.4.3, 30 Oct 2026: tapping anywhere on a released scene's picture plays it; the full-screen picture opens only from the small "View artwork" button under it; v1.4.2, 30 Oct 2026: window.CedwynPlayer lets download.js offer the scene with the chosen audio and subtitles; v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
+/* Cedwyn · documentary — scene page (page v1.5.0, 30 Oct 2026: one card-size control above the scenes (small / medium / large, like icon sizes in a file explorer) sets every card at once and is remembered on this device (localStorage cedwyn-doc-size); large is one full-width column with unclamped text; it replaces the per-card full-width toggle of 1.4.7. Versions are hashtag chips under each released scene (#v0.0.1-0.0.5 …; the default cut is marked free and selected; a reserved version is marked coming and cannot be picked); the selected chip drives play, language video/audio and Download (documentary.js 1.6.0). v1.4.7, 30 Oct 2026: each scene card has a full-width toggle (bottom-right of its picture) that spans the card across the grid so its text is readable on a narrow phone; tap again for the grid; remembered per card for the visit; v1.4.6, 30 Oct 2026: every scene is free (documentary.js 1.5.0); choosing an earlier cut (v0.0.1-0.0.N) in the version menu plays that door's earlier cut with its own audio and subtitles, and switches an open player to it; the player's meta line names the version playing; v1.4.5, 30 Oct 2026: a scene with per-language lip-synced video (manifest "video": {cy, en, es}) plays the video of the chosen audio language and switches it, at the same position, when the audio changes; without it the single clip plays as before; v1.4.4, 30 Oct 2026: the page opens straight onto the scenes — no intro panel or page-level control bar; audio and subtitles are chosen in the player, and the version select moves into the player's control bar; v1.4.3, 30 Oct 2026: tapping anywhere on a released scene's picture plays it; the full-screen picture opens only from the small "View artwork" button under it; v1.4.2, 30 Oct 2026: window.CedwynPlayer lets download.js offer the scene with the chosen audio and subtitles; v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
    v1.3.0: film versions, viewing licence and checkout live in documentary.js (window.CedwynDoc); play() asks it first.
    Doors come from frames.json; a door opens when manifest.json in the film's storage repository lists its clip.
    The page reads the storage repository at run time (frames, manifest, prompt, scripts, subtitles, media), so the daily
@@ -9,26 +9,28 @@
   var REPO = "unclehowell/cedwyn-movie", REF = "main";
   var RAW = "https:" + "/" + "/" + ["raw", "githubusercontent", "com"].join(".") + "/" + REPO + "/" + REF + "/";
   var MC = {u: "284f08fe7e1b8d39250808104", id: "6139ff4a0d", host: ["estate", "us3", "list-manage", "com"].join(".")};
-  // v1.4.7: full-width cards, remembered for this visit (sessionStorage)
-  var WK = "cedwyn-doc-wide";
-  function wideGet() { try { var a = JSON.parse(sessionStorage.getItem(WK) || "[]"); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
-  function wideSet(n, on) { var a = wideGet().filter(function (x) { return x !== n; }); if (on) a.push(n); try { sessionStorage.setItem(WK, JSON.stringify(a)); } catch (e) {} }
-  var WSVG = '<svg class="w-e" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h18M3 12l4-4M3 12l4 4M21 12l-4-4M21 12l-4 4"/></svg><svg class="w-c" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v16M2 12h7M9 12l-3-3M9 12l-3 3M22 12h-7M15 12l3-3M15 12l3 3"/></svg>';
+  // v1.5.0: one card size for the whole grid, chosen before browsing and remembered on this device
+  var ZK = "cedwyn-doc-size", SIZES = ["s", "m", "l"];
+  function sizeGet() { try { var z = localStorage.getItem(ZK); return SIZES.indexOf(z) >= 0 ? z : "m"; } catch (e) { return "m"; } }
+  var ZSVG = {
+    s: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="9.5" y="3" width="5" height="5" rx="1"/><rect x="16" y="3" width="5" height="5" rx="1"/><rect x="3" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><rect x="16" y="9.5" width="5" height="5" rx="1"/><rect x="3" y="16" width="5" height="5" rx="1"/><rect x="9.5" y="16" width="5" height="5" rx="1"/><rect x="16" y="16" width="5" height="5" rx="1"/></svg>',
+    m: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>',
+    l: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="10" rx="1.5"/><rect x="3" y="15" width="18" height="2.4" rx="1"/><rect x="3" y="19" width="12" height="2.4" rx="1"/></svg>'};
   var EDIT = "https:" + "/" + "/" + ["github", "com"].join(".") + "/" + REPO + "/edit/" + REF + "/PROMPT.md";
   var T = {
-    en: {scene: "Scene", released: "Release date", ai: "artist's impression", more: "Script, subtitles and evidence", enlarge: "View the picture full screen", art: "View artwork", wide: "Show this scene full width", narrow: "Back to the grid", close: "Close", sub_l: "A new scene every morning. Get it by email:", sub_ph: "Your email", sub_b: "Subscribe", sub_human: "One more step: Mailchimp wants to check you are human. Tap Subscribe again to finish in a new tab.", sub_tab: "Finish in the new tab, then check your inbox to confirm.", sub_ok: "Thank you. Check your inbox to confirm.", sub_err: "That did not go through. Please check the address and try again.", sub_bad: "Please enter a valid email address.", sending: "Sending…", mtl: "machine translation", kicker: "Documentary · a tab.bot production", sub: "One door a day. Behind each door, a scene of about two minutes: the people of Llandough talking over what is happening on paper and around the village, from before the deeds to today.",
+    en: {scene: "Scene", released: "Release date", ai: "artist's impression", more: "Script, subtitles and evidence", enlarge: "View the picture full screen", art: "View artwork", size: "Card size", size_s: "Small", size_m: "Medium", size_l: "Large", vers: "Versions", vfree: "free", vcoming: "coming", vpicked: "selected", close: "Close", sub_l: "A new scene every morning. Get it by email:", sub_ph: "Your email", sub_b: "Subscribe", sub_human: "One more step: Mailchimp wants to check you are human. Tap Subscribe again to finish in a new tab.", sub_tab: "Finish in the new tab, then check your inbox to confirm.", sub_ok: "Thank you. Check your inbox to confirm.", sub_err: "That did not go through. Please check the address and try again.", sub_bad: "Please enter a valid email address.", sending: "Sending…", mtl: "machine translation", kicker: "Documentary · a tab.bot production", sub: "One door a day. Behind each door, a scene of about two minutes: the people of Llandough talking over what is happening on paper and around the village, from before the deeds to today.",
       of: "of", doors: "scenes released", runtime: "planned running time", subs: "Subtitles", on: "on", off: "off", audio: "Audio", menu: "Production", fs: "Full screen", fsx: "Exit full screen", play: "Play", pause: "Pause", seek: "Position in the scene", soff: "Off",
       prompt: "Production prompt", prompt_note: "The producer's prompt steers the film. The daily scene run reads it first, every day, before it works on the next door.",
       edit: "Edit the prompt", acts: "Acts", how: "How it is made", how_note: "Every dated event in the chronology sits behind exactly one door, with its evidence numbers. The same faces, voices, buildings and landscapes are used in every scene. Anything a scene leaves out is noted and taken up in a later scene.",
       frame: "Frame", act: "Act", script: "Script", subtitles: "Subtitles", next: "Next scene", soon: "Script in writing: the logline above is the plan.", subsoon: "Subtitles come with the script.",
       events: "Events", evidence: "Evidence", desc: "What happens in this scene", evl: "Evidence: our archived copies", review: "Draft for review", mt: "machine translation, for review", play: "Play", left: "Left out, taken up later"},
-    cy: {scene: "Golygfa", released: "Dyddiad rhyddhau", ai: "argraff arlunydd", more: "Sgript, isdeitlau a thystiolaeth", enlarge: "Gweld y llun ar sgrin lawn", art: "Gweld y gwaith celf", wide: "Dangos yr olygfa hon ar led llawn", narrow: "Yn ôl i'r grid", close: "Cau", sub_l: "Golygfa newydd bob bore. Derbyniwch hi drwy e-bost:", sub_ph: "Eich e-bost", sub_b: "Tanysgrifio", sub_human: "Un cam arall: mae Mailchimp am wirio eich bod yn ddynol. Tapiwch Tanysgrifio eto i orffen mewn tab newydd.", sub_tab: "Gorffennwch yn y tab newydd, yna edrychwch yn eich mewnflwch i gadarnhau.", sub_ok: "Diolch. Edrychwch yn eich mewnflwch i gadarnhau.", sub_err: "Ni aeth hynny drwodd. Gwiriwch y cyfeiriad a rhowch gynnig arall arni.", sub_bad: "Rhowch gyfeiriad e-bost dilys.", sending: "Yn anfon…", mtl: "cyfieithiad peiriant", kicker: "Rhaglen ddogfen · cynhyrchiad tab.bot", sub: "Un drws y dydd. Y tu ôl i bob drws, golygfa o tua dau funud: pobl Llandochau yn trafod beth sy'n digwydd ar bapur ac o gwmpas y pentref, o'r cyfnod cyn y gweithredoedd hyd heddiw.",
+    cy: {scene: "Golygfa", released: "Dyddiad rhyddhau", ai: "argraff arlunydd", more: "Sgript, isdeitlau a thystiolaeth", enlarge: "Gweld y llun ar sgrin lawn", art: "Gweld y gwaith celf", size: "Maint y cardiau", size_s: "Bach", size_m: "Canolig", size_l: "Mawr", vers: "Fersiynau", vfree: "am ddim", vcoming: "ar y ffordd", vpicked: "wedi'i dewis", close: "Cau", sub_l: "Golygfa newydd bob bore. Derbyniwch hi drwy e-bost:", sub_ph: "Eich e-bost", sub_b: "Tanysgrifio", sub_human: "Un cam arall: mae Mailchimp am wirio eich bod yn ddynol. Tapiwch Tanysgrifio eto i orffen mewn tab newydd.", sub_tab: "Gorffennwch yn y tab newydd, yna edrychwch yn eich mewnflwch i gadarnhau.", sub_ok: "Diolch. Edrychwch yn eich mewnflwch i gadarnhau.", sub_err: "Ni aeth hynny drwodd. Gwiriwch y cyfeiriad a rhowch gynnig arall arni.", sub_bad: "Rhowch gyfeiriad e-bost dilys.", sending: "Yn anfon…", mtl: "cyfieithiad peiriant", kicker: "Rhaglen ddogfen · cynhyrchiad tab.bot", sub: "Un drws y dydd. Y tu ôl i bob drws, golygfa o tua dau funud: pobl Llandochau yn trafod beth sy'n digwydd ar bapur ac o gwmpas y pentref, o'r cyfnod cyn y gweithredoedd hyd heddiw.",
       of: "o", doors: "golygfa wedi'u rhyddhau", runtime: "hyd arfaethedig", subs: "Isdeitlau", on: "ymlaen", off: "i ffwrdd", audio: "Sain", menu: "Cynhyrchu", fs: "Sgrin lawn", fsx: "Gadael y sgrin lawn", play: "Chwarae", pause: "Oedi", seek: "Safle yn yr olygfa", soff: "Dim",
       prompt: "Anogwr y cynhyrchiad", prompt_note: "Anogwr y cynhyrchydd sy'n llywio'r ffilm. Mae'r rhediad dyddiol yn ei ddarllen yn gyntaf, bob dydd, cyn gweithio ar y drws nesaf.",
       edit: "Golygu'r anogwr", acts: "Actau", how: "Sut mae'n cael ei wneud", how_note: "Mae pob digwyddiad dyddiedig yn y cronoleg y tu ôl i un drws yn union, gyda'i rifau tystiolaeth. Defnyddir yr un wynebau, lleisiau, adeiladau a thirluniau ym mhob golygfa. Caiff unrhyw beth a adewir allan ei nodi a'i godi mewn golygfa ddiweddarach.",
       frame: "Ffrâm", act: "Act", script: "Sgript", subtitles: "Isdeitlau", next: "Y nesaf", soon: "Sgript ar y gweill: y crynodeb uchod yw'r cynllun.", subsoon: "Daw'r isdeitlau gyda'r sgript.",
       events: "Digwyddiadau", evidence: "Tystiolaeth", desc: "Beth sy'n digwydd yn yr olygfa", evl: "Tystiolaeth: ein copïau archif", review: "Drafft i'w adolygu", mt: "cyfieithiad peiriant, i'w adolygu", play: "Chwarae", left: "Wedi'i adael allan, i'w godi wedyn"},
-    es: {scene: "Escena", released: "Fecha de estreno", ai: "impresión artística", more: "Guion, subtítulos y pruebas", enlarge: "Ver la imagen a pantalla completa", art: "Ver la ilustración", wide: "Ver esta escena a todo el ancho", narrow: "Volver a la cuadrícula", close: "Cerrar", sub_l: "Una escena nueva cada mañana. Recíbela por correo:", sub_ph: "Tu correo", sub_b: "Suscribirme", sub_human: "Un paso más: Mailchimp quiere comprobar que eres humano. Toca Suscribirme otra vez para terminar en una pestaña nueva.", sub_tab: "Termina en la pestaña nueva y luego revisa tu bandeja de entrada para confirmar.", sub_ok: "Gracias. Revisa tu bandeja de entrada para confirmar.", sub_err: "No se pudo enviar. Revisa la dirección e inténtalo de nuevo.", sub_bad: "Escribe un correo válido.", sending: "Enviando…", mtl: "traducción automática", kicker: "Documental · una producción de tab.bot", sub: "Una puerta por día. Detrás de cada puerta, una escena de unos dos minutos: la gente de Llandough comentando lo que pasa en los papeles y por el pueblo, desde antes de las escrituras hasta hoy.",
+    es: {scene: "Escena", released: "Fecha de estreno", ai: "impresión artística", more: "Guion, subtítulos y pruebas", enlarge: "Ver la imagen a pantalla completa", art: "Ver la ilustración", size: "Tamaño de las tarjetas", size_s: "Pequeño", size_m: "Mediano", size_l: "Grande", vers: "Versiones", vfree: "gratis", vcoming: "próximamente", vpicked: "elegida", close: "Cerrar", sub_l: "Una escena nueva cada mañana. Recíbela por correo:", sub_ph: "Tu correo", sub_b: "Suscribirme", sub_human: "Un paso más: Mailchimp quiere comprobar que eres humano. Toca Suscribirme otra vez para terminar en una pestaña nueva.", sub_tab: "Termina en la pestaña nueva y luego revisa tu bandeja de entrada para confirmar.", sub_ok: "Gracias. Revisa tu bandeja de entrada para confirmar.", sub_err: "No se pudo enviar. Revisa la dirección e inténtalo de nuevo.", sub_bad: "Escribe un correo válido.", sending: "Enviando…", mtl: "traducción automática", kicker: "Documental · una producción de tab.bot", sub: "Una puerta por día. Detrás de cada puerta, una escena de unos dos minutos: la gente de Llandough comentando lo que pasa en los papeles y por el pueblo, desde antes de las escrituras hasta hoy.",
       of: "de", doors: "escenas estrenadas", runtime: "duración prevista", subs: "Subtítulos", on: "sí", off: "no", audio: "Audio", menu: "Producción", fs: "Pantalla completa", fsx: "Salir de pantalla completa", play: "Reproducir", pause: "Pausa", seek: "Posición en la escena", soff: "No",
       prompt: "Indicaciones de producción", prompt_note: "Las indicaciones del productor guían la película. La tarea diaria las lee primero, cada día, antes de trabajar en la siguiente puerta.",
       edit: "Editar las indicaciones", acts: "Actos", how: "Cómo se hace", how_note: "Cada hecho fechado de la cronología está detrás de una sola puerta, con sus números de prueba. Las mismas caras, voces, edificios y paisajes se usan en todas las escenas. Lo que una escena deja fuera se anota y se retoma en una escena posterior.",
@@ -152,20 +154,13 @@
         // v1.4.3: the whole picture is the play target (the click goes through the play button, so the licence check still runs)
         th.onclick = function (e) { if (e.target && e.target.closest && e.target.closest(".cm-playbig")) return; pb.click(); }; }
       else { th.onclick = function () { openLB(f, title, dtxt); }; th.onkeydown = function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLB(f, title, dtxt); } }; }
-      // v1.4.7: full-width toggle (its own control; never plays or opens the artwork)
-      (function () { var wb = el("button", "cm-widebtn"); wb.type = "button"; wb.setAttribute("data-ghf-keep", ""); wb.innerHTML = WSVG;
-        var setW = function (on) { card.classList.toggle("cm-wide", on); wb.setAttribute("aria-pressed", on ? "true" : "false"); wb.setAttribute("aria-label", t(on ? "narrow" : "wide") + ": " + t("scene") + " " + f.n); wb.title = t(on ? "narrow" : "wide"); };
-        setW(wideGet().indexOf(f.n) >= 0);
-        wb.onkeydown = function (e) { e.stopPropagation(); };
-        wb.onclick = function (e) { e.stopPropagation(); e.preventDefault(); var on = !card.classList.contains("cm-wide"); setW(on); wideSet(f.n, on);
-          setTimeout(function () { try { card.scrollIntoView({block: "nearest", behavior: "smooth"}); } catch (x) {} }, 30); };
-        th.appendChild(wb); })();
       card.appendChild(th);
       var body = el("div", "cm-body");
       var hd = el("div", "cm-hd"); hd.appendChild(el("div", "cm-scene", t("scene") + " " + f.n));
       var ab = el("button", "cm-artbtn", t("art")); ab.type = "button"; ab.setAttribute("aria-label", t("enlarge") + ": " + t("scene") + " " + f.n);
       ab.onclick = function (e) { e.stopPropagation(); openLB(f, title, dtxt); }; hd.appendChild(ab); body.appendChild(hd);
       body.appendChild(el("h3", "", title)); body.appendChild(el("p", "cm-log", tl(f, "logline")));
+      if (m) body.appendChild(chipRow(f));   // v1.5.0: versions as hashtag chips, the default (free) cut selected
       var DS = f.description && (f.description[lang()] || f.description.en);   // v1.4.0: shot-by-shot description and evidence links (our /wayback/go/ copies)
       if (DS) { var dd = el("details", "cm-desc"); dd.appendChild(el("summary", "", t("desc"))); if (DS.intro) dd.appendChild(el("p", "cm-desc-i", DS.intro));
         if (DS.shots && DS.shots.length) { var ol = el("ol", "cm-shots"); DS.shots.forEach(function (s) { ol.appendChild(el("li", "", String(s).replace(/^\d+\.\s*/, ""))); }); dd.appendChild(ol); }
@@ -185,6 +180,43 @@
       var opened = false; [d1, d2].forEach(function (d) { d.addEventListener("toggle", function () { if (d.open && !opened) { opened = true; loadScript(f).then(function () { fillDetails(card, f); }); } else if (d.open) fillDetails(card, f); }); });
     });
   }
+  // v1.5.0: versions as hashtag chips under each released scene (documentary.js 1.6.0 lists them per door)
+  function chipRow(f) {
+    var DG = window.CedwynDoc, row = el("div", "cm-vchips"); row.setAttribute("role", "group"); row.setAttribute("aria-label", t("vers") + ": " + t("scene") + " " + f.n);
+    var list = DG && DG.chips ? DG.chips(f.n) : [];
+    if (!list.length) { var m0 = filledMap()[f.n]; list = [{v: String((m0 && m0.version) || "0.0.1"), current: true, free: true}]; }
+    var chosen = DG && DG.chosen ? DG.chosen(f.n) : null; if (!chosen) list.forEach(function (c) { if (c.current) chosen = c.v; });
+    var tt = function (k) { return DG && DG.t ? DG.t(k) : ""; };
+    list.forEach(function (c) {
+      var b = el("button", "cm-vchip" + (c.coming ? " is-coming" : "") + (c.current ? " is-default" : "")); b.type = "button"; b.setAttribute("data-v", c.v); b.setAttribute("data-ghf-keep", "");
+      b.appendChild(el("span", "cm-vh", "#v" + c.v));
+      if (c.current) b.appendChild(el("span", "cm-vtag", t("vfree")));
+      if (c.coming) { b.appendChild(el("span", "cm-vtag", t("vcoming"))); b.setAttribute("aria-disabled", "true"); }
+      else b.setAttribute("aria-pressed", c.v === chosen ? "true" : "false");
+      b.title = c.coming ? tt("coming_t") : c.current ? tt("cur_t") : tt("older_t") + (c.note ? ": " + c.note : "");
+      b.setAttribute("aria-label", "#v" + c.v + (c.current ? ", " + t("vfree") : "") + (c.coming ? ", " + t("vcoming") : "") + (b.title ? ". " + b.title : ""));
+      b.onclick = function (e) { e.stopPropagation(); e.preventDefault(); if (c.coming) return; if (DG && DG.pick) DG.pick(f.n, c.v); paintChips(row, f.n); };
+      b.onkeydown = function (e) { e.stopPropagation(); };
+      row.appendChild(b);
+    });
+    return row;
+  }
+  function paintChips(row, n) { var DG = window.CedwynDoc, ch = DG && DG.chosen ? DG.chosen(n) : null; if (!ch) return;
+    Array.prototype.forEach.call(row.querySelectorAll(".cm-vchip:not(.is-coming)"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-v") === ch ? "true" : "false"); }); }
+  // v1.5.0: the card-size control (small / medium / large), set before browsing, applies to every card, remembered on this device
+  function sizeBar() {
+    var bar = $("cm-size"), g = $("cm-grid"); if (bar || !g) return bar;
+    bar = el("div", "cm-size"); bar.id = "cm-size"; bar.setAttribute("role", "group"); bar.setAttribute("aria-labelledby", "cm-size-lbl");
+    var lb = el("span", "cm-size-lbl", t("size")); lb.id = "cm-size-lbl"; lb.setAttribute("data-t", "size"); bar.appendChild(lb);
+    SIZES.forEach(function (z) { var b = el("button", "cm-size-b"); b.type = "button"; b.setAttribute("data-z", z); b.setAttribute("data-ghf-keep", ""); b.innerHTML = ZSVG[z];
+      var s = el("span", "", t("size_" + z)); s.setAttribute("data-t", "size_" + z); b.appendChild(s); b.onclick = function () { setSize(z, true); }; bar.appendChild(b); });
+    g.parentNode.insertBefore(bar, g); return bar;
+  }
+  function setSize(z, user) {
+    var g = $("cm-grid"); if (!g) return; SIZES.forEach(function (x) { g.classList.toggle("cm-size-" + x, x === z); });
+    var q = document.querySelectorAll(".cm-size-b"); for (var i = 0; i < q.length; i++) q[i].setAttribute("aria-pressed", q[i].getAttribute("data-z") === z ? "true" : "false");
+    if (user) { try { localStorage.setItem(ZK, z); } catch (e) {} }
+  }
   function loadScript(f) { if (!f.script) return Promise.resolve(); if (S.scripts[f.id]) return Promise.resolve(); return get(f.script).then(function (s) { S.scripts[f.id] = s; }).catch(function () {}); }
   // player: the clip plays muted; the chosen language track plays beside it, kept in step.
   // Playback controls (v1.2.0): play/pause, position, full screen, audio language, subtitle language (independent of audio).
@@ -193,11 +225,11 @@
   function clipFor(m) { var vv = m && m.video; return (vv && (vv[S.audio] || vv[m.default_audio || "cy"])) || m.clip; }   // v1.4.5: per-language lip-synced video, else the one clip
   window.CedwynPlayer = {video: V, raw: RAW, current: function () { return cur; }, audio: function () { return S.audio; }, sub: function () { return subLang(); }, clip: function () { return cur ? clipFor(cur.m) : null; }};   // read by download.js (v1.4.2; clip() v1.4.5)
   function subPath(L) { return cur.m.subs && cur.m.subs[L] ? cur.m.subs[L] : "subs/" + cur.f.id + "." + L + ".vtt"; }
-  function eff(n, m) {   // v1.4.6: the entry as chosen in the version menu: the newest cut, or an earlier cut (v0.0.1-0.0.N)
+  function eff(n, m) {   // v1.4.6/1.5.0: the entry as chosen with the scene's version chips: the newest cut, or an earlier cut (v0.0.1-0.0.N)
     var DG = window.CedwynDoc, c = DG && DG.cut ? DG.cut(n) : null; if (!c || !c.clip) return m;
-    var o = {}, k; for (k in m) o[k] = m[k]; delete o.video; delete o.downloads; for (k in c) o[k] = c[k]; if (!c.seconds) delete o.seconds;
+    var o = {}, k; for (k in m) o[k] = m[k]; delete o.video; delete o.downloads; delete o.next_version; for (k in c) o[k] = c[k]; if (!c.seconds) delete o.seconds;
     var dl = {}, title = "Cedwyn – Door " + n + " – v" + c.version + " (earlier cut)";
-    LANGS.forEach(function (a) { ["cy", "en", "es", "off"].forEach(function (s) { dl[a + "|" + s] = {path: c.clip, ext: "webm", title: title}; }); });
+    LANGS.forEach(function (a) { var p = (c.video && c.video[a]) || c.clip; ["cy", "en", "es", "off"].forEach(function (s) { dl[a + "|" + s] = {path: p, ext: (String(p).match(/\.(\w+)$/) || [0, "webm"])[1], title: title + (c.video && c.video[a] ? " – " + NAT[a] : "")}; }); });
     o.downloads = dl; o.cut = c.version; return o;
   }
   function play(f, m) {
@@ -310,6 +342,8 @@
   document.addEventListener("ghf-lang-change", function () { paintStatic(); render(); if (cur) { trackModes(); drawCue(); paintPlayer(); } });
   new MutationObserver(function () { paintStatic(); render(); if (cur) paintPlayer(); }).observe(document.documentElement, {attributes: true, attributeFilter: ["lang"]});
   paintStatic();
+  sizeBar(); setSize(sizeGet());
+  document.addEventListener("cedwyn-doc-scene-ver", function (e) { var c = e.detail && $("frame-" + e.detail.n), r = c && c.querySelector(".cm-vchips"); if (r) paintChips(r, e.detail.n); });
   get("frames.json").then(function (F) { S.frames = F; render();
     return get("manifest.json").then(function (m) { S.manifest = m || {filled: []}; render(); }).catch(function () {}); }).catch(function () { $("cm-grid").textContent = "…"; });
 })();
