@@ -1,12 +1,40 @@
 {
  "rule": "Client-side routers of crawled single-page themes (25 Oct 2026): a crawled TanStack Start app was built to live at a site root, so under /<theme>/ (and /wales/<theme>/, /argentina/<theme>/) its router read the path as an unknown page and showed \"Not Found\". Each entry tells that theme's router its base path at run time (runtime.js sets window.__cedwynSec before the bundle runs). Same schema as ingredients.json; file may be a glob so a re-hashed crawl still matches; a find that is not present is reported, never fatal. — Sion's Tab agent",
- "version": "1.0.0",
+ "version": "1.1.0",
  "rewords": [
   {
    "theme": "dartboard",
    "file": "assets/index-*.js",
    "find": "basepath:``,serializationAdapters",
    "replace": "basepath:(window.__cedwynSec?\"/\"+window.__cedwynSec:\"\")+\"/dartboard\",serializationAdapters"
+  },
+  {
+    "theme": "dartboard",
+    "file": "assets/routes-*.js",
+    "find": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fcedwyn-movie%2Freleases%2Fdownload%2Fdartboard-hoops-2026-10-26%2Fdartboard-hoops.webm",
+    "replace": "https://github.com/unclehowell/cedwyn-movie/releases/download/dartboard-hoops-2026-10-26/dartboard-hoops.webm",
+    "why": "30 Oct 2026: the floating film must load from its own release file; /wayback/go/ answers an HTML page a <video> cannot play. Covers a build that keeps the previous crawl (tools/selfcontain.py own_media covers a fresh crawl). — Sion's Tab agent"
+  },
+  {
+    "theme": "dartboard",
+    "file": "assets/routes-*.js",
+    "find": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fcedwyn-movie%2Freleases%2Fdownload%2Fdartboard-hoops-2026-10-26%2Fdartboard-hoops-contact.png",
+    "replace": "https://github.com/unclehowell/cedwyn-movie/releases/download/dartboard-hoops-2026-10-26/dartboard-hoops-contact.png",
+    "why": "30 Oct 2026: the floating film must load from its own release file; /wayback/go/ answers an HTML page a <video> cannot play. Covers a build that keeps the previous crawl (tools/selfcontain.py own_media covers a fresh crawl). — Sion's Tab agent"
+  },
+  {
+    "theme": "dartboard",
+    "file": "index.html",
+    "find": "/wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fcedwyn-movie%2Freleases%2Fdownload%2Fdartboard-hoops-2026-10-26%2Fdartboard-hoops.webm",
+    "replace": "https://github.com/unclehowell/cedwyn-movie/releases/download/dartboard-hoops-2026-10-26/dartboard-hoops.webm",
+    "why": "30 Oct 2026: the floating film must load from its own release file; /wayback/go/ answers an HTML page a <video> cannot play. Covers a build that keeps the previous crawl (tools/selfcontain.py own_media covers a fresh crawl). — Sion's Tab agent"
+  },
+  {
+    "theme": "dartboard",
+    "file": "index.html",
+    "find": "/wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fcedwyn-movie%2Freleases%2Fdownload%2Fdartboard-hoops-2026-10-26%2Fdartboard-hoops-contact.png",
+    "replace": "https://github.com/unclehowell/cedwyn-movie/releases/download/dartboard-hoops-2026-10-26/dartboard-hoops-contact.png",
+    "why": "30 Oct 2026: the floating film must load from its own release file; /wayback/go/ answers an HTML page a <video> cannot play. Covers a build that keeps the previous crawl (tools/selfcontain.py own_media covers a fresh crawl). — Sion's Tab agent"
   }
  ]
 }
