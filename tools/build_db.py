@@ -353,6 +353,114 @@ for t in CFG['themes']:
     con.execute('INSERT INTO themes VALUES(?,?,?,?,?,?,?,?)', (t['id'], t['title'], t.get('cy'), t.get('es'), t['live'],
                  ('branch ' + t['branch']) if t.get('branch') else ('crawl of ' + t.get('crawl', '')), nf, npg))
 
+# Title Theory: normalized, testable hypothesis data in the master catalogue, with graph edges to Level 1 artifacts.
+con.executescript("""
+CREATE TABLE IF NOT EXISTS title_theories(
+ model_id TEXT PRIMARY KEY, slug TEXT NOT NULL, title TEXT NOT NULL, version TEXT NOT NULL,
+ status TEXT NOT NULL, summary TEXT NOT NULL, model_json TEXT NOT NULL, page_path TEXT NOT NULL,
+ updated_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS title_theory_hypotheses(
+ model_id TEXT NOT NULL, hypothesis_id TEXT NOT NULL, rank INTEGER NOT NULL, title TEXT NOT NULL,
+ classification TEXT NOT NULL, status TEXT NOT NULL, explanation TEXT NOT NULL,
+ data_json TEXT NOT NULL, PRIMARY KEY(model_id, hypothesis_id)
+) WITHOUT ROWID;
+CREATE TABLE IF NOT EXISTS title_theory_events(
+ model_id TEXT NOT NULL, event_id TEXT NOT NULL, period TEXT NOT NULL, stage TEXT NOT NULL,
+ proposition TEXT NOT NULL, if_true TEXT NOT NULL, alternative TEXT NOT NULL,
+ data_json TEXT NOT NULL, PRIMARY KEY(model_id, event_id)
+) WITHOUT ROWID;
+CREATE TABLE IF NOT EXISTS title_theory_edges(
+ model_id TEXT NOT NULL, from_id TEXT NOT NULL, to_id TEXT NOT NULL,
+ relation TEXT NOT NULL, status TEXT NOT NULL, note TEXT NOT NULL,
+ PRIMARY KEY(model_id, from_id, to_id, relation)
+) WITHOUT ROWID;
+CREATE TABLE IF NOT EXISTS title_theory_tests(
+ model_id TEXT NOT NULL, test_id TEXT NOT NULL, title TEXT NOT NULL, purpose TEXT NOT NULL,
+ data_json TEXT NOT NULL, PRIMARY KEY(model_id, test_id)
+) WITHOUT ROWID;
+CREATE TABLE IF NOT EXISTS title_theory_refs(
+ model_id TEXT NOT NULL, seq INTEGER NOT NULL, ev TEXT, path TEXT NOT NULL,
+ role TEXT NOT NULL, note TEXT NOT NULL, artifact_id INTEGER,
+ PRIMARY KEY(model_id, seq)
+) WITHOUT ROWID;
+""")
+_title_theory_path = ROOT / "data" / "title-theory.json"
+_n_tt_hyp = _n_tt_events = _n_tt_edges = _n_tt_tests = _n_tt_refs = 0
+if _title_theory_path.exists():
+    _tt = json.loads(_title_theory_path.read_text(encoding="utf-8"))
+    _ttid = str(_tt.get("model_id", "TT-UNKNOWN"))
+    _ttnode = "title_theory:" + _ttid
+    con.execute("INSERT OR REPLACE INTO title_theories VALUES(?,?,?,?,?,?,?,?,?)", (
+        _ttid, "title-theory", _tt.get("title", ""), _tt.get("version", ""),
+        _tt.get("status", ""), _tt.get("summary", ""),
+        json.dumps(_tt, ensure_ascii=False), "/wiki/title-theory/",
+        _tt.get("updated_at", "")))
+    node(_ttnode, "title_theory", _tt.get("title", _ttid))
+    edge(_ttnode, "in_theme", "theme:wiki")
+    for _h in _tt.get("hypotheses", []):
+        _hid = str(_h.get("id", ""))
+        if not _hid: continue
+        con.execute("INSERT OR REPLACE INTO title_theory_hypotheses VALUES(?,?,?,?,?,?,?,?)", (
+            _ttid, _hid, int(_h.get("rank", 999)), _h.get("title", ""),
+            _h.get("class", ""), _h.get("status", ""), _h.get("explanation", ""),
+            json.dumps(_h, ensure_ascii=False)))
+        _hn = "title_hypothesis:" + _ttid + ":" + _hid
+        node(_hn, "title_hypothesis", _h.get("title", _hid))
+        edge(_ttnode, "has_hypothesis", _hn)
+        _n_tt_hyp += 1
+    for _e in _tt.get("working_mechanism", []):
+        _eid = str(_e.get("id", ""))
+        if not _eid: continue
+        con.execute("INSERT OR REPLACE INTO title_theory_events VALUES(?,?,?,?,?,?,?,?)", (
+            _ttid, _eid, _e.get("period", ""), _e.get("stage", ""),
+            _e.get("proposition", ""), _e.get("if_true", ""),
+            _e.get("against_or_alternative", ""), json.dumps(_e, ensure_ascii=False)))
+        _en = "title_theory_event:" + _ttid + ":" + _eid
+        node(_en, "title_theory_event", _e.get("stage", _eid))
+        edge(_ttnode, "has_event", _en)
+        for _ev in _e.get("source_evs", []):
+            _er = con.execute("SELECT artifact_id FROM evidence_catalogue WHERE ev=?", (str(_ev).upper(),)).fetchone()
+            if _er and _er[0]:
+                edge(_en, "cites", "a:" + str(_er[0]))
+                edge("a:" + str(_er[0]), "cited_by_title_theory", _en)
+        _n_tt_events += 1
+    for _g in _tt.get("causal_graph", {}).get("edges", []):
+        con.execute("INSERT OR REPLACE INTO title_theory_edges VALUES(?,?,?,?,?,?)", (
+            _ttid, _g.get("from", ""), _g.get("to", ""), _g.get("relation", ""),
+            _g.get("status", ""), _g.get("note", "")))
+        _n_tt_edges += 1
+    for _s in _tt.get("simulations", []):
+        _sid = str(_s.get("id", ""))
+        if not _sid: continue
+        con.execute("INSERT OR REPLACE INTO title_theory_tests VALUES(?,?,?,?,?)", (
+            _ttid, _sid, _s.get("title", ""), _s.get("purpose", ""),
+            json.dumps(_s, ensure_ascii=False)))
+        _n_tt_tests += 1
+    for _seq, _r in enumerate(_tt.get("evidence_refs", []), 1):
+        _ev = str(_r.get("ev", "")).upper() or None
+        _path = str(_r.get("path", ""))
+        _aid = None
+        if _ev:
+            _row = con.execute("SELECT artifact_id FROM evidence_catalogue WHERE ev=?", (_ev,)).fetchone()
+            if _row: _aid = _row[0]
+        if not _aid and _path:
+            _p = _path.rstrip("/")
+            for _candidate in (_p + "/index.html", _p, _p + ".html"):
+                if path_aid.get(_candidate):
+                    _aid = path_aid[_candidate]; break
+        con.execute("INSERT OR REPLACE INTO title_theory_refs VALUES(?,?,?,?,?,?,?)", (
+            _ttid, _seq, _ev, _path, _r.get("role", ""), _r.get("note", ""), _aid))
+        if _aid:
+            edge(_ttnode, "cites", "a:" + str(_aid))
+            edge("a:" + str(_aid), "cited_by_title_theory", _ttnode)
+        _n_tt_refs += 1
+    for _edge in _tt.get("causal_graph", {}).get("edges", []):
+        _from = "title_theory_event:" + _ttid + ":" + str(_edge.get("from", ""))
+        _to = "title_theory_event:" + _ttid + ":" + str(_edge.get("to", ""))
+        if _edge.get("from") and _edge.get("to"):
+            edge(_from, str(_edge.get("relation", "related_to")), _to)
+
 # Parcel-story register: parent DB is canonical; section_dbs.py projects one story into each public-area child DB.
 con.executescript("""
 CREATE TABLE IF NOT EXISTS estate_parcels (
@@ -411,7 +519,10 @@ stats = dict(artifacts=cnt('SELECT count(*) FROM artifacts'), locations=cnt('SEL
              evidence_records=cnt('SELECT count(*) FROM evidence_catalogue'), evidence_texts=cnt('SELECT count(*) FROM evidence_text'),
              artifact_assessments=cnt('SELECT count(*) FROM artifact_assessments'), observations=cnt('SELECT count(*) FROM observations'), observation_refs=cnt('SELECT count(*) FROM observation_refs'),
              parcel_stories=cnt('SELECT count(*) FROM estate_parcels'), parcel_events=cnt('SELECT count(*) FROM parcel_events'),
-             parcel_models=cnt('SELECT count(*) FROM estate_parcel_model'), parcel_model_events=cnt('SELECT count(*) FROM estate_parcel_model_events'))
+             parcel_models=cnt('SELECT count(*) FROM estate_parcel_model'), parcel_model_events=cnt('SELECT count(*) FROM estate_parcel_model_events'),
+              title_theories=cnt('SELECT count(*) FROM title_theories'), title_theory_hypotheses=cnt('SELECT count(*) FROM title_theory_hypotheses'),
+              title_theory_events=cnt('SELECT count(*) FROM title_theory_events'), title_theory_edges=cnt('SELECT count(*) FROM title_theory_edges'),
+              title_theory_tests=cnt('SELECT count(*) FROM title_theory_tests'), title_theory_refs=cnt('SELECT count(*) FROM title_theory_refs'))
 for k, v in stats.items(): con.execute('INSERT INTO meta VALUES(?,?)', (k, str(v)))
 con.commit()
 # Emit small section-local SQLite slices from the same central catalogue. The main catalogue remains authoritative.
