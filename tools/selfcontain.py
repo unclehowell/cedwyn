@@ -64,6 +64,11 @@ def ext_local(host, path, query):
     if p.endswith('/'): return '/_ext/' + host + p          # a folder prefix that scripts add file names to
     return '/_ext/' + host + p
 
+OWN_MEDIA = re.compile(r'(?i)^(?:(?:github\.com)/unclehowell/[^/]+/releases/download/|(?:raw|media)\.githubusercontent\.com/(?:media/)?unclehowell/)[^?#]*\.(?:webm|mp4|m4v|mov|mp3|m4a|ogg|opus|wav|vtt|png|jpe?g|webp|gif|avif)(?:[?#].*)?$')
+def own_media(host, path):
+    """a file in our own GitHub repos (release asset or raw file) that is a video, audio, subtitle or image"""
+    return bool(OWN_MEDIA.match(host + (path or '')))
+
 def classify(m):
     host = m.group(4).lower(); path = (m.group(6) or '').replace('\\/', '/')
     full = m.group(0).replace('\\/', '/')
@@ -82,6 +87,10 @@ def classify(m):
     # 29 Oct 2026 (P-041): Stripe's buy-button script must load from js.stripe.com itself (Stripe requires it); it is part of
     # the checkout, like the Buy links above, so it is neither archived nor vendored. - Sion's Tab agent
     if host == 'js.stripe.com': return 'ns', None
+    # 30 Oct 2026: our own film and image files (release downloads and raw files of the unclehowell repos) are media sources,
+    # not outbound links: a <video>/<img> src or poster must be the file itself. /wayback/go/ answers an HTML page, which a
+    # video element cannot play (the Dartboard's floating film showed only its poster this way). - Sion's Tab agent
+    if own_media(host, path): return 'ns', None
     # a YouTube thumbnail whose video was checked (oEmbed author) and is not from the excluded channel: copied as an image
     if host == 'i.ytimg.com' and any('/vi/' + v + '/' in path for v in CFG.get('ytimg_checked', {})): return 'cdn', None
     return 'ext', None
