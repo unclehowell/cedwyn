@@ -387,6 +387,15 @@ try:
 except Exception as _e:   # share tags must never stop a build
     print('og_cards failed:', _e)
 
+# Graph promo + progressive Read more (asked for 01:27 GMT 30 Oct 2026): per-section scatter data for the header graph banner
+# (/_cedwyn/graph/<area>.json, read by web/_cedwyn/cw-graph.js) and long list pages cut into <page>/_more/N.json chunks that
+# cw-graph.js loads on "Read more". Runs after og_cards and cited_on; never stops a build - Sion's Tab agent
+for _gm in ('graph_data', 'readmore_chunks'):
+    try:
+        __import__(_gm).run(DIST)
+    except Exception as _e:
+        print(_gm, 'failed:', _e)
+
 # Cloudflare Pages redirect quotas: validate the final file after every theme plugin has amended it.
 _redirect_file = DIST / '_redirects'
 _redirect_lines = _redirect_file.read_text(encoding='utf-8').splitlines() if _redirect_file.exists() else []
