@@ -1,17 +1,17 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8544,
+  "pages_scanned": 8641,
   "references_checked": {
-    "resource": 191689,
-    "nav": 336681
+    "resource": 195612,
+    "nav": 338080
   },
-  "database_backed_paths": 7240,
+  "database_backed_paths": 7310,
   "unique_missing_destinations": 4866,
-  "missing_references": 31245,
-  "missing_navigation_references": 16098,
-  "missing_resource_references": 15147,
+  "missing_references": 31403,
+  "missing_navigation_references": 16095,
+  "missing_resource_references": 15308,
   "unique_broken_fragments": 1811,
-  "broken_fragment_references": 3144,
+  "broken_fragment_references": 3304,
   "form_or_endpoint_actions_not_checked": {
     "form[action]": 2550
   },
@@ -19,7 +19,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6309,
+      "references": 6389,
       "examples": [
         {
           "from": "/review/",
@@ -46,7 +46,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6309,
+      "references": 6389,
       "examples": [
         {
           "from": "/review/",
@@ -503,33 +503,6 @@
       ]
     },
     {
-      "kind": "nav",
-      "path": "/research/>*.html",
-      "references": 36,
-      "examples": [
-        {
-          "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0080-bp-properties-v-buckler-judgment/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        }
-      ]
-    },
-    {
       "kind": "resource",
       "path": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/assets/img/user1-128x128.jpg",
       "references": 33,
@@ -553,6 +526,33 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_index2.html",
           "attribute": "img[src]",
           "url": "./assets/img/user1-128x128.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/research/>*.html",
+      "references": 33,
+      "examples": [
+        {
+          "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
         }
       ]
     },
@@ -4071,7 +4071,7 @@
     {
       "path": "/wayback/",
       "fragment": "websites",
-      "references": 848,
+      "references": 1008,
       "examples": [
         {
           "from": "/wayback/websites/",
