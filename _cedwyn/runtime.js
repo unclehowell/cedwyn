@@ -64,6 +64,7 @@
     if (typeof u !== 'string' || !u) return u;
     if (u.charAt(0) === '/' && u.charAt(1) !== '/') {
       if (!T || u === P || u.indexOf(P + '/') === 0 || starts(u, RES)) return u;
+      if (/^\/[a-z0-9-]+\/_db\//.test(u)) return u;   // P-101 (30 Oct 2026): an area's child database (/<area>/_db/) lives at the site root - Cedwyn editors
       var x = u.split(/[\/?#]/)[1];   // already a cedwyn theme path (/<theme>/...): leave it, unless this theme has its own folder of that name
       if (x && THEMES.indexOf(x) >= 0 && (COLLIDE[T] || []).indexOf(x) < 0) return u;
       return P + u;
