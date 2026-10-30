@@ -8,14 +8,15 @@
 <article id="box" class="snap card card-body"><p class="text-muted mb-0">Opening the snapshot…</p></article>
 <div id="out" class="out mt-3"></div><p id="cap" class="small text-muted mt-2"></p>
 <div class="cw-ver mt-4"><h2 class="h6" id="versions">Versions</h2><table><thead><tr><th>Version</th><th>Date</th><th>Change</th></tr></thead><tbody>
+<tr><td>v2.1.0</td><td>29 October 2026</td><td>Our copy first, then the live website, then the Internet Archive copy. An address held in the Vault's archived-websites list opens here too (it no longer jumps straight to the copy), so the live link always works.</td></tr>
 <tr><td>v2.0.0</td><td>27 October 2026</td><td>Every outside link opens a Cedwyn snapshot page: the captured copy, then the Internet Archive copy, then the live website.</td></tr>
 <tr><td>v1.1.0</td><td>26 October 2026</td><td>Guest book version links open the repository change.</td></tr>
 <tr><td>v1.0.0</td><td>25 October 2026</td><td>First archive address page.</td></tr></tbody></table>
 <p class="small">Page history: <a href="/wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fcedwyn%2Fcommits%2Fmain%2Fweb%2F_cedwyn%2Farchive%2Fgo.html">GitHub</a></p></div></main>
 <script src="/_cedwyn/cat.js"></script><script>
 /* 27 Oct 2026: SNAPSHOT PAGE (v2.0.0). Every outside link on Cedwyn opens here. The page shows our captured copy of that one
-   page (links inside a copy stay only where they open another snapshot), then the Internet Archive copy of the address, then
-   the live website, then the capture date. These two lines are the only links out of Cedwyn; they are built here at run time.
+   page (links inside a copy stay only where they open another snapshot), then the live website, then the Internet Archive copy of
+   the address, then the capture date (order of 29 Oct 2026). These two lines are the only links out of Cedwyn; they are built here at run time.
    The old outside-address notice page is gone and must never return (CONTRIBUTING.md, "Outside links"). - Cedwyn editors */
 var u=new URLSearchParams(location.search).get('u')||'',box=document.getElementById('box');
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -35,8 +36,8 @@ function unz(b64){var bin=atob(b64),a=new Uint8Array(bin.length);for(var i=0;i<b
  return new Response(new Blob([a]).stream().pipeThrough(new DecompressionStream('gzip'))).text().then(JSON.parse);}
 var IA='https:'+'/'+'/web.archive.org/web/';
 function lines(addr,ia,cap){if(!/^https?:/i.test(addr))return;var href=addr.replace(/"/g,'%22'),iah=IA+(ia?ia:'*')+'/'+href;
- document.getElementById('out').innerHTML='<p class="mb-1"><strong>Internet Archive copy:</strong> <a rel="nofollow noopener" href="'+iah+'">'+(ia?'Wayback Machine capture of '+esc(ia.slice(6,8)+'/'+ia.slice(4,6)+'/'+ia.slice(0,4)):'Wayback Machine captures of this address')+'</a></p>'+
- '<p class="mb-1"><strong>Live website:</strong> <a rel="nofollow noopener" href="'+href+'">'+esc(addr)+'</a></p>';
+ document.getElementById('out').innerHTML='<p class="mb-1"><strong>Live website:</strong> <a rel="nofollow noopener" href="'+href+'">'+esc(addr)+'</a></p>'+
+ '<p class="mb-1"><strong>Internet Archive copy:</strong> <a rel="nofollow noopener" href="'+iah+'">'+(ia?'Wayback Machine capture of '+esc(ia.slice(6,8)+'/'+ia.slice(4,6)+'/'+ia.slice(0,4)):'Wayback Machine captures of this address')+'</a></p>';
  document.getElementById('cap').textContent=cap;}
 function host(x){try{return new URL(x).hostname.replace(/^www\./,'');}catch(e){return '';}}
 if(u){var k1=fnv(u),k2=fnv(Cedwyn.normkey(u)),n1=parseInt(k1.slice(-2),16)%16,n2=parseInt(k2.slice(-2),16)%16;
@@ -47,7 +48,9 @@ if(u){var k1=fnv(u),k2=fnv(Cedwyn.normkey(u)),n1=parseInt(k1.slice(-2),16)%16,n2
   if(z)return unz(z).then(function(s){document.title=(s.title||host(u))+' · Snapshot · Cedwyn';document.getElementById('ttl').textContent=s.title||host(u);
    box.innerHTML=s.html||'<p class="mb-0">'+(s.pdf?'This address is a PDF document; it is linked below.':'This page holds no readable text; it is linked below.')+'</p>';
    lines(u,s.ia,'Captured '+s.t.slice(0,10)+(s.src==='ia'?' from the Internet Archive copy':' from the live page')+'.');});
-  var hit=vault[Cedwyn.normkey(u)];if(hit){location.replace(hit.l);return;}
+  var hit=vault[Cedwyn.normkey(u)];if(hit){document.title=(hit.t||host(u))+' · Snapshot · Cedwyn';document.getElementById('ttl').textContent=hit.t||host(u);
+   box.innerHTML='<p class="mb-1"><a href="'+esc(hit.l)+'"><strong>Open our archived copy of this page</strong></a></p><p class="small text-muted mb-0">Kept in the Wayback Vault'+(hit.c?', captured '+esc(String(hit.c).slice(0,10)):'')+'.</p>';
+   lines(u,'','Our copy is in the Wayback Vault; the live website and the Internet Archive are linked here.');return;}
   var hl=host(u).toLowerCase();if(/(^|\.)bucklerfamily\.estate$/.test(hl)){var pth='';try{pth=new URL(u).pathname;}catch(e){}
    var tk=(pth.split('/').filter(Boolean).pop()||hl.split('.')[0]).replace(/\.[a-z0-9]*$/i,'').replace(/[-_]+/g,' ');
    location.replace(/^(wayback-(html|img|pdf|video|text)|internetarchive)\./.test(hl)&&(pth==='/'||!pth)?'/wayback/':'/catalogue/?q='+encodeURIComponent(tk));return;}
