@@ -190,6 +190,19 @@
     return loadCatalogueClient().then(function (C) { return C.db(); });
   }
 
+  var csscpsgColumn = null;
+  function hasCsscpsgColumn(d) {
+    if (csscpsgColumn !== null) return Promise.resolve(csscpsgColumn);
+    return d.query("SELECT name FROM pragma_table_info('artifact_assessments')", []).then(function (cols) {
+      csscpsgColumn = cols.some(function (c) { return c.name === 'csscpsg_json'; });
+      return csscpsgColumn;
+    }).catch(function () { csscpsgColumn = false; return false; });
+  }
+  function parseCsscpsg(raw) {
+    if (!raw) return null;
+    try { return JSON.parse(raw); } catch (_) { return null; }
+  }
+
   function ftsExpression(query) {
     var terms = String(query || '').match(/[A-Za-z0-9]+/g) || [];
     terms = terms.slice(0, 12);
@@ -201,12 +214,13 @@
     if (!query) return Promise.reject(new Error('q is required'));
     limit = Math.min(Math.max(+(limit || 10), 1), 20);
     return centralDb().then(async function (d) {
+      var _cs = await hasCsscpsgColumn(d);
       // Exact EV IDs, aliases and paths do not depend on FTS tokenization.
       var exact = await d.query(
         `SELECT ec.ev, ec.title, ec.path, ec.evidence_grade, ec.independent_origin_id,
                 ec.aliases_json, ec.grade_note, et.body AS excerpt, et.body_chars, et.truncated,
                 aa.description, aa.description_status, aa.transcript, aa.transcript_status,
-                aa.interpretation, aa.interpretation_status, aa.source_verification_status, aa.limitations
+                aa.interpretation, aa.interpretation_status, aa.source_verification_status, aa.limitations${_cs ? ', aa.csscpsg_json' : ''}
            FROM evidence_catalogue ec
            LEFT JOIN evidence_text et ON et.aid=ec.artifact_id
            LEFT JOIN artifact_assessments aa ON aa.ev=ec.ev
@@ -230,7 +244,7 @@
               assessment: { description: r.description || '', descriptionStatus: r.description_status || 'not_assessed',
                 transcript: r.transcript || '', transcriptStatus: r.transcript_status || 'not_assessed',
                 interpretation: r.interpretation || '', interpretationStatus: r.interpretation_status || 'not_assessed',
-                sourceVerificationStatus: r.source_verification_status || 'not_assessed', limitations: r.limitations || '' }
+                sourceVerificationStatus: r.source_verification_status || 'not_assessed', limitations: r.limitations || '', csscpsg: parseCsscpsg(r.csscpsg_json) }
             };
           })
         };
@@ -243,7 +257,7 @@
                 snippet(fts, 1, '[', ']', ' … ', 18) AS match_snippet,
                 substr(et.body, 1, 1800) AS excerpt, et.body_chars, et.truncated,
                 aa.description, aa.description_status, aa.transcript, aa.transcript_status,
-                aa.interpretation, aa.interpretation_status, aa.source_verification_status, aa.limitations
+                aa.interpretation, aa.interpretation_status, aa.source_verification_status, aa.limitations${_cs ? ', aa.csscpsg_json' : ''}
            FROM fts
            JOIN evidence_catalogue ec ON ec.artifact_id=CAST(fts.aid AS INTEGER)
            LEFT JOIN evidence_text et ON et.aid=ec.artifact_id
@@ -267,7 +281,7 @@
             assessment: { description: r.description || '', descriptionStatus: r.description_status || 'not_assessed',
               transcript: r.transcript || '', transcriptStatus: r.transcript_status || 'not_assessed',
               interpretation: r.interpretation || '', interpretationStatus: r.interpretation_status || 'not_assessed',
-              sourceVerificationStatus: r.source_verification_status || 'not_assessed', limitations: r.limitations || '' }
+              sourceVerificationStatus: r.source_verification_status || 'not_assessed', limitations: r.limitations || '', csscpsg: parseCsscpsg(r.csscpsg_json) }
           };
         })
       };
@@ -279,13 +293,14 @@
     if (!key) return Promise.reject(new Error('key is required'));
     var pathCandidate = key.charAt(0) === '/' ? key.replace(/index\.html$/i, '').replace(/\/?$/, '/') : '';
     return centralDb().then(async function (d) {
+      var _cs = await hasCsscpsgColumn(d);
       var rows = await d.query(
         `SELECT ec.ev, ec.artifact_id, ec.path, ec.evidence_grade, ec.independent_origin_id,
                 ec.aliases_json, ec.grade_note, ec.title,
                 et.body AS record_text, et.body_chars, et.truncated,
                 a.sha, a.kind, a.mime, a.bytes, a.year_min, a.year_max,
                 aa.description, aa.description_status, aa.transcript, aa.transcript_status,
-                aa.interpretation, aa.interpretation_status, aa.source_verification_status, aa.limitations
+                aa.interpretation, aa.interpretation_status, aa.source_verification_status, aa.limitations${_cs ? ', aa.csscpsg_json' : ''}
            FROM evidence_catalogue ec
            LEFT JOIN evidence_text et ON et.aid=ec.artifact_id
            LEFT JOIN artifacts a ON a.id=ec.artifact_id
@@ -355,7 +370,7 @@
           assessment: { description: r.description || '', descriptionStatus: r.description_status || 'not_assessed',
             transcript: r.transcript || '', transcriptStatus: r.transcript_status || 'not_assessed',
             interpretation: r.interpretation || '', interpretationStatus: r.interpretation_status || 'not_assessed',
-            sourceVerificationStatus: r.source_verification_status || 'not_assessed', limitations: r.limitations || '' },
+            sourceVerificationStatus: r.source_verification_status || 'not_assessed', limitations: r.limitations || '', csscpsg: parseCsscpsg(r.csscpsg_json) },
           sourcePageText: r.record_text || '',
           entryTextChars: r.body_chars || 0, entryTextTruncated: !!r.truncated,
           locations: locations, chronologyAndLayerReferences: refs, graphRelations: relations

@@ -262,7 +262,7 @@ con.execute('''CREATE TABLE IF NOT EXISTS artifact_assessments(
  transcript TEXT NOT NULL DEFAULT '', transcript_status TEXT NOT NULL DEFAULT 'not_assessed',
  interpretation TEXT NOT NULL DEFAULT '', interpretation_status TEXT NOT NULL DEFAULT 'not_assessed',
  source_verification_status TEXT NOT NULL DEFAULT 'not_assessed',
- limitations TEXT NOT NULL DEFAULT '', updated_at TEXT
+ limitations TEXT NOT NULL DEFAULT '', csscpsg_json TEXT NOT NULL DEFAULT '', updated_at TEXT
 ) WITHOUT ROWID''')
 con.execute('''INSERT OR IGNORE INTO artifact_assessments
  (ev, artifact_id, description_status, transcript_status, interpretation_status, source_verification_status)
@@ -281,11 +281,13 @@ if _assessment_path.exists():
         _catalogue_row = con.execute('SELECT artifact_id FROM evidence_catalogue WHERE ev=?', (_ev,)).fetchone()
         _aid = _catalogue_row[0] if _catalogue_row else None
         _values = [_item.get(_field, _defaults.get(_field, '')) for _field in _assessment_fields]
+        _csscpsg = _item.get('csscpsg')
+        _csscpsg_json = json.dumps(_csscpsg, ensure_ascii=False) if _csscpsg else ''
         con.execute('''INSERT OR REPLACE INTO artifact_assessments
           (ev, artifact_id, description, description_status, transcript, transcript_status,
-           interpretation, interpretation_status, source_verification_status, limitations, updated_at)
-          VALUES(?,?,?,?,?,?,?,?,?,?,?)''',
-          (_ev, _aid, *_values, _assessment_doc.get('date', '2026-10-29')))
+           interpretation, interpretation_status, source_verification_status, limitations, csscpsg_json, updated_at)
+          VALUES(?,?,?,?,?,?,?,?,?,?,?,?)''',
+          (_ev, _aid, *_values, _csscpsg_json, _assessment_doc.get('date', '2026-10-29')))
 
 # Level 2: derived observations cite the Level 1 records without replacing them.
 con.execute('''CREATE TABLE IF NOT EXISTS observations(
