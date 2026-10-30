@@ -1,0 +1,141 @@
+{
+ "schema": "cedwyn-programme/1.0",
+ "version": "2.0.0",
+ "date": "2026-10-30",
+ "title": "Cedwyn programme: one research project feeding three delivery projects",
+ "band_rule": "Progress is published only in four bands: 0%+ (initiated), 33%+ (first deliverable live), 66%+ (paid v0.0.2 releases live or the physical/field pilot running), 100% (closed and handed over). Bands are set by stage evidence, not task counts. Detailed tasks live in the task board, not here.",
+ "flywheel": "Research (A) feeds the online legacy asset (B), the Argentina estate (C) and the Wales tour (D). Revenue from deliverables released as v0.0.2 (the first paid semantic-version release of each deliverable) flows back to the research. Every release adds evidence-led material that makes the next release better.",
+ "projects": [
+  {
+   "id": "A",
+   "name": "Wales research",
+   "scope": "The evidence and artifact catalogue for Great House Farm / Tŷ Mawr (Cydfin Farm), Llandough: records recovery, disclosure requests, testimony, the chronology, and the search for the trigger event (concealment, irregularity or government involvement) that would meet the legal bar.",
+   "spin_offs": [
+    {
+     "id": "A1",
+     "name": "Case reopening gate",
+     "state": "STANDBY — not initiated until a ground meets every limb of the legal test and the Executive authorises it"
+    }
+   ],
+   "band": "33%+",
+   "band_evidence": "Evidence catalogue, missing-records register and disclosure tracker are live; the trigger event is not met.",
+   "feeds": [
+    "B",
+    "C",
+    "D"
+   ],
+   "links": [
+    "/research/",
+    "/research/missing-records/",
+    "/wiki/evidence-library/",
+    "/dartboard/",
+    "/projects/p4-case-reopening-gate/"
+   ],
+   "was": "P2 Wales records and testimony recovery + P4 Case reopening"
+  },
+  {
+   "id": "B",
+   "name": "Online legacy family estate (digital asset)",
+   "scope": "Everything published from the research: the documentary and the later AI-generated film, the online slideshow tour (formerly the bpvsbuckler story), the shop, a press pack, games and e-books.",
+   "band": "33%+",
+   "band_evidence": "Documentary doors, slideshow tour, shop, games and e-books are live as v0.0.1; e-books also offer v0.0.2; no sale recorded yet; press pack not live.",
+   "feeds": [
+    "A (revenue)"
+   ],
+   "links": [
+    "/documentary/",
+    "/story/",
+    "/shop/",
+    "/ebooks/",
+    "/chess/",
+    "/courtdrills/"
+   ],
+   "was": "new (e-book objective O4 folds in)"
+  },
+  {
+   "id": "C",
+   "name": "Argentina: physical replica Great House and Cedwyn Estate 2.0",
+   "scope": "A researched replica of the house and a museum on land in southern Argentina (Chubut), built from the research record.",
+   "band": "0%+",
+   "band_evidence": "Concept and research inputs only; no site selected, acquired or approved.",
+   "feeds": [],
+   "links": [
+    "/argentina/",
+    "/patagonia/",
+    "/projects/programme-office/"
+   ],
+   "was": "P1 Argentina replica museum"
+  },
+  {
+   "id": "D",
+   "name": "Wales: guided virtual and augmented group tour",
+   "scope": "Guided group tour in public places only: the Peerless Jim and Marconi statues in Cardiff, and the view from Church View Close and the woods at Llandough, with virtual and augmented layers.",
+   "band": "0%+",
+   "band_evidence": "Browser tour and stop research exist; no pilot walk booked; no AR prototype.",
+   "feeds": [],
+   "links": [
+    "/wales/"
+   ],
+   "was": "P3 Parcel A AR guided tour (scope now public areas only)"
+  }
+ ],
+ "risks": [
+  {
+   "id": "R1",
+   "risk": "Hosting limits: the static host is at about 90% of its file cap and the free database tier is at its database count and daily read limit.",
+   "owner": "Senior supplier (site build)",
+   "response": "Reduce: architecture decision ADR-002 (one catalogue in git, compiled at build; no new files per page; no runtime database queries for the read layer).",
+   "rag": "AMBER"
+  },
+  {
+   "id": "R2",
+   "risk": "Evidence data held in several overlapping stores, so pages can disagree.",
+   "owner": "Senior supplier (site build)",
+   "response": "Reduce: one master catalogue; the other stores become build outputs (work package 2).",
+   "rag": "AMBER"
+  },
+  {
+   "id": "R3",
+   "risk": "No revenue yet, so the flywheel has no fuel for the research.",
+   "owner": "Senior user (Project B)",
+   "response": "Reduce: v0.0.2 releases per deliverable; measure weekly.",
+   "rag": "RED"
+  },
+  {
+   "id": "R4",
+   "risk": "Paid releases may need per-image permission from archives.",
+   "owner": "Project B",
+   "response": "Avoid: archive images unchanged and free tier only until permission is held.",
+   "rag": "AMBER"
+  },
+  {
+   "id": "R5",
+   "risk": "Many automated contributors working on the same site at once.",
+   "owner": "Programme office",
+   "response": "Reduce: single build owner for main; task board for detail; per-page journals.",
+   "rag": "AMBER"
+  }
+ ],
+ "issues": [
+  {
+   "id": "I1",
+   "issue": "Programme re-baselined on 30 October 2026: four projects; former P2 and P4 merged into Project A (P4 as spin-off A1); new Project B.",
+   "status": "Recorded"
+  },
+  {
+   "id": "I2",
+   "issue": "Project D scope changed to public places only (Cardiff statues, Church View Close view, Llandough woods); earlier in-situ wording superseded.",
+   "status": "Recorded"
+  },
+  {
+   "id": "I3",
+   "issue": "Header graphs of some webapps plotted pages instead of their own data; correction under way (Dartboard first).",
+   "status": "In hand"
+  },
+  {
+   "id": "I4",
+   "issue": "Each page's footer showed a site-wide change log, not that page's own journal; per-page journal planned.",
+   "status": "Planned"
+  }
+ ]
+}

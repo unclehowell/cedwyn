@@ -1,0 +1,121 @@
+{
+ "id": "data-architecture",
+ "title": "Data-driven architecture programme",
+ "version": "1.0.0",
+ "date": "2026-10-30",
+ "status": "Plan recorded; pilot (Kissed Frogs) next",
+ "summary": "Every Cedwyn page will be generated from data: one central catalogue of the evidence feeds a small database for each area of the site, and each page is drawn from that data by one shared renderer, keeping the design visitors see today.",
+ "architecture": [
+  "Central catalogue: one record per thing (evidence, artifact, place, person or public body, event, screening lead, missing record), each with a neutral description, a transcript where held, an interpretation marked as such, its source (holder, reference, date), scope tags and a public flag. Kept in the site repository as validated JSON and compiled into the site's searchable database at every build.",
+  "Area databases: each area of the site declares a selection rule; the build derives that area's own small database from the central catalogue (for example, Kissed Frogs takes every record whose scope marks it as having looked like the property but is not).",
+  "Pages from data: each page is a list of approved components bound to its area database, in the style of the open A2UI format (components as data, not code), rendered at build time by one shared renderer whose components reproduce the current design.",
+  "One switch per area: an area moves to the new path only when its pages match the old ones; switching it off restores the previous pages."
+ ],
+ "rules": [
+  "A fact about the evidence is written once, in the central catalogue.",
+  "Area databases are derived, never edited by hand.",
+  "Pages hold layout only; words and records come from data.",
+  "One renderer and one set of approved components.",
+  "Only public records leave the build.",
+  "People and machine readers get the same data."
+ ],
+ "measures": [
+  [
+   "Hard-coded records left on an area's pages",
+   "0"
+  ],
+  [
+   "Pages generated from the area database",
+   "100%"
+  ],
+  [
+   "Visual match with the previous page at 390 px and desktop",
+   "≤ 2% of pixels changed"
+  ],
+  [
+   "Site build",
+   "passes"
+  ],
+  [
+   "Privacy, wording and link checks",
+   "0 findings"
+  ]
+ ],
+ "wps": [
+  [
+   "WP0",
+   "Programme set-up: audit, plan, task board, Projects page, flywheel doc",
+   "M0 Plan recorded — 30 Oct 2026",
+   "PLAN + FLYWHEEL published on /projects/data-architecture/ (live, 390 px checked); parent + 9 WP tasks on the task board; audit table of all 44 source themes / 36 areas."
+  ],
+  [
+   "WP1",
+   "Pilot: Kissed Frogs — central db → kissed-frogs view db → A2UI-style page; Llandough Farm kept separate",
+   "M1 Pilot live — 31 Oct 2026",
+   "KF page renders from /kissed-frogs/_db/view.json derived from data/core by selection rule (scope.disposition ≠ in_scope); 0 hard-coded records on the index; frog-with-lipstick image (light + dark theme, no white box in dark); short neutral explanation; card list, each card beginning with its entry; no extra title; Llandough Farm card, and every Llandough Farm mention (ev-0211 first) not presented as Great House Farm / Tŷ Mawr / Cydfin Farm or a name variant, linking to the card; parity at 390 px + desktop within the approved new layout; build green; scanners clean; screenshots saved."
+  ],
+  [
+   "WP2",
+   "Core consolidation: one master database (data/core, JSON Schema) compiled to SQLite and mirrored to D1",
+   "M2 Core v1 — 3 Nov 2026",
+   "All EV/MR/CC/KF/PL/PE records from box registers, repo data/*.json and D1 merged into data/core; 0 duplicate IDs; core_validate.py in CI; build_db compiles core_records/core_links; core_load mirrors D1 from data/core; flywheel registers become exports."
+  ],
+  [
+   "WP3",
+   "Shared A2UI-style renderer + Cedwyn component catalog v1 + visual parity harness",
+   "M3 Renderer v1 — 5 Nov 2026",
+   "catalog.json lists every component with a props schema; tools/a2ui_render.py (build-time) + /_cedwyn/a2ui/render.js render all of them; parity harness (Playwright 390/1280, light/dark, text diff) runs on changed apps; docs page in the docs library."
+  ],
+  [
+   "WP4",
+   "Security, privacy and validation gates in CI (schema, public flag, secrets, banned words, outbound links, unknown components)",
+   "M2 Core v1 — 3 Nov 2026",
+   "CI fails on schema errors, public:false or private fields in any view, secret patterns, banned words, outbound links, unknown A2UI component; CSP for the renderer; llms.txt / agents.json list each view endpoint."
+  ],
+  [
+   "WP5",
+   "Migrate wave 1 (structured registers): nomenclature, whattheydontsay, familytree, ebooks shelf, projects, blog, glossary, maps index",
+   "M4 Wave 1 — 10 Nov 2026",
+   "Per app: HCR 0, COV 100 %, parity pass at 390/1280, build green, scanners clean, live-verified; legacy HTML removed."
+  ],
+  [
+   "WP6",
+   "Migrate wave 2 (evidence layer): research evidence pages, wiki evidence, missing records, thousand-cuts, infographic, authorities, wdtk, review, records, accounts, oldbill",
+   "M5 Wave 2 — 17 Nov 2026",
+   "Same gates per app; every EV page generated from core (description / transcript / interpretation / provenance)."
+  ],
+  [
+   "WP7",
+   "Migrate wave 3 (snapshots + interactive): dartboard, email, fb/fb2, wayback index, directory, watchtower, fcg, wales, patagonia, estate, arcade, chess, csscpsg, courtdrills, app, chat, story/documentary, shop",
+   "M6 Wave 3 — 28 Nov 2026",
+   "Content layer from views; engine code stays code; snapshot pins retired where the content is data-driven; same gates per app."
+  ],
+  [
+   "WP8",
+   "Flywheel automation and handover: migration schedule, metrics page, academy lesson, close-out",
+   "M7 Programme closed — 5 Dec 2026",
+   "All apps HCR 0; metrics page green; academy module on how Cedwyn pages are made; legacy pre-generated HTML deleted; programme closed on the task board and on /projects/."
+  ]
+ ],
+ "flywheel": [
+  "Claim one area on the task board (no two contributors on one area).",
+  "Record a baseline: screenshots at 390 px and desktop, the visible text and the records shown.",
+  "State one hypothesis: these records on this page can come from this rule and this template with no visual change.",
+  "Make the smallest change: add missing records to the catalogue, write the area rule, write the page template.",
+  "Measure: render, validate, compare with the baseline, count hard-coded records.",
+  "Keep the change only if every check passes and the numbers improve; otherwise undo it. Log the result either way.",
+  "Publish in small commits, wait for the build, check the live page at 390 px and desktop.",
+  "Record the numbers on the task board; after three failed attempts on one area, log the blocker and move on."
+ ],
+ "audit": "44 source themes in 36 visitor areas: 12 are snapshots of separate apps, 15 are hand-written pages, 14 mix a data file with pre-made pages, 2 are built by their own tools and 1 is generated from data. Three partial databases exist today; none is yet the single source the pages read.",
+ "sources": [
+  "A2UI open project and specification v0.9.1 (a2ui.org; a2ui-project on GitHub)",
+  "Google Developers Blog, Introducing A2UI",
+  "JSON Schema draft 2020-12",
+  "W3C PROV-O provenance ontology",
+  "Cloudflare D1 platform limits",
+  "sql.js-httpvfs (SQLite over HTTP range requests)",
+  "Karpathy, autoresearch",
+  "Fowler, Strangler Fig Application"
+ ]
+}

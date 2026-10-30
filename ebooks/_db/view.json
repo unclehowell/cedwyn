@@ -1,0 +1,292 @@
+{
+ "books": [
+  {
+   "id": "great-house-farm-wiki",
+   "title": "Great House Farm (Tŷ Mawr), Llandough — The Wiki",
+   "edition": "v0.0.2",
+   "semver": "0.3.0",
+   "price": "£4.99",
+   "pages": 1987,
+   "date": "2026-10-20",
+   "free": "v0.0.1",
+   "page": "/ebooks/",
+   "supplement": "/ebooks/supplement/cedwyn-supplement-2026-10-25.pdf"
+  },
+  {
+   "id": "fcg-fraud-concealment-and-government-involvement",
+   "title": "Concealment and Government Involvement",
+   "edition": "v0.0.2",
+   "semver": "1.1.0",
+   "price": "£4.99",
+   "pages": 221,
+   "date": "2026-10-20",
+   "free": "v0.0.1",
+   "page": "/ebooks/fcg/",
+   "supplement": "/ebooks/supplement/cedwyn-supplement-2026-10-25.pdf"
+  },
+  {
+   "id": "project-management",
+   "title": "Great House Farm Projects",
+   "edition": "v0.0.2",
+   "semver": "1.1.0",
+   "price": "£4.99",
+   "pages": 187,
+   "date": "2026-10-20",
+   "free": "v0.0.1",
+   "page": "/ebooks/projects/",
+   "supplement": "/ebooks/supplement/cedwyn-supplement-2026-10-25.pdf"
+  },
+  {
+   "id": "dartboard-disclosure",
+   "title": "The Disclosure Dartboard",
+   "edition": "v0.0.2",
+   "semver": "1.1.0",
+   "price": "£4.99",
+   "pages": 404,
+   "date": "2026-10-20",
+   "free": "v0.0.1",
+   "page": "/ebooks/dartboard/",
+   "supplement": "/ebooks/supplement/cedwyn-supplement-2026-10-25.pdf"
+  },
+  {
+   "id": "tymawr-deaths",
+   "title": "The Tŷ Mawr Deaths",
+   "edition": "v0.0.2",
+   "semver": "1.1.0",
+   "price": "£4.99",
+   "pages": 69,
+   "date": "2026-10-20",
+   "free": "v0.0.1",
+   "page": "/ebooks/tymawr-deaths/",
+   "supplement": "/ebooks/supplement/cedwyn-supplement-2026-10-25.pdf"
+  },
+  {
+   "id": "recorded-incidents",
+   "title": "Recorded Incidents",
+   "edition": "v0.0.2",
+   "semver": "0.3.0",
+   "price": "£4.99",
+   "pages": 44,
+   "date": "2026-10-20",
+   "free": "v0.0.1",
+   "page": "/ebooks/recorded-incidents/",
+   "supplement": "/ebooks/supplement/cedwyn-supplement-2026-10-25.pdf"
+  },
+  {
+   "id": "tymawr-heritage",
+   "title": "Tŷ Mawr",
+   "edition": "v0.0.2",
+   "semver": "0.3.0",
+   "price": "£4.99",
+   "pages": 43,
+   "date": "2026-10-20",
+   "free": "v0.0.1",
+   "page": "/ebooks/tymawr-heritage/",
+   "supplement": "/ebooks/supplement/cedwyn-supplement-2026-10-25.pdf"
+  },
+  {
+   "id": "williams-buckler-family",
+   "title": "The Williams–Buckler Family",
+   "edition": "v0.0.2",
+   "semver": "0.3.0",
+   "price": "£4.99",
+   "pages": 34,
+   "date": "2026-10-20",
+   "free": "v0.0.1",
+   "page": "/ebooks/williams-buckler-family/",
+   "supplement": "/ebooks/supplement/cedwyn-supplement-2026-10-25.pdf"
+  },
+  {
+   "id": "cedwyn",
+   "title": "Cedwyn: Names, Places, Legend and Title of Tŷ Mawr",
+   "edition": "v0.0.1",
+   "semver": "0.2.0",
+   "price": "£0.00",
+   "pages": 32,
+   "date": "2026-10-20",
+   "free": "v0.0.1",
+   "page": "/ebooks/cedwyn/",
+   "supplement": "/ebooks/supplement/cedwyn-supplement-2026-10-25.pdf"
+  },
+  {
+   "id": "enwau",
+   "title": "Enwau: the names of Tŷ Mawr",
+   "edition": "v0.0.1",
+   "semver": "0.1.0",
+   "price": "£0.00",
+   "pages": 36,
+   "date": "2026-10-26",
+   "free": "v0.0.1",
+   "page": "/ebooks/enwau/"
+  }
+ ],
+ "bundles": [
+  {
+   "id": "all-four",
+   "title": "All four Great House Farm e-books",
+   "price": "£19.96",
+   "page": "/ebooks/all-four/",
+   "books": [
+    "great-house-farm-wiki",
+    "fcg-fraud-concealment-and-government-involvement",
+    "dartboard-disclosure",
+    "project-management"
+   ]
+  }
+ ],
+ "releases": [
+  {
+   "book": "Cedwyn: Names, Places, Legend and Title of Tŷ Mawr",
+   "date": "2026-10-20",
+   "kind": "First edition · free",
+   "label": "Cedwyn: Names, Places, Legend and Title of Tŷ Mawr · v0.0.1 · free",
+   "page": "/ebooks/cedwyn/"
+  },
+  {
+   "book": "Concealment and Government Involvement",
+   "date": "2026-10-20",
+   "kind": "Updated edition · £4.99",
+   "label": "Concealment and Government Involvement · v0.0.2 · £4.99",
+   "page": "/ebooks/fcg/"
+  },
+  {
+   "book": "Great House Farm (Tŷ Mawr), Llandough",
+   "date": "2026-10-20",
+   "kind": "Updated edition · £4.99",
+   "label": "Great House Farm (Tŷ Mawr), Llandough · v0.0.2 · £4.99",
+   "page": "/ebooks/"
+  },
+  {
+   "book": "Great House Farm Projects",
+   "date": "2026-10-20",
+   "kind": "Updated edition · £4.99",
+   "label": "Great House Farm Projects · v0.0.2 · £4.99",
+   "page": "/ebooks/projects/"
+  },
+  {
+   "book": "Recorded Incidents",
+   "date": "2026-10-20",
+   "kind": "Updated edition · £4.99",
+   "label": "Recorded Incidents · v0.0.2 · £4.99",
+   "page": "/ebooks/recorded-incidents/"
+  },
+  {
+   "book": "The Disclosure Dartboard",
+   "date": "2026-10-20",
+   "kind": "Updated edition · £4.99",
+   "label": "The Disclosure Dartboard · v0.0.2 · £4.99",
+   "page": "/ebooks/dartboard/"
+  },
+  {
+   "book": "The Tŷ Mawr Deaths",
+   "date": "2026-10-20",
+   "kind": "Updated edition · £4.99",
+   "label": "The Tŷ Mawr Deaths · v0.0.2 · £4.99",
+   "page": "/ebooks/tymawr-deaths/"
+  },
+  {
+   "book": "The Williams–Buckler Family",
+   "date": "2026-10-20",
+   "kind": "Updated edition · £4.99",
+   "label": "The Williams–Buckler Family · v0.0.2 · £4.99",
+   "page": "/ebooks/williams-buckler-family/"
+  },
+  {
+   "book": "Tŷ Mawr",
+   "date": "2026-10-20",
+   "kind": "Updated edition · £4.99",
+   "label": "Tŷ Mawr · v0.0.2 · £4.99",
+   "page": "/ebooks/tymawr-heritage/"
+  },
+  {
+   "book": "Cedwyn: Names, Places, Legend and Title of Tŷ Mawr",
+   "date": "2026-10-25",
+   "kind": "Supplement · free PDF",
+   "label": "Cedwyn: Names, Places, Legend and Title of Tŷ Mawr · supplement",
+   "page": "/ebooks/cedwyn/"
+  },
+  {
+   "book": "Concealment and Government Involvement",
+   "date": "2026-10-25",
+   "kind": "Supplement · free PDF",
+   "label": "Concealment and Government Involvement · supplement",
+   "page": "/ebooks/fcg/"
+  },
+  {
+   "book": "Great House Farm (Tŷ Mawr), Llandough",
+   "date": "2026-10-25",
+   "kind": "Supplement · free PDF",
+   "label": "Great House Farm (Tŷ Mawr), Llandough · supplement",
+   "page": "/ebooks/"
+  },
+  {
+   "book": "Great House Farm Projects",
+   "date": "2026-10-25",
+   "kind": "Supplement · free PDF",
+   "label": "Great House Farm Projects · supplement",
+   "page": "/ebooks/projects/"
+  },
+  {
+   "book": "Recorded Incidents",
+   "date": "2026-10-25",
+   "kind": "Supplement · free PDF",
+   "label": "Recorded Incidents · supplement",
+   "page": "/ebooks/recorded-incidents/"
+  },
+  {
+   "book": "The Disclosure Dartboard",
+   "date": "2026-10-25",
+   "kind": "Supplement · free PDF",
+   "label": "The Disclosure Dartboard · supplement",
+   "page": "/ebooks/dartboard/"
+  },
+  {
+   "book": "The Tŷ Mawr Deaths",
+   "date": "2026-10-25",
+   "kind": "Supplement · free PDF",
+   "label": "The Tŷ Mawr Deaths · supplement",
+   "page": "/ebooks/tymawr-deaths/"
+  },
+  {
+   "book": "The Williams–Buckler Family",
+   "date": "2026-10-25",
+   "kind": "Supplement · free PDF",
+   "label": "The Williams–Buckler Family · supplement",
+   "page": "/ebooks/williams-buckler-family/"
+  },
+  {
+   "book": "Tŷ Mawr",
+   "date": "2026-10-25",
+   "kind": "Supplement · free PDF",
+   "label": "Tŷ Mawr · supplement",
+   "page": "/ebooks/tymawr-heritage/"
+  },
+  {
+   "book": "Enwau: the names of Tŷ Mawr",
+   "date": "2026-10-26",
+   "kind": "First edition · free",
+   "label": "Enwau: the names of Tŷ Mawr · v0.0.1 · free",
+   "page": "/ebooks/enwau/"
+  },
+  {
+   "book": "Enwau: the names of Tŷ Mawr",
+   "date": "2026-10-26",
+   "kind": "Revision",
+   "label": "Enwau: the names of Tŷ Mawr · 0.1.0",
+   "page": "/ebooks/enwau/"
+  }
+ ],
+ "meta": {
+  "app": "ebooks",
+  "view_version": "1.0.0",
+  "source": "data/ebooks.json (the shop catalogue)",
+  "rule": "tools/ebook_editions.py view()",
+  "counts": {
+   "books": 10,
+   "bundles": 1,
+   "releases": 20
+  },
+  "price_rule": "v0.0.1 £0.00; each later whole release costs STEP_GBP (£4.99) more than the one before: v0.0.2 £4.99, v0.0.3 £9.98, v0.0.4 £14.97 …; bundle = the newest editions of its books added together",
+  "generated": "2026-10-30T17:39:59Z"
+ }
+}

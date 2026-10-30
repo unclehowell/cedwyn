@@ -1,4 +1,4 @@
-/* cw-graph.js v1.2.2 (30 Oct 2026: a graph may fix its own colours, data.c.colors — Dartboard green/amber/red) - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
+/* cw-graph.js v1.2.3 (30 Oct 2026: long axis names wrap to two lines at 390 px; 1.2.2: a graph may fix its own colours, data.c.colors — Dartboard green/amber/red) - graph promo banner, full-screen scatter modal and 100vh "Read more" clip for every Cedwyn page.
    Asked for 01:27 GMT 30 Oct 2026: the closable header strip becomes a graph promotion; tapping it slides a full-screen
    scatter graph of the data the page/section shows down over the page (it slides back up on close, Esc or swipe up);
    text pages load clipped to the screen height with a "Read more" bar, further text arriving in chunks from the build's
@@ -7,7 +7,7 @@
 (function () {
   'use strict';
   if (window.__cwGraph) return;
-  var d = document, de = d.documentElement, VER = '1.2.2';
+  var d = document, de = d.documentElement, VER = '1.2.3';
   window.__cwGraph = { v: VER };
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var T = {
@@ -198,6 +198,16 @@
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   var MS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   function fmt(ms, step) { var x = new Date(ms); if (step < 3e9) return x.getUTCDate() + ' ' + MS[x.getUTCMonth()]; if (step < 3.2e10) return MS[x.getUTCMonth()] + ' ' + String(x.getUTCFullYear()).slice(2); return String(x.getUTCFullYear()); }
+  /* 1.2.3 (30 Oct 2026): long category names on the left axis wrap onto two lines that fit the label column (11 px type,
+     about 6 px a character) instead of running off the left edge at 390 px; the full name rides in a <title>. - Cedwyn editors */
+  function wrap(s, n) {
+    if (s.length <= n) return [s];
+    var w = s.split(' '), a = '', k = 0;
+    while (k < w.length && (a ? a.length + 1 : 0) + w[k].length <= n) { a += (a ? ' ' : '') + w[k]; k++; }
+    if (!a) { a = s.slice(0, n - 1) + '-'; w = [s.slice(n - 1)]; k = 0; }
+    var b = w.slice(k).join(' ');
+    return [a, b.length > n ? b.slice(0, n - 1) + '…' : b];
+  }
   function render(host, data, info, legend, sub) {
     var W = Math.max(320, Math.min(host.clientWidth || 360, 1100)), cat = data.y.type === 'cat', cats = cat ? data.y.cats : null;
     var padL = cat ? Math.min(132, Math.round(W * 0.32)) : 44, padR = 12, padT = 10, padB = 36;
@@ -213,7 +223,7 @@
     var ys = P.map(function (p) { return +p[1]; }), ymn = Math.min.apply(null, ys), ymx = Math.max.apply(null, ys);
     function Y(p, i) { if (cat) return padT + band * (+p[1]) + band * (0.18 + 0.64 * hsh(String(p[3]) + i)); return padT + ph - (ymx > ymn ? (+p[1] - ymn) / (ymx - ymn) : 0.5) * ph; }
     var pal = (data.c && data.c.colors) || (night() ? NPAL : PAL), s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(data.y.label + ' by ' + data.x.label) + '">';
-    if (cat) cats.forEach(function (c, i) { var y = padT + band * i; s += '<line class="ax" x1="' + padL + '" x2="' + (W - padR) + '" y1="' + y + '" y2="' + y + '"/><text x="' + (padL - 6) + '" y="' + (y + band / 2 + 4) + '" text-anchor="end">' + esc(c.length > 20 ? c.slice(0, 19) + '…' : c) + '</text>'; });
+    if (cat) cats.forEach(function (c, i) { var y = padT + band * i, L = wrap(String(c), Math.max(8, Math.floor((padL - 10) / 6.1))); s += '<line class="ax" x1="' + padL + '" x2="' + (W - padR) + '" y1="' + y + '" y2="' + y + '"/><text x="' + (padL - 6) + '" y="' + (y + band / 2 + (L.length > 1 ? -2 : 4)) + '" text-anchor="end"><title>' + esc(c) + '</title>' + L.map(function (l, k) { return '<tspan x="' + (padL - 6) + '"' + (k ? ' dy="12"' : '') + '>' + esc(l) + '</tspan>'; }).join('') + '</text>'; });
     else for (var g = 0; g <= 4; g++) { var yv = ymn + (ymx - ymn) * g / 4, yy = padT + ph - ph * g / 4; s += '<line class="ax" x1="' + padL + '" x2="' + (W - padR) + '" y1="' + yy + '" y2="' + yy + '"/><text x="' + (padL - 6) + '" y="' + (yy + 4) + '" text-anchor="end">' + (Math.round(yv * 10) / 10) + '</text>'; }
     s += '<line class="ax" x1="' + padL + '" x2="' + (W - padR) + '" y1="' + (H - padB) + '" y2="' + (H - padB) + '"/>';
     var ticks = Math.max(2, Math.min(6, Math.floor(pw / 70)));
