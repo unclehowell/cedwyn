@@ -241,6 +241,10 @@ def patch_page(p, main_html):
                     '<p class="sub">What has been asked about Great House Farm, who was asked, and who has answered. Each hashtag opens the email.</p>')
     s2 = re.sub(r'<div class="stats" id="stats"[^>]*></div>', '', s2)
     s2 = s2.replace('<a href="/qa/kb.json">kb.json</a>', '<a href="/qa/questions.json">questions.json</a>')
+    # QA pages render their own card list with search, filters and coloured
+    # hashtag chips; the cw-graph clip/levels "Read more" passes must not
+    # collapse them into plain-text preview cards (30 Oct regression).
+    s2 = re.sub(r'<html\b(?![^>]*data-cw-noclip)', '<html data-cw-noclip data-cw-nolevels', s2, count=1)
     i = s2.rfind('</body>')
     s2 = s2[:i] + JS + s2[i:] if i >= 0 else s2 + JS
     p.write_text(s2)
