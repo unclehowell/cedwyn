@@ -9,8 +9,8 @@
 <link rel="canonical" href="https://cedwyn.bucklerfamily.estate/presskit/">
 <script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.17"></script>
 <style>
-:root{color-scheme:light dark;--ink:#18221c;--muted:#68736b;--line:#d9dfd9;--paper:#f6f7f3;--card:#fff;--deep:#14281e;--accent:#9bc76b;--green:#167447;--green-bg:#e6f3eb;--amber:#965700;--amber-bg:#fff1d6;--red:#a52b2b;--red-bg:#fbe8e7;--shadow:0 14px 40px rgba(18,37,25,.08)}
-html[data-ghf-scheme="dark"]{--ink:#eef4ed;--muted:#aab8ab;--line:#35433a;--paper:#101713;--card:#18231d;--deep:#07110b;--green:#76d5a1;--green-bg:#163729;--amber:#f0bd67;--amber-bg:#3d2d16;--red:#ff8a84;--red-bg:#3a2020;--shadow:0 14px 40px rgba(0,0,0,.2)}
+:root{color-scheme:light dark;--ink:#18221c;--muted:#68736b;--line:#d9dfd9;--paper:#f6f7f3;--card:#fff;--deep:#14281e;--accent:#9bc76b;--green:#167447;--green-bg:#e6f3eb;--amber:#b56a12;--amber-bg:#fff0d7;--red:#a52b2b;--red-bg:#fbe8e7;--shadow:0 14px 40px rgba(18,37,25,.08)}
+html[data-ghf-scheme="dark"]{--ink:#eef4ed;--muted:#aab8ab;--line:#35433a;--paper:#101713;--card:#18231d;--deep:#07110b;--green:#76d5a1;--green-bg:#163729;--amber:#f4b65c;--amber-bg:#3d2d16;--red:#ff8a84;--red-bg:#3a2020;--shadow:0 14px 40px rgba(0,0,0,.2)}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--paper);color:var(--ink);font-family:Barlow,"Helvetica Neue",Arial,system-ui,sans-serif}
 body{line-height:1.52}
@@ -31,7 +31,7 @@ button{cursor:pointer}
 .summary{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px 20px;box-shadow:var(--shadow)}
 .summary strong{display:block;font-size:30px;line-height:1.1;letter-spacing:-.04em}
 .summary span{display:block;color:var(--muted);font-size:12px;margin-top:6px}
-.summary.green strong{color:var(--green)}.summary.amber strong{color:var(--amber)}.summary.red strong{color:var(--red)}
+.summary.green strong{color:var(--green)}.summary.orange strong{color:var(--amber)}.summary.red strong{color:var(--red)}
 .section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:46px 0 16px}
 .section-head h2{font-size:26px;line-height:1.1;letter-spacing:-.03em;margin:5px 0 0}
 .section-head p{margin:0;color:var(--muted);max-width:520px;font-size:13px}
@@ -55,7 +55,7 @@ button{cursor:pointer}
 .claim-list{position:relative;display:grid;gap:12px}
 .claim-list:before{content:"";position:absolute;left:20px;top:22px;bottom:22px;width:1px;background:var(--line)}
 .claim{--status:var(--green);--status-bg:var(--green-bg);position:relative;background:var(--card);border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:var(--shadow)}
-.claim[data-status="AMBER"]{--status:var(--amber);--status-bg:var(--amber-bg)}
+.claim[data-status="ORANGE"]{--status:var(--amber);--status-bg:var(--amber-bg)}
 .claim[data-status="RED"]{--status:var(--red);--status-bg:var(--red-bg)}
 .claim summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:42px minmax(0,1fr) 112px;gap:12px;align-items:start;padding:19px 20px}
 .claim summary::-webkit-details-marker{display:none}
@@ -156,7 +156,7 @@ button{cursor:pointer}
   <section class="summary-grid" id="summary" aria-label="Register summary">
     <div class="summary"><strong id="count-all">16</strong><span>statements assessed</span></div>
     <div class="summary green"><strong id="count-green">6</strong><span>green · bounded wording</span></div>
-    <div class="summary amber"><strong id="count-amber">6</strong><span>amber · qualify or attribute</span></div>
+    <div class="summary orange"><strong id="count-orange">6</strong><span>orange · qualify or attribute</span></div>
     <div class="summary red"><strong id="count-red">4</strong><span>red · quarantine current wording</span></div>
   </section>
 
@@ -186,7 +186,7 @@ button{cursor:pointer}
     <input id="search" class="search" type="search" placeholder="Search statements, people, records or evidence IDs" aria-label="Search the scrutiny register">
     <button class="filter" data-filter="ALL" aria-pressed="true">All</button>
     <button class="filter" data-filter="GREEN" aria-pressed="false">Green</button>
-    <button class="filter" data-filter="AMBER" aria-pressed="false">Amber</button>
+    <button class="filter" data-filter="ORANGE" aria-pressed="false">Orange</button>
     <button class="filter" data-filter="RED" aria-pressed="false">Quarantine</button>
     <button class="action" id="print">Print / save PDF</button>
     <a class="action" href="/presskit/claims.json" download>Download register</a>
@@ -231,7 +231,7 @@ button{cursor:pointer}
   var DATA_URL="/presskit/claims.json", data=null, active="ALL", query="";
   var $=function(id){return document.getElementById(id)};
   function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
-  function statusLabel(s){return s==="GREEN"?"Green":s==="AMBER"?"Amber":"Quarantined"}
+  function statusLabel(s){return s==="GREEN"?"Green":s==="ORANGE"?"Orange":"Quarantined"}
   function source(id){return data.sources.find(function(s){return s.id===id})}
   function pct(v,max){return Math.max(0,Math.min(100,Math.round((Number(v||0)/Number(max||1))*100)))}
   function weightItems(target,arr){$(target).innerHTML=arr.map(function(x){return '<div class="weight"><span>'+esc(x.label)+'<div class="barline"><i style="width:'+x.weight+'%"></i></div></span><b>'+x.weight+'</b></div>'}).join("")}
@@ -271,7 +271,7 @@ button{cursor:pointer}
   function setup(){
     $("count-all").textContent=data.claims.length;
     $("count-green").textContent=data.claims.filter(function(c){return c.status==="GREEN"}).length;
-    $("count-amber").textContent=data.claims.filter(function(c){return c.status==="AMBER"}).length;
+    $("count-orange").textContent=data.claims.filter(function(c){return c.status==="ORANGE"}).length;
     $("count-red").textContent=data.claims.filter(function(c){return c.status==="RED"}).length;
     weightItems("evidence-weights",data.scoring.evidence);
     weightItems("legal-weights",data.scoring.legal);
