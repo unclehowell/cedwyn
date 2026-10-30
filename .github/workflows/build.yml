@@ -47,6 +47,8 @@ jobs:
           git -C mirror.git for-each-ref --format='%(refname:short)' | wc -l
       - name: Assemble themes
         run: MIRROR=mirror.git python3 tools/assemble.py dist
+      - name: Data views → pages (central catalogue data/core → each app's own _db/view.json → A2UI-style pages; an app whose view fails keeps its static pages)
+        run: python3 tools/views.py dist || echo "::warning::views step did not complete; static pages kept"
       - name: Apex site source for the apex themes (BucklerFamilyFarm public/, read-only)
         run: |
           git clone -q --depth 1 --filter=blob:none --sparse https://github.com/unclehowell/BucklerFamilyFarm.git bff
