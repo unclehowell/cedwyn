@@ -93,6 +93,9 @@ def classify(m):
     if own_media(host, path): return 'ns', None
     # a YouTube thumbnail whose video was checked (oEmbed author) and is not from the excluded channel: copied as an image
     if host == 'i.ytimg.com' and any('/vi/' + v + '/' in path for v in CFG.get('ytimg_checked', {})): return 'cdn', None
+    # 30 Oct 2026: a YouTube player the site owner asked to embed (themes.json "yt_embed_allowed", by video id) stays a direct
+    # youtube-nocookie embed: /wayback/go/ answers an HTML page, which an <iframe> player cannot play. - Sion's Tab agent
+    if host in ('www.youtube-nocookie.com', 'youtube-nocookie.com') and any(path.startswith('/embed/' + v) for v in CFG.get('yt_embed_allowed', {})): return 'ns', None
     return 'ext', None
 
 def replacement(m, absctx, css=False):
