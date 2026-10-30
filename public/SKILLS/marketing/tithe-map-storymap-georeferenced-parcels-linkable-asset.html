@@ -1,0 +1,72 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Tithe-map story map: a georeferenced 1840s map tour of the parcels (StoryMapJS + Map Warper, free) · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Tithe-map story map: a georeferenced 1840s map tour of the parcels (StoryMapJS + Map Warper, free)"><link rel="alternate" type="text/markdown" href="tithe-map-storymap-georeferenced-parcels-linkable-asset.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Cedwyn Academy</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Tithe-map story map: a georeferenced 1840s map tour of the parcels (StoryMapJS + Map Warper, free)</h1>
+<p>Topic: turn the Llandough tithe map and our 1841 parcel register into an interactive, linkable "map that tells a story" on Cedwyn. It doubles as a search and backlink asset for family historians and local-history groups. Harvested 29 Oct 2026, 23:59Z.</p>
+<p>New ground: before this skill the index had 0 hits for 'georef', 'map warper', 'historic map' and 'storymap'. It complements timelinejs-self-hosted-interactive-timeline-linkable-asset.md (time axis), historypin-tour-archive-pins.md (third-party pins) and komoot-highlights-public-route-heritage-walk.md (the walk). This skill covers the place axis on our own site.</p>
+<h2>Evidence (read)</h2>
+<ul>
+<li><strong>Archives Wales, Cynefin project page:</strong></li>
+<li>2014-17 project. Repaired and digitised 1,100+ Welsh tithe maps at NLW.</li>
+<li>Volunteers transcribed about 27,000 apportionment entries, linked to field numbers.</li>
+<li>300,000+ entries are searchable on the Tithe Maps of Wales (Places of Wales) site.</li>
+<li>Funded by HLF Wales and Welsh Government.</li>
+<li>So family historians already search tithe field numbers. That is the demand we serve.</li>
+<li><strong>Collections Trust, "Sense of place – tithe maps":</strong></li>
+<li>NLW stitched the map images and had volunteers geotag them into "an interactive historic and modern map".</li>
+<li>Crowdsourced transcription made the maps searchable.</li>
+<li>Takeaway: a historic map overlaid on a modern one is the format the sector itself chose.</li>
+<li><strong>Knight Lab StoryMapJS</strong> (home + Advanced pages):</li>
+<li>Free and open source, from Northwestern Knight Lab. One slide per place.</li>
+<li>"Gigapixel" mode shows big images such as historic maps, but needs the image tiles on our own web server.</li>
+<li>Self-hostable: JSON data plus storymap.css/js. The data must be same-origin or CORS-enabled.</li>
+<li>Their guidance: no more than 20 slides; choose stories with a strong location narrative; "include events that build up to major occurrences".</li>
+<li>StoryMapJS is still beta, so pin the version you host.</li>
+<li><strong>Programming Historian</strong> (Hayes &amp; Partlow, peer-reviewed, CC-BY 4.0): a step-by-step method:</li>
+<li>Georeference the scan in Map Warper.</li>
+<li>Export the Tiles (XYZ) URL.</li>
+<li>Use it as StoryMapJS's map_type.</li>
+<li>Add one slide per location, remove the route lines and set custom markers.</li>
+<li><strong>Map Warper</strong> (mapwarper.net): free, open-source, donation-funded georeferencer. Exports WMS, tiles, GeoTIFF and KML.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Rights first.</strong> Use a tithe-map image we may reuse. Check the NLW reproduction and reuse terms for the Llandough and Leckwith tithe map before publishing (the NLW page returned 403 to the box; not checked). Fallback: a 19th-century OS map out of copyright. Credit the holder on every slide.</li>
+<li><strong>Georeference</strong> in Map Warper. Use at least 6-8 control points on features that still exist: church, road junctions, river bends. Check the error and export Tiles (XYZ).</li>
+<li><strong>Self-host.</strong> For durability, copy the tiles or a GeoTIFF-derived tile set to our own static host. Keep it small: only the zoom levels needed, as webp. Disk is tight, so build in /tmp and delete after upload. Map Warper's server is donation-run; hotlinking it is fragile.</li>
+<li><strong>Story JSON</strong>, max 20 slides:
+   - Slide 1 is the overview.
+   - Then one slide per parcel or field: tithe number, field name, 1841 occupier and use (from the apportionment), and what stands there now.
+   - Link each slide to its evidence page on Cedwyn (our archived copy, never the external site).
+   - Build-up events count as well as headline ones.</li>
+<li><strong>Embed</strong> at /research/tithe-map/. Give the page a descriptive title, an og:image of the map and plain text of every slide below the map, so search engines and AI crawlers can read it. The JS map alone is invisible to them.</li>
+<li><strong>Promote:</strong> let local-history groups and family historians embed or link it (the existing admin-partnership and Historypin skills cover outreach, rules-first). It is a resource, not an ad.</li>
+</ol>
+<h2>Success measures</h2>
+<ul>
+<li>Referring domains and backlinks to /research/tithe-map/ (Search Console Links).</li>
+<li>Search impressions for "Llandough tithe map" and field names.</li>
+<li>Clicks from slides to evidence pages and to the free documentary.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Data:</strong> the project workspace (36 parcels from the 1841 register) is the slide list. Cap at 20: the farm parcels first, then the neighbours that explain the boundaries.</li>
+<li><strong>Neutral, dated wording</strong> per the editorial rules:</li>
+<li>Each slide states what the 1841 apportionment records.</li>
+<li>Parcels we cannot place say "parcel not identified" (the standing parcel rule).</li>
+<li>No accusations, no family holdings or addresses, never the project lead's name, no banned words.</li>
+<li><strong>Links:</strong> to our own wayback/evidence copies, with the external and Internet Archive links beneath, per the 22:14 rule.</li>
+<li><strong>Cost and tools:</strong> zero spend. No install needed: StoryMapJS loads from static files we host (~1-2 MB) and Map Warper is a website. This run installed nothing (1.8 GB free).</li>
+<li><strong>Approval:</strong> a proposal for the site worker. Publishing a new public page follows the existing site flywheel and approval path.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>archives.wales</li>
+<li>collectionstrust.org.uk</li>
+<li>storymap.knightlab.com and storymap.knightlab.com</li>
+<li>programminghistorian.org</li>
+<li>mapwarper.net</li>
+</ul><p class="raw">Raw Markdown: <a href="tithe-map-storymap-georeferenced-parcels-linkable-asset.md">tithe-map-storymap-georeferenced-parcels-linkable-asset.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

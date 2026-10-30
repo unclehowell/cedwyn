@@ -46,6 +46,9 @@ The hive lives at cedwyn.bucklerfamily.estate/hive/ (the old hive.bucklerfamily.
   - routine drafts (information, environmental and subject-access requests, chasers, acknowledgements, archive enquiries): at least 3 material reviews by at least 2 distinct reviewers;
   - escalations (regulator and ombudsman complaints, internal reviews, legal or preservation notices, formal complaints): at least 10 material reviews by at least 4 distinct reviewers;
   - anything the tier rule cannot classify is treated as an escalation (fails closed).
+  - a draft that asks for records to be preserved or held, or carries a legal notice, a complaint or an internal-review request, is an escalation (10 from 4) even when it is otherwise an archive enquiry: the stricter applicable tier wins (30 Oct 2026).
+- Record the tier explicitly: each draft's header names it (ROUTINE 3/2 or ESCALATION 10/4, with the reason) and each board row carries a "gate" field; never rely on keyword guessing, which misses preservation letters whose title lacks the word.
+- Routing, skips, seat admissions and other housekeeping are never reviews and never count toward any gate.
 - A seat never counts reviews of a version it wrote; a seat's workers count as that seat.
 - DEFINITELY READY: also the final three-hat pass and attachment verification on that version.
 - A material edit resets the gate. Missing or stale proof fails closed.
