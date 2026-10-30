@@ -1,13 +1,13 @@
 {
  "url": "https://newspapers.library.wales/view/3886298/3886304/79/",
  "key": "newspapers.library.wales/view/3886298/3886304/79",
- "title": "The Glamorgan Gazette, 15th October 1915, p. 6 — I Llandough Court Leet. ! ———- ",
+ "title": "Welsh Newspapers",
  "host": "newspapers.library.wales",
  "path": "/websites/newspapers.library.wales/view-3886298-3886304-79/",
  "latest": "/websites/newspapers.library.wales/view-3886298-3886304-79/latest.html",
  "first_captured": "2026-10-24T14:46:51Z",
- "last_captured": "2026-10-24T14:46:51Z",
- "current_version": "v1.0.0",
+ "last_captured": "2026-10-30T06:40:12Z",
+ "current_version": "v1.0.1",
  "versions": [
   {
    "version": "v1.0.0",
@@ -20,9 +20,22 @@
    "file": "v1.0.0.html",
    "screenshot": "screenshot-v1.0.0.jpg",
    "from": "https://internetarchive.bucklerfamily.estate/20261024144651/newspapers.library.wales/view/3886298/3886304/79/"
+  },
+  {
+   "version": "v1.0.1",
+   "change": "markup",
+   "captured_utc": "2026-10-30T06:40:12Z",
+   "capture_source": "live",
+   "mode": "html",
+   "text_sha256": "788ce8f2bb2dd8acc55847497ed3a41c0e12885617951b34c15f949a2ababeb0",
+   "markup_sha256": "797a22091468bd5932bff0b6e59888d9e20de0fd9a58dbd0cabf4b113e7d441b",
+   "file": "v1.0.1.html",
+   "screenshot": "screenshot-v1.0.1.jpg",
+   "published_utc": "2026-10-30T06:44:56Z"
   }
  ],
  "versioning": "first capture v1.0.0; readable-text change = minor; markup/layout-only change = patch; identical capture = no new version",
  "watch_status": "unchanged",
- "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy)."
+ "note": "Static copy for reference: scripts, forms, iframes, external styles and images removed; links off bucklerfamily.estate disabled (archived targets point to their Wayback copy).",
+ "archive_status": "ok: captured from Tab's machine"
 }
