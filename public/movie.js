@@ -1,4 +1,4 @@
-/* Cedwyn · documentary — scene page (page v1.4.5, 30 Oct 2026: a scene with per-language lip-synced video (manifest "video": {cy, en, es}) plays the video of the chosen audio language and switches it, at the same position, when the audio changes; without it the single clip plays as before; v1.4.4, 30 Oct 2026: the page opens straight onto the scenes — no intro panel or page-level control bar; audio and subtitles are chosen in the player, and the version select moves into the player's control bar; v1.4.3, 30 Oct 2026: tapping anywhere on a released scene's picture plays it; the full-screen picture opens only from the small "View artwork" button under it; v1.4.2, 30 Oct 2026: window.CedwynPlayer lets download.js offer the scene with the chosen audio and subtitles; v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
+/* Cedwyn · documentary — scene page (page v1.4.6, 30 Oct 2026: every scene is free (documentary.js 1.5.0); choosing an earlier cut (v0.0.1-0.0.N) in the version menu plays that door's earlier cut with its own audio and subtitles, and switches an open player to it; the player's meta line names the version playing; v1.4.5, 30 Oct 2026: a scene with per-language lip-synced video (manifest "video": {cy, en, es}) plays the video of the chosen audio language and switches it, at the same position, when the audio changes; without it the single clip plays as before; v1.4.4, 30 Oct 2026: the page opens straight onto the scenes — no intro panel or page-level control bar; audio and subtitles are chosen in the player, and the version select moves into the player's control bar; v1.4.3, 30 Oct 2026: tapping anywhere on a released scene's picture plays it; the full-screen picture opens only from the small "View artwork" button under it; v1.4.2, 30 Oct 2026: window.CedwynPlayer lets download.js offer the scene with the chosen audio and subtitles; v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
    v1.3.0: film versions, viewing licence and checkout live in documentary.js (window.CedwynDoc); play() asks it first.
    Doors come from frames.json; a door opens when manifest.json in the film's storage repository lists its clip.
    The page reads the storage repository at run time (frames, manifest, prompt, scripts, subtitles, media), so the daily
@@ -180,9 +180,16 @@
   function clipFor(m) { var vv = m && m.video; return (vv && (vv[S.audio] || vv[m.default_audio || "cy"])) || m.clip; }   // v1.4.5: per-language lip-synced video, else the one clip
   window.CedwynPlayer = {video: V, raw: RAW, current: function () { return cur; }, audio: function () { return S.audio; }, sub: function () { return subLang(); }, clip: function () { return cur ? clipFor(cur.m) : null; }};   // read by download.js (v1.4.2; clip() v1.4.5)
   function subPath(L) { return cur.m.subs && cur.m.subs[L] ? cur.m.subs[L] : "subs/" + cur.f.id + "." + L + ".vtt"; }
+  function eff(n, m) {   // v1.4.6: the entry as chosen in the version menu: the newest cut, or an earlier cut (v0.0.1-0.0.N)
+    var DG = window.CedwynDoc, c = DG && DG.cut ? DG.cut(n) : null; if (!c || !c.clip) return m;
+    var o = {}, k; for (k in m) o[k] = m[k]; delete o.video; delete o.downloads; for (k in c) o[k] = c[k]; if (!c.seconds) delete o.seconds;
+    var dl = {}, title = "Cedwyn – Door " + n + " – v" + c.version + " (earlier cut)";
+    LANGS.forEach(function (a) { ["cy", "en", "es", "off"].forEach(function (s) { dl[a + "|" + s] = {path: c.clip, ext: "webm", title: title}; }); });
+    o.downloads = dl; o.cut = c.version; return o;
+  }
   function play(f, m) {
-    var DG = window.CedwynDoc; if (DG && !DG.canPlay(f.n)) { DG.locked(f.n); return; }   // newest scenes: licence or membership (documentary.js)
-    cur = {f: f, m: m}; $("cm-p-title").textContent = t("scene") + " " + f.n + " · " + tl(f, "title"); $("cm-p-meta").textContent = f.date_range + (m.seconds ? " · " + fmt(m.seconds) : "");
+    var DG = window.CedwynDoc; if (DG && !DG.canPlay(f.n)) { DG.locked(f.n); return; }   // a scene not yet open (never while every scene is free)
+    m = eff(f.n, m); cur = {f: f, m: m}; $("cm-p-title").textContent = t("scene") + " " + f.n + " · " + tl(f, "title"); $("cm-p-meta").textContent = f.date_range + (m.seconds ? " · " + fmt(m.seconds) : "") + " · v" + (m.cut || m.version || "0.0.1");
     if (m.poster) V.setAttribute("poster", RAW + m.poster); else V.removeAttribute("poster");
     V.src = RAW + clipFor(m); setAudio(true); loadCues(); $("cm-player").hidden = false; paintPlayer();
     if (A.getAttribute("src")) A.play().catch(function () {});   // inside the tap, so phones allow the sound
@@ -285,7 +292,8 @@
   $("cm-menu").onclick = function () { if ($("cm-drawer").hidden) openDrawer(); else closeDrawer(); };
   $("cm-drawer-x").onclick = closeDrawer; $("cm-drawer").addEventListener("click", function (e) { if (e.target === $("cm-drawer")) closeDrawer(); });
   $("cm-edit").onclick = function () { window.open(EDIT, "_blank", "noopener"); };
-  document.addEventListener("cedwyn-doc-change", function () { render(); });
+  document.addEventListener("cedwyn-doc-change", function () { render();
+    if (cur && !$("cm-player").hidden) { var fm = filledMap()[cur.f.n]; if (fm && eff(cur.f.n, fm).clip !== cur.m.clip) play(cur.f, fm); } });   // v1.4.6: another cut chosen while the player is open
   document.addEventListener("ghf-lang-change", function () { paintStatic(); render(); if (cur) { trackModes(); drawCue(); paintPlayer(); } });
   new MutationObserver(function () { paintStatic(); render(); if (cur) paintPlayer(); }).observe(document.documentElement, {attributes: true, attributeFilter: ["lang"]});
   paintStatic();

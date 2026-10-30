@@ -1,4 +1,11 @@
-/* Cedwyn · documentary — versions, licence and checkout (page v1.4.0). A tab.bot production.
+/* Cedwyn · documentary — versions, licence and checkout (page v1.5.0). A tab.bot production.
+   v1.5.0 (30 Oct 2026): every scene is free, at the producer's word: nothing is of paid quality yet. With the manifest's
+   pricing.all_free set, every door's newest cut is v0.0.1 and plays straight away (no licence, no checkout, no pop-up);
+   a door released later with no "version" also takes v0.0.1. Each door's earlier cuts are pre-releases of it, listed in
+   its manifest entry as "cuts" [{version: "0.0.1-0.0.N", clip, audio, subs}] (oldest = -0.0.1). The version menu lists
+   them after v0.0.1; choosing one plays that door's earlier cut (CedwynDoc.cut(n), read by movie.js 1.4.6). An earlier cut
+   is never remembered across visits, so a returning viewer always gets the newest cut. The paid rule below stays in the
+   code for the day the producer names a version as paid quality (clear all_free in the manifest).
    v1.4.0 (29 Oct 2026): billing follows semantic versions, at the producer's word. v0.0.1 (Scenes 1 and 2) is free for
    everyone and plays straight away, with no pop-up. Each later semantic version (re)release costs £4.99 more than the one
    before: v0.0.2 = Scene 3 (+£4.99), v0.0.3 = the next release (+£4.99, £9.98 in all), and so on. The rule is data: each
@@ -12,7 +19,7 @@
 (function () {
   "use strict";
   var GO = "/wayback/go/?u=https%3A%2F%2Fbuy.stripe.com%2FaFa8wQ4xJfyLbCAaAL6Zy0I";   // the film's one £4.99 link = one version step
-  var PRICING = {free: "0.0.1", step: 4.99, free_scenes: [1, 2]};   // defaults; manifest.json "pricing" overrides
+  var PRICING = {free: "0.0.1", step: 4.99, free_scenes: [1, 2], all_free: true};   // defaults; manifest.json "pricing" overrides
   var REPO = "unclehowell/cedwyn-movie", RAW = "https:" + "/" + "/" + ["raw", "githubusercontent", "com"].join(".") + "/" + REPO + "/main/";
   var T = {
     en: {ver: "Version", latest: "latest", free: "Free", buy: "Buy", lic_ok: "I agree to the licence terms", lic: "licence terms",
@@ -20,19 +27,19 @@
       free_note: "v0.0.1: Scenes 1 and 2, free for everyone. They play straight away.",
       member: "Included with your Academy membership.", up: "Academy members get the latest scenes included · £49.99 a month", tick: "Tick the box to agree to the licence terms first.",
       thanks: "Thank you. This version is open on this device.", in_all: "in all", first: "First buy", then: "then",
-      scenes: "Scenes", scene: "Scene", released: "released", vtab: "Page versions", v: "Version", d: "Date", c: "Change", all: "See all"},
+      scenes: "Scenes", scene: "Scene", earlier: "earlier cut", all_free_note: "Every scene is free while the film is being made. Earlier cuts of a scene are listed as v0.0.1-0.0.N.", released: "released", vtab: "Page versions", v: "Version", d: "Date", c: "Change", all: "See all"},
     cy: {ver: "Fersiwn", latest: "diweddaraf", free: "Am ddim", buy: "Prynu", lic_ok: "Rwy'n cytuno â thelerau'r drwydded", lic: "telerau'r drwydded",
       paid_note: "Mae pob fersiwn ar ôl v0.0.1 yn costio £4.99 yn ychwanegol. Mae un taliad yn agor y fersiwn nesaf ar y ddyfais hon, dan drwydded wylio bersonol.",
       free_note: "v0.0.1: Golygfeydd 1 a 2, am ddim i bawb. Maen nhw'n chwarae ar unwaith.",
       member: "Wedi'i gynnwys yn eich aelodaeth o'r Academi.", up: "Mae aelodau'r Academi yn cael y golygfeydd diweddaraf wedi'u cynnwys · £49.99 y mis", tick: "Ticiwch y blwch i gytuno â thelerau'r drwydded yn gyntaf.",
       thanks: "Diolch. Mae'r fersiwn hon ar agor ar y ddyfais hon.", in_all: "i gyd", first: "Prynwch yn gyntaf", then: "yna",
-      scenes: "Golygfeydd", scene: "Golygfa", released: "rhyddhawyd", vtab: "Fersiynau'r dudalen", v: "Fersiwn", d: "Dyddiad", c: "Newid", all: "Gweld y cyfan"},
+      scenes: "Golygfeydd", scene: "Golygfa", earlier: "toriad cynharach", all_free_note: "Mae pob golygfa am ddim tra bo'r ffilm yn cael ei gwneud. Mae toriadau cynharach golygfa wedi'u rhestru fel v0.0.1-0.0.N.", released: "rhyddhawyd", vtab: "Fersiynau'r dudalen", v: "Fersiwn", d: "Dyddiad", c: "Newid", all: "Gweld y cyfan"},
     es: {ver: "Versión", latest: "la más reciente", free: "Gratis", buy: "Comprar", lic_ok: "Acepto los términos de la licencia", lic: "términos de la licencia",
       paid_note: "Cada versión posterior a v0.0.1 cuesta £4,99 más. Un pago abre la versión siguiente en este dispositivo, con una licencia de visionado personal.",
       free_note: "v0.0.1: Escenas 1 y 2, gratis para todos. Se reproducen de inmediato.",
       member: "Incluido en su membresía de la Academia.", up: "Los miembros de la Academia tienen incluidas las escenas más recientes · £49,99 al mes", tick: "Marque la casilla para aceptar primero los términos de la licencia.",
       thanks: "Gracias. Esta versión está abierta en este dispositivo.", in_all: "en total", first: "Compre primero", then: "luego",
-      scenes: "Escenas", scene: "Escena", released: "publicada", vtab: "Versiones de la página", v: "Versión", d: "Fecha", c: "Cambio", all: "Ver todo"}
+      scenes: "Escenas", scene: "Escena", earlier: "montaje anterior", all_free_note: "Todas las escenas son gratis mientras se hace la película. Los montajes anteriores de una escena figuran como v0.0.1-0.0.N.", released: "publicada", vtab: "Versiones de la página", v: "Versión", d: "Fecha", c: "Cambio", all: "Ver todo"}
   };
   function L() { var l = (document.documentElement.getAttribute("lang") || "en").slice(0, 2).toLowerCase(); return T[l] ? l : "en"; }
   function t(k) { return T[L()][k] || T.en[k]; }
@@ -41,20 +48,26 @@
   function cmp(a, b) { var x = String(a).split("."), y = String(b).split("."); for (var i = 0; i < 3; i++) { var d = (+x[i] || 0) - (+y[i] || 0); if (d) return d; } return 0; }
   function gbp(x) { var s = x.toFixed(2); return "£" + (L() === "es" ? s.replace(".", ",") : s); }
   var G = {versions: [], sel: null, member: false, memberAsked: false, ready: false, sceneVer: {}};
-  function defVer(n) { return PRICING.free_scenes.indexOf(n) >= 0 ? PRICING.free : "0.0." + (n - 1); }
+  function defVer(n) { return (PRICING.all_free || PRICING.free_scenes.indexOf(n) >= 0) ? PRICING.free : "0.0." + (n - 1); }
   function build(man) {
-    if (man && man.pricing) { var p = man.pricing; if (p.free) PRICING.free = p.free; if (+p.step_gbp) PRICING.step = +p.step_gbp; if (p.free_scenes) PRICING.free_scenes = p.free_scenes; }
+    if (man && man.pricing) { var p = man.pricing; if (p.free) PRICING.free = p.free; if (+p.step_gbp) PRICING.step = +p.step_gbp; if (p.free_scenes) PRICING.free_scenes = p.free_scenes; PRICING.all_free = p.all_free !== false; }
     var f = (man.filled || []).slice().sort(function (a, b) { return a.n - b.n; }), by = {};
     G.sceneVer = {};
-    f.forEach(function (x) { var v = String(x.version || defVer(x.n)).replace(/^v/, ""); G.sceneVer[x.n] = v;
+    G.entries = {};
+    f.forEach(function (x) { G.entries[x.n] = x; var v = String(x.version || defVer(x.n)).replace(/^v/, ""); G.sceneVer[x.n] = v;
       (by[v] = by[v] || {v: v, frames: [], date: ""}).frames.push(x.n); var d = x.released || (x.made || "").slice(0, 10); if (d > by[v].date) by[v].date = d; });
     var out = Object.keys(by).map(function (k) { return by[k]; }).sort(function (a, b) { return cmp(a.v, b.v); }), k = 0;
     out.forEach(function (v) { v.free = cmp(v.v, PRICING.free) <= 0; if (!v.free) k++; v.step = v.free ? 0 : PRICING.step; v.total = Math.round(k * PRICING.step * 100) / 100; });
-    return out.reverse();   // latest first
+    out.reverse();   // latest first
+    var subs = {};   // v1.5.0: earlier cuts, as pre-releases of v0.0.1 ("0.0.1-0.0.N"), newest first, after the main versions
+    f.forEach(function (x) { (x.cuts || []).forEach(function (c) { var v = String(c.version || "").replace(/^v/, ""); if (!/^\d+\.\d+\.\d+-\d+\.\d+\.\d+$/.test(v)) return;
+      (subs[v] = subs[v] || {v: v, frames: [], date: "", sub: true, free: true, step: 0, total: 0}).frames.push(x.n); if ((c.made || "") > subs[v].date) subs[v].date = c.made || ""; }); });
+    Object.keys(subs).map(function (k) { return subs[k]; }).sort(function (a, b) { return cmp(b.v.split("-")[1], a.v.split("-")[1]); }).forEach(function (s) { out.push(s); });
+    return out;
   }
   function asc() { return G.versions.slice().reverse(); }
   function byV(v) { for (var i = 0; i < G.versions.length; i++) if (G.versions[i].v === v) return G.versions[i]; return null; }
-  function cur() { return byV(G.sel) || G.versions[G.versions.length - 1]; }
+  function cur() { return byV(G.sel) || G.versions[0]; }
   function isMem() { return G.member || window.CEDWYN_MEMBER === true; }
   function verOf(n) { return G.sceneVer[n] || defVer(n); }
   function owned() {   // highest version bought on this device (0.0.x); older keys carried over
@@ -64,11 +77,17 @@
     if (ls("cedwyn-doc-v002") === "1" && cmp("0.0.2", best) > 0) best = "0.0.2";
     return best;
   }
-  function has(v) { return isMem() || cmp(v, PRICING.free) <= 0 || cmp(owned(), v) >= 0; }
+  function has(v) { return PRICING.all_free || /-/.test(String(v)) || isMem() || cmp(v, PRICING.free) <= 0 || cmp(owned(), v) >= 0; }
   function nextBuy(target) { var a = asc(); for (var i = 0; i < a.length; i++) if (!has(a[i].v) && cmp(a[i].v, target) <= 0) return a[i]; return null; }
   function scenesTxt(x) { return x.frames.length === 1 ? t("scene") + " " + x.frames[0] : t("scenes") + " " + x.frames[0] + "–" + x.frames[x.frames.length - 1]; }
-  function priceTxt(x) { return x.free ? t("free") : "+" + gbp(x.step) + (x.total > x.step ? " (" + gbp(x.total) + " " + t("in_all") + ")" : ""); }
+  function priceTxt(x) { return (x.free || PRICING.all_free) ? t("free") : "+" + gbp(x.step) + (x.total > x.step ? " (" + gbp(x.total) + " " + t("in_all") + ")" : ""); }
   G.canPlay = function (n) { return has(verOf(n)); };
+  G.cut = function (n) {   // v1.5.0: the earlier cut of door n chosen in the version menu, or null for the newest cut
+    var v = byV(G.sel), e = G.entries && G.entries[n]; if (!v || !v.sub || !e) return null;
+    for (var i = 0; i < (e.cuts || []).length; i++) if (String(e.cuts[i].version).replace(/^v/, "") === v.v) return e.cuts[i];
+    return null;
+  };
+  G.allFree = function () { return !!PRICING.all_free; };
   G.verOf = verOf; G.has = has; G.nextBuy = nextBuy; G.priceTxt = priceTxt; G.scenesTxt = scenesTxt; G.asc = asc; G.byV = byV; G.go = GO; G.t = t;
   G.label = function (n) { var v = n ? byV(verOf(n)) : null; return v ? "v" + v.v + " · +" + gbp(v.step) : "+" + gbp(PRICING.step); };
   G.buy = function (target) {   // checkout for the next step towards target; returns false when nothing is left to buy
@@ -92,10 +111,10 @@
     var s = $("cd-v"); if (!s || !G.versions.length) return; var v = cur();
     s.textContent = "";
     G.versions.forEach(function (x, i) { var o = document.createElement("option"); o.value = x.v;
-      o.textContent = "v" + x.v + " · " + priceTxt(x) + (i === 0 ? " · " + t("latest") : "") + " · " + scenesTxt(x);
+      o.textContent = "v" + x.v + " · " + priceTxt(x) + (i === 0 ? " · " + t("latest") : "") + (x.sub ? " · " + t("earlier") : "") + " · " + scenesTxt(x);
       if (x.v === v.v) o.selected = true; s.appendChild(o); });
     var paid = !has(v.v), nb = paid ? nextBuy(v.v) : null;
-    $("cd-note").textContent = v.free ? t("free_note") : (paid ? t("paid_note") : (isMem() ? t("member") : t("thanks")));
+    $("cd-note").textContent = PRICING.all_free ? t("all_free_note") : v.free ? t("free_note") : (paid ? t("paid_note") : (isMem() ? t("member") : t("thanks")));
     var p = $("cd-pay"); p.hidden = !paid;
     var q = document.querySelectorAll("[data-cd]"); for (var i = 0; i < q.length; i++) q[i].textContent = t(q[i].getAttribute("data-cd"));
     $("cd-buy").textContent = nb ? (nb.v !== v.v ? t("first") + " v" + nb.v + " · +" + gbp(nb.step) + ", " + t("then") + " v" + v.v : t("buy") + " v" + v.v + " · +" + gbp(nb.step)) : t("buy");
@@ -113,8 +132,9 @@
       try { history.replaceState(null, "", location.pathname + (q.toString() ? "?" + q : "") + location.hash); } catch (e) {}
     }
     var keep = want ? want.replace(/^v/, "") : ls("cedwyn-doc-sel");
+    if (keep && !want && /-/.test(keep)) keep = null;   // an earlier cut is never the default on a later visit
     var open_ = G.versions.filter(function (x) { return has(x.v); });
-    G.sel = (keep && byV(keep)) ? keep : (open_.length ? open_[0].v : (G.versions[G.versions.length - 1] || {}).v);
+    G.sel = (keep && byV(keep)) ? keep : (open_.length ? open_[0].v : (G.versions[0] || {}).v);
     G.ready = true; G.justUnlocked = got;
     $("cd-ver").hidden = false; changed();
     document.dispatchEvent(new CustomEvent("cedwyn-doc-ready", {detail: {unlocked: got}}));
@@ -123,7 +143,7 @@
   G.free = PRICING.free_scenes; window.CedwynDoc = G;
   document.addEventListener("DOMContentLoaded", function () {
     var s = $("cd-v"); if (!s) return;
-    s.addEventListener("change", function () { G.sel = s.value; ls("cedwyn-doc-sel", G.sel); $("cd-ok").checked = false; changed(); });
+    s.addEventListener("change", function () { G.sel = s.value; ls("cedwyn-doc-sel", /-/.test(G.sel) ? null : G.sel); $("cd-ok").checked = false; changed(); });
     $("cd-ok").addEventListener("change", gate);
     $("cd-buy").addEventListener("click", function (e) {
       e.preventDefault();
