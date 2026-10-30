@@ -1,6 +1,6 @@
 {
   "rule": "Cedwyn editorial rule (25 Oct 2026): ingredients, not conclusions. Build-time rewording of conclusion sentences in mirrored theme text; cedwyn copy only, the datro sources are untouched. Each entry: theme, file (relative to the theme root), find (exact), replace, why. A find that is not present is reported, never fatal. — Sion's Tab agent",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "rewords": [
     {
       "theme": "maps",
@@ -197,7 +197,7 @@
       "theme": "research",
       "file": "index.html",
       "find": "It covered Parcel A: the last tenancy of Parcel A, whose occupiers the Williams family had been since 1667.",
-      "replace": "How this “whole farm” letting maps onto the provisional Parcel A / Parcel B polygons awaits the tenancy and its plan (EV-0014). Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set..",
+      "replace": "How this “whole farm” letting maps onto the provisional Parcel A / Parcel B polygons awaits the tenancy and its plan (EV-0014). Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set.",
       "why": "The judgment recites a tenancy of the “whole farm”; assigning it to one provisional parcel is our geometry, not the record. EV-0014 is known only through the 1987 judgment recital. 1667 is attributed to Mary Williams’s c.1974 statement; no 1667 instrument is in the present record set.",
       "audit_point": "A3"
     },
@@ -533,7 +533,7 @@
       "theme": "wiki",
       "file": "index.html",
       "find": "It covered Parcel A: the last tenancy of Parcel A, whose occupiers the Williams family had been since 1667.",
-      "replace": "How this “whole farm” letting maps onto the provisional Parcel A / Parcel B polygons awaits the tenancy and its plan (EV-0014). Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set..",
+      "replace": "How this “whole farm” letting maps onto the provisional Parcel A / Parcel B polygons awaits the tenancy and its plan (EV-0014). Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set.",
       "why": "The judgment recites a tenancy of the “whole farm”; assigning it to one provisional parcel is our geometry, not the record. EV-0014 is known only through the 1987 judgment recital. 1667 is attributed to Mary Williams’s c.1974 statement; no 1667 instrument is in the present record set.",
       "audit_point": "A3"
     },
@@ -1520,7 +1520,7 @@
       "theme": "maps",
       "file": "index.html",
       "find": "a home the family dates to at least 1667,",
-      "replace": "the Williams family’s home; Mary Williams’s c.1974 statement reports the acquisition date as 1667 (no 1667 instrument located) (Mary Williams’ statement, 1974 newspapers; ITV News, 1988),",
+      "replace": "the Williams family’s home; Mary Williams’s c.1974 statement reports the acquisition date as 1667 (no 1667 instrument located),",
       "why": "Unsubstantiated: the 1667 date rests on family research; no record in this archive yet. 1667 is attributed to Mary Williams’s c.1974 statement; no 1667 instrument is in the present record set.",
       "class": "unsub",
       "audit_point": "forensic-wording-26oct"
@@ -1637,7 +1637,7 @@
       "theme": "qa",
       "file": "**/*.html",
       "find": "The ownership of the farm: a freehold within the manor, held by the Vaughans until the late 18th century and by Bute from the early 19th.",
-      "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set..",
+      "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set.",
       "why": "Repeats an outside narrative of a Vaughan→Bute freehold as fact; Sion's 11:45 rule. 1667 is attributed to Mary Williams’s c.1974 statement; no 1667 instrument is in the present record set.",
       "class": "framing-overstated",
       "audit_point": "framing-26oct:M05"
@@ -1646,7 +1646,7 @@
       "theme": "qa",
       "file": "**/*.txt",
       "find": "The ownership of the farm: a freehold within the manor, held by the Vaughans until the late 18th century and by Bute from the early 19th.",
-      "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set..",
+      "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set.",
       "why": "Repeats an outside narrative of a Vaughan→Bute freehold as fact; Sion's 11:45 rule. 1667 is attributed to Mary Williams’s c.1974 statement; no 1667 instrument is in the present record set.",
       "class": "framing-overstated",
       "audit_point": "framing-26oct:M05"
@@ -1655,7 +1655,7 @@
       "theme": "story",
       "file": "**/*.html",
       "find": "The ownership of the farm: a freehold within the manor, held by the Vaughans until the late 18th century and by Bute from the early 19th.",
-      "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set..",
+      "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set.",
       "why": "Repeats an outside narrative of a Vaughan→Bute freehold as fact; Sion's 11:45 rule. 1667 is attributed to Mary Williams’s c.1974 statement; no 1667 instrument is in the present record set.",
       "class": "framing-overstated",
       "audit_point": "framing-26oct:M05"
@@ -1664,7 +1664,7 @@
       "theme": "story",
       "file": "**/*.txt",
       "find": "The ownership of the farm: a freehold within the manor, held by the Vaughans until the late 18th century and by Bute from the early 19th.",
-      "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set..",
+      "replace": "Ownership of the house: no conveyance of it into Bute’s hands has been found. The first record of the holding is Bute’s own estate survey of 1824; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set.",
       "why": "Repeats an outside narrative of a Vaughan→Bute freehold as fact; Sion's 11:45 rule. 1667 is attributed to Mary Williams’s c.1974 statement; no 1667 instrument is in the present record set.",
       "class": "framing-overstated",
       "audit_point": "framing-26oct:M05"
@@ -1799,7 +1799,7 @@
       "theme": "qa",
       "file": "**/*.html",
       "find": "The freehold line of the house: the Vaughans, then Bute (by the early 19th century), then Daniel Thomas (1877), then the Williamses (1928).",
-      "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is recorded in Mary Williams’s statement; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set. and paid the last rent on the house in 1928 [EV-0016].",
+      "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is recorded in Mary Williams’s statement; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set. Mary Williams’s statement also records a final rent payment by her father in 1928 to “Alfred Thomas the son of Daniel Thomas”; the receipt is not presently located, and Alfred Thomas’s recorded death on 14 December 1927 leaves the payee and payment mechanism unresolved [EV-0016; EV-0284].",
       "why": "Presented a Vaughan→Bute freehold line as fact and put the Williamses last. 1667 is attributed to Mary Williams’s c.1974 statement; no 1667 instrument is in the present record set.",
       "class": "framing-overstated",
       "audit_point": "framing-26oct:M10"
@@ -1808,7 +1808,7 @@
       "theme": "qa",
       "file": "**/*.txt",
       "find": "The freehold line of the house: the Vaughans, then Bute (by the early 19th century), then Daniel Thomas (1877), then the Williamses (1928).",
-      "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is recorded in Mary Williams’s statement; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set. and paid the last rent on the house in 1928 [EV-0016].",
+      "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is recorded in Mary Williams’s statement; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set. Mary Williams’s statement also records a final rent payment by her father in 1928 to “Alfred Thomas the son of Daniel Thomas”; the receipt is not presently located, and Alfred Thomas’s recorded death on 14 December 1927 leaves the payee and payment mechanism unresolved [EV-0016; EV-0284].",
       "why": "Presented a Vaughan→Bute freehold line as fact and put the Williamses last. 1667 is attributed to Mary Williams’s c.1974 statement; no 1667 instrument is in the present record set.",
       "class": "framing-overstated",
       "audit_point": "framing-26oct:M10"
@@ -1817,7 +1817,7 @@
       "theme": "story",
       "file": "**/*.html",
       "find": "The freehold line of the house: the Vaughans, then Bute (by the early 19th century), then Daniel Thomas (1877), then the Williamses (1928).",
-      "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is recorded in Mary Williams’s statement; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set. and paid the last rent on the house in 1928 [EV-0016].",
+      "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is recorded in Mary Williams’s statement; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set. Mary Williams’s statement also records a final rent payment by her father in 1928 to “Alfred Thomas the son of Daniel Thomas”; the receipt is not presently located, and Alfred Thomas’s recorded death on 14 December 1927 leaves the payee and payment mechanism unresolved [EV-0016; EV-0284].",
       "why": "Presented a Vaughan→Bute freehold line as fact and put the Williamses last. 1667 is attributed to Mary Williams’s c.1974 statement; no 1667 instrument is in the present record set.",
       "class": "framing-overstated",
       "audit_point": "framing-26oct:M10"
@@ -1826,7 +1826,7 @@
       "theme": "story",
       "file": "**/*.txt",
       "find": "The freehold line of the house: the Vaughans, then Bute (by the early 19th century), then Daniel Thomas (1877), then the Williamses (1928).",
-      "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is recorded in Mary Williams’s statement; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set. and paid the last rent on the house in 1928 [EV-0016].",
+      "replace": "The house’s title as the records stand: Bute’s own 1824 survey is the first record of the holding; an 1877 Bute–Daniel Thomas agreement is recorded in Mary Williams’s statement; Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set. Mary Williams’s statement also records a final rent payment by her father in 1928 to “Alfred Thomas the son of Daniel Thomas”; the receipt is not presently located, and Alfred Thomas’s recorded death on 14 December 1927 leaves the payee and payment mechanism unresolved [EV-0016; EV-0284].",
       "why": "Presented a Vaughan→Bute freehold line as fact and put the Williamses last. 1667 is attributed to Mary Williams’s c.1974 statement; no 1667 instrument is in the present record set.",
       "class": "framing-overstated",
       "audit_point": "framing-26oct:M10"
@@ -2024,7 +2024,7 @@
       "theme": "chess",
       "file": "**/*.html",
       "find": "The record dates Williams occupation of the house to 1667 and shows the Williams as tenants of the Bute Estate by the nineteenth century.",
-      "replace": "Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set.. By the nineteenth century the Bute Estate’s own books entered the Williamses as its tenants; no record read shows how the house came into Bute’s hands.",
+      "replace": "Mary Williams’s c.1974 statement reports 1667 as the date of the Williams family’s acquisition of Tŷ Mawr; no 1667 instrument has been located in this record set. By the nineteenth century the Bute Estate’s own books entered the Williamses as its tenants; no record read shows how the house came into Bute’s hands.",
       "why": "Attributes 1667 to 'the record' and gives the Bute books' 'tenant' label as fact. 1667 is attributed to Mary Williams’s c.1974 statement; no 1667 instrument is in the present record set.",
       "class": "framing-both",
       "audit_point": "framing-26oct:M20"
