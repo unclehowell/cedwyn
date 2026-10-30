@@ -1,8 +1,8 @@
 {
  "schema": "cedwyn_academy/v1",
  "name": "Cedwyn Academy",
- "version": "1.0.10",
- "built_utc": "2026-10-30 00:43 UTC",
+ "version": "1.0.11",
+ "built_utc": "2026-10-30 06:42 UTC",
  "base_path": "/academy/",
  "alias_paths": [
   "/academy/"
@@ -515,15 +515,15 @@
    "path": "ACADEMY/WORK.md",
    "html": "ACADEMY/WORK.html",
    "title": "Work board",
-   "bytes": 72969,
-   "sha256": "81238ea3e854f5828b68e18c3a89fd60f072a487ebfae7f95b95bab2e49f734a"
+   "bytes": 75963,
+   "sha256": "35a5b5992eac936336310e2dac9c7fb552eec3007845df1fe9237a5409cda093"
   },
   {
    "path": "CHANGELOG.md",
    "html": "CHANGELOG.html",
    "title": "CHANGELOG",
-   "bytes": 4845,
-   "sha256": "7a340aa27f81e8bb232742ca46f38c3ba62767dfe5537a7f83712db1e8aad40a"
+   "bytes": 5254,
+   "sha256": "3959854e8b7bc7217572fdf5d87d48572a25dada0c8cba617ffd32a73468c21e"
   },
   {
    "path": "FLYWHEELS/README.md",
@@ -739,8 +739,8 @@
    "path": "LESSONS.md",
    "html": "LESSONS.html",
    "title": "LESSONS — mistakes and the rules they produced",
-   "bytes": 16586,
-   "sha256": "9b9185544d0507fe8a9f6930bd4be9ecaf9dede1572ec654224a8486fd7d25c3"
+   "bytes": 17513,
+   "sha256": "0aee62bbb109b6e064a8001dbfbb5c7b7732601c0ba01776bfadfa21ac5b464c"
   },
   {
    "path": "MEMORY/README.md",
@@ -781,8 +781,8 @@
    "path": "MEMORY/standing-orders.md",
    "html": "MEMORY/standing-orders.html",
    "title": "Standing orders",
-   "bytes": 9024,
-   "sha256": "b3e244c9c0ab5bc0f64db9984a1b3a2a2bd74270f458b8c7330236a129d58be1"
+   "bytes": 11671,
+   "sha256": "15b0dedf67a96e3c3fd03dfb155a2ef8744861f904b425c52194e76706850577"
   },
   {
    "path": "ONBOARDING.md",
@@ -802,8 +802,8 @@
    "path": "SKILLS/README.md",
    "html": "SKILLS/index.html",
    "title": "SKILLS",
-   "bytes": 323503,
-   "sha256": "91c19bd762c315e48ae2c3ecd25210452620a8790c00ae52bc4b904cff8bde74"
+   "bytes": 372498,
+   "sha256": "41241d26cbcf5934366a52910d211bd9148fbb88e02b349e222e72c8a7e3da08"
   },
   {
    "path": "SKILLS/marketing/1.md",
@@ -904,6 +904,13 @@
    "sha256": "08ee38c650a942bd716ba5ebbbfd8330d689ffed69bc15941457e36141acdfbf"
   },
   {
+   "path": "SKILLS/marketing/acw-international-opportunities-fund-patagonia-gate.md",
+   "html": "SKILLS/marketing/acw-international-opportunities-fund-patagonia-gate.html",
+   "title": "GATE: Arts Council of Wales International Opportunities Fund (IOF), the Patagonia angle",
+   "bytes": 5057,
+   "sha256": "d899b3277ba4acfe8d28f13aec0f5fbfab9c1c5901fb1137f337ed94360d2be9"
+  },
+  {
    "path": "SKILLS/marketing/ai-answer-citations-geo-sources-quotes-stats.md",
    "html": "SKILLS/marketing/ai-answer-citations-geo-sources-quotes-stats.html",
    "title": "Getting cited in AI answers (ChatGPT, Perplexity, Google AI Overviews / AI Mode)",
@@ -916,6 +923,13 @@
    "title": "AI-made images on social: labels, metadata and the engagement cost",
    "bytes": 4896,
    "sha256": "78b268f404a944b99d85435f043ada0b69d3a5ef712210ce1ede92b3a3bd701f"
+  },
+  {
+   "path": "SKILLS/marketing/ai-lip-sync-dubbed-documentary-disclosure-youtube-meta.md",
+   "html": "SKILLS/marketing/ai-lip-sync-dubbed-documentary-disclosure-youtube-meta.html",
+   "title": "AI lip-synced, dubbed documentary scenes: disclosure labels on YouTube and Meta, and what they cost in reach",
+   "bytes": 5961,
+   "sha256": "4309ea97e79a925a829f72f02abf4da2b6934276a472af3314d4e022ad57e130"
   },
   {
    "path": "SKILLS/marketing/amazon-kdp-2026-price-band-select-vs-direct.md",
@@ -1000,6 +1014,13 @@
    "title": "Atlas Obscura place entries: a gate, mostly NO for us",
    "bytes": 3419,
    "sha256": "7a83a216dbd93518dd56db37998f6e86333e64b18d8803c450d1eb10e7eeaf49"
+  },
+  {
+   "path": "SKILLS/marketing/australia-nz-welsh-diaspora-sydney-melbourne-routes.md",
+   "html": "SKILLS/marketing/australia-nz-welsh-diaspora-sydney-melbourne-routes.html",
+   "title": "Australia + New Zealand Welsh diaspora: routes that exist (2026)",
+   "bytes": 5482,
+   "sha256": "b27aa772486858faebc121b8284645b441789b49ec1f3595fcd52a735be1af36"
   },
   {
    "path": "SKILLS/marketing/author-group-promos-bookfunnel-storyorigin-free-organiser-run.md",
@@ -1135,6 +1156,13 @@
    "sha256": "1b16e854d848be0ab67b3d99a1363ab87df57ed9b77008a4acb0a5eaac15c272"
   },
   {
+   "path": "SKILLS/marketing/brave-search-index-coverage-claude-web-search.md",
+   "html": "SKILLS/marketing/brave-search-index-coverage-claude-web-search.html",
+   "title": "Brave Search index coverage: the index behind Claude's web search",
+   "bytes": 5263,
+   "sha256": "b9d1ec9ec665719466e2d0067b596d445491a14a15385e450eeb97bea12a3c8e"
+  },
+  {
    "path": "SKILLS/marketing/britain-from-above-aerofilms-pins-llandough.md",
    "html": "SKILLS/marketing/britain-from-above-aerofilms-pins-llandough.html",
    "title": "Britain from Above: pins on 1919-1953 Aerofilms images as a free discovery and evidence route",
@@ -1147,6 +1175,13 @@
    "title": "Business Wales Events Finder: free listing for business-facing events (fit gate first)",
    "bytes": 4893,
    "sha256": "689d416e1912f443953b7a0a21a756fc6378cd0c90286325170c43df8043c37a"
+  },
+  {
+   "path": "SKILLS/marketing/cadw-ahf-historic-building-grants-gate.md",
+   "html": "SKILLS/marketing/cadw-ahf-historic-building-grants-gate.html",
+   "title": "Cadw historic-building grants + Architectural Heritage Fund Wales: gate (capital money for buildings)",
+   "bytes": 3608,
+   "sha256": "4eef6ea1cd8c8516a6c726e31479154eaf03f781051ade1d110773184e8b01f7"
   },
   {
    "path": "SKILLS/marketing/calan-gaeaf-seasonal-hook-welsh-halloween-folklore.md",
@@ -1170,11 +1205,32 @@
    "sha256": "490bab60533075b0db65c141ee0458c99ef47ccfdc9c6634854c8528a5557a64"
   },
   {
+   "path": "SKILLS/marketing/canva-brand-kit-bulk-create-gate-free-pil-route.md",
+   "html": "SKILLS/marketing/canva-brand-kit-bulk-create-gate-free-pil-route.html",
+   "title": "Canva Brand Kit + Bulk Create for social cards: gate, and the free route we already have",
+   "bytes": 4149,
+   "sha256": "9936eb1ec151af72474f062d98f4909ccaf6476fb2a91398926b0e2e755777f6"
+  },
+  {
+   "path": "SKILLS/marketing/cardiff-book-events-literary-escape-author-table-beyond-border-closed.md",
+   "html": "SKILLS/marketing/cardiff-book-events-literary-escape-author-table-beyond-border-closed.html",
+   "title": "Cardiff book-event routes: Literary Escape Festival author table (2027), Beyond the Border closed",
+   "bytes": 5342,
+   "sha256": "21afdb4269a7beefef40deee077758b2a2cf3770d475a60bbd8b2eb64777f113"
+  },
+  {
    "path": "SKILLS/marketing/cardiff-libraries-hubs-talk-route.md",
    "html": "SKILLS/marketing/cardiff-libraries-hubs-talk-route.html",
    "title": "Cardiff Libraries and Hubs: the talk and local-studies route",
    "bytes": 3391,
    "sha256": "3d67fe6b787d3a815054a6e4821c55669d39ac20e734bb00ce9fd643b704609e"
+  },
+  {
+   "path": "SKILLS/marketing/cardiff-welsh-community-menter-caerdydd-echlysur-tafwyl.md",
+   "html": "SKILLS/marketing/cardiff-welsh-community-menter-caerdydd-echlysur-tafwyl.html",
+   "title": "Cardiff Welsh-language community doors: Menter Caerdydd listings, learner coffee hubs and Tafwyl",
+   "bytes": 5480,
+   "sha256": "fe7b620b0566dc4e4aa58510c213ada88c8f216f87c4bac6abe7f4abeaed3af2"
   },
   {
    "path": "SKILLS/marketing/charity-register-society-sourcing-pecr-class.md",
@@ -1268,6 +1324,20 @@
    "sha256": "848b90087eb9543c9397bfc00a9f87ac08c355aff6faff5d122b68c42aa1e216"
   },
   {
+   "path": "SKILLS/marketing/community-foundation-wales-fund-for-wales-gate.md",
+   "html": "SKILLS/marketing/community-foundation-wales-fund-for-wales-gate.html",
+   "title": "Community Foundation Wales (Fund for Wales + 60 local funds): eligibility gate",
+   "bytes": 4277,
+   "sha256": "8dee96a128439f608dfd0099ed9f95969dc8855cdbcf8b82053a6ab93c4607e7"
+  },
+  {
+   "path": "SKILLS/marketing/community-grants-awards-for-all-wales-gate.md",
+   "html": "SKILLS/marketing/community-grants-awards-for-all-wales-gate.html",
+   "title": "GATE + playbook: National Lottery Awards for All Wales (£300–£20,000) for community heritage activity",
+   "bytes": 5613,
+   "sha256": "0f28baded09c7969f80ba1ff26ab5951ad94b78857239568fc468389fad9499b"
+  },
+  {
    "path": "SKILLS/marketing/community-intent-alerts-reddit-hn-watch.md",
    "html": "SKILLS/marketing/community-intent-alerts-reddit-hn-watch.html",
    "title": "Community intent alerts: free Reddit + Hacker News keyword watch, then answer by hand",
@@ -1317,6 +1387,13 @@
    "sha256": "2b55e62a4969262fe2eb62efedbb8396f6de135d32d7f59b52f8421820713614"
   },
   {
+   "path": "SKILLS/marketing/corrections-log-how-this-page-was-made-trust-box.md",
+   "html": "SKILLS/marketing/corrections-log-how-this-page-was-made-trust-box.html",
+   "title": "Corrections log + \"how this page was made\" box (trust signals for a records-led history site)",
+   "bytes": 5968,
+   "sha256": "7644b8a38b7ff194e8821d40de12538a4e5a8903aba8b21420b5e4c49f0c3e92"
+  },
+  {
    "path": "SKILLS/marketing/cowbridge-history-society-talk-route.md",
    "html": "SKILLS/marketing/cowbridge-history-society-talk-route.html",
    "title": "Cowbridge History Society talk route (plus Cowbridge u3a History Group)",
@@ -1345,6 +1422,13 @@
    "sha256": "e06c7c8393fea05dc89e68866ccf1661ba5a5656ac90ab20e05e1fb234667623"
   },
   {
+   "path": "SKILLS/marketing/cymmrodorion-transactions-peer-reviewed-article-lectures.md",
+   "html": "SKILLS/marketing/cymmrodorion-transactions-peer-reviewed-article-lectures.html",
+   "title": "Honourable Society of Cymmrodorion: Transactions articles (peer-reviewed), lecture programme and the open archive",
+   "bytes": 6179,
+   "sha256": "1ed824558336d270c4d8c5269aa52dbbe097a2c841c9a7ac0254d95d4a9b675b"
+  },
+  {
    "path": "SKILLS/marketing/dark-mode-prefers-color-scheme-no-flash.md",
    "html": "SKILLS/marketing/dark-mode-prefers-color-scheme-no-flash.html",
    "title": "Dark mode for Cedwyn pages: follow the phone, no white flash (prefers-color-scheme + color-scheme)",
@@ -1364,6 +1448,13 @@
    "title": "free growth dashboard in data studio (ex-looker studio): ga4 + search console + one sheet (2026)",
    "bytes": 5567,
    "sha256": "8a4103ee2329cc617865cf4f4005e6be0e92de4fc43097aa6cc9c64f3c6ad0bc"
+  },
+  {
+   "path": "SKILLS/marketing/dataset-structured-data-google-dataset-search-evidence-catalogue.md",
+   "html": "SKILLS/marketing/dataset-structured-data-google-dataset-search-evidence-catalogue.html",
+   "title": "Dataset structured data + Google Dataset Search for the evidence catalogue and timeline",
+   "bytes": 6275,
+   "sha256": "4812ed3edfef269a0c432eb241957c98715171785e08b3d11375a1eacd12829d"
   },
   {
    "path": "SKILLS/marketing/digital-art-editions-certificate-open-vs-limited.md",
@@ -1532,6 +1623,13 @@
    "title": "Email win-back / reactivation series for cold Mailchimp subscribers",
    "bytes": 5368,
    "sha256": "056f758612b936736d84f33a60b9233fbbacb7de16fc302484de4481b7702db0"
+  },
+  {
+   "path": "SKILLS/marketing/embeddable-charts-attribution-nofollow-embed-this-graph.md",
+   "html": "SKILLS/marketing/embeddable-charts-attribution-nofollow-embed-this-graph.html",
+   "title": "\"Embed this graph\": embeddable charts with attribution, without link-scheme risk",
+   "bytes": 5330,
+   "sha256": "c84d06792a29223d35518607e06c12dfae60faa0f0ae995a4a420e11db950bd2"
   },
   {
    "path": "SKILLS/marketing/epub-editions-sphinx-epubcheck.md",
@@ -1968,6 +2066,13 @@
    "sha256": "04df97e8a48a0acc314c3d644137b51d6b2983bf550cc89876d970d01ce134d9"
   },
   {
+   "path": "SKILLS/marketing/hacker-news-show-hn-open-history-project-gate.md",
+   "html": "SKILLS/marketing/hacker-news-show-hn-open-history-project-gate.html",
+   "title": "Hacker News (Show HN / regular submission) for an open history project — rules first, numbers second",
+   "bytes": 4392,
+   "sha256": "263179f8f2a69730a4f20b106aa5b6ead7b302be726266e5f4d3744476305cc4"
+  },
+  {
    "path": "SKILLS/marketing/hardcover-app-ebook-listing-author-spotlight.md",
    "html": "SKILLS/marketing/hardcover-app-ebook-listing-author-spotlight.html",
    "title": "Hardcover.app: list the e-books on the Amazon-free reader app (and its Author Spotlight)",
@@ -2003,11 +2108,25 @@
    "sha256": "089dc0c6bb2d9755066facf608bfa15c06869c4b6bb599801a653e885d61066d"
   },
   {
+   "path": "SKILLS/marketing/heritage-fund-arts-council-wales-grants-gate-2026.md",
+   "html": "SKILLS/marketing/heritage-fund-arts-council-wales-grants-gate-2026.html",
+   "title": "GATE: National Lottery Heritage Fund + Arts Council of Wales grants as funding for marketing and outputs (2026)",
+   "bytes": 7180,
+   "sha256": "7510cd1e5bb8f7d0369ac09e39d1411d76ddf90ab8d40e0e6dd733f9ae5d5e10"
+  },
+  {
    "path": "SKILLS/marketing/heritage-genealogy-directory-listings.md",
    "html": "SKILLS/marketing/heritage-genealogy-directory-listings.html",
    "title": "Free heritage and genealogy directory listings (backlinks with no outreach)",
    "bytes": 5672,
    "sha256": "77a2e15300385c29e0f64deb320b115bd6777fb917523e45bd20ea733ffc00fb"
+  },
+  {
+   "path": "SKILLS/marketing/heritage-learner-packs-cadw-deg-diwrnod-diddorol-learn-welsh-library.md",
+   "html": "SKILLS/marketing/heritage-learner-packs-cadw-deg-diwrnod-diddorol-learn-welsh-library.html",
+   "title": "Heritage-site learning packs for Welsh learners: the Cadw \"Deg Diwrnod Diddorol\" model + the Learn Welsh resource library",
+   "bytes": 5455,
+   "sha256": "e1390bb09338a64b0030254dc78271b582c9ef771d4d0981f0c1aa5ba12636eb"
   },
   {
    "path": "SKILLS/marketing/heritage-talks-circuit-aatp-branches.md",
@@ -2036,6 +2155,27 @@
    "title": "Historypin: an ordered \"Tour\" of archive pins on the world history map",
    "bytes": 3698,
    "sha256": "cd8afc9314232a4016d9650e0cc54b819c1f02869e9d3bb96086f92590940393"
+  },
+  {
+   "path": "SKILLS/marketing/historypoints-qr-heritage-network-contributor-credit.md",
+   "html": "SKILLS/marketing/historypoints-qr-heritage-network-contributor-credit.html",
+   "title": "HistoryPoints.org: Wales' QR-plaque heritage network as a free discovery door",
+   "bytes": 6801,
+   "sha256": "f0e594f52d3a560b9d55742d8f29982d526cb6c24ba0010093fe41643f1c52a1"
+  },
+  {
+   "path": "SKILLS/marketing/homepage-to-shop-click-through-banner-blindness-scent.md",
+   "html": "SKILLS/marketing/homepage-to-shop-click-through-banner-blindness-scent.html",
+   "title": "Homepage-to-shop click-through: label, place and measure the one shop link",
+   "bytes": 5771,
+   "sha256": "5fd8d1e8b8007f97fb9db5758fc2126cb7e659c671c2e926f284af57b4b613c1"
+  },
+  {
+   "path": "SKILLS/marketing/honest-launch-deadlines-uk-dmcc-banned-practice-7.md",
+   "html": "SKILLS/marketing/honest-launch-deadlines-uk-dmcc-banned-practice-7.html",
+   "title": "Honest launch deadlines under UK law (DMCC Act 2024, Sch 20 banned practice 7)",
+   "bytes": 4875,
+   "sha256": "49f4c288ff8ba16eaee9d08936c3fb65f7f00661deb843f02848c836141735f1"
   },
   {
    "path": "SKILLS/marketing/how-did-you-hear-buyer-attribution-question.md",
@@ -2339,6 +2479,13 @@
    "sha256": "222b75dcd3379ec82634c7386b24beda2eac7b9191db69c8e274bd39bb107056"
   },
   {
+   "path": "SKILLS/marketing/local-democracy-reporters-ldrs-council-records-press-route.md",
+   "html": "SKILLS/marketing/local-democracy-reporters-ldrs-council-records-press-route.html",
+   "title": "Skill: Local Democracy Reporters (BBC LDRS) as the press route for council-records stories",
+   "bytes": 6475,
+   "sha256": "8e5542a9b5ad86da7b12b7daa4c0212133ed366e77b57975c54977898e210367"
+  },
+  {
    "path": "SKILLS/marketing/local-history-facebook-group-admin-partnerships-rules-first.md",
    "html": "SKILLS/marketing/local-history-facebook-group-admin-partnerships-rules-first.html",
    "title": "Local-history Facebook groups: admin partnerships, rules first (no spam)",
@@ -2416,6 +2563,13 @@
    "sha256": "7d0ef3cd7edb54b8683e852c8a8f2604796658df863eb67854b2a32d17c4cf98"
   },
   {
+   "path": "SKILLS/marketing/media-list-welsh-outlets-tiered-verified-routes.md",
+   "html": "SKILLS/marketing/media-list-welsh-outlets-tiered-verified-routes.html",
+   "title": "Media list for Welsh outlets: build, tier and keep it (PR)",
+   "bytes": 5612,
+   "sha256": "00c5d3c2d7ccbcd1901c8c071da81121bea12600dbc5f76b5b417d7ff9bc4395"
+  },
+  {
    "path": "SKILLS/marketing/membership-platform-patreon-vs-stripe-direct.md",
    "html": "SKILLS/marketing/membership-platform-patreon-vs-stripe-direct.html",
    "title": "Membership platform: Patreon vs Stripe direct for the £49.99/mo academy (fees, iOS cut, retention)",
@@ -2423,11 +2577,25 @@
    "sha256": "b6b9e8ac1ffc6b0c8ad22a4c0fbe75cd151c375e118c0473d170ce819ccf8ccc"
   },
   {
+   "path": "SKILLS/marketing/menter-bro-morgannwg-vale-talks-gwyl-fach-y-fro-directory.md",
+   "html": "SKILLS/marketing/menter-bro-morgannwg-vale-talks-gwyl-fach-y-fro-directory.html",
+   "title": "Menter Bro Morgannwg (Vale of Glamorgan Welsh-language initiative): talks, learner sessions, Gŵyl Fach y Fro and the directory",
+   "bytes": 7309,
+   "sha256": "60a8e09fcd45ec7d7dfba50cc75c0955466b092535364cb03c0c4f34fda25107"
+  },
+  {
    "path": "SKILLS/marketing/merchant-listing-structured-data-ebooks.md",
    "html": "SKILLS/marketing/merchant-listing-structured-data-ebooks.html",
    "title": "Merchant listing structured data for direct-sold e-books (Product + Offer)",
    "bytes": 4439,
    "sha256": "8f7be09cb5f85a2240fe79be5dcef0ccbe8b9cf7ac4ab21b52a9c780ec2ef62f"
+  },
+  {
+   "path": "SKILLS/marketing/merched-y-wawr-branches-y-wawr-magazine-south-east-region.md",
+   "html": "SKILLS/marketing/merched-y-wawr-branches-y-wawr-magazine-south-east-region.html",
+   "title": "Merched y Wawr: Welsh-language women's branches, Y Wawr magazine and the South-East region",
+   "bytes": 6038,
+   "sha256": "4e7d7e8d09babb026083c4a696a1e4ee17a06260116cd97836caddddac7639aa"
   },
   {
    "path": "SKILLS/marketing/microsoft-365-outlook-uk-institution-inbox-deliverability.md",
@@ -2486,6 +2654,13 @@
    "sha256": "f337deb285728686fb16cce4fba32ca44419c077c38cc2224e863b8a07024cb2"
   },
   {
+   "path": "SKILLS/marketing/newsletter-cohort-retention-by-signup-month.md",
+   "html": "SKILLS/marketing/newsletter-cohort-retention-by-signup-month.html",
+   "title": "Newsletter retention by signup month (cohort table) from free Mailchimp exports",
+   "bytes": 4039,
+   "sha256": "1e5981f4b8e1b520c8283bd298935477584d8e295ebc9b5fff52ac3068ac66d8"
+  },
+  {
    "path": "SKILLS/marketing/newsletter-referral-programme-gate-free-rewards.md",
    "html": "SKILLS/marketing/newsletter-referral-programme-gate-free-rewards.html",
    "title": "Reader referral programme for a tiny history newsletter: gate first, free rewards only",
@@ -2498,6 +2673,13 @@
    "title": "Nextdoor Business Page for a local-history e-book shop (UK)",
    "bytes": 4458,
    "sha256": "1cc8dbc8a76a9258a03a2f5f55f1934531bc7e131fc8ce3ba7d8fa9a6cad5a9d"
+  },
+  {
+   "path": "SKILLS/marketing/north-american-welsh-diaspora-ninnau-wnaa-nafow.md",
+   "html": "SKILLS/marketing/north-american-welsh-diaspora-ninnau-wnaa-nafow.html",
+   "title": "North American Welsh diaspora: Ninnau & Y Drych, WNAA/NAFOW, affiliated societies (2026)",
+   "bytes": 5284,
+   "sha256": "f4cf2bafb65e66c83c1fb08a77bf72b069daf53cd70a1d2e874ad11bf7bd8586"
   },
   {
    "path": "SKILLS/marketing/novel-november-novnov-historical-fiction-records-post.md",
@@ -2528,6 +2710,13 @@
    "sha256": "015f6c499e1df58ef14e0c23fa807fbf6c0342f8b1b3af23ad2d9fc2018c8f49"
   },
   {
+   "path": "SKILLS/marketing/online-talk-add-to-calendar-ics-show-up-rate.md",
+   "html": "SKILLS/marketing/online-talk-add-to-calendar-ics-show-up-rate.html",
+   "title": "Add-to-calendar for free online talks and launch dates: registrant-to-attendee playbook",
+   "bytes": 5667,
+   "sha256": "048caa84cff9160cc629aeff810f9755c0fb4f37ab419667bfb6428ee45bf228"
+  },
+  {
    "path": "SKILLS/marketing/onsite-email-capture-slide-in-scroll-trigger-not-exit-popup.md",
    "html": "SKILLS/marketing/onsite-email-capture-slide-in-scroll-trigger-not-exit-popup.html",
    "title": "On-site email capture: a scroll-triggered slide-in, not a full-screen or exit popup",
@@ -2540,6 +2729,13 @@
    "title": "One-question on-site survey on the buy path (\"what's stopping you?\") for a low-traffic e-book shop",
    "bytes": 4684,
    "sha256": "1942f86d2f93d986ae717d0f93959fc7bf7d17907ebd9743f207007f802b222e"
+  },
+  {
+   "path": "SKILLS/marketing/op-ed-guest-opinion-pitch-wales-named-byline-gate.md",
+   "html": "SKILLS/marketing/op-ed-guest-opinion-pitch-wales-named-byline-gate.html",
+   "title": "Guest opinion pieces (op-eds): a 500-800 word argument in a Welsh/UK outlet",
+   "bytes": 6765,
+   "sha256": "620c1d8f250c5182c2513d1d3be0d0e16607dc5e441b0dd94e5e902f869bba09"
   },
   {
    "path": "SKILLS/marketing/open-doors-cadw-heritage-open-days-event.md",
@@ -2584,6 +2780,13 @@
    "sha256": "172baf05e6482c74fe988457997005b96c91ae653857905a79ab9c401f0a51f4"
   },
   {
+   "path": "SKILLS/marketing/pagination-big-listing-pages-crawlable-catalogue.md",
+   "html": "SKILLS/marketing/pagination-big-listing-pages-crawlable-catalogue.html",
+   "title": "Pagination and big listing pages: keep every catalogue item crawlable",
+   "bytes": 5911,
+   "sha256": "af4ffd0d2dd8e3a121bd95accfa1c59d2755cfa8492afcd3b8fff41264eeb77a"
+  },
+  {
    "path": "SKILLS/marketing/paid-archive-vs-open-archive-newsletter-history-writers.md",
    "html": "SKILLS/marketing/paid-archive-vs-open-archive-newsletter-history-writers.html",
    "title": "Paid archive vs open archive: how newsletter writers paywall the back catalogue (Substack / Ghost)",
@@ -2591,11 +2794,25 @@
    "sha256": "c7cbee7551f3e66b66a72afa21e2430a62a898999c39f0627d0046ab2e74d927"
   },
   {
+   "path": "SKILLS/marketing/parliamentary-written-questions-watch-news-hook.md",
+   "html": "SKILLS/marketing/parliamentary-written-questions-watch-news-hook.html",
+   "title": "Parliamentary written questions as a watch and a news hook (Westminster + Senedd)",
+   "bytes": 5360,
+   "sha256": "f555f523e0456b055b3b1d9ac619b4dc6c4cc4e9d89ba3a6fb9180c3297fc28b"
+  },
+  {
    "path": "SKILLS/marketing/pay-what-you-want-floor-suggested-price.md",
    "html": "SKILLS/marketing/pay-what-you-want-floor-suggested-price.html",
    "title": "Pay-what-you-want (PWYW) with a floor or a suggested price for a small e-book shop",
    "bytes": 5083,
    "sha256": "0290f8bd62a78a57adf8de6c8060c6f28be6b27f36b28ce1976184fd6e22ce89"
+  },
+  {
+   "path": "SKILLS/marketing/pay-what-you-want-variable-pricing-ebooks-minimum-suggested.md",
+   "html": "SKILLS/marketing/pay-what-you-want-variable-pricing-ebooks-minimum-suggested.html",
+   "title": "Pay-what-you-want / variable pricing for e-books (minimum + suggested, optional good-cause frame)",
+   "bytes": 4157,
+   "sha256": "0eb52cc31c3b51b31f0a83c55772597270977655c01d56a4670b0ace1dc0906b"
   },
   {
    "path": "SKILLS/marketing/payment-trust-cues-checkout-uk-legal.md",
@@ -2920,6 +3137,13 @@
    "sha256": "7ed262aa6b4437f791de9dfa59643ec260aae07e89da5ce8d5d85655eee90167"
   },
   {
+   "path": "SKILLS/marketing/senedd-petitions-watch-gate-devolved-heritage.md",
+   "html": "SKILLS/marketing/senedd-petitions-watch-gate-devolved-heritage.html",
+   "title": "Senedd petitions: watch, piggyback, and a strict gate before starting one",
+   "bytes": 5666,
+   "sha256": "b09a407f15ec86b80eb2d608ad2cc25ee2630eb75a27f2f9174b02f1c0a667d1"
+  },
+  {
    "path": "SKILLS/marketing/serialised-free-edition-web-email-instalments.md",
    "html": "SKILLS/marketing/serialised-free-edition-web-email-instalments.html",
    "title": "Serialise the free edition, chapter by chapter, then sell the whole (web + email serial)",
@@ -3025,6 +3249,13 @@
    "sha256": "a50a5083885cee63a4dc4418973719a79c506d81e707507ec0314a72a976a6f8"
   },
   {
+   "path": "SKILLS/marketing/ssiw-learner-forum-book-club-graded-readers.md",
+   "html": "SKILLS/marketing/ssiw-learner-forum-book-club-graded-readers.html",
+   "title": "SSiW (SaySomethingin Welsh) learner community: forum, book club, graded readers (2026)",
+   "bytes": 4500,
+   "sha256": "4657279c39892f75fc9dea35bec4098e1e864e68565dfb3eed6d8cb784aee388"
+  },
+  {
    "path": "SKILLS/marketing/st-davids-day-2027-random-acts-pethau-bychain-calendar.md",
    "html": "SKILLS/marketing/st-davids-day-2027-random-acts-pethau-bychain-calendar.html",
    "title": "St David's Day (1 Mar 2027) campaign calendar: Random Acts of Welshness / #PethauBychain",
@@ -3109,6 +3340,13 @@
    "sha256": "7c1ff968a4203123c5f44ba6e006784cdfb2ff1c34d8d5a7f6f955232c81bc7d"
   },
   {
+   "path": "SKILLS/marketing/substack-notes-discovery-feed-2026-conversion-data.md",
+   "html": "SKILLS/marketing/substack-notes-discovery-feed-2026-conversion-data.html",
+   "title": "Substack Notes as a discovery feed: what the 2026 data states converts",
+   "bytes": 4025,
+   "sha256": "004f5d5630e449f1f866f60439d67ac5f1cba8fec1919fd0681d19995440f130"
+  },
+  {
    "path": "SKILLS/marketing/substack-recommendations-discovery-outpost.md",
    "html": "SKILLS/marketing/substack-recommendations-discovery-outpost.html",
    "title": "Substack as a discovery outpost (Recommendations network) alongside Mailchimp",
@@ -3137,11 +3375,25 @@
    "sha256": "98147ec367a4728e9133cb506e26e49afb8c5e6d9fc714e0f888dfe2b2dd66b5"
   },
   {
+   "path": "SKILLS/marketing/threads-api-automated-posting-limits-fallbacks.md",
+   "html": "SKILLS/marketing/threads-api-automated-posting-limits-fallbacks.html",
+   "title": "Threads automated posting: official API route, free fallbacks, and what the data states to post",
+   "bytes": 5108,
+   "sha256": "927a36a46b0b1e80959877c8d11e69c2ef80b4cfc6a71f896c39586736e279dc"
+  },
+  {
    "path": "SKILLS/marketing/threads-heritage-profile-communities.md",
    "html": "SKILLS/marketing/threads-heritage-profile-communities.html",
    "title": "Threads for a heritage archive: profile, communities, cadence and Instagram cross-posting",
    "bytes": 3918,
    "sha256": "742c8f54419193e12ef6618711c75885dbc1e87008a4426435b90a76dbea6c21"
+  },
+  {
+   "path": "SKILLS/marketing/threads-to-instagram-stories-cross-share-gate.md",
+   "html": "SKILLS/marketing/threads-to-instagram-stories-cross-share-gate.html",
+   "title": "Threads -> Instagram Stories cross-share (in-app, auto, API) and the reverse",
+   "bytes": 4603,
+   "sha256": "14b43280b107763aa69e406d69598dd29f17f0b4b4f94056b4ef818b973a7312"
   },
   {
    "path": "SKILLS/marketing/thumbnail-gallery-lightbox-crawlable-zoom.md",
@@ -3242,6 +3494,13 @@
    "sha256": "41ceb6ed7f9b543cd063af399c162cea9a8266a1eb726cbc168b3583d9942b86"
   },
   {
+   "path": "SKILLS/marketing/uk-parliament-e-petitions-10k-government-response-route.md",
+   "html": "SKILLS/marketing/uk-parliament-e-petitions-10k-government-response-route.html",
+   "title": "UK Parliament e-petitions: 10,000 = a written Government answer you can cite",
+   "bytes": 4215,
+   "sha256": "06789844fe2a614c1cae49e5ff99cf9fe7428ea4c54ed4c1081337a67343fdbd"
+  },
+  {
    "path": "SKILLS/marketing/uk-plr-ebook-library-loans.md",
    "html": "SKILLS/marketing/uk-plr-ebook-library-loans.html",
    "title": "UK Public Lending Right (PLR) for e-books and remote library loans",
@@ -3291,6 +3550,13 @@
    "sha256": "f9ab0cee18994970994004b82b5605265a37877d32da45db3616318c5c055e2c"
   },
   {
+   "path": "SKILLS/marketing/vale-strong-communities-gvs-community-action-gate.md",
+   "html": "SKILLS/marketing/vale-strong-communities-gvs-community-action-gate.html",
+   "title": "Vale of Glamorgan Strong Communities Grant + GVS Community Action Fund: local small-grant gate",
+   "bytes": 3304,
+   "sha256": "79cef54cb0586193b9167ed06d41ddbcff87bac8bd158cbdb292ff17ff26b52c"
+  },
+  {
    "path": "SKILLS/marketing/van-westendorp-price-survey-gated.md",
    "html": "SKILLS/marketing/van-westendorp-price-survey-gated.html",
    "title": "Van Westendorp price sensitivity survey (4 questions) - gated pricing research for e-books and tours",
@@ -3317,6 +3583,20 @@
    "title": "Video on landing pages without the weight: facades, posters, preload (2026)",
    "bytes": 3578,
    "sha256": "67d2e9585fbe0e77112889fe8ffe22aff1a47c3b885137763bab9cfa13953b2a"
+  },
+  {
+   "path": "SKILLS/marketing/video-sitemap-self-hosted-documentary-watch-pages.md",
+   "html": "SKILLS/marketing/video-sitemap-self-hosted-documentary-watch-pages.html",
+   "title": "Video sitemap + watch pages for self-hosted documentary scenes",
+   "bytes": 5770,
+   "sha256": "797af82defb987cb03619227362b634b77c4990379412640dd613bc9d612733e"
+  },
+  {
+   "path": "SKILLS/marketing/view-transitions-zoom-card-levels-seo-a11y.md",
+   "html": "SKILLS/marketing/view-transitions-zoom-card-levels-seo-a11y.html",
+   "title": "Zoom-through card levels with the View Transitions API: keep it fast, linkable, indexable and motion-safe",
+   "bytes": 5797,
+   "sha256": "9cdf41227c21d555f7ec46b745a012af371753e9dc895109a9e15d9c2413fc9a"
   },
   {
    "path": "SKILLS/marketing/voc-review-mining-sales-copy.md",
@@ -3368,6 +3648,13 @@
    "sha256": "06ab05dc44ae7c9f306bb9709b813d9f65c06b707f2134f5e92df664657d8357"
   },
   {
+   "path": "SKILLS/marketing/webvtt-tracks-videoobject-clip-self-hosted-documentary-scenes.md",
+   "html": "SKILLS/marketing/webvtt-tracks-videoobject-clip-self-hosted-documentary-scenes.html",
+   "title": "Per-language WebVTT tracks + VideoObject/Clip markup for the self-hosted documentary scenes",
+   "bytes": 4526,
+   "sha256": "7682fb66092a16385ab2e9c43d1eacd7e873da25c8f79256234c579b98dc1e34"
+  },
+  {
    "path": "SKILLS/marketing/welcome-sequence-first-sale-small-ebook-list.md",
    "html": "SKILLS/marketing/welcome-sequence-first-sale-small-ebook-list.html",
    "title": "Skill: turning reader signups into first sales (a welcome sequence for a small e-book list)",
@@ -3375,11 +3662,25 @@
    "sha256": "cf8e4c0a058c9430f91dafa6122424f8350716789bce2cdd85989245e4b17577"
   },
   {
+   "path": "SKILLS/marketing/welsh-culture-heritage-calls-for-evidence-respond-publish-hook.md",
+   "html": "SKILLS/marketing/welsh-culture-heritage-calls-for-evidence-respond-publish-hook.html",
+   "title": "Welsh culture/heritage calls for evidence: respond, get published, use as a dated hook",
+   "bytes": 5302,
+   "sha256": "bc1d085eb172ce6c03a77b5bab51c1ef88fc0a35e66df5fc3c2e6407250bcb6d"
+  },
+  {
    "path": "SKILLS/marketing/welsh-diaspora-networks-globalwelsh-wales-international.md",
    "html": "SKILLS/marketing/welsh-diaspora-networks-globalwelsh-wales-international.html",
    "title": "Welsh diaspora networks (GlobalWelsh Connect, Wales International): what is free, what is paid, and how a small heritage shop uses them",
    "bytes": 5643,
    "sha256": "9177c915c816829c25d165b4b00728ac09d1413e639694a83eb03b917af6406c"
+  },
+  {
+   "path": "SKILLS/marketing/welsh-historic-place-names-list-rcahmw-contribute-names.md",
+   "html": "SKILLS/marketing/welsh-historic-place-names-list-rcahmw-contribute-names.html",
+   "title": "Welsh historic place-name records: the List of Historic Place Names + Welsh Place-Name Society (contribution route)",
+   "bytes": 6841,
+   "sha256": "39e1d5ce59ecccfc46d2db4e3ff04aac481b78f80c06cf91bf6d74dcd58230b9"
   },
   {
    "path": "SKILLS/marketing/welsh-language-audience-growth-welsh-first-bilingual-feed.md",
@@ -3394,6 +3695,27 @@
    "title": "Skill: Welsh-language media for a Cardiff/Vale heritage story (2026)",
    "bytes": 4493,
    "sha256": "8324948b8bb1711417c864510575f628a4e6e86f9ca6137c698226f4aea15f05"
+  },
+  {
+   "path": "SKILLS/marketing/welsh-language-podcasts-y-pod-guest-spots.md",
+   "html": "SKILLS/marketing/welsh-language-podcasts-y-pod-guest-spots.html",
+   "title": "Welsh-language and learner podcasts: guest spots via Y Pod",
+   "bytes": 4965,
+   "sha256": "e33556ab9c9293b5442bdc064cfd96bbdbc3c7aeeef3ef0ca1aa289caf5ebe96"
+  },
+  {
+   "path": "SKILLS/marketing/welsh-learner-walking-groups-cymraeg-yn-y-gwyllt-prompt-sheet.md",
+   "html": "SKILLS/marketing/welsh-learner-walking-groups-cymraeg-yn-y-gwyllt-prompt-sheet.html",
+   "title": "Welsh-learner walking groups: Cymraeg yn y Gwyllt (Dinas Powys) and Welsh-language nature walks",
+   "bytes": 5688,
+   "sha256": "c10b18aa9331e74dc9b1cfb0b5ade96c3e48acb51d9569d321eaacc081d2f5bc"
+  },
+  {
+   "path": "SKILLS/marketing/welsh-learners-audience-amdani-levels-learner-communities.md",
+   "html": "SKILLS/marketing/welsh-learners-audience-amdani-levels-learner-communities.html",
+   "title": "Welsh learners as an audience: level-tagged reading, Amdani, learner communities (2026)",
+   "bytes": 5031,
+   "sha256": "8ef9d40b6b3c8c4088796d2a0bc5b913b44d9f6b951abd58223d207efeb4b15b"
   },
   {
    "path": "SKILLS/marketing/welsh-midwinter-customs-mari-lwyd-plygain-calennig-hen-galan.md",
@@ -3438,6 +3760,13 @@
    "sha256": "a0eeccd3f74cc571aa5207dde79460e8ae9cdd1b3a61835214845fb6f4ea454a"
   },
   {
+   "path": "SKILLS/marketing/why-didnt-you-buy-survey-jtbd-four-forces.md",
+   "html": "SKILLS/marketing/why-didnt-you-buy-survey-jtbd-four-forces.html",
+   "title": "\"Why didn't you buy?\" non-buyer survey + JTBD switch interviews (four forces)",
+   "bytes": 5501,
+   "sha256": "5c25ccb08d69786595078d0d042a2a71e2f006522fe3edc677bf44732aeee517"
+  },
+  {
    "path": "SKILLS/marketing/wi-speaker-auditions-federation-list.md",
    "html": "SKILLS/marketing/wi-speaker-auditions-federation-list.html",
    "title": "WI speaker auditions: getting on a Federation speakers' list",
@@ -3457,6 +3786,13 @@
    "title": "Skill: contributing to Wikimedia Commons and Wikidata as a heritage archive, inside the conflict-of-interest rules",
    "bytes": 5840,
    "sha256": "3fc5ebaddd16bdb65aedba4aed524495e3aed53af518cc41a3f31e69c2127516"
+  },
+  {
+   "path": "SKILLS/marketing/wikipedia-ai-citations-coilegal-llm-rules-gate.md",
+   "html": "SKILLS/marketing/wikipedia-ai-citations-coilegal-llm-rules-gate.html",
+   "title": "Skill: Wikipedia and AI answers, the gate for a court-case heritage project (COILEGAL + the 2026 LLM rules)",
+   "bytes": 5572,
+   "sha256": "6a6419210f49613fce139387bfef13b1b08afa8e00f16e20d26a15f4231dc237"
   },
   {
    "path": "SKILLS/marketing/wikivoyage-penarth-listing-gate-nofollow-no-tout.md",
@@ -3541,6 +3877,13 @@
    "title": "YouTube Premieres for long archive films: when to use them, and when not to (2026)",
    "bytes": 4854,
    "sha256": "1134226ba330ad992e076ed20e38b6aa7814ffc67d5a34ace7d98fc150f64ffe"
+  },
+  {
+   "path": "SKILLS/marketing/youtube-serial-show-shorts-series-door-a-day-documentary.md",
+   "html": "SKILLS/marketing/youtube-serial-show-shorts-series-door-a-day-documentary.html",
+   "title": "YouTube Shows (serial) + Shorts series for a door-a-day documentary",
+   "bytes": 5855,
+   "sha256": "9d53c8010eb2f499f0b1c13abe38d1161c6c3d36a0ec65c32bf5d62678c3d83c"
   },
   {
    "path": "SKILLS/marketing/youtube-shorts-non-clickable-links-related-video-bridge.md",
@@ -3630,8 +3973,8 @@
    "path": "SOUL.md",
    "html": "SOUL.html",
    "title": "SOUL — who we are, what we are for, how we sound",
-   "bytes": 6772,
-   "sha256": "7471cdee265c1038bd5b540874420153940c7056ae4db4bfa8a4691d30877c90"
+   "bytes": 6943,
+   "sha256": "0952e790413cddafe8d8e9efbb7715634c6d7f27f245866c3d9875b89816c18e"
   }
  ],
  "formats": {

@@ -1,7 +1,7 @@
 {
  "schema": "cedwyn_work_board/v1",
- "generated_utc": "2026-10-30 00:41 UTC",
- "open": 99,
+ "generated_utc": "2026-10-30 06:41 UTC",
+ "open": 101,
  "how_to_submit": {
   "pull_request": "a pull request to the GitHub repository unclehowell/cedwyn, on the branch of the section named in the job",
   "issue": "an issue on the same repository using the \"Agent job\" template, quoting the job id",
@@ -11,7 +11,7 @@
   "pages_read": 45,
   "links_checked": 350,
   "broken": 5,
-  "secs": 19
+  "secs": 20
  },
  "jobs": [
   {
@@ -55,10 +55,10 @@
    "type": "find-missing-record",
    "section": "research",
    "branch": "section/research",
-   "title": "MR-0003: February 1916 yearly agricultural tenancy of the whole farm to John Williams, with plan",
+   "title": "MR-0003: February 1916 Bute estate tenancy document naming John Williams, with plan (the contested item)",
    "inputs": [
     "/research/missing-records/mr-0003/",
-    "why: The Court of Appeal (1987) describes this tenancy, so a tenancy agreement or rent-book entry existed and was before the parties.",
+    "why: The Court of Appeal (1987) recites a Bute estate tenancy document of February 1916, so an agreement, counterpart or rent-book entry existed and was before the parties. The document itself is the contested item: whether it reflects the family's tenure is exactly what is in dispute, and no copy is held. It is dated weeks after the 3 February 1916 probate of the will of Mary Williams of Great House Farm (MR for the will, this register).",
     "likely holder: Bute estate / Mountjoy records; WGR and BP deeds packet; parties' 1986–87 litigation files",
     "record EV-0014"
    ],
@@ -127,10 +127,10 @@
    "type": "find-missing-record",
    "section": "research",
    "branch": "section/research",
-   "title": "MR-0007: Surrender and re-grant of 2 February 1949 (tenancy to Frederick Buckler)",
+   "title": "MR-0007: Estate-side surrender and re-grant paperwork of 2 February 1949 naming Frederick Buckler (contested)",
    "inputs": [
     "/research/missing-records/mr-0007/",
-    "why: The Court of Appeal records the agreement for a surrender and new yearly tenancy, and that a written agreement was intended but never made. Agents' and solicitors' letters (including 10 October 1952) are quoted, so a file existed.",
+    "why: The Court of Appeal recites estate-side paperwork of 2 February 1949 for a surrender and a new yearly letting naming Frederick Buckler, and that a written agreement was intended but never made; whether that paperwork reflects the family's tenure is contested. Agents' and solicitors' letters (including 10 October 1952) are quoted, so a file existed.",
     "likely holder: WGR agents and solicitors; BP litigation file (Linklaters & Paines, 1986–87)",
     "record EV-0025"
    ],
@@ -928,6 +928,38 @@
    "note": "Research public catalogues and published sources only; never contact the holder (requests go through the hive).",
    "status": "open",
    "first_listed": "2026-10-29 13:41 UTC"
+  },
+  {
+   "id": "J-7C3B42",
+   "type": "find-missing-record",
+   "section": "research",
+   "branch": "section/research",
+   "title": "MR-0054: Will of Mary Williams of Great House Farm, Llandough (died 23 December 1915), proved at Llandaff on 3 February 1916, with the registry copy and grant",
+   "inputs": [
+    "/research/missing-records/mr-0054/",
+    "why: The 1916 probate calendar (p.301) records a grant of probate, not administration, so a will existed and was proved. Under the probate rules of the time the original will and the registry copy were kept by the probate registry, and they are still held. The will would show how a widow \"of Great House Farm\" described what she left, whether the farm, its stock or any interest in the land is mentioned, and who she named. Effects were £585 7s 6d (about £66,000 at 2026 prices). It is the nearest family-side document to the February 1916 Bute estate tenancy document, which followed within weeks.",
+    "likely holder: HM Courts & Tribunals Service, Probate (copy orderable from the probate index); the family (original papers, not checked)"
+   ],
+   "definition_of_done": "The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.",
+   "note": "Research public catalogues and published sources only; never contact the holder (requests go through the hive).",
+   "status": "open",
+   "first_listed": "2026-10-30 06:41 UTC"
+  },
+  {
+   "id": "J-B28E9A",
+   "type": "find-missing-record",
+   "section": "research",
+   "branch": "section/research",
+   "title": "MR-0055: Rapporteur's Rule 40 report on Application No. 14464/88 to the European Commission of Human Rights (1989)",
+   "inputs": [
+    "/research/missing-records/mr-0055/",
+    "why: The Commission's decision of 14 April 1989 rests on 'the report provided for in Rule 40 of the Rules of Procedure of the Commission'. That report was written and put to the Commission, so it exists. Because the application was never communicated to the UK Government, the report and the applicant's own submissions are the only record of how the case was put and weighed in 1988-89; the decision text alone does not show them. No Government observations exist for this application.",
+    "likely holder: European Court of Human Rights Registry (holds the former Commission's case files); the applicant's own papers (not checked)"
+   ],
+   "definition_of_done": "The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.",
+   "note": "Research public catalogues and published sources only; never contact the holder (requests go through the hive).",
+   "status": "open",
+   "first_listed": "2026-10-30 06:41 UTC"
   },
   {
    "id": "J-D91D74",
