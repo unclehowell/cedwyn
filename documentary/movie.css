@@ -177,13 +177,3 @@ html.ghf-inv .cm-stage.cm-isfs video,html.ghf-inv .cm-stage:fullscreen video{fil
 .cd-tw{overflow-x:auto;-webkit-overflow-scrolling:touch}.cd-vt{border-collapse:collapse;width:100%}.cd-vt th,.cd-vt td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid var(--line)}
 .cd-vt th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}.cd-vt td:first-child,.cd-vt td:nth-child(2){white-space:nowrap}
 @media(max-width:520px){.cd-vt td:nth-child(2){white-space:normal;min-width:5.6em}.cd-sel{flex-basis:100%}}
-
-/* v1.4.1 (30 Oct 2026): a released scene's whole picture plays it; the full-screen picture has its own small button under the picture */
-.cm-thumb.playable{cursor:pointer}
-.cm-thumb.playable .cm-playbig{width:72px;height:72px}
-.cm-thumb.playable .cm-playbig:after{left:27px;top:19px;border-left-width:24px;border-top-width:14px;border-bottom-width:14px}
-.cm-thumb.playable:hover .cm-playbig{background:var(--gold);border-color:var(--gold)}
-.cm-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px}
-.cm-artbtn{flex:none;display:inline-flex;align-items:center;gap:5px;min-height:32px;padding:4px 10px;border:1px solid currentColor;border-radius:999px;background:transparent;color:var(--mut,#9aa59c);font:inherit;font-size:12px;line-height:1.2;cursor:zoom-in}
-.cm-artbtn:before{content:"⤢";font-size:13px}
-.cm-artbtn:hover,.cm-artbtn:focus-visible{color:var(--gold);outline:none;border-color:var(--gold)}
