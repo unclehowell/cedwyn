@@ -12,12 +12,15 @@ Runs after ebook_editions.py (site.py). Touches only dist/ebooks/index.html:
 - each card's title carries an info button (aria-label "What's inside") that opens a dark modal with the book's contents, page count and
   edition line (closes on the cross, Esc or a tap outside); the bundle (all four) becomes one card on the shelf with its own Buy button;
 - the payment line (#eb-trust) sits below the shelf, just above the questions. tidy() is idempotent and also runs on an already-built page.
+1.2.1 (30 Oct 2026, owner 19:21): the version drop-down is labelled "Select a version" (visible label), newest preselected, options read
+  "v0.0.2 — £4.99" / "v0.0.1 — free"; the Buy/Read button still follows the choice (sv-js); 44 px select.
 Prices, checkout links and utm parameters are copied from the page as they are; nothing new is created."""
 import json, html, pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.2.0'
-VERSIONS = [('1.2.0', '30 Oct 2026', 'Header, shelf, then questions: book details in an info modal per title; bundle card on the shelf'),
+VERSION = '1.2.1'
+VERSIONS = [('1.2.1', '30 Oct 2026', 'Select a version label; price in each option'),
+            ('1.2.0', '30 Oct 2026', 'Header, shelf, then questions: book details in an info modal per title; bundle card on the shelf'),
             ('1.1.0', '27 Oct 2026', 'Poster-card shelf; cover opens the free edition; titles link only to a book’s own page'),
             ('1.0.1', '26 Oct 2026', 'Editions table shown as cards on phones'),
             ('1.0.0', '25 Oct 2026', 'Editions and prices table')]
@@ -70,7 +73,8 @@ WI_CSS = ('<style id="wi-css">.sh-th{display:flex;align-items:flex-start;gap:2px
           'opacity:.75}.eb-wi-in p,.eb-wi-in li{margin:0 0 8px}.eb-wi-in ol{margin:0 0 8px;padding-left:20px}.eb-wi-in a{color:var(--ghf-s,#F2C94C)}'
           '.eb-wi-x{position:absolute;top:8px;right:8px;background:none;border:0;color:inherit;font-size:20px;line-height:1;width:36px;height:36px;'
           'cursor:pointer}.sh-bcov{display:grid;grid-template-columns:1fr 1fr;gap:2px;aspect-ratio:2/3;background:#000}.sh-bcov img{width:100%;'
-          'height:100%;object-fit:cover;display:block}.sh-bundle .sv-go{margin-top:6px}</style>')
+          'height:100%;object-fit:cover;display:block}.sh-bundle .sv-go{margin-top:6px}'
+          '.sh .sh-grid .sh-card select.sv-sel{height:44px!important;max-height:44px!important}.sh .sh-card .sv-sel:focus-visible{outline:2px solid var(--ghf-s,#F2C94C)}</style>')
 WI_JS = ('<script id="wi-js">(function(){document.addEventListener("click",function(e){var t=e.target;if(!t||!t.closest)return;'
          'var b=t.closest("[data-wi]");if(b){var d=document.getElementById(b.getAttribute("data-wi"));if(d){e.preventDefault();'
          'if(d.showModal){if(!d.open)d.showModal();}else{d.setAttribute("open","");}}return;}'
@@ -112,6 +116,14 @@ def tidy(t, D):
     for sid in ('whats-inside', 'editions', 'versions', 'digital-estate-books'):
         t = re.sub(r'<section\b[^>]*\bid="%s"[^>]*>.*?</section>\s*' % sid, '', t, flags=re.S)
     t = re.sub(r'<p class="sh-ver"[^>]*>.*?</p>', '', t, flags=re.S)
+    # Version drop-down (owner 19:21 30 Oct; skills/version-selector-dropdown-label-default.md): a visible "Select a version" label,
+    # newest preselected (sv-js selects the first option), each option with its price: "v0.0.2 — £4.99", "v0.0.1 — free".
+    t = re.sub(r'(<label class="sv-lab"[^>]*>)Version(</label>)', r'\1Select a version\2', t)
+    t = t.replace(' aria-label="Version, latest first"', '')
+    def _opt(m):
+        price = m.group(2).rsplit('·', 1)[-1].strip() if '·' in m.group(2) else ''
+        return f'{m.group(0)[:m.group(0).find(">") + 1]}{m.group(1)}{" — " + price if price else ""}</option>'
+    t = re.sub(r'<option value="(v[\d.]+)" data-go="([^"]*)"[^>]*>[^<]*</option>', _opt, t)
     t = re.sub(r'<a\b[^>]*href="#(?:versions|editions|whats-inside)"[^>]*>.*?</a>\s*(?:·\s*)?', '', t, flags=re.S)
     dialogs = []
     bm = re.search(r'<section\b[^>]*\bid="all-four"[^>]*>.*?</section>\s*', t, re.S)
