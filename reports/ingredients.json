@@ -2,7 +2,7 @@
  "version": {
   "ingredients.json": "1.6.2",
   "app-demo-factcheck.json": "1.0.0",
-  "spa-basepath.json": "1.0.0"
+  "spa-basepath.json": "1.2.0"
  },
  "applied": [
   {
@@ -13592,7 +13592,13 @@
   {
    "config": "spa-basepath.json",
    "theme": "dartboard",
-   "file": "assets/index-DwiYZZuL.js",
+   "file": "assets/index-BPZ9SEZa.js",
+   "n": 1
+  },
+  {
+   "config": "spa-basepath.json",
+   "theme": "dartboard",
+   "file": "index.html",
    "n": 1
   }
  ],
@@ -13722,6 +13728,30 @@
    "theme": "story",
    "file": "**/*.html",
    "find": "Mary's father. Tenant of the house and fields from 1908; pai"
+  },
+  {
+   "config": "spa-basepath.json",
+   "theme": "dartboard",
+   "file": "assets/routes-*.js",
+   "find": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2"
+  },
+  {
+   "config": "spa-basepath.json",
+   "theme": "dartboard",
+   "file": "assets/routes-*.js",
+   "find": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2"
+  },
+  {
+   "config": "spa-basepath.json",
+   "theme": "dartboard",
+   "file": "index.html",
+   "find": "/wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fcedw"
+  },
+  {
+   "config": "spa-basepath.json",
+   "theme": "dartboard",
+   "file": "index.html",
+   "find": "/wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fcedw"
   }
  ]
 }
