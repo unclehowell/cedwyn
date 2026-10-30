@@ -160,7 +160,7 @@ def dartboard(dist):
 # file and nothing else - never the central catalogue, never its page list. Kissed Frogs: one point per screened record (date of
 # the record, the screening outcome). E-book shelf: one point per release of each book (first edition, current edition,
 # supplement) from the shop's own view (written by ebook_editions.py from data/ebooks.json). - Sion's Tab agent
-VIEW_APPS = ('kissed-frogs', 'ebooks')
+VIEW_APPS = ('kissed-frogs', 'ebooks', 'parcels')
 def _view(dist, app):
     f = dist / app / '_db' / 'view.json'
     if not f.exists(): return None
@@ -197,6 +197,21 @@ def ebooks(dist):
     j['source'] = '/ebooks/_db/view.json'
     return j
 
+def parcels(dist):
+    # Parcels page (asked 19:16 GMT 30 Oct 2026): its header graph plots the page's own database, /parcels/_db/view.json -
+    # the instruments relied on by the corporations and the registrations of the parcels in their names, one row per parcel. - Sion's Tab agent
+    v = _view(dist, 'parcels')
+    if not v: return None
+    keys = list((v.get('parcels') or {}).keys()); cats = [v['parcels'][k] for k in keys]; kinds = v.get('kinds') or ['Item']
+    p = []
+    for it in sorted(v.get('items') or [], key=lambda r: str(r.get('x') or '')):
+        if not it.get('x') or it.get('parcel') not in keys: continue
+        p.append([str(it['x']), keys.index(it['parcel']), int(it.get('kind') or 0) % len(kinds), label(it.get('short') or it.get('inst') or '', 90), ('#' + it['id']) if it.get('id') else '/parcels/'])
+    if not p: return None
+    return {'v': 1, 'area': 'parcels', 'title': v.get('title') or 'The parcels', 'x': {'label': 'Date', 'type': 'date'},
+            'y': {'label': 'Parcel', 'type': 'cat', 'cats': cats}, 'c': {'label': 'Kind', 'cats': kinds, 'colors': v.get('colors') or ['#f2c94c', '#ff7a59', '#6aa8ff']},
+            'p': p, 'source': '/parcels/_db/view.json'}
+
 # Build check (owner 14:18 GMT 30 Oct): a graph may only name its own webapp's data as its source.
 SHARED_OK = {'research': 'data/evidence-grades.json', 'docs': 'data/evidence-grades.json'}   # evidence apps: the evidence register is their own db until WP2
 def own_source(area, j, dist=None):
@@ -211,7 +226,7 @@ def run(dist):
     try: areas = json.loads((dist / 'areas.json').read_text('utf-8')).get('areas', [])
     except Exception: pass
     done = {}; special = {'dartboard': lambda: dartboard(dist), 'qa': lambda: qa(dist), 'email': lambda: email(dist), 'research': lambda: evidence(dist, 'research'), 'docs': lambda: evidence(dist, 'docs'),
-               'kissed-frogs': lambda: kissed_frogs(dist), 'ebooks': lambda: ebooks(dist)}
+               'kissed-frogs': lambda: kissed_frogs(dist), 'ebooks': lambda: ebooks(dist), 'parcels': lambda: parcels(dist)}
     for k, fn in special.items():
         try: j = fn()
         except Exception as e: j = None; print('graph_data', k, 'failed', e)
