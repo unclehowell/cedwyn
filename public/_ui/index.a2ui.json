@@ -1,0 +1,273 @@
+[
+ {
+  "version": "v0.9",
+  "createSurface": {
+   "surfaceId": "kissed-frogs-index",
+   "catalogId": "https://cedwyn.bucklerfamily.estate/_cedwyn/a2ui/catalog.json"
+  }
+ },
+ {
+  "version": "v0.9",
+  "updateComponents": {
+   "surfaceId": "kissed-frogs-index",
+   "components": [
+    {
+     "id": "root",
+     "component": "Page",
+     "title": {
+      "path": "/copy/title"
+     },
+     "description": {
+      "path": "/copy/description"
+     },
+     "css": [
+      "kf.css?v=2.0.0"
+     ],
+     "headScripts": [
+      {
+       "src": "/_cedwyn/ghf/ghf-lang.js?v=2.1.4c",
+       "defer": true
+      },
+      {
+       "src": "/_cedwyn/ghf/ghf-boot.js?v=2.1.8"
+      }
+     ],
+     "js": [
+      "kf.js?v=2.0.0"
+     ],
+     "bodyClass": "kf",
+     "mainClass": "kfw",
+     "children": [
+      "h1",
+      "hero",
+      "lede",
+      "filters",
+      "cards",
+      "scopetest",
+      "retained",
+      "note",
+      "links",
+      "meta"
+     ]
+    },
+    {
+     "id": "h1",
+     "component": "HiddenHeading",
+     "text": "Kissed Frogs"
+    },
+    {
+     "id": "hero",
+     "component": "Figure",
+     "src": "img/kissed-frog.svg",
+     "alt": {
+      "path": "/copy/image_alt"
+     },
+     "width": 240,
+     "height": 240,
+     "className": "kf-hero"
+    },
+    {
+     "id": "lede",
+     "component": "Text",
+     "text": {
+      "path": "/copy/lede"
+     },
+     "className": "kf-lede"
+    },
+    {
+     "id": "filters",
+     "component": "FilterBar",
+     "className": "kf-f",
+     "countId": "kf-n",
+     "countClass": "kf-muted",
+     "countText": {
+      "path": "/copy/count_text"
+     },
+     "fields": [
+      {
+       "kind": "search",
+       "id": "kf-q",
+       "label": {
+        "path": "/copy/search_label"
+       },
+       "placeholder": {
+        "path": "/copy/search_placeholder"
+       }
+      },
+      {
+       "kind": "select",
+       "id": "kf-s",
+       "label": {
+        "path": "/copy/status_label"
+       },
+       "allLabel": {
+        "path": "/copy/all"
+       },
+       "options": {
+        "path": "/facets/status"
+       }
+      },
+      {
+       "kind": "select",
+       "id": "kf-o",
+       "label": {
+        "path": "/copy/origin_label"
+       },
+       "allLabel": {
+        "path": "/copy/all"
+       },
+       "options": {
+        "path": "/facets/origin"
+       }
+      }
+     ]
+    },
+    {
+     "id": "cards",
+     "component": "CardList",
+     "domId": "kf-b",
+     "className": "kf-cards",
+     "children": {
+      "path": "/frogs",
+      "componentId": "card"
+     }
+    },
+    {
+     "id": "card",
+     "component": "Card",
+     "className": "kf-card",
+     "href": {
+      "path": "href"
+     },
+     "kicker": {
+      "path": "id"
+     },
+     "title": {
+      "path": "title"
+     },
+     "meta": [
+      {
+       "label": "Date",
+       "value": {
+        "path": "date_display"
+       }
+      },
+      {
+       "label": "Place",
+       "value": {
+        "path": "place_text"
+       }
+      },
+      {
+       "label": "Source",
+       "value": {
+        "path": "source_text"
+       }
+      }
+     ],
+     "bodyLabel": {
+      "path": "/copy/why_label"
+     },
+     "body": {
+      "path": "why"
+     },
+     "badge": {
+      "path": "status"
+     },
+     "badgeClass": {
+      "path": "status_class"
+     },
+     "foot": {
+      "path": "origin_label"
+     },
+     "attrs": {
+      "st": {
+       "path": "status"
+      },
+      "or": {
+       "path": "origin"
+      }
+     }
+    },
+    {
+     "id": "scopetest",
+     "component": "Details",
+     "className": "kf-box",
+     "summary": {
+      "path": "/copy/scope_test_label"
+     },
+     "children": [
+      "scopetest-t"
+     ]
+    },
+    {
+     "id": "scopetest-t",
+     "component": "Text",
+     "text": {
+      "path": "/copy/scope_test"
+     }
+    },
+    {
+     "id": "retained",
+     "component": "Section",
+     "className": "kf-box2",
+     "heading": {
+      "path": "/copy/retained_heading"
+     },
+     "list": true,
+     "listClass": "kf-in",
+     "children": {
+      "path": "/retained",
+      "componentId": "ret"
+     }
+    },
+    {
+     "id": "ret",
+     "component": "ListItem",
+     "lead": {
+      "path": "title"
+     },
+     "text": {
+      "path": "why"
+     }
+    },
+    {
+     "id": "note",
+     "component": "Text",
+     "text": {
+      "path": "/copy/scope_note"
+     },
+     "className": "kf-scope"
+    },
+    {
+     "id": "links",
+     "component": "Inline",
+     "className": "kf-scope",
+     "separator": " · ",
+     "children": {
+      "path": "/copy/register_links",
+      "componentId": "reglink"
+     }
+    },
+    {
+     "id": "reglink",
+     "component": "Link",
+     "href": {
+      "path": "href"
+     },
+     "text": {
+      "path": "text"
+     }
+    },
+    {
+     "id": "meta",
+     "component": "Text",
+     "text": {
+      "path": "/copy/meta_text"
+     },
+     "className": "kf-muted"
+    }
+   ]
+  }
+ }
+]

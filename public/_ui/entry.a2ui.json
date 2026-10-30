@@ -1,0 +1,227 @@
+[
+ {
+  "version": "v0.9",
+  "createSurface": {
+   "surfaceId": "kissed-frogs-entry",
+   "catalogId": "https://cedwyn.bucklerfamily.estate/_cedwyn/a2ui/catalog.json"
+  }
+ },
+ {
+  "version": "v0.9",
+  "updateComponents": {
+   "surfaceId": "kissed-frogs-entry",
+   "components": [
+    {
+     "id": "root",
+     "component": "Page",
+     "title": {
+      "fmt": "{id} · {t} · Kissed Frogs · Cedwyn",
+      "args": {
+       "id": {
+        "path": "/item/id"
+       },
+       "t": {
+        "path": "/item/title"
+       }
+      }
+     },
+     "description": {
+      "path": "/item/why"
+     },
+     "css": [
+      "../kf.css?v=2.0.0"
+     ],
+     "headScripts": [
+      {
+       "src": "/_cedwyn/ghf/ghf-lang.js?v=2.1.4c",
+       "defer": true
+      },
+      {
+       "src": "/_cedwyn/ghf/ghf-boot.js?v=2.1.8"
+      }
+     ],
+     "bodyClass": "kf",
+     "mainClass": "kfw",
+     "children": [
+      "crumb",
+      "h1",
+      "tags",
+      "why",
+      "detail",
+      "src",
+      "origin",
+      "see",
+      "scope",
+      "back"
+     ]
+    },
+    {
+     "id": "crumb",
+     "component": "Inline",
+     "className": "kf-crumb",
+     "separator": " › ",
+     "children": [
+      "crumb-a",
+      "crumb-id"
+     ]
+    },
+    {
+     "id": "crumb-a",
+     "component": "Link",
+     "href": "../",
+     "text": "Kissed Frogs"
+    },
+    {
+     "id": "crumb-id",
+     "component": "Run",
+     "text": {
+      "path": "/item/id"
+     }
+    },
+    {
+     "id": "h1",
+     "component": "Heading",
+     "level": 1,
+     "className": "kf-h1e",
+     "text": {
+      "path": "/item/title"
+     }
+    },
+    {
+     "id": "tags",
+     "component": "Row",
+     "className": "kf-tags",
+     "children": [
+      "badge",
+      "metaspan"
+     ]
+    },
+    {
+     "id": "badge",
+     "component": "Badge",
+     "className": {
+      "path": "/item/status_class"
+     },
+     "text": {
+      "path": "/item/status"
+     }
+    },
+    {
+     "id": "metaspan",
+     "component": "Span",
+     "className": "kf-meta",
+     "text": {
+      "fmt": "{d} · {p}",
+      "args": {
+       "d": {
+        "path": "/item/date_display"
+       },
+       "p": {
+        "path": "/item/place_text"
+       }
+      }
+     }
+    },
+    {
+     "id": "why",
+     "component": "Text",
+     "className": "kf-why",
+     "label": "Why it is not ours",
+     "text": {
+      "path": "/item/why"
+     }
+    },
+    {
+     "id": "detail",
+     "component": "DetailSections",
+     "listClass": "kf-rec",
+     "sections": {
+      "path": "/item/detail"
+     },
+     "termClass": "kf-dl"
+    },
+    {
+     "id": "src",
+     "component": "Section",
+     "className": "kf-srcs",
+     "heading": "Sources",
+     "list": true,
+     "listClass": "kf-src",
+     "children": {
+      "path": "/item/sources",
+      "componentId": "src-li"
+     }
+    },
+    {
+     "id": "src-li",
+     "component": "ListItem",
+     "text": {
+      "path": "text"
+     },
+     "href": {
+      "path": "href"
+     }
+    },
+    {
+     "id": "origin",
+     "component": "RichParas",
+     "className": "kf-origin",
+     "paras": {
+      "path": "/item/notes"
+     }
+    },
+    {
+     "id": "see",
+     "component": "Section",
+     "className": "kf-see",
+     "heading": "See also",
+     "list": true,
+     "listClass": "kf-src",
+     "children": {
+      "path": "/item/related_links",
+      "componentId": "see-li"
+     }
+    },
+    {
+     "id": "see-li",
+     "component": "ListItem",
+     "text": {
+      "path": "text"
+     },
+     "href": {
+      "path": "href"
+     }
+    },
+    {
+     "id": "scope",
+     "component": "Text",
+     "className": "kf-scope",
+     "text": "Exclusion means “not this property” or “not in scope”, not that the source is false, and not evidence of wrongdoing by itself."
+    },
+    {
+     "id": "back",
+     "component": "Inline",
+     "className": "kf-muted",
+     "separator": " · ",
+     "children": [
+      "back-a",
+      "back-m"
+     ]
+    },
+    {
+     "id": "back-a",
+     "component": "Link",
+     "href": "../",
+     "text": "Back to the register"
+    },
+    {
+     "id": "back-m",
+     "component": "Run",
+     "text": {
+      "path": "/copy/meta_text"
+     }
+    }
+   ]
+  }
+ }
+]
