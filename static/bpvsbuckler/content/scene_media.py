@@ -22,7 +22,7 @@ Rules
 - Archive pictures are added only when their date falls inside the scene's
   own window (day-level for dated scenes, plus up to 14 days for press
   reports), a year-only picture goes to the single closest scene of that year,
-  and no picture is borrowed by an earlier or later scene.
+  and no picture is repeated across overlapping scene periods. Every dated archive item is assigned to the single best-matching scene.
 - Undated "Stating the obvious" and "Today" scenes show only curated pictures,
   and those must still be dated.
 """
@@ -202,11 +202,11 @@ def attach_media(scenes, strict=True):
             cands.append((dist, span, sc))
         if not cands: continue
         cands.sort(key=lambda c: (c[0], c[1]))
-        if prec == 'year':
-            cands = cands[:1]
-        else:
-            best = cands[0][0]
-            cands = [c for c in cands if c[0] <= best + 1][:3]
+        # A single archive item belongs to one scene only. Broad periods may
+        # overlap the image date, but the shortest, nearest period wins; never
+        # splash one thumbnail across unrelated events merely because their
+        # date windows overlap.
+        cands = cands[:1]
         for _, _, sc in cands:
             if item in used_items[sc['id']]: continue
             extra = [m for m in sc['media'] if m['source'] == 'archive']
@@ -217,7 +217,16 @@ def attach_media(scenes, strict=True):
             used_items[sc['id']].add(item)
             sc['media'].append({'url': row['url'], 'title': row['title'], 'date': row['date'], 'released': row.get('released'),
                                 'item': item, 'source': 'archive', 'basis': row['basis']})
-    # final independent re-check of everything placed
+    # Independent re-check: archive items must never be duplicated across scenes.
+    archive_owner = {}
+    for sc in scenes:
+        for m in sc['media']:
+            if m['source'] != 'archive': continue
+            previous = archive_owner.get(m['item'])
+            if previous and previous != sc['id']:
+                errors.append('archive item %s appears on both %s and %s' % (m['item'], previous, sc['id']))
+            archive_owner[m['item']] = sc['id']
+    # Final independent date re-check of everything placed.
     for sc in scenes:
         period = periods[sc['id']]
         for m in sc['media']:
