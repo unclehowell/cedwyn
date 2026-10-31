@@ -21,7 +21,8 @@ VERSION = '1.3.1'
 # 1.3.1 (31 Oct 2026, Sion 20:51 GMT, m:7da01f30: 'It says bnb and you have a photo of the stables'): /argentina/ card pictures
 # match their cards. Hero = NFA-0157 (the two-storey house; NFA-0094 'The Long Farmhouse' reads as a stable range and moves to the
 # hl0 strip); villa card = NFA-0035 (the whole house, was NFA-0107, an aerial plan); venue card images carry their title as alt.
-# Multi-cycle task: HubSpot 536846217463. - Sion's Tab agent
+# B&B cottage card = GEN-0001, a new painted guest cottage on the Patagonian steppe with breakfast at the door (was NFA-0141 'The
+# Long Cottage', a long range with stable doors). Multi-cycle task: HubSpot 536846217463. - Sion's Tab agent
 # 1.2.1 (27 Oct 2026, Sion 11:34 GMT): /argentina/ pictures purged of four pieces that are not the farm (NFA-0139, NFA-0049,
 # NFA-0103, NFA-0081); NFA-0015 replaced by REC-0001, a line drawing from the 1974 measured survey (see ARG_REC). - Sion's Tab agent
 # 1.2.0 (27 Oct 2026, Sion 09:45 GMT): the in-content pictures of /wales/ and /argentina/ are thumbnails; a tap opens the shared
@@ -751,6 +752,7 @@ ARG_NFT = {
     'NFA-0147': ('The Cottage Window', '/nft-art/art/nfa-0147-v0.0.2.webp', '/nft-art/art/nfa-0147-v0.0.2-t.webp', 1200, 1200),
     'NFA-0148': ('The White Door', '/nft-art/art/nfa-0148-v0.0.2.webp', '/nft-art/art/nfa-0148-v0.0.2-t.webp', 1200, 1200),
     'NFA-0149': ('The Hall Door', '/nft-art/art/nfa-0149-v0.0.2.webp', '/nft-art/art/nfa-0149-v0.0.2-t.webp', 1200, 1200),
+    'GEN-0001': ('A guest cottage on the steppe, breakfast laid at the open door', '/_cedwyn/halves/img/patagonia-bnb-cottage.webp', '/_cedwyn/halves/img/patagonia-bnb-cottage-t.webp', 1200, 800),
     'REC-0001': ('Tŷ Mawr, reconstruction from the 1974 measured survey', '/_cedwyn/halves/img/ty-mawr-1974-reconstruction.webp', '/_cedwyn/halves/img/ty-mawr-1974-reconstruction-t.webp', 1200, 1200),
 }
 # Survey drawings shown among the pieces (27 Oct 2026, Sion 11:34 GMT: four pieces that are not the farm came out, NFA-0139,
@@ -763,7 +765,7 @@ ARG_REC = {
                  'es': 'Tŷ Mawr: reconstrucción a partir del levantamiento medido de 1974; altura del tejado estimada'},
 }
 ARG_NFT_HERO = 'NFA-0157'
-ARG_NFT_VENUE = {'room': 'NFA-0059', 'cottage': 'NFA-0141', 'villa': 'NFA-0035', 'wed': 'NFA-0100'}
+ARG_NFT_VENUE = {'room': 'NFA-0059', 'cottage': 'GEN-0001', 'villa': 'NFA-0035', 'wed': 'NFA-0100'}
 ARG_NFT_SLOTS = {
     'hl0': ['NFA-0094', 'NFA-0035', 'NFA-0026', 'NFA-0076', 'NFA-0032'],
     'hl1': ['NFA-0011', 'NFA-0046', 'NFA-0111', 'NFA-0112', 'NFA-0137', 'NFA-0138'],
