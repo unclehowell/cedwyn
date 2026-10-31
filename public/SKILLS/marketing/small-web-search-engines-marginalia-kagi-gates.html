@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Small-web search engines (Marginalia, Kagi Small Web): a free discovery route for a text-heavy heritage site - and its gates · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Small-web search engines (Marginalia, Kagi Small Web): a free discovery route for a text-heavy heritage site - and its gates"><link rel="alternate" type="text/markdown" href="small-web-search-engines-marginalia-kagi-gates.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Small-web search engines (Marginalia, Kagi Small Web): a free discovery route for a text-heavy heritage site - and its gates</h1>
+<p>Harvested 2026-10-31 (skills harvest). Checked first: 'marginalia', 'indieweb', 'webring', 'small web' (1 unrelated hit) 0 skill files. Different from search-console / IndexNow / Bing skills (big engines) and from AI-visibility skills.</p>
+<h2>Facts (read 31 Oct 2026)</h2>
+<ul>
+<li><strong>Marginalia Search</strong> (independent, open-source AGPL engine favouring text-heavy, non-commercial pages). Live check today: <code>marginalia-search.com -&gt; **"Unknown Domain. This website is not known to the search engine."** Route in: fork github.com, add the domain to</code>sites.txt`, open a pull request; "the site will be added to the search engine when the" next crawl runs (repo page + search snippet). 517 forks / 1,071 commits = this is the normal, used path. Marginalia penalises heavy JavaScript/tracking; plain HTML article pages rank best (practitioner consensus, not measured here).</li>
+<li><strong>Kagi Small Web</strong> (blog.kagi.com + github.com README, read): curated feed list surfaced inside Kagi results, the Small Web site, an RSS feed and the Kagi news-enrichment API. List is ~tens of thousands of feeds (smallweb.txt). <strong>Rules</strong>: personal blogs only (no multi-author); English only; a post within 12 months; <strong>no ads or undisclosed affiliate links; no popups (newsletter signup, cookie selection etc.)</strong>; <strong>no auto-generated / LLM-generated content</strong> - "content must be heavily guided by and reviewed by humans and done at human scale", heavier LLM use should be acknowledged; <strong>if submitting your own site you must add at least 2 other sites that are not yours</strong> in the same commit. Small YouTube: channel must post <strong>no more than twice a week</strong> and have &lt;100k subscribers.</li>
+<li>Traffic size: no source with visitor numbers for either engine was found -&gt; expect small, high-intent numbers; treat as a long-tail, not a fix for the "too few visitors" problem.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Marginalia (fits now)</strong>: one PR adding <code>cedwyn.bucklerfamily.estate</code> to sites.txt (sorted, one line, nothing else). Before submitting, make sure the article pages render their text without JS and robots.txt does not block unknown crawlers. Check <code>/site/&lt;domain&gt;</code> weekly for "known" status and document count.</li>
+<li><strong>Kagi Small Web (gate - mostly NOT eligible today)</strong>: the shop site fails three rules: (a) any signup slide-in/popup on the page (check what is live) = popup; (b) much text is agent-drafted (would need human review + an acknowledgement line); (c) it is a multi-section estate site, not a personal blog. Only an owner-written personal blog with an RSS feed, no signup popup, could qualify - and the submitter must add 2 other genuine small blogs (e.g. Welsh local-history bloggers already known to us) at the same time.</li>
+<li><strong>Small YouTube (NOT eligible)</strong>: the Cedwyn channel's daily Shorts schedule (1-2/day) breaks the &lt;=2 posts/week rule. Do not submit.</li>
+<li>Never game either list (no keyword pages, no auto-generated posts); both remove sites on report.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>PROPOSAL (owner GO; it is a public PR from the connected GitHub account to a third-party repo, and today's rule is contact no one): Marginalia sites.txt PR for cedwyn.bucklerfamily.estate. Zero cost, one line.</li>
+<li>Pre-check with existing tools (no install): fetch 5 top article pages with curl, confirm body text present in raw HTML; confirm robots.txt allows <code>search.marginalia.nu</code> / generic bots.</li>
+<li>Kagi: record as GATED; reopen only if a human-written personal blog with RSS and no popup exists.</li>
+<li>Measure: Cloudflare referrer <code>marginalia</code> / <code>kagi</code> counts monthly; kill after 3 months with 0 referrals.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>marginalia-search.com (read live 31 Oct 2026: Unknown Domain)</li>
+<li>github.com (read: forks/commits; PR method via snippet)</li>
+<li>blog.kagi.com (read)</li>
+<li>raw.githubusercontent.com (read: rules)</li>
+<li>raw.githubusercontent.com (read: list size; bucklerfamily not listed)</li>
+</ul><p class="raw">Raw Markdown: <a href="small-web-search-engines-marginalia-kagi-gates.md">small-web-search-engines-marginalia-kagi-gates.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -11,7 +11,7 @@ Topic: a repeatable pre-listing accessibility gate for each Cedwyn EPUB that cos
 - **Testimony with numbers:** none found from a small publisher this run. The case rests on the tools' documented behaviour, not on sales figures.
 
 ## The pre-listing gate (per EPUB, about 15 minutes)
-1. **Box pre-check (stdlib Python, no install, read-only):** open the EPUB with `zipfile` and count:
+1. **Box pre-check (stdlib Python, no install, read-only):** run `tools/epub_lint.py` first (packaging). Then open the EPUB with `zipfile` and count, which could be added to epub_lint as a PROPOSAL:
    - OPF `dc:language`;
    - `<html>` files with no `lang`/`xml:lang`;
    - `<img>` with no `alt`;

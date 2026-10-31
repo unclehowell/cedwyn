@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Text-to-speech permission for UK and Argentine buyers: ONIX List 145 code 05, and what Kobo Writing Life actually documents · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Text-to-speech permission for UK and Argentine buyers: ONIX List 145 code 05, and what Kobo Writing Life actually documents"><link rel="alternate" type="text/markdown" href="tts-permission-onix-list145-code05-kobo-writing-life.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Text-to-speech permission for UK and Argentine buyers: ONIX List 145 code 05, and what Kobo Writing Life actually documents</h1>
+<p>Harvested 31 Oct 2026 (skills harvest). It follows <code>read-aloud-kobo-apple-books-mixed-language-epub-tts-switch.md</code>, which left two gaps: where the KWL switch sits, and the exact ONIX code. This file closes both as far as the primary pages allow. Proposals only; nothing was listed or changed.</p>
+<h2>What the sources show (read 31 Oct 2026)</h2>
+<ul>
+<li><strong>Kobo's rule (help.kobo.com web reader page, read in the earlier run):</strong> text-to-speech (TTS) is fully on in the EU. Elsewhere it works only "where the publisher has chosen to enable this feature". So a UK or Argentine buyer hears our book read aloud only if we say yes somewhere.</li>
+<li><strong>The KWL Help Centre (searched through its public article index, 31 Oct):</strong> a search for "text-to-speech" returns 15 articles. Only two talk about TTS: "FAQ" (updated 18 Sep 2026) and "Making Your Book Accessible to Everyone" (23 Jul 2026).</li>
+<li>The FAQ explains TTS: on-demand audio from the device's own voices (iOS, Android), not saved, word highlighting, works offline, and can read image descriptions and footnotes. Kobo frames it as EAA compliance, and states TTS and audiobooks "serve different needs".</li>
+<li><strong>Neither article names a per-title TTS toggle or an opt-in/opt-out step.</strong> The FAQ does name opt-outs for other things (future AI recaps; it states annotation export can't be opted out of), so the silence on TTS is notable.</li>
+<li>"Setting up a New eBook" lists the Rights and Distribution step: DRM on/off per book. TTS isn't mentioned there either.</li>
+<li>The accessibility article's practical advice: "If your book contains multiple languages, select the primary language in the metadata", plus clean formatting. TTS quality "depends on the reader's device and voice settings".</li>
+<li><strong>Conclusion:</strong> the KWL dashboard toggle location is still <strong>not checked</strong>. The help centre doesn't document one, and the dashboard needs a login we don't have. The only reliable route is to ask KWL Author Support in writing (draft below), or to look in the dashboard when an account exists.</li>
+<li><strong>ONIX, the trade-feed route (EDItEUR code lists, read):</strong></li>
+<li>List 145 "Usage type", code <strong>05 = "Text to speech: 'Read aloud' with text to speech functionality"</strong>. Code 04 = share across devices; 06 = lend.</li>
+<li>List 146 "Usage status": <strong>01 = Permitted unlimited</strong>, 02 = Permitted subject to limit, 03 = Prohibited.</li>
+<li>In ONIX 3.0 these sit in <code>&lt;EpubUsageConstraint&gt;</code> with <code>&lt;EpubUsageType&gt;</code> and <code>&lt;EpubUsageStatus&gt;</code>.</li>
+<li>This applies only if we ever feed retailers ONIX ourselves, or a distributor shows a TTS field that maps to it (StreetLib, PublishDrive, Google Play's feed). Which distributors expose that field was <strong>not checked</strong>.</li>
+</ul>
+<p>The snippet to ask for (or to check in a distributor's export):</p>
+<pre><code class="language-xml">&lt;EpubUsageConstraint&gt;
+  &lt;EpubUsageType&gt;05&lt;/EpubUsageType&gt;   &lt;!-- List 145: Text to speech --&gt;
+  &lt;EpubUsageStatus&gt;01&lt;/EpubUsageStatus&gt; &lt;!-- List 146: Permitted unlimited --&gt;
+&lt;/EpubUsageConstraint&gt;
+</code></pre>
+<h2>How to run it</h2>
+<ol>
+<li>Fix the text first. TTS reads what is written, so do this before saying yes. Put the language on every page (<code>lang</code> on <code>&lt;html&gt;</code>), wrap Welsh terms in <code>lang="cy"</code>, and give images alt text. See <code>welsh-cy-language-tags-epub-onix-wel-kdp.md</code> and <code>epub-accessibility-check-no-install-ace-app-pubcoder-thorium.md</code>.</li>
+<li><strong>KWL direct:</strong> at upload, look in Rights and Distribution and in "Maximize your Sales" (where the Kobo Plus toggle lives) for any TTS or accessibility switch. If there isn't one, send Author Support one short question (draft below). Record the answer in this file.</li>
+<li><strong>Via a distributor:</strong> before uploading, check its metadata form for "text-to-speech" or "read aloud". Set it to permitted. Ask for (or look at) the ONIX export to confirm List 145 code 05 with status 01.</li>
+<li><strong>Verify like a buyer.</strong> Once listed, open the book in the Kobo web reader from a UK connection and try Read aloud. Note whether the option shows. That one test is the evidence; the settings alone aren't.</li>
+<li>Only after step 4 passes, add a "read-aloud ready" line to the shop page.</li>
+</ol>
+<p>Draft for KWL Author Support (the owner sends it, Tab never does):</p>
+<blockquote>
+<p>"Hello, I publish through Kobo Writing Life from the UK. Your web reader help states text-to-speech outside the EU works only where the publisher has enabled it. Where in the KWL dashboard do I enable text-to-speech for my titles, so buyers in the UK and Argentina can use Read aloud? Thank you."</p>
+</blockquote>
+<h2>Numbers and honest limits</h2>
+<ul>
+<li>There's no sales evidence that TTS permission lifts sales. The case for it is access: Kobo itself presents TTS as an accessibility feature for readers with visual impairments, dyslexia or ADHD, and for language learners.</li>
+<li>Status: the KWL toggle is not documented (help-centre search, 31 Oct 2026). The ONIX codes are confirmed on EDItEUR's own pages.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Who it helps:</strong> the trilingual audience. UK readers and Spanish-reading families in Chubut are outside the EU, so without our yes Kobo's Read aloud stays off for them. Language learners reading "La visita" alongside the English edition get read-aloud as a pronunciation aid.</li>
+<li><strong>Proposal 1 (no spend):</strong> complete step 1 for all three EPUBs at the next rebuild (already proposed in the Welsh-tags file; this adds the TTS reason).</li>
+<li><strong>Proposal 2 (no spend, owner sends):</strong> when the owner opens a KWL account for La visita or the English books, he sends the support question above. Paste the reply here.</li>
+<li><strong>Proposal 3:</strong> if StreetLib Basic is used for the Spanish-only stores, check its TTS field during setup and confirm 05/01 in the export.</li>
+<li><strong>Shop copy:</strong> the line "Works with read-aloud on Kobo and Apple Books" goes on the page only after the UK web-reader test passes. No claim before evidence.</li>
+<li>Nothing was sent to Kobo or anyone else.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>ns.editeur.org (List 145; code 05 Text to speech; read)</li>
+<li>ns.editeur.org (List 146; 01/02/03; read)</li>
+<li>kobowritinglife.zendesk.com (TTS section, updated 18 Sep 2026; read via archive copy)</li>
+<li>kobowritinglife.zendesk.com (23 Jul 2026; read via the help centre's public article feed)</li>
+<li>kobowritinglife.zendesk.com (Setting up a New eBook: Rights and Distribution / DRM; read)</li>
+<li>help.kobo.com (TTS outside the EU only where the publisher enabled it; read in the previous run)</li>
+</ul><p class="raw">Raw Markdown: <a href="tts-permission-onix-list145-code05-kobo-writing-life.md">tts-permission-onix-list145-code05-kobo-writing-life.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

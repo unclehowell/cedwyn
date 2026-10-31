@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>BASE and CORE open-access aggregators for a Zenodo copy of the free edition (GATE) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: BASE and CORE open-access aggregators for a Zenodo copy of the free edition (GATE)"><link rel="alternate" type="text/markdown" href="base-core-open-access-aggregators-zenodo-copy-gate.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>BASE and CORE open-access aggregators for a Zenodo copy of the free edition (GATE)</h1>
+<p>Checked 31 Oct 2026. Read directly: the CORE Data Provider's Guide (sections 3.1.1-3.3.2, 4.1-4.3). The BASE site sits behind a bot check (Anubis) from this machine, so BASE facts come from its own pages as shown in search previews, plus BASE's EOSC 2022 poster on Zenodo (preview). Builds on zenodo-doi-scholar-argentine-repositories.md and the Knowledge Commons vs Zenodo skill; it does not repeat them.</p>
+<h2>What the sources say</h2>
+<ul>
+<li><strong>BASE</strong> (Bielefeld University Library): "more than 480 million records from more than 12,200 content providers", about 60% with free full text (BASE About page, preview). It indexes "the metadata of all types of scholarly resources ... that have an OAI interface" (BASE EOSC 2022 poster, preview), and it is itself an OAI service. A content provider is a <em>repository</em> with an OAI-PMH interface; individuals do not submit items.</li>
+<li><strong>CORE</strong> (Open University / Jisc): it aggregates from thousands of data providers "including ZENODO, PubMed Central" (Knoth et al. 2023, <em>Scientific Data</em>, preview; PMC blocks this machine). Registering as a provider (read) needs <strong>an OAI-PMH base URL that passes the validator</strong>, Dublin Core metadata at minimum (RIOXX v3 recommended), and an <strong>institutional email</strong>. The full text must sit <strong>on the same domain</strong> as the OAI endpoint; subdomains or other domains need an exception by contact. Indexing goes into a queue, its time "can vary", and the contact is emailed when it finishes, after which the Dashboard can be claimed.</li>
+</ul>
+<h2>What that means for us</h2>
+<ol>
+<li><strong>We do not register anything.</strong> cedwyn.bucklerfamily.estate is a static site with no OAI-PMH endpoint and no institutional email. CORE's rules (validator, institutional contact, same-domain full text) shut out a one-site publisher. Building an OAI-PMH endpoint for a handful of PDFs is not worth it.</li>
+<li><strong>The aggregators come free with a Zenodo deposit.</strong> Zenodo exposes OAI-PMH (see the Zenodo skill). CORE lists Zenodo as a source (Knoth 2023), and BASE harvests OAI repositories. <strong>Whether BASE harvests Zenodo is likely but not checked</strong>, because BASE's source list is behind the bot check. One deposit gives a DOI plus listings in Zenodo, OpenAIRE, CORE and probably BASE, where academic searchers and library discovery layers look.</li>
+<li><strong>Metadata decides findability there.</strong> Aggregators show what the deposit states: title, creators (the organisation name, per the Zenodo skill), description, keywords, language, licence and related identifiers. Put the place-name variants (Llandough / Llandochau, Leckwith / Lecwydd, Great House / Tŷ Mawr) in keywords and the description, plus an "is supplemented by" or "is identical to" link to the canonical /ebooks/ page. No shop wording, no prices.</li>
+<li><strong>Timing:</strong> neither source gives a number. Measure it: search core.ac.uk and base-search.net for the exact title at week 2, 4 and 8 after deposit, and note which listed it and when.</li>
+</ol>
+<h2>How to do it (once a Zenodo deposit exists)</h2>
+<ol>
+<li>Deposit the free edition only, never the paid e-book, as a single canonical record (one DOI per work). Use a CC licence chosen by the owner, and fill keywords and related identifiers as in point 3 above.</li>
+<li>Do nothing at BASE or CORE. Do not submit, register or email them.</li>
+<li>At weeks 2, 4 and 8, search both by exact title and by DOI and log the result in the project workspace If CORE is missing after 8 weeks, look in CORE for other Zenodo records of the same month to see whether harvesting has lagged in general.</li>
+<li>Add the aggregator listing URLs to the evidence or research page's "also available at" line, as plain text in line with the no-outbound-links rule.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Gate:</strong> the Zenodo deposit itself is still the project lead's decision (an account plus a CC licence; see the Zenodo skill). This skill adds <strong>no new action and no account</strong>. It only states that BASE/CORE listing follows from a deposit, how to word the metadata so aggregator searchers find it, and how to measure it.</li>
+<li>Effect on sales is expected to be small and indirect. The audience is academics and librarians who find a free, citable copy, and the deposit's description can name /ebooks/ as the home of later editions.</li>
+<li><strong>Kill rule:</strong> if neither aggregator shows the record by week 8 and Zenodo views stay under 50, stop checking.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>core.ac.uk (OAI-PMH validator, institutional email, same-domain full text, indexing queue; read 31 Oct 2026)</li>
+<li>pmc.ncbi.nlm.nih.gov (Knoth et al. 2023, CORE sources include Zenodo; search preview only, PMC returned 403)</li>
+<li>base-search.net (480M+ records, 12,200+ providers, about 60% full text; preview only, bot check)</li>
+<li>zenodo.org (BASE EOSC Symposium 2022 poster: indexes OAI-interface sources; preview)</li>
+<li>oai.base-search.net (BASE is itself an OAI-PMH service; preview)</li>
+</ul><p class="raw">Raw Markdown: <a href="base-core-open-access-aggregators-zenodo-copy-gate.md">base-core-open-access-aggregators-zenodo-copy-gate.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

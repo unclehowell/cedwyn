@@ -110,7 +110,7 @@ Details: [Data architecture](data.md).
 **Inputs:** full-text book search; the live site; a keyword ledger that retires the most productive keywords each cycle  
 **Outputs:** rows in the research findings table (book, exact sentence, citation)  
 **Areas it touches:** /research/ (section branch research, live after the sections workflow moves the pin)  
-**Guardrails:** exact quotation with the reference; inference labelled as inference; the two Llandoughs and same-name farms checked before a passage is used; significant passages checked on the page itself before anyone is told; one worker at a time (duplicate check by goal prefix).
+**Guardrails:** exact quotation with the reference; inference labelled as inference; the two Llandoughs and same-name farms checked before a passage is used; significant passages checked on the page itself before anyone is told; rows reach the main register only by pull request, with the whole file passing the repository's agent lint; one worker at a time (duplicate check by goal prefix).
   Runner detail: [Book search flywheel](../FLYWHEELS/book-flywheel.md)
 
 <a id="first-seen"></a>
@@ -237,10 +237,10 @@ Details: [Data architecture](data.md).
 
 **Cadence:** every 6 hours  
 **What it does:** Takes the next item in the re-render queue or the next unfilled frame of the chronology and produces one short scene: one dated moment, who was there, what was most likely said, with Welsh spoken where the period calls for it and subtitles.  
-**Inputs:** the script and scene list; the re-render queue; the render budget  
+**Inputs:** the scene and shot packages in the public film-studio repository; the script and scene list; the film's own daily budget  
 **Outputs:** one scene with subtitles; the next door opened on the documentary page; the script kept ten frames ahead  
 **Areas it touches:** /documentary/ (also /movie/ and /documentry)  
-**Guardrails:** strict date order; no narrator and no fourth wall from scene 3; reconstruction only; no likeness of real family members; a blocking pre-publish quality gate: 24 fps end to end, cut from original renders, two-pass encode, -16 LUFS, frames of every talking shot looked at; spend only within the film's own daily budget; waits and skips are logged as problems; one worker at a time (duplicate check by goal prefix).
+**Guardrails:** strict date order; no narrator and no fourth wall from scene 3; reconstruction only; no likeness of real family members; a blocking pre-publish quality gate: 24 fps end to end, cut from original renders, two-pass encode, -16 LUFS, frames of every talking shot looked at; spend only within the film's own daily budget; waits and skips are logged as problems; one unit at a time: take the next unit not done, do that step, store, update the manifest, commit, then pick again; media are repository release files with content ids; one worker at a time (duplicate check by goal prefix).
   Runner detail: [Cedwyn film — scene run](../FLYWHEELS/movie.md)
 
 <a id="agent-library"></a>

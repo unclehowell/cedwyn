@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Google Play Books: local-currency prices for MXN/ARS, fixed-price countries, and read-aloud (no publisher switch) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Google Play Books: local-currency prices for MXN/ARS, fixed-price countries, and read-aloud (no publisher switch)"><link rel="alternate" type="text/markdown" href="google-play-books-local-prices-ars-mxn-fixed-price-read-aloud.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Google Play Books: local-currency prices for MXN/ARS, fixed-price countries, and read-aloud (no publisher switch)</h1>
+<p>Harvested 31 Oct 2026 (skills harvest). It adds to <code>google-play-books-partner-center-ebooks.md</code>, which covers the 70% share and signup. This file covers prices per currency, which countries a UK publisher can actually sell into, and read-aloud. Proposals only: nothing was listed or priced.</p>
+<h2>What the pages say (read 31 Oct 2026)</h2>
+<ul>
+<li><strong>Countries table</strong> (support.google.com, read). The <em>Purchases</em> column states where buyers can buy; <em>Seller sign-ups</em> states where publishers can open accounts.</li>
+<li><strong>United Kingdom:</strong> GBP. Sign-up, promo codes, auto-narration, purchases and payments are all ✔. So a UK publisher qualifies.</li>
+<li><strong>Mexico:</strong> MXN, all ✔. <strong>Spain:</strong> EUR, all ✔. <strong>United States:</strong> USD, all ✔.</li>
+<li><strong>Argentina:</strong> buyers ✔, in <strong>ARS</strong>. Seller sign-up is e-book only, and payouts there are USD (★).</li>
+<li><strong>Chile (CLP), Colombia (COP), Peru (PEN):</strong> buyers ✔, local sellers ✘. <strong>Uruguay, Ecuador, Panama, Venezuela:</strong> buyers ✔, priced in <strong>USD</strong>.</li>
+<li><strong>Our reading:</strong> a GBP account can sell La visita to buyers across Latin America. Whether each country carries our title depends on the prices we set (below).</li>
+<li><strong>Step 6, Provide prices</strong> (answer 4491805, read). Each price has three parts: currency, amount and countries. "Google needs a price in the local currency for each country where you want to sell the book." A price of zero makes the book free. Revenue share is always on the list price you give.</li>
+<li><strong>Currency conversion</strong> (answer 2986594, read).</li>
+<li>Accounts created after July 2014 have conversion <strong>on by default</strong>, so one base price (for example GBP) is converted for every other country.</li>
+<li><strong>A price you type in the local currency overrides the converted one.</strong></li>
+<li>"Converted prices should not be used in countries where book prices are fixed by law. If fixed prices apply for a country, you must provide that price in the local currency."</li>
+<li>Turning conversion off removes the book from sale wherever no local price exists.</li>
+<li>Fixed-price promo codes need conversion switched on.</li>
+<li>In ONIX, converted prices are price type 01 (tax-inclusive countries) or 02 (tax-exclusive).</li>
+<li><strong>Fixed-price countries that matter to us:</strong></li>
+<li><strong>Argentina:</strong> Law 25.542 (2001) requires every retailer, online included, to sell a new title at the publisher's single price. Rio Times, 21 Jul 2026, reports a push to scrap it; whether it has been repealed is <strong>not checked</strong>.</li>
+<li><strong>Spain:</strong> fixed book price under Ley 10/2007. That it covers e-books is our understanding, <strong>not checked</strong> against the statute today.</li>
+<li>In both countries, type a local price; don't rely on conversion.</li>
+<li><strong>Read-aloud</strong> (Play Books help 11938821, read):</li>
+<li>Read Aloud is a feature of the Play Books mobile app, under Menu › Read aloud, with an "Automatically read aloud" setting.</li>
+<li>It works <strong>only in flowing-text mode</strong>, so a reflowable EPUB is needed; a PDF or fixed layout won't do.</li>
+<li>It uses the device's default text-to-speech engine and voice. You pick the language and locale under Android Settings › Accessibility › Text-to-speech output. A "more natural reading voice" option needs a connection.</li>
+<li><strong>No publisher-side read-aloud switch was found.</strong> A site search of the Partner Center help for "text-to-speech" returns only the auto-narrated <em>audiobook</em> tool. A search for "read aloud" returns the EAA FAQ (answer 16349906), which calls screen readers an OS feature on reflowable e-books.</li>
+<li>Unlike Kobo (<code>tts-permission-onix-list145-code05-kobo-writing-life.md</code>), there is no per-title toggle to set.</li>
+<li>A Facebook "answers" snippet assertions "publisher restrictions" can hide Read Aloud. That is <strong>secondary and not checked</strong>, so treat it as unconfirmed.</li>
+<li><strong>Accessibility metadata</strong> (EAA FAQ, read): "We don't support delivery of accessibility metadata in the epub file itself." Google reads it only from ONIX (List 196, plus hazards from List 143), from Partner Center › Book settings, or from CSV.</li>
+<li>So the a11y tags in our EPUB do <strong>not</strong> reach the Google listing; they have to be entered in Book settings as well.</li>
+</ul>
+<h2>How-to (one title, small UK publisher)</h2>
+<ol>
+<li>Keep conversion on, with the base price in <strong>GBP</strong>.</li>
+<li>Then add <strong>typed local prices</strong> that override it:
+   - <strong>ARS</strong> (fixed price by law; also avoids the 30% card surcharge on our GBP checkout, see <code>argentina-card-surcharges-30pct-ebook-checkout-es.md</code>)
+   - <strong>EUR for Spain</strong> (fixed price)
+   - <strong>MXN</strong> (a clean .99-style ending, matched to Kobo)</li>
+<li>Leave CL, CO, PE and UY on conversion. They're small markets, and conversion keeps the title on sale there.</li>
+<li>Recheck ARS against the exchange rate monthly, because a typed ARS price doesn't move with inflation. Don't change it more often than the fixed-price rule tolerates.</li>
+<li>Upload a <strong>reflowable EPUB</strong>, so Read Aloud and screen readers work.</li>
+<li>Re-enter the accessibility summary in Book settings, because Google ignores it inside the EPUB.</li>
+<li>Listen test: on an Android phone, open the title, choose Menu › Read aloud and play a page with Welsh names. The voice follows the phone's TTS language, not our <code>lang</code> tags (our inference from the help page). Make no "listen on Google Play" claim until the test passes.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>PROPOSAL A (no spend):</strong> when La visita goes to Google Play, set these prices by hand: GBP base, <strong>ARS</strong> (fixed-price country, cheaper for Chubut buyers than our GBP checkout), <strong>EUR for Spain</strong> in the same €5–7.99 band as Kobo, and <strong>MXN 99–129</strong>, matching <code>mexico-spanish-ebook-kobo-mxn-amazon-mx-35pct-gandhi.md</code>. Keep each list price equal to our own direct price, so no store undercuts the shop.</li>
+<li><strong>PROPOSAL B:</strong> add a "Google Book settings" line to the EPUB QA checklist: accessibility summary entered by hand, layout reflowable.</li>
+<li><strong>PROPOSAL C:</strong> add a read-aloud check on an Android phone before any shop copy states "listen on Google Play". Expect Welsh place names spoken in a Spanish or English voice, because Google offers no per-title fix. The <code>lang="cy"</code> spans help Thorium and screen readers, not Play Books Read Aloud (our inference).</li>
+<li>Cuts against: Google is the lowest-priority wide store for UK readers (publishing.co.uk, in the existing file). Its value here is Android-heavy Latin America.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>support.google.com (countries table, read)</li>
+<li>support.google.com (Step 6, prices, read)</li>
+<li>support.google.com (currency conversion, read)</li>
+<li>support.google.com (Read Aloud, read)</li>
+<li>support.google.com (EAA FAQ for publishers, read)</li>
+<li>riotimesonline.com (Law 25.542, 21 Jul 2026, read)</li>
+</ul><p class="raw">Raw Markdown: <a href="google-play-books-local-prices-ars-mxn-fixed-price-read-aloud.md">google-play-books-local-prices-ars-mxn-fixed-price-read-aloud.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
