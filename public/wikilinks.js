@@ -1,4 +1,4 @@
-/*! Cedwyn WikiLinks v1.0.0 — lexicon-backed first-occurrence links for independent Cedwyn themes. */
+/*! Cedwyn WikiLinks v1.0.1 — lexicon-backed first-occurrence links for independent Cedwyn themes. */
 (function () {
   "use strict";
   if (window.CedwynWikiLinks || !document.body) return;
