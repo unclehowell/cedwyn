@@ -1,0 +1,65 @@
+name: publish-story-image-led
+# Rebuild only the image-led Story theme and merge it into the existing
+# Cedwyn site branch without replacing any other public theme.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, bpvsbuckler]
+    paths:
+      - 'static/bpvsbuckler/**'
+      - 'themes.json'
+      - '.github/workflows/publish-story-image-led.yml'
+permissions:
+  contents: write
+concurrency:
+  group: publish-story-image-led
+  cancel-in-progress: false
+jobs:
+  story:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fetch the current Story theme branch
+        run: |
+          git init -q --bare mirror.git
+          git -C mirror.git fetch -q --depth 1 "https://github.com/${GITHUB_REPOSITORY}.git" +refs/heads/bpvsbuckler:refs/heads/bpvsbuckler
+      - name: Build only the Story theme
+        env:
+          MIRROR: mirror.git
+          SECTIONS: story
+        run: python3 tools/assemble.py dist
+      - name: Rewrite and make the Story output self-contained
+        run: |
+          python3 tools/rewrite.py dist
+          python3 tools/selfcontain.py dist --fix
+          python3 tools/selfcontain.py dist
+      - name: Publish the Story folder without touching other themes
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          U="https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git clone -q --depth 1 -b site "${U}" pub
+          rsync -a --delete dist/story/ pub/story/
+          for d in _blob _ext; do
+            if [ -d "dist/${d}" ]; then
+              mkdir -p "pub/${d}"
+              rsync -a "dist/${d}/" "pub/${d}/"
+            fi
+          done
+          cd pub
+          git config user.name "cedwyn-bot"
+          git config user.email "cedwyn-bot@users.noreply.github.com"
+          git add story _blob _ext
+          if git diff --cached --quiet; then
+            echo "Story output is already current."
+          else
+            git commit -m "Publish image-led Story theme — Sion's Tab agent"
+            git push "${U}" HEAD:site
+          fi
