@@ -4,7 +4,7 @@ Public pages carry sources only: no statement of who found, read or catalogued a
 or agent, no personal name of the family's representative in correspondence, no quotation of private instructions and no research-cycle numbers. Fixes in place, then fails (exit 1) if any
 pattern in CHECK survives, so a page that leaks cannot be published.
 Usage: python3 tools/privacy_scrub.py dist [--check-only]"""
-import pathlib, re, sys, json
+import pathlib, re, sys, json, multiprocessing as mp, os
 A = r"(?:['\u2019]|&#8217;|&rsquo;|&#x2019;|&#039;|&#39;|&#x27;|\\u2019|'')"     # apostrophe forms (html, json, sql)
 QO = r"(?:\u201c|&#8220;|&ldquo;|\\u201c|\")"; QC = r"(?:\u201d|&#8221;|&rdquo;|\\u201d|\")"
 SION = r"(?<![A-Za-z])Sion(?: Buckler)?"
@@ -125,30 +125,83 @@ def corr(t, rel):
             t, k = rx.subn(rep, t); n += k
         t = t.replace('\ue000', KEEP)
     return t, n
+def _process_one(item):
+    root_s, file_s, check_only = item
+    root = pathlib.Path(root_s)
+    f = pathlib.Path(file_s)
+    changed = hits = 0
+    left = []
+    warnings = []
+    try:
+        t = f.read_text('utf-8')
+    except Exception:
+        return changed, hits, left, warnings
+    rel = f.relative_to(root).as_posix()
+    if not check_only:
+        sx = f.suffix.lower()
+        new, n = scrub(t, 'code' if sx in ('.js', '.mjs', '.json', '.jsonl', '.webmanifest', '.svg') else 'html' if sx in ('.html', '.htm', '.xml', '.rss', '.atom') else 'text')
+        new, k = corr(new, rel); n += k
+        if n and new != t:
+            if sx == '.json':
+                try: json.loads(new)
+                except Exception:
+                    new = t
+                    left.append(f'{rel}: json would break, left for review')
+            if new != t:
+                f.write_text(new, 'utf-8')
+                changed += 1
+                hits += n
+                t = new
+    for m in CHECK.finditer(t):
+        left.append(f'{rel}: {t[max(0,m.start()-60):m.end()+40]!r}')
+    for m in CONTACT_CHECK.finditer(t):
+        left.append(f'{rel}: contact detail {t[max(0,m.start()-40):m.end()+20]!r}')
+    if CORR_PATH.search(rel) and PRIV_CHECK.search(t):
+        warnings.append(f'::warning::privacy: private name left in {rel}')
+    if CORR_PATH.search(rel):
+        for m in CORR_CHECK.finditer(t):
+            left.append(f'{rel}: name in correspondence {t[max(0,m.start()-60):m.end()+40]!r}')
+    return changed, hits, left, warnings
+
+
 def main(root, check_only=False):
-    root = pathlib.Path(root); changed = hits = 0; left = []
+    root = pathlib.Path(root)
+    files = []
     for f in root.rglob('*'):
-        if not f.is_file() or f.suffix.lower() not in EXT or f.stat().st_size > 40_000_000: continue
-        if any(p in ('db', '.git', 'node_modules') for p in f.relative_to(root).parts[:1]): continue
-        try: t = f.read_text('utf-8')
-        except Exception: continue
-        rel = f.relative_to(root).as_posix()
-        if not check_only:
-            sx = f.suffix.lower()
-            new, n = scrub(t, 'code' if sx in ('.js', '.mjs', '.json', '.jsonl', '.webmanifest', '.svg') else 'html' if sx in ('.html', '.htm', '.xml', '.rss', '.atom') else 'text')
-            new, k = corr(new, rel); n += k
-            if n and new != t:
-                if f.suffix.lower() == '.json':
-                    try: json.loads(new)
-                    except Exception: new = t; left.append(f'{f}: json would break, left for review')
-                if new != t: f.write_text(new, 'utf-8'); changed += 1; hits += n; t = new
-        for m in CHECK.finditer(t): left.append(f'{f.relative_to(root)}: {t[max(0,m.start()-60):m.end()+40]!r}')
-        for m in CONTACT_CHECK.finditer(t): left.append(f'{rel}: contact detail {t[max(0,m.start()-40):m.end()+20]!r}')
-        if CORR_PATH.search(rel) and PRIV_CHECK.search(t): print(f'::warning::privacy: private name left in {rel}')
-        if CORR_PATH.search(rel):
-            for m in CORR_CHECK.finditer(t): left.append(f'{rel}: name in correspondence {t[max(0,m.start()-60):m.end()+40]!r}')
-    print(json.dumps({'files_changed': changed, 'rewrites': hits, 'remaining': len(left)}))
-    for x in left[:200]: print('::error::privacy: ' + x)
+        if not f.is_file() or f.suffix.lower() not in EXT or f.stat().st_size > 40_000_000:
+            continue
+        if any(p in ('db', '.git', 'node_modules') for p in f.relative_to(root).parts[:1]):
+            continue
+        files.append(f)
+
+    workers = max(1, int(os.environ.get('PRIVACY_WORKERS', str(min(4, mp.cpu_count() or 1)))))
+    changed = hits = 0
+    left = []
+    warnings = []
+    tasks = ((str(root), str(f), check_only) for f in files)
+    if workers > 1 and len(files) > 1:
+        with mp.Pool(processes=workers) as pool:
+            results = pool.imap_unordered(_process_one, tasks, chunksize=32)
+            for file_changed, file_hits, file_left, file_warnings in results:
+                changed += file_changed
+                hits += file_hits
+                left.extend(file_left)
+                warnings.extend(file_warnings)
+    else:
+        for task in tasks:
+            file_changed, file_hits, file_left, file_warnings = _process_one(task)
+            changed += file_changed
+            hits += file_hits
+            left.extend(file_left)
+            warnings.extend(file_warnings)
+
+    left.sort()
+    warnings.sort()
+    print(json.dumps({'files_checked': len(files), 'workers': workers, 'files_changed': changed, 'rewrites': hits, 'remaining': len(left)}))
+    for warning in warnings:
+        print(warning)
+    for x in left[:200]:
+        print('::error::privacy: ' + x)
     return 1 if left else 0
 if __name__ == '__main__':
     sys.exit(main(sys.argv[1], '--check-only' in sys.argv))
