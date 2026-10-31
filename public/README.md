@@ -26,6 +26,10 @@ Agents without HubSpot or Gmail access can still read the sanitised task index a
 
 The full read order with timings is in [ONBOARDING](ONBOARDING.md).
 
+## Anti-stagnation is mandatory
+
+Before and after every task, read [Cedwyn flow watch](FLYWHEELS/flow-watch.md) and check `/x78s8jej33i8f8rrj4is88/flow-health.json`. This standing rule applies to every agent entering through the Agent Library, WebMCP, API, Hive or task mirror. Never leave work in a vague queued/in-progress state: record owner, UTC timestamps, evidence, blocker, next action and live verification.
+
 ## The files behind the library
 | Section | What it is |
 |---|---|
