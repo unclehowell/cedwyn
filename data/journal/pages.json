@@ -2,24 +2,132 @@
  "schema": "cedwyn-page-journal/1.0",
  "note": "Neutral, dated change lines per page, newest first. Rendered into each page's footer by tools/page_journal.py. Third person, no instructions. Agents sign an entry with the optional \"agent\" field (the signing agent's name, shown as the signature); to answer the last entry, start the note with \"Re v<version>:\". Route: pull request; see /academy/.",
  "pages": {
-  "/research/evidence/ev-0019-bute-wgr-conveyance-plan-1938/": [{"v": "update", "date": "2026-10-30", "note": "Repository, status and provenance now record which bodies should hold the 1938 conveyance and what each has disclosed (Vale of Glamorgan deed wallet 1756, 2 of at least 10 documents; Glamorgan Archives; HM Land Registry WA3996 and WA7355)."}],
-  "/research/evidence/pending-evidence/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."}],
-  "/research/evidence-library/ghf-e121-1938-bute-wgr-conveyance-and-plan/": [{"v": "1.0.1", "date": "2026-10-30", "note": "Holder wording replaced: the entry now records which bodies should hold the 1938 conveyance and plan and what each has disclosed (Vale of Glamorgan deed wallet 1756, Glamorgan Archives, HM Land Registry WA3996 and WA7355)."}],
-  "/research/1939-revised-tenancy/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."}],
-  "/research/bute-estate/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."}],
-  "/research/evidence-library/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."}],
-  "/research/reorg/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."}],
-  "/research/family-legal-case-control-room/counter-evidence-disconfirmation/": [{"v": "update", "date": "2026-10-30", "note": "The 1939 tenancy agreement is now described by its holder, Glamorgan Archives (DBDT123/7), in place of holder wording."}],
-  "/research/scrutiny-and-accountability/government-public-authority-involvement/western-ground-rents-forensic-institutional-review/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."}],
-  "/research/western-ground-rents/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance and the 1939 tenancy plan now name the holding bodies (Vale of Glamorgan deed wallet 1756; Glamorgan Archives DBDT123/7; HM Land Registry WA3996 and WA7355)."}],
-  "/research/evidence/ev-0023-1939-wgr-john-williams-tenancy-plan/": [{"v": "update", "date": "2026-10-30", "note": "The 1939 tenancy agreement is now described by its holder, Glamorgan Archives (DBDT123/7), in place of holder wording."}],
-  "/research/qa/qa-land-registry/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."}],
-  "/research/scrutiny-and-accountability/master-scrutiny-issue-register/additions-2026-10-06/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance and the 1939 tenancy plan now name the holding bodies (Vale of Glamorgan deed wallet 1756; Glamorgan Archives DBDT123/7; HM Land Registry WA3996 and WA7355)."}],
-  "/research/forensic-evidence-capture-decisive-document-schedule-6-october-2026/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."}],
-  "/research/evidence-library/dbdt123-7-1939-wgr-john-williams-tenancy-agreement-plan/": [{"v": "update", "date": "2026-10-30", "note": "The 1939 tenancy agreement is now described by its holder, Glamorgan Archives (DBDT123/7), in place of holder wording."}],
-  "/research/the-two-parcels/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."}],
-  "/research/scrutiny-and-accountability/case-analysis-connections-patterns-questions/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance and the 1939 tenancy plan now name the holding bodies (Vale of Glamorgan deed wallet 1756; Glamorgan Archives DBDT123/7; HM Land Registry WA3996 and WA7355)."}],
-  "/research/scrutiny-and-accountability/legal-review-fraud-land-human-rights/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance and the 1939 tenancy plan now name the holding bodies (Vale of Glamorgan deed wallet 1756; Glamorgan Archives DBDT123/7; HM Land Registry WA3996 and WA7355)."}],
+  "/research/evidence/ev-0019-bute-wgr-conveyance-plan-1938/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "Repository, status and provenance now record which bodies should hold the 1938 conveyance and what each has disclosed (Vale of Glamorgan deed wallet 1756, 2 of at least 10 documents; Glamorgan Archives; HM Land Registry WA3996 and WA7355)."
+   }
+  ],
+  "/research/evidence/pending-evidence/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."
+   }
+  ],
+  "/research/evidence-library/ghf-e121-1938-bute-wgr-conveyance-and-plan/": [
+   {
+    "v": "1.0.1",
+    "date": "2026-10-30",
+    "note": "Holder wording replaced: the entry now records which bodies should hold the 1938 conveyance and plan and what each has disclosed (Vale of Glamorgan deed wallet 1756, Glamorgan Archives, HM Land Registry WA3996 and WA7355)."
+   }
+  ],
+  "/research/1939-revised-tenancy/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."
+   }
+  ],
+  "/research/bute-estate/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."
+   }
+  ],
+  "/research/evidence-library/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."
+   }
+  ],
+  "/research/reorg/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."
+   }
+  ],
+  "/research/family-legal-case-control-room/counter-evidence-disconfirmation/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "The 1939 tenancy agreement is now described by its holder, Glamorgan Archives (DBDT123/7), in place of holder wording."
+   }
+  ],
+  "/research/scrutiny-and-accountability/government-public-authority-involvement/western-ground-rents-forensic-institutional-review/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."
+   }
+  ],
+  "/research/western-ground-rents/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance and the 1939 tenancy plan now name the holding bodies (Vale of Glamorgan deed wallet 1756; Glamorgan Archives DBDT123/7; HM Land Registry WA3996 and WA7355)."
+   }
+  ],
+  "/research/evidence/ev-0023-1939-wgr-john-williams-tenancy-plan/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "The 1939 tenancy agreement is now described by its holder, Glamorgan Archives (DBDT123/7), in place of holder wording."
+   }
+  ],
+  "/research/qa/qa-land-registry/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."
+   }
+  ],
+  "/research/scrutiny-and-accountability/master-scrutiny-issue-register/additions-2026-10-06/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance and the 1939 tenancy plan now name the holding bodies (Vale of Glamorgan deed wallet 1756; Glamorgan Archives DBDT123/7; HM Land Registry WA3996 and WA7355)."
+   }
+  ],
+  "/research/forensic-evidence-capture-decisive-document-schedule-6-october-2026/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."
+   }
+  ],
+  "/research/evidence-library/dbdt123-7-1939-wgr-john-williams-tenancy-agreement-plan/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "The 1939 tenancy agreement is now described by its holder, Glamorgan Archives (DBDT123/7), in place of holder wording."
+   }
+  ],
+  "/research/the-two-parcels/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."
+   }
+  ],
+  "/research/scrutiny-and-accountability/case-analysis-connections-patterns-questions/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance and the 1939 tenancy plan now name the holding bodies (Vale of Glamorgan deed wallet 1756; Glamorgan Archives DBDT123/7; HM Land Registry WA3996 and WA7355)."
+   }
+  ],
+  "/research/scrutiny-and-accountability/legal-review-fraud-land-human-rights/": [
+   {
+    "v": "update",
+    "date": "2026-10-30",
+    "note": "References to the 1938 conveyance and the 1939 tenancy plan now name the holding bodies (Vale of Glamorgan deed wallet 1756; Glamorgan Archives DBDT123/7; HM Land Registry WA3996 and WA7355)."
+   }
+  ],
   "/nft-art/": [
    {
     "v": "1.3.2",
@@ -249,6 +357,30 @@
     "v": "—",
     "date": "2026-10-30",
     "note": "The parcel-story panel no longer sits in the page. It opens from “See this section as a graph” under the “Parcel story” tab, beside a new “Instruments & registrations” graph (the instruments relied on and the registrations of each parcel)."
+   }
+  ],
+  "/projects/": [
+   {
+    "v": "2.1.0",
+    "date": "2026-10-31",
+    "agent": "ChatGPT GPT-6",
+    "note": "Programme portfolio adds Cedwyn Snowball: the recursive research, evidence, documentary, agent, audience and heritage operating model, with ten HubSpot work packages and the existing four-project boundaries retained."
+   }
+  ],
+  "/academy/FLYWHEELS/": [
+   {
+    "v": "1.0.0",
+    "date": "2026-10-31",
+    "agent": "ChatGPT GPT-6",
+    "note": "Agent Library adds the Snowball master protocol and registers it as the parent of the specialist flywheels, with HubSpot, Hive, Projects and WebMCP entry points."
+   }
+  ],
+  "/": [
+   {
+    "v": "1.0.5",
+    "date": "2026-10-31",
+    "agent": "ChatGPT GPT-6",
+    "note": "Collapsed site-wide agent disclosure now points to the Snowball master protocol and uses a private evidence-preservation and authorised-review route."
    }
   ]
  }
