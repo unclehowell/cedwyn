@@ -1,0 +1,30 @@
+name: cedwyn-architecture-lab
+on:
+  push:
+    branches: [sandbox/flow-architecture-20261031]
+    paths:
+      - "tools/dedupe_index.py"
+      - "tools/test_rewrite_dedupe.py"
+      - "tools/privacy_scrub.py"
+      - "tools/test_privacy_scrub.py"
+      - ".github/workflows/cedwyn-architecture-lab.yml"
+      - "docs/architecture/**"
+permissions:
+  contents: read
+concurrency:
+  group: cedwyn-architecture-lab
+  cancel-in-progress: true
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile and run focused tests
+        run: |
+          python3 -m py_compile tools/dedupe_index.py tools/rewrite.py tools/privacy_scrub.py
+          python3 tools/test_rewrite_dedupe.py
+          python3 tools/test_privacy_scrub.py
