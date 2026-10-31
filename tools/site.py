@@ -459,6 +459,15 @@ try:
 except Exception as _e:
     print('shop strip failed:', _e)
 
+# Holdings wording (owner rule, 22:25 GMT 30 Oct 2026; P-104): public text never states whether the family holds a record; it names
+# which other party should hold the original and what it has disclosed. Exact-phrase rewrites from data/holdings-wording.json over
+# every page writer's output, before the catalogue database is built. Never stops a build - Sion's Tab agent
+try:
+    import holdings_wording
+    holdings_wording.run(DIST)
+except Exception as _e:
+    print('holdings wording failed:', _e)
+
 # Cloudflare Pages redirect quotas: validate the final file after every theme plugin has amended it.
 _redirect_file = DIST / '_redirects'
 _redirect_lines = _redirect_file.read_text(encoding='utf-8').splitlines() if _redirect_file.exists() else []
