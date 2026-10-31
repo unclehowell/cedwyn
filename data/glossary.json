@@ -1,6 +1,6 @@
 {
- "version": "1.0.0",
- "generated": "2026-10-26",
+ "version": "1.0.1",
+ "generated": "2026-10-31",
  "note": "Plain-English definitions for words a first-time visitor meets on Cedwyn. Each entry: term, one-line definition, the anchor on /glossary/, and deeper pages on Cedwyn (internal links only). Name groups with spelling variants live in data/nomenclature.json and are listed on /glossary/ too. — Sion's Tab agent",
  "terms": [
   {
@@ -628,6 +628,91 @@
     {
      "label": "Bute manor disposals (DB/M/22)",
      "url": "/research/evidence/ev-0027-bute-manor-disposals-db-m-22/"
+    }
+   ]
+  },
+  {
+   "slug": "etymology",
+   "term": "Etymology",
+   "match": [
+    "etymology",
+    "etymological",
+    "etymologies"
+   ],
+   "definition": "The study of a word or place-name’s history: its earlier forms, linguistic elements and development over time.",
+   "anchor": "/glossary/#etymology",
+   "learn_more": [
+    {
+     "label": "Leckwith (Lecwydd): proposed origin and source notes",
+     "url": "/nomenclature/c/leckwith/"
+    }
+   ]
+  },
+  {
+   "slug": "folk-etymology",
+   "term": "Folk etymology",
+   "match": [
+    "folk etymology",
+    "folk-etymology"
+   ],
+   "definition": "A later explanation of a name or word based on its resemblance to a familiar word, even when that resemblance does not represent the historical linguistic origin.",
+   "anchor": "/glossary/#folk-etymology",
+   "learn_more": [
+    {
+     "label": "The Llechwedd explanation of Leckwith",
+     "url": "/nomenclature/c/leckwith/"
+    }
+   ]
+  },
+  {
+   "slug": "anglicisation",
+   "term": "Anglicisation",
+   "match": [
+    "anglicisation",
+    "anglicization",
+    "anglicised",
+    "anglicized"
+   ],
+   "definition": "The adaptation of a name or word into English spelling or usage. In place-name research, the historic Welsh form and English form should be recorded separately.",
+   "anchor": "/glossary/#anglicisation",
+   "learn_more": [
+    {
+     "label": "Leckwith and Lecwydd: standard forms",
+     "url": "/nomenclature/c/leckwith/"
+    }
+   ]
+  },
+  {
+   "slug": "personal-name",
+   "term": "Personal name",
+   "match": [
+    "personal name",
+    "personal-name"
+   ],
+   "definition": "A name used to identify an individual. A place-name may preserve or derive from a personal name, but that connection needs a source-based linguistic argument.",
+   "anchor": "/glossary/#personal-name",
+   "learn_more": [
+    {
+     "label": "The proposed Helygwydd origin of Lecwydd",
+     "url": "/nomenclature/c/leckwith/"
+    }
+   ]
+  },
+  {
+   "slug": "place-name",
+   "term": "Place-name",
+   "match": [
+    "place-name",
+    "place name",
+    "placename",
+    "place-names"
+   ],
+   "definition": "A name assigned to a geographical feature or human settlement. Historical spellings and their source locators help distinguish documented forms from later interpretations.",
+   "anchor": "/glossary/#place-name",
+   "learn_more": [
+    {
+     "label": "Leckwith historical forms",
+     "url": "/nomenclature/c/leckwith/"
     }
    ]
   }
