@@ -1,6 +1,6 @@
 {
- "version": "1.0.0",
- "rule": "Holdings wording (owner rule, 22:25 GMT 30 Oct 2026): public text never states whether the family holds a record; it records which other party should hold the original and what each has disclosed. Build-time pass over the cedwyn copy (themes listed in skip_themes and the archived-capture prefixes are left verbatim), after every page writer in site.py and before the catalogue database is built. Exact phrases only; anything not matched is listed in dist/_cedwyn/reports/holdings-wording.json for an editor. P-104. — Sion's Tab agent",
+ "version": "1.0.1",
+ "rule": "Holdings wording (owner rule, 22:25 GMT 30 Oct 2026): public text never states whether the family holds a record; it records which other party should hold the original and what each has disclosed. Build-time pass over the cedwyn copy (themes listed in skip_themes and the archived-capture prefixes are left verbatim), after every page writer in site.py and before the catalogue database is built. Exact phrases only; anything not matched is listed in dist/_cedwyn/reports/holdings-wording.json for an editor. P-104. — Sion's Tab agent 1.0.1: 'family archive image/photograph/copy', family Drive/mailbox lines from the evidence register, and a capital T where the repository name opens a field.",
  "skip_themes": [
   "wiki"
  ],
@@ -281,6 +281,72 @@
    "id": "mailbox-body",
    "re": "email body in the family(?:’|&rsquo;|&#8217;|'|&#39;|&#x27;)s mailbox",
    "replace": "email body received"
+  },
+  {
+   "id": "family-archive-image",
+   "re": "Family archive image held in",
+   "replace": "Image held in"
+  },
+  {
+   "id": "family-archive-image-paren",
+   "re": "\\(family archive image\\)",
+   "replace": "(archive image)"
+  },
+  {
+   "id": "family-archive-article",
+   "re": "\\ba family archive (image|photograph)",
+   "replace": "an archive \\1"
+  },
+  {
+   "id": "family-archive-noun",
+   "re": "\\b[Ff]amily archive (image|photograph|copy)",
+   "replace": "archive \\1",
+   "cap": true
+  },
+  {
+   "id": "slash-family-archive",
+   "re": "/family archive(?=[;,. ])",
+   "replace": ""
+  },
+  {
+   "id": "sources-named-archive",
+   "re": "Sources named: family archive, ",
+   "replace": "Sources named: "
+  },
+  {
+   "id": "reported-archive-holds",
+   "re": "Reported: family archive holds an image",
+   "replace": "Reported: an image"
+  },
+  {
+   "id": "family-drive-and-datro",
+   "re": "held in family Google Drive and datro repository",
+   "replace": "held in the datro repository"
+  },
+  {
+   "id": "family-drive-screens",
+   "re": "family Google Drive screenshots",
+   "replace": "screenshots"
+  },
+  {
+   "id": "family-copy-wiki",
+   "re": "Family copy not yet uploaded to the wiki\\.",
+   "replace": "No copy uploaded to the wiki yet."
+  },
+  {
+   "id": "family-copy-still",
+   "re": "Family copy still to be uploaded\\.",
+   "replace": "Copy still to be uploaded."
+  },
+  {
+   "id": "mailbox-sit",
+   "re": "sit in the family mailbox, not yet mirrored",
+   "replace": "are held by the sender, not yet mirrored"
+  },
+  {
+   "id": "repository-name-start",
+   "re": "(?:^|(?<=>)|(?<=\\\"))the Cedwyn evidence repository",
+   "replace": "The Cedwyn evidence repository"
   }
  ]
 }
