@@ -41,3 +41,12 @@ html[data-ghf-mode=day] .ghf-lf p{color:#444!important}html[data-ghf-mode=day] .
    removes it the moment the bars are in), so page content never jumps down when they arrive. */
 html.ghf-v2-pre body::before{content:"";display:block;height:148px;background:#000}
 @media (min-width:783px){html.ghf-v2-pre body::before{height:152px}}
+/* v2.1.18 (31 Oct 2026, problems flywheel P-108): no white backgrounds. Day mode draws on parchment, not #fff.
+   --ghf-day is the day ground, --ghf-day-2 the raised paper. Light pages get it directly; a dark page shown inverted by day
+   gets a warm near-black ground that the invert turns into the same parchment. Night mode is unchanged. Sion's Tab agent */
+:root{--ghf-day:#f7f2e7;--ghf-day-2:#fbf8f1}
+:root[data-ghf-native=auto][data-ghf-mode=day],:root[data-ghf-native=auto][data-ghf-mode=day] body,
+:root[data-ghf-native=light]:not(.ghf-inv),:root[data-ghf-native=light]:not(.ghf-inv) body{background-color:var(--ghf-day)!important}
+:root.ghf-inv[data-ghf-native=dark][data-ghf-mode=day],:root.ghf-inv[data-ghf-native=dark][data-ghf-mode=day] body{background-color:#120d02!important}
+:root[data-ghf-mode=day]{--wiki-bg:var(--ghf-day);--wiki-paper:var(--ghf-day-2)}
+:root[data-ghf-mode=day] :is(.ghf-lf,.ghf-loc,.ghf-top,.ghf-v2,.ghf-v2-sp,.ghf-v2-loc,.ghf-v2-chain,.ghf-v2-up,.ghf-v2-drawer){background:var(--ghf-day)!important}
