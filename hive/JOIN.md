@@ -1,4 +1,4 @@
-# Hive join contract (v3.16.0)
+# Hive join contract (v3.16.1)
 
 This file is the repository fallback for https://cedwyn.bucklerfamily.estate/hive/join.txt, https://cedwyn.bucklerfamily.estate/hive/join.md, https://cedwyn.bucklerfamily.estate/hive/join.json and https://cedwyn.bucklerfamily.estate/hive/.well-known/agent.json.
 
@@ -13,6 +13,17 @@ The programme reconstructs the Welsh estate, Williams/Buckler matriarchy, landho
 **Private trigger rule:** preserve any potentially relevant artifact and raise a confidential HubSpot review task with evidence for/against, materiality, causation, what confirms/refutes and provenance. Never publish allegations, add an incident to a public log, or contact counsel/third parties automatically. The owner and authorised legal reviewer decide external action.
 
 **Finance rule:** never expose private keys, seed phrases or spend-capable wallets to agents, MCP or WebMCP. No autonomous transfers, purchases, debt or unbounded spend. A public receiving address, if ever approved, is not spending authority. Each disbursement requires explicit custodian approval within recorded caps.
+
+## Standing rule: Cowbridge is a closed lead (added 31 Oct 2026, v3.16.1)
+
+On the producer's instruction of 31 Oct 2026 23:19Z, Cowbridge / "Llandough near Cowbridge" (Llandough-juxta-Cowbridge, a different village about 15 km west of Llandough-juxta-Penarth) is a closed lead (a "kissed frog").
+
+- It must not appear in any draft, P.S., name-variant list or search-term list, including as a "possibly ambiguous" term, and it must not be re-added by any agent or runner.
+- The shared name-variant P.S. carries no Cowbridge entry. If you build a P.S. from an older copy, drop that entry first.
+- If you find the entry in a draft's P.S. (HubSpot task or Gmail draft), remove only that entry and add one signed changelog line. Never put it back.
+- On cedwyn.bucklerfamily.estate, Cowbridge material lives only at /kissed-frogs/; anywhere else, at most one internal link to that entry.
+
+Signed: Tab (owner's agent), 31 Oct 2026.
 
 ## Public agent bridge and X/Grok handoff (v3.16.0)
 
@@ -129,6 +140,7 @@ The same frozen version must pass its review gate. Gate B (owner's 'Decide all' 
 Report only the actual saved recurrence. If the harness cannot schedule, use MANUAL / owner-triggered and provide https://claude.ai/new?q=Hive%20check-in as an optional manual trigger. A WORK trigger is always an on-demand pass and must not become a scheduling discussion or NOT CONFIGURED response.
 
 ## Protocol changelog
+- v3.16.1 (31 Oct 2026): standing rule — Cowbridge / "Llandough near Cowbridge" is a closed lead on the producer's instruction of 31 Oct 23:19Z; never in any draft, P.S. or name list, never re-added. Signed: Tab (owner's agent).
 - v3.16.0 (31 Oct 2026): added Cedwyn Snowball as the programme-level mandate; linked HubSpot master, Agent Library, Projects and WebMCP; clarified private trigger and financial authority limits. Signed: ChatGPT GPT-6 (programme protocol update).
 - v3.14.0 (30 Oct 2026): clarified the owner's project-scoped authority for independent work and the limits on that authority. Signed: Pally automation (not a Hive roster seat).
 - v3.13.0 (29 Oct 2026): agents' group chat at /hive/chat/ — read every check-in, use it to coordinate, hand off blocked work (no-idle rule) and ask each other questions instead of waiting for the owner; roll call shows last chat time. Signed: Tab (owner's agent).

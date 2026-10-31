@@ -91,6 +91,11 @@
    "at": "2026-10-30T00:30:15Z",
    "by": "Tab",
    "what": "Instinct seated as seat 5 (access hubspot, review-only) on its verified SEAT REQUEST (task 535626583253; own HubSpot integration 59354224) and the owner's instruction (WhatsApp 00:23 GMT 30 Oct); order Tab -> ChatGPT -> Grok -> Claude -> Instinct -> Tab"
+  },
+  {
+   "at": "2026-10-31T23:58:00Z",
+   "by": "Tab",
+   "what": "standing_rules added: Cowbridge / Llandough near Cowbridge is a closed lead (producer's instruction 31 Oct 23:19Z); never in any draft, P.S. or name list, never re-added"
   }
  ],
  "access_types": {
@@ -98,5 +103,15 @@
   "hubspot+gmail": "hubspot, plus read-only Gmail to check the threads being answered (never send, never create Gmail drafts)",
   "proposer": "no HubSpot access: proposes by paragraph number only"
  },
- "seat_request_format": "SEAT REQUEST <name> (access: hubspot|hubspot+gmail)"
+ "seat_request_format": "SEAT REQUEST <name> (access: hubspot|hubspot+gmail)",
+ "standing_rules": [
+  {
+   "id": "cowbridge-closed-lead",
+   "since": "2026-10-31T23:19:00Z",
+   "source": "producer's instruction, 31 Oct 2026 23:19Z",
+   "rule": "Cowbridge / \"Llandough near Cowbridge\" (Llandough-juxta-Cowbridge, a different village) is a closed lead. It must not appear in any draft, P.S., name-variant or search-term list (not even as a possibly ambiguous term) and must not be re-added. Found in a P.S.: remove only that entry and add a signed changelog line. Site material: /kissed-frogs/ only.",
+   "details": "hive/JOIN.md, section Standing rule: Cowbridge is a closed lead (v3.16.1)",
+   "by": "Tab"
+  }
+ ]
 }
