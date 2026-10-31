@@ -50,7 +50,7 @@
       q(".sv-head img",sv).src=s.av;q(".sv-head b",sv).textContent=s.by;q(".sv-head small",sv).textContent=s.title;
       q(".sv-foot",sv).innerHTML='<span></span> · <a href="'+s.link+'">Open</a>';q(".sv-foot span",sv).textContent=s.credit;
       var st=stage();setBars(i,0);
-      if(s.kind==="youtube"){var f=document.createElement("iframe");f.src="https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fwww.youtube-nocookie.com%2Fembed%2F"+s.yt+"?autoplay=1&playsinline=1&rel=0&modestbranding=1"+(s.start?"&start="+s.start:"");f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";f.allowFullscreen=true;f.title=s.title;st.insertBefore(f,q(".sv-tap.l",st));setBars(i,1);
+      if(s.kind==="youtube"){var f=document.createElement("iframe");f.src="https://www.youtube-nocookie.com/embed/"+s.yt+"?autoplay=1&playsinline=1&rel=0&modestbranding=1"+(s.start?"&start="+s.start:"");f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";f.allowFullscreen=true;f.title=s.title;st.insertBefore(f,q(".sv-tap.l",st));setBars(i,1);
         // the embed keeps its own controls: the side tap zones stay for moving between stories
         qa(".sv-tap",st).forEach(function(t){t.style.width="18%";});}
       else{var v=document.createElement("video");v.src=s.src;v.poster=s.thumb;v.playsInline=true;v.setAttribute("playsinline","");v.autoplay=true;v.muted=muted;v.preload="auto";v.controls=false;st.insertBefore(v,q(".sv-tap.l",st));vid=v;

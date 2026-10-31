@@ -7,5 +7,5 @@ N=3009
 i=0
 : > cedwyn.sqlite3
 while [ "$i" -lt "$N" ]; do curl -sfL "$B/db/cedwyn.sqlite3.$(printf %03d "$i")" >> cedwyn.sqlite3; i=$((i+1)); done
-echo "expected sha256 f9ec3ef4603db8e4bcb86ec97f43822b903f0adb149fe620283bad2371a01db4"
+echo "expected sha256 897b3ef95c092e20276cae00b914c98aeda337f731e4778cafb056f8a090b379"
 (sha256sum cedwyn.sqlite3 2>/dev/null || shasum -a 256 cedwyn.sqlite3)
