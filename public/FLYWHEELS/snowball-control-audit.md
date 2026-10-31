@@ -48,3 +48,8 @@ Agents may research, triage, classify, update safe source files, correct status,
 ## Definition of done
 
 The run is complete only when the following are recorded truthfully: HubSpot status audit; task-index version and count; Git source commits; current workflow run and conclusion; Pages production revision or blocker; Worker deployment/binding/route check; pending and published queue counts; X access state; corrections made; and remaining blockers with a next action. Where public HTTP access is blocked, say deployment metadata was checked, not that content was live-tested.
+
+
+### HubSpot task mirror coverage (v1.5.0)
+
+Refresh two complete project scopes on each run: (1) every HubSpot TASK associated with the existing Cedwyn project contact, filtered by `hs_task_status HAS_PROPERTY` and association to that contact; (2) every page of the `Cedwyn` task subject search, plus targeted Great House Farm/Llandough/Tŷ Mawr/Buckler/Williams/BP Properties/BP v Buckler/Leckwith searches. Deduplicate by task ID. At the 31 October 2026 baseline this produced 2,490 unique records: 1,971 subject-search results, 174 contact-associated tasks and targeted results after overlap removal. This is a project-focused union, not a complete portal export. HubSpot remains authoritative.
