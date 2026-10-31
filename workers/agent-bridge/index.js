@@ -345,7 +345,7 @@ async function verifyFlowOidc(token, eventType) {
 }
 async function acceptFlowEvent(request, env) {
   const eventType = request.headers.get("x-github-event") || "";
-  if (!["push", "workflow_job", "schedule"].includes(eventType)) return response({ ok: false, error: "unsupported_event_type" }, 400);
+  if (!["push", "workflow_run", "schedule"].includes(eventType)) return response({ ok: false, error: "unsupported_event_type" }, 400);
   let claims;
   try { claims = await verifyFlowOidc((request.headers.get("authorization") || "").replace(/^Bearer\s+/i, ""), eventType); }
   catch (err) { return response({ ok: false, error: String(err.message || err) }, 401); }
@@ -362,12 +362,12 @@ async function acceptFlowEvent(request, env) {
     eventId = "schedule:" + slot;
     row = { source: "github", event_type: "schedule", action: "reconciliation", workflow_name: "flow-watch-events", job_name: "signal", run_id: claims.run_id || null, head_sha: null, branch: "main", status: "reconciled", conclusion: "scheduled" };
   } else {
-    const job = payload.workflow_job || {};
-    if (job.head_branch !== "main" || !job.run_id || !job.id) return response({ ok: false, error: "job_scope_or_run_id_invalid" }, 403);
-    const run = await flowJson(FLOW_API + "/actions/runs/" + encodeURIComponent(String(job.run_id)));
-    if (run.data.name !== "build-cedwyn" || run.data.head_branch !== "main" || run.data.head_sha !== job.head_sha) return response({ ok: false, error: "workflow_run_not_cedwyn_build" }, 403);
-    eventId = "job:" + job.id + ":" + String(payload.action || job.status || "unknown");
-    row = { source: "github", event_type: "workflow_job", action: payload.action || null, workflow_name: run.data.name, job_name: job.name || null, run_id: String(job.run_id), head_sha: job.head_sha || null, branch: "main", status: job.status || null, conclusion: job.conclusion || null };
+    const workflow = payload.workflow_run || {};
+    if (workflow.head_branch !== "main" || !workflow.id || !workflow.head_sha) return response({ ok: false, error: "workflow_run_scope_invalid" }, 403);
+    const run = await flowJson(FLOW_API + "/actions/runs/" + encodeURIComponent(String(workflow.id)));
+    if (run.data.name !== "build-cedwyn" || run.data.head_branch !== "main" || run.data.head_sha !== workflow.head_sha) return response({ ok: false, error: "workflow_run_not_cedwyn_build" }, 403);
+    eventId = "workflowrun:" + workflow.id + ":" + String(payload.action || workflow.status || "unknown");
+    row = { source: "github", event_type: "workflow_run", action: payload.action || null, workflow_name: run.data.name, job_name: null, run_id: String(workflow.id), head_sha: workflow.head_sha, branch: "main", status: workflow.status || null, conclusion: workflow.conclusion || null };
   }
   await ensureFlowSchema(env);
   await env.DB.prepare("INSERT OR IGNORE INTO cw_flow_watch_activity(event_id,received_at,source,event_type,action,workflow_name,job_name,run_id,head_sha,branch,status,conclusion,detail_json) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)")
