@@ -4575,6 +4575,91 @@
       "public": true,
       "updated": "2026-10-31",
       "rev": 1
+    },
+    {
+      "id": "AR-FOI-0056",
+      "kind": "artifact",
+      "slug": "ar-foi-0056",
+      "title": "Cardiff Council — FOI25766 response document (28 July 2026; original attachment not inspected)",
+      "aliases": [],
+      "date": {
+        "display": "28 July 2026",
+        "sort": "2026-07-28",
+        "precision": "source email date"
+      },
+      "place_text": "Great House Farm / Tŷ Mawr, Llandough-juxta-Penarth",
+      "description": "Metadata record for the Cardiff Council information-rights portal email of 28 July 2026 stating that its response to FOI25766 was attached as “FOI25766 - FOI Response Document.docx”. The email relates to the request for records about furniture, furnishings, antiques, fixtures, heirlooms and other movable property said to originate from Great House Farm. The DOCX bytes have not been imported or reviewed through the connected mailbox interface. This entry records the existence and filename of the attachment only; no claim is made about the substance or completeness of the Council's response.",
+      "provenance": {
+        "holder": "Cardiff Council — Information Governance Team (House on the Hill portal)",
+        "reference": "FOI25766",
+        "date": "2026-07-28",
+        "obtained": "Attachment metadata recorded from the connected mailbox on 31 October 2026; source email thread 19fa89f636aee4f5.",
+        "independent_origin_id": "ORIG-AR-FOI-0056"
+      },
+      "grade": null,
+      "scope": {
+        "disposition": "context_only",
+        "label": "Council response attachment — DOCX not inspected",
+        "reason": "The email confirms that a response document was attached, but the actual document bytes are not exposed by the connected mailbox interface. Do not infer the outcome of the FOI request or treat the email body as a substitute for the attached decision.",
+        "tags": [
+          "Cardiff-Council",
+          "FOI25766",
+          "Llandough",
+          "movable-property",
+          "DOCX"
+        ]
+      },
+      "places": [],
+      "evidence": [
+        "EV-0901"
+      ],
+      "detail": [
+        {
+          "heading": "Original filename",
+          "text": "FOI25766 - FOI Response Document.docx",
+          "form": "term"
+        },
+        {
+          "heading": "Source authority and reference",
+          "text": "Cardiff Council Information Governance Team · FOI25766",
+          "form": "term"
+        },
+        {
+          "heading": "Source email date",
+          "text": "28 July 2026",
+          "form": "term"
+        },
+        {
+          "heading": "Mailbox MIME type",
+          "text": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "form": "term"
+        },
+        {
+          "heading": "Source role",
+          "text": "Attachment said by Cardiff Council to contain the FOI25766 response. The email itself confirms only that a response was attached and gives the internal-review route.",
+          "form": "term"
+        },
+        {
+          "heading": "Binary and hash status",
+          "text": "Original attachment bytes not imported into the Cedwyn evidence store; contents not independently reviewed; SHA-256 not calculated. No substitute file or download link is supplied.",
+          "form": "term"
+        }
+      ],
+      "sources": [
+        {
+          "text": "Cardiff Council email of 28 July 2026",
+          "href": "https://email.bucklerfamily.estate/reference/19fa89f636aee4f5"
+        }
+      ],
+      "related": [
+        "EV-0901"
+      ],
+      "page": "/research/evidence/ev-0901-foi-response-attachment-catalogue/#AR-FOI-0056",
+      "origin": "gmail-archive-review-2026-10-31",
+      "reworded": false,
+      "public": true,
+      "updated": "2026-10-31",
+      "rev": 1
     }
   ]
 }
