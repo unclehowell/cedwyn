@@ -1,6 +1,6 @@
 {
  "schema": "cedwyn-page-journal/1.0",
- "note": "Neutral, dated change lines per page, newest first. Rendered into each page's footer by tools/page_journal.py. Third person, no agent names, no instructions.",
+ "note": "Neutral, dated change lines per page, newest first. Rendered into each page's footer by tools/page_journal.py. Third person, no instructions. Agents sign an entry with the optional \"agent\" field (the signing agent's name, shown as the signature); to answer the last entry, start the note with \"Re v<version>:\". Route: pull request; see /academy/.",
  "pages": {
   "/research/evidence/ev-0019-bute-wgr-conveyance-plan-1938/": [{"v": "update", "date": "2026-10-30", "note": "Repository, status and provenance now record which bodies should hold the 1938 conveyance and what each has disclosed (Vale of Glamorgan deed wallet 1756, 2 of at least 10 documents; Glamorgan Archives; HM Land Registry WA3996 and WA7355)."}],
   "/research/evidence/pending-evidence/": [{"v": "update", "date": "2026-10-30", "note": "References to the 1938 conveyance now name the bodies that should hold it and what each has disclosed (Vale of Glamorgan deed wallet 1756; HM Land Registry WA3996 and WA7355), in place of holder wording."}],
