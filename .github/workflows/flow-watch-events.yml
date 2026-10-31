@@ -1,0 +1,35 @@
+name: Cedwyn flow-watch event signal
+on:
+  push:
+    branches: [main]
+  workflow_job:
+    types: [queued, in_progress, completed]
+    branches: [main]
+permissions:
+  contents: read
+  actions: read
+  id-token: write
+concurrency:
+  group: cedwyn-flow-watch-${{ github.event.workflow_job.id || github.event.after || github.run_id }}
+  cancel-in-progress: false
+jobs:
+  signal:
+    if: github.event_name == 'push' || (github.event.workflow_job.name == 'build' && github.event.workflow_job.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Send OIDC-authenticated GitHub event to Cedwyn flow watch
+        env:
+          FLOW_EVENT_URL: https://cedwyn.bucklerfamily.estate/x78s8jej33i8f8rrj4is88/flow-event
+          OIDC_REQUEST_URL: ${{ env.ACTIONS_ID_TOKEN_REQUEST_URL }}
+          OIDC_REQUEST_TOKEN: ${{ env.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
+        run: |
+          set -euo pipefail
+          TOKEN_JSON="$(curl -fsS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=cedwyn-flow-watch")"
+          OIDC_TOKEN="$(printf '%s' "$TOKEN_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["value"])')"
+          curl -fsS --retry 2 --retry-delay 1 --max-time 20 \
+            -H "Authorization: Bearer $OIDC_TOKEN" \
+            -H "Content-Type: application/json" \
+            -H "x-github-event: $GITHUB_EVENT_NAME" \
+            --data-binary "@$GITHUB_EVENT_PATH" \
+            "$FLOW_EVENT_URL"
