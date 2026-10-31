@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8944,
+  "pages_scanned": 9005,
   "references_checked": {
-    "resource": 204807,
-    "nav": 461695
+    "resource": 205180,
+    "nav": 463914
   },
   "database_backed_paths": 7333,
-  "unique_missing_destinations": 4945,
-  "missing_references": 52181,
-  "missing_navigation_references": 36767,
-  "missing_resource_references": 15414,
+  "unique_missing_destinations": 4953,
+  "missing_references": 52313,
+  "missing_navigation_references": 36897,
+  "missing_resource_references": 15416,
   "unique_broken_fragments": 1812,
   "broken_fragment_references": 3370,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 8911,
+      "references": 8972,
       "examples": [
         {
           "from": "/",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 8910,
+      "references": 8971,
       "examples": [
         {
           "from": "/",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6440,
+      "references": 6441,
       "examples": [
         {
           "from": "/review/",
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6440,
+      "references": 6441,
       "examples": [
         {
           "from": "/review/",
@@ -235,7 +235,7 @@
     {
       "kind": "nav",
       "path": "/r/strip-art",
-      "references": 630,
+      "references": 631,
       "examples": [
         {
           "from": "/research/the-tightrope/",
@@ -667,7 +667,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 35,
+      "references": 34,
       "examples": [
         {
           "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",

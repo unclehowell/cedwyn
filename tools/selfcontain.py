@@ -171,7 +171,11 @@ BLOCK = re.compile(r'(<(script|style)\b[^>]*>)(.*?)(</\2\s*>)', re.S | re.I)
 COMMENT = re.compile(r'<!--.*?-->', re.S)
 DROP_SCRIPT = re.compile(r'<script\b[^>]*\bsrc\s*=\s*["\'][^"\']*followers\.bucklerfamily\.estate/follow\.js[^"\']*["\'][^>]*>\s*</script>', re.I)
 GHF_SRC = re.compile(r'''(?<=["'=])((?:https?:)?//(?:www\.)?bucklerfamily\.estate|/dartboard|[^"'\s>=]*?)/?(?:ghf-lang/(ghf-boot|ghf-lang|basecamp)|(basecamp))\.js(\?[^"'\s>]*)?(?=["'\s>])''', re.I)
-YTBLOCK = re.compile(r'''(?:/wayback/go/\?u=|https?:(?:\\?/){2}|(?<=["'=(])//)[^"'\s<>()]*?(?:sionbuckler5713|UC2sN1VEs1WeLfBH8VmbvLWw|c0UvjM-lwA)[^"'\s<>()]*''')
+# P-136 (31 Oct 2026): inside a JSON string a link ends at an escaped quote (backslash + quote). The old tail class ate the
+# backslash of that escape (or of a backslash-n) and left a bare quote, so story/api/qa.json came out as invalid JSON and the
+# privacy scrub failed build 531e0a8. A backslash is now taken only as a whole JSON escape (backslash-slash or \uXXXX). — Sion's Tab agent
+_YTC = r"""(?:\\/|\\u[0-9A-Fa-f]{4}|[^"'\s<>()\\])"""
+YTBLOCK = re.compile(r'''(?:/wayback/go/\?u=|https?:(?:\\?/){2}|(?<=["'=(])//)'''+_YTC+r'''*?(?:sionbuckler5713|UC2sN1VEs1WeLfBH8VmbvLWw|c0UvjM-lwA)'''+_YTC+r'''*''')
 INLINE_BOOT = re.compile(r'<script\b[^>]*data-ghf-boot-inline[^>]*>.*?</script>\s*', re.I | re.S)
 TOUR_TAG = re.compile(r'<script\b[^>]*(?:estate-tour\.js|data-estate-tour-loader)[^>]*>\s*</script>\s*', re.I)
 TOUR_SHELL = re.compile(r'<header\b[^>]*data-estate-tour-shell[^>]*>.*?</header>\s*', re.I | re.S)

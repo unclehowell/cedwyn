@@ -42,11 +42,28 @@ R = [
   (r"\b(?:flywheel |research )cycle \d+\b", "research", re.I),
   (r"\bcycle (\d+) audit\b", "audit"),
   (r"\s+by Tab(?:, for the owner)?(?![\w\u2019'-])", ""),
+  # P-133 (31 Oct 2026): public pages never name the owner as a source or decision-maker, and never carry instruction
+  # voice. "per <owner>" becomes the family's account; "<owner>'s decision" goes (or rests with the family); "must be
+  # reconciled" becomes a plain statement that it is not yet reconciled. The public voice check (tools/check_public_voice.py)
+  # flagged 32 such lines in build 1a2de65. — Sion's Tab agent
+  (rf"\bper {SION}(?:\s*\(voice note, (\d{{1,2}} \w{{3}} \d{{4}})\))?\s*:", r"from the family’s account (voice note, \1):"),
+  (rf"\bper {SION}\s*\(voice note, (\d{{1,2}} \w{{3}} \d{{4}})\)", r"in the family’s account (voice note, \1)"),
+  (rf"\bper {SION}\s*\((\d{{1,2}} \w{{3}} \d{{4}})\)", r"in the family’s account (\1)"),
+  (rf"\bPer {SION},\s*", "In the family’s account, "),
+  (rf"\bper {SION}(?=\s*\))", "from the family’s account"),
+  (rf"\bper {SION}\b", "in the family’s account"),
+  (rf";\s*it is {SION}{A}s decision whether to visit(?=\.)", ""),
+  (rf";\s*{SION}{A}s decision(?=\.)", ""),
+  (rf"\bis {SION}{A}s decision\b", "rests with the family"),
+  (rf"\b{SION}{A}s decision\b", "a decision for the family"),
+  (r"\bmust be reconciled against civil and probate records before drawing a timeline\b", "are not yet reconciled against civil and probate records, so no timeline is drawn from it"),
+  (r"\b(\w+s|identity and date) must be reconciled\b", r"\1 are not yet reconciled"),
+  (r"\bmust be reconciled\b", "has not yet been reconciled"),
   (r"\(\s*\)", ""),
 ]
 R = [(re.compile(x[0], x[2] if len(x) > 2 else 0), x[1]) for x in R]
 CHECK = re.compile(rf"Tab{A}s research|\bby Tab\b(?![\w-])|Sion{A}s Tab agent|Buckler{A}s request|\bTab agent|catalogued by Tab\b|(?<!site )\bowner{A}s instruction\b(?!s)|\b(?:flywheel|research) cycle \d+", re.I)
-PRE = re.compile(r"Tab|[Cc]ycle|[Oo]wner|Sion")
+PRE = re.compile(r"Tab|[Cc]ycle|[Oo]wner|Sion|reconciled")
 EMPTY = R.pop()   # the "()" tidy-up: prose only. Applied to code it turns function(){ into function{ and breaks every script.
 PROTECT = re.compile(r"<(script|style|code|pre|textarea)\b[^>]*>.*?</\1\s*>", re.S | re.I)
 def _prose_only(t, rx, rep):
@@ -139,8 +156,15 @@ def main(root, check_only=False):
             new, k = corr(new, rel); n += k
             if n and new != t:
                 if f.suffix.lower() == '.json':
+                    # P-136 (31 Oct 2026): blame the scrub only for JSON it broke. A file an earlier step already left invalid
+                    # (build 531e0a8: selfcontain's link removal ate a quote escape in story/api/qa.json) keeps the scrubbed
+                    # text, so the attribution still goes, and is named as a warning. — Sion's Tab agent
                     try: json.loads(new)
-                    except Exception: new = t; left.append(f'{f}: json would break, left for review')
+                    except Exception:
+                        try: json.loads(t); was_valid = True
+                        except Exception: was_valid = False
+                        if was_valid: new = t; left.append(f'{f}: json would break, left for review')
+                        else: print(f'::warning::privacy: {rel} was not valid JSON before the scrub; scrubbed text kept')
                 if new != t: f.write_text(new, 'utf-8'); changed += 1; hits += n; t = new
         for m in CHECK.finditer(t): left.append(f'{f.relative_to(root)}: {t[max(0,m.start()-60):m.end()+40]!r}')
         for m in CONTACT_CHECK.finditer(t): left.append(f'{rel}: contact detail {t[max(0,m.start()-40):m.end()+20]!r}')

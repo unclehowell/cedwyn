@@ -26,7 +26,8 @@ FLAG = [
     (r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b", 'internal task id'),
 ]
 STRIP = [re.compile(p, re.S | re.I) for p in (r'<script\b.*?</script>', r'<style\b.*?</style>', r'<!--.*?-->',
-         r'<(\w+)[^>]*\bdata-for-agents\b[^>]*>.*?</\1>', r'<template\b.*?</template>', r'<blockquote\b.*?</blockquote>')]
+         r'<(\w+)[^>]*\bdata-for-agents\b[^>]*>.*?</\1>', r'<template\b.*?</template>', r'<blockquote\b.*?</blockquote>',
+         r'<div\b[^>]*\bclass="[^"]*\bghf-msg-body\b[^"]*"[^>]*>.*?</div>')]   # quoted mail bodies keep their own words (P-133)
 def visible(html):
     for rx in STRIP: html = rx.sub(' ', html)
     return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', html))

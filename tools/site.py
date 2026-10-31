@@ -452,8 +452,17 @@ def _shop_strip(dist):
     # sf35 (31 Oct 2026): section front pages with non-US entry traffic and no route to /ebooks/ (CF 3 days to 01:00Z),
     # plus the directory's business pages, the site's only pages Google ranks in the top 10 (local searches).
     for _s in ('directory', 'research', 'research/timeline', 'wiki', 'fb', 'accounts', 'glossary', 'authorities', 'records',
-               'wdtk', 'email', 'review', 'meeting', 'watchtower', 'projects', 'courtdrills', 'csscpsg', 'infographic', 'docs'):
+               'wdtk', 'email', 'review', 'meeting', 'watchtower', 'projects', 'courtdrills', 'csscpsg', 'infographic', 'docs',
+               # sf40 (31 Oct 2026): document pages that real phone visitors (non-US, non-NL) reach with no route to /ebooks/ near
+               # the top (CF 3 days to 16:00Z: fcg 56, oldbill 40, qa 29, cyberspace 21, thousand-cuts 18, emails 18; /wales/ and
+               # /argentina/ serve the same file, so one strip covers all three). Full-screen apps (chess, maps, story) stay out.
+               'fcg', 'oldbill', 'qa', 'cyberspace', 'thousand-cuts', 'emails'):
         targets.append((_s + '/index.html', _s.replace('/', '-')))
+    # sf41 (31 Oct 2026): the Wales and Patagonia front pages are their own files (wales/index.html, argentina/index.html), not
+    # copies of /, so the sf40 note above did not cover them and neither showed a strip (CF 3 days to 19:00Z, non-US excl. NL:
+    # /wales/ 39, /argentina/ 22; the shop's only link on /argentina/ sat in the footer menu). The strip goes under the hero and
+    # reuses the pages' own w_ebooks phrase, so it shows in Welsh / Spanish / English with the page's language switch.
+    targets += [('wales/index.html', 'wales'), ('argentina/index.html', 'argentina')]
     targets += [(str(p.relative_to(dist)), 'dir') for p in sorted((dist / 'directory' / 'p').glob('*/index.html'))]
     # sf36 (31 Oct 2026): deep record pages (research articles, evidence records, wiki pages, kissed-frogs) took ~1,565 of
     # 6,612 non-US page loads in the 3 days to 04:05Z (9x /ebooks/) and had no route to the shop. Sections already tagged above win.
@@ -471,6 +480,8 @@ def _shop_strip(dist):
         if 'class="ebook-strip"' in h:
             continue
         m = _re.search(r'<main\b[^>]*>', h)
+        if not m and tag in ('fcg', 'oldbill'):  # sf40: these two have no <main>; under the first heading, else the top wrapper
+            m = _re.search(r'</h1>', h) or _re.search(r'<div class="wrap">', h)
         if not m:
             continue
         text = ('Local history: Great House Farm (T&#375; Mawr), Llandough, 1667&ndash;1988, in the e-books. First edition free &rarr;'
@@ -479,7 +490,15 @@ def _shop_strip(dist):
                 if tag in ('art', 'ev', 'kf') else 'Read the farm\'s history in the e-books: first edition free &rarr;')
         line = ('<p class="ebook-strip" style="margin:.5rem 0 .75rem;font-size:16px;line-height:1.4">'
                 '<a href="/r/strip-%s">%s</a></p>' % (tag, text))
-        f.write_text(h[:m.end()] + line + h[m.end():], encoding='utf-8')
+        at = m.end()
+        if tag in ('wales', 'argentina'):  # sf41: under the hero header inside <main>, in the page's default language
+            mh = _re.compile(r'</header>').search(h, m.end())
+            at = mh.end() if mh else m.end()
+            line = ('<p class="ebook-strip" style="margin:.75rem 0;font-size:16px;line-height:1.4">'
+                    '<a href="/r/strip-%s" data-i18n="w_ebooks">%s</a></p>'
+                    % (tag, 'E-lyfrau &middot; argraffiadau cyntaf am ddim' if tag == 'wales'
+                       else 'Libros electr&oacute;nicos &middot; primeras ediciones gratis'))
+        f.write_text(h[:at] + line + h[at:], encoding='utf-8')
         n += 1
     print('shop strip: added to', n, 'pages')
 try:
