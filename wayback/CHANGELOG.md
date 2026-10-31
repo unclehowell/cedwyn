@@ -1,3 +1,8 @@
+## Unreleased - 2026-10-31
+
+### Added
+- Recreations catalogue templates: `_ui/recreations.a2ui.json` (index, /wayback/recreations/) and `_ui/recreation.a2ui.json` (one page per record, /wayback/<slug>/). The build step `tools/views.py` on main fills them from the vault's own database `/wayback/_db/view.json`, which it derives from the central catalogue (`data/core/records/recreations.json`, records REC-0002 to REC-0005). Each page: image, interpretation, description quoted from the records with links, sources, records left out, hologram version, how the image was made. Pages appear once the main pull request with the records and view is merged.
+
 ## Unreleased - 2026-10-22
 
 ### Added
