@@ -8,7 +8,7 @@ on:
       - "tools/privacy_scrub.py"
       - "tools/test_privacy_scrub.py"
       - ".github/workflows/cedwyn-architecture-lab.yml"
-      - "docs/architecture/**"
+      - "docs/architecture/**", "workers/artifact-lane/**"
 permissions:
   contents: read
 concurrency:
