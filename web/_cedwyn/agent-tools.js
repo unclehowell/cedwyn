@@ -112,6 +112,18 @@
       readOnly: true
     },
     {
+      name: 'get_cedwyn_agent_bridge_manifest',
+      description: 'Read the opaque Cedwyn agent bridge manifest, including permission tiers, available resources, submission policy and X/Grok handoff rules. Public, read-only.',
+      inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+      readOnly: true
+    },
+    {
+      name: 'get_cedwyn_agent_queue_summary',
+      description: 'Read counts of pending, published and rejected external-agent submissions. Pending submission text is not exposed by this endpoint. Public, read-only.',
+      inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+      readOnly: true
+    },
+    {
       name: 'read_cedwyn_x_activity',
       description: 'Read the reviewed X/Grok discussion references submitted by authorised X-capable agents. This is not a live X crawl; pending submissions are hidden.',
       inputSchema: {
@@ -631,6 +643,10 @@
         var taskLimit = Math.max(1, Math.min(Number(args.limit) || 50, 50));
         return readResource('/x78s8jej33i8f8rrj4is88/tasks.json?offset=' + taskOffset + '&limit=' + taskLimit);
       }
+      case 'get_cedwyn_agent_bridge_manifest':
+        return readResource('/x78s8jej33i8f8rrj4is88/manifest.json');
+      case 'get_cedwyn_agent_queue_summary':
+        return readResource('/x78s8jej33i8f8rrj4is88/queue-summary.json');
       case 'read_cedwyn_x_activity': {
         var xLimit = Math.max(1, Math.min(Number(args.limit) || 20, 20));
         return readResource('/x78s8jej33i8f8rrj4is88/x.json?limit=' + xLimit);
