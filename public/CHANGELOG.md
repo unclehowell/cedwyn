@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- **2026-10-31 23:43 UTC** · v1.1.0 · Added mandatory anti-stagnation flow-watch contract; OIDC-verified GitHub build-state events; live status/event/contract WebMCP resources; source-to-live and Agent Library publication proof; agent-branch publish handoff; recorded private Gmail and per-product artifact verification as explicit integration gaps.
+
 What each library cycle changed (newest first).
 
 - **2026-10-31 18:42 UTC** · v1.0.19 · Architecture 1.0.5: the documentary now runs as code in a separate public film-studio repository, one shot unit at a time, with media kept as repository release files; standing orders 36-38 (scope is this site only, lean on the repository rather than hosting quotas, book-findings rows pass the whole-file agent lint). Lessons: a link-stripping step that broke a data file, a register edit that failed lint on older rows, a build step that drained the daily worker allowance, and stale reads before a write.
