@@ -160,7 +160,7 @@ def dartboard(dist):
 # file and nothing else - never the central catalogue, never its page list. Kissed Frogs: one point per screened record (date of
 # the record, the screening outcome). E-book shelf: one point per release of each book (first edition, current edition,
 # supplement) from the shop's own view (written by ebook_editions.py from data/ebooks.json). - Sion's Tab agent
-VIEW_APPS = ('kissed-frogs', 'ebooks', 'parcels')
+VIEW_APPS = ('kissed-frogs', 'ebooks', 'parcels', 'wayback')
 def _view(dist, app):
     f = dist / app / '_db' / 'view.json'
     if not f.exists(): return None
@@ -197,6 +197,23 @@ def ebooks(dist):
     j['source'] = '/ebooks/_db/view.json'
     return j
 
+def wayback(dist):
+    # Wayback Vault (31 Oct 2026): the vault's own database is /wayback/_db/view.json (recreations, REC-, derived from the central
+    # catalogue); its header graph plots that file only: one point per recreation at the date of the scene it shows. - Cedwyn editors
+    v = _view(dist, 'wayback')
+    if not v: return None
+    rows = []
+    for r in v.get('recreations') or []:
+        dt = r.get('date') or {}
+        x = str(dt.get('sort') or '')[:10]
+        if not x or x[:4] in ('1547', '1552'): continue
+        rows.append({'x': x, 'y': 'Recreation', 'c': (r.get('event') or 'Recreation')[:40], 'l': '%s %s' % (r.get('id') or '', r.get('title') or ''),
+                     'h': '/wayback/%s/' % r['slug'] if r.get('slug') else '/wayback/recreations/'})
+    if not rows: return None
+    j = pack('wayback', 'Wayback Vault: recreations', 'Date of the scene', 'Kind', 'Event', rows, ymax=4, cmax=8)
+    j['source'] = '/wayback/_db/view.json'
+    return j
+
 def parcels(dist):
     # Parcels page (asked 19:16 GMT 30 Oct 2026): its header graph plots the page's own database, /parcels/_db/view.json -
     # the instruments relied on by the corporations and the registrations of the parcels in their names, one row per parcel. - Sion's Tab agent
@@ -226,7 +243,7 @@ def run(dist):
     try: areas = json.loads((dist / 'areas.json').read_text('utf-8')).get('areas', [])
     except Exception: pass
     done = {}; special = {'dartboard': lambda: dartboard(dist), 'qa': lambda: qa(dist), 'email': lambda: email(dist), 'research': lambda: evidence(dist, 'research'), 'docs': lambda: evidence(dist, 'docs'),
-               'kissed-frogs': lambda: kissed_frogs(dist), 'ebooks': lambda: ebooks(dist), 'parcels': lambda: parcels(dist)}
+               'kissed-frogs': lambda: kissed_frogs(dist), 'ebooks': lambda: ebooks(dist), 'parcels': lambda: parcels(dist), 'wayback': lambda: wayback(dist)}
     for k, fn in special.items():
         try: j = fn()
         except Exception as e: j = None; print('graph_data', k, 'failed', e)

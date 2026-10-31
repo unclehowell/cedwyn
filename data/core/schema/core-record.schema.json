@@ -2,8 +2,8 @@
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "$id": "https://cedwyn.bucklerfamily.estate/_cedwyn/core/core-record.schema.json",
  "title": "Cedwyn core record",
- "version": "0.1.0",
- "description": "One record in the Cedwyn central catalogue (data/core/records/*.json). Public text: neutral third person; provenance names the source document only.",
+ "version": "0.2.0",
+ "description": "One record in the Cedwyn central catalogue (data/core/records/*.json). Public text: neutral third person; provenance names the source document only. 0.2.0 (31 Oct 2026): kind recreation (REC-) with event, description_cited, interpretation_cited, excluded, media, made, version, changes.",
  "type": "object",
  "required": [
   "id",
@@ -14,7 +14,7 @@
  "properties": {
   "id": {
    "type": "string",
-   "pattern": "^(EV|MR|CC|KF|RET|PL|PE|EVT|AR|TS|OBS)-[A-Z0-9-]+$"
+   "pattern": "^(EV|MR|CC|KF|RET|PL|PE|EVT|AR|TS|OBS|REC)-[A-Z0-9-]+$"
   },
   "kind": {
    "enum": [
@@ -27,7 +27,8 @@
     "missing_record",
     "observation",
     "testimony",
-    "catalogue_candidate"
+    "catalogue_candidate",
+    "recreation"
    ]
   },
   "slug": {
@@ -306,6 +307,173 @@
         }
        }
       }
+     }
+    }
+   }
+  },
+  "event": {
+   "type": "string",
+   "description": "recreation: the one event the scene shows"
+  },
+  "description_cited": {
+   "type": "array",
+   "description": "recreation: the description built only from verbatim record text, each quotation linked to its catalogue page",
+   "items": {
+    "type": "object",
+    "required": [
+     "runs"
+    ],
+    "properties": {
+     "runs": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "text"
+       ],
+       "properties": {
+        "text": {
+         "type": "string"
+        },
+        "href": {
+         "type": [
+          "string",
+          "null"
+         ]
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "interpretation_cited": {
+   "type": "array",
+   "description": "recreation: our interpretation, kept apart from the description",
+   "items": {
+    "type": "object",
+    "required": [
+     "runs"
+    ],
+    "properties": {
+     "runs": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "text"
+       ],
+       "properties": {
+        "text": {
+         "type": "string"
+        },
+        "href": {
+         "type": [
+          "string",
+          "null"
+         ]
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "excluded": {
+   "type": "array",
+   "description": "records considered and left out, with the reason",
+   "items": {
+    "type": "object",
+    "required": [
+     "text"
+    ],
+    "properties": {
+     "text": {
+      "type": "string"
+     },
+     "href": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "media": {
+   "type": "object",
+   "description": "recreation: image paths (photo-real and hologram), size, alt text, label and per-language captions",
+   "properties": {
+    "photo": {
+     "type": "string",
+     "pattern": "^/"
+    },
+    "hologram": {
+     "type": "string",
+     "pattern": "^/"
+    },
+    "width": {
+     "type": "integer"
+    },
+    "height": {
+     "type": "integer"
+    },
+    "alt": {
+     "type": "string"
+    },
+    "label": {
+     "type": "string"
+    },
+    "wales": {
+     "type": "object"
+    },
+    "hologram_width": {
+     "type": "integer"
+    },
+    "hologram_height": {
+     "type": "integer"
+    }
+   }
+  },
+  "made": {
+   "type": "object",
+   "description": "recreation: how the image was made (model, prompt, date, method of the hologram)",
+   "properties": {
+    "model": {
+     "type": "string"
+    },
+    "prompt": {
+     "type": "string"
+    },
+    "date": {
+     "type": "string"
+    },
+    "hologram_method": {
+     "type": "string"
+    },
+    "by": {
+     "type": "string"
+    }
+   }
+  },
+  "version": {
+   "type": "string",
+   "description": "semantic version of the record"
+  },
+  "changes": {
+   "type": "array",
+   "description": "the record's own change log (page journal reads it)",
+   "items": {
+    "type": "object",
+    "properties": {
+     "date": {
+      "type": "string"
+     },
+     "rev": {
+      "type": "integer"
+     },
+     "version": {
+      "type": "string"
+     },
+     "note": {
+      "type": "string"
      }
     }
    }
