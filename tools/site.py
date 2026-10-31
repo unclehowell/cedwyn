@@ -447,10 +447,10 @@ def _shop_strip(dist):
     # sf36 (31 Oct 2026): deep record pages (research articles, evidence records, wiki pages, kissed-frogs) took ~1,565 of
     # 6,612 non-US page loads in the 3 days to 04:05Z (9x /ebooks/) and had no route to the shop. Sections already tagged above win.
     for _pre in ('', 'wales/', 'argentina/'):
-        for _g, _t in (('research/*/index.html', 'art'), ('research/evidence/*/index.html', 'ev'),
-                       ('research/evidence-library/*/index.html', 'ev'), ('wiki/*/index.html', 'art'),
-                       ('wiki/evidence/*/index.html', 'ev'), ('kissed-frogs/*/index.html', 'kf')):
-            targets += [(str(p.relative_to(dist)), _t) for p in sorted(dist.glob(_pre + _g))]
+        for _sec in ('research', 'wiki', 'kissed-frogs'):
+            for p in sorted((dist / (_pre + _sec)).rglob('index.html')) if (dist / (_pre + _sec)).is_dir() else []:
+                _r = str(p.relative_to(dist))
+                targets.append((_r, 'kf' if _sec == 'kissed-frogs' else 'ev' if 'evidence' in _r else 'art'))
     n = 0
     for rel, tag in targets:
         f = dist / rel
