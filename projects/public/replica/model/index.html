@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en-GB"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>3D massing model · Great House Farm replica · The Project Office</title><meta name="description" content="Rotate the 3D massing model of Great House Farm (Tŷ Mawr), Llandough: the planned replica's starting geometry, with every dimension traced to its source."/><link rel="stylesheet" href="/assets/p2.css?v=1"/>
+<style>#v{width:100%;height:68vh;min-height:320px;display:block;border-radius:10px;background:#7d96b3;touch-action:none}.cap{font-size:.85rem;color:var(--mut)}.bar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.bar button{font:inherit;font-size:.85rem;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--fg)}</style></head><body><main class="p2">
+<p class="crumb"><a href="/">Dashboard</a> · <a href="/replica/">Great House Farm replica</a> · 3D model</p>
+<h2>3D massing model</h2>
+<p class="lead">Drag to turn, pinch or scroll to zoom. Walls and footprints come from the 1974 measured plan and the OS map of about 1900; heights and roofs are inferred, as the register shows.</p>
+<canvas id="v" aria-label="3D massing model of Great House Farm"></canvas>
+<div class="bar"><button data-v="front">South front</button><button data-v="air">From above</button><button data-v="yard">Ranges</button></div>
+<p class="cap">Grey: farmhouse (plan scaled, heights inferred). Sand: farm ranges A to D as mapped about 1900 (heights inferred). Download the model: <a href="../great-house-farm-massing-v0.1.glb">great-house-farm-massing-v0.1.glb</a> (glTF, metres).</p>
+<p class="cap"><a href="/replica/">Back to the replica plans</a> · <a href="/replica/how-measured/">How this was measured</a></p>
+</main>
+<script>
+(function(){
+var cv=document.getElementById('v'),gl=cv.getContext('webgl',{antialias:true});
+if(!gl){cv.insertAdjacentHTML('afterend','<p class="cap">This browser cannot show 3D. The plans on the replica page show the same geometry.</p>');return;}
+var VS='attribute vec3 p;attribute vec3 n;uniform mat4 m;varying vec3 vn;void main(){vn=n;gl_Position=m*vec4(p,1.0);}';
+var FS='precision mediump float;varying vec3 vn;uniform vec4 c;void main(){vec3 L=normalize(vec3(-0.45,0.66,0.6));float d=abs(dot(normalize(vn),L));gl_FragColor=vec4(c.rgb*(0.42+0.58*d),1.0);}';
+function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
+var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);gl.useProgram(pr);
+var aP=gl.getAttribLocation(pr,'p'),aN=gl.getAttribLocation(pr,'n'),uM=gl.getUniformLocation(pr,'m'),uC=gl.getUniformLocation(pr,'c');
+var parts=[],yaw=0.7,pit=0.5,dis=88,tgt=[-8,2,-6];
+var V={front:[0.35,0.18,42,[7,3,-4]],air:[0.6,1.2,95,[-8,0,-6]],yard:[-0.5,0.45,60,[-25,3,-8]]};
+fetch('../great-house-farm-massing-v0.1.glb').then(function(r){return r.arrayBuffer()}).then(function(b){
+ var dv=new DataView(b),jl=dv.getUint32(12,true),js=JSON.parse(new TextDecoder().decode(new Uint8Array(b,20,jl))),bo=20+jl+8;
+ js.meshes.forEach(function(me){me.primitives.forEach(function(pm){
+  function acc(i){var a=js.accessors[i],bv=js.bufferViews[a.bufferView];return new Float32Array(b,bo+(bv.byteOffset||0),a.count*3)}
+  var P=acc(pm.attributes.POSITION),N=acc(pm.attributes.NORMAL),bp=gl.createBuffer(),bn=gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER,bp);gl.bufferData(gl.ARRAY_BUFFER,P,gl.STATIC_DRAW);gl.bindBuffer(gl.ARRAY_BUFFER,bn);gl.bufferData(gl.ARRAY_BUFFER,N,gl.STATIC_DRAW);
+  parts.push({bp:bp,bn:bn,n:P.length/3,c:js.materials[pm.material].pbrMetallicRoughness.baseColorFactor});
+ })});draw();
+}).catch(function(){cv.insertAdjacentHTML('afterend','<p class="cap">The model did not load. Please try again later.</p>')});
+function mul(a,b){var o=new Array(16);for(var i=0;i<4;i++)for(var j=0;j<4;j++){var s=0;for(var k=0;k<4;k++)s+=a[k*4+j]*b[i*4+k];o[i*4+j]=s}return o}
+function persp(f,a,n,fa){var t=1/Math.tan(f/2);return[t/a,0,0,0,0,t,0,0,0,0,(fa+n)/(n-fa),-1,0,0,2*fa*n/(n-fa),0]}
+function look(e,c){var z=[e[0]-c[0],e[1]-c[1],e[2]-c[2]],l=Math.hypot.apply(0,z);z=z.map(function(v){return v/l});var x=[z[2],0,-z[0]];l=Math.hypot.apply(0,x);x=x.map(function(v){return v/l});var y=[z[1]*x[2]-z[2]*x[1],z[2]*x[0]-z[0]*x[2],z[0]*x[1]-z[1]*x[0]];
+ return[x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-(x[0]*e[0]+x[1]*e[1]+x[2]*e[2]),-(y[0]*e[0]+y[1]*e[1]+y[2]*e[2]),-(z[0]*e[0]+z[1]*e[1]+z[2]*e[2]),1]}
+function draw(){var w=cv.clientWidth,h=cv.clientHeight,dp=Math.min(2,window.devicePixelRatio||1);cv.width=w*dp;cv.height=h*dp;gl.viewport(0,0,cv.width,cv.height);
+ gl.clearColor(0.49,0.59,0.70,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);
+ var e=[tgt[0]+dis*Math.cos(pit)*Math.sin(yaw),tgt[1]+dis*Math.sin(pit),tgt[2]+dis*Math.cos(pit)*Math.cos(yaw)];
+ var M=mul(persp(0.8,w/h,0.5,600),look(e,tgt));gl.uniformMatrix4fv(uM,false,new Float32Array(M));
+ parts.forEach(function(p){gl.uniform4fv(uC,p.c);gl.bindBuffer(gl.ARRAY_BUFFER,p.bp);gl.enableVertexAttribArray(aP);gl.vertexAttribPointer(aP,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ARRAY_BUFFER,p.bn);gl.enableVertexAttribArray(aN);gl.vertexAttribPointer(aN,3,gl.FLOAT,false,0,0);gl.drawArrays(gl.TRIANGLES,0,p.n)})}
+var pts={},pd=0;
+cv.addEventListener('pointerdown',function(e){cv.setPointerCapture(e.pointerId);pts[e.pointerId]=[e.clientX,e.clientY]});
+cv.addEventListener('pointermove',function(e){if(!pts[e.pointerId])return;var k=Object.keys(pts);
+ if(k.length===1){yaw-=(e.clientX-pts[e.pointerId][0])*0.008;pit=Math.max(0.05,Math.min(1.5,pit+(e.clientY-pts[e.pointerId][1])*0.006));}
+ pts[e.pointerId]=[e.clientX,e.clientY];
+ if(k.length===2){var a=pts[k[0]],b=pts[k[1]],d=Math.hypot(a[0]-b[0],a[1]-b[1]);if(pd)dis=Math.max(12,Math.min(220,dis*pd/d));pd=d}draw()});
+function up(e){delete pts[e.pointerId];pd=0}cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
+cv.addEventListener('wheel',function(e){e.preventDefault();dis=Math.max(12,Math.min(220,dis*(e.deltaY>0?1.1:0.9)));draw()},{passive:false});
+document.querySelectorAll('[data-v]').forEach(function(b){b.addEventListener('click',function(){var v=V[b.getAttribute('data-v')];yaw=v[0];pit=v[1];dis=v[2];tgt=v[3];draw()})});
+window.addEventListener('resize',draw);
+})();
+</script></body></html>
