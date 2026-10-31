@@ -1,27 +1,27 @@
 {
- "db_version": "323b1d799221",
- "paths_served_from_db": 7333,
- "blobs": 4765,
+ "db_version": "4c70778cf212",
+ "paths_served_from_db": 7324,
+ "blobs": 4761,
  "files_dropped": {
-  "document": 3301,
-  "image": 1567,
+  "document": 3300,
+  "image": 1572,
   "data": 1373,
   "audio": 84
  },
  "bytes_dropped": {
-  "document": 1274591774,
-  "image": 147895696,
-  "data": 36938376,
+  "document": 1274445974,
+  "image": 148730278,
+  "data": 36789172,
   "audio": 14922925
  },
- "bytes_dropped_total": 1474348771,
+ "bytes_dropped_total": 1474888349,
  "files_kept_as_well": {
-  "image": 873,
+  "image": 868,
   "data": 94,
   "document": 12
  },
  "kept_why": {
-  "named in page markup": 756,
+  "named in page markup": 751,
   "link/meta tag": 45,
   "css url()": 27,
   "download file (.csv opened by a plain link, outside the service worker)": 19,
@@ -113,7 +113,9 @@
    "named in page markup"
   ]
  ],
- "changed_after_db_build_served_as_files": 0,
- "changed_examples": [],
- "indexed_without_file": 29
+ "changed_after_db_build_served_as_files": 1,
+ "changed_examples": [
+  "/research/_db/config.json"
+ ],
+ "indexed_without_file": 21
 }
