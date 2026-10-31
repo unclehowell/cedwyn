@@ -1,17 +1,17 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8841,
+  "pages_scanned": 8842,
   "references_checked": {
     "resource": 197644,
-    "nav": 342753
+    "nav": 341951
   },
-  "database_backed_paths": 7326,
+  "database_backed_paths": 7320,
   "unique_missing_destinations": 4916,
   "missing_references": 31870,
-  "missing_navigation_references": 16484,
-  "missing_resource_references": 15386,
+  "missing_navigation_references": 16482,
+  "missing_resource_references": 15388,
   "unique_broken_fragments": 1812,
-  "broken_fragment_references": 3372,
+  "broken_fragment_references": 3370,
   "form_or_endpoint_actions_not_checked": {
     "form[action]": 2549
   },
@@ -19,7 +19,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6429,
+      "references": 6430,
       "examples": [
         {
           "from": "/review/",
@@ -46,7 +46,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6429,
+      "references": 6430,
       "examples": [
         {
           "from": "/review/",
@@ -530,33 +530,6 @@
       ]
     },
     {
-      "kind": "nav",
-      "path": "/research/>*.html",
-      "references": 35,
-      "examples": [
-        {
-          "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        }
-      ]
-    },
-    {
       "kind": "resource",
       "path": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/assets/img/user1-128x128.jpg",
       "references": 33,
@@ -580,6 +553,33 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_index2.html",
           "attribute": "img[src]",
           "url": "./assets/img/user1-128x128.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/research/>*.html",
+      "references": 33,
+      "examples": [
+        {
+          "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
         }
       ]
     },
@@ -4165,25 +4165,6 @@
     },
     {
       "path": "/wayback/artifacts/",
-      "fragment": "EV-0045",
-      "references": 8,
-      "examples": [
-        {
-          "from": "/csscpsg/",
-          "url": "/wayback/artifacts/#EV-0045"
-        },
-        {
-          "from": "/csscpsg/",
-          "url": "/wayback/artifacts/#EV-0045"
-        },
-        {
-          "from": "/csscpsg/",
-          "url": "/wayback/artifacts/#EV-0045"
-        }
-      ]
-    },
-    {
-      "path": "/wayback/artifacts/",
       "fragment": "EV-0216",
       "references": 7,
       "examples": [
@@ -4198,6 +4179,25 @@
         {
           "from": "/fb/u/bute-estate.html",
           "url": "/wayback/artifacts/#EV-0216"
+        }
+      ]
+    },
+    {
+      "path": "/wayback/artifacts/",
+      "fragment": "EV-0045",
+      "references": 7,
+      "examples": [
+        {
+          "from": "/csscpsg/",
+          "url": "/wayback/artifacts/#EV-0045"
+        },
+        {
+          "from": "/csscpsg/",
+          "url": "/wayback/artifacts/#EV-0045"
+        },
+        {
+          "from": "/csscpsg/",
+          "url": "/wayback/artifacts/#EV-0045"
         }
       ]
     },
@@ -4317,25 +4317,6 @@
     },
     {
       "path": "/wayback/artifacts/",
-      "fragment": "WB-0039",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/story/story/",
-          "url": "/wayback/artifacts/#WB-0039"
-        },
-        {
-          "from": "/chess/list/",
-          "url": "/wayback/artifacts/#WB-0039"
-        },
-        {
-          "from": "/research/story/",
-          "url": "/wayback/artifacts/#WB-0039"
-        }
-      ]
-    },
-    {
-      "path": "/wayback/artifacts/",
       "fragment": "EV-0042",
       "references": 4,
       "examples": [
@@ -4426,6 +4407,25 @@
         {
           "from": "/projects/p3-artefacts-pid/",
           "url": "/projects/#role-descriptions"
+        }
+      ]
+    },
+    {
+      "path": "/wayback/artifacts/",
+      "fragment": "WB-0039",
+      "references": 4,
+      "examples": [
+        {
+          "from": "/chess/list/",
+          "url": "/wayback/artifacts/#WB-0039"
+        },
+        {
+          "from": "/research/story/",
+          "url": "/wayback/artifacts/#WB-0039"
+        },
+        {
+          "from": "/research/evidence/ev-0294-welsh-womens-peace-petition-1923-llandough-nlw-petition-1-92/",
+          "url": "/wayback/artifacts/#WB-0039"
         }
       ]
     },
