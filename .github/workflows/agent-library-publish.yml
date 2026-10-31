@@ -19,5 +19,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           REPOSITORY: ${{ github.repository }}
         run: |
+          MAIN_SHA="$(gh api "repos/$REPOSITORY/commits/main" --jq .sha)"
+          PUSHED_AT="$(python3 -c 'import json,sys; e=json.load(open(sys.argv[1])); print((e.get("head_commit") or {}).get("timestamp",""))' "$GITHUB_EVENT_PATH")"
+          RUNS="$(gh api "repos/$REPOSITORY/actions/runs?per_page=40&branch=main")"
+          ALREADY_BUILDING="$(printf '%s' "$RUNS" | python3 -c 'import json,sys,datetime; d=json.load(sys.stdin); main,pushed=sys.argv[1],sys.argv[2]; rows=[r for r in d.get("workflow_runs",[]) if r.get("name")=="build-cedwyn" and r.get("head_sha")==main and r.get("status") in ("queued","in_progress") and (not pushed or r.get("created_at","") >= pushed)]; print("yes" if rows else "no")' "$MAIN_SHA" "$PUSHED_AT")"
+          if [ "$ALREADY_BUILDING" = "yes" ]; then
+            echo "A canonical site build already started after this Agent Library change; no duplicate dispatch."
+            exit 0
+          fi
           gh workflow run build.yml --repo "$REPOSITORY" --ref main
           echo "Queued canonical Cedwyn site build for Agent Library commit $GITHUB_SHA"
