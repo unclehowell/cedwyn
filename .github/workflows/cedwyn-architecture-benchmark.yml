@@ -1,0 +1,100 @@
+name: cedwyn-architecture-benchmark
+on:
+  push:
+    branches: [sandbox/flow-architecture-20261031]
+    paths:
+      - "tools/**"
+      - "themes.json"
+      - "sections.lock"
+      - "data/**"
+      - ".github/workflows/cedwyn-architecture-benchmark.yml"
+permissions:
+  contents: read
+concurrency:
+  group: cedwyn-architecture-benchmark
+  cancel-in-progress: false
+jobs:
+  isolated-build-through-release-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      PRIVACY_WORKERS: "4"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: sandbox/flow-architecture-20261031
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Focused unit tests
+        run: |
+          python3 -m py_compile tools/dedupe_index.py tools/rewrite.py tools/privacy_scrub.py
+          python3 tools/test_rewrite_dedupe.py
+          python3 tools/test_privacy_scrub.py
+      - name: Free disk
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          df -h .
+      - name: Fetch theme branches (tips only)
+        run: |
+          git init -q --bare mirror.git
+          REFS=$(python3 -c "import json;print(' '.join(sorted({'+refs/heads/%s:refs/heads/%s'%(t['branch'],t['branch']) for t in json.load(open('themes.json'))['themes'] if t.get('branch')})))")
+          git -C mirror.git fetch -q --depth 1 "https://github.com/${GITHUB_REPOSITORY}.git" $REFS
+          git -C mirror.git for-each-ref --format='%(refname:short)' | wc -l
+      - name: Assemble themes
+        run: MIRROR=mirror.git python3 tools/assemble.py dist
+      - name: Data views
+        run: python3 tools/views.py dist || echo "::warning::views step did not complete; static pages kept"
+      - name: Apex site source
+        run: |
+          git clone -q --depth 1 --filter=blob:none --sparse https://github.com/unclehowell/BucklerFamilyFarm.git bff
+          git -C bff sparse-checkout set public
+          python3 tools/apex_source.py bff/public dist
+          rm -rf bff
+      - name: Copy cross-site shared assets (read-only)
+        run: python3 tools/fetch_missing.py dist
+      - name: Rewrite and content-addressed asset index
+        run: python3 tools/rewrite.py dist
+      - name: Pillow for share cards (optional)
+        run: python3 -m pip install --quiet --break-system-packages pillow || python3 -m pip install --quiet pillow || true
+      - name: Site root, runtime and archive interface
+        run: python3 tools/site.py dist
+      - name: Page journal
+        run: python3 tools/page_journal.py dist || echo "::warning::page journal step did not complete"
+      - name: Self-contained pass
+        run: python3 tools/selfcontain.py dist --fix
+      - name: Parallel privacy scrub (mandatory release gate)
+        run: python3 tools/privacy_scrub.py dist
+      - name: Outbound-link guard
+        run: |
+          python3 tools/check_links.py dist --fix
+          python3 tools/check_links.py dist
+      - name: Strict self-containment gate
+        run: python3 tools/selfcontain.py dist
+      - name: Capture benchmark metrics
+        if: always()
+        run: |
+          mkdir -p dist/_cedwyn/reports
+          python3 - <<'PY'
+          import json, os, pathlib
+          root = pathlib.Path('dist')
+          files = [p for p in root.rglob('*') if p.is_file()]
+          out = {
+            'files': len(files),
+            'bytes': sum(p.stat().st_size for p in files),
+            'largest': max((p.stat().st_size for p in files), default=0),
+          }
+          json.dump(out, open(root / '_cedwyn/reports/architecture-size.json', 'w'), indent=2)
+          print(json.dumps(out))
+          PY
+          for f in _assemble_report.json _rewrite_report.json _fetch_missing.json; do if [ -f "dist/$f" ]; then cp "dist/$f" dist/_cedwyn/reports/; fi; done
+          df -h .
+      - name: Upload reports only (never publish sandbox output)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cedwyn-architecture-benchmark
+          path: dist/_cedwyn/reports/
+          if-no-files-found: warn
+          retention-days: 7
