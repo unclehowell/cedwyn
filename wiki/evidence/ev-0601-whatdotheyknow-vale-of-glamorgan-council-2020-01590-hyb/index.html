@@ -466,7 +466,7 @@ Correspondence is welcomed in Welsh or English / Croesewir Gohebiaeth yn y Gymra
 						if ( null === ccpaCookie ) {
 
 							var request = new XMLHttpRequest();
-							request.open( 'GET', 'https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fpublic-api.wordpress.com%2Fgeo%2F', true );
+							request.open( 'GET', 'data:application/json,%7B%7D', true );
 
 							request.onreadystatechange = function () {
 								if ( 4 === this.readyState ) {
