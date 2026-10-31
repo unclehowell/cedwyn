@@ -347,7 +347,7 @@ async function acceptFlowEvent(request, env) {
   const eventType = request.headers.get("x-github-event") || "";
   if (!["push", "workflow_job", "schedule"].includes(eventType)) return response({ ok: false, error: "unsupported_event_type" }, 400);
   let claims;
-  try { claims = await verifyFlowOidc((request.headers.get("authorization") || "").replace(/^Bearer\\s+/i, ""), eventType); }
+  try { claims = await verifyFlowOidc((request.headers.get("authorization") || "").replace(/^Bearer\s+/i, ""), eventType); }
   catch (err) { return response({ ok: false, error: String(err.message || err) }, 401); }
   let payload;
   try { payload = await request.json(); } catch { return response({ ok: false, error: "json_required" }, 400); }
