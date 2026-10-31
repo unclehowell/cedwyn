@@ -2,12 +2,12 @@
  {
   "id": "flow-watch",
   "name": "Cedwyn anti-stagnation flow watch",
-  "cadence": "GitHub push/build-job events plus five-minute reconciliation",
+  "cadence": "GitHub push/workflow_run lifecycle events plus five-minute reconciliation",
   "prefix": "CEDWYN FLOW WATCH",
   "runner": "public/FLYWHEELS/flow-watch.md",
   "purpose": "Detect and remove avoidable waiting across GitHub source/build queues, production publication, Worker/Pages checks, the Agent Library, Docs/Library, e-books and documentary releases; require every agent to record an accountable state, last progress, evidence and next action.",
   "inputs": [
-   "OIDC-verified GitHub main push and build-job events",
+   "OIDC-verified GitHub main push and workflow_run lifecycle events",
    "five-minute reconciliation of GitHub Actions and the live production build stamp",
    "live Agent Library manifest and shared e-book/documentary version registry",
    "current HubSpot task state and blockers as read through the acting agent's own permissions",
