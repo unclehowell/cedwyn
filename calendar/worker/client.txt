@@ -1,7 +1,8 @@
-/* Cedwyn Calendar 0.0.1 — browser script (Tab agent, 31 Oct 2026, task 5ec27d7d). Draws the Day, Week, Month, Year, Compare and Decades
+/* Cedwyn Calendar 0.0.2 — browser script (Tab agent, 31 Oct 2026, tasks 5ec27d7d, 6383376a). Draws the Day, Week, Month, Year, Compare and Decades
    views from /api/events (the calendar's own derived db). Coverage rules (also in the ⓘ): a day counts when a record is dated to that day;
    a month when a record is dated to that month or a day in it; a year when any record is dated within it (day, month, year or circa).
-   Ranges and decades are drawn as bands and never count. Known gaps (missing-records register) are hatched and never count. */
+   Ranges and decades are drawn as bands and never count. Missing evidence (the missing-records register, MR-####) is bright pink in every view, with a strip listing
+   every entry that touches the period; it never counts. */
 (function () {
   "use strict";
   var root = document.getElementById("cal"); if (!root) return;
@@ -9,7 +10,7 @@
   var MN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var MS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], WD = ["M", "T", "W", "T", "F", "S", "S"];
   var VIEWS = ["day", "week", "month", "year", "compare", "decades"];
-  var EV = [], D = {}, MO = {}, YR = {}, GD = {}, GM = {}, GY = {}, BANDS = [], SORTED = [], BYID = {}, META = {};
+  var EV = [], D = {}, MO = {}, YR = {}, GD = {}, GM = {}, GY = {}, BANDS = [], SORTED = [], BYID = {}, META = {}, PK = [];   /* PK: missing evidence (MR register), drawn pink, never counted */
   var st = { v: "month", y: 1988, m: 12, d: 5, n: 8 };
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function p2(n) { return (n < 10 ? "0" : "") + n; }
@@ -25,7 +26,12 @@
   function idx(list) {
     EV = list; list.forEach(function (e, i) {
       e.i = i; var a = parts(e.s); e.y = a.y;
-      (e.ids || []).forEach(function (id) { if (!BYID[id]) BYID[id] = e; });
+      if (!e.g) (e.ids || []).forEach(function (id) { if (!BYID[id]) BYID[id] = e; });
+      if (e.g) {   // the period this missing-evidence entry points to, and the finest cell it can honestly mark: 0 day, 1 month, 2 year
+        var b0 = e.p === "decade" ? { y: a.y + 9, m: 12, d: 31 } : parts(e.e || e.s), bb = e.p === "span" || e.p === "decade" ? b0 : a;
+        e.g0 = dk(a.y, a.m || 1, a.d || 1); e.g1 = dk(bb.y, bb.m || 12, bb.d || dim(bb.y, bb.m || 12));
+        e.lv = e.p === "day" ? 0 : (e.p === "month" || (e.p === "circa" && a.m)) ? 1 : (e.p === "span" && a.m && b0.m) ? 1 : 2; PK.push(e);
+      }
       if (e.p === "span" || e.p === "decade") { var b = e.p === "decade" ? { y: a.y + 9, m: 12, d: 31 } : parts(e.e || e.s); e.a0 = dk(a.y, a.m || 1, a.d || 1); e.a1 = dk(b.y, b.m || 12, b.d || dim(b.y, b.m || 12)); BANDS.push(e); return; }
       if (e.p === "day") push(e.g ? GD : D, dk(a.y, a.m, a.d), e);
       else if (e.p === "month" || (e.p === "circa" && a.m)) push(e.g ? GM : MO, mk(a.y, a.m), e);
@@ -36,13 +42,20 @@
   function dayN(y, m, d) { return (D[dk(y, m, d)] || []).length; }
   function monthDays(y, m) { var k = 0, n = dim(y, m); for (var d = 1; d <= n; d++) if (D[dk(y, m, d)]) k++; return k; }
   function monthN(y, m) { var n = (MO[mk(y, m)] || []).length, L = dim(y, m); for (var d = 1; d <= L; d++) n += dayN(y, m, d); return n; }
-  function monthGap(y, m) { var n = (GM[mk(y, m)] || []).length, L = dim(y, m); for (var d = 1; d <= L; d++) n += (GD[dk(y, m, d)] || []).length; return n; }
+  function pkIn(a0, a1, lv) { return PK.filter(function (e) { return e.lv <= lv && !(e.g1 < a0 || e.g0 > a1); }); }
+  function pkDay(k) { return pkIn(k, k, 0); }
+  function pkMon(y, m) { return pkIn(dk(y, m, 1), dk(y, m, dim(y, m)), 1); }
+  function pkYear(y) { return pkIn(p4(y) + "-01-01", p4(y) + "-12-31", 2); }
+  function mrN(L) { var s = {}; L.forEach(function (e) { s[e.mr] = 1; }); return Object.keys(s).length; }
+  function tip(L) { var s = {}; return L.filter(function (e) { if (s[e.mr]) return false; s[e.mr] = 1; return true; }).map(function (e) { return e.mr + " · " + e.t + (e.st ? " (" + e.st + ")" : ""); }).join("\n"); }
+  function PKC(L) { return L.length ? ' hasgap" title="' + esc("Missing evidence (not counted):\n" + tip(L)) : ""; }   /* closes inside the caller's class="…" */
+  function monthGap(y, m) { return pkMon(y, m).length; }
   function yearN(y) { var n = (YR[p4(y)] || []).length; for (var m = 1; m <= 12; m++) n += monthN(y, m); return n; }
-  function yearGap(y) { var n = (GY[p4(y)] || []).length; for (var m = 1; m <= 12; m++) n += monthGap(y, m); return n; }
+  function yearGap(y) { return pkYear(y).length; }
   function lvl(n) { return n <= 0 ? 0 : n === 1 ? 1 : n === 2 ? 2 : n <= 4 ? 3 : 4; }
   function pct(a, b) { return b ? Math.round(100 * a / b) : 0; }
   function bandsIn(a0, a1) { return BANDS.filter(function (e) { return !(e.a1 < a0 || e.a0 > a1); }); }
-  function chip(e, extra) { return '<button type="button" class="ch' + (e.g ? " gap" : "") + (extra ? " " + extra : "") + '" data-ev="' + e.i + '" title="' + esc(e.t) + '">' + esc(e.t) + "</button>"; }
+  function chip(e, extra) { var t = (e.g ? e.mr + " · " : "") + e.t; return '<button type="button" class="ch' + (e.g ? " gap" : "") + (extra ? " " + extra : "") + '" data-ev="' + e.i + '" title="' + esc(e.g ? "Missing evidence: " + t + (e.st ? " (" + e.st + ")" : "") : t) + '">' + esc(t) + "</button>"; }
   function when(e) {
     var a = parts(e.s);
     if (e.p === "day") return a.d + " " + MN[a.m - 1] + " " + a.y;
@@ -79,9 +92,9 @@
   function vDay() {
     var y = st.y, m = st.m, d = st.d, k = dk(y, m, d), L = (D[k] || []), G = (GD[k] || []);
     titleB.textContent = d + " " + MS[m - 1] + " " + y;
-    cov.innerHTML = L.length ? "<b>" + L.length + "</b> record" + (L.length > 1 ? "s" : "") + " dated to this day" + (G.length ? " · " + G.length + " known gap" : "") : "No record dated to this day" + (G.length ? " · <b>" + G.length + "</b> known gap" : "");
+    cov.innerHTML = L.length ? "<b>" + L.length + "</b> record" + (L.length > 1 ? "s" : "") + " dated to this day" : "No record dated to this day";
     var h = coarse(y, m, k, k);
-    h += L.concat(G).length ? '<div class="dl">' + L.concat(G).map(function (e) { return '<button type="button" class="card' + (e.g ? " gap" : "") + '" data-ev="' + e.i + '"><span class="k">' + esc(e.ids && e.ids.length ? e.ids.join(", ") : e.ty || "") + "</span><span class=\"t\">" + esc(e.t) + "</span><span class=\"s\">" + esc(e.g ? "Known gap: record not yet disclosed" : (e.ty || "")) + "</span></button>"; }).join("") + "</div>" : '<p class="empty">Nothing in the record for this day yet.</p>';
+    h += L.concat(G).length ? '<div class="dl">' + L.concat(G).map(function (e) { return '<button type="button" class="card' + (e.g ? " gap" : "") + '" data-ev="' + e.i + '"><span class="k">' + esc(e.ids && e.ids.length ? e.ids.join(", ") : e.ty || "") + "</span><span class=\"t\">" + esc(e.t) + "</span><span class=\"s\">" + esc(e.g ? "Missing evidence: should exist, not held" + (e.st ? " · " + e.st : "") : (e.ty || "")) + "</span></button>"; }).join("") + "</div>" : '<p class="empty">Nothing in the record for this day yet.</p>';
     h += jumpers(k, k);
     return h;
   }
@@ -91,7 +104,7 @@
     titleB.textContent = s.d + " " + MS[s.m - 1] + (s.y !== e.y ? " " + s.y : "") + " – " + e.d + " " + MS[e.m - 1] + " " + e.y;
     for (var i = 0; i < 7; i++) {
       var x = add(s.y, s.m, s.d, i), k = dk(x.y, x.m, x.d), L = (D[k] || []).concat(GD[k] || []); if (D[k]) have++;
-      rows += '<div class="wr lv' + lvl((D[k] || []).length) + ((GD[k] || []).length ? " hasgap" : "") + '"><button type="button" class="wd" data-go="day:' + k + '"><span>' + ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][i] + "</span><b>" + x.d + "</b></button><div class=\"wc\">" + (L.length ? L.map(function (e) { return chip(e); }).join("") : '<span class="cal-mut">—</span>') + "</div></div>";
+      rows += '<div class="wr lv' + lvl((D[k] || []).length) + PKC(pkDay(k)) + '"><button type="button" class="wd" data-go="day:' + k + '"><span>' + ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][i] + "</span><b>" + x.d + "</b></button><div class=\"wc\">" + (L.length ? L.map(function (e) { return chip(e); }).join("") : '<span class="cal-mut">—</span>') + "</div></div>";
     }
     cov.innerHTML = "Days with a dated record: <b>" + have + "</b> of 7";
     return coarse(s.y, s.m === e.m ? s.m : 0, k0, k1) + '<div class="wk">' + rows + "</div>" + (have ? "" : jumpers(k0, k1));
@@ -99,11 +112,11 @@
   function vMonth() {
     var y = st.y, m = st.m, L = dim(y, m), first = dow(y, m, 1), have = monthDays(y, m), g = monthGap(y, m), cells = "";
     titleB.textContent = MN[m - 1] + " " + y;
-    cov.innerHTML = "Days with a dated record: <b>" + have + "</b> of " + L + " (" + pct(have, L) + "%)" + (g ? " · <span class=\"gk\">" + g + " known gap" + (g > 1 ? "s" : "") + "</span>" : "");
+    cov.innerHTML = "Days with a dated record: <b>" + have + "</b> of " + L + " (" + pct(have, L) + "%)";
     for (var i = 0; i < first; i++) cells += '<div class="mc out"></div>';
     for (var d = 1; d <= L; d++) {
       var k = dk(y, m, d), E = D[k] || [], G = GD[k] || [], all = E.concat(G);
-      cells += '<div class="mc lv' + lvl(E.length) + (G.length ? " hasgap" : "") + '" data-go="day:' + k + '"><span class="dn">' + d + "</span>" + all.slice(0, 2).map(function (e) { return chip(e, "sm"); }).join("") + (all.length > 2 ? '<span class="more">+' + (all.length - 2) + "</span>" : "") + "</div>";
+      cells += '<div class="mc lv' + lvl(E.length) + PKC(pkDay(k)) + '" data-go="day:' + k + '"><span class="dn">' + d + "</span>" + all.slice(0, 2).map(function (e) { return chip(e, "sm"); }).join("") + (all.length > 2 ? '<span class="more">+' + (all.length - 2) + "</span>" : "") + "</div>";
     }
     while ((first + L) % 7) { cells += '<div class="mc out"></div>'; L++; }
     var k0 = dk(y, m, 1), k1 = dk(y, m, dim(y, m));
@@ -112,14 +125,14 @@
   function mini(y, m) {
     var L = dim(y, m), first = dow(y, m, 1), c = "", n = monthN(y, m), md = monthDays(y, m), mo = (MO[mk(y, m)] || []).length, g = monthGap(y, m);
     for (var i = 0; i < first; i++) c += "<i></i>";
-    for (var d = 1; d <= L; d++) { var k = dk(y, m, d); c += '<i class="lv' + lvl(dayN(y, m, d)) + ((GD[k] || []).length ? " hasgap" : "") + '"></i>'; }
-    return '<button type="button" class="mm' + (mo ? " mband" : "") + (g ? " hasgap" : "") + '" data-go="month:' + mk(y, m) + '"><span class="mt">' + MS[m - 1] + "<b>" + (n ? n : "") + "</b></span><span class=\"mgr\">" + c + "</span>" + (mo ? '<span class="mb">+' + mo + " month only</span>" : "") + "</button>";
+    for (var d = 1; d <= L; d++) { var k = dk(y, m, d); c += '<i class="lv' + lvl(dayN(y, m, d)) + PKC(pkDay(k)) + '"></i>'; }
+    return '<button type="button" class="mm' + (mo ? " mband" : "") + PKC(pkMon(y, m)) + '" data-go="month:' + mk(y, m) + '"><span class="mt">' + MS[m - 1] + "<b>" + (n ? n : "") + "</b></span><span class=\"mgr\">" + c + "</span>" + (mo ? '<span class="mb">+' + mo + " month only</span>" : "") + "</button>";
   }
   function vYear() {
     var y = st.y, days = 0, months = 0, n = yearN(y), g = yearGap(y), h = "";
     titleB.textContent = String(y);
     for (var m = 1; m <= 12; m++) { days += monthDays(y, m); if (monthN(y, m)) months++; h += mini(y, m); }
-    cov.innerHTML = "<b>" + n + "</b> record" + (n === 1 ? "" : "s") + " · days with a record <b>" + days + "</b> of " + yLen(y) + " (" + pct(days, yLen(y)) + "%) · months covered <b>" + months + "</b> of 12" + (g ? " · <span class=\"gk\">" + g + " known gap" + (g > 1 ? "s" : "") + "</span>" : "");
+    cov.innerHTML = "<b>" + n + "</b> record" + (n === 1 ? "" : "s") + " · days with a record <b>" + days + "</b> of " + yLen(y) + " (" + pct(days, yLen(y)) + "%) · months covered <b>" + months + "</b> of 12";
     return coarse(y, 0, p4(y) + "-01-01", p4(y) + "-12-31") + '<div class="yg">' + h + "</div>" + legend();
   }
   function vCompare() {
@@ -127,10 +140,10 @@
     titleB.textContent = y0 + " – " + (y0 + N - 1);
     for (var y = y0; y < y0 + N; y++) {
       var n = yearN(y), g = yearGap(y), cells = "", mon = 0;
-      for (var m = 1; m <= 12; m++) { var k = monthN(y, m); if (k) mon++; cells += '<button type="button" class="cm lv' + lvl(k) + (monthGap(y, m) ? " hasgap" : "") + '" data-go="month:' + mk(y, m) + '" aria-label="' + MS[m - 1] + " " + y + ": " + k + '">' + (k || "") + "</button>"; }
+      for (var m = 1; m <= 12; m++) { var k = monthN(y, m); if (k) mon++; cells += '<button type="button" class="cm lv' + lvl(k) + PKC(pkMon(y, m)) + '" data-go="month:' + mk(y, m) + '" aria-label="' + MS[m - 1] + " " + y + ": " + k + '">' + (k || "") + "</button>"; }
       if (n) any++; mc += mon;
       var yb = (YR[p4(y)] || []).length, sp = bandsIn(p4(y) + "-01-01", p4(y) + "-12-31").length;
-      rows += '<div class="cr"><button type="button" class="cy" data-go="year:' + y + '"><b>' + y + "</b><span>" + pct(mon, 12) + "%</span></button><div class=\"cms\">" + cells + "</div><div class=\"cx\">" + (yb ? '<span class="yb" title="records dated to the year only">+' + yb + "</span>" : "") + (sp ? '<span class="sb" title="ranges that include this year">~' + sp + "</span>" : "") + (g ? '<span class="gb" title="known gaps">' + g + "</span>" : "") + "</div></div>";
+      rows += '<div class="cr"><button type="button" class="cy" data-go="year:' + y + '"><b>' + y + "</b><span>" + pct(mon, 12) + "%</span></button><div class=\"cms\">" + cells + "</div><div class=\"cx\">" + (yb ? '<span class="yb" title="records dated to the year only">+' + yb + "</span>" : "") + (sp ? '<span class="sb" title="ranges that include this year">~' + sp + "</span>" : "") + (g ? '<span class="gb" title="' + esc("Missing evidence (not counted):\n" + tip(pkYear(y))) + '">' + mrN(pkYear(y)) + "</span>" : "") + "</div></div>";
     }
     cov.innerHTML = "Years with any record: <b>" + any + "</b> of " + N + " · months covered <b>" + mc + "</b> of " + (12 * N) + " (" + pct(mc, 12 * N) + "%)";
     var sel = '<div class="cn"><span class="cal-mut">Years side by side</span>' + [4, 8, 16, 32].map(function (k) { return '<button type="button" class="cnb' + (k === N ? " on" : "") + '" data-n="' + k + '">' + k + "</button>"; }).join("") + "</div>";
@@ -147,7 +160,7 @@
     }
     for (var dcd = c0; dcd < c0 + 100; dcd += 10) {
       var cells = "", da = 0, dn = 0;
-      for (var y2 = dcd; y2 < dcd + 10; y2++) { var t = yearN(y2), g = yearGap(y2); if (t) da++; dn += t; cells += '<button type="button" class="dy lv' + lvl(Math.ceil(t / 3)) + (g ? " hasgap" : "") + '" data-go="year:' + y2 + '"><span>' + String(y2).slice(-2) + "</span>" + (t ? "<b>" + t + "</b>" : "") + "</button>"; }
+      for (var y2 = dcd; y2 < dcd + 10; y2++) { var t = yearN(y2), g = yearGap(y2); if (t) da++; dn += t; cells += '<button type="button" class="dy lv' + lvl(Math.ceil(t / 3)) + PKC(pkYear(y2)) + '" data-go="year:' + y2 + '"><span>' + String(y2).slice(-2) + "</span>" + (t ? "<b>" + t + "</b>" : "") + "</button>"; }
       any += da; n += dn;
       rows += '<div class="dr"><span class="dl2">' + dcd + "s</span>" + cells + '<span class="dp">' + da + "/10</span></div>";
     }
@@ -157,7 +170,7 @@
     return '<div class="cents">' + cents.join("") + '</div><div class="dg">' + rows + "</div>" + legend(true);
   }
   function legend(sc) {
-    return '<p class="lg"><span class="sw lv0"></span>none<span class="sw lv1"></span>1<span class="sw lv2"></span>2<span class="sw lv3"></span>3–4<span class="sw lv4"></span>5+' + (sc ? " (per cell)" : "") + ' <span class="sw hasgap"></span>known gap</p>';
+    return '<p class="lg"><span class="sw lv0"></span>none<span class="sw lv1"></span>1<span class="sw lv2"></span>2<span class="sw lv3"></span>3–4<span class="sw lv4"></span>5+' + (sc ? " (per cell)" : "") + ' <span class="sw hasgap"></span>missing evidence (MR register, not counted)</p>';
   }
   // ---------- state, navigation ----------
   function hashOf() { var v = st.v; return "#" + v + "/" + (v === "day" || v === "week" ? dk(st.y, st.m, st.d) : v === "month" ? mk(st.y, st.m) : v === "compare" ? st.y + "-" + st.n : String(st.y)); }
@@ -168,9 +181,27 @@
     else { st.m = +(m[3] || st.m || 1); st.d = +(m[4] || 1); if (st.m < 1 || st.m > 12) st.m = 1; if (st.d > dim(st.y, st.m)) st.d = 1; }
     return true;
   }
+  function periodOf() {   // the dates the current view spans
+    var v = st.v;
+    if (v === "day") { var k = dk(st.y, st.m, st.d); return [k, k]; }
+    if (v === "week") { var s = weekStart(), e = add(s.y, s.m, s.d, 6); return [dk(s.y, s.m, s.d), dk(e.y, e.m, e.d)]; }
+    if (v === "month") return [dk(st.y, st.m, 1), dk(st.y, st.m, dim(st.y, st.m))];
+    if (v === "year") return [p4(st.y) + "-01-01", p4(st.y) + "-12-31"];
+    if (v === "compare") return [p4(st.y) + "-01-01", p4(st.y + st.n - 1) + "-12-31"];
+    var c0 = Math.floor(st.y / 100) * 100; return [p4(c0) + "-01-01", p4(c0 + 99) + "-12-31"];
+  }
+  function pinkStrip(a0, a1) {   // every missing-evidence entry whose date or period touches this view, at any precision
+    var L = pkIn(a0, a1, 2).slice().sort(function (a, b) { return a.g0 < b.g0 ? -1 : a.g0 > b.g0 ? 1 : 0; }); if (!L.length) return "";
+    var n = mrN(L);
+    return '<details class="pks"' + (st.v === "day" && n <= 6 ? " open" : "") + '><summary><span>Missing evidence pointing here</span><b>' + n + "</b></summary><div class=\"bl\">" +
+      L.map(function (e) { return '<button type="button" class="ch gap pkc" data-ev="' + e.i + '" title="' + esc("Missing evidence: " + e.mr + " · " + e.t + (e.st ? " (" + e.st + ")" : "") + " · " + when(e)) + '"><b>' + esc(e.mr) + "</b> " + esc(e.t) + '<i>' + esc(when(e)) + "</i></button>"; }).join("") +
+      '<p class="pkn">Records that should exist and are not held, from the missing-records register. Pink is not evidence and is not counted in the coverage figures.</p></div></details>';
+  }
   function draw(push) {
     var f = { day: vDay, week: vWeek, month: vMonth, year: vYear, compare: vCompare, decades: vDecades }[st.v] || vMonth;
-    body.innerHTML = f();
+    var html = f(), pp = periodOf(), pn = mrN(pkIn(pp[0], pp[1], 2));
+    if (pn) cov.innerHTML += ' · <span class="gk">' + pn + " missing-evidence entr" + (pn > 1 ? "ies" : "y") + " point here</span>";
+    body.innerHTML = pinkStrip(pp[0], pp[1]) + html;
     [].forEach.call(root.querySelectorAll(".cal-views [data-v]"), function (b) { b.setAttribute("aria-selected", b.getAttribute("data-v") === st.v ? "true" : "false"); });
     var h = hashOf(); if (location.hash !== h) { if (push) history.pushState(null, "", h); else history.replaceState(null, "", h); }
     document.title = "Cedwyn Calendar · " + titleB.textContent;
@@ -205,12 +236,12 @@
   function evModal(e) {
     var ids = (e.ids || []).map(function (id) { var o = BYID[id], u = o && o.ids[0] === id ? o.u : (o ? o.u : "https://cedwyn.bucklerfamily.estate/api/catalogue/" + id); if (id === (e.ids || [])[0]) u = e.u; return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(id) + "</a>"; }).join(", ");
     var h = '<p class="md"><b>' + esc(when(e)) + "</b></p>";
-    h += '<dl class="mdl"><dt>Date precision</dt><dd>' + esc(PL[e.p] || e.p) + "</dd>" + (e.dd ? "<dt>Date as written</dt><dd>" + esc(e.dd) + "</dd>" : "") + (ids ? "<dt>Catalogue</dt><dd>" + ids + "</dd>" : "") + (e.ty ? "<dt>Type</dt><dd>" + esc(e.ty) + "</dd>" : "") + "<dt>Source</dt><dd>" + esc((e.src || []).join(" · ")) + (e.so ? " · " + esc(e.so) : "") + "</dd>" + (e.h ? "<dt>Should be held by</dt><dd>" + esc(e.h) + "</dd>" : "") + "</dl>";
-    if (e.g) h += '<p class="gn">Known gap: a record that should exist for this date and has not yet been disclosed by the body that should hold it.</p>';
+    h += '<dl class="mdl"><dt>Date precision</dt><dd>' + esc(PL[e.p] || e.p) + "</dd>" + (e.dd ? "<dt>Date as written</dt><dd>" + esc(e.dd) + "</dd>" : "") + (ids ? "<dt>" + (e.g ? "Missing record" : "Catalogue") + "</dt><dd>" + ids + "</dd>" : "") + (e.ty ? "<dt>Type</dt><dd>" + esc(e.ty) + "</dd>" : "") + "<dt>Source</dt><dd>" + esc((e.src || []).join(" · ")) + (e.so ? " · " + esc(e.so) : "") + "</dd>" + (e.h ? "<dt>Should be held by</dt><dd>" + esc(e.h) + "</dd>" : "") + "</dl>";
+    if (e.g) h += '<p class="gn"><b>Missing evidence' + (e.mr ? " · " + esc(e.mr) : "") + '</b><br>A record that should exist for this date or period and has not yet been disclosed by the body that should hold it.' + (e.st ? " Register status: " + esc(e.st) + "." : "") + (e.n ? " (" + esc(e.n) + " this entry names.)" : "") + " Not counted as coverage.</p>";
     (e.q || []).forEach(function (q) { h += '<blockquote>“' + esc(q) + '”<cite>' + esc((e.ids || [])[0] || "") + "</cite></blockquote>"; });
     if (e.x && !(e.x.indexOf(e.t.replace(/…$/, "").slice(0, 40)) === 0 && e.x.length < e.t.length + 30)) h += '<p class="mx">' + esc(e.x) + "</p>";
     if (e.tl) h += '<p class="mx"><span class="cal-mut">Master Timeline: </span>' + esc(e.tl) + "</p>";
-    h += '<p><a class="cal-btn" href="' + esc(e.u) + '" target="_blank" rel="noopener">' + (e.g ? "Open the missing-records entry" : "Open the evidence page") + "</a></p>";
+    h += '<p><a class="cal-btn" href="' + esc(e.u) + '" target="_blank" rel="noopener">' + (e.g ? "Open " + esc(e.mr || "the entry") + " on Cedwyn" : "Open the evidence page") + "</a></p>";
     modal(e.t, h);
   }
   function goModal() {

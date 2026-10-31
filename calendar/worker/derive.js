@@ -10,7 +10,7 @@ export function decode(s) {
   return String(s == null ? "" : s).replace(/<br\s*\/?>/gi, " ").replace(/<[^>]+>/g, "").replace(/&#8217;|&rsquo;/g, "’").replace(/&#8216;|&lsquo;/g, "‘")
     .replace(/&#8220;|&ldquo;/g, "“").replace(/&#8221;|&rdquo;/g, "”").replace(/&#8211;|&ndash;/g, "–").replace(/&#8212;|&mdash;/g, "—").replace(/&#8230;|&hellip;/g, "…")
     .replace(/&nbsp;|&#160;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#039;|&#39;/g, "'")
-    .replace(/&#(\d+);/g, (m, n) => String.fromCodePoint(+n)).replace(/\s+/g, " ").trim();
+    .replace(/&#(\d+);/g, (m, n) => String.fromCodePoint(+n)).replace(/&#x([0-9a-f]+);/gi, (m, n) => String.fromCodePoint(parseInt(n, 16))).replace(/\s+/g, " ").trim();
 }
 // ---- dates: precision-honest ----
 // returns {s, p, e?} : s = start (YYYY, YYYY-MM or YYYY-MM-DD), p = day | month | year | circa | decade | span, e = end of a span
@@ -87,7 +87,7 @@ export function quotes(raw) {
 }
 // ---- scope rules ----
 const EXCLUDE_IDS = new Set(["EV-0002", "EV-0003", "EV-0017"]);   // 1547 lease and 1552 Bute range (not Tŷ Mawr dates); DSA/12/5400 is a different farm
-const NOT_OURS = /Llandough (?:Home )?Farm\b(?! ?house)|Ely Tidal Harbour|[Nn]ot our farm|[Dd]ifferent farm|\b1547\b|\b1552\b/;
+const NOT_OURS = /Llandough (?:Home )?Farm\b(?! ?house)|Land ?Doc Home Farm|Ely Tidal Harbour|[Nn]ot our farm|[Dd]ifferent farm|\b1547\b|\b1552\b/;
 export function excluded(id, text, year) {
   if (EXCLUDE_IDS.has(id)) return "rule";
   if (NOT_OURS.test(text || "")) return "Llandough Farm / pre-1824 Bute";
@@ -95,6 +95,36 @@ export function excluded(id, text, year) {
   return "";
 }
 const OUTSIDE = "Outside record: how it applies to Tŷ Mawr is under forensic examination.";
+// ---- 0.0.2: missing evidence (the missing-records register, /research/missing-records/, MR-####) ----
+// Each register entry is a record that should exist and is not held. Its "date of the record" can name several dates ("1938; 1969; 1975",
+// "1959 and 1965"); each becomes its own pink mark. Never counted as coverage. Links go to the entry's own page on cedwyn.
+export function mrDates(dd, ds) {
+  const s = decode(dd).replace(/\(.*?\)/g, " ").replace(/\s+/g, " ").trim();
+  if (/;| and /.test(s)) { const L = s.split(/;| and /).map(x => parseDate(x.trim())).filter(Boolean); if (L.length) return L; }
+  const one = parseDate(dd) || (ds ? catDate(ds, dd) : null); return one ? [one] : [];
+}
+export function mrEvents(m, ex, src) {
+  const why = excluded(m.id, m.title + " " + (m.dd || ""), null); if (why) { ex.push({ id: m.id, why, t: decode(m.title).slice(0, 120) }); return []; }
+  const L = mrDates(m.dd, m.ds); if (!L.length) { ex.push({ id: m.id, why: "undated (missing record: date of the record not stated)", t: decode(m.title).slice(0, 120) }); return []; }
+  return L.map((d, i) => {
+    const ev = { k: m.id + (i ? "#" + (i + 1) : ""), s: d.s, p: d.p, e: d.e, t: clean(m.title, { max: 160 }), q: [], ids: [m.id], src: src || ["missing-records register"], dd: clean(m.dd || ""),
+      g: 1, mr: m.id, ty: "missing evidence (missing-records register)", u: SITE + "/research/missing-records/" + m.id.toLowerCase() + "/" };
+    const x = clean(m.why || "", { max: 600 }); if (x) ev.x = x;
+    const st = decode(m.st || ""); if (st && !BAN.test(st)) ev.st = st;   // the register's own status words (a controlled list), not run through the holdings filter
+    const h = clean(m.holder || "", { max: 300 }); if (h) ev.h = h;
+    if (L.length > 1) ev.n = (i + 1) + " of " + L.length + " dates";
+    return ev;
+  });
+}
+// register index page: <a href="./mr-0050/"><span class="id">MR-0050</span> <b>title</b></a><br><span class="st">status</span>
+export function registerRows(html) {
+  const out = {};
+  for (const m of String(html || "").matchAll(/<a href="\.\/(mr-\d{4})\/"><span class="id">(MR-\d{4})<\/span>\s*<b>([\s\S]*?)<\/b><\/a>(?:<br>\s*<span class="st">([\s\S]*?)<\/span>)?/g))
+    out[m[2]] = { id: m[2], t: decode(m[3]), st: decode(m[4] || "") };
+  return out;
+}
+// an entry page: "Date of the record: 1975-05"
+export function registerDate(html) { const m = /Date of the record:\s*(?:<\/[^>]+>\s*)*(?:<[^>]+>\s*)*([^<]+)/.exec(String(html || "")); return m ? decode(m[1]) : ""; }
 // ---- sources -> events ----
 // event: {k, s, p, e?, t, x?, q[], ids[], u, src[], ty, dd, g?}
 //   k key, s/p/e date, t title, x longer text, q verbatim quotes, ids catalogue IDs, u evidence page, src sources, ty record type, dd date as written, g known gap
@@ -114,12 +144,13 @@ export function indexRows(html) {
   return M;
 }
 function short(desc) { const d = clean(desc); const i = d.search(/[:;(]/); return clean(i > 25 && i < 150 ? d.slice(0, i) : d, { max: 150 }); }
-export function fromCatalogue(items, IX, ex) {
+export function fromCatalogue(items, IX, ex, REG) {
+  REG = REG || {};
   const out = [];
   for (const r of items || []) {
     if (r.public === 0) continue;
     const data = typeof r.data === "string" ? (() => { try { return JSON.parse(r.data); } catch (e) { return {}; } })() : (r.data || {});
-    const ix = IX[r.id] || null;
+    const ix = r.kind === "missing_record" ? null : (IX[r.id] || null);   // 0.0.2: register MR-#### and evidence-index MR-#### (newspapers) are different series
     if (r.kind === "person") {
       if (data.living) continue;
       for (const [w, v] of [["born", data.born], ["died", data.died]]) {
@@ -128,18 +159,12 @@ export function fromCatalogue(items, IX, ex) {
       }
       continue;
     }
-    const text = (r.title || "") + " " + (ix ? ix.desc : "");
-    const d = r.kind === "missing_record" ? (parseDate(r.date_display) || catDate(r.date_sort, r.date_display)) : catDate(r.date_sort, r.date_display);
+    if (r.kind === "missing_record") { const reg = REG[r.id] || {}; out.push(...mrEvents({ id: r.id, title: r.title, dd: r.date_display || reg.dd || "", ds: r.date_sort, st: reg.st || "", why: data.why || r.summary || "", holder: r.holder || "" }, ex, ["catalogue", "missing-records register"])); continue; }
+    const d = catDate(r.date_sort, r.date_display);
     const why = excluded(r.id, r.title + " " + (r.date_display || ""), d && +d.s.slice(0, 4)); if (why) { ex.push({ id: r.id, why, t: decode(r.title).slice(0, 120) }); continue; }
     if (!d) { ex.push({ id: r.id, why: "undated", t: decode(r.title).slice(0, 120) }); continue; }
     const ev = { k: r.id, s: d.s, p: d.p, e: d.e, t: clean(r.title, { max: 160 }), q: ix ? quotes(ix.desc) : [], ids: [r.id], src: ["catalogue"], dd: clean(r.date_display || "") };
-    if (r.kind === "missing_record") {
-      ev.g = 1; ev.ty = "missing record (known gap)";
-      ev.u = SITE + (r.page || "/research/missing-records/");
-      ev.x = clean(data.why || r.summary || "");
-      const h = clean(r.holder || ""); if (h) ev.h = h;
-      ev.src = ["missing-records register"];
-    } else {
+    {
       ev.ty = clean(data.type || (r.kind === "catalogue_candidate" ? "catalogue candidate" : "record"));
       ev.u = r.page ? SITE + r.page : ix ? ix.u : SITE + "/api/catalogue/" + r.id;
       if (ix) { ev.x = clean(ix.desc, { max: 600 }); if (ix.so) ev.so = clean(ix.so, { max: 160 }); }
@@ -190,19 +215,25 @@ export function fromTimeline(lines, byId, ex) {
   });
   return out;
 }
-export function build(items, indexHtml, timelineHtml, snap) {
+export function build(items, indexHtml, timelineHtml, snap, reg) {
   const ex = [];
   const IX = indexHtml ? indexRows(indexHtml) : (snap && snap.ix) || {};
-  const cat = fromCatalogue(items, IX, ex);
-  const have = new Set((items || []).map(r => r.id));
+  const REG = reg || (snap && snap.reg) || {};
+  const cat = fromCatalogue(items, IX, ex, REG);
+  // 0.0.2: register entries not yet mirrored in the catalogue (e.g. MR-0050–0055), from the register pages
+  const haveMR = new Set((items || []).filter(r => r.kind === "missing_record").map(r => r.id));
+  const regOnly = [];
+  for (const id of Object.keys(REG).sort()) { if (haveMR.has(id)) continue; const m = REG[id]; regOnly.push(...mrEvents({ id, title: m.t, dd: m.dd || "", st: m.st || "", why: m.why || "", holder: m.holder || "" }, ex, ["missing-records register"])); }
+  // the evidence index's MR-#### rows (newspaper and online records) are a different series from the register's MR-####: only non-register catalogue ids hide an index row
+  const have = new Set((items || []).filter(r => r.kind !== "missing_record").map(r => r.id));
   const idx = fromIndex(IX, have, ex);
-  const events = cat.concat(idx), byId = {};
-  events.forEach(e => e.ids.forEach(id => { if (!byId[id]) byId[id] = e; }));
+  const events = cat.concat(regOnly, idx), byId = {};
+  events.forEach(e => { if (!e.g) e.ids.forEach(id => { if (!byId[id]) byId[id] = e; }); });
   const lines = timelineHtml ? timelineLines(timelineHtml) : (snap && snap.tl) || [];
   const tle = fromTimeline(lines, byId, ex);
   const all = events.concat(tle).sort((a, b) => a.s < b.s ? -1 : a.s > b.s ? 1 : a.k < b.k ? -1 : 1);
   const by = { day: 0, month: 0, year: 0, circa: 0, decade: 0, span: 0 }; all.forEach(e => { by[e.p] = (by[e.p] || 0) + 1; });
   const counts = { catalogue_public: (items || []).filter(r => r.public !== 0).length, catalogue_events: cat.length, evidence_index_rows: Object.keys(IX).length, evidence_index_only_events: idx.length, timeline_lines: lines.length,
-    timeline_merged: lines.length - tle.length - ex.filter(x => /^TL-/.test(x.id)).length, timeline_events: tle.length, known_gaps: all.filter(e => e.g).length, events: all.length, by_precision: by, excluded: ex.length };
+    timeline_merged: lines.length - tle.length - ex.filter(x => /^TL-/.test(x.id)).length, timeline_events: tle.length, known_gaps: all.filter(e => e.g).length, missing_evidence_marks: all.filter(e => e.g).length, missing_evidence_records: new Set(all.filter(e => e.g).map(e => e.mr)).size, register_entries: Object.keys(REG).length || haveMR.size, events: all.length, by_precision: by, excluded: ex.length };
   return { events: all, excluded: ex, counts };
 }
