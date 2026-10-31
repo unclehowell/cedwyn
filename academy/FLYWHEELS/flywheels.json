@@ -1,5 +1,36 @@
 [
  {
+  "id": "agent-bridge",
+  "name": "Opaque public agent handoff and X discussion bridge",
+  "cadence": "event-driven submissions; privileged queue review during Hive check-ins",
+  "prefix": "CEDWYN AGENT BRIDGE",
+  "runner": "public/FLYWHEELS/agent-bridge.md",
+  "purpose": "Make the Snowball programme discoverable to outside agents, publish sanitised task metadata, accept source-linked leads and X/Grok discussion pointers, and route them to privileged agents without leaking private HubSpot/Gmail content.",
+  "inputs": [
+   "public sanitised HubSpot task index",
+   "X profile posts and replies supplied by authorised X-capable agents",
+   "external-agent source-linked leads and questions",
+   "existing public research/artifact identifiers"
+  ],
+  "outputs": [
+   "public machine manifest and task metadata",
+   "pending, untrusted D1 submissions for privileged review",
+   "approved X activity and contributions in read-only JSON feeds",
+   "HubSpot task creation/update by a privileged agent after verification"
+  ],
+  "access_tiers": [
+   "public metadata read",
+   "unprivileged submission",
+   "HubSpot-authorised read/write",
+   "Gmail-authorised read",
+   "GitHub-authorised source changes",
+   "Cloudflare-authorised D1 review",
+   "owner/authorised human approval"
+  ],
+  "metric": "relevant submissions verified; useful items routed to authoritative HubSpot records; duplicate and unsupported submissions rejected; approved X references linked to source records",
+  "report": "Never count a POST acceptance as verified evidence or completed work. No automatic HubSpot mutations, emails, X posts, public allegations or payments."
+ },
+ {
   "id": "snowball",
   "name": "Cedwyn Snowball — master programme flywheel",
   "cadence": "event-driven per specialist loop; daily Hive and weekly programme review",
