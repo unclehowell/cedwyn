@@ -32,11 +32,8 @@ function rewriteUrls(text) {
   return text.replaceAll(OLD + "/", NEW + "/").replaceAll(OLD, NEW).replaceAll("http://hive.bucklerfamily.estate/", NEW + "/");
 }
 function rewriteHtml(text) {
-  return text.replace(/(\\s(?:href|src|action|data-src)=)(["'])\\/(?!\\/|hive\\/)/gi, "$1$2/hive/")
-    .replace(/(fetch\\(\\s*)(["'`])\\/(?!\\/|hive\\/)/gi, "$1$2/hive/");
-}
-function privacy(text) {
-  return text.replace(/\\bSion(?: Hywel)? Buckler\\b/gi, "the owner").replace(/\\bSion's\\b/gi, "the owner's").replace(/\\bSion\\b/g, "the owner");
+  return text.replace(/(\s(?:href|src|action|data-src)=)(["'])\/(?!\/|hive\/)/gi, "$1$2/hive/")
+    .replace(/(fetch\(\s*)(["'])\/(?!\/|hive\/)/gi, "$1$2/hive/");
 }
 function replaceTag(html, tagName, matcher, replacement) {
   const re = new RegExp("<" + tagName + "\\b[^>]*" + matcher + "[\\s\\S]*?<\/" + tagName + ">", "i");
@@ -44,10 +41,10 @@ function replaceTag(html, tagName, matcher, replacement) {
 }
 function updateHtml(html) {
   html = replaceTag(html, "footer", "id=[\"']ghf-agent-footer[\"']", FOOTER);
-  if (!html.includes('id="ghf-agent-footer"')) html = html.replace(/<\\/body>/i, FOOTER + "</body>");
-  html = html.replace(/<meta\\b[^>]*name=[\"']agent-instruction[\"'][^>]*>/gi, "");
-  html = html.replace(/<script\\b(?=[^>]*data-agent-footer=[\"']1[\"'])[^>]*>[\\s\\S]*?<\\/script>/gi, "");
-  html = html.replace(/<\\/head>/i, META + "</head>");
+  if (!html.includes('id="ghf-agent-footer"')) html = html.replace(/<\/body>/i, FOOTER + "</body>");
+  html = html.replace(/<meta\b[^>]*name=["']agent-instruction["'][^>]*>/gi, "");
+  html = html.replace(/<script\b(?=[^>]*data-agent-footer=["']1["'])[^>]*>[\s\S]*?<\/script>/gi, "");
+  html = html.replace(/<\/head>/i, META + "</head>");
   return html;
 }
 async function amendJson(text, sub) {
@@ -68,8 +65,8 @@ async function amendJson(text, sub) {
       x_profile: "https://x.com/BuckerCarlson",
       x_sync: "manual; authorised X-capable agents submit source-linked post/reply references"
     };
-    if (typeof data.task_prompt === "string") data.task_prompt += "\\n\\n" + BRIDGE_MD;
-    if (typeof data.drop_in_prompt === "string") data.drop_in_prompt += "\\n\\n" + BRIDGE_MD;
+    if (typeof data.task_prompt === "string") data.task_prompt += "\n\n" + BRIDGE_MD;
+    if (typeof data.drop_in_prompt === "string") data.drop_in_prompt += "\n\n" + BRIDGE_MD;
   } else if (sub === "/.well-known/agent.json" || sub === "/agent.json") {
     data.cedwyn_snowball = { manifest: BRIDGE + "/manifest.json", tasks: BRIDGE + "/tasks.json", x_activity: BRIDGE + "/x.json", submit: BRIDGE + "/submit", protocol_version: "3.16.0" };
   }
@@ -101,7 +98,7 @@ export default {
     if (/json/i.test(type) && (sub === "/join.json" || sub === "/.well-known/agent.json" || sub === "/agent.json")) {
       text = await amendJson(text, sub);
     } else if (/markdown|text\/plain/i.test(type) && (sub === "/join.md" || sub === "/join.txt" || sub === "/hive.md" || sub === "/llms.txt")) {
-      text += "\\n\\n" + BRIDGE_MD + "\\n";
+      text += "\n\n" + BRIDGE_MD + "\n";
     } else if (/html/i.test(type)) {
       text = rewriteHtml(text);
       text = privacy(text);
