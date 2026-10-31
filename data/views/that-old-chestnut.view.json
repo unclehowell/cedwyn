@@ -110,7 +110,11 @@
     "none": "None found yet",
     "held": "Held back for review",
     "radar": "Radar: a sweep arm passes over incoming emails; as it crosses some of them they turn into chestnuts.",
-    "not_read": "not yet read"
+    "not_read": "not yet read",
+    "unread": "Audit complete. {n} of the most recent messages are still unread and will be added if they change anything.",
+    "coverage": "Read: {c} conversations, {m} messages, {r} replies received.",
+    "word_h": "The word to watch",
+    "not_cited": "The reply did not cite this ground, give an estimate of cost or time, or offer advice and assistance."
    },
    "cy": {
     "h1": "Yr Hen Dric",
@@ -143,7 +147,11 @@
     "none": "Dim wedi'u canfod eto",
     "held": "Wedi'i ddal yn ôl i'w adolygu",
     "radar": "Radar: mae braich yn sgubo dros e-byst sy'n cyrraedd; wrth iddi groesi rhai ohonynt maen nhw'n troi'n gnau castan.",
-    "not_read": "heb ei ddarllen eto"
+    "not_read": "heb ei ddarllen eto",
+    "unread": "Archwiliad wedi'i gwblhau. Mae {n} o'r negeseuon diweddaraf heb eu darllen eto a byddant yn cael eu hychwanegu os ydynt yn newid unrhyw beth.",
+    "coverage": "Wedi'u darllen: {c} sgwrs, {m} neges, {r} ateb a dderbyniwyd.",
+    "word_h": "Y gair i'w wylio",
+    "not_cited": "Ni wnaeth yr ateb ddyfynnu'r sail hon, rhoi amcangyfrif o gost neu amser, na chynnig cyngor a chymorth."
    },
    "es": {
     "h1": "El truco de siempre",
@@ -176,7 +184,11 @@
     "none": "Nada encontrado aún",
     "held": "Retenido para revisión",
     "radar": "Radar: un brazo barre los correos entrantes; al cruzar algunos, se convierten en castañas.",
-    "not_read": "aún sin leer"
+    "not_read": "aún sin leer",
+    "unread": "Auditoría completa. Quedan {n} de los mensajes más recientes sin leer; se añadirán si cambian algo.",
+    "coverage": "Leído: {c} conversaciones, {m} mensajes, {r} respuestas recibidas.",
+    "word_h": "La palabra a vigilar",
+    "not_cited": "La respuesta no citó este motivo, ni dio una estimación de coste o tiempo, ni ofreció asesoramiento y asistencia."
    }
   },
   "columns": [
@@ -343,9 +355,22 @@
    ]
   },
   "audit": {
-   "complete": false,
-   "generated": "2026-10-31T23:18:00Z",
-   "still_to_read": 0
+   "complete": true,
+   "generated": "2026-10-31T23:40Z",
+   "still_to_read": 29,
+   "coverage": {
+    "conversations_reviewed": 309,
+    "messages_reviewed": 1043,
+    "received_messages_scanned": 529
+   },
+   "highlight": {
+    "id": "TOC-L01",
+    "institution": "Heneb (HER)",
+    "term": "onerous",
+    "date": "2026-10-29",
+    "statute": "EIR reg 12(4)(b) manifestly unreasonable (burden) / FOIA s.12–s.14(1); not formally cited; no reg 9 / s.16 advice",
+    "quote": "As you will note it does not contain information likely to be helpful to your research, as such we are unable to take on the onerous task of sharing further entries with you 5."
+   }
   }
  }
 }
