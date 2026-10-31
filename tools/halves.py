@@ -17,7 +17,11 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.3.0'
+VERSION = '1.3.1'
+# 1.3.1 (31 Oct 2026, Sion 20:51 GMT, m:7da01f30: 'It says bnb and you have a photo of the stables'): /argentina/ card pictures
+# match their cards. Hero = NFA-0157 (the two-storey house; NFA-0094 'The Long Farmhouse' reads as a stable range and moves to the
+# hl0 strip); villa card = NFA-0035 (the whole house, was NFA-0107, an aerial plan); venue card images carry their title as alt.
+# Multi-cycle task: HubSpot 536846217463. - Sion's Tab agent
 # 1.2.1 (27 Oct 2026, Sion 11:34 GMT): /argentina/ pictures purged of four pieces that are not the farm (NFA-0139, NFA-0049,
 # NFA-0103, NFA-0081); NFA-0015 replaced by REC-0001, a line drawing from the 1974 measured survey (see ARG_REC). - Sion's Tab agent
 # 1.2.0 (27 Oct 2026, Sion 09:45 GMT): the in-content pictures of /wales/ and /argentina/ are thumbnails; a tap opens the shared
@@ -758,10 +762,10 @@ ARG_REC = {
                  'cy': 'Tŷ Mawr: ail-greu o arolwg mesuredig 1974; uchder y to wedi’i amcangyfrif',
                  'es': 'Tŷ Mawr: reconstrucción a partir del levantamiento medido de 1974; altura del tejado estimada'},
 }
-ARG_NFT_HERO = 'NFA-0094'
-ARG_NFT_VENUE = {'room': 'NFA-0059', 'cottage': 'NFA-0141', 'villa': 'NFA-0107', 'wed': 'NFA-0100'}
+ARG_NFT_HERO = 'NFA-0157'
+ARG_NFT_VENUE = {'room': 'NFA-0059', 'cottage': 'NFA-0141', 'villa': 'NFA-0035', 'wed': 'NFA-0100'}
 ARG_NFT_SLOTS = {
-    'hl0': ['NFA-0157', 'NFA-0035', 'NFA-0026', 'NFA-0076', 'NFA-0032'],
+    'hl0': ['NFA-0094', 'NFA-0035', 'NFA-0026', 'NFA-0076', 'NFA-0032'],
     'hl1': ['NFA-0011', 'NFA-0046', 'NFA-0111', 'NFA-0112', 'NFA-0137', 'NFA-0138'],
     'hl2': ['NFA-0047', 'NFA-0093', 'NFA-0115', 'NFA-0114', 'NFA-0043'],
     'hl3': ['NFA-0050', 'NFA-0090', 'NFA-0106', 'NFA-0121'],
@@ -839,7 +843,7 @@ def argentina(sections, S, cfg, H):
                     + '</li>' for i in range(1, 8) if tx(T, 'a_feat' + str(i), l))
     vimg = ARG_NFT_VENUE
     unit = {'room_night': '/', 'night': '/', 'day': '/'}
-    vo = ''.join(f'<label class="hv-opt"><input type="radio" name="venue" value="{v["id"]}"{" checked" if v["id"] == "room" else ""}><img src="{ARG_NFT[vimg[v["id"]]][2]}" width="88" height="62" alt="" loading="lazy">'
+    vo = ''.join(f'<label class="hv-opt"><input type="radio" name="venue" value="{v["id"]}"{" checked" if v["id"] == "room" else ""}><img src="{ARG_NFT[vimg[v["id"]]][2]}" width="88" height="62" alt="{E(ARG_NFT[vimg[v["id"]]][0])}" loading="lazy">'
                  f'<span><b data-i18n="v_{v["id"]}">{E(tx(T,"v_"+v["id"],l))}</b><small data-i18n="v_{v["id"]}_d">{E(tx(T,"v_"+v["id"]+"_d",l))}</small><span class="pr">£{v["price"]:,}</span></span></label>' for v in H['venues'])
     ap = '<option value="NONE" data-i18n="b_nofly">' + E(tx(T, 'b_nofly', l)) + '</option>' + ''.join(
         f'<option value="{a}"{" selected" if a == "LHR" else ""}>{E(nm)} ({a})' + (f' · £{p:,}' if p else '') + '</option>' if a != 'OTHER' else f'<option value="OTHER">…</option>' for a, nm, p in H['airports'])
