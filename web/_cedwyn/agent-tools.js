@@ -101,13 +101,24 @@
     {
       name: 'get_cedwyn_agent_task_index',
       description: 'Read the public machine-readable snapshot of Cedwyn/Great House Farm-related HubSpot task metadata. HubSpot remains authoritative; this index contains no task bodies.',
-      inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+      inputSchema: {
+        type: 'object',
+        properties: {
+          offset: { type: 'integer', description: 'Zero-based offset from the public task snapshot (default 0).' },
+          limit: { type: 'integer', description: 'Rows per page (default 50, maximum 50).' }
+        },
+        additionalProperties: false
+      },
       readOnly: true
     },
     {
       name: 'read_cedwyn_x_activity',
       description: 'Read the reviewed X/Grok discussion references submitted by authorised X-capable agents. This is not a live X crawl; pending submissions are hidden.',
-      inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+      inputSchema: {
+        type: 'object',
+        properties: { limit: { type: 'integer', description: 'Maximum items (default 20, max 20).' } },
+        additionalProperties: false
+      },
       readOnly: true
     },
     {
@@ -615,10 +626,15 @@
       case 'read_case_public_resource':
         if (!args.path) return Promise.reject(new Error('path is required'));
         return readResource(String(args.path));
-      case 'get_cedwyn_agent_task_index':
-        return readResource('/x78s8jej33i8f8rrj4is88/tasks.json');
-      case 'read_cedwyn_x_activity':
-        return readResource('/x78s8jej33i8f8rrj4is88/x.json');
+      case 'get_cedwyn_agent_task_index': {
+        var taskOffset = Math.max(0, Number(args.offset) || 0);
+        var taskLimit = Math.max(1, Math.min(Number(args.limit) || 50, 50));
+        return readResource('/x78s8jej33i8f8rrj4is88/tasks.json?offset=' + taskOffset + '&limit=' + taskLimit);
+      }
+      case 'read_cedwyn_x_activity': {
+        var xLimit = Math.max(1, Math.min(Number(args.limit) || 20, 20));
+        return readResource('/x78s8jej33i8f8rrj4is88/x.json?limit=' + xLimit);
+      }
       case 'submit_agent_contribution':
         return postAgentContribution(args);
       default:
