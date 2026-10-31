@@ -35,6 +35,11 @@ function rewriteHtml(text) {
   return text.replace(/(\s(?:href|src|action|data-src)=)(["'])\/(?!\/|hive\/)/gi, "$1$2/hive/")
     .replace(/(fetch\(\s*)(["'])\/(?!\/|hive\/)/gi, "$1$2/hive/");
 }
+function privacy(text) {
+  return text.replace(/\bSion(?: Hywel)? Buckler\b/gi, "the owner")
+    .replace(/\bSion's\b/gi, "the owner's")
+    .replace(/\bSion\b/g, "the owner");
+}
 function replaceTag(html, tagName, matcher, replacement) {
   const re = new RegExp("<" + tagName + "\\b[^>]*" + matcher + "[\\s\\S]*?<\/" + tagName + ">", "i");
   return html.replace(re, replacement);
@@ -90,7 +95,7 @@ export default {
     if (location) outHeaders.set("location", location.startsWith(OLD) ? NEW + location.slice(OLD.length) : location.startsWith("/") ? "/hive" + location : location);
     outHeaders.set("x-hive-home", NEW + "/");
     const type = outHeaders.get("content-type") || "";
-    if (request.method === "HEAD" || upstream.status === 304 || !/(text\\/|application\\/(json|javascript|xml|ld\\+json|manifest\\+json))/i.test(type)) {
+    if (request.method === "HEAD" || upstream.status === 304 || !/(text\/|application\/(json|javascript|xml|ld\+json|manifest\+json))/i.test(type)) {
       return new Response(request.method === "HEAD" ? null : upstream.body, { status: upstream.status, headers: outHeaders });
     }
     let text = await upstream.text();
