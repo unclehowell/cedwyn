@@ -20,10 +20,19 @@ CREATE TABLE IF NOT EXISTS artifacts (
   published_reason TEXT,
   PRIMARY KEY (project_id, sha256)
 );
-
+CREATE TABLE IF NOT EXISTS artifact_events (
+  id TEXT PRIMARY KEY,
+  project_id TEXT NOT NULL,
+  sha256 TEXT NOT NULL,
+  event_type TEXT NOT NULL CHECK (event_type IN ('published')),
+  actor_id TEXT NOT NULL,
+  reason TEXT NOT NULL,
+  created_at TEXT NOT NULL,
+  FOREIGN KEY (project_id, sha256) REFERENCES artifacts(project_id, sha256)
+);
+CREATE UNIQUE INDEX IF NOT EXISTS artifact_single_publication
+  ON artifact_events (project_id, sha256) WHERE event_type = 'published';
 CREATE INDEX IF NOT EXISTS artifacts_project_created
   ON artifacts (project_id, created_at DESC, sha256 DESC);
-
 CREATE INDEX IF NOT EXISTS artifacts_public_project_created
-  ON artifacts (project_id, created_at DESC, sha256 DESC)
-  WHERE visibility = 'public';
+  ON artifacts (project_id, created_at DESC, sha256 DESC) WHERE visibility = 'public';
