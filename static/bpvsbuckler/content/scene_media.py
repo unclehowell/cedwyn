@@ -195,17 +195,26 @@ def attach_media(scenes, strict=True):
             ps, pe = periods[sc['id']]
             if prec == 'year':
                 if not _overlap(s0, e0, ps, pe): continue
+                # A year-only image has no more precise event date. Assign it
+                # to the nearest scene in that year.
+                dist = 0 if ps <= s0 <= pe else min(abs((s0 - ps).days), abs((s0 - pe).days))
+                cands.append((dist, (pe - ps).days, sc))
             else:
+                # Compare the full image-date range, not only its first day.
+                # For example 1891-11 overlaps the specific 11 November event;
+                # using 1 November wrongly favours the broad 1868-1901 scene.
                 if not _overlap(s0, e0, ps - dt.timedelta(days=LEAD_DAYS), pe + dt.timedelta(days=PRESS_LAG_DAYS)): continue
-            span = (pe - ps).days
-            dist = 0 if ps <= s0 <= pe else min(abs((s0 - ps).days), abs((s0 - pe).days))
-            cands.append((dist, span, sc))
+                if _overlap(s0, e0, ps, pe):
+                    dist = 0
+                elif e0 < ps:
+                    dist = (ps - e0).days
+                else:
+                    dist = (s0 - pe).days
+                cands.append(((pe - ps).days, dist, sc))
         if not cands: continue
+        # Year-only records use nearest-date ordering; month/day records use
+        # narrowest matching event first, then distance. One record, one scene.
         cands.sort(key=lambda c: (c[0], c[1]))
-        # A single archive item belongs to one scene only. Broad periods may
-        # overlap the image date, but the shortest, nearest period wins; never
-        # splash one thumbnail across unrelated events merely because their
-        # date windows overlap.
         cands = cands[:1]
         for _, _, sc in cands:
             if item in used_items[sc['id']]: continue
