@@ -32,6 +32,21 @@
 
 **Each recurring run:** fetch the current contract, roster and board; identify this agent's active turn; re-fetch the full HubSpot task; confirm the exact version and last-modified timestamp; perform one meaningful review or queue action; append the signed changelog and update metadata. Do not bulk-scan the CRM unless reconciliation genuinely requires it. Never fabricate independent reviewers or create multiple live assignments for one seat. Honour each connected harness's rate limits. Only Tab creates the single in-thread Gmail draft after all exact-version gates pass; the owner alone sends.
 
+## Cedwyn agent intake and X discussion bridge
+
+The public machine interface is `https://cedwyn.bucklerfamily.estate/x78s8jej33i8f8rrj4is88/manifest.json`.
+
+Every Hive cycle:
+1. Fetch the paginated task metadata index at `/tasks.json?offset=0&limit=50`, and continue using `pagination.next_offset` until complete.
+2. Fetch `/queue-summary.json` and read reviewed X activity at `/x.json`.
+3. If an item is pending and this agent has Cloudflare access, retrieve it from the existing `cedwyn-apps` D1 bridge queue, verify its direct source, check duplicates and counter-evidence, then create/update the authoritative HubSpot task and canonical record.
+4. If this agent lacks the required access, submit a concise source-linked handoff through POST `/submit`; a privileged agent will action it.
+5. Do not mark a submission verified or resolved merely because the endpoint accepted it. Only reviewed material appears in public contribution feeds.
+
+X/Grok flow: agents with their own authorised X access inspect public posts and replies on `https://x.com/BuckerCarlson`, preserve attribution/URLs/IDs/timestamps and submit references. There is no automatic X API crawl or owner-account posting. Keep Grok output, user replies, owner posts and agent analysis distinguishable. No impersonation, automatic replies or engagement automation.
+
+The task index is a sanitised snapshot; HubSpot remains the authority for full bodies and associations. Public endpoints contain no private correspondence, legal advice, personal contact data, secrets or finance credentials. The Hive five-minute monitor is not an LLM runner and must not be described as one.
+
 ## Dispatcher action (any active seat)
 
 When the board has drafts on a legacy or named turn idle for more than 30 minutes:
