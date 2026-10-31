@@ -1,7 +1,7 @@
 {
   "schema": "cedwyn-agent-task-index/1.1",
-  "generated_at": "2026-10-31T12:29:28Z",
-  "version": "1.1.1",
+  "generated_at": "2026-10-31T12:39:00Z",
+  "version": "1.1.2",
   "programme": "CEDWYN SNOWBALL",
   "coverage": {
     "description": "Public-safe metadata mirror of Cedwyn/Great House Farm/ Llandough/Leckwith-related HubSpot tasks found by subject matching.",
@@ -14,7 +14,10 @@
       "BP Buckler",
       "Parcel",
       "Leckwith",
-      "Williams"
+      "Williams",
+      "Buckler",
+      "BP Properties",
+      "Ty Mawr"
     ],
     "source_query_totals": {
       "CEDWYN": 443,
@@ -25,10 +28,13 @@
       "BP Buckler": 14,
       "Parcel": 67,
       "Leckwith": 42,
-      "Williams": 22
+      "Williams": 22,
+      "Buckler": 24,
+      "BP Properties": 7,
+      "Ty Mawr": 107
     },
-    "unique_records": 863,
-    "note": "This is a best-effort subject-matched snapshot, not a guaranteed exhaustive export of every CRM task or every associated record. HubSpot remains authoritative; agents with their own access should search the relevant CRM and update this mirror when creating or changing relevant work."
+    "unique_records": 866,
+    "note": "Best-effort subject-matched snapshot, deduplicated by HubSpot task ID. Not a guaranteed exhaustive export of every CRM task or every associated record. HubSpot remains authoritative; privileged agents must refresh after task creation or status changes."
   },
   "source_of_truth": "HubSpot is authoritative for task status, ownership, due dates and full task bodies. This public mirror excludes private task bodies, Gmail content, contact information, legal advice and confidential review narratives.",
   "access_model": {
@@ -72,6 +78,78 @@
     "instruction": "X-capable agents should read relevant public profile posts/replies and submit direct post/reply URLs and attribution through the bridge. No X owner credentials or public API sync is installed."
   },
   "tasks": [
+    {
+      "id": "536721393886",
+      "subject": "[CEDWYN SNOWBALL WP5] Hive, Docs/Library, WebMCP and site-wide agent operating protocol",
+      "hubspot_status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "due": "2026-11-04T17:00:00Z",
+      "modified": "2026-10-31T12:29:28Z",
+      "matched_terms": [
+        "CEDWYN"
+      ],
+      "progress_note": "Opaque agent bridge Worker, public task mirror and source protocol are committed/deployed; WebMCP and root discovery deployment and Hive proxy synchronization still require verification."
+    },
+    {
+      "id": "536809740513",
+      "subject": "[CEDWYN SNOWBALL] Master programme — estate reconstruction, documentary, agent operations and sustainable growth",
+      "hubspot_status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "due": "2026-11-01T17:00:00Z",
+      "modified": "2026-10-31T12:29:28Z",
+      "matched_terms": [
+        "CEDWYN"
+      ],
+      "progress_note": "Programme execution has started; the master Snowball protocol, Projects overview, procurement register, documentary planning and agent bridge are being built and checked."
+    },
+    {
+      "id": "536861939937",
+      "subject": "[CEDWYN SNOWBALL WP3] Documentary bible and complete master screenplay — Welsh estate, matriarchy and heritage",
+      "hubspot_status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "due": "2026-11-07T17:00:00Z",
+      "modified": "2026-10-31T12:29:28Z",
+      "matched_terms": [
+        "CEDWYN"
+      ],
+      "progress_note": "Documentary bible/source-led master screenplay page and initial scene policy are committed; full source audit and screenplay remain in progress."
+    },
+    {
+      "id": "536646179030",
+      "subject": "[CEDWYN SNOWBALL WP8] Transparent procurement, funding plan and crypto safety register",
+      "hubspot_status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "due": "2026-11-04T17:00:00Z",
+      "modified": "2026-10-31T12:29:28Z",
+      "matched_terms": [
+        "CEDWYN"
+      ],
+      "progress_note": "Public procurement register and eight candidate categories are committed; all entries remain unpriced and unauthorised."
+    },
+    {
+      "id": "536712488146",
+      "subject": "[CEDWYN PROCUREMENT] Master planned procurement register — no spend authorised",
+      "hubspot_status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "due": "2026-11-04T17:00:00Z",
+      "modified": "2026-10-31T12:29:28Z",
+      "matched_terms": [
+        "CEDWYN"
+      ],
+      "progress_note": "Versioned public procurement JSON and summary page are committed; publication build and reconciliation with HubSpot are still pending."
+    },
+    {
+      "id": "536743356609",
+      "subject": "[CEDWYN SNOWBALL WP10] Quality, privacy, red-team and continuous improvement control loop",
+      "hubspot_status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "due": "2026-11-05T17:00:00Z",
+      "modified": "2026-10-31T12:29:28Z",
+      "matched_terms": [
+        "CEDWYN"
+      ],
+      "progress_note": "Access-tier, private-review and source-submission controls are being implemented; older Hive proxy metadata remains under review."
+    },
     {
       "id": "536843472069",
       "subject": "[CEDWYN REPO] [instinct] Publication/integration handoff: scene reconstruction assets (anchor 536842623165)",
@@ -171,32 +249,9 @@
       "due": "2026-10-31T21:00:00Z",
       "modified": "2026-10-31T10:34:57.662Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
-    },
-    {
-      "id": "536721393886",
-      "subject": "[CEDWYN SNOWBALL WP5] Hive, Docs/Library, WebMCP and site-wide agent operating protocol",
-      "hubspot_status": "IN_PROGRESS",
-      "priority": "HIGH",
-      "due": "2026-11-04T17:00:00Z",
-      "modified": "2026-10-31T12:29:28Z",
-      "matched_terms": [
-        "CEDWYN"
-      ],
-      "progress_note": "Opaque agent bridge Worker, public task mirror and source protocol are committed/deployed; WebMCP and root discovery deployment and Hive proxy synchronization still require verification."
-    },
-    {
-      "id": "536809740513",
-      "subject": "[CEDWYN SNOWBALL] Master programme — estate reconstruction, documentary, agent operations and sustainable growth",
-      "hubspot_status": "IN_PROGRESS",
-      "priority": "HIGH",
-      "due": "2026-11-01T17:00:00Z",
-      "modified": "2026-10-31T12:29:28Z",
-      "matched_terms": [
-        "CEDWYN"
-      ],
-      "progress_note": "Programme execution has started; the master Snowball protocol, Projects overview, procurement register, documentary planning and agent bridge are being built and checked."
     },
     {
       "id": "536881412290",
@@ -230,42 +285,6 @@
       "matched_terms": [
         "CEDWYN"
       ]
-    },
-    {
-      "id": "536861939937",
-      "subject": "[CEDWYN SNOWBALL WP3] Documentary bible and complete master screenplay — Welsh estate, matriarchy and heritage",
-      "hubspot_status": "IN_PROGRESS",
-      "priority": "HIGH",
-      "due": "2026-11-07T17:00:00Z",
-      "modified": "2026-10-31T12:29:28Z",
-      "matched_terms": [
-        "CEDWYN"
-      ],
-      "progress_note": "Documentary bible/source-led master screenplay page and initial scene policy are committed; full source audit and screenplay remain in progress."
-    },
-    {
-      "id": "536646179030",
-      "subject": "[CEDWYN SNOWBALL WP8] Transparent procurement, funding plan and crypto safety register",
-      "hubspot_status": "IN_PROGRESS",
-      "priority": "HIGH",
-      "due": "2026-11-04T17:00:00Z",
-      "modified": "2026-10-31T12:29:28Z",
-      "matched_terms": [
-        "CEDWYN"
-      ],
-      "progress_note": "Public procurement register and eight candidate categories are committed; all entries remain unpriced and unauthorised."
-    },
-    {
-      "id": "536712488146",
-      "subject": "[CEDWYN PROCUREMENT] Master planned procurement register — no spend authorised",
-      "hubspot_status": "IN_PROGRESS",
-      "priority": "HIGH",
-      "due": "2026-11-04T17:00:00Z",
-      "modified": "2026-10-31T12:29:28Z",
-      "matched_terms": [
-        "CEDWYN"
-      ],
-      "progress_note": "Versioned public procurement JSON and summary page are committed; publication build and reconciliation with HubSpot are still pending."
     },
     {
       "id": "536741568726",
@@ -335,18 +354,6 @@
       ]
     },
     {
-      "id": "536743356609",
-      "subject": "[CEDWYN SNOWBALL WP10] Quality, privacy, red-team and continuous improvement control loop",
-      "hubspot_status": "IN_PROGRESS",
-      "priority": "HIGH",
-      "due": "2026-11-05T17:00:00Z",
-      "modified": "2026-10-31T12:29:28Z",
-      "matched_terms": [
-        "CEDWYN"
-      ],
-      "progress_note": "Access-tier, private-review and source-submission controls are being implemented; older Hive proxy metadata remains under review."
-    },
-    {
       "id": "536685709549",
       "subject": "[CEDWYN SNOWBALL WP1] Estate, parcel, title and Williams/Buckler matriarchy reconstruction",
       "hubspot_status": "NOT_STARTED",
@@ -356,7 +363,8 @@
       "matched_terms": [
         "CEDWYN",
         "Parcel",
-        "Williams"
+        "Williams",
+        "Buckler"
       ]
     },
     {
@@ -412,7 +420,8 @@
       "due": "2026-10-31T21:00:00Z",
       "modified": "2026-10-31T10:12:08.751Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -619,7 +628,8 @@
       "modified": "2026-10-31T08:56:30.833Z",
       "matched_terms": [
         "CEDWYN",
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler"
       ]
     },
     {
@@ -704,7 +714,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -717,7 +728,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -730,7 +742,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -910,7 +923,9 @@
       "modified": "2026-10-31T05:29:07.727Z",
       "matched_terms": [
         "CEDWYN",
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler",
+        "BP Properties"
       ]
     },
     {
@@ -1413,7 +1428,8 @@
       "due": "2026-10-30T21:00:00Z",
       "modified": "2026-10-30T21:00:12.561Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -1546,7 +1562,8 @@
       "due": "2026-10-30T21:00:00Z",
       "modified": "2026-10-30T21:00:06.130Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -1625,7 +1642,9 @@
       "modified": "2026-10-30T20:56:39.513Z",
       "matched_terms": [
         "CEDWYN",
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler",
+        "BP Properties"
       ]
     },
     {
@@ -1770,7 +1789,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -1792,7 +1812,8 @@
       "due": "2026-10-30T16:50:00Z",
       "modified": "2026-10-30T16:50:02.457Z",
       "matched_terms": [
-        "GHF"
+        "GHF",
+        "Buckler"
       ]
     },
     {
@@ -2008,7 +2029,8 @@
       "matched_terms": [
         "CEDWYN",
         "Great House Farm",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -2189,7 +2211,8 @@
       "due": "2026-10-29T21:00:00Z",
       "modified": "2026-10-30T09:17:20.790Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -2335,7 +2358,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -2348,7 +2372,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -2395,7 +2420,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -2444,7 +2470,8 @@
         "CEDWYN",
         "Llandough",
         "Tŷ Mawr",
-        "Leckwith"
+        "Leckwith",
+        "Ty Mawr"
       ]
     },
     {
@@ -2625,7 +2652,8 @@
       "modified": "2026-10-30T05:46:24.730Z",
       "matched_terms": [
         "Great House Farm",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -2683,7 +2711,9 @@
       "modified": "2026-10-30T02:56:17.834Z",
       "matched_terms": [
         "CEDWYN",
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler",
+        "BP Properties"
       ]
     },
     {
@@ -2756,7 +2786,8 @@
       "matched_terms": [
         "CEDWYN",
         "Tŷ Mawr",
-        "Williams"
+        "Williams",
+        "Ty Mawr"
       ]
     },
     {
@@ -2790,7 +2821,8 @@
       "modified": "2026-10-30T02:04:54.397Z",
       "matched_terms": [
         "Great House Farm",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -2802,7 +2834,8 @@
       "modified": "2026-10-30T02:03:32.464Z",
       "matched_terms": [
         "Great House Farm",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -2814,7 +2847,8 @@
       "modified": "2026-10-30T02:03:10.680Z",
       "matched_terms": [
         "Great House Farm",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -2826,7 +2860,8 @@
       "modified": "2026-10-30T02:03:08.278Z",
       "matched_terms": [
         "Great House Farm",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -3076,7 +3111,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -3423,7 +3459,19 @@
       "modified": "2026-10-29T21:38:09.148Z",
       "matched_terms": [
         "Great House Farm",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
+      ]
+    },
+    {
+      "id": "533486395627",
+      "subject": "[TURN: ChatGPT v0.2.0] Companies House: FOI — records not available online for BP Properties Ltd (00699446) and Western Ground Rents Ltd (00342092)",
+      "hubspot_status": "COMPLETED",
+      "priority": "MEDIUM",
+      "due": "2026-10-27T09:00:00Z",
+      "modified": "2026-10-29T21:37:55.806Z",
+      "matched_terms": [
+        "BP Properties"
       ]
     },
     {
@@ -3559,7 +3607,8 @@
       "due": "2026-10-29T21:00:00Z",
       "modified": "2026-10-29T21:00:07.179Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -3604,7 +3653,8 @@
       "due": "2026-10-29T21:00:00Z",
       "modified": "2026-10-29T21:00:01.332Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -3944,7 +3994,9 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "BP Properties",
+        "Ty Mawr"
       ]
     },
     {
@@ -3956,7 +4008,8 @@
       "modified": "2026-10-29T19:55:30.096Z",
       "matched_terms": [
         "Great House Farm",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -3991,7 +4044,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -4015,7 +4069,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -4043,6 +4098,17 @@
       ]
     },
     {
+      "id": "529343836363",
+      "subject": "Review & send draft: DON'T SEND – Supplement 2 — dates of first registration of forest (WA735527, Nov 1994) and green (VG41, 16 June 1970); was Buckler ownership concealed by brick-and-tile and council; when and how was the family notified of the 198",
+      "hubspot_status": "COMPLETED",
+      "priority": "HIGH",
+      "due": "2026-10-19T17:00:00Z",
+      "modified": "2026-10-29T19:54:43.657Z",
+      "matched_terms": [
+        "Buckler"
+      ]
+    },
+    {
       "id": "529313754357",
       "subject": "Review & send draft: DON'T SEND – Three-part Parcel A reconstruction — test result against HMLR correspondence (WA231076 / WA240304, Great House Farm / Tŷ Mawr, Llandough)",
       "hubspot_status": "COMPLETED",
@@ -4053,7 +4119,8 @@
         "Great House Farm",
         "Llandough",
         "Tŷ Mawr",
-        "Parcel"
+        "Parcel",
+        "Ty Mawr"
       ]
     },
     {
@@ -4168,7 +4235,8 @@
       "matched_terms": [
         "GHF",
         "Great House Farm",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -4825,7 +4893,8 @@
       "due": "2026-10-27T21:00:00Z",
       "modified": "2026-10-29T10:06:34.258Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -4870,7 +4939,8 @@
       "due": "2026-10-27T21:00:00Z",
       "modified": "2026-10-29T10:06:31.324Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -4992,7 +5062,8 @@
       "due": "2026-10-27T21:00:00Z",
       "modified": "2026-10-29T10:05:58.232Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -5039,7 +5110,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler"
       ]
     },
     {
@@ -5073,7 +5145,8 @@
       "modified": "2026-10-29T09:00:17.926Z",
       "matched_terms": [
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -5098,7 +5171,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -5124,7 +5198,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -5238,7 +5313,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -5397,7 +5473,8 @@
       "modified": "2026-10-28T17:00:31.866Z",
       "matched_terms": [
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -5497,7 +5574,8 @@
       "modified": "2026-10-28T17:00:13.173Z",
       "matched_terms": [
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -5555,7 +5633,8 @@
       "due": "2026-10-28T09:00:00Z",
       "modified": "2026-10-28T09:08:24.735Z",
       "matched_terms": [
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler"
       ]
     },
     {
@@ -5602,7 +5681,8 @@
       "modified": "2026-10-28T09:00:19.948Z",
       "matched_terms": [
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -5651,7 +5731,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -5699,7 +5780,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -5737,7 +5819,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -5751,7 +5834,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -5884,7 +5968,8 @@
       "modified": "2026-10-27T21:00:16.551Z",
       "matched_terms": [
         "CEDWYN",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -6039,7 +6124,8 @@
       "modified": "2026-10-27T21:00:03.026Z",
       "matched_terms": [
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -6118,7 +6204,8 @@
       "due": "2026-10-27T10:00:00Z",
       "modified": "2026-10-27T15:57:20.537Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -6130,7 +6217,8 @@
       "modified": "2026-10-27T15:57:10.851Z",
       "matched_terms": [
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -6188,7 +6276,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -6249,7 +6338,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -6875,7 +6965,8 @@
       "due": "2026-10-26T21:00:00Z",
       "modified": "2026-10-26T21:00:09.549Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -6930,7 +7021,8 @@
       "due": "2026-10-26T21:00:00Z",
       "modified": "2026-10-26T21:00:08.959Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -6975,7 +7067,8 @@
       "modified": "2026-10-26T21:00:08.552Z",
       "matched_terms": [
         "CEDWYN",
-        "Williams"
+        "Williams",
+        "Buckler"
       ]
     },
     {
@@ -6998,7 +7091,8 @@
       "modified": "2026-10-26T21:00:08.418Z",
       "matched_terms": [
         "CEDWYN",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -7141,7 +7235,8 @@
       "due": "2026-10-26T21:00:00Z",
       "modified": "2026-10-26T21:00:07.532Z",
       "matched_terms": [
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler"
       ]
     },
     {
@@ -7197,7 +7292,8 @@
       "modified": "2026-10-26T21:00:06.784Z",
       "matched_terms": [
         "CEDWYN",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -7308,7 +7404,8 @@
       "due": "2026-10-26T21:00:00Z",
       "modified": "2026-10-26T21:00:04.962Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -7331,7 +7428,8 @@
       "due": "2026-10-26T21:00:00Z",
       "modified": "2026-10-26T21:00:04.202Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -7377,7 +7475,8 @@
       "due": "2026-10-26T21:00:00Z",
       "modified": "2026-10-26T21:00:02.066Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -7388,7 +7487,8 @@
       "due": "2026-10-26T21:00:00Z",
       "modified": "2026-10-26T21:00:01.950Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -7399,7 +7499,8 @@
       "due": "2026-10-26T21:00:00Z",
       "modified": "2026-10-26T21:00:01.946Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -7410,7 +7511,8 @@
       "due": "2026-10-26T21:00:00Z",
       "modified": "2026-10-26T21:00:01.936Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -7625,7 +7727,8 @@
       "due": "2026-10-25T17:33:00.591Z",
       "modified": "2026-10-25T17:33:12.570Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -7636,7 +7739,8 @@
       "due": "2026-10-25T17:32:55.262Z",
       "modified": "2026-10-25T17:33:07.790Z",
       "matched_terms": [
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -7958,7 +8062,8 @@
       "modified": "2026-10-24T09:00:02.576Z",
       "matched_terms": [
         "GHF",
-        "Williams"
+        "Williams",
+        "Buckler"
       ]
     },
     {
@@ -7981,7 +8086,8 @@
       "due": "2026-10-24T09:00:00Z",
       "modified": "2026-10-24T09:00:02.355Z",
       "matched_terms": [
-        "GHF"
+        "GHF",
+        "Buckler"
       ]
     },
     {
@@ -8038,7 +8144,8 @@
       "modified": "2026-10-24T09:00:01.449Z",
       "matched_terms": [
         "GHF",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8061,7 +8168,8 @@
       "modified": "2026-10-24T09:00:01.303Z",
       "matched_terms": [
         "GHF",
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler"
       ]
     },
     {
@@ -8117,7 +8225,8 @@
       "modified": "2026-10-24T09:00:00.509Z",
       "matched_terms": [
         "GHF",
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler"
       ]
     },
     {
@@ -8140,7 +8249,8 @@
       "modified": "2026-10-24T09:00:00.350Z",
       "matched_terms": [
         "GHF",
-        "Williams"
+        "Williams",
+        "Buckler"
       ]
     },
     {
@@ -8253,7 +8363,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8267,7 +8378,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8511,7 +8623,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8524,7 +8637,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8537,7 +8651,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8550,7 +8665,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8563,7 +8679,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8576,7 +8693,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8590,7 +8708,10 @@
         "Great House Farm",
         "Llandough",
         "Tŷ Mawr",
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler",
+        "BP Properties",
+        "Ty Mawr"
       ]
     },
     {
@@ -8603,7 +8724,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8616,7 +8738,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8641,7 +8764,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8654,7 +8778,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8723,7 +8848,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8736,7 +8862,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8749,7 +8876,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8762,7 +8890,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8775,7 +8904,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8788,7 +8918,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8801,7 +8932,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8814,7 +8946,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8839,7 +8972,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8877,7 +9011,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8891,7 +9026,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -8905,7 +9041,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9240,7 +9377,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9254,7 +9392,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9280,7 +9419,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9294,7 +9434,9 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "BP Properties",
+        "Ty Mawr"
       ]
     },
     {
@@ -9308,7 +9450,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9322,7 +9465,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9560,7 +9704,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9574,7 +9719,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9589,6 +9735,17 @@
       ]
     },
     {
+      "id": "529330465000",
+      "subject": "Send Tab a photo of William Buckler's death certificate or grant",
+      "hubspot_status": "NOT_STARTED",
+      "priority": "HIGH",
+      "due": "2026-10-20T09:00:00Z",
+      "modified": "2026-10-20T09:00:02.499Z",
+      "matched_terms": [
+        "Buckler"
+      ]
+    },
+    {
       "id": "529694209220",
       "subject": "GHF · Send: HM Land Registry (FOI@ / Data Protection) — Subject access request (due 28 October 2026) and EIR/FOI requests – Great House Farm / Tŷ Mawr, Llandough, titles WA231076 and WA240304 (several items)",
       "hubspot_status": "COMPLETED",
@@ -9599,7 +9756,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9613,7 +9771,8 @@
         "GHF",
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9770,7 +9929,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9783,7 +9943,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9796,7 +9957,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9810,7 +9972,8 @@
         "Great House Farm",
         "Llandough",
         "Tŷ Mawr",
-        "Parcel"
+        "Parcel",
+        "Ty Mawr"
       ]
     },
     {
@@ -9822,7 +9985,8 @@
       "modified": "2026-10-19T17:00:04.811Z",
       "matched_terms": [
         "Great House Farm",
-        "Parcel"
+        "Parcel",
+        "Buckler"
       ]
     },
     {
@@ -9835,7 +9999,8 @@
       "matched_terms": [
         "Great House Farm",
         "Tŷ Mawr",
-        "Parcel"
+        "Parcel",
+        "Ty Mawr"
       ]
     },
     {
@@ -9847,7 +10012,8 @@
       "modified": "2026-10-19T17:00:04.663Z",
       "matched_terms": [
         "Great House Farm",
-        "Parcel"
+        "Parcel",
+        "Buckler"
       ]
     },
     {
@@ -9861,7 +10027,8 @@
         "Great House Farm",
         "Llandough",
         "Tŷ Mawr",
-        "Parcel"
+        "Parcel",
+        "Ty Mawr"
       ]
     },
     {
@@ -9888,7 +10055,8 @@
       "matched_terms": [
         "Great House Farm",
         "Llandough",
-        "Tŷ Mawr"
+        "Tŷ Mawr",
+        "Ty Mawr"
       ]
     },
     {
@@ -9902,7 +10070,8 @@
         "Great House Farm",
         "Llandough",
         "Tŷ Mawr",
-        "Parcel"
+        "Parcel",
+        "Ty Mawr"
       ]
     },
     {
@@ -9915,7 +10084,8 @@
       "matched_terms": [
         "Great House Farm",
         "Tŷ Mawr",
-        "Parcel"
+        "Parcel",
+        "Ty Mawr"
       ]
     },
     {
@@ -9926,7 +10096,8 @@
       "due": "2026-10-19T15:00:00Z",
       "modified": "2026-10-19T15:00:37.302Z",
       "matched_terms": [
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler"
       ]
     },
     {
@@ -9948,7 +10119,8 @@
       "due": "2026-10-19T09:00:00Z",
       "modified": "2026-10-19T09:00:14.566Z",
       "matched_terms": [
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler"
       ]
     },
     {
@@ -9970,7 +10142,8 @@
       "due": "2026-10-09T15:00:00Z",
       "modified": "2026-10-09T15:00:14.422Z",
       "matched_terms": [
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler"
       ]
     },
     {
@@ -9992,7 +10165,8 @@
       "due": "2026-10-05T06:39:32.523Z",
       "modified": "2026-10-05T06:39:39.914Z",
       "matched_terms": [
-        "BP Buckler"
+        "BP Buckler",
+        "Buckler"
       ]
     }
   ]
