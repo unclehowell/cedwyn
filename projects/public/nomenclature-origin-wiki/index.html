@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WP-DIG-NOM-02 · Sourced name-origin articles and site-wide wiki links</title>
+<meta name="description" content="PRINCE2 work package for source-led nomenclature articles, first-occurrence internal links and cross-theme quality monitoring across Cedwyn."/>
+<link rel="stylesheet" href="/assets/p2.css?v=1"/>
+<script src="https://bucklerfamily.estate/ghf-lang/ghf-lang.js?v=2.1.2" defer></script><script src="https://bucklerfamily.estate/ghf-lang/ghf-boot.js?v=2.1.2"></script>
+<script src="https://bucklerfamily.estate/ebook/cta.js" defer></script>
+</head><body><main class="p2">
+<h1 class="vh">WP-DIG-NOM-02 · Sourced name-origin articles and site-wide wiki links</h1>
+<p class="crumb"><a href="/">The Project Office</a> › <a href="/programme-plan/">Master programme plan</a> › <a href="/nomenclature-register-repair/">WP-DIG-NOM-01</a> › WP-DIG-NOM-02</p>
+<h2>WP-DIG-NOM-02 · Sourced name-origin articles and site-wide wiki links</h2>
+<ul class="facts">
+<li>Change ID <b>CR-DIG-2026-10-31-01</b></li><li>Product <b>PROD-DIG-NOM-02 — Cedwyn Nomenclature Wiki Layer</b></li>
+<li>Control model <b>PRINCE2 7, tailored · cross-cutting work package</b></li><li>Raised <b>31 October 2026</b></li>
+<li>Status <b><span class="chip c-warn">AMBER</span> In progress; live acceptance open</b></li><li>Budget tolerance <b>£0 external spend</b></li>
+</ul>
+<p class="lead">Extend Cedwyn’s source-aware name register into a connected encyclopaedia. Important names and concepts should lead to dedicated pages explaining their meanings, histories, usages and source trails. Each page must distinguish recorded forms from scholarly hypotheses, later folk explanations and unresolved search spellings. A shared lexicon and predictable linking rules make the pages discoverable across Cedwyn rather than leaving isolated lists.</p>
+<p><b>Programme boundary:</b> this is a cross-cutting product/work package, not a fifth project. It supports existing research and evidence products and does not change the programme structure, title/ownership positions or any legal gate.</p>
+<details class="sec" open><summary><h2>Product description and scope</h2><span class="pv">Sourced articles · one index · cross-theme hyperlinks</span></summary><div class="body"><table class="t"><thead><tr><th>Attribute</th><th>Definition / acceptance evidence</th></tr></thead><tbody>
+<tr><td>Product ID</td><td>PROD-DIG-NOM-02 — origin-aware nomenclature articles, a canonical term lexicon, A–Z/search navigation, cited source trails and cross-theme links.</td></tr>
+<tr><td>First article</td><td><a href="https://nomenclature.bucklerfamily.estate/c/leckwith/">Leckwith (Lecwydd)</a>. Includes standard Welsh/English forms, historical-form index, proposed Helygwydd derivation, separate Llechwedd folk etymology and visible source limits. The historical index’s earliest form is Leckwith (c.1179); the later 1700 form is also indexed as Leckwith.</td></tr>
+<tr><td>Coverage baseline</td><td>25 existing nomenclature concepts already have dedicated register pages; Leckwith becomes concept 26. Extend each existing concept page with a sourced origin/history explanation where evidence permits. Where no etymology is supportable, state that it is not established and list the next source needed.</td></tr>
+<tr><td>Canonical data</td><td>Use the nomenclature lexicon for concept IDs, names, variants, page URLs and link terms. Keep central <code>data/nomenclature.json</code> and <code>data/glossary.json</code> aligned with the independent nomenclature lexicon so all themes resolve consistently.</td></tr>
+<tr><td>Article standard</td><td>State standard/current forms; dated historical spellings with document locators; etymological and alternative explanations; evidence status and limits; inline references; related internal articles. Identify indexes and summaries as secondary sources where underlying primary records have not been checked directly.</td></tr>
+<tr><td>Hyperlink rule</td><td>First meaningful occurrence of a curated name or concept becomes a real, keyboard-accessible internal link. Use longest-match precedence and skip existing links, headings, navigation, forms, buttons, code, scripts and expressly excluded content. Keep dotted underline/focus treatment restrained and consistent.</td></tr>
+<tr><td>Build routes</td><td>Main Cedwyn build: existing build-time <code>tools/wikilinks.py</code> consumes central nomenclature/glossary data. Independent nomenclature pages retain their existing lexicon-powered term modal. Shared header and Projects build additionally load the lexicon-backed direct-link runtime. Other distinct deployment branches must be listed and checked individually.</td></tr>
+<tr><td>Non-goals</td><td>No automatic inference of ownership, boundaries, legal effect or geographic identity from a shared name; no unsupported etymologies; no external spend; no replacement of WP-DIG-NOM-01 or other PRINCE2 baselines.</td></tr>
+</tbody></table></div></details>
+<details class="sec" open><summary><h2>Acceptance gates</h2><span class="pv">A commit is not deployment or live acceptance</span></summary><div class="body"><table class="t"><thead><tr><th>Gate</th><th>Pass condition</th><th>Required evidence</th></tr></thead><tbody>
+<tr><td>G1 · Source and editorial integrity</td><td>Leckwith article, lexicon and A–Z/search entry agree. Every indexed form has a date and source locator; unverified variants are labelled. The Helygwydd account remains attributed/probable; Pierce’s relevant book pages have a visible direct-check caveat.</td><td>Git SHAs; JSON validation; reference/link check; editorial review of source statuses and uncertainty labels.</td></tr>
+<tr><td>G2 · Build and branch integration</td><td>Main build produces glossary/name links; the Projects build injects the runtime once per eligible page; CORS works; manual links remain usable when JavaScript is unavailable; no nested anchors or broken internal targets.</td><td>Successful build logs, deployment identities, CORS response, automated link scan and a theme/branch coverage matrix.</td></tr>
+<tr><td>G3 · Live acceptance and monitoring</td><td>Public Leckwith route works; A–Z and search find Leckwith/Lecwydd; sampled concepts link to the correct article across each published branch; keyboard focus works.</td><td>Timestamped production URL checks; counts of pages and linked concepts; broken-link count; pass/fail/untested status per branch; residual actions in the next highlight report.</td></tr>
+<tr><td>G4 · Origin/history coverage</td><td>All 26 concepts have been individually reviewed. Each has a sourced origin/history explanation where possible; unknown origins are openly marked as not established, with a research gap recorded.</td><td>Concept-by-concept coverage matrix and article/source references. One first article does not pass G4.</td></tr>
+</tbody></table><p class="note">Current position: G1 is in progress; G2 and G3 are not yet evidenced by a successful build and live checks; G4 remains open until all 26 concepts have been individually assessed.</p></div></details>
+<details class="sec"><summary><h2>Tasks and monitoring</h2><span class="pv">Release checkpoints and outputs</span></summary><div class="body"><table class="t"><thead><tr><th>Task</th><th>Output</th><th>Completion evidence</th></tr></thead><tbody>
+<tr><td>NOM-02.01 · Leckwith article</td><td>Origin/history article with references, historical forms and uncertainty notes.</td><td>Public page, valid citations and exact spelling checks.</td></tr>
+<tr><td>NOM-02.02 · Canonical lexicon and A–Z/search</td><td>Consistent concept ID, aliases, link terms and article URLs.</td><td>Valid JSON; index and search smoke test.</td></tr>
+<tr><td>NOM-02.03 · Central linker</td><td>Existing static linker resolves the expanded central concept/glossary data.</td><td>Successful main build and link counts.</td></tr>
+<tr><td>NOM-02.04 · Independent-theme linker</td><td>Shared-header runtime and Projects build integration, then coverage checks of each other separate deployment.</td><td>Theme-by-theme matrix and sample links on production URLs.</td></tr>
+<tr><td>NOM-02.05 · Origin/history coverage</td><td>Review all existing concept articles and expand them source by source.</td><td>26-row coverage matrix; unsupported origins explicitly marked.</td></tr>
+<tr><td>NOM-02.06 · Quality and reporting</td><td>Automated link checks, keyboard/accessibility check and live deployment follow-up.</td><td>Each release records linked concepts/pages, broken links, missing origins, deployment status and next review date.</td></tr>
+<tr><td>Review cadence</td><td>At every nomenclature/site-wide release and in each following programme highlight report until all gates are discharged.</td><td>Branch, revision, build/deployment identity, sample URLs and remaining issues.</td></tr>
+</tbody></table></div></details>
+<details class="sec"><summary><h2>RAID and dependencies</h2><span class="pv">Source quality · ambiguity · deployment</span></summary><div class="body"><table class="t"><thead><tr><th>ID / type</th><th>Entry</th><th>Control</th></tr></thead><tbody>
+<tr><td>DEP-NOM-02-01</td><td>WP-DIG-NOM-01 searchable register and its existing concept pages.</td><td>Preserve its baseline; this work package extends it rather than replacing it.</td></tr>
+<tr><td>RISK-NOM-02-01</td><td>Search forms can be mistaken for attested forms or etymons.</td><td>Require a source locator/date/status; keep unsupported search leads separate.</td></tr>
+<tr><td>RISK-NOM-02-02</td><td>Overlapping phrases can create incorrect or nested links.</td><td>Longest match first, one occurrence per concept, skip pre-linked and non-prose elements; test overlaps such as “Leckwith” and “Leckwith Woods”.</td></tr>
+<tr><td>RISK-NOM-02-03</td><td>Not every independent deployment may use the common loader.</td><td>Inventory all published themes and prove coverage separately; leave untested branches explicitly open.</td></tr>
+<tr><td>RISK-NOM-02-04</td><td>Runtime fetch, CORS or cache errors can silently remove linking.</td><td>Version the script, serve lexicon CORS headers, retain no-JS direct links and schedule live checks.</td></tr>
+<tr><td>ISS-NOM-02-01</td><td>Pierce’s 1968 pages 49–52 and the underlying medieval/early-modern documents have not yet been inspected directly for this entry.</td><td>Keep visible caveat and a direct-source verification follow-up.</td></tr>
+<tr><td>Decision constraint</td><td>No change to title conclusions, parcel boundaries, legal assertions, project count or external budget.</td><td>Use the programme change-control route for any such proposed change.</td></tr>
+</tbody></table></div></details>
+<p class="note">Control mirror: create/associate the matching HubSpot task only after CRM object association is confirmed. Do not report the package as complete based on source commits alone.</p>
+<p class="note" style="margin-top:18px"><a href="/programme-highlight-report/">‹ Master highlight report</a> · <a href="/nomenclature-register-repair/">WP-DIG-NOM-01</a> · <a href="/programme-plan/">Master programme plan</a> · <a href="/project-log/">Project log</a></p>
+</main></body></html>
