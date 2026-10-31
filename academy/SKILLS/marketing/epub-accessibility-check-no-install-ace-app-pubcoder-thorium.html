@@ -19,7 +19,7 @@ blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}<
 </ul>
 <h2>The pre-listing gate (per EPUB, about 15 minutes)</h2>
 <ol>
-<li><strong>Box pre-check (stdlib Python, no install, read-only):</strong> open the EPUB with <code>zipfile</code> and count:
+<li><strong>Box pre-check (stdlib Python, no install, read-only):</strong> run <code>tools/epub_lint.py</code> first (packaging). Then open the EPUB with <code>zipfile</code> and count, which could be added to epub_lint as a PROPOSAL:
    - OPF <code>dc:language</code>;
    - <code>&lt;html&gt;</code> files with no <code>lang</code>/<code>xml:lang</code>;
    - <code>&lt;img&gt;</code> with no <code>alt</code>;

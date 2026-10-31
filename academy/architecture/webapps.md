@@ -84,5 +84,6 @@ States: BUILT 2 · DATA-DRIVEN 2 · GENERATED 1 · HARD-CODED 15 · LIVE 1 · MI
 - `/learn/`: the old human learning area; its pages now redirect (301) to the Cedwyn Academy webapp on its own subdomain
 - `/_cedwyn/`: shared runtime, header files, versions file, A2UI catalog
 - `/db/`: the catalogue database in chunks
+- `film-studio repository (separate, public)`: the documentary as code: one JSON package per scene and shot, manifests with checksums, render and quality-gate tools; media stored as repository release files with content ids; validated by its own CI, never rendered by CI
 
 Shared across all of them: the header and menu files and `/_cedwyn/versions.json` (see [Structure](structure.md)).
