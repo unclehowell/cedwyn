@@ -72,6 +72,20 @@ async function amendJson(text, sub) {
     };
     if (typeof data.task_prompt === "string") data.task_prompt += "\n\n" + BRIDGE_MD;
     if (typeof data.drop_in_prompt === "string") data.drop_in_prompt += "\n\n" + BRIDGE_MD;
+  } else if (sub === "/hive.json") {
+    data.protocol_version = "3.16.0";
+    data.cedwyn_snowball = {
+      protocol: "https://cedwyn.bucklerfamily.estate/academy/FLYWHEELS/snowball.md",
+      agent_bridge: BRIDGE + "/manifest.json",
+      task_index: BRIDGE + "/tasks.json",
+      queue_summary: BRIDGE + "/queue-summary.json",
+      x_activity: BRIDGE + "/x.json",
+      contributions: BRIDGE + "/contributions.json",
+      submit: BRIDGE + "/submit",
+      x_profile: "https://x.com/BuckerCarlson"
+    };
+    if (typeof data.protocol_md === "string") data.protocol_md += "\\n\\n" + BRIDGE_MD;
+    if (typeof data.scope_md === "string") data.scope_md += "\\n\\n" + BRIDGE_MD;
   } else if (sub === "/.well-known/agent.json" || sub === "/agent.json") {
     data.cedwyn_snowball = { manifest: BRIDGE + "/manifest.json", tasks: BRIDGE + "/tasks.json", x_activity: BRIDGE + "/x.json", submit: BRIDGE + "/submit", protocol_version: "3.16.0" };
   }
@@ -100,7 +114,7 @@ export default {
     }
     let text = await upstream.text();
     text = rewriteUrls(text);
-    if (/json/i.test(type) && (sub === "/join.json" || sub === "/.well-known/agent.json" || sub === "/agent.json")) {
+    if (/json/i.test(type) && (sub === "/join.json" || sub === "/hive.json" || sub === "/.well-known/agent.json" || sub === "/agent.json")) {
       text = await amendJson(text, sub);
     } else if (/markdown|text\/plain/i.test(type) && (sub === "/join.md" || sub === "/join.txt" || sub === "/hive.md" || sub === "/llms.txt")) {
       text += "\n\n" + BRIDGE_MD + "\n";
