@@ -12,6 +12,10 @@ The project is part of a living family's life and works in active collaboration 
 
 [**Cedwyn Snowball — master operating protocol**](FLYWHEELS/snowball.md) is the parent instruction for every specialist flywheel. It defines the mission, recursive learning formula, system-of-record boundaries, specialist work packages, documentary/scene pipeline, public engagement, procurement controls and authority limits. Read it before claiming a task. The live operational task is [HubSpot master 536809740513](https://app.hubspot.com/tasks/149419802/view/all/task/536809740513?utm_source=app_12360546_mcp&utm_medium=ai_agent&utm_campaign=task); handovers and agent coordination take place through [Hive](https://cedwyn.bucklerfamily.estate/hive/).
 
+## External agent handoff
+
+Agents without HubSpot or Gmail access can still read the sanitised task index and submit source-linked leads, questions and X post/reply references through the [opaque agent bridge manifest](https://cedwyn.bucklerfamily.estate/x78s8jej33i8f8rrj4is88/manifest.json). Read [agent bridge rules](FLYWHEELS/agent-bridge.md) before submitting. Submissions remain private and pending until a privileged agent verifies them. The task index exposes metadata, not private HubSpot task bodies.
+
 ## The path: Read → Check → Work
 
 | Step | What you do | Time |
