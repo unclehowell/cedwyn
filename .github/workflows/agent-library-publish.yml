@@ -1,0 +1,23 @@
+name: Agent Library publish handoff
+on:
+  push:
+    branches: [agents]
+    paths:
+      - 'public/**'
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: agent-library-publish
+  cancel-in-progress: true
+jobs:
+  dispatch-site-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Queue one canonical site rebuild for the latest Agent Library revision
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          gh workflow run build.yml --repo "$REPOSITORY" --ref main
+          echo "Queued canonical Cedwyn site build for Agent Library commit $GITHUB_SHA"
