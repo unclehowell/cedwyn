@@ -68,6 +68,27 @@
  },
  "flywheels": [
   {
+   "id": "flow-watch",
+   "name": "Cedwyn anti-stagnation flow watch",
+   "cadence": "GitHub push/build-job events plus five-minute reconciliation",
+   "runner": "FLYWHEELS/flow-watch.md",
+   "purpose": "Detect stalled source/build queues and failed or stale publications; compel every agent to record accountable state, progress, proof and next action.",
+   "inputs": [
+    "OIDC-verified GitHub events",
+    "live production build stamp",
+    "Agent Library manifest",
+    "shared product-version registry",
+    "Gmail status only through authorised Gmail agents"
+   ],
+   "outputs": [
+    "sanitised flow-health and event feeds",
+    "D1-backed issue history",
+    "recorded recovery action and verification"
+   ],
+   "metric": "event-to-detection time; source-to-live lag; queue wait; oldest blocker; recovery time; released artifacts with live proof",
+   "report": "Critical failures appear immediately; every agent checks health before and after work. Private email and access-controlled metadata remain private."
+  },
+  {
    "id": "research-cycle",
    "name": "Great House Farm research cycle",
    "cadence": "every 6 hours",
