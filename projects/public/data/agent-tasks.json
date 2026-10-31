@@ -1,16 +1,16 @@
 {
   "schema": "cedwyn-agent-task-index/1.3",
-  "generated_at": "2026-10-31T12:44:45.306Z",
-  "version": "1.3.1",
+  "generated_at": "2026-10-31T12:56:00Z",
+  "version": "1.3.2",
   "programme": "CEDWYN SNOWBALL",
   "coverage": {
     "scope": "HubSpot task search for Cedwyn, plus the prior targeted Great House Farm/Llandough/Tŷ Mawr/Buckler/Williams/BP/Leckwith set.",
     "cedwyn_query_total": 1971,
     "cedwyn_query_received": 1971,
-    "unique_records": 2363,
+    "unique_records": 2364,
     "status_counts": {
       "NOT_STARTED": 593,
-      "IN_PROGRESS": 23,
+      "IN_PROGRESS": 24,
       "COMPLETED": 1738,
       "WAITING": 9
     },
@@ -26,7 +26,7 @@
       "hubspot_url"
     ],
     "privacy": "No task bodies, contact details, email addresses, private correspondence, legal advice or personal notes are included. Restricted review tasks expose only a neutral label and task ID.",
-    "caveat": "Search-based snapshot: all 1,971 current results for the Cedwyn task query plus the previous targeted Great House Farm/Llandough/Tŷ Mawr/Buckler/Williams/BP/Leckwith matches. HubSpot remains authoritative; refresh this mirror when the CRM changes."
+    "caveat": "Search-based snapshot: all 1,971 current results for the Cedwyn task query plus the previous targeted Great House Farm/Llandough/Tŷ Mawr/Buckler/Williams/BP/Leckwith matches. HubSpot remains authoritative; refresh this mirror when the CRM changes. One additional explicit Snowball control task is added after the search snapshot."
   },
   "source_of_truth": "HubSpot remains authoritative. Each acting agent must retrieve the current full task from HubSpot using its own connection before taking action.",
   "access_model": {
@@ -70,6 +70,17 @@
     "instruction": "X-capable agents should read relevant public profile posts/replies and submit direct post/reply URLs and attribution through the bridge. No X owner credentials or public API sync is installed."
   },
   "tasks": [
+    {
+      "id": "536712609990",
+      "hubspot_status": "IN_PROGRESS",
+      "priority": "HIGH",
+      "due": "2026-11-01T08:00:00Z",
+      "modified": "2026-10-31T12:55:05Z",
+      "workstream": "web_data_operations",
+      "public_label": "Website, data and agent infrastructure",
+      "access_tier": "public_metadata",
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536712609990?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+    },
     {
       "id": "536808097992",
       "hubspot_status": "NOT_STARTED",
