@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31T17:27:44Z",
+  "updated": "2026-10-31T17:49:32.655Z",
   "schema": "metadata only: id, record, version, status, turn, open_issues, last_change, last_agent, rounds (versions written so far); events: [{at, draft, version, agent, event}], newest last. Never email text.",
   "drafts": [
     {
@@ -3600,8 +3600,8 @@
       "id": "prc-te11-back-tag-evidence-catalogue-items-by-pa-348451",
       "record": "HubSpot task 535703348451",
       "version": "v0.1.0",
-      "status": "TURN: ChatGPT",
-      "turn": "ChatGPT (per HubSpot subject, read 2026-10-29T22:47Z)",
+      "status": "SKIPPED ChatGPT — IDLE; QUEUED BEHIND GROK",
+      "turn": "queued behind Grok's existing live assignment hmlr-eir-1961-deed (HubSpot task 532017103065, v0.10.0)",
       "open_issues": null,
       "last_change": "2026-10-30T23:43:00Z",
       "last_agent": null,
@@ -3622,10 +3622,13 @@
       "context": {
         "body": "PRC-TE11 · Back-tag evidence catalogue items by parcel, batch 11 of 12 (EV-0201-EV-0220, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
-        "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
+        "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only. Latest action 2026-10-31T17:49:32.655Z: ChatGPT skipped idle assignment and queued it behind Grok's existing live assignment; no content change, no review counted."
       },
       "pct": 0,
-      "pct_at": "2026-10-30T01:31:27Z"
+      "pct_at": "2026-10-30T01:31:27Z",
+      "last_action_at": "2026-10-31T17:49:32.655Z",
+      "last_action_by": "ChatGPT",
+      "queue_after": "hmlr-eir-1961-deed (HubSpot task 532017103065, v0.10.0)"
     },
     {
       "id": "prc-te10-back-tag-evidence-catalogue-items-by-pa-806336",
@@ -5085,7 +5088,7 @@
       "pct_at": "2026-10-31T05:31:08Z"
     }
   ],
-  "synced_at": "2026-10-31T17:27:44Z",
+  "synced_at": "2026-10-31T17:49:32.655Z",
   "sync": {
     "by": "Sion's Tab agent (board_sync.py, 4-hourly schedule; replaces the Actions run)",
     "source": "HubSpot task subjects and hs_lastmodifieddate (metadata); changelog review counts for % complete (no body text stored)",
@@ -5672,6 +5675,13 @@
       "version": null,
       "agent": "Tab",
       "event": "Board sync from HubSpot subjects: hmlr-eir-1961-deed: SKIPPED Grok — IDLE >30min; QUEUED BEHIND next v0.10.0 -> TURN: Grok v0.10.0. Metadata only."
+    },
+    {
+      "at": "2026-10-31T17:49:32.655Z",
+      "draft": "prc-te11-back-tag-evidence-catalogue-items-by-pa-348451",
+      "version": "v0.1.0",
+      "agent": "ChatGPT",
+      "event": "Permitted skip/queue action: assignment idle >30 minutes; HubSpot subject/status updated; queued behind Grok's existing live assignment hmlr-eir-1961-deed (task 532017103065, v0.10.0); no content change and no review counted. Live contract endpoints inaccessible; repository fallback used."
     }
   ],
   "pct_rule": "% complete = progress through the review gate on the exact current frozen version: pct = round(100 x (0.7 x min(version_reviews,10)/10 + 0.3 x min(version_distinct_agents,4)/4)). version_reviews / version_distinct_agents / version_agents are counted from each HubSpot task's signed changelog (material reviews of the current version only; creation, skips, routes and restores are not reviews; a signed version_reviews=N tally in the changelog is honoured when higher). Capped at 95 until the task is READY TO SEND or later AND its Gmail draft exists (gmail_draft_id); then 100 = in the owner's Gmail, ready to send or schedule. SENT rows show Sent. Historical reviews/distinct_agents/agents are informational only. Promotion gates beyond IN REVIEW (open_issues=0, seat_agreements_version, final_three_hat_version, attachments_verified_version equal to version) still fail closed.",
