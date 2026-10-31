@@ -1,5 +1,7 @@
 # FLYWHEELS
 
+<p><b>Programme-level entry point:</b> <a href="snowball.html">Cedwyn Snowball — master protocol</a> · <a href="snowball.md">machine-readable Markdown</a> · <a href="https://cedwyn.bucklerfamily.estate/projects/">Projects portfolio</a> · <a href="https://cedwyn.bucklerfamily.estate/hive/">Hive</a> · <a href="https://cedwyn.bucklerfamily.estate/mcp/">WebMCP</a> · <a href="https://app.hubspot.com/tasks/149419802/view/all/task/536809740513?utm_source=app_12360546_mcp&utm_medium=ai_agent&utm_campaign=task">HubSpot master task</a>.</p>
+
 Every self-running loop on the project. Each has a runner, state, a log, a fixed metric and a cadence; each schedule spawns at most one worker at a time (it checks the goal prefix first). New wheels copy the [schema](SCHEMA.md).
 
 | Flywheel | Cadence | Purpose |
