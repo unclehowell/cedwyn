@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8790,
+  "pages_scanned": 8842,
   "references_checked": {
-    "resource": 197429,
-    "nav": 340800
+    "resource": 197645,
+    "nav": 341940
   },
-  "database_backed_paths": 7319,
-  "unique_missing_destinations": 4879,
-  "missing_references": 31522,
-  "missing_navigation_references": 16135,
-  "missing_resource_references": 15387,
+  "database_backed_paths": 7325,
+  "unique_missing_destinations": 4898,
+  "missing_references": 31848,
+  "missing_navigation_references": 16460,
+  "missing_resource_references": 15388,
   "unique_broken_fragments": 1812,
   "broken_fragment_references": 3370,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6429,
+      "references": 6430,
       "examples": [
         {
           "from": "/review/",
@@ -46,7 +46,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6429,
+      "references": 6430,
       "examples": [
         {
           "from": "/review/",
@@ -148,6 +148,33 @@
           "from": "/fb2/profiles.html",
           "attribute": "a[href]",
           "url": "/fb/m/login"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/r/strip-dir",
+      "references": 307,
+      "examples": [
+        {
+          "from": "/directory/p/llandough-and-leckwith-war-memorial-institute/",
+          "attribute": "a[href]",
+          "url": "/r/strip-dir"
+        },
+        {
+          "from": "/directory/p/pigsys-hot-food/",
+          "attribute": "a[href]",
+          "url": "/r/strip-dir"
+        },
+        {
+          "from": "/directory/p/redimo/",
+          "attribute": "a[href]",
+          "url": "/r/strip-dir"
+        },
+        {
+          "from": "/directory/p/rhythm-creations/",
+          "attribute": "a[href]",
+          "url": "/r/strip-dir"
         }
       ]
     },
@@ -503,33 +530,6 @@
       ]
     },
     {
-      "kind": "nav",
-      "path": "/research/>*.html",
-      "references": 34,
-      "examples": [
-        {
-          "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        }
-      ]
-    },
-    {
       "kind": "resource",
       "path": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/assets/img/user1-128x128.jpg",
       "references": 33,
@@ -553,6 +553,33 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_index2.html",
           "attribute": "img[src]",
           "url": "./assets/img/user1-128x128.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/research/>*.html",
+      "references": 33,
+      "examples": [
+        {
+          "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
         }
       ]
     },
@@ -4036,33 +4063,6 @@
           "from": "/docs/ghf_wiki/ir_westerngroundrentsforensicinstitutionalr/latest/html/en/",
           "attribute": "a[href]",
           "url": "1-record.html#documented-appearances"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/docs/ghf_wiki/tc_buildingnamenomenclature/latest/html/en/1-record.html",
-      "references": 7,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/tc_buildingnamenomenclature/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/tc_buildingnamenomenclature/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/tc_buildingnamenomenclature/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#building-property-names-verified-and-unconfirmed"
-        },
-        {
-          "from": "/docs/ghf_wiki/tc_buildingnamenomenclature/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#functional-building-terms"
         }
       ]
     }
