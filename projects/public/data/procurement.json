@@ -1,0 +1,202 @@
+{
+  "schema": "cedwyn-procurement-register/1.0",
+  "version": "1.0.0",
+  "date": "2026-10-31",
+  "programme": "CEDWYN SNOWBALL",
+  "title": "Planned procurement register",
+  "status": "Planning baseline only. No purchase or financial commitment is authorised by this register.",
+  "hubspot_task_id": 536712488146,
+  "project_parent": "/projects/#cedwyn-snowball",
+  "policy": {
+    "quote_required_before_commitment": true,
+    "accountable_owner_approval_required": true,
+    "per_transaction_limit": "To be specified and approved for each item",
+    "monthly_limit": "To be specified and approved for each item",
+    "recurring_commitment_review": "Before renewal and monthly reporting",
+    "public_disclosure": "Publish purpose, vendor, quoted cost, approved cap, status and outcome; never publish credentials or private financial access."
+  },
+  "entries": [
+    {
+      "id": "PROC-001",
+      "priority": 1,
+      "workstream": "Estate research and records recovery",
+      "item": "Archive copies and primary-record acquisition",
+      "purpose": "Obtain scans, certified copies, plans, deeds, court and authority records that close high-value ownership, parcel-boundary and chronology gaps.",
+      "timing": "As a specific research gap and holder are established",
+      "cost_status": "UNPRICED",
+      "vendor": null,
+      "quote": null,
+      "one_off_cost": null,
+      "recurring_cost": null,
+      "max_per_transaction": null,
+      "monthly_cap": null,
+      "status": "PROPOSED — NOT AUTHORISED",
+      "conditions": [
+        "Identify the exact record and why it matters",
+        "Confirm holder, reproduction terms and rights",
+        "Obtain written quote and delivery specification",
+        "Owner approval before ordering"
+      ]
+    },
+    {
+      "id": "PROC-002",
+      "priority": 2,
+      "workstream": "Research data and platform resilience",
+      "item": "Canonical catalogue backup, export and validation",
+      "purpose": "Protect the source record, preserve provenance and provide tested recovery. Audit existing Cloudflare, GitHub and backup capacity before considering additional services.",
+      "timing": "After existing provision and failure modes are audited",
+      "cost_status": "UNPRICED",
+      "vendor": null,
+      "quote": null,
+      "one_off_cost": null,
+      "recurring_cost": null,
+      "max_per_transaction": null,
+      "monthly_cap": null,
+      "status": "PROPOSED — NOT AUTHORISED",
+      "conditions": [
+        "Do not create another competing database",
+        "Use a documented export/restore test",
+        "Verify retention, privacy and access controls",
+        "Price only a demonstrated gap"
+      ]
+    },
+    {
+      "id": "PROC-003",
+      "priority": 3,
+      "workstream": "Documentary research and pre-production",
+      "item": "Documentary bible, master script and historical/rights review",
+      "purpose": "Develop the complete source-linked account of the estate, family matriarchy, history and heritage before scene production.",
+      "timing": "Before production is commissioned",
+      "cost_status": "UNPRICED",
+      "vendor": null,
+      "quote": null,
+      "one_off_cost": null,
+      "recurring_cost": null,
+      "max_per_transaction": null,
+      "monthly_cap": null,
+      "status": "PROPOSED — NOT AUTHORISED",
+      "conditions": [
+        "Complete source ledger and scene sequence",
+        "Retain contradictory evidence and corrections",
+        "Confirm archive/image/music/voice rights",
+        "Review the deliverable and quote before approval"
+      ]
+    },
+    {
+      "id": "PROC-004",
+      "priority": 4,
+      "workstream": "Documentary production",
+      "item": "Scene generation, rendering and post-production",
+      "purpose": "Produce sequential nominal two-minute scenes with screenwriting, set/prop/wardrobe design, choreography, camera, sound, edit, grade and subtitles.",
+      "timing": "One approved scene at a time after pre-production",
+      "cost_status": "UNPRICED",
+      "vendor": null,
+      "quote": null,
+      "one_off_cost": null,
+      "recurring_cost": null,
+      "max_per_transaction": null,
+      "monthly_cap": null,
+      "status": "PROPOSED — NOT AUTHORISED",
+      "conditions": [
+        "Verify official or licensed model access and terms",
+        "Verify commercial rights, consent and data handling",
+        "Run a quality test and cost per approved scene",
+        "Specify per-scene and monthly cap before any commitment"
+      ]
+    },
+    {
+      "id": "PROC-005",
+      "priority": 5,
+      "workstream": "Digital heritage and interpretation",
+      "item": "Mapping, 3D/AR and architectural/landscape visualisation",
+      "purpose": "Explain the historic landscape, parcels, built environment and proposed reconstruction with transparent source/uncertainty labels.",
+      "timing": "After the parcel and source datasets are stable enough for a pilot",
+      "cost_status": "UNPRICED",
+      "vendor": null,
+      "quote": null,
+      "one_off_cost": null,
+      "recurring_cost": null,
+      "max_per_transaction": null,
+      "monthly_cap": null,
+      "status": "PROPOSED — NOT AUTHORISED",
+      "conditions": [
+        "Use source-linked survey/plan data",
+        "Label conjectural reconstruction clearly",
+        "Test a small pilot before scaling",
+        "Confirm software and content rights"
+      ]
+    },
+    {
+      "id": "PROC-006",
+      "priority": 6,
+      "workstream": "Audience and distribution",
+      "item": "Search visibility, email, social assets and documentary distribution",
+      "purpose": "Reach readers, contributors, heritage partners and documentary audiences through measured channels.",
+      "timing": "Organic and existing tools first; paid activity only after measured need",
+      "cost_status": "UNPRICED",
+      "vendor": null,
+      "quote": null,
+      "one_off_cost": null,
+      "recurring_cost": null,
+      "max_per_transaction": null,
+      "monthly_cap": null,
+      "status": "PROPOSED — NOT AUTHORISED",
+      "conditions": [
+        "Set a measurable audience/conversion outcome",
+        "Use existing owned channels first",
+        "Quote, cap and cancellation terms before paid tools",
+        "No external campaign spend without approval"
+      ]
+    },
+    {
+      "id": "PROC-007",
+      "priority": 7,
+      "workstream": "Patagonia Great House Farm II",
+      "item": "Site, planning, environmental, architectural and museum feasibility",
+      "purpose": "Assess candidate land/site, legal title, planning, utilities, environmental suitability, reconstruction brief, exhibition and operating model.",
+      "timing": "Longer-term feasibility after a written scope and professional advice plan",
+      "cost_status": "UNPRICED",
+      "vendor": null,
+      "quote": null,
+      "one_off_cost": null,
+      "recurring_cost": null,
+      "max_per_transaction": null,
+      "monthly_cap": null,
+      "status": "PROPOSED — NOT AUTHORISED",
+      "conditions": [
+        "Keep the proposal separate from Welsh title claims",
+        "No deposit, purchase or contract",
+        "Obtain local professional advice and clear deliverables",
+        "Stage as feasibility milestones with go/no-go decisions"
+      ]
+    },
+    {
+      "id": "PROC-008",
+      "priority": 8,
+      "workstream": "Accessibility and community",
+      "item": "Welsh/English/Spanish translation, captions and accessible transcripts",
+      "purpose": "Make research and documentary material accessible across languages and abilities, with human review of historical terminology.",
+      "timing": "As public releases are scheduled",
+      "cost_status": "UNPRICED",
+      "vendor": null,
+      "quote": null,
+      "one_off_cost": null,
+      "recurring_cost": null,
+      "max_per_transaction": null,
+      "monthly_cap": null,
+      "status": "PROPOSED — NOT AUTHORISED",
+      "conditions": [
+        "Define exact pages/scenes and language variants",
+        "Preserve historical names and source citations",
+        "Quote by word/minute and review cycle",
+        "Approve per release batch"
+      ]
+    }
+  ],
+  "last_reviewed": "2026-10-31",
+  "notes": [
+    "No verified vendor quotes have been entered yet.",
+    "The register is a planning and disclosure instrument, not purchasing authority.",
+    "Each approved commitment must be reflected in HubSpot and in the next public register version."
+  ]
+}
