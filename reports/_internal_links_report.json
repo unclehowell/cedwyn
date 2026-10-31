@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 9007,
+  "pages_scanned": 9013,
   "references_checked": {
-    "resource": 205214,
-    "nav": 464016
+    "resource": 205289,
+    "nav": 464331
   },
-  "database_backed_paths": 7340,
-  "unique_missing_destinations": 4954,
-  "missing_references": 52325,
-  "missing_navigation_references": 36905,
-  "missing_resource_references": 15420,
+  "database_backed_paths": 7350,
+  "unique_missing_destinations": 4955,
+  "missing_references": 52354,
+  "missing_navigation_references": 36922,
+  "missing_resource_references": 15432,
   "unique_broken_fragments": 1819,
   "broken_fragment_references": 3377,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 8974,
+      "references": 8980,
       "examples": [
         {
           "from": "/",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 8973,
+      "references": 8979,
       "examples": [
         {
           "from": "/",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6443,
+      "references": 6449,
       "examples": [
         {
           "from": "/review/",
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6443,
+      "references": 6449,
       "examples": [
         {
           "from": "/review/",
@@ -235,7 +235,7 @@
     {
       "kind": "nav",
       "path": "/r/strip-art",
-      "references": 632,
+      "references": 635,
       "examples": [
         {
           "from": "/research/the-tightrope/",
