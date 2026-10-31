@@ -44,7 +44,7 @@ def pick(d, *keys):
 
 def gate_quote(q, held):
     if not q: return ""
-    q = str(q).strip()
+    q = URLISH.sub("[web address removed]", str(q).strip())
     why = ("a word on the site's banned list" if BANNED.search(q) else
            "contact details" if PRIVATE.search(q) else
            "an individual officer's name" if TITLED.search(q) else None)
@@ -53,28 +53,31 @@ def gate_quote(q, held):
         return "[quote held back for editorial review: it contains %s]" % why
     return q
 
+URLISH = re.compile(r"\S*(?:https?:|www\.)\S*", re.I)
+
 def clean(s):
     s = "" if s is None else str(s)
     s = PRIVATE.sub("[contact details removed]", s)
+    s = URLISH.sub("[web address removed]", s)
     return s
 
 def to_record(a, today):
     held = []
     cls = CLASSES.get(str(a.get("class", "")).strip().lower(), "language")
     dates = a.get("dates") or {}
-    neg_date = pick(a, "dates.negative", "dates.initial_negative", "dates.reply", "date_negative") or ""
+    neg_date = pick(a, "negative_date", "dates.negative", "dates.initial_negative", "dates.reply", "date_negative") or ""
     terms = []
     for t in a.get("chestnut_terms") or []:
         if isinstance(t, str): t = {"term": t}
         term = gate_quote(t.get("term"), held)
         terms.append({"term": term, "statute": clean(t.get("points_to") or t.get("statute") or ""), "note": clean(t.get("note") or "")})
-    yz = pick(a, "y_z", "email_volume", "yz")
+    yz = pick(a, "YZ", "y_z", "email_volume", "yz")
     if isinstance(yz, dict): yz = "%s:%s" % (yz.get("y", "?"), yz.get("z", "?"))
     f = {
         "class": cls,
         "institution": clean(a.get("institution")),
         "negative_date": neg_date,
-        "positive_date": pick(a, "dates.positive", "dates.later_positive") or "",
+        "positive_date": pick(a, "positive_date", "dates.positive", "dates.later_positive") or "",
         "months_elapsed": pick(a, "months_elapsed", "months"),
         "email_volume": yz or "",
         "negative_quote": gate_quote(pick(a, "negative_wording", "negative_quote"), held),
@@ -82,12 +85,14 @@ def to_record(a, today):
         "positive_nature": clean(pick(a, "positive_nature", "nature_of_positive_finding") or ""),
         "trigger": clean(pick(a, "trigger") or ""),
         "disclosure_type": clean(pick(a, "disclosure_type") or ""),
-        "conduct": clean(pick(a, "conduct", "evidence_of_conduct", "gatekeeping") or ""),
+        "conduct": clean(pick(a, "evidence_of_evasion", "conduct", "evidence_of_conduct", "gatekeeping") or ""),
         "interim_disclosure": clean(pick(a, "interim_disclosure", "disclosed_between") or ""),
         "terms": terms,
         "open": bool(a.get("open", True)),
         "held_back": sorted(set(held)),
     }
+    if not f["positive_nature"] and f["disclosure_type"] and f["positive_date"]:
+        f["positive_nature"] = "%s (%s)" % (f["disclosure_type"], f["positive_date"])
     for k in ("conduct", "positive_nature", "interim_disclosure"):
         if BANNED.search(f[k]): f[k] = "[held back for editorial review]"; f["held_back"].append("banned word in " + k)
     rid = str(a.get("id") or "").upper()
@@ -127,7 +132,7 @@ def select(recs, kinds, ids=None, project=None):
     return [{k: r[k] for k in project if k in r} if project else dict(r) for r in out]
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--audit", required=True); ap.add_argument("--out", required=True); ap.add_argument("--main")
+    ap = argparse.ArgumentParser(); ap.add_argument("--audit", required=True); ap.add_argument("--out", required=True); ap.add_argument("--main"); ap.add_argument("--unread", type=int)
     a = ap.parse_args(); out = pathlib.Path(a.out); today = datetime.date.today().isoformat()
     aud_p = pathlib.Path(a.audit) / "chestnuts.json"
     audit = json.load(open(aud_p, encoding="utf-8")) if aud_p.exists() else {"records": [], "complete": False}
@@ -143,8 +148,22 @@ def main():
     view = json.load(open(pathlib.Path(__file__).resolve().parent / "view.template.json", encoding="utf-8"))
     view["copy"]["parcel"] = parcel_block(areas, nomen)
     unread = audit.get("unread_threads") or audit.get("still_to_read") or []
-    view["copy"]["audit"] = {"complete": bool(audit.get("complete")), "generated": audit.get("generated") or "",
-                             "still_to_read": len(unread) if isinstance(unread, list) else unread}
+    unread = len(unread) if isinstance(unread, list) else int(unread or 0)
+    adir = pathlib.Path(a.audit)
+    counts = json.load(open(adir / "counts.json", encoding="utf-8")) if (adir / "counts.json").exists() else {}
+    if a.unread is not None: unread = a.unread
+    elif not unread and (adir / "REPORT.md").exists():       # the audit report states how many recent messages it has not read
+        m = re.search(r"(\d+)\s+are unread", (adir / "REPORT.md").read_text(encoding="utf-8"))
+        if m: unread = int(m.group(1))
+    hw, highlight = counts.get("heneb_word") or {}, None
+    if hw.get("word"):
+        hit = next((r for r in recs if any(hw["word"].lower() in (x.get("term") or "").lower() for x in r["finding"]["terms"])), None)
+        if hit:
+            highlight = {"id": hit["id"], "institution": hit["finding"]["institution"], "term": hw["word"], "date": hw.get("date") or hit["finding"]["negative_date"],
+                         "statute": clean(hw.get("statute") or ""), "quote": hit["finding"]["negative_quote"]}
+    view["copy"]["audit"] = {"complete": bool(audit.get("complete")), "generated": audit.get("generated") or "", "still_to_read": unread,
+                             "coverage": {k: counts[k] for k in ("conversations_reviewed", "messages_reviewed", "received_messages_scanned") if k in counts},
+                             "highlight": highlight}
     for p in (out / "data/core/records", out / "data/views", out / "public/_db"): p.mkdir(parents=True, exist_ok=True)
     json.dump(core, open(out / "data/core/records/foi-chestnuts.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     json.dump(view, open(out / ("data/views/%s.view.json" % APP), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
