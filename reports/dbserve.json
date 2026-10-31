@@ -1,33 +1,33 @@
 {
- "db_version": "49b2993af54c",
- "paths_served_from_db": 7320,
- "blobs": 4752,
+ "db_version": "92ee168e7d3f",
+ "paths_served_from_db": 7324,
+ "blobs": 4757,
  "files_dropped": {
-  "document": 3301,
-  "image": 1568,
-  "data": 1387,
+  "document": 3298,
+  "image": 1552,
+  "data": 1391,
   "audio": 84
  },
  "bytes_dropped": {
-  "document": 1274591774,
-  "image": 148160276,
-  "data": 35656413,
+  "document": 1274210860,
+  "image": 146483331,
+  "data": 35653696,
   "audio": 14922925
  },
- "bytes_dropped_total": 1473331388,
+ "bytes_dropped_total": 1471270812,
  "files_kept_as_well": {
-  "image": 869,
+  "image": 885,
   "data": 71,
-  "document": 12
+  "document": 15
  },
  "kept_why": {
-  "named in page markup": 752,
-  "link/meta tag": 45,
+  "named in page markup": 768,
+  "link/meta tag": 44,
   "css url()": 27,
   "fetched by script": 13,
   "fetched by browsers outside a service worker": 15,
   "webapp database / A2UI surface (read without a service worker)": 10,
-  "page without runtime": 74,
+  "page without runtime": 78,
   "fetched by script (built path)": 16
  },
  "kept_examples": [
@@ -112,7 +112,9 @@
    "named in page markup"
   ]
  ],
- "changed_after_db_build_served_as_files": 0,
- "changed_examples": [],
+ "changed_after_db_build_served_as_files": 1,
+ "changed_examples": [
+  "/app/_db/config.json"
+ ],
  "indexed_without_file": 28
 }
