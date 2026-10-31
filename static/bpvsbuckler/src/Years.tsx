@@ -15,20 +15,20 @@ type YearGroup = {
 };
 
 function yearFrom(value?: string | null): number | null {
-  const match = (value || '').match(/^(-?\\d{4})/);
+  const match = (value || '').match(/^(-?[0-9]{1,4})/);
   if (!match) return null;
   const year = Number(match[1]);
   return Number.isFinite(year) && Math.abs(year) < 9998 ? year : null;
 }
 function imageUrl(value: string): string {
-  if (/^https?:\\/\\//i.test(value)) return encodeURI(decodeURI(value));
+  if (value.startsWith('https://') || value.startsWith('http://')) return value;
   return new URL(value, SITE).toString();
 }
 function labelForYear(year: number, scenes: Scene[]): string {
   if (year < 0) return 'c. ' + Math.abs(year) + ' BC';
   const period = scenes.find((s) => /century/i.test(s.when))?.when;
   if (period) return period;
-  const approximate = scenes.find((s) => /^(c\\.|circa|approx)/i.test(s.when));
+  const approximate = scenes.find((s) => { const w = s.when.toLowerCase(); return w.startsWith('c.') || w.startsWith('circa') || w.startsWith('approx'); });
   return approximate ? approximate.when : String(year);
 }
 function kindFor(text: string): 'church' | 'radio' | 'quarry' | 'paper' | 'demolition' | 'archaeology' | 'development' | 'farm' {
