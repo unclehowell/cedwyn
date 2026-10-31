@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Hugging Face and Kaggle copies of our open tables: a second home for the catalogue data · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Hugging Face and Kaggle copies of our open tables: a second home for the catalogue data"><link rel="alternate" type="text/markdown" href="hugging-face-kaggle-dataset-copies-catalogue-tables.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Hugging Face and Kaggle copies of our open tables: a second home for the catalogue data</h1>
+<p>Written 31 Oct 2026 by the skills harvest. Status: proposal. Neither account exists yet, and Hugging Face is not a connected app. The index had 0 skill files for this before (only the "ideas left" line).</p>
+<h2>Why it matters</h2>
+<ul>
+<li>The Hugging Face Hub is where machine-learning people, digital humanities researchers and AI tooling look for ready tables. A dataset repo there gets a browsable viewer, an SQL console and a shareable row link without us building anything.</li>
+<li>Zenodo (DOI, scholars) and dataset JSON-LD (Google Dataset Search) are already covered (<code>zenodo-doi-scholar-argentine-repositories.md</code>, <code>dataset-structured-data-google-dataset-search-evidence-catalogue.md</code>). This skill is the third copy, aimed at the ML and GLAM-data crowd. It links back to the canonical page on Cedwyn.</li>
+</ul>
+<h2>What the sources show</h2>
+<ul>
+<li><strong>The documentation gap is the lever.</strong> Yang, Liang and Zou (Stanford/Cornell, arXiv 2401.13822, read) analysed Hugging Face dataset cards. 86.0% of the top 100 downloaded datasets fill out every section the community card suggests, against 7.9% of datasets with no downloads. Description and Structure make up 36.2% and 33.6% of total card length. This is a correlation, not proof that a full card causes downloads, but every popular dataset has one.</li>
+<li><strong>Realistic numbers for heritage data.</strong> We read the BigLAM org (Libraries, Archives and Museums community on the Hub, 232 followers, 70 members) through the public API on 31 Oct 2026. Its 64 datasets had a median of 98 downloads in the last 30 days, ranging from 4 (bnl-monographs) to 8,344 (AmericanStories-parquet). British Library Book Images had 4,150 downloads and 65 likes, with licence cc0-1.0. A small Welsh-farm table should expect tens of downloads a month, not thousands.</li>
+<li><strong>How downloads are counted</strong> (HF docs, read): since September 2024 the Hub counts file GET/HEAD requests server-side and collects no user information. Before that it counted <code>load_dataset</code> calls only. Downloads are a crude signal, not readers.</li>
+<li><strong>The viewer</strong> (HF docs, read) auto-converts CSV/JSON to Parquet. It gives full-text search, filtering, an SQL console (DuckDB) and a URL per row (<code>.../viewer/&lt;config&gt;/&lt;split&gt;?row=N</code>). Search and sort are limited to the first 5 GB, which is far beyond our size.</li>
+<li><strong>Card mechanics</strong> (HF docs, read): README.md with a YAML header (<code>license</code>, <code>language</code>, <code>pretty_name</code>, <code>tags</code>, <code>size_categories</code>, <code>task_categories</code>, <code>configs</code>). Free public storage is "best-effort". HF asks that large uploads be useful to the community.</li>
+<li><strong>Kaggle:</strong> a dataset's usability score rises with the information supplied (provenance, expected update frequency, column descriptions, licence, cover image). That comes from the Kaggle forum snippet only; the page body didn't load, so it isn't checked. Kaggle's audience is students and data-science learners. Treat it as optional.</li>
+</ul>
+<h2>How to do it (about 45 minutes once an account exists)</h2>
+<ol>
+<li><strong>Pick tables that are already public on our own site.</strong> Copy, never originate: every row must already be live on Cedwyn with a catalogue ID. CSV with one row per record.</li>
+<li><strong>Columns:</strong> <code>catalogue_id, date_iso, date_text, record_type, title, holder_institution, holder_reference, place, summary_neutral, page_url</code>. <code>page_url</code> is the canonical Cedwyn evidence page, so each viewer row leads back to us.</li>
+<li><strong>Write the card using the full community sections,</strong> because the 86% vs 7.9% gap is the whole point:
+   - Dataset Description: what it is, the period it covers, who compiled it (the Cedwyn project, never a person's name).
+   - Dataset Structure: one line per column.
+   - Source Data: the holding institutions and references.
+   - Considerations: gaps, Welsh/English spellings, "not checked" rows.
+   - Licensing: CC BY 4.0 for our own compilation text. Facts are not ours to license. Never relicense an institution's images; link to them instead.
+   - Citation: a BibTeX block citing the Cedwyn page, plus the Zenodo DOI once one exists.</li>
+<li><strong>YAML header:</strong> <code>license: cc-by-4.0</code>, <code>language: [en, cy]</code>, <code>tags: [glam, digital-humanities-research, local-history, wales]</code>, <code>size_categories: n&lt;1K</code>.</li>
+<li><strong>Upload.</strong> The repo name matches the Cedwyn slug (for example <code>cedwyn-estate/llandough-chronology</code>). Add the dataset to the BigLAM collection only if they accept it; it is a request, not a right.</li>
+<li><strong>Link both ways.</strong> Add a "Also on Hugging Face" line on the Cedwyn dataset page and a <code>sameAs</code> in its Dataset JSON-LD. The card links to the Cedwyn page first.</li>
+<li><strong>Keep the copies in step.</strong> Each time the canonical CSV changes, re-upload with a version line (<code>v2026.11.1</code>) at the top of the card. A stale mirror is worse than none.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>First table:</strong> the public chronology/timeline rows already behind <code>/research/timeline/</code> and <code>/api/catalogue</code>. They're already neutral, dated and catalogue-ID'd. Second table: the not-held/missing-records register, using the public wording only.</li>
+<li><strong>Editorial filter before upload:</strong></li>
+<li>Run the existing banned-word scan on the CSV and the card (states, assertions, per, second-hand report, not checked, reported, deception, taken; write "not checked").</li>
+<li>No names of living private people, no family holdings or addresses, no insignia. Never name the project lead.</li>
+<li>Llandough Farm is not Great House Farm.</li>
+<li>The case table stays off: only records, not arguments.</li>
+<li><strong>Account:</strong> the account is free, but someone has to create the "cedwyn-estate" org on Hugging Face (and optionally Kaggle). That needs the project lead's GO, because it opens a new public channel. Log it as a proposal in <code>the project workspace</code>, not in HubSpot.</li>
+<li><strong>Measure:</strong> add a line to the Sunday growth report: HF 30-day downloads (public API <code>huggingface.co</code> field <code>downloads</code>, no key needed), likes, and referrals from huggingface.co in our analytics.</li>
+<li><strong>Kill rule:</strong> under 10 downloads a month and 0 referral visits after 3 months means freeze updates and leave the card pointing at Cedwyn.</li>
+<li><strong>Tools:</strong> nothing to install. <code>curl</code> plus Python reads the API. The upload can be done by hand in the web UI (drag a CSV), so we don't need <code>huggingface_hub</code> on this full disk.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>arxiv.org (Yang, Liang, Zou, dataset cards on Hugging Face), read</li>
+<li>huggingface.co, read</li>
+<li>huggingface.co, read</li>
+<li>huggingface.co, read</li>
+<li>huggingface.co, read</li>
+<li>huggingface.co and huggingface.co (64 datasets, downloads read 31 Oct 2026)</li>
+<li>huggingface.co (4,150 downloads, 65 likes, cc0-1.0, read 31 Oct 2026)</li>
+<li>kaggle.com (usability score; search preview only, not checked)</li>
+</ul><p class="raw">Raw Markdown: <a href="hugging-face-kaggle-dataset-copies-catalogue-tables.md">hugging-face-kaggle-dataset-copies-catalogue-tables.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

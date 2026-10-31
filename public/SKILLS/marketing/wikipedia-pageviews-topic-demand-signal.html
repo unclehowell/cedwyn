@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Wikipedia pageviews as a free topic-demand signal (which chapter/topic to push, and when) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Wikipedia pageviews as a free topic-demand signal (which chapter/topic to push, and when)"><link rel="alternate" type="text/markdown" href="wikipedia-pageviews-topic-demand-signal.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Wikipedia pageviews as a free topic-demand signal (which chapter/topic to push, and when)</h1>
+<p>Harvested 2026-10-31 (skills harvest ~03:15Z). Topic: keyword tools show "0 volume" for niche local history; Wikipedia's free pageviews API gives real daily human readership per topic in en/cy/es, with spike dates. Complements keyword-planner-ranges-vs-gsc-truth-free-volumes.md, google-trends-seasonal-timing.md and autocomplete-question-mining-blog-topics.md (this one gives absolute numbers per article and per language).</p>
+<h2>What the sources show (read unless marked)</h2>
+<ul>
+<li><strong>API (Wikimedia Analytics API, endpoint used live this run):</strong> <code>wikimedia.org data from 1 July 2015;</code>agent=user` excludes known bots; free, no key; send a descriptive User-Agent with contact (Wikimedia User-Agent policy; page not fully read).</li>
+<li><strong>Evidence it tracks real-world interest:</strong> McIver &amp; Brownstein, PLOS Comput Biol 2014 (abstract read): Wikipedia article views estimated US flu-like illness up to two weeks ahead of the CDC, average absolute difference 0.27% over 294 weeks, and found the peak week 17% more often than Google Flu Trends. Alibudbud 2023 review (snippet): 29 health studies used pageviews as a demand signal. Not marketing studies, but the best published validation that pageviews follow public interest.</li>
+<li><strong>Our own read, 1 Oct 2025 - 30 Sep 2026, human views (pulled 31 Oct 2026):</strong>
+  | Article | 12-mo views | per day |
+  |---|---|---|
+  | en Welsh language | 576,390 | 1,579 |
+  | en Cardiff | 527,757 | 1,446 |
+  | en Squatting | 202,218 | 554 |
+  | en Enclosure | 108,370 | 297 |
+  | en Adverse possession | 81,138 | 222 (peaks 1,082 on 30 Mar, 1,055 on 29 Jun 2026) |
+  | en Penarth | 57,641 | 158 |
+  | en Vale of Glamorgan | 43,178 | 118 |
+  | en Trelew | 25,496 | 70 |
+  | en HM Land Registry | 16,591 | 45 |
+  | es Colonización galesa en Argentina | 16,142 | median 39 (peaks 300 on 15 Jul, 264 on 14 Jul, 190 on 28 Jul) |
+  | en Gaiman, Chubut | 14,254 | 39 |
+  | en Welsh settlement in Argentina | 11,301 | median 27 (peaks 289 on 19 Jul, 180 on 20 Jul) |
+  | en Llandough, Penarth | 3,089 | 8 |
+  | en Tithe map | 2,591 | 7 |
+  | en Leckwith | 1,637 | 4.5 |
+  | cy Y Wladfa | 843 | ~1 (peaks 22-24 Dec) |
+  | cy Llandochau | 55 | ~0 |
+  Readings: (1) the Spanish Wladfa article outreads the English one (16.1k vs 11.3k): Spanish copy has real demand. (2) Welsh-Patagonia interest spikes in mid-July, ahead of 28 July (Gŵyl y Glaniad). (3) The legal angle ("adverse possession" 81k, "squatting" 202k) has 25-65x the readership of the place names; the place pages are tiny. (4) Welsh-language Wikipedia demand for these topics is near zero; Welsh copy is for identity/goodwill, not reach.</li>
+</ul>
+<h2>How to do it (steps)</h2>
+<ol>
+<li>List 10-20 candidate topics as Wikipedia article titles in en, es, cy (use the article's own title, follow redirects; a 404 = wrong title).</li>
+<li>Run <code>python3 the project workspace en:Adverse_possession es:Colonización_galesa_en_Argentina ...</code> (stdlib, written this run; total, median/day, top-3 spike dates).</li>
+<li>Rank topics by median/day (spikes inflate totals). Use as relative demand, not as Google search volume: it counts readers of the encyclopedia, not searchers of our phrase.</li>
+<li><strong>Bridge rule</strong>: pick a high-demand general topic that the book genuinely illustrates (e.g. adverse possession, enclosure, tithe maps) and write one explainer page that uses a Cedwyn record as the worked example, with the chapter link. Lead-in to the niche, not the niche alone.</li>
+<li><strong>Timing rule</strong>: schedule posts/emails 7-10 days before the spike dates the daily series shows (e.g. Patagonia content by ~5-8 July).</li>
+<li>Re-pull quarterly; log totals in a CSV beside GSC numbers; check whether our GSC impressions for the bridge topic move.</li>
+<li>Do not edit Wikipedia to add our links (COI rules: wikipedia-ai-citations / wikimedia-commons skills).</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Priority explainer: "Adverse possession in a real Welsh case: the records" (bridge to the case chronology and the e-book), plus "Reading a tithe map: Llandough 1840s" (7/day general demand, our record as the example). Public text follows the editorial rules (neutral, dated, no banned words, never names the owner).</li>
+<li>Spanish: first Spanish chapter/sample and Patagonia posts timed for early July 2027; es demand beats en for the Wladfa.</li>
+<li>Place-name pages (Llandough, Leckwith) stay for search intent and AI answers, not as traffic bets.</li>
+<li>Measure: GSC impressions/clicks for the bridge pages vs 4 weeks before; buy-link clicks with utm_content=bridge-<topic>. Kill rule: 0 impressions after 6 weeks -&gt; rewrite the title to the Wikipedia article's own term.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>doc.wikimedia.org (search preview; endpoint verified by live calls)</li>
+<li>wikimedia.org (live pulls 31 Oct 2026, figures above)</li>
+<li>journals.plos.org (abstract read)</li>
+<li>Alibudbud 2023, "Wikipedia page views for health research: a review", PMC (snippet only)</li>
+<li>meta.wikimedia.org (page fetched, text not extracted)</li>
+</ul><p class="raw">Raw Markdown: <a href="wikipedia-pageviews-topic-demand-signal.md">wikipedia-pageviews-topic-demand-signal.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

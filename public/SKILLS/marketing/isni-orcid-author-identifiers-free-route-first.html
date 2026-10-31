@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Skill: ISNI and ORCID author identifiers for an estate/imprint, free route first · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Skill: ISNI and ORCID author identifiers for an estate/imprint, free route first"><link rel="alternate" type="text/markdown" href="isni-orcid-author-identifiers-free-route-first.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Skill: ISNI and ORCID author identifiers for an estate/imprint, free route first</h1>
+<p>Written 31 Oct 2026 (skills harvest). Zero-spend rule applies: any paid step below is a PROPOSAL only.</p>
+<h2>What they are and why they matter for discovery</h2>
+<ul>
+<li>ISNI (ISO 27729) is the international ID for a <em>public identity</em> (person, pseudonym, organisation, imprint). Libraries, Wikidata (P213), VIAF and book-trade metadata use it to tell same-name creators apart.</li>
+<li>ORCID is the free researcher ID (Wikidata P496). ORCID's own FAQ: "Can I use ORCID for free? Yes. Anyone who participates in research, scholarship, or innovation can register"; no institutional affiliation is needed (info.orcid.org, read via search snippet; support page returned 403 to us).</li>
+<li>Knowledge-panel practitioners list both as the "authoritative identifier" layer: "Add identifiers that already exist for you, like an ISNI, a VIAF record..." (instantpress.co, Knowledge Panel Without Wikipedia); Jason Barnard (Kalicube) names ISNI as a UK-based source Google pulls together (deepseoconference.com talk notes). These are practitioner opinion, not Google documentation; not checked against Google.</li>
+</ul>
+<h2>Facts checked (31 Oct 2026)</h2>
+<ul>
+<li>ISNI is "not quite" free: "the RA and RAGs charge fees to cover operating costs" (isni.org FAQs, read).</li>
+<li>isni.org (read): first SEARCH the ISNI database, because "if you have published works already available via library or commercial databases, then your ISNI may have been assigned via data from one of our many source databases". That is the free route.</li>
+<li>UK/Ireland: the British Library runs an ISNI Portal (launched 26 Apr 2021: register new ISNIs, search, and suggest corrections to existing records; isni.org article, read). The UK legal deposit libraries, including the National Library of Wales, are an ISNI registration consortium (isni.org registration agencies page, read). The portal's price was not found; treat it as paid until a page states otherwise.</li>
+<li>Bowker: "Each successful ISNI registration has a one-time fee of $5" (myidentifiers.com, search snippet; page 403 to us). Paid, so a proposal.</li>
+<li>The public ISNI search (isni.oclc.org SRU) works without a login. Test: "tolkien" gives 39 records. "cedwyn" and "great house farm" both give 0 today.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li>Search first: <code>python3 tools/isni_lookup.py "&lt;exact author or imprint name&gt;"</code>. A record may already exist from a library catalogue.</li>
+<li>Free trigger: deposit the e-books (see legal-deposit-ebooks-uk-web-archive-nomination.md). BL/NLW cataloguing creates name authority data, and ISNI ingests library data. This is a mechanism, not a promise. Re-run step 1 monthly after deposit.</li>
+<li>If a record exists: use the BL portal's free review function to suggest additions (official website URL, titles), so the record points back to the site.</li>
+<li>ORCID (free, 5 minutes) only fits a named person who publishes research. It does NOT fit an organisation: ORCID is for individuals. Fill in Works with the e-books' ISBNs/URLs, and Websites with the site's /about/ page.</li>
+<li>Wire the IDs together. Add to the site's Organization/Person JSON-LD <code>sameAs</code> (isni.org digits&gt;, orcid.org). Add them to the Wikidata item if one exists (P213, P496), with a reference URL. Add them to Author Central and Books2Read profiles where there is a field.</li>
+<li>Measure: whether a Google knowledge panel or AI answer engine names the author/imprint correctly within 8 weeks (visibility check queries). No click data exists for this. It is an entity-clarity move, not a traffic move.</li>
+</ol>
+<h2>Pitfalls</h2>
+<ul>
+<li>One identity = one ISNI. Do not request a second ISNI for a name that already has one; ask for a merge or correction.</li>
+<li>An ISNI record is public. Put no private address or birth date on it.</li>
+<li>Paying $5 to Bowker breaks the zero-spend rule. It needs the owner's GO.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>The e-books' schema names the author as the estate organisation (<code>bucklerfamily.estate/#org</code>) and one product as "Cedwyn editors". The identity to register is the imprint/organisation name. It is never a named family member, because public text never names the owner.</li>
+<li>Now (no account needed): isni_lookup.py run for "cedwyn" / "great house farm" = 0 hits (baseline 31 Oct 2026). Add a monthly re-check line to the visibility check runner.</li>
+<li>After legal deposit lands, re-search. If an ISNI appears, add it to the Organization JSON-LD <code>sameAs</code> on cedwyn (markup-only change, allowed for the onpage flywheel).</li>
+<li>PROPOSAL (owner GO needed, spend): a $5 Bowker ISNI for the imprint name, or the BL portal if its price is confirmed as nil. ORCID: skip unless a named researcher on the project wants one; it is the owner's decision because it is personal.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>isni.org (read 31 Oct 2026)</li>
+<li>isni.org (read)</li>
+<li>isni.org (read)</li>
+<li>isni.org (read)</li>
+<li>myidentifiers.com (snippet: $5)</li>
+<li>info.orcid.org ; support.orcid.org (snippets)</li>
+<li>instantpress.co ; deepseoconference.com (practitioner opinion)</li>
+<li>isni.oclc.org (live queries 31 Oct 2026)</li>
+</ul><p class="raw">Raw Markdown: <a href="isni-orcid-author-identifiers-free-route-first.md">isni-orcid-author-identifiers-free-route-first.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

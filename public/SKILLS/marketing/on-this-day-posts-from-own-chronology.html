@@ -1,0 +1,72 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>&quot;On this day&quot; posts generated from our own chronology (#OnThisDay / #OTD) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: &quot;On this day&quot; posts generated from our own chronology (#OnThisDay / #OTD)"><link rel="alternate" type="text/markdown" href="on-this-day-posts-from-own-chronology.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>"On this day" posts generated from our own chronology (#OnThisDay / #OTD)</h1>
+<p>Date: 2026-10-31 · Harvest run · Status: how-to + PROPOSAL for Cedwyn (nothing posted)</p>
+<h2>Why it works (evidence)</h2>
+<ul>
+<li><strong>Sumikawa, Jatowt, Düring, JCDL 2018</strong> (paper read in full). They collected a year of history tweets (8 Mar 2016 to 24 Feb 2017) seeded by #onthisday, #otd, #thisdayinhistory and #throwbackthursday.</li>
+<li>
+<h1>onthisday and #otd showed up in relatively many tweets and retweets but came from fewer accounts. They are specialists' hashtags (historians, archives) whose curated items then spread by retweet. #throwbackthursday, by contrast, is mass personal nostalgia.</h1>
+</li>
+<li>Anniversaries work as "memory triggers", and round anniversaries amplify them: the 1916 centenary made 1916 the most-mentioned past year in the set.</li>
+<li>Lesson: a small expert account posting dated, sourced items is the pattern that gets reshared.</li>
+<li><strong>Practitioner testimony</strong> (search snippets only; the Facebook pages were behind a login wall, so not checked):</li>
+<li>Arlington Historical Society posted a daily "On This Day" for several years before changing format.</li>
+<li>A Preston history group member wrote 365 "On this day" posts in 2023.</li>
+<li>Westbrook (Maine) Historical Society's page grew from about 1,200 to nearly 2,000 followers "in just a few months", with OTD posts in its feed. The growth isn't attributed to OTD alone.</li>
+<li>The CIA's "Social Media Report: Our First 30 Days" (2014) lists an "on this day in history" Virginia Hall / D-Day post reaching nearly 98,000 users.</li>
+<li><strong>No controlled before/after test was found.</strong> So we run our own (below).</li>
+</ul>
+<h2>The rules that make it work</h2>
+<ol>
+<li><strong>Only exact-day records.</strong> A month- or year-only record is never posted as "on this day". Weekly #OnThisWeek or monthly round-ups can carry those.</li>
+<li><strong>One item, one source.</strong>
+   - Use the record's own words in quotation marks, with its catalogue ID and the institution that should hold the original.
+   - Include one image (the document page or a restored photo) and one link to the evidence page or the calendar day view.</li>
+<li><strong>Lead with the year and the human fact</strong>, not the hashtag. Use at most 2 hashtags, #OnThisDay plus one place tag (#Llandough or #ValeOfGlamorgan). The study found #otd is a specialist tag, so the content has to carry the post.</li>
+<li><strong>Skip dates with nothing.</strong> Don't fill gaps with generic Welsh history; empty days are honest. The calendar's coverage view is the place to show gaps.</li>
+<li><strong>Round anniversaries</strong> (25/50/75/100/150 years) get a bigger post: a short carousel or a 20-40 s clip, scheduled a week ahead and shared to local-history groups only where they allow posts.</li>
+<li><strong>Cadence:</strong> only when a dated record exists, at most 1 a day per channel. This fits the existing auto-social rule of 4 h or more between posts per channel.</li>
+</ol>
+<h2>Steps</h2>
+<ol>
+<li>Build a generator over the calendar webapp's derived events JSON. Keep exact-day rows and group them by MM-DD.</li>
+<li>Output, for each of the next 30 days: date, year, catalogue ID, verbatim quote (≤200 chars), evidence URL, image candidate, and a round-anniversary flag.</li>
+<li>Draft each post into the existing daily auto-social queue as content type "otd". It still goes through the same safety scan (banned words, never naming the project lead, no family holdings) and the same image-live check before anything goes out.</li>
+<li><strong>Link</strong> with UTM: <code>?utm_source=&lt;platform&gt;&amp;utm_medium=social&amp;utm_campaign=otd&amp;utm_content=&lt;EV-id&gt;</code>, or via /r/otd-<platform>-<EV-id>.</li>
+<li><strong>Test:</strong> after 20 OTD posts, compare their median reach, shares and clicks against the median of the previous 20 non-OTD auto-posts on the same channel.
+   - Keep OTD if it wins on shares or clicks.
+   - Otherwise drop to round anniversaries only.</li>
+</ol>
+<h2>How we apply it to Cedwyn (PROPOSAL)</h2>
+<ul>
+<li><strong>Source:</strong> the Cedwyn Calendar webapp's derived events (built from the master evidence catalogue). Every post links to the calendar's day view (which shows the gaps around it) or straight to the EV page.</li>
+<li>Fit with the subscribable anniversaries feed: see subscribable-chronology-ics-feed-anniversaries.md. Same data, same yearly recurrence.</li>
+<li><strong>Example shape</strong> (illustrative only; check the record before use):</li>
+<li>"31 October 1974. Letters sent on this day were later held by the Court of Appeal (1987) to have made the occupier a licensee. Record: <EV-id> · <calendar day link>"</li>
+<li>Wording must be checked against the catalogue's verbatim text and the editorial rules before it goes in the queue.</li>
+<li><strong>Channels:</strong> Facebook (Great House Farm II) and Instagram @cedwynestate through social.py. Threads/X only if already automated.</li>
+<li>Never post into communities or groups by code. Group shares are manual and only where the group allows them.</li>
+<li><strong>Editorial rules:</strong></li>
+<li>neutral third person</li>
+<li>banned words (states, assertions, per, second-hand report, not checked, reported, deception, taken)</li>
+<li>verbatim quotes with catalogue IDs</li>
+<li>"our inference" labels</li>
+<li>nothing about family holdings</li>
+<li>Llandough Farm (KF) items excluded</li>
+<li>no insignia</li>
+<li><strong>Commercial link:</strong> the evidence page carries the /ebooks/ strip (£4.99 e-books) and the academy Grade 1 link. The post itself carries no price.</li>
+<li><strong>Cost and approval:</strong> zero spend. Needs the root's OK to add "otd" as a content type in the auto-social run.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>adammo12.github.io (Sumikawa et al., JCDL 2018, read in full; journal version link.springer.com page blocked)</li>
+<li>facebook.com (snippet; login wall)</li>
+<li>facebook.com (snippet; login wall)</li>
+<li>Westbrook Maine Historical Society Facebook post (snippet via search; URL not resolved)</li>
+<li>CIA "Social Media Report: Our First 30 Days", 15 Jul 2014 (snippet via search; not read)</li>
+</ul><p class="raw">Raw Markdown: <a href="on-this-day-posts-from-own-chronology.md">on-this-day-posts-from-own-chronology.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>ArcGIS StoryMaps on a free public account: what it allows, the noncommercial gate, the competition gate, and how to benchmark views (proposal) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: ArcGIS StoryMaps on a free public account: what it allows, the noncommercial gate, the competition gate, and how to benchmark views (proposal)"><link rel="alternate" type="text/markdown" href="arcgis-storymaps-public-account-noncommercial-gate-view-benchmark.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>ArcGIS StoryMaps on a free public account: what it allows, the noncommercial gate, the competition gate, and how to benchmark views (proposal)</h1>
+<p>Researched 31 Oct 2026. New ground: "arcgis"/"esri" appeared only in google-earth-web-project-through-time-map-story.md (as a 0-hit note) and the harvest log ("still 0 hits: arcgis/esri storymaps public account"). Siblings: tithe-map-storymap-georeferenced-parcels-linkable-asset.md (self-hosted StoryMapJS, no account rules) and the Google Earth file (Google-hosted). This file states when Esri's hosted StoryMaps is worth it and when it is not.</p>
+<h2>Facts (Esri's own pages, read 31 Oct 2026)</h2>
+<ul>
+<li><strong>ArcGIS Online FAQ, "What are the limitations of a public account?"</strong>: a free public account can "author and publicly share basic maps, scenes, stories, and apps" and store up to <strong>2 GB</strong>. It is "a free, limited-functionality account designed for <strong>personal, noncommercial use</strong>". It cannot: publish hosted layers, run analysis, use premium content, use Experience Builder/Dashboards, use location services, or <strong>use embed blocks in ArcGIS StoryMaps</strong>. Same FAQ: "Can I use ArcGIS Online for free? Yes, if it is for noncommercial use."</li>
+<li><strong>StoryMaps release notes</strong> (doc.esri.com, latest entry 24 Sep 2026): web search indexing can be enabled when the story cover is hidden; the header is hidden when a public-account story is embedded in another StoryMaps item; earlier: briefings and language settings available to public accounts. (Whether the search-indexing switch is on a public account: not checked.)</li>
+<li><strong>StoryMaps.com retired 2025</strong> (Esri Community thread 1594710, quoting StoryMaps.com support): migrated users got a free ArcGIS subscription June-21 July 2025, then had to pay; "some advanced features... are not available to public accounts". Practitioner reading in that thread: volunteers making maps for charities either pay for Creator or rebuild on a public account "and hope ESRI don't close that route off".</li>
+<li><strong>2026 ArcGIS StoryMaps Competition</strong> (esri.com contest page + official rules PDF, read): deadline <strong>11 Dec 2026, 17:00 PT</strong>; finalists 9 Feb 2027; winners April 2027 (certificate, Esri website feature and interview, award at the 2027 UC); Community Choice public vote from 9 Feb 2027. Categories include <strong>"Seeing What Others Missed: where mapping revealed an unexpected pattern or insight"</strong>. Rules: entries <strong>"may be created and submitted from one of four types of accounts (but not a free public account)"</strong>: student, Creator/Professional, ArcGIS for Personal Use, or Enterprise; entry must stay public without login to at least Dec 2027; entrant grants Esri an irrevocable royalty-free licence to republish/modify the entry.</li>
+</ul>
+<h2>Real numbers (read from Esri's public item API, 31 Oct 2026)</h2>
+<ul>
+<li>Historic England "Heritage Responds" (owner gis_historicengland, created 14 Sep 2021): <strong>10,212 views</strong>, about 5.5/day over 5 years.</li>
+<li>"Know Your Place" highlights story (owner Insole, the Bristol KYP lead, created 9 Mar 2021): <strong>6,342 views</strong>, about 3.1/day.</li>
+<li>So a well-made heritage story from a known national body draws single-digit views a day. A new, unknown account should expect less. No case found of a story map driving book or e-book sales (not checked further).</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Decide the account first.</strong> Paid tiers break the zero-spend rule, so only a free public account is in scope, and it is for noncommercial use. Our reading (not legal advice): a story with <strong>no shop link, no price, no /ebooks/ mention</strong>, linking only to free research/evidence pages, fits "noncommercial" best. Anything that sells does not.</li>
+<li>Build at storymaps.arcgis.com with the public account: express map (points, captions), image/text blocks, sidecar for "then/now" scrolls. No embed blocks (public accounts can't), so link out to the site instead of embedding.</li>
+<li>Use our own images only (or public-domain ones with credit). Never Coflein/HER images or text (see heneb-her-archwilio-coflein-contribution-and-reuse.md).</li>
+<li>Share as Public. Put a tagged link to the free research page: cedwyn.bucklerfamily.estate/r/storymap (create the /r/ redirect first).</li>
+<li>Measure monthly with <code>tools/arcgis_views.py &lt;story id&gt;</code> (views) plus /r/storymap clicks. Kill rule: under 10 clicks in 8 weeks -&gt; stop maintaining.</li>
+<li><strong>Competition: skip.</strong> Free public accounts are excluded and every eligible tier is paid or student-only. Re-check only if the owner ever holds an eligible account.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Default: don't build here.</strong> The self-hosted StoryMapJS route (tithe-map file) does the same job on our own domain, carries the shop strip legally, keeps the SEO, and has no noncommercial clause. Esri adds an audience of GIS/heritage browsers but the gallery isn't searchable by default for public accounts (not checked), and benchmarks show 3-6 views/day even for big names.</li>
+<li><strong>Only worth it as a noncommercial "missing records on the map" mirror</strong>: 8-12 points taken only from what the site already publishes (public places and records; never family holdings, parcels held, or addresses), each linking to its free evidence or /research/missing-records/ page. Llandough Farm is not Great House Farm; label it so. No banned words, never name the owner, no insignia.</li>
+<li>Needs an Esri public account in the owner's name (his email): <strong>proposal, owner's GO</strong>. Effort about 2 h; expected effect small.</li>
+<li>Use the view tool now as a free benchmark: before proposing any map story, run it on 2-3 peer Welsh heritage stories to set a realistic target.</li>
+</ul>
+<h2>Checked and not applicable this run</h2>
+<ul>
+<li><strong>Know Your Place (West of England)</strong>: Gloucestershire Archives' project page (read) lists coverage as Bristol, B&amp;NES, Gloucestershire, South Gloucestershire, North Somerset, Somerset, Wiltshire and Devon (8 counties, 7,279 sq mi). It has a community layer for user images/research, but <strong>no Welsh county</strong>, so nothing for Llandough/Leckwith. The Welsh equivalents are already covered (Archwilio "Contribute here", Cynefin tithe maps, People's Collection Wales).</li>
+<li><strong>Privacy-friendly session replay</strong>: covered by clarity-heatmaps-recordings-uk-consent.md (free recordings with UK consent mode). A second replay tool would add a consent banner burden for 3-5 visitors a day; skip.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>doc.arcgis.com (read)</li>
+<li>doc.esri.com (read)</li>
+<li>community.esri.com (read)</li>
+<li>esri.com (read)</li>
+<li>esri.com (read)</li>
+<li>arcgis.com and .../83600d75f3544fb18a9e04c5403908f8?f=json (read)</li>
+<li>gloucestershire.gov.uk (read)</li>
+</ul><p class="raw">Raw Markdown: <a href="arcgis-storymaps-public-account-noncommercial-gate-view-benchmark.md">arcgis-storymaps-public-account-noncommercial-gate-view-benchmark.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Telegram channel for an archive&#x27;s readers: set-up, bot posting, and the view-rate benchmark (2026) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Telegram channel for an archive&#x27;s readers: set-up, bot posting, and the view-rate benchmark (2026)"><link rel="alternate" type="text/markdown" href="telegram-channel-archive-readers-bot-view-rate-gate.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Telegram channel for an archive's readers: set-up, bot posting, and the view-rate benchmark (2026)</h1>
+<p>Harvested 2026-10-31 (skills harvest). Index check first: "telegram" had only 3 passing mentions and no skill file. <code>whatsapp-channel-readers-uk-patagonia.md</code> has the FT comparison. <code>feed-to-social-auto-posting-posse.md</code> lists Telegram as one feed target, and <code>the project workspace</code> marks it "Low-Med, create channel in the app + a bot via BotFather". This file covers the channel itself: whether to open one, how to run it, and how to judge it.</p>
+<p><strong>Status for Cedwyn: PROPOSAL.</strong> A new public channel needs an owner decision. The channel is created in the Telegram phone app by the project lead, or by a phone holder he names.</p>
+<h2>Facts (primary sources, read 31 Oct 2026)</h2>
+<ul>
+<li><strong>Channels</strong> broadcast to an unlimited number of subscribers. Posts are signed with the channel's name, not a person's, and new subscribers see the whole history.</li>
+<li>A <em>public</em> channel has a t.me link and turns up in Telegram search. A <em>private</em> channel is invite-link only.</li>
+<li>An eye icon shows the view count on each post. (Telegram Channels FAQ)</li>
+<li><strong>Bot posting:</strong> a bot that is an admin of the channel can post through the Bot API. Telegram's Bots FAQ limits:</li>
+<li>about 1 message a second to a single chat, and <strong>20 messages a minute in a group</strong>;</li>
+<li>One post a day is far under these limits.</li>
+<li><strong>The benchmark: views divided by subscribers.</strong> Telegram shows real view counts, so this is the metric to watch.</li>
+<li>The Mendeley dataset (E. Güven, DOI 10.17632/2z2vtj7x36.1, 22 Sep 2026, read) covers <strong>3,205,346 public channels</strong>. Median reach is <strong>31.4% for channels of 1k–5k subscribers</strong> (7,179 measured), 15.8% at 5k–20k and 9.1% at 20k–100k.</li>
+<li>In the same dataset, <strong>85.7% of channels have under 1,000 subscribers</strong>. Only 12.1% of channels are in English; 27% are Russian.</li>
+<li>The dataset's own caveat: views also count forwards and web previews, so reach can be overstated.</li>
+<li>GrowVib (vendor blog, 8 Oct 2026, read) gives 20–40% as good under 10k subscribers, and 60–80% for exceptional small channels.</li>
+<li><strong>Growth speed, one publisher's account:</strong> Rachel Banning-Lover, the FT's head of social, told Nieman Lab (7 Nov 2023): "it took a year for us to grow an audience of 35,000 on Telegram ... a similar-sized following around markets on WhatsApp in two weeks". Telegram grows slowly for a UK-facing brand even with a large audience behind it.</li>
+<li><strong>Not checked:</strong> how many subscribers a channel needs before its in-app statistics panel appears. One search snippet states 50 for channels and 500 for groups; Telegram's own page wasn't read. Read it in-app.</li>
+</ul>
+<h2>How to run it (zero spend, about 10 minutes a day once set up)</h2>
+<ol>
+<li><strong>Gate first:</strong> open the channel only if at least one of these is true:
+   - 10 or more readers have asked for Telegram;
+   - Patagonia or Spanish-speaking readers show Telegram use in reply data;
+   - the WhatsApp channel route is blocked.
+   Otherwise WhatsApp Channels win (the FT figure above).</li>
+<li><strong>Set-up (phone, 10 minutes):</strong>
+   - public channel, @username matching the brand (check it's free);
+   - name, a one-line bio with one link (the shop or library page), and the logo;
+   - turn "Sign messages" off and reactions on;
+   - link a <em>discussion group</em> only once someone will moderate it.</li>
+<li><strong>Bot (box side):</strong> create a bot in @BotFather, add it to the channel as an admin with "post messages" permission only, and store the token as a secret (never in chat or files).
+   - It should post <strong>at most 1 item a day</strong> from the existing feed: a record image, two lines, the source line, and one link with its preview.
+   - Leave 4 hours or more between posts, the same rule as the auto-social queue, and never duplicate.</li>
+<li><strong>Content mix:</strong> 4 record posts to every 1 product mention. Pin a "start here" post linking the free edition and the library.</li>
+<li><strong>Promotion (free):</strong>
+   - add the t.me link to the site footer or follow page, the newsletter footer and the e-book back matter, each with UTM <code>utm_source=telegram&amp;utm_medium=channel</code>;
+   - no paid Telegram Ads;
+   - no adding people without consent, since Telegram channels can only invite contacts and that would mean DMs to strangers.</li>
+<li><strong>Measure weekly:</strong> subscribers, average views per post divided by subscribers (target 30% or more, matching the 1k–5k median), forwards, and clicks to the site from <code>utm_source=telegram</code>. Log to the project workspace
+   - <strong>Kill rule:</strong> under 50 subscribers after 12 weeks, or a view rate under 15% for 4 weeks running, means stop posting and pin a "we've moved to the newsletter" note.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Proposal line for the BIZDEV queue: "Telegram channel: open only if the gate in step 1 passes; bot posts 1 item a day from the cedwyn-blog feed; 12-week trial with the kill rule above."</li>
+<li>Open question: does the connected Telegram toolkit (bot token per platforms.md) work for channel posts? Read the toolkit's actions before any build. Don't post anything to test it.</li>
+<li><strong>Bilingual:</strong> Telegram reaches further in Spanish than in English (12.1% English channels vs 27% Russian; no Spanish-specific number was read). If Patagonia reader data supports it, a Spanish-first channel for the Chubut audience is the better variant to test.</li>
+<li>Editorial rules apply to every post: never name the project lead; none of the banned words (states, assertions, per, second-hand report, not checked, reported, deception, taken); no insignia; no accusations about named people; nothing about family holdings; Llandough Farm is not Great House Farm; links go to Cedwyn pages only.</li>
+<li>Never post into other people's Telegram groups or send DMs. Grow only from our own surfaces.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>Telegram Channels FAQ: telegram.org (read 31 Oct 2026)</li>
+<li>Telegram Bots FAQ (rate limits): core.telegram.org (read)</li>
+<li>Mendeley Data, "Telegram Channel Reach 2026", E. Güven, DOI 10.17632/2z2vtj7x36.1: data.mendeley.com (read)</li>
+<li>GrowVib, "What's a Good Telegram View Rate?", 8 Oct 2026 (vendor): growvib.com (read)</li>
+<li>Nieman Lab, "How 13 news publishers are using WhatsApp Channels", 7 Nov 2023 (FT quote): niemanlab.org (quote via search snippet and the existing WhatsApp skill)</li>
+</ul><p class="raw">Raw Markdown: <a href="telegram-channel-archive-readers-bot-view-rate-gate.md">telegram-channel-archive-readers-bot-view-rate-gate.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

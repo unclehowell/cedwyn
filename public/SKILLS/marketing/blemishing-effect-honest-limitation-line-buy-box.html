@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>The blemishing effect: an honest &quot;what this book does not cover&quot; note after the strengths · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: The blemishing effect: an honest &quot;what this book does not cover&quot; note after the strengths"><link rel="alternate" type="text/markdown" href="blemishing-effect-honest-limitation-line-buy-box.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>The blemishing effect: an honest "what this book does not cover" note after the strengths</h1>
+<p>Date: 2026-10-31 · Harvest run · Topic was not covered before this run: 'blemish', 'pratfall', 'what this book doesn't', 'who it's not for' and 'negative review' had 0 hits across INDEX.md and 668 skill files. Star-rating evidence (Spiegel) sits in reviews-social-proof-direct-ebooks.md. This file is about the seller's own copy.</p>
+<h2>Evidence</h2>
+<ul>
+<li><strong>The original study.</strong> Ein-Gar, Shiv &amp; Tormala (2012, Journal of Consumer Research, "When Blemishing Leads to Blossoming") ran four studies: hiking boots (online, twice), chocolate bars (campus, a hot day) and champagne glasses.</li>
+<li>Adding one mild negative after the positives raised favourability and purchase. Examples: the boots "only come in two colours"; the chocolate bars "are broken".</li>
+<li>The boost appeared only when people were not concentrating hard ("low processing"): distracted people, or students about to sit an exam.</li>
+<li>Source: gsb.stanford.edu</li>
+<li><strong>Three conditions, all required.</strong> If any one fails, the effect reverses:
+  1. <strong>Order:</strong> positive first, then the blemish. A negative read before the positives hurts.
+  2. <strong>Weak negative:</strong> a minor or side issue, never the core promise.
+  3. <strong>Low effort:</strong> skimmers, which is most mobile shop visitors. Careful readers who weigh everything preferred the all-positive version.</li>
+<li><strong>The same pattern in the field.</strong> Spiegel Research Center (Northwestern) data across more than 40 categories shows purchase likelihood peaks at average ratings of 4.2–4.5 stars, not 5.0. Perfect scores read as too good to be true. Source: spiegel.medill.northwestern.edu</li>
+<li><strong>How strong this is:</strong> lab and field-experiment evidence, plus one large observational dataset. No direct test on an e-book sales page has been found. Treat it as a strong hypothesis to test, not a proven lift.</li>
+</ul>
+<h2>How to write the blemish</h2>
+<ol>
+<li><strong>Lead with 3–5 concrete strengths:</strong> what's inside, the sources used, page counts, what the reader will be able to do.</li>
+<li><strong>Then add one short, true, minor limitation:</strong>
+   - format: "PDF only, no print edition yet";
+   - scope: "covers 1891–1989; the medieval period is in a separate book";
+   - edition: "first edition, updated as records arrive".</li>
+<li><strong>Never blemish the core promise.</strong> Don't write "the evidence may be weak" on an evidence book. That is a strong negative, and the effect reverses.</li>
+<li><strong>Keep it to one line</strong> in the buy box, placed after the bullets and before the button. A second negative turns honesty into doubt.</li>
+<li><strong>Pair it with a remedy where one exists:</strong> "PDF only, reads on any phone or Kindle via Send to Kindle".</li>
+<li><strong>Test it.</strong> Run a sticky 50/50 with and without the line on one card, and read it with tools/ab_stats.py or tools/bandit.py (minimum 14 days). At about 1% conversion, a doubling needs about 2,319 visitors per arm, so expect a long read. A before/after with the 14-day ignore window is the fallback.</li>
+<li><strong>Don't use it on careful-reader pages.</strong> Long-form evidence pages are read closely, and there the plain all-positive summary plus full sourcing is the safer choice.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<p>Cedwyn already has the perfect honest blemish: the public missing-records register (/research/missing-records/, MR-0001…MR-0057). Each case book can truthfully say which records are not yet found. That is a minor, side negative that also signals rigour, so it doesn't undercut the content.</p>
+<p>Draft lines. They follow the editorial rules: no banned words, no names, no outbound links. They are for the ONPAGE or theme flywheel and are not published by this run.
+- <strong>Tŷ Mawr (history book):</strong> after the bullets, "First edition: the 1983 fire destroyed some finds, so a few chapters rely on later copies. See the missing-records list."
+  - Check MR-0056 wording before use.
+- <strong>Recorded Incidents:</strong> "Covers 1891–1989. Records still being traced are listed openly on our missing-records page." (check which MR entries match this book before naming any).
+- <strong>Cedwyn: Names, Places, Legend:</strong> "PDF only for now; reads on phones and e-readers."
+- <strong>Placement:</strong> one line, grey, under the bullets and above "Buy v0.0.2 · £4.99". Never on the free-read link. Never more than one line.
+- <strong>Measure it</strong> as a 50/50 on one card, together with the choice-overload "Start here" work (choice-overload-ebook-shelf-start-here.md) only if they are on different cards. Otherwise test one at a time.</p>
+<p>Proposal for QUEUE-after-framing: add one blemish line to 2 book cards and read it with bandit.py for at least 14 days. Do not publish it until the wording has passed the editorial scan.</p>
+<h2>Sources</h2>
+<ul>
+<li>gsb.stanford.edu (Stanford GSB, study summary)</li>
+<li>ideas.repec.org (Ein-Gar, Shiv &amp; Tormala 2012, JCR 38(5))</li>
+<li>spiegel.medill.northwestern.edu</li>
+<li>Live: cedwyn.bucklerfamily.estate ; cedwyn.bucklerfamily.estate</li>
+</ul><p class="raw">Raw Markdown: <a href="blemishing-effect-honest-limitation-line-buy-box.md">blemishing-effect-honest-limitation-line-buy-box.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

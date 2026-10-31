@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>E-book cover A/B tests: what the published wins really show, and the free route · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: E-book cover A/B tests: what the published wins really show, and the free route"><link rel="alternate" type="text/markdown" href="ebook-cover-ab-test-cold-audience-free-route.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>E-book cover A/B tests: what the published wins really show, and the free route</h1>
+<p>Skill harvested 31 Oct 2026. Topic: e-book launch / creative testing / CRO. Before this the skills folder had 0 hits for "cover test" and no file on <em>measuring</em> which cover sells. <code>ebook-shelf-poster-grid-covers-version-picker.md</code> covers making covers legible at thumbnail size (with <code>tools/cover_check.py</code>). This file covers choosing between covers with data.</p>
+<h2>What the sources show (read 31 Oct 2026)</h2>
+<ul>
+<li><strong>Tricia O'Malley, BookBub Insights, 11 Jul 2018 (author's own figures, read in full).</strong> She ran 5 rounds of paid BookBub Ads tests on her <em>Althea Rose</em> cozy series. Each round changed only the cover. Budgets were $20-40 per ad, run at the same time, with the same targeting, using CPM so each version got similar impressions.</li>
+<li>Round 1: 2.94% vs 2.97% CTR on 6,000 impressions each. A tie.</li>
+<li>Round 2: the original needed about 8,000 impressions for the same clicks the new cover got from about 12,000. The original won by about 1 point.</li>
+<li>Round 3: a border was added. 3.12% (217/6,964) vs 2.85% (162/5,684). She called it a win. <strong>Re-checked with <code>tools/ab_stats.py</code>: Fisher p = 0.40, so it is a tie.</strong></li>
+<li>Round 4: a typography-led "wild card" cover reached <strong>5.2% CTR</strong>, a clear win (per-arm counts not given).</li>
+<li>Round 5: big typography on book 2 got <strong>1.21% vs 0.58%</strong> on 2,200 impressions each. ab_stats gives p = 0.04, P(B better) = 98.7%. A real win.</li>
+<li>Outcome: new covers across the series and <strong>+40% free downloads</strong> of book 1 in the first weeks. That is a before/after comparison, so seasonality is not controlled.</li>
+<li>Lesson in her own words: a Facebook poll of existing readers "ended up being the most confusing way to solicit feedback". Existing fans are not the new readers a cover has to win.</li>
+<li><strong>BookBub Insights, "How to Easily Test a Book Cover Design", Mar 2018 (read in full).</strong></li>
+<li>Two ways to test: quantitative (an A/B test on random, equal audiences) and qualitative (polls, where each person sees both covers).</li>
+<li><strong>Melissa F. Miller</strong>, <em>Irreparable Harm</em>: $10 per variant, $1 CPC bid, narrow comp-author + Thrillers targeting. The new cover had <strong>+17% CTR</strong>. Counts were not published, so significance can't be checked.</li>
+<li><strong>Rachel Shane</strong> tested her cover in a <strong>Mailchimp A/B email</strong>. The <em>original</em> cover had <strong>+35% CTR</strong>, so she kept it. The test stopped a costly change.</li>
+<li>Two strategies: test drastically different designs early, or one variable later (font, title size, image, colour).</li>
+<li>Also cited: R.L. Mathewson went from 5-6 copies a day to 1,000+ a day after a recover (HuffPost 2013, second-hand, not checked).</li>
+<li><strong>Simon Avery, ALLi, Dec 2013 (designer's own case, read).</strong> J.S. Taylor's romance series was redesigned for thumbnails, with a "bestseller" tag that shows at small size. US sales went from about 400 a day to 800-1,000 a day, and UK sales from nil to 200 a day. About 10,000 extra $3 sales in a month. This is a vendor testimonial and before/after only.</li>
+<li><strong>Mailchimp free plan (our own <code>mailchimp-free-plan-2026-limits-gates.md</code>):</strong> A/B testing is a paid feature. Free has 250 contacts and 1 audience. So Rachel Shane's built-in email split is <strong>not available to us for free</strong>.</li>
+</ul>
+<h2>What this means</h2>
+<ol>
+<li><strong>Most published "cover wins" are under-powered.</strong> At a 3% CTR, detecting a +17% lift needs about <strong>19,000 views per arm</strong>, and +50% needs about 2,500 (<code>ab_stats.py samplesize 0.03 0.17</code> / <code>0.03 0.5</code>). Small tweaks like borders or font weight can't be read at small-site traffic. Only <strong>drastic</strong> changes (image-led vs typography-led, a different focal image) produced clear wins in these cases.</li>
+<li><strong>Measure strangers, not fans.</strong> Polls of followers or members measure taste and loyalty, not the click from a cold browser. Use them for a veto ("which is clearly worse?"), never as the decision.</li>
+<li><strong>Change one thing, at the same time, with the same audience.</strong> Run simultaneously and randomly. A sequential "old cover this week, new cover next week" test is weaker. If that's all you can do, read it with <code>tools/prepost.py</code> and say so.</li>
+<li><strong>Metric = click to the product/buy page</strong>, then purchases if there are enough. Decide the stop size before starting (ab_stats) or use a bandit with stop rules (<code>tools/bandit.py</code>: at least 14 days, P(best) &gt;= 95% or PVR &lt; 1%).</li>
+<li><strong>A loss is a win.</strong> Rachel Shane's test kept a better original. Always include the current cover as the control.</li>
+</ol>
+<h2>The free route (zero spend), step by step</h2>
+<ol>
+<li><strong>Gate:</strong> each candidate first passes <code>tools/cover_check.py</code> (2:3 ratio, size, contrast, squint sheet at 100/160 px). A cover that fails the squint test doesn't enter the test.</li>
+<li><strong>Pick two drastically different designs</strong> of the same title: A = current, B = typography-led (big title, 2-5 words, high contrast, one archive image or none). This follows the O'Malley result. Don't test borders or tints.</li>
+<li><strong>On-site split (the only free random audience):</strong> randomly give each visitor to /ebooks/ cover A or B for one title, sticky by cookie. Count unique visitors who saw it and unique clicks to that title's product/buy link. Exclude bots (<code>tools/human_traffic_split.py</code>, <code>bot_click_flag.py</code>). Read it weekly with <code>bandit.py "A:shown:clicked" "B:shown:clicked" --days N</code>.</li>
+<li><strong>If traffic is too thin</strong> (under about 750 views per arm in 4 weeks, which is the floor for detecting a doubling): don't call a winner. Keep the bandit running, or fall back to a 2-week alternation with prepost.py and a "not checked" label.</li>
+<li><strong>Fan poll for veto only:</strong> one Facebook Group / Instagram Story poll, read as "is either clearly disliked?" Never treat it as the decision (O'Malley).</li>
+<li><strong>Paid route (proposal only):</strong> BookBub Ads CPM, about $20-40 per arm, comp-author targeting, both ads live at once. This is the cleanest cold-audience test, but it's spend, so it needs the project lead's GO and isn't done by any flywheel.</li>
+<li><strong>Log</strong> each test in <code>the project workspace</code> with variant, dates, shown/clicked, p or P(best), and the decision. Keep losing covers in the repo so they aren't re-tested.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Where:</strong> cedwyn.bucklerfamily.estate/ebooks/ poster-card shelf (see the shelf skill). The cover image is the card's main element, so the click on the card is the metric.</li>
+<li><strong>First test (proposal for the CEDWYN ONPAGE run or a bizdev task; it touches the live site and the main branch triggers a build, so batch it with the next main change):</strong> the best-selling or most-viewed title only. Current cover vs a typography-led variant, 50/50 sticky split via a small inline script or the existing Worker. Log impressions and card clicks to the existing analytics beacon (<code>tools/wae_beacon</code>). Read with bandit.py weekly. Stop at 14 days minimum.</li>
+<li><strong>Before building it,</strong> check the last 4 weeks of non-bot /ebooks/ visitors (growth-report <code>cf_traffic.py</code>). If the title's card gets under about 200 views a week, a doubling takes over 4 weeks to read. Say that up front rather than call a winner early.</li>
+<li><strong>Don't</strong> use the Mailchimp free list for a split (no A/B on free; 250-contact cap). Don't poll Academy members or followers as the decision. Don't add press or "bestseller" style tags: there are no sales assertions to back them, and that would be a misleading claim.</li>
+<li>Editorial rules still apply to cover text: no insignia, no faces of private people, never name the project lead, banned words.</li>
+<li>Report only decisions (winner shipped, or tie and why); routine reads go in the Sunday growth notes.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>insights.bookbub.com (Tricia O'Malley, 2018-07-11; read via a reader proxy because the site blocks scripts)</li>
+<li>insights.bookbub.com (BookBub, 2018-03; Miller +17%, Shane +35% original)</li>
+<li>selfpublishingadvice.org (Simon Avery, ALLi, 2013-12-06; designer testimonial)</li>
+<li>huffingtonpost.com 2013-05-30 book-cover-design-indies (Mathewson, cited by BookBub; not checked)</li>
+<li>own: mailchimp-free-plan-2026-limits-gates.md; tools/ab_stats.py, bandit.py, cover_check.py, prepost.py</li>
+</ul><p class="raw">Raw Markdown: <a href="ebook-cover-ab-test-cold-audience-free-route.md">ebook-cover-ab-test-cold-audience-free-route.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
