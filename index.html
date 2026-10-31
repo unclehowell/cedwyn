@@ -29,9 +29,10 @@
 body{font:300 17px/1.6 Barlow,"Helvetica Neue",Arial,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:#fff}img{max-width:100%;height:auto;display:block}
 .wrap{max-width:780px;margin:0 auto;padding:0 20px}
-.hero{position:relative;min-height:78vh;display:flex;align-items:flex-end;padding:90px 0 44px;background:#000 center/cover no-repeat;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0,rgba(0,0,0,.55) 45%,#000 100%)}
-.hero .wrap{position:relative;width:100%}
+.hero{position:relative;isolation:isolate;min-height:78vh;display:flex;align-items:flex-end;padding:90px 0 44px;background:#000;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;z-index:-1;background-image:var(--patagonia-hero-image);background-position:center;background-size:cover;background-repeat:no-repeat;filter:url(#patagonia-pencil) sepia(.12);opacity:.96}
+.hero:before{content:"";position:absolute;z-index:0;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0,rgba(0,0,0,.55) 45%,#000 100%)}
+.hero .wrap{position:relative;z-index:1;width:100%}
 .kick{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ghf-s,#f2c94c);margin:0 0 14px;font-weight:500}
 h1{font-weight:300;font-size:clamp(34px,9vw,64px);letter-spacing:.08em;text-transform:uppercase;line-height:1.05;margin:0 0 14px}
 h2{font-weight:300;font-size:clamp(22px,5.6vw,32px);letter-spacing:.08em;text-transform:uppercase;line-height:1.2;margin:0 0 18px}
@@ -77,14 +78,38 @@ details.site .d{padding:0 0 16px 22px;color:#cfcfcf;font-size:15.5px}details.sit
 .views{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.views .btn{padding:0 8px}
 .terms h2{margin-top:30px}.terms li{margin:0 0 10px}
 
-.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:22px 0 0}.status-item{border:1px solid rgba(255,255,255,.24);padding:13px;background:rgba(0,0,0,.5)}.status-item b{display:block;color:#9ad0f5;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px}.status-item span{display:block;font-size:14px;line-height:1.4}.estate-plan{border:1px solid rgba(255,255,255,.2);padding:8px;background:#101820}.estate-plan svg{display:block;width:100%;height:auto}.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#9ad0f5}.step-grid{display:grid;grid-template-columns:1fr;gap:12px}.step-card{padding:16px;border:1px solid rgba(255,255,255,.2)}.step-card h3{margin-bottom:8px}.step-card p{font-size:14.5px;color:#d1d1d1;margin:0}.disclaimer{border:1px solid rgba(154,208,245,.6);padding:14px;color:#e5e0d1;font-size:14px}.split-p{display:grid;grid-template-columns:1fr;gap:20px}@media(min-width:640px){.status-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.step-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.split-p{grid-template-columns:1fr 1fr}}</style>
+.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:22px 0 0}.status-item{border:1px solid rgba(255,255,255,.24);padding:13px;background:rgba(0,0,0,.5)}.status-item b{display:block;color:#9ad0f5;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px}.status-item span{display:block;font-size:14px;line-height:1.4}.estate-plan{border:1px solid rgba(255,255,255,.2);padding:8px;background:#101820}.estate-plan svg{display:block;width:100%;height:auto}.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#9ad0f5}.step-grid{display:grid;grid-template-columns:1fr;gap:12px}.step-card{padding:16px;border:1px solid rgba(255,255,255,.2)}.step-card h3{margin-bottom:8px}.step-card p{font-size:14.5px;color:#d1d1d1;margin:0}.disclaimer{border:1px solid rgba(154,208,245,.6);padding:14px;color:#e5e0d1;font-size:14px}.split-p{display:grid;grid-template-columns:1fr;gap:20px}@media(min-width:640px){.status-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.step-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.split-p{grid-template-columns:1fr 1fr}}
+
+/* Patagonia visual treatment: photographic images become monochrome pencil studies in-place.
+   New catalogue/gallery images inherit the effect automatically; mark data-no-pencil to opt out. */
+body img:not([data-no-pencil]){filter:url(#patagonia-pencil) sepia(.10) contrast(1.05)}
+@media(prefers-reduced-motion:reduce){body img:not([data-no-pencil]){transition:none}}
+</style>
 
 <script src="https://bucklerfamily.estate/ghf-lang/ghf-lang.js?v=2.0.3" data-site="locations" defer></script>
 <script src="https://bucklerfamily.estate/ghf-lang/ghf-boot.js?v=2.0.3"></script>
 <script src="https://followers.bucklerfamily.estate/follow.js" data-src="apex/patagonia/" data-mode="block" defer></script></head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;overflow:hidden;pointer-events:none">
+  <filter id="patagonia-pencil" color-interpolation-filters="sRGB" x="-5%" y="-5%" width="110%" height="110%">
+    <feColorMatrix in="SourceGraphic" type="saturate" values="0" result="mono"/>
+    <feGaussianBlur in="mono" stdDeviation="2.1" result="soft-mono"/>
+    <feComponentTransfer in="soft-mono" result="inverted-soft">
+      <feFuncR type="table" tableValues="1 0"/>
+      <feFuncG type="table" tableValues="1 0"/>
+      <feFuncB type="table" tableValues="1 0"/>
+    </feComponentTransfer>
+    <feBlend in="mono" in2="inverted-soft" mode="color-dodge" result="pencil-lines"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" seed="8" result="paper-grain"/>
+    <feColorMatrix in="paper-grain" type="saturate" values="0" result="grain-gray"/>
+    <feComponentTransfer in="grain-gray" result="fine-grain">
+      <feFuncA type="table" tableValues="0 0.045"/>
+    </feComponentTransfer>
+    <feBlend in="pencil-lines" in2="fine-grain" mode="multiply"/>
+  </filter>
+</svg>
 <main>
-<header class="hero" style="background-image:url(/locations-img/madryn-sunrise.webp)"><span id="lang-slot"></span><div class="wrap">
+<header class="hero" style="--patagonia-hero-image:url(/locations-img/madryn-sunrise.webp)"><span id="lang-slot"></span><div class="wrap">
 <p class="kick">Patagonia · Puerto Madryn, Chubut, Argentina</p>
 <h1>Great House Farm II <span class="cs">(coming soon)</span></h1>
 <p class="lede">A Welsh house, imagined anew beneath Patagonian skies.</p>
