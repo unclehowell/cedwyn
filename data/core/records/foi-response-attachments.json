@@ -1,7 +1,7 @@
 {
   "schema": "cedwyn-core/0.1.0",
   "note": "Discrete source-attachment occurrences from FOI/EIR and associated information-rights correspondence. Each record preserves the attachment filename, source authority, response date, request reference, declared MIME type and current byte-ingestion state. An entry records metadata only until the unchanged original bytes are imported and hashed.",
-  "updated": "2026-10-30",
+  "updated": "2026-10-31",
   "records": [
     {
       "id": "AR-FOI-0001",
@@ -4234,6 +4234,91 @@
       "reworded": false,
       "public": true,
       "updated": "2026-10-30",
+      "rev": 1
+    },
+    {
+      "id": "AR-FOI-0052",
+      "kind": "artifact",
+      "slug": "ar-foi-0052",
+      "title": "Heneb — ChangeLog_Redacted.csv (29 October 2026; Great House Farm / HER 02038s)",
+      "aliases": [],
+      "date": {
+        "display": "29 October 2026",
+        "sort": "2026-10-29",
+        "precision": "source email date"
+      },
+      "place_text": "Great House Farm / Tŷ Mawr, Llandough-juxta-Penarth (HER 02038s)",
+      "description": "Metadata record for the attachment named \"ChangeLog_Redacted.csv\" supplied with Heneb correspondence dated 29 October 2026 concerning HER 02038s. Heneb described it as a redacted example of the HER change log, said the example did not contain information likely to help this research, and declined to supply further entries. The attachment's contents have not been imported or independently reviewed. This record identifies the supplied sample; it is not a reproduction of the file or evidence of the complete change history.",
+      "provenance": {
+        "holder": "Heneb — Historic Environment Record Team",
+        "reference": "HER 02038s; response to GHF/HENEB/2026-09-20 schedule",
+        "date": "2026-10-29",
+        "obtained": "Attachment metadata recorded from the connected mailbox on 31 October 2026; source email thread 1a0bbdf18c9ea3b9.",
+        "independent_origin_id": "ORIG-AR-FOI-0052"
+      },
+      "grade": null,
+      "scope": {
+        "disposition": "context_only",
+        "label": "Redacted change-log example — contents not reviewed",
+        "reason": "Heneb supplied this as an example, described it as unlikely to assist the research and declined further entries. Preserve the sample as correspondence context, not as a complete audit trail or a substantive finding.",
+        "tags": [
+          "HER",
+          "Heneb",
+          "Llandough",
+          "CSV",
+          "records-management"
+        ]
+      },
+      "places": [],
+      "evidence": [
+        "EV-0901"
+      ],
+      "detail": [
+        {
+          "heading": "Original filename",
+          "text": "ChangeLog_Redacted.csv",
+          "form": "term"
+        },
+        {
+          "heading": "Source authority and reference",
+          "text": "Heneb HER Team · HER 02038s / GHF/HENEB/2026-09-20",
+          "form": "term"
+        },
+        {
+          "heading": "Source email date",
+          "text": "29 October 2026",
+          "form": "term"
+        },
+        {
+          "heading": "Mailbox MIME type",
+          "text": "Not specified in the retained message metadata.",
+          "form": "term"
+        },
+        {
+          "heading": "Source role",
+          "text": "Redacted example of the HER change log. Heneb said this example contained no information likely to help the research and declined to supply further entries.",
+          "form": "term"
+        },
+        {
+          "heading": "Binary and hash status",
+          "text": "Original attachment bytes not imported into the Cedwyn evidence store; file contents not independently reviewed; SHA-256 not calculated. No substitute file or download link is supplied.",
+          "form": "term"
+        }
+      ],
+      "sources": [
+        {
+          "text": "Heneb email of 29 October 2026",
+          "href": "https://email.bucklerfamily.estate/reference/1a0bbdf18c9ea3b9"
+        }
+      ],
+      "related": [
+        "EV-0901"
+      ],
+      "page": "/research/evidence/ev-0901-foi-response-attachment-catalogue/#AR-FOI-0052",
+      "origin": "gmail-attachment-review-2026-10-31",
+      "reworded": false,
+      "public": true,
+      "updated": "2026-10-31",
       "rev": 1
     }
   ]
