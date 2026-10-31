@@ -345,9 +345,9 @@ async function verifyFlowOidc(token, eventType) {
 }
 async function acceptFlowEvent(request, env) {
   const eventType = request.headers.get("x-github-event") || "";
-  if (!["push", "workflow_job"].includes(eventType)) return response({ ok: false, error: "unsupported_event_type" }, 400);
+  if (!["push", "workflow_job", "schedule"].includes(eventType)) return response({ ok: false, error: "unsupported_event_type" }, 400);
   let claims;
-  try { claims = await verifyFlowOidc((request.headers.get("authorization") || "").replace(/^Bearer\s+/i, ""), eventType); }
+  try { claims = await verifyFlowOidc((request.headers.get("authorization") || "").replace(/^Bearer\\s+/i, ""), eventType); }
   catch (err) { return response({ ok: false, error: String(err.message || err) }, 401); }
   let payload;
   try { payload = await request.json(); } catch { return response({ ok: false, error: "json_required" }, 400); }
@@ -357,6 +357,10 @@ async function acceptFlowEvent(request, env) {
     if (payload.ref !== "refs/heads/main" || !/^[a-f0-9]{40}$/i.test(String(payload.after || ""))) return response({ ok: false, error: "push_not_main_or_sha_invalid" }, 400);
     eventId = "push:" + payload.after;
     row = { source: "github", event_type: "push", action: "pushed", workflow_name: "main", job_name: null, run_id: claims.run_id || null, head_sha: payload.after, branch: "main", status: "source_changed", conclusion: null };
+  } else if (eventType === "schedule") {
+    const slot = Math.floor(Date.now() / 300000);
+    eventId = "schedule:" + slot;
+    row = { source: "github", event_type: "schedule", action: "reconciliation", workflow_name: "flow-watch-events", job_name: "signal", run_id: claims.run_id || null, head_sha: null, branch: "main", status: "reconciled", conclusion: "scheduled" };
   } else {
     const job = payload.workflow_job || {};
     if (job.head_branch !== "main" || !job.run_id || !job.id) return response({ ok: false, error: "job_scope_or_run_id_invalid" }, 403);
@@ -371,6 +375,7 @@ async function acceptFlowEvent(request, env) {
   const check = await runFlowWatch(env, "github_" + eventType + "_" + (row.action || "event"));
   return response({ ok: true, accepted: true, event_id: eventId, check }, 202);
 }
+
 async function flowHealth(env) {
   await ensureFlowSchema(env);
   const state = await env.DB.prepare("SELECT snapshot_json FROM cw_flow_watch_state WHERE id='latest'").first();
@@ -401,7 +406,7 @@ export default {
     if (request.method !== "GET") return response({ error: "method_not_allowed" }, 405);
     if (path === "/flow-health.json") return flowHealth(env);
     if (path === "/flow-events.json") return flowEvents(env);
-    if (path === "/flow-contract.json") return response({ schema: "cedwyn.flow-contract/1.0", cadence: "*/5 * * * *", events: ["OIDC-verified GitHub main push", "OIDC-verified build job queued/in_progress/completed"], checks: ["main revision to Actions run", "Actions result to live production build stamp", "Agent Library manifest", "shared e-book/documentary version registry", "ebook/documentary route reachability"], limits: ["No Gmail credential or authorised delivery event source is bound to this Worker", "Private Cloudflare Pages deployment metadata is not read; public served build stamp is the deployment proof"], rule: "Before and after work, read /academy/FLYWHEELS/flow-watch.md and /flow-health.json; record owner, state, last progress, evidence and next action." });
+    if (path === "/flow-contract.json") return response({ schema: "cedwyn.flow-contract/1.0", cadence: "GitHub Actions schedule every five minutes plus immediate push/build-job events", events: ["OIDC-verified GitHub main push", "OIDC-verified build job queued/in_progress/completed", "OIDC-verified five-minute reconciliation"], checks: ["main revision to Actions run", "Actions result to live production build stamp", "Agent Library manifest", "shared e-book/documentary version registry", "ebook/documentary route reachability"], limits: ["No Gmail credential or authorised delivery event source is bound to this Worker", "Private Cloudflare Pages deployment metadata is not read; public served build stamp is the deployment proof"], rule: "Before and after work, read /academy/FLYWHEELS/flow-watch.md and /flow-health.json; record owner, state, last progress, evidence and next action." });
     if (path === "/manifest.json") return response({
       schema: "cedwyn.agent-bridge/1.0",
       id: "x78s8jej33i8f8rrj4is88",
