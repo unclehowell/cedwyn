@@ -7,6 +7,12 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 CFG = json.load(open(ROOT / 'themes.json'))
 DIST = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else 'dist')
 shutil.copytree(ROOT / 'web', DIST, dirs_exist_ok=True)
+# Publish the canonical book-evidence CSV after theme assembly. Keep it accessible at a stable public URL.
+_book_register = ROOT / 'web' / 'research' / 'book-research-findings.csv'
+if _book_register.is_file():
+    _public_register = DIST / 'research' / 'book-research-findings.csv'
+    _public_register.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(_book_register, _public_register)
 hosts = {}
 for t in CFG['themes']:
     for h in t.get('hosts', []):
