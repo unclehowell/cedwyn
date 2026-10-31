@@ -728,7 +728,9 @@
     function track(name, p) {   // one request per step: /_cedwyn/ev/<event>/<book or network>/<page>, counted by the zone's request analytics
       p = p || {}; var cl = function (x) { return String(x || "-").toLowerCase().replace(/@.*$/, "").replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "-"; };
       var u = location.origin + "/_cedwyn/ev/" + cl(name) + "/" + cl(p.book || p.net || p.via) + "/" + cl(p.from || pageKey()) + "?t=" + Date.now();
-      try { if (!(navigator.sendBeacon && navigator.sendBeacon(u, ""))) new Image().src = u; } catch (e) { try { new Image().src = u; } catch (x) {} }
+      // 31 Oct 2026 (P-117): a GET with keepalive (survives a click that leaves the page), answered 200 by the /_cedwyn/ev/* rewrite in
+      // tools/site.py; sendBeacon always POSTs, and Pages answers a POST to a static path 405 (a console error on every e-book page).
+      try { if (window.fetch) fetch(u, { method: "GET", keepalive: true, mode: "no-cors", credentials: "omit", cache: "no-store" }).catch(function () {}); else new Image().src = u; } catch (e) { try { new Image().src = u; } catch (x) {} }
       if (GC_CODE) gcEv(name, p);
       if (gaOn && window.gtag) try { p.page_path = location.pathname; window.gtag("event", name, p); } catch (e) {}
     }
@@ -740,7 +742,9 @@
     function funnel() {
       if (window.__cedwynFunnel) return; window.__cedwynFunnel = 1;
       // Cloudflare Web Analytics: page views, cookieless (the zone cannot add it itself: pages are sent "no-transform")
-      if (CF_BEACON && !document.querySelector('script[src*="cloudflareinsights"]')) {
+      // 31 Oct 2026 (P-117): not for automated browsers (navigator.webdriver); the analytics endpoint refuses them with a 404 that the
+      // browser reports as a CORS error, which only ever showed up in our own headless checks.
+      if (CF_BEACON && !navigator.webdriver && !document.querySelector('script[src*="cloudflareinsights"]')) {
         var cb = document.createElement("script"); cb.defer = true; cb.src = xu("static.cloudflareinsights.com", "/beacon.min.js");
         cb.setAttribute("data-cf-beacon", '{"token": "' + CF_BEACON + '", "spa": true}'); (document.head || de).appendChild(cb);
       }

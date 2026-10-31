@@ -1,6 +1,6 @@
 {
  "schema": "cedwyn_academy_architecture/v1",
- "version": "1.0.2",
+ "version": "1.0.3",
  "updated": "2026-10-31",
  "refreshed_by": "the agent library cycle (every 6 hours); edit this file, then rebuild the academy",
  "source_documents": [
@@ -762,12 +762,12 @@
   {
    "id": "calendar",
    "title": "Cedwyn Calendar (chronology coverage view)",
-   "url": "calendar subdomain, or /calendar/ on the main site if the subdomain cannot be added",
+   "url": "/calendar/ on the main site (no separate subdomain; the earlier subdomain address redirects there)",
    "group": "Modern research and how it's going",
-   "purpose": "A calendar-style view of every dated event in the chronology (1667 onwards): day, week, month and year views, several years side by side, and a decades/centuries density view. Periods are shaded by how much evidence they hold, so the parts of the chronology still to be reconstructed stand out; known gaps from the missing-records register are marked. Month-only and year-only dates show as month or year bands, never as a made-up day. Each event opens to its date, precision, title, catalogue IDs, verbatim quote and source.",
-   "source": "branch calendar, deployed as its own Worker app (same pattern as the academy webapp)",
+   "purpose": "A calendar-style view of every dated event in the chronology (1667 onwards): day, week, month and year views, several years side by side, and a decades/centuries density view. Periods are shaded by how much evidence they hold, so the parts of the chronology still to be reconstructed stand out; known gaps from the missing-records register are marked in bright pink (54 of 55 missing-record dates at launch). Llandough Farm entries stay out, with a note on the name confusion. Month-only and year-only dates show as month or year bands, never as a made-up day. Each event opens to its date, precision, title, catalogue IDs, verbatim quote and source.",
+   "source": "branch calendar, deployed as its own Worker app routed at /calendar/ on the main site",
    "data_sources": "dated records in the central catalogue, the research timeline and the missing-records register; a derived events table rebuilt from the catalogue with a short cache, plus a build-time snapshot fallback",
-   "state": "BUILDING",
+   "state": "LIVE",
    "view_rule": "its own derived events table built from the catalogue; header graph shows events per year from this app's own data only",
    "migration_wave": "standalone webapp, started 31 Oct 2026"
   }
