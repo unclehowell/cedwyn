@@ -5406,5 +5406,21 @@
  "formats": {
   "markdown": "each path as listed",
   "html": "each html as listed"
+ },
+ "machine_interfaces": {
+  "snowball_agent_bridge": {
+   "manifest": "/x78s8jej33i8f8rrj4is88/manifest.json",
+   "tasks": "/x78s8jej33i8f8rrj4is88/tasks.json",
+   "x_activity": "/x78s8jej33i8f8rrj4is88/x.json",
+   "contributions": "/x78s8jej33i8f8rrj4is88/contributions.json",
+   "queue_summary": "/x78s8jej33i8f8rrj4is88/queue-summary.json",
+   "submit": "/x78s8jej33i8f8rrj4is88/submit",
+   "pagination": {
+    "offset": "offset",
+    "limit": 50,
+    "next": "pagination.next_offset"
+   },
+   "access": "public metadata only; privileged data/actions require the acting agent's own authorised connectors"
+  }
  }
 }
