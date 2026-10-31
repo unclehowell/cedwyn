@@ -17,7 +17,10 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.3.0'
+VERSION = '1.3.1'
+# 1.3.1 (31 Oct 2026): /wales/ gains a 'recreations' section (#recreations): the wireframe-hologram version of each public
+# recreation in the central catalogue (data/core/records/recreations.json, REC-0002 onward), captioned in cy/en/es from the
+# record and linked to its catalogue page in the Wayback Vault. - Cedwyn editors
 # 1.2.1 (27 Oct 2026, Sion 11:34 GMT): /argentina/ pictures purged of four pieces that are not the farm (NFA-0139, NFA-0049,
 # NFA-0103, NFA-0081); NFA-0015 replaced by REC-0001, a line drawing from the 1974 measured survey (see ARG_REC). - Sion's Tab agent
 # 1.2.0 (27 Oct 2026, Sion 09:45 GMT): the in-content pictures of /wales/ and /argentina/ are thumbnails; a tap opens the shared
@@ -627,6 +630,31 @@ VOUCHERS = [  # the Stripe voucher links of the retired /wales/tour/ page (Sion 
     ('w_v4', 'https%3A%2F%2Fbuy.stripe.com%2F7sY14o1lxeuH6ig38j6Zy0l', {'en': 'Gift voucher · group of four £90', 'cy': 'Taleb rodd · grŵp o bedwar £90', 'es': 'Vale regalo · grupo de cuatro £90'})]
 VOUCHER_TERMS = {'en': 'Voucher terms', 'cy': 'Telerau’r daleb', 'es': 'Condiciones del vale'}
 
+REC_H = {'en': 'Scenes recreated from the records, as holograms', 'cy': 'Golygfeydd wedi’u hail-greu o’r cofnodion, fel hologramau', 'es': 'Escenas recreadas a partir de los registros, en holograma'}
+REC_P = {'en': 'Each hologram is traced from a recreation image in the Wayback Vault catalogue. Each recreation shows one place, one date and one event, built only from the records quoted on its catalogue page.',
+         'cy': 'Mae pob hologram wedi’i olrhain o ddelwedd ail-greu yng nghatalog Claddgell Wayback. Mae pob ail-greu yn dangos un lle, un dyddiad ac un digwyddiad, wedi’i adeiladu o’r cofnodion a ddyfynnir ar ei dudalen gatalog yn unig.',
+         'es': 'Cada holograma está trazado a partir de una imagen de recreación del catálogo de la Bóveda Wayback. Cada recreación muestra un lugar, una fecha y un acontecimiento, construida solo con los registros citados en su página de catálogo.'}
+REC_OPEN = {'en': 'Catalogue page', 'cy': 'Tudalen gatalog', 'es': 'Página del catálogo'}
+
+def recreations_html(T, l):
+    """Recreations (REC-) as wireframe holograms on the Wales tour (31 Oct 2026). Read straight from the central catalogue
+    (data/core/records/recreations.json, public records with media only); each links to its catalogue page in the Wayback Vault.
+    Captions come from the record's media.wales (en/cy/es); the Wales house rule and the tour-citation rule still apply."""
+    f = ROOT / 'data' / 'core' / 'records' / 'recreations.json'
+    try: recs = [r for r in json.load(open(f, encoding='utf-8')).get('records', []) if r.get('public') and (r.get('media') or {}).get('hologram')]
+    except Exception: return ''
+    if not recs: return ''
+    figs = []
+    for r in sorted(recs, key=lambda r: r['id']):
+        m = r['media']; cap = m.get('wales') or {'en': r.get('title', '')}
+        figs.append(f'<figure class="hv-rec"><a href="{E(r.get("page") or "/wayback/recreations/")}"><img src="{E(m["hologram"])}" width="1280" height="720" alt="{E(cap.get("en", ""))}" loading="lazy" decoding="async"></a>'
+                    f'<figcaption><b>{E(r["id"])}</b> · {lt(T, cap, l, "rec_" + r["id"].lower().replace("-", "_"))} · <a href="{E(r.get("page") or "/wayback/recreations/")}">{lt(T, REC_OPEN, l, "rec_open")}</a></figcaption></figure>')
+    css = ('<style>#recreations .hv-recs{display:grid;grid-template-columns:1fr;gap:14px}@media(min-width:720px){#recreations .hv-recs{grid-template-columns:1fr 1fr}}'
+           '#recreations .hv-rec{margin:0}#recreations .hv-rec img{display:block;width:100%;height:auto;border-radius:10px;background:#04080d}'
+           '#recreations figcaption{font-size:.85rem;margin-top:6px;line-height:1.4}</style>')
+    return (f'<section id="recreations">{css}<h2>{lt(T, REC_H, l, "rec_h")}</h2><p class="mut">{lt(T, REC_P, l, "rec_p")}</p>'
+            f'<div class="hv-recs">{"".join(figs)}</div></section>')
+
 def wales(sections, S, cfg, H):
     l = 'cy'; n = len(cfg['themes']); T = base_T(sections, S, cfg, 'wales', H)
     st = H['stops']; ns = len(st)
@@ -648,6 +676,7 @@ def wales(sections, S, cfg, H):
 <section id="tour">{stops}
 <div class="hv-nav"><button type="button" class="hv-btn" id="hv-prev" data-i18n="w_prev">{E(tx(T,'w_prev',l))}</button><span id="hv-cnt" class="mut">1 / {ns}</span>
 <button type="button" class="hv-btn" id="hv-say" data-i18n="w_listen">{E(tx(T,'w_listen',l))}</button><button type="button" class="hv-btn pri" id="hv-next" data-i18n="w_next">{E(tx(T,'w_next',l))}</button></div></section>
+{recreations_html(T, l)}
 <section id="shop"><h2 data-i18n="w_shop_h">{E(tx(T,'w_shop_h',l))}</h2><p data-i18n="w_shop_p">{E(tx(T,'w_shop_p',l))}</p>
 <div class="hv-btns" id="vouchers">{vouchers}<a class="hv-btn" href="/ebooks/" data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</a></div>
 <p class="mut"><a href="/wales/vouchers/terms/">{lt(T, VOUCHER_TERMS, l, 'w_vterms')}</a></p></section>

@@ -1,0 +1,70 @@
+{
+ "app": "wayback",
+ "version": "1.0.0",
+ "enabled": true,
+ "schema": "cedwyn-view/0.1.0",
+ "note": "The Wayback Vault's own database for the recreations (REC-) catalogue. Derived by tools/views.py from data/core at every build; never edit the output by hand. The rest of the vault (artifact manifest, archives) keeps its own files.",
+ "collections": {
+  "recreations": {
+   "select": {
+    "kind": [
+     "recreation"
+    ]
+   },
+   "order_by": "id",
+   "project": [
+    "id",
+    "slug",
+    "title",
+    "date",
+    "event",
+    "place_text",
+    "places",
+    "description",
+    "description_cited",
+    "interpretation",
+    "interpretation_cited",
+    "evidence",
+    "sources",
+    "excluded",
+    "media",
+    "made",
+    "version",
+    "changes",
+    "page",
+    "updated",
+    "rev"
+   ]
+  }
+ },
+ "evidence_links": "/research/evidence/",
+ "copy": {
+  "title": "Recreations · Wayback Vault · Cedwyn",
+  "description": "Recreation images of single dated scenes at Tŷ Mawr / Great House, Llandough, each built only from catalogued records and given a REC catalogue number.",
+  "lede": "Each recreation shows one place, one date and one event. It is built only from catalogued records that describe the same place and period, and the records are quoted and linked on its page. The image is a generated reconstruction, not a photograph.",
+  "order": "On each page: the image, then the interpretation (ours), then the description (verbatim from the records), then the sources.",
+  "interp_h": "Interpretation",
+  "desc_h": "Description from the records",
+  "desc_note": "Built only from the words of the records. Each quotation links to the catalogue page of the record it comes from.",
+  "src_h": "Sources",
+  "excl_h": "Records considered and left out",
+  "holo_h": "Hologram version (Wales tour)",
+  "holo_note": "Traced from the recreation above, for the augmented-reality tour.",
+  "made_h": "How this image was made",
+  "back": "All recreations",
+  "vault": "Wayback Vault"
+ },
+ "pages": [
+  {
+   "template": "_ui/recreations.a2ui.json",
+   "out": "recreations/index.html",
+   "rel_root": "../../"
+  },
+  {
+   "template": "_ui/recreation.a2ui.json",
+   "out": "{slug}/index.html",
+   "each": "recreations",
+   "rel_root": "../../"
+  }
+ ]
+}

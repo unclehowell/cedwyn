@@ -10,7 +10,8 @@
 
 Build use:  python3 tools/views.py dist            (never fails the build: an app whose view fails keeps its static pages)
 Local use:  python3 tools/views.py OUT --app kissed-frogs --strict [--ui <dir with _ui templates>]
-Rollback for one app: "enabled": false in its view file. Plan: work/cedwyn-data-arch/PLAN.md (Cedwyn data-driven architecture, WP1).
+Rollback for one app: "enabled": false in its view file. A page entry may carry "rel_root" (31 Oct 2026, recreations): its
+links into other webapps are written relative to that root so the theme rewrite does not prefix them. Plan: work/cedwyn-data-arch/PLAN.md (Cedwyn data-driven architecture, WP1).
 Stdlib only."""
 import json, os, re, sys, pathlib, datetime, traceback
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -153,6 +154,17 @@ def build_view(app, view, recs):
         data["copy"] = c
     return data
 
+def relative_links(obj, prefix):
+    """A page's links into other webapps, made relative ("rel_root" on the page entry, e.g. "../../"): the build's rewrite step
+    prefixes root-absolute links inside a theme with the theme id, so /research/evidence/... from a wayback page would become
+    /wayback/research/evidence/...; a relative link is left alone. /_cedwyn/ (shared, reserved) paths stay as they are."""
+    if isinstance(obj, dict):
+        return {k: ((prefix + v[1:]) if k == "href" and isinstance(v, str) and v.startswith("/") and not v.startswith(("//", "/_cedwyn/")) else relative_links(v, prefix))
+                for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [relative_links(x, prefix) for x in obj]
+    return obj
+
 def fill(template, data, surface_suffix=""):
     msgs = json.loads(json.dumps(template))
     sid = None
@@ -173,7 +185,9 @@ def run_app(app, view, recs, dist, ui_dir=None, strict=False):
     (out / "_db").mkdir(parents=True, exist_ok=True)
     json.dump(data, open(out / "_db" / "view.json", "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     written = []
+    full = data
     for pg in view.get("pages", []):
+        data = relative_links(full, pg["rel_root"]) if pg.get("rel_root") else full
         tpl = json.load(open(ui / pg["template"], encoding="utf-8"))
         name = pathlib.Path(pg["template"]).name.replace(".a2ui.json", "")
         if pg.get("each"):
