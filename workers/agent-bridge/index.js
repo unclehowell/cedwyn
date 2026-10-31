@@ -183,7 +183,7 @@ async function runFlowWatch(env, triggerType = "cron") {
       sources.github_actions = { state: "UNAVAILABLE", reason: String(gh.reason || "fetch_failed").slice(0, 100) };
       issues.push({ code: "GITHUB_ACTIONS_UNAVAILABLE", title: "GitHub Actions state cannot be checked", severity: "WARNING", detail: { reason: sources.github_actions.reason } });
     }
-    const [branch,] = await Promise.allSettled([flowJson(FLOW_API + "/branches/main")]);
+    const [branch, agentsBranch] = await Promise.allSettled([flowJson(FLOW_API + "/branches/main"), flowJson(FLOW_API + "/branches/agents")]);
     if (branch.status === "fulfilled") {
       mainSha = branch.value.data && branch.value.data.commit && branch.value.data.commit.sha || null;
       sources.github_main = { state: mainSha ? "AVAILABLE" : "INVALID", commit: mainSha, committed_at: branch.value.data.commit && branch.value.data.commit.commit && branch.value.data.commit.commit.committer && branch.value.data.commit.commit.committer.date || null };
@@ -203,12 +203,32 @@ async function runFlowWatch(env, triggerType = "cron") {
     }
     if (library.status === "fulfilled") {
       const x = library.value.data || {};
-      sources.agent_library = { state: "AVAILABLE", version: x.version || null, built_utc: x.built_utc || null };
+      sources.agent_library = { state: "AVAILABLE", version: x.version || null, built_utc: x.built_utc || null, source_commit: x.source_commit || null };
       if (!x.version) issues.push({ code: "AGENT_LIBRARY_VERSION_MISSING", title: "Agent Library manifest is missing its version", severity: "WARNING", detail: {} });
     } else {
       sources.agent_library = { state: "UNAVAILABLE", reason: String(library.reason || "fetch_failed").slice(0, 100) };
       issues.push({ code: "AGENT_LIBRARY_UNAVAILABLE", title: "Agent Library manifest is not being served", severity: "WARNING", detail: { reason: sources.agent_library.reason } });
     }
+
+    let agentsHead = null;
+    let agentsHeadDate = null;
+    if (agentsBranch.status === "fulfilled") {
+      const b = agentsBranch.value.data || {};
+      agentsHead = b.commit && b.commit.sha || null;
+      agentsHeadDate = b.commit && b.commit.commit && b.commit.commit.committer && b.commit.commit.committer.date || null;
+      sources.agent_branch = { state: agentsHead ? "AVAILABLE" : "INVALID", commit: agentsHead, committed_at: agentsHeadDate };
+      const publishedAgentCommit = sources.agent_library && sources.agent_library.source_commit;
+      const age = ageMinutes(agentsHeadDate, now.getTime());
+      if (agentsHead && publishedAgentCommit && agentsHead !== publishedAgentCommit && age !== null && age > QUEUE_GRACE_MINUTES) {
+        issues.push({ code: "AGENT_LIBRARY_NOT_PUBLISHED", title: "Agent Library branch has advanced beyond the published site manifest", severity: "CRITICAL", detail: { branch_commit: agentsHead, published_commit: publishedAgentCommit, age_minutes: Math.round(age), next_action: "Check the Agent Library publish handoff, its dispatched main build, and the live /academy/agents.json source_commit." } });
+      } else if (agentsHead && !publishedAgentCommit) {
+        issues.push({ code: "AGENT_LIBRARY_SOURCE_COMMIT_MISSING", title: "Published Agent Library manifest has no source-commit proof", severity: "WARNING", detail: { branch_commit: agentsHead } });
+      }
+    } else {
+      sources.agent_branch = { state: "UNAVAILABLE", reason: String(agentsBranch.reason || "fetch_failed").slice(0, 100) };
+      issues.push({ code: "AGENT_LIBRARY_BRANCH_UNAVAILABLE", title: "Agent Library source branch cannot be checked", severity: "WARNING", detail: { reason: sources.agent_branch.reason } });
+    }
+
     if (versions.status === "fulfilled") {
       const x = versions.value.data || {};
       sources.product_versions = { state: x.version ? "AVAILABLE" : "INVALID", registry_version: x.version || null, set: x.set || null, latest: x.scheme && x.scheme.latest || null, previous: x.scheme && x.scheme.previous || null };
@@ -324,7 +344,7 @@ async function acceptFlowEvent(request, env) {
     row = { source: "github", event_type: "push", action: "pushed", workflow_name: "main", job_name: null, run_id: claims.run_id || null, head_sha: payload.after, branch: "main", status: "source_changed", conclusion: null };
   } else {
     const job = payload.workflow_job || {};
-    if (job.head_branch !== "main" || !job.run_id || !job.id || String(claims.run_id || "") !== String(job.run_id)) return response({ ok: false, error: "job_scope_or_run_id_invalid" }, 403);
+    if (job.head_branch !== "main" || !job.run_id || !job.id) return response({ ok: false, error: "job_scope_or_run_id_invalid" }, 403);
     const run = await flowJson(FLOW_API + "/actions/runs/" + encodeURIComponent(String(job.run_id)));
     if (run.data.name !== "build-cedwyn" || run.data.head_branch !== "main" || run.data.head_sha !== job.head_sha) return response({ ok: false, error: "workflow_run_not_cedwyn_build" }, 403);
     eventId = "job:" + job.id + ":" + String(payload.action || job.status || "unknown");
