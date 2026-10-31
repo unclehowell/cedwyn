@@ -38,3 +38,15 @@ finding"; no statement of what any private party holds; neutral third person.
 
 ## Deploy
 `tools/build_db.py --check`, then `tools/build_db.py` (loads the tables), then `deploy.py "<message>"`.
+
+## 2.0.0 — the shared Cedwyn webapp standard (31 Oct 2026)
+- Same header as the other apps: the shared Cedwyn files (ghf-boot.js -> basecamp.js, ghf-theme.css, ghf-lang.js, cw-graph.js) served
+  same-origin through `/_cedwyn/*`; menu button and webapp title on one row; the header graph plots only this app's own db.
+- Near-A2UI front end: every page is an A2UI v0.9 surface rendered on the server by `worker/ui.js` (catalog at `/_ui/catalog.json`;
+  each page's surface at `/_ui/<path>.a2ui.json`). Browser script `worker/client.txt`, styles `worker/style.txt`.
+- Citations: titles, dates and links come live from the central evidence catalogue (`core_items`), with the derived
+  `academy_sources` row as fallback.
+- Access codes `ACD-XXXX-XXXX-XXXX`: one per paid £49.99/month Academy checkout (`tools/acd_code_sync.py` in the 10-minute member
+  sync; signed Stripe webhook `/api/stripe/webhook` once STRIPE_WHSEC is set; manual `--issue-session`). Redeem with "Have an access
+  code?" to open v0.0.2 in any browser while the membership is active. The family code and membership cookie work as before.
+- Full notes, verification and rollback: `ACADEMY-GRADES.md`.
