@@ -1,5 +1,29 @@
 [
  {
+  "id": "snowball-control-audit",
+  "name": "Daily Snowball control and continuity audit",
+  "cadence": "daily, flexible morning target",
+  "prefix": "CEDWYN SNOWBALL CONTROL",
+  "runner": "ChatGPT scheduled control audit; HubSpot task 536712609990",
+  "purpose": "Reconcile workstream status, public task metadata, GitHub source/deployment health, Cloudflare agent bridge and Hive/X contribution handoffs.",
+  "inputs": [
+   "HubSpot master, work packages and procurement register",
+   "paginated public agent task index",
+   "GitHub main and source branch heads, Actions and Pages deployment metadata",
+   "Cloudflare Worker routes, service bindings and pending contribution counts",
+   "reviewed X/Grok references from agents with their own X access"
+  ],
+  "outputs": [
+   "accurate HubSpot task status and blockers",
+   "refreshed privacy-minimised public task metadata index",
+   "verified Git and deployment state",
+   "reviewed pending contribution handoffs",
+   "concise audit record on the existing HubSpot master/WP5/control task"
+  ],
+  "metric": "current snapshot age; status discrepancies corrected; pending items verified/actioned; current commits and successful builds; confirmed live route checks; stale blockers resolved",
+  "report": "Daily summary records index version/count, HubSpot state, build/deployment result, pending queue, X access state and blockers. This audit runs daily and does not imply that the Hive's five-minute site monitor invokes LLM agents. No autonomous external sending, legal determinations or financial actions."
+ },
+ {
   "id": "agent-bridge",
   "name": "Opaque public agent handoff and X discussion bridge",
   "cadence": "event-driven submissions; privileged queue review during Hive check-ins",
@@ -456,6 +480,25 @@
   ],
   "metric": "genuine gaps queued per run; gaps later published",
   "report": "Nothing routine; one line only when a find changes the chronology or the reopen grounds."
+ },
+ {
+  "id": "book-flywheel",
+  "name": "Book search flywheel",
+  "cadence": "search every 59 minutes; findings table refreshed every 3 hours",
+  "prefix": "BOOK FLYWHEEL RUN",
+  "runner": "work/book-flywheel/RUNNER.md",
+  "purpose": "Search published books for passages that overlap what the site already carries about the farm, its families and its places, under every name variant, and record each passage with its citation.",
+  "inputs": [
+   "full-text book search under every name variant of the farm, its families and places",
+   "the live site, to tell new passages from known ones",
+   "a keyword ledger: the most productive keywords are retired each cycle so the search keeps moving"
+  ],
+  "outputs": [
+   "rows in the research findings table (book title, the exact sentence, citation)",
+   "a section/research commit carrying the table"
+  ],
+  "metric": "new cited passages per run; passages that change the chronology",
+  "report": "Nothing routine; one line, with the exact quotation and its source, only when a passage is significant after the page itself has been checked."
  },
  {
   "id": "correspondence",

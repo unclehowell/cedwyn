@@ -55,3 +55,8 @@ The POST endpoint does not create a HubSpot task, send an email or publish conte
 - No automated allegations, external counsel contact, owner-account posting or payments.
 - Preserve dissent, corrections, attribution, dates and direct source links.
 - Do not claim a submission has been actioned merely because it was accepted into the pending queue.
+
+
+### HubSpot task mirror coverage (v1.5.0)
+
+Refresh two complete project scopes on each run: (1) every HubSpot TASK associated with the existing Cedwyn project contact, filtered by `hs_task_status HAS_PROPERTY` and association to that contact; (2) every page of the `Cedwyn` task subject search, plus targeted Great House Farm/Llandough/Tŷ Mawr/Buckler/Williams/BP Properties/BP v Buckler/Leckwith searches. Deduplicate by task ID. At the 31 October 2026 baseline this produced 2,490 unique records: 1,971 subject-search results, 174 contact-associated tasks and targeted results after overlap removal. This is a project-focused union, not a complete portal export. HubSpot remains authoritative.

@@ -1,6 +1,6 @@
 {
  "schema": "cedwyn_academy_architecture/v1",
- "version": "1.0.3",
+ "version": "1.0.4",
  "updated": "2026-10-31",
  "refreshed_by": "the agent library cycle (every 6 hours); edit this file, then rebuild the academy",
  "source_documents": [
@@ -1018,6 +1018,29 @@
    "flywheel_page": "/academy/FLYWHEELS/online-gap-finder.md"
   },
   {
+   "id": "book-flywheel",
+   "name": "Book search",
+   "cadence": "search every 59 minutes; findings table every 3 hours",
+   "does": "Searches published books for passages overlapping what the site carries about the farm, its families and places, under every name variant, and records each passage with its exact sentence and citation.",
+   "inputs": [
+    "full-text book search",
+    "the live site",
+    "a keyword ledger that retires the most productive keywords each cycle"
+   ],
+   "outputs": [
+    "rows in the research findings table (book, exact sentence, citation)"
+   ],
+   "touches": [
+    "/research/ (section branch research, live after the sections workflow moves the pin)"
+   ],
+   "guardrails": [
+    "exact quotation with the reference; inference labelled as inference",
+    "the two Llandoughs and same-name farms checked before a passage is used",
+    "significant passages checked on the page itself before anyone is told"
+   ],
+   "flywheel_page": "/academy/FLYWHEELS/book-flywheel.md"
+  },
+  {
    "id": "first-seen",
    "name": "First-seen detector",
    "cadence": "every 6 hours",
@@ -1295,12 +1318,13 @@
     "the script kept ten frames ahead"
    ],
    "touches": [
-    "/documentary/ (also /movie/)"
+    "/documentary/ (also /movie/ and /documentry)"
    ],
    "guardrails": [
     "strict date order; no narrator and no fourth wall from scene 3",
     "reconstruction only; no likeness of real family members",
-    "spend only within the render budget; waits are logged as problems"
+    "a blocking pre-publish quality gate: 24 fps end to end, cut from original renders, two-pass encode, -16 LUFS, frames of every talking shot looked at",
+    "spend only within the film's own daily budget; waits and skips are logged as problems"
    ],
    "flywheel_page": "/academy/FLYWHEELS/movie.md"
   },

@@ -10,6 +10,7 @@ Every self-running loop on the project. Each has a runner, state, a log, a fixed
 | [Reopen-the-case autoresearch loop](reopen-loop.md) | every 4 hours | Run small one-hypothesis experiments against a fixed metric (the three Takhar limbs) to rank grounds for reopening the 1987 judgment. |
 | [Nightly drafts engine](drafts-engine.md) | daily 05:30 UK | Keep every due information-request draft and chaser written, in thread, ready for review. |
 | [Contacts flywheel](contacts.md) | daily 03:30 UK | Find institutions and groups not yet contacted that may hold records, work out what each may hold, and open a hive draft for each. |
+| [Snowball control audit](snowball-control-audit.md) | daily, flexible morning target | Reconcile HubSpot, the public task mirror, GitHub builds, Pages/Workers, pending agent contributions and X/Grok handoffs. |
 | [Hive check-in](hive.md) | every 5 minutes | Take this agent's turns on hive drafts: one material review or permitted route action per turn, then pass the turn on. |
 | [Daily site flywheel](site-daily.md) | daily 12:00 UK | Measure every section and apply safe fixes, verified live at 390 px; log everything else as proposed. |
 | [First-seen detector](first-seen.md) | every 6 hours | Detect any record about the farm that quietly appears online and register it with its first-seen date. |
@@ -26,6 +27,7 @@ Every self-running loop on the project. Each has a runner, state, a log, a fixed
 | [Agent library (this section)](agent-library.md) | every 6 hours (proposed) | Keep the academy current: read new memory notes, lessons, runners, skills and worker reports; distil the public-safe parts; regenerate the work board from real gaps; rebuild, scan, publish, log. |
 | [Problems flywheel](problems-flywheel.md) | every 30 minutes | Take every blocker, question or problem an agent would otherwise raise with the project lead and loop on it until it is solved. |
 | [Online gap finder](online-gap-finder.md) | every 6 hours | Find public information about the farm, its places, people and the case that is not yet on the site, and queue each find as a task for the right page. |
+| [Book search flywheel](book-flywheel.md) | search every 59 minutes; findings table refreshed every 3 hours | Search published books for passages that overlap what the site already carries about the farm, its families and its places, under every name variant, and record each passage with its citation. |
 | [Correspondence flywheel](correspondence.md) | every 2 hours at :30, 07:30–23:30 Europe/London | Keep a hive draft task for every research or disclosure email that needs a reply, a chase, escalation, forwarding or first contact; housekeeping between emails. |
 | [Repository and project-board sync](repo-sync.md) | every 6 hours | Keep the project board in step with the repository and the live site: what was done, and what still needs doing. |
 | [Data-driven webapp migration](webapp-migration.md) | one webapp at a time, per the programme plan | Move each webapp to pages generated from its own view of the central catalogue, keeping the existing design (standing order 7s). |

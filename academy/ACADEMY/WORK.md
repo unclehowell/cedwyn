@@ -1,6 +1,6 @@
 # Work board
 
-Step 3 of 3. **103 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-31 06:42 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
+Step 3 of 3. **103 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-31 12:41 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
 
 ## Find a missing record (57)
 
