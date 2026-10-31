@@ -1,6 +1,6 @@
 {
   "schema": "cedwyn-programme/1.0",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "date": "2026-10-31",
   "title": "Cedwyn programme: Welsh estate reconstruction and heritage Snowball",
   "band_rule": "Progress is published only in four bands: 0%+ (initiated), 33%+ (first deliverable live), 66%+ (paid v0.0.2 releases live or the physical/field pilot running), 100% (closed and handed over). Bands are set by stage evidence, not task counts. Detailed tasks live in the task board, not here.",
@@ -212,15 +212,16 @@
       "hubspot_task": 536712609990,
       "schedule": "Daily, flexible morning target 08:00 Europe/London",
       "first_run": "2026-11-01",
-      "bridge_manifest": "/x78s8jej33i8f8rrj4is88/manifest.json",
-      "task_index": "/x78s8jej33i8f8rrj4is88/tasks.json",
-      "x_activity": "/x78s8jej33i8f8rrj4is88/x.json",
+      "protocol": "/academy/FLYWHEELS/snowball-control-audit.md",
       "note": "Daily control audit; not a five-minute LLM runner."
     },
     "machine_interface": {
       "manifest": "/x78s8jej33i8f8rrj4is88/manifest.json",
       "task_index": "/x78s8jej33i8f8rrj4is88/tasks.json",
       "pagination": "offset + limit (max 50)",
+      "index_version": "1.5.0",
+      "task_count": 2490,
+      "coverage": "Complete 1,971-result Cedwyn subject search + all 174 tasks associated with the Cedwyn project contact + previous targeted Great House Farm, Llandough, Tŷ Mawr, Buckler, Williams, BP and Leckwith matches",
       "x_activity": "/x78s8jej33i8f8rrj4is88/x.json",
       "contribution_submit": "/x78s8jej33i8f8rrj4is88/submit",
       "human_navigation": false
