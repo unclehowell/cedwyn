@@ -154,6 +154,15 @@ def rw_tag(m, tid, page_rel):
         nb = re.sub(r"""(?i)\starget\s*=\s*("_blank"|'_blank'|_blank)""", '', nb) + ' data-cedwyn-mc="1"'
     return '<' + m.group(1) + nb + m.group(3) + '>'
 STYLE = re.compile(r'(<style[^>]*>)(.*?)(</style>)', re.S | re.I)
+# 31 Oct 2026 (P-115): a 'This material now lives at <full address>' note (p.ghf-moved-note, the old WordPress wiki's
+# moved-page notice) shows a long address in bold that cannot wrap; at 390 px it pushed the page to 409 px wide
+# (/wiki/constructive-criticism-counterarguments/). The note may now break anywhere. - Sion's Tab agent
+MOVED = re.compile(r'<p\b[^>]*\bghf-moved-note\b[^>]*>', re.I)
+def _moved(m):
+    t = m.group(0)
+    if re.search(r'\sstyle\s*=', t, re.I):
+        return t if 'overflow-wrap' in t else re.sub(r'''(\sstyle\s*=\s*["'])''', r'\1overflow-wrap:anywhere;', t, count=1, flags=re.I)
+    return t[:-1].rstrip('/').rstrip() + ' style="overflow-wrap:anywhere">'
 SCRIPT = re.compile(r'(<script\b[^>]*>)(.*?)(</script>)', re.S | re.I)
 def rw_html(html, tid, page_rel):
     keep = []
@@ -162,6 +171,7 @@ def rw_html(html, tid, page_rel):
     html = STYLE.sub(lambda m: m.group(1) + rw_css(m.group(2), tid, page_rel) + m.group(3), html)
     html = TAG.sub(lambda m: rw_tag(m, tid, page_rel), html)
     html = re.sub('\x00(\\d+)\x00', lambda m: keep[int(m.group(1))], html)
+    html = MOVED.sub(_moved, html)   # P-115
     inj = '<script src="/_cedwyn/runtime.js?v=13" data-theme="%s"></script>' % tid
     if 'href="/blog/rss.xml"' not in html: inj += BLOG_FEEDS   # 27 Oct 2026: blog feed autodiscovery on every page
     mh = re.search(r'<head\b[^>]*>', html, re.I)
