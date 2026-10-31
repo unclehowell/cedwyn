@@ -2,7 +2,7 @@
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "$id": "https://cedwyn.bucklerfamily.estate/_cedwyn/core/core-record.schema.json",
  "title": "Cedwyn core record",
- "version": "0.1.0",
+ "version": "0.2.1",
  "description": "One record in the Cedwyn central catalogue (data/core/records/*.json). Public text: neutral third person; provenance names the source document only.",
  "type": "object",
  "required": [
@@ -308,6 +308,55 @@
       }
      }
     }
+   }
+  },
+  "event": {
+   "type": "string",
+   "description": "The single dated event a recreation depicts."
+  },
+  "version": {
+   "type": "string",
+   "description": "Record version, shown with the catalogue number."
+  },
+  "media": {
+   "type": "object",
+   "description": "Asset paths for generated recreations: photo, hologram, alt, label."
+  },
+  "made": {
+   "type": "object",
+   "description": "How a generated asset was made: model, date, hologram_method, prompt."
+  },
+  "excluded": {
+   "type": "array",
+   "description": "What a recreation does not show; visible uncertainty."
+  },
+  "description_cited": {
+   "type": "array",
+   "description": "Description paragraphs with citations, A2UI RichParas shape."
+  },
+  "interpretation_cited": {
+   "type": "array",
+   "description": "Interpretation paragraphs with citations, A2UI RichParas shape."
+  },
+  "changes": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "note"
+    ],
+    "properties": {
+     "rev": {
+      "type": "string"
+     },
+     "date": {
+      "type": "string"
+     },
+     "note": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false
    }
   }
  },

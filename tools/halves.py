@@ -399,6 +399,8 @@ def stop_html(H, T, l, i, s, n):
     sid = s['id']
     for k in ('name', 'place', 'overlay', 'now', 'open', 'story'):
         if k in s: T[f'stop_{sid}_{k}'] = s[k]
+    if s.get('holo') and s.get('holo_overlay'):
+        T[f'stop_{sid}_holo'] = s['holo_overlay']
     T[f'stop_{sid}_short'] = s['place'] if sid in ('driscoll', 'bay', 'lavernock', 'brynwell') else s['name']
     T[f'stop_{sid}_short'] = {k: re.split(r'[,:·]', v)[0] for k, v in T[f'stop_{sid}_short'].items()}
     recs = []
@@ -418,6 +420,8 @@ def stop_html(H, T, l, i, s, n):
     return (f'<article class="hv-stop{" on" if i == 0 else ""}" id="stop-{i+1}" data-stop="{E(sid)}" aria-label="{E(str(i+1))}">'
             f'<div class="hv-ar cwlb-th" data-lb=""><img src="{img(H, s["img"])}" width="1280" height="853" alt="{E(alt)}" data-i18n-al="stop_{sid}_overlay" loading="{"eager" if i == 0 else "lazy"}" decoding="async"><span class="scan"></span>'
             f'<span class="chip" data-i18n="{E(s.get("chip", "ar_tag"))}">{E(tx(T, s.get("chip", "ar_tag"), l))}</span></div>'
+            + (f'<div class="hv-ar cwlb-th" id="recreations" data-lb="" style="clear:right"><img src="{img(H, s["holo"])}" width="1280" height="853" alt="{E(tx(T, f"stop_{sid}_holo", l))}" data-i18n-al="stop_{sid}_holo" loading="lazy" decoding="async"><span class="scan"></span>'
+               f'<span class="chip" data-i18n="holo_tag">{E(tx(T, "holo_tag", l))}</span></div>' if s.get('holo') else '')
             + ra_html(T, l, f'stop_{sid}', s) +
             f'<p class="hv-sn"><span data-i18n="w_stop">{E(tx(T, "w_stop", l))}</span> {i+1} / {n}</p>'
             f'{sp(T, f"stop_{sid}_name", l, "h3")}{sp(T, f"stop_{sid}_place", l, "p", "pl")}'

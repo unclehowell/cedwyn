@@ -1,5 +1,5 @@
 {
- "version": "1.2.0",
+ "version": "1.2.3",
  "note": "Two halves of Cedwyn (Sion, 23:39 GMT 25 Oct 2026, m:2a7c8c27): landing (two tiles), /wales/ = augmented-reality guided tour of Cedwyn Estate, Wales (former manorial house, never 'farm'; no museum stop), /argentina/ = Cedwyn Estate II / Great House II retreat with package builder. Wales copy follows EDITORIAL.md (ingredients + citations, courts' view first, banned words). AI images carry 'artist's impression'. Bookings are pre-order requests, not confirmed holidays. Welsh and Spanish are first drafts for review. tools/halves.py renders it. - Sion's Tab agent",
  "img": "/_cedwyn/halves/img/",
  "img_v": "3",
@@ -44,7 +44,7 @@
    "lat": 51.4426,
    "lon": -3.1995,
    "img": "wales-stop-tymawr",
-    "chip": "photo_tag",
+   "chip": "photo_tag",
    "name": {
     "en": "Tŷ Mawr, the Great House",
     "cy": "Tŷ Mawr",
@@ -80,6 +80,12 @@
     "en": "Tŷ Mawr, the former manorial house, and its outbuildings, from the 1974 survey",
     "cy": "Tŷ Mawr, y cyn-dŷ maenor, a’i adeiladau allan, o arolwg 1974",
     "es": "Tŷ Mawr, la antigua casa señorial, y sus dependencias, según el levantamiento de 1974"
+   },
+   "holo": "holo-rec-0001-ty-mawr",
+   "holo_overlay": {
+    "en": "Wireframe reconstruction of the farmhouse as recorded in 1988 — a 2D illustration; dashed lines mark features hidden in the source photograph.",
+    "cy": "Ail-greu fframgwifren o'r tŷ fferm fel y'i cofnodwyd ym 1988 — darlun 2D; llinellau toredig ar gyfer nodweddion a guddiwyd yn y ffotograff ffynhonnell.",
+    "es": "Reconstrucción alámbrica de la casa de labranza tal como se registró en 1988 — ilustración 2D; las líneas discontinuas marcan elementos ocultos en la fotografía original."
    }
   },
   {
@@ -87,7 +93,7 @@
    "lat": 51.4436,
    "lon": -3.201,
    "img": "wales-stop-churchyard",
-    "chip": "photo_tag",
+   "chip": "photo_tag",
    "name": {
     "en": "St Dochdwy’s and the early medieval cemetery",
     "cy": "Sant Dochdwy a’r fynwent ganoloesol gynnar",
@@ -1202,6 +1208,11 @@
    "en": "Church and Celtic cross",
    "cy": "Eglwys a chroes Geltaidd",
    "es": "Iglesia y cruz celta"
+  },
+  "holo_tag": {
+   "en": "Wireframe · artist's impression",
+   "cy": "Fframgwifren · argraff arlunydd",
+   "es": "Alámbrico · impresión artística"
   }
  },
  "venues": [
@@ -1586,7 +1597,9 @@
   {
    "version": "1.2.1",
    "date": "2026-10-30",
-   "pages": ["/wales/"],
+   "pages": [
+    "/wales/"
+   ],
    "change": "Wales tour: 3D model renders removed (hero, stop 1, stop 2 and the aerial model figure); restored photographs of the house and the churchyard meadow in their place. The Roman villa hologram at stop 3 now stands on the ground of the estate where its remains were found, not above the rooftops. - Tab agent"
   },
   {
@@ -1597,6 +1610,22 @@
     "/argentina/"
    ],
    "change": "Destination copy rebalanced (WhatsApp request, 12:11 GMT 27 Oct 2026): history, heritage, family and the visit lead; the dispute is one short point linking to the research and case pages. Real / Augmented (AR) badge on every Wales tour stop and on the Patagonia features: in Wales St Dochdwy’s church and the Irbic Cross are real, the lost house is AR; in Patagonia the house, stables and barn are real, the church and cross are AR. - Tab agent"
+  },
+  {
+   "version": "1.2.2",
+   "date": "2026-10-31",
+   "pages": [
+    "/wales/"
+   ],
+   "change": "Wales tour: stop 1 (Tŷ Mawr) gains a wireframe reconstruction view (AR-REC-0001, a 2D line illustration) beside the restored photograph; dashed lines mark features hidden in the 1988 source photograph. Reconstructions are artist's impressions, not evidence. - Instinct (scene-reconstruction task; HubSpot 536842623165)"
+  },
+  {
+   "version": "1.2.3",
+   "date": "2026-10-31",
+   "pages": [
+    "/wales/"
+   ],
+   "change": "Wales tour: the stop 1 wireframe frame now carries the page anchor #recreations so the Wayback Vault recreation entries link straight to it. - Instinct (scene-reconstruction task; HubSpot 536842623165)"
   }
  ]
 }
