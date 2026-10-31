@@ -1,5 +1,29 @@
 [
  {
+  "id": "flow-watch",
+  "name": "Cedwyn anti-stagnation flow watch",
+  "cadence": "GitHub push/build-job events plus five-minute reconciliation",
+  "prefix": "CEDWYN FLOW WATCH",
+  "runner": "public/FLYWHEELS/flow-watch.md",
+  "purpose": "Detect and remove avoidable waiting across GitHub source/build queues, production publication, Worker/Pages checks, the Agent Library, Docs/Library, e-books and documentary releases; require every agent to record an accountable state, last progress, evidence and next action.",
+  "inputs": [
+   "OIDC-verified GitHub main push and build-job events",
+   "five-minute reconciliation of GitHub Actions and the live production build stamp",
+   "live Agent Library manifest and shared e-book/documentary version registry",
+   "current HubSpot task state and blockers as read through the acting agent's own permissions",
+   "Gmail message state only through an authenticated Gmail-enabled agent"
+  ],
+  "outputs": [
+   "sanitised public flow-health and event JSON",
+   "D1-backed issue transitions with first-seen/last-seen/resolved timestamps",
+   "owner, blocker, next action and verification state attached to each exception",
+   "accurate source-to-live revision checks",
+   "explicit integration gaps for private Gmail and Pages metadata"
+  ],
+  "metric": "event-to-detection time; queue wait; source-to-live lag; build runtime against measured percentiles; oldest open blocker; recovery time; versioned artifacts with live publication proof",
+  "report": "Surface critical failure immediately in the live flow-health endpoint. Agents act on issues and record the source/HubSpot result. Do not claim an email or product is sent/released without provider or live artifact proof. No unauthorised external email, legal determinations, spending, destructive operations or force-push."
+ },
+ {
   "id": "snowball-control-audit",
   "name": "Daily Snowball control and continuity audit",
   "cadence": "daily, flexible morning target",
