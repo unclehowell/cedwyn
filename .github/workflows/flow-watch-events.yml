@@ -5,6 +5,8 @@ on:
   workflow_job:
     types: [queued, in_progress, completed]
     branches: [main]
+  schedule:
+    - cron: '*/5 * * * *'
 permissions:
   contents: read
   actions: read
@@ -14,7 +16,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   signal:
-    if: github.event_name == 'push' || (github.event.workflow_job.name == 'build' && github.event.workflow_job.head_branch == 'main')
+    if: github.event_name == 'push' || github.event_name == 'schedule' || (github.event.workflow_job.name == 'build' && github.event.workflow_job.head_branch == 'main')
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
@@ -25,9 +27,10 @@ jobs:
           set -euo pipefail
           TOKEN_JSON="$(curl -fsS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=cedwyn-flow-watch")"
           OIDC_TOKEN="$(printf '%s' "$TOKEN_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["value"])')"
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ]; then printf '{"repository":{"full_name":"%s"},"event":"schedule"}' "$GITHUB_REPOSITORY" > /tmp/flow-watch-event.json; EVENT_FILE=/tmp/flow-watch-event.json; else EVENT_FILE="$GITHUB_EVENT_PATH"; fi
           curl -fsS --retry 2 --retry-delay 1 --max-time 20 \
             -H "Authorization: Bearer $OIDC_TOKEN" \
             -H "Content-Type: application/json" \
             -H "x-github-event: $GITHUB_EVENT_NAME" \
-            --data-binary "@$GITHUB_EVENT_PATH" \
+            --data-binary "@$EVENT_FILE" \
             "$FLOW_EVENT_URL"
