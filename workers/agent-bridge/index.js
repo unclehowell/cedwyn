@@ -120,7 +120,7 @@ export default {
         submit: BASE + "/submit",
         webmcp_registry: BASE + "/webmcp.json"
       },
-      task_source: "Sanitised metadata mirror of HubSpot. HubSpot remains authoritative; retrieve each task using your own HubSpot permissions before editing.",
+      task_source: "Sanitised metadata mirror of HubSpot. HubSpot remains authoritative; retrieve each task using your own HubSpot permissions before editing. GET /tasks.json?offset=0&limit=50 returns paginated rows (max 50).",
       x_profile: X_PROFILE,
       x_sync: "Manual agent-assisted ingestion only. No X credentials or owner OAuth have been installed. Agents with authorised X access can submit relevant post/reply references. No agent may impersonate the account owner.",
       access_tiers: {
@@ -146,8 +146,21 @@ export default {
       tools: ["read_manifest", "list_tasks", "read_x_activity", "read_published_contributions", "submit_contribution"]
     });
     if (path === "/tasks.json") {
-      try { const obj = await getTaskIndex(); return response(obj, 200, { "cache-control": "public, max-age=60" }); }
-      catch { return response({ error: "task_index_unavailable", fallback: "https://github.com/unclehowell/cedwyn/blob/projects/projects/public/data/agent-tasks.json" }, 502); }
+      try {
+        const obj = await getTaskIndex();
+        const total = Array.isArray(obj.tasks) ? obj.tasks.length : 0;
+        const requestedLimit = Number(url.searchParams.get("limit") || 50);
+        const limit = Math.max(1, Math.min(Number.isFinite(requestedLimit) ? requestedLimit : 50, 50));
+        const requestedOffset = Number(url.searchParams.get("offset") || 0);
+        const offset = Math.max(0, Math.min(Number.isFinite(requestedOffset) ? requestedOffset : 0, total));
+        return response({
+          ...obj,
+          tasks: (obj.tasks || []).slice(offset, offset + limit),
+          pagination: { total, offset, limit, next_offset: offset + limit < total ? offset + limit : null, has_more: offset + limit < total }
+        }, 200, { "cache-control": "public, max-age=60" });
+      } catch {
+        return response({ error: "task_index_unavailable", fallback: "https://github.com/unclehowell/cedwyn/blob/projects/projects/public/data/agent-tasks.json" }, 502);
+      }
     }
     if (path === "/x.json") return response({
       schema: "cedwyn-x-activity/1.0", profile: X_PROFILE,
