@@ -452,7 +452,11 @@ def _shop_strip(dist):
     # sf35 (31 Oct 2026): section front pages with non-US entry traffic and no route to /ebooks/ (CF 3 days to 01:00Z),
     # plus the directory's business pages, the site's only pages Google ranks in the top 10 (local searches).
     for _s in ('directory', 'research', 'research/timeline', 'wiki', 'fb', 'accounts', 'glossary', 'authorities', 'records',
-               'wdtk', 'email', 'review', 'meeting', 'watchtower', 'projects', 'courtdrills', 'csscpsg', 'infographic', 'docs'):
+               'wdtk', 'email', 'review', 'meeting', 'watchtower', 'projects', 'courtdrills', 'csscpsg', 'infographic', 'docs',
+               # sf40 (31 Oct 2026): document pages that real phone visitors (non-US, non-NL) reach with no route to /ebooks/ near
+               # the top (CF 3 days to 16:00Z: fcg 56, oldbill 40, qa 29, cyberspace 21, thousand-cuts 18, emails 18; /wales/ and
+               # /argentina/ serve the same file, so one strip covers all three). Full-screen apps (chess, maps, story) stay out.
+               'fcg', 'oldbill', 'qa', 'cyberspace', 'thousand-cuts', 'emails'):
         targets.append((_s + '/index.html', _s.replace('/', '-')))
     targets += [(str(p.relative_to(dist)), 'dir') for p in sorted((dist / 'directory' / 'p').glob('*/index.html'))]
     # sf36 (31 Oct 2026): deep record pages (research articles, evidence records, wiki pages, kissed-frogs) took ~1,565 of
@@ -471,6 +475,8 @@ def _shop_strip(dist):
         if 'class="ebook-strip"' in h:
             continue
         m = _re.search(r'<main\b[^>]*>', h)
+        if not m and tag in ('fcg', 'oldbill'):  # sf40: these two have no <main>; under the first heading, else the top wrapper
+            m = _re.search(r'</h1>', h) or _re.search(r'<div class="wrap">', h)
         if not m:
             continue
         text = ('Local history: Great House Farm (T&#375; Mawr), Llandough, 1667&ndash;1988, in the e-books. First edition free &rarr;'
