@@ -60,7 +60,9 @@ The title chain itself is on /title-chain/ (data/title-chain.json).
   or "the 1552 Bute deed" as Tŷ Mawr records. Where such a document must be mentioned, it is a Bute (or third-party) document whose
   application to Tŷ Mawr is under forensic examination. Bute's freeholds are under forensic examination for validity.
 - Names and dates have been played on: Cydwin, Cydfin, Cedfin, Ked Fen, Tŷ Mawr, Great House, Great House Farm, and the two
-  Llandoughs (Llandough-juxta-Penarth, CF64, and Llandough near Cowbridge, CF71). The register is the e-book "Enwau" on /ebooks/.
+  Llandoughs (Llandough-juxta-Penarth, CF64, and the other one). The register is the e-book "Enwau" on /ebooks/.
+- Cowbridge = kissed frog: content only on /kissed-frogs/; elsewhere at most a link. Llandough-juxta-Cowbridge, Llandough Castle,
+  Great House Farm near Cowbridge and the 1924/1938/1942 Cowbridge sales live on /kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/.
 - Build: `chronology.json` + `tools/chronology.py` (after theme_notices in site.py) reword the old phrasings in mirrored theme text
   and put the "How we treat outside records" notice (en/cy/es) on every page that still shows such a document; the method is on
   /values/#outside-records. Archived correspondence (/wayback/mail/, /email/) and third-party captures (/wayback/websites/) stay verbatim.
