@@ -19,12 +19,47 @@ CHECKS = [
     ('payment offer', re.compile(r'happy to pay|will pay|agree to pay|enclose a cheque', re.I)),
     ('private working process', re.compile(r"Tab['\u2019]s research|\bby Tab\b|Tab agent|catalogued by Tab|\w+['\u2019]s request \(|\b(?:research|flywheel) cycle \d+|\(cycle \d+|\bowner['\u2019]s instruction\b|\bon WhatsApp\b", re.I)),
 ]
+JOURNAL = 'data/journal/pages.json'
+JOURNAL_KEYS = {'v', 'date', 'note', 'agent'}
+KEY_PATH = re.compile(r'^/[A-Za-z0-9._~/-]*$')
+KEY_LINE = re.compile(r'^(\s*)"(/[^"\\]*)"(:\s*\[\s*)$')
+
+
+def journal_shape_ok(text):
+    """True only when the file has the documented page-journal shape: {schema, note, pages{path: [entry]}}
+    with every path key a plain site path and every entry a dict of the known string fields."""
+    try:
+        d = json.loads(text)
+    except ValueError:
+        return False
+    if not isinstance(d, dict) or set(d) != {'schema', 'note', 'pages'}:
+        return False
+    if not isinstance(d['schema'], str) or not isinstance(d['note'], str) or not isinstance(d['pages'], dict):
+        return False
+    for key, entries in d['pages'].items():
+        if not KEY_PATH.match(key) or not isinstance(entries, list):
+            return False
+        for e in entries:
+            if not isinstance(e, dict) or not set(e) <= JOURNAL_KEYS or not all(isinstance(v, str) for v in e.values()):
+                return False
+    return True
+
+
 def lint(path, text):
     out = []
+    neutral = path == JOURNAL and journal_shape_ok(text)
     for i, line in enumerate(text.splitlines(), 1):
+        scan = line
+        if neutral:
+            # A page path used as an object key is structure, not prose. Only the banned-word check reads the
+            # neutralised copy of that key line. Every other check (and the private-name check below) still
+            # reads the original line, and every entry field (v, date, note, agent) is scanned unchanged.
+            mk = KEY_LINE.match(line)
+            if mk:
+                scan = mk.group(1) + '"/page/"' + mk.group(3)
         for name, rx in CHECKS:
             if name == 'private working process' and path.startswith(EXEMPT): continue
-            m = rx.search(line)
+            m = rx.search(scan if name == 'banned word' else line)
             if m: out.append(f'{path}:{i}: {name}: {m.group(0)[:50]}')
         for tok in re.findall(r"[A-Za-zÀ-ÿŵŷ]+", line):
             if hashlib.sha256(tok.lower().encode()).hexdigest() in NAME_HASHES:
