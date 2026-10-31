@@ -46,8 +46,8 @@ idx = HEAD.format(title="Cedwyn Estate shop · Tŷ Mawr / Great House Farm", des
 <section class="sh-sec" id="products"><h2>The Cedwyn Estate collection</h2><p class="sh-lead">{e(CFG['products_lead'])}</p>
 {NOTICE}<div class="sh-grid">{''.join(card(p) for p in P)}</div></section>
 <section class="sh-sec" id="books"><h2>Books</h2><p class="sh-lead">The story behind the designs, in full.</p>
-<div class="sh-books"><a class="sh-book" href="https://bucklerfamily.estate/ebook/"><strong>The Great House Farm Legal Wiki</strong><span>The whole wiki as one e-book · from £0.00 · £9.99 – v0.02 · all four £31.99</span></a>
-<a class="sh-book" href="https://ebooks.bucklerfamily.estate/"><strong>All the e-books</strong><span>Every book from £0.00 – v0.01 and £9.99 – v0.02; all four for £31.99</span></a></div></section>
+<div class="sh-books"><a class="sh-book" href="https://bucklerfamily.estate/ebook/"><strong>The Great House Farm Legal Wiki</strong><span>The whole wiki as one e-book · first edition free · updated edition £4.99 · all four £19.96</span></a>
+<a class="sh-book" href="https://ebooks.bucklerfamily.estate/"><strong>All the e-books</strong><span>Every first edition free; updated editions £4.99 each; all four for £19.96</span></a></div></section>
 <section class="sh-sec" id="designs"><h2>The designs</h2><p class="sh-lead">Every picture of the farm is a real photograph from the farm’s own album: restored and toned, never redrawn or generated. No photograph shows a person.</p>
 <div class="sh-dgrid">{''.join(dcard(d) for d in DS)}</div></section>
 <section class="sh-sec" id="how"><h2>How an order works</h2><ol class="sh-steps">

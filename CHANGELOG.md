@@ -1,5 +1,10 @@
 # Changelog — Cedwyn Estate shop
 
+## [0.1.1] - 2026-10-31
+
+### Fixed
+- Books section prices now match checkout: first editions free, updated editions £4.99, all four £19.96 (was £9.99 / £31.99). Version labels dropped from the shop copy.
+
 ## [0.1.0] - 2026-10-24
 
 ### Improved
