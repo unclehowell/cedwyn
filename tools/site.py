@@ -251,6 +251,22 @@ for _rel, _url in (('dartboard/data/roadmap.json', 'https://dartboard.righteous.
         _dst.parent.mkdir(parents=True, exist_ok=True); _dst.write_bytes(_b); _fetched.append(_rel)
     except Exception:
         pass
+# P-137 (31 Oct 2026): the dartboard's roadmap.json is now an index under 400 KB that names its parts ("parts": roadmap-part-N.json);
+# the dartboard page joins them back in the browser, so the parts are fetched beside it. - Sion's Tab agent
+try:
+    _ix = DIST / 'dartboard/data/roadmap.json'
+    for _nm in (json.loads(_ix.read_bytes()).get('parts') or []) if _ix.exists() else []:
+        if not _re.fullmatch(r'roadmap-part-\d+\.json', str(_nm)): continue
+        _dst = DIST / 'dartboard/data' / _nm
+        if _dst.exists(): continue
+        try:
+            with _ur.urlopen(_ur.Request('https://dartboard.righteous.workers.dev/data/' + _nm, headers={'User-Agent': 'Mozilla/5.0 cedwyn-build'}), timeout=60) as _r:
+                _b = _r.read()
+            json.loads(_b); _dst.write_bytes(_b); _fetched.append('dartboard/data/' + _nm)
+        except Exception:
+            pass
+except Exception:
+    pass
 print('P-031/P-033 pass:', _fixed, 'pages fixed,', 'fetched', _fetched)
 lines += [
     "/data/roadmap.json /dartboard/data/roadmap.json 301",
