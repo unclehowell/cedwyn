@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>YouTube channel memberships: gate, then a members level that feeds the Academy · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: YouTube channel memberships: gate, then a members level that feeds the Academy"><link rel="alternate" type="text/markdown" href="youtube-channel-memberships-gate-academy-doorway.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>YouTube channel memberships: gate, then a members level that feeds the Academy</h1>
+<p>Harvested 2026-10-31 (skills harvest run). Topic check before writing: 'channel membership', 'youtube membership' and 'join button' had 0 hits in INDEX.md. The YPP 500-subscriber threshold appears only in passing, inside other skills.</p>
+<h2>The gate (primary sources)</h2>
+<ul>
+<li><strong>How to qualify.</strong> Memberships come with the <strong>expanded YouTube Partner Programme</strong>, which is available in the <strong>United Kingdom</strong> (YouTube Help 13429240, read). Apply on either route:</li>
+<li>(a) <strong>500 subscribers, plus 3 valid public uploads in the last 90 days, plus 3,000 qualified watch hours in the last 12 months</strong>; or</li>
+<li>(b) <strong>500 subscribers, plus 3 public uploads in the last 90 days, plus 3 million qualified Shorts views in the last 90 days</strong>.</li>
+<li>Studio &gt; Earn &gt; "Get notified" emails you when you qualify.</li>
+<li><strong>Further rules</strong> (YouTube Help 7636690, read): the channel must not be set as Made for Kids, must not have a significant number of ineligible videos ("Made for Kids and videos with music assertions"), and must follow the fan-funding policies.</li>
+<li><strong>Money</strong> (YouTube Help 7491256 and youtube.com, snippets): creators keep <strong>70% of membership revenue after applicable taxes and fees</strong>. YouTube currently covers transaction costs, including card fees.</li>
+<li><strong>Levels and trials</strong> (YouTube Help 7544492, read):</li>
+<li><strong>Up to six levels</strong> at different prices. Higher levels automatically include the perks of the levels below.</li>
+<li>Perks can be badges, custom emoji and members-only videos, Shorts, live streams and posts.</li>
+<li>Custom emoji slots grow with the number of members: 4 at 0 members, up to 54 at 5,000+.</li>
+<li><strong>Membership trials:</strong> YouTube automatically offers eligible viewers <strong>one free month</strong>, once per viewer across all of YouTube. Creators can opt out in Studio &gt; Memberships.</li>
+</ul>
+<h2>What practitioners report (numbers)</h2>
+<ul>
+<li><strong>Rachana Ranade</strong> (YouTube Blog, Muli Salem, membership PM, 16 Dec 2020, read): a chartered accountant teaching financial literacy. She made <strong>discounts on her courses</strong> a members perk, and memberships became "the majority of her YouTube revenue", <strong>over $100,000</strong>. This is the closest precedent to ours: an education channel using memberships as the doorway to paid courses.</li>
+<li><strong>Anna Yakimenko</strong> (same post): offers merch discounts, member live streams and tailored advice, and her YouTube earnings <strong>doubled</strong>. The same post states creators earned <strong>4x</strong> more from memberships in 2020 than in 2019. That's YouTube's own figure, from 2020.</li>
+<li><strong>Agency benchmark</strong> (AIR Media-Tech, air.io, snippet; their own client data, not checked): <strong>0.5–3% of subscribers become members</strong>, and <strong>5–10% of members cancel each month</strong>. A 2026 trend piece (milx.app, snippet) states to estimate from 0.5–2% of <em>monthly viewers</em>, not subscribers. Use the viewer base: it's the stricter one.</li>
+<li><strong>YouTube creators page</strong> (snippet): "Betty" saw total members triple, and membership became 40% of her YouTube earnings. It's a vendor example, so take it lightly.</li>
+</ul>
+<h2>Arithmetic before building anything</h2>
+<ul>
+<li><strong>Monthly net</strong> = members × level price × 0.70, before tax.</li>
+<li>Example: 1,000 monthly viewers × 1% = 10 members at £2.99, which is about <strong>£21/month</strong>.</li>
+<li>The same 10 people at a level that includes an Academy code are worth far more if even 1 of them upgrades to the £49.99/month Academy (our own Stripe, with our fees, not YouTube's).</li>
+<li><strong>Churn of 5–10% a month</strong> means a members level needs fresh posts every week. Plan perks we already produce, such as Story Time episodes early or source scans with commentary, not new work streams.</li>
+</ul>
+<h2>How to do it once eligible</h2>
+<ol>
+<li><strong>Start with one level.</strong> Add a second only when 20+ members ask for more. Six levels is a ceiling, not a target.</li>
+<li><strong>Use perks we already make:</strong>
+   - members-first Story Time episodes, released 48 h before public;
+   - a monthly members-only post with one primary source and how to read it;
+   - a members badge;
+   - <strong>a code or discount for the Academy</strong> (the Rachana model). Check the channel-memberships policy before offering an off-YouTube perk; that check isn't done yet.</li>
+<li><strong>Leave the free-month trial on at first.</strong> It costs us nothing and fills the base. Look at trial-to-paid after 60 days.</li>
+<li><strong>Make one clear ask</strong> at the end of the Story Time episode ("Join" button + one line), not a pitch in every video.</li>
+<li><strong>Members-only posts</strong> go in the Posts tab. Members-only Shorts tend to read as teasers, so keep them short.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>GATE: not eligible now.</strong> The channel had about 8 subscribers in the latest growth notes (youtube-backfill/growth notes), against the 500 needed. It's far from 3,000 watch hours or 3M Shorts views. <strong>Nothing to switch on; zero spend; nothing changed.</strong></li>
+<li><strong>What to track meanwhile</strong> (Sunday growth report, one line): subscribers / 500, public uploads in 90 days / 3 (already met by the daily Shorts), watch hours in 12 months / 3,000, Shorts views in 90 days / 3M. Whichever route gets closer is the one to push.</li>
+<li><strong>Design now, build later (PROPOSAL):</strong> one level, price chosen by the owner (no price is set here). Perks: members-first Story Time, a monthly source post, and an <strong>Academy access code or a first-month discount</strong> delivered through the same ACD-code route the Academy worker is building. Memberships are then the low-price doorway and the £49.99/month Academy (questionnaire grades) the main product. The e-books at £4.99 stay on /ebooks/.</li>
+<li><strong>Watch-outs:</strong></li>
+<li>Keep the channel <strong>not Made for Kids</strong>.</li>
+<li>Avoid music assertions on Story Time beds: use our own or licence-clear audio. Claimed videos count as ineligible.</li>
+<li>Public text follows the editorial rules (no owner name, banned words, "our case, prospective, not a finding" labels).</li>
+<li>The AI likeness/voice intro needs YouTube's altered-content disclosure (existing skill).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>support.google.com (read)</li>
+<li>support.google.com (read)</li>
+<li>support.google.com (read)</li>
+<li>support.google.com (snippet)</li>
+<li>youtube.com (snippet)</li>
+<li>blog.youtube (read)</li>
+<li>air.io (snippet, agency data, not checked)</li>
+<li>milx.app (snippet)</li>
+</ul><p class="raw">Raw Markdown: <a href="youtube-channel-memberships-gate-academy-doorway.md">youtube-channel-memberships-gate-academy-doorway.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

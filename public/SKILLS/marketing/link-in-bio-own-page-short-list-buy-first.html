@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Link-in-bio page: our own short page, 3-5 links, the buy link first · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Link-in-bio page: our own short page, 3-5 links, the buy link first"><link rel="alternate" type="text/markdown" href="link-in-bio-own-page-short-list-buy-first.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Link-in-bio page: our own short page, 3-5 links, the buy link first</h1>
+<p>Harvest 2026-10-31 ~00:15Z. Internal working note. 'linktree' had 0 hits in INDEX.md before; 'link in bio' appeared only in a harvest note. Builds on own-short-redirect-links-r-campaign-path-counting.md (the /r/<slug> rule) and instagram-new-account-90-days-trial-reels-gate.md.</p>
+<h2>What the sources show (all read 31 Oct 2026)</h2>
+<ul>
+<li><strong>Instagram allows up to 5 bio links on every account type</strong> (TechCrunch, 18 Apr 2023, Sarah Perez): Edit profile &gt; Links &gt; Add external link, drag to order, plus a separate Facebook-profile link. TikTok clickable bio links are limited (business accounts; personal accounts need a follower threshold). So a single page still matters on TikTok and keeps one URL across all platforms.</li>
+<li><strong>Linktree's own 12-month data</strong> ("Not All Clicks Are Equal", Linktree blog, 13 May 2026; vendor data on its own pages): visitors arriving from Instagram, TikTok and Google search clicked one of the page's links ~80-95% of the time; Facebook visitors only 30-45% (~41% vs ~83%). Instagram drove ~11B views, ~4x the next social source. Read: the bio page is a high-intent step; Facebook traffic is worth about half per view.</li>
+<li><strong>Linktree: pages with a profile description get 2x more clicks on average</strong> (Linktree "What is a link in bio", footnote: Linktrees created since Oct 2024; vendor figure). A one-line "who we are / what this is" above the links pays.</li>
+<li><strong>Typical bio-click rate</strong> (Linke.ro analytics guide, vendor, figures not checked): Instagram bio clicks ~1-3% of profile views, TikTok 0.5-2%, X 2-5%, LinkedIn 3-7% B2B; any link under 0.5% of page visits is dead weight: move it up, relabel it specifically, or remove it.</li>
+<li><strong>Own page vs Linktree, practitioner split</strong> (Shana Bull, digital marketing educator, blog; Brie Anderson at Social Media Marketing World 2022): Bull recommends a page on your own site; Anderson prefers Linktree because a site page where people land and leave in seconds sends weak engagement and the vendor gives click analytics free. Our answer to that objection: an own page that is short, fast and points mostly to our own pages (/ebooks/, /movie/, academy), so the click stays on our domain, and counting comes from /r/<slug> paths (Cloudflare can't see query strings on our zone; see the /r/ skill).</li>
+</ul>
+<h2>The finding on our side (checked 31 Oct 00:13Z)</h2>
+<ul>
+<li>bucklerfamily.estate answers 200 but is the <strong>whole site directory</strong>: 60+ entries (Wales, Patagonia, Chessboard, Grammar House, Counting House, Watchtower...) with the e-books link one of many. That is a directory, not a bio page. cedwyn.bucklerfamily.estate is 404.</li>
+<li>Which URL each social bio currently points to: not checked this run.</li>
+</ul>
+<h2>How to do it (rules)</h2>
+<ol>
+<li><strong>One page, one URL for every bio</strong>: e.g. <code>bucklerfamily.estate/start/</code> (or reuse /links/ only if the directory moves elsewhere; changing /links/ breaks anyone using it as a directory, so prefer a new path).</li>
+<li><strong>3-5 buttons, no more</strong>, ordered by money then attention:</li>
+<li>Free first edition / e-books shelf (/ebooks/) - the buy path</li>
+<li>The documentary (/movie/) - current headline content</li>
+<li>Academy free Grade 1 (academy.bucklerfamily.estate) - the subscription door</li>
+<li>Email signup (one field, inline)</li>
+<li>Optional: this week's item (newest Story Time video or blog post), swapped weekly</li>
+<li><strong>Every button goes through <code>/r/&lt;slug&gt;</code></strong>: <code>/r/bio-ig-ebooks</code>, <code>/r/bio-tt-ebooks</code>, <code>/r/bio-yt-movie</code>... Different slug per platform so the per-source split (IG vs FB vs TikTok) is countable. Split by slug, never by utm (query strings are invisible on our zone).</li>
+<li><strong>One-line description at top</strong> ("Records and story of a Welsh farm, 1824-today. E-books, documentary, free quiz."), dark theme, buttons 48 px tall, loads under 1 s at 390 px, no outbound links except the platforms themselves at the bottom as small icons.</li>
+<li><strong>Instagram: use the native 5 links too</strong>: link 1 = the /start/ page (so the profile preview shows our domain), links 2-3 = /r/bio-ig-ebooks and /r/bio-ig-movie direct.</li>
+<li><strong>Review monthly</strong>: per-slug counts from the edge; drop any button under 0.5% of page visits; rotate slot 5.</li>
+<li>Facebook gets roughly half the click-through of IG/TikTok per Linktree's data: don't judge the page by Facebook-sourced visits.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>PROPOSAL (needs a commit on the site; markup-only page, no prices changed): build <code>/start/</code> in the shared Cedwyn header/dark standard with the 5 buttons above, each through /r/; leave /links/ as the directory.</li>
+<li>Point the IG (@cedwynestate), TikTok, YouTube channel links and Facebook Page (Great House Farm II) website field at /start/ - each a profile edit, done through existing logins/connected apps, or by the owner where an app can't edit profile fields.</li>
+<li>Add <code>bio-*</code> slugs to the /r/ slug register and the weekly growth report (clicks per platform per button).</li>
+<li>Honest limits: Linktree numbers are vendor data from their own platform; our own counts replace them after 4 weeks. Public text rules apply (never name the owner; banned words; no outbound links on the page beyond platform icons).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>techcrunch.com</li>
+<li>linktr.ee</li>
+<li>linktr.ee</li>
+<li>linke.ro</li>
+<li>shanabull.com</li>
+<li>bucklerfamily.estate (own site, checked 31 Oct 2026)</li>
+</ul><p class="raw">Raw Markdown: <a href="link-in-bio-own-page-short-list-buy-first.md">link-in-bio-own-page-short-list-buy-first.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

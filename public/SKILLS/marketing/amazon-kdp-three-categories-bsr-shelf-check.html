@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Amazon KDP: choosing the 3 categories with a Best Sellers Rank shelf check (PROPOSAL) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Amazon KDP: choosing the 3 categories with a Best Sellers Rank shelf check (PROPOSAL)"><link rel="alternate" type="text/markdown" href="amazon-kdp-three-categories-bsr-shelf-check.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Amazon KDP: choosing the 3 categories with a Best Sellers Rank shelf check (PROPOSAL)</h1>
+<p>Harvested 30 Oct 2026. Follows amazon-kdp-7-keyword-boxes-subtitle-autocomplete.md, which covers keywords only; 'kdp categor' and 'browse categor' had 0 skill files before. The e-books are sold through Stripe and Gumroad, and any KDP listing needs the project lead's GO, so this is a proposal only.</p>
+<h2>Amazon's rules (KDP Help G200652170, read 30 Oct 2026)</h2>
+<ul>
+<li>"You can select <strong>3 categories</strong> when creating a book in KDP." Categories and keywords together tell Amazon where to "shelve" the book.</li>
+<li>Tips: research where similar books sit; "Pick accurate categories"; "Balance popularity and relevance", not so broad or so narrow that the book gets lost. Where no category fits, use keywords instead.</li>
+<li>To change them: Bookshelf → … → Edit details. Check <strong>Primary Audience and Primary Marketplace first</strong>, then Edit categories, Remove and pick again. Changes take <strong>up to 72 hours</strong> to show and are reviewed: "We do not tolerate categorization that misleads readers."</li>
+<li>KDP Support "cannot give you specific recommendations".</li>
+</ul>
+<h2>Practitioner method (Manuscript Report, 2026 guide, read)</h2>
+<ol>
+<li><strong>Comp titles:</strong> find 5–10 similar books that sell. Under Product Details, "Best Sellers Rank" shows the browse categories each book ranks in. Note the ones that fit ours.</li>
+<li><strong>Shelf check:</strong> open the category's bestseller list and look at the #1 and #20 books' overall Kindle Store BSR. Their benchmarks: <strong>#20 under 10,000 = very competitive; 10,000–50,000 = moderate; over 50,000 = achievable for most authors.</strong> A category whose #1 book sits around #42,000 store-wide "is a shelf you can win this quarter".</li>
+<li>Top-100 (better, top-20) in a category earns the orange "Best Seller" or "Hot New Release" badge, which feeds "also bought" recommendations. BSR-to-sales figures are curve fits: treat them as ranges.</li>
+</ol>
+<h2>How to do it</h2>
+<ul>
+<li>Choose a <strong>3-shelf mix</strong>: 1 accurate and moderately competitive (for example, Welsh history), 1 niche we can win (#20 BSR over 50k; for example, local or regional history, or genealogy), and 1 adjacent reader shelf (for example, legal history or true stories of land disputes), but only if the content is genuinely about that.</li>
+<li>Check on <strong>amazon.co.uk</strong> as well as .com: the UK store is the main market and the shelf trees differ. Set Primary Marketplace to Amazon.co.uk.</li>
+<li>Note each shelf's #1 and #20 BSR in a small CSV with a date, then re-check 2 weeks after launch. Swap only a shelf the book doesn't rank in.</li>
+<li>Don't put keywords that repeat the category names in the 7 keyword boxes (see the keywords skill).</li>
+</ul>
+<h2>How we apply it to Cedwyn (PROPOSAL, needs the project lead's GO for KDP)</h2>
+<ul>
+<li>The candidate shelves for the Great House Farm e-books are not checked live yet. The next harvest or BIZDEV run, read-only, should fill <code>the project workspace</code> (store, category path, #1 BSR, #20 BSR, date) for 6–8 Welsh, local and legal-history shelves on amazon.co.uk.</li>
+<li>Prices stay as listed (v0.0.2 £4.99). KDP's 70% royalty band and Select/KU trade-offs are in amazon-kdp-2026-price-band-select-vs-direct.md, so they are not repeated here.</li>
+<li>Use accurate shelves only. A "true crime" or "deception" shelf would break both Amazon's misleading-categorisation rule and our banned-words rule.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>kdp.amazon.com (read)</li>
+<li>manuscriptreport.com (read)</li>
+</ul><p class="raw">Raw Markdown: <a href="amazon-kdp-three-categories-bsr-shelf-check.md">amazon-kdp-three-categories-bsr-shelf-check.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

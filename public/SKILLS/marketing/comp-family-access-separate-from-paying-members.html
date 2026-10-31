@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Family / comp access kept out of sales numbers (comped memberships) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Family / comp access kept out of sales numbers (comped memberships)"><link rel="alternate" type="text/markdown" href="comp-family-access-separate-from-paying-members.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Family / comp access kept out of sales numbers (comped memberships)</h1>
+<p>Written 30 Oct 2026 (skills harvest). Trigger: the /learn/ family code went live at 19:32Z (plan "family", 400 days). Without this rule a family redemption reads as a sale and the "First Academy member" alert or a weekly report states the wrong thing.</p>
+<h2>What the membership platforms do (read 30 Oct 2026)</h2>
+<ul>
+<li><strong>Memberful, "Track paying members"</strong> (docs, read): a paying member is "a member who has a recurring payment that's active at the end of the month". These do <strong>not</strong> count until a renewal payment is collected: all-access passes, <strong>100% coupons</strong>, free trials, <strong>admin-created subscriptions with no initial charge</strong>, <strong>gifted subscriptions</strong>. One-time plans are never counted. Their "Active Members" count <em>does</em> include those groups, "one reason the two metrics may not match". Metrics refresh daily at midnight UTC.</li>
+<li><strong>Memberful churn</strong> (blog, read): a <strong>100% coupon assigned to a subscription counts as a paying-member loss</strong>. A paid member moved onto a free code is churn, not a neutral change. The same post cites Recurly's benchmark of a healthy subscription business at about 6.7% annual churn (5-7%); that figure is Recurly's, not checked here.</li>
+<li><strong>Ghost, "Free trials in Ghost"</strong> (help, read): complimentary plans grant paid access for a set time (1 week, 1 month, 6 months, 1 year or forever), with no card. When the time runs out, access ends unless the member upgrades in Portal. Members on a trial do <strong>not</strong> count towards MRR until they have made a payment.</li>
+</ul>
+<p>The common rule is <strong>two counters, never one</strong>: <em>active members</em> (access) and <em>paying members / MRR</em> (money). Free, comped, gifted, trial and 100%-coupon members are in the first only.</p>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Tag the cause at grant time.</strong> Every entitlement row carries <code>plan</code> = <code>paid</code> | <code>family</code> | <code>gift</code> | <code>trial</code> | <code>comp</code>, plus a <code>source</code> (Stripe session id, or <code>code:family-v1</code>). Never infer it later from the amount.</li>
+<li><strong>Report three numbers:</strong> active members (all plans), paying members (plan=paid with a collected payment), and revenue from Stripe itself, not from the member table.</li>
+<li><strong>Alerts fire on money, not on access.</strong> "New member" alerts read Stripe <code>checkout.session.completed</code> with <code>amount_total &gt; 0</code>. A family redemption never triggers a sale alert.</li>
+<li><strong>Give comps an end date.</strong> Ghost's options run from 1 week to forever. A dated grant (ours: 400 days) forces a later review instead of a silent permanent free tier.</li>
+<li><strong>Rotate, don't delete.</strong> A new code version (<code>family-v2</code>) keeps the old redemptions countable. Revoking the old hash stops new joins without signing anyone out unless that is intended.</li>
+<li><strong>Watch moves from paid to comp.</strong> A paid member who later redeems the family code counts as churn (Memberful's rule). Flag it once and decide whether to refund. Do not let it lower revenue silently.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><code>member_sync.py</code> / the cedwyn-api Worker: family redemptions are logged as count + time with <code>plan:"family"</code> (a worker, 30 Oct). The ACADEMY MEMBER SYNC schedule must message only on a <strong>paid</strong> new member. Checked 30 Oct 19:50Z: member_sync.py already prints family joins on their own line ("family_code: N new family join(s) ... (not sales, no payment)") from D1 learn_family_redemptions, and the 19:34Z and 19:47Z log lines show 0 family joins and 0 paid. Keep it that way.</li>
+<li>The Sunday growth report and the BIZDEV log show "Academy: X paying (Stripe), Y family" and never a single combined figure.</li>
+<li>If a paying £49.99/mo member later uses the family code, log it as a downgrade in the project workspace (never tell the project lead directly); a refund is the project lead's call, as a proposal only.</li>
+<li>Rotation runbook: the project workspace; use v-numbered codes so counts survive rotation.</li>
+<li>The same rule applies to documentary scene access codes: an access code granted without a Stripe payment is never counted as a £4.99 sale.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>memberful.com (read 30 Oct 2026)</li>
+<li>memberful.com (read 30 Oct 2026; Recurly 6.7% benchmark cited there, not checked)</li>
+<li>ghost.org (read 30 Oct 2026; published 18 Apr 2023)</li>
+</ul><p class="raw">Raw Markdown: <a href="comp-family-access-separate-from-paying-members.md">comp-family-access-separate-from-paying-members.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

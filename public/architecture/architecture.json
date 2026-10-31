@@ -1,7 +1,7 @@
 {
  "schema": "cedwyn_academy_architecture/v1",
- "version": "1.0.1",
- "updated": "2026-10-30",
+ "version": "1.0.2",
+ "updated": "2026-10-31",
  "refreshed_by": "the agent library cycle (every 6 hours); edit this file, then rebuild the academy",
  "source_documents": [
   "/projects/data-architecture/ (programme page: plan, work packages, milestones)",
@@ -54,7 +54,7 @@
    "sync-wayback-mail"
   ],
   "shared_header": "one JSON file per site under web/_cedwyn/ghf/sites/, plus themes.json and site-areas.json, produce the uniform header and menu that titles every page; pages therefore never repeat a big title",
-  "versions": "/_cedwyn/versions.json is the one site-wide version scheme: the newest edition of any product is v0.0.2, the one before it v0.0.1, older ones -v0.0.1, -v0.0.2 and so on; read by /documentary/ and /ebooks/",
+  "versions": "/_cedwyn/versions.json is the one site-wide version scheme: the newest edition of any product is v0.0.2, the one before it v0.0.1, older ones -v0.0.2, -v0.0.3 and so on (no -v0.0.1); read by /documentary/ and /ebooks/",
   "discovery": "/llms.txt, /agents.json, robots.txt and one alternate link plus ai-agents meta per page head point machines at /academy/; nothing machine-facing appears on human pages"
  },
  "data": {
@@ -746,12 +746,36 @@
    "state": "HARD-CODED",
    "view_rule": "its own small register (books, products, objectives, posts), promoted to a core kind in WP5",
    "migration_wave": "WP5 (wave 1)"
+  },
+  {
+   "id": "academy",
+   "title": "Cedwyn Academy (human learning webapp)",
+   "url": "academy.bucklerfamily.estate (own subdomain; the old /learn/ pages redirect there)",
+   "group": "Modern research and how it's going",
+   "purpose": "Learning webapp for people: seven graded questionnaires on the farm, its names, people, dates, primary sources, the 1987 judgment, limitation law and the open questions. A member locks an answer in before the correct answer, a short explanation, a verbatim quote and catalogue links are revealed; a pass of each grade unlocks the next. Grade 1 is a free preview.",
+   "source": "branch academy, deployed as its own Worker app (copy of the standard webapp pattern: deploy script, shared std files, server-built surfaces, page journal footer)",
+   "data_sources": "questions cite catalogue records by ID and pull their sources live from the central catalogue; the app keeps its own derived database (grades, progress)",
+   "state": "DATA-DRIVEN",
+   "view_rule": "its own derived database built from the catalogue; the header graph reads only this app's own database",
+   "migration_wave": "standalone webapp (31 Oct 2026); A2UI v0.9 server-built surfaces, shared Cedwyn header (burger and title on one row, dark theme)"
+  },
+  {
+   "id": "calendar",
+   "title": "Cedwyn Calendar (chronology coverage view)",
+   "url": "calendar subdomain, or /calendar/ on the main site if the subdomain cannot be added",
+   "group": "Modern research and how it's going",
+   "purpose": "A calendar-style view of every dated event in the chronology (1667 onwards): day, week, month and year views, several years side by side, and a decades/centuries density view. Periods are shaded by how much evidence they hold, so the parts of the chronology still to be reconstructed stand out; known gaps from the missing-records register are marked. Month-only and year-only dates show as month or year bands, never as a made-up day. Each event opens to its date, precision, title, catalogue IDs, verbatim quote and source.",
+   "source": "branch calendar, deployed as its own Worker app (same pattern as the academy webapp)",
+   "data_sources": "dated records in the central catalogue, the research timeline and the missing-records register; a derived events table rebuilt from the catalogue with a short cache, plus a build-time snapshot fallback",
+   "state": "BUILDING",
+   "view_rule": "its own derived events table built from the catalogue; header graph shows events per year from this app's own data only",
+   "migration_wave": "standalone webapp, started 31 Oct 2026"
   }
  ],
  "other_areas": [
   {
    "url": "/academy/",
-   "what": "Cedwyn Academy, machine-facing, branch agents"
+   "what": "Agent library, machine-facing, branch agents (titled Cedwyn Academy until 31 Oct 2026)"
   },
   {
    "url": "/hive/",
@@ -759,7 +783,7 @@
   },
   {
    "url": "/learn/",
-   "what": "the human learning area"
+   "what": "the old human learning area; its pages now redirect (301) to the Cedwyn Academy webapp on its own subdomain"
   },
   {
    "url": "/_cedwyn/",
@@ -1282,7 +1306,7 @@
   },
   {
    "id": "agent-library",
-   "name": "Agent library cycle (Cedwyn Academy)",
+   "name": "Agent library cycle",
    "cadence": "every 6 hours at 00:40, 06:40, 12:40, 18:40 UK",
    "does": "Reads what agents learned since the last cycle, distils only durable public-safe facts into the academy, regenerates the work board from real gaps, refreshes this architecture section, rebuilds, scans (0 hits required), publishes to the agents branch and checks it live.",
    "inputs": [

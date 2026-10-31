@@ -233,7 +233,7 @@ Details: [Data architecture](data.md).
   Runner detail: [Cedwyn film — daily scene](../FLYWHEELS/movie.md)
 
 <a id="agent-library"></a>
-### Agent library cycle (Cedwyn Academy)
+### Agent library cycle
 
 **Cadence:** every 6 hours at 00:40, 06:40, 12:40, 18:40 UK  
 **What it does:** Reads what agents learned since the last cycle, distils only durable public-safe facts into the academy, regenerates the work board from real gaps, refreshes this architecture section, rebuilds, scans (0 hits required), publishes to the agents branch and checks it live.  
@@ -241,7 +241,7 @@ Details: [Data architecture](data.md).
 **Outputs:** academy pages, agents.json, work.json, llms.txt; this section and architecture.json; a changelog line  
 **Areas it touches:** /academy/; /llms.txt and /agents.json (discovery)  
 **Guardrails:** machine-facing only: nothing on human pages; publishes only to the agents branch, never main; scanner must report zero hits; one worker at a time (duplicate check by goal prefix).
-  Runner detail: [Cedwyn Academy (this section)](../FLYWHEELS/agent-library.md)
+  Runner detail: [Agent library (this section)](../FLYWHEELS/agent-library.md)
 
 <a id="programme-office"></a>
 ### Programme office review

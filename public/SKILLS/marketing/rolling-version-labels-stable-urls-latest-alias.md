@@ -1,14 +1,16 @@
 # Rolling version labels: keep URLs on permanent edition IDs, add one stable "latest" address
 
+> Update 30 Oct 2026 (21:50 rule): the minus series now starts at **-v0.0.2** — there is no -v0.0.1. Old -v0.0.1 → -v0.0.2, old -v0.0.2 → -v0.0.3, and so on; hashtags #_v0.0.2, #_v0.0.3 …. v0.0.2 and v0.0.1 are unchanged. Examples below that show -v0.0.1 / #_v0.0.1 as an older label predate this rule.
+
 Checked 30 Oct 2026, ~11:00Z. This file is about *addresses* (URLs, share links, feeds, schema). It does not repeat the forward banner and "keep old editions online" advice in free-previous-edition-paid-latest-baen-pattern.md, or hashtag parsing, which is in version-hashtags-platform-parsers-dot-breaks-tag.md.
 
 ## Why this matters now
 Since 30 Oct the site-wide display scheme is:
 - the newest edition is always **v0.0.2** (£4.99);
 - the previous one is **v0.0.1** (free);
-- older ones are **-v0.0.1, -v0.0.2 …** (free), counting backwards by creation date.
+- older ones are **-v0.0.2, -v0.0.3 …** (there is no -v0.0.1) (free), counting backwards by creation date.
 
-So the labels **roll**. When a new cut or edition ships, today's v0.0.2 becomes v0.0.1 and today's v0.0.1 becomes -v0.0.1. Any address built from a label will point at different content after each release. Old links, search results, social posts and saved bookmarks would quietly show another edition, and the newest would turn paid under a link that used to be free.
+So the labels **roll**. When a new cut or edition ships, today's v0.0.2 becomes v0.0.1 and today's v0.0.1 becomes -v0.0.2. Any address built from a label will point at different content after each release. Old links, search results, social posts and saved bookmarks would quietly show another edition, and the newest would turn paid under a link that used to be free.
 
 ## What the primary sources say (read 30 Oct)
 - **W3C, "Cool URIs don't change" (Tim Berners-Lee), read.**
@@ -33,7 +35,7 @@ So the labels **roll**. When a new cut or edition ships, today's v0.0.2 becomes 
 
 ## The how-to
 1. **Permanent ID per edition or cut.** Use an internal semver or a creation date, for example `[address kept in the project workspace]` or `scene-03@2026-10-30`. It never changes. Use it in URLs, download keys, `?v=` parameters, feeds, sitemaps, schema `@id`, analytics events and UTM content.
-2. **Labels are display only.** v0.0.2, v0.0.1, -v0.0.1 and the #_v hashtags are computed from creation order at render time. They are never stored in a link.
+2. **Labels are display only.** v0.0.2, v0.0.1, -v0.0.2 and the #_v hashtags are computed from creation order at render time. They are never stored in a link.
 3. **One stable "latest" address per work.** This is the work's main page, for example /ebooks/cedwyn/. It always shows the newest edition. It is the target for buy links, social posts, press and ads.
 4. **Canonicals.**
    - A near-duplicate edition page (same text, small changes) → canonical to the latest address. Python/Postgres style.

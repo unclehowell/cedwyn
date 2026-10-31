@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Graded quizzes: answer first, then reveal, with a 90% mastery gate (Academy) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Graded quizzes: answer first, then reveal, with a 90% mastery gate (Academy)"><link rel="alternate" type="text/markdown" href="academy-graded-quiz-attempt-then-reveal-mastery-gate.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Graded quizzes: answer first, then reveal, with a 90% mastery gate (Academy)</h1>
+<p>Harvested 30 Oct 2026 for the £49.99/month /learn/ Academy grade ladder (the 22:21 brief). 'pass mark', 'retrieval practice' and 'mastery' had 0 skill hits before.</p>
+<h2>What the evidence states (sources read 30 Oct 2026)</h2>
+<ul>
+<li><strong>Testing beats re-reading.</strong> Adesope, Trevisan &amp; Sundararajan (2017), a meta-analysis of 217 retrieval-practice studies, summarised by Yana Weinstein (The Learning Scientists): the benefit over restudy was <strong>stronger when the gap between study and test was over 1 day</strong>, and the result was judged "resistant to the file drawer problem".</li>
+<li><strong>Feedback adds a bit, and it has to come after the attempt.</strong> The same summary: retrieval practice with feedback was "only slightly more effective" than without. Rowland (2014, Psychological Bulletin): the testing effect holds without feedback but is enhanced by it, <strong>even when the answer was already right</strong>. Yang et al. (2020): "Corrective feedback induces greater reexposure and larger learning gains." So the brief's "answer, then Reveal" order is the evidence-backed order. Showing the answer before the attempt turns the quiz back into re-reading.</li>
+<li><strong>Mastery thresholds.</strong> Mastery learning (Bloom) sets the bar at 80–90% on a test, with re-teaching and retesting before moving on (Winget 2022, a practical review of mastery learning, PMC). Univ. of Nebraska teaching centre: 80% is the mastery level for a quiz on a single standard. Scholario (2026): "A retake should show new learning, not just familiarity with the same questions."</li>
+<li><strong>Format.</strong> Smith &amp; Karpicke (2014, Memory) compared short-answer, multiple-choice and hybrid retrieval. Mixing in some typed or short answers is worth it at higher grades.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li><strong>One attempt, then lock.</strong> Record the member's answer before Reveal works. Once revealed, that question scores as attempted and the answer can't be changed. Otherwise "reveal, then answer" games the 90% gate.</li>
+<li><strong>Reveal = answer + one-line why + source link.</strong> Keep the explanation to 1–3 sentences and quote the record verbatim with its catalogue ID. Reveal on correct answers too (Rowland: the gain still applies).</li>
+<li><strong>90% gate with a fresh retake.</strong> At 10 questions, 90% allows one miss; at 20, two. Build each grade from a pool <strong>about 2× the quiz length</strong> and draw a new mix on retake, so a pass shows learning and not memory of the last attempt. Retake after a short cooldown (for example, the next day). The over-1-day benefit is the reason.</li>
+<li><strong>Space it: carry-forward items.</strong> Put 2–3 questions from earlier grades into each later quiz (the spacing gain). Count them toward the score.</li>
+<li><strong>Harder by grade, by kind of question and not just by obscurity:</strong> recall (dates, places) → read a primary-source extract and answer → compare two records → the open questions. The final grade has no single right answer: score it "attempted with a cited record" and show "what record would settle it" on Reveal. Never present an open point as fact; label it "our case, prospective, not a finding".</li>
+<li><strong>Measure:</strong> first-attempt pass rate per grade (aim for roughly 40–70%; near 100% means too easy, under 20% means a wall), the questions most often missed (rewrite or re-teach them), retakes needed per pass, and churn after a failed attempt.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>The grades build (a worker) should store <code>answered_at</code> before <code>revealed_at</code> per question, draw from a pool larger than the quiz, and add a 24 h retake cooldown. Both are cheap in D1.</li>
+<li>Grade 1 as a free preview lets visitors feel the answer → reveal loop before paying £49.99. Report its first-attempt pass rate weekly.</li>
+<li>Every Reveal links to the evidence page. That also feeds internal links and time on site.</li>
+<li>Add a "Most-missed questions" list for each grade to the growth report notes. Missed questions point to unclear pages on the site.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>learningscientists.org (Adesope et al. 2017, 217 studies; read)</li>
+<li>curriculumteamleader.wordpress.com (Rowland 2014; Yang et al. 2020; read)</li>
+<li>teaching.unl.edu (80% mastery; search snippet, not opened)</li>
+<li>scholario.digital (retakes; snippet)</li>
+<li>Winget &amp; Persky 2022, "A Practical Review of Mastery Learning", PMC (snippet; the page returned 403)</li>
+</ul><p class="raw">Raw Markdown: <a href="academy-graded-quiz-attempt-then-reveal-mastery-gate.md">academy-graded-quiz-attempt-then-reveal-mastery-gate.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

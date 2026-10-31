@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Measure the embedded YouTube videos on our own pages (plays, watch time, which page) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Measure the embedded YouTube videos on our own pages (plays, watch time, which page)"><link rel="alternate" type="text/markdown" href="youtube-embed-measurement-playback-location-iframe-api.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Measure the embedded YouTube videos on our own pages (plays, watch time, which page)</h1>
+<p>Date: 2026-10-30 (harvest ~23:45Z). Status: PROPOSAL / documentation. Nothing built, nothing installed. Complements muted-autoplay-youtube-embed-wcag-pause-no-views.md (how to embed) and video-landing-page-facade-poster-preload.md (speed); this file is only about MEASURING what the embeds do.</p>
+<h2>Why</h2>
+<p>the project lead's 1988 Ty Mawr video (UKSApiJH4xk) is now the autoplaying headline on /research/, and more owner uploads will follow. Muted autoplay plays do not count as YouTube views (see the autoplay file), so we need our own numbers to know whether the headline is watched, and from which page the real (click-to-play) views come.</p>
+<h2>The evidence</h2>
+<ul>
+<li>YouTube Analytics API, Dimensions (read): <code>insightPlaybackLocationType</code> splits views and watch time into BROWSE, CHANNEL, EMBEDDED ("views that occurred on another website or application where the video was embedded using an <iframe>"), EXTERNAL_APP, SEARCH, WATCH, YT_OTHER. <code>insightPlaybackLocationDetail</code> is "only supported for views that occurred in embedded players" and "identifies the embedded players that generated the most views" (top-10 sites per video sample report). So YouTube itself tells us views + estimatedMinutesWatched from our embeds, per embedding site.</li>
+<li>IFrame Player API reference (read): add <code>enablejsapi=1&amp;origin=&lt;our origin&gt;</code> to the embed; <code>onStateChange</code> gives -1 unstarted, 0 ended, 1 playing, 2 paused, 3 buffering, 5 cued; <code>getCurrentTime()</code> gives seconds elapsed. That is enough for our own play / 25-50-75-100% / unmute events.</li>
+<li>Wistia, "video time on page" (read): their top 100 pages, 1 Jan 2021 - 24 Apr 2022: average 6.0 min on pages with video vs 4.3 min without (about 1.4x). Their own site, correlation only (video pages may simply be better pages).</li>
+</ul>
+<h2>How to do it (playbook)</h2>
+<ol>
+<li>YouTube side (no code on the site): monthly, query the channel's Analytics for each owner video with dimensions=insightPlaybackLocationType, metrics=views,estimatedMinutesWatched; then insightPlaybackLocationDetail filtered to EMBEDDED to see which of our domains the views came from. Whether the connected YouTube account carries the yt-analytics scope is NOT checked; try it once read-only before relying on it.</li>
+<li>Site side: in the headline embed use <code>enablejsapi=1&amp;origin=cedwyn.bucklerfamily.estate</code>; on <code>onStateChange</code>, send one beacon per event to our existing first-party beacon (Workers Analytics Engine, see campaign-tags-first-party-beacon-workers-analytics-engine.md): <code>video_id, page, event</code> where event is autoplay_start, unmute, play_click, q25, q50, q75, ended. Poll <code>getCurrentTime()</code> every 5 s only while state = 1.</li>
+<li>The two numbers that matter: unmute rate (unmutes / autoplay starts) and click-to-play views per 100 page visits. Muted seconds are not attention; do not report them as watch time.</li>
+<li>Compare time on /research/ for 2 weeks before vs after the headline (our analytics), and say plainly it is a before/after, not a test.</li>
+<li>Keep youtube-nocookie if used (enablejsapi works on it; not checked on our page) and no extra third-party scripts beyond the IFrame API.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Proposal for the next /research/ change: add enablejsapi + origin to the UKSApiJH4xk headline iframe and 7 beacon events; no design change.</li>
+<li>Monthly line in the Sunday growth report: "headline video: N autoplay starts, unmute rate X%, Y click plays; YouTube states Z embedded views / M minutes from cedwyn".</li>
+<li>If unmute rate stays under ~5% after 2 weeks (our threshold, not a benchmark), replace autoplay with a poster + caption and play button, which also counts as a YouTube view.</li>
+<li>Nothing changed live.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com (read)</li>
+<li>developers.google.com (read)</li>
+<li>wistia.com (read)</li>
+</ul><p class="raw">Raw Markdown: <a href="youtube-embed-measurement-playback-location-iframe-api.md">youtube-embed-measurement-playback-location-iframe-api.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

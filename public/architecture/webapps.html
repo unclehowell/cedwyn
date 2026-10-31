@@ -1,12 +1,12 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Webapps · Cedwyn Academy</title><meta name="description" content="Cedwyn Academy for AI agents: Webapps"><link rel="alternate" type="text/markdown" href="webapps.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Webapps · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Webapps"><link rel="alternate" type="text/markdown" href="webapps.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
 main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
 nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
 a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
 pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
 th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
-blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../index.html"><b>Cedwyn Academy</b></a><a href="../SOUL.html">Soul</a><a href="../ONBOARDING.html">Onboarding</a><a href="../ACADEMY/CHECK.html">Check</a><a href="../ACADEMY/WORK.html">Work</a><a href="../MEMORY/index.html">Memory</a><a href="../SKILLS/index.html">Skills</a><a href="../FLYWHEELS/index.html">Flywheels</a><a href="../architecture/index.html">Architecture</a><a href="../HARNESS/index.html">Harness</a><a href="../LESSONS.html">Lessons</a></nav><main><h1>Webapps</h1>
-<p>Every webapp on the site (formerly called themes): 44 in the registry, each served at its own path, each on its own branch or snapshot. The state column is how hard-coded its content is today; the view rule is the selection that will feed its own view database; the wave is its work package. Machine-readable: <a href="architecture.json">architecture.json</a>.</p>
-<p>States: BUILT 2 · DATA-DRIVEN 1 · GENERATED 1 · HARD-CODED 15 · MIXED 13 · SNAPSHOT 12.</p>
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../index.html"><b>Agent library</b></a><a href="../SOUL.html">Soul</a><a href="../ONBOARDING.html">Onboarding</a><a href="../ACADEMY/CHECK.html">Check</a><a href="../ACADEMY/WORK.html">Work</a><a href="../MEMORY/index.html">Memory</a><a href="../SKILLS/index.html">Skills</a><a href="../FLYWHEELS/index.html">Flywheels</a><a href="../architecture/index.html">Architecture</a><a href="../HARNESS/index.html">Harness</a><a href="../LESSONS.html">Lessons</a></nav><main><h1>Webapps</h1>
+<p>Every webapp on the site (formerly called themes): 46 in the registry, each served at its own path, each on its own branch or snapshot. The state column is how hard-coded its content is today; the view rule is the selection that will feed its own view database; the wave is its work package. Machine-readable: <a href="architecture.json">architecture.json</a>.</p>
+<p>States: BUILDING 1 · BUILT 2 · DATA-DRIVEN 2 · GENERATED 1 · HARD-CODED 15 · MIXED 13 · SNAPSHOT 12.</p>
 <ul>
 <li><strong>DATA-DRIVEN</strong>: pages rendered from the webapp's view of the central catalogue.</li>
 <li><strong>GENERATED</strong>: generated on main from repository data files.</li>
@@ -521,13 +521,33 @@ blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}<
 <td>its own small register (books, products, objectives, posts), promoted to a core kind in WP5</td>
 <td>WP5 (wave 1)</td>
 </tr>
+<tr>
+<td>Cedwyn Academy (human learning webapp)</td>
+<td><code>academy.bucklerfamily.estate (own subdomain; the old /learn/ pages redirect there)</code></td>
+<td>Learning webapp for people: seven graded questionnaires on the farm, its names, people, dates, primary sources, the 1987 judgment, limitation law and the open questions. A member locks an answer in before the correct answer, a short explanation, a verbatim quote and catalogue links are revealed; a pass of each grade unlocks the next. Grade 1 is a free preview.</td>
+<td>branch academy, deployed as its own Worker app (copy of the standard webapp pattern: deploy script, shared std files, server-built surfaces, page journal footer)</td>
+<td>questions cite catalogue records by ID and pull their sources live from the central catalogue; the app keeps its own derived database (grades, progress)</td>
+<td>DATA-DRIVEN</td>
+<td>its own derived database built from the catalogue; the header graph reads only this app's own database</td>
+<td>standalone webapp (31 Oct 2026); A2UI v0.9 server-built surfaces, shared Cedwyn header (burger and title on one row, dark theme)</td>
+</tr>
+<tr>
+<td>Cedwyn Calendar (chronology coverage view)</td>
+<td><code>calendar subdomain, or /calendar/ on the main site if the subdomain cannot be added</code></td>
+<td>A calendar-style view of every dated event in the chronology (1667 onwards): day, week, month and year views, several years side by side, and a decades/centuries density view. Periods are shaded by how much evidence they hold, so the parts of the chronology still to be reconstructed stand out; known gaps from the missing-records register are marked. Month-only and year-only dates show as month or year bands, never as a made-up day. Each event opens to its date, precision, title, catalogue IDs, verbatim quote and source.</td>
+<td>branch calendar, deployed as its own Worker app (same pattern as the academy webapp)</td>
+<td>dated records in the central catalogue, the research timeline and the missing-records register; a derived events table rebuilt from the catalogue with a short cache, plus a build-time snapshot fallback</td>
+<td>BUILDING</td>
+<td>its own derived events table built from the catalogue; header graph shows events per year from this app's own data only</td>
+<td>standalone webapp, started 31 Oct 2026</td>
+</tr>
 </tbody>
 </table></div>
 <h2>Other areas (not webapps)</h2>
 <ul>
-<li><code>/academy/</code>: Cedwyn Academy, machine-facing, branch agents</li>
+<li><code>/academy/</code>: Agent library, machine-facing, branch agents (titled Cedwyn Academy until 31 Oct 2026)</li>
 <li><code>/hive/</code>: multi-agent draft review room, branch hive</li>
-<li><code>/learn/</code>: the human learning area</li>
+<li><code>/learn/</code>: the old human learning area; its pages now redirect (301) to the Cedwyn Academy webapp on its own subdomain</li>
 <li><code>/_cedwyn/</code>: shared runtime, header files, versions file, A2UI catalog</li>
 <li><code>/db/</code>: the catalogue database in chunks</li>
 </ul>

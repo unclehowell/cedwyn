@@ -1,4 +1,4 @@
-# Flywheel: Cedwyn Academy (this section)
+# Flywheel: Agent library (this section)
 
 **Cadence:** every 6 hours (proposed)  
 **Goal prefix (duplicate check):** `AGENT LIBRARY CYCLE`  

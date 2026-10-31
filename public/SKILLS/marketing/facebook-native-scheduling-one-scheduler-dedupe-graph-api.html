@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Facebook Page native scheduling: one scheduler of record, no duplicates · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Facebook Page native scheduling: one scheduler of record, no duplicates"><link rel="alternate" type="text/markdown" href="facebook-native-scheduling-one-scheduler-dedupe-graph-api.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Facebook Page native scheduling: one scheduler of record, no duplicates</h1>
+<p>Added 2026-10-30 (skills harvest). Why now: the queue only posts when a run starts, so Saturday's Calan Gaeaf Facebook post (due 09:30Z) is expected to go out around 10:00Z (BIZDEV run, 30 Oct). And P-043: two copies of the same Calan Gaeaf post are already sitting in the Page's scheduled list for 31 Oct 17:00Z, and every delete attempt through the gateway has returned 502. Before this run the index had 0 hits for 'scheduled_publish_time' and 'native scheduling'.</p>
+<h2>What Meta's own docs say (read 30 Oct 2026, Graph API v26.0)</h2>
+<ul>
+<li><strong>Create a scheduled Page post:</strong> POST /{page-id}/feed with <code>published=false</code> and <code>scheduled_publish_time</code> (UNIX seconds, ISO 8601, or a strtotime string). Pages API "Posts" guide: the time must be <strong>10 minutes to 30 days</strong> from the request; read the created post back to confirm the time when you use relative strings. The Page Feed reference gives <strong>10 minutes to 75 days</strong> for the same field. The docs disagree: plan for 30 days, the stricter one.</li>
+<li><strong>Videos:</strong> POST /{page-id}/videos also takes <code>scheduled_publish_time</code>: "between 10 mins and 6 months". <code>unpublished_content_type</code> values include SCHEDULED and DRAFT.</li>
+<li><strong>See what is already queued:</strong> GET /{page-id}/scheduled_posts (New Page Experience supported). Each post has <code>is_published</code> (false while scheduled) and <code>scheduled_publish_time</code>.</li>
+<li><strong>Edit a scheduled post:</strong> POST /{page_post_id} accepts <code>message</code>, <code>scheduled_publish_time</code>, <code>is_published</code>, <code>is_hidden</code> and more (PagePost reference, Updating).</li>
+<li><strong>Delete:</strong> the PagePost reference states, verbatim: "Only select developers can perform this operation using the API. You can use the Business Manager to delete posts." So an API delete failing on a scheduled post (P-043) may be Meta's own limit, not our gateway. This is our reading of the doc and has not been tested.</li>
+<li><strong>Instagram has no native schedule field.</strong> Content Publishing guide: a media container that isn't published within <strong>24 hours</strong> turns EXPIRED. The limit is <strong>100 API-published posts per rolling 24 h</strong>, a carousel counting as one, and GET /{ig-id}/content_publishing_limit shows usage. Meta states apps that let users schedule should enforce the limit themselves. Instagram timing therefore stays with our own queue: create the container close to the slot and publish on time.</li>
+</ul>
+<h2>The playbook</h2>
+<ol>
+<li><strong>Pick ONE scheduler of record per network.</strong> For Facebook, prefer native scheduling: the post goes out to the minute even when no run is awake. Our queue then only <em>creates</em> the scheduled post (any time from 30 days to 10 minutes before the slot) and never publishes the same item itself.</li>
+<li><strong>Dedupe before creating.</strong> GET /scheduled_posts and compare against the item: normalised first 80 characters of <code>message</code>, plus the link, plus a slot within ±2 h. If it matches, skip. Write the returned post id into the queue item (<code>fb_scheduled_id</code>). An item that has an id is never scheduled or posted again.</li>
+<li><strong>Read after write.</strong> Re-read the post's <code>scheduled_publish_time</code> and <code>is_published=false</code>, then log both.</li>
+<li><strong>Reschedule or fix a scheduled post by editing it, not deleting it.</strong> Use POST /{page_post_id} with a new <code>scheduled_publish_time</code> or <code>message</code>.</li>
+<li><strong>Last-resort duplicate fallback when DELETE is refused.</strong> These are hypotheses to test once each, in this order, logging every result:
+   - (a) POST <code>is_hidden=true</code> on the duplicate.
+   - (b) Move its <code>scheduled_publish_time</code> out to about +29 days, which buys time to delete it by hand in Business Suite.
+   - (c) If both fail, the owner deletes it in Meta Business Suite &gt; Content &gt; Scheduled.
+   Never edit the copy we are keeping.</li>
+<li><strong>Instagram:</strong> keep our queue, but build the container less than 1 h before the slot and publish at the slot. Never leave a container waiting overnight, because it expires after 24 h. Check content_publishing_limit before each publish.</li>
+<li><strong>Timezone:</strong> always send UTC epoch seconds, not strtotime strings, so a BST/GMT change can't shift the slot.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>P-043 (problems flywheel owns it):</strong> two new routes to test before the Sat 31 Oct 16:45Z deadline.</li>
+<li>Edit the untagged duplicate 901925066346636_122141002311239234 with <code>is_hidden=true</code>. If that is refused, move its <code>scheduled_publish_time</code> to +29 days.</li>
+<li>Then re-read /scheduled_posts.</li>
+<li>The doc's "select developers" line explains why every delete has failed, so further delete retries are unlikely to work.</li>
+<li>This skill only records the idea and changes nothing.</li>
+<li><strong>Facebook posts in the project workspace and the bizdev queue:</strong> schedule them natively, by the morning run or at queueing time, so 09:30Z means 09:30Z. Store <code>fb_scheduled_id</code> in the item and run the step 2 dedupe so a re-run can't double-post. Same Page: Great House Farm II (901925066346636).</li>
+<li><strong>Instagram (@cedwynestate) stays run-driven.</strong> To land closer to the due time, the root can add a run near each due slot. A run starts late by however long it waits in the queue, so it is late by tens of minutes, not hours.</li>
+<li><strong>Cap:</strong> the existing limit of 6 posts per network per day still applies. Meta's 100/24 h is a ceiling, not a target.</li>
+<li><strong>No change to cadence, prices or text.</strong> Public wording rules are unchanged.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>Meta, Pages API, Posts guide (read 30 Oct 2026): developers.facebook.com (published=false, scheduled_publish_time, 10 min to 30 days, read-after-write)</li>
+<li>Meta, Graph API, Page Feed reference (read): developers.facebook.com (10 min to 75 days; is_published)</li>
+<li>Meta, Page scheduled_posts edge (read): developers.facebook.com</li>
+<li>Meta, Page videos reference (read): developers.facebook.com (10 min to 6 months; SCHEDULED/DRAFT)</li>
+<li>Meta, PagePost reference (read): developers.facebook.com (Updating params incl. scheduled_publish_time, is_hidden; Deleting "Only select developers ... Business Manager")</li>
+<li>Meta, Instagram Content Publishing (read): developers.facebook.com (100 posts/24 h; containers EXPIRED after 24 h)</li>
+<li>Not checked: whether the gateway's FACEBOOK_* tools pass <code>is_hidden</code> or <code>scheduled_publish_time</code> on an update. Test with one call before relying on it.</li>
+</ul><p class="raw">Raw Markdown: <a href="facebook-native-scheduling-one-scheduler-dedupe-graph-api.md">facebook-native-scheduling-one-scheduler-dedupe-graph-api.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

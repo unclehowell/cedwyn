@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Gabor-Granger price ladder survey: finding the revenue peak before a price is set · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Gabor-Granger price ladder survey: finding the revenue peak before a price is set"><link rel="alternate" type="text/markdown" href="gabor-granger-price-ladder-survey-revenue-peak.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Gabor-Granger price ladder survey: finding the revenue peak before a price is set</h1>
+<p>Harvested 30 Oct 2026 (skills harvest). 'gabor' had 0 hits in INDEX.md before this run. Van Westendorp is already covered and finds a price band; this skill covers the second step, choosing a price inside that band.</p>
+<h2>What it is</h2>
+<p>Each respondent sees one price at a time and answers yes/no: "would you buy this at £X?" A yes moves the price up and a no moves it down, until the survey has their highest yes. Count, for each ladder price, the share of respondents whose highest yes is at or above it. That gives demand. Demand × price gives revenue per target respondent, and the peak of that curve is the revenue-maximising price. Origin: Gabor &amp; Granger, Nottingham, <em>Applied Statistics</em> 1961 (fifteen grocery products), then <em>Economica</em> 1966 (price as a quality signal). That history is as summarised by OpinionX; we did not read the papers.</p>
+<h2>Numbers from practitioners</h2>
+<ul>
+<li><strong>OpinionX (Daniel Kyne, Oct 2026 guide, read in full):</strong></li>
+<li>~100 participants shows roughly where the peak is; ~300 gives a peak you can trust; 500+ if you want to cut by segment.</li>
+<li>Binary-search ladders test 100 prices in about 8 votes.</li>
+<li>In their worked coffee-subscription example, $18 gave $11.88 per target customer and $26 gave $11.70. That is a 44% higher price for an 18-cent difference. The method often returns a <em>revenue-neutral band</em>, not a single point; choosing inside the band is a margin vs reach call.</li>
+<li><strong>Hypothetical bias (cited by OpinionX):</strong></li>
+<li>Stated willingness to pay runs about 21% above real payment (Schmidt &amp; Bijmolt, <em>JAMS</em> 2020 meta-analysis).</li>
+<li>In 28 studies, stated values were 1.35× real ones (Murphy et al. 2005).</li>
+<li>Indirect methods such as conjoint overstated by about 10 points <em>more</em> than direct questions.</li>
+<li>Rule: <strong>never put the revenue column in a forecast.</strong> Use only the <em>position</em> of the peak.</li>
+<li><strong>Quali-Fi guide (read):</strong> suggests 200-400 respondents, or 50+ per price point. Its worked table puts the peak at $49 (58% × $49 = 28.4) between $39 (27.7) and $59 (24.2). Run Van Westendorp first when you have no anchor, then Gabor-Granger inside the band.</li>
+<li><strong>Known failure modes:</strong></li>
+<li><strong>Ceiling too low.</strong> If the peak lands on the top price, the ladder didn't go high enough. Always add an "above the top price" follow-up.</li>
+<li><strong>No screener.</strong> Without an interest screener ("would you buy this at any reasonable price?"), a no to the price can't be told apart from a no to the product.</li>
+<li><strong>Ignoring costs.</strong> With per-sale costs such as Stripe fees, the most profitable price sits slightly above the revenue peak.</li>
+<li><strong>Blending segments.</strong> Mixing segments gives a price neither segment wants.</li>
+</ul>
+<h2>How to run one (free, no install)</h2>
+<ol>
+<li><strong>Fix the offer exactly.</strong> Give the title, what's inside, the format, and one cover image. If half the sample imagines a different product, the data is noise.</li>
+<li><strong>Set the ladder.</strong> Use 6-10 prices that span the Van Westendorp band, or 0.5× to 2.5× your best guess if there is no band. Use real price endings (£2.99, £3.99, …). Add the above-max question.</li>
+<li><strong>Add the screener first,</strong> then the ladder. Also ask one segment question (for example "local / family history / legal-history interest"). Do not cut by segment at under 300 responses.</li>
+<li><strong>Collect.</strong> Only ask people who have opted in to hear from us: newsletter subscribers or existing buyers. A Google Form works. Implement the ladder as branching sections (yes → section with the higher price, no → section with the lower price), or show each person one random price, which is the monadic version and needs about 50 per price.</li>
+<li><strong>Analyse</strong> with <code>tools/gg_calc.py answers.csv &lt;ladder prices&gt;</code>. It prints demand %, revenue per respondent, the peak, the ±5% band, and warnings when the peak sits on the ladder floor or ceiling.</li>
+<li><strong>Decide inside the band.</strong> Pick the higher price when Stripe fees bite or you want a quality signal. Pick the lower price when the goal is reach, list growth or reviews.</li>
+<li><strong>Confirm with real money</strong> where you can: a live A/B test or a launch-week price, judged with the existing ab_stats/SRM tools. A survey ranks prices; only sales validate them.</li>
+</ol>
+<h2>Gates / when NOT to use it</h2>
+<ul>
+<li><strong>Under ~100 opted-in respondents:</strong> the result is direction only. Say "n = 43, direction only" next to any chart.</li>
+<li><strong>The question is what goes in the bundle, not what it costs:</strong> use conjoint or MaxDiff instead.</li>
+<li><strong>The price only makes sense against a competitor</strong> (for example a £20 county history paperback): use a choice experiment instead.</li>
+<li><strong>Rules:</strong> surveys go only to people who opted in (PECR). Run no prize draw as an incentive unless it meets the CAP-code prize-draw rules already in the index. Collect no personal data beyond an optional email.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Prices stay as they are.</strong> Live now: v0.0.1 free, v0.0.2 £4.99, bundle £19.96, academy £49.99/mo. Any survey and any resulting price is a <strong>PROPOSAL for the project lead's GO</strong>, logged in the project workspace</li>
+<li><strong>Best first use: the next e-book release</strong> (v0.0.3, which the ladder rule puts at £9.98) and the <strong>bundle</strong>, before they are announced. Test a ladder of £4.99 / £6.99 / £7.99 / £9.98 / £12.99 / £14.99 to see whether the +£4.99 step leaves money on the table or loses buyers.</li>
+<li><strong>Second use: an academy tier</strong> (monthly vs a one-off "pass"). Run Van Westendorp first, because nothing anchors that price yet.</li>
+<li><strong>Sample reality check.</strong> Our list is small, so expect under 100 answers. Report the result as direction only, and pair it with the launch-week real-sales check.</li>
+<li><strong>Survey copy is public text.</strong> Use neutral third person, never name the project lead, and use none of the banned words.</li>
+<li><strong>Tool:</strong> <code>the project workspace</code> (own stdlib script, written this run, tested on synthetic data; nothing installed).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>opinionx.co (vendor guide, read in full; its worked example is illustrative, not real customer data)</li>
+<li>quali-fi.com (vendor guide, read; worked example illustrative)</li>
+<li>conjointly.com (snippet only: shown prices lead respondents to understate WTP strategically)</li>
+<li>qualtrics.com (snippet only)</li>
+<li>Schmidt &amp; Bijmolt 2020 (JAMS) and Murphy et al. 2005 (ERE) as cited by OpinionX; not read directly</li>
+</ul><p class="raw">Raw Markdown: <a href="gabor-granger-price-ladder-survey-revenue-peak.md">gabor-granger-price-ladder-survey-revenue-peak.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

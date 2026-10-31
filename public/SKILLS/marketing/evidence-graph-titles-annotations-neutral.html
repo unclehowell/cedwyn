@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Titles and annotations on evidence graphs (neutral but message-carrying) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Titles and annotations on evidence graphs (neutral but message-carrying)"><link rel="alternate" type="text/markdown" href="evidence-graph-titles-annotations-neutral.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Titles and annotations on evidence graphs (neutral but message-carrying)</h1>
+<p>Written 30 Oct 2026 (skills harvest). Trigger: the /research/parcels/ fix (19:16 30 Oct ask) puts a graph of "instruments relied on by the corporation" and "registrations in the corporation's name" inside the "See this section as a graph" dropdown. The title and annotations decide what a reader takes away, and our editorial rules require neutral wording.</p>
+<h2>The evidence</h2>
+<ul>
+<li><strong>Borkin et al. 2016, "Beyond Memorability"</strong> (IEEE TVCG 22(1); abstract read on Harvard VCG): eye-tracking of <strong>33 participants</strong> on <strong>393 visualizations</strong>, plus thousands of written recall descriptions. Titles drew the most fixations, and titles were the element most often mentioned at recall. Descriptions of charts with titles were of higher quality. When the title carried the main message, people recalled the message; generic titles meant fewer did. The authors' design guideline (1) is "titles and supporting text should convey the message of a visualization". Redundancy, meaning the message repeated in title, label and annotation, helped.</li>
+<li><strong>Position matters</strong> (Bertini's summary of Borkin, FILWD, read): when the title sat at the bottom of a table, the table headers drew more fixations than the title. Put the title on top.</li>
+<li><strong>Kong, Liu &amp; Karahalios 2018, CHI, "Frames and Slants in Titles"</strong> (via Bertini's summary, read; the paper's PDF was not readable from here, so the numbers are not checked): the same chart was shown with a supporting or an opposing title. People recalled the message the title slanted towards, whatever their prior attitude. Most still rated the chart <strong>neutral</strong>: readers do not notice slant. Follow-up work found slant often went unnoticed even when the title contradicted the data.</li>
+</ul>
+<p>The upshot: the title is the strongest lever on the page and readers trust it blindly. On contested material that cuts both ways. A title that argues is read as fact (which our rules forbid), and a vague title wastes the chart.</p>
+<h2>How to write them</h2>
+<ol>
+<li><strong>Descriptive-quantified title on top:</strong> count + what + span + whose wording. Example: "14 instruments relied on by the corporation, 1974–1987". Write the facts, not the verdict.</li>
+<li><strong>Subtitle states the frame:</strong> "Dated documents and Land Registry entries, each with its catalogue reference." For any case point, add "our case, prospective, not a finding."</li>
+<li><strong>Annotate 2-4 points, not all.</strong> Label the first, the last and any cluster (e.g. "31 Oct 1974: two letters"). Annotations quote the record's own words with a date and reference, never adjectives.</li>
+<li><strong>Repeat the message once</strong> (Borkin's redundancy result) in the dropdown's <code>&lt;summary&gt;</code> line: "See this section as a graph: 14 instruments, 6 registrations".</li>
+<li><strong>A legend that names the two series exactly as the page text does</strong>, so title, legend and prose match word for word.</li>
+<li><strong>Run the slant test:</strong> read the title to someone who holds the opposite view. If they would call it unfair, rewrite it. Readers will not catch slant, so we must.</li>
+<li><strong>Accessibility and search:</strong> put the title as real text (<code>&lt;figcaption&gt;</code> or <code>&lt;h3&gt;</code>) inside the <code>&lt;details&gt;</code>, not baked into an image. Give the graph a text table fallback. Content inside a closed <code>&lt;details&gt;</code> stays in the HTML for indexing.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>/research/parcels/: title = "<n> instruments relied on by the corporation and <m> registrations in its name, <first year>–<last year>". Take n and m from transfers.v2.6.json, never typed by hand. Annotate the 31 Oct 1974 letters and each first registration with a title number and date.</li>
+<li>/research/twelve-year-pattern/ and the Dartboard header graphs: audit titles against rule 1. Generic titles ("Timeline", "Graph") become quantified ones.</li>
+<li>Run every title and annotation through tools/voice_lint.py (banned words) before commit. Titles never contain states, assertions, reported, deception or similar.</li>
+<li>The same rule applies to social quote cards and Shorts thumbnails (quote-pack runner): a top line with a count and a date, never a verdict.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>vcg.seas.harvard.edu (abstract read 30 Oct 2026)</li>
+<li>filwd.substack.com (Enrico Bertini, read 30 Oct 2026)</li>
+<li>dl.acm.org (Kong et al. 2018; summary only, numbers not checked)</li>
+</ul><p class="raw">Raw Markdown: <a href="evidence-graph-titles-annotations-neutral.md">evidence-graph-titles-annotations-neutral.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

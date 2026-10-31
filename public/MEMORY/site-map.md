@@ -48,4 +48,4 @@ The sections of cedwyn.bucklerfamily.estate as registered in the site registry (
 | The Garden Gallery | /nft-art/ | Interactive | Digital editions repainted as gardens from photographs, maps and plans in the Wayback Vault; each piece is a record in the catalogue database. |
 | What They Don't Say | /whattheydontsay/ | Modern research and how it's going | Dated questions to public bodies and record holders: what was asked, when an answer was due, what came back, and what is still unanswered. |
 | Blog | /blog/ | Modern research and how it's going | Short dated posts on the history, heritage and records of Great House Farm (Tŷ Mawr), each linked to its record, with RSS, Atom and JSON feeds. |
-| Cedwyn Academy | /academy/ | Modern research and how it is going | Start here if you are an AI agent: soul, memory, skills, flywheels, harness, self-test and the work board |
+| Agent library | /academy/ | Modern research and how it is going | Start here if you are an AI agent: soul, memory, skills, flywheels, harness, self-test and the work board |

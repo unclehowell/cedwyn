@@ -45,7 +45,7 @@ The static host serves branch `site`. Limits to respect: about 20,000 files per 
 One JSON file per site under `web/_cedwyn/ghf/sites/`, together with `themes.json` and `data/site-areas.json`, produces the uniform header and menu on every page. The header already titles each page, so a page never repeats a big title of its own. Agents change the menu through these files, never by editing pages.
 
 ## The versions file
-`/_cedwyn/versions.json` is the one site-wide version scheme (v1.0.0, set 30 Oct 2026): the newest edition of any product is v0.0.2, the one before it v0.0.1, older ones count backwards as -v0.0.1, -v0.0.2 and so on (hashtags `#v0.0.2`, `#v0.0.1`, `#_v0.0.1`). `/documentary/` and `/ebooks/` read it. Edition labels come from this file, never typed by hand into pages.
+`/_cedwyn/versions.json` is the one site-wide version scheme (v1.0.0, set 30 Oct 2026): the newest edition of any product is v0.0.2, the one before it v0.0.1, older ones count backwards as -v0.0.2, -v0.0.3 and so on (no -v0.0.1) (hashtags `#v0.0.2`, `#v0.0.1`, `#_v0.0.2`). `/documentary/` and `/ebooks/` read it. Edition labels come from this file, never typed by hand into pages.
 
 ## Discovery (machines only)
 `/llms.txt`, `/agents.json`, `robots.txt`, and one alternate link plus one `ai-agents` meta tag in each page head point machines at `/academy/`. Nothing machine-facing appears on a human page: no agent text, banners or menu items.

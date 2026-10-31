@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>One page history per page (not a commit-log dump) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: One page history per page (not a commit-log dump)"><link rel="alternate" type="text/markdown" href="page-history-one-log-per-page.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>One page history per page (not a commit-log dump)</h1>
+<p>Why now: 19:37 30 Oct, on /learn/: "Why 2 logs?" The page showed a hand-written "Page journal" AND the site footer's "Page versions" table, which listed unrelated repo commits (e-book titles, Wales tiles, landing modals). Worker for "ACADEMY PAGE: ONE JOURNAL" is fixing /learn/ itself; this skill is the rule for every page after it.</p>
+<h2>What the primary sources say (read 30 Oct 2026)</h2>
+<ul>
+<li>Keep a Changelog 1.1.0 (keepachangelog.com, read): "Changelogs are for humans, not machines." Guiding principles: an entry for every version; same types of change grouped (Added / Changed / Deprecated / Removed / Fixed / Security); versions linkable; "The latest version comes first"; "The release date of each version is displayed"; say whether you follow Semantic Versioning. Under "Can changelogs be bad?": "Using commit log diffs as changelogs is a bad idea: they're full of noise. Things like merge commits, commits with obscure titles, documentation changes, etc." It also recommends ISO dates (2017-07-17: largest to smallest unit, no regional ambiguity).</li>
+<li>Google Search Central, "Influence your byline dates" (developers.google.com, read): show one user-visible date prominently, labelled "Published" or "Last updated"; keep the visible date and datePublished/dateModified in structured data consistent; dates describe the page, "not the stories or events described therein"; and "Minimize the presence of other dates on the page" if the wrong date is being picked. Two tables of dates at the foot of a page are exactly the clutter that line warns about.</li>
+<li>No conversion number exists for this (none found); the case is trust + reader time + correct dates in search. Mark it as a hygiene rule, not a growth lever.</li>
+</ul>
+<h2>The rule (do this)</h2>
+<ol>
+<li>ONE log per page, at the foot, in the site's standard "Page versions" look (Version · Date · Change · Who). Never a second hand-written journal beside it.</li>
+<li>Only this page's own changes. A row qualifies if a reader of THIS page would notice it. Filter the generator by path (files that render this page), never repo-wide history. A shared footer that cannot filter must render nothing rather than repo noise.</li>
+<li>Human sentences, not commit subjects: "Family code entry added to the join card" — not "fix: api-worker index.js [skip ci]". Strip [skip ci], hashes, branch names, P-numbers.</li>
+<li>Newest first; semver per page (1.change.fix as the site already states); one date format sitewide (the footer uses DD/MM/YYYY HH:MM GMT — keep it, do not mix with ISO in the same table).</li>
+<li>One visible "Last updated <date>" equal to the top row's date, and the page's dateModified (JSON-LD) equal to it. No other "updated" dates on the page.</li>
+<li>Pages served outside the static build (Workers: /learn/, cedwyn-api pages) must declare their own entries (a small JSON array in the Worker) and render through the same table markup, so they look identical to built pages.</li>
+<li>Check before shipping: count <code>&lt;table</code> rows under the footer heading = 1 table; grep the rendered rows for words from other sections (e-book, Wales, hologram) = 0 hits.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>/learn/: one table, rows 1.1.1 (one journal; unrelated entries removed), 1.1.0 (family code + dark theme), 1.0.0 (created) — that is the academy worker's brief; this skill backs it.</li>
+<li>Sitewide: the footer generator that reads the whole repo's commits is the "commit log diff" anti-pattern; the academy worker logs it to the project workspace The fix belongs to the cedwyn main owner: path-filter commits per page, map commit subjects to a curated "change" line (fallback: omit the row, never show a raw subject).</li>
+<li>Same rule for e-book editions: each book's edition list is a changelog for buyers — newest first, one line per version, what a reader gains ("+ supplement 25 Oct 2026"), never build notes.</li>
+<li>Public text rules still apply to change lines (neutral, banned words, never name the project lead).</li>
+</ul>
+<p>Sources: keepachangelog.com ; developers.google.com (both read 30 Oct 2026).</p><p class="raw">Raw Markdown: <a href="page-history-one-log-per-page.md">page-history-one-log-per-page.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
