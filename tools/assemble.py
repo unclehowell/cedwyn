@@ -11,7 +11,7 @@ report = {}
 def sh(cmd, cwd=None, t=900):
     try: return subprocess.run(['timeout', '-k', '5', str(t), 'bash', '-lc', cmd], cwd=cwd, capture_output=True, text=True)
     except Exception as e: return subprocess.CompletedProcess(cmd, 1, '', str(e))
-def crawl(url, out, robots=False, quota='150m', t=420, sitemap=None):
+def crawl(url, out, robots=False, quota='150m', t=420, sitemap=None, depth=None, reject=None):
     """read-only GET crawl; robots=True obeys the site's robots.txt (used for the WordPress wiki); sitemap: every page the
     site's own sitemap lists is a starting point too, so deep pages are not missed"""
     tmp = pathlib.Path('crawl_tmp_' + out.name); shutil.rmtree(tmp, ignore_errors=True); tmp.mkdir()
@@ -25,6 +25,11 @@ def crawl(url, out, robots=False, quota='150m', t=420, sitemap=None):
             lf = pathlib.Path('seeds_' + out.name + '.txt').resolve(); lf.write_text('\n'.join(locs) + '\n'); seeds = f'-i {lf}'; level = 1
             report.setdefault('_sitemap', {})[out.name] = len(locs)
         except Exception as e: report.setdefault('_sitemap', {})[out.name] = 'failed: ' + str(e)[:80]
+    # 31 Oct 2026 (P-124): depth = the theme's crawl_level (default 3, or 1 with sitemap seeds); reject = the theme's
+    # crawl_reject, a wget --reject-regex (not used with robots=True, which carries its own). Docs chapters such as
+    # .../html/en/1-record.html sit one level below the document index, so level 3 never fetched them. - Sion's Tab agent
+    if depth: level = int(depth)
+    if reject and not robots: rob += f" --reject-regex '{reject}'"
     r = sh(f"wget -q {rob} {seeds} --mirror --level={level} --page-requisites --adjust-extension --convert-links=off --no-parent "
            f"--restrict-file-names=windows --timeout=20 --tries=4 --waitretry=20 --retry-on-http-error=429,503 --quota={quota} -U 'Mozilla/5.0 cedwyn-archive' -P {tmp} '{url}'", t=t)
     host = url.split('/')[2]; base = tmp / host
@@ -122,7 +127,7 @@ def one(t):
         shutil.rmtree(work, ignore_errors=True)
         if (n == 0 or not (out / 'index.html').exists()) and t.get('crawl_fallback'):
             shutil.rmtree(out, ignore_errors=True); out.mkdir(parents=True)
-            n = crawl(t.get('crawl_url') or t['live'], out); how = 'crawl(fallback)'   # crawl_url: the theme's own origin when its public host now serves the Cedwyn copy (docs)
+            n = crawl(t.get('crawl_url') or t['live'], out, depth=t.get('crawl_level'), reject=t.get('crawl_reject')); how = 'crawl(fallback)'   # crawl_url: the theme's own origin when its public host now serves the Cedwyn copy (docs)
     elif t.get('crawl'):
         n = crawl(t['crawl'], out); how = 'crawl'
     big = []
