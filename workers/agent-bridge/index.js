@@ -373,7 +373,7 @@ async function acceptFlowEvent(request, env) {
   await env.DB.prepare("INSERT OR IGNORE INTO cw_flow_watch_activity(event_id,received_at,source,event_type,action,workflow_name,job_name,run_id,head_sha,branch,status,conclusion,detail_json) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)")
     .bind(eventId, new Date().toISOString(), row.source, row.event_type, row.action, row.workflow_name, row.job_name, row.run_id, row.head_sha, row.branch, row.status, row.conclusion, JSON.stringify(row)).run();
   const check = await runFlowWatch(env, "github_" + eventType + "_" + (row.action || "event"));
-  return response({ ok: true, accepted: true, event_id: eventId, check }, 202);
+  return response({ ok: check.ok !== false, accepted: true, event_id: eventId, check }, check.ok === false ? 503 : 202);
 }
 
 async function flowHealth(env) {
