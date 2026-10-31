@@ -1,32 +1,32 @@
 {
- "db_version": "e941043e0eb6",
- "paths_served_from_db": 7276,
- "blobs": 4749,
+ "db_version": "9e21c591b56c",
+ "paths_served_from_db": 7334,
+ "blobs": 4766,
  "files_dropped": {
   "document": 3301,
-  "image": 1527,
-  "data": 1382,
+  "image": 1567,
+  "data": 1393,
   "audio": 84
  },
  "bytes_dropped": {
   "document": 1274591774,
-  "image": 143132082,
-  "data": 35188039,
+  "image": 147895696,
+  "data": 37521364,
   "audio": 14922925
  },
- "bytes_dropped_total": 1467834820,
+ "bytes_dropped_total": 1474931759,
  "files_kept_as_well": {
-  "image": 868,
-  "data": 74,
+  "image": 873,
+  "data": 75,
   "document": 12
  },
  "kept_why": {
-  "named in page markup": 752,
+  "named in page markup": 756,
   "link/meta tag": 45,
   "css url()": 27,
   "fetched by script": 13,
   "fetched by browsers outside a service worker": 15,
-  "webapp database / A2UI surface (read without a service worker)": 12,
+  "webapp database / A2UI surface (read without a service worker)": 14,
   "page without runtime": 74,
   "fetched by script (built path)": 16
  },
@@ -114,5 +114,5 @@
  ],
  "changed_after_db_build_served_as_files": 0,
  "changed_examples": [],
- "indexed_without_file": 28
+ "indexed_without_file": 29
 }

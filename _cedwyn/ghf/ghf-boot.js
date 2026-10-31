@@ -46,7 +46,7 @@
   var needBc = !window.GHFBasecamp && !d.querySelector('script[src*="basecamp.js"]');
   if (needBc) out += '<script src="' + B + "basecamp.js" + V + '"><\/script>';
   if (!d.querySelector('script[src*="cw-graph.js"]')) out += '<script src="/_cedwyn/cw-graph.js?v=1.2.1" defer><\/script>'; // 30 Oct 2026: graph promo banner + 100vh Read more on every page with the header
-  if (!d.querySelector('script[data-cedwyn-wikilinks]')) out += '<script src="https://cedwyn.bucklerfamily.estate/nomenclature/wikilinks.js?v=1.0.1" defer data-cedwyn-wikilinks><\\/script>'; // 31 Oct 2026: lexicon-backed cross-theme name links
+  if (!d.querySelector('script[data-cedwyn-wikilinks]')) out += '<script src="https://cedwyn.bucklerfamily.estate/nomenclature/wikilinks.js?v=1.0.1" defer data-cedwyn-wikilinks><\/script>'; // 31 Oct 2026: lexicon-backed cross-theme name links
   if (sync) { d.write(out); return; }
   var x, t = d.createElement("template"); t.innerHTML = out; // late or async load: same files, appended
   [].slice.call(t.content.childNodes).forEach(function (n) {
