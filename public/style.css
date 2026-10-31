@@ -47,3 +47,19 @@ footer a{color:var(--mut)}footer .case{color:#cfcfcf}
 @media (min-width:783px){.cp h1{font-size:32px}main{padding-top:18px}}
 
 :where(a,button,summary,input,select,textarea,[role="button"],[tabindex]):focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* Sourced name-origin articles */
+.origin-article{max-width:860px}
+.origin-article h2{font-size:20px;line-height:1.25;font-weight:500;letter-spacing:0;margin:24px 0 8px;color:var(--fg);text-transform:none;border-bottom:1px solid var(--line);padding-bottom:6px}
+.origin-article h3{font-size:15px;line-height:1.35;text-transform:none;letter-spacing:0;color:var(--fg);margin:16px 0 5px}
+.origin-article p,.origin-article li{line-height:1.58}
+.origin-article table{border-collapse:collapse;width:100%;margin:10px 0 18px;font-size:14px}
+.origin-article th,.origin-article td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+.origin-article th{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.origin-article td:first-child{font-weight:600}
+.origin-article .note{font-size:13px;color:var(--mut);border-left:2px solid var(--gold);padding-left:10px}
+.origin-article .refs{padding-left:22px}
+.origin-article .refs li{margin:9px 0;overflow-wrap:anywhere}
+.origin-article sup a{font-size:12px;color:var(--gold);text-decoration:none}
+.origin-article .statusline{font-size:13px;color:var(--mut);border-top:1px solid var(--line);padding-top:9px;margin-top:22px}
+.origin-article .related a{margin-right:12px}
