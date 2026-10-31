@@ -166,7 +166,7 @@ async function runFlowWatch(env, triggerType = "cron") {
       flowProbe(FLOW_SITE + "/documentary/")
     ]);
     const sources = {};
-    let mainSha = null, liveSha = null, stampBuiltAt = null;
+    let mainSha = null, liveSha = null, stampBuiltAt = null, buildRequired = false;
     if (gh.status === "fulfilled") {
       const runs = gh.value.data.workflow_runs || [];
       const builds = runs.filter(x => x.name === "build-cedwyn" || (x.path || "").endsWith("/build.yml"));
@@ -212,6 +212,21 @@ async function runFlowWatch(env, triggerType = "cron") {
 
     let agentsHead = null;
     let agentsHeadDate = null;
+
+    if (branch.status === "fulfilled" && mainSha && liveSha !== mainSha) {
+      try {
+        const commitInfo = await flowJson(FLOW_API + "/commits/" + mainSha);
+        const paths = (commitInfo.data.files || []).map(x => x.filename || "");
+        buildRequired = paths.some(p => p.startsWith("tools/") || p.startsWith("web/") || p.startsWith("data/") || p === "themes.json" || p === ".github/workflows/build.yml");
+        sources.github_main.build_required = buildRequired;
+        sources.github_main.changed_paths = paths.slice(0, 40);
+      } catch (err) {
+        sources.github_main.build_required = "UNKNOWN";
+        issues.push({ code: "BUILD_REQUIREMENT_UNKNOWN", title: "Cannot determine whether the latest main commit requires a site build", severity: "WARNING", detail: { reason: String(err.message || err).slice(0, 100), main_sha: mainSha } });
+      }
+    } else {
+      sources.github_main.build_required = false;
+    }
     if (agentsBranch.status === "fulfilled") {
       const b = agentsBranch.value.data || {};
       agentsHead = b.commit && b.commit.sha || null;
@@ -253,7 +268,7 @@ async function runFlowWatch(env, triggerType = "cron") {
       }
       const mainDate = sources.github_main && sources.github_main.committed_at;
       const sourceAge = ageMinutes(mainDate, now.getTime());
-      if (!exactActive && !exactSuccess && sourceAge !== null && sourceAge > QUEUE_GRACE_MINUTES) {
+      if (buildRequired === true && !exactActive && !exactSuccess && sourceAge !== null && sourceAge > QUEUE_GRACE_MINUTES) {
         issues.push({ code: "SOURCE_REVISION_NOT_QUEUED", title: "Main revision has not entered the production build queue", severity: "CRITICAL", detail: { head_sha: mainSha, age_minutes: Math.round(sourceAge), next_action: "Inspect path filters and workflow state; dispatch one build only when no current run owns this revision." } });
       }
       if (exactActive) {
@@ -267,7 +282,7 @@ async function runFlowWatch(env, triggerType = "cron") {
           issues.push({ code: "BUILD_RUNTIME_HIGH", title: "Production build is slower than its provisional runtime threshold", severity: "WARNING", detail: { run_id: exactActive.id, age_minutes: Math.round(age), threshold_minutes: BUILD_WARN_MINUTES, url: exactActive.html_url } });
         }
       }
-      if (exactSuccess && liveSha && liveSha !== mainSha) {
+      if (buildRequired === true && exactSuccess && liveSha && liveSha !== mainSha) {
         const stampAge = ageMinutes(stampBuiltAt, now.getTime());
         if (stampAge === null || stampAge > PRODUCTION_GRACE_MINUTES) {
           issues.push({ code: "PRODUCTION_REVISION_STALE", title: "Production is not serving the latest successful main revision", severity: "CRITICAL", detail: { main_sha: mainSha, served_sha: liveSha, successful_run_id: exactSuccess.id, next_action: "Compare the site branch and Cloudflare production state; retry only the missing publication stage." } });
