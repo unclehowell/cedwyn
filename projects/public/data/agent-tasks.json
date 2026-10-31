@@ -1,16 +1,15 @@
 {
   "schema": "cedwyn-agent-task-index/1.0",
-  "generated_at": "2026-10-31T11:34:00Z",
-  "version": "1.0.0",
+  "generated_at": "2026-10-31T11:38:00Z",
+  "version": "1.0.1",
   "programme": "CEDWYN SNOWBALL",
   "programme_master": "SNOWBALL-MASTER",
   "source_of_truth": "HubSpot remains the live CRM. This public mirror exposes only task metadata and sanitised scope summaries. Privileged agents must fetch the current task body from HubSpot before acting.",
   "visibility": "public machine-readable metadata; not the raw HubSpot task bodies",
   "update_policy": "Privileged agents synchronise this file after HubSpot task changes; preserve ids and history. Never mirror private correspondence, legal advice, personal contact data, secrets or confidential incident narratives.",
   "status_semantics": {
-    "NOT_STARTED": "HubSpot CRM status as observed at the last refresh",
-    "IN_PROGRESS": "HubSpot CRM status as observed at the last refresh",
-    "implementation_state": "Separate code/research delivery signal; it does not overwrite or claim a HubSpot status change."
+    "hubspot_status": "The actual CRM status as fetched from HubSpot at this registry timestamp. NOT_STARTED means not yet claimed/started in CRM.",
+    "implementation_state": "Separate source/deployment activity indicator; it never substitutes for HubSpot task status."
   },
   "access_model": {
     "public": {
@@ -89,7 +88,6 @@
       "id": "SNOWBALL-MASTER",
       "hubspot_id": 536809740513,
       "subject": "CEDWYN SNOWBALL — master programme",
-      "status": "NOT_STARTED",
       "priority": "HIGH",
       "due": "2026-11-01T17:00:00Z",
       "implementation_state": "IN_PROGRESS",
@@ -99,13 +97,13 @@
         "public_read"
       ],
       "next": "Synchronise public task mirror, work packages, HubSpot state and deployment checks.",
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536809740513?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536809740513?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "SNOWBALL-WP1",
       "hubspot_id": 536685709549,
       "subject": "Estate, parcel, title and Williams/Buckler matriarchy",
-      "status": "NOT_STARTED",
       "priority": "HIGH",
       "due": "2026-11-03T17:00:00Z",
       "implementation_state": "QUEUED",
@@ -115,13 +113,13 @@
         "hubspot_read",
         "github_write"
       ],
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536685709549?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536685709549?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "SNOWBALL-WP2",
       "hubspot_id": 536708927735,
       "subject": "FOI, archives, Gmail and correspondence recovery",
-      "status": "NOT_STARTED",
       "priority": "HIGH",
       "due": "2026-11-02T17:00:00Z",
       "implementation_state": "QUEUED",
@@ -132,13 +130,13 @@
         "hubspot_read",
         "github_write"
       ],
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536708927735?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536708927735?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "SNOWBALL-WP3",
       "hubspot_id": 536861939937,
       "subject": "Documentary bible and complete master screenplay",
-      "status": "NOT_STARTED",
       "priority": "HIGH",
       "due": "2026-11-07T17:00:00Z",
       "implementation_state": "IN_PROGRESS",
@@ -149,13 +147,13 @@
         "hubspot_read",
         "github_write"
       ],
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536861939937?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536861939937?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "SNOWBALL-WP4",
       "hubspot_id": 536712479991,
       "subject": "Two-minute sequential scene pipeline and model-access verification",
-      "status": "NOT_STARTED",
       "priority": "MEDIUM",
       "due": "2026-11-10T17:00:00Z",
       "implementation_state": "SPECIFIED",
@@ -165,13 +163,13 @@
         "hubspot_read",
         "github_write"
       ],
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536712479991?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536712479991?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "SNOWBALL-WP5",
       "hubspot_id": 536721393886,
       "subject": "Hive, Docs/Library, WebMCP and site-wide agent protocol",
-      "status": "NOT_STARTED",
       "priority": "HIGH",
       "due": "2026-11-04T17:00:00Z",
       "implementation_state": "IN_PROGRESS_DEPLOYMENT_CHECK",
@@ -182,13 +180,13 @@
         "cloudflare_worker",
         "hubspot_read"
       ],
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536721393886?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536721393886?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "SNOWBALL-WP6",
       "hubspot_id": 536607894753,
       "subject": "Single source of truth, GraphQL, graph and semantic architecture",
-      "status": "NOT_STARTED",
       "priority": "HIGH",
       "due": "2026-11-05T17:00:00Z",
       "implementation_state": "QUEUED",
@@ -198,13 +196,13 @@
         "cloudflare_d1",
         "github_write"
       ],
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536607894753?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536607894753?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "SNOWBALL-WP7",
       "hubspot_id": 536743356608,
       "subject": "Audience, social, editorial, SEO and e-commerce flywheels",
-      "status": "NOT_STARTED",
       "priority": "MEDIUM",
       "due": "2026-11-06T17:00:00Z",
       "implementation_state": "QUEUED",
@@ -213,13 +211,13 @@
       "capabilities": [
         "public_read"
       ],
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536743356608?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536743356608?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "SNOWBALL-WP8",
       "hubspot_id": 536646179030,
       "subject": "Transparent procurement, funding and financial controls",
-      "status": "NOT_STARTED",
       "priority": "HIGH",
       "due": "2026-11-04T17:00:00Z",
       "implementation_state": "IN_PROGRESS_REGISTER_PUBLISHED",
@@ -229,13 +227,13 @@
         "hubspot_read",
         "github_write"
       ],
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536646179030?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536646179030?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "SNOWBALL-WP9",
       "hubspot_id": 536861939938,
       "subject": "Patagonia Great House Farm II feasibility",
-      "status": "NOT_STARTED",
       "priority": "MEDIUM",
       "due": "2026-11-10T17:00:00Z",
       "implementation_state": "QUEUED",
@@ -244,13 +242,13 @@
       "capabilities": [
         "public_read"
       ],
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536861939938?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536861939938?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "SNOWBALL-WP10",
       "hubspot_id": 536743356609,
       "subject": "Quality, privacy, red-team and continuous improvement",
-      "status": "NOT_STARTED",
       "priority": "HIGH",
       "due": "2026-11-05T17:00:00Z",
       "implementation_state": "IN_PROGRESS_CONTROL_UPDATES",
@@ -260,13 +258,13 @@
         "hubspot_read",
         "github_write"
       ],
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536743356609?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536743356609?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "PROCUREMENT",
       "hubspot_id": 536712488146,
       "subject": "Planned procurement register — no spend authorised",
-      "status": "NOT_STARTED",
       "priority": "HIGH",
       "due": "2026-11-04T17:00:00Z",
       "implementation_state": "IN_PROGRESS_REGISTER_PUBLISHED",
@@ -277,13 +275,13 @@
         "hubspot_read",
         "github_write"
       ],
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536712488146?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536712488146?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "DATA-ARCH",
       "hubspot_id": 536517856461,
       "subject": "Cedwyn data-driven architecture programme",
-      "status": "NOT_STARTED",
       "priority": "HIGH",
       "due": "2026-12-05T17:00:00Z",
       "implementation_state": "IN_PROGRESS_EXISTING_PROGRAMME",
@@ -294,13 +292,13 @@
         "cloudflare_d1",
         "hubspot_read"
       ],
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536517856461?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/536517856461?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     },
     {
       "id": "TRIGGER-REVIEW",
       "hubspot_id": 532687286497,
       "subject": "Confidential incident-review queue",
-      "status": "NOT_STARTED",
       "priority": "HIGH",
       "due": "2026-11-05T17:00:00Z",
       "implementation_state": "CONTROLLED_PRIVATE_QUEUE",
@@ -311,7 +309,8 @@
         "owner_or_legal_review"
       ],
       "visibility": "metadata_only",
-      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/532687286497?utm_source=cedwyn_agent_bridge&utm_medium=machine_index"
+      "hubspot_url": "https://app.hubspot.com/tasks/149419802/view/all/task/532687286497?utm_source=cedwyn_agent_bridge&utm_medium=machine_index",
+      "hubspot_status": "NOT_STARTED"
     }
   ],
   "prohibitions": [
