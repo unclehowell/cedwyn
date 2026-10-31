@@ -8,6 +8,7 @@
   var lexUrl = (me && me.getAttribute("data-lexicon")) || (base + "lexicon.json");
   var scope = (me && me.getAttribute("data-scope")) || "main";
   var root = document.querySelector(scope) || document.querySelector("article") || document.body;
+  if (root.matches && root.matches("main.p2.arc")) return;
   var skip = /^(A|ABBR|BUTTON|CODE|DIALOG|H1|H2|H3|H4|H5|H6|INPUT|LABEL|NAV|OPTION|PRE|SCRIPT|SELECT|STYLE|SUMMARY|SVG|TEXTAREA)$/;
   function ignored(node) {
     for (var p = node.parentElement; p && p !== root.parentElement; p = p.parentElement) {
@@ -16,7 +17,7 @@
     }
     return false;
   }
-  function esc(s) { return String(s).replace(/[.*+?^${}()|[\\]\\\\]/g, "\\$&"); }
+  function esc(s) { return String(s).split("").map(function(c){return ".+*?^$()[]{}|\\\\".indexOf(c)>=0?"\\"+c:c;}).join(""); }
   function init(lex) {
     var entries = [], used = Object.create(null);
     (lex.concepts || []).forEach(function (c) {
@@ -42,9 +43,10 @@
         var here=location.href.split("#")[0].replace(/index\.html$/,"").replace(/\/$/,"/");
         var dest=hit.url.replace(/\/$/,"/");
         if (here===dest) { used[hit.id]=true; continue; }
-        if (m.index>last) frag.appendChild(document.createTextNode(s.slice(last,m.index)));
+        var start=m.index+m[1].length;
+        if (start>last) frag.appendChild(document.createTextNode(s.slice(last,start)));
         var a=document.createElement("a"); a.className="cedwyn-wikilink"; a.href=hit.url; a.textContent=m[2]; a.title=hit.summary; a.setAttribute("data-nomlecture",hit.id);
-        frag.appendChild(a); last=m.index+m[2].length; used[hit.id]=true; any=true;
+        frag.appendChild(a); last=start+m[2].length; used[hit.id]=true; any=true;
       }
       if (!any) return;
       if (last<s.length) frag.appendChild(document.createTextNode(s.slice(last)));
