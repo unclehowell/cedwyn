@@ -83,7 +83,7 @@ async function main() {
   assert.equal(status.api, 'document.modelContext');
   assert.equal(status.verified, true);
   assert.equal(status.registered, true);
-  assert.equal(registered.length, 8, 'all eight tools must register');
+  assert.equal(registered.length, 11, 'all eleven tools must register');
   assert.equal(clientLoads, 0, 'catalogue client must load only when called');
 
   const tool = registered.find(item => item.name === 'get_central_evidence_record');
@@ -95,6 +95,6 @@ async function main() {
   assert.equal(result.record.assessment.interpretation, 'Interpretation kept separate.');
   assert.equal(clientLoads, 1, 'registered tool should lazy-load the catalogue client');
   assert.ok(queries.length >= 5, 'registered tool must issue central database queries');
-  console.log('WebMCP smoke test passed: 8 registered and verified; Level 1 record read through registered tool.');
+  console.log('WebMCP smoke test passed: 11 registered and verified; Level 1 record read through registered tool.');
 }
 main().catch(err => { console.error(err); process.exitCode = 1; });
