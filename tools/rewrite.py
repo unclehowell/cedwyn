@@ -37,7 +37,7 @@ binary_files = [p for p in files if p.suffix.lower() in BIN]
 by_sha, dedupe_metrics = index_binary_files(binary_files)
 print('rewrite: binary index', json.dumps(dedupe_metrics), flush=True)
 named_in_data = {}
-NAMERX = re.compile(r'[\\w\\-.%]+\\.(?:jpe?g|png|gif|webp|svg|avif|ico|pdf|mp3|m4a|ogg|wav|mp4|webm|mov|woff2?|ttf|otf|eot)', re.I)
+NAMERX = re.compile(r'[\w\-.%]+\.(?:jpe?g|png|gif|webp|svg|avif|ico|pdf|mp3|m4a|ogg|wav|mp4|webm|mov|woff2?|ttf|otf|eot)', re.I)
 named_scan_started = _tt.perf_counter()
 named_scan_files = 0
 named_scan_bytes = 0
@@ -51,7 +51,7 @@ for p in files:
         try: s = p.read_text('utf-8', 'ignore')
         except Exception: continue
         named_scan_files += 1; named_scan_bytes += len(s.encode('utf-8', 'ignore'))
-        for sc in re.findall(r'<script\\b[^>]*>(.*?)</script>', s, re.S | re.I):
+        for sc in re.findall(r'<script\b[^>]*>(.*?)</script>', s, re.S | re.I):
             named_in_data.setdefault('*', set()).update(x.lower() for x in NAMERX.findall(sc))
 named_scan_seconds = round(_tt.perf_counter() - named_scan_started, 3)
 dedupe_metrics.update({
