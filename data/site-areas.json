@@ -1,8 +1,10 @@
 {
   "schema": "cedwyn_page_areas/v1",
   "generated_for": "visitor-facing page area grouping; build/source themes remain intact for backward compatibility",
-  "area_count": 36,
-  "source_theme_count": 44,
+  "area_count": 37,
+  "source_theme_count": 45,
+  "parcel_total": 59,
+  "parcel_label_rule": "Every webapp shows 'NN of 59' in its header (NN = serendipity_slot, 59 = parcel_total), linked to the shared parcel modal /_cedwyn/parcel-modal.js. Each webapp's secondary duty is to gather everything about its parcel. Slots 1-36 are the original page areas; new webapps take the next free slot (37 = That Old Chestnut, 31 Oct 2026). The canonical list of the estate's 59 parcels is still to be fixed; until then NN is an editorial index, not a plot number.",
   "mapping_note": "The slot number is a serendipity index only, not the historic tithe-apportionment plot number. A specific plot number must be added only after the EV-0215 parcel schedule has been checked row by row. This mapping does not assert ownership, boundaries, geography, or legal equivalence.",
   "merge_rules": [
     {
@@ -529,6 +531,21 @@
       "path": "/blog/",
       "description": "Dated research posts.",
       "serendipity_slot": 36,
+      "parcel_record": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
+      "tithe_parcel_number": null,
+      "parcel_mapping_status": "historic_plot_number_pending_verification"
+    },
+    {
+      "id": "that-old-chestnut",
+      "title": "That Old Chestnut",
+      "cy": "Yr Hen Dric",
+      "es": "El truco de siempre",
+      "source_themes": [
+        "that-old-chestnut"
+      ],
+      "path": "/that-old-chestnut/",
+      "description": "FOI and EIR replies read line by line: refusal-setup wording and 'not held' answers that later became records found, with the statute each points at.",
+      "serendipity_slot": 37,
       "parcel_record": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
       "tithe_parcel_number": null,
       "parcel_mapping_status": "historic_plot_number_pending_verification"
