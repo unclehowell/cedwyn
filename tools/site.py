@@ -162,6 +162,11 @@ lines += ['/email/api /email/api/ 301', '/email/api/records /email/view/index.js
           '/email/api/openapi.json /email/api/ 302', '/email/api/export /email/api/ 302', '/email/api/export/ /email/api/ 302',
           '/email/api/message /email/view/ 302', '/email/api/search /email/view/ 302', '/email/api/thread /email/view/ 302']
 lines += ['/graphql /graphql/ 301', '/catalogue /catalogue/ 301']
+# 31 Oct 2026 (P-117): funnel pings (basecamp.js track(): GET /_cedwyn/ev/<event>/<book>/<page>) answer 200 from a tiny file instead of
+# 404 (GET) / 405 (POST); the zone's request analytics still count the original path (work/outreach/funnel_events.py).
+lines += ['/_cedwyn/ev/* /_cedwyn/ev.txt 200']
+(DIST / '_cedwyn').mkdir(parents=True, exist_ok=True)
+(DIST / '_cedwyn' / 'ev.txt').write_text('ok\n')
 # 27 Oct 2026 (Sion: fix every 'That page did not open'): links that landed on the fallback page in the 27 Oct crawl. Cross-theme links a
 # theme wrote as /<theme>/<other>/... go to the other theme; Sphinx index/search/release-note links the evidence docs no longer carry go to the
 # document's own page; the kissed-frogs wiki copy points at the wiki. Dynamic lines first; the 90-line cap reserves room for section and e-book API routes. - Sion's Tab agent
