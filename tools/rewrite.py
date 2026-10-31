@@ -8,6 +8,7 @@
 4. /_cedwyn/runtime.js is inserted first in <head> (ghf-boot.js stays last). It prefixes script-made paths and guards links.
 Writes dist/_rewrite_report.json. - Sion's Tab agent"""
 import json, os, re, sys, hashlib, pathlib, posixpath, shutil, urllib.parse
+from dedupe_index import index_binary_files
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CFG = json.load(open(ROOT / 'themes.json'))
 DIST = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else 'dist')
@@ -32,10 +33,9 @@ import time as _tt; _T0 = _tt.time()
 
 # ---------- 1. dedupe plan
 files = [p for p in DIST.rglob('*') if p.is_file() and len(p.parts) > D + 1 and p.parts[D] in TIDS]
-by_sha = {}
-for p in files:
-    if p.suffix.lower() in BIN:
-        h = hashlib.sha256(p.read_bytes()).hexdigest(); by_sha.setdefault(h, []).append(p)
+binary_files = [p for p in files if p.suffix.lower() in BIN]
+by_sha, dedupe_metrics = index_binary_files(binary_files)
+print('rewrite: binary index', json.dumps(dedupe_metrics), flush=True)
 named_in_data = {}
 NAMERX = re.compile(r'[\w\-.%]+\.(?:jpe?g|png|gif|webp|svg|avif|ico|pdf|mp3|m4a|ogg|wav|mp4|webm|mov|woff2?|ttf|otf|eot)', re.I)
 for p in files:
@@ -218,7 +218,7 @@ for tid in TIDS:
         f.unlink()
     h = DIST / tid / '_headers'
     if h.exists(): h.unlink()
-rep = dict(stats, dedupe_files_moved=len(moved), dedupe_bytes_saved=saved, blob_store_bytes=blob_bytes, kept_for_scripts=kept_for_scripts, theme_redirects=len(red))
+rep = dict(stats, **dedupe_metrics, dedupe_files_moved=len(moved), dedupe_bytes_saved=saved, blob_store_bytes=blob_bytes, kept_for_scripts=kept_for_scripts, theme_redirects=len(red))
 (DIST / '_theme_redirects.txt').write_text('\n'.join(red[:1500]))
 json.dump(rep, open(DIST / '_rewrite_report.json', 'w'), indent=1)
 print(json.dumps(rep))
