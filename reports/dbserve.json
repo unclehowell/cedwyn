@@ -1,33 +1,33 @@
 {
- "db_version": "74e8f79f48cb",
- "paths_served_from_db": 7327,
- "blobs": 4759,
+ "db_version": "d2d907d783a3",
+ "paths_served_from_db": 7323,
+ "blobs": 4755,
  "files_dropped": {
-  "document": 3298,
-  "image": 1552,
-  "data": 1394,
+  "document": 3301,
+  "image": 1568,
+  "data": 1390,
   "audio": 84
  },
  "bytes_dropped": {
-  "document": 1274210860,
-  "image": 146483331,
-  "data": 35667693,
+  "document": 1274591774,
+  "image": 148160276,
+  "data": 35685652,
   "audio": 14922925
  },
- "bytes_dropped_total": 1471284809,
+ "bytes_dropped_total": 1473360627,
  "files_kept_as_well": {
-  "image": 885,
+  "image": 869,
   "data": 71,
-  "document": 15
+  "document": 12
  },
  "kept_why": {
-  "named in page markup": 768,
-  "link/meta tag": 44,
+  "named in page markup": 752,
+  "link/meta tag": 45,
   "css url()": 27,
   "fetched by script": 13,
   "fetched by browsers outside a service worker": 15,
   "webapp database / A2UI surface (read without a service worker)": 10,
-  "page without runtime": 78,
+  "page without runtime": 74,
   "fetched by script (built path)": 16
  },
  "kept_examples": [
