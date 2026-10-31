@@ -33,6 +33,12 @@ for h, tid in CFG.get('extra_hosts', {}).items():
 APEX = sorted(CFG['apex']['paths'].items(), key=lambda kv: -len(kv[0]))
 TILES = CFG.get('allowed_tile_templates', [])
 CHECKOUT = ('buy.stripe.com', 'checkout.stripe.com', 'gumroad.com')   # checkout links stay direct (see classify)
+# 31 Oct 2026 (P-114): the WordPress copy's privacy script asks public-api.wordpress.com/geo/ for the visitor's region with an
+# XHR and JSON.parse()s the answer. Sent to /wayback/go/ it got an HTML page and threw "Unexpected token '<' ... is not valid
+# JSON" on every wiki page. It now gets an empty JSON answer as a data: address (region '' = no state privacy rule applies; no
+# outbound request). GEO_DONE also repairs pages rewritten by earlier builds. - Sion's Tab agent
+GEO_EMPTY = 'data:application/json,%7B%7D'
+GEO_DONE = re.compile(r'(?:https://cedwyn\.bucklerfamily\.estate)?/wayback/go/\?u=https%3A%2F%2Fpublic-api\.wordpress\.com%2Fgeo%2F', re.I)
 NS = {'www.w3.org', 'w3.org', 'schema.org', 'purl.org', 'ogp.me', 'xmlns.com', 'ns.adobe.com', 'www.inkscape.org',
       'sodipodi.sourceforge.net', 'creativecommons.org', 'www.openarchives.org', 'www.sitemaps.org', 'docs.oasis-open.org',
       'rdfs.org', 'web.resource.org', 'www.google.com/schemas', 'search.yahoo.com', 'ns.attribution.cloudflare.com'}
@@ -101,12 +107,14 @@ def classify(m):
     # old 'Wales at Six' Video 1 on /research/ loaded an HTML page instead of a player. The bare prefix stays direct; the ids
     # are the authored data-yt attributes, listed with their oEmbed check in themes.json. - Sion's Tab agent
     if host in ('www.youtube-nocookie.com', 'youtube-nocookie.com') and path == '/embed/': return 'ns', None
+    if host == 'public-api.wordpress.com' and path.startswith('/geo'): return 'geo', None   # P-114, see GEO_EMPTY
     return 'ext', None
 
 def replacement(m, absctx, css=False):
     kind, _ = classify(m)
     raw = m.group(0)
     if kind in ('self', 'ns'): return raw, None
+    if kind == 'geo': return GEO_EMPTY, None
     esc = '\\/' in raw
     host = m.group(4).lower(); full = raw.replace('\\/', '/')
     if not full.lower().startswith('http'): full = 'https:' + full
@@ -206,6 +214,7 @@ def do_html(s, page):
             if m.group(3) and not re.match(r'(?:https?:)?//(?:www\.)?bucklerfamily\.estate$|/dartboard$', pre): return m.group(0)
             return '/_cedwyn/ghf/' + (m.group(2) or m.group(3)) + '.js?v=2.1.6'
         s = GHF_SRC.sub(ghf, s)
+        s, k5 = GEO_DONE.subn(GEO_EMPTY, s); stats['geo_fixed'] = stats.get('geo_fixed', 0) + k5   # P-114
     # split into comments / script+style blocks / markup, keep comments and text as written
     out = []; pos = 0
     tokens = sorted([(mm.start(), mm.end(), 'c', mm) for mm in COMMENT.finditer(s)] + [(mm.start(), mm.end(), 'b', mm) for mm in BLOCK.finditer(s)])
