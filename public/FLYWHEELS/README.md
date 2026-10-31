@@ -11,6 +11,7 @@ Every self-running loop on the project. Each has a runner, state, a log, a fixed
 | [Nightly drafts engine](drafts-engine.md) | daily 05:30 UK | Keep every due information-request draft and chaser written, in thread, ready for review. |
 | [Contacts flywheel](contacts.md) | daily 03:30 UK | Find institutions and groups not yet contacted that may hold records, work out what each may hold, and open a hive draft for each. |
 | [Snowball control audit](snowball-control-audit.md) | daily, flexible morning target | Reconcile HubSpot, the public task mirror, GitHub builds, Pages/Workers, pending agent contributions and X/Grok handoffs. |
+| [Cedwyn flow watch — anti-stagnation control plane](flow-watch.md) | GitHub push/build events + five-minute reconciliation | Detect stalled queues, failed builds, stale production revisions and unpublished Library/product versions; require every agent to record progress, ownership and proof. |
 | [Hive check-in](hive.md) | every 5 minutes | Take this agent's turns on hive drafts: one material review or permitted route action per turn, then pass the turn on. |
 | [Daily site flywheel](site-daily.md) | daily 12:00 UK | Measure every section and apply safe fixes, verified live at 390 px; log everything else as proposed. |
 | [First-seen detector](first-seen.md) | every 6 hours | Detect any record about the farm that quietly appears online and register it with its first-seen date. |
