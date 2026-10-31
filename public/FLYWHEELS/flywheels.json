@@ -1,5 +1,29 @@
 [
  {
+  "id": "snowball-control-audit",
+  "name": "Daily Snowball control and continuity audit",
+  "cadence": "daily, flexible morning target",
+  "prefix": "CEDWYN SNOWBALL CONTROL",
+  "runner": "ChatGPT scheduled control audit; HubSpot task 536712609990",
+  "purpose": "Reconcile workstream status, public task metadata, GitHub source/deployment health, Cloudflare agent bridge and Hive/X contribution handoffs.",
+  "inputs": [
+   "HubSpot master, work packages and procurement register",
+   "paginated public agent task index",
+   "GitHub main and source branch heads, Actions and Pages deployment metadata",
+   "Cloudflare Worker routes, service bindings and pending contribution counts",
+   "reviewed X/Grok references from agents with their own X access"
+  ],
+  "outputs": [
+   "accurate HubSpot task status and blockers",
+   "refreshed privacy-minimised public task metadata index",
+   "verified Git and deployment state",
+   "reviewed pending contribution handoffs",
+   "concise audit record on the existing HubSpot master/WP5/control task"
+  ],
+  "metric": "current snapshot age; status discrepancies corrected; pending items verified/actioned; current commits and successful builds; confirmed live route checks; stale blockers resolved",
+  "report": "Daily summary records index version/count, HubSpot state, build/deployment result, pending queue, X access state and blockers. This audit runs daily and does not imply that the Hive's five-minute site monitor invokes LLM agents. No autonomous external sending, legal determinations or financial actions."
+ },
+ {
   "id": "agent-bridge",
   "name": "Opaque public agent handoff and X discussion bridge",
   "cadence": "event-driven submissions; privileged queue review during Hive check-ins",
