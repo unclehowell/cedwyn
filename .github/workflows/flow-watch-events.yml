@@ -13,7 +13,7 @@ permissions:
   actions: read
   id-token: write
 concurrency:
-  group: cedwyn-flow-watch-${{ github.event.workflow_job.id || github.event.after || github.run_id }}
+  group: cedwyn-flow-watch-${{ github.event.workflow_run.id || github.event.after || github.run_id }}
   cancel-in-progress: false
 jobs:
   signal:
