@@ -3,13 +3,14 @@
 (connected Cloudflare account). Copied from work/cedwyn-academy/deploy.py (the reference pattern). Binding: DB = D1 cedwyn-apps
 (state.json db_id; read-only use: SELECT on core_items, the master evidence catalogue). Every step logged with its undo in
 work/cf-rebalance/changes.json and state.json history. Run tools/build_snapshot.mjs first to refresh the fallback snapshot.
-Usage: TAB_TASK_ID=<task> timeout -k 5 600 python3 deploy.py "<message>" [--setup] [--stage] [--promote <version id>]   — Tab agent, task 5ec27d7d"""
+Usage: TAB_TASK_ID=<task> timeout -k 5 600 python3 deploy.py "<message>" [--setup] [--stage] [--promote <version id>] | deploy.py --routes   — Tab agent, task 5ec27d7d"""
 import json, os, sys, base64, datetime as dt
 sys.path.insert(0, '/home/user/tab/work/agent-ready')
 import deploy as AR
 HERE = os.path.dirname(os.path.abspath(__file__)); W = os.path.join(HERE, 'worker')
 ACCT, ZONE, CF = AR.ACCT, AR.ZONE, AR.CF
-NAME = 'cedwyn-calendar'; HOST = 'calendar.bucklerfamily.estate'
+NAME = 'cedwyn-calendar'; HOST = 'calendar.bucklerfamily.estate'   # 0.0.2: HOST only 301-redirects; the app lives at cedwyn.bucklerfamily.estate/calendar/ (ROUTES)
+ROUTES = ['cedwyn.bucklerfamily.estate/calendar*', 'cedwyn.bucklerfamily.estate/_cedwyn/graph/calendar.json*']   # the * lets ?v= query strings through (an exact pattern did not match them, checked live)
 SP = os.path.join(HERE, 'state.json'); ST = json.load(open(SP)) if os.path.exists(SP) else {}
 def save(): json.dump(ST, open(SP, 'w'), indent=1)
 def call(method, path, body=None):
@@ -70,7 +71,16 @@ def domain():
         s, b = call('PUT', f'/accounts/{ACCT}/workers/domains', {"hostname": HOST, "service": NAME, "zone_id": ZONE, "environment": "production"})
         print('domain', s, json.dumps(b)[:400])
         if s == 200: ST['domain_id'] = b['result']['id']; save(); log(f"{NAME}: custom domain {HOST} ({ST['domain_id']})", f"DELETE /accounts/{ACCT}/workers/domains/{ST['domain_id']} (also removes the DNS record)")
+def routes():   # 0.0.2 (task 6383376a): Worker routes on the bucklerfamily.estate zone; /calendar/ was a 404 on cedwyn before (checked live)
+    s, b = call('GET', f'/zones/{ZONE}/workers/routes'); have = {r['pattern']: r for r in (b.get('result') or [])}
+    for pat in ROUTES:
+        if pat in have: print('route exists', pat, have[pat].get('script')); continue
+        s, b = call('POST', f'/zones/{ZONE}/workers/routes', {"pattern": pat, "script": NAME}); print('route', pat, s, json.dumps(b)[:300])
+        if s in (200, 201):
+            rid = b['result']['id']; ST.setdefault('routes', {})[pat] = rid; save()
+            log(f"{NAME}: Worker route {pat} ({rid})", f"DELETE /zones/{ZONE}/workers/routes/{rid}")
 if __name__ == '__main__':
+    if '--routes' in sys.argv: routes(); raise SystemExit(0)
     if '--promote' in sys.argv: promote(sys.argv[sys.argv.index('--promote') + 1], sys.argv[1]); raise SystemExit(0)
     if '--setup' in sys.argv: setup()
     deploy(sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else 'cedwyn-calendar update', stage='--stage' in sys.argv)
