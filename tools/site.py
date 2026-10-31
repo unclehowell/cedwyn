@@ -438,6 +438,12 @@ def _shop_strip(dist):
     targets = [('hive/index.html', 'hive'), ('nomenclature/index.html', 'nomenclature'),
                ('documentary/index.html', 'documentary'), ('wayback/go/index.html', 'wayback-go')]
     targets += [(str(p.relative_to(dist)), 'nom-c') for p in sorted((dist / 'nomenclature' / 'c').glob('*/index.html'))]
+    # sf35 (31 Oct 2026): section front pages with non-US entry traffic and no route to /ebooks/ (CF 3 days to 01:00Z),
+    # plus the directory's business pages, the site's only pages Google ranks in the top 10 (local searches).
+    for _s in ('directory', 'research', 'research/timeline', 'wiki', 'fb', 'accounts', 'glossary', 'authorities', 'records',
+               'wdtk', 'email', 'review', 'meeting', 'watchtower', 'projects', 'courtdrills', 'csscpsg', 'infographic', 'docs'):
+        targets.append((_s + '/index.html', _s.replace('/', '-')))
+    targets += [(str(p.relative_to(dist)), 'dir') for p in sorted((dist / 'directory' / 'p').glob('*/index.html'))]
     n = 0
     for rel, tag in targets:
         f = dist / rel
@@ -449,8 +455,10 @@ def _shop_strip(dist):
         m = _re.search(r'<main\b[^>]*>', h)
         if not m:
             continue
+        text = ('Local history: Great House Farm (T&#375; Mawr), Llandough, 1667&ndash;1988, in the e-books. First edition free &rarr;'
+                if tag in ('dir', 'directory') else 'Read the farm\'s history in the e-books: first edition free &rarr;')
         line = ('<p class="ebook-strip" style="margin:.5rem 0 .75rem;font-size:16px;line-height:1.4">'
-                '<a href="/r/strip-%s">Read the farm\'s history in the e-books: first edition free &rarr;</a></p>' % tag)
+                '<a href="/r/strip-%s">%s</a></p>' % (tag, text))
         f.write_text(h[:m.end()] + line + h[m.end():], encoding='utf-8')
         n += 1
     print('shop strip: added to', n, 'pages')
