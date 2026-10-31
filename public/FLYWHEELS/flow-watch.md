@@ -36,7 +36,7 @@ Trace the same source revision through:
 
 Use the exact SHA and run ID at every step. The live `/_cedwyn/reports/build.json` `commit` and `built_at` are the public served-revision proof. Report the missing transition, not simply "deploy failed".
 
-The first operational monitor watches main push and build-job events (signed GitHub OIDC), reconciles every five minutes, and reads the production stamp. It must distinguish:
+The first operational monitor watches main push and workflow_run lifecycle events (signed GitHub OIDC), reconciles every five minutes, and reads the production stamp. It must distinguish:
 - source revision not queued;
 - queued with no active publisher;
 - active build within its measured baseline;
