@@ -20,6 +20,14 @@ console.log("estate", JSON.stringify(runEstate())); // independence: wiki links 
   console.log("ghf-lang+boot", nL);
 }
 
+// Cedwyn nomenclature links (31 Oct 2026): shared lexicon-backed links in the independent Projects deployment.
+{
+  const NOM_LINKS = '<script src="https://nomenclature.bucklerfamily.estate/wikilinks.js?v=1.0.1" defer data-cedwyn-wikilinks></script>';
+  const rootN = path.join(path.dirname(new URL(import.meta.url).pathname), "public"); let nN = 0;
+  (function walkN(d) { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) walkN(p); else if (f.endsWith(".html")) { let t = fs.readFileSync(p, "utf8"); if (!t.includes("data-cedwyn-wikilinks") && t.includes("</head>")) { t = t.replace("</head>", NOM_LINKS + "\\n</head>"); fs.writeFileSync(p, t); nN++; } } } })(rootN);
+  console.log("cedwyn-wikilinks", nN);
+}
+
 // ebook cta (20 Oct 2026): shared e-book card (prices come from cta.js, v3 ladder) on every page (idempotent; links to the shop page)
 {
   const EBK = '<script src="https://bucklerfamily.estate/ebook/cta.js" defer></script>';
