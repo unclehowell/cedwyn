@@ -2,7 +2,7 @@
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "$id": "https://cedwyn.bucklerfamily.estate/_cedwyn/core/core-record.schema.json",
  "title": "Cedwyn core record",
- "version": "0.2.1",
+ "version": "0.3.0",
  "description": "One record in the Cedwyn central catalogue (data/core/records/*.json). Public text: neutral third person; provenance names the source document only.",
  "type": "object",
  "required": [
@@ -14,7 +14,7 @@
  "properties": {
   "id": {
    "type": "string",
-   "pattern": "^(EV|MR|CC|KF|RET|PL|PE|EVT|AR|TS|OBS)-[A-Z0-9-]+$"
+   "pattern": "^(EV|MR|CC|KF|RET|PL|PE|EVT|AR|TS|OBS|TOC)-[A-Z0-9-]+$"
   },
   "kind": {
    "enum": [
@@ -27,7 +27,8 @@
     "missing_record",
     "observation",
     "testimony",
-    "catalogue_candidate"
+    "catalogue_candidate",
+    "foi_finding"
    ]
   },
   "slug": {
@@ -265,6 +266,84 @@
   },
   "reworded": {
    "type": "boolean"
+  },
+  "finding": {
+   "type": "object",
+   "description": "kind=foi_finding only (That Old Chestnut, webapp 37 of 59): one public body's reply to an information request, read for refusal-setup wording and for 'not held' answers that later became records found. Role titles only; quotes pass the public gate.",
+   "properties": {
+    "class": {
+     "enum": [
+      "clear",
+      "borderline",
+      "language"
+     ]
+    },
+    "institution": {
+     "type": "string"
+    },
+    "negative_date": {
+     "type": "string"
+    },
+    "positive_date": {
+     "type": "string"
+    },
+    "months_elapsed": {
+     "type": [
+      "number",
+      "null"
+     ]
+    },
+    "email_volume": {
+     "type": "string"
+    },
+    "negative_quote": {
+     "type": "string"
+    },
+    "positive_quote": {
+     "type": "string"
+    },
+    "positive_nature": {
+     "type": "string"
+    },
+    "trigger": {
+     "type": "string"
+    },
+    "disclosure_type": {
+     "type": "string"
+    },
+    "conduct": {
+     "type": "string"
+    },
+    "interim_disclosure": {
+     "type": "string"
+    },
+    "terms": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "term": {
+        "type": "string"
+       },
+       "statute": {
+        "type": "string"
+       },
+       "note": {
+        "type": "string"
+       }
+      }
+     }
+    },
+    "open": {
+     "type": "boolean"
+    },
+    "held_back": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   }
   },
   "public": {
    "type": "boolean"
