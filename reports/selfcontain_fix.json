@@ -1,26 +1,365 @@
 {
- "files": 24504,
- "changed": 3117,
- "sub": 0,
- "ext": 0,
- "cdn": 0,
- "boot_added": 0,
- "boot_moved": 3117,
- "tags_dropped": 0,
+ "files": 24413,
+ "changed": 12997,
+ "sub": 33968,
+ "ext": 76313,
+ "cdn": 3232,
+ "boot_added": 2718,
+ "boot_moved": 9324,
+ "tags_dropped": 17,
  "inline_boot_removed": 0,
- "tour_removed": 0,
+ "tour_removed": 14,
  "geo_fixed": 0,
- "redirects_to_themes": 0,
+ "agent_tools_added": 3120,
+ "yt_links_removed": 22,
+ "redirects_to_themes": 42,
  "filled_missing": {
-  "wanted": 0,
-  "copied": 0,
-  "not_found": [],
-  "rounds": 0,
-  "not_found_n": 0
+  "wanted": 6648,
+  "copied": 1561,
+  "not_found": [
+   [
+    "app/agents.json",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "blog/blog/feed.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "blog/ebooks/covers/great-house-farm-wiki-0.2.1.jpg",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "blog/ebooks/covers/tymawr-heritage-0.2.0.jpg",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "blog/ebooks/covers/williams-buckler-family-0.2.0.jpg",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "blog/maps/img/og.jpg",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "blog/story/media/1791868564541.jpg",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "blog/wayback/images/evidence/1824-00-00_wp87_map-of-ty-mawr-dated-1824-uploaded-image.jpg",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "chat/agents.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "cyberspace/agents.json",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/apple-touch-icon.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/data/journal/pages.json",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/favicon-32.png",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/favicon.ico",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "cyberspace/llms.txt",
+    "html fallback (not on the live site either)"
+   ],
+   [
+    "dartboard/1d/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/3d/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/accessibility/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/agent/tools.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/agent/webmcp.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/agents.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ai-policy/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/1988-07-29_cadw_barn-survey-photo-high-resolution.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/1988-07-29_cadw_farmhouse-survey-photo-high-resolution.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/63.24.1.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/63.24.2.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/Correspondence.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/F260213.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/_FOI2026_06174.pdf",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/ghf-lang.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/roadmap.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/webapp-BrfChvhL.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/assets/webapp-BwNSqBjO.css",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/choose/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/cookies/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/dartboard-hoops.webm",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/disclaimer/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ebook/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ebook/pdf.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ebook/pdf.min.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ebook/pdf.worker.min.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ebook/thank-you/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/enemy/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/enquire/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-300-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-400-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-500-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-700-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-ext-400-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/fonts/barlow-latin-ext-700-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ghf-lang.js",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ghf-lang/400-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/ghf-lang/700-normal.woff2",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/legal/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/licence/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/press/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/privacy/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/terms/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "dartboard/unclehowell/cedwyn-movie/main/media/dartboard-hoops-h264-480p.mp4",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/_static/pdf.min.mjs",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/_static/pdf.worker.min.mjs",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/agents.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0001/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0001/latest/html/en/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0002/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0002/latest/html/en/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0003/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0003/latest/html/en/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0004/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0004/latest/html/en/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0005/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0005/latest/html/en/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0006/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0006/latest/html/en/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0007/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0007/latest/html/en/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ],
+   [
+    "docs/ghf_evidence/ev_0008/data/journal/pages.json",
+    "HTTP Error 404: Not Found"
+   ]
+  ],
+  "rounds": 3,
+  "pages_fetched": [
+   "story/story/index.html",
+   "dartboard/campus/index.html",
+   "dartboard/webapp/index.html"
+  ],
+  "not_found_n": 3038
  },
- "vendored": 0,
- "vendor_failed": [],
- "vendor_failed_n": 0,
+ "vendored": 178,
+ "vendor_failed": [
+  [
+   "/_ext/s-ssl.wordpress.com/i/logo/wpcom-gray-white.png",
+   "https://s-ssl.wordpress.com/i/logo/wpcom-gray-white.png",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "/_ext/s-ssl.wordpress.com/i/logo/wpcom-gray-white.png",
+   "https://s-ssl.wordpress.com/i/logo/wpcom-gray-white.png",
+   "HTTP Error 403: Forbidden"
+  ]
+ ],
+ "vendor_failed_n": 2,
  "allowed_tile_templates": [
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
