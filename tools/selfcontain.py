@@ -376,6 +376,11 @@ def fill_missing(dry=False, scan=None):
     for t in CFG['themes']:
         base = t.get('crawl') or t.get('live')
         if base: live[t['id']] = base.rstrip('/') + '/'
+    # P-037 (31 Oct 2026): themes marked "no_fill" in themes.json are never filled from their live address. The email theme's live
+    # Worker no longer serves /api/message/*.json, /mail/*.txt, /text-corpus-N.json or /mail-index.json (the texts are served from
+    # /wayback/mail/), so every build asked it for about 2,000 files that all answered 404: about 47.5k Worker requests a day,
+    # half of the account's free daily limit, for nothing. - Sion's Tab agent
+    NOFILL = {t['id'] for t in CFG['themes'] if t.get('no_fill')}
     want = {}
     for p, rel in files():
         if p.suffix.lower() not in ('.html', '.htm', '.json', '.css', '.js'): continue
@@ -383,14 +388,14 @@ def fill_missing(dry=False, scan=None):
         except Exception: continue
         for m in LOCALREF.finditer(s):
             tid, rest, ext = m.group(1), m.group(2), '.' + m.group(3).lower()
-            if tid not in live or ext not in MEDIA_EXT: continue
+            if tid not in live or tid in NOFILL or ext not in MEDIA_EXT: continue
             relp = urllib.parse.unquote(tid + '/' + rest)
             ok = (relp in exists) if exists is not None else (DIST / relp).exists()
             if not ok: want[relp] = live[tid] + urllib.parse.quote(urllib.parse.unquote(rest))
     # crawled themes (apps the crawler could not follow): files their scripts name by relative or root path
     for p in (scan or []):
         rel = p.relative_to(DIST).as_posix(); tid = rel.split('/')[0]
-        if tid not in CRAWLED or tid not in live or p.suffix.lower() not in ('.js', '.mjs', '.json', '.css', '.html'): continue
+        if tid not in CRAWLED or tid not in live or tid in NOFILL or p.suffix.lower() not in ('.js', '.mjs', '.json', '.css', '.html'): continue
         try: s = p.read_text('utf-8', 'ignore')
         except Exception: continue
         for m in RELREF.finditer(s):
