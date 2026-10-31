@@ -252,23 +252,40 @@
  },
  {
   "id": "movie",
-  "name": "Cedwyn film — daily scene",
-  "cadence": "daily 06:00 UK",
+  "name": "Cedwyn documentary — evidence-led sequential scene production",
+  "cadence": "one scene at a time in master-script order; no automatic daily scene without approved source and QA gates",
   "prefix": "CEDWYN MOVIE RUN",
-  "runner": "work/cedwyn-movie/RUNNER.md",
-  "purpose": "Make one two-minute scene a day from the chronology, in Welsh, English and Spanish, and open the next door on /documentary/.",
+  "runner": "public/FLYWHEELS/movie.md",
+  "purpose": "Produce a complete source-led documentary from the Welsh estate and Williams-Buckler matriarchy history. Every scene is a nominal two-minute unit in the approved master sequence, with evidence map, professional screenplay, set/prop/wardrobe design, choreography, camera/sound, rights, consent and continuity review.",
   "inputs": [
-   "the editable prompt in the film repository",
-   "the bible (cast, voices, sets)",
-   "the chronology"
+   "approved documentary bible and master script",
+   "chronology and canonical evidence/artifact IDs with source locations",
+   "contrary evidence, unresolved questions and legal/editorial review",
+   "character, location, voice and likeness permissions",
+   "production prompt, set/continuity bible and verified model/tool access"
   ],
   "outputs": [
-   "one clip under 25 MB",
-   "the door opened",
-   "scripts ten frames ahead"
+   "one reviewed scene pack and sequential rendered scene",
+   "script, evidence map, storyboard and shot list",
+   "cast/voice/likeness, archive, music and other rights record",
+   "model/tool version, prompt, settings, source assets and provenance",
+   "Welsh/English/Spanish subtitle/audio assets where approved",
+   "version history, changelog, QA and next scene dependency"
   ],
-  "metric": "one quality clip per day, chronology-correct",
-  "report": "One bubble: \"Door N is open\"."
+  "metric": "percentage of released factual beats with source coverage; scene QA pass; continuity/rights pass; on-sequence scene releases; prior-version preservation",
+  "report": "Report a scene as released only after factual, legal/privacy, rights, creative, continuity and live-release checks pass. New disclosures trigger scene-impact review and may require a versioned re-creation.",
+  "versioning": {
+   "major": "Narrative/structural reset",
+   "minor": "Added or materially revised scene/sequence",
+   "patch": "Correction, grade, mix, subtitle or continuity refinement"
+  },
+  "hubspot": {
+   "wp3": 536861939937,
+   "wp4": 536712479991,
+   "master": 536809740513
+  },
+  "model_access_gate": "Verify official or licensed model identity, availability, capabilities, rights, consent, data handling, API, cost per accepted scene and cancellation before committing spend.",
+  "preserve_previous_versions": true
  },
  {
   "id": "morning-brief",
