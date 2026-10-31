@@ -1,0 +1,83 @@
+/* Cedwyn Academy 2.0.0 — page styles for the near-A2UI components (catalog: /_ui/catalog.json). The header, theme, fonts and header
+   graph are the shared Cedwyn files (/_cedwyn/ghf/ghf-boot.js -> basecamp.js + ghf-theme.css, /_cedwyn/cw-graph.js). The version picker
+   (.cm-vsel/.cm-vlab/.cm-vs) and the access-code box (.cd-gate .cd-g*) use the documentary's own classes and rules (/documentary/movie.css
+   1.6.3), so the three look and behave the same. Dark only: no white grounds. */
+:root{color-scheme:dark;--gold:#d4b25a;--ink:#ece9df;--mut:#a9ab9f;--line:#3a463d;--card:#141916;--card2:#171d19;--ok:#3fb26b;--no:#e0566b}
+html,body{background:#000!important;color:var(--ink)}
+body{margin:0;font:17px/1.6 var(--ghf-font,Barlow,"Helvetica Neue",Arial,system-ui,sans-serif)}
+*{box-sizing:border-box}
+main.ac{max-width:46rem;margin:0 auto;padding:14px 16px 36px;overflow-wrap:anywhere}
+main.ac a{color:var(--gold)}
+.ac-kick{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:10px 0 2px}
+main.ac h1{font-size:clamp(26px,6vw,40px);margin:.2em 0 .35em;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+main.ac h2{font-size:clamp(19px,4.6vw,24px);margin:1.5em 0 .5em;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+main.ac h3{font-size:1.05rem;margin:.2em 0 .3em}
+.ac-lead{font-size:1.06rem;color:#dcd9cf}
+.ac-mut{color:var(--mut);font-size:.93rem}
+.ac-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0}
+.ac-card>h2:first-child,.ac-card>h3:first-child{margin-top:0}
+.ac-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ac-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 20px;border-radius:10px;border:1px solid var(--gold);background:var(--gold);color:#1a1408!important;font:600 16px/1.2 inherit;text-decoration:none;cursor:pointer;word-spacing:.12em}
+.ac-btn.sec{background:#221f14;color:var(--gold)!important}
+.ac-btn[aria-disabled=true],.ac-btn:disabled{opacity:.45;cursor:not-allowed}
+.ac-tag{display:inline-block;font:600 13px/1.5 inherit;letter-spacing:.04em;border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:1px 10px;text-transform:none}
+.ac-tag.free{border-color:var(--ok);color:var(--ok)}
+.ac-list{padding-left:1.25em}.ac-list li{margin:.35em 0}.ac-list b{display:block;color:var(--ink)}
+.ac-note{border-left:3px solid var(--gold);padding:8px 12px;margin:14px 0;font-weight:600;background:#12160f}
+/* ⓘ buttons and modals (dark) */
+.ib{background:none;border:1px solid color-mix(in srgb,var(--ink) 40%,transparent);color:var(--ink);border-radius:50%;width:30px;height:30px;font-size:15px;line-height:1;cursor:pointer;padding:0;flex:none;text-transform:none;letter-spacing:0;font-weight:400}
+dialog.im{background:var(--card2);color:var(--ink);border:1px solid var(--gold);border-radius:14px;max-width:min(36rem,92vw);padding:18px 18px 10px;box-shadow:0 12px 44px rgba(0,0,0,.6)}
+dialog.im::backdrop{background:rgba(0,0,0,.72)}dialog.im h3{margin:.1em 36px .5em 0;font-size:1.1rem}
+dialog.im .x{float:right;width:40px;height:40px;margin:-8px -8px 0 0;background:none;border:0;color:var(--ink);font-size:24px;cursor:pointer}
+dialog.im a{color:var(--gold)}
+/* version picker: the documentary's .cm-vsel rules (movie.css 1.6.3), unscoped from body.cm */
+.cm-vsel{display:flex;flex-direction:column;align-items:stretch;gap:4px;max-width:100%;min-width:0;margin:8px 0 10px;padding:0}
+.cm-vlab{display:block;font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--ink);margin:0;cursor:pointer}
+select.cm-vs{-webkit-appearance:none;appearance:none;width:100%;max-width:100%;min-height:44px;box-sizing:border-box;padding:8px 38px 8px 12px;margin:0;border:1px solid var(--line);border-radius:10px;background:#1b221d url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23d4b25a' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 10px center/22px 22px;color:var(--ink);font:600 15px/1.3 inherit;cursor:pointer}
+select.cm-vs:hover,select.cm-vs:focus-visible{border-color:var(--gold)}select.cm-vs:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+select.cm-vs option{background:#171d19;color:#ece9df}
+.cm-vsel .ac-row{flex-wrap:nowrap}.cm-vsel .ac-row select{flex:1 1 auto}
+/* grade ladder */
+ol.ac-grades{list-style:none;margin:10px 0;padding:0;display:grid;gap:12px}
+.ac-grade{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 14px 12px}
+.ac-grade.is-passed{border-color:var(--ok)}.ac-grade.is-locked{opacity:.92}
+.ac-grade h3{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.ac-gn{color:var(--gold);font-weight:700}
+.ac-gst{font-weight:600;margin:.35em 0 .55em;font-size:.95rem}.ac-gst.ok{color:var(--ok)}.ac-gst.lock{color:var(--mut)}
+.ac-lock{border:1px solid var(--gold);border-radius:14px;padding:16px;margin:16px 0;background:#16140c}
+/* join card */
+.ac-price{font-size:1.6rem;font-weight:700;margin:.1em 0 .3em}
+label.ac-tick{display:flex;gap:10px;align-items:flex-start;margin:.7em 0;font-size:.98rem;cursor:pointer}label.ac-tick input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--gold)}
+details.ac-card summary{cursor:pointer;font-weight:600}
+.ac-fam label{display:block;margin:.6em 0 .3em;font-size:.95rem}
+.ac-in{display:block;width:100%;max-width:28rem;min-height:48px;padding:10px 12px;font:600 16px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.04em;color:var(--ink);background:#101512;border:1px solid var(--line);border-radius:10px;text-transform:uppercase}
+/* access-code box: the documentary's .cd-gate rules (movie.css 1.6.3) on an inline panel instead of a dialog */
+div.cd-gate{word-spacing:.12em;width:100%;box-sizing:border-box;border:1px solid var(--gold);border-radius:14px;padding:18px 16px 14px;background:#171d19;color:#ece9df;margin:16px 0;position:relative}
+.cd-gate h2,.cd-gate h3{text-transform:none!important;letter-spacing:.01em!important;margin:0 0 8px;font:600 20px/1.25 Georgia,"Times New Roman",serif!important;color:#ece9df}
+.cd-gate p{margin:0 0 10px}.cd-gate .cd-glead,.cd-gate .cd-gck{color:#c9c7bb;font-size:15px}
+.cd-gate .cd-gl{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#d4b25a;margin:6px 0 6px}
+.cd-gate .cd-grow{display:flex;gap:8px;flex-wrap:wrap}
+.cd-gate .cd-gin{flex:1 1 180px;min-width:0;min-height:48px;box-sizing:border-box;padding:8px 12px;border:1px solid #3a463d;border-radius:10px;background:#101512;color:#ece9df;font:600 17px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase}
+.cd-gate .cd-gin:focus{outline:2px solid #d4b25a;outline-offset:1px}
+.cd-gate button{min-height:48px;padding:8px 16px;border-radius:10px;font-family:inherit;font-weight:600;font-size:15px;line-height:1.2;cursor:pointer;box-sizing:border-box;word-spacing:.18em}
+.cd-gate .cd-gok{border:1px solid #d4b25a;background:#d4b25a;color:#1a1408}.cd-gate .cd-gok:disabled{opacity:.6}
+.cd-gate .cd-gcopy{border:1px solid #3a463d;background:#1e2621;color:#ece9df}
+.cd-gate .cd-gmsg{min-height:1.4em;margin:8px 0 0;font-size:14px;color:#e9d9a6}
+.cd-gate .cd-gcv{font:700 clamp(19px,5.6vw,24px)/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;color:#d4b25a;background:#101512;border:1px dashed #d4b25a;border-radius:10px;padding:12px;text-align:center;user-select:all;overflow-wrap:anywhere}
+.cd-gate .cd-gcl{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#a9ab9f;margin-bottom:6px}
+.cd-gate .cd-gnote{font-size:12.5px;color:#a9ab9f;margin:6px 0 0}
+/* questionnaire */
+#gsticky{position:sticky;top:0;background:#000;padding:8px 0 6px;z-index:2;border-bottom:1px solid #222}
+.bar{height:8px;border-radius:6px;background:#222;overflow:hidden;margin:6px 0 2px}.bar i{display:block;height:100%;background:var(--gold);width:0}
+.qn{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 14px 10px;margin:16px 0}.qn .qt{font-weight:600;margin:0 0 .5em}
+.qn label{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;margin:6px 0;border:1px solid #2c352f;border-radius:10px;cursor:pointer;background:#101512}
+.qn label input{width:20px;height:20px;flex:none;margin-top:3px;accent-color:var(--gold)}
+.qn label.pick{border-color:var(--ink)}.qn label.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,#101512)}.qn label.wrong{border-color:var(--no);background:color-mix(in srgb,var(--no) 14%,#101512)}
+.qn button{margin:8px 8px 4px 0}
+.rv{border-left:3px solid var(--ok);padding:6px 12px;margin:10px 0 4px}.rv.no{border-left-color:var(--no)}
+.rv blockquote{margin:.5em 0;padding:0 0 0 10px;border-left:2px solid #555;font-style:italic}
+.score{border:2px solid var(--ok);border-radius:14px;padding:14px 16px;margin:20px 0;background:var(--card)}.score.no{border-color:var(--no)}
+footer.ac-ft{max-width:46rem;margin:0 auto;padding:0 16px 10px;color:var(--mut);font-size:.9rem}
+@media (max-width:480px){main.ac{padding:10px 14px 30px}.ac-card,.cd-gate{padding:14px 12px}}
+details.ac-codewrap{margin:12px 0}details.ac-codewrap>summary{cursor:pointer;color:var(--gold);font-weight:600;text-decoration:underline;text-underline-offset:3px;list-style:none;display:inline-block;padding:6px 0;min-height:44px;line-height:32px}
+details.ac-codewrap>summary::-webkit-details-marker{display:none}details.ac-codewrap>summary::after{content:" \203A"}details.ac-codewrap[open]>summary::after{content:" \2039"}
+details.ac-codewrap .cd-gate{margin-top:6px}

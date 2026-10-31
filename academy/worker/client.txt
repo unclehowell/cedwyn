@@ -1,0 +1,57 @@
+/* Cedwyn Academy client 2.0.0: wires the data-* hooks the A2UI renderer writes (ⓘ modals, version picker, join ticks, family code,
+   access code) and fills an unlocked questionnaire from /api/grade. Questions and answers only ever arrive from the API once the browser
+   is entitled to them; the page itself carries none. Tab agent, 31 Oct 2026. */
+(function(){
+function E(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function modal(t,html){var d=document.createElement("dialog");d.className="im";var x=E("button","x","\u2715");x.type="button";x.setAttribute("aria-label","Close");x.onclick=function(){d.close();};
+ d.appendChild(x);d.appendChild(E("h3",null,t));var b=E("div");if(typeof html==="string")b.innerHTML=html;else b.appendChild(html);d.appendChild(b);
+ d.addEventListener("click",function(e){if(e.target===d)d.close();});d.addEventListener("close",function(){d.remove();});document.body.appendChild(d);d.showModal();}
+window.acModal=modal;
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-info]");if(!b)return;var t=document.getElementById(b.getAttribute("data-info"));if(t)modal(t.getAttribute("data-title")||"",t.content.cloneNode(true));});
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-copy]");if(!b)return;var v=b.getAttribute("data-copy");
+ (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(function(){b.textContent="Copied";},function(){b.textContent="Select the code to copy it";});});
+var sel=document.getElementById("svsel");
+if(sel){sel.addEventListener("change",function(){var o=sel.options[sel.selectedIndex],go=document.getElementById("svgo");
+ if(sel.getAttribute("data-go")==="1"&&go){go.href=o.getAttribute("data-href");go.textContent=o.getAttribute("data-start")||"Open";}else location.href=o.getAttribute("data-href");});}
+var t1=document.getElementById("t1"),t2=document.getElementById("t2"),jb=document.getElementById("joinbtn"),jh=document.getElementById("joinhint");
+if(jb&&t1&&t2){var up=function(){var ok=t1.checked&&t2.checked;jb.setAttribute("aria-disabled",ok?"false":"true");if(ok)jb.setAttribute("href",jb.getAttribute("data-href"));else jb.removeAttribute("href");if(jh)jh.hidden=ok;};
+ t1.onchange=up;t2.onchange=up;up();jb.addEventListener("click",function(e){if(jb.getAttribute("aria-disabled")==="true"){e.preventDefault();if(jh)jh.textContent="Tick both boxes first, then continue to Stripe's secure checkout.";}else if(window.cedwynTrack)window.cedwynTrack("join");});}
+function post(u,b){return fetch(u,{method:"POST",credentials:"same-origin",cache:"no-store",headers:{"content-type":"application/json"},body:JSON.stringify(b)}).then(function(r){return r.json().catch(function(){return {ok:false,error:r.status===429?"slow_down":"net"};});});}
+var ff=document.getElementById("famf");
+if(ff){ff.addEventListener("submit",function(e){e.preventDefault();var m=document.getElementById("famm"),c=document.getElementById("famc").value.trim();if(!c){m.textContent="Enter the family code.";return;}m.textContent="Checking\u2026";
+ post("/api/member/family",{code:c}).then(function(j){if(j&&(j.ok||j.member)){m.textContent="Family code accepted. Every version is open in this browser.";setTimeout(function(){location.reload();},700);}else m.textContent=j&&j.error==="slow_down"?"Too many tries. Wait a few minutes and try again.":"That family code is not valid.";}).catch(function(){m.textContent="Could not check the code just now. Try again in a moment.";});});}
+document.querySelectorAll("form.codef").forEach(function(cf){cf.addEventListener("submit",function(e){e.preventDefault();var m=cf.querySelector(".cd-gmsg"),bt=cf.querySelector(".cd-gok"),c=cf.querySelector(".cd-gin").value.trim();
+ if(!c){m.textContent="Enter your access code.";return;}m.textContent="Checking\u2026";bt.disabled=true;
+ post("/api/code",{code:c}).then(function(j){bt.disabled=false;if(j&&j.ok){m.textContent="Code accepted. v0.0.2 is open in this browser.";setTimeout(function(){location.href=location.pathname==="/"?"/v0.0.2/":location.pathname;},700);return;}
+  var er=j&&j.error;m.textContent=er==="slow_down"?"Too many tries. Wait ten minutes and try again.":er==="wrong_product"?"That is a documentary code (CDW-). Academy codes start ACD-; documentary codes go on the documentary page.":er==="inactive"?"That code's membership is not active at the moment.":er==="net"?"Could not check the code just now. Try again in a moment.":"That code is not valid. Check it and try again.";})
+ .catch(function(){bt.disabled=false;m.textContent="Could not check the code just now. Try again in a moment.";});});});
+/* questionnaire */
+var Z=document.getElementById("qz");if(!Z)return;
+var V=Z.getAttribute("data-v"),N=+Z.getAttribute("data-g"),Q=document.getElementById("qs"),R=document.getElementById("res"),GP=document.getElementById("gp"),BAR=document.getElementById("gbar"),D=null,busy=false;
+function api(path,body){return fetch("/api/"+path,{method:body?"POST":"GET",credentials:"same-origin",cache:"no-store",headers:body?{"content-type":"application/json"}:{},body:body?JSON.stringify(body):undefined}).then(function(r){return r.json();});}
+function prog(p){var t=D.qs.length,a=p?p.answered:Object.keys(D.answers).length;GP.textContent=V+" \u00b7 answered "+a+" of "+t+" \u00b7 pass mark "+Math.ceil(t*0.9)+" of "+t+" (90%)";BAR.style.width=(100*a/t)+"%";}
+function showRev(box,q,r){var old=box.querySelector(".rv");if(old)old.remove();var v=E("div","rv"+(r.correct?"":" no"));var h=E("p");h.appendChild(E("b",null,r.correct?"\u2713 Correct":"\u2717 Not this time"));v.appendChild(h);
+ if(r.open)v.appendChild(E("span","ac-tag","Open question"));if(r.case)v.appendChild(E("span","ac-tag","Our case, prospective, not a finding"));
+ v.appendChild(E("p",null,"Answer: "+q.o[r.a]));v.appendChild(E("p",null,r.x));if(r.v){v.appendChild(E("blockquote",null,"\u201c"+r.v+"\u201d"));if(r.vr)v.appendChild(E("p","ac-mut","\u2014 "+r.vr));}
+ var s=E("p","ac-mut");s.appendChild(document.createTextNode("Source: "));r.s.forEach(function(x,i){if(i)s.appendChild(document.createTextNode(" \u00b7 "));var a=E("a",null,x.id+(x.t?" \u2014 "+x.t:""));a.href=x.u;s.appendChild(a);});v.appendChild(s);
+ if(r.from)v.appendChild(E("p","ac-mut","Titles and links come from the central evidence catalogue."));box.appendChild(v);
+ box.querySelectorAll("label").forEach(function(l,i){l.classList.remove("pick");if(i===r.a)l.classList.add("right");else if(i===r.choice)l.classList.add("wrong");});}
+function lockQ(box,q,r){box.querySelectorAll("input").forEach(function(i,k){i.disabled=true;if(k===r.choice)i.checked=true;});box.querySelectorAll("label").forEach(function(l,k){if(k===r.choice)l.classList.add("pick");});var lk=box.querySelector(".lk");if(lk)lk.remove();
+ if(!box.querySelector(".rvb")){var rb=E("button","ac-btn sec rvb","Reveal answer");rb.type="button";rb.onclick=function(){showRev(box,q,r);rb.remove();};box.appendChild(E("p","ac-mut lkd","Answer locked in."));box.appendChild(rb);}}
+function score(p){R.textContent="";if(!p||!p.done)return;var c=E("div","score"+(p.pass_now?"":" no"));c.setAttribute("role","status");c.appendChild(E("h2",null,"You scored "+p.correct+" of "+p.total+" ("+p.pct+"%)"));
+ if(p.pass_now){c.appendChild(E("p",null,"Passed. "+(p.next?(p.next.needs_join?p.next.title+" comes with the membership (v0.0.2).":p.next.title+" is now unlocked."):(V==="v0.0.1"?"That is the whole free set. The full set, v0.0.2, carries on to Grade 7, and your Grade 1 pass counts there.":"That is the final grade. These questions stay open as the research goes on."))));
+  var a=null;if(p.next){a=E("a","ac-btn",p.next.needs_join?"Subscribe to unlock Grade "+p.next.n:"Go to Grade "+p.next.n);a.href=p.next.needs_join?"/#join":"/"+V+"/grade/"+p.next.n+"/";}else if(V==="v0.0.1"){a=E("a","ac-btn","See v0.0.2, the full set");a.href="/v0.0.2/";}if(a){var pp=E("p");pp.appendChild(a);c.appendChild(pp);}}
+ else c.appendChild(E("p",null,"Not passed yet: the pass mark is "+p.need+" of "+p.total+" (90%)."+(p.passed?" You passed this grade before, so the next grade stays open.":" Read the revealed answers and try again.")));
+ var rt=E("button","ac-btn sec","Retake this grade");rt.type="button";rt.onclick=function(){if(busy)return;busy=true;api("retake",{v:V,grade:N}).then(function(){location.reload();});};var p2=E("p");p2.appendChild(rt);c.appendChild(p2);R.appendChild(c);c.scrollIntoView({behavior:"smooth",block:"center"});}
+api("grade?v="+encodeURIComponent(V)+"&n="+N).then(function(d){
+ if(d.locked){location.reload();return;}
+ if(d.error){GP.textContent="This questionnaire does not exist.";return;}
+ D=d;prog();
+ d.qs.forEach(function(q,k){var box=E("div","qn");box.id=q.id;box.appendChild(E("p","qt",(k+1)+". "+q.q));
+  q.o.forEach(function(o,i){var l=E("label");var inp=document.createElement("input");inp.type="radio";inp.name=q.id;inp.value=i;l.appendChild(inp);l.appendChild(document.createTextNode(o));inp.onchange=function(){box.querySelectorAll("label").forEach(function(x){x.classList.remove("pick");});l.classList.add("pick");var b=box.querySelector(".lk");if(b)b.disabled=false;};box.appendChild(l);});
+  var r=d.answers[q.id];if(r){lockQ(box,q,r);}else{var lk=E("button","ac-btn lk","Lock in answer");lk.type="button";lk.disabled=true;lk.onclick=function(){var c=box.querySelector("input:checked");if(!c||busy)return;busy=true;lk.disabled=true;lk.textContent="Saving\u2026";
+   api("answer",{v:V,grade:N,id:q.id,choice:+c.value}).then(function(x){busy=false;if(!x.ok){lk.disabled=false;lk.textContent="Lock in answer";return;}d.answers[q.id]=x.r;lockQ(box,q,x.r);prog(x.progress);if(x.progress.done)score(x.progress);}).catch(function(){busy=false;lk.disabled=false;lk.textContent="Try again";});};box.appendChild(lk);}
+  Q.appendChild(box);});
+ var st=d.state;if(st.answered>=st.total)score({done:true,correct:st.correct,total:st.total,need:st.need,pct:Math.round(100*st.correct/st.total),pass_now:st.correct>=st.need,passed:st.passed,next:d.next});
+}).catch(function(){GP.textContent="The questionnaire could not be loaded just now. Please reload in a moment.";});
+})();

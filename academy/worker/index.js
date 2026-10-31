@@ -1,38 +1,41 @@
-// cedwyn-academy — the Cedwyn Academy webapp at academy.bucklerfamily.estate (Tab agent, 30 Oct 2026, task c1fca92e).
-// Its own Worker and its own derived D1 database (cedwyn-academy): academy_versions, academy_quiz, academy_sources (derived from
-// the master evidence catalogue, core_items in cedwyn-apps) and academy_progress. Source: repo unclehowell/cedwyn, branch `academy`.
-// Membership (paid Stripe checkout or family code) is the estate-wide signed cookie cedwyn_m, checked through a service binding to
-// cedwyn-api (no secret is shared). Paywall: versions with access "members" never send a question to a browser without a membership.
-// The private question bank is never in the repo; it is loaded into D1 by tools/build_db.py.
+// cedwyn-academy 2.0.0 — the Cedwyn Academy webapp at academy.bucklerfamily.estate (Tab agent; v1 30 Oct 2026 task c1fca92e,
+// v2 standardisation 31 Oct 2026 task 320a574b). Source: repo unclehowell/cedwyn, branch `academy` (worker/).
+// The Cedwyn webapp standard, as the other apps carry it:
+//  * Header: the shared Cedwyn files (/_cedwyn/ghf/ghf-lang.js + ghf-boot.js -> basecamp.js, ghf-theme.css, fonts, cw-graph.js), served
+//    same-origin by passing /_cedwyn/* through from cedwyn.bucklerfamily.estate — not copies. Menu button and webapp title on one row.
+//  * Header graph: /_cedwyn/graph/*.json on this host answers with THIS app's own database only (each cited record by its date and grade).
+//  * Front end: near-A2UI. Every page is an A2UI v0.9 surface (ui.js), rendered on the server from the academy's own data; the surface is
+//    published at /_ui/<page>.a2ui.json and the catalog at /_ui/catalog.json. Footer: the shared page journal (#cedwyn-journal).
+//  * Data: central master db = the evidence catalogue (core_items, D1 cedwyn-apps, /api/catalogue). The academy's own derived tables
+//    (academy_*) hold versions, questions (citing catalogue IDs only), progress and access codes; citation titles, dates and links are read
+//    from core_items at request time (academy_sources is the derived fallback, rebuilt by tools/build_db.py).
+//  * Access: v0.0.1 free; v0.0.2 for members — the estate membership cookie (paid checkout or family code, checked through the service
+//    binding to cedwyn-api) or an Academy access code ACD-XXXX-XXXX-XXXX (issued only for paid £49.99/month checkouts: by the box's
+//    tools/acd_code_sync.py from Stripe now, and by the signed webhook POST /api/stripe/webhook once STRIPE_WHSEC is set). Locked content is
+//    never sent to a browser.
+import { render, surface, CATALOG } from "./ui.js";
+import CSS from "./style.txt";
+import CLIENT from "./client.txt";
 const SITE = "https://cedwyn.bucklerfamily.estate";
 const ORIGIN = "https://academy.bucklerfamily.estate";
 const JOIN = "https://buy.stripe.com/14AfZi5BNbiv5ecbEP6Zy0J";
 const BILLING = "https://billing.stripe.com/p/login/4gMbJ25BN5YbeOM24f6Zy00";
-const PASS_PCT = 90;
-const JOURNAL = [{"v": "1.0.0", "date": "30/10/2026", "note": "Cedwyn Academy opened as its own site at academy.bucklerfamily.estate, with its own database. Questionnaires now carry versions: v0.0.1 is the free set (Grade 1), v0.0.2 the full set of seven grades for members. Older /learn/ addresses forward here.", "who": "Tab"}];
-const CSS = ":root{color-scheme:dark;--g:#00843D;--r:#C8102E}*{box-sizing:border-box}body{margin:0;font:17px/1.6 system-ui,-apple-system,\"Segoe UI\",Roboto,sans-serif;background:Canvas;color:CanvasText}\nheader.top{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid color-mix(in srgb,CanvasText 15%,transparent);font-size:15px}header.top a{color:inherit;text-decoration:none}header.top b{margin-right:auto}\nmain{max-width:44rem;margin:0 auto;padding:18px 16px 40px}h1{font-size:1.75rem;line-height:1.25;margin:.4em 0 .3em}h2{font-size:1.2rem;margin:1.6em 0 .4em}\n.lead{font-size:1.08rem}.price{font-size:1.5rem;font-weight:700;margin:.2em 0}.btn{display:inline-block;background:var(--g);color:#fff!important;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:600;font-size:1.05rem}\n.muted{opacity:.75;font-size:.92rem}ol.mods{padding-left:1.3em}ol.mods li{margin:.5em 0}ol.mods b{display:block}ul.inc li{margin:.35em 0}.card{border:1px solid color-mix(in srgb,CanvasText 18%,transparent);border-radius:12px;padding:16px;margin:18px 0}\na{color:var(--g)}footer.ft{max-width:44rem;margin:0 auto;padding:0 16px 30px}.keyinfo ul{margin:.3em 0 .8em;padding-left:1.2em}.keyinfo li{margin:.2em 0}label.tick{display:flex;gap:10px;align-items:flex-start;margin:.7em 0;font-size:.98rem;cursor:pointer}label.tick input{width:22px;height:22px;flex:none;margin-top:2px}\n.btn[aria-disabled=true]{opacity:.45;cursor:not-allowed}.cancel{font-size:.92rem}\n.fam summary{cursor:pointer;font-weight:600}.fam label{display:block;margin:.6em 0 .3em;font-size:.95rem}.fam input{display:block;width:100%;max-width:26rem;padding:12px;font:inherit;font-size:1rem;letter-spacing:.04em;color:inherit;background:transparent;border:1px solid color-mix(in srgb,CanvasText 35%,transparent);border-radius:8px}.fam button.btn{border:0;cursor:pointer;margin-top:12px;font-family:inherit}.mnow{border-left:3px solid var(--g);padding:8px 12px;margin:14px 0;font-weight:600}\n.ib{background:none;border:1px solid color-mix(in srgb,CanvasText 35%,transparent);color:inherit;border-radius:50%;width:30px;height:30px;font-size:1rem;line-height:1;cursor:pointer;vertical-align:middle;margin-left:6px;padding:0}\ndialog.im{background:Canvas;color:CanvasText;border:1px solid color-mix(in srgb,CanvasText 25%,transparent);border-radius:12px;max-width:min(36rem,92vw);padding:18px 18px 8px}dialog.im::backdrop{background:rgba(0,0,0,.65)}dialog.im h3{margin:.1em 0 .5em;font-size:1.1rem}dialog.im .x{float:right;background:none;border:0;color:inherit;font-size:1.3rem;cursor:pointer;padding:0 4px}\n.gc h2{margin:.1em 0 .3em;font-size:1.12rem;display:flex;align-items:center;gap:4px}.gst{font-weight:600;margin:.4em 0}.gst.ok{color:var(--g)}.btn.sec{background:transparent;border:1px solid var(--g);color:var(--g)!important}\n.qn{border:1px solid color-mix(in srgb,CanvasText 18%,transparent);border-radius:12px;padding:14px 14px 10px;margin:16px 0}.qn .qt{font-weight:600;margin:0 0 .5em}.qn label{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;margin:6px 0;border:1px solid color-mix(in srgb,CanvasText 20%,transparent);border-radius:8px;cursor:pointer}.qn label input{width:20px;height:20px;flex:none;margin-top:3px}\n.qn label.pick{border-color:CanvasText}.qn label.right{border-color:var(--g);background:color-mix(in srgb,var(--g) 18%,transparent)}.qn label.wrong{border-color:var(--r);background:color-mix(in srgb,var(--r) 16%,transparent)}\n.qn button{font:inherit;border:0;cursor:pointer;margin:8px 8px 4px 0}.qn button.btn{padding:10px 18px;font-size:1rem}.qn button[disabled]{opacity:.45;cursor:not-allowed}.rv{border-left:3px solid var(--g);padding:6px 12px;margin:10px 0 4px}.rv.no{border-left-color:var(--r)}.rv blockquote{margin:.5em 0;padding:0 0 0 10px;border-left:2px solid color-mix(in srgb,CanvasText 30%,transparent);font-style:italic}.tag{display:inline-block;font-size:.8rem;border:1px solid currentColor;border-radius:20px;padding:1px 9px;margin:0 6px 4px 0;opacity:.85}\n.bar{height:8px;border-radius:6px;background:color-mix(in srgb,CanvasText 14%,transparent);overflow:hidden;margin:6px 0 2px}.bar i{display:block;height:100%;background:var(--g);width:0}.score{border:2px solid var(--g);border-radius:12px;padding:14px 16px;margin:20px 0}.score.no{border-color:var(--r)}\n#gsticky{position:sticky;top:0;background:Canvas;padding:8px 0 6px;z-index:2;border-bottom:1px solid color-mix(in srgb,CanvasText 12%,transparent)}\n.sv{margin:12px 0}.sv label{display:block;font-weight:600;margin:0 0 6px}.sv .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.sv select{font:inherit;font-size:1rem;padding:10px 12px;border-radius:8px;background:Canvas;color:CanvasText;border:1px solid color-mix(in srgb,CanvasText 35%,transparent);max-width:100%}.vtag{display:inline-block;font-size:.85rem;font-weight:600;border:1px solid var(--g);color:var(--g);border-radius:20px;padding:1px 10px;margin:0 6px 4px 0}.lockcard{border:2px solid var(--g);border-radius:12px;padding:16px;margin:18px 0}header.top .br{font-weight:700;margin-right:auto}";
-const GBSTYLE = "#cedwyn-guestbook{display:block!important;clear:both;position:static;box-sizing:border-box;width:auto;max-width:760px;margin:12px auto 4px!important;padding:0 8px!important;text-align:left!important;font:400 12px/1.45 system-ui,-apple-system,\"Segoe UI\",Roboto,sans-serif!important;color:inherit;background:transparent;border:0}#cedwyn-guestbook *{box-sizing:border-box}#cedwyn-guestbook summary{cursor:pointer;padding:4px 0;font:inherit!important;color:inherit!important;text-align:left!important}#cedwyn-guestbook summary b{font-weight:700}#cedwyn-guestbook .gb-r{opacity:.7}#cedwyn-guestbook .gbw{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;margin:4px 0}#cedwyn-guestbook table{border-collapse:collapse;width:100%;min-width:0;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th,#cedwyn-guestbook td{display:table-cell!important;text-align:left!important;vertical-align:top;padding:4px 6px!important;border:0!important;border-bottom:1px solid rgba(128,128,128,.32)!important;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th{font-weight:700!important;white-space:nowrap}#cedwyn-guestbook td:nth-child(1),#cedwyn-guestbook td:nth-child(4){white-space:nowrap}#cedwyn-guestbook td:nth-child(2){min-width:6.6em;width:6.6em}#cedwyn-guestbook td:nth-child(3){min-width:13em}@media(min-width:700px){#cedwyn-guestbook td:nth-child(2){white-space:nowrap;width:auto}}#cedwyn-guestbook a{color:inherit!important;text-decoration:underline!important;margin:0!important;padding:0!important;display:inline!important;font:inherit!important}#cedwyn-guestbook p{margin:4px 0!important;max-width:none!important;font:inherit!important;color:inherit!important;text-align:left!important}";
-const BEACON = "(function(){if(window.__cedwynA)return;window.__cedwynA=1;var O=location.origin+\"/api/a\";function s(e,t){try{var d=JSON.stringify({p:location.pathname,r:document.referrer,e:e,t:t||null,l:(document.documentElement.getAttribute(\"lang\")||\"\").slice(0,2),w:window.innerWidth,d:navigator.webdriver?1:0});if(navigator.sendBeacon&&navigator.sendBeacon(O,new Blob([d],{type:\"text/plain\"})))return;fetch(O,{method:\"POST\",body:d,keepalive:true}).catch(function(){});}catch(x){}}window.cedwynTrack=s;function pv(){s(\"pv\");}if(document.readyState===\"complete\")pv();else addEventListener(\"load\",pv);document.addEventListener(\"click\",function(ev){var a=ev.target&&ev.target.closest&&ev.target.closest(\"a[href]\");if(!a)return;var h=a.href,u=h,m=h.match(/[?&]u=([^&]+)/);if(m){try{u=decodeURIComponent(m[1]);}catch(x){}}if(/^https:\\/\\/(buy|checkout)\\.stripe\\.com\\/|gumroad\\.com\\//.test(u))s(\"checkout\",u.slice(0,200));else{try{var q=new URL(h,location.href);if(q.origin===location.origin&&/^\\/learn\\/?$/.test(q.pathname))s(\"academy\",location.pathname);}catch(x){}}},true);})();";
-const HOME_BODY = "<main>\n<p class=\"muted\">Cedwyn Academy</p>\n<h1>Learn the Great House Farm case, record by record</h1>\n<p class=\"lead\">A course on Tŷ Mawr (Great House Farm), Llandough: what the records show, in what order, and where the gaps are. It runs as graded questionnaires built from the evidence catalogue: answer, reveal the answer and its source, and score 90% to move up.</p>\n<div class=\"card\" id=\"versions\"><h2 style=\"margin-top:0\">Questionnaires <span id=\"verb\"></span></h2>\n<div class=\"sv\"><label for=\"svsel\">Select a version</label><div class=\"row\"><select id=\"svsel\" autocomplete=\"off\">__OPTIONS__</select><a class=\"btn\" id=\"svgo\" href=\"/v0.0.1/\">Start v0.0.1 · free</a></div></div>\n<p class=\"muted\" id=\"svnote\"></p>\n<p><a href=\"/v0.0.1/\">Free version (v0.0.1): Grade 1, no sign-in</a></p></div>\n<p id=\"mnow\" class=\"mnow\" role=\"status\" hidden></p>\n<h2>Included while you are a member</h2>\n<ul class=\"inc\"><li>Questionnaires v0.0.2: all seven grades, 85 questions, and every newer version as it is released.</li><li>The latest version of each Cedwyn e-book, free.</li><li>The latest documentary scenes, free.</li><li>New missing-record findings and institution replies, explained as they are catalogued.</li><li>Founding members help shape the course and join the first live sessions.</li></ul>\n<div class=\"card\" id=\"join\">\n<div class=\"keyinfo\" role=\"group\" aria-label=\"Key information\"><p class=\"price\">£49.99 a month</p>\n<ul><li>£49.99 is taken every month until you cancel.</li><li>The first payment is taken today. The least you will pay is £49.99.</li><li>No free trial and no annual plan. The free questionnaire set (v0.0.1) is open to everyone.</li><li>Cancel online at any time from Stripe's billing page, linked at the bottom of every Academy page. Access runs to the end of the month you have paid for.</li></ul></div>\n<label class=\"tick\"><input type=\"checkbox\" id=\"t1\"> I'm starting a £49.99/month subscription, charged every month until I cancel.</label>\n<label class=\"tick\"><input type=\"checkbox\" id=\"t2\"> Give me access straight away. I understand I lose my 14-day right to cancel once I start using the course content.</label>\n<p><a class=\"btn\" id=\"joinbtn\" aria-disabled=\"true\" data-href=\"__JOIN__\" rel=\"nofollow\" role=\"link\">Subscribe to the Academy</a></p>\n<p class=\"muted\" id=\"joinhint\">Tick both boxes to continue to Stripe's secure checkout.</p>\n<p class=\"muted\">Already a member on the main Cedwyn site? <a href=\"__SITE__/learn/carry?to=/v0.0.2/\">Open your membership here</a>.</p>\n<noscript><p class=\"muted\">Subscribing needs JavaScript switched on in your browser.</p></noscript>\n</div>\n<details class=\"card fam\" id=\"family\"><summary>Have a family code?</summary>\n<p class=\"muted\">Family of the Cedwyn estate join with the family code they were given, instead of paying. It opens every version in this browser the same way a membership does, and nothing is charged.</p>\n<form id=\"famf\" autocomplete=\"off\"><label for=\"famc\">Family code</label>\n<input id=\"famc\" name=\"code\" type=\"text\" inputmode=\"text\" autocapitalize=\"characters\" autocorrect=\"off\" spellcheck=\"false\" maxlength=\"48\" placeholder=\"CEDWYN-FAMILY-XXXX-XXXX-XXXX\">\n<button type=\"submit\" class=\"btn\">Use family code</button></form>\n<p id=\"famm\" class=\"muted\" role=\"status\" aria-live=\"polite\"></p>\n</details>\n<h2>The course</h2>\n<ol class=\"mods\">\n<li><b>The place and its names</b>Cedwyn, Cwm Cedwyn and Tŷ Mawr: the place-name record from 1392 onwards, and how the farm sits in Llandough parish.</li>\n<li><b>The family</b>The Williams and Buckler family across the generations, from the 1667 acquisition reported in the press to 1988.</li>\n<li><b>Reading the evidence catalogue</b>How each record is identified (EV and GHF-E numbers), graded and sourced, and how to tell a disclosed record from one that has not yet been disclosed.</li>\n<li><b>The timeline</b>The 1877 agreement, the 1916 and 1939 tenancies, the 1955 and 1962 possession orders and the 1974 licence letters, in order.</li>\n<li><b>BP Properties Ltd v Buckler (1987)</b>The Court of Appeal judgment, the twelve-year rule and the questions the records raise about it.</li>\n<li><b>Missing records</b>The register of documents that should exist by statute, practice or cross-reference but have not been disclosed, and which party should hold each.</li>\n<li><b>Disclosure</b>Freedom of information and subject access requests: what was asked, who answered, who did not, and the deadlines.</li>\n<li><b>Recorded incidents</b>The incidents and deaths in the record, set out by date and source.</li>\n<li><b>Doing the research</b>How the editors and research agents work: the editing protocol, page versions and how a new record joins the catalogue.</li>\n</ol>\n<h2>Start smaller</h2>\n<p>Every e-book's first edition is free, and the next edition of each is £4.99. <a href=\"__SITE__/ebooks/\">See the e-books</a>.</p>\n<p class=\"muted\">Member sign-in uses the checkout you pay with, so there is no password.</p>\n</main>", LADDER_BODY = "<main id=\"lad\" data-v=\"__V__\"><p class=\"muted\"><a href=\"/\">Cedwyn Academy</a></p>\n<h1>Questionnaires <span class=\"vtag\">__V__</span><span id=\"howb\"></span></h1>\n<div class=\"sv\"><label for=\"svsel\">Select a version <span id=\"verb\"></span></label><div class=\"row\"><select id=\"svsel\" autocomplete=\"off\">__OPTIONS__</select></div></div>\n<p class=\"lead\">__NOTE__</p>\n<div class=\"lockcard\" id=\"lock\" hidden><p><b>__V__ comes with the membership.</b> £49.99 a month, or a family code. The question titles are listed below; the questions open once you subscribe.</p><p><a class=\"btn\" href=\"/#join\">Subscribe · £49.99 a month</a></p><p class=\"muted\"><a href=\"/v0.0.1/\">Try v0.0.1, the free set</a> · <a href=\"__SITE__/learn/carry?to=/__V__/\">Already a member? Open your membership here</a></p></div>\n<p class=\"muted\" id=\"mline\"></p>\n<div id=\"ladder\"><p class=\"muted\">Loading the questionnaires…</p></div>\n<noscript><p class=\"muted\">The questionnaires need JavaScript switched on in your browser.</p></noscript>\n</main>", QUIZ_BODY = "<main id=\"qz\" data-v=\"__V__\" data-g=\"__G__\"><p class=\"muted\"><a href=\"/__V__/\">All questionnaires · __V__</a></p><h1 id=\"gt\">Grade __G__</h1><p><span class=\"vtag\">__V__</span><span class=\"tag\">Grade __G__</span></p><p id=\"gb\" class=\"lead\"></p>\n<div id=\"gsticky\"><span id=\"gp\" class=\"muted\">Loading…</span><div class=\"bar\"><i id=\"gbar\"></i></div></div>\n<div id=\"qs\"></div><div id=\"res\"></div>\n<noscript><p class=\"muted\">The questionnaire needs JavaScript switched on in your browser.</p></noscript></main>";
-const HOME_JS = "function modal(t,html){var d=document.createElement(\"dialog\");d.className=\"im\";var x=document.createElement(\"button\");x.className=\"x\";x.setAttribute(\"aria-label\",\"Close\");x.textContent=\"✕\";x.onclick=function(){d.close();};var h=document.createElement(\"h3\");h.textContent=t;var b=document.createElement(\"div\");b.innerHTML=html;d.appendChild(x);d.appendChild(h);d.appendChild(b);d.addEventListener(\"click\",function(e){if(e.target===d)d.close();});d.addEventListener(\"close\",function(){d.remove();});document.body.appendChild(d);d.showModal();}\nfunction ib(label,t,html){var b=document.createElement(\"button\");b.type=\"button\";b.className=\"ib\";b.textContent=\"ⓘ\";b.setAttribute(\"aria-label\",label);b.onclick=function(){modal(t,html);};return b;}\nfunction E(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e;}\nvar HOW=\"<p>Each grade is a questionnaire. Choose an answer and lock it in. Once a question is answered, <b>Reveal answer</b> shows the correct answer, a short explanation and the catalogue source.</p><p>Answers lock once given. Score <b>90% or more</b> to pass the grade and unlock the next one. You can retake a grade as often as you like; a pass stays passed.</p><p>Every question is built from the site's evidence catalogue and cites its IDs (EV, MR, PE). Quotes are verbatim. Points marked as our case are prospective, not findings of any court.</p><p>Progress is kept in this browser.</p>\";\nvar VERS=\"<p>The questionnaires carry version numbers, like the e-books. Each version is a fixed set of questions; the newest is at the top of the list.</p><p><b>v0.0.2</b> is the full set: seven grades, 85 questions, from the farm and its names to the open questions. It comes with the membership (£49.99 a month) or a family code.</p><p><b>v0.0.1</b> is the free set: Grade 1, The farm and its names, 12 questions. No sign-in and nothing to pay.</p><p>A pass of Grade 1 in either version counts in the other. Older versions, once there are any, are listed as -v0.0.2, -v0.0.3 and so on.</p>\";\n(function(){var hb=document.getElementById(\"verb\");if(hb)hb.appendChild(ib(\"About the versions\",\"Questionnaire versions\",VERS));\nvar s=document.getElementById(\"svsel\"),go=document.getElementById(\"svgo\"),nt=document.getElementById(\"svnote\"),mem=false;\nfunction u(){var o=s.options[s.selectedIndex];nt.textContent=o.getAttribute(\"data-note\");if(o.getAttribute(\"data-access\")===\"free\"||mem){go.textContent=(o.getAttribute(\"data-access\")===\"free\"?\"Start \"+o.value+\" · free\":\"Open \"+o.value);go.href=\"/\"+o.value+\"/\";}else{go.textContent=\"Subscribe for \"+o.value+\" · £49.99 a month\";go.href=\"#join\";}}\ns.addEventListener(\"change\",u);u();\nvar a=document.getElementById(\"joinbtn\"),t1=document.getElementById(\"t1\"),t2=document.getElementById(\"t2\"),h=document.getElementById(\"joinhint\");function uj(){var ok=t1.checked&&t2.checked;if(ok){a.setAttribute(\"href\",a.getAttribute(\"data-href\"));a.removeAttribute(\"aria-disabled\");h.textContent=\"Continue to Stripe's secure checkout.\";}else{a.removeAttribute(\"href\");a.setAttribute(\"aria-disabled\",\"true\");h.textContent=\"Tick both boxes to continue to Stripe's secure checkout.\";}}t1.addEventListener(\"change\",uj);t2.addEventListener(\"change\",uj);uj();a.addEventListener(\"click\",function(e){if(!(t1.checked&&t2.checked)){e.preventDefault();h.textContent=\"Please tick both boxes first.\";}else if(window.cedwynTrack){window.cedwynTrack(\"checkout\",a.getAttribute(\"data-href\"));}});\nvar f=document.getElementById(\"famf\"),c=document.getElementById(\"famc\"),m=document.getElementById(\"famm\"),d=document.getElementById(\"family\"),n=document.getElementById(\"mnow\");var hh=(location.hash||\"\").match(/family=([A-Za-z0-9-]{8,60})/);if(hh){c.value=hh[1];d.open=true;try{history.replaceState(null,\"\",location.pathname+location.search);}catch(x){}}\nfunction on(p){mem=true;u();n.hidden=false;n.textContent=p===\"family\"?\"Family access is active in this browser. Every version is open, with nothing to pay.\":\"Your membership is active in this browser. Every version is open.\";var j=document.getElementById(\"join\");if(j)j.hidden=true;}\nfetch(\"/api/member\",{credentials:\"same-origin\",cache:\"no-store\"}).then(function(r){return r.json();}).then(function(x){if(x&&x.member)on(x.plan);}).catch(function(){});\nvar busy=false;f.addEventListener(\"submit\",function(e){e.preventDefault();if(busy)return;var v=c.value.trim();if(!v){m.textContent=\"Type the family code first.\";return;}busy=true;m.textContent=\"Checking the code…\";fetch(\"/api/member/family\",{method:\"POST\",credentials:\"same-origin\",cache:\"no-store\",headers:{\"content-type\":\"application/json\"},body:JSON.stringify({code:v})}).then(function(r){return r.json();}).then(function(x){busy=false;if(x&&x.ok){c.value=\"\";m.textContent=\"Welcome to the Academy. Family access is now active in this browser, with nothing to pay.\";on(\"family\");}else if(x&&x.error===\"slow_down\"){m.textContent=\"Too many tries from here. Please wait ten minutes and try again.\";}else{m.textContent=\"That code was not recognised. Check it and try again.\";}}).catch(function(){busy=false;m.textContent=\"The code could not be checked just now. Please try again in a moment.\";});});})();", LADDER_JS = "function modal(t,html){var d=document.createElement(\"dialog\");d.className=\"im\";var x=document.createElement(\"button\");x.className=\"x\";x.setAttribute(\"aria-label\",\"Close\");x.textContent=\"✕\";x.onclick=function(){d.close();};var h=document.createElement(\"h3\");h.textContent=t;var b=document.createElement(\"div\");b.innerHTML=html;d.appendChild(x);d.appendChild(h);d.appendChild(b);d.addEventListener(\"click\",function(e){if(e.target===d)d.close();});d.addEventListener(\"close\",function(){d.remove();});document.body.appendChild(d);d.showModal();}\nfunction ib(label,t,html){var b=document.createElement(\"button\");b.type=\"button\";b.className=\"ib\";b.textContent=\"ⓘ\";b.setAttribute(\"aria-label\",label);b.onclick=function(){modal(t,html);};return b;}\nfunction E(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e;}\nvar HOW=\"<p>Each grade is a questionnaire. Choose an answer and lock it in. Once a question is answered, <b>Reveal answer</b> shows the correct answer, a short explanation and the catalogue source.</p><p>Answers lock once given. Score <b>90% or more</b> to pass the grade and unlock the next one. You can retake a grade as often as you like; a pass stays passed.</p><p>Every question is built from the site's evidence catalogue and cites its IDs (EV, MR, PE). Quotes are verbatim. Points marked as our case are prospective, not findings of any court.</p><p>Progress is kept in this browser.</p>\";\nvar VERS=\"<p>The questionnaires carry version numbers, like the e-books. Each version is a fixed set of questions; the newest is at the top of the list.</p><p><b>v0.0.2</b> is the full set: seven grades, 85 questions, from the farm and its names to the open questions. It comes with the membership (£49.99 a month) or a family code.</p><p><b>v0.0.1</b> is the free set: Grade 1, The farm and its names, 12 questions. No sign-in and nothing to pay.</p><p>A pass of Grade 1 in either version counts in the other. Older versions, once there are any, are listed as -v0.0.2, -v0.0.3 and so on.</p>\";\n(function(){var V=document.getElementById(\"lad\").getAttribute(\"data-v\");\ndocument.getElementById(\"howb\").appendChild(ib(\"How grading works\",\"How grading works\",HOW));document.getElementById(\"verb\").appendChild(ib(\"About the versions\",\"Questionnaire versions\",VERS));\nvar s=document.getElementById(\"svsel\");s.addEventListener(\"change\",function(){location.href=\"/\"+s.value+\"/\";});\nvar L=document.getElementById(\"ladder\"),ML=document.getElementById(\"mline\"),LK=document.getElementById(\"lock\");\nfetch(\"/api/state?v=\"+encodeURIComponent(V),{credentials:\"same-origin\",cache:\"no-store\"}).then(function(r){return r.json();}).then(function(s){L.textContent=\"\";\nif(s.member)ML.textContent=s.plan===\"family\"?\"Family access is active in this browser.\":\"Your membership is active in this browser.\";\nif(!s.open){LK.hidden=false;}\ns.grades.forEach(function(g){var c=E(\"div\",\"card gc\");var h=E(\"h2\");h.appendChild(document.createTextNode(g.title));h.appendChild(ib(\"About \"+g.title,g.title,\"<p>\"+g.blurb.replace(/</g,\"&lt;\")+\"</p><p>\"+g.total+\" questions. Pass mark: \"+g.need+\" of \"+g.total+\" (90%).</p>\"));c.appendChild(h);\nvar tg=E(\"p\");tg.appendChild(E(\"span\",\"vtag\",V));tg.appendChild(E(\"span\",\"tag\",\"Grade \"+g.n));c.appendChild(tg);\nc.appendChild(E(\"p\",\"muted\",g.blurb+\" · \"+g.total+\" questions\"));\nvar st=E(\"p\",\"gst\"),a=E(\"a\",\"btn\");\nif(g.passed&&g.unlocked){st.className=\"gst ok\";st.textContent=\"Passed ✓\"+(g.best_pct?\" · best score \"+g.best_pct+\"%\":(g.carried?\" · carried from your other version\":\"\"));a.textContent=\"Review\";a.className=\"btn sec\";a.href=\"/\"+V+\"/grade/\"+g.n+\"/\";}\nelse if(g.unlocked&&g.answered>=g.total){st.textContent=\"Not passed yet: \"+g.correct+\" of \"+g.total+\" (pass mark \"+g.need+\")\";a.textContent=\"Retake\";a.href=\"/\"+V+\"/grade/\"+g.n+\"/\";}\nelse if(g.unlocked){st.textContent=g.answered?(\"In progress: \"+g.answered+\" of \"+g.total+\" answered\"):\"Open\";a.textContent=g.answered?\"Continue\":\"Start Grade \"+g.n;a.href=\"/\"+V+\"/grade/\"+g.n+\"/\";}\nelse if(g.why===\"join\"){st.textContent=\"Locked · comes with the membership\";a.textContent=\"Subscribe to unlock\";a.className=\"btn sec\";a.href=\"/#join\";}\nelse{st.textContent=\"Locked · pass Grade \"+(g.n-1)+\" first\";a=null;}\nc.appendChild(st);if(a){var p=E(\"p\");p.appendChild(a);c.appendChild(p);}L.appendChild(c);});\n}).catch(function(){L.textContent=\"The questionnaires could not be loaded just now. Please reload in a moment.\";});})();", QUIZ_JS = "function modal(t,html){var d=document.createElement(\"dialog\");d.className=\"im\";var x=document.createElement(\"button\");x.className=\"x\";x.setAttribute(\"aria-label\",\"Close\");x.textContent=\"✕\";x.onclick=function(){d.close();};var h=document.createElement(\"h3\");h.textContent=t;var b=document.createElement(\"div\");b.innerHTML=html;d.appendChild(x);d.appendChild(h);d.appendChild(b);d.addEventListener(\"click\",function(e){if(e.target===d)d.close();});d.addEventListener(\"close\",function(){d.remove();});document.body.appendChild(d);d.showModal();}\nfunction ib(label,t,html){var b=document.createElement(\"button\");b.type=\"button\";b.className=\"ib\";b.textContent=\"ⓘ\";b.setAttribute(\"aria-label\",label);b.onclick=function(){modal(t,html);};return b;}\nfunction E(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e;}\nvar HOW=\"<p>Each grade is a questionnaire. Choose an answer and lock it in. Once a question is answered, <b>Reveal answer</b> shows the correct answer, a short explanation and the catalogue source.</p><p>Answers lock once given. Score <b>90% or more</b> to pass the grade and unlock the next one. You can retake a grade as often as you like; a pass stays passed.</p><p>Every question is built from the site's evidence catalogue and cites its IDs (EV, MR, PE). Quotes are verbatim. Points marked as our case are prospective, not findings of any court.</p><p>Progress is kept in this browser.</p>\";\nvar VERS=\"<p>The questionnaires carry version numbers, like the e-books. Each version is a fixed set of questions; the newest is at the top of the list.</p><p><b>v0.0.2</b> is the full set: seven grades, 85 questions, from the farm and its names to the open questions. It comes with the membership (£49.99 a month) or a family code.</p><p><b>v0.0.1</b> is the free set: Grade 1, The farm and its names, 12 questions. No sign-in and nothing to pay.</p><p>A pass of Grade 1 in either version counts in the other. Older versions, once there are any, are listed as -v0.0.2, -v0.0.3 and so on.</p>\";\n(function(){var Z=document.getElementById(\"qz\"),V=Z.getAttribute(\"data-v\"),N=+Z.getAttribute(\"data-g\"),Q=document.getElementById(\"qs\"),R=document.getElementById(\"res\"),GP=document.getElementById(\"gp\"),BAR=document.getElementById(\"gbar\"),D=null,busy=false;\nfunction api(path,body){return fetch(\"/api/\"+path,{method:body?\"POST\":\"GET\",credentials:\"same-origin\",cache:\"no-store\",headers:body?{\"content-type\":\"application/json\"}:{},body:body?JSON.stringify(body):undefined}).then(function(r){return r.json();});}\nfunction prog(p){var t=D.qs.length,a=p?p.answered:Object.keys(D.answers).length;GP.textContent=V+\" · answered \"+a+\" of \"+t+\" · pass mark \"+Math.ceil(t*0.9)+\" of \"+t+\" (90%)\";BAR.style.width=(100*a/t)+\"%\";}\nfunction showRev(box,q,r){var old=box.querySelector(\".rv\");if(old)old.remove();var v=E(\"div\",\"rv\"+(r.correct?\"\":\" no\"));\nvar h=E(\"p\");h.appendChild(E(\"b\",null,r.correct?\"✓ Correct\":\"✗ Not this time\"));v.appendChild(h);\nif(r.open)v.appendChild(E(\"span\",\"tag\",\"Open question\"));if(r.case)v.appendChild(E(\"span\",\"tag\",\"Our case, prospective, not a finding\"));\nv.appendChild(E(\"p\",null,\"Answer: \"+q.o[r.a]));v.appendChild(E(\"p\",null,r.x));\nif(r.v){v.appendChild(E(\"blockquote\",null,\"“\"+r.v+\"”\"));if(r.vr)v.appendChild(E(\"p\",\"muted\",\"— \"+r.vr));}\nvar s=E(\"p\",\"muted\");s.appendChild(document.createTextNode(\"Source: \"));r.s.forEach(function(x,i){if(i)s.appendChild(document.createTextNode(\" · \"));var a=E(\"a\",null,x.id);a.href=x.u;if(x.t)a.title=x.t;s.appendChild(a);});v.appendChild(s);box.appendChild(v);\nbox.querySelectorAll(\"label\").forEach(function(l,i){l.classList.remove(\"pick\");if(i===r.a)l.classList.add(\"right\");else if(i===r.choice)l.classList.add(\"wrong\");});}\nfunction lockQ(box,q,r){box.querySelectorAll(\"input\").forEach(function(i,k){i.disabled=true;if(k===r.choice)i.checked=true;});box.querySelectorAll(\"label\").forEach(function(l,k){if(k===r.choice)l.classList.add(\"pick\");});var lk=box.querySelector(\".lk\");if(lk)lk.remove();\nif(!box.querySelector(\".rvb\")){var rb=E(\"button\",\"btn sec rvb\",\"Reveal answer\");rb.type=\"button\";rb.onclick=function(){showRev(box,q,r);rb.remove();};box.appendChild(E(\"p\",\"muted lkd\",\"Answer locked in.\"));box.appendChild(rb);}}\nfunction score(p){R.textContent=\"\";if(!p||!p.done)return;var c=E(\"div\",\"score\"+(p.pass_now?\"\":\" no\"));c.setAttribute(\"role\",\"status\");\nc.appendChild(E(\"h2\",null,\"You scored \"+p.correct+\" of \"+p.total+\" (\"+p.pct+\"%)\"));\nif(p.pass_now){c.appendChild(E(\"p\",null,\"Passed. \"+(p.next?(p.next.needs_join?p.next.title+\" comes with the membership (v0.0.2).\":p.next.title+\" is now unlocked.\"):(V===\"v0.0.1\"?\"That is the whole free set. The full set, v0.0.2, carries on to Grade 7, and your Grade 1 pass counts there.\":\"That is the final grade. These questions stay open as the research goes on.\"))));\n var a=null;if(p.next){a=E(\"a\",\"btn\",p.next.needs_join?\"Subscribe to unlock Grade \"+p.next.n:\"Go to Grade \"+p.next.n);a.href=p.next.needs_join?\"/#join\":\"/\"+V+\"/grade/\"+p.next.n+\"/\";}else if(V===\"v0.0.1\"){a=E(\"a\",\"btn\",\"See v0.0.2, the full set\");a.href=\"/v0.0.2/\";}if(a){var pp=E(\"p\");pp.appendChild(a);c.appendChild(pp);}}\nelse{c.appendChild(E(\"p\",null,\"Not passed yet: the pass mark is \"+p.need+\" of \"+p.total+\" (90%).\"+(p.passed?\" You passed this grade before, so the next grade stays open.\":\" Read the revealed answers and try again.\")));}\nvar rt=E(\"button\",\"btn sec\",\"Retake this grade\");rt.type=\"button\";rt.onclick=function(){if(busy)return;busy=true;api(\"retake\",{v:V,grade:N}).then(function(){location.reload();});};var p2=E(\"p\");p2.appendChild(rt);c.appendChild(p2);R.appendChild(c);c.scrollIntoView({behavior:\"smooth\",block:\"center\"});}\napi(\"grade?v=\"+encodeURIComponent(V)+\"&n=\"+N).then(function(d){\nif(d.locked){document.getElementById(\"gt\").textContent=d.title||(\"Grade \"+N);document.getElementById(\"gb\").textContent=d.blurb||\"\";GP.textContent=V+\" · locked\";BAR.parentNode.style.display=\"none\";var c=E(\"div\",\"lockcard\");\nc.appendChild(E(\"p\",null,d.why===\"join\"?\"This questionnaire is part of \"+V+\", which comes with the Cedwyn Academy membership (£49.99 a month) or a family code.\":\"Pass Grade \"+(N-1)+\" with 90% or more to open this grade.\"));var a=E(\"a\",\"btn\",d.why===\"join\"?\"Subscribe · £49.99 a month\":\"Go to Grade \"+(N-1));a.href=d.why===\"join\"?\"/#join\":\"/\"+V+\"/grade/\"+(N-1)+\"/\";var pp=E(\"p\");pp.appendChild(a);c.appendChild(pp);\nif(d.why===\"join\"){var f=E(\"p\",\"muted\");var fa=E(\"a\",null,\"Try v0.0.1, the free set\");fa.href=\"/v0.0.1/\";f.appendChild(fa);c.appendChild(f);}Q.appendChild(c);return;}\nif(d.error){GP.textContent=\"This questionnaire does not exist.\";return;}\nD=d;document.title=d.title+\" · \"+V+\" · Cedwyn Academy\";var gt=document.getElementById(\"gt\");gt.textContent=d.title;gt.appendChild(ib(\"How grading works\",\"How grading works\",HOW));document.getElementById(\"gb\").textContent=d.blurb;prog();\nd.qs.forEach(function(q,k){var box=E(\"div\",\"qn\");box.id=q.id;box.appendChild(E(\"p\",\"qt\",(k+1)+\". \"+q.q));\nq.o.forEach(function(o,i){var l=E(\"label\");var inp=document.createElement(\"input\");inp.type=\"radio\";inp.name=q.id;inp.value=i;l.appendChild(inp);l.appendChild(document.createTextNode(o));inp.onchange=function(){box.querySelectorAll(\"label\").forEach(function(x){x.classList.remove(\"pick\");});l.classList.add(\"pick\");var b=box.querySelector(\".lk\");if(b)b.disabled=false;};box.appendChild(l);});\nvar r=d.answers[q.id];if(r){lockQ(box,q,r);}else{var lk=E(\"button\",\"btn lk\",\"Lock in answer\");lk.type=\"button\";lk.disabled=true;lk.onclick=function(){var c=box.querySelector(\"input:checked\");if(!c||busy)return;busy=true;lk.disabled=true;lk.textContent=\"Saving…\";\napi(\"answer\",{v:V,grade:N,id:q.id,choice:+c.value}).then(function(x){busy=false;if(!x.ok){lk.disabled=false;lk.textContent=\"Lock in answer\";return;}d.answers[q.id]=x.r;lockQ(box,q,x.r);prog(x.progress);if(x.progress.done)score(x.progress);}).catch(function(){busy=false;lk.disabled=false;lk.textContent=\"Try again\";});};box.appendChild(lk);}\nQ.appendChild(box);});\nvar st=d.state;if(st.answered>=st.total){score({done:true,correct:st.correct,total:st.total,need:st.need,pct:Math.round(100*st.correct/st.total),pass_now:st.correct>=st.need,passed:st.passed,next:d.next});}\n}).catch(function(){GP.textContent=\"The questionnaire could not be loaded just now. Please reload in a moment.\";});})();";
+const PLINK = "plink_1UV6PpJRNz20guqBItjOb6Ey";   // the Academy's £49.99/month Payment Link (codes are issued for this link only)
+const PASS_PCT = 90, APP_V = "2.0.0", GHF_V = "2.1.17";
+const JOURNAL = [
+  { v: "2.0.0", date: "2026-10-31", note: "The Academy now follows the shared Cedwyn webapp standard: the same header as the other apps (menu button and title on one row; the header graph plots only this app's own database), pages generated from data as A2UI surfaces, citation titles and links read from the central evidence catalogue, and an access code for members (ACD-…) that opens v0.0.2 in any browser." },
+  { v: "1.0.0", date: "2026-10-30", note: "Cedwyn Academy opened as its own site at academy.bucklerfamily.estate, with its own database. Questionnaires now carry versions: v0.0.1 is the free set (Grade 1), v0.0.2 the full set of seven grades for members. Older /learn/ addresses forward here." }];
+const BEACON = "(function(){if(window.__cedwynA)return;window.__cedwynA=1;var O=location.origin+\"/api/a\";function s(e,t){try{var d=JSON.stringify({p:location.pathname,r:document.referrer,e:e,t:t||null,l:(document.documentElement.getAttribute(\"lang\")||\"\").slice(0,2),w:window.innerWidth,d:navigator.webdriver?1:0});if(navigator.sendBeacon&&navigator.sendBeacon(O,new Blob([d],{type:\"text/plain\"})))return;fetch(O,{method:\"POST\",body:d,keepalive:true}).catch(function(){});}catch(x){}}window.cedwynTrack=s;function pv(){s(\"pv\");}if(document.readyState===\"complete\")pv();else addEventListener(\"load\",pv);document.addEventListener(\"click\",function(ev){var a=ev.target&&ev.target.closest&&ev.target.closest(\"a[href]\");if(!a)return;var h=a.href,u=h,m=h.match(/[?&]u=([^&]+)/);if(m){try{u=decodeURIComponent(m[1]);}catch(x){}}if(/^https:\\/\\/(buy|checkout)\\.stripe\\.com\\/|gumroad\\.com\\//.test(u))s(\"checkout\",u.slice(0,200));},true);})();";
+const BANNED = /\b(says|claims|according to|hearsay|unverified|alleged|fraud|stolen)\b/i;
 const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const need = t => Math.ceil(t * PASS_PCT / 100);
-function J(o, s, h) { return new Response(JSON.stringify(o), { status: s || 200, headers: Object.assign({ "content-type": "application/json; charset=utf-8", "cache-control": "no-store" }, h || {}) }); }
-function journal() {
-  const rows = JOURNAL.map(r => "<tr><td>" + esc(r.v) + "</td><td>" + esc(r.date) + "</td><td>" + esc(r.note) + "</td><td>" + esc(r.who) + "</td></tr>").join("");
-  return '<section id="cedwyn-guestbook" class="ghf-ui" data-no-translate translate="no" aria-label="Page versions"><style>' + GBSTYLE + '</style><details><summary><b>Page versions</b> <span class="gb-v">v' + esc(JOURNAL[0].v) + '</span> <span class="gb-r">· <span>versions 1.change.fix, this page’s own log</span></span></summary><div class="gbw"><table><thead><tr><th>Version</th><th>Date</th><th>Change</th><th>Who</th></tr></thead><tbody class="gb-rows">' + rows + '</tbody></table></div></details></section>';
-}
-function shell(title, desc, canon, body, script, opt) {
-  opt = opt || {};
-  const head = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + esc(title) + '</title><meta name="description" content="' + esc(desc) + '"><link rel="canonical" href="' + ORIGIN + canon + '">' +
-    (opt.noindex ? '<meta name="robots" content="noindex">' : '') +
-    '<meta property="og:title" content="' + esc(title) + '"><meta property="og:site_name" content="Williams-Bucklers, Ty Mawr, Cedwyn"><meta property="og:type" content="website"><meta property="og:url" content="' + ORIGIN + canon + '"><meta property="og:description" content="' + esc(desc) + '"><meta property="og:image" content="' + SITE + '/_cedwyn/og/share-academy.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="' + SITE + '/_cedwyn/og/share-academy.jpg"><meta name="theme-color" content="#121212"><style>' + CSS + '</style></head><body>';
-  const top = '<header class="top"><a class="br" href="/">Cedwyn Academy</a><a href="/v0.0.1/">Free set</a><a href="' + SITE + '/research/">Research</a><a href="' + SITE + '/ebooks/">E-books</a><a href="' + SITE + '/movie/">Documentary</a><a href="' + SITE + '/">Cedwyn</a></header>';
-  const foot = '<footer class="ft"><p class="cancel">Members: <a href="' + BILLING + '" rel="nofollow">Cancel membership</a> or update your payment details on Stripe\'s billing page.</p>' + journal() + '</footer>';
-  return new Response(head + top + body + foot + '<script>' + script + '</script><script>' + BEACON + '</script></body></html>', { status: opt.status || 200, headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=300", "x-robots-tag": opt.noindex ? "noindex" : "all" } });
-}
-// --- the academy's own database (cached 5 minutes) ---
-let BZ = null, BZT = 0;
+function J(o, s, h) { return new Response(JSON.stringify(o), { status: s || 200, headers: Object.assign({ "content-type": "application/json; charset=utf-8", "cache-control": "no-store", "x-robots-tag": "noindex" }, h || {}) }); }
+const enc = s => new TextEncoder().encode(s);
+async function sha(s) { const d = await crypto.subtle.digest("SHA-256", enc(s)); return [...new Uint8Array(d)].map(b => b.toString(16).padStart(2, "0")).join(""); }
+function cookieOf(req, name) { const m = (req.headers.get("cookie") || "").match(new RegExp("(?:^|;\\s*)" + name + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : null; }
+
+// ---------- the academy's own database (5-minute cache) ----------
+let BZ = null, BZT = 0, SZ = null, SZT = 0;
 async function bank(env) {
   if (BZ && Date.now() - BZT < 300000) return BZ;
   const [v, q] = await env.DB.batch([
@@ -43,13 +46,72 @@ async function bank(env) {
   V.forEach(x => { x.questions = x.grades.reduce((a, g) => a + g.qs.length, 0); });
   BZ = V; BZT = Date.now(); return V;
 }
-function options(V, sel) {
-  return V.map(x => '<option value="' + esc(x.v) + '" data-access="' + esc(x.access) + '" data-note="' + esc(x.note) + '"' + (x.v === sel ? " selected" : "") + ">" + esc(x.v) + " — " + (x.access === "free" ? "free" : "£49.99 a month (members)") + "</option>").join("");
+// citations: the central catalogue (core_items) first, the derived academy_sources row only where the catalogue has no public row
+const tidy = t => String(t || "").replace(/not yet held/gi, "not yet disclosed").replace(/family[- ]held/gi, "not yet disclosed");
+async function sources(env) {
+  if (SZ && Date.now() - SZT < 300000) return SZ;
+  const r = await env.DB.prepare("SELECT s.id, s.title st, s.url su, c.title ct, c.page cp, c.date_sort ds, c.date_display dd, c.kind ck FROM academy_sources s LEFT JOIN core_items c ON c.id = s.id AND c.public = 1").all();
+  const M = {};
+  (r.results || []).forEach(x => {
+    const ct = x.ct && !BANNED.test(x.ct) ? tidy(x.ct) : "";
+    M[x.id] = { id: x.id, t: ct || tidy(x.st), u: x.cp ? SITE + x.cp : (x.su || SITE + "/api/catalogue/" + x.id), date: x.ds || "", dd: x.dd || "", from: ct ? "core_items" : "academy_sources" };
+  });
+  SZ = M; SZT = Date.now(); return M;
+}
+const cite = (SM, s) => (s || []).map(x => { const id = typeof x === "string" ? x : x.id; const m = SM[id]; return m ? { id, t: m.t, u: m.u } : { id, t: "", u: SITE + "/api/catalogue/" + id }; });
+
+// ---------- access ----------
+const ALPHA = "23456789ABCDEFGHJKMNPQRSTUVWXYZ";
+function normCode(c) { let s = String(c || "").toUpperCase().replace(/[^0-9A-Z]/g, ""); if (s.length === 15 && s.startsWith("ACD")) s = s.slice(3); if (s.length !== 12 || [...s].some(ch => ALPHA.indexOf(ch) < 0)) return null; return "ACD-" + s.slice(0, 4) + "-" + s.slice(4, 8) + "-" + s.slice(8); }
+function newCode() { const out = []; while (out.length < 12) { const b = crypto.getRandomValues(new Uint8Array(16)); for (const x of b) if (x < 248 && out.length < 12) out.push(ALPHA[x % 31]); } const s = out.join(""); return "ACD-" + s.slice(0, 4) + "-" + s.slice(4, 8) + "-" + s.slice(8); }
+const codeLive = r => r && !r.revoked && (r.status === "active" || r.status === "trialing");
+async function codeRow(env, code) { return code ? await env.DB.prepare("SELECT code, status, revoked, test FROM academy_codes WHERE code = ?").bind(code).first() : null; }
+async function limited(env, req, max) {   // max tries per 10 minutes per visitor (salted hash of the address; the address itself is never stored)
+  const ip = req.headers.get("cf-connecting-ip") || "0", win = Math.floor(Date.now() / 600000), k = (await sha("acd|" + win + "|" + ip)).slice(0, 32);
+  const r = await env.DB.prepare("INSERT INTO academy_tries(k,n,t) VALUES(?,1,?) ON CONFLICT(k) DO UPDATE SET n=n+1 RETURNING n").bind(k, win).first();
+  if (Math.random() < 0.02) await env.DB.prepare("DELETE FROM academy_tries WHERE t < ?").bind(win - 6).run();
+  return r && r.n > max;
 }
 async function memberOf(req, env) {
+  const code = normCode(cookieOf(req, "academy_c"));
+  if (code) { const r = await codeRow(env, code); if (codeLive(r)) return { member: true, plan: "code", code }; }
   const ck = req.headers.get("cookie") || "";
   if (!/(?:^|;\s*)cedwyn_m=/.test(ck) || !env.API) return { member: false };
   try { const r = await env.API.fetch(new Request(SITE + "/api/member", { headers: { cookie: ck } })); return await r.json(); } catch (e) { return { member: false, error: true }; }
+}
+async function ownCode(req, env, m) {   // a paying member's own code: the checkout session in their signed cookie (already verified by cedwyn-api)
+  if (!m || !m.member || m.plan !== "academy-monthly") return null;
+  const cs = String(cookieOf(req, "cedwyn_m") || "").split(".")[0];
+  if (!/^cs_(live|test)_[A-Za-z0-9]{10,200}$/.test(cs)) return null;
+  const r = await env.DB.prepare("SELECT code, status, revoked FROM academy_codes WHERE cs_hash = ?").bind(await sha("cs|" + cs)).first();
+  return codeLive(r) ? r.code : null;
+}
+async function issueCode(env, cs, sub, source, amount, currency) {
+  const h = await sha("cs|" + cs);
+  if (await env.DB.prepare("SELECT code FROM academy_codes WHERE cs_hash = ?").bind(h).first()) return null;
+  for (let i = 0; i < 5; i++) {
+    const code = newCode();
+    try { await env.DB.prepare("INSERT INTO academy_codes(code, cs_hash, sub, status, amount, currency, created, source, test, revoked, uses) VALUES (?,?,?,?,?,?,?,?,0,0,0)").bind(code, h, sub || null, "active", amount || null, currency || null, new Date().toISOString(), source).run(); return code; }
+    catch (e) { if (!/UNIQUE/.test(String(e)) || /cs_hash/.test(String(e))) throw e; }
+  }
+  return null;
+}
+function hex(buf) { return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join(""); }
+async function stripeHook(req, env) {   // ready for the day the webhook secret exists: Stripe signs, we verify, then issue/refresh codes
+  if (!env.STRIPE_WHSEC) return J({ error: "not configured" }, 503);
+  const body = await req.text(), sig = req.headers.get("stripe-signature") || "";
+  const t = (/(?:^|,)t=(\d+)/.exec(sig) || [])[1], v1 = [...sig.matchAll(/(?:^|,)v1=([0-9a-f]{64})/g)].map(m => m[1]);
+  if (!t || !v1.length || Math.abs(Date.now() / 1000 - +t) > 300) return J({ error: "bad signature" }, 400);
+  const key = await crypto.subtle.importKey("raw", enc(env.STRIPE_WHSEC), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const mac = hex(await crypto.subtle.sign("HMAC", key, enc(t + "." + body)));
+  if (!v1.includes(mac)) return J({ error: "bad signature" }, 400);
+  let ev; try { ev = JSON.parse(body); } catch (e) { return J({ error: "bad body" }, 400); }
+  const o = (ev.data || {}).object || {};
+  if (ev.type === "checkout.session.completed" && o.payment_link === PLINK && o.mode === "subscription" && o.payment_status === "paid" && (o.amount_total || 0) > 0 && o.subscription)
+    await issueCode(env, o.id, o.subscription, "webhook", o.amount_total, o.currency);
+  if (/^customer\.subscription\.(updated|deleted)$/.test(ev.type || "") && o.id)
+    await env.DB.prepare("UPDATE academy_codes SET status = ?, period_end = ? WHERE sub = ?").bind(ev.type.endsWith("deleted") ? "canceled" : String(o.status || "unknown"), o.current_period_end || null, o.id).run();
+  return J({ received: true });
 }
 function learner(req) {
   const m = (req.headers.get("cookie") || "").match(/(?:^|;\s*)academy_l=(A[0-9a-f]{32})(?:;|$)/);
@@ -58,8 +120,8 @@ function learner(req) {
   return { id, set: "academy_l=" + id + "; Path=/; Max-Age=" + 400 * 86400 + "; Secure; HttpOnly; SameSite=Lax" };
 }
 const sameQs = (a, b) => a.qs.map(q => q.id).join("|") === b.qs.map(q => q.id).join("|");
-async function state(req, env, vn) {
-  const [V, m] = await Promise.all([bank(env), memberOf(req, env)]);
+async function state(req, env, vn, pre) {
+  const [V, m] = pre || await Promise.all([bank(env), memberOf(req, env)]);
   const L = learner(req), ver = V.find(x => x.v === vn) || null;
   if (!ver) return { L, m, V, ver };
   const rows = (await env.DB.prepare("SELECT v, grade, attempt, answers, answered, correct, total, passed, best_pct FROM academy_progress WHERE learner = ?").bind(L.id).all()).results || [];
@@ -76,12 +138,33 @@ async function state(req, env, vn) {
   });
   return { L, m, V, ver, P, mem, open, grades };
 }
-function reveal(q, choice) { return { choice, correct: choice === q.a, a: q.a, x: q.x, v: q.v, vr: q.vr, s: q.s, case: !!q.case, open: !!q.open }; }
-function JC(o, s, L) { return J(o, s || 200, L && L.set ? { "set-cookie": L.set } : {}); }
+function reveal(q, choice, SM) { return { choice, correct: choice === q.a, a: q.a, x: q.x, v: q.v, vr: q.vr, s: cite(SM, q.s), case: !!q.case, open: !!q.open, from: "catalogue" }; }
+function JC(o, s, L, extra) { return J(o, s || 200, Object.assign(L && L.set ? { "set-cookie": L.set } : {}, extra || {})); }
 const pubVersions = V => V.map(x => ({ v: x.v, access: x.access, title: x.title, note: x.note, grades: x.grades.length, questions: x.questions }));
+
 async function api(req, env, url) {
   const p = url.pathname.slice(5).replace(/\/$/, "");
   if (p === "versions") return J({ versions: pubVersions(await bank(env)) });
+  if (p === "code" && req.method === "POST") {   // redeem an access code: it becomes this browser's key (HttpOnly cookie) while its membership is active
+    let b = {}; try { b = JSON.parse((await req.text()).slice(0, 500)); } catch (e) {}
+    if (await limited(env, req, 5)) return J({ ok: false, error: "slow_down" }, 429);   // 5 tries per 10 minutes per visitor; the 6th is refused
+    const raw = String(b.code || "").toUpperCase().replace(/[^0-9A-Z]/g, "");
+    if (/^CDW[0-9A-Z]{12}$/.test(raw)) return J({ ok: false, error: "wrong_product" });   // a documentary code typed here
+    const code = normCode(b.code); if (!code) return J({ ok: false, error: "invalid" });
+    const r = await codeRow(env, code); if (!r || r.revoked) return J({ ok: false, error: "invalid" });
+    if (!codeLive(r)) return J({ ok: false, error: "inactive" });
+    await env.DB.prepare("UPDATE academy_codes SET uses = uses + 1, last_used = ? WHERE code = ?").bind(new Date().toISOString(), code).run();
+    return J({ ok: true, unlocks: "v0.0.2" }, 200, { "set-cookie": "academy_c=" + code + "; Path=/; Max-Age=" + 400 * 86400 + "; Secure; HttpOnly; SameSite=Lax" });
+  }
+  if (p === "code/forget" && req.method === "POST") return J({ ok: true }, 200, { "set-cookie": "academy_c=; Path=/; Max-Age=0; Secure; HttpOnly; SameSite=Lax" });
+  if (p === "code/claim" && req.method === "GET") {   // the buyer's own return: ?cs=<checkout session id>, like the documentary's /api/doc/claim
+    const cs = url.searchParams.get("cs") || "";
+    if (!/^cs_(live|test)_[A-Za-z0-9]{20,200}$/.test(cs)) return J({ status: "invalid" }, 400);
+    if (await limited(env, req, 120)) return J({ status: "slow_down" }, 429);
+    const r = await env.DB.prepare("SELECT code, status, revoked FROM academy_codes WHERE cs_hash = ?").bind(await sha("cs|" + cs)).first();
+    return codeLive(r) ? J({ status: "ready", code: r.code }) : J({ status: "pending" }, 202);
+  }
+  if (p === "stripe/webhook" && req.method === "POST") return await stripeHook(req, env);
   if (p === "state" || p === "grade") {
     const S = await state(req, env, url.searchParams.get("v") || "");
     if (!S.ver) return JC({ error: "no such version", versions: pubVersions(S.V) }, 404, S.L);
@@ -89,8 +172,8 @@ async function api(req, env, url) {
     const n = +url.searchParams.get("n"), g = S.ver.grades.find(x => x.n === n), st = S.grades.find(x => x.n === n);
     if (!g) return JC({ error: "not found" }, 404, S.L);
     if (!st.unlocked) return JC({ locked: true, why: st.why, v: S.ver.v, n, title: g.title, blurb: g.blurb, total: g.qs.length }, 200, S.L);
-    const ans = JSON.parse((S.P[S.ver.v + "|" + n] || {}).answers || "{}"), R = {};
-    g.qs.forEach(q => { if (q.id in ans) R[q.id] = reveal(q, ans[q.id]); });
+    const SM = await sources(env), ans = JSON.parse((S.P[S.ver.v + "|" + n] || {}).answers || "{}"), R = {};
+    g.qs.forEach(q => { if (q.id in ans) R[q.id] = reveal(q, ans[q.id], SM); });
     const nx = S.grades.find(x => x.n === n + 1);
     return JC({ v: S.ver.v, n, title: g.title, blurb: g.blurb, pass_pct: PASS_PCT, state: st, next: nx ? { n: nx.n, title: nx.title, needs_join: !S.open } : null, qs: g.qs.map(q => ({ id: q.id, q: q.q, o: q.o, open: !!q.open })), answers: R }, 200, S.L);
   }
@@ -102,7 +185,7 @@ async function api(req, env, url) {
     if (!g) return JC({ error: "not found" }, 404, S.L);
     if (!st.unlocked) return JC({ locked: true, why: st.why }, 403, S.L);
     const key = S.ver.v + "|" + n, row = S.P[key] || null, ans = JSON.parse((row || {}).answers || "{}"), now = new Date().toISOString(), total = g.qs.length;
-    const principal = S.mem ? (S.m.plan === "family" ? "family" : "member") : "preview";
+    const principal = S.mem ? (S.m.plan === "family" ? "family" : S.m.plan === "code" ? "code" : "member") : "preview";
     if (p === "retake") {
       if (row) await env.DB.prepare("UPDATE academy_progress SET attempt = attempt + 1, answers = '{}', answered = 0, correct = 0, updated = ? WHERE learner = ? AND v = ? AND grade = ?").bind(now, S.L.id, S.ver.v, n).run();
       return JC({ ok: true }, 200, S.L);
@@ -117,12 +200,11 @@ async function api(req, env, url) {
     await env.DB.prepare("INSERT INTO academy_progress(learner, v, grade, attempt, answers, answered, correct, total, passed, best_pct, passed_at, principal, updated) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?) " +
       "ON CONFLICT(learner, v, grade) DO UPDATE SET answers = excluded.answers, answered = excluded.answered, correct = excluded.correct, total = excluded.total, passed = MAX(academy_progress.passed, excluded.passed), best_pct = MAX(academy_progress.best_pct, excluded.best_pct), passed_at = COALESCE(academy_progress.passed_at, excluded.passed_at), principal = excluded.principal, updated = excluded.updated")
       .bind(S.L.id, S.ver.v, n, (row && row.attempt) || 1, JSON.stringify(ans), answered, correct, total, passed, best, passNow ? now : null, principal, now).run();
-    const nx = S.grades.find(x => x.n === n + 1);
-    return JC({ ok: true, r: reveal(q, ans[q.id]), progress: { answered, correct, total, need: need(total), done, pct, passed: passed === 1 || st.passed, pass_now: passNow, next: nx ? { n: nx.n, title: nx.title, needs_join: !S.open } : null } }, 200, S.L);
+    const nx = S.grades.find(x => x.n === n + 1), SM = await sources(env);
+    return JC({ ok: true, r: reveal(q, ans[q.id], SM), progress: { answered, correct, total, need: need(total), done, pct, passed: passed === 1 || st.passed, pass_now: passNow, next: nx ? { n: nx.n, title: nx.title, needs_join: !S.open } : null } }, 200, S.L);
   }
   return J({ error: "not found" }, 404);
 }
-// membership endpoints live in cedwyn-api; the academy passes them through its service binding (cookies are estate-wide)
 async function viaApi(req, env, path, body) {
   const h = new Headers(); ["cookie", "content-type", "cf-connecting-ip", "user-agent"].forEach(k => { const v = req.headers.get(k); if (v) h.set(k, v); });
   const r = await env.API.fetch(new Request(SITE + path, { method: req.method, headers: h, body: body != null ? body : (req.method === "POST" ? await req.text() : undefined) }));
@@ -136,11 +218,167 @@ async function beacon(req, env) {
   try { await viaApi(req, env, "/api/a", t); } catch (e) {}
   return new Response(null, { status: 204 });
 }
+
+// ---------- the shared Cedwyn files, same-origin; the header graph from this app's own db ----------
+async function shared(req, url, ctx) {
+  const r = await fetch(SITE + url.pathname + url.search, { method: req.method === "HEAD" ? "HEAD" : "GET", cf: { cacheTtl: 3600, cacheEverything: true } });
+  const h = new Headers(); ["content-type", "etag", "last-modified"].forEach(k => { const v = r.headers.get(k); if (v) h.set(k, v); });
+  h.set("cache-control", "public, max-age=3600"); h.set("access-control-allow-origin", ORIGIN); h.set("x-cedwyn-shared", "cedwyn.bucklerfamily.estate");
+  return new Response(r.body, { status: r.status, headers: h });
+}
+function xdate(s) { s = String(s || ""); if (!/^(1\d{3}|20\d\d)/.test(s)) return null; let m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(s); if (!m) return /^\d{4}/.test(s) ? s.slice(0, 4) : null; if (m[2] === "00") return m[1]; if (m[3] === "00") return m[1] + "-" + m[2]; return s; }
+async function graph(env) {
+  const [V, SM] = await Promise.all([bank(env), sources(env)]);
+  const full = V.find(x => x.access !== "free") || V[0], free = new Set(); V.filter(x => x.access === "free").forEach(x => x.grades.forEach(g => free.add(g.n)));
+  const cats = full.grades.map(g => /^Grade \d/.test(g.title) ? g.title : "Grade " + g.n + " · " + g.title), pts = [], seen = new Set();
+  full.grades.forEach((g, gi) => g.qs.forEach(q => (q.s || []).forEach(x => { const id = typeof x === "string" ? x : x.id, s = SM[id], k = g.n + "|" + id; if (!s || seen.has(k)) return; const d = xdate(s.date); if (!d) return; seen.add(k);
+    pts.push([d, gi, free.has(g.n) ? 0 : 1, "Grade " + g.n + " cites " + id + (s.t ? " · " + s.t.slice(0, 90) : ""), s.u]); })));
+  pts.sort((a, b) => a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : a[1] - b[1]);
+  return { v: 1, area: "academy", title: "Cedwyn Academy: records the questionnaires cite", source: "academy.bucklerfamily.estate own db (academy_quiz citations) with dates from the central catalogue (core_items)", x: { label: "Date of the record", type: "date" }, y: { label: "Grade", type: "cat", cats }, c: { label: "Version", cats: ["v0.0.1 free and v0.0.2", "v0.0.2 members"] }, p: pts };
+}
+
+// ---------- pages: A2UI surfaces ----------
+const C = (id, component, props) => Object.assign({ id, component }, props || {});
+const INFO_VERSIONS = ["The questionnaires carry version numbers, like the e-books. Each version is a fixed set of questions; the newest is at the top of the list.", "v0.0.2 is the full set: seven grades and 85 questions, from the farm and its names to the open questions. It comes with the membership (£49.99 a month), a member's access code or a family code.", "v0.0.1 is the free set: Grade 1, The farm and its names, 12 questions. No sign-in and nothing to pay.", "A pass of Grade 1 in either version counts in the other. Older versions, once there are any, are listed as -v0.0.2, -v0.0.3 and so on."];
+const INFO_HOW = ["Each grade is a questionnaire. Choose an answer and lock it in. Once a question is answered, Reveal answer shows the correct answer, a short explanation and the catalogue source.", "Answers lock once given. Score 90% or more to pass the grade and unlock the next one. You can retake a grade as often as you like; a pass stays passed.", "Every question is built from the evidence catalogue and cites its IDs (EV, MR, PE); the titles and links come from the central catalogue. Quotes are verbatim. Points marked as our case are prospective, not findings of any court.", "Progress is kept in this browser."];
+const INFO_CODE = ["Every paid Academy membership (£49.99 a month) comes with an access code, ACD- and twelve letters and numbers. It is shown on this page in the browser you paid with.", "Enter it in any other browser or device to open v0.0.2 there. It works while the membership is active and stops when it ends.", "Family codes (CEDWYN-FAMILY-…) go in the family code box instead."];
+function verOpts(V) { return V.map(x => ({ v: x.v, label: x.v + " — " + (x.access === "free" ? "free" : "£49.99 a month (members)"), href: "/" + x.v + "/", start: "Start " + x.v + (x.access === "free" ? " · free" : "") })); }
+function memberLine(m, own) {
+  if (!m) return "";
+  if (m.member) return m.plan === "family" ? "Family code active in this browser: every version is open." : m.plan === "code" ? "Access code active in this browser: every version is open." : "You are a member: every version is open." + (own ? "" : " Your access code appears here once your payment is confirmed.");
+  if (m.pending) return "Your membership is being confirmed. Every version opens, and your access code appears here, as soon as the payment is confirmed.";
+  return "";
+}
+function codeBox(id, own, after) { return C(id, "CodeBox", { own: own || null, heading: "Have an access code?", lead: "Members get an access code with their subscription. Enter it to open v0.0.2 in this browser.", placeholder: "ACD-XXXX-XXXX-XXXX", note: "Codes come only with a paid membership; nothing is charged here." }); }
+function homeSurface(V, m, own) {
+  const sel = (V[0] || {}).v || "", mem = !!(m && m.member);
+  const comps = [
+    C("root", "Page", { children: ["kick", "h1", "lead", "vcard", "mnow", "own", "inc", "join", "code", "fam", "course", "small"] }),
+    C("kick", "Kicker", { text: "Cedwyn Academy" }),
+    C("h1", "Heading", { level: 1, text: "Learn the Great House Farm case, record by record", className: "ghf-keep-case" }),
+    C("lead", "Text", { className: "ac-lead", text: "A course on Tŷ Mawr (Great House Farm), Llandough: what the records show, in what order, and where the gaps are. It runs as graded questionnaires built from the evidence catalogue: answer, reveal the answer and its source, and score 90% to move up." }),
+    C("vcard", "Card", { domId: "versions", children: ["vh", "vsel", "vnote"] }),
+    C("vh", "Heading", { level: 2, text: "Questionnaires", children: ["vinfo"] }),
+    C("vinfo", "InfoButton", { label: "About the versions", title: "Questionnaire versions", body: INFO_VERSIONS }),
+    C("vsel", "VersionSelect", { options: { path: "/versions" }, selected: { path: "/selected" }, go: true }),
+    C("vnote", "Text", { className: "ac-mut", text: "v0.0.1 (Grade 1) is free to play with no sign-in." }),
+    C("mnow", "Notice", { text: { path: "/memberLine" } }),
+    C("own", "CodeBox", { when: { path: "/own" }, own: { path: "/own" } }),
+    C("inc", "Section", { heading: "Included while you are a member", children: ["incl"] }),
+    C("incl", "TextList", { items: ["Questionnaires v0.0.2: all seven grades, 85 questions, and every newer version as it is released.", "An access code that opens the Academy on any of your devices.", "The latest version of each Cedwyn e-book, free.", "The latest documentary scenes, free.", "New missing-record findings and institution replies, explained as they are catalogued.", "Founding members help shape the course and join the first live sessions."] }),
+    C("join", "JoinCard", { when: { path: "/notMember" }, price: "£49.99 a month", href: JOIN, carry: SITE + "/learn/carry?to=/v0.0.2/",
+      points: ["£49.99 is taken every month until you cancel.", "The first payment is taken today. The least you will pay is £49.99.", "No free trial and no annual plan. The free questionnaire set (v0.0.1) is open to everyone.", "Cancel online at any time from Stripe's billing page, linked at the bottom of every Academy page. Access runs to the end of the month you have paid for."],
+      ticks: ["I'm starting a £49.99/month subscription, charged every month until I cancel.", "Give me access straight away. I understand I lose my 14-day right to cancel once I start using the course content."] }),
+    Object.assign(codeBox("code"), { when: { path: "/notMember" } }),
+    C("fam", "FamilyCode", { when: { path: "/notMember" } }),
+    C("course", "Section", { heading: "The course", children: ["mods"] }),
+    C("mods", "TextList", { ordered: true, items: { path: "/course" } }),
+    C("small", "RichText", { runs: [{ text: "Start smaller: every e-book's first edition is free, and the next edition of each is £4.99. " }, { text: "See the e-books", href: SITE + "/ebooks/" }, { text: "." }] })];
+  const model = { versions: verOpts(V), selected: sel, memberLine: memberLine(m, own), own: own || null, notMember: !mem,
+    course: [{ b: "The place and its names", text: "Cedwyn, Cwm Cedwyn and Tŷ Mawr: the place-name record from 1392 onwards, and how the farm sits in Llandough parish." }, { b: "The family", text: "The Williams and Buckler family across the generations, from the 1667 acquisition reported in the press to 1988." }, { b: "Reading the evidence catalogue", text: "How each record is identified (EV and GHF-E numbers), graded and sourced, and how to tell a disclosed record from one that has not yet been disclosed." }, { b: "The timeline", text: "The 1877 agreement, the 1916 and 1939 tenancies, the 1955 and 1962 possession orders and the 1974 licence letters, in order." }, { b: "BP Properties Ltd v Buckler (1987)", text: "The Court of Appeal judgment, the twelve-year rule and the questions the records raise about it." }, { b: "Missing records", text: "The register of documents that should exist by statute, practice or cross-reference but have not been disclosed, and which party should hold each." }, { b: "Disclosure", text: "Freedom of information and subject access requests: what was asked, who answered, who did not, and the deadlines." }, { b: "Recorded incidents", text: "The incidents and deaths in the record, set out by date and source." }, { b: "Doing the research", text: "How the editors and research agents work: the editing protocol, page versions and how a new record joins the catalogue." }] };
+  return surface("academy-home", comps, model);
+}
+function gradeAction(S, g) {
+  const v = S.ver.v;
+  if (g.unlocked) return { text: g.passed ? "Open again" : g.answered ? "Carry on" : "Start Grade " + g.n, href: "/" + v + "/grade/" + g.n + "/", cls: g.passed ? "sec" : "" };
+  if (g.why === "join") return { text: "Subscribe · £49.99 a month", href: "/#join", cls: "sec" };
+  return null;
+}
+function gradeStatus(g) {
+  if (g.passed) return [g.carried ? "Passed (in another version)" : "Passed · best " + g.best_pct + "%", "ok", "is-passed"];
+  if (!g.unlocked) return [g.why === "join" ? "Opens with a membership, an access code or a family code" : "Opens when you pass Grade " + (g.n - 1) + " with 90% or more", "lock", "is-locked"];
+  if (g.answered) return ["Answered " + g.answered + " of " + g.total + " · pass mark " + g.need + " of " + g.total, "", ""];
+  return [g.total + " questions · pass mark " + g.need + " of " + g.total + " (90%)", "", ""];
+}
+function ladderSurface(S, own) {
+  const v = S.ver.v;
+  const comps = [
+    C("root", "Page", { children: ["crumb", "h1", "vsel", "note", "mnow", "own", "lock", "list"] }),
+    C("crumb", "Link", { href: "/", text: "‹ Cedwyn Academy", className: "ac-mut" }),
+    C("h1", "Heading", { level: 1, text: "Questionnaires", className: "ghf-keep-case", children: ["vtag", "how", "vinfo"] }),
+    C("vtag", "Badge", { text: v, className: S.ver.access === "free" ? "free" : "" }),
+    C("how", "InfoButton", { label: "How grading works", title: "How grading works", body: INFO_HOW }),
+    C("vinfo", "InfoButton", { label: "About the versions", title: "Questionnaire versions", body: INFO_VERSIONS }),
+    C("vsel", "VersionSelect", { options: { path: "/versions" }, selected: { path: "/selected" }, go: false }),
+    C("note", "Text", { className: "ac-lead", text: { path: "/note" } }),
+    C("mnow", "Notice", { text: { path: "/memberLine" } }),
+    C("own", "CodeBox", { when: { path: "/own" }, own: { path: "/own" } }),
+    C("lock", "LockCard", { when: { path: "/locked" }, text: { fmt: "{v} comes with the Cedwyn Academy membership (£49.99 a month), a member's access code or a family code.", args: { v: { path: "/v" } } }, children: ["lockrow", "lockcode"] }),
+    C("lockrow", "Row", { children: ["lockjoin", "lockfree"] }),
+    C("lockjoin", "Link", { href: "/#join", text: "Subscribe · £49.99 a month", className: "ac-btn" }),
+    C("lockfree", "Link", { href: "/v0.0.1/", text: "Try v0.0.1, the free set", className: "ac-btn sec" }),
+    codeBox("lockcode"),
+    C("list", "GradeList", { children: { path: "/grades", componentId: "grade" } }),
+    C("grade", "GradeCard", { n: { path: "n" }, title: { path: "title" }, blurb: { path: "blurb" }, status: { path: "status" }, stClass: { path: "stClass" }, statusClass: { path: "cls" }, action: { path: "action" } })];
+  const model = { v, note: S.ver.note, versions: verOpts(S.V), selected: v, memberLine: memberLine(S.m, own), own: own || null, locked: !S.open,
+    grades: S.grades.map(g => { const [st, sc, cl] = gradeStatus(g); return { n: g.n, title: g.title, blurb: g.blurb, status: st, stClass: sc, cls: cl, action: gradeAction(S, g) }; }) };
+  return surface("academy-ladder-" + v, comps, model);
+}
+function quizSurface(S, g, st) {
+  const v = S.ver.v, locked = !st.unlocked;
+  const comps = [
+    C("root", "Page", { children: ["crumb", "h1", "blurb", "lock", "prev", "qz"] }),
+    C("crumb", "Link", { href: "/" + v + "/", text: "‹ Questionnaires " + v, className: "ac-mut" }),
+    C("h1", "Heading", { level: 1, text: { path: "/title" }, className: "ghf-keep-case", children: ["vtag", "how"] }),
+    C("vtag", "Badge", { text: v, className: S.ver.access === "free" ? "free" : "" }),
+    C("how", "InfoButton", { label: "How grading works", title: "How grading works", body: INFO_HOW }),
+    C("blurb", "Text", { className: "ac-lead", text: { path: "/blurb" } }),
+    C("lock", "LockCard", { when: { path: "/needJoin" }, text: { fmt: "This questionnaire is part of {v}, which comes with the Cedwyn Academy membership (£49.99 a month), a member's access code or a family code.", args: { v: { path: "/v" } } }, children: ["lockrow", "lockcode"] }),
+    C("lockrow", "Row", { children: ["lockjoin", "lockfree"] }),
+    C("lockjoin", "Link", { href: "/#join", text: "Subscribe · £49.99 a month", className: "ac-btn" }),
+    C("lockfree", "Link", { href: "/v0.0.1/", text: "Try v0.0.1, the free set", className: "ac-btn sec" }),
+    codeBox("lockcode"),
+    C("prev", "LockCard", { domId: "prevlock", when: { path: "/needPrev" }, text: { fmt: "Pass Grade {p} with 90% or more to open this grade.", args: { p: { path: "/prevN" } } }, children: ["prevgo"] }),
+    C("prevgo", "Link", { href: { path: "/prevHref" }, text: { fmt: "Go to Grade {p}", args: { p: { path: "/prevN" } } }, className: "ac-btn" }),
+    C("qz", "Questionnaire", { when: { path: "/open" }, v, n: g.n })];
+  const model = { v, n: g.n, title: g.title, blurb: g.blurb, total: g.qs.length, open: !locked, needJoin: locked && st.why === "join", needPrev: locked && st.why === "prev", prevN: g.n - 1, prevHref: "/" + v + "/grade/" + (g.n - 1) + "/" };
+  return surface("academy-grade-" + v + "-" + g.n, comps, model);
+}
+function journalHtml() {
+  return '<style id="cedwyn-journal-css">#cedwyn-journal{max-width:960px;margin:24px auto 8px;padding:0 16px;font:12px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;opacity:.72;color:inherit}#cedwyn-journal summary{cursor:pointer;letter-spacing:.06em;text-transform:uppercase;font-size:11px}#cedwyn-journal ol{margin:6px 0 0;padding-left:18px}#cedwyn-journal li{margin:2px 0}#cedwyn-journal b{font-weight:600}</style>' +
+    '<details id="cedwyn-journal" class="cw-journal"><summary>Page journal</summary><ol>' + JOURNAL.map(r => "<li><b>" + esc(r.v) + "</b> · " + esc(r.date) + " — " + esc(r.note) + "</li>").join("") + "</ol></details>";
+}
+function page(msgs, o) {
+  const sid = msgs[0].createSurface.surfaceId, body = render(msgs);
+  const title = "Cedwyn Academy · " + o.title;   // the shared header shows the part before the first " · " as the webapp title
+  const html = '<!doctype html><html lang="en" data-ghf-native="dark" data-ghf-theme-default="night" data-cw-nolevels><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + esc(title) + '</title><meta name="description" content="' + esc(o.desc) + '"><link rel="canonical" href="' + ORIGIN + o.canon + '">' +
+    (o.noindex ? '<meta name="robots" content="noindex">' : "") +
+    '<meta name="generator" content="cedwyn-academy-a2ui/' + APP_V + ' (A2UI v0.9 surface ' + esc(sid) + ')"><link rel="alternate" type="application/json" href="' + esc(o.ui) + '" title="A2UI surface of this page">' +
+    '<meta property="og:title" content="' + esc(title) + '"><meta property="og:site_name" content="Williams-Bucklers, Ty Mawr, Cedwyn"><meta property="og:type" content="website"><meta property="og:url" content="' + ORIGIN + o.canon + '"><meta property="og:description" content="' + esc(o.desc) + '"><meta property="og:image" content="' + SITE + '/_cedwyn/og/share-academy.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="' + SITE + '/_cedwyn/og/share-academy.jpg"><meta name="theme-color" content="#000000">' +
+    '<style>' + CSS + '</style><script src="/_cedwyn/ghf/ghf-lang.js?v=2.1.6" data-dict="/_cedwyn/ghf/sites/estate.json" defer></script><script src="/_cedwyn/ghf/ghf-boot.js?v=' + GHF_V + '"></script></head><body>' +
+    body + '<footer class="ac-ft"><p>Members: <a href="' + BILLING + '" rel="nofollow">cancel the membership</a> or update payment details on Stripe\'s billing page.</p></footer>' + journalHtml() +
+    '<script src="/_ui/academy.js?v=' + APP_V + '" defer></script><script>' + BEACON + "</script></body></html>";
+  const h = { "content-type": "text/html; charset=utf-8", "cache-control": "private, no-store", "x-robots-tag": o.noindex ? "noindex" : "all" };
+  if (o.setCookie) h["set-cookie"] = o.setCookie;
+  return new Response(html, { status: o.status || 200, headers: h });
+}
+function notFound(msg) {
+  const msgs = surface("academy-404", [C("root", "Page", { children: ["h1", "go"] }), C("h1", "Heading", { level: 1, text: msg }), C("go", "Link", { href: "/", text: "Go to the Academy", className: "ac-btn" })], {});
+  return page(msgs, { title: "Not found", desc: msg, canon: "/", ui: "/_ui/index.a2ui.json", status: 404, noindex: true });
+}
+// one function per page: returns [surface messages, page options]
+async function route(req, env, path) {
+  const [V, m] = await Promise.all([bank(env), memberOf(req, env)]);
+  if (path === "/") { const own = await ownCode(req, env, m); return [homeSurface(V, m, own), { title: "learn the Great House Farm case", desc: "Graded questionnaires on the Great House Farm (Tŷ Mawr), Llandough case, built from the evidence catalogue. v0.0.1 is free; the full set comes with the £49.99 a month membership.", canon: "/", ui: "/_ui/index.a2ui.json" }]; }
+  const mm = /^\/(v\d+\.\d+\.\d+)\/(?:grade\/([1-9])\/)?$/.exec(path); if (!mm) return null;
+  const S = await state(req, env, mm[1], [V, m]); if (!S.ver) return null;
+  if (!mm[2]) { const own = await ownCode(req, env, m); return [ladderSurface(S, own), { title: "Questionnaires " + S.ver.v, desc: S.ver.note, canon: path, ui: "/_ui" + path + "index.a2ui.json", setCookie: S.L.set }]; }
+  const g = S.ver.grades.find(x => x.n === +mm[2]), st = g && S.grades.find(x => x.n === g.n); if (!g) return null;
+  return [quizSurface(S, g, st), { title: g.title + " · " + S.ver.v, desc: g.blurb, canon: path, ui: "/_ui" + path.replace(/\/$/, "") + ".a2ui.json", noindex: S.ver.access !== "free", setCookie: S.L.set }];
+}
 export default {
   async fetch(req, env, ctx) {
     const url = new URL(req.url), p = url.pathname;
     try {
       if (url.hostname !== "academy.bucklerfamily.estate" && url.hostname.endsWith("bucklerfamily.estate")) return Response.redirect(ORIGIN + p + url.search, 301);
+      if (p.startsWith("/_cedwyn/graph/") && p.endsWith(".json")) return J(await graph(env), 200, { "cache-control": "public, max-age=300", "x-robots-tag": "noindex" });
+      if (p.startsWith("/_cedwyn/") && (req.method === "GET" || req.method === "HEAD")) return await shared(req, url, ctx);
+      if (p === "/_ui/academy.js") return new Response(CLIENT, { headers: { "content-type": "application/javascript; charset=utf-8", "cache-control": "public, max-age=3600" } });
+      if (p === "/_ui/catalog.json") return J(CATALOG, 200, { "cache-control": "public, max-age=3600" });
+      if (p.startsWith("/_ui/") && p.endsWith(".a2ui.json")) {
+        const path = p.slice(4).replace(/index\.a2ui\.json$/, "").replace(/\.a2ui\.json$/, "/");
+        const r = await route(req, env, path); return r ? J(r[0], 200, r[1].setCookie ? { "set-cookie": r[1].setCookie } : {}) : J({ error: "not found" }, 404);
+      }
       if (p.startsWith("/api/")) {
         if (p === "/api/member") return await viaApi(req, env, "/api/member");
         if (p === "/api/member/family" && req.method === "POST") return await viaApi(req, env, "/api/member/family");
@@ -150,23 +388,10 @@ export default {
       if (p === "/robots.txt") return new Response("User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: " + ORIGIN + "/sitemap.xml\n", { headers: { "content-type": "text/plain; charset=utf-8" } });
       if (p === "/sitemap.xml") { const V = await bank(env); const u = ["/"].concat(V.map(x => "/" + x.v + "/")); return new Response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + u.map(x => "<url><loc>" + ORIGIN + x + "</loc></url>").join("") + "</urlset>", { headers: { "content-type": "application/xml; charset=utf-8" } }); }
       if (p === "/join" || p === "/join/" || p === "/subscribe" || p === "/subscribe/") return Response.redirect(ORIGIN + "/#join", 302);
-      const V = await bank(env);
-      if (p === "/") return shell("Cedwyn Academy · learn the Great House Farm case", "Graded questionnaires on the Great House Farm (Tŷ Mawr), Llandough case, built from the evidence catalogue. v0.0.1 is free; the full set comes with the £49.99 a month membership.", "/", HOME_BODY.split("__OPTIONS__").join(options(V, V[0] ? V[0].v : "")).split("__JOIN__").join(JOIN).split("__SITE__").join(SITE), HOME_JS);
-      let m = /^\/(v\d+\.\d+\.\d+)(\/.*)?$/.exec(p);
-      if (m) {
-        const ver = V.find(x => x.v === m[1]);
-        if (!ver) return shell("Not found · Cedwyn Academy", "Version not found.", "/", '<main><h1>That version does not exist</h1><p><a class="btn" href="/">See the versions</a></p></main>', "", { status: 404, noindex: true });
-        const rest = m[2] || "";
-        if (rest === "") return Response.redirect(ORIGIN + p + "/", 301);
-        if (rest === "/") return shell("Questionnaires " + ver.v + " · Cedwyn Academy", ver.note, "/" + ver.v + "/", LADDER_BODY.split("__OPTIONS__").join(options(V, ver.v)).split("__V__").join(esc(ver.v)).split("__NOTE__").join(esc(ver.note)).split("__SITE__").join(SITE), LADDER_JS);
-        const gm = /^\/grade\/([1-9])(\/?)$/.exec(rest);
-        if (gm && ver.grades.some(g => g.n === +gm[1])) {
-          if (!gm[2]) return Response.redirect(ORIGIN + p + "/", 301);
-          const g = ver.grades.find(x => x.n === +gm[1]);
-          return shell(g.title + " · " + ver.v + " · Cedwyn Academy", g.blurb, "/" + ver.v + "/grade/" + g.n + "/", QUIZ_BODY.split("__V__").join(esc(ver.v)).split("__G__").join(String(g.n)), QUIZ_JS, { noindex: ver.access !== "free" });
-        }
-      }
-      return shell("Not found · Cedwyn Academy", "Page not found.", "/", '<main><h1>Page not found</h1><p><a class="btn" href="/">Go to the Academy</a></p></main>', "", { status: 404, noindex: true });
-    } catch (e) { return J({ error: "server error" }, 500); }
+      if (/^\/v\d+\.\d+\.\d+$/.test(p) || /^\/v\d+\.\d+\.\d+\/grade\/[1-9]$/.test(p)) return Response.redirect(ORIGIN + p + "/", 301);
+      const r = await route(req, env, p);
+      if (!r) return notFound("Page not found");
+      return page(r[0], r[1]);
+    } catch (e) { return J({ error: "server error", detail: String(e && e.message || e).slice(0, 200) }, 500); }
   }
 };
