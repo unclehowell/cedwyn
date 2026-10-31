@@ -38,7 +38,16 @@
    "props": {
     "when_empty": "i18n:empty",
     "when_incomplete": "i18n:in_progress",
-    "flag": "copy.audit.complete"
+    "flag": "copy.audit.complete",
+    "when_complete": "i18n:unread"
+   }
+  },
+  {
+   "component": "Highlight",
+   "id": "toc-word",
+   "props": {
+    "source": "copy.audit.highlight",
+    "title": "i18n:word_h"
    }
   },
   {
