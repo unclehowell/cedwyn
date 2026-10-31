@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8886,
+  "pages_scanned": 8890,
   "references_checked": {
-    "resource": 203970,
-    "nav": 388328
+    "resource": 204007,
+    "nav": 459285
   },
-  "database_backed_paths": 7320,
-  "unique_missing_destinations": 4924,
-  "missing_references": 34291,
-  "missing_navigation_references": 18901,
-  "missing_resource_references": 15390,
+  "database_backed_paths": 7327,
+  "unique_missing_destinations": 4935,
+  "missing_references": 52022,
+  "missing_navigation_references": 36628,
+  "missing_resource_references": 15394,
   "unique_broken_fragments": 1812,
   "broken_fragment_references": 3372,
   "form_or_endpoint_actions_not_checked": {
@@ -17,9 +17,63 @@
   },
   "top_missing_destinations": [
     {
+      "kind": "nav",
+      "path": "/hive/",
+      "references": 8856,
+      "examples": [
+        {
+          "from": "/",
+          "attribute": "a[href]",
+          "url": "/hive/"
+        },
+        {
+          "from": "/404.html",
+          "attribute": "a[href]",
+          "url": "/hive/"
+        },
+        {
+          "from": "/review/",
+          "attribute": "a[href]",
+          "url": "/hive/"
+        },
+        {
+          "from": "/directory/",
+          "attribute": "a[href]",
+          "url": "/hive/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/mcp/",
+      "references": 8855,
+      "examples": [
+        {
+          "from": "/",
+          "attribute": "a[href]",
+          "url": "/mcp/"
+        },
+        {
+          "from": "/404.html",
+          "attribute": "a[href]",
+          "url": "/mcp/"
+        },
+        {
+          "from": "/review/",
+          "attribute": "a[href]",
+          "url": "/mcp/"
+        },
+        {
+          "from": "/directory/",
+          "attribute": "a[href]",
+          "url": "/mcp/"
+        }
+      ]
+    },
+    {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6431,
+      "references": 6433,
       "examples": [
         {
           "from": "/review/",
@@ -46,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6431,
+      "references": 6433,
       "examples": [
         {
           "from": "/review/",
@@ -4009,60 +4063,6 @@
           "from": "/docs/ghf_wiki/ir_bppropertiesbppensiontrustforensicinstit/latest/html/en/",
           "attribute": "a[href]",
           "url": "1-record.html#documented-appearances"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/docs/ghf_wiki/ir_southwesternbrickandtileforensicinstitut/latest/html/en/1-record.html",
-      "references": 7,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/ir_southwesternbrickandtileforensicinstitut/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_southwesternbrickandtileforensicinstitut/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_southwesternbrickandtileforensicinstitut/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#documented-appearances"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_southwesternbrickandtileforensicinstitut/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#current-finding"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/docs/ghf_wiki/ir_cardiffcitycouncilforensicinstitutionalr/latest/html/en/1-record.html",
-      "references": 7,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/ir_cardiffcitycouncilforensicinstitutionalr/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_cardiffcitycouncilforensicinstitutionalr/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_cardiffcitycouncilforensicinstitutionalr/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#documented-appearances"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_cardiffcitycouncilforensicinstitutionalr/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#current-finding"
         }
       ]
     }

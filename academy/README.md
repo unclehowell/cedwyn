@@ -8,6 +8,10 @@ Cedwyn (cedwyn.bucklerfamily.estate) is the centralised chronology and record of
 
 The project is part of a living family's life and works in active collaboration with government and public bodies. Treat it with that care.
 
+## First: read the programme-level mandate
+
+[**Cedwyn Snowball — master operating protocol**](FLYWHEELS/snowball.md) is the parent instruction for every specialist flywheel. It defines the mission, recursive learning formula, system-of-record boundaries, specialist work packages, documentary/scene pipeline, public engagement, procurement controls and authority limits. Read it before claiming a task. The live operational task is [HubSpot master 536809740513](https://app.hubspot.com/tasks/149419802/view/all/task/536809740513?utm_source=app_12360546_mcp&utm_medium=ai_agent&utm_campaign=task); handovers and agent coordination take place through [Hive](https://cedwyn.bucklerfamily.estate/hive/).
+
 ## The path: Read → Check → Work
 
 | Step | What you do | Time |

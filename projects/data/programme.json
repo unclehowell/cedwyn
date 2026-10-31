@@ -1,10 +1,10 @@
 {
  "schema": "cedwyn-programme/1.0",
- "version": "2.0.0",
- "date": "2026-10-30",
- "title": "Cedwyn programme: one research project feeding three delivery projects",
+ "version": "2.1.0",
+ "date": "2026-10-31",
+ "title": "Cedwyn programme: Welsh estate reconstruction and heritage Snowball",
  "band_rule": "Progress is published only in four bands: 0%+ (initiated), 33%+ (first deliverable live), 66%+ (paid v0.0.2 releases live or the physical/field pilot running), 100% (closed and handed over). Bands are set by stage evidence, not task counts. Detailed tasks live in the task board, not here.",
- "flywheel": "Research (A) feeds the online legacy asset (B), the Argentina estate (C) and the Wales tour (D). Revenue from deliverables released as v0.0.2 (the first paid semantic-version release of each deliverable) flows back to the research. Every release adds evidence-led material that makes the next release better.",
+ "flywheel": "The Snowball is the programme-wide recursive operating model: source recovery, canonical records, parcel/person/event relationships, independent challenge, resolved research gaps, approved public and documentary outputs, and transparent reinvestment. Existing Projects A–D boundaries remain intact. Every smaller loop is subordinate to the master protocol; HubSpot owns work, GitHub owns versioned source, Hive coordinates and public outputs are approved.",
  "projects": [
   {
    "id": "A",
@@ -136,6 +136,76 @@
    "id": "I4",
    "issue": "Each page's footer showed a site-wide change log, not that page's own journal; per-page journal planned.",
    "status": "Planned"
+  },
+  {
+   "id": "I5",
+   "issue": "Cedwyn Snowball master programme added on 31 October 2026: one HubSpot parent task and ten specialist packages, with Projects/Agent Library/Hive as shared entry points. Existing four-project structure remains intact.",
+   "status": "Recorded"
   }
- ]
+ ],
+ "snowball": {
+  "protocol": "/academy/FLYWHEELS/snowball.md",
+  "public_html": "/academy/FLYWHEELS/snowball.html",
+  "hubspot_master_task": 536809740513,
+  "formula": "S(n+1)=S(n)+V+R+G+A+P+B-D-U-W",
+  "principle": "Operational learning measure, not a measure of historical truth",
+  "work_packages": [
+   {
+    "id": "WP1",
+    "task": 536685709549,
+    "area": "Estate, parcel, title and Williams/Buckler matriarchy"
+   },
+   {
+    "id": "WP2",
+    "task": 536708927735,
+    "area": "FOI, archives, Gmail and correspondence recovery"
+   },
+   {
+    "id": "WP3",
+    "task": 536861939937,
+    "area": "Documentary bible and complete master screenplay"
+   },
+   {
+    "id": "WP4",
+    "task": 536712479991,
+    "area": "Two-minute sequential scene production and model access verification"
+   },
+   {
+    "id": "WP5",
+    "task": 536721393886,
+    "area": "Hive, Docs/Library, WebMCP and agent operating protocol"
+   },
+   {
+    "id": "WP6",
+    "task": 536607894753,
+    "area": "Canonical data, GraphQL, graph and semantic research architecture"
+   },
+   {
+    "id": "WP7",
+    "task": 536743356608,
+    "area": "Audience, social, editorial, SEO, website and e-commerce"
+   },
+   {
+    "id": "WP8",
+    "task": 536646179030,
+    "area": "Transparent procurement, funding and financial controls"
+   },
+   {
+    "id": "WP9",
+    "task": 536861939938,
+    "area": "Patagonia Great House Farm II feasibility"
+   },
+   {
+    "id": "WP10",
+    "task": 536743356609,
+    "area": "Quality, privacy, red-team and continuous improvement"
+   }
+  ],
+  "procurement": {
+   "public_page": "/projects/procurement/",
+   "data": "/projects/data/procurement.json",
+   "hubspot_task": 536712488146,
+   "status": "Planning baseline; no spend authorised"
+  }
+ }
 }
