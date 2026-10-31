@@ -8,6 +8,8 @@
 
 ## 1. Mission
 
+Human maintainer guide: https://cedwyn.bucklerfamily.estate/library/snowball/ (the Docs/Library Snowball page).
+
 Reconstruct the Welsh family estate, Williams/Buckler matriarchy, people, landholding, social history and heritage centred on Great House Farm / Tŷ Mawr / Llandough-juxta-Penarth. Establish parcel by parcel who owned or occupied what, by which instrument or legal interest, how it changed, and what rights or heritage survive.
 
 The programme also examines documented institutional decisions and potential failures, including negligence, incompetence, concealment, scandal or government involvement, but none is presumed. The work must establish what happened, what the records actually show, what is inferred, what remains contested and what is not known. The proposed Patagonia Great House Farm II is a future feasibility and heritage concept, distinct from the historical Welsh estate.
