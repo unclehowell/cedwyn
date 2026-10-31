@@ -47,8 +47,7 @@ naming "the great road from Cogan to Cardiff" is a stronger post than any summar
 | 1540 | MCXLIII | 1429 bond. One party is "Johannes Button de villa de Gymyn in comitatu Cardyff". Paterson p.27 uses the same vill | TNA Ancient Deeds C.1493 |
 
 Other Cartae hits not yet read in full: pp.361-362 (the Cogan chapel judged to belong to "ecclesie
-de Landocham sicut ad matricem", the mother church; ours) and p.685 DCXXXII (Margam quitclaims land
-at Penharth and Costenton to St Augustine's, Bristol). Leckwith items are in the companion skill
+de Landocham sicut ad matricem", the mother church; ours) and p.685 DCXXXII (1266 final concord over 50 acres at Penharth and Costenton; Clark's heading states Margam quitclaimed to St Augustine's, Bristol, but the Latin has St Augustine's quitclaiming to Margam for 45 marks; see charter-cards-cogan-chapel-mother-church-1190-penarth-moor-1266.md). Leckwith items are in the companion skill
 `leckwith-1207-mill-1281-manor-accounts-cards.md`.
 
 ## Card format ("From the charters", one fact per card)

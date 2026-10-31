@@ -18,7 +18,7 @@
 
 ## Versions
 - Library, protocols and drafts use semantic versions (MAJOR.MINOR.PATCH); every material change bumps the version and leaves a signed changelog line.
-- Products (e-books, documentary scenes) follow `/_cedwyn/versions.json`: newest v0.0.2, then v0.0.1, then -v0.0.1, -v0.0.2. Labels come from that file.
+- Products (e-books, documentary scenes) follow `/_cedwyn/versions.json`: newest v0.0.2, then v0.0.1, then -v0.0.2, -v0.0.3 (no -v0.0.1). Labels come from that file.
 
 ## Where things live
 | Thing | Where |

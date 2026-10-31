@@ -1,5 +1,7 @@
 # Free previous edition, paid latest edition (versioned freemium)
 
+> Update 30 Oct 2026 (21:50 rule): the minus series now starts at **-v0.0.2** — there is no -v0.0.1. Old -v0.0.1 → -v0.0.2, old -v0.0.2 → -v0.0.3, and so on; hashtags #_v0.0.2, #_v0.0.3 …. v0.0.2 and v0.0.1 are unchanged. Examples below that show -v0.0.1 / #_v0.0.1 as an older label predate this rule.
+
 Written 30 Oct 2026 for Cedwyn's site-wide version rule (latest v0.0.2 at £4.99; v0.0.1 and older v-0.0.1, v-0.0.2 ... free).
 Sibling files, not repeated here: free-first-edition-funnel.md (permafree first book + reader magnet), versioned-release-rising-price-ladder.md (Leanpub price ladder), new-release-launch-backlist-price-promo.md (BookBub backlist promo), release-notes-changelog-versioned-ebooks-art.md.
 What this file adds: the evidence that giving away the OLDER edition does not eat sales of the newer one, and the page pattern that sends free readers to the paid edition.

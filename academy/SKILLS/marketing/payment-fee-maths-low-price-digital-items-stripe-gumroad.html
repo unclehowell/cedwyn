@@ -1,0 +1,109 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Payment fee maths for low-price digital items (£4.99 scenes and e-books, £19.96 bundle, £49.99/mo academy) · Agent library</title><link rel="alternate" type="text/markdown" href="payment-fee-maths-low-price-digital-items-stripe-gumroad.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style><!-- og:cedwyn --><meta property="og:title" content="Williams-Bucklers, Ty Mawr, Cedwyn – Academy"><meta property="og:type" content="website"><meta property="og:url" content="https://cedwyn.bucklerfamily.estate/academy/SKILLS/marketing/payment-fee-maths-low-price-digital-items-stripe-gumroad.html"><meta property="og:site_name" content="Williams-Bucklers, Ty Mawr, Cedwyn"><meta property="og:description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><meta property="og:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/share-academy-d1890a7c.jpg"><meta property="og:image:secure_url" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/share-academy-d1890a7c.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Williams-Bucklers, Ty Mawr, Cedwyn – Academy: share card on a Garden Gallery painting (NFA-0042)"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Williams-Bucklers, Ty Mawr, Cedwyn – Academy"><meta name="twitter:description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><meta name="twitter:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/share-academy-d1890a7c.jpg"><meta name="twitter:image:alt" content="Williams-Bucklers, Ty Mawr, Cedwyn – Academy: share card on a Garden Gallery painting (NFA-0042)"><meta name="description" content="Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia."><!-- /og:cedwyn --><script src="/_cedwyn/agent-tools.js?v=1" defer data-cedwyn-agent-tools></script><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.17"></script></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Payment fee maths for low-price digital items (£4.99 scenes and e-books, £19.96 bundle, £49.99/mo academy)</h1>
+<p>Harvested 30 Oct 2026 ~20:14Z. Before this run, "stripe fee", "micropayment" and "fee math" had 0 hits in INDEX.md. This is a read-only analysis. Prices are fixed (v0.0.2 £4.99, bundle £19.96, academy £49.99/mo), so nothing here changes a price. It tells us <strong>which channel and which item shape keep the most of each sale</strong>.</p>
+<h2>Published fees (primary pricing pages, read 30 Oct 2026)</h2>
+<ul>
+<li><strong>Stripe UK, pay-as-you-go</strong> (stripe.com):</li>
+<li>standard UK cards: 1.5% + 20p</li>
+<li>EEA cards: 2.5% + 20p</li>
+<li>international cards: 3.15% + 20p, <strong>+2% if currency conversion is needed</strong></li>
+<li>Bacs Direct Debit: 1%, minimum 20p, capped at £4</li>
+<li>disputes: <strong>£20 per dispute received</strong>, plus £20 if you counter one manually (refunded if you win)</li>
+<li><strong>Stripe Billing</strong> (stripe.com): <strong>0.7% of Billing volume</strong> on subscriptions, on top of the card fee.</li>
+<li><strong>Stripe Managed Payments</strong> (merchant of record, which handles tax, deception and disputes): <strong>+3.5% per transaction</strong> on top of the standard fees.</li>
+<li><strong>Gumroad</strong> (gumroad.com):</li>
+<li>10% + $0.50 on direct-link and profile sales</li>
+<li><strong>30%</strong> when the buyer comes through the Discover marketplace</li>
+<li>merchant of record since 1 Jan 2025, so it handles VAT</li>
+<li>Whether card processing is charged on top: not checked.</li>
+<li><strong>Vimeo On Demand / OTT:</strong> a third-party write-up (castr.com, read via snippet only, not checked) states Vimeo On Demand closes on 20 Nov 2026, and OTT takes 10% + 50¢ per one-time sale, so "a $5 rental loses 20%". We don't use Vimeo, and this rules it out for per-scene sales.</li>
+</ul>
+<h2>What the 20p fixed fee does at each price (Stripe, our arithmetic)</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>price</th>
+<th>UK card</th>
+<th>EEA card</th>
+<th>intl + FX</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>£0.99</td>
+<td>22p = 21.7%</td>
+<td>22.7%</td>
+<td>25.4%</td>
+</tr>
+<tr>
+<td>£2.99</td>
+<td>25p = 8.2%</td>
+<td>9.2%</td>
+<td>11.8%</td>
+</tr>
+<tr>
+<td><strong>£4.99</strong></td>
+<td><strong>28p = 5.5%</strong></td>
+<td>6.5%</td>
+<td>9.2%</td>
+</tr>
+<tr>
+<td>£9.99</td>
+<td>35p = 3.5%</td>
+<td>4.5%</td>
+<td>7.2%</td>
+</tr>
+<tr>
+<td><strong>£19.96</strong></td>
+<td><strong>50p = 2.5%</strong></td>
+<td>3.5%</td>
+<td>6.2%</td>
+</tr>
+<tr>
+<td><strong>£49.99/mo</strong></td>
+<td>£1.30 = <strong>2.6%</strong> (with Billing 0.7%)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Gumroad</strong> on a £4.99 direct sale: about <strong>£0.88 = ~18%</strong>, assuming $0.50 ≈ £0.38 (exchange rate not checked). Through Discover, 30% = £1.50.</li>
+<li><strong>Managed Payments</strong> on £4.99: about 45p = 9.0%.</li>
+<li><strong>One dispute (£20) wipes out the margin on about 4 scene sales.</strong> The fee is about 4× the £4.99 price and roughly 4.3× what we keep from one sale.</li>
+</ul>
+<h2>The rules this gives</h2>
+<ol>
+<li><strong>Below about £3, the fixed fee eats the margin.</strong> Don't create sub-£3 per-item prices. Use free (v0.0.1) or ≥£4.99.</li>
+<li><strong>Bundles keep more.</strong> Four e-books bought one at a time pay 4 × 28p = £1.12. The £19.96 bundle pays 50p. Show the bundle first after one book is in view (pricing unchanged).</li>
+<li><strong>Sell direct (Stripe Payment Link) by default.</strong> Keep Gumroad as the backup and marketplace listing, because direct Gumroad sales cost about 3× the Stripe fee per £4.99 item.</li>
+<li><strong>Disputes are the real risk at £4.99, not the percentage.</strong> Reduce them by:
+   - a clear statement descriptor (e.g. CEDWYN ESTATE)
+   - an immediate receipt with the code or download
+   - the UK digital-content consent tick (we already have it)
+   - a fast, no-quibble refund in place of a chargeback
+   A refund costs us 28p; a dispute costs £20.</li>
+<li><strong>Recurring beats repeat one-offs on fees.</strong> A £49.99/mo member costs 2.6% a month. Twelve separate £4.99 purchases would cost 5.5% each.</li>
+<li><strong>Merchant of record is worth +3.5% only if VAT admin on cross-border digital sales becomes a real burden.</strong> UK VAT registration and EU OSS thresholds: check with the accountant; not checked here.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Log the fee and net with each sale.</strong> member_sync / the weekly Stripe report (the project workspace) should read <code>balance_transaction.fee</code> from Stripe (read-only) and record net per sale and per channel, so the Sunday growth report shows net £, not gross.</li>
+<li><strong>Scene access (P-098 lane):</strong> keep £4.99 as a single Stripe Payment Link. <strong>Don't</strong> add a 99p "rent" option; the fixed fee would take about 22%.</li>
+<li><strong>E-books:</strong> the /ebooks/ purchase path stays on Stripe direct. If Gumroad is the live checkout on any book page, list it as a patch in the project workspace (switching it to the Stripe link) for the lane that owns /ebooks/ (b9cf213b). Don't edit that page here.</li>
+<li><strong>Stripe settings:</strong> check that the statement descriptor is recognisable and that receipts are switched on. Do this read-only via the connected Stripe, then queue any change as a problem in the project workspace No tool is needed; the table above is plain arithmetic: fee = price × % + 20p.</li>
+<li><strong>Gift passes</strong> (see academy-gift-membership-prepaid-pass-handoff.md): sell as one-time charges, with no Billing 0.7% and no auto-renew dispute risk.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>stripe.com (read 30 Oct 2026: card rates, FX, Bacs, dispute fees)</li>
+<li>stripe.com (read: 0.7% of Billing volume)</li>
+<li>stripe.com (read: +3.5%)</li>
+<li>gumroad.com (read: 10% + $0.50 direct, 30% Discover, MoR since 1 Jan 2025)</li>
+<li>castr.com (search snippet only, not checked)</li>
+</ul><p class="raw">Raw Markdown: <a href="payment-fee-maths-low-price-digital-items-stripe-gumroad.md">payment-fee-maths-low-price-digital-items-stripe-gumroad.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main><section id="cedwyn-guestbook" class="ghf-ui" data-no-translate translate="no" aria-label="Agent guest book"><style>#cedwyn-guestbook{display:block!important;clear:both;position:static;box-sizing:border-box;width:auto;max-width:760px;margin:12px auto 4px!important;padding:0 8px!important;text-align:left!important;font:400 12px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!important;color:inherit;background:transparent;border:0}#cedwyn-guestbook *{box-sizing:border-box}#cedwyn-guestbook summary{cursor:pointer;padding:4px 0;font:inherit!important;color:inherit!important;text-align:left!important}#cedwyn-guestbook summary b{font-weight:700}#cedwyn-guestbook .gb-r{opacity:.7}#cedwyn-guestbook .gbw{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;margin:4px 0}#cedwyn-guestbook table{border-collapse:collapse;width:100%;min-width:0;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th,#cedwyn-guestbook td{display:table-cell!important;text-align:left!important;vertical-align:top;padding:4px 6px!important;border:0!important;border-bottom:1px solid rgba(128,128,128,.32)!important;font:inherit!important;color:inherit!important;background:transparent!important}#cedwyn-guestbook th{font-weight:700!important;white-space:nowrap}#cedwyn-guestbook td:nth-child(1),#cedwyn-guestbook td:nth-child(4){white-space:nowrap}#cedwyn-guestbook td:nth-child(2){min-width:6.6em;width:6.6em}#cedwyn-guestbook td:nth-child(3){min-width:13em}@media(min-width:700px){#cedwyn-guestbook td:nth-child(2){white-space:nowrap;width:auto}}#cedwyn-guestbook a{color:inherit!important;text-decoration:underline!important;margin:0!important;padding:0!important;display:inline!important;font:inherit!important}#cedwyn-guestbook p{margin:4px 0!important;max-width:none!important;font:inherit!important;color:inherit!important;text-align:left!important}</style><details><summary><b data-gb-l="title">Agent guest book</b> <span class="gb-v"></span> <span class="gb-r">· <span data-gb-l="rule">versions 1.change.fix, from the commit history</span></span></summary><div class="gbw"><table><thead><tr><th data-gb-l="v">Version</th><th data-gb-l="d">Date</th><th data-gb-l="n">Change</th><th data-gb-l="w">Who</th></tr></thead><tbody class="gb-rows"></tbody></table></div><p><a href="/guestbook/" data-gb-l="all">See all</a></p></details></section><script src="/_cedwyn/guestbook/gb.js?v=1.1.1" defer></script></body></html>

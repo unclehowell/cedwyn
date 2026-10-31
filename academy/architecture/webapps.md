@@ -1,8 +1,8 @@
 # Webapps
 
-Every webapp on the site (formerly called themes): 44 in the registry, each served at its own path, each on its own branch or snapshot. The state column is how hard-coded its content is today; the view rule is the selection that will feed its own view database; the wave is its work package. Machine-readable: [architecture.json](architecture.json).
+Every webapp on the site (formerly called themes): 46 in the registry, each served at its own path, each on its own branch or snapshot. The state column is how hard-coded its content is today; the view rule is the selection that will feed its own view database; the wave is its work package. Machine-readable: [architecture.json](architecture.json).
 
-States: BUILT 2 · DATA-DRIVEN 1 · GENERATED 1 · HARD-CODED 15 · MIXED 13 · SNAPSHOT 12.
+States: BUILDING 1 · BUILT 2 · DATA-DRIVEN 2 · GENERATED 1 · HARD-CODED 15 · MIXED 13 · SNAPSHOT 12.
 
 - **DATA-DRIVEN**: pages rendered from the webapp's view of the central catalogue.
 - **GENERATED**: generated on main from repository data files.
@@ -74,12 +74,14 @@ States: BUILT 2 · DATA-DRIVEN 1 · GENERATED 1 · HARD-CODED 15 · MIXED 13 · 
 | Kissed Frogs | `/kissed-frogs/` | Kissed Frogs: leads that looked like the farm and were checked and found not to be it (for example Llandough Farm, a separate farm) | branch kissed-frogs, folder public | central catalogue screening records (data/core) -> view rule data/views/kissed-frogs.view.json -> /kissed-frogs/_db/view.json; pages rendered by the shared renderer | DATA-DRIVEN (pilot live 30 Oct 2026) | scope.disposition in {not_this_property, separate_property, out_of_scope, name_correction, dating_correction, assertion_only, context_only, on_hold} | WP1 (pilot) |
 | What They Don't Say | `/whattheydontsay/` | What They Don't Say: dated questions to public bodies, when an answer was due, and what came back | branch whattheydontsay, folder public | 1 hand-written or pre-generated HTML pages; no data file | HARD-CODED | kind = observation and tags contain silence, plus public correspondence summaries | WP5 (wave 1) |
 | Blog | `/blog/` | Blog: short dated posts on the history, heritage and records of the farm | branch blog, folder public | 1 hand-written or pre-generated HTML pages; no data file | HARD-CODED | its own small register (books, products, objectives, posts), promoted to a core kind in WP5 | WP5 (wave 1) |
+| Cedwyn Academy (human learning webapp) | `academy.bucklerfamily.estate (own subdomain; the old /learn/ pages redirect there)` | Learning webapp for people: seven graded questionnaires on the farm, its names, people, dates, primary sources, the 1987 judgment, limitation law and the open questions. A member locks an answer in before the correct answer, a short explanation, a verbatim quote and catalogue links are revealed; a pass of each grade unlocks the next. Grade 1 is a free preview. | branch academy, deployed as its own Worker app (copy of the standard webapp pattern: deploy script, shared std files, server-built surfaces, page journal footer) | questions cite catalogue records by ID and pull their sources live from the central catalogue; the app keeps its own derived database (grades, progress) | DATA-DRIVEN | its own derived database built from the catalogue; the header graph reads only this app's own database | standalone webapp (31 Oct 2026); A2UI v0.9 server-built surfaces, shared Cedwyn header (burger and title on one row, dark theme) |
+| Cedwyn Calendar (chronology coverage view) | `calendar subdomain, or /calendar/ on the main site if the subdomain cannot be added` | A calendar-style view of every dated event in the chronology (1667 onwards): day, week, month and year views, several years side by side, and a decades/centuries density view. Periods are shaded by how much evidence they hold, so the parts of the chronology still to be reconstructed stand out; known gaps from the missing-records register are marked. Month-only and year-only dates show as month or year bands, never as a made-up day. Each event opens to its date, precision, title, catalogue IDs, verbatim quote and source. | branch calendar, deployed as its own Worker app (same pattern as the academy webapp) | dated records in the central catalogue, the research timeline and the missing-records register; a derived events table rebuilt from the catalogue with a short cache, plus a build-time snapshot fallback | BUILDING | its own derived events table built from the catalogue; header graph shows events per year from this app's own data only | standalone webapp, started 31 Oct 2026 |
 
 ## Other areas (not webapps)
 
-- `/academy/`: Cedwyn Academy, machine-facing, branch agents
+- `/academy/`: Agent library, machine-facing, branch agents (titled Cedwyn Academy until 31 Oct 2026)
 - `/hive/`: multi-agent draft review room, branch hive
-- `/learn/`: the human learning area
+- `/learn/`: the old human learning area; its pages now redirect (301) to the Cedwyn Academy webapp on its own subdomain
 - `/_cedwyn/`: shared runtime, header files, versions file, A2UI catalog
 - `/db/`: the catalogue database in chunks
 

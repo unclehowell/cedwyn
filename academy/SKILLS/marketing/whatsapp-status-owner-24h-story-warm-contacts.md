@@ -1,0 +1,48 @@
+# WhatsApp Status: the owner's own 24-hour story to people who already know him
+
+Harvested 2026-10-31 (skills harvest run). Topic check: 'whatsapp status' had 0 hits in INDEX.md before this. WhatsApp Channel (one-way broadcast) and Communities are covered elsewhere; this file covers Status, which is a different surface.
+
+## What it is (primary sources)
+- **Where it sits.** Status lives in WhatsApp's **Updates tab**, alongside Channels. Meta Newsroom, 16 Jun 2025 (read in full): the Updates tab "is now used by 1.5 billion people per day globally". The same post launched **Ads in Status**, **Promoted Channels** and paid **Channel subscriptions**, all rolling out "slowly over the next several months". Personal chats and statuses stay end-to-end encrypted.
+- **UK reach.** WhatsApp was used by **92% of UK adult smartphone users in May 2025**, up from 91% in 2024 (Ofcom Online Nation 2025, PDF snippet; the full PDF was not read). Ofcom's 2025 "how the UK goes online" page puts WhatsApp at 90% of adults.
+- **Format.** Text, photo, video or GIF, gone after **24 hours**. Video runs up to **90 seconds** per status (WhatsApp Help 454876960047011, help snippet; the page needs JavaScript and was read via search). It was 60 s before the 2025 change.
+- **Who sees it.** WhatsApp Help 502161774931737 (snippet) and 1691088408081689 (snippet) give three privacy settings: "My contacts", "My contacts except…" and "Only share with…". A contact sees your status only if each of you has the other's number saved (in full international format). So **Status reaches people who already know the owner. It is not a discovery channel.**
+- **Mentions and reshares.** WhatsApp Help 2920968938041709 (snippet): "You can mention individual contacts and groups in your status. People or groups mentioned … can view the status and reshare it to their audience." Mentions don't work on text or voice statuses ("for now"). A reshare is the only way a status travels past the owner's own contacts.
+- **Viewers.** Updates > My status > the eye icon lists who viewed. A green heart marks a like (WhatsApp Help snippet).
+- **Business app.** A WhatsApp Business app catalog item can be posted to status with "Add to status" (WhatsApp Help 494713302702908, snippet).
+- **It can't be automated from an API number.** The WhatsApp Business Platform (Cloud API) has no status endpoint. One practitioner on r/WhatsappBusinessAPI (Dec 2024, thread title + snippet) said that losing status posting was "the only drawback" of moving from the Business app to the API. So **a status has to be posted by a person from the phone app.** Tab's WhatsApp line cannot post one, and neither can any scheduler.
+
+## Evidence quality, plainly
+I found **no practitioner case study with clean before/after numbers** for Status as a sales channel. What turns up is vendor listicles ("20 Status ideas"), "get 2,000 views" growth-hack videos (contact-swap schemes; not evidence and not for us), and one 2025 South African paper on WhatsApp Business as an engagement tool (Azionya, SciELO SA; abstract only). Treat everything below as a reasoned use of documented mechanics, not a proven lift. Measure it ourselves.
+
+## How to do it (owner-run, about 30 seconds a post)
+1. **One status a day at most.** On launch days, one in the morning and one in the evening. Statuses stack into a reel, and too many in a row get skipped (practitioner forum advice, not checked).
+2. **Lead with video, under 90 s, vertical.** The first 2 seconds should show a face or the place, because viewers tap through.
+3. **Put the link in a separate text status**, not the video caption, and keep it to one short line with one link. Use our own short path so clicks are counted (link-in-bio /r/ skill; UTM `utm_source=whatsapp&utm_medium=status`).
+4. **Mention 1–3 groups or people who would want to reshare it**, such as a local-history group the owner belongs to or a family member. A mention notifies them and unlocks the reshare. Never mention a group just to reach its members uninvited.
+5. **Read the viewer list the next day.** A viewer who watched is a warm contact. A *personal* one-to-one reply ("glad you watched — the full story's on the site") is fine. A pasted mass message is not.
+6. **Privacy:** use "My contacts except…" to leave out anyone sensitive. On this project that means anyone involved in the case correspondence.
+7. **Ads in Status and promoted channels cost money.** They're out under the zero-spend rule; revisit only with an explicit budget from the owner.
+
+## Measure
+- **Views:** from the eye list, noted by hand. Divide by the number of saved contacts to get a reach rate.
+- **Clicks:** Cloudflare/our beacon on the `/r/whatsapp-status` path. **Sales:** the HDYHAU answer "WhatsApp" (existing skill).
+- **Decision rule:** after 10 posts, keep going if each post averages 1 or more site clicks. If it's under 1, Status is only a courtesy and not worth a daily habit.
+
+## How we apply it to Cedwyn
+- **Fit.** The Story Time videos (v5 is 74 s) already fit Status's 90 s cap, so the owner can post the lip-synced v5 as his own status. It goes to the people who already know the farm story, which is the warmest audience there is.
+- **What Tab does (PROPOSAL; nothing posted, nothing sent):**
+  - Prepare each new Story Time clip as a phone-ready MP4 under 16 MB.
+  - Write one caption line plus one separate link line pointing to `/r/` with the UTM.
+  - Suggest who to mention.
+  - Hand all of this to the owner in the thread. **Only he can post it.**
+  - Tab never assertions a status was posted.
+- **AI disclosure.** The intro uses an AI likeness and a cloned voice of the owner. Add a short line such as "voice and video made with AI from my own recordings" (see ai-founder-digital-twin-intro-disclosure-youtube-meta-tiktok.md). On Status this is a matter of honesty with friends, not a platform rule.
+- **Editorial rules still apply.** The banned words are out, and the link should go to /ebooks/ or the story page, not a case accusation. The owner's personal status is his own voice, but the clip text follows FORMAT.md.
+- **Paid Channel subscriptions** (June 2025) are a possible later route for the £49.99/mo academy. That's a GATE: the rollout was "slow" and UK availability is not checked. Revisit when the WhatsApp Channel has followers.
+
+## Sources
+- about.fb.com (read)
+- ofcom.org.uk (snippet)
+- faq.whatsapp.com · faq.whatsapp.com · faq.whatsapp.com · faq.whatsapp.com · faq.whatsapp.com (help snippets via search; pages need JavaScript)
+- reddit.com (snippet)

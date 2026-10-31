@@ -1,5 +1,7 @@
 # Version hashtags that survive social platforms (#_v0.0.2 breaks at the dot)
 
+> Update 30 Oct 2026 (21:50 rule): the minus series now starts at **-v0.0.2** — there is no -v0.0.1. Old -v0.0.1 → -v0.0.2, old -v0.0.2 → -v0.0.3, and so on; hashtags #_v0.0.2, #_v0.0.3 …. v0.0.2 and v0.0.1 are unchanged. Examples below that show -v0.0.1 / #_v0.0.1 as an older label predate this rule.
+
 Written 30 Oct 2026, prompted by the project lead's 30 Oct rule: version hashtags take the form #_v0.0.2, #_v0.0.1, #_v-0.0.1, ...
 Sibling files: heritage-anniversary-hashtag-calendar.md, instagram-search-seo-google-indexing.md, bilingual-welsh-english-layout-posts-cards-email.md (tools/bilingual_check.py checks hashtag parity).
 What this file adds: which characters each platform's parser keeps, checked against the parsers' own source code. Our version tags lose their numbers everywhere except Bluesky.
