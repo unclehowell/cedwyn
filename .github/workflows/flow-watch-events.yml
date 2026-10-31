@@ -2,8 +2,9 @@ name: Cedwyn flow-watch event signal
 on:
   push:
     branches: [main]
-  workflow_job:
-    types: [queued, in_progress, completed]
+  workflow_run:
+    workflows: ["build-cedwyn"]
+    types: [requested, in_progress, completed]
     branches: [main]
   schedule:
     - cron: '*/5 * * * *'
@@ -16,7 +17,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   signal:
-    if: github.event_name == 'push' || github.event_name == 'schedule' || (github.event.workflow_job.name == 'build' && github.event.workflow_job.head_branch == 'main')
+    if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_run'
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
