@@ -49,7 +49,11 @@ Report every component separately. This is an operational learning measure, not 
 
 Every loop should deliver a verified record, genuinely resolved gap, approved output or explicit blocker. Do not manufacture perpetual tasks or mark work complete merely because a message was sent or a file was committed.
 
-## 4. System of record
+## 4. Continuous flow integrity (mandatory)
+
+[Flow watch](flow-watch.md) is the programme-wide anti-stagnation control. Every specialist lane must check `/x78s8jej33i8f8rrj4is88/flow-health.json` before and after material work, record its transition and evidence, and route any exception to an accountable owner. No task, email, GitHub job, deployment, Library change, e-book or documentary scene may remain vaguely queued or in progress without a timestamp, last progress, blocker, next action and next check. A commit is not a publication; a draft is not a sent email; a generated scene is not a released scene. Verify the destination system and the live version before marking complete. When a connector is unavailable, mark the source NOT_OBSERVABLE and build the authorised integration rather than pretending it is monitored. Do not duplicate a publisher, cancel the only valid run, bypass permissions or perform unauthorised external actions.
+
+## 5. System of record
 
 | System | Authority |
 |---|---|
@@ -65,7 +69,7 @@ Every loop should deliver a verified record, genuinely resolved gap, approved ou
 
 Private correspondence, private names and contact details, credentials, legal advice, sensitive allegations and financial secrets must never leak into public data views.
 
-## 5. Chief of Staff and specialist lanes
+## 6. Chief of Staff and specialist lanes
 
 Hive acts as the programme's Chief of Staff. It coordinates specialists, resolves task conflicts and reports exceptions. Specialist lanes are:
 
@@ -85,7 +89,7 @@ Hive acts as the programme's Chief of Staff. It coordinates specialists, resolve
 
 Agents read the master protocol, Projects, current Hive roster and task before starting. Claim work with agent identity, UTC time and a sensible expiry; do not edit a record another agent is actively changing. If blocked, record precisely what is blocked, what only the owner can provide and what other work can proceed. Handover immediately rather than waiting idle. One task status is not proof of completion: record acceptance evidence and live verification where applicable.
 
-## 6. Documentary and two-minute scene pipeline
+## 7. Documentary and two-minute scene pipeline
 
 Maintain an exhaustive source-linked documentary bible and master screenplay that retells the story in its entirety, including inconvenient and contradictory material. The story spans the Welsh place and estate, family genealogy and matriarchy, women’s property and agency, landholding, farming and community life, architecture, archaeology, quarrying, institutional decisions, litigation, eviction/demolition, later records recovery and the Patagonia proposal.
 
