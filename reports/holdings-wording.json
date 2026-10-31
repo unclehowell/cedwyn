@@ -2,12 +2,12 @@
  "version": "1.0.1",
  "rewrites": {
   "family-archive-noun": 18,
-  "held-privately-content": 8,
-  "family-held-any": 26,
+  "held-privately-content": 6,
+  "family-held-any": 23,
   "held-privately-paren": 33,
   "retained-archive": 3,
   "record-and-archive": 3,
-  "ev0019-register": 5,
+  "ev0019-register": 3,
   "litigation-file": 7,
   "drive-screenshot": 11,
   "family-archive-image-paren": 12,
@@ -51,6 +51,7 @@
   "family-drive-screens": 2,
   "drive-image": 2,
   "archive-copy": 2,
+  "copy-sentence": 24,
   "sources-named-archive": 2,
   "family-archive-article": 7,
   "held-family-mailbox": 4,
@@ -62,7 +63,7 @@
   "mailbox-received": 2,
   "reported-archive-holds": 1
  },
- "files_changed": 326,
+ "files_changed": 339,
  "json_left": [],
  "left": [
   "guestbook/index.html :: ~50 exact-phrase rules reword family-holdings statements (cuttings/copies &#x27;held by the family&#x27;, &#x27;Family archive / privately held&#x27;, family",

@@ -1,17 +1,17 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 9005,
+  "pages_scanned": 9007,
   "references_checked": {
-    "resource": 205135,
-    "nav": 463120
+    "resource": 205214,
+    "nav": 464016
   },
-  "database_backed_paths": 7324,
-  "unique_missing_destinations": 4944,
-  "missing_references": 52307,
-  "missing_navigation_references": 36883,
-  "missing_resource_references": 15424,
-  "unique_broken_fragments": 1812,
-  "broken_fragment_references": 3370,
+  "database_backed_paths": 7340,
+  "unique_missing_destinations": 4954,
+  "missing_references": 52325,
+  "missing_navigation_references": 36905,
+  "missing_resource_references": 15420,
+  "unique_broken_fragments": 1819,
+  "broken_fragment_references": 3377,
   "form_or_endpoint_actions_not_checked": {
     "form[action]": 2550
   },
@@ -19,7 +19,7 @@
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 8972,
+      "references": 8974,
       "examples": [
         {
           "from": "/",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 8971,
+      "references": 8973,
       "examples": [
         {
           "from": "/",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6441,
+      "references": 6443,
       "examples": [
         {
           "from": "/review/",
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6441,
+      "references": 6443,
       "examples": [
         {
           "from": "/review/",
@@ -154,7 +154,7 @@
     {
       "kind": "nav",
       "path": "/r/strip-ev",
-      "references": 1730,
+      "references": 1731,
       "examples": [
         {
           "from": "/research/evidence-chain/",
@@ -235,7 +235,7 @@
     {
       "kind": "nav",
       "path": "/r/strip-art",
-      "references": 631,
+      "references": 632,
       "examples": [
         {
           "from": "/research/the-tightrope/",
