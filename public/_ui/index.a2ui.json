@@ -1,0 +1,130 @@
+{
+ "a2ui": "0.9",
+ "surface": "that-old-chestnut-index",
+ "generator": "cedwyn-a2ui/0.1",
+ "note": "Layout recipe only. toc.js builds every component on page load from this file plus _db/view.json. No model or paid service runs at page time.",
+ "data": "_db/view.json",
+ "root": [
+  {
+   "component": "Header",
+   "id": "toc-head",
+   "props": {
+    "title": "i18n:h1",
+    "kicker": "i18n:kicker",
+    "parcel": "copy.parcel"
+   }
+  },
+  {
+   "component": "Text",
+   "id": "toc-lede",
+   "props": {
+    "text": "i18n:lede"
+   }
+  },
+  {
+   "component": "Radar",
+   "id": "toc-radar",
+   "props": {
+    "source": "chestnuts",
+    "label": "i18n:radar",
+    "unread_blips": 7,
+    "sweep_degrees": 180,
+    "period_s": 7
+   }
+  },
+  {
+   "component": "Status",
+   "id": "toc-status",
+   "props": {
+    "when_empty": "i18n:empty",
+    "when_incomplete": "i18n:in_progress",
+    "flag": "copy.audit.complete"
+   }
+  },
+  {
+   "component": "Counts",
+   "id": "toc-counts",
+   "props": {
+    "title": "i18n:counts",
+    "source": "chestnuts",
+    "group_by": "finding.class",
+    "groups": [
+     "clear",
+     "borderline",
+     "language"
+    ]
+   }
+  },
+  {
+   "component": "Filter",
+   "id": "toc-filter",
+   "props": {
+    "title": "i18n:filters",
+    "source": "chestnuts",
+    "fields": [
+     {
+      "key": "finding.institution",
+      "label": "i18n:institution"
+     },
+     {
+      "key": "finding.class",
+      "label": "i18n:class"
+     },
+     {
+      "key": "finding.trigger",
+      "label": "i18n:trigger"
+     }
+    ],
+    "search": "i18n:search"
+   }
+  },
+  {
+   "component": "CardList",
+   "id": "toc-cards",
+   "props": {
+    "title": "i18n:cards",
+    "source": "chestnuts:filtered"
+   }
+  },
+  {
+   "component": "Table",
+   "id": "toc-table",
+   "props": {
+    "title": "i18n:table",
+    "source": "chestnuts:filtered",
+    "columns": "copy.columns",
+    "cells": [
+     "finding.institution",
+     "finding.negative_date",
+     "elapsed",
+     "finding.positive_nature",
+     "finding.conduct"
+    ]
+   }
+  },
+  {
+   "component": "TermList",
+   "id": "toc-terms",
+   "props": {
+    "title": "i18n:terms",
+    "source": "chestnuts:filtered",
+    "field": "finding.terms"
+   }
+  },
+  {
+   "component": "Glossary",
+   "id": "toc-glossary",
+   "props": {
+    "title": "i18n:glossary",
+    "source": "copy.statutes"
+   }
+  },
+  {
+   "component": "Footer",
+   "id": "toc-foot",
+   "props": {
+    "meta": "meta"
+   }
+  }
+ ]
+}
