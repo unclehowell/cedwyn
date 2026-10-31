@@ -1,0 +1,65 @@
+{
+  "schema": "cedwyn-documentary-plan/1.0",
+  "version": "1.0.0",
+  "date": "2026-10-31",
+  "status": "master screenplay and bible in development",
+  "purpose": "Retell the documented story of Great House Farm / Tŷ Mawr and the Williams–Buckler family in a complete source-led documentary, preserving contradictions and inconvenient material.",
+  "scene_policy": {
+    "unit_seconds": 120,
+    "sequence": "master-script order; one scene at a time",
+    "review_before_release": [
+      "source coverage",
+      "historical accuracy",
+      "legal wording",
+      "rights and consent",
+      "creative and production quality",
+      "accessibility and continuity"
+    ]
+  },
+  "existing_scripts": {
+    "records": [
+      "F001",
+      "F002",
+      "F003",
+      "F004",
+      "F005",
+      "F006",
+      "F007",
+      "F008",
+      "F009",
+      "F010"
+    ],
+    "subtitle_languages": [
+      "cy",
+      "en",
+      "es"
+    ],
+    "policy": "Preserve and audit existing scripts/cuts before materially revising or recreating."
+  },
+  "versioning": {
+    "major": "Narrative or structural reset",
+    "minor": "Added or materially revised scene/sequence",
+    "patch": "Correction, grade, mix, subtitle or continuity refinement",
+    "preserve_previous_versions": true
+  },
+  "evidence_rules": [
+    "Every factual beat links to artifact and source location.",
+    "Distinguish record, testimony, official account, interpretation, inference and legal contention.",
+    "Retain counterevidence and material that weakens a theory.",
+    "Never present generated dialogue or reconstruction as archival record."
+  ],
+  "model_access_check": [
+    "official or licensed route",
+    "availability and model identity",
+    "output quality and duration",
+    "commercial rights and consent",
+    "data handling",
+    "API access and unit cost"
+  ],
+  "hubspot": {
+    "wp3": 536861939937,
+    "wp4": 536712479991,
+    "master": 536809740513
+  },
+  "master_script_url": "/documentary/script/"
+}
