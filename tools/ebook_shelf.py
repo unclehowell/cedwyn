@@ -18,8 +18,9 @@ Prices, checkout links and utm parameters are copied from the page as they are; 
 import json, html, pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.2.1'
-VERSIONS = [('1.2.1', '30 Oct 2026', 'Select a version label; price in each option'),
+VERSION = '1.2.2'
+VERSIONS = [('1.2.2', '31 Oct 2026', 'Free link names the free file (preview or first edition) and its pages beside the paid edition’s pages'),
+            ('1.2.1', '30 Oct 2026', 'Select a version label; price in each option'),
             ('1.2.0', '30 Oct 2026', 'Header, shelf, then questions: book details in an info modal per title; bundle card on the shelf'),
             ('1.1.0', '27 Oct 2026', 'Poster-card shelf; cover opens the free edition; titles link only to a book’s own page'),
             ('1.0.1', '26 Oct 2026', 'Editions table shown as cards on phones'),
@@ -92,6 +93,10 @@ INSIDE = {   # contents per book, moved from the page into the info modal (owner
     'dartboard-disclosure': '<p>Every route to a public record about the farm, institution by institution: the legal regimes that reach its records, each rung of its escalation ladder with its legal basis, time limit and cost, and what has been asked and answered.</p>',
     'project-management': '<p>The PRINCE2 project dossier of the Tŷ Mawr digital estate and its evidence-recovery programme.</p>',
 }
+FREE_PAGES = {   # book id -> (pages in its free PDF, True if that PDF is a preview of the paid edition) - sf37, 31 Oct 2026
+    'fcg-fraud-concealment-and-government-involvement': (20, True), 'project-management': (13, True),
+    'dartboard-disclosure': (24, True), 'tymawr-deaths': (14, True),
+    'recorded-incidents': (30, False), 'tymawr-heritage': (24, False), 'williams-buckler-family': (25, False)}
 MONTHS = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split()
 def _books(D): return {b['id']: b for b in (D or {}).get('books', [])}
 def info_line(b):
@@ -170,6 +175,16 @@ def tidy(t, D):
         at = t.find('<section class="eb-copy" id="faq"')
         if at < 0: at = t.find('</section>', t.find('id="shelf"')) + len('</section>')
         t = t[:at] + line + t[at:]
+    # 1.2.2 (31 Oct 2026, sales-fix sf37): the free link under each Buy button says what the free file is and how long the
+    # paid edition is, so a reader can see what the £4.99 buys. Free page counts are the free PDFs' own (work/ebooks/versions.json);
+    # the Wiki's free first edition is a full edition, so its card keeps its label. Idempotent.
+    def free_lbl(m):
+        li, cid = m.group(0), m.group(1); b = B.get(cid) or {}; fp = FREE_PAGES.get(cid)
+        if not fp or not b.get('pages') or 'class="sv-go" href="https://buy.stripe.com' not in li: return li
+        lbl = '%s, %d pages · %s has %s' % ('free preview' if fp[1] else 'free v0.0.1', fp[0], E(b.get('edition') or 'v0.0.2'),
+                                           '{:,}'.format(int(b['pages'])))
+        return re.sub(r'(<a class="sv-free"[^>]*>)[^<]*(</a>)', lambda x: x.group(1) + lbl + x.group(2), li, count=1)
+    t = re.sub(r'<li class="sh-card" id="([^"]+)">.*?</li>', free_lbl, t, flags=re.S)
     if 'id="wi-css"' not in t:
         m = re.search(r'</head\s*>', t, re.I)
         if m: t = t[:m.start()] + WI_CSS + t[m.start():]
