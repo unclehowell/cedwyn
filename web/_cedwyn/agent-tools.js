@@ -458,6 +458,8 @@
       { path: '/academy/FLYWHEELS/snowball.html', kind: 'html', note: 'Cedwyn Snowball master programme and agent operating rules' },
       { path: '/academy/FLYWHEELS/snowball.md', kind: 'text', note: 'Full machine-readable Snowball protocol and specialist work packages' },
       { path: '/academy/FLYWHEELS/flywheels.json', kind: 'json', note: 'Machine-readable specialist flywheel register, including the Snowball parent loop' },
+      { path: '/projects/procurement/', kind: 'html', note: 'Public planned procurement register and approval status' },
+      { path: '/projects/data/procurement.json', kind: 'json', note: 'Machine-readable procurement register' },
       { path: '/academy/work.json', kind: 'json', note: 'Open agent jobs' },
       { path: '/db/stats.json', kind: 'json', note: 'Catalogue database counts and version' },
       { path: '/db/config.json', kind: 'json', note: 'SQLite chunk layout for sql.js-httpvfs' },
