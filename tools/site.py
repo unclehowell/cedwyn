@@ -444,6 +444,13 @@ def _shop_strip(dist):
                'wdtk', 'email', 'review', 'meeting', 'watchtower', 'projects', 'courtdrills', 'csscpsg', 'infographic', 'docs'):
         targets.append((_s + '/index.html', _s.replace('/', '-')))
     targets += [(str(p.relative_to(dist)), 'dir') for p in sorted((dist / 'directory' / 'p').glob('*/index.html'))]
+    # sf36 (31 Oct 2026): deep record pages (research articles, evidence records, wiki pages, kissed-frogs) took ~1,565 of
+    # 6,612 non-US page loads in the 3 days to 04:05Z (9x /ebooks/) and had no route to the shop. Sections already tagged above win.
+    for _pre in ('', 'wales/', 'argentina/'):
+        for _g, _t in (('research/*/index.html', 'art'), ('research/evidence/*/index.html', 'ev'),
+                       ('research/evidence-library/*/index.html', 'ev'), ('wiki/*/index.html', 'art'),
+                       ('wiki/evidence/*/index.html', 'ev'), ('kissed-frogs/*/index.html', 'kf')):
+            targets += [(str(p.relative_to(dist)), _t) for p in sorted(dist.glob(_pre + _g))]
     n = 0
     for rel, tag in targets:
         f = dist / rel
@@ -456,7 +463,9 @@ def _shop_strip(dist):
         if not m:
             continue
         text = ('Local history: Great House Farm (T&#375; Mawr), Llandough, 1667&ndash;1988, in the e-books. First edition free &rarr;'
-                if tag in ('dir', 'directory') else 'Read the farm\'s history in the e-books: first edition free &rarr;')
+                if tag in ('dir', 'directory') else
+                'The full history of Great House Farm (T&#375; Mawr), from the records, is in the e-books: first edition free &rarr;'
+                if tag in ('art', 'ev', 'kf') else 'Read the farm\'s history in the e-books: first edition free &rarr;')
         line = ('<p class="ebook-strip" style="margin:.5rem 0 .75rem;font-size:16px;line-height:1.4">'
                 '<a href="/r/strip-%s">%s</a></p>' % (tag, text))
         f.write_text(h[:m.end()] + line + h[m.end():], encoding='utf-8')
