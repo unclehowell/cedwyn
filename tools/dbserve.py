@@ -102,7 +102,11 @@ def main():
         # which FETCHLIT cannot see, so every bucket was dropped and /wayback/go/ found no captured copy (404). Keep them as files.
         why = keep.get(path) or ('fetched by browsers outside a service worker' if KEEPNAME.search(path) else None) \
             or ('fetched by script (built path)' if path.startswith(KEEPPREFIX) else None) \
-            or ('webapp database / A2UI surface (read without a service worker)' if APPDB.search(path) else None)
+            or ('webapp database / A2UI surface (read without a service worker)' if APPDB.search(path) else None) \
+            or ('download file (.csv opened by a plain link, outside the service worker)' if path.lower().endswith('.csv') else None)
+        # 31 Oct 2026 (P-132): a CSV is a download a reader opens by a plain <a href> link (the book register
+        # /research/book-research-findings.csv and /research/books/findings.csv). An <a> link is not markup the preload
+        # scanner fetches, so dbserve dropped every CSV and a first visit or a direct link answered 404. Keep CSVs as files. - Sion's Tab agent
         if why:
             kept_why[why] += 1; rep['kept_' + kind(path)] += 1
             if len(kept_examples) < 20: kept_examples.append([path, why])
