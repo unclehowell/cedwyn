@@ -1,23 +1,23 @@
 {
- "db_version": "d2d907d783a3",
- "paths_served_from_db": 7323,
- "blobs": 4755,
+ "db_version": "b5ab4f55369d",
+ "paths_served_from_db": 7331,
+ "blobs": 4763,
  "files_dropped": {
   "document": 3301,
   "image": 1568,
-  "data": 1390,
+  "data": 1396,
   "audio": 84
  },
  "bytes_dropped": {
   "document": 1274591774,
   "image": 148160276,
-  "data": 35685652,
+  "data": 35711095,
   "audio": 14922925
  },
- "bytes_dropped_total": 1473360627,
+ "bytes_dropped_total": 1473386070,
  "files_kept_as_well": {
   "image": 869,
-  "data": 71,
+  "data": 73,
   "document": 12
  },
  "kept_why": {
@@ -26,7 +26,7 @@
   "css url()": 27,
   "fetched by script": 13,
   "fetched by browsers outside a service worker": 15,
-  "webapp database / A2UI surface (read without a service worker)": 10,
+  "webapp database / A2UI surface (read without a service worker)": 12,
   "page without runtime": 74,
   "fetched by script (built path)": 16
  },

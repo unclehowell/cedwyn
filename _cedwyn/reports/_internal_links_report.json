@@ -1,25 +1,25 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 8892,
+  "pages_scanned": 8894,
   "references_checked": {
-    "resource": 204414,
-    "nav": 459738
+    "resource": 204463,
+    "nav": 459865
   },
-  "database_backed_paths": 7323,
-  "unique_missing_destinations": 4935,
-  "missing_references": 52031,
-  "missing_navigation_references": 36633,
-  "missing_resource_references": 15398,
+  "database_backed_paths": 7331,
+  "unique_missing_destinations": 4939,
+  "missing_references": 52059,
+  "missing_navigation_references": 36657,
+  "missing_resource_references": 15402,
   "unique_broken_fragments": 1812,
   "broken_fragment_references": 3370,
   "form_or_endpoint_actions_not_checked": {
-    "form[action]": 2549
+    "form[action]": 2550
   },
   "top_missing_destinations": [
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 8858,
+      "references": 8860,
       "examples": [
         {
           "from": "/",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 8857,
+      "references": 8859,
       "examples": [
         {
           "from": "/",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6435,
+      "references": 6437,
       "examples": [
         {
           "from": "/review/",
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6435,
+      "references": 6437,
       "examples": [
         {
           "from": "/review/",
@@ -2448,6 +2448,33 @@
     },
     {
       "kind": "nav",
+      "path": "/docs/ghf_research/guide_bookevidenceflywheel/latest/html/en/1-operating-cycle.html",
+      "references": 12,
+      "examples": [
+        {
+          "from": "/docs/ghf_research/guide_bookevidenceflywheel/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-operating-cycle.html"
+        },
+        {
+          "from": "/docs/ghf_research/guide_bookevidenceflywheel/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-operating-cycle.html"
+        },
+        {
+          "from": "/docs/ghf_research/guide_bookevidenceflywheel/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-operating-cycle.html#purpose-and-research-questions"
+        },
+        {
+          "from": "/docs/ghf_research/guide_bookevidenceflywheel/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-operating-cycle.html#cedwyn-as-a-discovery-index"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
       "path": "/docs/ghf_wiki/la_familylegalcasecontrolroom/latest/html/en/1-record.html",
       "references": 12,
       "examples": [
@@ -4036,33 +4063,6 @@
           "from": "/docs/ghf_wiki/la_woodlandlandtransferassessment19022005/latest/html/en/",
           "attribute": "a[href]",
           "url": "1-record.html#records-one-row-each"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/docs/ghf_wiki/ir_bppropertiesbppensiontrustforensicinstit/latest/html/en/1-record.html",
-      "references": 7,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/ir_bppropertiesbppensiontrustforensicinstit/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_bppropertiesbppensiontrustforensicinstit/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_bppropertiesbppensiontrustforensicinstit/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#bp-side-solicitor-records-16-october-2026-update"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_bppropertiesbppensiontrustforensicinstit/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "1-record.html#documented-appearances"
         }
       ]
     }

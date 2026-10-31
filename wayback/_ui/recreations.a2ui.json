@@ -1,0 +1,165 @@
+[
+ {
+  "version": "v0.9",
+  "createSurface": {
+   "surfaceId": "wayback-recreations",
+   "catalogId": "https://cedwyn.bucklerfamily.estate/_cedwyn/a2ui/catalog.json"
+  }
+ },
+ {
+  "version": "v0.9",
+  "updateComponents": {
+   "surfaceId": "wayback-recreations",
+   "components": [
+    {
+     "id": "root",
+     "component": "Page",
+     "title": {
+      "path": "/copy/title"
+     },
+     "description": {
+      "path": "/copy/description"
+     },
+     "css": [
+      "/_cedwyn/recreations/rec.css?v=1.0.0"
+     ],
+     "headScripts": [
+      {
+       "src": "/_cedwyn/ghf/ghf-lang.js?v=2.1.4c",
+       "defer": true
+      },
+      {
+       "src": "/_cedwyn/ghf/ghf-boot.js?v=2.1.17"
+      }
+     ],
+     "bodyClass": "rec",
+     "mainClass": "recw",
+     "children": [
+      "crumb",
+      "h1",
+      "lede",
+      "order",
+      "list"
+     ]
+    },
+    {
+     "id": "crumb",
+     "component": "Inline",
+     "className": "rec-crumb",
+     "separator": " › ",
+     "children": [
+      "crumb-v",
+      "crumb-r"
+     ]
+    },
+    {
+     "id": "crumb-v",
+     "component": "Link",
+     "href": "../",
+     "text": {
+      "path": "/copy/vault"
+     }
+    },
+    {
+     "id": "crumb-r",
+     "component": "Run",
+     "text": "Recreations"
+    },
+    {
+     "id": "h1",
+     "component": "HiddenHeading",
+     "text": "Recreations"
+    },
+    {
+     "id": "lede",
+     "component": "Text",
+     "className": "rec-lede",
+     "text": {
+      "path": "/copy/lede"
+     }
+    },
+    {
+     "id": "order",
+     "component": "Text",
+     "className": "rec-note",
+     "text": {
+      "path": "/copy/order"
+     }
+    },
+    {
+     "id": "list",
+     "component": "CardList",
+     "className": "rec-cards",
+     "domId": "recreations",
+     "children": {
+      "path": "/recreations",
+      "componentId": "card"
+     }
+    },
+    {
+     "id": "card",
+     "component": "Section",
+     "children": [
+      "card-f",
+      "card-a"
+     ],
+     "className": "rec-item"
+    },
+    {
+     "id": "card-f",
+     "component": "Figure",
+     "className": "rec-thumb",
+     "src": {
+      "path": "media/photo"
+     },
+     "alt": {
+      "path": "media/alt"
+     },
+     "width": 1536,
+     "height": 864
+    },
+    {
+     "id": "card-a",
+     "component": "Card",
+     "className": "rec-card",
+     "href": {
+      "fmt": "../{s}/",
+      "args": {
+       "s": {
+        "path": "slug"
+       }
+      }
+     },
+     "kicker": {
+      "path": "id"
+     },
+     "title": {
+      "path": "title"
+     },
+     "meta": [
+      {
+       "label": "Date",
+       "value": {
+        "path": "date/display"
+       }
+      },
+      {
+       "label": "Event",
+       "value": {
+        "path": "event"
+       }
+      }
+     ],
+     "foot": {
+      "fmt": "v{v}",
+      "args": {
+       "v": {
+        "path": "version"
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+]

@@ -1,0 +1,385 @@
+[
+ {
+  "version": "v0.9",
+  "createSurface": {
+   "surfaceId": "wayback-recreation",
+   "catalogId": "https://cedwyn.bucklerfamily.estate/_cedwyn/a2ui/catalog.json"
+  }
+ },
+ {
+  "version": "v0.9",
+  "updateComponents": {
+   "surfaceId": "wayback-recreation",
+   "components": [
+    {
+     "id": "root",
+     "component": "Page",
+     "title": {
+      "fmt": "{id} · {t} · Wayback Vault · Cedwyn",
+      "args": {
+       "id": {
+        "path": "/item/id"
+       },
+       "t": {
+        "path": "/item/title"
+       }
+      }
+     },
+     "description": {
+      "path": "/item/event"
+     },
+     "css": [
+      "/_cedwyn/recreations/rec.css?v=1.0.0"
+     ],
+     "headScripts": [
+      {
+       "src": "/_cedwyn/ghf/ghf-lang.js?v=2.1.4c",
+       "defer": true
+      },
+      {
+       "src": "/_cedwyn/ghf/ghf-boot.js?v=2.1.17"
+      }
+     ],
+     "bodyClass": "rec",
+     "mainClass": "recw",
+     "children": [
+      "crumb",
+      "h1",
+      "meta",
+      "fig",
+      "figlabel",
+      "interp",
+      "desc",
+      "src",
+      "excl",
+      "holo",
+      "made",
+      "back"
+     ]
+    },
+    {
+     "id": "crumb",
+     "component": "Inline",
+     "className": "rec-crumb",
+     "separator": " › ",
+     "children": [
+      "crumb-v",
+      "crumb-r",
+      "crumb-id"
+     ]
+    },
+    {
+     "id": "crumb-v",
+     "component": "Link",
+     "href": "../",
+     "text": {
+      "path": "/copy/vault"
+     }
+    },
+    {
+     "id": "crumb-r",
+     "component": "Link",
+     "href": "../recreations/",
+     "text": "Recreations"
+    },
+    {
+     "id": "crumb-id",
+     "component": "Run",
+     "text": {
+      "path": "/item/id"
+     }
+    },
+    {
+     "id": "h1",
+     "component": "Heading",
+     "level": 1,
+     "className": "rec-h1",
+     "text": {
+      "path": "/item/title"
+     }
+    },
+    {
+     "id": "meta",
+     "component": "Row",
+     "className": "rec-meta",
+     "children": [
+      "m-id",
+      "m-date",
+      "m-event"
+     ]
+    },
+    {
+     "id": "m-id",
+     "component": "Badge",
+     "className": "rec-id",
+     "text": {
+      "fmt": "Catalogue no. {id} · v{v}",
+      "args": {
+       "id": {
+        "path": "/item/id"
+       },
+       "v": {
+        "path": "/item/version"
+       }
+      }
+     }
+    },
+    {
+     "id": "m-date",
+     "component": "Span",
+     "className": "rec-date",
+     "text": {
+      "path": "/item/date/display"
+     }
+    },
+    {
+     "id": "m-event",
+     "component": "Span",
+     "className": "rec-event",
+     "text": {
+      "path": "/item/event"
+     }
+    },
+    {
+     "id": "fig",
+     "component": "Figure",
+     "className": "rec-fig",
+     "src": {
+      "path": "/item/media/photo"
+     },
+     "alt": {
+      "path": "/item/media/alt"
+     },
+     "width": 1536,
+     "height": 864
+    },
+    {
+     "id": "figlabel",
+     "component": "Text",
+     "className": "rec-label",
+     "text": {
+      "path": "/item/media/label"
+     }
+    },
+    {
+     "id": "interp",
+     "component": "Section",
+     "className": "rec-interp",
+     "heading": {
+      "path": "/copy/interp_h"
+     },
+     "children": [
+      "interp-p"
+     ]
+    },
+    {
+     "id": "interp-p",
+     "component": "RichParas",
+     "className": "rec-p",
+     "paras": {
+      "path": "/item/interpretation_cited"
+     }
+    },
+    {
+     "id": "desc",
+     "component": "Section",
+     "className": "rec-desc",
+     "heading": {
+      "path": "/copy/desc_h"
+     },
+     "children": [
+      "desc-n",
+      "desc-p"
+     ]
+    },
+    {
+     "id": "desc-n",
+     "component": "Text",
+     "className": "rec-note",
+     "text": {
+      "path": "/copy/desc_note"
+     }
+    },
+    {
+     "id": "desc-p",
+     "component": "RichParas",
+     "className": "rec-p",
+     "paras": {
+      "path": "/item/description_cited"
+     }
+    },
+    {
+     "id": "src",
+     "component": "Section",
+     "className": "rec-srcs",
+     "heading": {
+      "path": "/copy/src_h"
+     },
+     "list": true,
+     "listClass": "rec-src",
+     "children": {
+      "path": "/item/sources",
+      "componentId": "src-li"
+     }
+    },
+    {
+     "id": "src-li",
+     "component": "ListItem",
+     "text": {
+      "path": "text"
+     },
+     "href": {
+      "path": "href"
+     }
+    },
+    {
+     "id": "excl",
+     "component": "Section",
+     "className": "rec-excl",
+     "heading": {
+      "path": "/copy/excl_h"
+     },
+     "list": true,
+     "listClass": "rec-src",
+     "children": {
+      "path": "/item/excluded",
+      "componentId": "excl-li"
+     }
+    },
+    {
+     "id": "excl-li",
+     "component": "ListItem",
+     "text": {
+      "path": "text"
+     }
+    },
+    {
+     "id": "holo",
+     "component": "Section",
+     "className": "rec-holo",
+     "heading": {
+      "path": "/copy/holo_h"
+     },
+     "children": [
+      "holo-f",
+      "holo-n"
+     ]
+    },
+    {
+     "id": "holo-f",
+     "component": "Figure",
+     "className": "rec-fig rec-holo-f",
+     "src": {
+      "path": "/item/media/hologram"
+     },
+     "alt": {
+      "fmt": "Wireframe hologram version of {id}",
+      "args": {
+       "id": {
+        "path": "/item/id"
+       }
+      }
+     },
+     "width": 1280,
+     "height": 720
+    },
+    {
+     "id": "holo-n",
+     "component": "Inline",
+     "className": "rec-note",
+     "separator": " ",
+     "children": [
+      "holo-t",
+      "holo-a"
+     ]
+    },
+    {
+     "id": "holo-t",
+     "component": "Run",
+     "text": {
+      "path": "/copy/holo_note"
+     }
+    },
+    {
+     "id": "holo-a",
+     "component": "Link",
+     "href": "../../wales/#recreations",
+     "text": "Wales tour"
+    },
+    {
+     "id": "made",
+     "component": "Details",
+     "className": "rec-made",
+     "summary": {
+      "path": "/copy/made_h"
+     },
+     "children": [
+      "made-m",
+      "made-d",
+      "made-h",
+      "made-p"
+     ]
+    },
+    {
+     "id": "made-m",
+     "component": "Text",
+     "label": "Model",
+     "text": {
+      "path": "/item/made/model"
+     }
+    },
+    {
+     "id": "made-d",
+     "component": "Text",
+     "label": "Made",
+     "text": {
+      "path": "/item/made/date"
+     }
+    },
+    {
+     "id": "made-h",
+     "component": "Text",
+     "label": "Hologram",
+     "text": {
+      "path": "/item/made/hologram_method"
+     }
+    },
+    {
+     "id": "made-p",
+     "component": "Text",
+     "className": "rec-prompt",
+     "label": "Prompt used",
+     "text": {
+      "path": "/item/made/prompt"
+     }
+    },
+    {
+     "id": "back",
+     "component": "Inline",
+     "className": "rec-muted",
+     "separator": " · ",
+     "children": [
+      "back-a",
+      "back-v"
+     ]
+    },
+    {
+     "id": "back-a",
+     "component": "Link",
+     "href": "../recreations/",
+     "text": {
+      "path": "/copy/back"
+     }
+    },
+    {
+     "id": "back-v",
+     "component": "Link",
+     "href": "../",
+     "text": {
+      "path": "/copy/vault"
+     }
+    }
+   ]
+  }
+ }
+]
