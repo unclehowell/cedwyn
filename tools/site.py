@@ -422,6 +422,14 @@ except Exception as _e:   # a backlink list must never stop a build
     print('cited_on failed:', _e)
 import library_pointer
 library_pointer.run(DIST)
+# PDF citations (Sion, WhatsApp 20:07 GMT 31 Oct 2026): page 1 of each cited PDF, then a "View PDF" link under it, like the
+# artifact pages (/wales/research/artifacts/ghf-e106-r116-a1/); replaces framed PDFs and the docs PDF pop-up that phones could not
+# show. tools/pdf_previews.py; never stops a build - Sion's Tab agent
+try:
+    import pdf_previews
+    pdf_previews.run(DIST)
+except Exception as _e:
+    print('pdf_previews failed:', _e)
 # Social share previews (Sion, WhatsApp 05:29 GMT 27 Oct 2026): og:/twitter: tags on every page, share cards from the
 # Garden Gallery pieces (tools/og_cards.json picks the piece per section). Head tags only; runs last - Sion's Tab agent
 import og_cards
