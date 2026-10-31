@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Card sorting (open, closed, hybrid): let readers group the content before we name the menu · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Card sorting (open, closed, hybrid): let readers group the content before we name the menu"><link rel="alternate" type="text/markdown" href="card-sorting-open-closed-hybrid-similarity.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Card sorting (open, closed, hybrid): let readers group the content before we name the menu</h1>
+<p><strong>What it is:</strong> each content item goes on a card (title plus a one-line description). Participants group the cards in whatever way makes sense to them and, in an open sort, name each group. Card sorting is the <em>generative</em> partner to tree testing (see top-tasks-survey-tree-test-navigation.md). The card sort proposes a structure, and the tree test then checks that people can find things in it.</p>
+<h2>Practitioner evidence (with numbers)</h2>
+<ul>
+<li><strong>How many participants (NN/g, Jakob Nielsen, on Tullis &amp; Wood's data):</strong></li>
+</ul>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Participants</th>
+<th>Correlation with the final result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>0.75 (not enough)</td>
+</tr>
+<tr>
+<td>15</td>
+<td>0.90 (recommended stop)</td>
+</tr>
+<tr>
+<td>20</td>
+<td>0.93</td>
+</tr>
+<tr>
+<td>30</td>
+<td>0.95</td>
+</tr>
+<tr>
+<td>60</td>
+<td>0.98 (wasteful)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Tullis &amp; Wood themselves recommend 20-30.
+- <strong>Cards and sample (NN/g 2024 guide):</strong> use 30-50 cards and at least 15 participants for a qualitative sort. Use 30-50 participants for a quantitative sort, where you read how often pairs were grouped together.
+- <strong>Which type (NN/g):</strong>
+  - <strong>Open:</strong> no predefined groups. This is the most common type and best for learning how people think.
+  - <strong>Closed:</strong> categories are fixed. It is used to validate, but NN/g states tree testing is usually better for that job.
+  - <strong>Hybrid:</strong> some categories are given and participants may add their own.
+- <strong>Don't take labels literally (NN/g):</strong> in an open sort, participants' group names are clues, not final labels. A card sort also ignores the page context that shapes how labels get read.
+- <strong>Analysis (Optimal Workshop 101 guides):</strong>
+  - The <strong>similarity matrix</strong> shows the % of participants who put each pair of cards together. Dark clusters along the edge mean strong agreement.
+  - The <strong>dendrogram</strong> (hierarchical clustering) shows where natural groups split.
+  - For closed sorts, the <strong>placement matrix</strong> shows how often each card went into each category. A card split across categories is a labelling problem.</p>
+<h2>How to run it (free, small audience)</h2>
+<ol>
+<li><strong>Pick 30-50 cards</strong> from real content, ideally the top tasks plus the pages that draw the most traffic. Write titles in plain words with no jargon and no menu names, so the cards don't hint at the current structure.</li>
+<li><strong>Choose open</strong> (we are designing the structure) or <strong>hybrid</strong> (when a few sections, such as "E-books", are fixed).</li>
+<li><strong>Recruit 15 people</strong> from the real audience. Remote and unmoderated is fine: a shared spreadsheet with a "group name" column per card works, as do paper cards at a talk.</li>
+<li><strong>Ask 2 follow-ups:</strong> "Which cards were hard to place?" and "Any group you'd look for first?"</li>
+<li><strong>Analyse:</strong> run <code>tools/card_sort.py</code> to get pair-agreement %, the top pairs, and average-linkage clusters at a cut you choose. Groups with 60% or more pair agreement are strong. Cards under 30% agreement with everything are orphans: rewrite the card or let it live in several places.</li>
+<li><strong>Draft 5-8 sections</strong> from the clusters. Name them in the words participants used most often, then <strong>tree-test</strong> the draft before changing the live menu.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>The problem it fits:</strong> the site has many web apps (research, evidence, wiki, e-books, shop, movie, academy, calendar) whose content overlaps. A reader looking for "the 1987 case" or "the farm's history" may not know which app holds it.</li>
+<li><strong>Cards:</strong> the 40 most-visited pages and documents across the apps, plus each e-book title. Card text is page titles only, never anything private.</li>
+<li><strong>Participants:</strong> 15 engaged readers. Keep "E-books" as a fixed group (hybrid) so we learn which research topics readers expect to sit next to each e-book. Those pairings become in-page links to /ebooks/.</li>
+<li><strong>Output:</strong> a proposed section map and a list of orphan cards. Hand the map to the tree-test step (top-tasks skill).</li>
+<li><strong>PROPOSAL only:</strong> recruiting readers by email or social, and any menu change, need the project lead's go. The analysis itself can run now on an internal sort by agents (label it as a weak proxy for readers).</li>
+</ul>
+<h2>Tool</h2>
+<p><code>tools/card_sort.py</code> (stdlib only) reads a CSV with <code>participant,card,group</code> columns. It prints:
+- the pairwise co-occurrence % matrix (top pairs);
+- per-card best partner;
+- orphan cards (max agreement under 30%);
+- average-linkage clusters at a <code>--cut</code> threshold (default 0.5);
+- for closed sorts, a card x category placement % table (<code>--closed</code>).</p>
+<p>Nothing installed.</p>
+<h2>Sources</h2>
+<ul>
+<li>nngroup.com (Nielsen on Tullis &amp; Wood: 5=0.75, 15=0.90, 20=0.93, 30=0.95, 60=0.98; read 2026-10-31)</li>
+<li>nngroup.com (30-50 cards, 15+ qualitative, 30-50 quantitative; open/closed/hybrid; tree testing preferred over closed sort for validation; read 2026-10-31)</li>
+<li>optimalworkshop.com (pair %, cluster edge; read 2026-10-31)</li>
+<li>optimalworkshop.com (AAM/BMM clustering; snippet)</li>
+</ul><p class="raw">Raw Markdown: <a href="card-sorting-open-closed-hybrid-similarity.md">card-sorting-open-closed-hybrid-similarity.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

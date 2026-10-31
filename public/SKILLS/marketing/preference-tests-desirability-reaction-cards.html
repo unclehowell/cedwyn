@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Preference tests and desirability (reaction-card) studies: which look reads as trustworthy · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Preference tests and desirability (reaction-card) studies: which look reads as trustworthy"><link rel="alternate" type="text/markdown" href="preference-tests-desirability-reaction-cards.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Preference tests and desirability (reaction-card) studies: which look reads as trustworthy</h1>
+<p>Harvested 2026-10-31 by the skills harvest. Complements small-sample-usability-tests-buy-path-5-users.md (five-second test, think-aloud) and post-task-ease-seq-sus-ux-lite.md (scores after real use). This file is about <strong>judging the look and feel of options before anyone uses them</strong>, and reading the result honestly.</p>
+<h2>What the practitioners found (with numbers)</h2>
+<ul>
+<li><strong>Preference is not performance.</strong> Jakob Nielsen (NN/g, 298 designs with both objective and satisfaction metrics, out of 1,733 tested): satisfaction and performance correlate at <strong>r = .53</strong>; users preferred the better-performing design about <strong>70% of the time</strong>, not 100%. He calls it "completely invalid" to show screens and ask how well people would like <em>using</em> them. So a preference test can judge look, trust and message, never ease of use.</li>
+<li><strong>Test it against chance, not against the runner-up.</strong> Jeff Sauro (MeasuringU, 2015): 100 people, 4 designs, Design C picked by 39. Chance is 1/4 = 25%. Binomial test p = .0024; 95% CI 30-49%, lower bound above 25%, so C wins. Design B at 31% had a CI of 23-41%, which dips under 25%, so B cannot be told apart from random picking. Use the binomial test with a confidence interval (a chi-square goodness-of-fit only tells you the spread is not random, not which design wins).</li>
+<li><strong>Sample size</strong>: vendor guides suggest 100-200 for a quantitative preference test (Lyssna) or 5-8 qualitative / 100 quantitative (UserTesting help centre). Vendor numbers, not checked against independent research. With 20-30 people only a landslide (about 70%+ of 2 options) clears chance.</li>
+<li><strong>Desirability / Microsoft Reaction Cards</strong> (Benedek &amp; Miner, Microsoft, UPA 2002; NN/g write-up): 118 product-reaction words; at the end of a session people pick the <strong>5</strong> that best describe the design. The controlled vocabulary makes answers countable. Original set was at least <strong>40% negative</strong> words.</li>
+<li>NN/g adaptation for online surveys and visual appeal: cut the list to <strong>about 25 words or fewer</strong>, drop words about function or speed ("slow", "controllable"), <strong>randomise word order</strong> (lazy respondents pick the first five), keep negative, neutral and positive words, a screenshot is enough. Report <strong>% of participants who picked each word</strong>, rank them, and compare groups or versions (their example: 83% called a redesign "professional" vs 20% for the old one). Decide the brand words in advance and count how many people chose at least one of them.</li>
+</ul>
+<h2>How to run a preference test (step by step)</h2>
+<ol>
+<li>One question per test: "Which of these looks most trustworthy for a local-history record?" (or "...most clearly shows what you get"). Never "which do you like?"</li>
+<li>2-6 options, equal polish, same size, real copy and images, <strong>only 1-2 elements different</strong> so the reason is knowable.</li>
+<li>Randomise option order per person. Ask "why?" after the choice (one free-text line).</li>
+<li>Score: winner's count vs chance (1/k) with the binomial test and 95% CI. Win only if the CI lower bound is above 1/k. Otherwise report "no clear preference" and keep the cheaper option.</li>
+<li>Follow with behaviour: an A/B test where traffic allows, or a 5-user task test of the chosen option.</li>
+</ol>
+<h2>How to run a desirability (reaction-card) study</h2>
+<ol>
+<li>Pick 5 brand words before you start (example for a heritage archive: trustworthy, calm, scholarly, clear, local).</li>
+<li>Build a list of 20-25 words: those 5, about 8 other positives, and at least 40% negatives or neutrals (biased, cheap, busy, confusing, old-fashioned, intimidating, amateur, angry, dull, ordinary).</li>
+<li>Show one screenshot per person (or one per block, order randomised), and ask: "Pick the 5 words that best describe this page."</li>
+<li>Tally: % picking each word, top 5 words, and % who picked at least one brand word. Compare two versions or two reader groups side by side.</li>
+<li>Read the negatives first: one negative word chosen by 30%+ is the finding.</li>
+</ol>
+<h2>Pitfalls</h2>
+<ul>
+<li>Asking people who know the project (friends, agents, the team): they pick what they think you want.</li>
+<li>Testing unequal mock-ups: the polished one wins on polish.</li>
+<li>Treating a 55/45 split from 40 people as a result. Run the binomial test.</li>
+<li>Using a preference result to claim something is easier to use.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Trust read of the research pages</strong> (most useful): the case and evidence pages need to read as calm and documentary, not as a campaign. Run a reaction-card study on two screenshots (an evidence page and the /ebooks/ shelf) with the 22-word list above; brand words: trustworthy, calm, scholarly, clear, local. Target: 50%+ pick at least one brand word, and no negative word (biased, angry, confusing) above 30%. Recruiting readers is a public-channel step, so this is a <strong>PROPOSAL</strong> for the queue, not something to launch.</li>
+<li><strong>Social card styles</strong>: before changing the weekly quote-card look, show 2 styles (only the type treatment different) and ask "which looks most like a real record?"; score with the helper. Covers are out of scope (cover A/B already covered elsewhere); prices are fixed and never tested.</li>
+<li><strong>Run it on our own screenshots now, without people</strong>: list which of the 22 words a stranger could fairly pick from the page today and fix anything that would earn "busy" or "biased" (copy and layout changes go to the queue as proposals).</li>
+<li>Helper: <code>python3 tools/ux_scores.py pref A=31 B=9</code> (binomial vs chance + Wilson 95% CI per option) and <code>python3 tools/ux_scores.py cards picks.csv --brand trustworthy,calm,scholarly,clear,local</code> (CSV: participant,word).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>nngroup.com (Nielsen 2012: 298 designs, r = .53, 70%)</li>
+<li>measuringu.com (Sauro 2015: binomial test with CI, 39/100 worked example)</li>
+<li>nngroup.com (118 words, pick 5, 40% negative, 25 words online, randomise, report %)</li>
+<li>nngroup.com (the full 118-word list)</li>
+<li>lyssna.com (vendor: 2-6 options, randomise, 100-200 participants; number not checked)</li>
+<li>help.usertesting.com (vendor: 5-8 qualitative, 100 quantitative; not checked)</li>
+</ul><p class="raw">Raw Markdown: <a href="preference-tests-desirability-reaction-cards.md">preference-tests-desirability-reaction-cards.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

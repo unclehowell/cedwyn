@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Skill: pick one OEC and set guardrails before any A/B test (2026) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Skill: pick one OEC and set guardrails before any A/B test (2026)"><link rel="alternate" type="text/markdown" href="oec-guardrail-metrics-decision-rule-ab-tests.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Skill: pick one OEC and set guardrails before any A/B test (2026)</h1>
+<p>Written 31 Oct 2026 (skills harvest). Topic: A/B testing / analytics. This file covers deciding what a test is judged on and what it must not damage, before it starts. It sits alongside <code>ab-testing-small-lists.md</code> (fixed stop size, no peeking), <code>sample-ratio-mismatch-srm-check-ab-tests.md</code> (did the split work), <code>twymans-law-too-good-ab-results-false-positive-risk.md</code> (is the win believable) and <code>email-holdout-incrementality-test-small-list-gate.md</code> (did the email cause the sale). Tool: <code>tools/decision_rule.py</code> (stdlib only, nothing installed).</p>
+<h2>What the evidence shows</h2>
+<ul>
+<li><strong>Bing, Kohavi et al., KDD 2012, "Trustworthy Online Controlled Experiments: Five Puzzling Outcomes Explained" (read in full).</strong> A bug in one experiment showed users very poor search results. Bing's two top metrics both went up: distinct queries per user rose over 10% and revenue per user over 30%. The bad results made people search more and click more ads. Lesson: an OEC (Overall Evaluation Criterion) that "is easy to beat by doing something clearly wrong" is the first pitfall. Bing switched to sessions per user as the key metric, with revenue allowed to rise only "without negatively impacting engagement metrics".</li>
+<li><strong>Amazon email OEC (Kohavi, Tang and Xu, <em>Trustworthy Online Controlled Experiments</em>, as quoted by votito.com; the book itself was not opened).</strong> Judging promo emails on revenue alone rewards spamming. The OEC they used was <code>(revenue - unsubscribes x lifetime value lost per unsubscribe) / users</code>, so an email that sells today but costs the list is scored as a loss.</li>
+<li><strong>Airbnb Engineering, "Designing Experimentation Guardrails", 2021 (read in full).</strong> Three guardrails, each must pass or the test escalates to a discussion rather than being killed automatically:
+  1. <strong>Impact guardrail</strong>: the change must not be worse than a preset margin (example: -0.5%), significant or not.
+  2. <strong>Power guardrail</strong>: the test must have enough users that the impact check means something.
+  3. <strong>Stat-sig negative guardrail</strong>: only for the top metric, where even a small significant drop matters.
+  The system flags about 25 experiments a month. About 80% launch after discussion and 20% (about 5 a month) are stopped. Warning from the same post: 50 metrics each alerting at p&lt;0.05 give at least one false alarm 92% of the time in an A/A test. So protect a <strong>few</strong> metrics.</li>
+<li><strong>Spotify Engineering / Schultzberg et al., arXiv 2402.11609, March 2024 (blog read).</strong> One decision rule with four metric types:</li>
+<li>success metrics, tested for superiority;</li>
+<li>guardrail metrics, tested for non-inferiority within a margin;</li>
+<li>deterioration metrics, tested for any significant drop;</li>
+<li>quality checks such as SRM.
+  Key result: <strong>don't split alpha across guardrails</strong>, because a guardrail only needs evidence of "not worse by more than m". <strong>Do</strong> correct power (beta) for the number of guardrails and quality tests, or the test will be underpowered for the ship decision.</li>
+</ul>
+<h2>How to do it (any test, any size)</h2>
+<ol>
+<li><strong>Write the OEC first, as one number per unit of traffic.</strong> It should move towards the long-term goal, which is paid readers, not clicks. If two things matter (for example, sales vs list damage), combine them like Amazon did. Never "reply rate + click rate" as two separate winners.</li>
+<li><strong>Pick 1-3 guardrails, each with a margin.</strong> For each one, ask: what could this change break that we would regret even if the OEC went up? Examples: free sign-ups, unsubscribe or complaint rate, buy-path errors, 390 px fit, load time. Write the margin as an absolute amount, for example "sign-ups may not fall by more than 2 points".</li>
+<li><strong>Add breakers: counts where any amount stops the test.</strong> For example: 1 spam complaint, 1 page error, 1 broken buy button. At our traffic these work better than statistics.</li>
+<li><strong>Run the quality check first (SRM)</strong>, then the guardrails, then the OEC. A test that fails SRM is invalid, whatever the OEC shows.</li>
+<li><strong>Decide with one rule.</strong> SHIP only if the quality check passes, no breaker fired, every guardrail is non-inferior and adequately powered, and the OEC beats control one-sided at the alpha set in advance. If a guardrail is harmed, ESCALATE (decide it in writing, don't auto-ship). If a guardrail is underpowered, keep running to the fixed stop size, then call it.</li>
+<li><strong>Log the rule in the register before launch.</strong> If the OEC is chosen after seeing the data, the test means nothing.</li>
+</ol>
+<p><code>python3 tools/decision_rule.py spec.json</code> returns INVALID / NO-SHIP / ESCALATE / UNDERPOWERED / SHIP with one line per check. <code>--example</code> prints a spec. Tested on this box on 31 Oct with 5 cases: SRM caught (1200 vs 1000 at a 50/50 split, p=0.00002), a breaker stops the test, a clear guardrail harm escalates even when underpowered, 40-per-arm is reported underpowered, and a flat OEC keeps A.</p>
+<h2>How we apply it to Cedwyn</h2>
+<p>Live state (read 31 Oct from the project workspace and kpi.csv): 0 sales and 1 confirmed subscriber; /ebooks/ gets about 320-720 HTML hits a day including bots. The register has 5 rows, with these gaps:
+- <strong>No row names a guardrail or a decision rule.</strong>
+- <strong>AB-01</strong> (outreach subject lines) is judged on "reply rate + click rate", two metrics with no rule for when they disagree.
+- <strong>AB-03</strong> (FB post format) is the same: "link clicks + shares".
+- <strong>The id AB-02 is used twice</strong>, once for the outreach landing page and once for the /ebooks/ hero headline. Results will be filed against the wrong test.</p>
+<p>Proposed (register edit only; no site or text change; nothing needs the project lead):
+- Add three columns to <code>ab-register.csv</code>: <code>oec</code>, <code>guardrails (metric:margin)</code>, <code>breakers</code>. Rename the second AB-02 to AB-05.
+- <strong>/ebooks/ page tests (AB-02 hero, AB-04 last page):</strong>
+  - OEC: paid-intent clicks per unique human visitor (Stripe/Gumroad buy-button clicks).
+  - Guardrail: free-read sign-ups per visitor, margin 2 points.
+  - Breakers: any page error or horizontal scroll at 390 px; any buy button failing <code>buypath_watch.py</code>.
+- <strong>Outreach email tests (AB-01):</strong> OEC = clicks to Cedwyn per send. Breakers: 1 spam complaint or 1 "remove me" reply stops the arm; also stop if a do-not-contact address gets through. Replies are logged as a guardrail, not as a second winner. Sending still needs the project lead's GO.
+- <strong>Social format tests (AB-03):</strong> OEC = link clicks per 1,000 reach. Guardrail: hides/negative feedback, margin 0.5 points.
+- <strong>Honest scale note:</strong> at about a 2% baseline, the power check on a 2-point guardrail margin alone needs about 840 visitors per arm (normal approximation, one-sided 5%, 80% power corrected for 1 guardrail + OEC). Until then the breakers do the real protecting, and most tests end UNDERPOWERED. Record that as the result rather than calling a winner.</p>
+<h2>Sources</h2>
+<ul>
+<li>ai.stanford.edu (Kohavi, Deng, Frasca, Longbotham, Walker, Xu, KDD 2012; read)</li>
+<li>medium.com (Xifara and Andersen, Airbnb, 2021; read via text mirror)</li>
+<li>engineering.atspotify.com (Spotify, 2024; read) and arxiv.org (abstract, snippet)</li>
+<li>votito.com (Amazon email OEC formula quoted from the Kohavi/Tang/Xu book; book not checked directly)</li>
+</ul><p class="raw">Raw Markdown: <a href="oec-guardrail-metrics-decision-rule-ab-tests.md">oec-guardrail-metrics-decision-rule-ab-tests.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

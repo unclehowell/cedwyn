@@ -1,0 +1,102 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Internet Archive &quot;movies&quot; items for the Shorts and documentary clips: a permanent public copy, sized honestly, and a gate · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Internet Archive &quot;movies&quot; items for the Shorts and documentary clips: a permanent public copy, sized honestly, and a gate"><link rel="alternate" type="text/markdown" href="internet-archive-movies-clips-mirror-captions-gate.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Internet Archive "movies" items for the Shorts and documentary clips: a permanent public copy, sized honestly, and a gate</h1>
+<p>Skills harvest, 31 Oct 2026 ~10:58Z. Zero budget. Separate from internet-archive-texts-free-edition-discovery.md (that file covers the free e-book as a texts item; this one covers video items). Status: PROPOSAL, needs the owner's OK because it creates a new public account/item set.</p>
+<h2>What the platform gives (primary, read 31 Oct 2026)</h2>
+<ul>
+<li>Free account; you may upload movies you hold the copyright to or that are public domain (help.archive.org "Movies and Videos - A Basic Guide").</li>
+<li>Upload the highest-quality source you have; the Archive's deriver makes smaller streaming copies itself. Do not hand-tune the encoding: "the more the settings have been manipulated, the less likely" the deriver can process it. No zips/rars/password files (moderators may remove them).</li>
+<li>No HD derive today; the original file stays downloadable under DOWNLOAD OPTIONS.</li>
+<li>Captions: upload <code>IDENTIFIER.srt</code>; for more than one language add the language to the name, e.g. <code>IDENTIFIER_english.srt</code> (help.archive.org "Movies and Videos - Tips &amp; Troubleshooting"). Our cy/en/es subtitle files map straight onto this.</li>
+<li>Embeds: Share icon gives an embed URL; <code>?start=SECONDS</code> deep-links into a clip (same Tips page). No end time.</li>
+<li>Licence is set per item (Creative Commons logo shows on the item page). Without your own collection, video goes into Community Video (archive.org).</li>
+<li>Only public stat is "views" (one per item per IP per day; see the texts skill). Description links render rel="ugc nofollow" (measured 30 Oct in the texts skill): a click-through route, not an SEO backlink.</li>
+</ul>
+<h2>What views to expect (our own count, archive.org advancedsearch API, 31 Oct 2026 10:57Z, 100 newest items each, field = views)</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>query (mediatype:movies)</th>
+<th>items found</th>
+<th>median</th>
+<th>p25</th>
+<th>p75</th>
+<th>max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>subject/title Wales or Welsh AND history</td>
+<td>284</td>
+<td>16.5</td>
+<td>10</td>
+<td>60</td>
+<td>8,840</td>
+</tr>
+<tr>
+<td>subject/title Glamorgan, Cardiff, Penarth</td>
+<td>2,935</td>
+<td>13.5</td>
+<td>1</td>
+<td>42</td>
+<td>314</td>
+</tr>
+<tr>
+<td>subject "local history"</td>
+<td>680</td>
+<td>13</td>
+<td>7</td>
+<td>27</td>
+<td>223</td>
+</tr>
+<tr>
+<td>Read: plan for <strong>tens of views per clip over its lifetime</strong>, about the same as Dailymotion (see dailymotion-vimeo-mirror-shorts-measured-gate.md: median 21 for "welsh history"). Many Glamorgan/Cardiff hits are TV-news captures and football, so the niche is not crowded with similar archive films.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Why it can still be worth doing</h2>
+<ol>
+<li><strong>Permanence and citation.</strong> An archive.org item has a stable identifier, the original file and captions, and is the kind of link librarians, Wikipedia editors and Wikimedia Commons users already trust. YouTube clips can be held or removed; an IA copy is the fallback.</li>
+<li><strong>Same-day public copy when the YouTube upload limit is spent</strong> (P-032 in the problems queue): the clip is public on archive.org that day and the YouTube upload follows later.</li>
+<li><strong>Embeddable on Cedwyn with captions</strong>, no ads, no recommended-videos wall of other channels.</li>
+<li>Search inside archive.org: titles, subjects and descriptions are indexed; multilingual captions add searchable text.</li>
+</ol>
+<h2>How to do it well (checklist)</h2>
+<ul>
+<li>One item per clip; identifier lower case with dashes, 5-80 chars, stable (<code>cedwyn-short-1907-tithe-map</code>), never renamed.</li>
+<li>Title = the clip's real title; Creator = "Cedwyn" (never a family name); Date = the date of the record shown, plus upload date in the description.</li>
+<li>Description: 2-3 plain sentences on what the record is, the archive reference/source line, then one link to the matching Cedwyn record page (free page, not /ebooks/).</li>
+<li>Subjects (up to 10): Llandough, Leckwith, Glamorgan, Vale of Glamorgan, Wales, local history, Welsh history, plus the record type (tithe map, census, estate map).</li>
+<li>Language set; licence chosen deliberately (CC BY-NC is the usual heritage choice; only for clips whose images we hold rights to — see archive-image-permission-terms-ai-animation-paid-versions.md).</li>
+<li>Upload <code>IDENTIFIER_welsh.srt</code>, <code>IDENTIFIER_english.srt</code>, <code>IDENTIFIER_spanish.srt</code>.</li>
+<li>Batch: the free <code>internetarchive</code> Python library / <code>ia</code> CLI (open source, a few MB) can upload with metadata from a CSV. Not installed (disk under 1 GB); install only after the owner gives a GO and disk is above 2 GB.</li>
+</ul>
+<h2>Gate</h2>
+<ul>
+<li>Pilot: 5 clips that are already public on YouTube and fully rights-clear.</li>
+<li>At 90 days keep going only if the median pilot item passes <strong>25 views</strong> OR archive.org sends <strong>5+ tagged visits a month</strong> to Cedwyn (link with <code>?utm_source=archive.org&amp;utm_medium=referral</code>). Otherwise stop uploading new clips; leave the pilot items as the permanent copies.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>PROPOSAL for the owner (account creation = new public channel). Once approved: pilot 5 Shorts already cleared for YouTube, cy/en/es captions, Creator "Cedwyn", description link to the free record page only.</li>
+<li>Use the IA copy as the embed on record pages where a clip has no YouTube upload yet (quota days).</li>
+<li>Public text follows the editorial rules: no family names, none of the banned words, nothing about holdings or addresses, Llandough Farm is not Great House Farm. Clips HELD from YouTube stay held here too.</li>
+<li>Log uploads and views in the project workspace; the Sunday growth report reads them.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>help.archive.org (read 31 Oct 2026)</li>
+<li>help.archive.org (read 31 Oct 2026)</li>
+<li>archive.org (Community Video collection)</li>
+<li>archive.org (our counts above, 31 Oct 2026 10:57Z)</li>
+<li>internet-archive-texts-free-edition-discovery.md (views definition, nofollow measurement, 30 Oct 2026)</li>
+</ul><p class="raw">Raw Markdown: <a href="internet-archive-movies-clips-mirror-captions-gate.md">internet-archive-movies-clips-mirror-captions-gate.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

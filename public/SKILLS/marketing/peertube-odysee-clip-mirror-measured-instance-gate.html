@@ -1,0 +1,110 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>PeerTube (and a note on Odysee) for the Shorts and documentary clips: measured reach, instance choice, and a gate · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: PeerTube (and a note on Odysee) for the Shorts and documentary clips: measured reach, instance choice, and a gate"><link rel="alternate" type="text/markdown" href="peertube-odysee-clip-mirror-measured-instance-gate.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>PeerTube (and a note on Odysee) for the Shorts and documentary clips: measured reach, instance choice, and a gate</h1>
+<p>Skills harvest, 31 Oct 2026 ~11:00Z. Zero budget. Expands one line in bluesky-mastodon-fediverse-heritage.md ("PeerTube for movie clips") with numbers. Status: PROPOSAL, needs the owner's OK (new public account on someone else's server).</p>
+<h2>How PeerTube works, in one paragraph</h2>
+<p>PeerTube is open-source federated video: thousands of independent servers ("instances"), each with its own rules, upload quota and moderators. A channel on one instance is followable from Mastodon and other fediverse apps, so a clip posted there can show up in Mastodon timelines of people who follow the channel. Search across instances runs through SepiaSearch (sepiasearch.org), the Framasoft-run global index.</p>
+<h2>What reach to expect (our own count, SepiaSearch public API, 31 Oct 2026 ~10:58Z, top 100 by relevance)</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>search</th>
+<th>results</th>
+<th>median views</th>
+<th>p25</th>
+<th>p75</th>
+<th>max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>welsh history</td>
+<td>242</td>
+<td>7</td>
+<td>1</td>
+<td>32</td>
+<td>166</td>
+</tr>
+<tr>
+<td>wales history</td>
+<td>2,054</td>
+<td>1</td>
+<td>0</td>
+<td>8</td>
+<td>9,601</td>
+</tr>
+<tr>
+<td>cardiff</td>
+<td>27</td>
+<td>3</td>
+<td>1</td>
+<td>8</td>
+<td>199</td>
+</tr>
+<tr>
+<td>local history</td>
+<td>2,844</td>
+<td>5</td>
+<td>1</td>
+<td>25</td>
+<td>1,578</td>
+</tr>
+<tr>
+<td>history documentary</td>
+<td>4,153</td>
+<td>2</td>
+<td>0</td>
+<td>29</td>
+<td>165,083</td>
+</tr>
+<tr>
+<td>Read: <strong>single-digit views per clip is typical</strong>; lower than Dailymotion (median 21, "welsh history") and the Internet Archive (16.5). The best Welsh-heritage performers (73-79 views) were chapel-ruin explorations on one active instance, i.e. a channel with followers, not search.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Choosing an instance (joinpeertube.org instances API, 31 Oct 2026, 500 healthy instances read of 1,685 listed)</h2>
+<ul>
+<li>Only 80 of 500 allowed signups; 68 of those 80 need moderator approval. Median approval response time (32 instances that report it) about <strong>28 hours</strong>.</li>
+<li>11 UK-based instances in the sample; only 2 open for signup (one had 0 videos, one is a music-focused instance). vod.communitybroadcasting.uk (385 videos) is closed to signups and states no terms.</li>
+<li>Practical rule: pick an instance whose rules allow organisations and history/educational content, that is open with approval, has an active moderator team, and enough quota for ~2 min 720p clips (~25 MB each). Read and log its rules before applying (same discipline as reddit-forum-participation-heritage.md).</li>
+<li>Alternative without a signup: none that is free and reliable; self-hosting is out (no spend, disk tight).</li>
+</ul>
+<h2>Odysee, briefly</h2>
+<ul>
+<li>Odysee (LBRY-based) search works without login (lighthouse.odysee.tv returned results for "welsh history", "glamorgan"), but view counts need an authenticated API call (api.odysee.com answered 401 "authentication required" on 31 Oct), so reach could not be measured. Its audience and moderation reputation skew away from heritage; we skip Odysee unless the owner asks for it.</li>
+</ul>
+<h2>Why PeerTube might still be worth a pilot</h2>
+<ol>
+<li>Fediverse reach: each clip becomes a post Mastodon users can boost; the Mastodon skill already plans a Cedwyn presence, and a PeerTube channel feeds it native video without YouTube embeds.</li>
+<li>No ads, no recommendations of other channels, captions supported (PeerTube accepts subtitle files per language).</li>
+<li>A second public copy on quota days (P-032), as with the Internet Archive.</li>
+</ol>
+<h2>Gate</h2>
+<ul>
+<li>Pilot: one channel, 5 rights-clear clips already on YouTube, cy/en/es captions, each also posted from the Cedwyn Mastodon account.</li>
+<li>At 60 days keep going only if the median pilot clip passes <strong>15 views</strong> OR Mastodon boosts of the clips reach 10+ total. Otherwise stop new uploads (leave the pilot up) and put the effort into the Internet Archive copy, which keeps a permanent identifier.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>PROPOSAL for the owner: one PeerTube account on an approved instance whose rules allow organisations; channel name "Cedwyn", never a family name.</li>
+<li>Order of value for clip mirrors, from our three measurements: Internet Archive (permanent, median 16.5) &gt; Dailymotion (median 21 but ads/low quality audience) &gt; PeerTube (median 1-7, fediverse boosts only). Do the Internet Archive pilot first; PeerTube only together with an active Mastodon account.</li>
+<li>Description: 2-3 plain sentences, source line, one link to the free Cedwyn record page with <code>?utm_source=peertube&amp;utm_medium=referral</code>. Editorial rules apply: none of the banned words, nothing about holdings or addresses; clips HELD from YouTube stay held.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>sepiasearch.org (our counts, 31 Oct 2026)</li>
+<li>instances.joinpeertube.org (instance signup data, 31 Oct 2026)</li>
+<li>vod.communitybroadcasting.uk ; u2be.ovh (instance terms read 31 Oct 2026)</li>
+<li>lighthouse.odysee.tv ; api.odysee.com (401, 31 Oct 2026)</li>
+<li>joinpeertube.org (what PeerTube is)</li>
+<li>bluesky-mastodon-fediverse-heritage.md (existing fediverse plan)</li>
+</ul><p class="raw">Raw Markdown: <a href="peertube-odysee-clip-mirror-measured-instance-gate.md">peertube-odysee-clip-mirror-measured-instance-gate.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

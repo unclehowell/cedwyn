@@ -1,0 +1,58 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Heuristic evaluation (Nielsen&#x27;s 10) for a low-traffic e-book shop · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Heuristic evaluation (Nielsen&#x27;s 10) for a low-traffic e-book shop"><link rel="alternate" type="text/markdown" href="heuristic-evaluation-nielsen-10-ebook-shop.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Heuristic evaluation (Nielsen's 10) for a low-traffic e-book shop</h1>
+<p><strong>Use when:</strong> real readers are too few to test with (about 45 outside visits a day to /ebooks/) and you still need to find what stops a buyer. An expert inspection needs no users, so it can run today.</p>
+<h2>What the practitioner evidence shows</h2>
+<ul>
+<li>Jakob Nielsen, averaged over six of his projects: <strong>one evaluator found only 35% of the usability problems</strong>; NN/g and others cite <strong>about 75% with five evaluators</strong>, with diminishing returns after that. NN/g's guidance: <strong>3 to 5 people evaluate independently</strong>, then consolidate.</li>
+<li>Expert reviews and usability tests overlap only partly: MeasuringU puts it at <strong>around 30% of the problems a usability test finds</strong>. A heuristic pass is a cheap first sweep, not a replacement for watching a real reader.</li>
+<li>AI as evaluator (MeasuringU, 2026, ChatGPT and Gemini reviewing task videos): the models found about <strong>40-47% of the problems the human researcher found</strong>, with <strong>35-60% false alarms</strong> and some outright invented problems in one case study. Average agreement between two human raters is about 50% (any-2 agreement), so AI is in the human range on overlap but noisier.</li>
+</ul>
+<h2>How to run one (NN/g steps)</h2>
+<ol>
+<li><strong>Prepare.</strong> Choose the scope: one flow, for example /ebooks/ -&gt; book page -&gt; checkout -&gt; download e-mail. Write the target user and two or three tasks. Everyone reads the 10 heuristics first.</li>
+<li><strong>Evaluate independently</strong> (1-2 hours each). Each evaluator walks the flow at least twice: once to get the feel, once to note problems. For each problem, record the screen, the heuristic it breaks, a short description and a screenshot. <strong>Evaluators don't talk to each other until they're done.</strong></li>
+<li><strong>Consolidate.</strong> Merge everyone's lists, remove duplicates, and keep a count of how many evaluators found each problem.</li>
+<li><strong>Rate severity</strong> (Nielsen, 0-4). 0 = not a problem, 1 = cosmetic, 2 = minor, 3 = major, 4 = catastrophe (fix before release). Base the rating on frequency, impact and persistence. Collect ratings <strong>after</strong> consolidation, from each evaluator separately, and take the mean.</li>
+<li><strong>Report</strong> in severity order. Give each item a fix and the heuristic it breaks, and list what works well too.</li>
+</ol>
+<h2>The 10 heuristics, as one-line checks for a shop page</h2>
+<ol>
+<li>Visibility of system status: after "Buy", is it clear what is happening (redirect, payment, e-mail)?</li>
+<li>Match with the real world: is it "e-book", "PDF/EPUB", "£4.99" rather than internal names?</li>
+<li>User control and freedom: can the reader go back from checkout without losing their place?</li>
+<li>Consistency and standards: does the price, title and cover match on every page and on the checkout?</li>
+<li>Error prevention: is the format/bundle choice clear before payment?</li>
+<li>Recognition rather than recall: are the format, price and delivery visible at the button, not one page back?</li>
+<li>Flexibility and efficiency: is there a direct buy link from articles and from the bundle?</li>
+<li>Aesthetic and minimalist design: does anything compete with the buy button at 390 px?</li>
+<li>Help users recognise and recover from errors: what does a failed payment or a missing download e-mail look like?</li>
+<li>Help and documentation: is there one line on how delivery works and who to contact?</li>
+</ol>
+<h2>Pitfalls</h2>
+<ul>
+<li>One evaluator is not a heuristic evaluation: run at least 3 and keep them independent.</li>
+<li>A heuristic violation isn't always a real problem for users; severity 1-2 items wait.</li>
+<li>Don't let evaluators fix things during the pass. The goal is the list.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Evaluators:</strong> 3-5 agents, each in a separate session with no shared notes (for example the hive seats). Brief each with the same scope, persona (a Welsh-history reader on a phone) and the 10 checks above. Then consolidate in one file.</li>
+<li><strong>Scope order:</strong> (1) /ebooks/ buy path at 390 px, light and dark mode; (2) the bundle; (3) the /learn/ academy join path. Keep to one flow per pass.</li>
+<li><strong>Treat AI findings as hypotheses.</strong> Given the 35-60% false-alarm rate, a human or a live check confirms each severity 3-4 item on the real page before anyone files it. Items found by two or more evaluators come first.</li>
+<li><strong>Output:</strong> a severity-ordered list with a screenshot for each item. Copy, price, journey and channel changes go in as proposals on the after-framing queue. Markup-only fixes follow the repo freeze rules (labelled PR or section branch).</li>
+<li><strong>Pair it with</strong> the 5-user think-aloud skill once there are readers to recruit; the heuristic pass clears the obvious problems first, so test sessions find deeper ones.</li>
+</ul>
+<h2>Sources (read 31 Oct 2026)</h2>
+<ul>
+<li>NN/g, How to Conduct a Heuristic Evaluation: nngroup.com</li>
+<li>Nielsen, The Theory Behind Heuristic Evaluations (35% single evaluator): nngroup.com</li>
+<li>NN/g, Severity Ratings for Usability Problems: nngroup.com</li>
+<li>IxDF, Heuristic Evaluation (2026 update, 5 evaluators ~75%): ixdf.org</li>
+<li>MeasuringU, Using AI To Find Usability Problems: Examining Task Failure (2026): measuringu.com</li>
+<li>MeasuringU, PURE (expert review vs test overlap ~30%): measuringu.com</li>
+</ul><p class="raw">Raw Markdown: <a href="heuristic-evaluation-nielsen-10-ebook-shop.md">heuristic-evaluation-nielsen-10-ebook-shop.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

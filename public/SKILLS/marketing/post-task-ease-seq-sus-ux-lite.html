@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Post-task ease scores: SEQ after each task, SUS or UX-Lite after the session · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Post-task ease scores: SEQ after each task, SUS or UX-Lite after the session"><link rel="alternate" type="text/markdown" href="post-task-ease-seq-sus-ux-lite.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Post-task ease scores: SEQ after each task, SUS or UX-Lite after the session</h1>
+<p>Harvested 2026-10-31 by the skills harvest. Adds numbers to small-sample-usability-tests-buy-path-5-users.md (which finds problems) so the same sessions also give a score you can compare round to round. Not covered elsewhere in the index.</p>
+<h2>What the practitioners found (with numbers)</h2>
+<ul>
+<li><strong>SEQ (Single Ease Question)</strong>, Jeff Sauro, MeasuringU: asked right after each task, "Overall, how difficult or easy was the task to complete?" 1 = very difficult, 7 = very easy, end points labelled. Across <strong>400+ tasks and 10,000 users the average is about 5.5 (5.3-5.6)</strong>, not the midpoint 4. It performed as well as or better than longer task-difficulty measures (SMEQ, magnitude estimation).</li>
+<li>SEQ correlates with task time and completion at about <strong>r = .5</strong>: related, not a substitute. Users who fail yet rate the task "very easy" happen about <strong>14% of the time</strong>, so always record success/fail beside the score.</li>
+<li>MeasuringU's practice: <strong>when a rating is below 5, ask "why?"</strong> straight away; that line is the diagnosis.</li>
+<li><strong>SUS (System Usability Scale)</strong>, 10 items, 1-5 agree scale: average <strong>68 = 50th percentile</strong>; <strong>75 = 73rd percentile</strong>; <strong>52 = 15th percentile</strong> (MeasuringU, 10,000+ responses, hundreds of products). Bangor et al. adjectives: about <strong>85+ "Excellent"</strong>, <strong>71 "Good"</strong>, <strong>51 "OK"</strong> (MeasuringU suggests "Fair"). Acceptability: above about <strong>70 acceptable</strong>, <strong>50-70 marginal</strong>, under <strong>50 unacceptable</strong> (curved grade F below 51.6).</li>
+<li><strong>UMUX-Lite</strong> (Lewis et al.), 2 items: "[This site]'s capabilities meet my requirements" and "[This site] is easy to use". Reliability alpha <strong>.86</strong> (SUS .91), correlation with SUS <strong>r = .83</strong>. SUS estimate: <strong>SUS = 0.65 x ((item1 + item2 - 2) x 100/12) + 22.9</strong> (7-point items); about 1% error against the real SUS in two data sets.</li>
+<li><strong>UX-Lite</strong> (MeasuringU's 5-point version). Ease item alone also tracks SUS: Sauro 2018, r = <strong>.95</strong> across means for 148 products. In the worked examples (Amazon, Norton) the three ways of estimating SUS from it all landed <strong>within 2 points</strong> of the SUS collected at the same time. For a 5-point ease item: SUS estimate = -2.279 + 19.2 x ease.</li>
+</ul>
+<h2>The routine</h2>
+<ol>
+<li><strong>Every task in a test</strong> (5-user round, or an unmoderated test): record success yes/no, time, SEQ 1-7, and "why?" when SEQ &lt; 5.</li>
+<li><strong>Per task</strong>: mean SEQ vs 5.5. A task averaging under 5 (or under 4.5 with only 5 people) is the one to fix first, together with its failure count. Report n beside every mean; 5 people give a wide range, so read it as a flag, not a measurement.</li>
+<li><strong>End of session</strong> (or end of a short survey): UX-Lite / UMUX-Lite, 2 items, converted to a SUS-equivalent. Use full SUS (10 items) only when you need to compare with a published SUS number.</li>
+<li><strong>Round to round</strong>: same tasks, same wording, same scale. Plot mean SEQ per task and the SUS-equivalent per round. A real fix shows as success up and SEQ up together.</li>
+<li>Never ask these about a page people only looked at; scores come after a real attempt (looking-only questions belong in a preference or five-second test).</li>
+</ol>
+<h2>Pitfalls</h2>
+<ul>
+<li>Changing the scale (5 vs 7 points) between rounds: the benchmarks differ.</li>
+<li>Reporting "top box %" from 5 people. Use the mean and the raw scores.</li>
+<li>Reading a high score with a failed task as success (the 14% case).</li>
+<li>Long questionnaires after a short test: 2 items get answered; 10 get skipped on a phone.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Buy-path tasks</strong> (for the next 5-user round in the small-sample skill): T1 "Find an e-book about the farm's history and get to the point of paying", T2 "Find the free sample and open it on your phone", T3 "From an evidence page, find which e-book covers it", T4 "Join the reading list". Record success, time, SEQ, and "why?" under 5. Targets: every task SEQ at or above 5.5 and at least 4 of 5 succeed.</li>
+<li><strong>After a purchase or download</strong>: a two-question UX-Lite on the thank-you page or in the delivery email would give a running score with no extra traffic. Changing an email journey or a public page is a <strong>PROPOSAL</strong> for the queue; nothing is added live from this file.</li>
+<li><strong>Academy members</strong>: the same two items once a month inside the member area gives a SUS-equivalent to watch as lessons are added (also a proposal).</li>
+<li>Helper: <code>python3 tools/ux_scores.py seq 6 5 3 7 4</code> (mean, vs 5.5, how many under 5), <code>python3 tools/ux_scores.py sus 4 2 5 1 4 2 5 1 4 2</code> (one respondent's 10 SUS answers -&gt; score, percentile anchors, adjective), <code>python3 tools/ux_scores.py uxlite 6 5</code> (7-point UMUX-Lite: capabilities item first, ease item second -&gt; SUS estimates; add <code>--points 5</code> for UX-Lite; checked against MeasuringU's Amazon example: 86.6 UMUX-Lite, 82.8 from ease).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>measuringu.com (Sauro: SEQ wording, average ~5.5 over 400+ tasks / 10,000 users, r ~ .5, 14% easy-but-failed, ask why under 5)</li>
+<li>measuringu.com (average moved from ~5 to ~5.5 with more data)</li>
+<li>measuringu.com (68 = 50th pct, 75 = 73rd, 52 = 15th; Bangor adjectives; acceptability bands)</li>
+<li>measuringu.com (UMUX-Lite items, alpha .86, r = .83 with SUS, regression formula)</li>
+<li>measuringu.com (ease-only estimates within 2 points; r = .95 over 148 products; formulas)</li>
+</ul><p class="raw">Raw Markdown: <a href="post-task-ease-seq-sus-ux-lite.md">post-task-ease-seq-sus-ux-lite.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

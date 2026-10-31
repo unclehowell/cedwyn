@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Process behaviour (XmR) charts: stop explaining week-on-week wobble, act only on real signals · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Process behaviour (XmR) charts: stop explaining week-on-week wobble, act only on real signals"><link rel="alternate" type="text/markdown" href="process-behaviour-xmr-charts-week-on-week-signal-vs-noise.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Process behaviour (XmR) charts: stop explaining week-on-week wobble, act only on real signals</h1>
+<p><strong>Use when:</strong> a weekly or daily number (visits, followers, signups, sales, views) goes up or down and someone wants to know why, or wants to credit or blame the last change. Most of those swings are routine. This skill sorts noise from signal in five minutes with a pencil-and-paper method that has been in use for about 90 years.</p>
+<h2>Why it matters</h2>
+<ul>
+<li>Week-on-week % change is the worst lens for small numbers. In the worked example below, 35 to 61 is <strong>+74% week-on-week and still routine variation</strong>: nothing happened.</li>
+<li><strong>Regression to the mean:</strong> the week after an unusually bad week is usually better, whatever you did. If you launch a fix <em>because</em> a week was bad, the bounce looks like the fix working. An XmR chart shows whether the "bad" week was even outside normal range to begin with.</li>
+<li>Commoncog's Cedric Chin, after about 18 months of practice: when people chase routine variation they investigate, find nothing, make up an explanation, and eventually stop using data at all. Joiner's Rule: under pressure to hit a target, people improve the system, distort the system, or distort the data.</li>
+<li>Mark Graban (<em>Measures of Success</em>), from hospital management practice: red/green "bowling charts" and tables of numbers hide trends, and reacting to noise is "not a good use of time". Process behaviour charts give "visual statistical guidelines to filter out noise".</li>
+<li>Real case (Commoncog, Introducing Xmrit): average session duration <strong>shifted permanently</strong> in the week the Case Library launched. The chart flagged it; they treated it as a theory ("the library is sticky"), then tested it by making the library more prominent. That is the loop: signal, theory, deliberate test.</li>
+</ul>
+<h2>The method (Wheeler's XmR chart)</h2>
+<ol>
+<li>Take 10-20 points of one metric in time order (weekly is best for us; daily has day-of-week cycles, so compare like with like or use weekly totals). Six points gives soft limits; 20 is solid.</li>
+<li><strong>Centre line</strong> = the mean.</li>
+<li><strong>Moving range (mR)</strong> = the absolute difference between each point and the one before. Average them (mR-bar).</li>
+<li><strong>Natural process limits</strong> = mean ± <strong>2.66 × mR-bar</strong> (floor the lower one at 0 for counts).</li>
+<li><strong>Upper range limit</strong> for the mR chart = <strong>3.268 × mR-bar</strong> (flags a sudden jump between two points).</li>
+<li>Read with Wheeler's three rules only:
+   - <strong>Rule 1 (strong):</strong> a point outside the limits, or a moving range above its limit.
+   - <strong>Rule 2 (moderate):</strong> three of four consecutive points closer to a limit than to the centre line, same side.
+   - <strong>Rule 3 (subtle):</strong> eight consecutive points on one side of the centre line.</li>
+<li>No rule fires: <strong>routine variation.</strong> Do not explain it, do not credit or blame anyone. If the whole range is unacceptable, the process itself has to change (new channel, new offer), not this week's tweak.</li>
+<li>A rule fires: <strong>something changed.</strong> Find out what. If it lines up with something you did on purpose, keep it and try to repeat it; if not, investigate the unknown cause.</li>
+<li><strong>Judging a change:</strong> freeze the limits on the points <em>before</em> the change (baseline), then plot the points after against those frozen limits. Only a rule firing after the change counts as a result. This is cheaper than an A/B test and works when traffic is too small to split.</li>
+</ol>
+<p>Commoncog puts the false-alarm rate at roughly 3% for most real-world data, which is fine for business decisions. The 2.66 constant comes from the moving range, so it does not require the data to be normally distributed.</p>
+<h2>Free tools</h2>
+<ul>
+<li><code>tools/xmr.py</code> (stdlib, written this run, nothing installed): <code>python3 tools/xmr.py --csv file.csv --col cedwyn_nonus</code> or <code>python3 tools/xmr.py --baseline 10 v1 v2 ...</code>. It prints the limits, the moving ranges, the rule hits per point and a SIGNALS line.</li>
+<li>Xmrit (Commoncog, free, runs in the browser, open-source TypeScript + index.html): paste a column and drag a divider to split before/after limits. Use it for a visual check; no account needed.</li>
+</ul>
+<h2>Worked example (synthetic, from the tool's self-test)</h2>
+<p>Baseline of 10 weekly values (40, 52, 35, 61, 44, 38, 57, 49, 42, 55): centre 47.3, average mR 13.9, limits 10.4 to 84.2, upper range limit 45.4. Then 48, 51 = routine. Then 90, 85, 88 = Rule 1 three times: a real shift. A 35 to 61 jump inside the baseline (+74%) fired nothing.</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Weekly growth report:</strong> for each headline number (Cedwyn non-US HTML visits, /ebooks/ visits, Mailchimp members, followers per channel, best-post views), report <em>routine</em> or <em>signal (rule N)</em>, not "+x% vs last week". A number with fewer than 6 weekly points is too young to judge, so say so. Pull daily non-US visits from the existing Cloudflare script and chart them as weekly totals.</li>
+<li><strong>Sales-fix and on-page changes:</strong> log the date of each shipped change (buy-button fix, preview-length labels, shop strips). Freeze limits on the weeks before it and judge the weeks after with <code>--baseline</code>. Never mark a fix as having worked off one good week after one bad week; that is regression to the mean.</li>
+<li><strong>Zero-sales diagnosis:</strong> at near-zero sales, use XmR on the upstream steps that have counts (shop visits, free-chapter downloads, checkout opens), not on sales.</li>
+<li><strong>Social:</strong> the posting flywheels change many things at once. Use Rule 3 (eight weeks on one side) to spot slow drift in reach rather than reacting to single posts.</li>
+<li><strong>Pairs with:</strong> the existing before/after readout (placebo control) skill and the A/B skills (Twyman's law, winner's curse). Use XmR when traffic is too small to split. Use those when you can randomise.</li>
+</ul>
+<h2>Pitfalls</h2>
+<ul>
+<li>Don't mix seasons or a one-off spike (press mention, bot burst) into the baseline: drop it and note why, or the limits come out too wide.</li>
+<li>Bot traffic is not variation: filter it first (we already use non-US HTML 200s as a proxy for visitors).</li>
+<li>Recompute limits only after a confirmed, lasting shift, never every week.</li>
+<li>Don't add rules beyond Wheeler's three. More rules mean more false alarms.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>Commoncog, "Becoming Data Driven, From First Principles" (rules, ~3% false positive, Joiner's Rule, Colin Bryar on input metrics): commoncog.com</li>
+<li>Commoncog, "Process Behaviour Charts: More Than You Need To Know": commoncog.com</li>
+<li>Commoncog, "Introducing Xmrit" (session-duration shift at Case Library launch): commoncog.com</li>
+<li>Xmrit open source: xmrit.com · what an XmR chart is: xmrit.com</li>
+<li>Mark Graban interview on <em>Measures of Success</em>: kbjanderson.com</li>
+<li>Deming Alliance, "Process Behaviour Charts: An Introduction" (2.66 × average mR): demingalliance.org</li>
+<li>Donald J. Wheeler, <em>Understanding Variation: The Key to Managing Chaos</em> (book; the source of the three rules and the name "process behaviour chart").</li>
+</ul><p class="raw">Raw Markdown: <a href="process-behaviour-xmr-charts-week-on-week-signal-vs-noise.md">process-behaviour-xmr-charts-week-on-week-signal-vs-noise.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -5,7 +5,7 @@ a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:
 pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
 th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
 blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../index.html"><b>Agent library</b></a><a href="../SOUL.html">Soul</a><a href="../ONBOARDING.html">Onboarding</a><a href="../ACADEMY/CHECK.html">Check</a><a href="../ACADEMY/WORK.html">Work</a><a href="../MEMORY/index.html">Memory</a><a href="../SKILLS/index.html">Skills</a><a href="../FLYWHEELS/index.html">Flywheels</a><a href="../architecture/index.html">Architecture</a><a href="../HARNESS/index.html">Harness</a><a href="../LESSONS.html">Lessons</a></nav><main><h1>Maintenance loops</h1>
-<p>29 self-running loops keep the site and its records maintained. Each runs on a schedule, spawns at most one worker at a time, has fixed inputs and outputs, and works inside guardrails. Full runner-level detail for most of them is in <a href="../FLYWHEELS/index.html">FLYWHEELS</a>.</p>
+<p>30 self-running loops keep the site and its records maintained. Each runs on a schedule, spawns at most one worker at a time, has fixed inputs and outputs, and works inside guardrails. Full runner-level detail for most of them is in <a href="../FLYWHEELS/index.html">FLYWHEELS</a>.</p>
 <h2>The autoresearch pattern</h2>
 <p>Shape: <strong>hypothesis -&gt; smallest change -&gt; measure -&gt; keep or discard</strong>.</p>
 <ul>
@@ -88,6 +88,15 @@ blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}<
 <strong>Areas it touches:</strong> the project board; agents then add the material to /research/, /wiki/, /wales/ and other areas<br />
 <strong>Guardrails:</strong> never edits the site itself; duplicate and seen checks first; nothing about family holdings or addresses; one worker at a time (duplicate check by goal prefix).
   Runner detail: <a href="../FLYWHEELS/online-gap-finder.html">Online gap finder</a></p>
+<p><a id="book-flywheel"></a></p>
+<h3>Book search</h3>
+<p><strong>Cadence:</strong> search every 59 minutes; findings table every 3 hours<br />
+<strong>What it does:</strong> Searches published books for passages overlapping what the site carries about the farm, its families and places, under every name variant, and records each passage with its exact sentence and citation.<br />
+<strong>Inputs:</strong> full-text book search; the live site; a keyword ledger that retires the most productive keywords each cycle<br />
+<strong>Outputs:</strong> rows in the research findings table (book, exact sentence, citation)<br />
+<strong>Areas it touches:</strong> /research/ (section branch research, live after the sections workflow moves the pin)<br />
+<strong>Guardrails:</strong> exact quotation with the reference; inference labelled as inference; the two Llandoughs and same-name farms checked before a passage is used; significant passages checked on the page itself before anyone is told; one worker at a time (duplicate check by goal prefix).
+  Runner detail: <a href="../FLYWHEELS/book-flywheel.html">Book search flywheel</a></p>
 <p><a id="first-seen"></a></p>
 <h3>First-seen detector</h3>
 <p><strong>Cadence:</strong> every 6 hours<br />
@@ -191,9 +200,9 @@ blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}<
 <strong>What it does:</strong> Takes the next item in the re-render queue or the next unfilled frame of the chronology and produces one short scene: one dated moment, who was there, what was most likely said, with Welsh spoken where the period calls for it and subtitles.<br />
 <strong>Inputs:</strong> the script and scene list; the re-render queue; the render budget<br />
 <strong>Outputs:</strong> one scene with subtitles; the next door opened on the documentary page; the script kept ten frames ahead<br />
-<strong>Areas it touches:</strong> /documentary/ (also /movie/)<br />
-<strong>Guardrails:</strong> strict date order; no narrator and no fourth wall from scene 3; reconstruction only; no likeness of real family members; spend only within the render budget; waits are logged as problems; one worker at a time (duplicate check by goal prefix).
-  Runner detail: <a href="../FLYWHEELS/movie.html">Cedwyn film — daily scene</a></p>
+<strong>Areas it touches:</strong> /documentary/ (also /movie/ and /documentry)<br />
+<strong>Guardrails:</strong> strict date order; no narrator and no fourth wall from scene 3; reconstruction only; no likeness of real family members; a blocking pre-publish quality gate: 24 fps end to end, cut from original renders, two-pass encode, -16 LUFS, frames of every talking shot looked at; spend only within the film's own daily budget; waits and skips are logged as problems; one worker at a time (duplicate check by goal prefix).
+  Runner detail: <a href="../FLYWHEELS/movie.html">Cedwyn film — scene run</a></p>
 <p><a id="agent-library"></a></p>
 <h3>Agent library cycle</h3>
 <p><strong>Cadence:</strong> every 6 hours at 00:40, 06:40, 12:40, 18:40 UK<br />

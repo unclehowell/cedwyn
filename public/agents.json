@@ -1,8 +1,8 @@
 {
  "schema": "cedwyn_academy/v1",
  "name": "Agent library",
- "version": "1.0.17",
- "built_utc": "2026-10-31 06:43 UTC",
+ "version": "1.0.18",
+ "built_utc": "2026-10-31 12:44 UTC",
  "base_path": "/academy/",
  "alias_paths": [
   "/academy/"
@@ -295,22 +295,22 @@
   },
   {
    "id": "movie",
-   "name": "Cedwyn film — daily scene",
-   "cadence": "daily 06:00 UK",
+   "name": "Cedwyn film — scene run",
+   "cadence": "every 6 hours",
    "prefix": "CEDWYN MOVIE RUN",
    "runner": "work/cedwyn-movie/RUNNER.md",
-   "purpose": "Make one two-minute scene a day from the chronology, in Welsh, English and Spanish, and open the next door on /documentary/.",
+   "purpose": "Make the next two-minute scene from the chronology, rendered separately for Welsh, English and Spanish, and open the next door on /documentary/.",
    "inputs": [
     "the editable prompt in the film repository",
     "the bible (cast, voices, sets)",
     "the chronology"
    ],
    "outputs": [
-    "one clip under 25 MB",
+    "one video per language under the size cap, each passing the pre-publish quality gate",
     "the door opened",
     "scripts ten frames ahead"
    ],
-   "metric": "one quality clip per day, chronology-correct",
+   "metric": "one door per run that passes the quality gate (24 fps, two-pass encode, -16 LUFS, frames looked at), chronology-correct; a skipped run is logged as a problem",
    "report": "One bubble: \"Door N is open\"."
   },
   {
@@ -453,6 +453,25 @@
    "report": "Nothing routine; one line only when a find changes the chronology or the reopen grounds."
   },
   {
+   "id": "book-flywheel",
+   "name": "Book search flywheel",
+   "cadence": "search every 59 minutes; findings table refreshed every 3 hours",
+   "prefix": "BOOK FLYWHEEL RUN",
+   "runner": "work/book-flywheel/RUNNER.md",
+   "purpose": "Search published books for passages that overlap what the site already carries about the farm, its families and its places, under every name variant, and record each passage with its citation.",
+   "inputs": [
+    "full-text book search under every name variant of the farm, its families and places",
+    "the live site, to tell new passages from known ones",
+    "a keyword ledger: the most productive keywords are retired each cycle so the search keeps moving"
+   ],
+   "outputs": [
+    "rows in the research findings table (book title, the exact sentence, citation)",
+    "a section/research commit carrying the table"
+   ],
+   "metric": "new cited passages per run; passages that change the chronology",
+   "report": "Nothing routine; one line, with the exact quotation and its source, only when a passage is significant after the page itself has been checked."
+  },
+  {
    "id": "correspondence",
    "name": "Correspondence flywheel",
    "cadence": "every 2 hours at :30, 07:30–23:30 Europe/London",
@@ -549,21 +568,21 @@
    "html": "ACADEMY/WORK.html",
    "title": "Work board",
    "bytes": 78861,
-   "sha256": "3d7372a287d9994bc6283c450ad985b37cb45bdc1b9ef01a7d31e224ee85638b"
+   "sha256": "cd40e697fd279c08719e971d581e00916dcb27dd0866ef24bf9789eea874e35c"
   },
   {
    "path": "CHANGELOG.md",
    "html": "CHANGELOG.html",
    "title": "CHANGELOG",
-   "bytes": 8351,
-   "sha256": "bc3e3f351a95ef04db96f536b29668af4f9ccea0b5318d22f431200d6785010e"
+   "bytes": 8819,
+   "sha256": "0cbe9753c90754ecedb35557b85a3e5fe63a1900f83c0d6b482a0b1cf7fae8b6"
   },
   {
    "path": "FLYWHEELS/README.md",
    "html": "FLYWHEELS/index.html",
    "title": "FLYWHEELS",
-   "bytes": 5046,
-   "sha256": "35457f80326a88aabbfff2ce865b7b504f18fadec1be0baed537eeec47949d7c"
+   "bytes": 5369,
+   "sha256": "6456a3e2adc0cfda6a502b37a2e8a2032ac72b72048e3c552c0715ef6825a36c"
   },
   {
    "path": "FLYWHEELS/SCHEMA.md",
@@ -585,6 +604,13 @@
    "title": "Flywheel: Business development (plan + execute)",
    "bytes": 743,
    "sha256": "5e457631d2028ca250f24278b9182fa666a92dcb5e382ec4970c2415b2df0569"
+  },
+  {
+   "path": "FLYWHEELS/book-flywheel.md",
+   "html": "FLYWHEELS/book-flywheel.html",
+   "title": "Flywheel: Book search flywheel",
+   "bytes": 1114,
+   "sha256": "9d9d0a340dce8325c7ec84686cc69ac8f9e9ebd8d21d130b2e7aff06a7cb5c4d"
   },
   {
    "path": "FLYWHEELS/contacts.md",
@@ -652,9 +678,9 @@
   {
    "path": "FLYWHEELS/movie.md",
    "html": "FLYWHEELS/movie.html",
-   "title": "Flywheel: Cedwyn film — daily scene",
-   "bytes": 666,
-   "sha256": "d01099727d0c15f871e918921f8e3fe0275a41813946020079ac8006f3261df5"
+   "title": "Flywheel: Cedwyn film — scene run",
+   "bytes": 860,
+   "sha256": "562370d4522f904a467937129a36db209bb5a646e056a07b8d718771a564e4ea"
   },
   {
    "path": "FLYWHEELS/online-gap-finder.md",
@@ -779,8 +805,8 @@
    "path": "LESSONS.md",
    "html": "LESSONS.html",
    "title": "LESSONS — mistakes and the rules they produced",
-   "bytes": 23937,
-   "sha256": "de25bbdbe309b7038324cf2b0085f584eb0b44e7db588559c9369b618f80b80e"
+   "bytes": 26835,
+   "sha256": "a15c04f4621802169f3fde24283536876287b231819ba676c98c110ca6fd7e77"
   },
   {
    "path": "MEMORY/README.md",
@@ -842,8 +868,8 @@
    "path": "SKILLS/README.md",
    "html": "SKILLS/index.html",
    "title": "SKILLS",
-   "bytes": 541382,
-   "sha256": "309adcd40e84ec812b2b3aa8edcf83dc6b8b8ad8b4f3820567ec7aa066ea7ff0"
+   "bytes": 579648,
+   "sha256": "7c8533ce0b345c1ad7489e2e86c2fdd26800fd572c6466b6e525faab41257c13"
   },
   {
    "path": "SKILLS/marketing/1.md",
@@ -1441,11 +1467,25 @@
    "sha256": "969009ab33fe4ec90faf501d4da09aa98826b5992118d679ef6fe6f9dadcb66b"
   },
   {
+   "path": "SKILLS/marketing/book-blog-tours-history-ebook-coffee-pot-gate.md",
+   "html": "SKILLS/marketing/book-blog-tours-history-ebook-coffee-pot-gate.html",
+   "title": "Book blog tours for a history e-book: what they buy, what they cost, and a gate",
+   "bytes": 5104,
+   "sha256": "f4a7eeba35c07ae932cb173438e533f5625c17bcc30a92e83a78ec7423f0c28f"
+  },
+  {
    "path": "SKILLS/marketing/book-club-reading-group-guide-heritage.md",
    "html": "SKILLS/marketing/book-club-reading-group-guide-heritage.html",
    "title": "Book clubs and reading groups: a free reading-group guide for a non-fiction heritage title",
    "bytes": 4076,
    "sha256": "aa52feb462cf4b47a44cc2a4c25948ca1c37e8376d0976f9ea0dd42629cc0119"
+  },
+  {
+   "path": "SKILLS/marketing/book-week-scotland-moved-june-2027-calendar-hygiene.md",
+   "html": "SKILLS/marketing/book-week-scotland-moved-june-2027-calendar-hygiene.html",
+   "title": "Book Week Scotland has moved to June 2027: drop November 2026, plan around the new date",
+   "bytes": 3644,
+   "sha256": "06dd9bd6fabdcf215a289571fa00935190b3f40a3aeefdb95904045ec5961ec1"
   },
   {
    "path": "SKILLS/marketing/bookbub-author-profile-new-release-alerts.md",
@@ -1504,6 +1544,13 @@
    "sha256": "0e7ccf67988f271826294676b62308e6540e705f0d18bc65325605815d7df0ee"
   },
   {
+   "path": "SKILLS/marketing/buy-nothing-day-27-nov-counter-position-no-sale.md",
+   "html": "SKILLS/marketing/buy-nothing-day-27-nov-counter-position-no-sale.html",
+   "title": "Buy Nothing Day (Fri 27 Nov 2026) as a counter-position for a small heritage e-book shop",
+   "bytes": 5342,
+   "sha256": "a204fd358ee6d93ebe2360c46e45f9edd6b3a9995e5daf4a77c92704b8ce3c5e"
+  },
+  {
    "path": "SKILLS/marketing/buy-path-watch-synthetic-checks-no-session.md",
    "html": "SKILLS/marketing/buy-path-watch-synthetic-checks-no-session.html",
    "title": "Buy-path watch: scheduled, session-free checks that the e-book shop can still sell",
@@ -1544,6 +1591,13 @@
    "title": "Canva Brand Kit + Bulk Create for social cards: gate, and the free route we already have",
    "bytes": 4149,
    "sha256": "9936eb1ec151af72474f062d98f4909ccaf6476fb2a91398926b0e2e755777f6"
+  },
+  {
+   "path": "SKILLS/marketing/card-sorting-open-closed-hybrid-similarity.md",
+   "html": "SKILLS/marketing/card-sorting-open-closed-hybrid-similarity.html",
+   "title": "Card sorting (open, closed, hybrid): let readers group the content before we name the menu",
+   "bytes": 4807,
+   "sha256": "f52ce4a46555c2bd7e24cf8adad678c89684fac291b633d087fa732060bdf8df"
   },
   {
    "path": "SKILLS/marketing/cardiff-book-events-literary-escape-author-table-beyond-border-closed.md",
@@ -1658,6 +1712,13 @@
    "sha256": "cf016334b7c1d4bbbe1450e360c19581da23282c8c99644d40bd96fcc0f099dd"
   },
   {
+   "path": "SKILLS/marketing/cold-email-closing-ask-interest-offer-then-specific-time.md",
+   "html": "SKILLS/marketing/cold-email-closing-ask-interest-offer-then-specific-time.html",
+   "title": "Cold outreach: end on an interest question or an offer, not a meeting ask (then switch to a specific time once they reply)",
+   "bytes": 6939,
+   "sha256": "53d879bc1847a81909be7893ad108ca67e6befeb95928a04031e404c2d5bcd14"
+  },
+  {
    "path": "SKILLS/marketing/cold-email-deliverability-uk-pecr.md",
    "html": "SKILLS/marketing/cold-email-deliverability-uk-pecr.html",
    "title": "Skill: Cold email deliverability + UK PECR for institutional outreach (2026)",
@@ -1679,6 +1740,13 @@
    "sha256": "098c517024821fc99055845d69aa076d0098972c1d627418f639509911643836"
   },
   {
+   "path": "SKILLS/marketing/colouring-sheets-color-our-collections-archive-line-art.md",
+   "html": "SKILLS/marketing/colouring-sheets-color-our-collections-archive-line-art.html",
+   "title": "Colouring sheets from the archive: #ColorOurCollections week and printable craft spin-offs",
+   "bytes": 7836,
+   "sha256": "4e0607f50f6197620df8d47cf604294d53dd62536b49479795abe83703a67b9f"
+  },
+  {
    "path": "SKILLS/marketing/coming-soon-notify-me-waitlist-referral.md",
    "html": "SKILLS/marketing/coming-soon-notify-me-waitlist-referral.html",
    "title": "\"Coming soon\" with a notify-me list (turn a pre-launch gallery into a release audience)",
@@ -1691,6 +1759,13 @@
    "title": "Commons structured data: \"depicts\" (P180) and captions on our own uploads, so they are found in any language",
    "bytes": 5675,
    "sha256": "dbd7f6a1f57f4b2b3740720804bd88df5a33ce1edc63af3e1d058b357af0af92"
+  },
+  {
+   "path": "SKILLS/marketing/commons-video-uploads-webm-timedtext-ai-scope-gate.md",
+   "html": "SKILLS/marketing/commons-video-uploads-webm-timedtext-ai-scope-gate.html",
+   "title": "Wikimedia Commons video uploads for the Cedwyn clips: format, licence, AI-scope rules, subtitles, and a gate",
+   "bytes": 6808,
+   "sha256": "ea89627396d1f7460df2d6034feed2f245983fa79daef8c2e8f1c7a0e4f6760e"
   },
   {
    "path": "SKILLS/marketing/community-foundation-wales-fund-for-wales-gate.md",
@@ -1754,6 +1829,27 @@
    "title": "Content upgrades: a page-specific free extra in exchange for an email",
    "bytes": 4628,
    "sha256": "ca65cef58975d1d04ff9fccccc71a47fb17882f93feb34e9723d98a236433a62"
+  },
+  {
+   "path": "SKILLS/marketing/contextual-inquiry-local-historians-research-routes.md",
+   "html": "SKILLS/marketing/contextual-inquiry-local-historians-research-routes.html",
+   "title": "Contextual inquiry: watch real local and family historians research, then fix where they never find us",
+   "bytes": 6888,
+   "sha256": "b9cd29ab513b0f16889f5253c55f23393eff6bcab8420a28d9be4b3849e754c8"
+  },
+  {
+   "path": "SKILLS/marketing/controllable-input-metrics-amazon-wbr-demand-weighted.md",
+   "html": "SKILLS/marketing/controllable-input-metrics-amazon-wbr-demand-weighted.html",
+   "title": "Controllable input metrics (Amazon WBR): stop staring at sales, drive the few levers that move them",
+   "bytes": 7168,
+   "sha256": "c2d09cef1ced9e268f9a1f7a2cc4eb4fcc242c462be2e83cd587ca79185e3723"
+  },
+  {
+   "path": "SKILLS/marketing/copied-content-watch-exact-phrase-scraped-vs-own-mirrors.md",
+   "html": "SKILLS/marketing/copied-content-watch-exact-phrase-scraped-vs-own-mirrors.html",
+   "title": "Copied-content watch for the Cedwyn research text: exact-phrase checks, then the right response (scraped copies vs our own family mirrors)",
+   "bytes": 5020,
+   "sha256": "2f8495fb617ebeaba12724d27948e64e75053fadc1c856bd0db0fe1c11415a8f"
   },
   {
    "path": "SKILLS/marketing/correction-email-after-factual-error-severity-reach.md",
@@ -1826,6 +1922,13 @@
    "sha256": "1ed824558336d270c4d8c5269aa52dbbe097a2c841c9a7ac0254d95d4a9b675b"
   },
   {
+   "path": "SKILLS/marketing/dailymotion-vimeo-mirror-shorts-measured-gate.md",
+   "html": "SKILLS/marketing/dailymotion-vimeo-mirror-shorts-measured-gate.html",
+   "title": "Mirror the Shorts and documentary clips to Dailymotion and Vimeo: what it buys, measured, and a gate",
+   "bytes": 7154,
+   "sha256": "8d12a82dff274e9428b8f9caa7268b789d493019a2d4b0de1c6f71e8fbd50765"
+  },
+  {
    "path": "SKILLS/marketing/dark-mode-prefers-color-scheme-no-flash.md",
    "html": "SKILLS/marketing/dark-mode-prefers-color-scheme-no-flash.html",
    "title": "Dark mode for Cedwyn pages: follow the phone, no white flash (prefers-color-scheme + color-scheme)",
@@ -1866,6 +1969,13 @@
    "title": "Descendant first-person narration for heritage video (\"I was born here\")",
    "bytes": 5109,
    "sha256": "c8bd98b52e5897a5411f603e7316a34da03b04afa7e801452ef6ae61abf49c0a"
+  },
+  {
+   "path": "SKILLS/marketing/diary-study-longitudinal-reader-behaviour.md",
+   "html": "SKILLS/marketing/diary-study-longitudinal-reader-behaviour.html",
+   "title": "Diary study: see how readers actually use the e-books and academy over two to three weeks",
+   "bytes": 4077,
+   "sha256": "0e27c3a502ef8cdbce1fa01d20e926580782f3cac6784539539197ce54bca5a6"
   },
   {
    "path": "SKILLS/marketing/digital-art-editions-certificate-open-vs-limited.md",
@@ -1966,6 +2076,13 @@
    "sha256": "6f1c786115fc4c0aa7f81f3b30554676d12c9b98e246ec6997a74b3f3a5d3a59"
   },
   {
+   "path": "SKILLS/marketing/ebook-gifting-gumroad-gift-toggle-stripe-gift-field-christmas.md",
+   "html": "SKILLS/marketing/ebook-gifting-gumroad-gift-toggle-stripe-gift-field-christmas.html",
+   "title": "Selling Cedwyn e-books as gifts: Gumroad's gift toggle, a Stripe gift field, and the Christmas window",
+   "bytes": 4570,
+   "sha256": "99dafd5e7d841d911f63148174defe5a3536d02e5f550a1bb9280b2e455271f3"
+  },
+  {
    "path": "SKILLS/marketing/ebook-piracy-social-drm-takedown-routine.md",
    "html": "SKILLS/marketing/ebook-piracy-social-drm-takedown-routine.html",
    "title": "E-book piracy stance for a direct-sold PDF shop: no hard DRM, light \"social DRM\", 10-minute takedown routine",
@@ -2015,6 +2132,13 @@
    "sha256": "55ce365a322548b1342355cea3d322220b28e4f631a914b634ce39815f83766d"
   },
   {
+   "path": "SKILLS/marketing/email-footer-postal-address-forwarded-subscribe-line.md",
+   "html": "SKILLS/marketing/email-footer-postal-address-forwarded-subscribe-line.html",
+   "title": "Email footer: a postal address that isn't a home, plus a \"Forwarded to you? Subscribe\" line",
+   "bytes": 6645,
+   "sha256": "fdcabe0798dd8c54d433c9d95ca3dd25c124c21bcf43278f837f00f1ad5dd31a"
+  },
+  {
    "path": "SKILLS/marketing/email-holdout-incrementality-test-small-list-gate.md",
    "html": "SKILLS/marketing/email-holdout-incrementality-test-small-list-gate.html",
    "title": "Skill: Email holdout (incrementality) tests: did the email cause the sale? And when a list is too small to ask (2026)",
@@ -2048,6 +2172,13 @@
    "title": "Email preference centre: \"fewer emails\" and topic choice instead of unsubscribe",
    "bytes": 3909,
    "sha256": "3a6a368c841d0f13006795c756cbc59bcc030fee5c01bf26ccd19b2bedb44b4f"
+  },
+  {
+   "path": "SKILLS/marketing/email-ps-line-one-job-one-link-utm-test.md",
+   "html": "SKILLS/marketing/email-ps-line-one-job-one-link-utm-test.html",
+   "title": "The P.S. line in Cedwyn emails: one job, one link, tested on clicks",
+   "bytes": 3725,
+   "sha256": "195c947db62b4b98468eb0f12b59859a538abd3db163490f988e3b20cf70c5f5"
   },
   {
    "path": "SKILLS/marketing/email-read-time-9-second-budget-first-35-words.md",
@@ -2132,6 +2263,13 @@
    "title": "Episodic Reels after \"Link a Reel\" was retired (28 Oct 2026): Series test, Facebook Reels playlists, and the series home on our own site",
    "bytes": 5078,
    "sha256": "2f317e8bad1e09ce0fb66a18bd616cf40b1ef7197ada8acdec73c93089707d5c"
+  },
+  {
+   "path": "SKILLS/marketing/epub-accessibility-check-no-install-ace-app-pubcoder-thorium.md",
+   "html": "SKILLS/marketing/epub-accessibility-check-no-install-ace-app-pubcoder-thorium.html",
+   "title": "Checking an EPUB's accessibility before listing, with nothing installed on our box: PubCoder's online Ace, the Ace App, Thorium, and a stdlib pre-check",
+   "bytes": 6002,
+   "sha256": "a59ce4e43340afff67851e46bca9e6f05d8b78f3d4b0c8117c4d7eda8cbb5965"
   },
   {
    "path": "SKILLS/marketing/epub-editions-sphinx-epubcheck.md",
@@ -2547,6 +2685,13 @@
    "sha256": "7bdc2761307384e5bf3d372fd5a8055a56e78e63252f09ee0137900173806d08"
   },
   {
+   "path": "SKILLS/marketing/gmail-clipping-102kb-style-16kb-ganga-inline-css.md",
+   "html": "SKILLS/marketing/gmail-clipping-102kb-style-16kb-ganga-inline-css.html",
+   "title": "Gmail's size and CSS limits for Cedwyn emails: 102 KB clip, 16 KB style block, styles stripped for non-Google accounts",
+   "bytes": 4947,
+   "sha256": "9ffb0607c0a13111ed42f3964662bd63bf64c5228b85d0574895ccfe227312eb"
+  },
+  {
    "path": "SKILLS/marketing/gmail-manage-subscriptions-gemini-summaries-metrics.md",
    "html": "SKILLS/marketing/gmail-manage-subscriptions-gemini-summaries-metrics.html",
    "title": "Gmail 2025-26 inbox changes: Manage Subscriptions, Gemini summaries and what to measure",
@@ -2841,6 +2986,13 @@
    "sha256": "1c9e7d4705b53712e6462bc6f43c7348a1cb05cd5d01d28dfd71eb8a1ecf70be"
   },
   {
+   "path": "SKILLS/marketing/heuristic-evaluation-nielsen-10-ebook-shop.md",
+   "html": "SKILLS/marketing/heuristic-evaluation-nielsen-10-ebook-shop.html",
+   "title": "Heuristic evaluation (Nielsen's 10) for a low-traffic e-book shop",
+   "bytes": 5040,
+   "sha256": "e82b82fbd1d2df755b0f0223e1e37af9d0267e53700aa7e1ae2202bcd253157c"
+  },
+  {
    "path": "SKILLS/marketing/history-magazine-journal-articles-historian-history-today.md",
    "html": "SKILLS/marketing/history-magazine-journal-articles-historian-history-today.html",
    "title": "History magazine and journal articles as a traffic and authority route",
@@ -3051,6 +3203,20 @@
    "sha256": "e79c60b603607bcbe459d13189d28e39fdb092f78d00fa211e844d2f126980a7"
   },
   {
+   "path": "SKILLS/marketing/international-archives-week-iad-9-june-wdah-27-oct-calendar-gate.md",
+   "html": "SKILLS/marketing/international-archives-week-iad-9-june-wdah-27-oct-calendar-gate.html",
+   "title": "International Archives Day (9 June) / International Archives Week + UNESCO World Day for Audiovisual Heritage (27 Oct): two archive-calendar hooks, sized honestly",
+   "bytes": 4938,
+   "sha256": "45c1088b021cc20342d402a4735394592054ee8555a07ee394e634ed47475bf1"
+  },
+  {
+   "path": "SKILLS/marketing/internet-archive-movies-clips-mirror-captions-gate.md",
+   "html": "SKILLS/marketing/internet-archive-movies-clips-mirror-captions-gate.html",
+   "title": "Internet Archive \"movies\" items for the Shorts and documentary clips: a permanent public copy, sized honestly, and a gate",
+   "bytes": 5553,
+   "sha256": "f11f96ae7fac624d0c1040ccef276cd3ec701e5dbd8130441a764cb5806adaae"
+  },
+  {
    "path": "SKILLS/marketing/internet-archive-texts-free-edition-discovery.md",
    "html": "SKILLS/marketing/internet-archive-texts-free-edition-discovery.html",
    "title": "Internet Archive \"texts\" item for the free first edition: a permanent discovery outpost, sized honestly",
@@ -3070,6 +3236,13 @@
    "title": "Journalist query platforms: free tiers, measured hit rates, AI-flagged pitches (2026)",
    "bytes": 4477,
    "sha256": "f4049cf3eb69e874e482dc7ff6cc58ec80b6a5711f88eb4d86cb5403ccf1e6f5"
+  },
+  {
+   "path": "SKILLS/marketing/kano-feature-survey-better-worse.md",
+   "html": "SKILLS/marketing/kano-feature-survey-better-worse.html",
+   "title": "Kano survey: sort proposed features into must-haves, performance, delighters and \"nobody cares\"",
+   "bytes": 4989,
+   "sha256": "06822a19009fcad7e07eb57333545e66fe930824c32184afc13e0d21964979bf"
   },
   {
    "path": "SKILLS/marketing/kdp-ai-betas-kindle-translate-virtual-voice-gate.md",
@@ -3457,6 +3630,13 @@
    "sha256": "b91cd8b0d79e3ea4c75fd6855b021b8c36ad3953d49f3e2dcb9d92fb092c984c"
   },
   {
+   "path": "SKILLS/marketing/metafilter-projects-one-self-link-open-archive-owner-go.md",
+   "html": "SKILLS/marketing/metafilter-projects-one-self-link-open-archive-owner-go.html",
+   "title": "MetaFilter Projects: one self-link post for an open local-history archive (measured, $5 signup = owner GO)",
+   "bytes": 5403,
+   "sha256": "fc2f17a7585a67f003cbe9a3660b0542dee4c5bece406d83640548adb8d7de6e"
+  },
+  {
    "path": "SKILLS/marketing/microsoft-365-outlook-uk-institution-inbox-deliverability.md",
    "html": "SKILLS/marketing/microsoft-365-outlook-uk-institution-inbox-deliverability.html",
    "title": "Getting into Microsoft 365 inboxes at UK institutions (councils, HMLR, police, universities, national bodies)",
@@ -3497,6 +3677,13 @@
    "title": "Muted autoplay video at the top of a page (YouTube embed): policy, accessibility, views",
    "bytes": 4475,
    "sha256": "9369e093fb938c32244b285876169b1dacc7ce177cf58e81bd6799439b21e19d"
+  },
+  {
+   "path": "SKILLS/marketing/national-storytelling-week-2027-place-theme-calendar-gate.md",
+   "html": "SKILLS/marketing/national-storytelling-week-2027-place-theme-calendar-gate.html",
+   "title": "National Storytelling Week 2027 (30 Jan - 7 Feb): theme \"Every story has a place and every place has a story\", sized and planned",
+   "bytes": 4239,
+   "sha256": "1d1fdc1512cbcc926cbfea2ac5b40f758eba7f1d9fef3850a75c8d5510c5a302"
   },
   {
    "path": "SKILLS/marketing/national-year-of-reading-one-million-gifts-pledge-partner.md",
@@ -3567,6 +3754,13 @@
    "title": "Novel November (#NovNov, the NaNoWriMo successor): one research-records post for historical-fiction writers",
    "bytes": 3237,
    "sha256": "e2e7a05dad49517f49fbad21d2b0cdfd7c7b9a68a5dadfbbd8a6bc1b48522915"
+  },
+  {
+   "path": "SKILLS/marketing/oec-guardrail-metrics-decision-rule-ab-tests.md",
+   "html": "SKILLS/marketing/oec-guardrail-metrics-decision-rule-ab-tests.html",
+   "title": "Skill: pick one OEC and set guardrails before any A/B test (2026)",
+   "bytes": 7159,
+   "sha256": "5632edd710864bdfdf394234a0a51ecdcfbff3ca6ec1aa9e056968323cdcef04"
   },
   {
    "path": "SKILLS/marketing/og-share-cards-whatsapp-facebook-linkedin-cache.md",
@@ -3772,6 +3966,13 @@
    "sha256": "733debe52650d628122596658b5111ffb1daf68c5eb1415353cd923e852f91df"
   },
   {
+   "path": "SKILLS/marketing/peertube-odysee-clip-mirror-measured-instance-gate.md",
+   "html": "SKILLS/marketing/peertube-odysee-clip-mirror-measured-instance-gate.html",
+   "title": "PeerTube (and a note on Odysee) for the Shorts and documentary clips: measured reach, instance choice, and a gate",
+   "bytes": 4721,
+   "sha256": "b0e3e85bdd222f669bf35efe8bcae788345fe0d5e5ff1466af13eed80674866b"
+  },
+  {
    "path": "SKILLS/marketing/people-also-ask-paa-mining-full-answers-place-pages.md",
    "html": "SKILLS/marketing/people-also-ask-paa-mining-full-answers-place-pages.html",
    "title": "People Also Ask (PAA) questions: mine them free, answer them fully on the right page",
@@ -3791,6 +3992,13 @@
    "title": "Selling a serialised documentary per episode on your own site: price, cadence, free clips",
    "bytes": 5502,
    "sha256": "e1f647a5e80984102bc70e3e9503e230f6cfc0af5ab6fb73d999056c5da76d28"
+  },
+  {
+   "path": "SKILLS/marketing/per-page-topic-update-alerts-govuk-get-emails-about-this-page.md",
+   "html": "SKILLS/marketing/per-page-topic-update-alerts-govuk-get-emails-about-this-page.html",
+   "title": "\"Get emails about this page\": per-record and per-topic update alerts (the GOV.UK pattern)",
+   "bytes": 5440,
+   "sha256": "18acfe82248ebb8629c8943f83bd0443d54cdb462de5e7c9289da4ca1f417ad3"
   },
   {
    "path": "SKILLS/marketing/perlego-academic-subscription-distributor-route.md",
@@ -3835,6 +4043,13 @@
    "sha256": "0376f9b5aaf26713af968352ab0807df89cadcf589287f1e607ff6da4a6d3e6f"
   },
   {
+   "path": "SKILLS/marketing/post-task-ease-seq-sus-ux-lite.md",
+   "html": "SKILLS/marketing/post-task-ease-seq-sus-ux-lite.html",
+   "title": "Post-task ease scores: SEQ after each task, SUS or UX-Lite after the session",
+   "bytes": 5225,
+   "sha256": "d7b5560789b9cea3eeb22c5a38d0eb9fb8256a8f1a8303d75fc72bb790927aa3"
+  },
+  {
    "path": "SKILLS/marketing/postcard-collectors-deltiology-village-views-watch.md",
    "html": "SKILLS/marketing/postcard-collectors-deltiology-village-views-watch.html",
    "title": "Postcard collectors (deltiology): a sourcing and community route for village views",
@@ -3847,6 +4062,13 @@
    "title": "Exclusive first, then embargoed wide release: placing one story with one outlet",
    "bytes": 4775,
    "sha256": "53bd17a3030dfc846450e42a51b29013e4fb735c2a72d791255c2d9eed74f057"
+  },
+  {
+   "path": "SKILLS/marketing/preference-tests-desirability-reaction-cards.md",
+   "html": "SKILLS/marketing/preference-tests-desirability-reaction-cards.html",
+   "title": "Preference tests and desirability (reaction-card) studies: which look reads as trustworthy",
+   "bytes": 6032,
+   "sha256": "7b29eb3e902b3220233a464d62f344757e590425ce625b921462e1b09f876413"
   },
   {
    "path": "SKILLS/marketing/press-requests-and-mention-monitoring.md",
@@ -3898,6 +4120,13 @@
    "sha256": "f986a7e826af18a4b452ca3eaba79ae9df14e058094cf2eff90fbbc1d60b4517"
   },
   {
+   "path": "SKILLS/marketing/process-behaviour-xmr-charts-week-on-week-signal-vs-noise.md",
+   "html": "SKILLS/marketing/process-behaviour-xmr-charts-week-on-week-signal-vs-noise.html",
+   "title": "Process behaviour (XmR) charts: stop explaining week-on-week wobble, act only on real signals",
+   "bytes": 6789,
+   "sha256": "dda7d99b91b318659155a5eac6d1539c1332a91ccfaddc7a78bea539929554f0"
+  },
+  {
    "path": "SKILLS/marketing/prolific-works-reader-giveaways-basic-no-email-capture.md",
    "html": "SKILLS/marketing/prolific-works-reader-giveaways-basic-no-email-capture.html",
    "title": "Prolific Works reader giveaways: free Basic plan, opt-in only, what the free tier can't do",
@@ -3910,6 +4139,13 @@
    "title": "Public corrections + \"disproven theories\" page (debunk structure, due prominence)",
    "bytes": 3955,
    "sha256": "b300b32c9027ea130d28ec8c6f66dc60f64162145bb60f319f75c15614957dc6"
+  },
+  {
+   "path": "SKILLS/marketing/pure-expert-ease-score-buy-path.md",
+   "html": "SKILLS/marketing/pure-expert-ease-score-buy-path.html",
+   "title": "PURE: a repeatable ease-of-use score for the buy path without users",
+   "bytes": 4069,
+   "sha256": "d38190f6dbad0a13a2710b1472e5a35dd48fd59b54caf85b1504529ce8bc1051"
   },
   {
    "path": "SKILLS/marketing/qr-codes-print-placement-own-redirects-honest-counts.md",
@@ -4339,6 +4575,13 @@
    "sha256": "3789aea22d05e7ee8a288139c91c33808b43f53634a524fd4c7e1674de0d76d1"
   },
   {
+   "path": "SKILLS/marketing/spanish-ebook-stores-routes-la-visita-casa-del-libro-bajalibros.md",
+   "html": "SKILLS/marketing/spanish-ebook-stores-routes-la-visita-casa-del-libro-bajalibros.html",
+   "title": "Selling the Spanish edition (\"La visita\") where Spanish-language readers buy: market sizes, the stores, and the free routes",
+   "bytes": 7201,
+   "sha256": "1dc697e935ed32c9e65b57ae2bf3fcbfce98714bf86bf15b2dcaefff2850fd88"
+  },
+  {
    "path": "SKILLS/marketing/spanish-patagonia-audience.md",
    "html": "SKILLS/marketing/spanish-patagonia-audience.html",
    "title": "Spanish-language and Welsh Patagonia audience building (2026 how-to)",
@@ -4374,6 +4617,13 @@
    "sha256": "fc2d6a2d2d9485b812dfa65efabaa47d45c762b3f05a6d6ffcc17bdaf5d8a081"
   },
   {
+   "path": "SKILLS/marketing/stack-exchange-genealogy-history-answers-disclosed-affiliation.md",
+   "html": "SKILLS/marketing/stack-exchange-genealogy-history-answers-disclosed-affiliation.html",
+   "title": "Stack Exchange answers (Genealogy & Family History SE, History SE): disclosed, evergreen, low-volume",
+   "bytes": 5272,
+   "sha256": "1985db99b1381d3832abda0f1f8330b4c04950a15e8020faa7287d59cde04f5b"
+  },
+  {
    "path": "SKILLS/marketing/static-site-search-pagefind-query-mining.md",
    "html": "SKILLS/marketing/static-site-search-pagefind-query-mining.html",
    "title": "Static site search (Pagefind) + search-term mining for Cedwyn",
@@ -4395,11 +4645,25 @@
    "sha256": "878cdcef9f21872a24cc4a41683fad71625e5f79d70f60741f5f79f00001b274"
   },
   {
+   "path": "SKILLS/marketing/stop-rate-free-registration-wall-ask-after-engagement.md",
+   "html": "SKILLS/marketing/stop-rate-free-registration-wall-ask-after-engagement.html",
+   "title": "Stop rate and the free-registration wall: ask for the email where the reader is already hooked",
+   "bytes": 6149,
+   "sha256": "85353c68f6d81cb724764449bf67c25cd051c343024737257005300659c2f232"
+  },
+  {
    "path": "SKILLS/marketing/story-time-series-recurring-intro-ident-retention.md",
    "html": "SKILLS/marketing/story-time-series-recurring-intro-ident-retention.html",
    "title": "Founder-narrated \"story time\" series: recurring intro ident + explainer",
    "bytes": 6481,
    "sha256": "e2066dfe22a0589cbdf30c6f0b9d401fbdb4d9f001ff520cb375612f3e1c3236"
+  },
+  {
+   "path": "SKILLS/marketing/streamlined-cognitive-walkthrough-first-visit-buy.md",
+   "html": "SKILLS/marketing/streamlined-cognitive-walkthrough-first-visit-buy.html",
+   "title": "Streamlined cognitive walkthrough: can a first-time visitor buy without help?",
+   "bytes": 4415,
+   "sha256": "8fb8d07e4076d25f4912ccb0630c1edf6b83fd53b8d5f55b5091104b7ed15e9b"
   },
   {
    "path": "SKILLS/marketing/stripe-buy-button-fallback-csp-direct-script.md",
@@ -4491,6 +4755,20 @@
    "title": "Subtitles for sound-off viewing: Welsh-audio clips with readable en/es subtitles",
    "bytes": 6088,
    "sha256": "be28fd1cdccc1766a1991a4ced262407dd0ecb3dbd460cec9904e6aecb27d01e"
+  },
+  {
+   "path": "SKILLS/marketing/super-thursday-uk-autumn-book-calendar-pitch-blackout.md",
+   "html": "SKILLS/marketing/super-thursday-uk-autumn-book-calendar-pitch-blackout.html",
+   "title": "Super Thursday and the UK autumn book calendar: when NOT to pitch book pages",
+   "bytes": 3546,
+   "sha256": "990d52254f6b168b16576e27169f9781cefb30cf8fe1e7ccee4f04ee3650a5e6"
+  },
+  {
+   "path": "SKILLS/marketing/suprq-website-ux-trust-score.md",
+   "html": "SKILLS/marketing/suprq-website-ux-trust-score.html",
+   "title": "SUPR-Q: an 8-question website score for ease, trust, looks and loyalty",
+   "bytes": 4702,
+   "sha256": "181e55597b7c2c998c598f2906c5e100e8eb35fd43fc6a6704e701501fb7b1a9"
   },
   {
    "path": "SKILLS/marketing/syndication-canonical-noindex-medium.md",
@@ -4603,6 +4881,13 @@
    "title": "TMDB / Letterboxd / IMDb listing for our AI-made documentary: a gate, not a growth channel",
    "bytes": 4113,
    "sha256": "ff104bea1b7a462be9ef3e862b48834f38a945eb7219817fdec1f05513836188"
+  },
+  {
+   "path": "SKILLS/marketing/top-tasks-survey-tree-test-navigation.md",
+   "html": "SKILLS/marketing/top-tasks-survey-tree-test-navigation.html",
+   "title": "Top Tasks: find the few jobs visitors actually come for, then check the menu finds them",
+   "bytes": 6632,
+   "sha256": "ec04cbff8443a0ecfd7d88bd76ba8ead462c50d539502fe3ac82b946e5db0171"
   },
   {
    "path": "SKILLS/marketing/topic-clusters-place-pages-local-history.md",
@@ -4759,6 +5044,13 @@
    "sha256": "47dd41f21885b60b8fde19eb567c8d544a68a29c2502bed96d3e2b381f46a0d5"
   },
   {
+   "path": "SKILLS/marketing/unmoderated-remote-mobile-usability-test-free-screen-recording.md",
+   "html": "SKILLS/marketing/unmoderated-remote-mobile-usability-test-free-screen-recording.html",
+   "title": "Unmoderated remote mobile usability test, free: phone screen recordings with voice, no paid platform",
+   "bytes": 5747,
+   "sha256": "c8241708bdf9b8c952a8ba3f7cc7d12c74cbd462917ea824724951a7f54f7162"
+  },
+  {
    "path": "SKILLS/marketing/unsubscribe-reason-survey-mailchimp-read-act.md",
    "html": "SKILLS/marketing/unsubscribe-reason-survey-mailchimp-read-act.html",
    "title": "Unsubscribe-reason survey: keep it on, read every answer, act on three signals",
@@ -4820,6 +5112,13 @@
    "title": "Versioned releases with a rising price ladder (free first version, each release dearer)",
    "bytes": 5522,
    "sha256": "607d0178261530541f6ee616d536eba30b9fc196cf11a0724d0b5d2140cd7c7d"
+  },
+  {
+   "path": "SKILLS/marketing/very-disappointed-pmf-survey-superhuman-engine.md",
+   "html": "SKILLS/marketing/very-disappointed-pmf-survey-superhuman-engine.html",
+   "title": "The \"very disappointed\" survey (Sean Ellis 40% test + Superhuman's PMF engine)",
+   "bytes": 5250,
+   "sha256": "0a9f24cc25204b53463578ae76a9fa4470d5d3b53304ea98c38bc25868787e8d"
   },
   {
    "path": "SKILLS/marketing/video-in-email-thumbnail-play-button-gif.md",
@@ -4932,6 +5231,13 @@
    "title": "Welsh culture/heritage calls for evidence: respond, get published, use as a dated hook",
    "bytes": 5302,
    "sha256": "bc1d085eb172ce6c03a77b5bab51c1ef88fc0a35e66df5fc3c2e6407250bcb6d"
+  },
+  {
+   "path": "SKILLS/marketing/welsh-cy-language-tags-epub-onix-wel-kdp.md",
+   "html": "SKILLS/marketing/welsh-cy-language-tags-epub-onix-wel-kdp.html",
+   "title": "Welsh-language tags in e-books and listings: `cy` in EPUB, `wel` in ONIX, Welsh on KDP",
+   "bytes": 5736,
+   "sha256": "c465320b9b1e5f70cac1b7ab6bddb74d41c6960836bdef253432009f94baec6c"
   },
   {
    "path": "SKILLS/marketing/welsh-diaspora-networks-globalwelsh-wales-international.md",
@@ -5067,6 +5373,13 @@
    "sha256": "c8ffa334efb12d83d13668b77d4799e98e936735a32d36a2059fc14aa0cc78d4"
   },
   {
+   "path": "SKILLS/marketing/wikidata-p10-video-placement-measured-gate.md",
+   "html": "SKILLS/marketing/wikidata-p10-video-placement-measured-gate.html",
+   "title": "Getting a Commons clip seen: Wikidata \"video\" (P10), infoboxes in other languages, and article placement, measured, with a gate",
+   "bytes": 5885,
+   "sha256": "f650969d4ebf6b0a66181bbd4fdcf4fbc7987f9a400d8b8487fd7a357f747b53"
+  },
+  {
    "path": "SKILLS/marketing/wikidata-p973-described-at-url-disclosed-entity-links.md",
    "html": "SKILLS/marketing/wikidata-p973-described-at-url-disclosed-entity-links.html",
    "title": "Skill: Wikidata \"described at URL\" (P973) and \"described by source\" (P1343) pointing at our pages, done honestly",
@@ -5095,6 +5408,13 @@
    "sha256": "6a6419210f49613fce139387bfef13b1b08afa8e00f16e20d26a15f4231dc237"
   },
   {
+   "path": "SKILLS/marketing/wikipedia-did-you-know-dyk-hook-new-article-measured-gate.md",
+   "html": "SKILLS/marketing/wikipedia-did-you-know-dyk-hook-new-article-measured-gate.html",
+   "title": "Wikipedia \"Did you know\" (DYK): a main-page hook for a new local-history article, measured gate",
+   "bytes": 4466,
+   "sha256": "a53d2b19eb48fb47d1bdff4d5588ae7ec983482f00a73a260a1139d35f6d59d1"
+  },
+  {
    "path": "SKILLS/marketing/wikipedia-on-this-day-selected-anniversaries-measured-gate.md",
    "html": "SKILLS/marketing/wikipedia-on-this-day-selected-anniversaries-measured-gate.html",
    "title": "Skill: Wikipedia \"On this day\" (Selected anniversaries) - what it is worth, what it takes, and why the farm is a NO for now",
@@ -5121,6 +5441,13 @@
    "title": "Wikivoyage (Penarth / Vale of Glamorgan): a gate, NO for promotion",
    "bytes": 2804,
    "sha256": "83bbd008a9c0f89f375a27e060eb4f90f8f453ee554f460f1b3fa52774e4a642"
+  },
+  {
+   "path": "SKILLS/marketing/winners-curse-exaggeration-ratio-shrink-ab-lifts.md",
+   "html": "SKILLS/marketing/winners-curse-exaggeration-ratio-shrink-ab-lifts.html",
+   "title": "Winner's curse: a \"winning\" A/B lift is too big. Shrink it before you quote, forecast or stack it",
+   "bytes": 6271,
+   "sha256": "23d34ba883a23adf902ffad3f397687e680f9accf6a2a06c7ae27efa4f64c65d"
   },
   {
    "path": "SKILLS/marketing/wix-html-embed-sandbox-society-widget-limits.md",
@@ -5385,8 +5712,8 @@
    "path": "architecture/loops.md",
    "html": "architecture/loops.html",
    "title": "Maintenance loops",
-   "bytes": 26836,
-   "sha256": "77cf2c8b492e6deba8dc1dc5f7bab8dd06bb4773edcebb899cbccf03338a51dd"
+   "bytes": 28026,
+   "sha256": "025f85e2e4bc58a1fcf18c9a44ee9be3a009a2fe844fc49c6b13ea6f6831a4d1"
   },
   {
    "path": "architecture/structure.md",

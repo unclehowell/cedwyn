@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Wikipedia &quot;Did you know&quot; (DYK): a main-page hook for a new local-history article, measured gate · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Wikipedia &quot;Did you know&quot; (DYK): a main-page hook for a new local-history article, measured gate"><link rel="alternate" type="text/markdown" href="wikipedia-did-you-know-dyk-hook-new-article-measured-gate.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Wikipedia "Did you know" (DYK): a main-page hook for a new local-history article, measured gate</h1>
+<p>Harvested 31 Oct 2026. Route type: reach for the topic (Llandough, Leckwith, Cogan, the Ely valley), not direct traffic to us. Free. Strong conflict-of-interest limits apply. Related existing skills: wikipedia-ai-citations-coilegal-llm-rules-gate.md, wikipedia-on-this-day-selected-anniversaries-measured-gate.md, wikipedia-pageviews-topic-demand-signal.md.</p>
+<h2>The rules (Wikipedia:Did you know/Guidelines, read 31 Oct 2026)</h2>
+<ul>
+<li>Eligible article: "created, expanded fivefold, moved to mainspace, translated from another wiki, or promoted to good article status <strong>within the last seven days</strong>" before nomination.</li>
+<li>At least <strong>1,500 characters of original prose</strong>; neutral; reliable sources with inline citations.</li>
+<li>Hook: one short "... that ..." fact, cited inline in the article, interesting to a general reader.</li>
+<li><strong>QPQ:</strong> a nominator with 5+ past nominations must review one other nomination per new one.</li>
+<li><strong>COI:</strong> "articles with a conflict of interest (whether or not it is declared) may be subject to greater scrutiny from reviewers and promoters."</li>
+<li>Sets run on the main page for 12 or 24 hours; the archive (Wikipedia:Did you know archive) lists every set with its UTC time.</li>
+</ul>
+<h2>Measured effect (our own read, 31 Oct 2026)</h2>
+<p>Pageviews API (user agents only) for bolded DYK articles in sets from 10-28 Oct 2026; 9 of 54 sampled titles resolved (the rest failed on renames/rate limits), so treat as indicative:
+- Run-day views: <strong>median 190</strong>, p25 77, p75 311, max 392.
+- Baseline (median of the 6 days before): <strong>7 views/day</strong>.
+- So a DYK lifts a small article roughly 25x for one day, to a few hundred readers, then it falls back. Wikipedia readers rarely click external links, so expect at most a handful of visits to any cited site.
+The page DYK/Statistics celebrates only outliers (unusually high views), which is why the typical hook looks far smaller than the famous ones.</p>
+<h2>When it is worth it</h2>
+<ul>
+<li>Only when a Wikipedia article on a local topic is genuinely missing or a stub that could be expanded fivefold from <strong>published, independent sources</strong> (county histories, Cadw/RCAHMW listings, journal articles, census and tithe material), not from our own site.</li>
+<li>The lasting value is the article itself: a cited, neutral entry that search engines and AI assistants read for years, ideally citing primary records our catalogue also holds.</li>
+</ul>
+<h2>Steps</h2>
+<ol>
+<li>Check demand: wikipedia-pageviews-topic-demand-signal.md on candidate topics; pick one with a missing or stub article.</li>
+<li>Draft in Draft: space (Articles for Creation if any COI exists); 1,500+ prose characters; every sentence cited to independent published sources.</li>
+<li>Prepare 1-2 hooks under ~200 characters each, each tied to one cited sentence, neutral in tone ("... that a 12th-century charter granted the church at Llandough to ...?").</li>
+<li>Within 7 days of the move to mainspace (or a fivefold expansion), file the nomination at Template talk:Did you know; answer reviewer questions quickly.</li>
+<li>Measure with the Pageviews API: run day vs prior 6-day median; and our own referrer counts from en.wikipedia.org.</li>
+</ol>
+<h2>Gate (why this is not an agent action)</h2>
+<ul>
+<li>Editing Wikipedia about a topic tied to a project we run is a declared COI under WP:COI; promotional or case-arguing text will be removed and can taint the topic. A self-written DYK about the farm, the family or the court case is out.</li>
+<li>Agents never edit Wikipedia or file nominations. A human editor with no stake (e.g. a local history society member) would have to write and nominate.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Status: GATED PROPOSAL, low priority.</strong> Expected reach is ~200 one-day readers to Wikipedia and near-zero direct visits, so it does not fix our reach problem (~45 real outside /ebooks/ views a day).</li>
+<li>Useful agent prep only: list local topics where English Wikipedia has no article or a stub (Leckwith, Cogan, Llandough manor, the Ely river crossings), with the independent published sources an outside editor could cite. Hand the list to the owner as an offer to a local history society, not as our own edit.</li>
+<li>Never cite our e-books or case pages in the hook; never name family members; follow the existing Wikipedia COI skill.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>en.wikipedia.org (read 31 Oct 2026)</li>
+<li>en.wikipedia.org</li>
+<li>en.wikipedia.org (sets 10-28 Oct 2026)</li>
+<li>wikimedia.org pageviews per-article endpoint (our measurement above)</li>
+<li>en.wikipedia.org</li>
+</ul><p class="raw">Raw Markdown: <a href="wikipedia-did-you-know-dyk-hook-new-article-measured-gate.md">wikipedia-did-you-know-dyk-hook-new-article-measured-gate.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

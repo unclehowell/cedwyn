@@ -1,0 +1,108 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Mirror the Shorts and documentary clips to Dailymotion and Vimeo: what it buys, measured, and a gate · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Mirror the Shorts and documentary clips to Dailymotion and Vimeo: what it buys, measured, and a gate"><link rel="alternate" type="text/markdown" href="dailymotion-vimeo-mirror-shorts-measured-gate.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Mirror the Shorts and documentary clips to Dailymotion and Vimeo: what it buys, measured, and a gate</h1>
+<p>Written 31 Oct 2026 for the Cedwyn e-book and documentary work. Topic: secondary video hosts as a backup and discovery route, not as a growth engine.</p>
+<h2>What the evidence shows (read before spending time on it)</h2>
+<p><strong>Search mostly shows YouTube.</strong> Foliovision's 2022 review of video-search bias sums up two studies:
+- Eric Enge (Stone Temple Consulting): <strong>88% of Google's top-10 video results were YouTube</strong> (native or embedded). For queries containing "video" or "clip", it was 78.9%.
+- The Wall Street Journal ran the same videos on YouTube, Facebook Watch, Twitch and Dailymotion, and <strong>YouTube ranked ahead of every competitor in every case</strong>. Professor Dirk Lewandowski approved the method.
+- Foliovision's own spot check: Vimeo and Dailymotion did not appear in its sample of Google video results. A video that exists <em>only</em> on Dailymotion can still be found on that platform by its exact title.
+- So a mirror will not take search clicks from YouTube. Its value is elsewhere (below).</p>
+<p><strong>Dailymotion's own search is quiet for our subject.</strong> We measured it with Dailymotion's public API (`api.dailymotion.com, no key, top 100 by relevance, read 31 Oct 2026 10:41Z):</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>query</th>
+<th>total matches</th>
+<th>median views</th>
+<th>25th–75th pct</th>
+<th>max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>welsh history</td>
+<td>1,000+</td>
+<td>21</td>
+<td>4–166</td>
+<td>29,942</td>
+</tr>
+<tr>
+<td>wales history</td>
+<td>1,000+</td>
+<td>16</td>
+<td>3–162</td>
+<td>10,191</td>
+</tr>
+<tr>
+<td>cardiff history</td>
+<td>1,000+</td>
+<td>6</td>
+<td>1–22</td>
+<td>3,495</td>
+</tr>
+<tr>
+<td>glamorgan</td>
+<td>135</td>
+<td>16.5</td>
+<td>3–90</td>
+<td>20,687</td>
+</tr>
+<tr>
+<td>local history documentary</td>
+<td>1,000+</td>
+<td>70.5</td>
+<td>14–313</td>
+<td>35,423</td>
+</tr>
+</tbody>
+</table></div>
+<p>A typical Welsh-history video there gets <strong>tens of views over its lifetime</strong>. Plan on that, not on a breakout.</p>
+<p><strong>Vimeo Free is a clean, ad-free host with limits that matter.</strong> From Vimeo's help centre (About the Vimeo Free plan, read 31 Oct 2026):
+- Public videos are <strong>unlimited</strong> and carry no ads.
+- <strong>Embeddable and non-public videos are capped at 3 GB in total.</strong> For embeds, our 2-min 720p webm clips of under 25 MB give about 120.
+- Free includes automatic captions, transcripts, chapters, <strong>SEO settings for video pages</strong>, editable URLs, viewer analytics, 1 channel, 1 group and 5 showcases.</p>
+<p><strong>Vimeo player embeds can be indexed on our own page.</strong> In Google's Vimeo case study (Search Central), Vimeo adopted <code>noindex, indexifembedded</code> on its player and added Key Moments structured data. Google can then index the video <strong>on the page that embeds it</strong> while ignoring the bare player URL. That is the one real SEO benefit: the watch page on cedwyn gets the video result, not Vimeo.</p>
+<p><strong>Dailymotion pays only past a floor.</strong> Dailymotion's FAQ (as shown in search snippets; the page itself returned 403 to us): a creator needs <strong>1,000 cumulative profile views</strong> to unlock monetisation, with payout once the balance passes <strong>$100</strong>. At the medians above that will take a long time. Treat money from it as zero.</p>
+<h2>Why it is still worth doing (the honest case)</h2>
+<ol>
+<li><strong>A route around the YouTube daily upload limit.</strong> Our YouTube uploads stop when the daily API limit is spent (problem P-032). A second host means a finished Short is public somewhere the day it is made, and the YouTube copy follows when the limit resets.</li>
+<li><strong>Resilience.</strong> If a YouTube video is muted, held or struck, a copy and its text still exist elsewhere.</li>
+<li><strong>Our own pages win the embed.</strong> A Vimeo embed on a cedwyn watch page, with <code>VideoObject</code> markup, keeps the result and the visit on cedwyn, not on a platform.</li>
+<li><strong>Small but non-zero platform search.</strong> The few people searching "welsh history" on Dailymotion find us next to dozens-of-views videos, not million-view channels.</li>
+</ol>
+<h2>How to do it (step by step)</h2>
+<ol>
+<li><strong>Only mirror what YouTube may carry.</strong> Use the same hold list as the YouTube Shorts run: anything held there (e.g. e08, e12, e23) is held on every host.</li>
+<li><strong>Same text as YouTube, adapted.</strong> Title under 60 characters. The description starts with the shop line, then the documentary line (/movie/), then a Sources line. Same banned-word check, never name family members, no hashtags beyond 3. Link to cedwyn pages only.</li>
+<li><strong>Dailymotion</strong>: one channel; pick the closest category the upload form offers (an education or travel one for place clips). Put the place name and the decade in the title ("Llandough, 1890s: …"). Upload by hand or by its upload API with the channel owner's login. Don't chase monetisation.</li>
+<li><strong>Vimeo (Free)</strong>: upload <strong>public</strong>. Embed only the clips we put on cedwyn watch pages, so the embed counts against the 3 GB cap and nothing else does. Turn on auto-captions and chapters, write the page title and description in the SEO settings, and set the video URL to a readable slug.</li>
+<li><strong>On cedwyn</strong>: where a watch page embeds the Vimeo player, keep our own <code>VideoObject</code> JSON-LD (see <code>video-sitemap-self-hosted-documentary-watch-pages.md</code>) and lazy-load with a poster (<code>video-landing-page-facade-poster-preload.md</code>).</li>
+<li><strong>Tag every link.</strong> Description links carry <code>utm_source=dailymotion</code> / <code>utm_source=vimeo</code>, <code>utm_medium=video</code>, <code>utm_campaign=shorts-mirror</code>.</li>
+<li><strong>Measure at 30 and 90 days</strong>: views per clip on each host (both show counts), tagged visits to cedwyn, any /ebooks/ checkout from those visits.</li>
+</ol>
+<h2>Gate (keep or drop)</h2>
+<ul>
+<li><strong>Keep Dailymotion</strong> if after 90 days the median clip has more than <strong>25 views</strong> (the "welsh history" median above) <strong>or</strong> at least 5 tagged visits a month reach cedwyn. Otherwise stop uploading new clips there (leave existing ones up; they cost nothing).</li>
+<li><strong>Keep Vimeo</strong> as long as it is the embed host for cedwyn watch pages. Drop it as a discovery channel at 90 days if tagged visits are zero.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Status: PROPOSAL.</strong> It needs two new public accounts in the project's name (a Dailymotion channel and a Vimeo account), and the account holder has to create them. Agents never create accounts or post on new channels without the owner's GO.</li>
+<li><strong>First batch:</strong> the 5 most recent Shorts already live on YouTube (not held), plus the documentary scene clips already on /movie/.</li>
+<li><strong>Order of value:</strong> 1) Vimeo embeds on cedwyn watch pages (keeps the search result on our domain); 2) Dailymotion as the day-one public copy when YouTube's daily limit is spent; 3) platform search as a small bonus.</li>
+<li><strong>Logging:</strong> each upload is one row in <code>the project workspace</code> (host, clip id, URL, date); the 30- and 90-day readouts go into the Sunday growth notes.</li>
+<li><strong>Watch for duplicates:</strong> one copy per clip per host, matched by clip id in the log before any upload.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>Foliovision, "Video Search Bias: Absolutely Dominated by YouTube" (Jan 2022), summarising Eric Enge / Stone Temple and the Wall Street Journal test: foliovision.com</li>
+<li>Dailymotion public API, our own measurement 31 Oct 2026: api.dailymotion.com</li>
+<li>Vimeo Help Center, "About the Vimeo Free plan" (read 31 Oct 2026): help.vimeo.com</li>
+<li>Google Search Central, Vimeo video SEO case study (indexifembedded, Key Moments): developers.google.com</li>
+<li>Dailymotion Help, "Earn revenue from video monetization" (1,000 views, $100 payout; read via search snippet, page 403): faq.dailymotion.com</li>
+</ul><p class="raw">Raw Markdown: <a href="dailymotion-vimeo-mirror-shorts-measured-gate.md">dailymotion-vimeo-mirror-shorts-measured-gate.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

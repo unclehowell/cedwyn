@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>PURE: a repeatable ease-of-use score for the buy path without users · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: PURE: a repeatable ease-of-use score for the buy path without users"><link rel="alternate" type="text/markdown" href="pure-expert-ease-score-buy-path.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>PURE: a repeatable ease-of-use score for the buy path without users</h1>
+<p><strong>Use when:</strong> you need a <strong>number</strong> you can track week to week for "how hard is it to buy" (or join), and there are too few readers to benchmark with surveys. PURE = Pragmatic (or Practical) Usability Rating by Experts.</p>
+<h2>What the practitioner evidence shows</h2>
+<ul>
+<li>MeasuringU / CHI 2016 case study (Rohrer, Sauro and colleagues): after <strong>one hour of training</strong>, four evaluators' scores correlated at <strong>r = 0.5</strong> with each other; more experienced teams reached <strong>r = 0.6-0.9</strong>.</li>
+<li>PURE scores correlated with real user metrics at <strong>r = 0.5 with SEQ task ease, r = 0.5 with SUS and r = 0.6 with SUPR-Q</strong>. That explains about 25-36% of the variation in what users perceive. They did <strong>not</strong> correlate with task time or completion rate.</li>
+<li>NN/g: PURE gives a single number stakeholders understand ("like golf: lower is better, green is good"). The <strong>decided score is agreed by three expert reviewers after discussion</strong>, not averaged, to capture their collective judgement.</li>
+</ul>
+<h2>How to run one</h2>
+<ol>
+<li><strong>Pick the target user type</strong> (one persona).</li>
+<li><strong>Pick the fundamental tasks</strong> that persona must be able to do (2-4 tasks).</li>
+<li><strong>Write each task's happy path</strong> as steps (one step = one screen or decision). Agree the path; where it is disputed, use data or note the judgement.</li>
+<li><strong>Each evaluator scores every step independently</strong> on a 3-point scale: <strong>1 green</strong> = easy, low effort; <strong>2 yellow</strong> = some effort or friction; <strong>3 red</strong> = hard, likely failure point.</li>
+<li><strong>Reconcile.</strong> Discuss and agree a decided score per step (NN/g), or use MeasuringU's alternatives: the mode, or the mean (for example 2, 2, 3 -&gt; 2.33). Keep one method for every run so scores stay comparable.</li>
+<li><strong>Sum.</strong> Step scores add up to a task score, and task scores add up to a product score. A task's colour is its worst step: one red step makes the task red.</li>
+<li><strong>Keep the notes.</strong> For every yellow or red step, write why and what would fix it. Present annotated screens with the problems and what works.</li>
+<li><strong>Re-score after changes</strong> with the same tasks and steps. A falling total is progress. Fewer steps also lower the score, which is intended.</li>
+</ol>
+<h2>Pitfalls</h2>
+<ul>
+<li>Comparing totals across different task lists: the score isn't normalised, so compare only the same tasks with the same steps.</li>
+<li>A green 1 doesn't mean perfect; it means minor friction at most.</li>
+<li>Two evaluators can't produce a mode. Use three.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Persona:</strong> a first-time reader on a phone who arrives on an article.</li>
+<li><strong>Tasks (frozen list, v1):</strong> T1 buy one e-book from an article; T2 buy the bundle from /ebooks/; T3 join the /learn/ academy; T4 get the free sample/sign-up (if live). Write the steps once and keep them in a file beside the scores, with the date.</li>
+<li><strong>Raters:</strong> three independent agent sessions score, then one reconcile pass using the <strong>mean</strong> (it's reproducible without a meeting), plus the colour by worst step. Given 2026 MeasuringU evidence that AI reviewers flag false alarms, a human or a live check confirms every red step on the page at 390 px before it counts.</li>
+<li><strong>Cadence:</strong> score before and after each buy-path change. Record the totals in the growth notes so the weekly report can show "PURE T1 9 -&gt; 7".</li>
+<li><strong>Tool:</strong> <code>tools/pure_score.py</code> (stdlib, written 31 Oct 2026) takes a CSV of <code>task,step,rater,score</code> and prints per-step mean/mode, task totals, task colour (worst step) and the product total.</li>
+<li><strong>Boundaries:</strong> findings about copy, journey or channel go in as proposals on the after-framing queue; prices are fixed and aren't a PURE lever.</li>
+</ul>
+<h2>Sources (read 31 Oct 2026)</h2>
+<ul>
+<li>MeasuringU, Practical Usability Rating by Experts (PURE): measuringu.com</li>
+<li>Rohrer et al., PURE: A Pragmatic Usability Rating by Experts, CHI 2016 case study: measuringu.com</li>
+<li>MeasuringU, Practical Tips for Running a PURE Evaluation (mode vs mean): measuringu.com</li>
+<li>NN/g, Quantifying and Comparing Ease of Use Without Breaking the Bank (PURE method): nngroup.com</li>
+<li>MeasuringU, Using AI To Find Usability Problems (2026): measuringu.com</li>
+</ul><p class="raw">Raw Markdown: <a href="pure-expert-ease-score-buy-path.md">pure-expert-ease-score-buy-path.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Streamlined cognitive walkthrough: can a first-time visitor buy without help? · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Streamlined cognitive walkthrough: can a first-time visitor buy without help?"><link rel="alternate" type="text/markdown" href="streamlined-cognitive-walkthrough-first-visit-buy.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Streamlined cognitive walkthrough: can a first-time visitor buy without help?</h1>
+<p><strong>Use when:</strong> you want to know whether a <strong>new</strong> visitor can complete one task (find a book, buy it, get the file) on the first try. It tests learnability, step by step, with no users needed.</p>
+<h2>What the practitioner evidence shows</h2>
+<ul>
+<li>The original method (Wharton, Rieman, Lewis and Polson, <em>The Cognitive Walkthrough Method: A Practitioner's Guide</em>, 1994) asks <strong>four questions at every step</strong>: Will the user try to achieve the right effect? Will they notice the correct action is available? Will they associate that action with the effect they want? If they do it, will they see progress?</li>
+<li>Rick Spencer at Microsoft (CHI 2000) cut it to <strong>two questions</strong>, because development teams were too pressed for time and too defensive for the full version:
+  1. <em>Will the user know what to do at this step?</em>
+  2. <em>If the user does the right thing, will they know they did the right thing and are making progress toward the goal?</em></li>
+<li>Spencer's ground rules, which UsabilityBoK repeats: <strong>no design discussions during the walkthrough, designers don't defend their designs</strong>, and a facilitator enforces both. The streamlined version is widely used but has little published validation (UsabilityBoK), so treat its output as a list to check, not as proof.</li>
+<li>NN/g frames it as a check on <strong>learnability for new or infrequent users</strong>. A heuristic evaluation looks at the whole interface against principles; a walkthrough follows one task's exact path, one action at a time.</li>
+</ul>
+<h2>How to run one (about 60-90 minutes per task)</h2>
+<ol>
+<li><strong>Define before you start</strong> (NN/g's four questions): whose perspective (one persona with their prior knowledge), which task, the correct action sequence, and the interface version (live URL, date, phone width).</li>
+<li><strong>Write the happy path</strong> as numbered actions. Example: "1 tap Shop in the menu, 2 tap the book cover, 3 tap Buy £4.99, 4 enter e-mail, 5 pay, 6 open the e-mail, 7 download".</li>
+<li><strong>At each action, ask the two questions.</strong> Answer yes or no with a short story of <em>why</em> a newcomer would or wouldn't know. Any "no" is a failure story. Record the step, the question that failed, the reason and a screenshot.</li>
+<li><strong>Don't redesign during the session.</strong> Keep a separate "parking lot" for fix ideas and review it after the walkthrough.</li>
+<li><strong>Report</strong> the failure stories in step order, then decide fixes. Re-walk the same path after any change.</li>
+</ol>
+<h2>Pitfalls</h2>
+<ul>
+<li>Using an expert's knowledge: the persona must not know your site's names, menus or where the shop lives.</li>
+<li>A vague task ("explore the site") makes a walkthrough impossible; it needs one goal and one correct path.</li>
+<li>Skipping the off-site steps: payment pages and the delivery e-mail are part of the task.</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Persona:</strong> someone who arrived from a YouTube Short or a search result about Llandough history, on a phone, who has never heard of the site, its themes or the academy.</li>
+<li><strong>Tasks, in order:</strong> (a) from a /research/ or /wiki/ article, buy the matching e-book; (b) from the home page, find and buy the £19.96 bundle; (c) join the /learn/ academy. One task per session.</li>
+<li><strong>Walkers:</strong> one agent narrates as the persona; a second agent independently answers the two questions for the same steps; disagreements are the interesting items. A human confirms any "no" on the live page at 390 px (light and dark) before filing.</li>
+<li><strong>Watch especially:</strong> step 1 from articles (does a reader even know there is a book?), the moment of leaving for the checkout (is it clear the shop has changed?), and the confirmation/delivery step (Q2: will they know it worked?).</li>
+<li><strong>Output:</strong> failure stories with screenshots, filed as proposals for copy and journey changes on the after-framing queue. Markup-only fixes follow the repo freeze rules. Prices stay fixed; this method finds friction, not price.</li>
+</ul>
+<h2>Sources (read 31 Oct 2026)</h2>
+<ul>
+<li>Wharton, Rieman, Lewis, Polson, The Cognitive Walkthrough Method: A Practitioner's Guide (Univ. of Colorado ICS tech report 93-07): colorado.edu</li>
+<li>UsabilityBoK, Cognitive Walkthrough (Spencer 2000 streamlined two questions, ground rules): usabilitybok.org</li>
+<li>Spencer, The streamlined cognitive walkthrough method (CHI 2000), via ResearchGate: researchgate.net</li>
+<li>NN/g, Evaluate Interface Learnability with Cognitive Walkthroughs: nngroup.com</li>
+<li>NN/g, How to Conduct a Cognitive Walkthrough Workshop: nngroup.com</li>
+</ul><p class="raw">Raw Markdown: <a href="streamlined-cognitive-walkthrough-first-visit-buy.md">streamlined-cognitive-walkthrough-first-visit-buy.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Kano survey: sort proposed features into must-haves, performance, delighters and &quot;nobody cares&quot; · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Kano survey: sort proposed features into must-haves, performance, delighters and &quot;nobody cares&quot;"><link rel="alternate" type="text/markdown" href="kano-feature-survey-better-worse.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Kano survey: sort proposed features into must-haves, performance, delighters and "nobody cares"</h1>
+<p><strong>Use it when:</strong> you have a list of 8-20 possible additions (to an e-book, a membership, a shop page) and need to know which ones people would miss, which ones would delight, and which would change nothing, before spending build time.</p>
+<h2>The method (Noriaki Kano, 1984; practitioner versions below)</h2>
+<ol>
+<li><strong>Write each feature as a concrete, testable sentence.</strong> "Each e-book comes with a printable map of the places in it", not "better maps". One idea per item.</li>
+<li><strong>Ask two questions per feature, same five answers each:</strong>
+   - Functional: "If [feature] were included, how would you feel?"
+   - Dysfunctional: "If [feature] were NOT included, how would you feel?"
+   - Answers: I like it / I expect it / I am neutral / I can tolerate it / I dislike it. (Folding Burritos lists clearer alternatives some teams use, e.g. "This would be very helpful to me / This is a basic requirement for me / This would not affect me / minor inconvenience / major problem".)
+   - Optional third question: "How important is [feature] to you?" on a 1-9 scale (Folding Burritos), to separate big features from small ones.</li>
+<li><strong>Classify each answer pair with the evaluation table</strong> (functional row x dysfunctional column):
+   - Like + Dislike = <strong>Performance</strong> (more is better, less is worse)
+   - Like + Expect/Neutral/Tolerate = <strong>Attractive</strong> (delighter: not missed if absent)
+   - Expect/Neutral/Tolerate + Dislike = <strong>Must-be</strong> (missed badly, never praised)
+   - middle answers on both = <strong>Indifferent</strong>
+   - Like + Like or Dislike + Dislike = <strong>Questionable</strong> (misread; drop)
+   - functional worse than dysfunctional = <strong>Reverse</strong> (they would rather not have it)</li>
+<li><strong>Score two ways.</strong>
+   - <em>Discrete:</em> the most frequent category per feature (fast, but hides splits).
+   - <em>Better/Worse coefficients (Timko):</em> total = A+O+M+I; Better = (A+O)/total; Worse = -(O+M)/total. Plot Better (0..1) against |Worse| (0..1). High Worse = build first (must-be); high Better + low Worse = delighter; both low = skip. (kanosurveys.com shows the same arithmetic.)
+   - <em>Continuous (DuMouchel weights, as shown by Folding Burritos and kanosurveys.com):</em> functional answers scored Like 4, Expect 2, Neutral 0, Tolerate -1, Dislike -2; dysfunctional answers mirrored (Like -2, Expect -1, Neutral 0, Tolerate 2, Dislike 4). Average each side per feature and plot dysfunctional (x) vs functional (y); quadrant = category, distance from origin = strength. Keeps the nuance a single label hides.</li>
+<li><strong>Sample:</strong> MeasuringU runs Kano studies with 50-300 participants, a margin of error of about 5-9%. With fewer than ~30 replies, read the result as direction only and report the counts, not percentages alone.</li>
+<li><strong>Repeat yearly.</strong> Kano's own observation: delighters decay into must-haves as people get used to them.</li>
+</ol>
+<h2>Practical rules from practitioners</h2>
+<ul>
+<li>Test the questionnaire on 2-3 people first; the "I like it" before "I expect it" order confuses some respondents (Folding Burritos).</li>
+<li>Randomise feature order; keep to 15-20 features so the survey stays under ~5 minutes (SurveyMonkey guide recommends 15-20).</li>
+<li>Never ask about price inside a Kano survey; price is a separate question with its own methods.</li>
+<li>Reverse items are signal: some readers may actively dislike, say, gamified badges.</li>
+</ul>
+<h2>How we apply it to Cedwyn (PROPOSAL; any survey to readers or members is a proposal for the owner's approval)</h2>
+<ul>
+<li><strong>Candidate features (12-15):</strong> printable place map per e-book; scans of the original source documents; audio narration; a Welsh-language edition; a short glossary of Welsh place-names; a timeline card; a monthly live Q&amp;A for academy members; a walking-route file for visiting; reading-group questions; footnoted citations with catalogue IDs; a "what changed" note when an e-book is revised; a members-only discussion board.</li>
+<li><strong>Who:</strong> existing buyers and academy members first (they know the product), newsletter readers second. Keep the two groups' results separate.</li>
+<li><strong>Output:</strong> one Better/Worse chart plus a table of counts per category; must-bes go to the build queue first, delighters become launch-email hooks, indifferent items are dropped.</li>
+<li><strong>Helper:</strong> <code>tools/survey_scores.py kano</code> (stdlib, in this folder's tools/) classifies answer pairs and prints discrete category, Better/Worse and the continuous averages per feature.</li>
+<li>Prices stay fixed; nothing here tests price.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>Folding Burritos, "The Complete Guide to the Kano Model" (questionnaire, evaluation table, DuMouchel continuous analysis, Timko Better/Worse, importance question): foldingburritos.com</li>
+<li>Kano Surveys, "Kano analysis techniques made simple" (Better/Worse formula, -2..4 weights, worked example): kanosurveys.com</li>
+<li>MeasuringU, Kano Modeling service page (50-300 participants, 5-9% margin of error): measuringu.com</li>
+<li>SurveyMonkey, "Using Kano analysis for product feature prioritization" (15-20 features): surveymonkey.com</li>
+</ul><p class="raw">Raw Markdown: <a href="kano-feature-survey-better-worse.md">kano-feature-survey-better-worse.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

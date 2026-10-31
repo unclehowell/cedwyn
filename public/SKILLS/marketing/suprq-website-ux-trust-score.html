@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>SUPR-Q: an 8-question website score for ease, trust, looks and loyalty · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: SUPR-Q: an 8-question website score for ease, trust, looks and loyalty"><link rel="alternate" type="text/markdown" href="suprq-website-ux-trust-score.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>SUPR-Q: an 8-question website score for ease, trust, looks and loyalty</h1>
+<p><strong>Use it when:</strong> you want one repeatable number for how a website is experienced, and in particular whether visitors find it trustworthy, measured the same way before and after a change. It complements task-level scores (SEQ) and the SUS/UX-Lite family, which measure ease only; SUPR-Q adds trust/credibility, appearance and loyalty.</p>
+<h2>The instrument (Jeff Sauro, MeasuringU)</h2>
+<p>Eight items. Seven on a 5-point scale (Strongly disagree 1 .. Strongly agree 5), one on 0-10:
+- <strong>Usability:</strong> "The website is easy to use." / "It is easy to navigate within the website."
+- <strong>Trust/credibility:</strong> "The information on the website is credible." / "The information on the website is trustworthy." (Shop variant: "I feel comfortable purchasing from the website." / "I feel confident conducting business on the website.")
+- <strong>Appearance:</strong> "I find the website to be attractive." / "The website has a clean and simple presentation."
+- <strong>Loyalty:</strong> "I will likely return to the website in the future." / "How likely are you to recommend the website to a friend or colleague?" (0-10)</p>
+<h2>The evidence behind it (MeasuringU)</h2>
+<ul>
+<li>Built from 33 candidate items drawn from 17 existing questionnaires, refined over 4,000+ responses, three studies and 100+ website experiences.</li>
+<li>Overall reliability Cronbach alpha = .86; the four 2-item factors range .64 to .88 (loyalty lowest, partly because of the 0-10 item).</li>
+<li>Correlates with SUS (convergent validity) and separates good from poor sites.</li>
+<li>Re-validated in 2024 on 2,761 responses about 57 websites across eight sector surveys; the four-factor model held.</li>
+<li>Scores are usually reported as <strong>percentile ranks</strong>: 50 = average, 35 = 35th percentile (below average). The norms hold 10,000+ participants and about 150 websites, refreshed quarterly.</li>
+</ul>
+<h2>Scoring</h2>
+<ul>
+<li><strong>Raw (free to compute, as Fuzzy Math describes):</strong> average the two items in each factor; for loyalty, halve the 0-10 answer before averaging with the return item. The overall raw SUPR-Q is the mean of the four factor scores (about 1-5).</li>
+<li><strong>Percentile (needs MeasuringU's paid licence and norms):</strong> converts raw scores to a rank against other sites. We do not buy this. Without it, compare only against our own earlier runs, never against "industry average".</li>
+<li>Report each factor separately; the overall number hides where the problem is. Report n and a 95% confidence interval with every score; if two runs' intervals overlap heavily, call it no change.</li>
+</ul>
+<h2>When to ask</h2>
+<ul>
+<li>At the end of a usability session (after the task-level questions), or</li>
+<li>As a short retrospective survey to people who already use the site (newsletter readers, members), once per quarter, same wording, same channel, so runs compare.</li>
+<li>Ask before a redesign ships and again 4-8 weeks after; keep the sample source the same.</li>
+</ul>
+<h2>Practitioner use</h2>
+<ul>
+<li>Fuzzy Math (design agency) uses SUPR-Q as its standing design KPI with clients, capturing feelings while people use the product, to show change over time and the return on design work.</li>
+</ul>
+<h2>How we apply it to Cedwyn (PROPOSAL; any survey to readers or members is a proposal for the owner's approval)</h2>
+<ul>
+<li><strong>Use the credibility pair, not the shop pair, on the research and evidence pages</strong> (trust in the information is the point); use the shop pair on /ebooks/ and checkout.</li>
+<li><strong>Baseline now, re-measure after big template changes</strong> (the footer and theme work), so a change in trust is visible rather than guessed.</li>
+<li><strong>Read factors against each other:</strong> high appearance + low trust = the look is fine but sourcing is not landing (more visible catalogue IDs and source lines); low navigation = pair with the tree-test and top-tasks files.</li>
+<li><strong>Run it after the next 5-user buy-path round</strong> alongside SEQ (see post-task-ease-seq-sus-ux-lite.md), and as a quarterly 8-question form to academy members.</li>
+<li><strong>Helper:</strong> <code>tools/survey_scores.py suprq</code> (stdlib) turns answer rows into raw factor scores, overall raw score and a 95% interval. No percentile (licensed).</li>
+<li>Credit the instrument by name in any write-up; do not present raw scores as percentiles.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>MeasuringU, "10 Things to Know About the SUPR-Q" (items origin, 4,000+ responses, alpha .86/.64-.88, percentile meaning): measuringu.com</li>
+<li>MeasuringU, "Validating the Basic SUPR-Q Measurement Model" (2024; 2,761 responses, 57 sites; norms 10,000+ participants, ~150 sites): measuringu.com</li>
+<li>Fuzzy Math, "Using the SUPR-Q as a Design Metric" (item wording incl. shop variants, raw scoring, loyalty halving): fuzzymath.com</li>
+<li>Sauro, "SUPR-Q: a comprehensive measure of the quality of the website user experience", Journal of Usability Studies (2015): dl.acm.org</li>
+</ul><p class="raw">Raw Markdown: <a href="suprq-website-ux-trust-score.md">suprq-website-ux-trust-score.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

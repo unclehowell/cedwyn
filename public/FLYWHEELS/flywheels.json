@@ -482,6 +482,25 @@
   "report": "Nothing routine; one line only when a find changes the chronology or the reopen grounds."
  },
  {
+  "id": "book-flywheel",
+  "name": "Book search flywheel",
+  "cadence": "search every 59 minutes; findings table refreshed every 3 hours",
+  "prefix": "BOOK FLYWHEEL RUN",
+  "runner": "work/book-flywheel/RUNNER.md",
+  "purpose": "Search published books for passages that overlap what the site already carries about the farm, its families and its places, under every name variant, and record each passage with its citation.",
+  "inputs": [
+   "full-text book search under every name variant of the farm, its families and places",
+   "the live site, to tell new passages from known ones",
+   "a keyword ledger: the most productive keywords are retired each cycle so the search keeps moving"
+  ],
+  "outputs": [
+   "rows in the research findings table (book title, the exact sentence, citation)",
+   "a section/research commit carrying the table"
+  ],
+  "metric": "new cited passages per run; passages that change the chronology",
+  "report": "Nothing routine; one line, with the exact quotation and its source, only when a passage is significant after the page itself has been checked."
+ },
+ {
   "id": "correspondence",
   "name": "Correspondence flywheel",
   "cadence": "every 2 hours at :30, 07:30–23:30 Europe/London",
