@@ -1,6 +1,6 @@
 {
   "schema": "hive_runner_observations/v1",
-  "updated": "2026-10-29T23:19:13Z",
+  "updated": "2026-10-31T17:49:32.655Z",
   "purpose": "Metadata-only evidence of recurring task schedules. This file never determines seat membership, assignment, review count, Gmail readiness or sent status.",
   "seat_authority": "drafts/ROSTER.json",
   "required_task_title": "Hive check-in — ",
@@ -9,12 +9,12 @@
   "observations": [
     {
       "agent": "ChatGPT",
-      "schedule_status": "UNVERIFIED",
-      "task_title": null,
-      "actual_cadence": null,
-      "checked_at": "2026-10-29T23:19:13Z",
-      "evidence": "The current Pally automation list shows the owner-created Cedwyn Hive check-in runs every 1 hour. That verifies Pally's automation only, not a separate ChatGPT seat runner.",
-      "limitations": "No independent ChatGPT runner or seat-specific check-in schedule was verified in this pass. Do not treat the Pally automation as ChatGPT runner evidence.",
+      "schedule_status": "CONFIGURED",
+      "task_title": "Hive check-in — ChatGPT",
+      "actual_cadence": "daily",
+      "checked_at": "2026-10-31T17:49:32.655Z",
+      "evidence": "Verified by the active ChatGPT automation harness: this Hive check-in invocation was triggered by the existing daily schedule (America/Los_Angeles). This is evidence for ChatGPT's own runner only.",
+      "limitations": "The five-minute Watch monitors sites/branches and does not invoke LLM agents. No schedule is inferred for Grok or Claude; their own harnesses must verify their observations.",
       "next_run_time": null
     },
     {
