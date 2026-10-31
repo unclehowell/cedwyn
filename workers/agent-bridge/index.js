@@ -81,7 +81,7 @@ async function submit(request, env) {
   await env.DB.prepare("INSERT INTO agent_bridge_rate(ip_hash,bucket,hits) VALUES(?,?,1) ON CONFLICT(ip_hash,bucket) DO UPDATE SET hits=hits+1").bind(ipHash, bucket).run();
   const rate = await env.DB.prepare("SELECT hits FROM agent_bridge_rate WHERE ip_hash=? AND bucket=?").bind(ipHash, bucket).first();
   if ((rate?.hits || 0) > 12) return response({ ok: false, error: "rate_limited", retry_after: "next UTC hour" }, 429);
-  const dedupeKey = await sha(platform + "|" + (sourceUrl || "") + "|" + (postId || ""));
+  const dedupeKey = await sha(platform + "|" + (sourceUrl || "") + "|" + (postId || "") + "|" + body);
   const id = crypto.randomUUID();
   const now = new Date().toISOString();
   try {
