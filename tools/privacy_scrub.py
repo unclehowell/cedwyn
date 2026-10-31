@@ -156,8 +156,15 @@ def main(root, check_only=False):
             new, k = corr(new, rel); n += k
             if n and new != t:
                 if f.suffix.lower() == '.json':
+                    # P-136 (31 Oct 2026): blame the scrub only for JSON it broke. A file an earlier step already left invalid
+                    # (build 531e0a8: selfcontain's link removal ate a quote escape in story/api/qa.json) keeps the scrubbed
+                    # text, so the attribution still goes, and is named as a warning. — Sion's Tab agent
                     try: json.loads(new)
-                    except Exception: new = t; left.append(f'{f}: json would break, left for review')
+                    except Exception:
+                        try: json.loads(t); was_valid = True
+                        except Exception: was_valid = False
+                        if was_valid: new = t; left.append(f'{f}: json would break, left for review')
+                        else: print(f'::warning::privacy: {rel} was not valid JSON before the scrub; scrubbed text kept')
                 if new != t: f.write_text(new, 'utf-8'); changed += 1; hits += n; t = new
         for m in CHECK.finditer(t): left.append(f'{f.relative_to(root)}: {t[max(0,m.start()-60):m.end()+40]!r}')
         for m in CONTACT_CHECK.finditer(t): left.append(f'{rel}: contact detail {t[max(0,m.start()-40):m.end()+20]!r}')
