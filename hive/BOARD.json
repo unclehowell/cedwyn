@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31T17:09:04Z",
+  "updated": "2026-10-31T17:27:44Z",
   "schema": "metadata only: id, record, version, status, turn, open_issues, last_change, last_agent, rounds (versions written so far); events: [{at, draft, version, agent, event}], newest last. Never email text.",
   "drafts": [
     {
@@ -152,8 +152,8 @@
       "id": "hmlr-eir-1961-deed",
       "record": "HubSpot task 532017103065",
       "version": "v0.10.0",
-      "status": "SKIPPED Grok \u2014 IDLE >30min; QUEUED BEHIND next",
-      "turn": "queued (idle skip by Grok)",
+      "status": "TURN: Grok",
+      "turn": "Grok (per HubSpot subject, read 2026-10-31T17:27Z)",
       "open_issues": null,
       "last_change": "2026-10-29T22:44:51Z",
       "last_agent": "Tab",
@@ -428,7 +428,7 @@
       "id": "hmlr-eir-vg41",
       "record": "HubSpot task 532326659316",
       "version": "v0.9.0",
-      "status": "SKIPPED ChatGPT \u2014 IDLE; QUEUED BEHIND GROK",
+      "status": "SKIPPED ChatGPT — IDLE; QUEUED BEHIND GROK",
       "turn": "ChatGPT (per HubSpot subject, read 2026-10-27T10:09Z)",
       "open_issues": null,
       "last_change": "2026-10-30T17:58:43Z",
@@ -1724,7 +1724,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "D\u0175r Cymru Welsh Water",
+        "body": "Dŵr Cymru Welsh Water",
         "as_of": "2026-10-27T08:48:07Z",
         "note": "Board entry added from the HubSpot subject during the 27 Oct board repair; no context pack built yet. Metadata only."
       },
@@ -1755,7 +1755,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "Amgueddfa Cymru \u2013 Museum Wales",
+        "body": "Amgueddfa Cymru – Museum Wales",
         "as_of": "2026-10-27T08:48:07Z",
         "note": "Board entry added from the HubSpot subject during the 27 Oct board repair; no context pack built yet. Metadata only."
       },
@@ -2065,7 +2065,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "WDTK \u2014 The National Archives",
+        "body": "WDTK — The National Archives",
         "as_of": "2026-10-27T08:48:07Z",
         "note": "Board entry added from the HubSpot subject during the 27 Oct board repair; no context pack built yet. Metadata only."
       },
@@ -2158,7 +2158,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "WDTK \u2014 Welsh Government",
+        "body": "WDTK — Welsh Government",
         "as_of": "2026-10-27T08:48:07Z",
         "note": "Board entry added from the HubSpot subject during the 27 Oct board repair; no context pack built yet. Metadata only."
       },
@@ -2189,7 +2189,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "WDTK \u2014 Ministry of Justice",
+        "body": "WDTK — Ministry of Justice",
         "as_of": "2026-10-27T08:48:07Z",
         "note": "Board entry added from the HubSpot subject during the 27 Oct board repair; no context pack built yet. Metadata only."
       },
@@ -2946,8 +2946,8 @@
       "id": "hmlr-lawyer-referral-sar-reply",
       "record": "HubSpot task 532395262199",
       "version": "v0.3.0",
-      "status": "SKIPPED ChatGPT \u2014 IDLE; ROUTING UNRESOLVED",
-      "turn": "UNASSIGNED \u2014 verify live seat loads before reassigning",
+      "status": "SKIPPED ChatGPT — IDLE; ROUTING UNRESOLVED",
+      "turn": "UNASSIGNED — verify live seat loads before reassigning",
       "open_issues": 2,
       "last_change": "2026-10-28T18:26:37Z",
       "last_agent": "Tab",
@@ -3587,7 +3587,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TE12 \u00b7 Back-tag evidence catalogue items by parcel, batch 12 of 12 (EV-0221-EV-0645, 18 items)",
+        "body": "PRC-TE12 · Back-tag evidence catalogue items by parcel, batch 12 of 12 (EV-0221-EV-0645, 18 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3620,7 +3620,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TE11 \u00b7 Back-tag evidence catalogue items by parcel, batch 11 of 12 (EV-0201-EV-0220, 20 items)",
+        "body": "PRC-TE11 · Back-tag evidence catalogue items by parcel, batch 11 of 12 (EV-0201-EV-0220, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3651,7 +3651,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TE10 \u00b7 Back-tag evidence catalogue items by parcel, batch 10 of 12 (EV-0181-EV-0200, 20 items)",
+        "body": "PRC-TE10 · Back-tag evidence catalogue items by parcel, batch 10 of 12 (EV-0181-EV-0200, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3682,7 +3682,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TE09 \u00b7 Back-tag evidence catalogue items by parcel, batch 9 of 12 (EV-0161-EV-0180, 20 items)",
+        "body": "PRC-TE09 · Back-tag evidence catalogue items by parcel, batch 9 of 12 (EV-0161-EV-0180, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3713,7 +3713,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TE08 \u00b7 Back-tag evidence catalogue items by parcel, batch 8 of 12 (EV-0141-EV-0160, 20 items)",
+        "body": "PRC-TE08 · Back-tag evidence catalogue items by parcel, batch 8 of 12 (EV-0141-EV-0160, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3744,7 +3744,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TE07 \u00b7 Back-tag evidence catalogue items by parcel, batch 7 of 12 (EV-0121-EV-0140, 20 items)",
+        "body": "PRC-TE07 · Back-tag evidence catalogue items by parcel, batch 7 of 12 (EV-0121-EV-0140, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3775,7 +3775,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TE06 \u00b7 Back-tag evidence catalogue items by parcel, batch 6 of 12 (EV-0101-EV-0120, 20 items)",
+        "body": "PRC-TE06 · Back-tag evidence catalogue items by parcel, batch 6 of 12 (EV-0101-EV-0120, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3806,7 +3806,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TE05 \u00b7 Back-tag evidence catalogue items by parcel, batch 5 of 12 (EV-0081-EV-0100, 20 items)",
+        "body": "PRC-TE05 · Back-tag evidence catalogue items by parcel, batch 5 of 12 (EV-0081-EV-0100, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3837,7 +3837,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TE04 \u00b7 Back-tag evidence catalogue items by parcel, batch 4 of 12 (EV-0061-EV-0080, 20 items)",
+        "body": "PRC-TE04 · Back-tag evidence catalogue items by parcel, batch 4 of 12 (EV-0061-EV-0080, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3868,7 +3868,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TE03 \u00b7 Back-tag evidence catalogue items by parcel, batch 3 of 12 (EV-0041-EV-0060, 20 items)",
+        "body": "PRC-TE03 · Back-tag evidence catalogue items by parcel, batch 3 of 12 (EV-0041-EV-0060, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3899,7 +3899,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TE02 \u00b7 Back-tag evidence catalogue items by parcel, batch 2 of 12 (EV-0021-EV-0040, 20 items)",
+        "body": "PRC-TE02 · Back-tag evidence catalogue items by parcel, batch 2 of 12 (EV-0021-EV-0040, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3930,7 +3930,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TE01 \u00b7 Back-tag evidence catalogue items by parcel, batch 1 of 12 (EV-0001-EV-0020, 20 items)",
+        "body": "PRC-TE01 · Back-tag evidence catalogue items by parcel, batch 1 of 12 (EV-0001-EV-0020, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3961,7 +3961,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF15 \u00b7 Back-tag research findings by parcel, batch 15 of 15 (findings lines 283-292, 10 items)",
+        "body": "PRC-TF15 · Back-tag research findings by parcel, batch 15 of 15 (findings lines 283-292, 10 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -3992,7 +3992,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF14 \u00b7 Back-tag research findings by parcel, batch 14 of 15 (findings lines 263-282, 20 items)",
+        "body": "PRC-TF14 · Back-tag research findings by parcel, batch 14 of 15 (findings lines 263-282, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4023,7 +4023,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF13 \u00b7 Back-tag research findings by parcel, batch 13 of 15 (findings lines 243-262, 20 items)",
+        "body": "PRC-TF13 · Back-tag research findings by parcel, batch 13 of 15 (findings lines 243-262, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4054,7 +4054,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF12 \u00b7 Back-tag research findings by parcel, batch 12 of 15 (findings lines 223-242, 20 items)",
+        "body": "PRC-TF12 · Back-tag research findings by parcel, batch 12 of 15 (findings lines 223-242, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4085,7 +4085,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF11 \u00b7 Back-tag research findings by parcel, batch 11 of 15 (findings lines 203-222, 20 items)",
+        "body": "PRC-TF11 · Back-tag research findings by parcel, batch 11 of 15 (findings lines 203-222, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4116,7 +4116,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF10 \u00b7 Back-tag research findings by parcel, batch 10 of 15 (findings lines 183-202, 20 items)",
+        "body": "PRC-TF10 · Back-tag research findings by parcel, batch 10 of 15 (findings lines 183-202, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4147,7 +4147,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF09 \u00b7 Back-tag research findings by parcel, batch 9 of 15 (findings lines 163-182, 20 items)",
+        "body": "PRC-TF09 · Back-tag research findings by parcel, batch 9 of 15 (findings lines 163-182, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4178,7 +4178,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF08 \u00b7 Back-tag research findings by parcel, batch 8 of 15 (findings lines 143-162, 20 items)",
+        "body": "PRC-TF08 · Back-tag research findings by parcel, batch 8 of 15 (findings lines 143-162, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4209,7 +4209,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF07 \u00b7 Back-tag research findings by parcel, batch 7 of 15 (findings lines 123-142, 20 items)",
+        "body": "PRC-TF07 · Back-tag research findings by parcel, batch 7 of 15 (findings lines 123-142, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4240,7 +4240,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF06 \u00b7 Back-tag research findings by parcel, batch 6 of 15 (findings lines 103-122, 20 items)",
+        "body": "PRC-TF06 · Back-tag research findings by parcel, batch 6 of 15 (findings lines 103-122, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4271,7 +4271,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF05 \u00b7 Back-tag research findings by parcel, batch 5 of 15 (findings lines 83-102, 20 items)",
+        "body": "PRC-TF05 · Back-tag research findings by parcel, batch 5 of 15 (findings lines 83-102, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4302,7 +4302,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF04 \u00b7 Back-tag research findings by parcel, batch 4 of 15 (findings lines 61-82, 20 items)",
+        "body": "PRC-TF04 · Back-tag research findings by parcel, batch 4 of 15 (findings lines 61-82, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4333,7 +4333,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF03 \u00b7 Back-tag research findings by parcel, batch 3 of 15 (findings lines 41-60, 20 items)",
+        "body": "PRC-TF03 · Back-tag research findings by parcel, batch 3 of 15 (findings lines 41-60, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4364,7 +4364,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF02 \u00b7 Back-tag research findings by parcel, batch 2 of 15 (findings lines 21-40, 20 items)",
+        "body": "PRC-TF02 · Back-tag research findings by parcel, batch 2 of 15 (findings lines 21-40, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4395,7 +4395,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-TF01 \u00b7 Back-tag research findings by parcel, batch 1 of 15 (findings lines 1-20, 20 items)",
+        "body": "PRC-TF01 · Back-tag research findings by parcel, batch 1 of 15 (findings lines 1-20, 20 items)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4426,7 +4426,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-B4 \u00b7 Parcel B lead",
+        "body": "PRC-B4 · Parcel B lead",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4457,7 +4457,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-B3 \u00b7 Parcel B lead",
+        "body": "PRC-B3 · Parcel B lead",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4488,7 +4488,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-B2 \u00b7 Parcel B lead",
+        "body": "PRC-B2 · Parcel B lead",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4519,7 +4519,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-B1 \u00b7 Parcel B lead",
+        "body": "PRC-B1 · Parcel B lead",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4550,7 +4550,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-G7 \u00b7 Family parcel definitions (Parcels A, B, C, A1; the 1841-map numbering; the 1939 pink plan)",
+        "body": "PRC-G7 · Family parcel definitions (Parcels A, B, C, A1; the 1841-map numbering; the 1939 pink plan)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4581,7 +4581,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-G6 \u00b7 PROPOSED correction to wiki page 1097 (T211 orchard; wood is T219; T193 was Thomas Rees's in 1841)",
+        "body": "PRC-G6 · PROPOSED correction to wiki page 1097 (T211 orchard; wood is T219; T193 was Thomas Rees's in 1841)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4612,7 +4612,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-G5 \u00b7 Village green VG41",
+        "body": "PRC-G5 · Village green VG41",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4643,7 +4643,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-G4c \u00b7 Schedule of the 25 Dec 1938 Bute/Mountjoy -> Western Ground Rents conveyance",
+        "body": "PRC-G4c · Schedule of the 25 Dec 1938 Bute/Mountjoy -> Western Ground Rents conveyance",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4674,7 +4674,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-G4b \u00b7 Plan/schedule of the 1926 Bute -> Cardiff Corporation conveyance",
+        "body": "PRC-G4b · Plan/schedule of the 1926 Bute -> Cardiff Corporation conveyance",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4705,7 +4705,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-G4a \u00b7 Plan of the 1916 tenancy (\"whole of the farm\")",
+        "body": "PRC-G4a · Plan of the 1916 tenancy (\"whole of the farm\")",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4736,7 +4736,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-G3 \u00b7 Title numbers for the HMLR INSPIRE polygons round Llandough church",
+        "body": "PRC-G3 · Title numbers for the HMLR INSPIRE polygons round Llandough church",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4767,7 +4767,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-G2 \u00b7 OS 1:2500 field numbers for all 36 tithe parcels (overlay on Glamorgan XLVII.6, 1878)",
+        "body": "PRC-G2 · OS 1:2500 field numbers for all 36 tithe parcels (overlay on Glamorgan XLVII.6, 1878)",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -4798,7 +4798,7 @@
       "attachments_verified_version": null,
       "sent_version": null,
       "context": {
-        "body": "PRC-G1 \u00b7 Match the 1824 Bute survey plan 19 to the 1841 tithe, field by field",
+        "body": "PRC-G1 · Match the 1824 Bute survey plan 19 to the 1841 tithe, field by field",
         "as_of": "2026-10-29T22:47:13Z",
         "note": "Board entry added from the HubSpot subject by board_sync.py; no context pack yet. Metadata only."
       },
@@ -5085,7 +5085,7 @@
       "pct_at": "2026-10-31T05:31:08Z"
     }
   ],
-  "synced_at": "2026-10-31T13:27:44Z",
+  "synced_at": "2026-10-31T17:27:44Z",
   "sync": {
     "by": "Sion's Tab agent (board_sync.py, 4-hourly schedule; replaces the Actions run)",
     "source": "HubSpot task subjects and hs_lastmodifieddate (metadata); changelog review counts for % complete (no body text stored)",
@@ -5314,7 +5314,7 @@
       "draft": "cardiff-central-library-bute-x6-12-reply",
       "version": "v0.8.0",
       "agent": "ChatGPT",
-      "event": "clarified serialized Claude queue: BP v2.0.1 \u2192 ITV v0.1.0 \u2192 Cardiff v0.8.0; status/queue action only, recipient text unchanged, no review counted"
+      "event": "clarified serialized Claude queue: BP v2.0.1 → ITV v0.1.0 → Cardiff v0.8.0; status/queue action only, recipient text unchanged, no review counted"
     },
     {
       "at": "2026-10-24T11:00:15Z",
@@ -5482,7 +5482,7 @@
       "draft": "glamorgan-archives-vg41-catalogue",
       "version": "v0.4.1",
       "agent": "Grok",
-      "event": "SKIP/ROUTE \u2014 NOT A REVIEW: idle on Grok turn >30 min; passed to Claude; recipient text unchanged"
+      "event": "SKIP/ROUTE — NOT A REVIEW: idle on Grok turn >30 min; passed to Claude; recipient text unchanged"
     },
     {
       "at": "2026-10-27T18:16:01Z",
@@ -5517,7 +5517,7 @@
       "draft": null,
       "version": null,
       "agent": "Tab",
-      "event": "Board sync from HubSpot subjects: hmlr-lawyer-referral-sar-reply: SKIPPED \u2014 ChatGPT idle; routing unresolved v0.3.0 -> SKIPPED ChatGPT \u2014 IDLE; ROUTING UNRESOLVED v0.3.0; llandough-cc-clerk-final-reply: OTHER AGENT'S TURN \u2014 first draft, 0 reviews v0.1.0 -> OTHER AGENT'S TURN v0.1.0; added heneb-012348; added hm-land-registry-information-rights-535830; added vale-of-glamorgan-council-dpo-855385; added cooke-arkwright-149012; added fsb-wales-169349; added chambers-wales-south-east-south-west-and-mid-361930; added michaelston-le-pit-and-leckwith-community-counci-786149; added llandough-cc-693732. Metadata only."
+      "event": "Board sync from HubSpot subjects: hmlr-lawyer-referral-sar-reply: SKIPPED — ChatGPT idle; routing unresolved v0.3.0 -> SKIPPED ChatGPT — IDLE; ROUTING UNRESOLVED v0.3.0; llandough-cc-clerk-final-reply: OTHER AGENT'S TURN — first draft, 0 reviews v0.1.0 -> OTHER AGENT'S TURN v0.1.0; added heneb-012348; added hm-land-registry-information-rights-535830; added vale-of-glamorgan-council-dpo-855385; added cooke-arkwright-149012; added fsb-wales-169349; added chambers-wales-south-east-south-west-and-mid-361930; added michaelston-le-pit-and-leckwith-community-counci-786149; added llandough-cc-693732. Metadata only."
     },
     {
       "at": "2026-10-29T10:23:29Z",
@@ -5615,7 +5615,7 @@
       "draft": null,
       "version": null,
       "agent": "Tab",
-      "event": "Board sync from HubSpot subjects: hmlr-eir-vg41: TURN: ChatGPT v0.9.0 -> SKIPPED ChatGPT \u2014 IDLE; QUEUED BEHIND GROK v0.9.0; seats last_seen refreshed. Metadata only."
+      "event": "Board sync from HubSpot subjects: hmlr-eir-vg41: TURN: ChatGPT v0.9.0 -> SKIPPED ChatGPT — IDLE; QUEUED BEHIND GROK v0.9.0; seats last_seen refreshed. Metadata only."
     },
     {
       "at": "2026-10-31T01:27:29Z",
@@ -5665,6 +5665,13 @@
       "version": "v0.10.0",
       "agent": "Grok",
       "event": "Permitted skip/route: turn idle >30 min (last_action 2026-10-29T22:44:51Z); no recipient-facing text changed. Queued behind next. Metadata only; HubSpot canonical not updated (no HS write access in this harness)."
+    },
+    {
+      "at": "2026-10-31T17:27:44Z",
+      "draft": null,
+      "version": null,
+      "agent": "Tab",
+      "event": "Board sync from HubSpot subjects: hmlr-eir-1961-deed: SKIPPED Grok — IDLE >30min; QUEUED BEHIND next v0.10.0 -> TURN: Grok v0.10.0. Metadata only."
     }
   ],
   "pct_rule": "% complete = progress through the review gate on the exact current frozen version: pct = round(100 x (0.7 x min(version_reviews,10)/10 + 0.3 x min(version_distinct_agents,4)/4)). version_reviews / version_distinct_agents / version_agents are counted from each HubSpot task's signed changelog (material reviews of the current version only; creation, skips, routes and restores are not reviews; a signed version_reviews=N tally in the changelog is honoured when higher). Capped at 95 until the task is READY TO SEND or later AND its Gmail draft exists (gmail_draft_id); then 100 = in the owner's Gmail, ready to send or schedule. SENT rows show Sent. Historical reviews/distinct_agents/agents are informational only. Promotion gates beyond IN REVIEW (open_issues=0, seat_agreements_version, final_three_hat_version, attachments_verified_version equal to version) still fail closed.",
