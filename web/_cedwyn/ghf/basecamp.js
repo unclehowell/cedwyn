@@ -203,6 +203,8 @@
         crit.textContent = "html.ghf-inv{filter:invert(1) hue-rotate(180deg)}" + ":where(html.ghf-inv[data-ghf-native=light]){background-color:#fff}:where(html.ghf-inv[data-ghf-native=dark]){background-color:#000}" + /* 27 Oct 2026: paint the root so the inverted canvas is dark, not white */
           "html.ghf-inv :is(img,video,canvas,iframe,embed,object,svg image,.ghf-ui,.ghf-bgimg,[data-ghf-keep]){filter:invert(1) hue-rotate(180deg)}" +
           "html.ghf-inv :is(.ghf-ui,.ghf-bgimg,[data-ghf-keep]) :is(img,video,canvas,iframe,embed,object,svg image,.ghf-ui,.ghf-bgimg,[data-ghf-keep]){filter:none}" +
+          /* 1 Nov 2026 (v2.1.20): one plain night for every inverted light page (black, not the page's own tint) and no paper texture */
+          "html.ghf-inv[data-ghf-native=light] body{background-color:#fff!important}html.ghf-inv .ghf-tex{background-image:none!important}" +
           "html[data-ghf-native=dark]:not(.ghf-inv),html[data-ghf-native=dark]:not(.ghf-inv) body{background-color:#000!important}";
         (document.head || de).appendChild(crit);
         if (!document.querySelector("link[data-ghf-theme]")) {
@@ -218,8 +220,22 @@
       var q = document.querySelectorAll("body *"), i, e, n = 0;
       for (i = 0; i < q.length && n < 3000; i++) {
         e = q[i]; if (e.classList.contains("ghf-bgimg") || e.closest(".ghf-ui")) continue;
-        var bi = getComputedStyle(e).backgroundImage;
-        if (bi && bi !== "none" && /url\(/.test(bi)) { e.classList.add("ghf-bgimg"); n++; }
+        var cs = getComputedStyle(e), bi = cs.backgroundImage;
+        if (bi && bi !== "none" && /url\(/.test(bi)) {
+          // 1 Nov 2026 (v2.1.20): a tiled paper texture behind the page's text (the wiki's archivist pages) is not a photo.
+          // Flipping it back re-darkened the whole text column on the dark page, so night mode was unreadable. Such a texture
+          // is marked .ghf-tex and dropped in night mode instead; photos and hero images keep their real colours as before.
+          var rc = e.getBoundingClientRect();
+          if (!/^no-repeat/.test(cs.backgroundRepeat) && rc.width * rc.height > innerWidth * innerHeight * 0.5 && (e.textContent || "").length > 200) { e.classList.add("ghf-tex"); continue; }
+          e.classList.add("ghf-bgimg"); n++;
+        } else if (native === "light" && e.tagName !== "BODY") {
+          // 1 Nov 2026 (v2.1.20): a black band drawn by a light page (the wiki's own header row and search box) stays black at
+          // night instead of turning into a white box: it keeps its real colours like a photo does.
+          var bm = /rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?/.exec(cs.backgroundColor || "");
+          if (bm && (bm[4] === undefined || +bm[4] > 0.9) && +bm[1] + +bm[2] + +bm[3] < 60) {
+            var rk = e.getBoundingClientRect(); if (rk.width * rk.height > 6000) { e.classList.add("ghf-bgimg"); n++; }
+          }
+        }
       }
     }
     function L() { var l = (de.getAttribute("lang") || "en").slice(0, 2).toLowerCase(); return { cy: 1, es: 1 }[l] ? l : "en"; }
@@ -1247,7 +1263,7 @@
     // A page whose body does not scroll (a full-screen app such as chess.) has no bottom for an in-flow footer: it would sit at the top, so none is added there (21 Oct 2026).
     var appPage = function () { try { return /hidden|clip/.test(getComputedStyle(document.body).overflowY + " " + getComputedStyle(document.documentElement).overflowY); } catch (e) { return false; } };
     if (appPage()) return;
-    var B = "/dartboard", L = [["Licence", "/licence/"], ["Privacy", "/privacy/"], ["Cookies", "/cookies/"], ["Terms", "/terms/"], ["Accessibility", "/accessibility/"], ["Enquire", "/enquire/"]];
+    var B = "/dartboard", L = [["Licence", "/licence/"], ["Privacy", "/privacy/"], ["Cookies", "/cookies/"], ["Terms", "/terms/"], ["Display settings", "/settings/"], ["Accessibility", "/accessibility/"], ["Enquire", "/enquire/"]];
     var st = el("style"); st.setAttribute("data-ghf-lf", "");
     st.textContent = ".ghf-lf{display:block!important;clear:both;position:relative;z-index:2;box-sizing:border-box;width:100%;flex:0 0 auto;margin:32px 0 0!important;padding:16px 16px 76px!important;background:#0a0a0a!important;border-top:1px solid #333!important;color:#b8b8b8!important;font:400 12.5px/1.6 Barlow,'Helvetica Neue',Arial,system-ui,sans-serif!important;text-align:center!important;letter-spacing:0!important;text-transform:none!important}" +
       ".ghf-lf p{margin:3px auto!important;max-width:760px;color:#b8b8b8!important;font:inherit!important}.ghf-lf b{color:#eaeaea!important;font-weight:700}" +
