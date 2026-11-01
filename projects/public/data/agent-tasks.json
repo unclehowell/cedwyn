@@ -1,7 +1,7 @@
 {
   "schema": "cedwyn-agent-task-index/1.6",
-  "generated_at": "2026-11-01T08:12:40.969Z",
-  "version": "1.6.0",
+  "generated_at": "2026-11-01T08:15:04.131Z",
+  "version": "1.6.1",
   "programme": "CEDWYN SNOWBALL",
   "coverage": {
     "scope": "Union of the full Cedwyn TASK free-text search, every page of the specified targeted searches, and all TASK records associated with the existing Cedwyn project contact under hs_task_status HAS_PROPERTY + contacts/EQUAL.",
@@ -104,7 +104,35 @@
       "owner_state"
     ],
     "privacy": "Public metadata only. No task bodies, notes, attachments, private correspondence, personal contact details, owner IDs, legal advice or confidential incident detail. Restricted review and correspondence subjects are neutralised.",
-    "caveat": "Project-focused search union, not a portal-wide export. TASK query searches HubSpot default searchable fields; scope is limited to the exact contact association and named search terms. Each query's returned rows matched its reported total and page offsets; live CRM changes may occur after this snapshot."
+    "caveat": "Project-focused search union, not a portal-wide export. TASK query searches HubSpot default searchable fields; scope is limited to the exact contact association and named search terms. Each query's returned rows matched its reported total and page offsets; live CRM changes may occur after this snapshot.",
+    "association_scope": {
+      "object_type": "contacts",
+      "operator": "EQUAL",
+      "object_id": "877776319685",
+      "required_property_filter": {
+        "property": "hs_task_status",
+        "operator": "HAS_PROPERTY"
+      },
+      "records_received": 185,
+      "pages_received": 1,
+      "complete": true
+    },
+    "search_scope": {
+      "primary_query": "Cedwyn",
+      "targeted_queries": [
+        "Great House Farm",
+        "Llandough",
+        "Tŷ Mawr",
+        "Buckler",
+        "Williams",
+        "BP Properties",
+        "BP v Buckler",
+        "Leckwith"
+      ],
+      "method": "HubSpot TASK free-text query over default searchable fields; all reported pages fetched",
+      "complete": true,
+      "search_failures": 0
+    }
   },
   "source_of_truth": "HubSpot remains authoritative. Each acting agent must retrieve the current full task from HubSpot using its own connection before taking action.",
   "access_model": {
@@ -154,8 +182,8 @@
       "priority": "HIGH",
       "due": "2026-11-01T17:00:00Z",
       "modified": "2026-11-01T08:08:20.632Z",
-      "workstream": "documentary_media",
-      "public_label": "Documentary and media production",
+      "workstream": "governance_quality",
+      "public_label": "Quality, privacy and project operations",
       "public_subject": "Master programme — estate reconstruction, documentary, agent operations and sustainable growth",
       "subject_visibility": "sanitised_subject",
       "access_tier": "public_metadata",
