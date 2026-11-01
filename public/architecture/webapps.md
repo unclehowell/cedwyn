@@ -1,8 +1,8 @@
 # Webapps
 
-Every webapp on the site (formerly called themes): 48 in the registry, each served at its own path, each on its own branch or snapshot. The state column is how hard-coded its content is today; the view rule is the selection that will feed its own view database; the wave is its work package. Machine-readable: [architecture.json](architecture.json).
+Every webapp on the site (formerly called themes): 49 in the registry, each served at its own path, each on its own branch or snapshot. The state column is how hard-coded its content is today; the view rule is the selection that will feed its own view database; the wave is its work package. Machine-readable: [architecture.json](architecture.json).
 
-States: BUILT 2 · DATA-DRIVEN 2 · GENERATED 1 · HARD-CODED 15 · LIVE 1 · MIXED 13 · NEW 2 · SNAPSHOT 12.
+States: BUILT 2 · DATA-DRIVEN 2 · GENERATED 1 · HARD-CODED 15 · LIVE 1 · MIXED 13 · NEW 3 · SNAPSHOT 12.
 
 - **DATA-DRIVEN**: pages rendered from the webapp's view of the central catalogue.
 - **GENERATED**: generated on main from repository data files.
@@ -78,6 +78,7 @@ States: BUILT 2 · DATA-DRIVEN 2 · GENERATED 1 · HARD-CODED 15 · LIVE 1 · MI
 | Cedwyn Calendar (chronology coverage view) | `/calendar/ on the main site (no separate subdomain; the earlier subdomain address redirects there)` | A calendar-style view of every dated event in the chronology (1667 onwards): day, week, month and year views, several years side by side, and a decades/centuries density view. Periods are shaded by how much evidence they hold, so the parts of the chronology still to be reconstructed stand out; known gaps from the missing-records register are marked in bright pink (54 of 55 missing-record dates at launch). Llandough Farm entries stay out, with a note on the name confusion. Month-only and year-only dates show as month or year bands, never as a made-up day. Each event opens to its date, precision, title, catalogue IDs, verbatim quote and source. | branch calendar, deployed as its own Worker app routed at /calendar/ on the main site | dated records in the central catalogue, the research timeline and the missing-records register; a derived events table rebuilt from the catalogue with a short cache, plus a build-time snapshot fallback | LIVE | its own derived events table built from the catalogue; header graph shows events per year from this app's own data only | standalone webapp, started 31 Oct 2026 |
 | That Old Chestnut | `/that-old-chestnut/` | FOI and EIR replies about Great House Farm / Tŷ Mawr read line by line: wording that sets up a refusal, and 'not held' answers that later became records found, each with the statute it points at. Webapp 38 of 59. | branch that-old-chestnut | new in the registry; not yet audited | NEW (not yet audited) | to be written | to be assigned |
 | Forensic Assessments | `/forensic/` | One forensic assessment per institution in the Great House Farm / Tŷ Mawr record: its role, its replies to information requests, and every contact since its last assessment. Webapp 39 of 59. | branch section/forensic | new in the registry; not yet audited | NEW (not yet audited) | to be written | to be assigned |
+| Mr Wolf | `/mr-wolf/` | What's the time, Mr Wolf? A leaderboard of the leads closest to the Takhar threshold for reopening the 1987 judgment, each scored out of 200 (100 is the threshold). Our case, prospective, not a finding of any court. Webapp 40 of 59. | branch section/mr-wolf | new in the registry; not yet audited | NEW (not yet audited) | to be written | to be assigned |
 
 ## Other areas (not webapps)
 
