@@ -60,6 +60,8 @@ def footer_pass(dist, rep):
     head = (ROOT / 'tools' / 'agent_footer' / 'head.html').read_text(encoding='utf-8')
     cur = re.search(r'data-agent-footer="([^"]+)"', snip).group(1)
     cur_el = FOOT_RX.search(snip).group(0); cur_trig = TRIG_RX.search(cur_el).group(0)
+    sup = ROOT / 'tools' / 'agent_footer' / 'trigger_superseded.html'   # earlier confidential-review wordings (1 Nov 2026): upgradable too
+    prev_trigs = {x.group(0) for x in TRIG_RX.finditer(sup.read_text(encoding='utf-8'))} if sup.exists() else set()
     small = wikilinks._small_footer(snip, '/academy/')
     shell = guestbook.shell()
     c = {'footer_version': cur, 'footer_added': 0, 'footer_upgraded': 0, 'footer_stale_kept': [], 'footer_gb_added': 0, 'footer_skipped': 0}
@@ -74,7 +76,7 @@ def footer_pass(dist, rep):
             v = re.search(r'data-agent-footer="([^"]+)"', m.group(0)[:400])
             if v and v.group(1) != cur:
                 ot = TRIG_RX.search(m.group(0))
-                if ot and ot.group(0) == cur_trig:
+                if ot and (ot.group(0) == cur_trig or ot.group(0) in prev_trigs):
                     el = cur_el
                     if 'class="gaf-agents"' in m.group(0):   # keep the page's form: agent text hidden from humans as before
                         el = wikilinks._small_footer(cur_el, '/academy/')
