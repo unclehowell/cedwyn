@@ -6,13 +6,13 @@ Record
    * - EV ID
      - EV-0284
    * - Title
-     - Alfred Thomas, 1st Baron Pontypridd (1840–1927), of Bronwydd, Cardiff, son of Daniel Thomas, contractor: “He died, unmarried, 14 December 1927” (Dictionary of Welsh Biography); a report dated 27 Dec 1927, transcribed online from an unnamed paper, that “the bulk of his property, has been, left unconditionally to the corporation, and citizens” of Cardiff (UNVERIFIED)
+     - Alfred Thomas, 1st Baron Pontypridd (1840–1927), of Bronwydd, Cardiff, son of Daniel Thomas, contractor: “He died, unmarried, 14 December 1927” (Dictionary of Welsh Biography); a report dated 27 Dec 1927, transcribed online from an unnamed paper, that “the bulk of his property, has been, left unconditionally to the corporation, and citizens” of Cardiff (not checked)
    * - Date of document
      - 14 December 1927 (death); 27 December 1927 (estate report)
    * - Type
      - biography and press transcription
    * - Evidence label
-     - VERIFIED (death, biography) · UNVERIFIED (estate report: secondary transcription)
+     - VERIFIED (death, biography) · not checked (estate report: secondary transcription)
    * - Repository / reference
      - `Dictionary of Welsh Biography, “THOMAS, ALFRED, baron Pontypridd” <https://biography.wales/article/s-THOM-ALF-1840>`__ (sources listed there: South Wales Daily News and Daily Telegraph, 15 Dec 1927; Western Mail, 25 Jun 1930) · `cynonculture.co.uk transcription (27 Dec 1927 report; original paper not named) <http://cynonculture.co.uk/pontypridd/alfred-thomas-lord-pontypridd-1840-1927/>`__ · TNA LCO 57/298, “Lord PONTYPRIDD”, 1912–1927 (catalogue)
    * - Status

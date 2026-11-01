@@ -4,6 +4,7 @@ Release notes
 This release (version 1.0.0)
 ----------------------------
 
+- **2026-Nov-01** - Evidence label wording: "UNVERIFIED" now reads "not checked" in the title and record, matching the research page.
 - **2026-Oct-23** - Carried over to the docs library from the Legal Wiki evidence page for EV-0284 (wiki page 7170, last modified 2026-10-21 21:27:26 UTC). The record text, dates and references are as on the wiki. Links to wiki pages lead to the same page on research.bucklerfamily.estate; images are links to their files on the wiki.
 
 Older versions
