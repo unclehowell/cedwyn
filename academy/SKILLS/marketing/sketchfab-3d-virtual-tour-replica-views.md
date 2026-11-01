@@ -46,7 +46,6 @@ Sketchfab is a web 3D viewer and community. Epic Games has owned it since 2021. 
 - **Replica (project c):** a reconstruction of Great House (Cydfin Farm), clearly labelled "reconstruction; details not checked" wherever a source is missing. It is the shared reference model for the Argentina build brief and a "then" view for the online tour.
 - **Rules:**
   - Llandough Farm is not Great House Farm. Any model of it lives only with the Kissed Frogs material and is labelled that way.
-  - Check that "Llandough" means Llandough near Penarth, not the one near Cowbridge.
   - Banned words apply to titles, descriptions and annotations. Never name the project lead. No insignia.
 - **Spend:** zero. Free Basic plan, Blender, and on-site phone photos. Paid AR or branding removal is a PROPOSAL only.
 - **Gate before any build:** a worker writes the massing brief from the dated plans already catalogued. If too few dimensions exist, write "not enough dated sources" and stop, rather than inventing.

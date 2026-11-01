@@ -1,7 +1,7 @@
 {
  "schema": "cedwyn_academy_architecture/v1",
- "version": "1.0.5",
- "updated": "2026-10-31",
+ "version": "1.0.6",
+ "updated": "2026-11-01",
  "refreshed_by": "the agent library cycle (every 6 hours); edit this file, then rebuild the academy",
  "source_documents": [
   "/projects/data-architecture/ (programme page: plan, work packages, milestones)",
@@ -272,7 +272,7 @@
    "title": "Nomenclature",
    "url": "/nomenclature/",
    "group": "Historic artifacts",
-   "purpose": "Every name used for the house, the estate, the town and the family, with each variant linked to its source",
+   "purpose": "Every name used for the house, the estate, the town and the family, with each variant linked to its source. From 1 Nov 2026 rebuilt as one table: each wording in its own row with every institution that uses it and the record reference, grouped under the names it belongs to (Tymawr included)",
    "source": "branch nomenclature, folder public",
    "data_sources": "27 hand-written or pre-generated HTML pages; no data file",
    "state": "HARD-CODED",
@@ -500,7 +500,7 @@
    "title": "The Project Office",
    "url": "/projects/",
    "group": "Modern research and how it's going",
-   "purpose": "The Project Office: programme and project pages (PRINCE2 style), including the data architecture programme",
+   "purpose": "The Project Office: programme and project pages (PRINCE2 style), including the data architecture programme; /projects/replica/ carries the planned Patagonia replica's reconstruction, geometry and plans",
    "source": "branch projects, folder projects/public",
    "data_sources": "7 data JSON file(s) in the branch, 169 pre-generated HTML pages",
    "state": "MIXED",
@@ -656,7 +656,7 @@
    "title": "The Digital Estate",
    "url": "/cyberspace/",
    "group": "Interactive",
-   "purpose": "The Digital Estate: the online side of the estate",
+   "purpose": "The online side of the estate. Its scope label reads \"Online\" (cy \"Ar-lein\", es \"En línea\") from 1 Nov 2026; the path and the cyberspace key stay. Online scope shows online-only content (games, library, photos) and links to Wales or Argentina for on-the-ground and replica content",
    "source": "branch section/cyberspace (snapshot pinned in sections.lock)",
    "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
    "state": "SNAPSHOT",
@@ -787,7 +787,7 @@
   },
   {
    "url": "/_cedwyn/",
-   "what": "shared runtime, header files, versions file, A2UI catalog"
+   "what": "shared runtime, header files, versions file, A2UI catalog; scope.js and scope-map.json (Wales / Argentina / Online scope switching, standing orders section 'Scopes')"
   },
   {
    "url": "/db/",

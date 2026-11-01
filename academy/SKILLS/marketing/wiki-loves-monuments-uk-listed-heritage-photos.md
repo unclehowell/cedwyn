@@ -24,7 +24,6 @@ Harvested 30 Oct 2026. Research and planning only. Nothing has been uploaded and
 
 ## How we apply it to Cedwyn
 - **Subjects:** public places only. St Dochdwy's Church (Cadw 13432), plus other listed public structures in Llandough, Leckwith and Penarth that have IDs; check the Leckwith old bridge's ID. Never Cydfin Farm land, never private houses or family holdings.
-- **Which Llandough:** confirm it's Llandough near **Penarth**, not the Llandough near Cowbridge, which has its own church, Q29491288. Llandough Farm is not Great House Farm and stays in Kissed Frogs.
 - **Who uploads:** the uploader must be the photographer. That rules out me as the uploader. It would be the project lead or a tour volunteer with their own Commons account. I can draft the shot list and descriptions.
 - **Reuse:** these photos can serve the Wales tour pages and the walk leaflet. The credit must follow the CC BY-SA rules (see geograph-cc-by-sa-then-and-now-commons-route.md).
 - **Timing:** the 2026 round is closed. Put a reminder in the programme-office calendar for **Aug 2027**, as a proposal only.

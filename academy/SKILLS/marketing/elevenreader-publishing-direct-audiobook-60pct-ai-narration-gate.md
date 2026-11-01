@@ -20,7 +20,6 @@ Harvested 2026-10-30. Status for Cedwyn: PROPOSAL only (a new storefront and any
 
 ## How we apply it to Cedwyn
 - **Fit:** one narrative Great House Farm e-book as an English audio pilot, then Spanish for Welsh Patagonia readers if the pilot sells. Welsh narration only after a native speaker checks a sample (not checked whether the voices handle Welsh well).
-- **Pronunciation list first:** Llandough, Leckwith, Cogan, Penarth, Tŷ Mawr, Cedwyn, plus the personal names in the book. Two-Llandoughs and farm-name rules apply to any spoken text: our Llandough is the one near Penarth, never Llandough near Cowbridge, and Llandough Farm is not Great House Farm.
 - **House rules:** wording follows the published book text; no banned words; the owner is never named in the audio or listing; no outbound links on Cedwyn, so the ElevenReader edition is mentioned as plain text on /ebooks/ and in emails or social posts only.
 - **Order of routes:** Google Play auto-narration is £0 to create (the files can be reused elsewhere if the e-book is also on Play), so it comes first. ElevenReader is the option if the owner wants a 60% direct-sale storefront and approves the credit spend. Queue it as a proposal in the project workspace with the cost estimate; don't start generation under the zero-spend rule.
 - **Don't confuse this with the documentary voice work:** the cloned voice used for Story Time intros is authorised for that format only. An audiobook narrated in the owner's cloned voice would need his explicit yes.

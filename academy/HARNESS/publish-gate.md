@@ -9,3 +9,5 @@ Every public or outward action — a site deploy, a page, an e-book, a social po
 **Pass 3 — Look at the real result.** Fetch the live URL with a cache-buster, render it at 390 px wide and check text, links, images, footer and layout. For records, re-read by ID. Put the evidence (URL, commit, record ID, screenshot path) in the report.
 
 The library's own scanner (tools/scan.py in the library flywheel) implements pass 1 for this section; it fails the build on any hit. The main site build runs its own privacy check and fails on process wording in records.
+
+- Gate check (31 Oct 2026): closed leads (places screened out as not the farm, standing order 39) live only in Kissed Frogs (/kissed-frogs/). A page outside that section that carries their text beyond one link fails the gate.

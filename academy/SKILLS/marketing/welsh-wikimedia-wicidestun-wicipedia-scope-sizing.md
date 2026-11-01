@@ -20,7 +20,6 @@ Harvested 2026-10-30 ~17:00Z. Zero budget. Sibling of wikisource-scan-backed-pub
 - Searches: "Llandochau" 0 hits, "Llandough" 0, "Lecwydd" 1, "Llandoch" 1.
 
 **Wicipedia (cy Wikipedia) place articles get almost no traffic:**
-- Our village is **"Llandochau Fach"** on cy Wikipedia (3,754 bytes; "Llandochau" alone is Llandough near Cowbridge, a different village; do not confuse them). The article mentions the church and cross only, nothing on the farm.
 - 12 months to Sep 2026: Llandochau Fach **54** user views, Lecwydd **34**. en Wikipedia "Llandough": 209.
 
 ## Honest read

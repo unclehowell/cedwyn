@@ -40,7 +40,6 @@ Harvested 2026-10-31 (skills harvest). Topic: content marketing from genealogy n
 - Treat replies as **leads**. A descendant's story is recorded as received, not as proof.
 
 ## How we apply it to Cedwyn
-- **Series:** "People of Great House / Tŷ Mawr", one page per person or family unit on cedwyn.bucklerfamily.estate, starting with the Williams line (John Williams Sr d. 1908, John Williams Jr). Then the Vaughan-era names that appear in G. T. Clark's *Limbus Patrum Morganiae et Glamorganiae* pedigrees for Llandough and Leckwith, written as "what the printed pedigree lists". Our inference, the link to Great House, stays labelled as inference unless a record joins them. Llandough near Cowbridge and Llandough Farm are excluded.
 - **Place pages:** Marian Wood's institution lesson, applied here: separate short pages for Llandough church (St Dochdwy), Leckwith bridge, Cogan, the Ely river crossing. Searchers looking for a place, not a surname, land on these.
 - **Measure (honest counts):**
   - inquiries per month from the cousin form (benchmark from one long-running blog: 1-2/month);

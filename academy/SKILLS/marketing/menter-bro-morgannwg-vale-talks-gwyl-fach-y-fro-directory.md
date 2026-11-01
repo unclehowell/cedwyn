@@ -3,7 +3,6 @@
 Harvested 2026-10-30 (skills harvest run). Topic: community route into Welsh speakers and learners in the Vale, the county Great House Farm sits in. It is the Vale counterpart of the Cardiff skill (cardiff-welsh-community-menter-caerdydd-echlysur-tafwyl.md). Both Mentrau share a chief executive and run some events jointly.
 
 ## What it is (read 30 Oct 2026 unless marked)
-- Menter Iaith Bro Morgannwg is a charity (1179555, company 08867706) that promotes the social use of Welsh across the Vale (Barry, Penarth, Cowbridge, Llantwit Major, Dinas Powys). Its office is Yr Hen Lyfrgell, Cardiff, shared with Menter Caerdydd. Channels: menterbromorgannwg.cymru, Facebook /MIBroMorgannwg, Instagram, X.
 - Its activities page (read) lists, for adults:
   - **Sgwrs y Mis**: a free monthly Welsh-language lecture, Zoom, run jointly with Menter Caerdydd. The November 2026 speaker is Dr Sam Parry. The page notes it suits "fluent speakers and higher level learners but everyone is welcome". You can register for the whole year with an optional donation, or per session when each month's notice goes up.
   - **Bore Coffi ar Zoom**: a free monthly coffee morning for learners.

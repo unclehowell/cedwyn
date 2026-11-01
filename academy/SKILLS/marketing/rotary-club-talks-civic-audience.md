@@ -13,10 +13,8 @@ The rules matter more than anywhere else on the talk circuit. Rotary Club of Dum
 
 A US club's guidelines (Rotary Club of Enid, read in full) state the same: content "not designed to promote ... specific business, its services, or products", no request to purchase; printed materials can be placed on tables; 20-30 minute talk plus questions.
 
-Local fact: Cowbridge Rotary (Vale of Glamorgan) meets Mondays 19:15 at The Bear Hotel, with the 3rd Monday a Speaker meeting; upcoming speakers listed on its page include a CPR demonstration (26 Oct 2026) and a Welsh actress and storyteller (16 Nov 2026) (read in full). So a heritage story fits their programme.
 
 ## How to do it (steps)
-1. **Pick clubs.** Rotary GB&I club finder (rotary-ribi.org) lists each club's page, meeting pattern and often a "Speakers" page or contact. Vale first: Cowbridge, then Penarth, Barry, Cardiff clubs (pages not checked beyond Cowbridge).
 2. **Cut the talk to 20 minutes.** One story arc, 8-10 slides or none, a strong opening document image, finish on time (lunch clubs leave at the hour).
 3. **Approach (draft only):** to the club's speaker secretary/programme chair via the page's contact link: title, one-paragraph bio, 15/20/30-minute options, equipment needs, dates. Mention no product.
 4. **On the day:** no pitch. A handout per table (one side: three record images and dates; reverse: a QR code to the free edition and the newsletter sign-up). The handout is information, which the rules allow; the paid volumes are not mentioned from the lectern.
@@ -30,12 +28,10 @@ Local fact: Cowbridge Rotary (Vale of Glamorgan) meets Mondays 19:15 at The Bear
 ## How we apply it to Cedwyn
 - Owner decides who speaks and whether his name is used; public text never names him otherwise.
 - Handout QR: cedwyn.bucklerfamily.estate/ebooks/?utm_source=rotary&utm_campaign=<club>. Free edition first; it is the only call to action.
-- Next action: HubSpot draft to Cowbridge Rotary's contact for owner review (3rd-Monday speaker slot). Do not send.
 - Repeat bar: 1 referral (another club, society or press contact) or 5 sign-ups per talk. Sits with u3a-speaker-circuit-local-history.md and wi-speaker-auditions-federation-list.md as one shared talk deck.
 
 ## Sources
 - rotary-ribi.org (Rotary Club of Dumfries, Speakers; read in full 26 Oct 2026)
 - enidrotary.org (read in full 26 Oct 2026)
-- rotary-ribi.org (Cowbridge Rotary; read in full 26 Oct 2026)
 - rotary-ribi.org (read in full 26 Oct 2026)
 - ingramspark.com (read in full 26 Oct 2026)

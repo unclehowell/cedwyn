@@ -10,7 +10,6 @@ Harvested 29 Oct 2026. This closes the "Vale scheme not checked" gap left in blu
    - Price: £322.50 per plaque on a shared bench, or £800 for an exclusive bench. A new bench costs from £1,475.
    - Not allowed at Porthkerry or Cosmeston Country Parks or on Penarth Pier, which have their own routes.
    - The council may alter or refuse inscriptions, and the plaque becomes council property.
-3. **Blue Plaque Town Trails in Llantwit Major and Cowbridge**, listed by Visit the Vale (visitthevale.com). These are town-led trails. Who runs them and how to nominate has not been checked: the page is behind a cookie wall and gave no detail from the box.
 - Penarth: Penarth Civic Society Heritage Trail (see the Penarth gate skill). Llandough sits outside every town trail.
 
 ## Judgement
@@ -22,8 +21,6 @@ Harvested 29 Oct 2026. This closes the "Vale scheme not checked" gap left in blu
 
 ## How we apply it to Cedwyn
 - Don't spend: bench plaques are a zero-spend breach and not heritage.
-- Add the two forms and the Llantwit/Cowbridge trails to the change-watch list as "absence watch" pages. If the council publishes a list of commemorations, a Llandough entry would show there.
-- Content angle at no risk: a short Cedwyn page or post, "Where are the Vale's plaques?", listing the Llantwit Major and Cowbridge trails and Penarth's trail, with Llandough noted as having none. This is local-search content that links to /ebooks/ internally only.
 - Kill rule: if no sourced public figure or event with a Llandough link exists by the next growth report, drop the nomination idea and keep the watch only.
 
 ## Sources

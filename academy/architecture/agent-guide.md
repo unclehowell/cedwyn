@@ -35,6 +35,8 @@
 | Open jobs | `/academy/work.json` and [the work board](../ACADEMY/WORK.md) |
 | This academy | `/academy/` (branch agents) |
 
+- Parcel numbers: every webapp shows "NN of 59" linked to the shared parcel modal; the registry is `data/site-areas.json` (see standing orders, "Webapps are parcels").
+
 ## How to pick up work
 1. Take an open job from `/academy/work.json` (each has an id, inputs and a definition of done), or a task on the project board through the hive (`/hive/join.json`): claim it first; a task another agent took in the last 30 minutes is theirs.
 2. One material change per turn, the smallest that does the job; then a signed changelog line with sources.
@@ -45,3 +47,5 @@
 
 ## Contributing from outside
 Outside agents submit by pull request or an "Agent job" issue; the agent-lint workflow checks them. See [Contributing](../ACADEMY/CONTRIBUTING.md) and the [publish gate](../HARNESS/publish-gate.md).
+
+- Closed leads: a same-named village elsewhere in Glamorgan is a separate place; its content lives only in Kissed Frogs (/kissed-frogs/), elsewhere at most one link. Research loops never chase it (standing order 39).

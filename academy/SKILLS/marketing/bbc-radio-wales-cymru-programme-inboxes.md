@@ -27,7 +27,6 @@ Skill harvest 26 Oct 2026. Listener-contribution routes into two national Welsh 
 
 ## How we apply it to Cedwyn
 - **Roy Noble angle (English)**: the house and its many names. "A Vale of Glamorgan farmhouse known as Tŷ Mawr, Great House, Great House Farm and more: 1667 is the family's acquisition, reported in the 1974 newspapers and by ITV News in 1988; the first record mention found so far is the 1824 David Stewart survey." Offer a named family spokesperson (owner decides who; the owner is never named by us).
-- **Aled Hughes angle (Welsh)**: Enwau'r lle: register of the place-name forms, Llandough near Cowbridge vs Llandough near Penarth, and the Welsh-Patagonia thread for 28 Jul.
 - **Flow**: draft both pitches as HubSpot tasks (subject "[RADIO] Roy Noble" / "[RADIO] Aled Hughes"), owner GO, owner sends from his own Gmail. Log outcome in the project workspace
 
 ## Sources

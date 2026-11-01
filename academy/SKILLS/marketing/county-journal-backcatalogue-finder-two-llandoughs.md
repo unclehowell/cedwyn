@@ -24,20 +24,14 @@ cited "From the journals" posts and a further-reading block. Zero spend, no outr
 | CNS Trans. | Some reasons for believing that Barry and Sully gave names to their Lords' families | vol. XXXVI p.116 | AWJBW005012 | neighbour, place-names |
 | Morgannwg | The place-names of Dinas Powys Hundred, by Gwynedd O. Pierce (review) | vol. 12 p.111 | AWJBQ012011 | yes: the hundred holds Llandough-juxta-Penarth and Leckwith |
 | Morgannwg | Biglis, Caldicot and Llandough ... excavations 1977-79 (review) | vol. 33 p.80 | AWJBQ033013 | the Roman villa site; not checked which Llandough on the page |
-| Morgannwg | Llandough Castle, near Cowbridge | vol. 33 (1989) p.7-36 | AWJBQ033002 | NO — the other Llandough |
-| Morgannwg | Gabriel Fauré and the Llandough connection | vol. 47 p.47 | AWJBQ047004 | NO — read p.48: the Ebsworth lease of Llandough Castle (1893), i.e. near Cowbridge |
 | Morgannwg | Dinas Powys. An Iron Age and early medieval settlement (review) | vol. 8 p.76 | AWJBQ008010 | neighbour |
 | Morgannwg | A history of the parishes of St Andrew Major and Michaelston-le-Pit (review) | vol. 4 p.86 | AWJBQ004016 | neighbour |
 | Morgannwg | Penarth: the garden by the sea (review) | vol. 42 p.101 | AWJBQ042033 | Penarth |
 
 Morgannwg volume numbers above come from the PDF file code (AWJBQ0NN = volume NN); vol. 33 = 1989 is
-confirmed by an outside citation of "Llandough Castle, near Cowbridge", Morgannwg 33 (1989), pp. 7-36.
 
 ## The two-Llandough trap (the main lesson)
 Glamorgan has two Llandoughs: Llandough-juxta-Penarth (Llandochau Fach; our parish, St Dochdwy's,
-the hospital) and Llandough-juxta-Cowbridge (Llandough Castle). Two of the three "Llandough" titles
-in Morgannwg are the Cowbridge one. Before a title becomes a post or a citation, read the first
-page and look for Cowbridge, the Castle, St Mary Church, Penllyn (Cowbridge side) versus Penarth,
 Cogan, Leckwith, Ely river, Dinas Powys hundred (our side). Write which one it is in the table.
 
 ## Playbook
@@ -58,7 +52,6 @@ Cogan, Leckwith, Ely river, Dinas Powys hundred (our side). Write which one it i
   manorial frame for Cogan next to Llandough; then the Pierce place-names review for the Leckwith
   and Llandough entries. One note each, queued as HubSpot tasks for the research lane.
 - Put the two-Llandough check in the research editorial checklist, beside "Llandough Farm is
-  not Great House Farm": a Cowbridge source must never be cited for our parish.
 - Further-reading block on /research/sources-and-archives/ (citations only), proposed through
   the engineering lane, not committed from this lane.
 - Editorial rules: neutral third person, never name the project lead, banned words, no insignia, nothing

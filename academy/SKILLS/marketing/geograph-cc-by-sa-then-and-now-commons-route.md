@@ -14,7 +14,6 @@ Topic: using Geograph Britain and Ireland's photos of Llandough, Leckwith and Pe
 ## How to do it
 1. **Search Commons, not Geograph.** Use the Commons API: `action=query&list=search&srnamespace=6&srsearch=<place> geograph`, then `prop=imageinfo&iiprop=extmetadata|size|url` to read LicenseShortName, Artist, DateTimeOriginal and width. No key, no scraping. Throttle to 1 request/s with a User-Agent.
 2. **Only if Commons lacks the shot**, a Geograph API key is needed. That's a free account request the owner would make. Never fetch Geograph HTML pages or search pages from the box.
-3. **Check the place before use.** "Llandough" has two places in the Vale: Llandough near Penarth (ours) and Llandough near Cowbridge. Check the grid reference (around ST1673 for Penarth-side Llandough; not checked) or the coordinates in Commons metadata.
 4. **Credit line, every time, next to the image:** `Photo: <Author>, CC BY-SA 2.0, geograph.org.uk On Instagram/Facebook put it in the caption *and* as small text on the image. In the e-book put it under the image and repeat it in the picture credits.
 5. **ShareAlike decision per use:**
    - **Unaltered image placed in a page, post or e-book** (a "collective work" in CC 2.0 terms): our page/book stays under our own terms; only the photo carries CC BY-SA. This is our reading of the 2.0 legal code, not re-read today.

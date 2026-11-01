@@ -9,7 +9,6 @@ Skill harvested 2026-10-26. Sources: Vale of Glamorgan Libraries room-booking pa
 ## Vale of Glamorgan room hire (read 2026-10-26; check before booking)
 - Barry Library (booking form, [number kept in the project workspace], [address kept in the project workspace]): Philip John Room, 35 seats, projector + screen, £22/hour or £100/day; Board Room 10 seats £22/hour; Community Room 8 seats £20/hour; IT suite 12, £50 half day; Makerspace up to 12, interactive TV, £35/hour or £100 half day.
 - Penarth Library ([number kept in the project workspace], [address kept in the project workspace]): contact directly; Makerspace up to 12, interactive TV, £35/hour or £100 half day. Out-of-hours rates vary.
-- Cowbridge Library ([number kept in the project workspace]): IT suite 10 seats, wall screen, £25 half day.
 - Rhoose Community Library ([number kept in the project workspace], [address kept in the project workspace]): 50 seats, interactive screen, £10/hour or £25 for 3 hours. Cheapest large room found.
 - Cancellation under 24 hours: £5 charge.
 

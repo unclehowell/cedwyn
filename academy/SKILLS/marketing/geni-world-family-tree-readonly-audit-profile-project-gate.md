@@ -18,7 +18,6 @@ Topic: using Geni's shared World Family Tree, its public profiles and its place/
 - Merged, sourced profiles are reused by other trees: accuracy compounds.
 
 ## How to do it
-1. **Read-only audit first (Tab can do this, no account):** search Geni (and the open web, site:geni.com) for the Williams of Great House / Tŷ Mawr, John Williams Sr (d. 1908) and Jr, the Buckler line and the house itself. Use a real browser if the bot wall blocks plain fetches. Log each profile URL, what it states, its sources, and conflicts with our records in the project workspace (private). Separate our Llandough (by Penarth/Cardiff) from Llandough near Cowbridge; Llandough Farm is not Great House Farm.
 2. **Decide per profile:** (a) correct and sourced: note it, nothing to do; (b) wrong or unsourced: draft a polite discussion post with the record citation (HubSpot draft for the family member); (c) missing: propose one profile per deceased person, sourced to the record.
 3. **One manager account in a family member's own name (the project lead's GO only).** Free Basic tier. Never Pro.
 4. **Add sources, not stories:** each fact cites the record (census piece/folio, probate, deed) exactly as on our evidence pages. Deceased people only; living relatives private.

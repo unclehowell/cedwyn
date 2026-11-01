@@ -1,6 +1,5 @@
 # Glamorgan History Society: Autumn Day School bookstall, Morgannwg journal and the Clark Award
 
-Skills harvest 2026-10-31. A gap the index had flagged twice ("Glamorgan History Society journal ... not checked"). This is the county-level society, the one level above the Penarth, Cowbridge and Roath talk circuits that are already covered.
 
 ## What it is (read on its own pages, 31 Oct 2026)
 - Glamorgan History Society / Cymdeithas Hanes Morgannwg, charity 511498. Founded 1950 as the Glamorgan Local History Society, renamed 1966. Membership is "open to anyone with an interest in the history of Glamorgan". The old Membership page gives the fee as £15 a year (search snippet; the current fee was not read because the site rate-limited us). Renewal is due 1 January, by cheque.

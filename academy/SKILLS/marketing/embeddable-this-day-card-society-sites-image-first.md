@@ -3,7 +3,6 @@ Written 31 Oct 2026 (skills harvest). Pairs with the Cedwyn Calendar webapp (in 
 
 ## The finding: an iframe or script widget will NOT paste into many society sites; a plain image + link will
 Measured/read 31 Oct 2026:
-- Local platforms (our check of 6 reachable society sites, generator tags): Glamorgan History Society, Llantwit Major History Society and Radyr Local History = self-hosted WordPress; Roath Local History Society = WordPress.com; Penarth Society = Wix; Glamorgan FHS = Joomla. (Cowbridge and Barry society domains did not answer from our box.)
 - WordPress.com (Custom HTML block help page, read): iframe, script, embed, object, form, style and link tags "need a paid plan with hosting features activated". A society on a free/low WordPress.com plan cannot paste an iframe or a script. It CAN paste img and a.
 - Squarespace (Code blocks help page, read): "To add JavaScript or an iframe to a code block, your site needs to be on the Core, Plus, or Advanced plan."
 - Self-hosted WordPress (oEmbed handbook, read): pasting a bare URL only auto-embeds from WordPress's internal whitelist; since 4.4 discovery from other sites is allowed but HTML is filtered to links, blockquotes and sandboxed iframes, and full discovery for non-whitelisted sites is a site-admin opt-in for unfiltered_html users. "link" and "photo" oEmbed types are filtered less.
@@ -31,7 +30,6 @@ Searches this run found no heritage/local-history widget with published install 
 
 ## How we apply it to Cedwyn
 - PROPOSAL for the cedwyn-calendar Worker (zero spend, no new D1, uses the derived events db): /embed/today.png (server-rendered SVG -> PNG, or an SVG fallback if PNG rendering is heavy in the Worker), /embed/today (iframe card), /embed/ (copy page). Public text neutral third person, banned words checked, quotes verbatim with catalogue IDs, no insignia, nothing about what the family holds.
-- Distribution stays within the rules already in place: offer the paste code inside the existing talk/journal routes (civic-local-history-society-talks-penarth.md, cowbridge-history-society-talk-route.md, family-history-society-journals-forums.md) as a HubSpot draft for the project lead to send himself. No cold emails from Tab, no DMs.
 - Cedwyn has a no-outbound-links rule; this skill only adds INBOUND links (society -> calendar), so it does not conflict.
 - First targets by platform: Llantwit Major, Glamorgan History Society, Radyr (self-hosted WordPress: any tier works); Roath (WordPress.com: image tier); Penarth Society (Wix: image or HTML element).
 

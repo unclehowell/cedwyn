@@ -1,6 +1,5 @@
 # One shared talk deck + table handout for every talk circuit
 
-Date: 2026-10-26 (skills harvest 17:07). Built for the u3a, WI, Rotary, Probus, Penarth/Cowbridge society, library and Insole Court routes already in this folder. One asset, many venues, per-venue tracking.
 
 ## What practitioners do (read at source)
 - Jodee Blanco (IngramSpark blog, updated 1 Apr 2026, 20+ years speaking): bring (1) QR codes in the slides or printed collateral linking straight to a mailing list or landing page, (2) "a printed hand-out with four or five highlights from your talk, the title of your book, and your contact info and author website", (3) a notebook to record leads. After: thank-you notes to everyone who organised it, then "catalytic outreach": ask the contact which other organisations might want the talk.
@@ -18,7 +17,6 @@ Date: 2026-10-26 (skills harvest 17:07). Built for the u3a, WI, Rotary, Probus, 
 ## The handout (one A5 card, both sides)
 - Front: title, 4-5 highlights as a dated timeline (Books Forward's "timeline" idea), one image.
 - Back: "Find the records yourself" 3 tips (archives, maps, newspapers); the free edition QR; the shop QR; a short sign-up line; website.
-- One QR per venue via UTM: cedwyn.bucklerfamily.estate/ebooks/?utm_source=<venue>&utm_medium=talk&utm_campaign=talk-2027 (utm_source values already used: wi, rotary, probus, plhs, cardiff-libraries, cowbridge-history, insole-court, u3a). See utm-discipline-ga4-funnel.md.
 - Print 1.5x the expected audience (societies ~20-40). Print cost needs the owner's GO (zero spend by default); a free PDF the organiser can print or email is the fallback.
 - A sign-up sheet (name + email, tick-box consent wording) only where the venue allows it; otherwise QR only.
 

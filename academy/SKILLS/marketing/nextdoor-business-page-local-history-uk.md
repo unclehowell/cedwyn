@@ -31,7 +31,6 @@ These are Nextdoor's aggregate figures, not a small-seller case study. No UK her
 ## How we apply it to Cedwyn
 - PROPOSAL only: needs the owner's GO and the owner's own signup (identity/address). Nothing to set up from the box.
 - Prep now (no GO needed, kept in work/): 4 post drafts in the house style (no banned words, nobody named), 6 photos already cleared for public use from the archive, and the UTM link to /ebooks/.
-- Fit: the e-books are about a specific Vale of Glamorgan place; Nextdoor reaches exactly the neighbourhoods that care (Llandough, Penarth, Cowbridge, Dinas Powys). It pairs with the library and history-society talk routes already in this folder.
 - Decision rule: if after 8 weeks there are under 20 sessions from Nextdoor, stop and record it in the Sunday growth notes.
 
 ## Sources

@@ -4,7 +4,6 @@ Skill harvested 2026-10-26. Primary source: Google Search Central event docs (pa
 
 ## What changed (read this first)
 - On 5 June 2025 Google removed the online-event properties from its event docs. Its stated reason: "To be eligible for the event experience on Google, events must be bookable by the general public and held at a physical location." So an online-only talk (Zoom, YouTube live, Eventbrite online) gets NO Google event listing, whatever markup it carries. Markup is only worth adding for an in-person talk (e.g. a library room).
-- The event experience runs in the United Kingdom (English), so a Penarth/Barry/Cowbridge talk is eligible.
 - Google's own case-study line on the page: Eventbrite saw "a 100% increase in the typical year-over-year growth of traffic from Google Search". Vendor case study, not checked further. No small-publisher numbers were found; measure our own.
 
 ## Rules that decide eligibility (Google's guidelines)
