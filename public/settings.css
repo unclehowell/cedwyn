@@ -1,0 +1,26 @@
+/* Cedwyn display settings 1.0.0 (1 Nov 2026). The page draws both schemes itself (html data-ghf-native="auto"), so it is never
+   inverted; it follows data-ghf-mode set by ghf-boot.js before the first paint. — Cedwyn editors */
+:root{--ts-bg:#f7f2e7;--ts-card:#fbf8f1;--ts-fg:#19191a;--ts-mute:#55524b;--ts-line:#d9d2c3;--ts-acc:var(--ghf-p,#1B356A)}
+:root[data-ghf-mode=night]{--ts-bg:#000;--ts-card:#121212;--ts-fg:#eaecf0;--ts-mute:#a9adb5;--ts-line:#2c2c2c;--ts-acc:var(--ghf-s,#6695F5)}
+html,body{background:var(--ts-bg)!important;color:var(--ts-fg)}
+body{margin:0;font-family:var(--ghf-font,Barlow,"Helvetica Neue",Arial,sans-serif);line-height:1.5}
+.ts-wrap{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+.ts-wrap h1{margin:8px 0 6px}
+.ts-lead{color:var(--ts-mute);margin:0 0 18px}
+.ts-card{background:var(--ts-card);border:1px solid var(--ts-line);border-radius:12px;padding:14px 14px 10px;margin:0 0 14px}
+.ts-card h2{font-size:1rem;margin:0 0 10px;letter-spacing:.06em}
+.ts-opts{display:grid;gap:8px}
+.ts-fonts,.ts-sizes{grid-template-columns:1fr 1fr}
+.ts-opt{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid var(--ts-line);border-radius:10px;cursor:pointer;min-height:44px;box-sizing:border-box}
+.ts-opt input{margin:4px 0 0;accent-color:var(--ts-acc);width:18px;height:18px;flex:0 0 auto}
+.ts-opt span{display:flex;flex-direction:column;min-width:0}
+.ts-opt b{font-weight:600}
+.ts-opt small{color:var(--ts-mute);font-size:.85em}
+.ts-opt:has(input:checked){border-color:var(--ts-acc);box-shadow:inset 0 0 0 1px var(--ts-acc)}
+.ts-opt:focus-within{outline:2px solid var(--ts-acc);outline-offset:2px}
+.ts-sample{margin:0;font-size:1.05em}
+.ts-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:6px 0 10px}
+#ts-reset{font:inherit;padding:10px 16px;min-height:44px;border-radius:10px;border:1px solid var(--ts-acc);background:transparent;color:var(--ts-fg);cursor:pointer}
+.ts-status{margin:0;color:var(--ts-mute);font-size:.9em}
+.ts-note{color:var(--ts-mute);font-size:.85em}
+@media (max-width:360px){.ts-fonts,.ts-sizes{grid-template-columns:1fr}}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en-GB" data-ghf-native="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Display settings · Cedwyn</title>
+<meta name="description" content="Choose light or dark, the font and the text size for every page of Cedwyn. Saved in this browser only.">
+<link rel="canonical" href="https://cedwyn.bucklerfamily.estate/settings/">
+<link rel="stylesheet" href="settings.css?v=1.0.0">
+</head>
+<body>
+<main class="ts-wrap" id="settings-main">
+<h1 data-t="title">Display settings</h1>
+<p class="ts-lead" data-t="lead">Pick how every page of Cedwyn looks to you. Your choice is kept in this browser and applies to every section as you move through the site.</p>
+
+<section class="ts-card" aria-labelledby="ts-h-theme">
+<h2 id="ts-h-theme" data-t="theme">Light or dark</h2>
+<div class="ts-opts" role="radiogroup" aria-labelledby="ts-h-theme">
+<label class="ts-opt"><input type="radio" name="theme" value="system"><span><b data-t="t_system">Follow my device</b><small data-t="t_system_n">Light by day, dark at night, as your phone or computer is set</small></span></label>
+<label class="ts-opt"><input type="radio" name="theme" value="day"><span><b data-t="t_day">Light</b><small data-t="t_day_n">Dark text on a pale page</small></span></label>
+<label class="ts-opt"><input type="radio" name="theme" value="night"><span><b data-t="t_night">Dark</b><small data-t="t_night_n">Light text on a black page</small></span></label>
+</div>
+</section>
+
+<section class="ts-card" aria-labelledby="ts-h-font">
+<h2 id="ts-h-font" data-t="font">Font</h2>
+<div class="ts-opts ts-fonts" role="radiogroup" aria-labelledby="ts-h-font">
+<label class="ts-opt"><input type="radio" name="font" value="default"><span><b data-t="f_default" style="font-family:Barlow,'Helvetica Neue',Arial,sans-serif">Cedwyn (Barlow)</b></span></label>
+<label class="ts-opt"><input type="radio" name="font" value="arial"><span><b style="font-family:Arial,Helvetica,sans-serif">Arial</b></span></label>
+<label class="ts-opt"><input type="radio" name="font" value="verdana"><span><b style="font-family:Verdana,Geneva,sans-serif">Verdana</b></span></label>
+<label class="ts-opt"><input type="radio" name="font" value="georgia"><span><b style="font-family:Georgia,'Times New Roman',serif">Georgia</b></span></label>
+<label class="ts-opt"><input type="radio" name="font" value="times"><span><b style="font-family:'Times New Roman',Times,serif">Times New Roman</b></span></label>
+<label class="ts-opt"><input type="radio" name="font" value="system"><span><b data-t="f_system" style="font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif">My device’s font</b></span></label>
+<label class="ts-opt"><input type="radio" name="font" value="mono"><span><b data-t="f_mono" style="font-family:ui-monospace,Menlo,Consolas,monospace">Typewriter</b></span></label>
+</div>
+</section>
+
+<section class="ts-card" aria-labelledby="ts-h-size">
+<h2 id="ts-h-size" data-t="size">Text size</h2>
+<div class="ts-opts ts-sizes" role="radiogroup" aria-labelledby="ts-h-size">
+<label class="ts-opt"><input type="radio" name="size" value="s"><span><b data-t="z_s" style="font-size:.9em">Smaller</b></span></label>
+<label class="ts-opt"><input type="radio" name="size" value="m"><span><b data-t="z_m">Normal</b></span></label>
+<label class="ts-opt"><input type="radio" name="size" value="l"><span><b data-t="z_l" style="font-size:1.15em">Larger</b></span></label>
+<label class="ts-opt"><input type="radio" name="size" value="xl"><span><b data-t="z_xl" style="font-size:1.3em">Largest</b></span></label>
+</div>
+</section>
+
+<section class="ts-card ts-preview" aria-labelledby="ts-h-prev">
+<h2 id="ts-h-prev" data-t="preview">Preview</h2>
+<p class="ts-sample" data-t="sample">Tŷ Mawr, the Great House of Llandough, stands beside the church of St Dochdwy. The earliest record found that names the house is the survey of 1824.</p>
+</section>
+
+<div class="ts-actions">
+<button type="button" id="ts-reset" data-t="reset">Back to the standard look</button>
+<p class="ts-status" id="ts-status" role="status" aria-live="polite"></p>
+</div>
+<p class="ts-note" data-t="note">Kept in this browser only (local storage on this site). Nothing is sent anywhere, and no account is needed. Clearing your browser data resets it.</p>
+<noscript><p class="ts-note">These settings need JavaScript. Pages use the standard look without it.</p></noscript>
+</main>
+<script src="settings.js?v=1.0.0"></script>
+</body>
+</html>
