@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Free first edition → paid update: what conversion to expect, how to count it, where the upgrade ask goes · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Free first edition → paid update: what conversion to expect, how to count it, where the upgrade ask goes"><link rel="alternate" type="text/markdown" href="free-first-edition-to-paid-update-conversion-benchmarks-trigger.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Free first edition → paid update: what conversion to expect, how to count it, where the upgrade ask goes</h1>
+<p>Written 31 Oct 2026 (skills harvest, root priority: turning a free first-edition download into paid upgrades, with numbers). Mechanics of permafree/Baen are in free-first-edition-funnel.md and free-previous-edition-paid-latest-baen-pattern.md; this file is the benchmark + measurement + trigger layer they lack.</p>
+<h2>The numbers (primary sources, read 31 Oct 2026)</h2>
+<ul>
+<li><strong>Lenny Rachitsky, benchmark survey of 1,000+ products</strong> (B2B/prosumer software, so an analogy, not a book number):</li>
+<li>Freemium (free forever, pay for more): <strong>3-5% GOOD, 6-8% GREAT</strong>. Spread is wide: 20% of products convert below 2.5%; the biggest bucket (~33%) is 2.5-5%; "not uncommon" to be below 1%.</li>
+<li>Free trial (everything, for a limited time): <strong>8-12% GOOD, 15-25% GREAT</strong>; most common bucket 7.5-10%; only 7% below 2.5%. Lenny's reading: trials attract people readier to buy, and time pressure helps. Trial sign-up rates are lower (5% vs 9% for freemium).</li>
+<li>He measures per audience, not blended: "monitor conversion rates across different audiences and not only the blended rate."</li>
+<li><strong>Substack, Going paid guide:</strong> "We tend to see 5-10% of free subscribers convert to paying subscriptions, with 10% being a rate to aim for." That is an <em>engaged email list</em> converting to recurring paid, after the writer asks. Practitioners on r/Substack report a ~3% median (forum testimony, not checked).</li>
+<li><strong>Authors Guild reader survey (news release 9 Jun 2026):</strong> only <strong>19%</strong> of text-format books read in the prior month were bought new (print or ebook); 6% via subscriptions, 10% used, <strong>29% from libraries</strong>, 35% borrowed/own shelf/other. Library members read 16% more books. Reading free is the norm; paying is the exception even among readers.</li>
+</ul>
+<h2>What that means in plain arithmetic</h2>
+<ul>
+<li>At a freemium-style 3-5%, <strong>one paid update needs ~20-33 free downloads</strong>; at 1% (common for low-touch), ~100.</li>
+<li>Free downloads that are not counted cannot be converted or measured. Rate = paid buyers of edition N+1 who previously took edition N ÷ people who took edition N. Without an email or a download count you only have the numerator.</li>
+<li>Two levers move the rate the most in the data: <strong>an engaged list that gets asked</strong> (Substack 5-10%) and <strong>a reason to pay now</strong> (trial-like time pressure, 8-12%). A free edition that is complete forever and never followed up behaves like low-end freemium.</li>
+</ul>
+<h2>The playbook</h2>
+<ol>
+<li><strong>Count the free takes.</strong> Log every free-PDF fetch (edge logs / a download event) per book per day. Separate bots (non-200, no referrer, known crawlers) from people.</li>
+<li><strong>Capture at the free take, opt-in.</strong> Offer "Email me when this book is updated" beside the free download (not a wall; see stop-rate-free-registration-wall-ask-after-engagement.md). This is the highest-intent opt-in an archive book has, because the paid product <em>is</em> the update.</li>
+<li><strong>Make the update the trigger.</strong> When edition N+1 ships, send one email to that book's opt-ins: what changed (counted: "+14 records, 2 new maps, 3 corrections"), the price, one link. That is the "reason to pay now" moment; send it once, plus at most one reminder.</li>
+<li><strong>Put the ask inside the free PDF.</strong> Last page and table of contents: "This is the free first edition of [date]. The updated edition adds ..." with a link to the book's own page. Readers who finish are the warm audience.</li>
+<li><strong>Show the diff on the book page.</strong> A short "Changes since the free edition" list per book. Readers pay for what is visibly new, not for a version number.</li>
+<li><strong>Measure per book and per audience</strong> (Lenny's rule): opt-in list vs. direct visitors vs. referral. Targets: 1% = floor, 3-5% = good, 10% from the update email to the opt-in list = great.</li>
+<li><strong>Review at 100 free takes per book</strong>, not before; below that the rate is noise (at 3%, 100 takes give ~3 sales, and 0 sales is still about 5% likely).</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Current state (checked live 31 Oct 22:42Z, cedwyn.bucklerfamily.estate/ebooks/):</strong> every book's first edition (v0.0.1) is a free direct download, no email; updated editions (v0.0.2) are £4.99; four core books £19.96 together; "121 first editions released so far, each £0.00". The only email capture is "Free first chapter by email". So free takes are uncounted and no downloader can be told an update exists: the rate is not measurable today.</li>
+<li><strong>Smallest changes, in order (PROPOSED for the onpage/bizdev runs, not done by this harvest):</strong>
+  1. Count v0.0.1 PDF fetches per book from edge logs (cf_traffic.py already reads Cloudflare; add a PDF path filter). Report weekly in the growth report: free takes, paid v0.0.2, rate.
+  2. Add an opt-in checkbox/field "Email me when this book is updated" beside each free download (Mailchimp tag per book; UK consent wording as for the chapter form). Download stays free with or without it.
+  3. Last page of each v0.0.1 PDF: dated "free first edition" line + the counted list of what the update adds + internal link to the book's page.
+  4. "Changes since the free edition" block on each book page (counts only, neutral wording).
+  5. On each new edition: one update email per book tag, one reminder max, through Mailchimp; never to people who did not opt in.</li>
+<li><strong>Expectations to state honestly:</strong> with today's traffic (181 search impressions, 0 clicks in October) the free takes are likely few dozen at most, so expect 0-1 upgrade sales per book until takes reach ~100. The update email to opt-ins is the one lever with a 5-10% precedent.</li>
+<li><strong>Rules:</strong> price changes, new email journeys and the opt-in field are PROPOSALS (QUEUE-after-framing.md / bizdev BRIEF.md); the project lead's editorial rules apply to every public line; never name the project lead; no outbound links on the site.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>lennysnewsletter.com (read 31 Oct 2026; freemium 3-5/6-8%, trial 8-12/15-25%, distribution buckets)</li>
+<li>substack.com (read; "5-10% ... 10% being a rate to aim for")</li>
+<li>reddit.com (search snippet only; ~3% median, not checked)</li>
+<li>authorsguild.org (read; 19% bought new, 29% library)</li>
+<li>cedwyn.bucklerfamily.estate (read live 31 Oct 2026)</li>
+</ul><p class="raw">Raw Markdown: <a href="free-first-edition-to-paid-update-conversion-benchmarks-trigger.md">free-first-edition-to-paid-update-conversion-benchmarks-trigger.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

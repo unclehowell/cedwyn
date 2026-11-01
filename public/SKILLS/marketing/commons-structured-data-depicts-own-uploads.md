@@ -28,7 +28,6 @@ Harvested 30 Oct 2026 (skills harvest ~15:45Z). Status for Cedwyn: PROPOSED (app
   - Depicts: the most specific item, marked prominent. For example Q97403861 for the church or Q17741052 for the bridge.
   - Captions in en, cy and es, neutral and dated, e.g. "St Dochdwy's Church, Llandough, from the south, 2026".
   - P571/P170/P1071 as relevant.
-  - Llandough means the one near Penarth. Check the item before tagging; never the Cowbridge Llandough.
   - **Llandough Farm is not Great House Farm**; never tag a Llandough Farm image as the farm.
   - **No Wikidata item for the farm will be created by us.** COI, and notability not checked; owner decision.
 - **Workflow:** run `tools/commons_depicts_audit.py --category "<our upload category>"` before and after. Aim for 0 files without depicts and 0 without en/cy captions.

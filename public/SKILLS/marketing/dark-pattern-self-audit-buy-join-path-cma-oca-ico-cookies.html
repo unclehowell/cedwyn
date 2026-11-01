@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Dark-pattern self-audit of the buy and join path (CMA online choice architecture + ICO cookie tests), 2026 · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Dark-pattern self-audit of the buy and join path (CMA online choice architecture + ICO cookie tests), 2026"><link rel="alternate" type="text/markdown" href="dark-pattern-self-audit-buy-join-path-cma-oca-ico-cookies.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Dark-pattern self-audit of the buy and join path (CMA online choice architecture + ICO cookie tests), 2026</h1>
+<p>Topic: a 15-minute audit, run before every change to /ebooks/, /learn/ or a signup form, checking we use none of the "online choice architecture" (OCA) tricks UK regulators target. Not legal advice; check with an adviser. Urgency and countdown copy rules sit in uk-dmcc-act-urgency-reviews-price-copy.md and honest-launch-deadlines-uk-dmcc-banned-practice-7.md. Subscription rules sit in uk-subscription-regime-dmcc-academy-stripe-by-design.md. This file is the wider design checklist.</p>
+<h2>Why it matters (numbers)</h2>
+<ul>
+<li><strong>Dark patterns work, which is why they are tempting.</strong> In Luguri &amp; Strahilevitz's study (Journal of Legal Analysis 13(1), 2021; 1,963 US adults), acceptance of a dubious paid plan was:</li>
+<li>11.3% in the control group;</li>
+<li>25.4% with <em>mild</em> dark patterns;</li>
+<li>37.2% with <em>aggressive</em> ones.
+  These figures are as tabulated by deceptive.design ch.21, treating drop-outs as rejections. The paper puts it as "more than twice / almost four times". Strahilevitz: the mild ones "are most insidious" because they lift take-up without visible backlash.</li>
+<li><strong>UK regulators enforce it.</strong> The ICO ran three cookie tests over the UK's top 1,000 sites:
+  1. Advertising cookies stored before the visitor chooses?
+  2. Is reject as easy as accept?
+  3. Advertising cookies set without consent?
+  Results: by Dec 2025, 979 of 1,000 complied (415 with no intervention, 564 after letters); 17 got preliminary enforcement notices. In Apr 2026, 992 passed and the ICO published final storage-and-access guidance. These are ICO figures as compiled by inth.com; ico.org.uk timed out from our box, so they are not read at source.</li>
+<li><strong>The CMA/ICO joint paper "Harmful design in digital markets"</strong> (DRCF PDF) names harmful defaults, confirmshaming, biased framing, bundled consent and "nudge" designs as data-protection <em>and</em> consumer-law risks. Under the DMCC Act the CMA can fine directly, up to 10% of turnover (see the DMCC file).</li>
+</ul>
+<h2>The checklist (pass = none present)</h2>
+<p>Each row: the pattern | what to look for | how to test it.</p>
+<ol>
+<li><strong>Pre-ticked consent</strong> | Checkbox <code>checked</code> by default on email or terms | grep the HTML for <code>type="checkbox"</code> and <code>checked</code>.</li>
+<li><strong>Bundled consent</strong> | One box covering terms + marketing | Separate boxes, marketing optional.</li>
+<li><strong>Confirmshaming</strong> | Decline link worded to shame ("No thanks, I don't care about history") | Read every close/decline label.</li>
+<li><strong>Hidden or drip costs</strong> | Price at checkout higher than the shop card (VAT, fees) | Compare /ebooks/ card price vs Stripe page total, in en/cy/es.</li>
+<li><strong>Sneaking</strong> | Extra item or donation added to the basket | Open each Payment Link; only the one product should show.</li>
+<li><strong>Forced account</strong> | Sign-up required to buy a one-off e-book | Guest checkout via Stripe.</li>
+<li><strong>Obstruction</strong> | Cancel/unsubscribe harder than join | Count clicks to join vs cancel; the unsubscribe link sits in every email.</li>
+<li><strong>Nagging</strong> | Popup returns after dismissal in the same session | Dismiss, then reload twice.</li>
+<li><strong>Fake scarcity / social proof</strong> | "Only 3 left", invented counters | Digital goods have no stock; only real, sourced numbers.</li>
+<li><strong>Trick wording</strong> | Double negatives on consent | Read aloud once.</li>
+<li><strong>Cookie/tracker without consent</strong> | Third-party scripts (pixel, gtag, Clarity) loading before a choice | List the <code>&lt;script src&gt;</code> hosts and Set-Cookie headers per page.</li>
+<li><strong>Reject not equal to accept</strong> | Only applies if a banner exists | Equal-weight buttons, same layer.</li>
+</ol>
+<h2>How we apply it to Cedwyn (audit run 31 Oct 2026, fetch of live HTML, no JS)</h2>
+<ul>
+<li><strong>/ebooks/: PASS on 1, 2, 9, 11.</strong></li>
+<li>The sample-chapter form's consent box is unticked and <code>required</code>. Its wording is specific: "Email me the free first chapter and up to one update a week ... Unsubscribe any time", with a privacy link.</li>
+<li>No third-party script hosts and no Set-Cookie.</li>
+<li>The page calls <code>fbq('track','Lead')</code> only <code>if(window.fbq)</code>, but no Meta pixel script is loaded, so the call is dead code.</li>
+<li><strong>Watch item:</strong> if anyone ever adds the Meta pixel, a consent banner with an equal Reject button must ship <em>first</em>, because rows 11 and 12 would then apply.</li>
+<li><strong>/learn/ (Academy join): PASS on 1 and 7 by design.</strong></li>
+<li>Two unticked boxes: "I'm starting a £49.99/month subscription, charged every month until I cancel" and the 14-day waiver.</li>
+<li>The Join button stays disabled until both are ticked.</li>
+<li>Cancel is via the Stripe billing link on every page.</li>
+<li><strong>Home /:</strong></li>
+<li>Consent strings for the voucher, merch and Great House II notify forms are per-purpose ("One email, unsubscribe any time"), so they pass row 2.</li>
+<li>A <code>ghf_lang</code> preference cookie (1 year, first-party) is set by script.</li>
+<li><strong>PROPOSED check, not a change:</strong> confirm it is written only after the visitor picks a language, or on a <code>?lang=</code> link they followed. The ICO's strictly-necessary exemption covers things the user asked for. If it fires on every first load, propose switching to localStorage only, which the script already uses as well. Needs the project lead's GO as a site change.</li>
+<li><strong>Not checked this run:</strong> rows 4 and 5 (Stripe page totals per locale; needs a browser walk) and row 8 (needs JS). Hand these to the next SALES FIX run: one 390 px browser pass, with screenshots kept in its folder.</li>
+<li><strong>Process:</strong> add this checklist as a gate to the weekly CEDWYN ONPAGE run's audit (markup check only; any fix is PROPOSED). Log fails to the project workspace, never to the project lead.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>Luguri J., Strahilevitz L. (2021) "Shining a Light on Dark Patterns", J. Legal Analysis 13(1):43-109, academic.oup.com (abstract via search); deceptive.design/book/contents/chapter-21/ (read; table + quotes)</li>
+<li>inth.com (read; summarises ICO releases of Jan 2025, Dec 2025, Apr 2026 and an FOI of 29 May 2026); ico.org.uk 2025/12 news item (timed out, not read)</li>
+<li>drcf.org.uk Harmful design in digital markets, ICO-CMA joint position paper (search snippet); gov.uk CMA "Online Choice Architecture" papers (page read, PDF not read)</li>
+<li>Live HTML of cedwyn.bucklerfamily.estate /, /ebooks/, /learn/, /argentina/, /research/ fetched 31 Oct 2026 ~19:43Z</li>
+</ul><p class="raw">Raw Markdown: <a href="dark-pattern-self-audit-buy-join-path-cma-oca-ico-cookies.md">dark-pattern-self-audit-buy-join-path-cma-oca-ico-cookies.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

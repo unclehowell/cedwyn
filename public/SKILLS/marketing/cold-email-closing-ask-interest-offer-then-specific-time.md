@@ -33,7 +33,6 @@ Harvested 31 Oct 2026 (~07:00Z) by the skills harvest. Topic: cold email / outre
    - **Checked on the 26 existing drafts-engine bodies:** 21 read as REQUEST, which is correct for disclosure letters. None was misread as a meeting ask. The other 5 were statement-style letters (4 NONE, 1 OTHER), which is fine for statutory mail.
 
 ## How we apply it to Cedwyn
-- **Where it applies:** marketing outreach only. That means talk organisers (Cowbridge History Society, u3a, Probus/Rotary, civic societies), B2B pitches (`b2b-pitch-uk-companies.md` already ends on "Open to learning more?", an interest ask, which is correct) and press/newsletter pitches.
 - **Where it doesn't:** the hive and drafts-engine disclosure letters (FOI, EIR, SAR, complaints). They correctly end on a specific request. Leave them alone.
 - **Default offer for heritage societies:** "a one-page record pack (1824 survey extract and timeline) for your members, free, plus a 45-minute records-trail talk if it suits your 2027-28 programme. Want me to send the pack?" This uses material that is already public on the site. It needs no spend and no new assertions.
 - **Talk bookings:** after a society replies yes, the next email offers two dated slots. It doesn't send a link to "pick a time".

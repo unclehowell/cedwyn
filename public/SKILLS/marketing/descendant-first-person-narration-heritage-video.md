@@ -38,7 +38,6 @@ Date: 2026-10-30. Trigger: the project lead's ask at 19:04 on 30 Oct. The Story 
 - **Never:**
   - Name the aunts.
   - Confuse Llandough Farm with Great House Farm.
-  - Cite Llandough near Cowbridge for our parish.
 - **AI likeness:** keep the existing AI-likeness disclosure label on YouTube, Meta and TikTok; see `ai-founder-digital-twin-intro-disclosure-youtube-meta-tiktok.md`. First person does not remove the label.
 
 ## Lint before voicing (free, our own script, nothing installed)

@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Skill: Simple sequential A/B test (stop early only for a clear winner) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Skill: Simple sequential A/B test (stop early only for a clear winner)"><link rel="alternate" type="text/markdown" href="sequential-ab-test-miller-2sqrtN-stopping-rule.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Skill: Simple sequential A/B test (stop early only for a clear winner)</h1>
+<p>Written 1 Nov 2026 (skills harvest). Topic: A/B testing with very little traffic, where looking at results every day is unavoidable. Adds a stopping rule to <code>ab-testing-small-lists.md</code>, which states to fix the sample size in advance "or use a method built for sequential looks" but gives no such method.</p>
+<h2>What the source shows (read in full, 1 Nov 2026)</h2>
+<p>Evan Miller, "Simple Sequential A/B Testing" (evanmiller.org, 13 Oct 2015). Miller is the author of the widely used free A/B calculators.
+- <strong>The rule.</strong> Choose N in advance. Split visitors 50/50 at random. Count only successes: T for the treatment, C for the control. If T−C reaches 2√N, stop: the treatment wins. If T+C reaches N, stop: no winner. Failures are ignored, so you only need a click or sale counter per arm.
+- <strong>Why it's safe to peek.</strong> If both arms convert equally, T−C is a fair coin-flip random walk. The chance it ever reaches d* within N steps is the gambler's-ruin probability. d* ≈ 1.96√N keeps false winners at about 5%; 2√N rounds up to be conservative. Miller's own simulation script checks this.
+- <strong>Exact plan table (alpha 0.05, power 0.8).</strong> These are counts of successes, not visitors:
+  - 50% lift: N = 170, d* = 26, on average 120 successes to finish if the lift is real.
+  - 20% lift: N = 808, d* = 56.
+  - 10% lift: N = 2,922, d* = 106.
+- <strong>When it saves time.</strong> Under a real effect it ends up to 17% sooner than a fixed-size test. For a "blockbuster" (true effect twice the planned one) it saves 25–53%. With no effect, it is usually slower than a fixed test.
+- <strong>Where it works.</strong> It works best at low conversion rates (10% or less). At 20% and above it loses to a fixed-size test. It is one-sided: it only detects the new version beating the old.
+- <strong>Rules of use.</strong> Never stop before d* or N is reached, and never extend past N, or the inference breaks.</p>
+<p>Our tool reproduces Miller's table exactly. <code>tools/seq_ab.py plan --lift 0.5</code> gives N 170 / d* 26, and <code>--lift 0.2</code> gives 808 / 56. It also gives <em><em>100% lift: N 62, d</em> 16</em><em>, and <em><em>200% lift: N 27, d</em> 11</em></em>.</p>
+<h2>How-to</h2>
+<ol>
+<li><strong>One change, two arms, random 50/50.</strong> Alternate by visitor or by send. Never this week vs next week.</li>
+<li><strong>Pick the success event before starting.</strong> Use a click on the buy or signup link, tagged <code>utm_content=a|b</code>, or a sale. Never opens.</li>
+<li><strong>Plan.</strong> Run <code>python3 tools/seq_ab.py plan --lift &lt;smallest lift worth acting on&gt;</code>. Write N and d* in the test log before the first visitor.</li>
+<li><strong>Check as often as you like.</strong> Run <code>python3 tools/seq_ab.py check --N .. --d .. --t T --c C</code>. It prints CONTINUE, TREATMENT WINS or NO WINNER.</li>
+<li><strong>Act on the verdict.</strong> On TREATMENT WINS, ship it. On NO WINNER, keep the control: the change wasn't worth the plan's lift. Either way, log it and move on. Don't restart the same test to get another chance.</li>
+<li><strong>Before reading any verdict, check the split.</strong> Run the SRM check (<code>sample-ratio-mismatch-srm-check-ab-tests.md</code>). A broken 50/50 split voids the result.</li>
+<li><strong>Remember wins shrink.</strong> Expect the effect to come out smaller than the test showed (<code>winners-curse-exaggeration-ratio-shrink-ab-lifts.md</code>).</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Traffic is tiny.</strong> The W43 growth row shows about 554 non-US visits a week to Cedwyn and 0 sales. A sales-based test can't finish. Only big changes on a high-frequency click are testable.</li>
+<li><strong>Example.</strong> A test on the site-wide /ebooks/ strip or the buy button wording, success = click through to /ebooks/, planned for a 100% lift, needs at most 62 clicks and a lead of 16. At roughly 10 strip clicks a week (not measured yet; read Cloudflare/UTM first), that is up to about 6 weeks.</li>
+<li><strong>Run one test at a time, site-wide.</strong> Run it on the shared CTA, not per webapp, so all 59 webapps feed one counter.</li>
+<li><strong>The trilingual e-book pages count as one test.</strong> Assignment is per visitor, and language stays as a recorded segment, not a separate test.</li>
+<li><strong>Email.</strong> With 1 confirmed Mailchimp subscriber, email tests are off until the list passes a few hundred. Until then use the fixed-size helper (<code>tools/ab_stats.py</code>) for anything else.</li>
+<li><strong>Logging.</strong> Record each test in the project workspace: hypothesis, N, d*, start date, verdict. Public pages show no test wording. Never test prices or urgency assertions without the dark-pattern and DMCC checks (<code>uk-dmcc-act-urgency-reviews-price-copy.md</code>).</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>evanmiller.org (read in full 1 Nov 2026: rule, power equations, plan tables, conversion-rate table)</li>
+<li>evanmiller.org (already cited in ab-testing-small-lists.md)</li>
+<li>Tool: tools/seq_ab.py (own, stdlib, ~4 KB). Exact d* from the gambler's-ruin sum, power-based N search, check verdicts. Checked against Miller's table rows (170/26, 808/56).</li>
+</ul><p class="raw">Raw Markdown: <a href="sequential-ab-test-miller-2sqrtN-stopping-rule.md">sequential-ab-test-miller-2sqrtN-stopping-rule.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

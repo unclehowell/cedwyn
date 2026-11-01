@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Auto-replies and institutional acknowledgements: tell machine from human by the headers (RFC 3834) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Auto-replies and institutional acknowledgements: tell machine from human by the headers (RFC 3834)"><link rel="alternate" type="text/markdown" href="auto-replies-rfc3834-institutional-acks-header-triage.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Auto-replies and institutional acknowledgements: tell machine from human by the headers (RFC 3834)</h1>
+<p>Written 2026-10-31 ~20:30Z (skills harvest). Complements cold-email-reply-triage-first-72-hours.md, which classifies by BODY words; this one classifies by HEADERS first, then captures what an institution's auto-ack actually gives us (a reference number and a clock).</p>
+<h2>Why it matters tonight</h2>
+<p>About 30 case emails left the project lead's Gmail on 31 Oct (sent-log.md). Public bodies (HMLR, TNA, Vale FOI unit, GLD, Companies House) answer within seconds with automated acknowledgements, and some staff are on leave. An auto-ack is a receipt, not evidence and not a reply. Counting it as a reply inflates reply rate; answering it can start a mail loop; ignoring it loses the case reference we need for every chase.</p>
+<h2>The facts (primary sources)</h2>
+<ul>
+<li>RFC 3834 (IETF Standards Track, K. Moore, Aug 2004; read): an automatic response SHOULD carry <code>Auto-Submitted: auto-replied</code>. Values are <code>no</code>, <code>auto-generated</code>, <code>auto-replied</code> or an extension, optionally followed by <code>;</code> parameters. Responders SHOULD NOT reply to any message whose Auto-Submitted is anything other than <code>no</code>.</li>
+<li>RFC 3834: "away from my mail" responders SHOULD NOT send the same response to the same sender more than once in several days; 7 days is the RECOMMENDED default. So a second OOO from the same person within a week usually will not come: absence of a second OOO is not proof they are back.</li>
+<li>RFC 3834: <code>Precedence</code> is not a standard field and its use varies; do not rely on it alone.</li>
+<li>Nylas cookbook "Detect out-of-office and auto-replies" (updated 14 Jun 2026; read): header check first (Auto-Submitted any value except <code>no</code>; <code>X-Autoreply: yes</code>; <code>X-Autorespond</code> present; Microsoft <code>X-Auto-Response-Suppress: All/OOF</code>), then a localized subject check ("Automatic reply", "Out of office") only as a fallback, because older IMAP/vacation setups send without headers and subject-only matching misfires. Its line "auto-reply rates around 8 to 15 percent of all responses during holiday periods" names no study: not checked, do not quote.</li>
+<li>Gmail Help 22839 (read): many bounces from invalid addresses can block sending for up to 24 h, so bounces (mailer-daemon / delivery status notification, RFC 3464) are a separate class with a separate action: fix or remove the address.</li>
+</ul>
+<h2>Playbook</h2>
+<ol>
+<li>Fetch each inbound reply WITH full headers (the connected Gmail returns payload headers; ask for format=full/metadata, not just the snippet).</li>
+<li>Classify in this order: BOUNCE (From mailer-daemon/postmaster or Content-Type multipart/report; report-type=delivery-status) &gt; AUTO (Auto-Submitted != no, X-Autoreply, X-Autorespond, X-Auto-Response-Suppress, or <code>List-Id</code>/<code>Precedence: bulk|list|auto_reply</code>) &gt; subject fallback (Automatic reply / Out of office / Absence / Ateb awtomatig / Allan o'r swyddfa) &gt; HUMAN.</li>
+<li>For AUTO, split two kinds:
+   - ACK (organisation receipt): capture the reference (patterns like CAS-123456, 00211722, COH1234567X, D260928, IR/xx), the promised clock ("within 20 working days", "5 working days"), and the addresses it states to use. Write them to the HubSpot task as one dated line. The statutory clock runs from receipt (FOI s10: 20 working days; EIR reg 5: 20 working days; UK GDPR SAR: one month), not from the ack.
+   - OOO (person away): capture the return date and any named alternative contact. Do not resend the email. Set the follow-up for return date + 2 working days. If an alternative contact is named for urgent matters, that is a decision for the case owner, not an automatic forward.</li>
+<li>Never reply to an AUTO message (loop rule). Never mark a task "replied" on an AUTO. Reply rate = HUMAN / (sent - BOUNCE).</li>
+<li>Weekly: count per organisation sent / ack / OOO / human / bounce; an org that only ever acks and never answers by the statutory date is a chase or complaint candidate (cold-email-follow-up-cadence-small-uk-b2b-list.md for cadence).</li>
+</ol>
+<h2>Tool</h2>
+<p><code>tools/auto_reply_headers.py</code> (own, stdlib, written this run, nothing installed): reads a JSON list of messages ({"headers":{...} or [{"name","value"}], "subject", "snippet"/"body", "from"}) on stdin or a file and prints class (BOUNCE/AUTO_ACK/AUTO_OOO/HUMAN), the signal that decided it, references found and a return date if stated. Run before reply_triage.py; only HUMAN goes on to body triage.</p>
+<h2>How we apply it to Cedwyn / the case</h2>
+<ul>
+<li>EMAIL INGEST (the project workspace) already logs auto-acks as receipts (root rule 19:59Z). PROPOSED (needs the project lead's GO only if it changes what the site shows; internal logging needs none): add the header check so ingest records the ack reference and the statutory due date on the matching HubSpot task automatically, and keeps acks out of MR_CANDIDATES / catalogue candidates.</li>
+<li>The 08:00 morning brief should list human replies only; acks become one count line ("9 acknowledgements, refs logged").</li>
+<li>Reader mail to [address kept in the project workspace]: our own future auto-ack (reader-enquiry-response-time-auto-acknowledgement.md) MUST carry <code>Auto-Submitted: auto-replied</code> and follow the 7-day once-per-sender rule, so it never loops with an institution's responder.</li>
+<li>Contact nobody; this changes classification only.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>rfc-editor.org (read)</li>
+<li>developer.nylas.com (read, updated 14 Jun 2026)</li>
+<li>support.google.com (read)</li>
+</ul><p class="raw">Raw Markdown: <a href="auto-replies-rfc3834-institutional-acks-header-triage.md">auto-replies-rfc3834-institutional-acks-header-triage.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

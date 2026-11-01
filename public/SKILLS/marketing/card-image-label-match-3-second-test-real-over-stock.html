@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Card images must show what the card states (image-label match for heritage/tour/shop cards) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Card images must show what the card states (image-label match for heritage/tour/shop cards)"><link rel="alternate" type="text/markdown" href="card-image-label-match-3-second-test-real-over-stock.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Card images must show what the card states (image-label match for heritage/tour/shop cards)</h1>
+<p>Skill harvested 2026-10-31 ~21:12Z. Topic: CRO / page design; image choice on cards, tiles and listings.</p>
+<h2>The evidence</h2>
+<ul>
+<li>NN/g eyetracking ("Photos as Web Content", Jakob Nielsen; read 31 Oct 2026): "a dramatic gap in how users approach website images: Some types of pictures are completely ignored. This is typically the case for big feel-good images that are purely decorative. Other types of pictures are treated as important content and scrutinized. Photos of products and real people (as opposed to stock photos of models) often fall into this category." Information-carrying images get looked at; filler gets skipped.</li>
+<li>NN/g "7 Tips for Memorable and Easy-to-Understand Imagery": tip 2, avoid stock photos - generic, not specific to your content, reused by others (snippet read).</li>
+<li>MarketingExperiments/MECLABS test (2011, debt-counselling homepage banner): real person vs top stock photo -&gt; visitors who saw the real person were 35% more likely to sign up (figure as reported by CXL; ME blog post read, it reports the test; the 35% is CXL's number, not re-derived).</li>
+<li>Wingify/VWO case (Jason Thompson, blog contact section): own photo vs generic icon -&gt; 48% more conversions, reported statistically significant (read).</li>
+<li>ConversionSciences (snippet only, not fetched): switching stock shots to real crew/equipment photos lifted lead sign-ups 45%.
+Read across: a card image is a promise of what is behind the click. A mismatch (stables on a B&amp;B card) wastes the only glance a mobile visitor gives and erodes trust in the rest.</li>
+</ul>
+<h2>The 3-second card test (run on every card, at 390 px)</h2>
+<p>Cover the title. Show only the image to someone (or describe it in five words yourself). If those five words don't name the card's offer, the image fails.
+| Card states | Image must show at a glance | Fails |
+|---|---|---|
+| B&amp;B / stay | guest bedroom, breakfast table, house exterior with door/windows | stables, landscape, horse |
+| Riding / estancia ride | horse + rider in landscape | empty field, building |
+| Museum / archive | object, document, display case, reading room | generic landscape |
+| E-book | the cover, ideally on a device/page spread | a random period photo |
+| Tour / walk | people walking the place, path, signpost | close-up artefact |
+| Event / date | the event happening, or the place set for it | a logo |</p>
+<h2>How-to</h2>
+<ol>
+<li>Inventory: list card title -&gt; image file -&gt; five-word description of what the image shows (look at each image; filenames lie).</li>
+<li>Score each: MATCH / WEAK (related but not the offer) / MISMATCH.</li>
+<li>Fix order: MISMATCH first, then WEAK on the highest-traffic page.</li>
+<li>Source order: (a) a real photo of the actual place/thing (best; real beat stock/generic in the 35%/48% tests; real vs AI-generated was not tested in any source read); (b) best-matching image already in the library; (c) generated image that depicts the offer specifically, labelled per the AI-image skill (ai-image-labels-disclosure-engagement-meta-youtube.md), no real-family likeness; (d) never stock models.</li>
+<li>One image, one idea: no collage on a card; crop so the subject fills the 4:3 or 16:9 frame at 390 px (a bed at thumbnail size must still read as a bed).</li>
+<li>Alt text = what the image shows AND ties to the card ("Guest bedroom at the estancia B&amp;B"), not the filename or the card title repeated.</li>
+<li>Don't reuse the same image on two cards with different offers - the second card then promises the wrong thing.</li>
+<li>Measure: card click-through (clicks / card views) before and after; with low traffic, treat it as a hygiene fix rather than an A/B test (see small-traffic testing skills in INDEX).</li>
+<li>Re-check each cycle: when a card's title or offer changes, its image is re-checked in the same commit.</li>
+</ol>
+<h2>How we apply it to Cedwyn (PROPOSED - no runner, schedule or send route changed)</h2>
+<ul>
+<li>Patagonia/Argentina cards (a worker is fixing tonight): add the 3-second test + MATCH/WEAK/MISMATCH table to its report and keep it as a reusable checklist file for later passes; the project lead expects several cycles (HubSpot task asked for at 20:52).</li>
+<li>Ask once (via the root, when convenient) for real photos of the B&amp;B/estancia: real images are the strongest option in every test above; generated images are a stopgap.</li>
+<li>Extend to /shop/, /ebooks/ (cover on the card, never a landscape), /movie/ door cards (a frame from that door's film), /learn/ academy cards.</li>
+<li>Add an "image matches card" line to the daily site flywheel's 390 px check and to the onpage flywheel audit (proposal only).</li>
+<li>Reuse audit: grep the repo for image paths used by more than one card with different titles.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>nngroup.com (read 2026-10-31)</li>
+<li>nngroup.com (snippet)</li>
+<li>marketingexperiments.com (read; 2011 test)</li>
+<li>cxl.com (read; reports the 35%)</li>
+<li>wingify.com (read; 48%)</li>
+<li>conversionsciences.com (snippet only; 45% not checked)</li>
+</ul><p class="raw">Raw Markdown: <a href="card-image-label-match-3-second-test-real-over-stock.md">card-image-label-match-3-second-test-real-over-stock.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

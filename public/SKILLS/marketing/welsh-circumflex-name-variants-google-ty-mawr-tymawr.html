@@ -1,0 +1,54 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Welsh circumflex and name variants in Google: Tŷ Mawr, Ty Mawr, Tymawr · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Welsh circumflex and name variants in Google: Tŷ Mawr, Ty Mawr, Tymawr"><link rel="alternate" type="text/markdown" href="welsh-circumflex-name-variants-google-ty-mawr-tymawr.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Welsh circumflex and name variants in Google: Tŷ Mawr, Ty Mawr, Tymawr</h1>
+<p>Harvested 31 Oct 2026, 22:16Z (skills harvest). Priority from the root: Google ranking for a niche heritage page with zero search clicks. Tonight Tymawr (one word) was added as a recorded variant (CVG/EC/3/1/3/13). The question is which spelling people type, and whether Google treats them as the same word.</p>
+<h2>What the primary sources establish</h2>
+<ul>
+<li><strong>Google matches accented and plain forms, but not uniformly.</strong> From Google Search Central Blog, "How search results may differ based on accented characters and interface languages" (1 Sep 2006; still published, read 31 Oct 2026):</li>
+<li>for a query with or without an accent, "our algorithms consider web pages that contain versions of that word both with and without the accent";</li>
+<li><strong>but</strong> "the set of accented characters that are treated as equivalent to non-accented characters varies based on the searcher's interface language", and "documents in the chosen interface language tend to be considered more relevant".</li>
+</ul>
+<p>Most searchers for Llandough use an English interface, so whether ŷ is folded to y for them is <strong>not documented</strong>. Treat it as unknown and cover both forms on the page.
+- <strong>Mueller's answer (Google), 25 Jun 2021 hangout,</strong> transcript on seroundtable.com (read):
+  - Google matches the exact form and also detects "alternate spellings ... and treat[s] them as synonyms as much as possible". That is "not ... binary", so results are "very similar but ... not necessarily exactly the same".
+  - Advice: "focus on the correct version ... but if the correct version is not really the commonly used version then it's not problematic to also include the commonly used version as well".
+  - Don't rename to the popular form: "if you just include the alternate version of that name in your information for the website then it's a lot easier for us to say, well these kind of belong together".
+- <strong>One word versus two</strong> (Tymawr / Ty Mawr) is a separate case from the accent. It relies on the same synonym and spelling systems, which Mueller describes as a "rough guess". So the one-word form needs to appear in text too.
+- <strong>Typing reality:</strong> on a UK English phone keyboard, ŷ needs a long-press. The Welsh learners' threads (reddit r/learnwelsh, read in snippet) explain the hirnod to learners, which states the plain form is what most English-keyboard users type. This is our inference, not a measured share.</p>
+<h2>What I measured on Cedwyn (31 Oct, 22:12Z, live)</h2>
+<ul>
+<li><strong>Homepage</strong>, title "Cedwyn Estate", no H1, 1,261 words: contains "Tŷ"; contains <strong>neither "Ty Mawr" nor "Tymawr"</strong>. sales-fix PR #86, not merged, retitles it "Tŷ Mawr (Great House Farm), Llandough · Cedwyn Estate", still circumflex only.</li>
+<li><strong>The case page</strong> /research/bp-properties-v-buckler/ also has "Tŷ" but not "Ty Mawr".</li>
+<li><strong>Search Console</strong>, 3–30 Oct, domain-wide: 181 impressions, 0 clicks, 0 impressions on any Tŷ Mawr / Great House Farm / Llandough query (sales-fix log). Either form may be the one we're missing.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Keep Tŷ Mawr as the main form</strong> (it is the correct one, per Mueller) in titles and H1s.</li>
+<li><strong>Add the plain and one-word forms once, in visible text near the top of each key page</strong>, as a natural gloss rather than a keyword list. For example: "Tŷ Mawr (also written Ty Mawr, and Tymawr in a 1975 county survey), known in English as Great House Farm, Llandough". Key pages: the homepage, /ebooks/, the case page, /nomenclature/, /wales/, the tour page.</li>
+<li><strong>Meta description:</strong> use the plain form "Ty Mawr" once. Descriptions show bold on matching terms, and the plain form is what most people type.</li>
+<li><strong>Structured data:</strong> on the Place/LandmarksOrHistoricalBuildings or WebPage entity, set <code>name</code> "Tŷ Mawr (Great House Farm)" and <code>alternateName</code> ["Ty Mawr","Tymawr","Great House Farm","Cedwyn"]. The pattern is already in site-name-breadcrumb-structured-data-cedwyn.md.</li>
+<li><strong>URLs stay ASCII</strong> (ty-mawr, not t%C5%B7-mawr). Links are copied and typed; the anchor text can carry the accent.</li>
+<li><strong>Don't stuff.</strong> One gloss per page. Google's title doc warns against "Foobar, foo bars" lists.</li>
+<li><strong>Measure</strong> (day 28 after the build): in the Search Console Performance query filter, use a "Custom (regex)" filter <code>(?i)t(y|ŷ) ?mawr|tymawr|great house farm</code>. Split impressions by form to learn which one people actually type. Then adjust which form leads the description; the title keeps the correct form.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>PROPOSED, nothing committed here.</strong> Hand this to whoever owns each branch:</li>
+<li>PR #86 (homepage title): add "Ty Mawr" to the description, e.g. "Tŷ Mawr (Ty Mawr / Great House Farm), Llandough…", and add an H1.</li>
+<li>the nomenclature worker: the new full table should show Tymawr / Ty Mawr / Tŷ Mawr as text, which it will.</li>
+<li>section/research: add the one-line gloss on the case page.</li>
+<li><strong>Public text rules:</strong> the gloss names a place and a record, not a family holding. No banned words. Llandough Farm is a different place, and the gloss must not merge them.</li>
+<li><strong>Same rule for other Welsh names on the site:</strong> Cwm Cedwyn / Cedwyn, Llandochau / Llandough. Correct form first, the common English-keyboard form once.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>developers.google.com (read 31 Oct 2026)</li>
+<li>seroundtable.com (Mueller transcript, 28 Jun 2021; read)</li>
+<li>developers.google.com (read)</li>
+<li>reddit.com (snippet only)</li>
+<li>Live fetches of cedwyn pages 31 Oct 22:12Z; the project workspace (GSC numbers)</li>
+</ul><p class="raw">Raw Markdown: <a href="welsh-circumflex-name-variants-google-ty-mawr-tymawr.md">welsh-circumflex-name-variants-google-ty-mawr-tymawr.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

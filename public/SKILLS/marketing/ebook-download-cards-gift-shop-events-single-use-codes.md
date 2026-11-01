@@ -19,7 +19,6 @@ Harvested 29 Oct 2026 23:15Z (skills harvest). Topic: letting someone **buy or b
 - Pilot: 40 cards at one venue for 8 weeks. Success = at least 10 redeemed and at least 2 newsletter signups from the batch. Under 5 redeemed in 8 weeks: stop at that venue, keep the codes valid until expiry.
 
 ## How we apply it to Cedwyn
-- **Use cases:** talk nights (cowbridge-history-society-talk-route.md, library-venue-talk-vale-libraries-booking.md), Open Doors (open-doors-cadw-heritage-open-days-event.md), and a heritage/museum gift shop or visitor centre in the Vale or Cardiff if one agrees (companies only).
 - **Redeem path:** the card points to a Cedwyn /ebooks/ (or a /redeem/ page if one is built) with the code prefilled where the checkout supports it; purchases stay inside /ebooks/ per RULES.md. UTM: utm_medium=print&utm_source=card&utm_campaign=<batch>.
 - **Gates (all the project lead's):** any venue approach is a HubSpot draft for the project lead to review and send himself; the card price and any venue cut are pricing decisions -> proposal in QUEUE-after-framing.md; printing costs money -> zero spend means we hand over a print-ready PDF/HTML, and the project lead decides whether to print. Card text never names the project lead, no banned words, nothing about family holdings or addresses.
 - **Test before print:** one test code end to end (create -> redeem -> file delivered -> code dead on second try) and record the result in the project workspace before any batch.

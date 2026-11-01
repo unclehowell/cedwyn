@@ -15,7 +15,6 @@ Harvested 2026-10-27 09:13Z. This answers "find history societies to contact wit
 
 **First run (09:12Z, Vale of Glamorgan + Cardiff):** 35 matches, 10 corporate, 33 with a published email. The keyword match on activities text pulls in some unrelated charities (choirs, community groups), so **a human relevance pass is required**.
 - **Corporate (email allowed, with opt-out):** Penarth Civic Society (CIO 1182348), South Wales Aviation Museum (CIO 1203288), Aviation Heritage Foundation Ltd (1127909), Panavia Tornado Preservation Group (CIO 1163207), Ruperra Conservation Trust (company 1054796).
-- **Unincorporated (no cold email; post, or wait for their opt-in):** Cardiff Archaeological Society (225579), Llantwit Major Local History Society (256883), Cardiff Civic Society (517544), Cowbridge & District Museum Trust (517702), Friends of the Glamorgan Heritage Coast (519187), Friends of Llancaiach Fawr (1010180), Glamorgan Family History Society (1059537), Cowbridge History Society (1094061), Friends of Cathays Cemetery (1138931), Cardiff Museum Development Trust (1135241).
 - **Gap:** societies that aren't registered charities (income under £5,000 doesn't require registration) won't appear, and no Marconi group showed up in these two areas. Re-run with `--areas` widened to neighbouring authorities. A "Wales"-level area value is not checked.
 
 ## How-to
@@ -27,7 +26,6 @@ Harvested 2026-10-27 09:13Z. This answers "find history societies to contact wit
 6. Record the legal form and source date in the CSV so the lawful basis can be shown later.
 
 ## How we apply it to Cedwyn
-- Today's marketing list for the "Welsh history / Penarth / Llandough / roundhouse" hooks: the 5 corporate rows go to HubSpot drafts for the owner to send; the 10 unincorporated ones get a letter or talk offer (see `civic-local-history-society-talks-penarth.md`, `cowbridge-history-society-talk-route.md`, `family-history-society-journals-forums.md`).
 - Keep this list separate from the research/disclosure correspondence. These are sales and marketing contacts only.
 - This replaces LinkedIn scraping entirely: the data is open, licensed and published by the organisations themselves.
 

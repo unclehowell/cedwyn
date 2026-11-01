@@ -13,7 +13,6 @@ Harvested 2026-10-26 (skills harvest). Topic: local search / Maps visibility for
 - If the project ever runs **in-person heritage walks** at set times with a meeting point, a *service-area* profile becomes possible (no home address shown) - only then, and only with the project lead's go-ahead.
 
 ## What to do instead (free, allowed)
-1. **Own-site place markup**: on the Tŷ Mawr / Llandough-juxta-Penarth hub page add JSON-LD `Place` (or `LandmarksOrHistoricalBuildings`) with `geo` coordinates of the former site, `containedInPlace` Llandough (Vale of Glamorgan, CF64), and a clear "demolished 1988" description. This disambiguates from Llandough near Cowbridge (CF71) - the exact mix-up in the OS FOI reply.
 2. **Contribute to places that exist**: photos (with captions) of St Dochdwy's church and the Llandough area from our own archive or own photos on their existing Maps listings; caption each with the historical link ("Tŷ Mawr / Great House Farm stood nearby until 1988 - cedwyn archive"). Only images we own the rights to; no links in captions are clickable, so keep it to a name people can search.
 3. **Wikidata/Commons** carry the place identity better than Maps for a lost building (see wikimedia-commons-wikidata-heritage-coi.md; COI rules apply).
 4. **Local search without GBP**: rank the hub page for "Ty Mawr Llandough", "Great House Farm Llandough Penarth" via the topic-cluster plan and Search Console striking-distance work.

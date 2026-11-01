@@ -14,7 +14,6 @@ The national u3a site has a Local History subject page with a link to "history t
 
 ## How to do it (steps)
 1. **One talk, one title, one paragraph.** 40-45 min plus questions. Title names a place and a question, not a product. Have a 3-sentence bio and an equipment line (laptop/HDMI, or no slides) ready; the secretary forwards these as-is.
-2. **Find the Speakers Secretary.** Each u3a site (u3asite.uk pattern) lists a contact or a speakers page. Target nearest first (Penarth, Barry, Cowbridge/Vale, Cardiff, then the South Wales network area). Not checked today which Vale u3as exist; look up via the u3a "Find a u3a" tool before drafting.
 3. **Approach email (draft only):** subject = talk title; body = blurb, length, fee position ("free, travel expenses only" for a first talk is the realistic ask at £0-150 budgets), dates you cannot do, and an offer of a 10-minute call. No attachments on first contact.
 4. **On the day:** no sales table push. One closing slide with a QR code to the free edition on our own site (utm_source=u3a&utm_campaign=<group>), plus a printed half-sheet with the same link. Sign-up sheet for the newsletter only with explicit tick-box consent.
 5. **After:** thank-you email within 48 h; ask if they will add the talk to their list for the Speakers Secretaries Conference. Log result in HubSpot (attendees, QR scans, sign-ups, sales).

@@ -15,7 +15,6 @@ Written 30 Oct 2026 for Cedwyn. Before this, no skill file named Trevelyan. Aim:
 | St Quintin lames the devil near **Llanblethian**: the "Devil's Right Kneecap and Left Foot" marks on the hillside | Llanblethian | 154 | |
 | Frog-woman on the road **between Llandaff and Cardiff**, said to fall into the Taff | Llandaff | 304 | |
 | Llandaff provides performers for a Mari Llwyd-style Christmas wassail | Llandaff | 33 | |
-| Phantom funeral at the gates of **Llandough Castle** | **Llandough near Cowbridge, NOT our Llandough** | 187 | The doctor drives "from Sigginston, via Llanmihangel, to Cowbridge". Never use it for Llandough-juxta-Penarth. |
 
 The book has no story for Great House Farm / Tŷ Mawr, Llandough (Penarth) or Cogan. The nearest is Leckwith, a neighbouring parish.
 

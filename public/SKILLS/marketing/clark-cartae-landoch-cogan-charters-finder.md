@@ -19,10 +19,7 @@ naming "the great road from Cogan to Cardiff" is a stronger post than any summar
   DCXLVIII-DCLXXXVI (pp.704-760), are one archive of grants to the Reigny/Regny family. Nearly
   every Landoch charter in the run names Cogan as a neighbour or witness, and three also name
   Kaerdif or Pennarth (scan of 30 Oct 2026). Still check each charter's bounds before citing it.
-- **Not ours (Llandough near Cowbridge):**
-  - p.983: a 1305 charter dated at Lanblethyan. Clark's own note states it "relates to Llanblethian, by Cowbridge".
   - pp.650-651: the fee list entry "Adam Walensis j. feodum in Landochhe". The Walsh (Walensis)
-    family held Llandough Castle near Cowbridge, so treat this as Cowbridge unless a source proves otherwise.
   - p.232: Clark's St Hilary note (Stephen de St Hilary, "Langeton, in Landoch", next to Lanblethyan).
     This one is ambiguous. Stephen also appears in our run (DCLVIII), so cite neither for our parish
     until the bounds are read.

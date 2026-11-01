@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>security.txt (RFC 9116) for cedwyn.bucklerfamily.estate: a trust file UK institutions already publish · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: security.txt (RFC 9116) for cedwyn.bucklerfamily.estate: a trust file UK institutions already publish"><link rel="alternate" type="text/markdown" href="security-txt-rfc9116-uk-institutions-cedwyn-patch.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>security.txt (RFC 9116) for cedwyn.bucklerfamily.estate: a trust file UK institutions already publish</h1>
+<p>Date: 2026-10-31 · Harvest run (skills) · Status: how-to + PROPOSED file (no commit made)</p>
+<h2>What it is</h2>
+<p>A plain-text file at <code>/.well-known/security.txt</code> that tells anyone who finds a problem on the site (a broken form, a leaked file, an injected script) where to report it. It is an IETF standard (RFC 9116, April 2022). It is free, needs no account, and takes 6 lines.</p>
+<h2>Evidence (read today unless marked)</h2>
+<ul>
+<li>RFC 9116 (rfc-editor.org, read): <code>Contact</code> and <code>Expires</code> are required, and <code>Expires</code> "MUST always be present and MUST NOT appear more than once". It is "RECOMMENDED that the value of this field be less than a year into the future". The file must be served over https with <code>Content-Type: text/plain; charset=utf-8</code>. Also: "Not having a security.txt file may be preferable to having stale information in this file". So the expiry date needs a renewal reminder.</li>
+<li>UK institutions publish one (fetched live today):</li>
+<li>GOV.UK <code>/.well-known/security.txt</code> redirects to vdp.cabinetoffice.gov.uk: Contact (a reporting form and gov.uk), Policy, Acknowledgments, Last-Updated 2026-10-26, Expires 2027-01-26 (a 3-month rolling expiry).</li>
+<li>NCSC: <code>Contact: mailto:[address kept in the project workspace]</code>, Encryption, <code>Expires: 2028-09-11</code>, Policy, <code>Preferred-Languages: en</code>, Canonical.</li>
+<li>The National Archives (UK): Contact (a reporting form), Policy (disclosure-policy.txt), Canonical, <code>Expires: 28 Jan 2027</code>.</li>
+<li>BBC: a commented file with a disclosure policy.</li>
+<li>National Library of Wales (library.wales) answered 403 to a script, so not checked.</li>
+<li>Adoption numbers: Poteat &amp; Li, IMC 2021 (via the Wikipedia citation, read) found over 10% of top-100 sites publish one, with the share falling as more sites are counted. CISA (search snippet; page 403 to scripts) puts it at "about a half of a percent" of the top one million sites. Hilbig et al., ACM DTRAP 2023, "security.txt Revisited" (abstract snippet) found "a slight but steady increase" after the RFC, except among the top 100.</li>
+<li>So a small heritage publisher with one is in the same company as the archives and agencies it writes to. That is a quiet credibility signal for institutional readers and security-minded crawlers. No study links it to traffic or sales, and none is claimed here.</li>
+</ul>
+<h2>What we checked on cedwyn.bucklerfamily.estate today</h2>
+<ul>
+<li><code>/.well-known/security.txt</code>: 404. <code>/security.txt</code>: 404.</li>
+<li>The site already publishes a contact address on /privacy/: <code>[address kept in the project workspace]</code>. Use only that public address. Add no new personal address.</li>
+<li>No /contact/ page exists (404). /privacy/ exists (200) and can be the Policy link until a disclosure page exists.</li>
+<li>Responses come through Cloudflare. A Worker (agent-ready) already answers <code>/robots.txt</code>, <code>/llms.txt</code> and <code>/sitemap.xml</code> for this host. <code>/.well-known/mcp.json</code> is coded in that Worker but returns 404 on cedwyn today, so its routes do not cover <code>/.well-known/*</code> here. Side finding for the onpage run (llms.txt does not link mcp.json, so nothing visible is broken).</li>
+</ul>
+<h2>Method (any site)</h2>
+<ol>
+<li>Pick a public contact that a person reads (mailto or a form URL). Never a private address.</li>
+<li>Write the file: Contact, Expires (under 1 year; 3-6 months is the GOV.UK habit), Canonical, Preferred-Languages, Policy if one exists.</li>
+<li>Serve it at <code>/.well-known/security.txt</code> as text/plain utf-8 over https. Optionally mirror or redirect <code>/security.txt</code>.</li>
+<li>Validate: <code>curl -sI</code> shows 200 and text/plain; the fields parse; Expires is in the future. A free online checker such as securitytxt.org's form needs no account. Use a script check rather than any paid scanner.</li>
+<li>Put a renewal date 30 days before Expires into an existing schedule's notes (for example the weekly onpage run), because a stale file is worse than none.</li>
+</ol>
+<h2>PROPOSED file (repo path to confirm by the onpage run: the static web root's <code>.well-known/security.txt</code>, or one path-exact line in the agent-ready Worker)</h2>
+<pre><code>Contact: mailto:[address kept in the project workspace]
+Expires: 2027-04-30T23:59:59Z
+Canonical: cedwyn.bucklerfamily.estate
+Policy: cedwyn.bucklerfamily.estate
+Preferred-Languages: en, cy
+</code></pre>
+<p>If the static build drops dot-folders (check whether <code>.well-known</code> survives into dist), use the Worker route instead (the same pattern as <code>/robots.txt</code>):</p>
+<pre><code class="language-js">if (host === &quot;cedwyn.bucklerfamily.estate&quot; &amp;&amp; (p === &quot;/.well-known/security.txt&quot; || p === &quot;/security.txt&quot;))
+  return T(SECURITY_TXT); // const SECURITY_TXT = the 5 lines above + &quot;\n&quot;; T() already sends text/plain
+</code></pre>
+<p>The Worker route needs a Cloudflare route covering that exact path. Adding a route is a deploy, so the root decides. Cloudflare's dashboard also has a built-in security.txt setting. It is not checked whether that is on this plan, and the dashboard is account work, so it is not used here.</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Free, no account, no contact with anyone. It is a 5-line file. Deliver as a labelled PR (site-wide) or the Worker one-liner. The root merges or deploys. Never dispatch builds.</li>
+<li>Public text check: the file names no person, holds no banned words, no outbound links beyond its own host, and only the address already public on /privacy/.</li>
+<li>GO note: publishing <code>[address kept in the project workspace]</code> in a new place invites reports to that inbox. It is already public, so the root can treat this as a markup change. If unsure, add it to QUEUE-after-framing as a one-line proposal.</li>
+<li>Done when: `curl -sI cedwyn.bucklerfamily.estate returns 200 text/plain, the fields parse, and Expires is in the future. Record the check in the onpage audit, with renewal due 2027-03-31.</li>
+</ul><p class="raw">Raw Markdown: <a href="security-txt-rfc9116-uk-institutions-cedwyn-patch.md">security-txt-rfc9116-uk-institutions-cedwyn-patch.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

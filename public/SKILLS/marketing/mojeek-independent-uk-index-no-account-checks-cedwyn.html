@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Mojeek: the UK&#x27;s independent search index. Free, no-account checks for cedwyn (on-site action) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Mojeek: the UK&#x27;s independent search index. Free, no-account checks for cedwyn (on-site action)"><link rel="alternate" type="text/markdown" href="mojeek-independent-uk-index-no-account-checks-cedwyn.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Mojeek: the UK's independent search index. Free, no-account checks for cedwyn (on-site action)</h1>
+<p>Topic picked 31 Oct 2026 because 'mojeek' had 0 hits in INDEX.md, root-skip-additions.txt, the skill files and all of the project workspace It is search and AI visibility outside Google and Bing.</p>
+<h2>Why it matters (primary sources, read today)</h2>
+<ul>
+<li><strong>Its own crawler, index and ranking.</strong> It isn't a front end for Bing or Google. About page: "From a personal project to indexing over nine billion pages"; "2025 Mojeek passes 9 billion pages"; 2024 passed 8 billion; 2024 added Semantic Search and Search Summary. In 2015 it became "the only search engine in the UK ... to index over a billion pages".</li>
+<li><strong>The only independent European index.</strong> Mojeek blog, 18 May 2026: "In Europe, Mojeek stands alone, after two decades building an independent search engine with proprietary web crawler, search index and ranking".</li>
+<li><strong>It feeds other tools.</strong> It sells a Web Search API that third parties combine with "data from any search engine or large language model" (Mojeek blog, Mar 2023). Bing retired its Search APIs on 11 Aug 2025 (Mojeek community thread), which leaves few independent indexes for small search and AI tools to draw on. Being in Mojeek is cheap insurance outside Google and Bing.</li>
+<li><strong>No traffic share found:</strong> I found no 2026 share figure for Mojeek. Expect few direct visits. The value is coverage, not volume.</li>
+</ul>
+<h2>How Mojeek finds and ranks a site (Mojeek's own words)</h2>
+<ul>
+<li>"there is currently no way to manually submit your site to Mojeek". There is no sitemap or URL submission (blog 28 Mar 2015; community threads 2022-2025 repeat it).</li>
+<li>"Mojeek recommends getting prominent and genuine links to your site". Discovery is by links, so our inbound links (Wikidata, WikiTree, Zenodo, OpenAlex-type citations already in other skills) are what bring MojeekBot in.</li>
+<li>"Mojeek looks for explicit matches to the words or phrases in your search query" (How To Search, 2022). It ranks on literal keywords, so exact place-name variants in the page text count: Tŷ Mawr, Ty Mawr, Great House, Llandough, Llandochau, Leckwith, Lecwydd.</li>
+<li><strong>MojeekBot (bot.html):</strong> obeys robots.txt (the first record naming MojeekBot, else <code>*</code>); at most 1 page a second; ignores crawl-delay; obeys the noindex, nocache and nofollow meta tags. Verify a real visit by reverse DNS to crawl-*.mojeek.com, then forward DNS.</li>
+<li><strong>Check whether you're indexed:</strong> "search for the exact domain name ... If Mojeek has already indexed the site it will be presented at the top of the results page, along with a search box enabling you to search within the site."</li>
+</ul>
+<h2>What I checked today (no account)</h2>
+<ul>
+<li><strong>robots.txt allows it:</strong> cedwyn robots.txt is <code>User-agent: * / Allow: /</code> plus 3 sitemaps, so MojeekBot is allowed.</li>
+<li><strong>Cloudflare lets it through:</strong> a request with the MojeekBot user agent got 200 on <code>/</code> (120 KB) and <code>/ebooks/</code> (84 KB), with no cf-mitigated header.</li>
+<li><strong>Index status: not checked.</strong> Mojeek answers scripted queries from this box with "403 ... your network appears to be sending automated queries". It needs a real browser or a person.</li>
+<li><strong>Visit history:</strong> cf_traffic.py filters to <code>requestSource:"eyeball"</code>, so bot visits aren't counted yet.</li>
+</ul>
+<h2>Free, no-account actions (all on cedwyn.bucklerfamily.estate)</h2>
+<ol>
+<li><strong>Index check (browser, 1 minute):</strong> in a real browser, search mojeek.com for <code>cedwyn.bucklerfamily.estate</code>, then <code>"Ty Mawr" Llandough</code> and <code>"Great House" Llandough</code>. Record whether the domain shows with its site-search box, and where we rank. Log in the project workspace as engine=mojeek.</li>
+<li><strong>Crawl evidence (Cloudflare analytics, read-only):</strong> add a bot query to the visibility runner: count requests with a userAgent like '%MojeekBot%' over 7 days, and which paths. Zero hits in 30 days means no link path has reached us yet.</li>
+<li><strong>Keyword hygiene for a literal-match engine:</strong> make sure each key page's title, h1 or first paragraph carries the place-name variants as plain text, not only in images or JSON-LD. This is on-page markup and copy that the onpage flywheel can propose; body text changes stay PROPOSED.</li>
+<li><strong>Keep it open:</strong> never add a MojeekBot Disallow. If a future AI-bot block list is added to robots.txt, list MojeekBot under allowed.</li>
+<li><strong>Optional, needs GO because it adds a third-party element to a page:</strong> Mojeek's free search-box code (services/search/searchbox.html) could act as a site search, but it sends visitors off-site, which goes against the no-outbound-links rule. Recommendation: no.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>The weekly VISIBILITY CHECK adds Mojeek as a 6th engine: one browser search for the domain and the 3 fixed place queries, plus a MojeekBot hit count from Cloudflare.</li>
+<li>If we're not indexed after 30 days, it's a link problem, not a site problem. Lean on the existing free citation skills (Wikidata, WikiTree, Zenodo, Wikisource cite-back). Never buy links.</li>
+<li>No account, no spend, no contact. Mojeek's contact form is for bot complaints, not submissions, so we don't write to them.</li>
+</ul>
+<h2>Sources (read 31 Oct 2026)</h2>
+<ul>
+<li>mojeek.com (index milestones)</li>
+<li>mojeek.com (MojeekBot rules, verification)</li>
+<li>blog.mojeek.com (no submission; links; domain check)</li>
+<li>blog.mojeek.com (18 May 2026, independence)</li>
+<li>blog.mojeek.com (explicit-match ranking; snippet)</li>
+<li>blog.mojeek.com (API feeds LLMs/other engines; snippet)</li>
+<li>community.mojeek.com (Bing API retirement 11 Aug; snippet)</li>
+<li>cedwyn.bucklerfamily.estate (live)</li>
+</ul><p class="raw">Raw Markdown: <a href="mojeek-independent-uk-index-no-account-checks-cedwyn.md">mojeek-independent-uk-index-no-account-checks-cedwyn.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

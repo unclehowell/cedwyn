@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Print stylesheet for long research pages (save-as-PDF readers) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Print stylesheet for long research pages (save-as-PDF readers)"><link rel="alternate" type="text/markdown" href="print-stylesheet-long-research-pages-pdf-readers.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Print stylesheet for long research pages (save-as-PDF readers)</h1>
+<p>Date: 2026-10-31 · Harvest run (skills) · Status: how-to + PROPOSED patch (no commit made)</p>
+<h2>Why it matters (sources, read today)</h2>
+<ul>
+<li>Smashing Magazine (2013, read): "printer use is not tracked by website analytics software", so print "tends to be broadly ignored"; "a significant portion of people rely on pages printed from websites for reference".</li>
+<li>Smashing Magazine, Rachel Andrew, "State of print stylesheets in 2018" (read): anything a visitor "might want to use when away from their computer is also a good candidate" for print styles; also covers paged media and fragmentation (page breaks).</li>
+<li>A List Apart, Eric Meyer, "Going to Print" (read): one print stylesheet beats "printer-friendly versions"; serif body text, white background, and printing the address of each internal link after it with <code>a[href^="/"]:after { content: " (site" attr(href) ") " }</code>.</li>
+<li>Bryce Wray, 21 May 2025 (read): "a relatively small percentage of users actually print web pages anymore"; he loads print CSS only on <code>matchMedia('print')</code> / <code>beforeprint</code>, keeping it off the screen path.</li>
+<li>HP Developers, "Printing with CSS and media queries" (search snippet only; page 403 to scripts): a news article "should have been about 2 pages but took up 18 printed pages" because navigation printed. Not checked beyond the snippet.</li>
+<li>GOV.UK publishing design guide, "Print link" component (read): single pages get a print link; multi-page guides get "View a printable version of the whole guide". Government practice, not a number.</li>
+<li>Savio.no (Eivind Savio, 2013, read): print events can be counted in analytics. A print-only CSS background request to the site's own path shows in server logs.</li>
+</ul>
+<p>Honest read: no 2026 study gives a print share. Family-history readers are the group most likely to print or save as PDF for archive visits and family packs, so this is a low-cost reading improvement, not a traffic lever. Measure before claiming any effect.</p>
+<h2>What we measured on cedwyn.bucklerfamily.estate today (headless Chrome print-to-PDF, cache-busted, US Letter default)</h2>
+<ul>
+<li>/research/: 4 pages; /research/books/: 2 pages; /ebooks/: 5 pages (2.9 MB PDF from cover images).</li>
+<li>The live CSS already has <code>@media print</code> rules that unclamp <code>.cw-c</code> excerpts and static-position <code>.cw-ior .cw-p</code> popovers. Good start.</li>
+<li>Gaps seen in the rendered pages: the search box prints; video players and a thumbnail print as empty boxes; /research/ has 6 <code>&lt;details&gt;</code> blocks and their bodies stay collapsed on paper (Chrome does not open <code>&lt;details&gt;</code> for print); there is no page URL or date on paper; there are no page-break rules for headings and figures.</li>
+<li>The wiki palette sets <code>--wiki-text: #eaecf0</code> in dark mode. If dark mode is on when someone prints and the browser drops backgrounds (the default), light text lands on white paper. Force black on white in print only.</li>
+</ul>
+<h2>The method (any site)</h2>
+<ol>
+<li>Print three long pages to PDF and count pages and blank boxes. That is the baseline.</li>
+<li>In <code>@media print</code>: white paper and black text, serif body around 11pt; hide navigation, search, video/iframe, buttons, cookie or signup strips and the collapsed agent changelog footer.</li>
+<li>Open <code>&lt;details&gt;</code> on <code>beforeprint</code> and restore them on <code>afterprint</code> (JS, below). Add the CSS <code>::details-content</code> rule for browsers that support it.</li>
+<li>Print internal link targets after the link text (internal paths only; the site has no outbound links).</li>
+<li>Add break rules: <code>h2,h3{break-after:avoid}</code>, <code>figure,table,blockquote{break-inside:avoid}</code>, <code>img{max-width:100%}</code>.</li>
+<li>Put the page's own URL and "printed from" under the content so a paper copy can be traced back to the page.</li>
+<li>Optional count: a print-only background request to the site's own <code>/favicon.ico?print=&lt;page&gt;</code> shows in Cloudflare path analytics. Not checked here whether Chrome fetches it when backgrounds are off. Test once, then decide.</li>
+<li>Re-print the same three pages and record pages before and after.</li>
+</ol>
+<h2>PROPOSED patch (for a labelled PR or section branch; root merges; nothing committed)</h2>
+<p>Append to the shared theme stylesheet (or the wiki <code>&lt;style&gt;</code> block):</p>
+<pre><code class="language-css">@media print {
+  @page { margin: 15mm; }
+  html, body { background: #fff !important; color: #000 !important; }
+  body { font: 11pt/1.45 Georgia, &quot;Times New Roman&quot;, serif; }
+  a { color: #000 !important; text-decoration: underline; }
+  a[href^=&quot;/&quot;]::after { content: &quot; (cedwyn.bucklerfamily.estate&quot; attr(href) &quot;)&quot;; font-size: 85%; word-break: break-all; }
+  nav, header nav, form[role=&quot;search&quot;], input[type=&quot;search&quot;], .search, iframe, video,
+  .yt, .video, button, .share, .signup, .ebook-strip, footer details, .agent-changelog { display: none !important; }
+  details::details-content { content-visibility: visible; display: block; }
+  h1, h2, h3 { break-after: avoid; }
+  figure, table, blockquote, .cw-c { break-inside: avoid; }
+  img { max-width: 100% !important; height: auto; }
+  main::after { content: &quot;Printed from cedwyn.bucklerfamily.estate&quot; ; display: block; margin-top: 12pt; font-size: 9pt; }
+}
+</code></pre>
+<p>Plus a small script (before <code>&lt;/body&gt;</code>):</p>
+<pre><code class="language-html">&lt;script&gt;
+(function(){var o=[];addEventListener('beforeprint',function(){o=[].filter.call(document.querySelectorAll('details'),function(d){return !d.open});o.forEach(function(d){d.open=true})});
+addEventListener('afterprint',function(){o.forEach(function(d){d.open=false});o=[]})})();
+&lt;/script&gt;
+</code></pre>
+<p>Selectors such as <code>.yt</code>, <code>.ebook-strip</code> and <code>.agent-changelog</code> are placeholders. Match them to the real class names in the theme before the PR. White paper is a print-only exception to the "dark background, no white" screen rule. Before merging, confirm with the root that this is acceptable.</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Free, no account, one CSS block plus about 6 lines of JS. Deliver as a labelled PR (site-wide) or a section-branch change. The root merges. Never dispatch builds.</li>
+<li>Test pages: /research/, /research/books/, /ebooks/, one long wiki chronology page. Baseline above: 4 / 2 / 5 pages.</li>
+<li>Done when: no search box or video boxes on paper, all <code>&lt;details&gt;</code> text prints, the URL line appears, and page counts are recorded before and after in the onpage audit.</li>
+<li>Kill rule: if the PR breaks any 390 px screen check, revert to the current print rules (screen unaffected is the gate).</li>
+<li>Fits the weekly CEDWYN ONPAGE run (markup only). No body-text change.</li>
+</ul><p class="raw">Raw Markdown: <a href="print-stylesheet-long-research-pages-pdf-readers.md">print-stylesheet-long-research-pages-pdf-readers.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

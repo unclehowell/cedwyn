@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Support / donate button for a non-charity heritage project (UK, PayPal) — what converts, what the law and PayPal require · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Support / donate button for a non-charity heritage project (UK, PayPal) — what converts, what the law and PayPal require"><link rel="alternate" type="text/markdown" href="support-button-non-charity-uk-paypal-conversion.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Support / donate button for a non-charity heritage project (UK, PayPal) — what converts, what the law and PayPal require</h1>
+<p>Written 2026-10-31 by the skills harvest. Sources read tonight unless marked "snippet".</p>
+<h2>The facts that set the frame</h2>
+<ul>
+<li><strong>We are not a charity.</strong> Charities Act 1992 s.63 (legislation.gov.uk, read): soliciting money "in association with a representation that the institution is a registered charity" when it is not is an offence (fine, level 5). So: never "charity", "charitable", "tax-deductible", "Gift Aid", charity logos, or a charity number. Gift Aid is for charities/CASCs only (GOV.UK "Claiming Gift Aid as a charity or CASC").</li>
+<li><strong>PayPal fees (UK fees page, "Last Updated: 1 October 2026", read):</strong> "Standard rate for receiving domestic donations: Donation 2.9% + fixed fee"; fixed fee GBP 0.30. The charity rate (1.4% + fixed fee) is "subject to application and pre-approval" — not open to us. International donors add a percentage fee on top (EEA → UK 1.29%). A £10 gift nets about £9.41.</li>
+<li><strong>Account type (PayPal UK user agreement, read):</strong> "Business accounts are for people and organisations ... that primarily use PayPal to receive online payments for sales or donations." A personal account can't take button donations; use the business account already receiving e-book sales.</li>
+<li><strong>PayPal acceptable use (read):</strong> pre-approval is listed for "Collecting donations as a charity or non-profit organization". Not checked: whether PayPal would class a project "support" button as that. Safest wording is "Support the project" (a voluntary payment to a business), not "donate to a cause".</li>
+</ul>
+<h2>What converts (primary test data, mostly US nonprofit pages; apply with care)</h2>
+<ul>
+<li><strong>Baseline (M+R Benchmarks 2025, mrbenchmarks.com, read):</strong> 11% of desktop visitors to a main donation page gave, 8% on mobile, <strong>4% on mobile for small organisations</strong>. Across whole sites, 1.6% of all visitors gave, about $1.33 per visitor. Mobile was 52% of traffic but only 28% of revenue. 79% of nonprofits took PayPal, 58% Google Pay, 57% Apple Pay.</li>
+<li><strong>Say why before asking (NextAfter "8 A/B tests", read):</strong> adding a value proposition (several paragraphs on why to give) raised donor conversions by 150%.</li>
+<li><strong>Mark one amount "Most popular" (same source):</strong> pre-selecting $50 and labelling it "most popular" raised revenue 94%, and the average gift by $11.06; strongest on mobile. Only label an amount as most popular once the data shows it is.</li>
+<li><strong>Default to monthly (NextAfter experiment, read):</strong> defaulting the form to recurring took the conversion rate from 0.03% to 0.25% (+647.9%, 99.8% confidence, n=11,865). Average gift fell 38.1%, but revenue rose 362.6%. A second test (read) added a monthly callout box: monthly conversion went from 0.66% to 3.7% (+455%, 98.9%, n=599, mobile).</li>
+<li><strong>Suggested amounts by algorithm (Fundraise Up page, snippet):</strong> +4.2% average gift "without hurting conversion" in a 55-day test. Vendor claim, not checked.</li>
+</ul>
+<h2>The playbook</h2>
+<ol>
+<li><strong>Placement:</strong> a footer band on the homepage ("Support this initiative"), plus one line on the /argentina/ replica page and /movie/. Each button links to ONE internal page, /support/, never straight out to PayPal from every page. That one page carries the why, the amounts and the honesty lines, and it can be A/B tested.</li>
+<li><strong>/support/ page, top to bottom:</strong>
+   - One sentence on why: what the money does next. Tie it to a concrete next item, e.g. the sales-funded meter (sales-funded-research-meter-costed-archive-copy-goal.md): "the next £X pays for copies of records Y".
+   - Gift array: £5 / £10 / £25 / £50, £10 pre-selected (no "most popular" label until the data shows one), plus "other amount". Offer monthly as a clearly separate option ("£5 a month keeps the research going"). Start with a monthly callout box rather than defaulting to monthly: the 38% smaller average gift and UK expectations make a hard default a test, not a launch setting.
+   - Honesty block in small type: "Cedwyn is not a registered charity. Support payments are voluntary, are not tax-deductible and are not eligible for Gift Aid. They fund research, archive copies and the website." No refunds promise beyond PayPal's own process.
+   - A PayPal Donate button (PayPal-hosted page, which also takes cards without a PayPal login) or a Stripe Payment Link for "Support the project" (wallets: stripe-payment-links-wallets-apple-google-pay-link.md). Mobile is 52% of traffic, so Apple Pay / Google Pay matter more than a second PayPal button.</li>
+<li><strong>Thank-you:</strong> PayPal's return URL goes to /support/thanks/. One line saying what happens next, and the newsletter signup (welcome flow in 1.md). Record the source with ?src=footer|replica|movie (UTM rules already in the index).</li>
+<li><strong>Measure weekly:</strong> clicks to /support/, PayPal completions, revenue per visitor to /support/, monthly vs one-off. Benchmark: 4–8% of /support/ visitors on mobile. Under 2% after 300 visits means the why is weak; rewrite the top paragraph first. Test one change at a time (A/B stats rules are in the index).</li>
+<li><strong>Don't:</strong> use countdowns or fake urgency, use a charity look or "registered" wording, show public donor names without opt-in, or mix Ko-fi (ko-fi-tips-supporter-memberships-heritage.md) and PayPal buttons on the same page. One clear choice converts better than two.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li><strong>Blocker:</strong> the project lead has to supply the PayPal business email or a PayPal.me / hosted-button link (asked 31 Oct 21:51Z). Until then, build /support/ with the button area dark. Never publish a guessed address.</li>
+<li>Wording ties to tonight's direction: research → better data → public interest; e-books, merch and the documentary; then advertising and compute. Public page text: "Support the Cedwyn project: research, archive copies, the replica plans and the documentary." Don't name the project lead, no banned words, internal links only. The PayPal button is a payment hand-off, not an editorial outbound link, but confirm the site's outbound-link scanner allows the paypal.com form action, or route it through a /support/go redirect.</li>
+<li>Fold the costs into reporting: about 2.9% + 30p per gift, plus 1.29% for EEA donors and more from further afield (Argentina-side supporters). Report net, not gross, in the Sunday growth report.</li>
+<li>Programme office: record "support revenue / month" as a measure of the snowball (ads, compute) that the project lead described.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>legislation.gov.uk (read)</li>
+<li>gov.uk (read, title only: charities/CASCs)</li>
+<li>paypal.com (read; updated 1 Oct 2026)</li>
+<li>paypal.com (read)</li>
+<li>paypal.com (read)</li>
+<li>mrbenchmarks.com (read)</li>
+<li>nextafter.com (read)</li>
+<li>nextafter.com (read)</li>
+<li>nextafter.com (read)</li>
+<li>fundraiseup.com (snippet)</li>
+</ul><p class="raw">Raw Markdown: <a href="support-button-non-charity-uk-paypal-conversion.md">support-button-non-charity-uk-paypal-conversion.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

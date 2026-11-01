@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Alt text for linked card images: empty when the card title is in the same link, descriptive when the image stands alone · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Alt text for linked card images: empty when the card title is in the same link, descriptive when the image stands alone"><link rel="alternate" type="text/markdown" href="alt-text-linked-card-images-empty-when-title-in-link-h30.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Alt text for linked card images: empty when the card title is in the same link, descriptive when the image stands alone</h1>
+<p>Skill harvested 2026-10-31 ~21:27Z. Topic: CRO / accessibility / image SEO on card grids (shop, tours, /argentina/, /wales/, door cards). Neighbour skills: card-image-label-match-3-second-test-real-over-stock.md (which image), google-images-lens-archive-photos.md (image search), html-email-design-accessibility.md (email alt).</p>
+<h2>The evidence (read 31 Oct 2026 unless marked)</h2>
+<ul>
+<li>WebAIM Million 2026 (webaim.org, read): 1,000,000 home pages, 66.6 images per page (+13.6% in a year). 16.2% of all images (10.8 per page) had no alt text (18.5% in 2025). <strong>45% of images missing alt were linked images</strong>, so the link had no name; 1 in 4 linked images had no alt. 10.8% of images that had alt carried questionable or repetitive alt: "image", a file name, or <strong>text identical to adjacent text</strong>. Missing alt was on 53.1% of home pages, the second most common failure after low contrast.</li>
+<li>W3C WCAG 2.2 Technique H30 (read): Example 2, an image alone in a link takes alt naming the link's purpose; Example 3, when the <code>&lt;a&gt;</code> also contains text describing the purpose, the image takes <code>alt=""</code>.</li>
+<li>W3C WAI alt decision tree and Decorative Images tutorial (read via search page; tutorial pages are the source): image content conveyed elsewhere, or purely decorative, gets <code>alt=""</code>.</li>
+<li>WebAIM, "Alt text and linked images" (read): duplicating the caption in alt makes a screen reader say it twice ("Link. Photo of ... Photo of ..."); the better pattern is image AND caption inside one link with the image <code>alt=""</code>. "Any time an image is the only content within a link, the image MUST be given alternative text that presents the function of that link."</li>
+<li>Not tested here: any conversion effect of alt text. The case is accessibility (UK Equality Act duty of reasonable adjustment, not checked for this site's size) plus Google Images, which uses alt as a main signal (see google-images-lens-archive-photos.md).</li>
+</ul>
+<h2>The playbook (4 card shapes)</h2>
+<ol>
+<li><strong>Whole card is one link containing image + visible title</strong> (most Cedwyn cards): <code>alt=""</code> on the image. The title names the link. Writing "B&amp;B guest room" as alt next to a "B&amp;B" title is the repetitive-alt failure WebAIM counts.
+   - Exception: the photo carries information the title doesn't (a dated document scan, a map). Then alt describes only that extra ("1938 reversion deed, first page"), never repeats the title.</li>
+<li><strong>Image is its own link, title is a separate link to the same page</strong>: either merge into one link (preferred, one tab stop) or give the image link <code>alt=""</code> plus <code>aria-hidden="true" tabindex="-1"</code> on the duplicate link. Never two identically named links side by side.</li>
+<li><strong>Image is the only thing in the link</strong> (thumbnail strip, logo, gallery tile with no caption): alt names where it goes or what it opens: "Guesthouse bedroom, Patagonia — open gallery", not "image1.webp".</li>
+<li><strong>Image not in a link, not decorative</strong> (hero photo in an article): alt describes what a sighted reader gets, 5–15 words, no "image of", no keywords stuffed, language matching the page (<code>lang</code> cy/en/es pages get alt in that language).
+- Never: file names, "photo", "image", "banner", "placeholder", AI-prompt text, or the WordPress-style auto alt.
+- Ken Burns/background CSS images carry no alt; if one is the only depiction of the card's subject, use a real <code>&lt;img&gt;</code> instead (Google Images ignores CSS images too).</li>
+</ol>
+<h2>2-minute audit (stdlib, no install)</h2>
+<pre><code class="language-python">import re,requests
+h=requests.get(URL+&quot;?cb=1&quot;,timeout=20).text
+for a in re.findall(r&quot;&lt;a\b[^&gt;]*&gt;.*?&lt;/a&gt;&quot;,h,flags=re.S|re.I):
+    for img in re.findall(r&quot;&lt;img\b[^&gt;]*&gt;&quot;,a,flags=re.I):
+        alt=re.search(r'alt=&quot;([^&quot;]*)&quot;',img); alt=None if not alt else alt.group(1)
+        text=re.sub(r&quot;&lt;[^&gt;]+&gt;&quot;,&quot; &quot;,a).strip()
+        flag=(&quot;NO-ALT&quot; if alt is None else &quot;EMPTY-ALONE&quot; if alt==&quot;&quot; and not text else
+              &quot;DUPLICATE&quot; if alt and alt.lower() in text.lower() else
+              &quot;FILENAME&quot; if re.search(r&quot;\.(webp|jpe?g|png)$&quot;,alt or &quot;&quot;) else &quot;ok&quot;)
+        if flag!=&quot;ok&quot;: print(flag,&quot;|&quot;,alt,&quot;|&quot;,text[:60])
+</code></pre>
+<p>Any NO-ALT, EMPTY-ALONE, DUPLICATE or FILENAME line is a fix.</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Tonight's Patagonia card-image fix (the project lead 20:51) also changes alt. Per H30, a card whose <code>&lt;a&gt;</code> wraps image + title should get <code>alt=""</code>, not a new description repeating "B&amp;B". If the card markup has the image outside the title link, alt must describe the new image ("guest bedroom with wood stove, Patagonian guesthouse") so the image link isn't nameless.</li>
+<li>Spanish/Welsh pages: alt follows the page language; Spanish alt is copy and needs a speaker's check like other Spanish text, so use <code>alt=""</code> there where the title covers it (rule 1) rather than writing new Spanish.</li>
+<li>Add the audit snippet to the weekly ONPAGE run (proposal only; this run changed no runner).</li>
+<li>Door/movie cards and shop e-book covers: cover image + title in one link → <code>alt=""</code>; cover image alone → "<Book title> e-book cover".</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>webaim.org (2026 report, read)</li>
+<li>w3.org (read)</li>
+<li>webaim.org (read)</li>
+<li>w3.org ; w3.org (search snippets; not opened this run)</li>
+</ul><p class="raw">Raw Markdown: <a href="alt-text-linked-card-images-empty-when-title-in-link-h30.md">alt-text-linked-card-images-empty-when-title-in-link-h30.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

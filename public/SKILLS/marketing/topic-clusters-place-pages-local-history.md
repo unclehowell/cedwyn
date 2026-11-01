@@ -16,7 +16,6 @@ Harvested 2026-10-26 (skills harvest). Topic: SEO for the local-history long tai
 7. **Audit links.** Run `python3 tools/cluster_links.py <hub-url>`: lists cluster pages under the hub path in the sitemap and flags any the hub does not link to, and any that do not link back.
 
 ## How we apply it to Cedwyn
-- **First cluster candidate: Llandough-juxta-Penarth place names** (Tŷ Mawr / Great House Farm and its neighbours): hub = the place and its names over time; cluster pages = each map edition or record series that names it, each with its own reference (e.g. County Series Glamorgan 47 NW, OS name books at TNA OS 35/2503), extract and date. This doubles as the unambiguous location page the archive keeps needing (the CF64 Llandough near Penarth, not the CF71 Llandough near Cowbridge), which is genuine search demand and real-world confusion.
 - **Second: title chain** (one cluster page per conveyance or judgment, hub = /title-chain/), linking each page to the matching e-book anchor on /ebooks/ via the header upsell strip.
 - **Patagonia/Wales pair** only where we hold distinct records for each place; no template pages for Chubut towns we hold nothing on.
 - Keep the topic word in the URL folder so Search Console can filter it; internal links carry no UTMs.

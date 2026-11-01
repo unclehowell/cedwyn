@@ -18,7 +18,6 @@ Roughly 8x for article placement over an unplaced upload, 2x for Wikidata alone.
 ## Our target, read 31 Oct 2026
 - Llandough near Penarth = Wikidata Q6661223: has P18 (image "Penlan Road, Llandough (3).jpg"), NO P10; 8 sitelinks (ceb, cy, en, eu, fr, sv, zh-min-nan, commons).
 - en "Llandough, Penarth": 3,089 user views in 12 months (it already shows the 2022 farm photo by another user). cy "Llandochau Fach": 54. So the multi-language infobox route reaches small pages; the English article is the one with readers.
-- Llandough near Cowbridge is a different item (Q13644928) and the medieval tower house another (Q17744300): never attach our clip to the wrong Llandough.
 
 ## Rules that bind us
 - English Wikipedia: AI-generated images "should not be used in mainspace" (WP:AIIMAGES). Only real footage / map / public-domain-record clips qualify.

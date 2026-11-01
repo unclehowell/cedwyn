@@ -29,7 +29,6 @@ Date: 2026-10-26 (skills harvest 23:24). Status for Cedwyn: PROPOSAL. Inviting a
 ## How we apply it to Cedwyn
 - **Raw material we already have:** the daily Cedwyn movie scenes (the project workspace) and the archive-film decision file (youtube-premieres-archive-films-decision.md) give short, finished clips a partner can react to or build on.
 - **Natural partners** (to verify, do not contact yet):
-  - societies we already target for talks: Cowbridge, Penarth, Vale u3a (see the talk-route skills), many of which post lecture recordings;
   - Welsh-Patagonia cultural channels for a Spanish/Welsh co-upload (welsh-patagonian-societies-chubut-outreach.md);
   - People's Collection Wales contributors.
 - **Editorial rules travel with the video:** no banned words, the owner's name never appears, nothing about family holdings, no accusations about named people. The partner sees our rules before filming.

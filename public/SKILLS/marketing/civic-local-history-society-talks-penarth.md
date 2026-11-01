@@ -4,7 +4,6 @@ Skill: getting a guest-speaker evening with the civic and local-history societie
 Harvested 26 Oct 2026 (skills harvest 16:52). Zero spend.
 
 ## What the primary sources show (read 26 Oct 2026)
-- **Penarth Local History Society (PLHS)**: independent; monthly guest-speaker talks on local history and culture, 2nd Monday of the month, except June (a guided walking talk with a local historian), August and December. Venue: The Tabernacle Church, Plassey St, Penarth CF64 1EN (basement room); doors 19:15, start 19:30, finish about 20:30-21:00. Non-members pay £3 (cash), membership £20 a year, raffle £1. Contact goes by email to the Penarth Community Network address or the Penarth Civic Society chair, subject "PLHS Enquiry". Its listed community connections: Penarth Civic Society, Insole Court, Cowbridge History Society, Cardiff Civic Society. Read in full: penarthcommunitynetwork.org
 - **Penarth Civic Society** (formerly The Penarth Society): runs its own events and sub-groups and lists PLHS talks "due to similar interests and shared members and speakers". 2026 is billed as "Penarth's Year of Community Connections & Collaborations", with a cross-organisation series on Penarth's shipping and seafront history held across several venues. Tickets (free or paid) are booked through the society's own site. Read in full: penarthsociety.org.uk (page head and notes).
 - **Penarth Library** also hosts evening local-history talks (example: "1875: Crunch time for Penarth", 7pm start, from the library's Facebook post; snippet only, not checked).
 - **Sales and attendance**: no attendance or sales-per-talk figures were published. The shared-speaker note means one good talk at PLHS is likely to be seen by Civic Society organisers too (our reading, not a stated policy).
@@ -19,7 +18,6 @@ Harvested 26 Oct 2026 (skills harvest 16:52). Zero spend.
 7. Afterwards offer a short write-up for the society's newsletter or page, with one link to the free edition.
 
 ## How we apply it to Cedwyn
-- Order: PLHS (2nd Mondays, Penarth), then Cowbridge History Society and Cardiff Civic Society (named as PLHS connections; their routes not yet read).
 - Listing link: cedwyn.bucklerfamily.estate
 - Outreach is a HubSpot draft only, sent on the owner's go-ahead; public text never names the owner.
 - Repeat bar: 20 attendees, 5 sign-ups or 1 sale per talk.

@@ -11,7 +11,6 @@ Checked 30 Oct 2026 (pages read on this box; record counts from live searches of
 
 ## What the List holds near Llandough today (our own measurement, 30 Oct 2026)
 - Postcode radius 1 km around the hospital postcode CF64 2XX: **65 records**. By parish/date: Llandough 1898-1908 OS = 36, Llandough 1699 Parochialia = 1, **Llandough 1841 tithe = 1**, Michaelston-le-Pit 1841 tithe (via Cynefin) = 16, Michaelston-le-Pit OS = 3, Canton OS = 2, Leckwith OS = 1.
-- Name searches: "Llandough" 12 records (two different Llandoughs: near Penarth and near Cowbridge), "Leckwith" 9, "Cogan" 22, "Llandocha" 1.
 - **Gap:** the neighbouring parish has its tithe field names on the List, but Llandough parish has almost none (1 of 38). The 1840s Llandough tithe apportionment field names, plus any names in printed sources we already hold, are a genuine, fillable gap.
 
 ## How to do it (steps)

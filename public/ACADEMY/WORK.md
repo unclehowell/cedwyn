@@ -1,8 +1,8 @@
 # Work board
 
-Step 3 of 3. **103 open jobs**, regenerated every academy cycle from real gaps (last: 2026-10-31 18:41 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
+Step 3 of 3. **107 open jobs**, regenerated every academy cycle from real gaps (last: 2026-11-01 00:41 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
 
-## Find a missing record (57)
+## Find a missing record (60)
 
 - **J-946080** · MR-0001: Instrument recording the 1667 acquisition of Tŷ Mawr by the Williams family  
   *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
@@ -232,6 +232,18 @@ Step 3 of 3. **103 open jobs**, regenerated every academy cycle from real gaps (
   *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
   *Inputs:* /research/missing-records/mr-0057/; why: Hansard records an MP telling the Commons on 6 November 1951 that a director of Western Ground Rents was then a member of the Government (not named), and on 18 March 1955 naming two Members associated with the company. The company owned the farm from 1938 to 1969, and its agents wrote on 10 October 1952 that they would not proceed with the letting. The annual returns name every director on each return date, so they would show who sat on the board while the 1952 letter was written. Parcel: A and B (the whole holding as conveyed in 1938; plan not held).; likely holder: Registrar of Companies (the company's file), or The National Archives if the file was transferred on dissolution (not checked)
   *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
+- **J-91C8F3** · MR-0058: Glamorgan Archives items catalogued but not yet viewed: 1975 County Treasures survey, East Vale Local Plan, civic society files and 1971 aerial photographs  
+  *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
+  *Inputs:* /research/missing-records/mr-0058/; why: Seven entries in the Glamorgan Archives catalogue describe records bearing on the house and its setting between 1971 and 1992. The catalogue descriptions have been read; the items themselves have not been seen, so what they show is not checked. CVG/EC/3/1/3/13, ‘Photographs of sites in sector 7 of Penarth survey’ (c1975, one bundle), lists ‘Tymawr Farm, Llandough’ among the sites photographed for the South Glamorgan County Treasures survey, alongside School House, St Dochdwy Church and Llandough House. Our inference, not checked: this is Ty Mawr (Great House Farm), not Llandough Farm, and it may be the survey behind the ‘County Treasure’ description of the house relayed in December 1988. CVG/EC/3/1/3/1 probably holds the matching survey form (not checked). D387 holds the Penarth Town Council provisional list for the County Treasures survey, 1975. D1824/4/5, in the Penarth Civic Society planning papers, holds the East Vale Local Plan of 1987 and its 1991 review, with correspondence; a copy would fill MR-0044, whose catalogue entry is at present a placeholder. D1824/4/1 is a file headed ‘CADW’ (November 1990 to March 1992) and D1824/3/7 is the society’s correspondence of 1988-1992. D978/3/2/24-26 are aerial photographs taken on 6 July 1971 of Llandough Hospital and the area towards the Llandough trading estate; whether the farmhouse is in frame is not checked. Parcel: A (the farmhouse) for the survey photograph, form and list; parcel not identified for the local plan, the civic society files and the aerial photographs (the plan’s proposals map and the photograph frames would identify it).; likely holder: Glamorgan Archives (open to view in the search room; catalogue entries read, items not yet seen); record Glamorgan Archives CVG/EC/3/1/3/13: photographs of sites in sector 7 of the Penarth survey, c1975 (lists Tymawr Farm, Llandough)
+  *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
+- **J-4BBB20** · MR-0059: Ownership of the 0.74 ha Leckwith Road objection site beside the former quarry (open question)  
+  *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
+  *Inputs:* /research/missing-records/mr-0059/; why: The Inspector’s report on objections to the Vale of Glamorgan Unitary Development Plan (volume 2, section C13.3) records objection 232.4 by the Land Division of the Welsh Development Agency, seeking a housing allocation for ‘an area of land measuring about 0.74ha and located on the northern fringe of Llandough’. The report describes it as ‘a sloping area of pasture land with sporadic tree cover’ that ‘abuts Leckwith Road’, with its north-eastern boundary ‘formed by the upper lip of a former quarry/brickworks site now occupied by the Llandough trading estate’, and adds that ‘a previous Inspector also reached a similar conclusion when dismissing an appeal on this site in 1992’. Who owned the site, and whether it was ever part of Great House Farm, is not shown: an objector is not necessarily the owner. Open question: who held the title when the 1992 appeal and the plan objection were made, and whether the land appears in any earlier conveyance of the farm. Parcel not identified: the plan’s objection-site map, the 1992 appeal decision or the registered title plan would identify it.; likely holder: HM Land Registry (title register and plan, if registered); Vale of Glamorgan Council (planning register and the 1992 appeal file); the planning inspectorate’s appeal decision (not checked); record Vale of Glamorgan Unitary Development Plan, Inspector’s report on objections, volume 2, C13.3 (objection 232.4)
+  *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
+- **J-67C0A5** · MR-0060: Measured drawings of Great House Farm beyond the 1974 ground plan: first floor, roof, heights, the farm ranges and the yard (open question)  
+  *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
+  *Inputs:* /research/missing-records/mr-0060/; why: The replica plans for the house are built from the 1974 measured ground plan (NA/GL/89/208) and the 1974 record card, which give the outline and the room sizes. RCAHMW NA/GL/88/49 records that the first floor and roof trusses could not be examined in 1974. No record held gives the heights, the roof pitch, the first-floor layout, the size of the 19th-century east extension, the door and window positions, the sizes and uses of the farm ranges, or the line of the yard and boundary walls. In the replica plans these values are inferred and marked so, with wide tolerances. Open question: whether any photograph, survey or plan from 1900 to 1988 records them.; likely holder: Not known. Possible holders: RCAHMW (National Monuments Record), Glamorgan Archives (1975 survey photographs, 1971 aerial photographs), Welsh Government (aerial photography), the press photograph collections; record EV-0629
+  *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
 
 ## Close a chronology gap (10)
 
@@ -275,7 +287,7 @@ Step 3 of 3. **103 open jobs**, regenerated every academy cycle from real gaps (
   *Section:* wales · *Done when:* Each passage is either cited to a catalogue record (EV-####) and restyled as normal text, or left in the small italic style with neutral wording. Nothing is deleted.
   *Inputs:* /wales/; passages shown in the small italic style (class unsub)
 
-## Fix broken internal links (3)
+## Fix broken internal links (4)
 
 - **J-7B1B85** · 1 broken internal link(s) on /wiki/  
   *Section:* wiki · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
@@ -283,6 +295,9 @@ Step 3 of 3. **103 open jobs**, regenerated every academy cycle from real gaps (
 - **J-5DEF91** · 3 broken internal link(s) on /wayback/  
   *Section:* wayback · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
   *Inputs:* /wayback/; /wayback/websites/index.json; /wayback/text/_treeview.json; /wayback/pdf/_treeview.json
+- **J-66DB26** · 2 broken internal link(s) on /nomenclature/  
+  *Section:* nomenclature · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
+  *Inputs:* /nomenclature/; /research/missing-records/mr-0058/; /kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/
 - **J-DD015C** · 1 broken internal link(s) on /ebooks/  
   *Section:* ebooks · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
   *Inputs:* /ebooks/; /ebooks/api/free

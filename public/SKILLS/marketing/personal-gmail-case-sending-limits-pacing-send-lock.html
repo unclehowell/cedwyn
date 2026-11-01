@@ -1,0 +1,42 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Sending case email from a personal Gmail: limits, pacing and one-sender-at-a-time · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Sending case email from a personal Gmail: limits, pacing and one-sender-at-a-time"><link rel="alternate" type="text/markdown" href="personal-gmail-case-sending-limits-pacing-send-lock.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Sending case email from a personal Gmail: limits, pacing and one-sender-at-a-time</h1>
+<h2>The facts (primary sources)</h2>
+<ul>
+<li>Gmail Help 22839 "Limits for sending &amp; getting mail" (read 31 Oct 2026): "You have reached a limit for sending mail" appears after more than 500 recipients in a single email or more than 500 emails in a day; sending resumes "within 1 to 24 hours".</li>
+<li>Same page: if a large number of your emails cannot be delivered (invalid address, bounce), "You may be able to send emails again after 24 hours." So bounces, not volume, are the realistic risk for us: one evening of 30 sends is far under 500, but a handful of guessed or retired addresses (e.g. a wales.office@ that may be retired) costs more than volume does.</li>
+<li>Same page: if a recipient gets too much mail too fast you may see "receiving mail at a rate that prevents additional messages"; contact them another way.</li>
+<li>Google Workspace Admin "Gmail sending limits in Google Workspace" (search snippet, not read in full): 2,000/day per Workspace user, 500 for trial accounts. Not our case (free account).</li>
+<li>Google sender guidelines, support.google.com (read): since 1 Feb 2024 all senders to Gmail need SPF or DKIM and valid forward/reverse DNS; extra rules apply at 5,000+/day. Sending from gmail.com itself inherits Google's authentication, so this binds only if we ever send "as" a custom domain.</li>
+<li>Practitioner assertions seen but not checked: a Reddit r/GMail user's "~20 outgoing mail per hour" rate cap (no Google source; treat as not checked folklore); GMass blog "500 per rolling 24-hour period" for individual accounts (consistent with Google's page; "rolling" is GMass's word).</li>
+</ul>
+<h2>Playbook (personal Gmail, institutional one-to-one mail)</h2>
+<ol>
+<li>Volume: stay under 100 a day as a working ceiling (20% of Google's 500) so replies, forwards and chases never push the account to the lock. Our heaviest evening was about 30.</li>
+<li>Pace: 15-20 s apart is what our runs use; there is no Google-published per-minute figure, so pacing is courtesy and loop-safety, not a known threshold.</li>
+<li>Address hygiene before sending: only the organisation's own published address (site page or gov.uk listing), fetched that day; never a guessed pattern. Every bounce: stop sends to that org, fix the address, log it. Three bounces in one run: stop the run.</li>
+<li>One sender at a time: a single lock (one running send job per account) and a written send log checked BEFORE each send. On 31 Oct three Gmail drafts left the account at 20:08Z unedited, outside the run that was meant to edit them first; two processes acting on the same Drafts folder is exactly the failure a lock prevents.</li>
+<li>Drafts are live ammunition: a draft that must not go as-is (payment lines, placeholders) should be edited or deleted, not left in Drafts with a note elsewhere. Anyone (or any job) with access can press send.</li>
+<li>Verify each send in Sent and record the message id (our runs already do this); a send with no Sent record is unknown, not failed: check Sent before retrying, never resend blind.</li>
+<li>Signs to stop at once: "You have reached a limit for sending mail", a spike of mailer-daemon returns, or "receiving mail at a rate". Wait the stated 1-24 h; do not switch accounts to get round it.</li>
+</ol>
+<h2>How we apply it to Cedwyn / the case</h2>
+<ul>
+<li>PROPOSED (internal, no site change): a lock file the project workspace written by any job that sends from the project lead's Gmail, with its task id and start time; any other job finding a fresh lock (&lt;30 min) does not send or touch Drafts. Also: <code>sent-log.md</code> check by recipient+subject before each send (already the rule in runs 1-3).</li>
+<li>PROPOSED: drafts that are held for a policy reason (payment offer, hold date) get the hold written into the draft's subject prefix "[HOLD - do not send]" so a human or job sees it in Drafts itself.</li>
+<li>Daily ceiling 100 for case mail; marketing never goes from the personal Gmail (it goes via Mailchimp with its own rules).</li>
+<li>Bounces feed auto-replies-rfc3834-institutional-acks-header-triage.md (BOUNCE class) and the address is corrected in the HubSpot task before any re-send.</li>
+<li>Never send anything new because of this file; it governs how already-authorised sends are paced.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>support.google.com (read)</li>
+<li>support.google.com (read, requirements for all senders)</li>
+<li>knowledge.workspace.google.com (snippet only)</li>
+<li>gmass.co (snippet, vendor)</li>
+<li>reddit.com (snippet, not checked claim)</li>
+</ul><p class="raw">Raw Markdown: <a href="personal-gmail-case-sending-limits-pacing-send-lock.md">personal-gmail-case-sending-limits-pacing-send-lock.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
