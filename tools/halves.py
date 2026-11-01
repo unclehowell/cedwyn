@@ -17,7 +17,11 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.3.0'
+VERSION = '1.4.0'
+# 1.4.0 (1 Nov 2026, producer request 00:48 GMT): each place modal on the landing page gets a Tiles | 2D map | 3D switch
+# (web/_cedwyn/estate-maps.js, loaded after <main>; the 3D view lazy-loads web/_cedwyn/estate-3d.js). Both maps read
+# web/_cedwyn/parcels.json: the 59 parcels on H3 resolution-11 cells, the estate outline traced from the georeferenced estate plan
+# and the River Ely. Without JS the tiles stay as before. docs/ESTATE-MAPS.md. - Sion's Tab agent
 # 1.2.1 (27 Oct 2026, Sion 11:34 GMT): /argentina/ pictures purged of four pieces that are not the farm (NFA-0139, NFA-0049,
 # NFA-0103, NFA-0081); NFA-0015 replaced by REC-0001, a line drawing from the 1974 measured survey (see ARG_REC). - Sion's Tab agent
 # 1.2.0 (27 Oct 2026, Sion 09:45 GMT): the in-content pictures of /wales/ and /argentina/ are thumbnails; a tap opens the shared
@@ -595,6 +599,7 @@ def landing(sections, S, cfg, H):
 {place_modal(H, cfg, 'wales')}
 {place_modal(H, cfg, 'argentina')}
 </main>
+<script src="/_cedwyn/estate-maps.js?v=1.0.0" defer></script>
 <script>
 (function(){{
 var openers=[].slice.call(document.querySelectorAll('[data-open-modal]'));
