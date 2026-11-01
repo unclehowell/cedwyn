@@ -45,7 +45,10 @@ _XH = {'wales': set(_HV.get('wales_exclude', [])), 'patagonia': set(_HV.get('arg
 _area_doc = json.load(open(ROOT / 'data' / 'site-areas.json'))
 _source_by_id = {t['id']: t for t in CFG['themes']}
 _areas = _area_doc.get('areas', [])
-assert len(_areas) == 36 and len({a['id'] for a in _areas}) == 36, 'site area registry must define 36 unique public areas'
+# 31 Oct 2026: the area count is read from the registry (area_count), no longer fixed at 36; webapps take the next free
+# parcel slot (37 = That Old Chestnut) on the way to 59 - Sion's Tab agent
+_n_areas = int(_area_doc.get('area_count') or len(_areas))
+assert len(_areas) == _n_areas and len({a['id'] for a in _areas}) == _n_areas, 'site area registry must define area_count unique public areas'
 chain = []
 for _area in _areas:
     _sources = _area.get('source_themes', [])

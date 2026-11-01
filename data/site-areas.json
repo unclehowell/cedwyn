@@ -1,7 +1,7 @@
 {
   "schema": "cedwyn_page_areas/v1",
   "generated_for": "visitor-facing page area grouping; build/source themes remain intact for backward compatibility",
-  "area_count": 36,
+  "area_count": 37,
   "source_theme_count": 44,
   "mapping_note": "The slot number is a serendipity index only, not the historic tithe-apportionment plot number. A specific plot number must be added only after the EV-0215 parcel schedule has been checked row by row. This mapping does not assert ownership, boundaries, geography, or legal equivalence.",
   "merge_rules": [
@@ -529,6 +529,19 @@
       "path": "/blog/",
       "description": "Dated research posts.",
       "serendipity_slot": 36,
+      "parcel_record": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
+      "tithe_parcel_number": null,
+      "parcel_mapping_status": "historic_plot_number_pending_verification"
+    },
+    {
+      "id": "forensic",
+      "title": "Forensic Assessments",
+      "source_themes": [
+        "forensic"
+      ],
+      "path": "/forensic/",
+      "description": "One forensic assessment per institution, with every contact since its last assessment.",
+      "serendipity_slot": 38,
       "parcel_record": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
       "tithe_parcel_number": null,
       "parcel_mapping_status": "historic_plot_number_pending_verification"
