@@ -1,0 +1,40 @@
+name: Cedwyn flow-watch event signal
+on:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: ["build-cedwyn"]
+    types: [requested, in_progress, completed]
+    branches: [main]
+  schedule:
+    - cron: '*/5 * * * *'
+permissions:
+  contents: read
+  actions: read
+  id-token: write
+concurrency:
+  group: cedwyn-flow-watch-${{ github.event.workflow_run.id || github.event.after || github.run_id }}
+  cancel-in-progress: false
+jobs:
+  signal:
+    if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_run'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Send OIDC-authenticated GitHub event to Cedwyn flow watch
+        env:
+          FLOW_EVENT_URL: https://cedwyn.bucklerfamily.estate/x78s8jej33i8f8rrj4is88/flow-event
+          FLOW_HEALTH_URL: https://cedwyn.bucklerfamily.estate/x78s8jej33i8f8rrj4is88/flow-health.json
+        run: |
+          set -euo pipefail
+          TOKEN_JSON="$(curl -fsS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=cedwyn-flow-watch")"
+          OIDC_TOKEN="$(printf '%s' "$TOKEN_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["value"])')"
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ]; then printf '{"repository":{"full_name":"%s"},"event":"schedule"}' "$GITHUB_REPOSITORY" > /tmp/flow-watch-event.json; EVENT_FILE=/tmp/flow-watch-event.json; else EVENT_FILE="$GITHUB_EVENT_PATH"; fi
+          curl -fsS --retry 2 --retry-delay 1 --max-time 20 \
+            -H "Authorization: Bearer $OIDC_TOKEN" \
+            -H "Content-Type: application/json" \
+            -H "x-github-event: $GITHUB_EVENT_NAME" \
+            --data-binary "@$EVENT_FILE" \
+            "$FLOW_EVENT_URL"
+          HEALTH="$(curl -fsS --retry 2 --retry-delay 1 --max-time 20 "$FLOW_HEALTH_URL")"
+          printf '%s' "$HEALTH" | python3 -c 'import json,sys; x=json.load(sys.stdin); assert x.get("schema") == "cedwyn.flow-watch/1.0"; assert x.get("checked_at"); assert x.get("status") in ("HEALTHY","DEGRADED","CRITICAL"); print("Cedwyn flow-watch:", x["status"], "issues:", x.get("issues_count", len(x.get("current_issues", []))))'

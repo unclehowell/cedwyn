@@ -19,6 +19,9 @@ LLMS = """# Cedwyn
 - /academy/llms.txt : the academy map for language models
 - /academy/agents.json : read order, rules, flywheels and files as JSON
 - /academy/work.json : open, claimable jobs with definitions of done
+- /academy/FLYWHEELS/flow-watch.md : mandatory anti-stagnation protocol for every agent
+- /x78s8jej33i8f8rrj4is88/flow-health.json : live queue/build/publication health; check before and after work
+- /x78s8jej33i8f8rrj4is88/flow-events.json : recent operational issues and GitHub build-job transitions
 
 
 ## Opaque machine-agent bridge
@@ -61,8 +64,18 @@ def fetch_academy(d):
 def run(dist):
     d = pathlib.Path(dist); made = []
     n_ac = fetch_academy(d); print('academy_pointer: academy files', n_ac)
-    if n_ac and not (d / 'agents.json').exists() and (d / 'academy' / 'agents.json').exists():
-        shutil.copy(d / 'academy' / 'agents.json', d / 'agents.json'); made.append('agents.json (academy index)')
+    # Stamp the exact Agent Library source revision into its public manifest. The flow watchdog
+    # compares this with GitHub's agents branch to detect a library update that was not republished.
+    mirror = os.environ.get('MIRROR', 'mirror.git')
+    agent_commit = subprocess.run(['git', '--git-dir', mirror, 'rev-parse', '--verify', '-q', 'refs/heads/agents'], capture_output=True, text=True).stdout.strip()
+    academy_manifest = d / 'academy' / 'agents.json'
+    if n_ac and academy_manifest.is_file() and agent_commit:
+        agent_data = json.loads(academy_manifest.read_text(encoding='utf-8'))
+        agent_data['source_branch'] = 'agents'
+        agent_data['source_commit'] = agent_commit
+        academy_manifest.write_text(json.dumps(agent_data, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+        shutil.copyfile(academy_manifest, d / 'agents.json')
+        made.append('agents.json (current academy manifest + source commit)')
     if not (d / 'llms.txt').exists():
         extra = (d / 'academy' / 'llms.txt').read_text(encoding='utf-8') if (d / 'academy' / 'llms.txt').exists() else ''
         (d / 'llms.txt').write_text(LLMS + ('\n' + extra if extra else ''), encoding='utf-8'); made.append('llms.txt')
