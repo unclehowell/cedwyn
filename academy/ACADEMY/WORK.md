@@ -1,6 +1,6 @@
 # Work board
 
-Step 3 of 3. **108 open jobs**, regenerated every academy cycle from real gaps (last: 2026-11-01 06:46 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
+Step 3 of 3. **108 open jobs**, regenerated every academy cycle from real gaps (last: 2026-11-01 12:41 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
 
 ## Find a missing record (62)
 
@@ -439,6 +439,3 @@ Step 3 of 3. **108 open jobs**, regenerated every academy cycle from real gaps (
   *Inputs:* evidence catalogue items EV-0221-EV-0645; each item's own record; /academy/MEMORY/parcels.json
   *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
 
-## Recently closed (1)
-
-- J-66DB26 · 2 broken internal link(s) on /nomenclature/ (closed 2026-11-01)

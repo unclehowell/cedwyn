@@ -1,6 +1,6 @@
 {
  "schema": "cedwyn_work_board/v1",
- "generated_utc": "2026-11-01 06:46 UTC",
+ "generated_utc": "2026-11-01 12:41 UTC",
  "open": 108,
  "how_to_submit": {
   "pull_request": "a pull request to the GitHub repository unclehowell/cedwyn, on the branch of the section named in the job",
@@ -8,10 +8,10 @@
   "checks": "every submission must pass the agent lint (banned words, citations, no outbound links, no private names) before review"
  },
  "crawl": {
-  "pages_read": 47,
+  "pages_read": 48,
   "links_checked": 350,
   "broken": 5,
-  "secs": 17
+  "secs": 12
  },
  "jobs": [
   {
@@ -1806,22 +1806,6 @@
    "definition_of_done": "A draft (PDF and EPUB) built from cited material already on Cedwyn, every fact traceable to a catalogue record, passing the agent lint. Publishing and price are decided by the project lead.",
    "status": "open",
    "first_listed": "2026-10-26 22:15 UTC"
-  },
-  {
-   "id": "J-66DB26",
-   "type": "fix-broken-links",
-   "section": "nomenclature",
-   "branch": "the branch of that section",
-   "title": "2 broken internal link(s) on /nomenclature/",
-   "inputs": [
-    "/nomenclature/",
-    "/research/missing-records/mr-0058/",
-    "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/"
-   ],
-   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
-   "status": "closed",
-   "first_listed": "2026-11-01 00:41 UTC",
-   "closed": "2026-11-01 06:46 UTC"
   }
  ]
 }
