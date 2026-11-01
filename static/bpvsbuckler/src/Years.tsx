@@ -108,6 +108,14 @@ function buildGroups(): YearGroup[] {
   });
 }
 const GROUPS = buildGroups();
+const ALL_IMAGES = GROUPS.flatMap((group) => group.images);
+const DOCUMENTARY_IMAGE_KEYS = [
+  'MAP-1824', 'MAP-1841', 'EV-0224', 'N01', 'FLATHOLM-1897',
+  'N03', 'E112', 'CADW-1988-FH', 'CADW-1988-BARN', 'PURSER-1988'
+];
+const DOCUMENTARY_IMAGES: ImageItem[] = DOCUMENTARY_IMAGE_KEYS
+  .map((key) => ALL_IMAGES.find((item) => item.item === key))
+  .filter((item): item is ImageItem => Boolean(item));
 function groupForYear(year: number): YearGroup | undefined { return GROUPS.find((g) => g.year === year); }
 function yearOfScene(scene: Scene): number | null { return yearFrom(scene.date); }
 function GalleryModal({ year, items, onClose }: { year: number; items: ImageItem[]; onClose: () => void }) {
@@ -175,6 +183,33 @@ export function YearGallery({ onPick }: { onPick: (i: number) => void }) {
     </div>
   );
 }
+function DocumentaryContext({ year }: { year: number }) {
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [broken, setBroken] = useState<Record<string, boolean>>({});
+  const images = DOCUMENTARY_IMAGES.filter((item) => !broken[item.key]);
+  return (
+    <div className="year-stage-context">
+      <div className="year-stage-heading">
+        <span>DOCUMENTARY ARCHIVE</span>
+        <b>Photographs, maps and contemporary records</b>
+      </div>
+      <p className="year-stage-context-note">
+        No dated image is linked to this scene. These are selected archive items from other dates across the documentary collection; each date is shown as recorded, and none is presented as a depiction of the event on screen.
+      </p>
+      <div className="year-stage-context-grid">
+        {images.map((item) => (
+          <button type="button" className="year-stage-context-card" key={item.key} onClick={() => setGalleryOpen(true)}>
+            <img src={item.url} alt={item.title} loading="lazy" onError={() => setBroken((old) => ({ ...old, [item.key]: true }))} />
+            <span className="year-stage-context-date">{item.date}</span>
+            <strong>{item.title}</strong>
+          </button>
+        ))}
+      </div>
+      {galleryOpen && images.length > 0 && <GalleryModal year={year} items={images} onClose={() => setGalleryOpen(false)} />}
+    </div>
+  );
+}
+
 export function YearMediaViewer({ scene }: { scene: Scene }) {
   const year = yearOfScene(scene);
   const group = year === null ? undefined : groupForYear(year);
@@ -183,7 +218,7 @@ export function YearMediaViewer({ scene }: { scene: Scene }) {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [broken, setBroken] = useState(false);
   useEffect(() => { setIndex(0); setGalleryOpen(false); setBroken(false); }, [year]);
-  if (year === null) return <YearArtwork year={0} scenes={[scene]} />;
+  if (year === null) return <section className="year-stage"><DocumentaryContext year={0} /></section>;
   const current = items[index] || items[0];
   return (
     <section className="year-stage">
@@ -199,7 +234,7 @@ export function YearMediaViewer({ scene }: { scene: Scene }) {
           <button className="year-stage-expand" onClick={() => setGalleryOpen(true)}>{items.length > 1 ? 'Open gallery' : 'View image'} ⤢</button>
         </div>
       ) : (
-        <div className="year-stage-art"><YearArtwork year={year} scenes={group?.scenes.map((x) => x.scene) || [scene]} /><span>Illustrative reconstruction · no dated image is currently linked to this year</span></div>
+        <DocumentaryContext year={year} />
       )}
       {galleryOpen && items.length > 0 && <GalleryModal year={year} items={items} onClose={() => setGalleryOpen(false)} />}
     </section>
