@@ -280,7 +280,7 @@
   // with path = movie/<scene-id>/<scene-id>.<lang>.v<semver>.webm (src, when present, is where the same bytes already live).
   // Choosing an audio language loads THAT language's own video for the chosen version (never an audio-track swap over another
   // language's picture); a (scene, lang, version) not yet made shows the "video pending" image with its label in HTML.
-  // Doors with no renders in the manifest keep the older behaviour below. — Sion's Tab agent
+  // Doors with no renders in the manifest keep the older behaviour below. — Cedwyn editors
   var RV = {};
   function sceneOf(m) { var x = String((m && (m.scene || m.clip)) || "").match(/F\d{3}[A-Z]?/); return x ? x[0] : null; }
   function rendersOf(m) { if (m && m.cut) return [];   // an earlier cut chosen with the version chips plays as it always did
