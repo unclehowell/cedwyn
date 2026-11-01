@@ -2,7 +2,8 @@
  "schema": "cedwyn_areas/v1",
  "source": "data/site-areas.json",
  "order": "main menu reading order; previous/next wrap from the last area to the first",
- "count": 36,
+ "count": 38,
+ "parcel_total": 59,
  "areas": [
   {
    "id": "wiki",
@@ -16,7 +17,9 @@
     "/records/"
    ],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 1,
+   "of": 59
   },
   {
    "id": "docs",
@@ -27,7 +30,9 @@
    "group": "artifacts",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 2,
+   "of": 59
   },
   {
    "id": "wayback",
@@ -38,7 +43,9 @@
    "group": "artifacts",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 3,
+   "of": 59
   },
   {
    "id": "maps",
@@ -49,7 +56,9 @@
    "group": "artifacts",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 4,
+   "of": 59
   },
   {
    "id": "infographic",
@@ -60,7 +69,9 @@
    "group": "interactive",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 5,
+   "of": 59
   },
   {
    "id": "ebooks",
@@ -71,7 +82,9 @@
    "group": "story",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 6,
+   "of": 59
   },
   {
    "id": "story",
@@ -84,7 +97,9 @@
     "/documentary/"
    ],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 7,
+   "of": 59
   },
   {
    "id": "thousand-cuts",
@@ -95,7 +110,9 @@
    "group": "story",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 8,
+   "of": 59
   },
   {
    "id": "fb",
@@ -108,7 +125,9 @@
     "/fb2/"
    ],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 9,
+   "of": 59
   },
   {
    "id": "arcade",
@@ -123,7 +142,9 @@
     "/terrain/"
    ],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 10,
+   "of": 59
   },
   {
    "id": "chess",
@@ -134,7 +155,9 @@
    "group": "interactive",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 11,
+   "of": 59
   },
   {
    "id": "csscpsg",
@@ -145,7 +168,9 @@
    "group": "interactive",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 12,
+   "of": 59
   },
   {
    "id": "courtdrills",
@@ -156,7 +181,9 @@
    "group": "interactive",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 13,
+   "of": 59
   },
   {
    "id": "fcg",
@@ -167,7 +194,9 @@
    "group": "research",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 14,
+   "of": 59
   },
   {
    "id": "oldbill",
@@ -178,7 +207,9 @@
    "group": "story",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 15,
+   "of": 59
   },
   {
    "id": "accounts",
@@ -189,7 +220,9 @@
    "group": "research",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 16,
+   "of": 59
   },
   {
    "id": "authorities",
@@ -202,7 +235,9 @@
     "/meeting/"
    ],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 17,
+   "of": 59
   },
   {
    "id": "wdtk",
@@ -213,7 +248,9 @@
    "group": "research",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 18,
+   "of": 59
   },
   {
    "id": "review",
@@ -224,7 +261,9 @@
    "group": "research",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 19,
+   "of": 59
   },
   {
    "id": "research",
@@ -235,7 +274,9 @@
    "group": "research",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 20,
+   "of": 59
   },
   {
    "id": "qa",
@@ -246,7 +287,9 @@
    "group": "story",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 21,
+   "of": 59
   },
   {
    "id": "projects",
@@ -257,7 +300,9 @@
    "group": "research",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 22,
+   "of": 59
   },
   {
    "id": "app",
@@ -268,7 +313,9 @@
    "group": "interactive",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 23,
+   "of": 59
   },
   {
    "id": "chat",
@@ -279,7 +326,9 @@
    "group": "interactive",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 24,
+   "of": 59
   },
   {
    "id": "watchtower",
@@ -290,7 +339,9 @@
    "group": "research",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 25,
+   "of": 59
   },
   {
    "id": "email",
@@ -303,7 +354,9 @@
     "/emails/"
    ],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 26,
+   "of": 59
   },
   {
    "id": "dartboard",
@@ -314,7 +367,9 @@
    "group": "interactive",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 27,
+   "of": 59
   },
   {
    "id": "estate",
@@ -325,7 +380,9 @@
    "group": "interactive",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 28,
+   "of": 59
   },
   {
    "id": "directory",
@@ -336,7 +393,9 @@
    "group": "interactive",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 29,
+   "of": 59
   },
   {
    "id": "patagonia",
@@ -349,7 +408,9 @@
    "skip_in": [
     "wales"
    ],
-   "built": true
+   "built": true,
+   "slot": 30,
+   "of": 59
   },
   {
    "id": "wales",
@@ -362,7 +423,9 @@
    "skip_in": [
     "patagonia"
    ],
-   "built": true
+   "built": true,
+   "slot": 31,
+   "of": 59
   },
   {
    "id": "shop",
@@ -373,7 +436,9 @@
    "group": "story",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 32,
+   "of": 59
   },
   {
    "id": "familytree",
@@ -386,7 +451,9 @@
    "skip_in": [
     "patagonia"
    ],
-   "built": true
+   "built": true,
+   "slot": 33,
+   "of": 59
   },
   {
    "id": "kissed-frogs",
@@ -397,7 +464,9 @@
    "group": "research",
    "aliases": [],
    "skip_in": [],
-   "built": true
+   "built": true,
+   "slot": 34,
+   "of": 59
   },
   {
    "id": "whattheydontsay",
@@ -410,7 +479,9 @@
    "skip_in": [
     "patagonia"
    ],
-   "built": true
+   "built": true,
+   "slot": 35,
+   "of": 59
   },
   {
    "id": "blog",
@@ -423,7 +494,35 @@
    "skip_in": [
     "patagonia"
    ],
-   "built": true
+   "built": true,
+   "slot": 36,
+   "of": 59
+  },
+  {
+   "id": "hubspot",
+   "path": "/hubspot/",
+   "title": "HubSpot · Task Control",
+   "cy": "",
+   "es": "",
+   "group": "interactive",
+   "aliases": [],
+   "skip_in": [],
+   "built": true,
+   "slot": 37,
+   "of": 59
+  },
+  {
+   "id": "that-old-chestnut",
+   "path": "/that-old-chestnut/",
+   "title": "That Old Chestnut",
+   "cy": "Yr Hen Dric",
+   "es": "El truco de siempre",
+   "group": "research",
+   "aliases": [],
+   "skip_in": [],
+   "built": true,
+   "slot": 38,
+   "of": 59
   }
  ]
 }

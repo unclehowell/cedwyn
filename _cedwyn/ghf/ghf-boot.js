@@ -38,8 +38,8 @@
   var s = d.createElement("style"); s.setAttribute("data-ghf-boot", "");
   s.textContent = "html.ghf-v2-pre body::before{content:'';display:block;height:148px;background:#000}@media (min-width:783px){html.ghf-v2-pre body::before{height:152px}}";
   (d.head || de).appendChild(s);
-  setTimeout(function () { de.classList.remove("ghf-v2-pre"); }, 8000); // never leave an empty band if the bars cannot load
-  window.addEventListener("load", function () { setTimeout(function () { if (!d.querySelector(".ghf-v2")) de.classList.remove("ghf-v2-pre"); }, 300); }); // 27 Oct: nor once the page has loaded without them
+  setTimeout(function () { de.classList.remove("ghf-v2-pre"); }, 8000);
+  window.addEventListener("load", function () { setTimeout(function () { if (!d.querySelector(".ghf-v2")) de.classList.remove("ghf-v2-pre"); }, 300); });
   var F = B + "fonts/barlow-latin-", out = "";
   if (!d.querySelector("link[data-ghf-theme]")) out += '<link rel="stylesheet" href="' + B + "ghf-theme.css" + V + '" data-ghf-theme>';
   out += '<link rel="preload" as="font" type="font/woff2" crossorigin href="' + F + '400-normal.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="' + F + '700-normal.woff2">';
@@ -51,8 +51,9 @@
   if (!d.querySelector('script[src*="cw-graph.js"]')) out += '<script src="/_cedwyn/cw-graph.js?v=1.2.1" defer><\/script>'; // 30 Oct 2026: graph promo banner + 100vh Read more on every page with the header
   if (!d.querySelector('script[data-cedwyn-wikilinks]')) out += '<script src="https://cedwyn.bucklerfamily.estate/nomenclature/wikilinks.js?v=1.0.1" defer data-cedwyn-wikilinks><\/script>'; // 31 Oct 2026: lexicon-backed cross-theme name links
   if (!window.CedwynVersionGate && !d.querySelector('script[src*="/_cedwyn/version-gate.js"]')) out += '<script src="/_cedwyn/version-gate.js?v=1.0.0" defer><\/script>'; // 1 Nov 2026: version gate (a click-to-load "Select a version" facade in the media slot + upgrade bar). Spec: docs/VERSION-GATE.md
+  if (!d.querySelector('script[src*="landing-map-views.js"]')) out += '<script src="/_cedwyn/landing-map-views.js?v=1.0.0" defer><\/script>';
   if (sync) { d.write(out); return; }
-  var x, t = d.createElement("template"); t.innerHTML = out; // late or async load: same files, appended
+  var x, t = d.createElement("template"); t.innerHTML = out;
   [].slice.call(t.content.childNodes).forEach(function (n) {
     if (n.tagName === "SCRIPT") { x = d.createElement("script"); x.src = n.src; x.async = false; n = x; }
     (d.head || de).appendChild(n);
