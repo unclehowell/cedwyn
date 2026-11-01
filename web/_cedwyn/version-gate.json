@@ -1,0 +1,176 @@
+{
+ "name": "Cedwyn version gate manifest",
+ "version": "1.0.0",
+ "set": "2026-11-01",
+ "about": "Read by /_cedwyn/version-gate.js. A click-to-load facade in the media slot: a random NFT collection image, 'Select a version' and the item's versions, free preselected. Page counts and prices come from data/ebooks.json and the e-book archive (work/ebooks/versions.json); an item with no paid version gets no gate. Documentary clips take their paid cut from the page's own version chips (documentary.js) and the £4.99 price from /_cedwyn/versions.json.",
+ "images": [
+  "/nft-art/art/nfa-0014-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0016-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0019-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0020-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0021-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0023-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0026-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0029-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0032-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0035-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0038-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0043-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0044-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0048-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0050-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0051-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0052-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0055-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0057-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0058-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0059-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0060-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0067-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0069-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0070-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0071-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0072-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0076-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0077-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0078-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0079-v0.0.2-t.webp",
+  "/nft-art/art/nfa-0080-v0.0.2-t.webp"
+ ],
+ "purchase_path": "/ebooks/",
+ "ebooks": {
+  "wiki": {
+   "card": "great-house-farm-wiki",
+   "free": {
+    "v": "0.0.1",
+    "kind": "earlier",
+    "pages": 2033
+   },
+   "paid": {
+    "v": "0.0.2",
+    "price": "£4.99",
+    "pages": 1987
+   }
+  },
+  "fcg": {
+   "free": {
+    "v": "0.0.1",
+    "kind": "preview",
+    "pages": 20
+   },
+   "paid": {
+    "v": "0.0.2",
+    "price": "£4.99",
+    "pages": 221
+   },
+   "card_from_page": true
+  },
+  "projects": {
+   "card": "project-management",
+   "free": {
+    "v": "0.0.1",
+    "kind": "preview",
+    "pages": 13
+   },
+   "paid": {
+    "v": "0.0.2",
+    "price": "£4.99",
+    "pages": 187
+   }
+  },
+  "dartboard": {
+   "card": "dartboard-disclosure",
+   "free": {
+    "v": "0.0.1",
+    "kind": "preview",
+    "pages": 24
+   },
+   "paid": {
+    "v": "0.0.2",
+    "price": "£4.99",
+    "pages": 404
+   }
+  },
+  "tymawr-deaths": {
+   "card": "tymawr-deaths",
+   "free": {
+    "v": "0.0.1",
+    "kind": "preview",
+    "pages": 14
+   },
+   "paid": {
+    "v": "0.0.2",
+    "price": "£4.99",
+    "pages": 69
+   }
+  },
+  "recorded-incidents": {
+   "card": "recorded-incidents",
+   "free": {
+    "v": "0.0.1",
+    "kind": "earlier",
+    "pages": 30
+   },
+   "paid": {
+    "v": "0.0.2",
+    "price": "£4.99",
+    "pages": 44
+   }
+  },
+  "tymawr-heritage": {
+   "card": "tymawr-heritage",
+   "free": {
+    "v": "0.0.1",
+    "kind": "earlier",
+    "pages": 24
+   },
+   "paid": {
+    "v": "0.0.2",
+    "price": "£4.99",
+    "pages": 43
+   }
+  },
+  "williams-buckler-family": {
+   "card": "williams-buckler-family",
+   "free": {
+    "v": "0.0.1",
+    "kind": "earlier",
+    "pages": 25
+   },
+   "paid": {
+    "v": "0.0.2",
+    "price": "£4.99",
+    "pages": 34
+   }
+  },
+  "cedwyn": {
+   "card": "cedwyn",
+   "free": {
+    "v": "0.0.1",
+    "kind": "edition",
+    "pages": 32
+   }
+  }
+ },
+ "movie": {
+  "paths": [
+   "/movie/",
+   "/documentary/"
+  ],
+  "file": "\\/([A-Za-z0-9_-]+)\\/\\1\\.([a-z]{2})\\.v(\\d+\\.\\d+\\.\\d+)\\.webm",
+  "purchase_path": "/documentary/",
+  "price": "£4.99"
+ },
+ "nft": {
+  "paths": [
+   "/nft-art/"
+  ],
+  "gate": false,
+  "why": "every piece is v0.0.1 (free, no paid version yet): no gate until a paid version exists"
+ },
+ "pending": {
+  "academy": "/learn/ courses open by membership; no per-course free version exists yet, so nothing to gate",
+  "merch": "/shop/ items are goods for sale with no free version; nothing to gate until one exists",
+  "nft": "no paid version of any piece yet"
+ }
+}
