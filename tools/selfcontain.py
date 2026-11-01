@@ -191,9 +191,38 @@ def fix_attr(tag, name, val, tagtext, page):
         return process_text('=' + val, absctx, css=(lname == 'style'), where=page)[1:]
     return process_text(val, absctx, css=(lname == 'style'), where=page)
 
+# 1 Nov 2026: a YouTube player <iframe> (youtube.com or youtube-nocookie.com /embed/<id>, or one an earlier pass already sent
+# to /wayback/go/) whose video id the site owner allowed (themes.json "yt_embed_allowed") is rebuilt as a working player:
+# https://www.youtube-nocookie.com/embed/<id> (start= kept, no autoplay), loading="lazy", 16:9 at any width. /wayback/go/
+# answers an HTML page, which an <iframe> cannot play: the two films on /wales/wiki/ showed broken players this way.
+# Ids not on the list keep the old handling. Ordinary <a> links are untouched. - Sion's Tab agent
+YT_SRC = re.compile(r'''\ssrc\s*=\s*("[^"]*"|'[^']*'|[^\s"'>]+)''', re.I)
+YT_DROP = re.compile(r'''\s(?:src|width|height|sandbox|allow|allowfullscreen|loading|style|frameborder|referrerpolicy)\b(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]+))?''', re.I)
+def yt_player(attrs):
+    sm = YT_SRC.search(attrs)
+    if not sm: return None
+    v = html.unescape(sm.group(1).strip('"\''))
+    if '/wayback/go/?u=' in v: v = urllib.parse.unquote(v.split('/wayback/go/?u=', 1)[1])
+    if v.startswith('//'): v = 'https:' + v
+    u = urllib.parse.urlsplit(v)
+    if (u.hostname or '').lower() not in ('youtube.com', 'www.youtube.com', 'm.youtube.com', 'youtube-nocookie.com', 'www.youtube-nocookie.com'): return None
+    pm = re.match(r'/embed/([\w-]{11})', u.path)
+    if not pm or pm.group(1) not in CFG.get('yt_embed_allowed', {}): return None
+    st = re.sub(r'\D', '', (urllib.parse.parse_qs(u.query).get('start') or [''])[0])
+    src = 'https://www.youtube-nocookie.com/embed/' + pm.group(1) + ('?start=' + st if st else '')
+    rest = YT_DROP.sub('', attrs).rstrip()
+    if not re.search(r'\stitle\s*=', rest, re.I): rest += ' title="YouTube video"'
+    stats['yt_players'] = stats.get('yt_players', 0) + 1
+    return (rest + ' src="' + src + '" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen"'
+            ' allowfullscreen referrerpolicy="strict-origin-when-cross-origin"'
+            ' style="border:0;display:block;width:100%;max-width:100%;height:auto;aspect-ratio:16/9"')
+
 def do_tag(m, page):
     whole = m.group(0); tag = m.group(2).lower(); attrs = m.group(3)
     if not attrs or m.group(1): return whole
+    if tag == 'iframe':
+        yt = yt_player(attrs)
+        if yt is not None: return '<iframe' + yt + '>'
     if tag == 'link' and FIX and re.search(r'rel\s*=\s*["\']?\s*(preconnect|dns-prefetch)', attrs, re.I):
         hm = URL.search(attrs)
         if hm and classify(hm)[0] in ('ext', 'cdn', 'sub'): stats['tags_dropped'] += 1; return ''
