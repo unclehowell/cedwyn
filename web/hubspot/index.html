@@ -225,7 +225,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding-top:16px;color:v
     el("mirror-time").textContent="Refreshing…";
     el("mirror-detail").textContent="Reading the sanitised task index from the existing Cloudflare Agent Bridge.";
     setProgress(2,"Connecting to the Agent Bridge…");
-    var seen=new Map(),offset=0,totalHint=null,generated=null,version=null,guard=0;
+    var seen=new Map(),offset=0,totalHint=null,generated=null,version=null,guard=0,rowSequence=0;
     function finish(){
       var counts={NOT_STARTED:0,IN_PROGRESS:0,WAITING:0,COMPLETED:0,OTHER:0};
       seen.forEach(function(row){
@@ -261,7 +261,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding-top:16px;color:v
         if(!version)version=data.version||data.index_version||(data.meta&&data.meta.version)||null;
         rows.forEach(function(row){
           var id=taskId(row);
-          var key=id||("offset-"+offset+"-"+Math.random().toString(36).slice(2));
+          var key=id||("offset-"+offset+"-row-"+(rowSequence++));
           if(!seen.has(key))seen.set(key,row);
         });
         var done=totalHint?Math.min(96,Math.floor(seen.size/totalHint*100)):Math.min(92,guard*5);
