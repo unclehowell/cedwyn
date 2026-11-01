@@ -264,7 +264,16 @@ lines += [
     "/accounts/ledger/claimed.beancount /accounts/#dl 302",
     "/argentina/accounts/ledger/claimed.beancount /argentina/accounts/#dl 302",
     "/wales/accounts/ledger/claimed.beancount /wales/accounts/#dl 302",
-    "/wiki/wp-content/uploads/2026/10/2026-05-28_rcahmw_rc26-0205_les08-order-form-2021.docx /wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fdatro%2Fblob%2Fwayback%2Fwayback%2Fpdf%2Ffoi%2F2026-05-28_rcahmw_rc26-0205_les08-order-form-2021.docx 302"
+    "/wiki/wp-content/uploads/2026/10/2026-05-28_rcahmw_rc26-0205_les08-order-form-2021.docx /wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fdatro%2Fblob%2Fwayback%2Fwayback%2Fpdf%2Ffoi%2F2026-05-28_rcahmw_rc26-0205_les08-order-form-2021.docx 302",
+    # 31 Oct 2026 (P-122): Cedwyn does not carry the Vault's PDFs; they live on the Vault's media host (R2), which answers
+    # 404 for a missing file (no loop). The Legal Wiki's own uploads stay on the wiki. Exact-path rules above still win.
+    "/wayback/pdf/* https://wayback.bucklerfamily.estate/pdf/:splat 302",
+    "/wiki/wp-content/uploads/* https://greathousefarmwiki.wordpress.com/wp-content/uploads/:splat 302",
+    "/research/wp-content/uploads/* https://greathousefarmwiki.wordpress.com/wp-content/uploads/:splat 302",
+    # 31 Oct 2026 (P-122 cycle 5): /projects/ links "the e-books" to /projects/ebooks/ (no such page); the clerk pack PDF is
+    # built into the meeting theme but missing from the published site, while the meeting's own host serves it (200).
+    "/projects/ebooks/ /ebooks/ 301",
+    "/meeting/meeting-pack.pdf https://2026-10-22.bucklerfamily.estate/meeting-pack.pdf 302"
 ]
 tr = DIST / '_theme_redirects.txt'
 if tr.exists():
@@ -532,6 +541,11 @@ _redirect_file = DIST / '_redirects'
 _redirect_lines = _redirect_file.read_text(encoding='utf-8').splitlines() if _redirect_file.exists() else []
 _redirect_dynamic = [x for x in _redirect_lines if x.split() and ('*' in x.split()[0] or ':' in x.split()[0])]
 _redirect_static = [x for x in _redirect_lines if x.strip() and x not in _redirect_dynamic]
+# 31 Oct 2026 (P-122): Cloudflare's parser counts EVERY rule after the first splat/placeholder rule as dynamic and stops
+# reading at the 100th (workers-sdk issue 14694). The file opened with a splat rule, so lines 100+ (about 140 exact-path
+# redirects) were silently dead. Write exact-path rules first, then the pattern rules, each in their original order.
+_redirect_static = [x for x in _redirect_static if not x.lstrip().startswith('#')]
+_redirect_file.write_text('\n'.join(_redirect_static + _redirect_dynamic) + '\n', encoding='utf-8')
 print('redirect quota:', len(_redirect_dynamic), '/100 dynamic;', len(_redirect_static), '/2000 static')
 assert len(_redirect_dynamic) <= 100, 'Cloudflare Pages dynamic redirect quota exceeded after all route additions'
 assert len(_redirect_static) <= 2000, 'Cloudflare Pages static redirect quota exceeded after all route additions'
