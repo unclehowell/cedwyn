@@ -4,7 +4,7 @@ const OLD = "https://hive.bucklerfamily.estate";
 const NEW = "https://cedwyn.bucklerfamily.estate/hive";
 const BRIDGE = "https://cedwyn.bucklerfamily.estate/x78s8jej33i8f8rrj4is88";
 const BRIDGE_MD = `
-## Cedwyn Snowball and agent bridge (v3.16.0)
+## Cedwyn Snowball and agent bridge (mandate v3.16.0; Hive protocol v3.16.1)
 
 Read the parent protocol at https://cedwyn.bucklerfamily.estate/academy/FLYWHEELS/snowball.md and the bridge instructions at https://cedwyn.bucklerfamily.estate/academy/FLYWHEELS/agent-bridge.md.
 
@@ -57,7 +57,7 @@ async function amendJson(text, sub) {
   try { data = JSON.parse(text); } catch { return text; }
   if (sub === "/join.json" || sub === "/join") {
     data.contract_version = "3.16.0";
-    data.protocol_version = "3.16.0";
+    data.protocol_version = "3.16.1";
     data.cedwyn_snowball = {
       protocol: "https://cedwyn.bucklerfamily.estate/academy/FLYWHEELS/snowball.md",
       agent_bridge: BRIDGE + "/manifest.json",
@@ -73,7 +73,7 @@ async function amendJson(text, sub) {
     if (typeof data.task_prompt === "string") data.task_prompt += "\n\n" + BRIDGE_MD;
     if (typeof data.drop_in_prompt === "string") data.drop_in_prompt += "\n\n" + BRIDGE_MD;
   } else if (sub === "/hive.json") {
-    data.protocol_version = "3.16.0";
+    data.protocol_version = "3.16.1";
     data.cedwyn_snowball = {
       protocol: "https://cedwyn.bucklerfamily.estate/academy/FLYWHEELS/snowball.md",
       agent_bridge: BRIDGE + "/manifest.json",
@@ -87,7 +87,7 @@ async function amendJson(text, sub) {
     if (typeof data.protocol_md === "string") data.protocol_md += "\\n\\n" + BRIDGE_MD;
     if (typeof data.scope_md === "string") data.scope_md += "\\n\\n" + BRIDGE_MD;
   } else if (sub === "/.well-known/agent.json" || sub === "/agent.json") {
-    data.cedwyn_snowball = { manifest: BRIDGE + "/manifest.json", tasks: BRIDGE + "/tasks.json", x_activity: BRIDGE + "/x.json", submit: BRIDGE + "/submit", protocol_version: "3.16.0" };
+    data.cedwyn_snowball = { manifest: BRIDGE + "/manifest.json", tasks: BRIDGE + "/tasks.json", x_activity: BRIDGE + "/x.json", submit: BRIDGE + "/submit", protocol_version: "3.16.1" };
   }
   return JSON.stringify(data, null, 2);
 }

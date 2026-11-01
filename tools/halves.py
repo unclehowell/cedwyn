@@ -621,7 +621,7 @@ openers.forEach(function(button){{
 </body>
 </html>
 """
-    out = page(sections, 'Cedwyn Estate', 'Select Wales, Britain or Patagonia, Argentina.', l, '/cedwyn/home/', None, T, n, body)
+    out = page(sections, 'Tŷ Mawr (Great House Farm), Llandough · Cedwyn Estate', 'Tŷ Mawr (Great House Farm), Llandough, Wales: history, records and BP Properties v Buckler [1987]. Guided tour, e-books, and Great House II planned in Patagonia.', l, '/cedwyn/home/', None, T, n, body)
     out = out.replace('</style>', LANDING_CSS + '</style>', 1)
     return out.replace('<head>\n', '<head>\n' + pre + '\n', 1)
 
@@ -639,13 +639,15 @@ def wales(sections, S, cfg, H):
     mn, gr = menu(H, T, cfg, l, 'wales')
     # gift vouchers (moved here 26 Oct 2026 from the retired /wales/tour/ page, same Stripe links via the archive route) - Sion's Tab agent
     vouchers = ''.join(f'<a class="hv-btn{" pri" if i == 0 else ""}" href="/wayback/go/?u={u}" rel="noopener">{lt(T, d, l, k)}</a>' for i, (k, u, d) in enumerate(VOUCHERS))
+    # 1 Nov 2026 (owner, WhatsApp 02:51 GMT): the top image stays first and the "Start the tour" button row sits directly
+    # under it; everything that stood between them (e-books strip, AR-tour heading, headlines with lede and no-museum note)
+    # now closes the page, above the endnote. Nothing deleted, no wording changed. The strip is written here so site.py's
+    # _shop_strip (which skips a page that already has one) does not put it back under the hero. HubSpot 536941177070. - Sion's Tab agent
     body = f"""
 <body data-cedwyn-page="wales">
 <main class="wrap hv" data-no-translate>{LB_CSS}
 <header class="hv-hero"><img src="{img(H,'wales-hero-house')}" width="1280" height="725" alt="" fetchpriority="high"><span class="hv-tag" data-i18n="ai_tag">{E(tx(T,'ai_tag',l))}</span>
 <div class="hb"><p class="eyebrow" style="color:#ddd" data-i18n="w_kick">{E(tx(T,'w_kick',l))}</p><h1 data-i18n="w_h1">{E(tx(T,'w_h1',l))}</h1></div></header>
-<h2 data-i18n="w_h2">{E(tx(T,'w_h2',l))}</h2>
-{headlines(H, T, l, 'wales', lead=f'<p class="lede" data-i18n="w_lede">{E(tx(T,"w_lede",l))}</p>', tail=f'<div class="hv-hl" id="no-museum"><b data-i18n="w_nomuseum_h">{E(tx(T,"w_nomuseum_h",l))}</b><p data-i18n="w_nomuseum_p">{E(tx(T,"w_nomuseum_p",l))}</p></div>')}
 <div class="hv-btns"><a class="hv-btn pri" href="#tour" data-hv-go="0" data-i18n="w_start">{E(tx(T,'w_start',l))}</a><a class="hv-btn" href="#shop" data-i18n="w_tickets">{E(tx(T,'w_tickets',l))}</a><a class="hv-btn" href="#menu" data-i18n="w_menu">{E(tx(T,'w_menu',l))}</a></div>
 {mn}
 <section id="route"><h2 data-i18n="w_map_h">{E(tx(T,'w_map_h',l))}</h2><p class="mut" data-i18n="w_map_p">{E(tx(T,'w_map_p',l))}</p>{mp}</section>
@@ -656,6 +658,9 @@ def wales(sections, S, cfg, H):
 <div class="hv-btns" id="vouchers">{vouchers}<a class="hv-btn" href="/ebooks/" data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</a></div>
 <p class="mut"><a href="/wales/vouchers/terms/">{lt(T, VOUCHER_TERMS, l, 'w_vterms')}</a></p></section>
 <section><a class="hv-btn" style="width:100%;justify-content:flex-start;min-height:64px;border-radius:12px" href="/argentina/?lang=es" hreflang="es"><span><b data-i18n="w_cross_h">{E(tx(T,'w_cross_h',l))}</b><br><span class="mut" data-i18n="w_cross_p">{E(tx(T,'w_cross_p',l))}</span></span></a></section>
+<p class="ebook-strip" style="margin:.75rem 0;font-size:16px;line-height:1.4"><a href="/r/strip-wales" data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</a></p>
+<h2 data-i18n="w_h2">{E(tx(T,'w_h2',l))}</h2>
+{headlines(H, T, l, 'wales', lead=f'<p class="lede" data-i18n="w_lede">{E(tx(T,"w_lede",l))}</p>', tail=f'<div class="hv-hl" id="no-museum"><b data-i18n="w_nomuseum_h">{E(tx(T,"w_nomuseum_h",l))}</b><p data-i18n="w_nomuseum_p">{E(tx(T,"w_nomuseum_p",l))}</p></div>')}
 <p class="endnote"><a href="/" data-i18n="home">{E(tx(T,'home',l) or 'Home')}</a> · <a href="/explore/" data-i18n="land_more">{E(tx(T,'land_more',l))}</a></p>
 </main>
 <script>{JS}</script>{LB_JS}

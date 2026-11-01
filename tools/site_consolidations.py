@@ -44,6 +44,10 @@ code{overflow-wrap:anywhere}
 </head><body><main>''' + body + '''</main></body></html>'''
 
 def render_area_index(doc):
+    # 31 Oct 2026: counts come from the registry (area_count / source_theme_count / parcel_total), not fixed numbers - Sion's Tab agent
+    n = len(doc.get("areas", []))
+    ns = int(doc.get("source_theme_count") or 0)
+    total = int(doc.get("parcel_total") or 59)
     cards = []
     for area in doc.get("areas", []):
         slot = int(area.get("serendipity_slot") or 0)
@@ -53,7 +57,7 @@ def render_area_index(doc):
         parcel = area.get("tithe_parcel_number")
         parcel_label = ("Tithe plot no. " + str(parcel)) if parcel else ("Historic plot number: not yet verified (editorial slot %02d)" % slot)
         cards.append(
-            '<article class="card"><p class="meta">Editorial serendipity slot %02d · %s</p>' % (slot, esc(parcel_label)) +
+            '<article class="card"><p class="meta">Webapp %d of %d · editorial serendipity slot %02d · %s</p>' % (slot, total, slot, esc(parcel_label)) +
             '<h2>' + a(target, area.get("title", area.get("id", "Page area"))) + '</h2>' +
             '<p>' + esc(area.get("description", "")) + '</p>' +
             '<p class="meta">Source themes: <code>' + esc(source) + '</code></p>' +
@@ -62,14 +66,14 @@ def render_area_index(doc):
     body = (
         '<nav class="nav">' + a("/parcels/", "The 36 parcels") + a(EV_LINK, "Read the tithe artifact") +
         a("/wiki/evidence/", "Level 1 · Evidence register") + a("/wiki/observations/", "Level 2 · Observations") + '</nav>' +
-        '<h1>36 page areas · 36 parcel research prompts</h1>' +
-        '<p class="lede">The website currently has 44 source themes. This index groups them into 36 visitor-facing areas, keeping legacy routes available so old links continue to work. Each slot is an editorial prompt for serendipitous browsing, not a historical plot number or a claim that the website area occupies that land.</p>' +
+        '<h1>%d page areas · %d of the estate\'s %d parcels</h1>' % (n, n, total) +
+        '<p class="lede">The website currently has %d source themes. This index groups them into %d visitor-facing areas,' % (ns, n) + ' keeping legacy routes available so old links continue to work. Each slot is an editorial prompt for serendipitous browsing, not a historical plot number or a claim that the website area occupies that land.</p>' +
         '<div class="note"><strong>Parcel matching is not yet established.</strong> The c.1841 tithe apportionment identifies 36 plots occupied by John Williams, but the original schedule and map have not yet been checked row-by-row against the proposed website-area pairings. No slot below should be read as a verified tithe number. Start with ' +
         a(EV_LINK, "EV-0215, the tithe artifact") + ' and replace an editorial slot with an actual plot number only after checking the source image and area row.</div>' +
         '<div class="nav">' + a("/wiki/reference/", "Wiki references: names and dictionary") + a("/arcade/", "Arcade: gallery, games and 3D world") + '</div>' +
         '<section class="grid">' + ''.join(cards) + '</section>'
     )
-    return shell("36 page areas", "A transparent index that groups 44 source themes into 36 visitor-facing areas and records parcel matching as pending source review.", body)
+    return shell("%d page areas" % n, "A transparent index that groups %d source themes into %d visitor-facing areas and records parcel matching as pending source review." % (ns, n), body)
 
 def render_tabs(title, intro, tabs):
     tab_html = ''.join('<button type="button" data-src="' + esc(src) + '" data-label="' + esc(label) + '" aria-pressed="' + ('true' if i == 0 else 'false') + '">' + esc(label) + '</button>' for i, (label, src) in enumerate(tabs))
@@ -77,7 +81,7 @@ def render_tabs(title, intro, tabs):
     script = '''<script>
 (function(){var root=document.querySelector('[data-tabs]');if(!root)return;var frame=root.querySelector('iframe');root.querySelectorAll('button[data-src]').forEach(function(b){b.addEventListener('click',function(){var src=b.getAttribute('data-src');if(frame.getAttribute('src')!==src)frame.setAttribute('src',src);root.querySelectorAll('button[data-src]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});frame.title=''' + json.dumps(title) + '''+' — '+b.getAttribute('data-label');});});})();
 </script>'''
-    body = '<nav class="nav">' + a("/parcels/site-areas/", "36 page areas") + a("/wiki/evidence/", "Evidence register") + '</nav><h1>' + esc(title) + '</h1><p class="lede">' + esc(intro) + '</p><div data-tabs><div class="tabs" role="group" aria-label="' + esc(title + " views") + '">' + tab_html + '</div>' + iframe + '</div>' + script
+    body = '<nav class="nav">' + a("/parcels/site-areas/", "All page areas") + a("/wiki/evidence/", "Evidence register") + '</nav><h1>' + esc(title) + '</h1><p class="lede">' + esc(intro) + '</p><div data-tabs><div class="tabs" role="group" aria-label="' + esc(title + " views") + '">' + tab_html + '</div>' + iframe + '</div>' + script
     return shell(title, intro, body)
 
 def insert_link(page_path, marker, label, href):
@@ -124,7 +128,7 @@ def run(dist):
         (dist / "nft-art" / "index.html", "Open Arcade", "/arcade/"),
         (dist / "cyberspace" / "index.html", "Open Arcade", "/arcade/"),
         (dist / "terrain" / "index.html", "Open Arcade", "/arcade/"),
-        (dist / "parcels" / "index.html", "Browse 36 site areas", "/parcels/site-areas/")
+        (dist / "parcels" / "index.html", "Browse the site areas", "/parcels/site-areas/")
     ]
     changed = sum(1 for p, label, href in injects if insert_link(p, label, label, href))
     print("site areas: %d areas, %d injects; arcade and wiki reference tabs generated" % (len(doc.get("areas", [])), changed))
