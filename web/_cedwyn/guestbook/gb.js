@@ -1,4 +1,7 @@
-/*! gb.js - the page version table (Agent guest book) in the shared footer of every Cedwyn page (v1.1.1, 29 Oct 2026).
+/*! gb.js - the page version table (Agent guest book) in the shared footer of every Cedwyn page (v1.2.0, 1 Nov 2026).
+ * v1.2.0 (molt): the table is the page's WHOLE semantic-version changelog (/api/v?all=1, up to 100 rows, newest first, still
+ * collapsed on load); the disclosure reads "Changelog & agent info"; loads /_cedwyn/molt/molt.js, which adds this page's
+ * comments directly under it and the molt WebMCP tools.
  * v1.1.1: the page versions and the agent footer (#ghf-agent-footer: change log, agent rules, THE TRIGGER EVENT) sit in ONE
  * native <details> "Page versions & agent info", closed on load. Nothing is hidden with display:none or removed: the agent text
  * stays in the HTML and the DOM, so crawlers and LLM fetchers read it; a tap opens it. An older footer without the <details>
@@ -11,10 +14,10 @@
 (function () {
   "use strict";
   if (window.__cedwynGB) return; window.__cedwynGB = 1;
-  var DATA = location.origin + "/guestbook/guestbook.json", PAGE = location.origin + "/api/v?p=" + encodeURIComponent(location.pathname), data = null, loading = false;   // absolute: the theme runtime prefixes root paths
+  var DATA = location.origin + "/guestbook/guestbook.json", PAGE = location.origin + "/api/v?p=" + encodeURIComponent(location.pathname) + "&all=1", data = null, loading = false;   // absolute: the theme runtime prefixes root paths
   var HIST = "https://github.com/unclehowell/cedwyn/commits/main";
   var L = {
-    en: { title: "Page versions", meta: "Page versions & agent info", v: "Version", d: "Date", n: "Change", w: "Who", all: "See all", log: "Whole-site log",
+    en: { title: "Page changelog", meta: "Changelog & agent info", v: "Version", d: "Date", n: "Change", w: "Who", all: "See all", log: "Whole-site log",
           rule: "versions 1.change.fix, from this page\u2019s commit history",
           intro: "Every change to this site, newest first. Each version opens the change on GitHub." },
     cy: { title: "Fersiynau\u2019r dudalen", meta: "Fersiynau\u2019r dudalen a gwybodaeth i asiantau", v: "Fersiwn", d: "Dyddiad", n: "Newid", w: "Pwy", all: "Gweld y cyfan", log: "Cofnod y wefan gyfan",
@@ -111,7 +114,7 @@
     if (data.history_url) HIST = data.history_url;
     absolutize();
     var tb = s.querySelector(".gb-rows"); if (!tb || tb.getAttribute("data-filled")) return;
-    var rows = (data.rows || []).filter(function (r) { return r.kind !== "build"; }).slice(0, 3), h = "";
+    var rows = (data.rows || []).filter(function (r) { return r.kind !== "build"; }).slice(0, data.path ? 100 : 3), h = "";
     rows.forEach(function (r) {
       h += '<tr><td>' + (r.sha ? '<a href="' + esc(link(data.repo || "unclehowell/cedwyn", r.sha)) + '" target="_blank" rel="noopener" title="' + esc(r.sha.slice(0, 7)) + '">' + esc(r.v) + "</a>" : esc(r.v)) + "</td><td>" +
         esc(r.date) + "</td><td>" + esc(r.note) + "</td><td>" + esc(r.who) + "</td></tr>";
@@ -159,3 +162,5 @@
 /* Cedwyn's first-party analytics beacon (27 Oct 2026): one POST to /api/a per page view and per checkout / academy click;
  * no cookies, no storage; the server keeps path, referrer host, country, browser class and a daily-salted hash, never the IP. */
 (function(){if(window.__cedwynA)return;window.__cedwynA=1;var O=location.origin+"/api/a";function s(e,t){try{var d=JSON.stringify({p:location.pathname,r:document.referrer,e:e,t:t||null,l:(document.documentElement.getAttribute("lang")||"").slice(0,2),w:window.innerWidth,d:navigator.webdriver?1:0});if(navigator.sendBeacon&&navigator.sendBeacon(O,new Blob([d],{type:"text/plain"})))return;fetch(O,{method:"POST",body:d,keepalive:true}).catch(function(){});}catch(x){}}window.cedwynTrack=s;function pv(){s("pv");}if(document.readyState==="complete")pv();else addEventListener("load",pv);document.addEventListener("click",function(ev){var a=ev.target&&ev.target.closest&&ev.target.closest("a[href]");if(!a)return;var h=a.href,u=h,m=h.match(/[?&]u=([^&]+)/);if(m){try{u=decodeURIComponent(m[1]);}catch(x){}}if(/^https:\/\/(buy|checkout)\.stripe\.com\/|gumroad\.com\//.test(u))s("checkout",u.slice(0,200));else{try{var q=new URL(h,location.href);if(q.origin===location.origin&&/^\/learn\/?$/.test(q.pathname))s("academy",location.pathname);}catch(x){}}},true);})();
+/* molt 1.0.0: comments under the changelog + molt agent tools (one same-origin script, deferred). */
+(function () { if (window.__cedwynMoltL) return; window.__cedwynMoltL = 1; var s = document.createElement("script"); s.src = location.origin + "/_cedwyn/molt/molt.js?v=1.0.0"; s.defer = true; (document.head || document.documentElement).appendChild(s); })();
