@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static checks for provisional parcel stories and the source-aware spatial contract."""
+"""Static checks for the 36 historic parcel-story slots alongside all Cedwyn site areas."""
 import json
 import pathlib
 
@@ -13,6 +13,7 @@ assert stories_doc.get("schema") == "cedwyn_parcel_stories/v1"
 # Editorial webapp slots and historic plot-story records are different lists.
 # A newly registered app may have no historic parcel story yet.
 assert len(areas) == areas_doc.get("area_count")
+assert sum(1 for a in areas if a["id"] == "hubspot") == 1
 assert len(stories) == 36
 area_ids = {a["id"] for a in areas}
 story_area_ids = {p["area_id"] for p in stories}
@@ -59,4 +60,4 @@ assert fields["parcel_center_longitude"] != fields["h3_cell_center_longitude"]
 assert fields["historic_plot_number"].startswith("integer or null")
 assert spatial["subdomain_routing"]["hostname"] is None
 assert spatial["subdomain_routing"]["status"] == "proposal_only_unconfigured"
-print("parcel and spatial source checks passed: 36 historic story slots remain distinct from 37 current app areas; H3 resolution 11 remains a sourced proposal, with no missing geometry, centres or DNS values invented")
+print(f"parcel story source OK: {len(areas)} public areas, 36 historic parcel slots, 5 working model records; spatial checks passed: H3 resolution 11 remains a sourced proposal, with no missing geometry, centres or DNS values invented")

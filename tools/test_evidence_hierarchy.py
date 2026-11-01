@@ -106,6 +106,11 @@ def main():
     source_theme_count = area_doc["source_theme_count"]
     assert len(areas) == area_count
     assert len({a["serendipity_slot"] for a in areas}) == area_count
+    hubspot_area = next(a for a in areas if a["id"] == "hubspot")
+    assert hubspot_area["serendipity_slot"] == 37 and hubspot_area["path"] == "/hubspot/"
+    assert hubspot_area["tithe_parcel_number"] is None, "digital site-area slot 37 is not a historic tithe plot"
+    chestnut_area = next(a for a in areas if a["id"] == "that-old-chestnut")
+    assert chestnut_area["serendipity_slot"] == 38 and chestnut_area["path"] == "/that-old-chestnut/"
     themes = [t for a in areas for t in a["source_themes"]]
     assert len(themes) == source_theme_count and len(set(themes)) == source_theme_count
     assert all(a["tithe_parcel_number"] is None for a in areas), "must not invent historical plot numbers"

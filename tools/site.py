@@ -136,7 +136,7 @@ a.card strong{display:block;color:#fff;margin-bottom:4px}a.card span{display:blo
 <p>The address below did not resolve to a page in this version of Cedwyn. It may have moved during the migration, the link may be outdated, or the page may genuinely be missing.</p>
 <p>Requested address: <code id="requested">Loading…</code></p>
 <nav aria-label="Recovery options">
-<a class="card" href="/"><strong>Browse Cedwyn home →</strong><span>Choose Wales, Argentina, Cyberspace, or a theme from the directory.</span></a>
+<a class="card" href="/"><strong>Browse Cedwyn home →</strong><span>Choose Wales, Argentina, Online, or a theme from the directory.</span></a>
 <a class="card" href="/directory/"><strong>Browse all themes →</strong><span>Open the directory of the migrated sites.</span></a>
 <a class="card" id="search-link" href="/catalogue/"><strong>Search the evidence catalogue →</strong><span>Search for the subject or page name from the missing address.</span></a>
 <a class="card" href="/research/"><strong>Open the Research Library →</strong><span>Find the main research pages and canonical links.</span></a>

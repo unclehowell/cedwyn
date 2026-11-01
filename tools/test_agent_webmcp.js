@@ -83,7 +83,14 @@ async function main() {
   assert.equal(status.api, 'document.modelContext');
   assert.equal(status.verified, true);
   assert.equal(status.registered, true);
-  assert.equal(registered.length, 13, 'all thirteen tools must register');
+  assert.equal(registered.length, 16, 'all sixteen tools must register');
+  for (const name of [
+    'get_cedwyn_flow_watch_health',
+    'get_cedwyn_flow_watch_events',
+    'get_cedwyn_flow_watch_contract'
+  ]) {
+    assert.ok(registered.some(tool => tool.name === name), name + ' must be registered');
+  }
   assert.equal(clientLoads, 0, 'catalogue client must load only when called');
 
   const tool = registered.find(item => item.name === 'get_central_evidence_record');
@@ -95,6 +102,6 @@ async function main() {
   assert.equal(result.record.assessment.interpretation, 'Interpretation kept separate.');
   assert.equal(clientLoads, 1, 'registered tool should lazy-load the catalogue client');
   assert.ok(queries.length >= 5, 'registered tool must issue central database queries');
-  console.log('WebMCP smoke test passed: 13 registered and verified; Level 1 record read through registered tool.');
+  console.log('WebMCP smoke test passed: 16 registered and verified, including three flow-watch resources; Level 1 record read through registered tool.');
 }
 main().catch(err => { console.error(err); process.exitCode = 1; });

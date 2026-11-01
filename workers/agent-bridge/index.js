@@ -166,7 +166,7 @@ async function runFlowWatch(env, triggerType = "cron") {
       flowProbe(FLOW_SITE + "/documentary/")
     ]);
     const sources = {};
-    let mainSha = null, liveSha = null, stampBuiltAt = null;
+    let mainSha = null, liveSha = null, stampBuiltAt = null, buildRequired = false;
     if (gh.status === "fulfilled") {
       const runs = gh.value.data.workflow_runs || [];
       const builds = runs.filter(x => x.name === "build-cedwyn" || (x.path || "").endsWith("/build.yml"));
@@ -183,7 +183,7 @@ async function runFlowWatch(env, triggerType = "cron") {
       sources.github_actions = { state: "UNAVAILABLE", reason: String(gh.reason || "fetch_failed").slice(0, 100) };
       issues.push({ code: "GITHUB_ACTIONS_UNAVAILABLE", title: "GitHub Actions state cannot be checked", severity: "WARNING", detail: { reason: sources.github_actions.reason } });
     }
-    const [branch,] = await Promise.allSettled([flowJson(FLOW_API + "/branches/main")]);
+    const [branch, agentsBranch] = await Promise.allSettled([flowJson(FLOW_API + "/branches/main"), flowJson(FLOW_API + "/branches/agents")]);
     if (branch.status === "fulfilled") {
       mainSha = branch.value.data && branch.value.data.commit && branch.value.data.commit.sha || null;
       sources.github_main = { state: mainSha ? "AVAILABLE" : "INVALID", commit: mainSha, committed_at: branch.value.data.commit && branch.value.data.commit.commit && branch.value.data.commit.commit.committer && branch.value.data.commit.commit.committer.date || null };
@@ -203,12 +203,47 @@ async function runFlowWatch(env, triggerType = "cron") {
     }
     if (library.status === "fulfilled") {
       const x = library.value.data || {};
-      sources.agent_library = { state: "AVAILABLE", version: x.version || null, built_utc: x.built_utc || null };
+      sources.agent_library = { state: "AVAILABLE", version: x.version || null, built_utc: x.built_utc || null, source_commit: x.source_commit || null };
       if (!x.version) issues.push({ code: "AGENT_LIBRARY_VERSION_MISSING", title: "Agent Library manifest is missing its version", severity: "WARNING", detail: {} });
     } else {
       sources.agent_library = { state: "UNAVAILABLE", reason: String(library.reason || "fetch_failed").slice(0, 100) };
       issues.push({ code: "AGENT_LIBRARY_UNAVAILABLE", title: "Agent Library manifest is not being served", severity: "WARNING", detail: { reason: sources.agent_library.reason } });
     }
+
+    let agentsHead = null;
+    let agentsHeadDate = null;
+
+    if (branch.status === "fulfilled" && mainSha && liveSha !== mainSha) {
+      try {
+        const commitInfo = await flowJson(FLOW_API + "/commits/" + mainSha);
+        const paths = (commitInfo.data.files || []).map(x => x.filename || "");
+        buildRequired = paths.some(p => p.startsWith("tools/") || p.startsWith("web/") || p.startsWith("data/") || p === "themes.json" || p === ".github/workflows/build.yml");
+        sources.github_main.build_required = buildRequired;
+        sources.github_main.changed_paths = paths.slice(0, 40);
+      } catch (err) {
+        sources.github_main.build_required = "UNKNOWN";
+        issues.push({ code: "BUILD_REQUIREMENT_UNKNOWN", title: "Cannot determine whether the latest main commit requires a site build", severity: "WARNING", detail: { reason: String(err.message || err).slice(0, 100), main_sha: mainSha } });
+      }
+    } else {
+      sources.github_main.build_required = false;
+    }
+    if (agentsBranch.status === "fulfilled") {
+      const b = agentsBranch.value.data || {};
+      agentsHead = b.commit && b.commit.sha || null;
+      agentsHeadDate = b.commit && b.commit.commit && b.commit.commit.committer && b.commit.commit.committer.date || null;
+      sources.agent_branch = { state: agentsHead ? "AVAILABLE" : "INVALID", commit: agentsHead, committed_at: agentsHeadDate };
+      const publishedAgentCommit = sources.agent_library && sources.agent_library.source_commit;
+      const age = ageMinutes(agentsHeadDate, now.getTime());
+      if (agentsHead && publishedAgentCommit && agentsHead !== publishedAgentCommit && age !== null && age > QUEUE_GRACE_MINUTES) {
+        issues.push({ code: "AGENT_LIBRARY_NOT_PUBLISHED", title: "Agent Library branch has advanced beyond the published site manifest", severity: "CRITICAL", detail: { branch_commit: agentsHead, published_commit: publishedAgentCommit, age_minutes: Math.round(age), next_action: "Check the Agent Library publish handoff, its dispatched main build, and the live /academy/agents.json source_commit." } });
+      } else if (agentsHead && !publishedAgentCommit) {
+        issues.push({ code: "AGENT_LIBRARY_SOURCE_COMMIT_MISSING", title: "Published Agent Library manifest has no source-commit proof", severity: "WARNING", detail: { branch_commit: agentsHead } });
+      }
+    } else {
+      sources.agent_branch = { state: "UNAVAILABLE", reason: String(agentsBranch.reason || "fetch_failed").slice(0, 100) };
+      issues.push({ code: "AGENT_LIBRARY_BRANCH_UNAVAILABLE", title: "Agent Library source branch cannot be checked", severity: "WARNING", detail: { reason: sources.agent_branch.reason } });
+    }
+
     if (versions.status === "fulfilled") {
       const x = versions.value.data || {};
       sources.product_versions = { state: x.version ? "AVAILABLE" : "INVALID", registry_version: x.version || null, set: x.set || null, latest: x.scheme && x.scheme.latest || null, previous: x.scheme && x.scheme.previous || null };
@@ -233,7 +268,7 @@ async function runFlowWatch(env, triggerType = "cron") {
       }
       const mainDate = sources.github_main && sources.github_main.committed_at;
       const sourceAge = ageMinutes(mainDate, now.getTime());
-      if (!exactActive && !exactSuccess && sourceAge !== null && sourceAge > QUEUE_GRACE_MINUTES) {
+      if (buildRequired === true && !exactActive && !exactSuccess && sourceAge !== null && sourceAge > QUEUE_GRACE_MINUTES) {
         issues.push({ code: "SOURCE_REVISION_NOT_QUEUED", title: "Main revision has not entered the production build queue", severity: "CRITICAL", detail: { head_sha: mainSha, age_minutes: Math.round(sourceAge), next_action: "Inspect path filters and workflow state; dispatch one build only when no current run owns this revision." } });
       }
       if (exactActive) {
@@ -247,7 +282,7 @@ async function runFlowWatch(env, triggerType = "cron") {
           issues.push({ code: "BUILD_RUNTIME_HIGH", title: "Production build is slower than its provisional runtime threshold", severity: "WARNING", detail: { run_id: exactActive.id, age_minutes: Math.round(age), threshold_minutes: BUILD_WARN_MINUTES, url: exactActive.html_url } });
         }
       }
-      if (exactSuccess && liveSha && liveSha !== mainSha) {
+      if (buildRequired === true && exactSuccess && liveSha && liveSha !== mainSha) {
         const stampAge = ageMinutes(stampBuiltAt, now.getTime());
         if (stampAge === null || stampAge > PRODUCTION_GRACE_MINUTES) {
           issues.push({ code: "PRODUCTION_REVISION_STALE", title: "Production is not serving the latest successful main revision", severity: "CRITICAL", detail: { main_sha: mainSha, served_sha: liveSha, successful_run_id: exactSuccess.id, next_action: "Compare the site branch and Cloudflare production state; retry only the missing publication stage." } });
@@ -310,7 +345,7 @@ async function verifyFlowOidc(token, eventType) {
 }
 async function acceptFlowEvent(request, env) {
   const eventType = request.headers.get("x-github-event") || "";
-  if (!["push", "workflow_job"].includes(eventType)) return response({ ok: false, error: "unsupported_event_type" }, 400);
+  if (!["push", "workflow_run", "schedule"].includes(eventType)) return response({ ok: false, error: "unsupported_event_type" }, 400);
   let claims;
   try { claims = await verifyFlowOidc((request.headers.get("authorization") || "").replace(/^Bearer\s+/i, ""), eventType); }
   catch (err) { return response({ ok: false, error: String(err.message || err) }, 401); }
@@ -322,20 +357,25 @@ async function acceptFlowEvent(request, env) {
     if (payload.ref !== "refs/heads/main" || !/^[a-f0-9]{40}$/i.test(String(payload.after || ""))) return response({ ok: false, error: "push_not_main_or_sha_invalid" }, 400);
     eventId = "push:" + payload.after;
     row = { source: "github", event_type: "push", action: "pushed", workflow_name: "main", job_name: null, run_id: claims.run_id || null, head_sha: payload.after, branch: "main", status: "source_changed", conclusion: null };
+  } else if (eventType === "schedule") {
+    const slot = Math.floor(Date.now() / 300000);
+    eventId = "schedule:" + slot;
+    row = { source: "github", event_type: "schedule", action: "reconciliation", workflow_name: "flow-watch-events", job_name: "signal", run_id: claims.run_id || null, head_sha: null, branch: "main", status: "reconciled", conclusion: "scheduled" };
   } else {
-    const job = payload.workflow_job || {};
-    if (job.head_branch !== "main" || !job.run_id || !job.id || String(claims.run_id || "") !== String(job.run_id)) return response({ ok: false, error: "job_scope_or_run_id_invalid" }, 403);
-    const run = await flowJson(FLOW_API + "/actions/runs/" + encodeURIComponent(String(job.run_id)));
-    if (run.data.name !== "build-cedwyn" || run.data.head_branch !== "main" || run.data.head_sha !== job.head_sha) return response({ ok: false, error: "workflow_run_not_cedwyn_build" }, 403);
-    eventId = "job:" + job.id + ":" + String(payload.action || job.status || "unknown");
-    row = { source: "github", event_type: "workflow_job", action: payload.action || null, workflow_name: run.data.name, job_name: job.name || null, run_id: String(job.run_id), head_sha: job.head_sha || null, branch: "main", status: job.status || null, conclusion: job.conclusion || null };
+    const workflow = payload.workflow_run || {};
+    if (workflow.head_branch !== "main" || !workflow.id || !workflow.head_sha) return response({ ok: false, error: "workflow_run_scope_invalid" }, 403);
+    const run = await flowJson(FLOW_API + "/actions/runs/" + encodeURIComponent(String(workflow.id)));
+    if (run.data.name !== "build-cedwyn" || run.data.head_branch !== "main" || run.data.head_sha !== workflow.head_sha) return response({ ok: false, error: "workflow_run_not_cedwyn_build" }, 403);
+    eventId = "workflowrun:" + workflow.id + ":" + String(payload.action || workflow.status || "unknown");
+    row = { source: "github", event_type: "workflow_run", action: payload.action || null, workflow_name: run.data.name, job_name: null, run_id: String(workflow.id), head_sha: workflow.head_sha, branch: "main", status: workflow.status || null, conclusion: workflow.conclusion || null };
   }
   await ensureFlowSchema(env);
   await env.DB.prepare("INSERT OR IGNORE INTO cw_flow_watch_activity(event_id,received_at,source,event_type,action,workflow_name,job_name,run_id,head_sha,branch,status,conclusion,detail_json) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)")
     .bind(eventId, new Date().toISOString(), row.source, row.event_type, row.action, row.workflow_name, row.job_name, row.run_id, row.head_sha, row.branch, row.status, row.conclusion, JSON.stringify(row)).run();
   const check = await runFlowWatch(env, "github_" + eventType + "_" + (row.action || "event"));
-  return response({ ok: true, accepted: true, event_id: eventId, check }, 202);
+  return response({ ok: check.ok !== false, accepted: true, event_id: eventId, check }, check.ok === false ? 503 : 202);
 }
+
 async function flowHealth(env) {
   await ensureFlowSchema(env);
   const state = await env.DB.prepare("SELECT snapshot_json FROM cw_flow_watch_state WHERE id='latest'").first();
@@ -366,7 +406,7 @@ export default {
     if (request.method !== "GET") return response({ error: "method_not_allowed" }, 405);
     if (path === "/flow-health.json") return flowHealth(env);
     if (path === "/flow-events.json") return flowEvents(env);
-    if (path === "/flow-contract.json") return response({ schema: "cedwyn.flow-contract/1.0", cadence: "*/5 * * * *", events: ["OIDC-verified GitHub main push", "OIDC-verified build job queued/in_progress/completed"], checks: ["main revision to Actions run", "Actions result to live production build stamp", "Agent Library manifest", "shared e-book/documentary version registry", "ebook/documentary route reachability"], limits: ["No Gmail credential or authorised delivery event source is bound to this Worker", "Private Cloudflare Pages deployment metadata is not read; public served build stamp is the deployment proof"], rule: "Before and after work, read /academy/FLYWHEELS/flow-watch.md and /flow-health.json; record owner, state, last progress, evidence and next action." }),
+    if (path === "/flow-contract.json") return response({ schema: "cedwyn.flow-contract/1.0", cadence: "GitHub Actions schedule every five minutes plus immediate push/build-job events", events: ["OIDC-verified GitHub main push", "OIDC-verified build job queued/in_progress/completed", "OIDC-verified five-minute reconciliation"], checks: ["main revision to Actions run", "Actions result to live production build stamp", "Agent Library manifest", "shared e-book/documentary version registry", "ebook/documentary route reachability"], limits: ["No Gmail credential or authorised delivery event source is bound to this Worker", "Private Cloudflare Pages deployment metadata is not read; public served build stamp is the deployment proof"], rule: "Before and after work, read /academy/FLYWHEELS/flow-watch.md and /flow-health.json; record owner, state, last progress, evidence and next action." });
     if (path === "/manifest.json") return response({
       schema: "cedwyn.agent-bridge/1.0",
       id: "x78s8jej33i8f8rrj4is88",
