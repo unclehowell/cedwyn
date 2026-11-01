@@ -1,0 +1,92 @@
+{
+  "schema": "cedwyn_spatial_registry/v1",
+  "purpose": "Source-aware spatial index contract for the Wales and Argentina app selector",
+  "coordinate_reference_system": "EPSG:4326",
+  "registry_source": "data/site-areas.json",
+  "app_slot_field": "serendipity_slot",
+  "app_slot_is_historic_plot_number": false,
+  "parcel_total": 59,
+  "current_app_area_count": 38,
+  "spatial_standard": {
+    "name": "Uber H3",
+    "index_field": "h3_index",
+    "resolution_field": "h3_resolution",
+    "cell_center_fields": ["h3_cell_center_latitude", "h3_cell_center_longitude"],
+    "parcel_center_fields": ["parcel_center_latitude", "parcel_center_longitude"],
+    "resolution_proposal": 11,
+    "resolution_proposal_source": "Bloculus Project Brief, version 1.0.0; proposal only until parcel centres are traced and sourced",
+    "resolution_proposal_url": "https://library-datro.bucklerfamily.estate/consortium_projects/brief_bloculus/latest/build/html/en/index.html",
+    "resolution": null,
+    "status": "proposal_only_pending_verified_parcel_centres",
+    "collision_check": "Reject duplicate H3 index assignments unless the source explicitly records a shared coordinate/cell relationship."
+  },
+  "subdomain_routing": {
+    "hostname_field": "parcel_subdomain",
+    "status_field": "dns_status",
+    "status": "proposal_only_unconfigured",
+    "hostname": null,
+    "cell_hostname_proposal": "<h3-cell>.cedwyn.bucklerfamily.estate",
+    "readable_alias_proposal": "pNN.cedwyn.bucklerfamily.estate",
+    "proposal_source_url": "https://library-datro.bucklerfamily.estate/consortium_projects/brief_bloculus/latest/build/html/en/index.html"
+  },
+  "geometry_source": {
+    "url": "https://cedwyn.bucklerfamily.estate/maps/data/parcels.geojson",
+    "observed_at": "2026-11-01T03:20:07.773Z",
+    "status": "partial",
+    "feature_count": 4,
+    "provenance_fields": ["features[].properties.src", "features[].properties.os", "features[].properties.conf_text"],
+    "features": [
+      {"id": "AN", "name": "Parcel A — north wood (segment 1 of 3)", "confidence": "estimated", "source_ids": ["os1900", "three", "woods"], "trace_tolerance": "about ±10 m", "source_limit": "The GeoJSON source notes identify the Parcel A wood as a family reconstruction; the later WA735527 title plan is not held."},
+      {"id": "AM", "name": "Parcel A — farmhouse, yard and buildings (segment 2 of 3)", "confidence": "traced", "source_ids": ["os1900", "os1947", "reg83"], "trace_tolerance": "about ±5 m", "source_limit": "GeoJSON source notes record that OS field 70 includes ground west of the yard wall and the registered WA240304 boundary is not held."},
+      {"id": "AS", "name": "Parcel A — the green (lower third, VG41 area)", "confidence": "estimated", "source_ids": ["pl_plans", "three", "loss55", "ev44", "os1947"], "source_limit": "GeoJSON source notes describe an estimated lower-third interpretation and record that the VG41 register map and boundary are not held."},
+      {"id": "B", "name": "Parcel B — the fields east of the house", "confidence": "traced", "source_ids": ["ev23", "os1900", "reg83"], "trace_tolerance": "about ±10 m", "source_limit": "GeoJSON source notes record that the outline is traced from colouring on the 1939 tenancy plan DBDT123/7 matched to OS 1900 field lines; it is not a freehold title plan."}
+    ],
+    "historical_plan_source": {
+      "evidence_id": "EV-0211",
+      "title": "Stewart survey of the Bute Glamorgan estates, plan 19, Cedfin or Ty Mawr Farm",
+      "date": "1824",
+      "archive_reference": "Glamorgan Archives DB/E/1-2",
+      "archive_catalogue_url": "https://canfod.glamarchives.gov.uk/records/DB/E/1-8/1-2",
+      "cedwyn_evidence_url": "https://cedwyn.bucklerfamily.estate/research/evidence/ev-0211-db-e-1-plan-19-cedfin-ty-mawr-1824",
+      "published_family_photo_url": "https://cedwyn.bucklerfamily.estate/fb/img/1824-stewart-survey-plan-19-cedfin-or-ty-mawr-farm.jpg",
+      "source_status": "published_family_photo_read; original_archive_digital_image_pending",
+      "what_the_evidence_page_reports": ["Plan 19 is titled Cedfin or Ty Mawr Farm", "The plan shows the River Ely, Village of Llandough, Llandough Farm and Wellspring", "The 1824 reference table is partly read; field names are unread"],
+      "limitations": ["The family photo is not a georeferenced modern parcel layer.", "The evidence page records that archive digital images remain pending and the plan and reference table are only partly read.", "The archival catalogue records DB/E/1 digital images only and records that the digital material is not currently available for download.", "Historic plan numbers must not be equated with tithe plot numbers or editorial webapp slots without row-by-row verification."]
+    },
+    "limits": [
+      "The four returned GeoJSON features are partial source shapes, not a complete current estate boundary.",
+      "The 1824 plan is a useful historical boundary and River Ely source, but it has not been georeferenced here.",
+      "The available sources do not establish 59 modern parcel polygons, verified parcel centres, or webapp-to-historic-plot assignments.",
+      "The existing 3D scene uses local game coordinates and is not georeferenced to the GeoJSON."
+    ]
+  },
+  "regions": {
+    "wales": {
+      "estate_boundary_status": "1824_historic_plan_available_ungeoreferenced",
+      "north_west_river_status": "river_ely_shown_on_1824_plan_ungeoreferenced",
+      "parcel_polygons_status": "partial_1900_1939_source_features; historic_plan_not_georeferenced"
+    },
+    "argentina": {
+      "estate_boundary_status": "pending_argentina_specific_source_geometry",
+      "river_status": "pending_argentina_specific_source_geometry",
+      "parcel_polygons_status": "pending_argentina_specific_source_geometry"
+    }
+  },
+  "parcel_records_status": "pending_verified_centres_and_plot_mapping",
+  "parcel_records": [],
+  "required_per_parcel_fields": {
+    "app_slot": "integer from the current webapp registry; not a historic plot number",
+    "historic_plot_number": "integer or null, populated only after EV-0215 is verified row by row",
+    "parcel_geometry_id": "source feature identifier or null",
+    "parcel_center_latitude": "number or null, source-backed physical centrepoint",
+    "parcel_center_longitude": "number or null, source-backed physical centrepoint",
+    "centerpoint_provenance": "source record and method used to trace the parcel centre",
+    "centerpoint_tolerance": "source-supported positional tolerance",
+    "h3_index": "string or null, computed from the sourced parcel centre and a documented resolution",
+    "h3_resolution": "integer or null",
+    "h3_cell_center_latitude": "number or null, returned by H3 and distinct from parcel centre",
+    "h3_cell_center_longitude": "number or null, returned by H3 and distinct from parcel centre",
+    "parcel_subdomain": "string or null; do not claim live DNS until verified",
+    "dns_status": "pending until provider records are checked"
+  }
+}
