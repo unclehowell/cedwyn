@@ -41,12 +41,12 @@ bc = DIST / '_cedwyn' / 'ghf' / 'basecamp.js'
 # chose Wales never steps to /patagonia/, a visitor who chose Patagonia never steps to the Wales tour
 _HV = json.load(open(ROOT / 'data' / 'halves.json')).get('groups', {}) if (ROOT / 'data' / 'halves.json').exists() else {}
 _XH = {'wales': set(_HV.get('wales_exclude', [])), 'patagonia': set(_HV.get('argentina_exclude', []))}
-# Navigation uses the 36 public-facing areas; the underlying 44 source themes retain their routes and databases.
+# Navigation uses the public-facing areas in data/site-areas.json (36 until 31 Oct 2026); the underlying 44 source themes retain their routes and databases.
 _area_doc = json.load(open(ROOT / 'data' / 'site-areas.json'))
 _source_by_id = {t['id']: t for t in CFG['themes']}
 _areas = _area_doc.get('areas', [])
 # 31 Oct 2026: the area count is read from the registry (area_count), no longer fixed at 36; webapps take the next free
-# parcel slot (37 = That Old Chestnut) on the way to 59 - Sion's Tab agent
+# parcel slot (37 = HubSpot, 38 = That Old Chestnut, 39 = Forensic Assessments) on the way to 59 - Sion's Tab agent
 _n_areas = int(_area_doc.get('area_count') or len(_areas))
 assert len(_areas) == _n_areas and len({a['id'] for a in _areas}) == _n_areas, 'site area registry must define area_count unique public areas'
 chain = []
@@ -75,9 +75,10 @@ for _c, _area in zip(chain, _areas):
     _al = sorted({'/' + s + '/' for s in _area.get('source_themes', [])} - {_p})
     _built = any((DIST / x.strip('/')).is_dir() for x in [_p] + _al)
     _areas_pub.append({'id': _area['id'], 'path': _p, 'title': _c[1], 'cy': _c[3], 'es': _c[4], 'group': _c[2],
-                       'aliases': _al, 'skip_in': _c[5], 'built': _built})
+                       'aliases': _al, 'skip_in': _c[5], 'built': _built,
+                       'slot': _area.get('serendipity_slot'), 'of': _area_doc.get('parcel_total', 59)})
 json.dump({'schema': 'cedwyn_areas/v1', 'source': 'data/site-areas.json', 'order': 'main menu reading order; previous/next wrap from the last area to the first',
-           'count': len(_areas_pub), 'areas': _areas_pub}, open(DIST / 'areas.json', 'w'), ensure_ascii=False, indent=1)
+           'count': len(_areas_pub), 'parcel_total': _area_doc.get('parcel_total', 59), 'areas': _areas_pub}, open(DIST / 'areas.json', 'w'), ensure_ascii=False, indent=1)
 bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False)).replace('/*CEDWYN_GROUPS*/null', json.dumps(menu_groups, ensure_ascii=False)).replace('/*CEDWYN_SMAP*/{}', json.dumps(_source_to_area, ensure_ascii=False))
               .replace('HOME = "https://bucklerfamily.estate/cedwyn/"', 'HOME = "/"')
               # DARTBOARD_NAMES: the dartboard theme is the dartboard app now, not the home (header and menu names)
@@ -115,7 +116,7 @@ _home_cfg['home']['layers_note'] = 'Whichever way you come in, browse the same {
 _home_cfg['home']['description'] = 'The Cedwyn Estate archive: {n} visitor-facing page areas for records, research, games and stories.'
 (DIST / 'index.html').write_text(home.render(_home_cfg))
 _g, _stray = home.groups_of(_home_cfg)
-assert sum(len(ts) for _, ts in _g) == len(_areas) == 36, 'home: a visitor area is missing from the groups'
+assert sum(len(ts) for _, ts in _g) == len(_areas) == _n_areas, 'home: a visitor area is missing from the groups'
 
 (DIST / '404.html').write_text('''<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#14141c"><title>Page not found · Cedwyn</title>
 <style>
@@ -135,7 +136,7 @@ a.card strong{display:block;color:#fff;margin-bottom:4px}a.card span{display:blo
 <p>The address below did not resolve to a page in this version of Cedwyn. It may have moved during the migration, the link may be outdated, or the page may genuinely be missing.</p>
 <p>Requested address: <code id="requested">Loading…</code></p>
 <nav aria-label="Recovery options">
-<a class="card" href="/"><strong>Browse Cedwyn home →</strong><span>Choose Wales, Argentina, Cyberspace, or a theme from the directory.</span></a>
+<a class="card" href="/"><strong>Browse Cedwyn home →</strong><span>Choose Wales, Argentina, Online, or a theme from the directory.</span></a>
 <a class="card" href="/directory/"><strong>Browse all themes →</strong><span>Open the directory of the migrated sites.</span></a>
 <a class="card" id="search-link" href="/catalogue/"><strong>Search the evidence catalogue →</strong><span>Search for the subject or page name from the missing address.</span></a>
 <a class="card" href="/research/"><strong>Open the Research Library →</strong><span>Find the main research pages and canonical links.</span></a>
