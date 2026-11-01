@@ -109,6 +109,45 @@ def info_dialog(cid, title, body, line):
 def info_button(cid):
     return f'<button type="button" class="sh-i" data-wi="wi-{E(cid)}" aria-label="What’s inside" aria-haspopup="dialog">ⓘ</button>'
 _DESC = {}   # full description per card id, read from the book list while the shelf is built
+# Offer clarity (sales-fix sf43, 1 Nov 2026): the shelf called four 13-24 page previews "Free v0.0.1" / "free version", so the
+# £4.99 Buy read as a small update to a free book. Each card now says what £4.99 buys against what is free (page counts from
+# data/ebooks.json and the free files' own page counts). No price, link or design change. Idempotent.
+FREE_ED = {   # free file key (data-gb) -> (pages in the free PDF, 'preview' | 'first edition')
+    'fcg@1.0.0-preview': (20, 'preview'), 'projects@1.0.0-preview': (13, 'preview'), 'dartboard@1.0.2-preview': (24, 'preview'),
+    'tymawr-deaths@1.0.0-preview': (14, 'preview'), 'recorded-incidents@0.1.0': (30, 'first edition'),
+    'tymawr-heritage@0.1.0': (24, 'first edition'), 'williams-buckler-family@0.1.0': (25, 'first edition')}
+CMP_CSS = ('<style id="cmp-css">.sh .sh-card .sh-cmp{margin:6px 0 0!important;font-size:12.5px!important;line-height:1.35!important;'
+           'letter-spacing:0!important;opacity:.9}.sh .sh-card .sh-cmp b{font-weight:700}</style>')
+def offer_lines(t, B):
+    def one(m):
+        li = m.group(0); cid = m.group(1)
+        if 'class="sh-cmp"' in li or 'buy.stripe.com' not in li: return li
+        g = re.search(r'class="sv-free"[^>]*data-gb="([^"]+)"', li)
+        fe = FREE_ED.get(g.group(1)) if g else None
+        try: paid = int(str(B.get(cid, {}).get('pages') or 0))
+        except ValueError: paid = 0
+        if not fe or paid <= fe[0]: return li
+        fp, kind = fe
+        pm = re.search(r'class="sv-go"[^>]*>[^<]*?(£[\d.,]+)', li)
+        if not pm: return li
+        price = pm.group(1)
+        if kind == 'preview':
+            li = li.replace('<span class="sh-free">Free v0.0.1</span>', '<span class="sh-free">Free preview</span>')
+            li = li.replace('data-go="Read v0.0.1 · free"', 'data-go="Read v0.0.1 · free preview"')
+            li = re.sub(r'(<a class="sv-free"[^>]*>)free version \(v0\.0\.1[^<]*\)(</a>)', r'\1read the free %d-page preview\2' % fp, li)
+            line = f'<b>{price}: the full book, {paid:,} pages.</b> Free: a {fp}-page preview.'
+        else:
+            line = f'<b>{price} edition: {paid:,} pages.</b> Free first edition: {fp} pages.'
+        at = li.find('<a class="sv-free"')
+        if at < 0: return li
+        return li[:at] + f'<p class="sh-cmp">{line}</p>' + li[at:]
+    t = re.sub(r'<li class="sh-card" id="([^"]+)">.*?</li>', one, t, flags=re.S)
+    t = t.replace('The first edition of every book is free to download, so you can read before you buy.',
+                  'Every book has a free first edition or a free preview, so you can read before you buy.')
+    if 'class="sh-cmp"' in t and 'id="cmp-css"' not in t:
+        mm = re.search(r'</head\s*>', t, re.I)
+        if mm: t = t[:mm.start()] + CMP_CSS + t[mm.start():]
+    return t
 def tidy(t, D):
     """Idempotent: the shop page is header -> shelf -> questions and payment line; details live in each title's info modal."""
     if 'id="sh-css"' not in t: return t
@@ -118,6 +157,7 @@ def tidy(t, D):
     t = re.sub(r'<p class="sh-ver"[^>]*>.*?</p>', '', t, flags=re.S)
     # Version drop-down (owner 19:21 30 Oct; skills/version-selector-dropdown-label-default.md): a visible "Select a version" label,
     # newest preselected (sv-js selects the first option), each option with its price: "v0.0.2 — £4.99", "v0.0.1 — free".
+    t = offer_lines(t, B)
     t = re.sub(r'(<label class="sv-lab"[^>]*>)Version(</label>)', r'\1Select a version\2', t)
     t = t.replace(' aria-label="Version, latest first"', '')
     def _opt(m):
