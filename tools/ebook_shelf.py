@@ -14,12 +14,16 @@ Runs after ebook_editions.py (site.py). Touches only dist/ebooks/index.html:
 - the payment line (#eb-trust) sits below the shelf, just above the questions. tidy() is idempotent and also runs on an already-built page.
 1.2.1 (30 Oct 2026, owner 19:21): the version drop-down is labelled "Select a version" (visible label), newest preselected, options read
   "v0.0.2 — £4.99" / "v0.0.1 — free"; the Buy/Read button still follows the choice (sv-js); 44 px select.
+1.3.0 (1 Nov 2026, owner 02:19, VERSION-STANDARD §2a): the drop-down opens on the placeholder "Select a version" (cy/es by page
+  language), no visible label, nothing preselected, no Buy/Read button or free line under it; choosing a version follows that
+  version's own existing link at once (free reader or the unchanged checkout link) and the drop-down returns to the placeholder; an (i) beside it opens the version table (§3) from /_cedwyn/version-gate.json.
 Prices, checkout links and utm parameters are copied from the page as they are; nothing new is created."""
 import json, html, pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.2.1'
-VERSIONS = [('1.2.1', '30 Oct 2026', 'Select a version label; price in each option'),
+VERSION = '1.3.0'
+VERSIONS = [('1.3.0', '1 Nov 2026', 'One plain drop-down: "Select a version" placeholder, no label above, nothing preselected, nothing under it; choosing acts at once; (i) version table'),
+            ('1.2.1', '30 Oct 2026', 'Select a version label; price in each option'),
             ('1.2.0', '30 Oct 2026', 'Header, shelf, then questions: book details in an info modal per title; bundle card on the shelf'),
             ('1.1.0', '27 Oct 2026', 'Poster-card shelf; cover opens the free edition; titles link only to a book’s own page'),
             ('1.0.1', '26 Oct 2026', 'Editions table shown as cards on phones'),
@@ -38,6 +42,42 @@ CSS = ('<style id="sh-css">.sh{max-width:1240px;margin:0 auto 22px;padding:0 12p
        '.sh-card .sv-row{display:flex;flex-direction:column;gap:6px}.sh-card .sv-sel{width:100%;min-width:0;max-width:100%;font-size:.85rem;padding:6px 4px}'
        '.sh-card .sv-go{display:block;text-align:center;padding:9px 6px;font-size:.8rem;font-weight:700;border-radius:4px}'
        '.sh-card .sv-free{display:block;margin:5px 0 0;font-size:.72rem;opacity:.8}.sh-ver{margin:14px 0 0;font-size:.72rem;opacity:.65}.sh .sh-t{font-size:15px!important;line-height:1.25!important;letter-spacing:0!important;text-transform:none!important;margin:9px 0 3px!important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.sh .sh-hook{font-size:12.5px!important;line-height:1.35!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.sh .sh-card select.sv-sel{height:38px!important;min-height:0!important;max-height:38px!important;padding:4px 6px!important;font-size:13px!important;line-height:1.2!important;box-sizing:border-box}.sh .sh-card .sv-go{font-size:13px!important;line-height:1.2!important;min-height:0!important}@media(min-width:960px){.sh .sh-t{font-size:16px!important}}</style>')
+SV_JS = ('<style id="sh-sv-css">.sh .sh-card .sv-row{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center;gap:4px}'
+         '.sh .sh-grid .sh-card .sv-row select.sv-sel{flex:1 1 0!important;width:auto!important;min-width:0!important;font-size:12px!important;padding:4px 2px 4px 5px!important;letter-spacing:0!important}'
+         '.sh .sh-grid .sh-card .sv-row .sv-vi{flex:0 0 32px!important;width:32px!important;height:32px!important;min-width:0!important;min-height:0!important;margin:0!important;border-radius:50%!important}'
+         '.sh-card .sv-vi{flex:none;width:34px;height:34px;padding:0;border-radius:50%;border:1px solid currentColor;background:transparent;color:inherit;'
+         'font:700 15px/1 Georgia,serif;font-style:italic;cursor:pointer;opacity:.85}.sh-card .sv-vi:focus-visible{outline:2px solid #F2C94C;outline-offset:2px}'
+         '.sv-vlog{max-width:min(94vw,640px);width:94vw;padding:0;border:0;border-radius:8px;background:#141414;color:#f3efe6}'
+         '.sv-vlog::backdrop{background:rgba(0,0,0,.6)}.sv-vlogh{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #333}'
+         '.sv-vlogx{width:36px;height:36px;border:0;background:transparent;color:inherit;font-size:24px;cursor:pointer}'
+         '.sv-vtab{width:100%;border-collapse:collapse;font-size:13px;line-height:1.35}.sv-vtab th,.sv-vtab td{padding:7px 10px;text-align:left;vertical-align:top;border-bottom:1px solid #2a2a2a}'
+         '@media(max-width:560px){.sv-vtab thead{display:none}.sv-vtab tr{display:block;padding:6px 0;border-bottom:1px solid #333}.sv-vtab td{display:block;border:0;padding:2px 12px}'
+         '.sv-vtab td::before{content:attr(data-l) ": ";font-weight:700;opacity:.7}}</style>'
+         '<script id="sh-sv-js">(function(){var d=document.documentElement,STEP=4.99,man=null,'
+         'W={en:["Select a version","Version history","Versions","Version","Date","What changed","Pages","Price","free","Close"],'
+         'cy:["Dewiswch fersiwn","Hanes fersiynau","Fersiynau","Fersiwn","Dyddiad","Beth newidiodd","Tudalennau","Pris","am ddim","Cau"],'
+         'es:["Seleccione una versión","Historial de versiones","Versiones","Versión","Fecha","Qué cambió","Páginas","Precio","gratis","Cerrar"]};'
+         'function L(){var l=(d.lang||"en").slice(0,2).toLowerCase();return W[l]?l:"en";}function w(i){return W[L()][i];}'
+         'function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}'
+         'function item(li){var M=(man&&man.ebooks)||{},k;for(k in M)if(M[k].card===li.id)return M[k];'
+         'var g=li.querySelector("[data-gb]"),p=g?g.getAttribute("data-gb").split("@")[0]:"";return M[p]||null;}'
+         'function num(s){var m=String(s||"").match(/\\d+(?:\\.\\d+)?/);return m?parseFloat(m[0]):0;}'
+         'function show(li,btn){var it=item(li);if(!it||!it.versions)return;var v=it.versions,n=v.length,top=num(it.price),dl=el("dialog","sv-vlog");'
+         'dl.setAttribute("aria-label",w(1));var hd=el("div","sv-vlogh");hd.appendChild(el("strong","",w(2)));var x=el("button","sv-vlogx","\\u00d7");x.type="button";'
+         'x.setAttribute("aria-label",w(9));hd.appendChild(x);dl.appendChild(hd);var hs=[w(3),w(4),w(5),w(6),w(7)],tb=el("table","sv-vtab"),th=el("thead"),tr=el("tr");'
+         'hs.forEach(function(h){var c=el("th","",h);c.scope="col";tr.appendChild(c);});th.appendChild(tr);tb.appendChild(th);var bd=el("tbody");'
+         'for(var i=n-1;i>=0;i--){var o=v[i],p=(i===0||o.v==="0.0.1")?0:Math.max(0,Math.round((top-STEP*(n-1-i))*100)/100),r=el("tr"),dt=o.date||"";'
+         'try{dt=new Date(o.date+"T12:00:00Z").toLocaleDateString(L()==="en"?"en-GB":L(),{day:"numeric",month:"short",year:"numeric"});}catch(e){}'
+         '[ "v"+o.v,dt,o.change||"",o.pages!=null?String(o.pages):(o.length||""),p?"\\u00a3"+p.toFixed(2):w(8)].forEach(function(c,j){var td=el("td","",c);td.setAttribute("data-l",hs[j]);r.appendChild(td);});bd.appendChild(r);}'
+         'tb.appendChild(bd);dl.appendChild(tb);document.body.appendChild(dl);function shut(){try{dl.close();}catch(e){}}'
+         'dl.addEventListener("close",function(){dl.remove();try{btn.focus();}catch(e){}});x.addEventListener("click",shut);'
+         'dl.addEventListener("click",function(ev){if(ev.target===dl)shut();});if(dl.showModal)dl.showModal();else dl.setAttribute("open","");try{x.focus();}catch(e){}}'
+         'function load(cb){if(man)return cb();fetch("/_cedwyn/version-gate.json",{cache:"no-cache"}).then(function(r){return r.json();}).then(function(j){man=j;cb();}).catch(function(){});}'
+         'function init(){[].forEach.call(document.querySelectorAll(".sh-card .sv-pick"),function(box){var s=box.querySelector(".sv-sel");if(!s||s.__sh)return;s.__sh=1;'
+         'var ph=s.querySelector("option.sv-ph");if(ph&&L()!=="en"){ph.textContent=w(0);s.setAttribute("aria-label",w(0));}s.selectedIndex=0;'
+         's.addEventListener("change",function(){var v=s.value;s.selectedIndex=0;if(!v)return;var a=box.querySelector(\'.sv-t[data-k="\'+v+\'"]\');if(a)a.click();});'
+         'var b=box.querySelector(".sv-vi"),li=box.closest(".sh-card");if(b&&li){if(L()!=="en")b.setAttribute("aria-label",w(1));b.addEventListener("click",function(){load(function(){show(li,b);});});}});}'
+         'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();})();</script>')
 def _attrs(tag):
     return dict(re.findall(r'([\w-]+)="([^"]*)"', tag))
 def card(art, pages):
@@ -124,6 +164,25 @@ def tidy(t, D):
         price = m.group(2).rsplit('·', 1)[-1].strip() if '·' in m.group(2) else ''
         return f'{m.group(0)[:m.group(0).find(">") + 1]}{m.group(1)}{" — " + price if price else ""}</option>'
     t = re.sub(r'<option value="(v[\d.]+)" data-go="([^"]*)"[^>]*>[^<]*</option>', _opt, t)
+    # 1.3.0 (1 Nov 2026, owner 02:19; docs/VERSION-STANDARD.md §2a): one plain drop-down. Its first option is the placeholder
+    # "Select a version", shown on load; no label above it (aria-label only); nothing preselected; no Buy/Read button or free line
+    # under it; the (i) beside it opens the version table (VERSION-STANDARD §3: version, date, what changed, pages, computed price). Choosing a version acts at once through that version's own existing link (a.sv-t: the free reader or the same
+    # checkout link as before), then the drop-down returns to the placeholder (sh-sv-js). The cover stays the no-JS free link.
+    t = re.sub(r'<label class="sv-lab"[^>]*>[^<]*</label>', '', t)
+    def _ph(m):
+        sel, body = m.group(1), m.group(2)
+        if 'aria-label=' not in sel: sel = sel[:-1] + ' aria-label="Select a version">'
+        body = re.sub(r'(<option value="v[\d.]+"[^>]*?)\s+selected(?:="[^"]*")?(?=[\s>])', r'\1', body)
+        if 'class="sv-ph"' not in body: body = '<option class="sv-ph" value="" disabled selected>Select a version</option>' + body
+        return sel + body
+    t = re.sub(r'(<select class="sv-sel"[^>]*>)(.*?)(?=</select>)', _ph, t, flags=re.S)
+    t = re.sub(r'(<div class="sv-row">\s*<select class="sv-sel".*?</select>)\s*<a class="sv-go"[^>]*>.*?</a>', r'\1', t, flags=re.S)
+    t = re.sub(r'(<div class="sv-pick"(?:(?!</li>).)*?)<a class="sv-free"[^>]*>.*?</a>', r'\1', t, flags=re.S)
+    t = re.sub(r'(<div class="sv-row">\s*<select class="sv-sel".*?</select>)(?!<button type="button" class="sv-vi")',
+               r'\1<button type="button" class="sv-vi" aria-label="Version history" aria-haspopup="dialog">i</button>', t, flags=re.S)
+    if 'id="sh-sv-js"' not in t:
+        at = t.rfind('</body>')
+        if at > 0: t = t[:at] + SV_JS + t[at:]
     t = re.sub(r'<a\b[^>]*href="#(?:versions|editions|whats-inside)"[^>]*>.*?</a>\s*(?:·\s*)?', '', t, flags=re.S)
     dialogs = []
     bm = re.search(r'<section\b[^>]*\bid="all-four"[^>]*>.*?</section>\s*', t, re.S)

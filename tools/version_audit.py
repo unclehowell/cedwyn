@@ -4,7 +4,8 @@ Usage (repo root): python3 tools/version_audit.py [--live] [--fix] [--root DIR]
 Checks web/_cedwyn/version-gate.json against the standard and data/ebooks.json; --live also reads the public site.
 --fix corrects minor drift in the manifest only (order, stray per-version prices, latest price from data/ebooks.json).
 Selector UI (standard 2a, 1.1.0): flags label and sub-text drift in the gate's code and the documentary page (reported, never auto-fixed).
-Exit 0 = clean (or every finding fixed), 1 = findings left. 1.0.0 (2026-11-01); 1.1.0 (2026-11-01) Selector UI checks - Cedwyn editors"""
+Exit 0 = clean (or every finding fixed), 1 = findings left. 1.0.0 (2026-11-01); 1.1.0 (2026-11-01) Selector UI checks; 1.1.1 (2026-11-01) documentary modal
+(1.9.0+) rules replace the retired play-prompt rules, shelf cards need the (i) beside the drop-down - Cedwyn editors"""
 import json, re, sys, os, urllib.request
 SITE = "https://cedwyn.bucklerfamily.estate"
 STEP = 4.99
@@ -21,8 +22,11 @@ UI_RULES = {   # name: [(must|never, regex, message)]
     "movie": [("must", r'el\("option",\s*"cm-vph",\s*t\("vsel"\)\)', 'no placeholder option "Select a version"'),
               ("never", r'el\("label",\s*"cm-vlab"', "a visible label above the drop-down"),
               ("never", r'el\("div",\s*"cm-vnowline"|t\("vl_(?:free|paid|open)"\)', "a status line under the drop-down"),
-              ("must", r'function promptOn', "no NFT prompt on play with no version"),
-              ("must", r'promptOn\(f\)', "play does not ask for a version first")]}
+              # 1.1.1: documentary 1.9.0+ (standard 1.2.0, owner 02:30): the selector lives only in a modal opened by play or a door tap
+              ("must", r'function openGate', "no version modal (the selector must live only in the modal)"),
+              ("must", r'NFT\[Math\.floor\(Math\.random\(\)', "the version modal shows no random NFT image"),
+              ("must", r'"cm-vp-t",\s*t\("vsel"\)', 'no "Select a version" over the modal image'),
+              ("must", r'function vTable', "no (i) version table beside the drop-down")]}
 def ui_check(name, src, where, find):
     for kind, rx, msg in UI_RULES[name]:
         hit = re.search(rx, src)
@@ -108,6 +112,7 @@ def main(argv):
                 if re.search(r'<label[^>]*class="sv-lab"', card): ui_drift.setdefault("a visible 'Select a version' label above the drop-down", []).append(k)
                 if re.search(r'<select class="sv-sel"[^>]*>(?:(?!</select>).)*<option(?![^>]*value="")[^>]*\bselected\b', card, re.S): ui_drift.setdefault("a version preselected (no 'Select a version' placeholder)", []).append(k)
                 if re.search(r'class="sv-go"|class="sv-free"', card): ui_drift.setdefault("a button or link line under the drop-down", []).append(k)
+                if 'class="sv-sel"' in card and 'class="sv-vi"' not in card: ui_drift.setdefault("no (i) version-table button beside the drop-down", []).append(k)
                 want = ["v%s — %s" % (v["v"], "free" if p == 0 else "£%.2f" % p) for v, p in zip(it["versions"], it["_ladder"])]
                 for w in want:
                     if not any(o.startswith(w) for o in opts): find(f"live /ebooks/ {k}: drop-down lacks '{w}' (has {opts})")
