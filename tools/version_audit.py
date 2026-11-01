@@ -5,7 +5,7 @@ Checks web/_cedwyn/version-gate.json against the standard and data/ebooks.json; 
 --fix corrects minor drift in the manifest only (order, stray per-version prices, latest price from data/ebooks.json).
 Selector UI (standard 2a, 1.1.0): flags label and sub-text drift in the gate's code and the documentary page (reported, never auto-fixed).
 Exit 0 = clean (or every finding fixed), 1 = findings left. 1.0.0 (2026-11-01); 1.1.0 (2026-11-01) Selector UI checks; 1.1.1 (2026-11-01) documentary modal
-(1.9.0+) rules replace the retired play-prompt rules, shelf cards need the (i) beside the drop-down - Cedwyn editors"""
+(1.9.0+) rules replace the retired play-prompt rules, shelf cards need the (i) beside the drop-down; 1.1.2 (2026-11-01) /learn/ questionnaires picker checked live - Cedwyn editors"""
 import json, re, sys, os, urllib.request
 SITE = "https://cedwyn.bucklerfamily.estate"
 STEP = 4.99
@@ -117,6 +117,19 @@ def main(argv):
                 for w in want:
                     if not any(o.startswith(w) for o in opts): find(f"live /ebooks/ {k}: drop-down lacks '{w}' (has {opts})")
         except Exception as e: find(f"live: /ebooks/ not read ({str(e)[:60]})")
+        try:   # 1.1.2: the /learn/ questionnaires picker (academy Worker) follows standard 1-3 in its own markup
+            st, html = get(SITE + "/learn/")
+            m = re.search(r'<div class="cm-vsel">(?:(?!</section>).)*', html, re.S) if st == 200 else None
+            if st != 200: find(f"live: /learn/ answered {st}")
+            elif m:
+                blk = m.group(0); opts = [re.sub(r"\s+", " ", o).strip() for o in re.findall(r"<option[^>]*>([^<]+)</option>", blk)]
+                if re.search(r'<label[^>]*class="cm-vlab"', blk): find("selector UI (live /learn/): a visible 'Select a version' label above the drop-down")
+                if not re.search(r'<option value=""[^>]*>Select a version<', blk): find('selector UI (live /learn/): no placeholder option "Select a version"')
+                if re.search(r'<option(?![^>]*value="")[^>]*\bselected\b', blk): find("selector UI (live /learn/): a version is preselected")
+                if re.search(r'id="svgo"', blk): find("selector UI (live /learn/): a button under the drop-down")
+                if not re.search(r'</select>\s*<button[^>]*class="ib"', blk): find("selector UI (live /learn/): no (i) version-table button beside the drop-down")
+                if not any(o.startswith("v0.0.1 — free") for o in opts): find(f"live /learn/: drop-down lacks 'v0.0.1 — free' (has {opts})")
+        except Exception as e: find(f"live: /learn/ not read ({str(e)[:60]})")
         for msg, ks in ui_drift.items(): find(f"selector UI (live /ebooks/ shelf cards): {msg}: {len(ks)} books ({', '.join(ks)})")
         for im in M.get("images", [])[:60]:
             try:
