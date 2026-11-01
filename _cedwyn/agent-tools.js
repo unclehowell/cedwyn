@@ -124,6 +124,24 @@
       readOnly: true
     },
     {
+      name: 'get_cedwyn_flow_watch_health',
+      description: 'Read the live sanitised Cedwyn anti-stagnation status: latest GitHub source/build queue, production build stamp, Agent Library publication, shared e-book/documentary version registry, current blockers and explicit connector coverage gaps. Read this before and after work.',
+      inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+      readOnly: true
+    },
+    {
+      name: 'get_cedwyn_flow_watch_events',
+      description: 'Read recent sanitised Cedwyn operational issues, resolution timestamps and GitHub build-job transitions. Read-only.',
+      inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+      readOnly: true
+    },
+    {
+      name: 'get_cedwyn_flow_watch_contract',
+      description: 'Read the machine-readable anti-stagnation contract, monitoring cadence, observable systems and connector gaps. Read-only.',
+      inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+      readOnly: true
+    },
+    {
       name: 'read_cedwyn_x_activity',
       description: 'Read the reviewed X/Grok discussion references submitted by authorised X-capable agents. This is not a live X crawl; pending submissions are hidden.',
       inputSchema: {
@@ -522,6 +540,9 @@
       { path: '/x78s8jej33i8f8rrj4is88/x.json', kind: 'json', note: 'Reviewed X activity and public discussion references for BuckerCarlson' },
       { path: '/x78s8jej33i8f8rrj4is88/contributions.json', kind: 'json', note: 'Reviewed public external-agent contributions' },
       { path: '/x78s8jej33i8f8rrj4is88/queue-summary.json', kind: 'json', note: 'Counts of pending and published agent submissions; no pending text exposed' },
+      { path: '/x78s8jej33i8f8rrj4is88/flow-health.json', kind: 'json', note: 'Live sanitised anti-stagnation health: source/build queue, production revision, Library and product-version status' },
+      { path: '/x78s8jej33i8f8rrj4is88/flow-events.json', kind: 'json', note: 'Recent operational issues and GitHub build-job transitions' },
+      { path: '/x78s8jej33i8f8rrj4is88/flow-contract.json', kind: 'json', note: 'Machine-readable mandatory flow-watch protocol' },
       { path: '/x78s8jej33i8f8rrj4is88/webmcp.json', kind: 'json', note: 'Agent bridge machine resource registry' },
       { path: '/academy/work.json', kind: 'json', note: 'Open agent jobs' },
       { path: '/db/stats.json', kind: 'json', note: 'Catalogue database counts and version' },
@@ -647,6 +668,12 @@
         return readResource('/x78s8jej33i8f8rrj4is88/manifest.json');
       case 'get_cedwyn_agent_queue_summary':
         return readResource('/x78s8jej33i8f8rrj4is88/queue-summary.json');
+      case 'get_cedwyn_flow_watch_health':
+        return readResource('/x78s8jej33i8f8rrj4is88/flow-health.json');
+      case 'get_cedwyn_flow_watch_events':
+        return readResource('/x78s8jej33i8f8rrj4is88/flow-events.json');
+      case 'get_cedwyn_flow_watch_contract':
+        return readResource('/x78s8jej33i8f8rrj4is88/flow-contract.json');
       case 'read_cedwyn_x_activity': {
         var xLimit = Math.max(1, Math.min(Number(args.limit) || 20, 20));
         return readResource('/x78s8jej33i8f8rrj4is88/x.json?limit=' + xLimit);

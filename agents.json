@@ -1,8 +1,8 @@
 {
  "schema": "cedwyn_academy/v1",
  "name": "Agent library",
- "version": "1.0.18",
- "built_utc": "2026-10-31 12:44 UTC",
+ "version": "1.1.0",
+ "built_utc": "2026-10-31 23:43 UTC",
  "base_path": "/academy/",
  "alias_paths": [
   "/academy/"
@@ -67,6 +67,27 @@
   }
  },
  "flywheels": [
+  {
+   "id": "flow-watch",
+   "name": "Cedwyn anti-stagnation flow watch",
+   "cadence": "GitHub push/build-job events plus five-minute reconciliation",
+   "runner": "FLYWHEELS/flow-watch.md",
+   "purpose": "Detect stalled source/build queues and failed or stale publications; compel every agent to record accountable state, progress, proof and next action.",
+   "inputs": [
+    "OIDC-verified GitHub events",
+    "live production build stamp",
+    "Agent Library manifest",
+    "shared product-version registry",
+    "Gmail status only through authorised Gmail agents"
+   ],
+   "outputs": [
+    "sanitised flow-health and event feeds",
+    "D1-backed issue history",
+    "recorded recovery action and verification"
+   ],
+   "metric": "event-to-detection time; source-to-live lag; queue wait; oldest blocker; recovery time; released artifacts with live proof",
+   "report": "Critical failures appear immediately; every agent checks health before and after work. Private email and access-controlled metadata remain private."
+  },
   {
    "id": "research-cycle",
    "name": "Great House Farm research cycle",
@@ -5749,5 +5770,7 @@
    },
    "access": "public metadata only; privileged data/actions require the acting agent's own authorised connectors"
   }
- }
+ },
+ "source_branch": "agents",
+ "source_commit": "6e1bf9d5ed1c942a5d3e30e310f26cc4533c1720"
 }
