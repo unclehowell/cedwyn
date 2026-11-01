@@ -1,12 +1,32 @@
 #!/usr/bin/env python3
-"""Cedwyn version standard audit (docs/VERSION-STANDARD.md 1.0.0) - the flywheel's check. Stdlib only.
+"""Cedwyn version standard audit (docs/VERSION-STANDARD.md 1.1.0) - the flywheel's check. Stdlib only.
 Usage (repo root): python3 tools/version_audit.py [--live] [--fix] [--root DIR]
 Checks web/_cedwyn/version-gate.json against the standard and data/ebooks.json; --live also reads the public site.
 --fix corrects minor drift in the manifest only (order, stray per-version prices, latest price from data/ebooks.json).
-Exit 0 = clean (or every finding fixed), 1 = findings left. 1.0.0 (2026-11-01) - Cedwyn editors"""
+Selector UI (standard 2a, 1.1.0): flags label and sub-text drift in the gate's code and the documentary page (reported, never auto-fixed).
+Exit 0 = clean (or every finding fixed), 1 = findings left. 1.0.0 (2026-11-01); 1.1.0 (2026-11-01) Selector UI checks - Cedwyn editors"""
 import json, re, sys, os, urllib.request
 SITE = "https://cedwyn.bucklerfamily.estate"
 STEP = 4.99
+STANDARD = "1.1.0"
+# Selector UI (standard 2a): one plain drop-down, placeholder "Select a version", no label above, no helper/sub-text/button under it.
+UI_RULES = {   # name: [(must|never, regex, message)]
+    "gate": [("must", r'el\("option",\s*"cvg-ph",\s*t\("sel"\)\)', 'no placeholder option "Select a version"'),
+             ("must", r'ph\.value\s*=\s*""', "placeholder option has a value"),
+             ("never", r'el\("label"', "a visible <label> above the drop-down"),
+             ("never", r'op\.selected\s*=\s*true', "a version is preselected"),
+             ("never", r'cvg-go|cvg-lab\b|cvg-sub|cvg-note', "a button, label or line under the drop-down"),
+             ("must", r'"ask"', "no NFT prompt state (shown only after play/open)"),
+             ("must", r'"poster"', "no cover state on load")],
+    "movie": [("must", r'el\("option",\s*"cm-vph",\s*t\("vsel"\)\)', 'no placeholder option "Select a version"'),
+              ("never", r'el\("label",\s*"cm-vlab"', "a visible label above the drop-down"),
+              ("never", r'el\("div",\s*"cm-vnowline"|t\("vl_(?:free|paid|open)"\)', "a status line under the drop-down"),
+              ("must", r'function promptOn', "no NFT prompt on play with no version"),
+              ("must", r'promptOn\(f\)', "play does not ask for a version first")]}
+def ui_check(name, src, where, find):
+    for kind, rx, msg in UI_RULES[name]:
+        hit = re.search(rx, src)
+        if (kind == "must" and not hit) or (kind == "never" and hit): find(f"selector UI ({where}): {msg}")
 BANNED = ["says", "claims", "according to", "hearsay", "unverified", "alleged", "fraud", "stolen"]
 PER_UNIT = re.compile(r"\b(per page|a page|per day|a day|pennies|less than a coffee)\b|\d+p\s*(a|per)\s*page", re.I)
 SEM = re.compile(r"^\d+\.\d+\.\d+$")
@@ -26,7 +46,7 @@ def main(argv):
     books = {b["id"]: b for b in D.get("books", [])}
     out, fixed = [], []
     def find(msg): out.append(msg)
-    if M.get("standard") != "1.0.0": find("manifest: standard is not 1.0.0")
+    if M.get("standard") != STANDARD: find(f"manifest: standard is not {STANDARD}")
     if M.get("price_step_gbp") != STEP: find("manifest: price_step_gbp is not 4.99")
     for im in M.get("images", []):
         if not re.match(r"^/nft-art/art/[a-z0-9.-]+\.webp$", im): find(f"image {im}: not /nft-art/art/*.webp")
@@ -59,11 +79,23 @@ def main(argv):
                 else: find(f"{k}: latest price {it['price']} != data/ebooks.json {b['price']}")
             if b.get("pages") and vs[-1].get("pages") and int(b["pages"]) != int(vs[-1]["pages"]): find(f"{k}: latest pages {vs[-1]['pages']} != data/ebooks.json {b['pages']}")
         it["_ladder"] = ladder(len(vs), gbp(it.get("price")))
+    gp = os.path.join(root, "web/_cedwyn/version-gate.js")
+    if os.path.exists(gp): ui_check("gate", open(gp, encoding="utf-8").read(), "web/_cedwyn/version-gate.js", find)
+    for mp2 in ("public/movie.js", "web/documentary/movie.js"):
+        p2 = os.path.join(root, mp2)
+        if os.path.exists(p2): ui_check("movie", open(p2, encoding="utf-8").read(), mp2, find)
     if live:
+        for url, name in ((SITE + "/_cedwyn/version-gate.js", "gate"), (SITE + "/documentary/movie.js", "movie")):
+            try:
+                st, src = get(url + "?cb=audit")
+                if st == 200: ui_check(name, src, "live " + url.replace(SITE, ""), find)
+                else: find(f"live: {url.replace(SITE, '')} answered {st}")
+            except Exception as e: find(f"live: {url.replace(SITE, '')} not read ({str(e)[:60]})")
         try:
             st, _ = get(SITE + "/_cedwyn/version-gate.json")
             if st != 200: find(f"live: /_cedwyn/version-gate.json answered {st}")
         except Exception as e: find(f"live: /_cedwyn/version-gate.json not served ({str(e)[:60]})")
+        ui_drift = {}
         try:
             st, html = get(SITE + "/ebooks/")
             for k, it in (M.get("ebooks") or {}).items():
@@ -72,10 +104,15 @@ def main(argv):
                 if not m: m = re.search(r'<li class="sh-card" id="[^"]*">(?:(?!</li>).)*data-gb="%s@(?:(?!</li>).)*</li>' % re.escape(k), html, re.S)
                 if not m: find(f"live /ebooks/: no card for {k}"); continue
                 opts = [re.sub(r"\s+", " ", o).strip() for o in re.findall(r"<option[^>]*>([^<]+)</option>", m.group(0))]
+                card = m.group(0)   # Selector UI (2a) in the shelf card's own picker
+                if re.search(r'<label[^>]*class="sv-lab"', card): ui_drift.setdefault("a visible 'Select a version' label above the drop-down", []).append(k)
+                if re.search(r'<select class="sv-sel"[^>]*>(?:(?!</select>).)*<option(?![^>]*value="")[^>]*\bselected\b', card, re.S): ui_drift.setdefault("a version preselected (no 'Select a version' placeholder)", []).append(k)
+                if re.search(r'class="sv-go"|class="sv-free"', card): ui_drift.setdefault("a button or link line under the drop-down", []).append(k)
                 want = ["v%s — %s" % (v["v"], "free" if p == 0 else "£%.2f" % p) for v, p in zip(it["versions"], it["_ladder"])]
                 for w in want:
                     if not any(o.startswith(w) for o in opts): find(f"live /ebooks/ {k}: drop-down lacks '{w}' (has {opts})")
         except Exception as e: find(f"live: /ebooks/ not read ({str(e)[:60]})")
+        for msg, ks in ui_drift.items(): find(f"selector UI (live /ebooks/ shelf cards): {msg}: {len(ks)} books ({', '.join(ks)})")
         for im in M.get("images", [])[:60]:
             try:
                 st, b = get(SITE + im, binary=True)
