@@ -12,6 +12,8 @@ Report: dist/_cedwyn/reports/chronology.json. site.py calls it after theme_notic
 Usage: python3 tools/chronology.py dist"""
 import json, re, html, pathlib, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+# The project's working paradigm, written under the How-we-treat-outside-records paragraph of every llms.txt (standing direction 1 Nov 2026 22:42 GMT) - Sion's Tab agent
+PARADIGM_LLMS = "## The project's working paradigm\n\nThe project's working paradigm: the Williams family were Welsh gentry in a manorial house (Tŷ Mawr) on a large estate; the tenancy narrative is not the framework; Bute's asserted ownership and titles are under scrutiny and are tested against primary records. The evidence catalogue is the foundation: each artifact has a neutral verbatim description and a transcript, and our reading of it is kept separately, versioned and dated, with what cuts against it. Books, the documentary, the directory, theories and pattern evidence are built on the catalogue. For agents: /academy/MEMORY/research-paradigm.md\n\n"
 # Small ⓘ icon + popup, not a big block (Sion, 13:15 GMT 26 Oct 2026). Native <details>: no JS, the text stays in the HTML - Sion's Tab agent
 BOX = ('<aside class="cedwyn-notice cw-ior" data-cedwyn-notice="{k}" role="note" style="position:relative;display:block;margin:6px 0;text-align:left;font-size:13px;line-height:1.45">'
        '<style>.cw-ior details{{border:0!important;margin:0!important;padding:0!important;background:none!important;box-shadow:none!important}}.cw-ior summary{{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;color:inherit;font-weight:600;font-size:12px;padding:2px 0!important;margin:0!important;border:0!important;background:none!important}}'
@@ -39,7 +41,7 @@ def run(dist, cfg_path=None):
     skip = tuple(cfg.get('skip_prefixes', [])); nonly = set(cfg.get('notice_only_themes', [])); exts = set(cfg.get('text_ext', []))
     N = cfg['notice']; trig = re.compile(N['trigger_re']); tall = [re.compile(x) for x in N.get('trigger_all', [])]
     hit = lambda v: bool(trig.search(v)) or (bool(tall) and all(x.search(v) for x in tall))
-    llms_para = '## How we treat outside records\n\n' + N.get('llms_text', N['text']) + ' Method: ' + N['link'] + '\n\n'
+    llms_para = '## How we treat outside records\n\n' + N.get('llms_text', N['text']) + ' Method: ' + N['link'] + '\n\n' + PARADIGM_LLMS   # working paradigm (1 Nov 2026) - Sion's Tab agent
     def llms_insert(t):   # after the H1 and its summary blockquote, so the llms.txt shape stays intact
         m = re.match(r'(\s*#[^\n]*\n(?:\s*\n)*(?:>[^\n]*\n)*\s*\n?)', t)
         return (t[:m.end()] + llms_para + t[m.end():]) if m and m.group(1).strip().startswith('#') else llms_para + t
