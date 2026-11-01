@@ -1,4 +1,4 @@
-/* Cedwyn · documentary — download button (download.js v1.0.4, 30 Oct 2026 (1.0.4: the button names the version selected in the scene's "Select a version" dropdown in the site-wide labels (v0.0.2, v0.0.1, -v0.0.2 …), never the storage range such as 0.0.1-0.0.5; a paid cut downloads through the site's access service with the access code; 1.0.3: the button names the scene version it will download (the hashtag chip selected under the scene, movie.js 1.5.0), beside the audio and subtitle choice; 1.0.2: for a scene with per-language lip-synced video, the file offered is made from that language's video — the pipeline builds each audio language's versions from its own video, (their entries carry from_video); until those exist, a choice with subtitles off offers that language's video file itself (it carries that language's audio); 1.0.1: the button sits in the controls, under the audio and subtitle choices, so the site header never covers it)). A tab.bot production.
+/* Cedwyn · documentary — download button (download.js v1.1.0, 1 Nov 2026 (1.1.0: on a scene with the audio x subtitle matrix the button downloads exactly the MP4 that is playing, its own file name (e.g. F002.cy.en.v1.0.2.mp4), subtitles burned in; a pair not made yet is "Not available for this choice yet"; 1.0.4: the button names the version selected in the scene's "Select a version" dropdown in the site-wide labels (v0.0.2, v0.0.1, -v0.0.2 …), never the storage range such as 0.0.1-0.0.5; a paid cut downloads through the site's access service with the access code; 1.0.3: the button names the scene version it will download (the hashtag chip selected under the scene, movie.js 1.5.0), beside the audio and subtitle choice; 1.0.2: for a scene with per-language lip-synced video, the file offered is made from that language's video — the pipeline builds each audio language's versions from its own video, (their entries carry from_video); until those exist, a choice with subtitles off offers that language's video file itself (it carries that language's audio); 1.0.1: the button sits in the controls, under the audio and subtitle choices, so the site header never covers it)). A tab.bot production.
    Ten seconds into a scene a Download button fades in under the audio and subtitle choices. It downloads that scene with exactly the
    audio language and subtitle choice selected at the moment it is tapped (burned-in subtitles, or none), as an MP4
    that plays on any phone or computer. The versions are made by the film pipeline (tools/download_variants.py) and
@@ -35,6 +35,10 @@
     var a = P.audio ? P.audio() : null; if (!a || !(m.audio && m.audio[a])) a = m.default_audio || "cy";
     var s = P.sub ? P.sub() : "off"; if (s !== "off" && !NAT[s]) s = "off";
     var d = m.downloads || null, e = d && d[a + "|" + s];
+    if (P.hasMatrix && P.hasMatrix()) {   // 1.1.0: the audio x subtitle matrix — exactly the MP4 that is playing (subtitles burned in), or nothing while that pair is pending
+      var a2 = P.audio ? P.audio() : a, mp = P.matrix(a2, s), nm = mp ? String(mp).split("/").pop() : "";
+      return {n: c.f && c.f.n, a: a2, s: s, e: mp ? {path: mp, ext: "mp4", title: nm.replace(/\.mp4$/, ""), bytes: (m.matrix.bytes || {})[mp]} : null, title: nm.replace(/\.mp4$/, "")};
+    }
     var lv = m.video && m.video[a];   // 1.0.2: per-language lip-synced video
     if (lv && s === "off" && !(e && e.from_video)) e = {path: lv, ext: (String(lv).match(/\.(\w+)$/) || [0, "webm"])[1], title: "Cedwyn – Door " + (c.f && c.f.n) + " – " + NAT[a] + " audio – No subtitles"};
     return {n: c.f && c.f.n, a: a, s: s, e: e, title: (e && e.title) || ("Cedwyn – Door " + (c.f && c.f.n) + " – " + NAT[a] + " audio – " + (s === "off" ? "No subtitles" : T.en.subs[s]))};
@@ -80,5 +84,5 @@
     }).catch(function () { b2.textContent = x.fail; window.open(url, "_blank", "noopener"); })
       .then(function () { busy = false; B.classList.remove("is-busy"); setTimeout(paint, 1200); });
   });
-  window.CedwynDownload = {choice: choice, button: B, version: "1.0.3"};
+  window.CedwynDownload = {choice: choice, button: B, version: "1.1.0"};
 })();
