@@ -196,6 +196,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding-top:16px;color:v
   };
   var readTotal=function(d){
     var v=d.total;
+    if(v==null&&d.coverage)v=d.coverage.unique_records;
     if(v==null&&d.pagination)v=d.pagination.total;
     if(v==null&&d.meta)v=d.meta.total;
     if(v==null&&d.data&&d.data.total)v=d.data.total;
@@ -214,7 +215,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding-top:16px;color:v
   };
   var taskId=function(r){return String(r.id||r.task_id||r.hs_object_id||r.object_id||"");};
   var taskStatus=function(r){
-    var v=r.status||r.native_status||r.hs_task_status||(r.properties&&r.properties.hs_task_status);
+    var v=r.hubspot_status||r.status||r.native_status||r.hs_task_status||(r.properties&&r.properties.hs_task_status);
     if(!v&&r.task)v=r.task.status;
     return String(v||"OTHER").toUpperCase();
   };
