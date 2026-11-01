@@ -3,7 +3,7 @@
  "version": "0.1.0",
  "enabled": true,
  "schema": "cedwyn-view/0.1.0",
- "note": "That Old Chestnut (webapp 37 of 59): FOI / EIR / SAR replies about Great House Farm / Tŷ Mawr read for refusal-setup wording and for 'not held' answers that later turned into records found. Derived by tools/views.py from data/core at every build; written by tools/chestnut_sync.py on the that-old-chestnut branch; never edit the output by hand.",
+ "note": "That Old Chestnut (webapp 38 of 59): FOI / EIR / SAR replies about Great House Farm / Tŷ Mawr read for refusal-setup wording and for 'not held' answers that later turned into records found. Derived by tools/views.py from data/core at every build; written by tools/chestnut_sync.py on the that-old-chestnut branch; never edit the output by hand.",
  "collections": {
   "chestnuts": {
    "select": {
@@ -298,9 +298,9 @@
    }
   ],
   "parcel": {
-   "slot": 37,
+   "slot": 38,
    "of": 59,
-   "label": "37 of 59",
+   "label": "38 of 59",
    "status": "historic_plot_number_pending_verification",
    "status_text": "The historic plot number for this webapp is not yet fixed: the c.1841 tithe schedule (EV-0215) is still to be checked row by row. Until then the number is an index of the estate's 59 parcels, not a plot reference.",
    "parcel_record": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
