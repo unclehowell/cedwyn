@@ -41,20 +41,33 @@ jobs:
         run: |
           U="https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git clone -q --depth 1 -b site "${U}" pub
-          rsync -a --delete dist/story/ pub/story/
-          for d in _blob _ext; do
-            if [ -d "dist/${d}" ]; then
-              mkdir -p "pub/${d}"
-              rsync -a "dist/${d}/" "pub/${d}/"
-            fi
-          done
           cd pub
           git config user.name "cedwyn-bot"
           git config user.email "cedwyn-bot@users.noreply.github.com"
-          git add story _blob _ext
-          if git diff --cached --quiet; then
-            echo "Story output is already current."
-          else
+          # The full-site publisher can update site while this theme builds.
+          # Rebase the story-only output on the newest site head before each push.
+          for attempt in 1 2 3 4 5; do
+            git fetch -q origin site
+            git reset --hard origin/site
+            rsync -a --delete ../dist/story/ story/
+            for d in _blob _ext; do
+              if [ -d "../dist/${d}" ]; then
+                mkdir -p "${d}"
+                rsync -a "../dist/${d}/" "${d}/"
+              fi
+            done
+            git add story _blob _ext
+            if git diff --cached --quiet; then
+              echo "Story output is already current on site."
+              exit 0
+            fi
             git commit -m "Publish image-led Story theme — Sion's Tab agent"
-            git push "${U}" HEAD:site
-          fi
+            if git push "${U}" HEAD:site; then
+              echo "Story-only output published on attempt ${attempt}."
+              exit 0
+            fi
+            echo "site advanced during publish attempt ${attempt}; refreshing and retrying."
+            sleep 2
+          done
+          echo "Could not publish after five refresh-and-push attempts."
+          exit 1
