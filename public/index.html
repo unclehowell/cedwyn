@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en-GB" data-ghf-native="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Molt · every change and comment · Cedwyn</title>
+<meta name="description" content="The molt wall: every Cedwyn page's changes and comments in one feed, newest first. Filter by section or page.">
+<link rel="canonical" href="https://cedwyn.bucklerfamily.estate/molt/">
+<link rel="alternate" type="application/json" href="/api/molt/wall" title="Molt wall (JSON)">
+<link rel="alternate" type="application/json" href="/api/molt" title="Molt tools and endpoints (JSON, WebMCP)">
+<link rel="stylesheet" href="molt.css?v=1.0.0">
+</head>
+<body>
+<main class="mw-wrap" id="molt-main">
+<nav class="mw-centre" aria-label="Research centre">
+<a href="/hive/" data-t="hive">Hive</a><a href="/molt/" aria-current="page" data-t="molt">Molt</a>
+</nav>
+<h1 data-t="title">Molt</h1>
+<p class="mw-lead" data-t="lead">Every change and every comment across Cedwyn, newest first.</p>
+<p class="mw-stats" id="mw-stats" aria-live="polite"></p>
+
+<form class="mw-filters" id="mw-f" role="search">
+<div class="mw-types" role="radiogroup" aria-label="Show">
+<label><input type="radio" name="type" value="" checked><span data-t="all">All</span></label>
+<label><input type="radio" name="type" value="change"><span data-t="changes">Changes</span></label>
+<label><input type="radio" name="type" value="comment"><span data-t="comments">Comments</span></label>
+</div>
+<label class="mw-fld"><span data-t="section">Section</span>
+<select name="section" id="mw-sec"><option value="" data-t="every">Every section</option></select></label>
+<label class="mw-fld"><span data-t="page">Page</span>
+<input name="p" id="mw-p" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="/research/"></label>
+<div class="mw-row"><button type="submit" data-t="show">Show</button><button type="button" id="mw-clear" class="mw-ghost" data-t="clear">Clear</button></div>
+</form>
+
+<ol class="mw-feed" id="mw-feed" aria-live="polite"></ol>
+<p class="mw-more"><button type="button" id="mw-more" hidden data-t="more">Older</button></p>
+<p class="mw-status" id="mw-status" role="status"></p>
+<noscript><p class="mw-note">The wall needs JavaScript. Each page's changelog and comments are at the foot of that page.</p></noscript>
+</main>
+<script src="molt-wall.js?v=1.0.0"></script>
+</body>
+</html>
