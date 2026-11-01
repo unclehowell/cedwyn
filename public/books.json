@@ -1,5 +1,5 @@
 {
- "updated_utc": "2026-10-20T17:54:43Z",
+ "updated_utc": "2026-11-01T20:36:01Z",
  "books": [
   {
    "id": "great-house-farm-wiki",
@@ -29,7 +29,14 @@
    "price": "£4.99",
    "shop_url": "https://ebooks.bucklerfamily.estate/fcg/",
    "buy_url": "https://buy.stripe.com/28EbJ24xJ0DRgWUfV56Zy0A",
-   "source_site": "fcg.bucklerfamily.estate"
+   "source_site": "fcg.bucklerfamily.estate",
+   "next_release": {
+    "semver": "2.0.0",
+    "status": "coming-soon",
+    "date": "2026-11-01",
+    "pages": 43,
+    "whats_new": "2.0.0: rewritten as the dated record from 1877 to 2026 with the missing-records, anomalies and source-conflicts registers; interpretation marked as Our reading; retitled; no web addresses or sale lines."
+   }
   },
   {
    "id": "project-management",
@@ -44,7 +51,14 @@
    "price": "£4.99",
    "shop_url": "https://ebooks.bucklerfamily.estate/projects/",
    "buy_url": "https://buy.stripe.com/8x26oI2pBgCP4a810b6Zy0B",
-   "source_site": "projects.bucklerfamily.estate"
+   "source_site": "projects.bucklerfamily.estate",
+   "next_release": {
+    "semver": "1.1.0",
+    "status": "coming-soon",
+    "date": "2026-11-01",
+    "pages": 94,
+    "whats_new": "1.1.0: new introduction to the four projects; PRINCE2 structure kept; spend lines, approval notes, sale tags and web addresses removed; new house design."
+   }
   },
   {
    "id": "dartboard-disclosure",
@@ -59,7 +73,14 @@
    "price": "£4.99",
    "shop_url": "https://ebooks.bucklerfamily.estate/dartboard/",
    "buy_url": "https://buy.stripe.com/fZu5kE4xJ9an0XW6kv6Zy0C",
-   "source_site": "dartboard.bucklerfamily.estate"
+   "source_site": "dartboard.bucklerfamily.estate",
+   "next_release": {
+    "semver": "1.1.0",
+    "status": "coming-soon",
+    "date": "2026-11-01",
+    "pages": 256,
+    "whats_new": "1.1.0: the legal routes explained once in a reference chapter and cross-referred; requests and replies in date order per body; sale tags and web addresses removed; new house design."
+   }
   },
   {
    "id": "tymawr-deaths",
@@ -74,7 +95,14 @@
    "price": "£4.99",
    "shop_url": "https://ebooks.bucklerfamily.estate/tymawr-deaths/",
    "buy_url": "https://buy.stripe.com/bJe5kE0ht3Q3364bEP6Zy0D",
-   "source_site": "greathousefarmwiki.wordpress.com"
+   "source_site": "greathousefarmwiki.wordpress.com",
+   "next_release": {
+    "semver": "2.0.0",
+    "status": "coming-soon",
+    "date": "2026-11-01",
+    "pages": 19,
+    "whats_new": "2.0.0: rewritten as seven lives told through their records, with probate and register dates; sale tags removed; new house design."
+   }
   },
   {
    "id": "recorded-incidents",
@@ -89,7 +117,14 @@
    "price": "£4.99",
    "shop_url": "https://ebooks.bucklerfamily.estate/recorded-incidents/",
    "buy_url": "https://buy.stripe.com/14A5kEe8j9an22010b6Zy0E",
-   "source_site": "greathousefarmwiki.wordpress.com"
+   "source_site": "greathousefarmwiki.wordpress.com",
+   "next_release": {
+    "semver": "1.0.0",
+    "status": "coming-soon",
+    "date": "2026-11-01",
+    "pages": 26,
+    "whats_new": "1.0.0: the incidents told in date order from the newspapers and official records; record cards replaced by narrative; new house design."
+   }
   },
   {
    "id": "tymawr-heritage",
@@ -104,7 +139,14 @@
    "price": "£4.99",
    "shop_url": "https://ebooks.bucklerfamily.estate/tymawr-heritage/",
    "buy_url": "https://buy.stripe.com/bJe8wQ0ht1HV364bEP6Zy0F",
-   "source_site": "greathousefarmwiki.wordpress.com"
+   "source_site": "greathousefarmwiki.wordpress.com",
+   "next_release": {
+    "semver": "1.0.0",
+    "status": "coming-soon",
+    "date": "2026-11-01",
+    "pages": 30,
+    "whats_new": "1.0.0: the house told from the first survey of 1824 to 2014; pre-1824 third-party records removed; new house design."
+   }
   },
   {
    "id": "williams-buckler-family",
@@ -119,7 +161,14 @@
    "price": "£4.99",
    "shop_url": "https://ebooks.bucklerfamily.estate/williams-buckler-family/",
    "buy_url": "https://buy.stripe.com/00wbJ24xJfyL5eccIT6Zy0G",
-   "source_site": "greathousefarmwiki.wordpress.com"
+   "source_site": "greathousefarmwiki.wordpress.com",
+   "next_release": {
+    "semver": "1.0.0",
+    "status": "coming-soon",
+    "date": "2026-11-01",
+    "pages": 40,
+    "whats_new": "1.0.0: rewritten as a narrative by generation; new probate, census and court records; living people unnamed; new house design."
+   }
   },
   {
    "id": "cedwyn",
@@ -134,7 +183,38 @@
    "price": "£0.00",
    "shop_url": "https://ebooks.bucklerfamily.estate/cedwyn/",
    "buy_url": null,
-   "source_site": "greathousefarmwiki.wordpress.com"
+   "source_site": "greathousefarmwiki.wordpress.com",
+   "next_release": {
+    "semver": "1.0.0",
+    "status": "coming-soon",
+    "date": "2026-11-01",
+    "pages": 24,
+    "whats_new": "1.0.0: rebuilt around the four names (house, estate, town, surname) with the giant and the saint; pre-1824 third-party dates removed; new house design."
+   }
+  },
+  {
+   "id": "tymawr-bible",
+   "title": "The Tŷ Mawr Bible",
+   "subtitle": "Great House Farm, Llandough: the whole record in one volume",
+   "semver": "1.0.0",
+   "status": "coming-soon",
+   "date": "2026-11-01",
+   "pages": 2164,
+   "description": "The ten books of the Great House Farm Library in one volume: names and people, the whole dated record from the Roman villa to October 2026 in one sequence, requests for records by public body, the projects, the registers, a merged glossary and an index.",
+   "whats_new": "1.0.0: first edition. Every library book merged, repeated passages printed once, strict date order, one contents page, glossary and index; catalogue numbers link to their entries.",
+   "price": null
+  },
+  {
+   "id": "enwau",
+   "title": "Enwau",
+   "subtitle": "The names of Tŷ Mawr",
+   "semver": "0.2.0",
+   "status": "coming-soon",
+   "date": "2026-11-01",
+   "pages": 24,
+   "description": "The names of Great House Farm (Tŷ Mawr), Llandough, in the records: the forms, the places that carry them, and the surname of the Williams of Tŷ Mawr.",
+   "whats_new": "0.2.0: chapter on the surname retitled; release notes and wording brought into the house rules; Llandough near Cowbridge kept to one quarantined line.",
+   "price": null
   }
  ]
 }
