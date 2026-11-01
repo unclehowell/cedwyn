@@ -3,8 +3,8 @@
 Fails on: banned public words, outbound links, pre-1824 outside catalogue dates, private names (checked by hash, so no name is
 written here), working-process attributions (who found or catalogued a record, private instructions, research-cycle numbers), email addresses or phone numbers, payment offers, and content pages with no citation (EV-####, MR-####, an archive
 reference, or a Source line). It only READS the files; pull-request code is never run.
-Usage: python3 tools/agent_lint.py --root <checkout> --list <file of changed paths>   — Sion's Tab agent"""
-import argparse, base64, hashlib, json, pathlib, re, sys
+Usage: python3 tools/agent_lint.py --root <checkout> --list <file of changed paths> [--base-root <base checkout>]"""
+import argparse, base64, difflib, hashlib, json, pathlib, re, sys
 BANNED = json.loads(base64.b64decode('WyJzYXlzIiwgImNsYWltcyIsICJhY2NvcmRpbmcgdG8iLCAiaGVhcnNheSIsICJ1bnZlcmlmaWVkIiwgImFsbGVnZWQiLCAiZnJhdWQiLCAic3RvbGVuIl0='))
 NAME_HASHES = set(["b5e91c059fd73705a35d6551ffc7ce5b673c9618f9a635ee43ddf61b5e842636", "4f8f44b4e2eb484e0f0d08aa378d387c829e910e11ab08acb9653e7a3e2a7c7c", "1208260b0c800782c9bd5f174f44c53673dfbf52415c260524c753b37780a918", "28d193a69746444e1698342d9039fe0b4faa289b9a0a2c289ba551123d61bbc0", "233def1823ddfc750df56bc709dc68fac77deafa35565926e600473301d925f3", "e7a180f7395e42da076c2fb756f83256c4e196f8071f5c9edd2172e7d29ed1ab"])
 CONTENT = ('.md', '.html', '.htm', '.txt')
@@ -14,7 +14,8 @@ CHECKS = [
     ('banned word', re.compile(r'\b(' + '|'.join(re.escape(b) for b in BANNED) + r')\b', re.I)),
     ('outbound link', re.compile(r'(href|src)\s*=\s*["\']?https?://(?!([\w-]+\.)*bucklerfamily\.estate)(?!cdn\.jsdelivr\.net/gh/unclehowell/cedwyn-movie@(?:[0-9a-f]{40}|main)/extras/parcels-1841(?:-30s)?\.webm)|\]\(https?://(?!([\w-]+\.)*bucklerfamily\.estate)(?!cdn\.jsdelivr\.net/gh/unclehowell/cedwyn-movie@(?:[0-9a-f]{40}|main)/extras/parcels-1841(?:-30s)?\.webm)', re.I)),
     ('pre-1824 outside date', re.compile(r'\b(1547|1552)\b')),
-    ('email address', re.compile(r'[\w.+-]+@[\w-]+\.[\w.-]+')),
+    # npm package URLs use @semver as a path delimiter; do not misreport that as an email address.
+    ('email address', re.compile(r'(?!(?:[\w.-]+)@(?:\d+\.){1,2}\d+(?:[-+][\w.-]+)?(?:/|$))[\w.+-]+@[\w-]+\.[\w.-]+')),
     ('phone number', re.compile(r'(\+44|\+54)[\s\d()-]{8,}\d|\b0\d{3,4}\s?\d{6,7}\b')),
     ('payment offer', re.compile(r'happy to pay|will pay|agree to pay|enclose a cheque', re.I)),
     ('private working process', re.compile(r"Tab['\u2019]s research|\bby Tab\b|Tab agent|catalogued by Tab|\w+['\u2019]s request \(|\b(?:research|flywheel) cycle \d+|\(cycle \d+|\bowner['\u2019]s instruction\b|\bon WhatsApp\b", re.I)),
@@ -23,7 +24,6 @@ JOURNAL = 'data/journal/pages.json'
 JOURNAL_KEYS = {'v', 'date', 'note', 'agent'}
 KEY_PATH = re.compile(r'^/[A-Za-z0-9._~/-]*$')
 KEY_LINE = re.compile(r'^(\s*)"(/[^"\\]*)"(:\s*\[\s*)$')
-
 
 def journal_shape_ok(text):
     """True only when the file has the documented page-journal shape: {schema, note, pages{path: [entry]}}
@@ -44,11 +44,26 @@ def journal_shape_ok(text):
                 return False
     return True
 
+def unchanged_line_numbers(base_text, text):
+    """Return current line numbers that are unchanged from the base version.
 
-def lint(path, text):
+    This lets an editorial PR scan additions and edits without failing on unrelated
+    legacy text that happens to live in a file the PR also changes.
+    """
+    old_lines, new_lines = base_text.splitlines(), text.splitlines()
+    unchanged = set()
+    for tag, _i1, _i2, j1, j2 in difflib.SequenceMatcher(None, old_lines, new_lines, autojunk=False).get_opcodes():
+        if tag == 'equal':
+            unchanged.update(range(j1 + 1, j2 + 1))
+    return unchanged
+
+def lint(path, text, unchanged_lines=None):
     out = []
+    unchanged_lines = unchanged_lines or set()
     neutral = path == JOURNAL and journal_shape_ok(text)
     for i, line in enumerate(text.splitlines(), 1):
+        if i in unchanged_lines:
+            continue
         scan = line
         if neutral:
             # A page path used as an object key is structure, not prose. Only the banned-word check reads the
@@ -67,15 +82,21 @@ def lint(path, text):
     if path.endswith(CONTENT) and not path.startswith(EXEMPT) and len(text) > 400 and not CITE.search(text):
         out.append(f'{path}: content page with no citation (add EV-####, MR-####, an archive reference or a Source line)')
     return out
+
 if __name__ == '__main__':
-    ap = argparse.ArgumentParser(); ap.add_argument('--root', default='.'); ap.add_argument('--list'); ap.add_argument('paths', nargs='*')
-    a = ap.parse_args(); root = pathlib.Path(a.root)
+    ap = argparse.ArgumentParser(); ap.add_argument('--root', default='.'); ap.add_argument('--base-root'); ap.add_argument('--list'); ap.add_argument('paths', nargs='*')
+    a = ap.parse_args(); root = pathlib.Path(a.root); base_root = pathlib.Path(a.base_root) if a.base_root else None
     paths = a.paths + ([l.strip() for l in open(a.list) if l.strip()] if a.list else [])
     problems = []
     for p in paths:
         f = root / p
         if not f.is_file() or f.suffix.lower() not in CONTENT + ('.json', '.csv', '.xml'): continue
-        problems += lint(p, f.read_text('utf-8', 'replace'))
+        text = f.read_text('utf-8', 'replace')
+        unchanged = set()
+        base_file = base_root / p if base_root else None
+        if base_file and base_file.is_file():
+            unchanged = unchanged_line_numbers(base_file.read_text('utf-8', 'replace'), text)
+        problems += lint(p, text, unchanged)
     for x in problems: print('::error::' + x)
     print(json.dumps({'files': len(paths), 'problems': len(problems)}))
     sys.exit(1 if problems else 0)

@@ -1,0 +1,376 @@
+{
+ "app": "that-old-chestnut",
+ "version": "0.1.0",
+ "enabled": true,
+ "schema": "cedwyn-view/0.1.0",
+ "note": "That Old Chestnut (webapp 38 of 59): FOI / EIR / SAR replies about Great House Farm / Tŷ Mawr read for refusal-setup wording and for 'not held' answers that later turned into records found. Derived by tools/views.py from data/core at every build; written by tools/chestnut_sync.py on the that-old-chestnut branch; never edit the output by hand.",
+ "collections": {
+  "chestnuts": {
+   "select": {
+    "kind": [
+     "foi_finding"
+    ]
+   },
+   "order_by": "id",
+   "project": [
+    "id",
+    "title",
+    "date",
+    "provenance",
+    "evidence",
+    "finding",
+    "updated"
+   ]
+  },
+  "places": {
+   "select": {
+    "kind": [
+     "place"
+    ],
+    "where": [
+     {
+      "field": "id",
+      "op": "in",
+      "value": [
+       "PL-TY-MAWR"
+      ]
+     }
+    ]
+   },
+   "order_by": "id",
+   "project": [
+    "id",
+    "title",
+    "aliases",
+    "description",
+    "page"
+   ]
+  },
+  "parcel_evidence": {
+   "select": {
+    "kind": [
+     "evidence"
+    ],
+    "where": [
+     {
+      "field": "id",
+      "op": "in",
+      "value": [
+       "EV-0211",
+       "EV-0215",
+       "EV-0629",
+       "EV-0630",
+       "EV-0631"
+      ]
+     }
+    ]
+   },
+   "order_by": "id",
+   "project": [
+    "id",
+    "title",
+    "page"
+   ]
+  }
+ },
+ "pages": [],
+ "evidence_links": "/research/evidence/",
+ "copy": {
+  "title": "That Old Chestnut · FOI and EIR replies · Cedwyn",
+  "description": "Replies from public bodies to information requests about Great House Farm / Tŷ Mawr, read line by line: 'not held' answers that later became records found, and the wording that sets up a refusal, each with the statute it points at.",
+  "i18n": {
+   "en": {
+    "h1": "That Old Chestnut",
+    "kicker": "FOI and EIR replies, read line by line",
+    "lede": "The oldest trick in the book is a reply that sets up a refusal before one is made. This page lists the replies to information requests about Great House Farm / Tŷ Mawr whose wording narrows, delays or declines, and every 'not held' answer that later became records found. Each entry gives the exact words, the date and the statute the wording points at.",
+    "counts": "What the scan has found",
+    "clear": "Clear flips",
+    "clear_d": "'Not held', then records found",
+    "borderline": "Borderline",
+    "borderline_d": "Partial, already public, or scope narrowed",
+    "language": "Wording only",
+    "language_d": "Refusal-setup wording, no later flip",
+    "filters": "Filter",
+    "institution": "Institution",
+    "class": "Type",
+    "trigger": "What came before the finding",
+    "all": "All",
+    "search": "Search the wording",
+    "cards": "The replies",
+    "table": "The full table",
+    "terms": "The words, and the law each one points at",
+    "glossary": "Reference: refusal grounds in the legislation",
+    "empty": "Audit in progress. The replies are being read now; entries appear here as each thread is checked. Nothing is shown until it has been read in full.",
+    "in_progress": "Audit in progress: this list is not yet complete.",
+    "open": "Thread still open",
+    "neg": "First answer",
+    "pos": "Later answer",
+    "terms_used": "Wording",
+    "statute": "Points at",
+    "none": "None found yet",
+    "held": "Held back for review",
+    "radar": "Radar: a sweep arm passes over incoming emails; as it crosses some of them they turn into chestnuts.",
+    "not_read": "not yet read",
+    "unread": "Audit complete. {n} of the most recent messages are still unread and will be added if they change anything.",
+    "coverage": "Read: {c} conversations, {m} messages, {r} replies received.",
+    "word_h": "The word to watch",
+    "not_cited": "The reply did not cite this ground, give an estimate of cost or time, or offer advice and assistance."
+   },
+   "cy": {
+    "h1": "Yr Hen Dric",
+    "kicker": "Atebion Rhyddid Gwybodaeth a'r Rheoliadau Gwybodaeth Amgylcheddol, fesul llinell",
+    "lede": "Yr hen dric yw ateb sy'n paratoi gwrthodiad cyn i un gael ei wneud. Mae'r dudalen hon yn rhestru atebion i geisiadau am wybodaeth am Great House Farm / Tŷ Mawr sy'n culhau, yn oedi neu'n gwrthod, a phob ateb 'heb ei gadw' a drodd yn gofnodion a ganfuwyd yn ddiweddarach. Mae pob cofnod yn rhoi'r union eiriau, y dyddiad a'r statud y mae'r geiriad yn cyfeirio ato.",
+    "counts": "Beth mae'r sgan wedi'i ganfod",
+    "clear": "Troeon clir",
+    "clear_d": "'Heb ei gadw', yna cofnodion wedi'u canfod",
+    "borderline": "Ar y ffin",
+    "borderline_d": "Rhannol, eisoes yn gyhoeddus, neu gwmpas wedi'i gulhau",
+    "language": "Geiriad yn unig",
+    "language_d": "Geiriad sy'n paratoi gwrthodiad, dim tro wedyn",
+    "filters": "Hidlo",
+    "institution": "Corff",
+    "class": "Math",
+    "trigger": "Beth ddaeth cyn y canfyddiad",
+    "all": "Y cyfan",
+    "search": "Chwilio'r geiriad",
+    "cards": "Yr atebion",
+    "table": "Y tabl llawn",
+    "terms": "Y geiriau, a'r gyfraith y mae pob un yn cyfeirio ati",
+    "glossary": "Cyfeirnod: seiliau gwrthod yn y ddeddfwriaeth",
+    "empty": "Archwiliad ar y gweill. Mae'r atebion yn cael eu darllen nawr; bydd cofnodion yn ymddangos yma wrth i bob edefyn gael ei wirio.",
+    "in_progress": "Archwiliad ar y gweill: nid yw'r rhestr hon yn gyflawn eto.",
+    "open": "Edefyn yn dal ar agor",
+    "neg": "Ateb cyntaf",
+    "pos": "Ateb diweddarach",
+    "terms_used": "Geiriad",
+    "statute": "Yn cyfeirio at",
+    "none": "Dim wedi'u canfod eto",
+    "held": "Wedi'i ddal yn ôl i'w adolygu",
+    "radar": "Radar: mae braich yn sgubo dros e-byst sy'n cyrraedd; wrth iddi groesi rhai ohonynt maen nhw'n troi'n gnau castan.",
+    "not_read": "heb ei ddarllen eto",
+    "unread": "Archwiliad wedi'i gwblhau. Mae {n} o'r negeseuon diweddaraf heb eu darllen eto a byddant yn cael eu hychwanegu os ydynt yn newid unrhyw beth.",
+    "coverage": "Wedi'u darllen: {c} sgwrs, {m} neges, {r} ateb a dderbyniwyd.",
+    "word_h": "Y gair i'w wylio",
+    "not_cited": "Ni wnaeth yr ateb ddyfynnu'r sail hon, rhoi amcangyfrif o gost neu amser, na chynnig cyngor a chymorth."
+   },
+   "es": {
+    "h1": "El truco de siempre",
+    "kicker": "Respuestas a solicitudes de información (FOI y EIR), línea por línea",
+    "lede": "El truco más viejo es una respuesta que prepara una negativa antes de darla. Esta página reúne las respuestas a solicitudes de información sobre Great House Farm / Tŷ Mawr cuya redacción restringe, retrasa o rechaza, y cada respuesta de 'no consta' que más tarde se convirtió en documentos encontrados. Cada entrada da las palabras exactas, la fecha y la norma a la que apunta la redacción.",
+    "counts": "Lo que ha encontrado el escaneo",
+    "clear": "Giros claros",
+    "clear_d": "'No consta' y después documentos encontrados",
+    "borderline": "Dudosos",
+    "borderline_d": "Parcial, ya público o alcance reducido",
+    "language": "Solo redacción",
+    "language_d": "Redacción que prepara una negativa, sin giro posterior",
+    "filters": "Filtrar",
+    "institution": "Institución",
+    "class": "Tipo",
+    "trigger": "Qué precedió al hallazgo",
+    "all": "Todas",
+    "search": "Buscar en la redacción",
+    "cards": "Las respuestas",
+    "table": "La tabla completa",
+    "terms": "Las palabras y la norma a la que apunta cada una",
+    "glossary": "Referencia: motivos de denegación en la legislación",
+    "empty": "Auditoría en curso. Las respuestas se están leyendo ahora; las entradas aparecen aquí a medida que se revisa cada hilo.",
+    "in_progress": "Auditoría en curso: esta lista aún no está completa.",
+    "open": "Hilo aún abierto",
+    "neg": "Primera respuesta",
+    "pos": "Respuesta posterior",
+    "terms_used": "Redacción",
+    "statute": "Apunta a",
+    "none": "Nada encontrado aún",
+    "held": "Retenido para revisión",
+    "radar": "Radar: un brazo barre los correos entrantes; al cruzar algunos, se convierten en castañas.",
+    "not_read": "aún sin leer",
+    "unread": "Auditoría completa. Quedan {n} de los mensajes más recientes sin leer; se añadirán si cambian algo.",
+    "coverage": "Leído: {c} conversaciones, {m} mensajes, {r} respuestas recibidas.",
+    "word_h": "La palabra a vigilar",
+    "not_cited": "La respuesta no citó este motivo, ni dio una estimación de coste o tiempo, ni ofreció asesoramiento y asistencia."
+   }
+  },
+  "columns": [
+   "Institution / Recipient",
+   "Date of initial substantial negative response",
+   "Time elapsed (months) and email volume until positive finding (format: X months / Y:Z where Y = requester emails after the negative reply, Z = total emails in the thread after that point)",
+   "Nature of the later positive finding",
+   "Evidence of delay, semantic evasion, technical obstruction, narrow interpretation, clock-resetting, denial of holding material that later appeared, or other conduct that could be characterised as gatekeeping or mitigating exposure"
+  ],
+  "statutes": [
+   {
+    "terms": [
+     "vexatious",
+     "obsessive",
+     "harassing",
+     "grossly oppressive",
+     "disproportionate"
+    ],
+    "law": "Freedom of Information Act 2000, s.14(1)",
+    "what": "A public authority need not comply with a request that is vexatious (ICO guidance: dealing with vexatious requests)."
+   },
+   {
+    "terms": [
+     "repeated",
+     "identical or substantially similar",
+     "previously answered"
+    ],
+    "law": "Freedom of Information Act 2000, s.14(2)",
+    "what": "A repeated request need not be answered unless a reasonable interval has passed."
+   },
+   {
+    "terms": [
+     "manifestly unreasonable",
+     "onerous",
+     "burdensome",
+     "unreasonable diversion of resources"
+    ],
+    "law": "Environmental Information Regulations 2004, reg 12(4)(b)",
+    "what": "Environmental information may be withheld where the request is manifestly unreasonable, subject to the public interest test (ICO guidance: manifestly unreasonable requests)."
+   },
+   {
+    "terms": [
+     "appropriate limit",
+     "cost limit",
+     "18 hours",
+     "24 hours",
+     "exceed the cost"
+    ],
+    "law": "Freedom of Information Act 2000, s.12, with the Fees Regulations 2004",
+    "what": "No duty to comply where the estimated cost exceeds the appropriate limit (£450, about 18 hours, for local and other public bodies; £600 for central government)."
+   },
+   {
+    "terms": [
+     "not held",
+     "does not hold",
+     "no information",
+     "no records",
+     "nothing found"
+    ],
+    "law": "Freedom of Information Act 2000, s.1(1)(a); Environmental Information Regulations 2004, reg 12(4)(a)",
+    "what": "The authority states it does not hold the information. The search behind that answer must be reasonable and proportionate (ICO guidance on determining whether information is held)."
+   },
+   {
+    "terms": [
+     "too general",
+     "too wide",
+     "clarify",
+     "clarification"
+    ],
+    "law": "Freedom of Information Act 2000, s.1(3) and s.16; Environmental Information Regulations 2004, reg 9 and reg 12(4)(c)",
+    "what": "An authority may seek clarification; the 20 working day clock waits for it. The duty to give advice and assistance sits alongside."
+   },
+   {
+    "terms": [
+     "already published",
+     "reasonably accessible",
+     "publicly available",
+     "available elsewhere"
+    ],
+    "law": "Freedom of Information Act 2000, s.21; Environmental Information Regulations 2004, reg 6(1)(b)",
+    "what": "Information reasonably accessible by other means is exempt; the authority should say where."
+   },
+   {
+    "terms": [
+     "future publication",
+     "intended for publication"
+    ],
+    "law": "Freedom of Information Act 2000, s.22",
+    "what": "Information held with a view to future publication may be withheld."
+   },
+   {
+    "terms": [
+     "extension",
+     "complex and voluminous",
+     "40 working days"
+    ],
+    "law": "Environmental Information Regulations 2004, reg 7(1)",
+    "what": "The 20 working day limit may extend to 40 where the request is complex and voluminous."
+   },
+   {
+    "terms": [
+     "manifestly unfounded",
+     "excessive"
+    ],
+    "law": "UK GDPR Article 12(5); Data Protection Act 2018",
+    "what": "A subject access request that is manifestly unfounded or excessive may be refused or charged for; the controller carries the burden of showing it."
+   }
+  ],
+  "parcel": {
+   "slot": 38,
+   "of": 59,
+   "label": "38 of 59",
+   "status": "historic_plot_number_pending_verification",
+   "status_text": "The historic plot number for this webapp is not yet fixed: the c.1841 tithe schedule (EV-0215) is still to be checked row by row. Until then the number is an index of the estate's 59 parcels, not a plot reference.",
+   "parcel_record": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
+   "tithe_parcel_number": null,
+   "grid_refs": [
+    {
+     "ref": "ST 167 733",
+     "source": "The family's name-and-reference list, 31 Oct 2026; not checked against a map"
+    },
+    {
+     "ref": "ST 168 733",
+     "source": "The family's name-and-reference list, 31 Oct 2026; not checked against a map"
+    },
+    {
+     "ref": "ST 1681 7331",
+     "source": "The family's name-and-reference list, 31 Oct 2026; not checked against a map"
+    }
+   ],
+   "names": [
+    "Tŷ Mawr",
+    "Ty Mawr Farm",
+    "Ty Mawr",
+    "Ty-mawr",
+    "Great House Farm",
+    "Great House",
+    "Greathouse",
+    "Cedfin",
+    "Cydfin",
+    "Cedwyn",
+    "Cydwin",
+    "Kenfin",
+    "ken fin"
+   ],
+   "names_page": "/nomenclature/",
+   "replica": {
+    "page": "/projects/replica/",
+    "text": "Measured replica register v0.1: 46 rows (measured 10, scaled 18, inferred 15, gap 3)."
+   },
+   "links": [
+    {
+     "text": "Every page area and its parcel slot",
+     "href": "/parcels/site-areas/"
+    },
+    {
+     "text": "The 36 tithe parcels of c.1841",
+     "href": "/parcels/"
+    },
+    {
+     "text": "Names and spellings",
+     "href": "/nomenclature/"
+    }
+   ]
+  },
+  "audit": {
+   "complete": true,
+   "generated": "2026-10-31T23:40Z",
+   "still_to_read": 29,
+   "coverage": {
+    "conversations_reviewed": 309,
+    "messages_reviewed": 1043,
+    "received_messages_scanned": 529
+   },
+   "highlight": {
+    "id": "TOC-L01",
+    "institution": "Heneb (HER)",
+    "term": "onerous",
+    "date": "2026-10-29",
+    "statute": "EIR reg 12(4)(b) manifestly unreasonable (burden) / FOIA s.12–s.14(1); not formally cited; no reg 9 / s.16 advice",
+    "quote": "As you will note it does not contain information likely to be helpful to your research, as such we are unable to take on the onerous task of sharing further entries with you 5."
+   }
+  }
+ }
+}

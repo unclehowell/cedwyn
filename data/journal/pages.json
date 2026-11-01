@@ -137,6 +137,11 @@
   ],
   "/wales/": [
    {
+    "v": "1.2.2",
+    "date": "2026-11-01",
+    "note": "The Start the tour button now sits directly under the opening image; the introduction, headlines and e-books link that stood above it move to the end of the page, unchanged."
+   },
+   {
     "v": "1.2.1",
     "date": "2026-10-30",
     "note": "3D model renders removed from the tour (opening image, stops 1 and 2, and the aerial model figure); restored photographs of the house and the churchyard meadow in their place. The Roman villa hologram at stop 3 now stands on the ground of the estate where its remains were found."
@@ -451,6 +456,13 @@
     "v": "update",
     "date": "2026-10-31",
     "note": "Timeline entry added for 30 March 1851: catalogue-described attendance at Llandough Parish Church (52, morning) and Leckwith (27, afternoon); original forms not inspected."
+   }
+  ],
+  "/hubspot/": [
+   {
+    "v": "0.1.0",
+    "date": "2026-11-01",
+    "note": "Added a read-only HubSpot task-status dashboard at /hubspot/. The page separates the last complete native portal census from the latest published, project-scoped task-index mirror loaded through the existing Cloudflare Agent Bridge. Digital site-area slot 37 is assigned; no historic tithe plot number or land interest is asserted."
    }
   ]
  }
