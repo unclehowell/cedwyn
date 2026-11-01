@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static checks for the provisional 36-area parcel-story source."""
+"""Static checks for the 36 historic parcel-story slots alongside all Cedwyn site areas."""
 import json
 import pathlib
 
@@ -9,8 +9,9 @@ stories_doc = json.loads((ROOT / "data" / "parcel-stories.json").read_text(encod
 areas = areas_doc.get("areas", [])
 stories = stories_doc.get("parcels", [])
 assert stories_doc.get("schema") == "cedwyn_parcel_stories/v1"
-assert len(areas) == 36 and len(stories) == 36
-assert {a["id"] for a in areas} == {p["area_id"] for p in stories}
+assert len(areas) == 37 and len(stories) == 36
+assert sum(1 for a in areas if a["id"] == "hubspot") == 1
+assert {a["id"] for a in areas if a["id"] != "hubspot"} == {p["area_id"] for p in stories}
 assert sorted(p["slot"] for p in stories) == list(range(1, 37))
 assert len({p["parcel_id"] for p in stories}) == 36
 assert all(p["historic_plot_number"] is None for p in stories)
@@ -30,4 +31,4 @@ panel = (ROOT / "web" / "_cedwyn" / "parcel-panel.js").read_text(encoding="utf-8
 assert "parcel && parcel.model_parcel_id && e.model_id === parcel.model_parcel_id" in panel
 assert "makeSharedModelEventTable(modelEvents)" in panel
 assert "not this webapp’s own chain of title" in panel
-print("parcel story source OK: 36 public areas, 36 provisional slots, 5 working model records")
+print("parcel story source OK: 37 public areas, 36 historic parcel slots, 5 working model records")

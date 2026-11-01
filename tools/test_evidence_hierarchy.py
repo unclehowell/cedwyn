@@ -102,12 +102,15 @@ def main():
 
     area_doc = json.loads((ROOT / "data" / "site-areas.json").read_text())
     areas = area_doc["areas"]
-    assert len(areas) == 36
-    assert len({a["serendipity_slot"] for a in areas}) == 36
+    assert len(areas) == 37
+    assert len({a["serendipity_slot"] for a in areas}) == 37
+    hubspot_area = next(a for a in areas if a["id"] == "hubspot")
+    assert hubspot_area["serendipity_slot"] == 37 and hubspot_area["path"] == "/hubspot/"
+    assert hubspot_area["tithe_parcel_number"] is None, "digital site-area slot 37 is not a historic tithe plot"
     themes = [t for a in areas for t in a["source_themes"]]
-    assert len(themes) == 44 and len(set(themes)) == 44
+    assert len(themes) == 45 and len(set(themes)) == 45
     assert all(a["tithe_parcel_number"] is None for a in areas), "must not invent historical plot numbers"
-    # Exercise the same 36-area data contract used by the homepage generator.
+    # Exercise the same 37-area data contract used by the homepage generator.
     sys.path.insert(0, str(ROOT / "tools"))
     import home
     theme_cfg = json.loads((ROOT / "themes.json").read_text())
@@ -123,12 +126,12 @@ def main():
             "cy": primary.get("cy") or "", "es": primary.get("es") or ""
         })
     home_html = home.render(home_cfg)
-    assert home_html.count('class="entry"') == 36, "homepage should display exactly 36 public areas"
+    assert home_html.count('class="entry"') == 37, "homepage should display exactly 37 public areas"
 
     obs_doc = json.loads((ROOT / "data" / "observations.json").read_text())
     assert len(obs_doc["items"]) >= 3
     assert all(o.get("refs") for o in obs_doc["items"]), "every seeded observation must cite artifact records"
-    print("Evidence hierarchy tests passed: section DB, linked observation, 36 areas / 44 source themes, no invented parcel IDs.")
+    print("Evidence hierarchy tests passed: section DB, linked observation, 37 areas / 45 source themes, no invented parcel IDs.")
 
 if __name__ == "__main__":
     main()
