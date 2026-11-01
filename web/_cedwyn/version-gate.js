@@ -1,7 +1,8 @@
-/*! Cedwyn version gate · /_cedwyn/version-gate.js · v1.0.0 (2026-11-01) · Cedwyn editors · standard docs/VERSION-STANDARD.md 1.0.0
+/*! Cedwyn version gate · /_cedwyn/version-gate.js · v1.1.0 (2026-11-01) · Cedwyn editors · standard docs/VERSION-STANDARD.md 1.1.0
  * A click-to-load facade in the media slot (never a full-page overlay, never a separate chooser page): where a gated item would
- * load (the e-book PDF reader, a documentary clip), a random image from the NFT collection shows with "Select a version" and a
- * down arrow, and a drop-down of the item's versions from /_cedwyn/version-gate.json, the free one preselected (one tap opens it).
+ * load (the e-book PDF reader, a documentary clip), the item's own cover shows (or, once play/open is tapped
+ * with no version chosen, a random image from the NFT collection with "Select a version" and a down arrow) above ONE drop-down of the
+ * item's versions from /_cedwyn/version-gate.json that reads "Select a version" until one is chosen (no label, no line under it).
  * Prices are computed, never typed: the latest version costs the item's current price, each earlier one £4.99 less per step back
  * (never below £0), v0.0.1 always free. An (i) beside the drop-down opens a table of every version (version, date, what changed,
  * pages or length, price). Choosing the free version loads the item in place; the latest paid version goes to the existing
@@ -11,20 +12,23 @@
  * Argentina scope: no prices, no bar. Counts: /_cedwyn/ev/vgate-shown|passed|paid/<item>/<page>, <html data-cvg-shown/-passed>.
  * Loaded (deferred) by /_cedwyn/ghf/ghf-boot.js.
  * CHANGELOG
+ * 1.1.0 (2026-11-01): Selector UI rule: one plain drop-down, placeholder "Select a version" with nothing preselected, no label above,
+ *   no line or button under it, (i) beside it; the item's own cover on load where the page opens straight into the gate; the NFT image
+ *   with "Select a version" and a down arrow only after play/open is tapped with no version chosen; choosing a version acts at once.
  * 1.0.0 (2026-11-01): first version: e-books (shelf reader + /ebooks/read/), the (i) version table, the one-step price ladder;
  *   documentary clips wired but inert until the player names a clip's door. */
 (function () {
   "use strict";
   if (window.CedwynVersionGate) return;
-  var d = document, de = d.documentElement, VER = "1.0.0", MF = "/_cedwyn/version-gate.json?v=" + VER, M = null, pending = null;
+  var d = document, de = d.documentElement, VER = "1.1.0", MF = "/_cedwyn/version-gate.json?v=" + VER, M = null, pending = null;
   var T = {
     sel: {en: "Select a version", cy: "Dewiswch fersiwn", es: "Seleccione una versión"},
     free: {en: "free", cy: "am ddim", es: "gratis"},
     freeword: {en: "Free", cy: "Am ddim", es: "Gratis"},
     pages: {en: "pages", cy: "tudalen", es: "páginas"},
     min: {en: "min", cy: "mun", es: "min"},
-    openp: {en: "Open the free version", cy: "Agor y fersiwn am ddim", es: "Abrir la versión gratuita"},
-    openc: {en: "Play the free version", cy: "Chwarae’r fersiwn am ddim", es: "Ver la versión gratuita"},
+    open: {en: "Open", cy: "Agor", es: "Abrir"},
+    play: {en: "Play", cy: "Chwarae", es: "Reproducir"},
     buy: {en: "Buy", cy: "Prynu", es: "Comprar"},
     see: {en: "See", cy: "Gweld", es: "Ver"},
     bar: {en: "Newest", cy: "Diweddaraf", es: "Más reciente"},
@@ -100,28 +104,41 @@
     });
     try { x.focus(); } catch (e) {}
   }
-  /* ---------- the facade, built inside the slot the item would load into ---------- */
-  function facade(item) {
+  /* ---------- the facade, built inside the slot the item would load into ----------
+   * 1.1.0 (owner's rule 1 Nov 2026 02:19; docs/VERSION-STANDARD.md "Selector UI"): ONE plain drop-down whose first option is the
+   * placeholder "Select a version" (nothing preselected), no visible label above it, no line or button under it, the (i) beside it.
+   * mode "poster": the item's own cover with a play/open icon (a page that loads straight into the gate, e.g. /ebooks/read/);
+   * mode "ask" (or play/open tapped with no version chosen): a random NFT image with "Select a version" and a down arrow.
+   * Choosing a version acts at once: a free version opens in place, a paid one goes to its existing checkout. */
+  function facade(item, mode) {
     css(); count("shown", item.key);
     var f = el("div", "cvg"); f.setAttribute("data-no-translate", ""); f.setAttribute("data-ghf-keep", "");
-    var fig = el("figure", "cvg-fig"), imgs = (M && M.images) || [];
-    if (imgs.length) { var im = el("img", "cvg-img"); im.alt = ""; im.decoding = "async"; im.src = imgs[Math.floor(Math.random() * imgs.length)]; fig.appendChild(im); }
-    var cap = el("figcaption", "cvg-cap"), h = el("span", "cvg-h", t("sel")); cap.appendChild(h); var ar = el("span", "cvg-arr", "↓"); ar.setAttribute("aria-hidden", "true"); cap.appendChild(ar);
-    fig.appendChild(cap); f.appendChild(fig);
-    var id = "cvg-s-" + Math.random().toString(36).slice(2, 8), lab = el("label", "cvg-lab", t("sel")); lab.htmlFor = id; f.appendChild(lab);
-    var s = el("select", "cvg-s"); s.id = id; s.setAttribute("autocomplete", "off");
+    var fig = el("figure", "cvg-fig"), imgs = (M && M.images) || [], h = null; f.appendChild(fig);
+    var s = el("select", "cvg-s"); s.setAttribute("autocomplete", "off"); s.setAttribute("aria-label", t("sel"));
+    var ph = el("option", "cvg-ph", t("sel")); ph.value = ""; ph.disabled = true; ph.selected = true; s.appendChild(ph);
+    function ask() {
+      fig.textContent = ""; fig.className = "cvg-fig cvg-ask";
+      if (imgs.length) { var im = el("img", "cvg-img"); im.alt = ""; im.decoding = "async"; im.src = imgs[Math.floor(Math.random() * imgs.length)]; fig.appendChild(im); }
+      var cap = el("figcaption", "cvg-cap"); h = el("span", "cvg-h", t("sel")); cap.appendChild(h); var ar = el("span", "cvg-arr", "↓"); ar.setAttribute("aria-hidden", "true"); cap.appendChild(ar);
+      fig.appendChild(cap); try { s.focus({preventScroll: true}); } catch (e) {}
+    }
+    function poster() {
+      fig.textContent = ""; fig.className = "cvg-fig cvg-poster";
+      if (item.cover) { var im = el("img", "cvg-img cvg-cover"); im.alt = item.title || ""; im.decoding = "async"; im.src = item.cover; fig.appendChild(im); }
+      else if (item.title) fig.appendChild(el("span", "cvg-ttl", item.title));
+      var pb = el("button", "cvg-play"); pb.type = "button"; pb.setAttribute("aria-label", t(item.cut ? "play" : "open") + (item.title ? ": " + item.title : ""));
+      pb.innerHTML = '<svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
+      pb.addEventListener("click", function () { if (s.value === "") ask(); else go(+s.value); }); fig.appendChild(pb);
+    }
+    if (mode === "poster") poster(); else ask();
     var opts = [];
-    item.versions.forEach(function (o, i) { if (item.p[i] > 0 && argentina()) return; var op = el("option", "", label(item, i)); op.value = String(i); if (i === item.freeI) op.selected = true; s.appendChild(op); opts.push([op, i]); });
+    item.versions.forEach(function (o, i) { if (item.p[i] > 0 && argentina()) return; var op = el("option", "", label(item, i)); op.value = String(i); s.appendChild(op); opts.push([op, i]); });
     var row = el("div", "cvg-row"); row.appendChild(s);
     var ib = el("button", "cvg-i", "i"); ib.type = "button"; ib.setAttribute("aria-label", t("info")); ib.title = t("info"); ib.setAttribute("aria-haspopup", "dialog");
     ib.addEventListener("click", function () { table(item, f, ib); }); row.appendChild(ib); f.appendChild(row);
-    var b = el("button", "cvg-go"); b.type = "button"; f.appendChild(b);
-    function paint() { var i = +s.value; b.textContent = item.p[i] > 0 ? t("buy") + " v" + item.versions[i].v + " · £" + item.p[i].toFixed(2) : t(item.cut ? "openc" : "openp"); }
-    paint();
     function go(i) { if (item.p[i] > 0) { count("paid", item.key); item.buy(i); } else { ss(item.key, "free"); count("passed", item.key); item.open(); bar(item); } }
-    s.addEventListener("change", function () { paint(); if (!(item.p[+s.value] > 0)) go(+s.value); });
-    b.addEventListener("click", function () { go(+s.value); });
-    d.addEventListener("ghf-lang-change", function () { h.textContent = t("sel"); lab.textContent = t("sel"); ib.setAttribute("aria-label", t("info")); ib.title = t("info"); opts.forEach(function (a) { a[0].textContent = label(item, a[1]); }); paint(); });
+    s.addEventListener("change", function () { if (s.value !== "") go(+s.value); });
+    d.addEventListener("ghf-lang-change", function () { if (h) h.textContent = t("sel"); ph.textContent = t("sel"); s.setAttribute("aria-label", t("sel")); ib.setAttribute("aria-label", t("info")); ib.title = t("info"); opts.forEach(function (a) { a[0].textContent = label(item, a[1]); }); });
     return f;
   }
   /* ---------- the bar: one line, dismissible, while the free item is open ---------- */
@@ -146,15 +163,16 @@
     var e = M && M.ebooks && M.ebooks[k]; if (!e) return null;
     var cid = e.card; if (!cid) { var ca = d.querySelector('a[data-gb^="' + k + '@"]'), li = ca && ca.closest("li[id]"); cid = li ? li.id : ""; }
     var path = (M.purchase_path || "/ebooks/") + (cid ? "#" + cid : "");
-    return ready({key: "ebook:" + k, title: title || "", versions: e.versions, price: e.price, unit: e.unit || "pages", path: path,
+    var cimg = cid && d.querySelector("#" + cid + " img"), og = d.querySelector('meta[property="og:image"]');
+    return ready({key: "ebook:" + k, title: title || "", cover: e.cover || (cimg && (cimg.currentSrc || cimg.src)) || (og && og.content) || "", versions: e.versions, price: e.price, unit: e.unit || "pages", path: path,
       buy: function (i) {   // the latest version: the card's own Buy (existing checkout); any other paid version: the shelf
         var card = cid && d.getElementById(cid), go = card && card.querySelector(".sv-go"), sel = card && card.querySelector(".sv-sel");
         if (i === this.last && go && sel) { sel.value = "v" + this.versions[i].v; try { sel.dispatchEvent(new Event("change", {bubbles: true})); } catch (x) {} go.click(); }
         else location.href = path;
       }});
   }
-  function swapIn(slot, item, plain) {   // the slot keeps loading off-screen; the facade takes its place until a version is chosen
-    var ph = plain ? el("div", "cvg-page") : slot.cloneNode(false); ph.classList.add("cvg-slot"); ph.appendChild(facade(item));
+  function swapIn(slot, item, plain, mode) {   // the slot keeps loading off-screen; the facade takes its place until a version is chosen
+    var ph = plain ? el("div", "cvg-page") : slot.cloneNode(false); ph.classList.add("cvg-slot"); ph.appendChild(facade(item, mode));
     slot.parentNode.replaceChild(ph, slot);
     item.open = function () { if (ph.parentNode) ph.parentNode.replaceChild(slot, ph); };
     return ph;
@@ -173,13 +191,13 @@
   window.addEventListener("click", function () {   // bubble, after the reader has opened: gate its slot
     var item = pending; pending = null; if (!item) return;
     var m = d.querySelector(".edp-mod"); if (!m || m.hidden) return;
-    var box = m.querySelector(".edp-mbody"); if (box) swapIn(box, item);
+    var box = m.querySelector(".edp-mbody"); if (box) swapIn(box, item, false, "ask");   // open was tapped with no version chosen
   });
   function readerPage() {
     var vb = d.querySelector("[data-edp-viewer]"); if (!vb) return;
     var item = ebook(bookKey(new URLSearchParams(location.search).get("book") || ""), ""); if (!item) return;
     if (ss(item.key) === "free") { bar(item); return; }
-    swapIn(vb, item, true);
+    swapIn(vb, item, true, "poster");   // 1.1.0: the page loads straight into the gate, so it starts on the book's own cover
   }
   /* ---------- documentary clips (movie/<id>/<id>.<lang>.v<semver>.webm) with an unowned paid cut ---------- */
   function onPath(ps) { var p = location.pathname; return (ps || []).some(function (x) { return p.indexOf(x) === 0; }); }
@@ -201,7 +219,7 @@
     var item = clip(v); if (!item) return;
     if (ss(item.key) === "free") { v.__cvgOk = 1; bar(item); return; }
     try { v.pause(); } catch (e) {}
-    var f = facade(item); f.classList.add("cvg-inslot"); v.parentNode.insertBefore(f, v); v.style.display = "none";
+    var f = facade(item, "ask"); f.classList.add("cvg-inslot"); v.parentNode.insertBefore(f, v); v.style.display = "none";
     item.open = function () { v.__cvgOk = 1; if (f.parentNode) f.parentNode.removeChild(f); v.style.display = ""; var p = v.play(); if (p && p.catch) p.catch(function () {}); };
   }, true);
   function start() { load().then(readerPage).catch(function () { M = null; }); }
