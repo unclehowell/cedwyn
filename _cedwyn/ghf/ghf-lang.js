@@ -326,7 +326,7 @@
   try {
     if (!window.GHFBasecamp && !document.querySelector('script[src*="basecamp.js"]')) {
       var bc = document.createElement("script");
-      bc.src = base + "basecamp.js?v=2.1.15"; bc.async = true;
+      bc.src = base + "basecamp.js?v=2.1.19"; bc.async = true;
       (document.head || document.documentElement).appendChild(bc);
     }
   } catch (e) {}
