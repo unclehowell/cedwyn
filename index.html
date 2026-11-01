@@ -1,0 +1,54 @@
+<!doctype html><html lang="en" data-cw-noclip><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bloculous · the Bloculus protocol and the geodesic domes · Cedwyn</title><meta name="description" content="Bloculous: the Bloculus communications protocol paper (DATRO Consortium, v0.0.0, 2021) and the geodesic communications equipment rooms it was written for."><meta name="color-scheme" content="light"><meta name="theme-color" content="#1f4fb5"><link rel="stylesheet" href="bloculous.css?v=0.1.0"><script src="/_cedwyn/ghf/ghf-lang.js?v=2.1.4c" data-dict="/bloculous/lang.json" defer></script><script src="/_cedwyn/parcel-modal.js?v=0.1.0" defer></script><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.8"></script></head><body class="blo"><main class="blow" data-scope="online">
+<p class="blo-parcel"><a class="cw-parcel-link" href="/parcels/" data-parcel-slot="41" data-parcel-of="59">41 of 59</a></p>
+<header class="blo-hero"><img class="ph" src="img/dome-rooftop.jpg" alt="A geodesic communications equipment room on a rooftop" fetchpriority="high" width="1200" height="828"><div class="cap"><img class="mark" src="img/bloculus-mark.png" alt="" width="64" height="64"><div><h1>Bloculous</h1><p>A little place for every hexagon: the Bloculus protocol and the domes it links.</p></div></div></header>
+<p class="blo-src"><b>Source:</b> DATRO Consortium, <i>Bloculus – Business Case, Communications Protocol</i>, version 0.0.0, dated 24 July 2021, from the DATRO document library. The text on this page is taken from that paper and adds nothing to it; the photographs show the domes themselves.</p>
+
+<h2><span class="n">1</span>The domes</h2>
+<p>The paper describes a fixed communications network made of geodesic communications equipment rooms, which it calls “Neo Domes”. They are solar powered and mesh together over licence-free radio frequencies. The network was being beta tested along a 70 km stretch of Caribbean coastline the paper names the “Scottish Bay”.</p>
+<p>The paper also records that the whole network, from the equipment rooms’ blueprints to the software that runs them and the end users’ wireless access points, is in the public domain under a General Public Licence, so anyone can launch the same network in their own area.</p>
+
+<h2><span class="n">2</span>The name</h2>
+<div class="blo-name"><div><b>Bloc</b>blockchain (the Polkadot blockchain in the protocol’s day-to-day running)</div><div><b>Loculus</b>architecture and biology: “a little place”, a compartment</div></div>
+
+<h2><span class="n">3</span>What the protocol has to do</h2>
+<ol class="blo-list">
+<li>Let each new dome quickly, securely and on its own find and pair with neighbouring domes over licence-free radio.</li>
+<li>Once the radio links are up, let the web nodes inside each dome pair with their matching nodes in neighbouring domes.</li>
+<li>Keep addresses short enough to work over low-bandwidth fallback links such as LoRaWAN or cellular USSD.</li>
+<li>Use the same scheme to route and re-route traffic across the network, for example for uptime monitoring.</li>
+</ol>
+
+<h2><span class="n">4</span>One hexagon, one domain</h2>
+<p>Bloculus combines a hexagonal grid reference system, H3 (“honeycombs”), with Handshake, a platform for top-level domains. Each hexagon’s unique 15-character reference becomes its own top-level domain. A dome knows its place from its address, so it can link to its neighbours without being told.</p>
+<div class="blo-hexbox"><svg id="blo-grid" viewBox="0 0 360 250" role="img" aria-label="Honeycomb grid: tap a hexagon to place a dome and see it link to its six neighbours"></svg>
+<p class="blo-hint" id="blo-grid-msg">Tap a hexagon to place a dome. It links to the six hexagons around it. (Illustration.)</p></div>
+<h3>Hexagon sizes (H3 resolutions in the paper)</h3>
+<div class="blo-tabs" role="group" aria-label="H3 resolution"><button type="button" data-r="5" aria-pressed="false">5</button><button type="button" data-r="6" aria-pressed="false">6</button><button type="button" data-r="7" aria-pressed="false">7</button><button type="button" data-r="8" aria-pressed="true">8 · chosen</button></div>
+<div class="blo-res" aria-live="polite"><div><b id="r-area">0.737</b>km² per hexagon</div><div><b id="r-edge">0.461</b>km edge</div><div><b id="r-n">691,776,122</b>hexagons worldwide</div></div>
+<p class="blo-hint">The paper picks resolution 8: hexagons about 461 m long, a balance between location accuracy and obscurity.</p>
+<figure><img src="img/h3-resolutions.jpg" alt="Diagram of H3 hexagons at resolutions 5, 6, 7 and 8 from the paper's annexures" loading="lazy" width="800" height="333"><figcaption>Resolutions 5, 6, 7 and 8 (the paper’s annexure 6.1).</figcaption></figure>
+<figure><img src="img/h3-res5-map.jpg" alt="Map of a coastline overlaid with resolution 5 hexagons, from the paper's annexures" loading="lazy" width="1000" height="531"><figcaption>Resolution 5 hexagons, about 8.5 km wide, over the coastline (annexure 6.2).</figcaption></figure>
+
+<h2><span class="n">5</span>Reading an address</h2>
+<p>The hexagon is the top-level domain, the kind of service is the domain name, and the service itself is the subdomain. The paper’s own example:</p>
+<div class="blo-addr"><div><label for="a-s">Service (subdomain)</label><input id="a-s" value="matrix" autocomplete="off" spellcheck="false"></div><div><label for="a-c">Category (domain)</label><input id="a-c" value="messaging" autocomplete="off" spellcheck="false"></div></div>
+<div class="blo-out" aria-live="polite"><span class="s" id="o-s">matrix</span>.<span class="c" id="o-c">messaging</span>.<span class="h">8843a13687fffff</span></div>
+<p class="blo-hint">Green: the hexagon’s H3 reference as a top-level domain (the paper’s example cell). The domains work on the local network first, and on the wider internet once a gateway joins.</p>
+
+<h2><span class="n">6</span>Setting up a dome</h2>
+<p>The paper names <b>HotspotBnB</b> as the interface for the last stage of setting up a dome: a simple local web app with a built-in app store for one-click installs, running on a low-energy single-board computer such as a Raspberry Pi. Its operating system builds and configures itself, even without an internet connection, using another DATRO tool called <b>Cacher</b>.</p>
+<p>When a dome’s hexagon (resolution 8) is chosen before the system is built, its top-level domain is baked in. On first boot the equipment room can identify itself and pair with the rooms near it.</p>
+
+<h2><span class="n">7</span>Open issue in the paper</h2>
+<p class="blo-issue">Security (version 0.0.0): having the dome’s hexagon reference in HotspotBnB before it builds itself is useful, but the solution must keep bad actors out.</p>
+<p>The paper recommends a dedicated whitepaper on the technology as the next step.</p>
+
+<h2><span class="n">8</span>The domes in pictures</h2>
+<div class="blo-gal"><button type="button" data-full="img/dome-rooftop.jpg" data-cap="A geodesic communications equipment room on a rooftop, with a solar panel beside it"><img src="img/dome-rooftop.jpg" alt="A geodesic communications equipment room on a rooftop, with a solar panel beside it" decoding="async" width="600" height="600"></button><button type="button" data-full="img/dome-wings.jpg" data-cap="A dome with side wings on a sloping site"><img src="img/dome-wings.jpg" alt="A dome with side wings on a sloping site" decoding="async" width="600" height="600"></button><button type="button" data-full="img/dome-panels.jpg" data-cap="Inside a dome: red and white triangular panels"><img src="img/dome-panels.jpg" alt="Inside a dome: red and white triangular panels" decoding="async" width="600" height="600"></button><button type="button" data-full="img/dome-build-1.jpg" data-cap="Working beside a finished dome"><img src="img/dome-build-1.jpg" alt="Working beside a finished dome" decoding="async" width="600" height="600"></button><button type="button" data-full="img/dome-build-2.jpg" data-cap="A finished dome on a rooftop, with solar panels"><img src="img/dome-build-2.jpg" alt="A finished dome on a rooftop, with solar panels" decoding="async" width="600" height="600"></button><button type="button" data-full="img/dome-build-3.jpg" data-cap="Red and white triangular panels being fitted"><img src="img/dome-build-3.jpg" alt="Red and white triangular panels being fitted" decoding="async" width="600" height="600"></button></div>
+<dialog class="blo-lb" id="blo-lb"><img id="blo-lb-img" alt=""><p><span id="blo-lb-cap"></span><button type="button" id="blo-lb-x">Close</button></p></dialog>
+
+<footer class="blo-foot"><p>Bloculous · webapp 41 of 59 · v0.1.0 · <a href="#changelog" id="blo-cl-link">Changelog</a></p>
+<div id="changelog"><p><b>v0.1.0</b> (2 Nov 2026): first version. The paper’s concept, the hexagon grid and address demo, its annexure figures, and photographs of the domes.</p></div></footer>
+</main>
+<script src="bloculous.js?v=0.1.0" defer></script>
+</body></html>

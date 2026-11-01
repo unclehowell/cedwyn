@@ -1,0 +1,53 @@
+/* Bloculous · webapp 41 of 59 · v0.1.0 · theme from the Bloculus paper (white page, cobalt honeycomb) */
+:root{--bg:#ffffff;--paper:#f5f8fe;--ink:#14213d;--mute:#55627a;--line:#d7e1f4;--cob:#1f4fb5;--sky:#5b8de8;--pale:#e8effc}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink)}
+body.blo{font:16px/1.6 "Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.blow{max-width:900px;margin:0 auto;padding:14px 14px 60px;overflow-wrap:anywhere}
+a{color:var(--cob)}
+.blo-parcel{margin:0 0 8px;font:600 13px/1.2 system-ui,sans-serif}.blo-parcel a{color:var(--cob);text-decoration:none;border:1px solid var(--line);background:var(--paper);padding:3px 9px;border-radius:999px;display:inline-block}
+.blo-hero{position:relative;border-radius:16px;overflow:hidden;background:var(--ink);min-height:300px;display:flex;align-items:flex-end}
+.blo-hero img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+.blo-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,33,61,0) 30%,rgba(20,33,61,.86) 100%)}
+.blo-hero .cap{position:relative;z-index:1;padding:18px 16px;color:#fff;display:flex;gap:12px;align-items:center}
+.blo-hero .mark{width:64px;height:64px;flex:0 0 64px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+.blo-hero h1{margin:0;font-size:clamp(32px,8vw,52px);line-height:1;letter-spacing:-.01em}
+.blo-hero p{margin:4px 0 0;color:#dfe8fb;font-size:15px}
+h2{font-size:21px;margin:30px 0 8px;padding-bottom:5px;border-bottom:2px solid var(--pale);color:var(--ink)}
+h2 .n{display:inline-block;min-width:1.6em;color:var(--cob)}
+h3{font-size:17px;margin:16px 0 4px}
+.blo-src{background:var(--paper);border-left:4px solid var(--cob);padding:10px 12px;border-radius:6px;font-size:14px;margin:14px 0}
+.blo-src b{color:var(--cob)}
+.blo-name{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.blo-name div{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px}
+.blo-name b{font-size:22px;color:var(--cob);display:block}
+ol.blo-list{padding-left:22px}ol.blo-list li{margin:0 0 6px}
+.blo-hexbox{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px;margin:10px 0}
+.blo-hexbox svg{display:block;width:100%;height:auto;touch-action:manipulation}
+.blo-hexbox .hx{fill:#fff;stroke:var(--sky);stroke-width:1.4;cursor:pointer;transition:fill .25s}
+.blo-hexbox .hx.on{fill:var(--cob)}.blo-hexbox .hx.nb{fill:#b9cdf3}
+.blo-hexbox line{stroke:var(--cob);stroke-width:2.2;stroke-dasharray:4 4;animation:dash 1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-16}}
+@media (prefers-reduced-motion:reduce){.blo-hexbox line{animation:none}.blo-hexbox .hx{transition:none}}
+.blo-hint{font-size:13px;color:var(--mute);margin:6px 2px 0}
+.blo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.blo-tabs button{font:600 14px system-ui,sans-serif;border:1px solid var(--line);background:#fff;color:var(--cob);border-radius:999px;padding:7px 14px;min-height:40px;cursor:pointer}
+.blo-tabs button[aria-pressed="true"]{background:var(--cob);color:#fff;border-color:var(--cob)}
+.blo-res{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:13px}
+.blo-res div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center}.blo-res b{display:block;font-size:clamp(13px,3.9vw,18px);color:var(--cob);white-space:nowrap}
+.blo-addr{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.blo-addr label{font-size:13px;color:var(--mute)}.blo-addr input{width:100%;font:16px system-ui,sans-serif;padding:8px 10px;border:1px solid var(--line);border-radius:8px;min-height:42px}
+.blo-out{font:600 15px ui-monospace,Menlo,Consolas,monospace;background:var(--ink);color:#fff;border-radius:8px;padding:10px 12px;overflow-x:auto;white-space:nowrap}
+.blo-out .s{color:#9fc0ff}.blo-out .c{color:#ffd28a}.blo-out .h{color:#9ff0c6}
+figure{margin:12px 0}figure img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid var(--line);background:#fff}
+figcaption{font-size:13px;color:var(--mute);margin-top:4px}
+.blo-gal{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.blo-gal button{padding:0;border:0;background:none;cursor:zoom-in;display:block;width:100%;min-width:0}
+.blo-gal img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:10px;display:block}
+dialog.blo-lb{border:0;padding:0;background:#000;max-width:96vw;max-height:92vh;border-radius:10px}
+dialog.blo-lb::backdrop{background:rgba(10,16,30,.86)}
+dialog.blo-lb img{display:block;max-width:96vw;max-height:80vh;object-fit:contain}
+dialog.blo-lb p{color:#dfe8fb;margin:0;padding:8px 12px;font-size:14px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+dialog.blo-lb button{font:600 14px system-ui;background:#fff;color:var(--ink);border:0;border-radius:999px;padding:7px 14px;min-height:40px}
+.blo-issue{border:1px dashed var(--sky);border-radius:10px;padding:10px 12px;background:#fff;font-size:15px}
+footer.blo-foot{margin-top:34px;border-top:1px solid var(--line);padding-top:12px;font-size:13px;color:var(--mute)}
+@media (min-width:700px){.blo-gal{grid-template-columns:repeat(3,1fr)}.blo-hero{min-height:420px}}
