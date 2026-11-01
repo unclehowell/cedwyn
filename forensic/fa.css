@@ -1,0 +1,38 @@
+/* Forensic Assessments · webapp 39 of 59 · v1.0.0 */
+:root{--bg:#f7f2e7;--card:#fbf8f1;--ink:#2b2418;--mute:#6b5f4b;--line:#e2d8c3;--acc:#7a3b12;--up:#2f6b3a;--down:#8a2d1c}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink)}
+body.fa{font:16px/1.55 Georgia,"Times New Roman",serif;-webkit-text-size-adjust:100%}
+.faw{max-width:880px;margin:0 auto;padding:16px 14px 56px;overflow-wrap:anywhere}
+.fa-parcel{margin:0 0 6px;font:600 13px/1.2 system-ui,sans-serif}.fa-parcel a{color:var(--acc);text-decoration:none;border:1px solid var(--line);background:var(--card);padding:3px 9px;border-radius:999px;display:inline-block}
+.fa-crumb{margin:4px 0;font:14px system-ui,sans-serif}.fa-crumb a{color:var(--acc)}
+h1{font-size:26px;line-height:1.2;margin:6px 0 4px}h2{font-size:20px;margin:26px 0 8px;border-bottom:1px solid var(--line);padding-bottom:4px}h3{font-size:17px}
+.fa-kicker{color:var(--mute);margin:0 0 12px;font:14px system-ui,sans-serif}
+.fa-tp{background:var(--card);border:1px dashed var(--line);padding:8px 10px;font:14px system-ui,sans-serif;color:var(--mute)}
+.fa-sum{display:grid;grid-template-columns:1fr;gap:8px;margin:12px 0}
+.fa-sum div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.fa-sum dt{font:600 12px system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:var(--mute)}.fa-sum dd{margin:2px 0 0}
+.fa-was{color:var(--mute);text-decoration:line-through;margin-right:6px}
+.fa-reading{background:var(--card);border-left:4px solid var(--acc);padding:8px 12px;border-radius:4px}
+.fa-log{list-style:none;padding:0;margin:8px 0}.fa-log li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:0 0 8px}
+.fa-log .m{font:13px system-ui,sans-serif;color:var(--mute);display:flex;flex-wrap:wrap;gap:4px 10px}.fa-log .d-sent{color:var(--acc)}.fa-log .d-received{color:var(--up)}
+.fa-log p{margin:4px 0 0}
+details{margin:8px 0}summary{cursor:pointer;font:14px system-ui,sans-serif;color:var(--acc)}
+.fa-carry{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px}
+.fa-carry table,.fa-tbl{border-collapse:collapse;width:100%;font-size:14px}.fa-carry td,.fa-carry th{border:1px solid var(--line);padding:4px 6px;vertical-align:top}
+.fa-carry div:has(>table){overflow-x:auto}.fa-carry table{display:block;overflow-x:auto}
+.fa-filter{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--card);font:16px system-ui,sans-serif;color:var(--ink)}
+.fa-cards{list-style:none;padding:0;margin:12px 0}.fa-cards li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:0 0 10px}
+.fa-cards a.t{font-weight:700;color:var(--ink);font-size:17px;text-decoration:none}.fa-cards a.t:after{content:" ›";color:var(--acc)}
+.fa-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;font:12px system-ui,sans-serif}.fa-chips span{border:1px solid var(--line);border-radius:999px;padding:2px 8px;background:var(--bg)}
+.fa-chips .new{border-color:var(--acc);color:var(--acc)}.fa-cards p{margin:4px 0 0;font-size:14px;color:var(--mute)}
+.fa-counts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0;font:13px system-ui,sans-serif}.fa-counts div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px;text-align:center}.fa-counts b{display:block;font-size:22px}
+footer.fa-foot{margin-top:30px;font:13px system-ui,sans-serif;color:var(--mute)}
+a{color:var(--acc)}
+@media (min-width:700px){.fa-sum{grid-template-columns:1fr 1fr}}
+
+.fa-case h3{margin:1.4em 0 .4em;font-size:1.05rem}.fa-case h4{margin:.8em 0 .3em;font-size:.95rem}
+.fa-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}.fa-tl td{vertical-align:top;font-size:.85rem}.fa-tl q{font-style:italic}
+.fa-note{font-size:.85rem;color:#5b5346}.fa-tag{display:inline-block;font-size:.72rem;padding:0 .4em;border:1px solid #b9a77f;border-radius:3px;margin-left:.3em;white-space:nowrap}
+.fa-liab strong{text-transform:uppercase;letter-spacing:.03em}.fa-liab-strong strong{color:#8a2b0f}.fa-liab-some strong{color:#7a5a00}.fa-liab-none strong{color:#3f5d3a}
+.fa-dl dt{font-weight:600;margin-top:.5em}.fa-dl dd{margin:0 0 .2em}
+.fa-glance{width:100%;border-collapse:collapse;font-size:.82rem}.fa-glance th,.fa-glance td{border-bottom:1px solid #e3d9c4;padding:.3em .35em;text-align:left;vertical-align:top}
