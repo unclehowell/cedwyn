@@ -75,7 +75,8 @@ SV_JS = ('<style id="sh-sv-css">.sh .sh-card .sv-row{display:flex!important;flex
          'function load(cb){if(man)return cb();fetch("/_cedwyn/version-gate.json",{cache:"no-cache"}).then(function(r){return r.json();}).then(function(j){man=j;cb();}).catch(function(){});}'
          'function init(){[].forEach.call(document.querySelectorAll(".sh-card .sv-pick"),function(box){var s=box.querySelector(".sv-sel");if(!s||s.__sh)return;s.__sh=1;'
          'var ph=s.querySelector("option.sv-ph");if(ph&&L()!=="en"){ph.textContent=w(0);s.setAttribute("aria-label",w(0));}s.selectedIndex=0;'
-         's.addEventListener("change",function(){var v=s.value;s.selectedIndex=0;if(!v)return;var a=box.querySelector(\'.sv-t[data-k="\'+v+\'"]\');if(a)a.click();});'
+         's.addEventListener("change",function(){var v=s.value;s.selectedIndex=0;if(!v)return;var a=box.querySelector(\'.sv-t[data-k="\'+v+\'"]\');if(!a)return;'
+         'if(a.hasAttribute("data-edp-pdf")){try{sessionStorage.setItem("cvg:ebook:"+(a.getAttribute("data-gb")||"").split("@")[0],"free");}catch(e){}}a.click();});'
          'var b=box.querySelector(".sv-vi"),li=box.closest(".sh-card");if(b&&li){if(L()!=="en")b.setAttribute("aria-label",w(1));b.addEventListener("click",function(){load(function(){show(li,b);});});}});}'
          'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();})();</script>')
 def _attrs(tag):
@@ -167,7 +168,8 @@ def tidy(t, D):
     # 1.3.0 (1 Nov 2026, owner 02:19; docs/VERSION-STANDARD.md §2a): one plain drop-down. Its first option is the placeholder
     # "Select a version", shown on load; no label above it (aria-label only); nothing preselected; no Buy/Read button or free line
     # under it; the (i) beside it opens the version table (VERSION-STANDARD §3: version, date, what changed, pages, computed price). Choosing a version acts at once through that version's own existing link (a.sv-t: the free reader or the same
-    # checkout link as before), then the drop-down returns to the placeholder (sh-sv-js). The cover stays the no-JS free link.
+    # checkout link as before), then the drop-down returns to the placeholder (sh-sv-js); a free choice is recorded for the version gate
+    # (sessionStorage "cvg:ebook:<book>" = "free", the gate's own session key) so the reader does not ask again. The cover stays the no-JS free link.
     t = re.sub(r'<label class="sv-lab"[^>]*>[^<]*</label>', '', t)
     def _ph(m):
         sel, body = m.group(1), m.group(2)
