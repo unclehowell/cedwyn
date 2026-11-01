@@ -1,8 +1,6 @@
 # chess.bucklerfamily.estate — the Great House Farm chessboard
 
-One giant zoomable chessboard of the Great House Farm / Tŷ Mawr record. Black squares: actions, legal framings and omissions
-against Williams/Buckler ownership (and records that cut against the case). White squares: evidence of ownership and
-occupation, heritage and lineage, and the trees and land. Rows are eras; squares read left to right in time order.
+One giant zoomable narrative scoreboard of the Great House Farm / Tŷ Mawr record. White squares record Williams–Buckler points of honour: documented occupation, petitions, procedural challenges, corroborating evidence, heritage and family-led record retrieval. Black squares record the adverse public narrative and accountability issues: company and state actions, court rulings, press framing, title-chain disputes, counter-evidence, missing records and FOI/EIR handling. A black point is not, by itself, a finding of dishonesty or unlawful conduct. Rows are eras; squares read left to right in time order.
 
 - Static site served by Cloudflare Pages project `bucklerfamily-chess` from this branch (`chess` of unclehowell/datro),
   output directory `public/`, no build command.
@@ -47,7 +45,7 @@ The content and original code in this repository are not open source. You may re
 
  — Sion's Tab agent
 
-## v3 (21 Oct 2026)
+## v4.0.0 (1 Nov 2026)\n- The board is explicitly the Williams–Buckler narrative scoreboard: white = points of honour; black = adverse narrative and accountability record. Counts are unweighted records, not a verdict.\n- Added the 31 Oct Old Chestnut audit, 21 Oct Dartboard snapshot, the reported Neath warehouse-fire lead (source-pending), and the 25 Jul 2025 Wales at Six viewing-copy chronology, with provenance limits.\n- Reconciled existing Museum Wales, Vale Council, Heneb, Cadw, RCAHMW and Llandough Council squares against the Old Chestnut audit.\n- List labels and future build output use the same side names.\n\n## v3 (21 Oct 2026)
 - Two square colours only: pure white (every record in the family's favour: codes E, H, T) and pure black (the opposing narrative: A, L, C, K). Text is black on white and white on black.
 - Empty cells, filtered-out cells and the page background are one purple, #1e1b4b.
 - No labels, era bands, file letters, separators, corner markers or hint drawn over the grid. The era of the rows in view and the tally "White N · Black N" sit in the bar under the board.
