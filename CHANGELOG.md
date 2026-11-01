@@ -127,6 +127,13 @@
 
 ## [Unreleased]
 
+### Added
+- Proposed WP-E5, Cedwyn modular catalogue-backed webapps, under the Digital Estate S1 workstream. The scope separates data-only catalogue refreshes from code deployments, specifies per-app cache/data contracts, and records release, quality and AI-agent governance requirements. This is an audit/design proposal; implementation, production migrations and data-store provisioning are not claimed.
+
+### Reviewed
+- Audited the central SQLite/GraphQL catalogue, generated app-local SQLite and JSON views, build-to-`site` publication path, Cloudflare Pages deployment inventory, HubSpot task-dashboard boundary, and current branch/version/changelog controls. No P1–P4 programme status, RAG, project percentage or conditional legal gate was changed.
+
+
 
 
 ## 2026-10-22 — Reader-facing site directory
