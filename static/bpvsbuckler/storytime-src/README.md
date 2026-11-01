@@ -1,0 +1,8 @@
+# Storytime v0.1.0 (bpvsbuckler museum, Wales tour, Patagonia walk-round)
+
+Static HTML/JS, no outside scripts. It is served from this theme's public folder, at /story/storytime/ (museum/, wales/, patagonia/).
+- engine/storytime.js and engine/storytime.css: one shared player. It shows scenes in order with narration from the device's own speech voice, and subtitles highlighted word by word (speech word-boundary events, with a timed fallback). Pause or Evidence opens every catalogue entry for the scene: thumbnail, ID, neutral description, transcript where held, and a link to its evidence page. It is keyboard friendly (Space, the arrow keys, E, Esc), touch friendly (swipe on the picture), and caches offline through sw.js.
+- data/catalogue.json: 147 evidence-catalogue entries. Descriptions are composed from the register fields (type, date, holder, held status) without a reading, and are not yet checked against each item. Transcripts are the register's partial excerpt, otherwise "transcript pending".
+- data/museum.json: 18 scenes in date order. data/wales.json: the same scenes with the short tour text, a wireframe that fades into the record itself, and 19 languages in data/i18n (all except English machine translated). data/patagonia.json: 5 locations (barn, main house, church as a hologram, yard and stables, gate and green). It uses pencil renderings only and no money words.
+- assets/: heroes and wireframes (OpenCV edge trace), plus pencil renderings and the church hologram for Patagonia. Photographs from People's Collection Wales items 871431, 871446 and 871461 (Vale of Glamorgan Libraries, Creative Commons) are credited on screen.
+Scene scripts: static/bpvsbuckler/storytime-src/SCRIPTS.md. Built by Sion's Tab agent, 1 Nov 2026.
