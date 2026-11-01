@@ -1,4 +1,4 @@
-# Hive join contract (v3.16.1)
+# Hive join contract (v3.17.0)
 
 This file is the repository fallback for https://cedwyn.bucklerfamily.estate/hive/join.txt, https://cedwyn.bucklerfamily.estate/hive/join.md, https://cedwyn.bucklerfamily.estate/hive/join.json and https://cedwyn.bucklerfamily.estate/hive/.well-known/agent.json.
 
@@ -13,6 +13,18 @@ The programme reconstructs the Welsh estate, Williams/Buckler matriarchy, landho
 **Private trigger rule:** preserve any potentially relevant artifact and raise a confidential HubSpot review task with evidence for/against, materiality, causation, what confirms/refutes and provenance. Never publish allegations, add an incident to a public log, or contact counsel/third parties automatically. The owner and authorised legal reviewer decide external action.
 
 **Finance rule:** never expose private keys, seed phrases or spend-capable wallets to agents, MCP or WebMCP. No autonomous transfers, purchases, debt or unbounded spend. A public receiving address, if ever approved, is not spending authority. Each disbursement requires explicit custodian approval within recorded caps.
+
+## Standing direction: Cedwyn research paradigm (added 1 Nov 2026, v3.17.0)
+
+On the producer's standing direction of 1 Nov 2026 22:42 GMT (verbatim in hive/BOARD.json `standing_directions`, id SD-2026-11-01-paradigm), every agent and seat working on Cedwyn (ChatGPT, Claude, Grok, Instinct, Tab and any runner) works from the project's working paradigm:
+
+- The Williams family were Welsh gentry in a manorial house (Tŷ Mawr) on a large estate. The tenancy narrative is rejected as a framework: do not seek tenancy or rent records as a lead, and do not frame the family as tenants.
+- Bute's asserted ownership and titles are the thing to scrutinise. Third-party title is tested from primary records, never taken as given (existing rule: BP Properties = registered proprietor 1982/83, never "owner"; a court's "owner" wording is shown as the court's view).
+- Lines to trace, each as a dated, sourced thread: the ~12-year permissive-occupancy / registration pattern (occupancy repeatedly made to appear permissive, then registration "without owner's challenge"); how the family's claim was or was not extinguished (1974); parcel B in 1939 (wartime use of the land); the 33 acres taken for the limeworks; the three parishes of the Cedwyn estate Bute did not own; how parcel C became the village green; Mary Williams' 1958 "Welsh Crichel Down" remark and what it referred to; how all 59 parcels passed out of the family's occupation.
+- The evidence catalogue is the foundation. Each artifact has a neutral verbatim description (what it physically is) and a transcript; our interpretation is kept separately, versioned (semver), dated, signed, with its reasoning and what cuts against it. E-books, the documentary, the directory, theories and pattern ("secondary") evidence are built on the catalogue, never the other way round.
+- Public wording: the paradigm is "the project's working paradigm"; interpretations are labelled "our reading". The editorial rules are unchanged (no banned words, never name the producer, no heraldry, nothing about family holdings or addresses, no outbound links). Contrary evidence is preserved and shown beside our reading, not dropped.
+
+Signed: Tab (owner's agent), 1 Nov 2026.
 
 ## Standing rule: Cowbridge is a closed lead (added 31 Oct 2026, v3.16.1)
 
@@ -140,6 +152,7 @@ The same frozen version must pass its review gate. Gate B (owner's 'Decide all' 
 Report only the actual saved recurrence. If the harness cannot schedule, use MANUAL / owner-triggered and provide https://claude.ai/new?q=Hive%20check-in as an optional manual trigger. A WORK trigger is always an on-demand pass and must not become a scheduling discussion or NOT CONFIGURED response.
 
 ## Protocol changelog
+- v3.17.0 (1 Nov 2026): standing direction — Cedwyn research paradigm (Williams as Welsh gentry in a manorial house; tenancy narrative rejected as a framework; Bute's asserted ownership to be scrutinised; evidence catalogue with verbatim description + transcript + versioned interpretation as the foundation). Verbatim in BOARD.json standing_directions. Signed: Tab (owner's agent).
 - v3.16.1 (31 Oct 2026): standing rule — Cowbridge / "Llandough near Cowbridge" is a closed lead on the producer's instruction of 31 Oct 23:19Z; never in any draft, P.S. or name list, never re-added. Signed: Tab (owner's agent).
 - v3.16.0 (31 Oct 2026): added Cedwyn Snowball as the programme-level mandate; linked HubSpot master, Agent Library, Projects and WebMCP; clarified private trigger and financial authority limits. Signed: ChatGPT GPT-6 (programme protocol update).
 - v3.14.0 (30 Oct 2026): clarified the owner's project-scoped authority for independent work and the limits on that authority. Signed: Pally automation (not a Hive roster seat).

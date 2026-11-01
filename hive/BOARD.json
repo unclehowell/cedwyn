@@ -6140,6 +6140,13 @@
       "version": null,
       "agent": "Tab",
       "event": "Board sync from HubSpot subjects: church-in-wales-rb-property: TURN: Claude v0.1.3 -> TURN: Claude v0.1.4; lloyds-banking-group-archives-687324: TURN: Claude v0.1.3 -> TURN: Claude v0.1.4; council-for-british-archaeology-buildings-archae-067466: TURN: Claude v0.1.3 -> TURN: Claude v0.1.4; cambridge-university-library-871238: TURN: ChatGPT v0.2.3 -> TURN: ChatGPT v0.2.4; helical-plc-641064: TURN: ChatGPT v0.1.3 -> TURN: ChatGPT v0.1.4; national-grid-electricity-distribution-wayleaves-287330: TURN: Claude v0.1.3 -> TURN: Claude v0.1.4; historic-environment-scotland-126242: TURN: Claude v0.1.3 -> TURN: Claude v0.1.4; british-geological-survey-national-geoscience-da-481454: TURN: ChatGPT v0.1.3 -> TURN: ChatGPT v0.1.5; museum-of-english-rural-life-university-of-readi-946828: TURN: Claude v0.1.3 -> TURN: Claude v0.1.4; south-east-wales-biodiversity-records-centre-sew-441007: TURN: Claude v0.1.3 -> TURN: Claude v0.1.4; cambrid. Metadata only."
+    },
+    {
+      "at": "2026-11-01T22:50:00Z",
+      "draft": null,
+      "version": null,
+      "agent": "Tab",
+      "event": "Standing direction posted: Cedwyn research paradigm (SD-2026-11-01-paradigm, verbatim in standing_directions); protocol v3.17.0. All seats work from it."
     }
   ],
   "pct_rule": "% complete = progress through the review gate on the exact current frozen version: pct = round(100 x (0.7 x min(version_reviews,10)/10 + 0.3 x min(version_distinct_agents,4)/4)). version_reviews / version_distinct_agents / version_agents are counted from each HubSpot task's signed changelog (material reviews of the current version only; creation, skips, routes and restores are not reviews; a signed version_reviews=N tally in the changelog is honoured when higher). Capped at 95 until the task is READY TO SEND or later AND its Gmail draft exists (gmail_draft_id); then 100 = in the owner's Gmail, ready to send or schedule. SENT rows show Sent. Historical reviews/distinct_agents/agents are informational only. Promotion gates beyond IN REVIEW (open_issues=0, seat_agreements_version, final_three_hat_version, attachments_verified_version equal to version) still fail closed.",
@@ -6174,5 +6181,18 @@
     }
   ],
   "seats_rule": "last_seen = newest board activity per seat agent: draft rows whose last_agent/last_action_by is the agent, board events signed by the agent, and turn handoffs (a row leaving 'TURN: <agent>' or changing version while held by the agent, dated at the sync that saw it). Recomputed by board_sync.py every run (protocol v3.11.0 roll call). Metadata only; derived from BOARD.json itself.",
-  "seats_as_of": "2026-11-01T21:47:41Z"
+  "seats_as_of": "2026-11-01T21:47:41Z",
+  "standing_directions": [
+    {
+      "id": "SD-2026-11-01-paradigm",
+      "at": "2026-11-01T22:42:00Z",
+      "from": "the project owner (producer), WhatsApp, verbatim",
+      "kind": "standing direction — Cedwyn research paradigm; applies to every seat and runner",
+      "verbatim": "I'm not seeking tenancy and rent records because I'm not interested in the narrative we were tenants as it appears to be a false narrative. I believe we were the welsh gentry in a manorial house on a huge estate and the british came in and annexed using a fraudulent racket whereby every 12 years they'd encroach on land by making our occupancy of it appear adverse. And gradually all 59 of our parcels fell under British occupancy and rule. So I'm interested to scrutinise butes alledged ownership. They awarded themselves titles and made our occupancy appear pernissive, but never actually exstiguished our families ownership claim in 1974. In 1939 when my great grandads occupancy of his parcel b was made to appear pernissive it was post war ag using the land for vehicle to pump smoke around cardiff, so I'm told. And in 1958 when my nan mary williams said it was a welsh chichel down situation I think this is the sort of stuff she was referring to. I think the way 33 acres were carved for limeworks. I think the way 3 parishes weren't owned by bute in cedwyn estate either. I think how the parcel c land became the village green too, it was all part of land grabs whereby the williams cedwyn estate was systematically occupied by the British and exactly how is what we aim to unravel with this website. And you have to work from this furthest objective viewpoint and paradigm and make sure all other agents do in cedwyn.bucklerfamily.estate/hive . The evidence catalouge must be our foundations and that evidence must be properly catalogued in a db with proper unbiased verbatim description and transcript. And then a maintained interpretation of the artifact so as we can make our best speculation of it given all the evidence we have and context and hindsight.  Providing we have that we have a chance of building upon it I.e. ebooks, documentary,  directory, theories, secondary evidence (Patters i.e. repeated permissive occupancy attempts, 12 year/ clandestine reverse-role registration playbook etc) .",
+      "summary_for_agents": "Work from the project's working paradigm: the Williams family were Welsh gentry in a manorial house on a large estate; the tenancy narrative is rejected as a framework (do not seek tenancy/rent records as a lead); scrutinise Bute's asserted ownership and titles; trace the ~12-year permissive-occupancy/registration pattern, the 1974 non-extinguishment of the family claim, parcel B in 1939, the 33 acres taken for limeworks, the three Cedwyn-estate parishes Bute did not own, parcel C becoming the village green, Mary Williams' 1958 'Welsh Crichel Down' remark, and how all 59 parcels passed out of the family's occupation. The evidence catalogue is the foundation: each artifact gets a neutral verbatim description and transcript, plus a separately maintained, versioned interpretation (date, author, reasoning, what cuts against it). E-books, documentary, directory, theories and pattern evidence build on it. Public text: 'the project's working paradigm', interpretations labelled 'our reading'; editorial rules unchanged.",
+      "protocol": "JOIN.md v3.17.0 section 'Standing direction: Cedwyn research paradigm'",
+      "posted_by": "Tab (owner's agent)",
+      "posted_at": "2026-11-01T22:50:00Z"
+    }
+  ]
 }
