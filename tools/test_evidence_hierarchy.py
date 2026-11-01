@@ -102,12 +102,14 @@ def main():
 
     area_doc = json.loads((ROOT / "data" / "site-areas.json").read_text())
     areas = area_doc["areas"]
-    assert len(areas) == 36
-    assert len({a["serendipity_slot"] for a in areas}) == 36
+    area_count = area_doc["area_count"]
+    source_theme_count = area_doc["source_theme_count"]
+    assert len(areas) == area_count
+    assert len({a["serendipity_slot"] for a in areas}) == area_count
     themes = [t for a in areas for t in a["source_themes"]]
-    assert len(themes) == 44 and len(set(themes)) == 44
+    assert len(themes) == source_theme_count and len(set(themes)) == source_theme_count
     assert all(a["tithe_parcel_number"] is None for a in areas), "must not invent historical plot numbers"
-    # Exercise the same 36-area data contract used by the homepage generator.
+    # Exercise the same registry-driven area contract used by the homepage generator.
     sys.path.insert(0, str(ROOT / "tools"))
     import home
     theme_cfg = json.loads((ROOT / "themes.json").read_text())
@@ -123,12 +125,12 @@ def main():
             "cy": primary.get("cy") or "", "es": primary.get("es") or ""
         })
     home_html = home.render(home_cfg)
-    assert home_html.count('class="entry"') == 36, "homepage should display exactly 36 public areas"
+    assert home_html.count('class="entry"') == area_count, "homepage should display the registry-defined number of public areas"
 
     obs_doc = json.loads((ROOT / "data" / "observations.json").read_text())
     assert len(obs_doc["items"]) >= 3
     assert all(o.get("refs") for o in obs_doc["items"]), "every seeded observation must cite artifact records"
-    print("Evidence hierarchy tests passed: section DB, linked observation, 36 areas / 44 source themes, no invented parcel IDs.")
+    print(f"Evidence hierarchy tests passed: {area_count} areas / {source_theme_count} source themes, no invented parcel IDs.")
 
 if __name__ == "__main__":
     main()

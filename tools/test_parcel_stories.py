@@ -36,18 +36,27 @@ panel = (ROOT / "web" / "_cedwyn" / "parcel-panel.js").read_text(encoding="utf-8
 assert "parcel && parcel.model_parcel_id && e.model_id === parcel.model_parcel_id" in panel
 assert "makeSharedModelEventTable(modelEvents)" in panel
 assert "not this webapp’s own chain of title" in panel
-# Spatial contract: do not infer full parcels, centres or H3 cells from partial geometry.
+# Spatial contract: sourced physical centres, not H3 cell centres, drive any future indexes.
 assert spatial["schema"] == "cedwyn_spatial_registry/v1"
 assert spatial["spatial_standard"]["name"] == "Uber H3"
+assert spatial["spatial_standard"]["resolution_proposal"] == 11
 assert spatial["spatial_standard"]["resolution"] is None
 assert spatial["geometry_source"]["feature_count"] == 4
-assert {f["id"] for f in spatial["geometry_source"]["features"]} == {"AN", "AM", "AS", "B"}
-assert spatial["regions"]["wales"]["estate_boundary_status"] == "pending_source_geometry"
-assert spatial["regions"]["wales"]["north_west_river_status"] == "pending_source_geometry"
+features = spatial["geometry_source"]["features"]
+assert {f["id"] for f in features} == {"AN", "AM", "AS", "B"}
+assert all(f.get("source_ids") for f in features)
+assert all(f["confidence"] in {"estimated", "traced"} for f in features)
+assert spatial["geometry_source"]["historical_plan_source"]["evidence_id"] == "EV-0211"
+assert spatial["geometry_source"]["historical_plan_source"]["archive_reference"] == "Glamorgan Archives DB/E/1-2"
+assert "River Ely" in " ".join(spatial["geometry_source"]["historical_plan_source"]["what_the_evidence_page_reports"])
+assert spatial["regions"]["wales"]["estate_boundary_status"] == "1824_historic_plan_available_ungeoreferenced"
+assert spatial["regions"]["wales"]["north_west_river_status"] == "river_ely_shown_on_1824_plan_ungeoreferenced"
 assert spatial["regions"]["argentina"]["estate_boundary_status"] == "pending_argentina_specific_source_geometry"
+assert spatial["parcel_records"] == []
 fields = spatial["required_per_parcel_fields"]
 assert fields["parcel_center_latitude"] != fields["h3_cell_center_latitude"]
 assert fields["parcel_center_longitude"] != fields["h3_cell_center_longitude"]
 assert fields["historic_plot_number"].startswith("integer or null")
 assert spatial["subdomain_routing"]["hostname"] is None
-print("parcel and spatial source checks passed: 36 story slots remain distinct from the current app registry; no missing geometry or H3 values invented")
+assert spatial["subdomain_routing"]["status"] == "proposal_only_unconfigured"
+print("parcel and spatial source checks passed: 36 historic story slots remain distinct from 37 current app areas; H3 resolution 11 remains a sourced proposal, with no missing geometry, centres or DNS values invented")

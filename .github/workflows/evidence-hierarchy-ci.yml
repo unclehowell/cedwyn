@@ -7,6 +7,7 @@ on:
       - 'data/artifact-assessments.json'
       - 'data/observations.json'
       - 'data/site-areas.json'
+      - 'data/spatial/**'
       - 'web/_cedwyn/**'
       - '.github/workflows/evidence-hierarchy-ci.yml'
 permissions:
@@ -33,6 +34,7 @@ jobs:
           node --check web/_cedwyn/evidence-browser.js
           node --check web/_cedwyn/agent-tools.js
           node --check web/_cedwyn/parcel-panel.js
+          node --check web/_cedwyn/parcel-modal.js
           node --check web/_cedwyn/ghf/basecamp.js
       - name: Structured data validity
         run: |
@@ -40,6 +42,7 @@ jobs:
           python -m json.tool data/observations.json > /dev/null
           python -m json.tool data/site-areas.json > /dev/null
           python -m json.tool data/parcel-stories.json > /dev/null
+          python -m json.tool data/spatial/cedwyn.json > /dev/null
       - name: Section database and hierarchy tests
         run: |
           python tools/test_evidence_hierarchy.py
