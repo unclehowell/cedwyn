@@ -17,7 +17,10 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.3.0'
+VERSION = '1.4.0'
+# 1.4.0 (1 Nov 2026, Sion 22:28 GMT, m:b0d74058): the landing has a third card, Online, after Wales and Patagonia; card labels carry
+# the emojis after the word (Welsh flag + UK / Argentina flag / globe). Online opens a modal with the same apps at their top-level
+# addresses (/<app>/ instead of /wales/<app>/). Three cards side by side on wide screens, stacked on phones. - Sion's Tab agent
 # 1.2.1 (27 Oct 2026, Sion 11:34 GMT): /argentina/ pictures purged of four pieces that are not the farm (NFA-0139, NFA-0049,
 # NFA-0103, NFA-0081); NFA-0015 replaced by REC-0001, a line drawing from the 1974 measured survey (see ARG_REC). - Sion's Tab agent
 # 1.2.0 (27 Oct 2026, Sion 09:45 GMT): the in-content pictures of /wales/ and /argentina/ are thumbnails; a tap opens the shared
@@ -151,13 +154,13 @@ LANDING_CSS = r"""
 body[data-cedwyn-page="landing"]{min-height:100svh;overflow-x:hidden}
 body[data-cedwyn-page="landing"] .wrap{width:100%;max-width:none;margin:0;padding:0}
 body[data-cedwyn-page="landing"] .hv-land{height:100svh;height:100dvh;min-height:0;max-height:none;padding:clamp(8px,1.7vw,20px);gap:0}
-body[data-cedwyn-page="landing"] .hv-tiles{height:100%;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr;gap:clamp(8px,1.5vw,18px)}
+body[data-cedwyn-page="landing"] .hv-tiles{height:100%;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:1fr;gap:clamp(8px,1.5vw,18px)}
 body[data-cedwyn-page="landing"] .land-place{position:relative;display:flex;min-width:0;min-height:0;align-items:flex-end;justify-content:center;overflow:hidden;border:0;border-radius:clamp(10px,1.4vw,20px);padding:0;background:#101820;color:#fff;cursor:pointer;isolation:isolate;box-shadow:0 8px 30px rgba(0,0,0,.28);text-align:center;-webkit-tap-highlight-color:transparent}
 body[data-cedwyn-page="landing"] .land-place:focus-visible{outline:3px solid #fff;outline-offset:-6px}
 body[data-cedwyn-page="landing"] .land-place>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .35s ease}
 body[data-cedwyn-page="landing"] .land-place:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.04) 25%,rgba(0,0,0,.22) 52%,rgba(0,0,0,.78) 100%)}
 body[data-cedwyn-page="landing"] .land-place:hover>img,body[data-cedwyn-page="landing"] .land-place:focus-visible>img{transform:scale(1.025)}
-body[data-cedwyn-page="landing"] .land-place .land-place-label{display:block;max-width:100%;padding:clamp(12px,2.8vw,34px);font:600 clamp(20px,4.2vw,52px)/1.1 Barlow,system-ui,sans-serif;letter-spacing:.025em;text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.9)}
+body[data-cedwyn-page="landing"] .land-place .land-place-label{display:block;max-width:100%;padding:clamp(12px,2.8vw,34px);font:600 clamp(20px,3vw,44px)/1.1 Barlow,system-ui,sans-serif;letter-spacing:.025em;text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.9)}
 body[data-cedwyn-page="landing"] .ghf-v2,body[data-cedwyn-page="landing"] #ghf-agent-footer,body[data-cedwyn-page="landing"] .ghf-agent-footer{display:none!important}
 .land-modal{width:min(1160px,calc(100vw - 18px));max-width:1160px;max-height:calc(100dvh - 18px);margin:auto;padding:0;overflow:hidden;border:1px solid rgba(219,229,240,.25);border-radius:18px;background:#0c1117;color:#f4f6f8;box-shadow:0 24px 90px rgba(0,0,0,.65)}
 .land-modal::backdrop{background:rgba(2,5,9,.84);backdrop-filter:blur(5px)}
@@ -181,7 +184,7 @@ body[data-cedwyn-page="landing"] .ghf-v2,body[data-cedwyn-page="landing"] #ghf-a
 @media(max-width:780px){.land-app-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:540px){
  body[data-cedwyn-page="landing"] .hv-land{padding:7px}
- body[data-cedwyn-page="landing"] .hv-tiles{grid-template-columns:1fr;grid-template-rows:1fr 1fr;gap:7px}
+ body[data-cedwyn-page="landing"] .hv-tiles{grid-template-columns:1fr;grid-template-rows:repeat(3,minmax(0,1fr));gap:7px}
  body[data-cedwyn-page="landing"] .land-place{border-radius:11px}
  body[data-cedwyn-page="landing"] .land-place .land-place-label{font-size:clamp(22px,7.2vw,34px);padding:18px}
  .land-modal{width:calc(100vw - 10px);max-height:calc(100dvh - 10px);border-radius:13px}
@@ -509,7 +512,8 @@ def app_tile(H, section, theme):
         image = 'nfa:' + ARG_TILE_IMAGES[tid]
     else:
         image = APP_IMAGES.get(tid, 'ty-mawr-1974-reconstruction')
-    return (f'<a class="land-app" href="/{E(section)}/{E(tid)}/" aria-label="{E(label)}">'
+    href = f'/{tid}/' if section == 'online' else f'/{section}/{tid}/'  # Online: the apps' own top-level addresses (1 Nov 2026)
+    return (f'<a class="land-app" href="{E(href)}" aria-label="{E(label)}">'
             f'<img src="{E(app_image(H, image))}" alt="" loading="lazy" decoding="async">'
             f'<span class="land-app-label">{E(label)}</span></a>')
 
@@ -538,9 +542,13 @@ def modal_apps(H, cfg, section):
     return ''.join(out)
 
 def place_modal(H, cfg, section):
+    head = 'For this place'
     if section == 'wales':
         title = 'Wales, Britain'
         specific = specific_tile(H, 'Virtual reconstruction · AR glasses', '/wales/', 'holo-ghf1-098')
+    elif section == 'online':  # third landing card (Sion 22:28 GMT 1 Nov 2026, m:b0d74058); no place-specific tiles - Sion's Tab agent
+        title = 'Online'
+        specific = ''
     else:
         title = 'Patagonia, Argentina'
         special = [
@@ -557,8 +565,8 @@ def place_modal(H, cfg, section):
             f'<h2 id="modal-{E(section)}-title">{E(title)}</h2>'
             f'<button type="button" class="land-modal-close" data-close-modal aria-label="Close">×</button></div>'
             f'<div class="land-modal-content">'
-            f'<section class="land-app-section land-specific"><h3>For this place</h3>'
-            f'<div class="land-app-grid">{specific}</div></section>'
+            + (f'<section class="land-app-section land-specific"><h3>{E(head)}</h3>'
+               f'<div class="land-app-grid">{specific}</div></section>' if specific else '') +
             f'{modal_apps(H, cfg, section)}'
             f'</div></div></dialog>')
 
@@ -582,18 +590,22 @@ def landing(sections, S, cfg, H):
            "if(!/[?&]lang=/.test(location.search)&&history.replaceState)history.replaceState(null,'',location.pathname+'?lang='+l+location.hash)}catch(e){}})();</script>")
     wales_src = img(H, 'tile-wales')
     patagonia_src = img(H, 'tile-patagonia')
+    online_src = app_image(H, 'network-datacentre')
     body = f"""
 <body data-cedwyn-page="landing">
 <main class="wrap hv" data-no-translate>
 <div class="hv-land"><a class="hv-eb" style="margin-bottom:10px" href="/ebooks/?utm_source=home&amp;utm_medium=button&amp;utm_campaign=sf27"><span>E-books · first editions free</span><span class="ar" aria-hidden="true">→</span></a><div class="hv-tiles" aria-label="Choose a place">
 <button type="button" class="land-place" data-open-modal="modal-wales" aria-haspopup="dialog" aria-controls="modal-wales">
-<img src="{E(wales_src)}" alt="" fetchpriority="high"><span class="land-place-label">Wales, Britain</span></button>
+<img src="{E(wales_src)}" alt="" fetchpriority="high"><span class="land-place-label">Wales 🏴󠁧󠁢󠁷󠁬󠁳󠁿🇬🇧</span></button>
 <button type="button" class="land-place" data-open-modal="modal-argentina" aria-haspopup="dialog" aria-controls="modal-argentina">
-<img src="{E(patagonia_src)}" alt="" fetchpriority="high"><span class="land-place-label">Patagonia, Argentina</span></button>
+<img src="{E(patagonia_src)}" alt="" fetchpriority="high"><span class="land-place-label">Patagonia 🏴󠁧󠁢󠁷󠁬󠁳󠁿🇦🇷</span></button>
+<button type="button" class="land-place" data-open-modal="modal-online" aria-haspopup="dialog" aria-controls="modal-online">
+<img src="{E(online_src)}" alt="" fetchpriority="high"><span class="land-place-label">Online 🏴󠁧󠁢󠁷󠁬󠁳󠁿🌐</span></button>
 </div>
 </div>
 {place_modal(H, cfg, 'wales')}
 {place_modal(H, cfg, 'argentina')}
+{place_modal(H, cfg, 'online')}
 </main>
 <script>
 (function(){{
