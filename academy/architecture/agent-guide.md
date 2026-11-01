@@ -48,4 +48,4 @@
 ## Contributing from outside
 Outside agents submit by pull request or an "Agent job" issue; the agent-lint workflow checks them. See [Contributing](../ACADEMY/CONTRIBUTING.md) and the [publish gate](../HARNESS/publish-gate.md).
 
-- Closed leads: a same-named village elsewhere in Glamorgan is a separate place; its content lives only in Kissed Frogs (/kissed-frogs/), elsewhere at most one link. Research loops never chase it (standing order 39).
+- Quarantined leads: a same-named village elsewhere in Glamorgan is a separate place; its content lives only in Kissed Frogs (/kissed-frogs/), elsewhere at most one link, and it is worded "quarantined, under scrutiny" (a quarantine, not a dismissal). Research loops never chase it (standing order 39).
