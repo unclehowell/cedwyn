@@ -1,4 +1,4 @@
-/* movie.css 1.9.0 (1 Nov 2026): door art, version modal, Script/Subtitles/Evidence dropdowns; was 1.8.0 */
+/* movie.css 1.10.0 (1 Nov 2026): audio x subtitle matrix — pending audio/subtitle buttons; 1.9.0: door art, version modal, Script/Subtitles/Evidence dropdowns; was 1.8.0 */
 :root{--bg:#101512;--ink:#ece9df;--mut:#a9ab9f;--gold:#d4b25a;--moss:#3e5a44;--slate:#3b4148;--lime:#e9e4d6;--oak:#6b4a2f;--card:#171d19;--line:#2a332c}
 body.cm{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 .cm main,#cm-main{max-width:1200px;margin:0 auto;padding:16px}
@@ -353,3 +353,7 @@ html.ghf-inv .cm-gm-bg{filter:invert(1) hue-rotate(180deg)!important}
 html.ghf-inv .cm-gm-bg img.cm-vp-img{filter:invert(1) hue-rotate(180deg)!important}
 .cm-card .cm-desc>details.cm-sub{margin-left:0;padding-left:10px;border-left:2px solid var(--line)}
 .cm-card .cm-desc>.cm-meta{margin:6px 0 2px}
+
+/* 1.10.0: an audio or subtitle pair not made yet */
+.cm-pc-o.is-pending,.cm-pc-o:disabled{opacity:.45;cursor:not-allowed}
+.cm-pc-o .cm-pend{display:block;font-size:.72em;font-weight:400;opacity:.9;line-height:1.1}
