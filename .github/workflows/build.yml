@@ -46,8 +46,14 @@ jobs:
       - name: Fetch theme branches (tips only)
         run: |
           git init -q --bare mirror.git
-          REFS=$(python3 -c "import json;print(' '.join(sorted({'+refs/heads/%s:refs/heads/%s'%(t['branch'],t['branch']) for t in json.load(open('themes.json'))['themes'] if t.get('branch')})))")
+          REFS=$(python3 -c "import json;T=json.load(open('themes.json'))['themes'];B={t[k] for t in T for k in ('branch','snapshot_branch') if t.get(k)};print(' '.join(sorted('+refs/heads/%s:refs/heads/%s'%(b,b) for b in B)))")
           git -C mirror.git fetch -q --depth 1 "https://github.com/${GITHUB_REPOSITORY}.git" $REFS
+          # Snapshot section branches and their sections.lock pins are fetched here, one at a time, before assemble.py runs its themes in
+          # parallel: parallel shallow fetches into mirror.git raced on its shallow lock and section/fcg fell back to the live crawl (rc 2)
+          # in builds 41247111288 and 41254286763. assemble.py skips its own fetch when the ref/pin is already here. — Sion's Tab agent
+          for s in $(python3 -c "import json;print(' '.join(sorted({v['sha'] for v in json.load(open('sections.lock'))['sections'].values() if v.get('sha')})))"); do
+            git -C mirror.git cat-file -e "$s^{commit}" 2>/dev/null || git -C mirror.git fetch -q --depth 1 "https://github.com/${GITHUB_REPOSITORY}.git" "$s" || echo "::warning::pinned section commit $s not fetched"
+          done
           git -C mirror.git for-each-ref --format='%(refname:short)' | wc -l
       - name: Assemble themes
         run: MIRROR=mirror.git python3 tools/assemble.py dist
