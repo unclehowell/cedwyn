@@ -43,19 +43,30 @@ R = [
   (r"\bcycle (\d+) audit\b", "audit"),
   (r"\s+by Tab(?:, for the owner)?(?![\w\u2019'-])", ""),
   # P-133 (31 Oct 2026): public pages never name the owner as a source or decision-maker, and never carry instruction
-  # voice. "per <owner>" becomes the family's account; "<owner>'s decision" goes (or rests with the family); "must be
-  # reconciled" becomes a plain statement that it is not yet reconciled. The public voice check (tools/check_public_voice.py)
-  # flagged 32 such lines in build 1a2de65. — Sion's Tab agent
-  (rf"\bper {SION}(?:\s*\(voice note, (\d{{1,2}} \w{{3}} \d{{4}})\))?\s*:", r"from the family’s account (voice note, \1):"),
-  (rf"\bper {SION}\s*\(voice note, (\d{{1,2}} \w{{3}} \d{{4}})\)", r"in the family’s account (voice note, \1)"),
-  (rf"\bper {SION}\s*\((\d{{1,2}} \w{{3}} \d{{4}})\)", r"in the family’s account (\1)"),
-  (rf"\bPer {SION},\s*", "In the family’s account, "),
-  (rf"\bper {SION}(?=\s*\))", "from the family’s account"),
-  (rf"\bper {SION}\b", "in the family’s account"),
+  # voice. "must be reconciled" becomes a plain statement that it is not yet reconciled. The public voice check
+  # (tools/check_public_voice.py) flagged 32 such lines in build 1a2de65.
+  # P-146 (1 Nov 2026): the attribution is "testimony", never "the family's account": the owner resents "the family" as a
+  # stand-in for named people that downplays facts as notions (1 Nov), and EDITORIAL.md already bans "the family's
+  # account" as a hedge (26 Oct). "Testimony" is the evidence word the catalogue uses for first-hand statements. The old
+  # rules also broke "per <owner>'s reply" into "the family's account's reply"; that now reads "per the reply". A decision
+  # credited to the owner becomes an open decision. "in/from the family's account" already at source is rewritten too.
+  # -- Sion's Tab agent
+  (rf"\bper {SION}(?:\s*\(voice note, (\d{{1,2}} \w{{3}} \d{{4}})\))?\s*:", r"from testimony (voice note, \1):"),
+  (rf"\bper {SION}\s*\(voice note, (\d{{1,2}} \w{{3}} \d{{4}})\)", r"in testimony (voice note, \1)"),
+  (rf"\bper {SION}\s*\((\d{{1,2}} \w{{3}} \d{{4}})\)", r"in testimony (\1)"),
+  (rf"\b[Pp]er {SION}{A}s own account\b", "testimony"),
+  (rf"\bPer {SION}{A}s\s+", "Per the "),
+  (rf"\bper {SION}{A}s\s+", "per the "),
+  (rf"\bPer {SION},\s*", "In testimony, "),
+  (rf"\bper {SION}(?=\s*\))", "in testimony"),
+  (rf"\bper {SION}\b", "in testimony"),
+  (rf"\b([Ii]n|[Ff]rom) the family{A}s account\b", r"\1 testimony"),
   (rf";\s*it is {SION}{A}s decision whether to visit(?=\.)", ""),
   (rf";\s*{SION}{A}s decision(?=\.)", ""),
-  (rf"\bis {SION}{A}s decision\b", "rests with the family"),
-  (rf"\b{SION}{A}s decision\b", "a decision for the family"),
+  (rf"\bis {SION}{A}s decision\b", "is an open decision"),
+  (rf"\b{SION}{A}s decision\b", "an open decision"),
+  (r"\brests with the family\b", "is an open decision"),
+  (r"\ba decision for the family\b", "an open decision"),
   (r"\bmust be reconciled against civil and probate records before drawing a timeline\b", "are not yet reconciled against civil and probate records, so no timeline is drawn from it"),
   (r"\b(\w+s|identity and date) must be reconciled\b", r"\1 are not yet reconciled"),
   (r"\bmust be reconciled\b", "has not yet been reconciled"),
@@ -63,7 +74,7 @@ R = [
 ]
 R = [(re.compile(x[0], x[2] if len(x) > 2 else 0), x[1]) for x in R]
 CHECK = re.compile(rf"Tab{A}s research|\bby Tab\b(?![\w-])|Sion{A}s Tab agent|Buckler{A}s request|\bTab agent|catalogued by Tab\b|(?<!site )\bowner{A}s instruction\b(?!s)|\b(?:flywheel|research) cycle \d+", re.I)
-PRE = re.compile(r"Tab|[Cc]ycle|[Oo]wner|Sion|reconciled")
+PRE = re.compile(r"Tab|[Cc]ycle|[Oo]wner|Sion|reconciled|family")
 EMPTY = R.pop()   # the "()" tidy-up: prose only. Applied to code it turns function(){ into function{ and breaks every script.
 PROTECT = re.compile(r"<(script|style|code|pre|textarea)\b[^>]*>.*?</\1\s*>", re.S | re.I)
 def _prose_only(t, rx, rep):
