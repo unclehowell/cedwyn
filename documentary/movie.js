@@ -1,4 +1,4 @@
-/* Cedwyn · documentary — scene page (page v1.7.3, movie.js 1.7.0, 31 Oct 2026 23:15Z: native-language renders: each audio language loads its own video for the chosen version (manifest "renders", files movie/<id>/<id>.<lang>.v<semver>.webm), a Version menu in the player, and a "video pending" image (label in HTML) for any (scene, language, version) not yet made — standing rules m:cc94f07a. movie.js 1.6.3, 31 Oct 2026: per-video subtitles (manifest "vsubs": {audio: {sub: path}}) for a language video cut to its own timeline, reloaded on an audio switch. movie.js 1.6.2, 30 Oct 2026: versions are one menu under each scene with a visible "Select a version" label, preselected on the cut the play button will play, prices in the options (it shows the cut playing, with a Now playing line under it), replacing the hashtag chips; a paid cut's files stream from the site's access service with the access code (manifest "doc:" paths). v1.6.0, 30 Oct 2026: the reserved #next chip is gone; the chip of the cut in the player is highlighted and marked "now playing"; the player has Back and Next buttons that step through every cut of every scene, oldest to newest, scene by scene (a paid cut not yet open on this device opens the access-code box, documentary.js 1.7.0); the player names what is playing as version_language (e.g. v0.0.1_welsh), and changing the audio reloads that same cut in the new language at the same moment (its own lip-synced video where one exists). v1.5.2 (replaces the short-lived 1.5.1): version chips wrap inside their card like a word cloud at every card size (no sideways scrolling row) and show the site-wide labels (newest #v0.0.2 · £4.99, previous #v0.0.1 · free and the default, older -v0.0.2, -v0.0.3 … shown as #_v0.0.2, #_v0.0.3 … (minus series starts at -v0.0.2 since documentary.js 1.7.2), reserved #next; documentary.js 1.6.2). v1.5.0, 30 Oct 2026: one card-size control above the scenes (small / medium / large, like icon sizes in a file explorer) sets every card at once and is remembered on this device (localStorage cedwyn-doc-size); large is one full-width column with unclamped text; it replaces the per-card full-width toggle of 1.4.7. Versions are hashtag chips under each released scene (#v0.0.1-0.0.5 …; the default cut is marked free and selected; a reserved version is marked coming and cannot be picked); the selected chip drives play, language video/audio and Download (documentary.js 1.6.0). v1.4.7, 30 Oct 2026: each scene card has a full-width toggle (bottom-right of its picture) that spans the card across the grid so its text is readable on a narrow phone; tap again for the grid; remembered per card for the visit; v1.4.6, 30 Oct 2026: every scene is free (documentary.js 1.5.0); choosing an earlier cut (v0.0.1-0.0.N) in the version menu plays that door's earlier cut with its own audio and subtitles, and switches an open player to it; the player's meta line names the version playing; v1.4.5, 30 Oct 2026: a scene with per-language lip-synced video (manifest "video": {cy, en, es}) plays the video of the chosen audio language and switches it, at the same position, when the audio changes; without it the single clip plays as before; v1.4.4, 30 Oct 2026: the page opens straight onto the scenes — no intro panel or page-level control bar; audio and subtitles are chosen in the player, and the version select moves into the player's control bar; v1.4.3, 30 Oct 2026: tapping anywhere on a released scene's picture plays it; the full-screen picture opens only from the small "View artwork" button under it; v1.4.2, 30 Oct 2026: window.CedwynPlayer lets download.js offer the scene with the chosen audio and subtitles; v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
+/* Cedwyn · documentary — scene page (page v1.9.0, movie.js 1.9.0, 1 Nov 2026 (owner's rule m:1d4eb2cf): door art — a door not yet ready shows the Cedwyn estate silhouette with the place of its event marked and "Coming soon" in the picture (storage repository thumbs/soon/<id>.webp, one per door), a ready door shows a still from its own scene (manifest poster); tapping any door, or play, opens ONE modal: a random NFT image with "Select a version" and a down arrow, the version dropdown and its (i) under it; no version dropdown on the page itself; under "What happens in this scene" three dropdowns: Script, Subtitles, Evidence (last; evidence appears nowhere else on the door). Page v1.8.0, movie.js 1.8.0, 1 Nov 2026: one plain version dropdown per scene, its placeholder "Select a version" shown on load, no label above and no line under it, an (i) version table beside it; the picture is the scene's own still until play is tapped with no version chosen, then a random NFT image with "Select a version" and a down arrow (docs/VERSION-STANDARD.md, Selector UI). Page v1.7.3, movie.js 1.7.0, 31 Oct 2026 23:15Z: native-language renders: each audio language loads its own video for the chosen version (manifest "renders", files movie/<id>/<id>.<lang>.v<semver>.webm), a Version menu in the player, and a "video pending" image (label in HTML) for any (scene, language, version) not yet made — standing rules m:cc94f07a. movie.js 1.6.3, 31 Oct 2026: per-video subtitles (manifest "vsubs": {audio: {sub: path}}) for a language video cut to its own timeline, reloaded on an audio switch. movie.js 1.6.2, 30 Oct 2026: versions are one menu under each scene with a visible "Select a version" label, preselected on the cut the play button will play, prices in the options (it shows the cut playing, with a Now playing line under it), replacing the hashtag chips; a paid cut's files stream from the site's access service with the access code (manifest "doc:" paths). v1.6.0, 30 Oct 2026: the reserved #next chip is gone; the chip of the cut in the player is highlighted and marked "now playing"; the player has Back and Next buttons that step through every cut of every scene, oldest to newest, scene by scene (a paid cut not yet open on this device opens the access-code box, documentary.js 1.7.0); the player names what is playing as version_language (e.g. v0.0.1_welsh), and changing the audio reloads that same cut in the new language at the same moment (its own lip-synced video where one exists). v1.5.2 (replaces the short-lived 1.5.1): version chips wrap inside their card like a word cloud at every card size (no sideways scrolling row) and show the site-wide labels (newest #v0.0.2 · £4.99, previous #v0.0.1 · free and the default, older -v0.0.2, -v0.0.3 … shown as #_v0.0.2, #_v0.0.3 … (minus series starts at -v0.0.2 since documentary.js 1.7.2), reserved #next; documentary.js 1.6.2). v1.5.0, 30 Oct 2026: one card-size control above the scenes (small / medium / large, like icon sizes in a file explorer) sets every card at once and is remembered on this device (localStorage cedwyn-doc-size); large is one full-width column with unclamped text; it replaces the per-card full-width toggle of 1.4.7. Versions are hashtag chips under each released scene (#v0.0.1-0.0.5 …; the default cut is marked free and selected; a reserved version is marked coming and cannot be picked); the selected chip drives play, language video/audio and Download (documentary.js 1.6.0). v1.4.7, 30 Oct 2026: each scene card has a full-width toggle (bottom-right of its picture) that spans the card across the grid so its text is readable on a narrow phone; tap again for the grid; remembered per card for the visit; v1.4.6, 30 Oct 2026: every scene is free (documentary.js 1.5.0); choosing an earlier cut (v0.0.1-0.0.N) in the version menu plays that door's earlier cut with its own audio and subtitles, and switches an open player to it; the player's meta line names the version playing; v1.4.5, 30 Oct 2026: a scene with per-language lip-synced video (manifest "video": {cy, en, es}) plays the video of the chosen audio language and switches it, at the same position, when the audio changes; without it the single clip plays as before; v1.4.4, 30 Oct 2026: the page opens straight onto the scenes — no intro panel or page-level control bar; audio and subtitles are chosen in the player, and the version select moves into the player's control bar; v1.4.3, 30 Oct 2026: tapping anywhere on a released scene's picture plays it; the full-screen picture opens only from the small "View artwork" button under it; v1.4.2, 30 Oct 2026: window.CedwynPlayer lets download.js offer the scene with the chosen audio and subtitles; v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
    v1.3.0: film versions, viewing licence and checkout live in documentary.js (window.CedwynDoc); play() asks it first.
    Doors come from frames.json; a door opens when manifest.json in the film's storage repository lists its clip.
    The page reads the storage repository at run time (frames, manifest, prompt, scripts, subtitles, media), so the daily
@@ -18,19 +18,19 @@
     l: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="10" rx="1.5"/><rect x="3" y="15" width="18" height="2.4" rx="1"/><rect x="3" y="19" width="12" height="2.4" rx="1"/></svg>'};
   var EDIT = "https:" + "/" + "/" + ["github", "com"].join(".") + "/" + REPO + "/edit/" + REF + "/PROMPT.md";
   var T = {
-    en: {scene: "Scene", released: "Release date", ai: "artist's impression", more: "Script, subtitles and evidence", enlarge: "View the picture full screen", art: "View artwork", size: "Card size", size_s: "Small", size_m: "Medium", size_l: "Large", vers: "Versions", vfree: "free", vcoming: "coming", vsel: "Select a version", vl_free: "Free to watch", vl_paid: "£4.99 · enter an access code or buy", vl_open: "Open on this device", vnow: "now playing", vopen: "open", navb: "Back", navn: "Next", nowp: "Now playing", vpicked: "selected", close: "Close", sub_l: "A new scene every morning. Get it by email:", sub_ph: "Your email", sub_b: "Subscribe", sub_human: "One more step: Mailchimp wants to check you are human. Tap Subscribe again to finish in a new tab.", sub_tab: "Finish in the new tab, then check your inbox to confirm.", sub_ok: "Thank you. Check your inbox to confirm.", sub_err: "That did not go through. Please check the address and try again.", sub_bad: "Please enter a valid email address.", sending: "Sending…", mtl: "machine translation", kicker: "Documentary · a tab.bot production", sub: "One door a day. Behind each door, a scene of about two minutes: the people of Llandough talking over what is happening on paper and around the village, from before the deeds to today.",
+    en: {scene: "Scene", released: "Release date", ai: "artist's impression", more: "Script, subtitles and evidence", enlarge: "View the picture full screen", art: "View artwork", size: "Card size", size_s: "Small", size_m: "Medium", size_l: "Large", vers: "Versions", vfree: "free", vcoming: "coming", vsel: "Select a version", vsoon: "Coming soon", vl_free: "Free to watch", vl_paid: "£4.99 · enter an access code or buy", vl_open: "Open on this device", vnow: "now playing", vopen: "open", navb: "Back", navn: "Next", nowp: "Now playing", vpicked: "selected", close: "Close", sub_l: "A new scene every morning. Get it by email:", sub_ph: "Your email", sub_b: "Subscribe", sub_human: "One more step: Mailchimp wants to check you are human. Tap Subscribe again to finish in a new tab.", sub_tab: "Finish in the new tab, then check your inbox to confirm.", sub_ok: "Thank you. Check your inbox to confirm.", sub_err: "That did not go through. Please check the address and try again.", sub_bad: "Please enter a valid email address.", sending: "Sending…", mtl: "machine translation", kicker: "Documentary · a tab.bot production", sub: "One door a day. Behind each door, a scene of about two minutes: the people of Llandough talking over what is happening on paper and around the village, from before the deeds to today.",
       of: "of", doors: "scenes released", runtime: "planned running time", subs: "Subtitles", on: "on", off: "off", audio: "Audio", menu: "Production", fs: "Full screen", fsx: "Exit full screen", play: "Play", pause: "Pause", seek: "Position in the scene", soff: "Off",
       prompt: "Production prompt", prompt_note: "The producer's prompt steers the film. The daily scene run reads it first, every day, before it works on the next door.",
       edit: "Edit the prompt", acts: "Acts", how: "How it is made", how_note: "Every dated event in the chronology sits behind exactly one door, with its evidence numbers. The same faces, voices, buildings and landscapes are used in every scene. Anything a scene leaves out is noted and taken up in a later scene.",
       frame: "Frame", act: "Act", script: "Script", subtitles: "Subtitles", next: "Next scene", soon: "Script in writing: the logline above is the plan.", subsoon: "Subtitles come with the script.",
       events: "Events", evidence: "Evidence", desc: "What happens in this scene", evl: "Evidence: our archived copies", review: "Draft for review", mt: "machine translation, for review", play: "Play", left: "Left out, taken up later"},
-    cy: {scene: "Golygfa", released: "Dyddiad rhyddhau", ai: "argraff arlunydd", more: "Sgript, isdeitlau a thystiolaeth", enlarge: "Gweld y llun ar sgrin lawn", art: "Gweld y gwaith celf", size: "Maint y cardiau", size_s: "Bach", size_m: "Canolig", size_l: "Mawr", vers: "Fersiynau", vfree: "am ddim", vcoming: "ar y ffordd", vsel: "Dewiswch fersiwn", vl_free: "Am ddim i’w wylio", vl_paid: "£4.99 · rhowch god mynediad neu prynwch", vl_open: "Ar agor ar y ddyfais hon", vnow: "yn chwarae", vopen: "ar agor", navb: "Yn ôl", navn: "Nesaf", nowp: "Yn chwarae nawr", vpicked: "wedi'i dewis", close: "Cau", sub_l: "Golygfa newydd bob bore. Derbyniwch hi drwy e-bost:", sub_ph: "Eich e-bost", sub_b: "Tanysgrifio", sub_human: "Un cam arall: mae Mailchimp am wirio eich bod yn ddynol. Tapiwch Tanysgrifio eto i orffen mewn tab newydd.", sub_tab: "Gorffennwch yn y tab newydd, yna edrychwch yn eich mewnflwch i gadarnhau.", sub_ok: "Diolch. Edrychwch yn eich mewnflwch i gadarnhau.", sub_err: "Ni aeth hynny drwodd. Gwiriwch y cyfeiriad a rhowch gynnig arall arni.", sub_bad: "Rhowch gyfeiriad e-bost dilys.", sending: "Yn anfon…", mtl: "cyfieithiad peiriant", kicker: "Rhaglen ddogfen · cynhyrchiad tab.bot", sub: "Un drws y dydd. Y tu ôl i bob drws, golygfa o tua dau funud: pobl Llandochau yn trafod beth sy'n digwydd ar bapur ac o gwmpas y pentref, o'r cyfnod cyn y gweithredoedd hyd heddiw.",
+    cy: {scene: "Golygfa", released: "Dyddiad rhyddhau", ai: "argraff arlunydd", more: "Sgript, isdeitlau a thystiolaeth", enlarge: "Gweld y llun ar sgrin lawn", art: "Gweld y gwaith celf", size: "Maint y cardiau", size_s: "Bach", size_m: "Canolig", size_l: "Mawr", vers: "Fersiynau", vfree: "am ddim", vcoming: "ar y ffordd", vsel: "Dewiswch fersiwn", vsoon: "Yn fuan", vl_free: "Am ddim i’w wylio", vl_paid: "£4.99 · rhowch god mynediad neu prynwch", vl_open: "Ar agor ar y ddyfais hon", vnow: "yn chwarae", vopen: "ar agor", navb: "Yn ôl", navn: "Nesaf", nowp: "Yn chwarae nawr", vpicked: "wedi'i dewis", close: "Cau", sub_l: "Golygfa newydd bob bore. Derbyniwch hi drwy e-bost:", sub_ph: "Eich e-bost", sub_b: "Tanysgrifio", sub_human: "Un cam arall: mae Mailchimp am wirio eich bod yn ddynol. Tapiwch Tanysgrifio eto i orffen mewn tab newydd.", sub_tab: "Gorffennwch yn y tab newydd, yna edrychwch yn eich mewnflwch i gadarnhau.", sub_ok: "Diolch. Edrychwch yn eich mewnflwch i gadarnhau.", sub_err: "Ni aeth hynny drwodd. Gwiriwch y cyfeiriad a rhowch gynnig arall arni.", sub_bad: "Rhowch gyfeiriad e-bost dilys.", sending: "Yn anfon…", mtl: "cyfieithiad peiriant", kicker: "Rhaglen ddogfen · cynhyrchiad tab.bot", sub: "Un drws y dydd. Y tu ôl i bob drws, golygfa o tua dau funud: pobl Llandochau yn trafod beth sy'n digwydd ar bapur ac o gwmpas y pentref, o'r cyfnod cyn y gweithredoedd hyd heddiw.",
       of: "o", doors: "golygfa wedi'u rhyddhau", runtime: "hyd arfaethedig", subs: "Isdeitlau", on: "ymlaen", off: "i ffwrdd", audio: "Sain", menu: "Cynhyrchu", fs: "Sgrin lawn", fsx: "Gadael y sgrin lawn", play: "Chwarae", pause: "Oedi", seek: "Safle yn yr olygfa", soff: "Dim",
       prompt: "Anogwr y cynhyrchiad", prompt_note: "Anogwr y cynhyrchydd sy'n llywio'r ffilm. Mae'r rhediad dyddiol yn ei ddarllen yn gyntaf, bob dydd, cyn gweithio ar y drws nesaf.",
       edit: "Golygu'r anogwr", acts: "Actau", how: "Sut mae'n cael ei wneud", how_note: "Mae pob digwyddiad dyddiedig yn y cronoleg y tu ôl i un drws yn union, gyda'i rifau tystiolaeth. Defnyddir yr un wynebau, lleisiau, adeiladau a thirluniau ym mhob golygfa. Caiff unrhyw beth a adewir allan ei nodi a'i godi mewn golygfa ddiweddarach.",
       frame: "Ffrâm", act: "Act", script: "Sgript", subtitles: "Isdeitlau", next: "Y nesaf", soon: "Sgript ar y gweill: y crynodeb uchod yw'r cynllun.", subsoon: "Daw'r isdeitlau gyda'r sgript.",
       events: "Digwyddiadau", evidence: "Tystiolaeth", desc: "Beth sy'n digwydd yn yr olygfa", evl: "Tystiolaeth: ein copïau archif", review: "Drafft i'w adolygu", mt: "cyfieithiad peiriant, i'w adolygu", play: "Chwarae", left: "Wedi'i adael allan, i'w godi wedyn"},
-    es: {scene: "Escena", released: "Fecha de estreno", ai: "impresión artística", more: "Guion, subtítulos y pruebas", enlarge: "Ver la imagen a pantalla completa", art: "Ver la ilustración", size: "Tamaño de las tarjetas", size_s: "Pequeño", size_m: "Mediano", size_l: "Grande", vers: "Versiones", vfree: "gratis", vcoming: "próximamente", vsel: "Selecciona una versión", vl_free: "Gratis", vl_paid: "£4.99 · introduce un código de acceso o compra", vl_open: "Abierta en este dispositivo", vnow: "reproduciendo", vopen: "abierta", navb: "Atrás", navn: "Siguiente", nowp: "Reproduciendo", vpicked: "elegida", close: "Cerrar", sub_l: "Una escena nueva cada mañana. Recíbela por correo:", sub_ph: "Tu correo", sub_b: "Suscribirme", sub_human: "Un paso más: Mailchimp quiere comprobar que eres humano. Toca Suscribirme otra vez para terminar en una pestaña nueva.", sub_tab: "Termina en la pestaña nueva y luego revisa tu bandeja de entrada para confirmar.", sub_ok: "Gracias. Revisa tu bandeja de entrada para confirmar.", sub_err: "No se pudo enviar. Revisa la dirección e inténtalo de nuevo.", sub_bad: "Escribe un correo válido.", sending: "Enviando…", mtl: "traducción automática", kicker: "Documental · una producción de tab.bot", sub: "Una puerta por día. Detrás de cada puerta, una escena de unos dos minutos: la gente de Llandough comentando lo que pasa en los papeles y por el pueblo, desde antes de las escrituras hasta hoy.",
+    es: {scene: "Escena", released: "Fecha de estreno", ai: "impresión artística", more: "Guion, subtítulos y pruebas", enlarge: "Ver la imagen a pantalla completa", art: "Ver la ilustración", size: "Tamaño de las tarjetas", size_s: "Pequeño", size_m: "Mediano", size_l: "Grande", vers: "Versiones", vfree: "gratis", vcoming: "próximamente", vsel: "Selecciona una versión", vsoon: "Próximamente", vl_free: "Gratis", vl_paid: "£4.99 · introduce un código de acceso o compra", vl_open: "Abierta en este dispositivo", vnow: "reproduciendo", vopen: "abierta", navb: "Atrás", navn: "Siguiente", nowp: "Reproduciendo", vpicked: "elegida", close: "Cerrar", sub_l: "Una escena nueva cada mañana. Recíbela por correo:", sub_ph: "Tu correo", sub_b: "Suscribirme", sub_human: "Un paso más: Mailchimp quiere comprobar que eres humano. Toca Suscribirme otra vez para terminar en una pestaña nueva.", sub_tab: "Termina en la pestaña nueva y luego revisa tu bandeja de entrada para confirmar.", sub_ok: "Gracias. Revisa tu bandeja de entrada para confirmar.", sub_err: "No se pudo enviar. Revisa la dirección e inténtalo de nuevo.", sub_bad: "Escribe un correo válido.", sending: "Enviando…", mtl: "traducción automática", kicker: "Documental · una producción de tab.bot", sub: "Una puerta por día. Detrás de cada puerta, una escena de unos dos minutos: la gente de Llandough comentando lo que pasa en los papeles y por el pueblo, desde antes de las escrituras hasta hoy.",
       of: "de", doors: "escenas estrenadas", runtime: "duración prevista", subs: "Subtítulos", on: "sí", off: "no", audio: "Audio", menu: "Producción", fs: "Pantalla completa", fsx: "Salir de pantalla completa", play: "Reproducir", pause: "Pausa", seek: "Posición en la escena", soff: "No",
       prompt: "Indicaciones de producción", prompt_note: "Las indicaciones del productor guían la película. La tarea diaria las lee primero, cada día, antes de trabajar en la siguiente puerta.",
       edit: "Editar las indicaciones", acts: "Actos", how: "Cómo se hace", how_note: "Cada hecho fechado de la cronología está detrás de una sola puerta, con sus números de prueba. Las mismas caras, voces, edificios y paisajes se usan en todas las escenas. Lo que una escena deja fuera se anota y se retoma en una escena posterior.",
@@ -76,7 +76,8 @@
   }
 
   function tl(f, k) { var L = lang(); return (L !== "en" && f.i18n && f.i18n[L] && f.i18n[L][k]) || f[k]; }
-  function thumbURL(f) { return RAW + (f.thumb || ("thumbs/" + f.id + ".webp")); }
+  function thumbURL(f) {   // v1.9.0: a ready door shows a still from its own scene; a door not yet ready, its estate-silhouette "Coming soon" art
+    var m = filledMap()[f.n]; if (m) return RAW + (m.poster || f.thumb || ("thumbs/" + f.id + ".webp")); return RAW + "thumbs/soon/" + f.id + ".webp"; }
   // release dates: released scenes show the day their clip was made (Europe/London); the rest show the planned day,
   // one scene a day at 06:00 Europe/London in frame order, never earlier than the day after the last release (or today)
   var D = (function () {
@@ -144,88 +145,120 @@
       var m = fm[f.n], card = el("article", "cm-card" + (m ? " open" : "") + (f.n === nextN ? " next" : "")); card.id = "frame-" + f.n;
       var title = tl(f, "title"), dtxt = t("released") + " " + D.label(f.n);
       var th = el("div", "cm-thumb" + (m ? " playable" : "")); th.style.setProperty("--c", COL[i % COL.length]);
-      if (!m) { th.setAttribute("role", "button"); th.tabIndex = 0; th.setAttribute("aria-label", t("enlarge") + ": " + t("scene") + " " + f.n); }
+      if (!m) { th.classList.add("soon"); th.setAttribute("role", "button"); th.tabIndex = 0; th.setAttribute("aria-label", t("vsel") + ": " + t("scene") + " " + f.n); }
       var img = el("img", "cm-img"); img.alt = title; img.loading = "lazy"; img.decoding = "async"; img.src = thumbURL(f); img.onerror = function () { th.classList.add("noimg"); }; th.appendChild(img);
-      th.appendChild(el("span", "cm-ai", t("ai"))); th.appendChild(el("span", "cm-date", dtxt));
+      if (m) th.appendChild(el("span", "cm-ai", t("ai"))); th.appendChild(el("span", "cm-date", dtxt));
       if (f.n === nextN) th.appendChild(el("span", "cm-tag", t("next")));
       var DG = window.CedwynDoc; if (m && DG && !DG.canPlay(f.n)) { card.classList.add("locked"); th.appendChild(el("span", "cm-tag cd-lock", DG.label(f.n))); }
       if (m) { var pb = el("button", "cm-playbig"); pb.type = "button"; pb.setAttribute("data-ghf-keep", ""); pb.setAttribute("aria-label", t("play") + ": " + t("scene") + " " + f.n);
-        pb.onclick = function (e) { e.stopPropagation(); play(f, m); }; th.appendChild(pb);
+        pb.onclick = function (e) { e.stopPropagation(); openGate(f); }; th.appendChild(pb);   // v1.9.0: play opens the version modal; choosing a version plays
         // v1.4.3: the whole picture is the play target (the click goes through the play button, so the licence check still runs)
         th.onclick = function (e) { if (e.target && e.target.closest && e.target.closest(".cm-playbig")) return; pb.click(); }; }
-      else { th.onclick = function () { openLB(f, title, dtxt); }; th.onkeydown = function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLB(f, title, dtxt); } }; }
+      else { th.onclick = function () { openGate(f); }; th.onkeydown = function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openGate(f); } }; }   // v1.9.0: a coming-soon door opens the same modal
       card.appendChild(th);
       var body = el("div", "cm-body");
       var hd = el("div", "cm-hd"); hd.appendChild(el("div", "cm-scene", t("scene") + " " + f.n));
       var ab = el("button", "cm-artbtn", t("art")); ab.type = "button"; ab.setAttribute("aria-label", t("enlarge") + ": " + t("scene") + " " + f.n);
       ab.onclick = function (e) { e.stopPropagation(); openLB(f, title, dtxt); }; hd.appendChild(ab); body.appendChild(hd);
       body.appendChild(el("h3", "", title)); body.appendChild(el("p", "cm-log", tl(f, "logline")));
-      if (m) body.appendChild(chipRow(f));   // v1.5.0: versions as hashtag chips, the default (free) cut selected
-      var DS = f.description && (f.description[lang()] || f.description.en);   // v1.4.0: shot-by-shot description and evidence links (our /wayback/go/ copies)
-      if (DS) { var dd = el("details", "cm-desc"); dd.appendChild(el("summary", "", t("desc"))); if (DS.intro) dd.appendChild(el("p", "cm-desc-i", DS.intro));
-        if (DS.shots && DS.shots.length) { var ol = el("ol", "cm-shots"); DS.shots.forEach(function (s) { ol.appendChild(el("li", "", String(s).replace(/^\d+\.\s*/, ""))); }); dd.appendChild(ol); }
-        body.appendChild(dd); }
+      // v1.9.0 (owner's rule m:1d4eb2cf): under "What happens in this scene", three dropdowns in this order: Script, Subtitles, Evidence.
+      // Evidence is the last one and the only place on the door where evidence appears (archived copies, record numbers, events, anything left out).
+      var DS = f.description && (f.description[lang()] || f.description.en);
+      var dd = el("details", "cm-desc"); dd.appendChild(el("summary", "", t("desc"))); if (DS && DS.intro) dd.appendChild(el("p", "cm-desc-i", DS.intro));
+      if (DS && DS.shots && DS.shots.length) { var ol = el("ol", "cm-shots"); DS.shots.forEach(function (s) { ol.appendChild(el("li", "", String(s).replace(/^\d+\.\s*/, ""))); }); dd.appendChild(ol); }
+      if (f.date_range) dd.appendChild(el("div", "cm-meta", f.date_range));
+      var d1 = el("details", "cm-sub cm-d-script"); d1.appendChild(el("summary", "", t("script"))); d1.appendChild(el("ul", "cm-lines")); dd.appendChild(d1);
+      var d2 = el("details", "cm-sub cm-d-subs"); d2.appendChild(el("summary", "", t("subtitles"))); d2.appendChild(el("ul", "cm-lines")); dd.appendChild(d2);
+      var d3 = el("details", "cm-sub cm-d-evd"); d3.appendChild(el("summary", "", t("evidence")));
       var EL = f.evidence_links || [];
-      if (EL.length) { var de = el("details", "cm-evd"); de.appendChild(el("summary", "", t("evl") + " (" + EL.length + ")")); var ul = el("ul", "cm-evl");
-        EL.forEach(function (x) { var li = el("li"), aa = el("a", "", x.title); aa.href = x.href; li.appendChild(aa); if (x.id) li.appendChild(el("span", "cm-evid", " " + x.id)); ul.appendChild(li); });
-        de.appendChild(ul); body.appendChild(de); }
-      var more = el("details", "cm-more"); more.appendChild(el("summary", "", t("more")));
-      more.appendChild(el("div", "cm-meta", f.date_range));
-      var d1 = el("details", "cm-d-script"); d1.appendChild(el("summary", "", t("script"))); d1.appendChild(el("ul", "cm-lines")); more.appendChild(d1);
-      var d2 = el("details", "cm-d-subs"); d2.appendChild(el("summary", "", t("subtitles"))); d2.appendChild(el("ul", "cm-lines")); more.appendChild(d2);
-      var d3 = el("details"); d3.appendChild(el("summary", "", t("events") + " · " + t("evidence")));
-      d3.appendChild(el("p", "cm-ev", f.events.join(" · "))); if (f.evidence.length) d3.appendChild(el("p", "cm-ev", f.evidence.join(" · "))); more.appendChild(d3);
-      if (m && m.left_out && m.left_out.length) { var d4 = el("details"); d4.appendChild(el("summary", "", t("left"))); d4.appendChild(el("p", "cm-ev", m.left_out.map(function (x) { return x.id || x; }).join(" · "))); more.appendChild(d4); }
-      body.appendChild(more); card.appendChild(body); grid.appendChild(card);
+      if (EL.length) { var ul = el("ul", "cm-evl"); EL.forEach(function (x) { var li = el("li"), aa = el("a", "", x.title); aa.href = x.href; li.appendChild(aa); if (x.id) li.appendChild(el("span", "cm-evid", " " + x.id)); ul.appendChild(li); }); d3.appendChild(ul); }
+      if (f.evidence && f.evidence.length) d3.appendChild(el("p", "cm-ev", f.evidence.join(" · ")));
+      if (f.events && f.events.length) d3.appendChild(el("p", "cm-ev", t("events") + ": " + f.events.join(" · ")));
+      if (m && m.left_out && m.left_out.length) d3.appendChild(el("p", "cm-ev", t("left") + ": " + m.left_out.map(function (x) { return x.id || x; }).join(" · ")));
+      if (!d3.querySelector("ul,p")) d3.appendChild(el("p", "cm-ev", t("soon")));
+      dd.appendChild(d3); body.appendChild(dd); card.appendChild(body); grid.appendChild(card);
       var opened = false; [d1, d2].forEach(function (d) { d.addEventListener("toggle", function () { if (d.open && !opened) { opened = true; loadScript(f).then(function () { fillDetails(card, f); }); } else if (d.open) fillDetails(card, f); }); });
     });
   }
-  // v1.7.2 (30 Oct 2026): versions are one dropdown under each released scene ("Select a version"), replacing the hashtag chips.
-  // The row keeps the class cm-vchips and data-n so the scene-version events still find it; the select lists the scene's cuts
-  // newest first (v0.0.2 · £4.99, v0.0.1 · free, -v0.0.2 …); choosing a paid cut not open here opens the access-code box (documentary.js).
-  // v1.7.2 (rule: work/bizdev/skills/version-selector-dropdown-label-default.md): a visible "Select a version" label above the menu,
-  // the menu preselected on the cut the play button will play (the newest cut open on this device, else the newest free one) or the cut playing,
-  // each option carrying its price, and a status line under it (aria-describedby) that follows the selection.
+  // v1.8.0 (1 Nov 2026, owner's rule m:417a8ed2; docs/VERSION-STANDARD.md "Selector UI"): ONE plain dropdown per released scene.
+  // Its first option is the placeholder "Select a version", shown on load; no label above it and no line under it.
+  // The (i) beside it opens the scene's version table. The picture shows the scene's own still on load; tapping play with no
+  // version chosen swaps it for a random image from the NFT collection with "Select a version" and a down arrow over it.
+  // Choosing a version then behaves as before: a free or open cut plays, a paid cut opens its access-code / buy box (documentary.js).
+  // The row keeps the class cm-vchips and data-n so the scene-version events still find it. — Cedwyn editors
   function optText(DG, n, c) {
     var lab = DG && DG.vlabel ? DG.vlabel(n, c.v) : "v" + (c.label || c.v);
     var tag = c.coming ? t("vcoming") : c.paid ? (c.open ? t("vopen") : "£" + Number(c.price || 4.99).toFixed(2)) : t("vfree");
     var on = !!playingNV && playingNV.n === n && playingNV.v === c.v;
     return lab + (tag ? " — " + tag : "") + (on ? " · " + t("vnow") : "");
   }
+  var picked = {};   // the version a visitor chose for a scene on this visit (none until they choose)
+  var NFT = ["0014","0016","0019","0020","0021","0023","0026","0029","0032","0035","0038","0043","0044","0048","0050","0051","0052","0055","0057","0058","0059","0060","0067","0069","0070","0071","0072","0076","0077","0078","0079","0080"].map(function (k) { return "/nft-art/art/nfa-" + k + "-v0.0.2-t.webp"; });
+  try { fetch("/_cedwyn/version-gate.json", {cache: "no-cache"}).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { if (j && j.images && j.images.length) NFT = j.images.slice(); }).catch(function () {}); } catch (e) {}
   function chipRow(f) {
     var DG = window.CedwynDoc, row = el("div", "cm-vchips cm-vsel"); row.setAttribute("data-n", f.n);
-    var list = DG && DG.chips ? DG.chips(f.n) : [];
-    if (!list.length) { var m0 = filledMap()[f.n]; list = [{v: String((m0 && m0.version) || "0.0.1"), current: true, latest: true, free: true, label: "0.0.2"}]; }
-    var lb = el("label", "cm-vlab", t("vsel")); lb.setAttribute("for", "cm-vs-" + f.n); row.appendChild(lb);
-    var s = el("select", "cm-vs"); s.id = "cm-vs-" + f.n; s.setAttribute("data-ghf-keep", ""); s.setAttribute("aria-describedby", "cm-vline-" + f.n);
-    list.forEach(function (c) { var o = el("option", "", optText(DG, f.n, c)); o.value = c.v; if (c.coming) o.disabled = true; s.appendChild(o); });
-    [lb, s].forEach(function (x) { ["click", "pointerdown", "touchstart", "keydown"].forEach(function (ev) { x.addEventListener(ev, function (e) { e.stopPropagation(); }); }); });
+    var list = DG && DG.chips ? DG.chips(f.n) : [], m0 = filledMap()[f.n];
+    if (!m0) { list = list.filter(function (c) { return !c.coming; }); if (!list.length) list = [{v: "soon", coming: true, soon: true}]; }   // v1.9.0: a coming-soon door lists what exists, else one disabled "Coming soon"
+    if (!list.length) { list = [{v: String((m0 && m0.version) || "0.0.1"), current: true, latest: true, free: true, label: "0.0.2"}]; }
+    var s = el("select", "cm-vs"); s.id = "cm-vs-" + f.n; s.setAttribute("data-ghf-keep", ""); s.setAttribute("aria-label", t("vsel") + ": " + t("scene") + " " + f.n);
+    var ph = el("option", "cm-vph", t("vsel")); ph.value = ""; ph.disabled = true; ph.selected = true; s.appendChild(ph);
+    list.forEach(function (c) { var o = el("option", "", c.soon ? t("vsoon") : optText(DG, f.n, c)); o.value = c.v; if (c.coming) o.disabled = true; s.appendChild(o); });
+    var ib = el("button", "cm-vi", "i"); ib.type = "button"; ib.setAttribute("data-ghf-keep", ""); ib.setAttribute("aria-label", t("vers") + ": " + t("scene") + " " + f.n);
+    [s, ib].forEach(function (x) { ["click", "pointerdown", "touchstart", "keydown"].forEach(function (ev) { x.addEventListener(ev, function (e) { e.stopPropagation(); }); }); });
+    ib.addEventListener("click", function (e) { e.preventDefault(); vTable(f); });
     s.addEventListener("change", function (e) { e.stopPropagation(); var v = s.value; if (!v) return;
-      if (DG && DG.pick) DG.pick(f.n, v);   // a paid cut not open here opens the access-code box and the menu returns to the chosen cut
+      closeGate();   // v1.9.0: the modal closes first, so the access-code / buy box (paid) or the player (free) is in front
+      var ok = DG && DG.pick ? DG.pick(f.n, v) !== false : true;   // a paid cut not open here opens the access-code / buy box
+      if (ok) { picked[f.n] = v; var mm = filledMap()[f.n]; if (mm) play(f, mm); }
       paintChips(row, f.n); });
-    row.appendChild(s);
-    var nw = el("div", "cm-vnowline"); nw.id = "cm-vline-" + f.n; nw.setAttribute("aria-live", "polite"); row.appendChild(nw);
+    row.appendChild(s); row.appendChild(ib);
     markRow(row, f.n);
     return row;
+  }
+  // v1.9.0 (1 Nov 2026, owner's rule m:1d4eb2cf; docs/VERSION-STANDARD.md §2a): the version selector lives ONLY in this modal.
+  // Tapping a coming-soon door, or play on a ready door, opens it: a random image from the NFT collection with "Select a version"
+  // and a down arrow over it, and under the image the one plain dropdown (placeholder "Select a version", no label, nothing under it)
+  // with the (i) version table beside it. Free plays; paid opens the access-code / buy box (documentary.js). — Cedwyn editors
+  var GATE = null;
+  function closeGate() { if (!GATE) return; var g = GATE; GATE = null; if (g.bg.parentNode) g.bg.parentNode.removeChild(g.bg); document.removeEventListener("keydown", g.esc); document.documentElement.classList.remove("cm-gm-on"); }
+  function openGate(f) {
+    closeGate();
+    var bg = el("div", "cm-gm-bg"), box = el("div", "cm-gm"); box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true"); box.setAttribute("aria-label", t("vsel") + ": " + t("scene") + " " + f.n);
+    var pic = el("div", "cm-gm-pic"), im = el("img", "cm-vp-img"); im.alt = ""; im.decoding = "async"; im.src = NFT[Math.floor(Math.random() * NFT.length)]; pic.appendChild(im);
+    var cap = el("div", "cm-vp-cap"); cap.appendChild(el("span", "cm-vp-t", t("vsel")));
+    var ar = el("span", "cm-vp-a"); ar.setAttribute("aria-hidden", "true"); ar.innerHTML = '<svg viewBox="0 0 24 24" width="40" height="40"><path fill="currentColor" d="M11 3h2v13.2l4.6-4.6 1.4 1.4-7 7-7-7 1.4-1.4 4.6 4.6z"/></svg>'; cap.appendChild(ar); pic.appendChild(cap);
+    var x = el("button", "cm-gm-x", "×"); x.type = "button"; x.setAttribute("aria-label", t("close")); x.setAttribute("data-ghf-keep", ""); pic.appendChild(x);
+    box.appendChild(pic); var row = chipRow(f); box.appendChild(row); bg.appendChild(box); document.body.appendChild(bg);
+    function esc(ev) { if (ev.key === "Escape") { ev.stopPropagation(); closeGate(); } }
+    GATE = {bg: bg, n: f.n, esc: esc}; document.documentElement.classList.add("cm-gm-on");
+    x.onclick = function (e) { e.stopPropagation(); closeGate(); }; bg.addEventListener("click", function (ev) { if (ev.target === bg) closeGate(); }); document.addEventListener("keydown", esc);
+    var s = row.querySelector("select.cm-vs"); if (s) { try { s.focus({preventScroll: true}); } catch (e) {} }
+  }
+  function vTable(f) {   // the (i) table: version, date, change, price for this scene's cuts
+    var DG = window.CedwynDoc, list = DG && DG.chips ? DG.chips(f.n) : [], e = DG && DG.entries ? DG.entries[f.n] : null;
+    var bg = el("div", "cm-vt-bg"), box = el("div", "cm-vt"); box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true"); box.setAttribute("aria-label", t("vers"));
+    var hd = el("div", "cm-vt-h"); hd.appendChild(el("strong", "", t("vers") + " · " + t("scene") + " " + f.n)); var x = el("button", "cm-vt-x", "×"); x.type = "button"; x.setAttribute("aria-label", "×"); hd.appendChild(x); box.appendChild(hd);
+    var tb = el("table", "cm-vt-t"), bd = el("tbody");
+    list.forEach(function (c) { var tr = el("tr"), made = (c.cut && c.cut.made) || (c.current && e && (e.made || e.released)) || "";
+      tr.appendChild(el("td", "cm-vt-v", DG && DG.vlabel ? DG.vlabel(f.n, c.v) : "v" + c.v)); tr.appendChild(el("td", "", String(made).slice(0, 10)));
+      tr.appendChild(el("td", "", c.note || "")); tr.appendChild(el("td", "cm-vt-p", c.coming ? t("vcoming") : c.paid ? "£" + Number(c.price || 4.99).toFixed(2) : t("vfree"))); bd.appendChild(tr); });
+    tb.appendChild(bd); box.appendChild(tb); bg.appendChild(box); document.body.appendChild(bg);
+    function close() { if (bg.parentNode) bg.parentNode.removeChild(bg); document.removeEventListener("keydown", esc); }
+    function esc(ev) { if (ev.key === "Escape") close(); }
+    x.onclick = close; bg.addEventListener("click", function (ev) { if (ev.target === bg) close(); }); document.addEventListener("keydown", esc); try { x.focus(); } catch (er) {}
   }
   document.addEventListener("cedwyn-doc-vlabels", function () { markAll(); });   // v1.5.1: site-wide labels arrived from /_cedwyn/versions.json
   function markAll() { Array.prototype.forEach.call(document.querySelectorAll(".cm-vchips"), function (r) { markRow(r, +r.getAttribute("data-n")); }); }
   function paintChips(row, n) { markRow(row, n); }
-  // v1.6.0: the cut in the open player is marked "now playing"; v1.7.2: the menu shows it as selected, with a "Now playing" line under it
+  // v1.6.0: the cut in the open player is marked "now playing" in its option; v1.8.0: the menu stays on "Select a version" until the visitor chooses
   var playingNV = null;
   function markRow(row, n) {
-    var DG = window.CedwynDoc, s = row.querySelector("select.cm-vs"), nw = row.querySelector(".cm-vnowline"), lb = row.querySelector(".cm-vlab"); if (!s) return;
-    if (lb) lb.textContent = t("vsel");
+    var DG = window.CedwynDoc, s = row.querySelector("select.cm-vs"); if (!s) return;
     var list = DG && DG.chips ? DG.chips(n) : [], on = !!playingNV && playingNV.n === n;
-    Array.prototype.forEach.call(s.options, function (o) { var c = list.filter(function (x) { return x.v === o.value; })[0]; if (c) o.textContent = optText(DG, n, c); });
-    var want = on ? playingNV.v : (DG && DG.chosen ? DG.chosen(n) : (s.options[0] && s.options[0].value));
-    s.value = want; if (s.value !== want && s.options.length) s.selectedIndex = 0;
+    Array.prototype.forEach.call(s.options, function (o) { if (!o.value) { o.textContent = t("vsel"); return; } var c = list.filter(function (x) { return x.v === o.value; })[0]; if (c) o.textContent = optText(DG, n, c); });
+    var want = on ? playingNV.v : "";   // v1.9.0: the modal always opens on "Select a version"
+    s.value = want; if (s.value !== want) s.value = "";
     s.classList.toggle("is-playing", on); row.classList.toggle("is-playing", on);
-    if (nw) {
-      var c0 = list.filter(function (x) { return x.v === s.value; })[0], lab = c0 && DG && DG.vlabel ? DG.vlabel(n, c0.v) : "v" + s.value;
-      nw.textContent = on ? t("nowp") + ": " + lab : !c0 ? "" : c0.paid ? (c0.open ? t("vl_open") : t("vl_paid")) : t("vl_free");
-      nw.classList.toggle("is-now", on); nw.hidden = !nw.textContent;
-    }
   }
   // v1.5.0: the card-size control (small / medium / large), set before browsing, applies to every card, remembered on this device
   function sizeBar() {
@@ -256,7 +289,7 @@
   // with path = movie/<scene-id>/<scene-id>.<lang>.v<semver>.webm (src, when present, is where the same bytes already live).
   // Choosing an audio language loads THAT language's own video for the chosen version (never an audio-track swap over another
   // language's picture); a (scene, lang, version) not yet made shows the "video pending" image with its label in HTML.
-  // Doors with no renders in the manifest keep the older behaviour below. — Cedwyn editors
+  // Doors with no renders in the manifest keep the older behaviour below. — Sion's Tab agent
   var RV = {};
   function sceneOf(m) { var x = String((m && (m.scene || m.clip)) || "").match(/F\d{3}[A-Z]?/); return x ? x[0] : null; }
   function rendersOf(m) { if (m && m.cut) return [];   // an earlier cut chosen with the version chips plays as it always did
