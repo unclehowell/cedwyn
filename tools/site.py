@@ -460,7 +460,10 @@ def _shop_strip(dist):
                # sf40 (31 Oct 2026): document pages that real phone visitors (non-US, non-NL) reach with no route to /ebooks/ near
                # the top (CF 3 days to 16:00Z: fcg 56, oldbill 40, qa 29, cyberspace 21, thousand-cuts 18, emails 18; /wales/ and
                # /argentina/ serve the same file, so one strip covers all three). Full-screen apps (chess, maps, story) stay out.
-               'fcg', 'oldbill', 'qa', 'cyberspace', 'thousand-cuts', 'emails'):
+               'fcg', 'oldbill', 'qa', 'cyberspace', 'thousand-cuts', 'emails',
+               # sf48 (1 Nov 2026): /calendar/ is the 2nd most-visited page by non-US readers (CF 24 h to 16:01Z: 52 loads, 5x /ebooks/)
+               # and /fb2/ took 18; neither had any link to /ebooks/. Calendar strip goes under its heading (see below).
+               'calendar', 'fb2'):
         targets.append((_s + '/index.html', _s.replace('/', '-')))
     # sf41 (31 Oct 2026): the Wales and Patagonia front pages are their own files (wales/index.html, argentina/index.html), not
     # copies of /, so the sf40 note above did not cover them and neither showed a strip (CF 3 days to 19:00Z, non-US excl. NL:
@@ -495,6 +498,11 @@ def _shop_strip(dist):
         line = ('<p class="ebook-strip" style="margin:.5rem 0 .75rem;font-size:16px;line-height:1.4">'
                 '<a href="/r/strip-%s">%s</a></p>' % (tag, text))
         at = m.end()
+        if tag == 'calendar':  # sf48: under the page heading, above the month grid
+            mh = _re.compile(r'</h1>').search(h, m.end())
+            at = mh.end() if mh else m.end()
+        if tag == 'fb2':  # sf48: the album's <main> has no side padding, so the strip carries its own
+            line = line.replace('margin:.5rem 0 .75rem', 'margin:.5rem 14px .75rem')
         if tag in ('wales', 'argentina'):  # sf41: under the hero header inside <main>, in the page's default language
             mh = _re.compile(r'</header>').search(h, m.end())
             at = mh.end() if mh else m.end()
