@@ -460,6 +460,7 @@ APP_LABELS = {
     'chat': 'Ask the Archive',
     'nft-art': 'Gallery',
     'thousand-cuts': '1000 Cuts',
+    'bloculous': 'Bloculous',
 }
 APP_IMAGES = {
     'wiki': 'ghf2-drawing-room', 'records': 'ty-mawr-1974-reconstruction',
@@ -483,8 +484,11 @@ APP_IMAGES = {
     'documentary': 'wales-hologram', 'familytree': 'wales-ar-forest',
     'kissed-frogs': 'ghf2-wedding', 'nft-art': 'ghf2-museum',
     'whattheydontsay': 'wales-ar-villa', 'blog': 'ghf2-drawing-room',
+    'bloculous': 'bloculous-dome',
 }
 APP_EXCLUDED = {'wales', 'patagonia'}
+# Webapps listed in the Online modal only (Sion 23:36 GMT 1 Nov 2026: Bloculous 'in the cedwyn online area') - Sion's Tab agent
+ONLINE_ONLY = {'bloculous'}
 
 # Menu tile pictures per half (Sion, WhatsApp 01:54 GMT 30 Oct 2026). Wales: wireframe-hologram renders of building photographs from
 # the wayback archive's Great House Farm Part 1 series (holo-ghf1-<n>.webp = 'Great House Farm Part 1 - <n>'; edge-detected locally,
@@ -524,13 +528,14 @@ def specific_tile(H, title, href, image):
 
 def network_tile(H):
     return (f'<div class="land-app land-app-soon" aria-label="Network, coming soon">'
-            f'<img src="{E(app_image(H, "network-datacentre"))}" alt="" loading="lazy" decoding="async">'
+            f'<img src="{E(app_image(H, "online-dome"))}" alt="" loading="lazy" decoding="async">'
             f'<span class="land-app-label">Network<small>Coming soon</small></span></div>')
 
 def modal_apps(H, cfg, section):
     out = []
     for group in cfg.get('groups', []):
-        items = [t for t in cfg['themes'] if t.get('group') == group['id'] and t['id'] not in APP_EXCLUDED]
+        items = [t for t in cfg['themes'] if t.get('group') == group['id'] and t['id'] not in APP_EXCLUDED
+                 and (section == 'online' or t['id'] not in ONLINE_ONLY)]
         if not items:
             continue
         out.append('<section class="land-app-section"><h3>' + E(group['title']) + '</h3><div class="land-app-grid">')
@@ -571,7 +576,8 @@ def place_modal(H, cfg, section):
             f'</div></div></dialog>')
 
 def network_page(H):
-    image = app_image(H, 'network-datacentre')
+    # 1 Nov 2026: the owner's own geodesic communications equipment room photo replaces the server-rack drawing - Sion's Tab agent
+    image = app_image(H, 'online-dome')
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Network · Coming soon</title><meta name="description" content="Cedwyn Network — coming soon.">
@@ -580,7 +586,7 @@ def network_page(H):
 main{{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center}}
 img{{display:block;width:min(920px,100%);max-height:68vh;object-fit:cover;border-radius:14px;border:1px solid #34414d}}
 h1{{margin:20px 0 2px;font-size:clamp(30px,6vw,56px);font-weight:600}}p{{margin:0;color:#aebdca;letter-spacing:.12em;text-transform:uppercase;font-size:13px}}
-</style></head><body><main><img src="{E(image)}" alt="Rows of server racks in a data centre"><h1>Network</h1><p>Coming soon</p></main></body></html>'''
+</style></head><body><main><img src="{E(image)}" alt="A geodesic communications equipment room on a rooftop"><h1>Network</h1><p>Coming soon</p></main></body></html>'''
 
 def landing(sections, S, cfg, H):
     l = 'en'; n = len(cfg['themes']); T = base_T(sections, S, cfg, None, H)
@@ -590,7 +596,7 @@ def landing(sections, S, cfg, H):
            "if(!/[?&]lang=/.test(location.search)&&history.replaceState)history.replaceState(null,'',location.pathname+'?lang='+l+location.hash)}catch(e){}})();</script>")
     wales_src = img(H, 'tile-wales')
     patagonia_src = img(H, 'tile-patagonia')
-    online_src = app_image(H, 'network-datacentre')
+    online_src = app_image(H, 'online-dome')   # the owner's geodesic dome photo (1 Nov 2026)
     body = f"""
 <body data-cedwyn-page="landing">
 <main class="wrap hv" data-no-translate>
