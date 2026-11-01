@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Release-day grace window: recent buyers get the new version free · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Release-day grace window: recent buyers get the new version free"><link rel="alternate" type="text/markdown" href="release-day-grace-window-recent-buyers-free-upgrade.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Release-day grace window: recent buyers get the new version free</h1>
+<p>Read 1 Nov 2026. This is the companion to the Cedwyn version ladder.</p>
+<h2>The problem it solves</h2>
+<p>On a price ladder, every release moves the old "latest" one step down: it becomes £4.99 cheaper, and the new version takes the top price. Someone who paid full price yesterday sees their version cheapened and a newer one on sale. That is the classic "I just bought it!" complaint, and software sellers settled it with a grace window.</p>
+<h2>Practitioner evidence (published policies)</h2>
+<ul>
+<li>Scooter Software, maker of Beyond Compare (scootersoftware.com, snippet 1 Nov 2026): "if we release a major upgrade within 12 months of your purchase, you can get the upgrade for free."</li>
+<li>EaseUS (kb.easeus.com, snippet): new major upgrades released within the "grace period" ("generally within 30 days after you have purchased this product") are free to the buyer.</li>
+<li>Applian (applian.com, snippet): the upgrade "fee will be waived if the Suite purchase date is within 30 days of the new product release."</li>
+<li>UJAM publishes a separate "Grace Period Policy" for recent purchasers (support.ujam.com, snippet).</li>
+<li>One forum practitioner's variant (Ars Technica op-ed thread, snippet): "One month before the launch of your 'upgrade', lower the price of the existing app".</li>
+</ul>
+<p>Window lengths seen: 30 days for consumer tools, 12 months for a premium tool. None of these pages publish conversion numbers. The evidence is that it is common, stable policy, not a measured lift.</p>
+<h2>How to do it</h2>
+<ol>
+<li>Choose a window, say 30 days, and state it in one line at checkout: "Buy now and if a new version comes out within 30 days, it's yours free."</li>
+<li>Make it automatic on release:
+   - Find buyers whose purchase date is within the window.
+   - Grant them the new version through the access code or entitlement they already hold.
+   - Send one plain "your free upgrade is ready" email, only through the existing approved email route.</li>
+<li>Put the line where hesitation happens: under the price in the version dropdown and on the purchase bar.</li>
+<li>Log each release: number eligible, number who downloaded the upgrade. A refund request inside the window is a signal that the window is too short or unclear.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Cedwyn ships versions often (semver per book, film door and course), so the "cheapened yesterday" moment will recur. A 30-day window fits a £4.99-step ladder.</li>
+<li>Entitlement goes through the existing access codes and entitlements (see the stripe-payment-link-per-scene-access-codes-own-entitlements skill). No new payment code.</li>
+<li>The bar copy stays whole-price and plain, e.g. "v0.3.0 full edition £9.98 (212 pages) · free upgrade if a newer version ships within 30 days".</li>
+<li><strong>PROPOSAL</strong> only. The window length and whether to offer it are owner policy. Log it for the version-standard flywheel; do not build it until approved.</li>
+<li>With zero checkouts so far, nobody is eligible today, so the cost is nil until the first sale. The value is reassurance at the first purchase.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>scootersoftware.com (snippet)</li>
+<li>kb.easeus.com (snippet)</li>
+<li>applian.com (snippet)</li>
+<li>support.ujam.com (snippet)</li>
+<li>arstechnica.com (snippet; forum opinion)</li>
+</ul><p class="raw">Raw Markdown: <a href="release-day-grace-window-recent-buyers-free-upgrade.md">release-day-grace-window-recent-buyers-free-upgrade.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

@@ -1,6 +1,6 @@
 # Maintenance loops
 
-30 self-running loops keep the site and its records maintained. Each runs on a schedule, spawns at most one worker at a time, has fixed inputs and outputs, and works inside guardrails. Full runner-level detail for most of them is in [FLYWHEELS](../FLYWHEELS/README.md).
+32 self-running loops keep the site and its records maintained. Each runs on a schedule, spawns at most one worker at a time, has fixed inputs and outputs, and works inside guardrails. Full runner-level detail for most of them is in [FLYWHEELS](../FLYWHEELS/README.md).
 
 ## The autoresearch pattern
 
@@ -152,8 +152,8 @@ Details: [Data architecture](data.md).
 **Cadence:** every 4 hours  
 **What it does:** Small one-hypothesis experiments against a fixed metric (the three limbs of the legal test for reopening a judgment) to rank grounds for reopening the 1987 judgment.  
 **Inputs:** the grounds register; the results log; the newest research cycle  
-**Outputs:** 3–6 experiments kept or discarded; score changes; the programme highlight report section on prospective triggers (only when the top three change)  
-**Areas it touches:** /projects/ (highlight report); research findings  
+**Outputs:** 3–6 experiments kept or discarded; score changes; the programme highlight report section on prospective triggers (only when the top three change); the Mr Wolf leaderboard row for a ground whose limb score changed  
+**Areas it touches:** /projects/ (highlight report); research findings; /mr-wolf/ (leaderboard of reopen grounds, 40 of 59)  
 **Guardrails:** the metric is fixed; never changed to make a result look better; labelled as prospective, never a finding of any court; read-only research; one worker at a time (duplicate check by goal prefix).
   Runner detail: [Reopen-the-case autoresearch loop](../FLYWHEELS/reopen-loop.md)
 
@@ -240,7 +240,7 @@ Details: [Data architecture](data.md).
 **Inputs:** the scene and shot packages in the public film-studio repository; the script and scene list; the film's own daily budget  
 **Outputs:** one scene with subtitles; the next door opened on the documentary page; the script kept ten frames ahead  
 **Areas it touches:** /documentary/ (also /movie/ and /documentry)  
-**Guardrails:** strict date order; no narrator and no fourth wall from scene 3; reconstruction only; no likeness of real family members; a blocking pre-publish quality gate: 24 fps end to end, cut from original renders, two-pass encode, -16 LUFS, frames of every talking shot looked at; spend only within the film's own daily budget; waits and skips are logged as problems; one unit at a time: take the next unit not done, do that step, store, update the manifest, commit, then pick again; media are repository release files with content ids; one worker at a time (duplicate check by goal prefix).
+**Guardrails:** strict date order; no narrator and no fourth wall from scene 3; reconstruction only; no likeness of real family members; a blocking pre-publish quality gate: 24 fps end to end, cut from original renders, two-pass encode, -16 LUFS, frames of every talking shot looked at; spend only within the film's own daily budget; waits and skips are logged as problems; one unit at a time: take the next unit not done, do that step, store, update the manifest, commit, then pick again; media are repository release files with content ids; the chronology gate flags any gap over about 150 years; in-between scenes show only records of the estate's own ground, else a documented-silence card; twelve files per scene: three native-language performances times four subtitle states, subtitles burned in at build; one worker at a time (duplicate check by goal prefix).
   Runner detail: [Cedwyn film — scene run](../FLYWHEELS/movie.md)
 
 <a id="agent-library"></a>
@@ -351,6 +351,26 @@ Details: [Data architecture](data.md).
 **Areas it touches:** one webapp per loop; main only for data/core, data/views, tools and workflow  
 **Guardrails:** claim the webapp first; never work one another agent holds; discard any change that breaks a gate; strangler fig: static pages stay until parity is proven; one-line rollback; one worker at a time (duplicate check by goal prefix).
   Runner detail: [Data-driven webapp migration](../FLYWHEELS/webapp-migration.md)
+
+<a id="version-standard"></a>
+### Version standard
+
+**Cadence:** every 6 hours  
+**What it does:** Audits every webapp and the live site against the version ladder and version picker rule (standing order 47) and fixes small drift: wording, a missing (i) changelog icon, a wrongly computed step price, a missing changelog row.  
+**Inputs:** the version standard document on main; each webapp branch; the live site at 390 px  
+**Outputs:** small fixes on the owning branch; a log of findings  
+**Areas it touches:** every webapp with versioned media  
+**Guardrails:** never invents a price; prices come from the store's data; never touches checkout code; owner-edited files get a patch, not an overwrite; never starts or cancels a site build while one runs; one worker at a time (duplicate check by goal prefix).
+
+<a id="releases"></a>
+### Releases
+
+**Cadence:** after every change that goes live  
+**What it does:** Cuts a tagged release with a new semantic version for every branch or webapp change, at the commit that is actually live (standing order 44).  
+**Inputs:** the branch's CHANGELOG entry; the site build's served stamp and section pins  
+**Outputs:** an annotated tag named <branch>-vX.Y.Z and a release with neutral notes; an audit line per release  
+**Areas it touches:** every branch of the repository  
+**Guardrails:** never tags queued or unbuilt work; it is listed as the next release; a pending hosting preview record is not a deploy; check the build run, the production deploys and the served stamp; release notes are public: same wording rules as the site; one worker at a time (duplicate check by goal prefix).
 
 ## Also in the flywheel list
 

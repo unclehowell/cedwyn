@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Price framing for a low-priced e-book: show the whole price, not &quot;1p a page&quot; · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Price framing for a low-priced e-book: show the whole price, not &quot;1p a page&quot;"><link rel="alternate" type="text/markdown" href="price-framing-aggregate-vs-per-page-low-price-ebooks.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Price framing for a low-priced e-book: show the whole price, not "1p a page"</h1>
+<p>Skill harvest 2026-11-01 ~01:15Z. Topic: e-book pricing/offer framing. Fills a gap: 'price framing', 'pennies', 'Gourville' and 'temporal reframing' had 0 skill files. It is a guard skill: it stops a tempting copy change that the evidence states backfires at our price.</p>
+<h2>The temptation</h2>
+<p>Once the free-vs-full gap is explained, the next instinct is "404 pages for £4.99, about 1p a page" or "less than a coffee". This is the pennies-a-day (PAD) tactic: cut a price into small units so it feels trivial.</p>
+<h2>What the evidence states</h2>
+<ul>
+<li><strong>Gourville 1998, Journal of Consumer Research 24(4):395-408</strong> (abstract read via RePEc/JSTOR). Reframing an aggregate cost as a small daily one works by changing what people compare it with. It "systematically fosters the retrieval and consideration of small ongoing expenses as the standard of comparison".</li>
+<li><strong>The headline number</strong> (as reported in a Psychology Today summary of Gourville, 2019; the original table was not read): payroll-giving request at "85 cents per day" = 52% agreed, vs "$300 per year" = 30%. Note that this is a large aggregate ($300), cut down.</li>
+<li><strong>Gourville 2003, Marketing Letters 14:125-135</strong> (abstract/snippets only). Tested commonplace transactions across a wide range of price points. A citing paper's summary table (Emerald, Eur. J. Marketing 58(11)) reports: "more aggregate framing is preferred to less aggregate framing" as the size of the underlying expense goes down. Not checked against the full text.</li>
+<li><strong>Bambauer-Sachse &amp; Grewal 2011, Journal of Retailing 87(2):156-165</strong> (abstract read in full). Reframed prices beat aggregate prices for <strong>high-priced</strong> products, with <strong>even</strong> price endings, and for customers with poor calculation affinity. <strong>Aggregate prices beat reframed ones for low-priced products, odd price endings,</strong> and customers good at sums.</li>
+<li><strong>Shown together.</strong> A related study (ResearchGate abstract, "Consumer Evaluations of Temporal Reframing of Prices") found more favourable perceptions when the reframed price appears <strong>together with</strong> the aggregate. So reframing never replaces the total, even where it helps.</li>
+</ul>
+<h2>The rule that falls out</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low price (an e-book at £2.99-£9.99), odd ending (.99)</td>
+<td>Aggregate price only, plus a content quantity (pages, records)</td>
+</tr>
+<tr>
+<td>High price / subscription / course (£50+), even ending</td>
+<td>Reframed price may help; always show the total beside it</td>
+</tr>
+<tr>
+<td>Bundle</td>
+<td>Total plus a count ("4 books, £19.96"). No "save £x" unless a real, current single price makes it true (CMA/DMCC rules; see versioned-release-rising-price-ladder.md)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Quantity is not price framing. "£4.99, 221 pages" gives the buyer a size to judge value by without cutting the price into slices. That fits the evidence above. "About 2p a page" does not.</p>
+<h2>How to do it</h2>
+<ol>
+<li>Check the price level and ending. Under about £10 with a .99 ending: no per-unit or per-day price anywhere (cards, Stripe product name, social posts, emails).</li>
+<li>Pair the total with one concrete quantity the free option lacks (pages, records, periods). See free-vs-paid-edition-comparison-table-explicit-differences.md.</li>
+<li>If a reframed price is ever tested (only on the £-higher items: an academy membership, a guided walk), show it beside the total and A/B it with tools/seq_ab.py. Don't roll it out from the 1998 result alone.</li>
+<li>Log the copy in the sales-fix log, so a later run doesn't "discover" PAD as a new fix.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>E-books are £4.99 (odd ending, low price) and the bundle is £19.96. Both fall on the "aggregate" side of Bambauer-Sachse &amp; Grewal. <strong>Don't</strong> write "1p a page", "less than a coffee" or "pennies a day" on /ebooks/, the shelf lines, the Stripe or Gumroad names, or the YouTube shop line.</li>
+<li>PR #94's line ("£4.99: the full book, 221 pages. Free: a 20-page preview.") already does it right: total plus quantity. Keep it that way in any rewrite.</li>
+<li>Bundle: "All 4 for £19.96" is fine. No "save" or "was" (the owner's standing rule already bans "save" wording). Gumroad still shows the old £9.99/£31.99, which only the owner can edit, so don't quote a cross-store comparison.</li>
+<li>The /learn/ academy membership, if priced well above the e-books, is the one place a reframed price could be tested later. That is a PROPOSAL for the owner's queue, not a change.</li>
+<li>Never name the owner in public copy. Tymawr / Tŷ Mawr are valid name forms. No banned words.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>ideas.repec.org (Gourville 1998 abstract, read)</li>
+<li>jstor.org (same, snippet)</li>
+<li>psychologytoday.com (52% vs 30% figures, secondary, read)</li>
+<li>link.springer.com (Gourville 2003, snippet only)</li>
+<li>emerald.com (summary-table snippet only)</li>
+<li>ideas.repec.org (Bambauer-Sachse &amp; Grewal 2011 abstract, read)</li>
+<li>researchgate.net (abstract snippet)</li>
+</ul><p class="raw">Raw Markdown: <a href="price-framing-aggregate-vs-per-page-low-price-ebooks.md">price-framing-aggregate-vs-per-page-low-price-ebooks.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

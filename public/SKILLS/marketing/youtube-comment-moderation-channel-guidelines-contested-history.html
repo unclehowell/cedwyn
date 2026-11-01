@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>YouTube comment moderation + channel guidelines for a contested-history channel · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: YouTube comment moderation + channel guidelines for a contested-history channel"><link rel="alternate" type="text/markdown" href="youtube-comment-moderation-channel-guidelines-contested-history.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>YouTube comment moderation + channel guidelines for a contested-history channel</h1>
+<p>Harvested 1 Nov 2026 (skills harvest ~01:00Z). Topic: YouTube community / brand safety. Companion: youtube-pinned-comment-reply-routine-first-48h.md (the reply routine).</p>
+<h2>Why it matters (numbers)</h2>
+<ul>
+<li>CommentShark 2026 study (9.9M comments, 15,403 channels; vendor, CC BY 4.0; key stats CSV read): 83.4% of comments are supportive or neutral, but news-type channels carry 18% hostile comments vs &lt;= 6.1% in every other group; 11% of a median channel's comments are repeated text (bots or copy-paste); creators reply to debate only 4.9% of the time. A land-dispute history channel sits between education (4.2% hostile) and news (18%), so settings should be set before a video travels, not after.</li>
+</ul>
+<h2>The controls (YouTube Help 9483359 and 11895180, read 1 Nov 2026)</h2>
+<ul>
+<li>Per-video comment state: On / Pause (keeps old comments, stops new ones - for a sudden spike) / Off (hides existing ones until turned back on).</li>
+<li>Moderation level: None / Basic (holds likely spam, self-promotion, gibberish, inappropriate) / Strict (holds a broader range) / Hold all. AI-based, can be wrong; held comments stay in Studio &gt; Comments &gt; Held for up to 60 days, then are gone.</li>
+<li>Who can comment (video level, not channel level): Subscribers and members, with a minimum subscription time of any / 1 hour / 1 day / 1 week (bulk-edit for many videos). A cheap brake against drive-by accounts.</li>
+<li>Channel-level, applies to every video and the channel page (cannot be set per video): Hidden users (their comments vanish everywhere and cannot be reviewed; they also cannot clip), Approved users (skip all filters), Blocked words (comments containing or closely matching are held up to 60 days; also blocks clips), Block links (holds comments with URLs, except from you, moderators, approved users).</li>
+<li>Default comment settings apply to NEW uploads only; existing videos keep their old setting.</li>
+<li>Channel guidelines (Settings &gt; Community moderation &gt; Channel guidelines): a welcome message + up to 3 rules, shown to viewers before they comment (mobile only for comments). Not enforced automatically - they set expectations for what you hold. Google's examples: Be civil and respectful; Stick to the topic; Questions welcome; No self-promotion or spam; Challenge the argument, not the person.</li>
+<li>Data API: comments.setModerationStatus (heldForReview / published / rejected, 50 units, owner only) can act on comments; settings themselves are Studio-only.</li>
+</ul>
+<h2>Setup (20 minutes, once)</h2>
+<ol>
+<li>Default for new uploads: comments On, moderation Strict (start strict; relax to Basic if the Held tab is mostly fine comments after 2 weeks).</li>
+<li>Block links: on (stops scam links; our own pinned links still post).</li>
+<li>Blocked words: a private list of personal-data and abuse patterns (addresses, phone-number fragments, slurs, names of living private people who must not appear). Short and specific - close matches are held too.</li>
+<li>Approved users: our own accounts and any trusted local-history partner channel once they comment well twice.</li>
+<li>Channel guidelines: welcome line + 3 rules (below).</li>
+<li>Review cadence: Held tab twice a week (inside the 60-day window); approve good ones, which also teaches you what Strict over-holds.</li>
+<li>Spike plan: if a video gets an unusual burst, Pause that video's comments, review, then turn On; or set "Subscribers, 1 day" for that video.</li>
+</ol>
+<h2>Suggested guideline text (EN; Welsh and Spanish versions to add)</h2>
+<ul>
+<li>Welcome: "Croeso / Welcome. This channel shows records about one Glamorgan estate. Please read these before you comment."</li>
+<li>
+<ol>
+<li>Questions welcome - we answer with the record.</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Challenge the record, not the person.</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>No personal details, links or self-promotion.</li>
+</ol>
+</li>
+</ul>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>The channel publishes records from a contested land history, so the risk is less spam than personal attacks and private data; Strict + link blocking + a blocked-words list for personal data fits the editorial rules (no living family members named, nothing about family holdings or addresses).</li>
+<li>Hidden users is irreversible in review terms (their comments cannot be seen in Studio) - use it only for repeat abuse; a single heated comment is held/left, never hidden.</li>
+<li>Comments that correct a date or add a memory are research leads (to the queue), and the reply rule from the companion file applies.</li>
+<li>Owner action: these are Studio settings on the owner's channel. Settings change nothing public and are reversible, but they sit in the owner's account - propose as one HubSpot [BIZDEV] task with the exact values above; apply after the owner's yes, or by browser if a standing yes exists.</li>
+<li>Measure: weekly count of held / approved / removed alongside the reply-rate line in the Sunday growth notes.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>support.google.com (read)</li>
+<li>support.google.com (read)</li>
+<li>support.google.com (read: moderation settings apply to the mobile comment preview too)</li>
+<li>commentshark.com (key stats CSV read)</li>
+<li>developers.google.com (read)</li>
+</ul><p class="raw">Raw Markdown: <a href="youtube-comment-moderation-channel-guidelines-contested-history.md">youtube-comment-moderation-channel-guidelines-contested-history.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

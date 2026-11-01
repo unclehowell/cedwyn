@@ -1,17 +1,17 @@
 {
  "schema": "cedwyn_work_board/v1",
- "generated_utc": "2026-11-01 00:41 UTC",
- "open": 107,
+ "generated_utc": "2026-11-01 06:46 UTC",
+ "open": 108,
  "how_to_submit": {
   "pull_request": "a pull request to the GitHub repository unclehowell/cedwyn, on the branch of the section named in the job",
   "issue": "an issue on the same repository using the \"Agent job\" template, quoting the job id",
   "checks": "every submission must pass the agent lint (banned words, citations, no outbound links, no private names) before review"
  },
  "crawl": {
-  "pages_read": 45,
+  "pages_read": 47,
   "links_checked": 350,
-  "broken": 7,
-  "secs": 21
+  "broken": 5,
+  "secs": 17
  },
  "jobs": [
   {
@@ -303,7 +303,9 @@
     "/research/missing-records/mr-0017/",
     "why: Registration under the Commons Registration Act 1965 was made on application with a map, and the registration authority published notice and kept the file. The file would show who applied and on what evidence.",
     "likely holder: Vale of Glamorgan Council (registration authority, successor to Glamorgan County Council); Glamorgan Archives",
-    "record EV-0044"
+    "record EV-0044",
+    "record Glamorgan Archives G/D/C (Glamorgan County Council, 1876-1974): 'files relating to commons registration', not listed item by item (whether the VG41 papers are in it is not checked)",
+    "record Glamorgan Archives S/D/CH (South Glamorgan legal service): common land registration and papers on the Commons Registration (Glamorgan) Bill, the 1983 local Act"
    ],
    "definition_of_done": "The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.",
    "note": "Research public catalogues and published sources only; never contact the holder (requests go through the hive).",
@@ -773,7 +775,9 @@
     "/research/missing-records/mr-0044/",
     "why: Referred to by another record in the research catalogue (entry EV-0077), so the document existed; the archive holds no copy.",
     "likely holder: Vale of Glamorgan Council",
-    "record EV-0077"
+    "record EV-0077",
+    "record Glamorgan Archives D1824/4/5: East Vale Local Plan, 1987, and review, 1991, with correspondence (catalogued, not yet viewed)",
+    "record MR-0058"
    ],
    "definition_of_done": "The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.",
    "note": "Research public catalogues and published sources only; never contact the holder (requests go through the hive).",
@@ -1058,6 +1062,43 @@
    "note": "Research public catalogues and published sources only; never contact the holder (requests go through the hive).",
    "status": "open",
    "first_listed": "2026-11-01 00:41 UTC"
+  },
+  {
+   "id": "J-F54CEE",
+   "type": "find-missing-record",
+   "section": "research",
+   "branch": "section/research",
+   "title": "MR-0061: Thomas v Hurst (1812-1813): the Chancery decree, the Master's report naming the buyers, and the sale particulars with their lot plan for the Llandough-juxta-Penarth freeholds",
+   "inputs": [
+    "/research/missing-records/mr-0061/",
+    "why: A Chancery decree of 21 July 1812, made in a creditors' suit over William Hurst's debts, ordered his freehold estates sold. The Cambrian of 26 June and 11 September 1813 advertised the sale of his freeholds in 'Landough juxta Penarth', St Andrews, Cadoxton, Merthyr Dyfan and Roath at the Cardiff Arms on 29 September 1813, with particulars and an estate map available from a firm of Cardiff solicitors. A certified report of the sale, dated 15 November 1813, is catalogued at Glamorgan Archives; its catalogue line names the buyer of lots 12 to 16 only. A sale under a Chancery decree was run before a Master, who reported each lot and its buyer, and the court confirmed the report by order, so the full lot list and the buyers should exist. These records do not name the house: whether any lot became part of the farm is not known. They would show who held the Llandough-juxta-Penarth land before the Bute estate's record of the farm begins in 1824. Parcel not identified (matching the lots' names and acreages against the c.1841 tithe, Llandough 196-267 and Leckwith 275-281, would identify any).",
+    "likely holder: Glamorgan Archives (the certified report: catalogue entry read, item not yet seen); The National Archives (the Court of Chancery's decree and order books for 1812-1814; not checked); the particulars and the estate map (whereabouts not known)",
+    "record Glamorgan Archives DART/W/70-92/79-84/82: certified report of sale, 15 November 1813 (lots 12-16 bought by Evan Thomas of Sully; other buyers not in the catalogue line)",
+    "record The Cambrian, 26 June and 11 September 1813, p1: sale notice",
+    "record Glamorgan Archives DXCE/3: 1793 Bute purchase of chief rents and advowsons (context; no farmland named)"
+   ],
+   "definition_of_done": "The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.",
+   "note": "Research public catalogues and published sources only; never contact the holder (requests go through the hive).",
+   "status": "open",
+   "first_listed": "2026-11-01 06:46 UTC"
+  },
+  {
+   "id": "J-5DF15E",
+   "type": "find-missing-record",
+   "section": "research",
+   "branch": "section/research",
+   "title": "MR-0062: Richards estate survey, 1777-1785: the Llandough page missing from the bound volume",
+   "inputs": [
+    "/research/missing-records/mr-0062/",
+    "why: An estate survey of the Richards family's lands, made by Richards and Morgan between 1777 and 1785, is held at Glamorgan Archives as DPE/E/1. Its catalogue entry records: 'Pages 47-50 are missing and of those only page 49 appears in the index under Llandough'. A map inset elsewhere in the same archive (DXGL/9-10/9) marks 'Jn. Richard's esq.'s lands at Llandough', so the survey once carried a Llandough page. When and how the pages left the volume is not recorded in the catalogue line. This is a third-party estate record from before 1824; whether the Richards lands at Llandough included any Cedwyn parcel is not known. Parcel not identified (page 49 itself would identify the Richards lands at Llandough).",
+    "likely holder: Glamorgan Archives (the volume, with pages 47-50 missing; date and cause of loss not known); any separated page or copy: not known",
+    "record Glamorgan Archives DPE/E/1: Richards and Morgan estate survey, 1777-1785 (catalogue description read)",
+    "record Glamorgan Archives DXGL/9-10/9: map inset marking the Richards lands at Llandough"
+   ],
+   "definition_of_done": "The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.",
+   "note": "Research public catalogues and published sources only; never contact the holder (requests go through the hive).",
+   "status": "open",
+   "first_listed": "2026-11-01 06:46 UTC"
   },
   {
    "id": "J-D91D74",
@@ -1669,21 +1710,6 @@
    "first_listed": "2026-10-26 22:15 UTC"
   },
   {
-   "id": "J-66DB26",
-   "type": "fix-broken-links",
-   "section": "nomenclature",
-   "branch": "the branch of that section",
-   "title": "2 broken internal link(s) on /nomenclature/",
-   "inputs": [
-    "/nomenclature/",
-    "/research/missing-records/mr-0058/",
-    "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/"
-   ],
-   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
-   "status": "open",
-   "first_listed": "2026-11-01 00:41 UTC"
-  },
-  {
    "id": "J-DD015C",
    "type": "fix-broken-links",
    "section": "ebooks",
@@ -1780,6 +1806,22 @@
    "definition_of_done": "A draft (PDF and EPUB) built from cited material already on Cedwyn, every fact traceable to a catalogue record, passing the agent lint. Publishing and price are decided by the project lead.",
    "status": "open",
    "first_listed": "2026-10-26 22:15 UTC"
+  },
+  {
+   "id": "J-66DB26",
+   "type": "fix-broken-links",
+   "section": "nomenclature",
+   "branch": "the branch of that section",
+   "title": "2 broken internal link(s) on /nomenclature/",
+   "inputs": [
+    "/nomenclature/",
+    "/research/missing-records/mr-0058/",
+    "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/"
+   ],
+   "definition_of_done": "Every listed link opens a page (fixed, redirected, or removed with the text kept).",
+   "status": "closed",
+   "first_listed": "2026-11-01 00:41 UTC",
+   "closed": "2026-11-01 06:46 UTC"
   }
  ]
 }

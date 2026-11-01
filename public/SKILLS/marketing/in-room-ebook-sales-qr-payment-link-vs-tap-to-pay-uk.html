@@ -1,0 +1,96 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Selling the e-book in the room: QR payment link first, phone tap-to-pay as backup (UK, 2026) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Selling the e-book in the room: QR payment link first, phone tap-to-pay as backup (UK, 2026)"><link rel="alternate" type="text/markdown" href="in-room-ebook-sales-qr-payment-link-vs-tap-to-pay-uk.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Selling the e-book in the room: QR payment link first, phone tap-to-pay as backup (UK, 2026)</h1>
+<p>Topic: how to take money for a digital product at a talk, stall or walk, with no card reader to buy and the e-book delivered on the spot. Harvested 2026-11-01 (skills harvest ~02:45Z). Fees read from the providers' own UK pages this run.</p>
+<h2>The numbers (read this run)</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Fee (UK cards)</th>
+<th>On a £4.99 sale</th>
+<th>Hardware</th>
+<th>Delivery of the e-book</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stripe Payment Link on a QR (buyer pays on their own phone)</td>
+<td>1.5% + 20p (stripe.com)</td>
+<td>~27p (5.5%)</td>
+<td>none</td>
+<td>automatic: checkout email/redirect</td>
+</tr>
+<tr>
+<td>SumUp Tap to Pay (seller's phone takes the card)</td>
+<td>1.69%, no monthly fee; Tap to Pay "£0" to start (sumup.com compare page; comparecardfees.co.uk)</td>
+<td>~8p (1.7%)</td>
+<td>none (Air reader £39 + VAT optional)</td>
+<td>manual: you must hand over access</td>
+</tr>
+<tr>
+<td>Zettle / PayPal POS Tap to Pay</td>
+<td>1.75% "same rate... even American Express" (zettle.com)</td>
+<td>~9p</td>
+<td>none</td>
+<td>manual</td>
+</tr>
+<tr>
+<td>Square Tap to Pay</td>
+<td>1.75% (as stated on SumUp's comparison page)</td>
+<td>~9p</td>
+<td>none</td>
+<td>manual</td>
+</tr>
+<tr>
+<td>Stripe Tap to Pay</td>
+<td>needs the Terminal SDK in an app; not a no-code option for us (stripe.com)</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table></div>
+<p>Takeaway: at e-book prices the fixed 20p makes the payment link the dearest route per sale (about 3x tap-to-pay), but it is the only one that delivers the file by itself and lets 20 people pay at once instead of queueing at one phone.</p>
+<h2>Practitioner testimony</h2>
+<ul>
+<li>Tom Antion (via Author Training Programs, "Back of the Room Sales"): told he could not sell to an audience of 400, he put a book on every chair and referred to it through the talk; "more than half of the audience insisted on purchasing". One anecdote, not checked; a physical book on the chair is the mechanism, not the pitch.</li>
+<li>IngramSpark speaking guide: back-of-room table at the end, and "also mention online retailers for those who prefer ebooks" — the e-book is the overflow route, so make that route one scan.</li>
+<li>Same ATP piece: reading a specific passage that proves the book's value beat pitching every 30 minutes, which "the audience [may] take offense" at.</li>
+<li>Earlier skill files hold the honest base rate: no practitioner gave a scan or purchase rate per talk; one WI author had "yet to sell a book after a talk". Measure, do not assume.</li>
+</ul>
+<h2>How to do it</h2>
+<ol>
+<li><strong>Default: one QR, one payment link per venue.</strong> The link carries that venue's promotion code (see stripe-promo-codes-per-channel-utm-passthrough.md) so sales are counted per talk. The QR goes on the last slide, on the handout and on a table card. Leave the last slide up during questions.</li>
+<li><strong>Read a passage, then show the QR.</strong> One page from the book (a record, a map) that ends on a question the book answers. Then: "It is £x on your phone now; the QR is on the screen and on the sheet."</li>
+<li><strong>Backup for people without a smartphone or who prefer card: phone tap-to-pay.</strong> Install the SumUp (1.69%) or PayPal POS (1.75%) app, verify the account before the day (identity checks can take days), and test a £1 tap at home. UK contactless works with no PIN for most cards up to £100.</li>
+<li><strong>Deliver tap-to-pay sales the same evening.</strong> Write the buyer's email on a numbered slip (with the consent line in step 5) and send the download within 24 h, or hand over a printed download card with a single-use code if the shop supports pre-minted codes (check before printing). Never promise "instant" for this route.</li>
+<li><strong>Consent at the till.</strong> Use the e-mail only to deliver what they bought, unless they tick a separate, unticked box for news (UK GDPR Art. 6(1)(a) + PECR reg. 22, as set out in Seaty's UK event-organiser GDPR guide; Friends of the Earth groups guidance: a paper sheet must state that ticking the box means emails). ICO's own PECR page returned 503 from this box this run; its search snippet confirms the products-and-services soft opt-in is open to all organisations.</li>
+<li><strong>Ask the host first.</strong> Some venues (libraries, churches, u3a) do not allow selling in the room. Then the QR stays on the slide as "more in the book", with no till.</li>
+<li><strong>Count within 7 days:</strong> attendees, QR scans (UTM), link sales, tap sales. Keep a venue if it hits the repeat bar already set in the talk files (20 attendees, 5 sign-ups or 1 sale).</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Every talk route already in the index (societies, u3a, Probus, Rotary, libraries, the walk) gets one payment link with its own promotion code, plus a QR on the shared deck's last slide and on the A5 handout. Price is the shop's existing price; no new price.</li>
+<li>Tap-to-pay is a PROPOSAL for the owner: a SumUp or PayPal POS account is in his name with his ID, so it needs his GO and his sign-up. No spend: no reader bought.</li>
+<li>Delivery for tap-to-pay buyers: check if the existing access-code box (movie/e-book pages) can take pre-minted single-use codes; if yes, print 20 codes per talk on download cards; if no, deliver by email within 24 h from the drafts flow (owner sends).</li>
+<li>Public wording on the slide/handout must avoid the banned words and never name the owner; e.g. "Read the records yourself: the full e-book, £x, scan here."</li>
+<li>Log each talk's numbers in the project workspace and the HubSpot talk task.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>stripe.com (1.5% + 20p UK cards; read)</li>
+<li>stripe.com (Terminal SDK required; read)</li>
+<li>sumup.com (1.69% vs 1.75%; Tap to Pay £0; read)</li>
+<li>comparecardfees.co.uk (1.69%, Air £39 + VAT, payout 1-2 days; read)</li>
+<li>zettle.com (1.75%, Tap to Pay via PayPal POS app; read)</li>
+<li>authortrainingprograms.com (Antion anecdote; read)</li>
+<li>ingramspark.com (read)</li>
+<li>seaty.co.uk (read)</li>
+<li>groups.friendsoftheearth.uk (paper sign-up sheet rule; read)</li>
+<li>ico.org.uk (503 this run; snippet only)</li>
+</ul><p class="raw">Raw Markdown: <a href="in-room-ebook-sales-qr-payment-link-vs-tap-to-pay-uk.md">in-room-ebook-sales-qr-payment-link-vs-tap-to-pay-uk.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

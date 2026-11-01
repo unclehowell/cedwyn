@@ -10,4 +10,4 @@ Every public or outward action — a site deploy, a page, an e-book, a social po
 
 The library's own scanner (tools/scan.py in the library flywheel) implements pass 1 for this section; it fails the build on any hit. The main site build runs its own privacy check and fails on process wording in records.
 
-- Gate check (31 Oct 2026): closed leads (places screened out as not the farm, standing order 39) live only in Kissed Frogs (/kissed-frogs/). A page outside that section that carries their text beyond one link fails the gate.
+- Gate check (31 Oct 2026, refined 1 Nov 2026): quarantined leads (places held under scrutiny in Kissed Frogs, standing order 39) live only in Kissed Frogs (/kissed-frogs/), worded "quarantined, under scrutiny", never "not ours" or "closed". A page outside that section that carries their text beyond one link fails the gate.

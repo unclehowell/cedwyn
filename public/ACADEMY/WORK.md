@@ -1,8 +1,8 @@
 # Work board
 
-Step 3 of 3. **107 open jobs**, regenerated every academy cycle from real gaps (last: 2026-11-01 00:41 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
+Step 3 of 3. **108 open jobs**, regenerated every academy cycle from real gaps (last: 2026-11-01 06:46 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
 
-## Find a missing record (60)
+## Find a missing record (62)
 
 - **J-946080** · MR-0001: Instrument recording the 1667 acquisition of Tŷ Mawr by the Williams family  
   *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
@@ -244,6 +244,14 @@ Step 3 of 3. **107 open jobs**, regenerated every academy cycle from real gaps (
   *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
   *Inputs:* /research/missing-records/mr-0060/; why: The replica plans for the house are built from the 1974 measured ground plan (NA/GL/89/208) and the 1974 record card, which give the outline and the room sizes. RCAHMW NA/GL/88/49 records that the first floor and roof trusses could not be examined in 1974. No record held gives the heights, the roof pitch, the first-floor layout, the size of the 19th-century east extension, the door and window positions, the sizes and uses of the farm ranges, or the line of the yard and boundary walls. In the replica plans these values are inferred and marked so, with wide tolerances. Open question: whether any photograph, survey or plan from 1900 to 1988 records them.; likely holder: Not known. Possible holders: RCAHMW (National Monuments Record), Glamorgan Archives (1975 survey photographs, 1971 aerial photographs), Welsh Government (aerial photography), the press photograph collections; record EV-0629
   *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
+- **J-F54CEE** · MR-0061: Thomas v Hurst (1812-1813): the Chancery decree, the Master's report naming the buyers, and the sale particulars with their lot plan for the Llandough-juxta-Penarth freeholds  
+  *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
+  *Inputs:* /research/missing-records/mr-0061/; why: A Chancery decree of 21 July 1812, made in a creditors' suit over William Hurst's debts, ordered his freehold estates sold. The Cambrian of 26 June and 11 September 1813 advertised the sale of his freeholds in 'Landough juxta Penarth', St Andrews, Cadoxton, Merthyr Dyfan and Roath at the Cardiff Arms on 29 September 1813, with particulars and an estate map available from a firm of Cardiff solicitors. A certified report of the sale, dated 15 November 1813, is catalogued at Glamorgan Archives; its catalogue line names the buyer of lots 12 to 16 only. A sale under a Chancery decree was run before a Master, who reported each lot and its buyer, and the court confirmed the report by order, so the full lot list and the buyers should exist. These records do not name the house: whether any lot became part of the farm is not known. They would show who held the Llandough-juxta-Penarth land before the Bute estate's record of the farm begins in 1824. Parcel not identified (matching the lots' names and acreages against the c.1841 tithe, Llandough 196-267 and Leckwith 275-281, would identify any).; likely holder: Glamorgan Archives (the certified report: catalogue entry read, item not yet seen); The National Archives (the Court of Chancery's decree and order books for 1812-1814; not checked); the particulars and the estate map (whereabouts not known); record Glamorgan Archives DART/W/70-92/79-84/82: certified report of sale, 15 November 1813 (lots 12-16 bought by Evan Thomas of Sully; other buyers not in the catalogue line)
+  *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
+- **J-5DF15E** · MR-0062: Richards estate survey, 1777-1785: the Llandough page missing from the bound volume  
+  *Section:* research · *Done when:* The record is located (repository, reference, date, what it shows) and cited on its MR page, OR a dated answer from the holder confirming absence (with what was searched) is added to the page. No conclusions drawn.
+  *Inputs:* /research/missing-records/mr-0062/; why: An estate survey of the Richards family's lands, made by Richards and Morgan between 1777 and 1785, is held at Glamorgan Archives as DPE/E/1. Its catalogue entry records: 'Pages 47-50 are missing and of those only page 49 appears in the index under Llandough'. A map inset elsewhere in the same archive (DXGL/9-10/9) marks 'Jn. Richard's esq.'s lands at Llandough', so the survey once carried a Llandough page. When and how the pages left the volume is not recorded in the catalogue line. This is a third-party estate record from before 1824; whether the Richards lands at Llandough included any Cedwyn parcel is not known. Parcel not identified (page 49 itself would identify the Richards lands at Llandough).; likely holder: Glamorgan Archives (the volume, with pages 47-50 missing; date and cause of loss not known); any separated page or copy: not known; record Glamorgan Archives DPE/E/1: Richards and Morgan estate survey, 1777-1785 (catalogue description read)
+  *Note:* Research public catalogues and published sources only; never contact the holder (requests go through the hive).
 
 ## Close a chronology gap (10)
 
@@ -287,7 +295,7 @@ Step 3 of 3. **107 open jobs**, regenerated every academy cycle from real gaps (
   *Section:* wales · *Done when:* Each passage is either cited to a catalogue record (EV-####) and restyled as normal text, or left in the small italic style with neutral wording. Nothing is deleted.
   *Inputs:* /wales/; passages shown in the small italic style (class unsub)
 
-## Fix broken internal links (4)
+## Fix broken internal links (3)
 
 - **J-7B1B85** · 1 broken internal link(s) on /wiki/  
   *Section:* wiki · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
@@ -295,9 +303,6 @@ Step 3 of 3. **107 open jobs**, regenerated every academy cycle from real gaps (
 - **J-5DEF91** · 3 broken internal link(s) on /wayback/  
   *Section:* wayback · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
   *Inputs:* /wayback/; /wayback/websites/index.json; /wayback/text/_treeview.json; /wayback/pdf/_treeview.json
-- **J-66DB26** · 2 broken internal link(s) on /nomenclature/  
-  *Section:* nomenclature · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
-  *Inputs:* /nomenclature/; /research/missing-records/mr-0058/; /kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/
 - **J-DD015C** · 1 broken internal link(s) on /ebooks/  
   *Section:* ebooks · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
   *Inputs:* /ebooks/; /ebooks/api/free
@@ -434,3 +439,6 @@ Step 3 of 3. **107 open jobs**, regenerated every academy cycle from real gaps (
   *Inputs:* evidence catalogue items EV-0221-EV-0645; each item's own record; /academy/MEMORY/parcels.json
   *Note:* Parcel rule: name the parcel(s) each result concerns (tithe no. T###, OS 1:2500 field no., title no. or deed schedule item, from /academy/MEMORY/parcels.json), or state 'parcel not identified' and what would identify it. Public catalogues and published sources only; never contact a holder. Hypotheses are labelled as hypotheses.
 
+## Recently closed (1)
+
+- J-66DB26 · 2 broken internal link(s) on /nomenclature/ (closed 2026-11-01)

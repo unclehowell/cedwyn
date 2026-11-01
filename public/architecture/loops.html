@@ -5,7 +5,7 @@ a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:
 pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
 th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
 blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../index.html"><b>Agent library</b></a><a href="../SOUL.html">Soul</a><a href="../ONBOARDING.html">Onboarding</a><a href="../ACADEMY/CHECK.html">Check</a><a href="../ACADEMY/WORK.html">Work</a><a href="../MEMORY/index.html">Memory</a><a href="../SKILLS/index.html">Skills</a><a href="../FLYWHEELS/index.html">Flywheels</a><a href="../architecture/index.html">Architecture</a><a href="../HARNESS/index.html">Harness</a><a href="../LESSONS.html">Lessons</a></nav><main><h1>Maintenance loops</h1>
-<p>30 self-running loops keep the site and its records maintained. Each runs on a schedule, spawns at most one worker at a time, has fixed inputs and outputs, and works inside guardrails. Full runner-level detail for most of them is in <a href="../FLYWHEELS/index.html">FLYWHEELS</a>.</p>
+<p>32 self-running loops keep the site and its records maintained. Each runs on a schedule, spawns at most one worker at a time, has fixed inputs and outputs, and works inside guardrails. Full runner-level detail for most of them is in <a href="../FLYWHEELS/index.html">FLYWHEELS</a>.</p>
 <h2>The autoresearch pattern</h2>
 <p>Shape: <strong>hypothesis -&gt; smallest change -&gt; measure -&gt; keep or discard</strong>.</p>
 <ul>
@@ -129,8 +129,8 @@ blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}<
 <p><strong>Cadence:</strong> every 4 hours<br />
 <strong>What it does:</strong> Small one-hypothesis experiments against a fixed metric (the three limbs of the legal test for reopening a judgment) to rank grounds for reopening the 1987 judgment.<br />
 <strong>Inputs:</strong> the grounds register; the results log; the newest research cycle<br />
-<strong>Outputs:</strong> 3–6 experiments kept or discarded; score changes; the programme highlight report section on prospective triggers (only when the top three change)<br />
-<strong>Areas it touches:</strong> /projects/ (highlight report); research findings<br />
+<strong>Outputs:</strong> 3–6 experiments kept or discarded; score changes; the programme highlight report section on prospective triggers (only when the top three change); the Mr Wolf leaderboard row for a ground whose limb score changed<br />
+<strong>Areas it touches:</strong> /projects/ (highlight report); research findings; /mr-wolf/ (leaderboard of reopen grounds, 40 of 59)<br />
 <strong>Guardrails:</strong> the metric is fixed; never changed to make a result look better; labelled as prospective, never a finding of any court; read-only research; one worker at a time (duplicate check by goal prefix).
   Runner detail: <a href="../FLYWHEELS/reopen-loop.html">Reopen-the-case autoresearch loop</a></p>
 <p><a id="research-cycle"></a></p>
@@ -201,7 +201,7 @@ blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}<
 <strong>Inputs:</strong> the scene and shot packages in the public film-studio repository; the script and scene list; the film's own daily budget<br />
 <strong>Outputs:</strong> one scene with subtitles; the next door opened on the documentary page; the script kept ten frames ahead<br />
 <strong>Areas it touches:</strong> /documentary/ (also /movie/ and /documentry)<br />
-<strong>Guardrails:</strong> strict date order; no narrator and no fourth wall from scene 3; reconstruction only; no likeness of real family members; a blocking pre-publish quality gate: 24 fps end to end, cut from original renders, two-pass encode, -16 LUFS, frames of every talking shot looked at; spend only within the film's own daily budget; waits and skips are logged as problems; one unit at a time: take the next unit not done, do that step, store, update the manifest, commit, then pick again; media are repository release files with content ids; one worker at a time (duplicate check by goal prefix).
+<strong>Guardrails:</strong> strict date order; no narrator and no fourth wall from scene 3; reconstruction only; no likeness of real family members; a blocking pre-publish quality gate: 24 fps end to end, cut from original renders, two-pass encode, -16 LUFS, frames of every talking shot looked at; spend only within the film's own daily budget; waits and skips are logged as problems; one unit at a time: take the next unit not done, do that step, store, update the manifest, commit, then pick again; media are repository release files with content ids; the chronology gate flags any gap over about 150 years; in-between scenes show only records of the estate's own ground, else a documented-silence card; twelve files per scene: three native-language performances times four subtitle states, subtitles burned in at build; one worker at a time (duplicate check by goal prefix).
   Runner detail: <a href="../FLYWHEELS/movie.html">Cedwyn film — scene run</a></p>
 <p><a id="agent-library"></a></p>
 <h3>Agent library cycle</h3>
@@ -292,6 +292,22 @@ blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}<
 <strong>Areas it touches:</strong> one webapp per loop; main only for data/core, data/views, tools and workflow<br />
 <strong>Guardrails:</strong> claim the webapp first; never work one another agent holds; discard any change that breaks a gate; strangler fig: static pages stay until parity is proven; one-line rollback; one worker at a time (duplicate check by goal prefix).
   Runner detail: <a href="../FLYWHEELS/webapp-migration.html">Data-driven webapp migration</a></p>
+<p><a id="version-standard"></a></p>
+<h3>Version standard</h3>
+<p><strong>Cadence:</strong> every 6 hours<br />
+<strong>What it does:</strong> Audits every webapp and the live site against the version ladder and version picker rule (standing order 47) and fixes small drift: wording, a missing (i) changelog icon, a wrongly computed step price, a missing changelog row.<br />
+<strong>Inputs:</strong> the version standard document on main; each webapp branch; the live site at 390 px<br />
+<strong>Outputs:</strong> small fixes on the owning branch; a log of findings<br />
+<strong>Areas it touches:</strong> every webapp with versioned media<br />
+<strong>Guardrails:</strong> never invents a price; prices come from the store's data; never touches checkout code; owner-edited files get a patch, not an overwrite; never starts or cancels a site build while one runs; one worker at a time (duplicate check by goal prefix).</p>
+<p><a id="releases"></a></p>
+<h3>Releases</h3>
+<p><strong>Cadence:</strong> after every change that goes live<br />
+<strong>What it does:</strong> Cuts a tagged release with a new semantic version for every branch or webapp change, at the commit that is actually live (standing order 44).<br />
+<strong>Inputs:</strong> the branch's CHANGELOG entry; the site build's served stamp and section pins<br />
+<strong>Outputs:</strong> an annotated tag named <branch>-vX.Y.Z and a release with neutral notes; an audit line per release<br />
+<strong>Areas it touches:</strong> every branch of the repository<br />
+<strong>Guardrails:</strong> never tags queued or unbuilt work; it is listed as the next release; a pending hosting preview record is not a deploy; check the build run, the production deploys and the served stamp; release notes are public: same wording rules as the site; one worker at a time (duplicate check by goal prefix).</p>
 <h2>Also in the flywheel list</h2>
 <ul>
 <li><a href="../FLYWHEELS/morning-brief.html">Morning brief</a>: daily 08:00 UK; Tell the project lead what finished overnight, mail that needs him, today's calendar and deadlines due soon.</li>

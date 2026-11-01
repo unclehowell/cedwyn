@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Versioned e-book: what a purchase includes (update entitlement + keep-forever) · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Versioned e-book: what a purchase includes (update entitlement + keep-forever)"><link rel="alternate" type="text/markdown" href="versioned-ebook-update-entitlement-keep-forever.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Versioned e-book: what a purchase includes (update entitlement + keep-forever)</h1>
+<p>Read 1 Nov 2026. For the Cedwyn version ladder (latest paid; each earlier version £4.99 less; v0.0.1 free).</p>
+<h2>The practitioner pattern</h2>
+<p>Sellers of versioned products state, at the point of sale, exactly which future versions a purchase covers. Three settled models:</p>
+<ol>
+<li><strong>Free updates for the life of the edition; a new edition is a new purchase.</strong>
+   Pragmatic Bookshelf FAQ (pragprog.com, page read 1 Nov 2026): "When you buy an ebook from us, you're entitled to free updates for the lifetime of that edition of the book. If we create a new edition, then that will be a separate purchase." The same FAQ: beta-book buyers get "the final edition eBook for free for the lifetime of that edition."</li>
+<li><strong>Buy early, get the final free</strong> (early-access).
+   Manning MEAP (manning.com, search snippet 1 Nov 2026): "you read a book chapter-by-chapter while it's being written and get the final eBook as soon as it's finished."</li>
+<li><strong>Keep the version you paid for forever; updates for a fixed period.</strong>
+   Sketch pricing (sketch.com, snippet): "Yours to keep, forever. $120 per seat, includes one year of updates." JetBrains perpetual fallback licence (sales.jetbrains.com, snippet): you can "use a software version indefinitely", but newer versions need a new purchase or renewal.</li>
+</ol>
+<p>What they share: the buyer never loses what they bought, and the page states in one line what is and isn't included. Where this is unclear, buyers hesitate. A buyer who fears that next month's version makes today's purchase worthless delays the purchase. Our reading: that matters for Cedwyn, where versions ship often.</p>
+<h2>How to do it</h2>
+<ol>
+<li>Pick one of the three models and write it as <strong>one line</strong> under the price on every product card and checkout: e.g. "Includes every correction to v0.3 free. You keep this version for good."</li>
+<li>Map it to semver:
+   - <strong>PATCH</strong> (x.y.Z: typos, fixes) is always free to existing buyers.
+   - <strong>MINOR/MAJOR</strong> (new chapters, new evidence) is a new version on the ladder.</li>
+<li><strong>Keep-forever:</strong> a buyer's download link for the version they bought must never break when a newer version ships. Store files by version (<code>&lt;book&gt;.v0.3.0.pdf</code>), never overwrite them.</li>
+<li><strong>Owner upgrade price</strong> (optional; this is a decision, not a default): an owner of an earlier paid version upgrades to the latest for <em>latest price minus what they paid</em>. This follows the common software "upgrade pricing" practice, which gives existing users a discount "out of respect for the money they have already" paid (r/apple thread on Mac App Store paid upgrades, snippet).</li>
+<li>Put the entitlement line in the changelog modal footer too, so the "(i)" table answers "do I get this if I already bought?"</li>
+<li>Test: track checkouts per card for 14 days with and without the line. The A/B stopping rule is in sequential-ab-test skill files already in the index.</li>
+</ol>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>The ladder's price for any version is computed (4.99 × steps above v0.0.1). The entitlement line rides beside it in the gate dropdown and on /ebooks/ cards: "Includes free corrections to this version; you keep it for good."</li>
+<li>PATCH releases of a paid version are free re-downloads for its buyers. Only MINOR/MAJOR bumps add a ladder step. That stops the ladder from charging for a typo fix.</li>
+<li>Version files stay addressable by semver (already the movie convention <code>movie/&lt;id&gt;/&lt;id&gt;.&lt;lang&gt;.v&lt;semver&gt;.webm</code>). Use the same for PDFs so old purchases never break.</li>
+<li><strong>PROPOSAL</strong> (owner decision, logged, not built): owner upgrade price = latest − paid, applied through a Stripe coupon or access code. No new payment code.</li>
+<li>Copy rules hold: "preview" for the free cut, whole price with the page count, no per-page figure.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>pragprog.com (page read 1 Nov 2026; quoted)</li>
+<li>manning.com (search snippet)</li>
+<li>sketch.com (search snippet)</li>
+<li>sales.jetbrains.com (search snippet)</li>
+<li>reddit.com (search snippet; practitioner opinion)</li>
+</ul><p class="raw">Raw Markdown: <a href="versioned-ebook-update-entitlement-keep-forever.md">versioned-ebook-update-entitlement-keep-forever.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>

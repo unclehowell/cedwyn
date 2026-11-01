@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Naming the free tier of a book: &quot;preview&quot; or &quot;sample&quot;, never &quot;free version&quot; · Agent library</title><meta name="description" content="Cedwyn agent library for AI agents: Naming the free tier of a book: &quot;preview&quot; or &quot;sample&quot;, never &quot;free version&quot;"><link rel="alternate" type="text/markdown" href="naming-free-tier-preview-sample-not-version.md"><style>body{margin:0;font:16px/1.55 Georgia,'Times New Roman',serif;color:#1d1b16;background:#faf8f3}
+main{max-width:760px;margin:0 auto;padding:16px 16px 48px}nav.al{font:13px/1.4 system-ui,sans-serif;padding:10px 16px;background:#24301f;color:#f3efe2}
+nav.al a{color:#f3efe2;margin-right:12px;text-decoration:none;display:inline-block;padding:2px 0}h1{font-size:1.6em;line-height:1.2}h2{font-size:1.25em;margin-top:1.6em}
+a{color:#2f5d34}code,pre{font:13px/1.45 ui-monospace,Menlo,monospace;background:#efeadf;border-radius:3px}code{padding:1px 3px;word-break:break-word}
+pre{padding:10px;overflow-x:auto;white-space:pre-wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{border:1px solid #d6cfbe;padding:6px 8px;vertical-align:top;text-align:left}th{background:#efeadf}.raw{font:12px system-ui,sans-serif;color:#6b6656;margin-top:32px}
+blockquote{border-left:3px solid #2f5d34;margin:0;padding-left:12px;color:#444}</style></head><body><nav class="al"><a href="../../index.html"><b>Agent library</b></a><a href="../../SOUL.html">Soul</a><a href="../../ONBOARDING.html">Onboarding</a><a href="../../ACADEMY/CHECK.html">Check</a><a href="../../ACADEMY/WORK.html">Work</a><a href="../../MEMORY/index.html">Memory</a><a href="../../SKILLS/index.html">Skills</a><a href="../../FLYWHEELS/index.html">Flywheels</a><a href="../../architecture/index.html">Architecture</a><a href="../../HARNESS/index.html">Harness</a><a href="../../LESSONS.html">Lessons</a></nav><main><h1>Naming the free tier of a book: "preview" or "sample", never "free version"</h1>
+<p>Skills harvest 2026-11-01 ~01:30Z. Topic: offer framing and labels. Checked against free-vs-paid-edition-comparison-table-explicit-differences.md (states the difference in a table) and price-framing-aggregate-vs-per-page-low-price-ebooks.md (price wording). This file is only the word on the free item and the button.</p>
+<h2>What the sources show (read 1 Nov 2026 unless marked)</h2>
+<ul>
+<li><strong>Every big shelf calls the free excerpt a "sample" or "preview", and none calls it a "version".</strong></li>
+<li>Amazon: "Read sample" / "Send a free sample" (KDP help G200644250; Amazon forum threads).</li>
+<li>Apple Books: "Get sample" (AppleInsider guide, snippet).</li>
+<li>Google Play Books: "Free Sample" button (DAISY Consortium app guide, snippet; Google blog "start reading a free sample").</li>
+<li>Kobo: "Preview now", "Some books do not offer a free preview" (Kobo help article, snippet).</li>
+<li>Leanpub: "Read Free Sample" (help centre, read).
+  So readers have years of training: "sample" and "preview" mean part of the book.</li>
+<li><strong>"Free version" means something else to most people:</strong> a complete product with limits. In software it is the freemium tier you can use for ever. RevenueCat's winning onboarding copy ("This product is free and will always be free, but ... try the best version of it") shows the word "version" promises a whole, working thing (Sub Club, read 1 Nov). Calling a 20-page excerpt "Free v0.0.1" therefore tells the reader they have the book, and the £4.99 one reads as an update. That is what sales-fix run 43 found (4 of 9 cards, 0 checkouts in 7 days).</li>
+<li><strong>Labels should use the user's words</strong> (NN/g heuristic 2, "match between the system and the real world") and should state differences explicitly (NN/g, see the comparison-table file). A count makes it concrete: "20 of 404 pages" needs no glossary.</li>
+</ul>
+<h2>The rule</h2>
+<ul>
+<li>Free item: <strong>"Free preview"</strong>, always with the count: "Free preview: 20 of 404 pages". Button: "Read the free preview". "Sample" is equally clear. We keep "preview" because the copy rules and the shipped cards already use it, and switching words now costs consistency for no proven gain.</li>
+<li>Paid item: <strong>"Full edition"</strong> with the whole price and the page count: "Full edition, 404 pages, £4.99".</li>
+<li>Never: "free version", "free edition", "lite", "update", "upgrade" (upgrade implies they already own the book), or "v0.0.1" on its own.</li>
+<li>Version numbers are allowed as a secondary label, after the plain word: "v0.0.1, free preview (20 of 404 pages)". This satisfies the project lead's "select a version" dropdown (m:2c93759d) without the version number doing the explaining.</li>
+<li>Welsh and Spanish: use the plain store words, "rhagolwg am ddim" / "vista previa gratuita" (or "muestra gratuita"), and "argraffiad llawn" / "edición completa". Have a native speaker check these before they ship; these wordings have not been checked.</li>
+</ul>
+<h2>Don't A/B this (yet)</h2>
+<p>At about 9 downloads a day and 0 checkouts, a preview-vs-sample test would need thousands of visitors per arm (check with <code>tools/ab_stats.py samplesize</code>). The ambiguous label is a clarity defect, not a hypothesis, so fix it everywhere at once and measure free-to-checkout before and after.</p>
+<h2>How we apply it to Cedwyn</h2>
+<ul>
+<li>Sweep every surface for "free version"/"Free v0.0.1": /ebooks/ cards (PR #94), book pages, the PDFs' own title pages and footers, the Gumroad/Stripe product names (Gumroad text only the project lead can edit, so list it for him), the YouTube/Instagram/Facebook descriptions and bios, Mailchimp signup success text, and the version-gate dropdown.</li>
+<li>Replace each with "Free preview: N of M pages" and "Full edition, M pages, £4.99". Leave patches in the project workspace where the repair freeze applies.</li>
+<li>Version gate (worker started 01:24Z): dropdown option labels exactly as above, preselect the free preview, and bar copy "Full edition, M pages, £4.99".</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>kdp.amazon.com ("Read sample"); uk.amazonforum.com ("Send a Free Sample", snippet)</li>
+<li>help.kobo.com (snippet)</li>
+<li>daisy.org (snippet); appleinsider.com (snippet)</li>
+<li>help.leanpub.com (read)</li>
+<li>revenuecat.com (read)</li>
+<li>nngroup.com (heuristic 2, known; not re-read this run)</li>
+</ul><p class="raw">Raw Markdown: <a href="naming-free-tier-preview-sample-not-version.md">naming-free-tier-preview-sample-not-version.md</a> · version and changes: <a href="../../CHANGELOG.html">changelog</a> · machine index: <a href="../../agents.json">agents.json</a></p></main></body></html>
