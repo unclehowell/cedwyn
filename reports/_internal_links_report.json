@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 9160,
+  "pages_scanned": 9166,
   "references_checked": {
-    "resource": 206998,
-    "nav": 471250
+    "resource": 207071,
+    "nav": 471530
   },
-  "database_backed_paths": 7358,
-  "unique_missing_destinations": 5325,
-  "missing_references": 54052,
-  "missing_navigation_references": 38458,
-  "missing_resource_references": 15594,
+  "database_backed_paths": 7354,
+  "unique_missing_destinations": 5380,
+  "missing_references": 54141,
+  "missing_navigation_references": 38535,
+  "missing_resource_references": 15606,
   "unique_broken_fragments": 1819,
   "broken_fragment_references": 3377,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 9128,
+      "references": 9134,
       "examples": [
         {
           "from": "/",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 9125,
+      "references": 9131,
       "examples": [
         {
           "from": "/",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6530,
+      "references": 6536,
       "examples": [
         {
           "from": "/review/",
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6530,
+      "references": 6536,
       "examples": [
         {
           "from": "/review/",
@@ -154,7 +154,7 @@
     {
       "kind": "nav",
       "path": "/r/strip-ev",
-      "references": 1731,
+      "references": 1732,
       "examples": [
         {
           "from": "/research/evidence-chain/",
@@ -235,7 +235,7 @@
     {
       "kind": "nav",
       "path": "/r/strip-art",
-      "references": 632,
+      "references": 637,
       "examples": [
         {
           "from": "/research/the-tightrope/",
@@ -881,33 +881,6 @@
       ]
     },
     {
-      "kind": "nav",
-      "path": "/research/>*.html",
-      "references": 34,
-      "examples": [
-        {
-          "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        },
-        {
-          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
-          "attribute": "a[href]",
-          "url": "/research/%3E%2A.html"
-        }
-      ]
-    },
-    {
       "kind": "resource",
       "path": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/assets/img/user1-128x128.jpg",
       "references": 33,
@@ -931,6 +904,33 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_index2.html",
           "attribute": "img[src]",
           "url": "./assets/img/user1-128x128.jpg"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/research/>*.html",
+      "references": 33,
+      "examples": [
+        {
+          "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0049-mary-williams-plea-ownership-pleadings/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0108-south-wales-echo-bp-demolition-anger/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
+        },
+        {
+          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
+          "attribute": "a[href]",
+          "url": "/research/%3E%2A.html"
         }
       ]
     },
