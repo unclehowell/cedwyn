@@ -29,3 +29,10 @@ details{margin:8px 0}summary{cursor:pointer;font:14px system-ui,sans-serif;color
 footer.fa-foot{margin-top:30px;font:13px system-ui,sans-serif;color:var(--mute)}
 a{color:var(--acc)}
 @media (min-width:700px){.fa-sum{grid-template-columns:1fr 1fr}}
+
+.fa-case h3{margin:1.4em 0 .4em;font-size:1.05rem}.fa-case h4{margin:.8em 0 .3em;font-size:.95rem}
+.fa-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}.fa-tl td{vertical-align:top;font-size:.85rem}.fa-tl q{font-style:italic}
+.fa-note{font-size:.85rem;color:#5b5346}.fa-tag{display:inline-block;font-size:.72rem;padding:0 .4em;border:1px solid #b9a77f;border-radius:3px;margin-left:.3em;white-space:nowrap}
+.fa-liab strong{text-transform:uppercase;letter-spacing:.03em}.fa-liab-strong strong{color:#8a2b0f}.fa-liab-some strong{color:#7a5a00}.fa-liab-none strong{color:#3f5d3a}
+.fa-dl dt{font-weight:600;margin-top:.5em}.fa-dl dd{margin:0 0 .2em}
+.fa-glance{width:100%;border-collapse:collapse;font-size:.82rem}.fa-glance th,.fa-glance td{border-bottom:1px solid #e3d9c4;padding:.3em .35em;text-align:left;vertical-align:top}
