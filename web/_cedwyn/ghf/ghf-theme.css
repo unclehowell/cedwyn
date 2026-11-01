@@ -20,6 +20,9 @@ html[data-ghf-native=auto][data-ghf-mode=day],html[data-ghf-native=auto][data-gh
 html.ghf-inv{filter:invert(1) hue-rotate(180deg)}:where(html.ghf-inv[data-ghf-native=light]){background-color:#fff}:where(html.ghf-inv[data-ghf-native=dark]){background-color:#000}
 html.ghf-inv :is(img,video,canvas,iframe,embed,object,svg image,.ghf-ui,.ghf-bgimg,[data-ghf-keep]){filter:invert(1) hue-rotate(180deg)}
 html.ghf-inv :is(.ghf-ui,.ghf-bgimg,[data-ghf-keep]) :is(img,video,canvas,iframe,embed,object,svg image,.ghf-ui,.ghf-bgimg,[data-ghf-keep]){filter:none}
+/* v2.1.20 (1 Nov 2026): one plain night for every inverted light page (its body tint is not carried into the dark), and a tiled
+   paper texture behind text (.ghf-tex, marked by basecamp.js) is dropped at night so the text stays light on black */
+html.ghf-inv[data-ghf-native=light] body{background-color:#fff!important}html.ghf-inv .ghf-tex{background-image:none!important}
 html[data-ghf-native=dark]:not(.ghf-inv),html[data-ghf-native=dark]:not(.ghf-inv) body{background-color:#000!important}
 html[data-ghf-native=light]:not(.ghf-inv),html[data-ghf-native=light]:not(.ghf-inv) body{background-color:#fff}
 /* type: one family everywhere; headings thin, uppercase, tracked */
