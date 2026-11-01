@@ -21,8 +21,9 @@ Prices, checkout links and utm parameters are copied from the page as they are; 
 import json, html, pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.3.0'
-VERSIONS = [('1.3.0', '1 Nov 2026', 'One plain drop-down: "Select a version" placeholder, no label above, nothing preselected, nothing under it; choosing acts at once; (i) version table'),
+VERSION = '1.3.1'
+VERSIONS = [('1.3.1', '1 Nov 2026', 'The offer line (what the paid version buys against the free one) moves from under the drop-down to the card text under the hook; words unchanged'),
+            ('1.3.0', '1 Nov 2026', 'One plain drop-down: "Select a version" placeholder, no label above, nothing preselected, nothing under it; choosing acts at once; (i) version table'),
             ('1.2.1', '30 Oct 2026', 'Select a version label; price in each option'),
             ('1.2.0', '30 Oct 2026', 'Header, shelf, then questions: book details in an info modal per title; bundle card on the shelf'),
             ('1.1.0', '27 Oct 2026', 'Poster-card shelf; cover opens the free edition; titles link only to a book’s own page'),
@@ -180,6 +181,9 @@ def tidy(t, D):
     t = re.sub(r'(<select class="sv-sel"[^>]*>)(.*?)(?=</select>)', _ph, t, flags=re.S)
     t = re.sub(r'(<div class="sv-row">\s*<select class="sv-sel".*?</select>)\s*<a class="sv-go"[^>]*>.*?</a>', r'\1', t, flags=re.S)
     t = re.sub(r'(<div class="sv-pick"(?:(?!</li>).)*?)<a class="sv-free"[^>]*>.*?</a>', r'\1', t, flags=re.S)
+    # 1.3.1 (1 Nov 2026, version standard run): nothing sits under the drop-down (§2a), so the offer line (sales-fix sf43, "£4.99: the
+    # full book, N pages. Free: …") moves up to the card text, straight under the hook. Words unchanged. Idempotent.
+    t = re.sub(r'(<p class="sh-hook">.*?</p>)((?:(?!</li>).)*?)(<p class="sh-cmp">.*?</p>)', r'\1\3\2', t, flags=re.S)
     t = re.sub(r'(<div class="sv-row">\s*<select class="sv-sel".*?</select>)(?!<button type="button" class="sv-vi")',
                r'\1<button type="button" class="sv-vi" aria-label="Version history" aria-haspopup="dialog">i</button>', t, flags=re.S)
     if 'id="sh-sv-js"' not in t:

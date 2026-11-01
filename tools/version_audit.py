@@ -5,7 +5,8 @@ Checks web/_cedwyn/version-gate.json against the standard and data/ebooks.json; 
 --fix corrects minor drift in the manifest only (order, stray per-version prices, latest price from data/ebooks.json).
 Selector UI (standard 2a, 1.1.0): flags label and sub-text drift in the gate's code and the documentary page (reported, never auto-fixed).
 Exit 0 = clean (or every finding fixed), 1 = findings left. 1.0.0 (2026-11-01); 1.1.0 (2026-11-01) Selector UI checks; 1.1.1 (2026-11-01) documentary modal
-(1.9.0+) rules replace the retired play-prompt rules, shelf cards need the (i) beside the drop-down; 1.1.2 (2026-11-01) /learn/ questionnaires picker checked live - Cedwyn editors"""
+(1.9.0+) rules replace the retired play-prompt rules, shelf cards need the (i) beside the drop-down; 1.1.2 (2026-11-01) /learn/ questionnaires picker checked live;
+1.1.3 (2026-11-01) a shelf offer line (sh-cmp) below the drop-down counts as a line under it - Cedwyn editors"""
 import json, re, sys, os, urllib.request
 SITE = "https://cedwyn.bucklerfamily.estate"
 STEP = 4.99
@@ -111,7 +112,7 @@ def main(argv):
                 card = m.group(0)   # Selector UI (2a) in the shelf card's own picker
                 if re.search(r'<label[^>]*class="sv-lab"', card): ui_drift.setdefault("a visible 'Select a version' label above the drop-down", []).append(k)
                 if re.search(r'<select class="sv-sel"[^>]*>(?:(?!</select>).)*<option(?![^>]*value="")[^>]*\bselected\b', card, re.S): ui_drift.setdefault("a version preselected (no 'Select a version' placeholder)", []).append(k)
-                if re.search(r'class="sv-go"|class="sv-free"', card): ui_drift.setdefault("a button or link line under the drop-down", []).append(k)
+                if re.search(r'class="sv-go"|class="sv-free"', card) or re.search(r'</select>(?:(?!</li>).)*class="sh-cmp"', card, re.S): ui_drift.setdefault("a button or link line under the drop-down", []).append(k)
                 if 'class="sv-sel"' in card and 'class="sv-vi"' not in card: ui_drift.setdefault("no (i) version-table button beside the drop-down", []).append(k)
                 want = ["v%s — %s" % (v["v"], "free" if p == 0 else "£%.2f" % p) for v, p in zip(it["versions"], it["_ladder"])]
                 for w in want:
