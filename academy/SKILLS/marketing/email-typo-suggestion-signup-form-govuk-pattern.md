@@ -23,7 +23,7 @@ var D=['gmail.com','googlemail.com','hotmail.com','hotmail.co.uk','outlook.com',
 function lev(a,b){var m=[],i,j;for(i=0;i<=b.length;i++)m[i]=[i];for(j=0;j<=a.length;j++)m[0][j]=j;
  for(i=1;i<=b.length;i++)for(j=1;j<=a.length;j++){m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(b[i-1]==a[j-1]?0:1));
   if(i>1&&j>1&&b[i-1]==a[j-2]&&b[i-2]==a[j-1])m[i][j]=Math.min(m[i][j],m[i-2][j-2]+1);}return m[b.length][a.length];} // swapped letters count as 1
-function suggest(e){var p=e.trim().toLowerCase().split('@');if(p.length!=2||!p[1])return null;var d=p[1].replace(/\.con$|\.cmo$|\.cm$/,'.com');
+function suggest(e){var p=e.trim.toLowerCase.split('@');if(p.length!=2||!p[1])return null;var d=p[1].replace(/\.con$|\.cmo$|\.cm$/,'.com');
  if(D.indexOf(d)>-1)return d!=p[1]?p[0]+'@'+d:null;var best=null,s=3;D.forEach(function(x){var k=lev(d,x);if(k<s){s=k;best=x}});
  return best&&s<=(d.length>9?2:1)?p[0]+'@'+best:null;}
 ```
@@ -37,7 +37,7 @@ Live check on 31 Oct 2026, /ebooks/ (cache-busted):
 
 Proposal, a small markup and JS change only, no copy change to body text:
 1. In the shared lead block (data-ghf-lead, used on many pages), add `spellcheck="false" autocapitalize="off"` to `#ghf-e`.
-2. Add the `suggest()` check on blur and on submit. Show it in a new `<p class="ghf-sug" aria-live="polite">` with a button that sets the value. It never blocks submit.
+2. Add the `suggest` check on blur and on submit. Show it in a new `<p class="ghf-sug" aria-live="polite">` with a button that sets the value. It never blocks submit.
 3. Change the success panel to start with "Sent to <strong>{address}</strong>. Not right? <button>Change it</button>". Keep the rest of the existing wording. Patagonia pages use the same pattern in Spanish: "Enviado a … ¿No es correcto? Cambiar".
 4. Add `sug_shown` / `sug_taken` to the Worker's submit log. Compare the weekly pending-vs-confirmed Mailchimp counts four weeks before and after (read-only). A result only counts once there are 100 or more signups.
 5. Commit through the normal Cedwyn flow when no build is running, verify at 390 px, run the tests above. This is site markup, so the editorial rules don't change. No outbound links, nothing names a person.

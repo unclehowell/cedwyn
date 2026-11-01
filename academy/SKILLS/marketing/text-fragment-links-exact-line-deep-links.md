@@ -39,11 +39,11 @@ def frag(url, start, end=None, prefix=None, suffix=None):
 - Don't promise readers a highlight. Some in-app browsers may ignore it (not checked).
 
 ## How we apply it to Cedwyn
-- **Quote cards and quote-pack posts:** the "Source" link under each verbatim period-record line goes through /r/ to the record page with that exact line highlighted. The quote-pack runner can call `frag()` for each card and log `fragment_ok` after the 390 px check.
+- **Quote cards and quote-pack posts:** the "Source" link under each verbatim period-record line goes through /r/ to the record page with that exact line highlighted. The quote-pack runner can call `frag` for each card and log `fragment_ok` after the 390 px check.
 - **E-book sales and sample emails:** link "read the line" to the free sample's dated record (for example the 1841 tithe parcel entry or a census line), so a reader lands on the evidence and not the top of a long page.
 - **Answers to reader questions and comments:** link the exact sentence on /research/ or the evidence catalogue instead of saying "see the page".
 - **AI visibility:** put each page's one quotable dated fact in the first 30% (CXL). Don't track AI-Overview traffic through fragments any more (May 2026 change).
-- **Welsh text:** percent-encode accents and circumflexes (ŵ, ŷ) via `quote()`, and test one cy link in Safari first.
+- **Welsh text:** percent-encode accents and circumflexes (ŵ, ŷ) via `quote`, and test one cy link in Safari first.
 - The editorial rules still apply to every highlighted phrase: no banned words, never name the project lead, nothing about family holdings.
 
 ## Sources

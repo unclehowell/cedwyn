@@ -50,8 +50,8 @@ Append to the shared theme stylesheet (or the wiki `<style>` block):
 Plus a small script (before `</body>`):
 ```html
 <script>
-(function(){var o=[];addEventListener('beforeprint',function(){o=[].filter.call(document.querySelectorAll('details'),function(d){return !d.open});o.forEach(function(d){d.open=true})});
-addEventListener('afterprint',function(){o.forEach(function(d){d.open=false});o=[]})})();
+(function{var o=[];addEventListener('beforeprint',function{o=[].filter.call(document.querySelectorAll('details'),function(d){return !d.open});o.forEach(function(d){d.open=true})});
+addEventListener('afterprint',function{o.forEach(function(d){d.open=false});o=[]})});
 </script>
 ```
 Selectors such as `.yt`, `.ebook-strip` and `.agent-changelog` are placeholders. Match them to the real class names in the theme before the PR. White paper is a print-only exception to the "dark background, no white" screen rule. Before merging, confirm with the root that this is acceptable.

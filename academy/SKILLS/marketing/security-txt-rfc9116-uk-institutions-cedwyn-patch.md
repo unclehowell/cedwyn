@@ -40,7 +40,7 @@ Preferred-Languages: en, cy
 If the static build drops dot-folders (check whether `.well-known` survives into dist), use the Worker route instead (the same pattern as `/robots.txt`):
 ```js
 if (host === "cedwyn.bucklerfamily.estate" && (p === "/.well-known/security.txt" || p === "/security.txt"))
-  return T(SECURITY_TXT); // const SECURITY_TXT = the 5 lines above + "\n"; T() already sends text/plain
+  return T(SECURITY_TXT); // const SECURITY_TXT = the 5 lines above + "\n"; T already sends text/plain
 ```
 The Worker route needs a Cloudflare route covering that exact path. Adding a route is a deploy, so the root decides. Cloudflare's dashboard also has a built-in security.txt setting. It is not checked whether that is on this plan, and the dashboard is account work, so it is not used here.
 
