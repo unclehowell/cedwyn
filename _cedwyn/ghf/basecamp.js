@@ -268,6 +268,10 @@
   var CEDWYN_SMAP = {"wiki": "wiki", "records": "wiki", "nomenclature": "wiki", "docs": "docs", "wayback": "wayback", "maps": "maps", "infographic": "infographic", "ebooks": "ebooks", "story": "story", "documentary": "story", "thousand-cuts": "thousand-cuts", "fb": "fb", "fb2": "fb", "nft-art": "arcade", "cyberspace": "arcade", "terrain": "arcade", "chess": "chess", "csscpsg": "csscpsg", "courtdrills": "courtdrills", "fcg": "fcg", "oldbill": "oldbill", "accounts": "accounts", "authorities": "authorities", "meeting": "authorities", "wdtk": "wdtk", "review": "review", "research": "research", "qa": "qa", "projects": "projects", "app": "app", "chat": "chat", "watchtower": "watchtower", "email": "email", "emails": "email", "dartboard": "dartboard", "estate": "estate", "directory": "directory", "patagonia": "patagonia", "wales": "wales", "shop": "shop", "familytree": "familytree", "kissed-frogs": "kissed-frogs", "whattheydontsay": "whattheydontsay", "blog": "blog", "hubspot": "hubspot", "that-old-chestnut": "that-old-chestnut"};
   // 25 Oct 2026: the theme groups (themes.json "groups", filled by tools/site.py) for the side menu's dropdowns - 
   var CEDWYN_GROUPS = [{"id": "interactive", "t": "Interactive", "cy": "Rhyngweithiol", "es": "Interactivo"}, {"id": "research", "t": "Modern research and how it's going", "cy": "Ymchwil heddiw a sut mae’n mynd", "es": "La investigación de hoy y cómo avanza"}, {"id": "artifacts", "t": "Historic artifacts", "cy": "Arteffactau hanesyddol", "es": "Artefactos históricos"}, {"id": "story", "t": "A story to be retold", "cy": "Stori i’w hailadrodd", "es": "Una historia para volver a contar"}];
+  // 1 Nov 2026: the header reads "NN of 59": NN = the area's own webapp/parcel slot (/areas.json "slot", from serendipity_slot in
+  // data/site-areas.json; else its place in the registry), 59 = the planned webapp slots (/areas.json "parcel_total" once
+  // published; 59 until then). Only the label changes; the ‹ › still step through the areas that exist. - Cedwyn editors
+  var CEDWYN_OF = 59;
   // 25 Oct 2026: inside a section (/wales/<theme>/, /argentina/<theme>/, or the two hubs) the ‹ › and menu links stay in that
   // section; on the Argentina side the menu drops "Farm" from the estate's names (themes.json / sections.json) - 
   // 27 Oct 2026: the section (/wales/... or /argentina/...) is read from the address itself as well, so the header still knows it
@@ -287,7 +291,7 @@
     CHAIN = CEDWYN_CHAIN.filter(function (t) { return !CHALF || (t[5] || []).indexOf(CHALF) < 0; }).map(function (t) { var o = CBY[t[0]] || {}, r = {}, k; for (k in o) r[k] = o[k];
       r.id = t[0]; r.t = t[1] || o.t; r.g = t[2] || ""; if (t[3]) r.cy = t[3]; if (t[4]) r.es = t[4]; r.u = CSECP + "/" + t[0] + "/";
       if (t[0] === "wales") r.u = "/wales/";   // the Wales tour is the Wales section's own home page
-      r.h = []; r.p = ["/" + t[0] + "/"]; return r; });
+      r.h = []; r.p = ["/" + t[0] + "/"]; r.n = CEDWYN_CHAIN.indexOf(t) + 1; return r; });
   }
   // the theme this page belongs to: inside a section its own pages (the hub, vouchers, caso) are that half's stop
   function cedSeg() {
@@ -350,7 +354,7 @@
       var arr = function (st, cls, ch, lab) { var a = mk("a", "ghf-v2-arr " + cls); pinHref(a, st.u); a.setAttribute("aria-label", lab + ": " + nm(st)); a.title = lab + ": " + nm(st); a.appendChild(mk("span", null, ch)); a.setAttribute("data-ghf-chain", st.id); return a; };
       chainBar.appendChild(arr(pv, "ghf-v2-prev", "\u2039", s.prev));
       var mid = mk("div", "ghf-v2-name"), b = mk("b", null, k >= 0 ? nm(CHAIN[k]) : ((document.title || host).split(/\s[·|—–-]\s/)[0]));
-      mid.appendChild(b); if (k >= 0) mid.appendChild(mk("small", null, (k + 1) + " " + s.of + " " + n));
+      mid.appendChild(b); if (k >= 0) mid.appendChild(mk("small", null, ((CEDWYN_CHAIN && CHAIN[k].n) || (k + 1)) + " " + s.of + " " + (CEDWYN_CHAIN && CEDWYN_CHAIN.length ? CEDWYN_OF : n)));
       chainBar.appendChild(mid);
       chainBar.appendChild(arr(nx, "ghf-v2-next", "\u203A", s.next));
       chainBar.appendChild(btn("ghf-v2-btn ghf-v2-bgr", IC_MENU, s.menu, openDrawer));
@@ -363,12 +367,13 @@
     // per tab for 10 minutes. - Cedwyn editors
     var AREAS = false;
     function useAreas(d) {
-      var list = (d.areas || []).filter(function (a) { return a && a.path && a.built !== false && (!CHALF || (a.skip_in || []).indexOf(CHALF) < 0); });
+      var all = d.areas || [], list = all.filter(function (a) { return a && a.path && a.built !== false && (!CHALF || (a.skip_in || []).indexOf(CHALF) < 0); });
       if (list.length < 2) return;
+      CEDWYN_OF = +(d.parcel_total || d.slots_total) || CEDWYN_OF;
       var by = {}; CHAIN.forEach(function (c) { by[c.id] = c; });
       CHAIN = list.map(function (a) { var o = by[a.id] || {}, r = {}, k; for (k in o) r[k] = o[k];
         r.id = a.id; r.t = a.title || o.t || a.id; if (a.cy) r.cy = a.cy; if (a.es) r.es = a.es; r.g = a.group || o.g || "";
-        r.u = a.id === "wales" ? "/wales/" : CSECP + a.path; r.p = [a.path].concat(a.aliases || []); r.h = []; return r; });
+        r.u = a.id === "wales" ? "/wales/" : CSECP + a.path; r.p = [a.path].concat(a.aliases || []); r.h = []; r.n = +(a.slot || a.serendipity_slot) || (all.indexOf(a) + 1); return r; });
       AREAS = true; fillChain();
       if (de.classList.contains("ghf-v2-open")) fillDrawer();
     }
