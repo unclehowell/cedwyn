@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01T09:31:05Z",
+  "updated": "2026-11-01T13:43:18Z",
   "schema": "metadata only: id, record, version, status, turn, open_issues, last_change, last_agent, rounds (versions written so far); events: [{at, draft, version, agent, event}], newest last. Never email text.",
   "drafts": [
     {
@@ -5497,11 +5497,11 @@
       "pct_at": "2026-11-01T05:33:10Z"
     }
   ],
-  "synced_at": "2026-11-01T09:31:05Z",
+  "synced_at": "2026-11-01T13:43:18Z",
   "sync": {
     "by": "Sion's Tab agent (board_sync.py, 4-hourly schedule; replaces the Actions run)",
     "source": "HubSpot task subjects and hs_lastmodifieddate (metadata); changelog review counts for % complete (no body text stored)",
-    "last_changes": 14
+    "last_changes": 1
   },
   "events": [
     {
@@ -6119,6 +6119,13 @@
       "version": null,
       "agent": "Tab",
       "event": "Board sync from HubSpot subjects: cardiff-eir-1961-deed: TURN: Claude v0.7.1 -> TURN: ChatGPT v0.7.2; hm-land-registry-information-rights-535830: TURN: ChatGPT v0.2.3 -> TURN: ChatGPT v0.2.4; cabinet-office-711809: TURN: ChatGPT v0.2.1 -> TURN: ChatGPT v0.3.0; hugh-james-168527: TURN: ChatGPT v0.2.1 -> TURN: ChatGPT v0.3.0; persimmon-homes-legal-enquiries-706716: TURN: ChatGPT v0.1.5 -> TURN: ChatGPT v0.2.0; hm-land-registry-information-rights-sar-d260928-818073: TURN: ChatGPT v0.1.5 -> TURN: ChatGPT v0.2.0; vale-of-glamorgan-council-foi-00211722-994086: TURN: ChatGPT v0.1.5 -> TURN: ChatGPT v0.2.0; vale-of-glamorgan-council-foi-00211721-110955: TURN: ChatGPT v0.1.5 -> TURN: ChatGPT v0.2.0; the-national-archives-foi-cas-356384-169307: TURN: ChatGPT v0.1.5 -> TURN: ChatGPT v0.2.0; hm-land-registry-coventry-office-368810: TURN: ChatGPT v0.2.1 -> TURN: ChatGPT v0.3.1; glamorgan-archives-669848: TURN: ChatGPT v0.2.1 -> TURN:. Metadata only."
+    },
+    {
+      "at": "2026-11-01T13:43:18Z",
+      "draft": null,
+      "version": null,
+      "agent": "Tab",
+      "event": "Board sync from HubSpot subjects: seats last_seen refreshed. Metadata only."
     }
   ],
   "pct_rule": "% complete = progress through the review gate on the exact current frozen version: pct = round(100 x (0.7 x min(version_reviews,10)/10 + 0.3 x min(version_distinct_agents,4)/4)). version_reviews / version_distinct_agents / version_agents are counted from each HubSpot task's signed changelog (material reviews of the current version only; creation, skips, routes and restores are not reviews; a signed version_reviews=N tally in the changelog is honoured when higher). Capped at 95 until the task is READY TO SEND or later AND its Gmail draft exists (gmail_draft_id); then 100 = in the owner's Gmail, ready to send or schedule. SENT rows show Sent. Historical reviews/distinct_agents/agents are informational only. Promotion gates beyond IN REVIEW (open_issues=0, seat_agreements_version, final_three_hat_version, attachments_verified_version equal to version) still fail closed.",
@@ -6134,8 +6141,8 @@
       "seat": 2,
       "agent": "ChatGPT",
       "status": "active",
-      "last_seen": "2026-11-01T08:53:55Z",
-      "last_seen_source": "row hm-land-registry-coventry-office-368810"
+      "last_seen": "2026-11-01T09:31:05Z",
+      "last_seen_source": "turn handoff on hm-land-registry-information-rights-535830 (seen by board sync)"
     },
     {
       "seat": 3,
@@ -6148,10 +6155,10 @@
       "seat": 4,
       "agent": "Claude",
       "status": "active",
-      "last_seen": "2026-11-01T08:55:56Z",
-      "last_seen_source": "row cardiff-eir-1961-deed"
+      "last_seen": "2026-11-01T09:31:05Z",
+      "last_seen_source": "turn handoff on cardiff-eir-1961-deed (seen by board sync)"
     }
   ],
   "seats_rule": "last_seen = newest board activity per seat agent: draft rows whose last_agent/last_action_by is the agent, board events signed by the agent, and turn handoffs (a row leaving 'TURN: <agent>' or changing version while held by the agent, dated at the sync that saw it). Recomputed by board_sync.py every run (protocol v3.11.0 roll call). Metadata only; derived from BOARD.json itself.",
-  "seats_as_of": "2026-11-01T09:34:55Z"
+  "seats_as_of": "2026-11-01T13:46:49Z"
 }
