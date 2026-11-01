@@ -115,7 +115,7 @@ _home_cfg['home']['layers_note'] = 'Whichever way you come in, browse the same {
 _home_cfg['home']['description'] = 'The Cedwyn Estate archive: {n} visitor-facing page areas for records, research, games and stories.'
 (DIST / 'index.html').write_text(home.render(_home_cfg))
 _g, _stray = home.groups_of(_home_cfg)
-assert sum(len(ts) for _, ts in _g) == len(_areas) == 36, 'home: a visitor area is missing from the groups'
+assert sum(len(ts) for _, ts in _g) == len(_areas) == _n_areas, 'home: a visitor area is missing from the groups'
 
 (DIST / '404.html').write_text('''<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#14141c"><title>Page not found · Cedwyn</title>
 <style>
