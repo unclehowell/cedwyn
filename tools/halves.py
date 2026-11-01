@@ -279,7 +279,7 @@ JS = r"""
   if(page==='argentina'){
     var B=window.HV_BOOK||{},f=document.getElementById('hv-book');if(!f)return;
     var panes=[].slice.call(f.querySelectorAll('.hv-pane')),steps=[].slice.call(f.querySelectorAll('.hv-steps li')),st=0;
-    function money(n){return '\u00a3'+Math.round(n).toLocaleString('en-GB')}
+    function money(n){return tr('b_planned')}
     function d(id){return f.querySelector('#'+id)}
     function val(n){var x=f.querySelector('[name="'+n+'"]:checked')||f.querySelector('[name="'+n+'"]');return x?x.value:''}
     function nights(){var a=new Date(d('bk-in').value),b=new Date(d('bk-out').value);if(isNaN(a)||isNaN(b))return 0;return Math.round((b-a)/864e5)}
@@ -290,11 +290,11 @@ JS = r"""
       var ap=val('fly'),fl=+d('bk-fp').value||0;if(ap&&ap!=='NONE'){var A=null;for(var i=0;i<B.airports.length;i++)if(B.airports[i][0]===ap)A=B.airports[i];
         if(A){if(A[2]==null){lines.push([tr('b_s2')+' \u00b7 '+A[1]+' \u00d7 '+fl,null]);q=true}else{lines.push([tr('b_s2')+' \u00b7 '+A[1]+' \u2192 REL \u00d7 '+fl,A[2]*fl]);tot+=A[2]*fl}}}
       var c=val('car');if(c&&c!=='none'){var C=null;for(var j=0;j<B.cars.length;j++)if(B.cars[j][0]===c)C=B.cars[j];var days=Math.max(nn,1);
-        if(C){lines.push([tr('b_car')+' \u00b7 '+tr('c_'+C[0])+' \u00b7 '+days+' \u00d7 '+money(C[1]),C[1]*days]);tot+=C[1]*days}}
+        if(C){lines.push([tr('b_car')+' \u00b7 '+tr('c_'+C[0]),C[1]*days]);tot+=C[1]*days}}
       return {lines:lines,tot:tot,quote:q,nights:nn,g:g,rm:rm,v:v,ap:ap,fl:fl,car:c,pick:d('bk-pick').value}}
     function render(){var c=calc(),ul=d('bk-sum'),h='';c.lines.forEach(function(x){h+='<li><span></span><b></b></li>'});ul.innerHTML=h+'<li class="tot"><span></span><b></b></li>';
       var li=ul.querySelectorAll('li');c.lines.forEach(function(x,i){li[i].firstChild.textContent=x[0];li[i].lastChild.textContent=x[1]==null?tr('b_quote'):money(x[1])});
-      li[li.length-1].firstChild.textContent=tr('b_total');li[li.length-1].lastChild.textContent=money(c.tot)+(c.quote?' +':'');return c}
+      li[li.length-1].firstChild.textContent=tr('b_total');li[li.length-1].lastChild.textContent=money(c.tot);return c}
     function ok(i){var e=d('bk-err');e.hidden=true;if(i===0){var v=venue(),n=nights();if(!v||(v.id!=='wed'&&n<1)||!d('bk-in').value){e.textContent=tr('b_err');e.hidden=false;return false}}return true}
     function go(i){if(i>st&&!ok(st))return;st=Math.max(0,Math.min(panes.length-1,i));panes.forEach(function(p,j){p.classList.toggle('on',j===st)});steps.forEach(function(s,j){s.classList.toggle('on',j<=st)});
       d('bk-back').hidden=st===0;d('bk-next').hidden=st===panes.length-1;if(st===panes.length-1)render();var top=f.getBoundingClientRect().top+window.scrollY-70;if(window.scrollY>top)window.scrollTo({top:top,behavior:'smooth'})}
@@ -845,11 +845,11 @@ def argentina(sections, S, cfg, H):
     vimg = ARG_NFT_VENUE
     unit = {'room_night': '/', 'night': '/', 'day': '/'}
     vo = ''.join(f'<label class="hv-opt"><input type="radio" name="venue" value="{v["id"]}"{" checked" if v["id"] == "room" else ""}><img src="{ARG_NFT[vimg[v["id"]]][2]}" width="88" height="62" alt="" loading="lazy">'
-                 f'<span><b data-i18n="v_{v["id"]}">{E(tx(T,"v_"+v["id"],l))}</b><small data-i18n="v_{v["id"]}_d">{E(tx(T,"v_"+v["id"]+"_d",l))}</small><span class="pr">£{v["price"]:,}</span></span></label>' for v in H['venues'])
+                 f'<span><b data-i18n="v_{v["id"]}">{E(tx(T,"v_"+v["id"],l))}</b><small data-i18n="v_{v["id"]}_d">{E(tx(T,"v_"+v["id"]+"_d",l))}</small><span class="pr" data-i18n="b_planned">{E(tx(T,"b_planned",l))}</span></span></label>' for v in H['venues'])
     ap = '<option value="NONE" data-i18n="b_nofly">' + E(tx(T, 'b_nofly', l)) + '</option>' + ''.join(
-        f'<option value="{a}"{" selected" if a == "LHR" else ""}>{E(nm)} ({a})' + (f' · £{p:,}' if p else '') + '</option>' if a != 'OTHER' else f'<option value="OTHER">…</option>' for a, nm, p in H['airports'])
+        f'<option value="{a}"{" selected" if a == "LHR" else ""}>{E(nm)} ({a})' + '</option>' if a != 'OTHER' else f'<option value="OTHER">…</option>' for a, nm, p in H['airports'])
     cars = ('<label class="hv-opt ro"><input type="radio" name="car" value="none"><span><b data-i18n="b_nocar">' + E(tx(T, 'b_nocar', l)) + '</b></span></label>' +
-            ''.join(f'<label class="hv-opt ro"><input type="radio" name="car" value="{c}"{" checked" if c == "4x4" else ""}><span><b data-i18n="c_{c}">{E(tx(T,"c_"+c,l))}</b><span class="pr">£{p} </span><small data-i18n="b_perday">{E(tx(T,"b_perday",l))}</small></span></label>' for c, p in H['cars']))
+            ''.join(f'<label class="hv-opt ro"><input type="radio" name="car" value="{c}"{" checked" if c == "4x4" else ""}><span><b data-i18n="c_{c}">{E(tx(T,"c_"+c,l))}</b><span class="pr" data-i18n="b_planned">{E(tx(T,"b_planned",l))}</span></span></label>' for c, p in H['cars']))
     book = {'venues': H['venues'], 'airports': H['airports'], 'cars': H['cars']}
     mn, gr = menu(H, T, cfg, l, 'argentina')
     body = f"""
