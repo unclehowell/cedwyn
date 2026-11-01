@@ -1,0 +1,69 @@
+{
+  "schema": "cedwyn_spatial_registry/v1",
+  "purpose": "Source-aware spatial index contract for the Wales and Argentina app selector",
+  "coordinate_reference_system": "EPSG:4326",
+  "registry_source": "data/site-areas.json",
+  "app_slot_field": "serendipity_slot",
+  "app_slot_is_historic_plot_number": false,
+  "parcel_total": 59,
+  "current_app_area_count": 37,
+  "spatial_standard": {
+    "name": "Uber H3",
+    "index_field": "h3_index",
+    "resolution_field": "h3_resolution",
+    "cell_center_fields": ["h3_cell_center_latitude", "h3_cell_center_longitude"],
+    "parcel_center_fields": ["parcel_center_latitude", "parcel_center_longitude"],
+    "resolution": null,
+    "status": "pending_verified_parcel_centres",
+    "collision_check": "Reject duplicate H3 index assignments unless the source explicitly records a shared coordinate/cell relationship."
+  },
+  "subdomain_routing": {
+    "hostname_field": "parcel_subdomain",
+    "status_field": "dns_status",
+    "status": "interface_only_unconfigured",
+    "hostname": null
+  },
+  "geometry_source": {
+    "url": "https://cedwyn.bucklerfamily.estate/maps/data/parcels.geojson",
+    "observed_at": "2026-11-01T02:41:38.984Z",
+    "status": "partial",
+    "feature_count": 4,
+    "features": [
+      {"id": "AN", "name": "Parcel A — north wood (segment 1 of 3)", "confidence": "estimated"},
+      {"id": "AM", "name": "Parcel A — farmhouse, yard and buildings (segment 2 of 3)", "confidence": "traced"},
+      {"id": "AS", "name": "Parcel A — the green (lower third, VG41 area)", "confidence": "estimated"},
+      {"id": "B", "name": "Parcel B — the fields east of the house", "confidence": "traced"}
+    ],
+    "limits": [
+      "The four returned features are partial source shapes, not the complete estate boundary.",
+      "The shapes do not establish the north-west river course, all 59 land parcel polygons, parcel centres, or app-to-historic-plot assignments.",
+      "Confidence notes and source references remain attached to the live GeoJSON features; do not infer missing features from the current map.",
+      "The existing 3D scene uses local game coordinates and is not georeferenced to this GeoJSON."
+    ]
+  },
+  "regions": {
+    "wales": {
+      "estate_boundary_status": "pending_source_geometry",
+      "north_west_river_status": "pending_source_geometry",
+      "parcel_polygons_status": "partial_source_features_only"
+    },
+    "argentina": {
+      "estate_boundary_status": "pending_argentina_specific_source_geometry",
+      "river_status": "pending_argentina_specific_source_geometry",
+      "parcel_polygons_status": "pending_argentina_specific_source_geometry"
+    }
+  },
+  "required_per_parcel_fields": {
+    "app_slot": "integer from the current webapp registry; not a historic plot number",
+    "historic_plot_number": "integer or null, populated only after EV-0215 is verified row by row",
+    "parcel_geometry_id": "source feature identifier or null",
+    "parcel_center_latitude": "number or null, source-backed physical centrepoint",
+    "parcel_center_longitude": "number or null, source-backed physical centrepoint",
+    "h3_index": "string or null, computed from the sourced parcel centre and a documented resolution",
+    "h3_resolution": "integer or null",
+    "h3_cell_center_latitude": "number or null, returned by H3 and distinct from parcel centre",
+    "h3_cell_center_longitude": "number or null, returned by H3 and distinct from parcel centre",
+    "parcel_subdomain": "string or null; do not claim live DNS until verified",
+    "dns_status": "pending until provider records are checked"
+  }
+}
