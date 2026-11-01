@@ -18,7 +18,16 @@ og:title and twitter:title read "Williams-Bucklers, Ty Mawr, Cedwyn – <webapp>
 Cedwyn", and og:image/twitter:image are one 1200x630 card per webapp with that exact text set on the webapp's Garden Gallery
 piece. These five tags now replace whatever a theme or branch carried, so every branch and every new page inherits them;
 descriptions stay page-specific. The webapp name comes from og_cards.json "webapps" (first path segment), else the theme's
-own title, else the segment itself. Font: tools/fonts/PlayfairDisplay-Bold.ttf (SIL OFL, tools/fonts/OFL.txt)."""
+own title, else the segment itself. Font: tools/fonts/PlayfairDisplay-Bold.ttf (SIL OFL, tools/fonts/OFL.txt).
+
+1 Nov 2026 (owner, WhatsApp 18:51 GMT: "When i share a link to my cedwyn.bucklerfamily.estate website the social graph should
+show nft images as the social graph images. Fix that site wide"): the share image is now the Garden Gallery painting itself,
+1200x630, with no dark panel and no lettering on it (og_cards.json "card_text": false; set it true to bring the lettered card
+back). The brand line and webapp name stay in og:title/twitter:title, which every share preview prints under the image. The
+alt text is the painting's own title and description. Each card is kept under 230 KB (WhatsApp drops large preview images).
+The tag block now sits at the top of <head>, straight after <meta charset> (it used to sit at </head>, after up to 70 KB of
+inline script and style on the home page and the wiki, past where some link-preview crawlers stop reading). CARD_VERSION
+moves to nft2, so every card gets a new address and the share sites fetch it afresh."""
 import json, re, hashlib, html, io, pathlib, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -28,7 +37,11 @@ W, H = 1200, 630
 BRAND = CFG.get('brand', 'Williams-Bucklers, Ty Mawr, Cedwyn')
 WEBAPPS = CFG.get('webapps', {})
 FONT = ROOT / 'tools' / 'fonts' / 'PlayfairDisplay-Bold.ttf'
-CARD_VERSION = 'wb1'
+CARD_VERSION = 'nft2'
+CARD_TEXT = bool(CFG.get('card_text', False))   # 1 Nov 2026: the painting alone, no lettering (owner's word)
+MAX_BYTES = 230000
+CHARSET = re.compile(r'<meta\b[^>]*charset[^>]*>', re.I)
+HEAD_OPEN = re.compile(r'<head\b[^>]*>', re.I)
 # tags the share card owns: a theme's own copy is removed so the brand line and the webapp card win everywhere
 OWNED = ('og:title', 'twitter:title', 'og:site_name', 'og:image', 'og:image:secure_url', 'og:image:type', 'og:image:width',
          'og:image:height', 'og:image:alt', 'og:image:url', 'twitter:image', 'twitter:image:alt', 'twitter:card', 'og:url', 'og:type')
@@ -191,7 +204,9 @@ class Cards:
             out = ImageEnhance.Brightness(bg.crop((l, t, l + W, t + H)).filter(ImageFilter.GaussianBlur(28))).enhance(0.6)
             s = min(W / im.width, H / im.height); fg = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
             out.paste(fg, ((W - fg.width) // 2, (H - fg.height) // 2))
-        buf = io.BytesIO(); out.save(buf, 'JPEG', quality=82, optimize=True, progressive=True)
+        for q in (84, 80, 76, 72, 68, 64, 60):   # 1 Nov 2026: under MAX_BYTES so WhatsApp keeps the preview image
+            buf = io.BytesIO(); out.save(buf, 'JPEG', quality=q, optimize=True, progressive=True)
+            if buf.tell() <= MAX_BYTES: break
         return buf.getvalue()
 
     def get(self, nfa):
@@ -225,12 +240,19 @@ class Cards:
         if data is not None and FONT.exists():
             try:
                 plan = 'plan' in (self.titles.get(nfa, {}).get('title', '').lower()) or nfa == 'NFA-0011'
-                jpg = titled(self.render(data, plan), name)
+                jpg = titled(self.render(data, plan), name) if CARD_TEXT else self.render(data, plan)
                 if jpg:
                     slug = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-') or 'home'
                     h = hashlib.sha1(data + name.encode() + CARD_VERSION.encode()).hexdigest()[:8]
                     fn = 'share-%s-%s.jpg' % (slug, h); (self.out / fn).write_bytes(jpg)
-                    res = (BASE + '/_cedwyn/og/' + fn, share_title(name) + ': share card on a Garden Gallery painting (' + nfa + ')')
+                    if CARD_TEXT:
+                        alt = share_title(name) + ': share card on a Garden Gallery painting (' + nfa + ')'
+                    else:   # 1 Nov 2026: the image is the painting, so the alt describes the painting
+                        a = self.titles.get(nfa, {}); pt = a.get('title', ''); pa = a.get('alt', '')
+                        alt = pa if pa.lower().startswith(pt.lower()) else (pt + ': ' + pa if pt and pa else (pt or pa))
+                        alt = alt if ok_text(alt) else 'A painted scene of Great House Farm, Llandough'
+                        alt = alt.rstrip('. ') + ' (Garden Gallery painting ' + nfa + ')'
+                    res = (BASE + '/_cedwyn/og/' + fn, alt)
             except Exception as e:
                 print('og_cards: titled card failed', name, e)
         if res is None:
@@ -343,7 +365,13 @@ def page(p, rel, dist, themes, cards, n, added, untouched, samples):
         want.append(('name', 'description', desc))
     tags = ['<meta %s="%s" content="%s">' % (k, v, esc(c)) for k, v, c in want if c]
     block = '<!-- og:cedwyn -->' + ''.join(tags) + '<!-- /og:cedwyn -->'
-    new = head_clean + block + txt[m.start():]
+    # 1 Nov 2026: the block goes at the top of <head> (after <meta charset>, else after <head>), so a link-preview crawler that
+    # reads only the first part of a page still finds og:image; before, it sat at </head> behind up to 70 KB of inline code.
+    at = CHARSET.search(head_clean) or HEAD_OPEN.search(head_clean)
+    if at:
+        new = head_clean[:at.end()] + block + head_clean[at.end():] + txt[m.start():]
+    else:
+        new = head_clean + block + txt[m.start():]
     if new == txt:
         return n, added, untouched + 1
     p.write_text(new, 'utf-8'); n += 1; added += len(tags)

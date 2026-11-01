@@ -1,6 +1,8 @@
 {
  "_note": "Share cards (Open Graph / Twitter) for every Cedwyn page, made at build time by tools/og_cards.py from the Garden Gallery pieces in dist/nft-art/art/. To repoint: change a section's list or 'default' here; a re-rendered piece flows into its card on the next build (the card file name carries the source hash). Pieces chosen 27 Oct 2026 for farm and buildings with few flowers. — Sion's Tab agent",
  "_note_share": "30 Oct 2026 (Sion, WhatsApp 00:32 GMT): share previews read 'Williams-Bucklers, Ty Mawr, Cedwyn – <webapp>'. 'brand' is og:site_name and the first line of every card; 'webapps' names each webapp by its first path segment (a section not listed takes its theme title). — Sion's Tab agent",
+ "_note_nft": "1 Nov 2026 (owner, WhatsApp 18:51 GMT): share images are the Garden Gallery paintings themselves, no lettering or dark panel ('card_text': false; true brings the lettered card back). 'sections' maps each webapp (first path segment) to its paintings; the first is the webapp's card. Sections added this day: nomenclature, kissed-frogs, fcg, directory, email, emails, chess, meeting, familytree, estate, parcels, values, guestbook, glossary, terrain, cyberspace, oldbill, chat, catalogue, disproven, infographic, qa, review, app, accounts, watchtower, movie, learn, hive, caso, garden, courtdrills, csscpsg, arcade, explore, graphql. — Sion's Tab agent",
+ "card_text": false,
  "brand": "Williams-Bucklers, Ty Mawr, Cedwyn",
  "site_name": "Williams-Bucklers, Ty Mawr, Cedwyn",
  "base": "https://cedwyn.bucklerfamily.estate",
@@ -245,6 +247,117 @@
   ],
   "library": [
    "NFA-0042"
+  ],
+  "nomenclature": [
+   "NFA-0035"
+  ],
+  "kissed-frogs": [
+   "NFA-0043"
+  ],
+  "fcg": [
+   "NFA-0029"
+  ],
+  "directory": [
+   "NFA-0154"
+  ],
+  "email": [
+   "NFA-0095"
+  ],
+  "emails": [
+   "NFA-0095"
+  ],
+  "chess": [
+   "NFA-0024"
+  ],
+  "meeting": [
+   "NFA-0115"
+  ],
+  "familytree": [
+   "NFA-0141"
+  ],
+  "estate": [
+   "NFA-0107"
+  ],
+  "parcels": [
+   "NFA-0011"
+  ],
+  "values": [
+   "NFA-0021"
+  ],
+  "guestbook": [
+   "NFA-0034"
+  ],
+  "glossary": [
+   "NFA-0035"
+  ],
+  "terrain": [
+   "NFA-0047"
+  ],
+  "cyberspace": [
+   "NFA-0045"
+  ],
+  "oldbill": [
+   "NFA-0158"
+  ],
+  "chat": [
+   "NFA-0139"
+  ],
+  "catalogue": [
+   "NFA-0139"
+  ],
+  "disproven": [
+   "NFA-0055"
+  ],
+  "infographic": [
+   "NFA-0107"
+  ],
+  "qa": [
+   "NFA-0042"
+  ],
+  "review": [
+   "NFA-0020"
+  ],
+  "app": [
+   "NFA-0114"
+  ],
+  "accounts": [
+   "NFA-0116"
+  ],
+  "watchtower": [
+   "NFA-0107"
+  ],
+  "movie": [
+   "NFA-0022",
+   "NFA-0155",
+   "NFA-0151"
+  ],
+  "learn": [
+   "NFA-0042"
+  ],
+  "hive": [
+   "NFA-0049"
+  ],
+  "caso": [
+   "NFA-0028",
+   "NFA-0030"
+  ],
+  "garden": [
+   "NFA-0049"
+  ],
+  "courtdrills": [
+   "NFA-0024"
+  ],
+  "csscpsg": [
+   "NFA-0126"
+  ],
+  "arcade": [
+   "NFA-0151"
+  ],
+  "explore": [
+   "NFA-0040"
+  ],
+  "graphql": [
+   "NFA-0139"
   ]
  },
  "skip_dirs": [
