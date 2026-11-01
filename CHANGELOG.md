@@ -18,6 +18,7 @@
 - Synchronize the programme data, root `.version`, and reader-facing README release marker.
 
 ### Reviewed
+- Cloudflare Pages retention for the `cedwyn` project: removed 399 older successful production deployment records; retained the three newest successful production builds and active custom-domain alias. Left 45 non-success production records and 2,107 skipped preview records untouched; no application code, route or Pages configuration changed.
 - Confirmed production output is `projects/public/`, the home page is the PID, and the checker has required-file/content gates.
 - No project statuses, milestones, completion claims or conditional P4 activation criteria were changed.
 
