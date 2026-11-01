@@ -12,11 +12,12 @@ item, and while it is open the visitor can see that a newer full version is avai
 - The facade: a random image from `images` (the restored NFT pieces, `/nft-art/art/nfa-NNNN-v0.0.2-t.webp`, WebP, 12-83 KB),
   "Select a version ↓" over it (cy "Dewiswch fersiwn", es "Seleccione una versión"), then the drop-down with the free version
   preselected and one button ("Open the free preview"). Picking the free version opens the item at once.
-- Labels: `v0.0.1 — free preview (20 of 221 pages)` for an excerpt; `v0.0.1 — free earlier edition (30 pages)` where the free
-  file is a whole earlier edition; `v0.0.2 — full edition, £4.99 (221 pages)`. Whole price with a page count; never a per-page figure.
+- Labels, prices, the (i) version table and the audit follow docs/VERSION-STANDARD.md 1.0.0: `v0.0.1 — free (20 pages)`,
+  `v0.0.2 — £4.99 (221 pages)`; prices computed from the latest price by the one-step (£4.99) ladder; whole price, never per page.
+- An (i) button beside the drop-down opens the version table (standard §3).
 - A paid version uses the existing checkout: the book card's own Buy button on /ebooks/ (or the card at `/ebooks/#<book>` from
   any other page). No new payment code.
-- While a free item is open: one dismissible line at the bottom, e.g. "Full edition: £4.99, 221 pages · What's added", linking to
+- While a free item is open: one dismissible line at the bottom, e.g. "Newest v0.0.2: £4.99, 221 pages · What's added", linking to
   `/ebooks/#<book>` (internal only).
 - The choice (and a dismissed bar) is kept for the browser session: `sessionStorage` `cvg:<item>`.
 - An item with no paid version gets no gate. A page with no matching item is untouched. Without JS every item keeps its plain link.
@@ -34,8 +35,8 @@ item, and while it is open the visitor can see that a newer full version is avai
 | merchandise (/shop/) | pending: goods with no free version |
 
 ## Adding an item
-Add an entry to `version-gate.json` (`ebooks.<book id before the @>`: `card`, `free {v, kind, pages}`, `paid {v, price, pages}`).
+Add an entry to `version-gate.json` (`ebooks.<book id before the @>`: `card`, `price` of the latest version, `unit`, `versions[]` oldest first with `v`, `date`, `pages`, `change`). Then run `python3 tools/version_audit.py`.
 Take page counts and prices from data/ebooks.json and the e-book archive; never invent a price.
 
 ## CHANGELOG
-- 1.0.0 (2026-11-01): first version: e-book reader facade + bar, session memory, counts, cy/en/es. — Cedwyn editors
+- 1.0.0 (2026-11-01): first version: e-book reader facade + bar, (i) version table with the one-step price ladder, session memory, counts, cy/en/es. — Cedwyn editors
