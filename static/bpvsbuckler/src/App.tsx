@@ -71,7 +71,7 @@ function readUrl(): { view: View; index: number; inst: string; note: string } {
     // A screening link (?institution=cadw) opens straight on that institution's first scene.
     if (q.has('institution')) return { view: 'scene', index: list[0], inst, note };
   } catch (_e) { /* no URL */ }
-  return { view: 'board', index: 0, inst, note };
+  return { view: 'splash', index: 0, inst, note };
 }
 const sceneUrl = (s: Scene) => `${SITE}/?event=${s.id}`;
 const speakable = (t: string) =>
@@ -197,14 +197,19 @@ export default function App() {
   const instBar = <InstBar inst={inst} note={instNote} pos={pos} total={list.length} onPick={pickInst} board={view === 'board'} />;
   if (view === 'splash') return <Splash instBar={instBar} onPlay={() => { go(list[0]); setPlaying(true); }} onBoard={() => setView('board')} onCast={() => setView('cast')} />;
 
+  const act = actOf(scene.act);
   return (
     <div className="shell">
       <header className="top">
-        <a className="brand" href="/" onClick={(e) => { e.preventDefault(); open('board'); }}>Tŷ Mawr<small>Years in pictures</small></a>
-        <div className="where">{view === 'scene' ? scene.when : 'A visual chronology of the Great House Farm story'}</div>
-        <nav className="tabs" aria-label="Site views">
+        <a className="brand" href="/" onClick={(e) => { e.preventDefault(); open('splash'); }}>Tŷ Mawr<small>The Great House Farm story</small></a>
+        <div className="where">{view === 'scene' && <><b>{act.label}: {act.title}</b> ({act.span})</>}</div>
+        <nav className="tabs" aria-label="Presentation views">
+          <button className="tab" aria-current={view === 'scene' ? 'page' : undefined} onClick={() => { go(index); setPlaying(true); }}>Play</button>
           <button className="tab" aria-current={view === 'board' ? 'page' : undefined} onClick={() => open('board')}>Years</button>
-          <button className="tab" aria-current={view === 'splash' ? 'page' : undefined} onClick={() => open('splash')}>About</button>
+          <button className="tab" aria-current={view === 'cast' ? 'page' : undefined} onClick={() => open('cast')}>Cast</button>
+          <button className="tab" aria-current={view === 'questions' ? 'page' : undefined} onClick={() => open('questions')}>Questions</button>
+          <a className="tab" href="/story/">Script</a>
+          <a className="tab" href="/control/">Records</a>
         </nav>
       </header>
       <main className="main">
@@ -216,6 +221,31 @@ export default function App() {
         {view === 'cast' && <Cast onPick={go} />}
         {view === 'questions' && <Questions onPick={go} />}
       </main>
+      {view === 'scene' && (
+        <footer className="transport">
+          <div className="acts" role="group" aria-label="Scenes by act">
+            {S.acts.map((a) => {
+              const ticks = scenes.map((s, i) => [s, i] as const).filter(([s, i]) => s.act === a.id && list.includes(i));
+              if (!ticks.length) return null;
+              return (
+                <div key={a.id} className="actseg" style={{ flex: ticks.length }}>
+                  <span className="lbl">{a.label === 'Prologue' || a.label === 'Epilogue' ? a.label : a.label.replace('Act ', '')} {a.title}</span>
+                  {ticks.map(([s, i]) => (
+                    <button key={s.id} className={`tick${i === index ? ' on' : i < index ? ' seen' : ''}`} title={`${s.ref} ${s.when}: ${s.title}`} aria-label={`Scene ${s.ref}, ${s.title}`} onClick={() => go(i)} />
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+          <label className="voice"><span>Voice</span><input type="range" min="0" max="1" step="0.05" value={volume} onChange={(e) => setVolume(+e.target.value)} aria-label="Narration volume" /></label>
+          <div className="ctl">
+            <button onClick={() => step(-1)} aria-label="Previous scene" disabled={pos === 0 || (pos < 0 && !list.some((i) => i < index))}>{Icon.prev}</button>
+            <button className="play" onClick={() => setPlaying((p) => !p)} aria-label={playing ? 'Pause narration' : 'Play narration'}>{playing ? Icon.pause : Icon.play}</button>
+            <button onClick={() => step(1)} aria-label="Next scene" disabled={pos === list.length - 1 || (pos < 0 && !list.some((i) => i > index))}>{Icon.next}</button>
+          </div>
+          <div className="count">{inst ? `${pos + 1} of ${list.length}` : `${scene.no} of ${scenes.length}`}</div>
+        </footer>
+      )}
     </div>
   );
 }
@@ -699,8 +729,8 @@ function Splash({ onPlay, onBoard, onCast, instBar }: { onPlay: () => void; onBo
         <p className="log">For three hundred and twenty-one years the Williams family lived at Great House, the manor house at Llandough. They always said it was theirs. Nobody listened. What people heard was a squatter who lost in court, lost on appeal, lost in Strasbourg, and lost the listing; a “chainsaw farmer”; a house “bulldozed before breakfast”. This is the other side. Each scene gives what happened, what we were all told it meant, and what we now know.</p>
         {instBar}
         <div className="btns">
-          <button className="btn primary" onClick={onBoard}>{Icon.grid} Browse the years</button>
-          <button className="btn" onClick={onPlay}>{Icon.play} Read the first event</button>
+          <button className="btn primary" onClick={onPlay}>{Icon.play} Play from the beginning</button>
+          <button className="btn" onClick={onBoard}>{Icon.grid} Browse the years</button>
           <a className="btn" href="/story/">{Icon.doc} Read the script</a>
         </div>
         <div className="facts">
@@ -708,7 +738,7 @@ function Splash({ onPlay, onBoard, onCast, instBar }: { onPlay: () => void; onBo
           <div><b>{S.acts.filter((a) => a.label.startsWith('Act ')).length}</b>acts, with prologue and epilogue</div>
           <div><b>{evidence}</b>evidence links</div>
         </div>
-        <p className="howto">Every year is presented through images dated to what they depict. Where no dated image is available, an original illustrative reconstruction is clearly labelled. Supporting documents remain linked from the individual year entries. Explore the wider <a href="https://cedwyn.bucklerfamily.estate/">Cedwyn research archive</a> or download the timeline data as <a href="/api/timeline.json">JSON</a>.</p>
+        <p className="howto">Press play to watch the narrated presentation, with archive photographs, maps, family material and newspaper records shown where available. Each image carries its own date; archive context images are labelled separately when they do not depict the event on screen. Explore the wider <a href="https://cedwyn.bucklerfamily.estate/">Cedwyn research archive</a> or download the timeline data as <a href="/api/timeline.json">JSON</a>.</p>
         <div className="support">
           <span>Support the family's campaign:</span>
           {React.createElement('stripe-buy-button', { 'buy-button-id': 'buy_btn_1RuDNARibisCfpBQBMKwrMVc', 'publishable-key': 'pk_live_51OqlLnRibisCfpBQQsDU3l2hhMLoKwTcdiokINqNA4wWaLeBM5qkMyJDV3B6TIToBOKCh4WhEzff7isJCLYIJaUB0088uetffQ' })}
