@@ -50,6 +50,7 @@
   if (needBc) out += '<script src="' + B + "basecamp.js" + V + '"><\/script>';
   if (!d.querySelector('script[src*="cw-graph.js"]')) out += '<script src="/_cedwyn/cw-graph.js?v=1.2.1" defer><\/script>'; // 30 Oct 2026: graph promo banner + 100vh Read more on every page with the header
   if (!d.querySelector('script[data-cedwyn-wikilinks]')) out += '<script src="https://nomenclature.bucklerfamily.estate/wikilinks.js?v=1.0.1" defer data-cedwyn-wikilinks><\/script>'; // 31 Oct 2026: lexicon-backed cross-theme name links
+  if (!window.CedwynVersionGate && !d.querySelector('script[src*="/_cedwyn/version-gate.js"]')) out += '<script src="/_cedwyn/version-gate.js?v=1.0.0" defer><\/script>'; // 1 Nov 2026: version gate (a click-to-load "Select a version" facade in the media slot + upgrade bar). Spec: docs/VERSION-GATE.md
   if (sync) { d.write(out); return; }
   var x, t = d.createElement("template"); t.innerHTML = out; // late or async load: same files, appended
   [].slice.call(t.content.childNodes).forEach(function (n) {
