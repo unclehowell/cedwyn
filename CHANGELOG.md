@@ -4,5 +4,6 @@
 ### Added
 - New webapp at /forensic/ (branch section/forensic): index of 64 institutional forensic assessments plus 17 bodies with recent correspondence not yet assessed.
 - Each assessment carried over unchanged from its Legal Wiki page (old version and date shown), with a dated "Since last assessment" section listing every email on file since that page's cut-off (205 in all), cited by date and reference.
-- Response status re-read from the latest reply; where it changed the earlier value is shown struck through beside the new one (21 changes).
+- Response status re-read from the latest reply; where it changed the earlier value is shown struck through beside the new one (19 changes).
 - "NN of 59" parcel link (slot 38), language switcher (English; Welsh and Spanish interface strings, assessment text translation pending), scope tag data-scope="online".
+- Company pages (Mountjoy Ltd, Western Ground Rents Ltd) list enquiries about each company made to other bodies, each row naming the body.
