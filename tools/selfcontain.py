@@ -75,11 +75,24 @@ def own_media(host, path):
     """a file in our own GitHub repos (release asset or raw file) that is a video, audio, subtitle or image"""
     return bool(OWN_MEDIA.match(host + (path or '')))
 
+# 1 Nov 2026: a webapp listed in themes.json "outbound_allowed" keeps its own named external addresses direct, on its own pages
+# only (/garden/: links to gardencity.cymru and Garden City's image folder on Shopify's CDN, at the site owner's request).
+# CUR_OB holds the entry for the file being processed; every other page is unchanged. - Sion's Tab agent
+OUTBOUND = CFG.get('outbound_allowed', {})
+CUR_OB = [None]
+def ob_entry(rel):
+    parts = rel.split('/')
+    if parts[0] in OUTBOUND: return OUTBOUND[parts[0]]
+    if len(parts) > 2 and parts[0] in ('wales', 'argentina') and parts[1] in OUTBOUND: return OUTBOUND[parts[1]]
+    return None
+
 def classify(m):
     host = m.group(4).lower(); path = (m.group(6) or '').replace('\\/', '/')
     full = m.group(0).replace('\\/', '/')
     if host == SELF: return 'self', None
     hp = host + path
+    ob = CUR_OB[0]
+    if ob and (host in ob.get('hosts', []) or any(hp.startswith(x) for x in ob.get('media_prefixes', []))): return 'ns', None
     if host in NS or any(hp.startswith(n) for n in NS if '/' in n): return 'ns', None
     if any(full.startswith(t) for t in TILES):
         return 'tile', None
@@ -297,7 +310,7 @@ def run(only_paths=None):
             except Exception: continue
         stats['files'] += 1
         ext = p.suffix.lower(); theme = rel.split('/')[0] if '/' in rel else '(root)'
-        page = (theme, rel)
+        page = (theme, rel); CUR_OB[0] = ob_entry(rel)
         if FIX and theme in APEX_THEMES: s0 = s; s = apex_root(s)
         else: s0 = s
         if ext in ('.html', '.htm'):

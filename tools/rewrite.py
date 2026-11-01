@@ -100,6 +100,11 @@ def rw(u, tid, link, page_rel):
         if tu is not None:
             stats['cross'] += 1; return resolve_blob(tu + rest, page_rel)
         if host in MEDIA and not link: return u
+        # 1 Nov 2026: themes.json "outbound_allowed" (per webapp, its own pages only): /garden/ links straight to Garden City's basket
+        # on gardencity.cymru and shows Garden City's images from its own CDN folder; never via /wayback/go/. - Sion's Tab agent
+        _ob = CFG.get('outbound_allowed', {}).get(tid)
+        if _ob and (host in _ob.get('hosts', []) or any((host + path).startswith(x) for x in _ob.get('media_prefixes', []))):
+            stats['allowed_outbound'] = stats.get('allowed_outbound', 0) + 1; return u
         # 27 Oct 2026: e-book Buy buttons go straight to checkout, never via /wayback/go/ (Sion 13:01: never the interstitial)
         if link and (host in ('buy.stripe.com', 'checkout.stripe.com', 'gumroad.com') or host.endswith('.gumroad.com')):
             stats['checkout'] = stats.get('checkout', 0) + 1; return u

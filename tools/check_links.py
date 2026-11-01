@@ -24,16 +24,25 @@ def theme_link(full):
         return None
     return ('/' + THOST[h] + p + q) if h in THOST else None
 bad = []; pages = 0; links = 0; fixed = 0
+# 1 Nov 2026: themes.json "outbound_allowed": a webapp's own named hosts are allowed on that webapp's pages only
+# (/garden/ -> gardencity.cymru and Garden City's CDN image folder). - Sion's Tab agent
+OB = CFG.get('outbound_allowed', {})
+def ob_ok(page_rel, host, u):
+    parts = page_rel.split('/'); e = OB.get(parts[0]) or (OB.get(parts[1]) if len(parts) > 2 and parts[0] in ('wales', 'argentina') else None)
+    if not e: return False
+    hp = re.sub(r'(?i)^(https?:)?//', '', u)
+    return host in e.get('hosts', []) or any(hp.startswith(x) for x in e.get('media_prefixes', []))
 for p in DIST.rglob('*.htm*'):
     if not p.is_file(): continue
     pages += 1
     raw = p.read_text('utf-8', 'ignore')
+    _rel = str(p.relative_to(DIST))
     if FIX:
         def fx(m):
             global fixed
             v = m.group(3); q = v[0] if v[0] in '"\'' else ''; u = v[1:-1] if q else v; u2 = u.strip()
             if BANNED.search(u2): fixed += 1; return m.group(0)[:-len(v)] + '"#"'
-            if re.match(r'(?i)^(https?:)?//', u2) and re.sub(r'(?i)^(https?:)?//', '', u2).split('/')[0].split(':')[0].lower() not in ('cedwyn.bucklerfamily.estate',) + CHECKOUT and not re.sub(r'(?i)^(https?:)?//', '', u2).split('/')[0].split(':')[0].lower().endswith('.gumroad.com'):
+            if re.match(r'(?i)^(https?:)?//', u2) and not ob_ok(_rel, re.sub(r'(?i)^(https?:)?//', '', u2).split('/')[0].split(':')[0].lower(), u2) and re.sub(r'(?i)^(https?:)?//', '', u2).split('/')[0].split(':')[0].lower() not in ('cedwyn.bucklerfamily.estate',) + CHECKOUT and not re.sub(r'(?i)^(https?:)?//', '', u2).split('/')[0].split(':')[0].lower().endswith('.gumroad.com'):
                 fixed += 1; full = ('https:' + u2) if u2.startswith('//') else u2
                 t = theme_link(full)   # 25 Oct 2026: a theme's former address goes to the theme, not to /wayback/go/
                 if t: return m.group(0)[:-len(v)] + '"' + t + '"'
@@ -51,7 +60,7 @@ for p in DIST.rglob('*.htm*'):
         links += 1; v = v.strip('"\'').strip()
         if re.match(r'(?i)^(https?:)?//', v):
             host = re.sub(r'(?i)^(https?:)?//', '', v).split('/')[0].split('?')[0].split('#')[0].split(':')[0].lower()
-            if host != 'cedwyn.bucklerfamily.estate' and host not in CHECKOUT and not host.endswith('.gumroad.com'): bad.append((str(p.relative_to(DIST)), v[:120]))
+            if host != 'cedwyn.bucklerfamily.estate' and host not in CHECKOUT and not host.endswith('.gumroad.com') and not ob_ok(_rel, host, v): bad.append((str(p.relative_to(DIST)), v[:120]))
         if BANNED.search(v): bad.append((str(p.relative_to(DIST)), 'BANNED ' + v[:80]))
     for v in IF.findall(s):
         if BANNED.search(v): bad.append((str(p.relative_to(DIST)), 'BANNED iframe ' + v[:80]))

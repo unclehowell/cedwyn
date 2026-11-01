@@ -787,6 +787,19 @@
    "desc": "What's the time, Mr Wolf? A leaderboard of the leads closest to the Takhar threshold for reopening the 1987 judgment, each scored out of 200 (100 is the threshold). Our case, prospective, not a finding of any court. Webapp 40 of 59.",
    "group": "research",
    "snapshot_branch": "section/mr-wolf"
+  },
+  {
+   "id": "garden",
+   "title": "The Garden · Garden City Cymru",
+   "cy": "Yr Ardd · Garden City Cymru",
+   "es": "El Jardín · Garden City Cymru",
+   "live": "https://cedwyn.bucklerfamily.estate/garden/",
+   "hosts": [],
+   "paths": [],
+   "desc": "The garden in Wales: every plant and product from Garden City Cymru, created by Mary Buckler, granddaughter of Mary Williams, with Garden City's own prices and stock. Buy opens Garden City's own basket; this page takes no payment.",
+   "branch": "garden",
+   "dir": "public",
+   "group": "interactive"
   }
  ],
  "allowed_tile_templates": [
@@ -804,6 +817,17 @@
  },
  "ytimg_checked": {
   "vF25-sLZXaM": "Wales at Six — Archif Ddarlledu Cymru | Wales Broadcast Archive (@walesbroadcastdarlleducymru), oEmbed read 25 Oct 2026"
+ },
+ "outbound_allowed": {
+  "garden": {
+   "hosts": [
+    "gardencity.cymru"
+   ],
+   "media_prefixes": [
+    "cdn.shopify.com/s/files/1/0358/8154/9869/"
+   ],
+   "why": "Garden City Cymru (gardencity.cymru), created by Mary Buckler, granddaughter of Mary Williams: /garden/ shows every product from its shop, and Buy / Checkout open Garden City's own basket there (cart/add with the chosen items), with product images from Garden City's own folder on Shopify's image CDN. This page takes no payment and holds no stock. Allowed for /garden/ only, at the site owner's request (1 Nov 2026). — Sion's Tab agent"
+  }
  },
  "yt_embed_allowed": {
   "UKSApiJH4xk": "Headline video on /research/ (Tŷ Mawr, Llandough, filmed 1988): embed requested by the site owner 30 Oct 2026; oEmbed read 30 Oct 2026",
