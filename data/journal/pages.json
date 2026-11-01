@@ -347,7 +347,19 @@
     "note": "Shop page simplified: header, then the shelf of book cards, then questions and the payment line. The contents list, the editions-and-prices table, the versions note and the pitch band were removed; each title now has an info button that opens the book’s contents, page count and edition in a window. The four-book bundle is a card on the shelf. Each book’s version list is labelled “Select a version”, opens on the newest edition and shows each version’s price."
    }
   ],
+  "/research/book-register/": [
+   {
+    "v": "1.0.0",
+    "date": "2026-11-01",
+    "note": "New page: the book research register as a readable list with a filter, built from the published spreadsheet (117 entries: findings, leads, negative screens and search logs)."
+   }
+  ],
   "/research/": [
+   {
+    "v": "1.2.3",
+    "date": "2026-11-01",
+    "note": "The book research register is linked near the top of the page and in the menu: printed books and journals with lines about Great House Farm (Tŷ Mawr), Llandough and Leckwith, as a readable list and as a spreadsheet."
+   },
    {
     "v": "1.0.3",
     "date": "2026-10-31",
