@@ -31,15 +31,15 @@
   },
   "geometry_source": {
     "url": "https://cedwyn.bucklerfamily.estate/maps/data/parcels.geojson",
-    "observed_at": "2026-11-01T02:47:00.306Z",
+    "observed_at": "2026-11-01T03:20:07.773Z",
     "status": "partial",
     "feature_count": 4,
     "provenance_fields": ["features[].properties.src", "features[].properties.os", "features[].properties.conf_text"],
     "features": [
-      {"id": "AN", "name": "Parcel A — north wood (segment 1 of 3)", "confidence": "estimated", "source_ids": ["os1900", "three", "woods"], "trace_tolerance": "about ±10 m", "source_limit": "The GeoJSON says the identification as Parcel A wood is a family reconstruction and that the later WA735527 title plan is not held."},
-      {"id": "AM", "name": "Parcel A — farmhouse, yard and buildings (segment 2 of 3)", "confidence": "traced", "source_ids": ["os1900", "os1947", "reg83"], "trace_tolerance": "about ±5 m", "source_limit": "The GeoJSON says OS field 70 includes ground west of the yard wall and the registered WA240304 boundary is not held."},
-      {"id": "AS", "name": "Parcel A — the green (lower third, VG41 area)", "confidence": "estimated", "source_ids": ["pl_plans", "three", "loss55", "ev44", "os1947"], "source_limit": "The GeoJSON describes an estimated lower-third interpretation and says the VG41 register map and boundary are not held."},
-      {"id": "B", "name": "Parcel B — the fields east of the house", "confidence": "traced", "source_ids": ["ev23", "os1900", "reg83"], "trace_tolerance": "about ±10 m", "source_limit": "The GeoJSON says the outline is traced from the colouring on the 1939 tenancy plan DBDT123/7 matched to OS 1900 field lines; it is not a freehold title plan."}
+      {"id": "AN", "name": "Parcel A — north wood (segment 1 of 3)", "confidence": "estimated", "source_ids": ["os1900", "three", "woods"], "trace_tolerance": "about ±10 m", "source_limit": "The GeoJSON source notes identify the Parcel A wood as a family reconstruction; the later WA735527 title plan is not held."},
+      {"id": "AM", "name": "Parcel A — farmhouse, yard and buildings (segment 2 of 3)", "confidence": "traced", "source_ids": ["os1900", "os1947", "reg83"], "trace_tolerance": "about ±5 m", "source_limit": "GeoJSON source notes record that OS field 70 includes ground west of the yard wall and the registered WA240304 boundary is not held."},
+      {"id": "AS", "name": "Parcel A — the green (lower third, VG41 area)", "confidence": "estimated", "source_ids": ["pl_plans", "three", "loss55", "ev44", "os1947"], "source_limit": "GeoJSON source notes describe an estimated lower-third interpretation and record that the VG41 register map and boundary are not held."},
+      {"id": "B", "name": "Parcel B — the fields east of the house", "confidence": "traced", "source_ids": ["ev23", "os1900", "reg83"], "trace_tolerance": "about ±10 m", "source_limit": "GeoJSON source notes record that the outline is traced from colouring on the 1939 tenancy plan DBDT123/7 matched to OS 1900 field lines; it is not a freehold title plan."}
     ],
     "historical_plan_source": {
       "evidence_id": "EV-0211",
@@ -51,7 +51,7 @@
       "published_family_photo_url": "https://cedwyn.bucklerfamily.estate/fb/img/1824-stewart-survey-plan-19-cedfin-or-ty-mawr-farm.jpg",
       "source_status": "published_family_photo_read; original_archive_digital_image_pending",
       "what_the_evidence_page_reports": ["Plan 19 is titled Cedfin or Ty Mawr Farm", "The plan shows the River Ely, Village of Llandough, Llandough Farm and Wellspring", "The 1824 reference table is partly read; field names are unread"],
-      "limitations": ["The family photo is not a georeferenced modern parcel layer.", "The evidence page says archive digital images remain pending and the plan and reference table are only partly read.", "The archival catalogue says DB/E/1 is digital images only and its digital material is not currently available for download.", "Historic plan numbers must not be equated with tithe plot numbers or editorial webapp slots without row-by-row verification."]
+      "limitations": ["The family photo is not a georeferenced modern parcel layer.", "The evidence page records that archive digital images remain pending and the plan and reference table are only partly read.", "The archival catalogue records DB/E/1 digital images only and says the digital material is not currently available for download.", "Historic plan numbers must not be equated with tithe plot numbers or editorial webapp slots without row-by-row verification."]
     },
     "limits": [
       "The four returned GeoJSON features are partial source shapes, not a complete current estate boundary.",
