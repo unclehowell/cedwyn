@@ -411,7 +411,8 @@ def stop_html(H, T, l, i, s, n):
     for j, (txt, ids) in enumerate(s.get('recs', [])):
         T[f'stop_{sid}_r{j}'] = txt
         recs.append(f'<li><span class="rt" data-i18n="stop_{sid}_r{j}">{E(tx(T, f"stop_{sid}_r{j}", l))}</span> {ev_links(H, ids)}</li>')
-    alt = tx(T, f'stop_{sid}_alt', l) or tx(T, f'stop_{sid}_overlay', l)
+    alt_key = f'stop_{sid}_alt' if s.get('alt') else f'stop_{sid}_overlay'
+    alt = tx(T, alt_key, l) or tx(T, f'stop_{sid}_overlay', l)
     extra = ''
     if s.get('timeline'):
         tl = []
@@ -422,7 +423,7 @@ def stop_html(H, T, l, i, s, n):
     if s.get('links'):
         extra += '<div class="hv-btns">' + ''.join(f'<a class="hv-btn" href="{E(u)}" data-i18n="{E(k)}">{E(tx(T, k, l) or u)}</a>' for k, u in s['links']) + '</div>'
     return (f'<article class="hv-stop{" on" if i == 0 else ""}" id="stop-{i+1}" data-stop="{E(sid)}" aria-label="{E(str(i+1))}">'
-            f'<div class="hv-ar cwlb-th" data-lb=""><img src="{img(H, s["img"])}" width="1280" height="853" alt="{E(alt)}" data-i18n-al="stop_{sid}_overlay" loading="{"eager" if i == 0 else "lazy"}" decoding="async"><span class="scan"></span>'
+            f'<div class="hv-ar cwlb-th" data-lb=""><img src="{img(H, s["img"])}" width="1280" height="853" alt="{E(alt)}" data-i18n-al="{E(alt_key)}" loading="{"eager" if i == 0 else "lazy"}" decoding="async"><span class="scan"></span>'
             f'<span class="chip" data-i18n="{E(s.get("chip", "ar_tag"))}">{E(tx(T, s.get("chip", "ar_tag"), l))}</span></div>'
             + (f'<div class="hv-ar cwlb-th" id="recreations" data-lb="" style="clear:right"><img src="{img(H, s["holo"])}" width="1280" height="853" alt="{E(tx(T, f"stop_{sid}_holo", l))}" data-i18n-al="stop_{sid}_holo" loading="lazy" decoding="async"><span class="scan"></span>'
                f'<span class="chip" data-i18n="holo_tag">{E(tx(T, "holo_tag", l))}</span></div>' if s.get('holo') else '')
