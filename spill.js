@@ -1,4 +1,4 @@
-/* spill.js · webapp 44 of 59 · v1.0.0 · graphs (inline SVG) + WebMCP tools. - Cedwyn editors */
+/* spill.js · webapp 44 of 59 · v1.1.0 · graphs (inline SVG) + WebMCP tools. - Cedwyn editors */
 /* Header: "44 of 59" in the header's own numbering slot (.ghf-v2-name small) until the area registry gives the slot; the
    header's third row stays hidden except for the shared Garden banner (same rule as Tithe H3 v0.1.1). */
 (function(){
