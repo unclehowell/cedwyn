@@ -1,4 +1,4 @@
-/*! garden-banner.js — the one shared Garden City banner in the header strip of every Cedwyn webapp · v2.0.0 (2 Nov 2026) · Cedwyn editors
+/*! garden-banner.js — the one shared Garden City banner in the header strip of every Cedwyn webapp · v2.1.0 (2 Nov 2026) · Cedwyn editors
  * 00:48 GMT 2 Nov 2026: the cross-promo chrome (graph promo strip, section ribbon chips, coming-soon teasers, e-book strips,
  * the "Outside records" popup) is gone. 03:25 GMT 2 Nov 2026: in its place this one banner promotes the REALM flowers and plants
  * of Garden City Cymru (gardencity.cymru) on every webapp. It takes over the header's slim strip (.ghf-v2-up, basecamp.js), so it
@@ -7,12 +7,14 @@
  * Data: /_cedwyn/garden-banner/products.json (name, handle, sprite tile) + sprite.webp, made from the Garden City catalogue by
  * tools/garden_banner.py. Links open gardencity.cymru (home page, or /products/<handle>) in a new tab: the one outside shop the
  * site links to, allowed in runtime.js pass() and selfcontain.py OUT_SITE. No prices.
- * Off on: the Argentina scope (/argentina/, /patagonia/, html[data-cedwyn-scope=argentina]: no money words, no flowers or gardens
- * there), machine-facing pages (/academy/, /agents/, /hive/), /garden/ and framed pages. Spec: docs/GARDEN-BANNER.md */
+ * 2.1.0 (owner, 03:45 GMT 2 Nov 2026): one consistent banner on every webapp, the Argentina scope included (/argentina/, /patagonia/,
+ * html[data-cedwyn-scope=argentina]); there it carries no prices or money words (products whose names carry one are left out) and only
+ * Garden City's own product photos, never farm flower or NFT images. Off on machine-facing pages (/academy/, /agents/, /hive/),
+ * /garden/ and framed pages. Spec: docs/GARDEN-BANNER.md */
 (function () {
   'use strict';
   if (window.CedwynGardenBanner) return;
-  var d = document, de = d.documentElement, VER = '2.0.0', GC = 'https://gardencity.cymru', XK = 'cw_gdn_x', XDAYS = 30;
+  var d = document, de = d.documentElement, VER = '2.1.0', GC = 'https://gardencity.cymru', XK = 'cw_gdn_x', XDAYS = 30;
   window.CedwynGardenBanner = { v: VER };
   var DATA = '/_cedwyn/garden-banner/products.json?v=' + VER;
   var T = {
@@ -23,14 +25,17 @@
   function lg() { var l = ''; try { l = window.__cedwynLang || localStorage.getItem('ghf_lang') || ''; } catch (e) {} l = (l || de.getAttribute('lang') || 'en').slice(0, 2).toLowerCase(); return T[l] ? l : 'en'; }
   function path() { var p = (window.__cedwynLP || location.pathname || '/').toLowerCase(); return p; }
   function off() {
-    var p = path(), sc = de.getAttribute('data-cedwyn-scope') || '', sec = de.getAttribute('data-cedwyn-sec') || '';
-    if (sc === 'argentina' || sec === 'argentina') return true;
-    if (/^\/(argentina|patagonia)(\/|$)/.test(p) || /^\/(wales|argentina)\/patagonia(\/|$)/.test(p)) return true;
+    var p = path();
     if (/^\/((wales|argentina)\/)?(garden|academy|agents|hive)(\/|$)/.test(p)) return true;
     if (window.self !== window.top) return true;
     try { var x = +localStorage.getItem(XK) || 0; if (x && Date.now() - x < XDAYS * 864e5) return true; } catch (e) {}
     return false;
   }
+  function arg() {   // Argentina scope: the banner shows, with no money words (2.1.0)
+    var p = path(), sc = de.getAttribute('data-cedwyn-scope') || '', sec = de.getAttribute('data-cedwyn-sec') || '';
+    return sc === 'argentina' || sec === 'argentina' || /^\/(argentina|patagonia)(\/|$)/.test(p) || /^\/(wales|argentina)\/patagonia(\/|$)/.test(p);
+  }
+  var MONEY = /gift ?card|voucher|\u00a3|\$|\u20ac|price|\bsale\b|offer|discount|\bfree\b|\bbuy\b|\bshop\b|\bcost|\bpay/i;
   function mk(tag, cls, txt) { var e = d.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
   var CSS =
     '.ghf-v2-up.cw-gdn-on{padding:0!important}' +
@@ -80,6 +85,7 @@
   function items(r) {
     if (!data || r.childNodes.length) return;
     var sp = data.sprite || {}, n = 26, cols = sp.cols || 16, list = data.items || [], i = 0;
+    if (arg()) list = list.filter(function (it) { return !MONEY.test(it[1] || ''); });
     var bg = 'url(' + sp.src + ')', bs = (cols * n) + 'px auto';
     function one(it) {
       var a = mk('a', 'cw-gdn-i'), p = mk('span', 'cw-gdn-p'), k = it[2];

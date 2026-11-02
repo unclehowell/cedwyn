@@ -1,11 +1,12 @@
 # Garden City banner (one shared banner on every webapp)
 
-Version 2.0.0, 2 Nov 2026. Owner instructions: 00:48 GMT 2 Nov 2026, the cross-promo chrome on the webapps is purged and replaced by one banner carrying the Garden City Cymru products; 03:25 GMT 2 Nov 2026, the strip ("See this section as a graph · Graph › · Argentina · Great House II, Puerto Madryn, coming soon · Museum · The retelling · Wales · Local history … First edition free →") goes on all webapps and the banner promotes the Garden City flowers at gardencity.cymru.
+Version 2.1.0, 2 Nov 2026. Owner instructions: 00:48 GMT 2 Nov 2026, the cross-promo chrome on the webapps is purged and replaced by one banner carrying the Garden City Cymru products; 03:25 GMT 2 Nov 2026, the strip ("See this section as a graph · Graph › · Argentina · Great House II, Puerto Madryn, coming soon · Museum · The retelling · Wales · Local history … First edition free →") goes on all webapps and the banner promotes the Garden City flowers at gardencity.cymru.
 
 ## Changelog
 
 | Version | Date | Change |
 |---|---|---|
+| 2.1.0 | 2 Nov 2026 | Shown on the Argentina scope too (owner, 03:45 GMT): one consistent banner on every webapp; there no prices or money words (products whose names carry one are left out) and only Garden City's own product photos, never farm flower or NFT images |
 | 2.0.0 | 2 Nov 2026 | Links open gardencity.cymru (home page, or /products/<handle> for a product) in a new tab; × closes it for 30 days; shows on webapps that had hidden the header strip; gardencity.cymru allowed in runtime.js pass() and selfcontain.py OUT_SITE; new cache keys (boot 2.1.20, section.js 1.3.0, clamp.js v3) |
 | 1.0.0 | 2 Nov 2026 | Cross-promo chrome retired; banner of Garden City products in the header strip, linking to /garden/ |
 
@@ -34,7 +35,6 @@ The per-theme notices in `notices/<theme>.json` (for example "Provisional model"
 
 ## Where it does not show
 
-- Argentina scope: `/argentina/…`, `/patagonia/…`, any page with `html[data-cedwyn-scope=argentina]` or `data-cedwyn-sec=argentina`. The strip is hidden there (no money words, no flowered art in Argentina scope).
 - Machine-facing pages: `/academy/`, `/agents/`, `/hive/` (llms.txt and agents.json are not HTML and never load it).
 - `/garden/` and framed pages.
 - Any browser where a visitor pressed × in the last 30 days.
