@@ -17,7 +17,9 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.4.2'
+VERSION = '1.5.1'
+# 1.5.1 (2 Nov 2026, 05:04 GMT): an online_only app leaves only the place modals of the halves that exclude it (the FOI/correspondence apps stay in Wales, leave Patagonia). — Sion's Tab agent
+# 1.5.0 (2 Nov 2026, 03:41 GMT request): /online/ section — data/halves.json groups.online_only (hubspot, cloudflare, cyberspace) leave the Wales and Patagonia place modals and open at /online/<id>/ from the Online card, which also lists HubSpot task control; old /wales/<id>/ and /argentina/<id>/ addresses 301 (Worker cedwyn-online, workers/cedwyn-online/index.js). — Sion's Tab agent
 # 1.4.2 (2 Nov 2026, 02:53Z): Patagonia visitor-card imagery aligned (B&B cottage GEN-0001, whole-house NFA-0035, hero NFA-0157); accessible alt text now names venue artwork. — Cedwyn editors
 # 1.4.1 (2 Nov 2026): separate source-language image alt descriptions from visible overlay copy; six interpretive Wales-tour scenes now identify themselves as artist's impressions in EN/CY/ES. — Cedwyn editors
 # 1.4.0 (1 Nov 2026, Sion 22:28 GMT, m:b0d74058): the landing has a third card, Online, after Wales and Patagonia; card labels carry
@@ -515,7 +517,8 @@ def app_tile(H, section, theme):
         image = 'nfa:' + ARG_TILE_IMAGES[tid]
     else:
         image = APP_IMAGES.get(tid, 'ty-mawr-1974-reconstruction')
-    href = f'/{tid}/' if section == 'online' else f'/{section}/{tid}/'  # Online: the apps' own top-level addresses (1 Nov 2026)
+    online_only = set(H.get('groups', {}).get('online_only', []))
+    href = (f'/online/{tid}/' if tid in online_only else f'/{tid}/') if section == 'online' else f'/{section}/{tid}/'  # Online: /online/<id>/ for online-only apps (2 Nov 2026), else the apps' own top-level addresses (1 Nov 2026)
     return (f'<a class="land-app" href="{E(href)}" aria-label="{E(label)}">'
             f'<img src="{E(app_image(H, image))}" alt="" loading="lazy" decoding="async">'
             f'<span class="land-app-label">{E(label)}</span></a>')
@@ -532,8 +535,10 @@ def network_tile(H):
 
 def modal_apps(H, cfg, section):
     out = []
+    G_ = H.get('groups', {}); sx = set(G_.get('wales_exclude' if section == 'wales' else 'argentina_exclude', [])) if section in ('wales', 'argentina') else set()
+    skip = set(APP_EXCLUDED) | (set(G_.get('online_only', [])) & sx)   # an /online/ app leaves the place modal of each half that excludes it (2 Nov 2026)
     for group in cfg.get('groups', []):
-        items = [t for t in cfg['themes'] if t.get('group') == group['id'] and t['id'] not in APP_EXCLUDED]
+        items = [t for t in cfg['themes'] if t.get('group') == group['id'] and t['id'] not in skip]
         if not items:
             continue
         out.append('<section class="land-app-section"><h3>' + E(group['title']) + '</h3><div class="land-app-grid">')
@@ -551,7 +556,7 @@ def place_modal(H, cfg, section):
         specific = specific_tile(H, 'Virtual reconstruction · AR glasses', '/wales/', 'holo-ghf1-098')
     elif section == 'online':  # third landing card (Sion 22:28 GMT 1 Nov 2026, m:b0d74058); no place-specific tiles - Sion's Tab agent
         title = 'Online'
-        specific = ''
+        specific = specific_tile(H, 'HubSpot · task control', '/online/hubspot/', 'network-datacentre') if 'hubspot' in H.get('groups', {}).get('online_only', []) else ''   # 2 Nov 2026: HubSpot moved to /online/ - Sion's Tab agent
     else:
         title = 'Patagonia, Argentina'
         special = [

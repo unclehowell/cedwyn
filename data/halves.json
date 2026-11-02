@@ -1,5 +1,5 @@
 {
- "version": "1.2.5",
+ "version": "1.3.2",
  "note": "Two halves of Cedwyn (Sion, 23:39 GMT 25 Oct 2026, m:2a7c8c27): landing (two tiles), /wales/ = augmented-reality guided tour of Cedwyn Estate, Wales (former manorial house, never 'farm'; no museum stop), /argentina/ = Cedwyn Estate II / Great House II retreat with package builder. Wales copy follows EDITORIAL.md (ingredients + citations, courts' view first, banned words). AI images carry 'artist's impression'. Bookings are pre-order requests, not confirmed holidays. Welsh and Spanish are first drafts for review. tools/halves.py renders it. - Sion's Tab agent",
  "img": "/_cedwyn/halves/img/",
  "img_v": "3",
@@ -1381,14 +1381,55 @@
   "default": "present",
   "wales_exclude": [
    "story",
-   "patagonia"
+   "patagonia",
+   "cloudflare",
+   "cyberspace",
+   "that-old-chestnut",
+   "projects",
+   "chat",
+   "watchtower"
   ],
   "argentina_exclude": [
    "wales",
    "whattheydontsay",
    "blog",
-   "familytree"
+   "familytree",
+   "cloudflare",
+   "cyberspace",
+   "dartboard",
+   "wdtk",
+   "qa",
+   "authorities",
+   "forensic",
+   "fcg",
+   "watchtower",
+   "review",
+   "email",
+   "emails",
+   "projects",
+   "that-old-chestnut",
+   "chat"
   ],
+  "online_only": [
+   "hubspot",
+   "cloudflare",
+   "cyberspace",
+   "dartboard",
+   "wdtk",
+   "qa",
+   "whattheydontsay",
+   "authorities",
+   "forensic",
+   "fcg",
+   "watchtower",
+   "review",
+   "email",
+   "emails",
+   "projects",
+   "that-old-chestnut",
+   "chat"
+  ],
+  "online_only_note": "1.3.0 (2 Nov 2026, producer 03:41 GMT): apps that are neither about Wales nor about Patagonia live at /online/<id>/ (Worker cedwyn-online: 301 from /wales/<id>/ and /argentina/<id>/). They leave both halves' menus and place modals and open at /online/<id>/ from the Online card. 1.3.1: the public-body and FOI correspondence apps (and the Project Office) also live at /online/<id>/; /argentina/<id>/ answers 301 there, the Wales half keeps them (wales_exclude unchanged). 1.3.2: That Old Chestnut and the tools / agent / ops apps (Project Office, Ask the Archive, Watchtower) leave both halves. — Cedwyn editors",
   "past_pages": [
    {
     "id": "title-chain",
