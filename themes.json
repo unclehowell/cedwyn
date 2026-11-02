@@ -806,7 +806,7 @@
   "https://{s}.tile.openstreetmap.org/",
   "https://mapseries-tilesets.s3.amazonaws.com/os/6inchsecond/"
  ],
- "allowed_tile_note": "Map tiles are fetched by the map library per zoom level and position and cannot be stored as fixed files; these three tile templates (satellite layer on /maps/, street map on /app/ and /tithe-h3/, the National Library of Scotland OS six-inch c.1900 layer on /tithe-h3/, 2 Nov 2026) are the only external requests left. — Sion's Tab agent",
+ "allowed_tile_note": "Map tiles are fetched by the map library per zoom level and position and cannot be stored as fixed files; these three tile templates (satellite layer on /maps/, street map on /app/ and /tithe-h3/, the National Library of Scotland OS six-inch c.1900 layer on /tithe-h3/, 2 Nov 2026) are the only external requests left.",
  "vendor_extra": [
   "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js"
  ],
