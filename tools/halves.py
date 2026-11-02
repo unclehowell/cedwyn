@@ -17,7 +17,8 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.5.0'
+VERSION = '1.5.1'
+# 1.5.1 (2 Nov 2026, 05:04 GMT): an online_only app leaves only the place modals of the halves that exclude it (the FOI/correspondence apps stay in Wales, leave Patagonia). — Sion's Tab agent
 # 1.5.0 (2 Nov 2026, 03:41 GMT request): /online/ section — data/halves.json groups.online_only (hubspot, cloudflare, cyberspace) leave the Wales and Patagonia place modals and open at /online/<id>/ from the Online card, which also lists HubSpot task control; old /wales/<id>/ and /argentina/<id>/ addresses 301 (Worker cedwyn-online, workers/cedwyn-online/index.js). — Sion's Tab agent
 # 1.4.2 (2 Nov 2026, 02:53Z): Patagonia visitor-card imagery aligned (B&B cottage GEN-0001, whole-house NFA-0035, hero NFA-0157); accessible alt text now names venue artwork. — Cedwyn editors
 # 1.4.1 (2 Nov 2026): separate source-language image alt descriptions from visible overlay copy; six interpretive Wales-tour scenes now identify themselves as artist's impressions in EN/CY/ES. — Cedwyn editors
@@ -534,7 +535,8 @@ def network_tile(H):
 
 def modal_apps(H, cfg, section):
     out = []
-    skip = set(APP_EXCLUDED) | (set(H.get('groups', {}).get('online_only', [])) if section in ('wales', 'argentina') else set())   # online-only apps live under /online/ (2 Nov 2026)
+    G_ = H.get('groups', {}); sx = set(G_.get('wales_exclude' if section == 'wales' else 'argentina_exclude', [])) if section in ('wales', 'argentina') else set()
+    skip = set(APP_EXCLUDED) | (set(G_.get('online_only', [])) & sx)   # an /online/ app leaves the place modal of each half that excludes it (2 Nov 2026)
     for group in cfg.get('groups', []):
         items = [t for t in cfg['themes'] if t.get('group') == group['id'] and t['id'] not in skip]
         if not items:
