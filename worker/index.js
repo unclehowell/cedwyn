@@ -10,7 +10,7 @@ import { collectWeb, handleWeb, WEB_VERSION } from './web.js';   // the Analytic
 // Aggregates only: no IPs, no user agents, no account, zone or database ids. Projects outside the estate are left out of
 // the per-item charts; account totals against the free allowance include everything. Free plan only. - Cedwyn editors
 
-const VERSION = '1.0.2';
+const VERSION = '1.0.3';
 const API = ['https:', '', 'api.cloudflare' + '.com', 'client', 'v4'].join('/');
 const LIM = {
   d1_rows_written_day: 100000, d1_rows_read_day: 5000000, d1_storage_total: 5e9, d1_db_size: 500e6,
@@ -44,7 +44,7 @@ export class Ticker {
       'First version: graphs of the Cloudflare account against the free allowance, its own SQLite database, WebMCP tools and this guest book.', 'release');
   }
   web() { return this.kind === 'web'; }
-  async gather(source) { return this.web() ? collectWeb(this.env, gql, source) : collect(this.env, source); }
+  async gather(source) { return this.web() ? collectWeb(this.env, gql, source, this.sql) : collect(this.env, source); }   // 1.0.3: the Analytics webapp keeps its per-day traffic-class history in this database
   latest() { const r = this.sql.exec(`SELECT json FROM snap ORDER BY id DESC LIMIT 1`).toArray()[0]; return r ? JSON.parse(r.json) : null; }
   async store(snap) {
     const id = Date.parse(snap.generated_at);
