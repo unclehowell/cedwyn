@@ -6,7 +6,8 @@ Checks web/_cedwyn/version-gate.json against the standard and data/ebooks.json; 
 Selector UI (standard 2a, 1.1.0): flags label and sub-text drift in the gate's code and the documentary page (reported, never auto-fixed).
 Exit 0 = clean (or every finding fixed), 1 = findings left. 1.0.0 (2026-11-01); 1.1.0 (2026-11-01) Selector UI checks; 1.1.1 (2026-11-01) documentary modal
 (1.9.0+) rules replace the retired play-prompt rules, shelf cards need the (i) beside the drop-down; 1.1.2 (2026-11-01) /learn/ questionnaires picker checked live;
-1.1.3 (2026-11-01) a shelf offer line (sh-cmp) below the drop-down counts as a line under it - Cedwyn editors"""
+1.1.3 (2026-11-01) a shelf offer line (sh-cmp) below the drop-down counts as a line under it; 1.1.4 (2026-11-02) shelf options must carry the exact
+label with its size, "v0.0.1 — free (20 pages)" (standard 2; "free preview" and a missing size are drift) - Cedwyn editors"""
 import json, re, sys, os, urllib.request
 SITE = "https://cedwyn.bucklerfamily.estate"
 STEP = 4.99
@@ -114,9 +115,10 @@ def main(argv):
                 if re.search(r'<select class="sv-sel"[^>]*>(?:(?!</select>).)*<option(?![^>]*value="")[^>]*\bselected\b', card, re.S): ui_drift.setdefault("a version preselected (no 'Select a version' placeholder)", []).append(k)
                 if re.search(r'class="sv-go"|class="sv-free"', card) or re.search(r'</select>(?:(?!</li>).)*class="sh-cmp"', card, re.S): ui_drift.setdefault("a button or link line under the drop-down", []).append(k)
                 if 'class="sv-sel"' in card and 'class="sv-vi"' not in card: ui_drift.setdefault("no (i) version-table button beside the drop-down", []).append(k)
-                want = ["v%s — %s" % (v["v"], "free" if p == 0 else "£%.2f" % p) for v, p in zip(it["versions"], it["_ladder"])]
+                want = ["v%s — %s" % (v["v"], "free" if p == 0 else "£%.2f" % p) + (" (%s pages)" % format(v["pages"], ",") if v.get("pages") else "")
+                        for v, p in zip(it["versions"], it["_ladder"])]   # 1.1.4: the exact label with its size (standard 2)
                 for w in want:
-                    if not any(o.startswith(w) for o in opts): find(f"live /ebooks/ {k}: drop-down lacks '{w}' (has {opts})")
+                    if w not in opts: find(f"live /ebooks/ {k}: drop-down lacks '{w}' (has {opts})")
         except Exception as e: find(f"live: /ebooks/ not read ({str(e)[:60]})")
         try:   # 1.1.2: the /learn/ questionnaires picker (academy Worker) follows standard 1-3 in its own markup
             st, html = get(SITE + "/learn/")

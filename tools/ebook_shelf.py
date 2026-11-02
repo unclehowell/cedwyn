@@ -21,8 +21,9 @@ Prices, checkout links and utm parameters are copied from the page as they are; 
 import json, html, pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.3.1'
-VERSIONS = [('1.3.1', '1 Nov 2026', 'The offer line (what the paid version buys against the free one) moves from under the drop-down to the card text under the hook; words unchanged'),
+VERSION = '1.3.2'
+VERSIONS = [('1.3.2', '2 Nov 2026', 'Each version option shows its size, as in the reader: "v0.0.1 — free (20 pages)", "v0.0.2 — £4.99 (221 pages)"'),
+            ('1.3.1', '1 Nov 2026', 'The offer line (what the paid version buys against the free one) moves from under the drop-down to the card text under the hook; words unchanged'),
             ('1.3.0', '1 Nov 2026', 'One plain drop-down: "Select a version" placeholder, no label above, nothing preselected, nothing under it; choosing acts at once; (i) version table'),
             ('1.2.1', '30 Oct 2026', 'Select a version label; price in each option'),
             ('1.2.0', '30 Oct 2026', 'Header, shelf, then questions: book details in an info modal per title; bundle card on the shelf'),
@@ -82,6 +83,27 @@ SV_JS = ('<style id="sh-sv-css">.sh .sh-card .sv-row{display:flex!important;flex
          'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();})();</script>')
 def _attrs(tag):
     return dict(re.findall(r'([\w-]+)="([^"]*)"', tag))
+def _sizes(t):
+    """1.3.2 (2 Nov 2026, version standard run; docs/VERSION-STANDARD.md §2): each option reads exactly "v0.0.1 — free (20 pages)" /
+    "v0.0.2 — £4.99 (221 pages)", the same words as the reader's gate. Sizes come from web/_cedwyn/version-gate.json (per version
+    "pages"); "free preview" reads "free". Prices, values and links unchanged. Idempotent (an existing size is replaced, not doubled)."""
+    try: M = json.loads((ROOT / 'web/_cedwyn/version-gate.json').read_text(encoding='utf-8'))
+    except Exception: return t
+    lang = (re.search(r'<html[^>]*\blang="([a-z]{2})', t) or [None, 'en'])[1]
+    word = {'cy': 'tudalen', 'es': 'páginas'}.get(lang, 'pages')
+    size = {}
+    for k, it in (M.get('ebooks') or {}).items():
+        pv = {'v' + str(v.get('v')): v.get('pages') for v in it.get('versions') or [] if v.get('pages')}
+        for i in (k, it.get('card') or '', pathlib.Path(it.get('cover') or '').stem):
+            if i: size[i] = pv
+    def _sel(m):
+        pv = size.get(m.group(2)) or {}
+        def _o(o):
+            txt = re.sub(r'\s+\([\d,.]+ [^)]*\)\s*$', '', o.group(3)).replace(' — free preview', ' — free')
+            n = pv.get(o.group(2))
+            return o.group(1) + txt + (' (%s %s)' % (format(n, ','), word) if n else '') + '</option>'
+        return m.group(1) + re.sub(r'(<option value="(v[\d.]+)"[^>]*>)([^<]*)</option>', _o, m.group(3))
+    return re.sub(r'(<select class="sv-sel" id="sv-([^"]+)"[^>]*>)(.*?)(?=</select>)', _sel, t, flags=re.S)
 def card(art, pages):
     cid = re.search(r'id="([^"]+)"', art).group(1)
     title = re.sub(r'<[^>]+>', '', (re.search(r'<h2[^>]*>(.*?)</h2>', art, re.S) or [None, cid])[1]).strip()
@@ -179,6 +201,7 @@ def tidy(t, D):
         if 'class="sv-ph"' not in body: body = '<option class="sv-ph" value="" disabled selected>Select a version</option>' + body
         return sel + body
     t = re.sub(r'(<select class="sv-sel"[^>]*>)(.*?)(?=</select>)', _ph, t, flags=re.S)
+    t = _sizes(t)   # 1.3.2: exact option labels with sizes (§2)
     t = re.sub(r'(<div class="sv-row">\s*<select class="sv-sel".*?</select>)\s*<a class="sv-go"[^>]*>.*?</a>', r'\1', t, flags=re.S)
     t = re.sub(r'(<div class="sv-pick"(?:(?!</li>).)*?)<a class="sv-free"[^>]*>.*?</a>', r'\1', t, flags=re.S)
     # 1.3.1 (1 Nov 2026, version standard run): nothing sits under the drop-down (§2a), so the offer line (sales-fix sf43, "£4.99: the
