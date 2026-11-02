@@ -116,6 +116,11 @@ jobs:
           print('header graphs:', len(r), 'own-db:', len(r) - len(bad), 'not own:', bad)
           for k in bad: print('::warning::header graph %s plots %s, not its own webapp database' % (k, r[k].get('source')))
           PY
+      - name: Webapp nav (one slot registry, /areas.json "nav"; stamp the no-JS ‹ NN of 59 › bar into every slot page, then fail on a broken slot — tools/nav.py, docs/NAV.md)
+        if: success()
+        run: |
+          python3 tools/nav.py dist
+          python3 tools/nav.py dist --check
       - name: Prune query-named duplicate assets (P-027 b, after every writer; Pages ignores '?v=' so a byte-identical 'x.js@v=…' is never served)
         if: success()
         run: |
