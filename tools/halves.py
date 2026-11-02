@@ -17,7 +17,8 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.4.0'
+VERSION = '1.4.1'
+# 1.4.1 (2 Nov 2026): separate source-language image alt descriptions from visible overlay copy; six interpretive Wales-tour scenes now identify themselves as artist's impressions in EN/CY/ES. — Cedwyn editors
 # 1.4.0 (1 Nov 2026, Sion 22:28 GMT, m:b0d74058): the landing has a third card, Online, after Wales and Patagonia; card labels carry
 # the emojis after the word (Welsh flag + UK / Argentina flag / globe). Online opens a modal with the same apps at their top-level
 # addresses (/<app>/ instead of /wales/<app>/). Three cards side by side on wide screens, stacked on phones. - Sion's Tab agent
@@ -400,7 +401,7 @@ def ra_html(T, l, key, s):
 def stop_html(H, T, l, i, s, n):
     """One tour stop (Sion 02:12 GMT 26 Oct: a warm guided tour; every legal citation lives only in the "court" stop)."""
     sid = s['id']
-    for k in ('name', 'place', 'overlay', 'now', 'open', 'story'):
+    for k in ('name', 'place', 'overlay', 'alt', 'now', 'open', 'story'):
         if k in s: T[f'stop_{sid}_{k}'] = s[k]
     if s.get('holo') and s.get('holo_overlay'):
         T[f'stop_{sid}_holo'] = s['holo_overlay']
@@ -410,7 +411,8 @@ def stop_html(H, T, l, i, s, n):
     for j, (txt, ids) in enumerate(s.get('recs', [])):
         T[f'stop_{sid}_r{j}'] = txt
         recs.append(f'<li><span class="rt" data-i18n="stop_{sid}_r{j}">{E(tx(T, f"stop_{sid}_r{j}", l))}</span> {ev_links(H, ids)}</li>')
-    alt = tx(T, f'stop_{sid}_overlay', l)
+    alt_key = f'stop_{sid}_alt' if s.get('alt') else f'stop_{sid}_overlay'
+    alt = tx(T, alt_key, l) or tx(T, f'stop_{sid}_overlay', l)
     extra = ''
     if s.get('timeline'):
         tl = []
@@ -421,7 +423,7 @@ def stop_html(H, T, l, i, s, n):
     if s.get('links'):
         extra += '<div class="hv-btns">' + ''.join(f'<a class="hv-btn" href="{E(u)}" data-i18n="{E(k)}">{E(tx(T, k, l) or u)}</a>' for k, u in s['links']) + '</div>'
     return (f'<article class="hv-stop{" on" if i == 0 else ""}" id="stop-{i+1}" data-stop="{E(sid)}" aria-label="{E(str(i+1))}">'
-            f'<div class="hv-ar cwlb-th" data-lb=""><img src="{img(H, s["img"])}" width="1280" height="853" alt="{E(alt)}" data-i18n-al="stop_{sid}_overlay" loading="{"eager" if i == 0 else "lazy"}" decoding="async"><span class="scan"></span>'
+            f'<div class="hv-ar cwlb-th" data-lb=""><img src="{img(H, s["img"])}" width="1280" height="853" alt="{E(alt)}" data-i18n-al="{E(alt_key)}" loading="{"eager" if i == 0 else "lazy"}" decoding="async"><span class="scan"></span>'
             f'<span class="chip" data-i18n="{E(s.get("chip", "ar_tag"))}">{E(tx(T, s.get("chip", "ar_tag"), l))}</span></div>'
             + (f'<div class="hv-ar cwlb-th" id="recreations" data-lb="" style="clear:right"><img src="{img(H, s["holo"])}" width="1280" height="853" alt="{E(tx(T, f"stop_{sid}_holo", l))}" data-i18n-al="stop_{sid}_holo" loading="lazy" decoding="async"><span class="scan"></span>'
                f'<span class="chip" data-i18n="holo_tag">{E(tx(T, "holo_tag", l))}</span></div>' if s.get('holo') else '')
