@@ -94,14 +94,19 @@ for _t in CFG['themes']:
                  'built': (DIST / _p.strip('/')).is_dir() or _t.get('served_by') == 'worker', 'slot': int(_t['slot']), 'of': _area_doc.get('parcel_total', 59), 'webapp': True,
                  'worker': _t.get('served_by') == 'worker'})
 _nav_online = set(_HV.get('online_only', []))
+# nav 1.1.0 (owner, 05:07 GMT 2 Nov 2026: every webapp at bucklerfamily.estate/<name>/, the cedwyn subdomain to be phased out):
+# "apex" is each slot's flat address on the apex; a themes.json "apex" names it when it is not the id. The apex router and the
+# apex header read it from here - Sion's Tab agent
+_nav_apex = {_t['id']: str(_t['apex']).strip('/') for _t in CFG['themes'] if _t.get('apex')}
 for _a in _nav:
+    _a['apex'] = 'https://bucklerfamily.estate/%s/' % (_nav_apex.get(_a['id']) or _a['id'])
     _a['href'] = '/online/%s/' % _a['id'] if _a['id'] in _nav_online else _a['path']
     _a['sec'] = not _a.get('webapp') and _a['href'] == _a['path'] and _a['id'] != 'wales'
 _nav.sort(key=lambda a: int(a.get('slot') or 999))
-chain = [[a['id'], a['title'], a['group'], a['cy'], a['es'], a['skip_in'], int(a.get('slot') or 0), a['href'], 1 if a['sec'] else 0] for a in _nav if a['built']]
+chain = [[a['id'], a['title'], a['group'], a['cy'], a['es'], a['skip_in'], int(a.get('slot') or 0), a['href'], 1 if a['sec'] else 0, a['apex'][len('https://bucklerfamily.estate'):]] for a in _nav if a['built']]
 json.dump({'schema': 'cedwyn_areas/v1', 'source': 'data/site-areas.json + themes.json slot', 'order': 'main menu reading order; previous/next wrap from the last area to the first',
            'count': len(_areas_pub), 'parcel_total': _area_doc.get('parcel_total', 59), 'areas': _areas_pub,
-           'nav_version': '1.0.0', 'nav_order': 'slot order; previous/next step through every built slot and wrap from the last to the first', 'nav': _nav}, open(DIST / 'areas.json', 'w'), ensure_ascii=False, indent=1)
+           'nav_version': '1.1.0', 'nav_order': 'slot order; previous/next step through every built slot and wrap from the last to the first', 'nav': _nav}, open(DIST / 'areas.json', 'w'), ensure_ascii=False, indent=1)
 bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False)).replace('/*CEDWYN_GROUPS*/null', json.dumps(menu_groups, ensure_ascii=False)).replace('/*CEDWYN_SMAP*/{}', json.dumps(_source_to_area, ensure_ascii=False))
               .replace('HOME = "https://bucklerfamily.estate/cedwyn/"', 'HOME = "/"')
               # DARTBOARD_NAMES: the dartboard theme is the dartboard app now, not the home (header and menu names)

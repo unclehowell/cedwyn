@@ -12,7 +12,7 @@ The registry is dist/areas.json "nav" (tools/site.py: data/site-areas.json slots
 basecamp.js reads the same list at runtime and hides this bar once its own header is drawn (html.ghf-v2-on)."""
 import html, json, pathlib, re, sys
 
-VERSION = '1.0.0'
+VERSION = '1.1.0'
 OF = {'cy': 'o', 'es': 'de'}
 ALL = {'en': 'All webapps', 'cy': "Pob ap gwe", 'es': 'Todas las aplicaciones'}
 PREV = {'en': 'Previous webapp', 'cy': "Ap gwe blaenorol", 'es': 'Aplicación anterior'}
@@ -114,6 +114,10 @@ def check(dist):
         if not a.get('slot'): bad.append('%s has no slot' % a['id'])
         elif not 1 <= int(a['slot']) <= total: bad.append('%s slot %s is outside 1..%d' % (a['id'], a['slot'], total))
         if a.get('built') is False: warn.append('%s (slot %s) is registered but not built: left out of the chain' % (a['id'], a.get('slot')))
+    apx = [a.get('apex') for a in nav]   # 1.1.0: every slot's flat address on the apex (bucklerfamily.estate/<name>/)
+    for a in nav:
+        if not str(a.get('apex') or '').startswith('https://bucklerfamily.estate/'): bad.append('%s has no apex address' % a['id'])
+    for x in sorted({x for x in apx if x and apx.count(x) > 1}): bad.append('apex address %s is claimed twice' % x)
     redirects = set()
     rf = dist / '_redirects'
     if rf.is_file():

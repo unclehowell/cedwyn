@@ -287,7 +287,8 @@
   if (!CSECP && CHALF && location.hostname === "cedwyn.bucklerfamily.estate") CSECP = CHALF === "wales" ? "/wales" : "/argentina";   // the chosen half's section, so ‹ › keep the visitor in it
   // nav 1.0.0: the address a stop opens at. Inside a half, an area that half serves keeps the visitor in it (/wales/x/, /argentina/x/);
   // everything else opens at its own canonical address, so no stop is ever skipped or sent through a redirect - Sion's Tab agent
-  function cedU(id, href, skip, sec) { if (id === "wales") return "/wales/"; return sec && CSECP && (skip || []).indexOf(CHALF) < 0 ? CSECP + href : href; }
+  var CAPEX = /^(www\.)?bucklerfamily\.estate$/.test(location.hostname);   // nav 1.1.0: on the apex every stop opens at its flat /<name>/ (registry "apex")
+  function cedU(id, href, skip, sec, ax) { if (CAPEX && ax) return ax.replace(/^https?:\/\/[^\/]+/, ""); if (id === "wales") return "/wales/"; return sec && CSECP && (skip || []).indexOf(CHALF) < 0 ? CSECP + href : href; }
   if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) {
     var CBY = {}; CHAIN.forEach(function (c) { CBY[c.id] = c; });
     CFULL = CEDWYN_CHAIN.map(function (t) { return t[0]; });
@@ -295,7 +296,7 @@
     // half. A stop the visitor's half does not serve, a webapp (slot 40 on) and an /online/ app open at their own address
     // (tuple field 7) instead of dropping out; r.n is the slot (field 6), never a list position - Sion's Tab agent
     CHAIN = CEDWYN_CHAIN.map(function (t) { var o = CBY[t[0]] || {}, r = {}, k; for (k in o) r[k] = o[k];
-      r.id = t[0]; r.t = t[1] || o.t; r.g = t[2] || ""; if (t[3]) r.cy = t[3]; if (t[4]) r.es = t[4]; r.u = cedU(t[0], t[7] || "/" + t[0] + "/", t[5], t.length > 8 ? t[8] : 1);
+      r.id = t[0]; r.t = t[1] || o.t; r.g = t[2] || ""; if (t[3]) r.cy = t[3]; if (t[4]) r.es = t[4]; r.u = cedU(t[0], t[7] || "/" + t[0] + "/", t[5], t.length > 8 ? t[8] : 1, t[9]);
       r.h = []; r.p = ["/" + t[0] + "/"]; if (t[7] && r.p.indexOf(t[7]) < 0) r.p.push(t[7]); r.n = t[6] || CEDWYN_CHAIN.indexOf(t) + 1; return r; });
   }
   // the theme this page belongs to: inside a section its own pages (the hub, vouchers, caso) are that half's stop
@@ -379,14 +380,14 @@
       var by = {}; CHAIN.forEach(function (c) { by[c.id] = c; });
       CHAIN = list.map(function (a) { var o = by[a.id] || {}, r = {}, k; for (k in o) r[k] = o[k];
         r.id = a.id; r.t = a.title || o.t || a.id; if (a.cy) r.cy = a.cy; if (a.es) r.es = a.es; r.g = a.group || o.g || "";
-        r.u = cedU(a.id, a.href || a.path, a.skip_in, d.nav ? a.sec : 1); r.p = [a.path].concat(a.aliases || []); if (a.href && r.p.indexOf(a.href) < 0) r.p.push(a.href);
+        r.u = cedU(a.id, a.href || a.path, a.skip_in, d.nav ? a.sec : 1, a.apex); r.p = [a.path].concat(a.aliases || []); if (a.href && r.p.indexOf(a.href) < 0) r.p.push(a.href);
         r.h = []; r.n = +(a.slot || a.serendipity_slot) || (all.indexOf(a) + 1); return r; });
       AREAS = true; fillChain();
       if (de.classList.contains("ghf-v2-open")) fillDrawer();
     }
     function areasNav() {
       if (location.hostname !== "cedwyn.bucklerfamily.estate" || !window.fetch) return;
-      var KEY = "cdw-nav-v2", c = null;   // nav 1.0.0: new key, so a list cached before slot 40 joined is never reused; kept 2 minutes
+      var KEY = "cdw-nav-v3", c = null;   // nav 1.0.0: new key, so a list cached before slot 40 joined is never reused; kept 2 minutes
       try { c = JSON.parse(sessionStorage.getItem(KEY) || "null"); } catch (e) { c = null; }
       if (c && c.d && c.at > Date.now() - 12e4) { useAreas(c.d); return; }
       fetch("/areas.json", { credentials: "omit" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
