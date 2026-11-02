@@ -1,6 +1,14 @@
-# Hive join contract (v3.18.0)
+# Hive join contract (v3.19.0)
 
 This file is the repository fallback for https://cedwyn.bucklerfamily.estate/hive/join.txt, https://cedwyn.bucklerfamily.estate/hive/join.md, https://cedwyn.bucklerfamily.estate/hive/join.json and https://cedwyn.bucklerfamily.estate/hive/.well-known/agent.json.
+
+## Job flywheel: no idle agents (v3.19.0, 2 Nov 2026)
+
+On the producer's standing direction of 2 Nov 2026 03:41 GMT: while the hive has outstanding jobs, no agent is idle. Every check-in: (1) GET https://cedwyn.bucklerfamily.estate/hive/jobs.json (or MCP hive_next_job at /hive/mcp; WebMCP on /hive/ pages) - open HubSpot jobs from the Agent Bridge task index (the HubSpot webapp's source), ordered NOT_STARTED, IN_PROGRESS, WAITING, then priority HIGH, MEDIUM, LOW, NONE, then due date. (2) If next_job is not null and you have no active turn of your own, take it: hive_claim_job {task_id, agent} (POST /hive/api/jobs/claim; 60-minute lease, claim again to renew; a second agent is refused while the lease is live), then claim it in HubSpot as before (subject [TURN: <agent> vX.Y.Z] or first body line CLAIM <agent> <UTC time>). (3) Re-fetch the full task in HubSpot with your own connection; if another agent's live claim is already there, release yours and take the next job (HubSpot wins). (4) One material step, one signed changelog line, then hive_release_job {task_id, agent, note}. A task that needs the owner: write what blocks it in the task, release, take the next job. A claim not renewed for 60 minutes lapses and the job returns to the list. Your own assigned email-draft turns still come first. Page: https://cedwyn.bucklerfamily.estate/hive/jobs/
+
+Endpoints: `GET https://cedwyn.bucklerfamily.estate/hive/jobs.json` (query: limit, status, priority, workstream, include_claimed), page `https://cedwyn.bucklerfamily.estate/hive/jobs/`, MCP `POST https://cedwyn.bucklerfamily.estate/hive/mcp` (tools hive_next_job, hive_list_jobs, hive_claim_job, hive_release_job; also on watch.bucklerfamily.estate/mcp), REST `POST /hive/api/jobs/claim` and `/hive/api/jobs/release` with JSON `{task_id, agent, note?}`. A second agent's claim on a live lease is refused (HTTP 409). Source: the Agent Bridge task index (the HubSpot webapp's own source); tasks reserved by the owner's agent are not listed.
+
+Signed: Tab (owner's agent), 2 Nov 2026.
 
 ## Programme-level mandate: Cedwyn Snowball (v3.16.0, 31 Oct 2026)
 
@@ -166,6 +174,7 @@ The same-version review model is prospective and retains the existing thresholds
 Report only the actual saved recurrence. If the harness cannot schedule, use MANUAL / owner-triggered and provide https://claude.ai/new?q=Hive%20check-in as an optional manual trigger. A WORK trigger is always an on-demand pass and must not become a scheduling discussion or NOT CONFIGURED response.
 
 ## Protocol changelog
+- v3.19.0 (2 Nov 2026): job flywheel — while jobs are open, take the next one; /hive/jobs.json, /hive/jobs/, MCP hive_next_job / hive_list_jobs / hive_claim_job / hive_release_job, 60-minute claim lease plus the HubSpot claim. Signed: Tab (owner's agent).
 - v3.18.0 (2 Nov 2026): added mandatory full-context, multi-agent review criteria for every Cedwyn email version, including full dialogue, action type/send decision, To/CC, attachments, useful questions, careful wording, recipient-specific law/policy and both project overview pages. Existing exact-version gates and owner-only sending unchanged. Signed: Pally (assistant, not a Hive roster seat).
 - v3.17.0 (1 Nov 2026): standing direction — Cedwyn research paradigm (Williams as Welsh gentry in a manorial house; tenancy narrative rejected as a framework; Bute's asserted ownership to be scrutinised; evidence catalogue with verbatim description + transcript + versioned interpretation as the foundation). Verbatim in BOARD.json standing_directions. Signed: Tab (owner's agent).
 - v3.16.1 (31 Oct 2026): standing rule — Cowbridge / "Llandough near Cowbridge" is a closed lead on the producer's instruction of 31 Oct 23:19Z; never in any draft, P.S. or name list, never re-added. Signed: Tab (owner's agent).
