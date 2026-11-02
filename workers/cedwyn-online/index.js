@@ -1,4 +1,4 @@
-// cedwyn-online v1.2.0 — the /online/ section of cedwyn.bucklerfamily.estate (2 Nov 2026, producer's request 03:41 GMT). — Sion's Tab agent
+// cedwyn-online v1.2.2 — the /online/ section of cedwyn.bucklerfamily.estate (2 Nov 2026, producer's request 03:41 GMT). — Sion's Tab agent
 // Apps that are neither about Wales nor about Patagonia live at /online/<app>/. Their old section addresses
 // (/wales/<app>/..., /argentina/<app>/...) answer 301 to the new one; /online/<app>/... serves the app's own files
 // (same files as /<app>/, nothing copied) with the theme path handed to the shared header so "NN of 59" stays right.
@@ -9,7 +9,8 @@ const MOVED = ["hubspot", "cloudflare", "cyberspace", "that-old-chestnut", "proj
 // /argentina/<id>/ answers 301 to /online/<id>/; /wales/<id>/ keeps serving them (the Wales case).
 const ARG_MOVED = ["dartboard", "wdtk", "qa", "whattheydontsay", "authorities", "forensic", "fcg", "review", "email", "emails"];
 const SERVED = MOVED.concat(ARG_MOVED);
-const VER = "1.2.0";
+const SPA = ["dartboard"];   // 1.2.2: apps whose router has the base /<app>; the address bar shows /<app>/ after load
+const VER = "1.2.2";
 const H = { "x-cedwyn-online": VER };
 function redirect(to, status = 301) { return new Response(null, { status, headers: { ...H, location: to, "cache-control": "public, max-age=300" } }); }
 async function origin(url, req) {
@@ -46,7 +47,11 @@ export default {
     if (r.status >= 300 && r.status < 400) { const loc = r.headers.get("location") || ""; const mm = /^(?:https:\/\/cedwyn\.bucklerfamily\.estate)?\/([a-z0-9-]+)(\/.*|$)/.exec(loc); const l2 = mm && mm[1] === app ? "/online/" + app + (mm[2] || "/") : loc; return redirect(l2, r.status); }
     if (!(r.headers.get("content-type") || "").includes("text/html")) { const h = new Headers(r.headers); h.set("x-cedwyn-online", VER); return new Response(r.body, { status: r.status, headers: h }); }
     let t = await r.text();
-    const lpJs = '<script>window.__cedwynLP=' + JSON.stringify(lp) + ';window.__cedwynSec="";</script>';
+    const O = "/online/" + app;
+    // 1.2.1: runtime.js prefixes root paths given to history.pushState/replaceState with the theme path; an /online/<app>/ address is
+    // passed straight to the browser's own history so a reload stays on /online/<app>/ (heads-up from the That Old Chestnut release)
+    const spa = SPA.includes(app) ? 'try{History.prototype.replaceState.call(history,history.state,"",' + JSON.stringify(lp) + '+location.search+location.hash)}catch(e){}' : '';   // a client-side router with base /<app> reads the plain path (as runtime.js does inside /wales/ and /argentina/)
+    const lpJs = '<script>window.__cedwynLP=' + JSON.stringify(lp) + ';window.__cedwynSec="";' + spa + '(function(){var O=' + JSON.stringify(O) + ',N=History.prototype;["pushState","replaceState"].forEach(function(k){var h=history[k];if(!h)return;history[k]=function(s,t,u){if(u!=null){try{var q=new URL(String(u),location.href);if(q.origin===location.origin&&(q.pathname===O||q.pathname.indexOf(O+"/")===0))return N[k].call(history,s,t,q.pathname+q.search+q.hash)}catch(e){}}return h.apply(this,arguments)}})})();</script>';
     const rt = /<script\b[^>]*src="\/_cedwyn\/runtime\.js[^"]*"[^>]*><\/script>/.exec(t);
     if (rt) { const tag = rt[0].includes("data-theme=") ? rt[0] : rt[0].replace("<script", '<script data-theme="' + app + '"'); t = t.replace(rt[0], tag + lpJs); }
     else t = t.replace(/<head([^>]*)>/i, (x) => x + lpJs);
