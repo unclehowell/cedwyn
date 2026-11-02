@@ -42,3 +42,5 @@ The per-theme notices in `notices/<theme>.json` (for example "Provisional model"
 ## Rule for flywheels
 
 No runner re-adds an e-book strip, a section ribbon, a graph promo strip or a "coming soon" teaser to the pages. The one site-wide promotion is this banner.
+
+Source: Garden City Cymru's public catalogue (gardencity.cymru), read 1 Nov 2026; site-owner requests of 00:48, 03:25 and 03:45 GMT, 2 Nov 2026.
