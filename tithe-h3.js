@@ -21,8 +21,7 @@ function strip(){var up=d.querySelector(".ghf-v2-up");if(!up)return false;
  return true;}
 function both(){var a=num(),b=strip();return a&&b;}
 var n=0,iv=setInterval(function(){if(both()||++n>150){clearInterval(iv);var h=d.querySelector(".ghf-v2");
- var mo=new MutationObserver(both),up=d.querySelector(".ghf-v2-up");
- if(h)mo.observe(h,{childList:true,subtree:true});if(up)mo.observe(up,{attributes:true,attributeFilter:["class"]});}},100);
+ if(h)new MutationObserver(both).observe(h,{childList:true,subtree:true,attributes:true,attributeFilter:["class","style"]});}},100);
 d.addEventListener("ghf-lang-change",function(){setTimeout(both,0);});
 })();
 (function(){
@@ -30,7 +29,7 @@ var COLORS={"Williams John":"#1b7a3a","Evans Revd James":"#7b3fa0","Evans the Re
 function first(s){return (s||"").split(";")[0].trim();}
 function col(p){if(p.read==="not read")return "#888";return COLORS[first(p.occ)]||"#555";}
 var map=L.map("map",{zoomControl:true,attributionControl:true}).setView([51.4545,-3.2015],15);
-var osm=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap contributors"}).addTo(map);
+var osm=L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{subdomains:"abc",maxZoom:19,attribution:"© OpenStreetMap contributors"}).addTo(map);
 var os6=L.tileLayer("https://mapseries-tilesets.s3.amazonaws.com/os/6inchsecond/{z}/{x}/{y}.png",{maxZoom:18,attribution:"OS six-inch c.1900, National Library of Scotland"});
 var D,tithe,stew,outl=L.layerGroup().addTo(map),hexL=L.layerGroup().addTo(map),res=12,sel=null;
 fetch("data/parcels.json?v=0.1.0").then(function(r){return r.json();}).then(function(d){D=d;init();});
