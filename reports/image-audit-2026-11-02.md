@@ -9,6 +9,13 @@
 
 This is a **partial, source-tree-based audit**, not a claim that every image placement has been visually reviewed. It records the estate-wide inventory baseline, the page families reviewed in this pass, confirmed corrections, and the material still to be inspected. The HubSpot work item must remain open until the remaining image placements have been assessed and the latest build has been verified in production.
 
+### Deployment checkpoint (2 November 2026, 03:56 UTC)
+
+- The earlier build run #457 (`41379601814`) completed successfully and advanced the published `site` branch to `3cbaa844dbf627c5368431ebc210ba6d0d9399ca`.
+- That published snapshot still contains the pre-correction content: the Wales tour describes a Roman villa as standing on the present estate, and the Patagonia bookshop still contains the unrelated China Cabinets image.
+- The build for the PR #125 merge commit `b6fd35d712b7cd31b370e1c614c0d935b21a3e70` (run #460, `41384660316`) is still in progress at “Rewrite links, content-addressed store”. It has not published.
+- **Therefore none of the new Wales overlay wording, Patagonia bookshop image correction or later generated-page changes are confirmed live yet.** Recheck the published `site` branch and the live routes after run #460 finishes.
+
 ## Inventory baseline
 
 The published `site` branch snapshot contained:
@@ -105,6 +112,10 @@ PR #125 changes overlay text only. It does not change images, evidence, transcri
 3. Resolve each candidate mismatch by checking the source asset and catalogue metadata first. Correct editorial copy when the image is the authentic source; change an image only in an editorial/promotional slot where the mismatch is established and an appropriate alternative exists.
 4. Recheck the corrected build after PR #125 and the main build complete. The site branch observed at the start of this pass did not yet contain PR #123; no claim of live production verification is made here.
 5. Keep the HubSpot To Do open until the asset-to-placement index, remaining visual checks and production verification are complete.
+
+## Companion asset register
+
+The companion CSV, `reports/image-asset-register-2026-11-02.csv`, lists all 112 image files under the main branch's `web/` tree, with the known page/theme family, review status and preservation rule. It is a source-tree register only: it is not the exhaustive placement map for the 1,042 images in the published-site snapshot or the dynamically served catalogue/gallery assets.
 
 ## Change references
 
