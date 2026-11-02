@@ -108,3 +108,8 @@ These bind every agent, every cycle. When two orders conflict, the newer one win
 53. Each scene shows what was there, or what happened, at that place in that phase, as best we know it. It never shows the evidence, its discovery, an excavation, an archive, a records office or a modern researcher. A scene built from a dig shows the people and the place of the period itself.
 54. The evidence for a scene is one internal link under that scene's door, never inside the scene, its title, logline, description or captions. Descriptions say who is there and what happens, in the present of that moment.
 55. Storytelling only: no psychoanalysing, no showing policy or bureaucracy, no archive-room or narrator framing. The film opens at c. 200 BC (late Iron Age); nothing is placed earlier unless a dated record of the land itself is found. Strict date order is enforced by the chronology gate, which must pass before any render or door change.
+
+## Images by surface (1 Nov 2026)
+56. Art-edition images (the Garden Gallery) are for online-only surfaces: documentary promotion, the arcade, the 3D map, share cards and the newsletter. The Argentina project uses the plain images without flowers, or pencil-sketch and architectural-drawing versions, never the flowered art.
+57. An original survey photograph from a public body stays in the evidence catalogue as the record. Elsewhere on the site the enhanced white-walls version is used, captioned as an artist's impression made from that photograph.
+58. The garden showcase (/garden/) is the one page that may send buyers out, to the partner garden's own checkout; every other page keeps the no-outbound-links rule.

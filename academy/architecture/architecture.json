@@ -1,7 +1,7 @@
 {
   "schema": "cedwyn_academy_architecture/v1",
-  "version": "1.0.7",
-  "updated": "2026-11-01",
+  "version": "1.0.8",
+  "updated": "2026-11-02",
   "refreshed_by": "the agent library cycle (every 6 hours); edit this file, then rebuild the academy",
   "source_documents": [
     "/projects/data-architecture/ (programme page: plan, work packages, milestones)",
@@ -770,6 +770,42 @@
       "state": "LIVE",
       "view_rule": "its own derived events table built from the catalogue; header graph shows events per year from this app's own data only",
       "migration_wave": "standalone webapp, started 31 Oct 2026"
+    },
+    {
+      "id": "that-old-chestnut",
+      "title": "That Old Chestnut",
+      "url": "/that-old-chestnut/",
+      "group": "Modern research and how it's going",
+      "purpose": "That Old Chestnut: information-request replies read line by line, showing wording that sets up a refusal and 'not held' answers that later became records found, each with the statute it points at",
+      "source": "branch that-old-chestnut, folder public",
+      "data_sources": "pre-generated HTML pages in the branch; not yet audited for data files",
+      "state": "HARD-CODED",
+      "view_rule": "kind = observation on correspondence events (refusal wording, not-held answers later found)",
+      "migration_wave": "WP7 (wave 3)"
+    },
+    {
+      "id": "forensic",
+      "title": "Forensic Assessments",
+      "url": "/forensic/",
+      "group": "Modern research and how it's going",
+      "purpose": "Forensic Assessments: one assessment per institution in the record (its role, its replies to information requests, and every contact since its last assessment)",
+      "source": "branch section/forensic (snapshot pinned in sections.lock)",
+      "data_sources": "content baked into the crawled or pinned HTML/JS; must be extracted to core first",
+      "state": "SNAPSHOT",
+      "view_rule": "kind = person_or_body (public bodies) with their events and requests",
+      "migration_wave": "WP7 (wave 3)"
+    },
+    {
+      "id": "mr-wolf",
+      "title": "Mr Wolf",
+      "url": "/mr-wolf/",
+      "group": "Modern research and how it's going",
+      "purpose": "Mr Wolf: a leaderboard of the reopening leads closest to the legal threshold, each scored out of 200 (100 is the threshold); our case, prospective, not a finding of any court",
+      "source": "branch section/mr-wolf (snapshot pinned in sections.lock)",
+      "data_sources": "content baked into the crawled or pinned HTML/JS; scores come from the reopen-loop grounds register",
+      "state": "SNAPSHOT",
+      "view_rule": "reopen grounds ordered by total score, with each limb shown",
+      "migration_wave": "WP7 (wave 3)"
     }
   ],
   "other_areas": [
