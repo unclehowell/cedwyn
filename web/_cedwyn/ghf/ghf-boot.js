@@ -49,7 +49,7 @@
   var needBc = !window.GHFBasecamp && !d.querySelector('script[src*="basecamp.js"]');
   if (needBc) out += '<script src="' + B + "basecamp.js" + V + '"><\/script>';
   if (!d.querySelector('script[src*="cw-graph.js"]')) out += '<script src="/_cedwyn/cw-graph.js?v=1.3.0" defer><\/script>'; // 30 Oct 2026: 100vh Read more on every page with the header (2 Nov 2026: its graph promo strip is retired)
-  if (!window.CedwynGardenBanner && !d.querySelector('script[src*="garden-banner.js"]')) out += '<script src="/_cedwyn/garden-banner.js?v=1.0.0" defer><\/script>'; // 2 Nov 2026: the one Garden banner in the header strip (replaces the graph promo, section ribbon and e-book strips). Spec: docs/GARDEN-BANNER.md
+  if (!window.CedwynGardenBanner && !d.querySelector('script[src*="garden-banner.js"]')) out += '<script src="/_cedwyn/garden-banner.js?v=2.0.0" defer><\/script>'; // 2 Nov 2026: the one Garden City banner in the header strip (replaces the graph promo, section ribbon and e-book strips). 2.0.0: links to gardencity.cymru (owner, 03:25 GMT 2 Nov). Spec: docs/GARDEN-BANNER.md
   if (!d.querySelector('script[data-cedwyn-wikilinks]')) out += '<script src="https://nomenclature.bucklerfamily.estate/wikilinks.js?v=1.0.1" defer data-cedwyn-wikilinks><\/script>'; // 31 Oct 2026: lexicon-backed cross-theme name links
   if (!window.CedwynVersionGate && !d.querySelector('script[src*="/_cedwyn/version-gate.js"]')) out += '<script src="/_cedwyn/version-gate.js?v=1.0.0" defer><\/script>'; // 1 Nov 2026: version gate (a click-to-load "Select a version" facade in the media slot + upgrade bar). Spec: docs/VERSION-GATE.md
   if (!d.querySelector('script[src*="landing-map-views.js"]')) out += '<script src="/_cedwyn/landing-map-views.js?v=1.0.0" defer><\/script>';
