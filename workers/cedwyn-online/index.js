@@ -1,14 +1,15 @@
-// cedwyn-online v1.1.0 — the /online/ section of cedwyn.bucklerfamily.estate (2 Nov 2026, producer's request 03:41 GMT). — Sion's Tab agent
+// cedwyn-online v1.2.0 — the /online/ section of cedwyn.bucklerfamily.estate (2 Nov 2026, producer's request 03:41 GMT). — Sion's Tab agent
 // Apps that are neither about Wales nor about Patagonia live at /online/<app>/. Their old section addresses
 // (/wales/<app>/..., /argentina/<app>/...) answer 301 to the new one; /online/<app>/... serves the app's own files
 // (same files as /<app>/, nothing copied) with the theme path handed to the shared header so "NN of 59" stays right.
 // /online/ is the landing page with the Online card open. Any other /online/<x>/ answers 301 to /<x>/ (its online address).
-const MOVED = ["hubspot", "cloudflare", "cyberspace"];   // neither Wales nor Patagonia: leave both halves
+// 1.2.0 (05:04 and 05:08 GMT directions): That Old Chestnut, and the tools / agent / ops apps (Project Office, Ask the Archive, Watchtower) leave both halves.
+const MOVED = ["hubspot", "cloudflare", "cyberspace", "that-old-chestnut", "projects", "chat", "watchtower"];   // neither Wales nor Patagonia: leave both halves
 // 1.1.0 (2 Nov 2026, producer 05:04 GMT "common sense"): the public-body / FOI correspondence apps are not about Patagonia:
 // /argentina/<id>/ answers 301 to /online/<id>/; /wales/<id>/ keeps serving them (the Wales case).
-const ARG_MOVED = ["dartboard", "wdtk", "qa", "whattheydontsay", "authorities", "forensic", "fcg", "watchtower", "review", "email", "emails", "projects"];
+const ARG_MOVED = ["dartboard", "wdtk", "qa", "whattheydontsay", "authorities", "forensic", "fcg", "review", "email", "emails"];
 const SERVED = MOVED.concat(ARG_MOVED);
-const VER = "1.1.0";
+const VER = "1.2.0";
 const H = { "x-cedwyn-online": VER };
 function redirect(to, status = 301) { return new Response(null, { status, headers: { ...H, location: to, "cache-control": "public, max-age=300" } }); }
 async function origin(url, req) {
