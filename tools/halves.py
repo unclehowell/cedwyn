@@ -17,7 +17,8 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.4.0'
+VERSION = '1.4.1'
+# 1.4.1 (2 Nov 2026): separate source-language image alt descriptions from visible overlay copy; six interpretive Wales-tour scenes now identify themselves as artist's impressions in EN/CY/ES. — Cedwyn editors
 # 1.4.0 (1 Nov 2026, Sion 22:28 GMT, m:b0d74058): the landing has a third card, Online, after Wales and Patagonia; card labels carry
 # the emojis after the word (Welsh flag + UK / Argentina flag / globe). Online opens a modal with the same apps at their top-level
 # addresses (/<app>/ instead of /wales/<app>/). Three cards side by side on wide screens, stacked on phones. - Sion's Tab agent
@@ -400,7 +401,7 @@ def ra_html(T, l, key, s):
 def stop_html(H, T, l, i, s, n):
     """One tour stop (Sion 02:12 GMT 26 Oct: a warm guided tour; every legal citation lives only in the "court" stop)."""
     sid = s['id']
-    for k in ('name', 'place', 'overlay', 'now', 'open', 'story'):
+    for k in ('name', 'place', 'overlay', 'alt', 'now', 'open', 'story'):
         if k in s: T[f'stop_{sid}_{k}'] = s[k]
     if s.get('holo') and s.get('holo_overlay'):
         T[f'stop_{sid}_holo'] = s['holo_overlay']
@@ -410,7 +411,7 @@ def stop_html(H, T, l, i, s, n):
     for j, (txt, ids) in enumerate(s.get('recs', [])):
         T[f'stop_{sid}_r{j}'] = txt
         recs.append(f'<li><span class="rt" data-i18n="stop_{sid}_r{j}">{E(tx(T, f"stop_{sid}_r{j}", l))}</span> {ev_links(H, ids)}</li>')
-    alt = tx(T, f'stop_{sid}_overlay', l)
+    alt = tx(T, f'stop_{sid}_alt', l) or tx(T, f'stop_{sid}_overlay', l)
     extra = ''
     if s.get('timeline'):
         tl = []
