@@ -29,7 +29,7 @@ Selected source-branch inventory (HTML and image-file counts are branch-tree cou
 | Documentary story (`bpvsbuckler`) | 113 | 337 | Press, survey and archive images protected |
 | Legal Wiki (`wiki`) | 41 | 0 | Whole branch tree; its configured `site/` subtree has 22 HTML files and no image files; evidence content is held separately |
 | Wayback Vault (`wayback`) | 954 | 394 | Captured records and media protected |
-| Map Room (`maps`) | 2 | 13 | Original maps, plans and family photographs protected |
+| Map Room (`maps`) | 2 | 13 | Original maps, plans and family photographs; 60 video/audio media files in the theme tree |
 | Project Office (`projects`) | 193 | 8 | Replica plan and illustration captions checked on the replica page |
 | Research (`section/research`) | 1,394 | 153 | Evidence/library content is mixed with editorial pages; Media Gallery reviewed separately, primary assets protected |
 | NFT art (`nft-art`) | 1 | 462 | Dynamic collection; not exhaustively checked item-by-item |
@@ -37,11 +37,9 @@ Selected source-branch inventory (HTML and image-file counts are branch-tree cou
 | Merchandise (`merch`) | 4 | 36 | Product and design-gallery copy sampled; no clear mismatch confirmed in the sampled cards |
 | Nomenclature (`nomenclature`) | 28 | 0 | Topic pages and terminology; no local image assets in the public subtree |
 | Infographic (`infographic`) | 2 | 0 | Two authored HTML pages with 24 video/media assets; not image-file based |
-| Map Room (`maps`) | 2 | 13 | Includes 60 media files (video/audio); historic map and story assets |
 | Directories (`directory`) | 310 | 1 | Public directory pages; no broad per-record image review in this pass |
 | WhatDoTheyKnow (`whatdotheyknow`) | 8 | 1 | FOI request pages; single local image, pages not exhaustively checked |
 | Meeting archive (`2026-10-22`) | 2 | 3 | Meeting/record material; source content protected |
-| Research (`bpvsbuckler`) | 113 | 337 | Whole story branch tree; documentary photographs and scans protected |
 
 
 **Counting method:** these figures are whole-branch repository tree counts for the named branch (files ending in `.html`/`.htm` and common image extensions), not counts of unique visible placements. Where a theme manifest specifies a subdirectory, the report also notes that scope when it differs. A single image can occur on multiple pages or be referenced dynamically without appearing as a literal HTML `<img>` tag; static branch counts cannot prove complete coverage.
