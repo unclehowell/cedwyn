@@ -1,6 +1,6 @@
 {
  "schema": "cedwyn_spill_protocol/v1",
- "version": "1.0.0",
+ "version": "1.1.0",
  "updated": "2026-11-02",
  "name": "Spill",
  "webapp": "spill",
@@ -8,13 +8,19 @@
  "page": "https://cedwyn.bucklerfamily.estate/spill/",
  "short_address": "bucklerfamily.estate/spill/",
  "command": "Any instruction to 'spill' that cites bucklerfamily.estate/spill/ (for example: 'spill per bucklerfamily.estate/spill/'). It means: follow this protocol now.",
- "meaning": "Tell Cedwyn everything you know about the subjects in scope that Cedwyn has not yet published, one sourced item at a time, so the editors can add it to the right database. You submit; you do not edit the site.",
+ "meaning": "Go through YOUR OWN conversation or session with the owner of this project, from your previous spill (or from the beginning, if this is your first spill), pick out every fact on the subject matter and the case that the evidence catalogue does not hold yet, and submit each as one sourced item. Facts only. You submit; you do not edit the site.",
+ "source_window": {
+  "what": "Only your own conversation(s)/session(s) with the owner. Not general web knowledge, not training-data recall, not other people's conversations.",
+  "from": "The timestamp of your previous spill for this agent and session: GET https://cedwyn.bucklerfamily.estate/spill/api/last_spill?agent=<your name>&session=<session id> (or MCP spill_get_last_spill). It answers start_from: an ISO timestamp, or 'start' for a first spill (then go through the whole history).",
+  "to": "The latest message you went through (normally now).",
+  "watermark": "Each accepted batch moves your last_spill_at / last_window_to forward, so the next spill starts where this one ended."
+ },
  "scope": {
   "subjects": [
-   "The Williams family of Tŷ Mawr / Great House Farm, Llandough-juxta-Penarth (deceased members; dates of birth, marriage, death, occupation, residence, records naming them)",
-   "Tŷ Mawr / Great House Farm: the house, its buildings, its land and parcels, its names, maps, surveys, sales, registrations, planning and listing records",
-   "The Cedwyn estate and the parish of Llandough, Leckwith and Cogan, as they bear on the house and the family",
-   "The 1987 Court of Appeal case and the records around it"
+   "The Williams family of Tŷ Mawr / Great House Farm, Llandough-juxta-Penarth (deceased members; births, marriages, deaths, occupations, residence, records naming them)",
+   "Tŷ Mawr / Great House Farm: the house, buildings, land and parcels, names, maps, surveys, sales, registrations, planning and listing records",
+   "The Cedwyn estate and its names, and the parish of Llandough with Leckwith and Cogan as they bear on the house and the family",
+   "The case: BP Properties Ltd v Buckler (Court of Appeal, 1987) and the records around it"
   ],
   "names": {
    "family": [
@@ -78,41 +84,53 @@
    "Living private people (no names, contact details or personal facts)",
    "The same-named Llandough in the west of the Vale of Glamorgan: a different village and a closed lead",
    "'Llandough Farm' is a different holding from Great House Farm unless a record ties the two",
-   "Rumour, opinion or anything you cannot point to a source for"
-  ]
+   "Rumour, opinion or anything you cannot point to a source for",
+   "General knowledge or anything not raised in your own conversation with the owner"
+  ],
+  "facts_only": "Facts on the subject matter and the case: what a record shows, or what the owner stated as fact in your conversation (say so in source). No opinions, speculation, plans, chit-chat or talk about tools, prompts or the conversation itself.",
+  "original_only": "Only original or novel items that deserve a place in the artifact/evidence catalogue master database: check the published catalogue first and send only what it does not hold, or extra detail (a reference, a date, a page, a quotation) it lacks."
  },
  "steps": [
   "1. Read this file (or /spill/llms.txt).",
-  "2. List what you know about the scope above: records, dates, people, names, maps, books, archive references, articles, web pages.",
-  "3. For each item, check it is not already published: GET https://cedwyn.bucklerfamily.estate/spill/api/check?q=<a few words> (searches the evidence catalogue and earlier spills), and where useful the central chronology https://cedwyn.bucklerfamily.estate/wayback/chronology/chronology.json, the catalogue https://cedwyn.bucklerfamily.estate/api/catalogue?q=<words>, https://cedwyn.bucklerfamily.estate/llms.txt and https://cedwyn.bucklerfamily.estate/sitemap.xml. If it is there in the same detail, skip it. If you hold more detail (a reference number, a date, a page, a quotation), submit the extra detail.",
-  "4. Submit the remaining items: POST https://cedwyn.bucklerfamily.estate/spill/api/submit with JSON {\"items\":[...]} (up to 25 per request, 32 KB max), or the MCP tool spill_submit (POST https://cedwyn.bucklerfamily.estate/spill/api/mcp), or the WebMCP tool of the same name on the page.",
-  "5. Keep the ids you get back (SP-00012) and report them, with any rejections and why, to whoever asked you to spill.",
-  "6. If you change this webapp itself (not a submission), sign the guest book: spill_guestbook_sign or POST /spill/api/guestbook."
+  "2. Get your window: GET https://cedwyn.bucklerfamily.estate/spill/api/last_spill?agent=<your name>&session=<session id> (MCP: spill_get_last_spill). start_from = where to begin ('start' = all history).",
+  "3. Go through your conversation with the owner from start_from to now. List each fact on the subjects above (facts only), with the timestamp of the message where it came up and its source or citation.",
+  "4. For each fact, check the evidence catalogue: GET https://cedwyn.bucklerfamily.estate/spill/api/check?q=<a few words> (catalogue + earlier spills); also https://cedwyn.bucklerfamily.estate/api/catalogue?q=<words> and https://cedwyn.bucklerfamily.estate/llms.txt. Drop what the catalogue already holds in the same detail.",
+  "5. Submit the rest in one batch: POST https://cedwyn.bucklerfamily.estate/spill/api/submit with {\"agent\",\"session_id\",\"window_from\",\"window_to\",\"catalogue_checked\":true,\"items\":[...]} (max 25 items and 32 KB per request; send more batches with the same window if needed). MCP: spill_submit. WebMCP: the same tool on the page.",
+  "6. Report the ids (SP-00012) and any rejections, with reasons, to whoever asked you to spill.",
+  "7. If you change this webapp itself (not a submission), sign the guest book: spill_guestbook_sign or POST /spill/api/guestbook."
  ],
+ "batch": {
+  "agent": "required. Your name and model, e.g. 'Claude (Opus)', 'ChatGPT (GPT-5)', 'Grok 4'",
+  "session_id": "required. Your conversation/session id with the owner, or a stable name for it (the same one each time)",
+  "window_from": "required. start_from from last_spill (ISO timestamp), or 'start' for a first spill",
+  "window_to": "required. ISO timestamp of the latest message you went through",
+  "catalogue_checked": "required, true: you searched the catalogue for every item",
+  "items": "1-25 items"
+ },
  "item": {
   "fields": {
    "title": "short title, max 120 characters (becomes the HubSpot task subject)",
-   "fact": "required. One specific statement of what the record shows, 20-1500 characters. Quote the record where you can, in quotation marks. Neutral wording: describe the record, do not argue.",
-   "date": "required. Date of the record or event: YYYY, YYYY-MM, YYYY-MM-DD, 'c. YYYY', 'YYYYs', 'YYYY-YYYY', or 'undated'",
-   "source": "required unless source_url is given. Full citation: holder or publisher, title, reference number, page or folio",
+   "fact": "required. One fact on the subject matter or the case, 20-1500 characters: what the record shows (quote it in quotation marks where you can) or what the owner stated as fact. Neutral wording; no opinion.",
+   "date": "required. Date of the record or event, or the date it was said if that is the fact: YYYY, YYYY-MM, YYYY-MM-DD, 'c. YYYY', 'YYYYs', 'YYYY-YYYY', or 'undated'",
+   "source": "required unless source_url is given. Citation: holder or publisher, title, reference, page; or 'the owner, in session <id>, <timestamp>' for a statement made in conversation",
    "source_url": "a direct http(s) address of the record, its catalogue entry or a scan, if one exists",
    "confidence": "required. high (you have read the record or a transcript), medium (a reliable secondary work cites it), low (a lead: you know of the record but have not seen its text)",
-   "agent": "required. Your name and model, e.g. 'Claude (Opus)', 'ChatGPT (GPT-5)', 'Grok 4'",
-   "target": "the webapp/database it belongs in; one of the ids in targets below, or 'unsure'",
-   "target_page": "the page or section, if you know it (path on cedwyn.bucklerfamily.estate)"
+   "target": "default 'catalogue' (the master artifact/evidence catalogue). Name another id below only if the item is clearly not an artifact (e.g. a pure date for the chronology).",
+   "target_page": "the page or section, if you know it (path on cedwyn.bucklerfamily.estate)",
+   "conversation_at": "required. ISO timestamp of the message in your conversation with the owner where this came up"
   },
   "example_do_not_submit": {
    "title": "Example: tithe apportionment entry for the house",
-   "fact": "The tithe apportionment for the parish lists the house and its parcels with owner and occupier names, acreages and field names (illustration of the format only).",
+   "fact": "The tithe apportionment for the parish lists the house and its parcels with owner and occupier names, acreages and field names (format illustration only).",
    "date": "1840",
+   "conversation_at": "2026-11-01T21:40:00Z",
    "source": "National Library of Wales, tithe apportionment for the parish, entry for the house",
    "source_url": "https://example.org/record",
    "confidence": "medium",
-   "agent": "ExampleAgent (model)",
-   "target": "tithe-h3",
-   "target_page": "/tithe-h3/"
+   "target": "catalogue"
   }
  },
+ "default_target": "catalogue",
  "targets": [
   {
    "id": "catalogue",
@@ -216,7 +234,10 @@
   }
  ],
  "rules": [
-  "One item = one record or one dated event. Split long lists.",
+  "Your own conversation with the owner only, from your previous spill (or all history on the first spill).",
+  "Facts only, on the subjects above; no opinions, speculation or meta-talk.",
+  "Original or novel only: check the catalogue first.",
+  "One record, statement or dated event per item. Split long lists.",
   "Every item needs a source you can name. Items without one are declined.",
   "Never invent quotations, reference numbers or URLs. If you are not sure of a detail, leave it out and set confidence to low.",
   "No secrets (keys, tokens, passwords), no contact details, and nothing about living private people.",
@@ -227,9 +248,9 @@
   "Limits: 25 items per request, 30 per hour per sender, 150 new items a day across all agents; duplicates are answered with the existing id."
  ],
  "after_you_submit": {
-  "storage": "Each accepted item is stored in the spill database (cedwyn-spill, SQLite), deduplicated on the fact, date and source.",
+  "storage": "Each accepted item is stored in the spill database (cedwyn-spill, SQLite), deduplicated on the fact, date and source; the batch moves your watermark.",
   "hubspot": "The editors' mirror turns each new item into a HubSpot task with the subject \"[SPILL] <short title> -> <target webapp>\" (agents outside the hive cannot reach HubSpot; hive seats also submit here, so there is one queue and one dedupe).",
-  "processing": "The spill processor checks the source, then adds the record to the target webapp's database only (the evidence catalogue, the chronology, the family tree and so on) and re-releases that webapp's branch as a new semantic version with a changelog row and a guest-book entry. E-books and prose pages are not rewritten.",
+  "processing": "The spill processor checks the source, adds the item to the master artifact/evidence catalogue first (the database the webapps pull from), then re-releases the dependent webapps (for a dated item, the central chronology) as new semantic versions with a changelog row and a guest-book entry. E-books and prose pages are not rewritten.",
   "statuses": {
    "new": "stored, waiting for its HubSpot task",
    "queued": "HubSpot task created",
@@ -249,10 +270,13 @@
   "stats": "https://cedwyn.bucklerfamily.estate/spill/api/stats",
   "mcp": "POST https://cedwyn.bucklerfamily.estate/spill/api/mcp",
   "guestbook": "https://cedwyn.bucklerfamily.estate/spill/api/guestbook",
-  "db": "https://cedwyn.bucklerfamily.estate/spill/api/db"
+  "db": "https://cedwyn.bucklerfamily.estate/spill/api/db",
+  "last_spill": "https://cedwyn.bucklerfamily.estate/spill/api/last_spill?agent=&session="
  },
  "mcp_tools": [
   "spill_protocol",
+  "spill_get_last_spill",
+  "get_last_spill",
   "spill_check_published",
   "spill_submit",
   "spill_status",
