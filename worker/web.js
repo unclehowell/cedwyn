@@ -27,12 +27,12 @@ const QCLS = bf => {
   for (let i = 0; i < 4; i++) {
     const L = 'L' + i;
     a += `s${i}:httpRequestsAdaptiveGroups(limit:1,${F('t0', 1, L)}){count}
-h${i}:httpRequestsAdaptiveGroups(limit:60,${F('h0', 1, L)}){count dimensions{datetimeHour}}
-ho${i}:httpRequestsAdaptiveGroups(limit:60,${F('t0', 1, L)}){count dimensions{clientRequestHTTPHost}}
-dv${i}:httpRequestsAdaptiveGroups(limit:6,${F('t0', 1, L)}){count dimensions{clientDeviceType}}
-st${i}:httpRequestsAdaptiveGroups(limit:20,${F('t0', 0, L)}){count dimensions{edgeResponseStatus}}
-ct${i}:httpRequestsAdaptiveGroups(limit:40,${F('w0', 0, L)}){count dimensions{clientCountryName}}
-sg${i}:httpRequestsAdaptiveGroups(limit:20,${F('w0', 0, L)}){count dimensions{edgeResponseStatus}}
+h${i}:httpRequestsAdaptiveGroups(limit:60,orderBy:[count_DESC],${F('h0', 1, L)}){count dimensions{datetimeHour}}
+ho${i}:httpRequestsAdaptiveGroups(limit:60,orderBy:[count_DESC],${F('t0', 1, L)}){count dimensions{clientRequestHTTPHost}}
+dv${i}:httpRequestsAdaptiveGroups(limit:6,orderBy:[count_DESC],${F('t0', 1, L)}){count dimensions{clientDeviceType}}
+st${i}:httpRequestsAdaptiveGroups(limit:20,orderBy:[count_DESC],${F('t0', 0, L)}){count dimensions{edgeResponseStatus}}
+ct${i}:httpRequestsAdaptiveGroups(limit:40,orderBy:[count_DESC],${F('w0', 0, L)}){count dimensions{clientCountryName}}
+sg${i}:httpRequestsAdaptiveGroups(limit:20,orderBy:[count_DESC],${F('w0', 0, L)}){count dimensions{edgeResponseStatus}}
 dp${i}:httpRequestsAdaptiveGroups(limit:3,${F('y0', 1, L)}){count dimensions{date}}
 dr${i}:httpRequestsAdaptiveGroups(limit:3,${F('y0', 0, L)}){count dimensions{date}}
 `;
@@ -41,7 +41,7 @@ br${i}:httpRequestsAdaptiveGroups(limit:1,${F('bs', 0, 'B' + i, 'be')}){count}
 `;
   }
   a += `ctt:httpRequestsAdaptiveGroups(limit:40,orderBy:[count_DESC],${F('w0', 0)}){count dimensions{clientCountryName}}
-sgt:httpRequestsAdaptiveGroups(limit:20,${F('w0', 0)}){count dimensions{edgeResponseStatus}}
+sgt:httpRequestsAdaptiveGroups(limit:20,orderBy:[count_DESC],${F('w0', 0)}){count dimensions{edgeResponseStatus}}
 `;
   return `query($z:String!,$t0:Time!,$t1:Time!,$h0:Time!,$w0:Time!,$y0:Time!,$L0:[string!],$L1:[string!],$L2:[string!],$L3:[string!]${bf ? ',$bs:Time!,$be:Time!,$B0:[string!],$B1:[string!],$B2:[string!],$B3:[string!]' : ''}){viewer{zones(filter:{zoneTag:$z}){
 ${a}}}}`;
@@ -49,11 +49,11 @@ ${a}}}}`;
 const CD = 'bot userAgentBrowser browserVersion userAgentOS osVersion';   // the beacon's own browser fields, for the same four classes
 const QWR = `query($a:String!,$site:String!,$t0:Time!,$t1:Time!,$d0:Date!,$d1:Date!){viewer{accounts(filter:{accountTag:$a}){
 day:rumPageloadEventsAdaptiveGroups(limit:4000,filter:{siteTag:$site,date_geq:$d0,date_leq:$d1}){count sum{visits} dimensions{date ${CD}}}
-ref:rumPageloadEventsAdaptiveGroups(limit:3000,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){sum{visits} dimensions{refererHost ${CD}}}
-page:rumPageloadEventsAdaptiveGroups(limit:4000,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){count dimensions{requestHost requestPath ${CD}}}
-host:rumPageloadEventsAdaptiveGroups(limit:3000,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){count sum{visits} dimensions{requestHost ${CD}}}
-ctry:rumPageloadEventsAdaptiveGroups(limit:3000,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){sum{visits} dimensions{countryName ${CD}}}
-dev:rumPageloadEventsAdaptiveGroups(limit:1000,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){sum{visits} dimensions{deviceType ${CD}}}
+ref:rumPageloadEventsAdaptiveGroups(limit:3000,orderBy:[sum_visits_DESC],filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){sum{visits} dimensions{refererHost ${CD}}}
+page:rumPageloadEventsAdaptiveGroups(limit:4000,orderBy:[count_DESC],filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){count dimensions{requestHost requestPath ${CD}}}
+host:rumPageloadEventsAdaptiveGroups(limit:3000,orderBy:[count_DESC],filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){count sum{visits} dimensions{requestHost ${CD}}}
+ctry:rumPageloadEventsAdaptiveGroups(limit:3000,orderBy:[sum_visits_DESC],filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){sum{visits} dimensions{countryName ${CD}}}
+dev:rumPageloadEventsAdaptiveGroups(limit:1000,orderBy:[sum_visits_DESC],filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){sum{visits} dimensions{deviceType ${CD}}}
 }}}`;
 // browsers and operating systems come from the same beacon rows as the class fields (no extra query)
 // browser-string classes (same rules as the Cedwyn traffic feed): own tooling, declared bots/crawlers, suspected automation, likely human
