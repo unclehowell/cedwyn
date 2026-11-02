@@ -13,15 +13,7 @@
   "bytes": 602859,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 0
- },
- "infographic": {
-  "how": "branch",
-  "files": 27,
-  "bytes": 8483647,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 0
+  "secs": 1
  },
  "maps": {
   "how": "branch",
@@ -31,26 +23,16 @@
   "dropped_over_24MB": [],
   "secs": 1
  },
- "ebooks": {
-  "how": "branch",
-  "files": 253,
-  "bytes": 16176732,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1
- },
- "thousand-cuts": {
-  "how": null,
-  "files": 0,
-  "bytes": 0,
-  "has_index": false,
-  "dropped_over_24MB": [],
-  "secs": 0
- },
  "_snapshot": {
   "tithe-h3": {
    "ref": "4b69be304882c46c7d5d490787cdc3f0b327ef5b",
    "files": 14,
+   "rc": 0,
+   "peer_theme_roots_detected": []
+  },
+  "cloudflare": {
+   "ref": "ada43f98e42608b6e4a1089ec3ef73de0f06291b",
+   "files": 7,
    "rc": 0,
    "peer_theme_roots_detected": []
   },
@@ -126,15 +108,39 @@
   "bytes": 555016,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 2
+  "secs": 1
  },
- "fb": {
-  "how": "branch",
-  "files": 580,
-  "bytes": 9396898,
+ "cloudflare": {
+  "how": "snapshot",
+  "files": 7,
+  "bytes": 55588,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1
+ },
+ "infographic": {
+  "how": "branch",
+  "files": 27,
+  "bytes": 8483647,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "thousand-cuts": {
+  "how": null,
+  "files": 0,
+  "bytes": 0,
+  "has_index": false,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "ebooks": {
+  "how": "branch",
+  "files": 253,
+  "bytes": 16176732,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
  },
  "chess": {
   "how": "branch",
@@ -144,18 +150,18 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
+ "fb": {
+  "how": "branch",
+  "files": 580,
+  "bytes": 9396898,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
+ },
  "csscpsg": {
   "how": "branch",
   "files": 16,
   "bytes": 475121,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 0
- },
- "courtdrills": {
-  "how": "branch",
-  "files": 7,
-  "bytes": 78207,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 0
@@ -167,6 +173,14 @@
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 3
+ },
+ "courtdrills": {
+  "how": "branch",
+  "files": 7,
+  "bytes": 78207,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
  },
  "oldbill": {
   "how": "branch",
@@ -230,20 +244,20 @@
   "bytes": 70256733,
   "has_index": true,
   "dropped_over_24MB": [],
+  "secs": 2
+ },
+ "app": {
+  "how": "snapshot",
+  "files": 19,
+  "bytes": 1132809,
+  "has_index": true,
+  "dropped_over_24MB": [],
   "secs": 1
  },
  "projects": {
   "how": "branch",
   "files": 206,
   "bytes": 5151516,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1
- },
- "app": {
-  "how": "snapshot",
-  "files": 19,
-  "bytes": 1132809,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1
@@ -296,6 +310,10 @@
   "dropped_over_24MB": [],
   "secs": 1
  },
+ "_build_logs": {
+  "docs": "[docs] RULE ghf_evidence/ev_0284: pdf [en] url must be https://cedwyn.bucklerfamily.estate/wayback/pdf/docs-archive/ghf_evidence/ev_0284/en/2026-11-01_EV-0284_ghf_evidence-ev_0284_en_v1-0-0.pdf\n[docs] RULE ghf_evidence/ev_0284: banned word \"unverified\" in the text\n2 rule problem(s); see DOCS-STANDARD.md\n",
+  "story": "vsbuckler@0.1.1 build\n> vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m\u2713\u001b[39m 35 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                \u001b[39m\u001b[1m\u001b[2m  3.54 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   1.40 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mmain-BybMKBdS.css  \u001b[39m\u001b[1m\u001b[2m 30.18 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   6.88 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-Yz4I5QJe.js  \u001b[39m\u001b[1m\u001b[33m807.04 kB\u001b[39m\u001b[22m\u001b[2m \u2502 gzip: 187.32 kB\u001b[22m\n\u001b[32m\u2713 built in 1.08s\u001b[39m\nCopied storyboard media into dist/media\noptional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-11-02T02_51_08_733Z-debug-0.log\n\u001b[33m\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Frollupjs.org%2Fconfiguration-options%2F%23output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
+ },
  "dartboard": {
   "how": "crawl",
   "files": 7,
@@ -310,7 +328,7 @@
   "bytes": 1098617,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 0
+  "secs": 1
  },
  "wales": {
   "how": null,
@@ -320,22 +338,10 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
- "_build_logs": {
-  "docs": "[docs] RULE ghf_evidence/ev_0284: pdf [en] url must be https://cedwyn.bucklerfamily.estate/wayback/pdf/docs-archive/ghf_evidence/ev_0284/en/2026-11-01_EV-0284_ghf_evidence-ev_0284_en_v1-0-0.pdf\n[docs] RULE ghf_evidence/ev_0284: banned word \"unverified\" in the text\n2 rule problem(s); see DOCS-STANDARD.md\n",
-  "story": "vsbuckler@0.1.1 build\n> vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m\u2713\u001b[39m 35 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                \u001b[39m\u001b[1m\u001b[2m  3.54 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   1.40 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mmain-BybMKBdS.css  \u001b[39m\u001b[1m\u001b[2m 30.18 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   6.88 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-Yz4I5QJe.js  \u001b[39m\u001b[1m\u001b[33m807.04 kB\u001b[39m\u001b[22m\u001b[2m \u2502 gzip: 187.32 kB\u001b[22m\n\u001b[32m\u2713 built in 1.11s\u001b[39m\nCopied storyboard media into dist/media\noptional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-11-02T01_45_26_665Z-debug-0.log\n\u001b[33m\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Frollupjs.org%2Fconfiguration-options%2F%23output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
- },
  "patagonia": {
   "how": "snapshot",
   "files": 1,
   "bytes": 31964,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1
- },
- "terrain": {
-  "how": "crawl",
-  "files": 6,
-  "bytes": 356980,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1
@@ -348,10 +354,26 @@
   "dropped_over_24MB": [],
   "secs": 1
  },
+ "terrain": {
+  "how": "crawl",
+  "files": 6,
+  "bytes": 356980,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1
+ },
  "shop": {
   "how": "branch",
   "files": 53,
   "bytes": 1087569,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 0
+ },
+ "familytree": {
+  "how": "branch",
+  "files": 2,
+  "bytes": 57942,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 0
@@ -364,18 +386,10 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
- "email": {
-  "how": "crawl",
-  "files": 10,
-  "bytes": 11605439,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 4
- },
- "familytree": {
+ "that-old-chestnut": {
   "how": "branch",
-  "files": 2,
-  "bytes": 57942,
+  "files": 5,
+  "bytes": 70620,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 0
@@ -388,18 +402,18 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
- "wayback": {
-  "how": "branch",
-  "files": 5896,
-  "bytes": 919502479,
+ "email": {
+  "how": "crawl",
+  "files": 10,
+  "bytes": 11605439,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 11
+  "secs": 4
  },
- "that-old-chestnut": {
+ "whattheydontsay": {
   "how": "branch",
-  "files": 5,
-  "bytes": 70620,
+  "files": 4,
+  "bytes": 317840,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 0
@@ -412,13 +426,13 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
- "whattheydontsay": {
+ "wayback": {
   "how": "branch",
-  "files": 4,
-  "bytes": 317840,
+  "files": 5896,
+  "bytes": 919502479,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 0
+  "secs": 12
  },
  "nft-art": {
   "how": "branch",
@@ -458,6 +472,6 @@
   "bytes": 21268200,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 203
+  "secs": 108
  }
 }
