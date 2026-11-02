@@ -120,5 +120,7 @@
       P.forEach(function (p) { p.v.forEach(function (v) { VAR[v[0]] = { p: p, v: v }; }); });
       Object.keys(bask).forEach(function (v) { if (!VAR[v]) delete bask[v]; });
       words();
+      var dl = /^#p=([^&]+)$/.exec(location.hash || '');   // 2 Nov 2026: /garden/#p=<handle> opens that product (links from the Garden banner on every webapp)
+      if (dl) { try { sheet(decodeURIComponent(dl[1])); } catch (e) {} }
     }).catch(function () { $('gc-grid').innerHTML = '<p class="gc-wait"><a href="https://gardencity.cymru/" target="_blank" rel="noopener">gardencity.cymru</a></p>'; });
 })();
