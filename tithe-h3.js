@@ -1,7 +1,7 @@
 /* v0.1.1 (2 Nov 2026): the header carries "42 of 59" in its own numbering slot (.ghf-v2-name small), and the header's
    third row (the e-book "Read free" strip, or any other cross-promo put there) stays hidden on this webapp. The shared
    Garden banner (.ghf-v2-up.cw-gdn-on) is the one thing allowed in that row. When the area registry gives this webapp its
-   own slot, the header's own number is used and nothing is added here. — Sion's Tab agent */
+   own slot, the header's own number is used and nothing is added here. - Cedwyn editors */
 (function(){
 var d=document,SLOT="42",OF="59",WORD={en:"of",cy:"o",es:"de"};
 function lg(){var l=(d.documentElement.getAttribute("lang")||"en").slice(0,2).toLowerCase();return WORD[l]?l:"en";}
