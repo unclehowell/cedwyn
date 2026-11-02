@@ -1,0 +1,36 @@
+/* Spill webapp 44 of 59 · v1.0.0. - Cedwyn editors */
+.spw{background:#f6f7f9;color:#1d2733}
+.spw-w{max-width:880px;margin:0 auto;padding:12px 12px 24px;box-sizing:border-box;font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+.spw-w *{box-sizing:border-box}
+.spw-w h1{font-size:1.5rem;margin:8px 0 2px}
+.spw-meta{margin:0 0 6px;font-size:.8rem;opacity:.75}
+.spw-legend{font-size:.75rem;display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:8px;opacity:.85}
+.spw-legend .k{display:inline-block;width:11px;height:11px;border-radius:2px;vertical-align:-1px}
+.k.ok{background:#2e7d5b}.k.warn{background:#d98a00}.k.bad{background:#c62828}
+.spw-c{background:#fff;border:1px solid #e1e5ea;border-radius:10px;padding:10px 10px 6px;margin:0 0 10px;overflow:hidden}
+.spw-c h2{font-size:1rem!important;line-height:1.25!important;margin:0 0 6px!important;font-weight:600}
+.g svg{display:block;width:100%;height:auto;max-width:100%}
+.g text{font:11px system-ui,-apple-system,sans-serif;fill:#33404d}
+.g .lab{fill:#33404d}.g .val{fill:#1d2733;font-weight:600}.g .ax{stroke:#c9d0d8;stroke-width:1}.g .lim{stroke:#c62828;stroke-width:1;stroke-dasharray:3 3}
+.g .ok{fill:#2e7d5b}.g .warn{fill:#d98a00}.g .bad{fill:#c62828}.g .b1{fill:#4a78a8}.g .b2{fill:#9fb8d4}.g .trk{fill:#edf0f3}
+.g .ln{fill:none;stroke:#4a78a8;stroke-width:2}.g .dot{fill:#4a78a8}
+.g .empty{fill:#8a96a3}
+.spw-key{font-size:.72rem;opacity:.8;margin:2px 0 4px}.spw-key i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 3px 0 6px;vertical-align:-1px}
+.spw-foot{margin-top:14px;font-size:.78rem}
+.spw-fl{opacity:.8;margin-bottom:6px}
+.spw-fl a,.spw-gb a{color:inherit}
+.spw-gb summary{cursor:pointer;font-weight:650}
+.spw-gbw{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+.spw-gb table{border-collapse:collapse;width:100%;font-size:.75rem}
+.spw-gb th,.spw-gb td{text-align:left;padding:3px 5px;border-bottom:1px solid #e1e5ea;vertical-align:top}
+.spw-gb td:nth-child(1),.spw-gb td:nth-child(2){white-space:nowrap}
+.spw-gb td:nth-child(3){min-width:12em}
+/* the header's third row shows nothing but the shared Garden banner on this webapp */
+.ghf-v2-up:not(.cw-gdn-on){display:none!important}
+.ghf-v2-name small[data-spill-slot] a:hover{text-decoration:underline!important}
+.spw-intro{margin:0 0 10px;font-size:.92rem}
+.spw-cmd{display:flex;gap:8px;align-items:center;background:#fff;border:1px solid #e1e5ea;border-radius:10px;padding:8px 10px;margin:0 0 10px;max-width:100%}
+.spw-cmd code{flex:1;min-width:0;overflow-wrap:anywhere;font:600 .9rem ui-monospace,SFMono-Regular,Menlo,monospace}
+.spw-cmd button{flex:none;font:inherit;font-size:.8rem;padding:4px 10px;border:1px solid #c9d0d8;border-radius:6px;background:#f6f7f9;cursor:pointer}
+.spw-kpi{display:flex;gap:10px;margin:0 0 10px;flex-wrap:wrap}.spw-kpi div{background:#fff;border:1px solid #e1e5ea;border-radius:10px;padding:6px 10px;font-size:.78rem}.spw-kpi b{display:block;font-size:1.2rem}
+.spw-links{font-size:.8rem;margin:0 0 10px;overflow-wrap:anywhere}.spw-links a{color:inherit}
