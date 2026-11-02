@@ -33,7 +33,7 @@
   var tc = d.querySelector('meta[name="theme-color"]'); if (!tc) { tc = d.createElement("meta"); tc.name = "theme-color"; (d.head || de).appendChild(tc); }
   tc.removeAttribute("media"); tc.content = M === "day" ? "#f7f2e7" : "#000000";
   var B = (me && me.src ? me.src.replace(/[^\/?#]*([?#].*)?$/, "") : "") || "/_cedwyn/ghf/";
-  var V = "?v=2.1.19", sync = d.readyState === "loading" && me && !me.async && !me.defer;
+  var V = "?v=2.1.21", sync = d.readyState === "loading" && me && !me.async && !me.defer;
   de.className += (de.className ? " " : "") + "ghf-v2-pre";
   var s = d.createElement("style"); s.setAttribute("data-ghf-boot", "");
   s.textContent = "html.ghf-v2-pre body::before{content:'';display:block;height:148px;background:#000}@media (min-width:783px){html.ghf-v2-pre body::before{height:152px}}.ghf-v2-up>a.ghf-v2-upa{visibility:hidden}";
