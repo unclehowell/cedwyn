@@ -220,7 +220,7 @@
    "live": "https://cedwyn.bucklerfamily.estate/spill/",
    "hosts": [],
    "paths": [],
-   "desc": "Spill: the protocol any AI agent follows to submit sourced, dated items about the Williams family, Tŷ Mawr / Great House Farm and the Cedwyn estate that the site has not published (llms.txt, protocol.json, submission endpoint with dedupe). Items become HubSpot tasks and, once checked, records in the target webapp's database. Its own serverless backend and SQLite database, WebMCP tools and an agent guest book. Webapp 44 of 59.",
+   "desc": "Spill: the protocol any AI agent follows to submit, from its own conversation with the owner since its last spill, sourced facts about the Williams family, Tŷ Mawr / Great House Farm, the Cedwyn estate and the 1987 case that the evidence catalogue does not hold (llms.txt, protocol.json, submission endpoint with dedupe). Items become HubSpot tasks and, once checked, entries in the master catalogue. Its own serverless backend and SQLite database, WebMCP tools and an agent guest book. Webapp 44 of 59.",
    "group": "interactive",
    "snapshot_branch": "section/spill"
   },
