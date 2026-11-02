@@ -8,7 +8,7 @@
 (function () {
   'use strict';
   if (window.__cwGraph) return;
-  var d = document, de = d.documentElement, VER = '1.2.4';
+  var d = document, de = d.documentElement, VER = '1.3.0';
   window.__cwGraph = { v: VER };
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var T = {
@@ -656,7 +656,7 @@
     window.__cwGraph.levels = LV;
   }
   function start() {
-    watchBanner(); try { autoMore(); } catch (e) {}
+    try { autoMore(); } catch (e) {}   // 1.3.0 (2 Nov 2026): no header graph promo any more (watchBanner is not called); the strip carries the Garden banner
     function lv() { try { levels(); } catch (e) { if (window.console) console.warn('cw levels', e); } }
     if (moreN && window.__cwGraph.loadAll) window.__cwGraph.loadAll(lv); else lv();
   }

@@ -1,16 +1,20 @@
 /* v0.1.1 (2 Nov 2026): the header carries "42 of 59" in its own numbering slot (.ghf-v2-name small), and the header's
    third row (the e-book "Read free" strip, or any other cross-promo put there) stays hidden on this webapp. The shared
    Garden banner (.ghf-v2-up.cw-gdn-on) is the one thing allowed in that row. When the area registry gives this webapp its
-   own slot, the header's own number is used and nothing is added here. - Cedwyn editors */
+   own slot, the header's own number is used and nothing is added here. v0.1.2: on /wales/tithe-h3/ the header took the Wales
+   hub's name and number (this webapp is not in the area registry yet); the page now writes its own name and number there too.
+   - Cedwyn editors */
 (function(){
-var d=document,SLOT="42",OF="59",WORD={en:"of",cy:"o",es:"de"};
+var d=document,NAME="Tithe H3",SLOT="42",OF="59",WORD={en:"of",cy:"o",es:"de"};
 function lg(){var l=(d.documentElement.getAttribute("lang")||"en").slice(0,2).toLowerCase();return WORD[l]?l:"en";}
 function num(){var n=d.querySelector(".ghf-v2-chain .ghf-v2-name");if(!n)return false;
- var s=n.querySelector("small");
- if(s&&!s.hasAttribute("data-th3-slot"))return true;
+ var b=n.querySelector("b"),s=n.querySelector("small");
+ if(s&&!s.hasAttribute("data-th3-slot")&&b&&b.textContent.trim()===NAME)return true;
+ if(b&&b.textContent!==NAME)b.textContent=NAME;
  var t=SLOT+" "+WORD[lg()]+" "+OF;
- if(!s){s=d.createElement("small");s.setAttribute("data-th3-slot","");n.appendChild(s);}
- if(s.textContent!==t){s.textContent="";var a=d.createElement("a");a.className="cw-parcel-link";a.href="/parcels/";a.setAttribute("data-parcel-slot",SLOT);a.setAttribute("data-parcel-of",OF);a.style.color="inherit";a.style.textDecoration="none";a.textContent=t;s.appendChild(a);}
+ if(!s){s=d.createElement("small");n.appendChild(s);}
+ s.setAttribute("data-th3-slot","");
+ if(s.textContent!==t||!s.querySelector("a")){s.textContent="";var a=d.createElement("a");a.className="cw-parcel-link";a.href="/parcels/";a.setAttribute("data-parcel-slot",SLOT);a.setAttribute("data-parcel-of",OF);a.style.color="inherit";a.style.textDecoration="none";a.textContent=t;s.appendChild(a);}
  return true;}
 function strip(){var up=d.querySelector(".ghf-v2-up");if(!up)return false;
  var want=up.classList.contains("cw-gdn-on")?"":"none";

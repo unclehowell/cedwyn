@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 9170,
+  "pages_scanned": 9168,
   "references_checked": {
-    "resource": 207180,
-    "nav": 472844
+    "resource": 207164,
+    "nav": 469455
   },
-  "database_backed_paths": 7360,
-  "unique_missing_destinations": 5396,
-  "missing_references": 54177,
-  "missing_navigation_references": 38559,
-  "missing_resource_references": 15618,
+  "database_backed_paths": 7364,
+  "unique_missing_destinations": 5360,
+  "missing_references": 51392,
+  "missing_navigation_references": 35776,
+  "missing_resource_references": 15616,
   "unique_broken_fragments": 1832,
   "broken_fragment_references": 3390,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 9138,
+      "references": 9136,
       "examples": [
         {
           "from": "/",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 9135,
+      "references": 9133,
       "examples": [
         {
           "from": "/",
@@ -153,33 +153,6 @@
     },
     {
       "kind": "nav",
-      "path": "/r/strip-ev",
-      "references": 1732,
-      "examples": [
-        {
-          "from": "/research/evidence-chain/",
-          "attribute": "a[href]",
-          "url": "/r/strip-ev"
-        },
-        {
-          "from": "/research/evidence-library/",
-          "attribute": "a[href]",
-          "url": "/r/strip-ev"
-        },
-        {
-          "from": "/research/evidence/",
-          "attribute": "a[href]",
-          "url": "/r/strip-ev"
-        },
-        {
-          "from": "/research/forensic-evidence-capture-decisive-document-schedule-6-october-2026/",
-          "attribute": "a[href]",
-          "url": "/r/strip-ev"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
       "path": "/wiki/wp-json/wp/v2/pages",
       "references": 974,
       "examples": [
@@ -229,60 +202,6 @@
           "from": "/fb2/profiles.html",
           "attribute": "a[href]",
           "url": "/fb/m/login"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/r/strip-art",
-      "references": 638,
-      "examples": [
-        {
-          "from": "/research/the-tightrope/",
-          "attribute": "a[href]",
-          "url": "/r/strip-art"
-        },
-        {
-          "from": "/research/missing-records/",
-          "attribute": "a[href]",
-          "url": "/r/strip-art"
-        },
-        {
-          "from": "/research/bp-properties-v-buckler/",
-          "attribute": "a[href]",
-          "url": "/r/strip-art"
-        },
-        {
-          "from": "/research/family-legal-case-control-room/",
-          "attribute": "a[href]",
-          "url": "/r/strip-art"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/r/strip-dir",
-      "references": 307,
-      "examples": [
-        {
-          "from": "/directory/p/llandough-and-leckwith-war-memorial-institute/",
-          "attribute": "a[href]",
-          "url": "/r/strip-dir"
-        },
-        {
-          "from": "/directory/p/pigsys-hot-food/",
-          "attribute": "a[href]",
-          "url": "/r/strip-dir"
-        },
-        {
-          "from": "/directory/p/redimo/",
-          "attribute": "a[href]",
-          "url": "/r/strip-dir"
-        },
-        {
-          "from": "/directory/p/rhythm-creations/",
-          "attribute": "a[href]",
-          "url": "/r/strip-dir"
         }
       ]
     },
@@ -580,33 +499,6 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_index3.html",
           "attribute": "link[href]",
           "url": "./css/adminlte.css"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/r/strip-kf",
-      "references": 51,
-      "examples": [
-        {
-          "from": "/kissed-frogs/",
-          "attribute": "a[href]",
-          "url": "/r/strip-kf"
-        },
-        {
-          "from": "/kissed-frogs/kf-45-re-nisbet-and-potts-contract-1906/",
-          "attribute": "a[href]",
-          "url": "/r/strip-kf"
-        },
-        {
-          "from": "/kissed-frogs/kf-18-cardiff-urban-district-council-as-the-water/",
-          "attribute": "a[href]",
-          "url": "/r/strip-kf"
-        },
-        {
-          "from": "/kissed-frogs/kf-37-poaching-great-house-farm-1908/",
-          "attribute": "a[href]",
-          "url": "/r/strip-kf"
         }
       ]
     },
@@ -985,33 +877,6 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_layout/fixed-header.html",
           "attribute": "script[src]",
           "url": "../js/adminlte.js"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/r/strip-nom-c",
-      "references": 26,
-      "examples": [
-        {
-          "from": "/nomenclature/c/parcel-a/",
-          "attribute": "a[href]",
-          "url": "/r/strip-nom-c"
-        },
-        {
-          "from": "/nomenclature/c/hmlr/",
-          "attribute": "a[href]",
-          "url": "/r/strip-nom-c"
-        },
-        {
-          "from": "/nomenclature/c/parcel-b/",
-          "attribute": "a[href]",
-          "url": "/r/strip-nom-c"
-        },
-        {
-          "from": "/nomenclature/c/museum-wales/",
-          "attribute": "a[href]",
-          "url": "/r/strip-nom-c"
         }
       ]
     },
@@ -4063,6 +3928,141 @@
           "from": "/docs/ghf_wiki/ot_developerguide/latest/html/en/",
           "attribute": "a[href]",
           "url": "1-record.html#preferred-information-density-convention"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/docs/ghf_wiki/tl_twomarybucklersnameidentitytimeline/latest/html/en/1-record.html",
+      "references": 8,
+      "examples": [
+        {
+          "from": "/docs/ghf_wiki/tl_twomarybucklersnameidentitytimeline/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/tl_twomarybucklersnameidentitytimeline/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/tl_twomarybucklersnameidentitytimeline/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#name-and-status-timeline"
+        },
+        {
+          "from": "/docs/ghf_wiki/tl_twomarybucklersnameidentitytimeline/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#when-two-women-could-each-be-mary-buckler"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/docs/ghf_wiki/rp_198687solicitorsfilespreservationdisclos/latest/html/en/1-record.html",
+      "references": 8,
+      "examples": [
+        {
+          "from": "/docs/ghf_wiki/rp_198687solicitorsfilespreservationdisclos/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/rp_198687solicitorsfilespreservationdisclos/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/rp_198687solicitorsfilespreservationdisclos/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#what-the-reported-judgment-identifies"
+        },
+        {
+          "from": "/docs/ghf_wiki/rp_198687solicitorsfilespreservationdisclos/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#lead-register"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/docs/ghf_wiki/co_southwalespoliceemailcorrespondencp2931/latest/html/en/1-record.html",
+      "references": 8,
+      "examples": [
+        {
+          "from": "/docs/ghf_wiki/co_southwalespoliceemailcorrespondencp2931/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/co_southwalespoliceemailcorrespondencp2931/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/co_southwalespoliceemailcorrespondencp2931/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#thread-index"
+        },
+        {
+          "from": "/docs/ghf_wiki/co_southwalespoliceemailcorrespondencp2931/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#thread-6-internal-review-1188-26-of-foi-719-26"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/docs/ghf_wiki/rp_masterchangelogoctober2026/latest/html/en/1-record.html",
+      "references": 8,
+      "examples": [
+        {
+          "from": "/docs/ghf_wiki/rp_masterchangelogoctober2026/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/rp_masterchangelogoctober2026/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/rp_masterchangelogoctober2026/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#before-after-record"
+        },
+        {
+          "from": "/docs/ghf_wiki/rp_masterchangelogoctober2026/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#change-log-addendum-21-october-2026"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/docs/ghf_wiki/rg_bpvsbucklerarchiveresearchleads/latest/html/en/1-record.html",
+      "references": 8,
+      "examples": [
+        {
+          "from": "/docs/ghf_wiki/rg_bpvsbucklerarchiveresearchleads/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/rg_bpvsbucklerarchiveresearchleads/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html"
+        },
+        {
+          "from": "/docs/ghf_wiki/rg_bpvsbucklerarchiveresearchleads/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#archive-material-now-verified-from-the-family-wayback-image-archive"
+        },
+        {
+          "from": "/docs/ghf_wiki/rg_bpvsbucklerarchiveresearchleads/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "1-record.html#manorial-and-ownership-chain-before-1877"
         }
       ]
     }
