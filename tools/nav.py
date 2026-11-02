@@ -130,6 +130,8 @@ def check(dist):
             bad.append('%s (slot %s): link %s has no page' % (a['id'], a['slot'], a['href']))
         for f in pg:
             s = f.read_text('utf-8', errors='replace')
+            if not re.search(r'<body[^>]*>', s):   # a bodiless stub (redirect page): stamp() leaves it alone too
+                continue
             m = re.search(r'<nav class="cw-slotnav"[^>]*data-cw-slot="(\d+)"', s)
             if not m: bad.append('%s: no nav bar' % f.relative_to(dist))
             elif int(m.group(1)) != int(a['slot']): bad.append('%s: bar says slot %s, registry %s' % (f.relative_to(dist), m.group(1), a['slot']))
