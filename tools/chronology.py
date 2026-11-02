@@ -12,6 +12,9 @@ Report: dist/_cedwyn/reports/chronology.json. site.py calls it after theme_notic
 Usage: python3 tools/chronology.py dist"""
 import json, re, html, pathlib, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+# 2 Nov 2026 (owner, 00:48 GMT): the "Outside records" popup is retired from the pages with the rest of the cross-promo chrome.
+# The rewrites and the llms.txt paragraph stay; set True to put the page popup back - Sion's Tab agent
+HTML_NOTICE = False
 # Small ⓘ icon + popup, not a big block (Sion, 13:15 GMT 26 Oct 2026). Native <details>: no JS, the text stays in the HTML - Sion's Tab agent
 BOX = ('<aside class="cedwyn-notice cw-ior" data-cedwyn-notice="{k}" role="note" style="position:relative;display:block;margin:6px 0;text-align:left;font-size:13px;line-height:1.45">'
        '<style>.cw-ior details{{border:0!important;margin:0!important;padding:0!important;background:none!important;box-shadow:none!important}}.cw-ior summary{{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;color:inherit;font-weight:600;font-size:12px;padding:2px 0!important;margin:0!important;border:0!important;background:none!important}}'
@@ -61,7 +64,7 @@ def run(dist, cfg_path=None):
                 if n: rep['rewrites'][i] = rep['rewrites'].get(i, 0) + n
         if f.name == 'llms.txt' and '## How we treat outside records' not in t:
             t = llms_insert(t)
-        if f.suffix.lower() in ('.html', '.htm') and not _ref_page(rel) and 'data-cedwyn-notice="%s"' % N['id'] not in t and hit(_visible(t)):
+        if HTML_NOTICE and f.suffix.lower() in ('.html', '.htm') and not _ref_page(rel) and 'data-cedwyn-notice="%s"' % N['id'] not in t and hit(_visible(t)):
             j = t.find('</h1>')
             if j >= 0: t = t[:j + 5] + _bx(box, t) + t[j + 5:]
             else:

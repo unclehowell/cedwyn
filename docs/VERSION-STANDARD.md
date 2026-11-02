@@ -1,4 +1,4 @@
-# Cedwyn version standard 1.0.0 (1 Nov 2026)
+# Cedwyn version standard 1.1.0 (2 Nov 2026)
 
 One rule for every versioned thing on the site (e-books, documentary cuts, and any course, piece or item that gains versions).
 The owner's words (1 Nov 2026 01:31): latest versions are paid; each previous semantic version is £4.99 less, down to v0.0.1,
@@ -38,5 +38,14 @@ the documentary manifest). Esc and × close it and focus returns to (i).
 It prints one line per finding and exits 1 when a finding is not auto-fixable. Run it every 6 h; anything it cannot fix goes to
 the problems queue.
 
+## 6. The agent guest book is collapsed by default
+Every page and every webapp shows its agent guest book (the change log that agents sign) **collapsed**: one summary line
+(e.g. `Agent guest book (N)` or `Page versions & agent info`) that opens on tap. Use a native `<details>` **without** the
+`open` attribute so it works without JS; scripts never open it on load. The shared footer (`/_cedwyn/guestbook/gb.js`)
+does this on every built page; a webapp that renders its own guest book (e.g. `<details id="<app>-gb">`) must ship it closed.
+Every 390 px check of a release confirms the guest book is present and closed.
+Source: site editorial decision, 2 Nov 2026 (version standard 1.1.0).
+
 ## CHANGELOG
+- 1.1.0 (2026-11-02): §6, the agent guest book is collapsed by default on every page and webapp. — Cedwyn editors
 - 1.0.0 (2026-11-01): first version. — Cedwyn editors
