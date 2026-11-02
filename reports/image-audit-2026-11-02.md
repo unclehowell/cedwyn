@@ -76,6 +76,13 @@ The source review found that changing alt text alone had not fully corrected the
 
 PR #125 changes overlay text only. It does not change images, evidence, transcripts or catalogue records. Its initial `sections-ci` run started before the required `site-wide` label was present and failed the label gate; a fresh check is required after the label was added.
 
+**Main-site authored-page scan:** the 47 HTML candidates in the `web/` source tree outside email, evidence and archive paths were checked for image tags and nearby descriptions. Pages with no image tag were not treated as image mismatches merely because they were part of the page inventory. The main image-bearing cases are recorded below:
+- `/ebooks/enwau/`: one book-cover image; alt text identifies the cover as *Enwau: the names of Tŷ Mawr*.
+- `/research/reconstructions/ar-rec-0001-ty-mawr-1988/` and `ar-rec-0002-great-house-barn-1988/`: two images per page. Alt and captions distinguish the re-rendered scene from the cyan 2D wireframe; both captions state that the 1988 photograph remains the record and that hidden features are not invented.
+- `/wayback/people/`: the index builds portraits from `faces.json`; its template assigns each image alt from the corresponding record's `name`. The 11 supplied portrait files are also represented on individual profile pages, where the alt text matches the profile heading. Visual identity/authenticity of the portrait files was not certified in this text-only pass.
+- `/catalogue/`: the database-driven artifact preview has a blank alt on its generated image, while the same result card immediately supplies the artifact title and type. The image is a preview of the selected catalogue item, not a standalone illustration; no duplicate title was added.
+- The other authored candidates had no static image tags. This does not rule out content injected from a database, CSS background imagery, canvas, SVG, video or another theme branch.
+
 ## Pages and image families reviewed in this pass
 
 - **Wales AR tour (`/wales/`):** nine tour stops, including restored-photograph scenes, interpretive reconstructions and a map/plan composite. The Tŷ Mawr and churchyard scenes already state that they are restored from old photographs as artist’s impressions; the six other reconstructed scenes received accessibility descriptions and are covered by PR #125 for visible copy.
