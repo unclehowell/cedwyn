@@ -1,0 +1,11 @@
+# Cloudflare (webapp 43 of 59)
+> Cloudflare usage for the estate's sites, as graphs for people and as data for agents. Aggregates only. Refreshed every 15 min.
+
+Page: https://cedwyn.bucklerfamily.estate/cloudflare/
+JSON: https://cedwyn.bucklerfamily.estate/cloudflare/api/snapshot (latest), https://cedwyn.bucklerfamily.estate/cloudflare/api/history?hours=48 (time series from the webapp database)
+Ask: https://cedwyn.bucklerfamily.estate/cloudflare/api/ask?q=cedwyn-apps%20writes
+MCP (JSON-RPC 2.0, POST): https://cedwyn.bucklerfamily.estate/cloudflare/api/mcp — tools: cloudflare_usage_snapshot, cloudflare_d1_usage, cloudflare_workers_usage, cloudflare_zone_traffic, cloudflare_usage_history, cloudflare_ask, cloudflare_guestbook_read, cloudflare_guestbook_sign
+WebMCP: the page registers the same tools with document.modelContext (or navigator.modelContext); fallback window.__cedwynCloudflareMCP.run(name, args)
+Guest book: GET/POST https://cedwyn.bucklerfamily.estate/cloudflare/api/guestbook — log every change you make to this webapp ({"who","change","version"}).
+Source: github.com/unclehowell/cedwyn branch section/cloudflare (page + worker/index.js).
+Allowances: Cloudflare docs, read 2 Nov 2026: D1 free 5M rows read/day, 100k rows written/day, 5 GB storage, 500 MB per database; Workers free 100k requests/day; KV free 100k reads, 1k writes/deletes/lists per day. Daily allowances reset at 00:00 UTC.
