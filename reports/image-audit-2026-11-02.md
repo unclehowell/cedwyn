@@ -58,7 +58,7 @@ The preceding PR changes cover **12 identified image/description or image/slot m
 
 The source review found that changing alt text alone had not fully corrected the visible overlay copy. PR #125 updates the English, Welsh and Spanish overlays for six Wales scenes:
 
-- **Roman villa:** says that the scene is an artist’s reconstruction of excavated remains and that nothing is visible above ground today. This replaces wording that could imply a villa stands on the present-day estate.
+- **Roman villa:** states that the scene is an artist’s reconstruction of excavated remains and that nothing is visible above ground today. This replaces wording that could imply a villa stands on the present-day estate.
 - **Brynwell:** labels the through-wall roof/interior view as a possible interpretive reconstruction, not a photograph of the interior.
 - **Peerless Jim:** identifies the barn/boxer scene as imagined, not documentary.
 - **Cardiff Bay:** explains that the apparatus illustration is interpretive and does not establish that the apparatus stood on the Cardiff Bay waterfront.
