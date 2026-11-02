@@ -2,7 +2,7 @@
 // Sion's Tab agent, 2 Nov 2026. Source of truth: work/apex-paths/router.js (this file). VERSION below.
 // One route (bucklerfamily.estate/* + www) -> this Worker. Driven by the site's own registry (/areas.json), so a webapp added
 // to the registry gets its apex path automatically. Content is proxied (rewritten), never bounced to cedwyn.
-const VERSION = '1.1.1';
+const VERSION = '1.1.3';
 const APEX = 'bucklerfamily.estate';
 const OLD = 'cedwyn.bucklerfamily.estate';
 // Paths the apex Pages project (bucklerfamilyfarm) serves itself today (same list the old apex redirect rule exempted).
@@ -73,6 +73,10 @@ async function finish(r, reqUrl, path) {
     // runtime.js maps absolute apex links "/" -> /dartboard/ (themes.json "apex" from the days the dartboard sat on the apex root).
     // The apex root is the site home now; drop that one entry until the themes.json fix ships (CUTOVER.md).
     if (path.startsWith('/_cedwyn/runtime.js')) o = o.split(', ["/", "dartboard"]]').join(']');
+    // The header's registry nav (areas.json, the slot order and "NN of 59") only runs on the cedwyn hostname; let it run on the apex
+    // too, so both hosts read the same header (fix at source: basecamp areasNav host check, CUTOVER.md).
+    if (path.startsWith('/_cedwyn/ghf/basecamp.js'))
+      o = o.split('location.hostname !== "cedwyn.bucklerfamily.estate"').join('!/^(cedwyn\\.)?bucklerfamily\\.estate$/.test(location.hostname)');
     if (o !== t) { h.delete('content-length'); h.delete('etag'); h.delete('content-encoding'); }
     return new Response(o, { status: r.status, headers: h });
   }
