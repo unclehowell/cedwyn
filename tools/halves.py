@@ -17,7 +17,8 @@ Copy: data/halves.json (en/cy/es; Welsh and Spanish are first drafts). Images: w
 import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.4.1'
+VERSION = '1.4.2'
+# 1.4.2 (2 Nov 2026, 02:53Z): Patagonia visitor-card imagery aligned (B&B cottage GEN-0001, whole-house NFA-0035, hero NFA-0157); accessible alt text now names venue artwork. — Cedwyn editors
 # 1.4.1 (2 Nov 2026): separate source-language image alt descriptions from visible overlay copy; six interpretive Wales-tour scenes now identify themselves as artist's impressions in EN/CY/ES. — Cedwyn editors
 # 1.4.0 (1 Nov 2026, Sion 22:28 GMT, m:b0d74058): the landing has a third card, Online, after Wales and Patagonia; card labels carry
 # the emojis after the word (Welsh flag + UK / Argentina flag / globe). Online opens a modal with the same apps at their top-level
@@ -766,6 +767,7 @@ ARG_NFT = {
     'NFA-0147': ('The Cottage Window', '/nft-art/art/nfa-0147-v0.0.2.webp', '/nft-art/art/nfa-0147-v0.0.2-t.webp', 1200, 1200),
     'NFA-0148': ('The White Door', '/nft-art/art/nfa-0148-v0.0.2.webp', '/nft-art/art/nfa-0148-v0.0.2-t.webp', 1200, 1200),
     'NFA-0149': ('The Hall Door', '/nft-art/art/nfa-0149-v0.0.2.webp', '/nft-art/art/nfa-0149-v0.0.2-t.webp', 1200, 1200),
+    'GEN-0001': ('A guest cottage on the steppe, breakfast laid at the open door', '/_cedwyn/halves/img/patagonia-bnb-cottage.webp', '/_cedwyn/halves/img/patagonia-bnb-cottage-t.webp', 1200, 800),
     'REC-0001': ('Tŷ Mawr, reconstruction from the 1974 measured survey', '/_cedwyn/halves/img/ty-mawr-1974-reconstruction.webp', '/_cedwyn/halves/img/ty-mawr-1974-reconstruction-t.webp', 1200, 1200),
 }
 # Survey drawings shown among the pieces (27 Oct 2026, Sion 11:34 GMT: four pieces that are not the farm came out, NFA-0139,
@@ -777,10 +779,10 @@ ARG_REC = {
                  'cy': 'Tŷ Mawr: ail-greu o arolwg mesuredig 1974; uchder y to wedi’i amcangyfrif',
                  'es': 'Tŷ Mawr: reconstrucción a partir del levantamiento medido de 1974; altura del tejado estimada'},
 }
-ARG_NFT_HERO = 'NFA-0094'
-ARG_NFT_VENUE = {'room': 'NFA-0059', 'cottage': 'NFA-0141', 'villa': 'NFA-0107', 'wed': 'NFA-0100'}
+ARG_NFT_HERO = 'NFA-0157'
+ARG_NFT_VENUE = {'room': 'NFA-0059', 'cottage': 'GEN-0001', 'villa': 'NFA-0035', 'wed': 'NFA-0100'}
 ARG_NFT_SLOTS = {
-    'hl0': ['NFA-0157', 'NFA-0035', 'NFA-0026', 'NFA-0076', 'NFA-0032'],
+    'hl0': ['NFA-0094', 'NFA-0035', 'NFA-0026', 'NFA-0076', 'NFA-0032'],
     'hl1': ['NFA-0011', 'NFA-0046', 'NFA-0111', 'NFA-0112', 'NFA-0137', 'NFA-0138'],
     'hl2': ['NFA-0047', 'NFA-0093', 'NFA-0115', 'NFA-0114', 'NFA-0043'],
     'hl3': ['NFA-0050', 'NFA-0090', 'NFA-0106', 'NFA-0121'],
@@ -858,7 +860,7 @@ def argentina(sections, S, cfg, H):
                     + '</li>' for i in range(1, 8) if tx(T, 'a_feat' + str(i), l))
     vimg = ARG_NFT_VENUE
     unit = {'room_night': '/', 'night': '/', 'day': '/'}
-    vo = ''.join(f'<label class="hv-opt"><input type="radio" name="venue" value="{v["id"]}"{" checked" if v["id"] == "room" else ""}><img src="{ARG_NFT[vimg[v["id"]]][2]}" width="88" height="62" alt="" loading="lazy">'
+    vo = ''.join(f'<label class="hv-opt"><input type="radio" name="venue" value="{v["id"]}"{" checked" if v["id"] == "room" else ""}><img src="{ARG_NFT[vimg[v["id"]]][2]}" width="88" height="62" alt="{E(ARG_NFT[vimg[v["id"]]][0])}" loading="lazy">'
                  f'<span><b data-i18n="v_{v["id"]}">{E(tx(T,"v_"+v["id"],l))}</b><small data-i18n="v_{v["id"]}_d">{E(tx(T,"v_"+v["id"]+"_d",l))}</small><span class="pr">£{v["price"]:,}</span></span></label>' for v in H['venues'])
     ap = '<option value="NONE" data-i18n="b_nofly">' + E(tx(T, 'b_nofly', l)) + '</option>' + ''.join(
         f'<option value="{a}"{" selected" if a == "LHR" else ""}>{E(nm)} ({a})' + (f' · £{p:,}' if p else '') + '</option>' if a != 'OTHER' else f'<option value="OTHER">…</option>' for a, nm, p in H['airports'])
