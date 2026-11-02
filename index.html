@@ -1,0 +1,37 @@
+<!doctype html><html lang="en" data-cw-noclip><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tithe H3 · the Stewart plan parcels on a modern map · Cedwyn</title><meta name="description" content="The parcels of the David Stewart estate plan of Cedfin alias Ty Mawr, traced through the 1841 tithe map of Landough, Cogan and Leckwith onto a modern map, with grid references and H3 hexagons."><meta name="color-scheme" content="light"><meta name="theme-color" content="#1e4d45"><link rel="stylesheet" href="vendor/leaflet.css?v=1.9.4"><link rel="stylesheet" href="tithe-h3.css?v=0.1.0"><script src="/_cedwyn/parcel-modal.js?v=0.1.0" defer></script><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.8"></script></head><body class="th3"><main class="th3w" data-scope="wales">
+<p class="th3-parcel"><a class="cw-parcel-link" href="/parcels/" data-parcel-slot="42" data-parcel-of="59">42 of 59</a></p>
+<header class="th3-hero"><h1>Tithe H3</h1><p>The parcels of the David Stewart estate plan, traced through the 1841 tithe map onto today’s map, with an OS grid reference and H3 hexagons for each.</p></header>
+
+<div class="th3-bar" role="group" aria-label="Map layers">
+<label><input type="checkbox" id="l-tithe" checked> 1841 tithe map</label>
+<label><input type="checkbox" id="l-stew"> Stewart plan</label>
+<label><input type="checkbox" id="l-os"> OS c.1900</label>
+<label class="op">Opacity <input type="range" id="l-op" min="0" max="100" value="55" aria-label="Old map opacity"></label>
+</div>
+<div class="th3-bar" role="group" aria-label="H3 resolution">
+<span class="lab">Hexagons</span>
+<button type="button" data-r="12" aria-pressed="true">res 12</button><button type="button" data-r="11" aria-pressed="false">res 11</button><button type="button" data-r="8" aria-pressed="false">res 8</button><button type="button" data-r="0" aria-pressed="false">off</button>
+</div>
+<div id="map" aria-label="Map of the parcels"></div>
+<div class="th3-legend" id="legend"></div>
+<section class="th3-panel" id="panel" aria-live="polite"><p class="hint">Tap a parcel for its details.</p></section>
+
+<h2>The parcels</h2>
+<div class="th3-tablewrap"><table class="th3-table" id="tbl"><thead><tr><th>Plan no.</th><th>1841 plot</th><th>Occupier (1841, as entered)</th><th>Grid ref</th><th>H3 res 8</th></tr></thead><tbody></tbody></table></div>
+<p class="th3-dl">Data: <a href="data/stewart-parcels.csv" download>parcels CSV</a> · <a href="data/stewart-parcels.geojson" download>GeoJSON</a> · <a href="data/tithe-plots-vs-estate-map.csv" download>1841 plots inside the plan boundary (CSV)</a></p>
+
+<h2>How it was made</h2>
+<ol class="th3-how">
+<li><b>The plan.</b> The David Stewart survey of the Bute Glamorgan estates, plan of Cedfin alias Ty Mawr (the library dates the survey c.1822–24). Its parcel numbers were read by eye from a phone image. The figures run 1 to 45; the ones that look like 50–59 are written with an old-style 3, so we read them as 30–39. Numbers 1–4 in the homestead group and number 18 could not be read; those parcels are shown as “not read”.</li>
+<li><b>The 1841 tithe map.</b> <i>Plan of the parishes of Landough, Cogan and Leckwith</i>, Edward Edmunds, 1841, scale 8 chains to an inch (National Library of Wales). Its plot outlines were traced from the plot-number positions in the library’s apportionment index. Where a plan parcel and a tithe plot are the same field, the clearer tithe outline is used; otherwise the plan’s own outline.</li>
+<li><b>Onto today’s map.</b> The tithe map was fitted to the georeferenced OS six-inch map of c.1900 with five control points (St Dochdwy’s church, the village street junction, the Ely loop at plot 216, the Penlan road and the mouth of the Cwm Cydfin boundary stream). The fit error is about 26 m (RMS); outlines far from the church may be out by more. The plan was then fitted to the tithe map field by field (about 13 m RMS).</li>
+<li><b>H3.</b> Each parcel’s hexagons at resolution 12 (about 307 m² each), 11 and 8 (the Bloculus resolution, about 0.74 km²).</li>
+</ol>
+<p class="th3-note">Owner and occupier columns are the 1841 apportionment exactly as entered. Which plan parcel matches which tithe plot is our reading. Traced areas come out at about 70% of the acreages entered in 1841 and on the plan; the reason is not yet known, so treat areas as rough.</p>
+
+<footer class="th3-foot"><p>Tithe H3 · webapp 42 of 59 · v0.1.0 · <a href="#changelog">Changelog</a></p>
+<div id="changelog"><p><b>v0.1.0</b> (2 Nov 2026): first version. The plan’s parcels traced through the 1841 tithe map, fitted to the OS map, with grid references and H3 cells.</p></div></footer>
+</main>
+<script src="vendor/leaflet.js?v=1.9.4"></script>
+<script src="tithe-h3.js?v=0.1.0" defer></script>
+</body></html>
