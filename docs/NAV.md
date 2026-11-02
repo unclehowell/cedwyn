@@ -1,4 +1,6 @@
-# Webapp navigation standard (nav 1.0.0)
+# Webapp navigation standard (nav 1.0.0, 2 Nov 2026)
+
+Source: the owner's request of 2 Nov 2026, 04:13 GMT (navigation through the webapps kept getting stuck), and the 390 px crawl of the live site that morning (slots 40+ unreachable, chain re-filtered per half, no nav without JS).
 
 Every Cedwyn webapp can be reached from every other one, in order, with nothing to get stuck on.
 
@@ -32,4 +34,4 @@ It warns, without failing, when a slot is registered but not built, or when a sl
 |---|---|---|
 | 1.0.0 | 2026-11-02 | One slot registry (`/areas.json` "nav": site-areas.json + themes.json "slot"). One chain for every visitor, in slot order (no half filter, no list-position numbers). Server-rendered no-JS bar stamped at build. Build check. Slots 40, 42, 43 (and later webapps) join the nav. |
 
-— Sion's Tab agent
+— Cedwyn editors
