@@ -1,0 +1,30 @@
+<!doctype html><html lang="en" data-cw-noclip data-cw-nolevels><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cloudflare · usage graphs · Cedwyn</title><meta name="description" content="Cloudflare usage for the estate's sites as graphs: D1 rows against the free allowance, Workers requests, errors and CPU, KV, storage and site traffic. Refreshed every 15 minutes."><meta name="color-scheme" content="light"><meta name="theme-color" content="#1f3b57"><link rel="alternate" type="application/json" href="/cloudflare/api/snapshot" title="Cloudflare usage snapshot (JSON)"><link rel="alternate" type="text/plain" href="/cloudflare/api/llms.txt" title="For AI agents"><meta name="ai-agents" content="Data: /cloudflare/api/snapshot · MCP: POST /cloudflare/api/mcp · WebMCP tools cloudflare_* · guest book /cloudflare/api/guestbook"><link rel="stylesheet" href="cloudflare.css?v=1.0.0"><script src="/_cedwyn/parcel-modal.js?v=0.1.0" defer></script><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.19"></script></head><body class="cfw"><main class="cfw-w" data-scope="online">
+<h1>Cloudflare</h1>
+<p class="cfw-meta"><span id="cf-upd">…</span></p>
+<div class="cfw-legend" aria-hidden="true"><span class="k ok"></span>&lt;80% <span class="k warn"></span>80–95% <span class="k bad"></span>≥95%</div>
+<section class="cfw-c"><h2>Free allowance used</h2><div id="g-allow" class="g"></div></section>
+<section class="cfw-c"><h2>D1 rows written · per hour (48 h)</h2><div id="g-d1hour" class="g"></div></section>
+<section class="cfw-c"><h2>D1 rows written today (UTC)</h2><div id="g-trend" class="g"></div></section>
+<section class="cfw-c"><h2>D1 rows written · per day</h2><div id="g-d1day" class="g"></div></section>
+<section class="cfw-c"><h2>D1 rows written · by database</h2><div id="g-d1db" class="g"></div></section>
+<section class="cfw-c"><h2>D1 rows read · by database</h2><div id="g-d1read" class="g"></div></section>
+<section class="cfw-c"><h2>D1 storage (MB) · by database</h2><div id="g-d1size" class="g"></div></section>
+<section class="cfw-c"><h2>Workers requests · per day</h2><div id="g-wday" class="g"></div></section>
+<section class="cfw-c"><h2>Workers requests · by script</h2><div id="g-wreq" class="g"></div></section>
+<section class="cfw-c"><h2>Workers errors · by script</h2><div id="g-werr" class="g"></div></section>
+<section class="cfw-c"><h2>Workers CPU p99 (ms) · by script</h2><div id="g-wcpu" class="g"></div></section>
+<section class="cfw-c"><h2>KV operations</h2><div id="g-kv" class="g"></div></section>
+<section class="cfw-c"><h2>Site requests · per day</h2><div id="g-zreq" class="g"></div></section>
+<section class="cfw-c"><h2>Unique visitors · per day</h2><div id="g-zuniq" class="g"></div></section>
+<section class="cfw-c"><h2>Bandwidth (MB) · per day</h2><div id="g-zbytes" class="g"></div></section>
+<section class="cfw-c"><h2>Requests by host · 24 h</h2><div id="g-hosts" class="g"></div></section>
+<section class="cfw-c"><h2>Top pages · 24 h</h2><div id="g-pages" class="g"></div></section>
+<section class="cfw-c"><h2>Status codes · yesterday</h2><div id="g-status" class="g"></div></section>
+<section class="cfw-c"><h2>Countries · yesterday</h2><div id="g-ctry" class="g"></div></section>
+<footer class="cfw-foot" id="cfw-foot"><div class="cfw-fl">Cloudflare · webapp 43 of 59 · v<span id="cf-ver">1.0.0</span> · <a href="/cloudflare/api/snapshot">JSON</a> · <a href="/cloudflare/api/llms.txt">llms.txt</a> · <a href="/cloudflare/api/mcp">MCP</a></div>
+<details class="cfw-gb" id="cfw-gb" open><summary>Agent guest book</summary><div class="cfw-gbw"><table><thead><tr><th>Version</th><th>Date</th><th>Change</th><th>Who</th></tr></thead><tbody id="gb-rows"></tbody></table></div></details>
+<p data-for-agents hidden>Agents: log every change you make to this webapp with the WebMCP tool cloudflare_guestbook_sign or POST /cloudflare/api/guestbook {"who","change","version"}.</p>
+</footer>
+</main>
+<script src="cloudflare.js?v=1.0.0" defer></script>
+</body></html>
