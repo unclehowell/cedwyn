@@ -23,3 +23,7 @@
 .th3-lbl{background:none;border:0;box-shadow:none;font:700 11px system-ui;color:#111;text-shadow:0 0 2px #fff,0 0 2px #fff,0 0 3px #fff;padding:0}
 .th3-lbl:before{display:none}
 @media (max-width:420px){.th3-hero h1{font-size:1.45rem}#map{height:62vh}}
+
+/* v0.1.1: the header's third row shows nothing but the shared Garden banner on this webapp (the e-book strip is gone) */
+.ghf-v2-up:not(.cw-gdn-on){display:none!important}
+.ghf-v2-name small[data-th3-slot] a:hover{text-decoration:underline!important}

@@ -1,3 +1,30 @@
+/* v0.1.1 (2 Nov 2026): the header carries "42 of 59" in its own numbering slot (.ghf-v2-name small), and the header's
+   third row (the e-book "Read free" strip, or any other cross-promo put there) stays hidden on this webapp. The shared
+   Garden banner (.ghf-v2-up.cw-gdn-on) is the one thing allowed in that row. When the area registry gives this webapp its
+   own slot, the header's own number is used and nothing is added here. — Sion's Tab agent */
+(function(){
+var d=document,SLOT="42",OF="59",WORD={en:"of",cy:"o",es:"de"};
+function lg(){var l=(d.documentElement.getAttribute("lang")||"en").slice(0,2).toLowerCase();return WORD[l]?l:"en";}
+function num(){var n=d.querySelector(".ghf-v2-chain .ghf-v2-name");if(!n)return false;
+ var s=n.querySelector("small");
+ if(s&&!s.hasAttribute("data-th3-slot"))return true;
+ var t=SLOT+" "+WORD[lg()]+" "+OF;
+ if(!s){s=d.createElement("small");s.setAttribute("data-th3-slot","");n.appendChild(s);}
+ if(s.textContent!==t){s.textContent="";var a=d.createElement("a");a.className="cw-parcel-link";a.href="/parcels/";a.setAttribute("data-parcel-slot",SLOT);a.setAttribute("data-parcel-of",OF);a.style.color="inherit";a.style.textDecoration="none";a.textContent=t;s.appendChild(a);}
+ return true;}
+function strip(){var up=d.querySelector(".ghf-v2-up");if(!up)return false;
+ var want=up.classList.contains("cw-gdn-on")?"":"none";
+ if((up.style.getPropertyValue("display")||"")!==want){
+  if(want){up.style.setProperty("display","none","important");up.setAttribute("aria-hidden","true");}
+  else{up.style.removeProperty("display");up.removeAttribute("aria-hidden");}
+  try{window.dispatchEvent(new Event("resize"));}catch(e){}}
+ return true;}
+function both(){var a=num(),b=strip();return a&&b;}
+var n=0,iv=setInterval(function(){if(both()||++n>150){clearInterval(iv);var h=d.querySelector(".ghf-v2");
+ var mo=new MutationObserver(both),up=d.querySelector(".ghf-v2-up");
+ if(h)mo.observe(h,{childList:true,subtree:true});if(up)mo.observe(up,{attributes:true,attributeFilter:["class"]});}},100);
+d.addEventListener("ghf-lang-change",function(){setTimeout(both,0);});
+})();
 (function(){
 var COLORS={"Williams John":"#1b7a3a","Evans Revd James":"#7b3fa0","Evans the Revd James (Glebe)":"#7b3fa0","Rees Thomas":"#d9741c","Evans Evans":"#2f6db5","Sprackett John":"#b5306b","Williams James":"#3aa6a0","Jenkins William":"#8a6d1f","Jenkins Lewis":"#5d7f8c"};
 function first(s){return (s||"").split(";")[0].trim();}
