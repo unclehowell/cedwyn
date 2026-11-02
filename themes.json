@@ -198,7 +198,8 @@
    "paths": [],
    "desc": "The parcels of the David Stewart estate plan of Cedfin alias Ty Mawr, traced through the 1841 tithe map of Landough, Cogan and Leckwith onto today's map, with an OS grid reference and H3 hexagons for each. Webapp 42 of 59.",
    "group": "artifacts",
-   "snapshot_branch": "section/tithe-h3"
+   "snapshot_branch": "section/tithe-h3",
+   "slot": 42
   },
   {
    "id": "cloudflare",
@@ -210,7 +211,21 @@
    "paths": [],
    "desc": "The estate's Cloudflare usage as graphs against the free plan: D1 rows written and read, storage, Workers requests, errors and CPU, KV operations and site traffic, refreshed every 15 minutes. Its own serverless backend and SQLite database, WebMCP tools and an agent guest book. Webapp 43 of 59.",
    "group": "interactive",
-   "snapshot_branch": "section/cloudflare"
+   "snapshot_branch": "section/cloudflare",
+   "slot": 43
+  },
+  {
+   "id": "analytics",
+   "title": "Analytics",
+   "cy": "Dadansoddeg",
+   "es": "Analítica",
+   "live": "https://cedwyn.bucklerfamily.estate/analytics/",
+   "hosts": [],
+   "paths": [],
+   "desc": "Website analytics for bucklerfamily.estate and its subdomains as graphs: visits, page views, unique visitors, top pages, referrers, hostnames, countries, devices, browsers, status codes, humans and bots, refreshed every 15 minutes. Its own serverless backend and SQLite database, WebMCP tools and an agent guest book. Webapp 45 of 59.",
+   "group": "interactive",
+   "snapshot_branch": "section/analytics",
+   "slot": 45
   },
   {
    "id": "infographic",
@@ -810,7 +825,8 @@
    "paths": [],
    "desc": "What's the time, Mr Wolf? A leaderboard of the leads closest to the Takhar threshold for reopening the 1987 judgment, each scored out of 200 (100 is the threshold). Our case, prospective, not a finding of any court. Webapp 40 of 59.",
    "group": "research",
-   "snapshot_branch": "section/mr-wolf"
+   "snapshot_branch": "section/mr-wolf",
+   "slot": 40
   }
  ],
  "allowed_tile_templates": [

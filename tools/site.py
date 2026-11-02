@@ -77,8 +77,31 @@ for _c, _area in zip(chain, _areas):
     _areas_pub.append({'id': _area['id'], 'path': _p, 'title': _c[1], 'cy': _c[3], 'es': _c[4], 'group': _c[2],
                        'aliases': _al, 'skip_in': _c[5], 'built': _built,
                        'slot': _area.get('serendipity_slot'), 'of': _area_doc.get('parcel_total', 59)})
-json.dump({'schema': 'cedwyn_areas/v1', 'source': 'data/site-areas.json', 'order': 'main menu reading order; previous/next wrap from the last area to the first',
-           'count': len(_areas_pub), 'parcel_total': _area_doc.get('parcel_total', 59), 'areas': _areas_pub}, open(DIST / 'areas.json', 'w'), ensure_ascii=False, indent=1)
+# 2 Nov 2026, nav 1.0.0 (owner, 04:13 GMT: "the way the navigation is done is flawed architecturally ... Fix it"): /areas.json
+# also carries "nav", the ONE ordered slot list that every header, menu and no-JS bar steps through: the areas above (slots 1-39,
+# data/site-areas.json, untouched) plus every webapp that declares its slot once, on its own themes.json entry ("slot": N,
+# optional "path"; "served_by": "worker" when a Worker serves it), sorted by slot. "href" is the address a link opens with no
+# redirect hop (/online/<id>/ for data/halves.json online_only apps); "src" is the built folder. "areas" stays as it was for
+# its other readers. tools/nav.py stamps the bar into every slot page and fails the build on a broken slot (docs/NAV.md).
+# - Sion's Tab agent
+_nav = [dict(a, src=a['path']) for a in _areas_pub]
+_nav_seen = {a['id'] for a in _areas_pub} | set(_source_to_area)
+for _t in CFG['themes']:
+    if not _t.get('slot') or _t['id'] in _nav_seen: continue
+    _p = _t.get('path') or '/' + _t['id'] + '/'
+    _nav.append({'id': _t['id'], 'path': _p, 'src': _p, 'title': _t.get('nav_title') or _t.get('title') or _t['id'], 'cy': _t.get('cy', ''), 'es': _t.get('es', ''),
+                 'group': _t.get('group') or CFG.get('default_group') or '', 'aliases': [], 'skip_in': [h for h in ('wales', 'patagonia') if _t['id'] in _XH[h]],
+                 'built': (DIST / _p.strip('/')).is_dir() or _t.get('served_by') == 'worker', 'slot': int(_t['slot']), 'of': _area_doc.get('parcel_total', 59), 'webapp': True,
+                 'worker': _t.get('served_by') == 'worker'})
+_nav_online = set(_HV.get('online_only', []))
+for _a in _nav:
+    _a['href'] = '/online/%s/' % _a['id'] if _a['id'] in _nav_online else _a['path']
+    _a['sec'] = not _a.get('webapp') and _a['href'] == _a['path'] and _a['id'] != 'wales'
+_nav.sort(key=lambda a: int(a.get('slot') or 999))
+chain = [[a['id'], a['title'], a['group'], a['cy'], a['es'], a['skip_in'], int(a.get('slot') or 0), a['href'], 1 if a['sec'] else 0] for a in _nav if a['built']]
+json.dump({'schema': 'cedwyn_areas/v1', 'source': 'data/site-areas.json + themes.json slot', 'order': 'main menu reading order; previous/next wrap from the last area to the first',
+           'count': len(_areas_pub), 'parcel_total': _area_doc.get('parcel_total', 59), 'areas': _areas_pub,
+           'nav_version': '1.0.0', 'nav_order': 'slot order; previous/next step through every built slot and wrap from the last to the first', 'nav': _nav}, open(DIST / 'areas.json', 'w'), ensure_ascii=False, indent=1)
 bc.write_text(bc.read_text().replace('/*CEDWYN_CHAIN*/null', json.dumps(chain, ensure_ascii=False)).replace('/*CEDWYN_GROUPS*/null', json.dumps(menu_groups, ensure_ascii=False)).replace('/*CEDWYN_SMAP*/{}', json.dumps(_source_to_area, ensure_ascii=False))
               .replace('HOME = "https://bucklerfamily.estate/cedwyn/"', 'HOME = "/"')
               # DARTBOARD_NAMES: the dartboard theme is the dartboard app now, not the home (header and menu names)

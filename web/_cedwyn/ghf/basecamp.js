@@ -285,13 +285,18 @@
   try { if (CHALF) localStorage.setItem("cedwyn-half", CHALF); else CHALF = localStorage.getItem("cedwyn-half") || ""; } catch (e) {}
   if (CHALF !== "wales" && CHALF !== "patagonia") CHALF = "";
   if (!CSECP && CHALF && location.hostname === "cedwyn.bucklerfamily.estate") CSECP = CHALF === "wales" ? "/wales" : "/argentina";   // the chosen half's section, so ‹ › keep the visitor in it
+  // nav 1.0.0: the address a stop opens at. Inside a half, an area that half serves keeps the visitor in it (/wales/x/, /argentina/x/);
+  // everything else opens at its own canonical address, so no stop is ever skipped or sent through a redirect - Sion's Tab agent
+  function cedU(id, href, skip, sec) { if (id === "wales") return "/wales/"; return sec && CSECP && (skip || []).indexOf(CHALF) < 0 ? CSECP + href : href; }
   if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) {
     var CBY = {}; CHAIN.forEach(function (c) { CBY[c.id] = c; });
     CFULL = CEDWYN_CHAIN.map(function (t) { return t[0]; });
-    CHAIN = CEDWYN_CHAIN.filter(function (t) { return !CHALF || (t[5] || []).indexOf(CHALF) < 0; }).map(function (t) { var o = CBY[t[0]] || {}, r = {}, k; for (k in o) r[k] = o[k];
-      r.id = t[0]; r.t = t[1] || o.t; r.g = t[2] || ""; if (t[3]) r.cy = t[3]; if (t[4]) r.es = t[4]; r.u = CSECP + "/" + t[0] + "/";
-      if (t[0] === "wales") r.u = "/wales/";   // the Wales tour is the Wales section's own home page
-      r.h = []; r.p = ["/" + t[0] + "/"]; r.n = CEDWYN_CHAIN.indexOf(t) + 1; return r; });
+    // 2 Nov 2026, nav 1.0.0 (owner: "it keeps getting stuck"): ONE chain for every visitor, in slot order, never filtered by the
+    // half. A stop the visitor's half does not serve, a webapp (slot 40 on) and an /online/ app open at their own address
+    // (tuple field 7) instead of dropping out; r.n is the slot (field 6), never a list position - Sion's Tab agent
+    CHAIN = CEDWYN_CHAIN.map(function (t) { var o = CBY[t[0]] || {}, r = {}, k; for (k in o) r[k] = o[k];
+      r.id = t[0]; r.t = t[1] || o.t; r.g = t[2] || ""; if (t[3]) r.cy = t[3]; if (t[4]) r.es = t[4]; r.u = cedU(t[0], t[7] || "/" + t[0] + "/", t[5], t.length > 8 ? t[8] : 1);
+      r.h = []; r.p = ["/" + t[0] + "/"]; if (t[7] && r.p.indexOf(t[7]) < 0) r.p.push(t[7]); r.n = t[6] || CEDWYN_CHAIN.indexOf(t) + 1; return r; });
   }
   // the theme this page belongs to: inside a section its own pages (the hub, vouchers, caso) are that half's stop
   function cedSeg() {
@@ -367,21 +372,23 @@
     // per tab for 10 minutes. - Sion's Tab agent
     var AREAS = false;
     function useAreas(d) {
-      var all = d.areas || [], list = all.filter(function (a) { return a && a.path && a.built !== false && (!CHALF || (a.skip_in || []).indexOf(CHALF) < 0); });
+      var all = d.nav || d.areas || [], list = all.filter(function (a) { return a && a.path && a.built !== false; });   // nav 1.0.0: every built slot, every half
       if (list.length < 2) return;
+      list.sort(function (a, b) { return (+(a.slot || a.serendipity_slot) || 999) - (+(b.slot || b.serendipity_slot) || 999); });
       CEDWYN_OF = +(d.parcel_total || d.slots_total) || CEDWYN_OF;
       var by = {}; CHAIN.forEach(function (c) { by[c.id] = c; });
       CHAIN = list.map(function (a) { var o = by[a.id] || {}, r = {}, k; for (k in o) r[k] = o[k];
         r.id = a.id; r.t = a.title || o.t || a.id; if (a.cy) r.cy = a.cy; if (a.es) r.es = a.es; r.g = a.group || o.g || "";
-        r.u = a.id === "wales" ? "/wales/" : CSECP + a.path; r.p = [a.path].concat(a.aliases || []); r.h = []; r.n = +(a.slot || a.serendipity_slot) || (all.indexOf(a) + 1); return r; });
+        r.u = cedU(a.id, a.href || a.path, a.skip_in, d.nav ? a.sec : 1); r.p = [a.path].concat(a.aliases || []); if (a.href && r.p.indexOf(a.href) < 0) r.p.push(a.href);
+        r.h = []; r.n = +(a.slot || a.serendipity_slot) || (all.indexOf(a) + 1); return r; });
       AREAS = true; fillChain();
       if (de.classList.contains("ghf-v2-open")) fillDrawer();
     }
     function areasNav() {
       if (location.hostname !== "cedwyn.bucklerfamily.estate" || !window.fetch) return;
-      var KEY = "cdw-areas-v1", c = null;
+      var KEY = "cdw-nav-v2", c = null;   // nav 1.0.0: new key, so a list cached before slot 40 joined is never reused; kept 2 minutes
       try { c = JSON.parse(sessionStorage.getItem(KEY) || "null"); } catch (e) { c = null; }
-      if (c && c.d && c.at > Date.now() - 6e5) { useAreas(c.d); return; }
+      if (c && c.d && c.at > Date.now() - 12e4) { useAreas(c.d); return; }
       fetch("/areas.json", { credentials: "omit" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
         if (!d || !d.areas) return;
         try { sessionStorage.setItem(KEY, JSON.stringify({ at: Date.now(), d: d })); } catch (e) {}
@@ -450,7 +457,7 @@
       inn.appendChild(b); inn.appendChild(list);
     }
     function themeLink(st, i, k) {
-      var li = mk("li"), a = mk("a"); pinHref(a, st.u); a.appendChild(mk("span", "ghf-v2-ddi", (i + 1) + "")); a.appendChild(document.createTextNode(nm(st)));
+      var li = mk("li"), a = mk("a"); pinHref(a, st.u); a.appendChild(mk("span", "ghf-v2-ddi", (st.n || i + 1) + "")); a.appendChild(document.createTextNode(nm(st)));   // nav 1.0.0: the slot, not the list position
       if (i === k) a.setAttribute("aria-current", "page");
       a.onclick = function () { setTimeout(closeDrawer, 10); }; li.appendChild(a); return li;
     }
