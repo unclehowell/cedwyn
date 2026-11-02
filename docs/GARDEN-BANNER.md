@@ -13,7 +13,7 @@ Version 1.0.0, 2 Nov 2026. Owner instruction, 00:48 GMT 2 Nov 2026: the cross-pr
 | Home "E-books · first editions free →" button | `tools/halves.py` landing | removed |
 | E-book upsell line in the header strip | `basecamp.js` `fillUp()` | hidden before first paint by ghf-boot.js; the Garden banner replaces it |
 
-`tools/purge_promo.py` runs at the end of `tools/site.py` and removes the same items from every built page, including copies kept from earlier builds and branch pages copied from the live site (archived copies under `wayback/` are left as captured). Report: `/_cedwyn/reports/purge_promo.json`.
+`tools/purge_promo.py` runs at the end of `tools/site.py` and removes the same items from every built page, including copies kept from earlier builds and branch pages copied from the live site (archived copies under `wayback/websites|mail|html|snapshot` are left as captured; the `/wayback/go/` embed viewer is cleaned). Report: `/_cedwyn/reports/purge_promo.json`.
 
 The per-theme notices in `notices/<theme>.json` (for example "Provisional model", "Artifacts") are page content, not cross-promo, and stay.
 

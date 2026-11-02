@@ -6,12 +6,12 @@ Owner instruction, 00:48 GMT 2 Nov 2026: the graph promo strip, the section ribb
 The writers no longer add them (site.py no longer calls _shop_strip, halves.py dropped the home button and the Wales hub strip,
 chronology.py keeps its notice for llms.txt only, section.js draws no ribbon, cw-graph.js no longer takes over the header strip).
 This pass also cleans copies that carry them baked in: pages kept from earlier builds (keep_previous.py) and branch pages that
-were themselves copied from the live site. Archived copies under wayback/ are left as captured.
+were themselves copied from the live site. Archived copies (wayback/websites, mail, html, snapshot) are left as captured.
 Removes: <p class="ebook-strip">...</p>, <a class="hv-eb">...</a>, <aside ... data-cedwyn-notice="outside-records">...</aside>,
 <div class="cedwyn-rib">...</div>. Report: dist/_cedwyn/reports/purge_promo.json. Never stops a build.
 Usage: python3 tools/purge_promo.py dist   (site.py calls it after keep_previous and the page writers)"""
 import json, pathlib, re, sys
-SKIP = ('wayback/', '_cedwyn/', 'db/', '_blob/')
+SKIP = ('wayback/websites/', 'wayback/mail/', 'wayback/html/', 'wayback/snapshot/', '_cedwyn/', 'db/', '_blob/')   # archived copies stay as captured; /wayback/go/ (the embed viewer) is cleaned
 PATTERNS = [
     ('ebook_strip', re.compile(r'<p\s+class="ebook-strip"[^>]*>.*?</p>\s*', re.S)),
     ('home_ebook_button', re.compile(r'<a\s+class="hv-eb"[^>]*>.*?</a>', re.S)),
