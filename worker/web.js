@@ -173,6 +173,7 @@ export async function handleWeb(req, env, ctx, u, dof, assets, CORS) {
     return Response.redirect('https://cedwyn.bucklerfamily.estate/analytics' + (rest.startsWith('/') ? rest : '/' + rest) + u.search, 301);
   }
   if (p === '/analytics') return Response.redirect('https://' + u.hostname + '/analytics/' + u.search, 301);
+  if (p === '/analytics/llms.txt') return new Response(webLlms('https://' + u.hostname), { headers: { 'content-type': 'text/plain; charset=utf-8', ...CORS } });
   if (p.startsWith('/analytics/api')) {
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS });
     const sub = p.slice('/analytics/api'.length).replace(/\/+$/, '') || '/';
