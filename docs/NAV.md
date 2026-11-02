@@ -1,4 +1,4 @@
-# Webapp navigation standard (nav 1.0.0, 2 Nov 2026)
+# Webapp navigation standard (nav 1.1.0, 2 Nov 2026)
 
 Source: the owner's request of 2 Nov 2026, 04:13 GMT (navigation through the webapps kept getting stuck), and the 390 px crawl of the live site that morning (slots 40+ unreachable, chain re-filtered per half, no nav without JS).
 
@@ -10,6 +10,11 @@ Every Cedwyn webapp can be reached from every other one, in order, with nothing 
 - Every later webapp declares its slot ONCE, on its own `themes.json` entry: `"slot": 45`, plus `"path"` if it is not `/<id>/` and `"served_by": "worker"` if a Worker serves it instead of the build. Take the next free slot: `python3 -c "import json;print(sorted(a['slot'] for a in json.load(open('dist/areas.json'))['nav']))"`.
 - Nobody hand-types "NN of 59" anywhere. The header, the menu and the no-JS bar all read the slot from the registry. The build also corrects a stale `cw-parcel-link` number on a slot's landing page.
 - `"href"` is the address a link opens with no redirect hop (`/online/<id>/` for `data/halves.json` `online_only` apps). `"src"` is the built folder.
+
+## The apex (nav 1.1.0)
+- Every slot also carries `"apex"`, its flat address on the apex: `https://bucklerfamily.estate/<name>/` (the id, or a themes.json `"apex"` when the name differs). The apex router and the apex header read it from the same registry.
+- On bucklerfamily.estate the header's ‹ ›, menu and jump list open each stop at its flat apex address; no half prefix, no /online/ prefix.
+- The build check fails when a slot has no apex address or two slots claim the same one.
 
 ## One chain for everyone
 - ‹ › step through every built slot in slot order and wrap from the last to the first. The menu numbers are slot numbers.
@@ -32,6 +37,7 @@ It warns, without failing, when a slot is registered but not built, or when a sl
 ## Changelog
 | Version | Date | Change |
 |---|---|---|
+| 1.1.0 | 2026-11-02 | Flat apex address per slot (`apex`), used by the header on bucklerfamily.estate; build check for it; session cache key cdw-nav-v3. |
 | 1.0.0 | 2026-11-02 | One slot registry (`/areas.json` "nav": site-areas.json + themes.json "slot"). One chain for every visitor, in slot order (no half filter, no list-position numbers). Server-rendered no-JS bar stamped at build. Build check. Slots 40, 42, 43 (and later webapps) join the nav. |
 
 — Cedwyn editors
