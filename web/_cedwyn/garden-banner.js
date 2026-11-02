@@ -79,7 +79,7 @@
       p.style.backgroundPosition = (-(k % cols) * n) + 'px ' + (-Math.floor(k / cols) * n) + 'px';
       p.setAttribute('aria-hidden', 'true'); a.appendChild(p); a.appendChild(mk('span', null, it[1])); r.appendChild(a);
     }
-    function batch() { var end = Math.min(list.length, i + 40); for (; i < end; i++) one(list[i]); if (i < list.length) (window.requestIdleCallback || setTimeout)(batch, 60); }
+    function batch() { var end = Math.min(list.length, i + 40); for (; i < end; i++) one(list[i]); if (i < list.length) { if (window.requestIdleCallback) window.requestIdleCallback(batch, { timeout: 600 }); else setTimeout(batch, 60); } }
     batch(); drift(r);
   }
   function drift(r) {   // a gentle sideways drift; stops for good the moment the visitor touches, scrolls or focuses it
