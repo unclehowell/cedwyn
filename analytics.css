@@ -1,4 +1,4 @@
-/* Cloudflare webapp 43 of 59 · v1.0.0 · graphs only. - Cedwyn editors */
+/* Analytics webapp 45 of 59 · v1.1.0 · graphs only; one fixed colour per traffic class. - Cedwyn editors */
 .cfw{background:#f6f7f9;color:#1d2733}
 .cfw-w{max-width:880px;margin:0 auto;padding:12px 12px 24px;box-sizing:border-box;font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
 .cfw-w *{box-sizing:border-box}
@@ -28,3 +28,9 @@
 /* the header's third row shows nothing but the shared Garden banner on this webapp */
 .ghf-v2-up:not(.cw-gdn-on){display:none!important}
 .ghf-v2-name small[data-cfw-slot] a:hover{text-decoration:underline!important}
+/* v1.1.0 traffic classes: one fixed colour each on every graph (colour-blind-safe; >=3:1 on white) */
+.g .c-humans{fill:#228833}.g .c-bots{fill:#D55E00}.g .c-automation{fill:#AA3377}.g .c-own_tools{fill:#4477AA}.g .c-nc{fill:#B9C2CB}.g .c-uv{fill:#8A96A3}
+.k.c-humans{background:#228833}.k.c-bots{background:#D55E00}.k.c-automation{background:#AA3377}.k.c-own_tools{background:#4477AA}.k.c-nc{background:#B9C2CB}.k.c-uv{background:#8A96A3}
+.cfw-key .k{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 3px 0 0;vertical-align:-1px}
+.cfw-legend{gap:4px 10px;opacity:1;margin:2px 0 8px}
+.cfw-legend span{white-space:nowrap}

@@ -6,28 +6,56 @@
 //    per-host requests and humans versus bots (browser strings classified in memory, never stored).
 // Its own SQLite database: the Durable Object instance "cedwyn-analytics" (class Ticker, name 'web') of the Worker bfe-analytics,
 // refreshed every 15 min by the object's alarm. Aggregates only: no IPs, no user agents kept, no ids. - Cedwyn editors
-export const WEB_VERSION = '1.0.0';
+export const WEB_VERSION = '1.1.0';
 const WEB_SLOT = '45 of 59';
 const SITE_TAG = '5d0dd318c4974bed9e3da48c62cc3b7f';   // the zone's Web Analytics site (auto-installed beacon)
 
-const QWZ = `query($z:String!,$s:Date!,$e:Date!,$t0:Time!,$t1:Time!,$h0:Time!){viewer{zones(filter:{zoneTag:$z}){
+// v1.1.0 (2 Nov 2026): every graph is split into the four traffic classes, each with one fixed colour (colour-blind-safe set).
+export const CLASSES = ['humans', 'bots', 'automation', 'own_tools'];
+export const CLASS_COLOURS = { humans: '#228833', bots: '#D55E00', automation: '#AA3377', own_tools: '#4477AA', not_classified: '#C8CFD6' };
+export const CLASS_LABELS = { humans: 'humans', bots: 'bots, crawlers', automation: 'automation', own_tools: 'own tools', not_classified: 'not classified' };
+const QWZ = bf => `query($z:String!,$s:Date!,$e:Date!,$t1:Time!,$h0:Time!,$u0:Time!${bf ? ',$bs:Time!,$be:Time!' : ''}){viewer{zones(filter:{zoneTag:$z}){
 d:httpRequests1dGroups(limit:40,filter:{date_geq:$s,date_leq:$e},orderBy:[date_ASC]){dimensions{date} sum{requests pageViews bytes threats responseStatusMap{edgeResponseStatus requests} countryMap{clientCountryName requests}} uniq{uniques}}
 h:httpRequests1hGroups(limit:60,filter:{datetime_geq:$h0,datetime_lt:$t1},orderBy:[datetime_ASC]){dimensions{datetime} sum{requests pageViews} uniq{uniques}}
-hosts:httpRequestsAdaptiveGroups(limit:40,orderBy:[count_DESC],filter:{datetime_geq:$t0,datetime_lt:$t1,requestSource:"eyeball",edgeResponseContentTypeName:"html"}){count sum{visits} dimensions{clientRequestHTTPHost}}
-st:httpRequestsAdaptiveGroups(limit:20,orderBy:[count_DESC],filter:{datetime_geq:$t0,datetime_lt:$t1,requestSource:"eyeball"}){count dimensions{edgeResponseStatus}}
-dev:httpRequestsAdaptiveGroups(limit:6,orderBy:[count_DESC],filter:{datetime_geq:$t0,datetime_lt:$t1,requestSource:"eyeball",edgeResponseContentTypeName:"html"}){count dimensions{clientDeviceType}}
-ua:httpRequestsAdaptiveGroups(limit:1500,orderBy:[count_DESC],filter:{datetime_geq:$t0,datetime_lt:$t1,requestSource:"eyeball",edgeResponseContentTypeName:"html"}){count dimensions{userAgent}}
+ua:httpRequestsAdaptiveGroups(limit:5000,orderBy:[count_DESC],filter:{datetime_geq:$u0,datetime_lt:$t1,requestSource:"eyeball"}){count dimensions{userAgent}}
+${bf ? 'bua:httpRequestsAdaptiveGroups(limit:5000,orderBy:[count_DESC],filter:{datetime_geq:$bs,datetime_lt:$be,requestSource:"eyeball"}){count dimensions{userAgent}}' : ''}
 }}}`;
+// second pass: the same breakdowns once per class, each filtered to that class's browser strings (lists built in memory, never stored)
+const QCLS = bf => {
+  const F = (w0, html, L, w1) => `filter:{datetime_geq:$${w0},datetime_lt:$${w1 || 't1'},requestSource:"eyeball"${html ? ',edgeResponseContentTypeName:"html"' : ''}${L ? ',userAgent_in:$' + L : ''}}`;
+  let a = '';
+  for (let i = 0; i < 4; i++) {
+    const L = 'L' + i;
+    a += `s${i}:httpRequestsAdaptiveGroups(limit:1,${F('t0', 1, L)}){count}
+h${i}:httpRequestsAdaptiveGroups(limit:60,${F('h0', 1, L)}){count dimensions{datetimeHour}}
+ho${i}:httpRequestsAdaptiveGroups(limit:60,${F('t0', 1, L)}){count dimensions{clientRequestHTTPHost}}
+dv${i}:httpRequestsAdaptiveGroups(limit:6,${F('t0', 1, L)}){count dimensions{clientDeviceType}}
+st${i}:httpRequestsAdaptiveGroups(limit:20,${F('t0', 0, L)}){count dimensions{edgeResponseStatus}}
+ct${i}:httpRequestsAdaptiveGroups(limit:40,${F('w0', 0, L)}){count dimensions{clientCountryName}}
+sg${i}:httpRequestsAdaptiveGroups(limit:20,${F('w0', 0, L)}){count dimensions{edgeResponseStatus}}
+dp${i}:httpRequestsAdaptiveGroups(limit:3,${F('y0', 1, L)}){count dimensions{date}}
+dr${i}:httpRequestsAdaptiveGroups(limit:3,${F('y0', 0, L)}){count dimensions{date}}
+`;
+    if (bf) a += `bp${i}:httpRequestsAdaptiveGroups(limit:1,${F('bs', 1, 'B' + i, 'be')}){count}
+br${i}:httpRequestsAdaptiveGroups(limit:1,${F('bs', 0, 'B' + i, 'be')}){count}
+`;
+  }
+  a += `ctt:httpRequestsAdaptiveGroups(limit:40,orderBy:[count_DESC],${F('w0', 0)}){count dimensions{clientCountryName}}
+sgt:httpRequestsAdaptiveGroups(limit:20,${F('w0', 0)}){count dimensions{edgeResponseStatus}}
+`;
+  return `query($z:String!,$t0:Time!,$t1:Time!,$h0:Time!,$w0:Time!,$y0:Time!,$L0:[string!],$L1:[string!],$L2:[string!],$L3:[string!]${bf ? ',$bs:Time!,$be:Time!,$B0:[string!],$B1:[string!],$B2:[string!],$B3:[string!]' : ''}){viewer{zones(filter:{zoneTag:$z}){
+${a}}}}`;
+};
+const CD = 'bot userAgentBrowser browserVersion userAgentOS osVersion';   // the beacon's own browser fields, for the same four classes
 const QWR = `query($a:String!,$site:String!,$t0:Time!,$t1:Time!,$d0:Date!,$d1:Date!){viewer{accounts(filter:{accountTag:$a}){
-day:rumPageloadEventsAdaptiveGroups(limit:40,filter:{siteTag:$site,date_geq:$d0,date_leq:$d1},orderBy:[date_ASC]){count sum{visits} dimensions{date}}
-ref:rumPageloadEventsAdaptiveGroups(limit:14,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1},orderBy:[sum_visits_DESC]){count sum{visits} dimensions{refererHost}}
-page:rumPageloadEventsAdaptiveGroups(limit:15,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1},orderBy:[count_DESC]){count dimensions{requestHost requestPath}}
-host:rumPageloadEventsAdaptiveGroups(limit:25,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1},orderBy:[count_DESC]){count sum{visits} dimensions{requestHost}}
-ctry:rumPageloadEventsAdaptiveGroups(limit:12,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1},orderBy:[sum_visits_DESC]){count sum{visits} dimensions{countryName}}
-dev:rumPageloadEventsAdaptiveGroups(limit:6,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1},orderBy:[sum_visits_DESC]){count sum{visits} dimensions{deviceType}}
-br:rumPageloadEventsAdaptiveGroups(limit:10,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1},orderBy:[sum_visits_DESC]){count sum{visits} dimensions{userAgentBrowser}}
-os:rumPageloadEventsAdaptiveGroups(limit:8,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1},orderBy:[sum_visits_DESC]){count sum{visits} dimensions{userAgentOS}}
+day:rumPageloadEventsAdaptiveGroups(limit:4000,filter:{siteTag:$site,date_geq:$d0,date_leq:$d1}){count sum{visits} dimensions{date ${CD}}}
+ref:rumPageloadEventsAdaptiveGroups(limit:3000,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){sum{visits} dimensions{refererHost ${CD}}}
+page:rumPageloadEventsAdaptiveGroups(limit:4000,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){count dimensions{requestHost requestPath ${CD}}}
+host:rumPageloadEventsAdaptiveGroups(limit:3000,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){count sum{visits} dimensions{requestHost ${CD}}}
+ctry:rumPageloadEventsAdaptiveGroups(limit:3000,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){sum{visits} dimensions{countryName ${CD}}}
+dev:rumPageloadEventsAdaptiveGroups(limit:1000,filter:{siteTag:$site,datetime_geq:$t0,datetime_lt:$t1}){sum{visits} dimensions{deviceType ${CD}}}
 }}}`;
+// browsers and operating systems come from the same beacon rows as the class fields (no extra query)
 // browser-string classes (same rules as the Cedwyn traffic feed): own tooling, declared bots/crawlers, suspected automation, likely human
 const OWN = /tab agent|cedwyn-|headless|orphan_depth|flywheel|workboard|linkcheck|python|curl\/|node|axios|go-http|aiohttp|okhttp|wget|java\/|libwww|scrapy|httpclient|^mozilla\/5\.0$|^mozilla\/5\.0 \((iphone|x11)\)$/i;
 const BOT = /bot\b|bot\/|crawl|spider|slurp|externalagent|externalhit|gptbot|claude|perplexity|bytespider|ahrefs|semrush|petal|yandex|baidu|applebot|amazonbot|ccbot|dataforseo|barkrowler|preview|validator|monitor|uptime|feed|lighthouse|pagespeed|whatsapp|telegram|slack|discord|twitter|linkedin|embedly|iframely|archive\.org|google-|inspectiontool|mcp/i;
@@ -39,60 +67,139 @@ function suspect(u) {
   return false;
 }
 function uaClass(u) { u = (u || '').trim(); if (!u || OWN.test(u)) return 'own_tools'; if (BOT.test(u)) return 'bots'; if (suspect(u)) return 'automation'; return 'humans'; }
-const ymd = d => d.toISOString().slice(0, 10);
+
+// the beacon carries no browser string, only Cloudflare's parsed fields: the same four classes from those fields
+const CHROMIUM = /^(chrome|chromemobile|chromemobilewebview|chromium|edge)/i;
+function rumClass(d) {
+  const b = String(d.userAgentBrowser || ''), v = parseFloat(d.browserVersion), os = String(d.userAgentOS || ''), ov = parseFloat(d.osVersion);
+  if (/headless/i.test(b)) return 'own_tools';
+  if (+d.bot === 1) return 'bots';
+  if (CHROMIUM.test(b) && v > 0 && v < 135) return 'automation';
+  if (/^ios$/i.test(os) && ov > 0 && ov < 17) return 'automation';
+  if (/^android$/i.test(os) && ov > 0 && ov < 10) return 'automation';
+  return 'humans';
+}
+const zc = () => ({ humans: 0, bots: 0, automation: 0, own_tools: 0 });const ymd = d => d.toISOString().slice(0, 10);
 const tiso = d => d.toISOString().replace(/\.\d+Z$/, 'Z');
 const short = h => String(h || '').replace(/\.bucklerfamily\.estate$/, '') || '(apex)';
 const HIDE = n => /financecheque|^fcuk/i.test(String(n || ''));
 
-export async function collectWeb(env, gql, source) {
-  const now = new Date(), t1 = new Date(Math.floor(now / 6e4) * 6e4), t0 = new Date(t1 - 864e5), w0 = new Date(t1 - 7 * 864e5);
+// class history per UTC day (page requests and all requests), the webapp's own SQLite table cls_day: aggregates only
+function histInit(sql) {
+  sql.exec(`CREATE TABLE IF NOT EXISTS cls_day(date TEXT PRIMARY KEY, hp INTEGER, bp INTEGER, ap INTEGER, op INTEGER, hr INTEGER, br INTEGER, ar INTEGER, orq INTEGER, at TEXT)`);
+}
+function histPut(sql, date, p, r, at) {
+  sql.exec(`INSERT OR REPLACE INTO cls_day(date,hp,bp,ap,op,hr,br,ar,orq,at) VALUES (?,?,?,?,?,?,?,?,?,?)`, date, p.humans, p.bots, p.automation, p.own_tools, r.humans, r.bots, r.automation, r.own_tools, at);
+}
+function lists(rows) {   // browser strings -> four lists, by class (in memory only)
+  const L = { humans: [], bots: [], automation: [], own_tools: [] };
+  for (const x of rows || []) L[uaClass(x.dimensions.userAgent)].push(x.dimensions.userAgent || '');
+  return CLASSES.map(c => (L[c].length ? L[c] : ['\u0001']));
+}
+function agg(rows, key, val) {   // rows -> [{key, total, by_class}] sorted by total
+  const m = new Map();
+  for (const x of rows || []) {
+    const k = key(x.dimensions); if (k == null) continue;
+    let e = m.get(k); if (!e) { e = { key: k, total: 0, by_class: zc() }; m.set(k, e); }
+    const v = val(x); e.total += v; e.by_class[rumClass(x.dimensions)] += v;
+  }
+  return [...m.values()].sort((a, b) => b.total - a.total);
+}
+
+export async function collectWeb(env, gql, source, sql) {
+  const now = new Date(), t1 = new Date(Math.floor(now / 6e4) * 6e4), t0 = new Date(t1 - 864e5), w0 = new Date(t1 - 7 * 864e5), u0 = new Date(t1 - 2 * 864e5);
   const today = ymd(now), d30 = ymd(new Date(now - 29 * 864e5));
   const h0 = new Date(Math.floor(now / 36e5) * 36e5 - 47 * 36e5);
+  const y0 = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) - 864e5);
+  const days = []; for (let i = 29; i >= 0; i--) days.push(ymd(new Date(now - i * 864e5)));
+  // history: today and yesterday are exact from the 48 h lists; one older missing day is back-filled per refresh with that day's own lists
+  let have = {}, bf = null;
+  if (sql) {
+    try {
+      histInit(sql);
+      for (const r of sql.exec(`SELECT * FROM cls_day WHERE date >= ?`, d30).toArray()) have[r.date] = r;
+      sql.exec(`DELETE FROM cls_day WHERE date < ?`, d30);
+      const miss = days.slice(0, -2).filter(d => !have[d]);
+      if (miss.length) bf = miss[miss.length - 1];
+    } catch (e) { sql = null; }
+  }
+  const bs = bf ? new Date(bf + 'T00:00:00Z') : null, be = bf ? new Date(+bs + 864e5) : null;
+  const zv = { z: env.ZONE_ID, s: d30, e: today, t1: tiso(t1), h0: tiso(h0), u0: tiso(u0) };
+  if (bf) { zv.bs = tiso(bs); zv.be = tiso(be); }
   const [z, r] = await Promise.all([
-    gql(env, QWZ, { z: env.ZONE_ID, s: d30, e: today, t0: tiso(t0), t1: tiso(t1), h0: tiso(h0) }),
+    gql(env, QWZ(!!bf), zv),
     gql(env, QWR, { a: env.ACCOUNT_ID, site: SITE_TAG, t0: tiso(w0), t1: tiso(t1), d0: d30, d1: today }).catch(e => ({ _error: String(e.message || e).slice(0, 200) })),
   ]);
   const zone = z.viewer.zones[0];
-  const days = []; for (let i = 29; i >= 0; i--) days.push(ymd(new Date(now - i * 864e5)));
-  const zd = {}; for (const x of zone.d) zd[x.dimensions.date] = x;
-  const edge_days = days.map(d => { const x = zd[d]; return { date: d, requests: x ? x.sum.requests : 0, page_views: x ? x.sum.pageViews : 0, uniques: x ? x.uniq.uniques : 0, threats: x ? x.sum.threats : 0, mb: x ? Math.round(x.sum.bytes / 1e5) / 10 : 0 }; });
-  const st7 = {}, ct7 = {};
-  for (const x of zone.d.slice(-7)) {
-    for (const s of x.sum.responseStatusMap || []) st7[s.edgeResponseStatus] = (st7[s.edgeResponseStatus] || 0) + s.requests;
-    for (const c of x.sum.countryMap || []) ct7[c.clientCountryName] = (ct7[c.clientCountryName] || 0) + c.requests;
+  const L = lists(zone.ua), cv = { z: env.ZONE_ID, t0: tiso(t0), t1: tiso(t1), h0: tiso(h0), w0: tiso(w0), y0: tiso(y0), L0: L[0], L1: L[1], L2: L[2], L3: L[3] };
+  if (bf) { const B = lists(zone.bua); Object.assign(cv, { bs: tiso(bs), be: tiso(be), B0: B[0], B1: B[1], B2: B[2], B3: B[3] }); }
+  const k = (await gql(env, QCLS(!!bf), cv)).viewer.zones[0];
+  const per = (pre, dim) => { const m = {}; CLASSES.forEach((c, i) => { for (const x of k[pre + i] || []) { const key = dim ? x.dimensions[dim] : '_'; (m[key] = m[key] || zc())[c] += x.count; } }); return m; };
+  const at = tiso(now);
+  const dpc = per('dp', 'date'), drc = per('dr', 'date');
+  if (sql) {
+    try {
+      for (const d of [ymd(y0), today]) if (dpc[d] || drc[d]) { histPut(sql, d, dpc[d] || zc(), drc[d] || zc(), at); have[d] = 1; }
+      if (bf) { const p = zc(), q = zc(); CLASSES.forEach((c, i) => { p[c] = ((k['bp' + i] || [])[0] || {}).count || 0; q[c] = ((k['br' + i] || [])[0] || {}).count || 0; }); histPut(sql, bf, p, q, at); }
+      have = {}; for (const r2 of sql.exec(`SELECT * FROM cls_day WHERE date >= ?`, d30).toArray()) have[r2.date] = r2;
+    } catch (e) { have = {}; }
   }
+  const hp = d => { const x = have[d]; if (x && x.hp != null) return { humans: x.hp, bots: x.bp, automation: x.ap, own_tools: x.op }; return dpc[d] || null; };
+  const hr = d => { const x = have[d]; if (x && x.hr != null) return { humans: x.hr, bots: x.br, automation: x.ar, own_tools: x.orq }; return drc[d] || null; };
+  const zd = {}; for (const x of zone.d) zd[x.dimensions.date] = x;
+  const edge_days = days.map(d => { const x = zd[d]; return { date: d, requests: x ? x.sum.requests : 0, page_views: x ? x.sum.pageViews : 0, uniques: x ? x.uniq.uniques : 0, threats: x ? x.sum.threats : 0, mb: x ? Math.round(x.sum.bytes / 1e5) / 10 : 0, page_requests_by_class: hp(d), requests_by_class: hr(d) }; });
+  const st7 = {};
+  for (const x of zone.d.slice(-7)) for (const s of x.sum.responseStatusMap || []) st7[s.edgeResponseStatus] = (st7[s.edgeResponseStatus] || 0) + s.requests;
   const top = (o, n) => Object.entries(o).sort((a, b) => b[1] - a[1]).slice(0, n);
-  const hours = zone.h.map(x => ({ hour: x.dimensions.datetime, requests: x.sum.requests, page_views: x.sum.pageViews, uniques: x.uniq.uniques }));
-  const cls = { humans: 0, bots: 0, automation: 0, own_tools: 0 };
-  for (const x of zone.ua) cls[uaClass(x.dimensions.userAgent)] += x.count;
+  const hc = per('h', 'datetimeHour');
+  const hours = zone.h.map(x => ({ hour: x.dimensions.datetime, requests: x.sum.requests, page_views: x.sum.pageViews, uniques: x.uniq.uniques, page_requests_by_class: hc[x.dimensions.datetime] || zc() }));
+  const cls = per('s', null)['_'] || zc();
   const statusGroups = { '2xx': 0, '3xx': 0, '4xx': 0, '5xx': 0 };
-  for (const [k, v] of Object.entries(st7)) { const g = String(k)[0] + 'xx'; if (g in statusGroups) statusGroups[g] += v; }
+  for (const [kk, v] of Object.entries(st7)) { const g = String(kk)[0] + 'xx'; if (g in statusGroups) statusGroups[g] += v; }
+  // 7-day breakdowns: classes from the last 48 h of browser strings; strings seen only earlier in the week stay "not classified"
+  const rest = (tot, m) => Math.max(0, tot - CLASSES.reduce((s, c) => s + (m ? m[c] : 0), 0));
+  const ctc = per('ct', 'clientCountryName'), sgc = per('sg', 'edgeResponseStatus');
+  const sg = {}; for (const g of ['2xx', '3xx', '4xx', '5xx']) sg[g] = { total: 0, by_class: zc(), not_classified: 0 };
+  for (const x of k.sgt || []) { const g = String(x.dimensions.edgeResponseStatus)[0] + 'xx'; if (!sg[g]) continue; const m = sgc[x.dimensions.edgeResponseStatus] || zc(); sg[g].total += x.count; CLASSES.forEach(c => { sg[g].by_class[c] += m[c]; }); sg[g].not_classified += rest(x.count, m); }
+  const hoc = per('ho', 'clientRequestHTTPHost'), dvc = per('dv', 'clientDeviceType'), stc = per('st', 'edgeResponseStatus');
+  const hostsAll = {}; for (const [h, m] of Object.entries(hoc)) hostsAll[h] = m;
+  const hostRows = Object.entries(hostsAll).map(([h, m]) => ({ h, m, n: CLASSES.reduce((s, c) => s + m[c], 0) })).sort((a, b) => b.n - a.n).filter(x => !HIDE(x.h)).slice(0, 40);
+  const devRows = Object.entries(dvc).map(([d, m]) => ({ d, m, n: CLASSES.reduce((s, c) => s + m[c], 0) })).sort((a, b) => b.n - a.n);
+  const stRows = Object.entries(stc).map(([s2, m]) => ({ s: +s2, m, n: CLASSES.reduce((s, c) => s + m[c], 0) })).sort((a, b) => b.n - a.n).slice(0, 20);
   const edge = {
     days: edge_days, hours,
-    status_7d: top(st7, 10).map(([k, v]) => ({ status: +k, requests: v })), status_groups_7d: statusGroups,
-    status_24h: zone.st.map(x => ({ status: x.dimensions.edgeResponseStatus, requests: x.count })),
-    countries_7d: top(ct7, 12).map(([k, v]) => ({ country: k, requests: v })),
-    hosts_24h: zone.hosts.filter(x => !HIDE(x.dimensions.clientRequestHTTPHost)).map(x => ({ host: short(x.dimensions.clientRequestHTTPHost), page_requests: x.count, visits: x.sum.visits })),
-    devices_24h: zone.dev.map(x => ({ device: x.dimensions.clientDeviceType || 'unknown', page_requests: x.count })),
+    status_7d: top(st7, 10).map(([kk, v]) => ({ status: +kk, requests: v })), status_groups_7d: statusGroups, status_groups_7d_by_class: sg,
+    status_24h: stRows.map(x => ({ status: x.s, requests: x.n, by_class: x.m })),
+    countries_7d: (k.ctt || []).slice(0, 12).map(x => { const m = ctc[x.dimensions.clientCountryName] || zc(); return { country: x.dimensions.clientCountryName || '??', requests: x.count, by_class: m, not_classified: rest(x.count, m) }; }),
+    hosts_24h: hostRows.map(x => ({ host: short(x.h), page_requests: x.n, by_class: x.m })),
+    devices_24h: devRows.map(x => ({ device: x.d || 'unknown', page_requests: x.n, by_class: x.m })),
     humans_vs_bots_24h: cls,
+    class_history_days: Object.keys(have).length,
   };
   let web = null;
   if (r && r.viewer) {
-    const a = r.viewer.accounts[0], rd = {}; for (const x of a.day) rd[x.dimensions.date] = x;
+    const a = r.viewer.accounts[0];
+    const dayV = agg(a.day, x => x.date, x => x.sum.visits), dayP = agg(a.day, x => x.date, x => x.count);
+    const dv = {}, dpv = {}; for (const e of dayV) dv[e.key] = e; for (const e of dayP) dpv[e.key] = e;
+    const out = (arr, n, f) => arr.slice(0, n).map(e => Object.assign(f(e.key), { by_class: e.by_class }));
+    const hostV = {}; for (const e of agg(a.host, x => x.requestHost, x => x.sum.visits)) hostV[e.key] = e;
     web = {
-      days: days.map(d => ({ date: d, visits: rd[d] ? rd[d].sum.visits : 0, page_views: rd[d] ? rd[d].count : 0 })),
-      referrers_7d: a.ref.map(x => ({ referrer: x.dimensions.refererHost || '(direct / none)', visits: x.sum.visits })),
-      top_pages_7d: a.page.filter(x => !HIDE(x.dimensions.requestHost)).map(x => ({ host: short(x.dimensions.requestHost), path: x.dimensions.requestPath, page_views: x.count })),
-      hosts_7d: a.host.filter(x => !HIDE(x.dimensions.requestHost)).map(x => ({ host: short(x.dimensions.requestHost), visits: x.sum.visits, page_views: x.count })),
-      countries_7d: a.ctry.map(x => ({ country: x.dimensions.countryName || '??', visits: x.sum.visits })),
-      devices_7d: a.dev.map(x => ({ device: x.dimensions.deviceType || 'unknown', visits: x.sum.visits })),
-      browsers_7d: a.br.map(x => ({ browser: x.dimensions.userAgentBrowser || 'unknown', visits: x.sum.visits })),
-      os_7d: a.os.map(x => ({ os: x.dimensions.userAgentOS || 'unknown', visits: x.sum.visits })),
+      days: days.map(d => ({ date: d, visits: dv[d] ? dv[d].total : 0, page_views: dpv[d] ? dpv[d].total : 0, visits_by_class: dv[d] ? dv[d].by_class : zc(), page_views_by_class: dpv[d] ? dpv[d].by_class : zc() })),
+      referrers_7d: out(agg(a.ref, x => x.refererHost || '(direct / none)', x => x.sum.visits), 12, kk => ({ referrer: kk, visits: 0 })),
+      top_pages_7d: agg(a.page, x => HIDE(x.requestHost) ? null : short(x.requestHost) + '\u0000' + x.requestPath, x => x.count).slice(0, 15).map(e => { const [h, p] = e.key.split('\u0000'); return { host: h, path: p, page_views: e.total, by_class: e.by_class }; }),
+      hosts_7d: agg(a.host, x => HIDE(x.requestHost) ? null : x.requestHost, x => x.count).slice(0, 25).map(e => ({ host: short(e.key), visits: hostV[e.key] ? hostV[e.key].total : 0, page_views: e.total, by_class: e.by_class, visits_by_class: hostV[e.key] ? hostV[e.key].by_class : zc() })),
+      countries_7d: out(agg(a.ctry, x => x.countryName || '??', x => x.sum.visits), 12, kk => ({ country: kk })),
+      devices_7d: out(agg(a.dev, x => x.deviceType || 'unknown', x => x.sum.visits), 6, kk => ({ device: kk })),
+      browsers_7d: out(agg(a.dev, x => x.userAgentBrowser || 'unknown', x => x.sum.visits), 10, kk => ({ browser: kk })),
+      os_7d: out(agg(a.dev, x => x.userAgentOS || 'unknown', x => x.sum.visits), 8, kk => ({ os: kk })),
     };
+    for (const [f, vk] of [['referrers_7d', 'visits'], ['countries_7d', 'visits'], ['devices_7d', 'visits'], ['browsers_7d', 'visits'], ['os_7d', 'visits']])
+      for (const x of web[f]) x[vk] = CLASSES.reduce((s, c) => s + x.by_class[c], 0);
   }
-  const sum = (arr, k, n) => arr.slice(-n).reduce((s, x) => s + (x[k] || 0), 0);
+  const sum = (arr, kk, n) => arr.slice(-n).reduce((s, x) => s + (x[kk] || 0), 0);
   return {
     webapp: 'analytics', slot: WEB_SLOT, version: WEB_VERSION, generated_at: tiso(now), source,
+    class_colours: CLASS_COLOURS, class_labels: CLASS_LABELS,
     totals: {
       edge_requests_7d: sum(edge_days, 'requests', 7), edge_page_views_7d: sum(edge_days, 'page_views', 7), edge_uniques_7d: sum(edge_days, 'uniques', 7),
       web_visits_7d: web ? sum(web.days, 'visits', 7) : null, web_page_views_7d: web ? sum(web.days, 'page_views', 7) : null,
@@ -100,20 +207,21 @@ export async function collectWeb(env, gql, source) {
     },
     web, web_error: r && r._error ? r._error : undefined, edge,
     sources: {
-      web: 'Cloudflare Web Analytics (browser beacon on bucklerfamily.estate and subdomains; real page loads; Cloudflare samples and scales the counts)',
-      edge: 'Cloudflare zone analytics for bucklerfamily.estate (every request at the edge, all subdomains); humans vs bots = browser strings of page requests in the last 24 h, classified in memory',
+      web: 'Cloudflare Web Analytics (browser beacon on bucklerfamily.estate and subdomains; real page loads; Cloudflare samples and scales the counts); classes from the beacon\'s own fields: Cloudflare\'s bot flag, headless browsers = own tools, old browser/OS versions = automation',
+      edge: 'Cloudflare zone analytics for bucklerfamily.estate (every request at the edge, all subdomains); classes = browser strings of the last 48 h classified in memory and never stored; 7-day breakdowns mark strings seen only earlier as not classified; unique visitors cannot be split (Cloudflare counts them per day only, with no browser string)',
+      classes: 'humans (green), bots and crawlers (orange), automation (purple: outdated browsers typical of scripted traffic), own tools (blue: our own agents and checks)',
     },
   };
 }
 
 export const WEB_TOOLS = [
-  { name: 'analytics_summary', description: 'Website analytics for bucklerfamily.estate and its subdomains: visits and page views (7 and 30 days), edge requests and unique visitors, humans vs bots. Aggregates only, refreshed every 15 min.', inputSchema: { type: 'object', properties: {}, additionalProperties: false } },
+  { name: 'analytics_summary', description: 'Website analytics for bucklerfamily.estate and its subdomains: visits and page views (7 and 30 days), edge requests and unique visitors, humans vs bots, plus the fixed colour per traffic class (class_colours: humans #228833, bots #D55E00, automation #AA3377, own tools #4477AA). Aggregates only, refreshed every 15 min.', inputSchema: { type: 'object', properties: {}, additionalProperties: false } },
   { name: 'analytics_traffic_by_day', description: 'Per-day series for the last 30 days: Web Analytics visits and page views, edge requests, page views and unique visitors.', inputSchema: { type: 'object', properties: { days: { type: 'integer', description: '1-30, default 30' } }, additionalProperties: false } },
   { name: 'analytics_top_pages', description: 'Most viewed pages (host + path) over the last 7 days, from Web Analytics.', inputSchema: { type: 'object', properties: { host: { type: 'string', description: 'Optional subdomain label, e.g. cedwyn' } }, additionalProperties: false } },
   { name: 'analytics_referrers', description: 'Where visitors came from over the last 7 days (referrer host; "(direct / none)" when the browser sent none).', inputSchema: { type: 'object', properties: {}, additionalProperties: false } },
   { name: 'analytics_audience', description: 'Countries, devices, browsers and operating systems of visitors (7 days, Web Analytics), plus edge countries and devices.', inputSchema: { type: 'object', properties: {}, additionalProperties: false } },
   { name: 'analytics_hosts', description: 'Traffic per hostname (subdomain): Web Analytics visits (7 days) and edge page requests (24 h).', inputSchema: { type: 'object', properties: {}, additionalProperties: false } },
-  { name: 'analytics_status_and_bots', description: 'HTTP status codes (24 h and 7 days) and page requests split into humans, bots, suspected automation and own tools (24 h).', inputSchema: { type: 'object', properties: {}, additionalProperties: false } },
+  { name: 'analytics_status_and_bots', description: 'HTTP status codes (24 h and 7 days) and page requests split into humans, bots, suspected automation and own tools (24 h); every breakdown carries by_class counts and class_colours.', inputSchema: { type: 'object', properties: {}, additionalProperties: false } },
   { name: 'analytics_history', description: 'Time series from the webapp database: edge requests today, edge page views today and Web Analytics visits today, one point per 15-min refresh.', inputSchema: { type: 'object', properties: { hours: { type: 'integer', description: '1-192, default 48' } }, additionalProperties: false } },
   { name: 'analytics_guestbook_read', description: 'Read the agent guest book: the log of changes made to this webapp.', inputSchema: { type: 'object', properties: {}, additionalProperties: false } },
   { name: 'analytics_guestbook_sign', description: 'Log a change you made to this webapp in its agent guest book (who, what changed, version). Plain text, no links, at most 280 characters.', inputSchema: { type: 'object', properties: { who: { type: 'string' }, change: { type: 'string' }, version: { type: 'string' } }, required: ['who', 'change'], additionalProperties: false } },
@@ -122,13 +230,13 @@ async function runWebTool(dof, name, a) {
   a = a || {};
   const snap = async () => (await dof('/snap')).json();
   switch (name) {
-    case 'analytics_summary': { const s = await snap(); return { as_of: s.generated_at, totals: s.totals, humans_vs_bots_24h: s.edge.humans_vs_bots_24h, sources: s.sources }; }
+    case 'analytics_summary': { const s = await snap(); return { as_of: s.generated_at, totals: s.totals, humans_vs_bots_24h: s.edge.humans_vs_bots_24h, class_colours: CLASS_COLOURS, class_labels: CLASS_LABELS, sources: s.sources }; }
     case 'analytics_traffic_by_day': { const s = await snap(); const n = Math.max(1, Math.min(30, parseInt(a.days, 10) || 30)); return { as_of: s.generated_at, web: s.web ? s.web.days.slice(-n) : null, edge: s.edge.days.slice(-n) }; }
     case 'analytics_top_pages': { const s = await snap(); let p = s.web ? s.web.top_pages_7d : []; if (a.host) p = p.filter(x => x.host === String(a.host).replace(/\.bucklerfamily\.estate$/, '')); return { as_of: s.generated_at, top_pages_7d: p }; }
     case 'analytics_referrers': { const s = await snap(); return { as_of: s.generated_at, referrers_7d: s.web ? s.web.referrers_7d : null }; }
     case 'analytics_audience': { const s = await snap(); return { as_of: s.generated_at, web: s.web ? { countries_7d: s.web.countries_7d, devices_7d: s.web.devices_7d, browsers_7d: s.web.browsers_7d, os_7d: s.web.os_7d } : null, edge: { countries_7d: s.edge.countries_7d, devices_24h: s.edge.devices_24h } }; }
     case 'analytics_hosts': { const s = await snap(); return { as_of: s.generated_at, web_hosts_7d: s.web ? s.web.hosts_7d : null, edge_hosts_24h: s.edge.hosts_24h }; }
-    case 'analytics_status_and_bots': { const s = await snap(); return { as_of: s.generated_at, status_24h: s.edge.status_24h, status_7d: s.edge.status_7d, status_groups_7d: s.edge.status_groups_7d, humans_vs_bots_24h: s.edge.humans_vs_bots_24h }; }
+    case 'analytics_status_and_bots': { const s = await snap(); return { as_of: s.generated_at, status_24h: s.edge.status_24h, status_7d: s.edge.status_7d, status_groups_7d: s.edge.status_groups_7d, status_groups_7d_by_class: s.edge.status_groups_7d_by_class, humans_vs_bots_24h: s.edge.humans_vs_bots_24h, class_colours: CLASS_COLOURS, class_labels: CLASS_LABELS }; }
     case 'analytics_history': return (await dof('/history?hours=' + (parseInt(a.hours, 10) || 48))).json();
     case 'analytics_guestbook_read': return (await dof('/guestbook')).json();
     case 'analytics_guestbook_sign': return (await dof('/guestbook', { method: 'POST', body: JSON.stringify(a) })).json();
