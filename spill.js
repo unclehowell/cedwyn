@@ -52,7 +52,7 @@ function draw(s){
  var days=[],m={};(s.per_day_30||[]).forEach(function(x){m[x.day]=x.n;});for(var i=29;i>=0;i--){var t=new Date(Date.now()-i*864e5).toISOString().slice(0,10);days.push({l:t.slice(8,10)+"/"+t.slice(5,7),a:m[t]||0});}
  cols("g-day",days);
  cols("g-decade",(s.by_decade||[]).map(function(x){return{l:x.decade,a:x.n};}));}
-function gb(r){var tb=$("gb-rows");if(!tb||!r||!r.rows)return;tb.innerHTML=r.rows.slice(0,20).map(function(x){return"<tr><td>"+esc(x.version)+"</td><td>"+esc((x.at||"").slice(0,10))+"</td><td>"+esc(x.change)+"</td><td>"+esc(x.who)+"</td></tr>";}).join("");}
+function gb(r){var tb=$("gb-rows");if(!tb||!r||!r.rows)return;var gn=$("gb-n");if(gn)gn.textContent="("+r.rows.length+")";tb.innerHTML=r.rows.slice(0,20).map(function(x){return"<tr><td>"+esc(x.version)+"</td><td>"+esc((x.at||"").slice(0,10))+"</td><td>"+esc(x.change)+"</td><td>"+esc(x.who)+"</td></tr>";}).join("");}
 function get(p){return fetch(BASE+p,{cache:"no-store"}).then(function(r){return r.json();});}
 function load(){get("/stats").then(draw).catch(function(){$("sp-total").textContent="unavailable";});get("/guestbook").then(gb).catch(function(){});}
 load();setInterval(load,5*60*1000);
