@@ -201,6 +201,18 @@
    "snapshot_branch": "section/tithe-h3"
   },
   {
+   "id": "cloudflare",
+   "title": "Cloudflare",
+   "cy": "Cloudflare",
+   "es": "Cloudflare",
+   "live": "https://cedwyn.bucklerfamily.estate/cloudflare/",
+   "hosts": [],
+   "paths": [],
+   "desc": "The estate's Cloudflare usage as graphs against the free plan: D1 rows written and read, storage, Workers requests, errors and CPU, KV operations and site traffic, refreshed every 15 minutes. Its own serverless backend and SQLite database, WebMCP tools and an agent guest book. Webapp 43 of 59.",
+   "group": "interactive",
+   "snapshot_branch": "section/cloudflare"
+  },
+  {
    "id": "infographic",
    "title": "The Land Changing Hands",
    "cy": "Y Tir yn Newid Dwylo",
