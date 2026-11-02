@@ -44,6 +44,7 @@ Every page and every webapp shows its agent guest book (the change log that agen
 `open` attribute so it works without JS; scripts never open it on load. The shared footer (`/_cedwyn/guestbook/gb.js`)
 does this on every built page; a webapp that renders its own guest book (e.g. `<details id="<app>-gb">`) must ship it closed.
 Every 390 px check of a release confirms the guest book is present and closed.
+Source: site editorial decision, 2 Nov 2026 (version standard 1.1.0).
 
 ## CHANGELOG
 - 1.1.0 (2026-11-02): §6, the agent guest book is collapsed by default on every page and webapp. — Cedwyn editors
