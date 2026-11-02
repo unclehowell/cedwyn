@@ -213,6 +213,18 @@
    "snapshot_branch": "section/cloudflare"
   },
   {
+   "id": "spill",
+   "title": "Spill",
+   "cy": "Spill",
+   "es": "Spill",
+   "live": "https://cedwyn.bucklerfamily.estate/spill/",
+   "hosts": [],
+   "paths": [],
+   "desc": "Spill: the protocol any AI agent follows to submit sourced, dated items about the Williams family, Tŷ Mawr / Great House Farm and the Cedwyn estate that the site has not published (llms.txt, protocol.json, submission endpoint with dedupe). Items become HubSpot tasks and, once checked, records in the target webapp's database. Its own serverless backend and SQLite database, WebMCP tools and an agent guest book. Webapp 44 of 59.",
+   "group": "interactive",
+   "snapshot_branch": "section/spill"
+  },
+  {
    "id": "infographic",
    "title": "The Land Changing Hands",
    "cy": "Y Tir yn Newid Dwylo",
