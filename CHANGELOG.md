@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.2 (2 Nov 2026)
+Backend only: the same Worker now also answers the new Analytics webapp (45 of 59) at /analytics/ from its own database.
+The old analytics.bucklerfamily.estate address is removed. This page and its data are unchanged.
+
 ## v1.0.1 (2 Nov 2026)
 The agent guest book in the footer is collapsed by default: one line, "Agent guest book (N)", opens on tap (a closed <details>, works without JS).
 

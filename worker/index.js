@@ -1,4 +1,6 @@
 import ASSETS from './assets.js';
+import WEB_ASSETS from './assets_web.js';
+import { collectWeb, handleWeb, WEB_VERSION } from './web.js';   // the Analytics webapp (45 of 59) shares this Worker and its token; its own database is the 'web' object
 // Cloudflare webapp backend (webapp 43 of 59, https://bucklerfamily.estate/cloudflare -> cedwyn.bucklerfamily.estate/cloudflare/).
 // Serverless: one Cloudflare Worker + its own SQLite database (a SQLite-backed Durable Object, "cedwyn-cloudflare").
 // The page (index.html, cloudflare.js) is built from branch section/cloudflare like every Cedwyn webapp; this Worker answers
@@ -8,7 +10,7 @@ import ASSETS from './assets.js';
 // Aggregates only: no IPs, no user agents, no account, zone or database ids. Projects outside the estate are left out of
 // the per-item charts; account totals against the free allowance include everything. Free plan only. - Cedwyn editors
 
-const VERSION = '1.0.0';
+const VERSION = '1.0.2';
 const API = ['https:', '', 'api.cloudflare' + '.com', 'client', 'v4'].join('/');
 const LIM = {
   d1_rows_written_day: 100000, d1_rows_read_day: 5000000, d1_storage_total: 5e9, d1_db_size: 500e6,
@@ -29,15 +31,31 @@ export class Ticker {
     this.sql.exec(`CREATE TABLE IF NOT EXISTS guestbook(id INTEGER PRIMARY KEY AUTOINCREMENT, at TEXT, version TEXT, who TEXT, change TEXT, kind TEXT)`);
     this.sql.exec(`CREATE TABLE IF NOT EXISTS meta(k TEXT PRIMARY KEY, v TEXT)`);
     this.sql.exec(`UPDATE guestbook SET who = 'Tab agent' WHERE who LIKE '%s Tab agent' AND who <> 'Tab agent'`);
+    const km = this.sql.exec(`SELECT v FROM meta WHERE k = 'kind'`).toArray()[0];
+    this.kind = km ? km.v : null;   // 'web' = the Analytics webapp's database (cedwyn-analytics); unset = Cloudflare (cedwyn-cloudflare)
+    if (this.kind === 'web') { this.sql.exec(`DELETE FROM guestbook WHERE kind = 'release' AND change LIKE 'First version: graphs of the Cloudflare%'`); this.seed('web'); }
+  }
+  seed(kind) {
     const n = this.sql.exec(`SELECT COUNT(*) AS n FROM guestbook`).one().n;
-    if (!n) this.sql.exec(`INSERT INTO guestbook(at,version,who,change,kind) VALUES (?,?,?,?,?)`, '2026-11-02T02:50:00Z', '1.0.0', 'Tab agent',
+    if (n) return;
+    if (kind === 'web') this.sql.exec(`INSERT INTO guestbook(at,version,who,change,kind) VALUES (?,?,?,?,?)`, '2026-11-02T05:00:00Z', '1.0.0', 'Tab agent',
+      'First version: website analytics for the estate and its subdomains as graphs, its own SQLite database, WebMCP tools and this guest book.', 'release');
+    else this.sql.exec(`INSERT INTO guestbook(at,version,who,change,kind) VALUES (?,?,?,?,?)`, '2026-11-02T02:50:00Z', '1.0.0', 'Tab agent',
       'First version: graphs of the Cloudflare account against the free allowance, its own SQLite database, WebMCP tools and this guest book.', 'release');
   }
+  web() { return this.kind === 'web'; }
+  async gather(source) { return this.web() ? collectWeb(this.env, gql, source) : collect(this.env, source); }
   latest() { const r = this.sql.exec(`SELECT json FROM snap ORDER BY id DESC LIMIT 1`).toArray()[0]; return r ? JSON.parse(r.json) : null; }
   async store(snap) {
     const id = Date.parse(snap.generated_at);
     this.sql.exec(`INSERT OR REPLACE INTO snap(id,at,json) VALUES (?,?,?)`, id, snap.generated_at, JSON.stringify(snap));
     this.sql.exec(`DELETE FROM snap WHERE id < ?`, id - 3 * EVERY_MS);
+    if (this.web()) {   // analytics points: d1w = edge requests today, d1r = edge page views today, wreq = Web Analytics visits today, zreq = edge unique visitors today
+      const ed = snap.edge.days[snap.edge.days.length - 1] || {}, wd = snap.web ? (snap.web.days[snap.web.days.length - 1] || {}) : {};
+      this.sql.exec(`INSERT OR REPLACE INTO points(id,at,d1w,d1r,wreq,zreq) VALUES (?,?,?,?,?,?)`, id, snap.generated_at, ed.requests || 0, ed.page_views || 0, wd.visits || 0, ed.uniques || 0);
+      this.sql.exec(`DELETE FROM points WHERE id < ?`, id - KEEP_POINTS_MS);
+      return;
+    }
     const zt = (snap.zone.days.find(d => d.date === snap.today) || {}).requests || 0;
     const wt = snap.workers.requests_by_day[snap.workers.requests_by_day.length - 1] || 0;
     this.sql.exec(`INSERT OR REPLACE INTO points(id,at,d1w,d1r,wreq,zreq) VALUES (?,?,?,?,?,?)`, id, snap.generated_at,
@@ -46,29 +64,35 @@ export class Ticker {
   }
   async ensureAlarm() { const a = await this.state.storage.getAlarm(); if (!a) await this.state.storage.setAlarm(Date.now() + 3000); }
   async fetch(req) {
+    if (!this.kind && req.headers.get('x-kind') === 'web') {
+      this.kind = 'web'; this.sql.exec(`INSERT OR REPLACE INTO meta(k,v) VALUES ('kind','web')`); this.seed('web');
+    }
+    if (!this.kind) this.seed('cloudflare');
     await this.ensureAlarm();
     const u = new URL(req.url), p = u.pathname;
     const J = (o, s) => new Response(JSON.stringify(o), { status: s || 200, headers: { 'content-type': 'application/json; charset=utf-8' } });
     if (p === '/snap') {
       let s = this.latest();
       if (!s || Date.now() - Date.parse(s.generated_at) > STALE_MS) {
-        try { s = await collect(this.env, s ? 'stale-read' : 'first-read'); await this.store(s); } catch (e) { if (!s) return J({ error: String(e.message || e).slice(0, 200) }, 503); }
+        try { s = await this.gather(s ? 'stale-read' : 'first-read'); await this.store(s); } catch (e) { if (!s) return J({ error: String(e.message || e).slice(0, 200) }, 503); }
       }
       return J(s);
     }
     if (p === '/history') {
       const h = Math.max(1, Math.min(192, parseInt(u.searchParams.get('hours') || '48', 10) || 48));
       const rows = this.sql.exec(`SELECT at,d1w,d1r,wreq,zreq FROM points WHERE id >= ? ORDER BY id`, Date.now() - h * 36e5).toArray();
+      if (this.web()) return J({ hours: h, fields: { edge_requests: 'edge requests today (UTC day, all hostnames)', edge_page_views: 'edge page views today', web_visits: 'Web Analytics visits today', edge_uniques: 'edge unique visitors today' },
+        points: rows.map(r => ({ at: r.at, edge_requests: r.d1w, edge_page_views: r.d1r, web_visits: r.wreq, edge_uniques: r.zreq })) });
       return J({ hours: h, fields: { d1w: 'D1 rows written today (account, UTC day)', d1r: 'D1 rows read today', wreq: 'Workers requests today', zreq: 'zone requests today' }, points: rows });
     }
     if (p === '/guestbook' && req.method === 'GET') {
       const rows = this.sql.exec(`SELECT at,version,who,change,kind FROM guestbook ORDER BY id DESC LIMIT 100`).toArray();
-      return J({ webapp: 'cloudflare', rows });
+      return J({ webapp: this.web() ? 'analytics' : 'cloudflare', rows });
     }
     if (p === '/guestbook' && req.method === 'POST') {
       let b = {}; try { b = await req.json(); } catch (_) { return J({ error: 'send JSON: {"who","change","version"}' }, 400); }
       const clean = (s, n) => String(s || '').replace(/[\u0000-\u001f<>]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, n);
-      const who = clean(b.who, 60), change = clean(b.change, 280), version = clean(b.version, 20) || VERSION;
+      const who = clean(b.who, 60), change = clean(b.change, 280), version = clean(b.version, 20) || (this.web() ? WEB_VERSION : VERSION);
       if (!who || !change) return J({ error: 'who and change are required' }, 400);
       if (/https?:|www\./i.test(who + ' ' + change)) return J({ error: 'no links in the guest book' }, 400);
       if (BANNED.test(who + ' ' + change)) return J({ error: 'wording not accepted on this site' }, 400);
@@ -79,15 +103,15 @@ export class Ticker {
       this.sql.exec(`INSERT INTO guestbook(at,version,who,change,kind) VALUES (?,?,?,?,?)`, at, version, who, change, 'agent');
       return J({ ok: true, entry: { at, version, who, change } }, 201);
     }
-    if (p === '/refresh') { const s = await collect(this.env, 'manual'); await this.store(s); return J({ ok: true, generated_at: s.generated_at }); }
+    if (p === '/refresh') { const s = await this.gather('manual'); await this.store(s); return J({ ok: true, generated_at: s.generated_at }); }
     if (p === '/dbinfo') {
       const c = t => this.sql.exec(`SELECT COUNT(*) AS n FROM ${t}`).one().n;
-      return J({ engine: 'SQLite (Durable Object storage)', name: 'cedwyn-cloudflare', tables: { snap: c('snap'), points: c('points'), guestbook: c('guestbook') }, size_bytes: this.state.storage.sql.databaseSize });
+      return J({ engine: 'SQLite (Durable Object storage)', name: this.web() ? 'cedwyn-analytics' : 'cedwyn-cloudflare', tables: { snap: c('snap'), points: c('points'), guestbook: c('guestbook') }, size_bytes: this.state.storage.sql.databaseSize });
     }
     return J({ error: 'not found' }, 404);
   }
   async alarm() {
-    try { const s = await collect(this.env, 'schedule'); await this.store(s); }
+    try { const s = await this.gather('schedule'); await this.store(s); }
     catch (e) { this.sql.exec(`INSERT OR REPLACE INTO meta(k,v) VALUES ('last_error', ?)`, new Date().toISOString() + ' ' + String(e && e.message || e).slice(0, 200)); }
     finally { await this.state.storage.setAlarm(Math.ceil((Date.now() + 1000) / EVERY_MS) * EVERY_MS + 20000); }
   }
@@ -282,6 +306,10 @@ async function mcp(env, req) {
   return await one(m);
 }
 
+function webDof(env) {   // the Analytics webapp's own database object
+  const stub = env.TICKER.get(env.TICKER.idFromName('web'));
+  return (path, init) => { init = init || {}; const h = new Headers(init.headers || {}); h.set('x-kind', 'web'); return stub.fetch('https://cedwyn-analytics.internal' + path, { ...init, headers: h }); };
+}
 function doFetch(env, path, init) {
   const stub = env.TICKER.get(env.TICKER.idFromName('main'));
   return stub.fetch('https://cedwyn-cloudflare.internal' + path, init);
@@ -314,6 +342,7 @@ export default {
       return Response.redirect('https://bucklerfamily.estate' + to, 301);
     }
     const p = u.pathname;
+    if (p.startsWith('/analytics')) return handleWeb(req, env, ctx, u, webDof(env), WEB_ASSETS, CORS);
     if (p === '/cloudflare') return Response.redirect('https://' + u.hostname + '/cloudflare/' + u.search, 301);
     if (p.startsWith('/cloudflare/api')) {
       if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS });
