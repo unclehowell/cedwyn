@@ -13,6 +13,7 @@ Watchtower: dated changes to institutions' own web pages about Great House Farm 
   appeared, text added, text removed, text changed, or page gone, with links to the before and after captures.
 - Landing page: one scatter graph (x = date, y = institution) and the full list of changes underneath.
 - Release 3.0.1 adds keyboard-focus styling; data values unchanged. Data: `public/data/changes.json`. Re-checked daily at midday by `work/watchtower/v3/run_daily.py`.
+- Release 3.1.0 (2 Nov 2026): every outside page that cites one of the farm's names is listed in `public/data/targets.json` and saved to the Wayback Machine; the Worker `bfe-watchtower-archive` (Durable Object alarm, Sundays from 03:15 UTC) saves each again every week and serves the status at `/watchtower/api/wayback.json`; `public/wayback.js` shows page, name cited, first seen, latest capture and weekly status.
 - Archive: the earlier "Raised & replies" layer (correspondence items) and the v2 page-change data are kept unpublished in
   `archive/` (outside `public/`, so the site does not serve them).
 - Static site: Cloudflare Pages project bucklerfamily-watchtower, branch `watchtower`, output `public/`, no build step.
