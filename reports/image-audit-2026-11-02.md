@@ -31,6 +31,7 @@ Selected source-branch inventory (HTML and image-file counts are branch-tree cou
 | Wayback Vault (`wayback`) | 954 | 394 | Captured records and media protected |
 | Map Room (`maps`) | 2 | 13 | Original maps, plans and family photographs protected |
 | Project Office (`projects`) | 193 | 8 | Replica plan and illustration captions checked on the replica page |
+| Research (`section/research`) | 1,394 | 153 | Evidence/library content is mixed with editorial pages; Media Gallery reviewed separately, primary assets protected |
 | NFT art (`nft-art`) | 1 | 462 | Dynamic collection; not exhaustively checked item-by-item |
 | E-books (`ebooks`) | 76 | 96 | Cover/illustration assets; not exhaustively checked page-by-page |
 | Merchandise (`merch`) | 4 | 36 | Product and design-gallery copy sampled; no clear mismatch confirmed in the sampled cards |
@@ -76,6 +77,7 @@ PR #125 changes overlay text only. It does not change images, evidence, transcri
 - **Replica plans (`/replica/` in the Project Office):** the massing image, ground-floor plan, site plan and south elevation have captions and alt descriptions that identify what each drawing depicts and disclose measured, scaled and inferred content. No mismatch was found in the inspected page.
 - **Merchandise (`/shop/`):** sampled product and design-gallery cards have image names/captions corresponding to the product or design described. No definite mismatch was confirmed in this sample.
 - **Farmbook homepage:** sampled story-ring thumbnails match their stated subjects (early Llandough photograph, manor return, farmhouse front, farmyard, press cutting and December 1988 scene). Primary source images remain untouched.
+- **Research Media Gallery (`/media-gallery/`):** the 13 May 1897 photograph is now captioned and described as Post Office engineers inspecting Marconi’s wireless apparatus on Flat Holm. The page itself records that its earlier “at Great House Farm” caption was corrected on 19 October 2026. The historical image remains unchanged and its archived filename retains the old wording; that filename was not renamed. The page also displays 60 video-frame stills whose alt labels identify only the part and frame number (for example, “Part 1 frame 1”). Those 60 descriptions are weak as accessible descriptions and remain open for a frame-by-frame review; no guessed visual descriptions have been inserted. The compiled video is explicitly identified as a secondary compilation, not a primary record.
 - **Map Room:** the page uses historic OS sheets, plans and photographs as map/story layers. This pass confirmed the source-image family from its asset list but did not complete a step-by-step review of all 60 dynamic map-story image/caption placements.
 
 ## Remaining work — do not mark complete
