@@ -1,12 +1,12 @@
 {
  "name": "Great House Farm (Tŷ Mawr), Llandough-juxta-Penarth — central case chronology",
- "version": "1.0.0",
- "updated_utc": "2026-10-23T17:33Z",
- "count": 572,
+ "version": "1.1.0",
+ "updated_utc": "2026-11-02T02:56Z",
+ "count": 573,
  "by_category": {
   "heritage": 109,
   "press": 162,
-  "history": 41,
+  "history": 42,
   "legal": 124,
   "social": 4,
   "title": 70,
@@ -18,14 +18,16 @@
   "media-register": 157,
   "csscpsg-legal": 140,
   "dartboard-archaeology": 23,
-  "roadmap": 64
+  "roadmap": 64,
+  "spill": 1
  },
  "sources": {
   "wiki-master-timeline": "https://greathousefarmwiki.wordpress.com/timeline/",
   "csscpsg-legal": "https://csscpsg.bucklerfamily.estate/",
   "dartboard-archaeology": "https://bucklerfamily.estate/",
   "media-register": "https://wayback.bucklerfamily.estate/media-register/",
-  "roadmap": "https://bucklerfamily.estate/data/roadmap.json"
+  "roadmap": "https://bucklerfamily.estate/data/roadmap.json",
+  "spill": "https://cedwyn.bucklerfamily.estate/spill/"
  },
  "fields": [
   "id",
@@ -40,7 +42,8 @@
   "evidence",
   "origin",
   "mr",
-  "also"
+  "also",
+  "spill"
  ],
  "events": [
   {
@@ -1027,6 +1030,20 @@
    "sort": "1922-00-00",
    "id": "CH-0076",
    "date_display": "1922"
+  },
+  {
+   "date": "1923",
+   "event": "Welsh Women’s Peace Petition: the Llandough sheet (box 1, petition 92, page 1) carries 36 signatures, one of them “Esther Williams”, address “Llandough”; the sheet gives no house name (EV-0294)",
+   "source": "National Library of Wales, Welsh Women’s Peace Petition 1923–24, box 1, petition 92, page 1 · EV-0294",
+   "url": "https://peacepetition.library.wales/view/6085894/271,4066,2060,196",
+   "wayback": "",
+   "evidence": "EV-0294",
+   "origin": "spill",
+   "category": "history",
+   "sort": "1923-00-00",
+   "id": "CH-0597",
+   "date_display": "1923–24",
+   "spill": "SP-00002"
   },
   {
    "date": "15 May 1924",
@@ -7188,6 +7205,24 @@
    ],
    "id": "CH-0596",
    "date_display": "6 Nov 2026"
+  }
+ ],
+ "changelog": [
+  {
+   "version": "1.1.0",
+   "date": "2026-11-02",
+   "change": "Added CH-0597 (1923–24): Welsh Women’s Peace Petition: the Llandough sheet (box 1, petition 92, page 1) carries 36 signatures, one of them “Esther Williams”, address [spill SP-00002]",
+   "size": "573 events",
+   "price": "free",
+   "who": "Tab agent (spill processor)"
+  },
+  {
+   "version": "1.0.0",
+   "date": "2026-10-23",
+   "change": "First published: the central chronology built from the Legal Wiki timeline, the media register, the legal record, archaeology and the disclosure roadmap.",
+   "size": "572 events",
+   "price": "free",
+   "who": "Tab agent"
   }
  ]
 }
