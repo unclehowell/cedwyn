@@ -1,17 +1,17 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 9167,
+  "pages_scanned": 9168,
   "references_checked": {
-    "resource": 207124,
-    "nav": 472014
+    "resource": 207137,
+    "nav": 472767
   },
-  "database_backed_paths": 7358,
-  "unique_missing_destinations": 5381,
-  "missing_references": 54146,
-  "missing_navigation_references": 38540,
-  "missing_resource_references": 15606,
-  "unique_broken_fragments": 1819,
-  "broken_fragment_references": 3377,
+  "database_backed_paths": 7354,
+  "unique_missing_destinations": 5392,
+  "missing_references": 54161,
+  "missing_navigation_references": 38544,
+  "missing_resource_references": 15617,
+  "unique_broken_fragments": 1832,
+  "broken_fragment_references": 3390,
   "form_or_endpoint_actions_not_checked": {
     "form[action]": 2550
   },
@@ -19,7 +19,7 @@
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 9135,
+      "references": 9136,
       "examples": [
         {
           "from": "/",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 9132,
+      "references": 9133,
       "examples": [
         {
           "from": "/",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 6536,
+      "references": 6537,
       "examples": [
         {
           "from": "/review/",
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 6536,
+      "references": 6537,
       "examples": [
         {
           "from": "/review/",
@@ -235,7 +235,7 @@
     {
       "kind": "nav",
       "path": "/r/strip-art",
-      "references": 637,
+      "references": 638,
       "examples": [
         {
           "from": "/research/the-tightrope/",
@@ -883,7 +883,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 35,
+      "references": 34,
       "examples": [
         {
           "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
