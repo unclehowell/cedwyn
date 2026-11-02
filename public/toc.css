@@ -1,4 +1,4 @@
-/* That Old Chestnut v0.1.0 — dark, mobile first, no sideways scroll at 390 px */
+/* That Old Chestnut v0.2.0 — dark, mobile first, no sideways scroll at 390 px */
 :root{--bg:#07110e;--panel:#0d1c17;--line:#1f3b31;--ink:#e6efe9;--mute:#9db3a8;--green:#3dffa8;--nut:#c8834a;--clear:#ff8a5c;--border:#f2c14e;--lang:#7fc8ff}
 html,body{background:var(--bg)}
 body.toc{margin:0;color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
@@ -77,3 +77,14 @@ h2{font-size:1.15rem;margin:1.6em 0 .6em}
 .toc-word-term{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:1.2rem;margin:.2em 0}
 .toc-word-term b{color:var(--nut)}
 .toc-word blockquote{margin:10px 0;padding:6px 12px;border-left:2px solid var(--nut);background:#1a130c;border-radius:4px}.toc-word blockquote p{margin:0}
+
+/* v0.2.0 disclosure highlight: big surprise face, bold text on a vibrant hot-pink highlight (data-driven: toc.js marks is-disc) */
+.toc-wow{display:block;font-size:2.5em;line-height:1.1;margin:0 0 .15em;font-weight:400}
+.toc-hl{background:#ff2bd6;color:#14060f;font-weight:800;padding:.08em .3em;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone;box-shadow:0 0 0 2px #ffe600}
+.toc-card blockquote.q-pos.q-disc{border-left:4px solid #ff2bd6;background:#2a0a22}
+.q-disc p{line-height:1.9}
+.toc-card.is-disc{border-color:#ff2bd6;box-shadow:0 0 0 1px #ff2bd6,0 0 18px rgba(255,43,214,.35)}
+.td-disc .toc-hl{display:inline;line-height:1.9}
+/* day mode inverts the whole page (html.ghf-inv invert+hue-rotate); these pre-inverted values come out as the same hot pink */
+html.ghf-inv .toc-hl{background:#ff5ae6;color:#fff0fa;box-shadow:0 0 0 2px #af5a00}
+html.ghf-inv .toc-wow{filter:invert(1) hue-rotate(180deg)}

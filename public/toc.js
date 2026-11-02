@@ -1,5 +1,5 @@
 /* That Old Chestnut — generative UI, built in the browser on page load from _ui/index.a2ui.json + _db/view.json.
-   No model, no paid service, no network beyond these two same-site files. v0.1.0 */
+   No model, no paid service, no network beyond these two same-site files. v0.2.0 */
 (function(){
 "use strict";
 var app=document.getElementById("toc-app"); if(!app) return;
@@ -17,6 +17,11 @@ function filtered(){var q=norm(F.q).trim().split(/\s+/).filter(Boolean);return r
  if(q.length){var hay=norm([r.title,f.institution,f.negative_quote,f.positive_quote,f.positive_nature,f.conduct,(f.terms||[]).map(function(t){return t.term+" "+t.statute;}).join(" ")].join(" "));if(!q.every(function(w){return hay.indexOf(w)>=0;}))return false;}
  return true;});}
 function elapsed(f){var m=f.months_elapsed,v=f.email_volume||"";if(m==null&&!v)return f.positive_date?"":"—";return (m!=null?m+" months":"")+(m!=null&&v?" / ":"")+v;}
+/* v0.2.0 disclosure highlight: an entry is a disclosure when its record says so (finding.disclosure true/false), else when its
+   disclosure_type is set and not 'pending', else an interim disclosure, else a later positive reply not marked pending. Data-driven. */
+function isDisc(f){f=f||{};if(f.disclosure!=null)return !!f.disclosure;var t=f.disclosure_type||"";if(t)return !/^\s*pending|not yet disclosed/i.test(t);if(f.interim_disclosure)return true;return !!f.positive_quote&&!/^\s*pending|not yet disclosed/i.test(f.positive_nature||"");}
+var DISC={en:"Disclosure",cy:"Datgeliad",es:"Divulgación"};
+function wow(){return $("span",{cls:"toc-wow",role:"img","aria-label":DISC[LANG]||DISC.en,text:"\uD83D\uDE2E"});}
 function clsLabel(c){return T(c==="clear"?"clear":c==="borderline"?"borderline":"language");}
 
 /* ---------- components ---------- */
@@ -54,11 +59,11 @@ C.Filter=function(n){var R=rows();if(!R.length)return null;var s=$("form",{cls:"
  var q=$("input",{type:"search",id:"toc-q",value:F.q,placeholder:"…"});q.addEventListener("input",function(){F.q=q.value;render(true,"toc-q");});
  s.appendChild($("label",null,[T("search")+" ",q]));s.appendChild($("p",{cls:"toc-n","aria-live":"polite",text:filtered().length+" / "+R.length}));return s;};
 C.CardList=function(){var R=filtered();if(!rows().length)return null;var s=$("section",{cls:"toc-cards"},[$("h2",{text:T("cards")})]);
- R.forEach(function(r){var f=r.finding||{},k=classOf(r);var art=$("article",{cls:"toc-card c-"+k,id:r.id.toLowerCase()},[
+ R.forEach(function(r){var f=r.finding||{},k=classOf(r);var art=$("article",{cls:"toc-card c-"+k+(isDisc(f)?" is-disc":""),id:r.id.toLowerCase()},[
   $("p",{cls:"toc-badge",text:clsLabel(k)+(f.open?" · "+T("open"):"")}),$("h3",{text:f.institution||r.title}),
   $("p",{cls:"toc-date",text:T("neg")+": "+(f.negative_date||"—")+(f.positive_date?" · "+T("pos")+": "+f.positive_date:"")})]);
   if(f.negative_quote)art.appendChild($("blockquote",{cls:"q-neg"},[$("p",{text:"“"+f.negative_quote+"”"})]));
-  if(f.positive_quote)art.appendChild($("blockquote",{cls:"q-pos"},[$("p",{text:"“"+f.positive_quote+"”"})]));
+  if(f.positive_quote){var dq=isDisc(f);art.appendChild($("blockquote",{cls:"q-pos"+(dq?" q-disc":"")},dq?[wow(),$("p",null,[$("mark",{cls:"toc-hl",text:"“"+f.positive_quote+"”"})])]:[$("p",{text:"“"+f.positive_quote+"”"})]));}
   if((f.terms||[]).length){var ul=$("ul",{cls:"toc-tl"});f.terms.forEach(function(t){ul.appendChild($("li",null,[$("b",{text:t.term}),$("span",{text:" → "+t.statute})]));});art.appendChild($("p",{cls:"toc-sub",text:T("terms_used")}));art.appendChild(ul);}
   if(f.conduct)art.appendChild($("p",{cls:"toc-conduct",text:f.conduct}));
   s.appendChild(art);});
@@ -66,7 +71,7 @@ C.CardList=function(){var R=filtered();if(!rows().length)return null;var s=$("se
 C.Table=function(n){if(!rows().length)return null;var cols=DB.copy.columns||[],R=filtered();
  var tb=$("table",{cls:"toc-table"});var tr=$("tr");cols.forEach(function(c){tr.appendChild($("th",{scope:"col",text:c}));});tb.appendChild($("thead",null,[tr]));var bd=$("tbody");
  R.forEach(function(r){var f=r.finding||{};var cells=[f.institution||"",f.negative_date||"",elapsed(f),f.positive_nature||(f.open?T("open"):"—"),f.conduct||((f.terms||[]).map(function(t){return t.term;}).join(", "))];
-  var row=$("tr");cells.forEach(function(v,i){row.appendChild($("td",{"data-label":cols[i]||"",text:v}));});bd.appendChild(row);});tb.appendChild(bd);
+  var row=$("tr");var dr=isDisc(f);cells.forEach(function(v,i){var td=$("td",{"data-label":cols[i]||""});if(i===3&&dr){td.className="td-disc";td.appendChild(wow());td.appendChild($("mark",{cls:"toc-hl",text:v}));}else td.textContent=v;row.appendChild(td);});if(dr)row.className="is-disc";bd.appendChild(row);});tb.appendChild(bd);
  return $("section",{cls:"toc-tablew"},[$("h2",{text:T("table")}),$("div",{cls:"toc-scroll",tabindex:"0"},[tb])]);};
 C.TermList=function(){if(!rows().length)return null;var m={};filtered().forEach(function(r){(get(r,"finding.terms")||[]).forEach(function(t){var k=t.term.toLowerCase();m[k]=m[k]||{term:t.term,statute:t.statute,n:0};m[k].n++;});});
  var ks=Object.keys(m).sort(function(a,b){return m[b].n-m[a].n||a.localeCompare(b);});var dl=$("dl",{cls:"toc-terms"});
