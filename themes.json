@@ -189,6 +189,30 @@
    "group": "artifacts"
   },
   {
+   "id": "tithe-h3",
+   "title": "Tithe H3",
+   "cy": "Tithe H3",
+   "es": "Tithe H3",
+   "live": "https://cedwyn.bucklerfamily.estate/tithe-h3/",
+   "hosts": [],
+   "paths": [],
+   "desc": "The parcels of the David Stewart estate plan of Cedfin alias Ty Mawr, traced through the 1841 tithe map of Landough, Cogan and Leckwith onto today's map, with an OS grid reference and H3 hexagons for each. Webapp 42 of 59.",
+   "group": "artifacts",
+   "snapshot_branch": "section/tithe-h3"
+  },
+  {
+   "id": "cloudflare",
+   "title": "Cloudflare",
+   "cy": "Cloudflare",
+   "es": "Cloudflare",
+   "live": "https://cedwyn.bucklerfamily.estate/cloudflare/",
+   "hosts": [],
+   "paths": [],
+   "desc": "The estate's Cloudflare usage as graphs against the free plan: D1 rows written and read, storage, Workers requests, errors and CPU, KV operations and site traffic, refreshed every 15 minutes. Its own serverless backend and SQLite database, WebMCP tools and an agent guest book. Webapp 43 of 59.",
+   "group": "interactive",
+   "snapshot_branch": "section/cloudflare"
+  },
+  {
    "id": "infographic",
    "title": "The Land Changing Hands",
    "cy": "Y Tir yn Newid Dwylo",
@@ -791,9 +815,10 @@
  ],
  "allowed_tile_templates": [
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/",
-  "https://{s}.tile.openstreetmap.org/"
+  "https://{s}.tile.openstreetmap.org/",
+  "https://mapseries-tilesets.s3.amazonaws.com/os/6inchsecond/"
  ],
- "allowed_tile_note": "Map tiles are fetched by the map library per zoom level and position and cannot be stored as fixed files; these two tile templates (satellite layer on /maps/, street map on /app/) are the only external requests left. — Sion's Tab agent",
+ "allowed_tile_note": "Map tiles are fetched by the map library per zoom level and position and cannot be stored as fixed files; these three tile templates (satellite layer on /maps/, street map on /app/ and /tithe-h3/, the National Library of Scotland OS six-inch c.1900 layer on /tithe-h3/, 2 Nov 2026) are the only external requests left.",
  "vendor_extra": [
   "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js"
  ],

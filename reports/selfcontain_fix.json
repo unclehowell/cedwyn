@@ -1,5 +1,5 @@
 {
- "files": 25012,
+ "files": 25026,
  "changed": 3243,
  "sub": 0,
  "ext": 0,
@@ -22,6 +22,7 @@
  "vendor_failed": [],
  "vendor_failed_n": 0,
  "allowed_tile_templates": [
+  "https://mapseries-tilesets.s3.amazonaws.com/os/6inchsecond/{z}/{x}/{y}.png",
   "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
  ]
