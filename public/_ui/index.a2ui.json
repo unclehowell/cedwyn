@@ -2,7 +2,7 @@
  "a2ui": "0.9",
  "surface": "that-old-chestnut-index",
  "generator": "cedwyn-a2ui/0.1",
- "note": "Layout recipe only. toc.js builds every component on page load from this file plus _db/view.json. No model or paid service runs at page time.",
+ "note": "Layout recipe only. toc.js builds every component on page load from this file plus _db/view.json. No model or paid service runs at page time. v0.3.0: ChestnutList and ChestnutDetails read the detection rules in _ui/chestnuts.rules.json (toc.js carries the same list as a fallback).",
  "data": "_db/view.json",
  "root": [
   {
@@ -29,7 +29,19 @@
     "label": "i18n:radar",
     "unread_blips": 7,
     "sweep_degrees": 180,
-    "period_s": 7
+    "period_s": 7,
+    "select": "a record blip opens its details modal, headline in air quotes"
+   }
+  },
+  {
+   "component": "ChestnutList",
+   "id": "toc-chestnuts",
+   "props": {
+    "title": "Old chestnuts",
+    "source": "chestnuts:filtered",
+    "rules": "_ui/chestnuts.rules.json",
+    "headline": "best-scoring clause, in air quotes",
+    "details": "modal (no-JS fallback #cn-<id>)"
    }
   },
   {
@@ -118,6 +130,15 @@
     "title": "i18n:terms",
     "source": "chestnuts:filtered",
     "field": "finding.terms"
+   }
+  },
+  {
+   "component": "ChestnutDetails",
+   "id": "toc-chestnut-details",
+   "props": {
+    "source": "chestnuts",
+    "anchor": "cn-<id>",
+    "open": false
    }
   },
   {

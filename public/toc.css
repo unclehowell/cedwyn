@@ -1,4 +1,4 @@
-/* That Old Chestnut v0.2.0 — dark, mobile first, no sideways scroll at 390 px */
+/* That Old Chestnut v0.3.0 — dark, mobile first, no sideways scroll at 390 px */
 :root{--bg:#07110e;--panel:#0d1c17;--line:#1f3b31;--ink:#e6efe9;--mute:#9db3a8;--green:#3dffa8;--nut:#c8834a;--clear:#ff8a5c;--border:#f2c14e;--lang:#7fc8ff}
 html,body{background:var(--bg)}
 body.toc{margin:0;color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
@@ -85,6 +85,59 @@ h2{font-size:1.15rem;margin:1.6em 0 .6em}
 .q-disc p{line-height:1.9}
 .toc-card.is-disc{border-color:#ff2bd6;box-shadow:0 0 0 1px #ff2bd6,0 0 18px rgba(255,43,214,.35)}
 .td-disc .toc-hl{display:inline;line-height:1.9}
-/* day mode inverts the whole page (html.ghf-inv invert+hue-rotate); these pre-inverted values come out as the same hot pink */
+/* the details dialog sits in the top layer, outside the inverted page, so it keeps the plain colours; day mode inverts the page (html.ghf-inv invert+hue-rotate); these pre-inverted values come out as the same hot pink */
 html.ghf-inv .toc-hl{background:#ff5ae6;color:#fff0fa;box-shadow:0 0 0 2px #af5a00}
 html.ghf-inv .toc-wow{filter:invert(1) hue-rotate(180deg)}
+
+/* v0.3.0 old chestnuts: crescendo highlight (stronger than the 😮 pink), the 🌰 list, the details modal, clickable radar */
+.toc-cn{background:linear-gradient(90deg,#fff27a 0%,#ffc23a 35%,#ff8a2a 70%,#ff5a3d 100%);color:#160400;font-weight:900;padding:.12em .38em;border-radius:5px;
+ -webkit-box-decoration-break:clone;box-decoration-break:clone;box-shadow:0 0 0 2px #fff6b0,0 0 12px rgba(255,120,40,.55);line-height:2;text-decoration:none}
+.toc-cn.lv-1{background:linear-gradient(90deg,#fff6b0,#ffd36b);box-shadow:0 0 0 1px #ffe58a;font-weight:800}
+.toc-cn.lv-3{background:linear-gradient(90deg,#ffe14d 0%,#ffa31a 30%,#ff6a1f 60%,#ff3d3d 100%);box-shadow:0 0 0 2px #ffffff,0 0 0 4px #ff3d3d,0 0 22px rgba(255,70,30,.8);font-size:1.04em;letter-spacing:.005em}
+.toc-cn-nut{font-weight:400;margin-right:.2em}
+.toc-hl .toc-cn{box-shadow:0 0 0 2px #ffffff,0 0 0 4px #ff3d3d}
+.toc-card.is-cn{border-left-color:#ff8a2a}
+.toc-cn-cardlink{margin:.5em 0 0}
+.toc-cn-more{display:inline-block;font-weight:700;color:#ffb347!important;text-decoration:underline;text-underline-offset:3px;padding:4px 2px;min-height:24px}
+.toc-cnl{margin-top:1em;padding:12px 14px;border:2px solid #ff8a2a;border-radius:14px;background:linear-gradient(180deg,#1d1208,#120c07)}
+.toc-cnl h2{margin:.1em 0 .2em;color:#ffd36b}.toc-cnl > p{margin:.2em 0 .6em}
+.toc-cnl-ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.toc-cnl-li{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:10px;background:#1a1109;border-left:4px solid #ffc23a}
+.toc-cnl-li.lv-3{border-left-color:#ff3d3d}.toc-cnl-li.lv-2{border-left-color:#ff8a2a}
+.toc-cnl-ico{flex:0 0 auto;font-size:1.45em;line-height:1.1}
+.toc-cnl-t{min-width:0}
+.toc-cnl-q{display:block;font-weight:800;font-size:1.02rem;line-height:1.4;quotes:"\201C" "\201D"}
+.toc-cnl-src{display:inline;font-size:.82rem;color:var(--mute)}
+.toc-radar .blip.rec{cursor:pointer;outline:none}
+.toc-radar .blip.rec:focus-visible .hit,.toc-radar .blip.rec:hover .hit{fill:rgba(255,194,58,.28);stroke:#ffc23a;stroke-width:1.2}
+.toc-radar .blip.cnb.nut use{filter:drop-shadow(0 0 3px #ffb347)}
+html.toc-cn-lock{overflow:hidden}
+.toc-cn-dlg{box-sizing:border-box;width:min(640px,calc(100vw - 16px));max-width:none;max-height:calc(100dvh - 24px);padding:0;border:2px solid #ff8a2a;border-radius:14px;background:#120c07;color:var(--ink);overflow:auto;overscroll-behavior:contain}
+.toc-cn-dlg::backdrop{background:rgba(0,0,0,.72)}
+.toc-cn-in{position:relative;padding:14px 16px 18px;overflow-wrap:anywhere}
+.toc-cn-x{position:sticky;top:0;float:right;margin:-4px -6px 0 8px;width:40px;height:40px;border:0;border-radius:50%;background:#2a1b0e;color:var(--ink);font-size:1.5rem;line-height:1;cursor:pointer;z-index:1}
+.toc-cn-x:focus-visible{outline:2px solid #ffc23a}
+.toc-cn-kick{margin:0 0 .4em;font-size:.8rem;color:var(--mute);text-transform:uppercase;letter-spacing:.05em}
+.toc-cn-title{margin:.2em 0 .6em;font-size:1.15rem;line-height:1.5}
+.toc-cn-sub{font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;color:#ffd36b;margin:1.1em 0 .35em}
+.toc-cn-lab{margin:.6em 0 .15em;font-size:.78rem;color:var(--mute)}
+.toc-cn-q{margin:0 0 .4em;padding:6px 12px;border-left:3px solid #ff8a2a;background:#1a1109;border-radius:4px}.toc-cn-q p{margin:0;line-height:1.9}
+.toc-cn-note{margin:0 0 .4em;line-height:1.9}
+.toc-cn-src{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:0;font-size:.9rem}.toc-cn-src dt{color:var(--mute)}.toc-cn-src dd{margin:0}
+.toc-cn-tl{margin:0;padding-left:1.3em;font-size:.92rem}.toc-cn-tl li{margin:.25em 0}.toc-cn-tl b{color:#ffc23a}
+.toc-cn-gap{list-style:none;margin-left:-1.3em!important;padding:4px 8px;border-radius:6px;background:#2a1405}.toc-cn-gap b{color:#ff8a2a}
+.toc-cn-why{margin:.3em 0;font-size:.92rem}
+.toc-cnd{margin-top:1.6em}
+.toc-cnd-i{margin:6px 0;padding:8px 12px;border:1px solid #5a3a1c;border-radius:10px;background:#140d07}
+.toc-cnd-i summary{cursor:pointer;font-weight:700}
+.toc-cnd-i:target{border-color:#ff8a2a}
+@media (prefers-reduced-motion:no-preference){.toc-cn.lv-3{animation:toccresc 2.4s ease-out 1}
+ @keyframes toccresc{0%{box-shadow:0 0 0 0 #fff,0 0 0 0 #ff3d3d,0 0 0 rgba(255,70,30,0)}100%{box-shadow:0 0 0 2px #ffffff,0 0 0 4px #ff3d3d,0 0 22px rgba(255,70,30,.8)}}}
+.toc-cn-nut,.toc-cnl-ico{display:inline-block}
+.toc-cn-title{text-transform:none!important;letter-spacing:normal}
+/* the details dialog sits in the top layer, outside the inverted page, so it keeps the plain colours; day mode inverts the page (html.ghf-inv invert+hue-rotate): pre-inverted values come out as the same peach-orange-red crescendo */
+html.ghf-inv .tocw .toc-cn{background:linear-gradient(90deg,#542800 0%,#743700 30%,#c65100 65%,#ff6346 100%);color:#fff4f0;box-shadow:0 0 0 2px #000,0 0 12px rgba(0,120,215,.5)}
+html.ghf-inv .tocw .toc-cn.lv-1{background:linear-gradient(90deg,#361c00,#542800);box-shadow:0 0 0 1px #361c00}
+html.ghf-inv .tocw .toc-cn.lv-3{background:linear-gradient(90deg,#452700 0%,#a54900 30%,#f56015 60%,#ff6f6f 100%);box-shadow:0 0 0 2px #000,0 0 0 4px #ff6f6f,0 0 22px rgba(0,150,225,.75);animation:none}
+html.ghf-inv .tocw .toc-hl .toc-cn{box-shadow:0 0 0 2px #000,0 0 0 4px #ff6f6f}
+html.ghf-inv .tocw .toc-cnl-ico,html.ghf-inv .tocw .toc-cn-nut{filter:invert(1) hue-rotate(180deg)}

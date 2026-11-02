@@ -1,0 +1,119 @@
+{
+ "version": "0.3.0",
+ "note": "That Old Chestnut v0.3.0 chestnut detection. Every clause of a record's conduct note and reply quotes is scored against these rules (case-insensitive JavaScript RegExp). Clauses scoring >= min_clause get the crescendo highlight (level 1: <3, 2: 3-5, 3: >=6); a record whose best clause scores >= min_record joins the old-chestnuts list with that clause as its headline. overrides by record id: {\"exclude\":true} | {\"include\":true} | {\"headline\":\"...\"}; a record may also carry finding.chestnut (false | true | \"headline\"). Add rules here; toc.js carries the same list as its fallback.",
+ "min_clause": 2,
+ "min_record": 3,
+ "kinds": {
+  "scope": "set aside as outside the request",
+  "later": "released or confirmed only later",
+  "challenge": "came out after a new request, follow-up or challenge",
+  "found": "records found after a not-held answer",
+  "nobasis": "no record of why records were left out",
+  "public": "made public during the request",
+  "pending": "found but not yet released",
+  "withheld": "withheld"
+ },
+ "rules": [
+  {
+   "kind": "scope",
+   "weight": 3,
+   "pattern": "\\b(?:withheld|left out|excluded|set aside|treated)\\b[^.;]{0,40}\\b(?:out of|outside(?: of)?)(?: the| our)? scope\\b"
+  },
+  {
+   "kind": "scope",
+   "weight": 3,
+   "pattern": "\\bnot considered to fall within the scope\\b"
+  },
+  {
+   "kind": "scope",
+   "weight": 1,
+   "pattern": "\\b(?:out of|outside(?: of)?)(?: the| our)? scope\\b"
+  },
+  {
+   "kind": "later",
+   "weight": 3,
+   "pattern": "\\b(?:\\w+ )?(?:days|weeks|months|years) later\\b"
+  },
+  {
+   "kind": "later",
+   "weight": 3,
+   "pattern": "\\bonly (?:then )?(?:disclosed|released|produced|provided|identified|found|confirmed)\\b"
+  },
+  {
+   "kind": "later",
+   "weight": 2,
+   "pattern": "\\bonly after\\b"
+  },
+  {
+   "kind": "later",
+   "weight": 2,
+   "pattern": "\\b(?:disclosed|released|produced|provided)\\b[^.;]{0,40}\\bonce\\b|\\bfound once\\b"
+  },
+  {
+   "kind": "later",
+   "weight": 2,
+   "pattern": "\\bwas followed\\b[^.;]{0,40}\\bby\\b"
+  },
+  {
+   "kind": "later",
+   "weight": 2,
+   "pattern": "\\bwithin \\w+ (?:days|weeks) of (?:challenge|the challenge|follow-up)\\b"
+  },
+  {
+   "kind": "challenge",
+   "weight": 2,
+   "pattern": "\\b(?:on|after) a (?:new|fresh|further) request\\b|\\bonce the request named\\b"
+  },
+  {
+   "kind": "challenge",
+   "weight": 2,
+   "pattern": "\\b(?:on|after|of) (?:challenge|follow-up|internal review)\\b|\\bre-?asked\\b"
+  },
+  {
+   "kind": "found",
+   "weight": 3,
+   "pattern": "\\bsearch(?:es)?\\b[^.;]{0,30}\\b(?:had )?(?:identified|found)\\b|\\bidentified during searches\\b"
+  },
+  {
+   "kind": "found",
+   "weight": 3,
+   "pattern": "\\bfurther\\b[^.;]{0,40}\\b(?:documentation|records|information)\\b[^.;]{0,20}\\b(?:has|have) been found\\b"
+  },
+  {
+   "kind": "found",
+   "weight": 2,
+   "pattern": "\\b(?:has|have|had) been found\\b|\\b(?:was|were) found\\b"
+  },
+  {
+   "kind": "found",
+   "weight": 3,
+   "pattern": "\\bthe same\\b[^.;]{0,30}\\breply\\b[^.;]{0,80}\\b(?:recorded|admitted|named|held|confirmed)\\b"
+  },
+  {
+   "kind": "found",
+   "weight": 2,
+   "pattern": "\\bbecame\\b[^.;]{0,40}\\b(?:specific|records|references)\\b"
+  },
+  {
+   "kind": "nobasis",
+   "weight": 2,
+   "pattern": "\\bno recorded basis\\b|\\bdoes not hold a separate (?:search log|record)\\b|\\bno separate record\\b"
+  },
+  {
+   "kind": "public",
+   "weight": 2,
+   "pattern": "\\bafter the request and before the reply\\b|\\brelied on its new public availability\\b|\\bpublished\\b[^.;]{0,40}\\bafter\\b"
+  },
+  {
+   "kind": "pending",
+   "weight": 1,
+   "pattern": "\\bnot yet (?:requested or )?disclosed\\b|\\bno substantive disclosure\\b|\\bstill sifting\\b"
+  },
+  {
+   "kind": "withheld",
+   "weight": 1,
+   "pattern": "\\bwithheld\\b"
+  }
+ ],
+ "overrides": {}
+}
