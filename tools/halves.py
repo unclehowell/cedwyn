@@ -597,7 +597,7 @@ def landing(sections, S, cfg, H):
     body = f"""
 <body data-cedwyn-page="landing">
 <main class="wrap hv" data-no-translate>
-<div class="hv-land"><a class="hv-eb" style="margin-bottom:10px" href="/ebooks/?utm_source=home&amp;utm_medium=button&amp;utm_campaign=sf27"><span>E-books · first editions free</span><span class="ar" aria-hidden="true">→</span></a><div class="hv-tiles" aria-label="Choose a place">
+<div class="hv-land"><div class="hv-tiles" aria-label="Choose a place">
 <button type="button" class="land-place" data-open-modal="modal-wales" aria-haspopup="dialog" aria-controls="modal-wales">
 <img src="{E(wales_src)}" alt="" fetchpriority="high"><span class="land-place-label">Wales 🏴󠁧󠁢󠁷󠁬󠁳󠁿🇬🇧</span></button>
 <button type="button" class="land-place" data-open-modal="modal-argentina" aria-haspopup="dialog" aria-controls="modal-argentina">
@@ -673,7 +673,6 @@ def wales(sections, S, cfg, H):
 <div class="hv-btns" id="vouchers">{vouchers}<a class="hv-btn" href="/ebooks/" data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</a></div>
 <p class="mut"><a href="/wales/vouchers/terms/">{lt(T, VOUCHER_TERMS, l, 'w_vterms')}</a></p></section>
 <section><a class="hv-btn" style="width:100%;justify-content:flex-start;min-height:64px;border-radius:12px" href="/argentina/?lang=es" hreflang="es"><span><b data-i18n="w_cross_h">{E(tx(T,'w_cross_h',l))}</b><br><span class="mut" data-i18n="w_cross_p">{E(tx(T,'w_cross_p',l))}</span></span></a></section>
-<p class="ebook-strip" style="margin:.75rem 0;font-size:16px;line-height:1.4"><a href="/r/strip-wales" data-i18n="w_ebooks">{E(tx(T,'w_ebooks',l))}</a></p>
 <h2 data-i18n="w_h2">{E(tx(T,'w_h2',l))}</h2>
 {headlines(H, T, l, 'wales', lead=f'<p class="lede" data-i18n="w_lede">{E(tx(T,"w_lede",l))}</p>', tail=f'<div class="hv-hl" id="no-museum"><b data-i18n="w_nomuseum_h">{E(tx(T,"w_nomuseum_h",l))}</b><p data-i18n="w_nomuseum_p">{E(tx(T,"w_nomuseum_p",l))}</p></div>')}
 <p class="endnote"><a href="/" data-i18n="home">{E(tx(T,'home',l) or 'Home')}</a> · <a href="/explore/" data-i18n="land_more">{E(tx(T,'land_more',l))}</a></p>

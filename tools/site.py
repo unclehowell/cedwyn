@@ -513,10 +513,14 @@ def _shop_strip(dist):
         f.write_text(h[:at] + line + h[at:], encoding='utf-8')
         n += 1
     print('shop strip: added to', n, 'pages')
+# 2 Nov 2026 (owner, 00:48 GMT): the e-book strip is retired on every page, with the rest of the cross-promo chrome; _shop_strip is
+# no longer called. purge_promo.py removes the strip, the home e-book button, the outside-records popup and the section ribbon from
+# every built page, including copies kept from earlier builds. The Garden banner (garden-banner.js) replaces them. Never stops a build - Sion's Tab agent
 try:
-    _shop_strip(DIST)
+    import purge_promo
+    purge_promo.run(DIST)
 except Exception as _e:
-    print('shop strip failed:', _e)
+    print('promo purge failed:', _e)
 
 # Holdings wording (owner rule, 22:25 GMT 30 Oct 2026; P-104): public text never states whether the family holds a record; it names
 # which other party should hold the original and what it has disclosed. Exact-phrase rewrites from data/holdings-wording.json over

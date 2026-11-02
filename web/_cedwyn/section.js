@@ -107,7 +107,7 @@
     var q = document.querySelectorAll("[data-cedwyn-lang]");
     [].forEach.call(q, function (b) { if (b.__cl) return; b.__cl = 1; b.addEventListener("click", function () { setLang(b.getAttribute("data-cedwyn-lang")); }); });
   }
-  function go() { ribbon(0); wireLang(); forms(); paint(); }
+  function go() { wireLang(); forms(); paint(); }   // 2 Nov 2026: the section ribbon (coming-soon line, Vouchers / E-books / other-nation chips) is retired; ribbon() is no longer called. The Garden banner sits in the header strip instead (garden-banner.js)
   document.addEventListener("ghf-lang-change", function (e) { if (e && e.detail && e.detail.lang) window.__cedwynLang = e.detail.lang; paint(); });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
   window.addEventListener("load", paint);

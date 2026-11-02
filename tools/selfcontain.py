@@ -22,7 +22,7 @@ FIX = '--fix' in sys.argv
 ONLY = [a.split('=', 1)[1] for a in sys.argv if a.startswith('--only=')]
 SELF = 'cedwyn.bucklerfamily.estate'
 ABS = 'https://' + SELF
-BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.19'
+BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.20'   # 2.1.20 (2 Nov 2026): new cache key so phones fetch the boot that loads the Garden City banner
 TIDS = [t['id'] for t in CFG['themes']]
 HOST = {}
 for t in CFG['themes']:
@@ -33,6 +33,9 @@ for h, tid in CFG.get('extra_hosts', {}).items():
 APEX = sorted(CFG['apex']['paths'].items(), key=lambda kv: -len(kv[0]))
 TILES = CFG.get('allowed_tile_templates', [])
 CHECKOUT = ('buy.stripe.com', 'checkout.stripe.com', 'gumroad.com')   # checkout links stay direct (see classify)
+# 2 Nov 2026 (owner, 03:25 GMT): Garden City Cymru is the one outside shop the site promotes (garden-banner.js on every webapp);
+# its address stays direct, like the checkout hosts, and runtime.js pass() lets the click through. - Sion's Tab agent
+OUT_SITE = ('gardencity.cymru',)
 # 31 Oct 2026 (P-114): the WordPress copy's privacy script asks public-api.wordpress.com/geo/ for the visitor's region with an
 # XHR and JSON.parse()s the answer. Sent to /wayback/go/ it got an HTML page and threw "Unexpected token '<' ... is not valid
 # JSON" on every wiki page. It now gets an empty JSON answer as a data: address (region '' = no state privacy rule applies; no
@@ -90,6 +93,7 @@ def classify(m):
     if host in CDN: return 'cdn', None
     # 27 Oct 2026: e-book Buy buttons go straight to checkout (Sion 13:01: never the interstitial; a payment step is not archived)
     if host in CHECKOUT or host.endswith('.gumroad.com'): return 'ns', None
+    if host in OUT_SITE: return 'ns', None   # 2 Nov 2026: the Garden City banner (see OUT_SITE)
     # 29 Oct 2026 (P-041): Stripe's buy-button script must load from js.stripe.com itself (Stripe requires it); it is part of
     # the checkout, like the Buy links above, so it is neither archived nor vendored. - Sion's Tab agent
     if host == 'js.stripe.com': return 'ns', None
