@@ -333,6 +333,9 @@ html.ghf-inv body.cm .cm-thumb .cm-vprompt img.cm-vp-img{filter:none!important}
 .cm-vt-t td{padding:6px 4px;vertical-align:top;border-bottom:1px solid #e6dcc6;color:#1d1d1b;overflow-wrap:anywhere}
 .cm-vt-t td.cm-vt-v{font-weight:700;white-space:nowrap}
 .cm-vt-t td.cm-vt-p{font-weight:700;text-align:right;white-space:nowrap}
+/* 1.11.1: version table headings, Length column, date on one line (version standard §3) */
+.cm-vt-t th{padding:6px 4px;text-align:left;font-size:12px;font-weight:700;color:#5a5346;border-bottom:1px solid #d8ccb0}
+.cm-vt-t td.cm-vt-l,.cm-vt-t td:nth-child(2){white-space:nowrap;overflow-wrap:normal}
 
 /* v1.9.0, 1 Nov 2026 (owner's rule m:1d4eb2cf): door art, the version modal and the three detail dropdowns — Cedwyn editors */
 .cm-thumb.soon{cursor:pointer;background:#f7f2e7}

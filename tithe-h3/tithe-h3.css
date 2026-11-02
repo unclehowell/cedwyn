@@ -1,0 +1,29 @@
+.th3{margin:0;background:#f7f2e7;color:#1d1d1b;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.th3w{max-width:960px;margin:0 auto;padding:12px 14px 40px}
+.th3-parcel{margin:4px 0 0;font-size:.85rem}.th3-parcel a{color:#1e4d45}
+.th3-hero h1{margin:.2em 0 .1em;font-size:1.7rem;color:#1e4d45}.th3-hero p{margin:0 0 .8em}
+.th3-bar{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:6px 0;font-size:.9rem}
+.th3-bar label{display:flex;gap:4px;align-items:center;white-space:nowrap}
+.th3-bar .op input{width:110px}.th3-bar .lab{font-weight:600}
+.th3-bar button{font:inherit;padding:4px 10px;border:1px solid #1e4d45;background:#fff;color:#1e4d45;border-radius:14px;cursor:pointer}
+.th3-bar button[aria-pressed=true]{background:#1e4d45;color:#fff}
+#map{height:68vh;min-height:360px;border-radius:8px;border:1px solid #c9bfa8;background:#ddd}
+.th3-legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.82rem;margin:6px 0}
+.th3-legend span{display:inline-flex;align-items:center;gap:5px}.th3-legend i{width:14px;height:14px;border-radius:3px;display:inline-block;border:1px solid #0003}
+.th3-panel{background:#fff;border:1px solid #d8cfba;border-radius:8px;padding:10px 12px;margin:8px 0}
+.th3-panel h3{margin:0 0 4px;color:#1e4d45}.th3-panel dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:0;font-size:.9rem}
+.th3-panel dt{font-weight:600}.th3-panel dd{margin:0;overflow-wrap:anywhere}.th3-panel .hint{margin:0;color:#666}
+.th3-panel code{font-size:.82rem}
+.th3-tablewrap{overflow-x:auto}.th3-table{border-collapse:collapse;width:100%;font-size:.85rem}
+.th3-table th,.th3-table td{border-bottom:1px solid #e3dccb;padding:4px 6px;text-align:left;white-space:nowrap}
+.th3-table tr{cursor:pointer}.th3-table tr:hover{background:#efe8d6}
+.th3-how li{margin:.3em 0}.th3-note{font-size:.9rem;color:#444}
+.th3-dl{font-size:.9rem}.th3-dl a,.th3-foot a{color:#1e4d45}
+.th3-foot{margin-top:24px;font-size:.85rem;color:#555}
+.th3-lbl{background:none;border:0;box-shadow:none;font:700 11px system-ui;color:#111;text-shadow:0 0 2px #fff,0 0 2px #fff,0 0 3px #fff;padding:0}
+.th3-lbl:before{display:none}
+@media (max-width:420px){.th3-hero h1{font-size:1.45rem}#map{height:62vh}}
+
+/* v0.1.1: the header's third row shows nothing but the shared Garden banner on this webapp (the e-book strip is gone) */
+.ghf-v2-up:not(.cw-gdn-on){display:none!important}
+.ghf-v2-name small[data-th3-slot] a:hover{text-decoration:underline!important}
