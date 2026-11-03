@@ -1,5 +1,5 @@
 {
- "version": "1.3.2",
+ "version": "1.4.0",
  "note": "Two halves of Cedwyn (Sion, 23:39 GMT 25 Oct 2026, m:2a7c8c27): landing (two tiles), /wales/ = augmented-reality guided tour of Cedwyn Estate, Wales (former manorial house, never 'farm'; no museum stop), /argentina/ = Cedwyn Estate II / Great House II retreat with package builder. Wales copy follows EDITORIAL.md (ingredients + citations, courts' view first, banned words). AI images carry 'artist's impression'. Bookings are pre-order requests, not confirmed holidays. Welsh and Spanish are first drafts for review. tools/halves.py renders it. - Sion's Tab agent",
  "img": "/_cedwyn/halves/img/",
  "img_v": "3",
@@ -1387,7 +1387,9 @@
    "that-old-chestnut",
    "projects",
    "chat",
-   "watchtower"
+   "watchtower",
+   "analytics",
+   "spill"
   ],
   "argentina_exclude": [
    "wales",
@@ -1408,7 +1410,9 @@
    "emails",
    "projects",
    "that-old-chestnut",
-   "chat"
+   "chat",
+   "analytics",
+   "spill"
   ],
   "online_only": [
    "hubspot",
@@ -1439,7 +1443,20 @@
      "es": "Cadena del título"
     }
    }
-  ]
+  ],
+  "online_home": [
+   "analytics",
+   "spill"
+  ],
+  "own_address": [
+   "chess",
+   "terrain",
+   "nft-art",
+   "cyberspace",
+   "forensic",
+   "mr-wolf"
+  ],
+  "online_home_note": "1.4.0 (3 Nov 2026, owner WhatsApp 17:48 GMT): Analytics and Spill (and Cloudflare, already online_only) belong to the Online card only, at their own addresses; own_address apps have an online-only page body, so the Wales and Patagonia modals open them at their own address, never as a 'see Online' line. — Cedwyn editors"
  },
  "wales_title_map": {
   "The Farm Album": "The House Album",
@@ -1665,6 +1682,14 @@
   ]
  },
  "changelog": [
+  {
+   "version": "1.4.0",
+   "date": "2026-11-03",
+   "pages": [
+    "/"
+   ],
+   "change": "Landing modals: every Wales tile is a hologram; Analytics, Spill and Cloudflare are listed under Online only; the Chessboard, 3D map, Gallery, Forensic Assessments and Mr Wolf open at their own addresses from the Wales and Patagonia menus, so no tile opens a page with nothing on it. - Tab agent"
+  },
   {
    "version": "1.2.1",
    "date": "2026-10-30",

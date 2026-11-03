@@ -45,3 +45,19 @@ Content generated after load is handled too (a MutationObserver re-applies the r
 - Never hide a block without a stub (`data-scope-nostub` only for decorative duplicates).
 - Visual: stubs use the page's own text colour on a translucent band; never a white background; must read at 390 px.
 - Changing scope.js: bump its `?v=` in ghf-boot.js and bump ghf-boot's `?v=` (tools/selfcontain.py, tools/sections.py, tools/home.py BOOT) - /_cedwyn/* is edge-cached for 4 h.
+
+## A whole webapp never becomes a note (scope.js 1.1.0, 3 Nov 2026)
+Source: owner request of 3 Nov 2026, 17:48 GMT (webapp tour with no dead pages); live 390 px audit of 3 Nov 2026, 17:52–18:03 UTC (all 44 slots, 130 menu tiles).
+- The section (Wales / Patagonia) comes from the address only. runtime.js no longer carries the last half into later pages of the tab;
+  the stored value applies only to the page it was stored for (a section single-page app that rewrote its own address).
+- When a page's own body (`<main data-scope=...>`, or a whole-app `home` in scope-map.json) belongs to another scope, scope.js takes the
+  visitor to the same webapp in its own scope with `location.replace` (no history entry; at most one hop per address every 15 s,
+  otherwise the one-line card is still shown). Examples: /wales/chess/ -> /chess/, /patagonia/ -> /argentina/patagonia/.
+- Blocks inside a page still become one line, as above. Only the whole body hops.
+- Place menus: `data/halves.json` groups.own_address apps open at their own address from the Wales and Patagonia modals;
+  groups.online_home apps (Analytics, Spill) are listed in the Online card only.
+
+| Version | Date | Change |
+|---|---|---|
+| 1.1.0 | 2026-11-03 | Section from the address only (runtime.js); a whole out-of-scope webapp hops to its own scope instead of showing a note. Fixes the dead pages on the header's next/back loop after a Wales or Patagonia visit. |
+| 1.0.0 | 2026-11-01 | Three scopes, tagging, stubs. |

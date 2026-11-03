@@ -9,7 +9,12 @@
   // section ribbon and keeps theme links inside the section; the section gives the default language (Wales cy, Argentina es).
   var DE0 = document.documentElement, SECM = /^\/(wales|argentina)(\/[^\/]+)/.exec(location.pathname), SEC = '', SS = '', LP = location.pathname;
   if (T && SECM && SECM[2] === P) { SEC = SECM[1]; LP = location.pathname.slice(SEC.length + 1); }
-  try { if (SEC) sessionStorage.setItem('cedwyn-sec', SEC); else SS = sessionStorage.getItem('cedwyn-sec') || ''; } catch (e) {}
+  // 3 Nov 2026 (webapp tour fix): the section is read from the address only. Before, the last /wales/ or /argentina/ page was kept in
+  // sessionStorage and applied to EVERY later page in the tab, so after one Wales page the header's next/back (which opens each webapp
+  // at its own address) landed on pages still marked Wales: scope.js then hid every online block and whole online webapps behind a
+  // 'see Online' line, and the language flipped to Welsh. Now the stored section only applies to the very page it was stored for (a
+  // section SPA that replaced its address with the plain theme path, then reloaded). - Sion's Tab agent
+  try { if (SEC) sessionStorage.setItem('cedwyn-sec', SEC + '|' + LP); else { SS = sessionStorage.getItem('cedwyn-sec') || ''; SS = (SS.split('|')[1] === location.pathname) ? SS.split('|')[0] : ''; } } catch (e) { SS = ''; }
   if (SEC) DE0.setAttribute('data-cedwyn-sec-url', SEC);
   if (SEC || /^(wales|argentina)$/.test(SS)) {
     DE0.setAttribute('data-cedwyn-sec', SEC || SS);

@@ -69,7 +69,7 @@
   out += '<link rel="preload" as="font" type="font/woff2" crossorigin href="' + F + '400-normal.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="' + F + '700-normal.woff2">';
   // 1 Nov 2026: the three scopes Wales / Argentina / Online. scope.js (sync, tiny) sets <html data-cedwyn-scope> and the
   // out-of-scope rule before the first paint, then renders the cross-link lines. Spec: docs/SCOPES.md.
-  if (!window.CedwynScope && !d.querySelector('script[src*="/_cedwyn/scope.js"]')) out += '<script src="/_cedwyn/scope.js?v=1.0.0"><\/script>';
+  if (!window.CedwynScope && !d.querySelector('script[src*="/_cedwyn/scope.js"]')) out += '<script src="/_cedwyn/scope.js?v=1.1.0"><\/script>';   // 1.1.0 (3 Nov 2026): a webapp whose body belongs to another scope opens in its own scope, never as a blank note
   var needBc = !window.GHFBasecamp && !d.querySelector('script[src*="basecamp.js"]');
   if (needBc) out += '<script src="' + B + "basecamp.js" + V + '"><\/script>';
   if (!d.querySelector('script[src*="cw-graph.js"]')) out += '<script src="/_cedwyn/cw-graph.js?v=1.3.0" defer><\/script>'; // 30 Oct 2026: 100vh Read more on every page with the header (2 Nov 2026: its graph promo strip is retired)

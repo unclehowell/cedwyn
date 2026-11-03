@@ -18,6 +18,7 @@ import json, html, re, pathlib, math
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
 VERSION = '1.5.1'
+# 1.6.0 (3 Nov 2026, owner WhatsApp 17:48 GMT, webapp tour fix): every Wales modal tile is a hologram (wales_holo, no non-hologram fallback); data/halves.json groups.online_home (Analytics, Spill) leave the Wales and Patagonia modals and stay in the Online card at their own addresses; groups.own_address apps (online-only page bodies: Chessboard, 3D map, Gallery, Forensic Assessments, Mr Wolf) open at their own address from the place modals instead of a 'see Online' line. — Sion's Tab agent
 # 1.5.1 (2 Nov 2026, 05:04 GMT): an online_only app leaves only the place modals of the halves that exclude it (the FOI/correspondence apps stay in Wales, leave Patagonia). — Sion's Tab agent
 # 1.5.0 (2 Nov 2026, 03:41 GMT request): /online/ section — data/halves.json groups.online_only (hubspot, cloudflare, cyberspace) leave the Wales and Patagonia place modals and open at /online/<id>/ from the Online card, which also lists HubSpot task control; old /wales/<id>/ and /argentina/<id>/ addresses 301 (Worker cedwyn-online, workers/cedwyn-online/index.js). — Sion's Tab agent
 # 1.4.2 (2 Nov 2026, 02:53Z): Patagonia visitor-card imagery aligned (B&B cottage GEN-0001, whole-house NFA-0035, hero NFA-0157); accessible alt text now names venue artwork. — Cedwyn editors
@@ -495,7 +496,14 @@ APP_EXCLUDED = {'wales', 'patagonia'}
 # the wayback archive's Great House Farm Part 1 series (holo-ghf1-<n>.webp = 'Great House Farm Part 1 - <n>'; edge-detected locally,
 # work/tile-images/holo.py; committed under web/_cedwyn/halves/img/). Argentina: the digitally restored farm pieces ('restored to former
 # glory', v0.0.2, no flowers, no people) by their own /nft-art/ thumbs, never copies; the flowery gallery pieces stay on the NFT pages only.
-WALES_TILE_IMAGES = {'infographic': 'holo-ghf1-101', 'chess': 'holo-ghf1-124', 'csscpsg': 'holo-ghf1-038', 'courtdrills': 'holo-ghf1-022', 'app': 'holo-ghf1-010', 'chat': 'holo-ghf1-039', 'dartboard': 'holo-ghf1-015', 'estate': 'holo-ghf1-025', 'directory': 'holo-ghf1-096', 'terrain': 'holo-ghf1-020', 'cyberspace': 'holo-ghf1-013', 'nft-art': 'holo-ghf1-119', 'fcg': 'holo-ghf1-018', 'accounts': 'holo-ghf1-084', 'authorities': 'holo-ghf1-100', 'wdtk': 'holo-ghf1-123', 'review': 'holo-ghf1-115', 'research': 'holo-ghf1-011', 'meeting': 'holo-ghf1-053', 'projects': 'holo-ghf1-016', 'watchtower': 'holo-ghf1-023', 'fb2': 'holo-ghf1-099', 'email': 'holo-ghf1-126', 'emails': 'holo-ghf1-092', 'kissed-frogs': 'holo-ghf1-124', 'whattheydontsay': 'holo-ghf1-039', 'blog': 'holo-ghf1-096', 'wiki': 'holo-ghf1-038', 'records': 'holo-ghf1-084', 'docs': 'holo-ghf1-076', 'wayback': 'holo-ghf1-098', 'nomenclature': 'holo-ghf1-011', 'maps': 'holo-ghf1-025', 'fb': 'holo-ghf1-099', 'ebooks': 'holo-ghf1-115', 'story': 'holo-ghf1-098', 'thousand-cuts': 'holo-ghf1-010', 'oldbill': 'holo-ghf1-084', 'qa': 'holo-ghf1-039', 'shop': 'holo-ghf1-119', 'documentary': 'holo-ghf1-101', 'familytree': 'holo-ghf1-099'}
+WALES_TILE_IMAGES = {'infographic': 'holo-ghf1-101', 'chess': 'holo-ghf1-124', 'csscpsg': 'holo-ghf1-038', 'courtdrills': 'holo-ghf1-022', 'app': 'holo-ghf1-010', 'chat': 'holo-ghf1-039', 'dartboard': 'holo-ghf1-015', 'estate': 'holo-ghf1-025', 'directory': 'holo-ghf1-096', 'terrain': 'holo-ghf1-020', 'cyberspace': 'holo-ghf1-013', 'nft-art': 'holo-ghf1-119', 'fcg': 'holo-ghf1-018', 'accounts': 'holo-ghf1-084', 'authorities': 'holo-ghf1-100', 'wdtk': 'holo-ghf1-123', 'review': 'holo-ghf1-115', 'research': 'holo-ghf1-011', 'meeting': 'holo-ghf1-053', 'projects': 'holo-ghf1-016', 'watchtower': 'holo-ghf1-023', 'fb2': 'holo-ghf1-099', 'email': 'holo-ghf1-126', 'emails': 'holo-ghf1-092', 'kissed-frogs': 'holo-ghf1-124', 'whattheydontsay': 'holo-ghf1-039', 'blog': 'holo-ghf1-096', 'wiki': 'holo-ghf1-038', 'records': 'holo-ghf1-084', 'docs': 'holo-ghf1-076', 'wayback': 'holo-ghf1-098', 'nomenclature': 'holo-ghf1-011', 'maps': 'holo-ghf1-025', 'fb': 'holo-ghf1-099', 'ebooks': 'holo-ghf1-115', 'story': 'holo-ghf1-098', 'thousand-cuts': 'holo-ghf1-010', 'oldbill': 'holo-ghf1-084', 'qa': 'holo-ghf1-039', 'shop': 'holo-ghf1-119', 'documentary': 'holo-ghf1-101', 'familytree': 'holo-ghf1-099', 'settings': 'holo-ghf1-013', 'forensic': 'holo-ghf1-016', 'mr-wolf': 'holo-ghf1-023', 'tithe-h3': 'holo-rec-0001-ty-mawr', 'spill': 'holo-ghf1-020', 'analytics': 'holo-ghf1-100', 'cloudflare': 'holo-ghf1-013', 'that-old-chestnut': 'holo-ghf1-016', 'hubspot': 'holo-ghf1-023', 'garden': 'holo-ghf1-119'}
+# 3 Nov 2026 (owner, WhatsApp 17:48 GMT: every icon in the Wales modal must be a hologram): a Wales tile never falls back to a
+# non-hologram picture. Apps with no hand-picked hologram get one of the hologram renders above, chosen from the app id
+# (stable between builds). - Sion's Tab agent
+WALES_HOLO_POOL = sorted(set(v for v in WALES_TILE_IMAGES.values() if v.startswith('holo-')))
+def wales_holo(tid):
+    return WALES_TILE_IMAGES.get(tid) or WALES_HOLO_POOL[sum(map(ord, tid)) % len(WALES_HOLO_POOL)]
+
 ARG_TILE_IMAGES = {'infographic': '0021', 'chess': '0094', 'csscpsg': '0078', 'courtdrills': '0082', 'app': '0035', 'chat': '0057', 'dartboard': '0029', 'estate': '0014', 'directory': '0048', 'terrain': '0106', 'cyberspace': '0044', 'nft-art': '0058', 'fcg': '0122', 'accounts': '0131', 'authorities': '0055', 'wdtk': '0072', 'review': '0083', 'research': '0087', 'meeting': '0050', 'projects': '0020', 'watchtower': '0026', 'fb2': '0023', 'email': '0071', 'emails': '0147', 'kissed-frogs': '0067', 'whattheydontsay': '0084', 'blog': '0076', 'wiki': '0088', 'records': '0117', 'docs': '0058', 'wayback': '0141', 'nomenclature': '0123', 'maps': '0093', 'fb': '0038', 'ebooks': '0060', 'story': '0032', 'thousand-cuts': '0130', 'oldbill': '0052', 'qa': '0080', 'shop': '0145', 'documentary': '0133', 'familytree': '0126'}
 
 def arg_restored(nfa):
@@ -511,14 +519,16 @@ def app_image(H, key):
 def app_tile(H, section, theme):
     tid = theme['id']
     label = APP_LABELS.get(tid, theme.get('title') or tid)
-    if section == 'wales' and tid in WALES_TILE_IMAGES:
-        image = WALES_TILE_IMAGES[tid]
+    if section == 'wales':
+        image = wales_holo(tid)   # 3 Nov 2026: always a hologram in the Wales modal
     elif section == 'argentina' and tid in ARG_TILE_IMAGES:
         image = 'nfa:' + ARG_TILE_IMAGES[tid]
     else:
         image = APP_IMAGES.get(tid, 'ty-mawr-1974-reconstruction')
     online_only = set(H.get('groups', {}).get('online_only', []))
-    href = (f'/online/{tid}/' if tid in online_only else f'/{tid}/') if section == 'online' else f'/{section}/{tid}/'  # Online: /online/<id>/ for online-only apps (2 Nov 2026), else the apps' own top-level addresses (1 Nov 2026)
+    href = (f'/online/{tid}/' if tid in online_only else f'/{tid}/') if section == 'online' else f'/{section}/{tid}/'
+    if section in ('wales', 'argentina') and tid in set(H.get('groups', {}).get('own_address', [])):
+        href = f'/{tid}/'   # 3 Nov 2026 (webapp tour fix): apps whose page body is online-only open at their own address from the place menus too, never as a 'see Online' line under /wales/ or /argentina/ - Sion's Tab agent  # Online: /online/<id>/ for online-only apps (2 Nov 2026), else the apps' own top-level addresses (1 Nov 2026)
     return (f'<a class="land-app" href="{E(href)}" aria-label="{E(label)}">'
             f'<img src="{E(app_image(H, image))}" alt="" loading="lazy" decoding="async">'
             f'<span class="land-app-label">{E(label)}</span></a>')
@@ -536,7 +546,7 @@ def network_tile(H):
 def modal_apps(H, cfg, section):
     out = []
     G_ = H.get('groups', {}); sx = set(G_.get('wales_exclude' if section == 'wales' else 'argentina_exclude', [])) if section in ('wales', 'argentina') else set()
-    skip = set(APP_EXCLUDED) | (set(G_.get('online_only', [])) & sx)   # an /online/ app leaves the place modal of each half that excludes it (2 Nov 2026)
+    skip = set(APP_EXCLUDED) | ((set(G_.get('online_only', [])) | set(G_.get('online_home', []))) & sx)   # 3 Nov 2026: online_home apps (Analytics, Spill) leave the halves too, keeping their own addresses   # an /online/ app leaves the place modal of each half that excludes it (2 Nov 2026)
     for group in cfg.get('groups', []):
         items = [t for t in cfg['themes'] if t.get('group') == group['id'] and t['id'] not in skip]
         if not items:

@@ -1,4 +1,4 @@
-/*! scope.js — Cedwyn's three scopes: Wales, Argentina (Patagonia) and Online · v1.0.0 (1 Nov 2026)
+/*! scope.js — Cedwyn's three scopes: Wales, Argentina (Patagonia) and Online · v1.1.0 (3 Nov 2026; 1.0.0 1 Nov 2026)
  * One shared helper for every webapp, the way ghf_lang serves the language. Spec: docs/SCOPES.md.
  * WHICH SCOPE: the address decides, as it always has: /wales/... = wales, /argentina/... = argentina, anything else = online.
  *   ?scope=wales|argentina|online on any page switches to the same page in that scope. The visitor's last explicit choice
@@ -12,7 +12,7 @@
  * API: window.CedwynScope = { get(), stored(), set(s), href(s, path), label(s, lang), apply() }. */
 (function () {
   if (window.CedwynScope) return;
-  var d = document, de = d.documentElement, V = "1.0.0";
+  var d = document, de = d.documentElement, V = "1.1.0";
   var SC = ["wales", "argentina", "online"];
   var ALIAS = { wales: "wales", cymru: "wales", argentina: "argentina", patagonia: "argentina", online: "online", cyberspace: "online", "ar-lein": "online" };
   var STORE = { wales: "wales", argentina: "patagonia", online: "cyberspace" };   // ghf_loc words (basecamp.js reads these)
@@ -28,6 +28,22 @@
           area_wales: "Esta sección trata de la visita en Gales.", area_argentina: "Esta sección trata de la réplica planificada en la Patagonia.", area_online: "Esta sección forma parte de la finca en línea.", go: ["Vea Gales", "Vea Argentina", "Vea En línea"] }
   };
   function norm(v) { v = String(v || "").toLowerCase(); return ALIAS[v] || null; }
+  // 1.1.0 (3 Nov 2026, webapp tour fix): a whole webapp is never replaced by a "see ..." line. When the page's own body belongs to
+  // another scope (an online webapp opened under /wales/, the Patagonia museum opened at its flat address), the visitor is taken
+  // to the same webapp in its own scope at once (location.replace, no history entry), so next/back and the place menus never show a
+  // dead page. Guarded: at most one hop per address every 15 s; if the hop does not happen the one-line card is still shown. - Sion's Tab agent
+  function goHome(url) {
+    try {
+      if (!url) return false;
+      var here = location.pathname, to = String(url).split(/[?#]/)[0];
+      if (to === here) return false;
+      var k = "cs-go:" + here, t = +(sessionStorage.getItem(k) || 0), now = Date.now();
+      if (now - t < 15000) return false;
+      sessionStorage.setItem(k, String(now));
+      location.replace(to + location.search + location.hash);
+      return true;
+    } catch (e) { return false; }
+  }
   function cookie(n) { var m = new RegExp("(?:^|;\\s*)" + n + "=([a-z-]+)").exec(d.cookie || ""); return m ? m[1] : null; }
   function lang() {
     var l = window.__cedwynLang || cookie("ghf_lang"); if (!l) { try { l = localStorage.getItem("ghf_lang"); } catch (e) {} }
@@ -110,6 +126,7 @@
   function areaCard(ar) {   // a whole webapp that belongs to another scope: its content steps aside for one line pointing there
     var s = get(), h = ar && norm(ar.home), el, i, kids;
     if (!h || h === s || !d.body || d.querySelector(".cs-area")) return;
+    if (goHome(ar.href || href(h))) return;
     var l = lang(), t = T[l] || T.en, box = d.createElement("div"), b = d.createElement("b"), p = d.createElement("p");
     box.className = "cs-stub cs-area ghf-ui"; box.setAttribute("data-no-translate", ""); box.setAttribute("data-scope-stub", h); box.setAttribute("role", "note");
     b.textContent = t["area_" + h]; box.appendChild(b);
@@ -132,7 +149,9 @@
       if (el.closest(".cs-area") || el.parentNode && el.parentNode.closest && el.parentNode.closest("[data-scope]:not(.cs-stub)") && !shows(el.parentNode.closest("[data-scope]:not(.cs-stub)"), s)) continue;
       if (el.__csStub) { if (shows(el, s)) { el.__csStub.remove(); el.__csStub = null; } continue; }
       if (shows(el, s) || el.hasAttribute("data-scope-nostub") || el.closest(".cs-area")) continue;
-      tg = target(el); ps = prevStub(el);
+      tg = target(el);
+      if ((el.tagName === "MAIN" || (el.parentNode === d.body && el.querySelector && el.querySelector("main"))) && goHome(el.getAttribute("data-scope-href") || href(tg))) return;   // 1.1.0: the page body itself is out of scope
+      ps = prevStub(el);
       if (ps && ps.getAttribute("data-scope-stub") === tg) { el.__csStub = ps; continue; }
       if (d.body && d.querySelector(".cs-area") && el.parentNode === d.body) continue;   // the area card already speaks for it
       el.__csStub = stubFor(el, tg); el.parentNode.insertBefore(el.__csStub, el);
