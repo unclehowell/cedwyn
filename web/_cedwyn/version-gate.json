@@ -1,7 +1,7 @@
 {
  "name": "Cedwyn version manifest",
- "standard": "1.0.0",
- "version": "1.1.0",
+ "standard": "1.1.0",
+ "version": "1.2.0",
  "set": "2026-11-01",
  "about": "Read by /_cedwyn/version-gate.js; spec docs/VERSION-STANDARD.md; schema /_cedwyn/version-manifest.schema.json; checked by tools/version_audit.py. Prices are computed, never typed per version: the latest version costs the item's current price, each earlier one £4.99 less per step back (never below £0), v0.0.1 always free. Page counts, dates and changes come from data/ebooks.json and the e-book archive.",
  "price_step_gbp": 4.99,
@@ -42,6 +42,7 @@
  "purchase_path": "/ebooks/",
  "ebooks": {
   "wiki": {
+   "cover": "/ebooks/posters/great-house-farm-wiki.webp",
    "card": "great-house-farm-wiki",
    "price": "£4.99",
    "unit": "pages",
@@ -62,6 +63,7 @@
    ]
   },
   "fcg": {
+   "cover": "/ebooks/posters/fcg-fraud-concealment-and-government-involvement.webp",
    "price": "£4.99",
    "unit": "pages",
    "versions": [
@@ -81,6 +83,7 @@
    ]
   },
   "projects": {
+   "cover": "/ebooks/posters/project-management.webp",
    "card": "project-management",
    "price": "£4.99",
    "unit": "pages",
@@ -101,6 +104,7 @@
    ]
   },
   "dartboard": {
+   "cover": "/ebooks/posters/dartboard-disclosure.webp",
    "card": "dartboard-disclosure",
    "price": "£4.99",
    "unit": "pages",
@@ -121,6 +125,7 @@
    ]
   },
   "tymawr-deaths": {
+   "cover": "/ebooks/posters/tymawr-deaths.webp",
    "card": "tymawr-deaths",
    "price": "£4.99",
    "unit": "pages",
@@ -141,6 +146,7 @@
    ]
   },
   "recorded-incidents": {
+   "cover": "/ebooks/posters/recorded-incidents.webp",
    "card": "recorded-incidents",
    "price": "£4.99",
    "unit": "pages",
@@ -161,6 +167,7 @@
    ]
   },
   "tymawr-heritage": {
+   "cover": "/ebooks/posters/tymawr-heritage.webp",
    "card": "tymawr-heritage",
    "price": "£4.99",
    "unit": "pages",
@@ -181,6 +188,7 @@
    ]
   },
   "williams-buckler-family": {
+   "cover": "/ebooks/posters/williams-buckler-family.webp",
    "card": "williams-buckler-family",
    "price": "£4.99",
    "unit": "pages",
@@ -201,6 +209,7 @@
    ]
   },
   "cedwyn": {
+   "cover": "/ebooks/posters/cedwyn.webp",
    "card": "cedwyn",
    "unit": "pages",
    "versions": [
@@ -224,7 +233,7 @@
  },
  "no_gate": {
   "nft": "/nft-art/: every piece is v0.0.1 (free), no paid version yet",
-  "academy": "/learn/: courses open by membership, no per-course versions yet",
+  "academy": "/learn/: questionnaires v0.0.1 free, v0.0.2 with the membership; its own picker (academy Worker), checked live by the audit",
   "merch": "/shop/: goods with no free version"
  }
 }

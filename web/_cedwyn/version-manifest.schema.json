@@ -1,7 +1,7 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "$id": "/_cedwyn/version-manifest.schema.json",
- "title": "Cedwyn version manifest (standard 1.0.0)",
+ "title": "Cedwyn version manifest (standard 1.1.0)",
  "type": "object",
  "required": [
   "standard",
@@ -12,7 +12,7 @@
  ],
  "properties": {
   "standard": {
-   "const": "1.0.0"
+   "const": "1.1.0"
   },
   "version": {
    "type": "string",
@@ -56,6 +56,11 @@
     "card": {
      "type": "string",
      "pattern": "^[a-z0-9-]+$"
+    },
+    "cover": {
+     "type": "string",
+     "pattern": "^/[^\\s]+\\.(webp|jpg|png)$",
+     "description": "the item's own cover/poster, shown in the media slot on load (standard 2a)"
     },
     "price": {
      "type": "string",
