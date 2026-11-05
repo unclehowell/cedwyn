@@ -1,0 +1,51 @@
+name: sync-split-repos
+# For every app in split-repos.json whose mode is "split-repo", copy the new repository's main into its old branch here
+# (one branch, depth 1; .github, README.md and SPLIT.json are left as they are), so the live build and every old path keep
+# working after a webapp moves to its own repository. Apps in "mirror" mode are skipped (the new repository copies from
+# here instead). For section/<id> branches the job then asks sections-ci to pin the new tip (a push made with this job's
+# token does not start other workflows by itself). Never force-pushes, never deletes a branch, never starts the site build.
+# - Sion's Tab agent
+on:
+  schedule:
+    - cron: '15,45 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: sync-split-repos
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main, fetch-depth: 1, sparse-checkout: split-repos.json, sparse-checkout-cone-mode: false }
+      - name: Copy each switched app back into its old branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY' > /tmp/apps.txt
+          import json
+          for a in json.load(open('split-repos.json')).get('apps', []):
+              if a.get('mode') == 'split-repo': print(a['repo'], a['old_branch'])
+          PY
+          [ -s /tmp/apps.txt ] || { echo "no app in split-repo mode"; exit 0; }
+          while read -r REPO BR; do
+            echo "== $REPO -> $BR"
+            rm -rf /tmp/new /tmp/old
+            git clone -q --depth 1 "https://github.com/$REPO.git" /tmp/new || { echo "::warning::cannot read $REPO"; continue; }
+            git clone -q --depth 1 --single-branch --branch "$BR" "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" /tmp/old || { echo "::warning::no branch $BR"; continue; }
+            NEW_SHA=$(git -C /tmp/new rev-parse --short HEAD)
+            rsync -a --delete --exclude .git --exclude .github --exclude README.md --exclude APP-README.md --exclude SPLIT.json /tmp/new/ /tmp/old/
+            [ -f /tmp/new/APP-README.md ] && cp /tmp/new/APP-README.md /tmp/old/README.md || true
+            cd /tmp/old
+            git add -A
+            if git diff --cached --quiet; then echo "no change"; cd - >/dev/null; continue; fi
+            git -c user.name="cedwyn-split-sync" -c user.email="actions@users.noreply.github.com" commit -q -m "Sync from $REPO@$NEW_SHA (split repository is the source)"
+            git push origin "HEAD:$BR"
+            cd - >/dev/null
+            case "$BR" in section/*) gh workflow run sections-ci.yml -R "$GITHUB_REPOSITORY" -f section="${BR#section/}" || echo "::warning::could not ask sections-ci to pin $BR";; esac
+          done < /tmp/apps.txt

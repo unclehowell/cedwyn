@@ -1,0 +1,61 @@
+{
+ "note": "Webapps moved to their own repositories (REPO SPLIT, issue #188). mode 'mirror': the old branch here is the source and the new repository copies it every 30 min. mode 'split-repo': the new repository is the source and sync-split-repos.yml copies it back into the old branch every 30 min so the live build and old paths keep working. The owner flips a mode by editing this file on main. No branch is deleted. — Cedwyn maintainers",
+ "apps": [
+  {
+   "app": "Wales 3D world",
+   "repo": "unclehowell/cedwyn-wales-3d",
+   "old_branch": "section/wales-3d",
+   "page": "/wales/",
+   "mode": "mirror"
+  },
+  {
+   "app": "Argentina Tŷ Mawr 3D world",
+   "repo": "unclehowell/cedwyn-argentina-3d",
+   "old_branch": "section/argentina-3d",
+   "page": "/argentina/",
+   "mode": "mirror"
+  },
+  {
+   "app": "Tithe H3 map",
+   "repo": "unclehowell/cedwyn-tithe-h3",
+   "old_branch": "section/tithe-h3",
+   "page": "/tithe-h3/",
+   "mode": "mirror"
+  },
+  {
+   "app": "Hive",
+   "repo": "unclehowell/cedwyn-hive",
+   "old_branch": "hive",
+   "page": "/hive/",
+   "mode": "mirror"
+  },
+  {
+   "app": "Dartboard",
+   "repo": "unclehowell/cedwyn-dartboard",
+   "old_branch": "dartboard",
+   "page": "/dartboard/",
+   "mode": "mirror"
+  },
+  {
+   "app": "Analytics",
+   "repo": "unclehowell/cedwyn-analytics",
+   "old_branch": "section/analytics",
+   "page": "/analytics/",
+   "mode": "mirror"
+  },
+  {
+   "app": "Ask the Archive",
+   "repo": "unclehowell/cedwyn-chat",
+   "old_branch": "section/chat",
+   "page": "/chat/",
+   "mode": "mirror"
+  },
+  {
+   "app": "Mr Wolf",
+   "repo": "unclehowell/cedwyn-mr-wolf",
+   "old_branch": "section/mr-wolf",
+   "page": "/mr-wolf/",
+   "mode": "mirror"
+  }
+ ]
+}

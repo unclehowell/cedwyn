@@ -1,0 +1,1383 @@
+{
+  "schema": "cedwyn-repo-split-inventory/v1",
+  "audited_utc": "2026-11-05",
+  "source_manifests": [
+    {
+      "repository": "unclehowell/cedwyn-navigator",
+      "path": "apps.json",
+      "commit": "c8d5141b5cd652d8a8cbfd396e3be0e3d291ab53",
+      "declares": "59 visitor slots"
+    },
+    {
+      "repository": "unclehowell/cedwyn",
+      "path": "themes.json",
+      "commit": "84e9faecbf385eb538d3ffca34807119e9489001",
+      "declares": "53 theme records"
+    },
+    {
+      "repository": "unclehowell/cedwyn",
+      "path": "data/site-areas.json",
+      "commit": "84e9faecbf385eb538d3ffca34807119e9489001",
+      "declares": "41 visitor areas and 46 source themes"
+    }
+  ],
+  "branch_inventory": {
+    "repository": "unclehowell/cedwyn",
+    "branch_count": 306,
+    "pages": 4,
+    "method": "GitHub branches REST API, 100 per page; app branch attribution from themes.json and data/site-areas.json, plus navigator slot mapping for known later webapps; temporary feature branches not assumed to be app sources."
+  },
+  "summary": {
+    "visitor_apps": 59,
+    "existing_mirrors": 8,
+    "existing_standalone": 1,
+    "missing_repositories": 50,
+    "source_unresolved": 3,
+    "composite_apps": 5,
+    "source_branch_mappings": 62
+  },
+  "safety": {
+    "preserve_old_branches": true,
+    "delete_nothing": true,
+    "merge_nothing": true,
+    "deploy_nothing": true,
+    "change_production_routing": false,
+    "change_release_rules": false,
+    "repository_creation_not_run": "Connected GitHub toolset does not expose create-repository permission or operation."
+  },
+  "apps": [
+    {
+      "slot": 1,
+      "id": "wiki",
+      "title": "Legal Wiki & Evidence",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/wiki/",
+      "repository": "unclehowell/cedwyn-wiki",
+      "repository_status": "missing",
+      "source_themes": [
+        "wiki",
+        "records",
+        "nomenclature"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "wiki",
+          "branch": "wiki",
+          "tip_sha": "136d088f616a4d2df9a449cecd2f2ec949ace8ef",
+          "branch_role": "theme_branch"
+        },
+        {
+          "theme_id": "wiki",
+          "branch": "section/wiki",
+          "tip_sha": "a0770e19cef2640a2f66d78167b0d3753166323d",
+          "branch_role": "snapshot_branch"
+        },
+        {
+          "theme_id": "records",
+          "branch": "ghf-primary-records",
+          "tip_sha": "0e111a2c3486907d8a70319c1994c1517d669f6b",
+          "branch_role": "theme_branch"
+        },
+        {
+          "theme_id": "nomenclature",
+          "branch": "nomenclature",
+          "tip_sha": "12abf670f9d0319241f995abb17898c7cbf3a09d",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "composite_sources",
+      "creation_gate": "compose_sources_and_dependencies",
+      "notes": []
+    },
+    {
+      "slot": 2,
+      "id": "docs",
+      "title": "Docs · Evidence Catalogue",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/docs/",
+      "repository": "unclehowell/cedwyn-docs",
+      "repository_status": "missing",
+      "source_themes": [
+        "docs"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "docs",
+          "branch": "docs",
+          "tip_sha": "78782cffad11420ad349ebb3dc48301eda348f26",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 3,
+      "id": "wayback",
+      "title": "Wayback Vault",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/wayback/",
+      "repository": "unclehowell/cedwyn-wayback",
+      "repository_status": "missing",
+      "source_themes": [
+        "wayback"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "wayback",
+          "branch": "wayback",
+          "tip_sha": "1b0966d0072bf9309088b064b2c8e52c914090fd",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 4,
+      "id": "maps",
+      "title": "Map Room",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/maps/",
+      "repository": "unclehowell/cedwyn-maps",
+      "repository_status": "missing",
+      "source_themes": [
+        "maps"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "maps",
+          "branch": "maps",
+          "tip_sha": "a93f61eae07776e0697e1043b60630e55553c316",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 5,
+      "id": "infographic",
+      "title": "The Land Changing Hands",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/infographic/",
+      "repository": "unclehowell/cedwyn-infographic",
+      "repository_status": "missing",
+      "source_themes": [
+        "infographic"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "infographic",
+          "branch": "infographic",
+          "tip_sha": "78e4c563e76ff92c2506a13a77b99bb0c001e7b1",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 6,
+      "id": "ebooks",
+      "title": "E-book Shelf",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/ebooks/",
+      "repository": "unclehowell/cedwyn-ebooks",
+      "repository_status": "missing",
+      "source_themes": [
+        "ebooks"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "ebooks",
+          "branch": "ebooks",
+          "tip_sha": "2e78d2001126e12382868060e9e8aae450b7d025",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 7,
+      "id": "story",
+      "title": "The Story & Documentary",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/story/",
+      "repository": "unclehowell/cedwyn-story",
+      "repository_status": "missing",
+      "source_themes": [
+        "story",
+        "documentary"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "story",
+          "branch": "bpvsbuckler",
+          "tip_sha": "7c852a88c6bac710b7e5809af99d1bcac8417cc5",
+          "branch_role": "theme_branch"
+        },
+        {
+          "theme_id": "documentary",
+          "branch": "cedwyn-movie",
+          "tip_sha": "9fda848ef2b289451b9246f43cb29cb324d89deb",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "composite_sources",
+      "creation_gate": "compose_sources_and_dependencies",
+      "notes": [
+        "cedwyn-movie is file storage; cedwyn-studios is a production/runner system; neither is the visitor app repo."
+      ]
+    },
+    {
+      "slot": 8,
+      "id": "thousand-cuts",
+      "title": "1000 Cuts",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/thousand-cuts/",
+      "repository": "unclehowell/cedwyn-thousand-cuts",
+      "repository_status": "missing",
+      "source_themes": [
+        "thousand-cuts"
+      ],
+      "source_branches": [],
+      "composition": "source_unresolved",
+      "creation_gate": "resolve_source_first",
+      "notes": []
+    },
+    {
+      "slot": 9,
+      "id": "fb",
+      "title": "Farm Album",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/fb/",
+      "repository": "unclehowell/cedwyn-fb",
+      "repository_status": "missing",
+      "source_themes": [
+        "fb",
+        "fb2"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "fb",
+          "branch": "fb",
+          "tip_sha": "271d9a3d7bbd17c59cda4db4d3dac828371cca67",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 10,
+      "id": "arcade",
+      "title": "Arcade",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/arcade/",
+      "repository": "unclehowell/cedwyn-arcade",
+      "repository_status": "missing",
+      "source_themes": [
+        "nft-art",
+        "cyberspace"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "nft-art",
+          "branch": "nft-art",
+          "tip_sha": "34a068dcf6bceeee4c8387b50de10606b7d21626",
+          "branch_role": "theme_branch"
+        },
+        {
+          "theme_id": "cyberspace",
+          "branch": "section/cyberspace",
+          "tip_sha": "a4713e3dfeb39c5aa7cc319b568ef8144538c23e",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "composite_sources",
+      "creation_gate": "compose_sources_and_dependencies",
+      "notes": []
+    },
+    {
+      "slot": 11,
+      "id": "chess",
+      "title": "Chessboard",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/chess/",
+      "repository": "unclehowell/cedwyn-chess",
+      "repository_status": "missing",
+      "source_themes": [
+        "chess"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "chess",
+          "branch": "chess",
+          "tip_sha": "9f5ed9192c1fae6c2465b5c5ec420eca0c1af7f4",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 12,
+      "id": "csscpsg",
+      "title": "Grammar House",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/csscpsg/",
+      "repository": "unclehowell/cedwyn-csscpsg",
+      "repository_status": "missing",
+      "source_themes": [
+        "csscpsg"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "csscpsg",
+          "branch": "csscpsg",
+          "tip_sha": "b5b338f8b912399094ef1523020fbd03ffe83237",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 13,
+      "id": "courtdrills",
+      "title": "Court Drills",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/courtdrills/",
+      "repository": "unclehowell/cedwyn-courtdrills",
+      "repository_status": "missing",
+      "source_themes": [
+        "courtdrills"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "courtdrills",
+          "branch": "courtdrills",
+          "tip_sha": "db0a6bac4459942441189cec1b0445b776dece71",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 14,
+      "id": "fcg",
+      "title": "FCG · Security Clearance",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/fcg/",
+      "repository": "unclehowell/cedwyn-fcg",
+      "repository_status": "missing",
+      "source_themes": [
+        "fcg"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "fcg",
+          "branch": "section/fcg",
+          "tip_sha": "597d6ae7e407345767e384faca1c3e85fa196315",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 15,
+      "id": "oldbill",
+      "title": "Old Bill · Who Gained, Who Lost",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/oldbill/",
+      "repository": "unclehowell/cedwyn-oldbill",
+      "repository_status": "missing",
+      "source_themes": [
+        "oldbill"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "oldbill",
+          "branch": "oldbill",
+          "tip_sha": "2005561668e3d0f48facaeae4862df333f9c6c33",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 16,
+      "id": "accounts",
+      "title": "Counting House",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/accounts/",
+      "repository": "unclehowell/cedwyn-accounts",
+      "repository_status": "missing",
+      "source_themes": [
+        "accounts"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "accounts",
+          "branch": "accounts",
+          "tip_sha": "2a9f503b4132e60de3622739ad0e08803be8da71",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 17,
+      "id": "authorities",
+      "title": "Public Authorities & Council Chamber",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/authorities/",
+      "repository": "unclehowell/cedwyn-authorities",
+      "repository_status": "missing",
+      "source_themes": [
+        "authorities",
+        "meeting"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "authorities",
+          "branch": "ghf-public-authorities",
+          "tip_sha": "680c8c04c0dca8dd4aea5b8d5d0a0add7db55e00",
+          "branch_role": "theme_branch"
+        },
+        {
+          "theme_id": "meeting",
+          "branch": "2026-10-22",
+          "tip_sha": "26dfe368cc96ecefc0191c2b49be11bb150a9e19",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "composite_sources",
+      "creation_gate": "compose_sources_and_dependencies",
+      "notes": []
+    },
+    {
+      "slot": 18,
+      "id": "wdtk",
+      "title": "FOI Requests",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/wdtk/",
+      "repository": "unclehowell/cedwyn-wdtk",
+      "repository_status": "missing",
+      "source_themes": [
+        "wdtk"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "wdtk",
+          "branch": "whatdotheyknow",
+          "tip_sha": "43d778bf95fa604ded88b331a5c0c418c0d996f1",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 19,
+      "id": "review",
+      "title": "Independent Review",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/review/",
+      "repository": "unclehowell/cedwyn-review",
+      "repository_status": "missing",
+      "source_themes": [
+        "review"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "review",
+          "branch": "ghf-independent-review",
+          "tip_sha": "afb8f02b77a7a612711fe9d8f33868f6f5019b18",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 20,
+      "id": "research",
+      "title": "Research Library",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/research/",
+      "repository": "unclehowell/cedwyn-research",
+      "repository_status": "missing",
+      "source_themes": [
+        "research"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "research",
+          "branch": "section/research",
+          "tip_sha": "77c07d1fd560aea1cd01a15540a08abfa94208e3",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 21,
+      "id": "qa",
+      "title": "Q&A Hall",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/qa/",
+      "repository": "unclehowell/cedwyn-qa",
+      "repository_status": "missing",
+      "source_themes": [
+        "qa"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "qa",
+          "branch": "qa",
+          "tip_sha": "56e85642b49e298e37b72aa6df79435c027c34fe",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 22,
+      "id": "projects",
+      "title": "Project Office",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/projects/",
+      "repository": "unclehowell/cedwyn-projects",
+      "repository_status": "missing",
+      "source_themes": [
+        "projects"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "projects",
+          "branch": "projects",
+          "tip_sha": "76360a2b118c97fcae73f7ceb57693c900e16792",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 23,
+      "id": "app",
+      "title": "Case Office",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/app/",
+      "repository": "unclehowell/cedwyn-app",
+      "repository_status": "missing",
+      "source_themes": [
+        "app"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "app",
+          "branch": "section/app",
+          "tip_sha": "410b132f0a456e2543c524155cf91dae2bfd90a6",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 24,
+      "id": "chat",
+      "title": "Ask the Archive",
+      "live_or_preview_url": "https://cedwyn-chat.pages.dev/",
+      "repository": "unclehowell/cedwyn-chat",
+      "repository_status": "existing_mirror",
+      "source_themes": [
+        "chat"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "chat",
+          "branch": "section/chat",
+          "tip_sha": "11a587e3368a8828360cfa71c0822f586320b77a",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 25,
+      "id": "watchtower",
+      "title": "Watchtower",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/watchtower/",
+      "repository": "unclehowell/cedwyn-watchtower",
+      "repository_status": "missing",
+      "source_themes": [
+        "watchtower"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "watchtower",
+          "branch": "watchtower",
+          "tip_sha": "4c526bfe86bb00045ef41a863c0dff53d74c8352",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 26,
+      "id": "email",
+      "title": "Post Office & Calendar",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/email/",
+      "repository": "unclehowell/cedwyn-email",
+      "repository_status": "missing",
+      "source_themes": [
+        "email",
+        "emails"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "emails",
+          "branch": "emails",
+          "tip_sha": "f06903be683f78ad0edb233f4fb880dd7b9ad04d",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "composite_sources",
+      "creation_gate": "compose_sources_and_dependencies",
+      "notes": []
+    },
+    {
+      "slot": 27,
+      "id": "dartboard",
+      "title": "Disclosure Dartboard",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/dartboard/",
+      "repository": "unclehowell/cedwyn-dartboard",
+      "repository_status": "existing_mirror",
+      "source_themes": [
+        "dartboard"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "dartboard",
+          "branch": "dartboard",
+          "tip_sha": "73900e363ac50037afcdd78a2ca0e70996a9b6f4",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": [
+        "Pre-existing unclehowell/dartboard is a divergent related application; preserve both pending lineage decision."
+      ]
+    },
+    {
+      "slot": 28,
+      "id": "estate",
+      "title": "Cedwyn Estate",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/estate/",
+      "repository": "unclehowell/cedwyn-estate",
+      "repository_status": "missing",
+      "source_themes": [
+        "estate"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "estate",
+          "branch": "section/estate",
+          "tip_sha": "fd2c87a41b5cbed72ab5a85dd04485dead7532e1",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 29,
+      "id": "directory",
+      "title": "Cedwyn Directory",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/directory/",
+      "repository": "unclehowell/cedwyn-directory",
+      "repository_status": "missing",
+      "source_themes": [
+        "directory"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "directory",
+          "branch": "directory",
+          "tip_sha": "118a0fb5e7ef71f704c6f0d708ba64deff2855cd",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 30,
+      "id": "patagonia",
+      "title": "Great House Farm II · Patagonia",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/patagonia/",
+      "repository": "unclehowell/cedwyn-patagonia",
+      "repository_status": "missing",
+      "source_themes": [
+        "patagonia"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "patagonia",
+          "branch": "section/patagonia",
+          "tip_sha": "bf43c90ca21bcb7b25bd2b7340e868b76cd43dad",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 31,
+      "id": "wales",
+      "title": "Virtual Tour · Wales",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/wales/",
+      "repository": "unclehowell/cedwyn-wales",
+      "repository_status": "missing",
+      "source_themes": [
+        "wales"
+      ],
+      "source_branches": [],
+      "composition": "source_unresolved",
+      "creation_gate": "resolve_source_first",
+      "notes": []
+    },
+    {
+      "slot": 32,
+      "id": "shop",
+      "title": "Gift Shop & Marketplace",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/shop/",
+      "repository": "unclehowell/cedwyn-shop",
+      "repository_status": "missing",
+      "source_themes": [
+        "shop"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "shop",
+          "branch": "merch",
+          "tip_sha": "baed6039588616fdf8e1f40ab393a4c6ef7396e0",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 33,
+      "id": "familytree",
+      "title": "Family Tree",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/familytree/",
+      "repository": "unclehowell/cedwyn-familytree",
+      "repository_status": "missing",
+      "source_themes": [
+        "familytree"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "familytree",
+          "branch": "familytree",
+          "tip_sha": "d8d764677246d59117b6dde1fbd54d14095b7b90",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 34,
+      "id": "kissed-frogs",
+      "title": "Kissed Frogs",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/kissed-frogs/",
+      "repository": "unclehowell/cedwyn-kissed-frogs",
+      "repository_status": "missing",
+      "source_themes": [
+        "kissed-frogs"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "kissed-frogs",
+          "branch": "kissed-frogs",
+          "tip_sha": "1cb1639ea77672a2977eb6254507620e4ba15c40",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 35,
+      "id": "whattheydontsay",
+      "title": "What They Don't Say",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/whattheydontsay/",
+      "repository": "unclehowell/cedwyn-whattheydontsay",
+      "repository_status": "missing",
+      "source_themes": [
+        "whattheydontsay"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "whattheydontsay",
+          "branch": "whattheydontsay",
+          "tip_sha": "ba35c565bb3af3f18d79d6335613dfa2702dd515",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 36,
+      "id": "blog",
+      "title": "Blog",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/blog/",
+      "repository": "unclehowell/cedwyn-blog",
+      "repository_status": "missing",
+      "source_themes": [
+        "blog"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "blog",
+          "branch": "blog",
+          "tip_sha": "a620f6f21570a9ef68e7d2b40c2fee042ba203bc",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 37,
+      "id": "hubspot",
+      "title": "HubSpot · Task Control",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/hubspot/",
+      "repository": "unclehowell/cedwyn-hubspot",
+      "repository_status": "missing",
+      "source_themes": [
+        "hubspot"
+      ],
+      "source_branches": [],
+      "composition": "source_unresolved",
+      "creation_gate": "resolve_source_first",
+      "notes": [
+        "Do not treat webapp/hubspot-* feature branches as source until confirmed against live app paths and theme registry."
+      ]
+    },
+    {
+      "slot": 38,
+      "id": "that-old-chestnut",
+      "title": "That Old Chestnut",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/that-old-chestnut/",
+      "repository": "unclehowell/cedwyn-that-old-chestnut",
+      "repository_status": "missing",
+      "source_themes": [
+        "that-old-chestnut"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "that-old-chestnut",
+          "branch": "that-old-chestnut",
+          "tip_sha": "b5ef68e58b224b1a0cf825767aa62eda8e741e3c",
+          "branch_role": "theme_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 39,
+      "id": "forensic",
+      "title": "Forensic Assessments",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/forensic/",
+      "repository": "unclehowell/cedwyn-forensic",
+      "repository_status": "missing",
+      "source_themes": [
+        "forensic"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "forensic",
+          "branch": "section/forensic",
+          "tip_sha": "3ddde849b508bb73d9effb42642b9ae157fa7ee6",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 40,
+      "id": "mr-wolf",
+      "title": "Mr Wolf",
+      "live_or_preview_url": "https://cedwyn-mr-wolf.pages.dev/",
+      "repository": "unclehowell/cedwyn-mr-wolf",
+      "repository_status": "existing_mirror",
+      "source_themes": [
+        "mr-wolf"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "mr-wolf",
+          "branch": "section/mr-wolf",
+          "tip_sha": "917fd1afee8a5d7865a20082fdf84898cdd80434",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 41,
+      "id": "wales-3d",
+      "title": "Wales 3D world",
+      "live_or_preview_url": "https://cedwyn-wales-3d.pages.dev/",
+      "repository": "unclehowell/cedwyn-wales-3d",
+      "repository_status": "existing_mirror",
+      "source_themes": [
+        "wales-3d"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "wales-3d",
+          "branch": "section/wales-3d",
+          "tip_sha": "09d6acc2bcbda45a283a5fce082e9cf32478fa03",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 42,
+      "id": "tithe-h3",
+      "title": "Tithe H3",
+      "live_or_preview_url": "https://cedwyn-tithe-h3.pages.dev/",
+      "repository": "unclehowell/cedwyn-tithe-h3",
+      "repository_status": "existing_mirror",
+      "source_themes": [
+        "tithe-h3"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "tithe-h3",
+          "branch": "section/tithe-h3",
+          "tip_sha": "3888b774aa08b64ee015a26b2c3a7d28eef78f1c",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 43,
+      "id": "cloudflare",
+      "title": "Cloudflare",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/cloudflare/",
+      "repository": "unclehowell/cedwyn-cloudflare",
+      "repository_status": "missing",
+      "source_themes": [
+        "cloudflare"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "cloudflare",
+          "branch": "section/cloudflare",
+          "tip_sha": "452bb28bc065af865ec19c48e2d6e2e8b81360fc",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 44,
+      "id": "spill",
+      "title": "Spill",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/spill/",
+      "repository": "unclehowell/cedwyn-spill",
+      "repository_status": "missing",
+      "source_themes": [
+        "spill"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "spill",
+          "branch": "section/spill",
+          "tip_sha": "a94897c67d11889f4cea66a297c013dd13c92038",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 45,
+      "id": "analytics",
+      "title": "Analytics",
+      "live_or_preview_url": "https://cedwyn-analytics.pages.dev/",
+      "repository": "unclehowell/cedwyn-analytics",
+      "repository_status": "existing_mirror",
+      "source_themes": [
+        "analytics"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "analytics",
+          "branch": "section/analytics",
+          "tip_sha": "b577ef4dca6e9d12e5cd46791358acc8717c6c72",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": [
+        "Documented dependency on bfe-analytics Worker and Durable Object; dependency closure needs check."
+      ]
+    },
+    {
+      "slot": 46,
+      "id": "chubut-h3",
+      "title": "Chubut H3",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/chubut-h3/",
+      "repository": "unclehowell/cedwyn-chubut-h3",
+      "repository_status": "missing",
+      "source_themes": [
+        "chubut-h3"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "chubut-h3",
+          "branch": "section/chubut-h3",
+          "tip_sha": "020945a61154625e08012c7faf2c50d9f20a7edb",
+          "branch_role": "snapshot_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 47,
+      "id": "garden",
+      "title": "Flower Garden",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/garden/",
+      "repository": "unclehowell/cedwyn-garden",
+      "repository_status": "missing",
+      "source_themes": [
+        "garden"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "garden",
+          "branch": "garden",
+          "tip_sha": "b81d5c965cefdfff0893376f5ce6650249d884e8",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 48,
+      "id": "argentina-3d",
+      "title": "Argentina Tŷ Mawr 3D world",
+      "live_or_preview_url": "https://cedwyn-argentina-3d.pages.dev/",
+      "repository": "unclehowell/cedwyn-argentina-3d",
+      "repository_status": "existing_mirror",
+      "source_themes": [
+        "argentina-3d"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "argentina-3d",
+          "branch": "section/argentina-3d",
+          "tip_sha": "0359f8aacb92ed02293c2c36e836bf228f5d4632",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": [
+        "Documented dependency on shared /_ext Three.js mirror."
+      ]
+    },
+    {
+      "slot": 49,
+      "id": "hive",
+      "title": "Hive · agents and jobs",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/hive/",
+      "repository": "unclehowell/cedwyn-hive",
+      "repository_status": "existing_mirror",
+      "source_themes": [
+        "hive"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "hive",
+          "branch": "hive",
+          "tip_sha": "5b984c9c1d309ae7c14e898b698a8dcb2e50e4e2",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 50,
+      "id": "terrain",
+      "title": "Terrain · Cedwyn Estate in 3D",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/terrain/",
+      "repository": "unclehowell/terrain",
+      "repository_status": "existing_standalone",
+      "source_themes": [
+        "terrain"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "terrain",
+          "source_repository": "unclehowell/terrain",
+          "branch": "main",
+          "tip_sha": "ac2c0ca2498eae4cfc4b484d65aab4f484cbaedb",
+          "branch_role": "standalone_repository_default_branch"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "already_standalone_dependency_and_test_audit_required",
+      "notes": [
+        "Existing standalone repository omitted from navigator apps.json (repo=null there); no Cedwyn branch source."
+      ]
+    },
+    {
+      "slot": 51,
+      "id": "revival-ar",
+      "title": "Revival AR · Llandough",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/revival-ar/",
+      "repository": "unclehowell/cedwyn-revival-ar",
+      "repository_status": "missing",
+      "source_themes": [
+        "revival-ar"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "revival-ar",
+          "branch": "section/revival-ar",
+          "tip_sha": "32e404cb074dc640fe5a3b7fb35810f82649e8e6",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 52,
+      "id": "peekaboo",
+      "title": "Peekaboo · records found despite their labels",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/peekaboo/",
+      "repository": "unclehowell/cedwyn-peekaboo",
+      "repository_status": "missing",
+      "source_themes": [
+        "peekaboo"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "peekaboo",
+          "branch": "section/peekaboo",
+          "tip_sha": "2c199972ac641af20761f3207b9b31d9128be31a",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 53,
+      "id": "bloculous",
+      "title": "Bloculous · protocol and geodesic domes",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/bloculous/",
+      "repository": "unclehowell/cedwyn-bloculous",
+      "repository_status": "missing",
+      "source_themes": [
+        "bloculous"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "bloculous",
+          "branch": "section/bloculous",
+          "tip_sha": "1dfe63e661776209e0a39c578ecae5509a208fe5",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 54,
+      "id": "theories",
+      "title": "Theories · working theories",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/theories/",
+      "repository": "unclehowell/cedwyn-theories",
+      "repository_status": "missing",
+      "source_themes": [
+        "theories"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "theories",
+          "branch": "section/theories",
+          "tip_sha": "a48abbbb09baf5162e2d7739126cca58a7eaccb7",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 55,
+      "id": "garden-store",
+      "title": "Garden Store",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/garden-store/",
+      "repository": "unclehowell/cedwyn-garden-store",
+      "repository_status": "missing",
+      "source_themes": [
+        "garden-store"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "garden-store",
+          "branch": "section/garden-store",
+          "tip_sha": "8be1469428a007657a5cb1a73600eedf4b174485",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 56,
+      "id": "storytime",
+      "title": "Storytime",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/storytime/",
+      "repository": "unclehowell/cedwyn-storytime",
+      "repository_status": "missing",
+      "source_themes": [
+        "storytime"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "storytime",
+          "branch": "storytime",
+          "tip_sha": "2dfd681bff08c916ad6a88c2a0895bfcf0097338",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 57,
+      "id": "molt",
+      "title": "Molt · every change and comment",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/molt/",
+      "repository": "unclehowell/cedwyn-molt",
+      "repository_status": "missing",
+      "source_themes": [
+        "molt"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "molt",
+          "branch": "molt",
+          "tip_sha": "ec26870f6d55a8948ba555190f0d00cd90891813",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 58,
+      "id": "gallery",
+      "title": "Gallery",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/gallery/",
+      "repository": "unclehowell/cedwyn-gallery",
+      "repository_status": "missing",
+      "source_themes": [
+        "gallery"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "gallery",
+          "branch": "gallery",
+          "tip_sha": "aa95bfa01ea26d897c48fbf451a555328ddb5a87",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    },
+    {
+      "slot": 59,
+      "id": "internetarchive",
+      "title": "Internet Archive sources",
+      "live_or_preview_url": "https://cedwyn.bucklerfamily.estate/internetarchive/",
+      "repository": "unclehowell/cedwyn-internetarchive",
+      "repository_status": "missing",
+      "source_themes": [
+        "internetarchive"
+      ],
+      "source_branches": [
+        {
+          "theme_id": "internetarchive",
+          "branch": "internetarchive",
+          "tip_sha": "655034585634ef01b8ff79c2075b255ef6e1f99a",
+          "branch_role": "app_slot_mapping"
+        }
+      ],
+      "composition": "single_source",
+      "creation_gate": "dependency_audit_required",
+      "notes": []
+    }
+  ]
+}
