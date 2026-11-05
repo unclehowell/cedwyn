@@ -1,6 +1,6 @@
 {
-  "version": "1.2.2",
-  "generated": "2026-11-03",
+  "version": "1.2.3",
+  "generated": "2026-11-04",
   "title": "Nomenclature — every name the records use for the same thing",
   "method": "Harvested from the Legal Wiki (greathousefarmwiki.wordpress.com; 794 pages read through the public REST API, 21 Oct 2026), its evidence register, transcripts and nomenclature pages. Each variant is the wording of the record cited; where no record was found it is marked SOURCE PENDING. “Wiki label” means a term the Wiki uses for analysis, not a word from a period record.",
   "status_key": {
@@ -1635,7 +1635,7 @@
       "id": "llandough",
       "name": "Llandough (near Penarth)",
       "kind": "place",
-      "summary": "The parish and village beside Penarth and Cardiff where the farm stood. Historic records also use Llandough juxta Barry as a parish-level locator; that wording is not proof of the farmhouse’s name or identity.",
+      "summary": "The parish and village beside Penarth and Cardiff where the farm stood. Vision of Britain associates “Llandough juxta Barry” with the Penarth parish unit; this database attribution is not proof of the exact printed 1831 wording or of a name for the farmhouse. Not Llandough near Cowbridge.",
       "wiki": "https://cedwyn.bucklerfamily.estate/wiki/great-house-farm/location-name-nomenclature/",
       "variants": [
         {
@@ -1877,7 +1877,7 @@
           "sort": "1831",
           "url": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fpastplaces.org%2Funit%2F10484613",
           "status": "secondary",
-          "note": "Parish-level historic locator. It identifies the parish, not the farmhouse or a particular tenement; the original census table still needs checking.",
+          "note": "Parish-level alternate-name entry on Vision of Britain unit 10484613. The project's published methodology says the administrative gazetteer began with National Council on Archives place-name authorities and added alternative names from census reports, aiming for a consistent and usable database rather than a page-for-page reproduction. That general method does not establish how this particular alias was created. The exact wording, page and row in the original 1831 printed source have not been verified. This is not a name of the farmhouse. Methodology: https://www.visionofbritain.org.uk/about/sources/8.",
           "added": "2026-11-03"
         },
         {
@@ -2929,6 +2929,62 @@
           "status": "exact spelling not verified"
         }
       ]
+    },
+    {
+      "id": "medieval-llandough-fee-1440",
+      "name": "Medieval Llandough fee (1440): Barry or Cowbridge",
+      "kind": "historical holding reference",
+      "summary": "A 1440 inquisition transcription describes a knight’s fee with the alternative wording “Llandough-juxta-Barry or Llandough-juxta-Cowbridge (Landogh)”. This is a separate medieval holding reference. No connection is established to the later Penarth parish, the Cowbridge parish unit, Great House Farm or Tŷ Mawr.",
+      "variants": [
+        {
+          "term": "Llandough-juxta-Barry or Llandough-juxta-Cowbridge (Landogh)",
+          "source": "Mapping the Medieval Countryside, E-CIPM 25-330, Isabel, Countess of Warwick; inquisition at Gloucester, 3 Nov 1440, writ 29 Dec 1439; The National Archives C 139/96/3 mm.45–46 and E 149/169/6 m.9",
+          "date": "3 Nov 1440 (inquisition; writ 29 Dec 1439)",
+          "sort": "1440-11-03",
+          "url": "https://inquisitionspostmortem.ac.uk/view/inquisition/25-307/330.html",
+          "status": "secondary",
+          "note": "The online transcription describes a knight’s fee formerly held by the heirs of John de Wynton, valued at £20. It explicitly gives “Barry or Cowbridge”; this alternative wording is retained. The original membranes have not been inspected. The medieval occurrence is not linked to the later Penarth parish, the later Cowbridge parish unit or Great House Farm / Tŷ Mawr.",
+          "added": "2026-11-04"
+        }
+      ],
+      "search_forms": [
+        "Llandough-juxta-Barry",
+        "Llandough juxta Barry",
+        "Llandough-juxta-Cowbridge",
+        "Llandough juxta Cowbridge",
+        "Landogh",
+        "John de Wynton",
+        "E-CIPM 25-330",
+        "C 139/96/3",
+        "E 149/169/6"
+      ],
+      "not_same": [
+        {
+          "term": "Great House Farm / Tŷ Mawr beside St Dochdwy’s Church",
+          "why": "No source links the 1440 fee to the farmhouse or its parcels."
+        },
+        {
+          "term": "Llandough Juxta Penarth Parish (Vision of Britain unit 10484613)",
+          "why": "The modern parish-unit database attribution is a distinct record; no evidence links the 1440 fee to that later parish unit."
+        },
+        {
+          "term": "Llandough Parish / Llandough Juxta Cowbridge (Vision of Britain unit 10484870)",
+          "why": "The medieval text's “Barry or Cowbridge” alternative does not establish identity with this later parish unit."
+        }
+      ],
+      "slug": "medieval-llandough-fee-1440",
+      "page": "https://cedwyn.bucklerfamily.estate/nomenclature/c/medieval-llandough-fee-1440/",
+      "link_terms": [
+        "Llandough-juxta-Barry",
+        "Llandough juxta Barry",
+        "Llandough-juxta-Cowbridge",
+        "Landogh",
+        "John de Wynton",
+        "E-CIPM 25-330",
+        "C 139/96/3",
+        "E 149/169/6"
+      ],
+      "has_page": true
     }
   ],
   "site": "https://cedwyn.bucklerfamily.estate/nomenclature"
