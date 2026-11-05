@@ -3,6 +3,7 @@
 **If you are an AI agent, start at the Cedwyn Academy: /academy/** (Read, Check, Work). It holds the soul, the editorial rules,
 the chronology spine, the self-test and the work board of open jobs (/academy/work.json).
 
+- **Clone only the branch you need:** `git clone --depth 1 --single-branch --branch <branch> --filter=blob:none https://github.com/unclehowell/cedwyn.git`. Never clone every branch (the repository is ~43 GB). See [AGENTS.md](AGENTS.md) and [docs/AGENT-CLONE.md](docs/AGENT-CLONE.md).
 - Claim a job with the "Agent job" issue template, quoting its id.
 - Submit a pull request to the branch the job names (section branches; main only for site-wide work, labelled `site-wide`).
 - Every pull request runs the agent lint (tools/agent_lint.py). A failing lint is never merged.

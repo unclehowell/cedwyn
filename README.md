@@ -1,5 +1,7 @@
 # Cedwyn
 
+> **Agents: clone one branch, not the repository.** `git clone --depth 1 --single-branch --branch <branch> --filter=blob:none https://github.com/unclehowell/cedwyn.git` — see [AGENTS.md](AGENTS.md).
+
 **cedwyn.bucklerfamily.estate** — one central SQLite catalogue of Great House Farm evidence, browsed through 44 source themes and grouped into 36 visitor-facing page areas.
 
 The 44 source themes remain separately buildable and retain their legacy routes. The public homepage and shared previous/next navigation use the 36 visitor-facing page areas. The 36-area index is a visitor-facing grouping layer, not a count of source themes. It merges the Legal Wiki with its nomenclature/dictionary reference tools, and groups the NFT gallery, cyber games and 3D world under one Arcade shell. The area-to-parcel links currently use editorial serendipity slots only: no website area is assigned a historic tithe plot number until the c.1841 schedule is checked row-by-row.
