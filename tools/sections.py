@@ -209,7 +209,8 @@ def wales(S, cfg):
                  f'</h3><p data-i18n="{b}">{E(tx(T,b,l))}</p><a href="/catalogue/?q={urllib.parse.quote(q)}"><span data-i18n="records">{E(tx(T,"records",l))}</span> →</a></div></li>'
                  for i, (a, b, q, tg) in enumerate(stops))
     links = [('l_timeline', '/wales/research/timeline/'), ('l_cuts', '/wales/thousand-cuts/'), ('l_story', '/wales/story/'), ('l_research', '/wales/research/'),
-             ('l_foi', '/wales/wdtk/'), ('l_docs', '/wales/docs/'), ('l_projects', '/wales/projects/')]
+             ('l_foi', '/wales/wdtk/'), ('l_docs', '/wales/docs/'), ('l_projects', '/wales/projects/'),
+             ('l_titlechain', '/wales/title-chain/'), ('l_books', '/wales/research/books/'), ('l_missing', '/wales/research/missing-records/')]  # night-shift traffic 6 Nov 2026: near-orphan pages linked from the Wales hub
     lk = ''.join(f'<li><a href="{u}" data-i18n="{k}">{E(tx(T,k,l))}</a></li>' for k, u in links)
     return head('Cymru · Wales · Cedwyn', 'Wales: the Llandough augmented-reality guided tour (coming soon), gift vouchers, e-books and merch, and the record gathered piece by piece.', l, '/wales/', 'wales', T, n) + f"""
 <body data-cedwyn-page="wales">
