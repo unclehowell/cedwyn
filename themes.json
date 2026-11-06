@@ -139,6 +139,8 @@
    "build": "python3 _theme-docs/build.py",
    "crawl_url": "https://bucklerfamily-docs.pages.dev/",
    "crawl_fallback": true,
+   "crawl_level": 4,
+   "crawl_reject": "/ghf_(evidence|research)/[^/]+/latest/html/[^/]+/1-record|/(genindex|search|releasenotes)([.]html)?$",
    "group": "artifacts"
   },
   {
