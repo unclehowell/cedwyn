@@ -304,7 +304,10 @@
   // nav 1.0.0: the address a stop opens at. Inside a half, an area that half serves keeps the visitor in it (/wales/x/, /argentina/x/);
   // everything else opens at its own canonical address, so no stop is ever skipped or sent through a redirect - Sion's Tab agent
   var CAPEX = /^(www\.)?bucklerfamily\.estate$/.test(location.hostname);   // nav 1.1.0: on the apex every stop opens at its flat /<name>/ (registry "apex")
-  function cedU(id, href, skip, sec, ax) { if (CAPEX && ax) return ax.replace(/^https?:\/\/[^\/]+/, ""); if (id === "wales") return "/wales/"; return sec && CSECP && (skip || []).indexOf(CHALF) < 0 ? CSECP + href : href; }
+  // nav 1.2.0 (7 Nov 2026, owner: the ‹ › beside "NN of NN" must always open the webapp one number down / one number up): every
+  // stop opens at its own registry address ("href"), never a /wales/ or /argentina/ copy chosen by the remembered half, so the page
+  // the arrow opens is always the next number in the list and reads the same chain. - Sion's Tab agent
+  function cedU(id, href, skip, sec, ax) { if (CAPEX && ax) return ax.replace(/^https?:\/\/[^\/]+/, ""); return href; }
   if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) {
     var CBY = {}; CHAIN.forEach(function (c) { CBY[c.id] = c; });
     CFULL = CEDWYN_CHAIN.map(function (t) { return t[0]; });
@@ -313,7 +316,7 @@
     // (tuple field 7) instead of dropping out; r.n is the slot (field 6), never a list position - Sion's Tab agent
     CHAIN = CEDWYN_CHAIN.map(function (t) { var o = CBY[t[0]] || {}, r = {}, k; for (k in o) r[k] = o[k];
       r.id = t[0]; r.t = t[1] || o.t; r.g = t[2] || ""; if (t[3]) r.cy = t[3]; if (t[4]) r.es = t[4]; r.u = cedU(t[0], t[7] || "/" + t[0] + "/", t[5], t.length > 8 ? t[8] : 1, t[9]);
-      r.h = []; r.p = ["/" + t[0] + "/"]; if (t[7] && r.p.indexOf(t[7]) < 0) r.p.push(t[7]); r.n = t[6] || CEDWYN_CHAIN.indexOf(t) + 1; return r; });
+      r.h = []; r.p = ["/" + t[0] + "/"]; if (t[7] && r.p.indexOf(t[7]) < 0) r.p.push(t[7]); r.n = CEDWYN_CHAIN.indexOf(t) + 1; return r; });   // nav 1.2.0: the number is the place in the list
   }
   // the theme this page belongs to: inside a section its own pages (the hub, vouchers, caso) are that half's stop
   function cedSeg() {
@@ -376,7 +379,7 @@
       var arr = function (st, cls, ch, lab) { var a = mk("a", "ghf-v2-arr " + cls); pinHref(a, st.u); a.setAttribute("aria-label", lab + ": " + nm(st)); a.title = lab + ": " + nm(st); a.appendChild(mk("span", null, ch)); a.setAttribute("data-ghf-chain", st.id); return a; };
       chainBar.appendChild(arr(pv, "ghf-v2-prev", "\u2039", s.prev));
       var mid = mk("div", "ghf-v2-name"), b = mk("b", null, k >= 0 ? nm(CHAIN[k]) : ((document.title || host).split(/\s[·|—–-]\s/)[0]));
-      mid.appendChild(b); if (k >= 0) mid.appendChild(mk("small", null, ((CEDWYN_CHAIN && CHAIN[k].n) || (k + 1)) + " " + s.of + " " + (CEDWYN_CHAIN && CEDWYN_CHAIN.length ? CEDWYN_OF : n)));
+      mid.appendChild(b); if (k >= 0) mid.appendChild(mk("small", null, (k + 1) + " " + s.of + " " + n));   // nav 1.2.0: NN = place in the list, of = the list's length, so ‹ is NN-1 and › is NN+1
       chainBar.appendChild(mid);
       chainBar.appendChild(arr(nx, "ghf-v2-next", "\u203A", s.next));
       chainBar.appendChild(btn("ghf-v2-btn ghf-v2-bgr", IC_MENU, s.menu, openDrawer));
@@ -392,12 +395,12 @@
       var all = d.nav || d.areas || [], list = all.filter(function (a) { return a && a.path && a.built !== false; });   // nav 1.0.0: every built slot, every half
       if (list.length < 2) return;
       list.sort(function (a, b) { return (+(a.slot || a.serendipity_slot) || 999) - (+(b.slot || b.serendipity_slot) || 999); });
-      CEDWYN_OF = +(d.parcel_total || d.slots_total) || CEDWYN_OF;
+      CEDWYN_OF = list.length;   // nav 1.2.0: the total is the number of webapps in the list, not the planned parcel count
       var by = {}; CHAIN.forEach(function (c) { by[c.id] = c; });
       CHAIN = list.map(function (a) { var o = by[a.id] || {}, r = {}, k; for (k in o) r[k] = o[k];
         r.id = a.id; r.t = a.title || o.t || a.id; if (a.cy) r.cy = a.cy; if (a.es) r.es = a.es; r.g = a.group || o.g || "";
         r.u = cedU(a.id, a.href || a.path, a.skip_in, d.nav ? a.sec : 1, a.apex); r.p = [a.path].concat(a.aliases || []); if (a.href && r.p.indexOf(a.href) < 0) r.p.push(a.href);
-        r.h = []; r.n = +(a.slot || a.serendipity_slot) || (all.indexOf(a) + 1); return r; });
+        r.h = []; r.n = list.indexOf(a) + 1; return r; });
       AREAS = true; fillChain();
       if (de.classList.contains("ghf-v2-open")) fillDrawer();
     }

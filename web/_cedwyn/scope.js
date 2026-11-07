@@ -1,4 +1,7 @@
-/*! scope.js — Cedwyn's three scopes: Wales, Argentina (Patagonia) and Online · v1.1.0 (3 Nov 2026; 1.0.0 1 Nov 2026)
+/*! scope.js — Cedwyn's three scopes: Wales, Argentina (Patagonia) and Online · v1.2.0 (7 Nov 2026; 1.1.0 3 Nov; 1.0.0 1 Nov 2026)
+ * 1.2.0 (owner, 7 Nov 2026: purge the "This area is about ..." headers): no area card, no "see Wales / see Argentina / see Online"
+ *   line and no hop to another scope's copy are ever drawn. A webapp always shows its own content at the address it was opened at,
+ *   so the ‹ › of the header land where they point. Blocks tagged for another scope are still hidden, silently. - Sion's Tab agent
  * One shared helper for every webapp, the way ghf_lang serves the language. Spec: docs/SCOPES.md.
  * WHICH SCOPE: the address decides, as it always has: /wales/... = wales, /argentina/... = argentina, anything else = online.
  *   ?scope=wales|argentina|online on any page switches to the same page in that scope. The visitor's last explicit choice
@@ -12,7 +15,7 @@
  * API: window.CedwynScope = { get(), stored(), set(s), href(s, path), label(s, lang), apply() }. */
 (function () {
   if (window.CedwynScope) return;
-  var d = document, de = d.documentElement, V = "1.1.0";
+  var d = document, de = d.documentElement, V = "1.2.0";
   var SC = ["wales", "argentina", "online"];
   var ALIAS = { wales: "wales", cymru: "wales", argentina: "argentina", patagonia: "argentina", online: "online", cyberspace: "online", "ar-lein": "online" };
   var STORE = { wales: "wales", argentina: "patagonia", online: "cyberspace" };   // ghf_loc words (basecamp.js reads these)
@@ -121,7 +124,9 @@
     var home = null;
     if (MAP.pages) for (k in MAP.pages) if (bare.indexOf(k) === 0 && MAP.pages[k].home) home = MAP.pages[k];
     if (!home && ar && ar.home && ar.home !== "all") home = ar;
-    areaCard(home);
+    // 1.2.0 (owner, 7 Nov 2026): no area card and no hop. A whole webapp that belongs to one scope is simply shown in that scope
+    // at whatever address it was opened, so its own content is visible and nothing is put in front of it. - Sion's Tab agent
+    if (home && norm(home.home) && norm(home.home) !== get()) de.setAttribute("data-cedwyn-scope", norm(home.home));
   }
   function areaCard(ar) {   // a whole webapp that belongs to another scope: its content steps aside for one line pointing there
     var s = get(), h = ar && norm(ar.home), el, i, kids;
@@ -142,19 +147,14 @@
   }
   function apply() {
     var s = get(); de.setAttribute("data-cedwyn-scope", s); css();
-    tagFromMap();
+    tagFromMap(); s = get();
     var q = d.querySelectorAll("[data-scope]:not(.cs-stub)"), i, el, tg, ps;
     for (i = 0; i < q.length; i++) {
       el = q[i];
       if (el.closest(".cs-area") || el.parentNode && el.parentNode.closest && el.parentNode.closest("[data-scope]:not(.cs-stub)") && !shows(el.parentNode.closest("[data-scope]:not(.cs-stub)"), s)) continue;
       if (el.__csStub) { if (shows(el, s)) { el.__csStub.remove(); el.__csStub = null; } continue; }
       if (shows(el, s) || el.hasAttribute("data-scope-nostub") || el.closest(".cs-area")) continue;
-      tg = target(el);
-      if ((el.tagName === "MAIN" || (el.parentNode === d.body && el.querySelector && el.querySelector("main"))) && goHome(el.getAttribute("data-scope-href") || href(tg))) return;   // 1.1.0: the page body itself is out of scope
-      ps = prevStub(el);
-      if (ps && ps.getAttribute("data-scope-stub") === tg) { el.__csStub = ps; continue; }
-      if (d.body && d.querySelector(".cs-area") && el.parentNode === d.body) continue;   // the area card already speaks for it
-      el.__csStub = stubFor(el, tg); el.parentNode.insertBefore(el.__csStub, el);
+      // 1.2.0: out-of-scope blocks are hidden by the CSS rule alone; no "see ..." line takes their place. - Sion's Tab agent
     }
   }
   function relabel() {   // the language changed: the stubs follow it

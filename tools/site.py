@@ -93,6 +93,22 @@ for _t in CFG['themes']:
                  'group': _t.get('group') or CFG.get('default_group') or '', 'aliases': [], 'skip_in': [h for h in ('wales', 'patagonia') if _t['id'] in _XH[h]],
                  'built': (DIST / _p.strip('/')).is_dir() or _t.get('served_by') == 'worker', 'slot': int(_t['slot']), 'of': _area_doc.get('parcel_total', 59), 'webapp': True,
                  'worker': _t.get('served_by') == 'worker'})
+# nav 1.3.0 (owner, 7 Nov 2026: "Keep as 59 and where there's no webapps yet just have blank 'coming soon' webapps as coming-soon-xx
+# repos ... When we do the real webapps to replace them we'll do proper repos for the new webapp and purge the corresponding
+# coming-soon-xx webapp"): every slot of the 59 that no real webapp takes is a blank "Coming soon" webapp from its own repository
+# unclehowell/coming-soon-NN, copied to /coming-soon-NN/ by tools/coming_soon.py (data/coming-soon.json) and listed here at slot NN,
+# so the chain is 59 long and reads "NN of 59". A real webapp that declares "slot": NN replaces it (docs/NAV.md). - Sion's Tab agent
+sys.path.insert(0, str(ROOT / 'tools')); import coming_soon as _cs
+_cs.run(DIST)
+_nav_slots = {int(a['slot']) for a in _nav if a.get('slot')}
+for _c in _cs.active()[0]:
+    _n = int(_c['slot'])
+    if _n in _nav_slots: continue
+    _p = _c.get('path') or '/coming-soon-%d/' % _n
+    _nav.append({'id': _c['id'], 'path': _p, 'src': _p, 'title': 'Coming soon', 'cy': 'Yn fuan', 'es': 'Próximamente',
+                 'group': CFG.get('default_group') or '', 'aliases': [], 'skip_in': [], 'built': (DIST / _p.strip('/') / 'index.html').is_file(),
+                 'slot': _n, 'of': _area_doc.get('parcel_total', 59), 'webapp': True, 'worker': False, 'placeholder': True, 'repo': _c['repo']})
+    _nav_slots.add(_n)
 _nav_online = set(_HV.get('online_only', []))
 # nav 1.1.0 (owner, 05:07 GMT 2 Nov 2026: every webapp at bucklerfamily.estate/<name>/, the cedwyn subdomain to be phased out):
 # "apex" is each slot's flat address on the apex; a themes.json "apex" names it when it is not the id. The apex router and the
