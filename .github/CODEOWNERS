@@ -1,0 +1,17 @@
+# Catalogue lock (owner instruction, 3 Nov 2026): the owner reviews every change to existing evidence/artifact records.
+# Takes effect as a merge gate once branch protection "Require review from Code Owners" is on (see the PR text). — Sion's Tab agent
+/data/core/ @unclehowell
+/data/evidence-grades.json @unclehowell
+/data/artifact-assessments.json @unclehowell
+/data/observations.json @unclehowell
+/data/parcel-stories.json @unclehowell
+/data/title-chain.json @unclehowell
+/data/title-theory.json @unclehowell
+/data/dartboard-updates/ @unclehowell
+/web/research/evidence/ @unclehowell
+/web/research/reconstructions/ @unclehowell
+/web/research/*.csv @unclehowell
+/.github/CODEOWNERS @unclehowell
+/.github/catalogue-lock.json @unclehowell
+/.github/workflows/catalogue-lock.yml @unclehowell
+/tools/catalogue_lock.py @unclehowell

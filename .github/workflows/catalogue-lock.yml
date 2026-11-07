@@ -1,0 +1,31 @@
+# catalogue-lock: existing evidence/artifact records cannot be edited or deleted without the owner's approval.
+# New records are allowed and listed in the run summary. Approval: the 'owner-approved' label on the pull request.
+# Agents propose changes as pull requests labelled 'catalogue-change'. Read-only: this workflow writes nothing.
+# Config: .github/catalogue-lock.json. Logic: tools/catalogue_lock.py. — Sion's Tab agent
+name: catalogue-lock
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled, ready_for_review]
+  push:
+  schedule:
+    - cron: '23 */6 * * *'
+permissions:
+  contents: read
+  pull-requests: read
+  issues: read
+concurrency:
+  group: catalogue-lock-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  catalogue-lock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
+      - name: Check catalogue records
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/catalogue_lock.py
