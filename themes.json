@@ -241,6 +241,21 @@
    "slot": 45
   },
   {
+   "id": "garden-store",
+   "title": "Garden Store",
+   "nav_title": "Garden Store",
+   "cy": "Siop yr Ardd",
+   "es": "Tienda del jardín",
+   "live": "https://cedwyn.bucklerfamily.estate/garden-store/",
+   "hosts": [],
+   "paths": [],
+   "desc": "REALM flowers & plants: our own plant store mirroring Garden City's catalogue (gardencity.cymru, peat-free plants grown in Wales). Prices are hers; every Buy opens her own product page; she takes payment and delivers, we never take payment. Served by the Worker cedwyn-garden-store with its own SQLite database, WebMCP tools and an agent guest book. Webapp 46 of 59.",
+   "group": "interactive",
+   "slot": 46,
+   "served_by": "worker",
+   "apex": "/garden-store/"
+  },
+  {
    "id": "spill",
    "title": "Spill",
    "cy": "Spill",
