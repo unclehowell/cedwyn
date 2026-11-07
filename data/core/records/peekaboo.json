@@ -1,0 +1,205 @@
+{
+ "schema": "cedwyn-core/0.1.0",
+ "note": "Peekaboo: records located or identified despite an incorrect label, description or location, or an assurance that they were not there. Facts and dates only; each record names who found the mismatch and what the item is. Read by the Peekaboo webapp (/peekaboo/, branch section/peekaboo) through its sync script, by the tag peekaboo.",
+ "updated": "2026-11-03",
+ "records": [
+  {
+   "id": "OBS-PEEKABOO-NEWMAN-IA",
+   "kind": "observation",
+   "slug": "obs-peekaboo-newman-ia",
+   "title": "Internet Archive copy of Newman, Glamorgan (1995): the catalogue description is a children's story blurb",
+   "aliases": [
+    "Peekaboo: Newman catalogue description",
+    "glamorganmidglam0000newm description"
+   ],
+   "date": {
+    "display": "Noted 3 November 2026 (catalogue data dated 8 June 2022)",
+    "sort": 2026,
+    "precision": "day"
+   },
+   "place_text": "Catalogue data of a published book (Glamorgan; entries for Llandough-juxta-Penarth, Leckwith and Cogan)",
+   "description": "The Internet Archive lending copy of John Newman's Glamorgan (The Buildings of Wales, 1995; identifier glamorganmidglam0000newm) carries, as its description, the summary of a children's picture book: “A very hairy but not-too-scary monster story. One dark, stormy night, Owl, Mouse and Rabbit are afraid. Could it be the Monster of the Woods knocking at the door? This warm, funny tale about friendship has a wonderfully unexpected twist.” The book itself is a 717-page architectural guide. The same text is the summary note (MARC field 520) in the catalogue record attached to the copy, which is a copy of OCLC WorldCat record 33858574 last changed on 8 June 2022. That record's title statement also reads “by Stephen Hughes and Anthony Ward”, while its creator field names John Newman. A reader searching the description would not find the book; the book holds the Llandough, Leckwith and Cogan entries catalogued as AR-NEWMAN-1995.",
+   "provenance": {
+    "holder": "Internet Archive (item metadata and its MARC, Dublin Core and meta files)",
+    "reference": "Internet Archive identifier glamorganmidglam0000newm; OCLC 33858574; ISBN 0140710566",
+    "date": "2022-06-08 (MARC record); item metadata last updated 2025-07-24",
+    "obtained": "Read on 3 November 2026 at 01:34 UTC from the item's public metadata; dated copies of the metadata JSON and the MARC, Dublin Core and meta files are kept in the project evidence store. The Wayback Machine does not take captures of archive.org pages, so no Wayback copy exists."
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "Peekaboo: catalogue description does not match the item",
+    "reason": "The record describes the in-scope source AR-NEWMAN-1995 with text that belongs to another book.",
+    "tags": [
+     "peekaboo",
+     "fcg",
+     "catalogue-mismatch",
+     "newman-1995",
+     "internet-archive"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "detail": [
+    {
+     "heading": "What the catalogue shows",
+     "text": "Description: a children's story about Owl, Mouse and Rabbit and “the Monster of the Woods”. Physical description: 717 pages, 64 unnumbered pages of plates. Subjects: architecture and historic buildings of Glamorgan.",
+     "form": "term"
+    },
+    {
+     "heading": "What the item is",
+     "text": "John Newman, Glamorgan (Mid Glamorgan, South Glamorgan and West Glamorgan), The Buildings of Wales, Penguin Books and University of Wales Press, 1995; scanned by the Internet Archive on 9 June 2022; controlled lending only.",
+     "form": "term"
+    },
+    {
+     "heading": "Where the text sits",
+     "text": "MARC 520 (summary) in the item's MARC file, mirrored into the description field. MARC 001 ocm33858574 (OCoLC); MARC 005 20220608130827. The title statement (MARC 245) names Stephen Hughes and Anthony Ward and not the author.",
+     "form": "term"
+    },
+    {
+     "heading": "Correction requested",
+     "text": "Remove the children's story summary from this record and give the author in the title statement. Draft notices to the Internet Archive and to OCLC WorldCat are listed in Peekaboo; nothing has been sent.",
+     "form": "section"
+    },
+    {
+     "heading": "Register",
+     "text": "Listed in the FCG register's first-seen page under “Catalogue entries that do not match the item” (3 November 2026).",
+     "form": "section"
+    }
+   ],
+   "sources": [
+    {
+     "text": "Internet Archive item glamorganmidglam0000newm, metadata and MARC file, read 3 November 2026",
+     "href": null
+    },
+    {
+     "text": "Peekaboo: records found despite their labels",
+     "href": "/peekaboo/"
+    },
+    {
+     "text": "FCG register: first seen",
+     "href": "/fcg/first-seen/"
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995"
+   ],
+   "links": [
+    {
+     "rel": "describes",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "peekaboo-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Observation added: catalogue description of the Internet Archive copy does not match the book."
+    }
+   ]
+  },
+  {
+   "id": "OBS-PEEKABOO-DBDT79-CATALOGUE",
+   "kind": "observation",
+   "slug": "obs-peekaboo-dbdt79-catalogue",
+   "title": "Glamorgan Archives DBDT/79/1: catalogue description corrected after the original was examined (14 September 2026)",
+   "aliases": [
+    "Peekaboo: DBDT/79/1 catalogue correction"
+   ],
+   "date": {
+    "display": "14 September 2026",
+    "sort": "2026-09-14",
+    "precision": "day"
+   },
+   "place_text": "Pembroke Terrace, Cardiff (the lease's own property); not Llandough",
+   "description": "On 26 August 2026 Glamorgan Archives was asked to examine the original of DBDT/79/1, catalogued as a counterpart lease of land in Pembroke Terrace, Cardiff “from the Marquess of Bute to Mr John Williams, May 1877”, and to report its physical contents separately from the catalogue description. The archive's reply of 14 September 2026 (ref. 2026/3893) reads: “The catalogue description for DBDT/79/1 had a few small errors which have now been corrected.” The original is a counterpart lease dated 2 May 1877 between the Trustees of the Will of the late Marquess of Bute and Mr John Williams of Newport, for a plot in Pembroke Terrace in the parish of St John the Baptist, Cardiff. The archive found no mention of Llandough, Great House Farm or Tŷ Mawr, or of any property outside Pembroke Terrace. The catalogue wording was wrong and was put right on inspection; the deed itself concerns Cardiff property (KF-02).",
+   "provenance": {
+    "holder": "Glamorgan Archives",
+    "reference": "DBDT/79/1; enquiry ref. 2026/3893; EV-0336",
+    "date": "2026-09-14",
+    "obtained": "Reply received 14 September 2026 to an enquiry of 26 August 2026."
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "not_this_property",
+    "label": "Peekaboo: catalogue corrected after inspection (deed is Cardiff property)",
+    "reason": "The catalogue description did not match the original; the original concerns Pembroke Terrace, Cardiff.",
+    "distinct_from": [
+     "PL-TY-MAWR"
+    ],
+    "tags": [
+     "peekaboo",
+     "catalogue-mismatch",
+     "corrected-by-holder",
+     "glamorgan-archives",
+     "dbdt"
+    ]
+   },
+   "places": [],
+   "evidence": [
+    "EV-0336"
+   ],
+   "detail": [
+    {
+     "heading": "Catalogue wording before",
+     "text": "“Lease (counterpart) of land and premises situate in Pembroke Terrace, Cardiff, from the Marquess of Bute to Mr John Williams, May 1877 [1 parchment, plan in margin].”",
+     "form": "term"
+    },
+    {
+     "heading": "The original, as examined",
+     "text": "Counterpart lease dated 2 May 1877; grantors the Trustees of the Will of the late Marquess of Bute; lessee Mr John Williams of Newport; a plot in Pembroke Terrace, parish of St John the Baptist, Cardiff; marginal plan shows a property on Pembroke Terrace.",
+     "form": "term"
+    },
+    {
+     "heading": "Found by",
+     "text": "The holder, on a physical check of the original requested on 26 August 2026.",
+     "form": "term"
+    },
+    {
+     "heading": "What it does and does not establish",
+     "text": "It shows a catalogue description that did not match the original and was corrected. It does not place the lease at Llandough; the archive found no Llandough reference in it.",
+     "form": "section"
+    }
+   ],
+   "sources": [
+    {
+     "text": "EV-0336: Glamorgan Archives, DBDT/79/1 physical examination of the original",
+     "href": "/wiki/evidence/ev-0336-glamorgan-archives-dbdt79-1-physical-examination-of-the-original/"
+    },
+    {
+     "text": "Peekaboo",
+     "href": "/peekaboo/"
+    }
+   ],
+   "related": [
+    "KF-02",
+    "KF-32"
+   ],
+   "links": [
+    {
+     "rel": "corrects",
+     "to": "KF-02"
+    }
+   ],
+   "origin": "peekaboo-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Observation added: catalogue correction confirmed by the holder after inspection."
+    }
+   ]
+  }
+ ]
+}
