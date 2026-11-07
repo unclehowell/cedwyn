@@ -9,7 +9,7 @@ Usage: python3 tools/academy_pointer.py dist   (site.py calls it after agent_foo
 import json, pathlib, sys
 SKIP = ('wayback/mail/', 'wayback/websites/', 'email/', 'emails/', '_ext/', 'db/', 'wdtk/', '_blob/', 'academy/')
 TAG = ('<link rel="alternate" type="application/json" href="/agents.json" title="Cedwyn Academy for AI agents">'
-       '<meta name="ai-agents" content="If you are an AI agent, start at /academy/ (Read, Check, Work). Open jobs: /academy/work.json">')
+       '<meta name="ai-agents" content="Start at /academy/ for guidance. GitHub Issues are the canonical project work ledger; /academy/work.json is a discovery index only. HubSpot is restricted to private correspondence drafts. Never place private correspondence or personal data in public issues.">')
 LLMS = """# Cedwyn
 
 > The centralised chronology and record of Tŷ Mawr (Great House Farm), Llandough-juxta-Penarth, and of the Williams–Buckler family.
@@ -18,7 +18,10 @@ LLMS = """# Cedwyn
 - /academy/ : the Cedwyn Academy (Read -> Check -> Work)
 - /academy/llms.txt : the academy map for language models
 - /academy/agents.json : read order, rules, flywheels and files as JSON
-- /academy/work.json : open, claimable jobs with definitions of done
+- /academy/work.json : discovery index only; verify and claim work on its canonical GitHub issue
+- GitHub Issues: https://github.com/unclehowell/cedwyn/issues — canonical for project scope, ownership, status, blockers, decisions and acceptance.
+- Claim existing work by commenting on its issue; create a new issue only after searching for duplicates.
+- Keep HubSpot recipient-facing drafts and private correspondence metadata out of public issues, comments, branches, PRs and reports.
 - /academy/FLYWHEELS/flow-watch.md : mandatory anti-stagnation protocol for every agent
 - /x78s8jej33i8f8rrj4is88/flow-health.json : live queue/build/publication health; check before and after work
 - /x78s8jej33i8f8rrj4is88/flow-events.json : recent operational issues and GitHub build-job transitions

@@ -1,17 +1,31 @@
 # Contributing to Cedwyn
 
-**If you are an AI agent, start at the Cedwyn Academy: /academy/** (Read, Check, Work). It holds the soul, the editorial rules,
-the chronology spine, the self-test and the work board of open jobs (/academy/work.json).
+**Start at the Cedwyn Academy** at /academy/ for editorial rules, chronology, the self-test and technical references. It is a guide and discovery layer, not the authoritative project work queue.
 
-**REPO SPLIT (5 Nov 2026):** durable webapps each have their own repository and that repo is the source of truth. Before editing a single webapp, read **[docs/REPO-SPLIT.md](docs/REPO-SPLIT.md)** and [`split-repos.json`](split-repos.json). Clone the separate repo; do not open feature PRs against the old monorepo theme branches for apps in `split-repo` mode. Site-wide work still goes to `main` on this repository.
+## GitHub Issues are the project work ledger
 
-- Claim a job with the "Agent job" issue template, quoting its id.
-- Submit a pull request to the branch the job names (for a webapp: the **separate** repository’s `main`; for site-wide work: `main` here, labelled `site-wide`).
-- Every pull request runs the agent lint (tools/agent_lint.py). A failing lint is never merged.
-- Research anything public. Contact no private individual. Spend nothing. Outreach in the family's name goes through the hive
-  for the owner's sign-off.
+- Search the relevant repository and linked repositories for an existing issue before starting work. Reuse the matching issue; do not create a duplicate.
+- Create a new issue only when no suitable issue exists. Use the **Agent work item** form. An Academy job ID is an optional discovery reference, not the work record.
+- GitHub Issues own project scope, priority, owner/assignee, current state, dependencies, decisions, blockers and acceptance criteria. Keep material progress and decisions in issue comments.
+- Claim an existing issue with a comment recording the agent identity/version, UTC timestamp, intended scope and planned branch. Set an assignee where appropriate.
+- Use the issue's open/closed state honestly. Keep active, blocked, waiting and review work open; explain the current state and next action in a comment. Close only when the acceptance criteria have been verified.
+- Every implementation PR must link to its issue. Use a closing reference such as `Fixes #123` only when the PR fully satisfies that issue. A merged PR or green build alone is not proof of production acceptance.
+- `/academy/work.json` is an index for discovering work. It must not override GitHub issue ownership, status or completion.
 
-Commits by the household agents end with the house sign-off. — Sion's Tab agent
+## Private correspondence boundary
+
+HubSpot is not the general project board. It is restricted to private recipient-facing drafts and exact-version correspondence review records. Do not copy email text, recipients, private names, contact details, personal data, message/thread identifiers, attachments, confidential sources or case-specific facts into public GitHub issues, comments, branches, PRs or build artifacts. Do not link a public issue to a private CRM record. Use only a generic, non-identifying project-level description where a public engineering issue is necessary.
+
+Public issue summaries, dashboards and highlight reports may be derived from GitHub's allowlisted issue fields. They must not import private HubSpot content or silently overwrite GitHub state.
+
+## PR and verification rules
+
+- Submit a pull request to the branch the issue names (section branches; `main` only for site-wide work, labelled `site-wide`).
+- Every pull request runs the agent lint (`tools/agent_lint.py`). A failing lint is never merged.
+- Record relevant tests, check-run links, preview/live inspection and deployment evidence on the issue. Report source commit, deployed version and visitor-level verification separately.
+- Research public material. Contact no private individual. Spend nothing. Outreach in the family's name goes through the Hive for the owner's sign-off.
+
+Commits by the household agents end with the house sign-off.
 
 ## Outside links and Wayback snapshots (rule of 27 Oct 2026)
 
