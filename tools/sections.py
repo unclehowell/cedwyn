@@ -268,12 +268,18 @@ def argentina(S, cfg):
 
 WALES_BANNED = ['says', 'claims', 'according to', 'hearsay', 'unverified', 'alleged', 'fraud', 'stolen']
 
-def check_wales(text):
-    """the page's own visible copy (<main>) carries none of the banned words (the agent footer's Trigger Event notice is the stated exception)"""
+def check_wales(text, proper=()):
+    """the page's own visible copy (<main>) carries none of the banned words (the agent footer's Trigger Event notice is the stated exception). Registered theme proper names (en/cy/es titles from themes.json) are app names, not editorial copy, and are exempt - the tiles on the landing pages display them as labels."""
     m = re.search(r'<main\b.*?</main>', text, flags=re.S)
     body = re.sub(r'<[^>]+>', ' ', m.group(0) if m else text)
+    for name in proper:
+        body = body.replace(name, ' ')
     bad = [w for w in WALES_BANNED if re.search(r'\b' + re.escape(w) + r'\b', body, re.I)]
     assert not bad, 'wales/landing page carries banned words: %s' % bad
+
+def theme_proper_names(cfg):
+    """registered theme names (en/cy/es titles): proper nouns exempt from the wales-landing banned-word guard"""
+    return [x for t in cfg['themes'] for x in (t.get('title'), t.get('cy'), t.get('es')) if x]
 
 def run(dist, cfg):
     dist = pathlib.Path(dist)
@@ -296,8 +302,9 @@ def run(dist, cfg):
     import agent_footer, sys as _sys, family_case
     fc_page = family_case.write(_sys.modules[__name__], dist, S, cfg)   # /argentina/caso/ (via /argentina/:theme/* -> /caso/)
     for pth in (dist / 'index.html', dist / 'wales' / 'index.html', dist / 'argentina' / 'index.html', fc_page): agent_footer.inject(pth, False)
-    check_wales((dist / 'wales' / 'index.html').read_text(encoding='utf-8'))
-    check_wales((dist / 'index.html').read_text(encoding='utf-8'))
+    proper = theme_proper_names(cfg)
+    check_wales((dist / 'wales' / 'index.html').read_text(encoding='utf-8'), proper)
+    check_wales((dist / 'index.html').read_text(encoding='utf-8'), proper)
     # 4. scripts: section.js gets the ribbon/footer strings and the theme ids; runtime.js the client-router list; basecamp.js the Argentina names
     keys = ['rib_w', 'rib_a', 'rib_v', 'rib_e', 'rib_mu', 'rib_re', 'rib_close', 'w_name', 'a_name', 'f_log', 'f_cur', 'f_proto']
     sj = dist / '_cedwyn' / 'section.js'
