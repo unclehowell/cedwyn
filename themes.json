@@ -34,14 +34,14 @@
   "kicker": "The family estate directory",
   "eyebrow": "A family estate · Wales to Patagonia and beyond",
   "monogram": "CE",
-  "description": "Cedwyn Estate, the Williams-Buckler family directory: one archive of Great House Farm, {n} layers to explore it, by way of Wales, Argentina or Online.",
+  "description": "Cedwyn Estate, the Williams-Buckler family directory: one archive of Tŷ Mawr (Great House), {n} layers to explore it, by way of Wales, Argentina or Online.",
   "layers_note": "Whichever way you come in, the same {n} layers open here, in four groups.",
   "realms": [
    {
     "id": "wales",
     "kick": "Tours · Llandough",
-    "title": "Wales — Great House Farm",
-    "note": "The original farmhouse, its landscape and the family record."
+    "title": "Wales — Tŷ Mawr (Great House)",
+    "note": "The original manorial house, its landscape and the family record."
    },
    {
     "id": "argentina",
@@ -118,7 +118,7 @@
     "records.bucklerfamily.estate"
    ],
    "paths": [],
-   "desc": "Great House Farm — Primary Record Register",
+   "desc": "Tŷ Mawr (Great House) — Primary Record Register",
    "branch": "ghf-primary-records",
    "dir": "",
    "group": "artifacts"
@@ -248,7 +248,7 @@
    "live": "https://cedwyn.bucklerfamily.estate/spill/",
    "hosts": [],
    "paths": [],
-   "desc": "Spill: the protocol any AI agent follows to submit, from its own conversation with the owner since its last spill, sourced facts about the Williams family, Tŷ Mawr / Great House Farm, the Cedwyn estate and the 1987 case that the evidence catalogue does not hold (llms.txt, protocol.json, submission endpoint with dedupe). Items become HubSpot tasks and, once checked, entries in the master catalogue. Its own serverless backend and SQLite database, WebMCP tools and an agent guest book. Webapp 44 of 59.",
+   "desc": "Spill: the protocol any AI agent follows to submit, from its own conversation with the owner since its last spill, sourced facts about the Williams family, Tŷ Mawr (Great House), the Cedwyn estate and the 1987 case that the evidence catalogue does not hold (llms.txt, protocol.json, submission endpoint with dedupe). Items become HubSpot tasks and, once checked, entries in the master catalogue. Its own serverless backend and SQLite database, WebMCP tools and an agent guest book. Webapp 44 of 59.",
    "group": "interactive",
    "snapshot_branch": "section/spill",
    "slot": 44
@@ -263,7 +263,7 @@
     "infographic.bucklerfamily.estate"
    ],
    "paths": [],
-   "desc": "Great House Farm · the land changing hands",
+   "desc": "Tŷ Mawr (Great House) · the land changing hands",
    "branch": "infographic",
    "dir": "public",
    "group": "interactive"
@@ -311,7 +311,7 @@
    "live": "https://research.bucklerfamily.estate/timeline/thousand-cuts/",
    "hosts": [],
    "paths": [],
-   "desc": "Dated events at Great House Farm, 1870s–1988: what each changed in law or in fact, its evidence, and links to earlier and later events (a layer over the catalogue; rows in the database's layer tables).",
+   "desc": "Dated events at Tŷ Mawr (Great House), 1870s–1988: what each changed in law or in fact, its evidence, and links to earlier and later events (a layer over the catalogue; rows in the database's layer tables).",
    "layer": true,
    "group": "story"
   },
@@ -371,7 +371,7 @@
     "courtdrills.bucklerfamily.estate"
    ],
    "paths": [],
-   "desc": "Great House Farm proceedings, 1955–1988: procedural unfairness, court mistakes and other miscarriages of justice, each with its source.",
+   "desc": "Tŷ Mawr (Great House) proceedings, 1955–1988: procedural unfairness, court mistakes and other miscarriages of justice, each with its source.",
    "branch": "courtdrills",
    "dir": "public",
    "group": "interactive"
@@ -431,7 +431,7 @@
     "authorities.bucklerfamily.estate"
    ],
    "paths": [],
-   "desc": "Great House Farm — Public Authority Correspondence",
+   "desc": "Tŷ Mawr (Great House) — Public Authority Correspondence",
    "branch": "ghf-public-authorities",
    "dir": "",
    "group": "research"
@@ -461,7 +461,7 @@
     "review.bucklerfamily.estate"
    ],
    "paths": [],
-   "desc": "Great House Farm — Independent Review Register",
+   "desc": "Tŷ Mawr (Great House) — Independent Review Register",
    "branch": "ghf-independent-review",
    "dir": "",
    "group": "research"
@@ -772,7 +772,7 @@
    "live": "https://cedwyn.bucklerfamily.estate/kissed-frogs/",
    "hosts": [],
    "paths": [],
-   "desc": "The screening register: leads checked and found not to be Great House Farm / Tŷ Mawr, Llandough-juxta-Penarth, or out of scope, each with its source and the reason.",
+   "desc": "The screening register: leads checked and found not to be Tŷ Mawr (Great House), Llandough-juxta-Penarth, or out of scope, each with its source and the reason.",
    "branch": "kissed-frogs",
    "dir": "public",
    "group": "research"
@@ -785,7 +785,7 @@
    "live": "https://cedwyn.bucklerfamily.estate/that-old-chestnut/",
    "hosts": [],
    "paths": [],
-   "desc": "FOI and EIR replies about Great House Farm / Tŷ Mawr read line by line: wording that sets up a refusal, and 'not held' answers that later became records found, each with the statute it points at. Webapp 38 of 59.",
+   "desc": "FOI and EIR replies about Tŷ Mawr (Great House) read line by line: wording that sets up a refusal, and 'not held' answers that later became records found, each with the statute it points at. Webapp 38 of 59.",
    "branch": "that-old-chestnut",
    "dir": "public",
    "group": "research"
@@ -798,7 +798,7 @@
    "live": "https://cedwyn.bucklerfamily.estate/forensic/",
    "hosts": [],
    "paths": [],
-   "desc": "One forensic assessment per institution in the Great House Farm / Tŷ Mawr record: its role, its replies to information requests, and every contact since its last assessment. Webapp 39 of 59.",
+   "desc": "One forensic assessment per institution in the Tŷ Mawr (Great House) record: its role, its replies to information requests, and every contact since its last assessment. Webapp 39 of 59.",
    "group": "research",
    "snapshot_branch": "section/forensic"
   },
@@ -836,7 +836,7 @@
    "live": "https://cedwyn.bucklerfamily.estate/blog/",
    "hosts": [],
    "paths": [],
-   "desc": "Short dated posts on the history, heritage and records of Great House Farm (Tŷ Mawr), each linked to its record, with RSS, Atom and JSON feeds.",
+   "desc": "Short dated posts on the history, heritage and records of Tŷ Mawr (Great House), each linked to its record, with RSS, Atom and JSON feeds.",
    "branch": "blog",
    "dir": "public",
    "group": "research"
