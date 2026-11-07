@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Highlight Report HR-E03 · The Project Office</title>
+<meta name="description" content="Digital Estate highlight report HR-E03, 1 November 2026: modular catalogue-backed webapps, data-only refresh, release governance and acceptance gates."/>
+<link rel="stylesheet" href="/assets/p2.css?v=1"/>
+<script src="https://bucklerfamily.estate/ghf-lang/ghf-lang.js?v=2.0.3" defer></script>
+<script src="https://bucklerfamily.estate/ghf-lang/ghf-boot.js?v=2.0.3"></script>
+</head>
+<body>
+<main class="p2">
+<h1 class="vh">Highlight Report HR-E03</h1>
+<p class="crumb"><a href="/">The Project Office</a> › <a href="/estate/pid/">Digital estate</a> › <a href="/estate/highlight-reports/">Highlight reports</a> › HR-E03</p>
+<ul class="facts"><li>Date <b>1 November 2026</b></li><li>Period <b>1 November 2026</b></li><li>Status <b><span class="chip c-warn">AMBER · proposed</span></b></li></ul>
+<p class="lead">Project Manager to the Executive (Project Board). Digital Estate, 1 November 2026. WP-E5 is a proposed enabling work package; the audit and design baseline are recorded, but the event-driven cache pipeline has not been implemented or accepted.</p>
+<details class="sec" id="date"><summary><h2>Date</h2><span class="pv">1 November 2026</span></summary><div class="body"><p>1 November 2026</p></div></details>
+<details class="sec" id="period"><summary><h2>Period covered</h2><span class="pv">1 November 2026</span></summary><div class="body"><p>1 November 2026</p></div></details>
+<details class="sec" id="status-summary" open><summary><h2>Status summary</h2><span class="pv">S1 · proposed WP-E5 · AMBER</span></summary><div class="body"><p>WP-E5 scopes an architecture in which each app has an explicit local data boundary and data-only catalogue changes refresh subscribed app caches without a full site rebuild. The current site already has a central SQLite catalogue, GraphQL browser resolver, graph edges, generated SQLite slices and generated per-app JSON views. The gap is that those views are currently build outputs, not independently refreshed from an event feed. No production event publisher, queue consumer or fleet of app databases is claimed complete.</p></div></details>
+<details class="sec" id="this-period"><summary><h2>This reporting period</h2><span class="pv">Audit and proposal completed</span></summary><div class="body">
+<h3>Work packages pending authorisation</h3><ul><li>WP-E5: central catalogue change feed, per-app subscription/caches, JSON/GraphQL data plane, release/retention automation and architecture guardrails.</li></ul>
+<h3>Work packages in execution</h3><p class="none">No production implementation work is recorded as started under WP-E5. This report records the audit and proposed design only.</p>
+<h3>Work packages completed</h3><ul><li>Audited central SQLite/GraphQL/graph structures, generated per-area SQLite slices and per-app JSON views, build-to-<code>site</code> pipeline, Cloudflare Pages configuration/deployment inventory, HubSpot mirror boundary, and branch/release/changelog controls.</li><li>Prepared WP-E5 architecture baseline, candidate component choices, sequencing, risks and acceptance tests.</li></ul>
+<h3>Products completed in the period</h3><ul><li><a href="/estate/platform-architecture/">WP-E5 — Modular catalogue-backed webapps</a>.</li></ul>
+<h3>Corrective actions taken</h3><p>No application source, Pages configuration, live alias or route was changed. Under the owner's requested retention policy, 399 older successful production deployment records were deleted after a paginated dry run. The three newest successful builds and active alias were retained. The 45 non-success production records and 2,107 skipped preview records were left untouched.</p>
+</div></details>
+<details class="sec" id="next-period"><summary><h2>Next reporting period</h2><span class="pv">Architecture and pilot design</span></summary><div class="body">
+<h3>Work packages to be authorised</h3><ul><li>Inventory all registered public areas and classify each app's data needs (read-only snapshot, D1 relational cache, or app-specific writes).</li><li>Define ADRs and schemas for stable artifact revisions, append-only change events, subscription manifests, app cursors and data snapshots.</li><li>Design a read-only pilot on one app before broad provisioning or enabling automated updates.</li></ul>
+<h3>Products to be completed</h3><ul><li>App inventory and ownership map; central catalogue event envelope; app manifest/subscription schema; release and retention dry-run design.</li></ul>
+<h3>Corrective actions</h3><ul><li>Make required data/view generation failures visible and release-blocking where stale outputs would mislead users; retain explicit last-known-good state.</li><li>Make the root and each versioned branch follow a consistent SemVer/changelog contract.</li></ul>
+</div></details>
+<details class="sec" id="tolerances"><summary><h2>Project and stage tolerance status</h2><span class="pv">Tolerances not yet agreed by the Project Board</span></summary><div class="body">
+<table class="t"><thead><tr><th>Tolerance area</th><th>Tolerance set</th><th>Status this period</th></tr></thead><tbody>
+<tr><td>Time</td><td>Not yet agreed</td><td>Planning baseline only; delivery dates to be agreed after app inventory and architecture review.</td></tr>
+<tr><td>Cost</td><td>Not yet agreed</td><td>No spend approved. D1 account plan/cost and alternative R2 snapshot approach must be checked before provisioning.</td></tr>
+<tr><td>Quality</td><td>Not yet agreed</td><td>Acceptance tests are proposed in WP-E5; not yet run against a production event pipeline.</td></tr>
+<tr><td>Scope</td><td>Not yet agreed</td><td>Architecture audit and pilot design; no site-wide migration authorised.</td></tr>
+<tr><td>Benefits</td><td>Not yet set</td><td>Expected reduction in full rebuilds and better app isolation; baseline metrics not yet collected.</td></tr>
+<tr><td>Risk</td><td>Not yet agreed</td><td>Event replay, stale caches, evidence lineage, shared contract drift and retention deletion are open design risks.</td></tr>
+<tr><td>Sustainability</td><td>Not yet set</td><td>Measure unnecessary rebuild/preview volume before and after controls are implemented.</td></tr>
+</tbody></table>
+</div></details>
+<details class="sec" id="requests-for-change"><summary><h2>Requests for change</h2><span class="pv">1 proposed · 0 authorised · 1 pending</span></summary><div class="body"><p>WP-E5 is proposed as an enabling work package within Digital Estate S1. It is not a new Great House Farm programme project and does not alter P1–P4 scope, progress measures, RAG status or the P4 legal gate. The owner's no-spend and approval boundaries remain in force.</p></div></details>
+<details class="sec" id="key-issues-and-risks"><summary><h2>Key issues and risks</h2><span class="pv">6 open design risks</span></summary><div class="body"><ul>
+<li>App-local SQLite/JSON views are build-time products; data-only changes still depend on static build publication.</li>
+<li>The main build allows some view generation failures to fall back to old static pages; cache freshness can become stale unless reported and gated.</li>
+<li>Per-app D1 databases may be appropriate for relational or writable apps, but a database for every area may add cost and operational complexity. Use JSON/R2 or static SQLite where sufficient.</li>
+<li>Event delivery must handle duplicates, ordering, retries, dead letters, replay and a full reconciliation path.</li>
+<li>GraphRAG may surface relevant context but must not collapse neutral source description, verbatim transcript and interpretation or convert retrieval relevance into evidential weight.</li>
+<li>Release retention must never remove an active production alias or the newest three successful builds. Skipped preview records must be treated separately from completed deployments.</li>
+</ul></div></details>
+<details class="sec" id="lessons"><summary><h2>Lessons report (if appropriate)</h2><span class="pv">Prompt-only standards are insufficient</span></summary><div class="body"><p>Agent instructions need to be backed by machine-enforced architecture contracts, ADRs, a golden-path template, protected branch/release rules, CI checks and independent verification. A successful build is not proof that every data view is current or that an app is independently extractable.</p></div></details>
+<p class="note" style="margin-top:16px"><a href="/estate/highlight-reports/hr-e02-2026-10-21/">← HR-E02</a> · <a href="/estate/highlight-reports/">All Digital Estate reports</a> · <a href="/estate/platform-architecture/">WP-E5 →</a></p>
+<p class="note" style="margin-top:18px">PRINCE2 7 outlines: <a href="/about-the-outlines/">sources</a> · <a href="/products/">product set</a> · <a href="/archive/">archive</a></p>
+</main>
+</body>
+</html>
