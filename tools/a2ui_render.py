@@ -11,6 +11,7 @@ Contract (see web/_cedwyn/a2ui/catalog.json and work/cedwyn-data-arch/PLAN.md se
   data: every string is escaped. Links must be root-relative or relative (outbound links are refused).
 Used by tools/views.py at build time. Stdlib only. - Cedwyn data-driven architecture, WP1 pilot, 30 Oct 2026."""
 import html, json, re
+from urllib.parse import urlparse
 
 CATALOG_ID = "https://cedwyn.bucklerfamily.estate/_cedwyn/a2ui/catalog.json"
 E = lambda s: html.escape("" if s is None else str(s), quote=True)
@@ -38,6 +39,16 @@ def _safe_href(u):
     if u.startswith("//") or re.match(r"^[a-z][a-z0-9+.-]*:", u, re.I):
         raise RenderError("outbound or scheme link refused: " + u[:80])
     return u
+
+def _safe_asset(u):
+    """Assets may be relative, or a shared Cedwyn shell asset from its canonical origin."""
+    if u is None: return None
+    value = str(u)
+    if not re.match(r"^https?://", value, re.I): return _safe_href(value)
+    p = urlparse(value)
+    if p.scheme != "https" or p.hostname != "cedwyn.bucklerfamily.estate" or p.username or p.password or not p.path.startswith("/_cedwyn/"):
+        raise RenderError("untrusted external asset refused: " + value[:100])
+    return value
 
 class Surface:
     def __init__(self, messages):
@@ -88,16 +99,41 @@ def _cls(s, c, ctx, base):
     extra = s.val(c.get("className"), ctx)
     return E(base + (" " + extra if extra else ""))
 
+def _safe_attrs(attrs):
+    out = []
+    for k, v in (attrs or {}).items():
+        name = str(k)
+        if not re.fullmatch(r"(?:data|aria)-[a-zA-Z0-9_.:-]+|(?:lang|dir|translate|class)", name, re.I) or name.lower().startswith("on"):
+            raise RenderError("unsafe HTML attribute: " + name[:60])
+        if v is None or v is False: continue
+        if v is True: out.append(E(name)); continue
+        out.append('%s="%s"' % (E(name), E(v)))
+    return (" " + " ".join(out)) if out else ""
+
 def Page(s, c, ctx):
     css = "".join('<link rel="stylesheet" href="%s">' % E(_safe_href(u)) for u in c.get("css", []))
-    hs = "".join('<script src="%s"%s></script>' % (E(_safe_href(x["src"])), " defer" if x.get("defer") else "") for x in c.get("headScripts", []))
+    hs = []
+    for x in c.get("headScripts", []):
+        attrs = _safe_attrs(x.get("attrs", {}))
+        defer = " defer" if x.get("defer") else ""
+        hs.append('<script src="%s"%s%s></script>' % (E(_safe_asset(x["src"])), defer, attrs))
     js = "".join('<script src="%s" defer></script>' % E(_safe_href(u)) for u in c.get("js", []))
     title, desc = s.val(c.get("title"), ctx), s.val(c.get("description"), ctx)
     lang = c.get("lang", "en")
-    return ('<!doctype html><html lang="%s"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-            '<title>%s</title><meta name="description" content="%s">%s%s'
-            '<meta name="generator" content="cedwyn-a2ui/0.1 (A2UI v0.9 surface %s)"></head><body class="%s"><main class="%s">%s</main>%s</body></html>\n'
-            % (E(lang), E(title), E(desc), css, hs, E(s.surface), E(c.get("bodyClass", "")), E(c.get("mainClass", "")), s.inner(c, ctx), js))
+    html_attrs = _safe_attrs(c.get("htmlAttrs", {}))
+    cedwyn_path = c.get("cedwynPath")
+    path_script = ""
+    if cedwyn_path:
+        path = str(cedwyn_path)
+        if not path.startswith("/") or path.startswith("//") or any(ch in path for ch in "\r\n"):
+            raise RenderError("cedwynPath must be a root-relative path")
+        encoded = json.dumps(path, ensure_ascii=True).replace("<", r"\u003c").replace(">", r"\u003e").replace("&", r"\u0026")
+        path_script = "<script>window.__cedwynLP=" + encoded + ";</script>"
+    return ('<!doctype html><html lang="%s"%s><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+            '<title>%s</title><meta name="description" content="%s">%s%s%s'
+            '<meta name="generator" content="cedwyn-a2ui/0.2 (A2UI v0.9 surface %s)"></head><body class="%s"><main class="%s">%s</main>%s</body></html>\n'
+            % (E(lang), html_attrs, E(title), E(desc), css, path_script, "".join(hs), E(s.surface),
+               E(c.get("bodyClass", "")), E(c.get("mainClass", "")), s.inner(c, ctx), js))
 
 def HiddenHeading(s, c, ctx):
     return '<h1 class="vh">%s</h1>' % E(s.val(c.get("text"), ctx))
@@ -189,12 +225,27 @@ def Card(s, c, ctx):
     body = s.val(c.get("body"), ctx); bl = s.val(c.get("bodyLabel"), ctx)
     badge, bcls = s.val(c.get("badge"), ctx), s.val(c.get("badgeClass"), ctx)
     foot = s.val(c.get("foot"), ctx)
-    return ('<article class="%s"%s><h3 class="a2-card-h">%s</h3>%s%s<p class="a2-card-f">%s%s</p></article>'
+    return ('<article class="%s"%s><h3 class="a2-card-h">%s</h3>%s%s%s%s<p class="a2-card-f">%s</p></article>'
             % (_cls(s, c, ctx, "a2-card"), attrs, head,
                ('<p class="a2-meta">%s</p>' % "".join(meta)) if meta else "",
                ('<p class="a2-card-b"><span class="a2-l">%s</span> %s</p>' % (E(bl), E(body))) if body else "",
+               s.inner(c, ctx),
                ('<span class="%s">%s</span>' % (E(bcls or "a2-badge"), E(badge))) if badge else "",
-               (' <small>%s</small>' % E(foot)) if foot else ""))
+               E(foot) if foot else ""))
+    
+def Meter(s, c, ctx):
+    try:
+        value = float(s.val(c.get("value"), ctx) or 0)
+        maximum = float(s.val(c.get("max"), ctx) or 100)
+    except (TypeError, ValueError):
+        raise RenderError("Meter value and max must be numeric")
+    if maximum <= 0: raise RenderError("Meter max must be greater than zero")
+    value = max(0.0, min(value, maximum))
+    pct = value / maximum * 100.0
+    label = s.val(c.get("label"), ctx) or ("%s of %s" % (value, maximum))
+    return ('<div class="%s" role="progressbar" aria-label="%s" aria-valuemin="0" aria-valuemax="%s" aria-valuenow="%s">'
+            '<span class="mw-meter-fill" style="width:%.2f%%"></span></div>'
+            % (_cls(s, c, ctx, "a2-meter"), E(label), E(maximum), E(value), pct))
 
 def Badge(s, c, ctx):
     return '<span class="%s">%s</span>' % (E(s.val(c.get("className"), ctx) or "a2-badge"), E(s.val(c.get("text"), ctx)))
