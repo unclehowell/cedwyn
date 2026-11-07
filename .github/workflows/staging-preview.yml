@@ -1,0 +1,81 @@
+name: staging-preview
+# Staging previews for every PR to main (adapted from datro: deploy-qa.yml's `wrangler pages deploy --branch` per-branch deploys,
+# and datro's Oct 2025 move to Cloudflare Pages git-integration previews). This repo holds no Cloudflare secrets, so nothing is
+# deployed from here: Cloudflare Pages project "cedwyn" builds preview deployments itself for the branches in its preview list
+# (section/wales-3d, section/argentina-3d, staging/*), each at https://<branch-slug>.cedwyn-274.pages.dev/ and refreshed on every
+# push. This job works out which branches a PR stages (its own head branch, plus any section pin it adds or moves in
+# sections.lock), checks each preview answers, and keeps ONE comment on the PR with the links. Never deploys, never merges.
+# - Sion's Tab agent
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: PR number to (re)comment
+        required: true
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+concurrency:
+  group: staging-preview-${{ github.event.pull_request.number || inputs.pr }}
+  cancel-in-progress: true
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Work out the staging previews and comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number || inputs.pr }}
+          PAGES: cedwyn-274.pages.dev
+        run: |
+          python3 - <<'PY'
+          import json, os, re, time, urllib.request, urllib.error
+          T=os.environ['GH_TOKEN']; R=os.environ['REPO']; N=os.environ['PR']; PAGES=os.environ['PAGES']
+          def api(m,u,b=None):
+              rq=urllib.request.Request('https://api.github.com'+u,method=m,data=None if b is None else json.dumps(b).encode(),
+                  headers={'Authorization':'Bearer '+T,'Accept':'application/vnd.github+json','User-Agent':'staging-preview'})
+              with urllib.request.urlopen(rq,timeout=30) as r: return json.loads(r.read() or b'null')
+          def lock(sha):
+              try:
+                  rq=urllib.request.Request(f'https://api.github.com/repos/{R}/contents/sections.lock?ref={sha}',
+                      headers={'Authorization':'Bearer '+T,'Accept':'application/vnd.github.raw','User-Agent':'staging-preview'})
+                  with urllib.request.urlopen(rq,timeout=30) as r: return json.loads(r.read())
+              except Exception: return {}
+          def slug(b): return re.sub(r'[^a-z0-9-]','-',b.lower())[:28].strip('-')
+          def status(u):
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(u+'?cb=%d'%time.time(),headers={'User-Agent':'staging-preview'}),timeout=30) as r: return r.status
+              except urllib.error.HTTPError as e: return e.code
+              except Exception: return 0
+          pr=api('GET',f'/repos/{R}/pulls/{N}')
+          base,head=lock(pr['base']['sha']).get('sections',{}),lock(pr['head']['sha']).get('sections',{})
+          branches=[]
+          hb=pr['head']['ref']
+          if hb.startswith('staging/') or hb.startswith('section/'): branches.append((hb,'this PR'))
+          for k,v in sorted(head.items()):
+              if not isinstance(v,dict) or 'branch' not in v: continue
+              if base.get(k,{}).get('sha')!=v.get('sha'):
+                  branches.append((v['branch'],f'`{k}` pinned at {v.get("sha","")[:7]}'))
+          rows=[]
+          for b,why in branches:
+              u=f'https://{slug(b)}.{PAGES}/'; s=status(u)
+              rows.append(f'| `{b}` | {why} | {u} | {"live" if s==200 else "not built yet (HTTP %s); add the branch to the Pages preview list" % s} |')
+          mark='<!-- staging-preview -->'
+          if rows:
+              body=(mark+'\n### Staging previews (Cloudflare Pages)\n\nThese rebuild on every push to the branch. Review here before accepting, '
+                    'changing or rejecting this PR; nothing is live on bucklerfamily.estate until it is merged and the site build runs.\n\n'
+                    '| Branch | Why | Preview | State |\n|---|---|---|---|\n'+'\n'.join(rows)+
+                    f'\n\n_Checked {time.strftime("%Y-%m-%d %H:%M UTC",time.gmtime())} for {pr["head"]["sha"][:7]}._')
+          else:
+              body=mark+'\n### Staging previews\n\nThis PR stages no preview branch (no `staging/*` head and no new or moved section pin).'
+          old=[c for c in api('GET',f'/repos/{R}/issues/{N}/comments?per_page=100') if mark in (c.get('body') or '')]
+          if old: api('PATCH',f'/repos/{R}/issues/comments/{old[0]["id"]}',{'body':body})
+          else: api('POST',f'/repos/{R}/issues/{N}/comments',{'body':body})
+          print(body)
+          PY

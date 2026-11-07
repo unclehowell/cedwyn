@@ -1,5 +1,5 @@
 {
- "version": "1.5.0",
+ "version": "1.6.0",
  "note": "Two halves of Cedwyn (Sion, 23:39 GMT 25 Oct 2026, m:2a7c8c27): landing (two tiles), /wales/ = augmented-reality guided tour of Cedwyn Estate, Wales (former manorial house, never 'farm'; no museum stop), /argentina/ = Cedwyn Estate II / Great House II retreat with package builder. Wales copy follows EDITORIAL.md (ingredients + citations, courts' view first, banned words). AI images carry 'artist's impression'. Bookings are pre-order requests, not confirmed holidays. Welsh and Spanish are first drafts for review. tools/halves.py renders it. - Sion's Tab agent",
  "img": "/_cedwyn/halves/img/",
  "img_v": "3",
@@ -1349,6 +1349,7 @@
    "courtdrills",
    "accounts",
    "terrain",
+   "wales-3d",
    "patagonia",
    "estate"
   ],
@@ -1401,9 +1402,12 @@
    "chat",
    "watchtower",
    "analytics",
-   "spill"
+   "spill",
+   "terrain",
+   "argentina-3d"
   ],
   "argentina_exclude": [
+   "wales-3d",
    "tithe-h3",
    "wales",
    "whattheydontsay",
@@ -1474,6 +1478,7 @@
  "section_labels": {
   "note": "1.5.0: a place-menu tile label for one half only (Wales 2D map = Tithe H3; Patagonia 2D map = Chubut H3).",
   "wales": {
+   "wales-3d": "3D map",
    "tithe-h3": "2D map · H3"
   },
   "argentina": {
@@ -1705,6 +1710,15 @@
   ]
  },
  "changelog": [
+  {
+   "version": "1.6.0",
+   "date": "2026-11-05",
+   "pages": [
+    "/wales/",
+    "/argentina/"
+   ],
+   "change": "Each half gets its own 3D map. Wales: the 3D map tile and menu entry open Wales in 3D (/wales-3d/, real LiDAR terrain of Llandough and Leckwith) in place of Terrain. Patagonia keeps Terrain until its own 3D world (/argentina-3d/) lands. Terrain itself stays at its own address. - Tab agent"
+  },
   {
    "version": "1.5.0",
    "date": "2026-11-03",
