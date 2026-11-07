@@ -1,0 +1,69 @@
+name: App semantic release
+on:
+  workflow_dispatch:
+    inputs:
+      app_id:
+        description: App ID from work/cedwyn-arch/app-release-ledger.json
+        required: true
+        type: string
+      version:
+        description: Numeric SemVer MAJOR.MINOR.PATCH, without a leading v
+        required: true
+        type: string
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out release control files
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Validate release gate, source branch and SemVer
+        id: validate
+        env:
+          APP_ID: ${{ inputs.app_id }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess, sys
+          ledger = json.load(open("work/cedwyn-arch/app-release-ledger.json", encoding="utf-8"))
+          app_id, version = os.environ["APP_ID"], os.environ["VERSION"]
+          parts = version.split(".")
+          if len(parts) != 3 or any(not part.isdigit() or (len(part) > 1 and part[0] == "0") for part in parts):
+              sys.exit("Version must be numeric SemVer MAJOR.MINOR.PATCH.")
+          matches = [item for item in ledger["apps"] if item["app_id"] == app_id]
+          if len(matches) != 1:
+              sys.exit("App ID is missing or duplicated in the release ledger.")
+          app = matches[0]
+          if app.get("release_readiness") != "READY_FOR_RELEASE":
+              sys.exit("Release blocked: the ledger does not mark this app READY_FOR_RELEASE.")
+          branch = app.get("source_branch")
+          if not branch or not app.get("source_branch_exists"):
+              sys.exit("Release blocked: this app has no verified source branch.")
+          subprocess.run(["git", "fetch", "origin", branch, "--depth=1"], check=True)
+          sha = subprocess.check_output(["git", "rev-parse", "FETCH_HEAD"], text=True).strip()
+          if app.get("source_branch_sha") and sha != app["source_branch_sha"]:
+              sys.exit("Release blocked: source branch moved after the ledger snapshot; refresh the ledger and rerun checks.")
+          tag = f"apps/{app_id}/v{version}"
+          exists = subprocess.run(["git", "ls-remote", "--exit-code", "--tags", "origin", f"refs/tags/{tag}"], capture_output=True, text=True)
+          if exists.returncode == 0:
+              sys.exit("Release blocked: tag already exists; never overwrite an existing release tag.")
+          if exists.returncode not in (2,):
+              sys.exit("Could not establish whether the release tag exists; stop and retry after checking the remote.")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+              print(f"sha={sha}", file=f)
+              print(f"tag={tag}", file=f)
+              print(f"app_id={app_id}", file=f)
+              print(f"version={version}", file=f)
+          PY
+      - name: Publish namespaced release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.validate.outputs.tag }}" \
+            --repo "${{ github.repository }}" \
+            --target "${{ steps.validate.outputs.sha }}" \
+            --title "${{ steps.validate.outputs.app_id }} v${{ steps.validate.outputs.version }}" \
+            --notes "Cedwyn app release. Source commit: ${{ steps.validate.outputs.sha }}. This release was published only after the app ledger marked the source READY_FOR_RELEASE. See work/cedwyn-arch/app-release-ledger.json."

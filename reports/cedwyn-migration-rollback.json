@@ -1,0 +1,38 @@
+{
+  "purpose": "Exact baseline for rolling back the Cedwyn host-routing modification performed on 2026-10-28. Restore this single rule to revert to ruleset version 26 behavior; delete the story CNAME only if the new alias is also being removed.",
+  "captured_at_utc": "2026-10-28T08:34:00Z",
+  "zone_id": "5307ac7d55a77d914b81d79c79532dde",
+  "ruleset_id": "418cf908695742d19d24e5058b2bab22",
+  "baseline_ruleset_version": "26",
+  "rule_id": "e12da20c1f3e41a58c1cf6ea1b503b9b",
+  "baseline_rule": {
+    "id": "e12da20c1f3e41a58c1cf6ea1b503b9b",
+    "description": "RETIRE same-name->cedwyn",
+    "enabled": true,
+    "action": "redirect",
+    "action_parameters": {
+      "from_value": {
+        "preserve_query_string": false,
+        "status_code": 301,
+        "target_url": {
+          "expression": "wildcard_replace(http.request.full_uri, \"https://*.bucklerfamily.estate/*\", \"https://cedwyn.bucklerfamily.estate/${1}/${2}\")"
+        }
+      }
+    },
+    "expression": "http.host in {\"records.bucklerfamily.estate\" \"docs.bucklerfamily.estate\" \"wayback.bucklerfamily.estate\" \"nomenclature.bucklerfamily.estate\" \"maps.bucklerfamily.estate\" \"infographic.bucklerfamily.estate\" \"wiki.bucklerfamily.estate\" \"fb.bucklerfamily.estate\" \"chess.bucklerfamily.estate\" \"csscpsg.bucklerfamily.estate\" \"fcg.bucklerfamily.estate\" \"oldbill.bucklerfamily.estate\" \"accounts.bucklerfamily.estate\" \"authorities.bucklerfamily.estate\" \"review.bucklerfamily.estate\" \"qa.bucklerfamily.estate\" \"app.bucklerfamily.estate\" \"chat.bucklerfamily.estate\" \"watchtower.bucklerfamily.estate\" \"fb2.bucklerfamily.estate\" \"dartboard.bucklerfamily.estate\" \"directory.bucklerfamily.estate\" \"terrain.bucklerfamily.estate\" \"shop.bucklerfamily.estate\" \"research.bucklerfamily.estate\"} and http.request.method in {\"GET\" \"HEAD\"} and http.request.uri.path.extension in {\"\" \"html\" \"htm\"} and not starts_with(http.request.uri.path, \"/api\") and not http.user_agent contains \"cedwyn-archive\" and not http.user_agent contains \"Chrome/124.0 Safari\" and not (http.host eq \"fcg.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/first-seen\") or starts_with(http.request.uri.path, \"/standard\") or starts_with(http.request.uri.path, \"/case\") or starts_with(http.request.uri.path, \"/mandate\"))) and not (http.host eq \"research.bucklerfamily.estate\" and (starts_with(http.request.uri.path, \"/1962-possession-order\") or starts_with(http.request.uri.path, \"/1974-licence-letters\")))"
+  },
+  "added_dns_record": {
+    "id": "c2b5c21cc178c8b72572fa2320cd1a9d",
+    "name": "story.bucklerfamily.estate",
+    "type": "CNAME",
+    "content": "cedwyn-274.pages.dev",
+    "proxied": true,
+    "ttl": 1
+  },
+  "rollback_steps": [
+    "PATCH the same ruleset/rule ID with baseline_rule.action, action_parameters, enabled and expression.",
+    "Confirm the phase entrypoint is back to 10 rules and rule set reflects the original host set.",
+    "DELETE the story DNS record by added_dns_record.id only if the new story hostname should be withdrawn.",
+    "Repeat the HTTP route suite after rollback."
+  ]
+}
