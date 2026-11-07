@@ -372,7 +372,7 @@
         if (f >= 0) { pv = nx = null; for (d = 1; d < F && (!pv || !nx); d++) { nx = nx || by[CFULL[(f + d) % F]]; pv = pv || by[CFULL[(f - d + F) % F]]; } pv = pv || CHAIN[n - 1]; nx = nx || CHAIN[0]; }
       }
       chainBar.textContent = "";
-      chainBar.appendChild(btn("ghf-v2-btn ghf-v2-fs", IC_FS, s.fs, toggleFs));
+      var mt = mk("button", "ghf-v2-btn ghf-v2-modeh"); mt.setAttribute("data-ghf-mode-toggle", ""); chainBar.appendChild(mt); try { GT.wire(mt); } catch (e) {}   // 2.1.27 (6 Nov 2026, #351): the header row is ‹ › "NN of 59", burger and dark/light only; Full screen moves into the menu
       var arr = function (st, cls, ch, lab) { var a = mk("a", "ghf-v2-arr " + cls); pinHref(a, st.u); a.setAttribute("aria-label", lab + ": " + nm(st)); a.title = lab + ": " + nm(st); a.appendChild(mk("span", null, ch)); a.setAttribute("data-ghf-chain", st.id); return a; };
       chainBar.appendChild(arr(pv, "ghf-v2-prev", "\u2039", s.prev));
       var mid = mk("div", "ghf-v2-name"), b = mk("b", null, k >= 0 ? nm(CHAIN[k]) : ((document.title || host).split(/\s[·|—–-]\s/)[0]));
@@ -521,7 +521,7 @@
       var hd = mk("div", "ghf-v2-dhd"); hd.appendChild(mk("b", null, k >= 0 ? nm(CHAIN[k]) : host));
       var x = mk("button", "ghf-v2-btn ghf-v2-dx", "\u00D7"); x.type = "button"; x.setAttribute("aria-label", s.close); x.title = s.close; x.onclick = closeDrawer; hd.appendChild(x); inn.appendChild(hd);
       // v2.1.1 (Sion, 21 Oct 2026): Day/Night and the Agent chat sit at the TOP of the menu; nothing floats on the page.
-      var row = mk("div", "ghf-v2-drow"), mb = mk("button", "ghf-v2-mode"); mb.setAttribute("data-ghf-mode-toggle", ""); row.appendChild(mb);
+      var row = mk("div", "ghf-v2-drow"), mb = mk("button", "ghf-v2-mode"); mb.setAttribute("data-ghf-mode-toggle", ""); row.appendChild(mb); var fb = mk("button", "ghf-v2-mode ghf-v2-dfs"); fb.type = "button"; fb.innerHTML = IC_FS + '<span class="ghf-mode-txt">' + s.fs + "</span>"; fb.setAttribute("aria-label", s.fs); fb.title = s.fs; fb.onclick = function () { closeDrawer(); toggleFs(); }; row.appendChild(fb);
       if (window.GHFChatAllowed && window.GHFChatAllowed()) { var cb = mk("button", "ghf-v2-mode ghf-v2-chat"); cb.type = "button"; cb.setAttribute("aria-haspopup", "dialog"); cb.setAttribute("aria-label", s.chat); cb.title = s.chat;
         cb.innerHTML = IC_CHAT + '<span class="ghf-mode-txt">' + s.chat + "</span>"; cb.onclick = function () { closeDrawer(); if (window.GHFChatOpen) window.GHFChatOpen(); }; row.appendChild(cb); }
       inn.appendChild(row);
@@ -917,6 +917,8 @@
       ".ghf-v2 :focus-visible,.ghf-v2-drawer :focus-visible,.ghf-v2-btn:focus-visible{outline:2px solid var(--ghf-s,#f2c94c);outline-offset:2px}" +
       ".ghf-v2-fsx,.ghf-v2-bgx{display:none!important;position:fixed!important;top:8px;z-index:2147482500;background:rgba(0,0,0,.72)!important;width:40px;height:40px}" +
       ".ghf-v2-fsx{left:8px}.ghf-v2-bgx{right:8px}" +
+      ".ghf-v2-modeh{flex:0 0 40px;width:40px;height:40px;display:inline-flex!important;align-items:center;justify-content:center;font-size:20px!important;padding:0!important}.ghf-v2-modeh .ghf-mode-txt{display:none!important}.ghf-v2-modeh .ghf-mode-ico{line-height:1}" +   /* 2.1.27 (#351): dark/light sits in the header row */
+      ".ghf-v2 .ghf-loc-ch{display:none!important}.ghf-v2-dfs svg{flex:0 0 18px;width:18px;height:18px}" +   /* 2.1.27 (#351): the header carries Wales / Patagonia / Online and the language only; the chooser stays on / */
       "html.ghf-fs .ghf-v2,html.ghf-fs .ghf-bc{display:none!important}html.ghf-fs .ghf-v2-fsx,html.ghf-fs .ghf-v2-bgx{display:inline-flex!important}" +
       ".ghf-v2-scrim{position:fixed;inset:0;z-index:2147482990;background:rgba(0,0,0,.5);opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}" +
       ".ghf-v2-drawer{position:fixed;top:0;right:0;bottom:0;z-index:2147483000;width:min(340px,88vw);background:#0b0b0b;color:#fff;border-left:1px solid var(--ghf-s,#f2c94c);transform:translateX(102%);visibility:hidden;transition:transform .28s ease,visibility 0s .28s;overflow-y:auto;-webkit-overflow-scrolling:touch;font:400 var(--ghf-fs-base,16px)/1.4 var(--ghf-font,Barlow,'Helvetica Neue',Arial,system-ui,sans-serif);text-align:left;box-shadow:-8px 0 30px rgba(0,0,0,.5)}" +
