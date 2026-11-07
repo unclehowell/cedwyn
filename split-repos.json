@@ -267,7 +267,8 @@
       "old_branch": "wayback",
       "page": "/wayback/",
       "mode": "split-repo",
-      "deploy": "repo"
+      "deploy": "repo-pending",
+      "pending": "#418: the repo copy (about 91 MB, copied 5 Nov 20:39Z) is far smaller than the 941 MB the branch serves; refresh the repo, then set deploy back to repo"
     },
     {
       "app": "E-book Shelf",
@@ -514,6 +515,7 @@
       "old_branch": "releases",
       "page": "/releases/",
       "mode": "split-repo",
+      "deploy": "repo",
       "min_files": 1
     }
   ]
