@@ -7,7 +7,8 @@ print), or, when such a sentence opens a paragraph that goes on with record cont
 No wording is changed or deleted. How the site works is documented in the developer library at /library/.
 Also adds a small 'Docs' link (-> /library/) beside the small-print 'For agents' link in the shared footer.
 Skips the landing page, /ebooks/, archived mail and third-party captures, the database, /academy/ and /library/.
-Report: dist/_cedwyn/reports/quiet_pages.json. Usage: python3 tools/quiet_pages.py dist  (site.py calls it last) - docs library build, 27 Oct 2026"""
+Report: dist/_cedwyn/reports/quiet_pages.json. Usage: python3 tools/quiet_pages.py dist  (site.py calls it last) - docs library build, 27 Oct 2026
+Step 3 (6 Nov 2026, #345): a wrapper left holding only a hidden agent span is hidden too, so no empty box shows."""
 import json, pathlib, re, sys
 SKIP_FILES = {'index.html'}
 SKIP_DIRS = ('wayback/mail/', 'wayback/websites/', '_ext/', 'db/', '_blob/', 'academy/', 'library/', '_cedwyn/')   # never touched
@@ -40,6 +41,7 @@ def cont(m):
     if 'data-for-agents' in m.group(2): return m.group(0)
     return '<%s%s hidden data-for-agents>' % (m.group(1), m.group(2).rstrip('/'))
 CSS = '<style id="cw-agents-css">[data-for-agents]{display:none!important}</style>'
+WRAP = re.compile(r'<(p|small|em|li|div|figcaption|aside)((?:\s(?![^>]*data-for-agents)[^>]*)?)>(\s*<span hidden data-for-agents>(?:(?!</?span\b).)*</span>\s*)</\1>', re.S | re.I)   # #345
 DOCS = ' \u00b7 <a href="/library/">Docs</a>'
 import html as H
 def vis(s): return WS.sub(' ', H.unescape(TAGS.sub(' ', s))).strip()
@@ -77,6 +79,9 @@ def process(t, rep, rel, text_ok=True):
     nb = t.count('data-for-agents')
     t = ''.join(s if s[:7].lower() == '<script' or s[:6].lower() == '<style' or s.startswith('<footer id="ghf-agent-footer"') or 'data-for-agents' in s[:400] and s.startswith('<') else CONT.sub(cont, LEAF.sub(leaf, s) if text_ok else s) for s in segs)
     n += max(0, t.count('data-for-agents') - nb - n)
+    # 3) 6 Nov 2026 (#345): a wrapper whose whole content became one hidden agent span (e.g. <p class="note">Template prepared by ...</p>)
+    #    was left visible as an empty bordered box; hide the wrapper itself. Text outside the span keeps the wrapper visible.
+    t = WRAP.sub(lambda m: '<%s%s hidden data-for-agents>%s</%s>' % (m.group(1), (m.group(2) or '').rstrip('/'), m.group(3), m.group(1)), t)
     return t, n
 def run(dist):
     dist = pathlib.Path(dist); rep = {'pages': 0, 'notes_hidden': 0, 'docs_links': 0}
