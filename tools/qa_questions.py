@@ -264,6 +264,14 @@ def ensure_stubs(dist, qs):
 def run(dist):
     dist = pathlib.Path(dist)
     base = json.load(open(ROOT / 'data' / 'qa' / 'questions-base.json'))
+    # Gmail sweep 5 Nov 2026: questions found in sent case emails and the tactics register (not received, contradicted,
+    # nomenclature, preservation) are merged from data/qa/unanswered.json when present. - Sion's Tab agent
+    try:
+        _ex = json.load(open(ROOT / 'data' / 'qa' / 'unanswered.json'))
+        _seen = {x.get('id') for x in base.get('questions', [])}
+        base['questions'] = base.get('questions', []) + [x for x in _ex.get('questions', []) if x.get('id') not in _seen]
+    except Exception as _e:
+        print('qa unanswered merge skipped:', _e)
     ip = dist / 'email' / 'view' / 'index.json'
     idx = json.load(open(ip)) if ip.exists() else {'records': []}
     qs = build(base, idx)
