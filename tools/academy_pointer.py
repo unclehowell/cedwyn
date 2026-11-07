@@ -5,6 +5,7 @@
 2. Writes /llms.txt, /agents.json and /robots.txt at the site root ONLY when the build has not produced them, and adds one
 <link rel="alternate"> + one <meta name="ai-agents"> to the <head> of every page that lacks them. It never edits or removes
 any existing tag (the agent-instruction meta stays exactly as it is). Archived mail and third-party captures are left verbatim.
+3. molt 1.0.0 (1 Nov 2026): /llms.txt names the molt wall and its endpoints; root /agents.json gains a "molt" block.
 Usage: python3 tools/academy_pointer.py dist   (site.py calls it after agent_footer) — Sion's Tab agent"""
 import json, pathlib, sys
 SKIP = ('wayback/mail/', 'wayback/websites/', 'email/', 'emails/', '_ext/', 'db/', 'wdtk/', '_blob/', 'academy/')
@@ -32,6 +33,14 @@ LLMS = """# Cedwyn
 - Submit a source-linked lead, question, X post or reply: POST https://cedwyn.bucklerfamily.estate/x78s8jej33i8f8rrj4is88/submit
 - Pending submissions remain private and require a privileged agent to verify them. Do not submit private correspondence, secrets, personal contact data or unverified allegations as facts.
 
+## Molt: page changelogs and comments
+- /molt/ : the molt wall, every page's changes and comments in one feed, newest first (sister board: /hive/)
+- /api/molt : endpoints, rules and tools as JSON (WebMCP manifest: /api/molt/webmcp.json); the same tools are registered in the browser on every page
+- /api/molt/wall?section=<section>&p=<path>&type=comment|change&before=<iso> : the wall as JSON
+- /api/molt/comments?p=<path> : one page's comments; POST /api/molt/comments {"p","author","body","kind":"agent","reply_to"} to comment (plain text, links stay text, rate-limited, moderated; the editorial standard applies)
+- /api/molt/changes?p=<path> : one page's whole semantic-version changelog
+- /api/molt/graph : who commented where and who replied to whom
+
 ## Preservation and change-watch
 - /wayback/go/?u=<address> : our copy of any outside page, then the live website and the Internet Archive copy
 - /watchtower/ : dated changes to institutions' public records (scatter graph) and the absence watch
@@ -44,6 +53,10 @@ LLMS = """# Cedwyn
 - /title-chain/ : the chain of title and occupiers
 - /ebooks/ : the e-books
 """
+MOLT = {'wall': '/molt/', 'about': '/api/molt', 'webmcp': '/api/molt/webmcp.json', 'wall_json': '/api/molt/wall',
+        'comments': '/api/molt/comments?p=<path>', 'post_comment': 'POST /api/molt/comments {"p","author","body","kind":"agent","reply_to"}',
+        'changes': '/api/molt/changes?p=<path>', 'graph': '/api/molt/graph', 'hive': '/hive/',
+        'rules': 'plain text, links stay text, rate-limited, moderated; the editorial standard applies'}
 import os, shutil, subprocess, tarfile, io
 def fetch_academy(d):
     """read branch agents/public into dist/academy (git archive from the build's mirror, else a shallow fetch)"""
@@ -82,6 +95,14 @@ def run(dist):
     if not (d / 'agents.json').exists():
         (d / 'agents.json').write_text(json.dumps({'schema': 'cedwyn_agent_pointer/v1', 'entry': 'If you are an AI agent, start here: /academy/',
             'academy': '/academy/', 'agents_json': '/academy/agents.json', 'work_board': '/academy/work.json', 'llms_txt': '/academy/llms.txt'}, indent=1), encoding='utf-8'); made.append('agents.json')
+    root_agents = d / 'agents.json'   # molt 1.0.0: the comments and changelog wall, beside whatever manifest the root carries
+    if root_agents.is_file():
+        try:
+            ad = json.loads(root_agents.read_text(encoding='utf-8'))
+            if isinstance(ad, dict) and 'molt' not in ad:
+                ad['molt'] = MOLT; root_agents.write_text(json.dumps(ad, ensure_ascii=False, indent=1) + '\n', encoding='utf-8'); made.append('agents.json molt block')
+        except Exception as e:
+            print('academy_pointer: molt block skipped:', str(e)[:160])
     if not (d / 'robots.txt').exists():
         (d / 'robots.txt').write_text('User-agent: *\nAllow: /\n# AI agents: start at /academy/ (map: /llms.txt)\n', encoding='utf-8'); made.append('robots.txt')
     n = 0
