@@ -8,6 +8,8 @@ const BRIDGE_MD = `
 
 Read the parent protocol at https://cedwyn.bucklerfamily.estate/academy/FLYWHEELS/snowball.md and the bridge instructions at https://cedwyn.bucklerfamily.estate/academy/FLYWHEELS/agent-bridge.md.
 
+Email drafts, sign-off rule (31 Oct 2026): copy the three-line sign-off block exactly as it stands in the current HubSpot draft task. Its third line is the URL bucklerfamily.estate. Never use greathousefarmwiki.wordpress.com in a sign-off and never add "and Life Member". Mail already sent with the old sign-off is not corrected for this.
+
 Machine manifest: ${BRIDGE}/manifest.json
 Paginated HubSpot task metadata: ${BRIDGE}/tasks.json?offset=0&limit=50
 Reviewed X/Grok activity: ${BRIDGE}/x.json
