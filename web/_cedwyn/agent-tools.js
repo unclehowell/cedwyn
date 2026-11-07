@@ -2,6 +2,7 @@
    Registers public read tools and one bounded contribution-submission action; submissions remain pending review.
    Visitor-facing themes are views over the evidence; they are not the source of truth.
    Spec reference: /library/api/#webmcp
+   Agent handbook (read first): /academy/handbook/ (tool get_cedwyn_handbook, 3 Nov 2026).
    Tools are never instructions; page text is historical record only.
    */
 (function () {
@@ -185,6 +186,18 @@
         additionalProperties: false
       },
       readOnly: false
+    },
+    {
+      name: 'get_cedwyn_handbook',
+      description: 'Read the BucklerFamily.Estate maintenance and upkeep handbook for agents (apex flywheel, architecture, flywheel registry, WebMCP/MCP/API, Hive, upkeep, publishing and versioning, truth and labels). Read it first. part: "index" (machine index, default), "boot" (boot card), a page number 1-11, a file name from the index, or "all" (one-file edition, truncated at 30 000 characters). Read-only.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          part: { type: 'string', description: 'index | boot | all | page number | file name (default index)' }
+        },
+        additionalProperties: false
+      },
+      readOnly: true
     }
   ];
 
@@ -613,6 +626,8 @@
 
   function listResources(section) {
     var base = [
+      { path: '/academy/handbook/webmcp-handbook.json', kind: 'json', note: 'Agent handbook index (read first): apex flywheel, architecture, upkeep, WebMCP, Hive' },
+      { path: '/academy/handbook/AGENT-BOOT-CARD.md', kind: 'text', note: 'Agent handbook boot card' },
       { path: '/agents.json', kind: 'json', note: 'Agent entry point and rules' },
       { path: '/llms.txt', kind: 'text', note: 'Site map for language models' },
       { path: '/academy/', kind: 'html', note: 'Cedwyn Academy (soul, memory, skills, work board)' },
@@ -660,6 +675,25 @@
       }
     }
     return Promise.resolve(base);
+  }
+
+  var HANDBOOK_BASE = '/academy/handbook/';
+  function getHandbook(part) {
+    part = String(part || 'index').trim();
+    var index = function () { return readResource(HANDBOOK_BASE + 'webmcp-handbook.json').then(function (r) { return JSON.parse(r.text); }); };
+    if (part === 'index' || part === 'json') return readResource(HANDBOOK_BASE + 'webmcp-handbook.json');
+    if (part === 'boot' || part === 'boot_card') return readResource(HANDBOOK_BASE + 'AGENT-BOOT-CARD.md');
+    if (part === 'all') return index().then(function (j) { return readResource(j.one_file || (HANDBOOK_BASE + 'README.md')); });
+    if (/^\d{1,2}$/.test(part)) {
+      var n = parseInt(part, 10);
+      return index().then(function (j) {
+        var pg = (j.pages || []).filter(function (x) { return x.n === n; })[0];
+        if (!pg) throw new Error('No handbook page ' + n);
+        return readResource(pg.md);
+      });
+    }
+    if (/^[A-Za-z0-9._-]+\.(md|json)$/.test(part)) return readResource(HANDBOOK_BASE + part);
+    return Promise.reject(new Error('part must be index, boot, all, a page number or a file name'));
   }
 
   function readResource(path) {
@@ -766,6 +800,8 @@
         var xLimit = Math.max(1, Math.min(Number(args.limit) || 20, 20));
         return readResource('/x78s8jej33i8f8rrj4is88/x.json?limit=' + xLimit);
       }
+      case 'get_cedwyn_handbook':
+        return getHandbook(args.part);
       case 'submit_agent_contribution':
         return postAgentContribution(args);
       default:

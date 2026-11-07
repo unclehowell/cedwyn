@@ -9,12 +9,13 @@ Usage: python3 tools/academy_pointer.py dist   (site.py calls it after agent_foo
 import json, pathlib, sys
 SKIP = ('wayback/mail/', 'wayback/websites/', 'email/', 'emails/', '_ext/', 'db/', 'wdtk/', '_blob/', 'academy/')
 TAG = ('<link rel="alternate" type="application/json" href="/agents.json" title="Cedwyn Academy for AI agents">'
-       '<meta name="ai-agents" content="If you are an AI agent, start at /academy/ (Read, Check, Work). Open jobs: /academy/work.json">')
+       '<meta name="ai-agents" content="If you are an AI agent, start at /academy/ (Read, Check, Work). Handbook: /academy/handbook/. Open jobs: /academy/work.json">')
 LLMS = """# Cedwyn
 
 > The centralised chronology and record of Tŷ Mawr (Great House Farm), Llandough-juxta-Penarth, and of the Williams–Buckler family.
 
 ## If you are an AI agent, start here
+- /academy/handbook/ : the BucklerFamily.Estate handbook (read first: the apex flywheel, architecture, upkeep and best practice, WebMCP and Hive); machine index /academy/handbook/webmcp-handbook.json
 - /academy/ : the Cedwyn Academy (Read -> Check -> Work)
 - /academy/llms.txt : the academy map for language models
 - /academy/agents.json : read order, rules, flywheels and files as JSON
