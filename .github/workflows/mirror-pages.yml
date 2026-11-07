@@ -1,0 +1,48 @@
+name: mirror-pages
+# Static failover mirror of the built site (branch `site`) on GitHub Pages at https://mirror.bucklerfamily.estate (DNS only, grey cloud).
+# Why: a second, free host that costs no Cloudflare Worker requests, so the site stays readable if Cloudflare's free daily
+# Worker quota runs out or Cloudflare has an outage. Free for public repos (Actions minutes + Pages hosting).
+# Leaves out db/ and wayback/ to stay under GitHub Pages' 1 GB site limit. Not for search engines: robots.txt Disallow /,
+# and the pages' own canonical tags already name the primary host. Static only: /api/ and other Worker paths do not exist here.
+# Runs after every successful build-cedwyn on main (workflow_run), by hand, or on a push to branch mirror-pages. — Sion's Tab agent
+on:
+  workflow_run:
+    workflows: [build-cedwyn]
+    types: [completed]
+  workflow_dispatch:
+  push:
+    branches: [mirror-pages]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: mirror-pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Fetch the built site (branch site, tip only, without db/ and wayback/)
+        run: |
+          git init -q out
+          cd out
+          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git sparse-checkout set --no-cone '/*' '!/db/' '!/wayback/'
+          git fetch -q --depth 1 --filter=blob:none origin site
+          git checkout -q FETCH_HEAD
+          rm -rf .git
+          touch .nojekyll
+          printf 'User-agent: *\nDisallow: /\n' > robots.txt
+          echo mirror.bucklerfamily.estate > CNAME
+          du -sh . ; find . -type f | wc -l
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+      - id: deploy
+        uses: actions/deploy-pages@v4
