@@ -2,12 +2,8 @@
 <title>Records · Great House, Cedwyn Estate</title>
 <link rel="canonical" href="https://bucklerfamily.estate/catalogue/">
 <meta name="robots" content="noindex">
-<!-- 7 Nov 2026 (owner): one Records app only. This page was a second, older catalogue search (artifact database, ?q= / ?theme= / ?a=).
-     It now opens the Records app from unclehowell/cedwyn-catalogue, which reads the central catalogue (/api/catalogue). A search
-     term (?q=) is carried over; ?theme= and ?a= (old artifact numbers) have no equivalent there and open the Records home.
-     No record is deleted or moved. - Sion's Tab agent -->
-<script>(function(){var P=new URLSearchParams(location.search),q=(P.get('q')||'').trim(),id=(P.get('id')||'').trim();
-var u='https://bucklerfamily.estate/catalogue/'+(id?'?id='+encodeURIComponent(id):(q?'?q='+encodeURIComponent(q):''));location.replace(u);})();</script>
-<noscript><meta http-equiv="refresh" content="0;url=https://bucklerfamily.estate/catalogue/"></noscript>
+<meta http-equiv="refresh" content="0;url=https://bucklerfamily.estate/catalogue/">
+<!-- 8 Nov 2026 (owner): one central catalogue of artifacts and evidence, at https://bucklerfamily.estate/catalogue/. This page was the older artifact search; ?q= and ?id= are carried over. No record is deleted or moved. - Sion's Tab agent -->
+<script>(function(){var T="https://bucklerfamily.estate/catalogue/",P=new URLSearchParams(location.search),H=location.hash||"";var q=(P.get('q')||'').trim(),id=(P.get('id')||'').trim();var u=T+(id?'?id='+encodeURIComponent(id):(q?'?q='+encodeURIComponent(q):''));location.replace(u);})();</script>
 <style>body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:24px;text-align:center}</style>
-</head><body><p><a href="https://bucklerfamily.estate/catalogue/">Open Records</a></p></body></html>
+</head><body><p>This catalogue has moved: <a href="https://bucklerfamily.estate/catalogue/">bucklerfamily.estate/catalogue/</a></p></body></html>
