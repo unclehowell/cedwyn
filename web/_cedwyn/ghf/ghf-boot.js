@@ -76,7 +76,8 @@
   if (!window.CedwynGardenBanner && !d.querySelector('script[src*="garden-banner.js"]')) out += '<script src="/_cedwyn/garden-banner.js?v=2.3.0" defer><\/script>'; // 2 Nov 2026: the one Garden banner in the header strip (replaces the graph promo, section ribbon and e-book strips). 2.3.0 (owner, 10:06 GMT 2 Nov): title, provenance line, no moving text, 68 px, Garden Gallery painting behind it. Spec: docs/GARDEN-BANNER.md
   if (!d.querySelector('script[data-cedwyn-wikilinks]')) out += '<script src="https://nomenclature.bucklerfamily.estate/wikilinks.js?v=1.0.1" defer data-cedwyn-wikilinks><\/script>'; // 31 Oct 2026: lexicon-backed cross-theme name links
   if (!window.CedwynVersionGate && !d.querySelector('script[src*="/_cedwyn/version-gate.js"]')) out += '<script src="/_cedwyn/version-gate.js?v=1.0.0" defer><\/script>'; // 1 Nov 2026: version gate (a click-to-load "Select a version" facade in the media slot + upgrade bar). Spec: docs/VERSION-GATE.md
-  if (!d.querySelector('script[src*="landing-map-views.js"]')) out += '<script src="/_cedwyn/landing-map-views.js?v=2.2.0" defer><\/script>';   // 2.1.0 (8 Nov 2026): the 2D/3D map block is a collapsed bar with a Show/Hide maps button (2.0.0, 3 Nov: one 2D/3D map block inside the Wales and Patagonia modals, framed bare; tiles open in the top window)
+  if (!d.querySelector('script[src*="landing-map-views.js"]')) out += '<script src="/_cedwyn/landing-map-views.js?v=2.3.0" defer><\/script>';   // 2.3.0 (8 Nov 2026): each framed map is shown map-only (no text overlays)
+    // 2.1.0 (8 Nov 2026): the 2D/3D map block is a collapsed bar with a Show/Hide maps button (2.0.0, 3 Nov: one 2D/3D map block inside the Wales and Patagonia modals, framed bare; tiles open in the top window)
   if (sync) { d.write(out); return; }
   var x, t = d.createElement("template"); t.innerHTML = out;
   [].slice.call(t.content.childNodes).forEach(function (n) {
