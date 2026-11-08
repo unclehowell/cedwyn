@@ -1,0 +1,24 @@
+.a3d{margin:0;background:#1d242c;color:#eef2f5;font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.a3d-stage{position:relative;height:100svh;min-height:380px;overflow:hidden;touch-action:none}
+#c{display:block;width:100%;height:100%;outline:0}
+.a3d-tl{position:absolute;left:8px;top:8px;display:flex;gap:6px;flex-wrap:wrap;pointer-events:none}
+.a3d-tr{position:absolute;right:8px;top:8px}
+.chip{background:rgba(20,26,32,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:999px;padding:4px 10px;font-size:13px}
+.chip.st:empty{display:none}
+.tb{font:inherit;font-size:13px;color:#eef2f5;background:rgba(20,26,32,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:5px 11px;cursor:pointer}
+.tb:active{background:rgba(60,70,80,.8)}.tb.sm{padding:2px 8px;font-size:12px}
+.a3d-bar{position:absolute;left:8px;right:8px;bottom:max(8px,env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between}
+.a3d-bar .views{display:flex;gap:5px}
+.a3d-bar .sun{display:flex;align-items:center;gap:6px;background:rgba(20,26,32,.62);backdrop-filter:blur(6px);border-radius:999px;padding:3px 6px 3px 10px;font-size:13px}
+.a3d-bar input[type=range]{width:110px;accent-color:#e8b45a}
+.a3d-night{position:absolute;left:8px;right:8px;top:44px;margin:0;background:rgba(20,26,32,.7);border-radius:10px;padding:6px 10px;font-size:13px}
+.a3d-card{position:absolute;left:8px;right:8px;bottom:58px;max-width:420px;background:rgba(18,22,28,.88);border-radius:12px;padding:10px 34px 10px 12px;font-size:13.5px}
+.a3d-card p{margin:4px 0 0}.x{position:absolute;right:6px;top:4px;background:none;border:0;color:inherit;font-size:22px;line-height:1;cursor:pointer;padding:4px}
+.a3d-about{max-width:760px;margin:0 auto;padding:14px 14px 24px}.a3d-about p{margin:.5em 0}.a3d-about .cr{font-size:12.5px;opacity:.75}
+.a3d-modal{max-width:min(720px,94vw);border:0;border-radius:14px;padding:0;background:#1d242c;color:#eef2f5}
+.a3d-modal::backdrop{background:rgba(0,0,0,.55)}.a3d-modal .mh{position:relative;padding:12px 40px 8px 14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.a3d-modal .mb{padding:8px 12px 14px;max-height:70vh;overflow:auto}.a3d-modal table{border-collapse:collapse;font-size:13px}.a3d-modal th,.a3d-modal td{text-align:left;vertical-align:top;padding:6px;border-bottom:1px solid rgba(255,255,255,.1)}
+
+/* v0.3.0 catalogue records panel in the Sources dialog — Sion's Tab agent */
+.a3d-recs{margin-top:12px;font-size:13px;overflow-wrap:anywhere}.a3d-recs ul{margin:6px 0;padding-left:18px}.a3d-recs li{margin:0 0 8px}.a3d-recs a{color:#9fd0ff}.a3d-recs .d,.a3d-recs .u{opacity:.75}

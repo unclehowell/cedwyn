@@ -2,6 +2,7 @@
 
 | Version | Date | Change |
 |---|---|---|
+| 0.3.3 | 8 Nov 2026 | three.js through an import map onto the vendored three r160 (/_ext/ on cedwyn.bucklerfamily.estate), Sky and BufferGeometryUtils vendored in vendor/. The +esm CDN paths are gone: the site build stored them with no file type, so browsers refused them as modules and the world could not start inside the main site. Now also served at /terrain/ and the Wales hub's 3D map tile (cedwyn#528). |
 | 0.3.2 | 7 Nov 2026 | Site header: this page is webapp 31 of 59 (Virtual Tour · Wales, /wales/ opens it). One line before ghf-boot.js tells the shared header which webapp it is on, so it shows "31 of 59" with ‹ to 30 and › to 32 (cedwyn#497, cedwyn#351). Header only. |
 | 0.3.1 | 6 Nov 2026 | Served at bucklerfamily.estate/wales-3d/ straight from this repo's main (Worker bfe-wales-3d, source worker/bfe-wales-3d.js). Record links without a page now open the catalogue at its path, bucklerfamily.estate/catalogue/, instead of the old subdomain. |
 | 0.3.0 | 6 Nov 2026 | Own data store: data/central.json holds the catalogue fields (ID, title, date, status, page) of the records the 1841 layer rests on (EV-0211 Stewart survey plan 1824, EV-0215 tithe apportionment c.1841), listed in data/sources.json and pulled read-only from the central catalogue every 6 hours by tools/sync_central.py (.github/workflows/sync-central.yml). Tapping a parcel now lists those records with links to their catalogue pages. |

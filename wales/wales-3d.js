@@ -1,8 +1,8 @@
 // Wales 3D world v0.3.0 — Llandough / Leckwith / the Cedwyn estate on real LiDAR terrain. 
-import * as THREE from 'https://cedwyn.bucklerfamily.estate/_ext/cdn.jsdelivr.net/npm/three@0.170.0/+esm';
-import { OrbitControls } from 'https://cedwyn.bucklerfamily.estate/_ext/cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/controls/OrbitControls.js/+esm';
-import { Sky } from 'https://cedwyn.bucklerfamily.estate/_ext/cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/objects/Sky.js/+esm';
-import { mergeGeometries } from 'https://cedwyn.bucklerfamily.estate/_ext/cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/utils/BufferGeometryUtils.js/+esm';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { Sky } from './vendor/Sky.js?v=0.160.0';
+import { mergeGeometries } from './vendor/BufferGeometryUtils.js?v=0.160.0';
 import { createBackend } from './world-backend.js?v=0.2.0';
 
 const Q = new URLSearchParams(location.search);

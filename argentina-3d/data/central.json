@@ -1,0 +1,54 @@
+{
+ "source": "https://cedwyn.bucklerfamily.estate/api/catalogue",
+ "note": "This webapp's own data store: the central-catalogue fields the Patagonia 3D world shows for the record IDs in data/sources.json. Derived and read-only; never edit by hand (tools/sync_central.py rewrites it).",
+ "fields": [
+  "id",
+  "kind",
+  "title",
+  "date_display",
+  "date_sort",
+  "status",
+  "page"
+ ],
+ "synced_utc": "2026-11-06T10:06:22Z",
+ "count": 4,
+ "not_in_central": [],
+ "items": {
+  "AR-0002": {
+   "id": "AR-0002",
+   "kind": "artifact",
+   "title": "Colourised aerial photograph: Tŷ Mawr (Great House) from the south-west",
+   "date_display": "date not recorded; received 5 Nov 2026",
+   "date_sort": null,
+   "status": "catalogued",
+   "page": null
+  },
+  "AR-0004": {
+   "id": "AR-0004",
+   "kind": "artifact",
+   "title": "Painted reconstruction: Single-storey stable range, south front with its doors, from the south",
+   "date_display": "date not recorded; received 5 Nov 2026",
+   "date_sort": null,
+   "status": "catalogued",
+   "page": null
+  },
+  "EV-0630": {
+   "id": "EV-0630",
+   "kind": "evidence",
+   "title": "H. J. Thomas sketch plan and notes, Great House Farm, visited 26 April 1974 (NMR record card)",
+   "date_display": "26 April 1974",
+   "date_sort": "1974-04-26",
+   "status": "HELD (copy)",
+   "page": "/research/evidence/ev-0630-hj-thomas-sketch-plan-notes-1974/"
+  },
+  "EV-0631": {
+   "id": "EV-0631",
+   "kind": "evidence",
+   "title": "RCAHMW record NA/GL/89/208: H. J. Thomas measured plan of Great House Farm (26 April 1974 and 12 December 1988)",
+   "date_display": "26 April 1974 (survey); 12 December 1988 (second date on the card)",
+   "date_sort": "1974-04-26",
+   "status": "HELD (copy)",
+   "page": "/research/evidence/ev-0631-rcahmw-na-gl-89-208-measured-plan-1974-1988/"
+  }
+ }
+}

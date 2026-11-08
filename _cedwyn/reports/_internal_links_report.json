@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 14715,
+  "pages_scanned": 14716,
   "references_checked": {
-    "resource": 366935,
-    "nav": 692817
+    "resource": 366948,
+    "nav": 692837
   },
-  "database_backed_paths": 7610,
-  "unique_missing_destinations": 2320,
-  "missing_references": 62682,
-  "missing_navigation_references": 36239,
-  "missing_resource_references": 26443,
+  "database_backed_paths": 7636,
+  "unique_missing_destinations": 2319,
+  "missing_references": 62686,
+  "missing_navigation_references": 36242,
+  "missing_resource_references": 26444,
   "unique_broken_fragments": 3120,
   "broken_fragment_references": 5957,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 14685,
+      "references": 14686,
       "examples": [
         {
           "from": "/",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 14681,
+      "references": 14682,
       "examples": [
         {
           "from": "/",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 11950,
+      "references": 11951,
       "examples": [
         {
           "from": "/review/",
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 11950,
+      "references": 11951,
       "examples": [
         {
           "from": "/review/",
@@ -721,7 +721,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 34,
+      "references": 35,
       "examples": [
         {
           "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",

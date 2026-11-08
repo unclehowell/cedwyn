@@ -1,0 +1,36 @@
+{
+ "source": "https://cedwyn.bucklerfamily.estate/api/catalogue",
+ "note": "This webapp's own data store: the central-catalogue fields the 3D world shows for the record IDs in data/sources.json. Derived and read-only; never edit by hand (tools/sync_central.py rewrites it).",
+ "fields": [
+  "id",
+  "kind",
+  "title",
+  "date_display",
+  "date_sort",
+  "status",
+  "page"
+ ],
+ "synced_utc": "2026-11-06T09:44:51Z",
+ "count": 2,
+ "not_in_central": [],
+ "items": {
+  "EV-0211": {
+   "id": "EV-0211",
+   "kind": "evidence",
+   "title": "DB/E/1 plan 19 — Cedfin or Ty Mawr Farm, Stewart survey and reference table (1824)",
+   "date_display": "1824",
+   "date_sort": "1824-00-00",
+   "status": "PARTLY HELD",
+   "page": null
+  },
+  "EV-0215": {
+   "id": "EV-0215",
+   "kind": "evidence",
+   "title": "Tithe apportionment, Landough, Cogan and Leckwith — John Williams’s holding",
+   "date_display": "c.1841",
+   "date_sort": "1841",
+   "status": "HELD (public online copy)",
+   "page": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/"
+  }
+ }
+}
