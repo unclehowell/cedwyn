@@ -38,7 +38,7 @@ const sky = new Sky(); sky.scale.setScalar(30000); scene.add(sky);
 const su = sky.material.uniforms; su.turbidity.value = 2; su.rayleigh.value = 1.0; su.mieCoefficient.value = 0.002; su.mieDirectionalG.value = 0.8;
 
 // ---------- state ----------
-const state = { era: 'today', hour: null, weather: 'clear', contours: true, trees: true, labels: true, vex: 1, sound: false, h3: true, h3res: 11, parcels: true, hidden: new Set(), sel: null };
+const state = { era: 'today', hour: null, weather: 'clear', contours: true, trees: true, labels: true, vex: 1, sound: false, h3: true, h3res: 14, bld: true, parcels: true, hidden: new Set(), sel: null };
 
 // ---------- sun from real date/time (NOAA approximation) ----------
 function sunPos(date) {
@@ -305,6 +305,60 @@ function build1841(parcels) {
 }
 
 
+// ---------- v0.4.0 Uber H3 cells (res 14 and up), computed in the browser with h3-js ----------
+// The lat/lon <-> local frame map is a quadratic least-squares fit on the 8,514 corners of the v0.2.1 res-11 cells
+// (max residual 0.07 m over the estate). Cells are drawn round the view centre only: res 14 cells are about 2.7 m
+// across and res 15 about 1 m, far too many to draw for the whole area at once.
+const H3G = { lat0: 51.45433697498172, lon0: -3.201914690950035, x0: -416.0149753347427, z0: 497.2238195912614, cx: [-416.01475416475955, 69480.72725595173, 1825.221286677779, 4.884737742723383, -1511.5747277332794, -13.75766861736163], cz: [497.25126030588467, 1140.3981202128734, -111210.3229573177, -478.98222038823127, -0.4172564021823311, -24.4866011039174], cla: [51.45433722162972, 0.0001475468905387393, -0.00898954928899309, -8.911350286010372e-07, -5.704671631665943e-08, -1.833327734832167e-08], clo: [-3.201914700614473, 0.014388604356141517, 0.00023615061296185688, 5.504497783160922e-08, -2.8127321177566013e-06, -2.9696507156859073e-08] };
+const H3R = { 14: 200, 15: 75 }; // radius (m) drawn round the view centre: about 20k cells at either resolution
+function llToXZ(lat, lng) { const u = lng - H3G.lon0, v = lat - H3G.lat0, f = [1, u, v, u * u, u * v, v * v]; let x = 0, z = 0;
+  for (let i = 0; i < 6; i++) { x += H3G.cx[i] * f[i]; z += H3G.cz[i] * f[i]; } return [x, z]; }
+function xzToLL(x, z) { const u = (x - H3G.x0) / 1000, v = (z - H3G.z0) / 1000, f = [1, u, v, u * u, u * v, v * v]; let la = 0, lo = 0;
+  for (let i = 0; i < 6; i++) { la += H3G.cla[i] * f[i]; lo += H3G.clo[i] * f[i]; } return [la, lo]; }
+let h3lib = null;
+function loadH3() {
+  if (h3lib) return Promise.resolve(h3lib); if (window.h3 && window.h3.polygonToCells) return Promise.resolve(h3lib = window.h3);
+  return new Promise((ok, no) => { const s = document.createElement('script'); s.src = new URL('vendor/h3-js.umd.js?v=4.1.0', import.meta.url).href;
+    s.onload = () => (window.h3 && window.h3.polygonToCells) ? ok(h3lib = window.h3) : no(new Error('h3-js did not load'));
+    s.onerror = () => no(new Error('h3-js did not load')); document.head.appendChild(s); });
+}
+const h3v = { mesh: null, cx: 1e9, cz: 1e9, r: 0, res: 0, vex: 0, n: 0, tick: 0 };
+function updateH3(force) {
+  if (!h3lib) return;
+  if (!state.h3) { if (h3v.mesh) h3v.mesh.visible = false; return; }
+  const t = controls.target, d = camera.position.distanceTo(t);
+  const r = Math.round(Math.min(H3R[state.h3res] || 75, Math.max(30, d * 0.7)) / 5) * 5;
+  if (h3v.mesh) h3v.mesh.material.opacity = Math.max(0.22, Math.min(0.7, 0.8 - d / 1600));
+  if (!force && h3v.mesh && h3v.res === state.h3res && h3v.vex === state.vex && Math.abs(r - h3v.r) <= h3v.r * 0.2
+    && Math.hypot(t.x - h3v.cx, t.z - h3v.cz) < h3v.r * 0.3) { h3v.mesh.visible = true; return; }
+  const ring = []; for (let k = 0; k < 32; k++) { const a = k / 32 * Math.PI * 2; ring.push(xzToLL(t.x + Math.cos(a) * r, t.z + Math.sin(a) * r)); }
+  const cells = h3lib.polygonToCells(ring, state.h3res);
+  const pos = new Float32Array(cells.length * 36); let n = 0;
+  for (const c of cells) { const b = h3lib.cellToBoundary(c), m = b.length, P = [];
+    for (let k = 0; k < m; k++) { const [x, z] = llToXZ(b[k][0], b[k][1]); P.push(x, hAt(x, z) + 0.45, z); }
+    for (let k = 0; k < m; k++) { const q = ((k + 1) % m) * 3, p = k * 3;
+      if (n + 6 > pos.length) break;
+      pos[n++] = P[p]; pos[n++] = P[p + 1]; pos[n++] = P[p + 2]; pos[n++] = P[q]; pos[n++] = P[q + 1]; pos[n++] = P[q + 2]; } }
+  const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.BufferAttribute(pos.subarray(0, n), 3));
+  if (!h3v.mesh) { h3v.mesh = new THREE.LineSegments(geo, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.6, depthWrite: false }));
+    h3v.mesh.frustumCulled = false; h3v.mesh.renderOrder = 2; scene.add(h3v.mesh); }
+  else { h3v.mesh.geometry.dispose(); h3v.mesh.geometry = geo; }
+  Object.assign(h3v, { cx: t.x, cz: t.z, r, res: state.h3res, vex: state.vex, n: cells.length }); h3v.mesh.visible = true;
+  h3v.mesh.material.opacity = Math.max(0.22, Math.min(0.7, 0.8 - d / 1600)); perf.h3cells = cells.length; perf.h3res = state.h3res;
+}
+const h3cnt = new Map();
+function h3Count(p, res) { // exact count of res-N cells whose centres fall inside a parcel, cached
+  if (!h3lib || !p.rings) return 0; const k = p.id + '/' + res; if (h3cnt.has(k)) return h3cnt.get(k);
+  let n = 0; try { p.rings.forEach(rg => { n += h3lib.polygonToCells(rg.map(([x, z]) => xzToLL(x, z)), res).length; }); } catch (e) { n = 0; }
+  h3cnt.set(k, n); return n;
+}
+function applyBld() {
+  if (world.buildings) { world.buildings.mesh.visible = state.bld; if (world.buildings.keepMesh) world.buildings.keepMesh.visible = state.bld; }
+}
+function syncToggles() {
+  const a = $('#tgh3'), b = $('#tgbld'); if (a) a.setAttribute('aria-pressed', String(state.h3)); if (b) b.setAttribute('aria-pressed', String(state.bld));
+}
+
 // ---------- v0.2.0 parcels + H3 layer (Tithe H3 data) ----------
 const ovl = { data: null, h3: null, canvas: null, tex: null, box: null };
 const PHUE = i => (i * 137.508) % 360;
@@ -317,16 +371,14 @@ function drawOverlay() {
   const path = r => { g.beginPath(); r.forEach(([x, z], i) => i ? g.lineTo(X(x), Y(z)) : g.moveTo(X(x), Y(z))); g.closePath(); };
   if (state.parcels) ovl.data.parcels.forEach((p, i) => { if (!p.rings || state.hidden.has(p.id)) return;
     p.rings.forEach(r => { path(r); g.fillStyle = parcelColour(i, state.sel === p.id ? 0.62 : 0.42); g.fill(); }); });
-  if (state.h3 && ovl.h3) { const R = ovl.h3.res[String(state.h3res)];
-    if (R) { g.lineWidth = state.h3res >= 12 ? 1.2 : 1.6; g.strokeStyle = 'rgba(255,255,255,0.55)';
-      g.beginPath(); R.b.forEach(b => { for (let k = 0; k < b.length; k += 2) k ? g.lineTo(X(b[k]), Y(b[k + 1])) : g.moveTo(X(b[k]), Y(b[k + 1])); g.closePath(); }); g.stroke(); } }
+  // v0.4.0: H3 cells are drawn as their own draped line layer (updateH3), not on this texture
   if (state.parcels) ovl.data.parcels.forEach((p, i) => { if (!p.rings || state.hidden.has(p.id)) return; const on = state.sel === p.id;
     p.rings.forEach(r => { path(r); g.lineWidth = on ? 7 : 3.5; g.strokeStyle = on ? '#ffe14a' : `hsla(${PHUE(i).toFixed(0)},90%,30%,0.95)`; g.stroke(); }); });
   if (state.parcels && state.labels) { g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = '700 22px system-ui,sans-serif';
     ovl.data.parcels.forEach(p => { if (!p.rings || state.hidden.has(p.id)) return; const c = p.c;
       g.lineWidth = 4; g.strokeStyle = 'rgba(0,0,0,0.75)'; g.strokeText(p.id, X(c[0]), Y(c[1])); g.fillStyle = '#fff'; g.fillText(p.id, X(c[0]), Y(c[1])); }); }
   ovl.tex.needsUpdate = true;
-  terrainMat.uniforms.oOn.value = (state.parcels || state.h3) ? 1 : 0;
+  terrainMat.uniforms.oOn.value = state.parcels ? 1 : 0;
 }
 function buildOverlay(pd, hd) {
   ovl.data = pd; ovl.h3 = hd; ovl.box = pd.meta.box;
@@ -348,7 +400,7 @@ function showParcel(p) {
   if (p.plot) bits.push('1841 tithe plot ' + p.plot); if (p.name) bits.push('field name: ' + p.name); if (p.use) bits.push(p.use);
   if (p.tarea) bits.push('1841 area as entered: ' + p.tarea); if (p.area) bits.push('traced: ' + p.area + ' ac');
   if (p.occ) bits.push('1841 occupier as entered: ' + p.occ); if (p.owner) bits.push('1841 landowner as entered: ' + p.owner);
-  if (p.h11) bits.push('H3: ' + p.h11 + ' res-11 / ' + p.h12 + ' res-12 cells'); if (p.grid) bits.push(p.grid);
+  { const n14 = h3Count(p, 14); if (n14) bits.push('Uber H3: ' + n14.toLocaleString('en-GB') + ' res-14 cells'); } if (p.grid) bits.push(p.grid);
   if (p.src) bits.push('outline from: ' + p.src);
   box.innerHTML = ''; const b = document.createElement('b'); b.textContent = bits.shift(); box.appendChild(b);
   const s = document.createElement('span'); s.textContent = bits.join(' · '); box.appendChild(s);
@@ -422,7 +474,7 @@ function applyEra() {
 function applyLayers() {
   terrainMat.uniforms.ctr.value = state.contours ? 1 : 0; $('#ctr').checked = state.contours;
   [world.trees, world.shrubs, world.trunks].forEach(m => m && (m.visible = state.trees)); $('#trees').checked = state.trees;
-  world.labels.forEach(s => s.visible = state.labels); $('#lbl').checked = state.labels; drawOverlay();
+  world.labels.forEach(s => s.visible = state.labels); $('#lbl').checked = state.labels; applyBld(); drawOverlay();
 }
 function applyVex() {
   terrainMat.uniforms.vex.value = state.vex; $('#vexv').textContent = '×' + state.vex;
@@ -495,8 +547,9 @@ function wireUi() {
   $('#lbl').onchange = e => { state.labels = e.target.checked; applyLayers(); };
   $('#hour').oninput = e => { state.hour = +e.target.value; applySky(); };
   $('#now').onclick = () => applyPatch({ hour: null });
-  $('#h3on').onchange = e => { state.h3 = e.target.checked; drawOverlay(); };
-  $('#h3res').onchange = e => { state.h3res = +e.target.value; drawOverlay(); };
+  $('#tgh3').onclick = () => { state.h3 = !state.h3; syncToggles(); updateH3(false); };
+  $('#tgbld').onclick = () => { state.bld = !state.bld; syncToggles(); applyBld(); };
+  $('#h3res').onchange = e => { state.h3res = Math.max(14, +e.target.value || 14); updateH3(true); };
   $('#paron').onchange = e => { state.parcels = e.target.checked; if (!state.parcels) showParcel(null); else drawOverlay(); };
   $('#pall').onclick = () => setAllParcels(true); $('#pnone').onclick = () => setAllParcels(false);
   let down = null;
@@ -524,6 +577,7 @@ function frame(now) {
   const gy = hAt(camera.position.x, camera.position.z) + 6; if (camera.position.y < gy) camera.position.y = gy;
   const nr = Math.min(40, Math.max(1, (camera.position.y - gy) * 0.04)); if (Math.abs(nr - camera.near) > 0.5) { camera.near = nr; camera.updateProjectionMatrix(); }
   if (terrainMat) terrainMat.uniforms.time.value = now / 1000;
+  if ((h3v.tick += dt) > 0.4) { h3v.tick = 0; updateH3(false); applyBld(); }
   if ((skyTick += dt) > 30 && state.hour == null) { skyTick = 0; applySky(); }
   if (audio.ctx && audio.ctx.listener.positionX) { const L = audio.ctx.listener; L.positionX.value = camera.position.x; L.positionY.value = camera.position.y; L.positionZ.value = camera.position.z; }
   renderer.render(scene, camera); perf.frames++;
@@ -543,7 +597,7 @@ let backend;
       Promise.all(man.rivers.map(getJ)).then(a => a.flat()),
       fetch(D + 'trees.bin?v=0.2.0').then(r => r.arrayBuffer()),
       fetch(D + 'shrubs.bin?v=0.2.0').then(r => r.arrayBuffer()),
-      getJ('parcels1841.json'), getJ('parcels59.json'), getJ('h3cells.json')]);
+      getJ('parcels1841.json'), getJ('parcels59.json'), Promise.resolve(null)]);
     const wj = { meta: man.meta, buildings: bl, rivers: rl };
     cTex.flipY = false; cTex.colorSpace = THREE.NoColorSpace; cTex.anisotropy = 4; cTex.needsUpdate = true;
     buildTerrain(hTex, cTex);
@@ -583,10 +637,13 @@ let backend;
     if (Q.get('cam')) { const [x, z, d, e, a] = Q.get('cam').split(',').map(Number); if ([x, z, d, e, a].every(Number.isFinite)) { const az = a * Math.PI / 180, el = e * Math.PI / 180; // v0.2.1: fixed review cameras, ?cam=x,z,dist,elev,az
       controls.target.set(x, hAt(x, z), z); camera.position.set(x + Math.sin(az) * Math.cos(el) * d, hAt(x, z) + Math.sin(el) * d, z + Math.cos(az) * Math.cos(el) * d); } }
     if (Q.get('era') === '1841') state.era = '1841';
+    if (Q.get('h3') === '0') state.h3 = false; if (Q.get('bld') === '0') state.bld = false;
+    if (Q.get('h3res') && +Q.get('h3res') >= 14 && +Q.get('h3res') <= 15) { state.h3res = +Q.get('h3res'); $('#h3res').value = String(state.h3res); }
     if (Q.get('hour')) state.hour = +Q.get('hour'); else if (sunPos(new Date()).alt < 12 * Math.PI / 180) state.hour = 12; // clear daylight by default
     backend = createBackend({ THREE, scene, camera, renderer, state, applyPatch, parseSteer, flyTo, simDate });
     await backend.init();
-    applySky(); applyEra(); applyLayers(); syncUi(); wireUi();
+    applySky(); applyEra(); applyLayers(); syncUi(); wireUi(); syncToggles();
+    loadH3().then(() => updateH3(true)).catch(e => { console.warn(e); info('The H3 cells could not load on this device.'); });
     $('#w3dload').classList.add('done'); perf.loadMs = Math.round(performance.now() - t0);
     perf.buildings = wj.buildings.length; perf.trees = world.trees.count; perf.shrubs = world.shrubs.count;
     requestAnimationFrame(frame);

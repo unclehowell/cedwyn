@@ -41,3 +41,9 @@ body:not(.w3d-solo) .w3dw #w3d{height:calc(100dvh - 64px)}
 #w3dpar[hidden]{display:none}
 #w3dpar small.w3drec{display:block;margin-top:3px;color:#cdd6e4;overflow-wrap:anywhere}
 #w3dpar small.w3drec a{color:#9cc7ff}
+#w3dttl{display:flex;gap:4px;padding:3px 5px}
+#w3dttl .tg{background:none;border:0;border-radius:6px;padding:3px 7px;font:inherit;font-weight:600;font-size:13px;color:#9cc7ff;text-decoration:underline;text-underline-offset:2px;cursor:pointer;min-height:28px}
+#w3dttl .tg::before{content:"\25CF\00A0";color:#7fe39a;text-decoration:none;display:inline-block}
+#w3dttl .tg[aria-pressed=false]{color:#8b94a6;text-decoration:line-through}
+#w3dttl .tg[aria-pressed=false]::before{content:"\25CB\00A0";color:#8b94a6}
+#w3dttl .tg:focus-visible{outline:2px solid #9cc7ff;outline-offset:1px}
