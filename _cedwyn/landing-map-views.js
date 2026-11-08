@@ -13,6 +13,11 @@
    patagonia. And all the image icons for wales do not look like wireframe holograms as they should"): in the Wales and Patagonia
    modals the place title and the section headings are kept for screen readers only, the caption, hint and "Open full screen" line under
    each map is gone, so only the 2D/3D bar, the map and the close control show; Wales tiles load the line-drawn hologram set (?v=5).
+   2.3.0 (8 Nov 2026, owner WhatsApp 22:33 GMT, "Remove all that text yes", on the "Cedwyn outline · Chubut coast" card that covered
+   the Patagonia 2D map on a phone): each framed map is shown map-only. When a frame loads, a style is put into it (same origin) that hides
+   every text overlay: titles, info cards, captions, stats, legends, layer panels, credits, view and sun buttons, tap cards and popups.
+   The 2D maps fill the frame (only the zoom buttons and the parcel numbers drawn on the Wales map stay); the 3D worlds keep only the canvas.
+   The pages at their own addresses are unchanged.
    */
 (function () {
   "use strict";
@@ -83,6 +88,32 @@
     });
     block.setAttribute("aria-label", w.group);
   }
+  // 2.3.0: map-only frames. Per framed page: what to hide and how the map fills the frame. Pages at their own address are not touched.
+  var FILL = "{position:fixed!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;border:0!important;border-radius:0!important}";
+  var FRAME_CSS = {
+    "/chubut-h3/": "body>*:not(main),.ch3w>*:not(#map),.leaflet-control-layers,.leaflet-tooltip-pane{display:none!important}#map" + FILL,
+    "/tithe-h3/": "body>*:not(main),.th3w>*:not(.th3-mapwrap),.th3-mapwrap>*:not(#map),#h3stat,.th3-stat,#th3ctl,.th3-ctl,#legend,.th3-legend,#panel,.leaflet-tooltip:not(.th3-lbl){display:none!important}.th3-mapwrap" + FILL + "#map" + FILL,
+    "/terrain/": "body>*:not(main),.w3dw>*:not(#w3d),#w3dtop,#w3dinfo,#w3dpar,#w3dcred{display:none!important}",
+    "/argentina-3d/": "body>*:not(main),.a3d-tl,.a3d-tr,.a3d-bar,#night,#card{display:none!important}"
+  };
+  function bareFrame(frame, path) {
+    var w, doc;
+    try { w = frame.contentWindow; doc = frame.contentDocument; } catch (e) { return false; }
+    if (!w || !doc || !doc.head || !doc.body) return false;
+    var where = ""; try { where = w.location.pathname; } catch (e) { return false; }
+    if (where !== path && where.replace(/index\.html$/, "") !== path) return false;
+    if (doc.getElementById("cwv-maponly")) return true;
+    var style = doc.createElement("style"); style.id = "cwv-maponly";
+    style.textContent = "html,body{margin:0!important;padding:0!important;background:#0b1114!important;overflow:hidden!important}" +
+      "#cedwyn-pill,.leaflet-popup-pane{display:none!important}" +
+      ".leaflet-control-attribution{font:400 9px/1.3 system-ui,sans-serif!important;padding:1px 5px!important;background:rgba(11,17,20,.55)!important;color:#cfd8d3!important}.leaflet-control-attribution a{color:#cfd8d3!important}" + (FRAME_CSS[path] || "");
+    doc.head.appendChild(style); doc.documentElement.classList.add("cwv-maponly");
+    [60, 400, 1200].forEach(function (ms) { setTimeout(function () { try { w.dispatchEvent(new w.Event("resize")); } catch (e) {} }, ms); });
+    return true;
+  }
+  function watchFrame(frame, path) {
+    var tries = 0, timer = setInterval(function () { if (bareFrame(frame, path) || ++tries > 120) clearInterval(timer); }, 50);
+  }
   function pane(mode, region) {
     var path = MAPS[region][mode], box = el("div", "cwv-pane"); box.setAttribute("data-mode", mode);
     var frame = el("iframe", "cwv-frame");
@@ -95,7 +126,11 @@
   }
   function load(box) {
     var frame = box.querySelector("iframe[data-src]");
-    if (frame && !frame.getAttribute("src")) frame.setAttribute("src", frame.getAttribute("data-src"));
+    if (frame && !frame.getAttribute("src")) {
+      var path = frame.getAttribute("data-src");
+      frame.addEventListener("load", function () { bareFrame(frame, path); });
+      frame.setAttribute("src", path); watchFrame(frame, path);
+    }
   }
   function show(block, mode) {
     Array.prototype.forEach.call(block.querySelectorAll(".cwv-toggle button"), function (b) {
