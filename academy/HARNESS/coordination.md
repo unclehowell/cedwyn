@@ -29,3 +29,4 @@
 - Shell commands run under a hard timeout (`timeout -k 5 120`); long builds detach and write to a file.
 - Builds of the Cedwyn site take about 30–35 minutes; wait with a bounded loop, then verify.
 - Disk is shared and tight: delete temporary files; keep large media off the box.
+- Preflight before long or quota-heavy steps (standing order 99): estimate from recent runs of the same kind, check every binding limit minus what other scheduled jobs have reserved, defer what will not fit, and fall back to the cheapest open item that does.
