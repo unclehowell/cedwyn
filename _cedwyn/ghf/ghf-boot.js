@@ -19,7 +19,7 @@
       if (/^\/(docs\/ghf_evidence|docs\/ghf_research|wiki\/evidence|online\/authorities|catalogue)\/?$/.test(p) || (hn === "greathousefarmwiki.wordpress.com" && /^\/evidence\/?$/.test(p))) return C;
       return null;
     }
-    function nav(a) { return a.closest && a.closest(".ghf-v2,.ghf-ui,[data-ghf-nav]"); }
+    function nav(a) { return a.closest && a.closest(".ghf-v2,.ghf-ui,.cw-slotnav,[data-ghf-nav]"); }
     function fix(a) { if (!a || !a.getAttribute || nav(a)) return; var h = a.getAttribute("href"); if (!h || h.charAt(0) === "#") return; var t = cat(h); if (t) { a.setAttribute("href", t); a.setAttribute("data-cedwyn-cat", "1"); } }
     function all() { [].forEach.call(d.querySelectorAll("a[href]"), fix); }
     window.CedwynCatalogueLink = cat;
