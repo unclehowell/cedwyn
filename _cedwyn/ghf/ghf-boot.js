@@ -16,7 +16,8 @@
       if (hn === "bucklerfamily.estate" && p.indexOf("/catalogue/") === 0) return null;
       if ((m = /\/docs\/ghf_evidence\/ev_(\d{4})(\/|$)/.exec(p)) || (m = /^\/(?:wiki\/)?evidence\/ev-(\d{4})(-|\/|$)/.exec(p))) return C + "?id=EV-" + (m[1] === "0900" ? "0899" : m[1]);
       if ((m = /\/docs\/ghf_research\/mr_(\d{4})(\/|$)/.exec(p))) { var t = MR.hasOwnProperty(m[1]) ? MR[m[1]] : "MED-" + m[1]; return t ? C + "?id=" + t : C; }
-      if (/^\/(docs\/ghf_evidence|docs\/ghf_research|wiki\/evidence|online\/authorities|catalogue)\/?$/.test(p) || (hn === "greathousefarmwiki.wordpress.com" && /^\/evidence\/?$/.test(p))) return C;
+      if (hn === "cedwyn.bucklerfamily.estate" && /^\/wayback\/?$/.test(p)) return C + "?tab=web";
+      if (/^\/(docs\/ghf_evidence|docs\/ghf_research|wiki\/evidence|online\/authorities|authorities|catalogue)\/?$/.test(p) || (hn === "greathousefarmwiki.wordpress.com" && /^\/evidence\/?$/.test(p))) return C;
       return null;
     }
     function nav(a) { return a.closest && a.closest(".ghf-v2,.ghf-ui,.cw-slotnav,[data-ghf-nav]"); }
