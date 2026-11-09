@@ -4,6 +4,10 @@
 (function () {
   var d = document, de = d.documentElement, me = d.currentScript;
   if (window.GHFBoot) return; window.GHFBoot = "2.1.28";
+  // 9 Nov 2026 header-search guard: /dartboard/catalogue/ (an old cached header search link) opens the one central catalogue,
+  // and the header search icon always opens https://bucklerfamily.estate/catalogue/, whatever copy of the header drew it.
+  if (/^\/dartboard\/catalogue(\/|$)/.test(location.pathname)) { location.replace("https://bucklerfamily.estate/catalogue/" + location.search + location.hash); return; }
+  d.addEventListener("click", function (e) { var a = e.target && e.target.closest ? e.target.closest("a.ghf-v2-srch") : null; if (a) a.setAttribute("href", "https://bucklerfamily.estate/catalogue/"); }, true);
   // 2.1.28 (8 Nov 2026): one central catalogue of artifacts and evidence at bucklerfamily.estate/catalogue/. A link that cites a record on the
   // older evidence lists (Docs evidence and media registers, the Legal Wiki evidence pages, the older /catalogue/ search) opens that record there.
   // Header and webapp navigation links are left as they are. Source: the central records catalogue (bucklerfamily.estate/api/catalogue).
