@@ -1,0 +1,5789 @@
+{
+  "generated_on": "2026-10-28",
+  "collection": {
+    "source_dns_records_before_change": 102,
+    "current_zone_dns_records": 103,
+    "fetched_pages_project_total": 76,
+    "stored_in_scope_pages_projects": 54,
+    "api_collection": "All pages of the Cloudflare API were fetched sequentially.",
+    "note": "Current zone count includes the newly created story CNAME. Stored rows are limited to the BucklerFamily Estate zone."
+  },
+  "source": {
+    "repository": "unclehowell/cedwyn",
+    "registry_file": "themes.json",
+    "registry_version": "1.1.1",
+    "registry_note": "Cedwyn theme registry v1.1.1: the note records 38 routes, while the registry has 44 entries and the README reports 35 themes. Court Drills is restored as a theme; Research Library and Thousand Cuts are listed in the ordered tour. Reconcile these counts.",
+    "theme_count": 44,
+    "cloudflare_zone_id": "5307ac7d55a77d914b81d79c79532dde",
+    "production_deployment": {
+      "id": "cd51f1a7-ebc0-4787-9f9d-5210a8104e0e",
+      "branch": "site",
+      "commit": "15a8792bf6169d4907dedf899f7c5fc569d04667",
+      "status": "success",
+      "note": "Recorded production rollback target from read-only Cloudflare Pages deployment inspection."
+    },
+    "redirect_ruleset": {
+      "id": "418cf908695742d19d24e5058b2bab22",
+      "version": "27",
+      "last_updated": "2026-10-28T08:36:26.494701Z",
+      "rule_count": 10
+    }
+  },
+  "canonical_mapping_rule": "oldhost.bucklerfamily.estate/path?x=y → https://cedwyn.bucklerfamily.estate/<theme-id>/path?x=y, except aliases, APIs, agent endpoints, media services and archived-original links explicitly classified",
+  "theme_routes": [
+    {
+      "id": "wiki",
+      "title": "The Legal Wiki",
+      "group": "artifacts",
+      "canonical_path": "/wiki/",
+      "source": {
+        "branch": "wiki",
+        "snapshot_branch": "section/wiki",
+        "directory": "site",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "wiki.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "greathousefarmwiki.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "greathousefarmwiki",
+            "repo": null,
+            "production_branch": null,
+            "latest_deployment": {
+              "id": "f5a5a590-0657-4114-b1d8-54eead91af5c",
+              "environment": "production",
+              "created_on": "2026-10-24T19:22:32.187199Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "wiki.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "records",
+      "title": "Primary Records",
+      "group": "artifacts",
+      "canonical_path": "/records/",
+      "source": {
+        "branch": "ghf-primary-records",
+        "snapshot_branch": null,
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "records.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "ghf-primary-records.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "ghf-primary-records",
+            "repo": "datro",
+            "production_branch": "ghf-primary-records",
+            "latest_deployment": {
+              "id": "e36c898c-4499-4df7-abb6-ac52be941349",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "records.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "docs",
+      "title": "Docs · The Evidence Catalogue",
+      "group": "artifacts",
+      "canonical_path": "/docs/",
+      "source": {
+        "branch": "docs",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": "python3 _theme-docs/build.py",
+        "crawl_url": "https://bucklerfamily-docs.pages.dev/",
+        "crawl_fallback": true
+      },
+      "old_hosts": [
+        {
+          "hostname": "docs.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-docs.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-docs",
+            "repo": "datro",
+            "production_branch": "docs",
+            "latest_deployment": {
+              "id": "34aba026-d507-45e1-8c1a-a43d131302b4",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 0,
+          "worker_route_samples": [],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "wayback",
+      "title": "The Wayback Vault",
+      "group": "artifacts",
+      "canonical_path": "/wayback/",
+      "source": {
+        "branch": "wayback",
+        "snapshot_branch": null,
+        "directory": "wayback",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "wayback.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "wayback-81x.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "wayback",
+            "repo": "datro",
+            "production_branch": "wayback",
+            "latest_deployment": {
+              "id": "6f68e3f6-6473-476c-aa12-6ba454817ee7",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 2,
+          "worker_route_samples": [
+            {
+              "pattern": "wayback.bucklerfamily.estate/",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "wayback.bucklerfamily.estate/pdf/ghf-ebook-v1-13644035e044da92504882e0d7b765f9.pdf*",
+              "script": "ebook-gate"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "nomenclature",
+      "title": "Nomenclature",
+      "group": "artifacts",
+      "canonical_path": "/nomenclature/",
+      "source": {
+        "branch": "nomenclature",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "nomenclature.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-nomenclature.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-nomenclature",
+            "repo": "datro",
+            "production_branch": "nomenclature",
+            "latest_deployment": {
+              "id": "041618e5-5568-4317-9166-4e852b8b5e40",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "nomenclature.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        },
+        {
+          "hostname": "nomlecture.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-nomenclature.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-nomenclature",
+            "repo": "datro",
+            "production_branch": "nomenclature",
+            "latest_deployment": {
+              "id": "041618e5-5568-4317-9166-4e852b8b5e40",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": true,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "nomlecture.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        },
+        {
+          "hostname": "nolecture.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-nomenclature.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-nomenclature",
+            "repo": "datro",
+            "production_branch": "nomenclature",
+            "latest_deployment": {
+              "id": "041618e5-5568-4317-9166-4e852b8b5e40",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": true,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "nolecture.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "maps",
+      "title": "The Map Room",
+      "group": "artifacts",
+      "canonical_path": "/maps/",
+      "source": {
+        "branch": "maps",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "maps.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-maps.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-maps",
+            "repo": "datro",
+            "production_branch": "maps",
+            "latest_deployment": {
+              "id": "e5043166-82c7-402c-a880-b8c91f6d609d",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "maps.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "infographic",
+      "title": "The Land Changing Hands",
+      "group": "interactive",
+      "canonical_path": "/infographic/",
+      "source": {
+        "branch": "infographic",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "infographic.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-infographic.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-infographic",
+            "repo": "datro",
+            "production_branch": "infographic",
+            "latest_deployment": {
+              "id": "01a24aea-428d-4e0f-8aba-fb7ce214c70f",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 0,
+          "worker_route_samples": [],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "ebooks",
+      "title": "The E-book Shelf",
+      "group": "story",
+      "canonical_path": "/ebooks/",
+      "source": {
+        "branch": "ebooks",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "ebooks.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-ebooks.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-ebooks",
+            "repo": "datro",
+            "production_branch": "ebooks",
+            "latest_deployment": {
+              "id": "b6714fc4-960d-46f3-a3af-ad9880faf091",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": true,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 2,
+          "worker_route_samples": [
+            {
+              "pattern": "ebooks.bucklerfamily.estate/",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "ebooks.bucklerfamily.estate/api/*",
+              "script": "ebook-gate"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "story",
+      "title": "The Story",
+      "group": "story",
+      "canonical_path": "/story/",
+      "source": {
+        "branch": "bpvsbuckler",
+        "snapshot_branch": null,
+        "directory": "static/bpvsbuckler/dist",
+        "build": "(npm ci --no-audit --no-fund || npm install --no-audit --no-fund) && npm run build",
+        "crawl_url": null,
+        "crawl_fallback": true
+      },
+      "old_hosts": [
+        {
+          "hostname": "bpvsbuckler.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bpvsbuckler.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bpvsbuckler",
+            "repo": "datro",
+            "production_branch": "bpvsbuckler",
+            "latest_deployment": {
+              "id": "5ebea830-cbed-4dc4-b9c5-0a1ef8ab814b",
+              "environment": "production",
+              "created_on": "2026-10-25T14:26:18.365425Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": true,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "bpvsbuckler.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        },
+        {
+          "hostname": "story.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "cedwyn-274.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": null,
+          "redirect_rules": [],
+          "worker_route_count": 0,
+          "worker_route_samples": [],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "thousand-cuts",
+      "title": "1000 Cuts",
+      "group": "story",
+      "canonical_path": "/thousand-cuts/",
+      "source": {
+        "branch": null,
+        "snapshot_branch": null,
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": []
+    },
+    {
+      "id": "fb",
+      "title": "The Farm Album",
+      "group": "artifacts",
+      "canonical_path": "/fb/",
+      "source": {
+        "branch": "fb",
+        "snapshot_branch": null,
+        "directory": "site",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "fb.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-fb.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-fb",
+            "repo": "datro",
+            "production_branch": "fb",
+            "latest_deployment": {
+              "id": "bb7ec4c8-81bb-44c6-b21e-46f3d3ef3768",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 3,
+          "worker_route_samples": [
+            {
+              "pattern": "fb.bucklerfamily.estate/",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "fb.bucklerfamily.estate/m",
+              "script": "ghf-social"
+            },
+            {
+              "pattern": "fb.bucklerfamily.estate/m/*",
+              "script": "ghf-social"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "chess",
+      "title": "The Chessboard",
+      "group": "interactive",
+      "canonical_path": "/chess/",
+      "source": {
+        "branch": "chess",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "chess.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-chess.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-chess",
+            "repo": "datro",
+            "production_branch": "chess",
+            "latest_deployment": {
+              "id": "efcc8cdd-ee78-4497-8815-61e77ff5902c",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "chess.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "csscpsg",
+      "title": "The Grammar House (CSSCPSGP)",
+      "group": "interactive",
+      "canonical_path": "/csscpsg/",
+      "source": {
+        "branch": "csscpsg",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "csscpsg.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-csscpsg.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-csscpsg",
+            "repo": "datro",
+            "production_branch": "csscpsg",
+            "latest_deployment": {
+              "id": "cb2f1dd7-2fa2-4f74-8ed7-dc7a9bddc626",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "csscpsg.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        },
+        {
+          "hostname": "csscpsgp.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-csscpsg.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-csscpsg",
+            "repo": "datro",
+            "production_branch": "csscpsg",
+            "latest_deployment": {
+              "id": "cb2f1dd7-2fa2-4f74-8ed7-dc7a9bddc626",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": true,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "csscpsgp.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "courtdrills",
+      "title": "Court Drills · Procedural Unfairness",
+      "group": "interactive",
+      "canonical_path": "/courtdrills/",
+      "source": {
+        "branch": "courtdrills",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "courtdrills.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-courtdrills.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-courtdrills",
+            "repo": "datro",
+            "production_branch": "courtdrills",
+            "latest_deployment": {
+              "id": "36f72e6c-bd1f-4ef8-998b-458961e108ae",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": true,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 0,
+          "worker_route_samples": [],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "fcg",
+      "title": "FCG · Security Clearance",
+      "group": "research",
+      "canonical_path": "/fcg/",
+      "source": {
+        "branch": null,
+        "snapshot_branch": "section/fcg",
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "fcg.bucklerfamily.estate",
+          "dns": {
+            "type": "AAAA",
+            "target": "100::",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": null,
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 9,
+          "worker_route_samples": [
+            {
+              "pattern": "fcg.bucklerfamily.estate/llms.txt",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "fcg.bucklerfamily.estate/llms-full.txt",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "fcg.bucklerfamily.estate/.well-known/mcp.json",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "fcg.bucklerfamily.estate/.well-known/webmcp.json",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "fcg.bucklerfamily.estate/agent/*",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "oldbill",
+      "title": "Old Bill · Who Gained, Who Lost",
+      "group": "story",
+      "canonical_path": "/oldbill/",
+      "source": {
+        "branch": "oldbill",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "oldbill.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-oldbill.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-oldbill",
+            "repo": "datro",
+            "production_branch": "oldbill",
+            "latest_deployment": {
+              "id": "5bdbf3ad-1fea-4786-b60f-109dc7da418a",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 0,
+          "worker_route_samples": [],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "accounts",
+      "title": "The Counting House",
+      "group": "research",
+      "canonical_path": "/accounts/",
+      "source": {
+        "branch": "accounts",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "accounts.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-accounts.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-accounts",
+            "repo": "datro",
+            "production_branch": "accounts",
+            "latest_deployment": {
+              "id": "b73f958a-05bc-49ba-84d0-2ccc837ec33b",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "accounts.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "authorities",
+      "title": "Public Authorities",
+      "group": "research",
+      "canonical_path": "/authorities/",
+      "source": {
+        "branch": "ghf-public-authorities",
+        "snapshot_branch": null,
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "authorities.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "ghf-public-authorities.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "ghf-public-authorities",
+            "repo": "datro",
+            "production_branch": "ghf-public-authorities",
+            "latest_deployment": {
+              "id": "2ff0f367-e025-484b-8fd6-e59e07a08d1c",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "authorities.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "wdtk",
+      "title": "FOI Requests (WhatDoTheyKnow)",
+      "group": "research",
+      "canonical_path": "/wdtk/",
+      "source": {
+        "branch": "whatdotheyknow",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "whatdotheyknow.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-whatdotheyknow.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-whatdotheyknow",
+            "repo": "datro",
+            "production_branch": "whatdotheyknow",
+            "latest_deployment": {
+              "id": "10e7a3e7-0c18-452e-8f91-19e7be9f3c6f",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": true,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "whatdotheyknow.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "review",
+      "title": "Independent Review",
+      "group": "research",
+      "canonical_path": "/review/",
+      "source": {
+        "branch": "ghf-independent-review",
+        "snapshot_branch": null,
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "review.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "ghf-independent-review.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "ghf-independent-review",
+            "repo": "datro",
+            "production_branch": "ghf-independent-review",
+            "latest_deployment": {
+              "id": "bad9aeef-b88b-4d73-a50d-7c95edb5bba3",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "review.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "title": "The Research Library",
+      "group": "research",
+      "canonical_path": "/research/",
+      "source": {
+        "branch": null,
+        "snapshot_branch": "section/research",
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "research.bucklerfamily.estate",
+          "dns": {
+            "type": "AAAA",
+            "target": "100::",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": null,
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 10,
+          "worker_route_samples": [
+            {
+              "pattern": "research.bucklerfamily.estate/robots.txt",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "research.bucklerfamily.estate/sitemap.xml",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "research.bucklerfamily.estate/llms.txt",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "research.bucklerfamily.estate/llms-full.txt",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "research.bucklerfamily.estate/.well-known/mcp.json",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "qa",
+      "title": "The Q&A Hall",
+      "group": "story",
+      "canonical_path": "/qa/",
+      "source": {
+        "branch": "qa",
+        "snapshot_branch": null,
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "qa.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "qa-acp.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "qa",
+            "repo": null,
+            "production_branch": null,
+            "latest_deployment": {
+              "id": "a77b5038-7511-46fb-ba5e-ace259db35d5",
+              "environment": "production",
+              "created_on": "2026-10-23T15:10:09.372654Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 8,
+          "worker_route_samples": [
+            {
+              "pattern": "qa.bucklerfamily.estate/robots.txt",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "qa.bucklerfamily.estate/sitemap.xml",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "qa.bucklerfamily.estate/llms.txt",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "qa.bucklerfamily.estate/llms-full.txt",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "qa.bucklerfamily.estate/.well-known/mcp.json",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "meeting",
+      "title": "The Council Chamber",
+      "group": "research",
+      "canonical_path": "/meeting/",
+      "source": {
+        "branch": "2026-10-22",
+        "snapshot_branch": null,
+        "directory": "static/2026-10-22",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "2026-10-22.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "2026-10-22.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "2026-10-22",
+            "repo": "datro",
+            "production_branch": "2026-10-22",
+            "latest_deployment": {
+              "id": "f07cabc2-46c1-4acf-be44-ef5b7260b584",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": true,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 0,
+          "worker_route_samples": [],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "title": "The Project Office",
+      "group": "research",
+      "canonical_path": "/projects/",
+      "source": {
+        "branch": "projects",
+        "snapshot_branch": null,
+        "directory": "projects/public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "projects.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-projects.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-projects",
+            "repo": "datro",
+            "production_branch": "projects",
+            "latest_deployment": {
+              "id": "aaeb9610-8922-4ddd-b0a8-94224f2d218c",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "projects.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "title": "The Case Office",
+      "group": "interactive",
+      "canonical_path": "/app/",
+      "source": {
+        "branch": null,
+        "snapshot_branch": "section/app",
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "app.bucklerfamily.estate",
+          "dns": {
+            "type": "AAAA",
+            "target": "100::",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": null,
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "app.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        },
+        {
+          "hostname": "apps.bucklerfamily.estate",
+          "dns": {
+            "type": "AAAA",
+            "target": "100::",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": null,
+          "redirect_rules": [],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "apps.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "chat",
+      "title": "Ask the Archive",
+      "group": "interactive",
+      "canonical_path": "/chat/",
+      "source": {
+        "branch": null,
+        "snapshot_branch": "section/chat",
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "chat.bucklerfamily.estate",
+          "dns": {
+            "type": "AAAA",
+            "target": "100::",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": null,
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "chat.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "watchtower",
+      "title": "Watchtower",
+      "group": "research",
+      "canonical_path": "/watchtower/",
+      "source": {
+        "branch": "watchtower",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "watchtower.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-watchtower.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-watchtower",
+            "repo": "datro",
+            "production_branch": "watchtower",
+            "latest_deployment": {
+              "id": "9df3b212-ca42-4b4f-b140-3ea76c39168a",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "watchtower.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "fb2",
+      "title": "farmbook 2 · Today",
+      "group": "research",
+      "canonical_path": "/fb2/",
+      "source": {
+        "branch": "fb",
+        "snapshot_branch": null,
+        "directory": "site2",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "fb2.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-fb2.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-fb2",
+            "repo": "datro",
+            "production_branch": "fb",
+            "latest_deployment": {
+              "id": "ff94729f-d652-4bb3-ab01-9ab65bc4cddb",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 0,
+          "worker_route_samples": [],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "email",
+      "title": "The Post Office",
+      "group": "research",
+      "canonical_path": "/email/",
+      "source": {
+        "branch": null,
+        "snapshot_branch": null,
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "email.bucklerfamily.estate",
+          "dns": {
+            "type": "AAAA",
+            "target": "100::",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": null,
+          "redirect_rules": [],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "email.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "emails",
+      "title": "The Post Office · Calendar",
+      "group": "research",
+      "canonical_path": "/emails/",
+      "source": {
+        "branch": "emails",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "emails.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-emails.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-emails",
+            "repo": "datro",
+            "production_branch": "emails",
+            "latest_deployment": {
+              "id": "41069083-a502-4779-9b1b-e4fa4c0b6932",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": true,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 0,
+          "worker_route_samples": [],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "dartboard",
+      "title": "The Disclosure Dartboard",
+      "group": "interactive",
+      "canonical_path": "/dartboard/",
+      "source": {
+        "branch": null,
+        "snapshot_branch": null,
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "dartboard.bucklerfamily.estate",
+          "dns": {
+            "type": "AAAA",
+            "target": "100::",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": null,
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "dartboard.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "estate",
+      "title": "Cedwyn Estate",
+      "group": "interactive",
+      "canonical_path": "/estate/",
+      "source": {
+        "branch": null,
+        "snapshot_branch": "section/estate",
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": []
+    },
+    {
+      "id": "directory",
+      "title": "Cedwyn Pages",
+      "group": "interactive",
+      "canonical_path": "/directory/",
+      "source": {
+        "branch": "directory",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "directory.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-directory.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-directory",
+            "repo": "datro",
+            "production_branch": "directory",
+            "latest_deployment": {
+              "id": "35524e43-c2fd-4e60-b1d8-c2724e192817",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 2,
+          "worker_route_samples": [
+            {
+              "pattern": "directory.bucklerfamily.estate/",
+              "script": "agent-ready"
+            },
+            {
+              "pattern": "directory.bucklerfamily.estate/api/*",
+              "script": "cedwyn-directory"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "patagonia",
+      "title": "Great House Farm II · Patagonia Museum",
+      "group": "artifacts",
+      "canonical_path": "/patagonia/",
+      "source": {
+        "branch": null,
+        "snapshot_branch": "section/patagonia",
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": []
+    },
+    {
+      "id": "wales",
+      "title": "Virtual Tour · Wales",
+      "group": "interactive",
+      "canonical_path": "/wales/",
+      "source": {
+        "branch": null,
+        "snapshot_branch": null,
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": []
+    },
+    {
+      "id": "terrain",
+      "title": "Terrain · Cedwyn Estate in 3D",
+      "group": "interactive",
+      "canonical_path": "/terrain/",
+      "source": {
+        "branch": null,
+        "snapshot_branch": null,
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "terrain.bucklerfamily.estate",
+          "dns": {
+            "type": "AAAA",
+            "target": "100::",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": null,
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "terrain.bucklerfamily.estate/*",
+              "script": "terrain"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "cyberspace",
+      "title": "The Digital Estate",
+      "group": "interactive",
+      "canonical_path": "/cyberspace/",
+      "source": {
+        "branch": null,
+        "snapshot_branch": "section/cyberspace",
+        "directory": null,
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": []
+    },
+    {
+      "id": "shop",
+      "title": "Gift Shop & Marketplace",
+      "group": "story",
+      "canonical_path": "/shop/",
+      "source": {
+        "branch": "merch",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": [
+        {
+          "hostname": "shop.bucklerfamily.estate",
+          "dns": {
+            "type": "CNAME",
+            "target": "bucklerfamily-shop.pages.dev",
+            "proxied": true,
+            "ttl": 1
+          },
+          "pages_project": {
+            "name": "bucklerfamily-shop",
+            "repo": "datro",
+            "production_branch": "merch",
+            "latest_deployment": {
+              "id": "fd278691-ea46-4000-9d36-a83d44acae36",
+              "environment": "preview",
+              "created_on": "2026-10-28T04:03:42.721668Z"
+            }
+          },
+          "redirect_rules": [
+            {
+              "id": "zone-rule-1",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            },
+            {
+              "id": "zone-rule-2",
+              "enabled": true,
+              "action": "redirect",
+              "host_coverage": [],
+              "status_code": 301,
+              "preserve_query_string": false,
+              "conditions_summary": "Selective GET/HEAD page-route redirect; see live Cloudflare rule and rollback snapshot for full condition."
+            }
+          ],
+          "worker_route_count": 1,
+          "worker_route_samples": [
+            {
+              "pattern": "shop.bucklerfamily.estate/",
+              "script": "agent-ready"
+            }
+          ],
+          "old_host_http_test": "PASS_RUN_126_ROOT_AND_INDEX"
+        }
+      ]
+    },
+    {
+      "id": "documentary",
+      "title": "Cedwyn · documentary",
+      "group": "story",
+      "canonical_path": "/documentary/",
+      "source": {
+        "branch": "cedwyn-movie",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": []
+    },
+    {
+      "id": "familytree",
+      "title": "The family tree",
+      "group": "story",
+      "canonical_path": "/familytree/",
+      "source": {
+        "branch": "familytree",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": []
+    },
+    {
+      "id": "kissed-frogs",
+      "title": "Kissed Frogs",
+      "group": "research",
+      "canonical_path": "/kissed-frogs/",
+      "source": {
+        "branch": "kissed-frogs",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": []
+    },
+    {
+      "id": "nft-art",
+      "title": "The Garden Gallery",
+      "group": "interactive",
+      "canonical_path": "/nft-art/",
+      "source": {
+        "branch": "nft-art",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": []
+    },
+    {
+      "id": "whattheydontsay",
+      "title": "What They Don't Say",
+      "group": "research",
+      "canonical_path": "/whattheydontsay/",
+      "source": {
+        "branch": "whattheydontsay",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": []
+    },
+    {
+      "id": "blog",
+      "title": "Blog",
+      "group": "research",
+      "canonical_path": "/blog/",
+      "source": {
+        "branch": "blog",
+        "snapshot_branch": null,
+        "directory": "public",
+        "build": null,
+        "crawl_url": null,
+        "crawl_fallback": false
+      },
+      "old_hosts": []
+    }
+  ],
+  "alias_hosts_from_redirect_rules": [
+    {
+      "hostname": "dishonor.bucklerfamily.estate",
+      "dns": {
+        "type": "AAAA",
+        "target": "100::",
+        "proxied": true
+      },
+      "pages_project": null,
+      "rules": [
+        {
+          "id": "zone-rule-1",
+          "enabled": true,
+          "host_coverage": [
+            "dishonor.bucklerfamily.estate"
+          ],
+          "status_code": 301,
+          "preserve_query_string": null,
+          "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+        }
+      ]
+    },
+    {
+      "hostname": "dishonour.bucklerfamily.estate",
+      "dns": {
+        "type": "AAAA",
+        "target": "100::",
+        "proxied": true
+      },
+      "pages_project": null,
+      "rules": [
+        {
+          "id": "zone-rule-1",
+          "enabled": true,
+          "host_coverage": [
+            "dishonour.bucklerfamily.estate"
+          ],
+          "status_code": 301,
+          "preserve_query_string": null,
+          "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+        }
+      ]
+    },
+    {
+      "hostname": "www.bucklerfamily.estate",
+      "dns": {
+        "type": "TXT",
+        "target": "\"bucklerfamilyfarm.pages.dev\"",
+        "proxied": false
+      },
+      "pages_project": {
+        "name": "bucklerfamilyfarm",
+        "repo": "BucklerFamilyFarm",
+        "production_branch": "main"
+      },
+      "rules": [
+        {
+          "id": "zone-rule-1",
+          "enabled": true,
+          "host_coverage": [
+            "www.bucklerfamily.estate"
+          ],
+          "status_code": 301,
+          "preserve_query_string": null,
+          "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+        }
+      ]
+    }
+  ],
+  "dns_records_not_mapped_to_theme_or_known_redirect": [
+    {
+      "name": "8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.bucklerfamily.estate",
+      "type": "A",
+      "target": "185.199.108.153",
+      "proxied": true,
+      "classification": "nested_or_service_host"
+    },
+    {
+      "name": "call.bucklerfamily.estate",
+      "type": "A",
+      "target": "192.0.2.1",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "ccan.bucklerfamily.estate",
+      "type": "A",
+      "target": "192.0.2.1",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "maze.bucklerfamily.estate",
+      "type": "A",
+      "target": "192.0.2.1",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "althea.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "althea-30p.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "archive.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily.estate",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "archives.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "archives-b01.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "bucklervsbp.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklervsbp.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "calls.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "calls-ck0.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "ceo.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "ceo-er3.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "cnei.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "cnei.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "command.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "command-dashboard-adx.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "dash.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "dash-i09.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "dcc.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "dcc-cwd.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "docs.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "docs.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "classification": "webbrich_namespace"
+    },
+    {
+      "name": "_domainconnect.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "_domainconnect.gd.domaincontrol.com",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "ebooks.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "ebooks.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "classification": "webbrich_namespace"
+    },
+    {
+      "name": "fb.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "fb.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "classification": "webbrich_namespace"
+    },
+    {
+      "name": "ghf-app.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "ghf-app.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "gui.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "gui-7ey.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "hbnb.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "datro.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "infographic.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "infographic.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "classification": "webbrich_namespace"
+    },
+    {
+      "name": "internetarchive.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-internetarchive.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "library.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "library-cgm.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "maps.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "maps.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "classification": "webbrich_namespace"
+    },
+    {
+      "name": "pirateclaw.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "pirateclaw.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "projections.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "projections.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "records.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "records.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "classification": "webbrich_namespace"
+    },
+    {
+      "name": "research.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "research.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "classification": "webbrich_namespace"
+    },
+    {
+      "name": "rsend.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "rsend-euw1.forge.rmta.net",
+      "proxied": false,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "send.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "send.forge.rmta.net",
+      "proxied": false,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "subrepos.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "subrepos.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "timeline.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "timeline-as4.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "tumbler.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "tumbler-6js.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "wave.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wave-6he.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "wayback-html.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback-html.pages.dev",
+      "proxied": true,
+      "classification": "archive_media_host_preserve_until_verified"
+    },
+    {
+      "name": "wayback-img.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback-img.pages.dev",
+      "proxied": true,
+      "classification": "archive_media_host_preserve_until_verified"
+    },
+    {
+      "name": "wayback-pdf.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback-pdf.pages.dev",
+      "proxied": true,
+      "classification": "archive_media_host_preserve_until_verified"
+    },
+    {
+      "name": "wayback-text.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback-text.pages.dev",
+      "proxied": true,
+      "classification": "archive_media_host_preserve_until_verified"
+    },
+    {
+      "name": "wayback-video.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback-video.pages.dev",
+      "proxied": true,
+      "classification": "archive_media_host_preserve_until_verified"
+    },
+    {
+      "name": "wayback.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "classification": "webbrich_namespace"
+    },
+    {
+      "name": "webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "cf2024-1._domainkey.bucklerfamily.estate",
+      "type": "TXT",
+      "target": "\"v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiweykoi+o48IOGuP7GR3X0MOExCUDY/BCRHoWBnh3rChl7WhdyCxW3jgq1daEjPPqoi7sJvdg5hEQVsgVRQP4DcnQDVjGMbASQtrY4WmB1VebF+RPJB2ECPsEDTpeiI5ZyUAwJaVX7r6bznU67g7LvFq35yIo4sdlmtZGV+i0H4cpYH9+3JJ78k\" \"m4KXwaf9xUJCWF6nxeD+qG6Fyruw1Qlbds2r85U9dkNDVAS3gioCvELryh1TxKGiVTkg4wqHTyHfWsp7KD3WQHYJn0RyfJJu6YEmL77zonn7p2SRMvTMP3ZEXibnC9gz3nnhR6wcYL8Q7zXypKTMD58bTixDSJwIDAQAB\"",
+      "proxied": false,
+      "classification": "nested_or_service_host"
+    },
+    {
+      "name": "_dmarc.bucklerfamily.estate",
+      "type": "TXT",
+      "target": "v=DMARC1; p=none;",
+      "proxied": false,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "_github-pages-challenge-unclehowell.bucklerfamily.estate",
+      "type": "TXT",
+      "target": "\"8c5e9c40d2a48badb083b3e5146974\"",
+      "proxied": false,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "_github-pages-challenge-unclehowell.bucklerfamily.estate",
+      "type": "TXT",
+      "target": "\"ea291443d87886bcd1c0c722087432\"",
+      "proxied": false,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "resend._domainkey.bucklerfamily.estate",
+      "type": "TXT",
+      "target": "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIaaghAoroCAm7TtGNCkmg662KB+uPIq33PLytT8b5SE7oDgwXzEZ3xB3cpmELiZadyl2P8pagxmA818rP58U9x+lSa5iTux2b0QmwBI35dcSpyU8l0UxKur0Zghg4q7StkSTeantkEI7h/8B0MOMqtyMkBXCBiuX+wrgHmgxBEQIDAQAB",
+      "proxied": false,
+      "classification": "nested_or_service_host"
+    },
+    {
+      "name": "clerk.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "comments.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "engineroom.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "followers.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "hive.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    },
+    {
+      "name": "mcp.projects.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "classification": "MCP_endpoint_preserve"
+    },
+    {
+      "name": "watch.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "classification": "service_or_missing_registry_mapping"
+    }
+  ],
+  "pages_projects_without_direct_theme_domain": [
+    {
+      "name": "wayback-html",
+      "repo": "datro",
+      "production_branch": "wayback-html",
+      "domains": [
+        "wayback-html.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "882efd9f-1247-4c32-8d71-08b1bf31f9cc",
+        "environment": "production",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-internetarchive",
+      "repo": "datro",
+      "production_branch": "internetarchive",
+      "domains": [
+        "internetarchive.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "4d3acb56-a689-4004-886d-f8063bff0b31",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "wayback-video",
+      "repo": "datro",
+      "production_branch": "wayback-video",
+      "domains": [
+        "wayback-video.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "a0e94b02-d0a2-4c26-bed9-abc8e2d69b8f",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "wayback-pdf",
+      "repo": "datro",
+      "production_branch": "wayback-pdf",
+      "domains": [
+        "wayback-pdf.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "853fa22c-0a1c-4eb8-ab6f-912a5d4f035f",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "wayback-img",
+      "repo": "datro",
+      "production_branch": "wayback-img",
+      "domains": [
+        "wayback-img.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "0fb43cc5-a728-48d5-abca-1f2b9489ffc6",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "wayback-text",
+      "repo": "datro",
+      "production_branch": "wayback-text",
+      "domains": [
+        "wayback-text.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "3d9004a4-7deb-4daa-be4f-f9fd418e1623",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "cnei",
+      "repo": "datro",
+      "production_branch": "cnei",
+      "domains": [
+        "cnei.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "74a8fe1f-680a-46f7-950c-d19f822f626c",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "pirateclaw",
+      "repo": "datro",
+      "production_branch": "pirateclaw",
+      "domains": [
+        "pirateclaw.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "b58f9922-e026-40ee-93ef-dedc47ef475d",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "archives",
+      "repo": "datro",
+      "production_branch": "archives",
+      "domains": [
+        "archives.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "280a705a-0fe9-41fa-a83a-553945bb6bdd",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "althea",
+      "repo": "datro",
+      "production_branch": "althea",
+      "domains": [
+        "althea.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "d9b359c3-f307-445c-9728-a5c6f1e59ba4",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "ceo",
+      "repo": "datro",
+      "production_branch": "ceo",
+      "domains": [
+        "ceo.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "2e16204c-0e00-4981-b5b9-fd6b9cf53379",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "projections",
+      "repo": "datro",
+      "production_branch": "gh-pages",
+      "domains": [
+        "projections.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "f65c26bc-5ae5-40e4-85a9-67a563d72f7c",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "timeline",
+      "repo": "datro",
+      "production_branch": "gh-pages",
+      "domains": [
+        "timeline.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "0754892d-f1df-4df5-99a9-d021ee0ac1df",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamilyfarm",
+      "repo": "BucklerFamilyFarm",
+      "production_branch": "main",
+      "domains": [
+        "www.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "1b940c48-279f-40ee-afe0-c5cf00db7efe",
+        "environment": "production",
+        "created_on": "2026-10-27T09:29:26.884941Z"
+      }
+    },
+    {
+      "name": "ghf-app",
+      "repo": "BucklerFamilyFarm",
+      "production_branch": "ghf-app",
+      "domains": [
+        "ghf-app.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "7fa3f8cb-81a6-4cf0-b687-f2aeb22b0fb2",
+        "environment": "preview",
+        "created_on": "2026-10-27T09:29:26.884941Z"
+      }
+    },
+    {
+      "name": "tumbler",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "tumbler.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "42285e62-be57-4ef0-aa18-363df83ca5e5",
+        "environment": "production",
+        "created_on": "2026-10-24T19:31:14.32266Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-webbrich",
+      "repo": "webbrich",
+      "production_branch": "main",
+      "domains": [
+        "docs.webbrich.bucklerfamily.estate",
+        "ebooks.webbrich.bucklerfamily.estate",
+        "fb.webbrich.bucklerfamily.estate",
+        "infographic.webbrich.bucklerfamily.estate",
+        "maps.webbrich.bucklerfamily.estate",
+        "records.webbrich.bucklerfamily.estate",
+        "research.webbrich.bucklerfamily.estate",
+        "wayback.webbrich.bucklerfamily.estate",
+        "webbrich.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "4d0f1b69-4219-4383-a97a-45361f60103a",
+        "environment": "preview",
+        "created_on": "2026-10-23T23:07:36.184276Z"
+      }
+    },
+    {
+      "name": "wave",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "wave.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "0014d7a7-c608-495c-aba7-7059a510d38e",
+        "environment": "production",
+        "created_on": "2026-10-03T02:09:47.764778Z"
+      }
+    },
+    {
+      "name": "hbnb",
+      "repo": "datro",
+      "production_branch": "hbnb",
+      "domains": [
+        "hbnb.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "1ded27a6-df83-483b-a084-c4b632c4f213",
+        "environment": "production",
+        "created_on": "2026-10-03T02:02:29.541967Z"
+      }
+    },
+    {
+      "name": "command-dashboard",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "command.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "5bc9fd19-ffa6-46d2-9ceb-f2780e05ea8f",
+        "environment": "production",
+        "created_on": "2026-07-27T15:00:49.3997Z"
+      }
+    },
+    {
+      "name": "bucklervsbp",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "bucklervsbp.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "d0d6111e-68c8-4d9d-a59f-d0a45bf281ea",
+        "environment": "preview",
+        "created_on": "2026-06-02T11:27:38.650971Z"
+      }
+    },
+    {
+      "name": "subrepos",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "subrepos.bucklerfamily.estate"
+      ],
+      "latest_deployment": null
+    },
+    {
+      "name": "dash",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "dash.bucklerfamily.estate"
+      ],
+      "latest_deployment": null
+    },
+    {
+      "name": "calls",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "calls.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "5c7b8ab8-304b-4d3b-bf0b-9abf85fbb25c",
+        "environment": "production",
+        "created_on": "2026-04-22T00:49:18.7567Z"
+      }
+    },
+    {
+      "name": "library",
+      "repo": "datro",
+      "production_branch": "library",
+      "domains": [
+        "library.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "4359dd9f-19f1-47dd-8f5a-9420edda4ac1",
+        "environment": "preview",
+        "created_on": "2026-04-15T11:16:41.340861Z"
+      }
+    },
+    {
+      "name": "gui",
+      "repo": "datro",
+      "production_branch": "gui",
+      "domains": [
+        "gui.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "6edc18a0-6c4d-475d-97d6-572b67481248",
+        "environment": "production",
+        "created_on": "2026-04-15T11:16:41.340861Z"
+      }
+    },
+    {
+      "name": "dcc",
+      "repo": "datro",
+      "production_branch": "dcc",
+      "domains": [
+        "dcc.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "b6884ae3-3dff-4510-950b-1fdc72c0fcaf",
+        "environment": "production",
+        "created_on": "2026-04-15T02:48:31.501927Z"
+      }
+    }
+  ],
+  "all_dns_records": [
+    {
+      "name": "8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.8928308280fffff.bucklerfamily.estate",
+      "type": "A",
+      "target": "185.199.108.153",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "call.bucklerfamily.estate",
+      "type": "A",
+      "target": "192.0.2.1",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "ccan.bucklerfamily.estate",
+      "type": "A",
+      "target": "192.0.2.1",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "maze.bucklerfamily.estate",
+      "type": "A",
+      "target": "192.0.2.1",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "dishonor.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "dishonour.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "terrain.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "2026-10-22.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "2026-10-22.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "accounts.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-accounts.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "althea.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "althea-30p.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "archive.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily.estate",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "archives.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "archives-b01.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "authorities.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "ghf-public-authorities.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "bpvsbuckler.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bpvsbuckler.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "bucklervsbp.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklervsbp.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "calls.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "calls-ck0.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "cedwyn.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "cedwyn-274.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "ceo.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "ceo-er3.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "chess.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-chess.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "cnei.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "cnei.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "command.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "command-dashboard-adx.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "courtdrills.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-courtdrills.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "csscpsg.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-csscpsg.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "csscpsgp.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-csscpsg.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "dash.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "dash-i09.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "dcc.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "dcc-cwd.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "directory.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-directory.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "docs.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-docs.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "docs.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "docs.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "_domainconnect.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "_domainconnect.gd.domaincontrol.com",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "ebooks.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-ebooks.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "ebooks.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "ebooks.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "emails.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-emails.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "fb2.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-fb2.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "fb.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-fb.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "fb.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "fb.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "ghf-app.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "ghf-app.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "gui.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "gui-7ey.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "hbnb.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "datro.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "infographic.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-infographic.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "infographic.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "infographic.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "internetarchive.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-internetarchive.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "library.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "library-cgm.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "maps.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-maps.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "maps.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "maps.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "nolecture.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-nomenclature.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "nomenclature.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-nomenclature.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "nomlecture.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-nomenclature.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "oldbill.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-oldbill.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "pirateclaw.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "pirateclaw.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "projections.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "projections.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "projects.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-projects.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "qa.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "qa-acp.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "records.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "ghf-primary-records.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "records.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "records.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "research.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "research.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "review.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "ghf-independent-review.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "rsend.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "rsend-euw1.forge.rmta.net",
+      "proxied": false,
+      "ttl": 1
+    },
+    {
+      "name": "send.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "send.forge.rmta.net",
+      "proxied": false,
+      "ttl": 1
+    },
+    {
+      "name": "shop.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-shop.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "subrepos.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "subrepos.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "timeline.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "timeline-as4.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "tumbler.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "tumbler-6js.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "watchtower.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-watchtower.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "wave.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wave-6he.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "wayback.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback-81x.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "wayback-html.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback-html.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "wayback-img.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback-img.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "wayback-pdf.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback-pdf.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "wayback-text.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback-text.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "wayback-video.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback-video.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "wayback.webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "wayback.bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "webbrich.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-webbrich.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "whatdotheyknow.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamily-whatdotheyknow.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "wiki.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "greathousefarmwiki.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "www.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "bucklerfamilyfarm.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "cf2024-1._domainkey.bucklerfamily.estate",
+      "type": "TXT",
+      "target": "\"v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiweykoi+o48IOGuP7GR3X0MOExCUDY/BCRHoWBnh3rChl7WhdyCxW3jgq1daEjPPqoi7sJvdg5hEQVsgVRQP4DcnQDVjGMbASQtrY4WmB1VebF+RPJB2ECPsEDTpeiI5ZyUAwJaVX7r6bznU67g7LvFq35yIo4sdlmtZGV+i0H4cpYH9+3JJ78k\" \"m4KXwaf9xUJCWF6nxeD+qG6Fyruw1Qlbds2r85U9dkNDVAS3gioCvELryh1TxKGiVTkg4wqHTyHfWsp7KD3WQHYJn0RyfJJu6YEmL77zonn7p2SRMvTMP3ZEXibnC9gz3nnhR6wcYL8Q7zXypKTMD58bTixDSJwIDAQAB\"",
+      "proxied": false,
+      "ttl": 1
+    },
+    {
+      "name": "_dmarc.bucklerfamily.estate",
+      "type": "TXT",
+      "target": "v=DMARC1; p=none;",
+      "proxied": false,
+      "ttl": 1
+    },
+    {
+      "name": "_github-pages-challenge-unclehowell.bucklerfamily.estate",
+      "type": "TXT",
+      "target": "\"8c5e9c40d2a48badb083b3e5146974\"",
+      "proxied": false,
+      "ttl": 1
+    },
+    {
+      "name": "_github-pages-challenge-unclehowell.bucklerfamily.estate",
+      "type": "TXT",
+      "target": "\"ea291443d87886bcd1c0c722087432\"",
+      "proxied": false,
+      "ttl": 1
+    },
+    {
+      "name": "resend._domainkey.bucklerfamily.estate",
+      "type": "TXT",
+      "target": "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIaaghAoroCAm7TtGNCkmg662KB+uPIq33PLytT8b5SE7oDgwXzEZ3xB3cpmELiZadyl2P8pagxmA818rP58U9x+lSa5iTux2b0QmwBI35dcSpyU8l0UxKur0Zghg4q7StkSTeantkEI7h/8B0MOMqtyMkBXCBiuX+wrgHmgxBEQIDAQAB",
+      "proxied": false,
+      "ttl": 1
+    },
+    {
+      "name": "www.bucklerfamily.estate",
+      "type": "TXT",
+      "target": "\"bucklerfamilyfarm.pages.dev\"",
+      "proxied": false,
+      "ttl": 1
+    },
+    {
+      "name": "app.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "apps.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "chat.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "clerk.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "comments.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "dartboard.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "email.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "engineroom.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "fcg.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "followers.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "hive.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "mcp.projects.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "research.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "watch.bucklerfamily.estate",
+      "type": "AAAA",
+      "target": "100::",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "story.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "cedwyn-274.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    }
+  ],
+  "pages_projects": [
+    {
+      "name": "cedwyn",
+      "repo": "cedwyn",
+      "production_branch": "site",
+      "domains": [
+        "cedwyn.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "919b15da-fda6-4738-9acf-8d1a0b993fe5",
+        "environment": "preview",
+        "created_on": "2026-10-28T08:17:06.571046Z"
+      }
+    },
+    {
+      "name": "wayback-html",
+      "repo": "datro",
+      "production_branch": "wayback-html",
+      "domains": [
+        "wayback-html.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "882efd9f-1247-4c32-8d71-08b1bf31f9cc",
+        "environment": "production",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-internetarchive",
+      "repo": "datro",
+      "production_branch": "internetarchive",
+      "domains": [
+        "internetarchive.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "4d3acb56-a689-4004-886d-f8063bff0b31",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-courtdrills",
+      "repo": "datro",
+      "production_branch": "courtdrills",
+      "domains": [
+        "courtdrills.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "36f72e6c-bd1f-4ef8-998b-458961e108ae",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "wayback-video",
+      "repo": "datro",
+      "production_branch": "wayback-video",
+      "domains": [
+        "wayback-video.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "a0e94b02-d0a2-4c26-bed9-abc8e2d69b8f",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "wayback-pdf",
+      "repo": "datro",
+      "production_branch": "wayback-pdf",
+      "domains": [
+        "wayback-pdf.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "853fa22c-0a1c-4eb8-ab6f-912a5d4f035f",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "wayback-img",
+      "repo": "datro",
+      "production_branch": "wayback-img",
+      "domains": [
+        "wayback-img.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "0fb43cc5-a728-48d5-abca-1f2b9489ffc6",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "wayback-text",
+      "repo": "datro",
+      "production_branch": "wayback-text",
+      "domains": [
+        "wayback-text.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "3d9004a4-7deb-4daa-be4f-f9fd418e1623",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-oldbill",
+      "repo": "datro",
+      "production_branch": "oldbill",
+      "domains": [
+        "oldbill.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "5bdbf3ad-1fea-4786-b60f-109dc7da418a",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-docs",
+      "repo": "datro",
+      "production_branch": "docs",
+      "domains": [
+        "docs.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "34aba026-d507-45e1-8c1a-a43d131302b4",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-nomenclature",
+      "repo": "datro",
+      "production_branch": "nomenclature",
+      "domains": [
+        "nolecture.bucklerfamily.estate",
+        "nomenclature.bucklerfamily.estate",
+        "nomlecture.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "041618e5-5568-4317-9166-4e852b8b5e40",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-emails",
+      "repo": "datro",
+      "production_branch": "emails",
+      "domains": [
+        "emails.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "41069083-a502-4779-9b1b-e4fa4c0b6932",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-directory",
+      "repo": "datro",
+      "production_branch": "directory",
+      "domains": [
+        "directory.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "35524e43-c2fd-4e60-b1d8-c2724e192817",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-whatdotheyknow",
+      "repo": "datro",
+      "production_branch": "whatdotheyknow",
+      "domains": [
+        "whatdotheyknow.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "10e7a3e7-0c18-452e-8f91-19e7be9f3c6f",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-watchtower",
+      "repo": "datro",
+      "production_branch": "watchtower",
+      "domains": [
+        "watchtower.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "9df3b212-ca42-4b4f-b140-3ea76c39168a",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-maps",
+      "repo": "datro",
+      "production_branch": "maps",
+      "domains": [
+        "maps.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "e5043166-82c7-402c-a880-b8c91f6d609d",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-ebooks",
+      "repo": "datro",
+      "production_branch": "ebooks",
+      "domains": [
+        "ebooks.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "b6714fc4-960d-46f3-a3af-ad9880faf091",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-projects",
+      "repo": "datro",
+      "production_branch": "projects",
+      "domains": [
+        "projects.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "aaeb9610-8922-4ddd-b0a8-94224f2d218c",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-fb",
+      "repo": "datro",
+      "production_branch": "fb",
+      "domains": [
+        "fb.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "bb7ec4c8-81bb-44c6-b21e-46f3d3ef3768",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-accounts",
+      "repo": "datro",
+      "production_branch": "accounts",
+      "domains": [
+        "accounts.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "b73f958a-05bc-49ba-84d0-2ccc837ec33b",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-shop",
+      "repo": "datro",
+      "production_branch": "merch",
+      "domains": [
+        "shop.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "fd278691-ea46-4000-9d36-a83d44acae36",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-csscpsg",
+      "repo": "datro",
+      "production_branch": "csscpsg",
+      "domains": [
+        "csscpsg.bucklerfamily.estate",
+        "csscpsgp.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "cb2f1dd7-2fa2-4f74-8ed7-dc7a9bddc626",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "cnei",
+      "repo": "datro",
+      "production_branch": "cnei",
+      "domains": [
+        "cnei.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "74a8fe1f-680a-46f7-950c-d19f822f626c",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "wayback",
+      "repo": "datro",
+      "production_branch": "wayback",
+      "domains": [
+        "wayback.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "6f68e3f6-6473-476c-aa12-6ba454817ee7",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "2026-10-22",
+      "repo": "datro",
+      "production_branch": "2026-10-22",
+      "domains": [
+        "2026-10-22.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "f07cabc2-46c1-4acf-be44-ef5b7260b584",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "ghf-independent-review",
+      "repo": "datro",
+      "production_branch": "ghf-independent-review",
+      "domains": [
+        "review.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "bad9aeef-b88b-4d73-a50d-7c95edb5bba3",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "ghf-primary-records",
+      "repo": "datro",
+      "production_branch": "ghf-primary-records",
+      "domains": [
+        "records.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "e36c898c-4499-4df7-abb6-ac52be941349",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "ghf-public-authorities",
+      "repo": "datro",
+      "production_branch": "ghf-public-authorities",
+      "domains": [
+        "authorities.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "2ff0f367-e025-484b-8fd6-e59e07a08d1c",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-chess",
+      "repo": "datro",
+      "production_branch": "chess",
+      "domains": [
+        "chess.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "efcc8cdd-ee78-4497-8815-61e77ff5902c",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "pirateclaw",
+      "repo": "datro",
+      "production_branch": "pirateclaw",
+      "domains": [
+        "pirateclaw.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "b58f9922-e026-40ee-93ef-dedc47ef475d",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "archives",
+      "repo": "datro",
+      "production_branch": "archives",
+      "domains": [
+        "archives.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "280a705a-0fe9-41fa-a83a-553945bb6bdd",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "althea",
+      "repo": "datro",
+      "production_branch": "althea",
+      "domains": [
+        "althea.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "d9b359c3-f307-445c-9728-a5c6f1e59ba4",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-fb2",
+      "repo": "datro",
+      "production_branch": "fb",
+      "domains": [
+        "fb2.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "ff94729f-d652-4bb3-ab01-9ab65bc4cddb",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "ceo",
+      "repo": "datro",
+      "production_branch": "ceo",
+      "domains": [
+        "ceo.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "2e16204c-0e00-4981-b5b9-fd6b9cf53379",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "projections",
+      "repo": "datro",
+      "production_branch": "gh-pages",
+      "domains": [
+        "projections.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "f65c26bc-5ae5-40e4-85a9-67a563d72f7c",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "timeline",
+      "repo": "datro",
+      "production_branch": "gh-pages",
+      "domains": [
+        "timeline.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "0754892d-f1df-4df5-99a9-d021ee0ac1df",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-infographic",
+      "repo": "datro",
+      "production_branch": "infographic",
+      "domains": [
+        "infographic.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "01a24aea-428d-4e0f-8aba-fb7ce214c70f",
+        "environment": "preview",
+        "created_on": "2026-10-28T04:03:42.721668Z"
+      }
+    },
+    {
+      "name": "bucklerfamilyfarm",
+      "repo": "BucklerFamilyFarm",
+      "production_branch": "main",
+      "domains": [
+        "www.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "1b940c48-279f-40ee-afe0-c5cf00db7efe",
+        "environment": "production",
+        "created_on": "2026-10-27T09:29:26.884941Z"
+      }
+    },
+    {
+      "name": "ghf-app",
+      "repo": "BucklerFamilyFarm",
+      "production_branch": "ghf-app",
+      "domains": [
+        "ghf-app.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "7fa3f8cb-81a6-4cf0-b687-f2aeb22b0fb2",
+        "environment": "preview",
+        "created_on": "2026-10-27T09:29:26.884941Z"
+      }
+    },
+    {
+      "name": "bpvsbuckler",
+      "repo": "datro",
+      "production_branch": "bpvsbuckler",
+      "domains": [
+        "bpvsbuckler.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "5ebea830-cbed-4dc4-b9c5-0a1ef8ab814b",
+        "environment": "production",
+        "created_on": "2026-10-25T14:26:18.365425Z"
+      }
+    },
+    {
+      "name": "tumbler",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "tumbler.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "42285e62-be57-4ef0-aa18-363df83ca5e5",
+        "environment": "production",
+        "created_on": "2026-10-24T19:31:14.32266Z"
+      }
+    },
+    {
+      "name": "greathousefarmwiki",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "wiki.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "f5a5a590-0657-4114-b1d8-54eead91af5c",
+        "environment": "production",
+        "created_on": "2026-10-24T19:22:32.187199Z"
+      }
+    },
+    {
+      "name": "bucklerfamily-webbrich",
+      "repo": "webbrich",
+      "production_branch": "main",
+      "domains": [
+        "docs.webbrich.bucklerfamily.estate",
+        "ebooks.webbrich.bucklerfamily.estate",
+        "fb.webbrich.bucklerfamily.estate",
+        "infographic.webbrich.bucklerfamily.estate",
+        "maps.webbrich.bucklerfamily.estate",
+        "records.webbrich.bucklerfamily.estate",
+        "research.webbrich.bucklerfamily.estate",
+        "wayback.webbrich.bucklerfamily.estate",
+        "webbrich.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "4d0f1b69-4219-4383-a97a-45361f60103a",
+        "environment": "preview",
+        "created_on": "2026-10-23T23:07:36.184276Z"
+      }
+    },
+    {
+      "name": "qa",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "qa.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "a77b5038-7511-46fb-ba5e-ace259db35d5",
+        "environment": "production",
+        "created_on": "2026-10-23T15:10:09.372654Z"
+      }
+    },
+    {
+      "name": "wave",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "wave.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "0014d7a7-c608-495c-aba7-7059a510d38e",
+        "environment": "production",
+        "created_on": "2026-10-03T02:09:47.764778Z"
+      }
+    },
+    {
+      "name": "hbnb",
+      "repo": "datro",
+      "production_branch": "hbnb",
+      "domains": [
+        "hbnb.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "1ded27a6-df83-483b-a084-c4b632c4f213",
+        "environment": "production",
+        "created_on": "2026-10-03T02:02:29.541967Z"
+      }
+    },
+    {
+      "name": "command-dashboard",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "command.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "5bc9fd19-ffa6-46d2-9ceb-f2780e05ea8f",
+        "environment": "production",
+        "created_on": "2026-07-27T15:00:49.3997Z"
+      }
+    },
+    {
+      "name": "bucklervsbp",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "bucklervsbp.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "d0d6111e-68c8-4d9d-a59f-d0a45bf281ea",
+        "environment": "preview",
+        "created_on": "2026-06-02T11:27:38.650971Z"
+      }
+    },
+    {
+      "name": "subrepos",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "subrepos.bucklerfamily.estate"
+      ],
+      "latest_deployment": null
+    },
+    {
+      "name": "dash",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "dash.bucklerfamily.estate"
+      ],
+      "latest_deployment": null
+    },
+    {
+      "name": "calls",
+      "repo": null,
+      "production_branch": null,
+      "domains": [
+        "calls.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "5c7b8ab8-304b-4d3b-bf0b-9abf85fbb25c",
+        "environment": "production",
+        "created_on": "2026-04-22T00:49:18.7567Z"
+      }
+    },
+    {
+      "name": "library",
+      "repo": "datro",
+      "production_branch": "library",
+      "domains": [
+        "library.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "4359dd9f-19f1-47dd-8f5a-9420edda4ac1",
+        "environment": "preview",
+        "created_on": "2026-04-15T11:16:41.340861Z"
+      }
+    },
+    {
+      "name": "gui",
+      "repo": "datro",
+      "production_branch": "gui",
+      "domains": [
+        "gui.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "6edc18a0-6c4d-475d-97d6-572b67481248",
+        "environment": "production",
+        "created_on": "2026-04-15T11:16:41.340861Z"
+      }
+    },
+    {
+      "name": "dcc",
+      "repo": "datro",
+      "production_branch": "dcc",
+      "domains": [
+        "dcc.bucklerfamily.estate"
+      ],
+      "latest_deployment": {
+        "id": "b6884ae3-3dff-4510-950b-1fdc72c0fcaf",
+        "environment": "production",
+        "created_on": "2026-04-15T02:48:31.501927Z"
+      }
+    }
+  ],
+  "redirect_ruleset": {
+    "id": "418cf908695742d19d24e5058b2bab22",
+    "version": "26",
+    "last_updated": "2026-10-26T19:45:25.53416Z",
+    "rule_count": 10
+  },
+  "redirect_rules": [
+    {
+      "id": "zone-rule-1",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
+        "dishonor.bucklerfamily.estate",
+        "dishonour.bucklerfamily.estate"
+      ],
+      "status_code": 301,
+      "preserve_query_string": false,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-2",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
+        "www.bucklerfamily.estate"
+      ],
+      "status_code": 301,
+      "preserve_query_string": false,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-3",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
+        "emails.bucklerfamily.estate",
+        "ebooks.bucklerfamily.estate",
+        "courtdrills.bucklerfamily.estate"
+      ],
+      "status_code": 301,
+      "preserve_query_string": true,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-4",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
+        "shop.bucklerfamily.estate"
+      ],
+      "status_code": 301,
+      "preserve_query_string": false,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-5",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
+        "records.bucklerfamily.estate",
+        "docs.bucklerfamily.estate",
+        "wayback.bucklerfamily.estate",
+        "nomenclature.bucklerfamily.estate",
+        "maps.bucklerfamily.estate",
+        "infographic.bucklerfamily.estate",
+        "wiki.bucklerfamily.estate",
+        "fb.bucklerfamily.estate",
+        "chess.bucklerfamily.estate",
+        "csscpsg.bucklerfamily.estate",
+        "fcg.bucklerfamily.estate",
+        "oldbill.bucklerfamily.estate",
+        "accounts.bucklerfamily.estate",
+        "authorities.bucklerfamily.estate",
+        "review.bucklerfamily.estate",
+        "qa.bucklerfamily.estate",
+        "app.bucklerfamily.estate",
+        "chat.bucklerfamily.estate",
+        "watchtower.bucklerfamily.estate",
+        "fb2.bucklerfamily.estate",
+        "dartboard.bucklerfamily.estate",
+        "directory.bucklerfamily.estate",
+        "terrain.bucklerfamily.estate",
+        "shop.bucklerfamily.estate",
+        "research.bucklerfamily.estate"
+      ],
+      "status_code": 301,
+      "preserve_query_string": false,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-6",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
+        "nomlecture.bucklerfamily.estate",
+        "nolecture.bucklerfamily.estate"
+      ],
+      "status_code": 301,
+      "preserve_query_string": true,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-7",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
+        "csscpsgp.bucklerfamily.estate"
+      ],
+      "status_code": 301,
+      "preserve_query_string": true,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-8",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
+        "bpvsbuckler.bucklerfamily.estate"
+      ],
+      "status_code": 301,
+      "preserve_query_string": true,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-9",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
+        "whatdotheyknow.bucklerfamily.estate"
+      ],
+      "status_code": 301,
+      "preserve_query_string": true,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    },
+    {
+      "id": "zone-rule-10",
+      "enabled": true,
+      "action": "redirect",
+      "host_coverage": [
+        "2026-10-22.bucklerfamily.estate"
+      ],
+      "status_code": 301,
+      "preserve_query_string": true,
+      "conditions_summary": "Selective host/path/method rules; consult live Cloudflare configuration for exact conditions."
+    }
+  ],
+  "worker_routes": {
+    "count": 179,
+    "host_match_count": 32,
+    "host_matches": [
+      {
+        "hostname": "wiki.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "wiki.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "records.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "records.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "wayback.bucklerfamily.estate",
+        "count": 2,
+        "samples": [
+          {
+            "pattern": "wayback.bucklerfamily.estate/",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "wayback.bucklerfamily.estate/pdf/ghf-ebook-v1-13644035e044da92504882e0d7b765f9.pdf*",
+            "script": "ebook-gate"
+          }
+        ]
+      },
+      {
+        "hostname": "nomenclature.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "nomenclature.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "nomlecture.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "nomlecture.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "nolecture.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "nolecture.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "maps.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "maps.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "ebooks.bucklerfamily.estate",
+        "count": 2,
+        "samples": [
+          {
+            "pattern": "ebooks.bucklerfamily.estate/",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "ebooks.bucklerfamily.estate/api/*",
+            "script": "ebook-gate"
+          }
+        ]
+      },
+      {
+        "hostname": "bpvsbuckler.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "bpvsbuckler.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "research.bucklerfamily.estate",
+        "count": 10,
+        "samples": [
+          {
+            "pattern": "research.bucklerfamily.estate/robots.txt",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "research.bucklerfamily.estate/sitemap.xml",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "research.bucklerfamily.estate/llms.txt",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "research.bucklerfamily.estate/llms-full.txt",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "research.bucklerfamily.estate/.well-known/mcp.json",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "fb.bucklerfamily.estate",
+        "count": 3,
+        "samples": [
+          {
+            "pattern": "fb.bucklerfamily.estate/",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "fb.bucklerfamily.estate/m",
+            "script": "ghf-social"
+          },
+          {
+            "pattern": "fb.bucklerfamily.estate/m/*",
+            "script": "ghf-social"
+          }
+        ]
+      },
+      {
+        "hostname": "chess.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "chess.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "csscpsg.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "csscpsg.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "csscpsgp.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "csscpsgp.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "fcg.bucklerfamily.estate",
+        "count": 9,
+        "samples": [
+          {
+            "pattern": "fcg.bucklerfamily.estate/llms.txt",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "fcg.bucklerfamily.estate/llms-full.txt",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "fcg.bucklerfamily.estate/.well-known/mcp.json",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "fcg.bucklerfamily.estate/.well-known/webmcp.json",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "fcg.bucklerfamily.estate/agent/*",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "accounts.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "accounts.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "authorities.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "authorities.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "whatdotheyknow.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "whatdotheyknow.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "review.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "review.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "qa.bucklerfamily.estate",
+        "count": 8,
+        "samples": [
+          {
+            "pattern": "qa.bucklerfamily.estate/robots.txt",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "qa.bucklerfamily.estate/sitemap.xml",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "qa.bucklerfamily.estate/llms.txt",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "qa.bucklerfamily.estate/llms-full.txt",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "qa.bucklerfamily.estate/.well-known/mcp.json",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "projects.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "projects.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "app.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "app.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "apps.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "apps.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "chat.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "chat.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "watchtower.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "watchtower.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "email.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "email.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "dartboard.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "dartboard.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "www.bucklerfamily.estate",
+        "count": 20,
+        "samples": [
+          {
+            "pattern": "www.bucklerfamily.estate/ghf-lang/ghf-webmcp.js",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "www.bucklerfamily.estate/sitemap.xml",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "www.bucklerfamily.estate/llms-full.txt",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "www.bucklerfamily.estate/robots.txt",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "www.bucklerfamily.estate/llms.txt",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "directory.bucklerfamily.estate",
+        "count": 2,
+        "samples": [
+          {
+            "pattern": "directory.bucklerfamily.estate/",
+            "script": "agent-ready"
+          },
+          {
+            "pattern": "directory.bucklerfamily.estate/api/*",
+            "script": "cedwyn-directory"
+          }
+        ]
+      },
+      {
+        "hostname": "terrain.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "terrain.bucklerfamily.estate/*",
+            "script": "terrain"
+          }
+        ]
+      },
+      {
+        "hostname": "shop.bucklerfamily.estate",
+        "count": 1,
+        "samples": [
+          {
+            "pattern": "shop.bucklerfamily.estate/",
+            "script": "agent-ready"
+          }
+        ]
+      },
+      {
+        "hostname": "cedwyn.bucklerfamily.estate",
+        "count": 39,
+        "samples": [
+          {
+            "pattern": "cedwyn.bucklerfamily.estate/admin/*",
+            "script": "cedwyn-cms"
+          },
+          {
+            "pattern": "cedwyn.bucklerfamily.estate/admin",
+            "script": "cedwyn-cms"
+          },
+          {
+            "pattern": "cedwyn.bucklerfamily.estate/api/a/*",
+            "script": "cedwyn-api"
+          },
+          {
+            "pattern": "cedwyn.bucklerfamily.estate/api/a",
+            "script": "cedwyn-api"
+          },
+          {
+            "pattern": "cedwyn.bucklerfamily.estate/api/v*",
+            "script": "cedwyn-api"
+          }
+        ]
+      }
+    ],
+    "special_mcp_agent_routes": [
+      {
+        "pattern": "fcg.bucklerfamily.estate/llms.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "fcg.bucklerfamily.estate/llms-full.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "fcg.bucklerfamily.estate/.well-known/mcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "fcg.bucklerfamily.estate/.well-known/webmcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "fcg.bucklerfamily.estate/agent/*",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "research.bucklerfamily.estate/llms.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "research.bucklerfamily.estate/llms-full.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "research.bucklerfamily.estate/.well-known/mcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "research.bucklerfamily.estate/.well-known/webmcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "research.bucklerfamily.estate/agent/*",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "qa.bucklerfamily.estate/llms.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "qa.bucklerfamily.estate/llms-full.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "qa.bucklerfamily.estate/.well-known/mcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "qa.bucklerfamily.estate/agent/*",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "qa.bucklerfamily.estate/.well-known/webmcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "bucklervsbp.bucklerfamily.estate/llms.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "bucklervsbp.bucklerfamily.estate/llms-full.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "bucklervsbp.bucklerfamily.estate/.well-known/mcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "bucklervsbp.bucklerfamily.estate/.well-known/webmcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "bucklervsbp.bucklerfamily.estate/agent/*",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "*.bucklerfamily.estate/llms-full.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "*.bucklerfamily.estate/.well-known/mcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "*.bucklerfamily.estate/.well-known/webmcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "www.bucklerfamily.estate/llms-full.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "*.bucklerfamily.estate/llms.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "*.bucklerfamily.estate/agent/*",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "www.bucklerfamily.estate/llms.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "www.bucklerfamily.estate/.well-known/mcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "www.bucklerfamily.estate/.well-known/webmcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "www.bucklerfamily.estate/agent/*",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "cedwyn.bucklerfamily.estate/agent/*",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "cedwyn.bucklerfamily.estate/.well-known/mcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "cedwyn.bucklerfamily.estate/llms-full.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "cedwyn.bucklerfamily.estate/.well-known/webmcp.json",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "cedwyn.bucklerfamily.estate/llms.txt",
+        "script": "agent-ready"
+      },
+      {
+        "pattern": "library.bucklerfamily.estate/llms.txt",
+        "script": "library-sop"
+      }
+    ],
+    "scope_note": "Only BucklerFamily Estate routes are stored here; full live configuration remains in Cloudflare."
+  },
+  "existing_catalogue_report": {
+    "artifacts": 14194,
+    "locations": 19584,
+    "binary_blobs": 4545,
+    "blob_bytes": 659656953,
+    "graph_edges": 301175,
+    "graph_nodes": 1535,
+    "fts_rows": 10351,
+    "citations": 18646,
+    "themes": 44,
+    "sqlite_bytes": 761405440,
+    "chunks": 2905,
+    "max_chunk_bytes": 262144
+  },
+  "latest_outbound_link_report": {
+    "pass": true,
+    "pages_checked": 8713,
+    "links_checked": 337996,
+    "outbound_links_found": 0,
+    "note": "Existing build gate results; this does not replace direct HTTP redirect tests."
+  },
+  "known_browser_observations": {
+    "content_opened": [
+      "projects",
+      "research",
+      "story",
+      "fb",
+      "maps",
+      "wayback",
+      "wiki"
+    ],
+    "crawler_status_unknown": [
+      "fcg",
+      "infographic"
+    ],
+    "not_in_registry": [
+      "architecture",
+      "gallery"
+    ]
+  },
+  "interpretation_notes": [
+    "This is configuration inventory, not end-to-end redirect validation.",
+    "Every current registry theme is represented; current DNS/Pages totals were checked sequentially against API-reported totals.",
+    "Missing DNS entries and Pages deployments without registry paths are flagged for review; don't redirect blindly.",
+    "The active redirect rules are selective by request method, path extension, user-agent, API path, and specific FCG/Research exceptions; inspect the condition before editing.",
+    "Direct HTTP response status/final URL/content-type tests for all eligible old hosts and new paths remain outstanding.",
+    "D1 metadata inspection was read-only and queried table names only, not application rows."
+  ],
+  "validation_notes": [
+    "Do not confuse the Pages project's latest deployment pointer (which may reference a preview) with the recorded production deployment ID in source.production_deployment."
+  ],
+  "existing_storage": {
+    "d1_total": 10,
+    "d1": [
+      {
+        "name": "terrain",
+        "id": "06a8df95-5f08-41c8-9ab2-fad3ade91a6e",
+        "table_count": 10,
+        "size_bytes": 180224,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "cedwyn-apps",
+        "id": "6fb11d8e-5d14-41a4-a7a0-ebf3d3de410a",
+        "table_count": 18,
+        "size_bytes": 3248128,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "cedwyn-coins",
+        "id": "8af686eb-e408-4e82-9acb-50fc33056c5a",
+        "table_count": 7,
+        "size_bytes": 69632,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "ghf-chat",
+        "id": "f250f859-772a-491f-a95b-33011cd77051",
+        "table_count": 9,
+        "size_bytes": 20402176,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "ghf-enquiries",
+        "id": "f26a7c7d-a3d8-4ee9-9311-5a97b29c8676",
+        "table_count": 11,
+        "size_bytes": 98304,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "qa-graph",
+        "id": "b49ebd69-3e98-4e96-837d-7b4c41b23674",
+        "table_count": 18,
+        "size_bytes": 6230016,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "research-wp-d1",
+        "id": "3ca02c2d-bb78-424d-8574-a653d33f5c05",
+        "table_count": 15,
+        "size_bytes": 376946688,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "fcg-wp-d1",
+        "id": "a15aedf1-a4d3-49fe-bd28-c2974c323b96",
+        "table_count": 3,
+        "size_bytes": 2310144,
+        "read_only_schema_query": true
+      },
+      {
+        "name": "bpvsbuckler-graph",
+        "id": "fe824415-4bfd-48b5-82d7-1bfc8f503fc9",
+        "table_count": 18,
+        "size_bytes": 6152192,
+        "read_only_schema_query": true
+      }
+    ],
+    "other_database_count": 1,
+    "kv_total": 13,
+    "kv": [
+      {
+        "title": "COMMAND_DASHBOARD",
+        "id": "14625e3713fb4383a4de56f4e0bdadc2"
+      },
+      {
+        "title": "EMAIL_SENDER",
+        "id": "183b02eddd214e41a1250d20e0d33624"
+      },
+      {
+        "title": "GHF_STATUS",
+        "id": "350d63f198c94e1e841dfb5ec51bb361"
+      },
+      {
+        "title": "cedwyn-visit",
+        "id": "4ea74b43092b42d3aa351df8f43a764c"
+      },
+      {
+        "title": "cedwyn-cms",
+        "id": "767d17f3c7e64a27b1f00b0146dc38da"
+      },
+      {
+        "title": "ghf-followers",
+        "id": "8561f775ae5d478691337e0b8d65eb5b"
+      },
+      {
+        "title": "cedwyn-directory",
+        "id": "ae4125e852724772bd66b157c7ab8e43"
+      },
+      {
+        "title": "ghf-watch",
+        "id": "c958822405b243b3b2245545972d46b1"
+      },
+      {
+        "title": "engineroom-cache",
+        "id": "e16ea7473f084a7ab51be6ce40e5f6d6"
+      },
+      {
+        "title": "cedwyn-blog",
+        "id": "e6995663e4fc493a817ac95e6531f835"
+      }
+    ],
+    "r2_total": 10,
+    "r2": [
+      {
+        "name": "cedwyn-apps-uploads"
+      },
+      {
+        "name": "fcg-media"
+      },
+      {
+        "name": "ghf-comments"
+      },
+      {
+        "name": "ghf-social"
+      },
+      {
+        "name": "terrain-scene"
+      },
+      {
+        "name": "wayback-media"
+      }
+    ],
+    "worker_bindings": [
+      {
+        "script": "cedwyn-apps",
+        "bindings": [
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "6fb11d8e-5d14-41a4-a7a0-ebf3d3de410a",
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "send_email",
+            "name": "MAILER",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "secret_text",
+            "name": "MAIL_TO",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SALT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "send_email",
+            "name": "SENDER",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "send_email",
+            "name": "TAB_MAILER",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "secret_text",
+            "name": "TEST_TOKEN",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "r2_bucket",
+            "name": "UPLOADS",
+            "database_id": null,
+            "bucket_name": "cedwyn-apps-uploads",
+            "service": null
+          }
+        ]
+      },
+      {
+        "script": "cedwyn-api",
+        "bindings": [
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "6fb11d8e-5d14-41a4-a7a0-ebf3d3de410a",
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "secret_text",
+            "name": "MEMBER_KEY",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SALT_A",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SUMMARY_KEY",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          }
+        ]
+      },
+      {
+        "script": "fcg-wp",
+        "bindings": [
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "a15aedf1-a4d3-49fe-bd28-c2974c323b96",
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "plain_text",
+            "name": "ENVIRONMENT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "plain_text",
+            "name": "SITE_TITLE",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "plain_text",
+            "name": "WP_SOURCE_URL",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          }
+        ]
+      },
+      {
+        "script": "research-wp",
+        "bindings": [
+          {
+            "type": "secret_text",
+            "name": "ADMIN_TOKEN",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "3ca02c2d-bb78-424d-8574-a653d33f5c05",
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "plain_text",
+            "name": "ENVIRONMENT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "plain_text",
+            "name": "SITE_TITLE",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "plain_text",
+            "name": "SOURCE_SITE",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          }
+        ]
+      },
+      {
+        "script": "ghf-chat",
+        "bindings": [
+          {
+            "type": "ai",
+            "name": "AI",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "f250f859-772a-491f-a95b-33011cd77051",
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SALT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "plain_text",
+            "name": "XAI_MODEL",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          }
+        ]
+      },
+      {
+        "script": "ghf-enquire",
+        "bindings": [
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "f26a7c7d-a3d8-4ee9-9311-5a97b29c8676",
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "send_email",
+            "name": "MAILER",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "plain_text",
+            "name": "MAILER_TO",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SALT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "send_email",
+            "name": "TAB_MAILER",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          }
+        ]
+      },
+      {
+        "script": "cedwyn-coins",
+        "bindings": [
+          {
+            "type": "d1",
+            "name": "DB",
+            "database_id": "8af686eb-e408-4e82-9acb-50fc33056c5a",
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "plain_text",
+            "name": "PACKS",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SALT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          }
+        ]
+      },
+      {
+        "script": "terrain",
+        "bindings": [
+          {
+            "type": "ai",
+            "name": "AI",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "r2_bucket",
+            "name": "BUCKET",
+            "database_id": null,
+            "bucket_name": "terrain-scene",
+            "service": null
+          },
+          {
+            "type": "secret_text",
+            "name": "PASS_HASHES",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "secret_text",
+            "name": "SESSION_KEY",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          },
+          {
+            "type": "secret_text",
+            "name": "STT_HINT",
+            "database_id": null,
+            "bucket_name": null,
+            "service": null
+          }
+        ]
+      },
+      {
+        "script": "cedwyn-hive",
+        "bindings": [
+          {
+            "type": "service",
+            "name": "HIVE",
+            "database_id": null,
+            "bucket_name": null,
+            "service": "ghf-watch"
+          }
+        ]
+      },
+      {
+        "script": "apex-home",
+        "bindings": [
+          {
+            "type": "service",
+            "name": "DARTBOARD",
+            "database_id": null,
+            "bucket_name": null,
+            "service": "dartboard"
+          }
+        ]
+      }
+    ],
+    "interpretation": "Read-only schema metadata only; no application rows were read. Store ownership and catalogue synchronization remain to be documented."
+  },
+  "architecture_observation": {
+    "central_evidence_catalogue": {
+      "location": "static build output split into SQLite chunks and a content-addressed blob store",
+      "reported_artifacts": 14194,
+      "reported_db_bytes": 761405440,
+      "distinction": "The static catalogue is not a writable application database; server-side app stores are separate."
+    },
+    "app_databases_found": [
+      "terrain",
+      "cedwyn-apps",
+      "cedwyn-coins",
+      "ghf-chat",
+      "ghf-enquiries",
+      "qa-graph",
+      "research-wp-d1",
+      "fcg-wp-d1",
+      "bpvsbuckler-graph"
+    ],
+    "out_of_scope_database_count": 1,
+    "unresolved": "Cross-app synchronization, canonical evidence IDs/API, schema compatibility/versioning and full theme-to-database ownership remain not yet tested."
+  },
+  "live_remediation": {
+    "applied_at_utc": "2026-10-28T08:36:26Z",
+    "baseline_ruleset_version": "26",
+    "current_ruleset_version": "27",
+    "amended_rule_id": "e12da20c1f3e41a58c1cf6ea1b503b9b",
+    "amended_rule_version": "8",
+    "added_page_hosts": [
+      "email.bucklerfamily.estate",
+      "story.bucklerfamily.estate"
+    ],
+    "scope": "GET/HEAD HTML and extensionless routes; API paths, agent paths, .well-known paths, two protected user-agent classes, and pre-existing FCG/Research path exceptions retained.",
+    "story_dns_created": {
+      "id": "c2b5c21cc178c8b72572fa2320cd1a9d",
+      "name": "story.bucklerfamily.estate",
+      "type": "CNAME",
+      "target": "cedwyn-274.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    "rollback": "Restore the saved rule baseline in reports/cedwyn-migration-rollback.json; delete the story CNAME by record ID c2b5c21cc178c8b72572fa2320cd1a9d if reverting the new host alias."
+  },
+  "post_change_audit": {
+    "status": "passed",
+    "run_id": 40658331955,
+    "workflow_url": "https://github.com/unclehowell/cedwyn/actions/runs/40658331955",
+    "artifact_id": 12802661742,
+    "artifact_name": "cedwyn-host-route-audit-run126",
+    "summary": {
+      "canonical_routes_tested": 44,
+      "canonical_routes_passed": 44,
+      "legacy_root_and_index_tests": 78,
+      "legacy_redirect_tests_passed": 78,
+      "agent_endpoints_tested": 25,
+      "agent_endpoints_passed": 25,
+      "legacy_aliases_tested": 2,
+      "legacy_aliases_passed": 2,
+      "query_preserved_count": 78,
+      "failures": 0,
+      "total_tests": 149
+    },
+    "scope": "Root/index and declared service endpoint smoke tests for all 44 registered canonical paths, 39 mapped legacy app hosts, 25 machine endpoints and two extra FCG synonyms.",
+    "limitation": "This does not exhaustively crawl all nested routes, file assets, downloads, media-specific hosts or all 179 Worker routes. 27 Pages projects currently have custom domains not directly registered as theme domains; classify those as app, media, alias or service before claiming full site-wide retirement."
+  },
+  "alias_test_cases": [
+    {
+      "hostname": "dishonor.bucklerfamily.estate",
+      "expected_theme": "fcg",
+      "expected_final_path": "/fcg/",
+      "behavior": "Existing legacy synonym redirect; final destination is FCG on Cedwyn.",
+      "test_status": "PASS_RUN_126"
+    },
+    {
+      "hostname": "dishonour.bucklerfamily.estate",
+      "expected_theme": "fcg",
+      "expected_final_path": "/fcg/",
+      "behavior": "Existing legacy synonym redirect; final destination is FCG on Cedwyn.",
+      "test_status": "PASS_RUN_126"
+    }
+  ],
+  "remaining_work": {
+    "theme_host_smoke_tests": "PASS",
+    "deep_links_and_asset_types": "PENDING",
+    "pages_projects_not_directly_mapped_to_theme_count": 27,
+    "auxiliary_apps_for_classification": [
+      {
+        "name": "cnei",
+        "domains": [
+          "cnei.bucklerfamily.estate"
+        ],
+        "repo": "datro",
+        "production_branch": "cnei"
+      },
+      {
+        "name": "pirateclaw",
+        "domains": [
+          "pirateclaw.bucklerfamily.estate"
+        ],
+        "repo": "datro",
+        "production_branch": "pirateclaw"
+      },
+      {
+        "name": "archives",
+        "domains": [
+          "archives.bucklerfamily.estate"
+        ],
+        "repo": "datro",
+        "production_branch": "archives"
+      },
+      {
+        "name": "althea",
+        "domains": [
+          "althea.bucklerfamily.estate"
+        ],
+        "repo": "datro",
+        "production_branch": "althea"
+      },
+      {
+        "name": "ceo",
+        "domains": [
+          "ceo.bucklerfamily.estate"
+        ],
+        "repo": "datro",
+        "production_branch": "ceo"
+      },
+      {
+        "name": "projections",
+        "domains": [
+          "projections.bucklerfamily.estate"
+        ],
+        "repo": "datro",
+        "production_branch": "gh-pages"
+      },
+      {
+        "name": "timeline",
+        "domains": [
+          "timeline.bucklerfamily.estate"
+        ],
+        "repo": "datro",
+        "production_branch": "gh-pages"
+      },
+      {
+        "name": "bucklerfamilyfarm",
+        "domains": [
+          "www.bucklerfamily.estate"
+        ],
+        "repo": "BucklerFamilyFarm",
+        "production_branch": "main"
+      },
+      {
+        "name": "ghf-app",
+        "domains": [
+          "ghf-app.bucklerfamily.estate"
+        ],
+        "repo": "BucklerFamilyFarm",
+        "production_branch": "ghf-app"
+      },
+      {
+        "name": "tumbler",
+        "domains": [
+          "tumbler.bucklerfamily.estate"
+        ],
+        "repo": null,
+        "production_branch": null
+      },
+      {
+        "name": "bucklerfamily-webbrich",
+        "domains": [
+          "docs.webbrich.bucklerfamily.estate",
+          "ebooks.webbrich.bucklerfamily.estate",
+          "fb.webbrich.bucklerfamily.estate",
+          "infographic.webbrich.bucklerfamily.estate",
+          "maps.webbrich.bucklerfamily.estate",
+          "records.webbrich.bucklerfamily.estate",
+          "research.webbrich.bucklerfamily.estate",
+          "wayback.webbrich.bucklerfamily.estate",
+          "webbrich.bucklerfamily.estate"
+        ],
+        "repo": "webbrich",
+        "production_branch": "main"
+      },
+      {
+        "name": "wave",
+        "domains": [
+          "wave.bucklerfamily.estate"
+        ],
+        "repo": null,
+        "production_branch": null
+      },
+      {
+        "name": "hbnb",
+        "domains": [
+          "hbnb.bucklerfamily.estate"
+        ],
+        "repo": "datro",
+        "production_branch": "hbnb"
+      },
+      {
+        "name": "command-dashboard",
+        "domains": [
+          "command.bucklerfamily.estate"
+        ],
+        "repo": null,
+        "production_branch": null
+      },
+      {
+        "name": "bucklervsbp",
+        "domains": [
+          "bucklervsbp.bucklerfamily.estate"
+        ],
+        "repo": null,
+        "production_branch": null
+      },
+      {
+        "name": "subrepos",
+        "domains": [
+          "subrepos.bucklerfamily.estate"
+        ],
+        "repo": null,
+        "production_branch": null
+      },
+      {
+        "name": "dash",
+        "domains": [
+          "dash.bucklerfamily.estate"
+        ],
+        "repo": null,
+        "production_branch": null
+      },
+      {
+        "name": "calls",
+        "domains": [
+          "calls.bucklerfamily.estate"
+        ],
+        "repo": null,
+        "production_branch": null
+      },
+      {
+        "name": "library",
+        "domains": [
+          "library.bucklerfamily.estate"
+        ],
+        "repo": "datro",
+        "production_branch": "library"
+      },
+      {
+        "name": "gui",
+        "domains": [
+          "gui.bucklerfamily.estate"
+        ],
+        "repo": "datro",
+        "production_branch": "gui"
+      },
+      {
+        "name": "dcc",
+        "domains": [
+          "dcc.bucklerfamily.estate"
+        ],
+        "repo": "datro",
+        "production_branch": "dcc"
+      }
+    ],
+    "do_not_redirect_without_classification": [
+      "wayback-html",
+      "wayback-video",
+      "wayback-pdf",
+      "wayback-img",
+      "wayback-text",
+      "bucklerfamily-internetarchive",
+      "www.bucklerfamily.estate",
+      "mcp.projects.bucklerfamily.estate",
+      "send.bucklerfamily.estate",
+      "rsend.bucklerfamily.estate"
+    ]
+  }
+}
