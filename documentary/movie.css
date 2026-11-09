@@ -360,3 +360,10 @@ html.ghf-inv .cm-gm-bg img.cm-vp-img{filter:invert(1) hue-rotate(180deg)!importa
 /* 1.10.0: an audio or subtitle pair not made yet */
 .cm-pc-o.is-pending,.cm-pc-o:disabled{opacity:.45;cursor:not-allowed}
 .cm-pc-o .cm-pend{display:block;font-size:.72em;font-weight:400;opacity:.9;line-height:1.1}
+
+/* 1.12.0 (9 Nov 2026): each door's period line and its three-language status row; a language not made yet is a muted pending placeholder */
+.cm-card .cm-period{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:#a9ab9e;margin:2px 0 4px}
+.cm-card .cm-langs{font-size:12.5px;color:#bfc0b6;margin:0 0 8px;line-height:1.5}
+.cm-card .cm-langs-l{color:#a9ab9e}
+.cm-card .cm-lang.ok{color:#d8e6c8}
+.cm-card .cm-lang.pend{opacity:.6;font-style:italic}
