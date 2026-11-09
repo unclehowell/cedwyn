@@ -316,6 +316,10 @@ def run(dist, cfg):
         '/wales/tour/* /wales/#stop-1 301',
         '/wales/emails /emails/ 301', '/wales/emails/ /emails/ 301',
         '/wales/emails/* /emails/:splat 301',
+        # 9 Nov 2026 (site audit 7 Nov #9): the voucher terms the Wales hub links live on the apex page (200); the
+        # generic /wales/:theme/* rule below sent them to /vouchers/terms/ (404). - Sion's Tab agent
+        '/wales/vouchers/terms https://bucklerfamily.estate/wales/vouchers/terms/ 302',
+        '/wales/vouchers/terms/ https://bucklerfamily.estate/wales/vouchers/terms/ 302',
         '/wales/wales/ /wales/#stop-1 301', '/argentina/wales/ /wales/#stop-1 301',
         '/wales/wales/* /wales/:splat 200',
         '/wales/movie/* /documentary/:splat 301',
