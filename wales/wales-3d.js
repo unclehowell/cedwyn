@@ -407,7 +407,7 @@ function showParcel(p) {
   const recs = central && central.items ? Object.values(central.items) : [];
   if (recs.length) { const r = document.createElement('small'); r.className = 'w3drec'; r.append('Records: ');
     recs.forEach((it, k) => { if (k) r.append(' · '); const l = document.createElement('a'); l.target = '_top';
-      l.href = it.page ? 'https://cedwyn.bucklerfamily.estate' + it.page : 'https://cedwyn.bucklerfamily.estate/dartboard/catalogue/?id=' + encodeURIComponent(it.id);
+      l.href = it.page ? 'https://cedwyn.bucklerfamily.estate' + it.page : 'https://bucklerfamily.estate/catalogue/?id=' + encodeURIComponent(it.id);
       l.textContent = it.id + (it.date_display ? ' (' + it.date_display + ')' : ''); l.title = it.title || it.id; r.appendChild(l); });
     box.appendChild(r); }
   const x = document.createElement('button'); x.type = 'button'; x.textContent = '×'; x.setAttribute('aria-label', 'Close'); x.onclick = () => showParcel(null); box.appendChild(x);

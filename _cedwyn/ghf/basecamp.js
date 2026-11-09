@@ -379,7 +379,7 @@
       chainBar.textContent = "";
       chainBar.appendChild(btn("ghf-v2-btn ghf-v2-fs", IC_FS, s.fs, toggleFs));
       var srl = { en: "Search the catalogue", cy: "Chwilio\u2019r catalog", es: "Buscar en el cat\u00e1logo" }[lg()] || "Search the catalogue", sr = mk("a", "ghf-v2-btn ghf-v2-srch");   // header search 1.0.0
-      sr.href = "https://cedwyn.bucklerfamily.estate/dartboard/catalogue/"; sr.innerHTML = IC_SRCH; sr.setAttribute("aria-label", srl); sr.title = srl; chainBar.appendChild(sr);
+      sr.href = "https://bucklerfamily.estate/catalogue/"; sr.innerHTML = IC_SRCH; sr.setAttribute("aria-label", srl); sr.title = srl; chainBar.appendChild(sr);
       var arr = function (st, cls, ch, lab) { var a = mk("a", "ghf-v2-arr " + cls); pinHref(a, st.u); a.setAttribute("aria-label", lab + ": " + nm(st)); a.title = lab + ": " + nm(st); a.appendChild(mk("span", null, ch)); a.setAttribute("data-ghf-chain", st.id); return a; };
       chainBar.appendChild(arr(pv, "ghf-v2-prev", "\u2039", s.prev));
       var mid = mk("div", "ghf-v2-name"), b = mk("b", null, k >= 0 ? nm(CHAIN[k]) : ((document.title || host).split(/\s[·|—–-]\s/)[0]));

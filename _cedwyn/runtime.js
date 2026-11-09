@@ -116,6 +116,8 @@
       // 2 Nov 2026 (owner, 03:25 GMT): Garden City Cymru (the REALM flowers and plants) is the one outside shop the site promotes; the
       // Garden City banner (garden-banner.js 2.0.0) on every webapp opens gardencity.cymru directly, never the archive page
       || h === 'gardencity.cymru'
+      // 9 Nov 2026 (cedwyn#530): the header search opens the one central catalogue at https://bucklerfamily.estate/catalogue/ directly, never the archive page
+      || ((h === 'bucklerfamily.estate' || h === 'www.bucklerfamily.estate') && /^\/catalogue(\/|$)/i.test(u.replace(/^https:\/\/[^\/]+/i, '').split(/[?#]/)[0]))
       // 26 Oct 2026: the Agent guest book's version links (commits of this site's own repository) open GitHub directly; the owner allowed them out
       || (h === 'github.com' && /^\/unclehowell\/cedwyn\/commits?\/[^\s]+$/i.test(u.replace(/^https:\/\/[^\/]+/i, '').split(/[?#]/)[0])); }   // 27 Oct 2026: also a page's commit history (commits/<branch>/<path>), the version table's "See all"
   window.__cedwyn.pass = pass;
