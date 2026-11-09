@@ -123,6 +123,10 @@ def rw(u, tid, link, page_rel):
     if m:
         host, path, rest = m.group(1).lower(), m.group(2), m.group(3)
         tu = theme_url_for(host, path or '/')
+        # 9 Nov 2026 (site audit 7 Nov #14): the Legal Wiki's WordPress REST API (/wp-json/...) has no copy under /wiki/
+        # (404); like any outside address it opens through the archive interface. - Sion's Tab agent
+        if tu is not None and link and HOST.get(host) == 'wiki' and path.startswith('/wp-json/'):
+            stats['outbound'] += 1; return '/wayback/go/?u=' + urllib.parse.quote(s, safe='')
         if tu is not None:
             stats['cross'] += 1; return resolve_blob(tu + rest, page_rel)
         if host in MEDIA and not link: return u
