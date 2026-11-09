@@ -77,6 +77,7 @@ function slim(x) {
     asked: x.asked,
     answered: x.answered,
     kind: x.kind,
+    status: x.status || (x.kind === 'unanswered' || x.kind === 'pending' ? 'pending' : 'answered'),
     pairing: x.pairing,
     ref: x.ref || '',
     asked_msg: x.asked_msg || '',

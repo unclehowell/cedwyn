@@ -31,6 +31,7 @@ function slim(x) {
     asked: x.asked,
     answered: x.answered,
     kind: x.kind,
+    status: x.status || (x.kind === 'unanswered' || x.kind === 'pending' ? 'pending' : 'answered'),
     pairing: x.pairing,
     ref: x.ref || '',
     asked_msg: x.asked_msg || '',
@@ -58,7 +59,7 @@ export async function onRequestGet({ request }) {
         open: { args: ['limit?'], returns: 'QA[]' },
       },
       QA: [
-        'id', 'party', 'party_name', 'asked', 'answered', 'kind', 'pairing',
+        'id', 'party', 'party_name', 'asked', 'answered', 'kind', 'status', 'pairing',
         'ref', 'asked_msg', 'answer_msg', 'question', 'answer', 'url', 'refs', 'years', 'case_questions',
       ],
     },

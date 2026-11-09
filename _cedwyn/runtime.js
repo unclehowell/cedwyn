@@ -78,6 +78,7 @@
   function mapHost(host, path) {
     host = host.toLowerCase();
     if (host === 'bucklerfamily.estate' || host === 'www.bucklerfamily.estate') {
+      if (/^\/(catalogue|api)(\/|$)/.test(path)) return null;   // 8 Nov 2026: the one central catalogue lives at bucklerfamily.estate/catalogue/ itself; links to it stay on the apex
       for (var i = 0; i < APEX.length; i++) { var pre = APEX[i][0]; if (path.indexOf(pre) === 0 || path + '/' === pre) return '/' + APEX[i][1] + '/' + path.slice(pre.length).replace(/^\/+/, ''); }
     }
     if (host === location.hostname) return path;

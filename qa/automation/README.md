@@ -6,8 +6,11 @@ This automation updates the dedicated `unclehowell/cedwyn-qa` repository. GitHub
 
 The agent reads only:
 
-- The central catalogue API documented by `unclehowell/cedwyn-catalogue` (`https://cedwyn.bucklerfamily.estate/api/catalogue`).
+- Read-only metadata files `README.md`, `sources.json`, and `sources-books.json` from `unclehowell/cedwyn-catalogue`.
+- The canonical catalogue records from `https://cedwyn.bucklerfamily.estate/api/catalogue`.
 - The public read-only `/api/mcp` endpoints in `sources.json`.
+
+The catalogue repository metadata is used only to understand the catalogue's data contract and discover record IDs/classification; record text and substantive claims must come from the catalogue API or an allowlisted app MCP result.
 
 It does not read Gmail, HubSpot, Hive, private drafts, other GitHub repositories, or the open web. The allowlist is deliberately limited to the public FOI, authorities, review, research, Dartboard, wiki, and docs apps. Each MCP endpoint is read-only; unsupported or unavailable endpoints are recorded as failures and ignored.
 

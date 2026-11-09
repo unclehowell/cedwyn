@@ -340,6 +340,8 @@
       es: { prev: "Sitio anterior", next: "Sitio siguiente", of: "de", fs: "Pantalla completa", fsx: "Salir de pantalla completa", menu: "Menú", close: "Cerrar el menú", here: "En este sitio", all: "Todos los sitios, en orden", home: "Finca Cedwyn · Campamento base", mode: "Día / Noche", top: "Inicio de esta página", loc: "Lugar", chat: "Chat con el agente", values: "Valores y normas", ohome: "Inicio · Gales o Argentina", oak: "El tablero de roble · todas las capas", swales: "Gales · la visita RA", sarg: "Argentina · Great House II", groups: "Temas por grupo", all37: "Los {n} temas" }
     };
     var IC_FS = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
+    // 9 Nov 2026 (header search 1.0.0): a magnifier beside the full-screen toggle opens the one central catalogue, bucklerfamily.estate/catalogue/
+    var IC_SRCH = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg>';
     var IC_FSX = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>';
     var IC_MENU = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6.5h16M4 12h16M4 17.5h16"/></svg>';
     var IC_CHAT = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H9l-4.5 4v-4H5.5A1.5 1.5 0 0 1 4 14.5z"/><path d="M8 9h8M8 12.5h5"/></svg>';
@@ -376,6 +378,8 @@
       }
       chainBar.textContent = "";
       chainBar.appendChild(btn("ghf-v2-btn ghf-v2-fs", IC_FS, s.fs, toggleFs));
+      var srl = { en: "Search the catalogue", cy: "Chwilio\u2019r catalog", es: "Buscar en el cat\u00e1logo" }[lg()] || "Search the catalogue", sr = mk("a", "ghf-v2-btn ghf-v2-srch");   // header search 1.0.0
+      sr.href = "https://cedwyn.bucklerfamily.estate/dartboard/catalogue/"; sr.innerHTML = IC_SRCH; sr.setAttribute("aria-label", srl); sr.title = srl; chainBar.appendChild(sr);
       var arr = function (st, cls, ch, lab) { var a = mk("a", "ghf-v2-arr " + cls); pinHref(a, st.u); a.setAttribute("aria-label", lab + ": " + nm(st)); a.title = lab + ": " + nm(st); a.appendChild(mk("span", null, ch)); a.setAttribute("data-ghf-chain", st.id); return a; };
       chainBar.appendChild(arr(pv, "ghf-v2-prev", "\u2039", s.prev));
       var mid = mk("div", "ghf-v2-name"), b = mk("b", null, k >= 0 ? nm(CHAIN[k]) : ((document.title || host).split(/\s[·|—–-]\s/)[0]));
@@ -922,6 +926,7 @@
       ".ghf-v2-btn{flex:0 0 40px;display:inline-flex!important;align-items:center;justify-content:center;width:40px;height:40px;margin:0!important;padding:0!important;border:1px solid rgba(255,255,255,.28)!important;border-radius:4px!important;background:transparent!important;color:#fff!important;cursor:pointer;font:inherit;line-height:1}" +
       ".ghf-v2-btn:hover,.ghf-v2-btn:focus-visible{border-color:var(--ghf-s,#f2c94c)!important;color:var(--ghf-s,#f2c94c)!important}" +
       ".ghf-v2 :focus-visible,.ghf-v2-drawer :focus-visible,.ghf-v2-btn:focus-visible{outline:2px solid var(--ghf-s,#f2c94c);outline-offset:2px}" +
+      ".ghf-v2-srch{text-decoration:none!important;box-shadow:none!important}" +
       ".ghf-v2-fsx,.ghf-v2-bgx{display:none!important;position:fixed!important;top:8px;z-index:2147482500;background:rgba(0,0,0,.72)!important;width:40px;height:40px}" +
       ".ghf-v2-fsx{left:8px}.ghf-v2-bgx{right:8px}" +
       "html.ghf-fs .ghf-v2,html.ghf-fs .ghf-bc{display:none!important}html.ghf-fs .ghf-v2-fsx,html.ghf-fs .ghf-v2-bgx{display:inline-flex!important}" +

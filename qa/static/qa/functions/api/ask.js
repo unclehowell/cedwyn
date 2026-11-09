@@ -70,6 +70,7 @@ async function fromStatic(request, env, q) {
     asked: x.asked,
     answered: x.answered,
     kind: x.kind,
+    status: x.status || (x.kind === 'unanswered' || x.kind === 'pending' ? 'pending' : 'answered'),
     pairing: x.pairing,
     url: x.url,
     ref: x.ref,

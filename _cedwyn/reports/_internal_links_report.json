@@ -2,18 +2,18 @@
   "audit": "Cedwyn internal HTML/CSS links and fragments",
   "pages_scanned": 14716,
   "references_checked": {
-    "resource": 366949,
-    "nav": 692838
+    "resource": 366883,
+    "nav": 690720
   },
   "database_backed_paths": 7638,
-  "unique_missing_destinations": 2319,
-  "missing_references": 62686,
-  "missing_navigation_references": 36242,
-  "missing_resource_references": 26444,
-  "unique_broken_fragments": 3120,
-  "broken_fragment_references": 5957,
+  "unique_missing_destinations": 2321,
+  "missing_references": 62687,
+  "missing_navigation_references": 36245,
+  "missing_resource_references": 26442,
+  "unique_broken_fragments": 3121,
+  "broken_fragment_references": 5958,
   "form_or_endpoint_actions_not_checked": {
-    "form[action]": 6741
+    "form[action]": 6740
   },
   "top_missing_destinations": [
     {
@@ -127,7 +127,7 @@
     {
       "kind": "resource",
       "path": "/_ext/s-ssl.wordpress.com/i/logo/wpcom-gray-white.png",
-      "references": 1950,
+      "references": 1948,
       "examples": [
         {
           "from": "/wiki/",
@@ -154,7 +154,7 @@
     {
       "kind": "nav",
       "path": "/wiki/wp-json/wp/v2/pages",
-      "references": 974,
+      "references": 973,
       "examples": [
         {
           "from": "/wiki/evidence-chain/",
@@ -370,7 +370,7 @@
     {
       "kind": "nav",
       "path": "/catalogue/",
-      "references": 73,
+      "references": 72,
       "examples": [
         {
           "from": "/404.html",
@@ -721,7 +721,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 35,
+      "references": 34,
       "examples": [
         {
           "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
@@ -2448,33 +2448,6 @@
     },
     {
       "kind": "nav",
-      "path": "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/",
-      "references": 8,
-      "examples": [
-        {
-          "from": "/ebooks/catalogue/",
-          "attribute": "a[href]",
-          "url": "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/"
-        },
-        {
-          "from": "/research/evidence/ev-0021-western-mail-1938-cowbridge-farm-sale/",
-          "attribute": "a[href]",
-          "url": "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/"
-        },
-        {
-          "from": "/research/evidence/excluded-not-our-farm/",
-          "attribute": "a[href]",
-          "url": "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/"
-        },
-        {
-          "from": "/research/evidence/register/",
-          "attribute": "a[href]",
-          "url": "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
       "path": "/forensic/research/timeline/",
       "references": 8,
       "examples": [
@@ -2632,6 +2605,33 @@
           "from": "/watchtower/",
           "attribute": "a[href]",
           "url": "/watchtower/peekaboo/#pk-toc-f05"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/",
+      "references": 7,
+      "examples": [
+        {
+          "from": "/ebooks/catalogue/",
+          "attribute": "a[href]",
+          "url": "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/"
+        },
+        {
+          "from": "/research/evidence/ev-0021-western-mail-1938-cowbridge-farm-sale/",
+          "attribute": "a[href]",
+          "url": "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/"
+        },
+        {
+          "from": "/research/evidence/excluded-not-our-farm/",
+          "attribute": "a[href]",
+          "url": "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/"
+        },
+        {
+          "from": "/research/evidence/register/",
+          "attribute": "a[href]",
+          "url": "/kissed-frogs/kf-51-cowbridge-llandough-juxta-cowbridge/"
         }
       ]
     },
@@ -3118,6 +3118,33 @@
           "from": "/patagonia/",
           "attribute": "style-block[url()]",
           "url": "/dartboard/fonts/barlow-latin-700-normal.woff2"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/dartboard/catalogue/",
+      "references": 6,
+      "examples": [
+        {
+          "from": "/wayback/",
+          "attribute": "a[href]",
+          "url": "/dartboard/catalogue/"
+        },
+        {
+          "from": "/authorities/",
+          "attribute": "a[href]",
+          "url": "/dartboard/catalogue/"
+        },
+        {
+          "from": "/catalogue/",
+          "attribute": "a[href]",
+          "url": "/dartboard/catalogue/"
+        },
+        {
+          "from": "/docs/ghf_research/",
+          "attribute": "a[href]",
+          "url": "/dartboard/catalogue/"
         }
       ]
     },
@@ -4036,33 +4063,6 @@
           "from": "/research/agent-index/",
           "attribute": "a[href]",
           "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/persimmon-forensic-institutional-review/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/scrutiny-and-accountability/government-public-authority-involvement/hmlr-independent-complaints-reviewer-forensic-institutional-review/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/ir_institutionalreviewcoverageregister/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/hmlr-independent-complaints-reviewer-forensic-institutional-review/"
-        },
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/hmlr-independent-complaints-reviewer-forensic-institutional-review/"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_hmlrindependentcomplaintsreviewerforensi/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/hmlr-independent-complaints-reviewer-forensic-institutional-review/"
-        },
-        {
-          "from": "/research/agent-index/",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/hmlr-independent-complaints-reviewer-forensic-institutional-review/"
         }
       ]
     }
