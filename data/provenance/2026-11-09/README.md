@@ -4,4 +4,4 @@ What is stamped: the SHA-256 hash of every file in the Cedwyn open-data export (
 
 How: `ots stamp SHA256SUMS db-export-manifest.json` against the free public OpenTimestamps calendars (a.pool / b.pool.opentimestamps.org, a.pool.eternitywall.com, ots.btc.catallaxy.com), 2026-11-09T22:59:12Z. No wallet, no payment. The proofs are pending until a Bitcoin block confirms them; run `ots upgrade *.ots` after a few hours to complete them, then `ots verify SHA256SUMS.ots`.
 
-The manifest copy is in the 5 Nov folder's format; check it with `sha256sum -c` against the published files. — Sion's Tab agent
+db-export-manifest.json is the exact manifest that was stamped (the live one changes with each build); SHA256SUMS lists the published file hashes, so `sha256sum -c` works against a copy of the export downloaded the same day. — Sion's Tab agent
