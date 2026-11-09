@@ -12,6 +12,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 CFG = json.load(open(ROOT / 'themes.json'))
 DIST = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else 'dist')
 TIDS = [t['id'] for t in CFG['themes']]
+TIDSET0 = set(TIDS)   # 9 Nov 2026: theme ids, for the already-a-theme-path rule in rw() - Sion's Tab agent
 HOST = {}
 for t in CFG['themes']:
     for h in t.get('hosts', []):
@@ -91,6 +92,12 @@ def theme_url_for(host, path):
     if host in ('bucklerfamily.estate', 'www.bucklerfamily.estate'):
         for pre, tid in APEX:
             if path.startswith(pre) or path + '/' == pre:
+                # 9 Nov 2026 (site audit 7 Nov #10): under the apex catch-all '/', an apex /<theme>/... address is that
+                # theme's page (bucklerfamily.estate/that-old-chestnut/), not /dartboard/<theme>/ (404), unless the apex
+                # theme ships a folder of that name. - Sion's Tab agent
+                if pre == '/':
+                    x = re.split(r'[/?#]', path, 2)[1] if len(path) > 1 else ''
+                    if x in TIDSET0 and not (DIST / tid / urllib.parse.unquote(x)).exists(): return path
                 return '/' + tid + '/' + path[len(pre):].lstrip('/')
     if host == 'cedwyn.bucklerfamily.estate': return path or '/'
     tid = HOST.get(host)
@@ -129,6 +136,14 @@ def rw(u, tid, link, page_rel):
     if s.startswith('/'):
         if s == '/': stats['prefixed'] += 1; return '/' + tid + '/'
         if s.startswith(RESERVED): return u
+        # 9 Nov 2026 (site audit 7 Nov #3/#10/#11/#13): a path that already names a theme (/spill/llms.txt on spill,
+        # /dartboard/ on chess, /research/... on nomenclature) is a site path already; the prefix made /spill/spill/...,
+        # /chess/dartboard/, /nomenclature/research/... (404). Same rule as runtime.js fix(): leave it as written unless this
+        # theme really ships a folder of that name (dist/<tid>/<x>/), where the old reading stands. - Sion's Tab agent
+        x = re.split(r'[/?#]', s, 2)[1] if len(s) > 1 else ''
+        if x in TIDSET0 and not (DIST / tid / urllib.parse.unquote(x)).exists():
+            stats['theme_path_kept'] = stats.get('theme_path_kept', 0) + 1
+            return resolve_blob(s, page_rel)
         stats['prefixed'] += 1
         return resolve_blob('/' + tid + s, page_rel)
     return resolve_blob(s, page_rel)
