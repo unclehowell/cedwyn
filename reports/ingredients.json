@@ -955,12 +955,6 @@
   },
   {
    "config": "ingredients.json",
-   "theme": "wayback",
-   "file": "index.html",
-   "n": 1
-  },
-  {
-   "config": "ingredients.json",
    "theme": "research",
    "file": "%3E%2A.html",
    "n": 3
@@ -10742,12 +10736,6 @@
   {
    "config": "ingredients.json",
    "theme": "wiki",
-   "file": "evidence/index.html",
-   "n": 1
-  },
-  {
-   "config": "ingredients.json",
-   "theme": "wiki",
    "file": "evidence/pending-evidence/index.html",
    "n": 1
   },
@@ -13556,7 +13544,7 @@
   {
    "config": "spa-basepath.json",
    "theme": "dartboard",
-   "file": "assets/index-Df2WlNga.js",
+   "file": "assets/index-FxJHl2hA.js",
    "n": 1
   },
   {
@@ -13620,6 +13608,12 @@
    "theme": "research",
    "file": "index.html",
    "find": "clandestine registration"
+  },
+  {
+   "config": "ingredients.json",
+   "theme": "wayback",
+   "file": "index.html",
+   "find": "\">Text</a></div>"
   },
   {
    "config": "ingredients.json",

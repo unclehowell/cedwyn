@@ -1,0 +1,31 @@
+{
+ "version": "1.0.0",
+ "note": "Blank 'Coming soon' webapps for the slots of the 59 that have no real webapp yet (owner, 7 Nov 2026). Each slot NN has its own repository unclehowell/coming-soon-NN; tools/coming_soon.py copies its index.html to /coming-soon-NN/ at build and tools/site.py adds it to the /areas.json nav at slot NN, so the counter always reads 'NN of 59'. RULE: when a real webapp replaces slot NN it gets its own proper repository and declares \"slot\": NN on its themes.json entry (the placeholder then steps aside on its own); in the same change remove the slot's line here and delete the coming-soon-NN repository.",
+ "of": 59,
+ "slots": [
+  {
+   "slot": 56,
+   "id": "coming-soon-56",
+   "repo": "unclehowell/coming-soon-56",
+   "path": "/coming-soon-56/"
+  },
+  {
+   "slot": 57,
+   "id": "coming-soon-57",
+   "repo": "unclehowell/coming-soon-57",
+   "path": "/coming-soon-57/"
+  },
+  {
+   "slot": 58,
+   "id": "coming-soon-58",
+   "repo": "unclehowell/coming-soon-58",
+   "path": "/coming-soon-58/"
+  },
+  {
+   "slot": 59,
+   "id": "coming-soon-59",
+   "repo": "unclehowell/coming-soon-59",
+   "path": "/coming-soon-59/"
+  }
+ ]
+}

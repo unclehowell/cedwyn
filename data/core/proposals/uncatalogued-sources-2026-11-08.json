@@ -1,0 +1,68 @@
+{
+  "schema": "cedwyn-proposal/0.1.0",
+  "kind": "catalogue_change_proposal",
+  "created": "2026-11-08",
+  "note": "Add-only proposal. Source files (PDFs on wayback.bucklerfamily.estate) that the records search lists but that no catalogue record describes. No record IDs are minted here; each line asks the owner whether a record should be added. The records search labels these 'Uncatalogued source'. Nothing in data/core/records is changed. Triage 9 Nov 2026 (owner go, 8 Nov 2026): of the 40 files listed, 3 were added to the catalogue as new records EV-0872, EV-0873 and EV-0874 (add-only; no existing record changed); 15 duplicate files already catalogued and 22 files that are not catalogue sources were removed from this list.",
+  "sources": [
+    {
+      "title": "National Library of Wales Screen and Sound Archive (CLIP Cymru): search-results printout for \"Buckler, bp\", 11 results, ITV/HTV Wales news material 1988–1989",
+      "url": "https://wayback.bucklerfamily.estate/pdf/0000-00-00_consortium-evidence_bpvsbuckler__en_v0-0-0_001.pdf",
+      "class": "family consortium document",
+      "proposed_kind": "evidence",
+      "id": "EV-0872",
+      "search_page": "https://bucklerfamily.estate/catalogue/?src=Sdac5500c60",
+      "date_display": "1988–1989 (date range of the listed items; printout undated)"
+    },
+    {
+      "title": "BP Archive reply to a Reading Room request, 19 August 2026: post-1954 records are not open to external access",
+      "url": "https://wayback.bucklerfamily.estate/pdf/bp-pack/Tab-10_BP-Archive-2026-08.pdf",
+      "class": "evidence bundle tab",
+      "proposed_kind": "evidence",
+      "id": "EV-0873",
+      "search_page": "https://bucklerfamily.estate/catalogue/?src=Sdbb7caf779",
+      "date_display": "19 August 2026"
+    },
+    {
+      "title": "Planning application 89/01396/OUT, Great House Farm, Llandough: site location and housing layout plans (6 sheets, application received 8 November 1989)",
+      "url": "https://wayback.bucklerfamily.estate/pdf/planning/1989-11-08%20-%20Llandough%20plans%20village%20green%20and%20later%20housing%20layouts%20-%20EN%20-%20V0.0.0.00.pdf",
+      "class": "planning file",
+      "proposed_kind": "evidence",
+      "id": "EV-0874",
+      "search_page": "https://bucklerfamily.estate/catalogue/?src=S3753d4d5cf",
+      "date_display": "Application received 8 November 1989"
+    }
+  ],
+  "triage": {
+    "date": "2026-11-09",
+    "kept": 3,
+    "duplicate": 15,
+    "dropped": 22,
+    "duplicates_of": [
+      "EV-0094",
+      "EV-0095",
+      "EV-0143",
+      "EV-0144",
+      "EV-0147",
+      "EV-0148",
+      "EV-0149",
+      "EV-0151",
+      "EV-0154",
+      "EV-0293",
+      "EV-0743",
+      "EV-0751",
+      "EV-0753",
+      "EV-0761"
+    ],
+    "drop_reasons": {
+      "saved web challenge page, not a PDF of a source": 2,
+      "third-party title register with private names and addresses": 1,
+      "declaration naming a living family member with location details": 2,
+      "compiled bundle; its contents are catalogued individually": 2,
+      "compiler's note, no source content": 1,
+      "generic court practice direction, not about any place in scope": 1,
+      "outbound family email, not a source": 2,
+      "outbound family email; the exchange is covered by EV-0720": 1,
+      "family analysis or briefing document, not a source": 10
+    }
+  }
+}

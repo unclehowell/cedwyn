@@ -1,0 +1,77 @@
+name: Publish Q&A source updates
+
+on:
+  schedule:
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: qa-publish-watch
+  cancel-in-progress: false
+
+jobs:
+  compare-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Compare the Q&A source with the last assembled estate release
+        id: compare
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE_SHA="$(git ls-remote https://github.com/unclehowell/cedwyn-qa.git refs/heads/main | awk '{print $1}')"
+          if [[ ! "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::Could not read the dedicated Q&A repository main commit."
+            exit 1
+          fi
+
+          REPORT_URL="https://raw.githubusercontent.com/unclehowell/cedwyn/site/_cedwyn/reports/_assemble_report.json"
+          HTTP_CODE="$(curl -sS -L -o /tmp/assemble-report.json -w '%{http_code}' "$REPORT_URL?cache_bust=$(date +%s)")"
+          DEPLOYED_SHA=""
+          if [[ "$HTTP_CODE" == "200" ]]; then
+            DEPLOYED_SHA="$(python3 -c 'import json; d=json.load(open("/tmp/assemble-report.json")); print(d.get("_split_source",{}).get("qa",{}).get("repo_commit",""))')"
+          fi
+
+          echo "source_sha=$SOURCE_SHA" >> "$GITHUB_OUTPUT"
+          echo "deployed_sha=$DEPLOYED_SHA" >> "$GITHUB_OUTPUT"
+          if [[ "$SOURCE_SHA" == "$DEPLOYED_SHA" ]]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Q&A source is already included in the live estate build ($SOURCE_SHA)."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Q&A source is ahead of the last estate build. Source=$SOURCE_SHA Deployed=${DEPLOYED_SHA:-not stamped}."
+          fi
+
+      - name: Avoid queuing a duplicate full-site build
+        id: queue
+        if: steps.compare.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          RUNS="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow build.yml --limit 20 --json status,headSha)"
+          if echo "$RUNS" | jq -e 'any(.[]; .status == "queued" or .status == "in_progress")' >/dev/null; then
+            echo "dispatch=false" >> "$GITHUB_OUTPUT"
+            echo "A full estate build is already queued or running; it will pick up the current dedicated-repo HEAD when it reaches assembly."
+          else
+            echo "dispatch=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Dispatch the GitHub-hosted estate build
+        if: steps.compare.outputs.changed == 'true' && steps.queue.outputs.dispatch == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run build.yml --repo "$GITHUB_REPOSITORY" --ref main
+
+      - name: Record the comparison
+        if: always()
+        run: |
+          echo "Source Q&A commit: ${{ steps.compare.outputs.source_sha }}"
+          echo "Last assembled Q&A commit: ${{ steps.compare.outputs.deployed_sha }}"
+          echo "This watcher does not build or deploy on Cloudflare; it only asks the GitHub-hosted build workflow to publish a changed source."

@@ -304,7 +304,10 @@
   // nav 1.0.0: the address a stop opens at. Inside a half, an area that half serves keeps the visitor in it (/wales/x/, /argentina/x/);
   // everything else opens at its own canonical address, so no stop is ever skipped or sent through a redirect - Sion's Tab agent
   var CAPEX = /^(www\.)?bucklerfamily\.estate$/.test(location.hostname);   // nav 1.1.0: on the apex every stop opens at its flat /<name>/ (registry "apex")
-  function cedU(id, href, skip, sec, ax) { if (CAPEX && ax) return ax.replace(/^https?:\/\/[^\/]+/, ""); if (id === "wales") return "/wales/"; return sec && CSECP && (skip || []).indexOf(CHALF) < 0 ? CSECP + href : href; }
+  // nav 1.2.0 (7 Nov 2026, owner: the ‹ › beside "NN of NN" must always open the webapp one number down / one number up): every
+  // stop opens at its own registry address ("href"), never a /wales/ or /argentina/ copy chosen by the remembered half, so the page
+  // the arrow opens is always the next number in the list and reads the same chain. - Sion's Tab agent
+  function cedU(id, href, skip, sec, ax) { if (CAPEX && ax) return ax.replace(/^https?:\/\/[^\/]+/, ""); return href; }
   if (CEDWYN_CHAIN && CEDWYN_CHAIN.length) {
     var CBY = {}; CHAIN.forEach(function (c) { CBY[c.id] = c; });
     CFULL = CEDWYN_CHAIN.map(function (t) { return t[0]; });
@@ -313,7 +316,7 @@
     // (tuple field 7) instead of dropping out; r.n is the slot (field 6), never a list position - Sion's Tab agent
     CHAIN = CEDWYN_CHAIN.map(function (t) { var o = CBY[t[0]] || {}, r = {}, k; for (k in o) r[k] = o[k];
       r.id = t[0]; r.t = t[1] || o.t; r.g = t[2] || ""; if (t[3]) r.cy = t[3]; if (t[4]) r.es = t[4]; r.u = cedU(t[0], t[7] || "/" + t[0] + "/", t[5], t.length > 8 ? t[8] : 1, t[9]);
-      r.h = []; r.p = ["/" + t[0] + "/"]; if (t[7] && r.p.indexOf(t[7]) < 0) r.p.push(t[7]); r.n = t[6] || CEDWYN_CHAIN.indexOf(t) + 1; return r; });
+      r.h = []; r.p = ["/" + t[0] + "/"]; if (t[7] && r.p.indexOf(t[7]) < 0) r.p.push(t[7]); r.n = CEDWYN_CHAIN.indexOf(t) + 1; return r; });   // nav 1.2.0: the number is the place in the list
   }
   // the theme this page belongs to: inside a section its own pages (the hub, vouchers, caso) are that half's stop
   function cedSeg() {
@@ -337,6 +340,8 @@
       es: { prev: "Sitio anterior", next: "Sitio siguiente", of: "de", fs: "Pantalla completa", fsx: "Salir de pantalla completa", menu: "Menú", close: "Cerrar el menú", here: "En este sitio", all: "Todos los sitios, en orden", home: "Finca Cedwyn · Campamento base", mode: "Día / Noche", top: "Inicio de esta página", loc: "Lugar", chat: "Chat con el agente", values: "Valores y normas", ohome: "Inicio · Gales o Argentina", oak: "El tablero de roble · todas las capas", swales: "Gales · la visita RA", sarg: "Argentina · Great House II", groups: "Temas por grupo", all37: "Los {n} temas" }
     };
     var IC_FS = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
+    // 9 Nov 2026 (header search 1.0.0): a magnifier beside the full-screen toggle opens the one central catalogue, bucklerfamily.estate/catalogue/
+    var IC_SRCH = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg>';
     var IC_FSX = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>';
     var IC_MENU = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6.5h16M4 12h16M4 17.5h16"/></svg>';
     var IC_CHAT = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H9l-4.5 4v-4H5.5A1.5 1.5 0 0 1 4 14.5z"/><path d="M8 9h8M8 12.5h5"/></svg>';
@@ -373,10 +378,12 @@
       }
       chainBar.textContent = "";
       chainBar.appendChild(btn("ghf-v2-btn ghf-v2-fs", IC_FS, s.fs, toggleFs));
+      var srl = { en: "Search the catalogue", cy: "Chwilio\u2019r catalog", es: "Buscar en el cat\u00e1logo" }[lg()] || "Search the catalogue", sr = mk("a", "ghf-v2-btn ghf-v2-srch");   // header search 1.0.0
+      sr.href = "https://bucklerfamily.estate/catalogue/"; sr.innerHTML = IC_SRCH; sr.setAttribute("aria-label", srl); sr.title = srl; chainBar.appendChild(sr);
       var arr = function (st, cls, ch, lab) { var a = mk("a", "ghf-v2-arr " + cls); pinHref(a, st.u); a.setAttribute("aria-label", lab + ": " + nm(st)); a.title = lab + ": " + nm(st); a.appendChild(mk("span", null, ch)); a.setAttribute("data-ghf-chain", st.id); return a; };
       chainBar.appendChild(arr(pv, "ghf-v2-prev", "\u2039", s.prev));
       var mid = mk("div", "ghf-v2-name"), b = mk("b", null, k >= 0 ? nm(CHAIN[k]) : ((document.title || host).split(/\s[·|—–-]\s/)[0]));
-      mid.appendChild(b); if (k >= 0) mid.appendChild(mk("small", null, ((CEDWYN_CHAIN && CHAIN[k].n) || (k + 1)) + " " + s.of + " " + (CEDWYN_CHAIN && CEDWYN_CHAIN.length ? CEDWYN_OF : n)));
+      mid.appendChild(b); if (k >= 0) mid.appendChild(mk("small", null, (k + 1) + " " + s.of + " " + n));   // nav 1.2.0: NN = place in the list, of = the list's length, so ‹ is NN-1 and › is NN+1
       chainBar.appendChild(mid);
       chainBar.appendChild(arr(nx, "ghf-v2-next", "\u203A", s.next));
       chainBar.appendChild(btn("ghf-v2-btn ghf-v2-bgr", IC_MENU, s.menu, openDrawer));
@@ -392,12 +399,12 @@
       var all = d.nav || d.areas || [], list = all.filter(function (a) { return a && a.path && a.built !== false; });   // nav 1.0.0: every built slot, every half
       if (list.length < 2) return;
       list.sort(function (a, b) { return (+(a.slot || a.serendipity_slot) || 999) - (+(b.slot || b.serendipity_slot) || 999); });
-      CEDWYN_OF = +(d.parcel_total || d.slots_total) || CEDWYN_OF;
+      CEDWYN_OF = list.length;   // nav 1.2.0: the total is the number of webapps in the list, not the planned parcel count
       var by = {}; CHAIN.forEach(function (c) { by[c.id] = c; });
       CHAIN = list.map(function (a) { var o = by[a.id] || {}, r = {}, k; for (k in o) r[k] = o[k];
         r.id = a.id; r.t = a.title || o.t || a.id; if (a.cy) r.cy = a.cy; if (a.es) r.es = a.es; r.g = a.group || o.g || "";
         r.u = cedU(a.id, a.href || a.path, a.skip_in, d.nav ? a.sec : 1, a.apex); r.p = [a.path].concat(a.aliases || []); if (a.href && r.p.indexOf(a.href) < 0) r.p.push(a.href);
-        r.h = []; r.n = +(a.slot || a.serendipity_slot) || (all.indexOf(a) + 1); return r; });
+        r.h = []; r.n = list.indexOf(a) + 1; return r; });
       AREAS = true; fillChain();
       if (de.classList.contains("ghf-v2-open")) fillDrawer();
     }
@@ -919,6 +926,7 @@
       ".ghf-v2-btn{flex:0 0 40px;display:inline-flex!important;align-items:center;justify-content:center;width:40px;height:40px;margin:0!important;padding:0!important;border:1px solid rgba(255,255,255,.28)!important;border-radius:4px!important;background:transparent!important;color:#fff!important;cursor:pointer;font:inherit;line-height:1}" +
       ".ghf-v2-btn:hover,.ghf-v2-btn:focus-visible{border-color:var(--ghf-s,#f2c94c)!important;color:var(--ghf-s,#f2c94c)!important}" +
       ".ghf-v2 :focus-visible,.ghf-v2-drawer :focus-visible,.ghf-v2-btn:focus-visible{outline:2px solid var(--ghf-s,#f2c94c);outline-offset:2px}" +
+      ".ghf-v2-srch{text-decoration:none!important;box-shadow:none!important}" +
       ".ghf-v2-fsx,.ghf-v2-bgx{display:none!important;position:fixed!important;top:8px;z-index:2147482500;background:rgba(0,0,0,.72)!important;width:40px;height:40px}" +
       ".ghf-v2-fsx{left:8px}.ghf-v2-bgx{right:8px}" +
       "html.ghf-fs .ghf-v2,html.ghf-fs .ghf-bc{display:none!important}html.ghf-fs .ghf-v2-fsx,html.ghf-fs .ghf-v2-bgx{display:inline-flex!important}" +

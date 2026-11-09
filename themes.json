@@ -110,6 +110,7 @@
   },
   {
    "id": "records",
+   "slot": 50,
    "title": "Primary Records",
    "cy": "Cofnodion Sylfaenol",
    "es": "Registros Primarios",
@@ -158,6 +159,7 @@
   },
   {
    "id": "nomenclature",
+   "slot": 49,
    "title": "Nomenclature",
    "cy": "Enwau",
    "es": "Nomenclatura",
@@ -499,6 +501,7 @@
   },
   {
    "id": "meeting",
+   "slot": 54,
    "title": "The Council Chamber",
    "cy": "Siambr y Cyngor",
    "es": "La Sala del Consejo",
@@ -575,6 +578,7 @@
   },
   {
    "id": "fb2",
+   "slot": 51,
    "title": "farmbook 2 · Today",
    "cy": "farmbook 2 · Heddiw",
    "es": "farmbook 2 · Hoy",
@@ -605,6 +609,7 @@
   },
   {
    "id": "emails",
+   "slot": 55,
    "title": "The Post Office · Calendar",
    "cy": "Swyddfa’r Post · Calendr",
    "es": "La Oficina de Correos · Calendario",
@@ -696,20 +701,35 @@
   },
   {
    "id": "terrain",
-   "title": "Terrain · Cedwyn Estate in 3D",
-   "cy": "Tirwedd · Ystâd Cedwyn mewn 3D",
-   "es": "Terreno · Finca Cedwyn en 3D",
-   "live": "https://terrain.bucklerfamily.estate/",
+   "title": "Wales in 3D · Llandough and Leckwith",
+   "cy": "Cymru mewn 3D · Llandochau a Lecwydd",
+   "es": "Gales en 3D · Llandough y Leckwith",
+   "live": "https://bucklerfamily.estate/wales-3d/",
    "hosts": [
     "terrain.bucklerfamily.estate"
    ],
    "paths": [],
    "desc": "",
-   "crawl": "https://terrain.bucklerfamily.estate/",
+   "branch": "section/wales-3d",
+   "note": "8 Nov 2026 (cedwyn#528): /terrain/ and the Wales hub's 3D map tile serve Wales in 3D, assembled from unclehowell/cedwyn-wales-3d (split-repos.json, matched by its old branch). The earlier Terrain world stays in unclehowell/terrain (branch legacy, ac2c0ca). - Sion's Tab agent",
+   "group": "interactive"
+  },
+  {
+   "id": "argentina-3d",
+   "title": "Great House II in 3D",
+   "cy": "Great House II mewn 3D",
+   "es": "Great House II en 3D",
+   "live": "https://bucklerfamily.estate/argentina-3d/",
+   "hosts": [],
+   "paths": [],
+   "desc": "",
+   "branch": "section/argentina-3d",
+   "note": "8 Nov 2026 (cedwyn#528): Tŷ Mawr (Great House) alone on bare Patagonian steppe, assembled from unclehowell/cedwyn-argentina-3d (split-repos.json, matched by its old branch); the Patagonia hub's 3D map tile opens it. No nav slot. - Sion's Tab agent",
    "group": "interactive"
   },
   {
    "id": "cyberspace",
+   "slot": 53,
    "title": "The Digital Estate",
    "cy": "Yr Ystâd Ddigidol",
    "es": "La Finca Digital",
@@ -740,6 +760,7 @@
   },
   {
    "id": "documentary",
+   "slot": 48,
    "title": "Cedwyn · documentary",
    "cy": "Cedwyn · rhaglen ddogfen",
    "es": "Cedwyn · documental",
@@ -804,6 +825,7 @@
   },
   {
    "id": "nft-art",
+   "slot": 52,
    "title": "The Garden Gallery",
    "cy": "Oriel yr Ardd",
    "es": "La Galería del Jardín",

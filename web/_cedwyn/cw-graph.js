@@ -1,4 +1,5 @@
-/* cw-graph.js v1.3.2 (3 Nov 2026: the reader also runs on text pages whose only button is the site's own Glossary button.
+/* cw-graph.js v1.3.3 (9 Nov 2026: text inside <noscript>/<template> is never measured or previewed, so a page's no-JavaScript fallback no longer shows as raw markup in a card - Sion's Tab agent.
+   1.3.2, 3 Nov 2026: the reader also runs on text pages whose only button is the site's own Glossary button.
    1.3.1, 2 Nov 2026: shared animated reading levels across all human-facing Cedwyn themes and webapps;
    text-only sections expand into nested previews with animated forward/back transitions; interactive controls and live app panels remain intact.
    1.3.0: graph promo strip removed; the graph modal and card-level reader remain. - Cedwyn editors
@@ -12,7 +13,7 @@
 (function () {
   'use strict';
   if (window.__cwGraph) return;
-  var d = document, de = d.documentElement, VER = '1.3.2';
+  var d = document, de = d.documentElement, VER = '1.3.3';
   window.__cwGraph = { v: VER };
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var T = {
@@ -134,6 +135,9 @@
     return best || d.body;
   }
   function clean(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
+  /* 1.3.3 (9 Nov 2026): a page's text without its <noscript>/<template> parts. With scripting on, a browser keeps the inside of
+     <noscript> as one plain text node, so textContent carried a no-JavaScript fallback's tags as text (catalogue issue #29). */
+  function vtx(n) { if (!n) return ''; if (n.nodeType === 1 && /^(NOSCRIPT|TEMPLATE|SCRIPT|STYLE)$/.test(n.tagName)) return ''; var t = n.textContent || ''; if (n.querySelectorAll) [].forEach.call(n.querySelectorAll('noscript,template'), function (e) { var s = e.textContent; if (s) t = t.split(s).join(''); }); return t; }
   function idFor(e, n) { if (!e.id) e.id = 'cw-g-' + n; return '#' + e.id; }
   function heading(e, root) {   /* nearest heading before e (in document order) inside root */
     var w = d.createTreeWalker(root, NodeFilter.SHOW_ELEMENT, null), last = '', n;
@@ -428,7 +432,7 @@
   var BLK = 'p,li,td,th,div,h1,h2,h3,h4,h5,h6,dt,dd,tr,section,article,blockquote,ul,ol,table,figcaption,summary,details,pre';
   function spaced(root) {   /* text with a space wherever one block ends and the next begins */
     var w = d.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), n, out = '', last = null, len = 0;
-    while ((n = w.nextNode()) && len < 1600) { var p = n.parentElement; if (!p || p.closest('script,style,.cwl-pv,.cwl-rm,[aria-hidden=true],.vh')) continue; var b = p.closest(BLK); out += (b !== last ? ' ' : '') + n.nodeValue; last = b; len = out.length; }
+    while ((n = w.nextNode()) && len < 1600) { var p = n.parentElement; if (!p || p.closest('script,style,noscript,template,.cwl-pv,.cwl-rm,[aria-hidden=true],.vh')) continue; var b = p.closest(BLK); out += (b !== last ? ' ' : '') + n.nodeValue; last = b; len = out.length; }
     return clean(out);
   }
   function mkSec(h, lvl, parent) {
@@ -637,7 +641,7 @@
     if (!P || P.hasAttribute('data-cw-nolevels')) return null;
     var keep = P.firstElementChild && P.firstElementChild.tagName === 'H1' ? P.firstElementChild : null;
     var bodyNodes = [].slice.call(P.childNodes).filter(function (n) { return n !== keep; });
-    var bodyText = clean(bodyNodes.map(function (n) { return n.textContent || ''; }).join(' '));
+    var bodyText = clean(bodyNodes.map(function (n) { return vtx(n); }).join(' '));
     if (bodyText.length < 180) return null;
     var h = mk('h2', 'cwl-gh', LV_TITLE() || (keep ? clean(keep.textContent) : lvTxt(4)));
     P.insertBefore(h, keep ? keep.nextSibling : P.firstChild);
@@ -667,7 +671,7 @@
     /* If the page has prose but no heading hierarchy, use one page-level disclosure instead
        of leaving it as an unresponsive wall of text. */
     if (!root) { P = c; if (ok({ p: P })) root = buildWholePage(P); }
-    if (!root || clean(P.textContent).length < 240) return;
+    if (!root || clean(vtx(P)).length < 240) return;
     var h1 = d.querySelector('main h1,article h1,h1'); LV = { P: P, root: root, cur: null, pg: 0, scrolls: {}, busy: false, title: h1 ? clean(h1.textContent).split(/ [—–:|] /)[0] : '' };
     P.classList.add('cwl-on');
     var bk = mk('button', 'cwl-back'); bk.type = 'button'; bk.innerHTML = '<span class="cwl-ba" aria-hidden="true">‹</span><span>' + lvTxt(0) + '</span><span class="cwl-bt"></span>'; bk.hidden = true;

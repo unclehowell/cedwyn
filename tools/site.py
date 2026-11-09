@@ -7,6 +7,22 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 CFG = json.load(open(ROOT / 'themes.json'))
 DIST = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else 'dist')
 shutil.copytree(ROOT / 'web', DIST, dirs_exist_ok=True)
+
+# Keep the story hero asset in the final shared overlay, after binary deduplication.
+# The Case Office uses the same existing tight-cropped survey photo, without scan margins.
+_app_home = DIST / 'app' / 'index.html'
+if _app_home.is_file():
+    _app_html = _app_home.read_text(encoding='utf-8')
+    _old_bg = '/fb/img/1988-cadw-survey-photograph-of-the-farmhouse-29-july-19.jpg'
+    _app_html = _app_html.replace(_old_bg, '/story/media/1988-cadw-farmhouse.jpg')
+    _app_html = _app_html.replace('class="hero-in"', 'class="hero-in ghf-ui"')
+    _app_html = _app_html.replace('class="hero-bg"', 'class="hero-bg ghf-bgimg"')
+    _app_html = _app_html.replace('class="cap"', 'class="cap ghf-ui"')
+    _bg_css = '<style id="case-office-viewport-background">.hero-bg{width:100vw;max-width:100%;background-size:100% 100%,cover;background-position:center,center 35%}</style>'
+    if 'id="case-office-viewport-background"' not in _app_html:
+        _app_html = _app_html.replace('</head>', _bg_css + '</head>')
+    _app_home.write_text(_app_html, encoding='utf-8')
+
 # Publish the canonical book-evidence CSV after theme assembly. Keep it accessible at a stable public URL.
 _book_register = ROOT / 'web' / 'research' / 'book-research-findings.csv'
 if _book_register.is_file():
@@ -69,10 +85,15 @@ _source_to_area = {source_id: area['id'] for area in _areas for source_id in are
 # data/site-areas.json (the area registry, same order as the main menu), so a new area appears everywhere with nothing
 # hand-kept. aliases = the merged source themes' own paths (longest prefix wins); skip_in = the halves that hide it;
 # built = the area or one of its source themes exists in this build. - Sion's Tab agent
+# nav 1.4.0 (owner, 18:32 GMT 7 Nov 2026: "/wales/story/ is 7 of 59 and /documentary/ is 7 of 59. Move one to the empty unassigned
+# numbers. Do the same for all that have duplicate occupied slots"; cedwyn#497): a source theme that declares its own "slot" on its
+# themes.json entry is its own webapp in the nav, no longer an alias of the area it was merged into, so no page shares a number.
+# The area keeps its other sources (home board and halves unchanged). - Sion's Tab agent
+_slotted = {_t['id'] for _t in CFG['themes'] if _t.get('slot')}
 _areas_pub = []
 for _c, _area in zip(chain, _areas):
     _p = _area.get('path') or '/' + _area['id'] + '/'
-    _al = sorted({'/' + s + '/' for s in _area.get('source_themes', [])} - {_p})
+    _al = sorted({'/' + s + '/' for s in _area.get('source_themes', []) if s not in _slotted} - {_p})
     _built = any((DIST / x.strip('/')).is_dir() for x in [_p] + _al)
     _areas_pub.append({'id': _area['id'], 'path': _p, 'title': _c[1], 'cy': _c[3], 'es': _c[4], 'group': _c[2],
                        'aliases': _al, 'skip_in': _c[5], 'built': _built,
@@ -85,7 +106,7 @@ for _c, _area in zip(chain, _areas):
 # its other readers. tools/nav.py stamps the bar into every slot page and fails the build on a broken slot (docs/NAV.md).
 # - Sion's Tab agent
 _nav = [dict(a, src=a['path']) for a in _areas_pub]
-_nav_seen = {a['id'] for a in _areas_pub} | set(_source_to_area)
+_nav_seen = {a['id'] for a in _areas_pub} | (set(_source_to_area) - _slotted)
 for _t in CFG['themes']:
     if not _t.get('slot') or _t['id'] in _nav_seen: continue
     _p = _t.get('path') or '/' + _t['id'] + '/'
@@ -93,6 +114,22 @@ for _t in CFG['themes']:
                  'group': _t.get('group') or CFG.get('default_group') or '', 'aliases': [], 'skip_in': [h for h in ('wales', 'patagonia') if _t['id'] in _XH[h]],
                  'built': (DIST / _p.strip('/')).is_dir() or _t.get('served_by') == 'worker', 'slot': int(_t['slot']), 'of': _area_doc.get('parcel_total', 59), 'webapp': True,
                  'worker': _t.get('served_by') == 'worker'})
+# nav 1.3.0 (owner, 7 Nov 2026: "Keep as 59 and where there's no webapps yet just have blank 'coming soon' webapps as coming-soon-xx
+# repos ... When we do the real webapps to replace them we'll do proper repos for the new webapp and purge the corresponding
+# coming-soon-xx webapp"): every slot of the 59 that no real webapp takes is a blank "Coming soon" webapp from its own repository
+# unclehowell/coming-soon-NN, copied to /coming-soon-NN/ by tools/coming_soon.py (data/coming-soon.json) and listed here at slot NN,
+# so the chain is 59 long and reads "NN of 59". A real webapp that declares "slot": NN replaces it (docs/NAV.md). - Sion's Tab agent
+sys.path.insert(0, str(ROOT / 'tools')); import coming_soon as _cs
+_cs.run(DIST)
+_nav_slots = {int(a['slot']) for a in _nav if a.get('slot')}
+for _c in _cs.active()[0]:
+    _n = int(_c['slot'])
+    if _n in _nav_slots: continue
+    _p = _c.get('path') or '/coming-soon-%d/' % _n
+    _nav.append({'id': _c['id'], 'path': _p, 'src': _p, 'title': 'Coming soon', 'cy': 'Yn fuan', 'es': 'Próximamente',
+                 'group': CFG.get('default_group') or '', 'aliases': [], 'skip_in': [], 'built': (DIST / _p.strip('/') / 'index.html').is_file(),
+                 'slot': _n, 'of': _area_doc.get('parcel_total', 59), 'webapp': True, 'worker': False, 'placeholder': True, 'repo': _c['repo']})
+    _nav_slots.add(_n)
 _nav_online = set(_HV.get('online_only', []))
 # nav 1.1.0 (owner, 05:07 GMT 2 Nov 2026: every webapp at bucklerfamily.estate/<name>/, the cedwyn subdomain to be phased out):
 # "apex" is each slot's flat address on the apex; a themes.json "apex" names it when it is not the id. The apex router and the
