@@ -1,0 +1,1225 @@
+{
+ "schema": "cedwyn-core/0.1.0",
+ "note": "John Newman, Glamorgan (The Buildings of Wales, 1995): the source record, one artifact per passage on Llandough-juxta-Penarth, Leckwith and Cogan, and one not-the-same-place note. Each transcript is verbatim; transcript_status records whether it was taken from a page photo or from OCR not checked against the page image. Short quotations with page citations.",
+ "updated": "2026-11-03",
+ "records": [
+  {
+   "id": "AR-NEWMAN-1995",
+   "kind": "artifact",
+   "slug": "ar-newman-1995",
+   "title": "John Newman, Glamorgan (Mid Glamorgan, South Glamorgan and West Glamorgan), The Buildings of Wales, 1995",
+   "aliases": [
+    "Newman 1995",
+    "Pevsner Glamorgan",
+    "The Buildings of Wales: Glamorgan"
+   ],
+   "date": {
+    "display": "1995",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Glamorgan; entries for Llandough-juxta-Penarth, Leckwith and Cogan",
+   "description": "Architectural gazetteer of Glamorgan in the Buildings of Wales series (the Pevsner series), first published in 1995 by Penguin Books with the University of Wales Press, later reissued by Yale University Press. The Internet Archive copy is a lending copy scanned on 9 June 2022; 2022 is the scan date, not the publication date. The book's own entry for Llandough near Penarth (pp.378–379) describes the church of St Dochdwy, the Irbic Cross and Llandough Hospital; it describes no house or farm in the parish. No entry in the book names Great House Farm, Tŷ Mawr or Cydfin.",
+   "provenance": {
+    "holder": "Published book (Penguin Books and University of Wales Press, 1995; Yale University Press reissue)",
+    "reference": "ISBN 0140710566 (1995); ISBN 0300096291 (Yale reissue); Internet Archive identifier glamorganmidglam0000newm",
+    "date": "1995",
+    "obtained": "Read on 3 November 2026: Internet Archive lending copy (borrow-only; scanned 9 June 2022) and photographs of printed pages 370–371 and 378–379.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "Source: published book",
+    "reason": "Printed secondary source with entries for Llandough-juxta-Penarth, Leckwith and Cogan.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "book",
+     "source"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "detail": [
+    {
+     "heading": "Author",
+     "text": "John Newman",
+     "form": "term"
+    },
+    {
+     "heading": "Title",
+     "text": "Glamorgan (Mid Glamorgan, South Glamorgan and West Glamorgan)",
+     "form": "term"
+    },
+    {
+     "heading": "Series",
+     "text": "The Buildings of Wales",
+     "form": "term"
+    },
+    {
+     "heading": "Publisher and year",
+     "text": "Penguin Books and University of Wales Press, 1995; later Yale University Press reissue",
+     "form": "term"
+    },
+    {
+     "heading": "ISBN",
+     "text": "0140710566 / 9780140710564 (1995); 0300096291 / 9780300096293 (Yale reissue)",
+     "form": "term"
+    },
+    {
+     "heading": "Extent",
+     "text": "717 pages and 64 unnumbered pages of plates (catalogue description)",
+     "form": "term"
+    },
+    {
+     "heading": "Internet Archive copy",
+     "text": "Identifier glamorganmidglam0000newm; scanned 9 June 2022; controlled lending only (borrow-only)",
+     "form": "term"
+    },
+    {
+     "heading": "Index of Places, p.704 (OCR, not checked against page image)",
+     "text": "“Llandough (Penarth) 32, 39, 95, 115, 378-9; Irbic Cross 37, 38, 378”",
+     "form": "term"
+    },
+    {
+     "heading": "Passages catalogued",
+     "items": [
+      "pp.378–379 Llandough near Penarth: church, Irbic Cross, hospital (page photo)",
+      "pp.370–371 Leckwith: church, Pearson obelisk, bridge, Brynwell, Penarth Pumping Station (page photo)",
+      "p.32 Roman villa; pp.37–39 cross and monastery; p.95 church rebuilding; p.115 hospital; pp.491–492 and p.497 Cogan (OCR, not checked against page image)"
+     ],
+     "form": "section"
+    },
+    {
+     "heading": "Acknowledgements",
+     "text": "The author's acknowledgements thank Matthew Williams (Cardiff Castle and Insole Court, Llandaff) for help on those buildings. This is an acknowledgement credit only; the book places no Williams at Llandough-juxta-Penarth, Leckwith or Cogan, and no family link is drawn from it.",
+     "form": "section"
+    },
+    {
+     "heading": "Not the same place",
+     "text": "The book's entries for Llandough near Cowbridge (pp.377–378) and Llandow (pp.379–381) are other villages; see OBS-NEWMAN-1995-NOT-THIS-PLACE.",
+     "form": "section"
+    }
+   ],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995",
+     "href": null
+    }
+   ],
+   "related": [],
+   "links": [],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Source record added with its catalogued passages."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P378-CHURCH",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p378-church",
+   "title": "Newman 1995, p.378: St Dochdwy, Llandough, rebuilt 1865–6 by S.C. Fripp",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Llandough-juxta-Penarth (Llandough, 2 m. NW of Penarth), church of St Dochdwy",
+   "description": "Newman's gazetteer entry for the parish church of Llandough near Penarth: rebuilt 1865–6 to the design of S.C. Fripp of Bristol, with a neo-Norman arch in the south aisle that replicates a 12th-century arch of the previous church.",
+   "transcript": "ST DOCHDWY. 1865-6 by S.C. Fripp of Bristol. Elegant SE tower, an idealized version of the local type, unbuttressed under a steep saddleback roof. Tall, narrow belfry windows. The tower composes with the W front when seen from the road. Five-light W window with geometrical tracery, lean-to aisles of awkwardly shallow roof pitch. Lower chancel, barely extending beyond the tower, with lean-to N vestry. Inside, the shock is the Butterfieldian brickwork of the walls. Red, with black and white cruciform patterns in the spandrels of the nave arcades, the chancel entirely red. Circular piers of Bath stone with heavy square caps. Nave roof of local type, arch-braced with a collar purlin. At the E end of the S aisle a neo-Norman arch with much zigzag. This replicates (faithfully?) a C12 arch in the previous church.",
+   "transcript_status": "Page photo: transcribed from a photograph of the printed page (1995 edition).",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "p.378",
+    "date": "1995",
+    "obtained": "Transcribed on 3 November 2026 from a photograph of the printed page in a borrowed copy.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: page photo",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "page-photo",
+     "llandough-juxta-penarth",
+     "church",
+     "st-dochdwy"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, p.378",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, p.378 (page photo)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P378-IRBIC-CROSS",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p378-irbic-cross",
+   "title": "Newman 1995, p.378: the Irbic Cross, Llandough churchyard",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Llandough-juxta-Penarth (Llandough, 2 m. NW of Penarth), churchyard of St Dochdwy",
+   "description": "Newman's description of the Irbic Cross in Llandough churchyard: a four-part shaft of Sutton stone, 9 ft 10 in. high, lacking only the cross-head, with the name IRBICI on the west side, decoration dated by the book to the late 10th and early 11th centuries.",
+   "transcript": "In the CHURCHYARD stands the so-called IRBIC CROSS, the most impressive of all the visible remains of Glamorgan's Celtic Christianity, a strong reinforcement of the documentary tradition that there was a monastic establishment at Llandough in the pre-Conquest period. The cross shaft stands 9 ft 10 in. (3 metres) high and consists of four parts: a base, a lower shaft of rectangular section, a massive knop, and a square-section upper shaft, all shaped from blocks of Sutton stone. Only the cross-head itself is missing. Every surface is carved in relief. On the tapering faces of the base are busts of men (N and S), a figure on horseback (W) and a row of five standing figures, apparently ecclesiastics (E). The lower shaft has rounded angle-shafts with strong entasis, and large patterns of interlace all over. The name IRBICI appears here at the top of the W side. The knop is subdivided into five horizontal bands, each with its own interlace pattern, and forms a base for the upper shaft. This has interlace on its four faces, and plain angle rolls. Such decoration is typical of the late C10 and early C11.",
+   "transcript_status": "Page photo: transcribed from a photograph of the printed page (1995 edition).",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "p.378",
+    "date": "1995",
+    "obtained": "Transcribed on 3 November 2026 from a photograph of the printed page in a borrowed copy.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: page photo",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "page-photo",
+     "llandough-juxta-penarth",
+     "irbic-cross",
+     "early-christian",
+     "monastery"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, p.378",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995",
+    "AR-NEWMAN-1995-P037-CROSS",
+    "AR-NEWMAN-1995-P039-MONASTERY"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, p.378 (page photo)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P378-HOSPITAL",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p378-hospital",
+   "title": "Newman 1995, pp.378–379: Llandough Hospital, completed 1934",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Llandough-juxta-Penarth (Llandough, 2 m. NW of Penarth), Llandough Hospital, ¼ m. SW of the church",
+   "description": "Newman's entry for Llandough Hospital: by Willmott & Smith, completed 1934, with a nurses' home, additions of 1965–76 and an ante-natal clinic of 1984.",
+   "transcript": "LLANDOUGH HOSPITAL, ¼m. SW. By Willmott & Smith, completed in 1934. Neo-Georgian, brick with stone dressings. Symmetrical plan, the ward blocks forming pavilions l. and r. of the administration block. The architects had trouble encompassing within their classicism the expanses of glass required by modern hospital wards. Five-storey NURSES' HOME by the entrance. To the S of the main building various additions, 1965-76 by the Percy Thomas Partnership (design partner Wallace Sweet). To the N, ANTE-NATAL CLINIC, 1984, by the Alex Gordon Partnership (cf. their Princess of Wales Hospital, Bridgend).",
+   "transcript_status": "Page photo: transcribed from a photograph of the printed page (1995 edition). The page photo reads ¼m.; the scan's OCR gave ½m.",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "pp.378–379",
+    "date": "1995",
+    "obtained": "Transcribed on 3 November 2026 from a photograph of the printed page in a borrowed copy.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: page photo",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "page-photo",
+     "llandough-juxta-penarth",
+     "hospital",
+     "20th-century"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, pp.378–379",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995",
+    "AR-NEWMAN-1995-P115-HOSPITAL"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, pp.378–379 (page photo)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P370-LECKWITH-CHURCH",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p370-leckwith-church",
+   "title": "Newman 1995, p.370: St James, Leckwith, rebuilt 1866",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Leckwith (Lecwydd), the parish north of Llandough, church of St James",
+   "description": "Newman's entry for the parish church of St James, Leckwith: rebuilt in 1866, architect unknown, then disused.",
+   "transcript": "LECKWITH/LECWYDD. ST JAMES. Rebuilt in 1866, and standing in forlorn disuse beside the main road. Just a nave and lower chancel. Architect unknown.",
+   "transcript_status": "Page photo: transcribed from a photograph of the printed page (1995 edition).",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "p.370",
+    "date": "1995",
+    "obtained": "Transcribed on 3 November 2026 from a photograph of the printed page in a borrowed copy.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: page photo",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "page-photo",
+     "leckwith",
+     "church",
+     "st-james"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, p.370",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, p.370 (page photo)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P370-PEARSON-OBELISK",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p370-pearson-obelisk",
+   "title": "Newman 1995, p.370: the Pearson obelisk, Leckwith churchyard",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Leckwith (Lecwydd), the parish north of Llandough, churchyard of St James",
+   "description": "Newman's note of an obelisk in Leckwith churchyard, put up by the building contractor Charles Pearson in memory of his first wife (died 1855).",
+   "transcript": "In the CHURCHYARD the usual crowd of monuments, including an obelisk on a tall plinth, erected by Charles Pearson, building contractor, to commemorate his first wife †1855.",
+   "transcript_status": "Page photo: transcribed from a photograph of the printed page (1995 edition).",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "p.370",
+    "date": "1995",
+    "obtained": "Transcribed on 3 November 2026 from a photograph of the printed page in a borrowed copy.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: page photo",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "page-photo",
+     "leckwith",
+     "churchyard",
+     "monument"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, p.370",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995",
+    "AR-NEWMAN-1995-P370-LECKWITH-CHURCH"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, p.370 (page photo)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P371-LECKWITH-BRIDGE",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p371-leckwith-bridge",
+   "title": "Newman 1995, p.371: Leckwith Bridge, medieval, three arches",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Leckwith (Lecwydd), the parish north of Llandough, bridge ¾ m. N of the church",
+   "description": "Newman's entry for the medieval three-arched bridge at Leckwith.",
+   "transcript": "BRIDGE, ¾m. N. Medieval, of three arches, the central arch rebuilt. The side arches are pointed, of two plain orders. Pointed cutwaters.",
+   "transcript_status": "Page photo: transcribed from a photograph of the printed page (1995 edition). The fraction is small in the photo and reads as ¾ (the scan's OCR gave “7m.”); not checked at higher resolution.",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "p.371",
+    "date": "1995",
+    "obtained": "Transcribed on 3 November 2026 from a photograph of the printed page in a borrowed copy.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: page photo",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "page-photo",
+     "leckwith",
+     "bridge",
+     "medieval"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, p.371",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, p.371 (page photo)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P371-BRYNWELL",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p371-brynwell",
+   "title": "Newman 1995, p.371: Brynwell, a C12 ringwork and a farmhouse with medieval walls",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Leckwith (Lecwydd), the parish north of Llandough, Brynwell, ¾ m. W of the church",
+   "description": "Newman's note of a 12th-century ringwork at Brynwell, Leckwith, and a farmhouse there with medieval walls.",
+   "transcript": "At BRYNWELL, ¾m. W, a C12 RINGWORK and a FARMHOUSE incorporating medieval walls – see one trefoiled lancet in the N wall.",
+   "transcript_status": "Page photo: transcribed from a photograph of the printed page (1995 edition). The fraction is small in the photo and reads as ¾ (the scan's OCR gave “3m.”); not checked at higher resolution.",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "p.371",
+    "date": "1995",
+    "obtained": "Transcribed on 3 November 2026 from a photograph of the printed page in a borrowed copy.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: page photo",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "page-photo",
+     "leckwith",
+     "brynwell",
+     "ringwork",
+     "farmhouse",
+     "medieval"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, p.371",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, p.371 (page photo)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P371-PUMPING-STATION",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p371-pumping-station",
+   "title": "Newman 1995, p.371: Penarth Pumping Station, 1901",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Leckwith (Lecwydd), the parish north of Llandough, Penarth Pumping Station, ½ m. N of the church",
+   "description": "Newman's entry for the sewage pumping station of 1901 north of Leckwith church.",
+   "transcript": "PENARTH PUMPING STATION, ½m. N. A fine sight from the high-level stretch of the A4232. Sewage pumping station built in 1901, originally powered by burning domestic rubbish. Its red and yellow brick bulk now houses an arcade of craft and antique shops.",
+   "transcript_status": "Page photo: transcribed from a photograph of the printed page (1995 edition).",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "p.371",
+    "date": "1995",
+    "obtained": "Transcribed on 3 November 2026 from a photograph of the printed page in a borrowed copy.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: page photo",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "page-photo",
+     "leckwith",
+     "pumping-station",
+     "1901"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, p.371",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, p.371 (page photo)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P032-VILLA",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p032-villa",
+   "title": "Newman 1995, p.32: a Roman villa “probably at Llandough (near Penarth)”",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Llandough-juxta-Penarth (introduction, Roman period)",
+   "description": "Newman's introduction lists Llandough near Penarth as the probable site of a Roman villa with a bath suite, its full plan not established.",
+   "transcript": "VILLAS are certainly known at Ely, Cardiff, and Llantwit Major, with mosaics, hypocausts and bath suites, and probably at Llandough (near Penarth), although the full plan here has not been established. This, too, had a bath suite.",
+   "transcript_status": "OCR, not checked against page image. Rebuilt from the full-text search of the Internet Archive scan of the 1995 edition; obvious OCR slips corrected in square brackets.",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "p.32",
+    "date": "1995",
+    "obtained": "Rebuilt on 3 November 2026 from the full-text search of the Internet Archive scan (9 June 2022); OCR, not checked against page image.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: OCR",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "ocr",
+     "llandough-juxta-penarth",
+     "roman",
+     "villa"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, p.32",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, p.32 (OCR, not checked against page image)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P037-CROSS",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p037-cross",
+   "title": "Newman 1995, pp.37–38: the Llandough cross shaft, “best-preserved and most evocative”",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Llandough-juxta-Penarth (introduction, early Christian monuments)",
+   "description": "Newman's introduction on the Llandough cross shaft, standing to full height in the churchyard and lacking only the cross-head. The passage was rebuilt only to the point shown.",
+   "transcript": "The tall, slender type of cross shaft familiar in other centres of Christianity was also used in Glamorgan. Best-preserved and most evocative is that at Llandough, near Penarth, which still stands upright in the churchyard to its full height, lacking only the cross head. It consists of four parts: a base, and two shaft sections with an intervening knop. The shaft sections have angle rolls and pronounced …",
+   "transcript_status": "OCR, not checked against page image. Rebuilt from the full-text search of the Internet Archive scan of the 1995 edition; obvious OCR slips corrected in square brackets.",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "pp.37–38",
+    "date": "1995",
+    "obtained": "Rebuilt on 3 November 2026 from the full-text search of the Internet Archive scan (9 June 2022); OCR, not checked against page image.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: OCR",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "ocr",
+     "llandough-juxta-penarth",
+     "irbic-cross",
+     "early-christian"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, pp.37–38",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995",
+    "AR-NEWMAN-1995-P378-IRBIC-CROSS"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, pp.37–38 (OCR, not checked against page image)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P039-MONASTERY",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p039-monastery",
+   "title": "Newman 1995, p.39: Llandough, “a monastic site associated with St Dochdwy”, and its C12 chancel arch",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Llandough-juxta-Penarth (introduction, early monasteries and Romanesque churches)",
+   "description": "Two sentences in Newman's introduction: Llandough near Penarth as a monastic site associated with St Dochdwy, with the only cross shaft still in situ; and its reconstructed 12th-century chancel arch, which the book takes to suggest a sizeable and lavishly decorated building.",
+   "transcript": "… at Llandough, near Penarth, a monastic site associated with St Dochdwy, is the only cross shaft still [OCR ‘7 sztu’ = in situ]. …\nOther churches with decorated chancel arches are Llandough near Penarth, where the arch is reconstructed and not in situ, but suggests a sizeable and lavishly decorated building, and Penmark …",
+   "transcript_status": "OCR, not checked against page image. Rebuilt from the full-text search of the Internet Archive scan of the 1995 edition; obvious OCR slips corrected in square brackets.",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "p.39",
+    "date": "1995",
+    "obtained": "Rebuilt on 3 November 2026 from the full-text search of the Internet Archive scan (9 June 2022); OCR, not checked against page image.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: OCR",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "ocr",
+     "llandough-juxta-penarth",
+     "monastery",
+     "st-dochdwy",
+     "chancel-arch",
+     "early-christian"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, p.39",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995",
+    "AR-NEWMAN-1995-P378-IRBIC-CROSS",
+    "AR-NEWMAN-1995-P378-CHURCH"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, p.39 (OCR, not checked against page image)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P095-CHURCH",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p095-church",
+   "title": "Newman 1995, p.95: the rebuilding of Llandough church by S.C. Fripp",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Llandough-juxta-Penarth (introduction, Victorian churches)",
+   "description": "Newman's introduction compares the rebuilding of Llandough church by S.C. Fripp with a contemporary Butterfield church in Penarth.",
+   "transcript": "The rebuilding of Llandough church, just N of Penarth, by S. C. Fripp of Bristol, is exactly contemporary, similar in concept, but smaller and artistically inferior.",
+   "transcript_status": "OCR, not checked against page image. Rebuilt from the full-text search of the Internet Archive scan of the 1995 edition; obvious OCR slips corrected in square brackets.",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "p.95",
+    "date": "1995",
+    "obtained": "Rebuilt on 3 November 2026 from the full-text search of the Internet Archive scan (9 June 2022); OCR, not checked against page image.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: OCR",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "ocr",
+     "llandough-juxta-penarth",
+     "church",
+     "st-dochdwy",
+     "victorian"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, p.95",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995",
+    "AR-NEWMAN-1995-P378-CHURCH"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, p.95 (OCR, not checked against page image)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P115-HOSPITAL",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p115-hospital",
+   "title": "Newman 1995, p.115: Llandough Hospital among the large hospitals of the 1930s",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Llandough-juxta-Penarth (introduction, 1930s buildings)",
+   "description": "Newman's introduction names Llandough Hospital (Willmott & Smith, completed 1934) among the large hospitals of the 1930s.",
+   "transcript": "… at the other two large hospitals of the 1930s, Llandough Hospital by Willmott & Smith, completed 1934, and the East Glamorgan General Hospital, Llantwit Fardre, 1938-9 by Bradshaw, Gass & Hope, an unhappy struggle takes …",
+   "transcript_status": "OCR, not checked against page image. Rebuilt from the full-text search of the Internet Archive scan of the 1995 edition; obvious OCR slips corrected in square brackets.",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "p.115",
+    "date": "1995",
+    "obtained": "Rebuilt on 3 November 2026 from the full-text search of the Internet Archive scan (9 June 2022); OCR, not checked against page image.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: OCR",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "ocr",
+     "llandough-juxta-penarth",
+     "hospital",
+     "20th-century"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, p.115",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995",
+    "AR-NEWMAN-1995-P378-HOSPITAL"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, p.115 (OCR, not checked against page image)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P491-COGAN-REREDOS",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p491-cogan-reredos",
+   "title": "Newman 1995, pp.491–492: the 1896 reredos at St Peter, Cogan, in memory of J.S. Corbett",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Cogan, Penarth (the parish next to Llandough), church of St Peter",
+   "description": "Newman's note of the bronze reredos of 1896 at St Peter, Cogan, given by Lord Bute in memory of his agent J.S. Corbett of Cogan Pill.",
+   "transcript": "REREDOS. 1896. Lord Bute's one extravagant gesture, in memory of his agent, J.S. Corbett, who lived at Cogan Pill. Of bronze. Perp. At the top a bronze group of the Transfiguration, adapted from Fra Angelico …",
+   "transcript_status": "OCR, not checked against page image. Rebuilt from the full-text search of the Internet Archive scan of the 1995 edition; obvious OCR slips corrected in square brackets.",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "pp.491–492",
+    "date": "1995",
+    "obtained": "Rebuilt on 3 November 2026 from the full-text search of the Internet Archive scan (9 June 2022); OCR, not checked against page image.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: OCR",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "ocr",
+     "cogan",
+     "church",
+     "reredos",
+     "bute",
+     "corbett"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, pp.491–492",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995",
+    "AR-NEWMAN-1995-P497-COGAN-PILL"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, pp.491–492 (OCR, not checked against page image)."
+    }
+   ]
+  },
+  {
+   "id": "AR-NEWMAN-1995-P497-COGAN-PILL",
+   "kind": "artifact",
+   "slug": "ar-newman-1995-p497-cogan-pill",
+   "title": "Newman 1995, p.497: Cogan Pill, a C16 stone house reconstructed for J.S. Corbett",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Cogan, Penarth (the parish next to Llandough), Cogan Pill",
+   "description": "Newman's entry for Cogan Pill: a 16th-century stone house with a full-height hall, much reconstructed in the late 19th century for J.S. Corbett, agent to the third Marquess of Bute. The book's lines on the porch's decoration are left out here.",
+   "transcript": "COGAN PILL, at the N end of Windsor Road, beyond the end of the town. A substantial C16 stone house, much reconstructed in the late C19 for J.S. Corbett, the third Marquess of Bute's agent. … L-plan, the main range to the S, of Lias limestone rubble, entered through a two-storey porch … The porch formerly led into a passage, but now opens directly into the main internal space, the full-height HALL.",
+   "transcript_status": "OCR, not checked against page image. Rebuilt from the full-text search of the Internet Archive scan of the 1995 edition; obvious OCR slips corrected in square brackets.",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "p.497",
+    "date": "1995",
+    "obtained": "Rebuilt on 3 November 2026 from the full-text search of the Internet Archive scan (9 June 2022); OCR, not checked against page image.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: OCR",
+    "reason": "Newman's text on Llandough-juxta-Penarth, Leckwith or Cogan; context for the parish around the property, not a record of the property itself.",
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "ocr",
+     "cogan",
+     "cogan-pill",
+     "house",
+     "16th-century",
+     "bute",
+     "corbett"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), Penguin Books and University of Wales Press, 1995, p.497",
+     "href": null
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995",
+    "AR-NEWMAN-1995-P491-COGAN-REREDOS"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Catalogued from Newman 1995, p.497 (OCR, not checked against page image)."
+    }
+   ]
+  },
+  {
+   "id": "OBS-NEWMAN-1995-NOT-THIS-PLACE",
+   "kind": "observation",
+   "slug": "obs-newman-1995-not-this-place",
+   "title": "Newman 1995: Llandough near Cowbridge and Llandow are other villages",
+   "aliases": [],
+   "date": {
+    "display": "1995 (published text)",
+    "sort": 1995,
+    "precision": "year of publication"
+   },
+   "place_text": "Llandough near Cowbridge and Llandow, Vale of Glamorgan (not Llandough-juxta-Penarth)",
+   "description": "Newman's gazetteer has two entries headed LLANDOUGH/LLANDOCHAU. The one “2m. NW of Penarth” (pp.378–379) is this parish. The one “1½m. S of Cowbridge” (pp.377–378) is another village, and so is Llandow (pp.379–381), the entry that follows; the “Great House, S of the church” and the tablet signed “B. Williams, Cowbridge” belong to Llandow. The mentions of Llandough on pp.44, 46 and 508 are the village near Cowbridge. None of these passages is catalogued as Llandough-juxta-Penarth material.",
+   "provenance": {
+    "holder": "Published book: John Newman, Glamorgan (The Buildings of Wales), 1995",
+    "reference": "pp.44, 46, 377–381, 508",
+    "date": "1995",
+    "obtained": "Read on 3 November 2026 with the catalogued passages.",
+    "independent_origin_id": "ORIG-NEWMAN-1995"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "not_this_property",
+    "label": "Not the same place",
+    "reason": "Same or similar place-names, different villages near Cowbridge.",
+    "distinct_from": [
+     "PL-TY-MAWR"
+    ],
+    "tags": [
+     "newman-1995",
+     "buildings-of-wales",
+     "not-the-same-place",
+     "llandough-near-cowbridge",
+     "llandow"
+    ]
+   },
+   "sources": [
+    {
+     "text": "John Newman, Glamorgan (The Buildings of Wales), 1995, pp.377–381",
+     "href": null
+    },
+    {
+     "text": "Kissed Frogs: records that are not the property",
+     "href": "/kissed-frogs/"
+    }
+   ],
+   "related": [
+    "AR-NEWMAN-1995",
+    "PL-GREAT-HOUSE-COWBRIDGE"
+   ],
+   "links": [
+    {
+     "rel": "cites",
+     "to": "AR-NEWMAN-1995"
+    }
+   ],
+   "origin": "newman-glamorgan-1995-book-read-2026-11-03",
+   "reworded": false,
+   "public": true,
+   "updated": "2026-11-03",
+   "rev": 1,
+   "version": "1.0.0",
+   "changes": [
+    {
+     "rev": "1.0.0",
+     "date": "2026-11-03",
+     "note": "Exclusion note added so the Cowbridge and Llandow entries are not read as Llandough-juxta-Penarth."
+    }
+   ]
+  }
+ ]
+}
