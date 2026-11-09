@@ -902,6 +902,19 @@
   "dir": "",
   "slot": 41,
   "group": "interactive"
+ },
+ {
+  "id": "hubspot",
+  "title": "HubSpot · Task Control",
+  "cy": "HubSpot · Rheoli Tasgau",
+  "es": "HubSpot · Control de tareas",
+  "live": "https://cedwyn.bucklerfamily.estate/hubspot/",
+  "hosts": [],
+  "paths": [],
+  "desc": "Read-only task-status dashboard, built from its own repository (unclehowell/cedwyn-hubspot, web/hubspot) with its own synced store at /hubspot/data/central.json. Navigation slot 37 comes from data/site-areas.json, so this entry declares no slot.",
+  "branch": "webapp/hubspot-20261101",
+  "dir": "web/hubspot",
+  "group": "research"
  }
 ],
  "allowed_tile_templates": [
