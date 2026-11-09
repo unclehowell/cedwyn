@@ -1,7 +1,7 @@
 {
  "schema": "cedwyn-core/0.1.0",
  "note": "Statutory and civic records touching land in Llandough-juxta-Penarth and Leckwith, 1828-1958, catalogued 3 November 2026 for the parcel chains work. Each entry is a catalogue record of the source; which parcels each touched is open until the deposited plans and books of reference are read.",
- "updated": "2026-11-08",
+ "updated": "2026-11-09",
  "records": [
   {
    "id": "AR-GAZETTE-1884-11-25-BARRY-LLANDOUGH",
@@ -1379,6 +1379,56 @@
     {
      "heading": "Related records",
      "text": "London Gazette, 18 November 1884 (AR-GAZETTE-1884-11-18-CPBJR-LLANDOUGH); Commons Journal vol. 140 (AR-HCJ-140-1885-BARRY-CPBJR-BILLS); deposited plan, book of reference and list of owners, lessees and occupiers HL/PO/PB/3/plan1885/C4; company minutes TNA RAIL 96/1 (1885-1889)."
+    }
+   ]
+  },
+  {
+   "id": "AR-GASJOURNAL-1859-04-12-CARDIFF-V-CARDIFF-WATERWORKS",
+   "kind": "artifact",
+   "slug": "ar-gasjournal-1859-04-12-cardiff-v-cardiff-waterworks",
+   "title": "Journal of Gas Lighting, 12 April 1859: law report of The Mayor of Cardiff v. The Cardiff Water-Works Company (Vice-Chancellor Wood, 24-26 March 1859), on mains to Landough, Leckwith and Penarth and the Cogan Pill reservoir land",
+   "aliases": [
+    "Mayor of Cardiff v Cardiff Waterworks Company (1859)"
+   ],
+   "date": {
+    "display": "24-26 March 1859 (report published 12 April 1859)",
+    "sort": 1859.23,
+    "precision": "day"
+   },
+   "place_text": "Parishes of Landough (Llandough-juxta-Cardiff), Leckwith and Penarth; the company's Cogan Pill reservoir, stated in court to lie in Landough parish",
+   "description": "A printed report of a Chancery hearing. The Mayor and Corporation of Cardiff asked for an injunction to stop the Cardiff Water-Works Company laying or using mains under the streets of Cardiff to supply the parishes of Leckwith, Landough and Penarth, which lay outside the limits in the company's Act ('the town and port of Cardiff, and the parishes or places within and adjoining to such town'). The Vice-Chancellor read 'port' in its popular sense and granted the injunction on supply beyond the district. On the reservoir, counsel for the company stated 'We have purchased twenty acres'; counsel for the Corporation stated that Cogan Pill 'is in Landough, which is a different parish' from Llandaff; and the Vice-Chancellor observed that the company had 'scheduled this and put it into the book of reference, and deposited plans', so that it might place its works there though it could not supply the inhabitants.",
+   "transcript": "",
+   "transcript_status": "OCR full text read on 9 November 2026 (archive.org item sim_gas-journal_1859-04-12_8_169); quotations checked against the OCR; page images not checked.",
+   "interpretation": "What it shows: that about twenty acres had been bought for the waterworks reservoir by March 1859, that the reservoir land at Cogan Pill was treated in court as land in Llandough parish, and that it had been entered in a deposited book of reference. What it does not show: the vendor, owner or occupier of the land, whether the purchase was by agreement or under compulsory powers, or which tithe or Ordnance Survey parcels were involved.",
+   "provenance": {
+    "holder": "Internet Archive (digitised serial)",
+    "reference": "Journal of Gas Lighting, Water Supply and Sanitary Improvement, vol. 8, 12 April 1859, 'Legal intelligence'",
+    "date": "1859",
+    "obtained": "Read on 9 November 2026: https://archive.org/details/sim_gas-journal_1859-04-12_8_169",
+    "independent_origin_id": "ORIG-GASJOURNAL-1859-CARDIFF-WATERWORKS-CASE"
+   },
+   "grade": null,
+   "scope": {
+    "disposition": "in_scope",
+    "label": "In scope: statutory or civic record for the parishes",
+    "reason": "A court record of a statutory undertaker's works and land in Llandough-juxta-Cardiff, entered in a deposited book of reference.",
+    "tags": [
+     "cardiff-waterworks",
+     "chancery",
+     "cogan-pill",
+     "reservoir",
+     "book-of-reference",
+     "llandough",
+     "leckwith",
+     "1859"
+    ]
+   },
+   "places": [],
+   "evidence": [],
+   "detail": [
+    {
+     "heading": "Related records",
+     "text": "London Gazette, 25 November 1859, issue 22329, pp.4375-4376 (Cardiff Water Works notice: Cogan Pill Reservoir 'lately constructed' at Cogan Pill Farm; intended Llandough Reservoir); S. Hughes, A treatise on waterworks (1882), pp.126-127 (Cogan Reservoir built 1859; Landough Reservoir built under the Act of 1860), https://archive.org/details/treatiseonwaterw00hughrich ; an appeal report of the same case is not checked."
     }
    ]
   }
