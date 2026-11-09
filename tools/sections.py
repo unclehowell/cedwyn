@@ -239,6 +239,9 @@ def argentina(S, cfg):
     # The family's case (Sion 23:07 GMT 25 Oct 2026): its own page at /argentina/caso/ (tools/family_case.py); the hub links to it
     import family_case
     T.update(family_case.strings()[0])
+    # Replica plans (31 Oct 2026): the hub links to the Great House Farm replica plans and 3D model on the Project Office (/projects/replica/)
+    T.update({'rp_link_h': {'en': 'The replica, rebuilt from the records: plans and 3D model', 'cy': "Y replica, wedi'i hailadeiladu o'r cofnodion: cynlluniau a model 3D", 'es': 'La réplica, reconstruida a partir de los registros: planos y modelo 3D'},
+              'rp_link_p': {'en': 'Great House II is planned as a faithful replica of Great House Farm. See the dimensioned plans, CAD drawings and 3D model, with every measurement traced to its source.', 'cy': "Mae Great House II wedi'i chynllunio fel replica ffyddlon o Great House Farm. Gwelwch y cynlluniau â mesuriadau, y lluniadau CAD a'r model 3D, gyda phob mesuriad wedi'i olrhain i'w ffynhonnell.", 'es': 'Great House II está planificada como una réplica fiel de Great House Farm. Vea los planos acotados, los dibujos CAD y el modelo 3D, con cada medida vinculada a su fuente.'}})
     cards = ''.join(f'<div class="card"><span class="soon" data-i18n="soon">{E(tx(T,"soon",l))}</span><h3 data-i18n="{a}">{E(tx(T,a,l))}</h3><p data-i18n="{b}">{E(tx(T,b,l))}</p></div>'
                     for a, b in (('c1', 'c1n'), ('c2', 'c2n'), ('c3', 'c3n'), ('c4', 'c4n')))
     links = [('l_story', '/argentina/story/'), ('l_cuts', '/argentina/thousand-cuts/'), ('l_timeline', '/argentina/research/timeline/'), ('l_meeting', '/argentina/meeting/'),
@@ -254,6 +257,7 @@ def argentina(S, cfg):
 <header><p class="eyebrow">{i18n(T,'a_kicker',l)}</p><h1>Great House II</h1><p class="lede" style="margin-top:6px"><b data-i18n="a_sub">{E(tx(T,'a_sub',l))}</b></p>
 <span class="soon" data-i18n="soon">{E(tx(T,'soon',l))}</span><p class="lede">{i18n(T,'a_lede',l)}</p></header>
 <a class="cross" href="/argentina/caso/" style="margin:4px 0 14px"><h2>{i18n(T,'fc_link_h',l)}</h2><p class="mut">{i18n(T,'fc_link_p',l)}</p></a>
+<a class="cross" href="/projects/replica/" style="margin:4px 0 14px"><h2>{i18n(T,'rp_link_h',l)}</h2><p class="mut">{i18n(T,'rp_link_p',l)}</p></a>
 <div class="cards">{cards}</div>
 <div class="card" style="margin-top:10px"><h3 data-i18n="a_notify_h">{E(tx(T,'a_notify_h',l))}</h3>{notify(T,l,'argentina-opening','consent_arg',3)}</div>
 <section class="blk" id="museum"><h2>{i18n(T,'mu_h',l)}</h2><ul class="plain"><li data-i18n="mu1">{E(tx(T,'mu1',l))}</li><li data-i18n="mu2">{E(tx(T,'mu2',l))}</li><li data-i18n="mu3">{E(tx(T,'mu3',l))}</li></ul></section>
