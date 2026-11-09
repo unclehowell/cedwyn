@@ -2,13 +2,13 @@
   "audit": "Cedwyn internal HTML/CSS links and fragments",
   "pages_scanned": 14716,
   "references_checked": {
-    "resource": 366883,
-    "nav": 690723
+    "resource": 366881,
+    "nav": 691012
   },
   "database_backed_paths": 7638,
   "unique_missing_destinations": 2321,
-  "missing_references": 62688,
-  "missing_navigation_references": 36246,
+  "missing_references": 62869,
+  "missing_navigation_references": 36427,
   "missing_resource_references": 26442,
   "unique_broken_fragments": 3121,
   "broken_fragment_references": 5958,
@@ -207,6 +207,33 @@
     },
     {
       "kind": "nav",
+      "path": "/catalogue/",
+      "references": 184,
+      "examples": [
+        {
+          "from": "/404.html",
+          "attribute": "a[href]",
+          "url": "/catalogue/"
+        },
+        {
+          "from": "/values/",
+          "attribute": "a[href]",
+          "url": "/catalogue/"
+        },
+        {
+          "from": "/disproven/",
+          "attribute": "a[href]",
+          "url": "/catalogue/"
+        },
+        {
+          "from": "/familytree/",
+          "attribute": "a[href]",
+          "url": "/catalogue/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
       "path": "/forensic/wiki/records-access-chronology/foi-reply-register/",
       "references": 133,
       "examples": [
@@ -364,33 +391,6 @@
           "from": "/research/artifacts/ghf-e106-r24-a1/",
           "attribute": "a[href]",
           "url": "/research/dartboard/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/catalogue/",
-      "references": 72,
-      "examples": [
-        {
-          "from": "/404.html",
-          "attribute": "a[href]",
-          "url": "/catalogue/"
-        },
-        {
-          "from": "/values/",
-          "attribute": "a[href]",
-          "url": "/catalogue/"
-        },
-        {
-          "from": "/disproven/",
-          "attribute": "a[href]",
-          "url": "/catalogue/"
-        },
-        {
-          "from": "/familytree/",
-          "attribute": "a[href]",
-          "url": "/catalogue/"
         }
       ]
     },
@@ -721,7 +721,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 35,
+      "references": 36,
       "examples": [
         {
           "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
@@ -739,7 +739,7 @@
           "url": "/research/%3E%2A.html"
         },
         {
-          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
+          "from": "/research/evidence/ev-0080-bp-properties-v-buckler-judgment/",
           "attribute": "a[href]",
           "url": "/research/%3E%2A.html"
         }
@@ -2258,6 +2258,33 @@
       ]
     },
     {
+      "kind": "nav",
+      "path": "/research/email/reference/19eb764ad3726de5/",
+      "references": 10,
+      "examples": [
+        {
+          "from": "/research/artifacts/ghf-e106-r97-a1/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/19eb764ad3726de5/"
+        },
+        {
+          "from": "/research/artifacts/ghf-e106-r97-a1/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/19eb764ad3726de5/"
+        },
+        {
+          "from": "/research/artifacts/ghf-e106-r98-a1/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/19eb764ad3726de5/"
+        },
+        {
+          "from": "/research/artifacts/ghf-e106-r98-a1/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/19eb764ad3726de5/"
+        }
+      ]
+    },
+    {
       "kind": "resource",
       "path": "/dartboard/fonts/barlow-latin-300-normal.woff2",
       "references": 9,
@@ -3393,6 +3420,87 @@
     },
     {
       "kind": "nav",
+      "path": "/research/email/reference/1a0cf0a5c1c2a0a0/",
+      "references": 6,
+      "examples": [
+        {
+          "from": "/research/artifacts/ghf-e106-r15-a1/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/1a0cf0a5c1c2a0a0/"
+        },
+        {
+          "from": "/research/artifacts/ghf-e106-r15-a1/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/1a0cf0a5c1c2a0a0/"
+        },
+        {
+          "from": "/research/artifacts/ghf-e106-r15-a2/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/1a0cf0a5c1c2a0a0/"
+        },
+        {
+          "from": "/research/artifacts/ghf-e106-r15-a2/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/1a0cf0a5c1c2a0a0/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/research/email/reference/19e6f0e4a747d5bc/",
+      "references": 6,
+      "examples": [
+        {
+          "from": "/research/artifacts/ghf-e106-r40-a3/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/19e6f0e4a747d5bc/"
+        },
+        {
+          "from": "/research/artifacts/ghf-e106-r40-a3/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/19e6f0e4a747d5bc/"
+        },
+        {
+          "from": "/research/artifacts/ghf-e106-r40-a1/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/19e6f0e4a747d5bc/"
+        },
+        {
+          "from": "/research/artifacts/ghf-e106-r40-a1/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/19e6f0e4a747d5bc/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/research/email/reference/1a10c2ac609d288e/",
+      "references": 6,
+      "examples": [
+        {
+          "from": "/research/artifacts/ghf-e106-r33-a3/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/1a10c2ac609d288e/"
+        },
+        {
+          "from": "/research/artifacts/ghf-e106-r33-a3/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/1a10c2ac609d288e/"
+        },
+        {
+          "from": "/research/artifacts/ghf-e106-r33-a1/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/1a10c2ac609d288e/"
+        },
+        {
+          "from": "/research/artifacts/ghf-e106-r33-a1/",
+          "attribute": "a[href]",
+          "url": "/research/email/reference/1a10c2ac609d288e/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
       "path": "/online/hubspot/",
       "references": 5,
       "examples": [
@@ -3955,114 +4063,6 @@
           "from": "/forensic/court-of-appeal/",
           "attribute": "a[href]",
           "url": "/forensic/wiki/evidence-library/ghf-e141-31-july-1987-court-of-appeal-judgment-bp-properties-v-buckler/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/kissed-frogs/research/book-research-findings.csv",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/kissed-frogs/kf-52-peoples-collection-great-house-farm-near-cowbridge/",
-          "attribute": "a[href]",
-          "url": "/kissed-frogs/research/book-research-findings.csv"
-        },
-        {
-          "from": "/kissed-frogs/kf-51-thomas-vaughan-of-hergest-journal/",
-          "attribute": "a[href]",
-          "url": "/kissed-frogs/research/book-research-findings.csv"
-        },
-        {
-          "from": "/kissed-frogs/kf-55-nlw-lockwood-l11-cydwin-lease-assignment/",
-          "attribute": "a[href]",
-          "url": "/kissed-frogs/research/book-research-findings.csv"
-        },
-        {
-          "from": "/kissed-frogs/kf-53-cardiff-times-john-williams-of-llandough-farm-1904/",
-          "attribute": "a[href]",
-          "url": "/kissed-frogs/research/book-research-findings.csv"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/evidence-library/william-buckler-1983-diary-two-handwritten-sums/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/rg_williambuckler1983diarytwohandwrittensum/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/william-buckler-1983-diary-two-handwritten-sums/"
-        },
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/william-buckler-1983-diary-two-handwritten-sums/"
-        },
-        {
-          "from": "/docs/ghf_evidence/ev_0062/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/william-buckler-1983-diary-two-handwritten-sums/"
-        },
-        {
-          "from": "/research/agent-index/",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/william-buckler-1983-diary-two-handwritten-sums/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-addition-a-122-8-october-2026/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/rg_forensicregisteradditiona1228october2026/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-addition-a-122-8-october-2026/"
-        },
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-addition-a-122-8-october-2026/"
-        },
-        {
-          "from": "/docs/ghf_evidence/ev_0020/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-addition-a-122-8-october-2026/"
-        },
-        {
-          "from": "/research/agent-index/",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-addition-a-122-8-october-2026/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/scrutiny-and-accountability/government-public-authority-involvement/persimmon-forensic-institutional-review/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/ir_persimmonforensicinstitutionalreview/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/persimmon-forensic-institutional-review/"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_institutionalreviewcoverageregister/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/persimmon-forensic-institutional-review/"
-        },
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/persimmon-forensic-institutional-review/"
-        },
-        {
-          "from": "/research/agent-index/",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/persimmon-forensic-institutional-review/"
         }
       ]
     }
