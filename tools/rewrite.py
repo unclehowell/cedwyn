@@ -139,6 +139,8 @@ def rw(u, tid, link, page_rel):
     if re.match(r'(?i)^[a-z][a-z0-9+.-]*:', s): return u if not link else '#'
     if s.startswith('/'):
         if s == '/': stats['prefixed'] += 1; return '/' + tid + '/'
+        if tid == 'wiki' and link and s.startswith('/wp-json/'):   # 9 Nov 2026 (#14): same rule for a root-relative wiki API link
+            stats['outbound'] += 1; return '/wayback/go/?u=' + urllib.parse.quote('https://greathousefarmwiki.wordpress.com' + s, safe='')
         if s.startswith(RESERVED): return u
         # 9 Nov 2026 (site audit 7 Nov #3/#10/#11/#13): a path that already names a theme (/spill/llms.txt on spill,
         # /dartboard/ on chess, /research/... on nomenclature) is a site path already; the prefix made /spill/spill/...,
