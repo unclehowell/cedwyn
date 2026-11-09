@@ -655,7 +655,7 @@ openers.forEach(function(button){{
 </body>
 </html>
 """
-    out = page(sections, 'Tŷ Mawr (Great House Farm), Llandough · Cedwyn Estate', 'Tŷ Mawr (Great House Farm), Llandough, Wales: history, records and BP Properties v Buckler [1987]. Guided tour, e-books, and Great House II planned in Patagonia.', l, '/cedwyn/home/', None, T, n, body)
+    out = page(sections, 'Tŷ Mawr (Great House), Llandough · Cedwyn Estate', 'Tŷ Mawr (Great House), the manorial house of Llandough, Wales: history, records and BP Properties v Buckler [1987]. Guided tour, e-books, and Great House II planned in Patagonia.', l, '/cedwyn/home/', None, T, n, body)
     out = out.replace('</style>', LANDING_CSS + '</style>', 1)
     return out.replace('<head>\n', '<head>\n' + pre + '\n', 1)
 
