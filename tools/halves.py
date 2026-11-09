@@ -983,7 +983,7 @@ def run(dist, cfg):
         # The Network placeholder is a deliberately unlinked, link-free page; other generated pages keep the agent footer.
         if pth.parent.name != 'network': agent_footer.inject(pth, False)
     w = (dist / 'wales' / 'index.html').read_text(encoding='utf-8')
-    sections.check_wales(w); sections.check_wales((dist / 'index.html').read_text(encoding='utf-8')); check_wales_house(w); check_tour_citations(w, H)
+    proper = sections.theme_proper_names(cfg); sections.check_wales(w, proper); sections.check_wales((dist / 'index.html').read_text(encoding='utf-8'), proper); check_wales_house(w); check_tour_citations(w, H)
     for pth in pages:
         t = pth.read_text(encoding='utf-8'); m = re.search(r'<main\b.*?</main>', t, flags=re.S)
         out = [h for h in re.findall(r'href="([^"]+)"', m.group(0)) if re.match(r'^(https?:)?//', h)]

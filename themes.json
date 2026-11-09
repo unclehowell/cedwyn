@@ -8,6 +8,7 @@
    "/patagonia/": "patagonia",
    "/wales/": "wales",
    "/cyberspace/": "cyberspace",
+   "/fcg/": "fcg",
    "/": "dartboard"
   }
  },
@@ -380,16 +381,14 @@
   },
   {
    "id": "fcg",
-   "title": "FCG · Security Clearance",
+   "title": "FCG · Fraud, Concealment and Government involvement",
    "cy": "FCG · Clirio Diogelwch",
    "es": "FCG · Habilitación de Seguridad",
-   "live": "https://fcg.bucklerfamily.estate/",
-   "hosts": [
-    "fcg.bucklerfamily.estate"
-   ],
+   "live": "https://bucklerfamily.estate/fcg/",
+   "hosts": [],
    "paths": [],
-   "desc": "Clearance",
-   "crawl": "https://fcg.bucklerfamily.estate/",
+   "desc": "Fraud, Concealment and Government involvement — Security Clearance",
+   "crawl": null,
    "group": "research",
    "snapshot_branch": "section/fcg"
   },
