@@ -85,13 +85,8 @@ async function fromStatic(request, env, q) {
 export async function onRequestGet({ request, env }) {
   const q = new URL(request.url).searchParams.get('q') || '';
   if (!q.trim()) return json({ error: 'Add ?q= with what you are looking for.' }, 400);
-  if (env.DB) {
-    try {
-      const out = await fromD1(env.DB, q);
-      return json({ q, source: 'd1', ...out });
-    } catch (_e) {
-      /* fall through */
-    }
-  }
+  // The versioned API snapshot is generated alongside kb.json by this repository's
+  // daily GitHub Actions release. It is the single source for the public search API;
+  // do not serve a stale D1 mirror ahead of the released Q&A dataset.
   return json({ q, source: 'static', ...(await fromStatic(request, env, q)) });
 }
