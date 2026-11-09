@@ -30,3 +30,5 @@
 - Builds of the Cedwyn site take about 30–35 minutes; wait with a bounded loop, then verify.
 - Disk is shared and tight: delete temporary files; keep large media off the box.
 - Preflight before long or quota-heavy steps (standing order 99): estimate from recent runs of the same kind, check every binding limit minus what other scheduled jobs have reserved, defer what will not fit, and fall back to the cheapest open item that does.
+- Comment flywheel (from 9 Nov 2026, every 30 minutes, in slots clear of the issue-engagement runs): comments on issues and tasks raised by other seats, only where it adds a primary source, a concrete fix or next step, a risk or a contradiction with the record, or a link to a related or duplicate item; otherwise it skips. Every comment is signed, a run posts at most 3, a day at most 30, and an item gets one comment until someone else adds to it.
+- Before any job, record it first (standing order 100); the agent library keeps its own cycle log as an issue in the main repository.

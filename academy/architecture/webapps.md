@@ -1,8 +1,8 @@
 # Webapps
 
-Every webapp on the site (formerly called themes): 59 in the registry, each served at its own path, each on its own branch or snapshot. The state column is how hard-coded its content is today; the view rule is the selection that will feed its own view database; the wave is its work package. Machine-readable: [architecture.json](architecture.json).
+Every webapp on the site (formerly called themes): 60 in the registry, each served at its own path, each on its own branch or snapshot. The state column is how hard-coded its content is today; the view rule is the selection that will feed its own view database; the wave is its work package. Machine-readable: [architecture.json](architecture.json).
 
-States: BUILT 2 · BUILT, 3 · DATA-DRIVEN 2 · GENERATED 1 · HARD-CODED 16 · LIVE 5 · MIXED 13 · NEW 2 · SNAPSHOT 15.
+States: BUILT 2 · BUILT, 3 · DATA-DRIVEN 2 · GENERATED 1 · HARD-CODED 16 · LIVE 5 · MIXED 13 · NEW 3 · SNAPSHOT 15.
 
 - **DATA-DRIVEN**: pages rendered from the webapp's view of the central catalogue.
 - **GENERATED**: generated on main from repository data files.
@@ -50,6 +50,7 @@ States: BUILT 2 · BUILT, 3 · DATA-DRIVEN 2 · GENERATED 1 · HARD-CODED 16 · 
 | Peekaboo | `/peekaboo/` | Records that appeared, changed or were relabelled in outside catalogues and collections, each with its dated evidence (webapp 47 of 59) | branch section/peekaboo (static snapshot) | its own data file synced from the central catalogue by tag | BUILT, awaiting merge of its menu entry | one card per record observation with its catalogue ids | standalone webapp, 3 Nov 2026 |
 | Theories | `/theories/` | The project's working theories, each linked to its evidence ids in the central catalogue, with what supports and what cuts against it (webapp 48 of 59) | branch section/theories (static snapshot) | its own data file synced from main | BUILT, awaiting merge of its menu entry | one card per theory with its evidence ids | standalone webapp, 3 Nov 2026 |
 | Display settings | `/settings/` | Light or dark, font and text size for every page of the site, kept in the reader's own browser only; the shared boot script applies the choice before first paint | branch theme-settings (public folder), registered in main's section list | none; the choice lives in the browser | BUILT, registered on main, awaiting the next site build | one settings form; the choice follows the reader to every page and every open tab | site-wide shell feature, 3 Nov 2026 |
+| Great House II in 3D | `/argentina-3d/` |  | branch section/argentina-3d | new in the registry; not yet audited | NEW (not yet audited) | to be written | to be assigned |
 | The Release Machine | `/releases/` | Publication-date sequencer, 1987-2026: each line is a related document placed at its publication date, titles hyperlinked to sources. | branch releases | new in the registry; not yet audited | NEW (not yet audited) | to be written | to be assigned |
 
 ## A story to be retold

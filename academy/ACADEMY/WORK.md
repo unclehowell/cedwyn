@@ -1,6 +1,6 @@
 # Work board
 
-Step 3 of 3. **136 open jobs**, regenerated every academy cycle from real gaps (last: 2026-11-08 09:43 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
+Step 3 of 3. **136 open jobs**, regenerated every academy cycle from real gaps (last: 2026-11-09 22:00 UTC). Each job has an id, its inputs and a definition of done. Claim one, do it, submit it as [Contributing](CONTRIBUTING.md) describes. Machine-readable: [work.json](../work.json).
 
 ## Find a missing record (88)
 
@@ -401,9 +401,9 @@ Step 3 of 3. **136 open jobs**, regenerated every academy cycle from real gaps (
 
 ## Fix broken internal links (5)
 
-- **J-5DEF91** · 2 broken internal link(s) on /wayback/  
+- **J-5DEF91** · 1 broken internal link(s) on /wayback/  
   *Section:* wayback · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
-  *Inputs:* /wayback/; /wayback/websites/index.json; /wayback/text/_treeview.json
+  *Inputs:* /wayback/; /dartboard/catalogue/
 - **J-6974FC** · 3 broken internal link(s) on /cloudflare/  
   *Section:* cloudflare · *Done when:* Every listed link opens a page (fixed, redirected, or removed with the text kept).
   *Inputs:* /cloudflare/; /cloudflare/cloudflare/api/snapshot; /cloudflare/cloudflare/api/llms.txt; /cloudflare/cloudflare/api/mcp

@@ -44,7 +44,8 @@ The sections of cedwyn.bucklerfamily.estate as registered in the site registry (
 | Cedwyn Pages | /directory/ | Interactive |  |
 | Great House Farm II · Patagonia Museum | /patagonia/ | Historic artifacts |  |
 | Virtual Tour · Wales | /wales/ | Interactive |  |
-| Terrain · Cedwyn Estate in 3D | /terrain/ | Interactive |  |
+| Wales in 3D · Llandough and Leckwith | /terrain/ | Interactive |  |
+| Great House II in 3D | /argentina-3d/ | Interactive |  |
 | The Digital Estate | /cyberspace/ | Interactive |  |
 | Gift Shop & Marketplace | /shop/ | A story to be retold |  |
 | Cedwyn · documentary | /documentary/ | A story to be retold | Cedwyn, a documentary (a tab.bot production): one door a day, a two-minute scene from the whole chronology; clips are stored in the film's storage repository and played inline. |
