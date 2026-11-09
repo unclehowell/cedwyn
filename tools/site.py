@@ -7,6 +7,22 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 CFG = json.load(open(ROOT / 'themes.json'))
 DIST = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else 'dist')
 shutil.copytree(ROOT / 'web', DIST, dirs_exist_ok=True)
+
+# Keep the story hero asset in the final shared overlay, after binary deduplication.
+# The Case Office uses the same existing tight-cropped survey photo, without scan margins.
+_app_home = DIST / 'app' / 'index.html'
+if _app_home.is_file():
+    _app_html = _app_home.read_text(encoding='utf-8')
+    _old_bg = '/fb/img/1988-cadw-survey-photograph-of-the-farmhouse-29-july-19.jpg'
+    _app_html = _app_html.replace(_old_bg, '/story/media/1988-cadw-farmhouse.jpg')
+    _app_html = _app_html.replace('class="hero-in"', 'class="hero-in ghf-ui"')
+    _app_html = _app_html.replace('class="hero-bg"', 'class="hero-bg ghf-bgimg"')
+    _app_html = _app_html.replace('class="cap"', 'class="cap ghf-ui"')
+    _bg_css = '<style id="case-office-viewport-background">.hero-bg{width:100vw;max-width:100%;background-size:100% 100%,cover;background-position:center,center 35%}</style>'
+    if 'id="case-office-viewport-background"' not in _app_html:
+        _app_html = _app_html.replace('</head>', _bg_css + '</head>')
+    _app_home.write_text(_app_html, encoding='utf-8')
+
 # Publish the canonical book-evidence CSV after theme assembly. Keep it accessible at a stable public URL.
 _book_register = ROOT / 'web' / 'research' / 'book-research-findings.csv'
 if _book_register.is_file():
