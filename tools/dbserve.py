@@ -45,7 +45,7 @@ def _datafile(v): return bool(DATAFILE.search(v.strip().split('#')[0].split('?')
 SCRIPTDATA = re.compile(r"""["'`]((?![a-z][\w+.-]*:)[^"'`\s<>()]{1,200}?\.(?:json|geojson))(?:\?[^"'`\s<>]*)?["'`]""", re.I)
 SCRIPTIMG = re.compile(r"""["'`]((?![a-z][\w+.-]*:|/)[^"'`\s<>()]{1,200}?\.(?:webp|png|jpe?g))(?:\?[^"'`\s<>]*)?["'`]""", re.I)
 VENDOR = re.compile(r'(^|/)(vendor|node_modules)/|\.min\.m?js$', re.I)
-DIRINDEX = re.compile(r'(^|/)_treeview\.json$|^/wayback/websites/(index|moved)\.json$', re.I)
+DIRINDEX = re.compile(r'(^|/)_treeview\.json$|^/wayback/websites/(index|moved)\.json$|^/[^/]+/api/[^/]+\.json$', re.I)   # + an app's static API file (/qa/api/qa.json)
 EXTRA_CAP = 300
 def resolve(base_rel, u):
     u = u.strip().split('#')[0].split('?')[0]
@@ -155,7 +155,7 @@ def main():
             or ('webapp database / A2UI surface (read without a service worker)' if APPDB.search(path) else None) \
             or ('download file (.csv opened by a plain link, outside the service worker)' if path.lower().endswith('.csv') else None)
     for path in paths:
-        if DIRINDEX.search(path): extra.setdefault(path, (1, 'directory index (_treeview.json, wayback websites index)'))
+        if DIRINDEX.search(path): extra.setdefault(path, (1, 'directory index or static API file (_treeview.json, wayback websites index, /<app>/api/*.json)'))
     cand = sorted((v[0], p) for p, v in extra.items() if p in paths and not base_why(p) and (DIST / p.lstrip('/')).is_file())
     allowed = {p for _, p in cand[:EXTRA_CAP]}; capped = [p for _, p in cand[EXTRA_CAP:]]
     for path in sorted(paths):
