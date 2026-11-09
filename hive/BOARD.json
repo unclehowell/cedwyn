@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08T08:31:16.100Z",
+  "updated": "2026-11-09T09:17:34Z",
   "schema": "metadata only: id, record, version, status, turn, open_issues, last_change, last_agent, rounds (versions written so far); events: [{at, draft, version, agent, event}], newest last. Never email text.",
   "drafts": [
     {
@@ -7868,7 +7868,7 @@
       "record": "HubSpot task 540852133079",
       "version": "v0.2.0",
       "status": "SKIPPED ChatGPT — IDLE; QUEUED BEHIND GROK TASK 526363862238",
-      "turn": "queued behind Grok's existing live assignment task 526363862238 (v0.1.0); resume after it clears",
+      "turn": "queued behind Grok's existing live assignment task 526363862238; live job-queue discovery unavailable to ChatGPT seat; no new job claimed",
       "open_issues": 2,
       "last_change": "2026-11-08T06:46:00Z",
       "last_agent": "Tab",
@@ -7888,7 +7888,7 @@
       "agents": [],
       "stage": "QUEUED",
       "pct_at": "2026-11-08T08:14:56Z",
-      "last_action_at": "2026-11-08T08:14:56Z",
+      "last_action_at": "2026-11-09T09:17:34Z",
       "last_action_by": "ChatGPT GPT-6",
       "version_reviews": 0,
       "version_distinct_agents": 0,
