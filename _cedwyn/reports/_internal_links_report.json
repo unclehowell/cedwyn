@@ -3,13 +3,13 @@
   "pages_scanned": 14717,
   "references_checked": {
     "resource": 366903,
-    "nav": 691087
+    "nav": 691170
   },
   "database_backed_paths": 7663,
-  "unique_missing_destinations": 2331,
-  "missing_references": 62891,
-  "missing_navigation_references": 36438,
-  "missing_resource_references": 26453,
+  "unique_missing_destinations": 2328,
+  "missing_references": 62907,
+  "missing_navigation_references": 36463,
+  "missing_resource_references": 26444,
   "unique_broken_fragments": 3121,
   "broken_fragment_references": 5958,
   "form_or_endpoint_actions_not_checked": {
@@ -721,7 +721,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 36,
+      "references": 35,
       "examples": [
         {
           "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
@@ -739,7 +739,7 @@
           "url": "/research/%3E%2A.html"
         },
         {
-          "from": "/research/evidence/ev-0080-bp-properties-v-buckler-judgment/",
+          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
           "attribute": "a[href]",
           "url": "/research/%3E%2A.html"
         }
@@ -3798,6 +3798,33 @@
     },
     {
       "kind": "nav",
+      "path": "/forensic/email/reference/1a1b19942f38a849",
+      "references": 5,
+      "examples": [
+        {
+          "from": "/forensic/journal/",
+          "attribute": "a[href]",
+          "url": "/forensic/email/reference/1a1b19942f38a849"
+        },
+        {
+          "from": "/forensic/national-archives/",
+          "attribute": "a[href]",
+          "url": "/forensic/email/reference/1a1b19942f38a849"
+        },
+        {
+          "from": "/forensic/journal/national-archives/",
+          "attribute": "a[href]",
+          "url": "/forensic/email/reference/1a1b19942f38a849"
+        },
+        {
+          "from": "/forensic/journal/ordnance-survey/",
+          "attribute": "a[href]",
+          "url": "/forensic/email/reference/1a1b19942f38a849"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
       "path": "/forensic/forensic/glamorgan-archives/",
       "references": 5,
       "examples": [
@@ -4036,33 +4063,6 @@
           "from": "/forensic/welsh-office-wales-office/",
           "attribute": "a[href]",
           "url": "/forensic/wiki/evidence-library/ghf-e090-n07-chainsaw-farmer-vows-to-fight-on/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/forensic/wiki/evidence-library/ghf-e141-31-july-1987-court-of-appeal-judgment-bp-properties-v-buckler/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/forensic/npcc/",
-          "attribute": "a[href]",
-          "url": "/forensic/wiki/evidence-library/ghf-e141-31-july-1987-court-of-appeal-judgment-bp-properties-v-buckler/"
-        },
-        {
-          "from": "/forensic/bp-properties-bp-pension-trust/",
-          "attribute": "a[href]",
-          "url": "/forensic/wiki/evidence-library/ghf-e141-31-july-1987-court-of-appeal-judgment-bp-properties-v-buckler/"
-        },
-        {
-          "from": "/forensic/bp-properties-bp-pension-trust/",
-          "attribute": "a[href]",
-          "url": "/forensic/wiki/evidence-library/ghf-e141-31-july-1987-court-of-appeal-judgment-bp-properties-v-buckler/"
-        },
-        {
-          "from": "/forensic/court-of-appeal/",
-          "attribute": "a[href]",
-          "url": "/forensic/wiki/evidence-library/ghf-e141-31-july-1987-court-of-appeal-judgment-bp-properties-v-buckler/"
         }
       ]
     }
