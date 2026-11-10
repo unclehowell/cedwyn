@@ -61,3 +61,18 @@ details.tracked a{color:var(--fg)}
 .abs{margin:1.2rem 0;padding:.8rem;border:1px solid var(--line);background:var(--panel)}.abs h2{font-size:1.05rem;margin:0 0 .4rem}
 .abs-l{list-style:none;margin:0;padding:0}.abs-l li{padding:.4rem 0;border-top:1px solid var(--line);overflow-wrap:anywhere;font-size:.92rem}
 .abs-l a{color:var(--fg)}.abs-l .tag{font-size:.72rem;margin-right:.3rem}
+
+/* 10 Nov 2026 (v3.3.0): verified later judicial citations to BP Properties Ltd v Buckler */
+.citations{margin:1.25rem 0;padding:.9rem;border:1px solid var(--line);background:var(--panel)}
+.citations h2{font-size:1.08rem;line-height:1.3;margin:0 0 .45rem}
+.citations .ci-source{margin:.4rem 0 .7rem;font-size:13px;color:var(--mut)}
+.citations .ci-source a,.citations .ci-link,.citations .ci-check a{color:var(--fg)}
+.citations .ci-list{list-style:none;margin:0;padding:0}
+.citations .ci-list li{padding:.75rem 0;border-top:1px solid var(--line)}
+.citations .ci-list h3{font-size:.98rem;line-height:1.35;margin:0 0 .25rem;font-weight:650}
+.citations .ci-meta{font-size:12px;letter-spacing:.02em;color:var(--mut);margin:0 0 .3rem}
+.citations .ci-list li>p:not(.ci-meta){font-size:14px;color:#d5d5d5;margin:.25rem 0 .45rem}
+.citations .ci-link{display:inline-block;font-size:13px;text-underline-offset:3px;min-height:24px}
+.citations .ci-check{margin-top:.65rem;border-top:1px solid var(--line);padding-top:.45rem}
+.citations .ci-check>summary{cursor:pointer;font-size:13px;color:var(--mut);padding:.3rem 0}
+.citations .ci-check p{font-size:13px;color:#cfcfcf;margin:.5rem 0}
