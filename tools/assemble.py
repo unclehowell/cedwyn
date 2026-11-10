@@ -206,7 +206,11 @@ def fetch_split_repo(repo, out, theme):
 def one(t):
     tid = t['id']; out = DIST / tid; shutil.rmtree(out, ignore_errors=True); out.mkdir(parents=True)
     t0 = time.time(); how = None; n = 0
-    # REPO SPLIT step 3 (#311): prefer dedicated repo when marked deploy=repo
+    # REPO SPLIT step 3 (#311): prefer the dedicated source repository when marked deploy=repo.
+    # A content push to that app repository is not itself a Cloudflare Pages publication.
+    # This parent build clones its declared repo_branch (main by default), records the exact
+    # source commit, assembles the app under dist/, and publishes the combined site to `site`.
+    # Keep the legacy section branch as a mirror only; do not patch the old branch or site output.
     sa = SPLIT.get(tid) or SPLIT.get(t.get('branch') or '') or SPLIT.get(t.get('snapshot_branch') or '')
     if sa and sa.get('deploy') == 'repo' and sa.get('repo'):
         n, how, split_meta = fetch_split_repo(sa['repo'], out, t)
