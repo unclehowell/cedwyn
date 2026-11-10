@@ -129,6 +129,14 @@
       "deploy": "repo"
     },
     {
+      "app": "Gifts",
+      "repo": "unclehowell/cedwyn-gifts",
+      "page": "/gifts/",
+      "mode": "split-repo",
+      "deploy": "repo",
+      "note": "new webapp, slot 56 of 59 (cedwyn#551); no legacy branch"
+    },
+    {
       "app": "Cyberspace",
       "repo": "unclehowell/cedwyn-cyberspace",
       "old_branch": "section/cyberspace",
