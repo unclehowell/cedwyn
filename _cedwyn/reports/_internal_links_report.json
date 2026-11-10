@@ -2,13 +2,13 @@
   "audit": "Cedwyn internal HTML/CSS links and fragments",
   "pages_scanned": 14717,
   "references_checked": {
-    "resource": 366903,
-    "nav": 691170
+    "resource": 366907,
+    "nav": 691202
   },
-  "database_backed_paths": 7663,
-  "unique_missing_destinations": 2328,
-  "missing_references": 62907,
-  "missing_navigation_references": 36463,
+  "database_backed_paths": 7664,
+  "unique_missing_destinations": 2329,
+  "missing_references": 62916,
+  "missing_navigation_references": 36472,
   "missing_resource_references": 26444,
   "unique_broken_fragments": 3121,
   "broken_fragment_references": 5958,
@@ -3825,6 +3825,33 @@
     },
     {
       "kind": "nav",
+      "path": "/forensic/email/reference/1a1a0f30d23c5fdf",
+      "references": 5,
+      "examples": [
+        {
+          "from": "/forensic/journal/",
+          "attribute": "a[href]",
+          "url": "/forensic/email/reference/1a1a0f30d23c5fdf"
+        },
+        {
+          "from": "/forensic/national-archives/",
+          "attribute": "a[href]",
+          "url": "/forensic/email/reference/1a1a0f30d23c5fdf"
+        },
+        {
+          "from": "/forensic/journal/companies-house/",
+          "attribute": "a[href]",
+          "url": "/forensic/email/reference/1a1a0f30d23c5fdf"
+        },
+        {
+          "from": "/forensic/journal/companies-house/",
+          "attribute": "a[href]",
+          "url": "/forensic/email/reference/1a1a0f30d23c5fdf"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
       "path": "/forensic/forensic/glamorgan-archives/",
       "references": 5,
       "examples": [
@@ -4036,33 +4063,6 @@
           "from": "/forensic/heneb/",
           "attribute": "a[href]",
           "url": "/forensic/wiki/evidence-library/ghf-e184-heneb-schedule-of-records-and-16-october-response/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/forensic/wiki/evidence-library/ghf-e090-n07-chainsaw-farmer-vows-to-fight-on/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/forensic/south-wales-police/",
-          "attribute": "a[href]",
-          "url": "/forensic/wiki/evidence-library/ghf-e090-n07-chainsaw-farmer-vows-to-fight-on/"
-        },
-        {
-          "from": "/forensic/npcc/",
-          "attribute": "a[href]",
-          "url": "/forensic/wiki/evidence-library/ghf-e090-n07-chainsaw-farmer-vows-to-fight-on/"
-        },
-        {
-          "from": "/forensic/court-of-appeal/",
-          "attribute": "a[href]",
-          "url": "/forensic/wiki/evidence-library/ghf-e090-n07-chainsaw-farmer-vows-to-fight-on/"
-        },
-        {
-          "from": "/forensic/welsh-office-wales-office/",
-          "attribute": "a[href]",
-          "url": "/forensic/wiki/evidence-library/ghf-e090-n07-chainsaw-farmer-vows-to-fight-on/"
         }
       ]
     }
