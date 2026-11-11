@@ -178,8 +178,13 @@
     var el = e.target, tag = el && el.tagName; if (!/^(IMG|SOURCE|VIDEO|AUDIO|EMBED|INPUT)$/.test(tag || '') || el.__cdbTried) return;
     var src = el.currentSrc || el.getAttribute('src'), dp = src && dbPath(src); if (!dp) return; el.__cdbTried = 1;
     if (!noSW()) { var u = new URL(src, location.href); u.searchParams.set('cdb', '1'); el.setAttribute('src', u.pathname + u.search); return; }
-    fromDB(dp).then(function (r) { if (r) el.setAttribute('src', URL.createObjectURL(new Blob([r.bytes], { type: r.mime }))); }, function () {});
+    fromDB(dp).then(function (r) { if (r) el.setAttribute('src', URL.createObjectURL(new Blob([r.bytes], { type: r.mime }))); else gone(el); }, function () { gone(el); });
   }, true);
+  // 5 Nov 2026: a picture that cannot load from its address or from the database is hidden, so no page shows a broken-image icon
+  // (seen on /patagonia/, /wiki/ and /wayback/ cards); it comes back by itself if a later src loads. - Sion's Tab agent
+  function gone(el) { if (!el || el.tagName !== 'IMG' || el.__cdGone) return; el.__cdGone = [el.style.getPropertyValue('display'), el.style.getPropertyPriority('display')]; el.setAttribute('data-cedwyn-missing', ''); el.style.setProperty('display', 'none', 'important'); }
+  document.addEventListener('error', function (e) { var el = e.target; if (!el || el.tagName !== 'IMG') return; if (el.__cdbTried && !el.__cdbSeen) { el.__cdbSeen = 1; return; } gone(el); }, true);
+  document.addEventListener('load', function (e) { var el = e.target, g = el && el.__cdGone; if (!g) return; el.__cdGone = null; el.removeAttribute('data-cedwyn-missing'); if (g[0]) el.style.setProperty('display', g[0], g[1]); else el.style.removeProperty('display'); }, true);
   var sa = Element.prototype.setAttribute, ATTRS = { src: 1, href: 1, action: 1, poster: 1, 'data-src': 1 };
   Element.prototype.setAttribute = function (n, v) {
     if (ATTRS[String(n).toLowerCase()] && typeof v === 'string') { v = fix(v); if (/^iframe$/i.test(this.tagName) && /UC2sN1VEs1WeLfBH8VmbvLWw|sionbuckler5713/i.test(v)) v = 'about:blank'; }
