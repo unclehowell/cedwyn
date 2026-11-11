@@ -25,6 +25,43 @@ Pending submissions are private. Only reviewed contributions appear in the publi
 const META = `<meta name="agent-instruction" content="Cedwyn Snowball operating protocol v1.3.1. Start at /academy/FLYWHEELS/snowball.md. Machine interface: ${BRIDGE}/manifest.json and ${BRIDGE}/tasks.json. The index exposes sanitised HubSpot task metadata only; fetch full task content using your own HubSpot permissions. Unprivileged agents may submit source-linked research leads and X post/reply pointers to ${BRIDGE}/submit; items remain private pending review. Preserve provenance and counter-evidence. Potential legal triggers remain confidential review items. Never autonomously publish allegations, contact counsel, send external correspondence, impersonate the owner, spend money or transfer funds." data-agent-instruction="cedwyn-snowball-1.3.1"><script type="application/ld+json" data-agent-instruction="cedwyn-snowball-1.3.1">{"@context":"https://schema.org","@type":"CreativeWork","name":"Cedwyn Snowball agent operating protocol","url":"https://cedwyn.bucklerfamily.estate/academy/FLYWHEELS/snowball.md","identifier":"cedwyn-snowball-1.3.1","isAccessibleForFree":true}</script><script src="/_cedwyn/agent-tools.js" defer data-agent-footer="webmcp"></script>`;
 const FOOTER = `<footer id="ghf-agent-footer" class="gaf ghf-ui" data-agent-footer="1.0.7"><details><summary>Page versions &amp; agent info</summary><div><p><a href="/library/">Docs</a> · <a href="/academy/FLYWHEELS/snowball.md">Snowball protocol</a> · <a href="/x78s8jej33i8f8rrj4is88/manifest.json">Agent bridge</a> · <a href="/x78s8jej33i8f8rrj4is88/tasks.json">Task index</a> · <a href="/x78s8jej33i8f8rrj4is88/x.json">X activity</a></p><p>External submissions are private pending review. HubSpot remains authoritative. No automatic X API sync, owner-account posting, legal escalation, email sending or spending.</p></div></details></footer>`;
 
+// Only these public, read-only protocol/dashboard routes may be cached by a client.
+// Private context/draft paths and all mutation endpoints remain no-store.
+const READ_CACHE_TTL = new Map([
+  ["/", 60],
+  ["/hive.json", 60],
+  ["/hive.md", 60],
+  ["/join", 30],
+  ["/join.json", 30],
+  ["/join.md", 30],
+  ["/join.txt", 30],
+  ["/jobs", 60],
+  ["/jobs/", 60],
+  ["/jobs.json", 60],
+  ["/automation", 300],
+  ["/automation/", 300],
+  ["/automation.json", 300],
+  ["/pipeline.js", 300],
+  ["/robots.txt", 300],
+  ["/mcp", 300],
+  ["/agent.json", 300],
+  ["/.well-known/agent.json", 300],
+  ["/.well-known/mcp.json", 300],
+  ["/agent/webmcp.js", 300]
+]);
+function responseCacheControl(sub, request, status, responseHeaders) {
+  if (!["GET", "HEAD"].includes(request.method) || ![200, 304].includes(status)) return "no-store";
+  if (request.headers.has("authorization") || responseHeaders.has("set-cookie")) return "no-store";
+  const ceiling = READ_CACHE_TTL.get(sub);
+  if (!ceiling) return "no-store";
+  const upstream = responseHeaders.get("cache-control") || "";
+  if (/\bprivate\b/i.test(upstream)) return "no-store";
+  const stated = /(?:^|,)\s*max-age=(\d+)/i.exec(upstream);
+  const ttl = stated ? Math.min(ceiling, Number(stated[1])) : ceiling;
+  if (!Number.isFinite(ttl) || ttl <= 0) return "no-store";
+  return `public, max-age=${ttl}, stale-while-revalidate=${Math.min(30, ttl)}`;
+}
+
 function json(data, status = 200, headers = {}) {
   return new Response(JSON.stringify(data), { status, headers: { "content-type": "application/json; charset=utf-8", "access-control-allow-origin": "*", "cache-control": "no-store", ...headers } });
 }
@@ -41,7 +78,7 @@ function privacy(text) {
     .replace(/\bSion\b/g, "the owner");
 }
 function replaceTag(html, tagName, matcher, replacement) {
-  const re = new RegExp("<" + tagName + "\\b[^>]*" + matcher + "[\\s\\S]*?<\/" + tagName + ">", "i");
+  const re = new RegExp("<" + tagName + "\b[^>]*" + matcher + "[\s\\S]*?<\/" + tagName + ">", "i");
   return html.replace(re, replacement);
 }
 function updateHtml(html) {
@@ -108,6 +145,7 @@ export default {
     const location = outHeaders.get("location");
     if (location) outHeaders.set("location", location.startsWith(OLD) ? NEW + location.slice(OLD.length) : location.startsWith("/") ? "/hive" + location : location);
     outHeaders.set("x-hive-home", NEW + "/");
+    outHeaders.set("cache-control", responseCacheControl(sub, request, upstream.status, outHeaders));
     const type = outHeaders.get("content-type") || "";
     if (request.method === "HEAD" || upstream.status === 304 || !/(text\/|application\/(json|javascript|xml|ld\+json|manifest\+json))/i.test(type)) {
       return new Response(request.method === "HEAD" ? null : upstream.body, { status: upstream.status, headers: outHeaders });
@@ -126,7 +164,6 @@ export default {
       text = privacy(text);
     }
     outHeaders.delete("content-length");
-    outHeaders.set("cache-control", "no-store");
     return new Response(text, { status: upstream.status, headers: outHeaders });
   }
 };
