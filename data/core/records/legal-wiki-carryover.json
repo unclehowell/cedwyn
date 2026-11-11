@@ -1,0 +1,56 @@
+{
+ "schema": "cedwyn-core/0.1.0",
+ "note": "Legal Wiki evidence pages not yet in the central catalogue, proposed add-only (catalogue-change). Checked 8 Nov 2026 against /api/catalogue (682 records): of 84 EV ids cited by webapps but missing from central, 79 are request/correspondence trackers (kept private by the core public-safety rule), 3 are held back on purpose (EV-0255, EV-0274, EV-0290) and 1 fails the public word screen (EV-0226); EV-0900 is the one public evidence record left.",
+ "updated": "2026-11-08",
+ "records": [
+  {
+   "id": "EV-0900",
+   "kind": "evidence",
+   "slug": "ev-0900-archaeology-1990-ggat-evaluation-and-1994-excavation",
+   "title": "Archaeology: 1990 GGAT evaluation and 1994 excavation",
+   "date": {
+    "display": "c.1880 to 2014 (timeline); records and the 1992 planning file read 21 Oct 2026",
+    "sort": 1880,
+    "precision": "range"
+   },
+   "description": "Timeline of heritage records, planning records, report and journal for the 1990 Glamorgan-Gwent Archaeological Trust evaluation at Great House Farm, Llandough, and the 1994 excavation of the Llandough early-medieval cemetery. Evidence label: OFFICIAL RECORD (HER, Coflein, ADS, online) · PRIMARY DOCUMENT HELD (1990 report, EV-0126) · PUBLISHED REPORT (Medieval Archaeology 49, 2005, full text read).",
+   "provenance": {
+    "holder": "Heneb HER GGATE003872 · GGATE000877 · 02038s · Coflein NPRN 20182 · NMR ref. 6524751 · Medieval Archaeology 49 (2005) · Morgannwg 38 (1994), Archaeological notes, p.123",
+    "reference": "Legal Wiki evidence page ev-0900-archaeology-1990-ggat-evaluation-and-1994-excavation (wiki page 8427, modified 23 Oct 2026); carried over to cedwyn-docs ghf_evidence/ev_0900 v1.0.0",
+    "date": "2026-10-23",
+    "obtained": "HELD (the 1990 report: EV-0126, transcription; online records read 21 Oct 2026)"
+   },
+   "related": [
+    "EV-0126",
+    "EV-0113",
+    "EV-0114",
+    "EV-0124",
+    "EV-0128",
+    "EV-0131",
+    "EV-0132",
+    "EV-0293"
+   ],
+   "sources": [
+    {
+     "text": "Great House Farm Legal Wiki, evidence page EV-0900 (wiki page 8427, 23 Oct 2026)",
+     "href": null
+    },
+    {
+     "text": "cedwyn-docs ghf_evidence/ev_0900 v1.0.0 (verbatim record table)",
+     "href": null
+    }
+   ],
+   "origin": "Legal Wiki evidence register, carried over to cedwyn-docs ghf_evidence/ev_0900",
+   "public": true,
+   "updated": "2026-11-08",
+   "rev": 1,
+   "changes": [
+    {
+     "rev": "1",
+     "date": "2026-11-08",
+     "note": "Added by an add-only catalogue-change proposal; awaiting the owner's yes."
+    }
+   ]
+  }
+ ]
+}
