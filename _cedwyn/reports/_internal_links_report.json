@@ -3,12 +3,12 @@
   "pages_scanned": 14717,
   "references_checked": {
     "resource": 366908,
-    "nav": 691248
+    "nav": 691268
   },
   "database_backed_paths": 7665,
   "unique_missing_destinations": 2330,
-  "missing_references": 62917,
-  "missing_navigation_references": 36473,
+  "missing_references": 62936,
+  "missing_navigation_references": 36492,
   "missing_resource_references": 26444,
   "unique_broken_fragments": 3121,
   "broken_fragment_references": 5958,
@@ -850,6 +850,33 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_layout/fixed-header.html",
           "attribute": "script[src]",
           "url": "../js/adminlte.js"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/dartboard/catalogue/",
+      "references": 25,
+      "examples": [
+        {
+          "from": "/wayback/",
+          "attribute": "a[href]",
+          "url": "/dartboard/catalogue/"
+        },
+        {
+          "from": "/authorities/",
+          "attribute": "a[href]",
+          "url": "/dartboard/catalogue/"
+        },
+        {
+          "from": "/dartboard/",
+          "attribute": "a[href]",
+          "url": "/dartboard/catalogue/?id=EV-0930"
+        },
+        {
+          "from": "/dartboard/",
+          "attribute": "a[href]",
+          "url": "/dartboard/catalogue/?id=EV-0970"
         }
       ]
     },
@@ -3145,33 +3172,6 @@
           "from": "/patagonia/",
           "attribute": "style-block[url()]",
           "url": "/dartboard/fonts/barlow-latin-700-normal.woff2"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/dartboard/catalogue/",
-      "references": 6,
-      "examples": [
-        {
-          "from": "/wayback/",
-          "attribute": "a[href]",
-          "url": "/dartboard/catalogue/"
-        },
-        {
-          "from": "/authorities/",
-          "attribute": "a[href]",
-          "url": "/dartboard/catalogue/"
-        },
-        {
-          "from": "/catalogue/",
-          "attribute": "a[href]",
-          "url": "/dartboard/catalogue/"
-        },
-        {
-          "from": "/docs/ghf_research/",
-          "attribute": "a[href]",
-          "url": "/dartboard/catalogue/"
         }
       ]
     },
