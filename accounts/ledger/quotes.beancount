@@ -1,0 +1,446 @@
+; Quotes and estimates received for copies, searches and records (memorandum ledger). Nothing here was paid.
+; Kept apart from the cash accounts in main.beancount and never added to them. Each entry is a fee or paid-copy offer a body made
+; in reply to a request (kind "quoted"), or our own estimate of a published fee (kind "estimate"). The amount is the headline figure
+; as quoted (one unit: first image, one hour, one search, shortest band, one document; the RICS line is its own all-volumes figure).
+; Offers with no figure are flagged ! and carry 0.00. price_text keeps the full price as written; vat records how VAT was stated.
+; Added 10 Nov 2026. free: whether the free FOI/EIR allowance (or a free route) came before the fee: yes / no / na (not FOI, a copy or statutory fee) / nc (not checked); free_basis and free_url give the legal basis.
+option "title" "Great House Farm (Tŷ Mawr) — quotes and estimates, not paid"
+option "operating_currency" "GBP"
+option "name_assets" "Quoted"
+option "name_equity" "Memo"
+
+2025-01-01 open Memo:NotPaid GBP
+2025-01-01 open Quoted:Quote GBP
+2025-01-01 open Quoted:Estimate GBP
+
+2025-11-26 * "RCAHMW (Royal Commission)" "High-resolution scans of microfiche and archive material (Great House Farm holdings)"
+  id: "PW-01"
+  kind: "quoted"
+  price_text: "£20 per high-resolution scan"
+  unit: "per scan"
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "FOIA + EIR (archive reproduction)"
+  free_basis: "Free to view; a copy can carry a reproduction charge (Fees Regulations reg 6; FOIA s.21 for records open to view)."
+  free_route: "View the items in the NMRW search room; the list of archive items came free."
+  free_url: "https://www.legislation.gov.uk/uksi/2004/3244/regulation/6"
+  evidence: "EV-0930, EV-1067"
+  Quoted:Quote   20.00 GBP
+  Memo:NotPaid
+
+2026-02-06 * "Glamorgan Archives" "Digital images of catalogued items (online order form)"
+  id: "PW-04"
+  kind: "quoted"
+  price_text: "£15.60 first image, £4.80 each further image; £60.00 per hour for multiple documents"
+  unit: "first image"
+  vat: "included"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "FOIA s.21 + Fees Regs reg 6 (archive copies)"
+  free_basis: "Copy charge for records open to view in the searchroom."
+  free_route: "Book a searchroom seat and view the items; a camera stand can be booked."
+  free_url: "https://glamarchives.gov.uk/visit/"
+  evidence: "EV-0970, EV-1386"
+  Quoted:Quote   15.60 GBP
+  Memo:NotPaid
+
+2026-05-29 ! "Glamorgan Archives" "Digital copies of any relevant records found (2026/2370)"
+  id: "PW-05"
+  kind: "quoted"
+  price_text: "quote offered, no figure given"
+  unit: ""
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "FOIA s.21 + Fees Regs reg 6 (archive copies)"
+  free_basis: "Copy charge for records open to view in the searchroom."
+  free_route: "Searchroom viewing."
+  free_url: "https://glamarchives.gov.uk/visit/"
+  evidence: "EV-1069"
+  Quoted:Quote   0.00 GBP
+  Memo:NotPaid
+
+2026-06-10 ! "RCAHMW (Royal Commission)" "Document summary service"
+  id: "PW-02"
+  kind: "quoted"
+  price_text: "per price list (figure not given in the reply)"
+  unit: ""
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "FOIA (service, not recorded information)"
+  free_basis: "A summary written to order is a service; FOIA gives access to recorded information as held (s.1)."
+  free_route: "Search-room viewing, offered in the same reply."
+  free_url: "https://www.legislation.gov.uk/ukpga/2000/36/section/1"
+  evidence: "EV-1121"
+  Quoted:Quote   0.00 GBP
+  Memo:NotPaid
+
+2026-06-15 * "Glamorgan Archives" "Digital copy of a newspaper extract"
+  id: "PW-06"
+  kind: "quoted"
+  price_text: "£19.50 (scanned image £3.40 + VAT, reproduction £12.85 + VAT)"
+  unit: "one item"
+  vat: "included in the £19.50 total"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "FOIA s.21 + Fees Regs reg 6 (archive copies)"
+  free_basis: "Copy charge for a record open to view in the searchroom."
+  free_route: "Searchroom viewing."
+  free_url: "https://glamarchives.gov.uk/visit/"
+  evidence: "EV-1142"
+  Quoted:Quote   19.50 GBP
+  Memo:NotPaid
+
+2026-08-21 * "Glamorgan Archives" "Copy certificates (two family records, 1990)"
+  id: "PW-07"
+  kind: "quoted"
+  price_text: "£38.50 next day or £12.50 standard post"
+  unit: "standard copy"
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "Statutory certificate fee (not FOI)"
+  free_basis: "A certified copy certificate carries the set certificate fee; FOI has no free allowance for certificates."
+  free_route: "Not checked."
+  free_url: ""
+  evidence: "EV-1332, EV-1404"
+  Quoted:Quote   12.50 GBP
+  Memo:NotPaid
+
+2026-08-24 * "Glamorgan Archives" "Staff research in burial and parish register entries"
+  id: "PW-08"
+  kind: "quoted"
+  price_text: "£60 (including VAT) for up to one hour, payable in advance"
+  unit: "per hour"
+  vat: "included"
+  status: "quote, not paid"
+  free: "yes"
+  free_regime: "FOIA s.21 / EIR reg 8(2)(b)"
+  free_basis: "The same reply offered a booked visit to view the registers in person, free."
+  free_route: "View in person (booked visit)."
+  free_url: "https://www.legislation.gov.uk/uksi/2004/3391/regulation/8"
+  evidence: "EV-1350"
+  Quoted:Quote   60.00 GBP
+  Memo:NotPaid
+
+2026-09-14 * "Glamorgan Archives" "Copy of DBDT79/1 (1877 lease) and its plan"
+  id: "PW-09"
+  kind: "quoted"
+  price_text: "£15.60 inclusive of VAT"
+  unit: "one copy"
+  vat: "included"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "FOIA s.21 + Fees Regs reg 6 (archive copies)"
+  free_basis: "Copy charge for a record open to view in the searchroom."
+  free_route: "Searchroom viewing."
+  free_url: "https://glamarchives.gov.uk/visit/"
+  evidence: "EV-1412"
+  Quoted:Quote   15.60 GBP
+  Memo:NotPaid
+
+2026-09-24 * "Glamorgan Archives" "Staff search of rate books UC/73/1–5 and later volumes, with copies of entries"
+  id: "PW-10"
+  kind: "quoted"
+  price_text: "£50 including copies of relevant entries"
+  unit: "one search"
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "yes"
+  free_regime: "FOIA s.21 / EIR reg 8(2)(b)"
+  free_basis: "The same reply (24 Sep 2026) points to the public searchroom, where the volumes can be read free."
+  free_route: "Searchroom viewing."
+  free_url: "https://www.legislation.gov.uk/uksi/2004/3391/regulation/8"
+  evidence: "EV-1468"
+  Quoted:Quote   50.00 GBP
+  Memo:NotPaid
+
+2026-09-24 * "Glamorgan Archives" "Staff search of planning minutes for 1992/00671/RES and what they lead to"
+  id: "PW-11"
+  kind: "quoted"
+  price_text: "£50 including copies of relevant pages"
+  unit: "one search"
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "yes"
+  free_regime: "FOIA s.21 / EIR reg 8(2)(b)"
+  free_basis: "The same reply (24 Sep 2026) points to the public searchroom, where the minutes can be read free."
+  free_route: "Searchroom viewing."
+  free_url: "https://www.legislation.gov.uk/uksi/2004/3391/regulation/8"
+  evidence: "EV-1468"
+  Quoted:Quote   50.00 GBP
+  Memo:NotPaid
+
+2026-09-29 ! "RCAHMW (Royal Commission)" "Aerial photograph searches and further searches (list of air-photo sorties; complex enquiries)"
+  id: "PW-03"
+  kind: "quoted"
+  price_text: "charged search, per price list (scans free for orders under five)"
+  unit: ""
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "no"
+  free_regime: "FOIA s.12 + EIR reg 8 (RCAHMW: £450 / 18 h)"
+  free_basis: "Asked as FOIA/EIR. Payment asked for air-photo searches per price list: no s.12 cost estimate, no s.16 advice to fit the £450 limit, and no free examination in place (EIR reg 8(2)(b)). Scans free under five."
+  free_route: "Free examination in place (EIR reg 8(2)(b)); a confirm-or-deny answer free within 18 h (FOIA s.1, s.12)."
+  free_url: "https://www.legislation.gov.uk/uksi/2004/3391/regulation/8"
+  evidence: "EV-1539, EV-1587, EV-1833, EV-1999"
+  Quoted:Quote   0.00 GBP
+  Memo:NotPaid
+
+2026-10-10 * "ITV Archive" "Digital copies of programmes from the archive"
+  id: "PW-15"
+  kind: "quoted"
+  price_text: "£70 up to 15 min; £95 up to 30 min; £145 up to 60 min; £195 up to 90 min; £245 over 90 min, per programme"
+  unit: "per programme, shortest band"
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "Not FOI: ITV is not a FOIA public authority"
+  free_basis: "ITV is not listed in FOIA Schedule 1 (Channel Four is); archive copies are a commercial sale."
+  free_route: "None under FOI."
+  free_url: "https://www.legislation.gov.uk/ukpga/2000/36/schedule/1"
+  evidence: "EV-1635, EV-1903"
+  Quoted:Quote   70.00 GBP
+  Memo:NotPaid
+
+2026-10-12 ! "The National Archives" "Search for the Valuation Office Survey 1910 entries (OS Glamorgan)"
+  id: "PW-16"
+  kind: "quoted"
+  price_text: "paid search under the Public Records Act fees regulations, no figure given"
+  unit: ""
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "yes"
+  free_regime: "FOIA s.16 + s.21 (TNA: £600 / 24 h)"
+  free_basis: "Reply of 12 Oct 2026 gave s.16 advice (identify the record, new request) and the free route: research the records at Kew. A further request was refused on 10 Nov 2026 as a repeat (s.14(2))."
+  free_route: "Research at Kew, free to visit."
+  free_url: "https://www.legislation.gov.uk/ukpga/2000/36/section/16"
+  evidence: "EV-1647"
+  Quoted:Quote   0.00 GBP
+  Memo:NotPaid
+
+2026-10-12 * "Companies House" "Archive documents for Mountjoy Ltd (1926) and later companies (COH2382411X)"
+  id: "PW-18"
+  kind: "quoted"
+  price_text: "£3 per document; £9 per pre-1973 accounts or annual return; £20 archive DVD"
+  unit: "per document"
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "Statutory fee (Companies House archive copies)"
+  free_basis: "Filed documents are reasonably accessible on payment (FOIA s.21(2)(a))."
+  free_route: "Documents already digitised are free on the Companies House service."
+  free_url: "https://www.legislation.gov.uk/ukpga/2000/36/section/21"
+  evidence: "EV-1641, EV-1929"
+  Quoted:Quote   3.00 GBP
+  Memo:NotPaid
+
+2026-10-15 * "Mount Stuart (Bute archive)" "Research visit to the Bute Estate (Glamorgan) records"
+  id: "PW-17"
+  kind: "quoted"
+  price_text: "£20 per day for research visits"
+  unit: "per day"
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "Not FOI: private archive"
+  free_basis: "Mount Stuart is a private trust outside FOIA; £20 a day for research visits."
+  free_route: "None found."
+  free_url: ""
+  evidence: "EV-1681"
+  Quoted:Quote   20.00 GBP
+  Memo:NotPaid
+
+2026-10-18 * "HM Land Registry" "Official copies of the register and title plan for the titles under INSPIRE 16823075, 16800052, 16777276 and 16800053"
+  id: "PW-E1"
+  kind: "estimate"
+  price_text: "£7 per document (published fee, our notes of 18 Oct 2026, not re-checked); 4 titles × 2 documents"
+  unit: "8 documents"
+  vat: "none (statutory fee)"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "Statutory fee (HM Land Registry official copies)"
+  free_basis: "£7 for a title register or a title plan online (gov.uk)."
+  free_route: "Property summary free on gov.uk; FOI to HM Land Registry for information that is not the register."
+  free_url: "https://www.gov.uk/search-property-information-land-registry"
+  evidence: "our notes"
+  Quoted:Estimate   56.00 GBP
+  Memo:NotPaid
+
+2026-10-22 ! "Glamorgan Archives" "Search of the closed 1988 Weekly Orders (South Wales Constabulary records)"
+  id: "PW-13"
+  kind: "quoted"
+  price_text: "paid search offered, no figure given"
+  unit: ""
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "no"
+  free_regime: "FOIA s.1, s.12, s.16 (council archive: £450 / 18 h)"
+  free_basis: "Closed volumes: no access offered, only a paid search. No FOIA handling (free answer within 18 h, or a s.12 or exemption notice) and no s.16 advice on the free FOI route, to the archive or to the depositing force."
+  free_route: "A FOI request, free up to 18 h (s.1, s.12)."
+  free_url: "https://www.legislation.gov.uk/ukpga/2000/36/section/16"
+  evidence: "EV-1800"
+  Quoted:Quote   0.00 GBP
+  Memo:NotPaid
+
+2026-10-23 ! "Cardiff Central Library" "Scan of Bute X.6(12) (1877 trustee accounts) via Glamorgan Archives; detailed research"
+  id: "PW-14"
+  kind: "quoted"
+  price_text: "scan cost via Glamorgan Archives; research charged, no figure given"
+  unit: ""
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "FOIA s.21 (library item open to view)"
+  free_basis: "Library scan and research charges for an item open to view."
+  free_route: "View Bute X.6(12) in person at Central Library (stated in the reply)."
+  free_url: "https://www.legislation.gov.uk/ukpga/2000/36/section/21"
+  evidence: "EV-1816"
+  Quoted:Quote   0.00 GBP
+  Memo:NotPaid
+
+2026-11-05 * "British Geological Survey" "PDF copies of mine and borehole plans (IDA 312230)"
+  id: "PW-19"
+  kind: "quoted"
+  price_text: "£12 + VAT per plan, or £18 + VAT where a hard copy must be scanned"
+  unit: "per plan"
+  vat: "plus VAT"
+  status: "quote, not paid"
+  free: "nc"
+  free_regime: "EIR reg 8 (BGS / UKRI)"
+  free_basis: "Mine and borehole plans are likely environmental information: a reasonable published charge is allowed, but not for examining in place. Whether in-place examination was offered: not checked."
+  free_route: "Not checked."
+  free_url: "https://www.legislation.gov.uk/uksi/2004/3391/regulation/8"
+  evidence: "EV-2028"
+  Quoted:Quote   12.00 GBP
+  Memo:NotPaid
+
+2026-11-06 * "Glamorgan Archives" "Staff searches of the remaining references (2026/4097): UC/73/1–5, DCVG/C/4/36, D696, DBDT/18/1, DBDT/79/1, ACA/8/2, estimated 1–3 hours each"
+  id: "PW-12"
+  kind: "quoted"
+  price_text: "£50 an hour plus VAT, including a digitised image of any item found"
+  unit: "per hour"
+  vat: "plus VAT"
+  status: "quote, not paid"
+  free: "yes"
+  free_regime: "FOIA s.21 / EIR reg 8(2)(b)"
+  free_basis: "Reply of 30 Sep 2026 (2026/4097b): the records can be accessed free in the public searchroom; the paid staff search is the alternative."
+  free_route: "Searchroom viewing."
+  free_url: "https://www.legislation.gov.uk/uksi/2004/3391/regulation/8"
+  evidence: "EV-1568, EV-2039"
+  Quoted:Quote   50.00 GBP
+  Memo:NotPaid
+
+2026-11-06 ! "Glamorgan Archives" "Research in the printed Cardiff Borough Council minutes BC/C/6/78–80 (Nov 1939–Nov 1942)"
+  id: "PW-E3"
+  kind: "estimate"
+  price_text: "at the £50 an hour plus VAT search rate (6 Nov 2026 quote); hours not estimated; free to view in person"
+  unit: "per hour"
+  vat: "plus VAT"
+  status: "quote, not paid"
+  free: "yes"
+  free_regime: "FOIA s.21 / EIR reg 8(2)(b)"
+  free_basis: "The printed minutes are open to read free in the public searchroom (reply of 30 Sep 2026)."
+  free_route: "Searchroom viewing."
+  free_url: "https://www.legislation.gov.uk/uksi/2004/3391/regulation/8"
+  evidence: "EV-2039"
+  Quoted:Estimate   0.00 GBP
+  Memo:NotPaid
+
+2026-11-10 * "RICS Library" "RICS Year Books 1969–1993 (25 annual directory volumes)"
+  id: "PW-20"
+  kind: "quoted"
+  price_text: "£10 + VAT per item retrieved, up to £250 + VAT for 25 volumes; scanning £15 + VAT per item up to 15 pages, £13 + VAT per further 15 pages; day pass £18 + VAT"
+  unit: "25 volumes, retrieval only"
+  vat: "plus VAT"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "Not FOI: RICS is a private chartered body"
+  free_basis: "RICS Library charges are a private service."
+  free_route: "None found (day pass £18 + VAT)."
+  free_url: ""
+  evidence: "reply of 2026-11-10"
+  Quoted:Quote   250.00 GBP
+  Memo:NotPaid
+
+2026-11-10 ! "The National Archives" "Copies of BD 28/89, HLG 49/704 and LT 13/3048"
+  id: "PW-E2"
+  kind: "estimate"
+  price_text: "copy order fee not yet quoted (free to view at Kew)"
+  unit: ""
+  vat: ""
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "FOIA s.21 (TNA records open to view)"
+  free_basis: "Copy order charge for records open to view at Kew."
+  free_route: "View at Kew, free to visit."
+  free_url: "https://www.nationalarchives.gov.uk/about/visit-us/"
+  evidence: "our notes"
+  Quoted:Estimate   0.00 GBP
+  Memo:NotPaid
+
+2026-11-10 ! "Holder not confirmed (council deed packets or HM Land Registry)" "The April 1942 conveyance and its plan, and the 29 March 1961 deed (GHF-E129)"
+  id: "PW-E4"
+  kind: "estimate"
+  price_text: "no price quoted; asked for in the Cardiff request of 10 Nov 2026"
+  unit: ""
+  vat: ""
+  status: "quote, not paid"
+  free: "nc"
+  free_regime: "Not known until the holder is confirmed"
+  free_basis: "No price quoted yet."
+  free_route: "Not checked."
+  free_url: ""
+  evidence: "our notes"
+  Quoted:Estimate   0.00 GBP
+  Memo:NotPaid
+
+2026-10-11 ! "Llandough Community Council" "Council and committee minutes 2002–2016 mentioning Great House Farm (Tŷ Mawr), the green and the verge (request of 21 Sep 2026)"
+  id: "PW-21"
+  kind: "cost limit"
+  price_text: "refused under section 12: over the £450 cost limit (18 hours at £25/hour); estimate 37 hours (about £925 at £25/hour)"
+  unit: "cost limit"
+  vat: "n/a"
+  status: "quote, not paid"
+  free: "yes"
+  free_regime: "FOIA s.12 + s.16 (parish council: £450 / 18 h)"
+  free_basis: "Refused under s.12 at the £450 limit (18 h at £25/h; Fees Regs regs 3–4) with s.16 advice to narrow (e.g. 2002–2006). Open point: the 37-hour estimate counts time to assess each set of minutes, while reg 4(3) counts only determining, locating, retrieving and extracting. Internal review asked 13 Oct 2026."
+  free_route: "A narrowed request that fits within 18 hours."
+  free_url: "https://www.legislation.gov.uk/uksi/2004/3244/regulation/4"
+  evidence: "Gmail 2026-10-11"
+  Quoted:Quote   0.00 GBP
+  Memo:NotPaid
+
+2026-11-10 ! "Cabinet Office" "Guidance, policy or a central record on how inconsistent replies from different public authorities are coordinated or referred"
+  id: "PW-22"
+  kind: "cost limit"
+  price_text: "no charge asked; £600 cost limit (24 hours at £25/hour) raised as likely; asked to be more specific"
+  unit: "cost limit"
+  vat: "n/a"
+  status: "quote, not paid"
+  free: "yes"
+  free_regime: "FOIA s.12 + s.16 (Cabinet Office: £600 / 24 h)"
+  free_basis: "No charge asked. The £600 central-government limit (24 h at £25/h) was raised as likely, with an offer to help if the request is made more specific (s.16). No formal s.12 notice yet."
+  free_route: "A more specific request, free up to 24 hours."
+  free_url: "https://www.legislation.gov.uk/uksi/2004/3244/regulation/3"
+  evidence: "Gmail 2026-11-10"
+  Quoted:Quote   0.00 GBP
+  Memo:NotPaid
+
+2026-09-21 * "Land Registry Online (uklandregistryonline.org.uk, a private copy-ordering website)" "Title register and title plan for the farm land (manual order; paid manual search for land with no postal address)"
+  id: "PW-23"
+  kind: "quoted"
+  price_text: "£32.99 title register; £24.99 title plan; manual search priced separately"
+  unit: "title register"
+  vat: "not stated"
+  status: "quote, not paid"
+  free: "na"
+  free_regime: "Not FOI: private copy-ordering website"
+  free_basis: "Land Registry Online (uklandregistryonline.org.uk) is not a gov.uk service."
+  free_route: "The same title register and title plan are £7 each direct from HM Land Registry on gov.uk; property summary free."
+  free_url: "https://www.gov.uk/search-property-information-land-registry"
+  evidence: "Gmail 2026-09-21, 2026-10-22"
+  Quoted:Quote   32.99 GBP
+  Memo:NotPaid
