@@ -203,6 +203,18 @@ body[data-cedwyn-page="landing"] .ghf-v2,body[data-cedwyn-page="landing"] #ghf-a
  .land-app-label{padding:8px;font-size:12px}
 }
 @media(prefers-reduced-motion:reduce){body[data-cedwyn-page="landing"] .land-place>img,.land-app{transition:none}}
+
+/* Pop-up motion (4 Nov 2026): inside the Wales, Patagonia and Online pop-ups only, each block fades in and rises as it
+   scrolls into view (slightly staggered, slow settle) and the tile pictures drift slower than the scroll (parallax);
+   lazy pictures fade in once loaded. The three home cards have no motion. html.cw-motion is set in <head> only when the
+   visitor has not asked for reduced motion; without it (or without JS) the pop-ups are exactly as before. - Sion's Tab agent */
+@media(prefers-reduced-motion:no-preference){
+ html.cw-motion .land-modal .land-app.cw-px>img{transform:translate3d(0,0,0) scale(1.24);will-change:transform;backface-visibility:hidden}
+ html.cw-motion .land-modal .cw-rv{opacity:0;transform:translate3d(0,26px,0);transition:opacity .85s ease,transform 1s cubic-bezier(.16,.8,.24,1)}
+ html.cw-motion .land-modal .cw-rv.cw-in{opacity:1;transform:translate3d(0,0,0)}
+ html.cw-motion .land-modal .land-app>img.cw-lz{opacity:0;transition:opacity .7s ease}
+ html.cw-motion .land-modal .land-app>img.cw-lz.cw-ld{opacity:1}
+}
 """
 
 # ---------- shared bits
@@ -651,13 +663,49 @@ openers.forEach(function(button){{
 }});
 }})();
 </script>
+<script>{LANDING_MOTION_JS}</script>
 <script>{JS}</script>
 </body>
 </html>
 """
     out = page(sections, 'Tŷ Mawr (Great House Farm), Llandough · Cedwyn Estate', 'Tŷ Mawr (Great House Farm), Llandough, Wales: history, records and BP Properties v Buckler [1987]. Guided tour, e-books, and Great House II planned in Patagonia.', l, '/cedwyn/home/', None, T, n, body)
     out = out.replace('</style>', LANDING_CSS + '</style>', 1)
-    return out.replace('<head>\n', '<head>\n' + pre + '\n', 1)
+    return out.replace('<head>\n', '<head>\n' + pre + '\n' + LANDING_MOTION_HEAD + '\n', 1)
+
+LANDING_MOTION_HEAD = "<script>try{if(window.matchMedia&&matchMedia('(prefers-reduced-motion: no-preference)').matches)document.documentElement.classList.add('cw-motion')}catch(e){}</script>"
+LANDING_MOTION_JS = r'''(function(){
+var R=document.documentElement;if(!R.classList.contains('cw-motion'))return;
+var raf=window.requestAnimationFrame||function(f){return setTimeout(f,16)};
+[].forEach.call(document.querySelectorAll('.land-modal'),function(dlg){
+ var sc=dlg.querySelector('.land-modal-content');if(!sc)return;
+ var tiles=[].slice.call(sc.querySelectorAll('.land-app'));
+ var heads=[].slice.call(sc.querySelectorAll('.land-app-section>h3'));
+ /* lazy pictures fade in once decoded */
+ tiles.forEach(function(a){var im=a.querySelector(':scope>img');if(!im)return;a.classList.add('cw-px');
+  if(!im.complete){im.classList.add('cw-lz');var d=function(){im.classList.add('cw-ld')};im.addEventListener('load',d);im.addEventListener('error',d)}});
+ /* blocks fade in and rise as they enter the pop-up's own scroll area; after settling the tile is handed back to its normal styles */
+ if('IntersectionObserver' in window){
+  var batch=0,bt=0;
+  var io=new IntersectionObserver(function(es){var now=Date.now();if(now-bt>160)batch=0;bt=now;
+   es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;io.unobserve(el);
+    el.style.transitionDelay=(Math.min(batch++,5)*90)+'ms';el.classList.add('cw-in');
+    setTimeout(function(){el.classList.remove('cw-rv','cw-in');el.style.transitionDelay=''},1600)})},{root:sc,rootMargin:'0px 0px -6% 0px',threshold:0.01});
+  heads.concat(tiles).forEach(function(el){el.classList.add('cw-rv');io.observe(el)});
+ }
+ /* parallax: pictures move slower than the scroll; reads first, then writes, once per frame */
+ var pend=false;
+ function frame(){pend=false;var r=sc.getBoundingClientRect();if(!r.height)return;var mid=r.top+r.height/2,pos=[];
+  for(var i=0;i<tiles.length;i++){var b=tiles[i].getBoundingClientRect();if(b.bottom<r.top-40||b.top>r.bottom+40){pos.push(null);continue}
+   var d=((b.top+b.height/2)-mid)/r.height;d=d<-.9?-.9:d>.9?.9:d;pos.push(-d*b.height*.13)}
+  for(var j=0;j<tiles.length;j++){if(pos[j]===null)continue;var im=tiles[j].firstElementChild;if(im)im.style.transform='translate3d(0,'+pos[j].toFixed(2)+'px,0) scale(1.24)'}}
+ function tick(){if(!pend){pend=true;raf(frame)}}
+ sc.addEventListener('scroll',tick,{passive:true});
+ window.addEventListener('resize',tick,{passive:true});
+ if('ResizeObserver' in window)new ResizeObserver(tick).observe(sc);
+ dlg.addEventListener('close',function(){pend=false});
+ tick();
+});
+})();'''
 
 VOUCHERS = [  # the Stripe voucher links of the retired /wales/tour/ page (Sion 08:08 GMT 26 Oct 2026: purge /wales/tour/, keep /wales/#stop-1)
     ('w_v1', 'https%3A%2F%2Fbuy.stripe.com%2FbJecN60ht4U74a88sD6Zy0j', {'en': 'Gift voucher · one guest £25', 'cy': 'Taleb rodd · un gwestai £25', 'es': 'Vale regalo · una persona £25'}),
