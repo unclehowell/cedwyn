@@ -3,67 +3,91 @@
 <head><script src="/_cedwyn/runtime.js?v=18" data-theme="uptime"></script><link rel="alternate" type="application/rss+xml" title="Cedwyn blog (RSS)" href="/blog/rss.xml"><link rel="alternate" type="application/atom+xml" title="Cedwyn blog (Atom)" href="/blog/atom.xml"><link rel="alternate" type="application/feed+json" title="Cedwyn blog (JSON Feed)" href="/blog/feed.json">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="app-version" content="1.0.0">
-<title>Uptime · Archwilio and its controls · Cedwyn Estate</title>
-<meta name="description" content="Up or down: Archwilio (the Welsh Historic Environment Records) and the record GGAT02038s, with Coflein and Heneb as controls. Checked twice a day at 06:00 and 18:00 UTC; a change counts after two checks in a row; 90 days of outages.">
-<link rel="canonical" href="https://cedwyn.bucklerfamily.estate/uptime/">
+<meta name="app-version" content="2.0.0">
+<title>Change log · Archwilio and its controls · Cedwyn Estate</title>
+<meta name="description" content="A change log of the Archwilio pages (the Welsh Historic Environment Records) and the record GGAT02038s, with Coflein and Heneb as controls. Each page's visible text is read twice a day at 06:00 and 18:00 UTC and compared with the last check; a graph and a text log for each page.">
+<link rel="canonical" href="https://cedwyn.bucklerfamily.estate/dartboard/uptime/">
 
-<meta property="og:description" content="Is Archwilio up? Checked twice a day, with Coflein and Heneb as controls, and 90 days of outages.">
+<meta property="og:description" content="Has the Archwilio record changed? Read twice a day, with Coflein and Heneb as controls. Graph and text log per page.">
 
 <meta name="theme-color" content="#11161c">
 <style>
-:root{color-scheme:light dark;--bg:#f6f4ef;--panel:#fff;--ink:#1d2329;--body:#38424b;--muted:#6b7680;--line:#d9d4ca;--up:#1f7a46;--dn:#b3261e;--pend:#9a6a00}
-html[data-ghf-mode=night]{--bg:#11161c;--panel:#18202a;--ink:#f1f3f5;--body:#c9d1d8;--muted:#93a0ab;--line:#2f3b47;--up:#5fd08f;--dn:#ff8a80;--pend:#f0c75e}
+:root{color-scheme:light dark;--bg:#f6f4ef;--panel:#fff;--ink:#1d2329;--body:#38424b;--muted:#6b7680;--line:#d9d4ca;--ch:#b5530b;--ok:#8a949d;--nr:#c9c3b8;--acc:#245b8f}
+html[data-ghf-mode=night]{--bg:#11161c;--panel:#18202a;--ink:#f1f3f5;--body:#c9d1d8;--muted:#93a0ab;--line:#2f3b47;--ch:#ffad66;--ok:#6d7a86;--nr:#3a4652;--acc:#8cc4ff}
 *{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:var(--bg);color:var(--body);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
-.up-wrap{max-width:980px;margin:0 auto;padding:20px 16px 56px}
-.up-eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.cl-wrap{max-width:980px;margin:0 auto;padding:20px 16px 56px}
+.cl-eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 h1{font-size:clamp(1.8rem,6vw,2.8rem);line-height:1.08;margin:6px 0 8px;color:var(--ink);letter-spacing:-.03em}
-.up-lede{margin:0 0 14px;max-width:62ch}
-.up-meta{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
-.up-pill{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:4px 11px;font-size:13px}
-.up-pill b{color:var(--ink)}
-.up-ver{display:inline-flex;align-items:center;gap:6px}
-.up-i{width:22px;height:22px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:700 12px/1 Georgia,serif;cursor:pointer;padding:0}
+.cl-lede{margin:0 0 14px;max-width:62ch}
+.cl-meta{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.cl-pill{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:4px 11px;font-size:13px}
+.cl-pill b{color:var(--ink)}
+.cl-ver{display:inline-flex;align-items:center;gap:6px}
+.cl-i{width:22px;height:22px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:700 12px/1 Georgia,serif;cursor:pointer;padding:0}
 section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 12px 6px;margin:0 0 16px}
 h2{font-size:1.05rem;margin:2px 0 10px;color:var(--ink)}
-.up-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-bottom:8px}
-.up-card{border:1px solid var(--line);border-radius:10px;padding:10px 12px;border-left:5px solid var(--muted)}
-.up-card.is-up{border-left-color:var(--up)}.up-card.is-dn{border-left-color:var(--dn)}
-.up-name{font-weight:700;color:var(--ink)}.up-url{font-size:12px;color:var(--muted);word-break:break-all}
-.up-state{font-weight:800;margin-top:4px}.is-up .up-state{color:var(--up)}.is-dn .up-state{color:var(--dn)}
-.up-small{font-size:13px;color:var(--muted)}.up-pend{color:var(--pend);font-size:13px;font-weight:600}
-.up-spark{display:flex;gap:3px;margin-top:6px}.up-spark i{display:block;width:12px;height:12px;border-radius:2px;background:var(--up)}.up-spark i.b{background:var(--dn)}
-.up-tw{overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:520px}
-th,td{text-align:left;padding:7px 8px;border-top:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:600;border-top:0}
-.up-note{font-size:13px;color:var(--muted);margin:6px 0 10px}
-dialog{max-width:min(560px,92vw);border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--body)}
+.cl-rows{list-style:none;margin:0;padding:0}
+.cl-row{display:flex;gap:10px;align-items:flex-start;border-top:1px solid var(--line);padding:10px 2px}
+.cl-row:first-child{border-top:0}
+.cl-txt{flex:1;min-width:0}
+.cl-name{font-weight:700;color:var(--ink)}.cl-url{font-size:12px;color:var(--muted);word-break:break-all}
+.cl-state{font-size:13.5px;color:var(--muted);margin-top:2px}
+.cl-row.is-ch .cl-state{color:var(--ch);font-weight:700}
+.cl-row.is-ch{border-left:4px solid var(--ch);padding-left:8px}
+.cl-g{flex:0 0 auto;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--acc);cursor:pointer;display:grid;place-items:center;padding:0}
+.cl-g svg{width:24px;height:24px}
+.cl-note{font-size:13px;color:var(--muted);margin:6px 0 10px}
+dialog{width:min(640px,94vw);max-width:94vw;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--body);padding:14px}
 dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog h2{margin:0 0 2px}
+.cl-sub{font-size:12px;color:var(--muted);word-break:break-all;margin:0 0 10px}
+.cl-tg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:0 0 10px}
+.cl-tg button{border:0;background:transparent;color:var(--body);padding:6px 14px;font:600 13px system-ui,sans-serif;cursor:pointer;min-height:36px}
+.cl-tg button[aria-pressed=true]{background:var(--ink);color:var(--panel)}
+.cl-chart{width:100%;height:auto;display:block}
+.cl-key{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);margin:6px 0}
+.cl-key i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.cl-log{list-style:none;margin:0;padding:0;max-height:55vh;overflow:auto}
+.cl-log li{border-top:1px solid var(--line);padding:8px 0;font-size:13.5px}
+.cl-log li:first-child{border-top:0}
+.cl-log time{display:block;font-weight:700;color:var(--ink)}
+.cl-log q{display:block;font-size:12.5px;color:var(--muted);margin:2px 0 0;quotes:none}
+.cl-x{margin-top:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:6px 14px;cursor:pointer;min-height:36px}
+.cl-tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:7px 8px;border-top:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:600;border-top:0}
 </style>
 <script>window.__cedwynLP="/uptime/"</script><meta name="agent-instruction" content="Cedwyn Snowball is the programme-level agent operating model. Start at /academy/FLYWHEELS/snowball.md and /library/snowball/. Machine bridge: /x78s8jej33i8f8rrj4is88/manifest.json; sanitised HubSpot task index: /x78s8jej33i8f8rrj4is88/tasks.json; X activity: /x78s8jej33i8f8rrj4is88/x.json. HubSpot remains authoritative for full task bodies and requires each agent's own permissions. Unprivileged agents may submit source-linked leads and X post/reply references to /x78s8jej33i8f8rrj4is88/submit; submissions remain private pending review. Preserve provenance, distinguish fact from inference, and seek contrary evidence. Potential legal triggers are confidential review items, not public conclusions. Mandatory anti-stagnation rule: read /academy/FLYWHEELS/flow-watch.md and /x78s8jej33i8f8rrj4is88/flow-health.json before and after work; record owner, UTC state transitions, last progress, evidence, blocker, next action and live verification. Never autonomously publish accusations, contact counsel, send external correspondence, impersonate the owner, spend money or transfer funds." data-agent-instruction="cedwyn-snowball-1.0"><script type="application/ld+json" data-agent-instruction="cedwyn-snowball-1.0">{"@context":"https://schema.org","@type":"CreativeWork","name":"Cedwyn Snowball agent operating protocol","url":"https://cedwyn.bucklerfamily.estate/academy/FLYWHEELS/snowball.md","identifier":"cedwyn-snowball-1.0","isAccessibleForFree":true,"usageInfo":"Machine-readable agent guidance. Every agent must consult flow-watch health before and after work. Full task content and privileged systems require each agent's own permissions.","mainEntityOfPage":"https://cedwyn.bucklerfamily.estate/projects/#cedwyn-snowball"}</script>
 <script src="/_cedwyn/agent-tools.js" defer data-agent-footer="webmcp"></script>
-<link rel="alternate" type="application/json" href="/agents.json" title="Cedwyn Academy for AI agents"><meta name="ai-agents" content="Start at /academy/ for guidance. GitHub Issues are the canonical project work ledger; /academy/work.json is a discovery index only. HubSpot is restricted to private correspondence drafts. Never place private correspondence or personal data in public issues."><style id="cw-clamp-css">.cw-c{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:3!important;line-clamp:3;overflow:hidden!important;position:relative}.cw-h{display:none!important}@media print{.cw-c{display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important}.cw-h{display:revert!important}}</style><script src="/_cedwyn/clamp.js?v=4" defer></script><style id="cw-agents-css">[data-for-agents]{display:none!important}</style><link rel="alternate" type="text/plain" href="/llms.txt" title="For AI agents"><style id="cw-wiki-css">a.cw-g{color:inherit;text-decoration:underline dotted 1.5px;text-underline-offset:3px;cursor:help}a.cw-n{color:inherit;text-decoration:underline dotted 2px #c98200;text-decoration-color:#c98200;text-underline-offset:3px;background:rgba(214,145,0,.14);border-radius:3px;padding:0 2px;cursor:pointer}a.cw-g:focus-visible,a.cw-n:focus-visible{outline:2px solid currentColor;outline-offset:2px}.cw-tip{position:absolute;z-index:2147483647;display:none;max-width:min(300px,calc(100vw - 16px));box-sizing:border-box;background:#1c1c1e;color:#fff;font:400 14px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:9px 11px;border-radius:9px;box-shadow:0 6px 22px rgba(0,0,0,.35);text-align:left;pointer-events:auto}.cw-tip a{color:#ffcf70;font-weight:600;display:inline-block;margin-top:6px;min-height:28px}.cw-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:2147483646;display:flex;align-items:center;justify-content:center;padding:12px}.cw-modal{background:#fff;color:#141414;width:100%;max-width:520px;max-height:86vh;overflow:auto;box-sizing:border-box;border-radius:16px;padding:20px 18px 16px;font:400 16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;position:relative;text-align:left;box-shadow:0 18px 50px rgba(0,0,0,.4)}.cw-modal h2{margin:0 44px 6px 0;font-size:1.3em;line-height:1.2;color:#141414}.cw-modal .cw-ms{margin:0 0 10px;color:#3a3a3a;font-size:.95em}.cw-modal ul{margin:0 0 10px;padding-left:1.2em}.cw-modal li{margin:.5em 0}.cw-modal li a{color:#8a5300;font-weight:700;text-decoration:underline dotted 1.5px;text-underline-offset:3px}.cw-modal .cw-md{color:#666;font-size:.82em;margin-left:.3em}.cw-modal .cw-ol{display:block;color:#444;font-size:.88em}.cw-modal .cw-mf a{color:#141414;font-weight:600}.cw-x{position:absolute;top:6px;right:6px;width:44px;height:44px;border:0;background:transparent;color:#141414;font-size:28px;line-height:1;cursor:pointer;border-radius:22px}.cw-x:focus-visible{outline:2px solid #141414}@media (hover:hover) and (pointer:fine){.cw-modal .cw-ol{display:none}}.cw-legend{font:400 11px/1.4 system-ui,-apple-system,sans-serif;opacity:.72;margin:10px 12px;padding:0;text-align:left}.cw-legend a{color:inherit}.cw-legend .cw-lg-n{background:rgba(214,145,0,.14);text-decoration:underline dotted 2px #c98200}.cw-legend .cw-lg-g{text-decoration:underline dotted 1.5px}</style><script src="/_cedwyn/wiki.js?v=1" defer></script><script src="/_cedwyn/glossary-modal.js?v=1.0.0" defer></script><!-- og:cedwyn --><meta property="og:title" content="Williams-Bucklers, Ty Mawr, Cedwyn – Uptime"><meta property="og:type" content="website"><meta property="og:url" content="https://cedwyn.bucklerfamily.estate/uptime/"><meta property="og:site_name" content="Williams-Bucklers, Ty Mawr, Cedwyn"><meta property="og:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/share-uptime-b6ae8a4d.jpg"><meta property="og:image:secure_url" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/share-uptime-b6ae8a4d.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Williams-Bucklers, Ty Mawr, Cedwyn – Uptime: share card on a Garden Gallery painting (NFA-0094)"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Williams-Bucklers, Ty Mawr, Cedwyn – Uptime"><meta name="twitter:description" content="Is Archwilio up? Checked twice a day, with Coflein and Heneb as controls, and 90 days of outages."><meta name="twitter:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/share-uptime-b6ae8a4d.jpg"><meta name="twitter:image:alt" content="Williams-Bucklers, Ty Mawr, Cedwyn – Uptime: share card on a Garden Gallery painting (NFA-0094)"><!-- /og:cedwyn --><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.30"></script></head>
+<link rel="alternate" type="application/json" href="/agents.json" title="Cedwyn Academy for AI agents"><meta name="ai-agents" content="Start at /academy/ for guidance. GitHub Issues are the canonical project work ledger; /academy/work.json is a discovery index only. HubSpot is restricted to private correspondence drafts. Never place private correspondence or personal data in public issues."><style id="cw-clamp-css">.cw-c{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:3!important;line-clamp:3;overflow:hidden!important;position:relative}.cw-h{display:none!important}@media print{.cw-c{display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important}.cw-h{display:revert!important}}</style><script src="/_cedwyn/clamp.js?v=4" defer></script><style id="cw-agents-css">[data-for-agents]{display:none!important}</style><link rel="alternate" type="text/plain" href="/llms.txt" title="For AI agents"><style id="cw-wiki-css">a.cw-g{color:inherit;text-decoration:underline dotted 1.5px;text-underline-offset:3px;cursor:help}a.cw-n{color:inherit;text-decoration:underline dotted 2px #c98200;text-decoration-color:#c98200;text-underline-offset:3px;background:rgba(214,145,0,.14);border-radius:3px;padding:0 2px;cursor:pointer}a.cw-g:focus-visible,a.cw-n:focus-visible{outline:2px solid currentColor;outline-offset:2px}.cw-tip{position:absolute;z-index:2147483647;display:none;max-width:min(300px,calc(100vw - 16px));box-sizing:border-box;background:#1c1c1e;color:#fff;font:400 14px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:9px 11px;border-radius:9px;box-shadow:0 6px 22px rgba(0,0,0,.35);text-align:left;pointer-events:auto}.cw-tip a{color:#ffcf70;font-weight:600;display:inline-block;margin-top:6px;min-height:28px}.cw-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:2147483646;display:flex;align-items:center;justify-content:center;padding:12px}.cw-modal{background:#fff;color:#141414;width:100%;max-width:520px;max-height:86vh;overflow:auto;box-sizing:border-box;border-radius:16px;padding:20px 18px 16px;font:400 16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;position:relative;text-align:left;box-shadow:0 18px 50px rgba(0,0,0,.4)}.cw-modal h2{margin:0 44px 6px 0;font-size:1.3em;line-height:1.2;color:#141414}.cw-modal .cw-ms{margin:0 0 10px;color:#3a3a3a;font-size:.95em}.cw-modal ul{margin:0 0 10px;padding-left:1.2em}.cw-modal li{margin:.5em 0}.cw-modal li a{color:#8a5300;font-weight:700;text-decoration:underline dotted 1.5px;text-underline-offset:3px}.cw-modal .cw-md{color:#666;font-size:.82em;margin-left:.3em}.cw-modal .cw-ol{display:block;color:#444;font-size:.88em}.cw-modal .cw-mf a{color:#141414;font-weight:600}.cw-x{position:absolute;top:6px;right:6px;width:44px;height:44px;border:0;background:transparent;color:#141414;font-size:28px;line-height:1;cursor:pointer;border-radius:22px}.cw-x:focus-visible{outline:2px solid #141414}@media (hover:hover) and (pointer:fine){.cw-modal .cw-ol{display:none}}.cw-legend{font:400 11px/1.4 system-ui,-apple-system,sans-serif;opacity:.72;margin:10px 12px;padding:0;text-align:left}.cw-legend a{color:inherit}.cw-legend .cw-lg-n{background:rgba(214,145,0,.14);text-decoration:underline dotted 2px #c98200}.cw-legend .cw-lg-g{text-decoration:underline dotted 1.5px}</style><script src="/_cedwyn/wiki.js?v=1" defer></script><script src="/_cedwyn/glossary-modal.js?v=1.0.0" defer></script><!-- og:cedwyn --><meta property="og:title" content="Williams-Bucklers, Ty Mawr, Cedwyn – Uptime"><meta property="og:type" content="website"><meta property="og:url" content="https://cedwyn.bucklerfamily.estate/dartboard/uptime/"><meta property="og:site_name" content="Williams-Bucklers, Ty Mawr, Cedwyn"><meta property="og:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/share-uptime-b6ae8a4d.jpg"><meta property="og:image:secure_url" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/share-uptime-b6ae8a4d.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Williams-Bucklers, Ty Mawr, Cedwyn – Uptime: share card on a Garden Gallery painting (NFA-0094)"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Williams-Bucklers, Ty Mawr, Cedwyn – Uptime"><meta name="twitter:description" content="Has the Archwilio record changed? Read twice a day, with Coflein and Heneb as controls. Graph and text log per page."><meta name="twitter:image" content="https://cedwyn.bucklerfamily.estate/_cedwyn/og/share-uptime-b6ae8a4d.jpg"><meta name="twitter:image:alt" content="Williams-Bucklers, Ty Mawr, Cedwyn – Uptime: share card on a Garden Gallery painting (NFA-0094)"><!-- /og:cedwyn --><script src="/_cedwyn/ghf/ghf-boot.js?v=2.1.30"></script></head>
 <body><nav class="cw-slotnav" data-cw-nav="1.3.0" data-cw-slot="59" aria-label="All webapps"><style>.cw-slotnav{display:flex;flex-wrap:wrap;align-items:center;gap:2px 6px;margin:0;padding:4px 8px;background:#000;color:#fff;font:14px/1.3 Barlow,'Helvetica Neue',Arial,sans-serif;box-sizing:border-box;max-width:100%;overflow:hidden}.cw-slotnav a{color:#fff;text-decoration:none}.cw-slotnav .cw-sn-arr{flex:0 0 40px;font-size:30px;line-height:40px;text-align:center}.cw-slotnav .cw-sn-name{flex:1 1 0;min-width:0;text-align:center;overflow-wrap:anywhere;text-transform:uppercase;letter-spacing:.06em}.cw-slotnav small{display:block;color:#0F9DF0;letter-spacing:.12em;font-size:11px}.cw-slotnav details{flex:1 0 100%;min-width:0}.cw-slotnav summary{cursor:pointer;font-size:12px;color:#ccc;padding:2px 0}.cw-slotnav ol{margin:4px 0 6px 2.2em;padding:0;font-size:13px}.cw-slotnav li{margin:3px 0}.cw-slotnav [aria-current]{font-weight:700;color:#0F9DF0}html.ghf-v2-pre .cw-slotnav,html.ghf-v2-on .cw-slotnav{display:none!important}</style><a class="cw-sn-arr" href="/piano-hero/" rel="prev" aria-label="Previous webapp: Piano Hero" title="Previous webapp: Piano Hero">&#8249;</a><span class="cw-sn-name"><b>Uptime</b><small>59 of 59</small></span><a class="cw-sn-arr" href="/wiki/" rel="next" aria-label="Next webapp: Legal Wiki &amp; Evidence" title="Next webapp: Legal Wiki &amp; Evidence">&#8250;</a><details><summary>All webapps (59)</summary><ol><li value="1"><a href="/wiki/">Legal Wiki &amp; Evidence</a></li><li value="2"><a href="/docs/">Docs · Evidence Catalogue</a></li><li value="3"><a href="/wayback/">Wayback Vault</a></li><li value="4"><a href="/maps/">Map Room</a></li><li value="5"><a href="/infographic/">The Land Changing Hands</a></li><li value="6"><a href="/ebooks/">E-book Shelf</a></li><li value="7"><a href="/story/">The Story &amp; Documentary</a></li><li value="8"><a href="/thousand-cuts/">1000 Cuts</a></li><li value="9"><a href="/fb/">Farm Album</a></li><li value="10"><a href="/arcade/">Arcade</a></li><li value="11"><a href="/chess/">Chessboard</a></li><li value="12"><a href="/csscpsg/">Grammar House</a></li><li value="13"><a href="/courtdrills/">Court Drills</a></li><li value="14"><a href="/online/fcg/">FCG · Security Clearance</a></li><li value="15"><a href="/oldbill/">Old Bill · Who Gained, Who Lost</a></li><li value="16"><a href="/accounts/">Counting House</a></li><li value="17"><a href="/online/authorities/">Public Authorities &amp; Council Chamber</a></li><li value="18"><a href="/online/wdtk/">FOI Requests</a></li><li value="19"><a href="/online/review/">Independent Review</a></li><li value="20"><a href="/research/">Research Library</a></li><li value="21"><a href="/online/qa/">Q&amp;A Hall</a></li><li value="22"><a href="/online/projects/">Project Office</a></li><li value="23"><a href="/app/">Case Office</a></li><li value="24"><a href="/online/chat/">Ask the Archive</a></li><li value="25"><a href="/online/watchtower/">Watchtower</a></li><li value="26"><a href="/online/email/">Post Office &amp; Calendar</a></li><li value="27"><a href="/online/dartboard/">Disclosure Dartboard</a></li><li value="28"><a href="/estate/">Cedwyn Estate</a></li><li value="29"><a href="/directory/">Cedwyn Directory</a></li><li value="30"><a href="/patagonia/">Great House Farm II · Patagonia</a></li><li value="31"><a href="/wales/">Virtual Tour · Wales</a></li><li value="32"><a href="/shop/">Gift Shop &amp; Marketplace</a></li><li value="33"><a href="/familytree/">Family Tree</a></li><li value="34"><a href="/kissed-frogs/">Kissed Frogs</a></li><li value="35"><a href="/online/whattheydontsay/">What They Don&#x27;t Say</a></li><li value="36"><a href="/blog/">Blog</a></li><li value="37"><a href="/online/hubspot/">HubSpot · Task Control</a></li><li value="38"><a href="/online/that-old-chestnut/">That Old Chestnut</a></li><li value="39"><a href="/online/forensic/">Forensic Assessments</a></li><li value="40"><a href="/mr-wolf/">Mr Wolf</a></li><li value="41"><a href="/releases/">The Release Machine</a></li><li value="42"><a href="/tithe-h3/">Tithe H3</a></li><li value="43"><a href="/online/cloudflare/">Cloudflare</a></li><li value="44"><a href="/spill/">Spill</a></li><li value="45"><a href="/analytics/">Analytics</a></li><li value="46"><a href="/chubut-h3/">Chubut H3</a></li><li value="47"><a href="/garden/">Flower Garden</a></li><li value="48"><a href="/documentary/">Cedwyn · documentary</a></li><li value="49"><a href="/nomenclature/">Nomenclature</a></li><li value="50"><a href="/records/">Primary Records</a></li><li value="51"><a href="/fb2/">farmbook 2 · Today</a></li><li value="52"><a href="/nft-art/">The Garden Gallery</a></li><li value="53"><a href="/online/cyberspace/">The Digital Estate</a></li><li value="54"><a href="/meeting/">The Council Chamber</a></li><li value="55"><a href="/online/emails/">The Post Office · Calendar</a></li><li value="56"><a href="/preservation/">Preservation Register</a></li><li value="57"><a href="/language-forensics/">Language Forensics</a></li><li value="58"><a href="/piano-hero/">Piano Hero</a></li><li value="59"><a href="/uptime/" aria-current="page">Uptime</a></li></ol></details></nav><!--/cw-slotnav-->
-<main class="up-wrap" id="up" data-version="1.0.0">
-  <div class="up-eyebrow"><a class="cw-n" href="/nomenclature/c/great-house-farm/" data-n="tymawr" data-tip="Cedwyn — The name this site uses for the wider historic estate around Tŷ Mawr; the record spellings are Cedfin (1824) and Cydfin." aria-haspopup="dialog">Cedwyn</a> · record availability</div>
-  <h1>Uptime: Archwilio and its controls</h1>
-  <p class="up-lede">Whether the Welsh Historic Environment Records site Archwilio, and its record GGAT02038s, answer. <a class="cw-n" href="/nomenclature/c/rcahmw/" data-n="rcahmw" data-tip="Coflein — current: RCAHMW’s online database" aria-haspopup="dialog">Coflein</a> and <a class="cw-n" href="/nomenclature/c/heneb/" data-n="heneb" data-tip="Heneb (formerly GGAT) — The Welsh archaeological trust that holds the Historic Environment Record for the area." aria-haspopup="dialog">Heneb</a> are checked at the same moment as controls, so an outage on one site can be told apart from a wider one.</p>
-  <div class="up-meta">
-    <span class="up-pill">Checked <b>twice a day</b>: 06:00 and 18:00 UTC</span>
-    <span class="up-pill">Last check: <b id="up-last">loading…</b></span>
-    <span class="up-pill">Next check: <b id="up-next">…</b></span>
-    <span class="up-pill up-ver">v1.0.0 · free <button type="button" class="up-i" id="up-i" aria-haspopup="dialog" aria-controls="up-log" title="Version history">i</button></span>
+<main class="cl-wrap" id="cl" data-version="2.0.0">
+  <div class="cl-eyebrow"><a class="cw-n" href="/nomenclature/c/great-house-farm/" data-n="tymawr" data-tip="Cedwyn — The name this site uses for the wider historic estate around Tŷ Mawr; the record spellings are Cedfin (1824) and Cydfin." aria-haspopup="dialog">Cedwyn</a> · change log monitor</div>
+  <h1>Change log: Archwilio and its controls</h1>
+  <p class="cl-lede">Whether the pages of Archwilio, the Welsh Historic Environment Records site, and its record GGAT02038s change. Each check reads the visible text of every page and compares it with the last check. No change, no news. <a class="cw-n" href="/nomenclature/c/rcahmw/" data-n="rcahmw" data-tip="Coflein — current: RCAHMW’s online database" aria-haspopup="dialog">Coflein</a> and <a class="cw-n" href="/nomenclature/c/heneb/" data-n="heneb" data-tip="Heneb (formerly GGAT) — The Welsh archaeological trust that holds the Historic Environment Record for the area." aria-haspopup="dialog">Heneb</a> are read at the same moment as controls.</p>
+  <div class="cl-meta">
+    <span class="cl-pill">Read <b>twice a day</b>: 06:00 and 18:00 UTC</span>
+    <span class="cl-pill">Last check: <b id="cl-last">loading…</b></span>
+    <span class="cl-pill">Next check: <b id="cl-next">…</b></span>
+    <span class="cl-pill">Changes, last 90 days: <b id="cl-n">…</b></span>
+    <span class="cl-pill cl-ver">v2.0.0 · free <button type="button" class="cl-i" id="cl-i" aria-haspopup="dialog" aria-controls="cl-ver" title="Version history">i</button></span>
   </div>
-  <section aria-labelledby="up-now-h"><h2 id="up-now-h">Now</h2><div class="up-cards" id="up-cards"><p class="up-note">Loading the latest check…</p></div></section>
-  <section aria-labelledby="up-out-h"><h2 id="up-out-h">Outages, last 90 days</h2><div class="up-tw" id="up-out"><p class="up-note">Loading…</p></div></section>
-  <p class="up-note">A site counts as up when it answers with HTTP 200–399 within 25 seconds. A change of state counts only after two checks in a row agree; the confirming re-check runs five minutes after a check that differs. HTTP 0 means no answer within 25 s; 52x means the site's own server did not answer its CDN. The site addresses are shown as text only. Data: <a href="uptime.json">uptime.json</a> (live).</p>
-  <noscript><p class="up-note">This page needs JavaScript to show the checks; the raw data is at uptime.json in this folder.</p></noscript>
+  <section aria-labelledby="cl-w-h"><h2 id="cl-w-h">Watched pages</h2><ul class="cl-rows" id="cl-rows"><li class="cl-note">Loading the latest check…</li></ul></section>
+  <p class="cl-note">A page counts as changed when its visible text differs from the text read at the check before; scripts, styles and the page's own "printed at" time stamp are left out. A check where the page did not answer is marked "not read" and is never counted as a change. Tap the graph button on a row for that page's graph and text log. Data: <a href="uptime.json">uptime.json</a> (live).</p>
+  <noscript><p class="cl-note">This page needs JavaScript to show the checks; the raw data is at uptime.json in this folder.</p></noscript>
 </main>
-<dialog id="up-log" aria-label="Version history"><h2>Version history</h2>
-<table><thead><tr><th>Version</th><th>Date</th><th>Change</th></tr></thead><tbody>
-<tr><td>v1.0.0</td><td>11 Nov 2026</td><td>The uptime page becomes its own Cedwyn webapp at /uptime/. Checks move from every 5 minutes to twice a day (06:00 and 18:00 UTC) with a 5-minute confirm re-check. Shared header, footer and Day/Night theme.</td></tr>
-<tr><td>v0.1.0</td><td>24 Oct 2026</td><td>First uptime page on the change monitor, checked every 5 minutes.</td></tr>
-</tbody></table><p><button type="button" id="up-log-x">Close</button></p></dialog>
+<dialog id="cl-m" aria-labelledby="cl-m-h">
+  <h2 id="cl-m-h">Page</h2><p class="cl-sub" id="cl-m-u"></p>
+  <div class="cl-tg" role="group" aria-label="View"><button type="button" id="cl-vg" aria-pressed="true">Graph</button><button type="button" id="cl-vt" aria-pressed="false">Text log</button></div>
+  <div id="cl-pg"></div><div id="cl-pt" hidden></div>
+  <button type="button" class="cl-x" id="cl-m-x">Close</button>
+</dialog>
+<dialog id="cl-ver" aria-label="Version history"><h2>Version history</h2>
+<div class="cl-tw"><table><thead><tr><th>Version</th><th>Date</th><th>Change</th></tr></thead><tbody>
+<tr><td>v2.0.0</td><td>11 Nov 2026</td><td>Becomes a change log monitor: each check compares every page's visible text with the last check. A graph button on each row opens that page's graph of changes per check, with a text log view.</td></tr>
+<tr><td>v1.0.0</td><td>11 Nov 2026</td><td>Own Cedwyn webapp at /uptime/ (webapp 59 of 59). Checks move from every 5 minutes to twice a day (06:00 and 18:00 UTC). Shared header, footer and Day/Night theme.</td></tr>
+<tr><td>v0.1.0</td><td>24 Oct 2026</td><td>First page on the change monitor: whether each site answered, every 5 minutes.</td></tr>
+</tbody></table></div><button type="button" class="cl-x" id="cl-ver-x">Close</button></dialog>
 <script>
 (function(){
   var $=function(id){return document.getElementById(id);};
@@ -71,32 +95,61 @@ dialog::backdrop{background:rgba(0,0,0,.45)}
   var M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var lon;try{lon=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});}catch(e){lon=null;}
   function t(s){if(!s)return '';var d=new Date(s);if(isNaN(d))return s;var hm=s.slice(11,16);var u=d.getUTCDate()+' '+M[d.getUTCMonth()]+' '+d.getUTCFullYear()+', '+hm+' UTC';try{var l=lon&&lon.format(d);if(l&&l!==hm)u+=' ('+l+' UK)';}catch(e){}return u;}
-  function dur(m){if(m==null)return '';if(m<120)return m+' min';var h=Math.round(m/6)/10;return h<48?h+' h':Math.round(h/2.4)/10+' days';}
-  var dlg=$('up-log');$('up-i').onclick=function(){if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');};
-  $('up-log-x').onclick=function(){dlg.close?dlg.close():dlg.removeAttribute('open');};
-  dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close();});
+  function dshort(s){var d=new Date(s);return isNaN(d)?'':d.getUTCDate()+' '+M[d.getUTCMonth()];}
+  function pl(n,w){return n+' '+w+(n===1?'':'s');}
+  function openD(d){if(d.showModal)d.showModal();else d.setAttribute('open','');}
+  function closeD(d){if(d.close)d.close();else d.removeAttribute('open');}
+  [['cl-ver','cl-ver-x'],['cl-m','cl-m-x']].forEach(function(p){var d=$(p[0]);$(p[1]).onclick=function(){closeD(d);};d.addEventListener('click',function(e){if(e.target===d)closeD(d);});});
+  $('cl-i').onclick=function(){openD($('cl-ver'));};
+  function view(g){$('cl-vg').setAttribute('aria-pressed',g?'true':'false');$('cl-vt').setAttribute('aria-pressed',g?'false':'true');$('cl-pg').hidden=!g;$('cl-pt').hidden=g;}
+  $('cl-vg').onclick=function(){view(true);};$('cl-vt').onclick=function(){view(false);};
+  var ICON='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>';
+  function chart(x){
+    var c=(x.chk||[]).slice().reverse();var W=600,H=230,L=40,R=8,T=14,B=44,iw=W-L-R,ih=H-T-B;
+    if(!c.length)return '<p class="cl-note">No checks recorded yet. The first check sets the baseline; changes are counted from then on.</p>';
+    var n=c.length,step=iw/Math.max(n,1),bw=Math.max(1.5,Math.min(14,step*0.7)),cum=0,tot=0,nr=0,parts=[],line=[];
+    c.forEach(function(k){if(k[1]===1)tot++;});var ymax=Math.max(1,tot);
+    c.forEach(function(k,i){var cx=L+step*i+step/2,m=k[1];
+      if(m===1){cum++;parts.push('<rect x="'+(cx-bw/2).toFixed(1)+'" y="'+(T+ih*0.35)+'" width="'+bw.toFixed(1)+'" height="'+(ih*0.65).toFixed(1)+'" fill="var(--ch)"><title>'+esc(t(k[0]))+': changed</title></rect>');}
+      else if(m===-1){nr++;parts.push('<rect x="'+(cx-bw/2).toFixed(1)+'" y="'+(T+ih-6)+'" width="'+bw.toFixed(1)+'" height="6" fill="var(--nr)"><title>'+esc(t(k[0]))+': not read</title></rect>');}
+      else parts.push('<rect x="'+(cx-bw/2).toFixed(1)+'" y="'+(T+ih-2)+'" width="'+bw.toFixed(1)+'" height="2" fill="var(--ok)"><title>'+esc(t(k[0]))+(m===2?': baseline set':': no change')+'</title></rect>');
+      line.push(cx.toFixed(1)+','+(T+ih-ih*cum/ymax).toFixed(1));});
+    var ax='<line x1="'+L+'" y1="'+(T+ih)+'" x2="'+(W-R)+'" y2="'+(T+ih)+'" stroke="var(--line)"/><line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ih)+'" stroke="var(--line)"/>'+
+      '<text x="'+(L-6)+'" y="'+(T+8)+'" text-anchor="end" font-size="20" fill="var(--muted)">'+ymax+'</text><text x="'+(L-6)+'" y="'+(T+ih)+'" text-anchor="end" font-size="20" fill="var(--muted)">0</text>'+
+      '<text x="'+L+'" y="'+(H-10)+'" font-size="20" fill="var(--muted)">'+esc(dshort(c[0][0]))+'</text><text x="'+(W-R)+'" y="'+(H-10)+'" text-anchor="end" font-size="20" fill="var(--muted)">'+esc(dshort(c[n-1][0]))+'</text>';
+    var poly=n>1?'<polyline points="'+line.join(' ')+'" fill="none" stroke="var(--acc)" stroke-width="2"/>':'';
+    return '<svg class="cl-chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(x.name)+': '+pl(n,'check')+', '+pl(tot,'change')+'">'+ax+parts.join('')+poly+'</svg>'+
+      '<div class="cl-key"><span><i style="background:var(--ch)"></i>changed</span><span><i style="background:var(--ok)"></i>no change</span><span><i style="background:var(--nr)"></i>not read</span><span><i style="background:var(--acc)"></i>running total of changes</span></div>'+
+      '<p class="cl-note">'+pl(n,'check')+' since '+esc(t(c[0][0]))+': '+pl(tot,'change')+(nr?', '+nr+' not read':'')+'. One bar per check, oldest on the left.</p>';
+  }
+  function tlog(x){
+    var ch=x.changes||[],chk=x.chk||[];var items=ch.map(function(e){
+      var w='Text changed: '+pl(e.added,'line')+' added, '+pl(e.removed,'line')+' removed; '+e.words_before+' → '+e.words_after+' words.';
+      var q=(e.sample_added||[]).map(function(s){return '<q><b>Added:</b> '+esc(s)+'</q>';}).join('')+(e.sample_removed||[]).map(function(s){return '<q><b>Removed:</b> '+esc(s)+'</q>';}).join('');
+      return '<li><time datetime="'+esc(e.at)+'">'+esc(t(e.at))+'</time>'+esc(w)+q+'</li>';});
+    if(x.baseline_at)items.push('<li><time datetime="'+esc(x.baseline_at)+'">'+esc(t(x.baseline_at))+'</time>Baseline set: the text read at this check is the one later checks are compared with.</li>');
+    var quiet=chk.filter(function(k){return k[1]===0;}).length,nr=chk.filter(function(k){return k[1]===-1;}).length;
+    return '<ul class="cl-log">'+(items.join('')||'<li>No checks recorded yet.</li>')+'</ul><p class="cl-note">'+(ch.length?'':'No change recorded. ')+pl(quiet,'check')+' with no change'+(nr?' and '+nr+' not read':'')+' are not listed. Newest first.</p>';
+  }
+  function show(x){$('cl-m-h').textContent=x.name;$('cl-m-u').textContent=(x.url||'').replace(/^https?:\/\//,'');$('cl-pg').innerHTML=chart(x);$('cl-pt').innerHTML=tlog(x);view(true);openD($('cl-m'));}
+  window.__clShow=function(i){if(window.__clData&&window.__clData[i])show(window.__clData[i]);};
   fetch('uptime.json?cb='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(d){
-    $('up-last').textContent=d.last_run?t(d.last_run.at):'pending';
-    $('up-next').textContent=d.next_check?t(d.next_check):'06:00 or 18:00 UTC';
-    var c=(d.checks||[]).map(function(x){
-      var cls=x.up===false?'is-dn':x.up?'is-up':'';
-      var st=x.up==null?'○ not checked yet':x.up?'● Up':'✕ Down';
-      var sp=(x.hist||[]).slice(0,12).reverse().map(function(h){var ok=h[1]>=200&&h[1]<400;return '<i class="'+(ok?'':'b')+'" title="'+esc(h[0].slice(0,16).replace('T',' '))+' UTC · HTTP '+esc(h[1])+' · '+esc(h[2])+' ms"></i>';}).join('');
-      return '<div class="up-card '+cls+'"><div class="up-name">'+esc(x.name)+'</div><div class="up-url">'+esc((x.url||'').replace(/^https?:\/\//,''))+'</div>'+
-        '<div class="up-state">'+st+'</div><div class="up-small">HTTP '+esc(x.status)+(x.error?' · '+esc(x.error):'')+(x.ms!=null?' · '+esc(x.ms)+' ms':'')+'</div>'+
-        (x.since?'<div class="up-small">In this state since '+esc(t(x.since))+'</div>':'')+
-        (x.pend?'<div class="up-pend">A change to '+(x.pend.up?'up':'down')+' is waiting for its confirm check</div>':'')+
-        (sp?'<div class="up-spark" aria-label="Last checks, oldest first">'+sp+'</div>':'')+'</div>';
-    }).join('');
-    $('up-cards').innerHTML=c||'<p class="up-note">No checks yet.</p>';
-    var o=(d.outages||[]);
-    $('up-out').innerHTML=o.length?'<table><thead><tr><th>Site</th><th>Start</th><th>End</th><th>Length</th><th>HTTP codes</th></tr></thead><tbody>'+o.map(function(x){
-      return '<tr><td>'+esc(x.name)+'</td><td>'+esc(t(x.start))+(x.start_note?'<br><small>'+esc(x.start_note)+'</small>':'')+'</td><td>'+(x.end?esc(t(x.end)):'ongoing')+'</td><td>'+esc(x.end?dur(x.minutes):'')+'</td><td>'+esc((x.codes||[]).join(', '))+'</td></tr>';
-    }).join('')+'</tbody></table>':'<p class="up-note">No outage recorded in the last 90 days.</p>';
+    var cs=d.checks||[];window.__clData=cs;
+    $('cl-last').textContent=d.last_run?t(d.last_run.at):'pending';
+    $('cl-next').textContent=d.next_check?t(d.next_check):'06:00 or 18:00 UTC';
+    var total=0;cs.forEach(function(x){total+=(x.changes||[]).length;});$('cl-n').textContent=String(total);
+    var recent=Date.now()-14*864e5;
+    $('cl-rows').innerHTML=cs.map(function(x,i){
+      var chg=x.changed_at&&Date.parse(x.changed_at)>=recent,last=(x.chk||[])[0];
+      var st=x.changed_at?(chg?'Changed '+t(x.changed_at):'No change since '+t(x.changed_at)):(x.baseline_at?'No change since '+t(x.baseline_at)+' (baseline)':'Not read yet');
+      if(last&&last[1]===-1)st+=' · not read at the last check';
+      return '<li class="cl-row'+(chg?' is-ch':'')+'"><div class="cl-txt"><div class="cl-name">'+esc(x.name)+'</div><div class="cl-url">'+esc((x.url||'').replace(/^https?:\/\//,''))+'</div><div class="cl-state">'+esc(st)+'</div></div>'+
+        '<button type="button" class="cl-g" data-i="'+i+'" aria-haspopup="dialog" aria-label="Graph and text log for '+esc(x.name)+'" title="Graph and text log">'+ICON+'</button></li>';
+    }).join('')||'<li class="cl-note">No pages yet.</li>';
+    Array.prototype.forEach.call(document.querySelectorAll('.cl-g'),function(b){b.onclick=function(){show(cs[+b.getAttribute('data-i')]);};});
   }).catch(function(e){
-    $('up-last').textContent='unavailable';
-    $('up-cards').innerHTML='<p class="up-note">The live data could not be read just now ('+esc(e.message)+'). Try again in a minute.</p>';
-    $('up-out').innerHTML='';
+    $('cl-last').textContent='unavailable';
+    $('cl-rows').innerHTML='<li class="cl-note">The live data could not be read just now ('+esc(e.message)+'). Try again in a minute.</li>';
   });
 })();
 </script>
