@@ -1,0 +1,23 @@
+{
+ "schema": "cedwyn-webapps-refresh/1.0",
+ "date": "2026-11-11",
+ "at": "2026-11-11T18:21:09Z",
+ "central_catalogue": {
+  "api_status": 200,
+  "total": 2202,
+  "kinds": {
+   "artifact": 25,
+   "catalogue_candidate": 7,
+   "email": 1138,
+   "evidence": 806,
+   "media": 128,
+   "missing_record": 86,
+   "person": 12
+  },
+  "core_record_files": null
+ },
+ "candidates_awaiting_review": null,
+ "builds_busy": [],
+ "build_action": "dry run: would dispatch build-cedwyn on main",
+ "dry_run": true
+}
