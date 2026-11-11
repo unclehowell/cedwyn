@@ -46,3 +46,7 @@ body{margin:0;background:var(--lib-bg);font-family:sans-serif;-webkit-text-size-
 /* long document titles (e.g. evidence records) wrap inside the screen and use a smaller size; short buttons are unchanged */
 .btn{max-width:calc(100% - 1.5rem);box-sizing:border-box;white-space:normal;overflow-wrap:anywhere}
 .btn.long{white-space:normal;overflow-wrap:anywhere;font-size:clamp(15px,3.6vw,19px);line-height:1.3em}
+/* 11 Nov 2026: the "Webapp numbering" note on the docs home page (plain paragraphs under a band title, both colour modes). - Sion's Tab agent */
+.band .note{padding:0 1rem;max-width:44rem;font-size:clamp(15px,3.8vw,18px);line-height:1.5;color:var(--lib-fg)}
+.band .note p{margin:0 0 .7rem}.band .note b{color:var(--lib-strong);font-weight:600}
+@media (min-width:900px){.band .note{padding-left:2rem}}
