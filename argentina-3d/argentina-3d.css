@@ -9,7 +9,7 @@
 .tb{font:inherit;font-size:13px;color:#eef2f5;background:rgba(20,26,32,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:5px 11px;cursor:pointer}
 .tb:active{background:rgba(60,70,80,.8)}.tb.sm{padding:2px 8px;font-size:12px}
 .a3d-bar{position:absolute;left:8px;right:8px;bottom:max(8px,env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between}
-.a3d-bar .views{display:flex;gap:5px}
+.a3d-bar .views{display:flex;flex-wrap:wrap;gap:5px}
 .a3d-bar .sun{display:flex;align-items:center;gap:6px;background:rgba(20,26,32,.62);backdrop-filter:blur(6px);border-radius:999px;padding:3px 6px 3px 10px;font-size:13px}
 .a3d-bar input[type=range]{width:110px;accent-color:#e8b45a}
 .a3d-night{position:absolute;left:8px;right:8px;top:44px;margin:0;background:rgba(20,26,32,.7);border-radius:10px;padding:6px 10px;font-size:13px}

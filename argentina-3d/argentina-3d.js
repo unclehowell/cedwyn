@@ -1,4 +1,4 @@
-// Great House II · Patagonia — 3D world (separate from the Wales world). v0.1.0
+// Great House II · Patagonia — 3D world (separate from the Wales world). v0.5.0 (landscape: real terrain, sea and buildings round the replica site)
 // Tŷ Mawr reconstructed from the 1974 measured survey and the family-album photographs shown on the Patagonia pages.
 // Every dimension marked GUESS in SOURCES (see sources.json) is a best guess, not evidence. — Cedwyn editors
 import * as THREE from "three";
@@ -11,22 +11,24 @@ const $ = id => document.getElementById(id);
 const Q = new URLSearchParams(location.search);
 const coarse = matchMedia("(pointer:coarse)").matches || Math.min(screen.width, screen.height) < 600;
 const LOW = coarse || Q.has("low");
-const LAT = -42.82, LON = -64.95, TZ = -3; // Puerto Madryn area (Chubut), as the Patagonia pages give it
+// v0.5.0: the origin is the replica house site the Chubut H3 2D map gives (data/landscape.json): Tŷ Mawr's offset from the Wales estate
+// centroid applied to the Chubut centroid, so the estate keeps its distance to the sea. x = metres east, z = metres south.
+const LAT = -42.825342, LON = -64.946342, TZ = -3;
 const canvas = $("c"), stage = $("stage");
 
 // ---------- renderer ----------
 let renderer;
-try { renderer = new THREE.WebGLRenderer({ canvas, antialias: !LOW, powerPreference: "high-performance", preserveDrawingBuffer: Q.has("shot") }); }
+try { renderer = new THREE.WebGLRenderer({ canvas, antialias: !LOW, powerPreference: "high-performance", preserveDrawingBuffer: Q.has("shot"), logarithmicDepthBuffer: true }); }
 catch (e) { $("st").textContent = "The 3D view needs WebGL, which this browser has turned off."; throw e; }
 renderer.setPixelRatio(Math.min(devicePixelRatio || 1, LOW ? 1.5 : 2));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.62;
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, 1, 0.3, 6000);
+const camera = new THREE.PerspectiveCamera(50, 1, 0.3, 120000);
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true; controls.dampingFactor = 0.08; controls.maxPolarAngle = Math.PI * 0.485;
-controls.minDistance = 4; controls.maxDistance = 420;
+controls.minDistance = 4; controls.maxDistance = 16000;
 function resize() { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.fov = w < h ? 62 : 48; camera.updateProjectionMatrix(); }
 addEventListener("resize", resize); new ResizeObserver(resize).observe(stage);
 
@@ -41,14 +43,14 @@ function sunPos(date) { // NOAA-style low-precision solar position; azimuth from
   const az = Math.atan2(-Math.sin(H), Math.tan(dec) * Math.cos(la) - Math.sin(la) * Math.cos(H));
   return { el, az };
 }
-const sky = new Sky(); sky.scale.setScalar(5000); scene.add(sky);
+const sky = new Sky(); sky.scale.setScalar(100000); scene.add(sky);
 const su = sky.material.uniforms; su.turbidity.value = 3.2; su.rayleigh.value = 1.1; su.mieCoefficient.value = 0.004; su.mieDirectionalG.value = 0.82;
 const sunL = new THREE.DirectionalLight(0xfff3e0, 3.2); sunL.castShadow = true;
 sunL.shadow.mapSize.set(LOW ? 1024 : 2048, LOW ? 1024 : 2048); sunL.shadow.bias = -0.0004; sunL.shadow.normalBias = 0.03;
 Object.assign(sunL.shadow.camera, { left: -80, right: 80, top: 80, bottom: -80, near: 1, far: 420 });
 scene.add(sunL, sunL.target);
 const hemi = new THREE.HemisphereLight(0xbcd3ec, 0x8a7656, 0.55); scene.add(hemi);
-scene.fog = new THREE.FogExp2(0xc9d6e2, 0.0016);
+scene.fog = new THREE.FogExp2(0xc9d6e2, 0.00004); // v0.5.0: light haze only, so the coast and the town stay in view
 const pmrem = new THREE.PMREMGenerator(renderer); let envRT = null;
 const sunDir = new THREE.Vector3();
 const state = { hour: null, fog: 1, now: true };
@@ -66,7 +68,7 @@ function applySun() {
   hemi.intensity = 0.15 + 0.5 * THREE.MathUtils.smoothstep(el, -0.1, 0.4);
   renderer.toneMappingExposure = 0.42 + 0.22 * day;
   const fogc = new THREE.Color().setHSL(0.58, 0.28, 0.42 + 0.38 * day); if (day < 0.5) fogc.lerp(new THREE.Color(0xd9a37a), (0.5 - day) * 0.8);
-  scene.fog.color.copy(fogc); scene.fog.density = 0.0013 * state.fog;
+  scene.fog.color.copy(fogc); scene.fog.density = 0.000032 * state.fog;
   // image-based light from the same sky
   clearTimeout(applySun.t); applySun.t = setTimeout(() => { const tmp = new THREE.Scene(); const s2 = new Sky(); s2.scale.setScalar(1000); Object.keys(su).forEach(k => s2.material.uniforms[k].value = su[k].value); tmp.add(s2);
     const rt = pmrem.fromScene(tmp, 0, 1, 2000); scene.environment = rt.texture; if (envRT) envRT.dispose(); envRT = rt; s2.geometry.dispose(); s2.material.dispose(); }, envRT ? 150 : 0);
@@ -260,8 +262,75 @@ picks.forEach(p => farmGroup.add(p));
     drawn.forEach(o => { o.visible = false; }); farmGroup.add(gl.scene); window.__a3dmodel = 'glb';
   }, undefined, () => { window.__a3dmodel = 'drawn'; }); }
 
-// ---------- the steppe: flat ground, tussock grass (coirón) and a few low shrubs ----------
-{
+// ---------- v0.5.0 landscape: the real ground, sea and buildings round the replica site ----------
+// Terrain: Terrain Tiles (AWS Open Data; SRTM and other public sources). Coastline and roads: © OpenStreetMap contributors (ODbL).
+// Buildings: Microsoft Global ML Building Footprints (ODbL, 2026 release) plus OpenStreetMap buildings that set lacks.
+// data/landscape.json describes every file. Near box 20 km (31 m terrain cells, 9.8 m cover), far ring 160 km (800 m cells).
+// If the files cannot be read, the world falls back to the flat steppe of v0.4.0.
+const LS = { h: null, n: 640, x0: -13500, x1: 6500, n0: -6500, n1: 13500, cell: 31.25, h0: 95.13 };
+function hAt(x, z) { const H = LS.h; if (!H) return 0; const n = LS.n;
+  const fx = Math.min(n - 1.001, Math.max(0, (x - LS.x0) / LS.cell - 0.5)), fz = Math.min(n - 1.001, Math.max(0, (LS.n1 + z) / LS.cell - 0.5));
+  const i = fx | 0, j = fz | 0, a = fx - i, b = fz - j;
+  return (H[j * n + i] * (1 - a) + H[j * n + i + 1] * a) * (1 - b) + (H[(j + 1) * n + i] * (1 - a) + H[(j + 1) * n + i + 1] * a) * b; }
+async function pixels(url) { const r = await fetch(url); if (!r.ok) throw new Error(url + " " + r.status); const blob = await r.blob();
+  let src; try { src = await createImageBitmap(blob, { colorSpaceConversion: "none", premultiplyAlpha: "none" }); }
+  catch (e) { src = await new Promise((ok, no) => { const im = new Image(); im.onload = () => ok(im); im.onerror = no; im.src = URL.createObjectURL(blob); }); }
+  const c = document.createElement("canvas"); c.width = src.width; c.height = src.height; const g = c.getContext("2d", { willReadFrequently: true }); g.drawImage(src, 0, 0);
+  return g.getImageData(0, 0, c.width, c.height); }
+function decodeH(img, h0) { const d = img.data, n = img.width * img.height, out = new Float32Array(n), sea = new Uint8Array(n);
+  for (let k = 0; k < n; k++) { out[k] = (d[k * 4] * 256 + d[k * 4 + 1]) / 10 - 20 - h0; sea[k] = d[k * 4 + 2] > 127 ? 1 : 0; } return { out, sea }; }
+const land = { buildings: 0, ok: false };
+try {
+  const meta = await (await fetch(new URL("data/landscape.json?v=0.5.0", import.meta.url).href)).json();
+  Object.assign(LS, { n: meta.near.size, x0: meta.near.x0, x1: meta.near.x1, n0: meta.near.n0, n1: meta.near.n1, cell: meta.near.cell_m, h0: meta.h0 });
+  const [nearImg, farImg, bld] = await Promise.all([
+    pixels(new URL("data/heights.png?v=0.5.0", import.meta.url).href),
+    pixels(new URL("data/far.png?v=0.5.0", import.meta.url).href),
+    fetch(new URL("data/buildings.bin?v=0.5.0", import.meta.url).href).then(r => r.ok ? r.arrayBuffer() : null).catch(() => null)]);
+  LS.h = decodeH(nearImg, LS.h0).out;
+  const SEA = -LS.h0; // sea level in world y (the farm stands at y = 0)
+  // near terrain, coloured by the cover map (OpenStreetMap roads, beaches, town; steppe tones), with close-up soil detail round the farm
+  const W = LS.x1 - LS.x0, Dn = LS.n1 - LS.n0, seg = LOW ? 319 : 639;
+  const tg = new THREE.PlaneGeometry(W, Dn, seg, seg); tg.rotateX(-Math.PI / 2); tg.translate((LS.x0 + LS.x1) / 2, 0, -(LS.n0 + LS.n1) / 2);
+  { const P = tg.attributes.position; for (let i = 0; i < P.count; i++) P.setY(i, hAt(P.getX(i), P.getZ(i))); tg.computeVertexNormals(); }
+  const coverTex = tl.load(new URL("data/cover.jpg?v=0.5.0", import.meta.url).href); coverTex.colorSpace = THREE.SRGBColorSpace; coverTex.anisotropy = Math.min(8, maxAniso);
+  const tmat = new THREE.MeshStandardMaterial({ map: coverTex, roughness: 1 });
+  tmat.onBeforeCompile = sh => { sh.uniforms.macro = { value: macroTex }; sh.uniforms.soil = { value: soilTex };
+    sh.vertexShader = sh.vertexShader.replace("#include <common>", "#include <common>\nvarying vec2 vW;").replace("#include <worldpos_vertex>", "#include <worldpos_vertex>\nvW = (modelMatrix * vec4(transformed,1.0)).xz;");
+    sh.fragmentShader = sh.fragmentShader.replace("#include <common>", "#include <common>\nuniform sampler2D macro; uniform sampler2D soil; varying vec2 vW;").replace("#include <map_fragment>",
+      "#include <map_fragment>\nfloat m1 = texture2D(macro, vW/310.0).r, m2 = texture2D(macro, vW/47.0 + 0.3).r;\nvec3 nearC = diffuseColor.rgb * (texture2D(soil, vW/7.0).rgb / vec3(0.33, 0.25, 0.12)) * (0.35 + 1.3*m1) * (0.7 + 0.6*m2);\nnearC = mix(nearC, nearC*vec3(0.95,1.0,0.86), smoothstep(0.45,0.6,m1));\nvec3 farC = diffuseColor.rgb * (0.8 + 0.4*m1);\ndiffuseColor.rgb = mix(nearC, farC, smoothstep(160.0, 520.0, length(vW)));"); };
+  const terrain = new THREE.Mesh(tg, tmat); terrain.receiveShadow = true; scene.add(terrain);
+  // far ring (160 km): the gulf shores and the steppe to the horizon
+  { const f = decodeH(farImg, LS.h0), n = farImg.width, half = meta.far.half_extent_m;
+    const fg = new THREE.PlaneGeometry(half * 2, half * 2, n - 1, n - 1); fg.rotateX(-Math.PI / 2);
+    const P = fg.attributes.position, C = new Float32Array(P.count * 3);
+    for (let i = 0; i < P.count; i++) { const y = f.out[i]; P.setY(i, y); const t = Math.min(1, Math.max(0, (y - SEA) / 140)), v = 0.9 + 0.2 * Math.sin(i * 12.9898);
+      C[i * 3] = (0.30 + 0.06 * t) * v; C[i * 3 + 1] = (0.25 + 0.04 * t) * v; C[i * 3 + 2] = (0.155 + 0.02 * t) * v; }
+    fg.setAttribute("color", new THREE.BufferAttribute(C, 3)); fg.computeVertexNormals();
+    scene.add(new THREE.Mesh(fg, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 1 }))); }
+  // the sea (Golfo Nuevo), at sea level
+  { const wg = new THREE.PlaneGeometry(400000, 400000); wg.rotateX(-Math.PI / 2);
+    const water = new THREE.Mesh(wg, new THREE.MeshStandardMaterial({ color: 0x174a68, roughness: 0.32, metalness: 0.0, envMapIntensity: 0.55 })); water.position.y = SEA; scene.add(water); }
+  // today's buildings: one oriented block per footprint, standing on the terrain
+  if (bld) { const dv = new DataView(bld), cnt = dv.getUint32(4, true), bg = new THREE.BoxGeometry(1, 1, 1); bg.translate(0, 0.5, 0);
+    { const nC = bg.attributes.position.count, C = new Float32Array(nC * 3); for (let i = 0; i < nC; i++) { const top = i >= 8 && i < 12, v = top ? 0.6 : 1; C[i * 3] = v; C[i * 3 + 1] = v; C[i * 3 + 2] = top ? 0.64 : 1; } bg.setAttribute("color", new THREE.BufferAttribute(C, 3)); }
+    const tones = [[0.86, 0.82, 0.74], [0.92, 0.91, 0.88], [0.80, 0.62, 0.48], [0.72, 0.72, 0.70], [0.88, 0.80, 0.62]];
+    const bm = new THREE.InstancedMesh(bg, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.85 }), cnt);
+    const m4 = new THREE.Matrix4(), q4 = new THREE.Quaternion(), s4 = new THREE.Vector3(), p4 = new THREE.Vector3(), up = new THREE.Vector3(0, 1, 0), c4 = new THREE.Color();
+    for (let k = 0, o = 8; k < cnt; k++, o += 10) { const x = dv.getInt16(o, true) / 2, z = dv.getInt16(o + 2, true) / 2, w = dv.getUint16(o + 4, true) / 10, l = dv.getUint16(o + 6, true) / 10, a = dv.getUint8(o + 8) / 255 * Math.PI, h = dv.getUint8(o + 9) / 4;
+      p4.set(x, hAt(x, z) - 1, z); q4.setFromAxisAngle(up, a); s4.set(w, h + 1, l); m4.compose(p4, q4, s4); bm.setMatrixAt(k, m4);
+      const t = tones[(k * 2654435761 >>> 0) % tones.length]; c4.setRGB(t[0], t[1], t[2]); bm.setColorAt(k, c4); }
+    bm.computeBoundingSphere(); scene.add(bm); land.buildings = cnt; }
+  // place names
+  const label = (txt, x, z, dy) => { const c = document.createElement("canvas"); c.width = 512; c.height = 96; const g = c.getContext("2d");
+    g.font = "600 44px system-ui, sans-serif"; g.textAlign = "center"; g.textBaseline = "middle"; g.lineWidth = 8; g.strokeStyle = "rgba(20,28,36,.75)"; g.strokeText(txt, 256, 48); g.fillStyle = "#fff"; g.fillText(txt, 256, 48);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, depthTest: false, sizeAttenuation: false, transparent: true }));
+    s.scale.set(0.2, 0.0375, 1); s.position.set(x, Math.max(hAt(x, z), SEA) + dy, z); s.renderOrder = 10; scene.add(s); return s; };
+  label("Golfo Nuevo", 3200, -6200, 40); label("Puerto Madryn", -7300, -5600, 70);
+  land.ok = true;
+} catch (e) { console.warn("landscape", e); LS.h = null; }
+window.__a3dland = land;
+if (!land.ok) { // v0.4.0 fallback: flat steppe
   const g = new THREE.PlaneGeometry(6000, 6000, 1, 1); g.rotateX(-Math.PI / 2);
   const uv = g.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * 6000 / 7, uv.getY(i) * 6000 / 7);
   const mat = new THREE.MeshStandardMaterial({ map: soilTex, roughness: 1 });
@@ -285,18 +354,20 @@ function windMat(base) { base.onBeforeCompile = sh => { sh.uniforms.uT = windU; 
   const m = new THREE.Matrix4(), q = new THREE.Quaternion(), s = new THREE.Vector3(), p = new THREE.Vector3(); let k = 0;
   while (k < n) { const r = Math.pow(rnd(), 0.62) * R, a = rnd() * 6.283, x = Math.cos(a) * r, z = Math.sin(a) * r;
     if (CLEAR.some(([a1, a2, b1, b2]) => x > a1 && x < a2 && z > b1 && z < b2)) continue; // buildings, garden, yard, track stay clear
-    q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), rnd() * 6.3); const sc = 0.7 + rnd() * 0.9; s.set(sc, sc * (0.8 + rnd() * 0.5), sc); p.set(x, 0, z); m.compose(p, q, s); tm.setMatrixAt(k++, m); }
+    q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), rnd() * 6.3); const sc = 0.7 + rnd() * 0.9; s.set(sc, sc * (0.8 + rnd() * 0.5), sc); p.set(x, hAt(x, z), z); m.compose(p, q, s); tm.setMatrixAt(k++, m); }
   tm.receiveShadow = true; scene.add(tm);
   // low cushion shrubs (jarilla / quilembai type) — sparse
   const sg = new THREE.IcosahedronGeometry(0.55, 2); { const P = sg.attributes.position; for (let i = 0; i < P.count; i++) { const y = P.getY(i); const f = 1 + (rnd() - 0.5) * 0.35; P.setXYZ(i, P.getX(i) * f, Math.max(y, -0.15) * 0.62 * f, P.getZ(i) * f); } sg.computeVertexNormals(); }
   const ns = LOW ? 220 : 520; const sm = new THREE.InstancedMesh(sg, new THREE.MeshStandardMaterial({ color: 0x5f6a4c, roughness: 1, flatShading: true }), ns); k = 0;
   while (k < ns) { const r = 30 + Math.sqrt(rnd()) * (R + 200), a = rnd() * 6.283, x = Math.cos(a) * r, z = Math.sin(a) * r; if (x > -40 && x < 40 && z > -48 && z < 46) continue;
-    const sc = 0.6 + rnd() * 1.4; s.set(sc * (1 + rnd() * 0.6), sc, sc); p.set(x, 0, z); q.identity(); m.compose(p, q, s); sm.setMatrixAt(k, m); sm.setColorAt(k++, new THREE.Color().setHSL(0.2 + rnd() * 0.06, 0.18 + rnd() * 0.12, 0.27 + rnd() * 0.1)); }
+    const sc = 0.6 + rnd() * 1.4; s.set(sc * (1 + rnd() * 0.6), sc, sc); p.set(x, hAt(x, z), z); q.identity(); m.compose(p, q, s); sm.setMatrixAt(k, m); sm.setColorAt(k++, new THREE.Color().setHSL(0.2 + rnd() * 0.06, 0.18 + rnd() * 0.12, 0.27 + rnd() * 0.1)); }
   sm.castShadow = !LOW; sm.receiveShadow = true; scene.add(sm);
 }
 
 // ---------- views ----------
-const VIEWS = { heli: [[52, 44, 74], [-10, 1, 6]], ground: [[-9, 1.7, 80], [-27, 4, 16]], front: [[3, 2.2, 32], [-1, 3.6, 0]], above: [[8, 150, 60], [-8, 0, 4]] }; VIEWS.quarter = VIEWS.heli; VIEWS.yard = VIEWS.ground;
+const VIEWS = { heli: [[52, 44, 74], [-10, 1, 6]], ground: [[-9, 1.7, 80], [-27, 4, 16]], front: [[3, 2.2, 32], [-1, 3.6, 0]], above: [[8, 150, 60], [-8, 0, 4]],
+  // v0.5.0: over the house towards the sea (2.67 km to the north-north-east) and towards the houses of Puerto Madryn (north-west), and the whole area
+  sea: [[-26, 15, 64], [341, -14, -535]], town: [[260, 180, 300], [-5600, -60, -4400]], area: [[2600, 2100, 4200], [-2400, -60, -3000]] }; VIEWS.quarter = VIEWS.heli; VIEWS.yard = VIEWS.ground;
 function go(v) { const [p, t] = VIEWS[v]; camera.position.set(...p); controls.target.set(...t); controls.update(); }
 go(Q.get("view") || "heli");
 
