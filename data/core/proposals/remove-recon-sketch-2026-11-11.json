@@ -1,0 +1,130 @@
+{
+ "_about": "catalogue-change proposal (not applied): remove the display-only field data.recon from the 15 missing-record entries below. It points at a pencil-sketch reconstruction image (recon/<ID>.webp, captioned \"tab.bot artist reconstruction\") in unclehowell/cedwyn-catalogue; the catalogue stopped showing these pictures in Records 0.16.0 (cedwyn-catalogue commit ebde83a, 11 Nov 2026) and the image files were removed from that repository the same day, so the field now points at nothing. No other field of any record changes: title, dates, status, holder, summary, description, interpretation and references stay exactly as they are. Proposed 11 Nov 2026 — Sion's Tab agent",
+ "proposed": "2026-11-11",
+ "change": "remove field",
+ "field": "data.recon",
+ "records": [
+  {
+   "id": "MR-0069",
+   "current_value": {
+    "img": "recon/MR-0069.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0070",
+   "current_value": {
+    "img": "recon/MR-0070.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0071",
+   "current_value": {
+    "img": "recon/MR-0071.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0072",
+   "current_value": {
+    "img": "recon/MR-0072.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0073",
+   "current_value": {
+    "img": "recon/MR-0073.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0074",
+   "current_value": {
+    "img": "recon/MR-0074.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0075",
+   "current_value": {
+    "img": "recon/MR-0075.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0076",
+   "current_value": {
+    "img": "recon/MR-0076.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0077",
+   "current_value": {
+    "img": "recon/MR-0077.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0078",
+   "current_value": {
+    "img": "recon/MR-0078.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0079",
+   "current_value": {
+    "img": "recon/MR-0079.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0080",
+   "current_value": {
+    "img": "recon/MR-0080.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0081",
+   "current_value": {
+    "img": "recon/MR-0081.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0082",
+   "current_value": {
+    "img": "recon/MR-0082.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  },
+  {
+   "id": "MR-0083",
+   "current_value": {
+    "img": "recon/MR-0083.webp",
+    "caption": "tab.bot artist reconstruction"
+   },
+   "proposed_value": null
+  }
+ ],
+ "evidence_of_current_value": "read live from https://bucklerfamily.estate/api/catalogue/<ID> (cache-busted) on 11 Nov 2026",
+ "rollback": "none needed: nothing is applied until an owner merges and the catalogue loader runs"
+}
