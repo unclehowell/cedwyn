@@ -1,25 +1,25 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 14715,
+  "pages_scanned": 14717,
   "references_checked": {
-    "resource": 366912,
-    "nav": 691090
+    "resource": 366951,
+    "nav": 691189
   },
-  "database_backed_paths": 7670,
+  "database_backed_paths": 7675,
   "unique_missing_destinations": 2340,
-  "missing_references": 62878,
-  "missing_navigation_references": 36432,
-  "missing_resource_references": 26446,
+  "missing_references": 62886,
+  "missing_navigation_references": 36436,
+  "missing_resource_references": 26450,
   "unique_broken_fragments": 3121,
   "broken_fragment_references": 5958,
   "form_or_endpoint_actions_not_checked": {
-    "form[action]": 6740
+    "form[action]": 6741
   },
   "top_missing_destinations": [
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 14685,
+      "references": 14687,
       "examples": [
         {
           "from": "/",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 14681,
+      "references": 14683,
       "examples": [
         {
           "from": "/",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 11953,
+      "references": 11955,
       "examples": [
         {
           "from": "/review/",
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 11953,
+      "references": 11955,
       "examples": [
         {
           "from": "/review/",
@@ -721,7 +721,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 36,
+      "references": 35,
       "examples": [
         {
           "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
@@ -739,7 +739,7 @@
           "url": "/research/%3E%2A.html"
         },
         {
-          "from": "/research/evidence/ev-0080-bp-properties-v-buckler-judgment/",
+          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
           "attribute": "a[href]",
           "url": "/research/%3E%2A.html"
         }
@@ -1012,6 +1012,33 @@
           "from": "/projects/wayback-websites-archive/",
           "attribute": "a[href]",
           "url": "/projects/workstreams/evidence-recovery/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/dartboard/coins/terms/",
+      "references": 20,
+      "examples": [
+        {
+          "from": "/ebooks/tymawr-deaths/",
+          "attribute": "a[href]",
+          "url": "/dartboard/coins/terms/"
+        },
+        {
+          "from": "/ebooks/projects/",
+          "attribute": "a[href]",
+          "url": "/dartboard/coins/terms/"
+        },
+        {
+          "from": "/ebooks/cedwyn/",
+          "attribute": "a[href]",
+          "url": "/dartboard/coins/terms/"
+        },
+        {
+          "from": "/ebooks/dartboard/",
+          "attribute": "a[href]",
+          "url": "/dartboard/coins/terms/"
         }
       ]
     },
@@ -1957,33 +1984,6 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_layout/fixed-header.html",
           "attribute": "a[href]",
           "url": "../docs/license.html"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/dartboard/coins/terms/",
-      "references": 19,
-      "examples": [
-        {
-          "from": "/ebooks/tymawr-deaths/",
-          "attribute": "a[href]",
-          "url": "/dartboard/coins/terms/"
-        },
-        {
-          "from": "/ebooks/projects/",
-          "attribute": "a[href]",
-          "url": "/dartboard/coins/terms/"
-        },
-        {
-          "from": "/ebooks/cedwyn/",
-          "attribute": "a[href]",
-          "url": "/dartboard/coins/terms/"
-        },
-        {
-          "from": "/ebooks/dartboard/",
-          "attribute": "a[href]",
-          "url": "/dartboard/coins/terms/"
         }
       ]
     },

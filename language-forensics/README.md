@@ -19,6 +19,9 @@ Trace how a word enters the record, who uses it, what it changes, and whether th
 
 ## Included tools
 
+Since v1.1.0 every tool is driven by an accessible dropdown (keyboard: arrows, Home/End, Enter, Escape) of the contested words, passages and propositions held in the app, grouped by theme, with an “Other…” field and Submit inside each list for custom wording. Each word opens a word card: other wording available, connotation, sense at the date, dated uses with catalogue IDs, how the wording shifted, what it stands on and where it may be wrong.
+
+
 - Phrase audit: flags terms and linguistic features for source review.
 - Wording comparison: finds terms present only in one passage and groups possible changes in ownership, permission, occupation and land scope.
 - Term register: working definitions, non-inferences and source checks.
