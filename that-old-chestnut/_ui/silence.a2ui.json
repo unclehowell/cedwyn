@@ -1,8 +1,8 @@
 {
  "a2ui": "0.9",
  "surface": "that-old-chestnut-silence",
- "version": "0.5.0",
- "as_of": "2026-11-05",
+ "version": "0.6.0",
+ "as_of": "2026-11-11",
  "note": "That Old Chestnut v0.4.0: Silence, a new old-chestnut category. Each entry is a direct question from the Executive left unanswered (in full, or skipped in a reply that answered other points). toc.js renders it as SilenceList after the old-chestnuts list, ordered by date asked, with days unanswered counted on the reader's clock. Entries are listed only after the thread was checked for a later reply. Role titles only, no officers' names. v0.5.0 (5 Nov 2026): tactic entries added as data (back_kind notreceived, contradicted, nomenclature, preservation, deflected; status_key picks the status line). Source: read-only Gmail sweep of 5 Nov 2026.",
  "kind": {
   "id": "silence",
@@ -38,7 +38,9 @@
    "st_contradicted": "Two answers that cannot both stand",
    "st_nomenclature": "Search not run under the names the house has gone by",
    "st_preservation": "No hold confirmed",
-   "st_deflected": "Question passed on, not answered"
+   "st_deflected": "Question passed on, not answered",
+   "k_aggregated": "Separate requests merged under one reference",
+   "st_aggregated": "That old chestnut: aggregating separate FOI requests. Under section 12 of the Freedom of Information Act 2000 and regulation 5 of the Fees Regulations 2004, the cost of two or more requests may be added together only where they relate, to any extent, to the same or similar information and are received within any 60 consecutive working days (cost limit: 18 hours for a local authority, 24 hours for central government, at £25 an hour). The Environmental Information Regulations 2004 have no cost limit and no aggregation rule: the only cost-based refusal is regulation 12(4)(b), subject to the public interest test."
   },
   "cy": {
    "sil_h": "Tawelwch",
@@ -67,7 +69,9 @@
    "st_contradicted": "Dau ateb na allant ill dau sefyll",
    "st_nomenclature": "Chwiliad heb ei redeg o dan enwau’r tŷ",
    "st_preservation": "Dim cadarnhad o gadw",
-   "st_deflected": "Trosglwyddwyd y cwestiwn, heb ei ateb"
+   "st_deflected": "Trosglwyddwyd y cwestiwn, heb ei ateb",
+   "k_aggregated": "Ceisiadau ar wahân wedi'u cyfuno o dan un cyfeirnod",
+   "st_aggregated": "Yr hen gastan: cyfuno ceisiadau Rhyddid Gwybodaeth ar wahân. O dan adran 12 Deddf Rhyddid Gwybodaeth 2000 a rheoliad 5 Rheoliadau Ffioedd 2004, dim ond pan fônt yn ymwneud, i unrhyw raddau, â'r un wybodaeth neu wybodaeth debyg, ac yn dod i law o fewn unrhyw 60 diwrnod gwaith olynol, y gellir adio cost dau gais neu ragor at ei gilydd (terfyn cost: 18 awr i awdurdod lleol, 24 awr i'r llywodraeth ganolog, ar £25 yr awr). Nid oes terfyn cost na rheol cyfuno yn Rheoliadau Gwybodaeth Amgylcheddol 2004: rheoliad 12(4)(b) yw'r unig sail i wrthod ar sail cost, yn amodol ar brawf budd y cyhoedd."
   },
   "es": {
    "sil_h": "Silencio",
@@ -96,7 +100,9 @@
    "st_contradicted": "Dos respuestas que no pueden ser ciertas a la vez",
    "st_nomenclature": "Búsqueda no hecha con los nombres de la casa",
    "st_preservation": "Ninguna retención confirmada",
-   "st_deflected": "Pregunta remitida, no respondida"
+   "st_deflected": "Pregunta remitida, no respondida",
+   "k_aggregated": "Solicitudes separadas fusionadas bajo una sola referencia",
+   "st_aggregated": "Esa vieja castaña: agrupar solicitudes de información separadas. Según la sección 12 de la Ley de Libertad de Información de 2000 y el reglamento 5 del Reglamento de Tasas de 2004, el coste de dos o más solicitudes solo puede sumarse cuando se refieren, en cualquier medida, a la misma información o a información similar y se reciben dentro de cualquier periodo de 60 días hábiles consecutivos (límite: 18 horas para una autoridad local y 24 horas para el gobierno central, a 25 £ la hora). El Reglamento de Información Ambiental de 2004 no tiene límite de coste ni regla de agrupación: la única denegación por coste es la del reglamento 12(4)(b), sujeta a la prueba del interés público."
   }
  },
  "entries": [
@@ -601,6 +607,54 @@
    "tactic": "deflected",
    "source": "Reply of 11 Oct 2026",
    "checked": "Gmail read 5 Nov 2026 (read-only)"
+  },
+  {
+   "id": "TOC-T21",
+   "institution": "Amgueddfa Cymru – Museum Wales",
+   "asked": "2026-08-26",
+   "question": "Requests FOI 2026-032 and FOI 2026-036 to be handled as two separate requests, each on its own timescale.",
+   "back_kind": "aggregated",
+   "back_date": "2026-09-08",
+   "back_quote": "our intention is to treat FOI:2026-036 as replacing FOI:2026-032 and to close FOI:2026-032 accordingly.",
+   "back_note": "Put right the same day after the requester objected: “FOI:2026-032 will remain open and will be processed separately from FOI:2026-036.” No fee and no section 12 refusal.",
+   "days_as_of": 77,
+   "status": "aggregated",
+   "status_key": "st_aggregated",
+   "tactic": "aggregated",
+   "source": "Replies of 8 Sep 2026, subject “FOI: 2026-036 - Great House Farm, Llandough, Cardiff”; Gmail ids 1a08046912368e30, 1a08127fe562a418",
+   "checked": "Gmail read 11 Nov 2026 (read-only)"
+  },
+  {
+   "id": "TOC-T22",
+   "institution": "RCAHMW (Royal Commission)",
+   "asked": "2026-09-08",
+   "question": "Four requests about one site, made on 8, 15, 17 and 21 September 2026, each to run from its own date.",
+   "back_kind": "aggregated",
+   "back_date": "2026-09-29",
+   "back_quote": "RC26-0375 (gan gynnwys RC26-0353, -0368, a -0371)",
+   "back_note": "3 Nov 2026: “the staff time and resources expended in searches related to this matter and site have now exceeded the limits for both fulfilment of FoI and general enquiries … Any further requested searches will be treated as complex enquiries by our Enquiries Service and will incur charges”. On 21 Sep the requester had agreed to one combined letter and offered to set priorities if the limit was reached; no priorities were asked for.",
+   "days_as_of": 64,
+   "status": "aggregated",
+   "status_key": "st_aggregated",
+   "tactic": "aggregated",
+   "source": "Replies of 29 Sep 2026 (subject “RC26-0375 (gan gynnwys RC26-0353, -0368, a -0371) - Ty Mawr/ Great House, Llandough, Cardiff”) and 3 Nov 2026 (“… - Further response”); Gmail ids 1a0ed5d3ada10e6b, 1a1a18b7f331978c, 1a0c4f015168ab78",
+   "checked": "Gmail read 11 Nov 2026 (read-only)"
+  },
+  {
+   "id": "TOC-T23",
+   "institution": "Cardiff Council",
+   "asked": "2026-10-29",
+   "question": "The request of 29 October 2026 (a 1926 conveyance and plan, a company's formation records, a 1938 conveyance and plan) to keep its own reference, and the separate request of 10 November 2026 to be logged separately.",
+   "back_kind": "aggregated",
+   "back_date": "2026-11-11",
+   "back_quote": "Your requests have been logged on 30 October 2026 under references FOI26520 and FOI26521. The new request today has been logged under FOI26600.",
+   "back_note": "The reply splits the requests between the Freedom of Information Act (FOI26520) and the Environmental Information Regulations (FOI26521) without saying which reference covers which request, and gives a new reference on the day of a follow-up email. Searches under way; no fee and no refusal as of 11 Nov 2026.",
+   "days_as_of": 13,
+   "status": "aggregated",
+   "status_key": "st_aggregated",
+   "tactic": "aggregated",
+   "source": "Reply of 11 Nov 2026, subject “RE: Follow-up — 29 October 2026 request: 1926 Cardiff Corporation conveyance, Mountjoy Ltd and 1938 WGR conveyance”; Gmail id 1a1ca159bea9fdf7",
+   "checked": "Gmail read 11 Nov 2026 (read-only)"
   }
  ]
 }
