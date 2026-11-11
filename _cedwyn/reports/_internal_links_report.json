@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 14717,
+  "pages_scanned": 14718,
   "references_checked": {
-    "resource": 366951,
-    "nav": 691189
+    "resource": 366967,
+    "nav": 691258
   },
-  "database_backed_paths": 7675,
-  "unique_missing_destinations": 2340,
-  "missing_references": 62886,
-  "missing_navigation_references": 36436,
-  "missing_resource_references": 26450,
+  "database_backed_paths": 7677,
+  "unique_missing_destinations": 2347,
+  "missing_references": 62915,
+  "missing_navigation_references": 36463,
+  "missing_resource_references": 26452,
   "unique_broken_fragments": 3121,
   "broken_fragment_references": 5958,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 14687,
+      "references": 14688,
       "examples": [
         {
           "from": "/",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 14683,
+      "references": 14684,
       "examples": [
         {
           "from": "/",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 11955,
+      "references": 11956,
       "examples": [
         {
           "from": "/review/",
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 11955,
+      "references": 11956,
       "examples": [
         {
           "from": "/review/",
@@ -721,7 +721,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 35,
+      "references": 34,
       "examples": [
         {
           "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
@@ -2259,6 +2259,33 @@
     },
     {
       "kind": "nav",
+      "path": "/that-old-chestnut/that-old-chestnut/",
+      "references": 10,
+      "examples": [
+        {
+          "from": "/that-old-chestnut/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/that-old-chestnut/that-old-chestnut/"
+        },
+        {
+          "from": "/that-old-chestnut/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/that-old-chestnut/that-old-chestnut/#cn-toc-f02"
+        },
+        {
+          "from": "/that-old-chestnut/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/that-old-chestnut/that-old-chestnut/#cn-toc-f02"
+        },
+        {
+          "from": "/that-old-chestnut/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/that-old-chestnut/that-old-chestnut/#cn-toc-f01"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
       "path": "/qa/scrutiny-and-accountability/government-public-authority-involvement/hm-land-registry-administrative-decisions/",
       "references": 10,
       "examples": [
@@ -2853,6 +2880,33 @@
     },
     {
       "kind": "nav",
+      "path": "/that-old-chestnut/dartboard/",
+      "references": 7,
+      "examples": [
+        {
+          "from": "/that-old-chestnut/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/that-old-chestnut/dartboard/?inst=internet-archive#avenue-inst"
+        },
+        {
+          "from": "/that-old-chestnut/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/that-old-chestnut/dartboard/?inst=oclc#avenue-inst"
+        },
+        {
+          "from": "/that-old-chestnut/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/that-old-chestnut/dartboard/?inst=historic-england#avenue-inst"
+        },
+        {
+          "from": "/that-old-chestnut/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/that-old-chestnut/dartboard/?inst=museum#avenue-inst"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
       "path": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/pages/examples/invoice.html",
       "references": 7,
       "examples": [
@@ -3096,6 +3150,33 @@
     },
     {
       "kind": "nav",
+      "path": "/that-old-chestnut/watchtower/",
+      "references": 6,
+      "examples": [
+        {
+          "from": "/that-old-chestnut/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/that-old-chestnut/watchtower/#wt-pkb-newman-ia"
+        },
+        {
+          "from": "/that-old-chestnut/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/that-old-chestnut/watchtower/#wt-pkb-toc-f02"
+        },
+        {
+          "from": "/that-old-chestnut/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/that-old-chestnut/watchtower/#wt-pkb-toc-f01"
+        },
+        {
+          "from": "/that-old-chestnut/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/that-old-chestnut/watchtower/#wt-pkb-dbdt79"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
       "path": "/qa/scrutiny-and-accountability/government-public-authority-involvement/south-wales-police-forensic-institutional-review/",
       "references": 6,
       "examples": [
@@ -3307,33 +3388,6 @@
           "from": "/wales/vouchers/thank-you/",
           "attribute": "a[href]",
           "url": "/wales/ebooks/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/that-old-chestnut/peekaboo/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/that-old-chestnut/",
-          "attribute": "a[href]",
-          "url": "/that-old-chestnut/peekaboo/"
-        },
-        {
-          "from": "/that-old-chestnut/",
-          "attribute": "a[href]",
-          "url": "/that-old-chestnut/peekaboo/#pk-toc-f01"
-        },
-        {
-          "from": "/that-old-chestnut/",
-          "attribute": "a[href]",
-          "url": "/that-old-chestnut/peekaboo/#pk-toc-f02"
-        },
-        {
-          "from": "/that-old-chestnut/",
-          "attribute": "a[href]",
-          "url": "/that-old-chestnut/peekaboo/#pk-toc-f03"
         }
       ]
     },
@@ -4009,60 +4063,6 @@
           "from": "/research/agent-index/",
           "attribute": "a[href]",
           "url": "/research/evidence-library/ghf-e106-r28-a1-ico-letter-ic-546505-w6p0-10-august-2026/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/evidence-library/ghf-e106-r29-a1-dcms-foi2026-06174-response-22-july-2026/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/ghf-e106-r29-a1-dcms-foi2026-06174-response-22-july-2026/"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_dcmsforensicinstitutionalreview/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/ghf-e106-r29-a1-dcms-foi2026-06174-response-22-july-2026/"
-        },
-        {
-          "from": "/docs/ghf_evidence/ev_0160/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/ghf-e106-r29-a1-dcms-foi2026-06174-response-22-july-2026/"
-        },
-        {
-          "from": "/research/agent-index/",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/ghf-e106-r29-a1-dcms-foi2026-06174-response-22-july-2026/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/evidence-library/ghf-e106-r29-a2-dcms-internal-review-ir2026-06711-19-august-2026/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/ghf-e106-r29-a2-dcms-internal-review-ir2026-06711-19-august-2026/"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_dcmsforensicinstitutionalreview/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/ghf-e106-r29-a2-dcms-internal-review-ir2026-06711-19-august-2026/"
-        },
-        {
-          "from": "/docs/ghf_evidence/ev_0164/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/ghf-e106-r29-a2-dcms-internal-review-ir2026-06711-19-august-2026/"
-        },
-        {
-          "from": "/research/agent-index/",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/ghf-e106-r29-a2-dcms-internal-review-ir2026-06711-19-august-2026/"
         }
       ]
     }

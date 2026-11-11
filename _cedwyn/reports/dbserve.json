@@ -1,7 +1,7 @@
 {
- "db_version": "3cd670bbf54f",
- "paths_served_from_db": 7675,
- "blobs": 5057,
+ "db_version": "178a25344d5f",
+ "paths_served_from_db": 7677,
+ "blobs": 5059,
  "files_dropped": {
   "document": 3267,
   "image": 1498,
@@ -17,7 +17,7 @@
  "bytes_dropped_total": 1444240861,
  "files_kept_as_well": {
   "image": 1098,
-  "data": 140,
+  "data": 142,
   "document": 12
  },
  "kept_why": {
@@ -26,7 +26,7 @@
   "css url()": 28,
   "download file (.csv opened by a plain link, outside the service worker)": 24,
   "webapp database / A2UI surface (read without a service worker)": 51,
-  "fetched by script": 18,
+  "fetched by script": 20,
   "fetched by browsers outside a service worker": 16,
   "page without runtime": 48,
   "flower gallery first-visit image/download": 268,
