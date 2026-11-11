@@ -1,0 +1,90 @@
+{
+ "_about": "Catalogue lock. Existing evidence/artifact records may not be edited or deleted without the owner's approval of that specific change. New records may be added; they are listed in the check summary. Approval = the label 'owner-approved' on the pull request, applied by an approver account, or a commit trailer 'Catalogue-approved-by: <approver> (<reference>)' written only after the owner approved that change. Agents propose changes as pull requests labelled 'catalogue-change'. Agents never apply 'owner-approved' themselves and never write the trailer.",
+ "approval_label": "owner-approved",
+ "change_label": "catalogue-change",
+ "approvers": [
+  "unclehowell"
+ ],
+ "trailer": "Catalogue-approved-by:",
+ "metadata_keys": [
+  "updated",
+  "updated_at",
+  "date",
+  "generated",
+  "version",
+  "asOf",
+  "synced_at",
+  "last_updated",
+  "count",
+  "total"
+ ],
+ "record_id_keys": [
+  "id",
+  "ev",
+  "ev_id",
+  "mr",
+  "model_id",
+  "slug",
+  "key",
+  "ref",
+  "code",
+  "item_id"
+ ],
+ "branches": {
+  "main": {
+   "locked": [
+    "data/core/records/**",
+    "data/core/schema/**",
+    "data/evidence-grades.json",
+    "data/artifact-assessments.json",
+    "data/observations.json",
+    "data/parcel-stories.json",
+    "data/title-chain.json",
+    "data/title-theory.json",
+    "data/dartboard-updates/**",
+    "web/research/evidence/**",
+    "web/research/*.csv",
+    "web/research/reconstructions/**"
+   ],
+   "exempt": [
+    "web/research/evidence/index.html",
+    "web/research/reconstructions/index.html"
+   ]
+  },
+  "core/*": {
+   "locked": [
+    "data/core/records/**",
+    "data/core/schema/**"
+   ],
+   "exempt": []
+  },
+  "section/research": {
+   "locked": [
+    "evidence/**",
+    "evidence-library/**",
+    "artifacts/**",
+    "missing-records/**",
+    "anomalies-register/**",
+    "books/*.csv",
+    "records-access-chronology/**",
+    "testimony/**"
+   ],
+   "exempt": [
+    "evidence/index.html",
+    "evidence-library/index.html",
+    "artifacts/index.html",
+    "missing-records/index.html",
+    "anomalies-register/index.html",
+    "records-access-chronology/index.html",
+    "testimony/index.html",
+    "missing-records/charts/**",
+    "*/charts/**"
+   ]
+  }
+ },
+ "audit_branches": [
+  "section/research",
+  "core/*"
+ ],
+ "audit_lookback_hours": 7
+}
