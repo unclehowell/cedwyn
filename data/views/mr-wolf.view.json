@@ -1,0 +1,21 @@
+{
+  "app": "mr-wolf",
+  "version": "0.1.0",
+  "enabled": true,
+  "schema": "cedwyn-view/0.1.0",
+  "note": "Mr Wolf (webapp 40 of 59). The app's public legal-readiness dataset is owned by the split repository in leaderboard.json. This view exposes it as the generated app database and renders the A2UI template; the scores and legal route are not rewritten by the view. This is a site-wide change because it registers the app in the shared A2UI catalog and build pipeline.",
+  "source_database": {
+    "file": "leaderboard.json",
+    "schema": "cedwyn_mr_wolf_leaderboard/v2",
+    "key": "database"
+  },
+  "collections": {},
+  "pages": [
+    {
+      "template": "_ui/index.a2ui.json",
+      "out": "index.html"
+    }
+  ],
+  "approved_terms_note": "Exact legal terminology retained in the reviewed route and qualification text; these words are not used to assert that any person or body committed wrongdoing.",
+  "allowed_public_terms_b64": "WyJmcmF1ZCIsICJhbGxlZ2VkIl0="
+}
