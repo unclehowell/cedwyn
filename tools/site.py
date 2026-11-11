@@ -94,7 +94,10 @@ _areas_pub = []
 for _c, _area in zip(chain, _areas):
     _p = _area.get('path') or '/' + _area['id'] + '/'
     _al = sorted({'/' + s + '/' for s in _area.get('source_themes', []) if s not in _slotted} - {_p})
-    _built = any((DIST / x.strip('/')).is_dir() for x in [_p] + _al)
+    # nav 1.4.1 (cedwyn#497, 8 Nov 2026): an area whose source themes all carry their own slot (Arcade: nft-art 52, cyberspace 53)
+    # has no aliases left, so "built" must still count those sources' folders; otherwise the area drops out of the chain and every
+    # label after it reads one less, "N of 58" (live 8 Nov 07:43Z build). - Sion's Tab agent
+    _built = any((DIST / x.strip('/')).is_dir() for x in [_p] + _al + ['/' + s + '/' for s in _area.get('source_themes', [])])
     _areas_pub.append({'id': _area['id'], 'path': _p, 'title': _c[1], 'cy': _c[3], 'es': _c[4], 'group': _c[2],
                        'aliases': _al, 'skip_in': _c[5], 'built': _built,
                        'slot': _area.get('serendipity_slot'), 'of': _area_doc.get('parcel_total', 59)})
