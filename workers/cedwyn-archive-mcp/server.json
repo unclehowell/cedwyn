@@ -1,0 +1,14 @@
+{
+ "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+ "name": "estate.bucklerfamily.cedwyn/archive",
+ "title": "Cedwyn archive (read-only)",
+ "description": "Read-only archive of Tŷ Mawr (Great House Farm), Llandough, Wales: names, e-books, pages, hashes.",
+ "version": "0.1.0",
+ "websiteUrl": "https://cedwyn.bucklerfamily.estate/",
+ "remotes": [
+  {
+   "type": "streamable-http",
+   "url": "https://cedwyn.bucklerfamily.estate/mcp/archive"
+  }
+ ]
+}
