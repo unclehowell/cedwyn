@@ -67,3 +67,19 @@ html[data-ghf-mode="night"] a.pk-tag.pk-tag-wayback,html[data-ghf-mode="night"] 
 html[data-ghf-mode="night"] a.pk-tag.pk-tag-oldchestnut,html[data-ghf-mode="night"] a.pk-tag.pk-tag-oldchestnut:visited{color:#f6dcc0!important}
 html[data-ghf-mode="night"] a.pk-tag.pk-tag-watchtower,html[data-ghf-mode="night"] a.pk-tag.pk-tag-watchtower:visited{color:#c9f0d4!important}
 html[data-ghf-mode="night"] a.pk-tag.pk-tag-dartboard,html[data-ghf-mode="night"] a.pk-tag.pk-tag-dartboard:visited{color:#ffd3d3!important}
+
+/* v0.3.0 (11 Nov 2026): "At a glance" strip under the introduction, folded by default (dashboard.css/.js kit). The page text
+   stays primary and fully visible; the strip is a secondary summary. — Cedwyn editors */
+body.pk{--cwd-bg:var(--pk-bg);--cwd-card:var(--pk-card);--cwd-ink:var(--pk-ink);--cwd-mut:var(--pk-mut);--cwd-line:var(--pk-line);--cwd-acc:var(--pk-acc);--cwd-soft:var(--pk-said)}
+.pk-glance{margin:.9rem 0 .4rem;border:1px solid var(--pk-line);border-radius:12px;background:var(--pk-card)}
+.pk-glance[hidden]{display:none}
+.pk-glance>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;flex-wrap:wrap;gap:.2rem .5rem;padding:.55rem .8rem;font-size:.9rem}
+.pk-glance>summary::-webkit-details-marker{display:none}
+.pk-glance>summary::before{content:"▸";color:var(--pk-acc);margin-right:.1rem}.pk-glance[open]>summary::before{content:"▾"}
+.pk-glance>summary span{font-weight:700}.pk-glance>summary small{color:var(--pk-mut);font-size:.78rem}
+.pk-glance>.cwd{margin:0;padding:0 .6rem .7rem}
+.pk-glance .cwd-tile,.pk-glance .cwd-card{background:var(--pk-bg)}
+.cwd-mb .pk-card{border:0;padding:0;margin:0 0 .6rem;background:none}
+.cwd-mb .pk-notice{border:0;padding:0;margin:0;background:none}
+.cwd-mb .pk-notice summary{cursor:default;padding:0 0 .4rem}.cwd-mb .pk-notice summary::before{content:none}
+.cwd-mb .pk-lede,.cwd-mb .pk-scope{margin:0 0 .7rem}
