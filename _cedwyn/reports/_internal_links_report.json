@@ -2,14 +2,14 @@
   "audit": "Cedwyn internal HTML/CSS links and fragments",
   "pages_scanned": 14715,
   "references_checked": {
-    "resource": 366905,
-    "nav": 691080
+    "resource": 366912,
+    "nav": 691090
   },
   "database_backed_paths": 7670,
-  "unique_missing_destinations": 2346,
-  "missing_references": 62881,
-  "missing_navigation_references": 36428,
-  "missing_resource_references": 26453,
+  "unique_missing_destinations": 2340,
+  "missing_references": 62878,
+  "missing_navigation_references": 36432,
+  "missing_resource_references": 26446,
   "unique_broken_fragments": 3121,
   "broken_fragment_references": 5958,
   "form_or_endpoint_actions_not_checked": {
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 11952,
+      "references": 11953,
       "examples": [
         {
           "from": "/review/",
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 11952,
+      "references": 11953,
       "examples": [
         {
           "from": "/review/",
@@ -721,7 +721,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 35,
+      "references": 36,
       "examples": [
         {
           "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
@@ -739,7 +739,7 @@
           "url": "/research/%3E%2A.html"
         },
         {
-          "from": "/research/evidence/ev-0044-vg41-village-green-registration-1970/",
+          "from": "/research/evidence/ev-0080-bp-properties-v-buckler-judgment/",
           "attribute": "a[href]",
           "url": "/research/%3E%2A.html"
         }
