@@ -5,11 +5,11 @@
 <body><p style="font:16px system-ui;padding:16px">Loading the preview…</p>
 <script>
 /* PREVIEW ONLY (cedwyn-documentary#14). Loads the documentary page as built and applies, in the browser, the tidy
-   patch and the structure pass from unclehowell/cedwyn-movie branch script-structure-2026-11-12.
+   patch and structure pass plus F112E source metadata from the separate storage branch work/f112e-hyperframe-data-2026-11-12.
    Nothing here changes the live page. — Claude agent */
 (function () {
   var SHIM = function () {
-    var RAW = "https://raw.githubusercontent.com/unclehowell/cedwyn-movie/", BR = "script-structure-2026-11-12";
+    var RAW = "https://raw.githubusercontent.com/unclehowell/cedwyn-movie/", BR = "work/f112e-hyperframe-data-2026-11-12";
     function applyPatch(F, P) {
       var items = F.items, by = {}; items.forEach(function (x) { by[x.id] = x; }); F.folded = F.folded || []; F.appendix = F.appendix || [];
       Object.keys(P.set || {}).forEach(function (i) { var x = by[i], f = P.set[i];
@@ -51,7 +51,7 @@
     };
   };
   var BANNER = '<div style="position:sticky;top:0;z-index:99999;background:#7a1f1f;color:#fff;font:14px/1.4 system-ui;padding:8px 12px;text-align:center">' +
-    'PREVIEW — 127 main scenes in nine parts through 25 July 2025; 132 folded records and 55 later/held records remain in the archive. The separate final HyperFrames coda is still subject to owner review. Not the production page.</div>';
+    'PREVIEW — 127 main scenes in nine parts; 132 folded records and 55 later/held records remain in the archive. Includes an attributed 25 June account, a labelled July dramatization and two original source embeds; the owner video is limited to its first 10 seconds. Staging only — not production.</div>';
   fetch("/documentary/index.html", {cache: "no-store"}).then(function (r) { return r.text(); }).then(function (h) {
     var inj = '<base href="/documentary/"><scr' + 'ipt>(' + SHIM.toString() + ')();</scr' + 'ipt>';
     h = h.replace(/<head[^>]*>/i, function (m) { return m + inj; });
