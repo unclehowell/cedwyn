@@ -26,8 +26,10 @@ jobs:
 
       - name: Validate spatial registry (read-only)
         id: validate
+        env:
+          REGISTRY_PATH: ${{ inputs.registry_path }}
         run: |
-          python3 tools/validate_spatial.py "${{ inputs.registry_path }}"
+          python3 tools/validate_spatial.py "$REGISTRY_PATH"
           echo "report=reports/_spatial_validation.json" >> "$GITHUB_OUTPUT"
 
       - name: Upload validation report
