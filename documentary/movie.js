@@ -196,18 +196,18 @@
     root.appendChild(caption);
     var steps=el("div","cm-hf-steps");
     [
-      ["25 June 2025 · Owner's account","The Grandson says he was alone in a cabin at a Welsh settlement in Argentina, wearing British military uniform, researching Great House Farm and raising concerns by phone, email and YouTube. No dialogue, recipients or private correspondence are recreated."],
-      ["July 2025 · Explicit dramatization","An anonymous person at a generic computer in Wales. The actual publisher, person at the keyboard and physical upload location are not established. This is not attributed to the National Archives or the National Library of Wales."],
-      ["Two separate source clips","First: the Wales at Six headline fragment at 19:48. Then: only the first ten seconds of the owner's separate video. The first upload is not the full news package."]
+      ["25 June 2025 · Owner's account","The Grandson says he was alone in a cabin at a Welsh settlement in Argentina, wearing British military uniform, researching Great House Farm and raising concerns by phone, email and YouTube. This is his account; no dialogue, recipients or private correspondence are recreated."],
+      ["July 2025 · Explicit dramatization","An anonymous person at a generic computer in Wales. The project chronology records 25 July 2025 as the online-publication date for the separate 4GXmR7mAas0 ITV Wales/HTV Wales viewing copy. This does not identify who uploaded it or where. The supplied Wales at Six clip is a separate source. No institution is identified as the uploader."],
+      ["Two separate source clips","First: the supplied Wales at Six source clip from 19:48. Then: only the first ten seconds of the separate ITV Wales/HTV Wales viewing copy. NLW catalogue item 507738 is a separate 30 November 1988 record; a link between it and the online copy is not established."]
     ].forEach(function(a){
       var box=el("div","cm-hf-step");
       box.appendChild(el("h5","",a[0]));box.appendChild(el("p","",a[1]));steps.appendChild(box);
     });
     root.appendChild(steps);
 
-    var firstTitle=el("h5","cm-hf-source-title","1 · Wales at Six — headline fragment (start 19:48)");
+    var firstTitle=el("h5","cm-hf-source-title","1 · Wales at Six — supplied source clip (start 19:48)");
     root.appendChild(firstTitle);
-    root.appendChild(el("p","cm-hf-source-note","The source notes describe this as a headline fragment, not the complete news package. Contributor identifications are attributed identifications, not independently proved by this short fragment."));
+    root.appendChild(el("p","cm-hf-source-note","This is the supplied Wales at Six source clip, played from 19:48. This scene treats it as separate from 4GXmR7mAas0 and NLW catalogue item 507738. It makes no claim about uploader, online-publication date or completeness."));
     var firstHost=el("div","cm-hf-player-host");
     firstHost.id="cm-hf-player-one-"+f.n;
     firstHost.setAttribute("aria-label","Wales at Six original YouTube player");
@@ -222,14 +222,14 @@
     status.setAttribute("role","status");status.setAttribute("aria-live","polite");root.appendChild(status);
 
     var secondSection=el("section","cm-hf-second");secondSection.hidden=true;
-    secondSection.appendChild(el("h5","cm-hf-source-title","2 · Owner-specified separate video — first 10 seconds only"));
-    secondSection.appendChild(el("p","cm-hf-source-note","The owner's identification of the child as Mary Buckler, Branwen's daughter, aged three in 1988, and of the furniture-loading scene is attributed to the owner. The supplied transcript does not independently identify the child. The scene depicts loading/preparation, not completed demolition. This child is distinct from Mary (Nancy) Buckler in the earlier chronology."));
+    secondSection.appendChild(el("h5","cm-hf-source-title","2 · Owner-selected ITV Wales/HTV Wales viewing copy — first 10 seconds only"));
+    secondSection.appendChild(el("p","cm-hf-source-note","The owner identifies the child as Mary Buckler, daughter of Branwen, aged three in 1988, and describes the action as household furniture being loaded. This identification is attributed to the owner; the supplied caption record does not independently identify the child. EV-0083/GHF-E113 describe this YouTube item as a secondary viewing host of ITV Wales/ITV Archive material. The project chronology records 25 July 2025 as the online-publication date for this viewing copy only; it does not establish uploader or upload location, the underlying broadcast/disclosure date, or identity with NLW item 507738. Depict loading/preparation only, not completed demolition. This child is distinct from Mary (Nancy) Buckler in the earlier chronology."));
     var secondHost=el("div","cm-hf-player-host");secondHost.id="cm-hf-player-two-"+f.n;secondSection.appendChild(secondHost);
     var loadTwo=el("button","cm-hf-button","Load 10-second source excerpt");loadTwo.type="button";secondSection.appendChild(loadTwo);
     var playTwo=el("button","cm-hf-button","Play opening 10 seconds");playTwo.type="button";playTwo.disabled=true;secondSection.appendChild(playTwo);
     var secondStatus=el("p","cm-hf-status","The embed is hard-limited to 10 seconds. The remainder of this video is not played.");secondStatus.setAttribute("role","status");secondStatus.setAttribute("aria-live","polite");secondSection.appendChild(secondStatus);
     root.appendChild(secondSection);
-    var endNote=el("p","cm-hf-endnote","Source and rights note: original YouTube embeds only; no copies are downloaded or re-hosted. The uploader identity and physical upload location are not inferred from displayed page metadata.");
+    var endNote=el("p","cm-hf-endnote","Source and rights note: original YouTube embeds only; no copies are downloaded or re-hosted. The 25 July 2025 date applies only to the project-recorded online-publication chronology of 4GXmR7mAas0; it is not a broadcast or disclosure date. The uploader and physical upload location are not established.");
     root.appendChild(endNote);
 
     var firstPlayer=null,secondPlayer=null,firstComplete=false,secondTimer=null;
@@ -270,7 +270,7 @@
           host:"https://www.youtube-nocookie.com",width:"100%",height:"100%",videoId:"vF25-sLZXaM",
           playerVars:{start:1188,controls:1,playsinline:1,rel:0,modestbranding:1,enablejsapi:1,origin:location.origin},
           events:{
-            onReady:function(){playOne.disabled=false;manualDone.disabled=true;var frame=firstPlayer.getIframe();if(frame){frame.title="Wales at Six headline fragment, beginning at 19 minutes 48 seconds";frame.setAttribute("referrerpolicy","strict-origin-when-cross-origin");}status.textContent="Player ready. Press Play first source clip or use the YouTube player's own controls. Continue unlocks only when playback ends.";},
+            onReady:function(){playOne.disabled=false;manualDone.disabled=true;var frame=firstPlayer.getIframe();if(frame){frame.title="Wales at Six supplied source clip, beginning at 19 minutes 48 seconds";frame.setAttribute("referrerpolicy","strict-origin-when-cross-origin");}status.textContent="Player ready. Press Play first source clip or use the YouTube player's own controls. Continue unlocks only when playback ends.";},
             onStateChange:function(ev){if(ev.data===YT.PlayerState.ENDED)enableNext();}
           }
         });
@@ -282,7 +282,7 @@
       if(loadTwo.disabled)return;loadTwo.disabled=true;
       withYouTube(function(YT){
         if(!YT||!YT.Player){
-          iframeFallback(secondHost,"4GXmR7mAas0",0,10,"Owner-specified video — first ten seconds only");
+          iframeFallback(secondHost,"4GXmR7mAas0",0,10,"Owner-selected ITV Wales/HTV Wales viewing copy — first ten seconds only");
           playTwo.disabled=true;secondStatus.textContent="The standard YouTube embed includes an end-at-10-second limit. Use its controls; do not seek beyond the excerpt.";
           return;
         }
