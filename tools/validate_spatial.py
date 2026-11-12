@@ -15,7 +15,9 @@ the report). Exit non-zero only on unrecoverable I/O or parse errors.
 """
 from __future__ import annotations
 
+import hashlib
 import json
+import os
 import pathlib
 import sys
 import urllib.request
@@ -42,7 +44,10 @@ def fetch_geojson(url: str, timeout: int = 30) -> dict | None:
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "cedwyn-spatial-validate/1.0"})
         with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode("utf-8"))
+            payload = resp.read()
+            geo = json.loads(payload.decode("utf-8"))
+            geo["_source_sha256"] = hashlib.sha256(payload).hexdigest()
+            return geo
     except Exception as e:
         return {"_fetch_error": str(e)[:300]}
 
@@ -114,6 +119,29 @@ def validate_registry(reg: dict) -> dict:
         or spatial.get("resolution") is not None,
     }
 
+    # H3 cell collision check. Null/unassigned proposal records are deliberately ignored.
+    parcel_records = reg.get("parcel_records") or []
+    seen_cells = set()
+    duplicate_cells = set()
+    assigned_cells = 0
+    for record in parcel_records:
+        cell = record.get("h3_index")
+        if not cell:
+            continue
+        assigned_cells += 1
+        if cell in seen_cells:
+            duplicate_cells.add(cell)
+        seen_cells.add(cell)
+    report["checks"]["h3_cell_assignments"] = {
+        "records": len(parcel_records),
+        "assigned_cells": assigned_cells,
+        "duplicate_cells": sorted(duplicate_cells),
+        "ok": not duplicate_cells,
+    }
+    if duplicate_cells:
+        report["errors"].append(f"Duplicate H3 cell assignments: {sorted(duplicate_cells)}")
+        report["pass"] = False
+
     # Geometry source block
     geom_src = reg.get("geometry_source") or {}
     features = geom_src.get("features") or []
@@ -180,6 +208,7 @@ def validate_geojson(geo: dict, report: dict) -> None:
         "ok": True,
         "feature_count": len(feats),
         "type": geo.get("type"),
+        "sha256": geo.get("_source_sha256"),
     }
 
     bad_coords = 0
@@ -226,13 +255,23 @@ def validate_geojson(geo: dict, report: dict) -> None:
 
 
 def main() -> int:
-    reg_path = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_REGISTRY
+    supplied_path = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_REGISTRY
+    reg_path = (supplied_path if supplied_path.is_absolute() else ROOT / supplied_path).resolve()
+    if not reg_path.is_relative_to(ROOT.resolve()):
+        print(f"Registry path must remain inside the repository: {reg_path}", file=sys.stderr)
+        return 2
     if not reg_path.is_file():
         print(f"Registry not found: {reg_path}", file=sys.stderr)
         return 2
 
-    reg = load_json(reg_path)
+    registry_bytes = reg_path.read_bytes()
+    reg = json.loads(registry_bytes.decode("utf-8"))
     report = validate_registry(reg)
+    report["checks"]["registry_source_hash"] = {
+        "path": str(reg_path.relative_to(ROOT.resolve())),
+        "sha256": hashlib.sha256(registry_bytes).hexdigest(),
+        "commit_sha": os.environ.get("GITHUB_SHA"),
+    }
 
     # Optional live GeoJSON (read-only)
     url = (reg.get("geometry_source") or {}).get("url")
