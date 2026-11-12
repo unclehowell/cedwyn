@@ -1,4 +1,4 @@
-/* Cedwyn · documentary — scene page (page v1.13.0, movie.js 1.13.0, 12 Nov 2026: nine-part 127-scene main sequence; dated supporting captions; complete 132-record folded archive and 55-record appendix. Full source records and evidence remain accessible. */
+/* Cedwyn · documentary — scene page (page v1.14.0, movie.js 1.14.0, 12 Nov 2026: each door is labelled "Scene N", then "date · period" and its three languages (Cymraeg, English, Español) each shown as made or pending; a scene not yet made shows "Not yet made" instead of a planned release date. Was page v1.11.1, movie.js 1.11.1, 2 Nov 2026 (1.11.1, version standard §2/§3: each version option carries its length, e.g. "(2 min)", and the (i) table has a header row Version · Date · What changed · Length · Price; options no longer append "now playing" (§2a); 1.11.0: one internal "Evidence for this scene" link under each door, from frames.json evidence_page; the description tells the moment only; 1.10.1: an earlier free cut made from the same master video also plays and downloads from the matrix files; 1.10.0, owner 02:47Z m:4b318305: audio x subtitle matrix — each audio language and subtitle choice plays its own ready-made MP4 (subtitles burned in) in the same player, switching at the same moment and keeping play/pause; pairs not made yet are disabled and marked pending; 1.9.0, owner's rule m:1d4eb2cf): door art — a door not yet ready shows the Cedwyn estate silhouette with the place of its event marked and "Coming soon" in the picture (storage repository thumbs/soon/<id>.webp, one per door), a ready door shows a still from its own scene (manifest poster); tapping any door, or play, opens ONE modal: a random NFT image with "Select a version" and a down arrow, the version dropdown and its (i) under it; no version dropdown on the page itself; under "What happens in this scene" three dropdowns: Script, Subtitles, Evidence (last; evidence appears nowhere else on the door). Page v1.8.0, movie.js 1.8.0, 1 Nov 2026: one plain version dropdown per scene, its placeholder "Select a version" shown on load, no label above and no line under it, an (i) version table beside it; the picture is the scene's own still until play is tapped with no version chosen, then a random NFT image with "Select a version" and a down arrow (docs/VERSION-STANDARD.md, Selector UI). Page v1.7.3, movie.js 1.7.0, 31 Oct 2026 23:15Z: native-language renders: each audio language loads its own video for the chosen version (manifest "renders", files movie/<id>/<id>.<lang>.v<semver>.webm), a Version menu in the player, and a "video pending" image (label in HTML) for any (scene, language, version) not yet made — standing rules m:cc94f07a. movie.js 1.6.3, 31 Oct 2026: per-video subtitles (manifest "vsubs": {audio: {sub: path}}) for a language video cut to its own timeline, reloaded on an audio switch. movie.js 1.6.2, 30 Oct 2026: versions are one menu under each scene with a visible "Select a version" label, preselected on the cut the play button will play, prices in the options (it shows the cut playing, with a Now playing line under it), replacing the hashtag chips; a paid cut's files stream from the site's access service with the access code (manifest "doc:" paths). v1.6.0, 30 Oct 2026: the reserved #next chip is gone; the chip of the cut in the player is highlighted and marked "now playing"; the player has Back and Next buttons that step through every cut of every scene, oldest to newest, scene by scene (a paid cut not yet open on this device opens the access-code box, documentary.js 1.7.0); the player names what is playing as version_language (e.g. v0.0.1_welsh), and changing the audio reloads that same cut in the new language at the same moment (its own lip-synced video where one exists). v1.5.2 (replaces the short-lived 1.5.1): version chips wrap inside their card like a word cloud at every card size (no sideways scrolling row) and show the site-wide labels (newest #v0.0.2 · £4.99, previous #v0.0.1 · free and the default, older -v0.0.2, -v0.0.3 … shown as #_v0.0.2, #_v0.0.3 … (minus series starts at -v0.0.2 since documentary.js 1.7.2), reserved #next; documentary.js 1.6.2). v1.5.0, 30 Oct 2026: one card-size control above the scenes (small / medium / large, like icon sizes in a file explorer) sets every card at once and is remembered on this device (localStorage cedwyn-doc-size); large is one full-width column with unclamped text; it replaces the per-card full-width toggle of 1.4.7. Versions are hashtag chips under each released scene (#v0.0.1-0.0.5 …; the default cut is marked free and selected; a reserved version is marked coming and cannot be picked); the selected chip drives play, language video/audio and Download (documentary.js 1.6.0). v1.4.7, 30 Oct 2026: each scene card has a full-width toggle (bottom-right of its picture) that spans the card across the grid so its text is readable on a narrow phone; tap again for the grid; remembered per card for the visit; v1.4.6, 30 Oct 2026: every scene is free (documentary.js 1.5.0); choosing an earlier cut (v0.0.1-0.0.N) in the version menu plays that door's earlier cut with its own audio and subtitles, and switches an open player to it; the player's meta line names the version playing; v1.4.5, 30 Oct 2026: a scene with per-language lip-synced video (manifest "video": {cy, en, es}) plays the video of the chosen audio language and switches it, at the same position, when the audio changes; without it the single clip plays as before; v1.4.4, 30 Oct 2026: the page opens straight onto the scenes — no intro panel or page-level control bar; audio and subtitles are chosen in the player, and the version select moves into the player's control bar; v1.4.3, 30 Oct 2026: tapping anywhere on a released scene's picture plays it; the full-screen picture opens only from the small "View artwork" button under it; v1.4.2, 30 Oct 2026: window.CedwynPlayer lets download.js offer the scene with the chosen audio and subtitles; v1.4.1, 30 Oct 2026: Welsh audio by default, subtitles follow the site language; v1.4.0, 29 Oct 2026: per-scene description and evidence links to our own archived copies; was v1.3.0; served at /documentary/, /movie/ and /documentry/ redirect here). A tab.bot production.
    v1.3.0: film versions, viewing licence and checkout live in documentary.js (window.CedwynDoc); play() asks it first.
    Doors come from frames.json; a door opens when manifest.json in the film's storage repository lists its clip.
    The page reads the storage repository at run time (frames, manifest, prompt, scripts, subtitles, media), so the daily
@@ -139,6 +139,178 @@
     if (!n) { var s0 = el("span", "cm-lang pend", "Cymraeg · English · Español: " + t("pend")); s0.style.cssText = "opacity:.65;font-style:italic"; p.appendChild(s0); return p; }
     ["cy", "en", "es"].forEach(function (L, i) { if (i) p.appendChild(document.createTextNode(" · ")); var s = el("span", ok[L] ? "cm-lang ok" : "cm-lang pend", LN[L] + (ok[L] ? " ✓" : ": " + t("pend"))); if (!ok[L]) s.style.cssText = "opacity:.65;font-style:italic"; p.appendChild(s); });
     return p; }
+  function buildFinalHyperframe(f) {
+    var root = el("section", "cm-hyperframe");
+    root.setAttribute("aria-labelledby", "cm-hf-title-" + f.n);
+    var heading = el("h4", "cm-hf-heading", "Final sequence · 25 June–25 July 2025");
+    heading.id = "cm-hf-title-" + f.n;
+    root.appendChild(heading);
+    root.appendChild(el("p", "cm-hf-intro",
+      "An attributed account, an explicitly hypothetical publication scene, then two separate original source players. No causal link is asserted."));
+    var svgNS = "http://www.w3.org/2000/svg";
+    function sv(tag, attrs, parent) {
+      var x = document.createElementNS(svgNS, tag);
+      Object.keys(attrs || {}).forEach(function (k) { x.setAttribute(k, attrs[k]); });
+      if (parent) parent.appendChild(x);
+      return x;
+    }
+    var svg = sv("svg", {viewBox:"0 0 960 300", role:"img", "aria-labelledby":"cm-hf-svg-title-" + f.n, focusable:"false"}, null);
+    var st = sv("title", {id:"cm-hf-svg-title-" + f.n}, svg);
+    st.textContent = "Three monochrome pencil-sketch panels: an unspecified cabin, a calendar changing to July, and an anonymous computer user";
+    [0,320,640].forEach(function (x) { sv("rect",{x:x+3,y:3,width:314,height:294,rx:8,class:"cm-hf-panel"},svg); });
+    // Panel one: deliberately generic cabin and anonymous silhouette; no badge, likeness or exact place.
+    sv("path",{d:"M38 150 L160 45 L282 150 M53 137 V260 H267 V137",class:"cm-hf-line"},svg);
+    sv("rect",{x:75,y:105,width:70,height:57,rx:2,class:"cm-hf-window"},svg);
+    sv("path",{d:"M110 105 V162 M75 133 H145",class:"cm-hf-fine"},svg);
+    sv("path",{d:"M85 238 H245 M100 238 V253 M230 238 V253",class:"cm-hf-line"},svg);
+    sv("circle",{cx:171,cy:169,r:17,class:"cm-hf-person"},svg);
+    sv("path",{d:"M154 190 Q171 177 188 190 L198 231 H145 Z",class:"cm-hf-person-fill"},svg);
+    sv("path",{d:"M192 200 L213 218 M151 203 L136 222",class:"cm-hf-line"},svg);
+    sv("path",{d:"M120 231 H223 L214 206 H132 Z M139 205 H207 L202 184 H145 Z",class:"cm-hf-line"},svg);
+    sv("path",{d:"M161 185 H191 V202 H161 Z",class:"cm-hf-screen"},svg);
+    sv("path",{d:"M165 190 H187 M165 195 H181",class:"cm-hf-fine"},svg);
+    // Panel two: the calendar page visibly turns from June to July.
+    sv("rect",{x:394,y:56,width:172,height:192,rx:8,class:"cm-hf-calendar"},svg);
+    sv("path",{d:"M394 101 H566 M430 45 V70 M530 45 V70",class:"cm-hf-line"},svg);
+    var june=sv("text",{x:480,y:88,"text-anchor":"middle",class:"cm-hf-month"},svg);june.textContent="JUNE 2025";
+    var page=sv("g",{class:"cm-hf-calendar-page"},svg);
+    var july=sv("text",{x:480,y:135,"text-anchor":"middle",class:"cm-hf-month cm-hf-july"},page);july.textContent="JULY 2025";
+    ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"].forEach(function(v,i){
+      var xx=425+(i%7)*22, yy=164+Math.floor(i/7)*23;
+      var tx=sv("text",{x:xx,y:yy,"text-anchor":"middle",class:"cm-hf-day"},page);tx.textContent=v;
+    });
+    sv("path",{d:"M375 269 H585",class:"cm-hf-fine"},svg);
+    // Panel three: anonymous generic computer user, without institutional branding or identifiable setting.
+    sv("path",{d:"M690 210 H920 M713 210 V250 M900 210 V250",class:"cm-hf-line"},svg);
+    sv("rect",{x:770,y:83,width:102,height:78,rx:3,class:"cm-hf-screen"},svg);
+    sv("path",{d:"M821 161 V176 M795 178 H846 M782 183 H860",class:"cm-hf-line"},svg);
+    sv("circle",{cx:744,cy:157,r:16,class:"cm-hf-person"},svg);
+    sv("path",{d:"M727 177 Q744 165 761 177 L770 209 H718 Z",class:"cm-hf-person-fill"},svg);
+    sv("path",{d:"M758 189 L786 197",class:"cm-hf-line"},svg);
+    sv("path",{d:"M794 101 H846 M794 113 H838 M794 125 H830",class:"cm-hf-fine"},svg);
+    var lab1=sv("text",{x:160,y:282,"text-anchor":"middle",class:"cm-hf-label"},svg);lab1.textContent="OWNER ACCOUNT · DRAMATIZED";
+    var lab2=sv("text",{x:480,y:282,"text-anchor":"middle",class:"cm-hf-label"},svg);lab2.textContent="JUNE → JULY · NO LINK INFERRED";
+    var lab3=sv("text",{x:800,y:282,"text-anchor":"middle",class:"cm-hf-label"},svg);lab3.textContent="ANONYMOUS · DRAMATIZATION";
+    root.appendChild(svg);
+    var caption = el("p", "cm-hf-art-note", "Monochrome artist's impression only. The figure wears an unbadged, non-identifying military uniform; no likeness, precise cabin or settlement, identifiable publisher, office or institutional affiliation is intended.");
+    root.appendChild(caption);
+    var steps=el("div","cm-hf-steps");
+    [
+      ["25 June 2025 · Owner's account","The Grandson says he was alone in a cabin at a Welsh settlement in Argentina, wearing British military uniform, researching Great House Farm and raising concerns by phone, email and YouTube. No dialogue, recipients or private correspondence are recreated."],
+      ["July 2025 · Explicit dramatization","An anonymous person at a generic computer in Wales. The actual publisher, person at the keyboard and physical upload location are not established. This is not attributed to the National Archives or the National Library of Wales."],
+      ["Two separate source clips","First: the Wales at Six headline fragment at 19:48. Then: only the first ten seconds of the owner's separate video. The first upload is not the full news package."]
+    ].forEach(function(a){
+      var box=el("div","cm-hf-step");
+      box.appendChild(el("h5","",a[0]));box.appendChild(el("p","",a[1]));steps.appendChild(box);
+    });
+    root.appendChild(steps);
+
+    var firstTitle=el("h5","cm-hf-source-title","1 · Wales at Six — headline fragment (start 19:48)");
+    root.appendChild(firstTitle);
+    root.appendChild(el("p","cm-hf-source-note","The source notes describe this as a headline fragment, not the complete news package. Contributor identifications are attributed identifications, not independently proved by this short fragment."));
+    var firstHost=el("div","cm-hf-player-host");
+    firstHost.id="cm-hf-player-one-"+f.n;
+    firstHost.setAttribute("aria-label","Wales at Six original YouTube player");
+    root.appendChild(firstHost);
+    var firstControls=el("div","cm-hf-controls");
+    var loadOne=el("button","cm-hf-button","Load first source player");loadOne.type="button";
+    var playOne=el("button","cm-hf-button","Play first source clip");playOne.type="button";playOne.disabled=true;
+    var manualDone=el("button","cm-hf-button","I've finished the first clip — continue");manualDone.type="button";manualDone.disabled=true;
+    firstControls.appendChild(loadOne);firstControls.appendChild(playOne);firstControls.appendChild(manualDone);
+    root.appendChild(firstControls);
+    var status=el("p","cm-hf-status","Load the original player. Use its own controls. The next source remains locked until the first clip ends or you confirm that you have finished it.");
+    status.setAttribute("role","status");status.setAttribute("aria-live","polite");root.appendChild(status);
+
+    var secondSection=el("section","cm-hf-second");secondSection.hidden=true;
+    secondSection.appendChild(el("h5","cm-hf-source-title","2 · Owner-specified separate video — first 10 seconds only"));
+    secondSection.appendChild(el("p","cm-hf-source-note","The owner's identification of the child as Mary Buckler, Branwen's daughter, aged three in 1988, and of the furniture-loading scene is attributed to the owner. The supplied transcript does not independently identify the child. The scene depicts loading/preparation, not completed demolition. This child is distinct from Mary (Nancy) Buckler in the earlier chronology."));
+    var secondHost=el("div","cm-hf-player-host");secondHost.id="cm-hf-player-two-"+f.n;secondSection.appendChild(secondHost);
+    var loadTwo=el("button","cm-hf-button","Load 10-second source excerpt");loadTwo.type="button";secondSection.appendChild(loadTwo);
+    var playTwo=el("button","cm-hf-button","Play opening 10 seconds");playTwo.type="button";playTwo.disabled=true;secondSection.appendChild(playTwo);
+    var secondStatus=el("p","cm-hf-status","The embed is hard-limited to 10 seconds. The remainder of this video is not played.");secondStatus.setAttribute("role","status");secondStatus.setAttribute("aria-live","polite");secondSection.appendChild(secondStatus);
+    root.appendChild(secondSection);
+    var endNote=el("p","cm-hf-endnote","Source and rights note: original YouTube embeds only; no copies are downloaded or re-hosted. The uploader identity and physical upload location are not inferred from displayed page metadata.");
+    root.appendChild(endNote);
+
+    var firstPlayer=null,secondPlayer=null,firstComplete=false,secondTimer=null;
+    function iframeFallback(host,id,start,end,title){
+      var src="https://www.youtube-nocookie.com/embed/"+id+"?start="+start+"&controls=1&playsinline=1&rel=0&modestbranding=1";
+      if(end!=null)src+="&end="+end;
+      var frame=el("iframe","cm-hf-iframe");frame.src=src;frame.title=title;
+      frame.setAttribute("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share");
+      frame.setAttribute("referrerpolicy","strict-origin-when-cross-origin");frame.setAttribute("allowfullscreen","");
+      host.textContent="";host.appendChild(frame);return null;
+    }
+    function withYouTube(callback){
+      if(window.YT&&window.YT.Player){callback(window.YT);return;}
+      var finished=false;
+      function done(YT){if(finished)return;finished=true;callback(YT||null);}
+      var previous=window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady=function(){if(typeof previous==="function")previous();done(window.YT);};
+      if(!document.querySelector("script[data-cm-youtube-api]")){
+        var sc=document.createElement("script");sc.src="https://www.youtube.com/iframe_api";sc.async=true;sc.setAttribute("data-cm-youtube-api","1");
+        sc.onerror=function(){done(null);};document.head.appendChild(sc);
+      }
+      window.setTimeout(function(){done(window.YT||null);},9000);
+    }
+    function enableNext(){
+      firstComplete=true;manualDone.disabled=false;status.textContent="The first source clip has finished. Continue to the separate ten-second excerpt when ready.";
+    }
+    loadOne.addEventListener("click",function(){
+      if(loadOne.disabled)return;loadOne.disabled=true;
+      withYouTube(function(YT){
+        if(!YT||!YT.Player){
+          iframeFallback(firstHost,"vF25-sLZXaM",1188,null,"Wales at Six headline fragment from 19:48");
+          playOne.disabled=true;manualDone.disabled=false;
+          status.textContent="The YouTube API is unavailable. Use the embedded player's standard controls; when the clip has finished, confirm below to continue.";
+          return;
+        }
+        firstHost.textContent="";
+        firstPlayer=new YT.Player(firstHost.id,{
+          host:"https://www.youtube-nocookie.com",width:"100%",height:"100%",videoId:"vF25-sLZXaM",
+          playerVars:{start:1188,controls:1,playsinline:1,rel:0,modestbranding:1,enablejsapi:1,origin:location.origin},
+          events:{
+            onReady:function(){playOne.disabled=false;manualDone.disabled=true;var frame=firstPlayer.getIframe();if(frame){frame.title="Wales at Six headline fragment, beginning at 19 minutes 48 seconds";frame.setAttribute("referrerpolicy","strict-origin-when-cross-origin");}status.textContent="Player ready. Press Play first source clip or use the YouTube player's own controls. Continue unlocks only when playback ends.";},
+            onStateChange:function(ev){if(ev.data===YT.PlayerState.ENDED)enableNext();}
+          }
+        });
+      });
+    });
+    playOne.addEventListener("click",function(){if(firstPlayer&&firstPlayer.playVideo)firstPlayer.playVideo();});
+    manualDone.addEventListener("click",function(){if(!firstComplete){enableNext();}secondSection.hidden=false;secondSection.scrollIntoView({behavior:"smooth",block:"nearest"});});
+    loadTwo.addEventListener("click",function(){
+      if(loadTwo.disabled)return;loadTwo.disabled=true;
+      withYouTube(function(YT){
+        if(!YT||!YT.Player){
+          iframeFallback(secondHost,"4GXmR7mAas0",0,10,"Owner-specified video — first ten seconds only");
+          playTwo.disabled=true;secondStatus.textContent="The standard YouTube embed includes an end-at-10-second limit. Use its controls; do not seek beyond the excerpt.";
+          return;
+        }
+        secondHost.textContent="";
+        secondPlayer=new YT.Player(secondHost.id,{
+          host:"https://www.youtube-nocookie.com",width:"100%",height:"100%",videoId:"4GXmR7mAas0",
+          playerVars:{start:0,end:10,controls:1,playsinline:1,rel:0,modestbranding:1,enablejsapi:1,origin:location.origin},
+          events:{
+            onReady:function(){playTwo.disabled=false;var frame=secondPlayer.getIframe();if(frame){frame.title="Owner-specified video — first ten seconds only";frame.setAttribute("referrerpolicy","strict-origin-when-cross-origin");}secondStatus.textContent="Player ready. Only the opening ten seconds are available in this sequence.";},
+            onStateChange:function(ev){
+              if(ev.data===YT.PlayerState.PLAYING&&!secondTimer){
+                secondTimer=window.setInterval(function(){
+                  if(secondPlayer&&secondPlayer.getCurrentTime&&secondPlayer.getCurrentTime()>=10){
+                    secondPlayer.pauseVideo();secondPlayer.seekTo(10,true);window.clearInterval(secondTimer);secondTimer=null;
+                    secondStatus.textContent="The ten-second excerpt has ended. No later part of the video is played.";
+                  }
+                },200);
+              }
+              if(ev.data===YT.PlayerState.ENDED){if(secondTimer){window.clearInterval(secondTimer);secondTimer=null;}secondStatus.textContent="The ten-second excerpt has ended. No later part of the video is played.";}
+            }
+          }
+        });
+      });
+    });
+    playTwo.addEventListener("click",function(){if(secondPlayer&&secondPlayer.playVideo)secondPlayer.playVideo();});
+    return root;
+  }
+
   function render() {
     var F = S.frames; if (!F) return; var grid = $("cm-grid"); grid.textContent = ""; var fm = filledMap(); var open = 0, nextN = null;
     F.items.forEach(function (f) { if (fm[f.n]) open++; else if (nextN === null) nextN = f.n; });
@@ -168,7 +340,7 @@
       var hd = el("div", "cm-hd"); hd.appendChild(el("div", "cm-scene", t("scene") + " " + f.n));
       var ab = el("button", "cm-artbtn", t("art")); ab.type = "button"; ab.setAttribute("aria-label", t("enlarge") + ": " + t("scene") + " " + f.n);
       ab.onclick = function (e) { e.stopPropagation(); openLB(f, title, dtxt); }; hd.appendChild(ab); body.appendChild(hd);
-      var pl = [f.date_label, f.period && (f.period[lang()] || f.period.en)].filter(Boolean).join(" · "); if (pl) { var pe = el("p", "cm-period", pl); pe.style.cssText = "font-size:12.5px;font-weight:600;margin:2px 0 4px;opacity:.8"; body.appendChild(pe); }/* v1.12.0: date · period */ body.appendChild(el("h3", "", title)); body.appendChild(el("p", "cm-log", tl(f, "logline"))); body.appendChild(langRow(f));
+      var pl = [f.date_label, f.period && (f.period[lang()] || f.period.en)].filter(Boolean).join(" · "); if (pl) { var pe = el("p", "cm-period", pl); pe.style.cssText = "font-size:12.5px;font-weight:600;margin:2px 0 4px;opacity:.8"; body.appendChild(pe); }/* v1.12.0: date · period */ body.appendChild(el("h3", "", title)); body.appendChild(el("p", "cm-log", tl(f, "logline"))); if (f.id === "F112E") body.appendChild(buildFinalHyperframe(f)); body.appendChild(langRow(f));
 
       if (f.also && f.also.length) {
         var ad = el("details", "cm-also");
