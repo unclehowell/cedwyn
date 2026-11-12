@@ -11,7 +11,7 @@
   var SHIM = function () {
     var RAW = "https://raw.githubusercontent.com/unclehowell/cedwyn-movie/", BR = "script-structure-2026-11-12";
     function applyPatch(F, P) {
-      var items = F.items, by = {}; items.forEach(function (x) { by[x.id] = x; });
+      var items = F.items, by = {}; items.forEach(function (x) { by[x.id] = x; }); F.folded = F.folded || []; F.appendix = F.appendix || [];
       Object.keys(P.set || {}).forEach(function (i) { var x = by[i], f = P.set[i];
         Object.keys(f).forEach(function (k) { if (k === "date") { x.date_from = x.date_to = x.date_range = f[k]; } else { x[k] = f[k]; } });
         if ("logline" in f && (typeof x.description === "string" || x.description == null)) x.description = f.logline; });
@@ -28,15 +28,15 @@
       (P.add || []).forEach(function (a) { if (!by[a.scene.id]) { items.splice(items.indexOf(by[a.after]) + 1, 0, a.scene); by[a.scene.id] = a.scene; } });
       var ap = P.appendix || {}, park = (ap.ids || []).slice();
       if (by[ap.from]) park = park.concat(items.slice(items.indexOf(by[ap.from])).map(function (x) { return x.id; }));
-      park.forEach(function (i) { if (by[i]) { items.splice(items.indexOf(by[i]), 1); delete by[i]; } });
+      park.forEach(function (i) { if (by[i]) { var x = by[i]; items.splice(items.indexOf(x), 1); delete by[i]; x.n = null; F.appendix.push(x); } });
       Object.keys(P.fold || {}).forEach(function (t) { var T = by[t]; P.fold[t].forEach(function (i) { var x = by[i]; if (!x) return;
-        items.splice(items.indexOf(x), 1); delete by[i];
+        items.splice(items.indexOf(x), 1); x.folded_into = t; x.n = null; F.folded.push(x); delete by[i];
         (T.also = T.also || []).push({id: i, date: x.date_label || x.date_range, title: x.title, logline: x.logline});
         ["events", "evidence"].forEach(function (k) { T[k] = (T[k] || []).concat((x[k] || []).filter(function (e) { return (T[k] || []).indexOf(e) < 0; })); }); }); });
       var starts = {}; P.parts.forEach(function (p) { starts[p.start] = p; });
       F.acts = P.parts.map(function (p) { return {n: p.n, en: p.en, cy: p.cy, es: p.es}; }); var cur = F.acts[0];
       items.forEach(function (x, n) { x.n = n + 1; var s = starts[x.id]; if (s) cur = {n: s.n, en: s.en, cy: s.cy, es: s.es}; x.act = cur; });
-      F.frames = items.length; F.version = P.meta.version; return F;
+      F.frames = items.length; F.version = P.meta.version; var mins = items.length * (F.target_seconds_each || 120) / 60; F.estimated_runtime = Math.floor(mins / 60) + " h " + ("0" + (mins % 60)).slice(-2) + " min"; return F;
     }
     var of = window.fetch.bind(window);
     function j(p) { return of(RAW + BR + "/" + p + "?t=" + Date.now(), {cache: "no-store"}).then(function (r) { return r.json(); }); }
@@ -51,7 +51,7 @@
     };
   };
   var BANNER = '<div style="position:sticky;top:0;z-index:99999;background:#7a1f1f;color:#fff;font:14px/1.4 system-ui;padding:8px 12px;text-align:center">' +
-    'PREVIEW — 127 scenes in nine parts, ending 25 July 2025 (script v5.0.0). Not the live page.</div>';
+    'PREVIEW — 127 main scenes in nine parts through 25 July 2025; 132 folded records and 55 later/held records remain in the archive. The separate final HyperFrames coda is still subject to owner review. Not the production page.</div>';
   fetch("/documentary/index.html", {cache: "no-store"}).then(function (r) { return r.text(); }).then(function (h) {
     var inj = '<base href="/documentary/"><scr' + 'ipt>(' + SHIM.toString() + ')();</scr' + 'ipt>';
     h = h.replace(/<head[^>]*>/i, function (m) { return m + inj; });
