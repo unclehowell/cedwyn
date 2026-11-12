@@ -1,4 +1,35 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Coming soon · Catalogue search · Cedwyn</title><meta name="description" content="Catalogue search: coming soon. Records are in the one central catalogue at bucklerfamily.estate/catalogue/."><meta name="robots" content="noindex"><meta name="color-scheme" content="light"><meta name="theme-color" content="#1e4d45"><style>body.cs{margin:0;background:#f4f1ea;color:#1b1b1b;font:16px/1.5 Georgia,'Times New Roman',serif}.cs-w{max-width:640px;margin:0 auto;padding:18vh 20px 24vh;text-align:center}.cs-w h1{font:400 clamp(32px,9vw,52px)/1.15 'Palatino Linotype','Book Antiqua',Georgia,serif;margin:0 0 12px;letter-spacing:.03em}.cs-w p{margin:0;color:#5a5a5a;letter-spacing:.12em;text-transform:uppercase;font-size:13px}</style></head>
-<body class="cs">
-<main class="cs-w" data-coming-soon="catalogue"><h1>Coming soon</h1><p>Catalogue search</p><p style="text-transform:none;letter-spacing:0;margin-top:18px;font-size:16px">Every record is in the one catalogue: <a href="https://bucklerfamily.estate/catalogue/">bucklerfamily.estate/catalogue/</a></p></main><!-- One central catalogue of artifacts and evidence; nothing was deleted. Source: bucklerfamily.estate/catalogue/ (records read from /api/catalogue). --><script>(function(){var n=0;(function t(){var b=document.querySelector(".ghf-v2-name b");if(b&&b.textContent!=="Coming soon")b.textContent="Coming soon";if(++n<60)setTimeout(t,250);})();})();</script>
-</body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Records · Cedwyn</title>
+<meta name="description" content="The single catalogue and Records search for BucklerFamily.Estate.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://bucklerfamily.estate/catalogue/">
+<meta http-equiv="refresh" content="2; url=https://bucklerfamily.estate/catalogue/">
+<style>
+body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+main{max-width:46rem;margin:0 auto;padding:18vh 20px 20vh;text-align:center}
+a{color:#1764a0}
+@media(prefers-color-scheme:dark){body{background:#101217;color:#eceef3}a{color:#9bcaff}}
+</style>
+</head>
+<body>
+<main>
+<h1>Records</h1>
+<p>The catalogue now lives in one place. Open the Records app at <a href="https://bucklerfamily.estate/catalogue/">bucklerfamily.estate/catalogue/</a>.</p>
+<p>This page forwards searches and record links where possible. Older theme and artifact links open the Records home.</p>
+</main>
+<script>
+(function(){
+  var incoming = new URLSearchParams(window.location.search);
+  var destination = new URL("https://bucklerfamily.estate/catalogue/");
+  if (incoming.has("q")) destination.searchParams.set("q", incoming.get("q"));
+  if (incoming.has("id")) destination.searchParams.set("id", incoming.get("id"));
+  window.location.replace(destination.href);
+})();
+</script>
+<!-- Source: https://bucklerfamily.estate/catalogue/ (the single Records app). -->
+</body>
+</html>
