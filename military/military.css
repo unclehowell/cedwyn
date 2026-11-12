@@ -1,0 +1,17 @@
+body.mil{margin:0;background:#f4f1ea;color:#1b1b1b;font:16px/1.5 Georgia,'Times New Roman',serif;overflow-x:hidden}
+.mil *{box-sizing:border-box}.mil-w{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+.mil h1{font:400 clamp(28px,8vw,44px)/1.15 'Palatino Linotype','Book Antiqua',Georgia,serif;margin:8px 0 6px;letter-spacing:.02em}
+.mil .lede{color:#444;margin:0 0 14px}.mil .rule{background:#fff;border-left:4px solid #1e4d45;padding:10px 12px;margin:0 0 16px;font-size:15px}
+.mil .flt{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}.mil .flt button{font:14px/1.2 Georgia,serif;border:1px solid #1e4d45;background:#fff;color:#1e4d45;border-radius:16px;padding:6px 10px;min-height:36px;cursor:pointer}
+.mil .flt button[aria-pressed=true]{background:#1e4d45;color:#fff}
+.mil .count{font-size:13px;color:#666;margin:6px 0 12px}
+.mil ol.tl{list-style:none;margin:0;padding:0;border-left:2px solid #b9b2a3}
+.mil .ev{position:relative;margin:0 0 14px 12px;padding:10px 12px;background:#fff;border-radius:6px;box-shadow:0 1px 2px rgba(0,0,0,.08);overflow-wrap:anywhere}
+.mil .ev:before{content:'';position:absolute;left:-19px;top:16px;width:10px;height:10px;border-radius:50%;background:#1e4d45}
+.mil .ev.hypothesis:before{background:#b0761a}.mil .ev.testimony:before{background:#3d5f9e}
+.mil .d{font-size:13px;color:#555;letter-spacing:.04em}.mil h2{font-size:18px;margin:2px 0 6px;font-weight:700}
+.mil .lab{display:inline-block;font:12px/1 Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em;padding:3px 6px;border-radius:3px;margin-right:4px;color:#fff;background:#1e4d45}
+.mil .lab.hypothesis{background:#b0761a}.mil .lab.testimony{background:#3d5f9e}.mil .lab.st{background:#777}
+.mil blockquote{margin:6px 0;padding:0 0 0 10px;border-left:3px solid #ddd;font-style:italic;color:#333}
+.mil .meta{font-size:14px;color:#333;margin:4px 0}.mil .meta b{font-weight:700}.mil .src{font-size:13px;color:#555}
+.mil .ver{font-size:12px;color:#777;margin-top:24px}

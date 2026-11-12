@@ -1,0 +1,10 @@
+(function(){var S={1:'Before the 1897 trials',2:'Williams and Marconi',3:'The German observer',4:'War Ag and Parcel B',5:'Crichel Down, 1958',0:'Later context'};
+var st={strand:'all',label:'all'},data=[];
+function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function btns(id,opts,key){var el=document.getElementById(id);el.innerHTML='';opts.forEach(function(o){var b=document.createElement('button');b.type='button';b.textContent=o[1];b.setAttribute('aria-pressed',st[key]==o[0]);b.onclick=function(){st[key]=o[0];draw()};el.appendChild(b)})}
+function draw(){btns('f-strand',[['all','All strands']].concat([1,2,3,4,5,0].map(function(k){return [String(k),S[k]]})),'strand');
+btns('f-label',[['all','All labels'],['record','Record'],['testimony','Testimony'],['hypothesis','Hypothesis']],'label');
+var rows=data.filter(function(e){return (st.strand=='all'||String(e.strand)==st.strand)&&(st.label=='all'||e.label==st.label)});
+document.getElementById('count').textContent=rows.length+' of '+data.length+' entries';
+document.getElementById('tl').innerHTML=rows.map(function(e){return '<li class="ev '+esc(e.label)+'" id="'+esc(e.id)+'"><div class="d">'+esc(e.date)+' · '+esc(S[e.strand])+' · '+esc(e.id)+'</div><h2>'+esc(e.title)+'</h2><div><span class="lab '+esc(e.label)+'">'+esc(e.label)+'</span>'+(e.ids&&e.ids.length?'<span class="lab st">'+esc(e.ids.join(', '))+'</span>':'')+'</div>'+(e.quote?'<blockquote>'+esc(e.quote)+'</blockquote>':'')+'<p class="src">'+esc(e.source)+(e.url?' · <span>'+esc(e.url)+'</span>':'')+'</p><p class="meta"><b>Cuts against:</b> '+esc(e.cuts)+'</p><p class="meta"><b>Would settle it:</b> '+esc(e.next)+'</p></li>'}).join('')}
+fetch('data/timeline.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){data=j.entries;document.getElementById('ver').textContent='Data v'+j.version+' · '+j.generated_utc;draw()}).catch(function(){document.getElementById('count').textContent='The timeline data could not be loaded.'})})();

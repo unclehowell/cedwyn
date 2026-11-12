@@ -1,0 +1,618 @@
+{
+ "app": "gifts",
+ "slot": 56,
+ "of": 59,
+ "version": "0.0.1",
+ "title": "Gifts",
+ "scope": "Parcels A (A1, A2), B and C, Tŷ Mawr (Great House), Llandough, 1877 onwards",
+ "gift_markers": {
+  "recorded": "recorded as a gift, or for a nominal sum",
+  "noprice": "no price stated in the source",
+  "unchecked": "consideration not checked",
+  "none": "no transfer on the record"
+ },
+ "holders": {
+  "bute": {
+   "name": "Bute",
+   "colour": "#7b4f9e"
+  },
+  "cardiff": {
+   "name": "Cardiff Corporation",
+   "colour": "#2f6f9f"
+  },
+  "dts": {
+   "name": "Daniel Thomas & Son",
+   "colour": "#a0662a"
+  },
+  "mountjoy": {
+   "name": "Mountjoy Ltd",
+   "colour": "#5a5aa8"
+  },
+  "wgr": {
+   "name": "Western Ground Rents",
+   "colour": "#3f7f5f"
+  },
+  "bp": {
+   "name": "BP",
+   "colour": "#6b8e23"
+  },
+  "williams": {
+   "name": "Williams family",
+   "colour": "#b23a3a"
+  }
+ },
+ "rows": [
+  {
+   "date": "1877",
+   "sort": "1877",
+   "event": "Bute trustees and Daniel Thomas & Son: an agreement over the house parcel with its buildings and about 10 acres, for quarrying (sale or quarry lease: not checked).",
+   "title": "Bute trustees → Daniel Thomas & Son (on the terms in Mary Williams's c.1974 written statement)",
+   "custody": "Williams family in occupation of the house",
+   "parcels": "A",
+   "band": [
+    "bute",
+    "dts",
+    "williams"
+   ],
+   "gift": "noprice",
+   "gift_note": "Mary Williams's c.1974 written statement gives a term that when the quarrying ceased the freehold should pass to her grandfather. No price is stated for that reversion. The deed has not been seen.",
+   "src": [
+    "EV-0006",
+    "MR-0002",
+    "EV-0280"
+   ],
+   "seen": "deed not seen (not checked); lime works record held"
+  },
+  {
+   "date": "23 Feb 1905",
+   "sort": "1905-02-23",
+   "event": "Bute conveyance to Cardiff City Corporation: rights over the land tinted pink, now within the woodland title WA735527.",
+   "title": "Bute (grants rights to Cardiff City Corporation; freehold stays with Bute)",
+   "custody": "John Williams's family at the house and farm (tenancy terms before 1916: not checked)",
+   "parcels": "A1 (north woods)",
+   "band": [
+    "bute",
+    "cardiff",
+    "williams"
+   ],
+   "gift": "unchecked",
+   "gift_note": "Consideration for the 1905 rights: not checked. No plans were supplied on first registration.",
+   "src": [
+    "EV-0013",
+    "EV-0169",
+    "EV-0627"
+   ],
+   "seen": "register entry held; deed not seen"
+  },
+  {
+   "date": "Feb 1916",
+   "sort": "1916-02",
+   "event": "Yearly agricultural tenancy of the whole farm to John Williams (after the death of Mary Williams of Great House, 23 Dec 1915; will proved 3 Feb 1916).",
+   "title": "Bute",
+   "custody": "John Williams, yearly tenant of the whole farm",
+   "parcels": "A, B (C: not checked)",
+   "band": [
+    "bute",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "",
+   "src": [
+    "EV-0014",
+    "MR-0054",
+    "EV-0080"
+   ],
+   "seen": "recited in the 1987 judgment; tenancy not seen"
+  },
+  {
+   "date": "May 1922 / 1926",
+   "sort": "1922-05",
+   "event": "Mountjoy Ltd formed as the Bute estate company (May 1922); the remaining Bute property incorporated under it (1926, per the archive catalogue).",
+   "title": "Bute → Mountjoy Ltd (estate company)",
+   "custody": "John Williams, yearly tenant",
+   "parcels": "whether the Llandough freehold passed: not checked",
+   "band": [
+    "bute",
+    "mountjoy",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "",
+   "src": [
+    "EV-0624",
+    "EV-0614"
+   ],
+   "seen": "catalogue and search-result text read; company records not seen"
+  },
+  {
+   "date": "c.1928",
+   "sort": "1928",
+   "event": "Last rent for the house parcel paid to the Thomas side; quarrying ended (Alfred Thomas, son of Daniel Thomas, died 14 Dec 1927).",
+   "title": "Daniel Thomas & Son → Williams (reversion on the end of quarrying, on the terms of the c.1974 statement)",
+   "custody": "Williams family at the house",
+   "parcels": "A (house parcel)",
+   "band": [
+    "dts",
+    "williams"
+   ],
+   "gift": "noprice",
+   "gift_note": "The reversion to the Williams family, as the c.1974 statement gives it, carries no price. The 1928 receipt is not found and no instrument has been seen.",
+   "src": [
+    "EV-0016",
+    "MR-0004",
+    "EV-0284",
+    "EV-0061"
+   ],
+   "seen": "receipt not found (not checked)"
+  },
+  {
+   "date": "17 May – 25 Dec 1938",
+   "sort": "1938-12-25",
+   "event": "Bute / Mountjoy sale to Western Ground Rents Ltd: contracts 17 May 1938; “a Conveyance on sale dated 25th December 1938”; Mountjoy mortgagee to 1944. The reversion passed subject to the 1916 tenancy.",
+   "title": "Bute / Mountjoy Ltd → Western Ground Rents Ltd (WGR)",
+   "custody": "John Williams, yearly tenant",
+   "parcels": "B; A1 and C by the blanket deed (parcel schedule not read)",
+   "band": [
+    "bute",
+    "mountjoy",
+    "wgr",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "A sale: the deed is recited as a conveyance on sale.",
+   "src": [
+    "EV-0625",
+    "EV-0216",
+    "EV-0019",
+    "EV-0022",
+    "MR-0005"
+   ],
+   "seen": "recital held (1965 contract); deed and plan not seen"
+  },
+  {
+   "date": "18 May 1939",
+   "sort": "1939-05-18",
+   "event": "WGR lets grazing to John Williams monthly (Glamorgan Archives DBDT123/7, with plan).",
+   "title": "WGR",
+   "custody": "John Williams, monthly grazing letting",
+   "parcels": "B (the 1939 plan)",
+   "band": [
+    "wgr",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "",
+   "src": [
+    "EV-0023",
+    "MR-0076"
+   ],
+   "seen": "partly held"
+  },
+  {
+   "date": "1940 – Apr 1942",
+   "sort": "1940",
+   "event": "WGR gives about 109 acres of Leckwith Woods to Cardiff council: offered and accepted 1940, completed April 1942, with a covenant for recreation use only. A 1955 Western Mail report gives it as “bought … for a nominal sum in 1942”.",
+   "title": "WGR → Cardiff Corporation (gift)",
+   "custody": "Cardiff Corporation (Forestry Commission lease of 106 acres reported 1955)",
+   "parcels": "Leckwith Woods, Leckwith parish. Our boundary measurement places it outside Llandough; it is not Parcel A1, B or C on our record",
+   "band": [
+    "wgr",
+    "cardiff"
+   ],
+   "gift": "recorded",
+   "gift_note": "Recorded as a gift by the city's parks record (EV-0220); “nominal sum” in the 1955 press (EV-0259, snippets only). The deed and plan have not been seen.",
+   "src": [
+    "EV-0220",
+    "EV-0259",
+    "EV-0627"
+   ],
+   "seen": "public online copy held; deed not seen"
+  },
+  {
+   "date": "2 Feb 1949",
+   "sort": "1949-02-02",
+   "event": "Surrender and re-grant: a yearly tenancy to Frederick Buckler (unwritten).",
+   "title": "WGR",
+   "custody": "Frederick Buckler, yearly tenant (with Mary Williams at the house)",
+   "parcels": "whole farm or B only: not checked",
+   "band": [
+    "wgr",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "",
+   "src": [
+    "EV-0025",
+    "MR-0007"
+   ],
+   "seen": "no written record (not checked)"
+  },
+  {
+   "date": "c.1950 – 1952",
+   "sort": "1950",
+   "event": "Family title papers recorded as missing from the farmhouse.",
+   "title": "WGR (paper title)",
+   "custody": "Mary Williams and Frederick Buckler at the house",
+   "parcels": "A",
+   "band": [
+    "wgr",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "",
+   "src": [
+    "EV-0026"
+   ],
+   "seen": "not checked"
+  },
+  {
+   "date": "2 Feb – 4 Jul 1955",
+   "sort": "1955-02-02",
+   "event": "High Court possession order (Order 14), WGR v Frederick Buckler, for “the whole of the farm”; executed about 4 July 1955: possession taken of all parts except the farmhouse and garden.",
+   "title": "WGR",
+   "custody": "WGR in possession of the fields; the family keeps the farmhouse and garden",
+   "parcels": "B (the family's working account also names A1 and C); A2 house and garden retained",
+   "band": [
+    "wgr",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "",
+   "src": [
+    "EV-0032",
+    "EV-0034",
+    "MR-0008",
+    "EV-0080"
+   ],
+   "seen": "order and execution return not seen (not checked); quoted in the 1987 judgment"
+  },
+  {
+   "date": "1959 and 1965",
+   "sort": "1959",
+   "event": "WGR tenancy offers for the remaining house and garden; not taken up.",
+   "title": "WGR",
+   "custody": "Mary Williams at the house",
+   "parcels": "A2",
+   "band": [
+    "wgr",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "",
+   "src": [
+    "EV-0039"
+   ],
+   "seen": "not checked"
+  },
+  {
+   "date": "29 Mar 1961",
+   "sort": "1961-03-29",
+   "event": "Deed between (1) WGR, (2) The South Western Brick & Tile Company Ltd and (3) Cardiff City Corporation: rights over the land tinted pink on the woodland title WA735527.",
+   "title": "WGR (grants rights; no transfer of the land on the register)",
+   "custody": "Woodland: WGR in possession from 1955 on WGR's case; the family's account differs",
+   "parcels": "A1 (north woods)",
+   "band": [
+    "wgr",
+    "cardiff",
+    "williams"
+   ],
+   "gift": "unchecked",
+   "gift_note": "The register records rights, not a transfer. Consideration and plan: not checked (copy filed under WA231076).",
+   "src": [
+    "EV-0040",
+    "MR-0010",
+    "EV-0169",
+    "EV-0627"
+   ],
+   "seen": "register entry held; deed not seen"
+  },
+  {
+   "date": "5 Mar – 11 Dec 1962",
+   "sort": "1962-12-11",
+   "event": "WGR's Llandough covenant (5 Mar 1962); Cardiff County Court possession order for the farmhouse and garden (11 Dec 1962), not enforced before 1974.",
+   "title": "WGR",
+   "custody": "Mary Williams stays at the house",
+   "parcels": "A2",
+   "band": [
+    "wgr",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "",
+   "src": [
+    "EV-0619",
+    "EV-0041",
+    "MR-0011",
+    "EV-0080"
+   ],
+   "seen": "covenant read; order not seen"
+  },
+  {
+   "date": "1969 (31 Dec)",
+   "sort": "1969-12-31",
+   "event": "BP takes over WGR by share offer (early 1969); WGR conveys Great House Farm, “including the farmhouse and garden”, to BP Pension Trust Ltd by a conveyance of 31 Dec 1969.",
+   "title": "WGR → BP Pension Trust Ltd",
+   "custody": "Mary Williams at the house; the fields with WGR / BP",
+   "parcels": "A, B (C: not checked)",
+   "band": [
+    "wgr",
+    "bp",
+    "williams"
+   ],
+   "gift": "unchecked",
+   "gift_note": "An intra-group step after the takeover. Consideration for the land: not checked; the deed has not been produced.",
+   "src": [
+    "EV-0687",
+    "EV-0686",
+    "EV-0043",
+    "MR-0015",
+    "EV-0080"
+   ],
+   "seen": "recited; deed not seen"
+  },
+  {
+   "date": "16 Jun 1970",
+   "sort": "1970-06-16",
+   "event": "Village green VG41 registered under the Commons Registration Act 1965 (Glamorgan County Council, registration authority).",
+   "title": "Owner on the register: not checked",
+   "custody": "Registered village green",
+   "parcels": "C (the green; outside Parcel A on the family's boundary plan)",
+   "band": [
+    "bp"
+   ],
+   "gift": "unchecked",
+   "gift_note": "A registration, not a conveyance. Who applied, any ownership entry and any later vesting: not checked.",
+   "src": [
+    "EV-0044",
+    "MR-0017",
+    "EV-0263"
+   ],
+   "seen": "register file not seen (not checked)"
+  },
+  {
+   "date": "25 Jul 1972",
+   "sort": "1972-07-25",
+   "event": "Outline planning permission 3/8996/3337 for about 13 houses on the same site, approved with conditions, with an ownership certificate.",
+   "title": "BP Pension Trust Ltd (applicant: not checked)",
+   "custody": "Mary Williams at the house",
+   "parcels": "the site (A, B; C: not checked)",
+   "band": [
+    "bp",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "Conditions and any agreement: not checked.",
+   "src": [
+    "EV-0046",
+    "MR-0030",
+    "EV-0869",
+    "EV-0125"
+   ],
+   "seen": "listed in the 1989 officer's report; file not found"
+  },
+  {
+   "date": "1974",
+   "sort": "1974-10-31",
+   "event": "BP Pension Trust sues for possession; a defence of adverse possession is filed and never finally heard. Leave to enforce the 1962 order (19 Sep 1974); licence letters of 31 Oct 1974.",
+   "title": "BP Pension Trust Ltd (selling to BP Properties Ltd)",
+   "custody": "Mary Williams at the house (licence on BP's case)",
+   "parcels": "A2",
+   "band": [
+    "bp",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "",
+   "src": [
+    "EV-0050",
+    "MR-0012",
+    "EV-0080"
+   ],
+   "seen": "letters not seen; quoted in the 1987 judgment"
+  },
+  {
+   "date": "23 May 1975",
+   "sort": "1975-05-23",
+   "event": "Conveyance from BP Pension Trust (with BP Trustees) to BP Properties Ltd: the farmhouse plot and other land, including the land tinted blue on WA735527; the rest kept as “Retained Land”.",
+   "title": "BP Pension Trust Ltd → BP Properties Ltd",
+   "custody": "Mary Williams at the house",
+   "parcels": "A (house plot), A1 (blue land)",
+   "band": [
+    "bp",
+    "williams"
+   ],
+   "gift": "unchecked",
+   "gift_note": "Intra-group. Consideration: not checked.",
+   "src": [
+    "EV-0620",
+    "EV-0052",
+    "EV-0169"
+   ],
+   "seen": "register entries held; deed not seen"
+  },
+  {
+   "date": "19 – 30 Nov 1982",
+   "sort": "1982-11-19",
+   "event": "Second intra-group conveyance (19 Nov 1982); first registration applied for on 30 Nov 1982, title WA231076.",
+   "title": "BP Pension Trust Ltd → BP Properties Ltd (registered proprietor)",
+   "custody": "Mary Williams at the house",
+   "parcels": "B and the remaining fields",
+   "band": [
+    "bp",
+    "williams"
+   ],
+   "gift": "unchecked",
+   "gift_note": "Consideration: not checked.",
+   "src": [
+    "EV-0170",
+    "EV-0059",
+    "EV-0071"
+   ],
+   "seen": "register held; conveyance not seen"
+  },
+  {
+   "date": "23 Feb – 26 Mar 1983",
+   "sort": "1983-02-23",
+   "event": "Title WA240304 registered for part of Parcel A (whether it includes the house itself: not shown on the record). Mary Doreen (Nancy) Williams died 26 March 1983.",
+   "title": "BP Properties Ltd",
+   "custody": "The family at the house",
+   "parcels": "A (part)",
+   "band": [
+    "bp",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "",
+   "src": [
+    "EV-0066",
+    "EV-0063",
+    "EV-0067"
+   ],
+   "seen": "file items listed; not seen"
+  },
+  {
+   "date": "1986 – 1987",
+   "sort": "1987-02-02",
+   "event": "High Court judgment for BP (24 Jul 1986); WA240304 merged into WA231076 (2 Feb 1987); Court of Appeal judgment (31 Jul 1987).",
+   "title": "BP Properties Ltd",
+   "custody": "Possession to BP Properties Ltd",
+   "parcels": "A, B",
+   "band": [
+    "bp",
+    "williams"
+   ],
+   "gift": null,
+   "gift_note": "",
+   "src": [
+    "EV-0074",
+    "EV-0078",
+    "EV-0080"
+   ],
+   "seen": "judgment held online; merger application not seen"
+  },
+  {
+   "date": "8 Nov 1989 – 13 Mar 1990",
+   "sort": "1989-11-08",
+   "event": "Outline application 89/01396/OUT by BP Properties Ltd, 3.4 acres, layout of 18 dwellings; decided by committee (26 Feb 1990), permission dated 13 Mar 1990. Condition 5 requires an area of 0.25 acres beside Leckwith Road and the church boundary to be laid out and landscaped as a village green / amenity area before the houses are used; reason: “To retain and enhance the existing registered village green”. The decision and the officer's recommendation name conditions only: no s.52 agreement, transfer, dedication or payment.",
+   "title": "BP Properties Ltd (applicant)",
+   "custody": "Cleared site; the green registered since 1970",
+   "parcels": "C (green) and the site",
+   "band": [
+    "bp"
+   ],
+   "gift": "none",
+   "gift_note": "No transfer on the planning record: a condition, not a conveyance. A s.52 agreement can exist without being named on a decision notice; the Council's land-charges answer is awaited.",
+   "src": [
+    "EV-0124",
+    "EV-0114",
+    "EV-0125",
+    "EV-0113",
+    "EV-0874"
+   ],
+   "seen": "decision and officer's report held"
+  },
+  {
+   "date": "3 Sep 1992 – Jan 1994",
+   "sort": "1992-03",
+   "event": "Reserved matters 1992/00671/RES approved (3 Sep 1992): 20 detached houses for Ideal Homes Wales. The approved plan marks the open space “Village Green to be maintained by LLANDOUGH COMMUNITY COUNCIL and to form part of project GATEWAY TO THE VALE”; a village green planting plan follows (received 12 Jan 1994).",
+   "title": "Ideal Homes Wales Ltd (date it took title, and from whom: not checked)",
+   "custody": "Developer; the green to be maintained by the community council (approved plan)",
+   "parcels": "the site; C (green planting)",
+   "band": [],
+   "gift": "unchecked",
+   "gift_note": "“Maintained by” on a plan is not a transfer. Whether the green or the 0.25-acre area passed to the community council, and for what: not checked.",
+   "src": [
+    "EV-0135",
+    "EV-0133"
+   ],
+   "seen": "drawings held"
+  },
+  {
+   "date": "10 Nov 1994",
+   "sort": "1994-11-10",
+   "event": "Transfer of the woodland from Ideal Homes Wales Ltd to Forest of Cardiff (registered 25 Nov 1994, title WA735527).",
+   "title": "Ideal Homes Wales Ltd → Forest of Cardiff (charity)",
+   "custody": "Forest of Cardiff",
+   "parcels": "A1 (north woods)",
+   "band": [],
+   "gift": "unchecked",
+   "gift_note": "The register summary reads “Last sold for: No price recorded”. Forest of Cardiff's accounts to 31 Mar 1995 list no land among fixed assets and note no land purchase. Neither shows how it was acquired; the transfer itself has not been seen.",
+   "src": [
+    "EV-0169",
+    "EV-0136"
+   ],
+   "seen": "register held; transfer not seen"
+  },
+  {
+   "date": "1994 – 1996",
+   "sort": "1994-09",
+   "event": "Church View Close built and sold by Ideal Homes (Persimmon bought Ideal Homes early 1996).",
+   "title": "House buyers",
+   "custody": "Residents",
+   "parcels": "the site (A, B)",
+   "band": [],
+   "gift": null,
+   "gift_note": "",
+   "src": [
+    "EV-0276",
+    "MED-0085"
+   ],
+   "seen": "press snippets"
+  },
+  {
+   "date": "2 Dec 2005 – 2006",
+   "sort": "2005-12-02",
+   "event": "Forest of Cardiff transfers part of the woodland to Goldsworthy Homes; its accounts to 30 Jun 2006 show “Sale of Land — Leckwith Road, Llandough £20,000”.",
+   "title": "Forest of Cardiff → Goldsworthy Homes (sale)",
+   "custody": "Goldsworthy Homes (part)",
+   "parcels": "A1 (part)",
+   "band": [],
+   "gift": null,
+   "gift_note": "A sale for £20,000.",
+   "src": [
+    "EV-0139",
+    "EV-0217"
+   ],
+   "seen": "accounts held; transfer not seen"
+  },
+  {
+   "date": "8 May 2024",
+   "sort": "2024-05-08",
+   "event": "Llandough Community Council annual meeting: its deeds and fixed-asset list includes Village Green No. 41, documented by a “Common Commissioners Letter in Clerk's File”.",
+   "title": "Llandough Community Council (as listed)",
+   "custody": "Village green",
+   "parcels": "C (the green)",
+   "band": [],
+   "gift": "unchecked",
+   "gift_note": "How and when the council came to hold the green, and for what: not checked.",
+   "src": [
+    "EV-0711"
+   ],
+   "seen": "public online copy held"
+  }
+ ],
+ "not_checked": [
+  "The 1877 agreement and its plan: sale or quarry lease, and the reversion term (EV-0006, MR-0002).",
+  "The c.1928 rent receipt for the house parcel (MR-0004).",
+  "Whether the 1922–26 Mountjoy incorporation carried the Llandough freehold (EV-0624, EV-0614).",
+  "Which parcels the 25 Dec 1938 conveyance named in its schedule and plan (EV-0019, MR-0005).",
+  "Which land the 1955 order, writ and execution return covered (EV-0032, EV-0034).",
+  "The consideration and plans of the 1905 and 1961 Cardiff Corporation deeds (EV-0013, EV-0040).",
+  "The consideration for the 1969, 1975 and 1982 conveyances (EV-0043, EV-0052, EV-0170).",
+  "VG41: who applied, the ownership section and any Commons Commissioner decision or vesting (EV-0044, MR-0017).",
+  "The 1972 permission file 3/8996/3337: applicant, conditions and any agreement (EV-0046, MR-0030).",
+  "When Ideal Homes Wales took title, from whom and for what.",
+  "The consideration for the 10 Nov 1994 woodland transfer (EV-0136).",
+  "How and when Llandough Community Council came to list the green (EV-0711)."
+ ],
+ "interpretation": "On the records read so far, one transfer is recorded as a gift: Western Ground Rents' gift of about 109 acres of Leckwith Woods to Cardiff council (1940–42), land our boundary measurement places in Leckwith parish, outside Parcels A, B and C. Two steps for the house parcel carry no price as the family's c.1974 statement gives them: the 1877 reversion term and its effect around 1928. 9 grants, transfers or holdings touching the parcels have a price we have not seen. Among them: the 1961 rights granted to Cardiff City Corporation over the north woods; the 1994 transfer of those woods to the Forest of Cardiff, where the register reads “No price recorded” and that year's accounts list no land; and the green, which the 1992 approved plan puts in the community council's care and which the community council now lists among its assets. The 1990 permission enlarged and protected the green by a planning condition; the planning record shows no transfer. The deed named in each row is the record that would settle it.",
+ "changelog": [
+  {
+   "version": "0.0.1",
+   "date": "2026-11-10",
+   "editor": "Cedwyn editors",
+   "change": "First release: 28 dated rows 1877–2024 from the catalogue, the title-chain report and the parcel register; gift markers; title and custody side by side; one continuous band for Bute / Cardiff Corporation, Daniel Thomas & Son, Mountjoy Ltd, Western Ground Rents, BP and the Williams family. Takes slot 56 of 59 (was a coming-soon placeholder)."
+  }
+ ],
+ "sources_note": "Every row links its records at https://bucklerfamily.estate/catalogue/?id=<ID>."
+}

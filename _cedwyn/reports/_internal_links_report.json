@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 14724,
+  "pages_scanned": 14728,
   "references_checked": {
-    "resource": 367066,
-    "nav": 702798
+    "resource": 367140,
+    "nav": 703406
   },
-  "database_backed_paths": 7700,
-  "unique_missing_destinations": 2364,
-  "missing_references": 74255,
-  "missing_navigation_references": 47795,
-  "missing_resource_references": 26460,
+  "database_backed_paths": 7708,
+  "unique_missing_destinations": 2437,
+  "missing_references": 74505,
+  "missing_navigation_references": 48035,
+  "missing_resource_references": 26470,
   "unique_broken_fragments": 2541,
   "broken_fragment_references": 4911,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 14694,
+      "references": 14698,
       "examples": [
         {
           "from": "/",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 14690,
+      "references": 14694,
       "examples": [
         {
           "from": "/",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 11960,
+      "references": 11964,
       "examples": [
         {
           "from": "/review/",
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 11960,
+      "references": 11964,
       "examples": [
         {
           "from": "/review/",
@@ -127,7 +127,7 @@
     {
       "kind": "nav",
       "path": "/subscribe/",
-      "references": 11243,
+      "references": 11247,
       "examples": [
         {
           "from": "/",
@@ -256,6 +256,33 @@
           "from": "/familytree/",
           "attribute": "a[href]",
           "url": "/catalogue/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/dartboard/catalogue/",
+      "references": 179,
+      "examples": [
+        {
+          "from": "/wayback/",
+          "attribute": "a[href]",
+          "url": "/dartboard/catalogue/"
+        },
+        {
+          "from": "/gifts/",
+          "attribute": "a[href]",
+          "url": "/dartboard/catalogue/?id=EV-0006"
+        },
+        {
+          "from": "/gifts/",
+          "attribute": "a[href]",
+          "url": "/dartboard/catalogue/?id=MR-0002"
+        },
+        {
+          "from": "/gifts/",
+          "attribute": "a[href]",
+          "url": "/dartboard/catalogue/?id=EV-0280"
         }
       ]
     },
@@ -748,7 +775,7 @@
     {
       "kind": "nav",
       "path": "/research/>*.html",
-      "references": 35,
+      "references": 34,
       "examples": [
         {
           "from": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
@@ -802,7 +829,7 @@
     {
       "kind": "nav",
       "path": "/dartboard/that-old-chestnut/",
-      "references": 27,
+      "references": 29,
       "examples": [
         {
           "from": "/dartboard/",
@@ -877,33 +904,6 @@
           "from": "/qa/static/bpvsbuckler/static/archives/canvas/miscellaneous/deletable_layout/fixed-header.html",
           "attribute": "script[src]",
           "url": "../js/adminlte.js"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/dartboard/catalogue/",
-      "references": 25,
-      "examples": [
-        {
-          "from": "/wayback/",
-          "attribute": "a[href]",
-          "url": "/dartboard/catalogue/"
-        },
-        {
-          "from": "/authorities/",
-          "attribute": "a[href]",
-          "url": "/dartboard/catalogue/"
-        },
-        {
-          "from": "/dartboard/",
-          "attribute": "a[href]",
-          "url": "/dartboard/catalogue/?id=EV-0930"
-        },
-        {
-          "from": "/dartboard/",
-          "attribute": "a[href]",
-          "url": "/dartboard/catalogue/?id=EV-0970"
         }
       ]
     },
