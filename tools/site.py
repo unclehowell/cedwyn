@@ -41,7 +41,7 @@ tids = [t['id'] for t in CFG['themes']]
 collide = {}   # theme folders that carry a sub-folder named like another theme (e.g. /ebooks/projects/)
 for t in tids:
     d = DIST / t
-    c = [x for x in tids if x != t and (d / x).is_dir()]
+    c = [x for x in tids + ['api'] if x != t and (d / x).is_dir()]   # 8 Nov 2026: + 'api' (runtime.js leaves /api/ at the root unless the theme has its own api/ folder)
     if c: collide[t] = c
 vhost = {}     # each theme's former address, for the shared header (basecamp.js reads <html data-ghf-host/-path>)
 apex_by_tid = {tid: pre for pre, tid in CFG['apex']['paths'].items()}

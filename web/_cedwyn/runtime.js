@@ -92,6 +92,7 @@
       if (/^\/[a-z0-9-]+\/_db\//.test(u)) return u;   // P-101 (30 Oct 2026): an area's child database (/<area>/_db/) lives at the site root - Sion's Tab agent
       var x = u.split(/[\/?#]/)[1];   // already a cedwyn theme path (/<theme>/...): leave it, unless this theme has its own folder of that name
       if (x && THEMES.indexOf(x) >= 0 && (COLLIDE[T] || []).indexOf(x) < 0) return u;
+      if (x === 'api' && (COLLIDE[T] || []).indexOf('api') < 0) return u;   // 8 Nov 2026: the site-root API (/api/catalogue...), unless this theme ships its own api/ folder - Sion's Tab agent
       return P + u;
     }
     var m = u.match(/^(?:https?:)?\/\/([^\/?#:]+)(?::\d+)?([^?#]*)(.*)$/i);

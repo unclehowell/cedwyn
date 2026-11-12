@@ -21,6 +21,10 @@ for h, tid in CFG.get('extra_hosts', {}).items():
 APEX = sorted(CFG['apex']['paths'].items(), key=lambda kv: -len(kv[0]))
 MEDIA = set(CFG['media_hosts'])
 RESERVED = ('/_cedwyn/', '/_blob/', '/db/', '/graphql', '/catalogue')
+# 8 Nov 2026 (P-DOUBLED-SECTION-SLUG, apex/root-path and /api/ shapes): site-root files every page may name. A theme that
+# ships its own copy (wayback's /api/corpus-N.json) keeps the theme-root reading; otherwise the path stays at the root. - Sion's Tab agent
+SHARED_ROOT = ('/api/', '/fonts/', '/favicon.ico', '/favicon-32.png', '/apple-touch-icon.png', '/site.webmanifest')
+TIDSET = set(TIDS)
 BANNED = re.compile(r'UC2sN1VEs1WeLfBH8VmbvLWw|sionbuckler5713', re.I)
 BLOG_FEEDS = '<link rel="alternate" type="application/rss+xml" title="Cedwyn blog (RSS)" href="/blog/rss.xml"><link rel="alternate" type="application/atom+xml" title="Cedwyn blog (Atom)" href="/blog/atom.xml"><link rel="alternate" type="application/feed+json" title="Cedwyn blog (JSON Feed)" href="/blog/feed.json">'
 LISTFORM = re.compile(r'list-manage\.com/subscribe', re.I)   # 26 Oct 2026: a Mailchimp sign-up form posts to Cedwyn's own list, with or without JS
@@ -106,6 +110,12 @@ def resolve_blob(u, page_rel):
     if b and not (DIST / absp.lstrip('/')).exists():
         stats['blobbed_refs'] += 1; return b
     return u
+def _theme_root_has(s, tid):
+    """True when '/<tid>' + s names a real file or folder in the built theme (or one the blob store took over)."""
+    base = urllib.parse.unquote(re.match(r'([^?#]*)', s).group(1))
+    tgt = '/' + tid + base
+    p = DIST / tgt.lstrip('/')
+    return p.is_file() or (p / 'index.html').is_file() or tgt in moved
 def rw(u, tid, link, page_rel):
     if u is None: return u
     s = u.strip()
@@ -117,6 +127,11 @@ def rw(u, tid, link, page_rel):
         host, path, rest = m.group(1).lower(), m.group(2), m.group(3)
         tu = theme_url_for(host, path or '/')
         if tu is not None:
+            # 8 Nov 2026: an apex snapshot (estate, patagonia, terrain) names https://bucklerfamily.estate/fonts/... and the
+            # apex icons; the apex '/' maps to the dartboard theme, which holds none of them (/dartboard/fonts/... 404).
+            if host in ('bucklerfamily.estate', 'www.bucklerfamily.estate') and (path or '/').startswith(SHARED_ROOT) \
+                    and not _theme_root_has(path, tu.split('/')[1]):
+                stats['shared_root'] = stats.get('shared_root', 0) + 1; return path + rest
             stats['cross'] += 1; return resolve_blob(tu + rest, page_rel)
         if host in MEDIA and not link: return u
         # 27 Oct 2026: e-book Buy buttons go straight to checkout, never via /wayback/go/ (Sion 13:01: never the interstitial)
@@ -129,6 +144,23 @@ def rw(u, tid, link, page_rel):
     if s.startswith('/'):
         if s == '/': stats['prefixed'] += 1; return '/' + tid + '/'
         if s.startswith(RESERVED): return u
+        if s.startswith(SHARED_ROOT) and not _theme_root_has(s, tid):   # 8 Nov 2026: site-root API, fonts and icons
+            stats['shared_root'] = stats.get('shared_root', 0) + 1; return u
+        # 8 Nov 2026 (familytree): a link to ANOTHER theme (/research/evidence/..., /ebooks/) was prefixed with this theme's
+        # slug (/familytree/research/...: 404). Same rule as runtime.js THEMES/COLLIDE: leave /<other theme>/... as written
+        # unless this theme really holds a folder of that name. - Sion's Tab agent
+        x = re.split(r'[/?#]', s)[1]
+        if x and x != tid and x in TIDSET and not _theme_root_has(s, tid):
+            stats['cross_theme'] = stats.get('cross_theme', 0) + 1
+            return resolve_blob(s, page_rel)
+        # 8 Nov 2026 (P-DOUBLED-SECTION-SLUG): app sources written for their live address already link /<theme>/...
+        # (cedwyn-spill /spill/llms.txt, cedwyn-analytics /analytics/api/..., cedwyn-cloudflare /cloudflare/api/...);
+        # prefixing those again gave /<theme>/<theme>/... (404). Such a path is left as written unless the theme really
+        # holds a <theme>/ folder at that place (/story/ ships story/transcript.txt, linked as /story/transcript.txt),
+        # in which case the old theme-root reading stands. - Sion's Tab agent
+        if (s == '/' + tid or s.startswith(('/' + tid + '/', '/' + tid + '?', '/' + tid + '#'))) and not _theme_root_has(s, tid):
+            stats['already_prefixed'] = stats.get('already_prefixed', 0) + 1
+            return resolve_blob(s, page_rel)
         stats['prefixed'] += 1
         return resolve_blob('/' + tid + s, page_rel)
     return resolve_blob(s, page_rel)
