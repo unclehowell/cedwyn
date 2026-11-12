@@ -1,0 +1,2100 @@
+{
+ "schema": "cedwyn-proposal/0.1.0",
+ "kind": "catalogue_candidates",
+ "created": "2026-11-12",
+ "note": "Add-only candidate list from the daily evidence resync (cedwyn#582). Nothing here is a catalogue record; no record ID is minted. Each item asks the spill / catalogue process whether a record should be added (catalogue-change PR). Existing records are never changed.",
+ "counts": {
+  "mail": 72,
+  "spill": 16,
+  "online": 45,
+  "labelled": 0,
+  "spill_pending": 16,
+  "catalogue_rows_checked": 2202
+ },
+ "spill_pending_ids": [
+  "SP-00008",
+  "SP-00009",
+  "SP-00011",
+  "SP-00016",
+  "SP-00040",
+  "SP-00095",
+  "SP-00107",
+  "SP-00113",
+  "SP-00127",
+  "SP-00136",
+  "SP-00137",
+  "SP-00140",
+  "SP-00143",
+  "SP-00144",
+  "SP-00145",
+  "SP-00146"
+ ],
+ "items": [
+  {
+   "key": "mail:cc-bf0bb78bf4d7",
+   "source": "mail",
+   "title": "Copy release, Calvert Richard Jones to the Earl of Bute: manors of Llandough, Cogan, Kibbor and Cardiff (Whitefriars) and land in Llandough-juxta-Penarth (bundle item 82)",
+   "date_display": "1793-01-11",
+   "holder": "Glamorgan Archives",
+   "type": "deed (copy release), catalogue entry read",
+   "summary": "Catalogue entry for a copy release of Jones's share of the manors and of land in Llandough-juxta-Penarth to the Earl of Bute; the schedule has not been read, so whether Tŷ Mawr is named is not known.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "tŷ mawr",
+    "cogan",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-ed4858a33a09",
+   "source": "mail",
+   "title": "Plan of farms belonging to Wm Hurst Esq. and Calvert Richard Jones Esq. (bundle item 83)",
+   "date_display": "1770",
+   "holder": "Glamorgan Archives",
+   "type": "estate plan, catalogue entry read",
+   "summary": "Catalogue entry for a 1770 plan of farms held jointly by the Hurst and Jones families; the plan itself has not been seen.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-85ea46347ef1",
+   "source": "mail",
+   "title": "Draft mortgage of a moiety of the manors of Dinas Powys, Llandough, Cogan and Kibbor, the advowson of Leckwith, and a moiety of messuages and lands in Llandough-juxta-Penarth",
+   "date_display": "1800-10-15",
+   "holder": "Glamorgan Archives",
+   "type": "draft deed, catalogue entry read",
+   "summary": "Catalogue entry for a draft mortgage of the Hurst half-share after 1793; a draft, so execution is not shown.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "leckwith",
+    "cogan",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-04cf4a1550a2",
+   "source": "mail",
+   "title": "In Chancery: certified copy report of sale of land of William Hurst deceased (decree of 21 July 1812), including freeholds in Llandough-juxta-Penarth",
+   "date_display": "1813",
+   "holder": "Glamorgan Archives",
+   "type": "court record (certified copy), catalogue entry read",
+   "summary": "Catalogue entry for the Chancery report of sale of the Hurst freeholds; the catalogue text names no Tŷ Mawr lot and the buyer of each lot is not shown there.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "tŷ mawr",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-c478c2f48a29",
+   "source": "mail",
+   "title": "Draft assignment of an annuity charged on lands in St Andrews, Cadoxton-juxta-Barry and Llandough; Herbert Hurst tenant for life",
+   "date_display": "1817-02-22",
+   "holder": "Glamorgan Archives",
+   "type": "draft deed, catalogue entry read",
+   "summary": "Catalogue entry for a draft annuity charge on Hurst lands that included Llandough; a draft, so execution is not shown.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-b2ccf134ed87",
+   "source": "mail",
+   "title": "Bute estate file: Leckwith, 1935 (correspondence, receipts and accounts relating to extinguishment/redemption of manorial rents)",
+   "date_display": "1935",
+   "holder": "Glamorgan Archives",
+   "type": "estate file, catalogue entry read",
+   "summary": "Catalogue entry for the one Bute estate file on Leckwith manorial rents in the 1930s; the file has not been seen and its payers are not known.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-3e371aa092e3",
+   "source": "mail",
+   "title": "Agreements and compensation receipts for extinguishment of manorial incidents, 1929-1936 (Boverton and Llantwit, Llanblethian, Llanmaes, Bedford and Malefant, Miskin/Pentyrch and Clun)",
+   "date_display": "1929-1936",
+   "holder": "Glamorgan Archives",
+   "type": "estate agreements, catalogue entry read",
+   "summary": "Catalogue series of Bute extinguishment agreements; it lists no Llandough file, recorded here as a negative screen.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-9d456f9f7a6c",
+   "source": "mail",
+   "title": "Transcript from The Cambrian, 11 Sep 1868, regarding the manors of Cogan and Llandough and the Herbert rental of 36 Henry VIII (1544-45), by G. G. Francis to Corbett",
+   "date_display": "1868-09-11 (rental 1544-45)",
+   "holder": "Glamorgan Archives",
+   "type": "manuscript transcript, catalogue entry read",
+   "summary": "Catalogue entry for a transcript of an 1868 article on the Herbert manorial rental of 1544-45; the transcript has not been read.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "cogan"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-1f6ab71b692c",
+   "source": "mail",
+   "title": "Cardiff Records, vol. 1 (1898): Ministers' Account for Landogh, 1393 (\"John William, Bailiff of Landogh\", pp. 157-160) and 1586 depositions on the manors of Sir William Herbert (pp. 389-390)",
+   "date_display": "1393; 1586 (printed 1898)",
+   "holder": "Internet Archive (public copy)",
+   "type": "printed record edition, full text read",
+   "summary": "Printed manorial records: a 1393 bailiff of Landogh named \"John William\" (probably a patronymic) and the 1586 Herbert manors including Llandough and Cogan.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "cogan"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-a6f49fd0d571",
+   "source": "mail",
+   "title": "Clark, Cartae et alia munimenta, vol. 3 (1910), p. 728: note on the Llandough charters and the area of the parish",
+   "date_display": "1910 (charters c.1272)",
+   "holder": "Internet Archive (public copy)",
+   "type": "printed charter edition, full text read",
+   "summary": "Printed note that the parish of rather under 713 acres probably represents the original manor, and that one of twenty-one charters is dated 1272.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-01b63cec04c3",
+   "source": "mail",
+   "title": "Birch, A History of Margam Abbey (1897), p. 123: grant by Griffin son of Ivor of land and pasture at Leckwith",
+   "date_display": "1897 (grant medieval, undated here)",
+   "holder": "Internet Archive (public copy)",
+   "type": "printed history, full text read",
+   "summary": "Printed account of a medieval grant to Margam Abbey of arable, meadow and pasture at Leckwith.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-f27b7a84513b",
+   "source": "mail",
+   "title": "Mountjoy Limited: licence to assign",
+   "date_display": "1923-10",
+   "holder": "Glamorgan Archives",
+   "type": "licence, catalogue reference only",
+   "summary": "Catalogue reference showing Mountjoy Limited acting by October 1923; the reference did not resolve on the online catalogue, so the wording is not checked.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-1195bb5ddd8c",
+   "source": "mail",
+   "title": "Licence to assign rights over land at Garth Maelwg, Llanharan, comprised in an agreement for tenancy of 1 Feb 1929 from Mountjoy Limited to the Powell Duffryn Steam Coal Company Limited",
+   "date_display": "1929 or later (tenancy agreement 1929-02",
+   "holder": "Glamorgan Archives",
+   "type": "licence, catalogue entry read",
+   "summary": "Catalogue entry showing Mountjoy Limited letting estate land in 1929; it concerns Llanharan, not Llandough.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-9a2c8e33ed3c",
+   "source": "mail",
+   "title": "The Times law report, BP Properties Ltd v Buckler (Court of Appeal, 31 July 1987), issue no. 62846",
+   "date_display": "1987-08-13",
+   "holder": "The Times (public OCR copy on Internet Archive)",
+   "type": "newspaper law report, OCR text read",
+   "summary": "Contemporary law report of the 1987 judgment; it repeats the court's tenure narrative and adds no new primary source. OCR text read, page image not opened.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "bp properties"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-14b40aa59802",
+   "source": "mail",
+   "title": "South Wales Echo, p. 11: Land Authority for Wales gift of 127 acres between Leckwith Hill and Llandough",
+   "date_display": "1994-11-07",
+   "holder": "South Wales Echo",
+   "type": "newspaper, search snippet only",
+   "summary": "Press snippet on the 1994 gift of land between Leckwith Hill and Llandough that preceded the WA735527 registration; the full article has not been read.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-4d8b7b3e0428",
+   "source": "mail",
+   "title": "Building (journal), PENARTH item: Guardians' offer of £1,200 to the Bute Estate for land beside the Llandough Hospital site",
+   "date_display": "1923-06-15",
+   "holder": "Internet Archive (public copy)",
+   "type": "journal item, OCR text read",
+   "summary": "Trade-journal item on a 1923 offer for Bute Estate land beside the hospital site; it does not show whether that land was ever part of Great House Farm. OCR read, page image not seen.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "great house farm",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-8ed7b70cd691",
+   "source": "mail",
+   "title": "The Gem (Barry), local-history column on the 1791 Hurst estate map",
+   "date_display": "2015-01-29",
+   "holder": "Internet Archive (public copy)",
+   "type": "newspaper column",
+   "summary": "Local-history column describing the 1791 Hurst estate map; a secondary account, the map itself not seen.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-bb6cdb730a9d",
+   "source": "mail",
+   "title": "W.C.W. Knapp & Son, auctioneers and estate agents, 28 West Bute Street, Cardiff: catalogue reference",
+   "date_display": "not checked (firm active 1919-1968)",
+   "holder": "Glamorgan Archives",
+   "type": "catalogue reference only",
+   "summary": "Catalogue reference to the Cardiff estate-agency firm of that name; nothing in the entry links the firm to Western Ground Rents or the Bute estate.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-c393815eed6c",
+   "source": "mail",
+   "title": "\"Raisdale\", Marine Parade and Augusta Road, Penarth: agents' particulars and copy letter as to sale by William Knapp",
+   "date_display": "1934",
+   "holder": "Glamorgan Archives",
+   "type": "sale particulars and letter, catalogue entry read",
+   "summary": "Catalogue entry tying a William Knapp of the agency to a Penarth sale in 1934; it concerns another property.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-99f99184864f",
+   "source": "mail",
+   "title": "W.C.W. Knapp & Son sale and agency papers (Cardiff properties): DSA/6/630, DSA/6/889, DSA/6/1035, D1856/6/1/12/15",
+   "date_display": "1919-1968 (individual dates not checked)",
+   "holder": "Glamorgan Archives",
+   "type": "sale papers, catalogue entries read",
+   "summary": "Catalogue entries showing the Knapp firm acting as auctioneers and agents over the period; none concerns the farm.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-29637beab750",
+   "source": "mail",
+   "title": "Dinas Powis Petty Sessional Division court registers, Jan 1950 to Dec 1953 (PSD/79 to PSD/84; gap Jan-Apr 1953)",
+   "date_display": "1950-1953",
+   "holder": "Glamorgan Archives",
+   "type": "court registers, catalogue entries read",
+   "summary": "Surviving court registers for the division that covered Penarth and Llandough in 1950-53; not read, reading them is an archive visit.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-8c9914e23514",
+   "source": "mail",
+   "title": "Glamorgan County Council Clerk's Department records, including commons-registration files (not item-listed)",
+   "date_display": "c.1890-1974",
+   "holder": "Glamorgan Archives",
+   "type": "local authority records, fonds entry read",
+   "summary": "Registration authority's own departmental records, a second holder for the 1970 VG41 papers beside the Vale of Glamorgan Council; not item-listed, not read.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-d8c4e0e07aec",
+   "source": "mail",
+   "title": "South Glamorgan County Council Chief Executive's Department records, including Commons Registration (Glamorgan) Bill papers",
+   "date_display": "1974-1996",
+   "holder": "Glamorgan Archives",
+   "type": "local authority records, fonds entry read",
+   "summary": "Successor authority's records including commons-registration papers; not read.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-319443890562",
+   "source": "mail",
+   "title": "Jourdan, Adverse Possession, 2nd edn (2011), para 35-05: BP Properties Ltd v Buckler (1987) 55 P & CR 337",
+   "date_display": "2011",
+   "holder": "Internet Archive (loan-only copy; full-text snippets)",
+   "type": "textbook, full-text snippets read",
+   "summary": "Practitioner summary of the facts and the 1955 and 1962 orders; wording checked against the full-text index, page image not seen. Secondary summary of the judgment; pages not seen.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "bp properties"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-522065e0c490",
+   "source": "mail",
+   "title": "Clarke, Land Law (OUP, 2012): BP Properties Ltd v Buckler (1987) 55 P & CR 337",
+   "date_display": "2012",
+   "holder": "Internet Archive (loan-only copy; full-text snippets)",
+   "type": "textbook, full-text snippets read",
+   "summary": "Student text describing the decision as \"surprising\" and summarising the licence finding. Secondary summary of the judgment; pages not seen.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "bp properties"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-c4a2b775334e",
+   "source": "mail",
+   "title": "Davys, Land Law (Palgrave, 2017): BP Properties Ltd v Buckler (1987) 55 P & CR 337",
+   "date_display": "2017",
+   "holder": "Internet Archive (loan-only copy; full-text snippets)",
+   "type": "textbook, full-text snippets read",
+   "summary": "Student text noting that the case has been subject to criticism, citing Wallace. Secondary summary of the judgment; pages not seen.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "bp properties"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-c3c806f328da",
+   "source": "mail",
+   "title": "Thompson, Modern Land Law (2012): BP Properties Ltd v Buckler (1987) 55 P & CR 337",
+   "date_display": "2012",
+   "holder": "Internet Archive (loan-only copy; full-text snippets)",
+   "type": "textbook, full-text snippets read",
+   "summary": "Student text pointing to Wallace [1994] Conv 196 for criticism of the decision. Secondary summary of the judgment; pages not seen.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "bp properties"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-071fb27883c9",
+   "source": "mail",
+   "title": "Sparkes, A New Land Law (2003), n. 94: BP Properties Ltd v Buckler (1987) 55 P & CR 337",
+   "date_display": "2003",
+   "holder": "Internet Archive (loan-only copy; full-text snippets)",
+   "type": "textbook, full-text snippets read",
+   "summary": "Text citing Wilkinson (1988) 138 NLJ 238 on the case. Secondary summary of the judgment; pages not seen.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "bp properties"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-e97c72c99b6a",
+   "source": "mail",
+   "title": "Wilkie, Land Law (OUP, 2017): BP Properties Ltd v Buckler (1987) 55 P & CR 337",
+   "date_display": "2017",
+   "holder": "Internet Archive (loan-only copy; full-text snippets)",
+   "type": "textbook, full-text snippets read",
+   "summary": "Student text recording academic criticism and the later treatment of the case as sound in Colin Dawson Windows Ltd v King's Lynn and West Norfolk BC. Secondary summary of the judgment; pages not seen.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "bp properties"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-0659b29eb9f5",
+   "source": "mail",
+   "title": "Warner-Reed, Optimize Land Law (2017): BP Properties Ltd v Buckler (1987) 55 P & CR 337",
+   "date_display": "2017",
+   "holder": "Internet Archive (loan-only copy; full-text snippets)",
+   "type": "textbook, full-text snippets read",
+   "summary": "Revision text describing BP as \"having legally obtained an eviction order\". Secondary summary of the judgment; pages not seen.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "bp properties"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-bcbfff6083c8",
+   "source": "mail",
+   "title": "Lyall, Land Law in Ireland, 2nd edn (2000): BP Properties Ltd v Buckler (1987) 55 P & CR 337",
+   "date_display": "2000",
+   "holder": "Internet Archive (loan-only copy; full-text snippets)",
+   "type": "textbook, full-text snippets read",
+   "summary": "Irish text giving the family as in possession of Great House Farm near Penarth from about 1916. Secondary summary of the judgment; pages not seen.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "great house farm",
+    "bp properties",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-21a5468b5f93",
+   "source": "mail",
+   "title": "H. Wallace, case comment on BP Properties Ltd v Buckler, [1994] Conv 196",
+   "date_display": "1994",
+   "holder": "Conveyancer and Property Lawyer",
+   "type": "journal article, citation only",
+   "summary": "Academic commentary cited by several land-law texts as a critique of the decision; not read.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "bp properties"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-07dbb71d8a36",
+   "source": "mail",
+   "title": "H. W. Wilkinson, note on BP Properties Ltd v Buckler, (1988) 138 NLJ 238",
+   "date_display": "1988",
+   "holder": "New Law Journal",
+   "type": "journal article, citation only",
+   "summary": "Contemporary commentary on the decision cited by Sparkes; not read.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "bp properties"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-cedbde5c4283",
+   "source": "mail",
+   "title": "Probate calendar entry: Pontypridd, Alfred baron; probate Llandaff 8 Mar 1928, effects £37,022 8s 4d",
+   "date_display": "1928-03-08",
+   "holder": "HM Courts & Tribunals Service (GOV.UK probate calendar)",
+   "type": "probate calendar entry",
+   "summary": "Probate calendar entry for Alfred Thomas, Lord Pontypridd; the will has not been read.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-8f79733acc40",
+   "source": "mail",
+   "title": "Webster & Co.'s Directory of Bristol & Glamorganshire, Llandough entry, pp. 443-444",
+   "date_display": "1865",
+   "holder": "University of Leicester Special Collections (online)",
+   "type": "trade directory, text layer read",
+   "summary": "Directory describes the soil of the parish as the Marquis of Bute's and lists a John Williams, farmer; a directory statement about the parish, not a title record. Cuts against the family case.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-bda2128852f6",
+   "source": "mail",
+   "title": "Harrod & Co.'s directory of Glamorganshire, Llandough entry, p. 463",
+   "date_display": "1866",
+   "holder": "University of Leicester Special Collections (online)",
+   "type": "trade directory, text layer read",
+   "summary": "Directory gives the land of the parish as the Marquis of Bute's with the same acreage and rateable value as Webster 1865, so the two probably share one source. Cuts against the family case.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-317b19466c86",
+   "source": "mail",
+   "title": "Cardiff Directory, Llandough entries (\"Williams Mrs., Great House farm\"), pp. 800-801",
+   "date_display": "1914",
+   "holder": "University of Leicester Special Collections (online)",
+   "type": "trade directory, text layer read",
+   "summary": "Directory lists a Mrs Williams at Great House farm in 1914; column placement under Llandough read from page layout, image not checked.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "great house farm"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-ac2c1211828e",
+   "source": "mail",
+   "title": "Cadw ATISN 26-0009 response letter",
+   "date_display": "2026-11-06",
+   "holder": "Welsh Government / Cadw",
+   "type": "FOI disclosure (ATISN 26-0009)",
+   "summary": "No information held on when the 1988 listing file was destroyed; five documents released.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-59827f931338",
+   "source": "mail",
+   "title": "Cadw Records Management emails, 28 May-2 Jun 2026 (CL72/381 recorded destroyed)",
+   "date_display": "2026-06-01",
+   "holder": "Welsh Government / Cadw",
+   "type": "FOI disclosure (ATISN 26-0009)",
+   "summary": "Internal emails recording that file CL72/381 parts 1 and 2 had been destroyed.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-affec3dbcd85",
+   "source": "mail",
+   "title": "Welsh Government internal email, Aug 2026: \"CADW: Revised Report (10 August 2026)\" (retention arrangements)",
+   "date_display": "2026-08",
+   "holder": "Welsh Government / Cadw",
+   "type": "FOI disclosure (ATISN 26-0009)",
+   "summary": "Post-merger schedules kept unsuccessful listing cases about 3 years; pre-merger arrangements not known.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-7838413f29ed",
+   "source": "mail",
+   "title": "Cadw emails, 27-29 Oct 2026 (handling of ATISN 26-0009)",
+   "date_display": "2026-10-29",
+   "holder": "Welsh Government / Cadw",
+   "type": "FOI disclosure (ATISN 26-0009)",
+   "summary": "Internal handling emails for the request.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-b1e856c37ada",
+   "source": "mail",
+   "title": "Cadw list of six file references of potential interest",
+   "date_display": "2026-11-06",
+   "holder": "Welsh Government / Cadw",
+   "type": "FOI disclosure (ATISN 26-0009)",
+   "summary": "Six file references and CRNs.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-4aac1ef1b593",
+   "source": "mail",
+   "title": "Cadw resurvey database extract (2007): CL 72/381, Penarth, signed 21/01/1993",
+   "date_display": "2007-04-12",
+   "holder": "Welsh Government / Cadw",
+   "type": "FOI disclosure (ATISN 26-0009)",
+   "summary": "Database row listing CL 72/381 for Penarth community as signed 21/01/1993.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-f34e681cf8ba",
+   "source": "mail",
+   "title": "South Wales Police internal review 1188/26 response",
+   "date_display": "2026-11-06",
+   "holder": "South Wales Police",
+   "type": "FOI internal review response",
+   "summary": "Review upholds no information held; departments consulted and Glamorgan Archives deposits searched.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-aca1a5d7da23",
+   "source": "mail",
+   "title": "Ordnance Survey map extract, Llandough area (1947 Published 1950), supplied with FOI-26-46 response",
+   "date_display": "2026-11-06",
+   "holder": "Ordnance Survey",
+   "type": "map extract (FOI s.16 advice)",
+   "summary": "Map extract dated 1947 supplied by OS showing the site label; OS reads it as 'Ty-Mawr' in 1947 and 'Ty Mawr Farm' from between 1965 and 1971. Image binary not kept on the box; text is OCR only.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "ty mawr"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-911c3a02aa44",
+   "source": "mail",
+   "title": "Ordnance Survey map extract, Llandough area (1965), supplied with FOI-26-46 response",
+   "date_display": "2026-11-06",
+   "holder": "Ordnance Survey",
+   "type": "map extract (FOI s.16 advice)",
+   "summary": "Map extract dated 1965 supplied by OS showing the site label; OS reads it as 'Ty-Mawr' in 1947 and 'Ty Mawr Farm' from between 1965 and 1971. Image binary not kept on the box; text is OCR only.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "ty mawr"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-90fefe234944",
+   "source": "mail",
+   "title": "Ordnance Survey map extract, Llandough area (1971), supplied with FOI-26-46 response",
+   "date_display": "2026-11-06",
+   "holder": "Ordnance Survey",
+   "type": "map extract (FOI s.16 advice)",
+   "summary": "Map extract dated 1971 supplied by OS showing the site label; OS reads it as 'Ty-Mawr' in 1947 and 'Ty Mawr Farm' from between 1965 and 1971. Image binary not kept on the box; text is OCR only.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "ty mawr"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-2c73afbec33a",
+   "source": "mail",
+   "title": "Ordnance Survey map extract, Llandough area (1977), supplied with FOI-26-46 response",
+   "date_display": "2026-11-06",
+   "holder": "Ordnance Survey",
+   "type": "map extract (FOI s.16 advice)",
+   "summary": "Map extract dated 1977 supplied by OS showing the site label; OS reads it as 'Ty-Mawr' in 1947 and 'Ty Mawr Farm' from between 1965 and 1971. Image binary not kept on the box; text is OCR only.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "ty mawr"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-0c51102dcd33",
+   "source": "mail",
+   "title": "Ordnance Survey map extract, Llandough area (1989), supplied with FOI-26-46 response",
+   "date_display": "2026-11-06",
+   "holder": "Ordnance Survey",
+   "type": "map extract (FOI s.16 advice)",
+   "summary": "Map extract dated 1989 supplied by OS showing the site label; OS reads it as 'Ty-Mawr' in 1947 and 'Ty Mawr Farm' from between 1965 and 1971. Image binary not kept on the box; text is OCR only.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "ty mawr"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-fbc70dc5acbb",
+   "source": "mail",
+   "title": "Alan Thorne, Place Names of Penarth (D. Brown & Sons, 1997), pp.13-14 (transcript by worker 66b65600): Glamorgan Artillery Barracks, Penarth; Volunteer Rifle Corps and Severn Sub-marine Miners",
+   "date_display": "1860s-1890s",
+   "holder": "Alan Thorne",
+   "type": "published local history (secondary)",
+   "summary": "Glamorgan Artillery Barracks, Penarth; Volunteer Rifle Corps and Severn Sub-marine Miners. Cuts against: Penarth town, about 2 km from Tŷ Mawr (Great House); no link to the farm.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "tŷ mawr",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-196d5e769766",
+   "source": "mail",
+   "title": "TNA LRRO 1/3531 (Land Revenue Record Office), catalogue entry: War Office land record for Lavernock Point",
+   "date_display": "1866",
+   "holder": "TNA LRRO 1/3531 (Land Revenue Record Office)",
+   "type": "catalogue entry, not read",
+   "summary": "War Office land record for Lavernock Point. Cuts against: Catalogue title only; that it is a War Office acquisition is not checked. Lavernock parish, not Llandough.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-7a46f5bcbe28",
+   "source": "mail",
+   "title": "TNA WO 78/2281, catalogue description: Royal Artillery Establishment at Lavernock (plans 1879, corrected to May 1899)",
+   "date_display": "1879/1899",
+   "holder": "TNA WO 78/2281",
+   "type": "catalogue entry, plan not seen",
+   "summary": "Royal Artillery Establishment at Lavernock (plans 1879, corrected to May 1899). Cuts against: Shows a War Office establishment at Lavernock, the trial site; nothing about Llandough or Tŷ Mawr (Great House).",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "tŷ mawr"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-f4cf5375bff5",
+   "source": "mail",
+   "title": "TNA MT 10/662/8, catalogue description: Board of Trade assent for a submarine telegraph cable, Lavernock Point to Brean Down",
+   "date_display": "1895",
+   "holder": "TNA MT 10/662/8",
+   "type": "catalogue entry, not read",
+   "summary": "Board of Trade assent for a submarine telegraph cable, Lavernock Point to Brean Down. Cuts against: Whose cable (War Office, Post Office or a company) is not checked.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-b76796f9f345",
+   "source": "mail",
+   "title": "TNA WO 192/155, catalogue description: Flat Holm fort record book",
+   "date_display": "1895-1944",
+   "holder": "TNA WO 192/155",
+   "type": "catalogue entry, not read",
+   "summary": "Flat Holm fort record book. Cuts against: Flat Holm, the transmitting end; not Llandough land.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-0ddd9c0e96aa",
+   "source": "mail",
+   "title": "Barry Dock News, 22 Jan 1897, p.5: 2nd Glamorgan Volunteer Artillery 64-pounder competition at Lavernock",
+   "date_display": "1897-01-16",
+   "holder": "Barry Dock News",
+   "type": "press (OCR text; obvious OCR slips corrected)",
+   "summary": "2nd Glamorgan Volunteer Artillery 64-pounder competition at Lavernock. Cuts against: Routine volunteer gunnery practice; no link to Marconi or the farm.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-0d7f4ef7d56c",
+   "source": "mail",
+   "title": "South Wales Echo, 19 Jan 1897, p.3: Military funeral at Penarth of a gunner of the Lavernock battery",
+   "date_display": "1897-01-19",
+   "holder": "South Wales Echo",
+   "type": "press (OCR text; obvious OCR slips corrected)",
+   "summary": "Military funeral at Penarth of a gunner of the Lavernock battery. Cuts against: Shows a staffed battery at Lavernock four months before the trials; nothing more.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-d8f530dd4404",
+   "source": "mail",
+   "title": "Evening Express, 25 Mar 1897, p.1: Annual group firing competition opens at Lavernock",
+   "date_display": "1897-03-20",
+   "holder": "Evening Express",
+   "type": "press (OCR text; obvious OCR slips corrected)",
+   "summary": "Annual group firing competition opens at Lavernock. Cuts against: Volunteer training at an existing battery, about six weeks before Marconi arrived; no link to the farm.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-1e49cac4062f",
+   "source": "mail",
+   "title": "Weekly Mail, 1 May 1897, p.4: War Office, Admiralty and Post Office give Marconi facilities",
+   "date_display": "1897-05-01",
+   "holder": "Weekly Mail",
+   "type": "press (OCR text; obvious OCR slips corrected)",
+   "summary": "War Office, Admiralty and Post Office give Marconi facilities. Cuts against: Names the bodies, not people or places; nothing about lodgings or Llandough.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-9bbfe4cad5b0",
+   "source": "mail",
+   "title": "South Wales Echo, 17 May 1897 (special edition), p.2: Professor Slaby of Berlin at the trials, at the Kaiser's expense",
+   "date_display": "1897-05-13",
+   "holder": "South Wales Echo",
+   "type": "press (OCR text; obvious OCR slips corrected)",
+   "summary": "Professor Slaby of Berlin at the trials, at the Kaiser's expense. Cuts against: He attended openly as Preece's guest and the press named him; a 'spy' reading is a later interpretation.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-7a104532b14a",
+   "source": "mail",
+   "title": "George Kemp's diary, 1930 fair copy, entry for 13 May 1897, quoted by G. R. M. Garratt (The Diary Junction, 2017): Kemp: the first message went to the Kaiser through Slaby",
+   "date_display": "1897-05-13",
+   "holder": "George Kemp's diary",
+   "type": "diary (published extract)",
+   "summary": "Kemp: the first message went to the Kaiser through Slaby. Cuts against: The 1930 version was rewritten from the original, which brackets 10-14 May in one line.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-0f534c7e55b0",
+   "source": "mail",
+   "title": "Western Mail, 25 Mar 1897, p.8 (also Barry Dock News 21 May 1897 p.7): Annual inspection of the 2nd Glamorgan Volunteer Artillery at Lavernock",
+   "date_display": "1897-07-24",
+   "holder": "Western Mail",
+   "type": "press (OCR text; obvious OCR slips corrected)",
+   "summary": "Annual inspection of the 2nd Glamorgan Volunteer Artillery at Lavernock. Cuts against: After the trials; routine.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-1ea5dd1cc07b",
+   "source": "mail",
+   "title": "A. Slaby, 'The New Telegraphy', Century Magazine, April 1898, pp.867-874: Slaby's own account: he took part, then built the German system for the Kaiser, army and navy",
+   "date_display": "1898-04",
+   "holder": "A. Slaby",
+   "type": "published article by the participant",
+   "summary": "Slaby's own account: he took part, then built the German system for the Kaiser, army and navy. Cuts against: He was invited and wrote openly; the article also names the German army balloon department and the navy as users afterwards, not before. MI5 did not exist until 1909, so no MI5 file of 1897 can exist.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-ac5b6f4708b5",
+   "source": "mail",
+   "title": "TNA MT 10/828/5, catalogue description: Proposed submarine minefield at Lower Penarth and Lavernock",
+   "date_display": "1901",
+   "holder": "TNA MT 10/828/5",
+   "type": "catalogue entry, not read",
+   "summary": "Proposed submarine minefield at Lower Penarth and Lavernock. Cuts against: After the trials; the coast, not Llandough.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-f13b1507a450",
+   "source": "mail",
+   "title": "Place names of Penarth (Alan Thorne, 1997) — secondary source; full-text index screened",
+   "date_display": "1997",
+   "holder": "Alan Thorne / D. Brown & Sons",
+   "type": "book (secondary source)",
+   "summary": "Local place-names book (ISBN 9781872808499), archive.org lending item. Full-text index has no Ty Mawr, Tymawr, Great House or tithe entry; Llandough and Leckwith appear only in passing. Entries relevant to the project are listed in work/penarth-placenames/relevant.md.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "leckwith",
+    "ty mawr",
+    "tymawr",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-1e821e3267c2",
+   "source": "mail",
+   "title": "Andrew Road, Cogan: road cut in the 1890s under the Bute estate to shorten the route from Cogan to Llandough (Thorne 1997, p. 11)",
+   "date_display": "1890s",
+   "holder": "Alan Thorne (secondary)",
+   "type": "book extract",
+   "summary": "Thorne p. 11: road cut into the western escarpment of the Cogan bowl in the 1890s, 'under the aegis of the Marquis of Bute, the owner of the parishes of Cogan and Llandough'. Primary record (highway plan, conveyance or dedication) not checked.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "cogan"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-21cb48834983",
+   "source": "mail",
+   "title": "Whitehall Farm, Penarth: worked by David Williams in 1700; its 12 acres leased by William Phillips in 1720 (Thorne 1997, p. 164)",
+   "date_display": "1700-1720",
+   "holder": "Alan Thorne, citing G. O. Pierce (secondary)",
+   "type": "book extract",
+   "summary": "Same-surname record in Penarth parish; site not pinpointed (near Westbourne Road / Victoria Road). No relationship to the family assumed. Primary rental or lease not checked.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-9f255e057ee5",
+   "source": "mail",
+   "title": "William's Sidings (Taff Vale Railway official title), Penarth High Level Sidings (Thorne 1997, pp. 22, 131)",
+   "date_display": "19th century",
+   "holder": "Alan Thorne (secondary)",
+   "type": "book extract",
+   "summary": "TVR sidings serving the Billybanks quarries and lime-kilns; the name's holder is not identified (not checked).",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-cc8e461a5d58",
+   "source": "mail",
+   "title": "Black Hays and Round Pitt fields, West House Farm, Penarth, described in 1766 (owner Catherine Edwards) (Thorne 1997)",
+   "date_display": "1766",
+   "holder": "Alan Thorne (secondary)",
+   "type": "book extract",
+   "summary": "Lost Penarth field names with acreages (nine acres each) from a 1766 description whose source is not seen in the snippets. Comparator for an 18th-century field survey of Llandough lands.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-e58d38a32b1a",
+   "source": "mail",
+   "title": "Weirs on the River Ely: the Niwere (New Weir) in the manor of Cogan, and a weir above Leckwith Bridge not demolished until 1941 (Thorne 1997, p. 107)",
+   "date_display": "1941",
+   "holder": "Alan Thorne (secondary)",
+   "type": "book extract",
+   "summary": "River Ely fishery/weir at Leckwith; 1941 removal date. Primary record not checked.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "leckwith",
+    "cogan"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-bc7aec04d7d5",
+   "source": "mail",
+   "title": "W. H. Smyth, Nautical observations on the port and maritime vicinity of Cardiff (1840): Afon Llai -> Ely derivation, evidence by Bute's Marine Superintendent (cited by Thorne 1997, p. 4)",
+   "date_display": "1840",
+   "holder": "W. H. Smyth (cited by Thorne)",
+   "type": "book extract / cited source",
+   "summary": "Thorne p. 4: 'Ely is a diminutive or corruption of Afon Llai, the mud river' (evidence to Parliament, 1840). The 1840 work itself is not yet read.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-56c0bff9d200",
+   "source": "mail",
+   "title": "South Wales Police FOI complaints procedure (sent with internal review 1188/26 response, 6 Nov 2026)",
+   "date_display": "2026-11-06",
+   "holder": "South Wales Police",
+   "type": "PDF (procedure document)",
+   "summary": "Second attachment of the 6 Nov 1188/26 reply. Text identical to the procedure sent with the 26 Oct reply (GHF-E106-R60-A2); internal review then Information Commissioner route. Procedure, not evidence: catalogue as a companion to the 6 Nov response candidate, not as a separate finding.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "mail:cc-f872d79ffb73",
+   "source": "mail",
+   "title": "NCAP catalogue reference: sortie GEONEX/0133/91, frames 0236-0237 (1991), Llandough-Leckwith",
+   "date_display": "2026-11-09",
+   "holder": "National Collection of Aerial Photography (Historic Environment Scotland)",
+   "type": "catalogue reference (email text, no attachment)",
+   "summary": "Free catalogue search result: one 1991 vertical sortie (GEONEX/0133/91, frames 0236 and 0237) covering the area between Llandough (near Penarth) and Leckwith. Image not ordered (Scan on Demand with Image Verification Service is a paid product). Reference only, not the image.",
+   "proposed_kind": "catalogue_candidate",
+   "url": "",
+   "scope_terms": [
+    "llandough",
+    "leckwith",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00008",
+   "source": "spill",
+   "title": "Spill item SP-00008 awaiting the spill processor",
+   "date_display": "1974-11-19",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target catalogue; received 2026-11-02T04:54:25.923Z",
+   "proposed_kind": "catalogue",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00009",
+   "source": "spill",
+   "title": "Spill item SP-00009 awaiting the spill processor",
+   "date_display": "1974-11-19",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target nomenclature; received 2026-11-02T04:54:25.923Z",
+   "proposed_kind": "nomenclature",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00011",
+   "source": "spill",
+   "title": "Spill item SP-00011 awaiting the spill processor",
+   "date_display": "1939-1979",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target missing-records; received 2026-11-02T04:54:25.923Z",
+   "proposed_kind": "missing-records",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00016",
+   "source": "spill",
+   "title": "Spill item SP-00016 awaiting the spill processor",
+   "date_display": "1989-04-14",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target wiki; received 2026-11-02T04:54:25.923Z",
+   "proposed_kind": "wiki",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00040",
+   "source": "spill",
+   "title": "Spill item SP-00040 awaiting the spill processor",
+   "date_display": "1872-1895",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target catalogue; received 2026-11-02T05:19:58.469Z",
+   "proposed_kind": "catalogue",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00095",
+   "source": "spill",
+   "title": "Spill item SP-00095 awaiting the spill processor",
+   "date_display": "2026-11-03",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target directory; received 2026-11-03T17:32:15.270Z",
+   "proposed_kind": "directory",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00107",
+   "source": "spill",
+   "title": "Spill item SP-00107 awaiting the spill processor",
+   "date_display": "c.1841",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target tithe-h3; received 2026-11-05T10:37:59.176Z",
+   "proposed_kind": "tithe-h3",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00113",
+   "source": "spill",
+   "title": "Spill item SP-00113 awaiting the spill processor",
+   "date_display": "1987-07-31",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target wiki; received 2026-11-05T10:37:59.176Z",
+   "proposed_kind": "wiki",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00127",
+   "source": "spill",
+   "title": "Spill item SP-00127 awaiting the spill processor",
+   "date_display": "1990-08",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target catalogue; received 2026-11-10T21:48:13.948Z",
+   "proposed_kind": "catalogue",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00136",
+   "source": "spill",
+   "title": "Spill item SP-00136 awaiting the spill processor",
+   "date_display": "1940-1942",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target catalogue; received 2026-11-10T21:48:13.948Z",
+   "proposed_kind": "catalogue",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00137",
+   "source": "spill",
+   "title": "Spill item SP-00137 awaiting the spill processor",
+   "date_display": "1943",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target catalogue; received 2026-11-10T21:48:13.948Z",
+   "proposed_kind": "catalogue",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00140",
+   "source": "spill",
+   "title": "Spill item SP-00140 awaiting the spill processor",
+   "date_display": "1986-09-26",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target missing-records; received 2026-11-10T21:48:13.948Z",
+   "proposed_kind": "missing-records",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00143",
+   "source": "spill",
+   "title": "Spill item SP-00143 awaiting the spill processor",
+   "date_display": "1943-1983",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status accepted; target missing-records; received 2026-11-10T21:48:38.270Z",
+   "proposed_kind": "missing-records",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00144",
+   "source": "spill",
+   "title": "Spill item SP-00144 awaiting the spill processor",
+   "date_display": "2026-11-11",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status queued; target catalogue; received 2026-11-11T16:30:11.351Z",
+   "proposed_kind": "catalogue",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00145",
+   "source": "spill",
+   "title": "Spill item SP-00145 awaiting the spill processor",
+   "date_display": "2026-10-30",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status queued; target catalogue; received 2026-11-11T16:30:11.351Z",
+   "proposed_kind": "catalogue",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "spill:SP-00146",
+   "source": "spill",
+   "title": "Spill item SP-00146 awaiting the spill processor",
+   "date_display": "1911",
+   "holder": "",
+   "type": "spill item",
+   "summary": "status new; target catalogue; received 2026-11-11T20:07:06.671Z",
+   "proposed_kind": "catalogue",
+   "url": "",
+   "scope_terms": [],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:ESB23",
+   "source": "online:tna",
+   "title": "Llandough-juxta-Penarth and Cogan School Board, minutes",
+   "date_display": "1882-1901",
+   "holder": "Glamorgan Archives",
+   "type": "archive catalogue entry",
+   "summary": "minutes",
+   "reference": "ESB23",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N13768229",
+   "query": "Llandough juxta Penarth",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "cogan",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:P35CW",
+   "source": "online:tna",
+   "title": "St Dochdwy Llandough-Justa-Penarth with Leckwith parish, registers of baptisms and burials",
+   "date_display": "1928-2010",
+   "holder": "Glamorgan Archives",
+   "type": "archive catalogue entry",
+   "summary": "registers of baptisms and burials",
+   "reference": "P35CW",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N13764723",
+   "query": "Leckwith Llandough",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "leckwith",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:RG 9/4040",
+   "source": "online:tna",
+   "title": "Registration Sub-District 2 Cardiff. Parish: St Mellons (Mon). Sequence on film no. 8. Parish: Rumney...",
+   "date_display": "1861",
+   "holder": "The National Archives, Kew",
+   "type": "archive catalogue entry",
+   "summary": "Registration Sub-District 2 Cardiff. Parish: St Mellons (Mon). Sequence on film no. 8. Parish: Rumney (Mon). Sequence on film no. 7. Parish: Raydar (RADYR). Sequence on film no. 6. Parish: St Fagan's. Sequence on film no. 11. Parish: Cairau. Sequence on film no. 4. Parish: Leckwith. Sequence on film no. 9. Parish: Michaelstone-le-Pit. Sequence on film no. 3. Parish: Llandough near Penarth. Sequenc",
+   "reference": "RG 9/4040",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/C3102072",
+   "query": "Leckwith Llandough",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "leckwith",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:MH 12/16247/275",
+   "source": "online:tna",
+   "title": "Content: Folios 390-391. Appointment form for Evan Hopkin as Relieving Officer, signed by Thomas Watkins,...",
+   "date_display": "25 Oct 1845",
+   "holder": "The National Archives, Kew",
+   "type": "archive catalogue entry",
+   "summary": "Content: Folios 390-391. Appointment form for Evan Hopkin as Relieving Officer, signed by Thomas Watkins, Clerk to the Guardians of the Cardiff Poor Law Union. The form shows Hopkin now of Cardiff late Oaksey, Wiltshire, had been a farmer, churchwarden and overseer there. The salary to be £70 per annum. He is responsible for Cardiff town, Caerau, Llandaff, Leckwith, Llandough, Lavernock, Michaelst",
+   "reference": "MH 12/16247/275",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/C10599554",
+   "query": "Llandough Williams farmer",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:P35",
+   "source": "online:tna",
+   "title": "Llandough-juxta-Penarth civil parish, records",
+   "date_display": "1842-1895",
+   "holder": "Glamorgan Archives",
+   "type": "archive catalogue entry",
+   "summary": "records",
+   "reference": "P35",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N13670726",
+   "query": "Llandough juxta Penarth",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:LL/1728/116",
+   "source": "online:tna",
+   "title": "Humphrey Wilkin, Yeoman",
+   "date_display": "1728",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "Bond. Inventory. Diocese: Llandaf Parish: Llandough-juxta-Cowbridge. Endorsed: Llandough juxta Penarth County: Glamorgan",
+   "reference": "LL/1728/116",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/cc3852a8-6291-4fa1-9062-5d781f26c1c2",
+   "query": "Llandough juxta Penarth",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:LL/1693/65",
+   "source": "online:tna",
+   "title": "Jane William",
+   "date_display": "1693",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "Bond. Diocese: Llandaf Parish: Llandough-juxta-Penarth County: Glamorgan",
+   "reference": "LL/1693/65",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/ce41a49d-096f-4a50-a8d0-3ee19b9565ae",
+   "query": "Llandough juxta Penarth",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:LL/1791/43",
+   "source": "online:tna",
+   "title": "Evan Williams",
+   "date_display": "1791",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "Bond. Diocese: Llandaf Parish: Llandough-juxta-Penarth County: Glamorgan",
+   "reference": "LL/1791/43",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/0ce19857-5add-4c35-8bfc-d6b742265f0e",
+   "query": "Llandough juxta Penarth",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:LL/1740/74",
+   "source": "online:tna",
+   "title": "Anthony Mathews",
+   "date_display": "1740",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "Will. Diocese: Llandaf Parish: Llandough-juxta-Penarth County: Glamorgan",
+   "reference": "LL/1740/74",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/ae34fe6a-3120-40fe-8e59-3fe12c103ae6",
+   "query": "Llandough juxta Penarth",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:LL/1730/109",
+   "source": "online:tna",
+   "title": "Reynold Thomas, Yeoman",
+   "date_display": "1730",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "Will. Diocese: Llandaf Parish: Llandough-juxta-Penarth County: Glamorgan",
+   "reference": "LL/1730/109",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/6e77a8da-b76a-4a50-91e0-20656b2937bc",
+   "query": "Llandough juxta Penarth",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:LL/1720/88",
+   "source": "online:tna",
+   "title": "James Jenkins, Mr, Mariner",
+   "date_display": "1720",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "Will. Diocese: Llandaf Parish: Llandough-juxta-Penarth County: Glamorgan",
+   "reference": "LL/1720/88",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/a2ece386-22bb-475c-a947-be6d70d262e3",
+   "query": "Llandough juxta Penarth",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:LL/1753/63",
+   "source": "online:tna",
+   "title": "Anne Rees, Widow",
+   "date_display": "1753",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "Will. Diocese: Llandaf Parish: Llandough-juxta-Penarth County: Glamorgan",
+   "reference": "LL/1753/63",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/e796fb9f-ab0a-4698-9110-63da195d532c",
+   "query": "Llandough juxta Penarth",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:LL/1686/83",
+   "source": "online:tna",
+   "title": "Morris Morris, Mason",
+   "date_display": "1686",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "Will. Diocese: Llandaf Parish: Llandough-juxta-Penarth County: Glamorgan",
+   "reference": "LL/1686/83",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/d844e8a0-9a3d-4e85-ac6c-90cda69e97c3",
+   "query": "Llandough juxta Penarth",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:LL/1809/46",
+   "source": "online:tna",
+   "title": "Mary Phillip, Spinster",
+   "date_display": "1809",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "Will. Diocese: Llandaf Parish: Llandough-juxta-Penarth County: Glamorgan",
+   "reference": "LL/1809/46",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/43773068-78d4-49b7-9eb3-5cb86b98c648",
+   "query": "Llandough juxta Penarth",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "penarth"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:LL/1649/15",
+   "source": "online:tna",
+   "title": "Margery Morgan",
+   "date_display": "1649",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "Will. Diocese: Llandaf Parish: Leckwith. Testator wishes to be buried in Llandough [ ] County: Glamorgan",
+   "reference": "LL/1649/15",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/08bc02f8-e57d-48f2-9090-60795a882c92",
+   "query": "Leckwith Llandough",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:OS 26/4036",
+   "source": "online:tna",
+   "title": "Glamorganshire: Caerau; Michaelston le Pit and Michaelston super Ely. Boundary remark book containing strip maps...",
+   "date_display": "1875",
+   "holder": "The National Archives, Kew",
+   "type": "archive catalogue entry",
+   "summary": "Glamorganshire: Caerau; Michaelston le Pit and Michaelston super Ely. Boundary remark book containing strip maps showing boundaries with: Llandaff; Leckwith; Llandough juxta Cardiff; St Andrews Major; St Fagans; St Georges; Wenvoe. [National Grid Reference: ST 1477, ST 1671 and ST 0879].",
+   "reference": "OS 26/4036",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/C4928662",
+   "query": "Leckwith Llandough",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:M 17/56-80, 110-314",
+   "source": "online:tna",
+   "title": "COGAN MANOR, presentments, with Llandough",
+   "date_display": "1735-1934",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "presentments, with Llandough",
+   "reference": "M 17/56-80, 110-314",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14336241",
+   "query": "Cogan Llandough",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "cogan"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:M 17/56-80",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, presentments, with Cogan",
+   "date_display": "1735-1794",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "presentments, with Cogan",
+   "reference": "M 17/56-80",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14356325",
+   "query": "Cogan Llandough",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "cogan"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:M 17/329",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, warrant to hold courts, with Cogan",
+   "date_display": "1777",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "warrant to hold courts, with Cogan",
+   "reference": "M 17/329",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14290364",
+   "query": "Cogan Llandough",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "cogan"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:M 17/328-9",
+   "source": "online:tna",
+   "title": "COGAN MANOR, warrants for holding courts, with Llandough",
+   "date_display": "1771-1777",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "warrants for holding courts, with Llandough",
+   "reference": "M 17/328-9",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14285228",
+   "query": "Cogan Llandough",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "cogan"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:M 17/328",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, warrant to hold courts, with Cogan",
+   "date_display": "1771",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "warrant to hold courts, with Cogan",
+   "reference": "M 17/328",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14313151",
+   "query": "Cogan Llandough",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "cogan"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:M 17/12",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, new chief rents, with Cogan and Kibbor otherwise Friars",
+   "date_display": "1792",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "new chief rents, with Cogan and Kibbor otherwise Friars",
+   "reference": "M 17/12",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14284365",
+   "query": "Cogan Llandough",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough",
+    "cogan"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:HO 107/2455",
+   "source": "online:tna",
+   "title": "Registration District: 581. CARDIFF (Street Indexed). Registration Sub-District: 2 Cardiff. Parish: St Mellons (Mon). Parish:...",
+   "date_display": "1851",
+   "holder": "The National Archives, Kew",
+   "type": "archive catalogue entry",
+   "summary": "Registration District: 581. CARDIFF (Street Indexed). Registration Sub-District: 2 Cardiff. Parish: St Mellons (Mon). Parish: Rumney (Mon). Parish: Roath (1). Parish: Cardiff. Hamlet: St John. Parish: Cardiff Hamlet: St Mary (3)(4)(6). Hamlet: St Mary (3)(4)(6). Parish: Llandaff with Canton, Ely, Fairwater and Gabalva. Parish: Radyr. Parish: St Fagan. Parish: Cairau. Parish: Leckwith. Parish: Mich",
+   "reference": "HO 107/2455",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/C3763188",
+   "query": "Leckwith Llandough",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:IR 29/51/57",
+   "source": "online:tna",
+   "title": "Tithe apportionment of Llandough (parish), Glamorgan. Valuation: Thomas Lott Martin, Pontardawe, Glamorganshire",
+   "date_display": "1846 June 13",
+   "holder": "The National Archives, Kew",
+   "type": "archive catalogue entry",
+   "summary": "Tithe apportionment of Llandough (parish), Glamorgan. Valuation: Thomas Lott Martin, Pontardawe, Glamorganshire.",
+   "reference": "IR 29/51/57",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/C2298102",
+   "query": "Llandough tithe",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:IR 30/51/57",
+   "source": "online:tna",
+   "title": "Tithe map of Llandough (parish), Glamorganshire. Shows buildings (named), parsonage, mill, orchards, woods. Scale: 1...",
+   "date_display": "1843",
+   "holder": "The National Archives, Kew",
+   "type": "archive catalogue entry",
+   "summary": "Tithe map of Llandough (parish), Glamorganshire. Shows buildings (named), parsonage, mill, orchards, woods. Scale: 1 inch to 4 chains. Magnetic north shown. By William Glasbrook, Penyfedw, near Moriston.",
+   "reference": "IR 30/51/57",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/C2309961",
+   "query": "Llandough tithe",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:CCA-DCc-ChAnt/L/387",
+   "source": "online:tna",
+   "title": "Lease",
+   "date_display": "3 Sep 1629",
+   "holder": "Canterbury Cathedral Archives and Library",
+   "type": "archive catalogue entry",
+   "summary": "From: the bishop of Llandaff; the chapter of Llandaff Cathedral To: Blanche Herbert of Llandough, widow Eglwysilan ('Eggloysylan') rectory, with the chapels of Llanfabon? ('Lanvabon') and St Martin near Caerphilly ('Charfilie'), Glamorgan, with the buildings, glebe lands and tithes, but reserving the advowson of the vicarage of Eglwsilan and the chapels. For a term of 21 years. For an annual payme",
+   "reference": "CCA-DCc-ChAnt/L/387",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/75343097-19c6-4719-97a9-a73f2fae7230",
+   "query": "Llandough tithe",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:vol IV (1) p336 2489",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, rental, with other manors (Llandough castle and demesnes)",
+   "date_display": "1700- 1799",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "rental, with other manors (Llandough castle and demesnes)",
+   "reference": "vol IV (1) p336 2489",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14306616",
+   "query": "Llandough manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:vol IV (1) p49 2479",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, particular, with other manors (Llandough castle and demesnes)",
+   "date_display": "1700- 1799",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "particular, with other manors (Llandough castle and demesnes)",
+   "reference": "vol IV (1) p49 2479",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14257681",
+   "query": "Llandough manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:NLW MS 6947E Handlist of MSS vol II",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, particular",
+   "date_display": "1655",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "particular",
+   "reference": "NLW MS 6947E Handlist of MSS vol II",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14295014",
+   "query": "Llandough manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:vol IV (3) p38 6900",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, valuation, demesnes",
+   "date_display": "1700- 1725",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "valuation, demesnes",
+   "reference": "vol IV (3) p38 6900",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14327192",
+   "query": "Llandough manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:S 7",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, valuation, with other manors",
+   "date_display": "1610",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "valuation, with other manors",
+   "reference": "S 7",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14324249",
+   "query": "Llandough manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:vol IV (3) p38 6899",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, valuation, demesnes",
+   "date_display": "1684",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "valuation, demesnes",
+   "reference": "vol IV (3) p38 6899",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14269703",
+   "query": "Llandough manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:vol IV (3) p56 5012",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, rental",
+   "date_display": "1701",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "rental",
+   "reference": "vol IV (3) p56 5012",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14279932",
+   "query": "Llandough manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:vol IV (3) p16 2609",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, schedule of allotment of lands of Sir Edward Mansell (Llandough castle) with particular ?Llandough demesnes, with other manors",
+   "date_display": "1660- 1660",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "schedule of allotment of lands of Sir Edward Mansell (Llandough castle) with particular ?Llandough demesnes, with other manors",
+   "reference": "vol IV (3) p16 2609",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14316893",
+   "query": "Llandough manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:Appendix p34 4111",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, abstract of leases (Llandough etc) Margam estate",
+   "date_display": "1769-1771",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "abstract of leases (Llandough etc) Margam estate",
+   "reference": "Appendix p34 4111",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14303945",
+   "query": "Llandough manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:vol IV (3) p47 6902",
+   "source": "online:tna",
+   "title": "LLANDOUGH MANOR, arrears, rent, with other manors",
+   "date_display": "1700- 1725",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "arrears, rent, with other manors",
+   "reference": "vol IV (3) p47 6902",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14291908",
+   "query": "Llandough manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "llandough"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:S 13",
+   "source": "online:tna",
+   "title": "LECKWITH MANOR, rental, with other manors",
+   "date_display": "1742",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "rental, with other manors",
+   "reference": "S 13",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14317982",
+   "query": "Leckwith manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:S 20",
+   "source": "online:tna",
+   "title": "LECKWITH MANOR, rental, with other manors",
+   "date_display": "1783- 1783",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "rental, with other manors",
+   "reference": "S 20",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14272663",
+   "query": "Leckwith manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:M 17/82-96, M 17/110-314",
+   "source": "online:tna",
+   "title": "LECKWITH MANOR, presentments, with other manors",
+   "date_display": "1758-1934",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "presentments, with other manors",
+   "reference": "M 17/82-96, M 17/110-314",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14316454",
+   "query": "Leckwith manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:S 11",
+   "source": "online:tna",
+   "title": "LECKWITH MANOR, rental, with other manors",
+   "date_display": "1675- 1699",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "rental, with other manors",
+   "reference": "S 11",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14377902",
+   "query": "Leckwith manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:NLW MS 6520A Handlist of MSS vol II",
+   "source": "online:tna",
+   "title": "LECKWITH MANOR, ministers' accounts, with other manors",
+   "date_display": "1597-1598",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "ministers' accounts, with other manors",
+   "reference": "NLW MS 6520A Handlist of MSS vol II",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14251166",
+   "query": "Leckwith manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:SC 6/Hen VIII/5143-5145",
+   "source": "online:tna",
+   "title": "LECKWITH MANOR, ministers' accounts, with other manors",
+   "date_display": "1514-1518",
+   "holder": "The National Archives",
+   "type": "archive catalogue entry",
+   "summary": "ministers' accounts, with other manors",
+   "reference": "SC 6/Hen VIII/5143-5145",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14264230",
+   "query": "Leckwith manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:SC 6/Hen VIII/5146-5149",
+   "source": "online:tna",
+   "title": "LECKWITH MANOR, ministers' accounts, with other manors",
+   "date_display": "1542-1547",
+   "holder": "The National Archives",
+   "type": "archive catalogue entry",
+   "summary": "ministers' accounts, with other manors",
+   "reference": "SC 6/Hen VIII/5146-5149",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14304642",
+   "query": "Leckwith manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:DL 29/10334",
+   "source": "online:tna",
+   "title": "LECKWITH MANOR, ministers' accounts, with other manors",
+   "date_display": "1491-1492",
+   "holder": "The National Archives",
+   "type": "archive catalogue entry",
+   "summary": "ministers' accounts, with other manors",
+   "reference": "DL 29/10334",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14351889",
+   "query": "Leckwith manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  },
+  {
+   "key": "online:tna:S 29",
+   "source": "online:tna",
+   "title": "LECKWITH MANOR, survey and valuation, with other manors",
+   "date_display": "1824",
+   "holder": "National Library of Wales: Department of Collection Services",
+   "type": "archive catalogue entry",
+   "summary": "survey and valuation, with other manors",
+   "reference": "S 29",
+   "url": "https://discovery.nationalarchives.gov.uk/details/r/N14256667",
+   "query": "Leckwith manor",
+   "proposed_kind": "evidence",
+   "scope_terms": [
+    "leckwith"
+   ],
+   "first_seen": "2026-11-12"
+  }
+ ]
+}
