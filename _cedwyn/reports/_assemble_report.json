@@ -120,14 +120,6 @@
    "repo_commit": "ca080797e194b0db9a3be78d754db32fa4d992cc",
    "output_dir": "public"
   },
-  "oldbill": {
-   "repo": "unclehowell/cedwyn-oldbill",
-   "how": "repo:unclehowell/cedwyn-oldbill/public",
-   "files": 8,
-   "repo_branch": "main",
-   "repo_commit": "a9bbfb9f5150574ef3abdfe10c894809cfca1e0b",
-   "output_dir": "public"
-  },
   "fcg": {
    "repo": "unclehowell/cedwyn-fcg",
    "how": "repo:unclehowell/cedwyn-fcg/root",
@@ -144,12 +136,12 @@
    "repo_commit": "7343ea5511297eade66e2ccb87516184ef225563",
    "output_dir": "public"
   },
-  "wdtk": {
-   "repo": "unclehowell/cedwyn-wdtk",
-   "how": "repo:unclehowell/cedwyn-wdtk/public",
-   "files": 21,
+  "oldbill": {
+   "repo": "unclehowell/cedwyn-oldbill",
+   "how": "repo:unclehowell/cedwyn-oldbill/public",
+   "files": 8,
    "repo_branch": "main",
-   "repo_commit": "a09c8054f244b8a965f0e0c179d029eb1b315f84",
+   "repo_commit": "a9bbfb9f5150574ef3abdfe10c894809cfca1e0b",
    "output_dir": "public"
   },
   "authorities": {
@@ -160,14 +152,6 @@
    "repo_commit": "4410eebb4b7399141d36f4a6050691d14241536e",
    "output_dir": "."
   },
-  "review": {
-   "repo": "unclehowell/cedwyn-review",
-   "how": "repo:unclehowell/cedwyn-review/root",
-   "files": 14,
-   "repo_branch": "main",
-   "repo_commit": "a971addc07f95a2df22a61f7de4bee9bb72e9bfd",
-   "output_dir": "."
-  },
   "wayback": {
    "repo": "unclehowell/cedwyn-wayback",
    "how": "repo:unclehowell/cedwyn-wayback/wayback",
@@ -176,6 +160,22 @@
    "repo_commit": "5ea90f096e90cb9619ba1d58d4cec60f2cc4ca2e",
    "output_dir": "wayback"
   },
+  "wdtk": {
+   "repo": "unclehowell/cedwyn-wdtk",
+   "how": "repo:unclehowell/cedwyn-wdtk/public",
+   "files": 21,
+   "repo_branch": "main",
+   "repo_commit": "a09c8054f244b8a965f0e0c179d029eb1b315f84",
+   "output_dir": "public"
+  },
+  "review": {
+   "repo": "unclehowell/cedwyn-review",
+   "how": "repo:unclehowell/cedwyn-review/root",
+   "files": 14,
+   "repo_branch": "main",
+   "repo_commit": "a971addc07f95a2df22a61f7de4bee9bb72e9bfd",
+   "output_dir": "."
+  },
   "app": {
    "repo": "unclehowell/cedwyn-app",
    "how": "repo:unclehowell/cedwyn-app/root",
@@ -183,6 +183,15 @@
    "repo_branch": "main",
    "repo_commit": "13522ac61cbd84087f3e570b61431ac6ec726d95",
    "output_dir": "."
+  },
+  "qa": {
+   "repo": "unclehowell/cedwyn-qa",
+   "how": "repo:unclehowell/cedwyn-qa/root",
+   "files": 787,
+   "repo_branch": "main",
+   "repo_commit": "1f27f259cbf9c16913e83059c3f63a6e1b68dcf8",
+   "output_dir": ".",
+   "overlay": "static/qa"
   },
   "meeting": {
    "repo": "unclehowell/cedwyn-meeting",
@@ -213,15 +222,6 @@
    "repo_branch": "main",
    "repo_commit": "b0ae4570bda542514577bcc94b28ff9b3b714081",
    "output_dir": "."
-  },
-  "qa": {
-   "repo": "unclehowell/cedwyn-qa",
-   "how": "repo:unclehowell/cedwyn-qa/root",
-   "files": 787,
-   "repo_branch": "main",
-   "repo_commit": "1f27f259cbf9c16913e83059c3f63a6e1b68dcf8",
-   "output_dir": ".",
-   "overlay": "static/qa"
   },
   "watchtower": {
    "repo": "unclehowell/cedwyn-watchtower",
@@ -271,14 +271,6 @@
    "repo_commit": "ff95a8f84734d381dcadcb6fa0d2d35c1fa0c1b9",
    "output_dir": "."
   },
-  "wales": {
-   "repo": "unclehowell/cedwyn-wales-3d",
-   "how": "repo:unclehowell/cedwyn-wales-3d/root",
-   "files": 35,
-   "repo_branch": "main",
-   "repo_commit": "98576d643295ae0719b97e44fefc345223bf8755",
-   "output_dir": "."
-  },
   "dartboard": {
    "repo": "unclehowell/cedwyn-dartboard",
    "how": "worker-crawl:https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fdartboard.righteous.workers.dev%2F",
@@ -289,6 +281,14 @@
    "output_missing_index": ".",
    "worker_url": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fdartboard.righteous.workers.dev%2F",
    "rendered_from": "declared live Worker endpoint; verify Worker deployment provenance separately"
+  },
+  "wales": {
+   "repo": "unclehowell/cedwyn-wales-3d",
+   "how": "repo:unclehowell/cedwyn-wales-3d/root",
+   "files": 35,
+   "repo_branch": "main",
+   "repo_commit": "98576d643295ae0719b97e44fefc345223bf8755",
+   "output_dir": "."
   },
   "terrain": {
    "repo": "unclehowell/cedwyn-wales-3d",
@@ -314,13 +314,16 @@
    "repo_commit": "1d2f6dcbe7b5855d1bed3d76eef021dfc556b46c",
    "output_dir": "."
   },
-  "shop": {
-   "repo": "unclehowell/cedwyn-shop",
-   "how": "repo:unclehowell/cedwyn-shop/public",
-   "files": 77,
+  "email": {
+   "repo": "unclehowell/cedwyn-emails",
+   "how": "worker-crawl:https://cedwyn.bucklerfamily.estate/email/",
+   "files": 10,
    "repo_branch": "main",
-   "repo_commit": "1cb47814d3c3a01ff92c7299471a1f65c089c606",
-   "output_dir": "public"
+   "repo_commit": "6c8b9070c8c577accf34849a63c822caa5832cd8",
+   "output_dir": ".",
+   "output_missing_index": ".",
+   "worker_url": "https://cedwyn.bucklerfamily.estate/email/",
+   "rendered_from": "declared live Worker endpoint; verify Worker deployment provenance separately"
   },
   "familytree": {
    "repo": "unclehowell/cedwyn-familytree",
@@ -338,6 +341,14 @@
    "repo_commit": "a13891d15cf12392f11c7c9b6a0555f3595a1729",
    "output_dir": "public"
   },
+  "shop": {
+   "repo": "unclehowell/cedwyn-shop",
+   "how": "repo:unclehowell/cedwyn-shop/public",
+   "files": 77,
+   "repo_branch": "main",
+   "repo_commit": "1cb47814d3c3a01ff92c7299471a1f65c089c606",
+   "output_dir": "public"
+  },
   "kissed-frogs": {
    "repo": "unclehowell/cedwyn-kissed-frogs",
    "how": "repo:unclehowell/cedwyn-kissed-frogs/public",
@@ -346,17 +357,6 @@
    "repo_commit": "d7b033619023b5aa564b70cede353ac1486db302",
    "output_dir": "public"
   },
-  "email": {
-   "repo": "unclehowell/cedwyn-emails",
-   "how": "worker-crawl:https://cedwyn.bucklerfamily.estate/email/",
-   "files": 10,
-   "repo_branch": "main",
-   "repo_commit": "6c8b9070c8c577accf34849a63c822caa5832cd8",
-   "output_dir": ".",
-   "output_missing_index": ".",
-   "worker_url": "https://cedwyn.bucklerfamily.estate/email/",
-   "rendered_from": "declared live Worker endpoint; verify Worker deployment provenance separately"
-  },
   "that-old-chestnut": {
    "repo": "unclehowell/cedwyn-that-old-chestnut",
    "how": "repo:unclehowell/cedwyn-that-old-chestnut/public",
@@ -364,6 +364,20 @@
    "repo_branch": "main",
    "repo_commit": "429a0cb0fe8e1a375f74b6d5a7cc05e4bf75976a",
    "output_dir": "public"
+  },
+  "story": {
+   "repo": "unclehowell/cedwyn-story",
+   "how": "repo:unclehowell/cedwyn-story/static/bpvsbuckler/dist",
+   "files": 48,
+   "repo_branch": "main",
+   "repo_commit": "3da4af33fef67d7f36bdf0a315d337c1ce66db95",
+   "build": {
+    "command": "(npm ci --no-audit --no-fund || npm install --no-audit --no-fund) && npm run build",
+    "rc": 0,
+    "stdout_tail": "\nadded 67 packages in 11s\n\n> bpvsbuckler@0.1.1 build\n> vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m\u2713\u001b[39m 35 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                \u001b[39m\u001b[1m\u001b[2m  3.56 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   1.41 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mmain-BybMKBdS.css  \u001b[39m\u001b[1m\u001b[2m 30.18 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   6.88 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-Yz4I5QJe.js  \u001b[39m\u001b[1m\u001b[33m807.04 kB\u001b[39m\u001b[22m\u001b[2m \u2502 gzip: 187.32 kB\u001b[22m\n\u001b[32m\u2713 built in 2.36s\u001b[39m\nCopied storyboard media into dist/media\n",
+    "stderr_tail": "npm error code EUSAGE\nnpm error\nnpm error The `npm ci` command can only install with an existing package-lock.json or\nnpm error npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or\nnpm error later to generate a package-lock.json file, then try again.\nnpm error\nnpm error Clean install a project\nnpm error\nnpm error Usage:\nnpm error npm ci\nnpm error\nnpm error Options:\nnpm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]\nnpm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]\nnpm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-11-12T17_35_51_649Z-debug-0.log\n\u001b[33m\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Frollupjs.org%2Fconfiguration-options%2F%23output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
+   },
+   "output_dir": "static/bpvsbuckler/dist"
   },
   "forensic": {
    "repo": "unclehowell/cedwyn-forensic",
@@ -397,14 +411,6 @@
    "repo_commit": "8614ea2e2857cf5b9348ccbfaab32243a2faa4f9",
    "output_dir": "."
   },
-  "settings": {
-   "repo": "unclehowell/cedwyn-settings",
-   "how": "repo:unclehowell/cedwyn-settings/public",
-   "files": 3,
-   "repo_branch": "main",
-   "repo_commit": "cef70cbc4867f4fc8e5ea7b8ea1f0fbddc891252",
-   "output_dir": "public"
-  },
   "releases": {
    "repo": "unclehowell/cedwyn-releases",
    "how": "repo:unclehowell/cedwyn-releases/root",
@@ -413,12 +419,12 @@
    "repo_commit": "8bc951e3b2267b968486ab3f9dea9b7d4e2c5714",
    "output_dir": "."
   },
-  "uptime": {
-   "repo": "unclehowell/cedwyn-uptime",
-   "how": "repo:unclehowell/cedwyn-uptime/public",
-   "files": 1,
+  "settings": {
+   "repo": "unclehowell/cedwyn-settings",
+   "how": "repo:unclehowell/cedwyn-settings/public",
+   "files": 3,
    "repo_branch": "main",
-   "repo_commit": "f2827859d6852358b0da8a2ff79840bf5f41c9ef",
+   "repo_commit": "cef70cbc4867f4fc8e5ea7b8ea1f0fbddc891252",
    "output_dir": "public"
   },
   "nft-art": {
@@ -429,20 +435,20 @@
    "repo_commit": "33e8868066288d682d4c45e5baee5a0e2d7a74d1",
    "output_dir": "public"
   },
+  "uptime": {
+   "repo": "unclehowell/cedwyn-uptime",
+   "how": "repo:unclehowell/cedwyn-uptime/public",
+   "files": 1,
+   "repo_branch": "main",
+   "repo_commit": "f2827859d6852358b0da8a2ff79840bf5f41c9ef",
+   "output_dir": "public"
+  },
   "language-forensics": {
    "repo": "unclehowell/coming-soon-57",
    "how": "repo:unclehowell/coming-soon-57/root",
    "files": 3,
    "repo_branch": "main",
    "repo_commit": "184c19225eeeb3025f523e11ace29db5397c1802",
-   "output_dir": "."
-  },
-  "theories": {
-   "repo": "unclehowell/cedwyn-theories",
-   "how": "repo:unclehowell/cedwyn-theories/root",
-   "files": 11,
-   "repo_branch": "main",
-   "repo_commit": "cd70572d1c7fdfbe610f21a46b8b70000c5aa99a",
    "output_dir": "."
   },
   "peekaboo": {
@@ -453,19 +459,13 @@
    "repo_commit": "9901398d82d179ff2de5dac1e0abaabae87d3f87",
    "output_dir": "."
   },
-  "story": {
-   "repo": "unclehowell/cedwyn-story",
-   "how": "repo:unclehowell/cedwyn-story/static/bpvsbuckler/dist",
-   "files": 48,
+  "theories": {
+   "repo": "unclehowell/cedwyn-theories",
+   "how": "repo:unclehowell/cedwyn-theories/root",
+   "files": 11,
    "repo_branch": "main",
-   "repo_commit": "3da4af33fef67d7f36bdf0a315d337c1ce66db95",
-   "build": {
-    "command": "(npm ci --no-audit --no-fund || npm install --no-audit --no-fund) && npm run build",
-    "rc": 0,
-    "stdout_tail": "\nadded 67 packages in 11s\n\n> bpvsbuckler@0.1.1 build\n> vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m\u2713\u001b[39m 35 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                \u001b[39m\u001b[1m\u001b[2m  3.56 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   1.41 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mmain-BybMKBdS.css  \u001b[39m\u001b[1m\u001b[2m 30.18 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   6.88 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-Yz4I5QJe.js  \u001b[39m\u001b[1m\u001b[33m807.04 kB\u001b[39m\u001b[22m\u001b[2m \u2502 gzip: 187.32 kB\u001b[22m\n\u001b[32m\u2713 built in 2.23s\u001b[39m\nCopied storyboard media into dist/media\n",
-    "stderr_tail": "npm error code EUSAGE\nnpm error\nnpm error The `npm ci` command can only install with an existing package-lock.json or\nnpm error npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or\nnpm error later to generate a package-lock.json file, then try again.\nnpm error\nnpm error Clean install a project\nnpm error\nnpm error Usage:\nnpm error npm ci\nnpm error\nnpm error Options:\nnpm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]\nnpm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]\nnpm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-11-12T16_57_59_659Z-debug-0.log\n\u001b[33m\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Frollupjs.org%2Fconfiguration-options%2F%23output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
-   },
-   "output_dir": "static/bpvsbuckler/dist"
+   "repo_commit": "cd70572d1c7fdfbe610f21a46b8b70000c5aa99a",
+   "output_dir": "."
   },
   "bloculous": {
    "repo": "unclehowell/cedwyn-bloculous",
@@ -624,7 +624,7 @@
   "bytes": 16869943,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 1,
+  "secs": 2,
   "split_repo": "unclehowell/cedwyn-ebooks",
   "repo_branch": "main",
   "repo_commit": "8d6816ec25fd4eb71d758ac56bc80aa340c6c65e",
@@ -636,7 +636,7 @@
   "bytes": 9396799,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 2,
+  "secs": 1,
   "split_repo": "unclehowell/cedwyn-fb",
   "repo_branch": "main",
   "repo_commit": "60f6c35bc140e4cd365b4ec7920642aa05fe772f",
@@ -678,18 +678,6 @@
   "repo_commit": "ca080797e194b0db9a3be78d754db32fa4d992cc",
   "output_dir": "public"
  },
- "oldbill": {
-  "how": "repo:unclehowell/cedwyn-oldbill/public",
-  "files": 8,
-  "bytes": 325516,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1,
-  "split_repo": "unclehowell/cedwyn-oldbill",
-  "repo_branch": "main",
-  "repo_commit": "a9bbfb9f5150574ef3abdfe10c894809cfca1e0b",
-  "output_dir": "public"
- },
  "fcg": {
   "how": "repo:unclehowell/cedwyn-fcg/root",
   "files": 162,
@@ -714,16 +702,16 @@
   "repo_commit": "7343ea5511297eade66e2ccb87516184ef225563",
   "output_dir": "public"
  },
- "wdtk": {
-  "how": "repo:unclehowell/cedwyn-wdtk/public",
-  "files": 21,
-  "bytes": 157930,
+ "oldbill": {
+  "how": "repo:unclehowell/cedwyn-oldbill/public",
+  "files": 8,
+  "bytes": 325516,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1,
-  "split_repo": "unclehowell/cedwyn-wdtk",
+  "split_repo": "unclehowell/cedwyn-oldbill",
   "repo_branch": "main",
-  "repo_commit": "a09c8054f244b8a965f0e0c179d029eb1b315f84",
+  "repo_commit": "a9bbfb9f5150574ef3abdfe10c894809cfca1e0b",
   "output_dir": "public"
  },
  "authorities": {
@@ -737,30 +725,6 @@
   "repo_branch": "main",
   "repo_commit": "4410eebb4b7399141d36f4a6050691d14241536e",
   "output_dir": "."
- },
- "review": {
-  "how": "repo:unclehowell/cedwyn-review/root",
-  "files": 14,
-  "bytes": 33890,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1,
-  "split_repo": "unclehowell/cedwyn-review",
-  "repo_branch": "main",
-  "repo_commit": "a971addc07f95a2df22a61f7de4bee9bb72e9bfd",
-  "output_dir": "."
- },
- "wayback": {
-  "how": "repo:unclehowell/cedwyn-wayback/wayback",
-  "files": 6247,
-  "bytes": 943296632,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 7,
-  "split_repo": "unclehowell/cedwyn-wayback",
-  "repo_branch": "main",
-  "repo_commit": "5ea90f096e90cb9619ba1d58d4cec60f2cc4ca2e",
-  "output_dir": "wayback"
  },
  "_snapshot": {
   "research": {
@@ -781,6 +745,42 @@
   "dropped_over_24MB": [],
   "secs": 1
  },
+ "wdtk": {
+  "how": "repo:unclehowell/cedwyn-wdtk/public",
+  "files": 21,
+  "bytes": 157930,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 2,
+  "split_repo": "unclehowell/cedwyn-wdtk",
+  "repo_branch": "main",
+  "repo_commit": "a09c8054f244b8a965f0e0c179d029eb1b315f84",
+  "output_dir": "public"
+ },
+ "review": {
+  "how": "repo:unclehowell/cedwyn-review/root",
+  "files": 14,
+  "bytes": 33890,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 2,
+  "split_repo": "unclehowell/cedwyn-review",
+  "repo_branch": "main",
+  "repo_commit": "a971addc07f95a2df22a61f7de4bee9bb72e9bfd",
+  "output_dir": "."
+ },
+ "wayback": {
+  "how": "repo:unclehowell/cedwyn-wayback/wayback",
+  "files": 6247,
+  "bytes": 943296632,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 8,
+  "split_repo": "unclehowell/cedwyn-wayback",
+  "repo_branch": "main",
+  "repo_commit": "5ea90f096e90cb9619ba1d58d4cec60f2cc4ca2e",
+  "output_dir": "wayback"
+ },
  "app": {
   "how": "repo:unclehowell/cedwyn-app/root",
   "files": 24,
@@ -791,68 +791,6 @@
   "split_repo": "unclehowell/cedwyn-app",
   "repo_branch": "main",
   "repo_commit": "13522ac61cbd84087f3e570b61431ac6ec726d95",
-  "output_dir": "."
- },
- "_split_build_logs": {
-  "projects": {
-   "command": "node projects/check.mjs",
-   "rc": 0,
-   "stdout_tail": "theme {\"seen\":177,\"changed\":1}\nestate {\"files\":177,\"changed\":1,\"local\":0,\"plain\":0,\"text\":0,\"posts\":true,\"home\":false}\nghf-lang+boot 162\ncedwyn-wikilinks 177\nebook-cta 162\nprojects check ok: 190 files\n",
-   "stderr_tail": ""
-  },
-  "story": {
-   "command": "(npm ci --no-audit --no-fund || npm install --no-audit --no-fund) && npm run build",
-   "rc": 0,
-   "stdout_tail": "\nadded 67 packages in 11s\n\n> bpvsbuckler@0.1.1 build\n> vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m\u2713\u001b[39m 35 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                \u001b[39m\u001b[1m\u001b[2m  3.56 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   1.41 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mmain-BybMKBdS.css  \u001b[39m\u001b[1m\u001b[2m 30.18 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   6.88 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-Yz4I5QJe.js  \u001b[39m\u001b[1m\u001b[33m807.04 kB\u001b[39m\u001b[22m\u001b[2m \u2502 gzip: 187.32 kB\u001b[22m\n\u001b[32m\u2713 built in 2.23s\u001b[39m\nCopied storyboard media into dist/media\n",
-   "stderr_tail": "npm error code EUSAGE\nnpm error\nnpm error The `npm ci` command can only install with an existing package-lock.json or\nnpm error npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or\nnpm error later to generate a package-lock.json file, then try again.\nnpm error\nnpm error Clean install a project\nnpm error\nnpm error Usage:\nnpm error npm ci\nnpm error\nnpm error Options:\nnpm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]\nnpm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]\nnpm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-11-12T16_57_59_659Z-debug-0.log\n\u001b[33m\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Frollupjs.org%2Fconfiguration-options%2F%23output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
-  },
-  "docs": {
-   "command": "python3 -m pip install --quiet --break-system-packages -r requirements.txt && python3 _theme-docs/build.py",
-   "rc": 0,
-   "stdout_tail": "ureidentitymap [en] html\n[docs] ghf_wiki/tc_nomenclatureregister [en] html\n[docs] ghf_wiki/tc_parcelanomenclature [en] html\n[docs] ghf_wiki/tc_parcelbnomenclature [en] html\n[docs] ghf_wiki/tc_thetightrope [en] html\n[docs] ghf_wiki/tc_thetwoparcels [en] html\n[docs] ghf_wiki/tc_toplevelunderstandingwilliamsparcelatitl [en] html\n[docs] ghf_wiki/tc_wholefarmnomenclature [en] html\n[docs] ghf_wiki/tc_woodland [en] html\n[docs] ghf_wiki/tl_disclosureescalationmap [en] html\n[docs] ghf_wiki/tl_forensicmasterchronology6october2026 [en] html\n[docs] ghf_wiki/tl_forensicmasterchronologyauthoritativecor [en] html\n[docs] ghf_wiki/tl_recordsaccesschronology [en] html\n[docs] ghf_wiki/tl_reorg [en] html\n[docs] ghf_wiki/tl_sourceconflictsregister [en] html\n[docs] ghf_wiki/tl_threepartparcelaforensicscopetitleassess [en] html\n[docs] ghf_wiki/tl_threepartsofparceladivergentchronologies [en] html\n[docs] ghf_wiki/tl_timeline [en] html\n[docs] ghf_wiki/tl_twomarybucklersnameidentitytimeline [en] html\n[docs] ghf_wiki/tl_update20260930 [en] html\n[docs] done: 1044 document(s), 1046 HTML language build(s), 4 archived PDF link(s), 1019 current PDF link(s) -> /home/runner/work/cedwyn/cedwyn/split_tmp_docs/public\n",
-   "stderr_tail": ""
-  }
- },
- "meeting": {
-  "how": "repo:unclehowell/cedwyn-meeting/static/2026-10-22",
-  "files": 22,
-  "bytes": 1481504,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 2,
-  "split_repo": "unclehowell/cedwyn-meeting",
-  "repo_branch": "main",
-  "repo_commit": "bd5be2b13bf099a4ec4d49ac26f062bcb6e28a5a",
-  "output_dir": "static/2026-10-22"
- },
- "projects": {
-  "how": "repo:unclehowell/cedwyn-projects/projects/public",
-  "files": 208,
-  "bytes": 4156082,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 2,
-  "split_repo": "unclehowell/cedwyn-projects",
-  "repo_branch": "main",
-  "repo_commit": "913de4b4e3b2bd6c5c38767fd9ce1fed138f3ba1",
-  "build": {
-   "command": "node projects/check.mjs",
-   "rc": 0,
-   "stdout_tail": "theme {\"seen\":177,\"changed\":1}\nestate {\"files\":177,\"changed\":1,\"local\":0,\"plain\":0,\"text\":0,\"posts\":true,\"home\":false}\nghf-lang+boot 162\ncedwyn-wikilinks 177\nebook-cta 162\nprojects check ok: 190 files\n",
-   "stderr_tail": ""
-  },
-  "output_dir": "projects/public"
- },
- "chat": {
-  "how": "repo:unclehowell/cedwyn-chat/root",
-  "files": 8,
-  "bytes": 41404,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1,
-  "split_repo": "unclehowell/cedwyn-chat",
-  "repo_branch": "main",
-  "repo_commit": "b0ae4570bda542514577bcc94b28ff9b3b714081",
   "output_dir": "."
  },
  "qa": {
@@ -867,6 +805,68 @@
   "repo_commit": "1f27f259cbf9c16913e83059c3f63a6e1b68dcf8",
   "output_dir": ".",
   "overlay": "static/qa"
+ },
+ "_split_build_logs": {
+  "projects": {
+   "command": "node projects/check.mjs",
+   "rc": 0,
+   "stdout_tail": "theme {\"seen\":177,\"changed\":1}\nestate {\"files\":177,\"changed\":1,\"local\":0,\"plain\":0,\"text\":0,\"posts\":true,\"home\":false}\nghf-lang+boot 162\ncedwyn-wikilinks 177\nebook-cta 162\nprojects check ok: 190 files\n",
+   "stderr_tail": ""
+  },
+  "story": {
+   "command": "(npm ci --no-audit --no-fund || npm install --no-audit --no-fund) && npm run build",
+   "rc": 0,
+   "stdout_tail": "\nadded 67 packages in 11s\n\n> bpvsbuckler@0.1.1 build\n> vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m\u2713\u001b[39m 35 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                \u001b[39m\u001b[1m\u001b[2m  3.56 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   1.41 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mmain-BybMKBdS.css  \u001b[39m\u001b[1m\u001b[2m 30.18 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   6.88 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-Yz4I5QJe.js  \u001b[39m\u001b[1m\u001b[33m807.04 kB\u001b[39m\u001b[22m\u001b[2m \u2502 gzip: 187.32 kB\u001b[22m\n\u001b[32m\u2713 built in 2.36s\u001b[39m\nCopied storyboard media into dist/media\n",
+   "stderr_tail": "npm error code EUSAGE\nnpm error\nnpm error The `npm ci` command can only install with an existing package-lock.json or\nnpm error npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or\nnpm error later to generate a package-lock.json file, then try again.\nnpm error\nnpm error Clean install a project\nnpm error\nnpm error Usage:\nnpm error npm ci\nnpm error\nnpm error Options:\nnpm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]\nnpm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]\nnpm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-11-12T17_35_51_649Z-debug-0.log\n\u001b[33m\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Frollupjs.org%2Fconfiguration-options%2F%23output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
+  },
+  "docs": {
+   "command": "python3 -m pip install --quiet --break-system-packages -r requirements.txt && python3 _theme-docs/build.py",
+   "rc": 0,
+   "stdout_tail": "ureidentitymap [en] html\n[docs] ghf_wiki/tc_nomenclatureregister [en] html\n[docs] ghf_wiki/tc_parcelanomenclature [en] html\n[docs] ghf_wiki/tc_parcelbnomenclature [en] html\n[docs] ghf_wiki/tc_thetightrope [en] html\n[docs] ghf_wiki/tc_thetwoparcels [en] html\n[docs] ghf_wiki/tc_toplevelunderstandingwilliamsparcelatitl [en] html\n[docs] ghf_wiki/tc_wholefarmnomenclature [en] html\n[docs] ghf_wiki/tc_woodland [en] html\n[docs] ghf_wiki/tl_disclosureescalationmap [en] html\n[docs] ghf_wiki/tl_forensicmasterchronology6october2026 [en] html\n[docs] ghf_wiki/tl_forensicmasterchronologyauthoritativecor [en] html\n[docs] ghf_wiki/tl_recordsaccesschronology [en] html\n[docs] ghf_wiki/tl_reorg [en] html\n[docs] ghf_wiki/tl_sourceconflictsregister [en] html\n[docs] ghf_wiki/tl_threepartparcelaforensicscopetitleassess [en] html\n[docs] ghf_wiki/tl_threepartsofparceladivergentchronologies [en] html\n[docs] ghf_wiki/tl_timeline [en] html\n[docs] ghf_wiki/tl_twomarybucklersnameidentitytimeline [en] html\n[docs] ghf_wiki/tl_update20260930 [en] html\n[docs] done: 1044 document(s), 1046 HTML language build(s), 4 archived PDF link(s), 1019 current PDF link(s) -> /home/runner/work/cedwyn/cedwyn/split_tmp_docs/public\n",
+   "stderr_tail": ""
+  }
+ },
+ "meeting": {
+  "how": "repo:unclehowell/cedwyn-meeting/static/2026-10-22",
+  "files": 22,
+  "bytes": 1481504,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 3,
+  "split_repo": "unclehowell/cedwyn-meeting",
+  "repo_branch": "main",
+  "repo_commit": "bd5be2b13bf099a4ec4d49ac26f062bcb6e28a5a",
+  "output_dir": "static/2026-10-22"
+ },
+ "chat": {
+  "how": "repo:unclehowell/cedwyn-chat/root",
+  "files": 8,
+  "bytes": 41404,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1,
+  "split_repo": "unclehowell/cedwyn-chat",
+  "repo_branch": "main",
+  "repo_commit": "b0ae4570bda542514577bcc94b28ff9b3b714081",
+  "output_dir": "."
+ },
+ "projects": {
+  "how": "repo:unclehowell/cedwyn-projects/projects/public",
+  "files": 208,
+  "bytes": 4156082,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 3,
+  "split_repo": "unclehowell/cedwyn-projects",
+  "repo_branch": "main",
+  "repo_commit": "913de4b4e3b2bd6c5c38767fd9ce1fed138f3ba1",
+  "build": {
+   "command": "node projects/check.mjs",
+   "rc": 0,
+   "stdout_tail": "theme {\"seen\":177,\"changed\":1}\nestate {\"files\":177,\"changed\":1,\"local\":0,\"plain\":0,\"text\":0,\"posts\":true,\"home\":false}\nghf-lang+boot 162\ncedwyn-wikilinks 177\nebook-cta 162\nprojects check ok: 190 files\n",
+   "stderr_tail": ""
+  },
+  "output_dir": "projects/public"
  },
  "watchtower": {
   "how": "repo:unclehowell/cedwyn-watchtower/public",
@@ -898,7 +898,7 @@
   "bytes": 4589297,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 2,
+  "secs": 1,
   "split_repo": "unclehowell/cedwyn-fb",
   "repo_branch": "main",
   "repo_commit": "60f6c35bc140e4cd365b4ec7920642aa05fe772f",
@@ -940,25 +940,13 @@
   "repo_commit": "ff95a8f84734d381dcadcb6fa0d2d35c1fa0c1b9",
   "output_dir": "."
  },
- "wales": {
-  "how": "repo:unclehowell/cedwyn-wales-3d/root",
-  "files": 35,
-  "bytes": 3383250,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1,
-  "split_repo": "unclehowell/cedwyn-wales-3d",
-  "repo_branch": "main",
-  "repo_commit": "98576d643295ae0719b97e44fefc345223bf8755",
-  "output_dir": "."
- },
  "dartboard": {
   "how": "worker-crawl:https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fdartboard.righteous.workers.dev%2F",
   "files": 7,
   "bytes": 2350571,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 2,
+  "secs": 3,
   "split_repo": "unclehowell/cedwyn-dartboard",
   "repo_branch": "main",
   "repo_commit": "519be1edac3e18f78d745d66f95cb67fbdc5e98c",
@@ -967,13 +955,25 @@
   "worker_url": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fdartboard.righteous.workers.dev%2F",
   "rendered_from": "declared live Worker endpoint; verify Worker deployment provenance separately"
  },
+ "wales": {
+  "how": "repo:unclehowell/cedwyn-wales-3d/root",
+  "files": 35,
+  "bytes": 3383250,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 2,
+  "split_repo": "unclehowell/cedwyn-wales-3d",
+  "repo_branch": "main",
+  "repo_commit": "98576d643295ae0719b97e44fefc345223bf8755",
+  "output_dir": "."
+ },
  "terrain": {
   "how": "repo:unclehowell/cedwyn-wales-3d/root",
   "files": 35,
   "bytes": 3383250,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 1,
+  "secs": 2,
   "split_repo": "unclehowell/cedwyn-wales-3d",
   "repo_branch": "main",
   "repo_commit": "98576d643295ae0719b97e44fefc345223bf8755",
@@ -985,7 +985,7 @@
   "bytes": 1346234,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 1,
+  "secs": 2,
   "split_repo": "unclehowell/cedwyn-argentina-3d",
   "repo_branch": "main",
   "repo_commit": "c64bd87038f0cae5f40cdd2d5395e47547aa9f3c",
@@ -1003,54 +1003,6 @@
   "repo_commit": "1d2f6dcbe7b5855d1bed3d76eef021dfc556b46c",
   "output_dir": "."
  },
- "shop": {
-  "how": "repo:unclehowell/cedwyn-shop/public",
-  "files": 77,
-  "bytes": 1969538,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1,
-  "split_repo": "unclehowell/cedwyn-shop",
-  "repo_branch": "main",
-  "repo_commit": "1cb47814d3c3a01ff92c7299471a1f65c089c606",
-  "output_dir": "public"
- },
- "familytree": {
-  "how": "repo:unclehowell/cedwyn-familytree/public",
-  "files": 3,
-  "bytes": 63545,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1,
-  "split_repo": "unclehowell/cedwyn-familytree",
-  "repo_branch": "main",
-  "repo_commit": "9195307ba852ca36594ba956c17bba9ac4def55d",
-  "output_dir": "public"
- },
- "documentary": {
-  "how": "repo:unclehowell/cedwyn-documentary/public",
-  "files": 54,
-  "bytes": 915259,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1,
-  "split_repo": "unclehowell/cedwyn-documentary",
-  "repo_branch": "main",
-  "repo_commit": "a13891d15cf12392f11c7c9b6a0555f3595a1729",
-  "output_dir": "public"
- },
- "kissed-frogs": {
-  "how": "repo:unclehowell/cedwyn-kissed-frogs/public",
-  "files": 57,
-  "bytes": 202300,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1,
-  "split_repo": "unclehowell/cedwyn-kissed-frogs",
-  "repo_branch": "main",
-  "repo_commit": "d7b033619023b5aa564b70cede353ac1486db302",
-  "output_dir": "public"
- },
  "email": {
   "how": "worker-crawl:https://cedwyn.bucklerfamily.estate/email/",
   "files": 10,
@@ -1066,17 +1018,83 @@
   "worker_url": "https://cedwyn.bucklerfamily.estate/email/",
   "rendered_from": "declared live Worker endpoint; verify Worker deployment provenance separately"
  },
+ "familytree": {
+  "how": "repo:unclehowell/cedwyn-familytree/public",
+  "files": 3,
+  "bytes": 63545,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 2,
+  "split_repo": "unclehowell/cedwyn-familytree",
+  "repo_branch": "main",
+  "repo_commit": "9195307ba852ca36594ba956c17bba9ac4def55d",
+  "output_dir": "public"
+ },
+ "documentary": {
+  "how": "repo:unclehowell/cedwyn-documentary/public",
+  "files": 54,
+  "bytes": 915259,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 2,
+  "split_repo": "unclehowell/cedwyn-documentary",
+  "repo_branch": "main",
+  "repo_commit": "a13891d15cf12392f11c7c9b6a0555f3595a1729",
+  "output_dir": "public"
+ },
+ "shop": {
+  "how": "repo:unclehowell/cedwyn-shop/public",
+  "files": 77,
+  "bytes": 1969538,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 2,
+  "split_repo": "unclehowell/cedwyn-shop",
+  "repo_branch": "main",
+  "repo_commit": "1cb47814d3c3a01ff92c7299471a1f65c089c606",
+  "output_dir": "public"
+ },
+ "kissed-frogs": {
+  "how": "repo:unclehowell/cedwyn-kissed-frogs/public",
+  "files": 57,
+  "bytes": 202300,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 2,
+  "split_repo": "unclehowell/cedwyn-kissed-frogs",
+  "repo_branch": "main",
+  "repo_commit": "d7b033619023b5aa564b70cede353ac1486db302",
+  "output_dir": "public"
+ },
  "that-old-chestnut": {
   "how": "repo:unclehowell/cedwyn-that-old-chestnut/public",
   "files": 16,
   "bytes": 247561,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 1,
+  "secs": 2,
   "split_repo": "unclehowell/cedwyn-that-old-chestnut",
   "repo_branch": "main",
   "repo_commit": "429a0cb0fe8e1a375f74b6d5a7cc05e4bf75976a",
   "output_dir": "public"
+ },
+ "story": {
+  "how": "repo:unclehowell/cedwyn-story/static/bpvsbuckler/dist",
+  "files": 48,
+  "bytes": 6701485,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 17,
+  "split_repo": "unclehowell/cedwyn-story",
+  "repo_branch": "main",
+  "repo_commit": "3da4af33fef67d7f36bdf0a315d337c1ce66db95",
+  "build": {
+   "command": "(npm ci --no-audit --no-fund || npm install --no-audit --no-fund) && npm run build",
+   "rc": 0,
+   "stdout_tail": "\nadded 67 packages in 11s\n\n> bpvsbuckler@0.1.1 build\n> vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m\u2713\u001b[39m 35 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                \u001b[39m\u001b[1m\u001b[2m  3.56 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   1.41 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mmain-BybMKBdS.css  \u001b[39m\u001b[1m\u001b[2m 30.18 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   6.88 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-Yz4I5QJe.js  \u001b[39m\u001b[1m\u001b[33m807.04 kB\u001b[39m\u001b[22m\u001b[2m \u2502 gzip: 187.32 kB\u001b[22m\n\u001b[32m\u2713 built in 2.36s\u001b[39m\nCopied storyboard media into dist/media\n",
+   "stderr_tail": "npm error code EUSAGE\nnpm error\nnpm error The `npm ci` command can only install with an existing package-lock.json or\nnpm error npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or\nnpm error later to generate a package-lock.json file, then try again.\nnpm error\nnpm error Clean install a project\nnpm error\nnpm error Usage:\nnpm error npm ci\nnpm error\nnpm error Options:\nnpm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]\nnpm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]\nnpm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-11-12T17_35_51_649Z-debug-0.log\n\u001b[33m\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Frollupjs.org%2Fconfiguration-options%2F%23output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
+  },
+  "output_dir": "static/bpvsbuckler/dist"
  },
  "forensic": {
   "how": "repo:unclehowell/cedwyn-forensic/root",
@@ -1084,7 +1102,7 @@
   "bytes": 2473680,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 1,
+  "secs": 2,
   "split_repo": "unclehowell/cedwyn-forensic",
   "repo_branch": "main",
   "repo_commit": "ea26951329b2f1f3569f3a83e0fdc12a54fff179",
@@ -1096,7 +1114,7 @@
   "bytes": 360794,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 1,
+  "secs": 2,
   "split_repo": "unclehowell/cedwyn-whattheydontsay",
   "repo_branch": "main",
   "repo_commit": "265c5303f7d94176427853728c7bd711d4f7d524",
@@ -1108,23 +1126,11 @@
   "bytes": 5579,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 1,
+  "secs": 2,
   "split_repo": "unclehowell/cedwyn-blog",
   "repo_branch": "main",
   "repo_commit": "6005319e87aaf8a50123e5aa6df77c0d7398c169",
   "output_dir": "public"
- },
- "mr-wolf": {
-  "how": "repo:unclehowell/cedwyn-mr-wolf/root",
-  "files": 11,
-  "bytes": 96297,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1,
-  "split_repo": "unclehowell/cedwyn-mr-wolf",
-  "repo_branch": "main",
-  "repo_commit": "8614ea2e2857cf5b9348ccbfaab32243a2faa4f9",
-  "output_dir": "."
  },
  "preservation": {
   "how": null,
@@ -1142,17 +1148,17 @@
   "dropped_over_24MB": [],
   "secs": 0
  },
- "settings": {
-  "how": "repo:unclehowell/cedwyn-settings/public",
-  "files": 3,
-  "bytes": 14836,
+ "mr-wolf": {
+  "how": "repo:unclehowell/cedwyn-mr-wolf/root",
+  "files": 11,
+  "bytes": 96297,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1,
-  "split_repo": "unclehowell/cedwyn-settings",
+  "split_repo": "unclehowell/cedwyn-mr-wolf",
   "repo_branch": "main",
-  "repo_commit": "cef70cbc4867f4fc8e5ea7b8ea1f0fbddc891252",
-  "output_dir": "public"
+  "repo_commit": "8614ea2e2857cf5b9348ccbfaab32243a2faa4f9",
+  "output_dir": "."
  },
  "releases": {
   "how": "repo:unclehowell/cedwyn-releases/root",
@@ -1166,16 +1172,16 @@
   "repo_commit": "8bc951e3b2267b968486ab3f9dea9b7d4e2c5714",
   "output_dir": "."
  },
- "uptime": {
-  "how": "repo:unclehowell/cedwyn-uptime/public",
-  "files": 1,
-  "bytes": 15445,
+ "settings": {
+  "how": "repo:unclehowell/cedwyn-settings/public",
+  "files": 3,
+  "bytes": 14836,
   "has_index": true,
   "dropped_over_24MB": [],
   "secs": 1,
-  "split_repo": "unclehowell/cedwyn-uptime",
+  "split_repo": "unclehowell/cedwyn-settings",
   "repo_branch": "main",
-  "repo_commit": "f2827859d6852358b0da8a2ff79840bf5f41c9ef",
+  "repo_commit": "cef70cbc4867f4fc8e5ea7b8ea1f0fbddc891252",
   "output_dir": "public"
  },
  "nft-art": {
@@ -1190,6 +1196,18 @@
   "repo_commit": "33e8868066288d682d4c45e5baee5a0e2d7a74d1",
   "output_dir": "public"
  },
+ "uptime": {
+  "how": "repo:unclehowell/cedwyn-uptime/public",
+  "files": 1,
+  "bytes": 15445,
+  "has_index": true,
+  "dropped_over_24MB": [],
+  "secs": 1,
+  "split_repo": "unclehowell/cedwyn-uptime",
+  "repo_branch": "main",
+  "repo_commit": "f2827859d6852358b0da8a2ff79840bf5f41c9ef",
+  "output_dir": "public"
+ },
  "language-forensics": {
   "how": "repo:unclehowell/coming-soon-57/root",
   "files": 3,
@@ -1200,18 +1218,6 @@
   "split_repo": "unclehowell/coming-soon-57",
   "repo_branch": "main",
   "repo_commit": "184c19225eeeb3025f523e11ace29db5397c1802",
-  "output_dir": "."
- },
- "theories": {
-  "how": "repo:unclehowell/cedwyn-theories/root",
-  "files": 11,
-  "bytes": 56490,
-  "has_index": true,
-  "dropped_over_24MB": [],
-  "secs": 1,
-  "split_repo": "unclehowell/cedwyn-theories",
-  "repo_branch": "main",
-  "repo_commit": "cd70572d1c7fdfbe610f21a46b8b70000c5aa99a",
   "output_dir": "."
  },
  "peekaboo": {
@@ -1226,23 +1232,17 @@
   "repo_commit": "9901398d82d179ff2de5dac1e0abaabae87d3f87",
   "output_dir": "."
  },
- "story": {
-  "how": "repo:unclehowell/cedwyn-story/static/bpvsbuckler/dist",
-  "files": 48,
-  "bytes": 6701485,
+ "theories": {
+  "how": "repo:unclehowell/cedwyn-theories/root",
+  "files": 11,
+  "bytes": 56490,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 18,
-  "split_repo": "unclehowell/cedwyn-story",
+  "secs": 2,
+  "split_repo": "unclehowell/cedwyn-theories",
   "repo_branch": "main",
-  "repo_commit": "3da4af33fef67d7f36bdf0a315d337c1ce66db95",
-  "build": {
-   "command": "(npm ci --no-audit --no-fund || npm install --no-audit --no-fund) && npm run build",
-   "rc": 0,
-   "stdout_tail": "\nadded 67 packages in 11s\n\n> bpvsbuckler@0.1.1 build\n> vite build\n\n\u001b[36mvite v5.4.21 \u001b[32mbuilding for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m\u2713\u001b[39m 35 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                \u001b[39m\u001b[1m\u001b[2m  3.56 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   1.41 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[35mmain-BybMKBdS.css  \u001b[39m\u001b[1m\u001b[2m 30.18 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m \u2502 gzip:   6.88 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[2massets/\u001b[22m\u001b[36mindex-Yz4I5QJe.js  \u001b[39m\u001b[1m\u001b[33m807.04 kB\u001b[39m\u001b[22m\u001b[2m \u2502 gzip: 187.32 kB\u001b[22m\n\u001b[32m\u2713 built in 2.23s\u001b[39m\nCopied storyboard media into dist/media\n",
-   "stderr_tail": "npm error code EUSAGE\nnpm error\nnpm error The `npm ci` command can only install with an existing package-lock.json or\nnpm error npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or\nnpm error later to generate a package-lock.json file, then try again.\nnpm error\nnpm error Clean install a project\nnpm error\nnpm error Usage:\nnpm error npm ci\nnpm error\nnpm error Options:\nnpm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]\nnpm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]\nnpm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]\nnpm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]\nnpm error [--no-bin-links] [--no-fund] [--dry-run]\nnpm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]\nnpm error [-ws|--workspaces] [--include-workspace-root] [--install-links]\nnpm error\nnpm error aliases: clean-install, ic, install-clean, isntall-clean\nnpm error\nnpm error Run \"npm help ci\" for more info\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-11-12T16_57_59_659Z-debug-0.log\n\u001b[33m\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Frollupjs.org%2Fconfiguration-options%2F%23output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\u001b[39m\n"
-  },
-  "output_dir": "static/bpvsbuckler/dist"
+  "repo_commit": "cd70572d1c7fdfbe610f21a46b8b70000c5aa99a",
+  "output_dir": "."
  },
  "bloculous": {
   "how": "repo:unclehowell/cedwyn-bloculous/root",
@@ -1262,7 +1262,7 @@
   "bytes": 103604771,
   "has_index": true,
   "dropped_over_24MB": [],
-  "secs": 184,
+  "secs": 198,
   "split_repo": "unclehowell/cedwyn-docs",
   "repo_branch": "main",
   "repo_commit": "56691897dd5e1cc92e9317bab45b3bf876f6c4c9",
