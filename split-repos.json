@@ -456,6 +456,30 @@
       "deploy": "repo"
     },
     {
+      "app": "Gifts",
+      "repo": "unclehowell/cedwyn-gifts",
+      "page": "/gifts/",
+      "mode": "split-repo",
+      "deploy": "repo",
+      "note": "served without a nav slot (12 Nov 2026); slot decision is the owner's"
+    },
+    {
+      "app": "ERP",
+      "repo": "unclehowell/cedwyn-erp",
+      "page": "/erp/",
+      "mode": "split-repo",
+      "deploy": "repo",
+      "note": "served without a nav slot (12 Nov 2026); slot decision is the owner's"
+    },
+    {
+      "app": "Military",
+      "repo": "unclehowell/cedwyn-military",
+      "page": "/military/",
+      "mode": "split-repo",
+      "deploy": "repo",
+      "note": "served without a nav slot (12 Nov 2026); slot decision is the owner's"
+    },
+    {
       "app": "Gallery",
       "repo": "unclehowell/cedwyn-gallery",
       "old_branch": "gallery",
