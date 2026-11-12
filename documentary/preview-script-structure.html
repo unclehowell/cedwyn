@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Preview: documentary in nine parts</title></head>
+<body><p style="font:16px system-ui;padding:16px">Loading the preview…</p>
+<script>
+/* PREVIEW ONLY (cedwyn-documentary#14). Loads the documentary page as built and applies, in the browser, the tidy
+   patch and the structure pass from unclehowell/cedwyn-movie branch script-structure-2026-11-12.
+   Nothing here changes the live page. — Claude agent */
+(function () {
+  var SHIM = function () {
+    var RAW = "https://raw.githubusercontent.com/unclehowell/cedwyn-movie/", BR = "script-structure-2026-11-12";
+    function applyPatch(F, P) {
+      var items = F.items, by = {}; items.forEach(function (x) { by[x.id] = x; });
+      Object.keys(P.set || {}).forEach(function (i) { var x = by[i], f = P.set[i];
+        Object.keys(f).forEach(function (k) { if (k === "date") { x.date_from = x.date_to = x.date_range = f[k]; } else { x[k] = f[k]; } });
+        if ("logline" in f && (typeof x.description === "string" || x.description == null)) x.description = f.logline; });
+      Object.keys(P.i18n || {}).forEach(function (i) { var x = by[i]; x.i18n = x.i18n || {};
+        Object.keys(P.i18n[i]).forEach(function (l) { x.i18n[l] = Object.assign(x.i18n[l] || {}, P.i18n[i][l]); }); });
+      (P.replace || []).forEach(function (r) { var x = by[r.id], t = r.lang ? x.i18n[r.lang] : x;
+        t.logline = (t.logline || "").split(r.old).join(r.new);
+        if (!r.lang && typeof x.description === "string") x.description = x.description.split(r.old).join(r.new); });
+      (P.move || []).forEach(function (m) { var x = by[m.id]; items.splice(items.indexOf(x), 1); items.splice(items.indexOf(by[m.after]) + 1, 0, x); });
+      return F;
+    }
+    function applyFold(F, P) {
+      var items = F.items, by = {}; items.forEach(function (x) { by[x.id] = x; });
+      (P.add || []).forEach(function (a) { if (!by[a.scene.id]) { items.splice(items.indexOf(by[a.after]) + 1, 0, a.scene); by[a.scene.id] = a.scene; } });
+      var ap = P.appendix || {}, park = (ap.ids || []).slice();
+      if (by[ap.from]) park = park.concat(items.slice(items.indexOf(by[ap.from])).map(function (x) { return x.id; }));
+      park.forEach(function (i) { if (by[i]) { items.splice(items.indexOf(by[i]), 1); delete by[i]; } });
+      Object.keys(P.fold || {}).forEach(function (t) { var T = by[t]; P.fold[t].forEach(function (i) { var x = by[i]; if (!x) return;
+        items.splice(items.indexOf(x), 1); delete by[i];
+        (T.also = T.also || []).push({id: i, date: x.date_label || x.date_range, title: x.title, logline: x.logline});
+        ["events", "evidence"].forEach(function (k) { T[k] = (T[k] || []).concat((x[k] || []).filter(function (e) { return (T[k] || []).indexOf(e) < 0; })); }); }); });
+      var starts = {}; P.parts.forEach(function (p) { starts[p.start] = p; });
+      F.acts = P.parts.map(function (p) { return {n: p.n, en: p.en, cy: p.cy, es: p.es}; }); var cur = F.acts[0];
+      items.forEach(function (x, n) { x.n = n + 1; var s = starts[x.id]; if (s) cur = {n: s.n, en: s.en, cy: s.cy, es: s.es}; x.act = cur; });
+      F.frames = items.length; F.version = P.meta.version; return F;
+    }
+    var of = window.fetch.bind(window);
+    function j(p) { return of(RAW + BR + "/" + p + "?t=" + Date.now(), {cache: "no-store"}).then(function (r) { return r.json(); }); }
+    window.fetch = function (u, o) {
+      var s = typeof u === "string" ? u : (u && u.url) || "";
+      if (s.indexOf(RAW + "main/frames.json") === 0) {
+        return Promise.all([of(s, o).then(function (r) { return r.json(); }), j("patches/2026-11-12-chronology.json"), j("folds/2026-11-12-structure.json")])
+          .then(function (a) { return new Response(JSON.stringify(applyFold(applyPatch(a[0], a[1]), a[2])), {status: 200, headers: {"Content-Type": "application/json"}}); });
+      }
+      if (s.indexOf(RAW + "main/scripts/F003A") === 0) return of(s.replace("/main/", "/" + BR + "/"), o);
+      return of(u, o);
+    };
+  };
+  var BANNER = '<div style="position:sticky;top:0;z-index:99999;background:#7a1f1f;color:#fff;font:14px/1.4 system-ui;padding:8px 12px;text-align:center">' +
+    'PREVIEW — 127 scenes in nine parts, ending 25 July 2025 (script v5.0.0). Not the live page.</div>';
+  fetch("/documentary/index.html", {cache: "no-store"}).then(function (r) { return r.text(); }).then(function (h) {
+    var inj = '<base href="/documentary/"><scr' + 'ipt>(' + SHIM.toString() + ')();</scr' + 'ipt>';
+    h = h.replace(/<head[^>]*>/i, function (m) { return m + inj; });
+    h = h.replace(/<body[^>]*>/i, function (m) { return m + BANNER; });
+    document.open(); document.write(h); document.close();
+  });
+})();
+</script></body></html>
