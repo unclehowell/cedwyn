@@ -129,6 +129,10 @@ def rw(u, tid, link, page_rel):
     if s.startswith('/'):
         if s == '/': stats['prefixed'] += 1; return '/' + tid + '/'
         if s.startswith(RESERVED): return u
+        # 6 Nov 2026 (#240): a path the theme already wrote under its own prefix (/analytics/api/snapshot) is left alone, as
+        # runtime.js fix() does, unless the theme really has a folder of its own name (dist/<tid>/<tid>/). - Sion's Tab agent
+        if (s == '/' + tid or s.startswith(('/' + tid + '/', '/' + tid + '?', '/' + tid + '#'))) and not (DIST / tid / tid).is_dir():
+            return resolve_blob(s, page_rel)
         stats['prefixed'] += 1
         return resolve_blob('/' + tid + s, page_rel)
     return resolve_blob(s, page_rel)
