@@ -14,7 +14,7 @@ Sources (data, never hand-edited HTML):
 Writes one <details id="cedwyn-journal"> block before </body> of each page that has entries (no extra files: the host's
 file cap), newest first, at most 6 lines, neutral wording only. Never fails the build. Report: _cedwyn/reports/page_journal.json.
 Usage: python3 tools/page_journal.py dist  - Cedwyn editors"""
-import json, sys, html, pathlib, re
+import json, sys, html, pathlib, re, hashlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 MAX = 6
 STYLE = ('<style id="cedwyn-journal-css">#cedwyn-journal{max-width:960px;margin:24px auto 8px;padding:0 16px;font:12px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;opacity:.72;color:inherit}'
@@ -47,6 +47,9 @@ def entries_from_view(app, vj):
 SKIP = ('_cedwyn/', '_ext/', '_blob/', 'db/')
 FOOT_RX = re.compile(r'<footer id="ghf-agent-footer"[^>]*>.*?</footer>', re.S)
 TRIG_RX = re.compile(r'<section class="gaf-trigger".*?</section>', re.S)
+# 9 Nov 2026 (footer 1.0.7): earlier trigger sections that may be replaced by the current one (sha256 of the exact
+# section). 1.0.6 carried the full review procedure on every human page; it now lives in the Agent Academy. — Sion's Tab agent
+PRIOR_TRIGS = {'2ebca7515246d026b2ba484de0f0dc7c0de0215c7fa6bf727ff9ecb2de88af67'}
 def _pages(dist):
     for p in dist.rglob('*.htm*'):
         if not p.is_file(): continue
@@ -74,7 +77,7 @@ def footer_pass(dist, rep):
             v = re.search(r'data-agent-footer="([^"]+)"', m.group(0)[:400])
             if v and v.group(1) != cur:
                 ot = TRIG_RX.search(m.group(0))
-                if ot and ot.group(0) == cur_trig:
+                if ot and (ot.group(0) == cur_trig or hashlib.sha256(ot.group(0).encode('utf-8')).hexdigest() in PRIOR_TRIGS):
                     el = cur_el
                     if 'class="gaf-agents"' in m.group(0):   # keep the page's form: agent text hidden from humans as before
                         el = wikilinks._small_footer(cur_el, '/academy/')
