@@ -54,6 +54,13 @@
   }
   function Edge(e) { return { rel: e.rel, dst: e.dst, artifact: function () { return e.dst.indexOf('a:') === 0 ? artifact({ id: +e.dst.slice(2) }) : null; }, node: function () { return e.dst.indexOf('a:') === 0 ? null : nodeById({ id: e.dst }); } }; }
   function artifact(a) { return a.sha ? q1('SELECT * FROM artifacts WHERE sha=?', [a.sha]).then(Artifact) : q1('SELECT * FROM artifacts WHERE id=?', [a.id]).then(Artifact); }
+  // Free text reaches FTS5 as quoted terms joined by AND, so ids like EV-0156 or words with ':' '-' '*' no longer raise
+  // "no such column" (EV-9999 used to fail with: SQLite: no such column: 9999). Same rule as ftsExpression() in agent-tools.js,
+  // with Unicode letters kept (Tŷ, Dochdwy).
+  function ftsq(q) {
+    var t = String(q || '').match(/[\p{L}\p{N}]+/gu) || [];
+    return t.slice(0, 12).map(function (w) { return '"' + w.replace(/"/g, '""') + '"'; }).join(' AND ');
+  }
   function nodeById(a) {
     return q1('SELECT * FROM nodes WHERE id=?', [a.id]).then(function (n) {
       if (!n) return null;
@@ -111,7 +118,7 @@
     artifact: artifact,
     artifacts: function (a) { var w = [], p = []; if (a.kind) { w.push('a.kind=?'); p.push(a.kind); } if (a.theme) { w.push('a.id IN (SELECT aid FROM locations WHERE theme=?)'); p.push(a.theme); }
       p.push(a.limit || 50, a.offset || 0); return qa('SELECT a.* FROM artifacts a' + (w.length ? ' WHERE ' + w.join(' AND ') : '') + ' ORDER BY a.id LIMIT ? OFFSET ?', p).then(function (rs) { return rs.map(Artifact); }); },
-    search: function (a) { var p = [a.q]; var extra = ''; if (a.theme) { extra = ' AND theme=?'; p.push(a.theme); } p.push(a.limit || 25);
+    search: function (a) { var fq = ftsq(a.q); if (!fq) return Promise.resolve([]); var p = [fq]; var extra = ''; if (a.theme) { extra = ' AND theme=?'; p.push(a.theme); } p.push(a.limit || 25);
       return qa("SELECT aid, theme, path, snippet(fts, 1, '[', ']', ' … ', 18) AS snip FROM fts WHERE fts MATCH ?" + extra + ' ORDER BY rank LIMIT ?', p)
         .then(function (rs) { return rs.map(function (r) { return { theme: r.theme, path: r.path, snippet: r.snip, artifact: function () { return artifact({ id: r.aid }); } }; }); }); },
     artifactAssessment: function (a) {
