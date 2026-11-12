@@ -1,4 +1,4 @@
-/* movie.css 1.10.0 (1 Nov 2026): audio x subtitle matrix — pending audio/subtitle buttons; 1.9.0: door art, version modal, Script/Subtitles/Evidence dropdowns; was 1.8.0 */
+/* movie.css 1.11.0 (12 Nov 2026): full chronology archive; 1.10.0 (1 Nov 2026): audio x subtitle matrix — pending audio/subtitle buttons; 1.9.0: door art, version modal, Script/Subtitles/Evidence dropdowns; was 1.8.0 */
 :root{--bg:#101512;--ink:#ece9df;--mut:#a9ab9f;--gold:#d4b25a;--moss:#3e5a44;--slate:#3b4148;--lime:#e9e4d6;--oak:#6b4a2f;--card:#171d19;--line:#2a332c}
 body.cm{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 .cm main,#cm-main{max-width:1200px;margin:0 auto;padding:16px}
@@ -367,3 +367,20 @@ html.ghf-inv .cm-gm-bg img.cm-vp-img{filter:invert(1) hue-rotate(180deg)!importa
 .cm-card .cm-langs-l{color:#a9ab9e}
 .cm-card .cm-lang.ok{color:#d8e6c8}
 .cm-card .cm-lang.pend{opacity:.6;font-style:italic}
+
+/* 1.11.0 (12 Nov 2026): folded captions and a complete, inspectable chronology archive */
+.cm-also{margin:10px 0 2px;padding:8px 10px;border-left:2px solid var(--gold);background:rgba(212,178,90,.055);border-radius:4px}
+.cm-also>summary,.cm-archive-root>summary,.cm-archive-group>summary{cursor:pointer;color:var(--gold);font-weight:650}
+.cm-also-list{display:grid;gap:6px;margin-top:8px}
+.cm-also-item{padding:7px 9px;border-top:1px solid var(--line)}
+.cm-also-item>summary,.cm-archive-item>summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--ink)}
+.cm-also-log,.cm-archive-log,.cm-archive-evidence,.cm-archive-events{margin:6px 0 2px;color:var(--mut);font-size:13px;line-height:1.55}
+.cm-archive{max-width:1200px;margin:28px auto 40px;padding:0 16px}
+.cm-archive-root{border:1px solid var(--line);border-radius:8px;background:var(--card);padding:14px}
+.cm-archive-root>summary{font-size:15px}
+.cm-archive-group{margin:14px 0 0;padding:10px;border-top:1px solid var(--line)}
+.cm-archive-group>summary{font-size:14px}
+.cm-archive-item{margin:8px 0;padding:8px 10px;border-left:2px solid var(--line);background:rgba(255,255,255,.018)}
+.cm-archive-links{margin:6px 0 0;padding-left:20px;font-size:13px}
+.cm-archive-links a{color:var(--gold);overflow-wrap:anywhere}
+@media(prefers-reduced-motion:reduce){.cm-also,.cm-archive{scroll-behavior:auto}}
