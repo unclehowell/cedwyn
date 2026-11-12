@@ -1,0 +1,205 @@
+{
+ "schema": "peekaboo/1",
+ "synced_at": "2026-11-03T01:50:13Z",
+ "sources": [
+  {
+   "ref": "main",
+   "files": [
+    "foi-chestnuts.json",
+    "foi-response-attachments.json",
+    "places.json",
+    "recreation-scenes.json",
+    "screening.json"
+   ]
+  },
+  {
+   "ref": "core/peekaboo-records",
+   "files": [
+    "foi-chestnuts.json",
+    "foi-response-attachments.json",
+    "peekaboo.json",
+    "places.json",
+    "recreation-scenes.json",
+    "screening.json"
+   ]
+  }
+ ],
+ "counts": {
+  "entries": 6,
+  "found_by_us": 1,
+  "found_by_holder": 5,
+  "notices": 3
+ },
+ "entries": [
+  {
+   "id": "OBS-PEEKABOO-NEWMAN-IA",
+   "kind": "observation",
+   "file": "peekaboo.json",
+   "title": "Internet Archive copy of Newman, Glamorgan (1995): the catalogue description is a children's story blurb",
+   "holder": "Internet Archive (item metadata and its MARC, Dublin Core and meta files)",
+   "reference": "Internet Archive identifier glamorganmidglam0000newm; OCLC 33858574; ISBN 0140710566",
+   "category": "Catalogue description does not match the item",
+   "found_by": "us",
+   "found_on": "2026-11-03",
+   "said": "The catalogue description of the Internet Archive copy: “A very hairy but not-too-scary monster story. One dark, stormy night, Owl, Mouse and Rabbit are afraid. Could it be the Monster of the Woods knocking at the door?”",
+   "found": "The item is John Newman’s Glamorgan (The Buildings of Wales, 1995), a 717-page architectural guide with entries for Llandough-juxta-Penarth (pp.378–379), Leckwith (pp.370–371) and Cogan.",
+   "why": "The summary note belongs to a children’s picture book. Searched by its description, the guide would not be found.",
+   "see": [
+    [
+     "Research Library (catalogue AR-NEWMAN-1995)",
+     "/research/"
+    ],
+    [
+     "FCG register: first seen",
+     "/fcg/first-seen/"
+    ]
+   ],
+   "notices": [
+    "N1",
+    "N2"
+   ],
+   "fcg": true,
+   "evidence": [],
+   "record_version": "1.0.0"
+  },
+  {
+   "id": "TOC-F02",
+   "kind": "foi_finding",
+   "file": "foi-chestnuts.json",
+   "title": "Historic England · reply of 2026-10-21",
+   "holder": "Historic England",
+   "reference": "Correspondence held on file (not published)",
+   "category": "Not held, then found",
+   "found_by": "holder",
+   "found_on": "2026-10-27",
+   "said": "Historic England, 21 October 2026: “we do not hold any information that falls within the scope of your request.”",
+   "found": "Historic England, 27 October 2026: a letter of transfer to RCAHMW dated 12 January 2018.",
+   "why": "The first reply itself recorded the 12 January 2018 transfer; the covering letter followed six days after a challenge.",
+   "see": [
+    [
+     "That Old Chestnut",
+     "/that-old-chestnut/#cn-toc-f02"
+    ]
+   ],
+   "notices": [],
+   "fcg": false,
+   "evidence": [
+    "EV-0375"
+   ],
+   "record_version": 1
+  },
+  {
+   "id": "TOC-F01",
+   "kind": "foi_finding",
+   "file": "foi-chestnuts.json",
+   "title": "Amgueddfa Cymru – Museum Wales · reply of 2026-08-25",
+   "holder": "Amgueddfa Cymru – Museum Wales",
+   "reference": "Correspondence held on file (not published)",
+   "category": "Not held, then found",
+   "found_by": "holder",
+   "found_on": "2026-09-22",
+   "said": "Amgueddfa Cymru – Museum Wales, 25 August 2026: “Amgueddfa Cymru does not hold the requested information.”",
+   "found": "Museum Wales, 22 September 2026: records of archaeological discoveries recorded at Great House Farm and Church Farm, Llandough, identified in the searches for the first request.",
+   "why": "The records were found in the first search and set aside as outside its scope; they were released four weeks later on a fresh request.",
+   "see": [
+    [
+     "That Old Chestnut",
+     "/that-old-chestnut/#cn-toc-f01"
+    ]
+   ],
+   "notices": [],
+   "fcg": false,
+   "evidence": [
+    "EV-0295",
+    "EV-0298"
+   ],
+   "record_version": 1
+  },
+  {
+   "id": "OBS-PEEKABOO-DBDT79-CATALOGUE",
+   "kind": "observation",
+   "file": "peekaboo.json",
+   "title": "Glamorgan Archives DBDT/79/1: catalogue description corrected after the original was examined (14 September 2026)",
+   "holder": "Glamorgan Archives",
+   "reference": "DBDT/79/1; enquiry ref. 2026/3893; EV-0336",
+   "category": "Catalogue corrected by the holder",
+   "found_by": "holder",
+   "found_on": "2026-09-14",
+   "said": "Catalogue entry: “Lease (counterpart) of land and premises situate in Pembroke Terrace, Cardiff, from the Marquess of Bute to Mr John Williams, May 1877.”",
+   "found": "Examined at our request, the original is a counterpart lease of 2 May 1877 from the Trustees of the Will of the late Marquess of Bute to Mr John Williams of Newport. Glamorgan Archives: “The catalogue description for DBDT/79/1 had a few small errors which have now been corrected.”",
+   "why": "A physical check of the original, asked for on 26 August 2026, found the catalogue wording wrong. The deed concerns Pembroke Terrace, Cardiff; the archive found no mention of Llandough in it.",
+   "see": [
+    [
+     "EV-0336",
+     "/wiki/evidence/ev-0336-glamorgan-archives-dbdt79-1-physical-examination-of-the-original/"
+    ],
+    [
+     "Kissed Frogs (KF-02: not our farm)",
+     "/kissed-frogs/"
+    ]
+   ],
+   "notices": [
+    "N3"
+   ],
+   "fcg": false,
+   "evidence": [
+    "EV-0336"
+   ],
+   "record_version": "1.0.0"
+  },
+  {
+   "id": "TOC-F03",
+   "kind": "foi_finding",
+   "file": "foi-chestnuts.json",
+   "title": "Vale of Glamorgan Council · reply of 2026-06-02",
+   "holder": "Vale of Glamorgan Council",
+   "reference": "Correspondence held on file (not published)",
+   "category": "Not held, then found",
+   "found_by": "holder",
+   "found_on": "2026-09-11",
+   "said": "Vale of Glamorgan Council, 2 June 2026: “the Vale of Glamorgan Council does not hold records relating to this historic legal matter.”",
+   "found": "Vale of Glamorgan Council, 11 September 2026: “further historical documentation has been found.” Not yet disclosed.",
+   "why": "Found once service areas were asked again; the council is still sifting it.",
+   "see": [
+    [
+     "That Old Chestnut",
+     "/that-old-chestnut/#cn-toc-f03"
+    ]
+   ],
+   "notices": [],
+   "fcg": false,
+   "evidence": [
+    "EV-0460"
+   ],
+   "record_version": 1
+  },
+  {
+   "id": "TOC-F05",
+   "kind": "foi_finding",
+   "file": "foi-chestnuts.json",
+   "title": "Welsh Government / Cadw · reply of 2026-02-25",
+   "holder": "Welsh Government / Cadw",
+   "reference": "Correspondence held on file (not published)",
+   "category": "Outside scope, then found",
+   "found_by": "holder",
+   "found_on": "2026-05-21",
+   "said": "Cadw, 25 February 2026: “much of the content in your correspondence falls outside the scope of Cadw’s work.”",
+   "found": "Cadw, 21 May 2026: its electronic records held the 1988 listing assessment of Great House Farm and Barn, and two photographs dated 29 July 1988.",
+   "why": "The records were in Cadw’s own system; they came out once a request named the property and the 1988 survey.",
+   "see": [
+    [
+     "That Old Chestnut",
+     "/that-old-chestnut/#cn-toc-f05"
+    ]
+   ],
+   "notices": [],
+   "fcg": false,
+   "evidence": [
+    "EV-0488",
+    "EV-0489"
+   ],
+   "record_version": 1
+  }
+ ],
+ "skipped": []
+}

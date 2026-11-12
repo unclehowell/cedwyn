@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 14718,
+  "pages_scanned": 14721,
   "references_checked": {
-    "resource": 366981,
-    "nav": 691248
+    "resource": 367048,
+    "nav": 691424
   },
-  "database_backed_paths": 7677,
-  "unique_missing_destinations": 2341,
-  "missing_references": 62917,
-  "missing_navigation_references": 36463,
-  "missing_resource_references": 26454,
+  "database_backed_paths": 7700,
+  "unique_missing_destinations": 2364,
+  "missing_references": 63002,
+  "missing_navigation_references": 36542,
+  "missing_resource_references": 26460,
   "unique_broken_fragments": 2541,
   "broken_fragment_references": 4911,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 14688,
+      "references": 14691,
       "examples": [
         {
           "from": "/",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 14684,
+      "references": 14687,
       "examples": [
         {
           "from": "/",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 11957,
+      "references": 11960,
       "examples": [
         {
           "from": "/review/",
@@ -86,12 +86,12 @@
           "url": "/blog/rss.xml"
         },
         {
-          "from": "/app/",
+          "from": "/theories/",
           "attribute": "link[href]",
           "url": "/blog/rss.xml"
         },
         {
-          "from": "/cyberspace/",
+          "from": "/app/",
           "attribute": "link[href]",
           "url": "/blog/rss.xml"
         }
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 11957,
+      "references": 11960,
       "examples": [
         {
           "from": "/review/",
@@ -113,12 +113,12 @@
           "url": "/blog/atom.xml"
         },
         {
-          "from": "/app/",
+          "from": "/theories/",
           "attribute": "link[href]",
           "url": "/blog/atom.xml"
         },
         {
-          "from": "/cyberspace/",
+          "from": "/app/",
           "attribute": "link[href]",
           "url": "/blog/atom.xml"
         }
@@ -2232,6 +2232,33 @@
     },
     {
       "kind": "nav",
+      "path": "/peekaboo/that-old-chestnut/",
+      "references": 10,
+      "examples": [
+        {
+          "from": "/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/peekaboo/that-old-chestnut/"
+        },
+        {
+          "from": "/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/peekaboo/that-old-chestnut/#cn-toc-f02"
+        },
+        {
+          "from": "/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/peekaboo/that-old-chestnut/#cn-toc-f02"
+        },
+        {
+          "from": "/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/peekaboo/that-old-chestnut/#cn-toc-f01"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
       "path": "/research/>*",
       "references": 10,
       "examples": [
@@ -2335,6 +2362,60 @@
           "from": "/research/artifacts/ghf-e106-r98-a1/",
           "attribute": "a[href]",
           "url": "/research/email/reference/19eb764ad3726de5/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/theories/that-old-chestnut/",
+      "references": 9,
+      "examples": [
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/that-old-chestnut/"
+        },
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/that-old-chestnut/#cn-toc-f01"
+        },
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/that-old-chestnut/#cn-toc-f02"
+        },
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/that-old-chestnut/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/theories/research/missing-records/",
+      "references": 9,
+      "examples": [
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/research/missing-records/"
+        },
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/research/missing-records/"
+        },
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/research/missing-records/"
+        },
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/research/missing-records/"
         }
       ]
     },
@@ -2529,6 +2610,33 @@
     },
     {
       "kind": "nav",
+      "path": "/theories/docs/",
+      "references": 8,
+      "examples": [
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/docs/"
+        },
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/docs/"
+        },
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/docs/"
+        },
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/docs/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
       "path": "/forensic/research/timeline/",
       "references": 8,
       "examples": [
@@ -2686,6 +2794,33 @@
           "from": "/watchtower/",
           "attribute": "a[href]",
           "url": "/watchtower/peekaboo/#pk-toc-f05"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/peekaboo/dartboard/",
+      "references": 7,
+      "examples": [
+        {
+          "from": "/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/peekaboo/dartboard/?inst=internet-archive#avenue-inst"
+        },
+        {
+          "from": "/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/peekaboo/dartboard/?inst=oclc#avenue-inst"
+        },
+        {
+          "from": "/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/peekaboo/dartboard/?inst=historic-england#avenue-inst"
+        },
+        {
+          "from": "/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/peekaboo/dartboard/?inst=museum#avenue-inst"
         }
       ]
     },
@@ -3010,6 +3145,33 @@
           "from": "/patagonia/",
           "attribute": "style-block[url()]",
           "url": "/dartboard/fonts/barlow-latin-700-normal.woff2"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/peekaboo/watchtower/",
+      "references": 6,
+      "examples": [
+        {
+          "from": "/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/peekaboo/watchtower/#wt-pkb-newman-ia"
+        },
+        {
+          "from": "/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/peekaboo/watchtower/#wt-pkb-toc-f02"
+        },
+        {
+          "from": "/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/peekaboo/watchtower/#wt-pkb-toc-f01"
+        },
+        {
+          "from": "/peekaboo/",
+          "attribute": "a[href]",
+          "url": "/peekaboo/watchtower/#wt-pkb-dbdt79"
         }
       ]
     },
@@ -3361,6 +3523,33 @@
           "from": "/research/artifacts/ghf-e106-r33-a1/",
           "attribute": "a[href]",
           "url": "/research/email/reference/1a10c2ac609d288e/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/theories/research/",
+      "references": 5,
+      "examples": [
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/research/"
+        },
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/research/"
+        },
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/research/"
+        },
+        {
+          "from": "/theories/",
+          "attribute": "a[href]",
+          "url": "/theories/research/"
         }
       ]
     },
@@ -3874,195 +4063,6 @@
           "from": "/research/agent-index/",
           "attribute": "a[href]",
           "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/hmlr-independent-complaints-reviewer-forensic-institutional-review/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/scrutiny-and-accountability/government-public-authority-involvement/office-of-stephen-doughty-mp-forensic-institutional-review/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/ir_institutionalreviewcoverageregister/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/office-of-stephen-doughty-mp-forensic-institutional-review/"
-        },
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/office-of-stephen-doughty-mp-forensic-institutional-review/"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_officeofstephendoughtympforensicinstitut/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/office-of-stephen-doughty-mp-forensic-institutional-review/"
-        },
-        {
-          "from": "/research/agent-index/",
-          "attribute": "a[href]",
-          "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/office-of-stephen-doughty-mp-forensic-institutional-review/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/family-legal-case-control-room/limitation-procedural-deadline-firewall/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/la_limitationproceduraldeadlinefirewall/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "/research/family-legal-case-control-room/limitation-procedural-deadline-firewall/"
-        },
-        {
-          "from": "/docs/ghf_wiki/la_familylegalcasecontrolroom/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/family-legal-case-control-room/limitation-procedural-deadline-firewall/"
-        },
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/family-legal-case-control-room/limitation-procedural-deadline-firewall/"
-        },
-        {
-          "from": "/research/family-legal-case-control-room/",
-          "attribute": "a[href]",
-          "url": "/research/family-legal-case-control-room/limitation-procedural-deadline-firewall/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/family-legal-case-control-room/claimant-standing-register/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/la_familylegalcasecontrolroom/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/family-legal-case-control-room/claimant-standing-register/"
-        },
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/family-legal-case-control-room/claimant-standing-register/"
-        },
-        {
-          "from": "/docs/ghf_wiki/la_claimantstandingregister/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "/research/family-legal-case-control-room/claimant-standing-register/"
-        },
-        {
-          "from": "/research/family-legal-case-control-room/",
-          "attribute": "a[href]",
-          "url": "/research/family-legal-case-control-room/claimant-standing-register/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/family-legal-case-control-room/mary-williams-estate-evidence-dossier/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/la_familylegalcasecontrolroom/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/family-legal-case-control-room/mary-williams-estate-evidence-dossier/"
-        },
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/family-legal-case-control-room/mary-williams-estate-evidence-dossier/"
-        },
-        {
-          "from": "/docs/ghf_wiki/la_marywilliamsestateevidencedossier/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "/research/family-legal-case-control-room/mary-williams-estate-evidence-dossier/"
-        },
-        {
-          "from": "/research/family-legal-case-control-room/",
-          "attribute": "a[href]",
-          "url": "/research/family-legal-case-control-room/mary-williams-estate-evidence-dossier/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/ghf-e171-neath-guardian-17-april-1980-roman-villa-and-medieval-house-remains-at-llandough/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/ghf-e171-neath-guardian-17-april-1980-roman-villa-and-medieval-house-remains-at-llandough/"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_walesandwesthousingassociationforensicin/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/ghf-e171-neath-guardian-17-april-1980-roman-villa-and-medieval-house-remains-at-llandough/"
-        },
-        {
-          "from": "/docs/ghf_evidence/ev_0056/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/ghf-e171-neath-guardian-17-april-1980-roman-villa-and-medieval-house-remains-at-llandough/"
-        },
-        {
-          "from": "/research/agent-index/",
-          "attribute": "a[href]",
-          "url": "/research/ghf-e171-neath-guardian-17-april-1980-roman-villa-and-medieval-house-remains-at-llandough/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/western-mail-6-december-1988-farmer-fails-final-eviction-hearing/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/western-mail-6-december-1988-farmer-fails-final-eviction-hearing/"
-        },
-        {
-          "from": "/docs/ghf_wiki/ot_westernmail6december1988farmerfailsfinal/latest/html/en/",
-          "attribute": "a[href]",
-          "url": "/research/western-mail-6-december-1988-farmer-fails-final-eviction-hearing/"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_mediawalesreachplcforensicinstitutionalr/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/western-mail-6-december-1988-farmer-fails-final-eviction-hearing/"
-        },
-        {
-          "from": "/research/agent-index/",
-          "attribute": "a[href]",
-          "url": "/research/western-mail-6-december-1988-farmer-fails-final-eviction-hearing/"
-        }
-      ]
-    },
-    {
-      "kind": "nav",
-      "path": "/research/evidence-library/ghf-e106-r28-a1-ico-letter-ic-546505-w6p0-10-august-2026/",
-      "references": 5,
-      "examples": [
-        {
-          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/ghf-e106-r28-a1-ico-letter-ic-546505-w6p0-10-august-2026/"
-        },
-        {
-          "from": "/docs/ghf_wiki/ir_icoforensicinstitutionalreview/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/ghf-e106-r28-a1-ico-letter-ic-546505-w6p0-10-august-2026/"
-        },
-        {
-          "from": "/docs/ghf_evidence/ev_0162/latest/html/en/1-record.html",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/ghf-e106-r28-a1-ico-letter-ic-546505-w6p0-10-august-2026/"
-        },
-        {
-          "from": "/research/agent-index/",
-          "attribute": "a[href]",
-          "url": "/research/evidence-library/ghf-e106-r28-a1-ico-letter-ic-546505-w6p0-10-august-2026/"
         }
       ]
     }

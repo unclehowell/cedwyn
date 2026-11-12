@@ -1,0 +1,35 @@
+{
+ "note": "Correction notices Peekaboo lists: draft text only, for the owner to review and send. Nothing here has been sent. — Cedwyn editors 3 Nov 2026: all notices held, unsent; no email drafts; who to notify is decided later from this page.",
+ "notices": [
+  {
+   "id": "N1",
+   "to": "Internet Archive (catalogue metadata for lending copies)",
+   "record": "OBS-PEEKABOO-NEWMAN-IA",
+   "item": "Item glamorganmidglam0000newm: John Newman, Glamorgan (The Buildings of Wales), Penguin Books / University of Wales Press, 1995",
+   "wrong": "The description field (MARC 520 summary) is a children’s picture-book blurb (“A very hairy but not-too-scary monster story … Owl, Mouse and Rabbit …”). The title statement reads “by Stephen Hughes and Anthony Ward” while the creator field names John Newman.",
+   "ask": "Remove the 520 summary from the item’s metadata, and give the statement of responsibility as printed on the book’s title page.",
+   "status": "Held: who to notify will be decided later",
+   "draft": "Subject: Metadata correction: glamorganmidglam0000newm (Newman, Glamorgan, 1995)\n\nDear Internet Archive team,\n\nThe lending copy glamorganmidglam0000newm is John Newman, Glamorgan (Mid Glamorgan, South Glamorgan and West Glamorgan), The Buildings of Wales, Penguin Books and University of Wales Press, 1995 (ISBN 0140710566), an architectural guide of 717 pages.\n\nIts description reads: “A very hairy but not-too-scary monster story. One dark, stormy night, Owl, Mouse and Rabbit are afraid. Could it be the Monster of the Woods knocking at the door? This warm, funny tale about friendship has a wonderfully unexpected twist.” That text is the summary note (MARC 520) of the attached catalogue record (OCLC 33858574) and describes a different book. The same record’s title statement reads “by Stephen Hughes and Anthony Ward”, while the creator field names John Newman.\n\nPlease remove the 520 summary from the item’s description and give the statement of responsibility as it appears on the title page. I read the metadata on 3 November 2026 and have kept a dated copy.\n\nThank you.\n\nYours faithfully,\n[sender]"
+  },
+  {
+   "id": "N2",
+   "to": "OCLC WorldCat (record quality / report an error)",
+   "record": "OBS-PEEKABOO-NEWMAN-IA",
+   "item": "WorldCat record 33858574: Glamorgan : (Mid Glamorgan, South Glamorgan and West Glamorgan), 1995",
+   "wrong": "Field 520 carries a summary of a children’s picture book; field 245 $c names Stephen Hughes and Anthony Ward only.",
+   "ask": "Delete the 520 summary from record 33858574 and review 245 $c against the title page.",
+   "status": "Held: who to notify will be decided later",
+   "draft": "Record: OCLC 33858574 (ISBN 0140710566 / 9780140710564), John Newman, Glamorgan (The Buildings of Wales), Penguin Books / University of Wales Press, 1995.\n\nError: field 520 reads “A very hairy but not-too-scary monster story. One dark, stormy night, Owl, Mouse and Rabbit are afraid. Could it be the Monster of the Woods knocking at the door? This warm, funny tale about friendship has a wonderfully unexpected twist.” This is the summary of a different book (a children’s story). The record describes a 717-page architectural guide. Field 245 $c reads “by Stephen Hughes and Anthony Ward”; the author is John Newman (field 100).\n\nRequested correction: delete the 520 note and review 245 $c against the title page. The record was last changed on 8 June 2022 (field 005) and is copied into the Internet Archive item glamorganmidglam0000newm.\n\n[sender]"
+  },
+  {
+   "id": "N3",
+   "to": "Glamorgan Archives",
+   "record": "OBS-PEEKABOO-DBDT79-CATALOGUE",
+   "item": "DBDT/79/1, counterpart lease, 2 May 1877 (enquiry ref. 2026/3893)",
+   "wrong": "Already corrected by the archive on inspection (reply of 14 September 2026).",
+   "ask": "Optional: confirm the corrected catalogue wording and the date it was changed, so the online catalogue and our record match.",
+   "status": "Held: who to notify will be decided later",
+   "draft": "Subject: DBDT/79/1, your ref. 2026/3893: corrected catalogue wording\n\nDear Glamorgan Archives,\n\nThank you for examining the original of DBDT/79/1 and for your reply of 14 September 2026, which noted that the catalogue description “had a few small errors which have now been corrected”.\n\nSo that our notes match your catalogue, could you send the corrected catalogue wording for DBDT/79/1 and the date the change was made?\n\nYours faithfully,\n[sender]"
+  }
+ ]
+}
