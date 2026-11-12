@@ -1,7 +1,7 @@
 {
  "schema": "cedwyn-core/0.1.0",
  "note": "Additive screening and missing-record entries arising from the 3 November 2026 book-evidence flywheel. Existing records are not rewritten. Screening leads feed the Kissed Frogs view when their scope disposition is not in_scope. missing_record entries feed the dedicated Negative Finds view. Negative screens describe only bounded searches; they are not proof that a record or relationship never existed. Retrieval stage is stated separately from what the underlying item establishes.",
- "updated": "2026-11-03",
+ "updated": "2026-11-08",
  "records": [
   {
    "id": "KF-51",
@@ -333,6 +333,185 @@
    "page": "/kissed-frogs/kf-55-nlw-lockwood-l11-cydwin-lease-assignment/",
    "public": true,
    "updated": "2026-11-03",
+   "rev": 1
+  },
+  {
+   "id": "KF-56",
+   "kind": "screening_lead",
+   "slug": "kf-56-great-house-farm-llandough-near-cowbridge-scope",
+   "title": "Great House Farm, Llandough-juxta-Cowbridge — the other Llandough, outside this register's question",
+   "date": {
+    "display": "Records 1880–1964; scope entry recorded 8 Nov 2026",
+    "sort": 1880
+   },
+   "place_text": "Llandough-juxta-Cowbridge (Llandough near Cowbridge), Vale of Glamorgan",
+   "description": "The Vale of Glamorgan has two parishes called Llandough. The question here has always been the Llandough by Penarth, with Cardiff, Penarth, Leckwith and Cogan, and the many name forms used for that area, which can also take in Dinas Powys, Michaelston-le-Pit and the River Ely side of east Glamorgan. Great House Farm at Llandough near Cowbridge is a separate farm in the other parish.",
+   "provenance": {
+    "holder": "Cedwyn screening register",
+    "reference": "KF-05, KF-12, KF-52; EV-0021; research cycles 21, 23, 24, 37, 41, 56, 59, 60, 70, 74 and 83",
+    "date": "2026-11-08",
+    "obtained": "Register entries and catalogue records re-read 8 Nov 2026"
+   },
+   "transcript_status": "",
+   "interpretation": "A same-name farm in a different parish. It stays outside the title question, and its records are kept here under scrutiny so that none of them is read as Tŷ Mawr and none of ours is left filed under the wrong parish.",
+   "scope": {
+    "disposition": "out_of_scope",
+    "label": "Out of scope — the other Llandough (under scrutiny)",
+    "reason": "A different Llandough, near Cowbridge. The farm of the same name there is outside the question; its records are held here, under scrutiny, in case any of them was filed under the wrong parish.",
+    "distinct_from": [
+     "Llandough-juxta-Penarth",
+     "Great House Farm / Tŷ Mawr (Cydfin Farm)"
+    ],
+    "tags": [
+     "Llandough-juxta-Cowbridge",
+     "Cowbridge",
+     "name-trap",
+     "out-of-scope",
+     "under-scrutiny"
+    ]
+   },
+   "places": [],
+   "detail": [
+    {
+     "heading": "Records already screened",
+     "text": "KF-05: Glamorgan Archives DSA/6/1158 (1938 sale), D/DSA6/701 (1924 estate sale), DCO/WHS/2 (memoir). KF-12: Slater's 1880 p.390, the 1938 and 1942 sale notices, Glamorgan Gazette 7 May 1915. KF-52: People’s Collection Wales item 1229976. EV-0021: Western Mail, 12 and 16 Nov 1938.",
+     "form": "term"
+    },
+    {
+     "heading": "Names met on the Cowbridge side",
+     "text": "The Thomas family of Great House (1880–1910), the Glamorgan Hunt kennels at Great House Farm (1907, 1910), the Cadwgan family (1952–1964), Llandough Castle and the Rector of Landough (1812–1815). Some of these items drop the words “near Cowbridge”.",
+     "form": "term"
+    },
+    {
+     "heading": "How each item is tested",
+     "text": "Parish or hundred heading (Dinas Powys hundred for Llandough by Penarth; Cowbridge hundred for the other), grid reference (the ST 16 73 area for Tŷ Mawr; the SS 99 72 area near Cowbridge), and named neighbours or landmarks (St Dochdwy’s Church, Cogan, Leckwith, the River Ely).",
+     "form": "term"
+    },
+    {
+     "heading": "Scrutiny, 8 Nov 2026",
+     "text": "No record presented on Cedwyn as Tŷ Mawr was found to be a Cowbridge record. Two book-search rows are still open because a page image has not been seen: the 1670 hearth tax page carrying two “Landough” headings, and a 1911 lime-kiln locality. The 1986 Cowbridge Local Plan notice is used only as a comparator for the 1987 East Vale Local Plan notice; the East Vale plan is the one covering Llandough by Penarth.",
+     "form": "term"
+    },
+    {
+     "heading": "Limit and next action",
+     "text": "Reopen any item only when a page image, plan, grid reference or parish heading places it in Llandough by Penarth.",
+     "form": "term"
+    }
+   ],
+   "sources": [
+    {
+     "text": "KF-05 — Llandough near Cowbridge records (DSA/6/1158, D/DSA6/701, DCO/WHS/2)",
+     "href": "/kissed-frogs/kf-05-great-house-farm-llandough-records-for-llandough/"
+    },
+    {
+     "text": "KF-12 — directories and press for the Cowbridge farm",
+     "href": "/kissed-frogs/kf-12-great-house-and-llandough-farm-near-cowbridge/"
+    },
+    {
+     "text": "KF-52 — People’s Collection Wales item 1229976",
+     "href": "/kissed-frogs/kf-52-peoples-collection-great-house-farm-near-cowbridge/"
+    },
+    {
+     "text": "Book-search findings (hearth tax 1670; lime kilns 1911)",
+     "href": "/research/book-research-findings.csv"
+    }
+   ],
+   "related": [
+    "KF-05",
+    "KF-12",
+    "KF-52"
+   ],
+   "page": "/kissed-frogs/kf-56-great-house-farm-llandough-near-cowbridge-scope/",
+   "public": true,
+   "updated": "2026-11-08",
+   "rev": 1
+  },
+  {
+   "id": "KF-57",
+   "kind": "screening_lead",
+   "slug": "kf-57-llandough-farm-separate-farm-same-parish",
+   "title": "Llandough Farm, Llandough-juxta-Penarth — a separate farm in the same parish",
+   "date": {
+    "display": "Records 1824–1994; scope entry recorded 8 Nov 2026",
+    "sort": 1824
+   },
+   "place_text": "Llandough Farm, Llandough-juxta-Penarth (opposite the hospital)",
+   "description": "Llandough Farm is a neighbouring farm in the same Llandough as Tŷ Mawr, with its own deeds, tenants and acreage. It has long been kept apart from Great House Farm / Tŷ Mawr (Cydfin Farm) and is outside the title question.",
+   "provenance": {
+    "holder": "Cedwyn screening register",
+    "reference": "KF-06, KF-13, KF-14, KF-35, KF-50, KF-53; EV-0017, EV-0227, EV-0228, EV-0233, EV-0238, EV-0824",
+    "date": "2026-11-08",
+    "obtained": "Register entries and catalogue records re-read 8 Nov 2026"
+   },
+   "transcript_status": "",
+   "interpretation": "A separate farm of the same parish. Its records stay outside the title question and are kept here under scrutiny, because the name “Llandough Farm” has also been used loosely in print and in later planning papers.",
+   "scope": {
+    "disposition": "separate_property",
+    "label": "Separate farm, same parish (under scrutiny)",
+    "reason": "Llandough Farm had its own deeds (NLW D 219/9–13, 166 acres) against 107 acres for Cydfin or Tŷ Mawr Farm, and the 1824 survey plan labels it apart. It is outside the question; the name alone never decides an item either way.",
+    "distinct_from": [
+     "Great House Farm / Tŷ Mawr (Cydfin Farm)"
+    ],
+    "tags": [
+     "Llandough Farm",
+     "Rees",
+     "separate-farm",
+     "out-of-scope",
+     "under-scrutiny"
+    ]
+   },
+   "places": [],
+   "detail": [
+    {
+     "heading": "Records already screened",
+     "text": "KF-06 and KF-35: NLW D 219 and the 1824 survey plan. KF-13: the Rees family (EV-0228) and the 1940 Western Ground Rents tenancy to David and Thomas Thomas (EV-0233). KF-14: Williams entries “of Llandough Farm”, 1903 and 1914 (EV-0238). KF-50: Museum Wales waterwheel, collected 1979. KF-53: John Williams “of Llandough Farm”, 1904 (EV-0227). EV-0017: Glamorgan Archives DSA/12/5400, 1931–1938. EV-0824: the 1859 water works notice naming Thomas Rees.",
+     "form": "term"
+    },
+    {
+     "heading": "Where the name does not decide",
+     "text": "The 1992–1995 housing drawings titled “Llandough Farm” (Ideal Homes Wales; EV-0133, EV-0135) sit in the planning file for Great House Farm (89/01396/OUT, East Vale Local Plan site H2.1). They concern the Tŷ Mawr site despite the name and stay in the main record.",
+     "form": "term"
+    },
+    {
+     "heading": "Still open",
+     "text": "The 1904 report (EV-0227) gives John Williams “of Llandough Farm” a tenancy from 1855, while the Rees family held Llandough Farm at that date. Which farm the paper meant is not settled, so it stays here, not joined to Tŷ Mawr. The 1903 and 1914 Williams entries are in the same position.",
+     "form": "term"
+    },
+    {
+     "heading": "Limit and next action",
+     "text": "Reopen an item only when a plan, field number, rent entry or deed joins it to the Cydfin / Tŷ Mawr holding.",
+     "form": "term"
+    }
+   ],
+   "sources": [
+    {
+     "text": "KF-06 — NLW D 219, Llandough Farm, 166 acres",
+     "href": "/kissed-frogs/kf-06-nlw-d-219-llandough-farm-166-acres/"
+    },
+    {
+     "text": "KF-13 — Llandough Farm and the Rees family",
+     "href": "/kissed-frogs/kf-13-llandough-farm-the-rees-family-farm-ev/"
+    },
+    {
+     "text": "KF-53 — Cardiff Times, 16 July 1904",
+     "href": "/kissed-frogs/kf-53-cardiff-times-john-williams-of-llandough-farm-1904/"
+    },
+    {
+     "text": "KF-35 — Llandough Farm, a separate farmstead",
+     "href": "/kissed-frogs/kf-35-llandough-farm-separate-farmstead/"
+    }
+   ],
+   "related": [
+    "KF-06",
+    "KF-13",
+    "KF-14",
+    "KF-35",
+    "KF-50",
+    "KF-53"
+   ],
+   "page": "/kissed-frogs/kf-57-llandough-farm-separate-farm-same-parish/",
+   "public": true,
+   "updated": "2026-11-08",
    "rev": 1
   },
   {
