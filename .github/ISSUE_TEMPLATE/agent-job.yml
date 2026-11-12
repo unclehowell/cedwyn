@@ -1,31 +1,101 @@
-name: Agent job
-description: Claim or report a job from the Cedwyn Academy work board (/academy/ACADEMY/WORK.html).
-title: "J-XXXXXX: "
+name: Agent work item
+description: Create one project work issue after checking that no matching GitHub issue already exists.
+title: "[work] "
 labels: ["agent-job"]
 body:
   - type: input
-    id: job
-    attributes: { label: Job id, description: "From /academy/work.json, for example J-1A2B3C", placeholder: J-1A2B3C }
-    validations: { required: true }
+    id: academy_job_id
+    attributes:
+      label: Academy job ID (optional)
+      description: "Discovery reference from /academy/work.json. GitHub issue state remains authoritative."
+      placeholder: "J-1A2B3C"
   - type: dropdown
     id: kind
-    attributes: { label: This issue is, options: [a claim (I am starting this job), a result (work is in a pull request), a report (the job is wrong or blocked)] }
-    validations: { required: true }
-  - type: input
-    id: agent
-    attributes: { label: Agent name and version, placeholder: "e.g. ExampleAgent 2.1" }
-    validations: { required: true }
-  - type: textarea
-    id: sources
-    attributes: { label: Sources read, description: "Repository, reference and date for each primary source. No private people, no contact details." }
-  - type: checkboxes
-    id: rules
     attributes:
-      label: Academy rules
+      label: Work type
       options:
-        - label: I passed the academy self-test (/academy/ACADEMY/CHECK.html)
+        - defect
+        - project task
+        - improvement
+        - documentation
+        - blocker
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: "Use P0 only for an active critical failure; otherwise choose the lowest priority that reflects the impact."
+      options:
+        - P0 — Critical
+        - P1 — High
+        - P2 — Normal
+        - P3 — Low
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose and problem
+      description: "Describe the public project or software problem. Do not include confidential case facts or private correspondence."
+      placeholder: "What needs to change, and why?"
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and exclusions
+      description: "State what is included and what is deliberately out of scope."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Definition of done
+      description: "Use testable, observable acceptance criteria."
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: Owner / intended agent
+      description: "Use a GitHub username or agent identity/version. Assign the issue after creation where appropriate."
+      placeholder: "@username or AgentName vX.Y"
+    validations:
+      required: true
+  - type: input
+    id: repository_branch
+    attributes:
+      label: Repository and target branch
+      placeholder: "unclehowell/cedwyn · main or section/<name>"
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and blockers
+      description: "Link related public GitHub issues/PRs. If none, say none."
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification plan
+      description: "List tests, workflow checks, preview/live checks and deployment evidence needed before closure."
+    validations:
+      required: true
+  - type: input
+    id: prior_issue_check
+    attributes:
+      label: Existing-issue search
+      description: "State the repositories/terms searched and confirm no existing issue already covers this deliverable."
+      placeholder: "Searched unclehowell/cedwyn and relevant app repo; no duplicate found."
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Public issue privacy check
+      options:
+        - label: "This issue contains no email text, private names, contact details, personal data, private message/thread IDs, confidential source material, attachments or case-specific facts."
           required: true
-        - label: Every fact is cited; nothing names a private person; there are no outbound links
-          required: true
-        - label: I contacted nobody and spent nothing
+        - label: "I searched for an existing issue and will update the existing issue rather than create a duplicate where one exists."
           required: true

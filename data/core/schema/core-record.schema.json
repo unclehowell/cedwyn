@@ -2,7 +2,7 @@
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "$id": "https://cedwyn.bucklerfamily.estate/_cedwyn/core/core-record.schema.json",
  "title": "Cedwyn core record",
- "version": "0.3.0",
+ "version": "0.4.0",
  "description": "One record in the Cedwyn central catalogue (data/core/records/*.json). Public text: neutral third person; provenance names the source document only.",
  "type": "object",
  "required": [
@@ -14,7 +14,8 @@
  "properties": {
   "id": {
    "type": "string",
-   "pattern": "^(EV|MR|CC|KF|RET|PL|PE|EVT|AR|TS|OBS|TOC)-[A-Z0-9-]+$"
+   "pattern": "^(EV|MR|CC|KF|RET|PL|PE|EVT|AR|TS|OBS|TOC)-[A-Z0-9-]+$",
+   "description": "One numbering format throughout the catalogue: PREFIX-NNNN, the number zero-padded to at least 4 digits. Past 9999 the number simply gets longer (EV-10000 … EV-1000000 and beyond); existing ids are never rewritten or re-padded. Sort and compare ids by their number, never as plain strings (EV-10000 comes after EV-9999). Email records (kind email) are numbered in the EV series, continuing after the highest EV in use; the two withheld digit strings are skipped. New ids: next = highest number in the series + 1."
   },
   "kind": {
    "enum": [
@@ -28,7 +29,8 @@
     "observation",
     "testimony",
     "catalogue_candidate",
-    "foi_finding"
+    "foi_finding",
+    "email"
    ]
   },
   "slug": {
@@ -342,6 +344,102 @@
      "items": {
       "type": "string"
      }
+    }
+   }
+  },
+  "email": {
+   "type": "object",
+   "description": "kind=email only (schema 0.4.0): one email message, catalogued as an artifact with an id in the EV series (EV-0906 onwards). Metadata for read-models (ERP, email archive); the redacted text sits in transcript. Redacted passages are black blocks (U+2588); the originals are not published.",
+   "properties": {
+    "message_id": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "Archive id gm-<mailbox message id>; first dedupe key. Null where the id is withheld."
+    },
+    "thread_id": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "thread_slug": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "conversation": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "direction": {
+     "enum": [
+      "sent",
+      "received"
+     ]
+    },
+    "datetime": {
+     "type": "string"
+    },
+    "from": {
+     "type": "string",
+     "description": "Sender as shown (officials by name or role); empty for sent mail."
+    },
+    "institutions": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "id": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "name": {
+        "type": "string"
+       }
+      }
+     }
+    },
+    "subject": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "Verbatim subject line; null while held for editorial review."
+    },
+    "attachments": {
+     "type": "integer"
+    },
+    "dedupe_key": {
+     "type": "string",
+     "description": "sha1(date to the minute | sender | subject), normalised; second dedupe key."
+    },
+    "origin": {
+     "type": "string"
+    },
+    "transcript_public": {
+     "type": "boolean"
+    },
+    "ev": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "The evidence record (EV-…) of the request this message belongs to, where the case-mail index names one."
+    },
+    "redactions": {
+     "type": "integer",
+     "description": "How many passages of this message are black-blocked in the public text."
+    },
+    "headers_only": {
+     "type": "boolean",
+     "description": "True for subject-access correspondence: sender, date and subject are shown, no transcript is published."
     }
    }
   },

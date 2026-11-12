@@ -1,0 +1,717 @@
+{
+ "schema": "cedwyn-daily-refresh/1.0",
+ "note": "Daily change-gated webapp refresh (owner ask 11 Nov 2026). Odd live N-of-59 slots are checked by GitHub Actions (webapps-daily-odd.yml), even slots by the Cloudflare Worker ghf-status cron. Apps without a live number use their navigator number. One site build at most per day, only when something changed. — Sion's Tab agent",
+ "margin_minutes": 45,
+ "apps": [
+  {
+   "slot": 1,
+   "nav_no": null,
+   "app": "wiki",
+   "repo": "unclehowell/cedwyn-wiki",
+   "mode": "split-repo",
+   "old_branch": "section/wiki",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 2,
+   "nav_no": null,
+   "app": "docs",
+   "repo": "unclehowell/cedwyn-docs",
+   "mode": "split-repo",
+   "old_branch": "docs",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 3,
+   "nav_no": null,
+   "app": "wayback",
+   "repo": "unclehowell/cedwyn-wayback",
+   "mode": "split-repo",
+   "old_branch": "wayback",
+   "lane": "github",
+   "central_view": true
+  },
+  {
+   "slot": 4,
+   "nav_no": null,
+   "app": "maps",
+   "repo": "unclehowell/cedwyn-maps",
+   "mode": "split-repo",
+   "old_branch": "maps",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 5,
+   "nav_no": null,
+   "app": "infographic",
+   "repo": "unclehowell/cedwyn-infographic",
+   "mode": "split-repo",
+   "old_branch": "infographic",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 6,
+   "nav_no": null,
+   "app": "ebooks",
+   "repo": "unclehowell/cedwyn-ebooks",
+   "mode": "split-repo",
+   "old_branch": "ebooks",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 7,
+   "nav_no": null,
+   "app": "story",
+   "repo": "unclehowell/cedwyn-story",
+   "mode": "split-repo",
+   "old_branch": "bpvsbuckler",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 9,
+   "nav_no": null,
+   "app": "fb",
+   "repo": "unclehowell/cedwyn-fb",
+   "mode": "split-repo",
+   "old_branch": "fb",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 10,
+   "nav_no": null,
+   "app": "arcade",
+   "repo": "unclehowell/cedwyn-arcade",
+   "mode": "split-repo",
+   "old_branch": "arcade-final-serving-20261104",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 11,
+   "nav_no": null,
+   "app": "chess",
+   "repo": "unclehowell/cedwyn-chess",
+   "mode": "split-repo",
+   "old_branch": "chess",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 12,
+   "nav_no": null,
+   "app": "csscpsg",
+   "repo": "unclehowell/cedwyn-csscpsg",
+   "mode": "split-repo",
+   "old_branch": "csscpsg",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 13,
+   "nav_no": null,
+   "app": "courtdrills",
+   "repo": "unclehowell/cedwyn-courtdrills",
+   "mode": "split-repo",
+   "old_branch": "courtdrills",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 14,
+   "nav_no": null,
+   "app": "fcg",
+   "repo": "unclehowell/cedwyn-fcg",
+   "mode": "split-repo",
+   "old_branch": "section/fcg",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 15,
+   "nav_no": null,
+   "app": "oldbill",
+   "repo": "unclehowell/cedwyn-oldbill",
+   "mode": "split-repo",
+   "old_branch": "oldbill",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 16,
+   "nav_no": null,
+   "app": "accounts",
+   "repo": "unclehowell/cedwyn-accounts",
+   "mode": "split-repo",
+   "old_branch": "accounts",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 17,
+   "nav_no": null,
+   "app": "authorities",
+   "repo": "unclehowell/cedwyn-authorities",
+   "mode": "split-repo",
+   "old_branch": "ghf-public-authorities",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 18,
+   "nav_no": null,
+   "app": "wdtk",
+   "repo": "unclehowell/cedwyn-wdtk",
+   "mode": "split-repo",
+   "old_branch": "whatdotheyknow",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 19,
+   "nav_no": null,
+   "app": "review",
+   "repo": "unclehowell/cedwyn-review",
+   "mode": "split-repo",
+   "old_branch": "ghf-independent-review",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 20,
+   "nav_no": null,
+   "app": "research",
+   "repo": "unclehowell/cedwyn-research",
+   "mode": "mirror",
+   "old_branch": "section/research",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 21,
+   "nav_no": null,
+   "app": "qa",
+   "repo": "unclehowell/cedwyn-qa",
+   "mode": "split-repo",
+   "old_branch": "qa",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 22,
+   "nav_no": null,
+   "app": "projects",
+   "repo": "unclehowell/cedwyn-projects",
+   "mode": "split-repo",
+   "old_branch": "projects",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 23,
+   "nav_no": null,
+   "app": "app",
+   "repo": "unclehowell/cedwyn-app",
+   "mode": "split-repo",
+   "old_branch": "section/app",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 24,
+   "nav_no": null,
+   "app": "chat",
+   "repo": "unclehowell/cedwyn-chat",
+   "mode": "split-repo",
+   "old_branch": "section/chat",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 25,
+   "nav_no": null,
+   "app": "watchtower",
+   "repo": "unclehowell/cedwyn-watchtower",
+   "mode": "split-repo",
+   "old_branch": "watchtower",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 26,
+   "nav_no": null,
+   "app": "email",
+   "repo": "unclehowell/cedwyn-emails",
+   "mode": "split-repo",
+   "old_branch": "emails",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 27,
+   "nav_no": null,
+   "app": "dartboard",
+   "repo": "unclehowell/cedwyn-dartboard",
+   "mode": "split-repo",
+   "old_branch": "dartboard",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 28,
+   "nav_no": null,
+   "app": "estate",
+   "repo": "unclehowell/cedwyn-estate",
+   "mode": "split-repo",
+   "old_branch": "section/estate",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 29,
+   "nav_no": null,
+   "app": "directory",
+   "repo": "unclehowell/cedwyn-directory",
+   "mode": "split-repo",
+   "old_branch": "directory",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 30,
+   "nav_no": null,
+   "app": "patagonia",
+   "repo": "unclehowell/cedwyn-patagonia",
+   "mode": "split-repo",
+   "old_branch": "section/patagonia",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 31,
+   "nav_no": null,
+   "app": "wales",
+   "repo": "unclehowell/cedwyn-wales-3d",
+   "mode": "split-repo",
+   "old_branch": "section/wales-3d",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 32,
+   "nav_no": null,
+   "app": "shop",
+   "repo": "unclehowell/cedwyn-shop",
+   "mode": "split-repo",
+   "old_branch": "merch",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 33,
+   "nav_no": null,
+   "app": "familytree",
+   "repo": "unclehowell/cedwyn-familytree",
+   "mode": "split-repo",
+   "old_branch": "familytree",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 34,
+   "nav_no": null,
+   "app": "kissed-frogs",
+   "repo": "unclehowell/cedwyn-kissed-frogs",
+   "mode": "split-repo",
+   "old_branch": "kissed-frogs",
+   "lane": "cloudflare",
+   "central_view": true
+  },
+  {
+   "slot": 35,
+   "nav_no": null,
+   "app": "whattheydontsay",
+   "repo": "unclehowell/cedwyn-whattheydontsay",
+   "mode": "split-repo",
+   "old_branch": "whattheydontsay",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 36,
+   "nav_no": null,
+   "app": "blog",
+   "repo": "unclehowell/cedwyn-blog",
+   "mode": "split-repo",
+   "old_branch": "blog",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 37,
+   "nav_no": null,
+   "app": "hubspot",
+   "repo": "unclehowell/cedwyn-hubspot",
+   "mode": "split-repo",
+   "old_branch": "webapp/hubspot-20261101",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 38,
+   "nav_no": null,
+   "app": "that-old-chestnut",
+   "repo": "unclehowell/cedwyn-that-old-chestnut",
+   "mode": "split-repo",
+   "old_branch": "that-old-chestnut",
+   "lane": "cloudflare",
+   "central_view": true
+  },
+  {
+   "slot": 39,
+   "nav_no": null,
+   "app": "forensic",
+   "repo": "unclehowell/cedwyn-forensic",
+   "mode": "split-repo",
+   "old_branch": "section/forensic",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 40,
+   "nav_no": null,
+   "app": "mr-wolf",
+   "repo": "unclehowell/cedwyn-mr-wolf",
+   "mode": "split-repo",
+   "old_branch": "section/mr-wolf",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 41,
+   "nav_no": null,
+   "app": "releases",
+   "repo": "unclehowell/cedwyn-releases",
+   "mode": "split-repo",
+   "old_branch": "releases",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 42,
+   "nav_no": null,
+   "app": "tithe-h3",
+   "repo": "unclehowell/cedwyn-tithe-h3",
+   "mode": "split-repo",
+   "old_branch": "section/tithe-h3",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 43,
+   "nav_no": null,
+   "app": "cloudflare",
+   "repo": "unclehowell/cedwyn-cloudflare",
+   "mode": "split-repo",
+   "old_branch": "section/cloudflare",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 44,
+   "nav_no": null,
+   "app": "spill",
+   "repo": "unclehowell/cedwyn-spill",
+   "mode": "split-repo",
+   "old_branch": "section/spill",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 45,
+   "nav_no": null,
+   "app": "analytics",
+   "repo": "unclehowell/cedwyn-analytics",
+   "mode": "split-repo",
+   "old_branch": "section/analytics",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 46,
+   "nav_no": null,
+   "app": "chubut-h3",
+   "repo": "unclehowell/cedwyn-chubut-h3",
+   "mode": "split-repo",
+   "old_branch": "section/chubut-h3",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 47,
+   "nav_no": null,
+   "app": "garden",
+   "repo": "unclehowell/cedwyn-garden",
+   "mode": "split-repo",
+   "old_branch": "garden",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 48,
+   "nav_no": null,
+   "app": "documentary",
+   "repo": "unclehowell/cedwyn-documentary",
+   "mode": "split-repo",
+   "old_branch": "cedwyn-movie",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 49,
+   "nav_no": null,
+   "app": "nomenclature",
+   "repo": "unclehowell/cedwyn-nomenclature",
+   "mode": "split-repo",
+   "old_branch": "nomenclature",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 50,
+   "nav_no": null,
+   "app": "records",
+   "repo": "unclehowell/cedwyn-records",
+   "mode": "split-repo",
+   "old_branch": "ghf-primary-records",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 51,
+   "nav_no": null,
+   "app": "fb2",
+   "repo": "unclehowell/cedwyn-fb",
+   "mode": "split-repo",
+   "old_branch": "fb",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 52,
+   "nav_no": null,
+   "app": "nft-art",
+   "repo": "unclehowell/cedwyn-nft-art",
+   "mode": "split-repo",
+   "old_branch": "nft-art",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 53,
+   "nav_no": null,
+   "app": "cyberspace",
+   "repo": "unclehowell/cedwyn-cyberspace",
+   "mode": "split-repo",
+   "old_branch": "section/cyberspace",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 54,
+   "nav_no": null,
+   "app": "meeting",
+   "repo": "unclehowell/cedwyn-meeting",
+   "mode": "split-repo",
+   "old_branch": "2026-10-22",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 55,
+   "nav_no": null,
+   "app": "emails",
+   "repo": "unclehowell/cedwyn-emails",
+   "mode": "split-repo",
+   "old_branch": "emails",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 56,
+   "nav_no": null,
+   "app": "preservation",
+   "repo": "unclehowell/cedwyn-preservation",
+   "mode": "split-repo",
+   "old_branch": null,
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": 57,
+   "nav_no": null,
+   "app": "language-forensics",
+   "repo": "unclehowell/coming-soon-57",
+   "mode": "split-repo",
+   "old_branch": null,
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 58,
+   "nav_no": null,
+   "app": "piano-hero",
+   "repo": "unclehowell/cedwyn-piano-hero",
+   "mode": "split-repo",
+   "old_branch": null,
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 41,
+   "app": "wales-3d",
+   "repo": "unclehowell/cedwyn-wales-3d",
+   "mode": "split-repo",
+   "old_branch": "section/wales-3d",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 48,
+   "app": "argentina-3d",
+   "repo": "unclehowell/cedwyn-argentina-3d",
+   "mode": "split-repo",
+   "old_branch": "section/argentina-3d",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 49,
+   "app": "hive",
+   "repo": "unclehowell/cedwyn-hive",
+   "mode": "split-repo",
+   "old_branch": "hive",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 50,
+   "app": "terrain",
+   "repo": "unclehowell/terrain",
+   "mode": "split-repo",
+   "old_branch": "",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 51,
+   "app": "revival-ar",
+   "repo": "unclehowell/cedwyn-revival-ar",
+   "mode": "mirror",
+   "old_branch": "section/revival-ar",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 52,
+   "app": "peekaboo",
+   "repo": "unclehowell/cedwyn-peekaboo",
+   "mode": "split-repo",
+   "old_branch": "section/peekaboo",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 53,
+   "app": "bloculous",
+   "repo": "unclehowell/cedwyn-bloculous",
+   "mode": "split-repo",
+   "old_branch": "section/bloculous",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 54,
+   "app": "theories",
+   "repo": "unclehowell/cedwyn-theories",
+   "mode": "split-repo",
+   "old_branch": "section/theories",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 55,
+   "app": "garden-store",
+   "repo": "unclehowell/cedwyn-garden-store",
+   "mode": "split-repo",
+   "old_branch": "section/garden-store",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 56,
+   "app": "storytime",
+   "repo": "unclehowell/cedwyn-storytime",
+   "mode": "split-repo",
+   "old_branch": "storytime",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 57,
+   "app": "molt",
+   "repo": "unclehowell/cedwyn-molt",
+   "mode": "split-repo",
+   "old_branch": "molt",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 58,
+   "app": "gallery",
+   "repo": "unclehowell/cedwyn-gallery",
+   "mode": "split-repo",
+   "old_branch": "gallery",
+   "lane": "cloudflare",
+   "central_view": false
+  },
+  {
+   "slot": null,
+   "nav_no": 59,
+   "app": "internetarchive",
+   "repo": "unclehowell/cedwyn-internetarchive",
+   "mode": "split-repo",
+   "old_branch": "internetarchive",
+   "lane": "github",
+   "central_view": false
+  },
+  {
+   "slot": 59,
+   "nav_no": null,
+   "app": "uptime",
+   "repo": "unclehowell/cedwyn-uptime",
+   "mode": "split-repo",
+   "old_branch": null,
+   "lane": "github",
+   "central_view": false
+  }
+ ]
+}

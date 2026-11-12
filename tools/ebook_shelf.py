@@ -14,12 +14,14 @@ Runs after ebook_editions.py (site.py). Touches only dist/ebooks/index.html:
 - the payment line (#eb-trust) sits below the shelf, just above the questions. tidy() is idempotent and also runs on an already-built page.
 1.2.1 (30 Oct 2026, owner 19:21): the version drop-down is labelled "Select a version" (visible label), newest preselected, options read
   "v0.0.2 — £4.99" / "v0.0.1 — free"; the Buy/Read button still follows the choice (sv-js); 44 px select.
+1.3.0 (3 Nov 2026): one "Start free" line under "The books" heading opens the Wiki free first edition (the card's own free link).
 Prices, checkout links and utm parameters are copied from the page as they are; nothing new is created."""
 import json, html, pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 E = html.escape
-VERSION = '1.2.1'
-VERSIONS = [('1.2.1', '30 Oct 2026', 'Select a version label; price in each option'),
+VERSION = '1.3.0'
+VERSIONS = [('1.3.0', '3 Nov 2026', 'One call-to-action line under the heading: the Wiki free first edition in one tap'),
+            ('1.2.1', '30 Oct 2026', 'Select a version label; price in each option'),
             ('1.2.0', '30 Oct 2026', 'Header, shelf, then questions: book details in an info modal per title; bundle card on the shelf'),
             ('1.1.0', '27 Oct 2026', 'Poster-card shelf; cover opens the free edition; titles link only to a book’s own page'),
             ('1.0.1', '26 Oct 2026', 'Editions table shown as cards on phones'),
@@ -210,6 +212,18 @@ def tidy(t, D):
         at = t.find('<section class="eb-copy" id="faq"')
         if at < 0: at = t.find('</section>', t.find('id="shelf"')) + len('</section>')
         t = t[:at] + line + t[at:]
+    # 1.3.0 (3 Nov 2026; owner 04:14 GMT: "Do whatever you think will drive website traffic and sales"): one call-to-action line under
+    # "The books" heading: the Wiki's free first edition (the whole book) opens in the reader in one tap. It reuses the Wiki card's own
+    # free link (same reader, same data-gb event). One plain text link, not a block of explanation; idempotent (id="sh-lead").
+    if 'id="sh-lead"' not in t:
+        cov = re.search(r'<li class="sh-card" id="great-house-farm-wiki">\s*<a class="sh-cov" ([^>]*)>', t)
+        hh = t.find('<h2 class="sh-h">The books</h2>')
+        if cov and hh > 0:
+            attrs = re.sub(r'\s*aria-label="[^"]*"', '', cov.group(1))
+            at = hh + len('<h2 class="sh-h">The books</h2>')
+            t = (t[:at] + '<p class="sh-lead" id="sh-lead" style="margin:-4px 0 14px;font-size:15px;line-height:1.4">'
+                 '<a ' + attrs + ' data-cta="shelf-lead" style="font-weight:700;text-decoration:underline;text-underline-offset:3px">'
+                 'Start free: read the whole Wiki, first edition (v0.0.1) &#8250;</a></p>' + t[at:])
     if 'id="wi-css"' not in t:
         m = re.search(r'</head\s*>', t, re.I)
         if m: t = t[:m.start()] + WI_CSS + t[m.start():]

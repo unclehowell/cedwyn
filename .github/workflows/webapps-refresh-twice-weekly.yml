@@ -1,0 +1,76 @@
+name: webapps-refresh-twice-weekly
+# cedwyn#582. Mon + Thu early morning: snapshots the central catalogue (data/core, served by /api/catalogue) and
+# dispatches ONE build-cedwyn run on main if none is queued or running; the build's "Data views" step regenerates every
+# webapp's data from data/core. Writes resync/refresh/ on branch evidence-resync. Never edits a record, never merges.
+# Optional LLM triage: with an NVIDIA_API_KEY (tried first), ANTHROPIC_API_KEY or OPENAI_API_KEY repo secret, labels up to
+# 40 review candidates that have no label yet; a provider answering 401/429 or timing out falls through to the next, and
+# the run never fails on it. — Sion's Tab agent
+on:
+  schedule:
+    - cron: '40 6 * * 1,4'   # 06:40 UTC Monday and Thursday (06:40 London in winter, 07:40 in summer)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Snapshot and report only; do not dispatch the site build'
+        type: boolean
+        default: true
+permissions:
+  contents: write
+  actions: write
+  issues: write
+concurrency:
+  group: evidence-resync   # shared with evidence-resync-daily: the two never push to the data branch at once
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ISSUE: '582'
+    steps:
+      - name: Data branch (tiny orphan branch)
+        uses: actions/checkout@v4
+        with: { ref: evidence-resync, path: data, fetch-depth: 1 }
+      - name: Script from this commit
+        run: |
+          curl -fsSL "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/.github/evidence-resync/refresh.py" -o refresh.py
+          curl -fsSL "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/.github/evidence-resync/resync.py" -o resync.py
+      - name: Snapshot the central DB, dispatch one build if none is running
+        id: r
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          NVIDIA_MODEL: ${{ vars.NVIDIA_MODEL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          RESYNC_LLM_MODEL: ${{ vars.RESYNC_LLM_MODEL }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then python3 refresh.py --data data --dry-run; else python3 refresh.py --data data; fi
+      - name: Commit the snapshot
+        run: |
+          cd data
+          git config user.name "cedwyn-evidence-resync"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add resync
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -q -m "resync: webapps refresh snapshot $(date -u +%F) (cedwyn#582) — Sion's Tab agent"
+          for i in 1 2 3; do git pull -q --rebase origin evidence-resync && git push origin HEAD:evidence-resync && exit 0; sleep 5; done; exit 1
+      - name: Note on the tracking issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ACTION: ${{ steps.r.outputs.action }}
+          TOTAL: ${{ steps.r.outputs.total }}
+          PENDING: ${{ steps.r.outputs.pending }}
+          TRIAGE: ${{ steps.r.outputs.triage }}
+        run: |
+          python3 - <<'EOF' > body.json
+          import json, os, datetime
+          d = datetime.datetime.utcnow().date().isoformat()
+          b = (f"**Webapps refresh {d}:** central catalogue {os.environ.get('TOTAL')} records; "
+               f"{os.environ.get('PENDING')} candidates awaiting review. Label triage: {os.environ.get('TRIAGE') or 'not run'}. "
+               f"Build: {os.environ.get('ACTION')}. "
+               "Snapshot: `resync/refresh/latest.json` on branch `evidence-resync`.\n\n— Sion's Tab agent (webapps-refresh workflow)")
+          print(json.dumps({"body": b}))
+          EOF
+          curl -fsS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/issues/$ISSUE/comments" -d @body.json -o /dev/null

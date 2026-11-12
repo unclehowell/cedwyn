@@ -54,7 +54,8 @@ def main():
     require("NOCLIP.test(location.pathname)" not in level_code, "legacy route exclusions still block text reader")
     require("data-cw-nolevels" in level_code, "explicit per-page opt-out was lost")
     require("buildWholePage(P)" in level_code, "unstructured prose fallback is missing")
-    require("clean(P.textContent).length < 240" in level_code, "text fallback threshold changed unexpectedly")
+    # 9 Nov 2026: cw-graph 1.3.3 measures the page without its <noscript>/<template> text (vtx); the 240-character threshold is unchanged. — Sion's Tab agent
+    require(any(s in level_code for s in ("clean(P.textContent).length < 240", "clean(vtx(P)).length < 240")), "text fallback threshold changed unexpectedly")
     for token in ("form,input,select,textarea,button,canvas,video,audio,iframe,object,embed",
                   '[role="application"]', '[role="grid"]', '[role="button"]'):
         require(token in level_code, "interactive safety selector missing: " + token)

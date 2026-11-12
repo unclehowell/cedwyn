@@ -21,7 +21,7 @@
    "config": "ingredients.json",
    "theme": "infographic",
    "file": "index.html",
-   "n": 13
+   "n": 12
   },
   {
    "config": "ingredients.json",
@@ -51,7 +51,7 @@
    "config": "ingredients.json",
    "theme": "infographic",
    "file": "index.html",
-   "n": 42
+   "n": 50
   },
   {
    "config": "ingredients.json",
@@ -952,12 +952,6 @@
    "theme": "wiki",
    "file": "where-things-stand/index.html",
    "n": 3
-  },
-  {
-   "config": "ingredients.json",
-   "theme": "wayback",
-   "file": "index.html",
-   "n": 1
   },
   {
    "config": "ingredients.json",
@@ -3008,7 +3002,7 @@
   {
    "config": "ingredients.json",
    "theme": "research",
-   "file": "evidence/index.html",
+   "file": "evidence/register/index.html",
    "n": 1
   },
   {
@@ -10718,13 +10712,13 @@
   {
    "config": "ingredients.json",
    "theme": "research",
-   "file": "evidence/index.html",
+   "file": "evidence/pending-evidence/index.html",
    "n": 1
   },
   {
    "config": "ingredients.json",
    "theme": "research",
-   "file": "evidence/pending-evidence/index.html",
+   "file": "evidence/register/index.html",
    "n": 1
   },
   {
@@ -10738,12 +10732,6 @@
    "theme": "wiki",
    "file": "evidence/ev-0003-bute-records-cedfin-ty-mawr/index.html",
    "n": 5
-  },
-  {
-   "config": "ingredients.json",
-   "theme": "wiki",
-   "file": "evidence/index.html",
-   "n": 1
   },
   {
    "config": "ingredients.json",
@@ -10875,7 +10863,7 @@
    "config": "ingredients.json",
    "theme": "infographic",
    "file": "index.html",
-   "n": 3
+   "n": 4
   },
   {
    "config": "ingredients.json",
@@ -12039,18 +12027,6 @@
    "config": "ingredients.json",
    "theme": "research",
    "file": "evidence/ev-0085-glamorgan-village-book-demolition-page/index.html",
-   "n": 1
-  },
-  {
-   "config": "ingredients.json",
-   "theme": "research",
-   "file": "evidence/index.html",
-   "n": 1
-  },
-  {
-   "config": "ingredients.json",
-   "theme": "research",
-   "file": "evidence/index.html",
    "n": 1
   },
   {
@@ -13568,7 +13544,7 @@
   {
    "config": "spa-basepath.json",
    "theme": "dartboard",
-   "file": "assets/index-BVrVuqFh.js",
+   "file": "assets/index-FWJ5-DrY.js",
    "n": 1
   },
   {
@@ -13632,6 +13608,12 @@
    "theme": "research",
    "file": "index.html",
    "find": "clandestine registration"
+  },
+  {
+   "config": "ingredients.json",
+   "theme": "wayback",
+   "file": "index.html",
+   "find": "\">Text</a></div>"
   },
   {
    "config": "ingredients.json",
@@ -13710,6 +13692,18 @@
    "theme": "story",
    "file": "**/*.html",
    "find": "Mary's father. Tenant of the house and fields from 1908; pai"
+  },
+  {
+   "config": "ingredients.json",
+   "theme": "research",
+   "file": "evidence/index.html",
+   "find": "-penarth-pp64-65/\">EV-0645</a> — Printed local-history book,"
+  },
+  {
+   "config": "ingredients.json",
+   "theme": "research",
+   "file": "evidence/index.html",
+   "find": "the demolition of 6 December 1988</li></ul></section>"
   },
   {
    "config": "spa-basepath.json",

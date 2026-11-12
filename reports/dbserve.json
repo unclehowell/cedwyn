@@ -1,33 +1,33 @@
 {
- "db_version": "5fc18f47c831",
- "paths_served_from_db": 7441,
- "blobs": 4848,
+ "db_version": "595d04a2b78c",
+ "paths_served_from_db": 7677,
+ "blobs": 5059,
  "files_dropped": {
   "document": 3267,
-  "image": 1451,
-  "data": 1402,
+  "image": 1498,
+  "data": 1547,
   "audio": 84
  },
  "bytes_dropped": {
   "document": 1254035789,
-  "image": 128270263,
-  "data": 38608763,
+  "image": 133470673,
+  "data": 41849799,
   "audio": 14922925
  },
- "bytes_dropped_total": 1435837740,
+ "bytes_dropped_total": 1444279186,
  "files_kept_as_well": {
-  "image": 1090,
-  "data": 106,
+  "image": 1098,
+  "data": 142,
   "document": 12
  },
  "kept_why": {
-  "named in page markup": 731,
-  "link/meta tag": 45,
-  "css url()": 27,
+  "named in page markup": 739,
+  "link/meta tag": 42,
+  "css url()": 28,
   "download file (.csv opened by a plain link, outside the service worker)": 24,
-  "fetched by script": 16,
-  "fetched by browsers outside a service worker": 15,
-  "webapp database / A2UI surface (read without a service worker)": 18,
+  "webapp database / A2UI surface (read without a service worker)": 51,
+  "fetched by script": 20,
+  "fetched by browsers outside a service worker": 16,
   "page without runtime": 48,
   "flower gallery first-visit image/download": 268,
   "fetched by script (built path)": 16
@@ -43,6 +43,10 @@
   ],
   [
    "/_blob/079ab26f1bf9d91a.svg",
+   "named in page markup"
+  ],
+  [
+   "/_blob/09b1c36618c72fb9.png",
    "named in page markup"
   ],
   [
@@ -107,10 +111,6 @@
   ],
   [
    "/_blob/51ea9dce8f15d163.svg",
-   "named in page markup"
-  ],
-  [
-   "/_blob/5496de611ebf366b.svg",
    "named in page markup"
   ]
  ],

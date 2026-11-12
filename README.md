@@ -6,7 +6,7 @@ The 44 source themes remain separately buildable and retain their legacy routes.
 
 The central SQLite database remains the source of truth. The browser reads it through chunked, read-only SQLite; the build also emits smaller, theme-local SQLite slices containing relevant artifacts, assessments, observations and references. Multi-theme areas such as Wiki and Arcade receive an aggregate slice. The Wiki slice deliberately includes the full Level 1 register, including pending records and their explicit unassessed status; the other area slices remain relevance-filtered. These are static catalogue databases, not separate authoring stores or a server-side write API.
 
-The old repo (`unclehowell/datro`) and the old subdomains are untouched: this repo only reads from them.
+The private `unclehowell/datro` security/technology project is outside the BucklerFamily.Estate build. The manual DATRO-to-Cedwyn mirror workflow has been removed. Existing Pages projects and custom-domain bindings are left untouched: this separation does not detach domains, edit DNS or redirect traffic.
 
 ## What is in this repo
 
@@ -14,12 +14,12 @@ The old repo (`unclehowell/datro`) and the old subdomains are untouched: this re
 |---|---|
 | `main` | The build: `themes.json`, `tools/`, `web/`, workflows, build reports |
 | `site` | The built site Cloudflare Pages serves (themes, `/_blob/` store, `/db/` chunks) |
-| every other branch | A mirror of the datro branch of the same name, with its history (see "History rewrite") |
+| legacy app / snapshot branches | Temporary compatibility or snapshot copies while the final remaining apps are migrated. Themes marked `deploy: "repo"` are fetched only from their dedicated repository; these branches are not fetched or used as fallbacks. |
 
 ## How it works
 
-1. **Mirror** (`.github/workflows/mirror.yml`): `git clone --mirror` of datro, then every branch and tag is pushed here.
-2. **Assemble** (`tools/assemble.py`): each theme's site is copied out of its mirrored branch (the same folder its old Pages project served).
+1. **Dedicated sources** (`split-repos.json`): each migrated webapp names its own repository. For `deploy: "repo"`, the build fetches that repository directly; a missing repository or missing `index.html` fails the build rather than falling back to a Cedwyn or DATRO-derived branch.
+2. **Assemble** (`tools/assemble.py`): the estate shell collects compiled pages from those dedicated repositories. Only apps still marked as migration exceptions use a legacy snapshot/crawl path.
    Sites with no static branch output (Workers, the apex domain's own repo) are copied by a read-only crawl of the live site.
 3. **Shared assets** (`tools/fetch_missing.py`): scripts, styles and images that one site loads from another (for example the shared header scripts on the apex domain) are copied read-only from the live site into the theme they belong to.
 4. **Rewrite** (`tools/rewrite.py`):

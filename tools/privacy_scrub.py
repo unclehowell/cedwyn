@@ -42,6 +42,7 @@ R = [
   (r"\b(?:flywheel |research )cycle \d+\b", "research", re.I),
   (r"\bcycle (\d+) audit\b", "audit"),
   (r"\s+by Tab(?:, for the owner)?(?![\w\u2019'-])", ""),
+  (rf"(?<!site )\bowner{A}s instruction\b(?!s)", "instruction"),   # backstop: projects writer v1.6.41 emitted "project owner's instruction load"; CHECK already fails on it, rewrite it first
   # P-133 (31 Oct 2026): public pages never name the owner as a source or decision-maker, and never carry instruction
   # voice. "must be reconciled" becomes a plain statement that it is not yet reconciled. The public voice check
   # (tools/check_public_voice.py) flagged 32 such lines in build 1a2de65.
@@ -153,35 +154,146 @@ def corr(t, rel):
             t, k = rx.subn(rep, t); n += k
         t = t.replace('\ue000', KEEP)
     return t, n
+def _one(args):
+    """Scrub and check one file. Independent of every other file, so main() can run it in a process pool.
+    Returns (changed, hits, left, warnings) with exactly the messages the serial loop used to emit."""
+    f, root, check_only = args
+    f = pathlib.Path(f); root = pathlib.Path(root); changed = hits = 0; left = []; warns = []
+    try: t = f.read_text('utf-8')
+    except Exception: return 0, 0, left, warns
+    rel = f.relative_to(root).as_posix()
+    if f.suffix.lower() == '.json':
+        probs = task_index_problems(t)
+        if probs:
+            for pr in probs[:5]: left.append(f'{rel}: task-index contract: {pr}')
+        else:
+            governed, gn = govern_task_index(t)
+            if governed is not None and governed != t:
+                if not check_only: f.write_text(governed, 'utf-8')
+                t = governed; changed = 1
+    if not check_only:
+        sx = f.suffix.lower()
+        new, n = scrub(t, 'code' if sx in ('.js', '.mjs', '.json', '.jsonl', '.webmanifest', '.svg') else 'html' if sx in ('.html', '.htm', '.xml', '.rss', '.atom') else 'text')
+        new, k = corr(new, rel); n += k
+        if n and new != t:
+            if f.suffix.lower() == '.json':
+                # P-136 (31 Oct 2026): blame the scrub only for JSON it broke. A file an earlier step already left invalid
+                # (build 531e0a8: selfcontain's link removal ate a quote escape in story/api/qa.json) keeps the scrubbed
+                # text, so the attribution still goes, and is named as a warning. — Sion's Tab agent
+                try: json.loads(new)
+                except Exception:
+                    try: json.loads(t); was_valid = True
+                    except Exception: was_valid = False
+                    if was_valid: new = t; left.append(f'{f}: json would break, left for review')
+                    else: warns.append(f'::warning::privacy: {rel} was not valid JSON before the scrub; scrubbed text kept')
+            if new != t: f.write_text(new, 'utf-8'); changed = 1; hits = n; t = new
+    for m in CHECK.finditer(t): left.append(f'{f.relative_to(root)}: {t[max(0,m.start()-60):m.end()+40]!r}')
+    for m in CONTACT_CHECK.finditer(t): left.append(f'{rel}: contact detail {t[max(0,m.start()-40):m.end()+20]!r}')
+    if CORR_PATH.search(rel) and PRIV_CHECK.search(t): warns.append(f'::warning::privacy: private name left in {rel}')
+    if CORR_PATH.search(rel):
+        for m in CORR_CHECK.finditer(t): left.append(f'{rel}: name in correspondence {t[max(0,m.start()-60):m.end()+40]!r}')
+    return changed, hits, left, warns
+
+# --- governed public task index (6 Nov 2026, issue #283 follow-up) ---------------------------------
+# The projects writer's agent-tasks.json mirror tags near-verbatim private HubSpot subjects as
+# "sanitised_subject" (governance highlights, instruction loads, names, dates). Regex cannot make
+# near-verbatim private subjects safe, and the standing grant for this feed is compacted highlights,
+# not per-task subjects. Build-side rule: a producer-tagged entry shows its reviewed workstream
+# label (public_label), never the producer's subject text; the file's own restricted placeholder
+# vocabulary is already "Restricted review item - details withheld". Full private source stays in
+# HubSpot; this edits only the public copy in dist.
+TASK_INDEX_SCHEMA = "cedwyn-agent-task-index"
+TASK_INDEX_PLACEHOLDER = "Restricted review item — details withheld"   # the feed's own restricted vocabulary
+_LABEL_PRIV = None
+
+def _label_ok(label):
+    """A workstream label is used only if it carries no private detail itself (names, mail
+    handles, instruction/owner attribution). Generic workstream wording - including the word
+    'correspondence', already the site's public section name - passes."""
+    global _LABEL_PRIV
+    if _LABEL_PRIV is None:
+        _LABEL_PRIV = re.compile(r"Sion|Hywel|Buckler|hywelapbuckler|\bTab\b|instruction|owner", re.I)
+    return isinstance(label, str) and bool(label.strip()) and not _LABEL_PRIV.search(label)
+
+def govern_task_index(t):
+    """Return (transformed JSON text, governed count), or (None, 0) if t is not the task-index feed.
+    Fail-safe: unparseable JSON or an unknown/missing schema returns (None, 0), leaving the file to
+    the ordinary regex scrub + fatal CHECK pass - the existing guard behaviour is the fallback."""
+    try:
+        d = json.loads(t)
+    except Exception:
+        return None, 0
+    if not isinstance(d, dict) or not str(d.get('schema', '')).startswith(TASK_INDEX_SCHEMA):
+        return None, 0
+    tasks = d.get('tasks')
+    if not isinstance(tasks, list):
+        return None, 0
+    n = 0
+    for task in tasks:
+        if not isinstance(task, dict) or task.get('subject_visibility') != 'sanitised_subject':
+            continue
+        label = task.get('public_label')
+        safe = label if _label_ok(label) else TASK_INDEX_PLACEHOLDER
+        if task.get('public_subject') != safe:
+            task['public_subject'] = safe
+            n += 1
+    # Minimal top-level projection (reviewer-verified consumer inventory): hive reads
+    # tasks/generated_at/version; hubspotweb reads coverage.unique_records (null fallback);
+    # the bridge passes records through verbatim. Nothing needs programme, source_of_truth,
+    # access_model, handoff, x_bridge or the other coverage counters - drop the operational prose.
+    cov = d.get('coverage')
+    projected = {}
+    for k in ('schema', 'generated_at', 'version'):
+        if k in d:
+            projected[k] = d[k]
+    projected['coverage'] = {'unique_records': cov.get('unique_records') if isinstance(cov, dict) else None}
+    projected['tasks'] = tasks
+    return (json.dumps(projected, ensure_ascii=False, indent=1) + '\n', n)
+
+KNOWN_VIS = {'sanitised_subject', 'restricted'}
+def task_index_problems(t):
+    """None if t is not task-index-shaped; otherwise a list of contract violations.
+    The feed's privacy guarantee depends on the per-record subject_visibility contract, so a
+    feed-shaped file that breaks the contract (missing/unknown schema, missing or unknown
+    subject_visibility) must fail the build, not pass through to the regex guard - CHECK does
+    not detect owner-name attribution or strategy detail in free-text subjects."""
+    try:
+        d = json.loads(t)
+    except Exception:
+        return None
+    if not isinstance(d, dict):
+        return None
+    tasks = d.get('tasks')
+    if not isinstance(tasks, list):
+        return None
+    if not any(isinstance(x, dict) and ('subject_visibility' in x or 'public_subject' in x) for x in tasks[:50]):
+        return None
+    probs = []
+    if not str(d.get('schema', '')).startswith(TASK_INDEX_SCHEMA):
+        probs.append('missing/unknown schema')
+    for i, x in enumerate(tasks):
+        if isinstance(x, dict) and x.get('subject_visibility') not in KNOWN_VIS:
+            probs.append('tasks[%d] missing/unknown subject_visibility %r' % (i, x.get('subject_visibility')))
+    return probs
+
 def main(root, check_only=False):
     root = pathlib.Path(root); changed = hits = 0; left = []
+    todo = []
     for f in root.rglob('*'):
         if not f.is_file() or f.suffix.lower() not in EXT or f.stat().st_size > 40_000_000: continue
         if any(p in ('db', '.git', 'node_modules') for p in f.relative_to(root).parts[:1]): continue
-        try: t = f.read_text('utf-8')
-        except Exception: continue
-        rel = f.relative_to(root).as_posix()
-        if not check_only:
-            sx = f.suffix.lower()
-            new, n = scrub(t, 'code' if sx in ('.js', '.mjs', '.json', '.jsonl', '.webmanifest', '.svg') else 'html' if sx in ('.html', '.htm', '.xml', '.rss', '.atom') else 'text')
-            new, k = corr(new, rel); n += k
-            if n and new != t:
-                if f.suffix.lower() == '.json':
-                    # P-136 (31 Oct 2026): blame the scrub only for JSON it broke. A file an earlier step already left invalid
-                    # (build 531e0a8: selfcontain's link removal ate a quote escape in story/api/qa.json) keeps the scrubbed
-                    # text, so the attribution still goes, and is named as a warning. — Sion's Tab agent
-                    try: json.loads(new)
-                    except Exception:
-                        try: json.loads(t); was_valid = True
-                        except Exception: was_valid = False
-                        if was_valid: new = t; left.append(f'{f}: json would break, left for review')
-                        else: print(f'::warning::privacy: {rel} was not valid JSON before the scrub; scrubbed text kept')
-                if new != t: f.write_text(new, 'utf-8'); changed += 1; hits += n; t = new
-        for m in CHECK.finditer(t): left.append(f'{f.relative_to(root)}: {t[max(0,m.start()-60):m.end()+40]!r}')
-        for m in CONTACT_CHECK.finditer(t): left.append(f'{rel}: contact detail {t[max(0,m.start()-40):m.end()+20]!r}')
-        if CORR_PATH.search(rel) and PRIV_CHECK.search(t): print(f'::warning::privacy: private name left in {rel}')
-        if CORR_PATH.search(rel):
-            for m in CORR_CHECK.finditer(t): left.append(f'{rel}: name in correspondence {t[max(0,m.start()-60):m.end()+40]!r}')
+        todo.append((str(f), str(root), check_only))
+    # Files are independent, so scrub them in a process pool (was one file at a time, ~11 min on the full site).
+    # imap keeps the input order, so the messages and the 200-line error list come out exactly as the serial loop gave them.
+    import multiprocessing as mp, os
+    procs = max(1, min(os.cpu_count() or 1, 8))
+    if procs > 1 and len(todo) > 200:
+        with mp.Pool(procs) as pool: results = list(pool.imap(_one, todo, chunksize=64))
+    else:
+        results = [_one(a) for a in todo]
+    for c, h, l, w in results:
+        changed += c; hits += h; left += l
+        for x in w: print(x)
     print(json.dumps({'files_changed': changed, 'rewrites': hits, 'remaining': len(left)}))
     for x in left[:200]: print('::error::privacy: ' + x)
     return 1 if left else 0

@@ -12,6 +12,9 @@
   }
   function link(path, label) {
     if (!path || path.charAt(0) !== '/' || path.indexOf('//') === 0) return null;
+    // Old /research/evidence/ev-NNNN-.../ paths answer 301 to the bare /catalogue/ search; open the record itself (cedwyn#577).
+    var ev = /^\/research\/evidence\/ev-(\d{4})(?=[-\/?#]|$)/i.exec(path);
+    if (ev) path = '/catalogue/?id=EV-' + ev[1];
     var a = node('a', '', label || path);
     a.href = path;
     return a;

@@ -1,7 +1,10 @@
 /* The Post Office · thread and message viewer (Cedwyn, static). Opens /email/thread/<id-slug>/ and /email/reference/<id>/
    from the case-mail catalogue copied into this compartment (/email/view/index.json, from datro@wayback wayback/api/index.json)
    and the redacted message texts already in the Wayback Vault (/wayback/mail/<id>.txt). Same origin only, no outbound requests.
-   With no id it lists every thread, newest first. - Sion's Tab agent, 25 Oct 2026 */
+   With no id it lists every thread, newest first. - Sion's Tab agent, 25 Oct 2026
+   v3 (10 Nov 2026): every email is now a catalogue record (EV-0906 onwards, the EV series). The list reads the catalogue's email index first
+   (/email/view/catalogue-emails.json, copied from the catalogue on each build, metadata only) and falls back to /email/view/index.json;
+   each message links its catalogue record. Message texts are still the vault's redacted copies. - Cedwyn editors */
 (function () {
   var box = document.getElementById('ev'), lp = window.__cedwynLP || location.pathname, d = document;
   var m = /\/email\/(thread|reference)\/([^\/?#]+)/.exec(lp), kind = m && m[1], key = m ? decodeURIComponent(m[2]).toLowerCase() : '';
@@ -20,6 +23,7 @@
     list.forEach(function (r) {
       var s = el('section', 'ev-msg'); s.id = r.gmailMessageId || r.id; if (focus && (focus === r.gmailMessageId || focus === r.id)) s.className += ' ev-on';
       s.appendChild(el('h2', null, who(r))); s.appendChild(el('p', 'ev-mut', day(r.date) + (r.subject && r.subject !== list[0].subject ? ' · ' + r.subject : '')));
+      if (r.em) { var cp = el('p', 'ev-mut'), ca = el('a', null, 'Catalogue record ' + r.em); ca.href = '/catalogue/?id=' + encodeURIComponent(r.em); cp.appendChild(ca); s.appendChild(cp); }
       var pre = el('pre', 'ev-body', 'Loading the message…'); s.appendChild(pre);
       var src = r.textUrl ? '/wayback' + r.textUrl : null;
       if (src) { var p = el('p', 'ev-mut'), a = el('a', null, 'Archived text file'); a.href = src; p.appendChild(a); s.appendChild(p);
@@ -59,7 +63,20 @@
         li.appendChild(a); li.appendChild(el('span', 'ev-mut', ' · ' + (r.date || 'undated'))); ul.appendChild(li); }); box.appendChild(ul);
     }).catch(function () {});
   }
-  fetch('/email/view/index.json').then(function (x) { return x.json(); }).then(function (D) {
+  function fromCatalogue(C) {                               // catalogue index rows -> the viewer's record shape
+    var f = C.fields || [], c = {}; f.forEach(function (n, i) { c[String(n).split('(')[0]] = i; });
+    return (C.records || []).map(function (x) {
+      var mid = x[c.message_id], gid = mid ? String(mid).replace(/^gm-/, '') : null;
+      return { id: mid || x[c.id], em: x[c.id], gmailMessageId: gid, threadId: x[c.thread_id] || x[c.id], date: x[c.datetime], direction: x[c.direction] === 's' ? 'sent' : 'received',
+        institutions: (x[c.institutions] || []).map(function (n) { return { name: n }; }), from: x[c.from], subject: x[c.subject] || '(subject held for editorial review)',
+        textUrl: gid ? '/mail/gm-' + gid + '.txt' : null, refs: [] };
+    });
+  }
+  function load() {
+    return fetch('/email/view/catalogue-emails.json').then(function (x) { if (!x.ok) throw 0; return x.json(); }).then(function (C) { var r = fromCatalogue(C); if (!r.length) throw 0; return { records: r, catalogue: true }; })
+      .catch(function () { return fetch('/email/view/index.json').then(function (x) { return x.json(); }); });
+  }
+  load().then(function (D) {
     var rs = D.records || [], by = {}, order = [];
     rs.forEach(function (r) { var t = r.threadId || r.id; if (!by[t]) { by[t] = []; order.push(t); } by[t].push(r); });
     if (!kind) { var th = order.map(function (t) { return by[t].sort(function (a, b) { return String(a.date || '').localeCompare(String(b.date || '')); }); });

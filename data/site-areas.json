@@ -1,7 +1,7 @@
 {
   "schema": "cedwyn_page_areas/v1",
   "generated_for": "visitor-facing page area grouping; build/source themes remain intact for backward compatibility",
-  "area_count": 40,
+  "area_count": 41,
   "source_theme_count": 46,
   "parcel_total": 59,
   "parcel_label_rule": "Every webapp shows 'NN of 59' in its header (NN = serendipity_slot, 59 = parcel_total), linked to the shared parcel modal /_cedwyn/parcel-modal.js. Each webapp's secondary duty is to gather everything about its parcel. Slots 1-36 are the original page areas; new webapps take the next free slot (37 = HubSpot · Task Control, 1 Nov 2026; 38 = That Old Chestnut, 31 Oct 2026; 39 = Forensic Assessments, 1 Nov 2026). The canonical list of the estate's 59 parcels is still to be fixed; until then NN is an editorial index, not a plot number.",
@@ -584,6 +584,19 @@
       "description": "AI flower garden artwork.",
       "serendipity_slot": 47,
       "tithe_parcel_number": null,
+      "parcel_mapping_status": "historic_plot_number_pending_verification"
+    },
+    {
+      "id": "releases",
+      "title": "The Release Machine",
+      "cy": "Y Peiriant Rhyddhau",
+      "es": "La máquina de publicaciones",
+      "source_themes": [],
+      "path": "/releases/",
+      "description": "Publication-date sequencer, 1987-2026: each line is a related document placed at its publication date, titles hyperlinked to sources.",
+      "serendipity_slot": 41,
+      "tithe_parcel_number": null,
+      "parcel_record": "/research/evidence/ev-0215-tithe-apportionment-john-williams-c1841/",
       "parcel_mapping_status": "historic_plot_number_pending_verification"
     }
   ]

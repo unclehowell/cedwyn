@@ -1,0 +1,306 @@
+name: daily-control-audit
+# Portfolio control report. Runs without checking out Cedwyn's very large history.
+# Public GitHub inventory/search and read-only visitor-route checks; one report comment on #241.
+on:
+  schedule:
+    - cron: '0 11 * * *'
+    - cron: '0 12 * * *'
+  pull_request:
+    paths: ['.github/workflows/daily-control-audit.yml']
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/daily-control-audit.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-control-audit
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fetch the proposed workflow without cloning the large repository
+        env:
+          WORKFLOW_URL: https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/.github/workflows/daily-control-audit.yml
+        run: curl --fail --silent --show-error --location "$WORKFLOW_URL" --output /tmp/daily-control-audit.yml
+      - name: Validate YAML and embedded JavaScript syntax
+        run: |
+          ruby -e 'require "yaml"; YAML.parse_file(ARGV.fetch(0))' /tmp/daily-control-audit.yml
+          python3 - <<'PY'
+          from pathlib import Path
+          lines = Path("/tmp/daily-control-audit.yml").read_text().splitlines()
+          start = next(i for i, line in enumerate(lines) if line.strip() == "script: |")
+          indent = len(lines[start + 1]) - len(lines[start + 1].lstrip())
+          script = []
+          for line in lines[start + 1:]:
+              if line.strip() and len(line) - len(line.lstrip()) < indent:
+                  break
+              script.append(line[indent:] if line.strip() else "")
+          Path("/tmp/daily-control-audit.js").write_text("async function __githubScript() {\n" + chr(10).join(script) + "\n}\n")
+          PY
+          node --check /tmp/daily-control-audit.js
+
+  audit:
+    if: github.event_name != 'pull_request'
+    permissions:
+      contents: read
+      issues: write
+      actions: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Audit portfolio and publish report
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const siteOrigin = "https://cedwyn.bucklerfamily.estate";
+            // GitHub cron is UTC. Run at 12:00 Europe/London through both DST seasons:
+            // 11:00 UTC during BST, 12:00 UTC during GMT. Ignore the non-matching slot.
+            if (context.eventName === "schedule") {
+              const londonHour = new Intl.DateTimeFormat("en-GB", {
+                timeZone: "Europe/London", hour: "2-digit", hourCycle: "h23"
+              }).format(new Date());
+              if (londonHour !== "12") {
+                core.info("Skipping the alternate UTC schedule slot; Europe/London is at " + londonHour + ":xx.");
+                return;
+              }
+            }
+            const reportDate = new Date().toISOString().replace("T", " ").slice(0, 19) + " UTC";
+            const clean = value => String(value ?? "").replace(/[\r\n|]+/g, " ").slice(0, 150);
+
+            async function publicJson(url) {
+              const response = await fetch(url, {
+                headers: {
+                  "Accept": "application/vnd.github+json",
+                  "User-Agent": "cedwyn-daily-control-audit"
+                },
+                signal: AbortSignal.timeout(20000)
+              });
+              if (!response.ok) throw new Error("HTTP " + response.status + " from " + url);
+              return response.json();
+            }
+
+            async function mapPool(items, limit, fn) {
+              const results = new Array(items.length);
+              let cursor = 0;
+              await Promise.all(Array.from({ length: Math.min(limit, items.length) }, async () => {
+                while (true) {
+                  const index = cursor++;
+                  if (index >= items.length) return;
+                  results[index] = await fn(items[index]);
+                }
+              }));
+              return results;
+            }
+
+            async function checkUrl(url) {
+              try {
+                const response = await fetch(url, {
+                  method: "GET",
+                  redirect: "follow",
+                  headers: { "User-Agent": "cedwyn-daily-control-audit" },
+                  signal: AbortSignal.timeout(15000)
+                });
+                const result = { status: response.status, ok: response.ok, finalUrl: response.url };
+                if (response.body) await response.body.cancel();
+                return result;
+              } catch (error) {
+                return { status: null, ok: false, error: clean(error.message) };
+              }
+            }
+
+            async function searchOpenItems(kind) {
+              const query = "user:" + owner + " is:open " + kind;
+              const url = "https://api.github.com/search/issues?q=" + encodeURIComponent(query) +
+                "&sort=updated&order=desc&per_page=100";
+              return publicJson(url);
+            }
+
+            const inventoryFile = await github.rest.repos.getContent({
+              owner, repo, path: "split-repos.json", ref: "main"
+            });
+            if (Array.isArray(inventoryFile.data) || !inventoryFile.data.content) {
+              throw new Error("split-repos.json was not returned as a single file");
+            }
+            const inventory = JSON.parse(Buffer.from(inventoryFile.data.content, "base64").toString("utf8"));
+            const apps = Array.isArray(inventory.apps) ? inventory.apps : [];
+            if (!apps.length) throw new Error("split-repos.json contains no app inventory");
+
+            const splitCount = apps.filter(app => app.mode === "split-repo").length;
+            const mirrorCount = apps.filter(app => app.mode === "mirror").length;
+            const otherModeCount = apps.length - splitCount - mirrorCount;
+            const percent = (100 * splitCount / apps.length).toFixed(1);
+            const projectRepos = new Set(apps.map(app => app.repo).filter(Boolean));
+            projectRepos.add(owner + "/cedwyn");
+            projectRepos.add(owner + "/cedwyn-hive");
+
+            let publicRepoMap = new Map();
+            let repoListError = null;
+            let repoListComplete = false;
+            try {
+              for (let page = 1; page <= 10; page++) {
+                const rows = await publicJson("https://api.github.com/users/" + owner +
+                  "/repos?type=owner&per_page=100&page=" + page + "&sort=updated");
+                if (!Array.isArray(rows)) throw new Error("Unexpected repository-list response");
+                for (const item of rows) publicRepoMap.set(item.full_name, item);
+                if (rows.length < 100) {
+                  repoListComplete = true;
+                  break;
+                }
+              }
+            } catch (error) {
+              repoListError = clean(error.message);
+            }
+
+            const repoNotListed = repoListError ? [] :
+              [...new Set(apps.map(app => app.repo).filter(Boolean))]
+                .filter(name => !publicRepoMap.has(name));
+
+            const routeResults = await mapPool(apps, 8, async app => {
+              const url = new URL(app.page || "/", siteOrigin).toString();
+              const result = await checkUrl(url);
+              return { app: app.app, repo: app.repo, page: app.page, ...result };
+            });
+            const routeFailures = routeResults.filter(item => !item.ok);
+
+            const hiveEndpoints = await Promise.all(["/hive/jobs.json", "/hive/join.json"].map(async path => {
+              const result = await checkUrl(new URL(path, siteOrigin).toString());
+              return { path, ...result };
+            }));
+
+            let prSearch = null;
+            let issueSearch = null;
+            const searchErrors = [];
+            try { prSearch = await searchOpenItems("is:pr"); }
+            catch (error) { searchErrors.push("PR search: " + clean(error.message)); }
+            try { issueSearch = await searchOpenItems("is:issue"); }
+            catch (error) { searchErrors.push("Issue search: " + clean(error.message)); }
+
+            function projectSample(data) {
+              if (!data || !Array.isArray(data.items)) return [];
+              return data.items.filter(item => {
+                const match = String(item.repository_url || "").match(/\/repos\/([^/]+\/[^/]+)$/);
+                return match && projectRepos.has(match[1]);
+              });
+            }
+            const projectPrs = projectSample(prSearch);
+            const projectIssues = projectSample(issueSearch);
+
+            let recentRuns = [];
+            let workflowError = null;
+            try {
+              const runs = await github.rest.actions.listWorkflowRunsForRepo({
+                owner, repo, per_page: 10
+              });
+              recentRuns = (runs.data.workflow_runs || []).slice(0, 5);
+            } catch (error) {
+              workflowError = clean(error.message);
+            }
+
+            const routePassCount = routeResults.length - routeFailures.length;
+            const repoPresentCount = repoListError ? null : apps.length - repoNotListed.length;
+            const lines = [];
+            lines.push("## Daily Cedwyn control audit — " + reportDate);
+            lines.push("");
+            lines.push("**Portfolio split:** " + splitCount + "/" + apps.length + " webapps in split-repo mode (" +
+              percent + "%); " + mirrorCount + " still in mirror mode; " + otherModeCount + " other/unknown mode(s).");
+            lines.push("Register: " + "https://github.com/" + owner + "/" + repo + "/blob/main/split-repos.json");
+            lines.push("");
+            lines.push("### Dedicated repository visibility");
+            if (repoListError) {
+              lines.push("Public repository inventory could not be completed: " + repoListError);
+            } else {
+              lines.push("Found " + repoPresentCount + "/" + apps.length + " expected app repositories in the public owner listing" +
+                (repoListComplete ? "." : " (listing pagination cap reached; inventory may be incomplete)."));
+              if (repoNotListed.length) {
+                lines.push("Not visible in that public listing (could be private, renamed, missing or temporarily unavailable): " +
+                  repoNotListed.map(name => name).join(", ") + ".");
+              }
+            }
+            lines.push("");
+            lines.push("### Visitor-facing route checks");
+            lines.push(routePassCount + "/" + routeResults.length + " registered app routes returned a successful HTTP response.");
+            if (routeFailures.length) {
+              lines.push("Failures or timeouts:");
+              for (const item of routeFailures.slice(0, 15)) {
+                lines.push("- " + clean(item.app) + " (" + clean(item.page) + "): " +
+                  (item.status === null ? "no response (" + clean(item.error) + ")" : "HTTP " + item.status));
+              }
+              if (routeFailures.length > 15) lines.push("- Plus " + (routeFailures.length - 15) + " further route failure(s).");
+            }
+            lines.push("These are public HTTP checks of the served routes, not proof of a Cloudflare provider-side deployment or source-to-build match.");
+            lines.push("");
+            lines.push("### Hive endpoint availability");
+            for (const item of hiveEndpoints) {
+              lines.push("- " + item.path + ": " +
+                (item.status === null ? "no response (" + clean(item.error) + ")" : "HTTP " + item.status) +
+                (item.ok ? " (reachable)" : " (not successful)"));
+            }
+            lines.push("Endpoint checks do not inspect or retain queue payloads. The Hive GitHub-issue/lease migration remains separately tracked in https://github.com/" +
+              owner + "/cedwyn-hive/issues/11.");
+            lines.push("");
+            lines.push("### GitHub work activity");
+            if (prSearch) {
+              lines.push("Open project PRs in the latest search sample: " + projectPrs.length +
+                " (GitHub account-wide search returned " + (prSearch.items || []).length + " of " + prSearch.total_count +
+                "; this is a recent sample, not a complete project-wide count).");
+              for (const item of projectPrs.slice(0, 8)) {
+                const match = String(item.repository_url || "").match(/\/repos\/([^/]+\/[^/]+)$/);
+                lines.push("- " + item.html_url + " — " + (match ? match[1] : "repository") + "#" +
+                  item.number + (item.draft ? " (draft)" : "") + "; updated " + String(item.updated_at || "").slice(0, 10));
+              }
+              if (!projectPrs.length) lines.push("- No project PRs appeared in the returned sample.");
+            } else {
+              lines.push("Open PR search unavailable.");
+            }
+            if (issueSearch) {
+              lines.push("Open project issues in the latest search sample: " + projectIssues.length +
+                " (GitHub account-wide search returned " + (issueSearch.items || []).length + " of " + issueSearch.total_count +
+                "; this is a recent sample, not a complete project-wide count).");
+              for (const item of projectIssues.slice(0, 8)) {
+                const match = String(item.repository_url || "").match(/\/repos\/([^/]+\/[^/]+)$/);
+                lines.push("- " + item.html_url + " — " + (match ? match[1] : "repository") + "#" +
+                  item.number + "; updated " + String(item.updated_at || "").slice(0, 10));
+              }
+              if (!projectIssues.length) lines.push("- No project issues appeared in the returned sample.");
+            } else {
+              lines.push("Open issue search unavailable.");
+            }
+            if (searchErrors.length) lines.push("Search limitations: " + searchErrors.join("; "));
+            lines.push("");
+            lines.push("### Central repository Actions");
+            if (workflowError) {
+              lines.push("Recent workflow runs unavailable: " + workflowError);
+            } else if (!recentRuns.length) {
+              lines.push("No workflow runs were returned.");
+            } else {
+              for (const run of recentRuns) {
+                lines.push("- " + run.html_url + " — " + clean(run.name) + ": " +
+                  clean(run.status) + (run.conclusion ? "/" + clean(run.conclusion) : "") +
+                  "; " + String(run.updated_at || "").slice(0, 10));
+              }
+            }
+            lines.push("");
+            lines.push("### Scope and safety");
+            lines.push("- Read-only checks: repository inventory, public GitHub search, central Actions history and HTTP GETs to the listed public routes.");
+            lines.push("- No HubSpot records, task bodies, email drafts, queue payloads or private correspondence are read or copied.");
+            lines.push("- No repository files, issues other than this audit comment, PRs, Cloudflare settings, Workers, KV, D1, production deployments or CRM records are changed.");
+            lines.push("- Cloudflare account deployment metadata is not queried; route HTTP status is reported separately.");
+            lines.push("- Public GitHub search is capped at the latest 100 account-wide results per category; treat PR/issue sample counts as lower bounds when the account-wide result total exceeds 100.");
+            lines.push("");
+            lines.push("Run: " + context.serverUrl + "/" + owner + "/" + repo + "/actions/runs/" + context.runId + ".");
+            const report = lines.join("\n");
+
+            await core.summary.addRaw(report).write();
+            await github.rest.issues.createComment({
+              owner, repo, issue_number: 241, body: report
+            });
+            core.info("Daily control audit posted to #241.");

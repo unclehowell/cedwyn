@@ -22,7 +22,7 @@ FIX = '--fix' in sys.argv
 ONLY = [a.split('=', 1)[1] for a in sys.argv if a.startswith('--only=')]
 SELF = 'cedwyn.bucklerfamily.estate'
 ABS = 'https://' + SELF
-BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.26'   # 2.1.26 (3 Nov 2026): fresh key for the boot that loads scope.js 1.1.0 (webapp tour fix). 2.1.25 (2 Nov 2026, 10:30 GMT): fresh key for the boot that loads garden-banner 2.3.0. 2.1.24 (2 Nov 2026, 06:35 GMT): fresh cache key for the boot that loads garden-banner 2.2.0 (2.1.22 kept the 2.1.0 loader). ?v=2.1.20 was already cached at the edge from #108's boot (no Garden City banner, old cw-graph/basecamp), so most pages kept the old strip; 2.1.22 also carries f05b60d's basecamp ?v=2.1.21 to phones
+BOOT = '/_cedwyn/ghf/ghf-boot.js?v=2.1.30'   # 2.1.30 (9 Nov 2026): fresh key for the boot that pulls basecamp.js ?v=2.1.25 (header search goes to bucklerfamily.estate/catalogue/, cedwyn#530). 2.1.29 (9 Nov 2026): fresh key so every page loads the boot that pulls basecamp.js ?v=2.1.24 (header search magnifier beside the full-screen toggle). 2.1.26 (3 Nov 2026): fresh key for the boot that loads scope.js 1.1.0 (webapp tour fix). 2.1.25 (2 Nov 2026, 10:30 GMT): fresh key for the boot that loads garden-banner 2.3.0. 2.1.24 (2 Nov 2026, 06:35 GMT): fresh cache key for the boot that loads garden-banner 2.2.0 (2.1.22 kept the 2.1.0 loader). ?v=2.1.20 was already cached at the edge from #108's boot (no Garden City banner, old cw-graph/basecamp), so most pages kept the old strip; 2.1.22 also carries f05b60d's basecamp ?v=2.1.21 to phones
 TIDS = [t['id'] for t in CFG['themes']]
 HOST = {}
 for t in CFG['themes']:
@@ -38,7 +38,9 @@ CHECKOUT = ('buy.stripe.com', 'checkout.stripe.com', 'gumroad.com')   # checkout
 OUT_SITE = ('gardencity.cymru',)
 # 2 Nov 2026 (garden-banner 2.2.0): apex webapps served by their own Worker, not by a cedwyn theme, keep their apex address as
 # written. Without this the apex rule ('/' -> dartboard) turns https://bucklerfamily.estate/garden-store/ into /dartboard/garden-store/. — Sion's Tab agent
-APEX_KEEP = ('/garden-store/',)
+# 9 Nov 2026 (header search 1.0.1, cedwyn#530): the header magnifier opens the one central catalogue at
+# https://bucklerfamily.estate/catalogue/, an apex route of its own; the apex rule had turned it into /dartboard/catalogue/ (404). — Sion's Tab agent
+APEX_KEEP = ('/garden-store/', '/catalogue/')
 # 31 Oct 2026 (P-114): the WordPress copy's privacy script asks public-api.wordpress.com/geo/ for the visitor's region with an
 # XHR and JSON.parse()s the answer. Sent to /wayback/go/ it got an HTML page and threw "Unexpected token '<' ... is not valid
 # JSON" on every wiki page. It now gets an empty JSON answer as a data: address (region '' = no state privacy rule applies; no
@@ -567,6 +569,13 @@ def main():
         for k, v in list(o['examples'].items())[:12]: print(k, v[:2])
         print('SELF-CONTAINED TEST FAILED'); return 1
     print('SELF-CONTAINED TEST PASSED: 0 subdomain references, 0 external references')
+    # 9 Nov 2026 (cedwyn#530): the header search link must reach the central catalogue, never /dartboard/catalogue/ (a 404). — Sion's Tab agent
+    bc = DIST / '_cedwyn' / 'ghf' / 'basecamp.js'
+    if bc.exists():
+        t = bc.read_text('utf-8', 'replace')
+        if 'dartboard/catalogue' in t or 'bucklerfamily.estate/catalogue/' not in t:
+            print('HEADER SEARCH TEST FAILED: basecamp.js must link https://bucklerfamily.estate/catalogue/'); return 1
+        print('HEADER SEARCH TEST PASSED: header search -> https://bucklerfamily.estate/catalogue/')
     if not ONLY and (DIST / 'db' / 'blobmap.json').exists():   # stage 3: the database becomes the one source of data and evidence files
         sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent)); import dbserve; dbserve.DIST = DIST; return dbserve.main()
     return 0

@@ -17,6 +17,8 @@ Fail-closed rules (exit 1):
    must stay inside the NOCLIP regex. Additions are fine; removal/rename fails.
 3. SANITY. dist must exist and contain HTML; cw-graph.js must exist and parse. A check that
    examines nothing has failed, not passed.
+4. NOSCRIPT IS NEVER TEXT. Where cw-graph.js has its preview walker spaced(), it skips <noscript>, and page
+   length checks go through vtx(), so a no-JavaScript fallback never shows as raw markup (cedwyn-catalogue#29).
 
 Advisory (never fails): pages with a search control and >=10 repeated <article> cards but no
 opt-out attributes - the 01:27 design says pages with search boxes and filters load everything,
@@ -80,6 +82,14 @@ def main():
             missing = [p for p in BASELINE_NOCLIP if p not in current]
             if missing:
                 failures.append('cw-graph.js NOCLIP narrowed; baseline paths removed: %s' % ', '.join(missing))
+        # 4. NOSCRIPT IS NEVER TEXT (9 Nov 2026, cedwyn-catalogue#29): with scripting on, a <noscript> body is one plain
+        #    text node, so the card reader printed a page's no-JavaScript fallback (tags and all) as a card preview.
+        #    Where the reader's preview walker exists it must skip noscript, and page measuring must go through vtx().
+        sp = re.search(r"function spaced\(.*?closest\('([^']*)'\)", src, re.S)
+        if sp and 'noscript' not in sp.group(1).split(','):
+            failures.append('cw-graph.js spaced(): the preview walker no longer skips noscript (catalogue issue #29)')
+        if sp and 'function vtx(' not in src:
+            failures.append('cw-graph.js: vtx() missing, so page length checks count <noscript> text again (catalogue issue #29)')
 
     if warn_only:
         advisories = advisories + ['would fail: ' + x for x in failures]

@@ -7,6 +7,22 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 CFG = json.load(open(ROOT / 'themes.json'))
 DIST = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else 'dist')
 shutil.copytree(ROOT / 'web', DIST, dirs_exist_ok=True)
+
+# Keep the story hero asset in the final shared overlay, after binary deduplication.
+# The Case Office uses the same existing tight-cropped survey photo, without scan margins.
+_app_home = DIST / 'app' / 'index.html'
+if _app_home.is_file():
+    _app_html = _app_home.read_text(encoding='utf-8')
+    _old_bg = '/fb/img/1988-cadw-survey-photograph-of-the-farmhouse-29-july-19.jpg'
+    _app_html = _app_html.replace(_old_bg, '/story/media/1988-cadw-farmhouse.jpg')
+    _app_html = _app_html.replace('class="hero-in"', 'class="hero-in ghf-ui"')
+    _app_html = _app_html.replace('class="hero-bg"', 'class="hero-bg ghf-bgimg"')
+    _app_html = _app_html.replace('class="cap"', 'class="cap ghf-ui"')
+    _bg_css = '<style id="case-office-viewport-background">.hero-bg{width:100vw;max-width:100%;background-size:100% 100%,cover;background-position:center,center 35%}</style>'
+    if 'id="case-office-viewport-background"' not in _app_html:
+        _app_html = _app_html.replace('</head>', _bg_css + '</head>')
+    _app_home.write_text(_app_html, encoding='utf-8')
+
 # Publish the canonical book-evidence CSV after theme assembly. Keep it accessible at a stable public URL.
 _book_register = ROOT / 'web' / 'research' / 'book-research-findings.csv'
 if _book_register.is_file():
@@ -69,11 +85,19 @@ _source_to_area = {source_id: area['id'] for area in _areas for source_id in are
 # data/site-areas.json (the area registry, same order as the main menu), so a new area appears everywhere with nothing
 # hand-kept. aliases = the merged source themes' own paths (longest prefix wins); skip_in = the halves that hide it;
 # built = the area or one of its source themes exists in this build. - Sion's Tab agent
+# nav 1.4.0 (owner, 18:32 GMT 7 Nov 2026: "/wales/story/ is 7 of 59 and /documentary/ is 7 of 59. Move one to the empty unassigned
+# numbers. Do the same for all that have duplicate occupied slots"; cedwyn#497): a source theme that declares its own "slot" on its
+# themes.json entry is its own webapp in the nav, no longer an alias of the area it was merged into, so no page shares a number.
+# The area keeps its other sources (home board and halves unchanged). - Sion's Tab agent
+_slotted = {_t['id'] for _t in CFG['themes'] if _t.get('slot')}
 _areas_pub = []
 for _c, _area in zip(chain, _areas):
     _p = _area.get('path') or '/' + _area['id'] + '/'
-    _al = sorted({'/' + s + '/' for s in _area.get('source_themes', [])} - {_p})
-    _built = any((DIST / x.strip('/')).is_dir() for x in [_p] + _al)
+    _al = sorted({'/' + s + '/' for s in _area.get('source_themes', []) if s not in _slotted} - {_p})
+    # nav 1.4.1 (cedwyn#497, 8 Nov 2026; landed on main 11 Nov 2026, same change as PR #525): an area whose source themes all carry
+    # their own slot (Arcade: nft-art 52, cyberspace 53) has no aliases left, so "built" must still count those sources' folders;
+    # otherwise the area drops out of the chain and every label after it reads one less, "N of 58". - Sion's Tab agent
+    _built = any((DIST / x.strip('/')).is_dir() for x in [_p] + _al + ['/' + s + '/' for s in _area.get('source_themes', [])])
     _areas_pub.append({'id': _area['id'], 'path': _p, 'title': _c[1], 'cy': _c[3], 'es': _c[4], 'group': _c[2],
                        'aliases': _al, 'skip_in': _c[5], 'built': _built,
                        'slot': _area.get('serendipity_slot'), 'of': _area_doc.get('parcel_total', 59)})
@@ -85,7 +109,7 @@ for _c, _area in zip(chain, _areas):
 # its other readers. tools/nav.py stamps the bar into every slot page and fails the build on a broken slot (docs/NAV.md).
 # - Sion's Tab agent
 _nav = [dict(a, src=a['path']) for a in _areas_pub]
-_nav_seen = {a['id'] for a in _areas_pub} | set(_source_to_area)
+_nav_seen = {a['id'] for a in _areas_pub} | (set(_source_to_area) - _slotted)
 for _t in CFG['themes']:
     if not _t.get('slot') or _t['id'] in _nav_seen: continue
     _p = _t.get('path') or '/' + _t['id'] + '/'
@@ -93,6 +117,22 @@ for _t in CFG['themes']:
                  'group': _t.get('group') or CFG.get('default_group') or '', 'aliases': [], 'skip_in': [h for h in ('wales', 'patagonia') if _t['id'] in _XH[h]],
                  'built': (DIST / _p.strip('/')).is_dir() or _t.get('served_by') == 'worker', 'slot': int(_t['slot']), 'of': _area_doc.get('parcel_total', 59), 'webapp': True,
                  'worker': _t.get('served_by') == 'worker'})
+# nav 1.3.0 (owner, 7 Nov 2026: "Keep as 59 and where there's no webapps yet just have blank 'coming soon' webapps as coming-soon-xx
+# repos ... When we do the real webapps to replace them we'll do proper repos for the new webapp and purge the corresponding
+# coming-soon-xx webapp"): every slot of the 59 that no real webapp takes is a blank "Coming soon" webapp from its own repository
+# unclehowell/coming-soon-NN, copied to /coming-soon-NN/ by tools/coming_soon.py (data/coming-soon.json) and listed here at slot NN,
+# so the chain is 59 long and reads "NN of 59". A real webapp that declares "slot": NN replaces it (docs/NAV.md). - Sion's Tab agent
+sys.path.insert(0, str(ROOT / 'tools')); import coming_soon as _cs
+_cs.run(DIST)
+_nav_slots = {int(a['slot']) for a in _nav if a.get('slot')}
+for _c in _cs.active()[0]:
+    _n = int(_c['slot'])
+    if _n in _nav_slots: continue
+    _p = _c.get('path') or '/coming-soon-%d/' % _n
+    _nav.append({'id': _c['id'], 'path': _p, 'src': _p, 'title': 'Coming soon', 'cy': 'Yn fuan', 'es': 'Próximamente',
+                 'group': CFG.get('default_group') or '', 'aliases': [], 'skip_in': [], 'built': (DIST / _p.strip('/') / 'index.html').is_file(),
+                 'slot': _n, 'of': _area_doc.get('parcel_total', 59), 'webapp': True, 'worker': False, 'placeholder': True, 'repo': _c['repo']})
+    _nav_slots.add(_n)
 _nav_online = set(_HV.get('online_only', []))
 # nav 1.1.0 (owner, 05:07 GMT 2 Nov 2026: every webapp at bucklerfamily.estate/<name>/, the cedwyn subdomain to be phased out):
 # "apex" is each slot's flat address on the apex; a themes.json "apex" names it when it is not the id. The apex router and the
@@ -201,6 +241,14 @@ lines += ['/email/api /email/api/ 301', '/email/api/records /email/view/index.js
           '/email/api/openapi.json /email/api/ 302', '/email/api/export /email/api/ 302', '/email/api/export/ /email/api/ 302',
           '/email/api/message /email/view/ 302', '/email/api/search /email/view/ 302', '/email/api/thread /email/view/ 302']
 lines += ['/graphql /graphql/ 301', '/catalogue /catalogue/ 301']
+# 11 Nov 2026 (dead links sent in email): exact-path 301s for addresses that went out in mail and now 404 —
+# data/redirects/dead-links.txt, one "<old path> <target> 301" per line; patterns (* or :) are refused so no catch-all. - Sion's Tab agent
+_dead = ROOT / 'data' / 'redirects' / 'dead-links.txt'
+if _dead.exists():
+    for _l in _dead.read_text(encoding='utf-8').splitlines():
+        _p = _l.split()
+        if len(_p) >= 2 and not _l.lstrip().startswith('#') and '*' not in _p[0] and ':' not in _p[0] and _l.strip() not in lines:
+            lines.append(' '.join(_p[:3]))
 # 31 Oct 2026 (P-117): funnel pings (basecamp.js track(): GET /_cedwyn/ev/<event>/<book>/<page>) answer 200 from a tiny file instead of
 # 404 (GET) / 405 (POST); the zone's request analytics still count the original path (work/outreach/funnel_events.py).
 lines += ['/_cedwyn/ev/* /_cedwyn/ev.txt 200']
@@ -296,6 +344,10 @@ lines += [
     "/wiki/wp-content/uploads/2026/10/2026-05-28_rcahmw_rc26-0205_les08-order-form-2021.docx /wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fdatro%2Fblob%2Fwayback%2Fwayback%2Fpdf%2Ffoi%2F2026-05-28_rcahmw_rc26-0205_les08-order-form-2021.docx 302",
     # 31 Oct 2026 (P-122): Cedwyn does not carry the Vault's PDFs; they live on the Vault's media host (R2), which answers
     # 404 for a missing file (no loop). The Legal Wiki's own uploads stay on the wiki. Exact-path rules above still win.
+    # 11 Nov 2026 (cedwyn#497): the Preservation register (webapp 56) is served by its own Worker on the apex only; on any other
+    # host (cedwyn.) its nav link would 404, so it goes to the apex address. - Sion's Tab agent
+    "/preservation/* https://bucklerfamily.estate/preservation/:splat 302",
+    "/preservation https://bucklerfamily.estate/preservation/ 302",
     "/wayback/pdf/* https://wayback.bucklerfamily.estate/pdf/:splat 302",
     "/wiki/wp-content/uploads/* https://greathousefarmwiki.wordpress.com/wp-content/uploads/:splat 302",
     "/research/wp-content/uploads/* https://greathousefarmwiki.wordpress.com/wp-content/uploads/:splat 302",
@@ -367,6 +419,14 @@ try:
             print('post office catalogue refreshed:', len(_pv_old.get('records') or []), '->', len(_pv_new['records']))
 except Exception as _e:   # the mail catalogue must never stop a build
     print('post office catalogue refresh failed:', _e)
+# 10 Nov 2026: emails are catalogue records (kind email, EV-0906 onwards, the EV series; data/core/records/emails/). The Post Office reads the catalogue's
+# email index first (/email/view/catalogue-emails.json, metadata only) and falls back to /email/view/index.json. Nothing is deleted.
+try:
+    _ce_src = ROOT / 'data' / 'core' / 'records' / 'emails' / 'index.json'; _ce_dst = DIST / 'email' / 'view' / 'catalogue-emails.json'
+    if _ce_src.is_file() and _ce_dst.parent.is_dir():
+        shutil.copy2(_ce_src, _ce_dst); print('post office: catalogue email index copied,', json.load(open(_ce_src, encoding='utf-8')).get('count'), 'records')
+except Exception as _e:   # never stops a build
+    print('post office: catalogue email index copy failed:', _e)
 # Cross-institution route status map (snapshot dated from the dartboard source branch).
 import dartboard_options
 dartboard_options.run(DIST)
@@ -559,6 +619,14 @@ try:
     purge_promo.run(DIST)
 except Exception as _e:
     print('promo purge failed:', _e)
+# 3 Nov 2026 (owner, 04:14 GMT: "Do whatever you think will drive website traffic and sales"; purge rule: routes to /ebooks/ belong in
+# the menu, footer and /ebooks/ itself): one plain "E-books" link in the footer of every page that has one. Never stops a build - Sion's Tab agent
+try:
+    import site_links
+    site_links.run(DIST)
+    site_links.ebooks_ld(DIST)   # 1.1.0: Book/Product JSON-LD on /ebooks/ (markup only)
+except Exception as _e:
+    print('footer e-books link failed:', _e)
 
 # Holdings wording (owner rule, 22:25 GMT 30 Oct 2026; P-104): public text never states whether the family holds a record; it names
 # which other party should hold the original and what it has disclosed. Exact-phrase rewrites from data/holdings-wording.json over

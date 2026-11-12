@@ -1,0 +1,61 @@
+name: evidence-resync-daily
+# cedwyn#582. Daily: gathers NEW evidence/artifact CANDIDATES (never records) from mail (box-side export), spills and
+# online search into resync/candidates/ on the orphan branch evidence-resync, then comments on #582 when anything is new.
+# Catalogue lock: add-only review file; never edits/moves/deletes a record, never opens or merges a PR, never applies
+# owner-approved. Never dispatches a site build. Runs without any key; an optional NVIDIA_API_KEY (tried first),
+# ANTHROPIC_API_KEY or OPENAI_API_KEY repo secret adds a scope/kind label to online candidates. A provider that answers
+# 401/429 or times out falls through to the next; the run never fails on a label. — Sion's Tab agent
+on:
+  schedule:
+    - cron: '20 6 * * *'   # 06:20 UTC daily (after the box-side mail export at ~05:40 London)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Collect and print only; write nothing, comment nothing'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: evidence-resync   # shared with webapps-refresh-twice-weekly
+  cancel-in-progress: false
+jobs:
+  resync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      ISSUE: '582'
+    steps:
+      - name: Data branch (tiny orphan branch, not the site)
+        uses: actions/checkout@v4
+        with: { ref: evidence-resync, path: data, fetch-depth: 1 }
+      - name: Script from this commit (no full checkout of the site repo)
+        run: curl -fsSL "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/.github/evidence-resync/resync.py" -o resync.py
+      - name: Collect candidates
+        env:
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          NVIDIA_MODEL: ${{ vars.NVIDIA_MODEL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          RESYNC_LLM_MODEL: ${{ vars.RESYNC_LLM_MODEL }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then python3 resync.py --data data --dry-run; else python3 resync.py --data data --comment-out comment.md; fi
+      - name: Commit the review file to evidence-resync
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          cd data
+          git config user.name "cedwyn-evidence-resync"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add resync
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -q -m "resync: daily candidates $(date -u +%F) (cedwyn#582) — Sion's Tab agent"
+          for i in 1 2 3; do git pull -q --rebase origin evidence-resync && git push origin HEAD:evidence-resync && exit 0; sleep 5; done; exit 1
+      - name: Comment on the tracking issue when something is new
+        if: ${{ inputs.dry_run != true && hashFiles('comment.md') != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 -c "import json;print(json.dumps({'body':open('comment.md').read()}))" > body.json
+          curl -fsS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/issues/$ISSUE/comments" -d @body.json -o /dev/null

@@ -32,22 +32,41 @@ import time as _tt; _T0 = _tt.time()
 
 # ---------- 1. dedupe plan
 files = [p for p in DIST.rglob('*') if p.is_file() and len(p.parts) > D + 1 and p.parts[D] in TIDS]
-by_sha = {}
-for p in files:
-    if p.suffix.lower() in BIN:
-        h = hashlib.sha256(p.read_bytes()).hexdigest(); by_sha.setdefault(h, []).append(p)
-named_in_data = {}
 NAMERX = re.compile(r'[\w\-.%]+\.(?:jpe?g|png|gif|webp|svg|avif|ico|pdf|mp3|m4a|ogg|wav|mp4|webm|mov|woff2?|ttf|otf|eot)', re.I)
-for p in files:
-    if p.suffix.lower() in TXT_DATA and p.stat().st_size < 30_000_000:
-        try: s = p.read_text('utf-8', 'ignore')
-        except Exception: continue
-        named_in_data.setdefault('*', set()).update(x.lower() for x in NAMERX.findall(s))
-    elif p.suffix.lower() in ('.html', '.htm'):
-        try: s = p.read_text('utf-8', 'ignore')
-        except Exception: continue
-        for sc in re.findall(r'<script\b[^>]*>(.*?)</script>', s, re.S | re.I):
-            named_in_data.setdefault('*', set()).update(x.lower() for x in NAMERX.findall(sc))
+# Hashing every binary and scanning every data file used to run one file at a time (674 s of a 14 min step on the live
+# site; the rewrite itself is 3 s). Each file is independent, so both jobs run in a process pool; imap keeps input order,
+# so by_sha, named_in_data and everything built from them are exactly what the serial loops produced.
+def _sha(p):
+    h = hashlib.sha256()
+    with open(p, 'rb') as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b''): h.update(chunk)
+    return h.hexdigest()
+def _names(p):
+    """Image/font/media file names a data file or an HTML page's scripts mention (lower-cased)."""
+    suf = p.suffix.lower()
+    try:
+        if suf in TXT_DATA and p.stat().st_size < 30_000_000:
+            return {x.lower() for x in NAMERX.findall(p.read_text('utf-8', 'ignore'))}
+        if suf in ('.html', '.htm'):
+            out = set(); s = p.read_text('utf-8', 'ignore')
+            for sc in re.findall(r'<script\b[^>]*>(.*?)</script>', s, re.S | re.I): out.update(x.lower() for x in NAMERX.findall(sc))
+            return out
+    except Exception: pass
+    return set()
+import multiprocessing as _mp0
+_bins = [p for p in files if p.suffix.lower() in BIN]
+_txts = [p for p in files if p.suffix.lower() in TXT_DATA or p.suffix.lower() in ('.html', '.htm')]
+_procs = max(1, min(os.cpu_count() or 1, 8))
+if _procs > 1 and len(files) > 500:
+    with _mp0.Pool(_procs) as _pool:
+        _hashes = list(_pool.imap(_sha, _bins, chunksize=32))
+        _nameset = list(_pool.imap(_names, _txts, chunksize=32))
+else:
+    _hashes = [_sha(p) for p in _bins]; _nameset = [_names(p) for p in _txts]
+by_sha = {}
+for p, h in zip(_bins, _hashes): by_sha.setdefault(h, []).append(p)
+named_in_data = {}
+for ns in _nameset: named_in_data.setdefault('*', set()).update(ns)
 BLOB = DIST / '_blob'; BLOB.mkdir(exist_ok=True)
 moved = {}; saved = 0; kept_for_scripts = 0
 for h, ps in by_sha.items():
@@ -172,7 +191,7 @@ def rw_html(html, tid, page_rel):
     html = TAG.sub(lambda m: rw_tag(m, tid, page_rel), html)
     html = re.sub('\x00(\\d+)\x00', lambda m: keep[int(m.group(1))], html)
     html = MOVED.sub(_moved, html)   # P-115
-    inj = '<script src="/_cedwyn/runtime.js?v=17" data-theme="%s"></script>' % tid
+    inj = '<script src="/_cedwyn/runtime.js?v=18" data-theme="%s"></script>' % tid
     if 'href="/blog/rss.xml"' not in html: inj += BLOG_FEEDS   # 27 Oct 2026: blog feed autodiscovery on every page
     mh = re.search(r'<head\b[^>]*>', html, re.I)
     if mh: html = html[:mh.end()] + inj + html[mh.end():]

@@ -1,0 +1,538 @@
+{
+  "note": "Webapps have dedicated repositories. mode 'split-repo' means the dedicated repo is the source; the old branch is retained only as a legacy copy. deploy='repo' means the estate build reads the dedicated repo directly, fails closed if that source cannot produce the page, and does not sync app content back into the old Cedwyn branch. mode 'mirror' remains only for the two writer-backed apps whose writers have not yet been migrated. DATRO is a separate private security/technology project and is not mirrored into this repository; existing legacy branches are retained pending a verified cleanup. Domains and DNS are independent and are not changed by this manifest.",
+  "apps": [
+    {
+      "app": "Wales 3D world",
+      "repo": "unclehowell/cedwyn-wales-3d",
+      "old_branch": "section/wales-3d",
+      "page": "/wales/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Argentina Tŷ Mawr 3D world",
+      "repo": "unclehowell/cedwyn-argentina-3d",
+      "old_branch": "section/argentina-3d",
+      "page": "/argentina/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Tithe H3 map",
+      "repo": "unclehowell/cedwyn-tithe-h3",
+      "old_branch": "section/tithe-h3",
+      "page": "/tithe-h3/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Chubut H3 map",
+      "repo": "unclehowell/cedwyn-chubut-h3",
+      "old_branch": "section/chubut-h3",
+      "page": "/chubut-h3/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Hive",
+      "repo": "unclehowell/cedwyn-hive",
+      "old_branch": "hive",
+      "page": "/hive/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Dartboard",
+      "repo": "unclehowell/cedwyn-dartboard",
+      "old_branch": "dartboard",
+      "page": "/dartboard/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Analytics",
+      "repo": "unclehowell/cedwyn-analytics",
+      "old_branch": "section/analytics",
+      "page": "/analytics/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Cloudflare",
+      "repo": "unclehowell/cedwyn-cloudflare",
+      "old_branch": "section/cloudflare",
+      "page": "/cloudflare/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Spill",
+      "repo": "unclehowell/cedwyn-spill",
+      "old_branch": "section/spill",
+      "page": "/spill/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Ask the Archive",
+      "repo": "unclehowell/cedwyn-chat",
+      "old_branch": "section/chat",
+      "page": "/chat/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Mr Wolf",
+      "repo": "unclehowell/cedwyn-mr-wolf",
+      "old_branch": "section/mr-wolf",
+      "page": "/mr-wolf/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "FCG",
+      "repo": "unclehowell/cedwyn-fcg",
+      "old_branch": "section/fcg",
+      "page": "/fcg/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Research Library",
+      "repo": "unclehowell/cedwyn-research",
+      "old_branch": "section/research",
+      "page": "/research/",
+      "mode": "mirror"
+    },
+    {
+      "app": "Case Office",
+      "repo": "unclehowell/cedwyn-app",
+      "old_branch": "section/app",
+      "page": "/app/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Estate hub",
+      "repo": "unclehowell/cedwyn-estate",
+      "old_branch": "section/estate",
+      "page": "/estate/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Patagonia",
+      "repo": "unclehowell/cedwyn-patagonia",
+      "old_branch": "section/patagonia",
+      "page": "/patagonia/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Cyberspace",
+      "repo": "unclehowell/cedwyn-cyberspace",
+      "old_branch": "section/cyberspace",
+      "page": "/cyberspace/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Forensic Assessments",
+      "repo": "unclehowell/cedwyn-forensic",
+      "old_branch": "section/forensic",
+      "page": "/forensic/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Chessboard",
+      "repo": "unclehowell/cedwyn-chess",
+      "old_branch": "chess",
+      "page": "/chess/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Grammar House",
+      "repo": "unclehowell/cedwyn-csscpsg",
+      "old_branch": "csscpsg",
+      "page": "/csscpsg/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Court Drills",
+      "repo": "unclehowell/cedwyn-courtdrills",
+      "old_branch": "courtdrills",
+      "page": "/courtdrills/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Old Bill",
+      "repo": "unclehowell/cedwyn-oldbill",
+      "old_branch": "oldbill",
+      "page": "/oldbill/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Counting House",
+      "repo": "unclehowell/cedwyn-accounts",
+      "old_branch": "accounts",
+      "page": "/accounts/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Project Office",
+      "repo": "unclehowell/cedwyn-projects",
+      "old_branch": "projects",
+      "page": "/projects/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Watchtower",
+      "repo": "unclehowell/cedwyn-watchtower",
+      "old_branch": "watchtower",
+      "page": "/watchtower/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Directory",
+      "repo": "unclehowell/cedwyn-directory",
+      "old_branch": "directory",
+      "page": "/directory/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Family Tree",
+      "repo": "unclehowell/cedwyn-familytree",
+      "old_branch": "familytree",
+      "page": "/familytree/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Kissed Frogs",
+      "repo": "unclehowell/cedwyn-kissed-frogs",
+      "old_branch": "kissed-frogs",
+      "page": "/kissed-frogs/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "That Old Chestnut",
+      "repo": "unclehowell/cedwyn-that-old-chestnut",
+      "old_branch": "that-old-chestnut",
+      "page": "/that-old-chestnut/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Blog",
+      "repo": "unclehowell/cedwyn-blog",
+      "old_branch": "blog",
+      "page": "/blog/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Nomenclature",
+      "repo": "unclehowell/cedwyn-nomenclature",
+      "old_branch": "nomenclature",
+      "page": "/nomenclature/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Map Room",
+      "repo": "unclehowell/cedwyn-maps",
+      "old_branch": "maps",
+      "page": "/maps/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Docs / Evidence Catalogue",
+      "repo": "unclehowell/cedwyn-docs",
+      "old_branch": "docs",
+      "page": "/docs/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Wayback Vault",
+      "repo": "unclehowell/cedwyn-wayback",
+      "old_branch": "wayback",
+      "page": "/wayback/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "E-book Shelf",
+      "repo": "unclehowell/cedwyn-ebooks",
+      "old_branch": "ebooks",
+      "page": "/ebooks/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Land Changing Hands",
+      "repo": "unclehowell/cedwyn-infographic",
+      "old_branch": "infographic",
+      "page": "/infographic/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Q&A Hall",
+      "repo": "unclehowell/cedwyn-qa",
+      "old_branch": "qa",
+      "page": "/qa/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "What They Don't Say",
+      "repo": "unclehowell/cedwyn-whattheydontsay",
+      "old_branch": "whattheydontsay",
+      "page": "/whattheydontsay/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "NFT Art",
+      "repo": "unclehowell/cedwyn-nft-art",
+      "old_branch": "nft-art",
+      "page": "/nft-art/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Gift Shop",
+      "repo": "unclehowell/cedwyn-shop",
+      "old_branch": "merch",
+      "page": "/shop/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Farm Album",
+      "repo": "unclehowell/cedwyn-fb",
+      "old_branch": "fb",
+      "page": "/fb/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Post Office & Calendar",
+      "repo": "unclehowell/cedwyn-emails",
+      "old_branch": "emails",
+      "page": "/email/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Legal Wiki & Evidence",
+      "repo": "unclehowell/cedwyn-wiki",
+      "old_branch": "section/wiki",
+      "page": "/wiki/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "The Story & Documentary",
+      "repo": "unclehowell/cedwyn-story",
+      "old_branch": "bpvsbuckler",
+      "page": "/story/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Arcade",
+      "repo": "unclehowell/cedwyn-arcade",
+      "old_branch": "arcade-final-serving-20261104",
+      "page": "/arcade/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Public Authorities & Council Chamber",
+      "repo": "unclehowell/cedwyn-authorities",
+      "old_branch": "ghf-public-authorities",
+      "page": "/authorities/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "FOI Requests",
+      "repo": "unclehowell/cedwyn-wdtk",
+      "old_branch": "whatdotheyknow",
+      "page": "/wdtk/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Independent Review",
+      "repo": "unclehowell/cedwyn-review",
+      "old_branch": "ghf-independent-review",
+      "page": "/review/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "HubSpot Task Control",
+      "repo": "unclehowell/cedwyn-hubspot",
+      "old_branch": "webapp/hubspot-20261101",
+      "page": "/hubspot/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Flower Garden",
+      "repo": "unclehowell/cedwyn-garden",
+      "old_branch": "garden",
+      "page": "/garden/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Revival AR",
+      "repo": "unclehowell/cedwyn-revival-ar",
+      "old_branch": "section/revival-ar",
+      "page": "/revival-ar/",
+      "mode": "mirror"
+    },
+    {
+      "app": "Peekaboo",
+      "repo": "unclehowell/cedwyn-peekaboo",
+      "old_branch": "section/peekaboo",
+      "page": "/peekaboo/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Bloculous",
+      "repo": "unclehowell/cedwyn-bloculous",
+      "old_branch": "section/bloculous",
+      "page": "/bloculous/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Theories",
+      "repo": "unclehowell/cedwyn-theories",
+      "old_branch": "section/theories",
+      "page": "/theories/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Garden Store",
+      "repo": "unclehowell/cedwyn-garden-store",
+      "old_branch": "section/garden-store",
+      "page": "/garden-store/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Storytime",
+      "repo": "unclehowell/cedwyn-storytime",
+      "old_branch": "storytime",
+      "page": "/storytime/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Molt",
+      "repo": "unclehowell/cedwyn-molt",
+      "old_branch": "molt",
+      "page": "/molt/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Gallery",
+      "repo": "unclehowell/cedwyn-gallery",
+      "old_branch": "gallery",
+      "page": "/gallery/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Internet Archive Sources",
+      "repo": "unclehowell/cedwyn-internetarchive",
+      "old_branch": "internetarchive",
+      "page": "/internetarchive/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Terrain",
+      "repo": "unclehowell/terrain",
+      "old_branch": "",
+      "page": "/terrain/",
+      "mode": "split-repo",
+      "note": "pre-existing separate repo"
+    },
+    {
+      "app": "Primary Records",
+      "repo": "unclehowell/cedwyn-records",
+      "old_branch": "ghf-primary-records",
+      "page": "/records/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "The Council Chamber",
+      "repo": "unclehowell/cedwyn-meeting",
+      "old_branch": "2026-10-22",
+      "page": "/2026-10-22/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Cedwyn documentary",
+      "repo": "unclehowell/cedwyn-documentary",
+      "old_branch": "cedwyn-movie",
+      "page": "/documentary/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Display settings",
+      "repo": "unclehowell/cedwyn-settings",
+      "old_branch": "theme-settings",
+      "page": "/settings/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "The Release Machine",
+      "repo": "unclehowell/cedwyn-releases",
+      "old_branch": "releases",
+      "page": "/releases/",
+      "mode": "split-repo",
+      "min_files": 1,
+      "deploy": "repo"
+    },
+    {
+      "app": "Language Forensics",
+      "repo": "unclehowell/coming-soon-57",
+      "page": "/language-forensics/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Uptime",
+      "repo": "unclehowell/cedwyn-uptime",
+      "page": "/uptime/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    }
+  ]
+}

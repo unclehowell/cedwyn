@@ -3,9 +3,14 @@ name: build-cedwyn
 # then commits the result to branch `site` (served by the Cloudflare Pages project "cedwyn"). Never touches datro. — Sion's Tab agent
 on:
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run every build step but do NOT publish to branch site or write reports to main (for testing build speed-ups)'
+        type: boolean
+        default: false
   push:
     branches: [main]
-    paths: ['tools/**', 'web/**', 'data/**', 'themes.json', '.github/workflows/build.yml']
+    paths: ['tools/**', 'web/**', 'data/**', 'themes.json', 'split-repos.json', '.github/workflows/build.yml']
 permissions:
   contents: write
 concurrency:
@@ -49,12 +54,15 @@ jobs:
       - name: Fetch theme branches (tips only)
         run: |
           git init -q --bare mirror.git
-          REFS=$(python3 -c "import json;T=json.load(open('themes.json'))['themes'];B={t[k] for t in T for k in ('branch','snapshot_branch') if t.get(k)};print(' '.join(sorted('+refs/heads/%s:refs/heads/%s'%(b,b) for b in B)))")
-          git -C mirror.git fetch -q --depth 1 "https://github.com/${GITHUB_REPOSITORY}.git" $REFS
-          # Snapshot section branches and their sections.lock pins are fetched here, one at a time, before assemble.py runs its themes in
-          # parallel: parallel shallow fetches into mirror.git raced on its shallow lock and section/fcg fell back to the live crawl (rc 2)
-          # in builds 41247111288 and 41254286763. assemble.py skips its own fetch when the ref/pin is already here. — Sion's Tab agent
-          for s in $(python3 -c "import json;print(' '.join(sorted({v['sha'] for v in json.load(open('sections.lock'))['sections'].values() if v.get('sha')})))"); do
+          REFS=$(python3 -c "import json;T=json.load(open('themes.json'))['themes'];A=json.load(open('split-repos.json'))['apps'];D={(a.get('page') or '').strip('/') for a in A if a.get('deploy')=='repo'}|{a.get('old_branch') for a in A if a.get('deploy')=='repo' and a.get('old_branch')};B={t[k] for t in T for k in ('branch','snapshot_branch') if t.get(k) and t.get('id') not in D and t[k] not in D};print(' '.join(sorted('+refs/heads/%s:refs/heads/%s'%(x,x) for x in B)))")
+          if [ -n "$REFS" ]; then
+            git -C mirror.git fetch -q --depth 1 "https://github.com/${GITHUB_REPOSITORY}.git" $REFS
+          else
+            echo "No legacy branch refs required."
+          fi
+          # Snapshot section branches and pins are fetched one at a time to avoid shallow-lock races.
+          # Direct-repo themes are excluded: their only source is the dedicated repository.
+          for s in $(python3 -c "import json;A=json.load(open('split-repos.json'))['apps'];D={(a.get('page') or '').strip('/') for a in A if a.get('deploy')=='repo'}|{a.get('old_branch') for a in A if a.get('deploy')=='repo' and a.get('old_branch')};S=json.load(open('sections.lock'))['sections'];print(' '.join(sorted({v['sha'] for k,v in S.items() if k not in D and v.get('sha')})))"); do
             git -C mirror.git cat-file -e "$s^{commit}" 2>/dev/null || git -C mirror.git fetch -q --depth 1 "https://github.com/${GITHUB_REPOSITORY}.git" "$s" || echo "::warning::pinned section commit $s not fetched"
           done
           git -C mirror.git for-each-ref --format='%(refname:short)' | wc -l
@@ -142,6 +150,8 @@ jobs:
           PY
       - name: Apex root files, verbatim (static-first hosting, 3 Nov 2026 - tools/apex_root.py)
         run: python3 tools/apex_root.py bff/public dist || echo "::warning::apex root step did not complete"
+      - name: Fit the Cloudflare Pages 20,000-file limit (tools/pages_fit.py; fails the build while still over, so no silent Pages refusal - P-PAGES-20K-FILES)
+        run: python3 tools/pages_fit.py dist
       - name: Measure
         if: always()
         run: |
@@ -164,6 +174,7 @@ jobs:
           mkdir -p dist/_cedwyn/reports
           printf '{"commit":"%s","built_at":"%s"}\n' "$GITHUB_SHA" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > dist/_cedwyn/reports/build.json
       - name: Publish to branch site
+        if: ${{ inputs.dry_run != true }}
         env:
           TOKEN: ${{ github.token }}
         run: |
@@ -173,7 +184,7 @@ jobs:
           cd pub && git config user.name "cedwyn-bot" && git config user.email "cedwyn-bot@users.noreply.github.com"
           git add -A && git commit -q -m "Build from main ${GITHUB_SHA::7} — Sion's Tab agent" && git push -q origin site || echo "nothing to publish"
       - name: Reports to main
-        if: always()
+        if: ${{ always() && inputs.dry_run != true }}
         env:
           TOKEN: ${{ github.token }}
         run: |
