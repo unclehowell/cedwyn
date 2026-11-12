@@ -14,7 +14,7 @@
  "properties": {
   "id": {
    "type": "string",
-   "pattern": "^(EV|MR|CC|KF|RET|PL|PE|EVT|AR|TS|OBS|TOC)-[A-Z0-9-]+$",
+   "pattern": "^(EV|MR|CC|KF|RET|PL|PE|EVT|AR|TS|OBS|TOC|TBD)-[A-Z0-9-]+$",
    "description": "One numbering format throughout the catalogue: PREFIX-NNNN, the number zero-padded to at least 4 digits. Past 9999 the number simply gets longer (EV-10000 … EV-1000000 and beyond); existing ids are never rewritten or re-padded. Sort and compare ids by their number, never as plain strings (EV-10000 comes after EV-9999). Email records (kind email) are numbered in the EV series, continuing after the highest EV in use; the two withheld digit strings are skipped. New ids: next = highest number in the series + 1."
   },
   "kind": {
@@ -30,7 +30,8 @@
     "testimony",
     "catalogue_candidate",
     "foi_finding",
-    "email"
+    "email",
+    "tbd"
    ]
   },
   "slug": {
