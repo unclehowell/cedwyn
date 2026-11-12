@@ -409,7 +409,7 @@ html.ghf-inv .cm-gm-bg img.cm-vp-img{filter:invert(1) hue-rotate(180deg)!importa
 .cm-hf-player-host{position:relative;width:100%;aspect-ratio:16/9;min-height:180px;background:#080909;border-radius:7px;overflow:hidden}
 .cm-hf-player-host>iframe,.cm-hf-player-host>div,.cm-hf-player-host iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .cm-hf-controls{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
-.cm-hf-button{min-height:42px;padding:9px 13px;border:1px solid var(--gold);border-radius:5px;background:transparent;color:var(--ink);font:600 13px/1.3 inherit;cursor:pointer}
+.cm-hf-button{min-height:42px;padding:9px 13px;border:1px solid var(--gold);border-radius:5px;background:transparent;color:var(--ink);font:600 13px/1.3 system-ui,sans-serif;cursor:pointer}
 .cm-hf-button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .cm-hf-button:disabled{opacity:.45;cursor:not-allowed}
 .cm-hf-source-note{margin:4px 0 9px}
