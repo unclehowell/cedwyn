@@ -26,6 +26,27 @@ MARKUP = re.compile(r'<(?:img|source|video|audio|embed|object|iframe|input|image
 MATTR = re.compile(r"""\s(?:src|data|poster|srcset|href|xlink:href)\s*=\s*["']([^"']+)["']""", re.I)
 FETCHLIT = re.compile(r"""fetch\(\s*["']([^"'?#\s:]+\.(?:json|csv|xml|geojson))(?:\?[^"']*)?["']""")
 QSTR = re.compile(r"""["'`]([^"'`\s<>]{1,300})["'`]""")
+# 8 Nov 2026 (follow-up to #513/#514): a data file a page offers as a plain <a href> download (tithe-h3's GeoJSON/JSON,
+# the watchtower's peekaboo-watch.json, mr-wolf's leaderboard.json) or names in a data- attribute (ghf-lang.js reads
+# data-dict="/mr-wolf/lang.json") is opened outside the service worker, so dropping it answered 404. Keep those as files. - Sion's Tab agent
+ALINK = re.compile(r'<(?:a|area)\b[^>]*>', re.I | re.S)
+HREFV = re.compile(r"""\shref\s*=\s*["']([^"']+)["']""", re.I)
+DATAATTR = re.compile(r"""\sdata-[\w-]+\s*=\s*["']([^"'\s]+)["']""", re.I)
+SCRIPTBODY = re.compile(r'(<script\b[^>]*>).*?(</script>)', re.I | re.S)
+DATAFILE = re.compile(r'\.(json|geojson|xml|csv)$', re.I)
+def _datafile(v): return bool(DATAFILE.search(v.strip().split('#')[0].split('?')[0]))
+# 9 Nov 2026 (P-SITE-BUILD-DROPS-DATA, problems run bb12481b): a webapp script that loads its data through a helper
+# (tithe-h3.js: gj("data/parcels.json?v=0.6.0"), L.imageOverlay("img/tithe-1841-overlay.webp?v=0.4.0")) is not a literal
+# fetch(), so FETCHLIT missed it and /tithe-h3/data/parcels.json, pins.json, parcels-est.json and both overlays answered 404
+# live; the wayback category indexes (/wayback/text/_treeview.json, /wayback/websites/index.json) went the same way.
+# Those paths are kept as files too. Every rule added after #513 is capped (EXTRA_CAP files, most useful first: download
+# links, then script data paths and directory indexes, then script images), because tools/pages_fit.py fails the build
+# above 20,000 files and the 9 Nov build ended at 19,473. Capped paths are listed in _cedwyn/reports/dbserve.json. - Sion's Tab agent
+SCRIPTDATA = re.compile(r"""["'`]((?![a-z][\w+.-]*:)[^"'`\s<>()]{1,200}?\.(?:json|geojson))(?:\?[^"'`\s<>]*)?["'`]""", re.I)
+SCRIPTIMG = re.compile(r"""["'`]((?![a-z][\w+.-]*:|/)[^"'`\s<>()]{1,200}?\.(?:webp|png|jpe?g))(?:\?[^"'`\s<>]*)?["'`]""", re.I)
+VENDOR = re.compile(r'(^|/)(vendor|node_modules)/|\.min\.m?js$', re.I)
+DIRINDEX = re.compile(r'(^|/)_treeview\.json$|^/wayback/websites/(index|moved)\.json$|^/[^/]+/api/[^/]+\.json$', re.I)   # + an app's static API file (/qa/api/qa.json)
+EXTRA_CAP = 300
 def resolve(base_rel, u):
     u = u.strip().split('#')[0].split('?')[0]
     if not u or u.startswith(('data:', 'blob:', 'javascript:', 'mailto:')): return None
@@ -57,7 +78,7 @@ def main():
     bmf = DIST / 'db' / 'blobmap.json'
     if not bmf.exists(): print('dbserve: no blobmap, nothing to do'); return 0
     bm = json.load(open(bmf)); paths = bm['paths']; blobs = bm['blobs']
-    keep = {}
+    keep = {}; extra = {}   # extra: path -> (priority, why), capped below
     for p in DIST.rglob('*'):
         if not p.is_file(): continue
         rel = '/' + p.relative_to(DIST).as_posix(); ext = p.suffix.lower()
@@ -81,6 +102,20 @@ def main():
             for v in FETCHLIT.findall(s):   # data files the page's own scripts fetch (first visit: no service worker yet)
                 r = resolve(rel, v)
                 if r: keep.setdefault(r, 'fetched by script')
+            nos = SCRIPTBODY.sub(r'\1\2', s)   # script tags kept (data-dict lives on one), script bodies out
+            for t in ALINK.findall(nos):   # data downloads linked from the page (see ALINK above)
+                for v in HREFV.findall(t):
+                    if _datafile(v):
+                        r = resolve(rel, v)
+                        if r: extra.setdefault(r, (0, 'data file linked from the page'))
+            for v in DATAATTR.findall(nos):
+                if _datafile(v):
+                    r = resolve(rel, v)
+                    if r: extra.setdefault(r, (0, 'data file named in a data- attribute'))
+            for sc in SCRIPTS.findall(s):   # inline scripts that name a data file through a helper
+                for v in SCRIPTDATA.findall(sc):
+                    r = resolve(rel, v)
+                    if r: extra.setdefault(r, (1, 'data file named in a script'))
             if '/_cedwyn/runtime.js' not in s:   # a page that does not load the runtime: everything it names stays a file
                 for v in QSTR.findall(s):
                     if DBX.search(v.split('?')[0].split('#')[0]):
@@ -99,6 +134,13 @@ def main():
             for v in FETCHLIT.findall(s):
                 r = resolve(rel, v)
                 if r: keep.setdefault(r, 'fetched by script')
+            if not VENDOR.search(rel):   # see SCRIPTDATA above: data/images a webapp script names through a helper
+                for v in SCRIPTDATA.findall(s):
+                    r = resolve(rel, v)
+                    if r: extra.setdefault(r, (1, 'data file named in a script'))
+                for v in SCRIPTIMG.findall(s):
+                    r = resolve(rel, v)
+                    if r: extra.setdefault(r, (2, 'image named in a script (relative path)'))
         elif ext == '.webmanifest' or p.name == 'manifest.json':
             try:
                 for ic in (json.load(open(p)).get('icons') or []):
@@ -107,6 +149,15 @@ def main():
             except Exception: pass
     flower_paths = keep_flower_gallery(DIST, keep)
     rep = collections.Counter(); kept_why = collections.Counter(); changed = []; dropped_bytes = collections.Counter(); kept_examples = []
+    def base_why(path):   # the keep rules up to #513, uncapped
+        return keep.get(path) or ('fetched by browsers outside a service worker' if KEEPNAME.search(path) else None) \
+            or ('fetched by script (built path)' if path.startswith(KEEPPREFIX) else None) \
+            or ('webapp database / A2UI surface (read without a service worker)' if APPDB.search(path) else None) \
+            or ('download file (.csv opened by a plain link, outside the service worker)' if path.lower().endswith('.csv') else None)
+    for path in paths:
+        if DIRINDEX.search(path): extra.setdefault(path, (1, 'directory index or static API file (_treeview.json, wayback websites index, /<app>/api/*.json)'))
+    cand = sorted((v[0], p) for p, v in extra.items() if p in paths and not base_why(p) and (DIST / p.lstrip('/')).is_file())
+    allowed = {p for _, p in cand[:EXTRA_CAP]}; capped = [p for _, p in cand[EXTRA_CAP:]]
     for path in sorted(paths):
         f = DIST / path.lstrip('/')
         if not f.is_file(): rep['indexed_no_file'] += 1; continue   # a copy the content store already folded into /_blob/
@@ -114,10 +165,7 @@ def main():
             del paths[path]; changed.append(path); continue
         # 27 Oct 2026 (P-008): the Wayback snapshot page builds its bucket address at run time ('/wayback/snap/b/'+n+'.json'),
         # which FETCHLIT cannot see, so every bucket was dropped and /wayback/go/ found no captured copy (404). Keep them as files.
-        why = keep.get(path) or ('fetched by browsers outside a service worker' if KEEPNAME.search(path) else None) \
-            or ('fetched by script (built path)' if path.startswith(KEEPPREFIX) else None) \
-            or ('webapp database / A2UI surface (read without a service worker)' if APPDB.search(path) else None) \
-            or ('download file (.csv opened by a plain link, outside the service worker)' if path.lower().endswith('.csv') else None)
+        why = base_why(path) or (extra[path][1] if path in allowed else None)
         # 31 Oct 2026 (P-132): a CSV is a download a reader opens by a plain <a href> link (the book register
         # /research/book-research-findings.csv and /research/books/findings.csv). An <a> link is not markup the preload
         # scanner fetches, so dbserve dropped every CSV and a first visit or a direct link answered 404. Keep CSVs as files. - Sion's Tab agent
@@ -138,6 +186,7 @@ def main():
          'files_dropped': {k[8:]: v for k, v in rep.items() if k.startswith('dropped_')},
          'bytes_dropped': dict(dropped_bytes), 'bytes_dropped_total': sum(dropped_bytes.values()),
          'files_kept_as_well': {k[5:]: v for k, v in rep.items() if k.startswith('kept_')}, 'kept_why': dict(kept_why), 'kept_examples': kept_examples,
+         'extra_cap': EXTRA_CAP, 'extra_candidates': len(cand), 'extra_kept': len(allowed), 'extra_capped': len(capped), 'extra_capped_examples': capped[:20],
          'changed_after_db_build_served_as_files': len(changed), 'changed_examples': changed[:20], 'indexed_without_file': rep['indexed_no_file']}
     r = DIST / '_cedwyn' / 'reports'; r.mkdir(parents=True, exist_ok=True)
     json.dump(o, open(r / 'dbserve.json', 'w'), indent=1)
