@@ -1,6 +1,6 @@
 {
- "version": "1.0.1",
- "generated": "2026-10-31",
+ "version": "1.0.2",
+ "generated": "2026-11-12",
  "note": "Plain-English definitions for words a first-time visitor meets on Cedwyn. Each entry: term, one-line definition, the anchor on /glossary/, and deeper pages on Cedwyn (internal links only). Name groups with spelling variants live in data/nomenclature.json and are listed on /glossary/ too. — Sion's Tab agent",
  "terms": [
   {
@@ -176,6 +176,27 @@
     {
      "label": "Bute manor disposals (DB/M/22)",
      "url": "/research/evidence/ev-0027-bute-manor-disposals-db-m-22/"
+    }
+   ]
+  },
+  {
+   "slug": "free-tenant",
+   "term": "Free tenant / freeholder",
+   "match": [
+    "free tenant",
+    "free tenants"
+   ],
+   "ci": true,
+   "definition": "A free tenant held land from the lord of a manor by free tenure, usually for a small fixed rent, and could sell or leave it; in practice this was ownership. Demesne land was the lord’s own, and copyhold or leasehold tenants held only on the lord’s terms.",
+   "anchor": "/glossary/#free-tenant",
+   "learn_more": [
+    {
+     "label": "Theories: TH-07 (Williams freehold)",
+     "url": "/theories/#th-th-07"
+    },
+    {
+     "label": "Llandough manorial evidence",
+     "url": "/research/anomalies-register/llandough-penarth-cydfin-ty-mawr-manorial-evidence/"
     }
    ]
   },
