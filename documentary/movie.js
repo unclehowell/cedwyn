@@ -23,19 +23,19 @@
       prompt: "Production prompt", prompt_note: "The producer's prompt steers the film. Every new scene is made from it, and no scene goes ahead until the earlier ones are finished in all three languages.",
       edit: "Edit the prompt", acts: "Acts", how: "How it is made", how_note: "Each scene is one dated moment, in strict date order. Every dated event in the chronology sits behind exactly one door; its evidence is linked under the door. The same faces, voices, buildings and landscapes are used in every scene. Anything a scene leaves out is noted and taken up in a later scene.",
       frame: "Frame", act: "Act", script: "Script", subtitles: "Subtitles", next: "Next scene", soon: "Script in writing: the logline above is the plan.", subsoon: "Subtitles come with the script.",
-      events: "Events", evidence: "Evidence", desc: "What happens in this scene", evl: "Evidence: our archived copies", review: "Draft for review", mt: "machine translation, for review", play: "Play", left: "Left out, taken up later"},
+      events: "Events", evidence: "Evidence", desc: "What happens in this scene", evl: "Evidence: our archived copies", review: "Draft for review", mt: "machine translation, for review", play: "Play", left: "Left out, taken up later", archive: "Full chronology archive", folded: "Folded supporting moments", appendix: "Later and held scenes", also: "Supporting moments"},
     cy: {scene: "Golygfa", notyet: "Heb ei gwneud eto", langs: "Ieithoedd", pend: "i ddod", released: "Dyddiad rhyddhau", ai: "argraff arlunydd", more: "Sgript, isdeitlau a thystiolaeth", enlarge: "Gweld y llun ar sgrin lawn", art: "Gweld y gwaith celf", size: "Maint y cardiau", size_s: "Bach", size_m: "Canolig", size_l: "Mawr", vers: "Fersiynau", vfree: "am ddim", vcoming: "ar y ffordd", vsel: "Dewiswch fersiwn", vsoon: "Yn fuan", vmin: "munud", vt_v: "Fersiwn", vt_d: "Dyddiad", vt_c: "Beth newidiodd", vt_l: "Hyd", vt_p: "Pris", vl_free: "Am ddim i’w wylio", vl_paid: "£4.99 · rhowch god mynediad neu prynwch", vl_open: "Ar agor ar y ddyfais hon", vnow: "yn chwarae", vopen: "ar agor", navb: "Yn ôl", navn: "Nesaf", nowp: "Yn chwarae nawr", vpicked: "wedi'i dewis", close: "Cau", sub_l: "Derbyniwch bob golygfa newydd drwy e-bost:", sub_ph: "Eich e-bost", sub_b: "Tanysgrifio", sub_human: "Un cam arall: mae Mailchimp am wirio eich bod yn ddynol. Tapiwch Tanysgrifio eto i orffen mewn tab newydd.", sub_tab: "Gorffennwch yn y tab newydd, yna edrychwch yn eich mewnflwch i gadarnhau.", sub_ok: "Diolch. Edrychwch yn eich mewnflwch i gadarnhau.", sub_err: "Ni aeth hynny drwodd. Gwiriwch y cyfeiriad a rhowch gynnig arall arni.", sub_bad: "Rhowch gyfeiriad e-bost dilys.", sending: "Yn anfon…", mtl: "cyfieithiad peiriant", kicker: "Rhaglen ddogfen · cynhyrchiad tab.bot", sub: "Mae pob drws yn un foment ddyddiedig ym mywyd y tir yn Llandochau, mewn trefn dyddiad gaeth o tua 200 CC hyd heddiw: golygfa o tua dau funud, wedi'i gwneud ar wahân yn Gymraeg, Saesneg a Sbaeneg. Dangosir golygfeydd ac ieithoedd sydd heb eu gwneud eto fel deiliaid lle.",
       of: "o", doors: "golygfa wedi'u rhyddhau", runtime: "hyd arfaethedig", subs: "Isdeitlau", on: "ymlaen", off: "i ffwrdd", audio: "Sain", menu: "Cynhyrchu", fs: "Sgrin lawn", fsx: "Gadael y sgrin lawn", play: "Chwarae", pause: "Oedi", seek: "Safle yn yr olygfa", soff: "Dim",
       prompt: "Anogwr y cynhyrchiad", prompt_note: "Anogwr y cynhyrchydd sy'n llywio'r ffilm. Gwneir pob golygfa newydd ohono, ac nid aiff unrhyw olygfa yn ei blaen nes bod y rhai cynharach wedi'u gorffen yn y tair iaith.",
       edit: "Golygu'r anogwr", acts: "Actau", how: "Sut mae'n cael ei wneud", how_note: "Mae pob golygfa yn un foment ddyddiedig, mewn trefn dyddiad gaeth. Mae pob digwyddiad dyddiedig yn y cronoleg y tu ôl i un drws yn union; mae'r dystiolaeth wedi'i chysylltu o dan y drws. Defnyddir yr un wynebau, lleisiau, adeiladau a thirluniau ym mhob golygfa. Caiff unrhyw beth a adewir allan ei nodi a'i godi mewn golygfa ddiweddarach.",
       frame: "Ffrâm", act: "Act", script: "Sgript", subtitles: "Isdeitlau", next: "Y nesaf", soon: "Sgript ar y gweill: y crynodeb uchod yw'r cynllun.", subsoon: "Daw'r isdeitlau gyda'r sgript.",
-      events: "Digwyddiadau", evidence: "Tystiolaeth", desc: "Beth sy'n digwydd yn yr olygfa", evl: "Tystiolaeth: ein copïau archif", review: "Drafft i'w adolygu", mt: "cyfieithiad peiriant, i'w adolygu", play: "Chwarae", left: "Wedi'i adael allan, i'w godi wedyn"},
+      events: "Digwyddiadau", evidence: "Tystiolaeth", desc: "Beth sy'n digwydd yn yr olygfa", evl: "Tystiolaeth: ein copïau archif", review: "Drafft i'w adolygu", mt: "cyfieithiad peiriant, i'w adolygu", play: "Chwarae", left: "Wedi'i adael allan, i'w godi wedyn", archive: "Archif gronolegol lawn", folded: "Eiliadau ategol wedi'u cyfuno", appendix: "Golygfeydd diweddarach ac ar ddaliad", also: "Eiliadau ategol"},
     es: {scene: "Escena", notyet: "Aún sin hacer", langs: "Idiomas", pend: "pendiente", released: "Fecha de estreno", ai: "impresión artística", more: "Guion, subtítulos y pruebas", enlarge: "Ver la imagen a pantalla completa", art: "Ver la ilustración", size: "Tamaño de las tarjetas", size_s: "Pequeño", size_m: "Mediano", size_l: "Grande", vers: "Versiones", vfree: "gratis", vcoming: "próximamente", vsel: "Selecciona una versión", vsoon: "Próximamente", vmin: "min", vt_v: "Versión", vt_d: "Fecha", vt_c: "Qué cambió", vt_l: "Duración", vt_p: "Precio", vl_free: "Gratis", vl_paid: "£4.99 · introduce un código de acceso o compra", vl_open: "Abierta en este dispositivo", vnow: "reproduciendo", vopen: "abierta", navb: "Atrás", navn: "Siguiente", nowp: "Reproduciendo", vpicked: "elegida", close: "Cerrar", sub_l: "Recibe cada escena nueva por correo:", sub_ph: "Tu correo", sub_b: "Suscribirme", sub_human: "Un paso más: Mailchimp quiere comprobar que eres humano. Toca Suscribirme otra vez para terminar en una pestaña nueva.", sub_tab: "Termina en la pestaña nueva y luego revisa tu bandeja de entrada para confirmar.", sub_ok: "Gracias. Revisa tu bandeja de entrada para confirmar.", sub_err: "No se pudo enviar. Revisa la dirección e inténtalo de nuevo.", sub_bad: "Escribe un correo válido.", sending: "Enviando…", mtl: "traducción automática", kicker: "Documental · una producción de tab.bot", sub: "Cada puerta es un momento fechado en la vida de la tierra de Llandough, en estricto orden de fechas desde hacia el 200 a. C. hasta hoy: una escena de unos dos minutos, hecha por separado en galés, inglés y español. Las escenas e idiomas aún sin hacer se muestran como marcadores.",
       of: "de", doors: "escenas estrenadas", runtime: "duración prevista", subs: "Subtítulos", on: "sí", off: "no", audio: "Audio", menu: "Producción", fs: "Pantalla completa", fsx: "Salir de pantalla completa", play: "Reproducir", pause: "Pausa", seek: "Posición en la escena", soff: "No",
       prompt: "Indicaciones de producción", prompt_note: "Las indicaciones del productor guían la película. Cada escena nueva se hace a partir de ellas, y ninguna escena avanza hasta que las anteriores estén terminadas en los tres idiomas.",
       edit: "Editar las indicaciones", acts: "Actos", how: "Cómo se hace", how_note: "Cada escena es un momento fechado, en estricto orden de fechas. Cada hecho fechado de la cronología está detrás de una sola puerta; sus pruebas se enlazan bajo la puerta. Las mismas caras, voces, edificios y paisajes se usan en todas las escenas. Lo que una escena deja fuera se anota y se retoma en una escena posterior.",
       frame: "Cuadro", act: "Acto", script: "Guion", subtitles: "Subtítulos", next: "Próxima", soon: "Guion en preparación: el resumen de arriba es el plan.", subsoon: "Los subtítulos llegan con el guion.",
-      events: "Hechos", evidence: "Pruebas", desc: "Qué pasa en esta escena", evl: "Pruebas: nuestras copias archivadas", review: "Borrador para revisar", mt: "traducción automática, para revisar", play: "Reproducir", left: "Quedó fuera, se retoma después"}
+      events: "Hechos", evidence: "Pruebas", desc: "Qué pasa en esta escena", evl: "Pruebas: nuestras copias archivadas", review: "Borrador para revisar", mt: "traducción automática, para revisar", play: "Reproducir", left: "Quedó fuera, se retoma después", archive: "Archivo cronológico completo", folded: "Momentos de apoyo agrupados", appendix: "Escenas posteriores y en espera", also: "Momentos de apoyo"}
   };
   var COL = ["#3e5a44", "#3b4148", "#6b4a2f", "#4a5d3a", "#5a3e3a", "#33474f", "#5b5a3a", "#40364f"];
   var NAMES = {A_MARY: "Mary", B_JOHN: "John", C_FRED: "Fred", D_BILLY: "Billy", E_AGENT: "The Agent", F_GWEN: "Gwen", G_DAI: "Dai", H_CLERK: "The Court", I_NIA: "Nia", J_ELENA: "Elena"};
@@ -145,6 +145,7 @@
     D.compute(F, fm);
     $("cm-open").textContent = open; $("cm-total").textContent = F.items.length; $("cm-runtime").textContent = F.estimated_runtime || "";
     var acts = $("cm-acts"); acts.textContent = ""; var lastAct = null, L = lang();
+    var foldedById = {}; (F.folded || []).forEach(function (x) { foldedById[x.id] = x; });
     F.items.forEach(function (f, i) {
       if (f.act.n !== lastAct) { lastAct = f.act.n; var h = el("h2", "cm-actsep", t("act") + " " + f.act.n + " · " + (f.act[L] || f.act.en)); h.id = "cm-act-" + f.act.n;
         var frs = F.items.filter(function (x) { return x.act.n === f.act.n; }); h.appendChild(el("small", "", t("scene") + " " + frs[0].n + "–" + frs[frs.length - 1].n + " · " + (frs[0].date_label || frs[0].date_from) + " → " + (frs[frs.length - 1].date_label || frs[frs.length - 1].date_to))); grid.appendChild(h);
@@ -168,6 +169,22 @@
       var ab = el("button", "cm-artbtn", t("art")); ab.type = "button"; ab.setAttribute("aria-label", t("enlarge") + ": " + t("scene") + " " + f.n);
       ab.onclick = function (e) { e.stopPropagation(); openLB(f, title, dtxt); }; hd.appendChild(ab); body.appendChild(hd);
       var pl = [f.date_label, f.period && (f.period[lang()] || f.period.en)].filter(Boolean).join(" · "); if (pl) { var pe = el("p", "cm-period", pl); pe.style.cssText = "font-size:12.5px;font-weight:600;margin:2px 0 4px;opacity:.8"; body.appendChild(pe); }/* v1.12.0: date · period */ body.appendChild(el("h3", "", title)); body.appendChild(el("p", "cm-log", tl(f, "logline"))); body.appendChild(langRow(f));
+
+      if (f.also && f.also.length) {
+        var ad = el("details", "cm-also");
+        ad.appendChild(el("summary", "", t("also") + " · " + f.also.length));
+        var al = el("div", "cm-also-list");
+        f.also.forEach(function (a) {
+          var full = foldedById[a.id], item = el("details", "cm-also-item");
+          var at = full ? tl(full, "title") : a.title;
+          var ap = full ? tl(full, "logline") : a.logline;
+          item.appendChild(el("summary", "", [a.date || "", at || a.id].filter(Boolean).join(" · ")));
+          if (ap) item.appendChild(el("p", "cm-also-log", ap));
+          al.appendChild(item);
+        });
+        ad.appendChild(al); body.appendChild(ad);
+      }
+
       // v1.9.0 (owner's rule m:1d4eb2cf): under "What happens in this scene", three dropdowns in this order: Script, Subtitles, Evidence.
       // Evidence is the last one and the only place on the door where evidence appears (archived copies, record numbers, events, anything left out).
       var DS = f.description && (f.description[lang()] || f.description.en);
@@ -189,6 +206,55 @@
       card.appendChild(body); grid.appendChild(card);
       var opened = false; [d1, d2].forEach(function (d) { d.addEventListener("toggle", function () { if (d.open && !opened) { opened = true; loadScript(f).then(function () { fillDetails(card, f); }); } else if (d.open) fillDetails(card, f); }); });
     });
+    var archive = $("cm-archive");
+    if (archive) {
+      archive.textContent = "";
+      var folded = F.folded || [], appendix = F.appendix || [];
+      if (folded.length || appendix.length) {
+        var root = el("details", "cm-archive-root");
+        root.appendChild(el("summary", "", t("archive") + " · " + folded.length + " " + t("folded") + " · " + appendix.length + " " + t("appendix")));
+        function archiveGroup(label, records) {
+          var group = el("details", "cm-archive-group");
+          group.appendChild(el("summary", "", label + " · " + records.length));
+          records.forEach(function (x) {
+            var item = el("details", "cm-archive-item");
+            var title = tl(x, "title"), date = x.date_label || x.date_range || x.date_from || "";
+            item.appendChild(el("summary", "", [x.id, date, title].filter(Boolean).join(" · ")));
+            var logline = tl(x, "logline");
+            if (logline) item.appendChild(el("p", "cm-archive-log", logline));
+            if (x.evidence_links && x.evidence_links.length) {
+              var links = el("ul", "cm-archive-links");
+              x.evidence_links.forEach(function (v) {
+                var li = el("li"), a = el("a", "", v.title || v.href);
+                a.href = v.href; a.target = "_blank"; a.rel = "noopener noreferrer";
+                li.appendChild(a); links.appendChild(li);
+              });
+              item.appendChild(links);
+            }
+            if (x.evidence && x.evidence.length) {
+              var evidence = el("p", "cm-archive-evidence");
+              evidence.appendChild(el("strong", "", t("evidence") + ": "));
+              evidence.appendChild(document.createTextNode(x.evidence.map(function (v) {
+                return typeof v === "string" ? v : (v.title || JSON.stringify(v));
+              }).join(" · ")));
+              item.appendChild(evidence);
+            }
+            if (x.events && x.events.length) {
+              var events = el("p", "cm-archive-events");
+              events.appendChild(el("strong", "", t("events") + ": "));
+              events.appendChild(document.createTextNode(x.events.join(" · ")));
+              item.appendChild(events);
+            }
+            group.appendChild(item);
+          });
+          root.appendChild(group);
+        }
+        if (folded.length) archiveGroup(t("folded"), folded);
+        if (appendix.length) archiveGroup(t("appendix"), appendix);
+        archive.appendChild(root);
+      }
+    }
+
   }
   // v1.8.0 (1 Nov 2026, owner's rule m:417a8ed2; docs/VERSION-STANDARD.md "Selector UI"): ONE plain dropdown per released scene.
   // Its first option is the placeholder "Select a version", shown on load; no label above it and no line under it.
@@ -305,7 +371,7 @@
   // with path = movie/<scene-id>/<scene-id>.<lang>.v<semver>.webm (src, when present, is where the same bytes already live).
   // Choosing an audio language loads THAT language's own video for the chosen version (never an audio-track swap over another
   // language's picture); a (scene, lang, version) not yet made shows the "video pending" image with its label in HTML.
-  // Doors with no renders in the manifest keep the older behaviour below. — Cedwyn editors
+  // Doors with no renders in the manifest keep the older behaviour below. — Sion's Tab agent
   var RV = {};
   function sceneOf(m) { var x = String((m && (m.scene || m.clip)) || "").match(/F\d{3}[A-Z]?/); return x ? x[0] : null; }
   function rendersOf(m) { if (m && m.cut) return [];   // an earlier cut chosen with the version chips plays as it always did
