@@ -1,0 +1,32 @@
+{
+ "schema": "cedwyn-webapps-refresh/1.0",
+ "date": "2026-11-12",
+ "at": "2026-11-12T15:36:24Z",
+ "central_catalogue": {
+  "api_status": 200,
+  "total": 2202,
+  "kinds": {
+   "artifact": 25,
+   "catalogue_candidate": 7,
+   "email": 1138,
+   "evidence": 806,
+   "media": 128,
+   "missing_record": 86,
+   "person": 12
+  },
+  "core_record_files": null
+ },
+ "candidates_awaiting_review": 117,
+ "builds_busy": [
+  {
+   "id": 43242376333,
+   "status": "in_progress",
+   "created": "2026-11-12T14:56:11Z"
+  }
+ ],
+ "build_action": "skipped: 1 build-cedwyn run(s) already queued or running",
+ "llm_triage": {
+  "status": "skipped: no LLM key set"
+ },
+ "dry_run": false
+}
