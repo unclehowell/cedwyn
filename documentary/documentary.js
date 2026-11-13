@@ -340,7 +340,7 @@
       G.buy(cur().v);
     });
     $("cd-buy").setAttribute("href", GO);
-    var all = $("cd-all"); if (all) { all.href = "https:" + "/" + "/" + ["github", "com"].join(".") + "/unclehowell/cedwyn/commits/cedwyn-movie/public"; all.target = "_blank"; all.rel = "noopener"; }
+    var all = $("cd-all"); if (all) { all.href = "https:" + "/" + "/" + ["github", "com"].join(".") + "/unclehowell/cedwyn-documentary/commits/main/public"; all.target = "_blank"; all.rel = "noopener"; }
     document.addEventListener("ghf-lang-change", paint);
     fetch(RAW + "manifest.json?t=" + Math.floor(Date.now() / 300000), {cache: "no-store"}).then(function (r) { if (!r.ok) throw r.status; return r.json(); })
       .catch(function () { return fetch("data/manifest.json").then(function (r) { return r.json(); }); })
