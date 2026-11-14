@@ -1,11 +1,11 @@
 {
  "schema": "cedwyn-proposal/0.1.0",
  "kind": "catalogue_candidates_rolling_30d",
- "created": "2026-11-13",
+ "created": "2026-11-14",
  "note": "Add-only candidate list from the daily evidence resync (cedwyn#582). Nothing here is a catalogue record; no record ID is minted. Each item asks the spill / catalogue process whether a record should be added (catalogue-change PR). Existing records are never changed.",
  "counts": {
   "mail": 0,
-  "spill": 22,
+  "spill": 0,
   "online": 0,
   "labelled": 0,
   "spill_pending": 38,
@@ -1911,5 +1911,5 @@
    "first_seen": "2026-11-12"
   }
  ],
- "updated": "2026-11-13"
+ "updated": "2026-11-14"
 }
