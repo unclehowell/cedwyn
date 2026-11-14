@@ -14,15 +14,16 @@ git clone --depth 1 https://github.com/unclehowell/cedwyn-wales-3d.git
 
 ## Where to send changes (read this first)
 
-`split-repos.json` on `unclehowell/cedwyn` main sets the mode:
+The current estate split inventory lists this app as `mode: split-repo` and `deploy: repo`. **This repository's `main` branch is the app source of truth.**
 
-- **mirror** (now): the old branch `section/wales-3d` on unclehowell/cedwyn is still the source. `mirror.yml` here copies it every
-  30 minutes. Send pull requests to `section/wales-3d` on unclehowell/cedwyn (clone it with
-  `git clone --depth 1 --single-branch --branch section/wales-3d --filter=blob:none https://github.com/unclehowell/cedwyn.git`).
-- **split-repo** (after the owner switches it): this repository is the source; send pull requests here.
-  unclehowell/cedwyn copies `main` back into `section/wales-3d`, so the live page and every old path keep working.
+1. Make app changes on a feature branch in this repository.
+2. Open the pull request into this repository's `main`.
+3. The estate build reads this repository directly for `deploy: repo` apps (see `tools/assemble.py` in `unclehowell/cedwyn`). It records the source commit and fails the build if the repository cannot be read; it does not fall back to a legacy branch.
+4. Do not submit app changes to the retained `section/wales-3d` branch in `unclehowell/cedwyn`. The central `sync-split-repos` workflow deliberately skips entries with `deploy: repo`; that branch is not this app's development or deployment source.
 
-`SPLIT.json` records the source commit of the last copy. The app's own notes, if the branch had any, are in `APP-README.md`.
+The local `mirror.yml` is mode-gated. While this app remains `split-repo`, it must not copy the old branch over this repository's `main`.
+
+`SPLIT.json` records the source commit copied at the initial split; it is historical provenance, not a current sync indicator.
 
 ## Previews
 

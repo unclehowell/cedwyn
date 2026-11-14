@@ -1,0 +1,28 @@
+{
+ "schema": "cedwyn_mr_wolf_routes/v1",
+ "version": "2.0.0",
+ "updated": "2026-11-14",
+ "note": "Route tags are our own classification of what each lead would show if it succeeds. A lead can sit on more than one route. The route gauge shows the best-scoring lead on that route.",
+ "routes": [
+  {"key": "dishonesty", "label": "Dishonesty", "desc": "A document or declaration that misstated the facts to the court, the registry or the occupier."},
+  {"key": "concealment", "label": "Concealment", "desc": "A record that existed but was withheld, removed or left out of the file."},
+  {"key": "public", "label": "Public bodies", "desc": "A step taken by a registry, council, court office or other public body."}
+ ],
+ "tags": {
+  "MW-01": ["dishonesty"],
+  "MW-02": ["dishonesty", "public"],
+  "MW-03": ["concealment", "public"],
+  "MW-04": ["public"],
+  "MW-05": ["dishonesty"],
+  "MW-06": ["concealment"],
+  "MW-07": ["public"],
+  "MW-08": ["public"],
+  "MW-09": ["public"],
+  "MW-10": ["concealment", "public"],
+  "MW-11": ["concealment"],
+  "MW-12": ["dishonesty"],
+  "MW-13": ["concealment"],
+  "MW-14": ["dishonesty"],
+  "MW-15": ["concealment"]
+ }
+}

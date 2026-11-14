@@ -37,6 +37,9 @@
       frame: "Cuadro", act: "Acto", script: "Guion", subtitles: "Subtítulos", next: "Próxima", soon: "Guion en preparación: el resumen de arriba es el plan.", subsoon: "Los subtítulos llegan con el guion.",
       events: "Hechos", evidence: "Pruebas", desc: "Qué pasa en esta escena", evl: "Pruebas: nuestras copias archivadas", review: "Borrador para revisar", mt: "traducción automática, para revisar", play: "Reproducir", left: "Quedó fuera, se retoma después"}
   };
+  T.en.also = "Other dated moments grouped here";
+  T.cy.also = "Mannau dyddiedig eraill a grwpiwyd yma";
+  T.es.also = "Otros momentos fechados agrupados aquí";
   var COL = ["#3e5a44", "#3b4148", "#6b4a2f", "#4a5d3a", "#5a3e3a", "#33474f", "#5b5a3a", "#40364f"];
   var NAMES = {A_MARY: "Mary", B_JOHN: "John", C_FRED: "Fred", D_BILLY: "Billy", E_AGENT: "The Agent", F_GWEN: "Gwen", G_DAI: "Dai", H_CLERK: "The Court", I_NIA: "Nia", J_ELENA: "Elena"};
   var S = {frames: null, manifest: {filled: []}, scripts: {}, vtt: {}, audio: null, subs: true};
@@ -141,6 +144,7 @@
     return p; }
   function render() {
     var F = S.frames; if (!F) return; var grid = $("cm-grid"); grid.textContent = ""; var fm = filledMap(); var open = 0, nextN = null;
+    var foldedById = {}; (F.folded || []).forEach(function (x) { foldedById[x.id] = x; });
     F.items.forEach(function (f) { if (fm[f.n]) open++; else if (nextN === null) nextN = f.n; });
     D.compute(F, fm);
     $("cm-open").textContent = open; $("cm-total").textContent = F.items.length; $("cm-runtime").textContent = F.estimated_runtime || "";
@@ -184,6 +188,24 @@
       if (m && m.left_out && m.left_out.length) d3.appendChild(el("p", "cm-ev", t("left") + ": " + m.left_out.map(function (x) { return x.id || x; }).join(" · ")));
       if (!d3.querySelector("ul,p")) d3.appendChild(el("p", "cm-ev", t("soon")));
       dd.appendChild(d3); body.appendChild(dd);
+      // v1.13.0: preserve folded dated moments as separately labelled, collapsed captions on their parent scene.
+      if (f.also && f.also.length) {
+        var ad = el("details", "cm-sub cm-d-also");
+        ad.appendChild(el("summary", "", t("also") + " (" + f.also.length + ")"));
+        var al = el("ul", "cm-lines");
+        f.also.forEach(function (c) {
+          var source = foldedById[c.id] || c;
+          var li = el("li");
+          var date = c.date || source.date_label || source.date_range || "";
+          var title = tl(source, "title") || c.title || "";
+          var heading = [date, title].filter(Boolean).join(" · ");
+          if (heading) li.appendChild(el("strong", "", heading));
+          var logline = tl(source, "logline") || c.logline || "";
+          if (logline) li.appendChild(el("p", "", logline));
+          al.appendChild(li);
+        });
+        ad.appendChild(al); body.appendChild(ad);
+      }
       // v1.11.0 (producer 18:05Z 1 Nov 2026, m:64b19d2f): the scene shows the moment only; its evidence is ONE internal link under the door (frames.json evidence_page).
       if (f.evidence_page && f.evidence_page.href) { var EPL = (S.frames && S.frames.evidence_page_label) || {}; var ep = el("p", "cm-ev cm-evpage"), ea = el("a", "", (EPL[lang()] || EPL.en || t("evidence")) + " →"); ea.href = f.evidence_page.href; ep.appendChild(ea); body.appendChild(ep); }
       card.appendChild(body); grid.appendChild(card);

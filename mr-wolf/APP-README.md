@@ -8,6 +8,7 @@ scored 0–200: four limbs (dishonesty or concealment shown; operative cause of 
 reasonable diligence; evidence quality and admissibility), each 0–50. 100 = threshold plausibly met; 200 = proved beyond
 doubt on every limb. Limbs come from the reopen research's 0–5 limb scores x10; rows marked seed_score wait for a test.
 
-Data: `leaderboard.json` (schema cedwyn_mr_wolf_leaderboard/v1). `index.html` is rendered from it; when a score changes,
-update the JSON, re-render, bump VERSION and CHANGELOG. Our case, prospective, not a finding of any court.
+Data: `leaderboard.json` (schema cedwyn_mr_wolf_leaderboard/v1) and `routes.json` (route tags). Since v2.0.0, `mw.js` builds
+the gauge dashboard, leaderboard and modals in the browser from those files and `data/central.json`; when a score changes,
+update the JSON, bump VERSION and CHANGELOG. Longer text lives in modals. Our case, prospective, not a finding of any court.
 Background #f7f2e7 / #fbf8f1, no outbound links, 390 px mobile first, scope tag data-scope="online".

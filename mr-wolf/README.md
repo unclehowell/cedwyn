@@ -12,15 +12,16 @@ should never need the rest.
 git clone --depth 1 https://github.com/unclehowell/cedwyn-mr-wolf.git
 ```
 
-## Where to send changes
+## Where to send changes (read this first)
 
-`split-repos.json` on `unclehowell/cedwyn` main sets the mode:
+The authoritative `split-repos.json` in `unclehowell/cedwyn` lists this app as `mode: split-repo` and `deploy: repo`. **This repository's `main` branch is the app source of truth.**
 
-- **mirror** (now): the old branch `section/mr-wolf` is the source. `mirror.yml` copies it here every 30 minutes. Send pull requests to `section/mr-wolf`.
-- **split-repo** (after the owner switches it): this repository is the source; unclehowell/cedwyn copies `main` back into `section/mr-wolf`, so the
-  live page and every old path keep working.
+1. Make app changes on a feature branch in this repository.
+2. Open the pull request into this repository's `main`.
+3. The estate build reads this repository directly for `deploy: repo` apps (see `tools/assemble.py` in `unclehowell/cedwyn`). It records the exact source commit and fails closed if the repository cannot be read.
+4. The retained `section/mr-wolf` branch in `unclehowell/cedwyn` is a legacy copy, not the app's development or deployment source. The central `sync-split-repos` workflow excludes `deploy: repo` apps, and the local mirror workflow below must run only when the authoritative manifest explicitly says `mode: mirror`.
 
-`SPLIT.json` records the source commit of the last copy; the app's own notes, if any, are in `APP-README.md`.
+`SPLIT.json` records the source commit from the initial split; it is historical provenance, not a live sync indicator.
 
 ## Preview
 
