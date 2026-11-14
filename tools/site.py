@@ -242,7 +242,7 @@ lines += ['/email/api /email/api/ 301', '/email/api/records /email/view/index.js
           '/email/api/message /email/view/ 302', '/email/api/search /email/view/ 302', '/email/api/thread /email/view/ 302']
 lines += ['/graphql /graphql/ 301', '/catalogue /catalogue/ 301']
 # RDUQ migration (14 Nov 2026): preserve every legacy FCG deep link and asset under the new route.
-lines += ['/fcg /rduq/ 301', '/fcg/ /rduq/ 301', '/fcg/:splat /rduq/:splat 301']
+lines += ['/fcg /rduq/ 301', '/fcg/ /rduq/ 301', '/fcg/:splat /rduq/:splat 301', '/ebooks/fcg /ebooks/rduq/ 301', '/ebooks/fcg/ /ebooks/rduq/ 301', '/ebooks/fcg/:splat /ebooks/rduq/:splat 301']
 # 11 Nov 2026 (dead links sent in email): exact-path 301s for addresses that went out in mail and now 404 —
 # data/redirects/dead-links.txt, one "<old path> <target> 301" per line; patterns (* or :) are refused so no catch-all. - Sion's Tab agent
 _dead = ROOT / 'data' / 'redirects' / 'dead-links.txt'
