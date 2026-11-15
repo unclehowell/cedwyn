@@ -1,4 +1,4 @@
-/* Mr Wolf · webapp 40 of 59 · v2.0.0 · gauge dashboard */
+/* Mr Wolf · webapp 40 of 59 · v3.0.0 · gauge dashboard */
 :root{--bg:#f7f2e7;--card:#fbf8f1;--ink:#2b2418;--mute:#6b5f4b;--line:#e2d8c3;--acc:#7a3b12;--trk:#ece2cd;--far:#b4652a;--near:#c48a12;--met:#2f6b2f}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink)}
 body.mw{font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%}
@@ -48,10 +48,14 @@ dialog.m::backdrop{background:rgba(43,36,24,.45)}
 .m p{margin:0 0 8px}.m .m-sub{font-size:12px;color:var(--mute);margin:0 0 2px}
 .m-hero{display:grid;grid-template-columns:130px 1fr;gap:10px;align-items:center;margin-bottom:8px}
 .m-gap{font-weight:700;font-size:16px}.m-st,.m-rt{font-size:13px;color:var(--mute)}
-.m-raise{background:var(--bg);border-left:4px solid var(--acc);border-radius:6px;padding:4px 10px 2px}.m-raise h3{margin-top:6px}
 .lm{margin:0 0 10px}.lm-h{display:flex;justify-content:space-between;gap:8px;font-size:13px;font-weight:600}.lm p{font-size:14px;margin:6px 0 0}
 .m-recs,.m-list{list-style:none;padding:0;margin:0}.m-recs li{margin:0 0 6px;font-size:13px}.m-recs a{text-decoration:none}
 .m-list li button{display:flex;width:100%;justify-content:space-between;gap:10px;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:8px 0;font-size:14px}
 .m-list li button b{font-size:16px}.m-note{font-size:12px;color:var(--mute)}
 @media (max-width:420px){.chip{font-size:10px}.g4 .card .lbl{font-size:11px}.g4 .sm{font-size:10px}}
 @media (max-width:340px){.g4{grid-template-columns:repeat(2,1fr)}}
+.lb .v{display:block;margin-top:2px;font-size:11px;color:var(--mute);letter-spacing:.02em}
+.m-next{background:var(--bg);border-left:4px solid var(--near);border-radius:6px;padding:4px 10px 6px;margin:8px 0}.m-next h3{margin-top:6px}.m-next p{margin:0 0 2px}
+/* v3.0.0 evidence only */
+.fx{margin:0 0 8px;padding:0 0 0 18px;font-size:14px}.fx li{margin:0 0 6px}.fx-p li{color:var(--mute)}
+.ev{display:inline-block;font:700 11px system-ui,sans-serif;padding:1px 6px;border-radius:999px;border:1px solid var(--line);background:var(--bg);text-decoration:none;white-space:nowrap}.ev-0{color:var(--far);border-color:var(--far);font-weight:600}

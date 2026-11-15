@@ -1,6 +1,6 @@
 # Mr Wolf
 
-The Mr Wolf webapp of [cedwyn.bucklerfamily.estate](https://cedwyn.bucklerfamily.estate/mr-wolf/), in its own repository
+The Mr Wolf webapp at [bucklerfamily.estate](https://bucklerfamily.estate/mr-wolf/), in its own repository
 (webapp migration 59+1, issue #188 on unclehowell/cedwyn).
 
 Split out of `unclehowell/cedwyn` branch `section/mr-wolf` on 5 Nov 2026. That repository holds about 300 branches; a job on one webapp
