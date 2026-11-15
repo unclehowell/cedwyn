@@ -354,7 +354,9 @@ lines += [
     # 31 Oct 2026 (P-122 cycle 5): /projects/ links "the e-books" to /projects/ebooks/ (no such page); the clerk pack PDF is
     # built into the meeting theme but missing from the published site, while the meeting's own host serves it (200).
     "/projects/ebooks/ /ebooks/ 301",
-    "/meeting/meeting-pack.pdf https://2026-10-22.bucklerfamily.estate/meeting-pack.pdf 302"
+    "/meeting/meeting-pack.pdf https://2026-10-22.bucklerfamily.estate/meeting-pack.pdf 302",
+    # 5 Nov 2026 (owner): the Llandough Community Council 22 Oct meeting page left FCG; the meeting has its own Council Chamber app and Legal Wiki original.
+    "/fcg/case/llandough-community-council-22-october-2026 https://greathousefarmwiki.wordpress.com/project-management/llandough-community-council-22-october-2026/ 301"
 ]
 tr = DIST / '_theme_redirects.txt'
 if tr.exists():

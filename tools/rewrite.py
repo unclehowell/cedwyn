@@ -219,7 +219,8 @@ _t0 = _t.time()
 todo = [p for p in DIST.rglob('*') if p.is_file() and len(p.parts) > D + 1 and p.parts[D] in TIDS and p.suffix.lower() in ('.html', '.htm', '.css')]
 print('rewrite: files', len(todo), 'dedupe done in', round(_t.time() - _T0), 's', flush=True)
 tot = dict.fromkeys(stats, 0); tot['errors'] = 0
-with _mp.Pool(4) as pool:
+# Python 3.14 POSIX defaults to forkserver; use Linux fork for this top-level CLI.
+with _mp.get_context("fork").Pool(4) as pool:
     for d in pool.imap_unordered(do_file, todo, chunksize=64):
         for k, v in d.items(): tot[k] = tot.get(k, 0) + v
 stats.clear(); stats.update(tot)
