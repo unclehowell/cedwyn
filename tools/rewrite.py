@@ -58,7 +58,8 @@ _bins = [p for p in files if p.suffix.lower() in BIN]
 _txts = [p for p in files if p.suffix.lower() in TXT_DATA or p.suffix.lower() in ('.html', '.htm')]
 _procs = max(1, min(os.cpu_count() or 1, 8))
 if _procs > 1 and len(files) > 500:
-    with _mp0.Pool(_procs) as _pool:
+    # Python 3.14 defaults to forkserver; this CLI uses the Linux fork context explicitly.
+    with _mp0.get_context("fork").Pool(_procs) as _pool:
         _hashes = list(_pool.imap(_sha, _bins, chunksize=32))
         _nameset = list(_pool.imap(_names, _txts, chunksize=32))
 else:
