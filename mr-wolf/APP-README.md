@@ -6,7 +6,21 @@ Served at [bucklerfamily.estate/mr-wolf/](https://bucklerfamily.estate/mr-wolf/)
 
 The authoritative application repository is [unclehowell/cedwyn-mr-wolf](https://github.com/unclehowell/cedwyn-mr-wolf), branch `main`. Make application changes on a feature branch here and open a pull request into `main`. The retained `section/mr-wolf` branch in `unclehowell/cedwyn` is a legacy compatibility copy, not the development source. The estate build reads this repository directly for the `deploy: repo` app.
 
-## What the app measures
+## Two views (v4.0.0)
+
+A toggle at the top switches between **Tree view** (the default landing view) and **Gauge view**. `?view=tree` or `?view=gauges` opens either; `#MW-NN` opens a gauge lead; `#tree/N/<node>` and `#tree/R/<record>` open a tree node or leaf. The last view chosen is remembered per browser (localStorage, wrapped in try/catch).
+
+### Tree view: the Legal Threshold Tree
+
+The law is the tree; catalogue records are the leaves.
+
+- `legal-tree.json` (`cedwyn_mr_wolf_legal_tree/v1`): the trunk, pathways (domestic courts, Strasbourg, register rectification), legal gateways, tests, constituent elements, evidential requirements and procedural obstacles. Every legal node carries its authority with a pinpoint, jurisdiction, date, URL and a verification level (`primary`, `secondary`, `record`, `citation`). A node's status (not established, partially evidenced, strongly evidenced, procedurally blocked, requires legal determination, research required) is a legal-analysis judgment, never a sum of its leaves.
+- `evidence-links.json` (`cedwyn_mr_wolf_evidence_links/v1`): one row per relationship between a legal node and a record: `node`, `record`, `source`, `relation` (supports, undermines, contradicts, neutral, missing, hypothetical), `strength` (green, orange, red, brown, black, grey, judged against that node only), `reason`, `proposition`, optional `weaknesses`, `alternatives`, `needs`, and `assessment` {status, date, by}. Many-to-many: a record can sit on several nodes with a different strength on each.
+- `tree.js` / `tree.css`: SVG tree with pan, zoom, pinch, reset, expand and collapse, search, filters (strength, relationship, branch, source), an accessible outline, keyboard navigation, node modals (authority, test, evidence position) and record modals.
+- Record modals read the record from its own source at open time: the central catalogue (`/api/catalogue/{id}`), That Old Chestnut (`/that-old-chestnut/_db/view.json`), Dartboard (`/dartboard/data/foi-tracker.csv`) or the research mirror. Nothing is copied into this repository. VIEW WEBAPP opens the source app (`/catalogue/?id=…`, `/forensic/…`, `/that-old-chestnut/#cn-…`, `/dartboard/`). If a source is unreachable, the modal says so and shows only the tree's own mapping.
+- To add a leaf: add a row to `evidence-links.json` with a canonical record id; no code change is needed. Run `python3 tools/test_tree.py` (and `--online` to check every record resolves).
+
+## What the gauge view measures
 
 Mr Wolf is an evidence-led research dashboard concerning BP Properties Ltd v Buckler (1987). It is not a court finding, legal opinion or prediction.
 

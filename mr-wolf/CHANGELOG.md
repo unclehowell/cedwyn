@@ -1,5 +1,18 @@
 # Changelog — Mr Wolf (webapp 40 of 59)
 
+## [4.0.0] - 2026-11-16
+### Added
+- **Legal Threshold Tree** (owner Master Build Prompt, 16 Nov 2026; cedwyn-mr-wolf#20), now the landing view. A toggle at the top switches between Tree view and Gauge view.
+- `legal-tree.json`: 57 legal nodes on three pathways: domestic courts (fresh action to set aside; CPR 52.30 reopening; new evidence; what the 1987 decision rested on), the legal tests for fraud, deliberate concealment and government involvement, the European pathway for application 14464/88, and register rectification as a separate remedy. Every legal node cites its authority with a verification level.
+- `evidence-links.json`: 59 leaves on 44 canonical records (catalogue, That Old Chestnut, Dartboard, research mirror), each with relationship, strength for that element, reason, weaknesses, alternatives and assessment date.
+- Record modals load each record live from its source and end with VIEW WEBAPP; honest unavailable state when a source cannot be reached.
+- `tools/test_tree.py`: data-integrity test (`--online` resolves every leaf record).
+### Fixed
+- Gauge view: pending items that said "no record exists in the catalogue" now cite the catalogue's own placeholders where they exist (MR-0080 her written reply, MR-0081 the 1974 footage, EV-0700 and EV-0701 the National Archives files), and the Companies House reply of 3 November 2026 (EV-0710, held) is now listed as held. Scores unchanged.
+- Gauge view: the 1886 inscription comparator was cited as EV-0902; in the canonical catalogue EV-0902 is a different record (South Wales Echo, 24 March 1989). It is now cited by its research-mirror page, and the pending heirloom item points to MR-0075.
+### Note
+- "Fraud" appears in this app only as the name of the legal test the authorities use. It describes the law, not anyone's conduct.
+
 ## [3.0.2] - 2026-11-16
 ### Changed
 - Removed the decorative “What's the time, Mr Wolf?” tagline from the page header. The title, parcel navigation, scoring explanation and evidence dashboard remain.
