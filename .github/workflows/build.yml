@@ -1,6 +1,7 @@
 name: build-cedwyn
 # Builds cedwyn.bucklerfamily.estate from the mirrored theme branches: assemble -> rewrite -> site -> catalogue DB -> outbound-link test,
 # then commits the result to branch `site` (served by the Cloudflare Pages project "cedwyn"). Never touches datro. — Sion's Tab agent
+# 16 Nov 2026: rebuild after dedicated Mr Wolf v3.0.2 was merged; assemble reads the app's main branch directly.
 on:
   workflow_dispatch:
     inputs:
