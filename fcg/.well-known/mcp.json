@@ -3,9 +3,9 @@
  "generated": "2026-11-05T20:45:00Z",
  "name": "FCG — Fraud, Concealment and Government involvement · Security Clearance",
  "description": "Institutions ranked out of 1000 on how they answered requests for the Great House Farm record: every point from a dated email or letter.",
- "url": "https://cedwyn.bucklerfamily.estate/dartboard/fcg/",
- "note": "FCG = Fraud, Concealment and Government involvement. Canonical address: https://cedwyn.bucklerfamily.estate/dartboard/fcg/ . The fcg.bucklerfamily.estate subdomain is being retired: its root already redirects to the canonical address; its remaining URLs keep answering until its Cloudflare route is removed, then redirect. The old subdomain agent endpoints (/agent/*, clearance.json, sitemap, llms-full) are not part of the canonical site; estate-level agent discovery: https://cedwyn.bucklerfamily.estate/.well-known/mcp.json and https://cedwyn.bucklerfamily.estate/agent/search?q=...",
- "llms": "https://cedwyn.bucklerfamily.estate/dartboard/fcg/llms.txt",
+ "url": "https://cedwyn.bucklerfamily.estate/fcg/",
+ "note": "FCG = Fraud, Concealment and Government involvement. Canonical address: https://cedwyn.bucklerfamily.estate/fcg/ . The fcg.bucklerfamily.estate subdomain is being retired: its root already redirects to the canonical address; its remaining URLs keep answering until its Cloudflare route is removed, then redirect. The old subdomain agent endpoints (/agent/*, clearance.json, sitemap, llms-full) are not part of the canonical site; estate-level agent discovery: https://cedwyn.bucklerfamily.estate/.well-known/mcp.json and https://cedwyn.bucklerfamily.estate/agent/search?q=...",
+ "llms": "https://cedwyn.bucklerfamily.estate/fcg/llms.txt",
  "estate": {
   "home": "https://cedwyn.bucklerfamily.estate/dartboard/",
   "sites": [
@@ -124,10 +124,10 @@
     "mcp": "https://cedwyn.bucklerfamily.estate/fb2/.well-known/mcp.json"
    },
    {
-    "url": "https://cedwyn.bucklerfamily.estate/dartboard/fcg/",
+    "url": "https://cedwyn.bucklerfamily.estate/fcg/",
     "name": "FCG — Fraud, Concealment and Government involvement · Security Clearance",
-    "llms": "https://cedwyn.bucklerfamily.estate/dartboard/fcg/llms.txt",
-    "mcp": "https://cedwyn.bucklerfamily.estate/dartboard/fcg/.well-known/mcp.json"
+    "llms": "https://cedwyn.bucklerfamily.estate/fcg/llms.txt",
+    "mcp": "https://cedwyn.bucklerfamily.estate/fcg/.well-known/mcp.json"
    },
    {
     "url": "https://cedwyn.bucklerfamily.estate/infographic/",

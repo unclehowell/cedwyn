@@ -2,7 +2,7 @@
 
 ## [3.0.2] - 2026-11-16
 ### Changed
-- Removed the decorative “What's the time, Mr Wolf?” line from the page header.
+- Removed the decorative “What's the time, Mr Wolf?” tagline from the page header. The title, parcel navigation, scoring explanation and evidence dashboard remain.
 
 ## [3.0.1] - 2026-11-15
 ### Changed
