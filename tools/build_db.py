@@ -353,7 +353,7 @@ for t in CFG['themes']:
     nf = con.execute('SELECT count(*) FROM locations WHERE theme=?', (t['id'],)).fetchone()[0]
     npg = con.execute("SELECT count(*) FROM locations l JOIN artifacts a ON a.id=l.aid WHERE l.theme=? AND a.kind='page'", (t['id'],)).fetchone()[0]
     con.execute('INSERT INTO themes VALUES(?,?,?,?,?,?,?,?)', (t['id'], t['title'], t.get('cy'), t.get('es'), t['live'],
-                 ('branch ' + t['branch']) if t.get('branch') else ('crawl of ' + (t.get('crawl') or '')), nf, npg))
+                 ('branch ' + t['branch']) if t.get('branch') else ('crawl of ' + str(t.get('crawl') or '')), nf, npg))
 
 # Title Theory: normalized, testable hypothesis data in the master catalogue, with graph edges to Level 1 artifacts.
 con.executescript("""
