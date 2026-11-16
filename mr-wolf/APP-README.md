@@ -1,6 +1,6 @@
 # Mr Wolf — webapp 40 of 59
 
-"What's the time, Mr Wolf?" Served at [bucklerfamily.estate/mr-wolf/](https://bucklerfamily.estate/mr-wolf/).
+Served at [bucklerfamily.estate/mr-wolf/](https://bucklerfamily.estate/mr-wolf/).
 
 ## Source of truth
 

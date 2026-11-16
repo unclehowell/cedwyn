@@ -1,5 +1,9 @@
 # Changelog — Mr Wolf (webapp 40 of 59)
 
+## [3.0.2] - 2026-11-16
+### Changed
+- Removed the decorative “What's the time, Mr Wolf?” line from the page header.
+
 ## [3.0.1] - 2026-11-15
 ### Changed
 - Re-labelled the 100/200 line throughout the interface as an internal research triage marker, not a legal threshold or finding. Gauge accessibility text and lead status copy use the same qualification.

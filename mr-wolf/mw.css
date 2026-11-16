@@ -1,4 +1,4 @@
-/* Mr Wolf · webapp 40 of 59 · v3.0.0 · gauge dashboard */
+/* Mr Wolf · webapp 40 of 59 · v3.0.2 · gauge dashboard */
 :root{--bg:#f7f2e7;--card:#fbf8f1;--ink:#2b2418;--mute:#6b5f4b;--line:#e2d8c3;--acc:#7a3b12;--trk:#ece2cd;--far:#b4652a;--near:#c48a12;--met:#2f6b2f}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink)}
 body.mw{font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%}
@@ -6,7 +6,7 @@ body.mw{font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-text
 a{color:var(--acc)}button{font:inherit;color:inherit;cursor:pointer}
 .top{position:relative;padding-right:40px}
 .mw-parcel{margin:0 0 6px;font:600 13px/1.2 system-ui,sans-serif}.mw-parcel a{color:var(--acc);text-decoration:none;border:1px solid var(--line);background:var(--card);padding:3px 9px;border-radius:999px;display:inline-block}
-h1{font:700 28px/1.1 Georgia,"Times New Roman",serif;margin:4px 0 0}.mw-sub{margin:2px 0 0;font:italic 17px Georgia,serif;color:var(--acc)}
+h1{font:700 28px/1.1 Georgia,"Times New Roman",serif;margin:4px 0 0}
 .info{position:absolute;top:28px;right:0;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--card);font:italic 700 16px Georgia,serif;color:var(--acc)}
 /* gauges */
 .g{display:block;width:100%;height:auto}.g-bg,.g-fg{fill:none;stroke-width:12;stroke-linecap:round}.g-bg{stroke:var(--trk)}
