@@ -1,9 +1,10 @@
 {
  "_note": "Share cards (Open Graph / Twitter) for every Cedwyn page, made at build time by tools/og_cards.py from the Garden Gallery pieces in dist/nft-art/art/. To repoint: change a section's list or 'default' here; a re-rendered piece flows into its card on the next build (the card file name carries the source hash). Pieces chosen 27 Oct 2026 for farm and buildings with few flowers. — Sion's Tab agent",
  "_note_share": "30 Oct 2026 (Sion, WhatsApp 00:32 GMT): share previews read 'Williams-Bucklers, Ty Mawr, Cedwyn – <webapp>'. 'brand' is og:site_name and the first line of every card; 'webapps' names each webapp by its first path segment (a section not listed takes its theme title). — Sion's Tab agent",
+ "_note_base": "17 Nov 2026: 'base' moved from https://cedwyn.bucklerfamily.estate to the public address https://bucklerfamily.estate, so og:url, og:image and the canonical tag name the apex (#365, #602). The apex serves the same build, including /_cedwyn/og/. — Claude agent",
  "brand": "Williams-Bucklers, Ty Mawr, Cedwyn",
  "site_name": "Williams-Bucklers, Ty Mawr, Cedwyn",
- "base": "https://cedwyn.bucklerfamily.estate",
+ "base": "https://bucklerfamily.estate",
  "default": "NFA-0021",
  "home_description": "Cedwyn Estate: Great House Farm (Tŷ Mawr), Llandough, in records, maps, film and e-books, with a Wales guided tour and the Great House II retreat in Patagonia.",
  "webapps": {
