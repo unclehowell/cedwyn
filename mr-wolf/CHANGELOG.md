@@ -1,4 +1,24 @@
+# Changelog
+
+## 4.1.1 — 17 November 2026
+- Preserved the existing tree-first and gauge-second interface; moved the new proof-position analysis into a compact, closed-by-default disclosure beneath the original header.
+- Reused the live app's existing cream/brown palette, serif heading and restrained border treatment. The full-screen Legal Threshold Tree remains the default view.
+- Documented that the standalone `.pages.dev` project is preview-only; production at `bucklerfamily.estate/mr-wolf/` is assembled and published by the estate's central build after this app repository's approved changes reach `main`.
+
+## 4.1.0 — 17 November 2026
+- Added a route-by-route proof-position panel separating the documented 1974 unilateral-licence mechanism from proof of dishonesty, the 1982–83 registration disclosure gap from deliberate concealment, and public-body record-holding from state participation.
+- Expanded MW-11 with the 1959/1965 tenancy-offer context, Mary's 1974 ownership plea (known to BP), the court's precise no-repudiation finding, and the missing evidence that could contradict it. No score increase: the post-letter repudiation/knowledge record remains unheld.
+- Expanded MW-02 with the separate WA231076 and WA240304 application dates, Linklaters & Paines as applicant's solicitors on both, the 19 April / 25 May 2026 HMLR positions, the 30 July 43-item file schedule, and the exact outstanding application, examination and notice records. No score increase: Forms 1C/1E and any required declaration remain unread.
+- Added the historical 1982–83 legal framework: Land Registration Act 1925 ss.14, 53, 70(1)(g), 115–116. Explicitly warns not to apply the later 2003 Rules r.28 / Form DI retrospectively.
+- Clarified that s.70(1)(g) could protect pre-existing rights of an occupier on first registration; actual occupation alone did not create ownership. The s.70 enquiry exception is not a general first-registration notice rule; s.53 caution and s.14 (only if required by the Registrar) are treated separately.
+- Directly read the archived HMLR Stage 2 response (EV-0153) and 30 July document schedule (EV-0161); verified the 43-item inventory and public-inspection route. EV-0370 remains file-pending and is not used as substantive proof.
+- Preserved evidence-only scoring. The dashboard now explains that /200 scores are internal triage markers, not probabilities; the 1939 signature lead is not a finding and is not part of the 1987 judgment's reasoning.
+
 # Changelog — Mr Wolf (webapp 40 of 59)
+
+## [4.0.1] - 2026-11-16
+### Fixed
+- Tree view record windows on the live site: the estate runtime rewrites root-relative fetch paths into the app folder (`/api/catalogue/EV-0080` became `/mr-wolf/api/catalogue/EV-0080`, a 404), so every catalogue leaf showed "unavailable". Source URLs are now made absolute (same origin) before fetching.
 
 ## [4.0.0] - 2026-11-16
 ### Added

@@ -1,1 +1,75 @@
-{"schema":"cedwyn_mr_wolf_routes/v1","version":"3.0.1","updated":"2026-11-15","note":"Route tags classify the kind of record a lead concerns; they are not findings of fact, liability or legal merit. A lead may appear on more than one route. A public-body tag identifies an institutional record or actor only: it is not, by itself, a ground to set aside the 1987 judgment. Any register-rectification or public-body complaint/remedy enquiry is a distinct route requiring its own evidence and legal basis. Route gauges show the highest evidence-held score among tagged leads.","routes":[{"key":"dishonesty","label":"Dishonesty","desc":"A document, signature or statement relevant to an enquiry into possible dishonesty. The tag is a research category, not a finding that dishonesty occurred."},{"key":"concealment","label":"Concealment","desc":"A record relevant to an enquiry into possible non-production, non-disclosure or loss. The tag does not establish deliberate concealment."},{"key":"public","label":"Public bodies","desc":"A record made, held or dealt with by a registry, court, council or other public body. This is a separate institutional enquiry route, not a ground to reopen the 1987 judgment on its own."}],"tags":{"MW-01":["dishonesty"],"MW-11":["dishonesty","concealment"],"MW-02":["dishonesty","concealment","public"],"MW-06":["concealment"],"MW-10":["concealment","public"],"MW-12":["dishonesty"],"MW-07":["public"],"MW-17":["concealment"],"MW-20":["public"],"MW-05":["dishonesty"],"MW-03":["concealment","public"],"MW-13":["concealment"],"MW-04":["public"],"MW-08":["public"],"MW-09":["public"]}}
+{
+  "schema": "cedwyn_mr_wolf_routes/v1",
+  "version": "3.1.0",
+  "updated": "2026-11-17",
+  "note": "Route tags classify the kind of record a lead concerns; they are not findings of fact, liability or legal merit. A lead may appear on more than one route. A public-body tag identifies an institutional record or actor only; it is not, by itself, a ground to set aside the 1987 judgment. Route gauges show the highest evidence-held score among tagged leads, not a probability or percentage chance. For the 1982–83 applications, use the Land Registration Act 1925 and Rules then in force: do not apply the later Land Registration Rules 2003 rule 28 / Form DI retrospectively. The original Forms 1C/1E and any section 14 declaration actually required by the Registrar must be read before alleging a false answer. Under section 70(1)(g) of the 1925 Act, a pre-existing right held by a person in actual occupation could remain overriding on first registration; actual occupation alone did not create ownership. Section 14 required an applicant/solicitor declaration only if the Registrar required it, and section 53 gave notice to a qualifying cautioner. The 2003 Form DI duty is later.",
+  "routes": [
+    {
+      "key": "dishonesty",
+      "label": "Dishonesty",
+      "desc": "A document, signature or statement relevant to an enquiry into possible dishonesty. The tag is a research category, not a finding that dishonesty occurred."
+    },
+    {
+      "key": "concealment",
+      "label": "Concealment",
+      "desc": "A record relevant to an enquiry into possible non-production, non-disclosure or loss. The tag does not establish deliberate concealment."
+    },
+    {
+      "key": "public",
+      "label": "Public bodies",
+      "desc": "A record made, held or dealt with by a registry, court, council or other public body. This is a separate institutional enquiry route, not a ground to reopen the 1987 judgment on its own."
+    }
+  ],
+  "tags": {
+    "MW-01": [
+      "dishonesty"
+    ],
+    "MW-11": [
+      "dishonesty",
+      "concealment"
+    ],
+    "MW-02": [
+      "dishonesty",
+      "concealment",
+      "public"
+    ],
+    "MW-06": [
+      "concealment"
+    ],
+    "MW-10": [
+      "concealment",
+      "public"
+    ],
+    "MW-12": [
+      "dishonesty"
+    ],
+    "MW-07": [
+      "public"
+    ],
+    "MW-17": [
+      "concealment"
+    ],
+    "MW-20": [
+      "public"
+    ],
+    "MW-05": [
+      "dishonesty"
+    ],
+    "MW-03": [
+      "concealment",
+      "public"
+    ],
+    "MW-13": [
+      "concealment"
+    ],
+    "MW-04": [
+      "public"
+    ],
+    "MW-08": [
+      "public"
+    ],
+    "MW-09": [
+      "public"
+    ]
+  }
+}

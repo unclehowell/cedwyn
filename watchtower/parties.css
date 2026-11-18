@@ -1,0 +1,28 @@
+/* Watchtower: evidence-linked party and institutional coverage */
+.party-intro,.party-foot{font-size:.9rem;opacity:.82;line-height:1.5}
+.party-filters{display:flex;flex-wrap:wrap;gap:.8rem 1.2rem;align-items:end;margin:.8rem 0 1rem}
+.party-filters label{display:flex;flex-direction:column;gap:.25rem;font-size:.85rem}
+.party-filters select{min-width:11rem;max-width:100%;padding:.4rem .55rem;background:var(--paper,#161616);color:inherit;border:1px solid rgba(128,128,128,.55);border-radius:4px}
+#party-count{font-size:.82rem;opacity:.75}
+.party-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr));gap:.8rem}
+.party-card{min-width:0;padding:.85rem;border:1px solid rgba(128,128,128,.3);border-radius:7px;background:rgba(128,128,128,.045)}
+.party-card[hidden]{display:none}
+.party-head{display:flex;gap:.6rem;align-items:start;justify-content:space-between}
+.party-card h3{margin:.1rem 0 .2rem;font-size:1.08rem;line-height:1.3}
+.party-role{margin:0;font-size:.77rem;opacity:.72;text-transform:uppercase;letter-spacing:.045em}
+.party-card p{font-size:.9rem;line-height:1.45}
+.party-qual{font-size:.84rem!important;opacity:.82}
+.party-next{border-top:1px solid rgba(128,128,128,.22);padding-top:.55rem;margin-bottom:0}
+.party-card details{margin:.5rem 0;border-top:1px solid rgba(128,128,128,.18);padding-top:.4rem}
+.party-card details>summary{cursor:pointer;font-size:.86rem;font-weight:600}
+.party-card ul{margin:.4rem 0 .25rem;padding-left:1.15rem}
+.party-card li{margin:.35rem 0;font-size:.84rem;overflow-wrap:anywhere}
+.party-card li small{display:block;opacity:.7;font-size:.76rem}
+.party-card a{overflow-wrap:anywhere}
+.party-state{display:inline-block;flex:0 0 auto;border:1px solid rgba(128,128,128,.4);border-radius:999px;padding:.1rem .45rem;font-size:.69rem;line-height:1.5;white-space:normal}
+.party-state.ok{border-color:#39845d;color:#57c78b}
+.party-state.failed{border-color:#a45c4b;color:#e29b7f}
+.party-state.absent{opacity:.8}
+.party-state.pending{opacity:.72}
+.party-state.partial{border-color:#9c8148;color:#d8bb79}
+@media(max-width:520px){.party-head{display:block}.party-head>.party-state{margin-top:.4rem}.party-cards{grid-template-columns:1fr}}

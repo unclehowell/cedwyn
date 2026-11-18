@@ -1,4 +1,4 @@
-/* Mr Wolf v4.0.0 · Legal Threshold Tree. The law is the tree (legal-tree.json); the evidence is the foliage (evidence-links.json).
+/* Mr Wolf v4.0.1 · Legal Threshold Tree. The law is the tree (legal-tree.json); the evidence is the foliage (evidence-links.json).
    Leaf content is read at open time from each record's own source: the central catalogue (/api/catalogue/{id}),
    That Old Chestnut (its _db/view.json), Dartboard (its foi-tracker.csv) or the research mirror. No second evidence database. */
 (function () {
@@ -456,13 +456,16 @@
   }
 
   /* ---------------- record data from its own source */
+  /* The estate runtime rewrites root-relative fetch() paths into the current app (/api/x becomes /mr-wolf/api/x).
+     Absolute same-origin URLs pass through unchanged, so source URLs are made absolute here. */
+  function abs(u) { return u.charAt(0) === '/' && u.charAt(1) !== '/' ? location.origin + u : u; }
   function loadRecord(l) {
     var key = l.source + ':' + l.record; if (cache[key]) return Promise.resolve(cache[key]);
     var S = LK.sources[l.source], p;
-    if (l.source === 'catalogue') p = fetch('/api/catalogue/' + encodeURIComponent(l.record)).then(ok).then(function (d) { if (!d.item) throw new Error('not in the catalogue'); return { kind: 'catalogue', item: d.item, links: d.links || [] }; });
-    else if (l.source === 'chestnut') p = (srcCache.ch || (srcCache.ch = fetch('/that-old-chestnut/_db/view.json').then(ok))).then(function (d) { var c = (d.chestnuts || []).filter(function (x) { return x.id === l.record; })[0]; if (!c) throw new Error('not in That Old Chestnut'); return { kind: 'chestnut', item: c }; });
-    else if (l.source === 'dartboard') p = (srcCache.db || (srcCache.db = fetch('/dartboard/data/foi-tracker.csv').then(function (r) { if (!r.ok) throw new Error(r.status + ' ' + r.url); return r.text(); }).then(csv))).then(function (rows) { var c = rows.filter(function (x) { return x.id === l.record; })[0]; if (!c) throw new Error('not in the Dartboard tracker'); return { kind: 'dartboard', item: c }; });
-    else if (l.source === 'mirror') { var slug = l.record.replace(/^RM:/, ''); p = fetch(S.api.replace('{slug}', slug)).then(function (r) { if (!r.ok) throw new Error(r.status + ' ' + r.url); return r.text(); }).then(function (h) { return { kind: 'mirror', item: mirrorText(h, slug) }; }); }
+    if (l.source === 'catalogue') p = fetch(abs('/api/catalogue/' + encodeURIComponent(l.record))).then(ok).then(function (d) { if (!d.item) throw new Error('not in the catalogue'); return { kind: 'catalogue', item: d.item, links: d.links || [] }; });
+    else if (l.source === 'chestnut') p = (srcCache.ch || (srcCache.ch = fetch(abs('/that-old-chestnut/_db/view.json')).then(ok))).then(function (d) { var c = (d.chestnuts || []).filter(function (x) { return x.id === l.record; })[0]; if (!c) throw new Error('not in That Old Chestnut'); return { kind: 'chestnut', item: c }; });
+    else if (l.source === 'dartboard') p = (srcCache.db || (srcCache.db = fetch(abs('/dartboard/data/foi-tracker.csv')).then(function (r) { if (!r.ok) throw new Error(r.status + ' ' + r.url); return r.text(); }).then(csv))).then(function (rows) { var c = rows.filter(function (x) { return x.id === l.record; })[0]; if (!c) throw new Error('not in the Dartboard tracker'); return { kind: 'dartboard', item: c }; });
+    else if (l.source === 'mirror') { var slug = l.record.replace(/^RM:/, ''); p = fetch(abs(S.api.replace('{slug}', slug))).then(function (r) { if (!r.ok) throw new Error(r.status + ' ' + r.url); return r.text(); }).then(function (h) { return { kind: 'mirror', item: mirrorText(h, slug) }; }); }
     else p = Promise.reject(new Error('unknown source'));
     return p.then(function (d) { cache[key] = d; if (d.item && d.item.title) cache[l.record] = d.item; return d; });
   }

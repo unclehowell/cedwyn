@@ -1,1 +1,1211 @@
-{"schema":"cedwyn_mr_wolf_evidence_links/v1","version":"4.0.0","updated":"2026-11-16","note":"One row per relationship between a legal node and a record. A record can sit on several nodes with a different relevance and strength on each. Strength is assessed against that node's requirement only.","relations":{"supports":"Supports","undermines":"Undermines","contradicts":"Contradicts","neutral":"Neutral or context","missing":"Needed, not held","hypothetical":"Hypothetical lead"},"strengths":{"green":"Strong: direct, authenticated, corroborated for this element","orange":"Potentially relevant: authentication, corroboration or reading outstanding","red":"Dubious: contested, contradicted or weakly sourced","brown":"Remote: little realistic ability to establish this element","black":"Improbable or irrelevant to this element","grey":"Unassessed or not available"},"sources":{"catalogue":{"label":"Central catalogue","api":"/api/catalogue/{id}","app":"/catalogue/?id={id}"},"chestnut":{"label":"That Old Chestnut","api":"/that-old-chestnut/_db/view.json","app":"/that-old-chestnut/#cn-{id}"},"dartboard":{"label":"Dartboard","api":"/dartboard/data/foi-tracker.csv","app":"/dartboard/"},"mirror":{"label":"Research mirror (not in the canonical catalogue)","api":"https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fraw.githubusercontent.com%2Funclehowell%2Fcedwyn-research%2Fmain%2Fevidence%2F%7Bslug%7D%2Findex.html","app":"https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fcedwyn-research%2Fblob%2Fmain%2Fevidence%2F%7Bslug%7D%2Findex.html"}},"links":[{"node":"T","record":"EV-0080","source":"catalogue","relation":"neutral","strength":"green","reason":"The judgment under challenge, read in full on BAILII.","proposition":"BP Properties Ltd v Buckler [1987] EWCA Civ 2 is the final domestic decision.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"D3a","record":"EV-0080","source":"catalogue","relation":"supports","strength":"green","reason":"The judgment decides adverse possession and the licence letters; no allegation of fraud appears.","proposition":"Fraud was not raised and decided in 1987, so Takhar removes the diligence requirement.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"M1","record":"EV-0080","source":"catalogue","relation":"neutral","strength":"green","reason":"States the decisive finding in the court's own words.","proposition":"Licensee from receipt of the letters, absent repudiation.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"M1","record":"MR-0080","source":"catalogue","relation":"missing","strength":"grey","reason":"This is the record that would go to the finding directly. The catalogue lists it as should exist, not located.","proposition":"A written rejection of the 31 October 1974 letters, November 1974 to March 1983.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"needs":"Her solicitors' or BP's files for 1974–83."},{"node":"M1","record":"EV-0050","source":"catalogue","relation":"missing","strength":"grey","reason":"The letters are known from the judgment; no copy is held.","proposition":"The 31 October 1974 licence letters.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"M1","record":"EV-0048","source":"catalogue","relation":"neutral","strength":"orange","reason":"Shows a public ownership assertion in April 1974, before the letters. The finding concerns her stance after them.","proposition":"Daily Telegraph, 16 April 1974: \"my solicitors tell me I have a valid claim to it\".","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"Predates the letters; a press report.","alternatives":"Consistent with the court's account that she relied on advice to wait until 11 December 1974."},{"node":"M1","record":"MR-0081","source":"catalogue","relation":"missing","strength":"grey","reason":"Footage of the November 1974 protest could bear on the \"not asserting\" finding. Sought from the National Library of Wales.","proposition":"HTV Report Wales items, 11 April and 1 November 1974.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"The judgment mentions \"some support on television\", so the court knew coverage existed."},{"node":"M2","record":"MR-0011","source":"catalogue","relation":"missing","strength":"grey","reason":"The order the court relied on is not held.","proposition":"Cardiff County Court possession order, 11 December 1962.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"M2","record":"MR-0012","source":"catalogue","relation":"missing","strength":"grey","reason":"The sworn application for leave would show what BP told the county court about the occupation.","proposition":"September 1974 application for leave to enforce the 1962 order.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"M2","record":"EV-0030","source":"catalogue","relation":"missing","strength":"grey","reason":"Court registers that may record the 1953, 1962 and 1975 entries; catalogue entry only, free to inspect.","proposition":"Glamorgan Archives ACA county court registers.","assessment":{"status":"not yet inspected","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"M2","record":"TOC-L13","source":"chestnut","relation":"neutral","strength":"orange","reason":"HMCTS reply wording on the court file, read in That Old Chestnut.","proposition":"No surviving court file for the proceedings has been identified by HMCTS.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"alternatives":"Routine destruction under court retention rules."},{"node":"M3","record":"MR-0051","source":"catalogue","relation":"missing","strength":"grey","reason":"The agreement the court read into the letters is not held.","proposition":"The 1974 agreement by which BP Properties Ltd agreed to buy.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"M3","record":"MR-0079","source":"catalogue","relation":"missing","strength":"grey","reason":"Contract or memorandum of sale on or before 31 October 1974.","proposition":"Its date would show whether \"had agreed to buy\" was accurate on 31 October 1974.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"M3","record":"EV-0052","source":"catalogue","relation":"missing","strength":"grey","reason":"Orderable from HM Land Registry (WA240304 items 1, 12, 13); may recite the contract date.","proposition":"The 23 May 1975 conveyance, BP Pension Trust to BP Properties.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"M3","record":"MR-0052","source":"catalogue","relation":"missing","strength":"grey","reason":"Board minutes approving the letters would show who decided and when.","proposition":"Directors' minutes, September–November 1974.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"M4","record":"EV-0080","source":"catalogue","relation":"supports","strength":"green","reason":"The court found joint adverse possession from 2 February 1955.","proposition":"Adverse possession from 1955 until the letters.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"alternatives":"Cuts against any reading that the occupation was permissive before 1974."},{"node":"M4","record":"EV-0032","source":"catalogue","relation":"missing","strength":"grey","reason":"The 1955 order and execution return would show what land was taken.","proposition":"1955 Order 14 possession order.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"M5","record":"EV-0080","source":"catalogue","relation":"supports","strength":"green","reason":"The court said any title acquired would have bound the registration as an overriding interest.","proposition":"First registration was not why she lost.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"D1c","record":"EV-0217","source":"catalogue","relation":"undermines","strength":"green","reason":"A public accounts record of a later sale of Llandough land to a third party.","proposition":"Forest of Cardiff sold land at Leckwith Road, Llandough, in the year to 30 June 2006.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"Whether this land is the farmhouse plot is not shown."},{"node":"F1","record":"EV-0023","source":"catalogue","relation":"supports","strength":"orange","reason":"An identified document bearing a tenant signature \"John Williams\". Page 1 is not held.","proposition":"Glamorgan Archives DBDT123/7: May 1939 agreement, Western Ground Rents to John Williams, with plan.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"Photograph of page 2 and the plan only; original not examined.","needs":"Page 1 and sight of the original."},{"node":"F2","record":"EV-0023","source":"catalogue","relation":"supports","strength":"orange","reason":"The signature on the agreement is the questioned signature.","proposition":"The 1939 signature differs in visible form from specimens (owner's account).","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"No examiner has compared originals.","needs":"A forensic document examiner's report on originals."},{"node":"F2","record":"MR-0075","source":"catalogue","relation":"missing","strength":"grey","reason":"Known, dated signatures of John Williams are what an examiner needs. The catalogue lists them as should exist, not located.","proposition":"Census schedules and other 1911–1950 records signed by the tenant.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"needs":"Census 1911/1921 schedules, National Farm Survey, probate papers."},{"node":"F2","record":"RM:ev-0902-john-williams-inscription-1886-comparator","source":"mirror","relation":"supports","strength":"orange","reason":"A family-supplied photograph of a \"John Williams / 1886\" inscription, catalogued in the research mirror on 30 October 2026 as a comparator.","proposition":"Visible differences from the 1939 signature (ornate capital J, wide spacing).","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"Not authenticated; an inscription, not a signature; 53 years before the agreement. Not in the canonical catalogue, where EV-0902 is a different record.","needs":"Catalogue the heirlooms with photographs, dates and custody; an examiner's comparison."},{"node":"F4","record":"EV-0080","source":"catalogue","relation":"contradicts","strength":"green","reason":"The judgment does not mention a 1939 agreement or any signature; it rests on the 1916 and 1949 tenancies and the 1974 letters.","proposition":"The 1987 decision did not rely on the 1939 agreement.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"alternatives":"Unless the 1939 agreement fed the 1955 or 1962 orders the court relied on."},{"node":"F4","record":"EV-0683","source":"catalogue","relation":"undermines","strength":"brown","reason":"The DBDT/123 catalogue places the 1939 item among small Llandough plot lets.","proposition":"The 1939 document reads as a separate grazing let, not the farm tenancy.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"Catalogue entry only."},{"node":"FI4","record":"EV-0683","source":"catalogue","relation":"undermines","strength":"brown","reason":"An ordinary explanation for the 1939 document: a separate grazing let.","proposition":"Glamorgan Archives DBDT/123 Llandough series, 1901–1963.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"FI1","record":"EV-0073","source":"catalogue","relation":"missing","strength":"grey","reason":"The 1984–87 litigation file would show who said what to the court.","proposition":"Family and solicitors' litigation file, 1984–87.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"FI2","record":"MR-0052","source":"catalogue","relation":"missing","strength":"grey","reason":"Minutes would show what BP's boards knew when they sent the letters.","proposition":"Directors' minutes, September–November 1974.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"F1","record":"MR-0012","source":"catalogue","relation":"missing","strength":"grey","reason":"A sworn statement to the court is the kind of record the Highland test reaches directly.","proposition":"September 1974 sworn application for leave to enforce.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"C1","record":"EV-0043","source":"catalogue","relation":"neutral","strength":"orange","reason":"Recited as BP's root of title but not among the 43 documents on HM Land Registry's 2026 schedule.","proposition":"The 31 December 1969 conveyance is absent from the first-registration file.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"Absence from a list is not evidence of concealment.","alternatives":"Deeds packets are returned to the owner after registration."},{"node":"C1","record":"MR-0005","source":"catalogue","relation":"missing","strength":"grey","reason":"The 1938 root of title should have passed with the deeds; not found.","proposition":"25 December 1938 conveyance to Western Ground Rents Ltd.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"C1","record":"EV-0216","source":"catalogue","relation":"neutral","strength":"green","reason":"A 1965 contract names the 1938 conveyance as root of title; disclosed by the Vale of Glamorgan on 14 September 2026.","proposition":"Root of title \"a Conveyance on sale dated 25th December 1938\".","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"C3","record":"EV-0710","source":"catalogue","relation":"neutral","strength":"orange","reason":"Companies House replied that the Western Ground Rents records were not sent to The National Archives and were destroyed.","proposition":"Companies House reply, 3 November 2026.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"alternatives":"Routine destruction under retention schedules.","needs":"Order the National Archives files below."},{"node":"C3","record":"EV-0700","source":"catalogue","relation":"contradicts","strength":"orange","reason":"The National Archives catalogue lists a Western Ground Rents company file, which conflicts with the Companies House reply.","proposition":"TNA BT 31/84793 (catalogue entry).","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"Catalogue entry only; the file is not viewed."},{"node":"C3","record":"EV-0701","source":"catalogue","relation":"contradicts","strength":"orange","reason":"A second TNA company file volume, 1938–1982.","proposition":"TNA BT 31/87651 (catalogue entry).","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"Catalogue entry only."},{"node":"C5","record":"EV-0216","source":"catalogue","relation":"supports","strength":"green","reason":"Dates when a relevant record reached the family.","proposition":"Disclosed 14 September 2026 under FOI 00211027.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"C4","record":"FA-0024","source":"catalogue","relation":"contradicts","strength":"orange","reason":"The project's own forensic assessment of HM Land Registry.","proposition":"The material reviewed has not established dishonesty, concealment or government involvement.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"An internal assessment, not a finding of any court."},{"node":"G1","record":"EV-0118","source":"catalogue","relation":"neutral","strength":"green","reason":"A public record made in March 1989 by the Sites and Monuments Record.","proposition":"Card PRN 02038s: \"building destroyed by owners\".","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"alternatives":"Records demolition by the owners, not by a public body."},{"node":"G1","record":"EV-0261","source":"catalogue","relation":"neutral","strength":"orange","reason":"Hansard records a Western Ground Rents director writing to the Lord Chancellor (1961) and to a Minister (1962).","proposition":"Correspondence between the company and ministers, 1961–62 (context only).","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"Context only; not about the farm."},{"node":"G1","record":"MR-0057","source":"catalogue","relation":"missing","strength":"grey","reason":"Annual returns would name the directors, including any member of the Government mentioned in Hansard in 1951.","proposition":"Western Ground Rents directors, annual returns 1951–54.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"G2","record":"EV-0244","source":"catalogue","relation":"neutral","strength":"green","reason":"Welsh Government found no files and stated routine records would have been destroyed under the retention schedule.","proposition":"ATISN 26-0010, 19 October 2026.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"alternatives":"Routine disposal."},{"node":"G2","record":"EV-0245","source":"catalogue","relation":"neutral","strength":"green","reason":"Cadw refused a request for July–December 1988 listing papers as a repeat of an earlier request.","proposition":"ATISN 27589, 19 October 2026, FOIA s.14(2).","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"alternatives":"A procedural refusal of a repeated request, not a finding about the 1988 papers."},{"node":"G2","record":"TOC-F05","source":"chestnut","relation":"supports","strength":"orange","reason":"Cadw first said the request was outside its scope, then found 1988 assessment records and photographs once the request named them.","proposition":"An \"outside scope\" answer followed by records found (That Old Chestnut).","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"Shows handling of a 2026 request, not participation in 1988."},{"node":"G2","record":"cadw-2026-10-19-9c3329","source":"dartboard","relation":"neutral","strength":"green","reason":"The Dartboard tracker row for the s.14(2) refusal, with the review route.","proposition":"Refused 19 October 2026 as a repeat of ATISN 27021.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"G3","record":"swp-2026-06-07-750f6b","source":"dartboard","relation":"neutral","strength":"orange","reason":"South Wales Police held no records of 1988 police or bailiff involvement; internal review opened.","proposition":"FOI 719/26 reply, no records held.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"alternatives":"No record, or no involvement; the reply does not say which."},{"node":"G4","record":"FA-0024","source":"catalogue","relation":"contradicts","strength":"orange","reason":"The project's own assessment of HM Land Registry found no established government involvement.","proposition":"Forensic assessment FA-0024.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"G5","record":"EV-0080","source":"catalogue","relation":"supports","strength":"green","reason":"The judgment is dated 31 July 1987, before the Act came into force.","proposition":"The domestic events predate 2 October 2000.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"E1","record":"EV-0122","source":"catalogue","relation":"supports","strength":"green","reason":"Catalogue record of the application and the 14 April 1989 inadmissibility decision.","proposition":"Lodged 3 May 1988; registered 12 December 1988; inadmissible 14 April 1989.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"E1","record":"MR-0055","source":"catalogue","relation":"missing","strength":"grey","reason":"The rapporteur's Rule 40 report is the only record of how the case was weighed; the application was not communicated to the Government.","proposition":"Rule 40 report on application 14464/88.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"E1","record":"FA-0046","source":"catalogue","relation":"neutral","strength":"orange","reason":"The project's assessment of the ECHR archives: the case file is reported destroyed under the Court's retention policy.","proposition":"Forensic assessment FA-0046.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"E5","record":"EV-0122","source":"catalogue","relation":"undermines","strength":"green","reason":"The Commission found the fair-trial complaint unsubstantiated, the loss of the home lawful and justified, and no \"possession\".","proposition":"Outcome of the 1989 decision on Articles 6, 8, 13 and A1P1.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"E5","record":"FA-0045","source":"catalogue","relation":"contradicts","strength":"orange","reason":"The project's assessment of the Commission found no established misconduct by the Commission.","proposition":"Forensic assessment FA-0045.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"E4b","record":"EV-0122","source":"catalogue","relation":"undermines","strength":"green","reason":"A new application on the same complaints would face Art 35(2)(b).","proposition":"The 1988 complaints were examined and declared inadmissible.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"R1","record":"EV-0063","source":"catalogue","relation":"missing","strength":"grey","reason":"The Form 1C application and certificate of title would show what was declared about occupation. Orderable (OC2).","proposition":"WA240304 item 11.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"R1","record":"EV-0060","source":"catalogue","relation":"neutral","strength":"red","reason":"Rests only on an unattributed recollection of a Land Registry letter after her death.","proposition":"A notification arrived after Mary Williams died.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"No copy, scan or transcript; speaker not named."},{"node":"R1","record":"EV-0170","source":"catalogue","relation":"neutral","strength":"green","reason":"The current register for WA231076 is held.","proposition":"Title register WA231076, September 2026 copy.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"},"weaknesses":"Entries not yet transcribed."},{"node":"R1","record":"EV-0078","source":"catalogue","relation":"missing","strength":"grey","reason":"The 2 February 1987 amalgamation application, made while the appeal was pending.","proposition":"WA231076 item 14.","assessment":{"status":"record not held","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"R2","record":"hmlr-icr-2026-09-27-e29b3d","source":"dartboard","relation":"neutral","strength":"orange","reason":"Referral of HM Land Registry handling to the Independent Complaints Reviewer.","proposition":"ICR referral, 27 September 2026.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}},{"node":"R3","record":"EV-0217","source":"catalogue","relation":"undermines","strength":"green","reason":"Shows later sales of Llandough land to third parties.","proposition":"Sale of land, Leckwith Road, Llandough, 2005–06.","assessment":{"status":"assessed","date":"2026-11-16","by":"Mr Wolf 4.0 mapping"}}]}
+{
+  "schema": "cedwyn_mr_wolf_evidence_links/v1",
+  "version": "4.1.0",
+  "updated": "2026-11-17",
+  "note": "One row per relationship between a legal node and a record. A record can sit on several nodes with a different relevance and strength on each. Strength is assessed against that node's requirement only.",
+  "relations": {
+    "supports": "Supports",
+    "undermines": "Undermines",
+    "contradicts": "Contradicts",
+    "neutral": "Neutral or context",
+    "missing": "Needed, not held",
+    "hypothetical": "Hypothetical lead"
+  },
+  "strengths": {
+    "green": "Strong: direct, authenticated, corroborated for this element",
+    "orange": "Potentially relevant: authentication, corroboration or reading outstanding",
+    "red": "Dubious: contested, contradicted or weakly sourced",
+    "brown": "Remote: little realistic ability to establish this element",
+    "black": "Improbable or irrelevant to this element",
+    "grey": "Unassessed or not available"
+  },
+  "sources": {
+    "catalogue": {
+      "label": "Central catalogue",
+      "api": "/api/catalogue/{id}",
+      "app": "/catalogue/?id={id}"
+    },
+    "chestnut": {
+      "label": "That Old Chestnut",
+      "api": "/that-old-chestnut/_db/view.json",
+      "app": "/that-old-chestnut/#cn-{id}"
+    },
+    "dartboard": {
+      "label": "Dartboard",
+      "api": "/dartboard/data/foi-tracker.csv",
+      "app": "/dartboard/"
+    },
+    "mirror": {
+      "label": "Research mirror (not in the canonical catalogue)",
+      "api": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fraw.githubusercontent.com%2Funclehowell%2Fcedwyn-research%2Fmain%2Fevidence%2F%7Bslug%7D%2Findex.html",
+      "app": "https://cedwyn.bucklerfamily.estate/wayback/go/?u=https%3A%2F%2Fgithub.com%2Funclehowell%2Fcedwyn-research%2Fblob%2Fmain%2Fevidence%2F%7Bslug%7D%2Findex.html"
+    }
+  },
+  "links": [
+    {
+      "node": "T",
+      "record": "EV-0080",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The judgment under challenge, read in full on BAILII.",
+      "proposition": "BP Properties Ltd v Buckler [1987] EWCA Civ 2 is the final domestic decision.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "D3a",
+      "record": "EV-0080",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "green",
+      "reason": "The judgment decides adverse possession and the licence letters; no allegation of fraud appears.",
+      "proposition": "Fraud was not raised and decided in 1987, so Takhar removes the diligence requirement.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "M1",
+      "record": "EV-0080",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "States the decisive finding in the court's own words.",
+      "proposition": "Licensee from receipt of the letters, absent repudiation.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "M1",
+      "record": "MR-0080",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "This is the record that would go to the finding directly. The catalogue lists it as should exist, not located.",
+      "proposition": "A written rejection of the 31 October 1974 letters, November 1974 to March 1983.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "needs": "Her solicitors' or BP's files for 1974–83."
+    },
+    {
+      "node": "M1",
+      "record": "EV-0050",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "The letters are known from the judgment; no copy is held.",
+      "proposition": "The 31 October 1974 licence letters.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "M1",
+      "record": "EV-0048",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "orange",
+      "reason": "Shows a public ownership assertion in April 1974, before the letters. The finding concerns her stance after them.",
+      "proposition": "Daily Telegraph, 16 April 1974: \"my solicitors tell me I have a valid claim to it\".",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "Predates the letters; a press report.",
+      "alternatives": "Consistent with the court's account that she relied on advice to wait until 11 December 1974."
+    },
+    {
+      "node": "M1",
+      "record": "MR-0081",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "Footage of the November 1974 protest could bear on the \"not asserting\" finding. Sought from the National Library of Wales.",
+      "proposition": "HTV Report Wales items, 11 April and 1 November 1974.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "The judgment mentions \"some support on television\", so the court knew coverage existed."
+    },
+    {
+      "node": "M2",
+      "record": "MR-0011",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "The order the court relied on is not held.",
+      "proposition": "Cardiff County Court possession order, 11 December 1962.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "M2",
+      "record": "MR-0012",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "The sworn application for leave would show what BP told the county court about the occupation.",
+      "proposition": "September 1974 application for leave to enforce the 1962 order.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "M2",
+      "record": "EV-0030",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "Court registers that may record the 1953, 1962 and 1975 entries; catalogue entry only, free to inspect.",
+      "proposition": "Glamorgan Archives ACA county court registers.",
+      "assessment": {
+        "status": "not yet inspected",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "M2",
+      "record": "TOC-L13",
+      "source": "chestnut",
+      "relation": "neutral",
+      "strength": "orange",
+      "reason": "HMCTS reply wording on the court file, read in That Old Chestnut.",
+      "proposition": "No surviving court file for the proceedings has been identified by HMCTS.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "alternatives": "Routine destruction under court retention rules."
+    },
+    {
+      "node": "M3",
+      "record": "MR-0051",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "The agreement the court read into the letters is not held.",
+      "proposition": "The 1974 agreement by which BP Properties Ltd agreed to buy.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "M3",
+      "record": "MR-0079",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "Contract or memorandum of sale on or before 31 October 1974.",
+      "proposition": "Its date would show whether \"had agreed to buy\" was accurate on 31 October 1974.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "M3",
+      "record": "EV-0052",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "Orderable from HM Land Registry (WA240304 items 1, 12, 13); may recite the contract date.",
+      "proposition": "The 23 May 1975 conveyance, BP Pension Trust to BP Properties.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "M3",
+      "record": "MR-0052",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "Board minutes approving the letters would show who decided and when.",
+      "proposition": "Directors' minutes, September–November 1974.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "M4",
+      "record": "EV-0080",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "green",
+      "reason": "The court found joint adverse possession from 2 February 1955.",
+      "proposition": "Adverse possession from 1955 until the letters.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "alternatives": "Cuts against any reading that the occupation was permissive before 1974."
+    },
+    {
+      "node": "M4",
+      "record": "EV-0032",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "The 1955 order and execution return would show what land was taken.",
+      "proposition": "1955 Order 14 possession order.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "M5",
+      "record": "EV-0080",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "green",
+      "reason": "The court said any title acquired would have bound the registration as an overriding interest.",
+      "proposition": "First registration was not why she lost.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "D1c",
+      "record": "EV-0217",
+      "source": "catalogue",
+      "relation": "undermines",
+      "strength": "green",
+      "reason": "A public accounts record of a later sale of Llandough land to a third party.",
+      "proposition": "Forest of Cardiff sold land at Leckwith Road, Llandough, in the year to 30 June 2006.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "Whether this land is the farmhouse plot is not shown."
+    },
+    {
+      "node": "F1",
+      "record": "EV-0023",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "orange",
+      "reason": "An identified document bearing a tenant signature \"John Williams\". Page 1 is not held.",
+      "proposition": "Glamorgan Archives DBDT123/7: May 1939 agreement, Western Ground Rents to John Williams, with plan.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "Photograph of page 2 and the plan only; original not examined.",
+      "needs": "Page 1 and sight of the original."
+    },
+    {
+      "node": "F2",
+      "record": "EV-0023",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "orange",
+      "reason": "The signature on the agreement is the questioned signature.",
+      "proposition": "The 1939 signature differs in visible form from specimens (owner's account).",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "No examiner has compared originals.",
+      "needs": "A forensic document examiner's report on originals."
+    },
+    {
+      "node": "F2",
+      "record": "MR-0075",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "Known, dated signatures of John Williams are what an examiner needs. The catalogue lists them as should exist, not located.",
+      "proposition": "Census schedules and other 1911–1950 records signed by the tenant.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "needs": "Census 1911/1921 schedules, National Farm Survey, probate papers."
+    },
+    {
+      "node": "F2",
+      "record": "RM:ev-0902-john-williams-inscription-1886-comparator",
+      "source": "mirror",
+      "relation": "supports",
+      "strength": "orange",
+      "reason": "A family-supplied photograph of a \"John Williams / 1886\" inscription, catalogued in the research mirror on 30 October 2026 as a comparator.",
+      "proposition": "Visible differences from the 1939 signature (ornate capital J, wide spacing).",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "Not authenticated; an inscription, not a signature; 53 years before the agreement. Not in the canonical catalogue, where EV-0902 is a different record.",
+      "needs": "Catalogue the heirlooms with photographs, dates and custody; an examiner's comparison."
+    },
+    {
+      "node": "F4",
+      "record": "EV-0080",
+      "source": "catalogue",
+      "relation": "contradicts",
+      "strength": "green",
+      "reason": "The judgment does not mention a 1939 agreement or any signature; it rests on the 1916 and 1949 tenancies and the 1974 letters.",
+      "proposition": "The 1987 decision did not rely on the 1939 agreement.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "alternatives": "Unless the 1939 agreement fed the 1955 or 1962 orders the court relied on."
+    },
+    {
+      "node": "F4",
+      "record": "EV-0683",
+      "source": "catalogue",
+      "relation": "undermines",
+      "strength": "brown",
+      "reason": "The DBDT/123 catalogue places the 1939 item among small Llandough plot lets.",
+      "proposition": "The 1939 document reads as a separate grazing let, not the farm tenancy.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "Catalogue entry only."
+    },
+    {
+      "node": "FI4",
+      "record": "EV-0683",
+      "source": "catalogue",
+      "relation": "undermines",
+      "strength": "brown",
+      "reason": "An ordinary explanation for the 1939 document: a separate grazing let.",
+      "proposition": "Glamorgan Archives DBDT/123 Llandough series, 1901–1963.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "FI1",
+      "record": "EV-0073",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "The 1984–87 litigation file would show who said what to the court.",
+      "proposition": "Family and solicitors' litigation file, 1984–87.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "FI2",
+      "record": "MR-0052",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "Minutes would show what BP's boards knew when they sent the letters.",
+      "proposition": "Directors' minutes, September–November 1974.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "F1",
+      "record": "MR-0012",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "A sworn statement to the court is the kind of record the Highland test reaches directly.",
+      "proposition": "September 1974 sworn application for leave to enforce.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "C1",
+      "record": "EV-0043",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "orange",
+      "reason": "Recited as BP's root of title but not among the 43 documents on HM Land Registry's 2026 schedule.",
+      "proposition": "The 31 December 1969 conveyance is absent from the first-registration file.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "Absence from a list is not evidence of concealment.",
+      "alternatives": "Deeds packets are returned to the owner after registration."
+    },
+    {
+      "node": "C1",
+      "record": "MR-0005",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "The 1938 root of title should have passed with the deeds; not found.",
+      "proposition": "25 December 1938 conveyance to Western Ground Rents Ltd.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "C1",
+      "record": "EV-0216",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "A 1965 contract names the 1938 conveyance as root of title; disclosed by the Vale of Glamorgan on 14 September 2026.",
+      "proposition": "Root of title \"a Conveyance on sale dated 25th December 1938\".",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "C3",
+      "record": "EV-0710",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "orange",
+      "reason": "Companies House replied that the Western Ground Rents records were not sent to The National Archives and were destroyed.",
+      "proposition": "Companies House reply, 3 November 2026.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "alternatives": "Routine destruction under retention schedules.",
+      "needs": "Order the National Archives files below."
+    },
+    {
+      "node": "C3",
+      "record": "EV-0700",
+      "source": "catalogue",
+      "relation": "contradicts",
+      "strength": "orange",
+      "reason": "The National Archives catalogue lists a Western Ground Rents company file, which conflicts with the Companies House reply.",
+      "proposition": "TNA BT 31/84793 (catalogue entry).",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "Catalogue entry only; the file is not viewed."
+    },
+    {
+      "node": "C3",
+      "record": "EV-0701",
+      "source": "catalogue",
+      "relation": "contradicts",
+      "strength": "orange",
+      "reason": "A second TNA company file volume, 1938–1982.",
+      "proposition": "TNA BT 31/87651 (catalogue entry).",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "Catalogue entry only."
+    },
+    {
+      "node": "C5",
+      "record": "EV-0216",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "green",
+      "reason": "Dates when a relevant record reached the family.",
+      "proposition": "Disclosed 14 September 2026 under FOI 00211027.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "C4",
+      "record": "FA-0024",
+      "source": "catalogue",
+      "relation": "contradicts",
+      "strength": "orange",
+      "reason": "The project's own forensic assessment of HM Land Registry.",
+      "proposition": "The material reviewed has not established dishonesty, concealment or government involvement.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "An internal assessment, not a finding of any court."
+    },
+    {
+      "node": "G1",
+      "record": "EV-0118",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "A public record made in March 1989 by the Sites and Monuments Record.",
+      "proposition": "Card PRN 02038s: \"building destroyed by owners\".",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "alternatives": "Records demolition by the owners, not by a public body."
+    },
+    {
+      "node": "G1",
+      "record": "EV-0261",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "orange",
+      "reason": "Hansard records a Western Ground Rents director writing to the Lord Chancellor (1961) and to a Minister (1962).",
+      "proposition": "Correspondence between the company and ministers, 1961–62 (context only).",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "Context only; not about the farm."
+    },
+    {
+      "node": "G1",
+      "record": "MR-0057",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "Annual returns would name the directors, including any member of the Government mentioned in Hansard in 1951.",
+      "proposition": "Western Ground Rents directors, annual returns 1951–54.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "G2",
+      "record": "EV-0244",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "Welsh Government found no files and stated routine records would have been destroyed under the retention schedule.",
+      "proposition": "ATISN 26-0010, 19 October 2026.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "alternatives": "Routine disposal."
+    },
+    {
+      "node": "G2",
+      "record": "EV-0245",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "Cadw refused a request for July–December 1988 listing papers as a repeat of an earlier request.",
+      "proposition": "ATISN 27589, 19 October 2026, FOIA s.14(2).",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "alternatives": "A procedural refusal of a repeated request, not a finding about the 1988 papers."
+    },
+    {
+      "node": "G2",
+      "record": "TOC-F05",
+      "source": "chestnut",
+      "relation": "supports",
+      "strength": "orange",
+      "reason": "Cadw first said the request was outside its scope, then found 1988 assessment records and photographs once the request named them.",
+      "proposition": "An \"outside scope\" answer followed by records found (That Old Chestnut).",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "Shows handling of a 2026 request, not participation in 1988."
+    },
+    {
+      "node": "G2",
+      "record": "cadw-2026-10-19-9c3329",
+      "source": "dartboard",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The Dartboard tracker row for the s.14(2) refusal, with the review route.",
+      "proposition": "Refused 19 October 2026 as a repeat of ATISN 27021.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "G3",
+      "record": "swp-2026-06-07-750f6b",
+      "source": "dartboard",
+      "relation": "neutral",
+      "strength": "orange",
+      "reason": "South Wales Police held no records of 1988 police or bailiff involvement; internal review opened.",
+      "proposition": "FOI 719/26 reply, no records held.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "alternatives": "No record, or no involvement; the reply does not say which."
+    },
+    {
+      "node": "G4",
+      "record": "FA-0024",
+      "source": "catalogue",
+      "relation": "contradicts",
+      "strength": "orange",
+      "reason": "The project's own assessment of HM Land Registry found no established government involvement.",
+      "proposition": "Forensic assessment FA-0024.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "G5",
+      "record": "EV-0080",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "green",
+      "reason": "The judgment is dated 31 July 1987, before the Act came into force.",
+      "proposition": "The domestic events predate 2 October 2000.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "E1",
+      "record": "EV-0122",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "green",
+      "reason": "Catalogue record of the application and the 14 April 1989 inadmissibility decision.",
+      "proposition": "Lodged 3 May 1988; registered 12 December 1988; inadmissible 14 April 1989.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "E1",
+      "record": "MR-0055",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "The rapporteur's Rule 40 report is the only record of how the case was weighed; the application was not communicated to the Government.",
+      "proposition": "Rule 40 report on application 14464/88.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "E1",
+      "record": "FA-0046",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "orange",
+      "reason": "The project's assessment of the ECHR archives: the case file is reported destroyed under the Court's retention policy.",
+      "proposition": "Forensic assessment FA-0046.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "E5",
+      "record": "EV-0122",
+      "source": "catalogue",
+      "relation": "undermines",
+      "strength": "green",
+      "reason": "The Commission found the fair-trial complaint unsubstantiated, the loss of the home lawful and justified, and no \"possession\".",
+      "proposition": "Outcome of the 1989 decision on Articles 6, 8, 13 and A1P1.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "E5",
+      "record": "FA-0045",
+      "source": "catalogue",
+      "relation": "contradicts",
+      "strength": "orange",
+      "reason": "The project's assessment of the Commission found no established misconduct by the Commission.",
+      "proposition": "Forensic assessment FA-0045.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "E4b",
+      "record": "EV-0122",
+      "source": "catalogue",
+      "relation": "undermines",
+      "strength": "green",
+      "reason": "A new application on the same complaints would face Art 35(2)(b).",
+      "proposition": "The 1988 complaints were examined and declared inadmissible.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "R1",
+      "record": "EV-0063",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "The Form 1C application and certificate of title would show what was declared about occupation. Orderable (OC2).",
+      "proposition": "WA240304 item 11.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "R1",
+      "record": "EV-0060",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "red",
+      "reason": "Rests only on an unattributed recollection of a Land Registry letter after her death.",
+      "proposition": "A notification arrived after Mary Williams died.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "No copy, scan or transcript; speaker not named."
+    },
+    {
+      "node": "R1",
+      "record": "EV-0170",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The current register for WA231076 is held.",
+      "proposition": "Title register WA231076, September 2026 copy.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      },
+      "weaknesses": "Entries not yet transcribed."
+    },
+    {
+      "node": "R1",
+      "record": "EV-0078",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "The 2 February 1987 amalgamation application, made while the appeal was pending.",
+      "proposition": "WA231076 item 14.",
+      "assessment": {
+        "status": "record not held",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "R2",
+      "record": "hmlr-icr-2026-09-27-e29b3d",
+      "source": "dartboard",
+      "relation": "neutral",
+      "strength": "orange",
+      "reason": "Referral of HM Land Registry handling to the Independent Complaints Reviewer.",
+      "proposition": "ICR referral, 27 September 2026.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "R3",
+      "record": "EV-0217",
+      "source": "catalogue",
+      "relation": "undermines",
+      "strength": "green",
+      "reason": "Shows later sales of Llandough land to third parties.",
+      "proposition": "Sale of land, Leckwith Road, Llandough, 2005–06.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-16",
+        "by": "Mr Wolf 4.0 mapping"
+      }
+    },
+    {
+      "node": "M1",
+      "record": "EV-0039",
+      "source": "catalogue",
+      "relation": "missing",
+      "strength": "grey",
+      "reason": "The original 1959 and 1965 tenancy offers and their plans are still required. The judgment records the offers/refusals, but the originals would establish precise wording and parcel extent.",
+      "proposition": "Original WGR tenancy offers and associated plans; not presently held in the reviewed record.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "F1",
+      "record": "EV-0080",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "green",
+      "reason": "The judgment identifies the 31 October 1974 unilateral licence letters and the surrounding acts. This proves the act was litigated, not that it was dishonest.",
+      "proposition": "The 1974 unilateral licence mechanism is identified in the judgment under challenge.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "FI2",
+      "record": "EV-0080",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "orange",
+      "reason": "The judgment records BP's 1974 possession proceedings and Mary's ownership plea, supporting corporate knowledge of the dispute. It does not yet identify the knowledge of the particular 1983 applicant or solicitor.",
+      "proposition": "BP was involved in the earlier dispute before the first-registration applications.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "C1",
+      "record": "EV-0080",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "orange",
+      "reason": "The judgment recounts that Mary asserted ownership in the 1974 county-court proceedings. The original pleading remains unheld.",
+      "proposition": "An ownership claim existed in the earlier proceedings, as recounted by the Court of Appeal.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "C2",
+      "record": "EV-0080",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "orange",
+      "reason": "BP was a party to the 1974 proceedings and the judgment records Mary's pleaded ownership claim. This supports corporate knowledge of a dispute, not proof of who knew what at the 1983 application.",
+      "proposition": "BP's side had been directly involved in the earlier ownership dispute.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "C1",
+      "record": "EV-0153",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The 25 May 2026 Stage 2 HMLR PDF has now been opened and read from its archived copy. It states that the Registry did not receive or know of a family interest or possible dispute and no caution was lodged. This proves HMLR's stated position, not what BP declared or any intention to conceal.",
+      "proposition": "HMLR's later stated position was that the Registry had no notice or knowledge of the family's interest at first registration.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "C3",
+      "record": "EV-0149",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The 19 April 2026 Stage 1 letter quotes current FR1 certificate wording. That is not proof of the wording on the historical 1983 Form 1C or Form 1E.",
+      "proposition": "HMLR relied in 2026 on modern FR1 certificate wording; the historical application forms must be inspected.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "C3",
+      "record": "EV-0153",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The 25 May 2026 Stage 2 HMLR PDF has now been opened and read from its archived copy. It states that the Registry did not receive or know of a family interest or possible dispute and no caution was lodged. This proves HMLR's stated position, not what BP declared or any intention to conceal.",
+      "proposition": "The Registry's retrospective account identifies a possible non-receipt gap, but not its cause.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "C3",
+      "record": "EV-0161",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The 30 July 2026 HMLR schedule has now been opened and read. It lists 30 WA231076 items and 13 WA240304 items, confirms all are held and open to public inspection, and identifies the exact application, examination and correspondence items. It does not establish their contents.",
+      "proposition": "The file schedule gives a targeted route to the Form 1C/Form 1E, D23 and correspondence needed to test disclosure.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "G1",
+      "record": "EV-0149",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "This is a 2026 HMLR complaint decision and evidence of the Registry's later handling/position, not contemporaneous evidence of an officer's knowledge in 1983.",
+      "proposition": "HMLR made a documented Stage 1 decision in 2026.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "G1",
+      "record": "EV-0153",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The 25 May 2026 Stage 2 HMLR PDF has now been opened and read from its archived copy. It states that the Registry did not receive or know of a family interest or possible dispute and no caution was lodged. This proves HMLR's stated position, not what BP declared or any intention to conceal.",
+      "proposition": "HMLR's 2026 Stage 2 response records the Registry's retrospective account.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "G1",
+      "record": "EV-0161",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The 30 July 2026 HMLR schedule has now been opened and read. It lists 30 WA231076 items and 13 WA240304 items, confirms all are held and open to public inspection, and identifies the exact application, examination and correspondence items. It does not establish their contents.",
+      "proposition": "HMLR's file schedule identifies records that can test the 1982–83 process.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "G2",
+      "record": "EV-0153",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The 25 May 2026 Stage 2 HMLR PDF has now been opened and read from its archived copy. It states that the Registry did not receive or know of a family interest or possible dispute and no caution was lodged. This proves HMLR's stated position, not what BP declared or any intention to conceal.",
+      "proposition": "This is evidence of later complaint handling, not proof of a historic public-authority concealment.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "G2",
+      "record": "EV-0161",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The 30 July 2026 HMLR schedule has now been opened and read. It lists 30 WA231076 items and 13 WA240304 items, confirms all are held and open to public inspection, and identifies the exact application, examination and correspondence items. It does not establish their contents.",
+      "proposition": "The first-registration file contents can be requested and compared with the 2026 responses.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "R1",
+      "record": "EV-0147",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "green",
+      "reason": "HMLR's 23 March 2026 registration-history letter identifies the dates and conveyances for the separate WA231076 and WA240304 first-registration applications.",
+      "proposition": "The two applications and their stated documentary bases are identified.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "R1",
+      "record": "EV-0149",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The 19 April 2026 Stage 1 letter describes HMLR's account of the documents relied on and quotes modern FR1 wording. It does not prove the contents of the 1983 form.",
+      "proposition": "HMLR's later explanation identifies the 1971 abstract and its understanding of the two files.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "R1",
+      "record": "EV-0153",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "The 25 May 2026 Stage 2 HMLR PDF has now been opened and read from its archived copy. It states that the Registry did not receive or know of a family interest or possible dispute and no caution was lodged. This proves HMLR's stated position, not what BP declared or any intention to conceal.",
+      "proposition": "HMLR's retrospective statement creates a precise question for the original file.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "R1",
+      "record": "EV-0161",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "green",
+      "reason": "The 30 July 2026 HMLR schedule has now been opened and read. It lists 30 WA231076 items and 13 WA240304 items, confirms all are held and open to public inspection, and identifies the exact application, examination and correspondence items. It does not establish their contents.",
+      "proposition": "The primary application and examination records needed to test the register are identifiable.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "R4",
+      "record": "EV-0265",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "green",
+      "reason": "This research record distinguishes the 1983 historical forms/rules from later certificate wording and records the compulsory-registration date. It is a retrieval guide; the 1983 forms and rules still need direct verification.",
+      "proposition": "Use the 1925 Act and Rules in force at the application date; do not import the later FR1/Form DI requirements.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "R5",
+      "record": "EV-0149",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "green",
+      "reason": "HMLR's 2026 explanation is a lead to the historical file, but its modern FR1 wording is not proof that anyone made a false statement or suppressed a fact in 1983.",
+      "proposition": "Potential historical registration offences require the actual 1983 declaration or suppressed fact, actor and intent.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 proof-position review"
+      }
+    },
+    {
+      "node": "FI1",
+      "record": "EV-0147",
+      "source": "catalogue",
+      "relation": "supports",
+      "strength": "green",
+      "reason": "The archived 23 March 2026 HMLR letter directly identifies Linklaters & Paines as the firm that submitted both first-registration applications for BP Properties. It does not identify the individual solicitor or prove the firm's role in 1974.",
+      "proposition": "The applicant's solicitors for both 1982–83 first-registration applications are identified.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 source verification"
+      }
+    },
+    {
+      "node": "FI2",
+      "record": "EV-0147",
+      "source": "catalogue",
+      "relation": "neutral",
+      "strength": "orange",
+      "reason": "The same firm submitted the two applications, but this record does not show that it had the 1974 licence file or that the application solicitor knew of Mary's earlier ownership plea.",
+      "proposition": "The registration solicitor is identified; knowledge of the 1974 dispute remains a question.",
+      "assessment": {
+        "status": "assessed",
+        "date": "2026-11-17",
+        "by": "Mr Wolf 4.1 source verification"
+      }
+    }
+  ]
+}
