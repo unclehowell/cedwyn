@@ -97,7 +97,7 @@ html.edp-lock,html.edp-lock body{overflow:hidden!important}
 </style><script>
 (function(){
 if(window.__edp)return;window.__edp=3;
-var PDFJS='https://cedwyn.bucklerfamily.estate/_ext/cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/',VIEWER='https://cedwyn.bucklerfamily.estate/ebooks/read/?book=';
+var PDFJS='https://cedwyn.bucklerfamily.estate/_ext/cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/',VIEWER='https://cedwyn.bucklerfamily.estate/ebooks/read/?book=';var BOOK_KEY=/^[a-z0-9-]+(?:@[0-9a-z.\-]+)?$/;
 var T={
 edition:{en:'Edition',cy:'Argraffiad',es:'Edición'},
 hint:{en:'newest first · tap a price',cy:'y diweddaraf yn gyntaf · tapiwch bris',es:'la más reciente primero · toque un precio'},
@@ -185,8 +185,10 @@ function open(a){var url=a.getAttribute('data-edp-pdf');if(!url)return false;bui
  var dl=M.querySelector('.edp-dl');dl.href=url;dl.setAttribute('aria-label',t('dl'));dl.title=t('dl');
  var x=M.querySelector('.edp-x');x.setAttribute('aria-label',t('close'));x.title=t('close');
  var box=M.querySelector('.edp-mbody');M.hidden=false;document.documentElement.classList.add('edp-lock');
- if(sameHost(url))render(box,url);
- else if(gb&&/^[a-z0-9-]+@[0-9a-z.\-]+$/.test(gb)){box.classList.add('edp-fr');box.innerHTML='';box.appendChild(el('iframe',{src:VIEWER+encodeURIComponent(gb),title:title,loading:'eager'}));}
+ /* Book-keyed PDFs are read on the ebooks origin. The apex /ebooks/api/free route
+  * redirects there, so fetching it here can become a cross-origin PDF.js request. */
+ if(gb&&BOOK_KEY.test(gb)){box.classList.add('edp-fr');box.innerHTML='';box.appendChild(el('iframe',{src:VIEWER+encodeURIComponent(gb),title:title,loading:'eager'}));}
+ else if(sameHost(url))render(box,url);
  else failMsg(box,url);
  x.focus();return true;}
 document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('a[data-edp-pdf]');if(!a||ev.button||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey)return;
@@ -207,7 +209,7 @@ function init(){
  window.addEventListener('resize',function(){[].forEach.call(document.querySelectorAll('.edp'),arrows);});
  document.addEventListener('ghf-lang-change',function(){[].forEach.call(document.querySelectorAll('.edp-box'),words);});
  var vb=document.querySelector('[data-edp-viewer]');if(vb){var gb=new URLSearchParams(location.search).get('book')||'';
-  if(/^[a-z0-9-]+@[0-9a-z.\-]+$/.test(gb))render(vb,'/api/free?book='+encodeURIComponent(gb));else vb.textContent='';}}
+  if(BOOK_KEY.test(gb))render(vb,'/api/free?book='+encodeURIComponent(gb));else vb.textContent='';}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
