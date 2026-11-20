@@ -1,0 +1,19 @@
+name: rewrite-canonical-regression
+on:
+  pull_request:
+    paths:
+      - 'tools/rewrite.py'
+      - 'tools/test_rewrite_canonical.py'
+      - '.github/workflows/rewrite-canonical-test.yml'
+permissions:
+  contents: read
+jobs:
+  canonical:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Preserve canonical URLs and rewrite local app paths
+        run: python3 tools/test_rewrite_canonical.py
