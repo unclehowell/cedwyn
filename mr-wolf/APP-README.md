@@ -6,7 +6,7 @@ Served at [bucklerfamily.estate/mr-wolf/](https://bucklerfamily.estate/mr-wolf/)
 
 The authoritative application repository is [unclehowell/cedwyn-mr-wolf](https://github.com/unclehowell/cedwyn-mr-wolf), branch `main`. Make application changes on a feature branch here and open a pull request into `main`. The retained `section/mr-wolf` branch in `unclehowell/cedwyn` is a legacy compatibility copy, not the development source. The estate build reads this repository directly for the `deploy: repo` app.
 
-## Two views (v4.1.1)
+## Two views (v4.1.2)
 
 A compact, closed-by-default **Current proof position** disclosure sits below the existing header. Opening it separates the 1974 unilateral-licence mechanism from proof of dishonesty, the 1982–83 registration information gap from deliberate concealment, and public-body record handling from evidence of state participation. It states the missing proof for each route. The original **Tree view** remains the default landing view; the existing toggle still switches to **Gauge view**. `?view=tree` or `?view=gauges` opens either; `#MW-NN` opens a gauge lead; `#tree/N/<node>` and `#tree/R/<record>` open a tree node or leaf. The last view chosen is remembered per browser (localStorage, wrapped in try/catch).
 

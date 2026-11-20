@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.1.2 — 20 November 2026
+- Corrected the Changelog link to be app-root-relative. It now resolves to `/CHANGELOG.md` on the standalone Pages preview and to `/mr-wolf/CHANGELOG.md` after the unified-site theme prefix is applied.
+- No changes to the evidence dataset, legal analysis, scoring or interface layout.
+
+
 ## 4.1.1 — 17 November 2026
 - Preserved the existing tree-first and gauge-second interface; moved the new proof-position analysis into a compact, closed-by-default disclosure beneath the original header.
 - Reused the live app's existing cream/brown palette, serif heading and restrained border treatment. The full-screen Legal Threshold Tree remains the default view.
