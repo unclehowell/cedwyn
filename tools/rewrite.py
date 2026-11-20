@@ -163,6 +163,13 @@ def rw_tag(m, tid, page_rel):
             stats['listform'] += 1; mc.append(1); return a.group(1) + a.group(2) + a.group(3) + '"/api/list/subscribe"'
         link = (name in ('a', 'area') and attr == 'href') or (name == 'form' and attr == 'action')
         if name == 'iframe' and attr == 'src' and BANNED.search(v): stats['banned'] += 1; return a.group(1) + 'src' + a.group(3) + '"about:blank"'
+        # Canonical URLs identify the public page, not an internal theme link.
+        # Rewriting an apex canonical through APEX routing can point search engines
+        # at a legacy duplicate path (e.g. /dartboard/mr-wolf/).
+        if name == 'link' and attr == 'href':
+            rel = re.search(r"""(?i)(?:^|\\s)rel\\s*=\\s*("[^"]*"|'[^']*'|[^\\s>]+)""", body)
+            if rel and 'canonical' in rel.group(1).strip(chr(34) + chr(39)).lower().split():
+                return a.group(0)
         nv = rw(v, tid, link, page_rel)
         if nv == v: return a.group(0)
         if q == '': q = '"'
