@@ -18,7 +18,11 @@ og:title and twitter:title read "Williams-Bucklers, Ty Mawr, Cedwyn – <webapp>
 Cedwyn", and og:image/twitter:image are one 1200x630 card per webapp with that exact text set on the webapp's Garden Gallery
 piece. These five tags now replace whatever a theme or branch carried, so every branch and every new page inherits them;
 descriptions stay page-specific. The webapp name comes from og_cards.json "webapps" (first path segment), else the theme's
-own title, else the segment itself. Font: tools/fonts/PlayfairDisplay-Bold.ttf (SIL OFL, tools/fonts/OFL.txt)."""
+own title, else the segment itself. Font: tools/fonts/PlayfairDisplay-Bold.ttf (SIL OFL, tools/fonts/OFL.txt).
+
+17 Nov 2026: a page with no <link rel="canonical"> of its own gets one inside the og:cedwyn block, naming the same address as
+og:url (BASE + path). A canonical a page already carries is kept as it is. With og_cards.json "base" on the apex, every
+page names https://bucklerfamily.estate as its home (#365). - Claude agent"""
 import json, re, hashlib, html, io, pathlib, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -342,6 +346,8 @@ def page(p, rel, dist, themes, cards, n, added, untouched, samples):
     if 'description' not in have and desc:
         want.append(('name', 'description', desc))
     tags = ['<meta %s="%s" content="%s">' % (k, v, esc(c)) for k, v, c in want if c]
+    if not cm:   # 17 Nov 2026: no canonical of its own -> the same address as og:url (inside the block, so a rebuild replaces it) - Claude agent
+        tags.insert(0, '<link rel="canonical" href="%s">' % esc(url))
     block = '<!-- og:cedwyn -->' + ''.join(tags) + '<!-- /og:cedwyn -->'
     new = head_clean + block + txt[m.start():]
     if new == txt:
