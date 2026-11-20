@@ -1,6 +1,6 @@
 {
  "schema": "ghf-artifacts/1",
- "generated": "2026-11-18T14:29:47.440Z",
+ "generated": "2026-11-19T22:12:00Z",
  "base_url": "https://cedwyn.bucklerfamily.estate/wayback/",
  "spec": "https://cedwyn.bucklerfamily.estate/wayback/artifacts/SPEC.md",
  "statement": "",
@@ -35,7 +35,7 @@
    "count": 4
   }
  ],
- "count": 368,
+ "count": 369,
  "parts": [
   {
    "url": "items-1.json",
@@ -75,9 +75,9 @@
   },
   {
    "url": "items-9.json",
-   "count": 15,
+   "count": 16,
    "first": "WB-0900",
-   "last": "WB-0914"
+   "last": "WB-0915"
   }
  ],
  "note": "Items are split across the files in \"parts\" (each under 100 KB). Fetch each part and join the \"items\" arrays in order."
