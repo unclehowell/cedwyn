@@ -44,6 +44,7 @@ jobs:
           node tools/test_evidence_browser_client.js
           python3 tools/test_evidence_hierarchy.py
           python3 tools/test_agent_loader.py
+          python3 tools/test_rewrite_canonical.py
           python3 tools/test_evidence_pages.py
           python3 tools/test_parcel_stories.py
           python3 tools/test_qa_guards.py
