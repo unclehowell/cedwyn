@@ -167,7 +167,7 @@ def rw_tag(m, tid, page_rel):
         # Rewriting an apex canonical through APEX routing can point search engines
         # at a legacy duplicate path (e.g. /dartboard/mr-wolf/).
         if name == 'link' and attr == 'href':
-            rel = re.search(r"""(?i)(?:^|\\s)rel\\s*=\\s*("[^"]*"|'[^']*'|[^\\s>]+)""", body)
+            rel = re.search(r"""(?i)(?:^|\s)rel\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)""", body)
             if rel and 'canonical' in rel.group(1).strip(chr(34) + chr(39)).lower().split():
                 return a.group(0)
         nv = rw(v, tid, link, page_rel)
