@@ -1,3 +1,4 @@
+| 1.1.2 | 24 Nov 2026 | Fix the deployed host guard: the Worker accepts its installed `cedwyn-datro.bucklerfamily.estate` route and uses the apex as the canonical public base; align page assets and protocol versions. |
 # Changelog
 
 | Version | Date | Change |

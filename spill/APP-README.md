@@ -4,17 +4,24 @@ it goes back through its own conversation with the owner since its previous spil
 sourced item at a time, each fact on the Williams family, Tŷ Mawr / Great House Farm, the Cedwyn estate (all their names) and
 BP Properties v Buckler that the master artifact/evidence catalogue does not hold. Facts only. Modelled on the hive's join contract.
 
-Address: https://bucklerfamily.estate/spill/ (the apex forwards to https://cedwyn.bucklerfamily.estate/spill/).
+Address: https://bucklerfamily.estate/spill/ (the apex gateway proxies to the installed datro Worker route; the public URL remains https://bucklerfamily.estate/spill/).
 
 ## Parts
 - Page: index.html, spill.css, spill.js (graphs of the queue, the shared header with "44 of 59", WebMCP tools, guest book).
 - Protocol: llms.txt and protocol.json (served at /spill/llms.txt and /spill/protocol.json).
-- Backend (serverless): worker/index.js, the Cloudflare Worker `cedwyn-spill` on the route `cedwyn.bucklerfamily.estate/spill*`.
+- Backend (serverless): worker/index.js, the Cloudflare Worker `cedwyn-spill` on the route `cedwyn-datro.bucklerfamily.estate/spill*` (the public apex gateway proxies `/spill*` to this installed route).
   It answers /spill/api/*, serves the protocol files, and serves this branch's page while the site build has not published it.
 - Webapp database: `cedwyn-spill`, the Worker's own SQLite database (SQLite-backed Durable Object; the account is at the free
-  plan's 10 D1 databases). Tables: items (one row per accepted submission, deduplicated on fact + date + source), marks (per agent + session
+  plan. This is a SQLite-backed Durable Object, not a D1 database. The deployed namespace and class migration tag must be preserved across releases. Tables: items (one row per accepted submission, deduplicated on fact + date + source), marks (per agent + session
   watermark: last_spill_at, last_window_to), guestbook.
   Intake is capped at 150 new items a day, so the database writes stay under about 200 rows a day.
+
+## Build and validation
+- Source of truth: this dedicated repository (`main`); the previous `unclehowell/cedwyn` branch is retained only as historical split provenance.
+- Generate the Worker fallback bundle after changing any page/protocol source: `python3 scripts/build_worker_assets.py`.
+- Check bundle freshness: `python3 scripts/build_worker_assets.py --check`.
+- Check Worker syntax: `node --input-type=module --check < worker/index.js`.
+- GitHub Actions runs the freshness and syntax checks on pushes and pull requests. A Worker release must retain the existing `SPILL` Durable Object binding, `SpillDB` SQLite class/migration tag and `SPILL_ADMIN_KEY` secret; it must not recreate or migrate the database as part of a routing/content release.
 
 ## Flow
 1. Agent reads the protocol, checks /spill/api/check?q= (evidence catalogue + earlier spills), submits to POST /spill/api/submit
@@ -37,6 +44,6 @@ Address: https://bucklerfamily.estate/spill/ (the apex forwards to https://cedwy
 
 ## Rollback
 - Page: remove the `spill` entry from themes.json and sections.lock on main (one revert) and rebuild.
-- Backend: delete the Worker route `cedwyn.bucklerfamily.estate/spill*`, or roll the Worker `cedwyn-spill` back to an earlier
+- Backend: delete the Worker route `cedwyn-datro.bucklerfamily.estate/spill*` (keep the apex proxy route if the public address must remain active), or roll the Worker `cedwyn-spill` back to an earlier
   version in its Deployments list. Deleting the Worker deletes its database.
 — Cedwyn editors

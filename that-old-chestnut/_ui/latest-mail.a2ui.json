@@ -1,377 +1,377 @@
 {
- "a2ui": "0.9",
- "surface": "that-old-chestnut-latest-mail",
- "version": "0.3.8",
- "note": "That Old Chestnut v0.3.4: replies received after the last full audit (31 Oct 2026), in the same record shape as the chestnuts collection of _db/view.json. toc.js adds a record only when the catalogue does not already carry its id, so the catalogue wins once it holds these rows. Mail read up to 2026-11-02T14:20Z. v0.3.4 adds TOC-E05 (solicitors, reply of 2026-11-02) and TOC-E06 (bp legal team, reply of 2026-10-23): preservation notice, then 'not seen' or no reply, then no preservation undertaking. Staff names and phone numbers withheld. v0.3.7 adds TOC-E07 (Mount Stuart Trust, Bute Collection: automatic reply of 2026-10-15, general external enquiries paused with a review in January 2027). v0.3.8 adds the enquiry dates to TOC-E07: request sent 2026-10-15 23:01:51 UTC, automatic reply 23:02:03 UTC (12 seconds later), follow-ups 2026-10-19 and 2026-10-29, no reply as of 2026-11-03.",
- "mail_read_to": "2026-11-02",
- "i18n": {
-  "en": {
-   "mail_to": "Replies received up to {d} are included."
+  "a2ui": "0.9",
+  "surface": "that-old-chestnut-latest-mail",
+  "version": "0.3.9",
+  "note": "That Old Chestnut v0.3.4: replies received after the last full audit (31 Oct 2026), in the same record shape as the chestnuts collection of _db/view.json. toc.js adds a record only when the catalogue does not already carry its id, so the catalogue wins once it holds these rows. Mail read up to 2026-11-02T14:20Z. v0.3.4 adds TOC-E05 (solicitors, reply of 2026-11-02) and TOC-E06 (bp legal team, reply of 2026-10-23): preservation notice, then 'not seen' or no reply, then no preservation undertaking. Staff names and phone numbers withheld. v0.3.7 adds TOC-E07 (Mount Stuart Trust, Bute Collection: automatic reply of 2026-10-15, general external enquiries paused with a review in January 2027). v0.3.8 adds the enquiry dates to TOC-E07: request sent 2026-10-15 23:01:51 UTC, automatic reply 23:02:03 UTC (12 seconds later), follow-ups 2026-10-19 and 2026-10-29, no reply as of 2026-11-03. Freshness safeguard (24 Nov 2026): this is a static extract, not a live inbox or deadline monitor; the full original thread and later record must be checked before interpreting a pattern.",
+  "mail_read_to": "2026-11-02",
+  "i18n": {
+    "en": {
+      "mail_to": "Static mailbox extract: replies received up to {d} are included; later correspondence may be missing. This is not a live inbox or deadline monitor. Pattern flags are prompts for source checking, not findings of motive or wrongdoing."
+    },
+    "cy": {
+      "mail_to": "Detholiad blwch post sefydlog: cynhwysir atebion hyd at {d}; gall gohebiaeth ddiweddarach fod ar goll. Nid blwch post byw na monitor terfynau amser yw hwn. Awgrymiadau i wirio ffynonellau yw'r marciau patrwm, nid canfyddiadau am gymhelliad na chamwedd."
+    },
+    "es": {
+      "mail_to": "Extracto estático del correo: se incluyen las respuestas hasta {d}; puede faltar correspondencia posterior. No es una bandeja de entrada en directo ni un monitor de plazos. Las señales de patrones sirven para comprobar fuentes, no son conclusiones sobre motivos o irregularidades."
+    }
   },
-  "cy": {
-   "mail_to": "Mae atebion a ddaeth i law hyd at {d} wedi'u cynnwys."
-  },
-  "es": {
-   "mail_to": "Se incluyen las respuestas recibidas hasta el {d}."
-  }
- },
- "chestnuts": [
-  {
-   "id": "TOC-E01",
-   "title": "Heneb (HER) · reply of 2026-11-02",
-   "date": {
-    "display": "2026-11-02",
-    "sort": "2026-11-02",
-    "precision": "day"
-   },
-   "provenance": {
-    "holder": "Heneb (HER)",
-    "reference": "Correspondence held on file (not published)",
-    "date": "2026-11-02"
-   },
-   "evidence": [],
-   "finding": {
-    "class": "language",
-    "institution": "Heneb (HER)",
-    "negative_date": "2026-11-02",
-    "positive_date": "",
-    "months_elapsed": null,
-    "email_volume": "",
-    "negative_quote": "This information is not held in the HER. As previously advised, we are unable to undertake research on your behalf, please do search Archwilio and submit requests for any specific paper HER records which you wish to review.",
-    "positive_quote": "",
-    "positive_nature": "",
-    "trigger": "",
-    "disclosure_type": "",
-    "conduct": "The request named three historical title records and asked which searches and indexes were checked. The reply is a one-line 'not held' with no account of the searches, followed by the standing line that the HER will not research on the requester's behalf and a pointer to the public database.",
-    "interim_disclosure": "",
-    "terms": [
-     {
-      "term": "not held",
-      "statute": "EIR reg 12(4)(a) / FOIA s.1(1)(a); no account of the searches made",
-      "note": ""
-     },
-     {
-      "term": "unable to undertake research on your behalf",
-      "statute": "EIR reg 9 / FOIA s.16 duty to advise and assist; no exception cited (EIR reg 12(4)(b) / FOIA s.12–s.14 not formally applied)",
-      "note": ""
-     },
-     {
-      "term": "search Archwilio (pointed to the public database)",
-      "statute": "EIR reg 6(1)(b) / FOIA s.21 information already publicly accessible; not formally cited, and it applies only to information the body itself holds",
-      "note": ""
-     }
-    ],
-    "open": true,
-    "held_back": []
-   },
-   "updated": "2026-11-02",
-   "date_display": "2026-11-02",
-   "source_text": "Correspondence held on file (not published)",
-   "evidence_links": []
-  },
-  {
-   "id": "TOC-E02",
-   "title": "Heneb (HER) · reply of 2026-11-02",
-   "date": {
-    "display": "2026-11-02",
-    "sort": "2026-11-02",
-    "precision": "day"
-   },
-   "provenance": {
-    "holder": "Heneb (HER)",
-    "reference": "Correspondence held on file (not published)",
-    "date": "2026-11-02"
-   },
-   "evidence": [],
-   "finding": {
-    "class": "language",
-    "institution": "Heneb (HER)",
-    "negative_date": "2026-11-02",
-    "positive_date": "",
-    "months_elapsed": null,
-    "email_volume": "",
-    "negative_quote": "As previously advised, we are unable to undertake research on your behalf.",
-    "positive_quote": "",
-    "positive_nature": "",
-    "trigger": "",
-    "disclosure_type": "",
-    "conduct": "The reply answers a list of alternative names and spellings supplied for the existing requests. It does not say whether any of the names were searched; it repeats the earlier line.",
-    "interim_disclosure": "",
-    "terms": [
-     {
-      "term": "unable to undertake research on your behalf",
-      "statute": "EIR reg 9 / FOIA s.16 duty to advise and assist; no exception cited (EIR reg 12(4)(b) / FOIA s.12–s.14 not formally applied)",
-      "note": ""
-     },
-     {
-      "term": "as previously advised (earlier answer repeated)",
-      "statute": "EIR reg 5(1) / FOIA s.1(1): a request supplied with further names is to be searched and answered; reg 9 / s.16 advice on which names would help",
-      "note": ""
-     }
-    ],
-    "open": true,
-    "held_back": []
-   },
-   "updated": "2026-11-02",
-   "date_display": "2026-11-02",
-   "source_text": "Correspondence held on file (not published)",
-   "evidence_links": []
-  },
-  {
-   "id": "TOC-E03",
-   "title": "Heneb (HER) · reply of 2026-11-02",
-   "date": {
-    "display": "2026-11-02",
-    "sort": "2026-11-02",
-    "precision": "day"
-   },
-   "provenance": {
-    "holder": "Heneb (HER)",
-    "reference": "Correspondence held on file (not published)",
-    "date": "2026-11-02"
-   },
-   "evidence": [],
-   "finding": {
-    "class": "language",
-    "institution": "Heneb (HER)",
-    "negative_date": "2026-11-02",
-    "positive_date": "",
-    "months_elapsed": null,
-    "email_volume": "",
-    "negative_quote": "We are unable to undertake research on your behalf. You are welcome to search Archwilio and submit requests for any specific paper HER records which you wish to review.",
-    "positive_quote": "",
-    "positive_nature": "",
-    "trigger": "",
-    "disclosure_type": "",
-    "conduct": "The request asked for earlier 'not held' searches about the 1983 fire and the Roman villa finds to be run again with newly found historical names. The reply treats it as a research request and points to the public database; it does not say whether the new names were searched.",
-    "interim_disclosure": "",
-    "terms": [
-     {
-      "term": "unable to undertake research on your behalf",
-      "statute": "EIR reg 9 / FOIA s.16 duty to advise and assist; no exception cited (EIR reg 12(4)(b) / FOIA s.12–s.14 not formally applied)",
-      "note": ""
-     },
-     {
-      "term": "search Archwilio (pointed to the public database)",
-      "statute": "EIR reg 6(1)(b) / FOIA s.21 information already publicly accessible; not formally cited, and it applies only to information the body itself holds",
-      "note": ""
-     }
-    ],
-    "open": true,
-    "held_back": []
-   },
-   "updated": "2026-11-02",
-   "date_display": "2026-11-02",
-   "source_text": "Correspondence held on file (not published)",
-   "evidence_links": []
-  },
-  {
-   "id": "TOC-E04",
-   "title": "Health and Safety Executive · reply of 2026-11-02",
-   "date": {
-    "display": "2026-11-02",
-    "sort": "2026-11-02",
-    "precision": "day"
-   },
-   "provenance": {
-    "holder": "Health and Safety Executive",
-    "reference": "Correspondence held on file (not published)",
-    "date": "2026-11-02"
-   },
-   "evidence": [],
-   "finding": {
-    "class": "language",
-    "institution": "Health and Safety Executive",
-    "negative_date": "2026-11-02",
-    "positive_date": "",
-    "months_elapsed": null,
-    "email_volume": "",
-    "negative_quote": "HSE request you do not seek an update on the status of your request before the statutory / recommended date for response has expired. Please be advised that HSE is currently experiencing an increased volume of information requests. This has resulted in HSE not always being in a position to respond to requests within the statutory deadlines detailed above.",
-    "positive_quote": "",
-    "positive_nature": "",
-    "trigger": "",
-    "disclosure_type": "",
-    "conduct": "Automatic receipt for a request about 1988–89 demolition notifications. Before any work is done it asks the requester not to chase and warns that replies are not always sent within the statutory time.",
-    "interim_disclosure": "",
-    "terms": [
-     {
-      "term": "do not seek an update",
-      "statute": "FOIA s.10(1) / EIR reg 5(2): a reply is due within 20 working days; nothing in either bars a requester from asking about progress",
-      "note": ""
-     },
-     {
-      "term": "advance warning of late replies",
-      "statute": "FOIA s.10(1) / EIR reg 5(2) 20 working days; an EIR reg 7 extension needs complexity and volume, notified within the 20 days",
-      "note": ""
-     }
-    ],
-    "open": true,
-    "held_back": []
-   },
-   "updated": "2026-11-02",
-   "date_display": "2026-11-02",
-   "source_text": "Correspondence held on file (not published)",
-   "evidence_links": []
-  },
-  {
-   "id": "TOC-E05",
-   "title": "Darwin Gray LLP (solicitors, Cardiff) · reply of 2026-11-02",
-   "date": {
-    "display": "2026-11-02",
-    "sort": "2026-11-02",
-    "precision": "day"
-   },
-   "provenance": {
-    "holder": "Darwin Gray LLP (solicitors, Cardiff)",
-    "reference": "Correspondence held on file (not published)",
-    "date": "2026-11-02"
-   },
-   "evidence": [],
-   "finding": {
-    "class": "language",
-    "institution": "Darwin Gray LLP (solicitors, Cardiff)",
-    "negative_date": "2026-11-02",
-    "positive_date": "",
-    "months_elapsed": null,
-    "email_volume": "",
-    "negative_quote": "we have not seen any communication or document from you on that date. We have the enquiries you have sent to us on 19 and 21 September 2026 … we do not hold anything relating to this matter apart from what you have sent us, which you will be able to obtain from your own ‘sent items’ in your email account.",
-    "positive_quote": "",
-    "positive_nature": "",
-    "trigger": "Follow-up of 31 October 2026 from the enquirer, citing the preservation notice of 28 September 2026: was any file held, what searches were made, was anything destroyed or transferred, and a request that nothing be destroyed while the enquiries are open.",
-    "disclosure_type": "",
-    "conduct": "The enquirer's Sent folder holds the preservation notice of 28 September 2026 (22:39 UK time), addressed to two of the firm's email addresses, one in To and one in Cc, with no delivery-failure notice for either; the firm's mail server had returned an immediate rejection for a different address on 21 September. Two further emails of 27 September and 7 October also went to the firm's general address. The reply of 2 November names only the enquiries of 19 and 21 September, states that the firm was founded in 2002, was never instructed about the land and holds nothing beyond the enquirer's own emails. It gives no account of a search of its mail system or quarantine for the 28 September notice, and no undertaking that nothing will be destroyed.",
-    "interim_disclosure": "",
-    "terms": [
-     {
-      "term": "have not seen any communication or document from you on that date",
-      "statute": "No delivery failure was recorded for either address; the notice's Message-ID can be traced in the firm's own mail logs. A UK GDPR Art. 15 subject access request (one month) covers every email from the enquirer the firm holds.",
-      "note": ""
-     },
-     {
-      "term": "we do not hold anything … apart from what you have sent us",
-      "statute": "UK GDPR Art. 15(1)(d): the retention period for the enquirer's own emails is not stated",
-      "note": ""
-     },
-     {
-      "term": "no preservation undertaking",
-      "statute": "A private firm has no FOIA s.77 duty; a duty to preserve arises for a likely party to proceedings (CPR PD 31B para 7; PD 57AD para 3.1); after a subject access request, DPA 2018 s.173 makes deletion to prevent disclosure an offence",
-      "note": ""
-     }
-    ],
-    "open": true,
-    "held_back": []
-   },
-   "updated": "2026-11-02",
-   "date_display": "2026-11-02",
-   "source_text": "Correspondence held on file (not published)",
-   "evidence_links": []
-  },
-  {
-   "id": "TOC-E06",
-   "title": "bp (legal team, via a contractor) · reply of 2026-10-23",
-   "date": {
-    "display": "2026-10-23",
-    "sort": "2026-10-23",
-    "precision": "day"
-   },
-   "provenance": {
-    "holder": "bp (legal team, via a contractor)",
-    "reference": "Correspondence held on file (not published)",
-    "date": "2026-10-23"
-   },
-   "evidence": [],
-   "finding": {
-    "class": "language",
-    "institution": "bp (legal team, via a contractor)",
-    "negative_date": "2026-10-23",
-    "positive_date": "",
-    "months_elapsed": null,
-    "email_volume": "",
-    "negative_quote": "we are not aware of any outstanding or live cause of action that bp or any related entity would need to answer in relation to this property. … we are not in a position to understand why a document preservation obligation would exist, and we are therefore not able to confirm that a preservation hold of the kind you describe will be put in place.",
-    "positive_quote": "",
-    "positive_nature": "",
-    "trigger": "Preservation notice of 16 October 2026 to a named bp lawyer, asking for a hold on records about the farm from 1969; it was passed to a contractor in the legal team.",
-    "disclosure_type": "",
-    "conduct": "The first preservation notice, of 28 September 2026, went to BP Archive with no delivery failure and has had no reply; records enquiries of 19 and 29 October to the same address are also unanswered. The reply of 23 October answers the later notice of 16 October only, does not mention the 28 September notice, declines to confirm a preservation hold, finds many of the notice's links inaccessible and asks for the basis of any new case, the legal grounds and the relief sought. Follow-ups of 24 October (asking for hold confirmation by 7 November 2026) and 31 October had automatic out-of-office replies only, up to 2 November 2026.",
-    "interim_disclosure": "",
-    "terms": [
-     {
-      "term": "not able to confirm that a preservation hold … will be put in place",
-      "statute": "A party's duty to preserve arises once it knows it may become a party to proceedings (PD 57AD para 3.1; CPR PD 31B para 7); the reply ties the hold to the absence of a live cause of action",
-      "note": ""
-     },
-     {
-      "term": "not aware of any outstanding or live cause of action",
-      "statute": "Concluded litigation (Court of Appeal, 1987) cited as the reason no hold is needed; no statement of the company's retention schedule or of any destruction",
-      "note": ""
-     },
-     {
-      "term": "no reply to the notice of 28 September 2026",
-      "statute": "A company has no FOIA s.77 duty; a UK GDPR Art. 15 subject access request can ask for retention periods (Art. 15(1)(d))",
-      "note": ""
-     }
-    ],
-    "open": true,
-    "held_back": []
-   },
-   "updated": "2026-11-02",
-   "date_display": "2026-10-23",
-   "source_text": "Correspondence held on file (not published)",
-   "evidence_links": []
-  },
-  {
-   "id": "TOC-E07",
-   "title": "Mount Stuart Trust (Bute Collection) · enquiry and automatic reply of 2026-10-15",
-   "date": {
-    "display": "2026-10-15",
-    "sort": "2026-10-15",
-    "precision": "day"
-   },
-   "provenance": {
-    "holder": "Mount Stuart Trust (Bute Collection)",
-    "reference": "Correspondence held on file (not published)",
-    "date": "2026-10-15"
-   },
-   "evidence": [],
-   "finding": {
-    "class": "language",
-    "institution": "Mount Stuart Trust (Bute Collection)",
-    "negative_date": "2026-10-15",
-    "positive_date": "",
-    "months_elapsed": null,
-    "email_volume": "",
-    "negative_quote": "Please note that we are currently unable to respond to general external enquiries. We anticipate reviewing this position in January 2027. [...] Please note we are not able to respond to family history or genealogical enquiries at this time.",
-    "positive_quote": "",
-    "positive_nature": "",
-    "trigger": "Research-visit request from the enquirer, sent on 15 October 2026 at 23:01:51 UTC (00:01 on 16 October, UK time), asking for named Bute Estate (Glamorgan) records on Llandough-juxta-Penarth.",
-    "disclosure_type": "",
-    "conduct": "The enquirer sent a research-visit request on 15 October 2026 at 23:01:51 UTC. The automatic reply came at 23:02:03 UTC the same day, 12 seconds later. It replied that general external enquiries are paused, with the position to be reviewed in January 2027 (a review date, not a date for answers), and that family history enquiries are not answered at this time. Research visits remain open by appointment three weeks ahead. Follow-ups sent on 19 October 2026 (22:14 UTC) and 29 October 2026 (19:55 UTC) have had no reply as of 3 November 2026; a further records request of 31 October 2026 has had no reply either. An earlier enquiry of 23 August 2026 went to a different address of the Trust and was returned undelivered (address not found).",
-    "interim_disclosure": "",
-    "terms": [
-     {
-      "term": "unable to respond to general external enquiries",
-      "statute": "A private trust: FOIA and the EIR do not apply, so no statutory deadline runs; the pause covers every general enquiry, whatever records it names",
-      "note": ""
-     },
-     {
-      "term": "reviewing this position in January 2027",
-      "statute": "No end date given: January 2027 is when the pause is to be reviewed, not when replies resume",
-      "note": ""
-     },
-     {
-      "term": "not able to respond to family history or genealogical enquiries",
-      "statute": "No statute applies to a private collection; a request about estate and title records is answered with the family history line",
-      "note": ""
-     }
-    ],
-    "chestnut": "currently unable to respond to general external enquiries",
-    "open": true,
-    "held_back": []
-   },
-   "updated": "2026-11-03",
-   "date_display": "2026-10-15",
-   "source_text": "Correspondence held on file (not published)",
-   "evidence_links": []
-  }
- ]
+  "chestnuts": [
+    {
+      "id": "TOC-E01",
+      "title": "Heneb (HER) · reply of 2026-11-02",
+      "date": {
+        "display": "2026-11-02",
+        "sort": "2026-11-02",
+        "precision": "day"
+      },
+      "provenance": {
+        "holder": "Heneb (HER)",
+        "reference": "Correspondence held on file (not published)",
+        "date": "2026-11-02"
+      },
+      "evidence": [],
+      "finding": {
+        "class": "language",
+        "institution": "Heneb (HER)",
+        "negative_date": "2026-11-02",
+        "positive_date": "",
+        "months_elapsed": null,
+        "email_volume": "",
+        "negative_quote": "This information is not held in the HER. As previously advised, we are unable to undertake research on your behalf, please do search Archwilio and submit requests for any specific paper HER records which you wish to review.",
+        "positive_quote": "",
+        "positive_nature": "",
+        "trigger": "",
+        "disclosure_type": "",
+        "conduct": "The request named three historical title records and asked which searches and indexes were checked. The reply is a one-line 'not held' with no account of the searches, followed by the standing line that the HER will not research on the requester's behalf and a pointer to the public database.",
+        "interim_disclosure": "",
+        "terms": [
+          {
+            "term": "not held",
+            "statute": "EIR reg 12(4)(a) / FOIA s.1(1)(a); no account of the searches made",
+            "note": ""
+          },
+          {
+            "term": "unable to undertake research on your behalf",
+            "statute": "EIR reg 9 / FOIA s.16 duty to advise and assist; no exception cited (EIR reg 12(4)(b) / FOIA s.12–s.14 not formally applied)",
+            "note": ""
+          },
+          {
+            "term": "search Archwilio (pointed to the public database)",
+            "statute": "EIR reg 6(1)(b) / FOIA s.21 information already publicly accessible; not formally cited, and it applies only to information the body itself holds",
+            "note": ""
+          }
+        ],
+        "open": true,
+        "held_back": []
+      },
+      "updated": "2026-11-02",
+      "date_display": "2026-11-02",
+      "source_text": "Correspondence held on file (not published)",
+      "evidence_links": []
+    },
+    {
+      "id": "TOC-E02",
+      "title": "Heneb (HER) · reply of 2026-11-02",
+      "date": {
+        "display": "2026-11-02",
+        "sort": "2026-11-02",
+        "precision": "day"
+      },
+      "provenance": {
+        "holder": "Heneb (HER)",
+        "reference": "Correspondence held on file (not published)",
+        "date": "2026-11-02"
+      },
+      "evidence": [],
+      "finding": {
+        "class": "language",
+        "institution": "Heneb (HER)",
+        "negative_date": "2026-11-02",
+        "positive_date": "",
+        "months_elapsed": null,
+        "email_volume": "",
+        "negative_quote": "As previously advised, we are unable to undertake research on your behalf.",
+        "positive_quote": "",
+        "positive_nature": "",
+        "trigger": "",
+        "disclosure_type": "",
+        "conduct": "The reply answers a list of alternative names and spellings supplied for the existing requests. It does not say whether any of the names were searched; it repeats the earlier line.",
+        "interim_disclosure": "",
+        "terms": [
+          {
+            "term": "unable to undertake research on your behalf",
+            "statute": "EIR reg 9 / FOIA s.16 duty to advise and assist; no exception cited (EIR reg 12(4)(b) / FOIA s.12–s.14 not formally applied)",
+            "note": ""
+          },
+          {
+            "term": "as previously advised (earlier answer repeated)",
+            "statute": "EIR reg 5(1) / FOIA s.1(1): a request supplied with further names is to be searched and answered; reg 9 / s.16 advice on which names would help",
+            "note": ""
+          }
+        ],
+        "open": true,
+        "held_back": []
+      },
+      "updated": "2026-11-02",
+      "date_display": "2026-11-02",
+      "source_text": "Correspondence held on file (not published)",
+      "evidence_links": []
+    },
+    {
+      "id": "TOC-E03",
+      "title": "Heneb (HER) · reply of 2026-11-02",
+      "date": {
+        "display": "2026-11-02",
+        "sort": "2026-11-02",
+        "precision": "day"
+      },
+      "provenance": {
+        "holder": "Heneb (HER)",
+        "reference": "Correspondence held on file (not published)",
+        "date": "2026-11-02"
+      },
+      "evidence": [],
+      "finding": {
+        "class": "language",
+        "institution": "Heneb (HER)",
+        "negative_date": "2026-11-02",
+        "positive_date": "",
+        "months_elapsed": null,
+        "email_volume": "",
+        "negative_quote": "We are unable to undertake research on your behalf. You are welcome to search Archwilio and submit requests for any specific paper HER records which you wish to review.",
+        "positive_quote": "",
+        "positive_nature": "",
+        "trigger": "",
+        "disclosure_type": "",
+        "conduct": "The request asked for earlier 'not held' searches about the 1983 fire and the Roman villa finds to be run again with newly found historical names. The reply treats it as a research request and points to the public database; it does not say whether the new names were searched.",
+        "interim_disclosure": "",
+        "terms": [
+          {
+            "term": "unable to undertake research on your behalf",
+            "statute": "EIR reg 9 / FOIA s.16 duty to advise and assist; no exception cited (EIR reg 12(4)(b) / FOIA s.12–s.14 not formally applied)",
+            "note": ""
+          },
+          {
+            "term": "search Archwilio (pointed to the public database)",
+            "statute": "EIR reg 6(1)(b) / FOIA s.21 information already publicly accessible; not formally cited, and it applies only to information the body itself holds",
+            "note": ""
+          }
+        ],
+        "open": true,
+        "held_back": []
+      },
+      "updated": "2026-11-02",
+      "date_display": "2026-11-02",
+      "source_text": "Correspondence held on file (not published)",
+      "evidence_links": []
+    },
+    {
+      "id": "TOC-E04",
+      "title": "Health and Safety Executive · reply of 2026-11-02",
+      "date": {
+        "display": "2026-11-02",
+        "sort": "2026-11-02",
+        "precision": "day"
+      },
+      "provenance": {
+        "holder": "Health and Safety Executive",
+        "reference": "Correspondence held on file (not published)",
+        "date": "2026-11-02"
+      },
+      "evidence": [],
+      "finding": {
+        "class": "language",
+        "institution": "Health and Safety Executive",
+        "negative_date": "2026-11-02",
+        "positive_date": "",
+        "months_elapsed": null,
+        "email_volume": "",
+        "negative_quote": "HSE request you do not seek an update on the status of your request before the statutory / recommended date for response has expired. Please be advised that HSE is currently experiencing an increased volume of information requests. This has resulted in HSE not always being in a position to respond to requests within the statutory deadlines detailed above.",
+        "positive_quote": "",
+        "positive_nature": "",
+        "trigger": "",
+        "disclosure_type": "",
+        "conduct": "Automatic receipt for a request about 1988–89 demolition notifications. Before any work is done it asks the requester not to chase and warns that replies are not always sent within the statutory time.",
+        "interim_disclosure": "",
+        "terms": [
+          {
+            "term": "do not seek an update",
+            "statute": "FOIA s.10(1) / EIR reg 5(2): a reply is due within 20 working days; nothing in either bars a requester from asking about progress",
+            "note": ""
+          },
+          {
+            "term": "advance warning of late replies",
+            "statute": "FOIA s.10(1) / EIR reg 5(2) 20 working days; an EIR reg 7 extension needs complexity and volume, notified within the 20 days",
+            "note": ""
+          }
+        ],
+        "open": true,
+        "held_back": []
+      },
+      "updated": "2026-11-02",
+      "date_display": "2026-11-02",
+      "source_text": "Correspondence held on file (not published)",
+      "evidence_links": []
+    },
+    {
+      "id": "TOC-E05",
+      "title": "Darwin Gray LLP (solicitors, Cardiff) · reply of 2026-11-02",
+      "date": {
+        "display": "2026-11-02",
+        "sort": "2026-11-02",
+        "precision": "day"
+      },
+      "provenance": {
+        "holder": "Darwin Gray LLP (solicitors, Cardiff)",
+        "reference": "Correspondence held on file (not published)",
+        "date": "2026-11-02"
+      },
+      "evidence": [],
+      "finding": {
+        "class": "language",
+        "institution": "Darwin Gray LLP (solicitors, Cardiff)",
+        "negative_date": "2026-11-02",
+        "positive_date": "",
+        "months_elapsed": null,
+        "email_volume": "",
+        "negative_quote": "we have not seen any communication or document from you on that date. We have the enquiries you have sent to us on 19 and 21 September 2026 … we do not hold anything relating to this matter apart from what you have sent us, which you will be able to obtain from your own ‘sent items’ in your email account.",
+        "positive_quote": "",
+        "positive_nature": "",
+        "trigger": "Follow-up of 31 October 2026 from the enquirer, citing the preservation notice of 28 September 2026: was any file held, what searches were made, was anything destroyed or transferred, and a request that nothing be destroyed while the enquiries are open.",
+        "disclosure_type": "",
+        "conduct": "The enquirer's Sent folder holds the preservation notice of 28 September 2026 (22:39 UK time), addressed to two of the firm's email addresses, one in To and one in Cc, with no delivery-failure notice for either; the firm's mail server had returned an immediate rejection for a different address on 21 September. Two further emails of 27 September and 7 October also went to the firm's general address. The reply of 2 November names only the enquiries of 19 and 21 September, states that the firm was founded in 2002, was never instructed about the land and holds nothing beyond the enquirer's own emails. It gives no account of a search of its mail system or quarantine for the 28 September notice, and no undertaking that nothing will be destroyed.",
+        "interim_disclosure": "",
+        "terms": [
+          {
+            "term": "have not seen any communication or document from you on that date",
+            "statute": "No delivery failure was recorded for either address; the notice's Message-ID can be traced in the firm's own mail logs. A UK GDPR Art. 15 subject access request (one month) covers every email from the enquirer the firm holds.",
+            "note": ""
+          },
+          {
+            "term": "we do not hold anything … apart from what you have sent us",
+            "statute": "UK GDPR Art. 15(1)(d): the retention period for the enquirer's own emails is not stated",
+            "note": ""
+          },
+          {
+            "term": "no preservation undertaking",
+            "statute": "A private firm has no FOIA s.77 duty; a duty to preserve arises for a likely party to proceedings (CPR PD 31B para 7; PD 57AD para 3.1); after a subject access request, DPA 2018 s.173 makes deletion to prevent disclosure an offence",
+            "note": ""
+          }
+        ],
+        "open": true,
+        "held_back": []
+      },
+      "updated": "2026-11-02",
+      "date_display": "2026-11-02",
+      "source_text": "Correspondence held on file (not published)",
+      "evidence_links": []
+    },
+    {
+      "id": "TOC-E06",
+      "title": "bp (legal team, via a contractor) · reply of 2026-10-23",
+      "date": {
+        "display": "2026-10-23",
+        "sort": "2026-10-23",
+        "precision": "day"
+      },
+      "provenance": {
+        "holder": "bp (legal team, via a contractor)",
+        "reference": "Correspondence held on file (not published)",
+        "date": "2026-10-23"
+      },
+      "evidence": [],
+      "finding": {
+        "class": "language",
+        "institution": "bp (legal team, via a contractor)",
+        "negative_date": "2026-10-23",
+        "positive_date": "",
+        "months_elapsed": null,
+        "email_volume": "",
+        "negative_quote": "we are not aware of any outstanding or live cause of action that bp or any related entity would need to answer in relation to this property. … we are not in a position to understand why a document preservation obligation would exist, and we are therefore not able to confirm that a preservation hold of the kind you describe will be put in place.",
+        "positive_quote": "",
+        "positive_nature": "",
+        "trigger": "Preservation notice of 16 October 2026 to a named bp lawyer, asking for a hold on records about the farm from 1969; it was passed to a contractor in the legal team.",
+        "disclosure_type": "",
+        "conduct": "The first preservation notice, of 28 September 2026, went to BP Archive with no delivery failure and has had no reply; records enquiries of 19 and 29 October to the same address are also unanswered. The reply of 23 October answers the later notice of 16 October only, does not mention the 28 September notice, declines to confirm a preservation hold, finds many of the notice's links inaccessible and asks for the basis of any new case, the legal grounds and the relief sought. Follow-ups of 24 October (asking for hold confirmation by 7 November 2026) and 31 October had automatic out-of-office replies only, up to 2 November 2026.",
+        "interim_disclosure": "",
+        "terms": [
+          {
+            "term": "not able to confirm that a preservation hold … will be put in place",
+            "statute": "A party's duty to preserve arises once it knows it may become a party to proceedings (PD 57AD para 3.1; CPR PD 31B para 7); the reply ties the hold to the absence of a live cause of action",
+            "note": ""
+          },
+          {
+            "term": "not aware of any outstanding or live cause of action",
+            "statute": "Concluded litigation (Court of Appeal, 1987) cited as the reason no hold is needed; no statement of the company's retention schedule or of any destruction",
+            "note": ""
+          },
+          {
+            "term": "no reply to the notice of 28 September 2026",
+            "statute": "A company has no FOIA s.77 duty; a UK GDPR Art. 15 subject access request can ask for retention periods (Art. 15(1)(d))",
+            "note": ""
+          }
+        ],
+        "open": true,
+        "held_back": []
+      },
+      "updated": "2026-11-02",
+      "date_display": "2026-10-23",
+      "source_text": "Correspondence held on file (not published)",
+      "evidence_links": []
+    },
+    {
+      "id": "TOC-E07",
+      "title": "Mount Stuart Trust (Bute Collection) · enquiry and automatic reply of 2026-10-15",
+      "date": {
+        "display": "2026-10-15",
+        "sort": "2026-10-15",
+        "precision": "day"
+      },
+      "provenance": {
+        "holder": "Mount Stuart Trust (Bute Collection)",
+        "reference": "Correspondence held on file (not published)",
+        "date": "2026-10-15"
+      },
+      "evidence": [],
+      "finding": {
+        "class": "language",
+        "institution": "Mount Stuart Trust (Bute Collection)",
+        "negative_date": "2026-10-15",
+        "positive_date": "",
+        "months_elapsed": null,
+        "email_volume": "",
+        "negative_quote": "Please note that we are currently unable to respond to general external enquiries. We anticipate reviewing this position in January 2027. [...] Please note we are not able to respond to family history or genealogical enquiries at this time.",
+        "positive_quote": "",
+        "positive_nature": "",
+        "trigger": "Research-visit request from the enquirer, sent on 15 October 2026 at 23:01:51 UTC (00:01 on 16 October, UK time), asking for named Bute Estate (Glamorgan) records on Llandough-juxta-Penarth.",
+        "disclosure_type": "",
+        "conduct": "The enquirer sent a research-visit request on 15 October 2026 at 23:01:51 UTC. The automatic reply came at 23:02:03 UTC the same day, 12 seconds later. It replied that general external enquiries are paused, with the position to be reviewed in January 2027 (a review date, not a date for answers), and that family history enquiries are not answered at this time. Research visits remain open by appointment three weeks ahead. Follow-ups sent on 19 October 2026 (22:14 UTC) and 29 October 2026 (19:55 UTC) have had no reply as of 3 November 2026; a further records request of 31 October 2026 has had no reply either. An earlier enquiry of 23 August 2026 went to a different address of the Trust and was returned undelivered (address not found).",
+        "interim_disclosure": "",
+        "terms": [
+          {
+            "term": "unable to respond to general external enquiries",
+            "statute": "A private trust: FOIA and the EIR do not apply, so no statutory deadline runs; the pause covers every general enquiry, whatever records it names",
+            "note": ""
+          },
+          {
+            "term": "reviewing this position in January 2027",
+            "statute": "No end date given: January 2027 is when the pause is to be reviewed, not when replies resume",
+            "note": ""
+          },
+          {
+            "term": "not able to respond to family history or genealogical enquiries",
+            "statute": "No statute applies to a private collection; a request about estate and title records is answered with the family history line",
+            "note": ""
+          }
+        ],
+        "chestnut": "currently unable to respond to general external enquiries",
+        "open": true,
+        "held_back": []
+      },
+      "updated": "2026-11-03",
+      "date_display": "2026-10-15",
+      "source_text": "Correspondence held on file (not published)",
+      "evidence_links": []
+    }
+  ]
 }
