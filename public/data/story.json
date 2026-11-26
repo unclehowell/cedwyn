@@ -473,7 +473,36 @@
    "t": "EV-0290 · South Wales Echo, 2 Jun 1990, p.2 (snippet)",
    "u": "https://greathousefarmwiki.wordpress.com/evidence/ev-0290-snippet-only-south-wales-echo-2-jun-1990-p-2-billy-died-suddenly-this-week-he-made/"
   }
- },
+ ,
+  "ev0770-disclosure": {
+   "t": "EV-0770 — Museum Wales FOI 2026-032 disclosure (39 pages)",
+   "u": "https://wayback.bucklerfamily.estate/pdf/evidence/1994-05-04_wp68_cotswold-archaeological-trust-letter-to-national-m.pdf"
+  },
+  "cat94213": {
+   "t": "EV-0209 — Cotswold Archaeological Trust Report 94213 (1994), OCR text",
+   "u": "https://wayback.bucklerfamily.estate/text/evidence/0000-00-00_wp81_unidentified-scanned-pdf-in-the-wiki-media-library_ocr.txt"
+  },
+  "her02272s": {
+   "t": "Heneb HER GGAT02272s — Early Christian Cemetery, Great House Farm",
+   "u": "https://archwilio.org.uk/her/chi3/report/page.php?watprn=GGAT02272s"
+  },
+  "her03583s": {
+   "t": "Heneb HER GGAT03583s — Great House Farm, Llandough",
+   "u": "https://archwilio.org.uk/her/chi3/report/page.php?watprn=GGAT03583s"
+  },
+  "her-event-ggate003875": {
+   "t": "Heneb HER GGATE003875 — Great House Farm excavation event",
+   "u": "https://archwilio.org.uk/her/chi3/report/page.php?watprn=GGATE003875"
+  },
+  "med0096": {
+   "t": "MED-0096 — Holbrook & Thomas, Medieval Archaeology 49 (2005)",
+   "u": "https://archaeologydataservice.ac.uk/archiveDS/archiveDownload?t=arch-769-1%2Fdissemination%2Fpdf%2Fvol49%2F49_001_092.pdf"
+  },
+  "ev0293-burial631": {
+   "t": "EV-0293 — Llandough HER records and Burial 631",
+   "u": "https://greathousefarmwiki.wordpress.com/evidence/ev-0293-llandough-1994-cemetery-excavation-her-ggat02272s-museum-wales-95-56h-burial-631/"
+  }
+},
  "steps": [
   {
    "date": "Today",
@@ -3223,7 +3252,11 @@
     "rec88"
    ]
   }
- ],
+ ,
+  {"id":"llan94-museum-catalogue-locality","lat":51.452637538,"lon":-3.198617246,"label":"Museum/CAT ST 1681 7331","text":"Museum/CAT locality ST 1681 7331, also the RCAHMW 1974 farmhouse-plan reference. This point falls inside the current approximate A2 farmhouse-and-yard shape. It is a location reference only, not the 0.22 ha excavation boundary or a title determination. The published excavation area is described as immediately north of St Dochdwy’s; no survey-control schedule ties the plan to title boundaries.","from_":1994,"to":1994,"kind":"feature","src":["ev0770-disclosure","cat94213","med0096","ev0293-burial631"]},
+  {"id":"llan94-her-site-locality","lat":51.45291017,"lon":-3.198336547,"label":"HER site ST 1683 7334","text":"Heneb site records GGAT02272s and GGAT03583s use ST 1683 7334, about 20 m east and 30 m north (approximately 36 m) of the Museum/CAT locality. This point falls inside the current approximate A1 north-wood shape. It is a point reference only; it does not define the excavation footprint or title boundary.","from_":1994,"to":1994,"kind":"feature","src":["her02272s","her03583s","ev0770-disclosure","ev0293-burial631"]},
+  {"id":"llan94-her-event-reference","lat":51.45267204,"lon":-3.19963998,"label":"HER event ST 16739 73315","text":"The archived HER event record GGATE003875 carries ST 16739 73315, about 71 m west of the Museum/CAT locality. It falls outside the four current parcel shapes and is not interchangeable with the HER site-record point. It is shown as a separate coordinate reference pending a HER explanation; it is not the excavation boundary.","from_":1994,"to":1994,"kind":"feature","src":["her-event-ggate003875","ev0770-disclosure","ev0293-burial631"]}
+],
  "parcelA": {
   "from": "s02",
   "label": "Parcel A",
