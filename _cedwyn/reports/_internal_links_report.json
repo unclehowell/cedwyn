@@ -1,15 +1,15 @@
 {
   "audit": "Cedwyn internal HTML/CSS links and fragments",
-  "pages_scanned": 14734,
+  "pages_scanned": 14735,
   "references_checked": {
-    "resource": 367237,
-    "nav": 703449
+    "resource": 367260,
+    "nav": 704118
   },
-  "database_backed_paths": 7438,
-  "unique_missing_destinations": 2435,
-  "missing_references": 86632,
-  "missing_navigation_references": 48042,
-  "missing_resource_references": 38590,
+  "database_backed_paths": 7719,
+  "unique_missing_destinations": 2424,
+  "missing_references": 74625,
+  "missing_navigation_references": 48034,
+  "missing_resource_references": 26591,
   "unique_broken_fragments": 2541,
   "broken_fragment_references": 4911,
   "form_or_endpoint_actions_not_checked": {
@@ -19,7 +19,7 @@
     {
       "kind": "nav",
       "path": "/hive/",
-      "references": 14703,
+      "references": 14704,
       "examples": [
         {
           "from": "/404.html",
@@ -46,7 +46,7 @@
     {
       "kind": "nav",
       "path": "/mcp/",
-      "references": 14699,
+      "references": 14700,
       "examples": [
         {
           "from": "/404.html",
@@ -73,7 +73,7 @@
     {
       "kind": "resource",
       "path": "/blog/rss.xml",
-      "references": 11970,
+      "references": 11971,
       "examples": [
         {
           "from": "/chess/404.html",
@@ -100,7 +100,7 @@
     {
       "kind": "resource",
       "path": "/blog/atom.xml",
-      "references": 11970,
+      "references": 11971,
       "examples": [
         {
           "from": "/chess/404.html",
@@ -121,40 +121,13 @@
           "from": "/courtdrills/",
           "attribute": "link[href]",
           "url": "/blog/atom.xml"
-        }
-      ]
-    },
-    {
-      "kind": "resource",
-      "path": "/blog/feed.json",
-      "references": 11970,
-      "examples": [
-        {
-          "from": "/chess/404.html",
-          "attribute": "link[href]",
-          "url": "/blog/feed.json"
-        },
-        {
-          "from": "/chess/",
-          "attribute": "link[href]",
-          "url": "/blog/feed.json"
-        },
-        {
-          "from": "/courtdrills/404.html",
-          "attribute": "link[href]",
-          "url": "/blog/feed.json"
-        },
-        {
-          "from": "/courtdrills/",
-          "attribute": "link[href]",
-          "url": "/blog/feed.json"
         }
       ]
     },
     {
       "kind": "nav",
       "path": "/subscribe/",
-      "references": 11251,
+      "references": 11252,
       "examples": [
         {
           "from": "/",
@@ -904,33 +877,6 @@
           "from": "/dartboard/",
           "attribute": "a[href]",
           "url": "/dartboard/that-old-chestnut/#toc-s11"
-        }
-      ]
-    },
-    {
-      "kind": "resource",
-      "path": "/wayback/video/2026-10-22_ty-mawr-great-house-story-on-the-map.webm",
-      "references": 28,
-      "examples": [
-        {
-          "from": "/wiki/",
-          "attribute": "video[src]",
-          "url": "/wayback/video/2026-10-22_ty-mawr-great-house-story-on-the-map.webm"
-        },
-        {
-          "from": "/research/index.html@page_id=778.html",
-          "attribute": "video[src]",
-          "url": "/wayback/video/2026-10-22_ty-mawr-great-house-story-on-the-map.webm"
-        },
-        {
-          "from": "/research/index.html@page_id=6335.html",
-          "attribute": "video[src]",
-          "url": "/wayback/video/2026-10-22_ty-mawr-great-house-story-on-the-map.webm"
-        },
-        {
-          "from": "/research/index.html@page_id=947.html",
-          "attribute": "video[src]",
-          "url": "/wayback/video/2026-10-22_ty-mawr-great-house-story-on-the-map.webm"
         }
       ]
     },
@@ -4063,6 +4009,60 @@
           "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
           "attribute": "a[href]",
           "url": "/research/scrutiny-and-accountability/government-public-authority-involvement/persimmon-forensic-institutional-review/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-addition-a-122-8-october-2026/",
+      "references": 5,
+      "examples": [
+        {
+          "from": "/research/agent-index/",
+          "attribute": "a[href]",
+          "url": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-addition-a-122-8-october-2026/"
+        },
+        {
+          "from": "/research/evidence/ev-0020-western-ground-rents-rental-books/",
+          "attribute": "a[href]",
+          "url": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-addition-a-122-8-october-2026/"
+        },
+        {
+          "from": "/docs/ghf_wiki/rg_forensicregisteradditiona1228october2026/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-addition-a-122-8-october-2026/"
+        },
+        {
+          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
+          "attribute": "a[href]",
+          "url": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-addition-a-122-8-october-2026/"
+        }
+      ]
+    },
+    {
+      "kind": "nav",
+      "path": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-additions-a-106-to-a-115-8-october-2026/",
+      "references": 5,
+      "examples": [
+        {
+          "from": "/research/agent-index/",
+          "attribute": "a[href]",
+          "url": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-additions-a-106-to-a-115-8-october-2026/"
+        },
+        {
+          "from": "/research/evidence/ev-0020-western-ground-rents-rental-books/",
+          "attribute": "a[href]",
+          "url": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-additions-a-106-to-a-115-8-october-2026/"
+        },
+        {
+          "from": "/docs/ghf_wiki/rg_forensicregisteradditionsa106toa1158octo/latest/html/en/",
+          "attribute": "a[href]",
+          "url": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-additions-a-106-to-a-115-8-october-2026/"
+        },
+        {
+          "from": "/docs/ghf_wiki/rg_agentindex/latest/html/en/1-record.html",
+          "attribute": "a[href]",
+          "url": "/research/scrutiny-and-accountability/master-scrutiny-issue-register/forensic-register-additions-a-106-to-a-115-8-october-2026/"
         }
       ]
     }
