@@ -102,7 +102,8 @@
       "repo": "unclehowell/cedwyn-research",
       "old_branch": "section/research",
       "page": "/research/",
-      "mode": "mirror"
+      "mode": "split-repo",
+      "deploy": "repo"
     },
     {
       "app": "Case Office",
@@ -278,7 +279,8 @@
       "old_branch": "ebooks",
       "page": "/ebooks/",
       "mode": "split-repo",
-      "deploy": "repo"
+      "deploy": "repo",
+      "source_version": "0.1.2"
     },
     {
       "app": "Land Changing Hands",
@@ -405,7 +407,8 @@
       "repo": "unclehowell/cedwyn-revival-ar",
       "old_branch": "section/revival-ar",
       "page": "/revival-ar/",
-      "mode": "mirror"
+      "mode": "split-repo",
+      "deploy": "repo"
     },
     {
       "app": "Peekaboo",
@@ -557,6 +560,44 @@
       "page": "/uptime/",
       "mode": "split-repo",
       "deploy": "repo"
+    },
+    {
+      "app": "Piano Hero",
+      "repo": "unclehowell/cedwyn-piano-hero",
+      "page": "/piano-hero/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "Preservation Register",
+      "repo": "unclehowell/cedwyn-preservation",
+      "page": "/preservation/",
+      "mode": "split-repo",
+      "deploy": "repo"
+    },
+    {
+      "app": "The Council Chamber (direct route)",
+      "repo": "unclehowell/cedwyn-meeting",
+      "page": "/meeting/",
+      "mode": "split-repo",
+      "deploy": "repo",
+      "note": "Direct /meeting/ path; the existing /2026-10-22/ route record is retained"
+    },
+    {
+      "app": "Argentina Tŷ Mawr 3D world (direct route)",
+      "repo": "unclehowell/cedwyn-argentina-3d",
+      "page": "/argentina-3d/",
+      "mode": "split-repo",
+      "deploy": "repo",
+      "note": "Direct /argentina-3d/ route; the legacy /argentina/ route record is retained"
+    },
+    {
+      "app": "Tweak",
+      "repo": "unclehowell/cedwyn-tweak",
+      "page": "/tweak/",
+      "mode": "split-repo",
+      "deploy": "repo"
     }
   ]
 }
+
